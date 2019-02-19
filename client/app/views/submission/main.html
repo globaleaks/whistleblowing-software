@@ -9,7 +9,7 @@
             1 - <span data-translate>Recipient selection</span>
           </a>
         </li>
-        <li data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'" data-ng-class="{active: navigation === $index}" data-ng-show="step.enabled">
+        <li data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'" data-ng-class="{active: navigation === $index}" data-ng-if="step.enabled">
           <a id="step-{{$index}}-link" class="StepTitle" data-ng-click="goToStep($index)">
             <span>{{$index + (receiver_selection_step ? 2 : 1)}} - {{::step.label}}</span>
           </a>

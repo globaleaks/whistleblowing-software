@@ -21,7 +21,7 @@ GLClient.controller("TipCtrl",
     var filterNotTriggeredField = function(field, answers) {
       for(var i=field.children.length - 1; i>=0; i--) {
         var f = field.children[i];
-        if (!$scope.isFieldTriggered(field, f, answers[f.id], $scope.tip.total_score)) {
+        if (!fieldUtilities.isFieldTriggered(field, f, answers[f.id], $scope.tip.total_score)) {
           field.enabled = false;
           field.children.splice(i, 1);
         } else {
@@ -54,7 +54,7 @@ GLClient.controller("TipCtrl",
         }
 
         if ($scope.node.enable_experimental_features) {
-          if (!$scope.isFieldTriggered(null, step, $scope.tip.answers, $scope.tip.total_score)) {
+          if (!fieldUtilities.isFieldTriggered(null, step, $scope.tip.answers, $scope.tip.total_score)) {
             step.enabled = false;
             tip.questionnaires[0].steps.splice(i, 1);
           } else {
@@ -235,7 +235,6 @@ GLClient.controller("TipCtrl",
     };
 
     $scope.total_score = 0;
-
 }]).
 controller("TipOperationsCtrl",
   ["$scope", "$http", "$route", "$location", "$uibModalInstance", "args",

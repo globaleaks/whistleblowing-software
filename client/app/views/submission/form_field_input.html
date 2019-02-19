@@ -10,7 +10,6 @@
                   name="input-{{::entryIndex}}"
                   class="form-control inputelem"
                   data-ng-model="entry['value']"
-                  data-ng-change="onAnswerUpdate(field, entry)"
                   data-ng-minlength="field.attrs.min_len.value"
                   maxlength="{{::maxlength}}"
                   aria-label="{{::field.label}}"
@@ -26,7 +25,7 @@
         </div>
     </div>
       <div data-ng-switch-when="selectbox" data-ng-class="{'has-error': field.required_status}">
-        <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="form-control inputelem" data-ng-model="entry['value']" data-ng-change="onAnswerUpdate(field, entry)" data-ng-required="field.required_status">
+        <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="form-control inputelem" data-ng-model="entry['value']" data-ng-required="field.required_status">
           <option style="display:none" value=""></option>
           <option data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'presentation_order'" id="{{::fieldEntry}}-option-{{::$index}}" value="{{option.id}}">{{::option.label}}</option>
         </select>
@@ -38,7 +37,6 @@
                    name="{{'input-' + $parent.entryIndex + '-option-' + entryIndex}}"
                    class="inputelem"
                    data-ng-model="entry[option.id]"
-                   data-ng-change="onAnswerUpdate(field, entry)"
                    data-ng-required="field.required_status"
                    data-ng-attr-placeholder="{{field.placeholder || 'false'}}"
                    type="checkbox" />
@@ -56,7 +54,6 @@
                  readonly="readonly"
                  aria-label="{{::field.label}}"
                  data-ng-model="entry['value']"
-                 data-ng-change="onAnswerUpdate(field, entry)"
                  data-ng-required="field.required_status"
                  data-ng-attr-placeholder="{{field.placeholder}}"
                  data-ng-click="open()"
@@ -80,7 +77,6 @@
                    name="input-{{entryIndex}}"
                    class="inputelem"
                    data-ng-model="entry['value']"
-                   data-ng-change="onAnswerUpdate(field, entry)"
                    data-ng-required="field.required_status"
                    value="{{field.value}}"
                    data-ng-attr-placeholder="{{field.placeholder || 'false'}}"
@@ -112,7 +108,6 @@
                class="form-control inputelem"
                data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : 4096"
                data-ng-model="entry['value']"
-               data-ng-change="onAnswerUpdate(field, entry)"
                data-ng-model-options="{'debounce': 350}"
                data-ng-minlength="field.attrs.min_len.value"
                data-ng-pattern="validator"

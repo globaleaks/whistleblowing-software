@@ -8,7 +8,7 @@
   <form id="submissionForm" name="vars.submissionForm" autocomplete="off" novalidate>
     <div class="tabbable tabs-below">
       <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" data-ng-if="tip.additional_questionnaire.steps.length > 1">
-        <li data-ng-repeat="step in tip.additional_questionnaire.steps | orderBy:'presentation_order'" data-ng-class="{active: selection === $index}">
+        <li data-ng-repeat="step in tip.additional_questionnaire.steps | orderBy:'presentation_order'" data-ng-class="{active: navigation === $index}" data-ng-if="step.enabled">
           <a id="step-{{$index}}-link" class="StepTitle" data-ng-click="goToStep($index)">
             <span>{{$index + 1}} - {{::step.label}}</span>
           </a>
@@ -17,8 +17,8 @@
 
       <div id="SubmissionTabsContentBox" class="tab-content">
         <div data-ng-if="displayErrors()" data-ng-include="'views/submission/submission_error.html'"></div>
-        <div data-ng-repeat="step in tip.additional_questionnaire.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl">
-          <div id="{{::stepId}}" data-ng-form="{{::stepId}}" class="SubmissionStep" data-ng-show="selection === $index">
+        <div data-ng-repeat="step in tip.additional_questionnaire.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl" data-ng-if="step.enabled">
+          <div id="{{::stepId}}" data-ng-form="{{::stepId}}" class="SubmissionStep" data-ng-show="navigation === $index">
             <div class="stepDescription" data-ng-if="step.description">{{step.description}}</div>
             <div data-ng-include="'views/submission/form.html'"></div>
           </div>

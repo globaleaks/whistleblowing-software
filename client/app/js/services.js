@@ -1183,136 +1183,235 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     };
 }]).
   factory("fieldUtilities", ["$filter", "CONSTANTS", function($filter, CONSTANTS) {
-      var getValidator = function(field) {
-        var validators = {
-          "custom": field.attrs.regexp.value,
-          "none": "",
-          "email": CONSTANTS.email_regexp,
-          "number": CONSTANTS.number_regexp,
-          "phonenumber": CONSTANTS.phonenumber_regexp,
-        };
+      return {
+        getValidator: function(field) {
+          var validators = {
+            "custom": field.attrs.regexp.value,
+            "none": "",
+            "email": CONSTANTS.email_regexp,
+            "number": CONSTANTS.number_regexp,
+            "phonenumber": CONSTANTS.phonenumber_regexp,
+          };
 
-        return validators[field.attrs.input_validation.value];
-      };
+          return validators[field.attrs.input_validation.value];
+        },
 
-      var minY = function(arr) {
-        return $filter("min")($filter("map")(arr, "y"));
-      };
+        minY: function(arr) {
+          return $filter("min")($filter("map")(arr, "y"));
+        },
 
-      var splitRows = function(fields) {
-        var rows = $filter("groupBy")(fields, "y");
-        rows = $filter("toArray")(rows);
-        rows = $filter("orderBy")(rows, minY);
-        return rows;
-      };
+        splitRows: function(fields) {
+          var rows = $filter("groupBy")(fields, "y");
+          rows = $filter("toArray")(rows);
+          rows = $filter("orderBy")(rows, this.minY);
+          return rows;
+        },
 
-      var prepare_field_answers_structure = function(field) {
-        if (field.answers_structure === undefined) {
-          field.answer_structure = {};
-          if (field.type === "fieldgroup") {
-            angular.forEach(field.children, function(child) {
-              field.answer_structure[child.id] = [prepare_field_answers_structure(child)];
-            });
-          }
-        }
-
-        return field.answer_structure;
-      };
-
-      var flatten_field = function(id_map, field) {
-        if (field.children.length === 0) {
-          id_map[field.id] = field;
-          return id_map;
-        } else {
-          id_map[field.id] = field;
-          return field.children.reduce(flatten_field, id_map);
-        }
-      };
-
-      var build_field_id_map = function(questionnaire) {
-        return questionnaire.steps.reduce(function(id_map, cur_step) {
-          return cur_step.children.reduce(flatten_field, id_map);
-        }, {});
-      };
-
-      var underscore = function(s) {
-        return s.replace(new RegExp("-", "g"), "_");
-      };
-
-      var stepFormName = function(id) {
-        return "stepForm_" + underscore(id);
-      };
-
-      var fieldFormName = function(id) {
-        return "fieldForm_" + underscore(id);
-      };
-
-      var findField = function(answers_obj, field_id) {
-        var r;
-
-        for (var key in answers_obj) {
-          if (!key.match(CONSTANTS.uuid_regexp)) {
-            continue;
-          }
-
-          if (key === field_id) {
-            return answers_obj[key][0];
-          }
-
-          if (answers_obj.hasOwnProperty(key) && answers_obj[key] instanceof Array && answers_obj[key].length) {
-            r = findField(answers_obj[key][0], field_id);
-            if (r !== undefined) {
-              return r;
+        prepare_field_answers_structure: function(field) {
+          if (field.answers_structure === undefined) {
+            field.answer_structure = {};
+            if (field.type === "fieldgroup") {
+              angular.forEach(field.children, function(child) {
+                field.answer_structure[child.id] = [this.prepare_field_answers_structure(child)];
+              });
             }
           }
-        }
-        return r;
-      };
 
-      var isFieldTriggered = function(parent, field, answers, score) {
-        var i;
+          return field.answer_structure;
+        },
 
-        if (parent !== null && !parent.enabled) {
-          return false;
-        }
+        flatten_field: function(id_map, field) {
+          if (field.children.length === 0) {
+            id_map[field.id] = field;
+            return id_map;
+          } else {
+            id_map[field.id] = field;
+            return field.children.reduce(this.flatten_field, id_map);
+          }
+        },
 
-        if (field.triggered_by_score > score) {
-          field.enabled = false;
-          return false;
-        }
+        build_field_id_map: function(questionnaire) {
+          var self = this;
+          return questionnaire.steps.reduce(function(id_map, cur_step) {
+            return cur_step.children.reduce(self.flatten_field, id_map);
+          }, {});
+        },
 
-        if (field.triggered_by_options.length === 0) {
-          field.enabled = true;
-          return true;
-        }
+        underscore: function(s) {
+          return s.replace(new RegExp("-", "g"), "_");
+        },
 
-        for (i=0; i < field.triggered_by_options.length; i++) {
-          var trigger_obj = field.triggered_by_options[i];
-          var answers_field = findField(answers, trigger_obj.field);
-          if (answers_field === undefined) {
-            continue;
+        stepFormName: function(id) {
+          return "stepForm_" + this.underscore(id);
+        },
+
+        fieldFormName: function(id) {
+          return "fieldForm_" + this.underscore(id);
+        },
+
+        findField: function(answers_obj, field_id) {
+          var r;
+
+          for (var key in answers_obj) {
+            if (!key.match(CONSTANTS.uuid_regexp)) {
+              continue;
+            }
+
+            if (key === field_id) {
+              return answers_obj[key][0];
+            }
+
+            if (answers_obj.hasOwnProperty(key) && answers_obj[key] instanceof Array && answers_obj[key].length) {
+              r = this.findField(answers_obj[key][0], field_id);
+              if (r !== undefined) {
+                return r;
+              }
+            }
+          }
+          return r;
+        },
+
+        isFieldTriggered: function(parent, field, answers, score) {
+          var i;
+
+          if (parent !== null && !parent.enabled) {
+            return false;
           }
 
-          // Check if triggering field is in answers object
-          if (trigger_obj.option === answers_field.value ||
-              (answers_field.hasOwnProperty(trigger_obj.option) && answers_field[trigger_obj.option])) {
+          if (field.triggered_by_score > score) {
+            field.enabled = false;
+            return false;
+          }
+
+          if (field.triggered_by_options.length === 0) {
             field.enabled = true;
             return true;
           }
+
+          for (i=0; i < field.triggered_by_options.length; i++) {
+            var trigger_obj = field.triggered_by_options[i];
+            var answers_field = this.findField(answers, trigger_obj.field);
+            if (answers_field === undefined) {
+              continue;
+            }
+
+            // Check if triggering field is in answers object
+            if (trigger_obj.option === answers_field.value ||
+                (answers_field.hasOwnProperty(trigger_obj.option) && answers_field[trigger_obj.option])) {
+              field.enabled = true;
+              return true;
+            }
+          }
+
+          field.enabled = false;
+          return false;
+        },
+
+        calculateScore: function(field, entry) {
+          var i;
+
+          if (field.type === "selectbox") {
+            for(i=0; i<field.options.length; i++) {
+              if (entry["value"] === field.options[i].id) {
+                scope.total_score += field.options[i].score_points;
+              }
+            }
+          } else if (field.type === "checkbox") {
+            for(i=0; i<field.options.length; i++) {
+              if (entry[field.options[i].id]) {
+                scope.total_score += field.options[i].score_points;
+              }
+            }
+          }
+        },
+
+        updateAnswers: function(scope, parent, list) {
+          var entry, i;
+          var self = this;
+
+          angular.forEach(list, function(field) {
+            if (self.isFieldTriggered(parent, field, scope.answers, scope.total_score)) {
+              field.enabled = true;
+            } else {
+              field.enabled = false;
+              scope.answers[field.id] = [angular.copy(self.prepare_field_answers_structure(field))];
+            }
+
+            angular.forEach(scope.answers[field.id], function(entry) {
+              self.calculateScore(scope, field, entry);
+            });
+
+            angular.forEach(list, function(field) {
+              self.updateAnswers(scope, field, field.children);
+            });
+
+            if (!(field.id in scope.answers) || !(scope.answers[field.id].length)) {
+              if (field.required) {
+                field.required_status = false;
+              }
+              return;
+            }
+
+            entry = scope.answers[field.id][0];
+
+            /* Block related to updating required status */
+            if (field.type === "inputbox" || field.type === "textarea") {
+              field.required_status = (field.required || field.attrs.min_len.value > 0) && !entry["value"];
+            } else if (field.type === "checkbox") {
+              if (!field.required) {
+                field.required_status = false;
+              } else {
+                field.required_status = true;
+                for (i=0; i<field.options.length; i++) {
+                  if (entry[field.options[i].id]) {
+                    field.required_status = false;
+                    break;
+                  }
+                }
+              }
+            } else {
+              field.required_status = field.required && !entry["value"];
+            }
+
+            /* Block related to evaluate receivers triggers */
+            if (field.type === "checkbox" || field.type === "selectbox") {
+              for (i=0; i<field.options.length; i++) {
+                if(field.type === "checkbox") {
+                  if(entry[field.options[i].id] && entry[field.options[i].id]) {
+                     if (field.options[i].trigger_receiver.length) {
+                       scope.replaceReceivers(field.options[i].trigger_receiver);
+                    }
+                  }
+                } else {
+                  if (field.options[i].id === entry["value"]) {
+                    if (field.options[i].trigger_receiver.length) {
+                      scope.replaceReceivers(field.options[i].trigger_receiver);
+                    }
+                  }
+                }
+              }
+            }
+          });
+        },
+
+        onAnswersUpdate: function(scope) {
+          var self = this;
+          scope.total_score = 0;
+
+          angular.forEach(scope.questionnaire.steps, function(step) {
+            if (self.isFieldTriggered(null, step, scope.answers, scope.total_score)) {
+              step.enabled = true;
+            } else {
+              step.enabled = false;
+            }
+
+            self.updateAnswers(scope, step, step.children);
+          });
+
+          if (scope.submission) {
+            scope.submission._submission.total_score = scope.total_score;
+          }
         }
-
-        field.enabled = false;
-        return false;
-      };
-
-      return {
-        getValidator: getValidator,
-        splitRows: splitRows,
-        prepare_field_answers_structure: prepare_field_answers_structure,
-        build_field_id_map: build_field_id_map,
-        fieldFormName: fieldFormName,
-        stepFormName: stepFormName,
-        isFieldTriggered: isFieldTriggered
       };
 }]).
   constant("CONSTANTS", {
