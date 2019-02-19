@@ -1337,9 +1337,11 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
               scope.answers[field.id] = [angular.copy(self.prepare_field_answers_structure(field))];
             }
 
-            angular.forEach(scope.answers[field.id], function(entry) {
-              self.calculateScore(scope, field, entry);
-            });
+            if (scope.context.enable_scoring_system) {
+              angular.forEach(scope.answers[field.id], function(entry) {
+                self.calculateScore(scope, field, entry);
+              });
+	    }
 
             angular.forEach(list, function(field) {
               self.updateAnswers(scope, field, field.children);

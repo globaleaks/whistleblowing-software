@@ -5,18 +5,13 @@ GLClient.controller("SubmissionCtrl",
 
   $scope.fieldUtilities = fieldUtilities;
   $scope.context_id = $location.search().context || undefined;
+  $scope.context = undefined
 
   $scope.navigation = -1;
 
   $scope.submitPressed = false;
 
   $scope.total_score = 0;
-
-  $scope.selected_context = undefined;
-
-  $scope.selectContext = function(context) {
-    $scope.selected_context = context;
-  };
 
   $scope.singleStepForm = function() {
     return $scope.firstStepIndex() === $scope.lastStepIndex();
@@ -95,7 +90,7 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.hasNextStep = function() {
-    if ($scope.selected_context === undefined) {
+    if ($scope.context === undefined) {
       return false;
     }
 
@@ -103,7 +98,7 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.hasPreviousStep = function() {
-    if ($scope.selected_context === undefined) {
+    if ($scope.context === undefined) {
       return false;
     }
 
@@ -190,6 +185,7 @@ GLClient.controller("SubmissionCtrl",
   $scope.prepareSubmission = function(context) {
     $scope.answers = {};
     $scope.uploads = {};
+    $scope.context = context;
     $scope.questionnaire = context.questionnaire;
     $scope.field_id_map = fieldUtilities.build_field_id_map($scope.questionnaire);
 
@@ -298,13 +294,13 @@ GLClient.controller("SubmissionCtrl",
     }
 
     if (context) {
-      $scope.selectContext(context);
+      $scope.context = context;
     }
 
     // Watch for changes in certain variables
-    $scope.$watch("selected_context", function () {
-      if ($scope.submission && $scope.selected_context) {
-        $scope.prepareSubmission($scope.selected_context);
+    $scope.$watch("context", function () {
+      if ($scope.submission && $scope.context) {
+        $scope.prepareSubmission($scope.context);
       }
     });
 

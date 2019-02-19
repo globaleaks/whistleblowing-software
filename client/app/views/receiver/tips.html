@@ -215,7 +215,10 @@
           <td class="TipInfoPreview">
             <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true" data-ng-include="'views/partials/tip_field.html'"></div>
           </td>
-          <td class="TipInfoScore">{{::tip.total_score}}</td>
+	  <td class="TipInfoScore">
+            <span data-ng-if="::tip.context.enable_scoring_system">{{::tip.total_score}}</span>
+            <span data-ng-if="::!tip.context.enable_scoring_system">-</span>
+          </td>
         </tr>
       </tbody>
     </table>
