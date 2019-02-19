@@ -1307,7 +1307,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           return false;
         },
 
-        calculateScore: function(field, entry) {
+        calculateScore: function(scope, field, entry) {
           var i;
 
           if (field.type === "selectbox") {

@@ -20,8 +20,8 @@
           <div data-ng-if="entry['value'].length && maxlength >= 0 && (maxlength - entry['value'].length) <= 50" class="pull-right">{{entry['value'].length}}/{{maxlength}}</div>
         </div>
         <div data-ng-class="{'has-error': field.required_status}">
-          <span ng-show="f['input-' + entryIndex].$error.required" data-ng-class="{'text-danger': (f['input-' + entryIndex].$dirty || displayErrors())}" data-translate>This field is mandatory.</span>
-          <span ng-show="f['input-' + entryIndex].$error.minlength" data-ng-class="{'text-danger': (f['input-' + entryIndex].$dirty || displayErrors())}" data-translate>The answer is too short.</span>
+          <span data-ng-show="f['input-' + entryIndex].$error.required" data-ng-class="{'text-danger': (f['input-' + entryIndex].$dirty || displayErrors())}" data-translate>This field is mandatory.</span>
+          <span data-ng-show="f['input-' + entryIndex].$error.minlength" data-ng-class="{'text-danger': (f['input-' + entryIndex].$dirty || displayErrors())}" data-translate>The answer is too short.</span>
         </div>
     </div>
       <div data-ng-switch-when="selectbox" data-ng-class="{'has-error': field.required_status}">

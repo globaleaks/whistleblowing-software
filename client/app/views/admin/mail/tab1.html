@@ -93,7 +93,7 @@
       <input type="hidden" name="session" value="{{session.id}}" />
       <button uib-popover="{{'Send a test email to your email address.' | translate}}"
               popover-placement="right"
-              ng-click="updateThenTestMail();"
+              data-ng-click="updateThenTestMail();"
               class="btn btn-primary">
         <i class="glyphicon glyphicon-envelope"></i>
         <span data-translate>Test the configuration</span>

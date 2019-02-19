@@ -219,7 +219,7 @@
               <div data-ng-if="field.type === 'date'" data-ng-init="open_min_date = false; open_max_date = false">
                 <div class="form-group">
                   <div uib-datepicker-popup
-                       ng-model="field.attrs.min_date.value"
+                       data-ng-model="field.attrs.min_date.value"
                        is-open="open_min_date"
                        show-button-bar="false"
                        data-ng-click="open_min_date = !open_min_date">

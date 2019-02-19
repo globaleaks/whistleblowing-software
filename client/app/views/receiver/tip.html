@@ -8,7 +8,7 @@
       <span class="glyphicon glyphicon-arrow-left"></span>
     </a>
 
-    <span id="TipExport" ng-click="exportTip(tip)">
+    <span id="TipExport" data-ng-click="exportTip(tip)">
       <button id="tip-action-export"
               uib-popover="{{'Export' | translate}}"
               popover-placement="top"
@@ -68,9 +68,6 @@
   </div>
   <div class="col-md-6">
     <div data-ng-include="'views/partials/tip_questionnaire_answers.html'"></div>
-  </div>
-  <div class="col-md-6" data-ng-if='tip.data.provided_additional_questionnaire'>
-    <div data-ng-include="'views/partials/tip_additional_questionnaire_answers.html'"></div>
   </div>
   <div class="col-md-6">
     <div data-ng-if="tip.enable_whistleblower_identity" data-ng-include="'views/receiver/whistleblower_identity.html'"></div>
