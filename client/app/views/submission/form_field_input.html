@@ -1,4 +1,4 @@
-<div class="Question" data-ng-form="{{fieldFormVarName}}">
+<div class="Question" data-ng-form="{{fieldFormVarName}}" data-ng-model-options="{'debounce':300}">
   <div data-ng-controller="SubmissionFormFieldCtrl" data-ng-switch="field.template_id">
     <div data-ng-switch-when="whistleblower_identity">
       <div data-ng-include="'views/submission/fields/whistleblower_identity.html'"></div>
@@ -108,7 +108,6 @@
                class="form-control inputelem"
                data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : 4096"
                data-ng-model="entry['value']"
-               data-ng-model-options="{'debounce': 350}"
                data-ng-minlength="field.attrs.min_len.value"
                data-ng-pattern="validator"
                maxlength="{{maxlength}}"
