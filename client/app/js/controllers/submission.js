@@ -128,6 +128,7 @@ GLClient.controller("SubmissionCtrl",
     }
 
     if ($scope.navigation > -1 && !$scope.checkForInvalidFields()) {
+      $anchorScroll("top");
       return;
     }
 
@@ -371,7 +372,6 @@ controller("AdditionalQuestionnaireCtrl",
 
       // if we find one, set focus
       if (firstInvalid) {
-        $anchorScroll("top");
         return false;
       }
     }
@@ -381,6 +381,7 @@ controller("AdditionalQuestionnaireCtrl",
 
   $scope.incrementStep = function() {
     if ($scope.navigation > -1 && !$scope.checkForInvalidFields()) {
+      $anchorScroll("top");
       return;
     }
 

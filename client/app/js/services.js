@@ -1327,8 +1327,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           }
         },
 
-        updateAnswers: function(scope, parent, list) {
-          var entry, i;
+        updateAnswers: function(scope, parent, list, answers) {
+          var entry, i, j;
           var self = this;
 
           angular.forEach(list, function(field) {
@@ -1346,50 +1346,48 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
             }
 
             angular.forEach(list, function(field) {
-              self.updateAnswers(scope, field, field.children);
+              for (i=0; i<answers[field.id].length; i++) {
+                self.updateAnswers(scope, field, field.children, answers[field.id][i]);
+              }
             });
 
-            if (!(field.id in scope.answers) || !(scope.answers[field.id].length)) {
-              if (field.required) {
-                field.required_status = false;
-              }
-              return;
-            }
 
-            entry = scope.answers[field.id][0];
+            for(i=0; i<answers[field.id].length; i++) {
+              entry = answers[field.id][i];
 
-            /* Block related to updating required status */
-            if (field.type === "inputbox" || field.type === "textarea") {
-              field.required_status = (field.required || field.attrs.min_len.value > 0) && !entry["value"];
-            } else if (field.type === "checkbox") {
-              if (!field.required) {
-                field.required_status = false;
-              } else {
-                field.required_status = true;
-                for (i=0; i<field.options.length; i++) {
-                  if (entry[field.options[i].id]) {
-                    field.required_status = false;
-                    break;
-                  }
-                }
-              }
-            } else {
-              field.required_status = field.required && !entry["value"];
-            }
-
-            /* Block related to evaluate receivers triggers */
-            if (field.type === "checkbox" || field.type === "selectbox") {
-              for (i=0; i<field.options.length; i++) {
-                if(field.type === "checkbox") {
-                  if(entry[field.options[i].id] && entry[field.options[i].id]) {
-                     if (field.options[i].trigger_receiver.length) {
-                       scope.replaceReceivers(field.options[i].trigger_receiver);
+              /* Block related to updating required status */
+              if (field.type === "inputbox" || field.type === "textarea") {
+                entry.required_status = (field.required || field.attrs.min_len.value > 0) && !entry["value"];
+              } else if (field.type === "checkbox") {
+                if (!field.required) {
+                  entry.required_status = false;
+                } else {
+                  entry.required_status = true;
+                  for (i=0; i<field.options.length; i++) {
+                    if (entry[field.options[i].id]) {
+                      entry.required_status = false;
+                      break;
                     }
                   }
-                } else {
-                  if (field.options[i].id === entry["value"]) {
-                    if (field.options[i].trigger_receiver.length) {
-                      scope.replaceReceivers(field.options[i].trigger_receiver);
+                }
+              } else {
+                entry.required_status = field.required && !entry["value"];
+              }
+
+              /* Block related to evaluate receivers triggers */
+              if (field.type === "checkbox" || field.type === "selectbox") {
+                for (j=0; j<field.options.length; j++) {
+                  if(field.type === "checkbox") {
+                    if(entry[field.options[j].id] && entry[field.options[j].id]) {
+                      if (field.options[j].trigger_receiver.length) {
+                        scope.replaceReceivers(field.options[j].trigger_receiver);
+                      }
+                    }
+                  } else {
+                    if (field.options[j].id === entry["value"]) {
+                      if (field.options[j].trigger_receiver.length) {
+                        scope.replaceReceivers(field.options[j].trigger_receiver);
+                      }
                     }
                   }
                 }
@@ -1409,7 +1407,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
               step.enabled = false;
             }
 
-            self.updateAnswers(scope, step, step.children);
+            self.updateAnswers(scope, step, step.children, scope.answers);
           });
 
           if (scope.submission) {

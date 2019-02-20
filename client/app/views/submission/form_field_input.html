@@ -13,38 +13,38 @@
                   data-ng-minlength="field.attrs.min_len.value"
                   maxlength="{{::maxlength}}"
                   aria-label="{{::field.label}}"
-                  data-ng-required="field.required_status"
+                  data-ng-required="entry.required_status"
                   data-ng-attr-placeholder="{{field.placeholder}}"
                   dynamic-textarea></textarea>
         <div>
           <div data-ng-if="entry['value'].length && maxlength >= 0 && (maxlength - entry['value'].length) <= 50" class="pull-right">{{entry['value'].length}}/{{maxlength}}</div>
         </div>
-        <div data-ng-class="{'has-error': field.required_status}">
+        <div data-ng-class="{'has-error': entry.required_status}">
           <span data-ng-show="f['input-' + entryIndex].$error.required" data-ng-class="{'text-danger': (f['input-' + entryIndex].$dirty || displayErrors())}" data-translate>This field is mandatory.</span>
           <span data-ng-show="f['input-' + entryIndex].$error.minlength" data-ng-class="{'text-danger': (f['input-' + entryIndex].$dirty || displayErrors())}" data-translate>The answer is too short.</span>
         </div>
     </div>
-      <div data-ng-switch-when="selectbox" data-ng-class="{'has-error': field.required_status}">
-        <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="form-control inputelem" data-ng-model="entry['value']" data-ng-required="field.required_status">
+      <div data-ng-switch-when="selectbox" data-ng-class="{'has-error': entry.required_status}">
+        <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="form-control inputelem" data-ng-model="entry['value']" data-ng-required="entry.required_status">
           <option style="display:none" value=""></option>
           <option data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'presentation_order'" id="{{::fieldEntry}}-option-{{::$index}}" value="{{option.id}}">{{::option.label}}</option>
         </select>
       </div>
-      <div data-ng-switch-when="checkbox" data-ng-class="{'has-error': field.required_status}">
+      <div data-ng-switch-when="checkbox" data-ng-class="{'has-error': entry.required_status}">
         <div data-ng-class="{'checkbox': (field.attrs.layout_orientation.value != 'horizontal')}">
           <label data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'presentation_order'" data-ng-class="{'checkbox-inline': (field.attrs.layout_orientation.value == 'horizontal'), 'has-error': f['input-' + $parent.entryIndex + '-option-' + entryIndex].$invalid}">
             <input id="{{::fieldEntry}}"
                    name="{{'input-' + $parent.entryIndex + '-option-' + entryIndex}}"
                    class="inputelem"
                    data-ng-model="entry[option.id]"
-                   data-ng-required="field.required_status"
+                   data-ng-required="entry.required_status"
                    data-ng-attr-placeholder="{{field.placeholder || 'false'}}"
                    type="checkbox" />
             <span>{{::option.label}}</span>
           </label>
         </div>
       </div>
-      <div data-ng-switch-when="date" data-ng-class="{'has-error': field.required_status}">
+      <div data-ng-switch-when="date" data-ng-class="{'has-error': entry.required_status}">
         <div class="input-group">
           <input id="{{::fieldEntry}}"
                  name="input-{{entryIndex}}"
@@ -54,7 +54,7 @@
                  readonly="readonly"
                  aria-label="{{::field.label}}"
                  data-ng-model="entry['value']"
-                 data-ng-required="field.required_status"
+                 data-ng-required="entry.required_status"
                  data-ng-attr-placeholder="{{field.placeholder}}"
                  data-ng-click="open()"
                  uib-datepicker-popup 
@@ -71,13 +71,13 @@
         <div data-ng-if="field.attrs.attachment.value">
           <a href="{{field.attrs.attachment_url.value}}" download>{{field.attrs.attachment_text.value}}</a>
         </div>
-        <div class="checkbox" data-ng-class="{'has-error': field.required_status}">
+        <div class="checkbox" data-ng-class="{'has-error': entry.required_status}">
           <label>
             <input id="{{::fieldEntry}}"
                    name="input-{{entryIndex}}"
                    class="inputelem"
                    data-ng-model="entry['value']"
-                   data-ng-required="field.required_status"
+                   data-ng-required="entry.required_status"
                    value="{{field.value}}"
                    data-ng-attr-placeholder="{{field.placeholder || 'false'}}"
                    type="checkbox" />
@@ -89,7 +89,7 @@
         <div id="{{::fieldEntry}}">
           <div class="map"></div>
           <div class="input-group">
-            <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="form-control inputelem" data-ng-model="entry['value']" data-ng-change="field.attrs.topojson.set(entry['value'])" data-ng-required="field.required_status">
+            <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="form-control inputelem" data-ng-model="entry['value']" data-ng-change="field.attrs.topojson.set(entry['value'])" data-ng-required="entry.required_status">
               <option data-ng-repeat="option in field.attrs.topojson.features | orderBy:'properties.name'" value="{{option.id}}">{{::option.properties.name}}</option>
             </select>
             <span class="input-group-addon" data-ng-click="entry['value']=''; field.attrs.topojson.reset()" data-ng-disabled="!entry['value']"><span class="glyphicon glyphicon-remove-circle"></span></span>
@@ -102,7 +102,7 @@
       <div data-ng-switch-when="fieldgroup">
         <div data-ng-include="'views/submission/form.html'"></div>
       </div>
-      <div data-ng-switch-default data-ng-class="{'has-error': field.required_status}">
+      <div data-ng-switch-default data-ng-class="{'has-error': entry.required_status}">
         <input id="{{::fieldEntry}}"
                name="input-{{entryIndex}}"
                class="form-control inputelem"
@@ -112,7 +112,7 @@
                data-ng-minlength="field.attrs.min_len.value"
                data-ng-pattern="validator"
                maxlength="{{maxlength}}"
-               data-ng-required="field.required_status"
+               data-ng-required="entry.required_status"
                data-ng-attr-placeholder="{{field.placeholder}}"
                aria-label="{{::field.label}}"
                type="text" />
@@ -126,7 +126,7 @@
             </span>
           </div>
           <div data-ng-if="entry['value'].length && maxlength >= 0 && (maxlength - entry['value'].length) <= 50" class="pull-right">{{entry['value'].length}}/{{maxlength}}</div>
-          <div data-ng-if="field.required_status" class="pull-left" data-ng-class="{'red-text': displayErrors()}">
+          <div data-ng-if="entry.required_status" class="pull-left" data-ng-class="{'red-text': displayErrors()}">
           </div>
           <span data-ng-show="f['input-' + entryIndex].$error.required" data-ng-class="{'text-danger': (f['input-' + entryIndex].$dirty || displayErrors())}" data-translate>This field is mandatory.</span>
           <span data-ng-show="f['input-' + entryIndex].$error.minlength" data-ng-class="{'text-danger': (f['input-' + entryIndex].$dirty || displayErrors())}" data-translate>The answer is too short.</span>
@@ -134,7 +134,7 @@
       </div>
     </div>
   </div>
-  <div data-ng-if="field.required_status" class="pull-left" data-ng-class="{'red-text': displayErrors()}">
+  <div data-ng-if="entry.required_status" class="pull-left" data-ng-class="{'red-text': displayErrors()}">
     <span data-ng-if="field.type !== 'inputbox' && field.type !== 'textarea'" data-translate>This field is mandatory.</span>
   </div>
 </div>
