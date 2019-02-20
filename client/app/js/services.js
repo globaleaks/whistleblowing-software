@@ -1183,6 +1183,28 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     };
 }]).
   factory("fieldUtilities", ["$filter", "CONSTANTS", function($filter, CONSTANTS) {
+      var flatten_field = function(id_map, field) {
+        if (field.children.length === 0) {
+          id_map[field.id] = field;
+          return id_map;
+        } else {
+          id_map[field.id] = field;
+          return field.children.reduce(flatten_field, id_map);
+        }
+      };
+
+      var prepare_field_answers_structure = function(field) {
+        if (field.answers_structure === undefined) {
+          field.answer_structure = {};
+          if (field.type === "fieldgroup") {
+            angular.forEach(field.children, function(child) {
+              field.answer_structure[child.id] = [prepare_field_answers_structure(child)];
+            });
+          }
+        }
+        return field.answer_structure;
+      };
+
       return {
         getValidator: function(field) {
           var validators = {
@@ -1207,33 +1229,13 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           return rows;
         },
 
-        prepare_field_answers_structure: function(field) {
-          if (field.answers_structure === undefined) {
-            field.answer_structure = {};
-            if (field.type === "fieldgroup") {
-              angular.forEach(field.children, function(child) {
-                field.answer_structure[child.id] = [this.prepare_field_answers_structure(child)];
-              });
-            }
-          }
+        prepare_field_answers_structure: prepare_field_answers_structure,
 
-          return field.answer_structure;
-        },
-
-        flatten_field: function(id_map, field) {
-          if (field.children.length === 0) {
-            id_map[field.id] = field;
-            return id_map;
-          } else {
-            id_map[field.id] = field;
-            return field.children.reduce(this.flatten_field, id_map);
-          }
-        },
+        flatten_field: flatten_field,
 
         build_field_id_map: function(questionnaire) {
-          var self = this;
           return questionnaire.steps.reduce(function(id_map, cur_step) {
-            return cur_step.children.reduce(self.flatten_field, id_map);
+            return cur_step.children.reduce(flatten_field, id_map);
           }, {});
         },
 
