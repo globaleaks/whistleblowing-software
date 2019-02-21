@@ -37,7 +37,7 @@ GLClient.controller("SubmissionCtrl",
     }, 1000);
   };
 
-  $scope.selectContext(context) {
+  $scope.selectContext = function(context) {
     $scope.context = context;
   };
 
