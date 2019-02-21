@@ -1400,6 +1400,10 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           var self = this;
           scope.total_score = 0;
 
+          if(!scope.questionnaire) {
+            return;
+          }
+
           angular.forEach(scope.questionnaire.steps, function(step) {
             if (self.isFieldTriggered(null, step, scope.answers, scope.total_score)) {
               step.enabled = true;

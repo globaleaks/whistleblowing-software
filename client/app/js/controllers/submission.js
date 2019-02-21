@@ -37,6 +37,10 @@ GLClient.controller("SubmissionCtrl",
     }, 1000);
   };
 
+  $scope.selectContext(context) {
+    $scope.context = context;
+  };
+
   $scope.selectable = function () {
     if ($scope.submission.context.maximum_selectable_receivers === 0) {
       return true;
