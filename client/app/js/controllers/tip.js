@@ -42,7 +42,11 @@ GLClient.controller("TipCtrl",
           if (step.children[j]["template_id"] === "whistleblower_identity") {
             $scope.whistleblower_identity_field = step.children[j];
             step.children.splice(j, 1);
-            $scope.fields = $scope.whistleblower_identity_field.children;
+            $scope.questionnaire = {
+              steps: [$scope.whistleblower_identity_field]
+            };
+
+            $scope.fields = $scope.questionnaire.steps[0].children;
             $scope.rows = fieldUtilities.splitRows($scope.fields);
             $scope.field = $scope.whistleblower_identity_field;
 
@@ -87,6 +91,7 @@ GLClient.controller("TipCtrl",
 
       $scope.tip = new WBTip(function(tip) {
         $scope.tip = tip;
+        $scope.context = $scope.tip.context;
         $scope.total_score = $scope.tip.total_score;
 
         $scope.ctx = "wbtip";
@@ -124,6 +129,7 @@ GLClient.controller("TipCtrl",
 
       $scope.tip = new RTip({id: $scope.tip_id}, function(tip) {
         $scope.tip = tip;
+        $scope.context = $scope.tip.context;
         $scope.total_score = $scope.tip.total_score;
         $scope.ctx = "rtip";
         $scope.preprocessTipAnswers(tip);
@@ -235,6 +241,10 @@ GLClient.controller("TipCtrl",
     };
 
     $scope.total_score = 0;
+
+    $scope.$watch("answers", function () {
+      fieldUtilities.onAnswersUpdate($scope);
+    }, true);
 }]).
 controller("TipOperationsCtrl",
   ["$scope", "$http", "$route", "$location", "$uibModalInstance", "args",
