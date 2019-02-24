@@ -1,3 +1,6 @@
+Changes in version 3.6.26 - 2019-02-24
+    Implement migration for change of name in submission state: open->opened
+
 Changes in version 3.6.25 - 2019-02-24
     Revise fix for issue #2506
     Update translations
