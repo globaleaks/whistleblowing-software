@@ -15,13 +15,5 @@ def db_fix_salt(session):
             item.value = base64.b64encode(os.urandom(16)).decode()
 
 
-def db_fix_statuses(session):
-    items = session.query(SubmissionStatus).filter(SubmissionStatus.system_usage == u'open')
-    for item in items:
-        item.system_usage = u'opened'
-        item.label = {'en': u'Opened'}
-
-
 def db_fix_config(session):
     db_fix_salt(session)
-    db_fix_statuses(session)

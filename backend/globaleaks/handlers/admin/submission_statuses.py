@@ -67,7 +67,7 @@ def db_retrieve_all_submission_statuses(session, tid, language):
 
     # Build the final array in the correct order
     submission_statuses.append(system_statuses['new'])
-    submission_statuses.append(system_statuses['opened'])
+    submission_statuses.append(system_statuses['open'])
     submission_statuses += user_submission_statuses
     submission_statuses.append(system_statuses['closed'])
 
