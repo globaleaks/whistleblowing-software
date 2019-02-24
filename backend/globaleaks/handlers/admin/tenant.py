@@ -21,8 +21,8 @@ from globaleaks.utils.log import log
 
 def initialize_submission_statuses(session, tid):
     for s in [{'label': {'en': 'New'}, 'system_usage': u'new'},
-              {'label': {'en': 'Opened'}, 'system_usage': u'open'},
-              {'label': {'en': ' Closed'}, 'system_usage': u'closed'}]:
+              {'label': {'en': 'Opened'}, 'system_usage': u'opened'},
+              {'label': {'en': 'Closed'}, 'system_usage': u'closed'}]:
         state = models.SubmissionStatus()
         state.tid = tid
         state.label = s['label']
