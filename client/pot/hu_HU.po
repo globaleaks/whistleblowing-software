@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # benewfy <benewfy@gmail.com>, 2015
 # benewfy <benewfy@gmail.com>, 2015-2016
@@ -23,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"PO-Revision-Date: 2019-02-24 10:12+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -631,8 +629,8 @@ msgstr ""
 msgid "New"
 msgstr ""
 
-msgid "Open"
-msgstr "Megnyitás"
+msgid "Opened"
+msgstr ""
 
 msgid "Closed"
 msgstr ""

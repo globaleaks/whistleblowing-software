@@ -1,12 +1,10 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"PO-Revision-Date: 2019-02-24 10:12+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -614,8 +612,8 @@ msgstr ""
 msgid "New"
 msgstr "ახალი"
 
-msgid "Open"
-msgstr "გახსნა"
+msgid "Opened"
+msgstr ""
 
 msgid "Closed"
 msgstr ""

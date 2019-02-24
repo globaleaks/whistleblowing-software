@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Annie Bridges <anniebridges90@gmail.com>, 2014
 # Furhan Hussain <furhan@bytesforall.pk>, 2014-2015
@@ -15,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-06 17:21+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-02-24 10:12+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -623,8 +621,8 @@ msgstr ""
 msgid "New"
 msgstr ""
 
-msgid "Open"
-msgstr "کھولیں"
+msgid "Opened"
+msgstr ""
 
 msgid "Closed"
 msgstr ""

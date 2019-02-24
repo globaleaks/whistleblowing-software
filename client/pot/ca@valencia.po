@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Bartges90, 2015
 # dr0t <t@virtualroad.org>, 2015
@@ -18,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"PO-Revision-Date: 2019-02-24 10:12+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca%40valencia/)\n"
 "MIME-Version: 1.0\n"
@@ -626,8 +624,8 @@ msgstr "Cognom"
 msgid "New"
 msgstr "Nou"
 
-msgid "Open"
-msgstr "Obert"
+msgid "Opened"
+msgstr ""
 
 msgid "Closed"
 msgstr "Tancat"

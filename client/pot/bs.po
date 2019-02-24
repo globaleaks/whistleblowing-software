@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Aleksandar Todorović (r3bl) <aleksandar@r3bl.me>, 2015
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018
@@ -8,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"PO-Revision-Date: 2019-02-24 10:12+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "MIME-Version: 1.0\n"
@@ -616,8 +614,8 @@ msgstr ""
 msgid "New"
 msgstr ""
 
-msgid "Open"
-msgstr "Otvori"
+msgid "Opened"
+msgstr ""
 
 msgid "Closed"
 msgstr ""

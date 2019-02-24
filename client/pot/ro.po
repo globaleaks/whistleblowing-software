@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Alex Railean <ralienpp@gmail.com>, 2017
 # Zisiz <angi.tapoca@gmail.com>, 2015
@@ -19,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-13 06:44+0000\n"
-"Last-Translator: eduard pintilie <eduard.pintilie@gmail.com>\n"
+"PO-Revision-Date: 2019-02-24 10:12+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -627,8 +625,8 @@ msgstr ""
 msgid "New"
 msgstr "Nou"
 
-msgid "Open"
-msgstr "Deschide"
+msgid "Opened"
+msgstr ""
 
 msgid "Closed"
 msgstr "Închis"
