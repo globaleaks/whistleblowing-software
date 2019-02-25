@@ -239,7 +239,7 @@ def db_set_itip_open_if_new(session, tid, user_id, itip):
     if new_status_id == itip.status:
         open_status_id = session.query(models.SubmissionStatus.id) \
                               .filter(models.SubmissionStatus.tid == tid,
-                                      models.SubmissionStatus.system_usage == 'open').one()[0]
+                                      models.SubmissionStatus.system_usage == 'opened').one()[0]
 
         db_update_submission_status(session, user_id, itip, open_status_id, '')
 
