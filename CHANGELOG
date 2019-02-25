@@ -1,3 +1,6 @@
+Changes in version 3.6.30 - 2019-02-26
+    Remove debugging output
+
 Changes in version 3.6.29 - 2019-02-25
     Reimplement fixes included in 3.6.26
 
