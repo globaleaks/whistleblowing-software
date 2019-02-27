@@ -110,15 +110,17 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.checkForInvalidFields = function() {
-    for(var i = 0; i <= $scope.navigation; i++) {
-      // find the first invalid element
-      var form = document.getElementById("step-" + i);
-      var firstInvalid = form.querySelector(".inputelem.ng-invalid");
+    for(var i = 0; i < $scope.navigation; i++) {
+      if ($scope.questionnaire.steps[i].enabled) {
+        // find the first invalid element
+        var form = document.getElementById("step-" + i);
+        var firstInvalid = form.querySelector(".inputelem.ng-invalid");
 
-      // if we find one, set focus
-      if (firstInvalid) {
-        $anchorScroll("top");
-        return false;
+        // if we find one, set focus
+        if (firstInvalid) {
+          $anchorScroll("top");
+          return false;
+        }
       }
     }
 
@@ -352,7 +354,7 @@ controller("AdditionalQuestionnaireCtrl",
     var last_enabled = 0;
 
     for (var i = 0; i < $scope.questionnaire.steps.length; i++) {
-      if (fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
+      if ($scope.questionnaire.steps[i].enabled) {
         last_enabled = i;
       }
     }
@@ -369,14 +371,16 @@ controller("AdditionalQuestionnaireCtrl",
   };
 
   $scope.checkForInvalidFields = function() {
-    for(var i = 0; i <= $scope.navigation; i++) {
-      // find the first invalid element
-      var form = document.getElementById("step-" + i);
-      var firstInvalid = form.querySelector(".inputelem.ng-invalid");
+    for(var i = 0; i < $scope.navigation; i++) {
+      if ($scope.questionnaire.steps[i].enabled) {
+        // find the first invalid element
+        var form = document.getElementById("step-" + i);
+        var firstInvalid = form.querySelector(".inputelem.ng-invalid");
 
-      // if we find one, set focus
-      if (firstInvalid) {
-        return false;
+        // if we find one, set focus
+        if (firstInvalid) {
+          return false;
+        }
       }
     }
 

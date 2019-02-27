@@ -4,7 +4,7 @@
       <div data-ng-include="'views/submission/fields/whistleblower_identity.html'"></div>
     </div>
     <div data-ng-switch-default data-ng-switch="field.type">
-      <div data-ng-switch-when="textarea" data-ng-class="{'has-error': f['input-' + entryIndex].$invalid}" data-ng-model-options="{'debounce':250}>
+      <div data-ng-switch-when="textarea" data-ng-class="{'has-error': f['input-' + entryIndex].$invalid}" data-ng-model-options="{'debounce':250}">
         <textarea id="{{::fieldEntry}}"
                   data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : 4096"
                   name="input-{{::entryIndex}}"
@@ -102,7 +102,7 @@
       <div data-ng-switch-when="fieldgroup">
         <div data-ng-include="'views/submission/form.html'"></div>
       </div>
-      <div data-ng-switch-default data-ng-class="{'has-error': entry.required_status}" data-ng-model-options="{'debounce':250}>
+      <div data-ng-switch-default data-ng-class="{'has-error': entry.required_status}" data-ng-model-options="{'debounce':250}">
         <input id="{{::fieldEntry}}"
                name="input-{{entryIndex}}"
                class="form-control inputelem"
