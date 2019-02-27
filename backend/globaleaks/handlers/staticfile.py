@@ -27,7 +27,7 @@ class StaticFileHandler(BaseHandler):
 
         if os.path.exists(abspath + '.gz') and os.path.isfile(abspath + '.gz'):
             return self.write_file(filename + '.gz', abspath + '.gz')
-        if os.path.exists(abspath) and os.path.isfile(abspath):
+        elif os.path.exists(abspath) and os.path.isfile(abspath):
             return self.write_file(filename, abspath)
-        else:
-            raise errors.ResourceNotFound()
+
+        raise errors.ResourceNotFound()
