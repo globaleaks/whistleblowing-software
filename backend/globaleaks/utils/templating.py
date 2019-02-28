@@ -239,7 +239,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
         if field_type == 'checkbox':
             for k, v in entry.items():
                 for option in field['options']:
-                    if k == option.get('id', '') and v == 'True':
+                    if k == option.get('id', '') and v == True:
                         output += indent(indent_n) + option['label'] + '\n'
         elif field_type in ['selectbox']:
             for option in field['options']:
@@ -250,7 +250,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
             if date is not None:
                 output += indent(indent_n) + ISO8601_to_pretty_str(entry.get('value')) + '\n'
         elif field_type == 'tos':
-            answer = '☑' if entry.get('value', '') == 'True' else '☐'
+            answer = '☑' if entry.get('value', '') == True else '☐'
             output += indent(indent_n) + answer + '\n'
         elif field_type == 'fieldgroup':
             output = self.dump_fields(output, field['children'], entry, indent_n)
