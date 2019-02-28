@@ -21,8 +21,8 @@
   <span data-ng-switch-when="date">{{entry['value'] | date:'dd-MM-yyyy'}}</span>
 
   <span data-ng-switch-when="tos">
-    <i data-ng-if="entry['value'] === 'True'" class="glyphicon glyphicon-check"></i>
-    <i data-ng-if="entry['value'] === 'False'" class="glyphicon glyphicon-unchecked"></i>
+    <i data-ng-if="entry['value'] === true" class="glyphicon glyphicon-check"></i>
+    <i data-ng-if="entry['value'] === false" class="glyphicon glyphicon-unchecked"></i>
   </span>
 
   <span data-ng-switch-when="fieldgroup">
