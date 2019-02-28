@@ -14,7 +14,7 @@
       <div data-ng-if="submission.context.show_steps_navigation_interface && !singleStepForm() && (!areReceiversSelected() || vars.submissionForm.$invalid)">
         <p data-translate>The following steps have errors:</p>
         <ul>
-          <li data-ng-if="!areReceiversSelected()" class="err-link" data-ng-click="goToStep(receiver_selection_step_index)" data-translate>Recipient selection</li>
+          <li data-ng-if="!areReceiversSelected()" class="err-link" data-ng-click="goToStep(receiver_selection_step_index, true)" data-translate>Recipient selection</li>
         </ul>
         <ul data-ng-if="vars.submissionForm.$invalid" data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'">
           <li data-ng-if="displayStepErrors($index)" class="err-link" data-ng-click="goToStep($index, true)">{{step.label}}</li>
