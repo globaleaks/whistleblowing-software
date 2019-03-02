@@ -251,8 +251,6 @@ AdminNodeDesc = {
     'signup_tos2_title': text_type,
     'signup_tos2_text': text_type,
     'signup_tos2_checkbox_label': text_type,
-    'enable_graphic_customization': bool,
-    'enable_footer_customization': bool,
     'enable_custom_privacy_badge': bool,
     'custom_privacy_badge_text': text_type,
     'header_title_homepage': text_type,

@@ -1169,8 +1169,6 @@ class MockDict:
             'signup_tos2_title': u'',
             'signup_tos2_text': u'',
             'signup_tos2_checkbox_label': u'',
-            'enable_graphic_customization': True,
-            'enable_footer_customization': False,
             'enable_custom_privacy_badge': False,
             'custom_privacy_badge_text': u'',
             'header_title_homepage': u'',

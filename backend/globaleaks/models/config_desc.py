@@ -120,9 +120,6 @@ ConfigDescriptor = {
     u'signup_tos1_enable': Bool(default=False),
     u'signup_tos2_enable': Bool(default=False),
 
-    u'enable_graphic_customization': Bool(default=True),
-    u'enable_footer_customization': Bool(default=False),
-
     u'enable_experimental_features': Bool(default=False),
 
     u'multisite_login': Bool(default=False),
@@ -215,8 +212,6 @@ ConfigFilters = {
         u'mode',
         u'signup_tos1_enable',
         u'signup_tos2_enable',
-        u'enable_graphic_customization',
-        u'enable_footer_customization',
         u'counter_submissions',
         u'enable_admin_exception_notification',
         u'enable_developers_exception_notification',

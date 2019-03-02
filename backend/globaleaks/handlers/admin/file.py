@@ -74,7 +74,7 @@ class FileInstance(BaseHandler):
     def permission_check(self, id):
         if id == 'logo' and self.current_user.user_role != 'admin':
             yield can_edit_general_settings_or_raise(self)
-        elif not self.state.tenant_cache[self.request.tid]['enable_graphic_customization'] or self.current_user.user_role != 'admin':
+        elif not self.state.tenant_cache[self.request.tid]['mode'] == 'default' or self.current_user.user_role != 'admin':
             raise errors.InvalidAuthentication
 
     @inlineCallbacks

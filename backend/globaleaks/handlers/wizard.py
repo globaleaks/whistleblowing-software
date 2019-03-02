@@ -104,7 +104,6 @@ def db_wizard(session, tid, request, client_using_tor, language):
         node.set_val(u'anonymize_outgoing_connections', True)
         node.set_val(u'allow_iframes_inclusion', True)
         node.set_val(u'can_delete_submission', False)
-        node.set_val(u'enable_graphic_customization', False)
         node.set_val(u'enable_user_pgp_key_upload', False)
         node.set_val(u'tor', False)
 
