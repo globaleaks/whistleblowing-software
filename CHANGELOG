@@ -1,3 +1,6 @@
+Changes in version 3.6.33 - 2019-03-03
+    Apply minor fix to 3.6.32 postponing patch to next db update
+
 Changes in version 3.6.32 - 2019-03-03
     Reduce configuraton inheritance to the whistleblowing.it project
     Implement basic print for submissions
