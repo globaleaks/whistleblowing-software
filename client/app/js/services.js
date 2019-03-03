@@ -1170,6 +1170,10 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         $window.open(url, "_blank");
       },
 
+      print: function() {
+        $window.print();
+      },
+
       setHostname: function(hostname) {
         var req = {
           "operation": "set_hostname",
@@ -1179,7 +1183,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         };
 
         return $http({method: "PUT", url: "admin/config", data: req});
-      },
+      }
     };
 }]).
   factory("fieldUtilities", ["$filter", "CONSTANTS", function($filter, CONSTANTS) {

@@ -1,0 +1,3 @@
+@media print {
+  #HeaderBox, #FooterBox, #ReceiverToolbar, #TipInfoBox .panel-heading, .popover *, .popover .arrow, .glyphicon-collapse-down, .glyphicon-fullscreen { display: none; }
+}
