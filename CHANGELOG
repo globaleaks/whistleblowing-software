@@ -1,3 +1,7 @@
+Changes in version 3.6.32 - 2019-03-03
+    Reduce configuraton inheritance to the whistleblowing.it project
+    Implement basic print for submissions
+
 Changes in version 3.6.31 - 2019-02-28
     Revise fix for issue #2506
 
