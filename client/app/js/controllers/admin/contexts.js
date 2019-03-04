@@ -95,7 +95,7 @@ controller("AdminContextEditorCtrl", ["$scope", "$rootScope", "$http", "AdminCon
   $scope.updateContextImgUrl();
 
   $scope.deleteContext = function() {
-    $scope.Utils.deleteDialog($scope.context).then(function() {
+    $scope.Utils.deleteDialog().then(function() {
       return $scope.Utils.deleteResource(AdminContextResource, $scope.admin.contexts, $scope.context);
     });
   };

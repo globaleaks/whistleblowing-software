@@ -37,7 +37,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
     };
 
     $scope.deleteSubmissionStatus = function() {
-      $scope.Utils.deleteDialog($scope.submissions_status).then(function() {
+      $scope.Utils.deleteDialog().then(function() {
         return $scope.Utils.deleteResource(AdminSubmissionStatusResource, $scope.admin.submission_statuses, $scope.submissions_status);
       });
     };
@@ -127,7 +127,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
     };
 
     $scope.deleteSubSubmissionStatus = function() {
-      $scope.Utils.deleteDialog($scope.substatus).then(function() {
+      $scope.Utils.deleteDialog().then(function() {
         AdminSubmissionSubStatusResource.delete({
           id: $scope.substatus.id,
           submissionstatus_id: $scope.substatus.submissionstatus_id

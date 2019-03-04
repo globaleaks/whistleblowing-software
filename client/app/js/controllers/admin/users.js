@@ -15,7 +15,7 @@ GLClient.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
 }]).controller("AdminUserEditorCtrl", ["$scope", "$rootScope", "$http", "AdminUserResource",
   function($scope, $rootScope, $http, AdminUserResource) {
     $scope.deleteUser = function() {
-      $scope.Utils.deleteDialog($scope.user).then(function() {
+      $scope.Utils.deleteDialog().then(function() {
         return $scope.Utils.deleteResource(AdminUserResource, $scope.admin.users, $scope.user);
       });
     };
@@ -134,7 +134,7 @@ function ($scope, $http, AdminUserTenantAssociationResource) {
   };
 
   $scope.deleteUserTenantAssociation = function() {
-    $scope.Utils.deleteDialog($scope.association).then(function() {
+    $scope.Utils.deleteDialog().then(function() {
       AdminUserTenantAssociationResource.delete({
         user_id: $scope.user.id,
         tenant_id: $scope.association.tenant_id

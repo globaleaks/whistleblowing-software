@@ -51,7 +51,9 @@ GLClient.controller("AdminQuestionnaireCtrl",
   };
 
   $scope.delete_questionnaire = function(questionnaire) {
-    return $scope.Utils.deleteResource(AdminQuestionnaireResource, $scope.admin.questionnaires, questionnaire);
+    $scope.Utils.deleteDialog().then(function() {
+      return $scope.Utils.deleteResource(AdminQuestionnaireResource, $scope.admin.questionnaires, questionnaire);
+    });
   };
 }]).
 controller("AdminQuestionnaireEditorCtrl", ["$scope", "$uibModal", "$http", "FileSaver", "AdminStepResource",
@@ -69,7 +71,9 @@ controller("AdminQuestionnaireEditorCtrl", ["$scope", "$uibModal", "$http", "Fil
   };
 
   $scope.delStep = function(step) {
-    return $scope.Utils.deleteResource(AdminStepResource, $scope.questionnaire.steps, step);
+    $scope.Utils.deleteDialog().then(function() {
+      return $scope.Utils.deleteResource(AdminStepResource, $scope.questionnaire.steps, step);
+    }
   };
 
 

@@ -1087,8 +1087,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         return modal.result;
       },
 
-      deleteDialog: function(obj) {
-        return this.openConfirmableModalDialog("views/partials/delete_dialog.html", obj);
+      deleteDialog: function() {
+        return this.openConfirmableModalDialog("views/partials/delete_dialog.html");
       },
 
       deleteResource: function(factory, list, res) {

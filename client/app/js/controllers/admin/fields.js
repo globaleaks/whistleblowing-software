@@ -56,8 +56,10 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
     };
 
     $scope.delField = function(field) {
-      $scope.deleted_fields_ids.push(field.id);
-      return $scope.Utils.deleteResource($scope.fieldResource, $scope.fields, field);
+      $scope.Utils.deleteDialog().then(function() {
+        $scope.deleted_fields_ids.push(field.id);
+        return $scope.Utils.deleteResource($scope.fieldResource, $scope.fields, field);
+      });
     };
 
     $scope.showAddQuestion = $scope.showAddQuestionFromTemplate = false;
