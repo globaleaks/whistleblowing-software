@@ -19,14 +19,15 @@ GLClient.controller("TipCtrl",
     };
 
     var filterNotTriggeredField = function(field, answers) {
-      for(var i=field.children.length - 1; i>=0; i--) {
-        var f = field.children[i];
+      var i, j, f;
+      for(i=field.children.length - 1; i>=0; i--) {
+        f = field.children[i];
         if (!fieldUtilities.isFieldTriggered(field, f, answers[f.id], $scope.tip.total_score)) {
           field.enabled = false;
           field.children.splice(i, 1);
         } else {
           field.enabled = true;
-          for (var j=0; j<answers[f.id].length; j++) {
+          for (j=0; j<answers[f.id].length; j++) {
             filterNotTriggeredField(f, answers[f.id]);
           }
         }
@@ -34,10 +35,10 @@ GLClient.controller("TipCtrl",
     };
 
     $scope.preprocessTipAnswers = function(tip) {
-      var i, j, k;
+      var i, j, k, step, child;
       for (i=tip.questionnaires[0].steps.length - 1; i>=0; i--) {
-        var step = tip.questionnaires[0].steps[i];
-        j = step.children.length;
+        step = tip.questionnaires[0].steps[i];
+        j = step.children.length - 1;
         while (j--) {
           if (step.children[j]["template_id"] === "whistleblower_identity") {
             $scope.whistleblower_identity_field = step.children[j];
@@ -51,7 +52,7 @@ GLClient.controller("TipCtrl",
             $scope.field = $scope.whistleblower_identity_field;
 
             for (k = 0; k < $scope.field.children.length; k++) {
-              var child = $scope.field.children[k];
+              child = $scope.field.children[k];
               $scope.answers[child.id] = [angular.copy(fieldUtilities.prepare_field_answers_structure(child))];
             }
           }
@@ -64,9 +65,9 @@ GLClient.controller("TipCtrl",
           } else {
             step.enabled = true;
             for (j=0; j<step.children.length; j++) {
-              var field = step.children[i];
-              for (k=0; k<$scope.tip.questionnaires[0].answers[field.id].length; k++) {
-                filterNotTriggeredField(field, $scope.tip.questionnaires[0].answers[field.id][k]);
+              child = step.children[i];
+              for (k=0; k<$scope.tip.questionnaires[0].answers[child.id].length; k++) {
+                filterNotTriggeredField(child, $scope.tip.questionnaires[0].answers[child.id][k]);
               }
             }
           }
