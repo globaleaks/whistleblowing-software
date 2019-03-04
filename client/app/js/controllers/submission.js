@@ -110,7 +110,7 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.checkForInvalidFields = function() {
-    for(var i = 0; i < $scope.navigation; i++) {
+    for(var i = 0; i <= $scope.navigation; i++) {
       if ($scope.questionnaire.steps[i].enabled) {
         // find the first invalid element
         var form = document.getElementById("step-" + i);
@@ -371,7 +371,7 @@ controller("AdditionalQuestionnaireCtrl",
   };
 
   $scope.checkForInvalidFields = function() {
-    for(var i = 0; i < $scope.navigation; i++) {
+    for(var i = 0; i <= $scope.navigation; i++) {
       if ($scope.questionnaire.steps[i].enabled) {
         // find the first invalid element
         var form = document.getElementById("step-" + i);
