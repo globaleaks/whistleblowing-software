@@ -1,3 +1,7 @@
+Changes in version 3.6.37 - 2019-03-04
+    Optimize Comfort Loader
+    Fix status visualization in recipient tip interface
+
 Changes in version 3.6.36 - 2019-03-04
     Fix client lint errors
 

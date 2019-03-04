@@ -1,7 +1,7 @@
 {
   "name": "GlobaLeaks",
   "description": "GlobaLeaks - the first opensource framework for anonymous whistleblowing",
-  "version": "3.6.36",
+  "version": "3.6.37",
   "license": "AGPL-3.0",
   "author": "Random GlobaLeaks Developers",
   "repository": {
