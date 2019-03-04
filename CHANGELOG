@@ -1,3 +1,6 @@
+Changes in version 3.6.34 - 2019-03-04
+    Fix validation of mandatory fields for last step (#2504)
+
 Changes in version 3.6.33 - 2019-03-03
     Apply minor fix to 3.6.32 postponing patch to next db update
 
