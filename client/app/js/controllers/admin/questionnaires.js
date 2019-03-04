@@ -73,9 +73,8 @@ controller("AdminQuestionnaireEditorCtrl", ["$scope", "$uibModal", "$http", "Fil
   $scope.delStep = function(step) {
     $scope.Utils.deleteDialog().then(function() {
       return $scope.Utils.deleteResource(AdminStepResource, $scope.questionnaire.steps, step);
-    }
+    });
   };
-
 
   $scope.duplicate_questionnaire = function(questionnaire) {
     $uibModal.open({
