@@ -1,3 +1,6 @@
+Changes in version 3.6.38 - 2019-03-05
+    Fix navigation of submission steps for conditional steps
+
 Changes in version 3.6.37 - 2019-03-04
     Optimize Comfort Loader
     Fix status visualization in recipient tip interface
