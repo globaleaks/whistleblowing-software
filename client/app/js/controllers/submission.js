@@ -118,7 +118,6 @@ GLClient.controller("SubmissionCtrl",
 
         // if we find one, set focus
         if (firstInvalid) {
-          $anchorScroll("top");
           return false;
         }
       }
@@ -157,8 +156,8 @@ GLClient.controller("SubmissionCtrl",
         if (i === -1 || fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.navigation = i;
           $anchorScroll("top");
+          break;
         }
-        break;
       }
     }
   };
