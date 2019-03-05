@@ -61,12 +61,15 @@ describe("admin add, configure and delete questionnaires", function() {
     // Delete Step 3
     element.all(by.css("[data-ng-click=\"delStep(step); $event.stopPropagation();\"]")).get(2).click();
 
+    element(by.id("modal-action-ok")).click();
+
     // Close Questionnaire 1
     element(by.xpath(".//*[text()='Questionnaire 1']")).click();
   });
 
   it("should del existing questionnaires", function() {
     element.all(by.cssContainingText("button", "Delete")).last().click();
+    element(by.id("modal-action-ok")).click();
   });
 
   it("should add new question templates", function() {
