@@ -31,10 +31,9 @@ class ConfigFactory(object):
         return {c.var_name: c for c in self.session.query(Config).filter(Config.tid == self.tid, Config.var_name.in_(ConfigFilters[group]))}
 
     def update(self, group, data):
-        configs = self.get_all(group)
-        for k in configs:
+        for k, v in self.get_all(group).items():
             if k in data:
-                configs[k].set_v(data[k])
+                v.set_v(data[k])
 
     def get_cfg(self, var_name):
         return self.session.query(Config).filter(Config.tid == self.tid, Config.var_name == var_name).one()
@@ -46,8 +45,7 @@ class ConfigFactory(object):
         self.get_cfg(var_name).set_v(value)
 
     def serialize(self, group):
-        configs = self.get_all(group)
-        return {k: configs[k].value for k in configs}
+        return {k: v.value for k, v in self.get_all(group).items()}
 
     def update_defaults(self):
         actual = set([c[0] for c in self.session.query(Config.var_name).filter(Config.tid == self.tid)])
@@ -73,7 +71,7 @@ class ConfigL10NFactory(object):
             self.session.add(ConfigL10N({'tid': self.tid, 'lang': lang, 'var_name': key, 'value': value}))
 
     def get_all(self, group, lang):
-        return [r for r in self.session.query(ConfigL10N).filter(ConfigL10N.tid == self.tid, ConfigL10N.lang == lang, ConfigL10N.var_name.in_(list(ConfigL10NFilters[group])))]
+        return [r for r in self.session.query(ConfigL10N).filter(ConfigL10N.tid == self.tid, ConfigL10N.lang == lang, ConfigL10N.var_name.in_(ConfigL10NFilters[group]))]
 
     def serialize(self, group, lang):
         rows = self.get_all(group, lang)
