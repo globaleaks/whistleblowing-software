@@ -1,3 +1,6 @@
+Changes in version 3.6.39 - 2019-03-06
+    Fix wb identity field in relation to refactor #2504
+
 Changes in version 3.6.38 - 2019-03-05
     Fix navigation of submission steps for conditional steps
 
