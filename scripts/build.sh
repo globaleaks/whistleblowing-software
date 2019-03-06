@@ -83,7 +83,7 @@ if [ $LOCAL_ENV -eq 1 ]; then
   git clone --branch="$TAG" --depth=1 file://$(pwd)/../../GlobaLeaks
   cp -rf ../client/build GlobaLeaks/client/
 else
-  git clone https://github.com/globaleaks/GlobaLeaks.git
+  git clone --depth=1 https://github.com/globaleaks/GlobaLeaks.git
   cd GlobaLeaks
   git checkout $TAG
   cd client
