@@ -38,7 +38,7 @@ GLClient.controller("TipCtrl",
       var i, j, k, step, child;
       for (i=tip.questionnaires[0].steps.length - 1; i>=0; i--) {
         step = tip.questionnaires[0].steps[i];
-        j = step.children.length - 1;
+        j = step.children.length;
         while (j--) {
           if (step.children[j]["template_id"] === "whistleblower_identity") {
             $scope.whistleblower_identity_field = step.children[j];
