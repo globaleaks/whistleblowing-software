@@ -1319,7 +1319,13 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           if (field.type === "selectbox") {
             for(i=0; i<field.options.length; i++) {
               if (entry["value"] === field.options[i].id) {
-                scope.total_score += field.options[i].score_points;
+                if (field.options[i].score_type === 1) {
+                  // Addition
+                  scope.total_score += field.options[i].score_points;
+                } else if (field.options[i].score_type === 2) {
+                  // Multiplication
+                  scope.total_score *= field.options[i].score_points;
+                }
               }
             }
           } else if (field.type === "checkbox") {
