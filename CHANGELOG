@@ -1,3 +1,7 @@
+changes in version 3.6.40 - 2019-03-07
+    Fix minor issue in visualization of the latest db version
+    Make it possible to configure score points of type multiplier (#2531)
+
 Changes in version 3.6.39 - 2019-03-06
     Fix wb identity field in relation to refactor #2504
 
