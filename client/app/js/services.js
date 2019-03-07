@@ -364,7 +364,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
         self._submission.$update(function(result){
           if (result) {
-            Authentication.receipt = self._submission.receipt;
+            Authentication.submission = self._submission;
+            Authentication.context = self.context;
             $location.url("/receipt");
           }
         });
@@ -685,6 +686,11 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       context.enable_scoring_system = false;
       context.score_threshold_medium = 0;
       context.score_threshold_high = 0;
+      context.score_receipt_text_custom = false;
+      context.score_receipt_text_l = '';
+      context.score_receipt_text_m = '';
+      context.score_receipt_text_h = '';
+      context.score_threshold_receipt = 0;
       context.receivers = [];
       return context;
     },

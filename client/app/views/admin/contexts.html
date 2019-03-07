@@ -284,6 +284,38 @@
                               </tr>
                             </tbody>
                           </table>
+                          <div class="form-group">
+                            <label class="inline-checkbox">
+                              <input data-ng-model="context.score_receipt_text_custom" type="checkbox"/>
+                              <span data-translate>Customize the message shown in the receipt page</span>
+                            </label>
+                            <div class="nested" data-ng-if="context.score_receipt_text_custom">
+                              <div class="form-group">
+                                <label data-translate>Low</label>
+                                <div>
+                                  <textarea class="form-control" data-ng-model="context.score_receipt_text_l"></textarea>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label data-translate>Medium</label>
+                                <div>
+                                  <textarea class="form-control" data-ng-model="context.score_receipt_text_m"></textarea>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label data-translate>High</label>
+                                <div>
+                                  <textarea class="form-control" data-ng-model="context.score_receipt_text_h"></textarea>
+                                </div>
+                              </div>
+                            </div>
+                            <label data-translate>Assign the receipt only to submissions reaching score:</label>
+                            <select class="form-control" data-ng-model="context.score_threshold_receipt" convert-to-number>
+                              <option value="0" data-translate>Low</option>
+                              <option value="1" data-translate>Medium</option>
+                              <option value="2" data-translate>High</option>
+                            </select>
+                          </div>
                         </div>
                       </div>
                     </div>

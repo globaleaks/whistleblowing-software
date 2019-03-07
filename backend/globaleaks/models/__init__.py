@@ -411,6 +411,11 @@ class _Context(Model):
     enable_scoring_system = Column(Boolean, default=False, nullable=False)
     score_threshold_high = Column(Integer, default=0, nullable=False)
     score_threshold_medium = Column(Integer, default=0, nullable=False)
+    score_receipt_text_custom = Column(Boolean, default=False, nullable=False)
+    score_receipt_text_l = Column(JSON, default=u'', nullable=False)
+    score_receipt_text_m = Column(JSON, default=u'', nullable=False)
+    score_receipt_text_h = Column(JSON, default=u'', nullable=False)
+    score_threshold_receipt = Column(Integer, default=0, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
     questionnaire_id = Column(UnicodeText(36), default=u'default', nullable=False)
     additional_questionnaire_id = Column(UnicodeText(36))
@@ -424,7 +429,10 @@ class _Context(Model):
         'name',
         'description',
         'recipients_clarification',
-        'status_page_message'
+        'status_page_message',
+        'score_receipt_text_l',
+        'score_receipt_text_m',
+        'score_receipt_text_h'
     ]
 
     int_keys = [
@@ -432,8 +440,9 @@ class _Context(Model):
       'tip_timetolive',
       'maximum_selectable_receivers',
       'presentation_order',
-      'score_threashold_high',
-      'score_threashold_medium'
+      'score_threshold_high',
+      'score_threshold_medium',
+      'score_threshold_receipt'
     ]
 
     bool_keys = [
@@ -450,7 +459,8 @@ class _Context(Model):
       'enable_two_way_messages',
       'enable_attachments',
       'enable_rc_to_wb_files',
-      'enable_scoring_system'
+      'enable_scoring_system',
+      'score_receipt_text_custom'
     ]
 
     list_keys = ['receivers']
@@ -766,6 +776,7 @@ class _InternalTip(Model):
     preview = Column(JSON, nullable=False)
     progressive = Column(Integer, default=0, nullable=False)
     https = Column(Boolean, default=False, nullable=False)
+    score = Column(Integer, default=0, nullable=False)
     total_score = Column(Integer, default=0, nullable=False)
     expiration_date = Column(DateTime, default=datetime_never, nullable=False)
     enable_two_way_comments = Column(Boolean, default=True, nullable=False)

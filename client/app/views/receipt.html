@@ -1,7 +1,16 @@
 <div>
   <div class="row">
-    <p id="KeyCodeThanks1" data-translate>Thank you!</p>
-    <p id="KeyCodeThanks2" data-translate>Your submission was successful.</p>
+    <div id="ReceiptText">
+      <div data-ng-if="!Authentication.context.score_receipt_text_custom">
+        <div><span data-translate>Thank you!</span> <span>Your submission was successful.</span></div>
+        <div data-translate>We will try to get back to you as soon as possible.</div>
+      </div>
+      <div data-ng-if="Authentication.context.score_receipt_text_custom">
+        <p data-ng-if="Authentication.submission.score === 1" class="preformatted">{{Authentication.context.score_receipt_text_l}}</p>
+        <p data-ng-if="Authentication.submission.score === 2" class="preformatted">{{Authentication.context.score_receipt_text_m}}</p>
+        <p data-ng-if="Authentication.submission.score === 3" class="preformatted">{{Authentication.context.score_receipt_text_h}}</p>
+      </div>
+    </div>
   </div>
   <div class="row" data-ng-if="formatted_receipt">
     <div id="KeyCodeBox" class="col-md-6">
@@ -15,7 +24,6 @@
         </div>
       </div>
       <div>
-        <p data-translate>We will try to get back to you as soon as possible!</p>
         <p data-translate>Use the 16 digit receipt to log in. It will allow you to view any messages we sent you, and also to add extra info.</p>
       </div>
       <div>

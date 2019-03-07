@@ -11,6 +11,8 @@ GLClient.controller("ReceiptController", ["$scope", "Authentication",
              receipt.substr(12, 4);
     };
 
-    $scope.receipt = Authentication.receipt;
-    $scope.formatted_receipt = format_receipt($scope.receipt);
+    if (Authentication.submission) {
+      $scope.receipt = Authentication.submission.receipt;
+      $scope.formatted_receipt = format_receipt($scope.receipt);
+    }
 }]);

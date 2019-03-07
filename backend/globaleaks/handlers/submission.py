@@ -229,6 +229,7 @@ def serialize_itip(session, internaltip, language):
         'enable_whistleblower_identity': internaltip.enable_whistleblower_identity,
         'wb_last_access': datetime_to_ISO8601(internaltip.wb_last_access),
         'wb_access_revoked': wb_access_revoked,
+        'score': internaltip.score,
         'total_score': internaltip.total_score,
         'status': internaltip.status,
         'substatus': internaltip.substatus
@@ -292,11 +293,16 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     if context.tip_timetolive > 0:
         itip.expiration_date = get_expiration(context.tip_timetolive)
 
-    # this is get from the client as it the only possibility possible
-    # that would fit with the end to end submission.
-    # the score is only an indicator and not a critical information so we can accept to
-    # be fooled by the malicious user.
+    # Evaluate the score level
     itip.total_score = request['total_score']
+    if not context.enable_scoring_system:
+        itip.score = 0
+    elif request['total_score'] < context.score_threshold_medium:
+        itip.score = 1
+    elif request['total_score'] < context.score_threshold_high:
+        itip.score = 2
+    else:
+        itip.score = 3
 
     # The status https is used to keep track of the security level adopted by the whistleblower
     itip.https = not client_using_tor
@@ -327,17 +333,9 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     session.add(itip)
     session.flush()
 
-    receipt = GCE.generate_receipt()
-    receipt_salt = State.tenant_cache[tid].receipt_salt
-
-    wbtip = models.WhistleblowerTip()
-    wbtip.id = itip.id
-    wbtip.tid = tid
-    wbtip.hash_alg = GCE.HASH
-    wbtip.receipt_hash = GCE.hash_password(receipt, receipt_salt)
-
     crypto_is_available = State.tenant_cache[1].encryption
 
+    # Evaluate if encryption is available
     if crypto_is_available:
         users_count = session.query(models.User) \
                              .filter(models.User.id.in_(request['receivers']),
@@ -345,20 +343,42 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
         crypto_is_available = users_count == len(request['receivers'])
 
-    if crypto_is_available:
-        crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
-        wb_key = GCE.derive_key(receipt.encode(), receipt_salt)
-        wb_prv_key, wb_pub_key = GCE.generate_keypair()
-        wbtip.crypto_prv_key = GCE.symmetric_encrypt(wb_key, wb_prv_key)
-        wbtip.crypto_pub_key = wb_pub_key
-        wbtip.crypto_tip_prv_key = GCE.asymmetric_encrypt(wb_pub_key, crypto_tip_prv_key)
-
-    if itip.enable_whistleblower_identity and request['identity_provided'] and answers[whistleblower_identity.id]:
-        wbi = answers[whistleblower_identity.id][0]
-        answers[whistleblower_identity.id] = ''
-
         if crypto_is_available:
-            wbi = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(wbi).encode())).decode()
+            crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
+
+    # Evaluate if the whistleblower tip should be generated
+    if ((not context.enable_scoring_system) or
+        (context.score_threshold_receipt == 0) or
+        (context.score_threshold_receipt == 1 and score >= 1) or
+        (context.score_threshold_receipt == 2 and score == 2)):
+        receipt = GCE.generate_receipt()
+        receipt_salt = State.tenant_cache[tid].receipt_salt
+        wbtip = models.WhistleblowerTip()
+        wbtip.id = itip.id
+        wbtip.tid = tid
+        wbtip.hash_alg = GCE.HASH
+        wbtip.receipt_hash = GCE.hash_password(receipt, receipt_salt)
+
+        # Evaluate if the whistleblower tip should be encrypted
+        if crypto_is_available:
+            crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
+            wb_key = GCE.derive_key(receipt.encode(), receipt_salt)
+            wb_prv_key, wb_pub_key = GCE.generate_keypair()
+            wbtip.crypto_prv_key = GCE.symmetric_encrypt(wb_key, wb_prv_key)
+            wbtip.crypto_pub_key = wb_pub_key
+            wbtip.crypto_tip_prv_key = GCE.asymmetric_encrypt(wb_pub_key, crypto_tip_prv_key)
+
+        session.add(wbtip)
+    else:
+        receipt = ''
+
+    # Apply special handling to the whistleblower identity question
+    if itip.enable_whistleblower_identity and request['identity_provided'] and answers[whistleblower_identity.id]:
+        if crypto_is_available:
+            wbi = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers[whistleblower_identity.id][0]).encode())).decode()
+            answers[whistleblower_identity.id] = ''
+        else:
+            wbi = answers[whistleblower_identity.id][0]
 
         db_set_internaltip_data(session, itip.id, 'identity_provided', True, False)
         db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi, crypto_is_available)
@@ -373,8 +393,6 @@ def db_create_submission(session, tid, request, token, client_using_tor):
                                questionnaire_hash,
                                answers,
                                crypto_is_available)
-
-    session.add(wbtip)
 
     for filedesc in token.uploaded_files:
         new_file = models.InternalFile()
@@ -405,7 +423,10 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
         db_create_receivertip(session, user, itip, can_access_whistleblower_identity, _tip_key)
 
-    return {'receipt': receipt}
+    return {
+        'receipt': receipt,
+        'score': itip.score
+    }
 
 
 @transact
