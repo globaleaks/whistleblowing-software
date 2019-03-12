@@ -209,6 +209,26 @@
                 <input name="topojson" class="form-control" data-ng-model="field.attrs.topojson.value" type="text">
               </div>
             </div>
+            <div data-ng-if="field.type === 'fieldgroup'">
+              <div class="form-group">
+                <input data-ng-model="field.attrs.multimedia.value" type="checkbox">
+                <label data-translate>Add multimedia content</label>
+                <div data-ng-if="field.attrs.multimedia.value" class="nested">
+                  <div class="form-group">
+                    <label data-translate>Type</label>
+                    <select name="type" class="form-control" data-ng-model="field.attrs.multimedia_type.value" required>
+                      <option value="image" data-translate>Image</option>
+                      <option value="audio" data-translate>Audio</option>
+                      <option value="video" data-translate>Video</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>URL</label>
+                    <input data-ng-model="field.attrs.multimedia_url.value" type="text" class="form-control" required />
+                  </div>
+                </div>
+              </div>
+            </div>
             <div data-ng-disabled="!field.editable">
               <div data-ng-if="field.type === 'checkbox' || field.type === 'selectbox'">
                 <div class="form-group">

@@ -29,6 +29,11 @@
   "map": {
     "topojson": {"type": "unicode", "value": ""}
  },
+  "fieldgroup": {
+    "multimedia": {"type": "bool", "value": false},
+    "multimedia_type": {"type": "unicode", "value": ""},
+    "multimedia_url": {"type": "unicode", "value": ""}
+ },
  "whistleblower_identity": {
    "visibility_subject_to_authorization": {"type":"bool", "value": false},
    "text_shown_upon_negative_answer": {"type":"localized", "value": ""},

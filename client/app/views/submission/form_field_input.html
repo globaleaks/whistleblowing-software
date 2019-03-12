@@ -23,7 +23,7 @@
           <span data-ng-if="f['input-' + entryIndex].$error.required" data-translate>This field is mandatory.</span>
           <span data-ng-if="f['input-' + entryIndex].$error.minlength" data-translate>The answer is too short.</span>
         </div>
-    </div>
+      </div>
       <div data-ng-switch-when="selectbox" data-ng-class="{'has-error': entry.required_status}">
         <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="form-control inputelem" data-ng-model="entry['value']" data-ng-required="entry.required_status">
           <option style="display:none" value=""></option>
@@ -100,6 +100,19 @@
         <div id="{{::fieldEntry}}" data-ng-include="'views/partials/rfile_upload_button.html'"></div>
       </div>
       <div data-ng-switch-when="fieldgroup">
+        <div data-ng-if="field.attrs.multimedia.value" data-ng-switch="field.attrs.multimedia_type.value">
+          <div data-ng-switch-when="image">
+            <img data-ng-src="{{field.attrs.multimedia_url.value}}" />
+          </div>
+          <div data-ng-switch-when="audio">
+            <audio controls>
+              <source data-ng-src="{{field.attrs.multimedia_url.value}}" type="audio/mpeg" />
+            </audio>
+          </div>
+          <div data-ng-switch-when="video">
+            <video controls><source data-ng-src="{{field.attrs.multimedia_url.value}}" type="video/mp4"></video>
+          </div>
+        </div>
         <div data-ng-include="'views/submission/form.html'"></div>
       </div>
       <div data-ng-switch-default data-ng-class="{'has-error': entry.required_status}" data-ng-model-options="{'debounce':250}">
