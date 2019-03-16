@@ -46,7 +46,6 @@ from globaleaks.handlers.admin import modelimgs as admin_modelimgs
 from globaleaks.handlers.admin import node as admin_node
 from globaleaks.handlers.admin import notification as admin_notification
 from globaleaks.handlers.admin import operation as admin_operation
-from globaleaks.handlers.admin import overview as admin_overview
 from globaleaks.handlers.admin import questionnaire as admin_questionnaire
 from globaleaks.handlers.admin import shorturl as admin_shorturl
 from globaleaks.handlers.admin import statistics as admin_statistics
@@ -160,8 +159,6 @@ api_spec = [
     (r'/admin/files/(.+)', admin_file.FileInstance),
     (r'/admin/tenants', admin_tenant.TenantCollection),
     (r'/admin/tenants/' + '([0-9]{1,20})', admin_tenant.TenantInstance),
-    (r'/admin/overview/tips', admin_overview.Tips),
-    (r'/admin/overview/files', admin_overview.Files),
     (r'/admin/manifest', admin_manifest.ManifestHandler),
     (r'/admin/submission_statuses', admin_submission_statuses.SubmissionStatusCollection),
     (r'/admin/submission_statuses/' + uuid_regexp, admin_submission_statuses.SubmissionStatusInstance),

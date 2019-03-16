@@ -1,18 +1,18 @@
-<table id="tipList" class="table table-condensed table-striped">
+<table id="userList" class="table table-condensed table-striped">
   <thead>
     <tr>
       <th class="col-md-3">ID</th>
-      <th class="col-md-3" data-translate>Context</th>
-      <th class="col-md-3" data-translate>Creation date</th>
-      <th class="col-md-3" data-translate>Expiration date</th>
+      <th class="col-md-3" data-translate>Role</th>
+      <th class="col-md-3" data-translate>Name</th>
+      <th class="col-md-3" data-translate>Last access</th>
     </tr>
   </thead>
-  <tbody id="tipListBody">
-    <tr data-ng-repeat="tip in admin.tip_overview | orderBy:orderProp:reverse">
-      <td class="col-md-3">{{tip.id}}</td>
-      <td class="col-md-3">{{contexts_by_id[tip.context_id].name}}</td>
-      <td class="col-md-3">{{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
-      <td class="col-md-3">{{tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</td>
+  <tbody id="userListBody">
+    <tr data-ng-repeat="user in admin.users">
+      <td class="col-md-3">{{::user.id}}</td>
+      <td class="col-md-3">{{::user.role}}</td>
+      <td class="col-md-3">{{::user.name}}</td>
+      <td class="col-md-3">{{::user.last_login | date:'dd-MM-yyyy HH:mm'}}</td>
     </tr>
   </tbody>
 </table>

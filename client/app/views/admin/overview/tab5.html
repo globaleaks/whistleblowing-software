@@ -1,18 +1,22 @@
-<table id="fileList" class="table table-condensed table-striped">
+<table id="AnomaliesHistoryTable" class="table table-condensed table-striped">
   <thead>
     <tr>
-      <th class="col-md-3">ID</th>
-      <th class="col-md-3" data-translate>Submission</th>
-      <th class="col-md-3" data-translate>Path</th>
-      <th class="col-md-2" data-translate>Size</th>
+      <th></th>
+      <th data-ng-repeat="t in [1,2,3,4,5,6,7,8,9,10]">
+        <div><b>#{{::t}}</b></div>
+      </th>
     </tr>
   </thead>
-  <tbody id="fileListBody">
-    <tr data-ng-repeat="file in admin.file_overview">
-      <td class="col-md-4">{{::file.id}}</td>
-      <td class="col-md-2">{{::file.itip}}</td>
-      <td class="col-md-2">{{::file.path}}</td>
-      <td class="col-md-2">{{::file.size | byteFmt:2}}</td>
+  <tbody data-ng-repeat="job in admin.jobs_overview | orderBy:'name'">
+    <tr>
+      <td><b>{{::job.name}}</b></td>
+      <td data-ng-repeat="t in [0,1,2,3,4,5,6,7,8,9]">
+        <div data-ng-if="job.timings[t]">
+          <div>{{::(job.timings[t][1] - job.timings[t][0]) / 1000}}s</div>
+          <div>{{::job.timings[t][0] | date:'HH:mm:ss'}}</div>
+          <div>{{::job.timings[t][0] | date:'dd-MM-yyyy'}}</div>
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>

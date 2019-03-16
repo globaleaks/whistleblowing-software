@@ -9,24 +9,16 @@ GLClient.controller("AdminOverviewCtrl", ["$scope", function($scope){
       template:"views/admin/overview/tab2.html"
     },
     {
-      title:"Submissions",
+      title:"Users",
       template:"views/admin/overview/tab3.html"
     },
     {
-      title:"Users",
+      title:"Anomalies",
       template:"views/admin/overview/tab4.html"
     },
     {
-      title:"Files",
-      template:"views/admin/overview/tab5.html"
-    },
-    {
-      title:"Anomalies",
-      template:"views/admin/overview/tab6.html"
-    },
-    {
       title:"Scheduled jobs",
-      template:"views/admin/overview/tab7.html"
+      template:"views/admin/overview/tab5.html"
     }
   ];
 }]);

@@ -814,12 +814,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
   factory("UserPreferences", ["GLResource", function(GLResource) {
     return new GLResource("preferences", {}, {"update": {method: "PUT"}});
 }]).
-  factory("TipOverview", ["GLResource", function(GLResource) {
-    return new GLResource("admin/overview/tips");
-}]).
-  factory("FileOverview", ["GLResource", function(GLResource) {
-    return new GLResource("admin/overview/files");
-}]).
   factory("JobsOverview", ["GLResource", function(GLResource) {
     return new GLResource("admin/jobs");
 }]).
