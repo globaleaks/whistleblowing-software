@@ -349,8 +349,8 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     # Evaluate if the whistleblower tip should be generated
     if ((not context.enable_scoring_system) or
         (context.score_threshold_receipt == 0) or
-        (context.score_threshold_receipt == 1 and score >= 1) or
-        (context.score_threshold_receipt == 2 and score == 2)):
+        (context.score_threshold_receipt == 1 and itip.score >= 1) or
+        (context.score_threshold_receipt == 2 and itip.score == 2)):
         receipt = GCE.generate_receipt()
         receipt_salt = State.tenant_cache[tid].receipt_salt
         wbtip = models.WhistleblowerTip()
