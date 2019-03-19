@@ -222,10 +222,6 @@ class SettingsClass(object):
                 self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
                 self.gid = grp.getgrnam(self.cmdline_options.group).gr_gid
 
-            if self.uid == 0 or self.gid == 0:
-                self.print_msg("Invalid user: cannot run as root")
-                sys.exit(1)
-
         if self.cmdline_options.devel_mode:
             self.set_devel_mode()
 
