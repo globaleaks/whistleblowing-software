@@ -58,36 +58,33 @@ fi
 
 echo "GlobaLeaks Setup Development Environment Script"
 
-echo "Step 1/8: add universe repository"
+echo "Step 1/7: add universe repository"
 sudo apt-get install software-properties-common
 sudo add-apt-repository universe
 
-echo "Step 2/8: update"
+echo "Step 2/7: update"
 sudo apt-get update
 
-echo "Step 3/8: apt-get install"
+echo "Step 3/7: apt-get install"
 sudo apt-get install build-essential curl dh-apparmor dput git python-dev python-pip python-setuptools python-sphinx python-virtualenv python3-pip python3-setuptools python3-sphinx python3-virtualenv
 
-echo "Step 4/8: git clone"
+echo "Step 4/7: git clone"
 git clone https://github.com/globaleaks/GlobaLeaks.git
 if [ "$TAG" != "master"]; then
   cd GlobaLeaks/ && git checkout $TAG && cd ..
 fi
 
-echo "Step 5/8: install npm and node"
+echo "Step 5/7: install npm and node"
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
-echo "Step 6/8: install grunt"
-npm install grunt-cli
-
-echo "Step 7/8: setup client dependencies"
+echo "Step 6/7: setup client dependencies"
 cd GlobaLeaks/client
 npm install -d
 ./node_modules/grunt/bin/grunt copy:sources
 cd ../../
 
-echo "Step 8/8: prepare backend virtualenv"
+echo "Step 7/7: prepare backend virtualenv"
 cd GlobaLeaks/backend
 
 rm requirements.txt
