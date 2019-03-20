@@ -290,16 +290,20 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         return count;
       };
 
-      var setCurrentContextReceivers = function(context_id) {
+      self.setContextReceivers = function(context_id) {
         self.context = $rootScope.contexts_by_id[context_id];
+
+        // bypass the re-initialization if recipients are manually selected
+        if (Object.keys(self.selected_receivers).length && self.context.allow_recipients_selection) {
+          return;
+        }
 
         self.selected_receivers = {};
         self.receivers = [];
+
         angular.forEach($rootScope.receivers, function(receiver) {
           if (self.context.receivers.indexOf(receiver.id) !== -1) {
             self.receivers.push(receiver);
-
-            self.selected_receivers[receiver.id] = false;
 
             if (receiver.pgp_key_public !== "" || $rootScope.node.allow_unencrypted) {
               if (receiver.recipient_configuration === "default") {
@@ -319,7 +323,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
        *
        * */
       self.create = function(context_id, cb) {
-        setCurrentContextReceivers(context_id);
+        self.setContextReceivers(context_id);
 
         self._submission = new SubmissionResource({
           context_id: self.context.id,
@@ -1415,6 +1419,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           if(!scope.questionnaire) {
             return;
           }
+
+          scope.submission.setContextReceivers(scope.context.id);
 
           angular.forEach(scope.questionnaire.steps, function(step) {
             if (self.isFieldTriggered(null, step, scope.answers, scope.total_score)) {
