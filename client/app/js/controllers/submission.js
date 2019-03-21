@@ -143,7 +143,7 @@ GLClient.controller("SubmissionCtrl",
         if (fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.navigation = i;
           $anchorScroll("top");
-          break;
+          return;
         }
       }
     }
@@ -156,7 +156,7 @@ GLClient.controller("SubmissionCtrl",
         if (i === -1 || fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.navigation = i;
           $anchorScroll("top");
-          break;
+          return;
         }
       }
     }
@@ -399,7 +399,7 @@ controller("AdditionalQuestionnaireCtrl",
         if (fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.navigation = i;
           $anchorScroll("top");
-          break;
+          return;
         }
       }
     }
@@ -412,7 +412,7 @@ controller("AdditionalQuestionnaireCtrl",
         if (i === -1 || fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.navigation = i;
           $anchorScroll("top");
-          break;
+          return;
         }
       }
     }
