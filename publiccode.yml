@@ -1,45 +1,85 @@
 name: GlobaLeaks
 releaseDate: '2019-03-07'
-publiccode-yaml-version: '0.1'
+publiccode-yaml-version: '0.2'
 url: 'https://github.com/globaleaks/GlobaLeaks'
-applicationSuite: GlobaLeaks
 landingURL: 'https://github.com/globaleaks/GlobaLeaks'
 softwareVersion: 3.6.40
-softwareType: standalone
+softwareType: standalone/web
 developmentStatus: stable
 platforms:
   - linux
-tags:
-  - whistleblowing
+categories:
+  - feedback-and-reviews-management
+  - hr
 maintenance:
   type: community
   contacts:
     - name: Giovanni Pellerano
       email: giovanni.pellerano@hermescenter.org
-      phone: '+3289590046'
+      phone: '+393289590046'
       affiliation: CTO at Hermes Center for Transparency and Digital Human Rights
 legal:
-  license: AGPLV3
+  license: AGPL-3.0
   mainCopyrightOwner: >-
     Hermes Center for Transparency and Digital Humand Rights, Whistleblowing
     Solutions I.S. S.r.l.
   authorsFile: 'https://github.com/globaleaks/GlobaLeaks/blob/master/AUTHORS'
   repoOwner: Hermes Center for Transparency and Digital Human Rights
+localisation:
+  localisationReady: true
+  availableLanguages:
+    - ar
+    - az
+    - bg
+    - bs
+    - ca
+    - cs
+    - da
+    - de
+    - el
+    - en
+    - es
+    - fa
+    - fi
+    - fr
+    - gl
+    - he
+    - hr_HR
+    - hu_HU
+    - id
+    - it
+    - ja
+    - ka
+    - ko
+    - nb_NO
+    - nl
+    - pl
+    - pt_BR
+    - pt_PT
+    - ro
+    - ru
+    - sl_SI
+    - sq
+    - sv
+    - ta
+    - th
+    - tr
+    - uk
+    - ur
+    - vi
+    - zh_CN
+    - zh_TW
 it:
   conforme:
-    sicuro: 'yes'
-    accessibile: 'yes'
-    interoperabile: 'yes'
-    privacy: 'yes'
+    misureMinimeSicurezza: true
+    gdpr: true
 description:
-  eng:
-    shortDescription: 'GlobaLeaks - The Open-Source Whistleblowing Software '
+  en:
+    genericName: whistleblowing platform
+    shortDescription: 'Open-Source Whistleblowing Software '
     documentation: 'https://docs.globaleaks.org'
-    freeTags:
-      - whistleblowing
     longDescription: >-
-      <p><a href="https://www.globaleaks.org/" rel="nofollow">GlobaLeaks</a> is
+      [GlobaLeaks](https://www.globaleaks.org/) is
       open-source / free software intended to enable secure and anonymous
-      whistleblowing initiatives developed by the <a
-      href="https://www.hermescenter.org/" rel="nofollow">Hermes Center for
-      Transparency and Digital Human Rights</a>.</p>
+      whistleblowing initiatives developed by the [Hermes Center for
+      Transparency and Digital Human Rights](https://www.hermescenter.org/).
