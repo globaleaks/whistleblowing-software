@@ -15,12 +15,12 @@
         <span>{{$index + 1}}</span>
       </div>
       <div data-ng-repeat="step in questionnaire.steps | orderBy:'presentation_order'">
-        <dt id="step={{$index}}" data-ng-if="questionnaire.steps.length > 1 && tip.context.show_steps_navigation_interface">
+        <dt id="step={{$index}}" data-ng-if="questionnaire.steps.length > 1 && tip.context.show_steps_navigation_interface && step.enabled">
           <span data-translate>Step</span>
           <span>{{$index + 1}}: {{::step.label}}</span>
         </dt>
         <dd>
-          <div data-ng-repeat="field in step.children | orderBy:['y', 'x'] | filter:{ type: '!fileupload'}">
+          <div data-ng-if="step.enabled" data-ng-repeat="field in step.children | orderBy:['y', 'x'] | filter:{ type: '!fileupload'}">
             <span data-ng-init="fieldAnswers=questionnaire.answers" data-ng-include="'views/partials/tip_field.html'"></span>
           </div>
         </dd>

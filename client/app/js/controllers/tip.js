@@ -18,25 +18,20 @@ GLClient.controller("TipCtrl",
       return entry[$scope.field.id];
     };
 
-    var filterNotTriggeredField = function(field, answers) {
-      var i, j, f;
-      for(i=field.children.length - 1; i>=0; i--) {
-        f = field.children[i];
-        if (!fieldUtilities.isFieldTriggered(field, f, answers[f.id], $scope.tip.total_score)) {
-          field.enabled = false;
-          field.children.splice(i, 1);
-        } else {
-          field.enabled = true;
-          for (j=0; j<answers[f.id].length; j++) {
-            filterNotTriggeredField(f, answers[f.id]);
-          }
+    var filterNotTriggeredField = function(parent, field, answers) {
+      var i;
+      if (!fieldUtilities.isFieldTriggered(parent, field, answers, $scope.tip.total_score)) {
+        field.children.splice(parent.children.indexOf(field), 1);
+      } else {
+        for(i=0; i<field.children.length; i++) {
+          filterNotTriggeredField(field, field.children[i], answers);
         }
       }
     };
 
     $scope.preprocessTipAnswers = function(tip) {
       var i, j, k, step, child;
-      for (i=tip.questionnaires[0].steps.length - 1; i>=0; i--) {
+      for (i=0; i<tip.questionnaires[0].steps.length; i++) {
         step = tip.questionnaires[0].steps[i];
         j = step.children.length;
         while (j--) {
@@ -58,18 +53,11 @@ GLClient.controller("TipCtrl",
           }
         }
 
-        if ($scope.node.enable_experimental_features) {
-          if (!fieldUtilities.isFieldTriggered(null, step, $scope.tip.answers, $scope.tip.total_score)) {
-            step.enabled = false;
-            tip.questionnaires[0].steps.splice(i, 1);
-          } else {
-            step.enabled = true;
-            for (j=0; j<step.children.length; j++) {
-              child = step.children[i];
-              for (k=0; k<$scope.tip.questionnaires[0].answers[child.id].length; k++) {
-                filterNotTriggeredField(child, $scope.tip.questionnaires[0].answers[child.id][k]);
-              }
-            }
+        if (!fieldUtilities.isFieldTriggered(null, step, $scope.tip.questionnaires[0].answers, $scope.tip.total_score)) {
+          tip.questionnaires[0].steps.splice(i, 1);
+        } else {
+          for (j=0; j<step.children.length; j++) {
+            filterNotTriggeredField(step, step.children[j], $scope.tip.questionnaires[0].answers);
           }
         }
       }

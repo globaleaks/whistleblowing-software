@@ -1,4 +1,4 @@
-<div data-ng-class="{'nested': !preview}" class="fieldAnswer">
+<div data-ng-if="field.enabled" data-ng-class="{'nested': !preview}" class="fieldAnswer">
   <div data-ng-class="{fieldLabel: !preview}">
     <span data-ng-if="!$parent.field && !preview">{{$index + 1}})</span>
     <span>{{field.label}}</span>
