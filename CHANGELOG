@@ -1,4 +1,20 @@
-changes in version 3.6.40 - 2019-03-07
+Changes in version 3.6.41 - 2019-04-01
+    Bump npm dependencies to latest stables versions
+    Add Slovak translation
+    Update translations
+    In the install script correct the detection about installed globaleaks
+    Revise tip page hiding steps and questions that are not triggered
+    Make it possible to run the application as root needed in many containers
+    Add users' username to admin users overview
+    Fix setup of development environment in relation to client updates
+    Restrict submissions and files visibility to recipients only
+    Always re-open the disclaimer modal when opening the submission page
+    Revise visibility of the mandatory-field warning
+    Re-evaluate recipients at every question-answer update
+    Fixes and improvements to publiccode.yml
+    Update publiccode.yml
+
+Changes in version 3.6.40 - 2019-03-07
     Fix minor issue in visualization of the latest db version
     Make it possible to configure score points of type multiplier (#2531)
 
