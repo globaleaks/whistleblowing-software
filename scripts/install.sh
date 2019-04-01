@@ -223,8 +223,7 @@ if [ ! -f /etc/timezone ]; then
   unset DEBIAN_FRONTEND
 fi
 
-# stops globaleaks if it is running
-if ! ps aux | grep -q "[g]lobaleaks"; then
+if [ ! -f /etc/init.d/globaleaks ]; then
   DO "/etc/init.d/globaleaks stop"
 fi
 
