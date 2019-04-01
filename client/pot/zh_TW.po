@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-24 10:12+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-03-13 22:17+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -492,6 +492,9 @@ msgstr "分類此次提交"
 msgid "Activate"
 msgstr "激活"
 
+msgid "Disactivate"
+msgstr ""
+
 msgid "Search"
 msgstr "搜尋"
 
@@ -623,6 +626,12 @@ msgstr ""
 
 msgid "Closed"
 msgstr "關閉的"
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Print"
+msgstr "列印"
 
 msgid "Select the context of your submission:"
 msgstr "選擇你提交的內文說明"
@@ -1023,6 +1032,15 @@ msgstr "媒體"
 msgid "High"
 msgstr "高"
 
+msgid "Customize the message shown in the receipt page"
+msgstr ""
+
+msgid "Low"
+msgstr "低"
+
+msgid "Assign the receipt only to submissions reaching score:"
+msgstr ""
+
 msgid "Software version:"
 msgstr "軟體版本:"
 
@@ -1360,6 +1378,18 @@ msgstr "電話號碼"
 
 msgid "Checkbox label"
 msgstr "單選標籤"
+
+msgid "Add multimedia content"
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Video"
+msgstr "影片"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "答案的能見度限於保管人授權"
@@ -1877,11 +1907,11 @@ msgstr "已請求重設密碼。"
 msgid "Thank you!"
 msgstr "謝謝"
 
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
 msgid "Remember your receipt for this submission."
 msgstr "記住本次提交的票號收據"
-
-msgid "We will try to get back to you as soon as possible!"
-msgstr "我們將會盡快地回覆你"
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "

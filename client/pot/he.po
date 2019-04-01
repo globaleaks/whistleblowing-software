@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-24 10:12+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-03-16 09:35+0000\n"
+"Last-Translator: ION\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -500,6 +500,9 @@ msgstr ""
 msgid "Activate"
 msgstr "שפעל"
 
+msgid "Disactivate"
+msgstr ""
+
 msgid "Search"
 msgstr "חפש"
 
@@ -537,7 +540,7 @@ msgid "This is the list of the other supported browsers:"
 msgstr ""
 
 msgid "System overview"
-msgstr ""
+msgstr "סקירת מערכת"
 
 msgid "Stats"
 msgstr "סטטיסטיקה"
@@ -631,6 +634,12 @@ msgstr ""
 
 msgid "Closed"
 msgstr "סגור"
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Print"
+msgstr "הדפס"
 
 msgid "Select the context of your submission:"
 msgstr "בחר את ההקשר של ההגשה שלך:"
@@ -924,16 +933,16 @@ msgid "Language:"
 msgstr "שפה:"
 
 msgid "Add custom text"
-msgstr ""
+msgstr "הוסף טקסט מותאם אישית"
 
 msgid "Custom text"
-msgstr ""
+msgstr "טקסט מותאם אישית"
 
 msgid "Custom texts"
-msgstr ""
+msgstr "טקסטים מותאמים אישית"
 
 msgid "Original text"
-msgstr ""
+msgstr "טקסט מקורי"
 
 msgid "Original translation"
 msgstr "תרגום מקורי"
@@ -1030,6 +1039,15 @@ msgstr "בינוני"
 
 msgid "High"
 msgstr "גבוהה"
+
+msgid "Customize the message shown in the receipt page"
+msgstr ""
+
+msgid "Low"
+msgstr "נמוכה"
+
+msgid "Assign the receipt only to submissions reaching score:"
+msgstr ""
 
 msgid "Software version:"
 msgstr "גרסת תוכנה:"
@@ -1368,6 +1386,18 @@ msgstr "מספר טלפון"
 
 msgid "Checkbox label"
 msgstr "תווית של תיבת סימון"
+
+msgid "Add multimedia content"
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Video"
+msgstr ""
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "נראות תשובה בכפופות אישור אפוטרופוס"
@@ -1885,11 +1915,11 @@ msgstr "איפוס סיסמה בוקש."
 msgid "Thank you!"
 msgstr "תודה לך!"
 
-msgid "Remember your receipt for this submission."
+msgid "We will try to get back to you as soon as possible."
 msgstr ""
 
-msgid "We will try to get back to you as soon as possible!"
-msgstr "ננסה לחזור אליכם בהקדם האפשרי!"
+msgid "Remember your receipt for this submission."
+msgstr ""
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "

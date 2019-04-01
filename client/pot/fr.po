@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-24 10:14+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-03-26 14:48+0000\n"
+"Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -521,6 +521,9 @@ msgstr "Étiqueter l’envoi"
 msgid "Activate"
 msgstr "Activer"
 
+msgid "Disactivate"
+msgstr "Désactiver"
+
 msgid "Search"
 msgstr "Recherche"
 
@@ -652,6 +655,12 @@ msgstr "Ouvert"
 
 msgid "Closed"
 msgstr "Fermé"
+
+msgid "Placeholder"
+msgstr "Espace réservé"
+
+msgid "Print"
+msgstr "Imprimer"
 
 msgid "Select the context of your submission:"
 msgstr "Choisir le contexte de votre envoi :"
@@ -849,7 +858,7 @@ msgid ""
 "The experimental features may be less stable or even not work at all; enable"
 " this option at your own risk. Support for these features may vary and they "
 "may be removed in the future."
-msgstr "Les fonctions expérimentales pourraient être moins stables ou même ne pas fonctionner du tout ; activez cette option à vos propres risques. La prise en charge de ces fonctions pourraient varier et elles pourraient même être supprimées dans le futur."
+msgstr "Les fonctions expérimentales pourraient être moins stables ou même ne pas fonctionner du tout ; activez cette option à vos propres risques. La prise en charge de ces fonctions pourraient varier et elles pourraient même être supprimées ultérieurement."
 
 msgid "Save"
 msgstr "Enregistrer"
@@ -1051,6 +1060,15 @@ msgstr "Moyen"
 
 msgid "High"
 msgstr "Élevé"
+
+msgid "Customize the message shown in the receipt page"
+msgstr "Personnaliser le message qui apparaît sur la page de réception"
+
+msgid "Low"
+msgstr "Normal"
+
+msgid "Assign the receipt only to submissions reaching score:"
+msgstr "N’attribuer le reçu qu’aux envois qui atteignent ce pointage :"
 
 msgid "Software version:"
 msgstr "Version du logiciel :"
@@ -1280,7 +1298,7 @@ msgid "Tor Onion Service"
 msgstr "Service oignon Tor"
 
 msgid "Tor Browser download link"
-msgstr "Lien de téléchargement du navigateur Tor"
+msgstr "Lien de téléchargement du navigateur Tor Browser"
 
 msgid "Anonymize outgoing connections"
 msgstr "Anonymiser les connexions sortantes"
@@ -1367,7 +1385,7 @@ msgid "Question group"
 msgstr "Groupe de questions"
 
 msgid "Hint"
-msgstr "Astuce"
+msgstr "Infobulle"
 
 msgid "Required"
 msgstr "Exigé"
@@ -1389,6 +1407,18 @@ msgstr "Numéro de téléphone"
 
 msgid "Checkbox label"
 msgstr "Étiquette de la case à cocher"
+
+msgid "Add multimedia content"
+msgstr "Ajouter du contenu multimédia"
+
+msgid "Image"
+msgstr "Image"
+
+msgid "Audio"
+msgstr "Audio"
+
+msgid "Video"
+msgstr "Vidéo"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Soumettre la visibilité des réponses à l’autorisation des gardiens"
@@ -1605,7 +1635,7 @@ msgid "The operation will reset the configuration and cannot be undone."
 msgstr "L’opération réinitialisera la configuration et ne peut pas être annulée."
 
 msgid "Assign score points"
-msgstr "Assigner un pointage"
+msgstr "Attribuer un pointage"
 
 msgid "Confirm"
 msgstr "Confirmer"
@@ -1906,11 +1936,11 @@ msgstr "Une réinitialisation de mot de passe a été demandée."
 msgid "Thank you!"
 msgstr "Merci !"
 
+msgid "We will try to get back to you as soon as possible."
+msgstr "Nous essaierons de vous contacter dès que possible."
+
 msgid "Remember your receipt for this submission."
 msgstr "Souvenez-vous de votre reçu pour cet envoi."
-
-msgid "We will try to get back to you as soon as possible!"
-msgstr "Nous essaierons de vous contacter dès que possible !"
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "

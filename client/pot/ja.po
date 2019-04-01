@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-24 11:40+0000\n"
+"PO-Revision-Date: 2019-03-15 09:29+0000\n"
 "Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -491,6 +491,9 @@ msgstr "提出にラベルを付ける"
 msgid "Activate"
 msgstr "アクティブにする"
 
+msgid "Disactivate"
+msgstr "無効にする"
+
 msgid "Search"
 msgstr "検索"
 
@@ -622,6 +625,12 @@ msgstr "開きました"
 
 msgid "Closed"
 msgstr "閉じました"
+
+msgid "Placeholder"
+msgstr "プレースホルダー"
+
+msgid "Print"
+msgstr "印刷"
 
 msgid "Select the context of your submission:"
 msgstr "提出のコンテキストを選択してください:"
@@ -1022,6 +1031,15 @@ msgstr "ミディアム"
 msgid "High"
 msgstr "高い"
 
+msgid "Customize the message shown in the receipt page"
+msgstr "受領ページに表示されるメッセージをカスタマイズ"
+
+msgid "Low"
+msgstr "低"
+
+msgid "Assign the receipt only to submissions reaching score:"
+msgstr "スコアに達した提出にのみ受信者を割り当てます:"
+
 msgid "Software version:"
 msgstr "ソフトウェア バージョン:"
 
@@ -1359,6 +1377,18 @@ msgstr "電話番号"
 
 msgid "Checkbox label"
 msgstr "チェックボックスラベル"
+
+msgid "Add multimedia content"
+msgstr "マルチメディアコンテンツを追加"
+
+msgid "Image"
+msgstr "画像"
+
+msgid "Audio"
+msgstr "オーディオ"
+
+msgid "Video"
+msgstr "ビデオ"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "管理人の認証に回答が表示されるか否か"
@@ -1876,11 +1906,11 @@ msgstr "パスワードのリセットをリクエストしました。"
 msgid "Thank you!"
 msgstr "ありがとうございます!"
 
+msgid "We will try to get back to you as soon as possible."
+msgstr "できるだけ早くあなたが戻ってこられますように。"
+
 msgid "Remember your receipt for this submission."
 msgstr "この提出に関する受領番号を覚えておいてください。"
-
-msgid "We will try to get back to you as soon as possible!"
-msgstr "できるだけ早くあなたが戻ってこられますように!"
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "

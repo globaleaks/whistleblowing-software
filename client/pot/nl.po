@@ -6,7 +6,7 @@
 # Denis Paciorkowski <inactive+denispaciorkowski@transifex.com>, 2015
 # Douwe <douwe@greenhost.nl>, 2013
 # Douwe <douwe@greenhost.nl>, 2013
-# dragnadh <dragnadh@gmail.com>, 2016-2017
+# dragnadh, 2016-2017
 # tyfjoh, 2014
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2018
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -30,14 +30,15 @@
 # Raf Rasenberg <raf@webconexus.nl>, 2019
 # Robin van der Vliet <info@robinvandervliet.nl>, 2015
 # Midgard, 2015
+# SylvainFPU <mignot@freepressunlimited.org>, 2019
 # tempuser1234 <c1160321@trbvm.com>, 2014
 # Teun Gautier <gautier@groene.nl>, 2013
 # tyfjoh, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-24 10:12+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-03-18 13:03+0000\n"
+"Last-Translator: SylvainFPU <mignot@freepressunlimited.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -518,6 +519,9 @@ msgstr "Label de inzending"
 msgid "Activate"
 msgstr "Activeren"
 
+msgid "Disactivate"
+msgstr ""
+
 msgid "Search"
 msgstr "Zoeken"
 
@@ -645,10 +649,16 @@ msgid "New"
 msgstr "Nieuw"
 
 msgid "Opened"
-msgstr ""
+msgstr "Geopend"
 
 msgid "Closed"
 msgstr "Gesloten"
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Print"
+msgstr "Afdrukken"
 
 msgid "Select the context of your submission:"
 msgstr "Selecteer de context van uw inzending:"
@@ -1049,6 +1059,15 @@ msgstr "Medium"
 msgid "High"
 msgstr "Hoog"
 
+msgid "Customize the message shown in the receipt page"
+msgstr ""
+
+msgid "Low"
+msgstr "Laag"
+
+msgid "Assign the receipt only to submissions reaching score:"
+msgstr ""
+
 msgid "Software version:"
 msgstr "Softwareversie:"
 
@@ -1386,6 +1405,18 @@ msgstr "Telefoonnummer"
 
 msgid "Checkbox label"
 msgstr ""
+
+msgid "Add multimedia content"
+msgstr ""
+
+msgid "Image"
+msgstr "Afbeelding"
+
+msgid "Audio"
+msgstr "Geluid"
+
+msgid "Video"
+msgstr "Film/Beeld"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Onderwerp antwoord zichtbaarheid aan toezichthouder autorisatie"
@@ -1903,11 +1934,11 @@ msgstr ""
 msgid "Thank you!"
 msgstr "Bedankt!"
 
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
 msgid "Remember your receipt for this submission."
 msgstr "Onthoud de code voor jouw inzending."
-
-msgid "We will try to get back to you as soon as possible!"
-msgstr "We zullen proberen je zo spoedig mogelijk te helpen!"
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
@@ -2464,7 +2495,7 @@ msgid "Role: {Role}"
 msgstr ""
 
 msgid "Username: {Username}"
-msgstr ""
+msgstr "Gebruikersnaam: {Gebruikersnaam}"
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "Wachtwoord: {Wachtwoord}"

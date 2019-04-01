@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-24 10:12+0000\n"
+"PO-Revision-Date: 2019-03-13 22:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "MIME-Version: 1.0\n"
@@ -495,6 +495,9 @@ msgstr ""
 msgid "Activate"
 msgstr "فعال کیجیے"
 
+msgid "Disactivate"
+msgstr ""
+
 msgid "Search"
 msgstr "ڈھونڈیں"
 
@@ -625,6 +628,12 @@ msgid "Opened"
 msgstr ""
 
 msgid "Closed"
+msgstr ""
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Print"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -1026,6 +1035,15 @@ msgstr "میڈیم یا درمیانہ"
 msgid "High"
 msgstr ""
 
+msgid "Customize the message shown in the receipt page"
+msgstr ""
+
+msgid "Low"
+msgstr ""
+
+msgid "Assign the receipt only to submissions reaching score:"
+msgstr ""
+
 msgid "Software version:"
 msgstr "سافٹ ویئر ورژن:"
 
@@ -1362,6 +1380,18 @@ msgid "Phone number"
 msgstr "فون نمبر"
 
 msgid "Checkbox label"
+msgstr ""
+
+msgid "Add multimedia content"
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Video"
 msgstr ""
 
 msgid "Subject answer visibility to custodian authorization"
@@ -1880,11 +1910,11 @@ msgstr ""
 msgid "Thank you!"
 msgstr "شکریہ"
 
-msgid "Remember your receipt for this submission."
+msgid "We will try to get back to you as soon as possible."
 msgstr ""
 
-msgid "We will try to get back to you as soon as possible!"
-msgstr "ہم جلد از جلد آپ تک دوبارہ پہنچنے کی کوشش کریں گے"
+msgid "Remember your receipt for this submission."
+msgstr ""
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "

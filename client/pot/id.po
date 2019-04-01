@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-24 10:12+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-03-13 22:17+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -505,6 +505,9 @@ msgstr "Judul pengiriman"
 msgid "Activate"
 msgstr "Aktivasi"
 
+msgid "Disactivate"
+msgstr ""
+
 msgid "Search"
 msgstr "Cari "
 
@@ -636,6 +639,12 @@ msgstr ""
 
 msgid "Closed"
 msgstr "Tertutup"
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Print"
+msgstr "Cetak"
 
 msgid "Select the context of your submission:"
 msgstr "Pilih konteks pengiriman Anda"
@@ -1036,6 +1045,15 @@ msgstr "Sedang"
 msgid "High"
 msgstr "Tinggi"
 
+msgid "Customize the message shown in the receipt page"
+msgstr ""
+
+msgid "Low"
+msgstr "Bawah"
+
+msgid "Assign the receipt only to submissions reaching score:"
+msgstr ""
+
 msgid "Software version:"
 msgstr "Versi perangkat lunak: "
 
@@ -1373,6 +1391,18 @@ msgstr "Nomor telepon"
 
 msgid "Checkbox label"
 msgstr "Nama kotak centang"
+
+msgid "Add multimedia content"
+msgstr ""
+
+msgid "Image"
+msgstr "Gambar"
+
+msgid "Audio"
+msgstr "Audio"
+
+msgid "Video"
+msgstr "Video "
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Visibilitas jawaban subyek kepada petugas otorisasi"
@@ -1890,11 +1920,11 @@ msgstr "Pengaturan ulang kata sandi telah diminta "
 msgid "Thank you!"
 msgstr "Terima kasih!"
 
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
 msgid "Remember your receipt for this submission."
 msgstr "Ingat tanda terima Anda untuk kiriman ini"
-
-msgid "We will try to get back to you as soon as possible!"
-msgstr "Kami akan menghubungi Anda kembali secepatnya!"
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "

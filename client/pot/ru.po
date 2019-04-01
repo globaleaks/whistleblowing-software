@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-24 10:12+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-03-22 19:49+0000\n"
+"Last-Translator: Sergey Smirnov <cj75300@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -510,6 +510,9 @@ msgstr "Пометить подачу материалов"
 msgid "Activate"
 msgstr "Активировать"
 
+msgid "Disactivate"
+msgstr ""
+
 msgid "Search"
 msgstr "Поиск"
 
@@ -641,6 +644,12 @@ msgstr ""
 
 msgid "Closed"
 msgstr "Закрыть"
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Print"
+msgstr "Печать"
 
 msgid "Select the context of your submission:"
 msgstr "Выберите контекст для ваших материалов:"
@@ -1041,6 +1050,15 @@ msgstr "Средний"
 msgid "High"
 msgstr "Высокий"
 
+msgid "Customize the message shown in the receipt page"
+msgstr ""
+
+msgid "Low"
+msgstr "Низкий"
+
+msgid "Assign the receipt only to submissions reaching score:"
+msgstr ""
+
 msgid "Software version:"
 msgstr "Версия программного обеспечения:"
 
@@ -1378,6 +1396,18 @@ msgstr "Номер телефона"
 
 msgid "Checkbox label"
 msgstr ""
+
+msgid "Add multimedia content"
+msgstr ""
+
+msgid "Image"
+msgstr "Образ"
+
+msgid "Audio"
+msgstr "Аудио"
+
+msgid "Video"
+msgstr "Видео"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Доступ к ответам только по разрешению кастодиана"
@@ -1895,11 +1925,11 @@ msgstr ""
 msgid "Thank you!"
 msgstr "Спасибо!"
 
-msgid "Remember your receipt for this submission."
+msgid "We will try to get back to you as soon as possible."
 msgstr ""
 
-msgid "We will try to get back to you as soon as possible!"
-msgstr "Мы постараемся связаться с вами в ближайшее время!"
+msgid "Remember your receipt for this submission."
+msgstr ""
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "

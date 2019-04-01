@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-24 10:15+0000\n"
+"PO-Revision-Date: 2019-03-30 21:48+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -507,6 +507,9 @@ msgstr "Assegna una etichetta alla segnalazione"
 msgid "Activate"
 msgstr "Attiva"
 
+msgid "Disactivate"
+msgstr ""
+
 msgid "Search"
 msgstr "Cerca"
 
@@ -638,6 +641,12 @@ msgstr "Aperta"
 
 msgid "Closed"
 msgstr "Chiusa"
+
+msgid "Placeholder"
+msgstr "Testo di esempio"
+
+msgid "Print"
+msgstr "Stampa"
 
 msgid "Select the context of your submission:"
 msgstr "Seleziona il contesto della tua segnalazione"
@@ -1038,6 +1047,15 @@ msgstr "Medio"
 msgid "High"
 msgstr "Alto"
 
+msgid "Customize the message shown in the receipt page"
+msgstr ""
+
+msgid "Low"
+msgstr "Basso"
+
+msgid "Assign the receipt only to submissions reaching score:"
+msgstr ""
+
 msgid "Software version:"
 msgstr "Versione del software:"
 
@@ -1375,6 +1393,18 @@ msgstr "Numero di telefono"
 
 msgid "Checkbox label"
 msgstr "Etichetta della casella di controllo"
+
+msgid "Add multimedia content"
+msgstr ""
+
+msgid "Image"
+msgstr "Immagine"
+
+msgid "Audio"
+msgstr "Audio"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Assoggetta la visibilità della risposta all'autorizzazione da parte del custode"
@@ -1892,11 +1922,11 @@ msgstr "Richiesta di password reset completata."
 msgid "Thank you!"
 msgstr "Grazie!"
 
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
 msgid "Remember your receipt for this submission."
 msgstr "Memorizza la tua ricevuta per la segnalazione."
-
-msgid "We will try to get back to you as soon as possible!"
-msgstr "Cercheremo di risponderti il più presto possibile."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
@@ -1912,7 +1942,7 @@ msgstr "Suggerimento: Come nascondere la tua ricevuta"
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "Un modo efficace per nascondere la tua ricevuta è quello di appuntato come fosse una numero di una carta di credito ed ad esempio allegarci anche una data di scadenza."
+msgstr "Un modo efficace per nascondere la tua ricevuta è quello di appuntarlo come fosse una numero di una carta di credito ed ad esempio allegarci anche una data di scadenza."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

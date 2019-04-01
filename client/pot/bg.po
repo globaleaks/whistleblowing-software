@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-24 10:12+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-03-13 22:17+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -493,6 +493,9 @@ msgstr "Заглавие на пуснатия сигнал"
 msgid "Activate"
 msgstr "Активиране"
 
+msgid "Disactivate"
+msgstr ""
+
 msgid "Search"
 msgstr "Търсене"
 
@@ -624,6 +627,12 @@ msgstr ""
 
 msgid "Closed"
 msgstr "Затворен"
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Print"
+msgstr ""
 
 msgid "Select the context of your submission:"
 msgstr "Изберете контекста на подадения сигнал:"
@@ -1024,6 +1033,15 @@ msgstr "Средно"
 msgid "High"
 msgstr "Високо"
 
+msgid "Customize the message shown in the receipt page"
+msgstr ""
+
+msgid "Low"
+msgstr "Ниско"
+
+msgid "Assign the receipt only to submissions reaching score:"
+msgstr ""
+
 msgid "Software version:"
 msgstr "Версия на софтуера:"
 
@@ -1361,6 +1379,18 @@ msgstr "Телефонен номер"
 
 msgid "Checkbox label"
 msgstr "Заглавие на отметката"
+
+msgid "Add multimedia content"
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Video"
+msgstr ""
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Видимост на отговорите за оторизация на попечителя, от касаещия го човек"
@@ -1878,11 +1908,11 @@ msgstr "Получена е заявка за възстановяване на 
 msgid "Thank you!"
 msgstr "Блгагодарим Ви!"
 
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
 msgid "Remember your receipt for this submission."
 msgstr "Запомнете разписката за този доклад."
-
-msgid "We will try to get back to you as soon as possible!"
-msgstr "Ще се опитаме да Ви отговорим възможно най-бързо!"
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "

@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-24 10:12+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-03-31 15:00+0000\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -508,6 +508,9 @@ msgstr "Gönderimi etiketle"
 msgid "Activate"
 msgstr "Aktive et"
 
+msgid "Disactivate"
+msgstr ""
+
 msgid "Search"
 msgstr "Ara"
 
@@ -639,6 +642,12 @@ msgstr ""
 
 msgid "Closed"
 msgstr "Kapatıldı"
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Print"
+msgstr ""
 
 msgid "Select the context of your submission:"
 msgstr "Gönderiminizin içeriğini seçin:"
@@ -1039,6 +1048,15 @@ msgstr "Orta"
 msgid "High"
 msgstr "Yüksek"
 
+msgid "Customize the message shown in the receipt page"
+msgstr ""
+
+msgid "Low"
+msgstr "Düşük"
+
+msgid "Assign the receipt only to submissions reaching score:"
+msgstr ""
+
 msgid "Software version:"
 msgstr "Yazılım versiyonu"
 
@@ -1376,6 +1394,18 @@ msgstr "Telefon numarası"
 
 msgid "Checkbox label"
 msgstr ""
+
+msgid "Add multimedia content"
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Video"
+msgstr "Görüntü"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Koruyucu izninize tabi konu cevabı görünürlüğü"
@@ -1893,11 +1923,11 @@ msgstr ""
 msgid "Thank you!"
 msgstr "Teşekkürler!"
 
-msgid "Remember your receipt for this submission."
+msgid "We will try to get back to you as soon as possible."
 msgstr ""
 
-msgid "We will try to get back to you as soon as possible!"
-msgstr "Size en yakın zamanda geri dönmeye çalışacağız!"
+msgid "Remember your receipt for this submission."
+msgstr ""
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "

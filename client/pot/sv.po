@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-24 10:12+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-03-13 22:17+0000\n"
+"Last-Translator: bsor\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -502,6 +502,9 @@ msgstr ""
 msgid "Activate"
 msgstr "Aktivera"
 
+msgid "Disactivate"
+msgstr ""
+
 msgid "Search"
 msgstr "Sök"
 
@@ -633,6 +636,12 @@ msgstr ""
 
 msgid "Closed"
 msgstr "Stängd"
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Print"
+msgstr "Skriv ut"
 
 msgid "Select the context of your submission:"
 msgstr ""
@@ -1033,6 +1042,15 @@ msgstr "Medium"
 msgid "High"
 msgstr "Hög"
 
+msgid "Customize the message shown in the receipt page"
+msgstr ""
+
+msgid "Low"
+msgstr "Låg"
+
+msgid "Assign the receipt only to submissions reaching score:"
+msgstr ""
+
 msgid "Software version:"
 msgstr "Mjukvaruversion:"
 
@@ -1370,6 +1388,18 @@ msgstr "Telefonnummer"
 
 msgid "Checkbox label"
 msgstr ""
+
+msgid "Add multimedia content"
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Audio"
+msgstr "Ljud"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr ""
@@ -1887,11 +1917,11 @@ msgstr ""
 msgid "Thank you!"
 msgstr "Tack!"
 
-msgid "Remember your receipt for this submission."
+msgid "We will try to get back to you as soon as possible."
 msgstr ""
 
-msgid "We will try to get back to you as soon as possible!"
-msgstr "Vi försöker återkomma till dig så snart som möjligt!"
+msgid "Remember your receipt for this submission."
+msgstr ""
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
