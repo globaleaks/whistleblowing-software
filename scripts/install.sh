@@ -223,7 +223,7 @@ if [ ! -f /etc/timezone ]; then
   unset DEBIAN_FRONTEND
 fi
 
-if [ ! -f /etc/init.d/globaleaks ]; then
+if [ -f /etc/init.d/globaleaks ]; then
   DO "/etc/init.d/globaleaks stop"
 fi
 
