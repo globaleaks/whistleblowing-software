@@ -1,3 +1,7 @@
+Changes in version 3.6.32 - 2019-04-02
+    Update translations
+    Apply minor bugfixing
+
 Changes in version 3.6.41 - 2019-04-01
     Bump npm dependencies to latest stables versions
     Add Slovak translation

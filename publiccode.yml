@@ -3,7 +3,7 @@ releaseDate: '2019-03-07'
 publiccode-yaml-version: '0.2'
 url: 'https://github.com/globaleaks/GlobaLeaks'
 landingURL: 'https://github.com/globaleaks/GlobaLeaks'
-softwareVersion: 3.6.40
+softwareVersion: 3.6.42
 softwareType: standalone/web
 developmentStatus: stable
 platforms:
@@ -58,6 +58,7 @@ localisation:
     - pt_PT
     - ro
     - ru
+    - sk
     - sl_SI
     - sq
     - sv
