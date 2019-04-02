@@ -238,7 +238,6 @@ GLClient.controller("SubmissionCtrl",
 
     if (!$scope.areReceiversSelected() || !$scope.checkForInvalidFields()) {
       $anchorScroll("top");
-      alert(123);
       return;
     }
 
