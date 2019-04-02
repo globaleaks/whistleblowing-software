@@ -33,6 +33,17 @@ GLClient.controller("TipCtrl",
       var i, j, k, step, child;
       for (i=0; i<tip.questionnaires[0].steps.length; i++) {
         step = tip.questionnaires[0].steps[i];
+        if (!fieldUtilities.isFieldTriggered(null, step, $scope.tip.questionnaires[0].answers, $scope.tip.total_score)) {
+          tip.questionnaires[0].steps.splice(i, 1);
+        } else {
+          for (j=0; j<step.children.length; j++) {
+            filterNotTriggeredField(step, step.children[j], $scope.tip.questionnaires[0].answers);
+          }
+        }
+      }
+
+      for (i=0; i<tip.questionnaires[0].steps.length; i++) {
+        step = tip.questionnaires[0].steps[i];
         j = step.children.length;
         while (j--) {
           if (step.children[j]["template_id"] === "whistleblower_identity") {
@@ -50,14 +61,6 @@ GLClient.controller("TipCtrl",
               child = $scope.field.children[k];
               $scope.answers[child.id] = [angular.copy(fieldUtilities.prepare_field_answers_structure(child))];
             }
-          }
-        }
-
-        if (!fieldUtilities.isFieldTriggered(null, step, $scope.tip.questionnaires[0].answers, $scope.tip.total_score)) {
-          tip.questionnaires[0].steps.splice(i, 1);
-        } else {
-          for (j=0; j<step.children.length; j++) {
-            filterNotTriggeredField(step, step.children[j], $scope.tip.questionnaires[0].answers);
           }
         }
       }

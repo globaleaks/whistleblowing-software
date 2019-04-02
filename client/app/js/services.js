@@ -1279,6 +1279,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           var i;
 
           if (parent !== null && !parent.enabled) {
+            field.enabled = false;
             return false;
           }
 
