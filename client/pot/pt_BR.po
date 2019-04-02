@@ -37,8 +37,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-23 17:13+0000\n"
-"Last-Translator: Communia <ameaneantie@riseup.net>\n"
+"PO-Revision-Date: 2019-04-01 11:08+0000\n"
+"Last-Translator: Chacal Exodius\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -520,7 +520,7 @@ msgid "Activate"
 msgstr "Ativar"
 
 msgid "Disactivate"
-msgstr ""
+msgstr "Desativar"
 
 msgid "Search"
 msgstr "Pesquisa"
@@ -1060,13 +1060,13 @@ msgid "High"
 msgstr "Alto"
 
 msgid "Customize the message shown in the receipt page"
-msgstr ""
+msgstr "Personalize a mensagem mostrada na página de recibo"
 
 msgid "Low"
 msgstr "Baixo"
 
 msgid "Assign the receipt only to submissions reaching score:"
-msgstr ""
+msgstr "Atribuir o recibo somente aos envios que atingirem a pontuação:"
 
 msgid "Software version:"
 msgstr "Versão do software:"
@@ -1407,10 +1407,10 @@ msgid "Checkbox label"
 msgstr "Etiqueta de caixa de seleção"
 
 msgid "Add multimedia content"
-msgstr ""
+msgstr "Adicionar conteúdo multimídia"
 
 msgid "Image"
-msgstr ""
+msgstr "Imagem"
 
 msgid "Audio"
 msgstr "Audio"
@@ -1935,7 +1935,7 @@ msgid "Thank you!"
 msgstr "Obrigado!"
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "Nós tentaremos entrar em contato com você o mais breve possível."
 
 msgid "Remember your receipt for this submission."
 msgstr "Lembre-se de seu recibo para este envio."

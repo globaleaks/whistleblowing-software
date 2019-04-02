@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-30 21:48+0000\n"
+"PO-Revision-Date: 2019-04-02 20:28+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -508,7 +508,7 @@ msgid "Activate"
 msgstr "Attiva"
 
 msgid "Disactivate"
-msgstr ""
+msgstr "Disattiva"
 
 msgid "Search"
 msgstr "Cerca"
@@ -1048,13 +1048,13 @@ msgid "High"
 msgstr "Alto"
 
 msgid "Customize the message shown in the receipt page"
-msgstr ""
+msgstr "Personalizza il messaggio mostrato nella pagina della ricevuta"
 
 msgid "Low"
 msgstr "Basso"
 
 msgid "Assign the receipt only to submissions reaching score:"
-msgstr ""
+msgstr "Assegna la ricevuta alle sole segnalazioni con punteggio:"
 
 msgid "Software version:"
 msgstr "Versione del software:"
@@ -1395,7 +1395,7 @@ msgid "Checkbox label"
 msgstr "Etichetta della casella di controllo"
 
 msgid "Add multimedia content"
-msgstr ""
+msgstr "Aggiungi contenuto multimediale"
 
 msgid "Image"
 msgstr "Immagine"
@@ -1923,7 +1923,7 @@ msgid "Thank you!"
 msgstr "Grazie!"
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "Cercheremo di risponderti quanto prima."
 
 msgid "Remember your receipt for this submission."
 msgstr "Memorizza la tua ricevuta per la segnalazione."
