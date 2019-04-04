@@ -74,6 +74,8 @@ def get_context_list(session, tid, language):
 
 
 def db_associate_context_receivers(session, tid, context, receiver_ids):
+    session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id == context.id).delete(synchronize_session='fetch')
+
     if not receiver_ids:
         return
 
@@ -83,14 +85,10 @@ def db_associate_context_receivers(session, tid, context, receiver_ids):
                                             models.UserTenant.user_id == models.User.id).count == 0:
         raise errors.InputValidationError()
 
-    session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id == context.id).delete(synchronize_session='fetch')
-
     for i, receiver_id in enumerate(receiver_ids):
         session.add(models.ReceiverContext({'context_id': context.id,
                                             'receiver_id': receiver_id,
                                             'presentation_order': i}))
-    session.flush()
-
 
 @transact
 def get_context(session, tid, context_id, language):
