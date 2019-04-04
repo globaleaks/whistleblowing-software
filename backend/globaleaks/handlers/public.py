@@ -282,6 +282,9 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
             'option': trigger.id
         })
 
+    children = [serialize_field(session, tid, f, language) for f in data['fields'].get(f_to_serialize.id, [])]
+    children.sort(key=lambda f:(f['y'], f['x']))
+
     ret_dict = {
         'id': field.id,
         'instance': field.instance,
@@ -302,7 +305,7 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
         'triggered_by_score': field.triggered_by_score,
         'triggered_by_options': triggered_by_options,
         'options': [serialize_field_option(o, language) for o in data['options'].get(f_to_serialize.id, [])],
-        'children': [serialize_field(session, tid, f, language) for f in data['fields'].get(f_to_serialize.id, [])]
+        'children': children
     }
 
     return get_localized_values(ret_dict, field, field.localized_keys, language)
@@ -328,15 +331,16 @@ def serialize_step(session, tid, step, language, serialize_templates=True):
 
     data = db_prepare_fields_serialization(session, children)
 
+    children = [serialize_field(session, tid, f, language, data, serialize_templates=serialize_templates) for f in children]
+    children.sort(key=lambda f:(f['y'], f['x']))
+
     ret_dict = {
         'id': step.id,
         'questionnaire_id': step.questionnaire_id,
         'presentation_order': step.presentation_order,
         'triggered_by_score': step.triggered_by_score,
         'triggered_by_options': triggered_by_options,
-        'children': [serialize_field(
-            session, tid, f, language, data, serialize_templates=serialize_templates
-        ) for f in children]
+        'children': children
     }
 
     return get_localized_values(ret_dict, step, step.localized_keys, language)
