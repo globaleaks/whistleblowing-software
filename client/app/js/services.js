@@ -1351,17 +1351,21 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
               }
             }
 
-            if (scope.context.enable_scoring_system) {
-              angular.forEach(scope.answers[field.id], function(entry) {
-                self.calculateScore(scope, field, entry);
-              });
-            }
-
             angular.forEach(list, function(field) {
               for (i=0; i<answers[field.id].length; i++) {
                 self.updateAnswers(scope, field, field.children, answers[field.id][i]);
               }
             });
+
+            if (!field.enabled) {
+              return;
+            }
+
+            if (scope.context.enable_scoring_system) {
+              angular.forEach(scope.answers[field.id], function(entry) {
+                self.calculateScore(scope, field, entry);
+              });
+            }
 
             for(i=0; i<answers[field.id].length; i++) {
               entry = answers[field.id][i];
