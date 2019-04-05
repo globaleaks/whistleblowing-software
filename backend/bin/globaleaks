@@ -105,7 +105,7 @@ Settings.parser.add_option("-v", "--version", action='store_true',
 if Settings.cmdline_options.version:
     print("GlobaLeaks version:", Settings.version_string)
     print("Database version:", DATABASE_VERSION)
-    sys.exit(53)
+    sys.exit(0)
 
 Settings.load_cmdline_options()
 
@@ -151,14 +151,14 @@ def run_backend():
         config.parseOptions()
     except usage.error as ue:
         print("%s: %s" % (sys.argv[0], ue))
-        sys.exit(50)
+        sys.exit(1)
     try:
         # This blocks until the app exits
         TwistedApplicationRunner(config).run()
         print("Exiting GlobaLeaks")
     except Exception as excep:
         print("Unable to start GlobaLeaks: %s" % excep)
-        sys.exit(51)
+        sys.exit(1)
 
 # "Now his watch begins"
 run_backend()
