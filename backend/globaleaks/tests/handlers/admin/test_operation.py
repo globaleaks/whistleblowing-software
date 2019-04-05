@@ -1,6 +1,8 @@
 # -*- coding: utf-8
+from globaleaks import models
 from globaleaks.handlers.admin.operation import AdminOperationHandler
 from globaleaks.handlers.admin import user
+from globaleaks.jobs import delivery
 from globaleaks.rest import errors
 from globaleaks.state import State
 from globaleaks.tests import helpers
@@ -88,3 +90,47 @@ class TestAdminPasswordReset(helpers.TestHandlerWithPopulatedDB):
         # Now we check if the token was update
         user = yield get_user(self.user['id'])
         self.assertNotEqual(user.reset_password_token, None)
+
+
+class TestAdminResetSubmissionsData(helpers.TestHandlerWithPopulatedDB):
+    _handler = AdminOperationHandler
+
+    @defer.inlineCallbacks
+    def setUp(self):
+        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
+        yield self.perform_full_submission_actions()
+        yield delivery.Delivery().run()
+
+        for r in (yield user.get_receiver_list(1, 'en')):
+            if r['pgp_key_fingerprint'] == u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
+                self.user = r
+                return
+
+    @defer.inlineCallbacks
+    def test_put(self):
+        yield self.test_model_count(models.InternalTip, 2)
+        yield self.test_model_count(models.ReceiverTip, 4)
+        yield self.test_model_count(models.InternalFile, 4)
+        yield self.test_model_count(models.ReceiverFile, 8)
+        yield self.test_model_count(models.Comment, 6)
+        yield self.test_model_count(models.Message, 8)
+        yield self.test_model_count(models.Mail, 0)
+        yield self.test_model_count(models.SecureFileDelete, 0)
+
+        data_request = {
+            'operation': 'reset_submissions_data',
+            'args': {}
+        }
+
+        handler = self.request(data_request, role='admin')
+
+        yield handler.put()
+
+        yield self.test_model_count(models.InternalTip, 0)
+        yield self.test_model_count(models.ReceiverTip, 0)
+        yield self.test_model_count(models.InternalFile, 0)
+        yield self.test_model_count(models.ReceiverFile, 0)
+        yield self.test_model_count(models.Comment, 0)
+        yield self.test_model_count(models.Message, 0)
+        yield self.test_model_count(models.Mail, 0)
+        yield self.test_model_count(models.SecureFileDelete, 8)

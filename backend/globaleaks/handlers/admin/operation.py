@@ -8,7 +8,8 @@ from twisted.web.client import readBody
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.password_reset import generate_password_reset_token
-from globaleaks.models import Config
+from globaleaks.handlers.rtip import db_delete_itip
+from globaleaks.models import Config, InternalTip
 from globaleaks.models.config import ConfigFactory, db_set_config_variable
 from globaleaks.orm import transact, tw
 from globaleaks.rest import errors
@@ -47,6 +48,15 @@ def set_config_variable(session, tid, var, val):
     db_set_config_variable(session, tid, var, val)
 
     db_refresh_memory_variables(session, [tid])
+
+
+@transact
+def reset_submissions_data(session, tid):
+    session.query(Config).filter(Config.tid == tid, Config.var_name == u'counter_submissions').update({'value': 0})
+
+    for itip in session.query(InternalTip).filter(InternalTip.tid == tid):
+        db_delete_itip(session, itip)
+
 
 
 class AdminOperationHandler(OperationHandler):
@@ -91,10 +101,14 @@ class AdminOperationHandler(OperationHandler):
             'onionservice': onion_details[1]
         })
 
+    def reset_submissions_data(self, req_args, *args, **kwargs):
+        return reset_submissions_data(self.request.tid)
+
     def operation_descriptors(self):
         return {
             'set_hostname': (AdminOperationHandler.set_hostname, {'value': text_type}),
             'verify_hostname': (AdminOperationHandler.verify_hostname, {'value': text_type}),
             'reset_user_password': (AdminOperationHandler.reset_user_password, {'value': text_type}),
-            'reset_onion_private_key': (AdminOperationHandler.reset_onion_private_key, {})
+            'reset_onion_private_key': (AdminOperationHandler.reset_onion_private_key, {}),
+            'reset_submissions_data': (AdminOperationHandler.reset_submissions_data, {})
         }
