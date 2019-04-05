@@ -149,8 +149,8 @@ controller("AdminHomeCtrl", ["$scope", function($scope) {
     $scope.displayNum = undefined;
   };
 }]).
-controller("AdminAdvancedCtrl", ["$scope", "$uibModal", "CONSTANTS",
-  function($scope, $uibModal, CONSTANTS){
+controller("AdminAdvancedCtrl", ["$scope", "$http", "$uibModal", "CONSTANTS",
+  function($scope, $http, $uibModal, CONSTANTS){
   $scope.tabs = [
     {
       title:"Main configuration",
@@ -175,6 +175,17 @@ controller("AdminAdvancedCtrl", ["$scope", "$uibModal", "CONSTANTS",
     });
     */
   }
+
+  $scope.resetSubmissions = function() {
+    $scope.Utils.deleteDialog().then(function() {
+      var req = {
+        "operation": "reset_submissions",
+        "args": {}
+      };
+
+      return $http({method: "PUT", url: "admin/config", data: req});
+    });
+  };
 
   $scope.shortener_shorturl_regexp = CONSTANTS.shortener_shorturl_regexp;
   $scope.shortener_longurl_regexp = CONSTANTS.shortener_longurl_regexp;

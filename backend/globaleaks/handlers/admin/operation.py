@@ -51,7 +51,7 @@ def set_config_variable(session, tid, var, val):
 
 
 @transact
-def reset_submissions_data(session, tid):
+def reset_submissions(session, tid):
     session.query(Config).filter(Config.tid == tid, Config.var_name == u'counter_submissions').update({'value': 0})
 
     for itip in session.query(InternalTip).filter(InternalTip.tid == tid):
@@ -101,8 +101,8 @@ class AdminOperationHandler(OperationHandler):
             'onionservice': onion_details[1]
         })
 
-    def reset_submissions_data(self, req_args, *args, **kwargs):
-        return reset_submissions_data(self.request.tid)
+    def reset_submissions(self, req_args, *args, **kwargs):
+        return reset_submissions(self.request.tid)
 
     def operation_descriptors(self):
         return {
@@ -110,5 +110,5 @@ class AdminOperationHandler(OperationHandler):
             'verify_hostname': (AdminOperationHandler.verify_hostname, {'value': text_type}),
             'reset_user_password': (AdminOperationHandler.reset_user_password, {'value': text_type}),
             'reset_onion_private_key': (AdminOperationHandler.reset_onion_private_key, {}),
-            'reset_submissions_data': (AdminOperationHandler.reset_submissions_data, {})
+            'reset_submissions': (AdminOperationHandler.reset_submissions, {})
         }

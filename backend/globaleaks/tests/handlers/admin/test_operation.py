@@ -92,7 +92,7 @@ class TestAdminPasswordReset(helpers.TestHandlerWithPopulatedDB):
         self.assertNotEqual(user.reset_password_token, None)
 
 
-class TestAdminResetSubmissionsData(helpers.TestHandlerWithPopulatedDB):
+class TestAdminResetSubmissions(helpers.TestHandlerWithPopulatedDB):
     _handler = AdminOperationHandler
 
     @defer.inlineCallbacks
@@ -118,7 +118,7 @@ class TestAdminResetSubmissionsData(helpers.TestHandlerWithPopulatedDB):
         yield self.test_model_count(models.SecureFileDelete, 0)
 
         data_request = {
-            'operation': 'reset_submissions_data',
+            'operation': 'reset_submissions',
             'args': {}
         }
 
