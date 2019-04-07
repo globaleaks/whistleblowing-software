@@ -1,9 +1,9 @@
 name: GlobaLeaks
-releaseDate: '2019-03-07'
+releaseDate: '2019-04-07'
 publiccodeYmlVersion: '0.2'
 url: 'https://github.com/globaleaks/GlobaLeaks'
 landingURL: 'https://github.com/globaleaks/GlobaLeaks'
-softwareVersion: 3.6.42
+softwareVersion: 3.6.44
 softwareType: standalone/web
 developmentStatus: stable
 platforms:
@@ -106,7 +106,7 @@ description:
       - Fully unit-tested and end2end tested on commit with test code coverage over 90%
       - Support for all MySQL, PostgreSQL and MS SQL Server
       - Strong security with 5 independent audits
-      - Including Whistleblower Identity Management features)
-      - "Compliant with Italian whistleblowing protection law: 190/2012, 231/2001, ANAC specs"
-      - "Compliant with French whistleblowing protection law: Sapin II (France) and ISO 37001"
-      - "Compliant with international whistleblowing standards: ISO 37001"
+      - Including Whistleblower Identity Management features
+      - Compliant with Italian whistleblowing protection law: 190/2012, 231/2001, ANAC specs
+      - Compliant with French whistleblowing protection law: Sapin II (France) and ISO 37001
+      - Compliant with international whistleblowing standards: ISO 37001
