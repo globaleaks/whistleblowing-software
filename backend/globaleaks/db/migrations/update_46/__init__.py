@@ -277,7 +277,7 @@ class MigrationScript(MigrationBase):
                     if old_obj.score_points != 0:
                         new_obj.score_type = 1
                     continue
-                elif key in ['trigger_step', 'trigger_field_inverted', 'trigger_step_inverted', 'trigger_receiver']:
+                elif key in ['trigger_step', 'trigger_receiver']:
                     continue
 
                 setattr(new_obj, key, getattr(old_obj, key))
