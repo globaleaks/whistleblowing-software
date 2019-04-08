@@ -675,7 +675,6 @@ class _FieldOption(Model):
     trigger_step_inverted = Column(Boolean, default=False, nullable=False)
     trigger_receiver = Column(JSON, default=list, nullable=True)
 
-    bool_keys = ['trigger_field_inverted', 'trigger_step_inverted']
     unicode_keys = ['field_id']
     int_keys = ['presentation_order', 'score_type', 'score_points']
     json_keys = ['trigger_receiver']

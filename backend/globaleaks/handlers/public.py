@@ -216,9 +216,7 @@ def serialize_field_option(option, language):
         'score_points': option.score_points,
         'score_type': option.score_type,
         'trigger_field': option.trigger_field if option.trigger_field else '',
-        'trigger_field_inverted': option.trigger_field_inverted,
         'trigger_step': option.trigger_step if option.trigger_step else '',
-        'trigger_step_inverted': option.trigger_step_inverted,
         'trigger_receiver': option.trigger_receiver
     }
 

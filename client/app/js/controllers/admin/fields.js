@@ -80,9 +80,7 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
         "score_points": 0,
         "score_type": 0,
         "trigger_field": "",
-        "trigger_field_inverted": false,
         "trigger_step": "",
-        "trigger_step_inverted": false,
 	"trigger_receiver": []
       };
 

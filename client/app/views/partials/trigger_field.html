@@ -8,14 +8,6 @@
   <div class="alert alert-default">
     <div data-translate>Question</div>
     <select class="form-control" data-ng-model="arg.trigger_field" data-ng-options="field.id as field.label for field in all_fields | orderBy:'label'"></select>
-    <!--
-    <div>
-      <label>
-        <input data-ng-model="arg.trigger_field_inverted" type="checkbox" />
-        <span data-translate>Inverted</span>
-      </label>
-    </div>
-    -->
   </div>
 </div>
 <div class="modal-footer">
@@ -23,7 +15,7 @@
     <i class="glyphicon glyphicon-remove"></i>
     <span data-translate>Cancel</span>
   </a>
-  <a id="modal-action-ok" class="btn btn-danger" data-ng-click="arg.trigger_field = ''; arg.trigger_field_inverted = false; cancel()">
+  <a id="modal-action-ok" class="btn btn-danger" data-ng-click="arg.trigger_field = ''; cancel()">
     <i class="glyphicon glyphicon-ok"></i>
     <span data-translate>Reset</span>
   </a>
