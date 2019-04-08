@@ -92,8 +92,6 @@ class SettingsClass(object):
 
         self.onionservice = None
 
-        self.receipt_regexp = u'[0-9]{16}'
-
         # Default request time uniform value
         self.side_channels_guard = 150
 
