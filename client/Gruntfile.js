@@ -484,13 +484,13 @@ module.exports = function(grunt) {
     var data = {
       "charset": "UTF-8",
       "headers": {
-        "Project-Id-Version": "GlobaLeaks\n",
-        "Language-Team": "English (http://www.transifex.com/otf/globaleaks/language/en/)\n",
-        "MIME-Version": "1.0\n",
-        "Content-Type": "text/plain; charset=UTF-8\n",
-        "Content-Transfer-Encoding": "8bit\n",
-        "Language": "en\n",
-        "Plural-Forms": "nplurals=2; plural=(n != 1);\n"
+        "project-id-version": "GlobaLeaks",
+        "language-team": "English (http://www.transifex.com/otf/globaleaks/language/en/)",
+        "mime-version": "1.0",
+        "content-type": "text/plain; charset=UTF-8",
+        "content-transfer-encoding": "8bit",
+        "language": "en",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
       },
       "translations": {
         "": {
