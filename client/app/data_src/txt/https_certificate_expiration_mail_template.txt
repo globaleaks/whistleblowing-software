@@ -8,8 +8,7 @@ Without a valid certificate, the platform will be accessible in a secure way onl
 
 Log in to solve the issue.
 
-via Tor at: {TorUrl}
-via HTTPS at: {HTTPSUrl}
+{Url}
 
 Kind regards,
 {NodeName}

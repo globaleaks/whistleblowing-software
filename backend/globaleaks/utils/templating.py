@@ -18,8 +18,12 @@ from globaleaks.utils.utility import datetime_to_pretty_str, \
 node_keywords = [
     '{NodeName}',
     '{DocumentationUrl}',
+    '{TorSite}',
+    '{HTTPSSite}',
     '{TorUrl}',
     '{HTTPSUrl}',
+    '{Site}',
+    '{Url}'
 ]
 
 context_keywords = [
@@ -38,9 +42,7 @@ tip_keywords = [
     '{SubmissionDate}',
     '{QuestionnaireAnswers}',
     '{Comments}',
-    '{Messages}',
-    '{TorUrl}',
-    '{HTTPSUrl}'
+    '{Messages}'
 ]
 
 file_keywords = [
@@ -54,9 +56,7 @@ export_message_keywords = [
 
 expiration_summary_keywords = [
     '{ExpiringSubmissionCount}',
-    '{EarliestExpirationDate}',
-    '{TorUrl}',
-    '{HTTPSUrl}'
+    '{EarliestExpirationDate}'
 ]
 
 admin_pgp_alert_keywords = [
@@ -72,15 +72,12 @@ admin_anomaly_keywords = [
     '{AnomalyDetailActivities}',
     '{ActivityAlarmLevel}',
     '{ActivityDump}',
-    '{NodeName}',
     '{FreeMemory}',
     '{TotalMemory}'
 ]
 
 https_expr_keywords = [
-    '{ExpirationDate}',
-    '{TorUrl}',
-    '{HTTPSUrl}',
+    '{ExpirationDate}'
 ]
 
 software_update_keywords = [
@@ -112,30 +109,21 @@ platform_signup_keywords = [
 
 email_validation_keywords = [
     '{RecipientName}',
-    '{NewEmailAddress}',
-    '{HTTPSUrl}',
-    '{TorUrl}'
+    '{NewEmailAddress}'
 ]
 
 password_reset_validation_keywords = [
-    '{RecipientName}',
-    '{TorUrl}',
-    '{HTTPSUrl}',
-    '{NodeName}'
+    '{RecipientName}'
 ]
 
 password_reset_complete_keywords = [
     '{RecipientName}',
-    '{NodeName}',
     '{NewPassword}'
 ]
 
 identity_access_request_keywords = [
     '{RecipientName}',
     '{TipNum}',
-    '{TorUrl}',
-    '{HTTPSUrl}',
-    '{NodeName}'
 ]
 
 two_factor_auth_keywords = [
@@ -174,22 +162,43 @@ class NodeKeyword(Keyword):
         return self.data['node']['name']
 
     def _TorUrl(self):
-        return 'http://' + self.data['node']['onionservice'] + '/'
+        return '/'
 
     def _HTTPSUrl(self):
-        return 'https://' + self.data['node']['hostname'] + '/'
+        return '/'
+
+    def TorSite(self):
+        if self.data['node']['onionservice']:
+            return self.data['node']['onionservice']
+
+        return '[UNDEFINED]'
+
+    def HTTPSSite(self):
+        if self.data['node']['hostname']:
+            return self.data['node']['hostname']
+
+        return '[UNDEFINED]'
 
     def TorUrl(self):
-        if not self.data['node']['onionservice']:
-            return '[NOT CONFIGURED]'
-
-        return self._TorUrl()
+        return self.TorSite() + self.UrlPath()
 
     def HTTPSUrl(self):
-        if not self.data['node']['hostname']:
-            return '[NOT CONFIGURED]'
+        return self.HTTPSSite() + self.UrlPath()
 
-        return self._HTTPSUrl()
+    def Site(self):
+        if self.data['node']['hostname']:
+            return self.data['node']['hostname']
+
+        elif self.data['node']['onionservice']:
+            return self.data['node']['onionservice']
+
+        return ''
+
+    def UrlPath(self):
+        return '/'
+
+    def Url(self):
+        return self.Site() + self.UrlPath()
 
     def DocumentationUrl(self):
         return 'https://docs.globaleaks.org'
@@ -300,11 +309,8 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
     def TipID(self):
         return self.data['tip']['id']
 
-    def _TorUrl(self):
-        return 'http://' + self.data['node']['onionservice'] + '/#/status/' + self.data['tip']['id']
-
-    def _HTTPSUrl(self):
-        return 'https://' + self.data['node']['hostname'] + '/#/status/' + self.data['tip']['id']
+    def UrlPath(self):
+        return '/#/status/' + self.data['tip']['id']
 
     def TipNum(self):
         return str(self.data['tip']['progressive'])
@@ -389,11 +395,8 @@ class ExpirationSummaryKeyword(UserNodeKeyword):
     def EarliestExpirationDate(self):
         return ISO8601_to_pretty_str(self.data['earliest_expiration_date'])
 
-    def _TorUrl(self):
-        return 'http://' + self.data['node']['onionservice'] + '/#/receiver/tips'
-
-    def _HTTPSUrl(self):
-        return 'https://' + self.data['node']['hostname'] + '/#/receiver/tips'
+    def UrlPath(self):
+        return '/#/receiver/tips'
 
 
 class AdminPGPAlertKeyword(UserNodeKeyword):
@@ -470,11 +473,8 @@ class CertificateExprKeyword(UserNodeKeyword):
     def ExpirationDate(self):
         return ISO8601_to_pretty_str(self.data['expiration_date'])
 
-    def _TorUrl(self):
-        return 'http://' + self.data['node']['onionservice'] + '/#/admin/network'
-
-    def _HTTPSUrl(self):
-        return 'https://' + self.data['node']['hostname'] + '/#/admin/network'
+    def UrlPath(self):
+        return '/#/admin/network'
 
 
 class SoftwareUpdateKeyword(UserNodeKeyword):
@@ -512,11 +512,8 @@ class PlatformSignupKeyword(NodeKeyword):
     keyword_list = NodeKeyword.keyword_list + platform_signup_keywords
     data_keys = NodeKeyword.data_keys + ['signup']
 
-    def _TorUrl(self):
+    def Url(self):
         return 'http://' + self.data['signup']['subdomain'] + '.' + self.data['node']['onionservice'] + '/'
-
-    def _HTTPSUrl(self):
-        return 'https://' + self.data['signup']['subdomain'] + '.' + self.data['node']['rootdomain'] + '/'
 
     def RecipientName(self):
         return self.data['signup']['name'] + ' ' + self.data['signup']['surname']
@@ -525,7 +522,7 @@ class PlatformSignupKeyword(NodeKeyword):
         return '/#/activation?token=' + self.data['signup']['activation_token']
 
     def ActivationUrl(self):
-        return 'https://' + self.data['node']['hostname'] + self.ActivationRequest()
+        return self.Site() + self.ActivationRequest()
 
     def ExpirationDate(self):
         date = ISO8601_to_datetime(self.data['signup']['registration_date']) + timedelta(days=30)
@@ -589,11 +586,8 @@ class EmailValidationKeyword(UserNodeKeyword):
     def NewEmailAddress(self):
         return self.data['new_email_address']
 
-    def TorUrl(self):
-        return 'http://' + self.data['node']['onionservice'] + '/email/validation/' + self.data['validation_token']
-
-    def HTTPSUrl(self):
-        return 'https://' + self.data['node']['hostname'] + '/email/validation/' + self.data['validation_token']
+    def UrlPath(self):
+        return '/email/validation/' + self.data['validation_token']
 
 
 class PasswordResetValidation(UserNodeKeyword):
@@ -602,11 +596,8 @@ class PasswordResetValidation(UserNodeKeyword):
     data_keys = NodeKeyword.data_keys + \
         ['reset_token']
 
-    def TorUrl(self):
-        return 'http://' + self.data['node']['onionservice'] + '/reset/password/' + self.data['reset_token']
-
-    def HTTPSUrl(self):
-        return 'https://' + self.data['node']['hostname'] + '/reset/password/' + self.data['reset_token']
+    def UrlPath(self):
+        return '/reset/password/' + self.data['reset_token']
 
 
 class PasswordResetComplete(UserNodeKeyword):
@@ -626,11 +617,8 @@ class IdentityAccessRequestKeyword(UserNodeKeyword):
     def TipNum(self):
         return str(self.data['tip']['progressive'])
 
-    def _TorUrl(self):
-        return 'http://' + self.data['node']['onionservice'] + '/#/custodian/identityaccessrequests/'
-
-    def _HTTPSUrl(self):
-        return 'https://' + self.data['node']['hostname'] + '/#/custodian/identityaccessrequests/'
+    def UrlPath(self):
+        return '/#/custodian/identityaccessrequests/'
 
 
 class TwoFactorAuthKeyword(NodeKeyword):
@@ -683,7 +671,7 @@ class Templating(object):
 
                     count += 1
 
-            # remobe lines with only {Blank}
+            # remove lines with only {Blank}
             raw_template = raw_template.replace('\n{Blank}\n', '\n')
 
             # remove remaining $Blank% tokens

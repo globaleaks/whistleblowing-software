@@ -43,8 +43,7 @@
     "{QuestionnaireAnswers}", 
     "{Comments}", 
     "{Messages}", 
-    "{TorUrl}", 
-    "{HTTPSUrl}"
+    "{Url}"
   ], 
   "admin_anomaly_mail_template": [
     "{NodeName}", 
@@ -73,8 +72,7 @@
     "{QuestionnaireAnswers}", 
     "{Comments}", 
     "{Messages}", 
-    "{TorUrl}", 
-    "{HTTPSUrl}"
+    "{Url}"
   ], 
   "export_message_recipient": [
     "{NodeName}", 
@@ -90,8 +88,7 @@
     "{QuestionnaireAnswers}", 
     "{Comments}", 
     "{Messages}", 
-    "{TorUrl}", 
-    "{HTTPSUrl}", 
+    "{Url}",
     "{Content}"
   ], 
   "export_message_whistleblower": [
@@ -108,8 +105,7 @@
     "{QuestionnaireAnswers}", 
     "{Comments}", 
     "{Messages}", 
-    "{TorUrl}", 
-    "{HTTPSUrl}", 
+    "{Url}",
     "{Content}"
   ], 
   "comment_mail_template": [
@@ -126,8 +122,7 @@
     "{QuestionnaireAnswers}", 
     "{Comments}", 
     "{Messages}", 
-    "{TorUrl}", 
-    "{HTTPSUrl}"
+    "{Url}"
   ], 
   "admin_test_mail_template": [
     "{NodeName}", 
@@ -149,8 +144,7 @@
     "{QuestionnaireAnswers}", 
     "{Comments}", 
     "{Messages}", 
-    "{TorUrl}", 
-    "{HTTPSUrl}"
+    "{Url}"
   ], 
   "tip_expiration_summary_mail_title": [
     "{NodeName}", 
@@ -159,8 +153,7 @@
     "{RecipientName}", 
     "{ExpiringSubmissionCount}", 
     "{EarliestExpirationDate}", 
-    "{TorUrl}", 
-    "{HTTPSUrl}"
+    "{Url}"
   ], 
   "file_mail_title": [
     "{NodeName}", 
@@ -176,8 +169,7 @@
     "{QuestionnaireAnswers}", 
     "{Comments}", 
     "{Messages}", 
-    "{TorUrl}", 
-    "{HTTPSUrl}", 
+    "{Url}",
     "{FileName}", 
     "{FileSize}"
   ], 
@@ -195,8 +187,7 @@
     "{QuestionnaireAnswers}", 
     "{Comments}", 
     "{Messages}", 
-    "{TorUrl}", 
-    "{HTTPSUrl}"
+    "{Url}"
   ], 
   "file_mail_template": [
     "{NodeName}", 
@@ -212,8 +203,7 @@
     "{QuestionnaireAnswers}", 
     "{Comments}", 
     "{Messages}", 
-    "{TorUrl}", 
-    "{HTTPSUrl}", 
+    "{Url}",
     "{FileName}", 
     "{FileSize}"
   ], 
@@ -237,8 +227,7 @@
     "{QuestionnaireAnswers}", 
     "{Comments}", 
     "{Messages}", 
-    "{TorUrl}", 
-    "{HTTPSUrl}"
+    "{Url}"
   ], 
   "software_update_available_mail_template": [
     "{NodeName}", 
@@ -264,8 +253,7 @@
     "{QuestionnaireAnswers}", 
     "{Comments}", 
     "{Messages}", 
-    "{TorUrl}", 
-    "{HTTPSUrl}"
+    "{Url}"
   ], 
   "admin_anomaly_mail_title": [
     "{NodeName}", 
@@ -299,8 +287,7 @@
     "{PublicSite}", 
     "{RecipientName}", 
     "{ExpirationDate}", 
-    "{TorUrl}", 
-    "{HTTPSUrl}"
+    "{Url}"
   ], 
   "admin_pgp_alert_mail_template": [
     "{NodeName}", 
@@ -315,8 +302,7 @@
     "{PublicSite}", 
     "{RecipientName}", 
     "{ExpirationDate}", 
-    "{TorUrl}", 
-    "{HTTPSUrl}"
+    "{Url}"
   ], 
   "tip_expiration_summary_mail_template": [
     "{NodeName}", 
@@ -325,8 +311,7 @@
     "{RecipientName}", 
     "{ExpiringSubmissionCount}", 
     "{EarliestExpirationDate}", 
-    "{TorUrl}", 
-    "{HTTPSUrl}"
+    "{Url}"
   ],
   "2fa_mail_template": [
     "{AuthCode}"

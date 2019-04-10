@@ -2,9 +2,9 @@ Dear {RecipientName},
 
 This is an email to notify you that a request has been made to change your email address to {NewEmailAddress}.
 
-Click the following link to validate this change: {HTTPSUrl}
+Click the following link to validate this change:
+{Url}
 
-If you wish to validate your new email with Tor, you may use the following link: {TorUrl}
 If you didn't request this change, change your password and contact your system administrator.
 
 Kind regards,

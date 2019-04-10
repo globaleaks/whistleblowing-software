@@ -6,8 +6,7 @@ The earliest expiration date is {EarliestExpirationDate}.
 
 Please remember to check them before they are deleted.
 
-via Tor at: {TorUrl}
-via HTTPS at: {HTTPSUrl}
+{Url}
 
 Kind regards,
 {NodeName}

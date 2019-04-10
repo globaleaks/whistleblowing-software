@@ -2,9 +2,8 @@ Dear {RecipientName},
 
 This is an email to notify you of a new message on an existing submission.
 
-The submission can be accessed:
-via Tor at: {TorUrl}
-via HTTPS at: {HTTPSUrl}
+The submission can be accessed at:
+{Url}
 
 Kind regards,
 {NodeName}

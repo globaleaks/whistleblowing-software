@@ -2,9 +2,8 @@ Dear {RecipientName},
 
 This is an email to notify you that a recipient has requested access to the whistleblower's identity for the submission {TipNum}
 
-The request can be accessed:
-via Tor at: {TorUrl}
-via HTTPS at: {HTTPSUrl}
+The request can be accessed at:
+{Url}
 
 Kind regards,
 {NodeName}
