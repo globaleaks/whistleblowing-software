@@ -54,8 +54,7 @@ def db_prepare_fields_serialization(session, fields):
     ret = {
         'fields': {},
         'attrs': {},
-        'options': {},
-        'triggers': {}
+        'options': {}
     }
 
     fields_ids = []
@@ -98,12 +97,6 @@ def db_prepare_fields_serialization(session, fields):
             if obj.field_id not in ret['options']:
                 ret['options'][obj.field_id] = []
             ret['options'][obj.field_id].append(obj)
-
-        objs = session.query(models.FieldOption).filter(models.FieldOption.trigger_field.in_(fields_ids))
-        for obj in objs:
-            if obj.field_id not in ret['triggers']:
-                ret['triggers'][obj.field_id] = []
-            ret['triggers'][obj.field_id].append(obj)
 
     return ret
 
