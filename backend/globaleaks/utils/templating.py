@@ -19,9 +19,7 @@ node_keywords = [
     '{NodeName}',
     '{DocumentationUrl}',
     '{TorUrl}',
-    '{TorLoginUrl}',
     '{HTTPSUrl}',
-    '{HTTPSLoginUrl}'
 ]
 
 context_keywords = [
@@ -192,18 +190,6 @@ class NodeKeyword(Keyword):
             return '[NOT CONFIGURED]'
 
         return self._HTTPSUrl()
-
-    def TorLoginUrl(self):
-        if not self.data['node']['onionservice']:
-            return '[NOT CONFIGURED]'
-
-        return self.TorUrl() + '#/login'
-
-    def HTTPSLoginUrl(self):
-        if not self.data['node']['hostname']:
-            return '[NOT CONFIGURED]'
-
-        return self.HTTPSUrl() + '#/login'
 
     def DocumentationUrl(self):
         return 'https://docs.globaleaks.org'
