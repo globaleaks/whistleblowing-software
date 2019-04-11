@@ -153,7 +153,6 @@ class SettingsClass(object):
         self.eval_paths()
 
     def eval_paths(self):
-        self.config_file_path = '/etc/globaleaks'
         self.pidfile_path = os.path.join(self.pid_path, 'globaleaks.pid')
         self.files_path = os.path.abspath(os.path.join(self.working_path, 'files'))
 
