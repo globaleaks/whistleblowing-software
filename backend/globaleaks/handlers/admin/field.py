@@ -27,17 +27,14 @@ def db_add_field_attrs(session, field_id, field_attrs):
             models.db_forge_obj(session, models.FieldAttr, attr_dict)
 
 
-def db_update_fieldoption(session, tid, field_id, fieldoption_id, option_dict, language, idx):
-    option_dict['tid'] = tid
+def db_update_fieldoption(session, field_id, fieldoption_id, option_dict, language, idx):
     option_dict['field_id'] = field_id
 
     fill_localized_keys(option_dict, models.FieldOption.localized_keys, language)
 
     o = None
     if fieldoption_id is not None:
-        o = session.query(models.FieldOption).filter(models.FieldOption.id == fieldoption_id,
-                                                     models.FieldOption.field_id == models.Field.id,
-                                                     models.Field.tid == tid).one_or_none()
+        o = session.query(models.FieldOption).filter(models.FieldOption.id == fieldoption_id).one_or_none()
 
     if o is None:
         o = models.db_forge_obj(session, models.FieldOption, option_dict)
@@ -49,34 +46,26 @@ def db_update_fieldoption(session, tid, field_id, fieldoption_id, option_dict, l
     return o.id
 
 
-def db_update_fieldoptions(session, tid, field_id, options, language):
-    """
-    Update options
+def db_update_fieldoptions(session, field_id, options, language):
+    options_ids = [db_update_fieldoption(session, field_id, option['id'], option, language, idx) for idx, option in enumerate(options)]
 
-    :param session: the session on which perform queries.
-    :param field_id: the field_id on wich bind the provided options
-    :param language: the language of the option definition dict
-    """
-    options_ids = [db_update_fieldoption(session, tid, field_id, option['id'], option, language, idx) for idx, option in enumerate(options)]
+    if not options_ids:
+        return
 
-    if options_ids:
-        ids_to_remove = session.query(models.FieldOption.id).filter(models.FieldOption.field_id == field_id,
-                                                                    not_(models.FieldOption.id.in_(options_ids)),
-                                                                    models.FieldOption.field_id == models.Field.id,
-                                                                    models.Field.tid == tid)
+    ids_to_remove = session.query(models.FieldOption.id).filter(models.FieldOption.field_id == field_id,
+                                                                    not_(models.FieldOption.id.in_(options_ids)))
 
-        session.query(models.FieldOption).filter(models.FieldOption.id.in_(ids_to_remove.subquery())).delete(synchronize_session='fetch')
+    session.query(models.FieldOption).filter(models.FieldOption.id.in_(ids_to_remove.subquery())).delete(synchronize_session='fetch')
 
 
-def db_update_fieldattr(session, tid, field_id, attr_name, attr_dict, language):
+def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
     attr_dict['name'] = attr_name
     attr_dict['field_id'] = field_id
-    attr_dict['tid'] = tid
 
     if attr_dict['type'] == u'localized':
         fill_localized_keys(attr_dict, ['value'], language)
 
-    a = session.query(models.FieldAttr).filter(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name, models.FieldAttr.field_id == models.Field.id, models.Field.tid == tid).one_or_none()
+    a = session.query(models.FieldAttr).filter(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name).one_or_none()
     if a is None:
         a = models.db_forge_obj(session, models.FieldAttr, attr_dict)
     else:
@@ -85,16 +74,16 @@ def db_update_fieldattr(session, tid, field_id, attr_name, attr_dict, language):
     return a.id
 
 
-def db_update_fieldattrs(session, tid, field_id, field_attrs, language):
-    attrs_ids = [db_update_fieldattr(session, tid, field_id, attr_name, attr, language) for attr_name, attr in field_attrs.items()]
+def db_update_fieldattrs(session, field_id, field_attrs, language):
+    attrs_ids = [db_update_fieldattr(session, field_id, attr_name, attr, language) for attr_name, attr in field_attrs.items()]
 
-    if attrs_ids:
-        ids_to_remove = session.query(models.FieldAttr.id).filter(models.FieldAttr.field_id == field_id,
-                                                                  not_(models.FieldAttr.id.in_(attrs_ids)),
-                                                                  models.FieldAttr.field_id == models.Field.id,
-                                                                  models.Field.tid == tid)
+    if not attrs_ids:
+        return
 
-        session.query(models.FieldAttr).filter(models.FieldAttr.id.in_(ids_to_remove.subquery())).delete(synchronize_session='fetch')
+    ids_to_remove = session.query(models.FieldAttr.id).filter(models.FieldAttr.field_id == field_id,
+                                                                  not_(models.FieldAttr.id.in_(attrs_ids)))
+
+    session.query(models.FieldAttr).filter(models.FieldAttr.id.in_(ids_to_remove.subquery())).delete(synchronize_session='fetch')
 
 
 def check_field_association(session, tid, field_dict):
@@ -169,8 +158,8 @@ def db_create_field(session, tid, field_dict, language):
         attrs = field_dict.get('attrs')
         options = field_dict.get('options')
 
-        db_update_fieldattrs(session, tid, field.id, attrs, language)
-        db_update_fieldoptions(session, tid, field.id, options, language)
+        db_update_fieldattrs(session, field.id, attrs, language)
+        db_update_fieldoptions(session, field.id, options, language)
 
     if field.instance != 'reference':
         for c in field_dict.get('children', []):
@@ -198,10 +187,10 @@ def db_update_field(session, tid, field_id, field_dict, language):
 
     fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
-    db_update_fieldattrs(session, tid, field.id, field_dict['attrs'], language)
+    db_update_fieldattrs(session, field.id, field_dict['attrs'], language)
 
     if field_dict['instance'] != 'reference':
-        db_update_fieldoptions(session, tid, field.id, field_dict['options'], language)
+        db_update_fieldoptions(session, field.id, field_dict['options'], language)
 
         # full update
         field.update(field_dict)
