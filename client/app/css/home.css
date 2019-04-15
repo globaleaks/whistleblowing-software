@@ -5,32 +5,19 @@
   margin: 0 auto;
 }
 
-#NodeIntro, #WhistleblowerSubmitBox, #WhistleblowerReceiptBox {
+#NodePresentation, #WhistleblowerSubmitBox, #WhistleblowerReceiptBox {
   font-size: 1.2em;
 }
 
-#NodeIntro {
-  margin-bottom: 3em;
-}
-
+#NodePresentation,
 #WhistleblowerSubmitBox {
   margin-bottom: 2em;
 }
 
-
-#NodeIntroPresentation,
-#NodeIntroDescription,
+#NodePresentation,
 #WhistleblowerSubmitBoxHeader,
 #WhistleblowerLoginPrompt {
   white-space: pre-wrap;
-}
-
-#NodeIntroPresentation {
-  font-size: 1.6em;
-}
-
-#NodeIntroDescription {
-  font-size: 1.4em;
 }
 
 #WhistleblowerSubmitBoxHeader {

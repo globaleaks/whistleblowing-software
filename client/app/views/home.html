@@ -1,5 +1,5 @@
 <div id="HomePageBox">
-  <div id="NodeIntro" data-ng-if="node.presentation">{{::node.presentation}}</div>
+  <div id="NodePresentation" data-ng-if="node.presentation">{{::node.presentation}}</div>
 
   <div id="WhistleblowerBox" class="row">
     <div id="WhistleblowerSubmitBoxButton" class="row" data-ng-show="node.disable_submissions || !node.accept_submissions || (!node.https_whistleblower && !connection.tor)">
