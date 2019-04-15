@@ -16,17 +16,6 @@ from globaleaks.settings import Settings
 from globaleaks.utils.utility import read_json_file
 
 
-def db_add_field_attrs(session, field_id, field_attrs):
-    for attr_name, attr_dict in field_attrs.items():
-        x = session.query(models.FieldAttr) \
-                   .filter(models.FieldAttr.field_id == field_id,
-                           models.FieldAttr.name == attr_name).one_or_none()
-        if x is None:
-            attr_dict['name'] = attr_name
-            attr_dict['field_id'] = field_id
-            models.db_forge_obj(session, models.FieldAttr, attr_dict)
-
-
 def db_update_fieldoption(session, field_id, fieldoption_id, option_dict, language, idx):
     option_dict['field_id'] = field_id
 
@@ -62,7 +51,7 @@ def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
     attr_dict['name'] = attr_name
     attr_dict['field_id'] = field_id
 
-    if attr_dict['type'] == u'localized':
+    if attr_dict['type'] == u'localized' and language is not None:
         fill_localized_keys(attr_dict, ['value'], language)
 
     a = session.query(models.FieldAttr).filter(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name).one_or_none()
@@ -151,7 +140,7 @@ def db_create_field(session, tid, field_dict, language):
             field_attrs = read_json_file(Settings.field_attrs_file)
             attrs = field_attrs.get(field.template_id, {})
 
-        db_add_field_attrs(session, field.id, attrs)
+        db_update_fieldattrs(session, field.id, attrs, None)
 
     else:
         field = models.db_forge_obj(session, models.Field, field_dict)

@@ -5,7 +5,7 @@ import os
 from sqlalchemy import not_
 
 from globaleaks import models
-from globaleaks.handlers.admin.field import db_create_field, db_add_field_attrs
+from globaleaks.handlers.admin.field import db_create_field, db_update_fieldattrs
 from globaleaks.handlers.admin.questionnaire import db_create_questionnaire
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import read_json_file
@@ -80,7 +80,7 @@ def db_fix_fields_attrs(session):
     for field in session.query(models.Field):
         type = field.type if field.template_id is None else field.template_id
         attrs = field_attrs.get(type, {})
-        db_add_field_attrs(session, field.id, attrs)
+        db_update_fieldattrs(session, field.id, attrs, None)
 
 
 def db_update_defaults(session):
