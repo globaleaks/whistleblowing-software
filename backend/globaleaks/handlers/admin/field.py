@@ -98,11 +98,6 @@ def check_field_association(session, tid, field_dict):
 def db_create_field(session, tid, field_dict, language):
     """
     Create and add a new field to the session, then return the new serialized object.
-
-    :param session: the session on which perform queries.
-    :param field_dict: the field definition dict
-    :param language: the language of the field definition dict
-    :return: a serialization of the object
     """
     field_dict['tid'] = tid
 
@@ -204,12 +199,6 @@ def db_update_field(session, tid, field_id, field_dict, language):
 def update_field(session, tid, field_id, field, language):
     """
     Update the specified field with the details.
-
-    :param session: the session on which perform queries.
-    :param field_id: the field_id of the field to update
-    :param field: the field definition dict
-    :param language: the language of the field definition dict
-    :return: a serialization of the object
     """
     field = db_update_field(session, tid, field_id, field, language)
 
@@ -220,12 +209,6 @@ def update_field(session, tid, field_id, field, language):
 def delete_field(session, tid, field_id):
     """
     Delete the field object corresponding to field_id
-
-    If the field has children, remove them as well.
-    If the field is immediately attached to a step object, remove it as well.
-
-    :param session: the session on which perform queries.
-    :param field_id: the id corresponding to the field.
     """
     field = models.db_get(session, models.Field, models.Field.tid == tid, models.Field.id == field_id)
 
@@ -241,10 +224,6 @@ def delete_field(session, tid, field_id):
 def fieldtree_ancestors(session, id):
     """
     Given a field_id, recursively extract its parents.
-
-    :param session: the session on which perform queries.
-    :param field_id: the parent id.
-    :return: a generator of Field.id
     """
     field = session.query(models.Field).filter(models.Field.id == id).one_or_none()
     if field.fieldgroup_id is not None:
@@ -256,11 +235,6 @@ def fieldtree_ancestors(session, id):
 def get_fieldtemplate_list(session, tid, language):
     """
     Serialize all the field templates localizing their content depending on the language.
-
-    :param session: the session on which perform queries.
-    :param language: the language of the field definition dict
-    :return: the current field list serialized.
-    :rtype: list of dict
     """
     templates = session.query(models.Field).filter(models.Field.tid.in_(set([1, tid])),
                                                    models.Field.instance == u'template',
@@ -277,9 +251,6 @@ class FieldTemplatesCollection(BaseHandler):
     def get(self):
         """
         Return a list of all the fields templates available.
-
-        :return: the list of field templates registered on the node.
-        :rtype: list
         """
         return get_fieldtemplate_list(self.request.tid, self.request.language)
 
@@ -301,10 +272,6 @@ class FieldTemplateInstance(BaseHandler):
     def put(self, field_id):
         """
         Update a single field template's attributes.
-
-        :param field_id:
-        :rtype: FieldTemplateDesc
-        :raises InputValidationError: if validation fails.
         """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
@@ -317,8 +284,6 @@ class FieldTemplateInstance(BaseHandler):
     def delete(self, field_id):
         """
         Delete a single field template.
-
-        :param field_id:
         """
         return delete_field(self.request.tid, field_id)
 
@@ -336,10 +301,6 @@ class FieldsCollection(BaseHandler):
     def post(self):
         """
         Create a new field.
-
-        :return: the serialized field
-        :rtype: AdminFieldDesc
-        :raises InputValidationError: if validation fails.
         """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
@@ -352,8 +313,6 @@ class FieldsCollection(BaseHandler):
 class FieldInstance(BaseHandler):
     """
     Operation to iterate over a specific requested Field
-
-    /admin/fields
     """
     check_roles = 'admin'
     invalidate_cache = True
@@ -361,11 +320,6 @@ class FieldInstance(BaseHandler):
     def put(self, field_id):
         """
         Update attributes of the specified step.
-
-        :param field_id:
-        :return: the serialized field
-        :rtype: AdminFieldDesc
-        :raises InputValidationError: if validation fails.
         """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
@@ -378,8 +332,5 @@ class FieldInstance(BaseHandler):
     def delete(self, field_id):
         """
         Delete a single field.
-
-        :param field_id:
-        :raises InputValidationError: if validation fails.
         """
         return delete_field(self.request.tid, field_id)
