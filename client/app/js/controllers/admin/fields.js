@@ -5,6 +5,9 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
     $scope.editing = false;
     $scope.new_field = {};
 
+    $scope.showAddTrigger = false;
+    $scope.new_trigger = {};
+
     if ($scope.children) {
       $scope.fields = $scope.children;
     }
@@ -13,6 +16,10 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
 
     $scope.toggleEditing = function () {
       $scope.editing = !$scope.editing;
+    };
+
+    $scope.toggleAddTrigger = function () {
+      $scope.showAddTrigger = !$scope.showAddTrigger;
     };
 
     $scope.isMarkableSubjectToStats = function(field) {
@@ -57,7 +64,6 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
 
     $scope.delField = function(field) {
       $scope.Utils.deleteDialog().then(function() {
-        $scope.deleted_fields_ids.push(field.id);
         return $scope.Utils.deleteResource($scope.fieldResource, $scope.fields, field);
       });
     };
@@ -79,8 +85,6 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
         "label": "",
         "score_points": 0,
         "score_type": 0,
-        "trigger_field": "",
-        "trigger_step": "",
 	"trigger_receiver": []
       };
 
@@ -107,14 +111,12 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
       $scope.field.options.splice($scope.field.options.indexOf(option), 1);
     };
 
+    $scope.delTrigger = function(trigger) {
+      $scope.field.triggered_by_options.splice($scope.field.triggered_by_options.indexOf(trigger), 1);
+    };
+
     $scope.save_field = function(field) {
       var updated_field;
-
-      field.options.forEach(function(option) {
-        if ($scope.deleted_fields_ids.indexOf(option.trigger_field) !== -1) {
-          option.trigger_field = "";
-        }
-      });
 
       $scope.Utils.assignUniqueOrderIndex(field.options);
 
@@ -186,65 +188,11 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
     $scope.fieldIsMarkableSubjectToStats = $scope.isMarkableSubjectToStats($scope.field);
     $scope.fieldIsMarkableSubjectToPreview = $scope.isMarkableSubjectToPreview($scope.field);
 
-    $scope.triggerFieldDialog = function(option) {
-      var t = [];
-      var direct_parents;
-
-      function findParents(field_id, field_lst) {
-        for (var i = 0; i < field_lst.length; i++) {
-          var field = field_lst[i];
-          var pot = [field.id].concat(findParents(field_id, field.children));
-          if (pot.indexOf(field_id) > -1) {
-             return pot;
-          }
-        }
-        return [];
-      }
-
-      function enumerateChildren(field) {
-        var c = [];
-        if (angular.isDefined(field.children)) {
-          field.children.forEach(function(field) {
-            c.push(field);
-            c = c.concat(enumerateChildren(field));
-          });
-        }
-        return c;
-      }
-
-      if($scope.step) {
-        $scope.questionnaire.steps.forEach(function(step) {
-          step.children.forEach(function(f) {
-            t.push(f);
-            t = t.concat(enumerateChildren(f));
-          });
-        });
-        direct_parents = findParents($scope.field.id, $scope.step.children);
-      } else {
-        t = $scope.fields;
-        direct_parents = findParents($scope.field.id, $scope.fields);
-      }
-
-      $scope.all_fields = t.filter(function(f) { return direct_parents.indexOf(f.id) < 0; });
-
-      return $scope.Utils.openConfirmableModalDialog("views/partials/trigger_field.html", option, $scope);
-    };
-
-    $scope.triggerStepDialog = function(option) {
-      return $scope.Utils.openConfirmableModalDialog("views/partials/trigger_step.html", option, $scope);
-    };
-
-    $scope.triggerReceiverDialog = function(option) {
-      $scope.moveReceiver = function(rec) {
-        option.trigger_receiver.push(rec.id);
-      };
-
-      $scope.receiverNotSelectedFilter = function(item) {
-        return option.trigger_receiver.indexOf(item.id) === -1;
-      };
-
-      return $scope.Utils.openConfirmableModalDialog("views/partials/trigger_receiver.html", option, $scope);
-    };
+    $scope.addTrigger = function() {
+      $scope.field.triggered_by_options.push($scope.new_trigger);
+      $scope.toggleAddTrigger();
+      $scope.new_trigger = {};
+    }
 
     $scope.assignScorePointsDialog = function(option) {
       return $scope.Utils.openConfirmableModalDialog("views/partials/assign_score_points.html", option, $scope);
@@ -254,7 +202,6 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
 controller("AdminFieldTemplatesCtrl", ["$scope", "AdminFieldTemplateResource",
   function($scope, AdminFieldTemplateResource) {
     $scope.fieldResource = AdminFieldTemplateResource;
-    $scope.deleted_fields_ids = [];
 
     $scope.admin.fieldtemplates.$promise.then(function(fields) {
       $scope.fields = fields;

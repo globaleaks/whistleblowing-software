@@ -18,11 +18,19 @@ controller("AdminStepEditorCtrl", ["$scope", "$rootScope", "$http", "AdminStepRe
   function($scope, $rootScope, $http, AdminStepResource, AdminFieldResource) {
     $scope.editing = false;
     $scope.new_field = {};
+
+    $scope.showAddTrigger = false;
+    $scope.new_trigger = {};
+
     $scope.fields = $scope.step.children;
     $scope.fieldResource = AdminFieldResource;
 
     $scope.toggleEditing = function () {
       $scope.editing = $scope.editing ^ 1;
+    };
+
+    $scope.toggleAddTrigger = function () {
+      $scope.showAddTrigger = !$scope.showAddTrigger;
     };
 
     $scope.save_step = function(step) {
@@ -104,5 +112,11 @@ controller("AdminStepEditorCtrl", ["$scope", "$rootScope", "$http", "AdminStepRe
 
     $scope.moveUp = function(e, idx) { swap(e, idx, -1); };
     $scope.moveDown = function(e, idx) { swap(e, idx, 1); };
+
+    $scope.addTrigger = function() {
+      $scope.step.triggered_by_options.push($scope.new_trigger);
+      $scope.toggleAddTrigger();
+      $scope.new_trigger = {};
+    }
   }
 ]);

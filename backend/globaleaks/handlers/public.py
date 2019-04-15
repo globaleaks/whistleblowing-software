@@ -17,8 +17,26 @@ from globaleaks.state import State
 from globaleaks.utils.ip import check_ip
 from globaleaks.utils.sets import merge_dicts
 
+
 special_fields = ['whistleblower_identity']
 
+
+def get_trigger_model_by_type(type):
+    if type == 'field':
+        return models.FieldOptionTriggerField
+    elif type == 'step':
+        return models.FieldOptionTriggerStep
+
+
+def db_get_triggers_by_type(session, type, object_id):
+    ret = []
+
+    m = get_trigger_model_by_type(type)
+    for x in session.query(models.FieldOption.field_id, models.FieldOption.id) \
+                    .filter(models.FieldOption.id == m.option_id, m.object_id == object_id):
+        ret.append({'field': x[0], 'option': x[1]})
+
+    return ret
 
 def db_prepare_contexts_serialization(session, contexts):
     data = {'imgs': {}, 'receivers': {}}
@@ -248,14 +266,6 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
     for attr in data['attrs'].get(field.id, {}):
         attrs[attr.name] = serialize_field_attr(attr, language)
 
-    triggered_by_options = []
-    _triggered_by_options = session.query(models.FieldOption).filter(models.FieldOption.trigger_field == field.id)
-    for trigger in _triggered_by_options:
-        triggered_by_options.append({
-            'field': trigger.field_id,
-            'option': trigger.id
-        })
-
     children = [serialize_field(session, tid, f, language) for f in data['fields'].get(f_to_serialize.id, [])]
     children.sort(key=lambda f:(f['y'], f['x']))
 
@@ -277,7 +287,7 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
         'y': field.y,
         'width': field.width,
         'triggered_by_score': field.triggered_by_score,
-        'triggered_by_options': triggered_by_options,
+        'triggered_by_options': db_get_triggers_by_type(session, 'field', field.id),
         'options': [serialize_field_option(o, language) for o in data['options'].get(f_to_serialize.id, [])],
         'children': children
     }
@@ -289,14 +299,6 @@ def serialize_step(session, tid, step, language, serialize_templates=True):
     """
     Serialize a step.
     """
-    triggered_by_options = []
-    _triggered_by_options = session.query(models.FieldOption).filter(models.FieldOption.trigger_step == step.id)
-    for trigger in _triggered_by_options:
-        triggered_by_options.append({
-            'field': trigger.field_id,
-            'option': trigger.id
-        })
-
     children = session.query(models.Field).filter(models.Field.step_id == step.id)
 
     data = db_prepare_fields_serialization(session, children)
@@ -309,7 +311,7 @@ def serialize_step(session, tid, step, language, serialize_templates=True):
         'questionnaire_id': step.questionnaire_id,
         'presentation_order': step.presentation_order,
         'triggered_by_score': step.triggered_by_score,
-        'triggered_by_options': triggered_by_options,
+        'triggered_by_options': db_get_triggers_by_type(session, 'step', step.id),
         'children': children
     }
 

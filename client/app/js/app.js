@@ -545,6 +545,7 @@ var GLClient = angular.module("GLClient", [
     $rootScope.Authentication = Authentication;
     $rootScope.GLTranslate = GLTranslate;
     $rootScope.Utils = Utils;
+    $rootScope.fieldUtilities = fieldUtilities;
     $rootScope.AdminUtils = AdminUtils;
 
     $rootScope.started = false;
@@ -816,7 +817,7 @@ var GLClient = angular.module("GLClient", [
        return config;
      },
      "responseError": function(response) {
-       /*
+       /*/
           When the response has failed write the rootScope
           errors array the error message.
        */

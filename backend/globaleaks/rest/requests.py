@@ -326,8 +326,6 @@ AdminFieldOptionDesc = {
     'presentation_order': int,
     'score_type': int,
     'score_points': int,
-    'trigger_field': uuid_regexp_or_empty,
-    'trigger_step': uuid_regexp_or_empty,
     'trigger_receiver': list
 }
 
@@ -365,7 +363,8 @@ AdminFieldDesc = {
     'attrs': dict,
     'options': [AdminFieldOptionDesc],
     'children': list,
-    'triggered_by_score': int
+    'triggered_by_score': int,
+    'triggered_by_options': list
 }
 
 AdminFieldDescRaw = get_multilang_request_format(AdminFieldDesc, models.Field.localized_keys)
@@ -380,7 +379,8 @@ AdminStepDesc = {
     'children': [AdminFieldDesc],
     'questionnaire_id': key_regexp_or_empty,
     'presentation_order': int,
-    'triggered_by_score': int
+    'triggered_by_score': int,
+    'triggered_by_options': list
 }
 
 AdminStepDescRaw = get_multilang_request_format(AdminStepDesc, models.Step.localized_keys)

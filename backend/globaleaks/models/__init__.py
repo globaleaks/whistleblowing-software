@@ -679,21 +679,40 @@ class _FieldOption(Model):
     label = Column(JSON, nullable=False)
     score_points = Column(Integer, default=0, nullable=False)
     score_type = Column(Integer, default=0, nullable=False)
-    trigger_field = Column(UnicodeText(36), nullable=True)
-    trigger_step = Column(UnicodeText(36), nullable=True)
     trigger_receiver = Column(JSON, default=list, nullable=True)
 
     unicode_keys = ['field_id']
     int_keys = ['presentation_order', 'score_type', 'score_points']
     json_keys = ['trigger_receiver']
     localized_keys = ['label']
-    optional_references = ['trigger_field', 'trigger_step']
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['field_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['trigger_field'], ['field.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['trigger_step'], ['step.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'))
+        return (ForeignKeyConstraint(['field_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+
+
+class _FieldOptionTriggerField(Model):
+    __tablename__ = 'fieldoptiontriggerfield'
+
+    option_id = Column(UnicodeText(36), primary_key=True, nullable=False)
+    object_id = Column(UnicodeText(36), primary_key=True, nullable=False)
+
+    @declared_attr
+    def __table_args__(self):
+        return (ForeignKeyConstraint(['option_id'], ['fieldoption.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['object_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
+
+
+class _FieldOptionTriggerStep(Model):
+    __tablename__ = 'fieldoptiontriggerstep'
+
+    option_id = Column(UnicodeText(36), primary_key=True, nullable=False)
+    object_id = Column(UnicodeText(36), primary_key=True, nullable=False)
+
+    @declared_attr
+    def __table_args__(self):
+        return (ForeignKeyConstraint(['option_id'], ['fieldoption.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['object_id'], ['step.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
 
 class _File(Model):
@@ -1379,6 +1398,12 @@ class FieldAnswerGroup(_FieldAnswerGroup, Base): pass
 
 
 class FieldOption(_FieldOption, Base): pass
+
+
+class FieldOptionTriggerField(_FieldOptionTriggerField, Base): pass
+
+
+class FieldOptionTriggerStep(_FieldOptionTriggerStep, Base): pass
 
 
 class File(_File, Base): pass

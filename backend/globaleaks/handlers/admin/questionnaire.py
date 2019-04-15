@@ -138,7 +138,9 @@ def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
         for option in field['options']:
             option_id = option.get('id', None)
             if option_id is not None:
-                option['id'] = text_type(uuid.uuid4())
+                new_option_id = text_type(uuid.uuid4())
+                id_map[option['id']] = new_option_id
+                option['id'] = new_option_id
 
         # And now we need to keep going down the latter
         for attr in field['attrs'].values():
@@ -151,9 +153,9 @@ def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
 
     def fix_field_pass_2(field):
         # Fix triggers references
-        for option in field['options']:
-            if option['trigger_field'] in id_map:
-                option['trigger_field'] = id_map[option['trigger_field']]
+        for trigger in field.get('triggered_by_options', []):
+            trigger['field'] = id_map[trigger['field']]
+            trigger['option'] = id_map[trigger['option']]
 
         # Recursion!
         for child in field['children']:
@@ -161,7 +163,9 @@ def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
 
     # Step1: replacement of IDs
     for step in q['steps']:
-        step['id'] = text_type(uuid.uuid4())
+        new_step_id = text_type(uuid.uuid4())
+        id_map[step['id']] = new_step_id
+        step['id'] = new_step_id
 
         # Each field has a UUID that needs to be replaced
         for field in step['children']:
@@ -170,6 +174,11 @@ def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
 
     # Step2: fix of fields triggers following IDs replacement
     for step in q['steps']:
+        # Fix triggers references
+        for trigger in step.get('triggered_by_options', []):
+            trigger['field'] = id_map[trigger['field']]
+            trigger['option'] = id_map[trigger['option']]
+
         for field in step['children']:
             fix_field_pass_2(field)
 

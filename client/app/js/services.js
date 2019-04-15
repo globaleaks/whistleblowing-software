@@ -714,6 +714,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       step.children = [];
       step.questionnaire_id = questionnaire_id;
       step.triggered_by_score = 0;
+      step.triggered_by_options = [];
       return step;
     },
 
@@ -744,6 +745,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       field.template_id = "";
       field.template_override_id = "";
       field.triggered_by_score = 0;
+      field.triggered_by_options = [];
       return field;
     },
 
@@ -1282,6 +1284,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         },
 
         isFieldTriggered: function(parent, field, answers, score) {
+          var count = 0;
           var i;
 
           if (parent !== null && !parent.enabled) {
@@ -1309,9 +1312,13 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
             // Check if triggering field is in answers object
             if (trigger_obj.option === answers_field.value ||
                 (answers_field.hasOwnProperty(trigger_obj.option) && answers_field[trigger_obj.option])) {
+              count += 1;
+            }
+          }
+
+          if (count == field.triggered_by_options.length) {
               field.enabled = true;
               return true;
-            }
           }
 
           field.enabled = false;
@@ -1458,6 +1465,37 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           if (scope.submission) {
             scope.submission._submission.total_score = scope.total_score;
           }
+        },
+
+        parseQuestionnaire: function(questionnaire) {
+          var parsedFields = {
+            fields: [],
+            fields_by_id: {},
+            options_by_id: {}
+          }
+
+          var parseField = function(field) {
+            if (field.type == 'checkbox' || field.type == 'selectbox') {
+              parsedFields.fields_by_id[field.id] = field;
+              parsedFields.fields.push(field);
+              field.options.forEach(function(option) {
+                parsedFields.options_by_id[option.id] = option;
+              });
+
+            } else if (field.type == 'fieldgroup') {
+              field.children.forEach(function(field) {
+                parseField(field);
+              });
+            }
+          }
+
+          questionnaire.steps.forEach(function(step) {
+            step.children.forEach(function(field) {
+              parseField(field);
+            });
+          });
+
+          return parsedFields;
         }
       };
 }]).

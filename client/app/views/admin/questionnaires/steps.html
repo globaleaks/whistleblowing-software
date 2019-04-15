@@ -100,9 +100,46 @@
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-12">
                 <label data-translate>Triggered by a score higher than:</label>
-                <input class="form-control" data-ng-model="step.triggered_by_score" type="number" min="0" max="1000">
+                <select class="form-control" data-ng-model="step.triggered_by_score" convert-to-number>
+                  <option value="0" data-translate>Low</option>
+                  <option value="1" data-translate>Medium</option>
+                  <option value="2" data-translate>High</option>
+                </select>
+              </div>
+              <div class="form-group col-md-12">
+                <label>
+                  <span data-translate>Triggers</span>
+                  <button class="btn btn-xs btn-primary show-add-question-btn" data-ng-click="toggleAddTrigger()">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span data-translate>Add</span>
+                  </button>
+                </label>
+                <div data-ng-if="showAddTrigger" class="col-md-12">
+                  <div class="form-group">
+                    <select name="type" class="form-control" data-ng-model="new_trigger.field" required>
+                      <option data-ng-repeat="field in parsedFields.fields" value="{{field.id}}">{{field.label}}</option>
+                    </select>
+                  </div>
+                  <div data-ng-if="new_trigger.field" class="form-group">
+                    <select name="type" class="form-control" data-ng-model="new_trigger.option" required>
+                      <option data-ng-repeat="option in parsedFields.fields_by_id[new_trigger.field].options" value="{{option.id}}">{{option.label}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <button id="add-step-btn" class="btn btn-primary" data-ng-disabled="!new_trigger.field || !new_trigger.option" data-ng-click="addTrigger()">
+                      <i class="glyphicon glyphicon-plus-sign"></i>
+                      <span data-translate>Add</span>
+                    </button>
+                  </div>
+	        </div>
+                <div data-ng-repeat="trigger in step.triggered_by_options" class="nested">
+                  <button class="btn btn-xs btn-danger" data-ng-click="delTrigger(trigger)">
+                    <i class="glyphicon glyphicon-remove"></i>
+                  </button>
+                  <span>{{parsedFields.fields_by_id[trigger.field].label}}</span>: <span>{{parsedFields.options_by_id[trigger.option].label}}</span>
+                </div>
               </div>
             </div>
             <div id="FieldsEditBox" class="form-group">

@@ -206,6 +206,7 @@ def get_dummy_step():
         'description': u'Step Description',
         'presentation_order': 0,
         'triggered_by_score': 0,
+        'triggered_by_options': [],
         'questionnaire_id': u'',
         'children': []
     }
@@ -235,7 +236,8 @@ def get_dummy_field():
         'y': 1,
         'x': 1,
         'width': 0,
-        'triggered_by_score': 0
+        'triggered_by_score': 0,
+        'triggered_by_options': []
     }
 
 

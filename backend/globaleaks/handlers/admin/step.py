@@ -7,7 +7,7 @@
 from six import text_type
 
 from globaleaks import models
-from globaleaks.handlers.admin.field import db_create_field, db_update_field
+from globaleaks.handlers.admin.field import db_create_field, db_update_field, db_create_trigger, db_reset_option_triggers
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.public import serialize_step
@@ -27,6 +27,9 @@ def db_create_step(session, tid, step_dict, language):
 
     step = models.db_forge_obj(session, models.Step, step_dict)
 
+    for trigger in step_dict.get('triggered_by_options', []):
+        db_create_trigger(session, tid, trigger['option'], 'step', step.id)
+
     for c in step_dict['children']:
         c['tid'] = tid
         c['step_id'] = step.id
@@ -43,13 +46,13 @@ def create_step(session, tid, step, language):
     return serialize_step(session, tid, db_create_step(session, tid, step, language), language)
 
 
-def db_update_step(session, tid, step_id, request, language):
+def db_update_step(session, tid, step_id, step_dict, language):
     """
     Update the specified step with the details.
 
     :param session: the session on which perform queries.
     :param step_id: the step_id of the step to update
-    :param request: the step definition dict
+    :param step_dict: the step definition dict
     :param language: the language of the step definition dict
     :return: a serialization of the object
     """
@@ -57,12 +60,17 @@ def db_update_step(session, tid, step_id, request, language):
                                                models.Questionnaire.id == models.Step.questionnaire_id,
                                                models.Questionnaire.tid == tid)
 
-    fill_localized_keys(request, models.Step.localized_keys, language)
+    fill_localized_keys(step_dict, models.Step.localized_keys, language)
 
-    step.update(request)
+    step.update(step_dict)
 
-    for child in request['children']:
+    for child in step_dict['children']:
         db_update_field(session, tid, child['id'], child, language)
+
+    db_reset_option_triggers(session, 'step', step.id)
+
+    for trigger in step_dict.get('triggered_by_options', []):
+        db_create_trigger(session, tid, trigger['option'], 'step', step.id)
 
     return step
 
