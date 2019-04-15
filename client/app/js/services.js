@@ -1319,26 +1319,42 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         },
 
         calculateScore: function(scope, field, entry) {
-          var i;
+          var total_score, i;
 
           if (field.type === "selectbox") {
             for(i=0; i<field.options.length; i++) {
               if (entry["value"] === field.options[i].id) {
                 if (field.options[i].score_type === 1) {
                   // Addition
-                  scope.total_score += field.options[i].score_points;
+                  scope.points_to_sum += field.options[i].score_points;
                 } else if (field.options[i].score_type === 2) {
                   // Multiplication
-                  scope.total_score *= field.options[i].score_points;
+                  scope.points_to_mul *= field.options[i].score_points;
                 }
               }
             }
           } else if (field.type === "checkbox") {
             for(i=0; i<field.options.length; i++) {
               if (entry[field.options[i].id]) {
-                scope.total_score += field.options[i].score_points;
+                if (field.options[i].score_type === 1) {
+                  // Addition
+                  scope.points_to_sum += field.options[i].score_points;
+                } else if (field.options[i].score_type === 2) {
+                  // Multiplication
+                  scope.points_to_mul *= field.options[i].score_points;
+                }
               }
             }
+          }
+
+          total_score = scope.points_to_sum * scope.points_to_mul;
+
+          if (total_score < scope.context.score_threshold_medium) {
+            scope.total_score = 1;
+          } else if (total_score < scope.context.score_threshold_high) {
+            scope.total_score = 2;
+          } else {
+            scope.total_score = 3;
           }
         },
 
@@ -1420,6 +1436,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         onAnswersUpdate: function(scope) {
           var self = this;
           scope.total_score = 0;
+          scope.points_to_sum = 0;
+          scope.points_to_mul = 1;
 
           if(!scope.questionnaire) {
             return;

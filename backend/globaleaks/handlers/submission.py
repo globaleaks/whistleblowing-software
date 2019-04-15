@@ -229,8 +229,7 @@ def serialize_itip(session, internaltip, language):
         'enable_whistleblower_identity': internaltip.enable_whistleblower_identity,
         'wb_last_access': datetime_to_ISO8601(internaltip.wb_last_access),
         'wb_access_revoked': wb_access_revoked,
-        'score': internaltip.score,
-        'total_score': internaltip.total_score,
+        'score': internaltip.total_score,
         'status': internaltip.status,
         'substatus': internaltip.substatus
     }
@@ -295,14 +294,6 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
     # Evaluate the score level
     itip.total_score = request['total_score']
-    if not context.enable_scoring_system:
-        itip.score = 0
-    elif request['total_score'] < context.score_threshold_medium:
-        itip.score = 1
-    elif request['total_score'] < context.score_threshold_high:
-        itip.score = 2
-    else:
-        itip.score = 3
 
     # The status https is used to keep track of the security level adopted by the whistleblower
     itip.https = not client_using_tor
@@ -349,8 +340,8 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     # Evaluate if the whistleblower tip should be generated
     if ((not context.enable_scoring_system) or
         (context.score_threshold_receipt == 0) or
-        (context.score_threshold_receipt == 1 and itip.score >= 1) or
-        (context.score_threshold_receipt == 2 and itip.score == 2)):
+        (context.score_threshold_receipt == 1 and itip.total_score >= 1) or
+        (context.score_threshold_receipt == 2 and itip.total_score == 2)):
         receipt = GCE.generate_receipt()
         receipt_salt = State.tenant_cache[tid].receipt_salt
         wbtip = models.WhistleblowerTip()
@@ -425,7 +416,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
     return {
         'receipt': receipt,
-        'score': itip.score
+        'score': itip.total_score
     }
 
 

@@ -142,7 +142,11 @@
             </div>
             <div class="form-group">
               <label data-translate>Triggered by a score higher than:</label>
-              <input class="form-control" data-ng-model="field.triggered_by_score" type="number" min="0" max="1000">
+              <select class="form-control" data-ng-model="field.triggered_by_score" convert-to-number>
+                <option value="0" data-translate>Low</option>
+                <option value="1" data-translate>Medium</option>
+                <option value="2" data-translate>High</option>
+              </select>
             </div>
             <div class="form-group" data-ng-if="field.template_id !== ''">
               <label data-translate>Template override</label>
