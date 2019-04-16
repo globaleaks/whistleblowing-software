@@ -1,3 +1,13 @@
+Changes in version 3.6.45 - 2019-04-16
+    Apply minor bugfixing
+
+    Addressed issues:
+    - https://github.com/globaleaks/GlobaLeaks/issues/2545
+    - https://github.com/globaleaks/GlobaLeaks/issues/2548
+    - https://github.com/globaleaks/GlobaLeaks/issues/2549
+    - https://github.com/globaleaks/GlobaLeaks/issues/2551
+    - https://github.com/globaleaks/GlobaLeaks/issues/2554
+
 Changes in version 3.6.44 - 2019-04-07
     Make it possible to reset submissions (#2447)
     Revise error codes of /bin/globaleaks
