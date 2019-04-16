@@ -103,7 +103,7 @@ def db_prepare_fields_serialization(session, fields):
 
 def db_serialize_node(session, tid, language):
     """
-    Serialize node info.
+    Serialize the public node configuration.
     """
     # Contexts and Receivers relationship
     node_dict = ConfigFactory(session, tid).serialize('public_node')
@@ -144,11 +144,7 @@ def db_serialize_node(session, tid, language):
 
 def serialize_context(session, context, language, data=None):
     """
-    Serialize context description
-
-    @param context: a valid ORM object
-    @return: a dict describing the contexts available for submission,
-        (e.g. checks if almost one receiver is associated)
+    Serialize a context.
     """
     ret_dict = {
         'id': context.id,
@@ -182,11 +178,7 @@ def serialize_context(session, context, language, data=None):
 
 def serialize_questionnaire(session, tid, questionnaire, language, serialize_templates=True):
     """
-    Serialize the specified questionnaire
-
-    :param session: the session on which perform queries.
-    :param language: the language in which to localize data.
-    :return: a dictionary representing the serialization of the questionnaire.
+    Serialize a questionnaire.
     """
     steps = session.query(models.Step).filter(models.Step.questionnaire_id == questionnaire.id,
                                               models.Questionnaire.id == questionnaire.id)
@@ -204,11 +196,7 @@ def serialize_questionnaire(session, tid, questionnaire, language, serialize_tem
 
 def serialize_field_option(option, language):
     """
-    Serialize a field option, localizing its content depending on the language.
-
-    :param option: the field option object to be serialized
-    :param language: the language in which to localize data
-    :return: a serialization of the object
+    Serialize a field option.
     """
     ret_dict = {
         'id': option.id,
@@ -225,11 +213,7 @@ def serialize_field_option(option, language):
 
 def serialize_field_attr(attr, language):
     """
-    Serialize a field attribute, localizing its content depending on the language.
-
-    :param option: the field attribute object to be serialized
-    :param language: the language in which to localize data
-    :return: a serialization of the object
+    Serialize a field attribute.
     """
     ret_dict = {
         'id': attr.id,
@@ -246,11 +230,7 @@ def serialize_field_attr(attr, language):
 
 def serialize_field(session, tid, field, language, data=None, serialize_templates=True):
     """
-    Serialize a field, localizing its content depending on the language.
-
-    :param field: the field object to be serialized
-    :param language: the language in which to localize data
-    :return: a serialization of the object
+    Serialize a field.
     """
     if data is None:
         data = db_prepare_fields_serialization(session, [field])
@@ -304,11 +284,7 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
 
 def serialize_step(session, tid, step, language, serialize_templates=True):
     """
-    Serialize a step, localizing its content depending on the language.
-
-    :param step: the step to be serialized.
-    :param language: the language in which to localize data
-    :return: a serialization of the object
+    Serialize a step.
     """
     triggered_by_options = []
     _triggered_by_options = session.query(models.FieldOption).filter(models.FieldOption.trigger_step == step.id)
@@ -339,11 +315,7 @@ def serialize_step(session, tid, step, language, serialize_templates=True):
 
 def serialize_receiver(session, user, language, data=None):
     """
-    Serialize a receiver description
-
-    :param receiver: the receiver to be serialized
-    :param language: the language in which to localize data
-    :return: a serializtion of the object
+    Serialize a receiver.
     """
     if data is None:
         data = db_prepare_receivers_serialization(session, [user])
@@ -418,7 +390,7 @@ class PublicResource(BaseHandler):
     @inlineCallbacks
     def get(self):
         """
-        Get all the public resources.
+        Get the public resource
         """
         ret = yield get_public_resources(self.request.tid, self.request.language)
 
