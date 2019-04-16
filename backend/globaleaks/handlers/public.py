@@ -203,8 +203,6 @@ def serialize_field_option(option, language):
         'presentation_order': option.presentation_order,
         'score_points': option.score_points,
         'score_type': option.score_type,
-        'trigger_field': option.trigger_field if option.trigger_field else '',
-        'trigger_step': option.trigger_step if option.trigger_step else '',
         'trigger_receiver': option.trigger_receiver
     }
 
