@@ -241,10 +241,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     return $resource("data/field_attrs.json");
 }]).
   factory("DATA_COUNTRIES_ITALY_REGIONS", ["$resource", function($resource) {
-    return $resource("/data/countries/it/regioni.json");
+    return $resource("data/countries/it/regioni.json");
 }]).
   factory("DATA_COUNTRIES_ITALY_PROVINCES", ["$resource", function($resource) {
-    return $resource("/data/countries/it/province.json");
+    return $resource("data/countries/it/province.json");
 }]).
   factory("DATA_COUNTRIES_ITALY_CITIES", ["$resource", function($resource) {
     return $resource("data/countries/it/comuni.json");
@@ -649,7 +649,7 @@ factory("AdminTLSCertFileResource", ["GLResource", function(GLResource) {
     return new GLResource("admin/config/tls/files");
 }]).
 factory("AdminAcmeResource", ["GLResource", function(GLResource) {
-    return new GLResource("/admin/config/acme/run");
+    return new GLResource("admin/config/acme/run");
 }]).
 factory("AdminTLSCfgFileResource", ["GLResource", function(GLResource) {
     return new GLResource("admin/config/tls/files/:name", {name: "@name"});
