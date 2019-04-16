@@ -250,13 +250,13 @@ class FieldTemplatesCollection(BaseHandler):
 
     def get(self):
         """
-        Return a list of all the fields templates available.
+        Return a list of all the fields templates.
         """
         return get_fieldtemplate_list(self.request.tid, self.request.language)
 
     def post(self):
         """
-        Create a new field template.
+        Create a field template.
         """
         validator = requests.AdminFieldDesc if self.request.language is not None else requests.AdminFieldDescRaw
 
@@ -271,7 +271,7 @@ class FieldTemplateInstance(BaseHandler):
 
     def put(self, field_id):
         """
-        Update a single field template's attributes.
+        Update a field template
         """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
@@ -283,24 +283,19 @@ class FieldTemplateInstance(BaseHandler):
 
     def delete(self, field_id):
         """
-        Delete a single field template.
+        Delete a field template.
         """
         return delete_field(self.request.tid, field_id)
 
 
 class FieldsCollection(BaseHandler):
-    """
-    Operation to create a field
-
-    /admin/fields
-    """
     check_roles = 'admin'
     cache_resource = True
     invalidate_cache = True
 
     def post(self):
         """
-        Create a new field.
+        Create a field.
         """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
@@ -311,15 +306,12 @@ class FieldsCollection(BaseHandler):
 
 
 class FieldInstance(BaseHandler):
-    """
-    Operation to iterate over a specific requested Field
-    """
     check_roles = 'admin'
     invalidate_cache = True
 
     def put(self, field_id):
         """
-        Update attributes of the specified step.
+        Update a field.
         """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
@@ -331,6 +323,6 @@ class FieldInstance(BaseHandler):
 
     def delete(self, field_id):
         """
-        Delete a single field.
+        Delete a field.
         """
         return delete_field(self.request.tid, field_id)
