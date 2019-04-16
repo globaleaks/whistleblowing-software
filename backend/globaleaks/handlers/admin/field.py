@@ -41,10 +41,10 @@ def db_update_fieldoptions(session, field_id, options, language):
     if not options_ids:
         return
 
-    ids_to_remove = session.query(models.FieldOption.id).filter(models.FieldOption.field_id == field_id,
-                                                                    not_(models.FieldOption.id.in_(options_ids)))
+    to_remove = session.query(models.FieldOption.id).filter(models.FieldOption.field_id == field_id,
+                                                            not_(models.FieldOption.id.in_(options_ids)))
 
-    session.query(models.FieldOption).filter(models.FieldOption.id.in_(ids_to_remove.subquery())).delete(synchronize_session='fetch')
+    session.query(models.FieldOption).filter(models.FieldOption.id.in_(to_remove.subquery())).delete(synchronize_session='fetch')
 
 
 def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
@@ -54,13 +54,13 @@ def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
     if attr_dict['type'] == u'localized' and language is not None:
         fill_localized_keys(attr_dict, ['value'], language)
 
-    a = session.query(models.FieldAttr).filter(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name).one_or_none()
-    if a is None:
-        a = models.db_forge_obj(session, models.FieldAttr, attr_dict)
+    o = session.query(models.FieldAttr).filter(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name).one_or_none()
+    if o is None:
+        o = models.db_forge_obj(session, models.FieldAttr, attr_dict)
     else:
-        a.update(attr_dict)
+        o.update(attr_dict)
 
-    return a.id
+    return o.id
 
 
 def db_update_fieldattrs(session, field_id, field_attrs, language):
@@ -69,10 +69,10 @@ def db_update_fieldattrs(session, field_id, field_attrs, language):
     if not attrs_ids:
         return
 
-    ids_to_remove = session.query(models.FieldAttr.id).filter(models.FieldAttr.field_id == field_id,
+    to_remove = session.query(models.FieldAttr.id).filter(models.FieldAttr.field_id == field_id,
                                                                   not_(models.FieldAttr.id.in_(attrs_ids)))
 
-    session.query(models.FieldAttr).filter(models.FieldAttr.id.in_(ids_to_remove.subquery())).delete(synchronize_session='fetch')
+    session.query(models.FieldAttr).filter(models.FieldAttr.id.in_(to_remove.subquery())).delete(synchronize_session='fetch')
 
 
 def check_field_association(session, tid, field_dict):
