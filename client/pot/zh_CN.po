@@ -19,14 +19,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-15 03:43+0000\n"
-"Last-Translator: H Zeng <zhx@cnzhx.net>\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "登录页面"
@@ -843,6 +843,9 @@ msgstr "试验功能尚未稳定，甚至无法正常运行，请谨慎使用。
 msgid "Save"
 msgstr "保存"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "短网址"
 
@@ -1309,15 +1312,6 @@ msgstr "响应时间"
 
 msgid "Last access"
 msgstr "上次访问"
-
-msgid "Submission"
-msgstr "提交物"
-
-msgid "Path"
-msgstr "路径"
-
-msgid "Size"
-msgstr "大小"
 
 msgid "Alarm level"
 msgstr "警戒等级"
@@ -1811,6 +1805,9 @@ msgstr "没有文件被上传！"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "允许该告密者在提交上添加附件"
 
+msgid "Submission"
+msgstr "提交物"
+
 msgid "Access expiration"
 msgstr "访问权限到期"
 
@@ -1878,11 +1875,11 @@ msgstr "发送给揭发人的附件"
 msgid "Upload a file:"
 msgstr "上传文件："
 
-msgid "Inverted"
-msgstr "倒排"
-
 msgid "Trigger step"
 msgstr "触发步骤"
+
+msgid "Inverted"
+msgstr "倒排"
 
 msgid "Logout"
 msgstr "注销"
@@ -2241,14 +2238,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "这是通知邮件：已提交的内容有了新评论。"
 
-msgid "The submission can be accessed:"
-msgstr "该提交物可被访问："
-
-msgid "via Tor at: {TorUrl}"
-msgstr "通过 Tor 上的：{TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "通过HTTPS 上的：{HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "新评论"
@@ -2258,12 +2249,7 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr ""
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
+msgid "Click the following link to validate this change:"
 msgstr ""
 
 msgid ""
@@ -2350,8 +2336,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "这是通知邮件：接收人请求访问提交 {TipNum} 的揭发人身份"
 
-msgid "The request can be accessed:"
-msgstr "可访问的请求："
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "揭发人身份访问的新请求"
@@ -2381,7 +2367,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"

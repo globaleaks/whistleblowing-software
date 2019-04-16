@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-13 22:17+0000\n"
-"Last-Translator: Josh Steiner <josh@scal.io>\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: bs\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Stranica za prijavu"
@@ -830,6 +830,9 @@ msgstr "Eksperimentalni funkcije mogu biti manje stabilne ili čak ne radi na sv
 msgid "Save"
 msgstr "Sačuvaj"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "short URL"
 
@@ -1296,15 +1299,6 @@ msgstr "Vrijeme za odgovor"
 
 msgid "Last access"
 msgstr ""
-
-msgid "Submission"
-msgstr "podnošenje"
-
-msgid "Path"
-msgstr "Path"
-
-msgid "Size"
-msgstr "Veličina"
 
 msgid "Alarm level"
 msgstr "nivo alarm"
@@ -1798,6 +1792,9 @@ msgstr "Nijedna datoteka nije postavljena!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Dozvolite uzbunjivač dodati priloge na podnošenje"
 
+msgid "Submission"
+msgstr "podnošenje"
+
 msgid "Access expiration"
 msgstr ""
 
@@ -1865,11 +1862,11 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Inverted"
-msgstr ""
-
 msgid "Trigger step"
 msgstr "Trigger korak"
+
+msgid "Inverted"
+msgstr ""
 
 msgid "Logout"
 msgstr "Odjava"
@@ -2228,14 +2225,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Ovo je e-mail da vas obavijestiti o novom komentar na postojeću predaju."
 
-msgid "The submission can be accessed:"
-msgstr "Predaja se može pristupiti:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "preko Tor na: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "putem HTTPS na: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "novi komentar"
@@ -2245,12 +2236,7 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr ""
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
+msgid "Click the following link to validate this change:"
 msgstr ""
 
 msgid ""
@@ -2337,8 +2323,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Ovo je e-mail da vas obavijestiti da je primalac zatražila pristup identitet zviždača za podnošenje {TipNum}"
 
-msgid "The request can be accessed:"
-msgstr "Zahtjev se može pristupiti:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Novi zahtjev pristupa identiteta zviždač je"
@@ -2368,7 +2354,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"

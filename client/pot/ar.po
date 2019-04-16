@@ -38,14 +38,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-30 20:47+0000\n"
-"Last-Translator: ِAbu <elsahookie@gmail.com>\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "صفحة الاتّصال"
@@ -862,6 +862,9 @@ msgstr "قد تكون الميزات التجريبية أقل استقرارا 
 msgid "Save"
 msgstr "حفظ"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr " URL مختصر"
 
@@ -1328,15 +1331,6 @@ msgstr "زمن الاستجابة"
 
 msgid "Last access"
 msgstr "آخر دخول"
-
-msgid "Submission"
-msgstr "البلاغ"
-
-msgid "Path"
-msgstr "مسار"
-
-msgid "Size"
-msgstr "حجم"
 
 msgid "Alarm level"
 msgstr "مستوى الإنذار"
@@ -1830,6 +1824,9 @@ msgstr "لم يتم رفع أي ملف!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "السّماح للمبلغين باضافة مرفقات إلى البلاغ"
 
+msgid "Submission"
+msgstr "البلاغ"
+
 msgid "Access expiration"
 msgstr "انتهاء صلاحية النفاذ"
 
@@ -1897,11 +1894,11 @@ msgstr "الملفات المرفقة للمبلغ"
 msgid "Upload a file:"
 msgstr "رفع ملف:"
 
-msgid "Inverted"
-msgstr ""
-
 msgid "Trigger step"
 msgstr "مرحلة التشغيل"
+
+msgid "Inverted"
+msgstr ""
 
 msgid "Logout"
 msgstr "تسجيل الخروج"
@@ -2260,14 +2257,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "هذا هو بريد الكتروني لإعلامك عن تعليق جديد على بلاغ موجود."
 
-msgid "The submission can be accessed:"
-msgstr "يكمن النفاذ إلى البلاغ:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "عبر تور في: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "عبر HTTPS في: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "تعليق جديد"
@@ -2277,12 +2268,7 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr ""
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
+msgid "Click the following link to validate this change:"
 msgstr ""
 
 msgid ""
@@ -2369,8 +2355,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "هذا هو بريد الكتروني لإعلامك أن أحد المتلقين قد طلب الاذن للوصول إلى هوية مبلغ هذا البلاغ {TipNum}."
 
-msgid "The request can be accessed:"
-msgstr "يكمن النفاذ إلى الطلب:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "طلب جديد للوصول إلى هوية المبلغ"
@@ -2400,7 +2386,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"

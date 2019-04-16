@@ -4,14 +4,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-16 19:49+0000\n"
-"Last-Translator: Georgianization\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ka\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "შესვლა გვერდი"
@@ -828,6 +828,9 @@ msgstr "ექსპერიმენტული თვისებები �
 msgid "Save"
 msgstr "გადარჩენა"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "მოკლე URL"
 
@@ -1294,15 +1297,6 @@ msgstr "რეაგირების დრო"
 
 msgid "Last access"
 msgstr ""
-
-msgid "Submission"
-msgstr "წარდგენა"
-
-msgid "Path"
-msgstr "მდებარეობა"
-
-msgid "Size"
-msgstr "ზომა"
 
 msgid "Alarm level"
 msgstr "განგაშის დონე"
@@ -1796,6 +1790,9 @@ msgstr "არარის ფაილი აიტვირთა!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "ნება მამხილებელთა დამატება attachments წარდგენის"
 
+msgid "Submission"
+msgstr "წარდგენა"
+
 msgid "Access expiration"
 msgstr ""
 
@@ -1863,11 +1860,11 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Inverted"
-msgstr ""
-
 msgid "Trigger step"
 msgstr "გამოიწვევს ნაბიჯი"
+
+msgid "Inverted"
+msgstr ""
 
 msgid "Logout"
 msgstr "გამოსვლა"
@@ -2226,14 +2223,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "ეს არის ელექტრონული შეგატყობინებთ ახალი კომენტარის არსებული წარდგენა."
 
-msgid "The submission can be accessed:"
-msgstr "წარდგენა შეიძლება ხელმისაწვდომი:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "გავლით Tor განთავსებულია: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "მეშვეობით HTTPS განთავსებულია:% {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "ახალი კომენტარის დამატება"
@@ -2243,12 +2234,7 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr ""
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
+msgid "Click the following link to validate this change:"
 msgstr ""
 
 msgid ""
@@ -2335,8 +2321,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "ეს არის ელ გაცნობებთ, რომ მიმღები მოითხოვა ხელმისაწვდომობის მამხილებელთა პირადობის წარდგენის {TipNum}"
 
-msgid "The request can be accessed:"
-msgstr "თხოვნა შეიძლება ხელმისაწვდომი:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr ""
@@ -2366,7 +2352,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"

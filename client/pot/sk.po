@@ -13,14 +13,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-13 22:16+0000\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Prihlasovacia stránka"
@@ -837,6 +837,9 @@ msgstr "Tieto experimentálne funkcie môžu ovplyvniť stabilitu alebo nemusia 
 msgid "Save"
 msgstr "Uložiť"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "Krátke URL"
 
@@ -1303,15 +1306,6 @@ msgstr "Doba odozvy"
 
 msgid "Last access"
 msgstr "Posledný prístup"
-
-msgid "Submission"
-msgstr "Podanie"
-
-msgid "Path"
-msgstr "Cesta"
-
-msgid "Size"
-msgstr "Veľkosť"
 
 msgid "Alarm level"
 msgstr "Úroveň varovania"
@@ -1805,6 +1799,9 @@ msgstr "Nebol nahraný žiadny súbor!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Povoliť oznamovateľovi pripojiť prílohy k podaniu"
 
+msgid "Submission"
+msgstr "Podanie"
+
 msgid "Access expiration"
 msgstr "Exspirácia prístupu"
 
@@ -1872,11 +1869,11 @@ msgstr "Priložené súbory pre oznamovateľa"
 msgid "Upload a file:"
 msgstr "Nahrať súbor:"
 
-msgid "Inverted"
-msgstr "Obrátený"
-
 msgid "Trigger step"
 msgstr "Spúšťacia otázka"
+
+msgid "Inverted"
+msgstr "Obrátený"
 
 msgid "Logout"
 msgstr "Odhlásiť sa"
@@ -2235,14 +2232,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Toto je emailové upozornenie na nový komentár k existujúcemu podaniu."
 
-msgid "The submission can be accessed:"
-msgstr "K tomuto podaniu máte prístup:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "via Tor na: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "via HTTPS na: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "Nový komentár"
@@ -2252,13 +2243,8 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr "Toto je emailové upozornenie, že bola podaná žiadosť o zmenu vašej emailovej adresy na {NewEmailAddress}."
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr "Kliknutím na nasledujúci odkaz potvrdíte túto zmenu: {HTTPSUrl}"
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
-msgstr "Ak chcete overiť nový email pomocou Tor, môžete použiť nasledujúci odkaz: {TorUrl}"
+msgid "Click the following link to validate this change:"
+msgstr ""
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2344,8 +2330,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Toto je emailové upozornenie, že príjemca požaduje prístup k identite oznamovateľa podania {TipNum}."
 
-msgid "The request can be accessed:"
-msgstr "Žiadosť je dostupná:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Nová žiadosť o prístup k identite oznamovateľa"
@@ -2375,8 +2361,8 @@ msgid ""
 "email."
 msgstr "Ak ste túto žiadosť nevykonali, môžete tento email ignorovať a odstrániť."
 
-msgid "You can confirm your request by clicking the following links:"
-msgstr "Túto žiadosť môžete potvrdiť kliknutím na nasledujúce odkazy:"
+msgid "You can confirm your request by clicking the following link:"
+msgstr ""
 
 msgid "Password reset instructions"
 msgstr "Pokyny na obnovenie hesla"

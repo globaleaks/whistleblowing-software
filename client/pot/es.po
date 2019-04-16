@@ -31,14 +31,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-16 08:40+0000\n"
-"Last-Translator: Emma Peel\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Página de inicio de sesión"
@@ -514,7 +514,7 @@ msgid "Activate"
 msgstr "Activar"
 
 msgid "Disactivate"
-msgstr ""
+msgstr "Desactivar"
 
 msgid "Search"
 msgstr "Buscar"
@@ -649,7 +649,7 @@ msgid "Closed"
 msgstr "Cerrado"
 
 msgid "Placeholder"
-msgstr ""
+msgstr "Marcador"
 
 msgid "Print"
 msgstr "Imprimir"
@@ -855,6 +855,9 @@ msgstr "Las características experimentales pueden ser menos estables o incluso 
 msgid "Save"
 msgstr "Guardar"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "URL corta"
 
@@ -1054,13 +1057,13 @@ msgid "High"
 msgstr "Alto"
 
 msgid "Customize the message shown in the receipt page"
-msgstr ""
+msgstr "Personalizar el mensaje mostrado en la página de recepción"
 
 msgid "Low"
 msgstr "Bajo"
 
 msgid "Assign the receipt only to submissions reaching score:"
-msgstr ""
+msgstr "Extender recibo sólo para envíos que alcancen el puntaje:"
 
 msgid "Software version:"
 msgstr "Versión del software:"
@@ -1322,15 +1325,6 @@ msgstr "Tiempo de respuesta"
 msgid "Last access"
 msgstr "Último acceso"
 
-msgid "Submission"
-msgstr "Entrega"
-
-msgid "Path"
-msgstr "Ruta"
-
-msgid "Size"
-msgstr "Tamaño"
-
 msgid "Alarm level"
 msgstr "Nivel de alarma"
 
@@ -1401,7 +1395,7 @@ msgid "Checkbox label"
 msgstr "Etiqueta de checkbox"
 
 msgid "Add multimedia content"
-msgstr ""
+msgstr "Añadir contenido multimedia"
 
 msgid "Image"
 msgstr "Imagen"
@@ -1823,6 +1817,9 @@ msgstr "¡No se ha subido fichero alguno!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Permitir al informante añadir nuevos adjuntos a la entrega"
 
+msgid "Submission"
+msgstr "Entrega"
+
 msgid "Access expiration"
 msgstr "Caducidad del acceso"
 
@@ -1890,11 +1887,11 @@ msgstr "Ficheros adjuntados por el informante"
 msgid "Upload a file:"
 msgstr "Subir un fichero:"
 
-msgid "Inverted"
-msgstr "Invertido"
-
 msgid "Trigger step"
 msgstr "Desencadenar paso"
+
+msgid "Inverted"
+msgstr "Invertido"
 
 msgid "Logout"
 msgstr "Cerrar sesión"
@@ -1929,7 +1926,7 @@ msgid "Thank you!"
 msgstr "¡Gracias!"
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "Intentaremos responderle tan pronto como sea posible."
 
 msgid "Remember your receipt for this submission."
 msgstr "Recuerda tu recibo para este envío."
@@ -2253,14 +2250,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Este es un correo electrónico para notificarle un nuevo comentario en una entrega existente."
 
-msgid "The submission can be accessed:"
-msgstr "La entrega es accesible:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "vía Tor en: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "vía HTTPS en: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "Nuevo comentario"
@@ -2270,13 +2261,8 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr "Éste es un mensaje de correo para notificarle que se ha hecho una solicitud de cambiar su dirección de correo electrónico a {NewEmailAddress}."
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr "Haga clic en el enlace siguiente para validar este cambio: {HTTPSUrl}"
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
-msgstr "Si desea validar su nueva dirección de correo electrónico por Tor, puede usar el enlace siguiente: {TorUrl}"
+msgid "Click the following link to validate this change:"
+msgstr ""
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2362,8 +2348,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Este es un correo electrónico para notificarle que un receptor ha solicitado acceder a la identidad del informante para la entrega {TipNum}"
 
-msgid "The request can be accessed:"
-msgstr "Puede accederse a la solicitud:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Nueva petición de acceso a la identidad de un informante"
@@ -2393,8 +2379,8 @@ msgid ""
 "email."
 msgstr "Si no ha hecho esta solicitud, puede ignorar y borrar este mensaje tranquilamente."
 
-msgid "You can confirm your request by clicking the following links:"
-msgstr "Puede confirmar su solicitud haciendo clic en los enlaces siguientes:"
+msgid "You can confirm your request by clicking the following link:"
+msgstr ""
 
 msgid "Password reset instructions"
 msgstr "Instrucciones de reinicialización de contraseñas"

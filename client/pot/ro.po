@@ -4,7 +4,7 @@
 # Zisiz <angi.tapoca@gmail.com>, 2015
 # axel_89, 2015
 # axel_89, 2015
-# Mihai Onosie, 2014
+# Mihai, 2014
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018
 # Inpresentia I., 2016
 # Inpresentia I., 2016
@@ -17,14 +17,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-13 22:17+0000\n"
-"Last-Translator: Corina Mitrulescu <corina.mitrulescu@yahoo.com>\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Pagina de autentificare"
@@ -841,6 +841,9 @@ msgstr "Trăsăturile experimentale pot fi mai puțin stabile sau chiar să nu f
 msgid "Save"
 msgstr "Salvează"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "URL scurt"
 
@@ -1307,15 +1310,6 @@ msgstr "Timp de răspuns"
 
 msgid "Last access"
 msgstr "Ultima accesare"
-
-msgid "Submission"
-msgstr "supunere"
-
-msgid "Path"
-msgstr "Urma"
-
-msgid "Size"
-msgstr "mărimea"
 
 msgid "Alarm level"
 msgstr "nivelul de alarmă"
@@ -1809,6 +1803,9 @@ msgstr "Nu există fișiere au fost încărcate!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Permite informatorilor sa adauge atasamente livrarilor"
 
+msgid "Submission"
+msgstr "supunere"
+
 msgid "Access expiration"
 msgstr "Expirarea accesului"
 
@@ -1876,11 +1873,11 @@ msgstr "Fișiere atașate pentru informator"
 msgid "Upload a file:"
 msgstr "Încarcă un fișier:"
 
-msgid "Inverted"
-msgstr ""
-
 msgid "Trigger step"
 msgstr "etapa de declanșare"
+
+msgid "Inverted"
+msgstr ""
 
 msgid "Logout"
 msgstr "Deconectare"
@@ -2239,14 +2236,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Acesta este un e-mail pentru a vă înștiința despre un nou comentariu asupra unei trimiteri existente."
 
-msgid "The submission can be accessed:"
-msgstr "Prezentarea poate fi accesată:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "prin Tor: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "prin HTTPS la: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "Comentariu nou"
@@ -2256,12 +2247,7 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr ""
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
+msgid "Click the following link to validate this change:"
 msgstr ""
 
 msgid ""
@@ -2348,8 +2334,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Acesta este un e-mail pentru a vă anunța că un destinatar a solicitat accesul la identitatea informatorului pentru livrare {TipNum}"
 
-msgid "The request can be accessed:"
-msgstr "Cererea poate fi accesată:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Noua cerere de acces la identitatea informatorului"
@@ -2379,7 +2365,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"

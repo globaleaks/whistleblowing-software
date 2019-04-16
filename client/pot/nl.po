@@ -37,14 +37,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-18 13:03+0000\n"
-"Last-Translator: SylvainFPU <mignot@freepressunlimited.org>\n"
+"PO-Revision-Date: 2019-04-15 06:55+0000\n"
+"Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Login pagina"
@@ -861,6 +861,9 @@ msgstr "De experimentele functies kunnen minder stabiel zijn of zelfs helemaal n
 msgid "Save"
 msgstr "Bewaar"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "Korte URL"
 
@@ -1327,15 +1330,6 @@ msgstr "Responstijd"
 
 msgid "Last access"
 msgstr "Laatste toegang"
-
-msgid "Submission"
-msgstr "Inzending"
-
-msgid "Path"
-msgstr "Pad"
-
-msgid "Size"
-msgstr "Grootte"
 
 msgid "Alarm level"
 msgstr "Alarmniveau"
@@ -1829,6 +1823,9 @@ msgstr "Er is geen bestand geüpload!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "De klokkenluider toestaan bestanden toe te voegen aan een tip"
 
+msgid "Submission"
+msgstr "Inzending"
+
 msgid "Access expiration"
 msgstr "Toegang vervaltijd"
 
@@ -1896,11 +1893,11 @@ msgstr "Bijlage voor de klokkenluider"
 msgid "Upload a file:"
 msgstr "Upload een bestand:"
 
-msgid "Inverted"
-msgstr ""
-
 msgid "Trigger step"
 msgstr "Voorwaardelijke stap"
+
+msgid "Inverted"
+msgstr ""
 
 msgid "Logout"
 msgstr "Log uit"
@@ -2259,14 +2256,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Dit is een mailtje om je te wijzen op een nieuw commentaar op een bestaande inzending."
 
-msgid "The submission can be accessed:"
-msgstr "De inzending kan gezien worden via:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "via Tor op: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "via HTTPS op: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "Nieuw commentaar"
@@ -2276,12 +2267,7 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr ""
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
+msgid "Click the following link to validate this change:"
 msgstr ""
 
 msgid ""
@@ -2368,8 +2354,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Dit is een mailtje om je erop te wijzen dat een ontvanger heeft toestemming gevraagd om de identiteit van de klokkenluider van de inzending {TipNum} te mogen openen."
 
-msgid "The request can be accessed:"
-msgstr "De aanvraag kan worden ingezien:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Nieuwe aanvraag om de identiteit van een klokkenluider te mogen openen"
@@ -2399,7 +2385,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"

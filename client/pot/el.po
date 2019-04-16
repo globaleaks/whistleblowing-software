@@ -15,14 +15,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-28 14:19+0000\n"
-"Last-Translator: Adrian Pappas <pappasadrian@gmail.com>\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Σελίδα εισόδου"
@@ -839,6 +839,9 @@ msgstr "Οι πειραματικές λειτουργίες ενδέχεται 
 msgid "Save"
 msgstr "Αποθήκευση"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "Κοντό URL"
 
@@ -1305,15 +1308,6 @@ msgstr "Χρόνος απόκρισης"
 
 msgid "Last access"
 msgstr "Τελευταία πρόσβαση"
-
-msgid "Submission"
-msgstr "Υποβολή"
-
-msgid "Path"
-msgstr "Διαδρομή"
-
-msgid "Size"
-msgstr "Μέγεθος"
 
 msgid "Alarm level"
 msgstr "Επίπεδο συναγερμού"
@@ -1807,6 +1801,9 @@ msgstr "Δεν ανέβηκε κανένα αρχείο!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Να επιτρέπεται στον πληροφοριοδότη να προσθέτει συνημμένα στην υποβολή"
 
+msgid "Submission"
+msgstr "Υποβολή"
+
 msgid "Access expiration"
 msgstr "Λήξη πρόσβασης"
 
@@ -1874,11 +1871,11 @@ msgstr "Συνημμένα αρχεία για τον πληροφοριοδότ
 msgid "Upload a file:"
 msgstr "Ανεβάστε ένα αρχείο:"
 
-msgid "Inverted"
-msgstr ""
-
 msgid "Trigger step"
 msgstr "βήμα σκανδάλη"
+
+msgid "Inverted"
+msgstr ""
 
 msgid "Logout"
 msgstr "Αποσύνδεση"
@@ -2237,14 +2234,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Αυτό είναι ένα email για να σας ειδοποιήσουμε πως έγινε ένα νέο σχόλιο σε μια υπάρχουσα υποβολή."
 
-msgid "The submission can be accessed:"
-msgstr "Η υποβολή μπορεί να προσπελαστεί:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "μέσω Tor στο: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "μέσω HTTPS στο: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "Νέο σχόλιο"
@@ -2254,13 +2245,8 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr "Αυτό είναι ένα email για να σας ειδοποιήσουμε πως έγινε ένα αίτημα για αλλαγή της διεύθυνσης email σας σε {NewEmailAddress}."
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr "Πατήστε τον ακόλουθο σύνδεσμο για να επικυρώσετε αυτή την αλλαγή: {HTTPSUrl}"
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
-msgstr "Αν επιθυμείτε να επικυρώσετε την νέα διεύθυνση email σας μέσω Tor, μπορείτε να χρησιμοποιήσετε τον ακόλουθο σύνδεσμο: {TorUrl}"
+msgid "Click the following link to validate this change:"
+msgstr ""
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2346,8 +2332,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Αυτό είναι ένα email για να σας ειδοποιήσουμε ότι ο παραλήπτης έχει ζητήσει πρόσβαση στην ταυτότητα του πληροφοριοδότη της υποβολής {TipNum}"
 
-msgid "The request can be accessed:"
-msgstr "Η αίτηση μπορεί να προσπελαστεί:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Νέο αίτημα πρόσβασης στην ταυτότητα ενός πληροφοριοδότη"
@@ -2377,8 +2363,8 @@ msgid ""
 "email."
 msgstr "Αν δεν κάνατε αυτή την αίτηση, μπορείτε να αγνοήσετε και να διαγράψετε αυτό το email."
 
-msgid "You can confirm your request by clicking the following links:"
-msgstr "Μπορείτε να επιβεβαιώσετε το αίτημά σας πατώντας στους ακόλουθους συνδέσμους:"
+msgid "You can confirm your request by clicking the following link:"
+msgstr ""
 
 msgid "Password reset instructions"
 msgstr "Οδηγίες επαναφοράς κωδικού πρόσβασης"

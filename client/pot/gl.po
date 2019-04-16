@@ -7,14 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-13 22:17+0000\n"
-"Last-Translator: Rodrigo Boado <rboadogarcia@gmail.com>\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Páxina de inicio de sesión"
@@ -831,6 +831,9 @@ msgstr "As características experimentais poden ser menos estables ou incluso no
 msgid "Save"
 msgstr "Gardar"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "URL curta"
 
@@ -1297,15 +1300,6 @@ msgstr "Tempo de resposta"
 
 msgid "Last access"
 msgstr "Último acceso"
-
-msgid "Submission"
-msgstr "Presentación"
-
-msgid "Path"
-msgstr "Camiño"
-
-msgid "Size"
-msgstr "Tamaño"
 
 msgid "Alarm level"
 msgstr "Nivel de alarma"
@@ -1799,6 +1793,9 @@ msgstr "Non se cargaron ficheiros!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Permitir que o denunciante engada anexos ao envío"
 
+msgid "Submission"
+msgstr "Presentación"
+
 msgid "Access expiration"
 msgstr "Caducidade do acceso"
 
@@ -1866,11 +1863,11 @@ msgstr "Arquivos adxuntos para o denunciante"
 msgid "Upload a file:"
 msgstr "Carga un ficheiro:"
 
-msgid "Inverted"
-msgstr "Invertido"
-
 msgid "Trigger step"
 msgstr "Paso do disparador"
+
+msgid "Inverted"
+msgstr "Invertido"
 
 msgid "Logout"
 msgstr "Saír"
@@ -2229,14 +2226,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Este é un correo electrónico para avisarlle dun novo comentario sobre unha presentación existente."
 
-msgid "The submission can be accessed:"
-msgstr "Pódese acceder á presentación:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "vía Tor a: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "a través de HTTPS en: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "Novo comentario"
@@ -2246,13 +2237,8 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr "Este é un correo electrónico para notificarlle que se fixo unha solicitude para cambiar o seu enderezo de correo electrónico a {NewEmailAddress}."
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr "Fai clic na seguinte ligazón para validar este cambio: {HTTPSUrl}"
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
-msgstr "Se desexa validar o seu novo enderezo electrónico con Tor, pode usar a seguinte ligazón: {TorUrl}"
+msgid "Click the following link to validate this change:"
+msgstr ""
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2338,8 +2324,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Este é un correo electrónico para notificarlle que un destinatario solicitou acceso á identidade do denunciante para a presentación {TipNum}"
 
-msgid "The request can be accessed:"
-msgstr "Pódese acceder á solicitude:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Nova solicitude de acceso á identidade dun denunciante"
@@ -2369,8 +2355,8 @@ msgid ""
 "email."
 msgstr "Se non fixeches esta solicitude, podes ignorar e eliminar este correo."
 
-msgid "You can confirm your request by clicking the following links:"
-msgstr "Pode confirmar a súa solicitude premendo nas seguintes ligazóns:"
+msgid "You can confirm your request by clicking the following link:"
+msgstr ""
 
 msgid "Password reset instructions"
 msgstr "Instrucións de restablecemento de contrasinal"

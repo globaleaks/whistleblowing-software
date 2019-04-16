@@ -7,14 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-13 22:17+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nb_NO\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Innloggingsside"
@@ -831,6 +831,9 @@ msgstr "Eksperimentelle funksjoner kan være ustabile eller ikke fungere overhod
 msgid "Save"
 msgstr "Lagre"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "Kort nettadresse"
 
@@ -1297,15 +1300,6 @@ msgstr "Svartid"
 
 msgid "Last access"
 msgstr "Siste tilgang"
-
-msgid "Submission"
-msgstr "Innsending"
-
-msgid "Path"
-msgstr "Sti"
-
-msgid "Size"
-msgstr "Størrelse"
 
 msgid "Alarm level"
 msgstr "Alarm-nivå"
@@ -1799,6 +1793,9 @@ msgstr "Ingen fil har blitt lastet opp!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Tillat fløyteblåseren å legge vedlegg til innsendelsen"
 
+msgid "Submission"
+msgstr "Innsending"
+
 msgid "Access expiration"
 msgstr "Tilgangsutløp"
 
@@ -1866,11 +1863,11 @@ msgstr "Vedlagte filer for fløyteblåseren"
 msgid "Upload a file:"
 msgstr "Last opp en fil:"
 
-msgid "Inverted"
-msgstr ""
-
 msgid "Trigger step"
 msgstr "Utløsende steg"
+
+msgid "Inverted"
+msgstr ""
 
 msgid "Logout"
 msgstr "Logg ut"
@@ -2229,14 +2226,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Denne e-postens hensikt er å gjøre deg oppmerksom på at det er en ny kommentar i en tidligere innsendelse."
 
-msgid "The submission can be accessed:"
-msgstr "Innsendelsen kan nåes:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "via Tor på: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "via HTTPS på {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "Ny kommentar"
@@ -2246,13 +2237,8 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr "Dette er en e-post til påminnelse om at en forespørsel har funnet sted om endring av din e-postadresse til {NewEmailAddress}."
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
+msgid "Click the following link to validate this change:"
 msgstr ""
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
-msgstr "Hvis du ønsker å bekrefte din nye e-post med Tor, kan du bruke følgende lenke: {TorUrl}"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2338,8 +2324,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Dette er en e-post til opplysning om at mottakeren har forespurt tilgang til den sanne fløyteblåseridentiteten bak innsendelse {TipNum}"
 
-msgid "The request can be accessed:"
-msgstr "Forespørselen finnes per:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Ny tilgangsforespørsel til en fløyteblåsers sanne identitet"
@@ -2369,7 +2355,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"

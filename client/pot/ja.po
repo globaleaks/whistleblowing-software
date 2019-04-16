@@ -9,14 +9,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-15 09:29+0000\n"
+"PO-Revision-Date: 2019-04-12 09:30+0000\n"
 "Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "ログインページ"
@@ -833,6 +833,9 @@ msgstr "実験的な機能はあまり安定していないか、まったく動
 msgid "Save"
 msgstr "保存"
 
+msgid "Reset submissions"
+msgstr "提出をリセットする"
+
 msgid "Short URL"
 msgstr "短縮 URL"
 
@@ -1299,15 +1302,6 @@ msgstr "レスポンス時間"
 
 msgid "Last access"
 msgstr "最終アクセス"
-
-msgid "Submission"
-msgstr "提出"
-
-msgid "Path"
-msgstr "パス"
-
-msgid "Size"
-msgstr "サイズ"
 
 msgid "Alarm level"
 msgstr "警告レベル"
@@ -1801,6 +1795,9 @@ msgstr "アップロードされたファイルはありません!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "その内部告発者が、提出に添付ファイルを追加することを許可"
 
+msgid "Submission"
+msgstr "提出"
+
 msgid "Access expiration"
 msgstr "アクセスの有効期限"
 
@@ -1868,11 +1865,11 @@ msgstr "内部告発者向けの添付ファイル"
 msgid "Upload a file:"
 msgstr "ファイルをアップロード："
 
-msgid "Inverted"
-msgstr "反転"
-
 msgid "Trigger step"
 msgstr "トリガーのステップ"
+
+msgid "Inverted"
+msgstr "反転"
 
 msgid "Logout"
 msgstr "ログアウト"
@@ -2231,14 +2228,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "これは、既存の提出に新しいコメントがあったことを通知するメールです。"
 
-msgid "The submission can be accessed:"
+msgid "The submission can be accessed at:"
 msgstr "提出は以下からアクセスできます:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "Tor 経由: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "HTTPS 経由: {HTTPSUrl}"
 
 msgid "New comment"
 msgstr "新しいコメント"
@@ -2248,13 +2239,8 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr "これはあなたのメールアドレスを {NewEmailAddress} に変更するリクエストが行われたことを通知するメールです。"
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr "この変更を有効にするには、次のリンクをクリックしてください: {HTTPSUrl}"
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
-msgstr "Torで新しいメールを検証したい場合は、次のリンクを使用してください: {TorUrl}"
+msgid "Click the following link to validate this change:"
+msgstr "次のリンクをクリックして変更を確認してください:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2340,7 +2326,7 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "これは、受信者が提出 {TipNum} の内部告発者の身元にアクセスすることをリクエストしたことを通知するメールです"
 
-msgid "The request can be accessed:"
+msgid "The request can be accessed at:"
 msgstr "リクエストは以下からアクセスできます:"
 
 msgid "New request of access to a whistleblower's identity"
@@ -2371,7 +2357,7 @@ msgid ""
 "email."
 msgstr "このリクエストをしていない場合は、このメールを無視して、メールを削除しても問題ありません。"
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr "次のリンクをクリックするとリクエストを確認できます:"
 
 msgid "Password reset instructions"

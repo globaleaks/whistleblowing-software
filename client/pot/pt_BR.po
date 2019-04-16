@@ -1,8 +1,8 @@
 # 
 # Translators:
 # Alexandre Pacheco Vieira <apvieira57@hotmail.com>, 2015
-# Alex Luís Silva <alex.mooca@hotmail.com>, 2014-2015
-# Alex Luís Silva <alex.mooca@hotmail.com>, 2014
+# 0ed9961fdd2c469a85d0f0ef7ce7865b, 2014-2015
+# 0ed9961fdd2c469a85d0f0ef7ce7865b, 2014
 # alfalb_mansil, 2014
 # alfalb_mansil, 2014
 # Communia <ameaneantie@riseup.net>, 2016
@@ -37,14 +37,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-01 11:08+0000\n"
+"PO-Revision-Date: 2019-04-15 11:54+0000\n"
 "Last-Translator: Chacal Exodius\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Página de acesso"
@@ -861,6 +861,9 @@ msgstr "Os recursos experimental podem estar instável ou mesmo não funcionarem
 msgid "Save"
 msgstr "Salvar"
 
+msgid "Reset submissions"
+msgstr "Redefinir envios"
+
 msgid "Short URL"
 msgstr "URL curta"
 
@@ -1327,15 +1330,6 @@ msgstr "Tempo de resposta"
 
 msgid "Last access"
 msgstr "Último acesso"
-
-msgid "Submission"
-msgstr "Submissão"
-
-msgid "Path"
-msgstr "Caminho"
-
-msgid "Size"
-msgstr "Tamanho"
 
 msgid "Alarm level"
 msgstr "Nível de alarme"
@@ -1829,6 +1823,9 @@ msgstr "Nenhum arquivo foi enviado!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Permitir o delator adicionar anexos a submissão"
 
+msgid "Submission"
+msgstr "Submissão"
+
 msgid "Access expiration"
 msgstr "Acesso expirado"
 
@@ -1896,11 +1893,11 @@ msgstr "Arquivos anexados pelo delator"
 msgid "Upload a file:"
 msgstr "Inserir um arquivo:"
 
-msgid "Inverted"
-msgstr "Invertida"
-
 msgid "Trigger step"
 msgstr "Ativar essa etapa"
+
+msgid "Inverted"
+msgstr "Invertida"
 
 msgid "Logout"
 msgstr "Sair"
@@ -2259,14 +2256,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Este é um e-mail para lhe notificar de um novo comentário sobre uma submissão existente."
 
-msgid "The submission can be accessed:"
-msgstr "A submissão pode ser acessada:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "via Tor em: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "via HTTPS em: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr "A submissão pode ser acessada em:"
 
 msgid "New comment"
 msgstr "Novo comentário"
@@ -2276,13 +2267,8 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr "Este é um e-mail para notificá-lo de que uma solicitação foi feita para alterar seu endereço de e-mail para {NewEmailAddress}."
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr "Clique no link a seguir para validar essa alteração: {HTTPSUrl}"
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
-msgstr "Se você deseja validar seu novo email com o Tor, você pode usar o seguinte link: {TorUrl}"
+msgid "Click the following link to validate this change:"
+msgstr "Clique no link a seguir para validar essa alteração:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2368,8 +2354,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Este é um e-mail para lhe notificar que um destinatário pediu acesso à identidade de um delator da submissão {TipNum}"
 
-msgid "The request can be accessed:"
-msgstr "O pedido pode ser acessado:"
+msgid "The request can be accessed at:"
+msgstr "A solicitação pode ser acessada em:"
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Novo pedido de acesso à identidade de um delator"
@@ -2399,8 +2385,8 @@ msgid ""
 "email."
 msgstr "Se você não fez essa solicitação, ignore e exclua este e-mail com segurança."
 
-msgid "You can confirm your request by clicking the following links:"
-msgstr "Você pode confirmar sua solicitação clicando nos seguintes links:"
+msgid "You can confirm your request by clicking the following link:"
+msgstr "Você pode confirmar sua solicitação clicando no seguinte link:"
 
 msgid "Password reset instructions"
 msgstr "Instruções de redefinição de senha"

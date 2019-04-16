@@ -1,11 +1,12 @@
 # 
 # Translators:
 # A5h8d0wf0x <littleslyfoxie28@gmail.com>, 2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2019
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
-# J.Podhorecky <j.podhorecky@volny.cz>, 2018-2019
+# trendspotter <j.podhorecky@volny.cz>, 2019
+# trendspotter <j.podhorecky@volny.cz>, 2018-2019
 # Lenka Ježková <lenka.jezkova@oziveni.cz>, 2019
 # Miroslav Kučera <mkucera66@seznam.cz>, 2013-2017
 # Mr Higgins, 2016-2018
@@ -13,14 +14,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-13 22:16+0000\n"
+"PO-Revision-Date: 2019-04-11 05:25+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Přihlašovací stránka"
@@ -496,7 +497,7 @@ msgid "Activate"
 msgstr "Aktivovat"
 
 msgid "Disactivate"
-msgstr ""
+msgstr "Deaktivovat"
 
 msgid "Search"
 msgstr "Hledat"
@@ -631,10 +632,10 @@ msgid "Closed"
 msgstr "Zavřít"
 
 msgid "Placeholder"
-msgstr ""
+msgstr "Zástupce"
 
 msgid "Print"
-msgstr ""
+msgstr "Tisk"
 
 msgid "Select the context of your submission:"
 msgstr "Vyberte kontext vašeho podání"
@@ -837,6 +838,9 @@ msgstr "Tyto experimentální vlastnosti mohou ovlivnit stabilitu nebo nemusí f
 msgid "Save"
 msgstr "Uložit"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "Krátké URL"
 
@@ -1036,13 +1040,13 @@ msgid "High"
 msgstr "Vysoká"
 
 msgid "Customize the message shown in the receipt page"
-msgstr ""
+msgstr "Upravte zprávu zobrazenou na stránce potvrzení příjmu"
 
 msgid "Low"
-msgstr ""
+msgstr "Nízký"
 
 msgid "Assign the receipt only to submissions reaching score:"
-msgstr ""
+msgstr "Přiřadit stvrzení pouze k příspěvkům, které dosáhly skóre:"
 
 msgid "Software version:"
 msgstr "Verze software:"
@@ -1304,15 +1308,6 @@ msgstr "Čas odpovědi"
 msgid "Last access"
 msgstr "Poslední přístup"
 
-msgid "Submission"
-msgstr "Podání"
-
-msgid "Path"
-msgstr "Cesta"
-
-msgid "Size"
-msgstr "Velikost"
-
 msgid "Alarm level"
 msgstr "Úroveň varování"
 
@@ -1383,16 +1378,16 @@ msgid "Checkbox label"
 msgstr "Zaškrtávací políčko"
 
 msgid "Add multimedia content"
-msgstr ""
+msgstr "Přidat multimediální obsah"
 
 msgid "Image"
-msgstr ""
+msgstr "Obrázek"
 
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Vystavit viditelnost oprávnění ochránce"
@@ -1805,6 +1800,9 @@ msgstr "Nebyl nahrán žádný soubor!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Povolit oznamovateli přidat přílohy k podání"
 
+msgid "Submission"
+msgstr "Podání"
+
 msgid "Access expiration"
 msgstr "Expirace přístupu"
 
@@ -1872,11 +1870,11 @@ msgstr "Přiložené soubory pro oznamovatele."
 msgid "Upload a file:"
 msgstr "Nahrání souboru:"
 
-msgid "Inverted"
-msgstr "Obrácený"
-
 msgid "Trigger step"
 msgstr "Spouštěcí otázka"
+
+msgid "Inverted"
+msgstr "Obrácený"
 
 msgid "Logout"
 msgstr "Odhlášení"
@@ -1911,7 +1909,7 @@ msgid "Thank you!"
 msgstr "Děkujeme Vám!"
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "Pokusíme se co nejdříve vrátit zpět k vám."
 
 msgid "Remember your receipt for this submission."
 msgstr "Zapamatujte si potvrzení o tomto podání."
@@ -2235,14 +2233,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Toto je e-mailové upozornění o novém komentáři u existujícího podání."
 
-msgid "The submission can be accessed:"
-msgstr "K tomuto podání máte přístup:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "via Tor na: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "via HTTPS na: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "Nový komentář"
@@ -2252,13 +2244,8 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr "Tento email je upozornění, že byla podána žádost o změnu vaší e-mailové adresy na {NewEmailAddress}."
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr "Klepnutím na následující odkaz potvrdíte tuto změnu:{HTTPSUrl} "
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
-msgstr "Pokud chcete ověřit nový e-mail za pomoci Tor, můžete použít následující odkaz: {TorUrl}"
+msgid "Click the following link to validate this change:"
+msgstr "Klepnutím na následující odkaz potvrdíte tuto změnu:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2344,8 +2331,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Toto je emailové upozornění, že příjemce požaduje přístup k identitě oznamovatele podání {TipNum}."
 
-msgid "The request can be accessed:"
-msgstr "Požadavek je dostupný:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Nový požadavek na přístup k identitě oznamovatele"
@@ -2375,8 +2362,8 @@ msgid ""
 "email."
 msgstr "Pokud jste tuto žádost neučinili, můžete tento e-mail ignorovat a smazat."
 
-msgid "You can confirm your request by clicking the following links:"
-msgstr "Tuto žádost můžete potvrdit kliknutím na následující odkazy:"
+msgid "You can confirm your request by clicking the following link:"
+msgstr ""
 
 msgid "Password reset instructions"
 msgstr "Pokyny pro obnovení hesla"

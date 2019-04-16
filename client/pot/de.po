@@ -47,14 +47,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-13 22:17+0000\n"
-"Last-Translator: Thelxinoe\n"
+"PO-Revision-Date: 2019-04-14 18:03+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Anmeldungsseite"
@@ -665,7 +665,7 @@ msgid "Closed"
 msgstr "Geschlossen"
 
 msgid "Placeholder"
-msgstr ""
+msgstr "Platzhalter"
 
 msgid "Print"
 msgstr "Drucken"
@@ -851,7 +851,7 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
-msgstr ""
+msgstr "Vereinfachte Anmeldung aktivieren"
 
 msgid "Logging level"
 msgstr "Protokollierungsstufe"
@@ -870,6 +870,9 @@ msgstr "Die experimentellen Funktionen können weniger stabil oder gar nicht zu 
 
 msgid "Save"
 msgstr "Speichern"
+
+msgid "Reset submissions"
+msgstr ""
 
 msgid "Short URL"
 msgstr "Short URL"
@@ -1338,15 +1341,6 @@ msgstr "Reaktionszeit"
 msgid "Last access"
 msgstr "Letzter Zugriff"
 
-msgid "Submission"
-msgstr "Einreichung"
-
-msgid "Path"
-msgstr "Pfad"
-
-msgid "Size"
-msgstr "Größe"
-
 msgid "Alarm level"
 msgstr "Alarmstufe"
 
@@ -1447,7 +1441,7 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
+msgstr "Faktor"
 
 msgid "Questions"
 msgstr "Fragen"
@@ -1839,6 +1833,9 @@ msgstr "Es wurden keine Dateien hochgeladen!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Dem Hinweisgeber das Hinzufügen von Anhängen zur Einreichung erlauben"
 
+msgid "Submission"
+msgstr "Einreichung"
+
 msgid "Access expiration"
 msgstr "Zugriffsablaufdatum"
 
@@ -1906,11 +1903,11 @@ msgstr "Angehängte Dateien für den Hinweisgeber"
 msgid "Upload a file:"
 msgstr "Hochladen einer Datei:"
 
-msgid "Inverted"
-msgstr "Invertiert"
-
 msgid "Trigger step"
 msgstr "Triggerschritt"
+
+msgid "Inverted"
+msgstr "Invertiert"
 
 msgid "Logout"
 msgstr "Abmelden"
@@ -2269,14 +2266,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Dies ist eine E-Mail Sie ein Kommentar auf einer vorhandenen Vorlage zu informieren."
 
-msgid "The submission can be accessed:"
-msgstr "Die Einreichung kann erreicht werden unter:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "über Tor auf: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "über HTTPS auf: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "Neuer Kommentar"
@@ -2286,12 +2277,7 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr ""
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
+msgid "Click the following link to validate this change:"
 msgstr ""
 
 msgid ""
@@ -2378,8 +2364,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Diese E-Mail teilt Ihnen mit, dass der Empfänger Zugriff auf die Hinweisgeber-Identität für die Einreichung beantragt hat {TipNum}"
 
-msgid "The request can be accessed:"
-msgstr "Die Anfrage kann erreicht werden unter:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Neue Anfrage über den Zugriff auf die Identität des Hinweisgebers"
@@ -2409,7 +2395,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"

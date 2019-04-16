@@ -18,14 +18,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-16 09:35+0000\n"
-"Last-Translator: ION\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: he\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "דף כניסה"
@@ -842,6 +842,9 @@ msgstr "התכונות הניסיוניות עשויות להיות פחות י�
 msgid "Save"
 msgstr "שמור"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "URL קצר"
 
@@ -1308,15 +1311,6 @@ msgstr "זמן תגובה"
 
 msgid "Last access"
 msgstr "גישה אחרונה"
-
-msgid "Submission"
-msgstr "הגשה"
-
-msgid "Path"
-msgstr "נתיב"
-
-msgid "Size"
-msgstr "גודל"
 
 msgid "Alarm level"
 msgstr "רמה אזעקה"
@@ -1810,6 +1804,9 @@ msgstr "לא הועלו קבצים!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "התר לחושף השחיתות להוסיף צרופות אל ההגשה"
 
+msgid "Submission"
+msgstr "הגשה"
+
 msgid "Access expiration"
 msgstr "תפוגת גישה"
 
@@ -1877,11 +1874,11 @@ msgstr "קבצים מצורפים עבור חושף השחיתות"
 msgid "Upload a file:"
 msgstr "העלה קובץ:"
 
-msgid "Inverted"
-msgstr ""
-
 msgid "Trigger step"
 msgstr "צעד טריגר"
+
+msgid "Inverted"
+msgstr ""
 
 msgid "Logout"
 msgstr "התנתק"
@@ -2240,14 +2237,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "זוהי הודעת דוא\"ל כדי להודיע ​​לך על תגובה חדשה על הגשה קיימת."
 
-msgid "The submission can be accessed:"
-msgstr "ניתן לגשת להגשה:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "באמצעות Tor ב: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "דרך HTTPS ב: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "תגובה חדשה"
@@ -2257,12 +2248,7 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr ""
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
+msgid "Click the following link to validate this change:"
 msgstr ""
 
 msgid ""
@@ -2349,8 +2335,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "זוהי הודעת דוא\"ל כדי להודיע ​​לך כי הנמען ביקש גישה של זהות המתריע להגשת {TipNum}"
 
-msgid "The request can be accessed:"
-msgstr "הבקשה ניתן לגשת:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "בקשה חדשה של גישה אל זהות של חושף שחיתות"
@@ -2380,7 +2366,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"

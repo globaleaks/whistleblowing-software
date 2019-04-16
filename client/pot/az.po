@@ -9,14 +9,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-13 22:17+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-04-11 18:57+0000\n"
+"Last-Translator: Nikafn <appone6@gmail.com>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: az\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Daxil olma səhifəsi"
@@ -833,6 +833,9 @@ msgstr "Təcrübi imkanlar daha az sabit və ya işləksiz ola bilər; bu seçə
 msgid "Save"
 msgstr "Yadda saxla"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "Qısa URL"
 
@@ -1299,15 +1302,6 @@ msgstr "Cavab vermə vaxtı"
 
 msgid "Last access"
 msgstr "Sonuncu giriş "
-
-msgid "Submission"
-msgstr "Təqdimat"
-
-msgid "Path"
-msgstr "Yol"
-
-msgid "Size"
-msgstr "Ölçü"
 
 msgid "Alarm level"
 msgstr "Siqnal səviyyəsi"
@@ -1801,6 +1795,9 @@ msgstr "Fayl yüklənməyib!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "İnformasiya ötürənə təsdiqetməyə əlavələr etməsinə icazə verin"
 
+msgid "Submission"
+msgstr "Təqdimat"
+
 msgid "Access expiration"
 msgstr "Girişin sona çatması"
 
@@ -1868,11 +1865,11 @@ msgstr "İnformasiya ötürən üçün əlavə edilmiş fayllar"
 msgid "Upload a file:"
 msgstr "Yeni fayl yüklə:"
 
-msgid "Inverted"
-msgstr ""
-
 msgid "Trigger step"
 msgstr "Tətikləyici addım"
+
+msgid "Inverted"
+msgstr ""
 
 msgid "Logout"
 msgstr "Çıxış"
@@ -2231,14 +2228,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Bu e-poçt, mövcud təqdimata dair yeni şərh almağınız barədə məlumat vermək üçün göndərilib. "
 
-msgid "The submission can be accessed:"
-msgstr "Təqdimat əldə edilə bilər:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "Tor vasitəsilə: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "HTTPS vasitəsilə :{HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "Yeni şərh"
@@ -2248,12 +2239,7 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr ""
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
+msgid "Click the following link to validate this change:"
 msgstr ""
 
 msgid ""
@@ -2340,8 +2326,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Bu email təqdimat üçün qəbuledicinin informasiya ötürənin kimliyinə girişə icazə verilməsi tələbini bildirmək üçün göndərilib {TipNum}"
 
-msgid "The request can be accessed:"
-msgstr "İstəyə giriş mümkündür: "
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "İnformasiya ötürənin kimliyinə yeni giriş tələbi"
@@ -2371,7 +2357,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"

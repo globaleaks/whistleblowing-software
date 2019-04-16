@@ -10,14 +10,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-13 22:17+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "登入頁面"
@@ -834,6 +834,9 @@ msgstr "這個試驗的功能尚未穩定或是完全無法運作，因此啟動
 msgid "Save"
 msgstr "儲存"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "短網址"
 
@@ -1300,15 +1303,6 @@ msgstr "回應時間"
 
 msgid "Last access"
 msgstr "最近讀取"
-
-msgid "Submission"
-msgstr "提交"
-
-msgid "Path"
-msgstr "路徑 "
-
-msgid "Size"
-msgstr "大小"
 
 msgid "Alarm level"
 msgstr "警告層級"
@@ -1802,6 +1796,9 @@ msgstr "無檔案被上傳"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "吹哨者可在新加附件於已提交的揭密事件"
 
+msgid "Submission"
+msgstr "提交"
+
 msgid "Access expiration"
 msgstr "存取權限到期"
 
@@ -1869,11 +1866,11 @@ msgstr "給吹哨者的附加檔案"
 msgid "Upload a file:"
 msgstr "上傳檔案 :"
 
-msgid "Inverted"
-msgstr "翻倒"
-
 msgid "Trigger step"
 msgstr "觸發步驟"
+
+msgid "Inverted"
+msgstr "翻倒"
 
 msgid "Logout"
 msgstr "登出"
@@ -2232,14 +2229,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "這封電子郵件是通知你，在已有的揭密提交有一則新評論"
 
-msgid "The submission can be accessed:"
-msgstr "其提交可被讀取"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "透過 Tor at: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "透過HTTPS at: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "新評論"
@@ -2249,13 +2240,8 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr "本郵件通知你，有人請求將你的電郵地址變更為 {NewEmailAddress}."
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr "請點開下方的鍵連來驗證更動: {HTTPSUrl}"
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
-msgstr "若需要透過 Tor  網路來驗證新的電郵地址，可以使以下方的連結： {TorUrl}"
+msgid "Click the following link to validate this change:"
+msgstr ""
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2341,8 +2327,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "電子郵件是通知你，收件者請求取得{TipNum}.提交之吹哨者的身份識別權限"
 
-msgid "The request can be accessed:"
-msgstr "其要求可被讀取："
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "讀取吹哨者身份識別的新要求"
@@ -2372,8 +2358,8 @@ msgid ""
 "email."
 msgstr "若您沒有提出請求，請忽略和刪除本郵件。"
 
-msgid "You can confirm your request by clicking the following links:"
-msgstr "請點開下方連結來確認您的請求："
+msgid "You can confirm your request by clicking the following link:"
+msgstr ""
 
 msgid "Password reset instructions"
 msgstr "密碼重設指示"

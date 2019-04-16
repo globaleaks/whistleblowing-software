@@ -23,14 +23,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-13 22:17+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Halaman masuk"
@@ -847,6 +847,9 @@ msgstr "Fitur-fitur eksperimental mungkin kurang stabil atau bahkan tidak berfun
 msgid "Save"
 msgstr "Simpan"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "URL pendek"
 
@@ -1313,15 +1316,6 @@ msgstr "Waktu respon"
 
 msgid "Last access"
 msgstr "Akses terakhir"
-
-msgid "Submission"
-msgstr "Kiriman"
-
-msgid "Path"
-msgstr "Jalur"
-
-msgid "Size"
-msgstr "Ukuran"
 
 msgid "Alarm level"
 msgstr "Tingkat peringatan"
@@ -1815,6 +1809,9 @@ msgstr "Tidak ada berkas yang diunggah!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Mengizinkan pelapor untuk menambahkan lampiran pada kiriman"
 
+msgid "Submission"
+msgstr "Kiriman"
+
 msgid "Access expiration"
 msgstr "Masa berakhir akses"
 
@@ -1882,11 +1879,11 @@ msgstr "Lampiran berkas untuk informan publik "
 msgid "Upload a file:"
 msgstr "Mengunggah berkas: "
 
-msgid "Inverted"
-msgstr "Terbalik"
-
 msgid "Trigger step"
 msgstr "Memicu langkah"
+
+msgid "Inverted"
+msgstr "Terbalik"
 
 msgid "Logout"
 msgstr "Keluar"
@@ -2245,14 +2242,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Ini adalah surel untuk memberitahu Anda tentang komentar baru pada pengiriman yang tersedia."
 
-msgid "The submission can be accessed:"
-msgstr "Kiriman ini dapat diakses:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "Melalui Tor di: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "melalui HTTPS di: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "Komentar baru"
@@ -2262,13 +2253,8 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr "Surel ini memberitahu Anda bahwa sebuah permintaan telah diajukan untuk mengubah alamat surel Anda menjadi {NewEmailAddress}."
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr "Klik tautan berikut untuk memvalidasi perubahan ini: {HTTPSUrl} "
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
-msgstr "Jika Anda ingin memvalidasi surel baru Anda dengan Tor, Anda dapat menggunakan tautan berikut: {TorUrl}"
+msgid "Click the following link to validate this change:"
+msgstr ""
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2354,8 +2340,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Surel ini bertujuan untuk memberitahu anda bahwa penerima sudah meminta akses ke identitas informan publik untuk pengiriman {TipNum} "
 
-msgid "The request can be accessed:"
-msgstr "Permintaan dapat diakses:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Permintaan baru untuk mengakses identitas informan publik "
@@ -2385,8 +2371,8 @@ msgid ""
 "email."
 msgstr "Jika Anda tidak membuat permintaan ini, Anda dapat mengabaikan dan menghapus email ini dengan aman."
 
-msgid "You can confirm your request by clicking the following links:"
-msgstr "Anda dapat mengkonfirmasi permintaan Anda dengan meng-klik tautan berikut:"
+msgid "You can confirm your request by clicking the following link:"
+msgstr ""
 
 msgid "Password reset instructions"
 msgstr "Instruksi pengaturan ulang kata sandi"

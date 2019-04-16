@@ -12,14 +12,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-21 05:27+0000\n"
-"Last-Translator: Dong Quoc <huynhquocdong@gmail.com>\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Trang đăng nhập"
@@ -836,6 +836,9 @@ msgstr "Các tính năng thử nghiệm có thể ít ổn định hoặc thậm
 msgid "Save"
 msgstr "Lưu"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "URL ngắn"
 
@@ -1302,15 +1305,6 @@ msgstr "Thời gian đáp ứng"
 
 msgid "Last access"
 msgstr ""
-
-msgid "Submission"
-msgstr "Gợi Ý"
-
-msgid "Path"
-msgstr "Path"
-
-msgid "Size"
-msgstr "Kích thước"
 
 msgid "Alarm level"
 msgstr "mức báo động"
@@ -1804,6 +1798,9 @@ msgstr "Vẫn chưa tải lên tập tin nào!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Cho phép các tố giác để đính kèm tập tin vào trình"
 
+msgid "Submission"
+msgstr "Gợi Ý"
+
 msgid "Access expiration"
 msgstr ""
 
@@ -1871,11 +1868,11 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Inverted"
-msgstr ""
-
 msgid "Trigger step"
 msgstr "bước kích hoạt"
+
+msgid "Inverted"
+msgstr ""
 
 msgid "Logout"
 msgstr "Đăng xuất"
@@ -2234,14 +2231,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Đây là một email thông báo khi có bình luận mới một trình hiện có."
 
-msgid "The submission can be accessed:"
-msgstr "Việc nộp có thể được truy cập:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "qua Tor tại: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "thông qua HTTPS tại: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "bình luận mới"
@@ -2251,12 +2242,7 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr ""
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
+msgid "Click the following link to validate this change:"
 msgstr ""
 
 msgid ""
@@ -2343,8 +2329,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Đây là một email thông báo cho bạn rằng một người nhận đã yêu cầu truy cập đến danh tính của người tố giác cho việc nộp {TipNum}"
 
-msgid "The request can be accessed:"
-msgstr "Yêu cầu có thể được truy cập:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr ""
@@ -2374,7 +2360,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"

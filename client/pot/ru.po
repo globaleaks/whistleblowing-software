@@ -28,14 +28,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-22 19:49+0000\n"
-"Last-Translator: Sergey Smirnov <cj75300@gmail.com>\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Страница входа"
@@ -852,6 +852,9 @@ msgstr "Зкспериментальные функции могут быть н
 msgid "Save"
 msgstr "Сохранить"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "Короткий URL"
 
@@ -1318,15 +1321,6 @@ msgstr "Время ответа"
 
 msgid "Last access"
 msgstr "Последний доступ"
-
-msgid "Submission"
-msgstr "Подача материала"
-
-msgid "Path"
-msgstr "Путь"
-
-msgid "Size"
-msgstr "Размер"
 
 msgid "Alarm level"
 msgstr "Уровень тревоги"
@@ -1820,6 +1814,9 @@ msgstr "Ошибка загрузки файла!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Разрешить информатору добавлять приложения к поданным документам"
 
+msgid "Submission"
+msgstr "Подача материала"
+
 msgid "Access expiration"
 msgstr "Истечение срока доступа"
 
@@ -1887,11 +1884,11 @@ msgstr "Приложения для информатора"
 msgid "Upload a file:"
 msgstr "Выгрузить файл:"
 
-msgid "Inverted"
-msgstr ""
-
 msgid "Trigger step"
 msgstr "Инициировать следующее действие"
+
+msgid "Inverted"
+msgstr ""
 
 msgid "Logout"
 msgstr "Выход"
@@ -2250,14 +2247,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Этим письмом мы оповещаем вас о новом комментарии к существующим материалам"
 
-msgid "The submission can be accessed:"
-msgstr "Вы можете получить доступ к материалу:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "через Tor по адресу: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "через HTTPS по адресу: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "Новый комментарий"
@@ -2267,12 +2258,7 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr ""
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
+msgid "Click the following link to validate this change:"
 msgstr ""
 
 msgid ""
@@ -2359,8 +2345,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Этим письмом мы уведомляем вас о том, что получатель запросил доступ к личности информатора материалов {TipNum}"
 
-msgid "The request can be accessed:"
-msgstr "Вы можете получить доступ к запросу:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Новый запрос на получение доступа к личности информатора"
@@ -2390,7 +2376,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"

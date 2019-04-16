@@ -21,14 +21,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-13 22:16+0000\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hu_HU\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Bejelentkezési oldal"
@@ -845,6 +845,9 @@ msgstr ""
 msgid "Save"
 msgstr "Mentés"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "Rövid URL"
 
@@ -1311,15 +1314,6 @@ msgstr "Válaszidő"
 
 msgid "Last access"
 msgstr "Legutóbbi hozzáférés"
-
-msgid "Submission"
-msgstr "Feltöltés"
-
-msgid "Path"
-msgstr "Útvonal"
-
-msgid "Size"
-msgstr "Méret"
 
 msgid "Alarm level"
 msgstr "Riasztási szint"
@@ -1813,6 +1807,9 @@ msgstr "Nem töltött fel fájlt!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Engedélyezi a szivárogtatónak, hogy mellékleteket adjanak hozzá a beadványhoz"
 
+msgid "Submission"
+msgstr "Feltöltés"
+
 msgid "Access expiration"
 msgstr ""
 
@@ -1880,11 +1877,11 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Inverted"
-msgstr ""
-
 msgid "Trigger step"
 msgstr "Trigger lépés"
+
+msgid "Inverted"
+msgstr ""
 
 msgid "Logout"
 msgstr "Kilépés"
@@ -2243,13 +2240,7 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr ""
 
-msgid "The submission can be accessed:"
-msgstr "A beküldés elérhető:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "Tor-on keresztül itt: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
 msgstr ""
 
 msgid "New comment"
@@ -2260,12 +2251,7 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr ""
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
+msgid "Click the following link to validate this change:"
 msgstr ""
 
 msgid ""
@@ -2352,8 +2338,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr ""
 
-msgid "The request can be accessed:"
-msgstr "A kérés elérhető:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr ""
@@ -2383,7 +2369,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"

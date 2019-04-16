@@ -7,14 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-13 22:17+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ta\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "உள்நுழையும் பக்கம்"
@@ -831,6 +831,9 @@ msgstr "சோதனை அம்சங்கள் குறைவான ந
 msgid "Save"
 msgstr "சேமி"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "குறுகிய URL"
 
@@ -1297,15 +1300,6 @@ msgstr "பதில் நேரம்"
 
 msgid "Last access"
 msgstr "கடைசியாக அணுகியது"
-
-msgid "Submission"
-msgstr "சமர்ப்பிக்கும்"
-
-msgid "Path"
-msgstr "Path"
-
-msgid "Size"
-msgstr "அளவு"
 
 msgid "Alarm level"
 msgstr "அலார நிலை"
@@ -1799,6 +1793,9 @@ msgstr "எந்த கோப்புகளை பதிவேற்றம�
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "தகவல் தெரிவிப்பவர் சமர்ப்பிப்பு இணைப்புகளை சேர்க்க அனுமதி"
 
+msgid "Submission"
+msgstr "சமர்ப்பிக்கும்"
+
 msgid "Access expiration"
 msgstr "அணுகல் காலாவதி"
 
@@ -1866,11 +1863,11 @@ msgstr "விசில்ப்ளோயருக்கான இணைக்�
 msgid "Upload a file:"
 msgstr "கோப்பு பதிவேற்று:"
 
-msgid "Inverted"
-msgstr "தலைகீழ்"
-
 msgid "Trigger step"
 msgstr "தூண்டல் படி"
+
+msgid "Inverted"
+msgstr "தலைகீழ்"
 
 msgid "Logout"
 msgstr "வெளியேறு"
@@ -2229,14 +2226,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "இது ஏற்கனவே உள்ள சமர்ப்பிப்பு ஒரு புதிய கருத்து தெரிவிக்க மின்னஞ்சல் உள்ளது."
 
-msgid "The submission can be accessed:"
-msgstr "சமர்ப்பிப்பு அணுகலாம்:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "{TorUrl}: மணிக்கு தோர் வrழியாக"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "{HTTPSUrl}: மணிக்கு வழியாக, HTTPS"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "புதிய கருத்து"
@@ -2246,13 +2237,8 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr "உங்கள் மின்னஞ்சல் முகவரி {NewEmailAddress} க்கு மாற்ற வேண்டுமென உங்களுக்கு அறிவிக்கும் மின்னஞ்சல் இதுவாகும்."
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr "இந்த மாற்றத்தை சரிபார்க்க பின்வரும் இணைப்பைக் கிளிக் செய்க: {HTTPSUrl}"
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
-msgstr "உங்கள் புதிய மின்னஞ்சல் டோர் மூலம் சரிபார்க்க விரும்பினால், நீங்கள் பின்வரும் இணைப்பைப் பயன்படுத்தலாம்: {TorUrl}"
+msgid "Click the following link to validate this change:"
+msgstr ""
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2338,8 +2324,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "இந்த ஒரு பெறுநர் சமர்ப்பிப்பு {TipNum} க்கான தகவல் தெரிவிப்பவர் அடையாளத்திற்கான அணுக கோரிக்கை விடுத்துள்ளார் என்று அறிவிக்கிறோம் மின்னஞ்சல் உள்ளது"
 
-msgid "The request can be accessed:"
-msgstr "கோரிக்கை அணுக முடியும்:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "விசில்போலரின் அம்பலப்படுத்தியவர் அணுகல் புதிய கோரிக்கை"
@@ -2369,8 +2355,8 @@ msgid ""
 "email."
 msgstr "இந்த கோரிக்கையை நீங்கள் செய்யாவிட்டால், நீங்கள் இந்த மின்னஞ்சலைப் பாதுகாப்பாக புறக்கணித்து அழிக்கலாம்."
 
-msgid "You can confirm your request by clicking the following links:"
-msgstr "பின்வரும் இணைப்புகளைக் கிளிக் செய்வதன் மூலம் நீங்கள் உங்கள் கோரிக்கையை உறுதிப்படுத்திக் கொள்ளலாம்:"
+msgid "You can confirm your request by clicking the following link:"
+msgstr ""
 
 msgid "Password reset instructions"
 msgstr "கடவுச்சொல் மீட்டமை அறிவுறுத்தல்கள்"

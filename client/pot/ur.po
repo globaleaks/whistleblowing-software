@@ -13,14 +13,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-13 22:16+0000\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ur\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "لاگ ان کا صفحہ"
@@ -837,6 +837,9 @@ msgstr "تجرباتی خصوصیات کم مستحکم ہو سکتا ہے یا 
 msgid "Save"
 msgstr "محفوظ"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "مختصر یو آر ایل"
 
@@ -1303,15 +1306,6 @@ msgstr "ردِ عمل کا وقت"
 
 msgid "Last access"
 msgstr "آخری رسائی"
-
-msgid "Submission"
-msgstr "گذارشات"
-
-msgid "Path"
-msgstr "Path"
-
-msgid "Size"
-msgstr "سائز"
 
 msgid "Alarm level"
 msgstr "الارم کی سطح"
@@ -1805,6 +1799,9 @@ msgstr "کوئی فائل اپ لوڈ نہیں کی گئی ہے!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "مخبر کو اٹیچمنٹ شامل کرنے کی اجازت دیں"
 
+msgid "Submission"
+msgstr "گذارشات"
+
 msgid "Access expiration"
 msgstr ""
 
@@ -1872,11 +1869,11 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Inverted"
-msgstr ""
-
 msgid "Trigger step"
 msgstr "ٹریگر قدم"
+
+msgid "Inverted"
+msgstr ""
 
 msgid "Logout"
 msgstr "لاگ آئوٹ"
@@ -2235,14 +2232,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "یہ ایک موجودہ جمع کرانے پر ایک نیا تبصرہ سے مطلع کرنے کے لئے ایک ای میل ہے."
 
-msgid "The submission can be accessed:"
-msgstr "تجویز تک یہاں سے رسائی حاصل کر سکتے ہیں:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "{TorUrl}: میں ٹار کے ذریعے"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "HTTPS کے ذریعے سے اوپر: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "نیا تبصرہ"
@@ -2252,12 +2243,7 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr ""
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
+msgid "Click the following link to validate this change:"
 msgstr ""
 
 msgid ""
@@ -2344,8 +2330,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "یہ ایک وصول کنندہ جمع کرانے {TipNum} کے لئے مخبر کی شناخت تک رسائی کی درخواست ہے کہ آپ کو مطلع کرنے کے لئے ایک ای میل ہے"
 
-msgid "The request can be accessed:"
-msgstr "درخواست کو حاصل کیا جاسکتا ہے:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr ""
@@ -2375,7 +2361,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"

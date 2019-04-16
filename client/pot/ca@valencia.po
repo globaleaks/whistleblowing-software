@@ -16,14 +16,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-13 22:16+0000\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ca@valencia\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Pàgina d'inici de sessió"
@@ -840,6 +840,9 @@ msgstr "Les funcionalitats experimentals poden ser menys estables o fins i tot p
 msgid "Save"
 msgstr "Desa"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "URL curta"
 
@@ -1306,15 +1309,6 @@ msgstr "Temps de resposta"
 
 msgid "Last access"
 msgstr "últim accés"
-
-msgid "Submission"
-msgstr "Enviament"
-
-msgid "Path"
-msgstr "ruta"
-
-msgid "Size"
-msgstr "Mida"
 
 msgid "Alarm level"
 msgstr "Alarma"
@@ -1808,6 +1802,9 @@ msgstr "No s'ha pujat cap arxiu!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Permet als informadors afegir arxius adjunts a l'enviament"
 
+msgid "Submission"
+msgstr "Enviament"
+
 msgid "Access expiration"
 msgstr "Caducitat de l'accés"
 
@@ -1875,10 +1872,10 @@ msgstr "Els arxius adjunts per a l'informador"
 msgid "Upload a file:"
 msgstr "Pujar un fitxer:"
 
-msgid "Inverted"
+msgid "Trigger step"
 msgstr ""
 
-msgid "Trigger step"
+msgid "Inverted"
 msgstr ""
 
 msgid "Logout"
@@ -2238,14 +2235,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Aquest és un correu electrònic per avisar-te d'un nou comentari d'un enviament anterior."
 
-msgid "The submission can be accessed:"
-msgstr "Es pot accedir al lliurament a:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "per Tor a l'adreça: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "per HTTPS a: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "Nou commentari"
@@ -2255,13 +2246,8 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr "Este es un correu per a notificar-li que s'ha enregistrat una sol.licitut per a canviar la seua direcció de correu electrònic a {NewEmailAddress}."
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr "Faça clic a l'enllaç següent per a validar este canvi: {HTTPSUrl}"
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
-msgstr "Si desitja validar la seua nova direcció de correu amb Tor, pot utilitzar l'enllaç següent: {TorUrl}"
+msgid "Click the following link to validate this change:"
+msgstr ""
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2347,8 +2333,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Amb aquest missatge de correu electrònic li notifiquem que el destinatari ha demanat accedir a la identitat de l'informador del lliurament {TipNum}."
 
-msgid "The request can be accessed:"
-msgstr "Pots accedir a la petició a:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Nova petició d'accés a la identitat de l'informador"
@@ -2378,8 +2364,8 @@ msgid ""
 "email."
 msgstr "Si no ha fet eixa sol.licitut, pot ignorar i esborrar este correu tranquilament."
 
-msgid "You can confirm your request by clicking the following links:"
-msgstr "Pot confirmar la sol.licitut fent clic als següents enllaços:"
+msgid "You can confirm your request by clicking the following link:"
+msgstr ""
 
 msgid "Password reset instructions"
 msgstr "Instruccions per a la reinicialització de contrasenyes"

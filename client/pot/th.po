@@ -10,14 +10,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-13 22:17+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: th\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "หน้าเข้าสู่ระบบ"
@@ -834,6 +834,9 @@ msgstr "คุณสมบัติการทดลองอาจจะไม
 msgid "Save"
 msgstr "บันทึก"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "URL แบบสั้น"
 
@@ -1300,15 +1303,6 @@ msgstr "เวลาตอบสนอง"
 
 msgid "Last access"
 msgstr ""
-
-msgid "Submission"
-msgstr "การยอม"
-
-msgid "Path"
-msgstr "Path"
-
-msgid "Size"
-msgstr "ขนาด"
 
 msgid "Alarm level"
 msgstr "ระดับการเตือนภัย"
@@ -1802,6 +1796,9 @@ msgstr "ไม่มีไฟล์ที่ได้รับการอัพ
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "อนุญาตให้ whistleblower เพื่อเพิ่มสิ่งที่แนบไปส่ง"
 
+msgid "Submission"
+msgstr "การยอม"
+
 msgid "Access expiration"
 msgstr ""
 
@@ -1869,11 +1866,11 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Inverted"
-msgstr ""
-
 msgid "Trigger step"
 msgstr "ขั้นตอนที่ทริกเกอร์"
+
+msgid "Inverted"
+msgstr ""
 
 msgid "Logout"
 msgstr "ออกจากระบบ"
@@ -2232,14 +2229,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "นี่คืออีเมลไปแจ้งให้คุณทราบความคิดเห็นใหม่ในการส่งที่มีอยู่"
 
-msgid "The submission can be accessed:"
-msgstr "ส่งที่สามารถเข้าถึงได้:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "ผ่าน Tor ที่: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "ผ่าน HTTPS ที่: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "ความคิดเห็นใหม่"
@@ -2249,12 +2240,7 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr ""
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
+msgid "Click the following link to validate this change:"
 msgstr ""
 
 msgid ""
@@ -2341,8 +2327,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "นี่คืออีเมลแจ้งให้ทราบว่าผู้รับได้ขอเข้าถึงตัวตน whistleblower สำหรับการส่ง {TipNum}"
 
-msgid "The request can be accessed:"
-msgstr "การร้องขอที่สามารถเข้าถึงได้:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr ""
@@ -2372,7 +2358,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"

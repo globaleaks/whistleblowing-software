@@ -22,14 +22,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-20 13:36+0000\n"
-"Last-Translator: Андрій Бандура <andriykopanytsia@gmail.com>\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Сторінка авторизації"
@@ -846,6 +846,9 @@ msgstr "The experimental features may be less stable or even not work at all; en
 msgid "Save"
 msgstr "Зберегти"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "Коротке посилання URL"
 
@@ -1312,15 +1315,6 @@ msgstr "Час відповіді"
 
 msgid "Last access"
 msgstr "Останній вхід"
-
-msgid "Submission"
-msgstr "Матеріал"
-
-msgid "Path"
-msgstr "Path"
-
-msgid "Size"
-msgstr "Розмір"
 
 msgid "Alarm level"
 msgstr "Поріг сигналу небезпеки"
@@ -1814,6 +1808,9 @@ msgstr "Жодного файлу не було завантажено!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Дозволити викривачам надсилати додатки"
 
+msgid "Submission"
+msgstr "Матеріал"
+
 msgid "Access expiration"
 msgstr "Закінчення терміну доступу"
 
@@ -1881,11 +1878,11 @@ msgstr "Додані файли для інформатора"
 msgid "Upload a file:"
 msgstr "Завантажте файл:"
 
-msgid "Inverted"
-msgstr ""
-
 msgid "Trigger step"
 msgstr "Trigger step"
+
+msgid "Inverted"
+msgstr ""
 
 msgid "Logout"
 msgstr "Вихід"
@@ -2244,14 +2241,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Один з інформаторів залиший новий коментар до існуючого свідчення."
 
-msgid "The submission can be accessed:"
-msgstr "Матеріал можна отримати:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "вставивши наступне посилання в браузер Тоr: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "через захищений протокол HTTPS за адресою: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "Новий Коментар"
@@ -2261,13 +2252,8 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr "Цей лист повідомляє вас про те, що було внесено запит на зміну вашої електронної адреси на адресу {NewEmailAddress}."
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr "Натисніть на посилання, щоб підтвердити цю зміну: {HTTPSUrl}"
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
-msgstr "Якщо хочете підтвердити свою нову електронну пошту за допомогою Tor, ви можете використовувати наступне посилання: {TorUrl}"
+msgid "Click the following link to validate this change:"
+msgstr ""
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2353,8 +2339,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Повідомляємо, що одержувач надав запит на доступ до даних про інформатора, який повідомив свідчення {TipNum}"
 
-msgid "The request can be accessed:"
-msgstr "Запит можна переглянути:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Новий запит на інформацію про особу викривача"
@@ -2384,8 +2370,8 @@ msgid ""
 "email."
 msgstr "Якщо ви не надсилали такий запит, ви можете безпечно проігнорувати та видалити це повідомлення."
 
-msgid "You can confirm your request by clicking the following links:"
-msgstr "Ви можете підтвердити свій запит, натиснувши на наступне посилання:"
+msgid "You can confirm your request by clicking the following link:"
+msgstr ""
 
 msgid "Password reset instructions"
 msgstr "Інструкції щодо відновлення паролю"

@@ -7,14 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-13 22:17+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sq\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Faqja hyrëse"
@@ -831,6 +831,9 @@ msgstr "Karakteristika eksperimentale mund të jenë më pak të qëndrueshme ap
 msgid "Save"
 msgstr "Ruajeni"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "URL të shkurtër"
 
@@ -1297,15 +1300,6 @@ msgstr "Koha e përgjigjes"
 
 msgid "Last access"
 msgstr "Qasja e fundit"
-
-msgid "Submission"
-msgstr "Paraqitje"
-
-msgid "Path"
-msgstr "Shtegu"
-
-msgid "Size"
-msgstr "Përmasat"
 
 msgid "Alarm level"
 msgstr "niveli i alarmit"
@@ -1799,6 +1793,9 @@ msgstr "S'është ngarkuar asnjë skedar!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Lejo whistleblower për të shtuar të bashkëngjitni skedarë dorëzimit"
 
+msgid "Submission"
+msgstr "Paraqitje"
+
 msgid "Access expiration"
 msgstr ""
 
@@ -1866,11 +1863,11 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Inverted"
-msgstr ""
-
 msgid "Trigger step"
 msgstr "hapi Trigger"
+
+msgid "Inverted"
+msgstr ""
 
 msgid "Logout"
 msgstr "Dilni"
@@ -2229,14 +2226,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Kjo është një e-mail për të njoftuar ju një koment të ri për një dorëzim ekzistues."
 
-msgid "The submission can be accessed:"
-msgstr "Parashtrimi është i qasshëm:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "përmes Tor në: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "përmes HTTPS në: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "një koment të ri"
@@ -2246,12 +2237,7 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr ""
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
+msgid "Click the following link to validate this change:"
 msgstr ""
 
 msgid ""
@@ -2338,8 +2324,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Kjo është një email që të ju njoftojmë se një marrës ka kërkuar qasje në identitetin e whistleblower s per paraqitjen {TipNum}"
 
-msgid "The request can be accessed:"
-msgstr "Kërkesa mund të arrihen:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr ""
@@ -2369,7 +2355,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"

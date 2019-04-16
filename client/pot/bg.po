@@ -11,14 +11,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-03-13 22:17+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"mime-version: 1.0\n"
 
 msgid "Login page"
 msgstr "Страница за вписване"
@@ -835,6 +835,9 @@ msgstr "Експерименталните опции могат да са по-
 msgid "Save"
 msgstr "Запази"
 
+msgid "Reset submissions"
+msgstr ""
+
 msgid "Short URL"
 msgstr "Кратък интернет адрес"
 
@@ -1301,15 +1304,6 @@ msgstr "Време за отговор"
 
 msgid "Last access"
 msgstr "Последен достъп"
-
-msgid "Submission"
-msgstr "Сведение"
-
-msgid "Path"
-msgstr "Път"
-
-msgid "Size"
-msgstr "Размер"
 
 msgid "Alarm level"
 msgstr "Ниво на тревогата"
@@ -1803,6 +1797,9 @@ msgstr "Не сте качили файл!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Разрешаване на източника да прикачва файлове към подавания сигнал"
 
+msgid "Submission"
+msgstr "Сведение"
+
 msgid "Access expiration"
 msgstr "Изтичане на достъпа"
 
@@ -1870,11 +1867,11 @@ msgstr "Прикачени файлове за източника"
 msgid "Upload a file:"
 msgstr "Качване на нов файл:"
 
-msgid "Inverted"
-msgstr "Обърнат"
-
 msgid "Trigger step"
 msgstr "Стъпка в резултат на отговор"
+
+msgid "Inverted"
+msgstr "Обърнат"
 
 msgid "Logout"
 msgstr "Отписване"
@@ -2233,14 +2230,8 @@ msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr "Този имейл Ви известява за нов коментар по съществуващ сигнал."
 
-msgid "The submission can be accessed:"
-msgstr "Сигналът може да бъде достъпен:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "през Tor на: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "през HTTPS на: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
 msgstr "Нов коментар"
@@ -2250,13 +2241,8 @@ msgid ""
 "email address to {NewEmailAddress}."
 msgstr "Този имейл Ви уведомянва, че е направена заявка за промяна на имейл адрес до {NewEmailAddress}."
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr "Натиснте следната препратка, за да потвърдите промяната: {HTTPSUrl}"
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
-msgstr "Ако желаете да потвърдите новия си имейл през Tor, използвайте следната препратка: {TorUrl}"
+msgid "Click the following link to validate this change:"
+msgstr ""
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2342,8 +2328,8 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr "Този имейл Ви уведомява, че един от получателите изисква достъп до самоличността на източника за сигнал{TipNum}"
 
-msgid "The request can be accessed:"
-msgstr "Заявката може да бъде достъпена на:"
+msgid "The request can be accessed at:"
+msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Нова заявка за достъп до самоличността на източник"
@@ -2373,8 +2359,8 @@ msgid ""
 "email."
 msgstr "Ако не сте направили тази заяква, може да спокойно да игнорирате и изтриете този имейл."
 
-msgid "You can confirm your request by clicking the following links:"
-msgstr "Може да потвърдите заявката си като натиснете следните препратки:"
+msgid "You can confirm your request by clicking the following link:"
+msgstr ""
 
 msgid "Password reset instructions"
 msgstr "Инструкции за промяна на паролата"
