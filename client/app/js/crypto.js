@@ -37,20 +37,20 @@ angular.module("GLCrypto", [])
 
       var i = 0;
 
-      var xxx = function (hash) {
-        hash = new Uint8Array(hash);
-        if (hash[31] === 0) {
-          deferred.resolve(i);
-        } else {
-          i += 1;
-          work();
-        }
-      };
-
       var work = function() {
         var webCrypto = getWebCrypto();
         var toHash = glbcUtil.str2Uint8Array(str + i);
         var damnIE;
+
+        var xxx = function (hash) {
+          hash = new Uint8Array(hash);
+          if (hash[31] === 0) {
+            deferred.resolve(i);
+          } else {
+            i += 1;
+            work();
+          }
+        };
 
         if (webCrypto) {
             damnIE = webCrypto.digest({name: "SHA-256"}, toHash);
