@@ -102,10 +102,9 @@ class MailGenerator(object):
 
         user, context, rtip = session.query(models.User, models.Context, models.ReceiverTip) \
                                      .filter(models.User.id == models.ReceiverTip.receiver_id,
-                                             models.ReceiverTip.id == models.Message.receivertip_id,
+                                             models.ReceiverTip.id == message.receivertip_id,
                                              models.Context.id == models.InternalTip.context_id,
-                                             models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                             models.Message.id == message.id).one()
+                                             models.InternalTip.id == models.ReceiverTip.internaltip_id).one()
 
         tid = context.tid
 
@@ -122,12 +121,9 @@ class MailGenerator(object):
                                                   models.ReceiverTip.internaltip_id == comment.internaltip_id,
                                                   models.Context.id == models.InternalTip.context_id,
                                                   models.InternalTip.id == comment.internaltip_id,
-                                                  models.ReceiverTip.internaltip_id == comment.internaltip_id):
+                                                  models.ReceiverTip.internaltip_id == comment.internaltip_id,
+                                                  models.ReceiverTip.receiver_id != comment.author_id):
             tid = context.tid
-
-            # avoid to send emails to the receiver that written the comment
-            if comment.author_id == rtip.receiver_id:
-                continue
 
             umsg = copy.deepcopy(data)
             umsg['user'] = self.serialize_obj(session, 'user', user, tid, user.language)
@@ -141,15 +137,12 @@ class MailGenerator(object):
         user, context, rtip, ifile = session.query(models.User, models.Context, models.ReceiverTip, models.InternalFile) \
                                             .filter(models.User.id == models.ReceiverTip.receiver_id,
                                                     models.InternalFile.id == rfile.internalfile_id,
+                                                    models.InternalFile.submission == False,
                                                     models.InternalTip.id == models.InternalFile.internaltip_id,
                                                     models.ReceiverTip.id == rfile.receivertip_id,
                                                     models.Context.id == models.InternalTip.context_id).one()
 
         tid = context.tid
-
-        # avoid sending an email for the files that have been loaded during the initial submission
-        if ifile.submission:
-            return
 
         data['user'] = self.serialize_obj(session, 'user', user, tid, user.language)
         data['tip'] = self.serialize_obj(session, 'tip', rtip, tid, user.language)
