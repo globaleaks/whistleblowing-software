@@ -143,9 +143,6 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
       return $scope.Utils.update(updated_submissions_substatuses, cb);
     };
 
-    $scope.moveSsUp = function(e, idx) { swapSs(e, idx, -1); };
-    $scope.moveSsDown = function(e, idx) { swapSs(e, idx, 1); };
-
     function swapSs($event, index, n) {
       $event.stopPropagation();
 
@@ -167,6 +164,9 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
         },
       });
     }
+
+    $scope.moveSsUp = function(e, idx) { swapSs(e, idx, -1); };
+    $scope.moveSsDown = function(e, idx) { swapSs(e, idx, 1); };
   }
 ]).controller("AdminSubmissionSubStatusAddCtrl", ["$scope", "$http",
   function ($scope, $http) {

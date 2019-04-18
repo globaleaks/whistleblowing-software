@@ -101,9 +101,6 @@ controller("AdminContextEditorCtrl", ["$scope", "$rootScope", "$http", "AdminCon
   };
 }]).
 controller("AdminContextReceiverSelectorCtrl", ["$scope", function($scope) {
-  $scope.moveUp = function(idx) { swap(idx, -1); };
-  $scope.moveDown = function(idx) { swap(idx, 1); };
-
   function swap(index, n) {
     var target = index + n;
     if (target > -1 && target < $scope.context.receivers.length) {
@@ -113,6 +110,9 @@ controller("AdminContextReceiverSelectorCtrl", ["$scope", function($scope) {
       $scope.context.receivers[index] = tmp;
     }
   }
+
+  $scope.moveUp = function(idx) { swap(idx, -1); };
+  $scope.moveDown = function(idx) { swap(idx, 1); };
 }]).
 controller("AdminContextAddCtrl", ["$scope", function($scope) {
   $scope.new_context = {};
