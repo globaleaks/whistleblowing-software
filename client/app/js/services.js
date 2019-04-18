@@ -1288,7 +1288,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
             return false;
           }
 
-          if (field.triggered_by_options.length === 0) {
+          if (!field.triggered_by_options || field.triggered_by_options.length === 0) {
             field.enabled = true;
             return true;
           }
