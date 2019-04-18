@@ -1,3 +1,6 @@
+Changes in version 3.6.46 - 2019-04-17
+    Fix visualization of submissions received before version 3.6.41
+
 Changes in version 3.6.45 - 2019-04-16
     Apply minor bugfixing
 
