@@ -176,7 +176,7 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
       });
     };
 
-    $scope.moveReceiver = function(rec) {
+    $scope.addReceiver = function(rec) {
       $scope.context.receivers.push(rec.id);
       $scope.showSelect = false;
     };

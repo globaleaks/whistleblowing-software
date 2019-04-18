@@ -7,7 +7,7 @@
 <div class="modal-body">
   <div class="alert alert-default">
     <div data-translate>Recipients</div>
-    <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='moveReceiver($item)'>
+    <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='addReceiver($item)'>
       <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
         <span data-ng-bind="$select.selected.name"></span>
       </ui-select-match>
