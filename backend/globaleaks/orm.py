@@ -103,7 +103,7 @@ class transact(object):
     def _wrap(self, function, *args, **kwargs):
         """
         Wrap provided function calling it inside a thread and
-        passing the store to it.
+        passing the ORM session to it.
         """
         session = get_session()
         retries = 0
