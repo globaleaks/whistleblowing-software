@@ -28,7 +28,7 @@ def db_create_step(session, tid, step_dict, language):
     step = models.db_forge_obj(session, models.Step, step_dict)
 
     for trigger in step_dict.get('triggered_by_options', []):
-        db_create_trigger(session, tid, trigger['option'], 'step', step.id, trigge['sufficient'])
+        db_create_trigger(session, tid, trigger['option'], 'step', step.id, trigger['sufficient'])
 
     for c in step_dict['children']:
         c['tid'] = tid
