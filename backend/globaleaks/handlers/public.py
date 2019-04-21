@@ -32,9 +32,9 @@ def db_get_triggers_by_type(session, type, object_id):
     ret = []
 
     m = get_trigger_model_by_type(type)
-    for x in session.query(models.FieldOption.field_id, models.FieldOption.id) \
+    for x in session.query(models.FieldOption.field_id, models.FieldOption.id, m.sufficient) \
                     .filter(models.FieldOption.id == m.option_id, m.object_id == object_id):
-        ret.append({'field': x[0], 'option': x[1]})
+        ret.append({'field': x[0], 'option': x[1], 'sufficient': x[2]})
 
     return ret
 

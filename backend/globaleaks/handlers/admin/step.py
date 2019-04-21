@@ -28,7 +28,7 @@ def db_create_step(session, tid, step_dict, language):
     step = models.db_forge_obj(session, models.Step, step_dict)
 
     for trigger in step_dict.get('triggered_by_options', []):
-        db_create_trigger(session, tid, trigger['option'], 'step', step.id)
+        db_create_trigger(session, tid, trigger['option'], 'step', step.id, trigge['sufficient'])
 
     for c in step_dict['children']:
         c['tid'] = tid
@@ -70,7 +70,7 @@ def db_update_step(session, tid, step_id, step_dict, language):
     db_reset_option_triggers(session, 'step', step.id)
 
     for trigger in step_dict.get('triggered_by_options', []):
-        db_create_trigger(session, tid, trigger['option'], 'step', step.id)
+        db_create_trigger(session, tid, trigger['option'], 'step', step.id, trigger['sufficient'])
 
     return step
 

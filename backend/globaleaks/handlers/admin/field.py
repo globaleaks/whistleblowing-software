@@ -16,10 +16,11 @@ from globaleaks.settings import Settings
 from globaleaks.utils.utility import read_json_file
 
 
-def db_create_trigger(session, tid, option_id, type, object_id):
+def db_create_trigger(session, tid, option_id, type, object_id, sufficient):
     o = get_trigger_model_by_type(type)()
     o.option_id = option_id
     o.object_id = object_id
+    o.sufficient = sufficient
     session.add(o)
 
 
@@ -158,7 +159,7 @@ def db_create_field(session, tid, field_dict, language):
         db_update_fieldoptions(session, field.id, options, language)
 
         for trigger in field_dict.get('triggered_by_options', []):
-            db_create_trigger(session, tid, trigger['option'], 'field', field.id)
+            db_create_trigger(session, tid, trigger['option'], 'field', field.id, trigger['sufficient'])
 
     if field.instance != 'reference':
         for c in field_dict.get('children', []):
@@ -191,7 +192,7 @@ def db_update_field(session, tid, field_id, field_dict, language):
     db_reset_option_triggers(session, 'field', field.id)
 
     for trigger in field_dict.get('triggered_by_options', []):
-        db_create_trigger(session, tid, trigger['option'], 'field', field.id)
+        db_create_trigger(session, tid, trigger['option'], 'field', field.id, trigger['sufficient'])
 
     if field_dict['instance'] != 'reference':
         db_update_fieldoptions(session, field.id, field_dict['options'], language)

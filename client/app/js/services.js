@@ -1303,15 +1303,20 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           }
 
           for (i=0; i < field.triggered_by_options.length; i++) {
-            var trigger_obj = field.triggered_by_options[i];
-            var answers_field = this.findField(answers, trigger_obj.field);
+            var trigger = field.triggered_by_options[i];
+            var answers_field = this.findField(answers, trigger.field);
             if (answers_field === undefined) {
               continue;
             }
 
             // Check if triggering field is in answers object
-            if (trigger_obj.option === answers_field.value ||
-                (answers_field.hasOwnProperty(trigger_obj.option) && answers_field[trigger_obj.option])) {
+            if (trigger.option === answers_field.value ||
+                (answers_field.hasOwnProperty(trigger.option) && answers_field[trigger.option])) {
+              if (trigger.sufficient) {
+                field.enabled = true;
+                return true;
+              }
+
               count += 1;
             }
           }
@@ -1475,14 +1480,15 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           }
 
           var parseField = function(field) {
-            if (field.type == 'checkbox' || field.type == 'selectbox') {
+            if (field.type === 'checkbox' || field.type === 'selectbox') {
               parsedFields.fields_by_id[field.id] = field;
+              console.log(field.id);
               parsedFields.fields.push(field);
               field.options.forEach(function(option) {
                 parsedFields.options_by_id[option.id] = option;
               });
 
-            } else if (field.type == 'fieldgroup') {
+            } else if (field.type === 'fieldgroup') {
               field.children.forEach(function(field) {
                 parseField(field);
               });

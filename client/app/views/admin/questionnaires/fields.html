@@ -360,7 +360,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label data-translate>Triggered by a score higher than:</label>
+              <label data-translate>Triggered by score:</label>
               <select class="form-control" data-ng-model="field.triggered_by_score" convert-to-number>
                 <option value="0" data-translate>Low</option>
                 <option value="1" data-translate>Medium</option>
@@ -386,6 +386,10 @@
                     <option data-ng-repeat="option in parsedFields.fields_by_id[new_trigger.field].options" value="{{option.id}}">{{option.label}}</option>
                   </select>
                 </div>
+                  <div data-ng-if="new_trigger.field" class="form-group">
+                    <input data-ng-model="new_trigger.sufficient" type="checkbox">
+                    <label data-translate>Sufficient</label>
+                  </div>
                 <div class="form-group">
                   <button id="add-step-btn" class="btn btn-primary" data-ng-disabled="!new_trigger.field || !new_trigger.option" data-ng-click="addTrigger()">
                     <i class="glyphicon glyphicon-plus-sign"></i>
@@ -397,7 +401,7 @@
                 <button class="btn btn-xs btn-danger" data-ng-click="delTrigger(trigger)">
                   <i class="glyphicon glyphicon-remove"></i>
                 </button>
-                <span>{{parsedFields.fields_by_id[trigger.field].label}}</span>: <span>{{parsedFields.options_by_id[trigger.option].label}}</span>
+                <span>{{parsedFields.fields_by_id[trigger.field].label}}</span>: <span>{{parsedFields.options_by_id[trigger.option].label}}</span> <span data-ng-if='trigger.sufficient'>(<span data-translate>Sufficient</span>)</span>
               </div>
             </div>
           </div>

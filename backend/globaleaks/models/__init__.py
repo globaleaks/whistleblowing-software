@@ -696,6 +696,7 @@ class _FieldOptionTriggerField(Model):
 
     option_id = Column(UnicodeText(36), primary_key=True, nullable=False)
     object_id = Column(UnicodeText(36), primary_key=True, nullable=False)
+    sufficient = Column(Boolean, default=True, nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -708,6 +709,7 @@ class _FieldOptionTriggerStep(Model):
 
     option_id = Column(UnicodeText(36), primary_key=True, nullable=False)
     object_id = Column(UnicodeText(36), primary_key=True, nullable=False)
+    sufficient = Column(Boolean, default=True, nullable=False)
 
     @declared_attr
     def __table_args__(self):
