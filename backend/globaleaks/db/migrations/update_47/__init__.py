@@ -37,9 +37,7 @@ class Context_v_46(Model):
 
 class FieldOption_v_46(Model):
     __tablename__ = 'fieldoption'
-
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-
     field_id = Column(UnicodeText(36), nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
     label = Column(JSON, nullable=False)
@@ -74,6 +72,24 @@ class InternalTip_v_46(Model):
     crypto_tip_pub_key = Column(LargeBinary(32), default=b'', nullable=False)
 
     binary_keys = ['crypto_tip_pub_key']
+
+
+class SubmissionStatus_v_46(Model):
+    __tablename__ = 'submissionstatus'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    tid = Column(Integer, default=1, nullable=False)
+    label = Column(JSON, nullable=False)
+    system_defined = Column(Boolean, nullable=False, default=False)
+    system_usage = Column(UnicodeText, nullable=True)
+    presentation_order = Column(Integer, default=0, nullable=False)
+
+
+class SubmissionSubStatus_v_46(Model):
+    __tablename__ = 'submissionsubstatus'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    submissionstatus_id = Column(UnicodeText(36), nullable=False)
+    label = Column(JSON, nullable=False)
+    presentation_order = Column(Integer, default=0, nullable=False)
 
 
 class MigrationScript(MigrationBase):

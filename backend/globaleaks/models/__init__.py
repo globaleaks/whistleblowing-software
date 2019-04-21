@@ -1117,10 +1117,16 @@ class _SubmissionStatus(Model):
     system_defined = Column(Boolean, nullable=False, default=False)
     system_usage = Column(UnicodeText, nullable=True)
 
+    tip_timetolive = Column(Integer, default=90, nullable=True)
+    tip_timetolive_override = Column(Boolean, default=False, nullable=False)
+    receivers = Column(JSON, default=list, nullable=True)
+
     presentation_order = Column(Integer, default=0, nullable=False)
 
     localized_keys = ['label']
-    int_keys = ['presentation_order']
+    int_keys = ['presentation_order', 'tip_timetolive']
+    bool_keys = ['tip_timetolive_override']
+    json_keys = ['receivers']
 
     @declared_attr
     def __table_args__(self):
@@ -1137,10 +1143,16 @@ class _SubmissionSubStatus(Model):
     submissionstatus_id = Column(UnicodeText(36), nullable=False)
     label = Column(JSON, nullable=False)
 
+    tip_timetolive = Column(Integer, default=90, nullable=True)
+    tip_timetolive_override = Column(Boolean, default=False, nullable=False)
+    receivers = Column(JSON, default=list, nullable=True)
+
     presentation_order = Column(Integer, default=0, nullable=False)
 
     localized_keys = ['label']
-    int_keys = ['presentation_order']
+    int_keys = ['presentation_order', 'tip_timetolive']
+    bool_keys = ['tip_timetolive_override']
+    json_keys = ['receivers']
 
     @declared_attr
     def __table_args__(self):

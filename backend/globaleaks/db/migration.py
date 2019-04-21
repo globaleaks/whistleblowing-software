@@ -41,7 +41,7 @@ from globaleaks.db.migrations.update_43 import InternalTip_v_42, ReceiverTip_v_4
 from globaleaks.db.migrations.update_45 import Context_v_44, Field_v_44, InternalTip_v_44, Receiver_v_44, ReceiverFile_v_44, \
     ReceiverTip_v_44, Step_v_44, User_v_44, WhistleblowerFile_v_44, WhistleblowerTip_v_44
 from globaleaks.db.migrations.update_46 import Config_v_45, ConfigL10N_v_45, Context_v_45, Field_v_45, FieldOption_v_45, InternalFile_v_45, InternalTip_v_45, Receiver_v_45, User_v_45, WhistleblowerFile_v_45
-from globaleaks.db.migrations.update_47 import Context_v_46, FieldOption_v_46, InternalTip_v_46
+from globaleaks.db.migrations.update_47 import Context_v_46, FieldOption_v_46, InternalTip_v_46, SubmissionStatus_v_46, SubmissionSubStatus_v_46
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
@@ -86,8 +86,8 @@ migration_mapping = OrderedDict([
     ('ReceiverFile', [ReceiverFile_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ReceiverFile_v_40, 0, ReceiverFile_v_44, 0, 0, 0, models._ReceiverFile, 0, 0]),
     ('ReceiverTip', [ReceiverTip_v_30, 0, 0, 0, 0, 0, 0, ReceiverTip_v_38, 0, 0, 0, 0, 0, 0, 0, ReceiverTip_v_40, 0, ReceiverTip_v_42, 0, ReceiverTip_v_44, 0, models._ReceiverTip, 0, 0]),
     ('SecureFileDelete', [SecureFileDelete_v_24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._SecureFileDelete, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('SubmissionStatus', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._SubmissionStatus, 0, 0, 0, 0, 0]),
-    ('SubmissionSubStatus', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._SubmissionSubStatus, 0, 0, 0, 0, 0]),
+    ('SubmissionStatus', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, SubmissionStatus_v_46, 0, 0, 0, 0, models._SubmissionStatus]),
+    ('SubmissionSubStatus', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, SubmissionSubStatus_v_46, 0, 0, 0, 0, models._SubmissionSubStatus]),
     ('SubmissionStatusChange', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._SubmissionStatusChange, 0, 0, 0, 0, 0]),
     ('ShortURL', [-1, -1, ShortURL_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._ShortURL, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Signup', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Signup_v_40, 0, Signup_v_41, Signup_v_42, models._Signup, 0, 0, 0, 0]),

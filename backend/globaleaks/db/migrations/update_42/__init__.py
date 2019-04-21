@@ -1,6 +1,6 @@
 # -*- coding: UTF-8
+from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.handlers.admin.tenant import initialize_submission_statuses
 from globaleaks.handlers.rtip import db_update_submission_status
 from globaleaks.models import Model
 from globaleaks.models.properties import *
@@ -169,7 +169,15 @@ class MigrationScript(MigrationBase):
     def epilogue(self):
         tenants = self.session_old.query(self.model_from['Tenant'])
         for tenant in tenants:
-            initialize_submission_statuses(self.session_new, tenant.id)
+            for s in [{'label': {'en': 'New'}, 'system_usage': u'new'},
+                      {'label': {'en': 'Opened'}, 'system_usage': u'opened'},
+                      {'label': {'en': 'Closed'}, 'system_usage': u'closed'}]:
+                state = self.model_to['SubmissionStatus']()
+                state.tid = tenant.id
+                state.label = s['label']
+                state.system_defined = True
+                state.system_usage = s['system_usage']
+                self.session_new.add(state)
 
         self.session_new.flush()
 
