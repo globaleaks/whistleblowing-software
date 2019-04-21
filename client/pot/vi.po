@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -410,8 +410,8 @@ msgstr "Ghi bàn"
 msgid "Trigger question"
 msgstr "câu hỏi kích hoạt"
 
-msgid "Triggered by a score higher than:"
-msgstr "Kích hoạt bởi một số điểm cao hơn:"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Tin nhắn hiển thị trên đầu trang trạng thái của các trình"
@@ -1408,6 +1408,12 @@ msgstr ""
 msgid "Multiplier"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr ""
 
@@ -1866,12 +1872,6 @@ msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
-msgstr ""
-
-msgid "Trigger step"
-msgstr "bước kích hoạt"
-
-msgid "Inverted"
 msgstr ""
 
 msgid "Logout"

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-12 09:30+0000\n"
-"Last-Translator: Naofumi <naofum@gmail.com>\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -407,8 +407,8 @@ msgstr "スコア"
 msgid "Trigger question"
 msgstr "トリガーの質問"
 
-msgid "Triggered by a score higher than:"
-msgstr "スコアが次より高いためトリガーされました:"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "提出のステータスページの上部に表示されるメッセージ"
@@ -1405,6 +1405,12 @@ msgstr "追加"
 msgid "Multiplier"
 msgstr "乗数"
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr "質問"
 
@@ -1864,12 +1870,6 @@ msgstr "内部告発者向けの添付ファイル"
 
 msgid "Upload a file:"
 msgstr "ファイルをアップロード："
-
-msgid "Trigger step"
-msgstr "トリガーのステップ"
-
-msgid "Inverted"
-msgstr "反転"
 
 msgid "Logout"
 msgstr "ログアウト"

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-11 18:57+0000\n"
-"Last-Translator: Nikafn <appone6@gmail.com>\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -407,8 +407,8 @@ msgstr "Hesab"
 msgid "Trigger question"
 msgstr "Tətikləyici sual"
 
-msgid "Triggered by a score higher than:"
-msgstr "Daha yüksək bir hesabla tətikləndi: "
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Təqdimatın status səhifəsinin yuxarısında göstərilən mesaj"
@@ -1405,6 +1405,12 @@ msgstr ""
 msgid "Multiplier"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr "Suallar"
 
@@ -1864,12 +1870,6 @@ msgstr "İnformasiya ötürən üçün əlavə edilmiş fayllar"
 
 msgid "Upload a file:"
 msgstr "Yeni fayl yüklə:"
-
-msgid "Trigger step"
-msgstr "Tətikləyici addım"
-
-msgid "Inverted"
-msgstr ""
 
 msgid "Logout"
 msgstr "Çıxış"

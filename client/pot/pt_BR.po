@@ -6,7 +6,8 @@
 # alfalb_mansil, 2014
 # alfalb_mansil, 2014
 # Communia <ameaneantie@riseup.net>, 2016
-# Chacal Exodius, 2018-2019
+# Chacal E., 2019
+# Chacal E., 2018-2019
 # Claudio M. Vieira <clmantovani@bol.com.br>, 2015
 # Cleber de Souza Corrêa <cscorrea@gmail.com>, 2014
 # Communia <ameaneantie@riseup.net>, 2016
@@ -37,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-15 11:54+0000\n"
-"Last-Translator: Chacal Exodius\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"Last-Translator: Chacal E.\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -435,8 +436,8 @@ msgstr "Pontuação "
 msgid "Trigger question"
 msgstr "Ativar questão"
 
-msgid "Triggered by a score higher than:"
-msgstr "Ativada por pontuação superior a:"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Mensagem exibida no início da página do status de envio"
@@ -1433,6 +1434,12 @@ msgstr "Adição"
 msgid "Multiplier"
 msgstr "Multiplicador"
 
+msgid "Trigger conditions"
+msgstr "Condições de gatilho"
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr "Questões"
 
@@ -1892,12 +1899,6 @@ msgstr "Arquivos anexados pelo delator"
 
 msgid "Upload a file:"
 msgstr "Inserir um arquivo:"
-
-msgid "Trigger step"
-msgstr "Ativar essa etapa"
-
-msgid "Inverted"
-msgstr "Invertida"
 
 msgid "Logout"
 msgstr "Sair"

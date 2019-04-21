@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -417,8 +417,8 @@ msgstr "分数"
 msgid "Trigger question"
 msgstr "触发问题"
 
-msgid "Triggered by a score higher than:"
-msgstr "启动触发，如果分数高于："
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "在提交状态页面的上方显示信息"
@@ -1415,6 +1415,12 @@ msgstr ""
 msgid "Multiplier"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr "问题"
 
@@ -1874,12 +1880,6 @@ msgstr "发送给揭发人的附件"
 
 msgid "Upload a file:"
 msgstr "上传文件："
-
-msgid "Trigger step"
-msgstr "触发步骤"
-
-msgid "Inverted"
-msgstr "倒排"
 
 msgid "Logout"
 msgstr "注销"

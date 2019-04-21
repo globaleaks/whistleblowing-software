@@ -47,8 +47,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-14 18:03+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -445,8 +445,8 @@ msgstr "Ergebnis"
 msgid "Trigger question"
 msgstr "Trigger-Frage"
 
-msgid "Triggered by a score higher than:"
-msgstr "Ausgelöst durch eine Kerbe höher als:"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Nachricht gezeigt oben auf der Statusseite der Vorlage"
@@ -530,7 +530,7 @@ msgid "Activate"
 msgstr "Aktivieren"
 
 msgid "Disactivate"
-msgstr ""
+msgstr "Deaktivieren"
 
 msgid "Search"
 msgstr "Suche"
@@ -659,7 +659,7 @@ msgid "New"
 msgstr "Neu"
 
 msgid "Opened"
-msgstr ""
+msgstr "Geöffnet"
 
 msgid "Closed"
 msgstr "Geschlossen"
@@ -713,7 +713,7 @@ msgid "Enable multisite feature"
 msgstr ""
 
 msgid "Enable two factor authentication"
-msgstr ""
+msgstr "Zwei-Faktor-Authentifizierung aktivieren"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Anderen Webseiten erlauben, die Plattform in Inline-Frames einzubinden."
@@ -1443,6 +1443,12 @@ msgstr ""
 msgid "Multiplier"
 msgstr "Faktor"
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr "Fragen"
 
@@ -1902,12 +1908,6 @@ msgstr "Angehängte Dateien für den Hinweisgeber"
 
 msgid "Upload a file:"
 msgstr "Hochladen einer Datei:"
-
-msgid "Trigger step"
-msgstr "Triggerschritt"
-
-msgid "Inverted"
-msgstr "Invertiert"
 
 msgid "Logout"
 msgstr "Abmelden"

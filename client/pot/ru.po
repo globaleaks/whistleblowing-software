@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -426,8 +426,8 @@ msgstr "Счет"
 msgid "Trigger question"
 msgstr "Инициировать вопрос"
 
-msgid "Triggered by a score higher than:"
-msgstr "Инициируется оценкой выше:"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Сообщение отображается в верхней части страницы подачи материалов"
@@ -1424,6 +1424,12 @@ msgstr ""
 msgid "Multiplier"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr "Вопросы"
 
@@ -1883,12 +1889,6 @@ msgstr "Приложения для информатора"
 
 msgid "Upload a file:"
 msgstr "Выгрузить файл:"
-
-msgid "Trigger step"
-msgstr "Инициировать следующее действие"
-
-msgid "Inverted"
-msgstr ""
 
 msgid "Logout"
 msgstr "Выход"

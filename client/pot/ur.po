@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -411,8 +411,8 @@ msgstr "اسکور"
 msgid "Trigger question"
 msgstr "ٹریگر سوال"
 
-msgid "Triggered by a score higher than:"
-msgstr "سے زیادہ ایک سکور سے متحرک:"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "پیغام جمع کرانے کی حیثیت صفحے کے سب سے اوپر پر دکھایا گیا"
@@ -1409,6 +1409,12 @@ msgstr ""
 msgid "Multiplier"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr ""
 
@@ -1867,12 +1873,6 @@ msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
-msgstr ""
-
-msgid "Trigger step"
-msgstr "ٹریگر قدم"
-
-msgid "Inverted"
 msgstr ""
 
 msgid "Logout"

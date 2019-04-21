@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -413,8 +413,8 @@ msgstr "Βαθμολογία"
 msgid "Trigger question"
 msgstr "Ενεργοποιούμενη ερώτηση"
 
-msgid "Triggered by a score higher than:"
-msgstr "Ενεργοποιείται με βαθμολογία μεγαλύτερη από:"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Μήνυμα που εμφανίζεται στην κορυφή της σελίδας κατάστασης της υποβολής"
@@ -1411,6 +1411,12 @@ msgstr ""
 msgid "Multiplier"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr "Ερωτήσεις"
 
@@ -1870,12 +1876,6 @@ msgstr "Συνημμένα αρχεία για τον πληροφοριοδότ
 
 msgid "Upload a file:"
 msgstr "Ανεβάστε ένα αρχείο:"
-
-msgid "Trigger step"
-msgstr "βήμα σκανδάλη"
-
-msgid "Inverted"
-msgstr ""
 
 msgid "Logout"
 msgstr "Αποσύνδεση"

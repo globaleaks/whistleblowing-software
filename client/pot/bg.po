@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -409,8 +409,8 @@ msgstr "Точки"
 msgid "Trigger question"
 msgstr "Въпрос в резултат на отговор"
 
-msgid "Triggered by a score higher than:"
-msgstr "Зареждане при точки повече от:"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Съобщение, показвано най-горе на страницата за статус на подадения сигнал"
@@ -1407,6 +1407,12 @@ msgstr "Събиране"
 msgid "Multiplier"
 msgstr "Умножение"
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr "Въпроси"
 
@@ -1866,12 +1872,6 @@ msgstr "Прикачени файлове за източника"
 
 msgid "Upload a file:"
 msgstr "Качване на нов файл:"
-
-msgid "Trigger step"
-msgstr "Стъпка в резултат на отговор"
-
-msgid "Inverted"
-msgstr "Обърнат"
 
 msgid "Logout"
 msgstr "Отписване"

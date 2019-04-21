@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -421,8 +421,8 @@ msgstr "Nilai"
 msgid "Trigger question"
 msgstr "Pertanyaan pemicu"
 
-msgid "Triggered by a score higher than:"
-msgstr "Dipicu oleh nilai yang lebih tinggi dari:"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Pesan tampil di atas halaman status pengiriman"
@@ -1419,6 +1419,12 @@ msgstr "Tambahan"
 msgid "Multiplier"
 msgstr "Pengganda"
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr "Pertanyaan"
 
@@ -1878,12 +1884,6 @@ msgstr "Lampiran berkas untuk informan publik "
 
 msgid "Upload a file:"
 msgstr "Mengunggah berkas: "
-
-msgid "Trigger step"
-msgstr "Memicu langkah"
-
-msgid "Inverted"
-msgstr "Terbalik"
 
 msgid "Logout"
 msgstr "Keluar"

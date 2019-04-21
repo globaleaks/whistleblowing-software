@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -404,8 +404,8 @@ msgstr "skor"
 msgid "Trigger question"
 msgstr "Trigger pitanje"
 
-msgid "Triggered by a score higher than:"
-msgstr "Izazvano rezultatom veći od:"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Poruka je prikazano na vrhu statusu stranice podnošenja"
@@ -1402,6 +1402,12 @@ msgstr ""
 msgid "Multiplier"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr ""
 
@@ -1860,12 +1866,6 @@ msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
-msgstr ""
-
-msgid "Trigger step"
-msgstr "Trigger korak"
-
-msgid "Inverted"
 msgstr ""
 
 msgid "Logout"

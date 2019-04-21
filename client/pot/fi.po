@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -408,8 +408,8 @@ msgstr "Pistemäärä"
 msgid "Trigger question"
 msgstr "Aseta jatkokysymys"
 
-msgid "Triggered by a score higher than:"
-msgstr "Käytetään pistemäärän ollessa korkeampi kuin:"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Vihjeen tila -sivun yläreunassa näytettävä viesti"
@@ -1406,6 +1406,12 @@ msgstr "Lisäys"
 msgid "Multiplier"
 msgstr "Kerroin"
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr "Kysymykset"
 
@@ -1865,12 +1871,6 @@ msgstr "Vihjeen antajaan liitetyt tiedostot"
 
 msgid "Upload a file:"
 msgstr "Lähetä tiedosto:"
-
-msgid "Trigger step"
-msgstr "Määritä vaiheen ehto"
-
-msgid "Inverted"
-msgstr "Käänteinen"
 
 msgid "Logout"
 msgstr "Kirjaudu ulos"

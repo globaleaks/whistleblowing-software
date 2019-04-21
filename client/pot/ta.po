@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -405,8 +405,8 @@ msgstr "ஸ்கோர்"
 msgid "Trigger question"
 msgstr "தூண்டல் கேள்வி"
 
-msgid "Triggered by a score higher than:"
-msgstr "விட அதிக ஒரு மதிப்பெண் தூண்டப்படலாம்:"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "செய்தி சமர்ப்பிக்கும் நிலையை பக்கம் மேல் காண்பிக்கப்படும்"
@@ -1403,6 +1403,12 @@ msgstr "கூடுதலாக"
 msgid "Multiplier"
 msgstr "பெருக்கி"
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr "கேள்விகள்"
 
@@ -1862,12 +1868,6 @@ msgstr "விசில்ப்ளோயருக்கான இணைக்�
 
 msgid "Upload a file:"
 msgstr "கோப்பு பதிவேற்று:"
-
-msgid "Trigger step"
-msgstr "தூண்டல் படி"
-
-msgid "Inverted"
-msgstr "தலைகீழ்"
 
 msgid "Logout"
 msgstr "வெளியேறு"

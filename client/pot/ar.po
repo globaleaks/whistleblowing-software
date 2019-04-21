@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -436,8 +436,8 @@ msgstr "مجموع النقاط"
 msgid "Trigger question"
 msgstr "سؤال التشغيل"
 
-msgid "Triggered by a score higher than:"
-msgstr "يشغل بمجموغ نقاط أعلى من:"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "الرسالة ظاهرة أعلى صفحة حالة البلاغ"
@@ -1434,6 +1434,12 @@ msgstr ""
 msgid "Multiplier"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr "الأسئلة"
 
@@ -1893,12 +1899,6 @@ msgstr "الملفات المرفقة للمبلغ"
 
 msgid "Upload a file:"
 msgstr "رفع ملف:"
-
-msgid "Trigger step"
-msgstr "مرحلة التشغيل"
-
-msgid "Inverted"
-msgstr ""
 
 msgid "Logout"
 msgstr "تسجيل الخروج"

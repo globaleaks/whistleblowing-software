@@ -24,6 +24,7 @@
 # Mieke van Heesewijk <mieke@netdem.nl>, 2013
 # M M <wouter.moraal92@gmail.com>, 2015
 # Nathan Follens, 2016-2017
+# Meteor0id, 2019
 # Niels ten Oever <niels@digitaldissidents.org>, 2013
 # Niels ten Oever <niels@digitaldissidents.org>, 2013
 # Teun Gautier <gautier@groene.nl>, 2013
@@ -37,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-15 06:55+0000\n"
-"Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -119,7 +120,7 @@ msgid "Preferences"
 msgstr "Voorkeuren"
 
 msgid "User preferences"
-msgstr ""
+msgstr "Gebruikersvoorkeuren"
 
 msgid "Notification settings"
 msgstr "Notificatie-instellingen"
@@ -267,7 +268,7 @@ msgid "Latest selectable date"
 msgstr "Uiterste datum"
 
 msgid "0 = auto"
-msgstr "0 = auto"
+msgstr "0 = automatisch"
 
 msgid "-1 = unlimited"
 msgstr "-1 = geen limiet"
@@ -435,8 +436,8 @@ msgstr "Score"
 msgid "Trigger question"
 msgstr "Trigger vraag"
 
-msgid "Triggered by a score higher than:"
-msgstr "Zichtbaar bij een score hoger dan:"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Melding die getoond wordt boven aan de statuspagina van de inzending"
@@ -520,7 +521,7 @@ msgid "Activate"
 msgstr "Activeren"
 
 msgid "Disactivate"
-msgstr ""
+msgstr "Deactiveren"
 
 msgid "Search"
 msgstr "Zoeken"
@@ -625,7 +626,7 @@ msgid "Use as default"
 msgstr "Markeer als standaard"
 
 msgid "Create your whistleblowing platform"
-msgstr ""
+msgstr "Creëer je eigen klokkenluidersplatform"
 
 msgid "Collapse"
 msgstr "Inklappen"
@@ -637,13 +638,13 @@ msgid "Select"
 msgstr "Selecteren"
 
 msgid "Selected by default"
-msgstr ""
+msgstr "Wordt standaard geselecteerd"
 
 msgid "Unselected by default"
-msgstr ""
+msgstr "Wordt standaard niet geselecteerd"
 
 msgid "Surname"
-msgstr ""
+msgstr "Achternaam"
 
 msgid "New"
 msgstr "Nieuw"
@@ -655,7 +656,7 @@ msgid "Closed"
 msgstr "Gesloten"
 
 msgid "Placeholder"
-msgstr ""
+msgstr "Plaatshouder"
 
 msgid "Print"
 msgstr "Afdrukken"
@@ -693,17 +694,17 @@ msgid "Disable submissions"
 msgstr "Inzendingen uitschakelen"
 
 msgid "Enable encryption"
-msgstr ""
+msgstr "Encryptie inschakelen"
 
 msgid ""
 "Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
+msgstr "Het systeem toestaan om gegevens op te slaan in gewoon tekstformaat wanneer encryptie niet beschikbaar is"
 
 msgid "Enable multisite feature"
-msgstr ""
+msgstr "Meerdere-websites functie inschakelen"
 
 msgid "Enable two factor authentication"
-msgstr ""
+msgstr "Twee-factor-authenticatie inschakelen"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Gebruik van het platform door middel van iframes op andere websites toestaan"
@@ -747,7 +748,7 @@ msgid "Disable the privacy panel"
 msgstr "Privacy-paneel uitschakelen"
 
 msgid "Enable disclaimer"
-msgstr ""
+msgstr "Disclaimer inschakelen"
 
 msgid "Title"
 msgstr "Titel"
@@ -756,7 +757,7 @@ msgid "Text"
 msgstr "Tekst"
 
 msgid "Disable the receipt hint"
-msgstr ""
+msgstr "Ontvangerhint uitschakelen"
 
 msgid "Disable the donation panel"
 msgstr "Donatiebox uitschakelen"
@@ -772,20 +773,20 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Stel deze instellingen alleen bij als u weet wat u doet."
 
 msgid "Password change interval"
-msgstr ""
+msgstr "Wachtwoord-wijzigingsinterval"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr ""
+msgstr "Wachtwoorden moeten geregeld worden veranderd om veiligheidsredenen."
 
 msgid "Set the value to 0 to disable this feature."
-msgstr ""
+msgstr "Stel de waarde in op 0 om deze functie uit te schakelen"
 
 msgid "Landing page"
 msgstr "Landingspagina"
 
 msgid "Default questionnaire"
-msgstr ""
+msgstr "Standaard vragenformulier"
 
 msgid "Title of the submission page"
 msgstr "Titel van de inzending-pagina"
@@ -806,7 +807,7 @@ msgid "Size limit for file attachments"
 msgstr "Maximale grootte voor bestandsbijlagen"
 
 msgid "Notify administrators of software problems"
-msgstr ""
+msgstr "Stel administratoren op de hoogte van software problemen"
 
 msgid "Notify developers of software problems"
 msgstr "Meld programmafouten bij ontwikkelaars"
@@ -814,7 +815,7 @@ msgstr "Meld programmafouten bij ontwikkelaars"
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr ""
+msgstr "Door dit in te schakelen draag je bij aan de ontwikkeling en veiligheid van het platvorm."
 
 msgid "Enable HTTP Basic Authentication to limit platform access"
 msgstr "HTTP Basic Authentication - de basisverificatie - inschakelen om de toegang tot het platform te beperken"
@@ -826,28 +827,28 @@ msgid "Password"
 msgstr "Wachtwoord"
 
 msgid "Allow users to reset their passwords"
-msgstr ""
+msgstr "Gebruikers toestaan hun wachtwoord opnieuw in te stellen."
 
 msgid ""
 "Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
-msgstr ""
+msgstr "De veiligheid kan verminderen als je gebruikers toestaat om hun wachtwoord te veranderen, omdat de veiligheid op dit platvorm dan afhankelijk word van de veiligheid van het e-mail account van de gebruiker."
 
 msgid "Enable users to upload their PGP keys"
-msgstr ""
+msgstr "Gebruikers toestaan hun PGP sleutel te uploaden"
 
 msgid "Enable multi-site login"
-msgstr ""
+msgstr "Meerdere-websitelogin inschakelen"
 
 msgid "Enable simplified login"
-msgstr ""
+msgstr "Vereenvoudigdelogin inschakelen"
 
 msgid "Logging level"
-msgstr ""
+msgstr "Niveau van loggen"
 
 msgid "Log accesses of internal users"
-msgstr ""
+msgstr "Log toegang door interne-gebruikers"
 
 msgid "Enable experimental features"
 msgstr "Experimentele functies inschakelen"
@@ -862,7 +863,7 @@ msgid "Save"
 msgstr "Bewaar"
 
 msgid "Reset submissions"
-msgstr ""
+msgstr "Inschrijvingen wissen en opnieuw instellen"
 
 msgid "Short URL"
 msgstr "Korte URL"
@@ -874,7 +875,7 @@ msgid "Add"
 msgstr "Toevoegen"
 
 msgid "Enable automatic backups"
-msgstr ""
+msgstr "Automatische back-ups inschakelen"
 
 msgid "Daily"
 msgstr "Dagelijks"
@@ -883,7 +884,7 @@ msgid "Weekly"
 msgstr "Wekelijks"
 
 msgid "Montly"
-msgstr ""
+msgstr "Maandelijks"
 
 msgid "Remote"
 msgstr "Extern"
@@ -895,7 +896,7 @@ msgid "Port"
 msgstr "Poort"
 
 msgid "Substatuses"
-msgstr ""
+msgstr "Onderstatussen"
 
 msgid "Label"
 msgstr "Label"
@@ -910,10 +911,10 @@ msgid "Cancel"
 msgstr "Annuleren"
 
 msgid "Submission statuses"
-msgstr ""
+msgstr "Statussen van indiening"
 
 msgid "Closing statuses"
-msgstr ""
+msgstr "Sluitings-statussen"
 
 msgid "Logo"
 msgstr "Logo"
@@ -991,19 +992,19 @@ msgid "Questionnaire"
 msgstr "Vragenformulier"
 
 msgid "Additional questionnaire"
-msgstr ""
+msgstr "Toegevoegde vragenformulier"
 
 msgid "Recipients"
 msgstr "Ontvangers"
 
 msgid "Submission expiration"
-msgstr ""
+msgstr "Vervaldatum van indiening"
 
 msgid "days"
 msgstr "dagen"
 
 msgid "Show the questionnaire navigation interface"
-msgstr ""
+msgstr "Toon het navigatie-ineractiescherm van de vragenlijst"
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "Klokkenluiders toestaan hun ontvangers te selecteren"
@@ -1063,7 +1064,7 @@ msgid "High"
 msgstr "Hoog"
 
 msgid "Customize the message shown in the receipt page"
-msgstr ""
+msgstr "Het bericht wat wordt getoond op de ontvangers pagina aanpassen"
 
 msgid "Low"
 msgstr "Laag"
@@ -1096,7 +1097,7 @@ msgid "Transport Security"
 msgstr "Transportbeveiliging"
 
 msgid "Require authentication"
-msgstr ""
+msgstr "Vereis authenticatie"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Niet-verzonden emails worden in een wachtrij gezet wanneer de optie wordt opnieuw ingeschakeld."
@@ -1133,7 +1134,7 @@ msgstr "Invoer moet lijken op:"
 
 msgid ""
 "The platform does not seem to be reachable with the configured hostname."
-msgstr ""
+msgstr "Het platvorm lijkt niet bereikbaar met de geconfigureerde hostname."
 
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
 msgstr "Om Let's Encrypt te gebruiken is het nodig om akkoord te gaan met hun Algemene Voorwaarden."
@@ -1261,13 +1262,13 @@ msgid ""
 msgstr "Door whistleblowers toe te staan verbinding te maken over HTTPS berschermt dit hun privacy maar niet hun anonimiteit."
 
 msgid "Restrict access to specific IP addresses"
-msgstr ""
+msgstr "Beperk toegang voor specifieke IP-adressen"
 
 msgid "Role"
 msgstr "Rol"
 
 msgid "Whitelisted IP addresses"
-msgstr ""
+msgstr "IP-adressen op de witte lijst gezet"
 
 msgid "Admin"
 msgstr "Admin"
@@ -1279,7 +1280,7 @@ msgid "Whistleblower"
 msgstr "Klokkenluider"
 
 msgid "Each entry must be separated with a comma."
-msgstr ""
+msgstr "Elke invoer moet worden gescheiden door middel van een komma."
 
 msgid "Example:"
 msgstr "Voorbeeld:"
@@ -1338,7 +1339,7 @@ msgid "Events"
 msgstr "Gebeurtenis"
 
 msgid "Question"
-msgstr ""
+msgstr "Vraag"
 
 msgid "Type"
 msgstr "Type"
@@ -1359,7 +1360,7 @@ msgid "Terms of service"
 msgstr "Serviceovereenkomst"
 
 msgid "Map"
-msgstr ""
+msgstr "Kaart"
 
 msgid "Group of questions"
 msgstr "Vragengroep"
@@ -1383,10 +1384,10 @@ msgid "Required"
 msgstr "Vereist"
 
 msgid "Accept multiple file uploads"
-msgstr "Uploads van meerdere bestanden accepteren"
+msgstr "Aanvaard uploads van meerdere bestanden"
 
 msgid "Accept multiple answers"
-msgstr ""
+msgstr "Aanvaard meerdere antwoorden"
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Hint die getoond wordt op de knop om een extra vraag toe te voegen"
@@ -1398,10 +1399,10 @@ msgid "Phone number"
 msgstr "Telefoonnummer"
 
 msgid "Checkbox label"
-msgstr ""
+msgstr "Selectievakje label"
 
 msgid "Add multimedia content"
-msgstr ""
+msgstr "Multimediainhoud toevoegen"
 
 msgid "Image"
 msgstr "Afbeelding"
@@ -1416,21 +1417,27 @@ msgid "Subject answer visibility to custodian authorization"
 msgstr "Onderwerp antwoord zichtbaarheid aan toezichthouder autorisatie"
 
 msgid "Text shown upon negative answer"
-msgstr ""
+msgstr "Tekst welke wordt getoond bij een ontkennend antwoord"
 
 msgid "Prompt confirmation upon negative answer"
 msgstr "Snelle bevestiging na negatief antwoord"
 
 msgid "Text shown upon confirmation"
-msgstr ""
+msgstr "Tekst welke wordt getoond bij bevestiging"
 
 msgid "Options"
 msgstr "Opties"
 
 msgid "Addition"
-msgstr ""
+msgstr "Toevoeging"
 
 msgid "Multiplier"
+msgstr "Vermenigvuldiger"
+
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1443,31 +1450,31 @@ msgid "Add question from template"
 msgstr "Vraag toevoegen van sjabloon"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Een kopie maken"
 
 msgid "Steps"
 msgstr "Stappen"
 
 msgid "Site settings"
-msgstr ""
+msgstr "Website instellingen"
 
 msgid "Case management"
-msgstr ""
+msgstr "Casus management"
 
 msgid "Network settings"
 msgstr "Netwerkinstellingen"
 
 msgid "Mode:"
-msgstr ""
+msgstr "Modus:"
 
 msgid "Root domain used for secondary sites"
-msgstr ""
+msgstr "Hoofddomein welke wordt gebruikt voor secondaire websites"
 
 msgid "Allow users to sign up"
-msgstr ""
+msgstr "Gebruikers toestaan zich in te schijven"
 
 msgid "Enable terms of service"
-msgstr ""
+msgstr "Gebruiksvoorwaarden inschakelen"
 
 msgid "Sites"
 msgstr "Websites"
@@ -1508,7 +1515,7 @@ msgid "Language"
 msgstr "Taal"
 
 msgid "Enable email notifications"
-msgstr ""
+msgstr "E-mail meldingen inschakelen"
 
 msgid "Details of the PGP key:"
 msgstr "Details van de PGP-sleutel:"
@@ -1546,10 +1553,10 @@ msgid ""
 msgstr "De ontvanger toestaan om per tip klokkenluiders rechten toe te wijzen"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
+msgstr "Gebruiker heeft administratortoegang tot de volgende functies:"
 
 msgid "main"
-msgstr ""
+msgstr "Basis"
 
 msgid "Request date"
 msgstr "Aanvraagdatum"
@@ -1561,13 +1568,13 @@ msgid "Identities"
 msgstr "Identiteiten"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr ""
+msgstr "De validatiekoppeling is ofwel incorrect of is verlopen."
 
 msgid "Your new email address has been validated."
-msgstr ""
+msgstr "Jouw nieuwe e-mail adres is gevalideerd."
 
 msgid "Before proceeding, please set a new password."
-msgstr ""
+msgstr "Voor je verdergaat, stel alsjeblieft een nieuw wachtwoord in."
 
 msgid "Submissions disabled"
 msgstr "Inzendingen  uitgeschakeld"
@@ -1591,7 +1598,7 @@ msgid "Please support Hermes through their donation page."
 msgstr "Steun Hermes via haar donatiepagina"
 
 msgid "Forgot password?"
-msgstr ""
+msgstr "Wachtwoord vergeten?"
 
 msgid "Check your inbox and enter the authentication code you received."
 msgstr ""
@@ -1600,10 +1607,10 @@ msgid "Authentication failed"
 msgstr "Authenticatie is mislukt"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "De code is ofwel ongeldig of verlopen."
 
 msgid "Site:"
-msgstr ""
+msgstr "Website:"
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr ""
@@ -1639,7 +1646,7 @@ msgid "Welcome!"
 msgstr "Welkom"
 
 msgid "For the user documentation, visit:"
-msgstr ""
+msgstr "Voor de gebruikershandleiding, bezoek:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -1654,7 +1661,7 @@ msgstr "Indien u een bijdrage wilt leveren aan het ontwikkelen van de software o
 msgid ""
 "If your non-profit needs support for investigative journalism, activism or a"
 " human rights defense project:"
-msgstr ""
+msgstr "Als jouw non-profit ondersteuning nodig heeft voor onderzoeksjournalistiek, activisme, of voor een project ter bescherming van mensenrechten:"
 
 msgid ""
 "For professional support and development of anti corruption and compliance "
@@ -1671,16 +1678,16 @@ msgid "Error!"
 msgstr "Mislukt!"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "Interne server fout"
 
 msgid "Error on input validation"
-msgstr ""
+msgstr "Fout bij invoer validatie"
 
 msgid "Resource not found"
-msgstr ""
+msgstr "Bron niet gevonden"
 
 msgid "Forbidden operation"
-msgstr ""
+msgstr "Verboden operatie"
 
 msgid "The specified old password is not valid"
 msgstr "Het oude wachtwoord is niet geldig"
@@ -1695,13 +1702,13 @@ msgid "Success!"
 msgstr " Succes!"
 
 msgid "Validation of email address change in progress."
-msgstr ""
+msgstr "Validatie van e-mail adres verandering wordt uitgevoerd."
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Encryption key"
-msgstr ""
+msgstr "Versleutelingssleutel"
 
 msgid "Hide"
 msgstr "Verberg"
@@ -1738,7 +1745,7 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Kopieer en plak vervolgens het volgende adres in de Tor-browser:"
 
 msgid "Enter a name for the copy"
-msgstr ""
+msgstr "Voer een naam in voor de kopie"
 
 msgid "Add file"
 msgstr "Bestand toevoegen"
@@ -1770,19 +1777,19 @@ msgid ""
 msgstr "Het platform is nog steeds niet geconfigureerd voor HTTPS verbindingen en mag daarom alleen worden gebruikt om te testen."
 
 msgid "Use case"
-msgstr ""
+msgstr "Gebruiks-casus"
 
 msgid "Anticorruption"
-msgstr ""
+msgstr "Anti-corruptie"
 
 msgid "Corporate compliance"
-msgstr ""
+msgstr "Navolgen van regelgeving bij bedrijfsvoering"
 
 msgid "Investigative journalism"
-msgstr ""
+msgstr "Onderzoeksjournalistiek"
 
 msgid "Civic activism"
-msgstr ""
+msgstr "Civiele activisme"
 
 msgid "previous step"
 msgstr "vorige stap"
@@ -1797,7 +1804,7 @@ msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr ""
 
 msgid "Fill the additional questionnaire"
-msgstr ""
+msgstr "De toegevoegde vragenlijst invullen"
 
 msgid "Send"
 msgstr "Verzend"
@@ -1885,19 +1892,13 @@ msgid "Recipient list"
 msgstr "Lijst ontvangers"
 
 msgid "Submission status:"
-msgstr ""
+msgstr "Indieningsstatussen:"
 
 msgid "Attached files for the whistleblower"
 msgstr "Bijlage voor de klokkenluider"
 
 msgid "Upload a file:"
 msgstr "Upload een bestand:"
-
-msgid "Trigger step"
-msgstr "Voorwaardelijke stap"
-
-msgid "Inverted"
-msgstr ""
 
 msgid "Logout"
 msgstr "Log uit"
@@ -1920,19 +1921,19 @@ msgid ""
 msgstr ""
 
 msgid "Request password reset"
-msgstr ""
+msgstr "Verzoek indienen om wachtwoord te veranderen"
 
 msgid "Password reset feature is unavailable for admin users."
-msgstr ""
+msgstr "De wachtwoord veranderen functie is niet beschikbaar voor administrator gebruikers."
 
 msgid "Password reset requested."
-msgstr ""
+msgstr "Wachtwoord veranderen aangevraagd."
 
 msgid "Thank you!"
 msgstr "Bedankt!"
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "We zullen ons best doen zo snel als mogelijk op je te reageren."
 
 msgid "Remember your receipt for this submission."
 msgstr "Onthoud de code voor jouw inzending."
@@ -1961,16 +1962,16 @@ msgid "Date of the request"
 msgstr "Datum aanvraag"
 
 msgid "Undeclared"
-msgstr ""
+msgstr "Niet aangegeven"
 
 msgid "You have completed the platform activation."
-msgstr ""
+msgstr "Je hebt de activatie van het platform afgerond."
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
+msgstr "Je klokkenluiders-platvorm is bijna klaar!"
 
 msgid "Check your inbox to activate your account."
-msgstr ""
+msgstr "Kijk in je email inbox om je account te activeren."
 
 msgid "Sign up"
 msgstr "Aanmelden"
@@ -1985,7 +1986,7 @@ msgid "Complete"
 msgstr "Volledig"
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "Ongeldig telefoonnummer"
 
 msgid "This field is mandatory."
 msgstr "Dit veld is verplicht"
@@ -2028,7 +2029,7 @@ msgstr "De volgende stappen bevatten fouter:"
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr ""
+msgstr "De volgende stap voor stap procedure helpt je bij het opzetten van je klokkenluiders-platvorm."
 
 msgid "Please choose a configuration profile:"
 msgstr "Kies een configuratie-profiel:"
@@ -2093,7 +2094,7 @@ msgid "Female"
 msgstr "Vrouw"
 
 msgid "Other gender identity"
-msgstr ""
+msgstr "Andere gender identiteit"
 
 msgid "Date of birth"
 msgstr "Geboortedatum"
@@ -2135,34 +2136,34 @@ msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Departement en locatie ten tijde van de misstand"
 
 msgid "Authentication code: {AuthCode}"
-msgstr ""
+msgstr "Authenticatiecode: {AuthCode}"
 
 msgid "The authentication code is valid for 5 minutes."
-msgstr ""
+msgstr "De authenticatiecode is geldig voor 5 minuten."
 
 msgid "Authentication code"
-msgstr ""
+msgstr "Authenticatiecode"
 
 msgid "Dear {RecipientName},"
 msgstr "Beste {RecipientName},"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr ""
+msgstr "Je klokkenluiders-platvorm is nu benaderbaar via:"
 
 msgid "To log in, visit:"
-msgstr ""
+msgstr "Om in te loggen, bezoek:"
 
 msgid "Users' credentials:"
 msgstr ""
 
 msgid "The platform will be automatically deleted on:"
-msgstr ""
+msgstr "Het platvorm wordt automatisch gewist op:"
 
 msgid "Kind regards,"
 msgstr "Met vriendelijke groet,"
 
 msgid "Access instructions"
-msgstr ""
+msgstr "Toegangsinstructies"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
@@ -2175,7 +2176,7 @@ msgid ""
 msgstr "Dit zou een een teken van een aanval kunnen zijn, bijvoorbeeld iemand die je server bestookt met onjuiste informatie, of een piek in het gebruik door verhoogde zichtbaarheid van uw project"
 
 msgid "Examine the issue to determine whether it is legitimate or not."
-msgstr ""
+msgstr "Bekijk het probleem om vast te stellen of het legitiem is of niet."
 
 msgid "The activities with unusual stats are:"
 msgstr "De gebeurtenissen met ongebruikelijke statistieken zijn:"
@@ -2217,28 +2218,28 @@ msgid "PGP key expiration alert"
 msgstr "PGP-sleutelvervalwaarschuwing"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "Er is een nieuwe klokkenluiderswebsite geregistreerd."
 
 msgid "Registration data:"
-msgstr ""
+msgstr "Registratie datum:"
 
 msgid "Site: {HTTPSUrl}"
-msgstr ""
+msgstr "Website: {HTTPSUrl}"
 
 msgid "Name: {Name}"
-msgstr ""
+msgstr "Naam: {Name}"
 
 msgid "Email: {Email}"
-msgstr ""
+msgstr "E-mail: {Email}"
 
 msgid "Language: {Language}"
-msgstr ""
+msgstr "Taal: {Language}"
 
 msgid "Use case: {UseCase}"
-msgstr ""
+msgstr "Gebruikssituatie: {UseCase}"
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "Nieuwe klokkenluiders website geregistreerd"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2257,7 +2258,7 @@ msgid ""
 msgstr "Dit is een mailtje om je te wijzen op een nieuw commentaar op een bestaande inzending."
 
 msgid "The submission can be accessed at:"
-msgstr ""
+msgstr "Je indiening kan worden benaderd via:"
 
 msgid "New comment"
 msgstr "Nieuw commentaar"
@@ -2265,18 +2266,18 @@ msgstr "Nieuw commentaar"
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr ""
+msgstr "Dit is een e-mail om je te laten weten dat er een verzoek is ingediend om je e-mail adres te veranderen naar {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
-msgstr ""
+msgstr "Klik op de volgende link om deze verandering te valideren:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr ""
+msgstr "Als jij deze verandering niet het aangevraagd, verander dan nu je wachtwoord en neem contact op met de systeemadministrator."
 
 msgid "Email change request"
-msgstr ""
+msgstr "E-mail veranderingsverzoek"
 
 msgid "From: {RecipientName}"
 msgstr "Van: {RecipientName}"
@@ -2307,7 +2308,7 @@ msgstr "Nieuwe bijlage"
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr ""
+msgstr "Het HTTPS certificaat welke op jouw platvorm is geladen is verlopen of zal binnenkort verlopen."
 
 msgid "Expiration date: {ExpirationDate}"
 msgstr "Vervaldatum: {ExpirationDate}"
@@ -2315,7 +2316,7 @@ msgstr "Vervaldatum: {ExpirationDate}"
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr ""
+msgstr "Zonder een geldig certificaat zal het platvorm alleen nog te benaderen zijn via TOR."
 
 msgid "Log in to solve the issue."
 msgstr "Log in om de kwestie op te lossen."
@@ -2325,13 +2326,13 @@ msgstr "HTTPS-certificaat vervalswaarschuwing"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr ""
+msgstr "De automatische HTTPS-certificaat hernieuwing welke voor vandaag stond gepland, is zojuist mislukt."
 
 msgid "The system will keep trying."
-msgstr ""
+msgstr "Het systeem zal het blijven proberen"
 
 msgid "Failed HTTPS certificate renewal"
-msgstr ""
+msgstr "Hernieuwen van HTTPS certificaat mislukt"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
@@ -2355,7 +2356,7 @@ msgid ""
 msgstr "Dit is een mailtje om je erop te wijzen dat een ontvanger heeft toestemming gevraagd om de identiteit van de klokkenluider van de inzending {TipNum} te mogen openen."
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "Het verzoek kan worden benaderd via:"
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Nieuwe aanvraag om de identiteit van een klokkenluider te mogen openen"
@@ -2378,18 +2379,18 @@ msgstr "Nieuw bericht"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "your account."
-msgstr ""
+msgstr "Je ontvangt deze e-mail omdat er een wachtwoord verandering is aangevraagd voor jouw account."
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr ""
+msgstr "Als jij dat verzoek niet hebt ingediend, kun je deze e-mail gerust negeren en wissen."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr ""
+msgstr "Je kunt je verzoek bevestigen door op de volgende link te klikken:"
 
 msgid "Password reset instructions"
-msgstr ""
+msgstr "Instructies om het wachtwoord opnieuw in te stellen"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
@@ -2425,22 +2426,22 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "Updates over {NodeName} zijn tijdelijk uitgeschakeld."
 
 msgid "Click the link to activate the platform:"
-msgstr ""
+msgstr "Klik deze link om het platform te activeren:"
 
 msgid "Activation"
-msgstr ""
+msgstr "Activatie"
 
 msgid "A software update is available."
-msgstr ""
+msgstr "Er is een nieuwe versie van deze software beschikbaar"
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr ""
+msgstr "Het is goed gebruik om het platform regelmatig bij te werken naar de laatste versie, om de veiligheid hoog te houden."
 
 msgid "Installed version: {InstalledVersion}"
-msgstr ""
+msgstr "Geïnstalleerde versie: {InstalledVersion}"
 
 msgid "Latest version: {LatestVersion}"
-msgstr ""
+msgstr "Meest recente versie: {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
@@ -2464,7 +2465,7 @@ msgstr "Sommige inzendingen zullen binnenkort vervallen"
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their submission."
-msgstr ""
+msgstr "Dit is een e-mail om je te laten weten dat een klokkenluider jou heeft aangewezen als een gewaardeerde ontvanger van hun indiening."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2478,7 +2479,7 @@ msgid "New submission"
 msgstr "Nieuwe inzending"
 
 msgid "Role: {Role}"
-msgstr ""
+msgstr "Rol: {Role}"
 
 msgid "Username: {Username}"
 msgstr "Gebruikersnaam: {Gebruikersnaam}"

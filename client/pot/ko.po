@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-16 05:26+0000\n"
-"Last-Translator: Johnny Cho <popeye92@gmail.com>\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -403,8 +403,8 @@ msgstr "점수"
 msgid "Trigger question"
 msgstr "트리거 질문"
 
-msgid "Triggered by a score higher than:"
-msgstr "보다 높은 점수 트리거 :"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "메시지 제출의 상태 페이지의 상단에 표시"
@@ -1401,6 +1401,12 @@ msgstr ""
 msgid "Multiplier"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr ""
 
@@ -1859,12 +1865,6 @@ msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
-msgstr ""
-
-msgid "Trigger step"
-msgstr "트리거 단계"
-
-msgid "Inverted"
 msgstr ""
 
 msgid "Logout"

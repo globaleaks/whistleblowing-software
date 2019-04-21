@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -408,8 +408,8 @@ msgstr "分數"
 msgid "Trigger question"
 msgstr "發起問題"
 
-msgid "Triggered by a score higher than:"
-msgstr "當分數高於: 　開始啟動"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "訊息顯示在揭密提交狀態頁上方"
@@ -1406,6 +1406,12 @@ msgstr "此外"
 msgid "Multiplier"
 msgstr "乘數"
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr "問題"
 
@@ -1865,12 +1871,6 @@ msgstr "給吹哨者的附加檔案"
 
 msgid "Upload a file:"
 msgstr "上傳檔案 :"
-
-msgid "Trigger step"
-msgstr "觸發步驟"
-
-msgid "Inverted"
-msgstr "翻倒"
 
 msgid "Logout"
 msgstr "登出"

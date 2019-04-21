@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-10 21:40+0000\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -416,8 +416,8 @@ msgstr "Puntuació"
 msgid "Trigger question"
 msgstr "Pregunta detonant"
 
-msgid "Triggered by a score higher than:"
-msgstr "Es desencadena a partir d'una puntuació superior a:"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "El missatge es mostra a sobre de la pàgina de l'estatus del lliurament"
@@ -1414,6 +1414,12 @@ msgstr "Addició"
 msgid "Multiplier"
 msgstr "Multiplicador"
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr "Preguntas"
 
@@ -1873,12 +1879,6 @@ msgstr "Els arxius adjunts per al informador"
 
 msgid "Upload a file:"
 msgstr "Pujar un fitxer:"
-
-msgid "Trigger step"
-msgstr "Pas detonant"
-
-msgid "Inverted"
-msgstr "Invertit"
 
 msgid "Logout"
 msgstr "Tanca sessió"

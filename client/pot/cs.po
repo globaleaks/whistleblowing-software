@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-11 05:25+0000\n"
+"PO-Revision-Date: 2019-04-21 09:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -412,8 +412,8 @@ msgstr "Skóre"
 msgid "Trigger question"
 msgstr "Spouštěcí otázka"
 
-msgid "Triggered by a score higher than:"
-msgstr "Spuštěno z důvodu skóre vyššího než:"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Zpráva zobrazená na vrchu stránky o stavu podání"
@@ -1410,6 +1410,12 @@ msgstr "Přidání"
 msgid "Multiplier"
 msgstr "Násobitel"
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Questions"
 msgstr "Dotazy"
 
@@ -1869,12 +1875,6 @@ msgstr "Přiložené soubory pro oznamovatele."
 
 msgid "Upload a file:"
 msgstr "Nahrání souboru:"
-
-msgid "Trigger step"
-msgstr "Spouštěcí otázka"
-
-msgid "Inverted"
-msgstr "Obrácený"
 
 msgid "Logout"
 msgstr "Odhlášení"
