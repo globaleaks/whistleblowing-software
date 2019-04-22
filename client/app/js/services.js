@@ -687,9 +687,9 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       context.score_threshold_medium = 0;
       context.score_threshold_high = 0;
       context.score_receipt_text_custom = false;
-      context.score_receipt_text_l = '';
-      context.score_receipt_text_m = '';
-      context.score_receipt_text_h = '';
+      context.score_receipt_text_l = "";
+      context.score_receipt_text_m = "";
+      context.score_receipt_text_h = "";
       context.score_threshold_receipt = 0;
       context.receivers = [];
       return context;
@@ -1321,7 +1321,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
             }
           }
 
-          if (count == field.triggered_by_options.length) {
+          if (count === field.triggered_by_options.length) {
               field.enabled = true;
               return true;
           }
@@ -1477,23 +1477,22 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
             fields: [],
             fields_by_id: {},
             options_by_id: {}
-          }
+          };
 
           var parseField = function(field) {
-            if (field.type === 'checkbox' || field.type === 'selectbox') {
+            if (field.type === "checkbox" || field.type === "selectbox") {
               parsedFields.fields_by_id[field.id] = field;
-              console.log(field.id);
               parsedFields.fields.push(field);
               field.options.forEach(function(option) {
                 parsedFields.options_by_id[option.id] = option;
               });
 
-            } else if (field.type === 'fieldgroup') {
+            } else if (field.type === "fieldgroup") {
               field.children.forEach(function(field) {
                 parseField(field);
               });
             }
-          }
+          };
 
           questionnaire.steps.forEach(function(step) {
             step.children.forEach(function(field) {

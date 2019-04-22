@@ -192,7 +192,7 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
       $scope.field.triggered_by_options.push($scope.new_trigger);
       $scope.toggleAddTrigger();
       $scope.new_trigger = {};
-    }
+    };
 
     $scope.assignScorePointsDialog = function(option) {
       return $scope.Utils.openConfirmableModalDialog("views/partials/assign_score_points.html", option, $scope);

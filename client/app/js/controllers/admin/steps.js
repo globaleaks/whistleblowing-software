@@ -20,7 +20,7 @@ controller("AdminStepEditorCtrl", ["$scope", "$rootScope", "$http", "AdminStepRe
     $scope.new_field = {};
 
     $scope.showAddTrigger = false;
-    $scope.new_trigger = {'field': '', 'option': '', 'sufficient': true};
+    $scope.new_trigger = {"field": "", "option": "", "sufficient": true};
 
     $scope.fields = $scope.step.children;
     $scope.fieldResource = AdminFieldResource;
@@ -120,7 +120,7 @@ controller("AdminStepEditorCtrl", ["$scope", "$rootScope", "$http", "AdminStepRe
     $scope.addTrigger = function() {
       $scope.step.triggered_by_options.push($scope.new_trigger);
       $scope.toggleAddTrigger();
-      $scope.new_trigger = {'field': '', 'option': '', 'sufficient': true};
-    }
+      $scope.new_trigger = {"field": "", "option": "", "sufficient": true};
+    };
   }
 ]);
