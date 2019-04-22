@@ -1209,6 +1209,7 @@ class MockDict:
             'encryption': False,
             'two_factor_auth': False,
             'multisite': False,
+            'adminonly': False,
             'backup': False,
             'backup_d': 3,
             'backup_w': 3,
