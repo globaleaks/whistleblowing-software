@@ -159,7 +159,7 @@ def db_create_field(session, tid, field_dict, language):
         db_update_fieldoptions(session, field.id, options, language)
 
         for trigger in field_dict.get('triggered_by_options', []):
-            db_create_trigger(session, tid, trigger['option'], 'field', field.id, trigger['sufficient'])
+            db_create_trigger(session, tid, trigger['option'], 'field', field.id, trigger.get('sufficient', True))
 
     if field.instance != 'reference':
         for c in field_dict.get('children', []):
@@ -192,7 +192,7 @@ def db_update_field(session, tid, field_id, field_dict, language):
     db_reset_option_triggers(session, 'field', field.id)
 
     for trigger in field_dict.get('triggered_by_options', []):
-        db_create_trigger(session, tid, trigger['option'], 'field', field.id, trigger['sufficient'])
+        db_create_trigger(session, tid, trigger['option'], 'field', field.id, trigger.get('sufficient', True))
 
     if field_dict['instance'] != 'reference':
         db_update_fieldoptions(session, field.id, field_dict['options'], language)
