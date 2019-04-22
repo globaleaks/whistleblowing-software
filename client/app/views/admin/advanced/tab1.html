@@ -22,7 +22,7 @@
       </label>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" data-ng-if="admin.node.root_tenant">
       <label>
         <input data-ng-model="admin.node.multisite" type="checkbox" />
         <span data-translate>Enable multisite feature</span>
