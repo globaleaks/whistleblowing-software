@@ -1,3 +1,15 @@
+Changes in version 3.7.0 - 2019-04-23
+    Implement features: #2534, #2535, #2536, #2537
+    Prepare database support for #2523 and #2552
+    Preinitialize the logo of secondary tenants when the mode is 'default'
+    Revise texts related to the receipt
+    Hide MultiSite enabler from secondary tenants
+    Make it possible to use the root site for administrative purposes only (#2559)
+    Update ER representation of the database schema
+    Make it possible to configure a field trigger as "Sufficient"
+    Fix score reorganizing the total_score formula and moving ranking on the client
+    Update translations
+
 Changes in version 3.6.46 - 2019-04-17
     Fix visualization of submissions received before version 3.6.41
 
