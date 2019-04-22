@@ -76,7 +76,7 @@ def db_initialize(session, tenant, mode):
 
     initialize_submission_statuses(session, tenant.id)
 
-    if tenant.id == 1:
+    if mode == 'default':
         file_descs = [
           (u'logo', 'data/logo.png'),
           (u'favicon', 'data/favicon.ico')
