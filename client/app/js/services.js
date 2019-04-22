@@ -880,7 +880,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       route_check: function() {
         if (!$rootScope.node.wizard_done) {
           $location.path("/wizard");
-        } else if ($location.path() === "/" && $rootScope.node.enable_signup == true) {
+        } else if ($location.path() === "/" && $rootScope.node.enable_signup) {
           $location.path("/signup");
         } else if ($location.path() !== '/signup' && $rootScope.node.adminonly && !$rootScope.Authentication.session) {
           $location.path("/admin");
