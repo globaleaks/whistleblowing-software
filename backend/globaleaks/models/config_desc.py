@@ -379,7 +379,6 @@ ConfigL10NFilters = {
         u'disclaimer_text',
         u'whistleblowing_question',
         u'whistleblowing_button',
-        u'whistleblowing_receipt_prompt',
         u'custom_privacy_badge_text',
         u'header_title_homepage',
         u'header_title_submissionpage',

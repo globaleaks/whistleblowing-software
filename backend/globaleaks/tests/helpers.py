@@ -1123,7 +1123,6 @@ class MockDict:
             'disclaimer_text': u'',
             'whistleblowing_question': u'',
             'whistleblowing_button': u'',
-            'whistleblowing_receipt_prompt': u'',
             'hostname': u'www.globaleaks.org',
             'onionservice': u'',
             'rootdomain': u'antani.gov',

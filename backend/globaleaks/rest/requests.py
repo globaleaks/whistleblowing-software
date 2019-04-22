@@ -217,7 +217,6 @@ AdminNodeDesc = {
     'rootdomain': hostname_regexp_or_empty,
     'whistleblowing_question': text_type,
     'whistleblowing_button': text_type,
-    'whistleblowing_receipt_prompt': text_type,
     'tb_download_link': https_url_regexp,
     'languages_enabled': [text_type],
     'languages_supported': list,
