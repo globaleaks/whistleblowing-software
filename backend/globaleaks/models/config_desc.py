@@ -174,7 +174,8 @@ ConfigDescriptor = {
     u'log_accesses_of_internal_users': Bool(default=False),
 
     u'encryption': Bool(default=False),
-    u'multisite': Bool(default=False)
+    u'multisite': Bool(default=False),
+    u'adminonly': Bool(default=False)
 }
 
 ConfigFilters = {
@@ -263,6 +264,7 @@ ConfigFilters = {
         u'encryption',
         u'two_factor_auth',
         u'multisite',
+        u'adminonly',
         u'backup',
         u'backup_d',
         u'backup_m',

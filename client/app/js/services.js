@@ -880,19 +880,13 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       route_check: function() {
         if (!$rootScope.node.wizard_done) {
           $location.path("/wizard");
-        }
-
-        if ($location.path() === "/") {
-          if ($rootScope.node.enable_signup === true) {
-            $location.path("/signup");
-          }
-
-          else if ($rootScope.node.landing_page === "submissionpage") {
-            $location.path("/submission");
-          }
-        }
-
-        if ($location.path() === "/submission" &&
+        } else if ($location.path() === "/" && $rootScope.node.enable_signup == true) {
+          $location.path("/signup");
+        } else if ($location.path() !== '/signup' && $rootScope.node.adminonly && !$rootScope.Authentication.session) {
+          $location.path("/admin");
+        } else  if ($location.path() === "/" && $rootScope.node.landing_page === "submissionpage") {
+          $location.path("/submission");
+        } else if ($location.path() === "/submission" &&
             !$rootScope.connection.tor &&
             !$rootScope.node.https_whistleblower) {
           $location.path("/");

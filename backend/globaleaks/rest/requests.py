@@ -290,6 +290,7 @@ AdminNodeDesc = {
     'encryption': bool,
     'two_factor_auth': bool,
     'multisite': bool,
+    'adminonly': bool,
     'backup': bool,
     'backup_d': int,
     'backup_w': int,
