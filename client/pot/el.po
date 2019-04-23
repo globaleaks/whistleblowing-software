@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -658,9 +658,6 @@ msgstr "Είστε πληροφοριοδότης;"
 msgid "Blow the whistle"
 msgstr "Βγάλε πληροφορίες στη φόρα"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "Έχετε ήδη υποβάλλει κάτι; Πληκτρολογήστε τον κωδικό - κλειδί σας."
-
 msgid "Your submission was successful."
 msgstr "Η υποβολή σας ήταν επιτυχής"
 
@@ -767,9 +764,6 @@ msgstr "Προκαθορισμένο ερωτηματολόγιο"
 
 msgid "Title of the submission page"
 msgstr "Τίτλος της σελίδας υποβολής"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr "Κείμενο διαλόγου για την είσοδο πληροφοριοδοτών"
 
 msgid "Show contexts in alphabetical order"
 msgstr "Εμφάνιση θεματικών ενοτήτων με αλφαβητική σειρά"
@@ -1447,6 +1441,9 @@ msgstr ""
 msgid "Root domain used for secondary sites"
 msgstr "Κεντρικό domain που χρησιμοποιείται για δευτερεύουσες ιστοσελίδες"
 
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
 msgid "Allow users to sign up"
 msgstr "Να επιτρέπεται σε χρήστες να εγγράφονται"
 
@@ -1588,6 +1585,9 @@ msgstr ""
 
 msgid "Site:"
 msgstr "Ιστοσελίδα:"
+
+msgid "Have you already filed a submission? Enter your receipt."
+msgstr ""
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr ""

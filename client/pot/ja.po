@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
+"Last-Translator: Masayuki Hatta <mhatta@mhatta.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -408,7 +408,7 @@ msgid "Trigger question"
 msgstr "トリガーの質問"
 
 msgid "Triggered by score:"
-msgstr ""
+msgstr "スコアでトリガーされました:"
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "提出のステータスページの上部に表示されるメッセージ"
@@ -652,9 +652,6 @@ msgstr "あなたは内部告発者ですか?"
 msgid "Blow the whistle"
 msgstr "内部告発を行う"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "すでに提出済みですか？あなたのキーコードを入力してください。"
-
 msgid "Your submission was successful."
 msgstr "あなたの提出は成功しました。"
 
@@ -761,9 +758,6 @@ msgstr "デフォルトのアンケート"
 
 msgid "Title of the submission page"
 msgstr "提出ページのタイトル"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr "内部告発者がログインするプロンプトのテキスト"
 
 msgid "Show contexts in alphabetical order"
 msgstr "コンテキストをアルファベット順に表示"
@@ -1406,10 +1400,10 @@ msgid "Multiplier"
 msgstr "乗数"
 
 msgid "Trigger conditions"
-msgstr ""
+msgstr "トリガー条件"
 
 msgid "Sufficient"
-msgstr ""
+msgstr "十分"
 
 msgid "Questions"
 msgstr "質問"
@@ -1440,6 +1434,9 @@ msgstr "モード:"
 
 msgid "Root domain used for secondary sites"
 msgstr "二番目のサイトで使用するルートドメイン"
+
+msgid "Use the first site for administrative purposes only"
+msgstr ""
 
 msgid "Allow users to sign up"
 msgstr "ユーザーによるサインアップを許可"
@@ -1582,6 +1579,9 @@ msgstr "コードが正しくないか、有効期限切れです。"
 
 msgid "Site:"
 msgstr "サイト:"
+
+msgid "Have you already filed a submission? Enter your receipt."
+msgstr "すでに内部告発を行いましたか？あなたの受領番号を入力してください"
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr "受領番号が無効であるか、提出が有効期限切れです。"

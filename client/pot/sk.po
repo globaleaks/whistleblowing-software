@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -656,9 +656,6 @@ msgstr "Ste oznamovateľ?"
 msgid "Blow the whistle"
 msgstr "Odoslať oznámenie"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "Už ste vyplnili podanie? Zadajte svoj prístupový kód."
-
 msgid "Your submission was successful."
 msgstr "Vaše podanie bolo úspešné."
 
@@ -765,9 +762,6 @@ msgstr "Prednastavený dotazník"
 
 msgid "Title of the submission page"
 msgstr "Titulok stránky s odoslaním"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr "Text vyzývajúci oznamovateľa k prihláseniu"
 
 msgid "Show contexts in alphabetical order"
 msgstr "Ukázať kontexty v abecednom poradí"
@@ -1445,6 +1439,9 @@ msgstr "Režim:"
 msgid "Root domain used for secondary sites"
 msgstr "Koreňová doména pre sekundárne stránky"
 
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
 msgid "Allow users to sign up"
 msgstr "Povoliť používateľom registráciu"
 
@@ -1586,6 +1583,9 @@ msgstr "Kód je neplatný alebo vypršal."
 
 msgid "Site:"
 msgstr "Stránka:"
+
+msgid "Have you already filed a submission? Enter your receipt."
+msgstr ""
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr "Príjemca je buď neplatný, alebo uplynula platnosť podania."

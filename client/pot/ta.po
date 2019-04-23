@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -650,9 +650,6 @@ msgstr "நீங்கள் ஒரு இரகசிய இருக்கி
 msgid "Blow the whistle"
 msgstr "விசில் ஊதி"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "நீங்கள் ஏற்கனவே ஒரு சமர்ப்பிப்பு தாக்கல் செய்துள்ளனர்? உங்கள் முக்கிய குறியீடு உள்ளிடவும்."
-
 msgid "Your submission was successful."
 msgstr "உங்கள் சமர்ப்பிப்பு வெற்றியடைந்தது."
 
@@ -759,9 +756,6 @@ msgstr "இயல்புநிலை கேள்வித்தாள்"
 
 msgid "Title of the submission page"
 msgstr "சமர்ப்பிப்பு பக்கம் தலைப்பு"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr "புகுபதிவு செய்ய விசில்ப்ளேவர்களுக்கான வரியில் உள்ள உரை"
 
 msgid "Show contexts in alphabetical order"
 msgstr "அகரவரிசையில் சூழல்களில் காட்டு"
@@ -1439,6 +1433,9 @@ msgstr "முறை:"
 msgid "Root domain used for secondary sites"
 msgstr "இரண்டாம் தளங்களுக்கு ரூட் டொமைன் பயன்படுத்தப்படுகிறது"
 
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
 msgid "Allow users to sign up"
 msgstr "பயனர்களை டிஜிட்டல் கையெழுத்திட செய்ய அனுமதிக்கவும்"
 
@@ -1580,6 +1577,9 @@ msgstr ""
 
 msgid "Site:"
 msgstr "தள:"
+
+msgid "Have you already filed a submission? Enter your receipt."
+msgstr ""
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr "ரசீது தவறானது அல்லது சமர்ப்பிப்பு காலாவதியானது."

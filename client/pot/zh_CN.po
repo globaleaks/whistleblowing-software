@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -662,9 +662,6 @@ msgstr "你是一个告密者吗？"
 msgid "Blow the whistle"
 msgstr "揭发"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "您已经进行了一次提交？请输入您的关键代码。"
-
 msgid "Your submission was successful."
 msgstr "您的提交成功。"
 
@@ -771,9 +768,6 @@ msgstr ""
 
 msgid "Title of the submission page"
 msgstr "提交页面的标题"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr "揭发人登录时弹出的消息"
 
 msgid "Show contexts in alphabetical order"
 msgstr "按字母顺序显示上下文"
@@ -1451,6 +1445,9 @@ msgstr ""
 msgid "Root domain used for secondary sites"
 msgstr ""
 
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
 msgid "Allow users to sign up"
 msgstr "允许用户登陆"
 
@@ -1591,6 +1588,9 @@ msgid "The code is either invalid or expired."
 msgstr ""
 
 msgid "Site:"
+msgstr ""
+
+msgid "Have you already filed a submission? Enter your receipt."
 msgstr ""
 
 msgid "The receipt is either invalid or the submission has expired."

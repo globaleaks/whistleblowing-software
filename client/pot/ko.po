@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -648,9 +648,6 @@ msgstr "당신은 고발자입니까?"
 msgid "Blow the whistle"
 msgstr "휘파람을 불어"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "당신은 이미 제출을 제기 한 적이 있습니까? 키 코드를 입력합니다."
-
 msgid "Your submission was successful."
 msgstr "제출 성공했습니다."
 
@@ -757,9 +754,6 @@ msgstr ""
 
 msgid "Title of the submission page"
 msgstr "제출 페이지의 제목"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr ""
 
 msgid "Show contexts in alphabetical order"
 msgstr "알파벳 순서로 표시 컨텍스트"
@@ -1437,6 +1431,9 @@ msgstr ""
 msgid "Root domain used for secondary sites"
 msgstr ""
 
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
 msgid "Allow users to sign up"
 msgstr ""
 
@@ -1577,6 +1574,9 @@ msgid "The code is either invalid or expired."
 msgstr ""
 
 msgid "Site:"
+msgstr ""
+
+msgid "Have you already filed a submission? Enter your receipt."
 msgstr ""
 
 msgid "The receipt is either invalid or the submission has expired."

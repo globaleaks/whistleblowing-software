@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -653,9 +653,6 @@ msgstr "Onko sinulla tietoa epäilyttävästä, laittomasta tai muuten hämärä
 msgid "Blow the whistle"
 msgstr "Lähetä vihje"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "Oletko jo lähettänyt vihjeen? Kirjoita salainen numerosarjasi."
-
 msgid "Your submission was successful."
 msgstr "Vihjeesi lähettäminen onnistui."
 
@@ -762,9 +759,6 @@ msgstr "Oletuslomake"
 
 msgid "Title of the submission page"
 msgstr "Vihjeen lähetys -sivun otsikko"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr "Vihjeenantajalle näytettävä teksti hänen kirjautuessaan palveluun"
 
 msgid "Show contexts in alphabetical order"
 msgstr "Näytä aiheet aakkosjärjestyksessä"
@@ -1442,6 +1436,9 @@ msgstr "Tila:"
 msgid "Root domain used for secondary sites"
 msgstr "Käytetään pääverkkotunnusta toissijaisille palveluille"
 
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
 msgid "Allow users to sign up"
 msgstr "Salli käyttäjien rekisteröityä palveluun"
 
@@ -1583,6 +1580,9 @@ msgstr ""
 
 msgid "Site:"
 msgstr "Palvelu:"
+
+msgid "Have you already filed a submission? Enter your receipt."
+msgstr ""
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr "Kuitti on virheellinen tai lähetys on vanhentunut"

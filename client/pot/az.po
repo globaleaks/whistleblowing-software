@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -652,9 +652,6 @@ msgstr "Siz informasiya ötürənsiniz?"
 msgid "Blow the whistle"
 msgstr "Məlumatı ötür"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "Artıq təqdim etmisiniz mı? Açar açar şifrəni daxil edin"
-
 msgid "Your submission was successful."
 msgstr "Sizin təqdimatınız uğurlu oldu."
 
@@ -761,9 +758,6 @@ msgstr ""
 
 msgid "Title of the submission page"
 msgstr "Təqdimat səhifəsinin adı"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr "Daxil olmaq üçün informasiya ötürənlərə dəvət mətni "
 
 msgid "Show contexts in alphabetical order"
 msgstr "Konteksti əlifba ardıcıllığı ilə göstər"
@@ -1441,6 +1435,9 @@ msgstr ""
 msgid "Root domain used for secondary sites"
 msgstr ""
 
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
 msgid "Allow users to sign up"
 msgstr ""
 
@@ -1581,6 +1578,9 @@ msgid "The code is either invalid or expired."
 msgstr ""
 
 msgid "Site:"
+msgstr ""
+
+msgid "Have you already filed a submission? Enter your receipt."
 msgstr ""
 
 msgid "The receipt is either invalid or the submission has expired."

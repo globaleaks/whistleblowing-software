@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -654,9 +654,6 @@ msgstr "Вие източник ли сте?"
 msgid "Blow the whistle"
 msgstr "Подаване на сигнал"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "Вече сте подали сигнал? Въведе Вашия ключ."
-
 msgid "Your submission was successful."
 msgstr "Подаването на сигнала е успешно."
 
@@ -763,9 +760,6 @@ msgstr "Въпросник по подразбиране"
 
 msgid "Title of the submission page"
 msgstr "Заглавие на страницата за подаване на сигнал"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr "Текстът който да изисква източника да се впише"
 
 msgid "Show contexts in alphabetical order"
 msgstr "Показване на контекста по азбучен ред"
@@ -1443,6 +1437,9 @@ msgstr "Режим:"
 msgid "Root domain used for secondary sites"
 msgstr "Домейн използван за други сайтове"
 
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
 msgid "Allow users to sign up"
 msgstr "Разрешава на потребителите да се регистрират"
 
@@ -1584,6 +1581,9 @@ msgstr "Кодът е невалиден или изтекъл."
 
 msgid "Site:"
 msgstr "Сайт:"
+
+msgid "Have you already filed a submission? Enter your receipt."
+msgstr ""
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr "Тази разписка е невалидна или подадения сигнал е изтекъл."

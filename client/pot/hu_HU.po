@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -664,9 +664,6 @@ msgstr "Szivárogtatni szeretne?"
 msgid "Blow the whistle"
 msgstr "Szivárogtatok"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "Küldött már be valamit? Adja meg a kulcskódját."
-
 msgid "Your submission was successful."
 msgstr "Beküldése sikeres volt."
 
@@ -773,9 +770,6 @@ msgstr ""
 
 msgid "Title of the submission page"
 msgstr "A beadvány oldal címe"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr ""
 
 msgid "Show contexts in alphabetical order"
 msgstr "A kategóriák megjelenítése betűrendben"
@@ -1453,6 +1447,9 @@ msgstr ""
 msgid "Root domain used for secondary sites"
 msgstr ""
 
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
 msgid "Allow users to sign up"
 msgstr ""
 
@@ -1593,6 +1590,9 @@ msgid "The code is either invalid or expired."
 msgstr ""
 
 msgid "Site:"
+msgstr ""
+
+msgid "Have you already filed a submission? Enter your receipt."
 msgstr ""
 
 msgid "The receipt is either invalid or the submission has expired."

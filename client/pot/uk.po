@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
+"Last-Translator: ukr\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -665,9 +665,6 @@ msgstr "Ви інформатор?"
 msgid "Blow the whistle"
 msgstr "Надати свідчення"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "Ви вже подали матеріали? Вкажіть отриманий ключ."
-
 msgid "Your submission was successful."
 msgstr "Звернення було успішне."
 
@@ -774,9 +771,6 @@ msgstr ""
 
 msgid "Title of the submission page"
 msgstr "Заголовок сторінки подачі свідчень"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr "Текст, який закликає інформатора авторизуватись"
 
 msgid "Show contexts in alphabetical order"
 msgstr "Упорядкувати тематичні розділи за алфавітом"
@@ -1454,6 +1448,9 @@ msgstr ""
 msgid "Root domain used for secondary sites"
 msgstr ""
 
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
 msgid "Allow users to sign up"
 msgstr ""
 
@@ -1595,6 +1592,9 @@ msgstr ""
 
 msgid "Site:"
 msgstr ""
+
+msgid "Have you already filed a submission? Enter your receipt."
+msgstr "Ви вже надавали свідчення? Вкажіть отриманий номер-чек"
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr ""

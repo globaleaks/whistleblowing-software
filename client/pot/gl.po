@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -650,9 +650,6 @@ msgstr "É vostede un denunciante? "
 msgid "Blow the whistle"
 msgstr "Denuncia"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "Xa presentou unha presentación? Introduce o teu código de chave."
-
 msgid "Your submission was successful."
 msgstr "A túa presentación foi exitosa."
 
@@ -759,9 +756,6 @@ msgstr "Cuestionario predeterminado"
 
 msgid "Title of the submission page"
 msgstr "Título da páxina de envío"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr "Texto de solicitude para que os denunciantes accedan"
 
 msgid "Show contexts in alphabetical order"
 msgstr "Mostrar contextos por orde alfabética"
@@ -1439,6 +1433,9 @@ msgstr "Modo:"
 msgid "Root domain used for secondary sites"
 msgstr "Dominio raíz usado para sitios secundarios"
 
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
 msgid "Allow users to sign up"
 msgstr "Permitir aos usuarios rexistrarse"
 
@@ -1580,6 +1577,9 @@ msgstr "O código non é válido ou caducou."
 
 msgid "Site:"
 msgstr "Sitio:"
+
+msgid "Have you already filed a submission? Enter your receipt."
+msgstr ""
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr "O recibo non é válido ou o envío expirou."

@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -666,9 +666,6 @@ msgstr "Apakah Anda informan publik?"
 msgid "Blow the whistle"
 msgstr "Kirim dokumen"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "Apakah Anda sudah pernah mengirimkan berkas? Masukkan kode kunci Anda."
-
 msgid "Your submission was successful."
 msgstr "Kiriman Anda berhasil"
 
@@ -775,9 +772,6 @@ msgstr "Kuesioner bawaan "
 
 msgid "Title of the submission page"
 msgstr "Judul halaman pengiriman "
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr "Kolom teks bagi Informan Publik untuk masuk"
 
 msgid "Show contexts in alphabetical order"
 msgstr "Memperlihatkan konteks dalam urutan abjad "
@@ -1455,6 +1449,9 @@ msgstr "Mode:"
 msgid "Root domain used for secondary sites"
 msgstr "Domain awal yang digunakan untuk situs kedua"
 
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
 msgid "Allow users to sign up"
 msgstr "Mengizinkan pengguna untuk mendaftar"
 
@@ -1596,6 +1593,9 @@ msgstr "Kode tidak sah atau kedaluwarsa."
 
 msgid "Site:"
 msgstr "Situs:"
+
+msgid "Have you already filed a submission? Enter your receipt."
+msgstr ""
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr "Tanda terima salah atau submisinya sudah kedaluwarsa"

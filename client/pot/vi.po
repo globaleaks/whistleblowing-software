@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -655,9 +655,6 @@ msgstr "Bạn có phải là người tố giác?"
 msgid "Blow the whistle"
 msgstr "Huyt sao"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "bạn đã nộp một bài gửi? Nhập mã khóa của bạn."
-
 msgid "Your submission was successful."
 msgstr "trình của bạn đã thành công."
 
@@ -764,9 +761,6 @@ msgstr ""
 
 msgid "Title of the submission page"
 msgstr "Tiêu đề của trang trình"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr ""
 
 msgid "Show contexts in alphabetical order"
 msgstr "Hiện bối cảnh theo thứ tự ABC"
@@ -1444,6 +1438,9 @@ msgstr ""
 msgid "Root domain used for secondary sites"
 msgstr ""
 
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
 msgid "Allow users to sign up"
 msgstr ""
 
@@ -1584,6 +1581,9 @@ msgid "The code is either invalid or expired."
 msgstr ""
 
 msgid "Site:"
+msgstr ""
+
+msgid "Have you already filed a submission? Enter your receipt."
 msgstr ""
 
 msgid "The receipt is either invalid or the submission has expired."

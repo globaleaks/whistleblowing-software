@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"PO-Revision-Date: 2019-04-22 11:10+0000\n"
 "Last-Translator: Chacal E.\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -437,7 +437,7 @@ msgid "Trigger question"
 msgstr "Ativar questão"
 
 msgid "Triggered by score:"
-msgstr ""
+msgstr "Desencadeada pela pontuação:"
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Mensagem exibida no início da página do status de envio"
@@ -681,9 +681,6 @@ msgstr "Você é um denunciante?"
 msgid "Blow the whistle"
 msgstr "Denuncie"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "Você já preencheu uma submissão? Entre com seu código chave."
-
 msgid "Your submission was successful."
 msgstr "Submissão feita com sucesso."
 
@@ -790,9 +787,6 @@ msgstr "Questionário padrão"
 
 msgid "Title of the submission page"
 msgstr "Título da página de submissão"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr "Texto de imediato para delatores entrarem"
 
 msgid "Show contexts in alphabetical order"
 msgstr "Mostrar assuntos em ordem alfabética"
@@ -1438,7 +1432,7 @@ msgid "Trigger conditions"
 msgstr "Condições de gatilho"
 
 msgid "Sufficient"
-msgstr ""
+msgstr "Suficiente"
 
 msgid "Questions"
 msgstr "Questões"
@@ -1469,6 +1463,9 @@ msgstr "Modo:"
 
 msgid "Root domain used for secondary sites"
 msgstr "Domínio raiz usado para sites secundários"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Use o primeiro site somente para fins administrativos"
 
 msgid "Allow users to sign up"
 msgstr "Permitir que os usuários se inscrevam"
@@ -1611,6 +1608,9 @@ msgstr "O código é inválido ou expirou."
 
 msgid "Site:"
 msgstr "Site:"
+
+msgid "Have you already filed a submission? Enter your receipt."
+msgstr "Você já preencheu um formulário? Digite seu recibo."
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr "O recibo é inválido ou o envio expirou."

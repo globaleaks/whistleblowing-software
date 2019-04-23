@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -651,9 +651,6 @@ msgstr "Jeste li zviždač?"
 msgid "Blow the whistle"
 msgstr "Zviždi"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "Jeste li već podnijeli predaju? Unesite svoj ključ."
-
 msgid "Your submission was successful."
 msgstr "Vaša prijava je uspjela."
 
@@ -760,9 +757,6 @@ msgstr "Zadani upitnik"
 
 msgid "Title of the submission page"
 msgstr "Naziv stranice za predaje"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr "Tekst upita za zviždačevu prijavu u sustav"
 
 msgid "Show contexts in alphabetical order"
 msgstr "Prikaži kontekste u abecednom slijedu"
@@ -1440,6 +1434,9 @@ msgstr "Način rada:"
 msgid "Root domain used for secondary sites"
 msgstr "Korijenska domena korištena za sekundarne stranice"
 
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
 msgid "Allow users to sign up"
 msgstr "Dopusti korisnicima da se prijave"
 
@@ -1581,6 +1578,9 @@ msgstr ""
 
 msgid "Site:"
 msgstr "Stranica:"
+
+msgid "Have you already filed a submission? Enter your receipt."
+msgstr ""
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr ""

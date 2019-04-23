@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
+"Last-Translator: Yves Eudes <eudes@lemonde.fr>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -682,9 +682,6 @@ msgstr "Êtes-vous un lanceur d’alerte ?"
 msgid "Blow the whistle"
 msgstr "Lancer une alerte"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "Avez-vous déjà transmis un envoi ? Saisissez votre code-clé."
-
 msgid "Your submission was successful."
 msgstr "Votre envoi a bien été effectué."
 
@@ -791,9 +788,6 @@ msgstr "Questionnaire par défaut"
 
 msgid "Title of the submission page"
 msgstr "Titre de la page d’envoi"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr "Texte de l’invite de connexion des lanceurs d’alerte"
 
 msgid "Show contexts in alphabetical order"
 msgstr "Montrer les contextes par ordre alphabétique"
@@ -1471,6 +1465,9 @@ msgstr "Mode :"
 msgid "Root domain used for secondary sites"
 msgstr "Domaine racine utilisé pour les sites secondaires"
 
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
 msgid "Allow users to sign up"
 msgstr "Permettre aux utilisateurs de s’inscrire"
 
@@ -1612,6 +1609,9 @@ msgstr "Le côté est invalide ou expiré"
 
 msgid "Site:"
 msgstr "Site :"
+
+msgid "Have you already filed a submission? Enter your receipt."
+msgstr "Avez-vous déjà déposé une alerte ? Saisissez votre code de réception"
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr "Soit le reçu est invalide soit votre envoi a expiré."

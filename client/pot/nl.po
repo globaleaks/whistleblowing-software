@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
+"Last-Translator: J <drwhax@2600nl.net>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -681,9 +681,6 @@ msgstr "Bent u een klokkenluider?"
 msgid "Blow the whistle"
 msgstr "Luid de klok"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "Heb je al een inzending gedaan? Vul dan hier je sleutelcode in."
-
 msgid "Your submission was successful."
 msgstr "Je inzending was succesvol."
 
@@ -790,9 +787,6 @@ msgstr "Standaard vragenformulier"
 
 msgid "Title of the submission page"
 msgstr "Titel van de inzending-pagina"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr "Tekst om de klokkenluider op te roepen om in te loggen"
 
 msgid "Show contexts in alphabetical order"
 msgstr "Toon contexten in alfabetische volgorde"
@@ -1470,6 +1464,9 @@ msgstr "Modus:"
 msgid "Root domain used for secondary sites"
 msgstr "Hoofddomein welke wordt gebruikt voor secondaire websites"
 
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
 msgid "Allow users to sign up"
 msgstr "Gebruikers toestaan zich in te schijven"
 
@@ -1611,6 +1608,9 @@ msgstr "De code is ofwel ongeldig of verlopen."
 
 msgid "Site:"
 msgstr "Website:"
+
+msgid "Have you already filed a submission? Enter your receipt."
+msgstr "Hebt u al een inzending ingediend? Voer uw ontvangstbewijs in."
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr ""

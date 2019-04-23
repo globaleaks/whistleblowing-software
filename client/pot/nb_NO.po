@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-21 09:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-04-22 10:21+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -650,9 +650,6 @@ msgstr "Er du en fløyteblåser/varsler?"
 msgid "Blow the whistle"
 msgstr "Blås i fløyta"
 
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "Oppgi kvittering for tidligere innsendelse her hvis den forefinnes."
-
 msgid "Your submission was successful."
 msgstr "Din innsendelse var vellykket."
 
@@ -759,9 +756,6 @@ msgstr ""
 
 msgid "Title of the submission page"
 msgstr "Tittel for innsendelsesside"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr "Tekst som etterspør innlogging for fløyteblåsere"
 
 msgid "Show contexts in alphabetical order"
 msgstr "Vis bindeleddsinformasjon i alfabetisk rekkefølge"
@@ -1439,6 +1433,9 @@ msgstr ""
 msgid "Root domain used for secondary sites"
 msgstr "Rotdomene brukt for sekundære sider"
 
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
 msgid "Allow users to sign up"
 msgstr "Tillat brukere å registrere seg"
 
@@ -1580,6 +1577,9 @@ msgstr ""
 
 msgid "Site:"
 msgstr ""
+
+msgid "Have you already filed a submission? Enter your receipt."
+msgstr "Oppgi kvittering for tidligere innsendelse her hvis den forefinnes."
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr ""
