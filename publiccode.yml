@@ -3,7 +3,7 @@ releaseDate: '2019-04-23'
 publiccodeYmlVersion: '0.2'
 url: 'https://github.com/globaleaks/GlobaLeaks'
 landingURL: 'https://github.com/globaleaks/GlobaLeaks'
-softwareVersion: 3.7.0
+softwareVersion: 3.7.1
 softwareType: standalone/web
 developmentStatus: stable
 platforms:

@@ -1,3 +1,6 @@
+Changes in version 3.7.1 - 2019-04-23
+    Apply minor bugfixing
+
 Changes in version 3.7.0 - 2019-04-23
     Implement features: #2534, #2535, #2536, #2537
     Prepare database support for #2523 and #2552
