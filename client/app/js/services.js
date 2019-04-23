@@ -775,6 +775,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       field.template_id = "";
       field.template_override_id = "";
       field.triggered_by_score = 0;
+      field.triggered_by_options = [];
       return field;
     },
 
