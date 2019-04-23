@@ -158,20 +158,6 @@ html[dir="rtl"] #KeyCodeHintBox:after {
   bottom: 0px;
 }
 
-.tos-text {
-  display: block;
-  padding: 10px;
-  margin: 0 0 0.8em;
-  font-size: 13px;
-  line-height: 1.42857143;
-  color: #333;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
 .tos-checkbox-label {
   font-weight: bold;
 }

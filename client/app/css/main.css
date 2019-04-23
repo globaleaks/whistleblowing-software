@@ -396,9 +396,17 @@ textarea.form-control {
   font-size: smaller;
 }
 
-#SignupTos1 .tos-text, #SignupTos2 .tos-text {
-  height: 10em;
-  overflow-y: scroll;
+.tos-text {
+  display: block;
+  padding: 10px;
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ccc;
+  height: 15em;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.1;
 }
 
 .spaced-heading-elem {
