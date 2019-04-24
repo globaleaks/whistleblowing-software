@@ -8,7 +8,7 @@ import string
 import sys
 
 from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives import constant_time, hashes
+from cryptography.hazmat.primitives import hashes
 from globaleaks.rest import errors
 from globaleaks.utils.log import log
 
@@ -156,31 +156,3 @@ def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
                 trusted_absolute_prefix, untrusted_path)
 
         raise errors.DirectoryTraversalError
-
-
-def hash_password(password, salt):
-    """
-    @param password: a unicode or utf-8 string
-    @param salt: a password salt
-
-    @return:
-        the salted scrypt hash of the provided password
-    """
-    password = password.encode('utf-8')
-    salt = text_type(salt).encode('utf-8')
-    return binascii.hexlify(scrypt.hash(password, salt))
-
-
-def check_password(password, salt, password_hash):
-    """
-    @param password: the user provided password
-    @param salt: The salt to be used for password hashing
-    @param password_hash: the expected hash
-
-    @return:
-        the scrypt hash in base64 of the new password
-    """
-    if isinstance(password_hash, text_type):
-        password_hash = password_hash.encode()
-
-    return constant_time.bytes_eq(hash_password(password, salt), password_hash)
