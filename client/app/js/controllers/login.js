@@ -19,7 +19,7 @@ function($scope, $location, $filter, Sites) {
     $scope.login_template = "views/login/multisite.html";
 
     if ($scope.node.mode === "whistleblowing.it") {
-      $scope.loginUsername = "recipient";
+      $scope.loginData.loginUsername = "recipient";
     }
   } else {
     $scope.login_template = "views/login/default.html";
