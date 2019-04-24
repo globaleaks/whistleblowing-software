@@ -2,7 +2,9 @@
 import base64
 import os
 
-from globaleaks.models import Config, SubmissionStatus
+from sqlalchemy.sql.expression import func
+
+from globaleaks.models import Config, SubmissionStatus, User
 
 
 def db_fix_salt(session):
@@ -22,6 +24,14 @@ def db_fix_statuses(session):
         item.label = {'en': u'Opened'}
 
 
+def db_fix_users(session):
+    items = session.query(User).filter(func.length(User.password) == 47)
+    for item in items:
+        if(item.password[0] == 'b' and item.password[1] == '\'' and item.password[len(item.password) - 1] == '\''):
+            item.password = item.password[2: -1]
+
+
 def db_fix(session):
     db_fix_salt(session)
     db_fix_statuses(session)
+    db_fix_users(session)
