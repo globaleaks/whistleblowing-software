@@ -22,6 +22,6 @@ def db_fix_statuses(session):
         item.label = {'en': u'Opened'}
 
 
-def db_fix_config(session):
+def db_fix(session):
     db_fix_salt(session)
     db_fix_statuses(session)
