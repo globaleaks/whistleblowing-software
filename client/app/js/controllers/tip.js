@@ -83,7 +83,7 @@ GLClient.controller("TipCtrl",
 
       $scope.tip = new WBTip(function(tip) {
         $scope.tip = tip;
-        $scope.context = $scope.tip.context;
+        $scope.tip.context = $scope.contexts_by_id[$scope.tip.context_id];
         $scope.total_score = $scope.tip.total_score;
 
         $scope.ctx = "wbtip";
@@ -92,7 +92,7 @@ GLClient.controller("TipCtrl",
         $scope.Utils.evalSubmissionStatus($scope.tip, $scope.submission_statuses);
 
         $scope.showWBFileWidget = function() {
-          return $scope.contexts_by_id[tip.context_id].enable_rc_to_wb_files && (tip.wbfiles.length > 0);
+          return $scope.tip.context.enable_rc_to_wb_files && (tip.wbfiles.length > 0);
         };
 
         $scope.downloadWBFile = function(file) {
@@ -121,7 +121,7 @@ GLClient.controller("TipCtrl",
 
       $scope.tip = new RTip({id: $scope.tip_id}, function(tip) {
         $scope.tip = tip;
-        $scope.context = $scope.tip.context;
+        $scope.tip.context = $scope.contexts_by_id[$scope.tip.context_id];
         $scope.total_score = $scope.tip.total_score;
         $scope.ctx = "rtip";
         $scope.preprocessTipAnswers(tip);
@@ -134,7 +134,7 @@ GLClient.controller("TipCtrl",
         $scope.Utils.evalSubmissionStatus($scope.tip, $scope.submission_statuses);
 
         $scope.showWBFileUpload = function() {
-          return $scope.contexts_by_id[tip.context_id].enable_rc_to_wb_files;
+          return $scope.tip.context.enable_rc_to_wb_files;
         };
       });
     }

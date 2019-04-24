@@ -115,7 +115,7 @@ def get_receivertip_list(session, tid, receiver_id, language):
             'https': internaltip.https,
             'preview_schema': db_serialize_archived_preview_schema(archivedschema.preview, language),
             'preview': internaltip.preview,
-            'total_score': internaltip.total_score,
+            'score': internaltip.total_score,
             'label': rtip.label,
             'status': internaltip.status,
             'substatus': internaltip.substatus

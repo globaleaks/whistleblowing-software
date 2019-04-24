@@ -215,9 +215,11 @@
           <td class="TipInfoPreview">
             <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true" data-ng-include="'views/partials/tip_field.html'"></div>
           </td>
-	  <td class="TipInfoScore">
-            <span data-ng-if="::tip.context.enable_scoring_system">{{::tip.total_score}}</span>
-            <span data-ng-if="::!tip.context.enable_scoring_system">-</span>
+	  <td class="TipInfoScore" data-ng-switch="tip.score">
+            <span data-ng-switch-when="0" data-translate>-</span>
+            <span class="label label-success" data-ng-switch-when="1" data-translate>Low</span>
+            <span class="label label-warning" data-ng-switch-when="2" data-translate>Medium</span>
+            <span class="label label-danger" data-ng-switch-when="3" data-translate>High</span>
           </td>
         </tr>
       </tbody>
