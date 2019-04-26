@@ -39,6 +39,11 @@ filter("anomalyToString", function() {
     return anomalies[anomaly];
   };
 }).
+filter('split', function() {
+  return function(input, splitChar, splitIndex) {
+    return input.split(splitChar)[splitIndex];
+  }
+}).
 filter("wbfileCreator", [function() {
   return function(rec_id, rec_list) {
     for (var i = 0; i < rec_list.length; i++) {

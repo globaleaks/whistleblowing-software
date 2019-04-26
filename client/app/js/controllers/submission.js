@@ -675,13 +675,62 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
     $scope.validator = fieldUtilities.getValidator($scope.field);
   }
 
-  $scope.status = {
-    opened: false
-  };
+  $scope.clear = function() {
+    $scope.entries.length = 0;
+    $scope.addAnswerEntry($scope.entries);
+  }
 
-  $scope.open = function() {
-    $scope.status.opened = true;
-  };
+  if ($scope.field.type == 'date') {
+    $scope.status = {
+      opened: false
+    };
+
+    $scope.open = function() {
+      $scope.status.opened = true;
+    };
+
+
+  } else if ($scope.field.type == 'daterange') {
+    $scope.dateOptions = {};
+
+    $scope.clear = function() {
+      $scope.daterange.start = '';
+      $scope.daterange.end = '';
+      $scope.entries.length = 0;
+      $scope.addAnswerEntry($scope.entries);
+    }
+
+    $scope.daterange = {
+      'start': '',
+      'end': ''
+    }
+
+    $scope.$watch("daterange.start", function () {
+      if ($scope.daterange.start) {
+        $scope.dateOptions.minDate = new Date($scope.daterange.start);
+      }
+    });
+
+    $scope.$watch("daterange.end", function () {
+      if ($scope.daterange.start && $scope.daterange.end) {
+        $scope.entries[0]['value'] = String(Number($scope.daterange.start)) + ':' + String(Number($scope.daterange.end));
+      }
+    });
+
+    $scope.status = {
+      openedStart: false,
+      openedEnd: false
+    };
+
+    $scope.openStart = function() {
+      $scope.status.openedStart = true;
+      $scope.clear();
+    };
+
+    $scope.openEnd = function() {
+      $scope.status.openedEnd = true;
+    };
+  }
 
   $scope.validateRequiredCheckbox = function(field, entry) {
     if (!field.required) {

@@ -465,3 +465,11 @@ html[dir='ltr'] .imageUpload .changePictureButton, html[dir='rtl'] .imageUpload 
 html[dir='ltr'] .imageUpload .changePictureButton, html[dir='rtl'] .imageUpload .deletePictureButton {
   right: 10px;
 }
+
+html[dir='ltr'] .spaced {
+  padding-left: 1.4em;
+}
+
+html[dir='rtl'] .spaced {
+  padding-right: 1.4em;
+}

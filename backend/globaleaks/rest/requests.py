@@ -55,6 +55,7 @@ field_type_regexp                 = (r'^('
                                      'number|'
                                      'email|'
                                      'date|'
+                                     'daterange|'
                                      'map|'
                                      'fieldgroup)$')
 

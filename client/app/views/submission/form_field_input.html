@@ -57,12 +57,59 @@
                  data-ng-required="entry.required_status"
                  data-ng-attr-placeholder="{{field.placeholder}}"
                  data-ng-click="open()"
-                 uib-datepicker-popup 
+                 uib-datepicker-popup
                  datepicker-options="dateOptions"
                  is-open="status.opened"
                  show-button-bar="false" />
           <span class="input-group-addon" data-ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></span>
         </div>
+      </div>
+      <div data-ng-switch-when="daterange" data-ng-class="{'has-error': entry.required_status}">
+        <span class="form-group form-inline">
+          <label data-translate>From:</label>
+          <div class="input-group">
+            <input id="{{::fieldEntry}}"
+                   name="input-{{entryIndex}}"
+                   class="form-control inputelem"
+                   type="text"
+                   maxlength="4096"
+                   readonly="readonly"
+                   aria-label="{{::field.label}}"
+                   data-ng-model="daterange.start"
+                   data-ng-required="entry.required_status"
+                   data-ng-attr-placeholder="{{field.placeholder}}"
+                   data-ng-click="openStart()"
+                   uib-datepicker-popup
+                   datepicker-options="dateOptions"
+                   is-open="status.openedStart"
+                   show-button-bar="false" />
+            <span class="input-group-addon" data-ng-click="openStart()"><i class="glyphicon glyphicon-calendar"></i><span>
+          </div>
+        </span>
+        <span class="form-group form-inline spaced" data-ng-if="daterange.start">
+          <label data-translate>To:</label>
+          <div class="input-group">
+            <input id="{{::fieldEntry}}"
+                   name="input-{{entryIndex}}"
+                   class="form-control inputelem"
+                   type="text"
+                   maxlength="4096"
+                   readonly="readonly"
+                   aria-label="{{::field.label}}"
+                   data-ng-model="daterange.end"
+                   data-ng-required="entry.required_status"
+                   data-ng-attr-placeholder="{{field.placeholder}}"
+                   data-ng-click="openEnd()"
+                   uib-datepicker-popup
+                   datepicker-options="dateOptions"
+                   is-open="status.openedEnd"
+		   show-button-bar="false" />
+            <span class="input-group-addon" data-ng-click="openEnd()"><i class="glyphicon glyphicon-calendar"></i><span>
+          </div>
+        </span>
+        <span class="spaced" data-ng-if="daterange.start">
+          <button type="button" class="btn btn-default" ng-click="clear()"><i class="glyphicon glyphicon-remove-circle"></i></button>
+        </span>
       </div>
       <div data-ng-switch-when="tos">
         <div class="form-group tos-text" data-ng-click="entry['value'] = !entry['value']">{{field.attrs.text.value}}</div>
