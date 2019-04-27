@@ -653,34 +653,29 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
   $scope.rows = fieldUtilities.splitRows($scope.fields);
   $scope.entries = $scope.getAnswersEntries($scope.entry);
 
-  // If the field is type 'date' attach an option configurator for the
-  // uib-datepicker modal.
-  if ($scope.field.type === "date") {
-    var options = {
-      showWeeks: false, // Just a sample option
-    };
-
-    var max = $scope.field.attrs.max_date.value;
-    var min = $scope.field.attrs.min_date.value;
-    if (angular.isDefined(max)) {
-      options.maxDate = new Date(max);
-    }
-    if (angular.isDefined(min)) {
-      options.minDate = new Date(min);
-    }
-    $scope.dateOptions = options;
-  }
-
-  if ($scope.field.type === "inputbox") {
-    $scope.validator = fieldUtilities.getValidator($scope.field);
-  }
-
   $scope.clear = function() {
     $scope.entries.length = 0;
     $scope.addAnswerEntry($scope.entries);
   }
 
-  if ($scope.field.type == 'date') {
+  if ($scope.field.type === "inputbox") {
+    $scope.validator = fieldUtilities.getValidator($scope.field);
+  } else if ($scope.field.type === "date") {
+    var options = {'showWeeks': false};
+
+    var max = $scope.field.attrs.max_date.value;
+    var min = $scope.field.attrs.min_date.value;
+
+    if (angular.isDefined(max)) {
+      options.maxDate = new Date(max);
+    }
+
+    if (angular.isDefined(min)) {
+      options.minDate = new Date(min);
+    }
+
+    $scope.dateOptions = options;
+
     $scope.status = {
       opened: false
     };
@@ -688,10 +683,8 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
     $scope.open = function() {
       $scope.status.opened = true;
     };
-
-
   } else if ($scope.field.type == 'daterange') {
-    $scope.dateOptions = {};
+    $scope.dateOptions = {showWeeks: false};
 
     $scope.clear = function() {
       $scope.daterange.start = '';
