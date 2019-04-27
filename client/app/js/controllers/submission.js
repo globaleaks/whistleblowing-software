@@ -508,8 +508,8 @@ controller("SubmissionFieldErrKeyCtrl", ["$scope",
       formFieldSel.focus();
     };
 }]).
-controller("SubmissionFormFieldCtrl", ["$scope", "topojson",
-  function($scope, topojson) {
+controller("SubmissionFormFieldCtrl", ["$scope", "fieldUtilities",
+  function($scope, fieldUtilities) {
     $scope.f = $scope[$scope.fieldFormVarName];
 
     if ($scope.field.type === "map" && $scope.field.attrs.topojson.value) {
@@ -540,11 +540,8 @@ controller("SubmissionFormFieldCtrl", ["$scope", "topojson",
         }
       };
 
-      d3.json($scope.field.attrs.topojson.value).then(function(json) {
-        var key = Object.keys(json.objects)[0];
-        json = topojson.feature(json, json.objects[key]);
-
-        $scope.field.attrs.topojson.features = json.features;
+      d3.json($scope.field.attrs.topojson.value).then(function(topojson) {
+        $scope.field.attrs.topojson.geojson = fieldUtilities.topoToGeo(topojson);
 
         var projection = d3.geoMercator();
         var path = d3.geoPath();
@@ -557,14 +554,14 @@ controller("SubmissionFormFieldCtrl", ["$scope", "topojson",
 
         projection.scale(1).translate([0, 0]);
 
-        var b = path.bounds(json),
+        var b = path.bounds($scope.field.attrs.topojson.geojson),
             s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
             t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
 
         projection.scale(s).translate(t);
 
         svg.selectAll("svg")
-           .data(json.features)
+           .data($scope.field.attrs.topojson.geojson.features)
            .enter()
            .append("path")
            .call(function(d){ $scope.field.attrs.topojson.paths = d._groups[0]; })
@@ -612,7 +609,7 @@ controller("SubmissionFormFieldCtrl", ["$scope", "topojson",
            });
 
           svg.selectAll("text")
-          .data(json.features)
+          .data(topojson.features)
           .enter()
           .append("svg:circle")
           .attr("fill", "#000").attr("r", 1.5)

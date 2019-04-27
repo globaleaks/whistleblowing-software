@@ -1187,7 +1187,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       }
     };
 }]).
-  factory("fieldUtilities", ["$filter", "CONSTANTS", function($filter, CONSTANTS) {
+  factory("fieldUtilities", ["$filter", "topojson", "CONSTANTS", function($filter, topojson, CONSTANTS) {
       var flatten_field = function(id_map, field) {
         if (field.children.length === 0) {
           id_map[field.id] = field;
@@ -1496,6 +1496,10 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           });
 
           return parsedFields;
+        },
+
+        topoToGeo: function(data) {
+          return topojson.feature(data, data.objects[Object.keys(data.objects)[0]]);
         }
       };
 }]).
