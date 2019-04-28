@@ -221,6 +221,7 @@ AdminNodeDesc = {
     'tb_download_link': https_url_regexp,
     'languages_enabled': [text_type],
     'languages_supported': list,
+    'timezone': int,
     'default_language': text_type,
     'default_questionnaire': text_type,
     'maximum_filesize': int,

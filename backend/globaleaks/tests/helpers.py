@@ -1149,6 +1149,7 @@ class MockDict:
             'disable_privacy_badge': False,
             'disable_key_code_hint': False,
             'disable_donation_panel': False,
+            'timezone': 0,
             'default_language': u'en',
             'default_password': u'globaleaks',
             'default_questionnaire': u'default',

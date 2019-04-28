@@ -90,6 +90,8 @@ ConfigDescriptor = {
     u'default_language': Unicode(default=u'en'),
     u'default_questionnaire': Unicode(default=u'default'),
 
+    u'timezone': Int(default=0),
+
     u'maximum_filesize': Int(default=30),
 
     u'https_admin': Bool(default=True),
@@ -190,6 +192,7 @@ ConfigFilters = {
         u'onionservice',
         u'rootdomain',
         u'tb_download_link',
+        u'timezone',
         u'default_language',
         u'default_questionnaire',
         u'maximum_filesize',
@@ -320,7 +323,7 @@ ConfigFilters['public_node'] = list(set(ConfigFilters['admin_node']) - set([
     'basic_auth',
     'basic_auth_username',
     'basic_auth_password',
-    'default_timezone',
+    'timezone',
     'ip_filter_admin',
     'ip_filter_admin_enable',
     'ip_filter_custodian',
