@@ -234,19 +234,19 @@ directive("wbfile", [function() {
     templateUrl: "views/partials/wbfile.html",
   };
 }]).
-directive("filePickerInput", function() {
+directive("fileInput", function() {
   return {
     restrict: "A",
-    templateUrl: "views/partials/file_picker_input.html",
+    templateUrl: "views/partials/file_input.html",
     scope: {
-      filePickerInput: "&",
-      labelText: "@",
+      fileInput: "&",
+      fileInputLabel: "@",
     },
     link: function (scope, iElement) {
       iElement.find("input").on("change", function (event) {
 	if(event.target.files && event.target.files.length > 0) {
           scope.$apply(function(){
-            scope.filePickerInput({file: event.target.files[0]});
+            scope.fileInput({file: event.target.files[0]});
           });
         }
       });

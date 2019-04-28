@@ -201,7 +201,7 @@
                     <div class="position-relative" data-ng-class="{'has-error': !editUser.pgp_key.$valid}">
                       <label data-translate>Set up encryption by providing a PGP public key</label>
                       <textarea class="form-control" name="pgp_key" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="user.pgp_key_public" data-pgp-pubkey-validator="canBeEmpty"></textarea>
-                      <label file-picker-input="loadPublicKeyFile(file)" data-label-text="Select" class="btn btn-default textarea-btn"></label>
+                      <label file-input="loadPublicKeyFile(file)" file-input-label="Select" class="btn btn-default textarea-btn"></label>
                     </div>
                   </div>
                 </div>

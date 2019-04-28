@@ -81,8 +81,8 @@
     <div data-ng-hide="preferences.pgp_key_fingerprint !== ''">
       <div class="position-relative" data-ng-class="{'has-error': pgpkeyForm.$invalid}">
         <label data-translate>Set up encryption by providing a PGP public key</label>
-	<textarea data-pgp-pubkey-validator="canBeEmpty" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="preferences.pgp_key_public"></textarea>
-        <label file-picker-input="loadPublicKeyFile(file)" data-label-text="Select" class="btn btn-default textarea-btn"></label>
+	    <textarea data-pgp-pubkey-validator="canBeEmpty" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="preferences.pgp_key_public"></textarea>
+        <label file-input="loadPublicKeyFile(file)" file-input-label="Select" class="btn btn-default textarea-btn"></label>
       </div>
     </div>
   </div>

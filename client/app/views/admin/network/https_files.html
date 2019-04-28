@@ -10,7 +10,7 @@
       </span>
       <span class="pull-right">
         <span class="file-upload" data-ng-if="!tls_config.files.priv_key.set">
-          <label id="keyUpload" file-picker-input="postFile(file, file_resources.priv_key)" data-label-text="Upload" class="btn btn-xs btn-primary"></label>
+          <label id="keyUpload" file-input="postFile(file, file_resources.priv_key)" file-input-label="Upload" class="btn btn-xs btn-primary"></label>
         </span>
         <button id="pkGen" class="btn btn-xs btn-success" data-ng-if="!tls_config.files.priv_key.set" data-ng-click="gen_priv_key()">
             <i class="glyphicon glyphicon-cog"></i>
@@ -74,7 +74,7 @@
       </span>
       <span class="pull-right">
         <span class="file-upload" data-ng-if="!tls_config.files.cert.set">
-          <label id="certUpload" file-picker-input="postFile(file, file_resources.cert)" data-label-text="Upload" class="btn btn-xs btn-primary"></label>
+          <label id="certUpload" file-input="postFile(file, file_resources.cert)" file-input-label="Upload" class="btn btn-xs btn-primary"></label>
         </span>
         <span data-ng-if="tls_config.files.cert.set">
           <button id="downloadCert" class="btn btn-xs btn-primary" data-ng-click="downloadFile(file_resources.cert)">
@@ -103,7 +103,7 @@
       </span>
       <div class="pull-right">
         <span class="file-upload" data-ng-if="!tls_config.files.chain.set">
-          <label id="chainUpload" file-picker-input="postFile(file, file_resources.chain)" data-label-text="Upload" class="btn btn-xs btn-primary"></label>
+          <label id="chainUpload" file-input="postFile(file, file_resources.chain)" file-input-label="Upload" class="btn btn-xs btn-primary"></label>
         </span>
         <span data-ng-if="tls_config.files.chain.set">
           <button id="downloadChain" class="btn btn-xs btn-primary" data-ng-click="downloadFile(file_resources.chain)">
