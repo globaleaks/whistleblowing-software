@@ -1,7 +1,7 @@
 angular.module("GLDirectives", []).
   directive("dynamicTextarea", function () {
     return {
-      restrict: "E",
+      restrict: "A",
       link: function postLink(scope, element, attrs) {
         element.css("min-height", "2em");
 
