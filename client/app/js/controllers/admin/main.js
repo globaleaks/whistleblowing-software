@@ -52,12 +52,16 @@ controller("AdminGeneralSettingsCtrl", ["$scope", "$filter", "$http", "Files", "
         template: "views/admin/content/tab2.html"
       },
       {
-        title: "Languages",
+        title: "Files",
         template: "views/admin/content/tab3.html"
       },
       {
-        title: "Text customization",
+        title: "Languages",
         template: "views/admin/content/tab4.html"
+      },
+      {
+        title: "Text customization",
+        template: "views/admin/content/tab5.html"
       }
     ]);
   }

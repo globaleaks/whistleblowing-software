@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label data-translate>Language:</label>
+      <select class="form-control" data-ng-model="vars.language_to_customize" data-ng-change="get_l10n(vars.language_to_customize)" data-ng-options="item.code as item.name for item in languages_enabled_selector"></select>
+    </div>
+    <div class="form-group">
+      <label data-translate>Add custom text</label>
+      <select class="form-control" data-ng-model="vars.text_to_customize" data-ng-change="vars.custom_text = custom_texts[vars.text_to_customize] ? custom_texts[vars.text_to_customize] : default_texts[vars.text_to_customize]" data-ng-options="item.key as item.value for item in custom_texts_selector"></select>
+      <div data-ng-show="vars.text_to_customize">
+        <label data-translate>Custom text</label>
+        <div>
+          <textarea class="form-control" data-ng-model="vars.custom_text"></textarea>
+        </div>
+      </div>
+      <br />
+      <div class="form-group">
+        <button id="addCustomTextButton" class="pull-left btn btn-primary" data-ng-disabled="!vars.text_to_customize" type="submit" data-ng-click="custom_texts[vars.text_to_customize] = vars.custom_text; custom_texts.$update({'lang': vars.language_to_customize})">
+          <i class="glyphicon glyphicon-plus-sign"></i>
+          <span data-translate>Add</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br />
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label data-translate>Custom texts</label>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="col-md-3" data-translate>Original text</th>
+            <th class="col-md-3" data-translate>Original translation</th>
+            <th class="col-md-3" data-translate>Custom translation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat="(key, value) in custom_texts" data-ng-class="{danger: !default_texts[key]}" uib-popover="{{!default_texts[key] ? 'This custom text is no longer displayed on the platform. The original text has either changed or been removed.' : '' | translate }}" popover-placement="top">
+            <td class="preformatted">{{key}}</td>
+            <td class="preformatted">{{default_texts[key]}}</td>
+            <td>
+              <span class="preformatted">{{custom_texts[key]}}</span>
+              <button class="deleteCustomTextButton pull-right btn btn-xs btn-danger" data-ng-click="Utils.deleteFromDict(custom_texts, key); custom_texts.$update({'lang': vars.language_to_customize})">
+                <i class="glyphicon" data-ng-class="{'glyphicon-remove': default_texts[key], 'glyphicon-alert': !default_texts[key]}"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

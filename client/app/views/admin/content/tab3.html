@@ -1,55 +1,39 @@
 <div class="row">
-  <div class="col-md-6">
-    <input data-ng-model="admin.node.languages_enabled" class="hidden" />
-    <input data-ng-model="admin.node.default_language" class="hidden" />
+  <div class="col-md-12">
     <div class="form-group">
-      <label data-translate>Languages</label>
-      <button class="btn btn-xs btn-primary add-language-btn" data-ng-click="toggleLangSelect()">
-        <i class="glyphicon glyphicon-plus-sign"></i>
-        <span data-translate>Add</span>
-      </button>
-      <div>
-        <div id="LanguageAdder" class="row">
-          <div class="col-md-12" data-ng-if="showLangSelect">
-            <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='enableLanguage($item);'>
-              <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
-                <span data-ng-bind="$select.selected.native"></span>
-              </ui-select-match>
-              <ui-select-choices data-repeat="language in admin.node.languages_supported | filter:langNotEnabledFilter | filter: {native: $select.search}">
-                <span data-ng-bind-html="language.native | highlight: $select.search"></span>
-                <span>[{{language.code}}]</span>
-              </ui-select-choices>
-            </ui-select>
-          </div>
-        </div>
-        <br/>
-        <ul class="selectionList">
-          <li data-ng-repeat="lang_code in admin.node.languages_enabled">
-            <span class="action-btns">
-              <span data-ng-if="lang_code === admin.node.default_language" class="default-language">
-                <i class="glyphicon glyphicon-ok-sign"></i>
-              </span>
-              <span data-ng-if="lang_code !== admin.node.default_language" class="non-default-language"
-                uib-popover="{{'Use as default' | translate}}"
-                data-ng-click="admin.node.default_language = lang_code">
-                <i class="glyphicon glyphicon-ok-sign"></i>
-              </span>
-              <span data-ng-if="lang_code !== admin.node.default_language" data-ng-click="removeLang($index, lang_code)" uib-popover="{{'Remove' | translate}}" class="remove-lang-btn">
-                <i class="glyphicon glyphicon-remove"></i>
-              </span>
-              <i data-ng-if="lang_code === admin.node.default_language" class="glyphicon glyphicon-remove disabled-icon"></i>
+      <div flow-init="{target: 'admin/files/custom'}"
+                flow-files-submitted="$flow.upload()"
+                flow-file-success="reload()"
+                extend-flow-valid-size="node.maximum_filesize*1024*1024">
+        <label data-translate>Files</label>
+        <span class="uploadfile file-custom">
+          <span class="btn btn-xs btn-success fileinput-button">
+            <span class="uploadfile" flow-btn>
+              <span class="glyphicon glyphicon-plus"></span>
+              <span data-translate>Upload</span>
             </span>
-            <label>[{{lang_code}}] {{languages_supported[lang_code]['native']}}</label>
-          </li>
-        </ul>
-    </div>
-    <div class="form-group">
-      <button class="btn btn-success"
-              data-ng-disabled="contentForm.$invalid"
-              data-ng-click="updateNode()" type="submit">
-        <i class="glyphicon glyphicon-ok"></i>
-        <span data-translate>Save</span>
-      </button>
+          </span>
+        </span>
+      </div>
+      <div class="table-container">
+        <table class="table table-striped" id="fileList">
+          <tbody id="fileListBody">
+            <tr data-ng-repeat="file in files | orderBy:'name'">
+              <td>{{file.name}}</td>
+              <td>
+                <a class="btn btn-primary" data-ng-href="s/{{file.name}}" download="{{file.name}}">
+                  <span class="glyphicon glyphicon-download"></span>
+                  <span data-translate>Download</span>
+                </a>
+                <a class="btn btn-danger" data-ng-click="delete_file('admin/files/' + file.id)" data-single-click>
+                  <span class="glyphicon glyphicon-trash"></span>
+                  <span data-translate>Delete</span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
