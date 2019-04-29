@@ -95,7 +95,6 @@ user_credentials_keywords = [
 
 platform_signup_keywords = [
     '{RecipientName}',
-    '{ActivationRequest}',
     '{ActivationUrl}',
     '{ExpirationDate}',
     '{Name}',
@@ -160,12 +159,6 @@ class NodeKeyword(Keyword):
 
     def NodeName(self):
         return self.data['node']['name']
-
-    def _TorUrl(self):
-        return '/'
-
-    def _HTTPSUrl(self):
-        return '/'
 
     def TorSite(self):
         if self.data['node']['onionservice']:
@@ -512,8 +505,11 @@ class PlatformSignupKeyword(NodeKeyword):
     keyword_list = NodeKeyword.keyword_list + platform_signup_keywords
     data_keys = NodeKeyword.data_keys + ['signup']
 
-    def Url(self):
-        return 'http://' + self.data['signup']['subdomain'] + '.' + self.data['node']['onionservice'] + '/'
+    def TorSite(self):
+        return 'http://' + self.data['signup']['subdomain'] + '.' + self.data['node']['onionservice']
+
+    def HTTPSSite(self):
+        return 'https://' + self.data['signup']['subdomain'] + '.' + self.data['node']['rootdomain']
 
     def RecipientName(self):
         return self.data['signup']['name'] + ' ' + self.data['signup']['surname']
@@ -522,7 +518,14 @@ class PlatformSignupKeyword(NodeKeyword):
         return '/#/activation?token=' + self.data['signup']['activation_token']
 
     def ActivationUrl(self):
-        return self.Site() + self.ActivationRequest()
+        if self.data['node']['hostname']:
+            site = self.data['node']['hostname']
+        elif self.data['node']['onionservice']:
+            site = self.data['node']['onionservice']
+        else:
+            site = ''
+
+        return site + '/#/activation?token=' + self.data['signup']['activation_token']
 
     def ExpirationDate(self):
         date = ISO8601_to_datetime(self.data['signup']['registration_date']) + timedelta(days=30)
