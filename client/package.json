@@ -40,7 +40,7 @@
     "grunt-angular-templates": "1.1.0",
     "grunt-confirm": "1.0.8",
     "grunt-contrib-clean": "2.0.0",
-    "grunt-contrib-compress": "1.4.3",
+    "grunt-contrib-compress": "1.5.0",
     "grunt-contrib-concat": "1.0.1",
     "grunt-contrib-copy": "1.0.0",
     "grunt-istanbul": "0.8.0",
@@ -49,10 +49,10 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "5.0.0",
     "node-gettext": "2.0.0",
-    "npm-check-updates": "3.1.7",
+    "npm-check-updates": "3.1.8",
     "protractor": "5.4.2",
     "protractor-console-plugin": "0.1.1",
     "q": "1.5.1",
-    "superagent": "5.0.2"
+    "superagent": "5.0.4"
   }
 }
