@@ -211,7 +211,7 @@ class Model(object):
 
     def __setattr__(self, name, value):
         if name not in self.binary_keys and isinstance(value, binary_type):
-            value = text_type(value, 'utf-8')
+            value = value.decode()
 
         return super(Model, self).__setattr__(name, value)
 

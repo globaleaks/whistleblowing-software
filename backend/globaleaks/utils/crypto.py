@@ -87,7 +87,7 @@ if V(nacl.__version__) >= V('1.2'):
         hash = argon2id.kdf(32, password, salt,
                             opslimit=GCE.ALGORITM_CONFIGURATION['HASH']['ARGON2']['OPSLIMIT'],
                             memlimit=GCE.ALGORITM_CONFIGURATION['HASH']['ARGON2']['MEMLIMIT'])
-        return text_type(base64.b64encode(hash))
+        return base64.b64encode(hash).decode('utf-8')
 
     class _StreamingEncryptionObject(object):
         def __init__(self, mode, user_key, filepath):

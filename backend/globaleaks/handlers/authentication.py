@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Handlers dealing with platform authentication
+from datetime import datetime
 from random import SystemRandom
 from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks.handlers.admin.node import db_admin_serialize_node
@@ -111,6 +112,13 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
         if GCE.check_password(u.hash_alg, password, u.salt, u.password):
             user = u
             break
+
+        # Fix for issue: https://github.com/globaleaks/GlobaLeaks/issues/2563
+        if State.tenant_cache[1].creation_date < datetime.timestamp(datetime(2019, 5, 3, 0, 0)):
+            u_password = 'b\'' + u.password + '\''
+            if GCE.check_password(u.hash_alg, password, u.salt, u_password):
+                user = u
+                break
 
     if user is None:
         log.debug("Login: Invalid credentials")
