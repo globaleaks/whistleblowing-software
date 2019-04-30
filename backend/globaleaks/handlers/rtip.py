@@ -45,8 +45,7 @@ def db_update_submission_status(session, user_id, itip, submission_status_id, su
 
 def receiver_serialize_rfile(session, rfile):
     ifile = session.query(models.InternalFile) \
-                   .filter(models.InternalFile.id == models.ReceiverFile.internalfile_id,
-                           models.ReceiverFile.id == rfile.id).one()
+                   .filter(models.InternalFile.id == rfile.internalfile_id).one()
 
     if rfile.status == 'unavailable':
         return {
@@ -184,8 +183,7 @@ def db_access_wbfile(session, tid, user_id, wbfile_id):
 
 def db_receiver_get_rfile_list(session, rtip_id):
     rfiles = session.query(models.ReceiverFile) \
-                    .filter(models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
-                            models.ReceiverTip.id == rtip_id)
+                    .filter(models.ReceiverFile.receivertip_id == rtip_id)
 
     return [receiver_serialize_rfile(session, rfile) for rfile in rfiles]
 
