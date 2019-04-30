@@ -3,7 +3,7 @@ Dear {RecipientName},
 A new whistleblowing site has been registered.
 
 Registration data:
-Site: {HTTPSUrl}
+Site: {Url}
 Name: {Name}
 Email: {Email}
 Language: {Language}

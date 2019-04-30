@@ -1,10 +1,10 @@
 Dear {RecipientName},
 
 Your whistleblowing platform is now accessible at:
-{HTTPSUrl}
+{Url}
 
 To log in, visit:
-{HTTPSLoginUrl}
+{LoginUrl}
 
 Users' credentials:
 {AdminCredentials}

@@ -17,13 +17,14 @@ from globaleaks.utils.utility import datetime_to_pretty_str, \
 
 node_keywords = [
     '{NodeName}',
-    '{DocumentationUrl}',
     '{TorSite}',
     '{HTTPSSite}',
     '{TorUrl}',
     '{HTTPSUrl}',
     '{Site}',
-    '{Url}'
+    '{Url}',
+    '{DocumentationUrl}',
+    '{LoginUrl}',
 ]
 
 context_keywords = [
@@ -172,12 +173,6 @@ class NodeKeyword(Keyword):
 
         return '[UNDEFINED]'
 
-    def TorUrl(self):
-        return self.TorSite() + self.UrlPath()
-
-    def HTTPSUrl(self):
-        return self.HTTPSSite() + self.UrlPath()
-
     def Site(self):
         if self.data['node']['hostname']:
             return self.data['node']['hostname']
@@ -193,8 +188,17 @@ class NodeKeyword(Keyword):
     def Url(self):
         return self.Site() + self.UrlPath()
 
+    def TorUrl(self):
+        return self.TorSite() + self.UrlPath()
+
+    def HTTPSUrl(self):
+        return self.HTTPSSite() + self.UrlPath()
+
     def DocumentationUrl(self):
         return 'https://docs.globaleaks.org'
+
+    def LoginUrl(self):
+        return self.Site() + '/#/login'
 
 
 class UserKeyword(Keyword):
