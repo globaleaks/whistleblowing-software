@@ -12,6 +12,7 @@ from globaleaks.orm import transact
 from globaleaks.rest.cache import Cache
 from globaleaks.services.service import Service
 from globaleaks.state import State
+from globaleaks.utils.utility import deferred_sleep
 from globaleaks.utils.log import log
 
 from globaleaks.mocks.txtorcon_mocks import EphemeralHiddenService
@@ -184,11 +185,11 @@ class OnionService(Service):
 
         if not os.path.exists(control_socket):
             startup_errback(Exception('Tor control port not open on %s; waiting for Tor to become available' % control_socket))
-            return
+            return deferred_sleep(1)
 
         if not os.access(control_socket, os.R_OK):
             startup_errback(Exception('Unable to access %s; manual permission recheck needed' % control_socket))
-            return
+            return deferred_sleep(1)
 
         build_local_tor_connection(reactor).addCallbacks(startup_callback, startup_errback)
 
