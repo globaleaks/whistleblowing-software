@@ -48,7 +48,7 @@ GLClient.controller("WizardCtrl", ["$scope", "$location", "$route", "$http", "Au
   };
 
   $scope.wizard = {
-    "node_language": GLTranslate.indirect.appLanguage,
+    "node_language": GLTranslate.state.language,
     "node_name": "",
     "admin_password": "",
     "admin_name": "",

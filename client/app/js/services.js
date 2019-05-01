@@ -189,8 +189,8 @@ angular.module("GLServices", ["ngResource"]).
             h["X-Session"] = self.session.id;
           }
 
-          if (GLTranslate.indirect.appLanguage !== null) {
-            h["GL-Language"] = GLTranslate.indirect.appLanguage;
+          if (GLTranslate.state.language !== null) {
+            h["GL-Language"] = GLTranslate.state.language;
           }
 
           return h;
@@ -1539,8 +1539,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     "hu": "HU",
   };
 
-  var indirect = {
-    appLanguage: null,
+  var state = {
+    language: null
   };
 
   initializeStartLanguage();
@@ -1623,11 +1623,11 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
   }
 
 
-  // setLang either uses the current indirect.appLanguage or the passed value
+  // setLang either uses the current state.language or the passed value
   // to set the language for the entire application.
   function setLang(choice) {
     if (angular.isUndefined(choice)) {
-      choice = indirect.appLanguage;
+      choice = state.language;
     }
 
     if (validLang(choice)) {
@@ -1643,6 +1643,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     if (enabledLanguages.length > 0) {
         return enabledLanguages.indexOf(language) !== -1;
     }
+
     return true;
   }
 
@@ -1668,19 +1669,19 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
   }
 
   // determineLanguage contains all of the scope creeping ugliness of the
-  // factory. It finds the best language to use, changes the appLanguage
+  // factory. It finds the best language to use, changes the language
   // pointer, and notifies the dependent services of the change.
   function determineLanguage() {
-    indirect.appLanguage = bestLanguage(facts);
-    if (indirect.appLanguage !== null) {
-      updateTranslationServices(indirect.appLanguage);
-      GLClient.language = indirect.appLanguage;
+    state.language = bestLanguage(facts);
+    if (state.language !== null) {
+      updateTranslationServices(state.language);
+      GLClient.language = state.language;
     }
   }
 
   return {
-    // Use indirect object to preserve the reference to appLanguage across scopes.
-    indirect: indirect,
+    // Use state object to preserve the reference to language across scopes.
+    state: state,
 
     setLang: setLang,
 

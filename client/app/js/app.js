@@ -677,8 +677,6 @@ var GLClient = angular.module("GLClient", [
           }
         }
 
-        GLTranslate.addNodeFacts($rootScope.node.default_language, $rootScope.node.languages_enabled);
-
         Utils.route_check();
 
         $rootScope.languages_enabled = {};
@@ -694,8 +692,6 @@ var GLClient = angular.module("GLClient", [
 
         $rootScope.languages_enabled_selector = $filter("orderBy")($rootScope.languages_enabled_selector, "code");
 
-        Utils.set_title();
-
         if ($rootScope.node.enable_experimental_features) {
           $rootScope.isFieldTriggered = fieldUtilities.isFieldTriggered;
         } else {
@@ -703,6 +699,9 @@ var GLClient = angular.module("GLClient", [
         }
 
         $rootScope.evaluateConfidentialityModalOpening();
+
+        GLTranslate.addNodeFacts($rootScope.node.default_language, $rootScope.node.languages_enabled);
+        Utils.set_title();
 
         $rootScope.started = true;
       }).$promise;
@@ -716,11 +715,9 @@ var GLClient = angular.module("GLClient", [
         $rootScope.showLoadingPanel = val > 0;
     });
 
-    $rootScope.$watch("GLTranslate.indirect.appLanguage", function(new_val, old_val) {
+    $rootScope.$watch("GLTranslate.state.language", function(new_val, old_val) {
       GLTranslate.setLang();
-      if(old_val !== new_val) {
-        $rootScope.reload();
-      }
+      $rootScope.reload();
     });
 
     $rootScope.$on("$routeChangeStart", function() {
