@@ -392,7 +392,7 @@ var GLClient = angular.module("GLClient", [
       when("/login", {
         templateUrl: "views/login/main.html",
         controller: "LoginCtrl",
-        header_title: "Login",
+        header_title: "Log in",
         resolve: {
           access: noAuth(),
         }
@@ -400,7 +400,7 @@ var GLClient = angular.module("GLClient", [
       when("/admin", {
         templateUrl: "views/login/main.html",
         controller: "LoginCtrl",
-        header_title: "Login",
+        header_title: "Log in",
         resolve: {
           access: noAuth(),
         }
@@ -408,7 +408,7 @@ var GLClient = angular.module("GLClient", [
       when("/multisitelogin", {
         templateUrl: "views/login/main.html",
         controller: "LoginCtrl",
-        header_title: "Login",
+        header_title: "Log in",
         resolve: {
           access: noAuth(),
         }

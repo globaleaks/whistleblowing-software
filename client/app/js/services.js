@@ -865,7 +865,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           if (Authentication.receipt) {
             $rootScope.ht = $rootScope.node.header_title_receiptpage;
           } else {
-            $rootScope.ht = "Login";
+            $rootScope.ht = "Log in";
           }
         } else if (path.substr(0, statuspage.length) === statuspage) {
           $rootScope.ht = $rootScope.node.header_title_tippage;
