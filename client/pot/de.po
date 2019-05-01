@@ -47,8 +47,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
-"Last-Translator: spriver\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -670,6 +670,18 @@ msgstr "Platzhalter"
 msgid "Print"
 msgstr "Drucken"
 
+msgid "Previous"
+msgstr "Vorherige"
+
+msgid "Next"
+msgstr "Weiter"
+
+msgid "First"
+msgstr "Erste"
+
+msgid "Last"
+msgstr "Letzte"
+
 msgid "Select the context of your submission:"
 msgstr "Wählen Sie den Kontext Ihrer Einreichung aus:"
 
@@ -948,12 +960,6 @@ msgstr "Hochladen"
 
 msgid "Download"
 msgstr "Herunterladen"
-
-msgid "Upload custom file"
-msgstr "Benutzerdefinierte Datei hochladen"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "/ S / $ filename: Die Datei wird unter folgender URL verfügbar sein"
 
 msgid "Language:"
 msgstr "Sprache:"
@@ -1853,6 +1859,9 @@ msgstr "Niemals"
 
 msgid "Revoked"
 msgstr "Widerrufen"
+
+msgid "-"
+msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Dem Hinweisgeber das Schreiben von Mitteilungen erlauben"

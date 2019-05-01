@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 11:10+0000\n"
-"Last-Translator: Chacal E.\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -661,6 +661,18 @@ msgstr "Placeholder"
 msgid "Print"
 msgstr "Imprimir"
 
+msgid "Previous"
+msgstr "Anterior"
+
+msgid "Next"
+msgstr "Próximo"
+
+msgid "First"
+msgstr "Primeiro"
+
+msgid "Last"
+msgstr "Último"
+
 msgid "Select the context of your submission:"
 msgstr "Selecionar o assunto do seu envio:"
 
@@ -939,12 +951,6 @@ msgstr "Carregar"
 
 msgid "Download"
 msgstr "Baixar"
-
-msgid "Upload custom file"
-msgstr "Carregar Arquivo Personalizado"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "O arquivo estará disponível em URL: /s/$nomearquivo"
 
 msgid "Language:"
 msgstr "Linguagem:"
@@ -1844,6 +1850,9 @@ msgstr "Jamais"
 
 msgid "Revoked"
 msgstr "Revogada"
+
+msgid "-"
+msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Permitir que o delator envie mensagens"

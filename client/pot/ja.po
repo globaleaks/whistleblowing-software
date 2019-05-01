@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
-"Last-Translator: Masayuki Hatta <mhatta@mhatta.org>\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -632,6 +632,18 @@ msgstr "プレースホルダー"
 msgid "Print"
 msgstr "印刷"
 
+msgid "Previous"
+msgstr "前へ"
+
+msgid "Next"
+msgstr "次へ"
+
+msgid "First"
+msgstr "最初"
+
+msgid "Last"
+msgstr "最終"
+
 msgid "Select the context of your submission:"
 msgstr "提出のコンテキストを選択してください:"
 
@@ -910,12 +922,6 @@ msgstr "アップロード"
 
 msgid "Download"
 msgstr "ダウンロード"
-
-msgid "Upload custom file"
-msgstr "カスタムファイルをアップロード"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "ファイルは URL: /s/$filename から入手可能です"
 
 msgid "Language:"
 msgstr "言語:"
@@ -1436,7 +1442,7 @@ msgid "Root domain used for secondary sites"
 msgstr "二番目のサイトで使用するルートドメイン"
 
 msgid "Use the first site for administrative purposes only"
-msgstr ""
+msgstr "管理目的に最初のサイトのみ使用する"
 
 msgid "Allow users to sign up"
 msgstr "ユーザーによるサインアップを許可"
@@ -1815,6 +1821,9 @@ msgstr "しない"
 
 msgid "Revoked"
 msgstr "失効しました"
+
+msgid "-"
+msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "その内部告発者が、メッセージを送信することを許可"

@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -642,6 +642,18 @@ msgstr ""
 msgid "Print"
 msgstr "打印"
 
+msgid "Previous"
+msgstr "上一个"
+
+msgid "Next"
+msgstr "下一步"
+
+msgid "First"
+msgstr "首页"
+
+msgid "Last"
+msgstr "末页"
+
 msgid "Select the context of your submission:"
 msgstr "选项提交内容类型："
 
@@ -920,12 +932,6 @@ msgstr "载入"
 
 msgid "Download"
 msgstr "下载"
-
-msgid "Upload custom file"
-msgstr "导入自定义文件"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "该文件位于 URL: /s/$filename "
 
 msgid "Language:"
 msgstr "语言："
@@ -1825,6 +1831,9 @@ msgstr "从未"
 
 msgid "Revoked"
 msgstr "撤销"
+
+msgid "-"
+msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "允许该告密者发送消息"

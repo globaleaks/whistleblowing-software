@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -630,6 +630,18 @@ msgstr ""
 msgid "Print"
 msgstr "அச்சிடு"
 
+msgid "Previous"
+msgstr ""
+
+msgid "Next"
+msgstr "அடுத்த"
+
+msgid "First"
+msgstr ""
+
+msgid "Last"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "உங்கள் சமர்ப்பிப்பு சூழலில் தேர்வு:"
 
@@ -908,12 +920,6 @@ msgstr "பதிவேற்று"
 
 msgid "Download"
 msgstr "பதிவிறக்க"
-
-msgid "Upload custom file"
-msgstr "விருப்ப கோப்பு பதிவேற்ற"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "கோப்பு URL கிடைக்க வேண்டும்: / கள் / $ கோப்பு பெயர்"
 
 msgid "Language:"
 msgstr "மொழி:"
@@ -1813,6 +1819,9 @@ msgstr "ஒருபோதும்"
 
 msgid "Revoked"
 msgstr "திரும்பப்பெறப்பட்டது"
+
+msgid "-"
+msgstr ""
 
 msgid "Allow the whistleblower to send messages"
 msgstr "தகவல் தெரிவிப்பவர் செய்திகளை அனுப்ப அனுமதிக்க"

@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -641,6 +641,18 @@ msgstr ""
 msgid "Print"
 msgstr "Imprimeix"
 
+msgid "Previous"
+msgstr "Anterior"
+
+msgid "Next"
+msgstr "Endavant"
+
+msgid "First"
+msgstr ""
+
+msgid "Last"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Selecciona el context del teu enviament:"
 
@@ -919,12 +931,6 @@ msgstr "Carrega"
 
 msgid "Download"
 msgstr "Baixa"
-
-msgid "Upload custom file"
-msgstr "Carrega fitxer personalitzat"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "L'arxiu estarà disponible a l'URL: /s/$filename"
 
 msgid "Language:"
 msgstr "Idioma:"
@@ -1824,6 +1830,9 @@ msgstr "mai"
 
 msgid "Revoked"
 msgstr "revocat"
+
+msgid "-"
+msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Permet als informadors enviar missatges"

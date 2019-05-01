@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
-"Last-Translator: Volkan Gezer <volkangezer@gmail.com>\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -649,6 +649,18 @@ msgstr ""
 msgid "Print"
 msgstr ""
 
+msgid "Previous"
+msgstr "Önceki"
+
+msgid "Next"
+msgstr "Sonraki"
+
+msgid "First"
+msgstr ""
+
+msgid "Last"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Gönderiminizin içeriğini seçin:"
 
@@ -927,12 +939,6 @@ msgstr "Yükle"
 
 msgid "Download"
 msgstr "İndir"
-
-msgid "Upload custom file"
-msgstr "Özel Dosya Yükle"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "Dosya bulunduğu URL: /s/$filename"
 
 msgid "Language:"
 msgstr "Dil:"
@@ -1832,6 +1838,9 @@ msgstr "Asla"
 
 msgid "Revoked"
 msgstr "İptal edildi"
+
+msgid "-"
+msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "İhbarcının mesaj göndermesine izin verin"

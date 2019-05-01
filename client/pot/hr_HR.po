@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -631,6 +631,18 @@ msgstr ""
 msgid "Print"
 msgstr ""
 
+msgid "Previous"
+msgstr ""
+
+msgid "Next"
+msgstr "Sljedeće"
+
+msgid "First"
+msgstr ""
+
+msgid "Last"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Odaberite kontekst svoje predaje:"
 
@@ -909,12 +921,6 @@ msgstr "Učitaj"
 
 msgid "Download"
 msgstr "Preuzmi"
-
-msgid "Upload custom file"
-msgstr "Učitaj prilagođenu datoteku"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "Datotetka će biti dostupna na URL-u: /s/$filename"
 
 msgid "Language:"
 msgstr "Jezik:"
@@ -1814,6 +1820,9 @@ msgstr "Nikad"
 
 msgid "Revoked"
 msgstr "Odbijeno"
+
+msgid "-"
+msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Dopusti zviždaču da šalje poruke"

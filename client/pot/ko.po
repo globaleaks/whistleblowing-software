@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -628,6 +628,18 @@ msgstr ""
 msgid "Print"
 msgstr "인쇄"
 
+msgid "Previous"
+msgstr "전"
+
+msgid "Next"
+msgstr "다음"
+
+msgid "First"
+msgstr "첫번째"
+
+msgid "Last"
+msgstr "마지막"
+
 msgid "Select the context of your submission:"
 msgstr "제출의 컨텍스트를 선택합니다 :"
 
@@ -906,12 +918,6 @@ msgstr "업로드"
 
 msgid "Download"
 msgstr "다운로드"
-
-msgid "Upload custom file"
-msgstr "사용자 정의 파일을 업로드"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "이 파일은 URL에서 사용할 수 있습니다 : / s의 / $ 파일 이름"
 
 msgid "Language:"
 msgstr ""
@@ -1811,6 +1817,9 @@ msgstr "만료없음"
 
 msgid "Revoked"
 msgstr ""
+
+msgid "-"
+msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "고발자 메시지를 보낼 수 있도록 허용"

@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
-"Last-Translator: A5h8d0wf0x <littleslyfoxie28@gmail.com>\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -637,6 +637,18 @@ msgstr "Zástupce"
 msgid "Print"
 msgstr "Tisk"
 
+msgid "Previous"
+msgstr "Předchozí"
+
+msgid "Next"
+msgstr "Další"
+
+msgid "First"
+msgstr "První"
+
+msgid "Last"
+msgstr "Poslední"
+
 msgid "Select the context of your submission:"
 msgstr "Vyberte kontext vašeho podání"
 
@@ -915,12 +927,6 @@ msgstr "Načíst"
 
 msgid "Download"
 msgstr "Stáhnout"
-
-msgid "Upload custom file"
-msgstr "Nahrání uživatelského souboru"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "Tento soubor bude přístupný na adrese : /s/$filename"
 
 msgid "Language:"
 msgstr "Jazyk:"
@@ -1820,6 +1826,9 @@ msgstr "Nikdy"
 
 msgid "Revoked"
 msgstr "Zpět vzaté"
+
+msgid "-"
+msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Povolit oznamovateli posílat zprávy"

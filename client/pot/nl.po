@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
-"Last-Translator: J <drwhax@2600nl.net>\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -661,6 +661,18 @@ msgstr "Plaatshouder"
 msgid "Print"
 msgstr "Afdrukken"
 
+msgid "Previous"
+msgstr "Vorige"
+
+msgid "Next"
+msgstr "Volgende"
+
+msgid "First"
+msgstr "Eerste"
+
+msgid "Last"
+msgstr "Laatste"
+
 msgid "Select the context of your submission:"
 msgstr "Selecteer de context van uw inzending:"
 
@@ -939,12 +951,6 @@ msgstr "Uploaden"
 
 msgid "Download"
 msgstr "Downloaden"
-
-msgid "Upload custom file"
-msgstr "Aangepast bestand uploaden"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "Het bestand zal beschikbaar zijn op URL: /s/$filename"
 
 msgid "Language:"
 msgstr "Taal:"
@@ -1303,7 +1309,7 @@ msgid "Let the platform be reachable without Tor"
 msgstr "Het platform is bereikbaar zonder Tor"
 
 msgid "Roles enabled to use the platform without Tor"
-msgstr ""
+msgstr "Rollen ingeschakeld om het platform te gebruiken zonder TOR"
 
 msgid "Stats of the week:"
 msgstr "Weekstatistieken:"
@@ -1432,7 +1438,7 @@ msgid "Trigger conditions"
 msgstr ""
 
 msgid "Sufficient"
-msgstr ""
+msgstr "Voldoende"
 
 msgid "Questions"
 msgstr "Vragen"
@@ -1705,7 +1711,7 @@ msgid "Validation of email address change in progress."
 msgstr "Validatie van e-mail adres verandering wordt uitgevoerd."
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
+msgstr "Kijk in je e-mail postvak-in voor verdere instructies."
 
 msgid "Encryption key"
 msgstr "Versleutelingssleutel"
@@ -1844,6 +1850,9 @@ msgstr "Nooit"
 
 msgid "Revoked"
 msgstr "Herroepen"
+
+msgid "-"
+msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "De klokkenluider toestaan berichten te versturen"

@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -632,6 +632,18 @@ msgstr ""
 msgid "Print"
 msgstr "Çap et"
 
+msgid "Previous"
+msgstr "Əvvəlki"
+
+msgid "Next"
+msgstr "Növbəti"
+
+msgid "First"
+msgstr "İlk"
+
+msgid "Last"
+msgstr "Sonuncu"
+
 msgid "Select the context of your submission:"
 msgstr "Təqdimatınızın məzmunu seçin:"
 
@@ -910,12 +922,6 @@ msgstr "Yüklə"
 
 msgid "Download"
 msgstr "Endir"
-
-msgid "Upload custom file"
-msgstr "Fərdi fayl yükləyin"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "Fayl URL : /s/$filename  ünvanında mövcud olacaq."
 
 msgid "Language:"
 msgstr "Dil:"
@@ -1815,6 +1821,9 @@ msgstr "Heç vaxt"
 
 msgid "Revoked"
 msgstr "Ləğv edildi"
+
+msgid "-"
+msgstr ""
 
 msgid "Allow the whistleblower to send messages"
 msgstr "İnformasiya ötürənin mesaj göndərməsinə icazə verin"

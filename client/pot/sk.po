@@ -10,11 +10,12 @@
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
+# Tibor Deák <deaktib@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-04-29 21:02+0000\n"
+"Last-Translator: Tibor Deák <deaktib@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -412,7 +413,7 @@ msgid "Trigger question"
 msgstr "Spúštacia otázka"
 
 msgid "Triggered by score:"
-msgstr ""
+msgstr "Spustené na základe skóre:"
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Správa zobrazená v hornej časti stránky o stave podania"
@@ -496,7 +497,7 @@ msgid "Activate"
 msgstr "Aktivovať"
 
 msgid "Disactivate"
-msgstr ""
+msgstr "Deaktivujte"
 
 msgid "Search"
 msgstr "Hľadať"
@@ -634,7 +635,19 @@ msgid "Placeholder"
 msgstr "Placeholder"
 
 msgid "Print"
-msgstr ""
+msgstr "Tlačiť"
+
+msgid "Previous"
+msgstr "Predchádzajúce"
+
+msgid "Next"
+msgstr "Ďalej"
+
+msgid "First"
+msgstr "Prvé"
+
+msgid "Last"
+msgstr "Posledné"
 
 msgid "Select the context of your submission:"
 msgstr "Vyberte kontext vášho podania"
@@ -832,7 +845,7 @@ msgid "Save"
 msgstr "Uložiť"
 
 msgid "Reset submissions"
-msgstr ""
+msgstr "Resetovať podania"
 
 msgid "Short URL"
 msgstr "Krátke URL"
@@ -914,12 +927,6 @@ msgstr "Načítať"
 
 msgid "Download"
 msgstr "Stiahnuť"
-
-msgid "Upload custom file"
-msgstr "Nahranie použivateľského súboru"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "Tento súbor bude prístupný na adrese: /s/$filename"
 
 msgid "Language:"
 msgstr "Jazyk:"
@@ -1033,13 +1040,13 @@ msgid "High"
 msgstr "Vysoká"
 
 msgid "Customize the message shown in the receipt page"
-msgstr ""
+msgstr "Uprav správu zobrazenú na stránke s potvrdením"
 
 msgid "Low"
-msgstr ""
+msgstr "Nízke"
 
 msgid "Assign the receipt only to submissions reaching score:"
-msgstr ""
+msgstr "Priraď potvrdenie len ku skóre dostupnosti podaní"
 
 msgid "Software version:"
 msgstr "Verzia softvéru:"
@@ -1371,16 +1378,16 @@ msgid "Checkbox label"
 msgstr "Zaškrtávacie políčko"
 
 msgid "Add multimedia content"
-msgstr ""
+msgstr "Pridajte multimediálny obsah"
 
 msgid "Image"
-msgstr ""
+msgstr "Obrázok"
 
 msgid "Audio"
-msgstr ""
+msgstr "Zvuk"
 
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Vystaviť viditeľnosť oprávnenia ochrancu"
@@ -1404,10 +1411,10 @@ msgid "Multiplier"
 msgstr "Multiplikátor"
 
 msgid "Trigger conditions"
-msgstr ""
+msgstr "Prvotné podmienky"
 
 msgid "Sufficient"
-msgstr ""
+msgstr "Dostatočný"
 
 msgid "Questions"
 msgstr "Otázky"
@@ -1440,7 +1447,7 @@ msgid "Root domain used for secondary sites"
 msgstr "Koreňová doména pre sekundárne stránky"
 
 msgid "Use the first site for administrative purposes only"
-msgstr ""
+msgstr "Prvú stranu použite len pre účely administrácie."
 
 msgid "Allow users to sign up"
 msgstr "Povoliť používateľom registráciu"
@@ -1585,7 +1592,7 @@ msgid "Site:"
 msgstr "Stránka:"
 
 msgid "Have you already filed a submission? Enter your receipt."
-msgstr ""
+msgstr "Už ste vyplnili podanie? Zadajte svoj prístupový kód."
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr "Príjemca je buď neplatný, alebo uplynula platnosť podania."
@@ -1820,6 +1827,9 @@ msgstr "Nikdy"
 msgid "Revoked"
 msgstr "Vziať späť"
 
+msgid "-"
+msgstr "-"
+
 msgid "Allow the whistleblower to send messages"
 msgstr "Povoliť oznamovateľovi posielať správy"
 
@@ -1908,7 +1918,7 @@ msgid "Thank you!"
 msgstr "Ďakujeme Vám!"
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "Ozveme sa Vám hneď, ako to bude možné."
 
 msgid "Remember your receipt for this submission."
 msgstr "Zapamätajte si potvrdenie o tomto podaní."
@@ -2233,7 +2243,7 @@ msgid ""
 msgstr "Toto je emailové upozornenie na nový komentár k existujúcemu podaniu."
 
 msgid "The submission can be accessed at:"
-msgstr ""
+msgstr "Podanie je prístupné na:"
 
 msgid "New comment"
 msgstr "Nový komentár"
@@ -2244,7 +2254,7 @@ msgid ""
 msgstr "Toto je emailové upozornenie, že bola podaná žiadosť o zmenu vašej emailovej adresy na {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
-msgstr ""
+msgstr "Zmenu potvrďte kliknutím na nasledujúci odkaz:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2331,7 +2341,7 @@ msgid ""
 msgstr "Toto je emailové upozornenie, že príjemca požaduje prístup k identite oznamovateľa podania {TipNum}."
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "Žiadosť je dostupná na:"
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Nová žiadosť o prístup k identite oznamovateľa"
@@ -2362,7 +2372,7 @@ msgid ""
 msgstr "Ak ste túto žiadosť nevykonali, môžete tento email ignorovať a odstrániť."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr ""
+msgstr "Svoju žiadosť môžete potvrdiť kliknutím na nasledujúci odkaz:"
 
 msgid "Password reset instructions"
 msgstr "Pokyny na obnovenie hesla"

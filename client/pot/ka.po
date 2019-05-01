@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -627,6 +627,18 @@ msgstr ""
 msgid "Print"
 msgstr ""
 
+msgid "Previous"
+msgstr ""
+
+msgid "Next"
+msgstr "შემდეგი"
+
+msgid "First"
+msgstr ""
+
+msgid "Last"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "აირჩიეთ კონტექსტში თქვენი წარმოდგენის:"
 
@@ -905,12 +917,6 @@ msgstr "ატვირთვა"
 
 msgid "Download"
 msgstr "ჩამოტვირთვა"
-
-msgid "Upload custom file"
-msgstr "ატვირთვა საბაჟო ფაილი"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "ფაილი ხელმისაწვდომი იქნება URL: /s/$filename"
 
 msgid "Language:"
 msgstr ""
@@ -1809,6 +1815,9 @@ msgid "Never"
 msgstr ""
 
 msgid "Revoked"
+msgstr ""
+
+msgid "-"
 msgstr ""
 
 msgid "Allow the whistleblower to send messages"

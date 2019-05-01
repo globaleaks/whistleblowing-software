@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
-"Last-Translator: Yves Eudes <eudes@lemonde.fr>\n"
+"PO-Revision-Date: 2019-04-29 20:59+0000\n"
+"Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -438,7 +438,7 @@ msgid "Trigger question"
 msgstr "Déclencher une question"
 
 msgid "Triggered by score:"
-msgstr ""
+msgstr "Déclenché par un pointage : "
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Message affiché en haut de la page d’état de l’envoi"
@@ -662,6 +662,18 @@ msgstr "Espace réservé"
 msgid "Print"
 msgstr "Imprimer"
 
+msgid "Previous"
+msgstr "Précédent"
+
+msgid "Next"
+msgstr "Suivant"
+
+msgid "First"
+msgstr "Première"
+
+msgid "Last"
+msgstr "Dernière"
+
 msgid "Select the context of your submission:"
 msgstr "Choisir le contexte de votre envoi :"
 
@@ -858,7 +870,7 @@ msgid "Save"
 msgstr "Enregistrer"
 
 msgid "Reset submissions"
-msgstr ""
+msgstr "Réinitialiser les envois"
 
 msgid "Short URL"
 msgstr "URL courte"
@@ -940,12 +952,6 @@ msgstr "Téléverser"
 
 msgid "Download"
 msgstr "Télécharger"
-
-msgid "Upload custom file"
-msgstr "Téléverser un fichier personnalisé"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "Le fichier sera accessible à URL : /s/$filename"
 
 msgid "Language:"
 msgstr "Langue :"
@@ -1062,7 +1068,7 @@ msgid "Customize the message shown in the receipt page"
 msgstr "Personnaliser le message qui apparaît sur la page de réception"
 
 msgid "Low"
-msgstr "Normal"
+msgstr "Faible"
 
 msgid "Assign the receipt only to submissions reaching score:"
 msgstr "N’attribuer le reçu qu’aux envois qui atteignent ce pointage :"
@@ -1430,10 +1436,10 @@ msgid "Multiplier"
 msgstr "Multiplicateur"
 
 msgid "Trigger conditions"
-msgstr ""
+msgstr "Conditions de déclenchement"
 
 msgid "Sufficient"
-msgstr ""
+msgstr "Suffisante"
 
 msgid "Questions"
 msgstr "Questions"
@@ -1466,7 +1472,7 @@ msgid "Root domain used for secondary sites"
 msgstr "Domaine racine utilisé pour les sites secondaires"
 
 msgid "Use the first site for administrative purposes only"
-msgstr ""
+msgstr "N’utiliser le premier site qu’à des fins d’administration"
 
 msgid "Allow users to sign up"
 msgstr "Permettre aux utilisateurs de s’inscrire"
@@ -1611,7 +1617,7 @@ msgid "Site:"
 msgstr "Site :"
 
 msgid "Have you already filed a submission? Enter your receipt."
-msgstr "Avez-vous déjà déposé une alerte ? Saisissez votre code de réception"
+msgstr "Avez-vous déjà déposé une alerte ? Saisissez votre code de réception."
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr "Soit le reçu est invalide soit votre envoi a expiré."
@@ -1845,6 +1851,9 @@ msgstr "Jamais"
 
 msgid "Revoked"
 msgstr "Révoqué"
+
+msgid "-"
+msgstr "–"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Permettre au lanceur d’alerte d’envoyer des messages"
@@ -2259,7 +2268,7 @@ msgid ""
 msgstr "Le but de ce courriel est de vous signaler un nouveau commentaire à propos d’un envoi existant."
 
 msgid "The submission can be accessed at:"
-msgstr ""
+msgstr "L’envoi est accessible à :"
 
 msgid "New comment"
 msgstr "Nouveau commentaire"
@@ -2357,7 +2366,7 @@ msgid ""
 msgstr "Le but de ce courriel est de vous signaler qu’un destinataire a demandé l’accès à l’identité du lanceur d’alerte pour l’envoi {TipNum}."
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "La demande est accessible à :"
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Nouvelle demande d’accès à l’identité d’un lanceur d’alerte "
@@ -2388,7 +2397,7 @@ msgid ""
 msgstr "Si vous n’êtes pas à l’origine de cette demande, vous pouvez en toute sécurité ignorer et supprimer ce courriel."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr ""
+msgstr "Vous pouvez confirmer votre demande en cliquant sur le lien suivant :"
 
 msgid "Password reset instructions"
 msgstr "Instructions de réinitialisation du mot de passe"

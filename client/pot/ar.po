@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
-"Last-Translator: Dragana Kaurin <dragana.kaurin@localizationlab.org>\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -661,6 +661,18 @@ msgstr ""
 msgid "Print"
 msgstr "طباعة"
 
+msgid "Previous"
+msgstr "السابق"
+
+msgid "Next"
+msgstr "التالي"
+
+msgid "First"
+msgstr "اﻷول"
+
+msgid "Last"
+msgstr "اﻷخير"
+
 msgid "Select the context of your submission:"
 msgstr "حدد سياق بلاغك:"
 
@@ -939,12 +951,6 @@ msgstr "تحميل"
 
 msgid "Download"
 msgstr "تنزيل"
-
-msgid "Upload custom file"
-msgstr "رفع ملف مخصّص"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "سيكون الملف متوفرا على URL: /s/$filename"
 
 msgid "Language:"
 msgstr "اللغة:"
@@ -1844,6 +1850,9 @@ msgstr "أبدا"
 
 msgid "Revoked"
 msgstr "ملغى"
+
+msgid "-"
+msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "تمكين المبلغ من ارسال رسائل"

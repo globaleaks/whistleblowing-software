@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -641,6 +641,18 @@ msgstr ""
 msgid "Print"
 msgstr "הדפס"
 
+msgid "Previous"
+msgstr "הקודם"
+
+msgid "Next"
+msgstr "הבא"
+
+msgid "First"
+msgstr ""
+
+msgid "Last"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "בחר את ההקשר של ההגשה שלך:"
 
@@ -919,12 +931,6 @@ msgstr "העלה"
 
 msgid "Download"
 msgstr "הורד"
-
-msgid "Upload custom file"
-msgstr "טען קובץ מותאם אישית"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "הקובץ יהיה זמין בכתובת: / s / $ filename"
 
 msgid "Language:"
 msgstr "שפה:"
@@ -1824,6 +1830,9 @@ msgstr "לעולם לא"
 
 msgid "Revoked"
 msgstr ""
+
+msgid "-"
+msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "התר לחושף השחיתות לשלוח הודעות"

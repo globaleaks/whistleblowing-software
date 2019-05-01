@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -630,6 +630,18 @@ msgstr ""
 msgid "Print"
 msgstr "Printoni"
 
+msgid "Previous"
+msgstr "I mëparshmi"
+
+msgid "Next"
+msgstr "Pasuesi"
+
+msgid "First"
+msgstr "I pari"
+
+msgid "Last"
+msgstr "I fundit"
+
 msgid "Select the context of your submission:"
 msgstr "Zgjidhni kontekstin e paraqitjes tuaj:"
 
@@ -908,12 +920,6 @@ msgstr "Ngarkoni"
 
 msgid "Download"
 msgstr "Shkarkoni"
-
-msgid "Upload custom file"
-msgstr "Ngarkoni Skedarin e Përshtatur"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "Fotografi do të jetë në dispozicion në URL: / s / $ filename"
 
 msgid "Language:"
 msgstr ""
@@ -1813,6 +1819,9 @@ msgstr "Kurrë"
 
 msgid "Revoked"
 msgstr "I shfuqizuar"
+
+msgid "-"
+msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Lejo whistleblower për të dërguar mesazhe"

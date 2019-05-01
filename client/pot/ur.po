@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
-"Last-Translator: SG\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -636,6 +636,18 @@ msgstr ""
 msgid "Print"
 msgstr ""
 
+msgid "Previous"
+msgstr ""
+
+msgid "Next"
+msgstr "اگلا"
+
+msgid "First"
+msgstr ""
+
+msgid "Last"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "اپنی گزارش کا سیاق و سباق کا انتخاب کریں :"
 
@@ -914,12 +926,6 @@ msgstr "اپ لوڈ کریں"
 
 msgid "Download"
 msgstr "ڈاؤن لوڈ کریں"
-
-msgid "Upload custom file"
-msgstr "مخصوص فائل اپ لوڈ کریں"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "فائل URL پر دستیاب ہوں گی: / S / $ فائل کا نام"
 
 msgid "Language:"
 msgstr "زبان:"
@@ -1818,6 +1824,9 @@ msgid "Never"
 msgstr "کبھی نہیں"
 
 msgid "Revoked"
+msgstr ""
+
+msgid "-"
 msgstr ""
 
 msgid "Allow the whistleblower to send messages"

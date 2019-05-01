@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -630,6 +630,18 @@ msgstr ""
 msgid "Print"
 msgstr ""
 
+msgid "Previous"
+msgstr "Nazaj"
+
+msgid "Next"
+msgstr "Naprej"
+
+msgid "First"
+msgstr ""
+
+msgid "Last"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Izberite tematiko vašega prispevka:"
 
@@ -908,12 +920,6 @@ msgstr "Naloži"
 
 msgid "Download"
 msgstr "Prenesi"
-
-msgid "Upload custom file"
-msgstr "Naloži datoteko po izbiri"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "Datoteka bo na voljo na povezavi: /s/$filename"
 
 msgid "Language:"
 msgstr "Jezik:"
@@ -1813,6 +1819,9 @@ msgstr "Nikoli"
 
 msgid "Revoked"
 msgstr "Preklicano"
+
+msgid "-"
+msgstr ""
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Dovoli žvižgaču pošiljanje sporočil"

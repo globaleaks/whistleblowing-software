@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -646,6 +646,18 @@ msgstr ""
 msgid "Print"
 msgstr "Cetak"
 
+msgid "Previous"
+msgstr "Sebelumnya"
+
+msgid "Next"
+msgstr "Selanjutnya"
+
+msgid "First"
+msgstr "Pertama"
+
+msgid "Last"
+msgstr "Terakhir"
+
 msgid "Select the context of your submission:"
 msgstr "Pilih konteks pengiriman Anda"
 
@@ -924,12 +936,6 @@ msgstr "Unggah"
 
 msgid "Download"
 msgstr "Unduh"
-
-msgid "Upload custom file"
-msgstr "Unggah berkas kustom"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "Berkas akan tersedia di URL:/s/$filename"
 
 msgid "Language:"
 msgstr "Bahasa:"
@@ -1829,6 +1835,9 @@ msgstr "Tidak pernah"
 
 msgid "Revoked"
 msgstr "Tercabut"
+
+msgid "-"
+msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Mengizinkan informan publik untuk mengirim pesan"

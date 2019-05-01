@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -635,6 +635,18 @@ msgstr ""
 msgid "Print"
 msgstr "In"
 
+msgid "Previous"
+msgstr "Trước"
+
+msgid "Next"
+msgstr "Kế tiếp"
+
+msgid "First"
+msgstr "Đầu tiên"
+
+msgid "Last"
+msgstr "Chót"
+
 msgid "Select the context of your submission:"
 msgstr "Chọn ngữ cảnh của trình của bạn:"
 
@@ -913,12 +925,6 @@ msgstr "Đăng tải"
 
 msgid "Download"
 msgstr "Tải về"
-
-msgid "Upload custom file"
-msgstr "Tải lên tập tin tùy chỉnh"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "Các tập tin sẽ có sẵn tại URL: / s / $ filename"
 
 msgid "Language:"
 msgstr ""
@@ -1818,6 +1824,9 @@ msgstr ""
 
 msgid "Revoked"
 msgstr ""
+
+msgid "-"
+msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Cho phép các tố giác để gửi tin nhắn"

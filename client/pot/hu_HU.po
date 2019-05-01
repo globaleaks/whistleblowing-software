@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-22 10:21+0000\n"
+"PO-Revision-Date: 2019-04-29 18:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -644,6 +644,18 @@ msgstr ""
 msgid "Print"
 msgstr ""
 
+msgid "Previous"
+msgstr ""
+
+msgid "Next"
+msgstr "Következő"
+
+msgid "First"
+msgstr ""
+
+msgid "Last"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Válassza ki a beküldés környezetét:"
 
@@ -922,12 +934,6 @@ msgstr "Feltöltés"
 
 msgid "Download"
 msgstr "Letöltés"
-
-msgid "Upload custom file"
-msgstr "Egyedi fájl betöltése"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "A fájlt ezen a linken éri el: /s/$filename"
 
 msgid "Language:"
 msgstr "Nyelv:"
@@ -1826,6 +1832,9 @@ msgid "Never"
 msgstr ""
 
 msgid "Revoked"
+msgstr ""
+
+msgid "-"
 msgstr ""
 
 msgid "Allow the whistleblower to send messages"
