@@ -673,6 +673,7 @@ class _FieldOption(Model):
     block_sumbmission = Column(Boolean, default=False, nullable=False)
 
     unicode_keys = ['field_id']
+    bool_keys = ['block_submission']
     int_keys = ['presentation_order', 'score_type', 'score_points']
     json_keys = ['trigger_receiver']
     localized_keys = ['label', 'info_text']
