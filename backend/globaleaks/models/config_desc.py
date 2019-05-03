@@ -3,7 +3,7 @@ from six import text_type
 
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.utils.crypto import GCE
-from globaleaks.utils.utility import uuid4
+from globaleaks.utils.utility import datetime_now, uuid4
 
 
 class Item:
@@ -33,7 +33,7 @@ class Bool(Item):
 
 ConfigDescriptor = {
     u'id': Unicode(default=uuid4),
-    u'creation_date': Int(default=0),
+    u'creation_date': Int(default=datetime_now),
     u'receipt_salt': Unicode(default=GCE.generate_salt),
 
     u'version': Unicode(default=text_type(__version__)),

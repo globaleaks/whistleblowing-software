@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from sqlalchemy import not_
+import time
 
 from globaleaks import __version__
 from globaleaks.models import Config, ConfigL10N, EnabledLanguage
@@ -126,6 +127,8 @@ def initialize_config(session, tid, mode):
     # Initialization valid for any tenant
     for name, desc in ConfigDescriptor.items():
         variables[name] = get_default(desc.default)
+
+    variables['creation_date'] = int(time.time())
 
     if tid != 1:
         # Initialization valid for secondary tenants
