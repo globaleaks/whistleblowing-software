@@ -944,7 +944,7 @@ class _ReceiverFile(Model):
     filename = Column(UnicodeText(255), nullable=False)
     downloads = Column(Integer, default=0, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
-    new = Column(Boolean, default=True, nullable=True)
+    new = Column(Boolean, default=True, nullable=False)
     status = Column(UnicodeText, default=u'processing', nullable=False)
 
     @declared_attr
@@ -1066,7 +1066,7 @@ class _Step(Model):
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
-    questionnaire_id = Column(UnicodeText(36), nullable=True)
+    questionnaire_id = Column(UnicodeText(36), nullable=False)
     label = Column(JSON, nullable=False)
     description = Column(JSON, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
@@ -1109,9 +1109,9 @@ class _SubmissionStatus(Model):
     system_defined = Column(Boolean, nullable=False, default=False)
     system_usage = Column(UnicodeText, nullable=True)
 
-    tip_timetolive = Column(Integer, default=90, nullable=True)
+    tip_timetolive = Column(Integer, default=90, nullable=False)
     tip_timetolive_override = Column(Boolean, default=False, nullable=False)
-    receivers = Column(JSON, default=list, nullable=True)
+    receivers = Column(JSON, default=list, nullable=False)
 
     presentation_order = Column(Integer, default=0, nullable=False)
 
@@ -1135,9 +1135,9 @@ class _SubmissionSubStatus(Model):
     submissionstatus_id = Column(UnicodeText(36), nullable=False)
     label = Column(JSON, nullable=False)
 
-    tip_timetolive = Column(Integer, default=90, nullable=True)
+    tip_timetolive = Column(Integer, default=90, nullable=False)
     tip_timetolive_override = Column(Boolean, default=False, nullable=False)
-    receivers = Column(JSON, default=list, nullable=True)
+    receivers = Column(JSON, default=list, nullable=False)
 
     presentation_order = Column(Integer, default=0, nullable=False)
 
@@ -1318,7 +1318,7 @@ class _WhistleblowerFile(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     description = Column(UnicodeText, nullable=False)
-    new = Column(Boolean, default=True, nullable=True)
+    new = Column(Boolean, default=True, nullable=False)
 
     @declared_attr
     def __table_args__(self):
