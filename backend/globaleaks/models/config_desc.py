@@ -33,7 +33,7 @@ class Bool(Item):
 
 ConfigDescriptor = {
     u'id': Unicode(default=uuid4),
-    u'creation_date': Int(default=datetime_now),
+    u'creation_date': Int(default=0),
     u'receipt_salt': Unicode(default=GCE.generate_salt),
 
     u'version': Unicode(default=text_type(__version__)),
