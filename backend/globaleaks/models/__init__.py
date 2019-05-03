@@ -668,12 +668,14 @@ class _FieldOption(Model):
     label = Column(JSON, nullable=False)
     score_points = Column(Integer, default=0, nullable=False)
     score_type = Column(Integer, default=0, nullable=False)
-    trigger_receiver = Column(JSON, default=list, nullable=True)
+    trigger_receiver = Column(JSON, default=list, nullable=False)
+    info_text = Column(UnicodeText, default=u'', nullable=False)
+    block_sumbmission = Column(Boolean, default=False, nullable=False)
 
     unicode_keys = ['field_id']
     int_keys = ['presentation_order', 'score_type', 'score_points']
     json_keys = ['trigger_receiver']
-    localized_keys = ['label']
+    localized_keys = ['label', 'info_text']
 
     @declared_attr
     def __table_args__(self):
@@ -973,9 +975,7 @@ class _ReceiverTip(Model):
     crypto_tip_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
 
     binary_keys = ['crypto_tip_prv_key']
-
     unicode_keys = ['label']
-
     bool_keys = ['enable_notifications']
 
     @declared_attr
