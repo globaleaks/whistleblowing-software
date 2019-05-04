@@ -669,8 +669,8 @@ class _FieldOption(Model):
     score_points = Column(Integer, default=0, nullable=False)
     score_type = Column(Integer, default=0, nullable=False)
     trigger_receiver = Column(JSON, default=list, nullable=False)
-    info_text = Column(UnicodeText, default=u'', nullable=False)
-    block_sumbmission = Column(Boolean, default=False, nullable=False)
+    info_text = Column(JSON, default=dict, nullable=False)
+    block_submission = Column(Boolean, default=False, nullable=False)
 
     unicode_keys = ['field_id']
     bool_keys = ['block_submission']
