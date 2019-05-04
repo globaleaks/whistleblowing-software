@@ -10,7 +10,7 @@ __copyright__ = u'2011-2019 - Hermes Center for Transparency and Digital Human R
 __version__ = u'3.7.4'
 __license__ = u'AGPL-3.0'
 
-DATABASE_VERSION = 47
+DATABASE_VERSION = 48
 FIRST_DATABASE_VERSION_SUPPORTED = 24
 
 # Add new languages as they are supported here! To do this retrieve the name of
