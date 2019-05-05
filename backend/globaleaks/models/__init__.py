@@ -546,9 +546,9 @@ class _Field(Model):
     y = Column(Integer, default=0, nullable=False)
     width = Column(Integer, default=0, nullable=False)
 
-    label = Column(JSON, nullable=False)
-    description = Column(JSON, nullable=False)
-    hint = Column(JSON, nullable=False)
+    label = Column(JSON, default=dict, nullable=False)
+    description = Column(JSON, default=dict, nullable=False)
+    hint = Column(JSON, default=dict, nullable=False)
     placeholder = Column(JSON, default=dict, nullable=False)
     required = Column(Boolean, default=False, nullable=False)
     preview = Column(Boolean, default=False, nullable=False)
@@ -666,12 +666,12 @@ class _FieldOption(Model):
 
     field_id = Column(UnicodeText(36), nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
-    label = Column(JSON, nullable=False)
+    label = Column(JSON, default=dict, nullable=False)
     score_points = Column(Integer, default=0, nullable=False)
     score_type = Column(Integer, default=0, nullable=False)
-    trigger_receiver = Column(JSON, default=list, nullable=False)
     info_text = Column(JSON, default=dict, nullable=False)
     block_submission = Column(Boolean, default=False, nullable=False)
+    trigger_receiver = Column(JSON, default=list, nullable=False)
 
     unicode_keys = ['field_id']
     bool_keys = ['block_submission']
@@ -1068,8 +1068,8 @@ class _Step(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     questionnaire_id = Column(UnicodeText(36), nullable=False)
-    label = Column(JSON, nullable=False)
-    description = Column(JSON, nullable=False)
+    label = Column(JSON, default=dict, nullable=False)
+    description = Column(JSON, default=dict, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
     triggered_by_score = Column(Integer, default=0, nullable=False)
 
@@ -1105,7 +1105,7 @@ class _SubmissionStatus(Model):
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     tid = Column(Integer, default=1, nullable=False)
-    label = Column(JSON, nullable=False)
+    label = Column(JSON, default=dict, nullable=False)
 
     system_defined = Column(Boolean, nullable=False, default=False)
     system_usage = Column(UnicodeText, nullable=True)
@@ -1134,7 +1134,7 @@ class _SubmissionSubStatus(Model):
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     submissionstatus_id = Column(UnicodeText(36), nullable=False)
-    label = Column(JSON, nullable=False)
+    label = Column(JSON, default=dict, nullable=False)
 
     tip_timetolive = Column(Integer, default=90, nullable=False)
     tip_timetolive_override = Column(Boolean, default=False, nullable=False)
