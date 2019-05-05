@@ -339,6 +339,16 @@
                         </button>
                       </span>
                       <span>
+                        <button class="btn btn-xs" data-ng-class="option.hint || option.info_text ? 'btn-warning' : 'btn-default'" data-ng-click="addOptionHintDialog(option)" uib-popover="{{'Hint' | translate}}" popover-placement="left">
+                          <i class="glyphicon glyphicon-info-sign"></i>
+                        </button>
+                      </span>
+                      <span>
+                        <button class="btn btn-xs" data-ng-class="option.block_submission ? 'btn-danger' : 'btn-default'" data-ng-click="flipBlockSubmission(option)" uib-popover="{{'Block the submission' | translate}}" popover-placement="left">
+                          <i class="glyphicon glyphicon-ban-circle"></i>
+                        </button>
+                      </span>
+                      <span>
                         <button class="btn btn-xs" data-ng-class="option.trigger_receiver.length ? 'btn-primary' : 'btn-default'" data-ng-click="triggerReceiverDialog(option)" uib-popover="{{'Recipients' | translate}}" popover-placement="left">
                           <i class="glyphicon glyphicon-user"></i>
                         </button>

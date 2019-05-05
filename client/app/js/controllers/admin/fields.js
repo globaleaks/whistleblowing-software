@@ -194,6 +194,26 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
       $scope.new_trigger = {};
     };
 
+    $scope.flipBlockSubmission = function(option) {
+      option.block_submission = !option.block_submission;
+    };
+
+    $scope.addOptionHintDialog = function(option) {
+      return $scope.Utils.openConfirmableModalDialog("views/partials/add_option_hint.html", option, $scope);
+    };
+
+    $scope.triggerReceiverDialog = function(option) {
+      $scope.moveReceiver = function(rec) {
+        option.trigger_receiver.push(rec.id);
+      };
+
+      $scope.receiverNotSelectedFilter = function(item) {
+        return option.trigger_receiver.indexOf(item.id) === -1;
+      };
+
+      return $scope.Utils.openConfirmableModalDialog("views/partials/trigger_receiver.html", option, $scope);
+    };
+
     $scope.assignScorePointsDialog = function(option) {
       return $scope.Utils.openConfirmableModalDialog("views/partials/assign_score_points.html", option, $scope);
     };

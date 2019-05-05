@@ -1230,9 +1230,18 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         },
 
         splitRows: function(fields) {
-          var rows = $filter("groupBy")(fields, "y");
-          rows = $filter("toArray")(rows);
-          rows = $filter("orderBy")(rows, this.minY);
+          var rows = [];
+          var y = -1;
+
+          angular.forEach(fields, function(f) {
+            if(y !== f["y"]) {
+              y = f["y"];
+              rows.push([]);
+            }
+
+            rows[rows.length - 1].push(f);
+          });
+
           return rows;
         },
 
@@ -1368,7 +1377,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         },
 
         updateAnswers: function(scope, parent, list, answers) {
-          var entry, i, j;
+          var entry, option, i, j;
           var self = this;
 
           angular.forEach(list, function(field) {
@@ -1420,20 +1429,28 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
                 entry.required_status = field.required && !entry["value"];
               }
 
-              /* Block related to evaluate receivers triggers */
+              /* Block related to evaluate options */
               if (field.type === "checkbox" || field.type === "selectbox") {
                 for (j=0; j<field.options.length; j++) {
+                  option = field.options[j];
+                  option.set = false;
                   if(field.type === "checkbox") {
-                    if(entry[field.options[j].id] && entry[field.options[j].id]) {
-                      if (field.options[j].trigger_receiver.length) {
-                        scope.replaceReceivers(field.options[j].trigger_receiver);
-                      }
+                    if(entry[option.id]) {
+                      option.set = true;
                     }
                   } else {
-                    if (field.options[j].id === entry["value"]) {
-                      if (field.options[j].trigger_receiver.length) {
-                        scope.replaceReceivers(field.options[j].trigger_receiver);
-                      }
+                    if (option.id === entry["value"]) {
+                      option.set = true;
+                    }
+                  }
+
+                  if (option.set) {
+                    if (option.block_submission) {
+                      scope.block_submission = true;
+                    }
+
+                    if (option.trigger_receiver.length) {
+                      scope.replaceReceivers(option.trigger_receiver);
                     }
                   }
                 }
@@ -1444,6 +1461,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
         onAnswersUpdate: function(scope) {
           var self = this;
+          scope.block_submission = false;
           scope.total_score = 0;
           scope.points_to_sum = 0;
           scope.points_to_mul = 1;
@@ -1466,6 +1484,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
           if (scope.submission) {
             scope.submission._submission.total_score = scope.total_score;
+            scope.submission.blocked = scope.block_submission;
           }
         },
 

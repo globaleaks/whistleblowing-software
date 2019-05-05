@@ -325,6 +325,9 @@ AdminNotificationDesc = merge_dicts({
 AdminFieldOptionDesc = {
     'id': uuid_regexp_or_empty,
     'label': text_type,
+    'hint': text_type,
+    'info_text': text_type,
+    'block_submission': bool,
     'presentation_order': int,
     'score_type': int,
     'score_points': int,

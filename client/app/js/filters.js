@@ -39,10 +39,10 @@ filter("anomalyToString", function() {
     return anomalies[anomaly];
   };
 }).
-filter('split', function() {
+filter("split", function() {
   return function(input, splitChar, splitIndex) {
     return input.split(splitChar)[splitIndex];
-  }
+  };
 }).
 filter("wbfileCreator", [function() {
   return function(rec_id, rec_list) {

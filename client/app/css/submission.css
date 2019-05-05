@@ -186,15 +186,6 @@ html[dir="rtl"] #KeyCodeHintBox:after {
   color: #c7254e;
 }
 
-.red-text, .red-asterisk {
-  color: #a94442;
-}
-
-.red-asterisk {
-  vertical-align: super;
-  font-size: smaller;
-}
-
 .question-label {
   font-weight: bold;
 }

@@ -387,11 +387,15 @@ textarea.form-control {
   display: block;
 }
 
-.red-text, .red-asterisk {
+.red {
   color: #a94442;
 }
 
-.red-asterisk {
+.underline {
+  text-decoration: underline;
+}
+
+.sup {
   vertical-align: super;
   font-size: smaller;
 }

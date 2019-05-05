@@ -39,7 +39,7 @@
                    data-ng-model="entry[option.id]"
                    data-ng-required="entry.required_status"
                    type="checkbox" />
-            <span>{{::option.label}}</span>
+            <span uib-popover="{{option.hint}}" data-ng-class="{'underline': option.hint}">{{::option.label}}</span>
           </label>
         </div>
       </div>
@@ -180,7 +180,7 @@
             </span>
           </div>
           <div data-ng-if="entry['value'].length && maxlength >= 0 && (maxlength - entry['value'].length) <= 50" class="pull-right">{{entry['value'].length}}/{{maxlength}}</div>
-          <div data-ng-if="entry.required_status && displayErrors()" class="pull-left red-text">
+          <div data-ng-if="entry.required_status && displayErrors()" class="pull-left red">
           </div>
           <span data-ng-if="f['input-' + entryIndex].$error.required && displayErrors()" class="text-danger" data-translate>This field is mandatory.</span>
           <span data-ng-if="f['input-' + entryIndex].$error.minlength && displayErrors()" class="text-danger" data-translate>The answer is too short.</span>
@@ -188,5 +188,8 @@
       </div>
     </div>
   </div>
-  <div data-ng-if="field.type !== 'inputbox' && field.type !== 'textarea' && entry.required_status && displayErrors()" class="pull-left red-text" data-translate>This field is mandatory.</div>
+  <div data-ng-if="field.type !== 'inputbox' && field.type !== 'textarea' && entry.required_status && displayErrors()" class="pull-left red" data-translate>This field is mandatory.</div>
+  <div data-ng-repeat="option in field.options">
+    <div data-ng-show="option.set && option.info_text" data-ng-class="{'red': option.block_submission}"><i class="glyphicon glyphicon-info-sign"></i> {{option.info_text}}</div>
+  </div>
 </div>

@@ -224,9 +224,11 @@ def serialize_field_option(option, language):
     ret_dict = {
         'id': option.id,
         'presentation_order': option.presentation_order,
+        'block_submission': option.block_submission,
         'score_points': option.score_points,
         'score_type': option.score_type,
-        'trigger_receiver': option.trigger_receiver
+        'trigger_receiver': option.trigger_receiver,
+        'block_submission': option.block_submission
     }
 
     return get_localized_values(ret_dict, option, option.localized_keys, language)
