@@ -154,6 +154,9 @@
           "hint": {
             "en": ""
           },
+          "placeholder": {
+            "en": ""
+          },
           "multi_entry": false,
           "multi_entry_hint": {
             "en": ""
@@ -281,6 +284,9 @@
           "hint": {
             "en": ""
           },
+          "placeholder": {
+            "en": ""
+          },
           "multi_entry": false,
           "multi_entry_hint": {
             "en": ""
@@ -398,6 +404,9 @@
             "zh_TW": "此提交相關的附件資料"
           },
           "hint": {
+            "en": ""
+          },
+          "placeholder": {
             "en": ""
           },
           "multi_entry": true,

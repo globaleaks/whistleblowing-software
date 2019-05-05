@@ -25,6 +25,9 @@
           "hint": {
             "en": ""
           },
+          "placeholder": {
+            "en": ""
+          },
           "multi_entry": false,
           "multi_entry_hint": {
             "en": ""
@@ -66,6 +69,9 @@
           "hint": {
             "en": ""
           },
+          "placeholder": {
+            "en": ""
+          },
           "multi_entry": false,
           "multi_entry_hint": {
             "en": ""
@@ -97,6 +103,9 @@
             "en": "Attach files relevant to the submission."
           },
           "hint": {
+            "en": ""
+          },
+          "placeholder": {
             "en": ""
           },
           "multi_entry": true,

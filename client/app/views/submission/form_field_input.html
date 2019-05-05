@@ -38,7 +38,6 @@
                    class="inputelem"
                    data-ng-model="entry[option.id]"
                    data-ng-required="entry.required_status"
-                   data-ng-attr-placeholder="{{field.placeholder || 'false'}}"
                    type="checkbox" />
             <span>{{::option.label}}</span>
           </label>
@@ -55,7 +54,6 @@
                  aria-label="{{::field.label}}"
                  data-ng-model="entry['value']"
                  data-ng-required="entry.required_status"
-                 data-ng-attr-placeholder="{{field.placeholder}}"
                  data-ng-click="open()"
                  uib-datepicker-popup
                  datepicker-options="dateOptions"
@@ -124,7 +122,6 @@
                    data-ng-model="entry['value']"
                    data-ng-required="entry.required_status"
                    value="{{field.value}}"
-                   data-ng-attr-placeholder="{{field.placeholder || 'false'}}"
                    type="checkbox" />
             <span class="tos-checkbox-label">{{field.attrs.checkbox_label.value}}</span>
           </label>

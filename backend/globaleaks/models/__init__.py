@@ -549,10 +549,11 @@ class _Field(Model):
     label = Column(JSON, nullable=False)
     description = Column(JSON, nullable=False)
     hint = Column(JSON, nullable=False)
+    placeholder = Column(JSON, default=dict, nullable=False)
     required = Column(Boolean, default=False, nullable=False)
     preview = Column(Boolean, default=False, nullable=False)
     multi_entry = Column(Boolean, default=False, nullable=False)
-    multi_entry_hint = Column(JSON, nullable=False)
+    multi_entry_hint = Column(JSON, default=dict, nullable=False)
     triggered_by_score = Column(Integer, default=0, nullable=False)
 
     step_id = Column(UnicodeText(36))
@@ -580,7 +581,7 @@ class _Field(Model):
 
     unicode_keys = ['type', 'instance', 'key']
     int_keys = ['x', 'y', 'width', 'triggered_by_score']
-    localized_keys = ['label', 'description', 'hint', 'multi_entry_hint']
+    localized_keys = ['label', 'description', 'hint', 'multi_entry_hint', 'placeholder']
     bool_keys = ['editable', 'multi_entry', 'preview', 'required', 'encrypt']
     optional_references = ['template_id', 'step_id', 'fieldgroup_id', 'template_override_id']
 

@@ -115,6 +115,10 @@
               <label data-translate>Description</label>
               <textarea name="description" class="form-control" data-ng-model="field.description"></textarea>
             </div>
+            <div class="form-group" data-ng-if="(field.type === 'inputbox' || field.type === 'textarea')">
+              <label data-translate>Placeholder</label>
+              <input name="hint" class="form-control" data-ng-model="field.placeholder" type="text">
+            </div>
             <div class="form-group" data-ng-if="field.type !== 'fieldgroup'">
               <input data-ng-model="field.required" type="checkbox">
               <label data-translate>Required</label>

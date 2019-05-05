@@ -55,6 +55,9 @@
   "hint": {
     "en": ""
   },
+  "placeholder": {
+    "en": ""
+  },
   "width": 0,
   "preview": false,
   "type": "fieldgroup",
@@ -145,6 +148,9 @@
       },
       "instance": "template",
       "hint": {
+        "en": ""
+      },
+      "placeholder": {
         "en": ""
       },
       "width": 6,
@@ -240,6 +246,9 @@
       "hint": {
         "en": ""
       },
+      "placeholder": {
+        "en": ""
+      },
       "width": 6,
       "preview": false,
       "type": "inputbox",
@@ -323,6 +332,9 @@
       },
       "instance": "template",
       "hint": {
+        "en": ""
+      },
+      "placeholder": {
         "en": ""
       },
       "width": 3,
@@ -567,6 +579,9 @@
       "hint": {
         "en": ""
       },
+      "placeholder": {
+        "en": ""
+      },
       "width": 6,
       "preview": false,
       "type": "date",
@@ -660,6 +675,9 @@
       "hint": {
         "en": ""
       },
+      "placeholder": {
+        "en": ""
+      },
       "width": 6,
       "preview": false,
       "type": "inputbox",
@@ -732,6 +750,9 @@
       },
       "instance": "template",
       "hint": {
+        "en": ""
+      },
+      "placeholder": {
         "en": ""
       },
       "multi_entry": false,
@@ -829,6 +850,9 @@
       "hint": {
         "en": ""
       },
+      "placeholder": {
+        "en": ""
+      },
       "width": 0,
       "preview": false,
       "type": "fieldgroup",
@@ -900,6 +924,9 @@
           },
           "instance": "template",
           "hint": {
+            "en": ""
+          },
+          "placeholder": {
             "en": ""
           },
           "multi_entry": false,
@@ -995,6 +1022,9 @@
           "hint": {
             "en": ""
           },
+          "placeholder": {
+            "en": ""
+          },
           "multi_entry": false,
           "attrs": {
             "max_len": {
@@ -1086,6 +1116,9 @@
           },
           "instance": "template",
           "hint": {
+            "en": ""
+          },
+          "placeholder": {
             "en": ""
           },
           "multi_entry": false,
@@ -1181,6 +1214,9 @@
           "hint": {
             "en": ""
           },
+          "placeholder": {
+            "en": ""
+          },
           "multi_entry": false,
           "attrs": {
             "max_len": {
@@ -1272,6 +1308,9 @@
           },
           "instance": "template",
           "hint": {
+            "en": ""
+          },
+          "placeholder": {
             "en": ""
           },
           "multi_entry": false,
@@ -1369,6 +1408,9 @@
       "hint": {
         "en": ""
       },
+      "placeholder": {
+        "en": ""
+      },
       "multi_entry": false,
       "attrs": {
         "max_len": {
@@ -1460,6 +1502,9 @@
       },
       "instance": "template",
       "hint": {
+        "en": ""
+      },
+      "placeholder": {
         "en": ""
       },
       "multi_entry": false,
@@ -1555,6 +1600,9 @@
       "hint": {
         "en": ""
       },
+      "placeholder": {
+        "en": ""
+      },
       "multi_entry": false,
       "attrs": {
         "max_len": {
@@ -1646,6 +1694,9 @@
       },
       "instance": "template",
       "hint": {
+        "en": ""
+      },
+      "placeholder": {
         "en": ""
       },
       "multi_entry": false,
@@ -1741,6 +1792,9 @@
       "hint": {
         "en": ""
       },
+      "placeholder": {
+        "en": ""
+      },
       "multi_entry": false,
       "attrs": {
         "max_len": {
@@ -1832,6 +1886,9 @@
       },
       "instance": "template",
       "hint": {
+        "en": ""
+      },
+      "placeholder": {
         "en": ""
       },
       "multi_entry": false,
@@ -1927,6 +1984,9 @@
       "hint": {
         "en": ""
       },
+      "placeholder": {
+        "en": ""
+      },
       "multi_entry": false,
       "attrs": {
         "max_len": {
@@ -2018,6 +2078,9 @@
       },
       "instance": "template",
       "hint": {
+        "en": ""
+      },
+      "placeholder": {
         "en": ""
       },
       "multi_entry": false,

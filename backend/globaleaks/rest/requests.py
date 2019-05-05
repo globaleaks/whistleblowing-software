@@ -353,6 +353,7 @@ AdminFieldDesc = {
     'label': text_type,
     'description': text_type,
     'hint': text_type,
+    'placeholder': text_type,
     'multi_entry': bool,
     'multi_entry_hint': text_type,
     'x': int,

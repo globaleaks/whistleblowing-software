@@ -42,7 +42,7 @@ from globaleaks.db.migrations.update_45 import Context_v_44, Field_v_44, Interna
     ReceiverTip_v_44, Step_v_44, User_v_44, WhistleblowerFile_v_44, WhistleblowerTip_v_44
 from globaleaks.db.migrations.update_46 import Config_v_45, ConfigL10N_v_45, Context_v_45, Field_v_45, FieldOption_v_45, InternalFile_v_45, InternalTip_v_45, Receiver_v_45, User_v_45, WhistleblowerFile_v_45
 from globaleaks.db.migrations.update_47 import Context_v_46, FieldOption_v_46, InternalTip_v_46, SubmissionStatus_v_46, SubmissionSubStatus_v_46
-from globaleaks.db.migrations.update_48 import FieldOption_v_47
+from globaleaks.db.migrations.update_48 import Field_v_47, FieldOption_v_47
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
@@ -62,7 +62,7 @@ migration_mapping = OrderedDict([
     ('ContextImg', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._ContextImg, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('CustomTexts', [-1, -1, -1, -1, -1, -1, -1, -1, CustomTexts_v_38, 0, 0, 0, 0, 0, 0, models._CustomTexts, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('EnabledLanguage', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, EnabledLanguage_v_38, 0, 0, 0, 0, models._EnabledLanguage, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('Field', [Field_v_27, 0, 0, 0, Field_v_37, 0, 0, 0, 0, 0, 0, 0, 0, 0, Field_v_38, Field_v_44, 0, 0, 0, 0, 0, Field_v_45, models._Field, 0, 0]),
+    ('Field', [Field_v_27, 0, 0, 0, Field_v_37, 0, 0, 0, 0, 0, 0, 0, 0, 0, Field_v_38, Field_v_44, 0, 0, 0, 0, 0, Field_v_45, Field_v_47, 0, models._Field]),
     ('FieldAnswer', [FieldAnswer_v_29, 0, 0, 0, 0, 0, FieldAnswer_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models._FieldAnswer, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('FieldAnswerGroup', [FieldAnswerGroup_v_29, 0, 0, 0, 0, 0, FieldAnswerGroup_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models._FieldAnswerGroup, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('FieldAnswerGroupFieldAnswer', [FieldAnswerGroupFieldAnswer_v_29, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),

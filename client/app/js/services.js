@@ -729,6 +729,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       field.type = "inputbox";
       field.description = "";
       field.hint = "";
+      field.placeholder = "";
       field.multi_entry = false;
       field.multi_entry_hint = "";
       field.required = false;
@@ -758,6 +759,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       field.label = "";
       field.type = "inputbox";
       field.description = "";
+      field.placeholder = "";
       field.hint = "";
       field.multi_entry = false;
       field.multi_entry_hint = "";

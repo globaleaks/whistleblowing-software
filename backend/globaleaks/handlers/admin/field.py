@@ -140,8 +140,9 @@ def db_create_field(session, tid, field_dict, language):
         template = session.query(models.Field).filter(models.Field.id == field_dict['template_id']).one()
 
         field.label = template.label
-        field.hint = template.hint
         field.description = template.description
+        field.hint = template.hint
+        field.placeholder = template.placeholder
 
         attrs = field_dict.get('attrs')
         if not attrs:
@@ -206,6 +207,7 @@ def db_update_field(session, tid, field_id, field_dict, language):
           'label': field_dict['label'],
           'hint': field_dict['hint'],
           'description': field_dict['description'],
+          'placeholder': field_dict['placeholder'],
           'template_override_id': field_dict['template_override_id'],
           'x': field_dict['x'],
           'y': field_dict['y'],
