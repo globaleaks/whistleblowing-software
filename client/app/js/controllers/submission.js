@@ -656,12 +656,12 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
   $scope.clear = function() {
     $scope.entries.length = 0;
     $scope.addAnswerEntry($scope.entries);
-  }
+  };
 
   if ($scope.field.type === "inputbox") {
     $scope.validator = fieldUtilities.getValidator($scope.field);
   } else if ($scope.field.type === "date") {
-    var options = {'showWeeks': false};
+    var options = {"showWeeks": false};
 
     var max = $scope.field.attrs.max_date.value;
     var min = $scope.field.attrs.min_date.value;
@@ -683,20 +683,20 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
     $scope.open = function() {
       $scope.status.opened = true;
     };
-  } else if ($scope.field.type == 'daterange') {
+  } else if ($scope.field.type == "daterange") {
     $scope.dateOptions = {showWeeks: false};
 
     $scope.clear = function() {
-      $scope.daterange.start = '';
-      $scope.daterange.end = '';
+      $scope.daterange.start = "";
+      $scope.daterange.end = "";
       $scope.entries.length = 0;
       $scope.addAnswerEntry($scope.entries);
     }
 
     $scope.daterange = {
-      'start': '',
-      'end': ''
-    }
+      "start": "",
+      "end": ""
+    };
 
     $scope.$watch("daterange.start", function () {
       if ($scope.daterange.start) {
@@ -706,7 +706,7 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
 
     $scope.$watch("daterange.end", function () {
       if ($scope.daterange.start && $scope.daterange.end) {
-        $scope.entries[0]['value'] = String(Number($scope.daterange.start)) + ':' + String(Number($scope.daterange.end));
+        $scope.entries[0]["value"] = String(Number($scope.daterange.start)) + ':' + String(Number($scope.daterange.end));
       }
     });
 
