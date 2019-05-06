@@ -667,10 +667,10 @@ class _FieldOption(Model):
     field_id = Column(UnicodeText(36), nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
     label = Column(JSON, default=dict, nullable=False)
-    hint = Column(JSON, default=dict, nullable=False)
+    hint1 = Column(JSON, default=dict, nullable=False)
+    hint2 = Column(JSON, default=dict, nullable=False)
     score_points = Column(Integer, default=0, nullable=False)
     score_type = Column(Integer, default=0, nullable=False)
-    info_text = Column(JSON, default=dict, nullable=False)
     block_submission = Column(Boolean, default=False, nullable=False)
     trigger_receiver = Column(JSON, default=list, nullable=False)
 
@@ -678,7 +678,7 @@ class _FieldOption(Model):
     bool_keys = ['block_submission']
     int_keys = ['presentation_order', 'score_type', 'score_points']
     json_keys = ['trigger_receiver']
-    localized_keys = ['hint', 'label', 'info_text']
+    localized_keys = ['hint1', 'hint2', 'label']
 
     @declared_attr
     def __table_args__(self):

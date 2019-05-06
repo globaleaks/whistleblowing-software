@@ -222,6 +222,7 @@ def get_dummy_field():
         'step_id': '',
         'fieldgroup_id': '',
         'label': u'antani',
+        'placeholder': u'',
         'type': u'checkbox',
         'preview': False,
         'description': u'field description',
@@ -251,7 +252,10 @@ def get_dummy_fieldoption_list():
           'score_type': 0,
           'trigger_field': '',
           'trigger_step': '',
-          'trigger_receiver': []
+          'trigger_receiver': [],
+          'hint1': '',
+          'hint2': '',
+          'block_submission': False
         },
         {
           'id': u'feefbead-feef-bead-feef-feeffeefbead',
@@ -261,7 +265,10 @@ def get_dummy_fieldoption_list():
           'score_type': 0,
           'trigger_field': '',
           'trigger_step': '',
-          'trigger_receiver': []
+          'trigger_receiver': [],
+          'hint1': '',
+          'hint2': '',
+          'block_submission': False
         }
     ]
 

@@ -39,7 +39,7 @@
                    data-ng-model="entry[option.id]"
                    data-ng-required="entry.required_status"
                    type="checkbox" />
-            <span uib-popover="{{option.hint}}" data-ng-class="{'underline': option.hint}">{{::option.label}}</span>
+            <span uib-popover="{{option.hint1}}" data-ng-class="{'underline': option.hint1}">{{::option.label}}</span>
           </label>
         </div>
       </div>
@@ -190,6 +190,6 @@
   </div>
   <div data-ng-if="field.type !== 'inputbox' && field.type !== 'textarea' && entry.required_status && displayErrors()" class="pull-left red" data-translate>This field is mandatory.</div>
   <div data-ng-repeat="option in field.options">
-    <div data-ng-show="option.set && option.info_text" data-ng-class="{'red': option.block_submission}"><i class="glyphicon glyphicon-info-sign"></i> {{option.info_text}}</div>
+    <div data-ng-show="option.set && option.hint2" data-ng-class="{'red': option.block_submission}"><i class="glyphicon glyphicon-info-sign"></i> {{option.hint2}}</div>
   </div>
 </div>
