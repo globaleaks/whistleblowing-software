@@ -715,8 +715,8 @@ var GLClient = angular.module("GLClient", [
         $rootScope.showLoadingPanel = val > 0;
     });
 
-    $rootScope.$watch("GLTranslate.state.language", function(new_val, old_val) {
-      GLTranslate.setLang();
+    $rootScope.$watch("GLTranslate.state.language", function(new_val) {
+      GLTranslate.setLang(new_val);
       $rootScope.reload();
     });
 
