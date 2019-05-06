@@ -10,17 +10,17 @@ describe("admin configure languages", function() {
 
     element(by.cssContainingText("a", "Languages")).click();
 
-    element(by.model("GLTranslate.indirect.appLanguage")).element(by.xpath(".//*[text()='Deutsch']")).click();
+    element(by.model("GLTranslate.state.language")).element(by.xpath(".//*[text()='Deutsch']")).click();
 
     expect(browser.isElementPresent(element(by.cssContainingText("a", "Site settings")))).toBe(false);
     expect(browser.isElementPresent(element(by.cssContainingText("a", "Seiteneinstellungen")))).toBe(true);
 
-    element(by.model("GLTranslate.indirect.appLanguage")).element(by.xpath(".//*[text()='Italiano']")).click();
+    element(by.model("GLTranslate.state.language")).element(by.xpath(".//*[text()='Italiano']")).click();
 
     expect(browser.isElementPresent(element(by.cssContainingText("a", "Seiteneinstellungen")))).toBe(false);
     expect(browser.isElementPresent(element(by.cssContainingText("a", "Impostazioni sito")))).toBe(true);
 
-    element(by.model("GLTranslate.indirect.appLanguage")).element(by.xpath(".//*[text()='English']")).click();
+    element(by.model("GLTranslate.state.language")).element(by.xpath(".//*[text()='English']")).click();
 
     expect(browser.isElementPresent(element(by.cssContainingText("a", "Impostazioni sito")))).toBe(false);
     expect(browser.isElementPresent(element(by.cssContainingText("a", "Site settings")))).toBe(true);
