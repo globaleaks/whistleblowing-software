@@ -189,6 +189,9 @@
     </div>
   </div>
   <div data-ng-if="field.type !== 'inputbox' && field.type !== 'textarea' && entry.required_status && displayErrors()" class="pull-left red" data-translate>This field is mandatory.</div>
+  <div data-ng-if="field.type === 'selectbox'" data-ng-repeat="option in field.options">
+    <div data-ng-show="option.set && option.hint1"><i class="glyphicon glyphicon-info-sign"></i> {{option.hint1}}</div>
+  </div>
   <div data-ng-repeat="option in field.options">
     <div data-ng-show="option.set && option.hint2" data-ng-class="{'red': option.block_submission}"><i class="glyphicon glyphicon-info-sign"></i> {{option.hint2}}</div>
   </div>
