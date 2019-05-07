@@ -312,6 +312,55 @@
         </div>
         <div class="row">
           <div class="col-md-12">
+            <div class="form-group">
+              <label data-translate>Triggered by score:</label>
+              <select class="form-control" data-ng-model="field.triggered_by_score" convert-to-number>
+                <option value="0" data-translate>Low</option>
+                <option value="1" data-translate>Medium</option>
+                <option value="2" data-translate>High</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>
+                <span data-translate>Trigger conditions</span>
+                <button class="btn btn-xs btn-primary show-add-question-btn" data-ng-click="toggleAddTrigger()">
+                  <i class="glyphicon glyphicon-plus"></i>
+                  <span data-translate>Add</span>
+                </button>
+              </label>
+              <div data-ng-if="showAddTrigger">
+                <div  class="form-group">
+                  <select name="type" class="form-control" data-ng-model="new_trigger.field" required>
+                    <option data-ng-repeat="field in parsedFields.fields" value="{{field.id}}">{{field.label}}</option>
+                  </select>
+                </div>
+                <div data-ng-if="new_trigger.field" class="form-group">
+                  <select name="type" class="form-control" data-ng-model="new_trigger.option" required>
+                    <option data-ng-repeat="option in parsedFields.fields_by_id[new_trigger.field].options" value="{{option.id}}">{{option.label}}</option>
+                  </select>
+                </div>
+                  <div data-ng-if="new_trigger.field" class="form-group">
+                    <input data-ng-model="new_trigger.sufficient" type="checkbox">
+                    <label data-translate>Sufficient</label>
+                  </div>
+                <div class="form-group">
+                  <button id="add-step-btn" class="btn btn-primary" data-ng-disabled="!new_trigger.field || !new_trigger.option" data-ng-click="addTrigger()">
+                    <i class="glyphicon glyphicon-plus-sign"></i>
+                    <span data-translate>Add</span>
+                  </button>
+                </div>
+              </div>
+              <div data-ng-repeat="trigger in field.triggered_by_options" class="nested">
+                <button class="btn btn-xs btn-danger" data-ng-click="delTrigger(trigger)">
+                  <i class="glyphicon glyphicon-remove"></i>
+                </button>
+                <span>{{parsedFields.fields_by_id[trigger.field].label}}</span>: <span>{{parsedFields.options_by_id[trigger.option].label}}</span> <span data-ng-if='trigger.sufficient'>(<span data-translate>Sufficient</span>)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
             <div class="form-group" data-ng-if="showOptions(field)">
               <label>
                 <span data-translate>Options</span>
@@ -372,82 +421,31 @@
             </div>
           </div>
         </div>
-        <div class="row">
+        <div data-ng-if="field.editable && field.instance !== 'reference' && field.type === 'fieldgroup'" class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label data-translate>Triggered by score:</label>
-              <select class="form-control" data-ng-model="field.triggered_by_score" convert-to-number>
-                <option value="0" data-translate>Low</option>
-                <option value="1" data-translate>Medium</option>
-                <option value="2" data-translate>High</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>
-                <span data-translate>Trigger conditions</span>
-                <button class="btn btn-xs btn-primary show-add-question-btn" data-ng-click="toggleAddTrigger()">
+              <div class="editorTitle">
+                <span data-translate>Questions</span>
+                <button class="btn btn-xs btn-primary show-add-question-btn" data-ng-click="toggleAddQuestion()">
                   <i class="glyphicon glyphicon-plus"></i>
-                  <span data-translate>Add</span>
+                  <span data-translate>Add new question</span>
                 </button>
-              </label>
-              <div data-ng-if="showAddTrigger">
-                <div  class="form-group">
-                  <select name="type" class="form-control" data-ng-model="new_trigger.field" required>
-                    <option data-ng-repeat="field in parsedFields.fields" value="{{field.id}}">{{field.label}}</option>
-                  </select>
+                <button class="btn btn-xs btn-primary show-add-question-from-template-btn" data-ng-click="toggleAddQuestionFromTemplate()" data-ng-if="field.instance === 'instance' && admin.fieldtemplates.length > 0">
+                  <i class="glyphicon glyphicon-plus"></i>
+                  <span data-translate>Add question from template</span>
+                </button>
+              </div>
+              <div class="row" data-ng-if="field.editable && field.type === 'fieldgroup'">
+                <div class="col-md-12" data-ng-if="showAddQuestion">
+                  <div data-ng-include="'views/admin/questionnaires/add_field.html'"></div>
                 </div>
-                <div data-ng-if="new_trigger.field" class="form-group">
-                  <select name="type" class="form-control" data-ng-model="new_trigger.option" required>
-                    <option data-ng-repeat="option in parsedFields.fields_by_id[new_trigger.field].options" value="{{option.id}}">{{option.label}}</option>
-                  </select>
-                </div>
-                  <div data-ng-if="new_trigger.field" class="form-group">
-                    <input data-ng-model="new_trigger.sufficient" type="checkbox">
-                    <label data-translate>Sufficient</label>
-                  </div>
-                <div class="form-group">
-                  <button id="add-step-btn" class="btn btn-primary" data-ng-disabled="!new_trigger.field || !new_trigger.option" data-ng-click="addTrigger()">
-                    <i class="glyphicon glyphicon-plus-sign"></i>
-                    <span data-translate>Add</span>
-                  </button>
+                <div class="col-md-12" data-ng-if="showAddQuestionFromTemplate">
+                  <div data-ng-include="'views/admin/questionnaires/add_field_from_template.html'"></div>
                 </div>
               </div>
-              <div data-ng-repeat="trigger in field.triggered_by_options" class="nested">
-                <button class="btn btn-xs btn-danger" data-ng-click="delTrigger(trigger)">
-                  <i class="glyphicon glyphicon-remove"></i>
-                </button>
-                <span>{{parsedFields.fields_by_id[trigger.field].label}}</span>: <span>{{parsedFields.options_by_id[trigger.option].label}}</span> <span data-ng-if='trigger.sufficient'>(<span data-translate>Sufficient</span>)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div data-ng-if="field.editable && field.instance !== 'reference' && field.type === 'fieldgroup'">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <div class="editorTitle">
-                  <span data-translate>Questions</span>
-                  <button class="btn btn-xs btn-primary show-add-question-btn" data-ng-click="toggleAddQuestion()">
-                    <i class="glyphicon glyphicon-plus"></i>
-                    <span data-translate>Add new question</span>
-                  </button>
-                  <button class="btn btn-xs btn-primary show-add-question-from-template-btn" data-ng-click="toggleAddQuestionFromTemplate()" data-ng-if="field.instance === 'instance' && admin.fieldtemplates.length > 0">
-                    <i class="glyphicon glyphicon-plus"></i>
-                    <span data-translate>Add question from template</span>
-                  </button>
-                </div>
-                <div class="row" data-ng-if="field.editable && field.type === 'fieldgroup'">
-                  <div class="col-md-12" data-ng-if="showAddQuestion">
-                    <div data-ng-include="'views/admin/questionnaires/add_field.html'"></div>
-                  </div>
-                  <div class="col-md-12" data-ng-if="showAddQuestionFromTemplate">
-                    <div data-ng-include="'views/admin/questionnaires/add_field_from_template.html'"></div>
-                  </div>
-                </div>
-                <div class="configuredFields">
-                  <div data-ng-repeat="field in children | orderBy:['y', 'x']">
-                    <div data-ng-include="'views/admin/questionnaires/fields.html'"></div>
-                  </div>
+              <div class="configuredFields">
+                <div data-ng-repeat="field in children | orderBy:['y', 'x']">
+                  <div data-ng-include="'views/admin/questionnaires/fields.html'"></div>
                 </div>
               </div>
             </div>
