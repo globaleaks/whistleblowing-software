@@ -683,7 +683,7 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
     $scope.open = function() {
       $scope.status.opened = true;
     };
-  } else if ($scope.field.type == "daterange") {
+  } else if ($scope.field.type === "daterange") {
     $scope.dateOptions = {showWeeks: false};
 
     $scope.clear = function() {
@@ -691,7 +691,7 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
       $scope.daterange.end = "";
       $scope.entries.length = 0;
       $scope.addAnswerEntry($scope.entries);
-    }
+    };
 
     $scope.daterange = {
       "start": "",
@@ -706,7 +706,7 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
 
     $scope.$watch("daterange.end", function () {
       if ($scope.daterange.start && $scope.daterange.end) {
-        $scope.entries[0]["value"] = String(Number($scope.daterange.start)) + ':' + String(Number($scope.daterange.end));
+        $scope.entries[0]["value"] = String(Number($scope.daterange.start)) + ":" + String(Number($scope.daterange.end));
       }
     });
 
