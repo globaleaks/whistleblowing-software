@@ -1,3 +1,11 @@
+Changes in version 3.8.0 - 2019-05-07
+    Make it possible to configure the node timezone (#2525)
+    Implement questions of type DATERANGE (#2561)
+    Make it possible to block the submission after the selection of an answer (#2565)
+    Make it possible to show a message after the selection of an answer (#2564)
+    Make it possible to configure an 'hint' for the options of type checkbox and selectbox (#2524)
+    Fix authentication issues on python2 and Ubuntu Xenial
+
 Changes in version 3.7.4 - 2019-05-03
     Apply minor bugfixing
 
