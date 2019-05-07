@@ -1339,7 +1339,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         calculateScore: function(scope, field, entry) {
           var total_score, i;
 
-          if (field.type === "selectbox") {
+          if (["selectbox", "multichoice"].indexOf(field.type) > -1) {
             for(i=0; i<field.options.length; i++) {
               if (entry["value"] === field.options[i].id) {
                 if (field.options[i].score_type === 1) {
@@ -1411,7 +1411,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
               entry = answers[field.id][i];
 
               /* Block related to updating required status */
-              if (field.type === "inputbox" || field.type === "textarea") {
+              if (["inputbox", "textarea"].indexOf(field.type) > -1) {
                 entry.required_status = (field.required || field.attrs.min_len.value > 0) && !entry["value"];
               } else if (field.type === "checkbox") {
                 if (!field.required) {
@@ -1430,7 +1430,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
               }
 
               /* Block related to evaluate options */
-              if (field.type === "checkbox" || field.type === "selectbox") {
+              if (["checkbox", "selectbox", "multichoice"].indexOf(field.type) > -1) {
                 for (j=0; j<field.options.length; j++) {
                   option = field.options[j];
                   option.set = false;
@@ -1496,7 +1496,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           };
 
           var parseField = function(field) {
-            if (field.type === "checkbox" || field.type === "selectbox") {
+            if (["checkbox", "selectbox", "multichoice"].indexOf(field.type) > -1) {
               parsedFields.fields_by_id[field.id] = field;
               parsedFields.fields.push(field);
               field.options.forEach(function(option) {

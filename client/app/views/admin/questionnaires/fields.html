@@ -17,6 +17,7 @@
                 <span data-ng-switch-when="inputbox" data-translate>Single-line text input</span>
                 <span data-ng-switch-when="textarea" data-translate>Multi-line text input</span>
                 <span data-ng-switch-when="selectbox" data-translate>Selection box</span>
+                <span data-ng-switch-when="multichoice" data-translate>Multiple choice input</span>
                 <span data-ng-switch-when="checkbox" data-translate>Checkbox</span>
                 <span data-ng-switch-when="fileupload" data-translate>Attachment</span>
                 <span data-ng-switch-when="tos" data-translate>Terms of service</span>
@@ -104,6 +105,7 @@
               <label><span data-translate>Type</span><span>:</span></label>
               <select name="type" class="form-control" data-ng-model="field.type" required>
                 <option value="selectbox" data-translate>Selection box</option>
+                <option value="multichoice" data-translate>Multiple choice input</option>
                 <option value="checkbox" data-translate>Checkbox</option>
               </select>
             </div>
@@ -231,7 +233,7 @@
               </div>
             </div>
             <div data-ng-disabled="!field.editable">
-              <div data-ng-if="field.type === 'checkbox' || field.type === 'selectbox'">
+              <div data-ng-if="field.type === 'checkbox' || field.type === 'selectbox' || field.type === 'multichoice'">
                 <div class="form-group">
                   <input data-ng-model="field.attrs.display_alphabetically.value" type="checkbox">
                   <label data-translate>Display options alphabetically</label>

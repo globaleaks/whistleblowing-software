@@ -30,6 +30,14 @@
           <option data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'presentation_order'" id="{{::fieldEntry}}-option-{{::$index}}" value="{{option.id}}">{{::option.label}}</option>
         </select>
       </div>
+      <div data-ng-switch-when="multichoice" data-ng-class="{'has-error': entry.required_status}">
+        <div data-ng-class="{'radio': (field.attrs.layout_orientation.value != 'horizontal')}">
+          <label data-ng-class="{'radio-inline': (field.attrs.layout_orientation.value == 'horizontal')}" data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}">
+            <input class="inputelem" type="radio" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
+            <span uib-popover="{{option.hint1}}" data-ng-class="{'underline': option.hint1}">{{::option.label}}</span>
+          </label>
+        </div>
+</div>
       <div data-ng-switch-when="checkbox" data-ng-class="{'has-error': entry.required_status}">
         <div data-ng-class="{'checkbox': (field.attrs.layout_orientation.value != 'horizontal')}">
           <label data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'presentation_order'" data-ng-class="{'checkbox-inline': (field.attrs.layout_orientation.value == 'horizontal'), 'has-error': f['input-' + $parent.entryIndex + '-option-' + entryIndex].$invalid}">

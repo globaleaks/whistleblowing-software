@@ -55,7 +55,7 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
     };
 
     $scope.showOptions = function(field) {
-      if (["checkbox", "selectbox", "map"].indexOf(field.type) > -1) {
+      if (["checkbox", "selectbox", "multichoice"].indexOf(field.type) > -1) {
         return true;
       }
 
