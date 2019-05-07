@@ -1435,6 +1435,12 @@ msgstr "Prompt confirmation upon negative answer"
 msgid "Text shown upon confirmation"
 msgstr "Text shown upon confirmation"
 
+msgid "Trigger conditions"
+msgstr "Trigger conditions"
+
+msgid "Sufficient"
+msgstr "Sufficient"
+
 msgid "Options"
 msgstr "Options"
 
@@ -1443,12 +1449,6 @@ msgstr "Addition"
 
 msgid "Multiplier"
 msgstr "Multiplier"
-
-msgid "Trigger conditions"
-msgstr "Trigger conditions"
-
-msgid "Sufficient"
-msgstr "Sufficient"
 
 msgid "Questions"
 msgstr "Questions"
@@ -1653,17 +1653,20 @@ msgstr "Please select your account:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Now type your password, then click 'Log in':"
 
+msgid "Assign score points"
+msgstr "Assign score points"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Text shown after the user has selected the option."
+
+msgid "Confirm"
+msgstr "Confirm"
+
 msgid "Are you sure?"
 msgstr "Are you sure?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "The operation will reset the configuration and cannot be undone."
-
-msgid "Assign score points"
-msgstr "Assign score points"
-
-msgid "Confirm"
-msgstr "Confirm"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Please note that all the associated data will be permanently lost."
