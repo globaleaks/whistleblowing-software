@@ -26,6 +26,10 @@
     "min_date": {"type": "unicode", "value": ""},
     "max_date": {"type": "unicode", "value": ""}
  },
+  "daterange": {
+    "min_date": {"type": "unicode", "value": ""},
+    "max_date": {"type": "unicode", "value": ""}
+ },
   "map": {
     "topojson": {"type": "unicode", "value": ""}
  },
