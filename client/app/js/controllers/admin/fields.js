@@ -83,6 +83,9 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
       var new_option = {
         "id": "",
         "label": "",
+        "hint1": "",
+        "hint2": "",
+        "block_submission": false,
         "score_points": 0,
         "score_type": 0,
 	"trigger_receiver": []
