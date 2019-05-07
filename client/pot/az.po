@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"PO-Revision-Date: 2019-05-07 15:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1345,6 +1345,9 @@ msgstr "Qrafa"
 msgid "Width"
 msgstr "En"
 
+msgid "Multiple choice input"
+msgstr "Təkrar daxil olma seçimi"
+
 msgid "Question group"
 msgstr "Sual qrupu"
 
@@ -1770,12 +1773,6 @@ msgstr ""
 
 msgid "Civic activism"
 msgstr ""
-
-msgid "previous step"
-msgstr "öncəki addım"
-
-msgid "next step"
-msgstr "növbəti addım"
 
 msgid "Submit"
 msgstr "Göndər"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"PO-Revision-Date: 2019-05-07 15:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1343,6 +1343,9 @@ msgstr "Kolonne"
 msgid "Width"
 msgstr "Bredde"
 
+msgid "Multiple choice input"
+msgstr "Flervalg"
+
 msgid "Question group"
 msgstr "Spørsmålsgruppe"
 
@@ -1768,12 +1771,6 @@ msgstr "Gravende journalistikk"
 
 msgid "Civic activism"
 msgstr "Sivil aktivisme"
-
-msgid "previous step"
-msgstr "Forrige steg"
-
-msgid "next step"
-msgstr "Neste steg"
 
 msgid "Submit"
 msgstr "Send inn"

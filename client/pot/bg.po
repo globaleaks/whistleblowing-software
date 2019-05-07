@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"PO-Revision-Date: 2019-05-07 15:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1347,6 +1347,9 @@ msgstr "Колона"
 msgid "Width"
 msgstr "Ширина"
 
+msgid "Multiple choice input"
+msgstr "Поле разрешаващо избор на множество отговори"
+
 msgid "Question group"
 msgstr "Група за въпрос"
 
@@ -1772,12 +1775,6 @@ msgstr "Разлседващ журнализъм"
 
 msgid "Civic activism"
 msgstr "Граждански активизъм"
-
-msgid "previous step"
-msgstr "предната съпка"
-
-msgid "next step"
-msgstr "следващата стъпка"
 
 msgid "Submit"
 msgstr "Изпрати"

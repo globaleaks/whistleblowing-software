@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"PO-Revision-Date: 2019-05-07 15:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1354,6 +1354,9 @@ msgstr "Columna"
 msgid "Width"
 msgstr "Amplada"
 
+msgid "Multiple choice input"
+msgstr "Entrada de selecció múltiple"
+
 msgid "Question group"
 msgstr "Grup de preguntes"
 
@@ -1779,12 +1782,6 @@ msgstr "Investigative journalism"
 
 msgid "Civic activism"
 msgstr "Activismo cívico"
-
-msgid "previous step"
-msgstr "Pas anterior"
-
-msgid "next step"
-msgstr "Pas següent"
 
 msgid "Submit"
 msgstr "Entrega"

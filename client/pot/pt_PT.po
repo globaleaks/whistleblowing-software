@@ -11,9 +11,9 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018
 # João Paulo Macedo Batalha <joao.batalha@transparencia.pt>, 2015
 # Manuela Silva <inactive+h_manuela_rodsilva@transifex.com>, 2015-2016
-# MS <manuelarodsilva@gmail.com>, 2014-2018
+# Manuela Silva, 2014-2018
 # Mónica Marques <coelho_monica75@hotmail.com>, 2017
-# MS <manuelarodsilva@gmail.com>, 2019
+# Manuela Silva, 2019
 # Drew Melim <nokostya.translation@gmail.com>, 2014-2015
 # Nuno Duarte <inactive+nuno.passiano@transifex.com>, 2015
 # Nuno Duarte <inactive+nuno.passiano@transifex.com>, 2015
@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"PO-Revision-Date: 2019-05-07 15:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1358,6 +1358,9 @@ msgstr "Coluna"
 msgid "Width"
 msgstr "Largura"
 
+msgid "Multiple choice input"
+msgstr "Entrada de escolha múltipla "
+
 msgid "Question group"
 msgstr "Grupo de questões"
 
@@ -1783,12 +1786,6 @@ msgstr "Jornalismo de investigação"
 
 msgid "Civic activism"
 msgstr "Ativismo cívico"
-
-msgid "previous step"
-msgstr "etapa anterior"
-
-msgid "next step"
-msgstr "etapa seguinte"
 
 msgid "Submit"
 msgstr "Submeter"

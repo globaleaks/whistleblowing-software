@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"PO-Revision-Date: 2019-05-07 15:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1350,6 +1350,9 @@ msgstr "Stĺpec"
 msgid "Width"
 msgstr "Šírka"
 
+msgid "Multiple choice input"
+msgstr ""
+
 msgid "Question group"
 msgstr "Skupina otázok"
 
@@ -1775,12 +1778,6 @@ msgstr "Investigatívna žurnalistika"
 
 msgid "Civic activism"
 msgstr "Občiansky aktivizmus"
-
-msgid "previous step"
-msgstr "Predchádzajúci krok"
-
-msgid "next step"
-msgstr "Ďalší krok"
 
 msgid "Submit"
 msgstr "Odoslať"

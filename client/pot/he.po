@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"PO-Revision-Date: 2019-05-07 15:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1354,6 +1354,9 @@ msgstr "עמודה"
 msgid "Width"
 msgstr "רוחב"
 
+msgid "Multiple choice input"
+msgstr "קלט אמריקאיות"
+
 msgid "Question group"
 msgstr "קבוצת שאלה"
 
@@ -1779,12 +1782,6 @@ msgstr ""
 
 msgid "Civic activism"
 msgstr ""
-
-msgid "previous step"
-msgstr "צעד אחורה"
-
-msgid "next step"
-msgstr "צעד קדימה"
 
 msgid "Submit"
 msgstr "הגש"

@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"PO-Revision-Date: 2019-05-07 15:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1346,6 +1346,9 @@ msgstr "Sarake"
 msgid "Width"
 msgstr "Leveys"
 
+msgid "Multiple choice input"
+msgstr "Monivalinta"
+
 msgid "Question group"
 msgstr "Kysymysryhmä"
 
@@ -1771,12 +1774,6 @@ msgstr "Tutkiva journalismi"
 
 msgid "Civic activism"
 msgstr "Kansalaisaktivismi"
-
-msgid "previous step"
-msgstr "Edellinen"
-
-msgid "next step"
-msgstr "Jatka"
 
 msgid "Submit"
 msgstr "Lähetä"

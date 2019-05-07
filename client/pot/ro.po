@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"PO-Revision-Date: 2019-05-07 15:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1353,6 +1353,9 @@ msgstr "Coloană"
 msgid "Width"
 msgstr "Lăţime"
 
+msgid "Multiple choice input"
+msgstr "intrare alegere multiplă"
+
 msgid "Question group"
 msgstr "grup de întrebare"
 
@@ -1778,12 +1781,6 @@ msgstr ""
 
 msgid "Civic activism"
 msgstr ""
-
-msgid "previous step"
-msgstr "etapa anterioară"
-
-msgid "next step"
-msgstr "urmatorul pas"
 
 msgid "Submit"
 msgstr "A depune"

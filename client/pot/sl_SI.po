@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"PO-Revision-Date: 2019-05-07 15:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1343,6 +1343,9 @@ msgstr "Stolpec"
 msgid "Width"
 msgstr "Širina"
 
+msgid "Multiple choice input"
+msgstr ""
+
 msgid "Question group"
 msgstr "Skupina vprašanj"
 
@@ -1768,12 +1771,6 @@ msgstr ""
 
 msgid "Civic activism"
 msgstr ""
-
-msgid "previous step"
-msgstr "Prejšnji korak"
-
-msgid "next step"
-msgstr "Naslednji korak"
 
 msgid "Submit"
 msgstr "Pošlji"

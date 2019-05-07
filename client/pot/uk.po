@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"PO-Revision-Date: 2019-05-07 15:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1358,6 +1358,9 @@ msgstr "Колонка"
 msgid "Width"
 msgstr "Ширина"
 
+msgid "Multiple choice input"
+msgstr "Кілька варіантів"
+
 msgid "Question group"
 msgstr "Питання з групи"
 
@@ -1783,12 +1786,6 @@ msgstr "Журналістські розслідування"
 
 msgid "Civic activism"
 msgstr "Громадська діяльність"
-
-msgid "previous step"
-msgstr "Попередній крок"
-
-msgid "next step"
-msgstr "Наступний крок"
 
 msgid "Submit"
 msgstr "Надіслати"

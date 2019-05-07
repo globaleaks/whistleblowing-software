@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"PO-Revision-Date: 2019-05-07 15:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1346,6 +1346,9 @@ msgstr "คอลัมน์"
 msgid "Width"
 msgstr "ความกว้าง"
 
+msgid "Multiple choice input"
+msgstr "การป้อนข้อมูลหลายตัวเลือก"
+
 msgid "Question group"
 msgstr "กลุ่มคำถาม"
 
@@ -1771,12 +1774,6 @@ msgstr ""
 
 msgid "Civic activism"
 msgstr ""
-
-msgid "previous step"
-msgstr "ขั้นตอนก่อนหน้า"
-
-msgid "next step"
-msgstr "ขั้นตอนต่อไป"
 
 msgid "Submit"
 msgstr "เสนอ"

@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 13:37+0000\n"
+"PO-Revision-Date: 2019-05-07 15:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1375,6 +1375,9 @@ msgstr "Colonne"
 msgid "Width"
 msgstr "Largeur"
 
+msgid "Multiple choice input"
+msgstr "Saisie à choix multiple"
+
 msgid "Question group"
 msgstr "Groupe de questions"
 
@@ -1638,7 +1641,7 @@ msgid "Assign score points"
 msgstr "Attribuer un pointage"
 
 msgid "Text shown after the user has selected the option."
-msgstr "Texte affiché une fois que l’utilisateur a sélectionné l’option"
+msgstr "Texte affiché une fois que l’utilisateur a sélectionné l’option."
 
 msgid "Confirm"
 msgstr "Confirmer"
@@ -1800,12 +1803,6 @@ msgstr "Journalisme d’enquête"
 
 msgid "Civic activism"
 msgstr "Activisme citoyen"
-
-msgid "previous step"
-msgstr "étape précédente"
-
-msgid "next step"
-msgstr "étape suivante"
 
 msgid "Submit"
 msgstr "Envoyer"

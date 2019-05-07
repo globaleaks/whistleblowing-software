@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"PO-Revision-Date: 2019-05-07 15:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1357,6 +1357,9 @@ msgstr "Oszlop"
 msgid "Width"
 msgstr "Szélesség"
 
+msgid "Multiple choice input"
+msgstr "Több választásos bevitel"
+
 msgid "Question group"
 msgstr "Kérdéscsoport"
 
@@ -1782,12 +1785,6 @@ msgstr ""
 
 msgid "Civic activism"
 msgstr ""
-
-msgid "previous step"
-msgstr "Vissza"
-
-msgid "next step"
-msgstr "Következő"
 
 msgid "Submit"
 msgstr "Küldés"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"PO-Revision-Date: 2019-05-07 15:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1341,6 +1341,9 @@ msgstr "기둥"
 msgid "Width"
 msgstr "폭"
 
+msgid "Multiple choice input"
+msgstr "여러 선택 입력"
+
 msgid "Question group"
 msgstr "질문 그룹"
 
@@ -1766,12 +1769,6 @@ msgstr ""
 
 msgid "Civic activism"
 msgstr ""
-
-msgid "previous step"
-msgstr "이전 단계"
-
-msgid "next step"
-msgstr "다음 단계"
 
 msgid "Submit"
 msgstr "제출"

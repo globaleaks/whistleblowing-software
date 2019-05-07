@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"PO-Revision-Date: 2019-05-07 15:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1349,6 +1349,9 @@ msgstr "کالم"
 msgid "Width"
 msgstr "چوڑائی"
 
+msgid "Multiple choice input"
+msgstr "ایک سے زیادہ پسند کی ان پٹ"
+
 msgid "Question group"
 msgstr "سوال گروپ"
 
@@ -1774,12 +1777,6 @@ msgstr ""
 
 msgid "Civic activism"
 msgstr ""
-
-msgid "previous step"
-msgstr "گزشتہ مرحلہ"
-
-msgid "next step"
-msgstr "اگلا مرحلہ"
 
 msgid "Submit"
 msgstr "جمع کرائیں"

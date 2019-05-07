@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"PO-Revision-Date: 2019-05-07 15:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1343,6 +1343,9 @@ msgstr "வரிசை"
 msgid "Width"
 msgstr "அகலம்"
 
+msgid "Multiple choice input"
+msgstr "பல தேர்வு உள்ளீடு"
+
 msgid "Question group"
 msgstr "கேள்வி குழு"
 
@@ -1768,12 +1771,6 @@ msgstr "விசாரணை பத்திரிகை"
 
 msgid "Civic activism"
 msgstr "குடிமக்கள் ஆர்வம்"
-
-msgid "previous step"
-msgstr "முந்தைய படி"
-
-msgid "next step"
-msgstr "அடுத்த அடி"
 
 msgid "Submit"
 msgstr "சமர்ப்பி"
