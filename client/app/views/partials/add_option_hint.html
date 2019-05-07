@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <button type="submit" class="close" aria-hidden="true" data-ng-click="cancel()">
+    <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+  </button>
+  <div class="modal-title" data-translate>Assign score points</div>
+</div>
+<div class="modal-body">
+  <div>
+    <span data-translate>Hint</span>
+    <input id="hint1" class="form-control" data-ng-model="arg.hint1" type="text" />
+  </div>
+  <div>
+    <span data-translate>Text shown after that the user has selected the option</span>
+    <input id="hint2" class="form-control" data-ng-model="arg.hint2" type="text" />
+  </div>
+</div>
+<div class="modal-footer">
+  <a id="modal-action-cancel" class="btn btn-default" data-ng-click="cancel()">
+    <i class="glyphicon glyphicon-remove"></i>
+    <span data-translate>Cancel</span>
+  </a>
+  <a id="modal-action-reset" class="btn btn-danger" data-ng-click="arg.score_type = 0; arg.score_points = 0; cancel()">
+    <i class="glyphicon glyphicon-ok"></i>
+    <span data-translate>Reset</span>
+  </a>
+  <a id="modal-action-ok" class="btn btn-primary" data-ng-click="ok()">
+    <i class="glyphicon glyphicon-ok"></i>
+    <span data-translate>Confirm</span>
+  </a>
+</div>
