@@ -661,20 +661,15 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
   if ($scope.field.type === "inputbox") {
     $scope.validator = fieldUtilities.getValidator($scope.field);
   } else if ($scope.field.type === "date") {
-    var options = {"showWeeks": false};
+    $scope.dateOptions = {showWeeks: false};
 
-    var max = $scope.field.attrs.max_date.value;
-    var min = $scope.field.attrs.min_date.value;
-
-    if (angular.isDefined(max)) {
-      options.maxDate = new Date(max);
+    if (angular.isDefined($scope.field.attrs.min_date)) {
+      $scope.dateOptions.minDate = new Date($scope.field.attrs.min_date.value);
     }
 
-    if (angular.isDefined(min)) {
-      options.minDate = new Date(min);
+    if (angular.isDefined($scope.field.attrs.max_date)) {
+      $scope.dateOptions.maxDate = new Date($scope.field.attrs.max_date.value);
     }
-
-    $scope.dateOptions = options;
 
     $scope.status = {
       opened: false
@@ -684,7 +679,16 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
       $scope.status.opened = true;
     };
   } else if ($scope.field.type === "daterange") {
-    $scope.dateOptions = {showWeeks: false};
+    $scope.dateOptions1 = {showWeeks: false};
+    $scope.dateOptions2 = {showWeeks: false};
+
+    if (angular.isDefined($scope.field.attrs.min_date)) {
+      $scope.dateOptions1.minDate = new Date($scope.field.attrs.min_date.value);
+    }
+
+    if (angular.isDefined($scope.field.attrs.max_date)) {
+      $scope.dateOptions2 = new Date($scope.field.attrs.max_date.value);
+    }
 
     $scope.clear = function() {
       $scope.daterange.start = "";
@@ -700,7 +704,7 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
 
     $scope.$watch("daterange.start", function () {
       if ($scope.daterange.start) {
-        $scope.dateOptions.minDate = new Date($scope.daterange.start);
+        $scope.dateOptions2.minDate = new Date($scope.daterange.start);
       }
     });
 

@@ -239,7 +239,7 @@
                   <label data-translate>Display options alphabetically</label>
                 </div>
               </div>
-              <div data-ng-if="field.type === 'date'" data-ng-init="open_min_date = false; open_max_date = false">
+              <div data-ng-if="field.type === 'date' || field.type === 'daterange'" data-ng-init="open_min_date = false; open_max_date = false">
                 <div class="form-group">
                   <div uib-datepicker-popup
                        data-ng-model="field.attrs.min_date.value"
