@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,9 +15,6 @@ msgstr ""
 "Language: nb_NO\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Innloggingsside"
 
 msgid "Log in"
 msgstr "Innlogging"
@@ -1328,6 +1325,9 @@ msgstr "Avkryssingsboks"
 msgid "Terms of service"
 msgstr "Tjenestevilkår"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1394,6 +1394,12 @@ msgstr "Etterspør bekreftelse ved negativt svar"
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Valg"
 
@@ -1401,12 +1407,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1602,17 +1602,20 @@ msgstr "Velg din konto:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Skriv inn ditt passord, trykk så 'logg inn':"
 
+msgid "Assign score points"
+msgstr "Tildel poeng"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Bekreft tillegg"
+
 msgid "Are you sure?"
 msgstr "Er du sikker?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Operasjonen vil tilbakestille oppsettet og kan ikke angres."
-
-msgid "Assign score points"
-msgstr "Tildel poeng"
-
-msgid "Confirm"
-msgstr "Bekreft tillegg"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Merk deg at all tilknyttet data vil gå tapt for godt."
@@ -1786,6 +1789,12 @@ msgstr "Send"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Tillat fløyteblåseren å skrive kommentarer"
+
+msgid "From:"
+msgstr ""
+
+msgid "To:"
+msgstr ""
 
 msgid "Filename"
 msgstr "Filnavn"
@@ -2201,8 +2210,8 @@ msgstr "En ny fløyteblåserside har blitt registrert."
 msgid "Registration data:"
 msgstr "Registreringsdata:"
 
-msgid "Site: {HTTPSUrl}"
-msgstr "Side: {HTTPSUrl}"
+msgid "Site: {Url}"
+msgstr ""
 
 msgid "Name: {Name}"
 msgstr "Navn: {Name}"

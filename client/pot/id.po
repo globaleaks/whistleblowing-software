@@ -23,17 +23,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Halaman masuk"
 
 msgid "Log in"
 msgstr "Masuk"
@@ -1344,6 +1341,9 @@ msgstr "Kotak centang"
 msgid "Terms of service"
 msgstr "Persyaratan layanan"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr "Peta"
 
@@ -1410,6 +1410,12 @@ msgstr "Konfirmasi segera atas jawaban negatif"
 msgid "Text shown upon confirmation"
 msgstr "Teks ditampilkan atas konfirmasi "
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Opsi"
 
@@ -1418,12 +1424,6 @@ msgstr "Tambahan"
 
 msgid "Multiplier"
 msgstr "Pengganda"
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
-msgstr ""
 
 msgid "Questions"
 msgstr "Pertanyaan"
@@ -1618,17 +1618,20 @@ msgstr "Tolong pilih akun Anda"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Sekarang ketik kata sandi Anda, lalu klik 'Masuk'"
 
+msgid "Assign score points"
+msgstr "Menentukan poin skor "
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Konfirmasi"
+
 msgid "Are you sure?"
 msgstr "Apakah Anda yakin?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Pekerjaan akan mengatur ulang konfigurasi dan tidak dapat diulang kembali."
-
-msgid "Assign score points"
-msgstr "Menentukan poin skor "
-
-msgid "Confirm"
-msgstr "Konfirmasi"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Harap dicatat bahwa semua data yang terkait akan hilang secara permanen."
@@ -1802,6 +1805,12 @@ msgstr "Kirim"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Mengizinkan informan publik untuk menulis komentar"
+
+msgid "From:"
+msgstr "Dari:"
+
+msgid "To:"
+msgstr "Ke:"
 
 msgid "Filename"
 msgstr "Nama file"
@@ -2217,8 +2226,8 @@ msgstr "Sebuah situs pelaporan baru telah terdaftar."
 msgid "Registration data:"
 msgstr "Data registrasi"
 
-msgid "Site: {HTTPSUrl}"
-msgstr "Situs: {HTTPSUrl}"
+msgid "Site: {Url}"
+msgstr ""
 
 msgid "Name: {Name}"
 msgstr "Nama:"

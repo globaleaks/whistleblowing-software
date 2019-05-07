@@ -13,6 +13,7 @@
 # Manuela Silva <inactive+h_manuela_rodsilva@transifex.com>, 2015-2016
 # MS <manuelarodsilva@gmail.com>, 2014-2018
 # Mónica Marques <coelho_monica75@hotmail.com>, 2017
+# MS <manuelarodsilva@gmail.com>, 2019
 # Drew Melim <nokostya.translation@gmail.com>, 2014-2015
 # Nuno Duarte <inactive+nuno.passiano@transifex.com>, 2015
 # Nuno Duarte <inactive+nuno.passiano@transifex.com>, 2015
@@ -21,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,9 +30,6 @@ msgstr ""
 "Language: pt_PT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Página de início de sessão"
 
 msgid "Log in"
 msgstr "Iniciar sessão"
@@ -648,7 +646,7 @@ msgid "Previous"
 msgstr "Anterior"
 
 msgid "Next"
-msgstr "Próximo"
+msgstr "Seguinte"
 
 msgid "First"
 msgstr "Primeiro"
@@ -1342,6 +1340,9 @@ msgstr "Caixa de marcação"
 msgid "Terms of service"
 msgstr "Termos do serviço"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1391,7 +1392,7 @@ msgid "Image"
 msgstr "Imagem"
 
 msgid "Audio"
-msgstr "Audio"
+msgstr "Áudio"
 
 msgid "Video"
 msgstr "Video"
@@ -1408,6 +1409,12 @@ msgstr "Janela de confirmação após resposta negativa"
 msgid "Text shown upon confirmation"
 msgstr "Texto mostrado após confirmação"
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Opções"
 
@@ -1415,12 +1422,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1466,7 +1467,7 @@ msgid "Sites"
 msgstr "Sites"
 
 msgid "Active"
-msgstr "Ativar"
+msgstr "Ativo"
 
 msgid "Inactive"
 msgstr "Inativo"
@@ -1484,7 +1485,7 @@ msgid "Reset password"
 msgstr "Repor palavra-passe"
 
 msgid "New password"
-msgstr "Nova senha"
+msgstr "Nova palavra-passe"
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1605,10 +1606,10 @@ msgid "The receipt is either invalid or the submission has expired."
 msgstr ""
 
 msgid "Username:"
-msgstr "Nome do Utilizador:"
+msgstr "Nome do utilizador:"
 
 msgid "Password:"
-msgstr "Senha:"
+msgstr "Palavra-passe:"
 
 msgid "Please select your account:"
 msgstr "Selecione a sua conta:"
@@ -1616,17 +1617,20 @@ msgstr "Selecione a sua conta:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Digite a sua palavra-passe e clique e \"Iniciar sessão\":"
 
+msgid "Assign score points"
+msgstr "Atribuir pontos"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Confirmar"
+
 msgid "Are you sure?"
 msgstr "Tem a certeza?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "A operação irá reiniciar a configuração e não poderá ser anulada."
-
-msgid "Assign score points"
-msgstr "Atribuir pontos"
-
-msgid "Confirm"
-msgstr "Confirmar"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Por favor, note que todos os dados associados serão perdidos para sempre."
@@ -1800,6 +1804,12 @@ msgstr "Enviar"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Permitir que o informador escreva comentários"
+
+msgid "From:"
+msgstr "De:"
+
+msgid "To:"
+msgstr "Para:"
 
 msgid "Filename"
 msgstr "Nome de ficheiro"
@@ -2215,8 +2225,8 @@ msgstr "Foi registado um novo site de denúncias."
 msgid "Registration data:"
 msgstr "Data de registo:"
 
-msgid "Site: {HTTPSUrl}"
-msgstr "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
+msgstr ""
 
 msgid "Name: {Name}"
 msgstr "Nome: {Name}"
@@ -2376,7 +2386,7 @@ msgstr "Está a receber esta mensagem porque foi solicitada uma reposição da p
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr "Se não efetuou esse pedido, pode ignorar e eliminar esta mensagem com segurança. "
+msgstr "Se não efetuou este pedido, poderá ignorar com segurança e eliminar esta mensagem. "
 
 msgid "You can confirm your request by clicking the following link:"
 msgstr ""

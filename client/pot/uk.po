@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,9 +30,6 @@ msgstr ""
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Сторінка авторизації"
 
 msgid "Log in"
 msgstr "Зайти"
@@ -1343,6 +1340,9 @@ msgstr "Строчка що дозволяє ставити прапорець"
 msgid "Terms of service"
 msgstr "Умови використання"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1409,6 +1409,12 @@ msgstr "Prompt confirmation upon negative answer"
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Опції"
 
@@ -1416,12 +1422,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1617,17 +1617,20 @@ msgstr "Будь ласка, оберіть ваш обліковий запис
 msgid "Now type your password, then click 'Log in':"
 msgstr "Введіть пароль і натисніть \"Увійти\":"
 
+msgid "Assign score points"
+msgstr "Призначати бали"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Підтвердити відтермінування"
+
 msgid "Are you sure?"
 msgstr "Ви впевнені?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Операція скине налаштування і її не можна бути відмінити."
-
-msgid "Assign score points"
-msgstr "Призначати бали"
-
-msgid "Confirm"
-msgstr "Підтвердити відтермінування"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Зверніть увагу, що всі пов'язані з ним дані будуть безповоротно втрачені."
@@ -1801,6 +1804,12 @@ msgstr "Відправити"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Дозволити викривачу коментувати"
+
+msgid "From:"
+msgstr "Від:"
+
+msgid "To:"
+msgstr "Кому:"
 
 msgid "Filename"
 msgstr "Назва файлу"
@@ -2216,7 +2225,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
 msgstr ""
 
 msgid "Name: {Name}"

@@ -33,22 +33,20 @@
 # Raed667 <shemada@gmail.com>, 2013-2015
 # Raed667 <shemada@gmail.com>, 2013
 # Rima Sghaier <sghair.rahma@gmail.com>, 2015-2018
+# Rima Sghaier <sghair.rahma@gmail.com>, 2019
 # zendegi <inactive+zendegi@transifex.com>, 2013
 # zendegi <inactive+zendegi@transifex.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "صفحة الاتّصال"
 
 msgid "Log in"
 msgstr "اتّصال"
@@ -1359,6 +1357,9 @@ msgstr "خانة الاختيار"
 msgid "Terms of service"
 msgstr "شروط الخدمة"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1425,6 +1426,12 @@ msgstr "تأكيد فوري على الإجابة السلبية"
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "خيارات"
 
@@ -1432,12 +1439,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1633,17 +1634,20 @@ msgstr "الرجاء اختيار حسابك"
 msgid "Now type your password, then click 'Log in':"
 msgstr "الآن اكتب كلمة العبور الخاصة بك، ثم انقر على \"تسجيل الدخول\":"
 
+msgid "Assign score points"
+msgstr "تخصيص نقاط المجموع"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "تأكيد "
+
 msgid "Are you sure?"
 msgstr "هل أنت متأكد؟"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "ستؤدي العملية إلى إعادة ضبط التهيئة ولا يمكن التراجع عنها."
-
-msgid "Assign score points"
-msgstr "تخصيص نقاط المجموع"
-
-msgid "Confirm"
-msgstr "تأكيد "
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "يرجى ملاحظة أنّه سيتم فقدان جميع البيانات المتعلقة بشكل دائم."
@@ -1817,6 +1821,12 @@ msgstr "إرسال"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "تمكين المبلغ من كتابة تعليقات"
+
+msgid "From:"
+msgstr "من:"
+
+msgid "To:"
+msgstr "إلى:"
 
 msgid "Filename"
 msgstr "إسم الملف"
@@ -2232,7 +2242,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
 msgstr ""
 
 msgid "Name: {Name}"
@@ -2399,7 +2409,7 @@ msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"
-msgstr ""
+msgstr "تعليمات لإعادة تعيين كلمة السر"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
@@ -2438,7 +2448,7 @@ msgid "Click the link to activate the platform:"
 msgstr "إنقر الرابط لتفعيل المنصة."
 
 msgid "Activation"
-msgstr ""
+msgstr "تفعيل"
 
 msgid "A software update is available."
 msgstr "التحديث متوفّر:"
@@ -2488,10 +2498,10 @@ msgid "New submission"
 msgstr "بلاغ جديد"
 
 msgid "Role: {Role}"
-msgstr ""
+msgstr "الدور: {Role}"
 
 msgid "Username: {Username}"
-msgstr ""
+msgstr "اسم المستخدم: {Username}"
 
 msgid "Password: {Password}"
 msgstr ""

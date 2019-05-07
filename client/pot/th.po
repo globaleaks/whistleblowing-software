@@ -10,17 +10,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: th\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "หน้าเข้าสู่ระบบ"
 
 msgid "Log in"
 msgstr "เข้าสู่ระบบ"
@@ -1331,6 +1328,9 @@ msgstr "ช่องทำเครื่องหมาย"
 msgid "Terms of service"
 msgstr "เงื่อนไขการให้บริการ"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1397,6 +1397,12 @@ msgstr "ยืนยันพร้อมรับคำบนลบคำตอ
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "ตัวเลือก"
 
@@ -1404,12 +1410,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1605,17 +1605,20 @@ msgstr "กรุณาเลือกบัญชีของคุณ:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "ตอนนี้พิมพ์รหัสผ่านของคุณแล้วคลิก 'เข้าสู่ระบบ:"
 
+msgid "Assign score points"
+msgstr "กำหนดจุดคะแนน"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "ยืนยัน"
+
 msgid "Are you sure?"
 msgstr "คุณแน่ใจไหม?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
-
-msgid "Assign score points"
-msgstr "กำหนดจุดคะแนน"
-
-msgid "Confirm"
-msgstr "ยืนยัน"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
@@ -1789,6 +1792,12 @@ msgstr "ส่ง"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "อนุญาตให้ whistleblower เพื่อเขียนความคิดเห็น"
+
+msgid "From:"
+msgstr ""
+
+msgid "To:"
+msgstr ""
 
 msgid "Filename"
 msgstr "ชื่อไฟล์"
@@ -2204,7 +2213,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
 msgstr ""
 
 msgid "Name: {Name}"

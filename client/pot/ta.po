@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,9 +15,6 @@ msgstr ""
 "Language: ta\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "உள்நுழையும் பக்கம்"
 
 msgid "Log in"
 msgstr "உள் நுழை"
@@ -1328,6 +1325,9 @@ msgstr "பெட்டியை"
 msgid "Terms of service"
 msgstr "சேவை விதிமுறைகளை"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr "வரைபடம்"
 
@@ -1394,6 +1394,12 @@ msgstr "எதிர்மறை பதில் மீது உடனடிய
 msgid "Text shown upon confirmation"
 msgstr "உறுதிப்படுத்தல் மீது உரை காட்டப்பட்டுள்ளது"
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "விருப்பங்கள்"
 
@@ -1402,12 +1408,6 @@ msgstr "கூடுதலாக"
 
 msgid "Multiplier"
 msgstr "பெருக்கி"
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
-msgstr ""
 
 msgid "Questions"
 msgstr "கேள்விகள்"
@@ -1602,17 +1602,20 @@ msgstr "உங்கள் கணக்கு தேர்ந்தெடுக�
 msgid "Now type your password, then click 'Log in':"
 msgstr "இப்போது உங்கள் கடவுச்சொல்லை தட்டச்சு, பின்னர் 'நுழைய' கிளிக்:"
 
+msgid "Assign score points"
+msgstr "ஸ்கோர் புள்ளிகள் ஒதுக்க"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "உறுதிப்படுத்தவும்"
+
 msgid "Are you sure?"
 msgstr "நீ சொல்வது உறுதியா?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "செயல்பாட்டை உள்ளமைவு மீட்டமைக்கும் மற்றும் செயல்தவிர்க்க முடியாது."
-
-msgid "Assign score points"
-msgstr "ஸ்கோர் புள்ளிகள் ஒதுக்க"
-
-msgid "Confirm"
-msgstr "உறுதிப்படுத்தவும்"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "தொடர்புடைய எல்லா தரவு நிரந்தரமாக இழக்கப்படும் என்பதை நினைவில் கொள்க."
@@ -1786,6 +1789,12 @@ msgstr "அனுப்பு"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "தகவல் தெரிவிப்பவர் கருத்துக்கள் எழுத அனுமதி"
+
+msgid "From:"
+msgstr ""
+
+msgid "To:"
+msgstr ""
 
 msgid "Filename"
 msgstr "கோப்பின் பெயர்"
@@ -2201,8 +2210,8 @@ msgstr "ஒரு புதிய விசிலடிக்கும் தள
 msgid "Registration data:"
 msgstr "பதிவுத் தரவு:"
 
-msgid "Site: {HTTPSUrl}"
-msgstr "தள: {HTTPSUrl}"
+msgid "Site: {Url}"
+msgstr ""
 
 msgid "Name: {Name}"
 msgstr "பெயர்: {Name}"

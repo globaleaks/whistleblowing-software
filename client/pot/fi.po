@@ -10,17 +10,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Kirjautumissivu"
 
 msgid "Log in"
 msgstr "Kirjaudu"
@@ -1331,6 +1328,9 @@ msgstr "Valintaruutu"
 msgid "Terms of service"
 msgstr "Käyttöehdot"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr "Kartta"
 
@@ -1397,6 +1397,12 @@ msgstr "Pyydä vahvistamaan kielteiset vastaukset"
 msgid "Text shown upon confirmation"
 msgstr "Vahvistuksen yhteydessä näytettävä teksti"
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Valinnat"
 
@@ -1405,12 +1411,6 @@ msgstr "Lisäys"
 
 msgid "Multiplier"
 msgstr "Kerroin"
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
-msgstr ""
 
 msgid "Questions"
 msgstr "Kysymykset"
@@ -1605,17 +1605,20 @@ msgstr "Valitse tilisi:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Kirjoita nyt salasanasi, napsauta sitten ’Kirjaudu’:"
 
+msgid "Assign score points"
+msgstr "Käytä pisteytystä"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Vahvista laajennus"
+
 msgid "Are you sure?"
 msgstr "Oletko varma?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Tämä toiminto palauttaa järjestelmän alkuperäiset asetukset eikä sitä voi perua."
-
-msgid "Assign score points"
-msgstr "Käytä pisteytystä"
-
-msgid "Confirm"
-msgstr "Vahvista laajennus"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Huomaa, että kaikki asiaan liittyvät tiedot poistetaan lopullisesti."
@@ -1789,6 +1792,12 @@ msgstr "Lähetä"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Salli vihjeen antajan kirjoittaa kommentteja"
+
+msgid "From:"
+msgstr "Lähettäjä:"
+
+msgid "To:"
+msgstr "Vastaanottaja:"
 
 msgid "Filename"
 msgstr "Tiedostonimi"
@@ -2204,8 +2213,8 @@ msgstr "Uusi vihjepalvelu on rekisteröity."
 msgid "Registration data:"
 msgstr "Rekisteröintitiedot:"
 
-msgid "Site: {HTTPSUrl}"
-msgstr "Palvelu: {HTTPSUrl}"
+msgid "Site: {Url}"
+msgstr ""
 
 msgid "Name: {Name}"
 msgstr "Nimi: {Name}"

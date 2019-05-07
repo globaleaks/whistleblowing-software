@@ -7,17 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sq\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Faqja hyrëse"
 
 msgid "Log in"
 msgstr "Hyni"
@@ -1328,6 +1325,9 @@ msgstr "checkbox"
 msgid "Terms of service"
 msgstr "Kushtet e shërbimit"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1394,6 +1394,12 @@ msgstr "konfirmim të menjëhershëm mbi pergjigje negative"
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Opsionet"
 
@@ -1401,12 +1407,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1602,17 +1602,20 @@ msgstr "Ju lutemi përzgjidhni llogarinë tuaj:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Tani shkruani fjalëkalimin tuaj dhe klikoni \"Hyni\":"
 
+msgid "Assign score points"
+msgstr "Cakto pike"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Konfirmoni Zgjatjen"
+
 msgid "Are you sure?"
 msgstr "A je i sigurt?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
-
-msgid "Assign score points"
-msgstr "Cakto pike"
-
-msgid "Confirm"
-msgstr "Konfirmoni Zgjatjen"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
@@ -1786,6 +1789,12 @@ msgstr "dërgoj"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Lejo whistleblower për të shkruar komente"
+
+msgid "From:"
+msgstr "Nga:"
+
+msgid "To:"
+msgstr "Për:"
 
 msgid "Filename"
 msgstr "Emri i skedarit"
@@ -2201,7 +2210,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
 msgstr ""
 
 msgid "Name: {Name}"

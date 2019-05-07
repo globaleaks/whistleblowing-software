@@ -1,6 +1,6 @@
 # 
 # Translators:
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2019
 # Masayuki Hatta <mhatta@mhatta.org>, 2014
 # Naofumi <naofum@gmail.com>, 2015-2019
 # Naofumi <naofum@gmail.com>, 2015
@@ -9,17 +9,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:38+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "ログインページ"
 
 msgid "Log in"
 msgstr "ログイン"
@@ -1330,6 +1327,9 @@ msgstr "チェックボックス"
 msgid "Terms of service"
 msgstr "利用規約"
 
+msgid "Date range"
+msgstr "日付の範囲"
+
 msgid "Map"
 msgstr "マップ"
 
@@ -1396,6 +1396,12 @@ msgstr "否定の回答時に、確認を表示"
 msgid "Text shown upon confirmation"
 msgstr "確認時に表示されるテキスト"
 
+msgid "Trigger conditions"
+msgstr "トリガー条件"
+
+msgid "Sufficient"
+msgstr "十分"
+
 msgid "Options"
 msgstr "オプション"
 
@@ -1404,12 +1410,6 @@ msgstr "追加"
 
 msgid "Multiplier"
 msgstr "乗数"
-
-msgid "Trigger conditions"
-msgstr "トリガー条件"
-
-msgid "Sufficient"
-msgstr "十分"
 
 msgid "Questions"
 msgstr "質問"
@@ -1604,17 +1604,20 @@ msgstr "あなたのアカウントを選択してください:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "パスワードを入力して、'ログイン'をクリックしてください:"
 
+msgid "Assign score points"
+msgstr "スコアポイントを割り当て"
+
+msgid "Text shown after the user has selected the option."
+msgstr "ユーザーがオプションを選択した後に表示されるテキスト"
+
+msgid "Confirm"
+msgstr "延期を確認"
+
 msgid "Are you sure?"
 msgstr "よろしいですか?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "操作によって設定がリセットされ、元に戻すことはできません。"
-
-msgid "Assign score points"
-msgstr "スコアポイントを割り当て"
-
-msgid "Confirm"
-msgstr "延期を確認"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "すべての関連データが完全に失われますのでご注意ください。"
@@ -1788,6 +1791,12 @@ msgstr "送信"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "その内部告発者が、コメントを書くことを許可"
+
+msgid "From:"
+msgstr "差出人:"
+
+msgid "To:"
+msgstr "宛先:"
 
 msgid "Filename"
 msgstr "ファイル名"
@@ -2203,8 +2212,8 @@ msgstr "新しい告発サイトが登録されました。"
 msgid "Registration data:"
 msgstr "登録データ:"
 
-msgid "Site: {HTTPSUrl}"
-msgstr "サイト: {HTTPSUrl}"
+msgid "Site: {Url}"
+msgstr "サイト: {Url}"
 
 msgid "Name: {Name}"
 msgstr "名前: {Name}"

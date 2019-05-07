@@ -17,17 +17,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Pagina de autentificare"
 
 msgid "Log in"
 msgstr "Autentificare"
@@ -1338,6 +1335,9 @@ msgstr "Caseta de bifat"
 msgid "Terms of service"
 msgstr "Termenii serviciului"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1404,6 +1404,12 @@ msgstr "Confirmare promptă la un răspuns negativ"
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Opțiuni"
 
@@ -1411,12 +1417,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1612,17 +1612,20 @@ msgstr "Vă rugăm să selectați contul:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Acum tastați parola, apoi faceți clic pe \"Conectare\":"
 
+msgid "Assign score points"
+msgstr "Atribuiți puncte"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "A confirma"
+
 msgid "Are you sure?"
 msgstr "Esti sigur?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
-
-msgid "Assign score points"
-msgstr "Atribuiți puncte"
-
-msgid "Confirm"
-msgstr "A confirma"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Luati va rog la cunostinta faptul ca toate datele asociate vor fi pierdute permanent."
@@ -1796,6 +1799,12 @@ msgstr "Trimite"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Permite informatorului sa scrie comentarii"
+
+msgid "From:"
+msgstr "De la:"
+
+msgid "To:"
+msgstr "Pentru:"
 
 msgid "Filename"
 msgstr "Numele fișierului"
@@ -2211,7 +2220,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
 msgstr ""
 
 msgid "Name: {Name}"

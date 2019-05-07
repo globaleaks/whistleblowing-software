@@ -18,17 +18,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Logowanie"
 
 msgid "Log in"
 msgstr "Logowanie"
@@ -1339,6 +1336,9 @@ msgstr "Pole wyboru"
 msgid "Terms of service"
 msgstr ""
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1405,6 +1405,12 @@ msgstr ""
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Opcje"
 
@@ -1412,12 +1418,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1613,17 +1613,20 @@ msgstr "Wybierz swoje konto:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Wpisz swoje hasło i kliknij 'Zaloguj':"
 
+msgid "Assign score points"
+msgstr ""
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Potwierdź Rozszerzenie"
+
 msgid "Are you sure?"
 msgstr "Jesteś pewien?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
-
-msgid "Assign score points"
-msgstr ""
-
-msgid "Confirm"
-msgstr "Potwierdź Rozszerzenie"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
@@ -1797,6 +1800,12 @@ msgstr "Send"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Sygnalista może pisać komentarze"
+
+msgid "From:"
+msgstr "Od:"
+
+msgid "To:"
+msgstr "Do:"
 
 msgid "Filename"
 msgstr "Nazwa pliku"
@@ -2212,7 +2221,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
 msgstr ""
 
 msgid "Name: {Name}"

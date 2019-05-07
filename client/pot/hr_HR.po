@@ -8,17 +8,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hr_HR\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Stranica prijave"
 
 msgid "Log in"
 msgstr "Prijava"
@@ -1329,6 +1326,9 @@ msgstr "Kutija za označavanje"
 msgid "Terms of service"
 msgstr "Uvjeti korištenja"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1395,6 +1395,12 @@ msgstr "Potvrda na negativan odgovor"
 msgid "Text shown upon confirmation"
 msgstr "Tekst prikazan za potvrdu"
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Opcije"
 
@@ -1402,12 +1408,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1603,17 +1603,20 @@ msgstr "Molimo odaberite svoj račun:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Sad unesite lozinku, zatim stisnite 'Prijava':"
 
+msgid "Assign score points"
+msgstr "Dodjeli bodove rezultata"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Potvrdi ekstenziju"
+
 msgid "Are you sure?"
 msgstr "Jeste li sigurni?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Ova radnja će ponovno postaviti konfiguraciju i ne može biti opozvana."
-
-msgid "Assign score points"
-msgstr "Dodjeli bodove rezultata"
-
-msgid "Confirm"
-msgstr "Potvrdi ekstenziju"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Imajte na umu da će svi povezani podatci biti trajno izgubljeni."
@@ -1787,6 +1790,12 @@ msgstr "Pošalji"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Dopusti zviždaču da piše komentare"
+
+msgid "From:"
+msgstr ""
+
+msgid "To:"
+msgstr ""
 
 msgid "Filename"
 msgstr "Naziv datoteke"
@@ -2202,8 +2211,8 @@ msgstr "Nova zviždačka stranica je registrirana."
 msgid "Registration data:"
 msgstr "Registracijski podaci:"
 
-msgid "Site: {HTTPSUrl}"
-msgstr "Stranica: {HTTPSUrl}"
+msgid "Site: {Url}"
+msgstr ""
 
 msgid "Name: {Name}"
 msgstr "Ime: {Name}"

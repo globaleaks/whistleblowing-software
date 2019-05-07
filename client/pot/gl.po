@@ -7,17 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Páxina de inicio de sesión"
 
 msgid "Log in"
 msgstr "Acceder"
@@ -1328,6 +1325,9 @@ msgstr "Caixa de verificación"
 msgid "Terms of service"
 msgstr "Condicións de servicio"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr "Mapa"
 
@@ -1394,6 +1394,12 @@ msgstr "Confirmación rápida sobre a resposta negativa"
 msgid "Text shown upon confirmation"
 msgstr "Texto que se amosa despois da confirmación"
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Opcións"
 
@@ -1402,12 +1408,6 @@ msgstr "Adición"
 
 msgid "Multiplier"
 msgstr "Multiplicador"
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
-msgstr ""
 
 msgid "Questions"
 msgstr "Preguntas"
@@ -1602,17 +1602,20 @@ msgstr "Selecciona a túa conta:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Agora escriba o seu contrasinal e prema en \"Iniciar sesión\":"
 
+msgid "Assign score points"
+msgstr "Asignar puntos"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Confirmar"
+
 msgid "Are you sure?"
 msgstr "Estás seguro?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "A operación reiniciará a configuración e non se pode desfacer."
-
-msgid "Assign score points"
-msgstr "Asignar puntos"
-
-msgid "Confirm"
-msgstr "Confirmar"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Ten en conta que todos os datos asociados perderanse permanentemente."
@@ -1786,6 +1789,12 @@ msgstr "Enviar"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Permitir ao denunciante escribir comentarios"
+
+msgid "From:"
+msgstr "De:"
+
+msgid "To:"
+msgstr "Para:"
 
 msgid "Filename"
 msgstr "Nome de arquivo"
@@ -2201,8 +2210,8 @@ msgstr "Engadiuse un novo sitio de denuncias."
 msgid "Registration data:"
 msgstr "Datos de rexistro:"
 
-msgid "Site: {HTTPSUrl}"
-msgstr "Sitio: {HTTPSUrl}"
+msgid "Site: {Url}"
+msgstr ""
 
 msgid "Name: {Name}"
 msgstr "Nome: {Name}"

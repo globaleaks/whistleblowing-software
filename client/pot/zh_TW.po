@@ -10,17 +10,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "登入頁面"
 
 msgid "Log in"
 msgstr "登入"
@@ -1331,6 +1328,9 @@ msgstr "單選項"
 msgid "Terms of service"
 msgstr "服務條款"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr "地圖"
 
@@ -1397,6 +1397,12 @@ msgstr "在否定回答時彈出確認"
 msgid "Text shown upon confirmation"
 msgstr "肯定答案會顯示的文字"
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "選項"
 
@@ -1405,12 +1411,6 @@ msgstr "此外"
 
 msgid "Multiplier"
 msgstr "乘數"
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
-msgstr ""
 
 msgid "Questions"
 msgstr "問題"
@@ -1605,17 +1605,20 @@ msgstr "請選擇你的帳號"
 msgid "Now type your password, then click 'Log in':"
 msgstr "現在輸入你的密碼後點擊「登入」鍵"
 
+msgid "Assign score points"
+msgstr "指定得分點數"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "確認"
+
 msgid "Are you sure?"
 msgstr "你確定嗎？"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "這項操作還重置設定且無法回復。"
-
-msgid "Assign score points"
-msgstr "指定得分點數"
-
-msgid "Confirm"
-msgstr "確認"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "請注意所有相關的資料將會永久消失。"
@@ -1789,6 +1792,12 @@ msgstr "送出"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "允許吹哨者作評論"
+
+msgid "From:"
+msgstr ""
+
+msgid "To:"
+msgstr ""
 
 msgid "Filename"
 msgstr "檔案名"
@@ -2204,8 +2213,8 @@ msgstr "新建的吹哨網站已完成註冊"
 msgid "Registration data:"
 msgstr "註冊資料:"
 
-msgid "Site: {HTTPSUrl}"
-msgstr "網站: {HTTPSUrl} "
+msgid "Site: {Url}"
+msgstr ""
 
 msgid "Name: {Name}"
 msgstr "名稱: {Name}"

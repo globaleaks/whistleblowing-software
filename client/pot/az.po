@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,9 +17,6 @@ msgstr ""
 "Language: az\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Daxil olma səhifəsi"
 
 msgid "Log in"
 msgstr "Daxil ol"
@@ -1330,6 +1327,9 @@ msgstr "Yoxlama qutusu"
 msgid "Terms of service"
 msgstr "Xidmət şərtləri"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1396,6 +1396,12 @@ msgstr "Mənfi cavab üzərindən tez təsdiqlənmə"
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Seçimlər"
 
@@ -1403,12 +1409,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1604,17 +1604,20 @@ msgstr "Xahiş edirik  hesabınızı seçəsiniz. "
 msgid "Now type your password, then click 'Log in':"
 msgstr "Şifrənizi daxil edin, daha sonra \"Giriş\" düyməsinə basın"
 
+msgid "Assign score points"
+msgstr "Hesab nöqtələrini təyin et"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Təsdiqlə"
+
 msgid "Are you sure?"
 msgstr "Əminsiniz mi?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Əməliyyat, quraşdırılmanı sıfırlayır və geri qaytara bilmir."
-
-msgid "Assign score points"
-msgstr "Hesab nöqtələrini təyin et"
-
-msgid "Confirm"
-msgstr "Təsdiqlə"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Xahiş edirik bütün əlaqəli məlumatların daimi olaraq silinəcəyini unutmayın."
@@ -1788,6 +1791,12 @@ msgstr "Göndər"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "İnformasiya ötürənlərin şərh yazmasına icazə verin"
+
+msgid "From:"
+msgstr "Etibarən:"
+
+msgid "To:"
+msgstr "Qədər:"
 
 msgid "Filename"
 msgstr "Fayl adı"
@@ -2203,7 +2212,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
 msgstr ""
 
 msgid "Name: {Name}"

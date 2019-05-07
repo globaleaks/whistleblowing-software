@@ -19,17 +19,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "登录页面"
 
 msgid "Log in"
 msgstr "登录"
@@ -1340,6 +1337,9 @@ msgstr "复选框"
 msgid "Terms of service"
 msgstr "服务条款"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1406,6 +1406,12 @@ msgstr "否定回答时弹出确认框"
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "选项"
 
@@ -1413,12 +1419,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1614,17 +1614,20 @@ msgstr "请选择您的账号："
 msgid "Now type your password, then click 'Log in':"
 msgstr "现在输入您的密码，然后点击“登录”："
 
+msgid "Assign score points"
+msgstr "指定分数"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "确认延期"
+
 msgid "Are you sure?"
 msgstr "您确定吗？"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "该操作将重置配置，并无法撤消。"
-
-msgid "Assign score points"
-msgstr "指定分数"
-
-msgid "Confirm"
-msgstr "确认延期"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "注意：所有相关数据将永久删除。"
@@ -1798,6 +1801,12 @@ msgstr "发送"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "允许该告密者写评论"
+
+msgid "From:"
+msgstr "从:"
+
+msgid "To:"
+msgstr "至:"
 
 msgid "Filename"
 msgstr "文件名"
@@ -2213,7 +2222,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
 msgstr ""
 
 msgid "Name: {Name}"

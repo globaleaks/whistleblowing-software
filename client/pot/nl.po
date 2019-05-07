@@ -8,7 +8,7 @@
 # Douwe <douwe@greenhost.nl>, 2013
 # dragnadh, 2016-2017
 # tyfjoh, 2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2018
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2019
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -38,17 +38,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:48+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Login pagina"
 
 msgid "Log in"
 msgstr "Inloggen"
@@ -437,7 +434,7 @@ msgid "Trigger question"
 msgstr "Trigger vraag"
 
 msgid "Triggered by score:"
-msgstr ""
+msgstr "Geïnitieerd door waardering:"
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Melding die getoond wordt boven aan de statuspagina van de inzending"
@@ -599,7 +596,7 @@ msgid "Scheduled jobs"
 msgstr "Geplande werkzaamheden"
 
 msgid "Sites management"
-msgstr "Websitebeheer"
+msgstr "Weblocatiebeheer"
 
 msgid "Regenerate"
 msgstr "Regenereren"
@@ -710,13 +707,13 @@ msgid ""
 msgstr "Het systeem toestaan om gegevens op te slaan in gewoon tekstformaat wanneer encryptie niet beschikbaar is"
 
 msgid "Enable multisite feature"
-msgstr "Meerdere-websites functie inschakelen"
+msgstr "Functie voor meerdere-weblocaties inschakelen"
 
 msgid "Enable two factor authentication"
 msgstr "Twee-factor-authenticatie inschakelen"
 
 msgid "Allow other websites to include the platform inside iframes"
-msgstr "Gebruik van het platform door middel van iframes op andere websites toestaan"
+msgstr "Sta andere weblocaties toe om het platform weer te geven door middel van iframes"
 
 msgid "Warning"
 msgstr "Waarschuwing"
@@ -725,7 +722,7 @@ msgid ""
 "By enabling this option, you are allowing other websites to include the "
 "platform inside iframes; this could potentially be used to endanger the "
 "platform or intercept users' communications"
-msgstr "Met deze optie is het mogelijk om het platform op andere website in te sluiten. Hier zijn risico's aan verbonden. Andere websites kunnen de communicatie tussen gebruiker en platform onderscheppen."
+msgstr "Met deze optie is het mogelijk om het platform op andere weblocatie in te sluiten. Hier zijn risico's aan verbonden. Andere weblocaties kunnen de communicatie tussen gebruiker en platform onderscheppen."
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Ontvangers toestaan de vervaldatum van tips uit te stellen"
@@ -845,7 +842,7 @@ msgid "Enable users to upload their PGP keys"
 msgstr "Gebruikers toestaan hun PGP sleutel te uploaden"
 
 msgid "Enable multi-site login"
-msgstr "Meerdere-websitelogin inschakelen"
+msgstr "Meerdere-weblocatielogin inschakelen"
 
 msgid "Enable simplified login"
 msgstr "Vereenvoudigdelogin inschakelen"
@@ -1049,10 +1046,10 @@ msgid "Let recipients upload files to whistleblowers"
 msgstr "Sta ontvanger toe om bestanden te versturen voor klokkenluiders"
 
 msgid "Enable scoring system"
-msgstr ""
+msgstr "Waarderingssysteem inschakelen"
 
 msgid "Threshold"
-msgstr ""
+msgstr "Drempelwaarde"
 
 msgid "Value"
 msgstr "Waarde"
@@ -1070,7 +1067,7 @@ msgid "Low"
 msgstr "Laag"
 
 msgid "Assign the receipt only to submissions reaching score:"
-msgstr ""
+msgstr "Wijs de ontvangstbevestiging alleen toe aan indieningen welke een waardering bereiken van:"
 
 msgid "Software version:"
 msgstr "Softwareversie:"
@@ -1224,7 +1221,7 @@ msgstr "Het gebruik van automatische HTTPS configuratie doorloopt het gehele pro
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a corresponding DNS record referencing that address."
-msgstr ""
+msgstr "Het platform moet bereikbaar zijn via een publiekelijk IP-adres en de geselecteerde hostname moet een DNS regel bevatten welke verwijst naar dat adres."
 
 msgid "Manual configuration"
 msgstr "Handmatige configuratie"
@@ -1359,6 +1356,9 @@ msgstr "Selectievakje"
 msgid "Terms of service"
 msgstr "Serviceovereenkomst"
 
+msgid "Date range"
+msgstr "Datum-bereik"
+
 msgid "Map"
 msgstr "Kaart"
 
@@ -1393,7 +1393,7 @@ msgid "Hint shown on the button for adding an additional answer"
 msgstr "Hint die getoond wordt op de knop om een extra vraag toe te voegen"
 
 msgid "Template override"
-msgstr ""
+msgstr "Sjabloon overschrijven"
 
 msgid "Phone number"
 msgstr "Telefoonnummer"
@@ -1425,6 +1425,12 @@ msgstr "Snelle bevestiging na negatief antwoord"
 msgid "Text shown upon confirmation"
 msgstr "Tekst welke wordt getoond bij bevestiging"
 
+msgid "Trigger conditions"
+msgstr "Initiatie-voorwaarden"
+
+msgid "Sufficient"
+msgstr "Voldoende"
+
 msgid "Options"
 msgstr "Opties"
 
@@ -1433,12 +1439,6 @@ msgstr "Toevoeging"
 
 msgid "Multiplier"
 msgstr "Vermenigvuldiger"
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
-msgstr "Voldoende"
 
 msgid "Questions"
 msgstr "Vragen"
@@ -1456,7 +1456,7 @@ msgid "Steps"
 msgstr "Stappen"
 
 msgid "Site settings"
-msgstr "Website instellingen"
+msgstr "Weblocatie-instellingen"
 
 msgid "Case management"
 msgstr "Casus management"
@@ -1468,10 +1468,10 @@ msgid "Mode:"
 msgstr "Modus:"
 
 msgid "Root domain used for secondary sites"
-msgstr "Hoofddomein welke wordt gebruikt voor secondaire websites"
+msgstr "Hoofddomein welke wordt gebruikt voor secondaire weblocaties"
 
 msgid "Use the first site for administrative purposes only"
-msgstr ""
+msgstr "Gebruik de eerste weblocatie uitsluitend voor administratieve doeleinden"
 
 msgid "Allow users to sign up"
 msgstr "Gebruikers toestaan zich in te schijven"
@@ -1480,7 +1480,7 @@ msgid "Enable terms of service"
 msgstr "Gebruiksvoorwaarden inschakelen"
 
 msgid "Sites"
-msgstr "Websites"
+msgstr "Weblocaties"
 
 msgid "Active"
 msgstr "Actief"
@@ -1585,7 +1585,7 @@ msgstr "Inzendingen  uitgeschakeld"
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr "U bent een niet-anonieme verbinding tot stand aan het brengen en deze website ondersteunt alleen anonieme inzendingen."
+msgstr "U bent een niet-anonieme verbinding tot stand aan het brengen en deze weblocatie ondersteunt alleen anonieme inzendingen."
 
 msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
@@ -1604,7 +1604,7 @@ msgid "Forgot password?"
 msgstr "Wachtwoord vergeten?"
 
 msgid "Check your inbox and enter the authentication code you received."
-msgstr ""
+msgstr "Zoek in je postvak-in naar de autorisatiecode die je ontvangen hebt en voer die in."
 
 msgid "Authentication failed"
 msgstr "Authenticatie is mislukt"
@@ -1613,13 +1613,13 @@ msgid "The code is either invalid or expired."
 msgstr "De code is ofwel ongeldig of verlopen."
 
 msgid "Site:"
-msgstr "Website:"
+msgstr "Weblocatie:"
 
 msgid "Have you already filed a submission? Enter your receipt."
 msgstr "Hebt u al een inzending ingediend? Voer uw ontvangstbewijs in."
 
 msgid "The receipt is either invalid or the submission has expired."
-msgstr ""
+msgstr "De ontvangstbevestiging is of ongeldig ofwel verlopen."
 
 msgid "Username:"
 msgstr "Gebruikersnaam:"
@@ -1633,17 +1633,20 @@ msgstr "Selecteer je account:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Typ nu je wachtwoord, klik dan op 'Log in':"
 
+msgid "Assign score points"
+msgstr "Scorepunten toekennen"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Tekst welke wordt getoond nadat de gebruiker de optie heeft gekozen"
+
+msgid "Confirm"
+msgstr "Bevestig extentie"
+
 msgid "Are you sure?"
 msgstr "Weet je het zeker?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Deze actie zet de configuratie  terug naar de beginwaarden en kan niet worden teruggedraaid."
-
-msgid "Assign score points"
-msgstr "Scorepunten toekennen"
-
-msgid "Confirm"
-msgstr "Bevestig extentie"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Let op, alle hiermee verbonden data gaat permanent verloren."
@@ -1672,7 +1675,7 @@ msgstr "Als jouw non-profit ondersteuning nodig heeft voor onderzoeksjournalisti
 msgid ""
 "For professional support and development of anti corruption and compliance "
 "projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr ""
+msgstr "Voor professionele ondersteuning en ontwikkeling van anti-corruptie en naleving projecten, neem contact op met de sociale-ondernemingen welke GlobalLeaks onderhouden:"
 
 msgid "Join our IRC chat channel on the irc.oftc.net network:"
 msgstr "Sluit u aan op ons IRC chat-kanaal op het irc.oftc.net netwerk:"
@@ -1740,12 +1743,12 @@ msgstr "De wachtwoorden komen niet overeen"
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
-msgstr "Het ziet er naar uit dat je deze website bezoekt zonder extra privacy en beveiliging!"
+msgstr "Het ziet er naar uit dat je deze weblocatie bezoekt zonder extra privacy en beveiliging!"
 
 msgid ""
 "You are strongly advised to visit this site using the desktop app called Tor"
 " Browser, that protects your identity."
-msgstr "U wordt sterk aangeraden om deze website met de desktop-app genaamd Tor-browser te bezoeken, welke uw identiteit beschermt."
+msgstr "U wordt sterk aangeraden om deze weblocatie met de desktop-app genaamd Tor-browser te bezoeken, welke uw identiteit beschermt."
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Kopieer en plak vervolgens het volgende adres in de Tor-browser:"
@@ -1807,7 +1810,7 @@ msgid "Submit"
 msgstr "Verstuur"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr ""
+msgstr "Ontvangers hebben je verzocht dat je een additionele vragenlijst invult."
 
 msgid "Fill the additional questionnaire"
 msgstr "De toegevoegde vragenlijst invullen"
@@ -1817,6 +1820,12 @@ msgstr "Verzend"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "De klokkenluider toestaan reacties achter te laten"
+
+msgid "From:"
+msgstr "Van:"
+
+msgid "To:"
+msgstr "Aan:"
 
 msgid "Filename"
 msgstr "Bestandsnaam"
@@ -1922,12 +1931,12 @@ msgid "These files have been attached to your submission by the recipients."
 msgstr "Deze bestanden zijn door de ontvangers als bijlage toegevoegd aan jouw inzending."
 
 msgid "The provided reset token is invalid or expired."
-msgstr ""
+msgstr "De ingediende herstel token is ongeldig of verlopen."
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr ""
+msgstr "Voer de gebruikersnaam van je account, of je e-mailadres in om een wachtwoordherstel aan te vragen."
 
 msgid "Request password reset"
 msgstr "Verzoek indienen om wachtwoord te veranderen"
@@ -2163,7 +2172,7 @@ msgid "To log in, visit:"
 msgstr "Om in te loggen, bezoek:"
 
 msgid "Users' credentials:"
-msgstr ""
+msgstr "Geloofsbrieven bij deze gebruiker:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "Het platvorm wordt automatisch gewist op:"
@@ -2227,13 +2236,13 @@ msgid "PGP key expiration alert"
 msgstr "PGP-sleutelvervalwaarschuwing"
 
 msgid "A new whistleblowing site has been registered."
-msgstr "Er is een nieuwe klokkenluiderswebsite geregistreerd."
+msgstr "Er is een nieuwe klokkenluiders-weblocatie geregistreerd."
 
 msgid "Registration data:"
 msgstr "Registratie datum:"
 
-msgid "Site: {HTTPSUrl}"
-msgstr "Website: {HTTPSUrl}"
+msgid "Site: {Url}"
+msgstr "Weblocatie: {Url}"
 
 msgid "Name: {Name}"
 msgstr "Naam: {Name}"
@@ -2248,7 +2257,7 @@ msgid "Use case: {UseCase}"
 msgstr "Gebruikssituatie: {UseCase}"
 
 msgid "New whistleblowing site registered"
-msgstr "Nieuwe klokkenluiders website geregistreerd"
+msgstr "Nieuwe klokkenluiders-weblocatie geregistreerd"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2455,12 +2464,12 @@ msgstr "Meest recente versie: {LatestVersion}"
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
 "change log at: {ChangeLogUrl}"
-msgstr ""
+msgstr "Om te leren over nieuwe functies en foutoplossingen in de nieuwe versie, raadpleeg het verandersingslog op: {ChangeLogUrl}"
 
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
 "{UpdateGuideUrl}"
-msgstr ""
+msgstr "Voor instructies bij nieuwe software versies, kun je de documentatie naslaan op: {UpdateGuideUrl}"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "De vroegste vervaldatum is {EarliestExpirationDate}."
@@ -2482,7 +2491,7 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this submission should be considered to be of "
 "high importance."
-msgstr ""
+msgstr "Je wordt verzocht om extra aandacht te bieden aan de informatie en materialen die hier te zien zijn. Houd alsjeblieft in gedachte dat klokkenluiders in de meeste gevallen een groot risico nemen voor hun carrière, in het belang van het algemeen publiek. Daarom moet het materiaal wat in deze indiening te zien valt worden beschouwd als zeer vertrouwelijk."
 
 msgid "New submission"
 msgstr "Nieuwe inzending"

@@ -14,17 +14,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 21:02+0000\n"
-"Last-Translator: Tibor Deák <deaktib@gmail.com>\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Prihlasovacia stránka"
 
 msgid "Log in"
 msgstr "Prihlásiť sa"
@@ -1335,6 +1332,9 @@ msgstr "Checkbox"
 msgid "Terms of service"
 msgstr "Podmienky používania služby"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr "Mapa"
 
@@ -1401,6 +1401,12 @@ msgstr "Výzva na potvrdenie zápornej odpovede"
 msgid "Text shown upon confirmation"
 msgstr "Text zobrazený pri potvrdení"
 
+msgid "Trigger conditions"
+msgstr "Prvotné podmienky"
+
+msgid "Sufficient"
+msgstr "Dostatočný"
+
 msgid "Options"
 msgstr "Predvoľby"
 
@@ -1409,12 +1415,6 @@ msgstr "Pridanie"
 
 msgid "Multiplier"
 msgstr "Multiplikátor"
-
-msgid "Trigger conditions"
-msgstr "Prvotné podmienky"
-
-msgid "Sufficient"
-msgstr "Dostatočný"
 
 msgid "Questions"
 msgstr "Otázky"
@@ -1609,17 +1609,20 @@ msgstr "Vyberte, prosím, svoj účet:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Teraz zadajte svoje heslo a kliknite na \"Prihlásiť sa\":"
 
+msgid "Assign score points"
+msgstr "Prideliť bodové skóre"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Potvrdiť"
+
 msgid "Are you sure?"
 msgstr "Ste si istý?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Táto operácia obnoví konfiguráciu a nedá sa vrátiť späť."
-
-msgid "Assign score points"
-msgstr "Prideliť bodové skóre"
-
-msgid "Confirm"
-msgstr "Potvrdiť"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Upozorňujeme, že všetky súvisiace údaje budú natrvalo odstránené."
@@ -1793,6 +1796,12 @@ msgstr "Odoslať"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Povoliť oznamovateľovi písať komentáre"
+
+msgid "From:"
+msgstr "Od:"
+
+msgid "To:"
+msgstr "Komu:"
 
 msgid "Filename"
 msgstr "Názov súboru"
@@ -2208,8 +2217,8 @@ msgstr "Bola zaregistrovaná nová whistleblowingová stránka."
 msgid "Registration data:"
 msgstr "Registračné údaje:"
 
-msgid "Site: {HTTPSUrl}"
-msgstr "Stránka: {HTTPSUrl} "
+msgid "Site: {Url}"
+msgstr ""
 
 msgid "Name: {Name}"
 msgstr "Meno: {Meno} "

@@ -39,17 +39,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 20:59+0000\n"
-"Last-Translator: AO <ao@localizationlab.org>\n"
+"PO-Revision-Date: 2019-05-07 13:37+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Page de connexion"
 
 msgid "Log in"
 msgstr "Connexion"
@@ -1360,6 +1357,9 @@ msgstr "Case à cocher "
 msgid "Terms of service"
 msgstr "Conditions générales d’utilisation "
 
+msgid "Date range"
+msgstr "Plage de dates"
+
 msgid "Map"
 msgstr "Carte"
 
@@ -1426,6 +1426,12 @@ msgstr "Demander une confirmation en cas de réponse négative"
 msgid "Text shown upon confirmation"
 msgstr "Texte affiché après confirmation"
 
+msgid "Trigger conditions"
+msgstr "Conditions de déclenchement"
+
+msgid "Sufficient"
+msgstr "Suffisante"
+
 msgid "Options"
 msgstr "Options"
 
@@ -1434,12 +1440,6 @@ msgstr "Addition"
 
 msgid "Multiplier"
 msgstr "Multiplicateur"
-
-msgid "Trigger conditions"
-msgstr "Conditions de déclenchement"
-
-msgid "Sufficient"
-msgstr "Suffisante"
 
 msgid "Questions"
 msgstr "Questions"
@@ -1634,17 +1634,20 @@ msgstr "Veuillez sélectionner votre compte :"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Saisissez maintenant votre mot de passe, puis cliquez sur « Connexion » :"
 
+msgid "Assign score points"
+msgstr "Attribuer un pointage"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Texte affiché une fois que l’utilisateur a sélectionné l’option"
+
+msgid "Confirm"
+msgstr "Confirmer"
+
 msgid "Are you sure?"
 msgstr "Êtes-vous certain ?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "L’opération réinitialisera la configuration et ne peut pas être annulée."
-
-msgid "Assign score points"
-msgstr "Attribuer un pointage"
-
-msgid "Confirm"
-msgstr "Confirmer"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Veuillez prendre note que toutes les données associées seront irrémédiablement supprimées."
@@ -1818,6 +1821,12 @@ msgstr "Envoyer"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Permettre au lanceur d’alerte de rédiger des commentaires"
+
+msgid "From:"
+msgstr "De :"
+
+msgid "To:"
+msgstr "À :"
 
 msgid "Filename"
 msgstr "Nom de fichier"
@@ -2233,8 +2242,8 @@ msgstr "Un nouveau site de lancement d’alerte a été enregistré."
 msgid "Registration data:"
 msgstr "Données d’enregistrement :"
 
-msgid "Site: {HTTPSUrl}"
-msgstr "Site : {HTTPSUrl}"
+msgid "Site: {Url}"
+msgstr "Site : {Url}"
 
 msgid "Name: {Name}"
 msgstr "Nom : {Name}"

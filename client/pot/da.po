@@ -6,17 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Login-side"
 
 msgid "Log in"
 msgstr "Log ind"
@@ -1327,6 +1324,9 @@ msgstr "Afkrydsningsfelt"
 msgid "Terms of service"
 msgstr "Servicevillkår"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1393,6 +1393,12 @@ msgstr "Anmod om bekræftelse ved negativt svar"
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Valgmuligheder"
 
@@ -1400,12 +1406,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1601,17 +1601,20 @@ msgstr "Vælg venligst din konto:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Skriv nu dit password og klik 'log ind':"
 
+msgid "Assign score points"
+msgstr "Tildel pointtal"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Bekræft"
+
 msgid "Are you sure?"
 msgstr "Er du sikker?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Denne handling vil nulstille konfigurationen og kan ikke fortrydes."
-
-msgid "Assign score points"
-msgstr "Tildel pointtal"
-
-msgid "Confirm"
-msgstr "Bekræft"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Vær opmærksom på, at alle tilknyttede data vil blive permanent slettet."
@@ -1785,6 +1788,12 @@ msgstr "Send"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Tillad whistlebloweren at skrive kommentarer"
+
+msgid "From:"
+msgstr ""
+
+msgid "To:"
+msgstr ""
 
 msgid "Filename"
 msgstr "Filnavn"
@@ -2200,8 +2209,8 @@ msgstr "Et nyt whistleblowing-site er blevet registreret."
 msgid "Registration data:"
 msgstr "Registreringsdata:"
 
-msgid "Site: {HTTPSUrl}"
-msgstr "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
+msgstr ""
 
 msgid "Name: {Name}"
 msgstr "Navn: {Name}"

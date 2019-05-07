@@ -25,17 +25,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:37+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Pagina di login"
 
 msgid "Log in"
 msgstr "Accedi"
@@ -1346,6 +1343,9 @@ msgstr "Casella di controllo"
 msgid "Terms of service"
 msgstr "Termini di servizio"
 
+msgid "Date range"
+msgstr "Intervallo di date"
+
 msgid "Map"
 msgstr "Mappa"
 
@@ -1412,6 +1412,12 @@ msgstr "Chiedi conferma in caso di risposta negativa"
 msgid "Text shown upon confirmation"
 msgstr "Testo mostrato in caso di conferma"
 
+msgid "Trigger conditions"
+msgstr "Condizioni di attivazione"
+
+msgid "Sufficient"
+msgstr "Sufficiente"
+
 msgid "Options"
 msgstr "Opzioni"
 
@@ -1420,12 +1426,6 @@ msgstr "Somma"
 
 msgid "Multiplier"
 msgstr "Moltiplicatore"
-
-msgid "Trigger conditions"
-msgstr "Condizioni di attivazione"
-
-msgid "Sufficient"
-msgstr "Sufficiente"
 
 msgid "Questions"
 msgstr "Domande"
@@ -1620,17 +1620,20 @@ msgstr "Come prima cosa seleziona il tuo utente:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Adesso digita la tua password e poi clicca 'Accedi':"
 
+msgid "Assign score points"
+msgstr "Assegna punteggio"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Testo mostrato dopo che l'utente ha selezionato l'opzione."
+
+msgid "Confirm"
+msgstr "Conferma"
+
 msgid "Are you sure?"
 msgstr "Sei sicuro?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "L'operazione annullerà la configurazione e non sarà possibile ripristinarla."
-
-msgid "Assign score points"
-msgstr "Assegna punteggio"
-
-msgid "Confirm"
-msgstr "Conferma"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Si prega di notare che tutti i dati associati saranno persi."
@@ -1804,6 +1807,12 @@ msgstr "Invia"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Permetti al whistleblower di scrivere commenti"
+
+msgid "From:"
+msgstr "From:"
+
+msgid "To:"
+msgstr "To:"
 
 msgid "Filename"
 msgstr "Nome del file"
@@ -2219,8 +2228,8 @@ msgstr "Un nuovo sito di whistleblowing è stato registrato."
 msgid "Registration data:"
 msgstr "Dati di registrazione"
 
-msgid "Site: {HTTPSUrl}"
-msgstr "Sito: {HTTPSUrl}"
+msgid "Site: {Url}"
+msgstr "Sito: {Url}"
 
 msgid "Name: {Name}"
 msgstr "Nome: {Name}"

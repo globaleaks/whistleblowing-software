@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,9 +15,6 @@ msgstr ""
 "Language: sl_SI\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Prijavna stran"
 
 msgid "Log in"
 msgstr "Prijava"
@@ -1328,6 +1325,9 @@ msgstr "Potrditveno polje"
 msgid "Terms of service"
 msgstr ""
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1394,6 +1394,12 @@ msgstr ""
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Možnosti"
 
@@ -1401,12 +1407,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1602,17 +1602,20 @@ msgstr "Izberite svoj račun:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Zdaj vpišite svoje geslo, nato kliknite \"Prijavi\":"
 
+msgid "Assign score points"
+msgstr ""
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Potrdi razširitev"
+
 msgid "Are you sure?"
 msgstr "Ste prepričani ?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
-
-msgid "Assign score points"
-msgstr ""
-
-msgid "Confirm"
-msgstr "Potrdi razširitev"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
@@ -1786,6 +1789,12 @@ msgstr "Pošlji"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Dovoli žvižgačem pisanje komentarjev"
+
+msgid "From:"
+msgstr "Od:"
+
+msgid "To:"
+msgstr "Za:"
 
 msgid "Filename"
 msgstr "Ime datoteke"
@@ -2201,7 +2210,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
 msgstr ""
 
 msgid "Name: {Name}"

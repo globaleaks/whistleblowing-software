@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,9 +29,6 @@ msgstr ""
 "Language: hu_HU\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Bejelentkezési oldal"
 
 msgid "Log in"
 msgstr "Bejelentkezés"
@@ -1342,6 +1339,9 @@ msgstr "Jelölőnégyzet"
 msgid "Terms of service"
 msgstr "Használati feltételek"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1408,6 +1408,12 @@ msgstr "Azonnali értesítés negatív válaszról"
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Beállítások"
 
@@ -1415,12 +1421,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1616,17 +1616,20 @@ msgstr "Kérjük válassza ki fiókját:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Kérjük adja meg jelszavát majd kattinson a Belépés gombra:"
 
+msgid "Assign score points"
+msgstr ""
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Hosszabbítás megerősítése"
+
 msgid "Are you sure?"
 msgstr "Biztosan?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
-
-msgid "Assign score points"
-msgstr ""
-
-msgid "Confirm"
-msgstr "Hosszabbítás megerősítése"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
@@ -1800,6 +1803,12 @@ msgstr "Küldés"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "A szivárogtató írhat megjegyzéseket"
+
+msgid "From:"
+msgstr ""
+
+msgid "To:"
+msgstr ""
 
 msgid "Filename"
 msgstr "Fájlnév"
@@ -2215,7 +2224,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
 msgstr ""
 
 msgid "Name: {Name}"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,9 +12,6 @@ msgstr ""
 "Language: ka\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "შესვლა გვერდი"
 
 msgid "Log in"
 msgstr "შესვლა"
@@ -1325,6 +1322,9 @@ msgstr "Checkbox"
 msgid "Terms of service"
 msgstr "მომსახურების პირობები"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1391,6 +1391,12 @@ msgstr "სწრაფი დადასტურება საფუძვ�
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "პარამეტრები"
 
@@ -1398,12 +1404,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1599,17 +1599,20 @@ msgstr "გთხოვთ, აირჩიოთ თქვენი ანგ�
 msgid "Now type your password, then click 'Log in':"
 msgstr "ახლა აკრიფოთ თქვენი პაროლი, შემდეგ დააჭირეთ \"შესვლა\":"
 
+msgid "Assign score points"
+msgstr "მიანიჭეთ ქულა რაოდენობა"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "დაადასტურეთ"
+
 msgid "Are you sure?"
 msgstr "დარწმუნებული ხარ?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
-
-msgid "Assign score points"
-msgstr "მიანიჭეთ ქულა რაოდენობა"
-
-msgid "Confirm"
-msgstr "დაადასტურეთ"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
@@ -1783,6 +1786,12 @@ msgstr "პირადი"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "ნება მამხილებელთა დაწერა კომენტარი"
+
+msgid "From:"
+msgstr ""
+
+msgid "To:"
+msgstr ""
 
 msgid "Filename"
 msgstr "ფაილის სახელი"
@@ -2198,7 +2207,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
 msgstr ""
 
 msgid "Name: {Name}"

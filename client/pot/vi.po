@@ -12,17 +12,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Trang đăng nhập"
 
 msgid "Log in"
 msgstr "Đăng nhập"
@@ -1333,6 +1330,9 @@ msgstr "checkbox"
 msgid "Terms of service"
 msgstr "Điều khoản dịch vụ"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1399,6 +1399,12 @@ msgstr "xác nhận Prompt vào câu trả lời tiêu cực"
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Tùy chọn"
 
@@ -1406,12 +1412,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1607,17 +1607,20 @@ msgstr "Vui lòng chọn tài khoản của bạn:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Bây giờ gõ mật khẩu của bạn, sau đó nhấp vào 'Đăng nhập':"
 
+msgid "Assign score points"
+msgstr "Gán thêm điểm"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Xác nhận"
+
 msgid "Are you sure?"
 msgstr "Bạn có chắc không?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
-
-msgid "Assign score points"
-msgstr "Gán thêm điểm"
-
-msgid "Confirm"
-msgstr "Xác nhận"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
@@ -1791,6 +1794,12 @@ msgstr "gởi"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Cho phép các tố giác để bình luận"
+
+msgid "From:"
+msgstr "Từ:"
+
+msgid "To:"
+msgstr "Đến:"
 
 msgid "Filename"
 msgstr "Têntậptin"
@@ -2206,7 +2215,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
 msgstr ""
 
 msgid "Name: {Name}"

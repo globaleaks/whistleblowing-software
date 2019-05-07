@@ -5,17 +5,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "로그인 페이지"
 
 msgid "Log in"
 msgstr "로그인"
@@ -1326,6 +1323,9 @@ msgstr "확인란"
 msgid "Terms of service"
 msgstr "서비스 약관"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1392,6 +1392,12 @@ msgstr "부정적인 응답시 신속한 확인"
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "옵션"
 
@@ -1399,12 +1405,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1600,17 +1600,20 @@ msgstr "계정을 선택하십시오 :"
 msgid "Now type your password, then click 'Log in':"
 msgstr "지금 비밀번호를 입력 한 후 '로그인'을 클릭합니다 :"
 
+msgid "Assign score points"
+msgstr "점수 포인트를 할당"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "확인"
+
 msgid "Are you sure?"
 msgstr "확실합니까?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
-
-msgid "Assign score points"
-msgstr "점수 포인트를 할당"
-
-msgid "Confirm"
-msgstr "확인"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
@@ -1784,6 +1787,12 @@ msgstr "보내다"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "고발자가 코멘트를 작성할 수"
+
+msgid "From:"
+msgstr "보낸이:"
+
+msgid "To:"
+msgstr "보낼이:"
 
 msgid "Filename"
 msgstr "파일 이름"
@@ -2199,7 +2208,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
 msgstr ""
 
 msgid "Name: {Name}"

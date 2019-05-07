@@ -11,17 +11,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Страница за вписване"
 
 msgid "Log in"
 msgstr "Впиши се"
@@ -1332,6 +1329,9 @@ msgstr "Поле с отметка"
 msgid "Terms of service"
 msgstr "Условия за ползване"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr "Карта"
 
@@ -1398,6 +1398,12 @@ msgstr "Изискване на потвърждение при отрицате
 msgid "Text shown upon confirmation"
 msgstr "Текст за показване при положителен отговор"
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Опции"
 
@@ -1406,12 +1412,6 @@ msgstr "Събиране"
 
 msgid "Multiplier"
 msgstr "Умножение"
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
-msgstr ""
 
 msgid "Questions"
 msgstr "Въпроси"
@@ -1606,17 +1606,20 @@ msgstr "Моля изберете профила си:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Сега напишете паролата си и натиснете 'Вписване':"
 
+msgid "Assign score points"
+msgstr "Задайте точки"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Потвърждение"
+
 msgid "Are you sure?"
 msgstr "Сигурни ли сте?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Операцията ще нулира настройките и не може да бъде възвърната."
-
-msgid "Assign score points"
-msgstr "Задайте точки"
-
-msgid "Confirm"
-msgstr "Потвърждение"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Моля, помнете, че всичката свързана информация ще бъде перманентно изтрита."
@@ -1790,6 +1793,12 @@ msgstr "Изпращане"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Разрешаване на източника да пише коментари"
+
+msgid "From:"
+msgstr ""
+
+msgid "To:"
+msgstr ""
 
 msgid "Filename"
 msgstr "Име на файл"
@@ -2205,8 +2214,8 @@ msgstr "Нов сайт за подаване на поверителна инф
 msgid "Registration data:"
 msgstr "Регистрационна информация:"
 
-msgid "Site: {HTTPSUrl}"
-msgstr "Сайт: {HTTPSUrl}"
+msgid "Site: {Url}"
+msgstr ""
 
 msgid "Name: {Name}"
 msgstr "Име: {Name}"

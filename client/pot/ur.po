@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,9 +21,6 @@ msgstr ""
 "Language: ur\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "لاگ ان کا صفحہ"
 
 msgid "Log in"
 msgstr "لاگ ان"
@@ -1334,6 +1331,9 @@ msgstr "چیک باکس"
 msgid "Terms of service"
 msgstr "سروس کی شرائط"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1400,6 +1400,12 @@ msgstr "منفی جواب پر فوری طور پر تصدیق"
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "آپشنز "
 
@@ -1407,12 +1413,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1608,17 +1608,20 @@ msgstr "براہ مہربانی اپنا اکاؤنٹ منتخب کیجیے:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "اب اپنا پاس ورڈ لکھیے اور لاگ اِن پر کلک کیجیے۔"
 
+msgid "Assign score points"
+msgstr "سکور پوائنٹس مقرر کریں"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "تصدیق کی توسیع"
+
 msgid "Are you sure?"
 msgstr "کیا آپ کو یقین ہے؟"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
-
-msgid "Assign score points"
-msgstr "سکور پوائنٹس مقرر کریں"
-
-msgid "Confirm"
-msgstr "تصدیق کی توسیع"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
@@ -1792,6 +1795,12 @@ msgstr "بھیجیں"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "مخبر کو تبصرے لکھنے کے لئے کی اجازت دیں"
+
+msgid "From:"
+msgstr ""
+
+msgid "To:"
+msgstr ""
 
 msgid "Filename"
 msgstr "فائل کا نام"
@@ -2207,7 +2216,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
 msgstr ""
 
 msgid "Name: {Name}"

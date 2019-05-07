@@ -28,17 +28,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Страница входа"
 
 msgid "Log in"
 msgstr "Войти"
@@ -1349,6 +1346,9 @@ msgstr "Флажок"
 msgid "Terms of service"
 msgstr "Условия использования"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -1415,6 +1415,12 @@ msgstr "Вызвать подтверждение при получении от
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Параметры"
 
@@ -1422,12 +1428,6 @@ msgid "Addition"
 msgstr ""
 
 msgid "Multiplier"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
 msgstr ""
 
 msgid "Questions"
@@ -1623,17 +1623,20 @@ msgstr "Укажите вашу учётную запись:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Теперь введите ваш пароль, затем нажмите \"Войти\":"
 
+msgid "Assign score points"
+msgstr "Оценить"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Подтвердите расширение"
+
 msgid "Are you sure?"
 msgstr "Вы уверены?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Эта операция необратимо сбросит настройки конфигурации."
-
-msgid "Assign score points"
-msgstr "Оценить"
-
-msgid "Confirm"
-msgstr "Подтвердите расширение"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Пожалуйста, имейте ввиду, что все связанные данные будут окончательно удалены."
@@ -1807,6 +1810,12 @@ msgstr "Отправить"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Разрешить информатору добавлять комментарии"
+
+msgid "From:"
+msgstr "От кого:"
+
+msgid "To:"
+msgstr "Кому:"
 
 msgid "Filename"
 msgstr "Имя файла"
@@ -2222,7 +2231,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
 msgstr ""
 
 msgid "Name: {Name}"

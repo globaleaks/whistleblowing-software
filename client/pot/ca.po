@@ -18,17 +18,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-04-29 18:22+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-05-07 13:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
-
-msgid "Login page"
-msgstr "Pàgina d'inici de sessió"
 
 msgid "Log in"
 msgstr "Inicia sessió"
@@ -1339,6 +1336,9 @@ msgstr "Casella de revisió"
 msgid "Terms of service"
 msgstr "Condicions del servei"
 
+msgid "Date range"
+msgstr ""
+
 msgid "Map"
 msgstr "Mapa"
 
@@ -1405,6 +1405,12 @@ msgstr "Mostra la confirmació si hi ha una resposta negativa"
 msgid "Text shown upon confirmation"
 msgstr "Text que es mostra com a confirmació"
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr ""
+
 msgid "Options"
 msgstr "Opcions"
 
@@ -1413,12 +1419,6 @@ msgstr "Addició"
 
 msgid "Multiplier"
 msgstr "Multiplicador"
-
-msgid "Trigger conditions"
-msgstr ""
-
-msgid "Sufficient"
-msgstr ""
 
 msgid "Questions"
 msgstr "Preguntas"
@@ -1613,17 +1613,20 @@ msgstr "Si us plau, selecciona el teu compte:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Ara escriu la teva contrasenya, després clica \"Inicia sessió\":"
 
+msgid "Assign score points"
+msgstr "Assigna puntuació"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "Confirma extensió"
+
 msgid "Are you sure?"
 msgstr "N'estàs segur?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "L'operació restablirà la configuració i no es podrà desfer."
-
-msgid "Assign score points"
-msgstr "Assigna puntuació"
-
-msgid "Confirm"
-msgstr "Confirma extensió"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Recordeu que totes les dades associades es perden definitivament."
@@ -1797,6 +1800,12 @@ msgstr "Envia-ho"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Permet als informadors escriure comentaris"
+
+msgid "From:"
+msgstr "Des de:"
+
+msgid "To:"
+msgstr "A:"
 
 msgid "Filename"
 msgstr "Nom del fitxer"
@@ -2212,8 +2221,8 @@ msgstr "S'ha registrat un nou lloc de denúncia."
 msgid "Registration data:"
 msgstr "Dades de registre:"
 
-msgid "Site: {HTTPSUrl}"
-msgstr "Lloc Web: {HTTPSUrl}"
+msgid "Site: {Url}"
+msgstr ""
 
 msgid "Name: {Name}"
 msgstr "Nom: {Name}"
