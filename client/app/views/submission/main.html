@@ -29,7 +29,7 @@
         <div class="clearfix"></div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" data-ng-hide="submission.blocked">
       <div class="col-md-7">
         <div id="SubmissionButtons">
           <button id="PreviousStepButton" class="btn btn-default" data-ng-show="hasPreviousStep()" data-ng-click="decrementStep()">
@@ -42,7 +42,7 @@
             <i class="glyphicon glyphicon-circle-arrow-right"></i>
           </button>
 
-          <button id="SubmitButton" class="btn btn-success" data-ng-show="!hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="submission.wait || !submission.pow || submission.blocked" type="submit">
+          <button id="SubmitButton" class="btn btn-success" data-ng-show="!hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="submission.wait || !submission.pow" type="submit">
             <i data-ng-show="submission.wait || !submission.pow" id="SubmitIconWait" class="glyphicon glyphicon-time"></i>
             <i data-ng-hide="submission.wait || !submission.pow" id="SubmitIconOK" class="glyphicon glyphicon-ok"></i>
             <span data-translate>Submit</span>
