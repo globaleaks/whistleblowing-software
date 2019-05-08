@@ -1,3 +1,6 @@
+Changes in version 3.8.1 - 2019-05-08
+    Apply minor bugfixing
+
 Changes in version 3.8.0 - 2019-05-07
     Make it possible to configure the node timezone (#2525)
     Implement questions of type DATERANGE (#2561)
