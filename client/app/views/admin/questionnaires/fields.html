@@ -94,14 +94,14 @@
                 <span data-translate>This field is mandatory</span>
               </div>
             </div>
-            <div class="form-group" data-ng-if="(field.type === 'inputbox' || field.type === 'textarea')">
+            <div class="form-group" data-ng-if="field.type === 'inputbox' || field.type === 'textarea'">
               <label><span data-translate>Type</span><span>:</span></label>
               <select name="type" class="form-control" data-ng-model="field.type" required>
                 <option value="inputbox" data-translate>Single-line text input</option>
                 <option value="textarea" data-translate>Multi-line text input</option>
               </select>
             </div>
-            <div class="form-group" data-ng-if="(field.type === 'selectbox' || field.type === 'checkbox')">
+            <div class="form-group" data-ng-if="field.type === 'selectbox' || field.type === 'checkbox' || field.type === 'multichoice'">
               <label><span data-translate>Type</span><span>:</span></label>
               <select name="type" class="form-control" data-ng-model="field.type" required>
                 <option value="selectbox" data-translate>Selection box</option>
