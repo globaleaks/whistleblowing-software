@@ -163,22 +163,22 @@ class NodeKeyword(Keyword):
 
     def TorSite(self):
         if self.data['node']['onionservice']:
-            return self.data['node']['onionservice']
+            return 'http://' + self.data['node']['onionservice']
 
         return '[UNDEFINED]'
 
     def HTTPSSite(self):
         if self.data['node']['hostname']:
-            return self.data['node']['hostname']
+            return 'https://' + self.data['node']['hostname']
 
         return '[UNDEFINED]'
 
     def Site(self):
         if self.data['node']['hostname']:
-            return self.data['node']['hostname']
+            return self.HTTPSSite()
 
         elif self.data['node']['onionservice']:
-            return self.data['node']['onionservice']
+            return self.TorSite()
 
         return ''
 
@@ -515,21 +515,30 @@ class PlatformSignupKeyword(NodeKeyword):
     def HTTPSSite(self):
         return 'https://' + self.data['signup']['subdomain'] + '.' + self.data['node']['rootdomain']
 
+    def Site(self):
+        if self.data['node']['hostname']:
+            return self.HTTPSSite()
+
+        elif self.data['node']['onionservice']:
+            return self.TorSite()
+
+        return ''
+
     def RecipientName(self):
         return self.data['signup']['name'] + ' ' + self.data['signup']['surname']
 
-    def ActivationRequest(self):
-        return '/#/activation?token=' + self.data['signup']['activation_token']
-
     def ActivationUrl(self):
         if self.data['node']['hostname']:
-            site = self.data['node']['hostname']
+            site = 'https://' + self.data['node']['hostname']
         elif self.data['node']['onionservice']:
-            site = self.data['node']['onionservice']
+            site = 'http://' + self.data['node']['onionservice']
         else:
             site = ''
 
         return site + '/#/activation?token=' + self.data['signup']['activation_token']
+
+    def LoginUrl(self):
+        return self.Site() + '/#/login'
 
     def ExpirationDate(self):
         date = ISO8601_to_datetime(self.data['signup']['registration_date']) + timedelta(days=30)
