@@ -34,8 +34,8 @@ controller("AdminStepEditorCtrl", ["$scope", "$rootScope", "$http", "AdminStepRe
     };
 
     $scope.save_step = function(step) {
-      var updated_step = new AdminStepResource(step);
-      return $scope.Utils.update(updated_step);
+      step = new AdminStepResource(step);
+      return $scope.Utils.update(step);
     };
 
     $scope.showAddQuestion = $scope.showAddQuestionFromTemplate = false;

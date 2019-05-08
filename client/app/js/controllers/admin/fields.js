@@ -14,6 +14,8 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
 
     $scope.children = $scope.field.children;
 
+    $scope.parsedFields = $scope.fieldUtilities.parseFields($scope.fields);
+
     $scope.toggleEditing = function () {
       $scope.editing = !$scope.editing;
     };
@@ -119,13 +121,11 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
     };
 
     $scope.save_field = function(field) {
-      var updated_field;
+      field = new $scope.fieldResource(field);
 
       $scope.Utils.assignUniqueOrderIndex(field.options);
 
-      updated_field = new $scope.fieldResource(field);
-
-      $scope.Utils.update(updated_field);
+      return $scope.Utils.update(field);
     };
 
     $scope.moveUpAndSave = function(elem) {

@@ -1488,32 +1488,49 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           }
         },
 
+        parseField: function(field, parsedFields) {
+          var self = this;
+          if (!field.editable) {
+            return;
+          }
+
+          if (!Object.keys(parsedFields).length) {
+            parsedFields.fields = [];
+            parsedFields.fields_by_id = {};
+            parsedFields.options_by_id = {};
+          }
+
+          if (["checkbox", "selectbox", "multichoice"].indexOf(field.type) > -1) {
+            parsedFields.fields_by_id[field.id] = field;
+            parsedFields.fields.push(field);
+            field.options.forEach(function(option) {
+              parsedFields.options_by_id[option.id] = option;
+            });
+
+          } else if (field.type === "fieldgroup") {
+            field.children.forEach(function(field) {
+              self.parseField(field, parsedFields);
+            });
+          }
+        },
+
+        parseFields: function(fields) {
+          var self = this;
+          var parsedFields = {}
+
+          fields.forEach(function(field) {
+            self.parseField(field, parsedFields);
+          });
+
+          return parsedFields;
+        },
+
         parseQuestionnaire: function(questionnaire) {
-          var parsedFields = {
-            fields: [],
-            fields_by_id: {},
-            options_by_id: {}
-          };
-
-          var parseField = function(field) {
-            if (["checkbox", "selectbox", "multichoice"].indexOf(field.type) > -1) {
-              parsedFields.fields_by_id[field.id] = field;
-              parsedFields.fields.push(field);
-              field.options.forEach(function(option) {
-                parsedFields.options_by_id[option.id] = option;
-              });
-
-            } else if (field.type === "fieldgroup") {
-              field.children.forEach(function(field) {
-                parseField(field);
-              });
-            }
-          };
+          var self = this;
+          var parsedFields = {}
 
           questionnaire.steps.forEach(function(step) {
-            step.children.forEach(function(field) {
-              parseField(field);
-            });
+            parsedFields = self.parseFields(step.children, parsedFields);
           });
 
           return parsedFields;
