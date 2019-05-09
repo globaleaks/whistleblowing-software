@@ -19,6 +19,11 @@ def db_wizard(session, tid, request, client_using_tor, language):
 
     node = config.ConfigFactory(session, tid)
 
+    if tid != 1:
+        root_tenant_node = config.ConfigFactory(session, 1)
+    else:
+        root_tenant_node = node
+
     if node.get_val(u'wizard_done'):
         log.err("DANGER: Wizard already initialized!", tid=tid)
         raise errors.ForbiddenOperation
@@ -89,20 +94,20 @@ def db_wizard(session, tid, request, client_using_tor, language):
 
     mode = node.get_val(u'mode')
 
-    # Apply the specific fixes related to whistleblowing.it projects
-    if mode == u'whistleblowing.it':
-        root_tenant_node = config.ConfigFactory(session, 1)
-
-        node.set_val(u'hostname', tenant.subdomain + '.' + 'whistleblowing.it')
-        node.set_val(u'password_change_period', 365)
-        node.set_val(u'disable_key_code_hint', True)
-        node.set_val(u'disable_privacy_badge', True)
-        node.set_val(u'disable_donation_panel', True)
-        node.set_val(u'simplified_login', True)
+    if mode != u'default':
+        node.set_val(u'hostname', tenant.subdomain + '.' + node.get_val(u'rootdomain'))
         node.set_val(u'reachable_via_web', True)
         node.set_val(u'allow_unencrypted', True)
         node.set_val(u'anonymize_outgoing_connections', True)
         node.set_val(u'allow_iframes_inclusion', True)
+        context.questionnaire_id = root_tenant_node.get_val(u'default_questionnaire')
+
+    # Apply the specific fixes related to whistleblowing.it projects
+    if mode == u'whistleblowing.it':
+        node.set_val(u'disable_key_code_hint', True)
+        node.set_val(u'disable_privacy_badge', True)
+        node.set_val(u'disable_donation_panel', True)
+        node.set_val(u'simplified_login', True)
         node.set_val(u'can_delete_submission', False)
         node.set_val(u'enable_user_pgp_key_upload', False)
         node.set_val(u'tor', False)
@@ -118,8 +123,6 @@ def db_wizard(session, tid, request, client_using_tor, language):
 
         # Set data retention policy to 18 months
         context.tip_timetolive = 540
-
-        context.questionnaire_id = root_tenant_node.get_val(u'default_questionnaire')
 
         # Enable recipients to load files to the whistleblower
         context.enable_rc_to_wb_files = True

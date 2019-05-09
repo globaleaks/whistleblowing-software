@@ -145,7 +145,7 @@ def db_serialize_node(session, tid, language):
 
         root_tenant_l10n = ConfigL10NFactory(session, 1)
 
-        if ret_dict['mode'] == u'whistleblowing.it':
+        if ret_dict['mode'] == u'whistleblowing.it' or ret_dict['mode'] == u'eat':
             ret_dict['footer'] = root_tenant_l10n.get_val(u'footer', language)
             ret_dict['whistleblowing_question'] = root_tenant_l10n.get_val(u'whistleblowing_question', language)
             ret_dict['whistleblowing_button'] = root_tenant_l10n.get_val(u'whistleblowing_button', language)

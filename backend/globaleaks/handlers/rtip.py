@@ -378,7 +378,7 @@ def db_create_identityaccessrequest_notifications(session, tid, itip, rtip, iar)
         data['iar'] = serialize_identityaccessrequest(session, iar)
         data['node'] = db_admin_serialize_node(session, tid, user.language)
 
-        if data['node']['mode'] != u'whistleblowing.it':
+        if data['node']['mode'] == u'default':
             data['notification'] = db_get_notification(session, tid, user.language)
         else:
             data['notification'] = db_get_notification(session, 1, user.language)

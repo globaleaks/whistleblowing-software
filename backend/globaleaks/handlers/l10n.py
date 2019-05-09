@@ -22,7 +22,7 @@ def get_l10n(session, tid, lang):
     if tid != 1:
         config = ConfigFactory(session, 1)
 
-        if config.get_val(u'mode') == u'whistleblowing.it':
+        if config.get_val(u'mode') != u'default':
             tid = 1
 
     path = langfile_path(lang)
