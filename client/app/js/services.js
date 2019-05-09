@@ -1516,7 +1516,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
         parseFields: function(fields) {
           var self = this;
-          var parsedFields = {}
+          var parsedFields = {};
 
           fields.forEach(function(field) {
             self.parseField(field, parsedFields);
@@ -1527,7 +1527,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
         parseQuestionnaire: function(questionnaire) {
           var self = this;
-          var parsedFields = {}
+          var parsedFields = {};
 
           questionnaire.steps.forEach(function(step) {
             parsedFields = self.parseFields(step.children, parsedFields);
