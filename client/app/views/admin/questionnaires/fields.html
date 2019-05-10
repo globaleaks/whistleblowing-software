@@ -374,10 +374,13 @@
               <div class="col-md-12">
                 <div class="fieldOption" data-ng-repeat="option in field.options">
                   <div class="row">
-                    <div class="col-md-6">
-                      <input class="form-control" data-ng-model="option.label" data-ng-attr-placeholder="{{'Name' | translate }}" type="text" data-ng-disabled="!field.editable" required />
+                    <div class="col-md-1">
+                      <div class="badge badge-default">{{$index}}</div>
                     </div>
                     <div class="col-md-6">
+                      <input class="form-control" data-ng-model="option.label" data-ng-attr-placeholder="{{'Label' | translate }}" type="text" data-ng-disabled="!field.editable" required />
+                    </div>
+                    <div class="col-md-5">
                       <button class="btn btn-xs btn-danger" data-ng-click="delOption(option)">
                         <i class="glyphicon glyphicon-remove"></i>
                       </button>
