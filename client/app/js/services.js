@@ -1231,7 +1231,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
         splitRows: function(fields) {
           var rows = [];
-          var y = -1;
+          var y = null;
 
           angular.forEach(fields, function(f) {
             if(y !== f["y"]) {
