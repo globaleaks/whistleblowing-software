@@ -259,60 +259,57 @@
                             <textarea name="description" class="form-control" data-ng-model="context.status_page_message"></textarea>
                           </div>
                         </div>
-                        <div class="form-group">
-                          <label class="inline-checkbox">
-                            <input data-ng-model="context.enable_scoring_system" type="checkbox" />
-                            <span data-translate>Enable scoring system</span>
-                          </label>
-                        </div>
-                        <div data-ng-if="context.enable_scoring_system" class="form-group well">
-                          <table class="table table-bordered">
-                            <thead>
-                              <th data-translate>Threshold</th>
-                              <th data-translate>Value</th>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td data-translate>Medium</td>
-                                <td><input class="form-control" data-ng-model="context.score_threshold_medium" type="number" /></td>
-                              </tr>
-                              <tr>
-                                <td data-translate>High</td>
-                                <td><input class="form-control" data-ng-model="context.score_threshold_high" type="number" /></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <div class="form-group">
-                            <label class="inline-checkbox">
-                              <input data-ng-model="context.score_receipt_text_custom" type="checkbox"/>
-                              <span data-translate>Customize the message shown in the receipt page</span>
-                            </label>
-                            <div class="nested" data-ng-if="context.score_receipt_text_custom">
-                              <div class="form-group">
-                                <label data-translate>Low</label>
-                                <div>
-                                  <textarea class="form-control" data-ng-model="context.score_receipt_text_l"></textarea>
+                        <div data-ng-if="admin.node.enable_scoring_system">
+                          <label data-ng-translate>Scoring system options</label>
+                          <div class="form-group well">
+                            <table class="table table-bordered">
+                              <thead>
+                                <th data-translate>Threshold</th>
+                                <th data-translate>Value</th>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td data-translate>Medium</td>
+                                  <td><input class="form-control" data-ng-model="context.score_threshold_medium" type="number" /></td>
+                                </tr>
+                                <tr>
+                                  <td data-translate>High</td>
+                                  <td><input class="form-control" data-ng-model="context.score_threshold_high" type="number" /></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <div class="form-group">
+                              <label class="inline-checkbox">
+                                <input data-ng-model="context.score_receipt_text_custom" type="checkbox"/>
+                                <span data-translate>Customize the message shown in the receipt page</span>
+                              </label>
+                              <div class="nested" data-ng-if="context.score_receipt_text_custom">
+                                <div class="form-group">
+                                  <label data-translate>Low</label>
+                                  <div>
+                                    <textarea class="form-control" data-ng-model="context.score_receipt_text_l"></textarea>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label data-translate>Medium</label>
+                                  <div>
+                                    <textarea class="form-control" data-ng-model="context.score_receipt_text_m"></textarea>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label data-translate>High</label>
+                                  <div>
+                                    <textarea class="form-control" data-ng-model="context.score_receipt_text_h"></textarea>
+                                  </div>
                                 </div>
                               </div>
-                              <div class="form-group">
-                                <label data-translate>Medium</label>
-                                <div>
-                                  <textarea class="form-control" data-ng-model="context.score_receipt_text_m"></textarea>
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label data-translate>High</label>
-                                <div>
-                                  <textarea class="form-control" data-ng-model="context.score_receipt_text_h"></textarea>
-                                </div>
-                              </div>
+                              <label data-translate>Assign the receipt only to submissions reaching score:</label>
+                              <select class="form-control" data-ng-model="context.score_threshold_receipt" convert-to-number>
+                                <option value="0" data-translate>Low</option>
+                                <option value="1" data-translate>Medium</option>
+                                <option value="2" data-translate>High</option>
+                              </select>
                             </div>
-                            <label data-translate>Assign the receipt only to submissions reaching score:</label>
-                            <select class="form-control" data-ng-model="context.score_threshold_receipt" convert-to-number>
-                              <option value="0" data-translate>Low</option>
-                              <option value="1" data-translate>Medium</option>
-                              <option value="2" data-translate>High</option>
-                            </select>
                           </div>
                         </div>
                       </div>

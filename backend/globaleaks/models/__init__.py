@@ -459,7 +459,6 @@ class _Context(Model):
       'enable_two_way_messages',
       'enable_attachments',
       'enable_rc_to_wb_files',
-      'enable_scoring_system',
       'score_receipt_text_custom'
     ]
 

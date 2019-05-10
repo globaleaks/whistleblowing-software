@@ -122,6 +122,7 @@ ConfigDescriptor = {
     u'signup_tos1_enable': Bool(default=False),
     u'signup_tos2_enable': Bool(default=False),
 
+    u'enable_scoring_system': Bool(default=False),
     u'enable_experimental_features': Bool(default=False),
 
     u'multisite_login': Bool(default=False),
@@ -219,6 +220,7 @@ ConfigFilters = {
         u'counter_submissions',
         u'enable_admin_exception_notification',
         u'enable_developers_exception_notification',
+        u'enable_scoring_system',
         u'enable_experimental_features',
         u'multisite_login',
         u'simplified_login',

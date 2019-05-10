@@ -683,7 +683,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       context.status_page_message = "";
       context.questionnaire_id = "";
       context.additional_questionnaire_id = "";
-      context.enable_scoring_system = false;
       context.score_threshold_medium = 0;
       context.score_threshold_high = 0;
       context.score_receipt_text_custom = false;
@@ -1401,7 +1400,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
               return;
             }
 
-            if (scope.context.enable_scoring_system) {
+            if (scope.node.enable_scoring_system) {
               angular.forEach(scope.answers[field.id], function(entry) {
                 self.calculateScore(scope, field, entry);
               });

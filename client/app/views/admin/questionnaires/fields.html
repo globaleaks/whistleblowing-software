@@ -314,7 +314,7 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="form-group">
+            <div class="form-group" data-ng-if="admin.node.enable_scoring_system">
               <label data-translate>Triggered by score:</label>
               <select class="form-control" data-ng-model="field.triggered_by_score" convert-to-number>
                 <option value="0" data-translate>Low</option>
@@ -405,7 +405,7 @@
                           <i class="glyphicon glyphicon-user"></i>
                         </button>
                       </span>
-                      <span>
+                      <span data-ng-if="admin.node.enable_scoring_system">
                         <button class="btn btn-xs" data-ng-class="option.score_type !== 0 ? 'btn-warning' : 'btn-default'" data-ng-click="assignScorePointsDialog(option)" uib-popover="{{'Assign score points' | translate}}" popover-placement="left">
                           <i class="glyphicon glyphicon-flash"></i>
                           <span data-ng-if="option.score_type !== 0">

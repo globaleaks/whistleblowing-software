@@ -99,7 +99,7 @@
                 </div>
               </div>
             </div>
-            <div class="row">
+            <div class="row" data-ng-if="admin.node.enable_scoring_system">
               <div class="form-group col-md-12">
                 <label data-translate>Triggered by score:</label>
                 <select class="form-control" data-ng-model="step.triggered_by_score" convert-to-number>

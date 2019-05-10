@@ -338,7 +338,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
             crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
 
     # Evaluate if the whistleblower tip should be generated
-    if ((not context.enable_scoring_system) or
+    if ((not State.tenant_cache[tid].enable_scoring_system) or
         (context.score_threshold_receipt == 0) or
         (context.score_threshold_receipt == 1 and itip.total_score >= 2) or
         (context.score_threshold_receipt == 2 and itip.total_score == 3)):
