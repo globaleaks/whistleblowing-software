@@ -134,7 +134,11 @@ def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
         new_child_id = text_type(uuid.uuid4())
         id_map[field['id']] = new_child_id
         field['id'] = new_child_id
+
+        # Tweak the fiel in order to make a raw copy
         field['editable'] = True
+        field['instance'] = u'instance'
+        field['template_id'] = field['template_override_id'] = ''
 
         # Rewrite the option ID if it exists
         for option in field['options']:
