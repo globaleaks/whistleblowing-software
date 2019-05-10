@@ -27,49 +27,57 @@
         </div>
       </form>
     </div>
-    <div data-ng-repeat="questionnaire in admin.questionnaires | filter: {editable: true}">
+    <div data-ng-repeat="questionnaire in admin.questionnaires">
       <form id="questionnaire-{{$index}}" class="configItem" name="editQuestionnaire" data-ng-controller="AdminQuestionnaireEditorCtrl" novalidate>
         <div>
-          <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
+          <div class="editorHeader row" data-ng-click="questionnaire.editable && toggleEditing(); $event.stopPropagation();">
             <span class="col-md-7 editorHeaderTitle">{{questionnaire.name}}</span>
-            <span class="col-md-5" data-ng-if="questionnaire.editable">
+            <span class="col-md-5">
               <span class="pull-right">
-                <button
-                  class="btn btn-xs btn-default"
-                  data-ng-show="!editing"
-                  data-ng-click="toggleEditing(); $event.stopPropagation();">
-                  <span data-translate>Edit</span>
-                </button>
-                <button
-                  class="btn btn-xs btn-success"
-                  data-ng-show="editing"
-                  data-ng-if="questionnaire.editable"
-                  data-ng-click="save_questionnaire(questionnaire)">
-                  <span data-translate>Save</span>
-                </button>
-                <button
-                  class="btn btn-xs btn-default"
-                  data-ng-show="editing"
-                  data-ng-click="toggleEditing(); $event.stopPropagation();">
-                  <span data-translate>Cancel</span>
-                </button>
-                <a class="downloadButton btn btn-xs btn-default"
-                  data-ng-click="exportQuestionnaire(questionnaire); $event.stopPropagation()">
-                  <i class="glyphicon glyphicon-save-file"></i>
-                  <span data-translate>Export</span>
-                </a>
-                <button
-                  class="btn btn-xs btn-default"
-                  data-ng-click="duplicate_questionnaire(questionnaire)">
-                  <i class="glyphicon glyphicon-duplicate"></i>
-                  <span data-translate>Duplicate</span>
-                </button>
-                <button
-                  class="btn btn-xs btn-danger"
-                  data-ng-if="questionnaire.editable"
-                  data-ng-click="delete_questionnaire(questionnaire); $event.stopPropagation();">
-                  <span data-translate>Delete</span>
-                </button>
+                <div data-ng-if="questionnaire.editable">
+                  <button
+                    class="btn btn-xs btn-default"
+                    data-ng-show="!editing"
+                    data-ng-click="toggleEditing(); $event.stopPropagation();">
+                    <span data-translate>Edit</span>
+                  </button>
+                  <button
+                    class="btn btn-xs btn-success"
+                    data-ng-show="editing"
+                    data-ng-click="save_questionnaire(questionnaire)">
+                    <span data-translate>Save</span>
+                  </button>
+                  <button
+                    class="btn btn-xs btn-default"
+                    data-ng-show="editing"
+                    data-ng-click="toggleEditing(); $event.stopPropagation();">
+                    <span data-translate>Cancel</span>
+                  </button>
+                  <a class="downloadButton btn btn-xs btn-default"
+                    data-ng-click="exportQuestionnaire(questionnaire); $event.stopPropagation()">
+                    <i class="glyphicon glyphicon-save-file"></i>
+                    <span data-translate>Export</span>
+                  </a>
+                  <button
+                    class="btn btn-xs btn-default"
+                    data-ng-click="duplicate_questionnaire(questionnaire)">
+                    <i class="glyphicon glyphicon-duplicate"></i>
+                    <span data-translate>Duplicate</span>
+                  </button>
+                  <button
+                    class="btn btn-xs btn-danger"
+                    data-ng-click="delete_questionnaire(questionnaire); $event.stopPropagation();">
+                    <span data-translate>Delete</span>
+                  </button>
+                </div>
+                <div data-ng-if="!questionnaire.editable">
+                  <button
+                    class="btn btn-xs btn-default"
+                    data-ng-click="duplicate_questionnaire(questionnaire)">
+                    <i class="glyphicon glyphicon-duplicate"></i>
+                    <span data-translate>Duplicate</span>
+                  </button>
+                </div>
               </span>
             </span>
           </div>

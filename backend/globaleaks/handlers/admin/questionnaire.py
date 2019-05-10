@@ -126,6 +126,7 @@ def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
     # We need to change the primary key references and so this can be reimported
     # as a new questionnaire
     q['id'] = text_type(uuid.uuid4())
+    q['editable'] = True
 
     # Each step has a UUID that needs to be replaced
 
@@ -133,6 +134,7 @@ def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
         new_child_id = text_type(uuid.uuid4())
         id_map[field['id']] = new_child_id
         field['id'] = new_child_id
+        field['editable'] = True
 
         # Rewrite the option ID if it exists
         for option in field['options']:
