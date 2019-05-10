@@ -256,18 +256,6 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
-    def migrate_Field(self):
-        old_objs = self.session_old.query(self.model_from['Field'])
-        for old_obj in old_objs:
-            new_obj = self.model_to['Field']()
-            for key in [c.key for c in new_obj.__table__.columns]:
-                setattr(new_obj, key, getattr(old_obj, key))
-
-            if new_obj.type == 'multichoice':
-                new_obj.type = 'selectbox'
-
-            self.session_new.add(new_obj)
-
     def migrate_FieldOption(self):
         old_objs = self.session_old.query(self.model_from['FieldOption'])
         for old_obj in old_objs:
