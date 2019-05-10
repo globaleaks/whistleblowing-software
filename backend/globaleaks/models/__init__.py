@@ -408,7 +408,6 @@ class _Context(Model):
     recipients_clarification = Column(JSON, default=dict, nullable=False)
     status_page_message = Column(JSON, default=dict, nullable=False)
     show_receivers_in_alphabetical_order = Column(Boolean, default=True, nullable=False)
-    enable_scoring_system = Column(Boolean, default=False, nullable=False)
     score_threshold_high = Column(Integer, default=0, nullable=False)
     score_threshold_medium = Column(Integer, default=0, nullable=False)
     score_receipt_text_custom = Column(Boolean, default=False, nullable=False)
@@ -422,6 +421,9 @@ class _Context(Model):
 
     # status: 0(disabled), 1(enabled), 2(hidden)
     status = Column(Integer, default=2, nullable=False)
+
+    #TODO: this field is not used and could be removed in the next db migration
+    enable_scoring_system = Column(Boolean, default=False, nullable=False)
 
     unicode_keys = ['questionnaire_id', 'additional_questionnaire_id']
 
