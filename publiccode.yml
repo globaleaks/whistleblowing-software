@@ -111,3 +111,5 @@ description:
       - "Compliant with Italian whistleblowing protection law: 190/2012, 231/2001, ANAC specs"
       - "Compliant with French whistleblowing protection law: Sapin II (France) and ISO 37001"
       - "Compliant with international whistleblowing standards: ISO 37001"
+    screenshots:
+      - client/app/data/logo.png
