@@ -179,15 +179,6 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
       });
     };
 
-    $scope.addReceiver = function(rec) {
-      $scope.context.receivers.push(rec.id);
-      $scope.showSelect = false;
-    };
-
-    $scope.receiverNotSelectedFilter = function(item) {
-      return $scope.context.receivers.indexOf(item.id) === -1;
-    };
-
     $scope.fieldIsMarkableSubjectToStats = $scope.isMarkableSubjectToStats($scope.field);
     $scope.fieldIsMarkableSubjectToPreview = $scope.isMarkableSubjectToPreview($scope.field);
 
@@ -206,7 +197,7 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
     };
 
     $scope.triggerReceiverDialog = function(option) {
-      $scope.moveReceiver = function(rec) {
+      $scope.addReceiver = function(rec) {
         option.trigger_receiver.push(rec.id);
       };
 
