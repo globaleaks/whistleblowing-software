@@ -1,3 +1,7 @@
+Changes in version 3.8.4 - 2019-05-14
+    Fix configuration of recipients triggers on selectbox options
+    Apply minor bugfixing
+
 Changes in version 3.8.3 - 2019-05-10
     Apply minor bugfixing
 

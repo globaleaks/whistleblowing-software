@@ -1,9 +1,9 @@
 name: GlobaLeaks
-releaseDate: '2019-05-10'
+releaseDate: '2019-05-14'
 publiccodeYmlVersion: '0.2'
 url: 'https://github.com/globaleaks/GlobaLeaks'
 landingURL: 'https://github.com/globaleaks/GlobaLeaks'
-softwareVersion: 3.8.3
+softwareVersion: 3.8.4
 softwareType: standalone/web
 developmentStatus: stable
 platforms:
