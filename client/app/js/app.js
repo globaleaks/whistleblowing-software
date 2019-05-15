@@ -610,7 +610,9 @@ var GLClient = angular.module("GLClient", [
     };
 
     $rootScope.evaluateDisclaimerModalOpening = function () {
-      if ($rootScope.node.enable_disclaimer) {
+      if ($rootScope.node.enable_disclaimer &&
+          !$rootScope.disclaimer_modal_opened) {
+        $rootScope.disclaimer_modal_opened = true;
         $rootScope.open_disclaimer_modal();
         return true;
       }
