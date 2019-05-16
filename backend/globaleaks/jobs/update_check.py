@@ -11,6 +11,7 @@ from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.jobs.job import HourlyJob
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
+from globaleaks.rest.cache import Cache
 from globaleaks.utils.agent import get_page
 from globaleaks.utils.log import log
 
@@ -24,6 +25,8 @@ def evaluate_update_notification(session, state, latest_version):
     stored_latest = priv_fact.get_val(u'latest_version')
 
     if V(stored_latest) < V(latest_version):
+        Cache.invalidate()
+
         priv_fact.set_val(u'latest_version', latest_version)
 
         if V(__version__) == V(latest_version):

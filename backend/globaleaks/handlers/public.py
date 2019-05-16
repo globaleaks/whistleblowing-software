@@ -140,6 +140,9 @@ def db_serialize_node(session, tid, language):
     if tid != 1:
         root_tenant_node = ConfigFactory(session, 1)
 
+        for varname in ['version', 'version_db', 'latest_version']:
+            ret_dict[varname] = root_tenant_node.get_val(varname)
+
         if language not in models.EnabledLanguage.list(session, tid):
             language = root_tenant_node.get_val(u'default_language')
 
