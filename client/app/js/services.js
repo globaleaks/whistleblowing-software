@@ -16,8 +16,8 @@ angular.module("GLServices", ["ngResource"]).
     };
   }]).
   factory("Authentication",
-    ["$filter", "$http", "$location", "$window", "$routeParams", "$rootScope", "GLTranslate", "locationForce", "UserPreferences", "ReceiverPreferences",
-    function($filter, $http, $location, $window, $routeParams, $rootScope, GLTranslate, locationForce, UserPreferences, ReceiverPreferences) {
+    ["$filter", "$http", "$location", "$window", "$routeParams", "$rootScope", "GLTranslate", "UserPreferences", "ReceiverPreferences",
+    function($filter, $http, $location, $window, $routeParams, $rootScope, GLTranslate, UserPreferences, ReceiverPreferences) {
       function Session(){
         var self = this;
 
@@ -88,8 +88,8 @@ angular.module("GLServices", ["ngResource"]).
             } else {
               // Override the auth_landing_page if a password change is needed
               if (self.session.password_change_needed) {
-                // Pushes ui to the ForcedPasswordChangeCtrl
-                locationForce.set("/forcedpasswordchange");
+                // Redirect UI to the ForcedPasswordChange view
+                $location.path("/forcedpasswordchange");
               } else {
                 $location.path(self.session.auth_landing_page);
               }
@@ -146,8 +146,6 @@ angular.module("GLServices", ["ngResource"]).
         self.receipt = "";
 
         self.logout = function() {
-          locationForce.clear();
-
           var logoutPerformed = function() {
             self.loginRedirect(true);
           };
