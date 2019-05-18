@@ -188,7 +188,7 @@ var GLClient = angular.module("GLClient", [
       when("/receipt", {
         templateUrl: "views/receipt.html",
         controller: "ReceiptController",
-        header_title: "",
+        header_title: "Your submission was succesful!",
         resolve: {
           access: noAuth(),
         }
