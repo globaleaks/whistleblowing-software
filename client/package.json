@@ -49,10 +49,10 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "5.0.0",
     "node-gettext": "2.0.0",
-    "npm-check-updates": "3.1.8",
+    "npm-check-updates": "3.1.9",
     "protractor": "5.4.2",
     "protractor-console-plugin": "0.1.1",
     "q": "1.5.1",
-    "superagent": "5.0.4"
+    "superagent": "5.0.5"
   }
 }
