@@ -77,7 +77,7 @@ class TestAdminPasswordReset(helpers.TestHandlerWithPopulatedDB):
         State.tenant_cache[1]['enable_password_reset'] = False
 
         data_request = {
-            'operation': 'reset_user_password', 
+            'operation': 'reset_user_password',
             'args': {
                 'value': self.user['username']
             }
