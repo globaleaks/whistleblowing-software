@@ -10,26 +10,38 @@ From this Home page you may access all the common user facilities already descri
 .. image:: imgs/home.png
 
 A menu on the right offers you links to the different administative sections:
-- Site settings
-- Users
-- Contexts
-- Questionnaire
-- Case management
-- Notification settings
-- Network settings
-- Advanced settings
-- System overview
+   Site settings
+
+   Users
+
+   Contexts
+
+   Questionnaires
+
+   Case management
+
+   Notification settings
+
+   Network settings
+
+   Advanced settings
+
+   System overview
 
 Site settings
 -------------
 This is the section that offers you all the main customization possibilities necessary for implementing a basic and functional whistleblowing site.
 
 This section is furtherly divided in:
-- Main configuration
-- Theme customization
-- Files
-- Languages
-- Text customization
+   Main configuration
+
+   Theme customization
+
+   Files
+
+   Languages
+
+   Text customization
 
 .. image:: imgs/site_settings.png
 
@@ -38,9 +50,11 @@ Users
 This sections is where users could be created and managed.
 The system with the basic configuration completed with the initial Platform wizard is configured with an Administrator and a Recipient.
 Depending on your project needs here you could create users with different roles and manage their respective privileges:
-- Administrators
-- Recipients
-- Custodians
+   Administrators
+
+   Recipients
+
+   Custodians
 
 .. image:: imgs/users.png
 
@@ -61,8 +75,9 @@ The system with the basic configuration completed with the initial Platform wiza
 Depending on your project needs here you could create additional Questionnaire for each of your different contexts.
 
 This section is furtherly divided in:
-- Questionnaires
-- Question templates
+   Questionnaires
+
+   Question templates
 
 .. image:: imgs/questionnaires.png
 
@@ -76,9 +91,11 @@ This section is intended to host all the main case management feature that will 
 Currently it hosts the possibility to define submissions statuses and substatuses intended to be used by Recipients while working on the submissions.
 
 By default the system includes the following submission statuses:
-- New
-- Open
-- Closed
+   New
+
+   Open
+
+   Closed
 
 Within this section you may add additional Statuses between the State Open and Closed and you can furtherly define Substatuses for the Closed status (e.g. Archived / Spam)
 
@@ -89,8 +106,10 @@ Notification settings
 This is the section where are configured all the aspects related to the mail notifications sent by the software.
 
 The section is furtherly divided in:
-- Main configuration
-- Notification templates
+
+   Main configuration
+
+   Notification templates
 
 Main configuration
 ..................
@@ -115,9 +134,11 @@ Network settings
 In this section are configured the newtork settings.
 
 The section is furtherly divided in:
-- HTTPS
-- Tor
-- IP Access control
+   HTTPS
+
+   Tor
+
+   IP Access control
 
 HTTPS
 .....
@@ -126,8 +147,9 @@ Here you can configure all the aspects related to the access of the platform via
 .. image:: imgs/https.png
 
 In particular here are configured:
-- The domain name used by your project
-- The HTTPS key and certificates
+   The domain name used by your project
+
+   The HTTPS key and certificates
 
 To ease the deployment and the maintainance and reduce the costs of your project, consider using the software includes support for the Let'sEncrypt HTTPS certificates.
 
@@ -144,8 +166,9 @@ Here you can configure IP based Access Control.
 .. image:: imgs/ip_access_control.png
 
 Suggested configurations are:
-- Prevent Whistleblowers to report from whithin their respective work space.
-- Restrict Recipients access to their intranet.
+   Prevent Whistleblowers to report from whithin their respective work space.
+
+   Restrict Recipients access to their intranet.
 
 Advanced settings
 -----------------
