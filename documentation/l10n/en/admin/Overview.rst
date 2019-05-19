@@ -43,12 +43,44 @@ This section is furtherly divided in:
 
    Text customization
 
+Main configuration
+..................
+In this section is configurable the logo and all the texts of the main user interfaces.
+
 .. image:: imgs/site_settings.png
+
+Theme customization
+...................
+In this section could be loaded CSS and Javascript files necessary to customize the interface.
+
+.. image:: imgs/theme_customization.png
+
+Files
+.....
+In this section could be loaded any file that need to be served via the platform to whistleblowers (e.g. a policy in PDF) or that are required by your CSS and Javascript customization.
+
+.. image:: imgs/files.png
+
+Languages
+.........
+In this section you could enable all the languages required by your project and configure the default language.
+
+.. note::
+   Thanks to the `Localization Lab <https://www.localizationlab.org/>`_ and our great voluneer comminity, the software is already available and continously made available in a lot of languages. This aspect of internationalization is crucial in many projects. In case you are starting a project and the required languages are not available we strongly invite you to register on our `web translation platform <https://www.transifex.com/otf/globaleaks/>`_ offered by `Transifex <https://www.transifex.com/otf/globaleaks/>`_ and support yourself the translation. Internationalization and Localization is in fact are crucial for the success of a whistleblowing project. Thank you!
+
+.. image:: imgs/languages.png
+
+Text customization
+..................
+Here could be confiured overrides for any of the texts of the platform and of their translation.
+
+.. image:: imgs/text_customization.png
 
 Users
 -----
 This sections is where users could be created and managed.
 The system with the basic configuration completed with the initial Platform wizard is configured with an Administrator and a Recipient.
+
 Depending on your project needs here you could create users with different roles and manage their respective privileges:
    Administrators
 
@@ -106,7 +138,6 @@ Notification settings
 This is the section where are configured all the aspects related to the mail notifications sent by the software.
 
 The section is furtherly divided in:
-
    Main configuration
 
    Notification templates
@@ -174,6 +205,14 @@ Advanced settings
 -----------------
 TODO
 
+.. image:: imgs/advanced_settings.png
+
+.. image:: imgs/url_shortener.png
+
+.. image:: imgs/anomaly_thresholds.png
+
 System overview
 ---------------
 TODO
+
+.. image:: imgs/system_overview.png
