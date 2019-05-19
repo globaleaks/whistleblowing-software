@@ -7,18 +7,18 @@ Welcome to GlobaLeaks's Documentation!
 
 .. toctree::
         :name: gettingstarted
-        :maxdepth: 2
+        :maxdepth: 4
 
         gettingstarted/index
 
 .. toctree::
         :name: setup
-        :maxdepth: 2
+        :maxdepth: 4
 
         setup/index
 
 .. toctree::
         :name: user
-        :maxdepth: 2
+        :maxdepth: 4
 
         user/index
