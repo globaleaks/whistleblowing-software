@@ -6,11 +6,9 @@ Configure the logo
 
 The first thing you want to give to your whistleblowing site is a branding identity; this could be done by loading a logo.
 
-.. image:: imgs/admin3.png
+.. image:: imgs/logo.png
 
 Scroll down along the page to reach the "Save" button, click on it and have your logo and favicon applied.
-
-.. image:: imgs/admin4.png
 
 Enable languages
 ---------------------------
@@ -21,7 +19,7 @@ To do so, in the "Administration Interface - General Settings" page, select the 
 
 Note that in the same interface you can change, through a drop down menu, the default language in which GlobaLeaks installation is served.
 
-.. image:: imgs/admin5.png
+.. image:: imgs/languages.png
 
 Configure HTTPS
 ---------------
@@ -81,7 +79,8 @@ Configure notification settings
 GlobaLeaks sends out notifications of different events to different receivers and to admins. In order to have this working, you have to select  "Notification Settings" in the "Administration Interface - General Settings" page and set up email account and related server parameters.
 
 We suggest you to setup an email account dedicated to sending out notifications from your initiative.
-.. image:: imgs/notification_settings_1.png
+
+.. image:: imgs/notification_settings.png
 
 Enter the followings:
 
@@ -92,8 +91,6 @@ Enter the followings:
 - SMTP Server Address: it is the hostname of the SMTP server you are using to send notification emails
 - SMTP Server Port: Port used to send outgoing emails. It is usually 465 or 587 (SMTP with TLS is at TCP port 587; SMTP with SSL is at 465)
 - Transport Security: from the drop down menu select the opportune security level
-
-.. image:: imgs/notification_settings_2.png
 
 It is better to leave untouched the pre-defined settings pertaining the notification to admins and to recipients, but in the case you want to disable them, it is possibile to check the corresponding checkboxes.
 
@@ -140,8 +137,6 @@ Example 1: custom background
 ............................
 This CSS example shows how to customize the Background Color of the application.
 
-Let's create a file styles.css as follows:
-
 .. code-block:: css
 
    body
@@ -153,10 +148,6 @@ Example 2: custom font
 ......................
 
 This CSS example shows how to customize the font of the application.
-
-Upload a background image called 'background.png' using the **Upload custom file** functionality.
-
-Then load a css file like the following:
 
 .. code-block:: css
 
