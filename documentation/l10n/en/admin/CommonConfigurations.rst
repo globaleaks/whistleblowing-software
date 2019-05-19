@@ -66,7 +66,7 @@ By clicking on "Enable", the system will provide to configure entirely the featu
 When finished you will be disconnected ad an admin and your browser redirected to the https version of the platform, where you can login to follow up with configuration.
 
 Manual HTTPS Configuration
---------------------------
+..........................
 .. image:: imgs/HTTPS_Config_Manual_Option_1.png
 
 The interface can generate the Private Key and the Certificate Signing Request. The Certificate Signing Request has to be provided to a Certificate Authority (usually, your ISP can help you with this) to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates.
