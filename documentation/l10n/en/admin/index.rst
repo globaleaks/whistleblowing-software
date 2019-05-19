@@ -3,7 +3,7 @@ Admin documentation
 ===================
 
 .. toctree::
-        InterfaceOverview
+        Overview
         CommonConfigurations
         AdvancedConfigurations
 	IntegrationGuide
