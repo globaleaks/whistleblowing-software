@@ -7,40 +7,12 @@
 Welcome to GlobaLeaks's User Manual!
 ======================================
 
-GlobaLeaks is an open-source, free software intended to enable secure and anonymous whistleblowing initiatives developed by the `Hermes Center for Transparency and Digital Human Rights <https://www.hermescenter.org/>`_.
+GlobaLeaks is an open-source, free software intended to enable secure and anonymous whistleblowing projects developed by the `Hermes Center for Transparency and Digital Human Rights <https://www.hermescenter.org/>`_.
 
 .. toctree::
-	:name: docpart1
-	:maxdepth: 2
-        :caption: Introduction
+        :hidden:
 
-        Glossary
-        Features
-        Requirements
-
-.. toctree::
-	:name: docpart2
-	:maxdepth: 2
-	:caption: Setup
-
-	InstallationGuide
-	PlatformWizard
-
-.. toctree::
-	:name: docpart3
-	:maxdepth: 2
-	:caption: Admin documentation
-
-        CommonConfigurations
-        AdvancedConfigurations
-	IntegrationGuide
-	UpgradeGuide
-	BackupAndRestore
-	TroubleShooting
-
-.. toctree::
-	:name: docpart4
-	:maxdepth: 2
-	:caption: Recipient documentation
-
-        OrdinaryActivities
+        introduction/index
+        setup/index
+        admin/index
+        recipient/index

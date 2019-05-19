@@ -1,5 +1,5 @@
 ===================
-Common activities
+How-to Guides
 ===================
 
 Access the list of the existing submissions
