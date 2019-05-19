@@ -1,5 +1,5 @@
 .. toctree::
-	:hidden:
+        :caption: Admin documentation
 
         Introduction
         CommonConfigurations

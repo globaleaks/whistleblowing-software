@@ -1,5 +1,5 @@
 .. toctree::
-	:hidden:
+	:caption: Getting started
 
         Glossary
         Features

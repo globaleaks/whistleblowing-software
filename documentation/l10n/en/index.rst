@@ -8,7 +8,7 @@ Welcome to GlobaLeaks's Documentation!
 .. toctree::
         :hidden:
 
-        introduction/index
+        gettingstarted/index
         setup/index
         admin/index
         recipient/index

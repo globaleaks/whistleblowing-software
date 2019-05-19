@@ -1,5 +1,5 @@
 .. toctree::
-	:hidden:
+	:caption: Recipient documentation
 
         Introduction
         HowToGuides

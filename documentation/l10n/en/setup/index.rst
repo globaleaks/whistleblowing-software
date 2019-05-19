@@ -1,5 +1,5 @@
 .. toctree::
-	:hidden:
+	:setup: Setup
 
 	InstallationGuide
 	PlatformWizard
