@@ -111,7 +111,7 @@ Depending on your project needs you may override the default text with your cust
 .. image:: imgs/notification_templates.png
 
 Network settings
-................
+----------------
 In this section are configured the newtork settings.
 
 The section is furtherly divided in:
