@@ -1,6 +1,6 @@
-=================
-User documetation
-=================
+==================
+User documentation
+==================
 
 .. toctree::
         General.rst
