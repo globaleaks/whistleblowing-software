@@ -46,8 +46,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'GlobaLeaks'
-copyright = u'2017, Random GlobaLeaks Contributors'
-author = u'Random GlobaLeaks Contributors'
+copyright = u'Copyright (c) 2011-2019 - Hermes Center for Transparency and Digital Human Rights'
+author = u'Hermes Center for Transparency and Digital Human Rights'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
