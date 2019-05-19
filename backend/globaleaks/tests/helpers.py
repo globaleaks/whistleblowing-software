@@ -1163,6 +1163,7 @@ class MockDict:
             'admin_language': u'en',
             'multisite_login': False,
             'simplified_login': False,
+            'enable_scoring_system': False,
             'enable_experimental_features': False,
             'enable_signup': True,
             'mode': u'default',
