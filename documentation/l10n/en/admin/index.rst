@@ -1,3 +1,7 @@
+===================
+Admin documentation
+===================
+
 .. toctree::
         InterfaceOverview
         CommonConfigurations

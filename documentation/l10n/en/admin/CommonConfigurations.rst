@@ -1,6 +1,6 @@
-===================
+=====================
 Common configurations
-===================
+=====================
 Configure the logo
 -------------------------
 
@@ -11,6 +11,7 @@ The first thing you want to give to your whistleblowing site is a branding ident
 Scroll down along the page to reach the "Save" button, click on it and have your logo and favicon applied.
 
 .. image:: imgs/admin4.png
+
 Enable languages
 ---------------------------
 
@@ -20,8 +21,8 @@ To do so, in the "Administration Interface - General Settings" page, select the 
 
 Note that in the same interface you can change, through a drop down menu, the default language in which GlobaLeaks installation is served.
 
-
 .. image:: imgs/admin5.png
+
 Configure HTTPS
 ---------------
 
@@ -49,27 +50,34 @@ Automatic HTTPS Configuration
 To configure HTTPS the easy way, with free certificate from Let's Encrypt (https://letsencrypt.org), just click on the "Proceed" button in the "Automatic" box
 
 .. image:: imgs/HTTPS_Config_Automatic_Option_1.png
+
 This can take a little and the "loading" symbol is shown
+
 .. image:: imgs/HTTPS_Config_Automatic_Option_2.png
+
 When ready, the system will prompt you to read the Term of Service from the Let's Encrypt site by clicking on the button "Read the Term of Service".
 If you agree to accept said TOS, check the checkbox "I agree to the Term of Service" and click on the "Proceed" button, this will start the automatic generation and installation of the Certificate.
 .. image:: imgs/HTTPS_Config_Automatic_Option_3.png
+
 When this process is completed, you will be prompted to immediately activate the configuration by clicking on the "Enable" button, or review the configuration by clicking on "Review" button.
 .. image:: imgs/HTTPS_Config_Automatic_Option_4.png
+
 By clicking on "Enable", the system will provide to configure entirely the feature and you will be shown this alert box:
 .. image:: imgs/HTTPS_Automatic_Conf_Ongoing.png
+
 When finished you will be disconnected ad an admin and your browser redirected to the https version of the platform, where you can login to follow up with configuration.
 
 Manual HTTPS Configuration
-..........................
+--------------------------
 .. image:: imgs/HTTPS_Config_Manual_Option_1.png
+
 The interface can generate the Private Key and the Certificate Signing Request. The Certificate Signing Request has to be provided to a Certificate Authority (usually, your ISP can help you with this) to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates.
 Load both the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.
 .. HINT::
-  Please note that the file format expected for all files uploaded is PEM. Sometimes Certificate Authorities will provide certificates in DER format which must be converted to PEM.
+Please note that the file format expected for all files uploaded is PEM. Sometimes Certificate Authorities will provide certificates in DER format which must be converted to PEM.
 
 Configure notification settings
-----------------------------
+-------------------------------
 GlobaLeaks sends out notifications of different events to different receivers and to admins. In order to have this working, you have to select  "Notification Settings" in the "Administration Interface - General Settings" page and set up email account and related server parameters.
 
 We suggest you to setup an email account dedicated to sending out notifications from your initiative.
@@ -86,6 +94,7 @@ Enter the followings:
 - Transport Security: from the drop down menu select the opportune security level
 
 .. image:: imgs/notification_settings_2.png
+
 It is better to leave untouched the pre-defined settings pertaining the notification to admins and to recipients, but in the case you want to disable them, it is possibile to check the corresponding checkboxes.
 
 You can then set the value for the time at which the notification alert of expiring submission; this value is set at 72hours to give time to the recipient(s) to check and manage the pending submissions.
@@ -103,108 +112,62 @@ The Recipient is the person that will receive and process the data that whistleb
 You can have one or multiple Recipients per Context, and also have one Recipient that can access to multiple Contexts. The platform is very flexible on this and allows you to define in very detail your whistleblowing system and procedure.
 
 Configure contexts
------------------
+------------------
 In the "First Configuration Guide" we have seen how to create a Context.
 
 The context is sort a conceptual container of your whistleblowing initiative. To better understand this, just think about a whistleblowing initiative devoted to gather information about ethical misconducts infringing the ethical code of a governmental agency or of a company. When you configure the Context you will assign to it a name that can be evocative of the mission related to this context so that the whistleblowers know that this is the right place where to communicate their data. Then you would like to describe in more detail the context itself, so that whistleblower are informed that this is part of a whole process in which specific persons, the receivers, will receive and follow up on the data they're submitting.
 
 To configure a Context, log in as an admin, go to the administration interface, select "Context configuration" in the menu on the left of the page and fill the text field with the name choosen for the Context, then click on "Add" button.
 .. image:: imgs/Context_conf_1.png
+
 Then you will see that the new Context is addedd to the page and to access the configuration interface for this context, click on the "Edit" button.
 .. image:: imgs/Context_conf_2.png
+
 The configuration interface specific of the selected context is shown and you can proceed with filling of the various field.
 .. image:: imgs/Context_conf_3.png
+
 The most important field in this section at this stage of the configuration process is surely the **"Text shown on top of the interface for selecting recipients"**: this text will be shown in the interface exposed to the whistleblowers. So be sure to use suitable and appealing terms and phrases and be clear in explaining which data are accepted, who will be the recipients, which is the follow up of the submitted data. Just think of this text as the main tool to convince your source to submit data through this channel.
 Once completed this task, click on "Save" button.
 You can verify the appearance by visiting ...
 
 Configure questionnaires
------------------------
+------------------------
 Through the administrators control panel, GlobaLeaks has room for rich customization. Everything within the basic customization guide is well tested and safe, and caution is adviced using the advanced features. Some are experimental, and may be removed or changed in future versions of the software.
 
-Basic customization guide
+Basic CSS Customization
 -------------------------
-The **basic customization guide** enables you to customize all the most important features of the application, like for example:
-
-- Interface texts;
-- the look and feel (CSS, Fonts, Logos, Background)
-
-All these settings are available through the admin panel offered by the application, and this is the safe way to customize the application.
-
-Platform Info Customization
-...........................
-On section **General Settings**, in the **Main Configuration** tab it is possible to customize the following:
-
-- Logo
-- Project name
-- Homepage title
-- Presentation
-- Description
-- Question to solicit possible whistleblowers
-- Whistleblowing button
-- Footer
-
-On section **General Settings**, in the **Theme customization** tab it is possible to load a set of files the look and feel of the platform, including a custom CSS and Javascript.
-
-.. CAUTION::
-  **Be aware that you can easily compromise a whistleblowers identity by embedding custom fonts, images from external sources, and links to other websites. This is especially important if you are making the platform available over HTTPS.**
-
-On the same page it is possible to upload a custom file by clicking **Load Custom File**, (e.g., background.png).
-
-Uploaded files are accessible in the /s/ path (e.g., /s/background.png).
-
 Example 1: custom background
-......................................
+............................
 This CSS example shows how to customize the Background Color of the application.
 
 Let's create a file styles.css as follows:
 
-.. code::
-  body
-  {
-     background-color: red;
-  }
+.. code-block:: css
+
+   body
+   {
+      background-color: red;
+   }
 
 Example 2: custom font
-..........................
+......................
 
 This CSS example shows how to customize the font of the application.
 
 Upload a background image called 'background.png' using the **Upload custom file** functionality.
 
 Then load a css file like the following:
-.. code::
 
-  @font-face {
-    font-family: 'Antani';
-    src: url('static/antani.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
+.. code-block:: css
 
-  body {
-    font-family: 'Antani', Helvetica, Arial, Sans;
-    font-size: 16px;
-  }
+   @font-face {
+     font-family: 'Antani';
+     src: url('static/antani.ttf') format('truetype');
+     font-weight: normal;
+     font-style: normal;
+   }
 
-
-Text customization
---------------------------
-On section **General Settings**, in the **Text customization** tab it is possible to configure text overrides.
-
-GlobaLeaks is currently translated into many languages thanks to community effort. https://www.transifex.com/otf/globaleaks/dashboard/
-
-.. HINT::
-  Translations are added to the Globaleaks package whenever a new language reaches a coverage of more than 50% of translated sentences; if your language is missing, or its translation need improvement, the best you can do is to help translating it.
-
-CSS Helpers
-..................................
-The platform attaches the following CSS classes to the #bodyDefault container (<div>) so that you can customize pages based on the application's location and state.
-
-For example, when a user navigates from /#/submission to /#/login the class .ext-public will be removed from #BodyDefault and .ext-login will be added.
-
-**Class	Description**
-
-- .ext-public is appended to every page intended for Whistleblowers. These are the public pages.
-- .ext-embed is always appended to #bodyDefault if the URL of page includes ?embedded=true
-- .ext-authenticated is appended to every page when a user is authenticated. This field may be deprecated.
+   body {
+     font-family: 'Antani', Helvetica, Arial, Sans;
+     font-size: 16px;
+   }

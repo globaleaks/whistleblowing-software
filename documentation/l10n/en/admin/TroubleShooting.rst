@@ -1,9 +1,9 @@
-=====================
+===============
 Troubleshooting
-=====================
+===============
 
 Issues and bug reporting
-------------------
+------------------------
 If you encounter any issue and you are not able to to run GlobaLeaks h
 
 - Be sure to strictly follow the Installation Guide for installation
@@ -12,7 +12,7 @@ If you encounter any issue and you are not able to to run GlobaLeaks h
 - Report the issue on the official software ticking system: https://github.com/globaleaks/GlobaLeaks/issues
 
 Useful debugging commands
--------------
+-------------------------
 Depending on your setup. There are a few things that are usually the first things to check to see if GlobaLeaks is working.
 
 - Is the service running?

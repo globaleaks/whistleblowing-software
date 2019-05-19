@@ -1,3 +1,7 @@
+===============
+Getting started
+===============
+
 .. toctree::
         Glossary
         Features

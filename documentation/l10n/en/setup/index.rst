@@ -1,3 +1,7 @@
+=====
+Setup
+=====
+
 .. toctree::
 	InstallationGuide
 	PlatformWizard
