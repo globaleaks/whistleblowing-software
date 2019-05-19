@@ -6,9 +6,29 @@ Welcome to GlobaLeaks's Documentation!
 .. note:: This documentation is thank to the support of the GlobaLeaks Community. Join us and contribute with your additions and suggestion. In any of the page you find a link that enables you to provide suggestions and corrections. We remind you that in case of any software issue or bug you may always report on the `GlobaLeaks Ticketing System <https://github.com/globaleaks/GlobaLeaks/issues>`_.
 
 .. toctree::
-        :hidden:
+        :name: gettingstarted
+        :caption: Getting started
+        :maxdepth: 2
 
         gettingstarted/index
+
+.. toctree::
+        :name: setup
+        :caption: Setup
+        :maxdepth: 2
+
         setup/index
+
+.. toctree::
+        :name: admin
+        :caption: Admin documentation
+        :maxdepth: 2
+
         admin/index
+
+.. toctree::
+        :name: recipient
+        :caption: Recipient Documentation
+        :maxdepth: 2
+
         recipient/index
