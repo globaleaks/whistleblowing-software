@@ -1,3 +1,7 @@
+======================
+HOW-TOs for recipients
+======================
+
 Access the list of the existing submissions
 -------------------------
 TODO

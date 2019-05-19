@@ -20,22 +20,15 @@ Welcome to GlobaLeaks's Documentation!
         setup/index
 
 .. toctree::
-        :name: user
-        :caption: User documentation
-        :maxdepth: 2
-
-        user/index
-
-.. toctree::
-        :name: recipient
-        :caption: Recipient Documentation
-        :maxdepth: 2
-
-        recipient/index
-
-.. toctree::
         :name: admin
         :caption: Admin documentation
         :maxdepth: 2
 
         admin/index
+
+.. toctree::
+        :name: user
+        :caption: User documentation
+        :maxdepth: 2
+
+        user/index
