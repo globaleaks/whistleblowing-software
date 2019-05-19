@@ -7,28 +7,24 @@ Welcome to GlobaLeaks's Documentation!
 
 .. toctree::
         :name: gettingstarted
-        :caption: Getting started
         :maxdepth: 2
 
         gettingstarted/index
 
 .. toctree::
         :name: setup
-        :caption: Setup
         :maxdepth: 2
 
         setup/index
 
 .. toctree::
         :name: admin
-        :caption: Admin documentation
         :maxdepth: 2
 
         admin/index
 
 .. toctree::
         :name: user
-        :caption: User documentation
         :maxdepth: 2
 
         user/index
