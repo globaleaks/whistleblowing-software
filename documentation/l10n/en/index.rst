@@ -18,12 +18,6 @@ Welcome to GlobaLeaks's Documentation!
         setup/index
 
 .. toctree::
-        :name: admin
-        :maxdepth: 2
-
-        admin/index
-
-.. toctree::
         :name: user
         :maxdepth: 2
 
