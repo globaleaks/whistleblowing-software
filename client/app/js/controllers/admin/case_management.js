@@ -11,18 +11,6 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
     $scope.toggleAddStatus = function () {
       $scope.showAddStatus = !$scope.showAddStatus;
     };
-
-    $scope.editableStatusesList = function() {
-      var displayedStatuses = [];
-      for (var i = 0; i < $scope.admin.submission_statuses.length; i++) {
-        var status = $scope.admin.submission_statuses[i];
-        if (status.system_defined === false) {
-          displayedStatuses.push(status);
-        }
-      }
-
-      return displayedStatuses;
-    };
   }
 ]).controller("AdminSubmissionStatusEditorCtrl", ["$scope", "$http", "AdminSubmissionStatusResource",
   function ($scope, $http, AdminSubmissionStatusResource) {
