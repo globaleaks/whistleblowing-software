@@ -34,25 +34,22 @@ def get_records_to_delete(d, w, m, records):
     for record in records:
         to_delete = True
 
-        if record.delete:
-            ret.append(record)
-            continue
+        if not record.delete:
+            b_t = backup_type(record.creation_date)
 
-        b_t = backup_type(record.creation_date)
+            date = record.creation_date
 
-        date = record.creation_date
+            if b_t[2] and monthly_count < m and date > (today - timedelta(days=d + 1) * 30):
+                monthly_count += 1
+                to_delete = False
 
-        if b_t[2] and monthly_count < m and date > (today - timedelta(days=d + 1) * 30):
-            monthly_count += 1
-            to_delete = False
+            if b_t[1] and weekly_count < w and date > (today - timedelta(days=(w + 1) * 7)):
+                weekly_count += 1
+                to_delete = False
 
-        if b_t[1] and weekly_count < w and date > (today - timedelta(days=(w + 1) * 7)):
-            weekly_count += 1
-            to_delete = False
-
-        if daily_count < d and date > (today - timedelta(days=(d + 1))):
-            daily_count += 1
-            to_delete = False
+            if daily_count < d and date > (today - timedelta(days=(d + 1))):
+                daily_count += 1
+                to_delete = False
 
         if to_delete:
             ret.append(record)
