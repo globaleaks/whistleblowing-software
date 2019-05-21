@@ -578,7 +578,7 @@ module.exports = function(grunt) {
 
     ["app/translations.html",
       "app/data_src/appdata.json",
-      "app/data_src/field_attrs.json"].forEach(function(file) {
+      "app/data/field_attrs.json"].forEach(function(file) {
       extractStringsFromFile(file);
     });
 
@@ -767,8 +767,6 @@ module.exports = function(grunt) {
       translate_field(field);
       fs.writeFileSync(dstpath, JSON.stringify(field, null, 2));
     });
-
-    grunt.file.copy("app/data_src/field_attrs.json", "app/data/field_attrs.json");
 
     done();
   });
