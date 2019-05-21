@@ -95,11 +95,16 @@ def db_wizard(session, tid, request, client_using_tor, language):
     mode = node.get_val(u'mode')
 
     if mode != u'default':
-        node.set_val(u'hostname', tenant.subdomain + '.' + node.get_val(u'rootdomain'))
-        node.set_val(u'reachable_via_web', True)
-        node.set_val(u'allow_unencrypted', True)
-        node.set_val(u'anonymize_outgoing_connections', True)
-        node.set_val(u'allow_iframes_inclusion', True)
+        node.set_val(u'hostname', tenant.subdomain + '.' + root_tenant_node.get_val(u'rootdomain'))
+
+        for varname in ['reachable_via_web',
+                        'allow_encrypted',
+                        'anonymized_outgoing_connections',
+                        'allow_iframes_inclusion',
+                        'password_change_period',
+                        'default_questionnaire']:
+            node.set_val(varname, root_tenant_node.get_val(varname))
+
         context.questionnaire_id = root_tenant_node.get_val(u'default_questionnaire')
 
     # Apply the specific fixes related to whistleblowing.it projects
