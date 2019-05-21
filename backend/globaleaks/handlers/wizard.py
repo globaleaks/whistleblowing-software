@@ -98,8 +98,15 @@ def db_wizard(session, tid, request, client_using_tor, language):
         node.set_val(u'hostname', tenant.subdomain + '.' + root_tenant_node.get_val(u'rootdomain'))
 
         for varname in ['reachable_via_web',
-                        'allow_encrypted',
-                        'anonymized_outgoing_connections',
+                        'disable_key_code_hint',
+                        'disable_privacy_badge',
+                        'disable_donation_panel',
+                        'simplified_login',
+                        'can_delete_submission',
+                        'can_postpone_expiration',
+                        'enable_user_pgp_key_upload',
+                        'allow_unencrypted',
+                        'anonymize_outgoing_connections',
                         'allow_iframes_inclusion',
                         'password_change_period',
                         'default_questionnaire']:
@@ -109,12 +116,7 @@ def db_wizard(session, tid, request, client_using_tor, language):
 
     # Apply the specific fixes related to whistleblowing.it projects
     if mode == u'whistleblowing.it':
-        node.set_val(u'disable_key_code_hint', True)
-        node.set_val(u'disable_privacy_badge', True)
-        node.set_val(u'disable_donation_panel', True)
         node.set_val(u'simplified_login', True)
-        node.set_val(u'can_delete_submission', False)
-        node.set_val(u'enable_user_pgp_key_upload', False)
         node.set_val(u'tor', False)
 
         # Delete the admin user
