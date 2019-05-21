@@ -19,13 +19,12 @@ endif
 %:
 	dh $@ --with $(PYTHON_VER) --buildsystem=pybuild --sourcedirectory=backend/; \
 
-override_dh_installman:
-	cd backend && $(PYTHON_BIN) setup.py build_sphinx -b man
-	dh_installman
-
 override_dh_install:
 	dh_apparmor --profile-name=usr.bin.globaleaks
 	dh_install --fail-missing
+
+override_dh_installman:
+	true
 
 override_dh_python2:
 	dh_python2 --no-guessing-deps --no-guessing-versions
