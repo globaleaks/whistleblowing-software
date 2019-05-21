@@ -30,6 +30,8 @@ GLClient.controller("TipCtrl",
     };
 
     $scope.preprocessTipAnswers = function(tip) {
+      $scope.fieldUtilities.parseQuestionnaire(tip.questionnaires[0]);
+
       var i, j, k, step, child;
       for (i=0; i<tip.questionnaires[0].steps.length; i++) {
         step = tip.questionnaires[0].steps[i];

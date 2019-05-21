@@ -16,7 +16,7 @@
     </div>
   </span>
 
-  <span data-ng-switch-when="map">{{entry['value']}}</span>
+  <span data-ng-switch-when="map">{{field.attrs.topojson.id_name_map[entry['value']]}}</span>
 
   <span data-ng-switch-when="date">{{entry['value'] | date:'dd-MM-yyyy'}}</span>
 

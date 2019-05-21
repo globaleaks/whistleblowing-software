@@ -1502,6 +1502,14 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
             field.children.forEach(function(field) {
               self.parseField(field, parsedFields);
             });
+          } else if (field.type === "map") {
+            d3.json(field.attrs.topojson.value).then(function(topojson) {
+             field.attrs.topojson.geojson = self.topoToGeo(topojson);
+             field.attrs.topojson.id_name_map = {};
+             field.attrs.topojson.geojson.features.forEach(function(feature) {
+               field.attrs.topojson.id_name_map[feature.id] = feature.properties.name;
+	     });
+            });
           }
         },
 

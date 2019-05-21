@@ -541,8 +541,6 @@ controller("SubmissionFormFieldCtrl", ["$scope", "fieldUtilities",
       };
 
       d3.json($scope.field.attrs.topojson.value).then(function(topojson) {
-        $scope.field.attrs.topojson.geojson = fieldUtilities.topoToGeo(topojson);
-
         var projection = d3.geoMercator();
         var path = d3.geoPath();
 
@@ -607,18 +605,6 @@ controller("SubmissionFormFieldCtrl", ["$scope", "fieldUtilities",
              }
              $scope.$apply();
            });
-
-          svg.selectAll("text")
-          .data(topojson.features)
-          .enter()
-          .append("svg:circle")
-          .attr("fill", "#000").attr("r", 1.5)
-          .attr("cx", function(d){
-              return path.centroid(d)[0];
-          })
-          .attr("cy", function(d){
-              return  path.centroid(d)[1];
-          });
       });
     }
 }]).
