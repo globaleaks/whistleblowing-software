@@ -8,7 +8,7 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017
 # Hamed Behravan <behravan.hamed@gmail.com>, 2015
 # Hamed Behravan <behravan.hamed@gmail.com>, 2015
-# Joost KH <fernando.de.la.bia@gmail.com>, 2016
+# 1bdf31d1c1e9cb24d6578874174ff2c7, 2016
 # Kamyar Behrang <k.g.behrang@gmail.com>, 2016
 # mohammad.s.n, 2013
 # mohammad.s.n, 2013
@@ -17,22 +17,20 @@
 # Morpheus, 2013
 # Morpheus, 2013
 # Peyman A <pymnpe@gmail.com>, 2018
+# Reza Ghasemi, 2019
 # signal89, 2014
 # signal89, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2019-05-18 16:13+0000\n"
+"Last-Translator: Reza Ghasemi\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fa\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-msgid "Login page"
-msgstr "صفحه ورود"
+"mime-version: 1.0\n"
 
 msgid "Log in"
 msgstr "ورود"
@@ -82,12 +80,6 @@ msgstr "پروانه"
 msgid "Notification templates"
 msgstr "الگوی اطلاع‌رسانی"
 
-msgid "Recipient notification templates"
-msgstr "الگوی اطلاع‌رسانی گیرنده"
-
-msgid "Admin notification templates"
-msgstr "الگوی اطلاع‌رسانی مدیر "
-
 msgid "Missing data"
 msgstr "اطلاعات مفقود"
 
@@ -109,11 +101,8 @@ msgstr "بیقاعدگی"
 msgid "Preferences"
 msgstr "پرفرنس"
 
-msgid "Custodian interface"
+msgid "User preferences"
 msgstr ""
-
-msgid "Recipient interface"
-msgstr "رابط دریافتکننده"
 
 msgid "Notification settings"
 msgstr "تنظیمات اعلان ها"
@@ -129,6 +118,9 @@ msgstr "این فایل بدلیل مشکلی داخلی قابل دسترس ن�
 
 msgid "file unavailable"
 msgstr "فایل در دسترس نیست"
+
+msgid "Recipient interface"
+msgstr "رابط دریافتکننده"
 
 msgid "Creation date"
 msgstr "تاریخ تولید"
@@ -153,9 +145,6 @@ msgstr "این دریافتکننده را انتخاب کن. "
 
 msgid "Unselect this recipient."
 msgstr "این دریافتکننده را انتخاب نکن"
-
-msgid "This recipient cannot be selected."
-msgstr "این دریافتکننده قابل انتخاب کردن نیست."
 
 msgid "This recipient cannot be deselected."
 msgstr "این دریافت کننده را نمی توان از حالت انتخاب شده خارج کرد"
@@ -386,6 +375,9 @@ msgstr "در درصد"
 msgid "HTTPS settings"
 msgstr "تنظیمات HTTPS"
 
+msgid "URL shortener"
+msgstr ""
+
 msgid "Anomaly detection thresholds"
 msgstr "آستانه تشخیص ناهنجاری"
 
@@ -426,11 +418,8 @@ msgstr "نمره"
 msgid "Trigger question"
 msgstr "سوال رهاساز"
 
-msgid "Triggered by a score higher than:"
-msgstr "رهاسازی شده با نمره بالا از:"
-
-msgid "Select the question to be triggered when this option is selected"
-msgstr "یک سوال را برای رها سازی انتخاب کنید وقتی این سوال انتخاب شد"
+msgid "Triggered by score:"
+msgstr ""
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "پیام در بالای صفحه وضعیت‌ِ ارائه دیده شود"
@@ -442,16 +431,13 @@ msgid "Password strength:"
 msgstr ""
 
 msgid "Weak"
-msgstr ""
+msgstr "ضعیف"
 
 msgid "Acceptable"
-msgstr ""
+msgstr "قابل قبول"
 
 msgid "Strong"
-msgstr ""
-
-msgid "Loading…"
-msgstr "در حال اجرا…"
+msgstr "قوی"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "متن در مقابل محتوی انتخاب شده نمایش داده شود"
@@ -463,13 +449,13 @@ msgid "Type of context selector:"
 msgstr ""
 
 msgid "Type to search…"
-msgstr ""
+msgstr "برای جستجو تای‍پ کنید..."
 
 msgid "Silence email notifications"
 msgstr ""
 
 msgid "Turn on email notifications"
-msgstr ""
+msgstr "روشن کردن نوتیفیکیشن های ایمیل"
 
 msgid "Enter an email address for the administrator"
 msgstr ""
@@ -478,7 +464,7 @@ msgid "Enter a password for the administrator"
 msgstr ""
 
 msgid "Test configuration"
-msgstr ""
+msgstr "تست پیکربندی"
 
 msgid "Failed logins"
 msgstr "ورود نا موفق"
@@ -515,6 +501,9 @@ msgstr ""
 
 msgid "Activate"
 msgstr "فعال كردن"
+
+msgid "Disactivate"
+msgstr "غیرفعال سازی"
 
 msgid "Search"
 msgstr "جستجو"
@@ -565,28 +554,28 @@ msgid "Submissions"
 msgstr ""
 
 msgid "Users"
-msgstr ""
+msgstr "کاربران"
 
 msgid "From"
-msgstr ""
+msgstr "از"
 
 msgid "Number of downloads"
-msgstr ""
+msgstr "تعداد دانلود ها"
 
 msgid "Error with file:"
 msgstr ""
 
 msgid "File size not accepted."
-msgstr ""
+msgstr "اندازه فایل قابل قبول نمی باشد."
 
 msgid "File type not accepted."
-msgstr ""
+msgstr "نوع فایل قابل قبول نمی باشد."
 
 msgid "Maximum file size is:"
 msgstr ""
 
 msgid "Accepted file types are:"
-msgstr ""
+msgstr "انواع فایل قابل قبول:"
 
 msgid "Scheduled jobs"
 msgstr ""
@@ -607,7 +596,7 @@ msgid "Software updates"
 msgstr "به‌روز رسانی برنامه"
 
 msgid "Software problems"
-msgstr ""
+msgstr "مشکلات نرم افزار"
 
 msgid "Disable"
 msgstr "غیرفعال کردن"
@@ -616,10 +605,10 @@ msgid "Remove"
 msgstr "حذف"
 
 msgid "Use as default"
-msgstr ""
+msgstr "استفاده به صورت پیش فرض"
 
 msgid "Create your whistleblowing platform"
-msgstr ""
+msgstr "ایجاد پلتفورم افشاگری خود"
 
 msgid "Collapse"
 msgstr ""
@@ -642,17 +631,35 @@ msgstr "نام خانوادگی"
 msgid "New"
 msgstr "جدید"
 
-msgid "Open"
-msgstr "باز کردن"
+msgid "Opened"
+msgstr ""
 
 msgid "Closed"
 msgstr "بسته شده"
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Print"
+msgstr "چاپ"
+
+msgid "Previous"
+msgstr "قبلی"
+
+msgid "Next"
+msgstr "بعدی"
+
+msgid "First"
+msgstr ""
+
+msgid "Last"
+msgstr ""
 
 msgid "Select the context of your submission:"
 msgstr ""
 
 msgid "Warning! You are not anonymous."
-msgstr ""
+msgstr "هشدار! شما ناشناس نیستید."
 
 msgid ""
 "Sending submissions over HTTPS exposes the act of doing so, but not the "
@@ -663,42 +670,38 @@ msgid ""
 msgstr ""
 
 msgid "Are you a whistleblower?"
-msgstr ""
+msgstr "آیا یک افشاگر می باشید؟"
 
 msgid "Blow the whistle"
 msgstr "در سوت بدمید"
-
-msgid "Have you already filed a submission? Enter your key code."
-msgstr "آیا گزارشی را تسلیم کرده اید؟ کلید رمز خود را وارد کنید"
 
 msgid "Your submission was successful."
 msgstr "ارائه‌ی شما با موفقیت انجام شد."
 
 msgid "Submission status"
-msgstr ""
+msgstr "وضعیت ارسال"
 
 msgid "Disable submissions"
 msgstr "غیرفعال‌سازی ارائه"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "تنظیمات ناامن بدون رمزگذاری با پی جی پی را فعال کن"
-
-msgid "Warning"
-msgstr "هشدار"
+msgid "Enable encryption"
+msgstr "فعال سازی رمزگذاری"
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "با فعال کردن این گزینه، سیستم تمام اطلاعات را بصورت غیررمزگذاری شده روی گره ذخیره خواهد کرد."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "این وقتی رمزگذاری در دسترس نباشد اتفاق میافتد"
+msgid "Enable multisite feature"
+msgstr ""
 
-msgid "Disable messages that warn of missing encryption"
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "به سایر تارنماها اجازه داده شود تا محتوی پلفرم را به شکل iframes استفاده کنند"
+
+msgid "Warning"
+msgstr "هشدار"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -744,20 +747,11 @@ msgstr "عنوان"
 msgid "Text"
 msgstr "متن"
 
-msgid "Disable the security awareness panel"
-msgstr "غیر فعال کردن پنل هوشیاری امنیتی"
-
-msgid "Disable the key code hint"
-msgstr "غیرفعال کردن کلید کد اشاره"
+msgid "Disable the receipt hint"
+msgstr ""
 
 msgid "Disable the donation panel"
 msgstr "غیرفعال کردن پنل کمک مالی"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "ترکیب CAPTCHA فعال شود"
-
-msgid "Enable proof of work mechanism"
-msgstr "ترکیب تایید کار فعال شود"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr ""
@@ -782,20 +776,11 @@ msgstr ""
 msgid "Landing page"
 msgstr "صفحه هدف"
 
-msgid "Home Page"
-msgstr "صفه اصلی"
-
-msgid "Submission Page"
-msgstr "صفحه ارسال"
-
 msgid "Default questionnaire"
-msgstr ""
+msgstr "پرسش نامه پیش فرض"
 
 msgid "Title of the submission page"
 msgstr "عنوان صفحه ارائه"
-
-msgid "Text of prompt for whistleblowers to log in"
-msgstr ""
 
 msgid "Show contexts in alphabetical order"
 msgstr "متن‌ها را به ترتیب الفبا مرتب کن"
@@ -829,21 +814,6 @@ msgstr "نام کاربری"
 msgid "Password"
 msgstr "گذرواژه"
 
-msgid "Restrict privileged logins to specific IP addresses"
-msgstr ""
-
-msgid "Whitelisted IP addresses"
-msgstr ""
-
-msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr ""
-
-msgid "Example:"
-msgstr "نمونه:"
-
-msgid "Each entry must be separated with a comma."
-msgstr ""
-
 msgid "Allow users to reset their passwords"
 msgstr ""
 
@@ -854,12 +824,18 @@ msgid ""
 msgstr ""
 
 msgid "Enable users to upload their PGP keys"
-msgstr ""
+msgstr "اجازه دادن به کاربران برای بارگذاری کلید های PGP خود"
 
 msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -874,14 +850,38 @@ msgstr "امکانات تجربی ممکن است با ثبات و یا به ط�
 msgid "Save"
 msgstr "ذخیره"
 
-msgid "Short URL"
+msgid "Reset submissions"
 msgstr ""
 
+msgid "Short URL"
+msgstr "آدرس اینترنتی کوتاه"
+
 msgid "Long URL"
-msgstr ""
+msgstr "آدرس اینترنتی طولانی"
 
 msgid "Add"
 msgstr "اضافه کن"
+
+msgid "Enable automatic backups"
+msgstr ""
+
+msgid "Daily"
+msgstr "روزانه"
+
+msgid "Weekly"
+msgstr "هفتگی"
+
+msgid "Montly"
+msgstr "ماهیانه"
+
+msgid "Remote"
+msgstr "ریموت"
+
+msgid "Server"
+msgstr "سرور"
+
+msgid "Port"
+msgstr "پورت"
 
 msgid "Substatuses"
 msgstr ""
@@ -926,19 +926,13 @@ msgid "Footer"
 msgstr "پانویس"
 
 msgid "Favicon"
-msgstr ""
+msgstr "فاویکون"
 
 msgid "Upload"
 msgstr "بارگذاری"
 
 msgid "Download"
 msgstr "بارگذاری"
-
-msgid "Upload custom file"
-msgstr "فایل دل‌خواه خود را بارگذاری کنید"
-
-msgid "The file will be available at URL: /s/$filename"
-msgstr "این فایل در این آدرس URL قابل دسترس است: /s/$filename"
 
 msgid "Language:"
 msgstr "زبان"
@@ -967,8 +961,20 @@ msgstr "متن‌ها"
 msgid "Name"
 msgstr "نام"
 
+msgid "Enabled"
+msgstr "فعال شده"
+
+msgid "Hidden"
+msgstr "پنهان"
+
+msgid "Disabled"
+msgstr "غیر فعال شد"
+
 msgid "Questionnaire"
 msgstr "پرسش‌نامه"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "دریافت‌کننده‌ها"
@@ -979,13 +985,8 @@ msgstr ""
 msgid "days"
 msgstr "روزها"
 
-msgid "Allow selection of this context through the context selector."
-msgstr "اجازه انتخاب زمینه از طریق انتخاب کننده زمینه‌ها"
-
-msgid ""
-"If disabled, submissions for this context will only be accessible through a "
-"direct link to it."
-msgstr "اگر غیرفعال باید، زمینه‌های ارسال شده تنها می‌تواند در دسترس کسانی باشد که لینک مستقیم را داشته باشند."
+msgid "Show the questionnaire navigation interface"
+msgstr ""
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "به افشاگرها اجازه انتخاب وصول کننده داده شود"
@@ -1005,6 +1006,12 @@ msgstr ""
 msgid "Show small recipient cards on submission interface"
 msgstr ""
 
+msgid "Show recipient details on the status page of the submission"
+msgstr ""
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr ""
+
 msgid "Enable comments"
 msgstr "فعال کردن نظر"
 
@@ -1020,64 +1027,31 @@ msgstr "به افشاگران اجازه ارسال پیام داده شود"
 msgid "Let whistleblowers add attachments onto existing submissions"
 msgstr "به افشاگران اجازه داده شود تا ضمیمه‌هایی را به این اظهارات ارائه شده اضافه کنند"
 
-msgid "Show recipient details on the status page of the submission"
-msgstr ""
-
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Text shown on top of the interface for selecting recipients"
+msgid "Enable scoring system"
 msgstr ""
 
-msgid "Welcome!"
-msgstr "خوش آمدید!"
-
-msgid ""
-"This interface may help you understand how the server can be configured and "
-"provides some info on how to connect to other GlobaLeaks users and experts."
-msgstr "این رابط به شما کمک میکنید یاد بگیرید چگونه گره را تنظیم کنید و اطلاعاتی در مورد نحوه ارتباط با دیگر کاربرها وکارشناسهای گلوبال لیکس را در اختیارتان قرار میدهد.  "
-
-msgid "Documentation"
-msgstr "مستندات"
-
-msgid ""
-"To properly organize your project, please read the following guidelines:"
-msgstr "برای ساماندهی صحیح کار خود، لطفا راهنمای زیر را بخوانید:"
-
-msgid "Remember to provide proper security advice to Whistleblowers:"
-msgstr "بیاد داشته باشید مشاوره امنیتی مناسب به افشاگرها اريه دهید:"
-
-msgid ""
-"To learn more about GlobaLeaks Security you can read the following document:"
-msgstr "برای اطلاع بیشتر از امنیت گلوبال لیکس میتوانید متن زیر را بخوانید:"
-
-msgid "Contact"
-msgstr "تماس"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
+msgid "Threshold"
 msgstr ""
 
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
+msgid "Value"
+msgstr "مقدار"
+
+msgid "Medium"
+msgstr "متوسط"
+
+msgid "High"
+msgstr "زیاد"
+
+msgid "Customize the message shown in the receipt page"
 msgstr ""
 
-msgid ""
-"If your non-profit needs support for investigative journalism, activism or a"
-" human rights defense project:"
-msgstr ""
+msgid "Low"
+msgstr "کم"
 
-msgid ""
-"For professional support and development of anti corruption and compliance "
-"projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr ""
-
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr ""
-
-msgid "Follow the project on:"
+msgid "Assign the receipt only to submissions reaching score:"
 msgstr ""
 
 msgid "Software version:"
@@ -1087,10 +1061,10 @@ msgid "An update is available:"
 msgstr ""
 
 msgid "SMTP name"
-msgstr ""
+msgstr "نام SMTP"
 
 msgid "SMTP email address"
-msgstr ""
+msgstr "آدرس ایمیل SMTP"
 
 msgid "Invalid email address"
 msgstr "آدرس ایمیل بی اعتبار"
@@ -1106,9 +1080,6 @@ msgstr ""
 
 msgid "Require authentication"
 msgstr ""
-
-msgid "Disabled"
-msgstr "غیر فعال شد"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr ""
@@ -1130,18 +1101,6 @@ msgstr ""
 
 msgid "Template"
 msgstr ""
-
-msgid "Roles enabled to use the platform without Tor:"
-msgstr ""
-
-msgid "Admin"
-msgstr "مدیر"
-
-msgid "Recipient"
-msgstr "دریافت کننده"
-
-msgid "Whistleblower"
-msgstr "سوت‌زن"
 
 msgid "Hostname"
 msgstr "نام سرور"
@@ -1171,6 +1130,9 @@ msgstr ""
 msgid "Proceed"
 msgstr "ادامه بده"
 
+msgid "Congratulations!"
+msgstr "تبریک!"
+
 msgid "Configuration completed. You can review the settings or enable it now."
 msgstr ""
 
@@ -1181,7 +1143,7 @@ msgid "Enable"
 msgstr "فعّال"
 
 msgid "Country code"
-msgstr ""
+msgstr "کد کشور"
 
 msgid "State"
 msgstr "ایالت"
@@ -1193,7 +1155,7 @@ msgid "Organization"
 msgstr "سازمان"
 
 msgid "Organizational unit"
-msgstr ""
+msgstr "یگان سازمانی"
 
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
@@ -1206,7 +1168,7 @@ msgid ""
 msgstr ""
 
 msgid "Private Key"
-msgstr ""
+msgstr "کلید خصوصی"
 
 msgid "Generate"
 msgstr "تولید"
@@ -1218,7 +1180,7 @@ msgid "Certificate"
 msgstr ""
 
 msgid "Valid until:"
-msgstr ""
+msgstr "معبتر تا:"
 
 msgid "Issuer:"
 msgstr "صادرکننده:"
@@ -1230,10 +1192,10 @@ msgid "Reset"
 msgstr "راه اندازی مجدد"
 
 msgid "Select an option:"
-msgstr ""
+msgstr "انتخاب یک گزینه:"
 
 msgid "Automatic configuration"
-msgstr ""
+msgstr "پیکربندی خودکار:"
 
 msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
@@ -1247,7 +1209,7 @@ msgid ""
 msgstr ""
 
 msgid "Manual configuration"
-msgstr ""
+msgstr "پیکربندی دستی"
 
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
@@ -1261,9 +1223,6 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
-msgid "Enabled"
-msgstr "فعال شده"
-
 msgid "Running"
 msgstr "در حال اجرا"
 
@@ -1274,7 +1233,7 @@ msgid "Auto-renewal"
 msgstr ""
 
 msgid "System message:"
-msgstr ""
+msgstr "پیام سیستم:"
 
 msgid "Danger"
 msgstr "خطر"
@@ -1284,8 +1243,32 @@ msgid ""
 "not their anonymity."
 msgstr ""
 
-msgid "Attention!"
+msgid "Restrict access to specific IP addresses"
 msgstr ""
+
+msgid "Role"
+msgstr "نقش"
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Admin"
+msgstr "مدیر"
+
+msgid "Recipient"
+msgstr "دریافت کننده"
+
+msgid "Whistleblower"
+msgstr "سوت‌زن"
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "نمونه:"
+
+msgid "Attention!"
+msgstr "توجه!"
 
 msgid ""
 "Configuration in progress. When it is finished you will have to log in "
@@ -1299,12 +1282,15 @@ msgid "Tor Onion Service"
 msgstr ""
 
 msgid "Tor Browser download link"
-msgstr ""
+msgstr "لینک دانلود مرورگر تور"
 
 msgid "Anonymize outgoing connections"
 msgstr ""
 
 msgid "Let the platform be reachable without Tor"
+msgstr ""
+
+msgid "Roles enabled to use the platform without Tor"
 msgstr ""
 
 msgid "Stats of the week:"
@@ -1325,26 +1311,17 @@ msgstr "رویداد"
 msgid "Response time"
 msgstr "زمان پاسخ دهی"
 
-msgid "Role"
-msgstr ""
-
 msgid "Last access"
 msgstr "آخرین دسترسی"
-
-msgid "Submission"
-msgstr ""
-
-msgid "Path"
-msgstr "مسير"
-
-msgid "Size"
-msgstr "اندازه"
 
 msgid "Alarm level"
 msgstr "سطح هشدار"
 
 msgid "Events"
 msgstr "رویداد ها"
+
+msgid "Question"
+msgstr "سوال"
 
 msgid "Type"
 msgstr "نوع"
@@ -1355,9 +1332,6 @@ msgstr ""
 msgid "Multi-line text input"
 msgstr ""
 
-msgid "Multiple choice input"
-msgstr ""
-
 msgid "Selection box"
 msgstr ""
 
@@ -1366,6 +1340,12 @@ msgstr "جعبه انتخاب"
 
 msgid "Terms of service"
 msgstr " شرایط خدمات"
+
+msgid "Date range"
+msgstr "محدوده تاریخ"
+
+msgid "Map"
+msgstr "نقشه"
 
 msgid "Group of questions"
 msgstr ""
@@ -1378,6 +1358,9 @@ msgstr "ستون"
 
 msgid "Width"
 msgstr "عرض"
+
+msgid "Multiple choice input"
+msgstr ""
 
 msgid "Question group"
 msgstr ""
@@ -1397,14 +1380,26 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr ""
 
+msgid "Template override"
+msgstr ""
+
 msgid "Phone number"
 msgstr "شماره تلفن"
 
 msgid "Checkbox label"
 msgstr ""
 
-msgid "Layout orientation"
+msgid "Add multimedia content"
 msgstr ""
+
+msgid "Image"
+msgstr "تصویر"
+
+msgid "Audio"
+msgstr "صوتی"
+
+msgid "Video"
+msgstr "تصویری"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr ""
@@ -1418,14 +1413,26 @@ msgstr ""
 msgid "Text shown upon confirmation"
 msgstr ""
 
+msgid "Trigger conditions"
+msgstr ""
+
+msgid "Sufficient"
+msgstr "کافی"
+
 msgid "Options"
 msgstr "گزینه ها"
 
-msgid "Questions"
+msgid "Addition"
 msgstr ""
 
-msgid "Add new question"
+msgid "Multiplier"
 msgstr ""
+
+msgid "Questions"
+msgstr "سوالات"
+
+msgid "Add new question"
+msgstr "افزودن یک سوال جدید"
 
 msgid "Add question from template"
 msgstr ""
@@ -1434,6 +1441,83 @@ msgid "Duplicate"
 msgstr ""
 
 msgid "Steps"
+msgstr "قدم ها"
+
+msgid "Site settings"
+msgstr "تنظیمات سایت"
+
+msgid "Case management"
+msgstr ""
+
+msgid "Network settings"
+msgstr "تنظیمات شبکه"
+
+msgid "Mode:"
+msgstr "حالت:"
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Enable terms of service"
+msgstr ""
+
+msgid "Sites"
+msgstr "سایت ها "
+
+msgid "Active"
+msgstr "فعال"
+
+msgid "Inactive"
+msgstr "غیرفعال"
+
+msgid "Configure"
+msgstr "پیکربندی"
+
+msgid "The default password is:"
+msgstr ""
+
+msgid "The system forces users to change the password at first login."
+msgstr "سیستم کاربرها را در ورود اول وادار به تغییر گذرواژه میکند."
+
+msgid "Reset password"
+msgstr "تنظیم مجدد گذرواژه"
+
+msgid "New password"
+msgstr "رمز عبور جدید"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "گذرواژه انتخاب شده بیش از حد ضعیف می باشد. با افزودن کاراکتر های خاص، اعداد، نماد های غیرمعمول آن را امن تر کنید."
+
+msgid "Force password change"
+msgstr ""
+
+msgid "The user will be forced to change its password on next login."
+msgstr ""
+
+msgid "Language"
+msgstr "زبان"
+
+msgid "Enable email notifications"
+msgstr ""
+
+msgid "Details of the PGP key:"
+msgstr "جزییات کلید PGP:"
+
+msgid "Fingerprint"
+msgstr "اثر انگشت"
+
+msgid "Remove the PGP key"
+msgstr "کلید پی جی پی را حذف کن"
+
+msgid "Set up encryption by providing a PGP public key"
 msgstr ""
 
 msgid "Configuration"
@@ -1444,9 +1528,6 @@ msgstr "پیش فرض"
 
 msgid "Forcefully selected"
 msgstr ""
-
-msgid "Unselectable"
-msgstr "غیرقابل انتخاب"
 
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr ""
@@ -1462,71 +1543,6 @@ msgid ""
 "submissions"
 msgstr "اجازه دسترسی به دریافت کننده برای ارتباط با افشاگر در یک اظهار خاص"
 
-msgid "Site settings"
-msgstr ""
-
-msgid "Case management"
-msgstr ""
-
-msgid "Network settings"
-msgstr ""
-
-msgid "Mode:"
-msgstr ""
-
-msgid "Root domain used for secondary sites"
-msgstr ""
-
-msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
-msgid "Enable terms of service"
-msgstr ""
-
-msgid "Sites"
-msgstr ""
-
-msgid "Active"
-msgstr "فعال"
-
-msgid "Inactive"
-msgstr ""
-
-msgid "The default password is:"
-msgstr ""
-
-msgid "The system forces users to change the password at first login."
-msgstr "سیستم کاربرها را در ورود اول وادار به تغییر گذرواژه میکند."
-
-msgid "Reset password"
-msgstr ""
-
-msgid "New password"
-msgstr "رمز عبور جدید"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr ""
-
-msgid "Force password change"
-msgstr ""
-
-msgid "The user will be forced to change its password on next login."
-msgstr ""
-
-msgid "Language"
-msgstr "زبان"
-
-msgid "Remove the PGP key"
-msgstr "کلید پی جی پی را حذف کن"
-
-msgid "Set up encryption by providing a PGP public key"
-msgstr ""
-
 msgid "User has administrative access to the following features:"
 msgstr ""
 
@@ -1534,16 +1550,13 @@ msgid "main"
 msgstr ""
 
 msgid "Request date"
-msgstr ""
+msgstr "تاریخ درخواست"
 
 msgid "Authorization"
 msgstr ""
 
 msgid "Identities"
 msgstr "هویت‌ها"
-
-msgid "User preferences"
-msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
@@ -1563,17 +1576,6 @@ msgid ""
 msgstr "شما بدون ناشناسی به گره متصل شده اید و این گره فقط گزارشهای ناشناس را قبول میکند"
 
 msgid ""
-"Server temporarily unusable due to resource exhaustion; advise the Admin if "
-"you can."
-msgstr ""
-
-msgid "This server is not configured."
-msgstr "این گره تنظیم نشده است."
-
-msgid "You will not be able to send a submission."
-msgstr "نمیتوانید گزارشی تسلیم کنید"
-
-msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
 "protect the identity for submitter and recipient in the exchange of content."
 msgstr ""
@@ -1587,12 +1589,24 @@ msgid "Please support Hermes through their donation page."
 msgstr ""
 
 msgid "Forgot password?"
+msgstr "گذرواژه را فراموش کرده اید؟"
+
+msgid "Check your inbox and enter the authentication code you received."
 msgstr ""
 
 msgid "Authentication failed"
 msgstr "تایید هویت ناموفق بود"
 
+msgid "The code is either invalid or expired."
+msgstr ""
+
 msgid "Site:"
+msgstr "سایت:"
+
+msgid "Have you already filed a submission? Enter your receipt."
+msgstr ""
+
+msgid "The receipt is either invalid or the submission has expired."
 msgstr ""
 
 msgid "Username:"
@@ -1607,54 +1621,61 @@ msgstr "حساب خود را انتخاب کنید:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "حالا گذرواژه خود را وارد کنید، و سپس دگمه ورود را کلیک کنید:"
 
+msgid "Assign score points"
+msgstr ""
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Confirm"
+msgstr "تایید "
+
 msgid "Are you sure?"
 msgstr "آیا مطمئن هستید؟"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
 
-msgid "Assign score points"
-msgstr ""
-
-msgid ""
-"Enter the number of score points to be assigned when this option is "
-"selected:"
-msgstr ""
-
-msgid "Confirm"
-msgstr "تایید "
-
-msgid "Are you human?"
-msgstr "آیا شما یک انسان هستید؟"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr ""
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr ""
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr ""
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
 
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
+msgid "Welcome!"
+msgstr "خوش آمدید!"
+
+msgid "For the user documentation, visit:"
 msgstr ""
 
-msgid "Are you sure that you wish to continue?"
-msgstr "آیا مطمئنید میخواهید ادامه دهید؟"
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
+msgstr ""
 
 msgid "Error!"
 msgstr "خطا!"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "خطا داخلی سرور"
 
 msgid "Error on input validation"
 msgstr ""
@@ -1663,7 +1684,7 @@ msgid "Resource not found"
 msgstr ""
 
 msgid "Forbidden operation"
-msgstr ""
+msgstr "عملیات غیرمجاز"
 
 msgid "The specified old password is not valid"
 msgstr "گذرواژه قدیمی ارائه شده معتبر نیست"
@@ -1683,17 +1704,20 @@ msgstr ""
 msgid "Please check your inbox for further instructions."
 msgstr ""
 
-msgid "Enable submission notification"
-msgstr "فعال کردن هشدار برای نکته‌ها"
+msgid "Encryption key"
+msgstr ""
 
-msgid "Current Password"
-msgstr "گذرواژه کنونی"
+msgid "Hide"
+msgstr "پنهان کردن"
+
+msgid "Show"
+msgstr "نمایش"
+
+msgid "Current password"
+msgstr "رمز عبور فعلی"
 
 msgid "Old password confirmation required"
 msgstr "تایید گذرواژه قبلی لازم است"
-
-msgid "New Password"
-msgstr "کلمه گذرواژه"
 
 msgid "The new password must be different from the current one."
 msgstr ""
@@ -1717,12 +1741,6 @@ msgstr "به شما شدیدا پیشنهاد میشود با استفاده ا�
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "سپس این آدرس را در مرورگر درج کنید:"
 
-msgid "Details of the PGP key:"
-msgstr ""
-
-msgid "Fingerprint"
-msgstr "اثر انگشت"
-
 msgid "Enter a name for the copy"
 msgstr ""
 
@@ -1730,13 +1748,13 @@ msgid "Add file"
 msgstr "فایل اضافه کن"
 
 msgid "Uploading files…"
-msgstr ""
+msgstr "در حال آپلود فایل ها..."
 
 msgid "Upload completed successfully!"
-msgstr ""
+msgstr "بارگذاری با موفقیت انجام شد!"
 
 msgid "Error while uploading files; check below for details."
-msgstr ""
+msgstr "خطا در هنگام بارگذاری فایل ها؛ پایین را برای جزییات بررسی کنید."
 
 msgid "Estimated upload time:"
 msgstr "زمان تخمین‌زده‌شده برای بارگذاری:"
@@ -1745,10 +1763,10 @@ msgid "seconds"
 msgstr "ثانیه"
 
 msgid "Size:"
-msgstr ""
+msgstr "سایز:"
 
 msgid "The connection is not secure."
-msgstr ""
+msgstr "ارتباط امن نمی باشد."
 
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
@@ -1770,11 +1788,26 @@ msgstr ""
 msgid "Civic activism"
 msgstr ""
 
+msgid "Submit"
+msgstr "ارسال"
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr ""
+
+msgid "Fill the additional questionnaire"
+msgstr ""
+
 msgid "Send"
 msgstr "ارسال"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "به افشاگر اجازه نوشتن نظر داده شود"
+
+msgid "From:"
+msgstr "از:"
+
+msgid "To:"
+msgstr "به:"
 
 msgid "Filename"
 msgstr "نام فایل"
@@ -1794,8 +1827,11 @@ msgstr "فایلی آپلود نشده!"
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "به افشاگر اجازه اضافه کردن ضمیمه به این اظهارات داده شود"
 
+msgid "Submission"
+msgstr "ثبت"
+
 msgid "Access expiration"
-msgstr ""
+msgstr "انقضا دسترسی"
 
 msgid "Connection"
 msgstr "ارتباط"
@@ -1805,6 +1841,9 @@ msgstr "هرگز"
 
 msgid "Revoked"
 msgstr "لغو"
+
+msgid "-"
+msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "به افشاگر اجازه ارسال پیام داده شود"
@@ -1859,7 +1898,7 @@ msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
-msgstr ""
+msgstr "بارگذاری یک فایل:"
 
 msgid "Logout"
 msgstr "خروج"
@@ -1888,54 +1927,31 @@ msgid "Password reset feature is unavailable for admin users."
 msgstr ""
 
 msgid "Password reset requested."
-msgstr ""
+msgstr "تنظیم مجدد گذرواژه درخواست شد."
 
 msgid "Thank you!"
 msgstr "متشکریم!"
 
-msgid "Remember your key code for this submission."
-msgstr "کد کلید خود را برای این ارائه به خاطر بسپارید."
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
 
-msgid "We will try to get back to you as soon as possible!"
+msgid "Remember your receipt for this submission."
 msgstr ""
 
 msgid ""
-"Use the 16 digit key code to log in. It will allow you to view any messages "
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
 msgstr ""
 
 msgid "View your submission"
 msgstr "درخواست خود را ببینید"
 
-msgid "Hint: How to hide your key code"
+msgid "Hint: How to hide your receipt"
 msgstr ""
 
 msgid ""
-"A useful way to hide your key code is to write it down like a credit card "
+"A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr ""
-
-msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr ""
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "این میتواند باعث دسترسی غیر مجاز ادمین سرور، یا رد صورت هک شدن سرور، دسترسی دیگران شود. "
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr ""
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr ""
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
 msgstr ""
 
 msgid ""
@@ -1948,9 +1964,6 @@ msgstr ""
 msgid "Undeclared"
 msgstr ""
 
-msgid "Congratulations!"
-msgstr "تبریک!"
-
 msgid "You have completed the platform activation."
 msgstr ""
 
@@ -1961,7 +1974,7 @@ msgid "Check your inbox to activate your account."
 msgstr ""
 
 msgid "Sign up"
-msgstr ""
+msgstr "عضویت"
 
 msgid "Domain"
 msgstr "دامنه"
@@ -1972,11 +1985,14 @@ msgstr "دیگر"
 msgid "Complete"
 msgstr "کامل کنید."
 
+msgid "Invalid phone number"
+msgstr "شماره تلفن ناموجود"
+
 msgid "This field is mandatory."
 msgstr ""
 
 msgid "The answer is too short."
-msgstr ""
+msgstr "پاسخ بیش از حد کوتاه می باشد."
 
 msgid "The specified input is not valid:"
 msgstr ""
@@ -1989,15 +2005,6 @@ msgstr ""
 
 msgid "Recipient selection"
 msgstr "انتخاب گیرنده"
-
-msgid "previous step"
-msgstr "مرحله قبل"
-
-msgid "next step"
-msgstr "مرحله‌ی بعدی"
-
-msgid "Submit"
-msgstr "ارسال"
 
 msgid "Recipients selected:"
 msgstr "گیرنده‌های انتخاب‌شده:"
@@ -2036,7 +2043,7 @@ msgid "Confirm password"
 msgstr "تایید رمز"
 
 msgid "The default username is:"
-msgstr ""
+msgstr "نام کاربری پیش فرض:"
 
 msgid "License Agreement"
 msgstr ""
@@ -2128,6 +2135,15 @@ msgstr "مسئولیت (نقش) شما زمانی‌که این گزارش را 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "واحد سازمانی و محل کار وقتی این گزارش را ارائه کردید"
 
+msgid "Authentication code: {AuthCode}"
+msgstr ""
+
+msgid "The authentication code is valid for 5 minutes."
+msgstr ""
+
+msgid "Authentication code"
+msgstr ""
+
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} گرامی،"
 
@@ -2138,9 +2154,6 @@ msgid "To log in, visit:"
 msgstr ""
 
 msgid "Users' credentials:"
-msgstr ""
-
-msgid "For the user documentation visit:"
 msgstr ""
 
 msgid "The platform will be automatically deleted on:"
@@ -2210,7 +2223,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl}"
+msgid "Site: {Url}"
 msgstr ""
 
 msgid "Name: {Name}"
@@ -2238,35 +2251,24 @@ msgid ""
 msgstr ""
 
 msgid "Test email"
-msgstr ""
+msgstr "آزمایش ایمیل"
 
 msgid ""
 "This is an email to notify you of a new comment on an existing submission."
 msgstr ""
 
-msgid "The submission can be accessed:"
-msgstr "ارائه قابل دست‌رسی است:"
-
-msgid "via Tor at: {TorUrl}"
-msgstr "از طریق Tor در: {TorUrl}"
-
-msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "از طریق HTTPS در: {HTTPSUrl}"
+msgid "The submission can be accessed at:"
+msgstr ""
 
 msgid "New comment"
-msgstr ""
+msgstr "دیدگاه جدید"
 
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
 msgstr ""
 
-msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
-
-msgid ""
-"If you wish to validate your new email with Tor, you may use the following "
-"link: {TorUrl}"
+msgid "Click the following link to validate this change:"
 msgstr ""
 
 msgid ""
@@ -2275,7 +2277,7 @@ msgid ""
 msgstr ""
 
 msgid "Email change request"
-msgstr ""
+msgstr "درخواست تغییر ایمیل"
 
 msgid "From: {RecipientName}"
 msgstr ""
@@ -2353,7 +2355,7 @@ msgid ""
 "whistleblower's identity for the submission {TipNum}"
 msgstr ""
 
-msgid "The request can be accessed:"
+msgid "The request can be accessed at:"
 msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
@@ -2372,7 +2374,7 @@ msgid ""
 msgstr ""
 
 msgid "New message"
-msgstr ""
+msgstr "پیام جدید"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2384,7 +2386,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "You can confirm your request by clicking the following links:"
+msgid "You can confirm your request by clicking the following link:"
 msgstr ""
 
 msgid "Password reset instructions"
@@ -2427,19 +2429,19 @@ msgid "Click the link to activate the platform:"
 msgstr ""
 
 msgid "Activation"
-msgstr ""
+msgstr "فعال سازی"
 
 msgid "A software update is available."
-msgstr ""
+msgstr "بروز رسانی نرم افزار موجود می باشد."
 
 msgid "It is good security practice to keep the platform up to date."
 msgstr ""
 
 msgid "Installed version: {InstalledVersion}"
-msgstr ""
+msgstr "نسخه نصب شده: {InstalledVersion}"
 
 msgid "Latest version: {LatestVersion}"
-msgstr ""
+msgstr "آخرین نسخه: {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
@@ -2477,7 +2479,7 @@ msgid "New submission"
 msgstr ""
 
 msgid "Role: {Role}"
-msgstr ""
+msgstr "نقش: {Role}"
 
 msgid "Username: {Username}"
 msgstr ""

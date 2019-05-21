@@ -47,8 +47,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-07 19:04+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1366,7 +1366,7 @@ msgid "Terms of service"
 msgstr "Nutzungsbedingungen"
 
 msgid "Date range"
-msgstr ""
+msgstr "Datumsbereich"
 
 msgid "Map"
 msgstr "Karte"
@@ -1438,7 +1438,7 @@ msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Trigger conditions"
-msgstr ""
+msgstr "Auslösebedingungen"
 
 msgid "Sufficient"
 msgstr ""
@@ -2248,7 +2248,7 @@ msgid "Registration data:"
 msgstr "Registrierungsdaten:"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "Seite: {Url}"
 
 msgid "Name: {Name}"
 msgstr "Name: {Name}"
