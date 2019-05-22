@@ -508,8 +508,7 @@ controller("SubmissionFieldErrKeyCtrl", ["$scope",
       formFieldSel.focus();
     };
 }]).
-controller("SubmissionFormFieldCtrl", ["$scope", "fieldUtilities",
-  function($scope, fieldUtilities) {
+controller("SubmissionFormFieldCtrl", ["$scope", function($scope) {
     $scope.f = $scope[$scope.fieldFormVarName];
 
     if ($scope.field.type === "map" && $scope.field.attrs.topojson.value) {
@@ -540,7 +539,7 @@ controller("SubmissionFormFieldCtrl", ["$scope", "fieldUtilities",
         }
       };
 
-      d3.json($scope.field.attrs.topojson.value).then(function(topojson) {
+      d3.json($scope.field.attrs.topojson.value).then(function() {
         var projection = d3.geoMercator();
         var path = d3.geoPath();
 
