@@ -14,9 +14,9 @@ A menu on the right offers you links to the different administative sections:
 
    2. Users
 
-   3. Contexts
+   3. Questionnaires
 
-   4. Questionnaires
+   4. Contexts
 
    5. Case management
 
@@ -90,15 +90,6 @@ Depending on your project needs here you could create users with different roles
 
 .. image:: imgs/users.png
 
-Contexts
---------
-This section is where whistleblowing contexts (channels) could be created and managed.
-The system with the basic configuration completed with the initial Platform wizard is configured with a single Context (whistleblowing channel) called Default.
-
-Depending on your project needs here you could create additional Contexts and configure their respective properties.
-
-.. image:: imgs/contexts.png
-
 Questionnaires
 --------------
 This section is where whistleblowing questionnaires could be created and managed.
@@ -116,6 +107,15 @@ This section is furtherly divided in:
 Depending on your project needs you may evaluate defining some questions once as Question Templates and reuse the same question in multiple questionnaires.
 
 .. image:: imgs/question_templates.png
+
+Contexts
+--------
+This section is where whistleblowing contexts (channels) could be created and managed.
+The system with the basic configuration completed with the initial Platform wizard is configured with a single Context (whistleblowing channel) called Default.
+
+Depending on your project needs here you could create additional Contexts and configure their respective properties.
+
+.. image:: imgs/contexts.png
 
 Case management
 ---------------
