@@ -101,6 +101,14 @@ table {
   margin-bottom: 0.8em;
 }
 
+.span-as-link {
+  color: #FFF;
+}
+
+.span-as-link-selected {
+  color: #000;
+}
+
 #LoginStatusBox, #LoginFormBox {
   color: #000;
   padding: 1em;
