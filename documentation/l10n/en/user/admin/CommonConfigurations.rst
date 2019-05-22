@@ -104,14 +104,15 @@ If all is working as expected, click on the "Save" button to keep the configured
 
 Configure recipients
 --------------------
-In the "First Configuration Guide" we have seen how to create a Recipient (or Receiver).
 The Recipient is the person that will receive and process the data that whistleblowers input in the platform.
 You can have one or multiple Recipients per Context, and also have one Recipient that can access to multiple Contexts. The platform is very flexible on this and allows you to define in very detail your whistleblowing system and procedure.
 
+Configure questionnaires
+------------------------
+TODO
+
 Configure contexts
 ------------------
-In the "First Configuration Guide" we have seen how to create a Context.
-
 The context is sort a conceptual container of your whistleblowing initiative. To better understand this, just think about a whistleblowing initiative devoted to gather information about ethical misconducts infringing the ethical code of a governmental agency or of a company. When you configure the Context you will assign to it a name that can be evocative of the mission related to this context so that the whistleblowers know that this is the right place where to communicate their data. Then you would like to describe in more detail the context itself, so that whistleblower are informed that this is part of a whole process in which specific persons, the receivers, will receive and follow up on the data they're submitting.
 
 To configure a Context, log in as an admin, go to the administration interface, select "Context configuration" in the menu on the left of the page and fill the text field with the name choosen for the Context, then click on "Add" button.
@@ -127,11 +128,7 @@ The most important field in this section at this stage of the configuration proc
 Once completed this task, click on "Save" button.
 You can verify the appearance by visiting ...
 
-Configure questionnaires
-------------------------
-Through the administrators control panel, GlobaLeaks has room for rich customization. Everything within the basic customization guide is well tested and safe, and caution is adviced using the advanced features. Some are experimental, and may be removed or changed in future versions of the software.
-
-Basic CSS Customization
+Customize the graphic layout
 -------------------------
 Example 1: custom background
 ............................
