@@ -10,6 +10,7 @@ From this Home page you may access all the common user facilities already descri
 .. image:: imgs/home.png
 
 A menu on the right offers you links to the different administative sections:
+
    1. Site settings
 
    2. Users
@@ -33,6 +34,7 @@ Site settings
 This is the section that offers you all the main customization possibilities necessary for implementing a basic and functional whistleblowing site.
 
 This section is furtherly divided in:
+
    1. Main configuration
 
    2. Theme customization
@@ -144,6 +146,7 @@ The software enables you to create questions of the following types:
 General question properties
 ...........................
 Each of the software question types make it possible to configure the following properties:
+
   Question: The text of the question
 
   Hint: A hint that will be shown via an popover an a question mark near the question.
@@ -187,6 +190,7 @@ This section is intended to host all the main case management feature that will 
 Currently it hosts the possibility to define submissions statuses and substatuses intended to be used by Recipients while working on the submissions.
 
 By default the system includes the following submission statuses:
+
    1. New
 
    2. Open
@@ -242,6 +246,7 @@ Here you can configure all the aspects related to the access of the platform via
 .. image:: imgs/https.png
 
 In particular here are configured:
+
    1. The domain name used by your project
 
    2. The HTTPS key and certificates
@@ -261,6 +266,7 @@ Here you can configure IP based Access Control.
 .. image:: imgs/ip_access_control.png
 
 Suggested configurations are:
+
    1. Prevent Whistleblowers to report from whithin their respective work space.
 
    2. Restrict Recipients access to their intranet.
