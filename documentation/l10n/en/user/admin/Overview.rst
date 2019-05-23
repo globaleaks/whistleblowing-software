@@ -93,20 +93,84 @@ Depending on your project needs here you could create users with different roles
 Questionnaires
 --------------
 This section is where whistleblowing questionnaires could be created and managed.
-The system with the basic configuration completed with the initial Platform wizard is configured with a single Default questionnaire not editable and pre-associated to the Default Context.
 
-Depending on your project needs here you could create additional Questionnaire for each of your different contexts.
+By default the software implements a Default Questionnaire with a single Step and the following three questions:
+   One question "Short description" of type "Multi-line text input" enabling whistleblower to provide a short summary of the fact reported;
+   One question "Full description" of type "Multi-line text input" enabling whistleblowers to describe the fact reported in detail;
+   One question "Attachments" of type "Attachment" enabling users to load one or more attachments.
 
-This section is furtherly divided in:
-   1. Questionnaires
+The system with its basic configuration completed with the initial Platform wizard is also already configured with this Default Questionnaire pre-associated to the Default Context.
 
-   2. Question templates
+Depending on your project needs you could create specific questionnaire for each of your different submissions' contexts.
 
 .. image:: imgs/questionnaires.png
 
 Depending on your project needs you may evaluate defining some questions once as Question Templates and reuse the same question in multiple questionnaires.
 
 .. image:: imgs/question_templates.png
+
+Steps
+.....
+The software enables to organise questionnaire in one or multiple steps.
+For example the default qeustionnaire is organized with a single step including all the questions.
+
+Questions types
+...............
+The software enables you to create questions of the following types:
+   Single-line text input
+
+   Multi-line text input
+
+   Selection box
+
+   Multiple choice input
+
+   Checkbox
+
+   Attachment
+
+   Terms of service
+
+   Date
+
+   Date range
+
+   Map
+
+   Question group
+
+General question properties
+...........................
+Each of the software question types make it possible to configure the following properties:
+  Question: The text of the question
+
+  Hint: A hint that will be shown via an popover an a question mark near the question.
+
+  Description: A description text that will be shown below the question
+
+  Required: Set this field if you want this question to be mandatory
+
+  Preview: Set this field if you want the answers to this question to appear in the preview section of the submission list 
+
+Question properties by question type:
+.....................................
+
+
+Single and Multi line text input
+++++++++++++++++++++++++++++++++
+TODO
+
+Selection box, Multiple choice input, Checkbox
+++++++++++++++++++++++++++++++++++++++++++++++
+TODO
+
+Question groups
+...............
+TODO
+
+Conditional questions
+.....................
+TODO
 
 Contexts
 --------
