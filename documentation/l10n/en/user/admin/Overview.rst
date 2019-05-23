@@ -82,6 +82,7 @@ This sections is where users could be created and managed.
 The system with the basic configuration completed with the initial Platform wizard is configured with an Administrator and a Recipient.
 
 Depending on your project needs here you could create users with different roles and manage their respective privileges:
+
    1. Administrators
 
    2. Recipients
@@ -117,6 +118,7 @@ For example the default qeustionnaire is organized with a single step including 
 Questions types
 ...............
 The software enables you to create questions of the following types:
+
    Single-line text input
 
    Multi-line text input
@@ -152,10 +154,8 @@ Each of the software question types make it possible to configure the following 
 
   Preview: Set this field if you want the answers to this question to appear in the preview section of the submission list 
 
-Question properties by question type:
+Question properties by question type
 .....................................
-
-
 Single and Multi line text input
 ++++++++++++++++++++++++++++++++
 TODO
