@@ -3,7 +3,7 @@ For administrators
 ===================
 
 .. toctree::
-        admin/Overview
+        admin/UserInterface
         admin/CommonConfigurations
         admin/IntegrationGuide
         admin/UpgradeGuide

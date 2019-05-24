@@ -1,7 +1,7 @@
 ===============================
-Overview of the user interfaces
+User interface
 ===============================
-This overview offers you a summary of the user interfaces offered to Admin users.
+This section ffers you a summary of the user interface offered to Admin users.
 
 Anytime you log in as administrator via the Login page the application takes you to your personal administrative Homepage; This page includes some documentation about GlobaLeaks that is intended to clarify you all the up-to-date documentation in matter of software security, best practices and community support.
 
