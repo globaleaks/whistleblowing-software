@@ -108,8 +108,11 @@ Questionnaires
 This section is where whistleblowing questionnaires could be created and managed.
 
 By default the software implements a Default Questionnaire with a single Step and the following three questions:
+
    One question "Short description" of type "Multi-line text input" enabling whistleblower to provide a short summary of the fact reported;
+
    One question "Full description" of type "Multi-line text input" enabling whistleblowers to describe the fact reported in detail;
+
    One question "Attachments" of type "Attachment" enabling users to load one or more attachments.
 
 The system with its basic configuration completed with the initial Platform wizard is also already configured with this Default Questionnaire pre-associated to the Default Context.
