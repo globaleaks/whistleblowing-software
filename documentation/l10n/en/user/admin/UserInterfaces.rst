@@ -83,15 +83,25 @@ Users
 This sections is where users could be created and managed.
 The system with the basic configuration completed with the initial Platform wizard is configured with an Administrator and a Recipient.
 
-Depending on your project needs here you could create users with different roles and manage their respective privileges:
+Depending on your project needs here you could create users with different roles and manage their respective privileges.
+
+.. image:: imgs/users.png
+
+User Roles
+..........
+The software offers the possibility to create users with the following roles:
 
    1. Administrators
 
    2. Recipients
 
-   3. Custodians
+Administrators
+++++++++++++++
+TODO
 
-.. image:: imgs/users.png
+Recipients
+++++++++++++++
+TODO
 
 Questionnaires
 --------------
