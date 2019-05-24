@@ -16,6 +16,10 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
   function ($scope, $http, AdminSubmissionStatusResource) {
     $scope.editing = false;
     $scope.toggleEditing = function () {
+      if ($scope.submissions_status.system_defined) {
+        return;
+      }
+
       $scope.editing = !$scope.editing;
     };
 
