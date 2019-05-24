@@ -178,11 +178,29 @@ TODO
 Contexts
 --------
 This section is where whistleblowing contexts (channels) could be created and managed.
-The system with the basic configuration completed with the initial Platform wizard is configured with a single Context (whistleblowing channel) called Default.
 
-Depending on your project needs here you could create additional Contexts and configure their respective properties.
+A whistleblowing channel is typically defined by the following main characteristics
+
+    Name: the name of the channel
+    Image: an image to identify the channel
+    Description: a description of the channel
+    Recipients: the set of recipients that will receive submissions sent to this channel
+    Questionnaire: the questionnaire that will be proposed to whistlelowers selecting this channel
+    Submission expiration: the data retention policy for the channel
+
+The system with the basic configuration completed with the initial platform wizard is configured with a single Context called Default, on which is associated a recipient and the default questionnaire.
+
+Depending on your project needs here you could create additional Contexts and configure their respective recipients and properties.
 
 .. image:: imgs/contexts.png
+
+Submissions expiration
+......................
+The software enables to configure a data retention policy for each channel.
+This is a fundamental property of the whistleblowing channel that makes it possible to configure automatic secure deletion of submissions after a certain period of time.
+This setting should be configured in relation to the risk of the channel in order to limit unndeded exposure of the submissions received therein.
+
+By default a context is configured with a submission expiration of 30 days.
 
 Case management
 ---------------
