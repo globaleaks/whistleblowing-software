@@ -134,27 +134,27 @@ Questions types
 ...............
 The software enables you to create questions of the following types:
 
-   Single-line text input
+   1. Single-line text input
 
-   Multi-line text input
+   2. Multi-line text input
 
-   Selection box
+   3. Selection box
 
-   Multiple choice input
+   4. Multiple choice input
 
-   Checkbox
+   5. Checkbox
 
-   Attachment
+   6. Attachment
 
-   Terms of service
+   7. Terms of service
 
-   Date
+   8. Date
 
-   Date range
+   9. Date range
 
-   Map
+   10. Map
 
-   Question group
+   11. Question group
 
 General question properties
 ...........................
