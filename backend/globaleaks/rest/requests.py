@@ -242,6 +242,7 @@ AdminNodeDesc = {
     'disable_submissions': bool,
     'multisite_login': bool,
     'simplified_login': bool,
+    'enable_custodian': bool,
     'enable_scoring_system': bool,
     'enable_experimental_features': bool,
     'enable_signup': bool,
