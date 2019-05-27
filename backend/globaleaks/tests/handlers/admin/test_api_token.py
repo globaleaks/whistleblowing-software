@@ -2,7 +2,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import db
-from globaleaks.handlers.admin import shorturl
+from globaleaks.handlers.admin import redirect
 from globaleaks.models.config import db_set_config_variable
 from globaleaks.orm import tw
 from globaleaks.rest import errors
@@ -11,7 +11,7 @@ from globaleaks.utils.crypto import generateApiToken
 
 
 class TestAPITokenEnabled(helpers.TestHandlerWithPopulatedDB):
-    _handler = shorturl.ShortURLCollection
+    _handler = redirect.RedirectCollection
 
     @inlineCallbacks
     def setUp(self):
@@ -22,14 +22,14 @@ class TestAPITokenEnabled(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_accept_token(self):
-        shorturl_desc = self.get_dummy_shorturl()
-        handler = self.request(shorturl_desc, headers={'x-api-token': self.api_tok})
+        desc = self.get_dummy_redirect()
+        handler = self.request(desc, headers={'x-api-token': self.api_tok})
         yield handler.post()
 
     @inlineCallbacks
     def test_deny_token(self):
-        shorturl_desc = self.get_dummy_shorturl()
-        handler = self.request(shorturl_desc, headers={'x-api-token': 'a'*32})
+        desc = self.get_dummy_redirect()
+        handler = self.request(desc, headers={'x-api-token': 'a'*32})
         yield self.assertRaises(errors.NotAuthenticated, handler.post)
 
     @inlineCallbacks
@@ -39,7 +39,7 @@ class TestAPITokenEnabled(helpers.TestHandlerWithPopulatedDB):
 
 
 class TestAPITokenDisabled(helpers.TestHandlerWithPopulatedDB):
-    _handler = shorturl.ShortURLCollection
+    _handler = redirect.RedirectCollection
 
     @inlineCallbacks
     def test_deny_token(self):
@@ -48,8 +48,8 @@ class TestAPITokenDisabled(helpers.TestHandlerWithPopulatedDB):
         self.api_tok, digest = generateApiToken()
         yield tw(db_set_config_variable, 1, 'admin_api_token_digest', '')
 
-        shorturl_desc = self.get_dummy_shorturl()
-        handler = self.request(shorturl_desc, headers={'x-api-token': self.api_tok})
+        desc = self.get_dummy_redirect()
+        handler = self.request(desc, headers={'x-api-token': self.api_tok})
         yield self.assertRaises(errors.NotAuthenticated, handler.post)
 
     @inlineCallbacks
