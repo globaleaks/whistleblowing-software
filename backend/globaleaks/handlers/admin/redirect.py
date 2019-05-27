@@ -52,6 +52,7 @@ class RedirectCollection(BaseHandler):
 
 class RedirectInstance(BaseHandler):
     check_roles = 'admin'
+    invalidate_cache = True
 
     def delete(self, redirect_id):
         """
