@@ -33,8 +33,6 @@ https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
 landing_page_regexp               = r'^(homepage|submissionpage)$'
 context_selector_type_regexp      = r'^(list|cards|search)$'
 tip_operation_regexp              = r'^(postpone|set)$'
-shorturl_regexp                   = r'^([a-z0-9_-]{1,30})$'
-longurl_regexp                    = r'^(/[a-z0-9#=_&?/-]{1,255})$'
 short_text_regexp                 = r'^.{1,255}$'
 
 token_regexp                      = r'([a-zA-Z0-9]{42})'
@@ -461,9 +459,9 @@ AdminCSRFileDesc = {
     }
 }
 
-AdminShortURLDesc = {
-    'shorturl': shorturl_regexp,
-    'longurl': longurl_regexp
+AdminRedirectDesc = {
+    'path1': text_type,
+    'path2': text_type
 }
 
 NodeDesc = {

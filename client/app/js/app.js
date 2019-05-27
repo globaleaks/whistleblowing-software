@@ -121,7 +121,7 @@ var GLClient = angular.module("GLClient", [
     }
 
     function fetchResources(role, lst) {
-      return ["$q", "Access", "AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNotificationResource", "AdminShorturlResource", "AdminTenantResource", "FieldAttrs", "ActivitiesCollection", "AnomaliesCollection", "JobsOverview", "ManifestResource", "AdminSubmissionStatusResource", function($q, Access, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, AdminTenantResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, JobsOverview, ManifestResource, AdminSubmissionStatusResource) {
+      return ["$q", "Access", "AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNotificationResource", "AdminRedirectResource", "AdminTenantResource", "FieldAttrs", "ActivitiesCollection", "AnomaliesCollection", "JobsOverview", "ManifestResource", "AdminSubmissionStatusResource", function($q, Access, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNotificationResource, AdminRedirectResource, AdminTenantResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, JobsOverview, ManifestResource, AdminSubmissionStatusResource) {
         var resourcesPromises = {
           node: function() { return AdminNodeResource.get().$promise; },
           manifest: function() { return ManifestResource.get().$promise; },
@@ -130,7 +130,7 @@ var GLClient = angular.module("GLClient", [
           fieldtemplates: function() { return AdminFieldTemplateResource.query().$promise; },
           users: function() { return AdminUserResource.query().$promise; },
           notification: function() { return AdminNotificationResource.get().$promise; },
-          shorturls: function() { return AdminShorturlResource.query().$promise; },
+          redirects: function() { return AdminRedirectResource.query().$promise; },
           tenants: function() { return AdminTenantResource.query().$promise; },
           activities: function() { return ActivitiesCollection.query().$promise; },
           anomalies: function() { return AnomaliesCollection.query().$promise; },
@@ -327,7 +327,7 @@ var GLClient = angular.module("GLClient", [
         header_title: "Advanced settings",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["node", "questionnaires", "shorturls"]),
+          resources: fetchResources("admin", ["node", "questionnaires", "redirects"]),
         }
       }).
       when("/admin/overview", {

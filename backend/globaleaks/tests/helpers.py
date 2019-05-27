@@ -627,10 +627,10 @@ class TestGL(unittest.TestCase):
     def get_dummy_file(self, filename='', content=None):
         return get_dummy_file(filename, content)
 
-    def get_dummy_shorturl(self, x=''):
+    def get_dummy_redirect(self, x=''):
         return {
-          'shorturl': 'shorturl' + str(x),
-          'longurl': '/longurl' + str(x)
+          'path1': '/path1-' + str(x),
+          'path2': '/path2-' + str(x)
         }
 
     def emulate_file_upload(self, token, n):

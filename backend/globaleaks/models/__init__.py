@@ -1044,20 +1044,20 @@ class _Signup(Model):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
-class _ShortURL(Model):
+class _Redirect(Model):
     """
-    Class used to implement url shorteners
+    Class used to implement url redirects
     """
-    __tablename__ = 'shorturl'
+    __tablename__ = 'redirect'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, default=1, nullable=False)
 
-    shorturl = Column(UnicodeText, nullable=False)
-    longurl = Column(UnicodeText, nullable=False)
+    path1 = Column(UnicodeText, nullable=False)
+    path2 = Column(UnicodeText, nullable=False)
 
-    unicode_keys = ['shorturl', 'longurl']
+    unicode_keys = ['path1', 'path2']
 
     @declared_attr
     def __table_args__(self):
@@ -1452,7 +1452,7 @@ class ReceiverTip(_ReceiverTip, Base): pass
 class SecureFileDelete(_SecureFileDelete, Base): pass
 
 
-class ShortURL(_ShortURL, Base): pass
+class Redirect(_Redirect, Base): pass
 
 
 class Signup(_Signup, Base): pass

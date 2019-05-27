@@ -157,6 +157,7 @@ def db_refresh_tenant_cache(session, tid_list):
     for tid in tid_list:
         State.tenant_cache[tid]['ip_filter'] = {}
         State.tenant_cache[tid]['https_allowed'] = {}
+        State.tenant_cache[tid]['redirects'] = {}
 
         for x in [('admin', 'ip_filter_admin_enable', 'ip_filter_admin'),
                   ('custodian', 'ip_filter_custodian_enable', 'ip_filter_custodian'),
@@ -167,6 +168,9 @@ def db_refresh_tenant_cache(session, tid_list):
 
         for x in ['admin', 'custodian', 'receiver', 'whistleblower']:
             State.tenant_cache[tid]['https_allowed'][x] = State.tenant_cache[tid].get('https_' + x, True)
+
+    for redirect in session.query(models.Redirect).filter(models.Redirect.tid.in_(tid_list)):
+        State.tenant_cache[tid]['redirects'][redirect.path1] = redirect.path2
 
 
 def db_refresh_memory_variables(session, to_refresh=None):

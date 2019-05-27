@@ -586,8 +586,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory("AdminFieldTemplateResource", ["GLResource", function(GLResource) {
     return new GLResource("admin/fieldtemplates/:id", {id: "@id"});
 }]).
-  factory("AdminShorturlResource", ["GLResource", function(GLResource) {
-    return new GLResource("admin/shorturls/:id", {id: "@id"});
+  factory("AdminRedirectResource", ["GLResource", function(GLResource) {
+    return new GLResource("admin/redirects/:id", {id: "@id"});
 }]).
   factory("AdminTenantResource", ["GLResource", function(GLResource) {
     return new GLResource("admin/tenants/:id", {id: "@id"});
@@ -653,8 +653,8 @@ factory("AdminAcmeResource", ["GLResource", function(GLResource) {
 factory("AdminTLSCfgFileResource", ["GLResource", function(GLResource) {
     return new GLResource("admin/config/tls/files/:name", {name: "@name"});
 }]).
-factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNotificationResource", "AdminShorturlResource", "AdminTenantResource",
-    function(AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, AdminTenantResource) {
+factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNotificationResource", "AdminRedirectResource", "AdminTenantResource",
+    function(AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNotificationResource, AdminRedirectResource, AdminTenantResource) {
   return {
     new_context: function() {
       var context = new AdminContextResource();
@@ -805,8 +805,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       return user;
     },
 
-    new_shorturl: function () {
-      return new AdminShorturlResource();
+    new_redirect: function () {
+      return new AdminRedirectResource();
     },
 
     new_tenant: function() {
@@ -1548,8 +1548,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
      "hostname_regexp": /^[a-z0-9-.]+$|^$/,
      "onionservice_regexp": /^[0-9a-z]{16}\.onion$/,
      "https_regexp": /^https:\/\/([a-z0-9-]+)\.(.*)$|^$/,
-     "shortener_shorturl_regexp": /[a-z0-9_-]{1,30}$/,
-     "shortener_longurl_regexp": /\/[a-z0-9#=_&?/-]{1,255}$/,
      "uuid_regexp": /^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$/
 }).
   factory("GLTranslate", ["$translate", "$location","tmhDynamicLocale",

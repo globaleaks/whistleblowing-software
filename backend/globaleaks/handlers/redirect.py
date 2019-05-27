@@ -13,7 +13,7 @@ url_map = {
 
 class SpecialRedirectHandler(BaseHandler):
     """
-    This handler implement the platform url shortener
+    This handler implement the platform special redirects
     """
     check_roles = '*'
 

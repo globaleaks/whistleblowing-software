@@ -28,7 +28,7 @@ from globaleaks.handlers import custodian, \
                                 rtip, wbtip, \
                                 attachment, authentication, token, \
                                 export, l10n, wizard,\
-                                user, shorturl, \
+                                user, \
                                 redirect, \
                                 robots, \
                                 signup, \
@@ -47,7 +47,7 @@ from globaleaks.handlers.admin import node as admin_node
 from globaleaks.handlers.admin import notification as admin_notification
 from globaleaks.handlers.admin import operation as admin_operation
 from globaleaks.handlers.admin import questionnaire as admin_questionnaire
-from globaleaks.handlers.admin import shorturl as admin_shorturl
+from globaleaks.handlers.admin import redirect as admin_redirect
 from globaleaks.handlers.admin import statistics as admin_statistics
 from globaleaks.handlers.admin import step as admin_step
 from globaleaks.handlers.admin import tenant as admin_tenant
@@ -143,8 +143,8 @@ api_spec = [
     (r'/admin/steps/' + uuid_regexp, admin_step.StepInstance),
     (r'/admin/fieldtemplates', admin_field.FieldTemplatesCollection),
     (r'/admin/fieldtemplates/' + key_regexp, admin_field.FieldTemplateInstance),
-    (r'/admin/shorturls', admin_shorturl.ShortURLCollection),
-    (r'/admin/shorturls/' + uuid_regexp, admin_shorturl.ShortURLInstance),
+    (r'/admin/redirects', admin_redirect.RedirectCollection),
+    (r'/admin/redirects/' + uuid_regexp, admin_redirect.RedirectInstance),
     (r'/admin/stats/(\d+)', admin_statistics.StatsCollection),
     (r'/admin/activities/(summary|details)', admin_statistics.RecentEventsCollection),
     (r'/admin/anomalies', admin_statistics.AnomalyCollection),
@@ -176,7 +176,6 @@ api_spec = [
     (r'/robots.txt', robots.RobotstxtHandler),
     (r'/sitemap.xml', sitemap.SitemapHandler),
     (r'/s/(.+)', file.FileHandler),
-    (r'(/u/.{1,255})', shorturl.ShortURL),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
 
     (r'^(/admin|/login|/submission)$', redirect.SpecialRedirectHandler),
@@ -368,6 +367,10 @@ class APIResourceWrapper(Resource):
             if match is not None:
                 groups = match.groups()
                 request.tid, request.path = int(groups[0]), groups[1]
+
+        if request.path in State.tenant_cache[request.tid]['redirects']:
+            self.redirect(request, State.tenant_cache[request.tid]['redirects'][request.path])
+            return b''
 
         match = None
         for regexp, handler, args in self._registry:

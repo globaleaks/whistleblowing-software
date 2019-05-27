@@ -161,7 +161,7 @@ controller("AdminAdvancedCtrl", ["$scope", "$http", "$uibModal", "CONSTANTS",
       template:"views/admin/advanced/tab1.html"
     },
     {
-      title:"URL shortener",
+      title:"URL redirects",
       template:"views/admin/advanced/tab2.html"
     },
   ];
@@ -191,31 +191,28 @@ controller("AdminAdvancedCtrl", ["$scope", "$http", "$uibModal", "CONSTANTS",
     });
   };
 
-  $scope.shortener_shorturl_regexp = CONSTANTS.shortener_shorturl_regexp;
-  $scope.shortener_longurl_regexp = CONSTANTS.shortener_longurl_regexp;
+  $scope.new_redirect = {};
 
-  $scope.new_shorturl = {};
+  $scope.add_redirect = function() {
+    var redirect = new $scope.AdminUtils.new_redirect();
 
-  $scope.add_shorturl = function() {
-    var shorturl = new $scope.AdminUtils.new_shorturl();
+    redirect.path1 = $scope.new_redirect.path1;
+    redirect.path2 = $scope.new_redirect.path2;
 
-    shorturl.shorturl = $scope.new_shorturl.shorturl;
-    shorturl.longurl = $scope.new_shorturl.longurl;
-
-    shorturl.$save(function(new_shorturl){
-      $scope.admin.shorturls.push(new_shorturl);
-      $scope.new_shorturl = {};
+    redirect.$save(function(new_redirect){
+      $scope.admin.redirects.push(new_redirect);
+      $scope.new_redirect = {};
     });
   };
 }]).
-controller("AdminShorturlEditCtrl", ["$scope", "AdminShorturlResource",
-  function($scope, AdminShorturlResource) {
-    $scope.delete_shorturl = function(shorturl) {
-      AdminShorturlResource.delete({
-        id: shorturl.id
+controller("AdminRedirectEditCtrl", ["$scope", "AdminRedirectResource",
+  function($scope, AdminRedirectResource) {
+    $scope.delete_redirect = function(redirect) {
+      AdminRedirectResource.delete({
+        id: redirect.id
       }, function(){
-        var idx = $scope.admin.shorturls.indexOf(shorturl);
-        $scope.admin.shorturls.splice(idx, 1);
+        var idx = $scope.admin.redirect.indexOf(redirect);
+        $scope.admin.redirects.splice(idx, 1);
       });
     };
 }]).
