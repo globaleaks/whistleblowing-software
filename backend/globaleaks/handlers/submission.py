@@ -223,6 +223,7 @@ def serialize_itip(session, internaltip, language):
         'questionnaires': questionnaires,
         'receivers': db_get_itip_receiver_list(session, internaltip),
         'https': internaltip.https,
+        'mobile': internaltip.mobile,
         'enable_two_way_comments': internaltip.enable_two_way_comments,
         'enable_two_way_messages': internaltip.enable_two_way_messages,
         'enable_attachments': internaltip.enable_attachments,
@@ -297,6 +298,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
     # The status https is used to keep track of the security level adopted by the whistleblower
     itip.https = not client_using_tor
+    itip.mobile = request['mobile']
 
     itip.context_id = context.id
     itip.enable_two_way_comments = context.enable_two_way_comments

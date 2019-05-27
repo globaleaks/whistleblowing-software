@@ -329,7 +329,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           identity_provided: false,
           answers: {},
           answer: 0,
-          total_score: 0
+          total_score: 0,
+          mobile: $rootScope.mobile
         });
 
         self._token = new TokenResource({"type": "submission"}).$save(function(token) {

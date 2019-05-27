@@ -134,7 +134,8 @@ SubmissionDesc = {
     'receivers': [uuid_regexp],
     'identity_provided': bool,
     'answers': dict,
-    'total_score': int
+    'total_score': int,
+    'mobile': bool
 }
 
 UserUserDesc = {
