@@ -1509,7 +1509,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
              field.attrs.topojson.id_name_map = {};
              field.attrs.topojson.geojson.features.forEach(function(feature) {
                field.attrs.topojson.id_name_map[feature.id] = feature.properties.name;
-	     });
+             });
             });
           }
         },

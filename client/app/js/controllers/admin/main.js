@@ -153,8 +153,7 @@ controller("AdminHomeCtrl", ["$scope", function($scope) {
     $scope.displayNum = undefined;
   };
 }]).
-controller("AdminAdvancedCtrl", ["$scope", "$http", "$uibModal", "CONSTANTS",
-  function($scope, $http, $uibModal, CONSTANTS){
+controller("AdminAdvancedCtrl", ["$scope", "$http", function($scope, $http) {
   $scope.tabs = [
     {
       title:"Main configuration",
