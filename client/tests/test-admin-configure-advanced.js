@@ -5,18 +5,19 @@ describe("admin configure advanced settings", function() {
 
     // enable experimental features that by default are disabled
     element(by.model("admin.node.enable_experimental_features")).click();
+    element(by.model("admin.node.enable_custodian")).click();
 
     // save settings
     element.all(by.css("[data-ng-click=\"updateNode()\"]"));
   });
 
-  it("should configure short urls", function() {
+  it("should configure url redirects", function() {
     browser.setLocation("admin/advanced_settings");
-    element(by.cssContainingText("a", "URL shortener")).click();
+    element(by.cssContainingText("a", "URL redirects")).click();
 
     for (var i = 0; i < 3; i++) {
-      element(by.model("new_shorturl.shorturl")).sendKeys("shorturl-" + i.toString());
-      element(by.model("new_shorturl.longurl")).sendKeys("/longurl");
+      element(by.model("new_redirect.path1")).sendKeys("yyyyyyyy-" + i.toString());
+      element(by.model("new_redirect.path2")).sendKeys("xxxxxxxx");
       element(by.cssContainingText("button", "Add")).click();
       element.all(by.cssContainingText("button", "Delete")).first().click();
     }

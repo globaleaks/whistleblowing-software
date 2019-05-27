@@ -2,7 +2,7 @@
   <div id="LanguagePickerBox" class="languagePick row" data-ng-if="node.languages_enabled.length > 1">
     <div class="pull-right">
       <span data-ng-if="!mobile && languages_enabled_selector.length < 4" data-ng-repeat="item in languages_enabled_selector">
-        <span class="span-as-link" data-ng-class="{'span-as-link-selected': GLTranslate.state.language === item.code}" data-uib-popover="{{item.native}} ({{item.name}})" data-popover-placement="bottom" data-ng-click="GLTranslate.state.language = item.code">{{item.native}}</span>
+        <a class="language-link" data-ng-class="{'language-link-selected': GLTranslate.state.language === item.code}" data-uib-popover="{{item.native}} ({{item.name}})" data-popover-placement="bottom" data-ng-click="GLTranslate.state.language = item.code">{{item.native}}</a>
         <span data-ng-if="!$last">|</div>
       </span>
       <select data-ng-if="mobile || languages_enabled_selector.length > 3" class="form-control" data-ng-if="false" data-ng-model="GLTranslate.state.language" data-ng-options="item.code as item.native for item in languages_enabled_selector"></select>

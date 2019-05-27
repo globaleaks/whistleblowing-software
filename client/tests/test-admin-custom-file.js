@@ -6,9 +6,7 @@ describe("Admin upload custom file", function() {
 
     browser.setLocation("admin/content");
 
-    browser.gl.utils.waitUntilPresent(by.cssContainingText("a", "Files"));
-
-    element(by.cssContainingText("a", "Files")).click();
+    element(by.cssContainingText("ul li a", "Files")).click();
 
     var customFile = browser.gl.utils.makeTestFilePath("nyancat.pdf");
 

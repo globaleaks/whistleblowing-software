@@ -101,11 +101,11 @@ table {
   margin-bottom: 0.8em;
 }
 
-.span-as-link {
+.language-link {
   color: #FFF;
 }
 
-.span-as-link-selected {
+.language-link-selected {
   color: #000;
 }
 

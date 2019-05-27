@@ -1,5 +1,5 @@
 describe("whistleblower navigate home page", function() {
-  it("should see page properly internationalize", function() {
+  it("should see page properly internationalized", function() {
     browser.get("/#/?lang=en");
     expect(browser.isElementPresent(element(by.cssContainingText("div", "TEXT1_IT")))).toBe(false);
     expect(browser.isElementPresent(element(by.cssContainingText("div", "TEXT2_IT")))).toBe(false);

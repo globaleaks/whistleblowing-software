@@ -27,7 +27,7 @@ describe("verify navigation of admin sections", function() {
 
     element(by.cssContainingText("a", "Advanced settings")).click();
     element(by.cssContainingText("ul li a", "Main configuration")).click();
-    element(by.cssContainingText("ul li a", "URL shortener")).click();
+    element(by.cssContainingText("ul li a", "URL redirects")).click();
     element(by.cssContainingText("ul li a", "Anomaly detection thresholds")).click();
   });
 });

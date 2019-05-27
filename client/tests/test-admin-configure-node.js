@@ -1,7 +1,7 @@
 describe("admin configure node", function() {
   it("should configure node en internalization", function() {
     browser.setLocation("admin/content");
-    element(by.model("GLTranslate.state.language")).element(by.xpath(".//*[text()='English']")).click();
+    element.all(by.cssContainingText("a", "English")).get(0).click();
     expect(element(by.model("admin.node.header_title_homepage")).clear().sendKeys("TEXT1_EN"));
     expect(element(by.model("admin.node.presentation")).clear().sendKeys("TEXT2_EN"));
 
@@ -10,13 +10,13 @@ describe("admin configure node", function() {
 
   it("should configure node it internalization", function() {
     browser.setLocation("admin/content");
-    element(by.model("GLTranslate.state.language")).element(by.xpath(".//*[text()='Italiano']")).click();
+    element.all(by.cssContainingText("a", "Italiano")).get(0).click();
     expect(element(by.model("admin.node.header_title_homepage")).clear().sendKeys("TEXT1_IT"));
     expect(element(by.model("admin.node.presentation")).clear().sendKeys("TEXT2_IT"));
 
     element.all(by.cssContainingText("button", "Salva")).get(0).click();
 
-    element(by.model("GLTranslate.state.language")).element(by.xpath(".//*[text()='English']")).click();
+    element.all(by.cssContainingText("a", "English")).get(0).click();
   });
 
   it("should configure node advanced settings", function() {
