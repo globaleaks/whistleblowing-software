@@ -400,6 +400,7 @@ module.exports = function(grunt) {
           if (res.ok) {
             var content = JSON.parse(res.text);
 
+            // Add the new translations for languages translated above 50%
             if (content.translated_entities > content.untranslated_entities) {
               var url = resourceUrl + "translation/" + langCode + "/";
               agent.get(url)
