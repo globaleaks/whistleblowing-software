@@ -79,49 +79,17 @@
   margin-bottom: 20px;
 }
 
-#KeyCodeBox {
+#KeyCodeBox, #KeyCodeHintBox, #RicochetBox {
   background-color: #F5F5F5;
   border: 1px solid #222;
-  margin-top: 0.8em;
-  margin-bottom: 1.25em;
-  padding: 0.8em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 2em;
 }
 
-#KeyCodeHintBox {
-  position: relative;
-  padding: 0.8em;
+#KeyCodeHintBox, #RicochetBox {
   background: #FFF;
   border-radius: 5px;
-  border: 1px solid rgb(204, 204, 204);
-}
-
-html[dir="ltr"] #KeyCodeHintBox:after {
-  margin-right: 30px;
-}
-
-html[dir="rtl"] #KeyCodeHintBox:after {
-  margin-left: 30px;
-}
-
-#KeyCodeHintBox:after {
-  content: '';
-  position: absolute;
-  border-style: solid;
-  border-color: transparent #ccc;
-  display: block;
-  width: 0;
-  top: 17px;
-  z-index: 1;
-}
-
-html[dir="ltr"] #KeyCodeHintBox:after {
-  left: -15px;
-  border-width: 15px 15px 15px 0px;
-}
-
-html[dir="rtl"] #KeyCodeHintBox:after {
-  right: -15px;
-  border-width: 15px 0px 15px 15px;
 }
 
 #KeyCode {
