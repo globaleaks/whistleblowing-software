@@ -375,7 +375,7 @@
                 <div class="fieldOption" data-ng-repeat="option in field.options">
                   <div class="row">
                     <div class="col-md-1">
-                      <div class="badge badge-default">{{$index}}</div>
+                      <div class="badge badge-default">{{$index + 1}}</div>
                     </div>
                     <div class="col-md-6">
                       <input class="form-control" data-ng-model="option.label" data-ng-attr-placeholder="{{'Label' | translate }}" type="text" data-ng-disabled="!field.editable" required />
