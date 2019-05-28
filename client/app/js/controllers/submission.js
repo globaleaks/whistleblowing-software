@@ -127,16 +127,6 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.incrementStep = function() {
-    if (!$scope.areReceiversSelected() && $scope.navigation === $scope.receiver_selection_step_index) {
-      $anchorScroll("top");
-      return;
-    }
-
-    if ($scope.navigation > -1 && !$scope.checkForInvalidFields()) {
-      $anchorScroll("top");
-      return;
-    }
-
     if ($scope.hasNextStep()) {
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.navigation + 1; i <= $scope.lastStepIndex(); i++) {
