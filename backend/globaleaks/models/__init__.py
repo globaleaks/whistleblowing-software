@@ -257,7 +257,7 @@ class _Anomalies(Model):
 
     date = Column(DateTime, nullable=False)
     alarm = Column(Integer, nullable=False)
-    events = Column(JSON, nullable=False)
+    events = Column(JSON, default=dict, nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -269,8 +269,8 @@ class _ArchivedSchema(Model):
 
     hash = Column(UnicodeText(64), primary_key=True)
 
-    schema = Column(JSON, nullable=False)
-    preview = Column(JSON, nullable=False)
+    schema = Column(JSON, default=dict, nullable=False)
+    preview = Column(JSON, default=dict, nullable=False)
 
     unicode_keys = ['hash']
 
@@ -310,7 +310,7 @@ class _Config(Model):
     __tablename__ = 'config'
     tid = Column(Integer, primary_key=True, default=1)
     var_name = Column(UnicodeText(64), primary_key=True)
-    value = Column(JSON, nullable=False)
+    value = Column(JSON, default=dict, nullable=False)
     update_date = Column(DateTime, default=datetime_null, nullable=False)
 
     @declared_attr
@@ -500,7 +500,7 @@ class _CustomTexts(Model):
     tid = Column(Integer, default=1, nullable=False)
 
     lang = Column(UnicodeText(5), primary_key=True)
-    texts = Column(JSON, nullable=False)
+    texts = Column(JSON, default=dict, nullable=False)
 
     unicode_keys = ['lang']
     json_keys = ['texts']
@@ -595,7 +595,7 @@ class _FieldAttr(Model):
     field_id = Column(UnicodeText(36), nullable=False)
     name = Column(UnicodeText, nullable=False)
     type = Column(UnicodeText, nullable=False)
-    value = Column(JSON, nullable=False)
+    value = Column(JSON, default=dict, nullable=False)
 
     unicode_keys = ['field_id', 'name', 'type']
 
@@ -789,7 +789,7 @@ class _InternalTip(Model):
     update_date = Column(DateTime, default=datetime_now, nullable=False)
     context_id = Column(UnicodeText(36), nullable=False)
 
-    preview = Column(JSON, nullable=False)
+    preview = Column(JSON, default=dict, nullable=False)
     progressive = Column(Integer, default=0, nullable=False)
     https = Column(Boolean, default=False, nullable=False)
     mobile = Column(Boolean, default=False, nullable=False)
@@ -828,7 +828,7 @@ class _InternalTipAnswers(Model):
     questionnaire_hash = Column(UnicodeText(64), primary_key=True)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     encrypted = Column(Boolean, default=False, nullable=False)
-    answers = Column(JSON, nullable=False)
+    answers = Column(JSON, default=dict, nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -842,7 +842,7 @@ class _InternalTipData(Model):
     key = Column(UnicodeText, primary_key=True)
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    value = Column(JSON, nullable=False)
+    value = Column(JSON, default=dict, nullable=False)
     encrypted = Column(Boolean, default=False, nullable=False)
 
     @declared_attr
@@ -1093,7 +1093,7 @@ class _Stats(Model):
     tid = Column(Integer, default=1, nullable=False)
 
     start = Column(DateTime, nullable=False)
-    summary = Column(JSON, nullable=False)
+    summary = Column(JSON, default=dict, nullable=False)
 
     @declared_attr
     def __table_args__(self):
