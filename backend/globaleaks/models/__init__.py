@@ -251,7 +251,7 @@ class Model(object):
 class _Anomalies(Model):
     __tablename__ = 'anomalies'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     tid = Column(Integer, default=1, nullable=False)
 
@@ -267,7 +267,7 @@ class _Anomalies(Model):
 class _ArchivedSchema(Model):
     __tablename__ = 'archivedschema'
 
-    hash = Column(UnicodeText(64), primary_key=True, nullable=False)
+    hash = Column(UnicodeText(64), primary_key=True)
 
     schema = Column(JSON, nullable=False)
     preview = Column(JSON, nullable=False)
@@ -278,7 +278,7 @@ class _ArchivedSchema(Model):
 class _Backup(Model):
     __tablename__ = 'backup'
 
-    id = Column(Integer, primary_key=True, nullable=False)
+    id = Column(Integer, primary_key=True)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     filename = Column(UnicodeText, unique=True, nullable=False)
     local = Column(Boolean, default=False, nullable=False)
@@ -308,8 +308,8 @@ class _Comment(Model):
 
 class _Config(Model):
     __tablename__ = 'config'
-    tid = Column(Integer, primary_key=True, default=1, nullable=False)
-    var_name = Column(UnicodeText(64), primary_key=True, nullable=False)
+    tid = Column(Integer, primary_key=True, default=1)
+    var_name = Column(UnicodeText(64), primary_key=True)
     value = Column(JSON, nullable=False)
     update_date = Column(DateTime, default=datetime_null, nullable=False)
 
@@ -352,7 +352,7 @@ class _Config(Model):
 class _ConfigL10N(Model):
     __tablename__ = 'config_l10n'
 
-    tid = Column(Integer, primary_key=True, default=1, nullable=False)
+    tid = Column(Integer, primary_key=True, default=1)
     lang = Column(UnicodeText(5), primary_key=True)
     var_name = Column(UnicodeText(64), primary_key=True)
     value = Column(UnicodeText, nullable=False)
@@ -386,7 +386,7 @@ class _Context(Model):
     """
     __tablename__ = 'context'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     tid = Column(Integer, default=1, nullable=False)
 
@@ -478,7 +478,7 @@ class _ContextImg(Model):
     """
     __tablename__ = 'contextimg'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     data = Column(UnicodeText, nullable=False)
 
@@ -495,11 +495,11 @@ class _CustomTexts(Model):
     """
     __tablename__ = 'customtexts'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     tid = Column(Integer, default=1, nullable=False)
 
-    lang = Column(UnicodeText(5), primary_key=True, nullable=False)
+    lang = Column(UnicodeText(5), primary_key=True)
     texts = Column(JSON, nullable=False)
 
     unicode_keys = ['lang']
@@ -539,7 +539,7 @@ class _EnabledLanguage(Model):
 class _Field(Model):
     __tablename__ = 'field'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     tid = Column(Integer, default=1, nullable=False)
 
@@ -628,7 +628,7 @@ class _FieldAttr(Model):
 class _FieldAnswer(Model):
     __tablename__ = 'fieldanswer'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     internaltip_id = Column(UnicodeText(36), nullable=True)
     fieldanswergroup_id = Column(UnicodeText(36), nullable=True)
@@ -689,8 +689,8 @@ class _FieldOption(Model):
 class _FieldOptionTriggerField(Model):
     __tablename__ = 'fieldoptiontriggerfield'
 
-    option_id = Column(UnicodeText(36), primary_key=True, nullable=False)
-    object_id = Column(UnicodeText(36), primary_key=True, nullable=False)
+    option_id = Column(UnicodeText(36), primary_key=True)
+    object_id = Column(UnicodeText(36), primary_key=True)
     sufficient = Column(Boolean, default=True, nullable=False)
 
     @declared_attr
@@ -718,8 +718,8 @@ class _File(Model):
     """
     __tablename__ = 'file'
 
-    tid = Column(Integer, primary_key=True, default=1, nullable=False)
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    tid = Column(Integer, primary_key=True, default=1)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     name = Column(UnicodeText, default=u'', nullable=False)
     data = Column(UnicodeText, nullable=False)
@@ -759,7 +759,7 @@ class _InternalFile(Model):
     """
     __tablename__ = 'internalfile'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     internaltip_id = Column(UnicodeText(36), nullable=False)
@@ -781,7 +781,7 @@ class _InternalTip(Model):
     """
     __tablename__ = 'internaltip'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     tid = Column(Integer, default=1, nullable=False)
 
@@ -824,7 +824,7 @@ class _InternalTipAnswers(Model):
     """
     __tablename__ = 'internaltipanswers'
 
-    internaltip_id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    internaltip_id = Column(UnicodeText(36), primary_key=True)
     questionnaire_hash = Column(UnicodeText(64), primary_key=True)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     encrypted = Column(Boolean, default=False, nullable=False)
@@ -838,8 +838,8 @@ class _InternalTipAnswers(Model):
 class _InternalTipData(Model):
     __tablename__ = 'InternalTipData'
 
-    internaltip_id = Column(UnicodeText(36), primary_key=True, nullable=False)
-    key = Column(UnicodeText, primary_key=True, nullable=False)
+    internaltip_id = Column(UnicodeText(36), primary_key=True)
+    key = Column(UnicodeText, primary_key=True)
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     value = Column(JSON, nullable=False)
@@ -857,7 +857,7 @@ class _Mail(Model):
     """
     __tablename__ = 'mail'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     tid = Column(Integer, default=1, nullable=False)
 
@@ -881,7 +881,7 @@ class _Message(Model):
     """
     __tablename__ = 'message'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     receivertip_id = Column(UnicodeText(36), nullable=False)
@@ -898,7 +898,7 @@ class _Message(Model):
 class _Questionnaire(Model):
     __tablename__ = 'questionnaire'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     tid = Column(Integer, default=1, nullable=False)
 
@@ -921,8 +921,8 @@ class _ReceiverContext(Model):
     """
     __tablename__ = 'receiver_context'
 
-    context_id = Column(UnicodeText(36), primary_key=True, nullable=False)
-    receiver_id = Column(UnicodeText(36), primary_key=True, nullable=False)
+    context_id = Column(UnicodeText(36), primary_key=True)
+    receiver_id = Column(UnicodeText(36), primary_key=True)
 
     presentation_order = Column(Integer, default=0, nullable=False)
 
@@ -941,7 +941,7 @@ class _ReceiverFile(Model):
     """
     __tablename__ = 'receiverfile'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     internalfile_id = Column(UnicodeText(36), nullable=False)
     receivertip_id = Column(UnicodeText(36), nullable=False)
@@ -966,7 +966,7 @@ class _ReceiverTip(Model):
     """
     __tablename__ = 'receivertip'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     internaltip_id = Column(UnicodeText(36), nullable=False)
     receiver_id = Column(UnicodeText(36), nullable=False)
@@ -992,7 +992,7 @@ class _ReceiverTip(Model):
 class _SecureFileDelete(Model):
     __tablename__ = 'securefiledelete'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     filepath = Column(UnicodeText, nullable=False)
 
@@ -1000,7 +1000,7 @@ class _SecureFileDelete(Model):
 class _Signup(Model):
     __tablename__ = 'signup'
 
-    id = Column(Integer, primary_key=True, nullable=False)
+    id = Column(Integer, primary_key=True)
     tid = Column(Integer, nullable=False)
     subdomain = Column(UnicodeText, unique=True, nullable=False)
     language = Column(UnicodeText, nullable=False)
@@ -1051,7 +1051,7 @@ class _Redirect(Model):
     """
     __tablename__ = 'redirect'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     tid = Column(Integer, default=1, nullable=False)
 
@@ -1068,7 +1068,7 @@ class _Redirect(Model):
 class _Step(Model):
     __tablename__ = 'step'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     questionnaire_id = Column(UnicodeText(36), nullable=False)
     label = Column(JSON, default=dict, nullable=False)
@@ -1106,7 +1106,7 @@ class _SubmissionStatus(Model):
     """
     __tablename__ = 'submissionstatus'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     tid = Column(Integer, default=1, nullable=False)
     label = Column(JSON, default=dict, nullable=False)
 
@@ -1135,7 +1135,7 @@ class _SubmissionSubStatus(Model):
     """
     __tablename__ = 'submissionsubstatus'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     submissionstatus_id = Column(UnicodeText(36), nullable=False)
     label = Column(JSON, default=dict, nullable=False)
 
@@ -1162,7 +1162,7 @@ class _SubmissionStatusChange(Model):
 
     __tablename__ = 'submissionstatuschange'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     internaltip_id = Column(UnicodeText(36), nullable=False)
     status = Column(UnicodeText(36), nullable=False)
     substatus = Column(UnicodeText(36), nullable=True)
@@ -1197,7 +1197,7 @@ class _User(Model):
     """
     __tablename__ = 'user'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     tid = Column(Integer, default=1, nullable=False)
 
@@ -1277,8 +1277,8 @@ class _UserTenant(Model):
     """
     __tablename__ = 'usertenant'
 
-    user_id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    tenant_id = Column(Integer, primary_key=True, default=1, nullable=False)
+    user_id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    tenant_id = Column(Integer, primary_key=True, default=1)
 
     @declared_attr
     def __table_args__(self):
@@ -1292,7 +1292,7 @@ class _UserImg(Model):
     """
     __tablename__ = 'userimg'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     data = Column(UnicodeText, nullable=False)
 
@@ -1311,7 +1311,7 @@ class _WhistleblowerFile(Model):
     """
     __tablename__ = 'whistleblowerfile'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
     receivertip_id = Column(UnicodeText(36), nullable=False)
     name = Column(UnicodeText, nullable=False)
@@ -1332,7 +1332,7 @@ class _WhistleblowerFile(Model):
 class _WhistleblowerIdentity(Model):
     __tablename__ = 'whistlebloweridentity'
 
-    id = Column(UnicodeText(36), primary_key=True, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     identity = Column(UnicodeText, default=u'', nullable=False)
 
@@ -1344,7 +1344,7 @@ class _WhistleblowerIdentity(Model):
 class _WhistleblowerTip(Model):
     __tablename__ = 'whistleblowertip'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     tid = Column(Integer, default=1, nullable=False)
     receipt_hash = Column(UnicodeText(128), nullable=False)
 
