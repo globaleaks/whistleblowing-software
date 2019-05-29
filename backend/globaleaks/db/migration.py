@@ -55,6 +55,7 @@ from globaleaks.utils.security import overwrite_and_remove
 migration_mapping = OrderedDict([
     ('Anomalies', [-1, -1, -1, -1, -1, -1, Anomalies_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models._Anomalies, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('ArchivedSchema', [ArchivedSchema_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._ArchivedSchema, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('AuditLog', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._AuditLog]),
     ('Backup', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Backup, 0, 0, 0]),
     ('Comment', [Comment_v_31, 0, 0, 0, 0, 0, 0, 0, Comment_v_38, 0, 0, 0, 0, 0, 0, models._Comment, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Config', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Config_v_38, 0, 0, 0, 0, Config_v_45, 0, 0, 0, 0, 0, 0, models._Config, 0, 0, 0]),
