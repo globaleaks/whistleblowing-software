@@ -115,6 +115,9 @@ ConfigDescriptor = {
     u'disable_key_code_hint': Bool(default=False),
     u'disable_donation_panel': Bool(default=False),
 
+    u'enable_ricochet_panel': Bool(default=False),
+    u'ricochet_address': Unicode(default=u''),
+
     u'counter_submissions': Int(default=0),
 
     u'enable_signup': Bool(default=False),
@@ -214,6 +217,8 @@ ConfigFilters = {
         u'enable_disclaimer',
         u'disable_key_code_hint',
         u'disable_donation_panel',
+        u'enable_ricochet_panel',
+        u'ricochet_address',
         u'enable_signup',
         u'mode',
         u'signup_tos1_enable',

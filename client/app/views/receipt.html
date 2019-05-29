@@ -1,46 +1,41 @@
 <div>
   <div class="row">
-    <div id="ReceiptText">
-      <div data-ng-if="!Authentication.context.score_receipt_text_custom">
-        <div><span data-translate>Thank you!</span> <span data-translate>Your submission was successful.</span></div>
-        <div data-translate>We will try to get back to you as soon as possible.</div>
-      </div>
-      <div data-ng-if="Authentication.context.score_receipt_text_custom">
-        <p data-ng-if="Authentication.submission.score === 1" class="preformatted">{{Authentication.context.score_receipt_text_l}}</p>
-        <p data-ng-if="Authentication.submission.score === 2" class="preformatted">{{Authentication.context.score_receipt_text_m}}</p>
-        <p data-ng-if="Authentication.submission.score === 3" class="preformatted">{{Authentication.context.score_receipt_text_h}}</p>
+    <div class="col-md-12">
+      <div id="ReceiptText">
+        <div data-ng-if="!Authentication.context.score_receipt_text_custom">
+          <span data-translate>Thank you!</span> <span data-translate>Your submission was successful.</span> <span data-translate>We will try to get back to you as soon as possible.</span>
+        </div>
+        <div data-ng-if="Authentication.context.score_receipt_text_custom">
+          <p data-ng-if="Authentication.submission.score === 1" class="preformatted">{{Authentication.context.score_receipt_text_l}}</p>
+          <p data-ng-if="Authentication.submission.score === 2" class="preformatted">{{Authentication.context.score_receipt_text_m}}</p>
+          <p data-ng-if="Authentication.submission.score === 3" class="preformatted">{{Authentication.context.score_receipt_text_h}}</p>
+        </div>
       </div>
     </div>
   </div>
-  <div class="row" data-ng-if="formatted_receipt">
-    <div id="KeyCodeBox" class="col-md-6">
-      <div>
-        <div class="col-md-2">
-          <img width="64" height="64" text="key symbol" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAEFUlEQVR4Ae1aXYRVURSeqURERETM0xAxRE+lRPTaU0SJiCEihp6GYdLrEPOQKPcpekhERJRJKdFDopTJTSmlRJk0hkZ9X1qcs2ffuWudc+7+mbmLzzl337XXXt/a//vsgYG+9COwqiMwmDD7HfBtLzAMbAKGgI/AIvASeAvcA34CK0Z2gck08A74o8ACdG4Do8AGIFvZCc/vAhrSnXS+If8YsBbISibh7W+gEzFr+nPYYrdJXjbCwxuAlaBGn63hYMoR2ALnWFMaMlV12KpOphiE9XDqQY/JS9AYhORawqVA5CUI7A7JjAlHA5OXIDxFudFnBzZ97fwujjf5PIHyo8oZlN4kIastBp+VEEVY8BfA6nTT+qMu+0E3oUe/D8HuzYq2HyLffeA1wD0Bl8uHAa4jrPIYGfZYMzWh34IRa21+Rx4Omj7ZhkTuAaw2qc81SHBpo0SLs3PQH1F4ec1olz6w9QQVNlULeeqeVXrILsF53mL/fNH2muKPHr1zH2+ReShfVGb4Ab0rSl1RK/kTIgCbpWTl8w30LIccz5R2Ra3kT4gAWFdgFvIkZdUvrQVCBIBN2iKlJqrIaNUvBSxEAL4qSBRVOMVxrtcK1xgW+WxRbkKXXeAXYBmpOcdrZD+ULHapO6Yx3LTODAxaHZ1CnlJ/dZziOWKV5fVux06Qn+MoxRoA6vPUyHWYozjn8irniFwzWAdlZKkv22GiSgAkzwLyc09fdzvdqk+lugX2ayEU68luE0U4ss8CsYizXO4bokgK5DlesBsGlxTIs/ZLG6BQUUiFfNWDmFpxIvk2ELPPs2xOo9wyB5VUyD8C661BmaOwVMi34Mtyq8iexCUF8h/A7HhP2HUx2gR5jhl3gCrjBpe4/O4Q5ZJEU+RphzIMTAK8MMElcKeAMGBXAW6Hgzd3lPlPNOTpJAm9AnxkSETI43WJkBzPBwRDSzQiJWjIk7CQ4y5sHCjWajfykah1L1ZLngFwP25we8s+my15NkE672vOvjTqup+x2M+lZeA1H7GSl4BczodiZ0+rkpcgaL/2dPYg4j8a8hztqceFiG/En0V6lHka5dYSDXnW8kShFBKdBqT223innexES55EXwDuguQ00ljzK5681PQEyLriBsX9P8nflpoX8nxykXMgSUYGpzTkedDwCSiSl3fe7BgBopy/o9za8gQWhIzvyRFe5Ahe3K8zPLvPss8LKdauj7ikkXCxdnnnZuZ/nuzJg4fqHu8pKhaEA90FIOuaFz6aLzhzK4Ws735A6QKBRMV5cnNzC+CJa7E7OGrp/6waADLjSD+VPsXlPfQFgDevNPIeSueARY1yqjq+AGi6AMnvA/jMWtZ5vL+ONPbt4hKWn5Wlr8/j/RiQPXlw6Es/Av0IrPII/AW+DTcH8Te3CQAAAABJRU5ErkJggg==" />
-        </div>
-        <div class="col-md-10">
+  <br />
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default" data-ng-init="collapsed = false">
+        <div class="panel-heading">
           <span data-translate>Remember your receipt for this submission.</span>
-          <div id="KeyCode">{{formatted_receipt}}</div>
         </div>
-      </div>
-      <div>
-        <p data-translate>Use the 16 digit receipt to log in. It will allow you to view any messages we sent you, and also to add extra info.</p>
-      </div>
-      <div>
-        <button id="ReceiptButton" class="btn btn-default" data-ng-click="Authentication.login(0, 'whistleblower', receipt)" data-translate>View your submission</button>
-      </div>
-    </div>
-    <div class="col-md-6" data-ng-if="!node.disable_key_code_hint">
-      <div id="KeyCodeHintBox">
-        <p data-translate>Hint: How to hide your receipt</p>
-        <p data-translate>A useful way to hide your receipt is to write it down like a credit card number, i.e. by also including an expiration date.</p>
-        <p data-translate>Example:</p>
-        <div class="row">
-          <div class="col-md-5">
-            <div data-ng-include="'views/partials/credit_card.html'"></div>
+        <div class="panel-body" data-ng-show="!collapsed">
+          <div id="KeyCodeBox">
+            <span>{{formatted_receipt}}</span>
+          </div>
+          <div data-translate>Use the 16 digit receipt to log in. It will allow you to view any messages we sent you, and also to add extra info.</div>
+          <div>
+            <button id="ReceiptButton" class="pull-right btn btn-default" data-ng-click="Authentication.login(0, 'whistleblower', receipt)" data-translate>View your submission</button>
           </div>
         </div>
       </div>
+    </div>
+    <div class="col-md-6" data-ng-if="!node.disable_key_code_hint">
+      <div data-ng-include="'views/partials/keycodehint_panel.html'"></div>
+    </div>
+    <div class="col-md-6" data-ng-if="node.enable_ricochet_panel">
+      <div data-ng-include="'views/partials/ricochet_panel.html'"></div>
     </div>
   </div>
 </div>

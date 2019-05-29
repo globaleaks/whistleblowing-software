@@ -238,6 +238,8 @@ AdminNodeDesc = {
     'disable_privacy_badge': bool,
     'disable_key_code_hint': bool,
     'disable_donation_panel': bool,
+    'enable_ricochet_panel': bool,
+    'ricochet_address': text_type,
     'disable_submissions': bool,
     'multisite_login': bool,
     'simplified_login': bool,

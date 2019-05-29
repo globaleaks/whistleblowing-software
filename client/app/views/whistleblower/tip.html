@@ -20,6 +20,9 @@
   <div class="col-md-6">
     <div data-ng-include="'views/partials/tip_questionnaire_answers.html'"></div>
   </div>
+  <div class="col-md-6" data-ng-if="node.enable_ricochet_panel">
+    <div data-ng-include="'views/partials/ricochet_panel.html'"></div>
+  </div>
   <div class="col-md-6" data-ng-if="tip.enable_whistleblower_identity">
     <div data-ng-include="'views/whistleblower/whistleblower_identity.html'"></div>
   </div>

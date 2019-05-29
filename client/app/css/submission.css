@@ -79,20 +79,13 @@
   margin-bottom: 20px;
 }
 
-#KeyCodeBox, #KeyCodeHintBox, #RicochetBox {
-  background-color: #F5F5F5;
-  border: 1px solid #222;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  padding: 2em;
+.code {
+  color: 000;
+  background: #eee;
 }
 
-#KeyCodeHintBox, #RicochetBox {
-  background: #FFF;
-  border-radius: 5px;
-}
-
-#KeyCode {
+#KeyCodeBox {
+  background-color: #EEE;
   margin: 1.25em auto;
   padding: 1.25em;
   width: 80%;
@@ -100,9 +93,13 @@
   font-family: monospace;
   font-size: 1.25em;
   font-weight: bold;
-  background-color: #FFF;
   border-radius: 0.8em;
   direction: ltr;
+}
+
+#KeyImg {
+  margin-left: 2em;
+  margin-right: 2em;
 }
 
 #SubmissionButtons button {

@@ -1,0 +1,14 @@
+<div id="KeyCodeHintBox" class="panel panel-default" data-ng-init="collapsed = false">
+  <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
+    <span data-translate>Hint: How to hide your receipt</span>
+  </div>
+  <div class="panel-body" data-ng-show="!collapsed">
+    <p data-translate>A useful way to hide your receipt is to write it down like a credit card number, i.e. by also including an expiration date.</p>
+    <p data-translate>Example:</p>
+    <div class="row">
+      <div class="col-md-5">
+        <div data-ng-include="'views/partials/credit_card.html'"></div>
+      </div>
+   </div>
+  </div>
+</div>
