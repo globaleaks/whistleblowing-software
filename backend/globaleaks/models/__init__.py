@@ -731,6 +731,20 @@ class _File(Model):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
+class _AuditLog(Model):
+    """
+    This model contains audit's logs
+    """
+    __tablename__ = 'auditlog'
+
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    date = Column(DateTime, default=datetime_now, nullable=False)
+    event = Column(UnicodeText(24), default=u'', nullable=False)
+    user_id = Column(UnicodeText(36))
+    object_id = Column(UnicodeText(36))
+    data = Column(JSON, default=dict, nullable=False)
+
+
 class _IdentityAccessRequest(Model):
     """
     This model keeps track of identity access requests by receivers and
@@ -1367,6 +1381,9 @@ class Anomalies(_Anomalies, Base): pass
 
 
 class ArchivedSchema(_ArchivedSchema, Base): pass
+
+
+class AuditLog(_AuditLog, Base): pass
 
 
 class Backup(_Backup, Base): pass
