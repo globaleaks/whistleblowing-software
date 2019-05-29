@@ -3,7 +3,7 @@ angular.module("GLDirectives", []).
     return {
       restrict: "A",
       link: function postLink(scope, element, attrs) {
-        element.css("min-height", "2em");
+        element.css("min-height", "4em");
 
         var update = function(){
           element.css("height", "auto");
