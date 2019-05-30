@@ -742,6 +742,7 @@ class _AuditLog(Model):
     event = Column(UnicodeText(24), default=u'', nullable=False)
     user_id = Column(UnicodeText(36))
     object_id = Column(UnicodeText(36))
+    severity = Column(Integer, nullable=False)
     data = Column(JSON, default=dict, nullable=False)
 
 
