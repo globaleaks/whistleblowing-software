@@ -57,6 +57,8 @@
       </div>
     </div>
 
+    <div data-ng-if="admin.node.mode === 'eat'" data-ng-include="'views/partials/ricochet_config.html'"></div>
+
     <div class="form-group" data-ng-if="admin.node.mode === 'default'">
       <label data-translate>Footer</label>
       <div>
