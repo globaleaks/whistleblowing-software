@@ -114,10 +114,9 @@ def db_wizard(session, tid, request, client_using_tor, language):
 
         context.questionnaire_id = root_tenant_node.get_val(u'default_questionnaire')
 
-    # Apply the specific fixes related to whistleblowing.it projects
-    if mode == u'whistleblowing.it':
+    # Apply the general settings to apply on all mode != default
+    if mode != u'default':
         node.set_val(u'simplified_login', True)
-        node.set_val(u'tor', False)
 
         # Delete the admin user
         session.delete(admin_user)
@@ -130,6 +129,10 @@ def db_wizard(session, tid, request, client_using_tor, language):
 
         # Set data retention policy to 18 months
         context.tip_timetolive = 540
+
+    # Apply the specific fixes related to whistleblowing.it projects
+    if mode == u'whistleblowing.it':
+        node.set_val(u'tor', False)
 
         # Enable recipients to load files to the whistleblower
         context.enable_rc_to_wb_files = True
