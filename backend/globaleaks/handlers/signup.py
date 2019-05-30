@@ -133,9 +133,6 @@ def signup_activation(session, state, tid, token, language):
 
         db_wizard(session, signup.tid, wizard, False, language)
 
-        ids = [r[0] for r in session.query(models.User.id).filter(models.UserTenant.user_id == models.User.id,
-                                                                  models.UserTenant.tenant_id == signup.tid)]
-
         template_vars = {
             'type': 'activation',
             'node': db_admin_serialize_node(session, 1, language),
