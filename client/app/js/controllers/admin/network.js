@@ -56,7 +56,6 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
   $scope.choseManCfg = false;
   $scope.saveClicked = false;
   $scope.skipVerify = $scope.admin.node.hostname !== "";
-  $scope.show_expert_status = false;
 
   $scope.setMenu = function(state) {
     $scope.menuState = state;
@@ -110,11 +109,6 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
   }
 
   $scope.refreshCfg = refreshConfig;
-
-  $scope.invertExpertStatus = function() {
-    $scope.show_expert_status = !$scope.show_expert_status;
-    return refreshConfig();
-  };
 
   $scope.file_resources = {
     priv_key: new cfgFileResource({name: "priv_key"}),

@@ -4,7 +4,6 @@
     <span data-ng-if="tls_config.enabled">
       <span class="label label-success">
         <span data-translate>Enabled</span>
-        <i class="glyphicon glyphicon-info-sign" data-ng-click="invertExpertStatus()"></i>
       </span>
       <span>&nbsp;</span>
       <span data-ng-if="tls_config.running" class="label label-success" data-translate>Running</span>
@@ -13,7 +12,6 @@
 
     <span data-ng-if="!tls_config.enabled" class="label label-danger">
       <span data-translate>Disabled</span>
-      <i class="glyphicon glyphicon-info-sign" data-ng-click="invertExpertStatus()"></i>
     </span>
   </div>
 
@@ -34,9 +32,5 @@
   </p>
 </div>
 
-<div data-ng-show="show_expert_status">
-  <div class="title1" data-translate>System message:</div>
-  <div class="alert alert-info">{{tls_config.status.timestamp | date:'dd-MM-yyyy HH:mm'}} {{tls_config.status.msg}}</div>
-</div>
 <hr />
 <button class="btn btn-danger" data-ng-click="toggleCfg()" data-translate>Disable</button>

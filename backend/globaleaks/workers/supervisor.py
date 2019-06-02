@@ -12,7 +12,7 @@ from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.utils import tls
 from globaleaks.utils.log import log
-from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_now
 from globaleaks.workers.process import HTTPSProcProtocol
 
 
@@ -103,19 +103,6 @@ class ProcessSupervisor(object):
 
         if self.should_spawn_child():
             self.launch_worker()
-
-    def get_status(self):
-        if self.is_running():
-            msg = "Everything is running normally."
-        elif not self.should_spawn_child():
-            msg = "The supervisor will not create new workers"
-        else:
-            msg = "Nothing is being served"
-
-        return {
-            'timestamp': datetime_to_ISO8601(datetime_now()),
-            'msg': msg
-        }
 
     def reload(self):
         log.debug('Reloading HTTPS configuration')

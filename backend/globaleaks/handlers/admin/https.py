@@ -350,7 +350,6 @@ def serialize_https_config_summary(session, tid):
     return {
       'enabled': config.get_val(u'https_enabled'),
       'running': State.process_supervisor.is_running(),
-      'status': State.process_supervisor.get_status(),
       'files': file_summaries,
       'acme': config.get_val(u'acme')
     }
