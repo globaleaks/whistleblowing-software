@@ -738,12 +738,13 @@ class _AuditLog(Model):
     __tablename__ = 'auditlog'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    date = Column(DateTime, default=datetime_now, nullable=False)
-    event = Column(UnicodeText(24), default=u'', nullable=False)
-    user_id = Column(UnicodeText(36))
-    object_id = Column(UnicodeText(36))
-    severity = Column(Integer, nullable=False)
-    data = Column(JSON, default=dict, nullable=False)
+    event_date = Column(DateTime, default=datetime_now, nullable=False)
+    event_type = Column(UnicodeText(24), default=u'', nullable=False)
+    event_severity = Column(Integer, default=0, nullable=False)
+    event_data = Column(JSON, nullable=True)
+    user_id = Column(UnicodeText(36), nullable=True)
+    object_id = Column(UnicodeText(36), nullable=True)
+    object_value = Column(JSON, nullable=True)
 
 
 class _IdentityAccessRequest(Model):
