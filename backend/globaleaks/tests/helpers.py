@@ -621,6 +621,7 @@ class TestGL(unittest.TestCase):
             'answer': 0,
             'identity_provided': False,
             'total_score': 0,
+            'mobile': False,
             'answers': answers
         })
 
@@ -798,6 +799,7 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['identity_provided'] = False
         self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['questionnaire_id'])
         self.dummySubmission['total_score'] = 0
+        self.dummySubmission['mobile'] = False
 
         self.dummySubmission = yield create_submission(1,
                                                        self.dummySubmission,
@@ -1117,7 +1119,8 @@ class MockDict:
             'context_id': '',
             'answers': {},
             'receivers': [],
-            'files': []
+            'files': [],
+            'mobile': False
         }
 
         self.dummyNode = {
