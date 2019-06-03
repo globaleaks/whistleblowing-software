@@ -14,15 +14,15 @@ from twisted.web import server
 import globaleaks.mocks.twisted_mocks  # pylint: disable=W0611
 
 from globaleaks.db import create_db, init_db, update_db, \
-    sync_refresh_memory_variables, sync_clean_untracked_files
+    sync_refresh_memory_variables, sync_clean_untracked_files, sync_initialize_snimap
 from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.log import log, openLogFile, logFormatter, timedLogFormatter, LogObserver
 from globaleaks.utils.process import disable_swap
-from globaleaks.utils.sock import listen_tcp_on_sock, reserve_port_for_ip
+from globaleaks.utils.sock import listen_tcp_on_sock, listen_tls_on_sock, reserve_port_for_ip
+from globaleaks.utils.tls import TLSServerContextFactory
 from globaleaks.utils.utility import fix_file_permissions, drop_privileges
-from globaleaks.workers.supervisor import ProcessSupervisor
 
 
 def fail_startup(excep):
@@ -111,8 +111,6 @@ class Service(service.Service):
 
         reactor.callLater(30, _shutdown, None)
 
-        self.state.process_supervisor.shutdown()
-
         self.stop_jobs().addBoth(_shutdown)
 
         return d
@@ -156,6 +154,7 @@ class Service(service.Service):
 
         sync_clean_untracked_files()
         sync_refresh_memory_variables()
+        sync_initialize_snimap()
 
         self.state.orm_tp.start()
 
@@ -164,11 +163,11 @@ class Service(service.Service):
         for sock in self.state.http_socks:
             listen_tcp_on_sock(reactor, sock.fileno(), self.api_factory)
 
-        self.state.process_supervisor = ProcessSupervisor(self.state.https_socks,
-                                                          '127.0.0.1',
-                                                          8082)
-
-        self.state.process_supervisor.maybe_launch_https_workers()
+        for sock in self.state.https_socks:
+            listen_tls_on_sock(reactor,
+                               fd=sock.fileno(),
+                               contextFactory=self.state.snimap,
+                               factory=self.api_factory)
 
         self.start_jobs()
 

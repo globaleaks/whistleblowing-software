@@ -8,9 +8,11 @@
 
 import collections
 
-from OpenSSL.SSL import Connection
+from OpenSSL.SSL import Connection, Context, TLSv1_2_METHOD
 from twisted.internet.interfaces import IOpenSSLServerConnectionCreator
 from zope.interface import implementer
+
+from globaleaks.utils.tls import ChainValidator, TLSServerContextFactory
 
 
 class _NegotiationData(object):
@@ -117,28 +119,44 @@ class _ConnectionProxy(object):
 
 @implementer(IOpenSSLServerConnectionCreator)
 class SNIMap(object):
-    def __init__(self, mapping):
-        self.mapping = mapping
-        self._negotiationDataForContext = collections.defaultdict(
-            _NegotiationData
-        )
+    context = Context(TLSv1_2_METHOD)
+    configs_by_tid = {}
+    contexts_by_hostname = {}
 
-        self.context = self.mapping['DEFAULT'].getContext()
+    def __init__(self):
+        self._negotiationDataForContext = collections.defaultdict(_NegotiationData)
+        self.context.set_tlsext_servername_callback(self.selectContext)
 
-        self.context.set_tlsext_servername_callback(
-            self.selectContext
-        )
+    def load(self, tid, conf):
+        chnv = ChainValidator()
+        ok, err = chnv.validate(conf, must_be_disabled=False, check_expiration=False)
+        if not ok or err is not None:
+            return
+
+        self.configs_by_tid[tid] = conf
+
+        self.contexts_by_hostname[conf['hostname']] = TLSServerContextFactory(conf['ssl_key'],
+                                  conf['ssl_cert'],
+                                  conf['ssl_intermediate'],
+                                  conf['ssl_dh'])
+
+    def unload(self, tid):
+        conf = self.configs_by_tid.pop(tid, None)
+        if conf is not None:
+            self.contexts_by_hostname.pop(conf['hostname'], None)
 
     def selectContext(self, connection):
         common_name = connection.get_servername().decode('utf-8')
 
-        if common_name in self.mapping:
-            newContext = self.mapping[common_name].getContext()
+        if common_name in self.contexts_by_hostname:
+            newContext = self.contexts_by_hostname[common_name].getContext()
+        else:
+            newContext = Context(TLSv1_2_METHOD)
 
-            negotiationData = self._negotiationDataForContext[connection.get_context()]
-            negotiationData.negotiateNPN(newContext)
-            negotiationData.negotiateALPN(newContext)
-            connection.set_context(newContext)
+        negotiationData = self._negotiationDataForContext[connection.get_context()]
+        negotiationData.negotiateNPN(newContext)
+        negotiationData.negotiateALPN(newContext)
+        connection.set_context(newContext)
 
     def serverConnectionForTLS(self, protocol):
         return _ConnectionProxy(Connection(self.context, None), self)

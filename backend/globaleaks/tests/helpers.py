@@ -55,16 +55,13 @@ from globaleaks.rest import decorators
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
-from globaleaks.utils import tempdict, token, utility
+from globaleaks.utils import process, tempdict, token, utility
 from globaleaks.utils.crypto import GCE
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
     sum_dicts
 from globaleaks.utils.log import log
-
-from globaleaks.workers import process
-from globaleaks.workers.supervisor import ProcessSupervisor
 
 GCE.ALGORITM_CONFIGURATION['KDF']['ARGON2']['OPSLIMIT'] = GCE.ALGORITM_CONFIGURATION['HASH']['ARGON2']['OPSLIMIT'] = 1
 GCE.ALGORITM_CONFIGURATION['HASH']['SCRYPT']['N'] = 1<<1
@@ -431,9 +428,6 @@ class TestGL(unittest.TestCase):
         yield self.set_hostnames(1)
 
         yield db.refresh_memory_variables()
-
-        sup = ProcessSupervisor([], '127.0.0.1', 8082)
-        self.state.process_supervisor = sup
 
         self.state.reset_hourly()
 

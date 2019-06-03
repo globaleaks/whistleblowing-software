@@ -11,6 +11,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.internet.threads import deferToThread
 
 from globaleaks import models
+from globaleaks.db import load_tls_dict
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
@@ -20,26 +21,6 @@ from globaleaks.state import State
 from globaleaks.utils import letsencrypt, tls
 from globaleaks.utils.log import log
 from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date
-
-
-def load_tls_dict(session, tid):
-    """
-    A quick and dirty function to grab all of the tls config for use in subprocesses
-    """
-    node = ConfigFactory(session, tid)
-
-    return {
-        'ssl_key': node.get_val(u'https_priv_key'),
-        'ssl_cert': node.get_val(u'https_cert'),
-        'ssl_intermediate': node.get_val(u'https_chain'),
-        'ssl_dh': node.get_val(u'https_dh_params'),
-        'https_enabled': node.get_val(u'https_enabled'),
-        'hostname': node.get_val(u'hostname'),
-    }
-
-
-def load_tls_dict_list(session):
-    return [load_tls_dict(session, tid[0]) for tid in session.query(models.Tenant.id).filter(models.Tenant.active == True)]
 
 
 def db_create_acme_key(session, tid):
@@ -349,7 +330,6 @@ def serialize_https_config_summary(session, tid):
 
     return {
       'enabled': config.get_val(u'https_enabled'),
-      'running': State.process_supervisor.is_running(),
       'files': file_summaries,
       'acme': config.get_val(u'acme')
     }
@@ -360,21 +340,23 @@ def try_to_enable_https(session, tid):
     config = ConfigFactory(session, tid)
 
     cv = tls.ChainValidator()
-    db_cfg = load_tls_dict(session, tid)
-    db_cfg['https_enabled'] = False
+    tls_config = load_tls_dict(session, tid)
+    tls_config['https_enabled'] = False
 
-    ok, _ = cv.validate(db_cfg)
+    ok, _ = cv.validate(tls_config)
     if not ok:
         raise errors.InputValidationError()
 
     config.set_val(u'https_enabled', True)
     State.tenant_cache[tid].https_enabled = True
+    State.snimap.load(tid, tls_config)
 
 
 @transact
 def disable_https(session, tid):
     ConfigFactory(session, tid).set_val(u'https_enabled', False)
     State.tenant_cache[tid].https_enabled = False
+    State.snimap.unload(tid)
 
 
 @transact
@@ -400,9 +382,7 @@ class ConfigHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self):
-        yield State.process_supervisor.shutdown()
         yield try_to_enable_https(self.request.tid)
-        yield State.process_supervisor.maybe_launch_https_workers()
 
     @inlineCallbacks
     def put(self):
@@ -410,14 +390,10 @@ class ConfigHandler(BaseHandler):
         Disables HTTPS config and shutdown subprocesses.
         """
         yield disable_https(self.request.tid)
-        yield State.process_supervisor.shutdown()
-        yield State.process_supervisor.maybe_launch_https_workers()
 
     @inlineCallbacks
     def delete(self):
         yield reset_https_config(self.request.tid)
-        yield State.process_supervisor.shutdown()
-        yield State.process_supervisor.maybe_launch_https_workers()
 
 
 class CSRFileHandler(FileHandler):

@@ -8,7 +8,6 @@ from six import text_type
 
 from twisted.internet import defer
 from twisted.mail.smtp import SMTPError
-from twisted.python import logfile as txlogfile
 from twisted.python.failure import Failure
 from twisted.python.threadpool import ThreadPool
 
@@ -23,6 +22,7 @@ from globaleaks.utils.mail import sendmail
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.singleton import Singleton
+from globaleaks.utils.sni import SNIMap
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.token import TokenList
@@ -53,11 +53,12 @@ class StateClass(ObjectDict):
     def __init__(self):
         self.settings = Settings
 
-        self.process_supervisor = None
         self.tor_exit_set = TorExitSet()
 
         self.https_socks = []
         self.http_socks = []
+
+        self.snimap = SNIMap()
 
         self.jobs = []
         self.jobs_monitor = None
@@ -256,8 +257,6 @@ class StateClass(ObjectDict):
                 return self.onion_service_job.add_all_hidden_services()
 
             self.onion_service_job.remove_unwanted_hidden_services().addBoth(f)  # pylint: disable=no-member
-
-        self.process_supervisor.reload()
 
     def format_and_send_mail(self, session, tid, user_desc, template_vars):
         subject, body = Templating().get_mail_subject_and_body(template_vars)

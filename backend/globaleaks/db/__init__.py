@@ -11,6 +11,7 @@ from sqlalchemy import exc as sa_exc
 from globaleaks import models, DATABASE_VERSION
 from globaleaks.db.appdata import db_load_default_questionnaires, db_load_default_fields
 from globaleaks.models import Config
+from globaleaks.models.config import ConfigFactory
 from globaleaks.models.config_desc import ConfigFilters
 from globaleaks.orm import transact, transact_sync, get_session, make_db_uri
 from globaleaks.sessions import Session
@@ -19,6 +20,28 @@ from globaleaks.state import State, TenantState
 from globaleaks.utils import fs
 from globaleaks.utils.log import log
 from globaleaks.utils.objectdict import ObjectDict
+
+
+
+def load_tls_dict(session, tid):
+    """
+    A quick and dirty function to grab all of the tls config for use in subprocesses
+    """
+    node = ConfigFactory(session, tid)
+
+    return {
+        'tid': tid,
+        'ssl_key': node.get_val(u'https_priv_key'),
+        'ssl_cert': node.get_val(u'https_cert'),
+        'ssl_intermediate': node.get_val(u'https_chain'),
+        'ssl_dh': node.get_val(u'https_dh_params'),
+        'https_enabled': node.get_val(u'https_enabled'),
+        'hostname': node.get_val(u'hostname'),
+    }
+
+
+def load_tls_dict_list(session):
+    return [load_tls_dict(session, tid[0]) for tid in session.query(models.Tenant.id).filter(models.Tenant.active == True)]
 
 
 def get_db_file(db_path):
@@ -118,6 +141,13 @@ def sync_clean_untracked_files(session):
                 fs.overwrite_and_remove(file_to_remove)
             except OSError:
                 log.err('Failed to remove untracked file', file_to_remove)
+
+
+@transact_sync
+def sync_initialize_snimap(session):
+    for cfg in load_tls_dict_list(session):
+        if cfg['https_enabled']:
+            State.snimap.load(cfg['tid'], cfg)
 
 
 def db_set_cache_exception_delivery_list(session, tenant_cache):

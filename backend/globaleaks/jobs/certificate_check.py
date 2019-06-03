@@ -6,6 +6,7 @@ from OpenSSL.crypto import load_certificate, FILETYPE_PEM
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
+from globaleaks.db import load_tls_dict
 from globaleaks.handlers.admin.https import db_acme_cert_issuance
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
@@ -63,8 +64,11 @@ class CertificateCheck(DailyJob):
                 # Send an email to the admin cause this requires user intervention
                 if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
                     self.certificate_mail_creation(session, 'https_certificate_renewal_failure', tid, expiration_date_iso)
-            else:
-                self.should_restart_https = True
+
+            tls_config = load_tls_dict(session, tid)
+
+            self.state.snimap.unload(tid)
+            self.state.snimap.load(tid, tls_config)
 
         # Regular certificates expiration checks
         elif datetime.now() > expiration_date - timedelta(days=self.notify_expr_within):
@@ -72,11 +76,5 @@ class CertificateCheck(DailyJob):
             if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
                 self.certificate_mail_creation(session, 'https_certificate_expiration', tid, expiration_date_iso)
 
-    @inlineCallbacks
     def operation(self):
-        yield self.check_tenants_for_cert_expiration()
-
-        if self.should_restart_https:
-            self.should_restart_https = False
-            yield self.state.process_supervisor.shutdown()
-            yield self.state.process_supervisor.maybe_launch_https_workers()
+        return self.check_tenants_for_cert_expiration()

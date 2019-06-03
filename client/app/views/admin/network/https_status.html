@@ -5,9 +5,6 @@
       <span class="label label-success">
         <span data-translate>Enabled</span>
       </span>
-      <span>&nbsp;</span>
-      <span data-ng-if="tls_config.running" class="label label-success" data-translate>Running</span>
-      <span data-ng-if="!tls_config.running" class="label label-warning" data-translate>Not running</span>
     </span>
 
     <span data-ng-if="!tls_config.enabled" class="label label-danger">
@@ -16,7 +13,7 @@
   </div>
 
   <p class="hostname">
-    <div data-ng-if="tls_config.enabled && tls_config.running">
+    <div data-ng-if="tls_config.enabled">
       <span>URL</span><span>:</span>
       <a target="_blank" rel="noreferrer noopener" href="https://{{admin.node.hostname}}">https://{{admin.node.hostname}}</a>
     </div>
