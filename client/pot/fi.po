@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: Panu Ahvenharju\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -63,9 +63,6 @@ msgstr "Muutosloki"
 
 msgid "License"
 msgstr "Lisenssi"
-
-msgid "Settings"
-msgstr "Asetukset"
 
 msgid "Notification templates"
 msgstr "Ilmoituspohjat"
@@ -365,8 +362,8 @@ msgstr "prosenteissa"
 msgid "HTTPS settings"
 msgstr "HTTPS asetukset"
 
-msgid "URL shortener"
-msgstr "Käytä lyhennettyä verkko-osoitetta"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Poikkeaman havainnointikynnys"
@@ -645,6 +642,12 @@ msgstr "Ensimmäinen"
 msgid "Last"
 msgstr "Viimeinen"
 
+msgid "Running"
+msgstr "Käynnissä"
+
+msgid "Not running"
+msgstr "Ei käynnissä"
+
 msgid "Select the context of your submission:"
 msgstr "Valitse vihjeen aihe:"
 
@@ -840,11 +843,8 @@ msgstr "Tallenna"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "Lyhyt verkko-osoite"
-
-msgid "Long URL"
-msgstr "Pitkä verkko-osoite"
+msgid "To"
+msgstr "Vastaanottaja"
 
 msgid "Add"
 msgstr "Lisää uusi"
@@ -909,9 +909,6 @@ msgstr "Vihjeenantajalle esitettävä kysymys palvelun etusivulla"
 msgid "Whistleblowing button"
 msgstr "Aloituspainikkeen teksti"
 
-msgid "Footer"
-msgstr "Sivun alatunnisteen teksti"
-
 msgid "Enable disclaimer"
 msgstr "Ota käyttöön vastuuvapauslauseke"
 
@@ -920,6 +917,9 @@ msgstr "Otsikko"
 
 msgid "Text"
 msgstr "Teksti"
+
+msgid "Footer"
+msgstr "Sivun alatunnisteen teksti"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1219,17 +1219,8 @@ msgstr "Voit määrittää järjestelmän HTTPS-asetukset tässä näkymässä."
 msgid "The connection to the configured domain failed."
 msgstr "Yhteys järjestelmäasetuksissa määritettyyn verkkotunnukseen (domain) epäonnistui."
 
-msgid "Running"
-msgstr "Käynnissä"
-
-msgid "Not running"
-msgstr "Ei käynnissä"
-
 msgid "Auto-renewal"
 msgstr "Automaattinen uusiminen"
-
-msgid "System message:"
-msgstr "Järjestelmäviesti: "
 
 msgid "Danger"
 msgstr "Varoitus"
@@ -1667,6 +1658,14 @@ msgstr "Liity keskusteluun IRC-kanavallemme osoitteessa irc.oftc.net:"
 msgid "Follow the project on:"
 msgstr "Seuraa projektia osoitteessa "
 
+msgid "Hint: How to hide your receipt"
+msgstr "Vinkki: kuinka käsitellä kuittinumerosarjaa turvallisesti"
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Kätevä tapa käsitellä salaista kuittinumerosarjaa turvallisesti on kirjoittaa se muistiin kuten luottokorttinumero. Toisin sanoen, sinun kannattaa sisällyttää numerosarjan yhteyteen myös vanhentumispäivämäärä."
+
 msgid "Error!"
 msgstr "Virhe!"
 
@@ -1760,6 +1759,21 @@ msgstr "sekuntia"
 
 msgid "Size:"
 msgstr "Koko:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Osoite"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "Yhteys ei ole turvallinen."
@@ -1942,14 +1956,6 @@ msgstr "Käytä kirjautumiseen 16-merkkistä kuittinumerosarjaa. Näin pääset 
 msgid "View your submission"
 msgstr "Tarkastele omaa vihjettä"
 
-msgid "Hint: How to hide your receipt"
-msgstr "Vinkki: kuinka käsitellä kuittinumerosarjaa turvallisesti"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Kätevä tapa käsitellä salaista kuittinumerosarjaa turvallisesti on kirjoittaa se muistiin kuten luottokorttinumero. Toisin sanoen, sinun kannattaa sisällyttää numerosarjan yhteyteen myös vanhentumispäivämäärä."
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Valvojalle on lähetetty pyyntö päästä vihjeen antajan henkilötietoihin."
@@ -2103,9 +2109,6 @@ msgstr "Henkilötunnus"
 
 msgid "Residence"
 msgstr "Asuinpaikka"
-
-msgid "Address"
-msgstr "Osoite"
 
 msgid "Zip code / Postal code"
 msgstr "Postinumero"

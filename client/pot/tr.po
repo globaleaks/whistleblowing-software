@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: On the Line Turkiye <onthelineturkiye@gmail.com>\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -79,9 +79,6 @@ msgstr "Değişim günlüğü"
 
 msgid "License"
 msgstr "Lisans"
-
-msgid "Settings"
-msgstr "Ayarlar"
 
 msgid "Notification templates"
 msgstr "Bildirim şablonları"
@@ -381,8 +378,8 @@ msgstr "yüzde"
 msgid "HTTPS settings"
 msgstr "HTTPS ayarları"
 
-msgid "URL shortener"
-msgstr "URL kısaltması"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Anormallik tespit sınırı"
@@ -661,6 +658,12 @@ msgstr ""
 msgid "Last"
 msgstr ""
 
+msgid "Running"
+msgstr "Çalışıyor"
+
+msgid "Not running"
+msgstr "Çalışmıyor"
+
 msgid "Select the context of your submission:"
 msgstr "Gönderiminizin içeriğini seçin:"
 
@@ -856,11 +859,8 @@ msgstr "Kaydet"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "Kısa URL"
-
-msgid "Long URL"
-msgstr "Uzun URL"
+msgid "To"
+msgstr "Alıcı"
 
 msgid "Add"
 msgstr "Ekle"
@@ -925,9 +925,6 @@ msgstr "Daha fazla bilgi alabilmek için muhtemel ihbarcıları sorgulayın."
 msgid "Whistleblowing button"
 msgstr "İhbar Butonu"
 
-msgid "Footer"
-msgstr "Sayfa altlığı"
-
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -936,6 +933,9 @@ msgstr "Başlık"
 
 msgid "Text"
 msgstr "Metin"
+
+msgid "Footer"
+msgstr "Sayfa altlığı"
 
 msgid "Favicon"
 msgstr ""
@@ -1235,16 +1235,7 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
-msgid "Running"
-msgstr "Çalışıyor"
-
-msgid "Not running"
-msgstr "Çalışmıyor"
-
 msgid "Auto-renewal"
-msgstr ""
-
-msgid "System message:"
 msgstr ""
 
 msgid "Danger"
@@ -1683,6 +1674,14 @@ msgstr ""
 msgid "Follow the project on:"
 msgstr ""
 
+msgid "Hint: How to hide your receipt"
+msgstr ""
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr ""
+
 msgid "Error!"
 msgstr "Hata!"
 
@@ -1776,6 +1775,21 @@ msgstr "saniye"
 
 msgid "Size:"
 msgstr "Boyut:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr ""
@@ -1958,14 +1972,6 @@ msgstr ""
 msgid "View your submission"
 msgstr "Gönderiminizi görüntüleyin"
 
-msgid "Hint: How to hide your receipt"
-msgstr ""
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr ""
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Koruyucu, ihbarcının kimliğine erişim talep etti"
@@ -2119,9 +2125,6 @@ msgstr "Kimlik numarası"
 
 msgid "Residence"
 msgstr "Oturum"
-
-msgid "Address"
-msgstr "Adres"
 
 msgid "Zip code / Postal code"
 msgstr "Posta kodu"

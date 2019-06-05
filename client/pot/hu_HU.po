@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: vargaviktor <viktor.varga@gmail.com>\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -74,9 +74,6 @@ msgstr "Változási napló"
 
 msgid "License"
 msgstr "Licensz"
-
-msgid "Settings"
-msgstr "Beállítások"
 
 msgid "Notification templates"
 msgstr "Értesítési sablonok"
@@ -376,8 +373,8 @@ msgstr "százalékban"
 msgid "HTTPS settings"
 msgstr "HTTPS beállítások"
 
-msgid "URL shortener"
-msgstr "URL rövidítő"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Anomália érzékelés határértékek"
@@ -656,6 +653,12 @@ msgstr ""
 msgid "Last"
 msgstr ""
 
+msgid "Running"
+msgstr ""
+
+msgid "Not running"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Válassza ki a beküldés környezetét:"
 
@@ -851,11 +854,8 @@ msgstr "Mentés"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "Rövid URL"
-
-msgid "Long URL"
-msgstr "Hosszú URL"
+msgid "To"
+msgstr ""
 
 msgid "Add"
 msgstr "Hozzáadás"
@@ -920,9 +920,6 @@ msgstr "Kiszivárogtatás kérdés"
 msgid "Whistleblowing button"
 msgstr "Szivárogtatás gomb"
 
-msgid "Footer"
-msgstr "Élőláb"
-
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -931,6 +928,9 @@ msgstr ""
 
 msgid "Text"
 msgstr "Szöveg"
+
+msgid "Footer"
+msgstr "Élőláb"
 
 msgid "Favicon"
 msgstr ""
@@ -1230,16 +1230,7 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
-msgid "Running"
-msgstr ""
-
-msgid "Not running"
-msgstr ""
-
 msgid "Auto-renewal"
-msgstr ""
-
-msgid "System message:"
 msgstr ""
 
 msgid "Danger"
@@ -1678,6 +1669,14 @@ msgstr ""
 msgid "Follow the project on:"
 msgstr ""
 
+msgid "Hint: How to hide your receipt"
+msgstr ""
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr ""
+
 msgid "Error!"
 msgstr "Hiba!"
 
@@ -1770,6 +1769,21 @@ msgid "seconds"
 msgstr "másodpercet"
 
 msgid "Size:"
+msgstr ""
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Cím"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
 msgstr ""
 
 msgid "The connection is not secure."
@@ -1953,14 +1967,6 @@ msgstr ""
 msgid "View your submission"
 msgstr "Beküldés áttekintése"
 
-msgid "Hint: How to hide your receipt"
-msgstr ""
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr ""
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "A szivárogtatók személyazonosságához való hozzáférés kérelmezve a gondnoknak."
@@ -2114,9 +2120,6 @@ msgstr "Személyi azonosító"
 
 msgid "Residence"
 msgstr "Lakóhely"
-
-msgid "Address"
-msgstr "Cím"
 
 msgid "Zip code / Postal code"
 msgstr "Irányítószám"

@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: Inpresentia I.\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -70,9 +70,6 @@ msgstr "Schimbări"
 
 msgid "License"
 msgstr "Licență"
-
-msgid "Settings"
-msgstr "Setări"
 
 msgid "Notification templates"
 msgstr "șabloane de notificare"
@@ -372,8 +369,8 @@ msgstr "în procente"
 msgid "HTTPS settings"
 msgstr "setările HTTPS"
 
-msgid "URL shortener"
-msgstr "URL-ul shortener"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "praguri de detectare a anomaliilor"
@@ -652,6 +649,12 @@ msgstr "Primul"
 msgid "Last"
 msgstr "Ultimul"
 
+msgid "Running"
+msgstr "Rulează"
+
+msgid "Not running"
+msgstr "Nu rulează"
+
 msgid "Select the context of your submission:"
 msgstr "Selectați contextul prezentării dumneavoastră:"
 
@@ -847,11 +850,8 @@ msgstr "Salvează"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "URL scurt"
-
-msgid "Long URL"
-msgstr "URL lung"
+msgid "To"
+msgstr "Pentru"
 
 msgid "Add"
 msgstr "Adaugă"
@@ -916,9 +916,6 @@ msgstr "Întrebarea de a solicita posibilii informatori"
 msgid "Whistleblowing button"
 msgstr "butonul whistleblowing"
 
-msgid "Footer"
-msgstr "Subsol, subsol pagină"
-
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -927,6 +924,9 @@ msgstr "Titlu"
 
 msgid "Text"
 msgstr "Text"
+
+msgid "Footer"
+msgstr "Subsol, subsol pagină"
 
 msgid "Favicon"
 msgstr ""
@@ -1226,17 +1226,8 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
-msgid "Running"
-msgstr "Rulează"
-
-msgid "Not running"
-msgstr "Nu rulează"
-
 msgid "Auto-renewal"
 msgstr ""
-
-msgid "System message:"
-msgstr "Mesaj de sistem:"
 
 msgid "Danger"
 msgstr "Pericol"
@@ -1674,6 +1665,14 @@ msgstr ""
 msgid "Follow the project on:"
 msgstr ""
 
+msgid "Hint: How to hide your receipt"
+msgstr ""
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr ""
+
 msgid "Error!"
 msgstr "Eroare!"
 
@@ -1766,6 +1765,21 @@ msgid "seconds"
 msgstr "secunde"
 
 msgid "Size:"
+msgstr ""
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
 msgstr ""
 
 msgid "The connection is not secure."
@@ -1949,14 +1963,6 @@ msgstr ""
 msgid "View your submission"
 msgstr "Vizualizați prezentarea ta"
 
-msgid "Hint: How to hide your receipt"
-msgstr ""
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr ""
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Accesul la identitatea informatorului a fost solicitată custode."
@@ -2110,9 +2116,6 @@ msgstr "Cod numeric personal"
 
 msgid "Residence"
 msgstr "Şedere"
-
-msgid "Address"
-msgstr "Adresa"
 
 msgid "Zip code / Postal code"
 msgstr "Cod postal / Cod postal"

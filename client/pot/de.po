@@ -47,8 +47,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 15:38+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -100,9 +100,6 @@ msgstr "Änderungsprotokoll"
 
 msgid "License"
 msgstr "Lizenz"
-
-msgid "Settings"
-msgstr "Einstellungen"
 
 msgid "Notification templates"
 msgstr "Benachrichtigungsvorlagen"
@@ -402,8 +399,8 @@ msgstr "in Prozent"
 msgid "HTTPS settings"
 msgstr "HTTPS-Einstellungen"
 
-msgid "URL shortener"
-msgstr "URL Shortener"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Anomalieerkennungsschwellenwert"
@@ -682,6 +679,12 @@ msgstr "Erste"
 msgid "Last"
 msgstr "Letzte"
 
+msgid "Running"
+msgstr "Läuft"
+
+msgid "Not running"
+msgstr "Läuft nicht"
+
 msgid "Select the context of your submission:"
 msgstr "Wählen Sie den Kontext Ihrer Einreichung aus:"
 
@@ -877,11 +880,8 @@ msgstr "Speichern"
 msgid "Reset submissions"
 msgstr "Einreichungen zurücksetzen"
 
-msgid "Short URL"
-msgstr "Short URL"
-
-msgid "Long URL"
-msgstr "Lange URL"
+msgid "To"
+msgstr "An "
 
 msgid "Add"
 msgstr "Hinzufügen"
@@ -946,9 +946,6 @@ msgstr "Hinweisgeberfrage"
 msgid "Whistleblowing button"
 msgstr "Schaltfläche Hinweisgeben"
 
-msgid "Footer"
-msgstr "Fußzeile"
-
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -957,6 +954,9 @@ msgstr "Titel"
 
 msgid "Text"
 msgstr "Text"
+
+msgid "Footer"
+msgstr "Fußzeile"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1256,17 +1256,8 @@ msgstr "Die Plattform unterstützt die Konfiguration von HTTPS über diese Schni
 msgid "The connection to the configured domain failed."
 msgstr "Die Verbindung zur konfigurierten Domain ist fehlgeschlagen."
 
-msgid "Running"
-msgstr "Läuft"
-
-msgid "Not running"
-msgstr "Läuft nicht"
-
 msgid "Auto-renewal"
 msgstr "Automatische Erneuerung"
-
-msgid "System message:"
-msgstr "Systemnachricht:"
 
 msgid "Danger"
 msgstr "Gefahr"
@@ -1704,6 +1695,14 @@ msgstr "Treten Sie unserem IRC-Chatkanal im Netzwerk irc.oftc.net bei:"
 msgid "Follow the project on:"
 msgstr "Folgen Sie dem Projekt auf:"
 
+msgid "Hint: How to hide your receipt"
+msgstr ""
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Eine praktische Möglichkeit Ihren Schlüssel-Code zu verstecken, ist ihn wie eine Kreditkartennummer aufzuschreiben, d.h. auch ein Ablaufdatum hinzuzufügen."
+
 msgid "Error!"
 msgstr "Fehler!"
 
@@ -1797,6 +1796,21 @@ msgstr "Sekunden"
 
 msgid "Size:"
 msgstr "Größe:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "Die Verbindung ist nicht sicher."
@@ -1979,14 +1993,6 @@ msgstr "Verwenden Sie den 16-stelligen Zahlencode, um sich einzuloggen. Anschlie
 msgid "View your submission"
 msgstr "Ihre Einreichung ansehen"
 
-msgid "Hint: How to hide your receipt"
-msgstr ""
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Eine praktische Möglichkeit Ihren Schlüssel-Code zu verstecken, ist ihn wie eine Kreditkartennummer aufzuschreiben, d.h. auch ein Ablaufdatum hinzuzufügen."
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Zugriff auf die Identität des Hinweisgebers wurde beim Verwalter angefordert."
@@ -2140,9 +2146,6 @@ msgstr "Sozialversicherungsnummer"
 
 msgid "Residence"
 msgstr "Wohnort"
-
-msgid "Address"
-msgstr "Adresse"
 
 msgid "Zip code / Postal code"
 msgstr "Postleitzahl"

@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-05 07:47+0000\n"
-"Last-Translator: Gio Doro <CyberMatique@protonmail.com>\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -78,9 +78,6 @@ msgstr "Changelog"
 
 msgid "License"
 msgstr "Licenza"
-
-msgid "Settings"
-msgstr "Impostazioni"
 
 msgid "Notification templates"
 msgstr "Modelli di notifica"
@@ -380,8 +377,8 @@ msgstr "in percentuale"
 msgid "HTTPS settings"
 msgstr "Impostazioni HTTPS"
 
-msgid "URL shortener"
-msgstr "URL abbreviate"
+msgid "URL redirects"
+msgstr "Redirezioni URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "Soglia di rilevamento anomalie"
@@ -660,6 +657,12 @@ msgstr "Primo"
 msgid "Last"
 msgstr "Ultimo"
 
+msgid "Running"
+msgstr "Attivo"
+
+msgid "Not running"
+msgstr "Disattivo"
+
 msgid "Select the context of your submission:"
 msgstr "Seleziona il contesto della tua segnalazione"
 
@@ -835,7 +838,7 @@ msgid "Log accesses of internal users"
 msgstr "Registra gli accessi degli utenti interni"
 
 msgid "Enable custodian user role"
-msgstr ""
+msgstr "Abilita il ruolo del custode"
 
 msgid "Enable scoring system"
 msgstr "Abilita il sistema di punteggio"
@@ -855,11 +858,8 @@ msgstr "Salva"
 msgid "Reset submissions"
 msgstr "Resetta le segnalazioni"
 
-msgid "Short URL"
-msgstr "URL breve"
-
-msgid "Long URL"
-msgstr "URL lunga"
+msgid "To"
+msgstr "a"
 
 msgid "Add"
 msgstr "Aggiungi"
@@ -924,9 +924,6 @@ msgstr "Domanda di sollecitazione alla segnalazione"
 msgid "Whistleblowing button"
 msgstr "Bottone di sollecitazione alla segnalazione"
 
-msgid "Footer"
-msgstr "Piè di pagina"
-
 msgid "Enable disclaimer"
 msgstr "Abilita disclaimer"
 
@@ -935,6 +932,9 @@ msgstr "Titolo"
 
 msgid "Text"
 msgstr "Testo"
+
+msgid "Footer"
+msgstr "Piè di pagina"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1042,7 +1042,7 @@ msgid "Let recipients upload files to whistleblowers"
 msgstr "Permetti ai riceventi di caricare file destinati al whistleblower"
 
 msgid "Scoring system options"
-msgstr ""
+msgstr "Opzioni del sistema di scoring"
 
 msgid "Threshold"
 msgstr "Soglia"
@@ -1234,17 +1234,8 @@ msgstr "La piattaforma supporta la configurazione di HTTPS attraverso questa int
 msgid "The connection to the configured domain failed."
 msgstr "La connessione al dominio configurato è fallita."
 
-msgid "Running"
-msgstr "Attivo"
-
-msgid "Not running"
-msgstr "Disattivo"
-
 msgid "Auto-renewal"
 msgstr "Rinnovo automatico"
-
-msgid "System message:"
-msgstr "Messaggio di sistema:"
 
 msgid "Danger"
 msgstr "Pericolo"
@@ -1682,6 +1673,14 @@ msgstr "Entra nel nostro canale IRC sulla rete irc.oftc.net"
 msgid "Follow the project on:"
 msgstr "Segui l'andamento del progetto su:"
 
+msgid "Hint: How to hide your receipt"
+msgstr "Suggerimento: Come nascondere la tua ricevuta"
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Un modo efficace per nascondere la tua ricevuta è quello di appuntarlo come fosse una numero di una carta di credito ed ad esempio allegarci anche una data di scadenza."
+
 msgid "Error!"
 msgstr "Errore!"
 
@@ -1775,6 +1774,21 @@ msgstr "secondi"
 
 msgid "Size:"
 msgstr "Dimensione:"
+
+msgid "Enable the Ricochet panel"
+msgstr "Abilita il pannello Ricochet"
+
+msgid "Address"
+msgstr "Indirizzo"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr "Chatta con noi in modo anonimo usando l'applicazione Ricochet"
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr "Per chattare con noi usa il seguente indirizzo Ricochet:"
+
+msgid "Download Ricochet at:"
+msgstr "Scarica Ricochet all'indirizzo: "
 
 msgid "The connection is not secure."
 msgstr "La connessione non è sicura."
@@ -1957,14 +1971,6 @@ msgstr "Usa la ricevuta di 16 cifre per ritornare e vedere eventuali messaggi ch
 msgid "View your submission"
 msgstr "Vedi la tua segnalazione"
 
-msgid "Hint: How to hide your receipt"
-msgstr "Suggerimento: Come nascondere la tua ricevuta"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Un modo efficace per nascondere la tua ricevuta è quello di appuntarlo come fosse una numero di una carta di credito ed ad esempio allegarci anche una data di scadenza."
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "L'accesso all'identità del whistleblower è stato richiesto al custode."
@@ -2118,9 +2124,6 @@ msgstr "Codice fiscale"
 
 msgid "Residence"
 msgstr "Residenza"
-
-msgid "Address"
-msgstr "Indirizzo"
 
 msgid "Zip code / Postal code"
 msgstr "Codice postale"

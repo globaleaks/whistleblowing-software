@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: Mr Higgins\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -67,9 +67,6 @@ msgstr "Přehled změn"
 
 msgid "License"
 msgstr "Licence"
-
-msgid "Settings"
-msgstr "Nastavení"
 
 msgid "Notification templates"
 msgstr "Šablony notifikací"
@@ -369,8 +366,8 @@ msgstr "v procentech"
 msgid "HTTPS settings"
 msgstr "Nastavení HTTPS"
 
-msgid "URL shortener"
-msgstr "Zkracovač URL"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Prahové hodnoty detekce anomálií"
@@ -649,6 +646,12 @@ msgstr "První"
 msgid "Last"
 msgstr "Poslední"
 
+msgid "Running"
+msgstr "Běží"
+
+msgid "Not running"
+msgstr "Neběží"
+
 msgid "Select the context of your submission:"
 msgstr "Vyberte kontext vašeho podání"
 
@@ -844,11 +847,8 @@ msgstr "Uložit"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "Krátké URL"
-
-msgid "Long URL"
-msgstr "Dlouhé URL"
+msgid "To"
+msgstr "Do"
 
 msgid "Add"
 msgstr "Přidat"
@@ -913,9 +913,6 @@ msgstr "Otázky pro získávání možných oznamovatelů"
 msgid "Whistleblowing button"
 msgstr "Tlačítko zapískání oznamovatele."
 
-msgid "Footer"
-msgstr "Patička"
-
 msgid "Enable disclaimer"
 msgstr "Povolit odmítnutí odpovědnosti"
 
@@ -924,6 +921,9 @@ msgstr "Název"
 
 msgid "Text"
 msgstr "Text"
+
+msgid "Footer"
+msgstr "Patička"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1223,17 +1223,8 @@ msgstr "Platforma podporuje konfiguraci HTTPS prostřednictvím tohoto rozhraní
 msgid "The connection to the configured domain failed."
 msgstr "Připojení k nakonfigurované doméně se nezdařilo."
 
-msgid "Running"
-msgstr "Běží"
-
-msgid "Not running"
-msgstr "Neběží"
-
 msgid "Auto-renewal"
 msgstr "Automatické obnovení"
-
-msgid "System message:"
-msgstr "Systémová zpráva:"
 
 msgid "Danger"
 msgstr "Nebezpečí"
@@ -1671,6 +1662,14 @@ msgstr "Připojte se k našemu IRC chatu v síti irc.oftc.net:"
 msgid "Follow the project on:"
 msgstr "Sledujte projekt na:"
 
+msgid "Hint: How to hide your receipt"
+msgstr "Nápověda: Jak skrýt váš kód"
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Doporučený způsob, jak si uchovat přihlašovací kód, je zapsat si ho jako číslo kreditní karty, tj. do něj taktéž zahrnout datum vypršení jeho platnosti."
+
 msgid "Error!"
 msgstr "Chyba!"
 
@@ -1764,6 +1763,21 @@ msgstr "sekund"
 
 msgid "Size:"
 msgstr "Velikost:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "Spojení není bezpečné."
@@ -1946,14 +1960,6 @@ msgstr "Použijte 16. místný kód k přihlášení. Umožní vám zobrazit vš
 msgid "View your submission"
 msgstr "Zobrazit podání"
 
-msgid "Hint: How to hide your receipt"
-msgstr "Nápověda: Jak skrýt váš kód"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Doporučený způsob, jak si uchovat přihlašovací kód, je zapsat si ho jako číslo kreditní karty, tj. do něj taktéž zahrnout datum vypršení jeho platnosti."
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Správce byl požádán o přístup k identitě oznamovatele"
@@ -2107,9 +2113,6 @@ msgstr "Číslo OP"
 
 msgid "Residence"
 msgstr "Bydliště"
-
-msgid "Address"
-msgstr "Adresa"
 
 msgid "Zip code / Postal code"
 msgstr "PSČ"

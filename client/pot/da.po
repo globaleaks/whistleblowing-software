@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: Bo Elkjaer <bo_elkjaer@riseup.net>\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -59,9 +59,6 @@ msgstr "Log over ændringer"
 
 msgid "License"
 msgstr "Licens"
-
-msgid "Settings"
-msgstr "Indstillinger"
 
 msgid "Notification templates"
 msgstr "Notifikationsskabeloner"
@@ -361,7 +358,7 @@ msgstr "I procent"
 msgid "HTTPS settings"
 msgstr "HTTPS indstillinger"
 
-msgid "URL shortener"
+msgid "URL redirects"
 msgstr ""
 
 msgid "Anomaly detection thresholds"
@@ -641,6 +638,12 @@ msgstr "Første"
 msgid "Last"
 msgstr "Sidste"
 
+msgid "Running"
+msgstr "Kører"
+
+msgid "Not running"
+msgstr "Kører ikke"
+
 msgid "Select the context of your submission:"
 msgstr "Vælg den sammenhæng, din indsendelse indgår i:"
 
@@ -836,11 +839,8 @@ msgstr "Gem"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "Kort URL"
-
-msgid "Long URL"
-msgstr "Lang URL"
+msgid "To"
+msgstr "Til"
 
 msgid "Add"
 msgstr "Tilføj"
@@ -905,9 +905,6 @@ msgstr "Spørgsmål der skal bruges til at anmode om nye whistleblowere"
 msgid "Whistleblowing button"
 msgstr "Whistleblower-knap"
 
-msgid "Footer"
-msgstr "Sidefod"
-
 msgid "Enable disclaimer"
 msgstr "Aktiver ansvarsfraskrivelse"
 
@@ -916,6 +913,9 @@ msgstr "Titel"
 
 msgid "Text"
 msgstr "Tekst"
+
+msgid "Footer"
+msgstr "Sidefod"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1215,17 +1215,8 @@ msgstr "Platformen understøtter konfiguration af HTTPS via dette interface."
 msgid "The connection to the configured domain failed."
 msgstr "Forbindelsen til det konfigurerede domæne slog fejl."
 
-msgid "Running"
-msgstr "Kører"
-
-msgid "Not running"
-msgstr "Kører ikke"
-
 msgid "Auto-renewal"
 msgstr "Automatisk fornyelse"
-
-msgid "System message:"
-msgstr "Systemmeddelelse:"
 
 msgid "Danger"
 msgstr "Fare"
@@ -1663,6 +1654,14 @@ msgstr "Deltag i vores IRC chat kanal på  netværket irc.oftc.net:"
 msgid "Follow the project on:"
 msgstr "Følg projektet på:"
 
+msgid "Hint: How to hide your receipt"
+msgstr ""
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr ""
+
 msgid "Error!"
 msgstr "Fejl!"
 
@@ -1756,6 +1755,21 @@ msgstr "sekunder"
 
 msgid "Size:"
 msgstr "Størrelse:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "Forbindelsen er ikke sikker."
@@ -1938,14 +1952,6 @@ msgstr ""
 msgid "View your submission"
 msgstr "Gennemse din indsendelse"
 
-msgid "Hint: How to hide your receipt"
-msgstr ""
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr ""
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Forespørgsel om whistleblowerens identitet er blevet videregivet til den tilsynsførende."
@@ -2099,9 +2105,6 @@ msgstr "CPR-nummer"
 
 msgid "Residence"
 msgstr "Bopæl"
-
-msgid "Address"
-msgstr "Adresse"
 
 msgid "Zip code / Postal code"
 msgstr "Postnummer"

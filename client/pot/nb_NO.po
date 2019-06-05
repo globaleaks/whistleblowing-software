@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -60,9 +60,6 @@ msgstr "Endringslogg"
 
 msgid "License"
 msgstr "Lisens"
-
-msgid "Settings"
-msgstr "Innstillinger"
 
 msgid "Notification templates"
 msgstr "Maler for merknader"
@@ -362,8 +359,8 @@ msgstr "i prosent"
 msgid "HTTPS settings"
 msgstr "HTTPS-innstillinger"
 
-msgid "URL shortener"
-msgstr "Nettadresse-forkorter"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Grenseverdi for rapportering av unormalheter"
@@ -642,6 +639,12 @@ msgstr "Først"
 msgid "Last"
 msgstr "Sist"
 
+msgid "Running"
+msgstr "Kjører"
+
+msgid "Not running"
+msgstr "Kjører ikke"
+
 msgid "Select the context of your submission:"
 msgstr "Velg bindeleddsinformasjonen tilhørende din innsendelse:"
 
@@ -837,11 +840,8 @@ msgstr "Lagre"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "Kort nettadresse"
-
-msgid "Long URL"
-msgstr "Lang nettadresse"
+msgid "To"
+msgstr "Til"
 
 msgid "Add"
 msgstr "Legg til"
@@ -906,9 +906,6 @@ msgstr "Oppfordring til fløyteblåser"
 msgid "Whistleblowing button"
 msgstr "Fløyteblåsnings-knapp"
 
-msgid "Footer"
-msgstr "Bunntekst"
-
 msgid "Enable disclaimer"
 msgstr "Slå på ansvarsfraskrivelse"
 
@@ -917,6 +914,9 @@ msgstr "Tittel"
 
 msgid "Text"
 msgstr "Tekst"
+
+msgid "Footer"
+msgstr "Bunntekst"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1216,17 +1216,8 @@ msgstr "Plattformen støtter oppsett av HTTPS gjennom dette grensesnittet."
 msgid "The connection to the configured domain failed."
 msgstr "Tilkoblingen til oppsatt domene mislyktes."
 
-msgid "Running"
-msgstr "Kjører"
-
-msgid "Not running"
-msgstr "Kjører ikke"
-
 msgid "Auto-renewal"
 msgstr "Automatisk fornyelse"
-
-msgid "System message:"
-msgstr "Systemmelding:"
 
 msgid "Danger"
 msgstr "Fare"
@@ -1664,6 +1655,14 @@ msgstr "Ta del i vår IRC-kanal på irc.oftc.net -nettverket:"
 msgid "Follow the project on:"
 msgstr "Følg prosjektet på:"
 
+msgid "Hint: How to hide your receipt"
+msgstr ""
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr ""
+
 msgid "Error!"
 msgstr "Feil!"
 
@@ -1757,6 +1756,21 @@ msgstr "sekunder"
 
 msgid "Size:"
 msgstr "Størrelse:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "Tilkoblingen er ikke sikker."
@@ -1939,14 +1953,6 @@ msgstr ""
 msgid "View your submission"
 msgstr "Se over din innsendelse"
 
-msgid "Hint: How to hide your receipt"
-msgstr ""
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr ""
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Tilgang til fløyteblåsers identitet har blitt forespurt av tillitsperson."
@@ -2100,9 +2106,6 @@ msgstr "Personnummer"
 
 msgid "Residence"
 msgstr "Hushold"
-
-msgid "Address"
-msgstr "Adresse"
 
 msgid "Zip code / Postal code"
 msgstr "Postnummer"

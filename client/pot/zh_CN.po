@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: 刘位\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -72,9 +72,6 @@ msgstr "变更日志"
 
 msgid "License"
 msgstr "许可"
-
-msgid "Settings"
-msgstr "设置"
 
 msgid "Notification templates"
 msgstr "通知模板"
@@ -374,8 +371,8 @@ msgstr "按百分比计"
 msgid "HTTPS settings"
 msgstr "HTTPS 设定"
 
-msgid "URL shortener"
-msgstr "短网址功能"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "异常检测阈值"
@@ -654,6 +651,12 @@ msgstr "首页"
 msgid "Last"
 msgstr "末页"
 
+msgid "Running"
+msgstr "正在运行"
+
+msgid "Not running"
+msgstr "未运行"
+
 msgid "Select the context of your submission:"
 msgstr "选项提交内容类型："
 
@@ -849,11 +852,8 @@ msgstr "保存"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "短网址"
-
-msgid "Long URL"
-msgstr "长网址"
+msgid "To"
+msgstr "截止日期"
 
 msgid "Add"
 msgstr "添加"
@@ -918,9 +918,6 @@ msgstr "告密问题"
 msgid "Whistleblowing button"
 msgstr "告密按钮"
 
-msgid "Footer"
-msgstr "页脚"
-
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -929,6 +926,9 @@ msgstr "标题"
 
 msgid "Text"
 msgstr "文本"
+
+msgid "Footer"
+msgstr "页脚"
 
 msgid "Favicon"
 msgstr "中文"
@@ -1228,17 +1228,8 @@ msgstr "平台支持通过此接口配置 HTTPS 连接。"
 msgid "The connection to the configured domain failed."
 msgstr "无法连接已配置的域。"
 
-msgid "Running"
-msgstr "正在运行"
-
-msgid "Not running"
-msgstr "未运行"
-
 msgid "Auto-renewal"
 msgstr ""
-
-msgid "System message:"
-msgstr "系统消息："
 
 msgid "Danger"
 msgstr "危险"
@@ -1676,6 +1667,14 @@ msgstr ""
 msgid "Follow the project on:"
 msgstr "关注我们："
 
+msgid "Hint: How to hide your receipt"
+msgstr ""
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr ""
+
 msgid "Error!"
 msgstr "错误！"
 
@@ -1769,6 +1768,21 @@ msgstr "秒"
 
 msgid "Size:"
 msgstr "大小："
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "地址"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "此连接存在安全隐患。"
@@ -1951,14 +1965,6 @@ msgstr ""
 msgid "View your submission"
 msgstr "查看您的提交"
 
-msgid "Hint: How to hide your receipt"
-msgstr ""
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr ""
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "获取揭发人身份的请求已发送至保管人。"
@@ -2112,9 +2118,6 @@ msgstr "身份证号"
 
 msgid "Residence"
 msgstr "国籍"
-
-msgid "Address"
-msgstr "地址"
 
 msgid "Zip code / Postal code"
 msgstr "邮政编码"

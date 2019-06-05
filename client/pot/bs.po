@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: Aleksandar Todorović (r3bl) <aleksandar@r3bl.me>\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -59,9 +59,6 @@ msgstr ""
 
 msgid "License"
 msgstr "Licenca"
-
-msgid "Settings"
-msgstr "Postavke"
 
 msgid "Notification templates"
 msgstr "Predložak izvješća"
@@ -361,8 +358,8 @@ msgstr "u procentima"
 msgid "HTTPS settings"
 msgstr "postavke HTTPS"
 
-msgid "URL shortener"
-msgstr "URL Shortener"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Anomalija pragova detekcije"
@@ -641,6 +638,12 @@ msgstr ""
 msgid "Last"
 msgstr ""
 
+msgid "Running"
+msgstr ""
+
+msgid "Not running"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Odaberite kontekstu vašeg podnošenja:"
 
@@ -836,11 +839,8 @@ msgstr "Sačuvaj"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "short URL"
-
-msgid "Long URL"
-msgstr "Long URL"
+msgid "To"
+msgstr ""
 
 msgid "Add"
 msgstr "Dodaj"
@@ -905,9 +905,6 @@ msgstr "Pitanje je da traži moguće zviždača"
 msgid "Whistleblowing button"
 msgstr "uzbunjivanje dugme"
 
-msgid "Footer"
-msgstr "footer"
-
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -916,6 +913,9 @@ msgstr ""
 
 msgid "Text"
 msgstr "Tekst"
+
+msgid "Footer"
+msgstr "footer"
 
 msgid "Favicon"
 msgstr ""
@@ -1215,16 +1215,7 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
-msgid "Running"
-msgstr ""
-
-msgid "Not running"
-msgstr ""
-
 msgid "Auto-renewal"
-msgstr ""
-
-msgid "System message:"
 msgstr ""
 
 msgid "Danger"
@@ -1663,6 +1654,14 @@ msgstr ""
 msgid "Follow the project on:"
 msgstr ""
 
+msgid "Hint: How to hide your receipt"
+msgstr ""
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr ""
+
 msgid "Error!"
 msgstr "Greška!"
 
@@ -1755,6 +1754,21 @@ msgid "seconds"
 msgstr "sekundi"
 
 msgid "Size:"
+msgstr ""
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "adresa"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
 msgstr ""
 
 msgid "The connection is not secure."
@@ -1938,14 +1952,6 @@ msgstr ""
 msgid "View your submission"
 msgstr "Pogledaj svoje podnošenje"
 
-msgid "Hint: How to hide your receipt"
-msgstr ""
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr ""
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Pristup identitet zviždač a je zatraženo da kastodi."
@@ -2099,9 +2105,6 @@ msgstr "Broj socijalnog osiguranja"
 
 msgid "Residence"
 msgstr "prebivalište"
-
-msgid "Address"
-msgstr "adresa"
 
 msgid "Zip code / Postal code"
 msgstr "Poštanski broj / Poštanski broj"

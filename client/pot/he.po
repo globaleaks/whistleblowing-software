@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: ION\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -71,9 +71,6 @@ msgstr "יומן שינויים"
 
 msgid "License"
 msgstr "רישיון"
-
-msgid "Settings"
-msgstr "הגדרות"
 
 msgid "Notification templates"
 msgstr "תבניות התראה"
@@ -373,8 +370,8 @@ msgstr "באחוזים"
 msgid "HTTPS settings"
 msgstr "הגדרות HTTPS"
 
-msgid "URL shortener"
-msgstr "מקצר כתובות אתרים"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "ספי גילוי אנומליות"
@@ -653,6 +650,12 @@ msgstr ""
 msgid "Last"
 msgstr ""
 
+msgid "Running"
+msgstr "רץ"
+
+msgid "Not running"
+msgstr "לא רץ"
+
 msgid "Select the context of your submission:"
 msgstr "בחר את ההקשר של ההגשה שלך:"
 
@@ -848,11 +851,8 @@ msgstr "שמור"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "URL קצר"
-
-msgid "Long URL"
-msgstr "URL ארוך"
+msgid "To"
+msgstr "אל"
 
 msgid "Add"
 msgstr "הוסף"
@@ -917,9 +917,6 @@ msgstr "שאלות על הלשנה"
 msgid "Whistleblowing button"
 msgstr "כפתור חשיפת שחיתות"
 
-msgid "Footer"
-msgstr "כותרת תחתונה"
-
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -928,6 +925,9 @@ msgstr "כותרת"
 
 msgid "Text"
 msgstr "טקסט"
+
+msgid "Footer"
+msgstr "כותרת תחתונה"
 
 msgid "Favicon"
 msgstr ""
@@ -1227,17 +1227,8 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
-msgid "Running"
-msgstr "רץ"
-
-msgid "Not running"
-msgstr "לא רץ"
-
 msgid "Auto-renewal"
 msgstr "חידוש אוטומטי"
-
-msgid "System message:"
-msgstr "הודעת מערכת:"
 
 msgid "Danger"
 msgstr "סכנה"
@@ -1675,6 +1666,14 @@ msgstr ""
 msgid "Follow the project on:"
 msgstr ""
 
+msgid "Hint: How to hide your receipt"
+msgstr ""
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr ""
+
 msgid "Error!"
 msgstr "שגיאה!"
 
@@ -1768,6 +1767,21 @@ msgstr "שניות"
 
 msgid "Size:"
 msgstr "גודל:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "כתובת"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr ""
@@ -1950,14 +1964,6 @@ msgstr ""
 msgid "View your submission"
 msgstr "הצג הגשתך"
 
-msgid "Hint: How to hide your receipt"
-msgstr ""
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr ""
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "גישה אל הזהות של המתריע התבקש האפוטרופוס."
@@ -2111,9 +2117,6 @@ msgstr "מספר ביטוח לאומי"
 
 msgid "Residence"
 msgstr "מגורים"
-
-msgid "Address"
-msgstr "כתובת"
 
 msgid "Zip code / Postal code"
 msgstr "מיקוד"

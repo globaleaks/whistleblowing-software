@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: b33a4006134bb6ee62b30fc0fac5cec6\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -75,9 +75,6 @@ msgstr "Список змін"
 
 msgid "License"
 msgstr "Ліцензія"
-
-msgid "Settings"
-msgstr "Налаштування"
 
 msgid "Notification templates"
 msgstr "Шаблони повідомлень"
@@ -377,8 +374,8 @@ msgstr "у відсотках"
 msgid "HTTPS settings"
 msgstr "налаштування HTTPS"
 
-msgid "URL shortener"
-msgstr "URL shortener"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Anomaly detection thresholds"
@@ -657,6 +654,12 @@ msgstr ""
 msgid "Last"
 msgstr ""
 
+msgid "Running"
+msgstr "Запуск"
+
+msgid "Not running"
+msgstr "Не працює"
+
 msgid "Select the context of your submission:"
 msgstr "Оберіть контекст Вашого повідомлення"
 
@@ -852,11 +855,8 @@ msgstr "Зберегти"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "Коротке посилання URL"
-
-msgid "Long URL"
-msgstr "Довге посилання URL"
+msgid "To"
+msgstr "До"
 
 msgid "Add"
 msgstr "Додати"
@@ -921,9 +921,6 @@ msgstr "Запитання до Інформатора"
 msgid "Whistleblowing button"
 msgstr "Кнопка надання інформації"
 
-msgid "Footer"
-msgstr "Нижній колонтитул"
-
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -932,6 +929,9 @@ msgstr "Назва"
 
 msgid "Text"
 msgstr "Текст"
+
+msgid "Footer"
+msgstr "Нижній колонтитул"
 
 msgid "Favicon"
 msgstr ""
@@ -1231,16 +1231,7 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
-msgid "Running"
-msgstr "Запуск"
-
-msgid "Not running"
-msgstr "Не працює"
-
 msgid "Auto-renewal"
-msgstr ""
-
-msgid "System message:"
 msgstr ""
 
 msgid "Danger"
@@ -1679,6 +1670,14 @@ msgstr ""
 msgid "Follow the project on:"
 msgstr ""
 
+msgid "Hint: How to hide your receipt"
+msgstr ""
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr ""
+
 msgid "Error!"
 msgstr "Помилка!"
 
@@ -1772,6 +1771,21 @@ msgstr "секунди"
 
 msgid "Size:"
 msgstr "Розмір:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Адреса"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "Інтернет з'єднання недостатньо безпечне."
@@ -1954,14 +1968,6 @@ msgstr ""
 msgid "View your submission"
 msgstr "Переглянути ваш матеріал"
 
-msgid "Hint: How to hide your receipt"
-msgstr ""
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr ""
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Запит на інформацію про особу викривача було надіслано куратору"
@@ -2115,9 +2121,6 @@ msgstr "ідентифікаційний код"
 
 msgid "Residence"
 msgstr "Країна проживання"
-
-msgid "Address"
-msgstr "Адреса"
 
 msgid "Zip code / Postal code"
 msgstr "Поштовий код"

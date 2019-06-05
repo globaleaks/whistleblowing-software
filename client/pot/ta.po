@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,9 +60,6 @@ msgstr "மாற்றம்குறிக்கும் கோப்ப�
 
 msgid "License"
 msgstr "உரிமம்"
-
-msgid "Settings"
-msgstr "அமைப்புகள்"
 
 msgid "Notification templates"
 msgstr "அறிவித்தல் வார்ப்புருக்கள்"
@@ -362,8 +359,8 @@ msgstr "சதவீதம் உள்ள"
 msgid "HTTPS settings"
 msgstr "HTTP அமைப்புகளை"
 
-msgid "URL shortener"
-msgstr "URL Shortener,"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "ஒழுங்கின்மை கண்டறிதல் நிலையை"
@@ -642,6 +639,12 @@ msgstr ""
 msgid "Last"
 msgstr ""
 
+msgid "Running"
+msgstr "இயங்கும்"
+
+msgid "Not running"
+msgstr "இயங்கவில்லை"
+
 msgid "Select the context of your submission:"
 msgstr "உங்கள் சமர்ப்பிப்பு சூழலில் தேர்வு:"
 
@@ -837,11 +840,8 @@ msgstr "சேமி"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "குறுகிய URL"
-
-msgid "Long URL"
-msgstr "நீண்ட URL"
+msgid "To"
+msgstr ""
 
 msgid "Add"
 msgstr "சேர்"
@@ -906,9 +906,6 @@ msgstr "கேள்வி சாத்தியம் இம்மாதிர�
 msgid "Whistleblowing button"
 msgstr "whistleblowing பொத்தானை"
 
-msgid "Footer"
-msgstr "அடிக்குறிப்பு"
-
 msgid "Enable disclaimer"
 msgstr "மறுதலிப்பை இயக்கு"
 
@@ -917,6 +914,9 @@ msgstr "தலைப்பு"
 
 msgid "Text"
 msgstr "உரை"
+
+msgid "Footer"
+msgstr "அடிக்குறிப்பு"
 
 msgid "Favicon"
 msgstr "ஃபேவிகானை"
@@ -1216,17 +1216,8 @@ msgstr "தளம் இந்த இடைமுகத்தின் வழி
 msgid "The connection to the configured domain failed."
 msgstr "கட்டமைக்கப்பட்ட டொமைனுக்கான இணைப்பு தோல்வியடைந்தது."
 
-msgid "Running"
-msgstr "இயங்கும்"
-
-msgid "Not running"
-msgstr "இயங்கவில்லை"
-
 msgid "Auto-renewal"
 msgstr "ஆட்டோ புதுப்பித்தல்"
-
-msgid "System message:"
-msgstr "கணினி செய்தி:"
 
 msgid "Danger"
 msgstr "ஆபத்து"
@@ -1664,6 +1655,14 @@ msgstr "Irc.oftc.net நெட்வொர்க்கில் எங்கள�
 msgid "Follow the project on:"
 msgstr "திட்டத்தை பின்பற்றவும்:"
 
+msgid "Hint: How to hide your receipt"
+msgstr "குறிப்பு: உங்கள் ரசீது மறைக்க எப்படி"
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "உங்கள் ரசீது மறைக்க ஒரு பயனுள்ள வழி கடன் அட்டை எண் போன்றவற்றை எழுதுவது, அதாவது காலாவதி தேதியை உள்ளடக்கியது."
+
 msgid "Error!"
 msgstr "பிழை!"
 
@@ -1757,6 +1756,21 @@ msgstr "விநாடிகள்"
 
 msgid "Size:"
 msgstr "அளவு:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "முகவரி"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "இணைப்பு பாதுகாப்பாக இல்லை."
@@ -1939,14 +1953,6 @@ msgstr "உள்நுழைவதற்கு 16 இலக்க ரசீத�
 msgid "View your submission"
 msgstr "உங்கள் சமர்ப்பிப்பு காண்க"
 
-msgid "Hint: How to hide your receipt"
-msgstr "குறிப்பு: உங்கள் ரசீது மறைக்க எப்படி"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "உங்கள் ரசீது மறைக்க ஒரு பயனுள்ள வழி கடன் அட்டை எண் போன்றவற்றை எழுதுவது, அதாவது காலாவதி தேதியை உள்ளடக்கியது."
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "தகவல் தெரிவிப்பவர் அடையாளத்திற்கான அணுகல் பொறுப்பாளரான கேட்கப்பட்டுள்ளது."
@@ -2100,9 +2106,6 @@ msgstr "சமூக பாதுகாப்பு எண்"
 
 msgid "Residence"
 msgstr "வதிவிடம்"
-
-msgid "Address"
-msgstr "முகவரி"
 
 msgid "Zip code / Postal code"
 msgstr "Zip குறியீடு / அஞ்சல் குறியீடு"

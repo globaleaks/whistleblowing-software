@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: Pilar Fernández Pazos <pfernandez@ccontasgalicia.es>\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -60,9 +60,6 @@ msgstr "Changelog"
 
 msgid "License"
 msgstr "Licenza"
-
-msgid "Settings"
-msgstr "Axustes"
 
 msgid "Notification templates"
 msgstr "Modelos de notificacións"
@@ -362,8 +359,8 @@ msgstr "en porcentaxe"
 msgid "HTTPS settings"
 msgstr "Configuración de HTTPS"
 
-msgid "URL shortener"
-msgstr "Cortador de URL"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Portal de detección de anomalías"
@@ -642,6 +639,12 @@ msgstr ""
 msgid "Last"
 msgstr ""
 
+msgid "Running"
+msgstr "Executando"
+
+msgid "Not running"
+msgstr "Non se está executando"
+
 msgid "Select the context of your submission:"
 msgstr "Selecciona o contexto do teu envío:"
 
@@ -837,11 +840,8 @@ msgstr "Gardar"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "URL curta"
-
-msgid "Long URL"
-msgstr "URL longa"
+msgid "To"
+msgstr "Para"
 
 msgid "Add"
 msgstr "Engadir"
@@ -906,9 +906,6 @@ msgstr "Pregunta para solicitar posibles denuncias"
 msgid "Whistleblowing button"
 msgstr "Botón de denuncia"
 
-msgid "Footer"
-msgstr "Pé de páxina"
-
 msgid "Enable disclaimer"
 msgstr "Habilitar exención de responsabilidade"
 
@@ -917,6 +914,9 @@ msgstr "Título"
 
 msgid "Text"
 msgstr "Texto"
+
+msgid "Footer"
+msgstr "Pé de páxina"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1216,17 +1216,8 @@ msgstr "A plataforma soporta a configuración de HTTPS a través desta interface
 msgid "The connection to the configured domain failed."
 msgstr "Errou a conexión co dominio configurado."
 
-msgid "Running"
-msgstr "Executando"
-
-msgid "Not running"
-msgstr "Non se está executando"
-
 msgid "Auto-renewal"
 msgstr "Renovación automática"
-
-msgid "System message:"
-msgstr "Mensaxe do sistema:"
 
 msgid "Danger"
 msgstr "Perigo"
@@ -1664,6 +1655,14 @@ msgstr "Únete á nosa canle de chat IRC na rede irc.oftc.net:"
 msgid "Follow the project on:"
 msgstr "Segue o proxecto en:"
 
+msgid "Hint: How to hide your receipt"
+msgstr "Consello: Como ocultar o recibo"
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Un xeito útil de ocultar o recibo é anotalo como o número dunha tarxeta de crédito, é dicir, incluíndo tamén unha data de caducidade."
+
 msgid "Error!"
 msgstr "Erro!"
 
@@ -1757,6 +1756,21 @@ msgstr "segundos"
 
 msgid "Size:"
 msgstr "Tamaño:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Enderezo"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "A conexión non é segura."
@@ -1939,14 +1953,6 @@ msgstr "Use o recibo de 16 díxitos para iniciar sesión. Permitirá ver todas a
 msgid "View your submission"
 msgstr "Ver a súa presentación "
 
-msgid "Hint: How to hide your receipt"
-msgstr "Consello: Como ocultar o recibo"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Un xeito útil de ocultar o recibo é anotalo como o número dunha tarxeta de crédito, é dicir, incluíndo tamén unha data de caducidade."
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Foi requerido o acceso á identidade do denunciante para o custodio "
@@ -2100,9 +2106,6 @@ msgstr "Número da Seguridade Social"
 
 msgid "Residence"
 msgstr "Residencia"
-
-msgid "Address"
-msgstr "Enderezo"
 
 msgid "Zip code / Postal code"
 msgstr "Código postal / código postal"

@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-04 06:10+0000\n"
-"Last-Translator: Reza Ghasemi\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -76,9 +76,6 @@ msgstr "لیست تغییرات"
 
 msgid "License"
 msgstr "پروانه"
-
-msgid "Settings"
-msgstr "تنظیمات"
 
 msgid "Notification templates"
 msgstr "الگوی اطلاع‌رسانی"
@@ -378,8 +375,8 @@ msgstr "در درصد"
 msgid "HTTPS settings"
 msgstr "تنظیمات HTTPS"
 
-msgid "URL shortener"
-msgstr "کوتاه کننده آدرس اینترنتی"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "آستانه تشخیص ناهنجاری"
@@ -658,6 +655,12 @@ msgstr "اولین"
 msgid "Last"
 msgstr "آخرین"
 
+msgid "Running"
+msgstr "در حال اجرا"
+
+msgid "Not running"
+msgstr "در حال اجرا نمی باشد"
+
 msgid "Select the context of your submission:"
 msgstr "زمینه گزارش خود را انتخاب کنید:"
 
@@ -853,11 +856,8 @@ msgstr "ذخیره"
 msgid "Reset submissions"
 msgstr "تنظیم مجدد گزارش ها"
 
-msgid "Short URL"
-msgstr "آدرس اینترنتی کوتاه"
-
-msgid "Long URL"
-msgstr "آدرس اینترنتی طولانی"
+msgid "To"
+msgstr "به"
 
 msgid "Add"
 msgstr "اضافه کن"
@@ -922,9 +922,6 @@ msgstr "پرسش افشاگری"
 msgid "Whistleblowing button"
 msgstr "دکمه افشاگری"
 
-msgid "Footer"
-msgstr "پانویس"
-
 msgid "Enable disclaimer"
 msgstr "فعال سازی سلب مسئولیت"
 
@@ -933,6 +930,9 @@ msgstr "عنوان"
 
 msgid "Text"
 msgstr "متن"
+
+msgid "Footer"
+msgstr "پانویس"
 
 msgid "Favicon"
 msgstr "فاویکون"
@@ -1232,17 +1232,8 @@ msgstr "پلتفورم پیکربندی HTTPS را از طریق این رابط
 msgid "The connection to the configured domain failed."
 msgstr "اتصال به دامنه پیکربندی شده ناموفق بود."
 
-msgid "Running"
-msgstr "در حال اجرا"
-
-msgid "Not running"
-msgstr "در حال اجرا نمی باشد"
-
 msgid "Auto-renewal"
 msgstr "تمدید-خودکار"
-
-msgid "System message:"
-msgstr "پیام سیستم:"
 
 msgid "Danger"
 msgstr "خطر"
@@ -1680,6 +1671,14 @@ msgstr "به عضویت کانال گپ IRC ما در شبکه irc.oftc.net در
 msgid "Follow the project on:"
 msgstr "دنبال کردن پروژه در:"
 
+msgid "Hint: How to hide your receipt"
+msgstr "راهنما: چگونه رسید خود را مخفی کنید"
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "یک راه موثر برای پنهان کردن رسید خود نوشتن آن مانند کارت اعتباری می باشد، این میتواند با نوشتن تاریخ انقضا آن باشد."
+
 msgid "Error!"
 msgstr "خطا!"
 
@@ -1773,6 +1772,21 @@ msgstr "ثانیه"
 
 msgid "Size:"
 msgstr "سایز:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "آدرس"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "ارتباط امن نمی باشد."
@@ -1955,14 +1969,6 @@ msgstr "از 16 رقم رسید برای وارد شدن استفاده کنید
 msgid "View your submission"
 msgstr "گزارش خود را ببینید"
 
-msgid "Hint: How to hide your receipt"
-msgstr "راهنما: چگونه رسید خود را مخفی کنید"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "یک راه موثر برای پنهان کردن رسید خود نوشتن آن مانند کارت اعتباری می باشد، این میتواند با نوشتن تاریخ انقضا آن باشد."
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "دسترسی به هویت افشاگر از ‍داده بان درخواست شده است."
@@ -2116,9 +2122,6 @@ msgstr "شماره امنیت اجتماعی"
 
 msgid "Residence"
 msgstr "محل اقامت"
-
-msgid "Address"
-msgstr "آدرس"
 
 msgid "Zip code / Postal code"
 msgstr "کد پستی"

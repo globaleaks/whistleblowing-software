@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: Chi-Hsun Tsai\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -63,9 +63,6 @@ msgstr "變改"
 
 msgid "License"
 msgstr "版權"
-
-msgid "Settings"
-msgstr "設定"
 
 msgid "Notification templates"
 msgstr "通知模版"
@@ -365,8 +362,8 @@ msgstr "百分比"
 msgid "HTTPS settings"
 msgstr "HTTPS 設定"
 
-msgid "URL shortener"
-msgstr "縮短網址"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "異常偵測門檻"
@@ -645,6 +642,12 @@ msgstr "第一"
 msgid "Last"
 msgstr "最後"
 
+msgid "Running"
+msgstr "執行"
+
+msgid "Not running"
+msgstr "無執行"
+
 msgid "Select the context of your submission:"
 msgstr "選擇你提交的內文說明"
 
@@ -840,11 +843,8 @@ msgstr "儲存"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "短網址"
-
-msgid "Long URL"
-msgstr "長網址"
+msgid "To"
+msgstr "給"
 
 msgid "Add"
 msgstr "新增"
@@ -909,9 +909,6 @@ msgstr "收集給潛在吹哨者的問題"
 msgid "Whistleblowing button"
 msgstr "吹哨揭密者的按鍵"
 
-msgid "Footer"
-msgstr "頁腳"
-
 msgid "Enable disclaimer"
 msgstr "開啟免責聲明編輯功能"
 
@@ -920,6 +917,9 @@ msgstr "標題"
 
 msgid "Text"
 msgstr "內文"
+
+msgid "Footer"
+msgstr "頁腳"
 
 msgid "Favicon"
 msgstr "網站小圖標"
@@ -1219,17 +1219,8 @@ msgstr "這個平台透過此介面支援 HTTPS "
 msgid "The connection to the configured domain failed."
 msgstr "連線到設定的域名失敗了"
 
-msgid "Running"
-msgstr "執行"
-
-msgid "Not running"
-msgstr "無執行"
-
 msgid "Auto-renewal"
 msgstr "自動更新"
-
-msgid "System message:"
-msgstr "系統訊息："
 
 msgid "Danger"
 msgstr "危險"
@@ -1667,6 +1658,14 @@ msgstr "加入我們在 irc.oftc.net 網路的IRC 聊天頻道 :"
 msgid "Follow the project on:"
 msgstr "關注這個專案："
 
+msgid "Hint: How to hide your receipt"
+msgstr "提示：如何隱藏收件人"
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "最好收藏收據票號的方式是寫成如信用卡號資訊, 例如還包括到期日。"
+
 msgid "Error!"
 msgstr "出錯"
 
@@ -1760,6 +1759,21 @@ msgstr "秒"
 
 msgid "Size:"
 msgstr "大小:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "地址"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "連接安全"
@@ -1942,14 +1956,6 @@ msgstr "使用此 16 碼收據登入，可查看我們給你的留言以及添�
 msgid "View your submission"
 msgstr "檢視你的揭密提交"
 
-msgid "Hint: How to hide your receipt"
-msgstr "提示：如何隱藏收件人"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "最好收藏收據票號的方式是寫成如信用卡號資訊, 例如還包括到期日。"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "保管人要求取得吹哨者身份識別"
@@ -2103,9 +2109,6 @@ msgstr "身份證號碼"
 
 msgid "Residence"
 msgstr "住處"
-
-msgid "Address"
-msgstr "地址"
 
 msgid "Zip code / Postal code"
 msgstr "郵遞區號"

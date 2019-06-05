@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: Rima Sghaier <sghair.rahma@gmail.com>\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -92,9 +92,6 @@ msgstr "سجلّ التغييرات "
 
 msgid "License"
 msgstr "الترخيص"
-
-msgid "Settings"
-msgstr "الإعدادات"
 
 msgid "Notification templates"
 msgstr "نماذج الإشعارات "
@@ -394,8 +391,8 @@ msgstr "بالنسبة المئوية"
 msgid "HTTPS settings"
 msgstr "إعدادات HTTPS"
 
-msgid "URL shortener"
-msgstr "تقصير روابط URL"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "عتبات كشف الانحرافات"
@@ -674,6 +671,12 @@ msgstr "اﻷول"
 msgid "Last"
 msgstr "اﻷخير"
 
+msgid "Running"
+msgstr "يعمل"
+
+msgid "Not running"
+msgstr "لا يعمل"
+
 msgid "Select the context of your submission:"
 msgstr "حدد سياق بلاغك:"
 
@@ -869,11 +872,8 @@ msgstr "حفظ"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr " URL مختصر"
-
-msgid "Long URL"
-msgstr "URL طويل "
+msgid "To"
+msgstr "إلى"
 
 msgid "Add"
 msgstr "أضف"
@@ -938,9 +938,6 @@ msgstr "سؤال لجذب إنتباه المبلّغين المستقبليّي
 msgid "Whistleblowing button"
 msgstr "زرّ التبليغ"
 
-msgid "Footer"
-msgstr "ذيل الصفحة "
-
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -949,6 +946,9 @@ msgstr "العنوان"
 
 msgid "Text"
 msgstr "نص"
+
+msgid "Footer"
+msgstr "ذيل الصفحة "
 
 msgid "Favicon"
 msgstr "أيقونة المفضّلة"
@@ -1248,17 +1248,8 @@ msgstr "تمكّن المنصة تهيئة HTTPS من خلال هذه الواج
 msgid "The connection to the configured domain failed."
 msgstr "تعذّر الاتصال بالنطاق الذي تمت تهيئته."
 
-msgid "Running"
-msgstr "يعمل"
-
-msgid "Not running"
-msgstr "لا يعمل"
-
 msgid "Auto-renewal"
 msgstr "تجديد تلقائي"
-
-msgid "System message:"
-msgstr "رسالة النظام"
 
 msgid "Danger"
 msgstr "خطر"
@@ -1696,6 +1687,14 @@ msgstr "الانضمام إلى قناة الدردشة IRC على شبكة irc.
 msgid "Follow the project on:"
 msgstr "تابع المشروع على:"
 
+msgid "Hint: How to hide your receipt"
+msgstr ""
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr ""
+
 msgid "Error!"
 msgstr "خطأ!"
 
@@ -1789,6 +1788,21 @@ msgstr "ثواني"
 
 msgid "Size:"
 msgstr "حجم:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "العنوان"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "الاتصال غير آمن."
@@ -1971,14 +1985,6 @@ msgstr ""
 msgid "View your submission"
 msgstr "مشاهدة بلاغك"
 
-msgid "Hint: How to hide your receipt"
-msgstr ""
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr ""
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "تمّ طلب الحصول على هوية المبلغ من الوصيّ."
@@ -2132,9 +2138,6 @@ msgstr "رقم الضمان الاجتماعي"
 
 msgid "Residence"
 msgstr "الاقامة"
-
-msgid "Address"
-msgstr "العنوان"
 
 msgid "Zip code / Postal code"
 msgstr "الرمز البريدي"

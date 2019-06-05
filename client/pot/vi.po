@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: Anh Phan <vietnamesel10n@gmail.com>\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -65,9 +65,6 @@ msgstr "Ký sự thay đổi"
 
 msgid "License"
 msgstr "Giấy phép"
-
-msgid "Settings"
-msgstr "Thiết đặt"
 
 msgid "Notification templates"
 msgstr "Mẫu thông báo"
@@ -367,8 +364,8 @@ msgstr "tỷ lệ phần trăm"
 msgid "HTTPS settings"
 msgstr "cài đặt HTTPS"
 
-msgid "URL shortener"
-msgstr "shortener URL"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Ngưỡng phát hiện bất thường"
@@ -647,6 +644,12 @@ msgstr "Đầu tiên"
 msgid "Last"
 msgstr "Chót"
 
+msgid "Running"
+msgstr ""
+
+msgid "Not running"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Chọn ngữ cảnh của trình của bạn:"
 
@@ -842,11 +845,8 @@ msgstr "Lưu"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "URL ngắn"
-
-msgid "Long URL"
-msgstr "URL long"
+msgid "To"
+msgstr "Tới"
 
 msgid "Add"
 msgstr "Thêm"
@@ -911,9 +911,6 @@ msgstr "Câu hỏi để thu hút người tố cáo có thể"
 msgid "Whistleblowing button"
 msgstr "nút Whistleblowing"
 
-msgid "Footer"
-msgstr "Phía cuối trang"
-
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -922,6 +919,9 @@ msgstr "Tiêu đề"
 
 msgid "Text"
 msgstr "Văn bản"
+
+msgid "Footer"
+msgstr "Phía cuối trang"
 
 msgid "Favicon"
 msgstr ""
@@ -1221,16 +1221,7 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
-msgid "Running"
-msgstr ""
-
-msgid "Not running"
-msgstr ""
-
 msgid "Auto-renewal"
-msgstr ""
-
-msgid "System message:"
 msgstr ""
 
 msgid "Danger"
@@ -1669,6 +1660,14 @@ msgstr ""
 msgid "Follow the project on:"
 msgstr ""
 
+msgid "Hint: How to hide your receipt"
+msgstr ""
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr ""
+
 msgid "Error!"
 msgstr "Lỗi!"
 
@@ -1761,6 +1760,21 @@ msgid "seconds"
 msgstr "giây"
 
 msgid "Size:"
+msgstr ""
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Địa chỉ nhà"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
 msgstr ""
 
 msgid "The connection is not secure."
@@ -1944,14 +1958,6 @@ msgstr ""
 msgid "View your submission"
 msgstr "Xem trình của bạn"
 
-msgid "Hint: How to hide your receipt"
-msgstr ""
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr ""
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Truy cập đến danh tính của người tố giác đã được yêu cầu để giám sát."
@@ -2105,9 +2111,6 @@ msgstr "số an sinh xã hội"
 
 msgid "Residence"
 msgstr "Nơi cư trú"
-
-msgid "Address"
-msgstr "Địa chỉ nhà"
 
 msgid "Zip code / Postal code"
 msgstr "Zip code / Mã bưu chính"

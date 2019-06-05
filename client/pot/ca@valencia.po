@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: Vicente Andreu <vicente.andreu@antifraucv.es>\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -69,9 +69,6 @@ msgstr "Registre de canvis"
 
 msgid "License"
 msgstr "Llicència"
-
-msgid "Settings"
-msgstr ""
 
 msgid "Notification templates"
 msgstr "Plantilles d'avisos"
@@ -371,8 +368,8 @@ msgstr "en percentatge"
 msgid "HTTPS settings"
 msgstr "configuracions en HTTPS"
 
-msgid "URL shortener"
-msgstr "Acurtador d'URL"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Llindars de detecció d'anomalies"
@@ -651,6 +648,12 @@ msgstr "Primer"
 msgid "Last"
 msgstr "Últim"
 
+msgid "Running"
+msgstr "S'està executant"
+
+msgid "Not running"
+msgstr "No s'està executant"
+
 msgid "Select the context of your submission:"
 msgstr "Seleccione el context del seu enviament:"
 
@@ -846,11 +849,8 @@ msgstr "Desa"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "URL curta"
-
-msgid "Long URL"
-msgstr "URL llarga"
+msgid "To"
+msgstr ""
 
 msgid "Add"
 msgstr "Afegeixa"
@@ -915,9 +915,6 @@ msgstr "Pregunta per sol·licitar possibles informadors"
 msgid "Whistleblowing button"
 msgstr "Botó de l'informador"
 
-msgid "Footer"
-msgstr "Peu de pàgina"
-
 msgid "Enable disclaimer"
 msgstr "Habilitar descàrrec de responsabilitat"
 
@@ -926,6 +923,9 @@ msgstr "Títol"
 
 msgid "Text"
 msgstr "Text"
+
+msgid "Footer"
+msgstr "Peu de pàgina"
 
 msgid "Favicon"
 msgstr "Icona de web"
@@ -1225,17 +1225,8 @@ msgstr "La plataforma admet la configuració d'HTTPS a través d'aquesta interf�
 msgid "The connection to the configured domain failed."
 msgstr "Ha fallat la connexió al domini configurat."
 
-msgid "Running"
-msgstr "S'està executant"
-
-msgid "Not running"
-msgstr "No s'està executant"
-
 msgid "Auto-renewal"
 msgstr "Renovació automàtica"
-
-msgid "System message:"
-msgstr "Missatge del sistema:"
 
 msgid "Danger"
 msgstr "Perill"
@@ -1673,6 +1664,14 @@ msgstr "Uneix-te al nostre canal de xat IRC a la xarxa  irc.oftc.net:"
 msgid "Follow the project on:"
 msgstr "Seguiu el projecte a:"
 
+msgid "Hint: How to hide your receipt"
+msgstr "Suggeriment: com recordar el seu codi"
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Un manera útil d'amagar el codi és anotar-lo com si fóra el número d'una targeta de crèdit i, per exemple, afegir també una data de caducitat."
+
 msgid "Error!"
 msgstr "Error!"
 
@@ -1766,6 +1765,21 @@ msgstr "segons"
 
 msgid "Size:"
 msgstr "Tamany:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Adreça"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "La connexió no és segura"
@@ -1948,14 +1962,6 @@ msgstr "Faça servir el codi de 16 dígits per a entrar a la plataforma. Li perm
 msgid "View your submission"
 msgstr "Mire el seu enviament"
 
-msgid "Hint: How to hide your receipt"
-msgstr "Suggeriment: com recordar el seu codi"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Un manera útil d'amagar el codi és anotar-lo com si fóra el número d'una targeta de crèdit i, per exemple, afegir també una data de caducitat."
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "El responsable ha demanat l'accés a la identitat de l'informador."
@@ -2109,9 +2115,6 @@ msgstr "Número de SS"
 
 msgid "Residence"
 msgstr "Residència"
-
-msgid "Address"
-msgstr "Adreça"
 
 msgid "Zip code / Postal code"
 msgstr "Codi postal"

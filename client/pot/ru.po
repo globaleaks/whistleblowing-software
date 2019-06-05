@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,9 +81,6 @@ msgstr "Журнал изменений"
 
 msgid "License"
 msgstr "Лицензия"
-
-msgid "Settings"
-msgstr "Настройки"
 
 msgid "Notification templates"
 msgstr "Шаблоны уведомлений"
@@ -383,8 +380,8 @@ msgstr "процентах"
 msgid "HTTPS settings"
 msgstr "настройки HTTPS"
 
-msgid "URL shortener"
-msgstr "URL کا اختصار"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Порог обнаружения аномалий"
@@ -663,6 +660,12 @@ msgstr "Первое"
 msgid "Last"
 msgstr "Последнее"
 
+msgid "Running"
+msgstr "Запущен"
+
+msgid "Not running"
+msgstr "Не запущен"
+
 msgid "Select the context of your submission:"
 msgstr "Выберите контекст для ваших материалов:"
 
@@ -858,11 +861,8 @@ msgstr "Сохранить"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "Короткий URL"
-
-msgid "Long URL"
-msgstr "Длинный URL"
+msgid "To"
+msgstr "Кому"
 
 msgid "Add"
 msgstr "Добавить"
@@ -927,9 +927,6 @@ msgstr "Вопрос для потенциальных информаторов"
 msgid "Whistleblowing button"
 msgstr "Кнопка информирования"
 
-msgid "Footer"
-msgstr "Нижний колонтитул"
-
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -938,6 +935,9 @@ msgstr "Заголовок"
 
 msgid "Text"
 msgstr "Текст"
+
+msgid "Footer"
+msgstr "Нижний колонтитул"
 
 msgid "Favicon"
 msgstr "Значок"
@@ -1237,17 +1237,8 @@ msgstr "Платформа поддерживает конфигурацию HTT
 msgid "The connection to the configured domain failed."
 msgstr "Не удалось установить соединение с указанным доменом."
 
-msgid "Running"
-msgstr "Запущен"
-
-msgid "Not running"
-msgstr "Не запущен"
-
 msgid "Auto-renewal"
 msgstr "Aвтоматическое продление"
-
-msgid "System message:"
-msgstr "Системное сообщение:"
 
 msgid "Danger"
 msgstr "Опасность"
@@ -1685,6 +1676,14 @@ msgstr "Присоединяйтесь к нашему IRC-каналу на с�
 msgid "Follow the project on:"
 msgstr "Следите за развитием проекта:"
 
+msgid "Hint: How to hide your receipt"
+msgstr ""
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr ""
+
 msgid "Error!"
 msgstr "Ошибка!"
 
@@ -1778,6 +1777,21 @@ msgstr "секунд"
 
 msgid "Size:"
 msgstr "Размер:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "Соединение не защищено."
@@ -1960,14 +1974,6 @@ msgstr ""
 msgid "View your submission"
 msgstr "Просмотреть ваш материал"
 
-msgid "Hint: How to hide your receipt"
-msgstr ""
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr ""
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "مخبر کی شناخت تک رسائی نگرانی کرنے کی درخواست کی گئی ہے."
@@ -2121,9 +2127,6 @@ msgstr "Номер социального страхования"
 
 msgid "Residence"
 msgstr "Место жительства"
-
-msgid "Address"
-msgstr "Адрес"
 
 msgid "Zip code / Postal code"
 msgstr "Почтовый индекс"

@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: SG\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -66,9 +66,6 @@ msgstr ""
 
 msgid "License"
 msgstr ""
-
-msgid "Settings"
-msgstr "سیٹنگ"
 
 msgid "Notification templates"
 msgstr "نوٹیفکیشن کے سانچوں"
@@ -368,8 +365,8 @@ msgstr "فی صد میں"
 msgid "HTTPS settings"
 msgstr "HTTPS ترتیبات"
 
-msgid "URL shortener"
-msgstr "URL کا اختصار"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "اسنگتی پتہ لگانے کی حد"
@@ -648,6 +645,12 @@ msgstr ""
 msgid "Last"
 msgstr ""
 
+msgid "Running"
+msgstr ""
+
+msgid "Not running"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "اپنی گزارش کا سیاق و سباق کا انتخاب کریں :"
 
@@ -843,11 +846,8 @@ msgstr "محفوظ"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "مختصر یو آر ایل"
-
-msgid "Long URL"
-msgstr "لانگ URL"
+msgid "To"
+msgstr ""
 
 msgid "Add"
 msgstr "شامل کریں"
@@ -912,9 +912,6 @@ msgstr "مخبر سوال "
 msgid "Whistleblowing button"
 msgstr "مخبری بٹن"
 
-msgid "Footer"
-msgstr "ذیلی تحریر"
-
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -923,6 +920,9 @@ msgstr "عنوان"
 
 msgid "Text"
 msgstr "متن"
+
+msgid "Footer"
+msgstr "ذیلی تحریر"
 
 msgid "Favicon"
 msgstr ""
@@ -1222,16 +1222,7 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
-msgid "Running"
-msgstr ""
-
-msgid "Not running"
-msgstr ""
-
 msgid "Auto-renewal"
-msgstr ""
-
-msgid "System message:"
 msgstr ""
 
 msgid "Danger"
@@ -1670,6 +1661,14 @@ msgstr ""
 msgid "Follow the project on:"
 msgstr ""
 
+msgid "Hint: How to hide your receipt"
+msgstr ""
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr ""
+
 msgid "Error!"
 msgstr "خرابی!"
 
@@ -1762,6 +1761,21 @@ msgid "seconds"
 msgstr "سیکنڈ"
 
 msgid "Size:"
+msgstr ""
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "پتہ"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
 msgstr ""
 
 msgid "The connection is not secure."
@@ -1945,14 +1959,6 @@ msgstr ""
 msgid "View your submission"
 msgstr "اپنی داخل کردہ گذارشات دیکھ لیں"
 
-msgid "Hint: How to hide your receipt"
-msgstr ""
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr ""
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "مخبر کی شناخت تک رسائی نگرانی کرنے کی درخواست کی گئی ہے."
@@ -2106,9 +2112,6 @@ msgstr "سوشل سیکورٹی نمبر"
 
 msgid "Residence"
 msgstr "رہائش"
-
-msgid "Address"
-msgstr "پتہ"
 
 msgid "Zip code / Postal code"
 msgstr "زپ کوڈ / پوسٹ کوڈ"

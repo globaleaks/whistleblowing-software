@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: J <drwhax@2600nl.net>\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -91,9 +91,6 @@ msgstr "Changelog"
 
 msgid "License"
 msgstr "Licentie"
-
-msgid "Settings"
-msgstr "Instellingen"
 
 msgid "Notification templates"
 msgstr "Bericht templates"
@@ -393,8 +390,8 @@ msgstr "percentage"
 msgid "HTTPS settings"
 msgstr "HTTPS-instellingen"
 
-msgid "URL shortener"
-msgstr "URL-shortener"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Drempels voor anomaliedetectie"
@@ -673,6 +670,12 @@ msgstr "Eerste"
 msgid "Last"
 msgstr "Laatste"
 
+msgid "Running"
+msgstr "Wordt uitgevoerd"
+
+msgid "Not running"
+msgstr "Wordt niet uitgevoerd"
+
 msgid "Select the context of your submission:"
 msgstr "Selecteer de context van uw inzending:"
 
@@ -868,11 +871,8 @@ msgstr "Bewaar"
 msgid "Reset submissions"
 msgstr "Inschrijvingen wissen en opnieuw instellen"
 
-msgid "Short URL"
-msgstr "Korte URL"
-
-msgid "Long URL"
-msgstr "Lange URL"
+msgid "To"
+msgstr "Aan"
 
 msgid "Add"
 msgstr "Toevoegen"
@@ -937,9 +937,6 @@ msgstr "Vraag om potentiële klokkenluiders aan te spreken"
 msgid "Whistleblowing button"
 msgstr "Klokkenluid-knop"
 
-msgid "Footer"
-msgstr "Voettekst"
-
 msgid "Enable disclaimer"
 msgstr "Disclaimer inschakelen"
 
@@ -948,6 +945,9 @@ msgstr "Titel"
 
 msgid "Text"
 msgstr "Tekst"
+
+msgid "Footer"
+msgstr "Voettekst"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1247,17 +1247,8 @@ msgstr "Het platform ondersteunt de configuratie van HTTPS via deze koppeling."
 msgid "The connection to the configured domain failed."
 msgstr "De verbinding met het ingestelde domein is mislukt."
 
-msgid "Running"
-msgstr "Wordt uitgevoerd"
-
-msgid "Not running"
-msgstr "Wordt niet uitgevoerd"
-
 msgid "Auto-renewal"
 msgstr "Auto-hernieuwing"
-
-msgid "System message:"
-msgstr "Systeembericht:"
 
 msgid "Danger"
 msgstr "Gevaar"
@@ -1695,6 +1686,14 @@ msgstr "Sluit u aan op ons IRC chat-kanaal op het irc.oftc.net netwerk:"
 msgid "Follow the project on:"
 msgstr "Volg het project op:"
 
+msgid "Hint: How to hide your receipt"
+msgstr "Tip: Hoe onthoud ik deze sleutel code"
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Een handige manier om dit te onthouden is door het op te schrijven in de vorm van een creditcard nummer. Vergeet niet de vervaldatum erbij te schrijven."
+
 msgid "Error!"
 msgstr "Mislukt!"
 
@@ -1788,6 +1787,21 @@ msgstr "seconden"
 
 msgid "Size:"
 msgstr "Grootte:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Adres 2"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "De verbinding is onbeveiligd."
@@ -1970,14 +1984,6 @@ msgstr "Gebruik de 16 cijferige code om in te loggen. Hiermee heb je de mogelijk
 msgid "View your submission"
 msgstr "Bekijk je inzending"
 
-msgid "Hint: How to hide your receipt"
-msgstr "Tip: Hoe onthoud ik deze sleutel code"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Een handige manier om dit te onthouden is door het op te schrijven in de vorm van een creditcard nummer. Vergeet niet de vervaldatum erbij te schrijven."
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "De toezichthouder heeft een aanvraag ingediend om toegang te krijgen tot de identiteit van de klokkenluider."
@@ -2131,9 +2137,6 @@ msgstr "Burgerservicenummer (BSN)"
 
 msgid "Residence"
 msgstr "Adres 1"
-
-msgid "Address"
-msgstr "Adres 2"
 
 msgid "Zip code / Postal code"
 msgstr "Postcode"

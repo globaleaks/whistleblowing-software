@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: Danton Medrado\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -91,9 +91,6 @@ msgstr "Registro de alterações"
 
 msgid "License"
 msgstr "Licença"
-
-msgid "Settings"
-msgstr "Configurações"
 
 msgid "Notification templates"
 msgstr "Modelos de notificação"
@@ -393,8 +390,8 @@ msgstr "em porcentagem"
 msgid "HTTPS settings"
 msgstr "Configurações HTTPS "
 
-msgid "URL shortener"
-msgstr "URL encurtada"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Limites de detecção de anomalia  "
@@ -673,6 +670,12 @@ msgstr "Primeiro"
 msgid "Last"
 msgstr "Último"
 
+msgid "Running"
+msgstr "Executando"
+
+msgid "Not running"
+msgstr "Não executando"
+
 msgid "Select the context of your submission:"
 msgstr "Selecionar o assunto do seu envio:"
 
@@ -868,11 +871,8 @@ msgstr "Salvar"
 msgid "Reset submissions"
 msgstr "Redefinir envios"
 
-msgid "Short URL"
-msgstr "URL curta"
-
-msgid "Long URL"
-msgstr "URL longa"
+msgid "To"
+msgstr "Para"
 
 msgid "Add"
 msgstr "Adicionar"
@@ -937,9 +937,6 @@ msgstr "Pergunta para solicitar possíveis denunciantes"
 msgid "Whistleblowing button"
 msgstr "Botão de Denúncia"
 
-msgid "Footer"
-msgstr "Rodapé"
-
 msgid "Enable disclaimer"
 msgstr "Ativar aviso legal"
 
@@ -948,6 +945,9 @@ msgstr "Título"
 
 msgid "Text"
 msgstr "Texto"
+
+msgid "Footer"
+msgstr "Rodapé"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1247,17 +1247,8 @@ msgstr "A plataforma suporta configuração de HTTPS por meio desta interface."
 msgid "The connection to the configured domain failed."
 msgstr "A conexão com o domínio configurado falhou."
 
-msgid "Running"
-msgstr "Executando"
-
-msgid "Not running"
-msgstr "Não executando"
-
 msgid "Auto-renewal"
 msgstr "Renovação automática"
-
-msgid "System message:"
-msgstr "Mensagem do sistema:"
 
 msgid "Danger"
 msgstr "Perigo"
@@ -1695,6 +1686,14 @@ msgstr "Junte-se ao nosso canal de char IRC em  irc.oftc.net:"
 msgid "Follow the project on:"
 msgstr "Siga o projeto em:"
 
+msgid "Hint: How to hide your receipt"
+msgstr "Dica: como esconder seu recibo"
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Uma maneira útil de ocultar seu recibo é registrá-lo como um número de cartão de crédito, ou seja, incluindo também uma data de expiração."
+
 msgid "Error!"
 msgstr "Erro!"
 
@@ -1788,6 +1787,21 @@ msgstr "segundos"
 
 msgid "Size:"
 msgstr "Tamanho:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Endereço"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "A conexão não é segura."
@@ -1970,14 +1984,6 @@ msgstr "Use o recibo de 16 dígitos para fazer o login. Ele permitirá que você
 msgid "View your submission"
 msgstr "Veja sua submissão"
 
-msgid "Hint: How to hide your receipt"
-msgstr "Dica: como esconder seu recibo"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Uma maneira útil de ocultar seu recibo é registrá-lo como um número de cartão de crédito, ou seja, incluindo também uma data de expiração."
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Acesso à identidade de um delator foi solicitado ao curador."
@@ -2131,9 +2137,6 @@ msgstr "Número de CPF"
 
 msgid "Residence"
 msgstr "Residência"
-
-msgid "Address"
-msgstr "Endereço"
 
 msgid "Zip code / Postal code"
 msgstr "CEP"

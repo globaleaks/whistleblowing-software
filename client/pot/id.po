@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: Fransisca Susanti <susanti@jaring.id>\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -76,9 +76,6 @@ msgstr "Catatan Perubahan "
 
 msgid "License"
 msgstr "Lisensi"
-
-msgid "Settings"
-msgstr "Pengaturan"
 
 msgid "Notification templates"
 msgstr "Format pemberitahuan"
@@ -378,8 +375,8 @@ msgstr "dalam persentase"
 msgid "HTTPS settings"
 msgstr "Pengaturan HTTPS"
 
-msgid "URL shortener"
-msgstr "Pemendek URL"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Batas deteksi anomali "
@@ -658,6 +655,12 @@ msgstr "Pertama"
 msgid "Last"
 msgstr "Terakhir"
 
+msgid "Running"
+msgstr "menjalankan"
+
+msgid "Not running"
+msgstr "tidak berjalan"
+
 msgid "Select the context of your submission:"
 msgstr "Pilih konteks pengiriman Anda"
 
@@ -853,11 +856,8 @@ msgstr "Simpan"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "URL pendek"
-
-msgid "Long URL"
-msgstr "URL panjang"
+msgid "To"
+msgstr "Ke"
 
 msgid "Add"
 msgstr "Tambahkan"
@@ -922,9 +922,6 @@ msgstr "Pertanyaan untuk mengumpulkan kemungkinan informan publik"
 msgid "Whistleblowing button"
 msgstr "Tombol pelaporan"
 
-msgid "Footer"
-msgstr "Catatan kaki"
-
 msgid "Enable disclaimer"
 msgstr "Mengaktifkan sanggahan"
 
@@ -933,6 +930,9 @@ msgstr "Judul"
 
 msgid "Text"
 msgstr "Teks"
+
+msgid "Footer"
+msgstr "Catatan kaki"
 
 msgid "Favicon"
 msgstr "Ikon pintasan"
@@ -1232,17 +1232,8 @@ msgstr "Platform mendukung konfigurasi HTTPS melalui antarmuka ini. "
 msgid "The connection to the configured domain failed."
 msgstr "Koneksi ke domain yang terkonfigurasi gagal. "
 
-msgid "Running"
-msgstr "menjalankan"
-
-msgid "Not running"
-msgstr "tidak berjalan"
-
 msgid "Auto-renewal"
 msgstr "pembaruan automatis"
-
-msgid "System message:"
-msgstr "pesan sistem:"
 
 msgid "Danger"
 msgstr "Bahaya"
@@ -1680,6 +1671,14 @@ msgstr "Bergabunglah dengan kanal percakapan IRC kami di jaringan irc.oftc.net"
 msgid "Follow the project on:"
 msgstr "Tetap ikuti proyek:"
 
+msgid "Hint: How to hide your receipt"
+msgstr "Petunjuk: Bagaimana menyembunyikan tanda terima Anda"
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Cara yang baik untuk menyembunyikan tanda terima Anda adalah dengan menuliskannya seperti nomor kartu kredit, termasuk tanggal kedaluwarsanya. "
+
 msgid "Error!"
 msgstr "Gagal!"
 
@@ -1773,6 +1772,21 @@ msgstr "detik"
 
 msgid "Size:"
 msgstr "Ukuran:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Alamat"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "Koneksi tidak aman."
@@ -1955,14 +1969,6 @@ msgstr "Gunakan 16 angka tanda terima untuk masuk. Anda akan dapat melihat setia
 msgid "View your submission"
 msgstr "Melihat kiriman Anda"
 
-msgid "Hint: How to hide your receipt"
-msgstr "Petunjuk: Bagaimana menyembunyikan tanda terima Anda"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Cara yang baik untuk menyembunyikan tanda terima Anda adalah dengan menuliskannya seperti nomor kartu kredit, termasuk tanggal kedaluwarsanya. "
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Akses untuk identitas Informan Publik telah diminta oleh pihak otoritas"
@@ -2116,9 +2122,6 @@ msgstr "Nomor KTP"
 
 msgid "Residence"
 msgstr "Tempat Tinggal"
-
-msgid "Address"
-msgstr "Alamat"
 
 msgid "Zip code / Postal code"
 msgstr "Kode pos"

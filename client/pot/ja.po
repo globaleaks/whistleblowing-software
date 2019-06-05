@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-27 09:19+0000\n"
-"Last-Translator: Naofumi <naofum@gmail.com>\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -62,9 +62,6 @@ msgstr "変更履歴"
 
 msgid "License"
 msgstr "ライセンス"
-
-msgid "Settings"
-msgstr "設定"
 
 msgid "Notification templates"
 msgstr "通知のテンプレート"
@@ -364,8 +361,8 @@ msgstr "パーセントで"
 msgid "HTTPS settings"
 msgstr "HTTPS 設定"
 
-msgid "URL shortener"
-msgstr "URL 短縮"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "異変を検出する閾値"
@@ -644,6 +641,12 @@ msgstr "最初"
 msgid "Last"
 msgstr "最終"
 
+msgid "Running"
+msgstr "実行中"
+
+msgid "Not running"
+msgstr "実行していません"
+
 msgid "Select the context of your submission:"
 msgstr "提出のコンテキストを選択してください:"
 
@@ -839,11 +842,8 @@ msgstr "保存"
 msgid "Reset submissions"
 msgstr "提出をリセットする"
 
-msgid "Short URL"
-msgstr "短縮 URL"
-
-msgid "Long URL"
-msgstr "長い URL"
+msgid "To"
+msgstr "宛先"
 
 msgid "Add"
 msgstr "追加"
@@ -908,9 +908,6 @@ msgstr "内部告発の質問"
 msgid "Whistleblowing button"
 msgstr "内部告発ボタン"
 
-msgid "Footer"
-msgstr "フッター"
-
 msgid "Enable disclaimer"
 msgstr "免責事項を有効にする"
 
@@ -919,6 +916,9 @@ msgstr "タイトル"
 
 msgid "Text"
 msgstr "テキスト"
+
+msgid "Footer"
+msgstr "フッター"
 
 msgid "Favicon"
 msgstr "日本語"
@@ -1218,17 +1218,8 @@ msgstr "このインタフェースを介して、プラットフォームは HT
 msgid "The connection to the configured domain failed."
 msgstr "設定したドメイン名への接続に失敗しました。"
 
-msgid "Running"
-msgstr "実行中"
-
-msgid "Not running"
-msgstr "実行していません"
-
 msgid "Auto-renewal"
 msgstr "自動更新"
-
-msgid "System message:"
-msgstr "システムメッセージ:"
 
 msgid "Danger"
 msgstr "危険"
@@ -1666,6 +1657,14 @@ msgstr "irc.oftc.net ネットワークの IRC チャットチャンネルにご
 msgid "Follow the project on:"
 msgstr "プロジェクトをフォローしてください:"
 
+msgid "Hint: How to hide your receipt"
+msgstr "ヒント: 受領番号を隠すには"
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "あなたの受領番号を隠す有用な方法は、クレジットカード番号のように書き留めておくことです。有効期限も含めておきましょう。"
+
 msgid "Error!"
 msgstr "エラー!"
 
@@ -1759,6 +1758,21 @@ msgstr "秒"
 
 msgid "Size:"
 msgstr "サイズ："
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "住所"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "接続が安全ではありません。"
@@ -1941,14 +1955,6 @@ msgstr "16桁の受領番号を使用してログインください。私たち�
 msgid "View your submission"
 msgstr "あなたの提出を見る"
 
-msgid "Hint: How to hide your receipt"
-msgstr "ヒント: 受領番号を隠すには"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "あなたの受領番号を隠す有用な方法は、クレジットカード番号のように書き留めておくことです。有効期限も含めておきましょう。"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "内部告発者の身元へのアクセスを管理人にリクエストしました。"
@@ -2102,9 +2108,6 @@ msgstr "社会保障番号"
 
 msgid "Residence"
 msgstr "住居"
-
-msgid "Address"
-msgstr "住所"
 
 msgid "Zip code / Postal code"
 msgstr "郵便番号"

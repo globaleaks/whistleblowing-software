@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
-"Last-Translator: niko <niko@tightwax.com>\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -64,9 +64,6 @@ msgstr "Доклад на промените"
 
 msgid "License"
 msgstr "Лиценз"
-
-msgid "Settings"
-msgstr "Настройки"
 
 msgid "Notification templates"
 msgstr "Темплейт съобщения"
@@ -366,8 +363,8 @@ msgstr "в проценти"
 msgid "HTTPS settings"
 msgstr "HTTPS настройки"
 
-msgid "URL shortener"
-msgstr "Скъсител на интернет адреси"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Прагът на открити аномалии"
@@ -646,6 +643,12 @@ msgstr "Първо"
 msgid "Last"
 msgstr "Фамилия"
 
+msgid "Running"
+msgstr "Работи"
+
+msgid "Not running"
+msgstr "Не работи"
+
 msgid "Select the context of your submission:"
 msgstr "Изберете контекста на подадения сигнал:"
 
@@ -841,11 +844,8 @@ msgstr "Запази"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "Кратък интернет адрес"
-
-msgid "Long URL"
-msgstr "Дълъг интернет адрес"
+msgid "To"
+msgstr ""
 
 msgid "Add"
 msgstr "Добави"
@@ -910,9 +910,6 @@ msgstr "Въпрос за привличане на бъдещи източни�
 msgid "Whistleblowing button"
 msgstr "Бутон за подаване на сигнал"
 
-msgid "Footer"
-msgstr "Footer"
-
 msgid "Enable disclaimer"
 msgstr "Активиране на секцията отказване от права"
 
@@ -921,6 +918,9 @@ msgstr "Заглавие"
 
 msgid "Text"
 msgstr "Текст"
+
+msgid "Footer"
+msgstr "Footer"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1220,17 +1220,8 @@ msgstr "Платформата поддържа конфиругация на HT
 msgid "The connection to the configured domain failed."
 msgstr "Връзката до настроеният домейн е неуспешна."
 
-msgid "Running"
-msgstr "Работи"
-
-msgid "Not running"
-msgstr "Не работи"
-
 msgid "Auto-renewal"
 msgstr "Автоматично подновяване"
-
-msgid "System message:"
-msgstr "Системно съобщение:"
 
 msgid "Danger"
 msgstr "Опасност"
@@ -1668,6 +1659,14 @@ msgstr "Присъединете се към нашия IRC чат канал в
 msgid "Follow the project on:"
 msgstr "Следвайте проекта на:"
 
+msgid "Hint: How to hide your receipt"
+msgstr "Съвет: Как да скриете разписката"
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Удобен начин да скриете разписката е като я запишете като номер на кредина карта, добавяйки дата на изтичане."
+
 msgid "Error!"
 msgstr "Грешка!"
 
@@ -1761,6 +1760,21 @@ msgstr "секунди"
 
 msgid "Size:"
 msgstr "Размер:"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "Връзката не е сигурна."
@@ -1943,14 +1957,6 @@ msgstr "Използвайте 16 цифреният код за вписван�
 msgid "View your submission"
 msgstr "Преглед на сигнала"
 
-msgid "Hint: How to hide your receipt"
-msgstr "Съвет: Как да скриете разписката"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Удобен начин да скриете разписката е като я запишете като номер на кредина карта, добавяйки дата на изтичане."
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Молба за достъп до самоличността на източника е получена от попечителя."
@@ -2104,9 +2110,6 @@ msgstr "ЕГН"
 
 msgid "Residence"
 msgstr "Местожителство"
-
-msgid "Address"
-msgstr "Адрес"
 
 msgid "Zip code / Postal code"
 msgstr "Пощенски код"

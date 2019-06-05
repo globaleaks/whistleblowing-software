@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,9 +71,6 @@ msgstr "Journal des changements"
 
 msgid "License"
 msgstr "Licence"
-
-msgid "Settings"
-msgstr ""
 
 msgid "Notification templates"
 msgstr "Modèles de notification"
@@ -373,8 +370,8 @@ msgstr "en pourcentage"
 msgid "HTTPS settings"
 msgstr "Paramètres HTTPS"
 
-msgid "URL shortener"
-msgstr "Réducteur d’URL"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Seuils de détection des anomalies"
@@ -653,6 +650,12 @@ msgstr "Première"
 msgid "Last"
 msgstr "Dernière"
 
+msgid "Running"
+msgstr "Fonctionne"
+
+msgid "Not running"
+msgstr "Ne fonctionne pas"
+
 msgid "Select the context of your submission:"
 msgstr "Choisir le contexte de votre envoi :"
 
@@ -848,11 +851,8 @@ msgstr "Enregistrer"
 msgid "Reset submissions"
 msgstr "Réinitialiser les envois"
 
-msgid "Short URL"
-msgstr "URL courte"
-
-msgid "Long URL"
-msgstr "URL longue"
+msgid "To"
+msgstr ""
 
 msgid "Add"
 msgstr "Ajouter"
@@ -917,9 +917,6 @@ msgstr "Question pour attirer les lanceurs d’alerte potentiels"
 msgid "Whistleblowing button"
 msgstr "Bouton de dénonciation"
 
-msgid "Footer"
-msgstr "Bas de page"
-
 msgid "Enable disclaimer"
 msgstr "Activer un avis"
 
@@ -928,6 +925,9 @@ msgstr "Titre"
 
 msgid "Text"
 msgstr "Texte"
+
+msgid "Footer"
+msgstr "Bas de page"
 
 msgid "Favicon"
 msgstr "Favoricône"
@@ -1227,17 +1227,8 @@ msgstr "La plateforme prend en charge la configuration de HTTPS par cette interf
 msgid "The connection to the configured domain failed."
 msgstr "Échec de connexion au domaine configuré."
 
-msgid "Running"
-msgstr "Fonctionne"
-
-msgid "Not running"
-msgstr "Ne fonctionne pas"
-
 msgid "Auto-renewal"
 msgstr "Renouvellement automatique"
-
-msgid "System message:"
-msgstr "Message système :"
 
 msgid "Danger"
 msgstr "Danger"
@@ -1675,6 +1666,14 @@ msgstr "Rejoignez notre canal de clavardage IRC sur le réseau irc.oftc.net :"
 msgid "Follow the project on:"
 msgstr "Suivez le projet sur :"
 
+msgid "Hint: How to hide your receipt"
+msgstr "Astuce : Comment cacher votre reçu ?"
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Une bonne manière de cacher votre reçu est de le noter comme un numéro de carte de crédit, c.-à-d. en ajoutant aussi une date d’expiration."
+
 msgid "Error!"
 msgstr "Erreur !"
 
@@ -1768,6 +1767,21 @@ msgstr "secondes"
 
 msgid "Size:"
 msgstr "Taille :"
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "La connexion n’est pas sécurisée."
@@ -1950,14 +1964,6 @@ msgstr "Utilisez le reçu à 16 chiffres pour vous connecter. Il vous permettra
 msgid "View your submission"
 msgstr "Visualisez votre envoi"
 
-msgid "Hint: How to hide your receipt"
-msgstr "Astuce : Comment cacher votre reçu ?"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Une bonne manière de cacher votre reçu est de le noter comme un numéro de carte de crédit, c.-à-d. en ajoutant aussi une date d’expiration."
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "L’accès à l’identité du lanceur d’alerte a été demandé au gardien. "
@@ -2111,9 +2117,6 @@ msgstr "Numéro d’assurance sociale"
 
 msgid "Residence"
 msgstr "Résidence"
-
-msgid "Address"
-msgstr "Adresse"
 
 msgid "Zip code / Postal code"
 msgstr "Code postal"

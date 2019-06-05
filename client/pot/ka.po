@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,9 +56,6 @@ msgid "Changelog"
 msgstr "ცვლილებები"
 
 msgid "License"
-msgstr ""
-
-msgid "Settings"
 msgstr ""
 
 msgid "Notification templates"
@@ -359,8 +356,8 @@ msgstr "პროცენტული"
 msgid "HTTPS settings"
 msgstr "HTTPS პარამეტრები"
 
-msgid "URL shortener"
-msgstr "URL shortener"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "ანომალიის გამოვლენის დევნება"
@@ -639,6 +636,12 @@ msgstr ""
 msgid "Last"
 msgstr ""
 
+msgid "Running"
+msgstr ""
+
+msgid "Not running"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "აირჩიეთ კონტექსტში თქვენი წარმოდგენის:"
 
@@ -834,11 +837,8 @@ msgstr "გადარჩენა"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "მოკლე URL"
-
-msgid "Long URL"
-msgstr "დიდხანს URL"
+msgid "To"
+msgstr ""
 
 msgid "Add"
 msgstr "სანიშნეს"
@@ -903,9 +903,6 @@ msgstr "კითხვა შუამდგომლობას შესა�
 msgid "Whistleblowing button"
 msgstr "მხილება ღილაკს"
 
-msgid "Footer"
-msgstr "Footer"
-
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -914,6 +911,9 @@ msgstr "სათაური"
 
 msgid "Text"
 msgstr ""
+
+msgid "Footer"
+msgstr "Footer"
 
 msgid "Favicon"
 msgstr ""
@@ -1213,16 +1213,7 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
-msgid "Running"
-msgstr ""
-
-msgid "Not running"
-msgstr ""
-
 msgid "Auto-renewal"
-msgstr ""
-
-msgid "System message:"
 msgstr ""
 
 msgid "Danger"
@@ -1661,6 +1652,14 @@ msgstr ""
 msgid "Follow the project on:"
 msgstr ""
 
+msgid "Hint: How to hide your receipt"
+msgstr ""
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr ""
+
 msgid "Error!"
 msgstr "შეცდომა!"
 
@@ -1753,6 +1752,21 @@ msgid "seconds"
 msgstr "წამში"
 
 msgid "Size:"
+msgstr ""
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "მისამართი"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
 msgstr ""
 
 msgid "The connection is not secure."
@@ -1936,14 +1950,6 @@ msgstr ""
 msgid "View your submission"
 msgstr "ნახეთ თქვენი წარდგენის"
 
-msgid "Hint: How to hide your receipt"
-msgstr ""
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr ""
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "ხელმისაწვდომობა მამხილებლის ვინაობა უკვე მოითხოვა მზრუნველი."
@@ -2097,9 +2103,6 @@ msgstr "სოციალური დაცვის ნომერი"
 
 msgid "Residence"
 msgstr "Residence"
-
-msgid "Address"
-msgstr "მისამართი"
 
 msgid "Zip code / Postal code"
 msgstr "Zip კოდი / საფოსტო კოდი"

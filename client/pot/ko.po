@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"PO-Revision-Date: 2019-06-05 13:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,9 +58,6 @@ msgstr "업데이트 기록"
 
 msgid "License"
 msgstr "라이센스"
-
-msgid "Settings"
-msgstr "설정"
 
 msgid "Notification templates"
 msgstr "알림 템플릿"
@@ -360,8 +357,8 @@ msgstr "백분율"
 msgid "HTTPS settings"
 msgstr "HTTPS 설정"
 
-msgid "URL shortener"
-msgstr "URL 축약"
+msgid "URL redirects"
+msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "이상 검출 임계"
@@ -640,6 +637,12 @@ msgstr "첫번째"
 msgid "Last"
 msgstr "마지막"
 
+msgid "Running"
+msgstr ""
+
+msgid "Not running"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "제출의 컨텍스트를 선택합니다 :"
 
@@ -835,11 +838,8 @@ msgstr "구하다"
 msgid "Reset submissions"
 msgstr ""
 
-msgid "Short URL"
-msgstr "짧은 URL"
-
-msgid "Long URL"
-msgstr "긴 URL"
+msgid "To"
+msgstr "To"
 
 msgid "Add"
 msgstr "더하다"
@@ -904,9 +904,6 @@ msgstr "질문이 가능 고발자를 요청합니다"
 msgid "Whistleblowing button"
 msgstr "고발 버튼"
 
-msgid "Footer"
-msgstr "보행인"
-
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -915,6 +912,9 @@ msgstr "제목"
 
 msgid "Text"
 msgstr "텍스트"
+
+msgid "Footer"
+msgstr "보행인"
 
 msgid "Favicon"
 msgstr ""
@@ -1214,16 +1214,7 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
-msgid "Running"
-msgstr ""
-
-msgid "Not running"
-msgstr ""
-
 msgid "Auto-renewal"
-msgstr ""
-
-msgid "System message:"
 msgstr ""
 
 msgid "Danger"
@@ -1662,6 +1653,14 @@ msgstr ""
 msgid "Follow the project on:"
 msgstr ""
 
+msgid "Hint: How to hide your receipt"
+msgstr ""
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr ""
+
 msgid "Error!"
 msgstr "오류!"
 
@@ -1754,6 +1753,21 @@ msgid "seconds"
 msgstr "초"
 
 msgid "Size:"
+msgstr ""
+
+msgid "Enable the Ricochet panel"
+msgstr ""
+
+msgid "Address"
+msgstr "주소"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr ""
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr ""
+
+msgid "Download Ricochet at:"
 msgstr ""
 
 msgid "The connection is not secure."
@@ -1937,14 +1951,6 @@ msgstr ""
 msgid "View your submission"
 msgstr "제출보기"
 
-msgid "Hint: How to hide your receipt"
-msgstr ""
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr ""
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "고발자의 신원에 대한 액세스는 관리인에게 요청하고있다."
@@ -2098,9 +2104,6 @@ msgstr "사회 보장 번호"
 
 msgid "Residence"
 msgstr "거주"
-
-msgid "Address"
-msgstr "주소"
 
 msgid "Zip code / Postal code"
 msgstr "우편 번호 / 우편 번호"
