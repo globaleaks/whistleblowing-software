@@ -125,6 +125,10 @@ class SNIMap(object):
 
     def __init__(self):
         self._negotiationDataForContext = collections.defaultdict(_NegotiationData)
+        self.set_default_context(Context(TLSv1_2_METHOD))
+
+    def set_default_context(self, context):
+        self.context = context
         self.context.set_tlsext_servername_callback(self.selectContext)
 
     def load(self, tid, conf):
@@ -135,28 +139,33 @@ class SNIMap(object):
 
         self.configs_by_tid[tid] = conf
 
-        self.contexts_by_hostname[conf['hostname']] = TLSServerContextFactory(conf['ssl_key'],
-                                  conf['ssl_cert'],
-                                  conf['ssl_intermediate'],
-                                  conf['ssl_dh'])
+        context = TLSServerContextFactory(conf['ssl_key'],
+                                          conf['ssl_cert'],
+                                          conf['ssl_intermediate'],
+                                          conf['ssl_dh'])
+
+        self.contexts_by_hostname[conf['hostname']] = context
+
+        if tid == 1:
+            self.set_default_context(context.getContext())
 
     def unload(self, tid):
         conf = self.configs_by_tid.pop(tid, None)
         if conf is not None:
             self.contexts_by_hostname.pop(conf['hostname'], None)
 
+        if tid == 1:
+            self.set_default_context(Context(TLSv1_2_METHOD))
+
     def selectContext(self, connection):
         common_name = connection.get_servername().decode('utf-8')
 
         if common_name in self.contexts_by_hostname:
             newContext = self.contexts_by_hostname[common_name].getContext()
-        else:
-            newContext = Context(TLSv1_2_METHOD)
-
-        negotiationData = self._negotiationDataForContext[connection.get_context()]
-        negotiationData.negotiateNPN(newContext)
-        negotiationData.negotiateALPN(newContext)
-        connection.set_context(newContext)
+            negotiationData = self._negotiationDataForContext[connection.get_context()]
+            negotiationData.negotiateNPN(newContext)
+            negotiationData.negotiateALPN(newContext)
+            connection.set_context(newContext)
 
     def serverConnectionForTLS(self, protocol):
         return _ConnectionProxy(Connection(self.context, None), self)
