@@ -1,5 +1,9 @@
-Changes in version 3.9.1 - 2019-06-06
-   Apply minior bugfixing
+Changes in version 3.9.2 - 2019-06-05
+   Apply minor bugfixing
+   Update translations
+
+Changes in version 3.9.1 - 2019-06-05
+   Apply minor bugfixing
 
 Changes in version 3.9.0 - 2019-06-05
    Implement URL redirects (#2575)
