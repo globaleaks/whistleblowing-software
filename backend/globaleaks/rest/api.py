@@ -310,11 +310,8 @@ class APIResourceWrapper(Resource):
         else:
             request.tid = State.tenant_hostname_id_map.get(request.hostname, 1)
 
-        request.client_ip = request.headers.get(b'gl-forwarded-for')
-        request.client_proto = b'https'
-        if request.client_ip is None:
-            request.client_ip = request.getClientIP()
-            request.client_proto = b'http'
+        request.client_ip = request.getClientIP()
+        request.client_proto = b'https' if request.port in [443, 8443] else b'http'
 
         request.client_using_tor = request.client_ip in State.tor_exit_set or \
                                    request.port == 8083
