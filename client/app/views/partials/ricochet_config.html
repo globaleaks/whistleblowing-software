@@ -4,10 +4,7 @@
     <span data-translate>Enable the Ricochet panel</span>
   </label>
 </div>
-
-<div class="form-group" data-ng-if="admin.node.enable_ricochet_panel">
-  <label data-translate>Ricochet address</label>
-  <div>
-    <input class="form-control" data-ng-model="admin.node.ricochet_address" type="text" />
-  </div>
+<div class="form-group well" data-ng-if="admin.node.enable_ricochet_panel">
+  <label data-translate>Address</label>
+  <input class="form-control" data-ng-model="admin.node.ricochet_address" type="text" />
 </div>
