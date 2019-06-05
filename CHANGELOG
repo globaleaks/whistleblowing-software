@@ -1,3 +1,15 @@
+Changes in version 3.9.0 - 2019-06-05
+   Implement URL redirects (#2575)
+   Collect statistics about mobile/desktop users (#2207)
+   Optimize language selector for Mobile users (#2574, #1780)
+   Implement Ricochet panel (#2513)
+   Prepare database for Audit Log (#2579)
+   Improve resiliency of HTTPS component
+   Fix reload of renewed Let'sEncrypt certificates
+   Improve securization of HTTPS configuration
+   Apply minor bugfixing
+   Update translations
+
 Changes in version 3.8.6 - 2019-05-21
    Apply minor bugfixing
    Updates translations
