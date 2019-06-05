@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: Chi-Hsun Tsai\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -63,6 +63,9 @@ msgstr "變改"
 
 msgid "License"
 msgstr "版權"
+
+msgid "Settings"
+msgstr "設定"
 
 msgid "Notification templates"
 msgstr "通知模版"
@@ -725,15 +728,6 @@ msgstr "當吹哨者不是用 TOR 瀏覧器時所顯示的文字"
 msgid "Disable the privacy panel"
 msgstr "取消隱私面板"
 
-msgid "Enable disclaimer"
-msgstr "開啟免責聲明編輯功能"
-
-msgid "Title"
-msgstr "標題"
-
-msgid "Text"
-msgstr "內文"
-
 msgid "Disable the receipt hint"
 msgstr "取消收件人提示"
 
@@ -825,6 +819,12 @@ msgstr "登入層級"
 msgid "Log accesses of internal users"
 msgstr "內部用戶的登入存取"
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr "啟用評分系統"
+
 msgid "Enable experimental features"
 msgstr "開啟示範性功能"
 
@@ -911,6 +911,15 @@ msgstr "吹哨揭密者的按鍵"
 
 msgid "Footer"
 msgstr "頁腳"
+
+msgid "Enable disclaimer"
+msgstr "開啟免責聲明編輯功能"
+
+msgid "Title"
+msgstr "標題"
+
+msgid "Text"
+msgstr "內文"
 
 msgid "Favicon"
 msgstr "網站小圖標"
@@ -1017,8 +1026,8 @@ msgstr "允許吹哨者對已有的提交資料新加附件"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "可允許收件者上傳檔案給吹哨者"
 
-msgid "Enable scoring system"
-msgstr "啟用評分系統"
+msgid "Scoring system options"
+msgstr ""
 
 msgid "Threshold"
 msgstr "門檻"
@@ -1608,9 +1617,6 @@ msgstr "請選擇你的帳號"
 msgid "Now type your password, then click 'Log in':"
 msgstr "現在輸入你的密碼後點擊「登入」鍵"
 
-msgid "Assign score points"
-msgstr "指定得分點數"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1622,6 +1628,9 @@ msgstr "你確定嗎？"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "這項操作還重置設定且無法回復。"
+
+msgid "Assign score points"
+msgstr "指定得分點數"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "請注意所有相關的資料將會永久消失。"

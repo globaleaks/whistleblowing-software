@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: On the Line Turkiye <onthelineturkiye@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -79,6 +79,9 @@ msgstr "Değişim günlüğü"
 
 msgid "License"
 msgstr "Lisans"
+
+msgid "Settings"
+msgstr "Ayarlar"
 
 msgid "Notification templates"
 msgstr "Bildirim şablonları"
@@ -741,15 +744,6 @@ msgstr "İhbarcı Tor kullanmadığında gösterilecek metin"
 msgid "Disable the privacy panel"
 msgstr "Gizlilik rozetini devre dışı bırak"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "Başlık"
-
-msgid "Text"
-msgstr "Metin"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -841,6 +835,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "Deneysel özellikleri etkinleştir"
 
@@ -927,6 +927,15 @@ msgstr "İhbar Butonu"
 
 msgid "Footer"
 msgstr "Sayfa altlığı"
+
+msgid "Enable disclaimer"
+msgstr ""
+
+msgid "Title"
+msgstr "Başlık"
+
+msgid "Text"
+msgstr "Metin"
 
 msgid "Favicon"
 msgstr ""
@@ -1033,7 +1042,7 @@ msgstr ""
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1624,9 +1633,6 @@ msgstr "Lütfen hesabınızı seçin:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Şimdi şifrenizi yazın ve Giriş'i tıklayın"
 
-msgid "Assign score points"
-msgstr "Puanları tahsis et"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1638,6 +1644,9 @@ msgstr "Emin misiniz?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
+
+msgid "Assign score points"
+msgstr "Puanları tahsis et"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: Bo Elkjaer <bo_elkjaer@riseup.net>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -59,6 +59,9 @@ msgstr "Log over ændringer"
 
 msgid "License"
 msgstr "Licens"
+
+msgid "Settings"
+msgstr "Indstillinger"
 
 msgid "Notification templates"
 msgstr "Notifikationsskabeloner"
@@ -721,15 +724,6 @@ msgstr "Tekst der vises når whistlebloweren ikke bruger Tor"
 msgid "Disable the privacy panel"
 msgstr "Deaktiver privatlivspanelet"
 
-msgid "Enable disclaimer"
-msgstr "Aktiver ansvarsfraskrivelse"
-
-msgid "Title"
-msgstr "Titel"
-
-msgid "Text"
-msgstr "Tekst"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -821,6 +815,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "Aktivér eksperimentelle funktioner"
 
@@ -907,6 +907,15 @@ msgstr "Whistleblower-knap"
 
 msgid "Footer"
 msgstr "Sidefod"
+
+msgid "Enable disclaimer"
+msgstr "Aktiver ansvarsfraskrivelse"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Text"
+msgstr "Tekst"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1013,7 +1022,7 @@ msgstr "Tillad at whistleblowere kan tilføje vedhæftelser til eksisterende ind
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Tillad at modtagere kan uploade filer til whistleblowere"
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1604,9 +1613,6 @@ msgstr "Vælg venligst din konto:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Skriv nu dit password og klik 'log ind':"
 
-msgid "Assign score points"
-msgstr "Tildel pointtal"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1618,6 +1624,9 @@ msgstr "Er du sikker?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Denne handling vil nulstille konfigurationen og kan ikke fortrydes."
+
+msgid "Assign score points"
+msgstr "Tildel pointtal"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Vær opmærksom på, at alle tilknyttede data vil blive permanent slettet."

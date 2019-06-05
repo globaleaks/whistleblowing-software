@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: ulkar!(($-2017 <ulkernatiqqizis@gmail.com>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -62,6 +62,9 @@ msgstr "Dəyişikliklər"
 
 msgid "License"
 msgstr "Lisenziya"
+
+msgid "Settings"
+msgstr "Tənzimləmələr"
 
 msgid "Notification templates"
 msgstr "Xəbərdarlıq üzlüyü"
@@ -724,15 +727,6 @@ msgstr "İnformasiya ötürən  Tordan istifadə etmədikdə göstərilən mətn
 msgid "Disable the privacy panel"
 msgstr "Məxfilik panelini ləğv et"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "Başlıq"
-
-msgid "Text"
-msgstr "Mətn"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -824,6 +818,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "Təcrübi imkanları aktivləşdirin"
 
@@ -910,6 +910,15 @@ msgstr "İnformasiya ötürmə düyməsi "
 
 msgid "Footer"
 msgstr "Aşağı lövhə"
+
+msgid "Enable disclaimer"
+msgstr ""
+
+msgid "Title"
+msgstr "Başlıq"
+
+msgid "Text"
+msgstr "Mətn"
 
 msgid "Favicon"
 msgstr "Saytın ikonası"
@@ -1016,7 +1025,7 @@ msgstr "İnformasiya ötürənlərin mövcud təqdimatlar üzərinə yeni əlav�
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Qəbul edicilərə, informasiya ötürənlər üçün fayllar yükləməsinə icazə verin"
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1607,9 +1616,6 @@ msgstr "Xahiş edirik  hesabınızı seçəsiniz. "
 msgid "Now type your password, then click 'Log in':"
 msgstr "Şifrənizi daxil edin, daha sonra \"Giriş\" düyməsinə basın"
 
-msgid "Assign score points"
-msgstr "Hesab nöqtələrini təyin et"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1621,6 +1627,9 @@ msgstr "Əminsiniz mi?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Əməliyyat, quraşdırılmanı sıfırlayır və geri qaytara bilmir."
+
+msgid "Assign score points"
+msgstr "Hesab nöqtələrini təyin et"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Xahiş edirik bütün əlaqəli məlumatların daimi olaraq silinəcəyini unutmayın."

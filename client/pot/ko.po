@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,6 +58,9 @@ msgstr "업데이트 기록"
 
 msgid "License"
 msgstr "라이센스"
+
+msgid "Settings"
+msgstr "설정"
 
 msgid "Notification templates"
 msgstr "알림 템플릿"
@@ -720,15 +723,6 @@ msgstr "텍스트 고발자가 토르를 사용하지 않을 때 표시"
 msgid "Disable the privacy panel"
 msgstr "개인 정보 보호 패널을 사용하지 않도록 설정"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "제목"
-
-msgid "Text"
-msgstr "텍스트"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -820,6 +814,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "실험 기능 사용"
 
@@ -906,6 +906,15 @@ msgstr "고발 버튼"
 
 msgid "Footer"
 msgstr "보행인"
+
+msgid "Enable disclaimer"
+msgstr ""
+
+msgid "Title"
+msgstr "제목"
+
+msgid "Text"
+msgstr "텍스트"
 
 msgid "Favicon"
 msgstr ""
@@ -1012,7 +1021,7 @@ msgstr ""
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1603,9 +1612,6 @@ msgstr "계정을 선택하십시오 :"
 msgid "Now type your password, then click 'Log in':"
 msgstr "지금 비밀번호를 입력 한 후 '로그인'을 클릭합니다 :"
 
-msgid "Assign score points"
-msgstr "점수 포인트를 할당"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1617,6 +1623,9 @@ msgstr "확실합니까?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
+
+msgid "Assign score points"
+msgstr "점수 포인트를 할당"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""

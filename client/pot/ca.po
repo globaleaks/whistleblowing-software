@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,6 +71,9 @@ msgstr "Registre de canvis"
 
 msgid "License"
 msgstr "Llicència"
+
+msgid "Settings"
+msgstr "Configuració"
 
 msgid "Notification templates"
 msgstr "Plantilles d'avisos"
@@ -733,15 +736,6 @@ msgstr "El text es mostra quan l'informador no fa servir Tor"
 msgid "Disable the privacy panel"
 msgstr "Deshabilita el distintiu de privacitat "
 
-msgid "Enable disclaimer"
-msgstr "Activar l'avís legal"
-
-msgid "Title"
-msgstr "Títol"
-
-msgid "Text"
-msgstr "Text"
-
 msgid "Disable the receipt hint"
 msgstr "Desactiva el suggeriment de recepció"
 
@@ -833,6 +827,12 @@ msgstr "Nivell de registre"
 msgid "Log accesses of internal users"
 msgstr "Registre d'accés dels usuaris interns"
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr "Activa el sistema de puntuació"
+
 msgid "Enable experimental features"
 msgstr "Activa els trets experimentals"
 
@@ -919,6 +919,15 @@ msgstr "Botó de l'informador"
 
 msgid "Footer"
 msgstr "Peu de pàgina"
+
+msgid "Enable disclaimer"
+msgstr "Activar l'avís legal"
+
+msgid "Title"
+msgstr "Títol"
+
+msgid "Text"
+msgstr "Text"
 
 msgid "Favicon"
 msgstr "Icona de web"
@@ -1025,8 +1034,8 @@ msgstr "Permet als informadors afegir arxius adjunts en un enviament anterior"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Permet als receptors carregar arxius per als informadors"
 
-msgid "Enable scoring system"
-msgstr "Activa el sistema de puntuació"
+msgid "Scoring system options"
+msgstr ""
 
 msgid "Threshold"
 msgstr "Llindar"
@@ -1616,9 +1625,6 @@ msgstr "Si us plau, selecciona el teu compte:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Ara escriu la teva contrasenya, després clica \"Inicia sessió\":"
 
-msgid "Assign score points"
-msgstr "Assigna puntuació"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1630,6 +1636,9 @@ msgstr "N'estàs segur?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "L'operació restablirà la configuració i no es podrà desfer."
+
+msgid "Assign score points"
+msgstr "Assigna puntuació"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Recordeu que totes les dades associades es perden definitivament."

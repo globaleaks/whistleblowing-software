@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: Panu Ahvenharju\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -63,6 +63,9 @@ msgstr "Muutosloki"
 
 msgid "License"
 msgstr "Lisenssi"
+
+msgid "Settings"
+msgstr "Asetukset"
 
 msgid "Notification templates"
 msgstr "Ilmoituspohjat"
@@ -725,15 +728,6 @@ msgstr "Ilmoitusteksti käyttäjille, jotka eivät käytä Tor-selainta"
 msgid "Disable the privacy panel"
 msgstr "Ota pois käytöstä yksityisyyskulkukortti"
 
-msgid "Enable disclaimer"
-msgstr "Ota käyttöön vastuuvapauslauseke"
-
-msgid "Title"
-msgstr "Otsikko"
-
-msgid "Text"
-msgstr "Teksti"
-
 msgid "Disable the receipt hint"
 msgstr "Poista kuittivinkki käytöstä"
 
@@ -825,6 +819,12 @@ msgstr "Kirjautumistaso"
 msgid "Log accesses of internal users"
 msgstr "Tallenna sisäisten käyttäjien kirjautumiset"
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr "Ota käyttöön pisteytysjärjestelmä"
+
 msgid "Enable experimental features"
 msgstr "Ota käyttöön koekäytössä olevat toiminnallisuudet"
 
@@ -911,6 +911,15 @@ msgstr "Aloituspainikkeen teksti"
 
 msgid "Footer"
 msgstr "Sivun alatunnisteen teksti"
+
+msgid "Enable disclaimer"
+msgstr "Ota käyttöön vastuuvapauslauseke"
+
+msgid "Title"
+msgstr "Otsikko"
+
+msgid "Text"
+msgstr "Teksti"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1017,8 +1026,8 @@ msgstr "Salli vihjeen antajien lisätä liitetiedostoja olemassaoleviin vihjeisi
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Salli vastaanottajien lähettää tiedostoja vihjeiden lähettäjille"
 
-msgid "Enable scoring system"
-msgstr "Ota käyttöön pisteytysjärjestelmä"
+msgid "Scoring system options"
+msgstr ""
 
 msgid "Threshold"
 msgstr "Kynnysarvo"
@@ -1608,9 +1617,6 @@ msgstr "Valitse tilisi:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Kirjoita nyt salasanasi, napsauta sitten ’Kirjaudu’:"
 
-msgid "Assign score points"
-msgstr "Käytä pisteytystä"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1622,6 +1628,9 @@ msgstr "Oletko varma?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Tämä toiminto palauttaa järjestelmän alkuperäiset asetukset eikä sitä voi perua."
+
+msgid "Assign score points"
+msgstr "Käytä pisteytystä"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Huomaa, että kaikki asiaan liittyvät tiedot poistetaan lopullisesti."

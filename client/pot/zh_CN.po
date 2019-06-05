@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: 刘位\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -72,6 +72,9 @@ msgstr "变更日志"
 
 msgid "License"
 msgstr "许可"
+
+msgid "Settings"
+msgstr "设置"
 
 msgid "Notification templates"
 msgstr "通知模板"
@@ -734,15 +737,6 @@ msgstr "未使用 Tor 浏览告密者时显示的文本"
 msgid "Disable the privacy panel"
 msgstr "禁用隐私面板"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "标题"
-
-msgid "Text"
-msgstr "文本"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -834,6 +828,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "启用试验功能"
 
@@ -920,6 +920,15 @@ msgstr "告密按钮"
 
 msgid "Footer"
 msgstr "页脚"
+
+msgid "Enable disclaimer"
+msgstr ""
+
+msgid "Title"
+msgstr "标题"
+
+msgid "Text"
+msgstr "文本"
 
 msgid "Favicon"
 msgstr "中文"
@@ -1026,7 +1035,7 @@ msgstr "允许告密者在现有提交上添加附件"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "允许接收人为揭发人上传文件"
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1617,9 +1626,6 @@ msgstr "请选择您的账号："
 msgid "Now type your password, then click 'Log in':"
 msgstr "现在输入您的密码，然后点击“登录”："
 
-msgid "Assign score points"
-msgstr "指定分数"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1631,6 +1637,9 @@ msgstr "您确定吗？"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "该操作将重置配置，并无法撤消。"
+
+msgid "Assign score points"
+msgstr "指定分数"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "注意：所有相关数据将永久删除。"

@@ -11,9 +11,9 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018
 # João Paulo Macedo Batalha <joao.batalha@transparencia.pt>, 2015
 # Manuela Silva <inactive+h_manuela_rodsilva@transifex.com>, 2015-2016
-# Manuela Silva, 2014-2018
+# Manuela Silva <manuelarodsilva@gmail.com>, 2014-2018
 # Mónica Marques <coelho_monica75@hotmail.com>, 2017
-# Manuela Silva, 2019
+# Manuela Silva <manuelarodsilva@gmail.com>, 2019
 # Drew Melim <nokostya.translation@gmail.com>, 2014-2015
 # Nuno Duarte <inactive+nuno.passiano@transifex.com>, 2015
 # Nuno Duarte <inactive+nuno.passiano@transifex.com>, 2015
@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: Nuno Miguel Macedo Batalha <nmmbat@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -75,6 +75,9 @@ msgstr "Registo de Alterações"
 
 msgid "License"
 msgstr "Licença"
+
+msgid "Settings"
+msgstr "Configurações"
 
 msgid "Notification templates"
 msgstr "Modelos de notificação"
@@ -737,15 +740,6 @@ msgstr "Texto mostrado quando o informador não está a utilizar o Tor"
 msgid "Disable the privacy panel"
 msgstr "Desativar o painel de privacidade"
 
-msgid "Enable disclaimer"
-msgstr " Ativar limitação de responsabilidade"
-
-msgid "Title"
-msgstr "Título"
-
-msgid "Text"
-msgstr "Texto"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -837,6 +831,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "Ativar funcionalidades experimentais"
 
@@ -923,6 +923,15 @@ msgstr "Botão de Denúncia"
 
 msgid "Footer"
 msgstr "Rodapé"
+
+msgid "Enable disclaimer"
+msgstr " Ativar limitação de responsabilidade"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "Text"
+msgstr "Texto"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1029,7 +1038,7 @@ msgstr "Permitir que os informadores adicionem anexos nas submissões existentes
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Permitir que os destinatários enviem ficheiros para os informadores"
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1620,9 +1629,6 @@ msgstr "Selecione a sua conta:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Digite a sua palavra-passe e clique e \"Iniciar sessão\":"
 
-msgid "Assign score points"
-msgstr "Atribuir pontos"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1634,6 +1640,9 @@ msgstr "Tem a certeza?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "A operação irá reiniciar a configuração e não poderá ser anulada."
+
+msgid "Assign score points"
+msgstr "Atribuir pontos"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Por favor, note que todos os dados associados serão perdidos para sempre."

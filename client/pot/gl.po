@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: Pilar Fernández Pazos <pfernandez@ccontasgalicia.es>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -60,6 +60,9 @@ msgstr "Changelog"
 
 msgid "License"
 msgstr "Licenza"
+
+msgid "Settings"
+msgstr "Axustes"
 
 msgid "Notification templates"
 msgstr "Modelos de notificacións"
@@ -722,15 +725,6 @@ msgstr "Texto que se mostra cando o denunciante non usa Tor"
 msgid "Disable the privacy panel"
 msgstr "Desactivar o panel de privacidade"
 
-msgid "Enable disclaimer"
-msgstr "Habilitar exención de responsabilidade"
-
-msgid "Title"
-msgstr "Título"
-
-msgid "Text"
-msgstr "Texto"
-
 msgid "Disable the receipt hint"
 msgstr "Desactivar a información de recepción"
 
@@ -822,6 +816,12 @@ msgstr "Nivel de rexistro"
 msgid "Log accesses of internal users"
 msgstr "Rexistro de accesos a usuarios internos"
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr "Habilita o sistema de puntuación"
+
 msgid "Enable experimental features"
 msgstr "Habilitar funcións experimentais"
 
@@ -908,6 +908,15 @@ msgstr "Botón de denuncia"
 
 msgid "Footer"
 msgstr "Pé de páxina"
+
+msgid "Enable disclaimer"
+msgstr "Habilitar exención de responsabilidade"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "Text"
+msgstr "Texto"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1014,8 +1023,8 @@ msgstr "Permite que os denunciantes engadan anexos ás presentacións existentes
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Deixe que os destinatarios suban arquivos aos denunciantes"
 
-msgid "Enable scoring system"
-msgstr "Habilita o sistema de puntuación"
+msgid "Scoring system options"
+msgstr ""
 
 msgid "Threshold"
 msgstr "Límite"
@@ -1605,9 +1614,6 @@ msgstr "Selecciona a túa conta:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Agora escriba o seu contrasinal e prema en \"Iniciar sesión\":"
 
-msgid "Assign score points"
-msgstr "Asignar puntos"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1619,6 +1625,9 @@ msgstr "Estás seguro?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "A operación reiniciará a configuración e non se pode desfacer."
+
+msgid "Assign score points"
+msgstr "Asignar puntos"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Ten en conta que todos os datos asociados perderanse permanentemente."

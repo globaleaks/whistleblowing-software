@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,6 +60,9 @@ msgstr "மாற்றம்குறிக்கும் கோப்ப�
 
 msgid "License"
 msgstr "உரிமம்"
+
+msgid "Settings"
+msgstr "அமைப்புகள்"
 
 msgid "Notification templates"
 msgstr "அறிவித்தல் வார்ப்புருக்கள்"
@@ -722,15 +725,6 @@ msgstr "உரை தகவல் தெரிவிப்பவர் தோ
 msgid "Disable the privacy panel"
 msgstr "தனியுரிமை குழு முடக்கு"
 
-msgid "Enable disclaimer"
-msgstr "மறுதலிப்பை இயக்கு"
-
-msgid "Title"
-msgstr "தலைப்பு"
-
-msgid "Text"
-msgstr "உரை"
-
 msgid "Disable the receipt hint"
 msgstr "ரசீது குறிப்பை முடக்கு"
 
@@ -822,6 +816,12 @@ msgstr "பதிவு நிலை"
 msgid "Log accesses of internal users"
 msgstr "உள் பயனர்களின் பதிவு அணுகல்"
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr "ஸ்கோரிங் அமைப்பை இயக்கு"
+
 msgid "Enable experimental features"
 msgstr "சோதனை அம்சங்களை இயக்கு"
 
@@ -908,6 +908,15 @@ msgstr "whistleblowing பொத்தானை"
 
 msgid "Footer"
 msgstr "அடிக்குறிப்பு"
+
+msgid "Enable disclaimer"
+msgstr "மறுதலிப்பை இயக்கு"
+
+msgid "Title"
+msgstr "தலைப்பு"
+
+msgid "Text"
+msgstr "உரை"
 
 msgid "Favicon"
 msgstr "ஃபேவிகானை"
@@ -1014,8 +1023,8 @@ msgstr "விசில்ப்ளேவர்கள் ஏற்கனவே �
 msgid "Let recipients upload files to whistleblowers"
 msgstr "பெறுநர்கள் விசில்ப்ளேருக்கு கோப்புகளை பதிவேற்ற அனுமதிக்கவும்"
 
-msgid "Enable scoring system"
-msgstr "ஸ்கோரிங் அமைப்பை இயக்கு"
+msgid "Scoring system options"
+msgstr ""
 
 msgid "Threshold"
 msgstr "ஆரம்பம்"
@@ -1605,9 +1614,6 @@ msgstr "உங்கள் கணக்கு தேர்ந்தெடுக�
 msgid "Now type your password, then click 'Log in':"
 msgstr "இப்போது உங்கள் கடவுச்சொல்லை தட்டச்சு, பின்னர் 'நுழைய' கிளிக்:"
 
-msgid "Assign score points"
-msgstr "ஸ்கோர் புள்ளிகள் ஒதுக்க"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1619,6 +1625,9 @@ msgstr "நீ சொல்வது உறுதியா?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "செயல்பாட்டை உள்ளமைவு மீட்டமைக்கும் மற்றும் செயல்தவிர்க்க முடியாது."
+
+msgid "Assign score points"
+msgstr "ஸ்கோர் புள்ளிகள் ஒதுக்க"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "தொடர்புடைய எல்லா தரவு நிரந்தரமாக இழக்கப்படும் என்பதை நினைவில் கொள்க."

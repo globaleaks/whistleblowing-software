@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: Inpresentia I.\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -70,6 +70,9 @@ msgstr "Schimbări"
 
 msgid "License"
 msgstr "Licență"
+
+msgid "Settings"
+msgstr "Setări"
 
 msgid "Notification templates"
 msgstr "șabloane de notificare"
@@ -732,15 +735,6 @@ msgstr "Textul afișat când informatorul nu utilizează Tor"
 msgid "Disable the privacy panel"
 msgstr "Dezactiva panoul de confidențialitate"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "Titlu"
-
-msgid "Text"
-msgstr "Text"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -832,6 +826,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "Activați funcțiile experimentale"
 
@@ -918,6 +918,15 @@ msgstr "butonul whistleblowing"
 
 msgid "Footer"
 msgstr "Subsol, subsol pagină"
+
+msgid "Enable disclaimer"
+msgstr ""
+
+msgid "Title"
+msgstr "Titlu"
+
+msgid "Text"
+msgstr "Text"
 
 msgid "Favicon"
 msgstr ""
@@ -1024,7 +1033,7 @@ msgstr ""
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1615,9 +1624,6 @@ msgstr "Vă rugăm să selectați contul:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Acum tastați parola, apoi faceți clic pe \"Conectare\":"
 
-msgid "Assign score points"
-msgstr "Atribuiți puncte"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1629,6 +1635,9 @@ msgstr "Esti sigur?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
+
+msgid "Assign score points"
+msgstr "Atribuiți puncte"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Luati va rog la cunostinta faptul ca toate datele asociate vor fi pierdute permanent."

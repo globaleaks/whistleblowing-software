@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-27 09:19+0000\n"
+"Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -62,6 +62,9 @@ msgstr "変更履歴"
 
 msgid "License"
 msgstr "ライセンス"
+
+msgid "Settings"
+msgstr "設定"
 
 msgid "Notification templates"
 msgstr "通知のテンプレート"
@@ -724,15 +727,6 @@ msgstr "内部告発者がTorを使用していないときに表示するテキ
 msgid "Disable the privacy panel"
 msgstr "プライバシー・バッジを無効にする"
 
-msgid "Enable disclaimer"
-msgstr "免責事項を有効にする"
-
-msgid "Title"
-msgstr "タイトル"
-
-msgid "Text"
-msgstr "テキスト"
-
 msgid "Disable the receipt hint"
 msgstr "受領番号のヒントを無効にする"
 
@@ -824,6 +818,12 @@ msgstr "ログ取得レベル"
 msgid "Log accesses of internal users"
 msgstr "内部ユーザーのログアクセス"
 
+msgid "Enable custodian user role"
+msgstr "管理人のユーザー役割を有効にする"
+
+msgid "Enable scoring system"
+msgstr "スコアリングシステムを有効にする"
+
 msgid "Enable experimental features"
 msgstr "実験的な機能を有効にする"
 
@@ -910,6 +910,15 @@ msgstr "内部告発ボタン"
 
 msgid "Footer"
 msgstr "フッター"
+
+msgid "Enable disclaimer"
+msgstr "免責事項を有効にする"
+
+msgid "Title"
+msgstr "タイトル"
+
+msgid "Text"
+msgstr "テキスト"
 
 msgid "Favicon"
 msgstr "日本語"
@@ -1016,8 +1025,8 @@ msgstr "内部告発者が、既存の提出に添付ファイルを追加する
 msgid "Let recipients upload files to whistleblowers"
 msgstr "受信者が、内部告発者向けのファイルをアップロードすることを許可します"
 
-msgid "Enable scoring system"
-msgstr "スコアリングシステムを有効にする"
+msgid "Scoring system options"
+msgstr "スコアリングシステムのオプション"
 
 msgid "Threshold"
 msgstr "しきい値"
@@ -1607,9 +1616,6 @@ msgstr "あなたのアカウントを選択してください:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "パスワードを入力して、'ログイン'をクリックしてください:"
 
-msgid "Assign score points"
-msgstr "スコアポイントを割り当て"
-
 msgid "Text shown after the user has selected the option."
 msgstr "ユーザーがオプションを選択した後に表示されるテキスト"
 
@@ -1621,6 +1627,9 @@ msgstr "よろしいですか?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "操作によって設定がリセットされ、元に戻すことはできません。"
+
+msgid "Assign score points"
+msgstr "スコアポイントを割り当て"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "すべての関連データが完全に失われますのでご注意ください。"

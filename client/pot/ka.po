@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-16 17:14+0000\n"
-"Last-Translator: Georgianization\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -56,6 +56,9 @@ msgid "Changelog"
 msgstr "ცვლილებები"
 
 msgid "License"
+msgstr ""
+
+msgid "Settings"
 msgstr ""
 
 msgid "Notification templates"
@@ -719,15 +722,6 @@ msgstr "ტექსტი ჩანს როდესაც მამხილ
 msgid "Disable the privacy panel"
 msgstr "შეზღუდული შესაძლებლობების მქონე კონფიდენციალურობის პანელი"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "სათაური"
-
-msgid "Text"
-msgstr ""
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -819,6 +813,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "ექსპერიმენტული ფუნქციების ჩართვა"
 
@@ -905,6 +905,15 @@ msgstr "მხილება ღილაკს"
 
 msgid "Footer"
 msgstr "Footer"
+
+msgid "Enable disclaimer"
+msgstr ""
+
+msgid "Title"
+msgstr "სათაური"
+
+msgid "Text"
+msgstr ""
 
 msgid "Favicon"
 msgstr ""
@@ -1011,7 +1020,7 @@ msgstr ""
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1602,9 +1611,6 @@ msgstr "გთხოვთ, აირჩიოთ თქვენი ანგ�
 msgid "Now type your password, then click 'Log in':"
 msgstr "ახლა აკრიფოთ თქვენი პაროლი, შემდეგ დააჭირეთ \"შესვლა\":"
 
-msgid "Assign score points"
-msgstr "მიანიჭეთ ქულა რაოდენობა"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1616,6 +1622,9 @@ msgstr "დარწმუნებული ხარ?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
+
+msgid "Assign score points"
+msgstr "მიანიჭეთ ქულა რაოდენობა"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""

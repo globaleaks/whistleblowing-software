@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:24+0000\n"
+"PO-Revision-Date: 2019-05-25 14:13+0000\n"
 "Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,6 +92,9 @@ msgstr "Journal des changements"
 
 msgid "License"
 msgstr "Licence"
+
+msgid "Settings"
+msgstr "Paramètres"
 
 msgid "Notification templates"
 msgstr "Modèles de notification"
@@ -754,15 +757,6 @@ msgstr "Texte affiché quand le lanceur d’alerte n’utilise pas Tor"
 msgid "Disable the privacy panel"
 msgstr "Désactiver le volet de confidentialité"
 
-msgid "Enable disclaimer"
-msgstr "Activer un avis"
-
-msgid "Title"
-msgstr "Titre"
-
-msgid "Text"
-msgstr "Texte"
-
 msgid "Disable the receipt hint"
 msgstr "Désactiver l’indice de reçu"
 
@@ -854,6 +848,12 @@ msgstr "Niveau de journalisation"
 msgid "Log accesses of internal users"
 msgstr "Journaliser les accès des utilisateurs internes"
 
+msgid "Enable custodian user role"
+msgstr "Activer le rôle de gardien"
+
+msgid "Enable scoring system"
+msgstr "Activer le système d’évaluation"
+
 msgid "Enable experimental features"
 msgstr "Activer les fonctions expérimentales"
 
@@ -940,6 +940,15 @@ msgstr "Bouton de dénonciation"
 
 msgid "Footer"
 msgstr "Bas de page"
+
+msgid "Enable disclaimer"
+msgstr "Activer un avis"
+
+msgid "Title"
+msgstr "Titre"
+
+msgid "Text"
+msgstr "Texte"
 
 msgid "Favicon"
 msgstr "Favoricône"
@@ -1046,8 +1055,8 @@ msgstr "Permettre aux lanceurs d’alerte d’ajouter des fichiers joints aux en
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Permettre aux destinataires de téléverser des fichiers pour les lanceurs d’alerte"
 
-msgid "Enable scoring system"
-msgstr "Activer le système d’évaluation"
+msgid "Scoring system options"
+msgstr "Options du système d’évaluation"
 
 msgid "Threshold"
 msgstr "Seuil"
@@ -1637,9 +1646,6 @@ msgstr "Veuillez sélectionner votre compte :"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Saisissez maintenant votre mot de passe, puis cliquez sur « Connexion » :"
 
-msgid "Assign score points"
-msgstr "Attribuer un pointage"
-
 msgid "Text shown after the user has selected the option."
 msgstr "Texte affiché une fois que l’utilisateur a sélectionné l’option."
 
@@ -1651,6 +1657,9 @@ msgstr "Êtes-vous certain ?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "L’opération réinitialisera la configuration et ne peut pas être annulée."
+
+msgid "Assign score points"
+msgstr "Attribuer un pointage"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Veuillez prendre note que toutes les données associées seront irrémédiablement supprimées."

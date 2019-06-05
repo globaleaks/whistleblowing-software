@@ -47,7 +47,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 19:04+0000\n"
+"PO-Revision-Date: 2019-05-25 15:38+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,6 +100,9 @@ msgstr "Änderungsprotokoll"
 
 msgid "License"
 msgstr "Lizenz"
+
+msgid "Settings"
+msgstr "Einstellungen"
 
 msgid "Notification templates"
 msgstr "Benachrichtigungsvorlagen"
@@ -762,15 +765,6 @@ msgstr "Text, der angezeigt wird, wenn der Hinweisgeber Tor nicht verwendet"
 msgid "Disable the privacy panel"
 msgstr "Datenschutzpanel deaktivieren"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "Titel"
-
-msgid "Text"
-msgstr "Text"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -862,6 +856,12 @@ msgstr "Protokollierungsstufe"
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "Aktivieren experimentelle Funktionen"
 
@@ -875,7 +875,7 @@ msgid "Save"
 msgstr "Speichern"
 
 msgid "Reset submissions"
-msgstr ""
+msgstr "Einreichungen zurücksetzen"
 
 msgid "Short URL"
 msgstr "Short URL"
@@ -948,6 +948,15 @@ msgstr "Schaltfläche Hinweisgeben"
 
 msgid "Footer"
 msgstr "Fußzeile"
+
+msgid "Enable disclaimer"
+msgstr ""
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Text"
+msgstr "Text"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1054,7 +1063,7 @@ msgstr "Hinweisgebern das Hinzufügen von Anhängen zu vorhandenen Einreichungen
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Erlaube Emfängern das Hochladen von Dateien für Hinweisgeber."
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1103,7 +1112,7 @@ msgid "Transport Security"
 msgstr "Übertragungssicherheit"
 
 msgid "Require authentication"
-msgstr ""
+msgstr "Erfordert Bestätigung"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Nicht gesendete E-Mails werden gesendet, nachdem diese Option erneut aktiviert wird."
@@ -1645,9 +1654,6 @@ msgstr "Bitte wählen Sie Ihr Konto aus:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Tippe dein Passwort ein, klicke dann auf \"Log in\":"
 
-msgid "Assign score points"
-msgstr "Vergeben Sie Punkte"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1659,6 +1665,9 @@ msgstr "Sind Sie sicher?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Der Vorgang setzt die Konfiguration zurück und kann nicht rückgängig gemacht werden."
+
+msgid "Assign score points"
+msgstr "Vergeben Sie Punkte"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Bitte beachten Sie, dass alle zugehörigen Daten unwiederbringlich verloren gehen."

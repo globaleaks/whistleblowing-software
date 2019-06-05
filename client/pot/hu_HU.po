@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: vargaviktor <viktor.varga@gmail.com>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -74,6 +74,9 @@ msgstr "Változási napló"
 
 msgid "License"
 msgstr "Licensz"
+
+msgid "Settings"
+msgstr "Beállítások"
 
 msgid "Notification templates"
 msgstr "Értesítési sablonok"
@@ -736,15 +739,6 @@ msgstr "Megjelenített szöveg, amikor a szivárogtató nem Tor-t használ"
 msgid "Disable the privacy panel"
 msgstr "Adatvédelmi panel letiltása"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr ""
-
-msgid "Text"
-msgstr "Szöveg"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -836,6 +830,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "Kísérleti fejlesztések bekapcsolása"
 
@@ -922,6 +922,15 @@ msgstr "Szivárogtatás gomb"
 
 msgid "Footer"
 msgstr "Élőláb"
+
+msgid "Enable disclaimer"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Text"
+msgstr "Szöveg"
 
 msgid "Favicon"
 msgstr ""
@@ -1028,7 +1037,7 @@ msgstr "Engedélyezi a szivárogtatóknak, hogy mellékleteket adjanak hozzá l�
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1619,9 +1628,6 @@ msgstr "Kérjük válassza ki fiókját:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Kérjük adja meg jelszavát majd kattinson a Belépés gombra:"
 
-msgid "Assign score points"
-msgstr ""
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1632,6 +1638,9 @@ msgid "Are you sure?"
 msgstr "Biztosan?"
 
 msgid "The operation will reset the configuration and cannot be undone."
+msgstr ""
+
+msgid "Assign score points"
 msgstr ""
 
 msgid "Please note that all the associated data will be permanently lost."

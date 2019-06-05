@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: Rafał Drewnowski <drewnos@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -71,6 +71,9 @@ msgstr "Lista zmian"
 
 msgid "License"
 msgstr "Licencja"
+
+msgid "Settings"
+msgstr "Ustawienia"
 
 msgid "Notification templates"
 msgstr "Szablony powiadomień"
@@ -733,15 +736,6 @@ msgstr "Tekst wyświetlany, gdy sygnalista nie używa Tor"
 msgid "Disable the privacy panel"
 msgstr "Wyłącz panel prywatności"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "Tytuł"
-
-msgid "Text"
-msgstr "Tekst"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -833,6 +827,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "Włącz opcje eksperymentalne"
 
@@ -919,6 +919,15 @@ msgstr "Przycisk sygnalizuj"
 
 msgid "Footer"
 msgstr "Stopka"
+
+msgid "Enable disclaimer"
+msgstr ""
+
+msgid "Title"
+msgstr "Tytuł"
+
+msgid "Text"
+msgstr "Tekst"
 
 msgid "Favicon"
 msgstr ""
@@ -1025,7 +1034,7 @@ msgstr "Sygnaliści mogą dodawać załączniki do zapisanych zgłoszeń"
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1616,9 +1625,6 @@ msgstr "Wybierz swoje konto:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Wpisz swoje hasło i kliknij 'Zaloguj':"
 
-msgid "Assign score points"
-msgstr ""
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1629,6 +1635,9 @@ msgid "Are you sure?"
 msgstr "Jesteś pewien?"
 
 msgid "The operation will reset the configuration and cannot be undone."
+msgstr ""
+
+msgid "Assign score points"
 msgstr ""
 
 msgid "Please note that all the associated data will be permanently lost."

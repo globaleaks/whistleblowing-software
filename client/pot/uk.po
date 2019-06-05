@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: b33a4006134bb6ee62b30fc0fac5cec6\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -75,6 +75,9 @@ msgstr "Список змін"
 
 msgid "License"
 msgstr "Ліцензія"
+
+msgid "Settings"
+msgstr "Налаштування"
 
 msgid "Notification templates"
 msgstr "Шаблони повідомлень"
@@ -737,15 +740,6 @@ msgstr "Текст, який показується, коли інформато
 msgid "Disable the privacy panel"
 msgstr "Відключити значок конфіденційності"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "Назва"
-
-msgid "Text"
-msgstr "Текст"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -837,6 +831,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "Enable experimental features"
 
@@ -923,6 +923,15 @@ msgstr "Кнопка надання інформації"
 
 msgid "Footer"
 msgstr "Нижній колонтитул"
+
+msgid "Enable disclaimer"
+msgstr ""
+
+msgid "Title"
+msgstr "Назва"
+
+msgid "Text"
+msgstr "Текст"
 
 msgid "Favicon"
 msgstr ""
@@ -1029,7 +1038,7 @@ msgstr "Дозволити викривачам додавати докумен�
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1620,9 +1629,6 @@ msgstr "Будь ласка, оберіть ваш обліковий запис
 msgid "Now type your password, then click 'Log in':"
 msgstr "Введіть пароль і натисніть \"Увійти\":"
 
-msgid "Assign score points"
-msgstr "Призначати бали"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1634,6 +1640,9 @@ msgstr "Ви впевнені?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Операція скине налаштування і її не можна бути відмінити."
+
+msgid "Assign score points"
+msgstr "Призначати бали"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Зверніть увагу, що всі пов'язані з ним дані будуть безповоротно втрачені."

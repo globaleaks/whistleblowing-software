@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: martinedstrom <martin@martinedstrom.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -73,6 +73,9 @@ msgstr "Ändringslogg"
 
 msgid "License"
 msgstr "Licens"
+
+msgid "Settings"
+msgstr "Inställningar"
 
 msgid "Notification templates"
 msgstr "Aviseringsmallar"
@@ -735,15 +738,6 @@ msgstr "Text som visas när uppgiftslämnaren inte använder Tor"
 msgid "Disable the privacy panel"
 msgstr "Inaktivera integritetsemblem"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "Titel"
-
-msgid "Text"
-msgstr "Text"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -835,6 +829,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr ""
 
@@ -921,6 +921,15 @@ msgstr "Visselblåsarknapp"
 
 msgid "Footer"
 msgstr "Sidfot"
+
+msgid "Enable disclaimer"
+msgstr ""
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Text"
+msgstr "Text"
 
 msgid "Favicon"
 msgstr ""
@@ -1027,7 +1036,7 @@ msgstr ""
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1618,9 +1627,6 @@ msgstr "Vänligen välj ditt konto."
 msgid "Now type your password, then click 'Log in':"
 msgstr "Ange ditt lösenord, och välj sedan 'Log in':"
 
-msgid "Assign score points"
-msgstr ""
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1631,6 +1637,9 @@ msgid "Are you sure?"
 msgstr "Är du säker?"
 
 msgid "The operation will reset the configuration and cannot be undone."
+msgstr ""
+
+msgid "Assign score points"
 msgstr ""
 
 msgid "Please note that all the associated data will be permanently lost."

@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-18 16:13+0000\n"
+"PO-Revision-Date: 2019-06-04 06:10+0000\n"
 "Last-Translator: Reza Ghasemi\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,7 +48,7 @@ msgid "Languages"
 msgstr "زبان‌ها"
 
 msgid "Text customization"
-msgstr ""
+msgstr "سفارشی سازی متن"
 
 msgid "Advanced settings"
 msgstr "تنظیمات پیشرفته"
@@ -77,6 +77,9 @@ msgstr "لیست تغییرات"
 msgid "License"
 msgstr "پروانه"
 
+msgid "Settings"
+msgstr "تنظیمات"
+
 msgid "Notification templates"
 msgstr "الگوی اطلاع‌رسانی"
 
@@ -102,7 +105,7 @@ msgid "Preferences"
 msgstr "پرفرنس"
 
 msgid "User preferences"
-msgstr ""
+msgstr "ترجیحات کاربر"
 
 msgid "Notification settings"
 msgstr "تنظیمات اعلان ها"
@@ -180,7 +183,7 @@ msgid "Context"
 msgstr "متن"
 
 msgid "Submission date"
-msgstr "تاریخ ارائه"
+msgstr "تاریخ گزارش"
 
 msgid "Private messages"
 msgstr "پیام خصوصی"
@@ -212,12 +215,12 @@ msgstr "ذخیره‌ی همه"
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
 "ensuring confidentiality."
-msgstr "راه ارتباطی برای ارسال اظهارنامه توسط HTTPS محرمانه شده است."
+msgstr "راه ارتباطی برای ارسال گزارش توسط HTTPS محرمانه شده است."
 
 msgid ""
 "The connection used to send this submission has been secured with Tor "
 "ensuring confidentiality and anonymity."
-msgstr ""
+msgstr "ارتباط استفاده شده برای ارسال این گزارش با تور امن شده است و گمنامی و محرمانه بودن را تضمین می کند."
 
 msgid "vertical"
 msgstr "عمودی"
@@ -244,10 +247,10 @@ msgid "Maximum number of input characters"
 msgstr "حداکثر تعداد کاراکترهای وارد شده"
 
 msgid "Earliest selectable date"
-msgstr ""
+msgstr "اولین تاریخ قابل انتخاب"
 
 msgid "Latest selectable date"
-msgstr ""
+msgstr "آخرین تاریخ قابل انتخاب"
 
 msgid "0 = auto"
 msgstr "0 = اتوماتیک"
@@ -277,7 +280,7 @@ msgid "Change your password"
 msgstr "تغییر گذرواژه"
 
 msgid "List of submissions"
-msgstr "فهرست اظهارها"
+msgstr "فهرست گزارش ها"
 
 msgid "List of access requests to whistleblowers' identities"
 msgstr "فهرست درخواست‌های دریافتی به هویت افشاگران"
@@ -376,7 +379,7 @@ msgid "HTTPS settings"
 msgstr "تنظیمات HTTPS"
 
 msgid "URL shortener"
-msgstr ""
+msgstr "کوتاه کننده آدرس اینترنتی"
 
 msgid "Anomaly detection thresholds"
 msgstr "آستانه تشخیص ناهنجاری"
@@ -401,7 +404,7 @@ msgstr "الگوی اعلان نگهبانی"
 
 msgid ""
 "This interface allows configuring email templates used to notify custodians."
-msgstr ""
+msgstr "این رابط اجازه پیکربندی قالب های ایمیل استفاده شده برای آگاه سازی داده بان ها"
 
 msgid "Disable notifications to administrators"
 msgstr "غیرفعال کردن اعلان به مدیریت"
@@ -419,16 +422,16 @@ msgid "Trigger question"
 msgstr "سوال رهاساز"
 
 msgid "Triggered by score:"
-msgstr ""
+msgstr "راه اندازی شده با امتیاز:"
 
 msgid "Message shown on top of the status page of the submission"
-msgstr "پیام در بالای صفحه وضعیت‌ِ ارائه دیده شود"
+msgstr "پیام در بالای صفحه وضعیت‌ِ گزارش دیده شود"
 
 msgid "Copy and paste the PGP public key here"
 msgstr "کلید عمومی PGP را این جا درج کن"
 
 msgid "Password strength:"
-msgstr ""
+msgstr "قدرت رمز عبور:"
 
 msgid "Weak"
 msgstr "ضعیف"
@@ -443,25 +446,25 @@ msgid "Text shown on top of the interface for selecting contexts"
 msgstr "متن در مقابل محتوی انتخاب شده نمایش داده شود"
 
 msgid "Show small context cards on submission interface"
-msgstr ""
+msgstr "نمایش کارت های زمینه کوچک بر رابط گزارش"
 
 msgid "Type of context selector:"
-msgstr ""
+msgstr "نوع انتخاب کننده زمینه:"
 
 msgid "Type to search…"
 msgstr "برای جستجو تای‍پ کنید..."
 
 msgid "Silence email notifications"
-msgstr ""
+msgstr "نوتیفیکیشن های ایمیل بدون صدا"
 
 msgid "Turn on email notifications"
 msgstr "روشن کردن نوتیفیکیشن های ایمیل"
 
 msgid "Enter an email address for the administrator"
-msgstr ""
+msgstr "آدرس ایمیل برای مدیر را وارد کنید"
 
 msgid "Enter a password for the administrator"
-msgstr ""
+msgstr "گذرواژه برای مدیر را وارد کنید"
 
 msgid "Test configuration"
 msgstr "تست پیکربندی"
@@ -473,16 +476,16 @@ msgid "Successful logins"
 msgstr "ورود موفق"
 
 msgid "Started submissions"
-msgstr "ارائه‌های آغاز شده"
+msgstr "گزارش های آغاز شده"
 
 msgid "Completed submissions"
-msgstr "ارائه‌های کامل‌شده"
+msgstr "گزارش های کامل‌شده"
 
 msgid "Failed submissions"
-msgstr ""
+msgstr "گزارش های ناموفق"
 
 msgid "Input validation"
-msgstr ""
+msgstr "اعتبارسنجی ورودی"
 
 msgid "Email address"
 msgstr "آدرس ایمیل"
@@ -494,10 +497,10 @@ msgid "None"
 msgstr "هیـچ"
 
 msgid "Regular expression"
-msgstr ""
+msgstr "عبارت باقاعده"
 
 msgid "Label the submission"
-msgstr ""
+msgstr "برچسب زدن گزارش"
 
 msgid "Activate"
 msgstr "فعال كردن"
@@ -511,24 +514,24 @@ msgstr "جستجو"
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr ""
+msgstr "متن سفارشی دیگر روی پلتفورم نمایش داده نمی شود. متن اصلی یا تغییر کرده است یا پاک شده است."
 
 msgid ""
 "Unless the whistleblower checks the submission by this time, their access to"
 " it will expire."
-msgstr ""
+msgstr "اگر افشاگر گزارش را تا این تاریخ چک نکرد،  دسترسی آن ها انقضا خواهد شد."
 
 msgid "The whistleblower can no longer access the submission"
-msgstr ""
+msgstr "افشاگر دیگر قابلیت دسترسی به گزارش را ندارد"
 
 msgid "Warning!"
 msgstr "هشدار!"
 
 msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr ""
+msgstr "شما در حال استفاده از یک مرورگر هستید که پشتیبانی نمی شود و احتمالا آسیپ پذیر است."
 
 msgid "You are strongly advised to download and install the Tor Browser."
-msgstr ""
+msgstr "به شدت توصیه می شود تا مرورگر تور را دانلود کرده و نصب کنید."
 
 msgid ""
 "The Tor Browser includes various privacy and security enhancements not "
@@ -539,10 +542,10 @@ msgid "Download the Tor Browser"
 msgstr "مرورگر تور را بارگذاری کن"
 
 msgid "This is the list of the other supported browsers:"
-msgstr ""
+msgstr "این لیست سایر مرورگر های پشتیبانی شده می باشد:"
 
 msgid "System overview"
-msgstr ""
+msgstr "مرور کلی سیستم"
 
 msgid "Stats"
 msgstr "آمارها"
@@ -551,7 +554,7 @@ msgid "Activities"
 msgstr "فعالیتها"
 
 msgid "Submissions"
-msgstr ""
+msgstr "گزارش ها"
 
 msgid "Users"
 msgstr "کاربران"
@@ -563,7 +566,7 @@ msgid "Number of downloads"
 msgstr "تعداد دانلود ها"
 
 msgid "Error with file:"
-msgstr ""
+msgstr "خطا فایل:"
 
 msgid "File size not accepted."
 msgstr "اندازه فایل قابل قبول نمی باشد."
@@ -572,25 +575,25 @@ msgid "File type not accepted."
 msgstr "نوع فایل قابل قبول نمی باشد."
 
 msgid "Maximum file size is:"
-msgstr ""
+msgstr "حداکثر اندازه فایل:"
 
 msgid "Accepted file types are:"
 msgstr "انواع فایل قابل قبول:"
 
 msgid "Scheduled jobs"
-msgstr ""
+msgstr "کار های زمان بندی شده"
 
 msgid "Sites management"
-msgstr ""
+msgstr "مدیریت سایت ها"
 
 msgid "Regenerate"
-msgstr ""
+msgstr "تولید دوباره"
 
 msgid "Display options alphabetically"
-msgstr ""
+msgstr "نمایش گزینه ها به صورت الفبایی"
 
 msgid "Enable email notifications for:"
-msgstr ""
+msgstr "فعال کردن نوتیفیکیشن های ایمیل برای:"
 
 msgid "Software updates"
 msgstr "به‌روز رسانی برنامه"
@@ -611,19 +614,19 @@ msgid "Create your whistleblowing platform"
 msgstr "ایجاد پلتفورم افشاگری خود"
 
 msgid "Collapse"
-msgstr ""
+msgstr "بستن"
 
 msgid "Expand"
-msgstr ""
+msgstr "بسط"
 
 msgid "Select"
 msgstr "انتخاب"
 
 msgid "Selected by default"
-msgstr ""
+msgstr "انتخاب شده به صورت پیش فرض"
 
 msgid "Unselected by default"
-msgstr ""
+msgstr "انتخاب نشده به صورت پیش فرض"
 
 msgid "Surname"
 msgstr "نام خانوادگی"
@@ -632,13 +635,13 @@ msgid "New"
 msgstr "جدید"
 
 msgid "Opened"
-msgstr ""
+msgstr "باز شده"
 
 msgid "Closed"
 msgstr "بسته شده"
 
 msgid "Placeholder"
-msgstr ""
+msgstr "نگه دارنده"
 
 msgid "Print"
 msgstr "چاپ"
@@ -650,13 +653,13 @@ msgid "Next"
 msgstr "بعدی"
 
 msgid "First"
-msgstr ""
+msgstr "اولین"
 
 msgid "Last"
-msgstr ""
+msgstr "آخرین"
 
 msgid "Select the context of your submission:"
-msgstr ""
+msgstr "زمینه گزارش خود را انتخاب کنید:"
 
 msgid "Warning! You are not anonymous."
 msgstr "هشدار! شما ناشناس نیستید."
@@ -667,7 +670,7 @@ msgid ""
 "the submission anonymous, which is strongly recommended.\\n\\nThis can be "
 "achieved with the use of the Tor Browser, providing anonymisation not found "
 "in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
-msgstr ""
+msgstr "ارسال گزارش ها از طریق HTTPS عمل شما را آشکار میکند، اما جزییات کار شما را نشان نمی دهد.\\n\\n همچنین، پنهان کردن اینکه شما چیزی را ارسال میکنید ارسال را گمنام می کند، که به شدت توصیه می شود.\\n\\n این کار با استفاده از مرورگر تور قابل انجام است، سایر مرورگر ها هم چون اینترنت اکسپلورر، فایرفاکس، کروم، اوپرا و غیره این کار را انجام نمی دهند."
 
 msgid "Are you a whistleblower?"
 msgstr "آیا یک افشاگر می باشید؟"
@@ -676,26 +679,26 @@ msgid "Blow the whistle"
 msgstr "در سوت بدمید"
 
 msgid "Your submission was successful."
-msgstr "ارائه‌ی شما با موفقیت انجام شد."
+msgstr "گزارش شما با موفقیت انجام شد."
 
 msgid "Submission status"
-msgstr "وضعیت ارسال"
+msgstr "وضعیت گزارش"
 
 msgid "Disable submissions"
-msgstr "غیرفعال‌سازی ارائه"
+msgstr "غیرفعال‌سازی گزارش"
 
 msgid "Enable encryption"
 msgstr "فعال سازی رمزگذاری"
 
 msgid ""
 "Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
+msgstr "اجازه به سیستم برای ذخیره سازی داده در متن ساده زمانی که رمزگذاری موجود نمی باشد"
 
 msgid "Enable multisite feature"
-msgstr ""
+msgstr "فعال سازی ویژگی چند سایت"
 
 msgid "Enable two factor authentication"
-msgstr ""
+msgstr "فعال سازی احراز هویت دو عاملی"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "به سایر تارنماها اجازه داده شود تا محتوی پلفرم را به شکل iframes استفاده کنند"
@@ -710,15 +713,15 @@ msgid ""
 msgstr "با فعال کردن این گزینه شما به سایت‌های دیگر اجازه می‌دهید که پلتفورم به صورت iframe لود کنند; این کار می‌تواند طوری مورد استفاده قرار گیرد که پلتفورم را به خطر بیاندازد یا ارتباطات کاربران را شنود کند."
 
 msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "به دریافت کننده‌ها اجازه بدهید تا تاریخ انقضا ارائه را به تعویق بیاندازند"
+msgstr "به دریافت کننده‌ها اجازه بدهید تا تاریخ انقضا گزارش را به تعویق بیاندازند"
 
 msgid "Allow recipients to delete submissions"
-msgstr "به دریافت کننده‌ها اجازه بدهید که ارائه‌ها را پاک کنند"
+msgstr "به دریافت کننده‌ها اجازه بدهید که گزارش ها را پاک کنند"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
-msgstr "به دریافت کننده و به افشاگر اجازه یک اظهار خاص داده شود"
+msgstr "به دریافت کننده و به افشاگر اجازه یک گزارش خاص داده شود"
 
 msgid "Enable search engines indexing"
 msgstr "فعال کردن ایندکس سازی موتورهای جستجو"
@@ -738,40 +741,31 @@ msgstr "وقتی افشاگر از شبکه تور استفاده نمیکند �
 msgid "Disable the privacy panel"
 msgstr "غیر فعال کردن پنل پوشیدگی"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "عنوان"
-
-msgid "Text"
-msgstr "متن"
-
 msgid "Disable the receipt hint"
-msgstr ""
+msgstr "غیر فعال کردن راهنما رسید"
 
 msgid "Disable the donation panel"
 msgstr "غیرفعال کردن پنل کمک مالی"
 
 msgid "Amount of days till whistleblower access expires"
-msgstr ""
+msgstr "تعداد روز تا انقضا دسترسی افشاگر"
 
 msgid ""
 "For security reasons the whistleblower access is subject to expiration."
-msgstr ""
+msgstr "به دلایل امنیتی، دسترسی افشاگر منجر به انقضا می شود."
 
 msgid "Tweak this setting only if you know what you are doing."
-msgstr ""
+msgstr "تنظیمات را فقط در صورتی تغییر دهید که میدانید دارید چه کار می کنید."
 
 msgid "Password change interval"
-msgstr ""
+msgstr "بازه تغییر گذرواژه"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr ""
+msgstr "به دلایل امنیتی‌، تغییر گذر واژه در بازه های منظم ضروری می باشد."
 
 msgid "Set the value to 0 to disable this feature."
-msgstr ""
+msgstr "برای غیرفعال کردن این ویژگی مقدار را بر روی 0 تنظیم کنید."
 
 msgid "Landing page"
 msgstr "صفحه هدف"
@@ -780,7 +774,7 @@ msgid "Default questionnaire"
 msgstr "پرسش نامه پیش فرض"
 
 msgid "Title of the submission page"
-msgstr "عنوان صفحه ارائه"
+msgstr "عنوان صفحه گزارش"
 
 msgid "Show contexts in alphabetical order"
 msgstr "متن‌ها را به ترتیب الفبا مرتب کن"
@@ -789,24 +783,24 @@ msgid "Title of the receipt page"
 msgstr "عنوان صفحه اعلام وصول"
 
 msgid "Title of the submission status page"
-msgstr "عنوان صفحه اعلام وضعیت ارائه"
+msgstr "عنوان صفحه اعلام وضعیت گزارش"
 
 msgid "Size limit for file attachments"
 msgstr "محدودیت در حجم ضمیمه‌ها"
 
 msgid "Notify administrators of software problems"
-msgstr ""
+msgstr "آگاه سازی ادمین ها از مشکلات نرم افزار"
 
 msgid "Notify developers of software problems"
-msgstr ""
+msgstr "آگاه سازی توسعه دهندگان از مشکلات نرم افزار"
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr ""
+msgstr "با فعال کردن این ویژگی، شما در مشارکت توسعه و امنیت پلتفورم سهیم خواهید بود."
 
 msgid "Enable HTTP Basic Authentication to limit platform access"
-msgstr ""
+msgstr "فعال سازی احراز هویت ساده HTTP برای محدود کردن دسترسی پلتفورم"
 
 msgid "Username"
 msgstr "نام کاربری"
@@ -815,28 +809,34 @@ msgid "Password"
 msgstr "گذرواژه"
 
 msgid "Allow users to reset their passwords"
-msgstr ""
+msgstr "اجازه به کاربران برای تنظیم مجدد گذرواژه ها"
 
 msgid ""
 "Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
-msgstr ""
+msgstr "اجازه به کاربران برای تنظیم مجدد گذرواژه‌ها می تواند امنیت پلتفورم را کاهش دهد چپن امنیت آن وابسته به امنیت حساب های کاربری کاربران خواهد بود."
 
 msgid "Enable users to upload their PGP keys"
 msgstr "اجازه دادن به کاربران برای بارگذاری کلید های PGP خود"
 
 msgid "Enable multi-site login"
-msgstr ""
+msgstr "فعال سازی ورود چند سایت"
 
 msgid "Enable simplified login"
-msgstr ""
+msgstr "فعال سازی ورود ساده شده"
 
 msgid "Logging level"
-msgstr ""
+msgstr "سطح ثبت کردن وقایع"
 
 msgid "Log accesses of internal users"
-msgstr ""
+msgstr "ثبت کردن دسترسی های کاربران داخلی"
+
+msgid "Enable custodian user role"
+msgstr "فعال سازی نقش کاربر نگهبان"
+
+msgid "Enable scoring system"
+msgstr "فعال سازی سیستم امتیازدهی"
 
 msgid "Enable experimental features"
 msgstr "فعال کردن امکانات تجربی"
@@ -851,7 +851,7 @@ msgid "Save"
 msgstr "ذخیره"
 
 msgid "Reset submissions"
-msgstr ""
+msgstr "تنظیم مجدد گزارش ها"
 
 msgid "Short URL"
 msgstr "آدرس اینترنتی کوتاه"
@@ -863,7 +863,7 @@ msgid "Add"
 msgstr "اضافه کن"
 
 msgid "Enable automatic backups"
-msgstr ""
+msgstr "فعال کردن پشتیبان های خودکار"
 
 msgid "Daily"
 msgstr "روزانه"
@@ -884,7 +884,7 @@ msgid "Port"
 msgstr "پورت"
 
 msgid "Substatuses"
-msgstr ""
+msgstr "زیروضعیت ها"
 
 msgid "Label"
 msgstr "برچسب"
@@ -899,10 +899,10 @@ msgid "Cancel"
 msgstr "لغو"
 
 msgid "Submission statuses"
-msgstr ""
+msgstr "وضعیت های گزارش"
 
 msgid "Closing statuses"
-msgstr ""
+msgstr "بستن وضعیت ها"
 
 msgid "Logo"
 msgstr "آرم"
@@ -925,6 +925,15 @@ msgstr "دکمه افشاگری"
 msgid "Footer"
 msgstr "پانویس"
 
+msgid "Enable disclaimer"
+msgstr "فعال سازی سلب مسئولیت"
+
+msgid "Title"
+msgstr "عنوان"
+
+msgid "Text"
+msgstr "متن"
+
 msgid "Favicon"
 msgstr "فاویکون"
 
@@ -938,22 +947,22 @@ msgid "Language:"
 msgstr "زبان"
 
 msgid "Add custom text"
-msgstr ""
+msgstr "افزودن متن سفارشی"
 
 msgid "Custom text"
-msgstr ""
+msgstr "متن سفارشی"
 
 msgid "Custom texts"
-msgstr ""
+msgstr "متن های سفارشی"
 
 msgid "Original text"
 msgstr "متن اصلی"
 
 msgid "Original translation"
-msgstr ""
+msgstr "ترجمه اصلی"
 
 msgid "Custom translation"
-msgstr ""
+msgstr "ترجمه سفارشی"
 
 msgid "Contexts"
 msgstr "متن‌ها"
@@ -974,19 +983,19 @@ msgid "Questionnaire"
 msgstr "پرسش‌نامه"
 
 msgid "Additional questionnaire"
-msgstr ""
+msgstr "پرسش نامه اضافی"
 
 msgid "Recipients"
 msgstr "دریافت‌کننده‌ها"
 
 msgid "Submission expiration"
-msgstr ""
+msgstr "انقضا گزارش"
 
 msgid "days"
 msgstr "روزها"
 
 msgid "Show the questionnaire navigation interface"
-msgstr ""
+msgstr "نمایش رابط جهت یابی پرسش نامه"
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "به افشاگرها اجازه انتخاب وصول کننده داده شود"
@@ -1001,16 +1010,16 @@ msgid "(0 = unlimited)"
 msgstr "(۰=نامحدود)"
 
 msgid "Show recipients in alphabetical order"
-msgstr ""
+msgstr "نشان دادن گیرندگان به صورت الفبایی"
 
 msgid "Show small recipient cards on submission interface"
-msgstr ""
+msgstr "نمایش کارت های کوچک گیرنده روی رابط گزارش"
 
 msgid "Show recipient details on the status page of the submission"
-msgstr ""
+msgstr "نمایش جزییات گیرنده روی صفحه وضعیت گزارش"
 
 msgid "Text shown on top of the interface for selecting recipients"
-msgstr ""
+msgstr "نشان دادن متن در بالای رابط برای انتخاب گیرندگان"
 
 msgid "Enable comments"
 msgstr "فعال کردن نظر"
@@ -1025,16 +1034,16 @@ msgid "Allow whistleblowers to send messages"
 msgstr "به افشاگران اجازه ارسال پیام داده شود"
 
 msgid "Let whistleblowers add attachments onto existing submissions"
-msgstr "به افشاگران اجازه داده شود تا ضمیمه‌هایی را به این اظهارات ارائه شده اضافه کنند"
+msgstr "به افشاگران اجازه داده شود تا ضمیمه‌هایی را به این گزارش ارائه شده اضافه کنند"
 
 msgid "Let recipients upload files to whistleblowers"
-msgstr ""
+msgstr "اجازه به گیرندگان به منظور آپلود کردن فایل ها برای افشاگران"
 
-msgid "Enable scoring system"
-msgstr ""
+msgid "Scoring system options"
+msgstr "گزینه های سیستم امتیاز دهی"
 
 msgid "Threshold"
-msgstr ""
+msgstr "آستانه"
 
 msgid "Value"
 msgstr "مقدار"
@@ -1046,19 +1055,19 @@ msgid "High"
 msgstr "زیاد"
 
 msgid "Customize the message shown in the receipt page"
-msgstr ""
+msgstr "سفارشی کردن پیام نشان داده شده در صفحه رسید"
 
 msgid "Low"
 msgstr "کم"
 
 msgid "Assign the receipt only to submissions reaching score:"
-msgstr ""
+msgstr "تخصیص رسید فقط به گزارش دارای امتیاز:"
 
 msgid "Software version:"
 msgstr "نسخه نرم‌افزار:"
 
 msgid "An update is available:"
-msgstr ""
+msgstr "یک به روز رسانی موجود می باشد:"
 
 msgid "SMTP name"
 msgstr "نام SMTP"
@@ -1076,31 +1085,31 @@ msgid "SMTP server port"
 msgstr "درگاه سرور STMP"
 
 msgid "Transport Security"
-msgstr ""
+msgstr "امنیت انتقال"
 
 msgid "Require authentication"
-msgstr ""
+msgstr "خواستن احراز هویت"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
-msgstr ""
+msgstr "زمانی که گزینه دوباره فعال شد ایمیل های اسپویل شده دوباره ارسال خواهند شد."
 
 msgid "Reset notification templates to default"
-msgstr ""
+msgstr "تنظیم مجدد قاابل های نوتیفیکیشن به پیشفرض"
 
 msgid "Number of hours before sending a submission expiration alert"
-msgstr ""
+msgstr "تعداد ساعات قبل از ارسال یک هشدار انقضا گزارش "
 
 msgid "Maximum emails per hour before triggering email suspension"
-msgstr ""
+msgstr "بیشترین ایمیل در ساعت قبل از راه اندازی تعلیق ایمیل"
 
 msgid "this configuration only applies to recipients"
-msgstr ""
+msgstr "این پیکربندی فقط برای گیرندگان اعمال می شود"
 
 msgid "Test the configuration"
-msgstr ""
+msgstr "آزمایش پیکربندی"
 
 msgid "Template"
-msgstr ""
+msgstr "قالب"
 
 msgid "Hostname"
 msgstr "نام سرور"
@@ -1112,20 +1121,20 @@ msgid "Invalid input format."
 msgstr "فرمت ورودی نامعتبر است"
 
 msgid "Input should be similar to:"
-msgstr ""
+msgstr "ورودی باید مشابه به این ها باشد:"
 
 msgid ""
 "The platform does not seem to be reachable with the configured hostname."
-msgstr ""
+msgstr "پلتفورم از طریق نام میزبان پیکربندی شده قابل دسترسی نمی باشد."
 
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr ""
+msgstr "استفاده از  Let's Encrypt ملزم به تایید کردن شرایط استفاده از خدمات آن ها می باشد."
 
 msgid "Read the Terms of Service"
-msgstr ""
+msgstr "خواندن شرایط استفاده از خدمات"
 
 msgid "I agree to the Terms of Service."
-msgstr ""
+msgstr "با شرایط استفاده از خدمات موافقم"
 
 msgid "Proceed"
 msgstr "ادامه بده"
@@ -1134,7 +1143,7 @@ msgid "Congratulations!"
 msgstr "تبریک!"
 
 msgid "Configuration completed. You can review the settings or enable it now."
-msgstr ""
+msgstr "پیکربندی کامل شد. هم اکنون میتوانید تنظیمات را بازبینی کنید یا آن را الان فعال کنید."
 
 msgid "Review"
 msgstr "مرور کنید."
@@ -1165,7 +1174,7 @@ msgid ""
 "Certificate and provide a file containing Intermediate Certificates. Load "
 "the Certificate and the file containing the Intermediate Certificates to "
 "complete the HTTPS setup."
-msgstr ""
+msgstr "این رابط می تواند یک کلید خصوصی و یک درخواست امضا گواهی را تولید کند. درخواست امضا گواهی میتواند به مرجع صدور گواهی داده شود تا گواهی بازیابی شود. بعد از اعتبار سنجی درخواست و مالکیت نام میزبان، مرجع صدور گواهی یک گواهی برای شما ایجاد خواهد کرد و یک فایل که شامل گواهی های واسط می باشد را فراهم خواهد کرد. گواهی ها و فایل های در بردارنده گواهی های واسط را برای کامل کردن نصب HTTPS بارگذاری کنید."
 
 msgid "Private Key"
 msgstr "کلید خصوصی"
@@ -1174,10 +1183,10 @@ msgid "Generate"
 msgstr "تولید"
 
 msgid "Certificate Signing Request"
-msgstr ""
+msgstr "درخواست امضا گواهی"
 
 msgid "Certificate"
-msgstr ""
+msgstr "گواهی"
 
 msgid "Valid until:"
 msgstr "معبتر تا:"
@@ -1186,7 +1195,7 @@ msgid "Issuer:"
 msgstr "صادرکننده:"
 
 msgid "Intermediate Certificates"
-msgstr ""
+msgstr "گواهی های واسطه"
 
 msgid "Reset"
 msgstr "راه اندازی مجدد"
@@ -1201,12 +1210,12 @@ msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr ""
+msgstr "استفاده از پیکربندی HTTPS خودکار تمام مراحل درخواست، فعال سازی و تجدید گواهی از مرجع صدور گواهی Let's Encrypt را کنترل خواهد کرد."
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a corresponding DNS record referencing that address."
-msgstr ""
+msgstr "پلتفورم باید از طریق یک آدرس IP عمومی قابل دسترسی باشد و نام میزبان انتخاب شده باید یک رکورد DNS متناظر که به آن آدرس اشاده دارد را داشته باشد."
 
 msgid "Manual configuration"
 msgstr "پیکربندی دستی"
@@ -1214,23 +1223,23 @@ msgstr "پیکربندی دستی"
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr ""
+msgstr "ویزارد پیکربندی دستی شما را در نصب HTTPS از یک مرجع صدور گواهی دیگر راهنمایی خواهد کرد."
 
 msgid ""
 "The platform supports the configuration of HTTPS through this interface."
-msgstr ""
+msgstr "پلتفورم پیکربندی HTTPS را از طریق این رابط پشتیبانی می کند."
 
 msgid "The connection to the configured domain failed."
-msgstr ""
+msgstr "اتصال به دامنه پیکربندی شده ناموفق بود."
 
 msgid "Running"
 msgstr "در حال اجرا"
 
 msgid "Not running"
-msgstr ""
+msgstr "در حال اجرا نمی باشد"
 
 msgid "Auto-renewal"
-msgstr ""
+msgstr "تمدید-خودکار"
 
 msgid "System message:"
 msgstr "پیام سیستم:"
@@ -1241,16 +1250,16 @@ msgstr "خطر"
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
-msgstr ""
+msgstr "اجازه دادن به افشاگر برای اتصال از طریق HTTPS حریم خصوصی آن ها را حفظ می کند اما گمنامی آن ها را حفظ نخواهند کرد."
 
 msgid "Restrict access to specific IP addresses"
-msgstr ""
+msgstr "محدود کردن دسترسی به IP های مشخص"
 
 msgid "Role"
 msgstr "نقش"
 
 msgid "Whitelisted IP addresses"
-msgstr ""
+msgstr "آدرس های IP قرار گرفته در لیست سفید"
 
 msgid "Admin"
 msgstr "مدیر"
@@ -1262,7 +1271,7 @@ msgid "Whistleblower"
 msgstr "سوت‌زن"
 
 msgid "Each entry must be separated with a comma."
-msgstr ""
+msgstr "هر ورودی می بایستی با یک ویرگول جدا شود."
 
 msgid "Example:"
 msgstr "نمونه:"
@@ -1273,25 +1282,25 @@ msgstr "توجه!"
 msgid ""
 "Configuration in progress. When it is finished you will have to log in "
 "again."
-msgstr ""
+msgstr "پیکربندی در حال انجام است. زمانی که کامل شد شما باید دوباره وارد شوید."
 
 msgid "Your browser will be redirected to the following URL."
-msgstr ""
+msgstr "مرورگر شما به آدرس اینترنتی زید باز خواهد گشت."
 
 msgid "Tor Onion Service"
-msgstr ""
+msgstr "سرویس پیازی تور"
 
 msgid "Tor Browser download link"
 msgstr "لینک دانلود مرورگر تور"
 
 msgid "Anonymize outgoing connections"
-msgstr ""
+msgstr "گمنام کردن اتصال های خروجی"
 
 msgid "Let the platform be reachable without Tor"
-msgstr ""
+msgstr "اجازه دسترسی دادن به پلتفورم بدون نیاز تور"
 
 msgid "Roles enabled to use the platform without Tor"
-msgstr ""
+msgstr "برای استفاده از پلتفورم بدون تود نقش ها فعال شدند"
 
 msgid "Stats of the week:"
 msgstr "آمارهای هفته:"
@@ -1327,13 +1336,13 @@ msgid "Type"
 msgstr "نوع"
 
 msgid "Single-line text input"
-msgstr ""
+msgstr "ورودی متن تک-خط"
 
 msgid "Multi-line text input"
-msgstr ""
+msgstr "ورودی متن چند-خط"
 
 msgid "Selection box"
-msgstr ""
+msgstr "جعبه انتخاب"
 
 msgid "Checkbox"
 msgstr "جعبه انتخاب"
@@ -1348,7 +1357,7 @@ msgid "Map"
 msgstr "نقشه"
 
 msgid "Group of questions"
-msgstr ""
+msgstr "گروه سوال ها"
 
 msgid "Row"
 msgstr "ردیف"
@@ -1360,10 +1369,10 @@ msgid "Width"
 msgstr "عرض"
 
 msgid "Multiple choice input"
-msgstr ""
+msgstr "ورودی چند گزینه ای"
 
 msgid "Question group"
-msgstr ""
+msgstr "گروه سوال"
 
 msgid "Hint"
 msgstr "راهنمایی"
@@ -1375,22 +1384,22 @@ msgid "Accept multiple file uploads"
 msgstr "آپلود متعدد فایلها را قبول کن"
 
 msgid "Accept multiple answers"
-msgstr ""
+msgstr "پذیرش جواب های چندگانه"
 
 msgid "Hint shown on the button for adding an additional answer"
-msgstr ""
+msgstr "نمایش راهنما روی دکمه برای اضافه کردن یک پاسخ اضافی"
 
 msgid "Template override"
-msgstr ""
+msgstr "لغو قالب"
 
 msgid "Phone number"
 msgstr "شماره تلفن"
 
 msgid "Checkbox label"
-msgstr ""
+msgstr "برچست جعبه انتخاب"
 
 msgid "Add multimedia content"
-msgstr ""
+msgstr "افزودن محتوا چند رسانه ای"
 
 msgid "Image"
 msgstr "تصویر"
@@ -1402,19 +1411,19 @@ msgid "Video"
 msgstr "تصویری"
 
 msgid "Subject answer visibility to custodian authorization"
-msgstr ""
+msgstr "در معرض گذاشتن قابل مشاهده بودن پاسخ به مجوز داده بان"
 
 msgid "Text shown upon negative answer"
-msgstr ""
+msgstr "نمایش متن در هنگام پاسخ منفی"
 
 msgid "Prompt confirmation upon negative answer"
-msgstr ""
+msgstr "واداشتن تایید هنگام پاسخ منفی"
 
 msgid "Text shown upon confirmation"
-msgstr ""
+msgstr "نمایش متن در هنگام تایید"
 
 msgid "Trigger conditions"
-msgstr ""
+msgstr "شرابط رهاساز"
 
 msgid "Sufficient"
 msgstr "کافی"
@@ -1423,10 +1432,10 @@ msgid "Options"
 msgstr "گزینه ها"
 
 msgid "Addition"
-msgstr ""
+msgstr "افزایش"
 
 msgid "Multiplier"
-msgstr ""
+msgstr "افزاینده"
 
 msgid "Questions"
 msgstr "سوالات"
@@ -1435,10 +1444,10 @@ msgid "Add new question"
 msgstr "افزودن یک سوال جدید"
 
 msgid "Add question from template"
-msgstr ""
+msgstr "افزودن سوال از قالب"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "تکراری"
 
 msgid "Steps"
 msgstr "قدم ها"
@@ -1447,7 +1456,7 @@ msgid "Site settings"
 msgstr "تنظیمات سایت"
 
 msgid "Case management"
-msgstr ""
+msgstr "مدیریت مورد"
 
 msgid "Network settings"
 msgstr "تنظیمات شبکه"
@@ -1456,16 +1465,16 @@ msgid "Mode:"
 msgstr "حالت:"
 
 msgid "Root domain used for secondary sites"
-msgstr ""
+msgstr "دامنه ریشه استفاده شده برای سایت های ثانویه"
 
 msgid "Use the first site for administrative purposes only"
-msgstr ""
+msgstr "استفاده از سایت اول فقط برای اهداف مدیریتی"
 
 msgid "Allow users to sign up"
-msgstr ""
+msgstr "اجازه به کاربران برای ثبت نام"
 
 msgid "Enable terms of service"
-msgstr ""
+msgstr "فعال سازی شرایط استفاده از خدمات"
 
 msgid "Sites"
 msgstr "سایت ها "
@@ -1480,7 +1489,7 @@ msgid "Configure"
 msgstr "پیکربندی"
 
 msgid "The default password is:"
-msgstr ""
+msgstr "گذرواژه پیش فرض:"
 
 msgid "The system forces users to change the password at first login."
 msgstr "سیستم کاربرها را در ورود اول وادار به تغییر گذرواژه میکند."
@@ -1497,16 +1506,16 @@ msgid ""
 msgstr "گذرواژه انتخاب شده بیش از حد ضعیف می باشد. با افزودن کاراکتر های خاص، اعداد، نماد های غیرمعمول آن را امن تر کنید."
 
 msgid "Force password change"
-msgstr ""
+msgstr "وادار به تغییر گذرواژه"
 
 msgid "The user will be forced to change its password on next login."
-msgstr ""
+msgstr "کاربر مجبور خواهد بود تا گذرواژه خود را در ورود بعدی خود تغییر دهد."
 
 msgid "Language"
 msgstr "زبان"
 
 msgid "Enable email notifications"
-msgstr ""
+msgstr "فعال سازی نوتیفیکیشن های ایمیل"
 
 msgid "Details of the PGP key:"
 msgstr "جزییات کلید PGP:"
@@ -1518,7 +1527,7 @@ msgid "Remove the PGP key"
 msgstr "کلید پی جی پی را حذف کن"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr ""
+msgstr "برپاسازی رمزگذاری با تامین کلید عمومی PGP"
 
 msgid "Configuration"
 msgstr "تنظیم ترکیبات"
@@ -1527,87 +1536,87 @@ msgid "Default"
 msgstr "پیش فرض"
 
 msgid "Forcefully selected"
-msgstr ""
+msgstr "انتخاب شده به اجبار"
 
 msgid "Allow the recipient to postpone the submission expiration date"
-msgstr ""
+msgstr "اجازه به گیرنده برای به عقب انداختن تاریخ انقضا گزارش"
 
 msgid "The setting is enabled at a global level."
 msgstr "این گزینه در سطح جهانی فعال است."
 
 msgid "Allow the recipient to delete submissions"
-msgstr ""
+msgstr "اجازه به گیرنده برای حذف گزارش ها"
 
 msgid ""
 "Allow the recipient to grant permissions to whistleblowers on specific "
 "submissions"
-msgstr "اجازه دسترسی به دریافت کننده برای ارتباط با افشاگر در یک اظهار خاص"
+msgstr "اجازه دسترسی به دریافت کننده برای ارتباط با افشاگر در یک گزارش خاص"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
+msgstr "کاربر دارای دسترسی مدیریتی به ویژگی های زیر می باشد:"
 
 msgid "main"
-msgstr ""
+msgstr "اصلی"
 
 msgid "Request date"
 msgstr "تاریخ درخواست"
 
 msgid "Authorization"
-msgstr ""
+msgstr "احراز هویت"
 
 msgid "Identities"
 msgstr "هویت‌ها"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr ""
+msgstr "لینک تایید یا نادرست می باشد یا انقضا یافته است."
 
 msgid "Your new email address has been validated."
-msgstr ""
+msgstr "آدرس ایمیل جدید شما معتبر شناخته شده است."
 
 msgid "Before proceeding, please set a new password."
-msgstr ""
+msgstr "قبل از ادامه  لطفا یک گذرواژه جدید تنظیم کنید."
 
 msgid "Submissions disabled"
-msgstr ""
+msgstr "گزارش ها غیر فعال شدند"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr "شما بدون ناشناسی به گره متصل شده اید و این گره فقط گزارشهای ناشناس را قبول میکند"
+msgstr "شما بدون ناشناسی به گره متصل شده اید و این گره فقط گزارش های ناشناس را قبول میکند"
 
 msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
 "protect the identity for submitter and recipient in the exchange of content."
-msgstr ""
+msgstr "پلتفورم از نرم افزار GlobaLeaks که با هدف محافظت از هویت ارسال کننده و گیرنده در تبادل محتوا ایجاد شده استفاده می کند."
 
 msgid ""
 "The software is developed by the non-profit Hermes Center for Transparency "
 "and Digital Human Rights."
-msgstr ""
+msgstr "نرم افزار توسط مرکز غیر-انتفاعی هرمس برای شفافیت و حقوق بشر دیجیتال توسعه داده شده است."
 
 msgid "Please support Hermes through their donation page."
-msgstr ""
+msgstr "لطفا از هرمس از طریق صفحه اهدا پشتیبانی کنید."
 
 msgid "Forgot password?"
 msgstr "گذرواژه را فراموش کرده اید؟"
 
 msgid "Check your inbox and enter the authentication code you received."
-msgstr ""
+msgstr "ورودی خود را بررسی کنید و کد احراز هویت دریافت شده را وارد کنید."
 
 msgid "Authentication failed"
 msgstr "تایید هویت ناموفق بود"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "کد یا نامعتبر است یا انقضا یافته است."
 
 msgid "Site:"
 msgstr "سایت:"
 
 msgid "Have you already filed a submission? Enter your receipt."
-msgstr ""
+msgstr "آیا گزارش خود را داده اید؟ رسید خود را وارد کنید."
 
 msgid "The receipt is either invalid or the submission has expired."
-msgstr ""
+msgstr "رسید یا نامعتبر می باشد یا گزارش انقضا یافته است."
 
 msgid "Username:"
 msgstr "نام کاربری:"
@@ -1621,11 +1630,8 @@ msgstr "حساب خود را انتخاب کنید:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "حالا گذرواژه خود را وارد کنید، و سپس دگمه ورود را کلیک کنید:"
 
-msgid "Assign score points"
-msgstr ""
-
 msgid "Text shown after the user has selected the option."
-msgstr ""
+msgstr "نمایش متن بعد از اینکه کاربر گزینه را انتخاب کرد"
 
 msgid "Confirm"
 msgstr "تایید "
@@ -1634,42 +1640,45 @@ msgid "Are you sure?"
 msgstr "آیا مطمئن هستید؟"
 
 msgid "The operation will reset the configuration and cannot be undone."
-msgstr ""
+msgstr "این عملیات باعث تنظیم مجدد پیکربندی خواهد شد و قابل برگشت نیست."
+
+msgid "Assign score points"
+msgstr "تخصیص امتیاز"
 
 msgid "Please note that all the associated data will be permanently lost."
-msgstr ""
+msgstr "لطفا توجه داشته باشید که تمام داده های مرتبط برای همیشه از بین خواهند رفت."
 
 msgid "Welcome!"
 msgstr "خوش آمدید!"
 
 msgid "For the user documentation, visit:"
-msgstr ""
+msgstr "برای مستندات کاربر، به این جا مراجعه کنید:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
 " the software:"
-msgstr ""
+msgstr "اگر به پشتیبانی فنی نیاز دارید، سوال عمومی دارید، یا ایده جدید برای نرم افزار دارید:"
 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr ""
+msgstr "اگر می خواهید در توسعه نرم افزار مشارکت داشته باشید یا باگی را گزارش کنید، لطفا یک موضوع در سیستم برچسب زدن ما باز کنید:"
 
 msgid ""
 "If your non-profit needs support for investigative journalism, activism or a"
 " human rights defense project:"
-msgstr ""
+msgstr "اگر سازمان غیر انتفاعی شما نیاز به پشتیبانی برای ژورنالیسم تحقیقی، فعالیت یا پروژه دفاع از حقوق بشر دارد:"
 
 msgid ""
 "For professional support and development of anti corruption and compliance "
 "projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr ""
+msgstr "برای پشتیبانی حرفه ای و توسعه پروژه های ضد فساد و رعایت مقررات لطفا با شرکتی که مسئول نگهداری از  GlobaLeaks می باشد ارتباط برقرار کنید:"
 
 msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr ""
+msgstr "به عضویت کانال گپ IRC ما در شبکه irc.oftc.net در بیایید:"
 
 msgid "Follow the project on:"
-msgstr ""
+msgstr "دنبال کردن پروژه در:"
 
 msgid "Error!"
 msgstr "خطا!"
@@ -1678,10 +1687,10 @@ msgid "Internal server error"
 msgstr "خطا داخلی سرور"
 
 msgid "Error on input validation"
-msgstr ""
+msgstr "خطا در اعتبار سنجی ورودی"
 
 msgid "Resource not found"
-msgstr ""
+msgstr "منبع یافت نشد"
 
 msgid "Forbidden operation"
 msgstr "عملیات غیرمجاز"
@@ -1699,13 +1708,13 @@ msgid "Success!"
 msgstr "موفقیت!"
 
 msgid "Validation of email address change in progress."
-msgstr ""
+msgstr "اعتبار سنجی تغییر آدرس ایمیل در حال انجام می باشد."
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
+msgstr "لطفا دریافتی خود را برای دستور العمل های بیشتر چک کنید."
 
 msgid "Encryption key"
-msgstr ""
+msgstr "کلید رمزنگاری"
 
 msgid "Hide"
 msgstr "پنهان کردن"
@@ -1720,7 +1729,7 @@ msgid "Old password confirmation required"
 msgstr "تایید گذرواژه قبلی لازم است"
 
 msgid "The new password must be different from the current one."
-msgstr ""
+msgstr "گذرواژه جدید می بایستی از گذرواژه فعلی متفاوت باشد."
 
 msgid "Type your new password again"
 msgstr "گذرواژه جدیدتان رو دوباره تایپ کنید"
@@ -1742,7 +1751,7 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "سپس این آدرس را در مرورگر درج کنید:"
 
 msgid "Enter a name for the copy"
-msgstr ""
+msgstr "وارد کردن یک نام برای کپی"
 
 msgid "Add file"
 msgstr "فایل اضافه کن"
@@ -1771,31 +1780,31 @@ msgstr "ارتباط امن نمی باشد."
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
-msgstr ""
+msgstr "پلتفورم هنوز برای اتصال های HTTPS پیکربندی نشده است و بهتر است فقط برای تست کردن از آن استفاده شود."
 
 msgid "Use case"
-msgstr ""
+msgstr "مورد کاربرد"
 
 msgid "Anticorruption"
-msgstr ""
+msgstr "ضد فساد"
 
 msgid "Corporate compliance"
-msgstr ""
+msgstr "رعایت مقررات"
 
 msgid "Investigative journalism"
-msgstr ""
+msgstr "ژورنالیسم تحقیقی"
 
 msgid "Civic activism"
-msgstr ""
+msgstr "فعالیت مدنی"
 
 msgid "Submit"
 msgstr "ارسال"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr ""
+msgstr "گیرندگان خواستار این هستند که یک پرسش نامه اضافی را پر کنید."
 
 msgid "Fill the additional questionnaire"
-msgstr ""
+msgstr "پر کردن پرسش نامه اضافی"
 
 msgid "Send"
 msgstr "ارسال"
@@ -1825,10 +1834,10 @@ msgid "No files have been uploaded!"
 msgstr "فایلی آپلود نشده!"
 
 msgid "Allow the whistleblower to add attachments to the submission"
-msgstr "به افشاگر اجازه اضافه کردن ضمیمه به این اظهارات داده شود"
+msgstr "به افشاگر اجازه اضافه کردن ضمیمه به این گزارش داده شود"
 
 msgid "Submission"
-msgstr "ثبت"
+msgstr "گزارش"
 
 msgid "Access expiration"
 msgstr "انقضا دسترسی"
@@ -1849,38 +1858,38 @@ msgid "Allow the whistleblower to send messages"
 msgstr "به افشاگر اجازه ارسال پیام داده شود"
 
 msgid "Are you sure that you want to delete the submission?"
-msgstr ""
+msgstr "آیا مطمئن هستید که میخواهید گزارش را حذف کنید؟"
 
 msgid ""
 "Everything related to the submission stored on the platform will be deleted."
-msgstr ""
+msgstr "همه چیز های مرتبط با گزارش ذخیره شده روی پلتفورم پاک خواهند شد."
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
 " saved on your computer, must be deleted manually."
-msgstr ""
+msgstr "لطفا آگاه باشید که تمام چیزهایی که خارج از پلتفورم ذخیره شده، مثل فایلی که روی کامپیوتر خود ذخیره کرده اید، باید به صورت دستی حذف شوند."
 
 msgid "Are you sure that you want to delete all the selected submissions?"
-msgstr ""
+msgstr "آیا مطمئن هستید که میخواهید تمام گزارش های انتخاب شده را حذف کنید؟"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
 "recipients won't be able to further access to it."
-msgstr ""
+msgstr "لطفا مطمئن شوید که تمام داده های مرتبط به درستی پاک شده است تا گیرندگان دیگر قادر نباشند به آن دسترسی داشته باشند."
 
 msgid "Please write a motivation for the reply"
-msgstr ""
+msgstr "لطفا انگیزه خود برای پاسخ را بنویسید"
 
 msgid "Are you sure that you want to postpone the submission expiration date?"
-msgstr ""
+msgstr "آیا مطمئن هستید که میخواهید تاریخ انقضا گزارش را عقب بیاندازید؟"
 
 msgid "By confirming, you will postpone the expiration date to:"
-msgstr ""
+msgstr "با تایید کردن، شما تاریخ انقضا را عقب خواهید انداخت به:"
 
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
 "submissions?"
-msgstr ""
+msgstr "آیا مطمئن هستید که میخواهید تاریخ انقضا برای تمام گزارش های انتخاب شده را عقب بیاندازید؟"
 
 msgid "Questionnaire answers"
 msgstr "پاسخ‌های به پرسش‌نامه"
@@ -1892,10 +1901,10 @@ msgid "Recipient list"
 msgstr "فهرست گیرنده‌ها"
 
 msgid "Submission status:"
-msgstr ""
+msgstr "وضعیت گزارش:"
 
 msgid "Attached files for the whistleblower"
-msgstr ""
+msgstr "فایل های ضمیمه شده برای افشاگر"
 
 msgid "Upload a file:"
 msgstr "بارگذاری یک فایل:"
@@ -1904,27 +1913,27 @@ msgid "Logout"
 msgstr "خروج"
 
 msgid "The key code is either invalid or the submission has expired."
-msgstr "یا کلید رمز غلط است یا منقضی شده"
+msgstr "کد کلید نامعتبر می باشد یا گزارش انقضا یافته است."
 
 msgid "Files attached by recipients"
-msgstr ""
+msgstr "فایل های ضمیمه شده توسط گیرندگان"
 
 msgid "These files have been attached to your submission by the recipients."
-msgstr ""
+msgstr "این فایل ها به گزارش های شما توسط گیرندگان ضمیمه شده اند."
 
 msgid "The provided reset token is invalid or expired."
-msgstr ""
+msgstr "نشانه تنظیم مجدد یا معتبر نیست یا انقضا یافته است."
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr ""
+msgstr "نام کاربری خود یا آدرس ایمیل را برای درخواست تنظیم مجدد گذرواژه وارد کنید."
 
 msgid "Request password reset"
-msgstr ""
+msgstr "درخواست تنظیم مجدد گذرواژه"
 
 msgid "Password reset feature is unavailable for admin users."
-msgstr ""
+msgstr "ویژگی تنظیم مجدد گذرواژه برای کاربران ادمین ناموجود میباشد."
 
 msgid "Password reset requested."
 msgstr "تنظیم مجدد گذرواژه درخواست شد."
@@ -1933,45 +1942,45 @@ msgid "Thank you!"
 msgstr "متشکریم!"
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "ما در اسرع وقت با شما تماس خواهیم گرفت."
 
 msgid "Remember your receipt for this submission."
-msgstr ""
+msgstr "رسید خود برای این گزارش را به یاد داشته باشید."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr ""
+msgstr "از 16 رقم رسید برای وارد شدن استفاده کنید. به شما اجازه این را می دهد تا هر پیامی که به شما ارسال کردیم را ببینید، و همچنین اطلاعات بیشتری اضافه کنید."
 
 msgid "View your submission"
-msgstr "درخواست خود را ببینید"
+msgstr "گزارش خود را ببینید"
 
 msgid "Hint: How to hide your receipt"
-msgstr ""
+msgstr "راهنما: چگونه رسید خود را مخفی کنید"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr ""
+msgstr "یک راه موثر برای پنهان کردن رسید خود نوشتن آن مانند کارت اعتباری می باشد، این میتواند با نوشتن تاریخ انقضا آن باشد."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr ""
+msgstr "دسترسی به هویت افشاگر از ‍داده بان درخواست شده است."
 
 msgid "Date of the request"
-msgstr ""
+msgstr "تاریخ درخواست"
 
 msgid "Undeclared"
-msgstr ""
+msgstr "اعلام نشده"
 
 msgid "You have completed the platform activation."
-msgstr ""
+msgstr "شما پلتفورم را فعال کرده اید."
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
+msgstr "پلتفورم افشاگری شما تقریبا آماده می باشد!"
 
 msgid "Check your inbox to activate your account."
-msgstr ""
+msgstr "برای فعال سازی حساب خود ورودی خود را بررسی کنید."
 
 msgid "Sign up"
 msgstr "عضویت"
@@ -1989,19 +1998,19 @@ msgid "Invalid phone number"
 msgstr "شماره تلفن ناموجود"
 
 msgid "This field is mandatory."
-msgstr ""
+msgstr "این فیلد اجباری می باشد."
 
 msgid "The answer is too short."
 msgstr "پاسخ بیش از حد کوتاه می باشد."
 
 msgid "The specified input is not valid:"
-msgstr ""
+msgstr "ورودی مشخص شده معتبر نمی باشد:"
 
 msgid "please enter a valid email address."
-msgstr ""
+msgstr "لطفا یک آدرس ایمیل معتبر وارد کنید."
 
 msgid "please enter numbers only."
-msgstr ""
+msgstr "لطفا فقط عدد وارد کنید."
 
 msgid "Recipient selection"
 msgstr "انتخاب گیرنده"
@@ -2012,32 +2021,32 @@ msgstr "گیرنده‌های انتخاب‌شده:"
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr ""
+msgstr "در این مرحله پاسخ ها به سوالات زیر یا نامعتبر هستند یا ناقص هستند:"
 
 msgid "Submission errors"
-msgstr ""
+msgstr "خطا های گزارش"
 
 msgid "You must select at least one recipient."
-msgstr ""
+msgstr "شما باید حداقل یک گیرنده مشخص کنید."
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr ""
+msgstr "انتظار برای تمام شدن آپلود فایل(ها)."
 
 msgid "The following steps have errors:"
-msgstr ""
+msgstr "مراحل زیر دارای خطا می باشند:"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr ""
+msgstr "رویه قدم به قدم آمده به شما کمک خواهد کرد تا پلتفورم افشاگری خود را ایجاد کنید."
 
 msgid "Please choose a configuration profile:"
-msgstr ""
+msgstr "لطفا یک پروفایل پیکربندی انتخاب کنید:"
 
 msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
-msgstr ""
+msgstr "این پروفایل ها شامل تنظیمات استفاده شده در پروژه های موفق در فیلد خود می باشند."
 
 msgid "Confirm password"
 msgstr "تایید رمز"
@@ -2046,37 +2055,37 @@ msgid "The default username is:"
 msgstr "نام کاربری پیش فرض:"
 
 msgid "License Agreement"
-msgstr ""
+msgstr "توافق گواهینامه"
 
 msgid "Please review the license terms before proceeding."
-msgstr ""
+msgstr "لطفا شرایط گواهینامه را پیش از ادامه بخوانید."
 
 msgid "I have read and agree to the terms of the License Agreement."
-msgstr ""
+msgstr "من شرایط موافقت نامه گواهینامه را خوانده ام و با آن موافقم."
 
 msgid "You have completed the platform wizard."
-msgstr ""
+msgstr "شما ویزارد پلتفورم را کامل کرده اید."
 
 msgid "Fill out your submission"
-msgstr ""
+msgstr "پر کردن گزارش خود"
 
 msgid "Short title"
 msgstr "عنوان مختصر"
 
 msgid "Describe your submission in a few words."
-msgstr ""
+msgstr "گزارش خود را در چند کلمه توضیح دهید."
 
 msgid "Full description"
 msgstr "توضیح کامل"
 
 msgid "Describe your submission in detail."
-msgstr ""
+msgstr "گزارش خود را به صورت کامل تشریح کنید."
 
 msgid "Attach files relevant to the submission."
-msgstr ""
+msgstr "ضمیمه کردن فایل های مرتبط با گزارش"
 
 msgid "Do you want to provide your identification information?"
-msgstr ""
+msgstr "آیا میخواهید اطلاعات که هویت شما را مشخص می کند را فراهم کنید؟"
 
 msgid "First name"
 msgstr "نام کوچک"
@@ -2094,7 +2103,7 @@ msgid "Female"
 msgstr "زن"
 
 msgid "Other gender identity"
-msgstr ""
+msgstr "سایر هویت های جنسی"
 
 msgid "Date of birth"
 msgstr "تاریخ تولد"
@@ -2136,129 +2145,129 @@ msgid "Organization unit and job location at the time of the reported fact"
 msgstr "واحد سازمانی و محل کار وقتی این گزارش را ارائه کردید"
 
 msgid "Authentication code: {AuthCode}"
-msgstr ""
+msgstr "کد احراز هویت:  {AuthCode}"
 
 msgid "The authentication code is valid for 5 minutes."
-msgstr ""
+msgstr "کد احراز هویت برای 5 دقیقه معتبر می باشد."
 
 msgid "Authentication code"
-msgstr ""
+msgstr "کد احراز هویت"
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} گرامی،"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr ""
+msgstr "پلتفورم افشاگری شما از این طریق قابل دسترسی میباشد:"
 
 msgid "To log in, visit:"
-msgstr ""
+msgstr "برای وارد شدن، مراجعه کنید به:"
 
 msgid "Users' credentials:"
-msgstr ""
+msgstr "اعتبار نامه های کاربران:"
 
 msgid "The platform will be automatically deleted on:"
-msgstr ""
+msgstr "پلتفورم به صورت خودکار در این تاریخ حذف خواهد شد:"
 
 msgid "Kind regards,"
 msgstr "با سپاس،"
 
 msgid "Access instructions"
-msgstr ""
+msgstr "دستور العمل های دسترسی"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
-msgstr ""
+msgstr "تعداد فعالیت های اخیر شناسایی شده بیشتر از حد معمول می باشد."
 
 msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr ""
+msgstr "این می تواند نشانه از حمله باشد ( برای مثال، شخصی سعی دارد تا سرور شما را با اطلاعات جعلی سرازیر کند) یا نتیجه افزایش بازدید از پروژه شما می باشد."
 
 msgid "Examine the issue to determine whether it is legitimate or not."
-msgstr ""
+msgstr "بررسی موضوع برای مشخص کردن مشروع بودن یا نبودن آن."
 
 msgid "The activities with unusual stats are:"
-msgstr ""
+msgstr "فعالیت ها با آمار غیر طبیعی:"
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "
 "submissions have been disabled."
-msgstr ""
+msgstr "سرور نمی تواند گارانتی کند که یک گزارش جدید می تواند ذخیره شود، بنابراین گزارش ها غیرفعال شده اند."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr ""
+msgstr "لطفا  احتمال خواستن حافظه بیشتر دیسک روی سرور را از پشتیبانی فنی خود در نظر بگیرید."
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
 " alert you in case something requires your attention."
-msgstr ""
+msgstr "تکنولوژی GlobaLeaks شامل یک جز بررسی کننده وضعیت سرور می باشد که در صورت اینکه چیزی نیاز به توجه شما داشت شما را باخبر خواهد کرد."
 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr ""
+msgstr "برای اطلاعات بیشتر، وارد رابط مدیریت شوید و به بخش های \"وضعیت های سیستم\" و \"ناهنجاری ها\" نگاه کنید."
 
 msgid "Anomaly detected in {NodeName}"
-msgstr ""
+msgstr "ناهنجاری در  {NodeName} شناسایی شد"
 
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr ""
+msgstr "این ایمیل به شما اطلاع می دهد که کلید PGP کاربران زیر در حال انقضا می باشد یا انقضا یافته است:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr ""
+msgstr "بدون یک کلید PGP معتبر، سیستم نمی تواند به آن ها نوتیفیکیشن رمزگذاری شده ارسال کند."
 
 msgid "PGP key expiration alert"
 msgstr "هشدار انتقضای کلید PGP"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "یک سایت افشاگری جدید ثبت شده است."
 
 msgid "Registration data:"
-msgstr ""
+msgstr "داده ثبت نام:"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "سایت: {Url}"
 
 msgid "Name: {Name}"
-msgstr ""
+msgstr "نام: {Name}"
 
 msgid "Email: {Email}"
-msgstr ""
+msgstr "ایمیل: {Email}"
 
 msgid "Language: {Language}"
-msgstr ""
+msgstr "زبان: {Language}"
 
 msgid "Use case: {UseCase}"
-msgstr ""
+msgstr "مورد کاربرد:  {UseCase}"
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "سایت افشاگری جدید ثبت شد"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr ""
+msgstr "این یک ایمیل آزمایشی ارسال شده از جانب رابط مدیریتی پلتفورم می باشد."
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
 "to and interact with the SMTP mail server."
-msgstr ""
+msgstr "دریافت این ایمیل نشان دهنده این است که سرور قادر به احراز هویت و تعامل با سرور ایمیل SMPT بود."
 
 msgid "Test email"
 msgstr "آزمایش ایمیل"
 
 msgid ""
 "This is an email to notify you of a new comment on an existing submission."
-msgstr ""
+msgstr "این ایمیل به شما اطلاع می دهد که یک دیدگاه جدید روی یک گزارش موجود قرار گرفته است."
 
 msgid "The submission can be accessed at:"
-msgstr ""
+msgstr "گزارش از طریق زیر قابل دسترسی می باشد:"
 
 msgid "New comment"
 msgstr "دیدگاه جدید"
@@ -2266,41 +2275,41 @@ msgstr "دیدگاه جدید"
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr ""
+msgstr "این ایمیل به شما اطلاع می دهد که یک درخواست برای تغییر آدرس ایمیل شما به  {NewEmailAddress} صورت گرفته است."
 
 msgid "Click the following link to validate this change:"
-msgstr ""
+msgstr "برای تایید اعتبار تغییر روی لینک زیر کلیک کنید:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr ""
+msgstr "اگر شما خواستار این تغییر نبودید، گذرواژه خود را تغییر دهید و با مدیر سیستم خود ارتباط برقرار کنید."
 
 msgid "Email change request"
 msgstr "درخواست تغییر ایمیل"
 
 msgid "From: {RecipientName}"
-msgstr ""
+msgstr "از: {RecipientName}"
 
 msgid "Date: {EventTime}"
-msgstr ""
+msgstr "تاریخ: {EventTime}"
 
 msgid "From: Whistleblower"
-msgstr ""
+msgstr "از: افشاگر"
 
 msgid "Date: {SubmissionDate}"
-msgstr ""
+msgstr "تاریخ: {SubmissionDate}"
 
 msgid "Label: {TipLabel}"
-msgstr ""
+msgstr "برچسب: {TipLabel}"
 
 msgid "Context: {ContextName}"
-msgstr ""
+msgstr "زمینه: {ContextName}"
 
 msgid ""
 "This is an email to notify you that the whistleblower of submission {TipNum}"
 " has attached new material."
-msgstr ""
+msgstr "این ایمیل برای این است که به شما اطلاع دهد که افشاگر گزارش {TipNum} یک چیز جدید ضمیمه کرده است."
 
 msgid "New attachment"
 msgstr "ضمایم جدید"
@@ -2308,7 +2317,7 @@ msgstr "ضمایم جدید"
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr ""
+msgstr "گواهی HTTPS بارگذاری شده روی پلتفورم در حال انقضاست، یا انقضا یافته است."
 
 msgid "Expiration date: {ExpirationDate}"
 msgstr "تاریخ انفضا: {ExpirationDate}"
@@ -2316,62 +2325,62 @@ msgstr "تاریخ انفضا: {ExpirationDate}"
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr ""
+msgstr "بدون یک گواهی معتبر، پلتفورم فقط از طریق امن و از راه تور در دسترس خواهد بود."
 
 msgid "Log in to solve the issue."
-msgstr ""
+msgstr "برای حل مشکل وارد شوید."
 
 msgid "Expiration alert for HTTPS certificate"
-msgstr ""
+msgstr "هشدار انقضا برای گواهی HTTPS"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr ""
+msgstr "تمدید خودکار گواهی HTTPS زمان بندی شده برای امروز ناموفق بود."
 
 msgid "The system will keep trying."
-msgstr ""
+msgstr "سیستم به تلاش خود ادامه خواهد دهد."
 
 msgid "Failed HTTPS certificate renewal"
-msgstr ""
+msgstr "تمدید گواهی HTTPS ناموفق"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
-msgstr ""
+msgstr "این ایمیل به شما اطلاع می دهد که داده بان به شما اجازه داده است تا به هویت افشاگر برای گزارش {TipNum} دسترسی داشته باشید."
 
 msgid "Access to whistleblower's identity authorized"
-msgstr ""
+msgstr "اجازه دسترسی به هویت افشاگر داده شد"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " wistleblowing identity for the submission {TipNum}."
-msgstr ""
+msgstr "این ایمیل به شما اطلاع می دهد که داده بان دسترسی شما به هویت افشاگر گزارش {TipNum} را رد کرده است."
 
 msgid "Access to whistleblower's identity denied"
-msgstr ""
+msgstr "دسترسی به هویت افشاگر داده نشد."
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the submission {TipNum}"
-msgstr ""
+msgstr "این ایمیل به شما اطلاع می دهد که گیرنده خواستار دسترسی به هویت افشاگر برای گزارش {TipNum} می باشد"
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "درخواست از طریق زیر قابل دسترسی می باشد:"
 
 msgid "New request of access to a whistleblower's identity"
-msgstr ""
+msgstr "درخواست دسترسی جدید به هویت افشاگر"
 
 msgid ""
 "This is an email to notify you that the whistleblower for the submission "
 "{TipNum} has provided their identity."
-msgstr ""
+msgstr "این ایمیل می خواهد به شما بگوید که افشاگر برای گزارش {TipNum} هویت خود را برای شما فراهم کرده است."
 
 msgid "The whistleblower has provided their identity"
-msgstr ""
+msgstr "افشاگر هویت خود را فراهم کرده است"
 
 msgid ""
 "This is an email to notify you of a new message on an existing submission."
-msgstr ""
+msgstr "این ایمیل شما می خواهد شما را از وجود یک پیام جدید روی گزارش موجود با خبر کند."
 
 msgid "New message"
 msgstr "پیام جدید"
@@ -2379,54 +2388,54 @@ msgstr "پیام جدید"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "your account."
-msgstr ""
+msgstr "شما این ایمیل را دریافت میکنید چون یک درخواست تنظیم مجدد گذرواژه برای حساب شما خواسته شده است."
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr ""
+msgstr "اگر شما این درخواست را نکرده اید، می توانید از آن چشم پوشی کرده و این ایمیل را حذف کنید."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr ""
+msgstr "شما می توانید درخواست خود را با کلیک بر روی لینک زیر تایید کنید:"
 
 msgid "Password reset instructions"
-msgstr ""
+msgstr "دستور العمل های تنظیم مجدد گذرواژه"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr ""
+msgstr "این ایمیل می خواهد شما را اگاه کند که کلید PGP شما در حال انقضا می باشد یا انقضا شده است."
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
 "or upload a new key."
-msgstr ""
+msgstr "شما باید اعتبار آن را تمدید کنید و کلید حاضر بر پلتفورم را به روز رسانی کنید، یا یک کلید جدید آپلود کنید."
 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-msgstr ""
+msgstr "بدون یک کلید PGP معتبر، سیستم قادر نخواهد بود داده های داده شده به شما را رمزنگاری کند."
 
 msgid "It appears that {NodeName} is receiving a large number of requests."
-msgstr ""
+msgstr "به نظر می آید که {NodeName} در حال دریافت  تعداد درخواست های بالایی می باشد."
 
 msgid ""
 "To prevent sending you too many emails, the system has disabled email "
 "notifications until the load returns to normal. In the meantime, you can "
 "normally log onto the platform and manually check for new submissions."
-msgstr ""
+msgstr "برای جلوگیری از ارسال های ایمیل زیادی به شما، سیستم نوتیفیکیشن های ایمیل را تا زمانی که بار آن به حالت عادی برگردد غیرفعال کرده است. در عین حال، شما میتوانید به صورت عادی وارد پلتفورم شده و به صورت دستی گزارش های جدید را بررسی کنید."
 
 msgid ""
 "If you don’t mind and would rather receive such a large number of email "
 "notifications anyhow, please contact your technical support to have them "
 "modify this setting accordingly."
-msgstr ""
+msgstr "اگر مشکلی ندارید و ترجیح میدهید تا تعداد زیادی ایمیل دریافت کنید، با پشتیبانی فنی خود ارتباط برقرار کنید و آز آن ها بخواهید تا آن را بر این اساس اصلاح کنند."
 
 msgid "Notifications from {NodeName} have been temporarily suspended"
-msgstr ""
+msgstr "نوتیفیکیشن ها از جانب  {NodeName} به صورت موقت تعلیق شده اند"
 
 msgid "Click the link to activate the platform:"
-msgstr ""
+msgstr "بر روی لینک کلیک کنید تا پلتفورم را فعال کنید:"
 
 msgid "Activation"
 msgstr "فعال سازی"
@@ -2435,7 +2444,7 @@ msgid "A software update is available."
 msgstr "بروز رسانی نرم افزار موجود می باشد."
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr ""
+msgstr "از نظر امنیتی کار خوبی می باشد تا پلتفورم را به روز نگه دارید."
 
 msgid "Installed version: {InstalledVersion}"
 msgstr "نسخه نصب شده: {InstalledVersion}"
@@ -2446,26 +2455,26 @@ msgstr "آخرین نسخه: {LatestVersion}"
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
 "change log at: {ChangeLogUrl}"
-msgstr ""
+msgstr "برای یادگیری بیشتر درباره ویژگی های جدید و اصلاحات باگ ها در نسخه جدید تغییرات را در اینجا ببینید:  {ChangeLogUrl}"
 
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
 "{UpdateGuideUrl}"
-msgstr ""
+msgstr "برای دستورالعمل برای به روز رسانی نرم افزار،  لطفا به مستندات موجود مراجعه کنید: {UpdateGuideUrl}"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
-msgstr ""
+msgstr "اولین تاریخ انقضا {EarliestExpirationDate} می باشد."
 
 msgid "Please remember to check them before they are deleted."
-msgstr ""
+msgstr "لطفا به یاد داشته باشید تا قبل از اینکه حذف شوند آن ها را بررسی کنید."
 
 msgid "Some submissions will expire soon"
-msgstr ""
+msgstr "برخی گزارش ها به زودی انقضا خواهند یافت"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their submission."
-msgstr ""
+msgstr "هدف از این ایمیل آگاه سازی شما از این موضوع است که یک افشاگر شما را به عنوان یک گیرنده پر ارزش از گزارش خود انتخاب کرده است."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2473,16 +2482,16 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this submission should be considered to be of "
 "high importance."
-msgstr ""
+msgstr "از شما خواسته می شود تا توجه خاصی به اطلاعات و چیزهایی که در آن قرار گرفته داشته باشید. لطفا به خاطر داشته باشید که افشاگران خود را در معرض ریسک های شخصی بالایی به منظور منفعت جامعه قرار میدهند. بنابراین چیزهای تامین شده در این گزارش از اهمیت بالایی برخوردار هستند."
 
 msgid "New submission"
-msgstr ""
+msgstr "گزارش جدید"
 
 msgid "Role: {Role}"
 msgstr "نقش: {Role}"
 
 msgid "Username: {Username}"
-msgstr ""
+msgstr "نام کاربری: {Username}"
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "گذرواژه: {Password}"

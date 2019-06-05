@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-06-05 07:47+0000\n"
+"Last-Translator: Gio Doro <CyberMatique@protonmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -78,6 +78,9 @@ msgstr "Changelog"
 
 msgid "License"
 msgstr "Licenza"
+
+msgid "Settings"
+msgstr "Impostazioni"
 
 msgid "Notification templates"
 msgstr "Modelli di notifica"
@@ -740,15 +743,6 @@ msgstr "Testo mostrato quando il whistleblower non sta utilizzando Tor"
 msgid "Disable the privacy panel"
 msgstr "Disabilita il privacy panel"
 
-msgid "Enable disclaimer"
-msgstr "Abilita disclaimer"
-
-msgid "Title"
-msgstr "Titolo"
-
-msgid "Text"
-msgstr "Testo"
-
 msgid "Disable the receipt hint"
 msgstr "Disabilita suggerimento circa la ricevuta"
 
@@ -840,6 +834,12 @@ msgstr "Livello di verbosità dei log"
 msgid "Log accesses of internal users"
 msgstr "Registra gli accessi degli utenti interni"
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr "Abilita il sistema di punteggio"
+
 msgid "Enable experimental features"
 msgstr "Abilità funzionalità sperimentali"
 
@@ -926,6 +926,15 @@ msgstr "Bottone di sollecitazione alla segnalazione"
 
 msgid "Footer"
 msgstr "Piè di pagina"
+
+msgid "Enable disclaimer"
+msgstr "Abilita disclaimer"
+
+msgid "Title"
+msgstr "Titolo"
+
+msgid "Text"
+msgstr "Testo"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1032,8 +1041,8 @@ msgstr "Permetti ai whistleblower di aggiungere allegati alle segnalazioni esist
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Permetti ai riceventi di caricare file destinati al whistleblower"
 
-msgid "Enable scoring system"
-msgstr "Abilita il sistema di punteggio"
+msgid "Scoring system options"
+msgstr ""
 
 msgid "Threshold"
 msgstr "Soglia"
@@ -1623,9 +1632,6 @@ msgstr "Come prima cosa seleziona il tuo utente:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Adesso digita la tua password e poi clicca 'Accedi':"
 
-msgid "Assign score points"
-msgstr "Assegna punteggio"
-
 msgid "Text shown after the user has selected the option."
 msgstr "Testo mostrato dopo che l'utente ha selezionato l'opzione."
 
@@ -1637,6 +1643,9 @@ msgstr "Sei sicuro?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "L'operazione annullerà la configurazione e non sarà possibile ripristinarla."
+
+msgid "Assign score points"
+msgstr "Assegna punteggio"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Si prega di notare che tutti i dati associati saranno persi."

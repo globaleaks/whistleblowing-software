@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-09 05:56+0000\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
 "Last-Translator: ION\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,6 +71,9 @@ msgstr "יומן שינויים"
 
 msgid "License"
 msgstr "רישיון"
+
+msgid "Settings"
+msgstr "הגדרות"
 
 msgid "Notification templates"
 msgstr "תבניות התראה"
@@ -733,15 +736,6 @@ msgstr "הצג מלל זה כאשר מתריע לא משתמש בתור"
 msgid "Disable the privacy panel"
 msgstr "בטל תג הפרטיות"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "כותרת"
-
-msgid "Text"
-msgstr "טקסט"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -833,6 +827,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr "אפשר מערכת ניקוד"
+
 msgid "Enable experimental features"
 msgstr "אפשר מאפיינים ניסיוניים"
 
@@ -919,6 +919,15 @@ msgstr "כפתור חשיפת שחיתות"
 
 msgid "Footer"
 msgstr "כותרת תחתונה"
+
+msgid "Enable disclaimer"
+msgstr ""
+
+msgid "Title"
+msgstr "כותרת"
+
+msgid "Text"
+msgstr "טקסט"
 
 msgid "Favicon"
 msgstr ""
@@ -1025,8 +1034,8 @@ msgstr ""
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Enable scoring system"
-msgstr "אפשר מערכת ניקוד"
+msgid "Scoring system options"
+msgstr ""
 
 msgid "Threshold"
 msgstr "סף"
@@ -1616,9 +1625,6 @@ msgstr "אנא בחר את חשבונך"
 msgid "Now type your password, then click 'Log in':"
 msgstr "הקלד כעת את סיסמתך, לאחר מכן לחץ על 'התחבר':"
 
-msgid "Assign score points"
-msgstr "הקצאת נקודות ציון"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1630,6 +1636,9 @@ msgstr "האם אתה בטוח?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
+
+msgid "Assign score points"
+msgstr "הקצאת נקודות ציון"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""

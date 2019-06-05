@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-09 18:49+0000\n"
-"Last-Translator: Chacal E.\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: Danton Medrado\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -91,6 +91,9 @@ msgstr "Registro de alterações"
 
 msgid "License"
 msgstr "Licença"
+
+msgid "Settings"
+msgstr "Configurações"
 
 msgid "Notification templates"
 msgstr "Modelos de notificação"
@@ -753,15 +756,6 @@ msgstr "Texto mostrado quando o denunciante não está usando Tor"
 msgid "Disable the privacy panel"
 msgstr "Desativar o painel de privacidade"
 
-msgid "Enable disclaimer"
-msgstr "Ativar aviso legal"
-
-msgid "Title"
-msgstr "Título"
-
-msgid "Text"
-msgstr "Texto"
-
 msgid "Disable the receipt hint"
 msgstr "Desativar a dica de recebido"
 
@@ -853,6 +847,12 @@ msgstr "Nível de registro"
 msgid "Log accesses of internal users"
 msgstr "Acessos de log de usuários internos"
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr "Ativar sistema de pontuação"
+
 msgid "Enable experimental features"
 msgstr "Ativar características experimentais"
 
@@ -939,6 +939,15 @@ msgstr "Botão de Denúncia"
 
 msgid "Footer"
 msgstr "Rodapé"
+
+msgid "Enable disclaimer"
+msgstr "Ativar aviso legal"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "Text"
+msgstr "Texto"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1045,8 +1054,8 @@ msgstr "Permitir que os delatores adicionem anexos em submissões existentes"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Permitir que os destinatários façam upload de arquivos para os denunciantes"
 
-msgid "Enable scoring system"
-msgstr "Ativar sistema de pontuação"
+msgid "Scoring system options"
+msgstr ""
 
 msgid "Threshold"
 msgstr "Limite"
@@ -1636,9 +1645,6 @@ msgstr "Por favor, selecione sua conta:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Agora digite sua senha e clique em 'Acessar':"
 
-msgid "Assign score points"
-msgstr "Atribuir pontos de pontuação"
-
 msgid "Text shown after the user has selected the option."
 msgstr "Texto mostrado depois que o usuário selecionou a opção."
 
@@ -1650,6 +1656,9 @@ msgstr "Você tem certeza?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "A operação redefinirá a configuração e não poderá ser desfeita."
+
+msgid "Assign score points"
+msgstr "Atribuir pontos de pontuação"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Favor notar que todos os dados assocados serão permanentemente perdidos."

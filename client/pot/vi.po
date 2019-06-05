@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: Anh Phan <vietnamesel10n@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -65,6 +65,9 @@ msgstr "Ký sự thay đổi"
 
 msgid "License"
 msgstr "Giấy phép"
+
+msgid "Settings"
+msgstr "Thiết đặt"
 
 msgid "Notification templates"
 msgstr "Mẫu thông báo"
@@ -727,15 +730,6 @@ msgstr "Văn bản hiển thị khi tố cáo là không sử dụng Tor"
 msgid "Disable the privacy panel"
 msgstr "Vô hiệu hóa bảng điều khiển riêng tư"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "Tiêu đề"
-
-msgid "Text"
-msgstr "Văn bản"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -827,6 +821,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "Kích hoạt tính năng thử nghiệm"
 
@@ -913,6 +913,15 @@ msgstr "nút Whistleblowing"
 
 msgid "Footer"
 msgstr "Phía cuối trang"
+
+msgid "Enable disclaimer"
+msgstr ""
+
+msgid "Title"
+msgstr "Tiêu đề"
+
+msgid "Text"
+msgstr "Văn bản"
 
 msgid "Favicon"
 msgstr ""
@@ -1019,7 +1028,7 @@ msgstr ""
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1610,9 +1619,6 @@ msgstr "Vui lòng chọn tài khoản của bạn:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Bây giờ gõ mật khẩu của bạn, sau đó nhấp vào 'Đăng nhập':"
 
-msgid "Assign score points"
-msgstr "Gán thêm điểm"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1624,6 +1630,9 @@ msgstr "Bạn có chắc không?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
+
+msgid "Assign score points"
+msgstr "Gán thêm điểm"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""

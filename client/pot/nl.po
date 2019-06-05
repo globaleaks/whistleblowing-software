@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: J <drwhax@2600nl.net>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -91,6 +91,9 @@ msgstr "Changelog"
 
 msgid "License"
 msgstr "Licentie"
+
+msgid "Settings"
+msgstr "Instellingen"
 
 msgid "Notification templates"
 msgstr "Bericht templates"
@@ -753,15 +756,6 @@ msgstr "Tekst die wordt getoond wanneer de klokkenluider geen Tor gebruikt"
 msgid "Disable the privacy panel"
 msgstr "Privacy-paneel uitschakelen"
 
-msgid "Enable disclaimer"
-msgstr "Disclaimer inschakelen"
-
-msgid "Title"
-msgstr "Titel"
-
-msgid "Text"
-msgstr "Tekst"
-
 msgid "Disable the receipt hint"
 msgstr "Ontvangerhint uitschakelen"
 
@@ -853,6 +847,12 @@ msgstr "Niveau van loggen"
 msgid "Log accesses of internal users"
 msgstr "Log toegang door interne-gebruikers"
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr "Waarderingssysteem inschakelen"
+
 msgid "Enable experimental features"
 msgstr "Experimentele functies inschakelen"
 
@@ -939,6 +939,15 @@ msgstr "Klokkenluid-knop"
 
 msgid "Footer"
 msgstr "Voettekst"
+
+msgid "Enable disclaimer"
+msgstr "Disclaimer inschakelen"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Text"
+msgstr "Tekst"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1045,8 +1054,8 @@ msgstr "Klokkenluiders toestaan bestanden toe te voegen aan bestaande tips"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Sta ontvanger toe om bestanden te versturen voor klokkenluiders"
 
-msgid "Enable scoring system"
-msgstr "Waarderingssysteem inschakelen"
+msgid "Scoring system options"
+msgstr ""
 
 msgid "Threshold"
 msgstr "Drempelwaarde"
@@ -1636,9 +1645,6 @@ msgstr "Selecteer je account:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Typ nu je wachtwoord, klik dan op 'Log in':"
 
-msgid "Assign score points"
-msgstr "Scorepunten toekennen"
-
 msgid "Text shown after the user has selected the option."
 msgstr "Tekst welke wordt getoond nadat de gebruiker de optie heeft gekozen"
 
@@ -1650,6 +1656,9 @@ msgstr "Weet je het zeker?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Deze actie zet de configuratie  terug naar de beginwaarden en kan niet worden teruggedraaid."
+
+msgid "Assign score points"
+msgstr "Scorepunten toekennen"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Let op, alle hiermee verbonden data gaat permanent verloren."

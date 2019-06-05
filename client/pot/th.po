@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-06-03 08:35+0000\n"
+"Last-Translator: Ben CM <nebben10814@gmail.com>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -63,6 +63,9 @@ msgstr "สมุดบันทึกสิ่งของใหม่"
 
 msgid "License"
 msgstr "ลิขสิทธิ์"
+
+msgid "Settings"
+msgstr "การตั้งค่า"
 
 msgid "Notification templates"
 msgstr "แม่แบบการแจ้งเตือน"
@@ -725,15 +728,6 @@ msgstr "ข้อความแสดงเมื่อ whistleblower จะไ
 msgid "Disable the privacy panel"
 msgstr "ปิดการใช้งานแผงความเป็นส่วนตัว"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "ชื่อเรื่อง"
-
-msgid "Text"
-msgstr "ข้อความ"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -825,6 +819,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "เปิดใช้งานคุณลักษณะการทดลอง"
 
@@ -911,6 +911,15 @@ msgstr "ปุ่มเบาะแส"
 
 msgid "Footer"
 msgstr "ฟุตบอล"
+
+msgid "Enable disclaimer"
+msgstr ""
+
+msgid "Title"
+msgstr "ชื่อเรื่อง"
+
+msgid "Text"
+msgstr "ข้อความ"
 
 msgid "Favicon"
 msgstr ""
@@ -1017,7 +1026,7 @@ msgstr ""
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1608,9 +1617,6 @@ msgstr "กรุณาเลือกบัญชีของคุณ:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "ตอนนี้พิมพ์รหัสผ่านของคุณแล้วคลิก 'เข้าสู่ระบบ:"
 
-msgid "Assign score points"
-msgstr "กำหนดจุดคะแนน"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1622,6 +1628,9 @@ msgstr "คุณแน่ใจไหม?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
+
+msgid "Assign score points"
+msgstr "กำหนดจุดคะแนน"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
@@ -1698,7 +1707,7 @@ msgid "Hide"
 msgstr "ซ่อน"
 
 msgid "Show"
-msgstr ""
+msgstr "แสดง"
 
 msgid "Current password"
 msgstr ""

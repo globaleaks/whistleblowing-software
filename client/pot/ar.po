@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: Rima Sghaier <sghair.rahma@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -92,6 +92,9 @@ msgstr "سجلّ التغييرات "
 
 msgid "License"
 msgstr "الترخيص"
+
+msgid "Settings"
+msgstr "الإعدادات"
 
 msgid "Notification templates"
 msgstr "نماذج الإشعارات "
@@ -754,15 +757,6 @@ msgstr "النص الظاهر حين لا يستخدم المبلغ متصفح �
 msgid "Disable the privacy panel"
 msgstr "تعطيل شارة الخصوصية"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "العنوان"
-
-msgid "Text"
-msgstr "نص"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -854,6 +848,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "تمكين الميزات التجريبية"
 
@@ -940,6 +940,15 @@ msgstr "زرّ التبليغ"
 
 msgid "Footer"
 msgstr "ذيل الصفحة "
+
+msgid "Enable disclaimer"
+msgstr ""
+
+msgid "Title"
+msgstr "العنوان"
+
+msgid "Text"
+msgstr "نص"
 
 msgid "Favicon"
 msgstr "أيقونة المفضّلة"
@@ -1046,7 +1055,7 @@ msgstr "تمكين المبلغين من اضافة مرفقات للبلاغا�
 msgid "Let recipients upload files to whistleblowers"
 msgstr "السماح للمتلقّين برفع ملفات للمبلغين."
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1637,9 +1646,6 @@ msgstr "الرجاء اختيار حسابك"
 msgid "Now type your password, then click 'Log in':"
 msgstr "الآن اكتب كلمة العبور الخاصة بك، ثم انقر على \"تسجيل الدخول\":"
 
-msgid "Assign score points"
-msgstr "تخصيص نقاط المجموع"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1651,6 +1657,9 @@ msgstr "هل أنت متأكد؟"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "ستؤدي العملية إلى إعادة ضبط التهيئة ولا يمكن التراجع عنها."
+
+msgid "Assign score points"
+msgstr "تخصيص نقاط المجموع"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "يرجى ملاحظة أنّه سيتم فقدان جميع البيانات المتعلقة بشكل دائم."

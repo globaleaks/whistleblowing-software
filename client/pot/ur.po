@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: SG\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -66,6 +66,9 @@ msgstr ""
 
 msgid "License"
 msgstr ""
+
+msgid "Settings"
+msgstr "سیٹنگ"
 
 msgid "Notification templates"
 msgstr "نوٹیفکیشن کے سانچوں"
@@ -728,15 +731,6 @@ msgstr "متن دکھایا گیا جب مخبر Tor استعمال نہیں  ک
 msgid "Disable the privacy panel"
 msgstr " پرائیویسی حصے کو غیر فعال کریں"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "عنوان"
-
-msgid "Text"
-msgstr "متن"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -828,6 +822,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "تجرباتی خصوصیات فعال کریں"
 
@@ -914,6 +914,15 @@ msgstr "مخبری بٹن"
 
 msgid "Footer"
 msgstr "ذیلی تحریر"
+
+msgid "Enable disclaimer"
+msgstr ""
+
+msgid "Title"
+msgstr "عنوان"
+
+msgid "Text"
+msgstr "متن"
 
 msgid "Favicon"
 msgstr ""
@@ -1020,7 +1029,7 @@ msgstr ""
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1611,9 +1620,6 @@ msgstr "براہ مہربانی اپنا اکاؤنٹ منتخب کیجیے:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "اب اپنا پاس ورڈ لکھیے اور لاگ اِن پر کلک کیجیے۔"
 
-msgid "Assign score points"
-msgstr "سکور پوائنٹس مقرر کریں"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1625,6 +1631,9 @@ msgstr "کیا آپ کو یقین ہے؟"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr ""
+
+msgid "Assign score points"
+msgstr "سکور پوائنٹس مقرر کریں"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""

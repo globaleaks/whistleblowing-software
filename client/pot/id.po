@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: Fransisca Susanti <susanti@jaring.id>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -76,6 +76,9 @@ msgstr "Catatan Perubahan "
 
 msgid "License"
 msgstr "Lisensi"
+
+msgid "Settings"
+msgstr "Pengaturan"
 
 msgid "Notification templates"
 msgstr "Format pemberitahuan"
@@ -738,15 +741,6 @@ msgstr "Teks muncul ketika informan publik tidak menggunakan Tor"
 msgid "Disable the privacy panel"
 msgstr "Menonaktifkan panel privasi"
 
-msgid "Enable disclaimer"
-msgstr "Mengaktifkan sanggahan"
-
-msgid "Title"
-msgstr "Judul"
-
-msgid "Text"
-msgstr "Teks"
-
 msgid "Disable the receipt hint"
 msgstr "Nonaktifkan petunjuk tanda terima"
 
@@ -838,6 +832,12 @@ msgstr "Tingkat pencatatan"
 msgid "Log accesses of internal users"
 msgstr "Akses log pengguna internal"
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr "Aktifkan sistem pencetakan skor"
+
 msgid "Enable experimental features"
 msgstr "Mengaktifkan fitur-fitur eksperimental"
 
@@ -924,6 +924,15 @@ msgstr "Tombol pelaporan"
 
 msgid "Footer"
 msgstr "Catatan kaki"
+
+msgid "Enable disclaimer"
+msgstr "Mengaktifkan sanggahan"
+
+msgid "Title"
+msgstr "Judul"
+
+msgid "Text"
+msgstr "Teks"
 
 msgid "Favicon"
 msgstr "Ikon pintasan"
@@ -1030,8 +1039,8 @@ msgstr "Izinkan whistleblowers menambah lampiran pada kiriman yang sudah ada"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Izinkan penerima menggunggah berkas kepada informan publik"
 
-msgid "Enable scoring system"
-msgstr "Aktifkan sistem pencetakan skor"
+msgid "Scoring system options"
+msgstr ""
 
 msgid "Threshold"
 msgstr "Batas"
@@ -1621,9 +1630,6 @@ msgstr "Tolong pilih akun Anda"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Sekarang ketik kata sandi Anda, lalu klik 'Masuk'"
 
-msgid "Assign score points"
-msgstr "Menentukan poin skor "
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1635,6 +1641,9 @@ msgstr "Apakah Anda yakin?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Pekerjaan akan mengatur ulang konfigurasi dan tidak dapat diulang kembali."
+
+msgid "Assign score points"
+msgstr "Menentukan poin skor "
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Harap dicatat bahwa semua data yang terkait akan hilang secara permanen."

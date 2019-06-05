@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: Mr Higgins\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -67,6 +67,9 @@ msgstr "Přehled změn"
 
 msgid "License"
 msgstr "Licence"
+
+msgid "Settings"
+msgstr "Nastavení"
 
 msgid "Notification templates"
 msgstr "Šablony notifikací"
@@ -729,15 +732,6 @@ msgstr "Text znázorňující, že oznamovatel nevyužívá Tor"
 msgid "Disable the privacy panel"
 msgstr "Zakázat panel o ochraně osobních údajů."
 
-msgid "Enable disclaimer"
-msgstr "Povolit odmítnutí odpovědnosti"
-
-msgid "Title"
-msgstr "Název"
-
-msgid "Text"
-msgstr "Text"
-
 msgid "Disable the receipt hint"
 msgstr "Zakázat zobrazení nápovědy"
 
@@ -829,6 +823,12 @@ msgstr "Přihlašovací úroveň"
 msgid "Log accesses of internal users"
 msgstr "Přístupy interních uživatelů"
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr "Aktivovat systém hodnocení"
+
 msgid "Enable experimental features"
 msgstr "Povolit experimentální vlastnosti"
 
@@ -915,6 +915,15 @@ msgstr "Tlačítko zapískání oznamovatele."
 
 msgid "Footer"
 msgstr "Patička"
+
+msgid "Enable disclaimer"
+msgstr "Povolit odmítnutí odpovědnosti"
+
+msgid "Title"
+msgstr "Název"
+
+msgid "Text"
+msgstr "Text"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -1021,8 +1030,8 @@ msgstr "Povolit oznamovatelům přidat přílohy k existujícím podáním"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Povolit příjemcům nahrát soubory pro oznamovatele"
 
-msgid "Enable scoring system"
-msgstr "Aktivovat systém hodnocení"
+msgid "Scoring system options"
+msgstr ""
 
 msgid "Threshold"
 msgstr "Práh"
@@ -1612,9 +1621,6 @@ msgstr "Vyberte, prosím, váš účet"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Nyní vepište své heslo, poté stiskněte \"Přihlásit\":"
 
-msgid "Assign score points"
-msgstr "Přidělit bodové skóre"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1626,6 +1632,9 @@ msgstr "Jste si jistý?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Operace obnoví konfiguraci a tuto změnu nelze vrátit zpět."
+
+msgid "Assign score points"
+msgstr "Přidělit bodové skóre"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Prosím, vezměte na vědomí, že všechna související data budou navždy smazána."

@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,6 +81,9 @@ msgstr "Журнал изменений"
 
 msgid "License"
 msgstr "Лицензия"
+
+msgid "Settings"
+msgstr "Настройки"
 
 msgid "Notification templates"
 msgstr "Шаблоны уведомлений"
@@ -743,15 +746,6 @@ msgstr "Текст, отображаемый когда информатор н�
 msgid "Disable the privacy panel"
 msgstr "Отключить панель конфиденциальности"
 
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "Заголовок"
-
-msgid "Text"
-msgstr "Текст"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -843,6 +837,12 @@ msgstr ""
 msgid "Log accesses of internal users"
 msgstr ""
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "Включить экспериментальные функции"
 
@@ -929,6 +929,15 @@ msgstr "Кнопка информирования"
 
 msgid "Footer"
 msgstr "Нижний колонтитул"
+
+msgid "Enable disclaimer"
+msgstr ""
+
+msgid "Title"
+msgstr "Заголовок"
+
+msgid "Text"
+msgstr "Текст"
 
 msgid "Favicon"
 msgstr "Значок"
@@ -1035,7 +1044,7 @@ msgstr "Разрешить информаторам добавлять прил�
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Позволить получателям загружать файлы для информаторов"
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1626,9 +1635,6 @@ msgstr "Укажите вашу учётную запись:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Теперь введите ваш пароль, затем нажмите \"Войти\":"
 
-msgid "Assign score points"
-msgstr "Оценить"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1640,6 +1646,9 @@ msgstr "Вы уверены?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Эта операция необратимо сбросит настройки конфигурации."
+
+msgid "Assign score points"
+msgstr "Оценить"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Пожалуйста, имейте ввиду, что все связанные данные будут окончательно удалены."

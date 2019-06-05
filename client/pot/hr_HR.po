@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-05-07 15:06+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-05-25 12:40+0000\n"
+"Last-Translator: Tea Horvatic <teahorvatic@yahoo.co.uk>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -61,6 +61,9 @@ msgstr "Zapisi o promjenama"
 
 msgid "License"
 msgstr "Licenca"
+
+msgid "Settings"
+msgstr "Postavke"
 
 msgid "Notification templates"
 msgstr "Obrasci obavijesti"
@@ -723,15 +726,6 @@ msgstr "Tekst prikazan kad zviždač ne koristi Tor"
 msgid "Disable the privacy panel"
 msgstr "Onemogući ploču privatnosti"
 
-msgid "Enable disclaimer"
-msgstr "Omogući izjavu o odricanju"
-
-msgid "Title"
-msgstr "Naziv"
-
-msgid "Text"
-msgstr "Tekst"
-
 msgid "Disable the receipt hint"
 msgstr ""
 
@@ -823,6 +817,12 @@ msgstr "Razina zapisa"
 msgid "Log accesses of internal users"
 msgstr "Zapisuj pristup internih korisnika"
 
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
 msgid "Enable experimental features"
 msgstr "Omogući eksperimentalne značajke"
 
@@ -909,6 +909,15 @@ msgstr "Gumb zviždanja"
 
 msgid "Footer"
 msgstr "Podnožje"
+
+msgid "Enable disclaimer"
+msgstr "Omogući izjavu o odricanju"
+
+msgid "Title"
+msgstr "Naziv"
+
+msgid "Text"
+msgstr "Tekst"
 
 msgid "Favicon"
 msgstr "Ikona"
@@ -1015,7 +1024,7 @@ msgstr "Dopusti zviždačima da dodaju privitke na postojeće predaje"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Dopusti primateljima da postave datoteke za zviždače"
 
-msgid "Enable scoring system"
+msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
@@ -1606,9 +1615,6 @@ msgstr "Molimo odaberite svoj račun:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Sad unesite lozinku, zatim stisnite 'Prijava':"
 
-msgid "Assign score points"
-msgstr "Dodjeli bodove rezultata"
-
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
@@ -1620,6 +1626,9 @@ msgstr "Jeste li sigurni?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Ova radnja će ponovno postaviti konfiguraciju i ne može biti opozvana."
+
+msgid "Assign score points"
+msgstr "Dodjeli bodove rezultata"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Imajte na umu da će svi povezani podatci biti trajno izgubljeni."
