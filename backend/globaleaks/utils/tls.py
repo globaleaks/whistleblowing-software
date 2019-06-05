@@ -10,8 +10,11 @@ from six import text_type, binary_type
 from twisted.internet import ssl
 
 
+#OpenSSL mocks
 SSL.OP_SINGLE_ECDH_USE = 0x00080000
-TLS_CIPHER_LIST = b'ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256'
+SSL.OP_NO_RENEGOTIATION = 0x40000000
+
+TLS_CIPHER_LIST = b'ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256'
 
 
 class ValidationException(Exception):
@@ -122,13 +125,14 @@ def split_pem_chain(s):
         return None
 
 
-def new_tls_context():
+def new_tls_server_context():
     ctx = SSL.Context(SSL.TLSv1_2_METHOD)
 
     ctx.set_options(SSL.OP_SINGLE_DH_USE |
                     SSL.OP_SINGLE_ECDH_USE |
                     SSL.OP_NO_COMPRESSION |
                     SSL.OP_NO_TICKET |
+                    SSL.OP_NO_RENEGOTIATION |
                     SSL.OP_CIPHER_SERVER_PREFERENCE)
 
     ctx.set_mode(SSL.MODE_RELEASE_BUFFERS)
@@ -139,9 +143,21 @@ def new_tls_context():
     return ctx
 
 
-class TLSClientContextFactory(ssl.ClientContextFactory):
-    def getContext(self):
-        return new_tls_context()
+def new_tls_client_context():
+    ctx = SSL.Context(SSL.SSLv23_METHOD)
+
+    ctx.set_options(SSL.OP_NO_SSLv2 |
+                    SSL.OP_NO_SSLv3 |
+                    SSL.OP_SINGLE_DH_USE |
+                    SSL.OP_SINGLE_ECDH_USE |
+                    SSL.OP_NO_COMPRESSION |
+                    SSL.OP_NO_TICKET |
+                    SSL.OP_NO_RENEGOTIATION)
+
+    ctx.set_mode(SSL.MODE_RELEASE_BUFFERS)
+    ctx.set_session_cache_mode(SSL.SESS_CACHE_OFF)
+
+    return ctx
 
 
 class TLSServerContextFactory(ssl.ContextFactory):
@@ -152,7 +168,7 @@ class TLSServerContextFactory(ssl.ContextFactory):
         @param intermediate: String representation of the intermediate file
         @param dh: String representation of the DH parameters
         """
-        self.ctx = new_tls_context()
+        self.ctx = new_tls_server_context()
 
         x509 = load_certificate(FILETYPE_PEM, certificate)
         self.ctx.use_certificate(x509)
@@ -172,6 +188,10 @@ class TLSServerContextFactory(ssl.ContextFactory):
 
     def getContext(self):
         return self.ctx
+
+class TLSClientContextFactory(ssl.ClientContextFactory):
+    def getContext(self):
+        return new_tls_client_context()
 
 
 class CtxValidator(object):
@@ -199,7 +219,7 @@ class CtxValidator(object):
         if must_be_disabled and cfg['https_enabled']:
             raise ValidationException('HTTPS must not be enabled')
 
-        ctx = new_tls_context()
+        ctx = new_tls_server_context()
 
         try:
             self._validate_parents(cfg, ctx, check_expiration)
