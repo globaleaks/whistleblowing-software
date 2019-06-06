@@ -1547,7 +1547,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
      "number_regexp": /^\d+$/,
      "phonenumber_regexp": /^[+]?[ \d]+$/,
      "hostname_regexp": /^[a-z0-9-.]+$|^$/,
-     "onionservice_regexp": /^[0-9a-z]{16}\.onion$/,
      "https_regexp": /^https:\/\/([a-z0-9-]+)\.(.*)$|^$/,
      "uuid_regexp": /^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$/
 }).
