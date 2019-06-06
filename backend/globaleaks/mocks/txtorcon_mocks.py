@@ -2,44 +2,17 @@
 
 from txtorcon.util import find_keywords
 
-import re
 from twisted.internet import defer
 from twisted.python import log
 
 
 class EphemeralHiddenService(object):
-    """
-    This uses the ephemeral hidden-service APIs (in comparison to
-    torrc or SETCONF). This means your hidden-service private-key is
-    never in a file. It also means that when the process exits, that
-    HS goes away. See documentation for ADD_ONION in torspec:
-    https://gitweb.torproject.org/torspec.git/tree/control-spec.txt#n1295
-    """
-
-    # XXX the "ports" stuff is still kind of an awkward API, especialy
-    # making the actual list public (since it'll have
-    # "80,127.0.0.1:80" instead of with a space
-
-    # XXX descriptor upload stuff needs more features from Tor (the
-    # actual uploaded key; the event always says UNKNOWN)
-
-    # XXX "auth" is unused (also, no Tor support I don't think?)
-
-    def __init__(self, ports, key_blob_or_type='NEW:BEST', auth=[], ver=2):
+    def __init__(self, ports, key_blob_or_type='NEW:BEST'):
         if not isinstance(ports, list):
             ports = [ports]
-        # for "normal" HSes the port-config bit looks like "80
-        # 127.0.0.1:1234" whereas this one wants a comma, so we leave
-        # the public API the same and fix up the space. Or of course
-        # you can just use the "real" comma-syntax if you wanted.
+
         self._ports = [x.replace(' ', ',') for x in ports]
         self._key_blob = key_blob_or_type
-        self.auth = auth  # FIXME ununsed
-        # FIXME nicer than assert, plz
-        assert isinstance(ports, list)
-        if not re.match(r'[^ :]+:[^ :]+$', key_blob_or_type):
-            raise ValueError('key_blob_or_type must be in the formats '
-                             '"NEW:<ALGORITHM>" or "<ALGORITHM>:<KEY>"')
 
     @defer.inlineCallbacks
     def add_to_tor(self, protocol):
