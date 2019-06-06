@@ -664,7 +664,7 @@ var GLClient = angular.module("GLClient", [
         };
 
         // Tor detection and enforcing of usage of HS if users are using Tor
-        if ($location.host().match(/[a-z0-9]{16}\.onion$/)) {
+        if ($location.host().match(/\.onion$/)) {
           // A better check on this situation would be
           // to fetch https://check.torproject.org/api/ip
           $rootScope.connection.tor = true;

@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 # Implements configuration of Tor hidden service
 import os
-from txtorcon import build_local_tor_connection
 
+from distutils.version import LooseVersion  # pylint: disable=no-name-in-module,import-error
+
+from txtorcon import build_local_tor_connection
 from twisted.internet import reactor, defer
 
 from globaleaks import models
@@ -51,6 +53,7 @@ def list_onion_service_info(session):
 
 
 class OnionService(Service):
+    onion_service_version = 3
     print_startup_error = True
     tor_conn = None
     hs_map = {}
@@ -92,7 +95,11 @@ class OnionService(Service):
                 return self.startup_semaphore[tid]
 
             log.info('Creating new onion service', tid=tid)
-            ephs = EphemeralHiddenService(hs_loc)
+
+            if self.onion_service_version == 3:
+                ephs = EphemeralHiddenService(hs_loc, 'NEW:ED25519-v3')
+            else:
+                ephs = EphemeralHiddenService(hs_loc, 'NEW:RSA1024')
         else:
             log.info('Setting up existing onion service %s', hostname, tid=tid)
             ephs = EphemeralHiddenService(hs_loc, key)
@@ -166,6 +173,7 @@ class OnionService(Service):
 
         self.reset()
 
+        @defer.inlineCallbacks
         def startup_callback(tor_conn):
             self.print_startup_error = True
             self.tor_conn = tor_conn
@@ -173,7 +181,15 @@ class OnionService(Service):
 
             log.err('Successfully connected to Tor control port')
 
-            return self.add_all_hidden_services()
+            try:
+                version = yield self.tor_conn.protocol.queue_command("GETINFO version")
+                version = version.split('=')[1]
+                if LooseVersion(version) < LooseVersion('0.3.2.9'):
+                    self.onion_service_version = 2
+            except:
+                pass
+
+            yield self.add_all_hidden_services()
 
         def startup_errback(err):
             if self.print_startup_error:
