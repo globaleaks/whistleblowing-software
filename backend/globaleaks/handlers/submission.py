@@ -369,9 +369,10 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     if itip.enable_whistleblower_identity and request['identity_provided'] and answers[whistleblower_identity.id]:
         if crypto_is_available:
             wbi = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers[whistleblower_identity.id][0]).encode())).decode()
-            answers[whistleblower_identity.id] = ''
         else:
             wbi = answers[whistleblower_identity.id][0]
+
+        answers[whistleblower_identity.id] = ''
 
         db_set_internaltip_data(session, itip.id, 'identity_provided', True, False)
         db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi, crypto_is_available)

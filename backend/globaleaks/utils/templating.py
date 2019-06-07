@@ -227,7 +227,9 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
     data_keys =  UserNodeKeyword.data_keys + ContextKeyword.data_keys + ['tip']
 
     def dump_field_entry(self, output, field, entry, indent_n):
+
         field_type = field['type']
+
         if field_type == 'checkbox':
             for k, v in entry.items():
                 for option in field['options']:
@@ -266,7 +268,12 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
 
         for _, row in rows.items():
             for field in row:
-                if field['type'] != 'fileupload' and field['id'] in answers:
+                if field['id'] not in answers or \
+                   field['type'] == 'fileupload' or \
+                   field['template_id'] ==  'whistleblower_identity':
+                    continue
+
+                if field['id'] in answers:
                     output += indent(indent_n) + field['label'] + '\n'
                     entries = answers[field['id']]
                     if len(entries) == 1:
