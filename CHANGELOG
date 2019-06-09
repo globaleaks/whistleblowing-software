@@ -1,3 +1,12 @@
+Changes in version 3.9.3 - 2019-06-10
+   Upgrade Tor Onion Services to version 3 (#2582)
+   Disable HEAD requests
+   Disable connection persistance
+   Reorganize access log to be in Apache Combined Format
+   Redact the identity answers from tip export when the visibility
+   should be subject to custodian authorization
+   Apply minor bugfixing
+
 Changes in version 3.9.2 - 2019-06-05
    Apply minor bugfixing
    Update translations
