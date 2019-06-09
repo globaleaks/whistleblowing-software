@@ -12,6 +12,7 @@ from datetime import datetime
 from cryptography.hazmat.primitives import constant_time
 from six import text_type, binary_type
 from twisted.internet import abstract, defer
+from twisted.protocols.basic import FileSender
 
 from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
@@ -30,39 +31,16 @@ mimetypes.add_type('application/woff', '.woff')
 mimetypes.add_type('application/woff2', '.woff2')
 
 
-class FileProducer(object):
-    """
-    Streaming producer for files
+def serve_file(request, fo):
+    def on_finish(ignored):
+        fo.close()
+        request.finish()
 
-    @ivar request: The L{IRequest} to write the contents of the file to.
-    @ivar fd: The file descriptor from which reading the content to be delivered
-    """
+    filesender = FileSender().beginFileTransfer(fo, request)
 
-    def __init__(self, request, fo):
-        self.finish = defer.Deferred()
-        self.request = request
-        self.fo = fo
+    filesender.addBoth(on_finish)
 
-    def start(self):
-        self.request.registerProducer(self, False)
-        return self.finish
-
-    def resumeProducing(self):
-        if not self.request:
-            return
-
-        data = self.fo.read(abstract.FileDescriptor.bufferSize)
-        if data:
-            self.request.write(data)
-        else:
-            self.stopProducing()
-
-    def stopProducing(self):
-        self.request.unregisterProducer()
-        self.request.finish()
-        self.request = None
-        self.fo.close()
-        self.finish.callback(None)
+    return filesender
 
 
 class BaseHandler(object):
@@ -284,7 +262,7 @@ class BaseHandler(object):
         if mime_type:
             self.request.setHeader(b'Content-Type', mime_type)
 
-        return FileProducer(self.request, fo).start()
+        return serve_file(self.request, fo)
 
     def write_file(self, filename, filepath):
         fo = self.open_file(filepath)
@@ -295,7 +273,7 @@ class BaseHandler(object):
         self.request.setHeader(b'Content-Type', b'application/octet-stream')
         self.request.setHeader(b'Content-Disposition', 'attachment; filename="%s"' % filename)
 
-        return FileProducer(self.request, fo).start()
+        return serve_file(self.request, fo)
 
     def write_file_as_download(self, filename, filepath):
         fo = self.open_file(filepath)

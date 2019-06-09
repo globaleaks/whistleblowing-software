@@ -40,10 +40,10 @@ def mock_HTTChannel__timeoutConnection(self):
     This mock is required to just comment a log line
     """
     # log.info("Timing out client: %s" % str(self.transport.getPeer()))
-    policies.TimeoutMixin.timeoutConnection(self)
+    #policies.TimeoutMixin.timeoutConnection(self)
 
 
 Request.gotLength = mock_Request_gotLength
 HTTPPageGetter.timeout = mock_HTTPPageGetter_timeout
 HTTPFactory.__init__ = mock_HTTPFactory__init__
-HTTPChannel.timeoutConnection = mock_HTTChannel__timeoutConnection
+#HTTPChannel.timeoutConnection = mock_HTTChannel__timeoutConnection
