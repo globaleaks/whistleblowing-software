@@ -64,19 +64,17 @@ def logFormatter(timestamp, request):
         client_ip = request.client_ip
         client_ua = request.client_ua
 
-    return (u'%(ip)s %(tid)s %(code)s %(method)s %(uri)s %(length)d %(duration)dms "%(user_agent)s"' % dict(
+    return (u'%(ip)s - - %(timestamp)s "%(method)s %(uri)s %(clientproto)s" %(code)s %(length)d %(duration)dms "%(user_agent)s %(tid)d"' % dict(
+            timestamp=timestamp,
             duration=duration,
             ip=_escape(client_ip),
             method=_escape(request.method),
             uri=_escape(request.uri),
+            clientproto=_escape(request.clientproto),
             code=request.code,
             length=request.sentLength,
             user_agent=_escape(client_ua),
             tid=request.tid))
-
-
-def timedLogFormatter(timestamp, request):
-    return timestamp + ' ' + logFormatter(timestamp, request)
 
 
 class LogObserver(txlog.FileLogObserver):
