@@ -35,15 +35,15 @@ def mock_HTTPPageGetter_timeout(self, data):
         self.factory.noPage(defer.TimeoutError("Getting %s took longer than %s seconds." % (self.factory.url, self.factory.timeout)))
 
 
-def mock_HTTChannel__timeoutConnection(self):
+def mock_HTTPChannel__timeoutConnection(self):
     """
-    This mock is required to just comment a log line
+    This mock is required to just comment a log line and apply patch fix introduced in Twisted 17.1.0
+    https://github.com/twisted/twisted/commit/5f37cd1b83a2609f23a9dab46fd023cc941153f2
     """
-    # log.info("Timing out client: %s" % str(self.transport.getPeer()))
-    #policies.TimeoutMixin.timeoutConnection(self)
+    self.loseConnection()
 
 
 Request.gotLength = mock_Request_gotLength
 HTTPPageGetter.timeout = mock_HTTPPageGetter_timeout
 HTTPFactory.__init__ = mock_HTTPFactory__init__
-#HTTPChannel.timeoutConnection = mock_HTTChannel__timeoutConnection
+HTTPChannel.timeoutConnection = mock_HTTPChannel__timeoutConnection
