@@ -64,7 +64,7 @@ def logFormatter(timestamp, request):
         client_ip = request.client_ip
         client_ua = request.client_ua
 
-    return (u'%(ip)s - - %(timestamp)s "%(method)s %(uri)s %(clientproto)s" %(code)s %(length)d %(duration)dms "%(user_agent)s %(tid)d"' % dict(
+    return (u'%(ip)s - - %(timestamp)s "%(method)s %(uri)s %(clientproto)s" %(code)s %(length)d %(duration)dms - "%(user_agent)s" %(tid)d' % dict(
             timestamp=timestamp,
             duration=duration,
             ip=_escape(client_ip),
