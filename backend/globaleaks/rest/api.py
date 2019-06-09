@@ -384,12 +384,6 @@ class APIResourceWrapper(Resource):
 
         method = request.method.lower().decode('utf-8')
 
-        if method == 'head':
-            # HEAD method is not really implemented
-            # as trick we use the same approch of Twisted of
-            # mapping the HEAD method on the GET method.
-            method = 'get'
-
         if method not in self.method_map.keys() or not hasattr(handler, method):
             self.handle_exception(errors.MethodNotImplemented(), request)
             return b''
