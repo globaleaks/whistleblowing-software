@@ -158,7 +158,10 @@ class SNIMap(object):
             self.set_default_context(Context(TLSv1_2_METHOD))
 
     def selectContext(self, connection):
-        common_name = connection.get_servername().decode('utf-8')
+        try:
+            common_name = connection.get_servername().decode('utf-8')
+        except:
+            common_name = ''
 
         if common_name in self.contexts_by_hostname:
             newContext = self.contexts_by_hostname[common_name].getContext()
