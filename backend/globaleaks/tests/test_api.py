@@ -72,7 +72,7 @@ class TestAPI(TestGL):
     def test_status_codes_assigned(self):
         test_cases = [
             (b'GET', 200),
-            (b'HEAD', 200),
+            (b'HEAD', 501),
             (b'POST', 501),
             (b'PUT', 501),
             (b'DELETE', 501),
