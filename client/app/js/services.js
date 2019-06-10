@@ -873,15 +873,17 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       },
 
       route_check: function() {
+        var path = $location.path();
+
         if (!$rootScope.node.wizard_done) {
           $location.path("/wizard");
-        } else if ($location.path() === "/" && $rootScope.node.enable_signup) {
+        } else if (path === "/" && $rootScope.node.enable_signup) {
           $location.path("/signup");
-        } else if (["/signup", "activation"].indexOf($location.path() === -1) && $rootScope.node.adminonly && !$rootScope.Authentication.session) {
+        } else if (["/signup", "activation"].indexOf(path === -1) && $rootScope.node.adminonly && !$rootScope.Authentication.session) {
           $location.path("/admin");
-        } else  if ($location.path() === "/" && $rootScope.node.landing_page === "submissionpage") {
+        } else  if (path === "/" && $rootScope.node.landing_page === "submissionpage") {
           $location.path("/submission");
-        } else if ($location.path() === "/submission" &&
+        } else if (path === "/submission" &&
             !$rootScope.connection.tor &&
             !$rootScope.node.https_whistleblower) {
           $location.path("/");

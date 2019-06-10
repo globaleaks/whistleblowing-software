@@ -732,7 +732,7 @@ var GLClient = angular.module("GLClient", [
       var path = $location.path();
       var embedded = "/embedded/";
 
-      if ($location.path().substr(0, embedded.length) === embedded) {
+      if (path.substr(0, embedded.length) === embedded) {
         $rootScope.embedded = true;
         var search = $location.search();
         if (Object.keys(search).length === 0) {
