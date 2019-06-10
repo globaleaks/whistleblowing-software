@@ -9,8 +9,9 @@ developmentStatus: stable
 platforms:
   - linux
 categories:
-  - feedback-and-reviews-management
-  - hr
+  - data-collection
+  - it-security
+  - website-builder
 maintenance:
   type: community
   contacts:
