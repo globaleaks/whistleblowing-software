@@ -1,3 +1,6 @@
+Changes in version 3.9.4 - 2019-06-10
+   Apply minor bugfixing
+
 Changes in version 3.9.3 - 2019-06-10
    Upgrade Tor Onion Services to version 3 (#2582)
    Disable HEAD requests
