@@ -1,3 +1,6 @@
+Changes in version 3.9.5 - 2019-06-10
+   Change requirement for Tor Onion Services V3 to Tor 0.3.3.9
+
 Changes in version 3.9.4 - 2019-06-10
    Apply minor bugfixing
 
