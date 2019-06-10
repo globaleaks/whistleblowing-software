@@ -877,7 +877,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           $location.path("/wizard");
         } else if ($location.path() === "/" && $rootScope.node.enable_signup) {
           $location.path("/signup");
-        } else if ($location.path() !== "/signup" && $rootScope.node.adminonly && !$rootScope.Authentication.session) {
+        } else if (["/signup", "activation"].indexOf($location.path() === -1) && $rootScope.node.adminonly && !$rootScope.Authentication.session) {
           $location.path("/admin");
         } else  if ($location.path() === "/" && $rootScope.node.landing_page === "submissionpage") {
           $location.path("/submission");
