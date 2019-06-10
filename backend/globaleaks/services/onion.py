@@ -97,7 +97,7 @@ class OnionService(Service):
             log.info('Creating new onion service', tid=tid)
 
             if self.onion_service_version == 3:
-                ephs = EphemeralHiddenService(hs_loc, 'NEW:ED25519-v3')
+                ephs = EphemeralHiddenService(hs_loc, 'NEW:ED25519-V3')
             else:
                 ephs = EphemeralHiddenService(hs_loc, 'NEW:RSA1024')
         else:
@@ -184,7 +184,7 @@ class OnionService(Service):
             try:
                 version = yield self.tor_conn.protocol.queue_command("GETINFO version")
                 version = version.split('=')[1]
-                if LooseVersion(version) < LooseVersion('0.3.2.9'):
+                if LooseVersion(version) < LooseVersion('0.3.3.9'):
                     self.onion_service_version = 2
             except:
                 pass
