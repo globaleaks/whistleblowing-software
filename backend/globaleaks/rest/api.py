@@ -241,19 +241,15 @@ class APIResourceWrapper(Resource):
 
         return False
 
-    def redirect(self, request, url):
-        request.setResponseCode(301)
-        request.setHeader(b'location', url)
-
     def redirect_https(self, request):
         _, _, path, query, frag = urlsplit(request.uri)
         redirect_url = urlunsplit((b'https', request.hostname, path, query, frag))
-        self.redirect(request, redirect_url)
+        request.redirect(redirect_url)
 
     def redirect_tor(self, request):
         _, _, path, query, frag = urlsplit(request.uri)
         redirect_url = urlunsplit((b'http', State.tenant_cache[request.tid].onionnames[0], path, query, frag))
-        self.redirect(request, redirect_url)
+        request.redirect(redirect_url)
 
     def handle_exception(self, e, request):
         """
@@ -366,7 +362,7 @@ class APIResourceWrapper(Resource):
                 request.tid, request.path = int(groups[0]), groups[1]
 
         if request.path in State.tenant_cache[request.tid]['redirects']:
-            self.redirect(request, State.tenant_cache[request.tid]['redirects'][request.path])
+            request.redirect(State.tenant_cache[request.tid]['redirects'][request.path])
             return b''
 
         match = None

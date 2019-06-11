@@ -140,7 +140,7 @@ class TestAPI(TestGL):
 
         self.api.render(request)
         self.assertTrue(request.client_using_tor)
-        self.assertEqual(request.responseCode, 301)
+        self.assertEqual(request.responseCode, 302)
         location = request.responseHeaders.getRawHeaders(b'location')[0]
         self.assertEqual(b'http://aaaaaaaaaaaaaaaa.onion/', location)
 
@@ -153,7 +153,7 @@ class TestAPI(TestGL):
         request = forge_request(uri=b"https://www.globaleaks.org/", headers={'X-Tor2Web': '1'})
         self.api.render(request)
         self.assertFalse(request.client_using_tor)
-        self.assertEqual(request.responseCode, 301)
+        self.assertEqual(request.responseCode, 302)
         location = request.responseHeaders.getRawHeaders(b'location')[0]
         self.assertEqual(b'https://www.globaleaks.org/', location)
 
@@ -162,6 +162,6 @@ class TestAPI(TestGL):
         request = forge_request(uri=b"http://www.globaleaks.org/public", headers={'X-Tor2Web': '1'})
         self.api.render(request)
         self.assertFalse(request.client_using_tor)
-        self.assertEqual(request.responseCode, 301)
+        self.assertEqual(request.responseCode, 302)
         location = request.responseHeaders.getRawHeaders(b'location')[0]
         self.assertEqual(b'https://www.globaleaks.org/public', location)
