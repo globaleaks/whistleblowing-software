@@ -162,6 +162,8 @@ def db_user_update_user(session, tid, user_session, request):
 
         user_desc = user_serialize_user(session, user, user.language)
 
+        user_desc['mail_address'] = request['mail_address']
+
         template_vars = {
             'type': 'email_validation',
             'user': user_desc,
