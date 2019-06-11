@@ -1,8 +1,8 @@
 # -*- coding: utf-8
 from io import BytesIO as StringIO
 
-from twisted.internet import defer
 from twisted.protocols import policies
+from twisted.python import log
 from twisted.web.client import HTTPPageGetter
 from twisted.web.http import HTTPChannel, HTTPFactory, Request
 
@@ -10,6 +10,8 @@ from twisted.web.http import HTTPChannel, HTTPFactory, Request
 HTTPFactory__init__orig = HTTPFactory.__init__
 Request__write__orig = Request.write
 
+def mock_log(*args, **kw):
+    pass
 
 def mock_Request_gotLength(self, length):
     self.content = StringIO()
@@ -53,6 +55,7 @@ def mock_HTTPChannel__checkPersistence(self, request, version):
     return False
 
 
+log.msg = log.err = mock_log
 Request.gotLength = mock_Request_gotLength
 HTTPPageGetter.timeout = mock_HTTPPageGetter_timeout
 HTTPFactory.__init__ = mock_HTTPFactory__init__
