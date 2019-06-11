@@ -10,9 +10,6 @@ from twisted.internet import reactor, defer
 from twisted.python.log import ILogObserver
 from twisted.web import server
 
-# this import seems unused but it is required in order to load the mocks
-import globaleaks.mocks.twisted_mocks  # pylint: disable=W0611
-
 from globaleaks.db import create_db, init_db, update_db, \
     sync_refresh_memory_variables, sync_clean_untracked_files, sync_initialize_snimap
 from globaleaks.rest.api import APIResourceWrapper

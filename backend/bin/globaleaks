@@ -32,6 +32,9 @@ if platform.system() == 'Linux':
 elif platform.system() == 'Windows':
     print("WARNING: Windows support is extremely experimental at this time, and should not be used for production environments")
 
+# this import seems unused but it is required in order to load the mocks
+import globaleaks.mocks.twisted_mocks  # pylint: disable=W0611
+
 from twisted.python import usage
 
 # Win32 can't use the standard _twistd_unix, but provides it's own variant
