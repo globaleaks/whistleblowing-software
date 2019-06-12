@@ -242,14 +242,15 @@ class APIResourceWrapper(Resource):
         return False
 
     def redirect_https(self, request):
-        _, _, path, query, frag = urlsplit(request.uri)
-        redirect_url = urlunsplit((b'https', request.hostname, path, query, frag))
-        request.redirect(redirect_url)
+        urlpath = request.URLPath()
+        urlpath.scheme = b'https'
+        request.redirect(urlpath)
 
     def redirect_tor(self, request):
-        _, _, path, query, frag = urlsplit(request.uri)
-        redirect_url = urlunsplit((b'http', State.tenant_cache[request.tid].onionnames[0], path, query, frag))
-        request.redirect(redirect_url)
+        urlpath = request.URLPath()
+        urlpath.scheme = b'http'
+        urlpath.netloc = State.tenant_cache[request.tid].onionnames[0]
+        request.redirect(urlpath)
 
     def handle_exception(self, e, request):
         """
@@ -345,6 +346,8 @@ class APIResourceWrapper(Resource):
             self.handle_exception(errors.ResourceNotFound(), request)
             return b''
 
+        request.path = request.path.decode('utf8')
+
         if self.should_redirect_tor(request):
             self.redirect_tor(request)
             return b''
@@ -352,8 +355,6 @@ class APIResourceWrapper(Resource):
         if self.should_redirect_https(request):
             self.redirect_https(request)
             return b''
-
-        request.path = request.path.decode('utf-8')
 
         if request.tid == 1:
             match = re.match(r'^/t/([0-9]+)(/.*)', request.path)
