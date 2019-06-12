@@ -86,4 +86,3 @@ def db_fix_fields_attrs(session):
 def db_update_defaults(session):
     db_load_default_questionnaires(session)
     db_load_default_fields(session)
-    db_fix_fields_attrs(session)
