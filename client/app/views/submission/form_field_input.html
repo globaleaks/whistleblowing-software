@@ -120,7 +120,7 @@
       <div data-ng-switch-when="tos">
         <div class="form-group tos-text" data-ng-click="entry['value'] = !entry['value']">{{field.attrs.text.value}}</div>
         <div data-ng-if="field.attrs.attachment.value">
-          <a href="{{field.attrs.attachment_url.value}}" download>{{field.attrs.attachment_text.value}}</a>
+          <a href="{{field.attrs.attachment_url.value}}" target="_blank" rel="noreferrer noopener">{{field.attrs.attachment_text.value}}</a>
         </div>
         <div class="checkbox" data-ng-class="{'has-error': entry.required_status}">
           <label>
