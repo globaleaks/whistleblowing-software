@@ -32,7 +32,9 @@ from twisted.internet.defer import inlineCallbacks, Deferred
 from twisted.internet.protocol import ProcessProtocol
 from twisted.python.failure import Failure
 from twisted.trial import unittest
+from twisted.web.server import Request
 from twisted.web.test.requesthelper import DummyRequest
+
 
 from . import TEST_DIR
 
