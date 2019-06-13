@@ -1,3 +1,9 @@
+Changes in version 3.9.6 - 2019-06-13
+   Fix issue #2584
+   Fix issue #2588
+   Open ToS URLs in a new tab with no-referrer policy
+   Apply minor bugfixing
+
 Changes in version 3.9.5 - 2019-06-10
    Change requirement for Tor Onion Services V3 to Tor 0.3.3.9
 
