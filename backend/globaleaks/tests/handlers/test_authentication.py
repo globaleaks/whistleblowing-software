@@ -325,7 +325,7 @@ class TestTokenAuth(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        session = Sessions.new(1, self.dummyReceiver_1['id'], 'receiver', False, '')
+        session = Sessions.new(1, self.dummyReceiver_1['id'], 1, 'receiver', False, '')
         self.token = session.id
 
     @inlineCallbacks

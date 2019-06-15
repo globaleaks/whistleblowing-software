@@ -31,7 +31,7 @@ def validate_password_reset(session, tid, reset_token):
     user.reset_password_date = datetime_now()
     user.password_change_needed = True
 
-    session = Sessions.new(tid, user.id, user.role, user.password_change_needed, '')
+    session = Sessions.new(tid, user.id, user.role, user.tid, user.password_change_needed, '')
 
     return session.id
 
