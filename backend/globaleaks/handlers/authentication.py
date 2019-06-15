@@ -94,7 +94,7 @@ def login_whistleblower(session, tid, receipt):
         user_key = GCE.derive_key(receipt.encode('utf-8'), State.tenant_cache[tid].receipt_salt)
         crypto_prv_key = GCE.symmetric_decrypt(user_key, wbtip.crypto_prv_key)
 
-    return Sessions.new(tid, wbtip.id, 'whistleblower', False, crypto_prv_key)
+    return Sessions.new(tid, wbtip.id, tid, 'whistleblower', False, crypto_prv_key)
 
 
 @transact
@@ -160,7 +160,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
         user_key = GCE.derive_key(password.encode('utf-8'), user.salt)
         crypto_prv_key = GCE.symmetric_decrypt(user_key, user.crypto_prv_key)
 
-    return Sessions.new(tid, user.id, user.role, user.password_change_needed, crypto_prv_key)
+    return Sessions.new(tid, user.id, user.tid, user.role, user.password_change_needed, crypto_prv_key)
 
 
 @transact
@@ -305,7 +305,7 @@ class TenantAuthSwitchHandler(BaseHandler):
         tid = int(tid)
         check = yield check_tenant_auth_switch(self.current_user, tid)
         if check:
-            session = Sessions.new(tid, self.current_user.user_id, self.current_user.user_role, self.current_user.pcn, self.current_user.cc)
+            session = Sessions.new(tid, self.current_user.user_id, self.current_user.user_tid, self.current_user.user_role, self.current_user.pcn, self.current_user.cc)
 
         returnValue({
             'redirect': '/t/%d/#/login?token=%s' % (tid, session.id)

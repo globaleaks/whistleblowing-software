@@ -984,7 +984,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       },
 
       showUserStatusBox: function() {
-        return angular.isDefined($rootScope.session);
+        return $rootScope.node.wizard_done && angular.isDefined($rootScope.session);
       },
 
       showPrivacyBadge: function() {

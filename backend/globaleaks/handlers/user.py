@@ -203,7 +203,7 @@ def can_edit_general_settings_or_raise(handler):
         returnValue(True)
     else:
         # Get the full user so we can see what we can access
-        user = yield get_user(handler.request.tid,
+        user = yield get_user(handler.current_user.user_tid,
                               handler.current_user.user_id,
                               handler.request.language)
         if user['can_edit_general_settings'] is True:
@@ -225,7 +225,7 @@ class UserInstance(BaseHandler):
 
     @inlineCallbacks
     def get(self):
-        user = yield get_user(self.request.tid,
+        user = yield get_user(self.current_user.user_tid,
                               self.current_user.user_id,
                               self.request.language)
 
@@ -239,7 +239,7 @@ class UserInstance(BaseHandler):
     def put(self):
         request = self.validate_message(self.request.content.read(), requests.UserUserDesc)
 
-        return update_user_settings(self.request.tid,
+        return update_user_settings(self.current_user.user_tid,
                                     self.current_user,
                                     request,
                                     self.request.language)
