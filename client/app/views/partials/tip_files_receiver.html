@@ -52,7 +52,7 @@
     </div>
     <div data-ng-if="session.role === 'receiver' && preferences.can_grant_permissions" class="pull-right form-group">
       <label class="inline-checkbox">
-        <input data-ng-model="tip.enable_attachments" data-ng-change="tip.setVar('enable_attachments', tip.enable_attachments)" type="checkbox" />
+        <input data-ng-model="tip.enable_attachments" data-ng-change="tip.operation('set', {'key': 'enable_attachments', 'value': tip.enable_attachments})" type="checkbox" />
         <span data-translate>Allow the whistleblower to add attachments to the submission</span>
       </label>
     </div>

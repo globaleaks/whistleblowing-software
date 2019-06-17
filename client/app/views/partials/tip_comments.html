@@ -23,7 +23,7 @@
         </span>
         <span data-ng-if="session.role === 'receiver' && preferences.can_grant_permissions" class="pull-right form-group">
           <label class="inline-checkbox">
-            <input data-ng-model="tip.enable_two_way_comments" data-ng-change="tip.setVar('enable_two_way_comments', tip.enable_two_way_comments)" type="checkbox" />
+            <input data-ng-model="tip.enable_two_way_comments" data-ng-change="tip.operation('set', {'key': 'enable_two_way_comments', 'value': tip.enable_two_way_comments})" type="checkbox" />
             <span data-translate>Allow the whistleblower to write comments</span>
           </label>
         </span>
