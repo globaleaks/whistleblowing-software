@@ -30,38 +30,42 @@ GLClient.controller("TipCtrl",
     };
 
     $scope.preprocessTipAnswers = function(tip) {
-      $scope.fieldUtilities.parseQuestionnaire(tip.questionnaires[0]);
+      var x, i, j, k, questionnaire, step, child;
 
-      var i, j, k, step, child;
-      for (i=0; i<tip.questionnaires[0].steps.length; i++) {
-        step = tip.questionnaires[0].steps[i];
-        if (!fieldUtilities.isFieldTriggered(null, step, $scope.tip.questionnaires[0].answers, $scope.tip.total_score)) {
-          tip.questionnaires[0].steps.splice(i, 1);
-        } else {
-          for (j=0; j<step.children.length; j++) {
-            filterNotTriggeredField(step, step.children[j], $scope.tip.questionnaires[0].answers);
+      for (x=0; x<tip.questionnaires.length; x++) {
+        questionnaire = tip.questionnaires[x];
+        $scope.fieldUtilities.parseQuestionnaire(questionnaire);
+
+        for (i=0; i<questionnaire.steps.length; i++) {
+          step = questionnaire.steps[i];
+          if (!fieldUtilities.isFieldTriggered(null, step, questionnaire, $scope.tip.total_score)) {
+            questionnaire.steps.splice(i, 1);
+          } else {
+            for (j=0; j<step.children.length; j++) {
+              filterNotTriggeredField(step, step.children[j], questionnaire.answers);
+            }
           }
         }
-      }
 
-      for (i=0; i<tip.questionnaires[0].steps.length; i++) {
-        step = tip.questionnaires[0].steps[i];
-        j = step.children.length;
-        while (j--) {
-          if (step.children[j]["template_id"] === "whistleblower_identity") {
-            $scope.whistleblower_identity_field = step.children[j];
-            step.children.splice(j, 1);
-            $scope.questionnaire = {
-              steps: [$scope.whistleblower_identity_field]
-            };
+        for (i=0; i<questionnaire.steps.length; i++) {
+          step = questionnaire.steps[i];
+          j = step.children.length;
+          while (j--) {
+            if (step.children[j]["template_id"] === "whistleblower_identity") {
+              $scope.whistleblower_identity_field = step.children[j];
+              step.children.splice(j, 1);
+              $scope.questionnaire = {
+                steps: [$scope.whistleblower_identity_field]
+              };
 
-            $scope.fields = $scope.questionnaire.steps[0].children;
-            $scope.rows = fieldUtilities.splitRows($scope.fields);
-            $scope.field = $scope.whistleblower_identity_field;
+              $scope.fields = questionnaire.steps[0].children;
+              $scope.rows = fieldUtilities.splitRows($scope.fields);
+              $scope.field = $scope.whistleblower_identity_field;
 
-            for (k = 0; k < $scope.field.children.length; k++) {
-              child = $scope.field.children[k];
-              $scope.answers[child.id] = [angular.copy(fieldUtilities.prepare_field_answers_structure(child))];
+              for (k = 0; k < $scope.field.children.length; k++) {
+                child = $scope.field.children[k];
+                $scope.answers[child.id] = [angular.copy(fieldUtilities.prepare_field_answers_structure(child))];
+              }
             }
           }
         }

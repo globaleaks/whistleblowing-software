@@ -1464,19 +1464,17 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
             return;
           }
 
-          scope.submission.setContextReceivers(scope.context.id);
+          if (scope.context) {
+            scope.submission.setContextReceivers(scope.context.id);
+          }
 
           angular.forEach(scope.questionnaire.steps, function(step) {
-            if (self.isFieldTriggered(null, step, scope.answers, scope.total_score)) {
-              step.enabled = true;
-            } else {
-              step.enabled = false;
-            }
+            step.enabled = self.isFieldTriggered(null, step, scope.answers, scope.total_score);
 
             self.updateAnswers(scope, step, step.children, scope.answers);
           });
 
-          if (scope.submission) {
+          if (scope.context) {
             scope.submission._submission.total_score = scope.total_score;
             scope.submission.blocked = scope.block_submission;
           }
