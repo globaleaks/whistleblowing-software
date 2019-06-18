@@ -175,25 +175,28 @@ def update_identity_information(session, tid, tip_id, identity_field_id, wbi, la
 
 @transact
 def store_additional_questionnaire_answers(session, tid, tip_id, answers, language):
-    internaltip = session.query(models.InternalTip) \
+    itip = session.query(models.InternalTip) \
                          .filter(models.InternalTip.id == tip_id,
                                  models.InternalTip.tid == tid).one()
 
-    if not internaltip.additional_questionnaire_id:
+    if not itip.additional_questionnaire_id:
         return
 
-    steps = db_get_questionnaire(session, tid, internaltip.additional_questionnaire_id, None)['steps']
+    steps = db_get_questionnaire(session, tid, itip.additional_questionnaire_id, None)['steps']
     questionnaire_hash = db_archive_questionnaire_schema(session, steps)
 
-    db_save_questionnaire_answers(session, tid, internaltip.id, answers)
+    if itip.crypto_tip_pub_key:
+        answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers).encode())).decode()
+    else:
+        db_save_questionnaire_answers(session, tid, itip.id, answers)
 
     db_set_internaltip_answers(session,
-                               internaltip.id,
+                               itip.id,
                                questionnaire_hash,
                                answers,
                                False)
 
-    internaltip.additional_questionnaire_id = ''
+    itip.additional_questionnaire_id = ''
 
 
 class WBTipInstance(BaseHandler):
@@ -241,7 +244,6 @@ class WBTipMessageCollection(BaseHandler):
 
     def post(self, receiver_id):
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
-
         return create_message(self.request.tid, self.current_user.user_id, self.current_user.cc, receiver_id, request['content'])
 
 
