@@ -20,7 +20,7 @@ usage() {
   echo -e " -p (push on repository)"
 }
 
-while getopts "d:t:np:h:l" opt; do
+while getopts "d:t:nph:l" opt; do
   case $opt in
     d) DISTRIBUTION="$OPTARG"
     ;;
