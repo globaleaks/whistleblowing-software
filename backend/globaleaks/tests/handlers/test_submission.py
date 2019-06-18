@@ -114,7 +114,7 @@ class TestSubmissionTokenInteract(helpers.TestHandlerWithPopulatedDB):
         token = self.getSolvedToken()
         yield handler.put(token.id)
 
-        yield self.assertRaises(KeyError, handler.put, token.id)
+        yield self.assertRaises(errors.SessionExpired, handler.put, token.id)
 
 
 class TestSubmissionEncryptedScenarioOneKeyExpired(TestSubmissionEncryptedScenario):

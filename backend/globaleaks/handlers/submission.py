@@ -440,7 +440,10 @@ class SubmissionInstance(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.SubmissionDesc)
 
-        token = self.state.tokens.pop(token_id)
+        token = self.state.tokens.pop(token_id, None)
+
+        if token is None:
+            raise errors.SessionExpired()
 
         # The get and use method will raise if the token is invalid
         token.use()

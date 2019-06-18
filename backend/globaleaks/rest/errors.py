@@ -189,3 +189,9 @@ class AccessLocationInvalid(GLException):
     reason = "IP Address not allows to login from this location"
     error_code = 16
     status_code = 401
+
+
+class SessionExpired(GLException):
+    reason = "Session expired"
+    error_code = 17
+    status_code = 401
