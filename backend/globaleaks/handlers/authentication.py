@@ -156,9 +156,13 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
     user.last_login = datetime_now()
 
     crypto_prv_key = ''
-    if State.tenant_cache[1].encryption and user.crypto_prv_key:
-        user_key = GCE.derive_key(password.encode('utf-8'), user.salt)
-        crypto_prv_key = GCE.symmetric_decrypt(user_key, user.crypto_prv_key)
+    if State.tenant_cache[1].encryption:
+        if user.crypto_prv_key:
+            user_key = GCE.derive_key(password.encode('utf-8'), user.salt)
+            crypto_prv_key = GCE.symmetric_decrypt(user_key, user.crypto_prv_key)
+        else:
+            # Force the password change on which the user key will be created
+            user.password_change_needed = True
 
     return Sessions.new(tid, user.id, user.tid, user.role, user.password_change_needed, crypto_prv_key)
 
