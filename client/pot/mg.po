@@ -1,5 +1,6 @@
 # 
 # Translators:
+# ANDRIAMALALA <luceidos22@gmail.com>, 2019
 # AO <ao@localizationlab.org>, 2015-2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # Charles Peltier <charles@cl-info.fr>, 2015
@@ -18,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-05 13:01+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-06-19 16:54+0000\n"
+"Last-Translator: ANDRIAMALALA <luceidos22@gmail.com>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,7 +29,7 @@ msgstr ""
 "mime-version: 1.0\n"
 
 msgid "Log in"
-msgstr "Connexion"
+msgstr "Miditra"
 
 msgid "Administration interface"
 msgstr "Interface d’administration"
@@ -118,10 +119,10 @@ msgid "Recipient interface"
 msgstr "Interface du destinataire"
 
 msgid "Creation date"
-msgstr "Date de création"
+msgstr "Daty namoronana azy"
 
 msgid "Expiration date"
-msgstr "Date d’expiration"
+msgstr "Vanim-potoana farany mampanan-kery"
 
 msgid "Last Access"
 msgstr "Dernier accès"
@@ -130,7 +131,7 @@ msgid "Files"
 msgstr "Fichiers"
 
 msgid "Comments"
-msgstr "Commentaires"
+msgstr "Fanehoan-kevitra"
 
 msgid "Messages"
 msgstr "Messages"
@@ -175,7 +176,7 @@ msgid "Context"
 msgstr "Contexte"
 
 msgid "Submission date"
-msgstr "Date d’envoi"
+msgstr "Daty nandefasana"
 
 msgid "Private messages"
 msgstr "Messages privés"
@@ -266,7 +267,7 @@ msgid "Attachment"
 msgstr "Fichier joint"
 
 msgid "Attachments"
-msgstr "Fichiers joints"
+msgstr "Ireo rakitra ampiarahina"
 
 msgid "Change your password"
 msgstr "Changez votre mot de passe"
@@ -389,7 +390,7 @@ msgid "Available disk space"
 msgstr "Espace disque disponible"
 
 msgid "Last update"
-msgstr "Mise à jour"
+msgstr "Fanavaozana farany"
 
 msgid "Custodian notification templates"
 msgstr "Modèles de notification des gardiens"
@@ -552,7 +553,7 @@ msgid "Users"
 msgstr "Utilisateurs"
 
 msgid "From"
-msgstr "De"
+msgstr "Nanomboka tamin'ny"
 
 msgid "Number of downloads"
 msgstr "Nombre de téléchargements"
@@ -624,7 +625,7 @@ msgid "Surname"
 msgstr "Nom de famille"
 
 msgid "New"
-msgstr "Nouvel"
+msgstr "Vaovao"
 
 msgid "Opened"
 msgstr "Ouvert"
@@ -639,10 +640,10 @@ msgid "Print"
 msgstr "Imprimer"
 
 msgid "Previous"
-msgstr "Précédent"
+msgstr "Mialoha"
 
 msgid "Next"
-msgstr "Suivant"
+msgstr "Manaraka"
 
 msgid "First"
 msgstr "Première"
@@ -671,16 +672,16 @@ msgid ""
 msgstr "Le fait même de transmettre des envois par HTTPS révèle les transmissions, mais pas leur contenu.\\n\\nSi vous cachez aussi le fait que vous envoyez quelque chose, nous avons alors un envoi anonyme, ce qui est fortement recommandé.\\n\\nLe navigateur Tor permet de le faire en fournissant une anonymisation que les autres navigateurs tels qu’Internet Explorer, Firefox, Chrome, Opera, etc. ne proposent pas."
 
 msgid "Are you a whistleblower?"
-msgstr "Êtes-vous un lanceur d’alerte ?"
+msgstr "Hanao fitorohana ve ianao?"
 
 msgid "Blow the whistle"
 msgstr "Lancer une alerte"
 
 msgid "Your submission was successful."
-msgstr "Votre envoi a bien été effectué."
+msgstr "Ny fanambarana fitorohana nataonao dia tafita soa aman-tsara."
 
 msgid "Submission status"
-msgstr "État de l’envoi"
+msgstr "Momba ilay fitorohana"
 
 msgid "Disable submissions"
 msgstr "Désactiver les envois"
@@ -852,7 +853,7 @@ msgid "Reset submissions"
 msgstr "Réinitialiser les envois"
 
 msgid "To"
-msgstr ""
+msgstr "Hatramin'ny"
 
 msgid "Add"
 msgstr "Ajouter"
@@ -1599,7 +1600,7 @@ msgid "Site:"
 msgstr "Site :"
 
 msgid "Have you already filed a submission? Enter your receipt."
-msgstr "Avez-vous déjà déposé une alerte ? Saisissez votre code de réception."
+msgstr "Raha efa nametraka fitarainana ianao dia ampidiro eto ambany avy hatrany ny teny miafina tarehimarika miisa 16 azonao."
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr "Soit le reçu est invalide soit votre envoi a expiré."
@@ -1748,13 +1749,13 @@ msgid "Enter a name for the copy"
 msgstr "Saisir un nom pour la copie"
 
 msgid "Add file"
-msgstr "Ajouter un fichier"
+msgstr "Raha handefa rakitra ho porofo"
 
 msgid "Uploading files…"
 msgstr "Téléversement des fichiers…"
 
 msgid "Upload completed successfully!"
-msgstr "Le téléversement s’est terminé avec succès !"
+msgstr "Ny fandefasana ireo rakitra fanavaozana dia tafita soa aman-tsara!"
 
 msgid "Error while uploading files; check below for details."
 msgstr "Erreur de téléversement des fichiers ; voir les détails ci-dessous."
@@ -1807,7 +1808,7 @@ msgid "Civic activism"
 msgstr "Activisme citoyen"
 
 msgid "Submit"
-msgstr "Envoyer"
+msgstr "Alefaso"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Les destinataires ont demandé à ce que vous remplissiez un questionnaire supplémentaire."
@@ -1840,19 +1841,19 @@ msgid "download"
 msgstr "télécharger"
 
 msgid "No files have been uploaded!"
-msgstr "Aucun fichier n’a été téléversé !"
+msgstr "Tandremo! Tsy misy rakitra lasa na koa voarainay."
 
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Permettre au lanceur d’alerte d’ajouter des fichiers joints à l’envoi"
 
 msgid "Submission"
-msgstr "Envoi"
+msgstr "Fitorohana nalefa"
 
 msgid "Access expiration"
 msgstr "Expiration de l’accès"
 
 msgid "Connection"
-msgstr "Connexion"
+msgstr "Fidirana"
 
 msgid "Never"
 msgstr "Jamais"
@@ -1901,7 +1902,7 @@ msgid ""
 msgstr "Voulez-vous vraiment repousser la date d’expiration de tous les envois ?"
 
 msgid "Questionnaire answers"
-msgstr "Réponses au questionnaire"
+msgstr "Valin'ireo fanontaniana"
 
 msgid "Step"
 msgstr "Étape"
@@ -1948,21 +1949,21 @@ msgid "Password reset requested."
 msgstr "Une réinitialisation de mot de passe a été demandée."
 
 msgid "Thank you!"
-msgstr "Merci !"
+msgstr "Misaotra anao !"
 
 msgid "We will try to get back to you as soon as possible."
-msgstr "Nous essaierons de vous contacter dès que possible."
+msgstr "Hiezaka ny hifanerasera aminao ao anatin'ny fotoana fohy izahay."
 
 msgid "Remember your receipt for this submission."
-msgstr "Souvenez-vous de votre reçu pour cet envoi."
+msgstr "Tadidio ary ny tarehimarika miisa 16 omena anao mba ahafahanao miditra indray amin'io fitorohana nataonao io."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Utilisez le reçu à 16 chiffres pour vous connecter. Il vous permettra de lire les messages que nous vous avons envoyés, et aussi d’ajouter des renseignements complémentaires."
+msgstr "Ampiasao ny tarehimarika miisa 16 anananao mba ahafahanao miditra amin'ny fitorohana efa nataonao. Rehefa taditra ianao dia ahita ireo hafatra izay alefan'ny tompon'andraikitra mandray ny fitorohana, ary ahafahanao manome fanampim-baovao sy porofo bebe kokoa."
 
 msgid "View your submission"
-msgstr "Visualisez votre envoi"
+msgstr "Eto raha hijery ny fitorohana nalefanao"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -2083,7 +2084,7 @@ msgid "Describe your submission in detail."
 msgstr "Décrivez votre envoi en détail."
 
 msgid "Attach files relevant to the submission."
-msgstr "Joignez les fichiers pertinents à votre envoi."
+msgstr "Alefaso eto ireo porofo mivaingana anananao."
 
 msgid "Do you want to provide your identification information?"
 msgstr "Voulez-vous fournir vos renseignements d’identification ?"

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-05 13:01+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-06-08 01:25+0000\n"
+"Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -362,7 +362,7 @@ msgid "HTTPS settings"
 msgstr "HTTPS 設定"
 
 msgid "URL redirects"
-msgstr ""
+msgstr "URL リダイレクト"
 
 msgid "Anomaly detection thresholds"
 msgstr "異変を検出する閾値"
@@ -1760,19 +1760,19 @@ msgid "Size:"
 msgstr "サイズ："
 
 msgid "Enable the Ricochet panel"
-msgstr ""
+msgstr "Ricochet パネルを有効にする"
 
 msgid "Address"
 msgstr "住所"
 
 msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
+msgstr "Ricochet アプリを使用して私たちと匿名でチャットします"
 
 msgid "To chat with us use the following Ricochet address:"
-msgstr ""
+msgstr "私たちとチャットするには次の Ricochet アドレスを使用してください:"
 
 msgid "Download Ricochet at:"
-msgstr ""
+msgstr "Ricochet をダウンロード:"
 
 msgid "The connection is not secure."
 msgstr "接続が安全ではありません。"

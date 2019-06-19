@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-05 13:01+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-06-17 04:45+0000\n"
+"Last-Translator: Chacal E.\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -391,7 +391,7 @@ msgid "HTTPS settings"
 msgstr "Configurações HTTPS "
 
 msgid "URL redirects"
-msgstr ""
+msgstr "Redirecionamentos de URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "Limites de detecção de anomalia  "
@@ -851,7 +851,7 @@ msgid "Log accesses of internal users"
 msgstr "Acessos de log de usuários internos"
 
 msgid "Enable custodian user role"
-msgstr ""
+msgstr "Ativar função de usuário custodiante"
 
 msgid "Enable scoring system"
 msgstr "Ativar sistema de pontuação"
@@ -1055,7 +1055,7 @@ msgid "Let recipients upload files to whistleblowers"
 msgstr "Permitir que os destinatários façam upload de arquivos para os denunciantes"
 
 msgid "Scoring system options"
-msgstr ""
+msgstr "Opções do sistema de pontuação"
 
 msgid "Threshold"
 msgstr "Limite"
@@ -1789,19 +1789,19 @@ msgid "Size:"
 msgstr "Tamanho:"
 
 msgid "Enable the Ricochet panel"
-msgstr ""
+msgstr "Ativar o painel Ricochet"
 
 msgid "Address"
 msgstr "Endereço"
 
 msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
+msgstr "Converse conosco anonimamente usando o aplicativo Ricochet"
 
 msgid "To chat with us use the following Ricochet address:"
-msgstr ""
+msgstr "Para conversar conosco, use o seguinte endereço de Ricochet:"
 
 msgid "Download Ricochet at:"
-msgstr ""
+msgstr "Download do Ricochet em:"
 
 msgid "The connection is not secure."
 msgstr "A conexão não é segura."

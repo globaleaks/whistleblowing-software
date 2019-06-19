@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-05 13:01+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-06-19 12:53+0000\n"
+"Last-Translator: xin\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1168,7 +1168,7 @@ msgid "Enable"
 msgstr "Activer"
 
 msgid "Country code"
-msgstr "Code de pays"
+msgstr "Indicatif de pays"
 
 msgid "State"
 msgstr "État"
@@ -1790,19 +1790,19 @@ msgid "Size:"
 msgstr "Taille :"
 
 msgid "Enable the Ricochet panel"
-msgstr ""
+msgstr "Activer le panneau Ricochet"
 
 msgid "Address"
 msgstr "Adresse"
 
 msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
+msgstr "Clavardez avec nous anonymement avec l’application Ricochet"
 
 msgid "To chat with us use the following Ricochet address:"
-msgstr ""
+msgstr "Pour clavarder avec nous, utilisez l’adresse Ricochet suivante :"
 
 msgid "Download Ricochet at:"
-msgstr ""
+msgstr "Téléchargez Ricochet sur :"
 
 msgid "The connection is not secure."
 msgstr "La connexion n’est pas sécurisée."
