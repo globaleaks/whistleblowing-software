@@ -1,3 +1,8 @@
+Changes in version 3.9.7 - 2019-06-19
+   Apply minor bugfixing
+   Bump npm dependencies to latest stable versions
+   Update translations
+
 Changes in version 3.9.6 - 2019-06-13
    Fix issue #2584
    Fix issue #2588
