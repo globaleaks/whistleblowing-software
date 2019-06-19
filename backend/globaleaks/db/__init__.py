@@ -236,7 +236,7 @@ def db_refresh_memory_variables(session, to_refresh=None):
         db_set_cache_exception_delivery_list(session, State.tenant_cache[1])
 
         if State.tenant_cache[1].admin_api_token_digest:
-            State.api_token_session = Session(1, 0, 'admin', False, '')
+            State.api_token_session = Session(1, 0, 1, 'admin', False, '')
 
         log.setloglevel(State.tenant_cache[1].log_level)
 
