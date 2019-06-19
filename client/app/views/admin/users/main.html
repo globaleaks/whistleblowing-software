@@ -215,31 +215,18 @@
                       <option value="forcefully_selected" data-translate>Forcefully selected</option>
                     </select>
                   </div>
-                  <div class="form-group">
-                      <input data-ng-model="user.can_postpone_expiration" type="checkbox" data-ng-disabled="node.can_postpone_expiration" />
-                      <label data-translate>Allow the recipient to postpone the submission expiration date</label>
-                      <div data-ng-if="node.can_postpone_expiration">
-                        <span class="label label-info" data-translate>Enabled</span>
-                        <span data-translate>The setting is enabled at a global level.</span>
-                      </div>
-                    </div>
-                  <div class="form-group">
-                      <input data-ng-model="user.can_delete_submission" type="checkbox" data-ng-disabled="node.can_delete_submission" />
-                      <label data-translate>Allow the recipient to delete submissions</label>
-                      <div data-ng-if="node.can_delete_submission">
-                        <span class="label label-info" data-translate>Enabled</span>
-                        <span data-translate>The setting is enabled at a global level.</span>
-                      </div>
-                    </div>
-                  <div class="form-group">
-                      <input data-ng-model="user.can_grant_permissions" type="checkbox" data-ng-disabled="can_grant_permissions" />
-                      <label data-translate>Allow the recipient to grant permissions to whistleblowers on specific submissions</label>
-                      <div data-ng-if="node.can_grant_permissions">
-                        <span class="label label-info" data-translate>Enabled</span>
-                        <span data-translate>The setting is enabled at a global level.</span>
-                      </div>
-                    </div>
-                  <hr />
+                  <div class="form-group" data-ng-if="!node.can_postpone_expiration">
+                    <input data-ng-model="user.can_postpone_expiration" type="checkbox" />
+                    <label data-translate>Allow the recipient to postpone the submission expiration date</label>
+                  </div>
+                  <div class="form-group" data-ng-if="!node.can_delete_submission">
+                    <input data-ng-model="user.can_delete_submission" type="checkbox" />
+                    <label data-translate>Allow the recipient to delete submissions</label>
+                  </div>
+                  <div class="form-group" data-ng-if="!node.can_grant_permissions">
+                    <input data-ng-model="user.can_grant_permissions" type="checkbox" />
+                    <label data-translate>Allow the recipient to grant permissions to whistleblowers on specific submissions</label>
+                  </div>
                 </div>
               </div>
               <div class="row" data-ng-if="user.role !== 'admin'">
