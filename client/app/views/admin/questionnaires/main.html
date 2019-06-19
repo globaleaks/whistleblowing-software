@@ -27,7 +27,7 @@
         </div>
       </form>
     </div>
-    <div data-ng-repeat="questionnaire in admin.questionnaires">
+    <div data-ng-repeat="questionnaire in admin.questionnaires | orderBy: 'name'">
       <form id="questionnaire-{{$index}}" class="configItem" name="editQuestionnaire" data-ng-controller="AdminQuestionnaireEditorCtrl" novalidate>
         <div>
           <div class="editorHeader row" data-ng-click="questionnaire.editable && toggleEditing(); $event.stopPropagation();">
