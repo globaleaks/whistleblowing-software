@@ -4,7 +4,7 @@
 #   *****
 # Implementation of the URL redirect handlers
 #
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
@@ -27,7 +27,7 @@ def get_redirect_list(session, tid):
 
 
 @inlineCallbacks
-def update_redirect_state(tid):
+def update_redirects_state(tid):
     State.tenant_cache[tid]['redirects'] = {}
 
     redirects = yield get_redirect_list(tid)
@@ -53,26 +53,28 @@ class RedirectCollection(BaseHandler):
         """
         return get_redirect_list(self.request.tid)
 
+    @inlineCallbacks
     def post(self):
         """
         Create a new redirect
         """
         request = self.validate_message(self.request.content.read(), requests.AdminRedirectDesc)
 
-        redirect = create(self.request.tid, request)
+        redirect = yield create(self.request.tid, request)
 
         yield update_redirects_state(self.request.tid)
 
-        return redirect
+        returnValue(redirect)
 
 
 class RedirectInstance(BaseHandler):
     check_roles = 'admin'
 
+    @inlineCallbacks
     def delete(self, redirect_id):
         """
         Delete the specified redirect.
         """
-        models.delete(models.Redirect, models.Redirect.tid == self.request.tid, models.Redirect.id == redirect_id)
+        yield models.delete(models.Redirect, models.Redirect.tid == self.request.tid, models.Redirect.id == redirect_id)
 
         yield update_redirects_state(self.request.tid)
