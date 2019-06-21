@@ -1183,7 +1183,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       }
     };
 }]).
-  factory("fieldUtilities", ["$filter", "topojson", "CONSTANTS", function($filter, topojson, CONSTANTS) {
+  factory("fieldUtilities", ["$filter", "$http", "topojson", "CONSTANTS", function($filter, $http, topojson, CONSTANTS) {
       var flatten_field = function(id_map, field) {
         if (field.children.length === 0) {
           id_map[field.id] = field;
@@ -1504,12 +1504,12 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
               self.parseField(field, parsedFields);
             });
           } else if (field.type === "map") {
-            d3.json(field.attrs.topojson.value).then(function(topojson) {
-             field.attrs.topojson.geojson = self.topoToGeo(topojson);
-             field.attrs.topojson.id_name_map = {};
-             field.attrs.topojson.geojson.features.forEach(function(feature) {
-               field.attrs.topojson.id_name_map[feature.id] = feature.properties.name;
-             });
+            $http.get(field.attrs.topojson.value).then(function(response) {
+              field.attrs.topojson.geojson = self.topoToGeo(response.data);
+              field.attrs.topojson.id_name_map = {};
+              field.attrs.topojson.geojson.features.forEach(function(feature) {
+                field.attrs.topojson.id_name_map[feature.id] = feature.properties.name;
+              });
             });
           }
         },
