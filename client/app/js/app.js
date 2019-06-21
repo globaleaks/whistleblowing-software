@@ -623,8 +623,6 @@ var GLClient = angular.module("GLClient", [
 
     $rootScope.init = function () {
       return PublicResource.get(function(result, getResponseHeaders) {
-        $rootScope.answer = {value: null};
-
         $rootScope.node = result.node;
 
         $rootScope.contexts = result.contexts;
