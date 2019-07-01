@@ -101,9 +101,7 @@ def retrieve_specific_submission_status(session, tid, submission_status_id, lang
 def update_status_model_from_request(model_obj, request, language):
     """Populates the model from the request, as well as setting default values"""
     fill_localized_keys(request, models.SubmissionStatus.localized_keys, language)
-
-    model_obj.label = request['label']
-    model_obj.presentation_order = request['presentation_order']
+    model_obj.update(request)
     return model_obj
 
 
@@ -167,9 +165,7 @@ def get_submission_status(session, tid, submission_status_id):
 def update_substatus_model_from_request(model_obj, request, language):
     """Populates the model off each value from requests['substatus']"""
     fill_localized_keys(request, models.SubmissionSubStatus.localized_keys, language)
-
-    model_obj.label = request['label']
-    model_obj.presentation_order = request['presentation_order']
+    model_obj.update(request)
     return model_obj
 
 

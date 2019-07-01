@@ -15,6 +15,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
 ]).controller("AdminSubmissionStatusEditorCtrl", ["$scope", "$http", "AdminSubmissionStatusResource",
   function ($scope, $http, AdminSubmissionStatusResource) {
     $scope.editing = false;
+
     $scope.toggleEditing = function () {
       if ($scope.submissions_status.system_defined) {
         return;
@@ -52,15 +53,18 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
       $event.stopPropagation();
 
       var target = index + n;
-      var statuses_list = $scope.editableStatusesList();
 
-      if (target < 0 || target >= statuses_list.length) {
+      if (target < 0 || target >= $scope.admin.submission_statuses.length) {
+        return;
+      }
+
+      if ($scope.admin.submission_statuses[target].system_defined) {
         return;
       }
 
       // Because the base data structure and the one we display don't match ...
-      var orig_index = ss_idx(statuses_list[index].id);
-      var orig_target = ss_idx(statuses_list[target].id);
+      var orig_index = ss_idx($scope.admin.submission_statuses[index].id);
+      var orig_target = ss_idx($scope.admin.submission_statuses[target].id);
 
       var moving_status = $scope.admin.submission_statuses[orig_index];
       $scope.admin.submission_statuses[orig_index] = $scope.admin.submission_statuses[orig_target];

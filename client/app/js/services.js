@@ -1159,7 +1159,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
         tip.submissionStatusStr = $filter("translate")(tip.submissionStatusObj.label);
         if (tip.submissionSubStatusObj) {
-          tip.submissionStatusStr += "(" + $filter("translate")(tip.submissionStatusObj.label) + ")";
+          tip.submissionStatusStr += "(" + $filter("translate")(tip.submissionSubStatusObj.label) + ")";
         }
       },
 
