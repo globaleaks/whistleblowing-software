@@ -36,6 +36,13 @@ def _convert_to_bytes(arg):
     return arg
 
 
+def _fix_salt(salt, n):
+    if len(salt) > n:
+        return salt[0:n]
+
+    return salt
+
+
 def _sha(alg, data):
     h = hashes.Hash(alg, backend=crypto_backend)
     h.update(_convert_to_bytes(data))
@@ -69,6 +76,7 @@ def generateRandomKey(N):
 def _hash_scrypt(password, salt):
     password = _convert_to_bytes(password)
     salt = _convert_to_bytes(salt)
+    salt = _fix_salt(salt, 24)
 
     # old version of globalealeaks have used hexelify in place of base64;
     # the function is still used for compatibility reasons
@@ -78,12 +86,14 @@ def _hash_scrypt(password, salt):
 if V(nacl.__version__) >= V('1.2'):
     def _kdf_argon2(password, salt):
         salt = base64.b64decode(salt)
+        salt = _fix_salt(salt, 16)
         return argon2id.kdf(32, password, salt,
                             opslimit=GCE.ALGORITM_CONFIGURATION['KDF']['ARGON2']['OPSLIMIT'],
                             memlimit=GCE.ALGORITM_CONFIGURATION['KDF']['ARGON2']['MEMLIMIT'])
 
     def _hash_argon2(password, salt):
         salt = base64.b64decode(salt)
+        salt = _fix_salt(salt, 16)
         hash = argon2id.kdf(32, password, salt,
                             opslimit=GCE.ALGORITM_CONFIGURATION['HASH']['ARGON2']['OPSLIMIT'],
                             memlimit=GCE.ALGORITM_CONFIGURATION['HASH']['ARGON2']['MEMLIMIT'])
