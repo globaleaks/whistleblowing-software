@@ -239,6 +239,7 @@ AdminNodeDesc = {
     'disable_donation_panel': bool,
     'enable_ricochet_panel': bool,
     'ricochet_address': text_type,
+    'do_not_expose_users_names': bool,
     'disable_submissions': bool,
     'multisite_login': bool,
     'simplified_login': bool,

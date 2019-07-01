@@ -117,6 +117,7 @@ ConfigDescriptor = {
 
     u'enable_ricochet_panel': Bool(default=False),
     u'ricochet_address': Unicode(default=u''),
+    u'do_not_expose_users_names': Bool(default=False),
 
     u'counter_submissions': Int(default=0),
 
@@ -219,6 +220,7 @@ ConfigFilters = {
         u'disable_donation_panel',
         u'enable_ricochet_panel',
         u'ricochet_address',
+        u'do_not_expose_users_names',
         u'enable_signup',
         u'mode',
         u'signup_tos1_enable',

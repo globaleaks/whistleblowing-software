@@ -84,6 +84,11 @@ def serialize_wbtip(session, wbtip, itip, language):
     ret['rfiles'] = db_get_rfile_list(session, itip.id)
     ret['wbfiles'] = db_get_wbfile_list(session, itip.id)
 
+    if not State.tenant_cache[itip.tid].do_not_expose_users_names:
+        for x in ret['comments'] + ret['messages']:
+            if x['author'] != 'Whistleblower':
+                x['author'] = State.tenant_cache[itip.tid].name
+
     return ret
 
 
