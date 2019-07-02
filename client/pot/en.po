@@ -719,6 +719,9 @@ msgstr ""
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Allow recipients to postpone expiration date of the submission"
 
+msgid "Do not expose users' names"
+msgstr "Do not expose users' names"
+
 msgid "Allow recipients to delete submissions"
 msgstr "Allow recipients to delete submissions"
 
