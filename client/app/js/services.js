@@ -861,6 +861,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           $rootScope.ht = $rootScope.node.header_title_homepage;
         } else if (path === "/submission") {
           $rootScope.ht = $rootScope.node.header_title_submissionpage;
+        } else if (path === "/receipt") {
+          $rootScope.ht = $rootScope.node.header_title_receiptpage;
         } else if (path.substr(0, statuspage.length) === statuspage) {
           $rootScope.ht = $rootScope.node.header_title_tippage;
         } else {
