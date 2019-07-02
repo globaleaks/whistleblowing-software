@@ -3,7 +3,7 @@ import josepy
 import re
 
 from datetime import datetime
-from acme import challenges, client, crypto_util, messages
+from acme import challenges, client, crypto_util, messages, errors
 from six import text_type
 
 from globaleaks.utils.log import log
@@ -12,6 +12,23 @@ from globaleaks.utils.log import log
 class ChallTok:
     def __init__(self, tok):
         self.tok = tok
+
+
+def select_http01_chall(orderr):
+    """Extract authorization resource from within order resource."""
+    # Authorization Resource: authz.
+    # This object holds the offered challenges by the server and their status.
+    authz_list = orderr.authorizations
+
+    for authz in authz_list:
+        # Choosing challenge.
+        # authz.body.challenges is a set of ChallengeBody objects.
+        for i in authz.body.challenges:
+            # Find the supported challenge.
+            if isinstance(i.chall, challenges.HTTP01):
+                return i
+
+    raise Exception('HTTP-01 challenge was not offered by the CA server.')
 
 
 def split_certificate_chain(full_chain_pem):
@@ -38,14 +55,10 @@ def get_boulder_tos(directory_url, accnt_key):
     return create_v2_client(directory_url, accnt_key).directory.meta.terms_of_service
 
 
-def run_acme_reg_to_finish(domain, accnt_key, priv_key, hostname, tmp_chall_dict, directory_url):
-    """Runs the entire process of ACME registeration"""
+def request_new_certificate(hostname, accnt_key, priv_key, tmp_chall_dict, directory_url):
+    """Runs the entire process of ACME registration and certificate request"""
 
     client = create_v2_client(directory_url, accnt_key)
-
-    # First we need to create a registration with the email address provided
-    # and accept the terms of service
-    log.info("Using boulder server %s", directory_url)
 
     client.net.account = client.new_account(
         messages.NewRegistration.from_data(
@@ -53,35 +66,52 @@ def run_acme_reg_to_finish(domain, accnt_key, priv_key, hostname, tmp_chall_dict
         )
     )
 
-    # Now we need to open an order and request our certificate
-
-    # NOTE: We'll let ACME generate a CSR for our private key as there's
-    # a lot of utility code it uses to generate the CSR in a specific
-    # fashion. Better to use what LE provides than to roll our own as we
-    # we doing with the v1 code
-    #
-    # This will also let us support multi-domain certificat requests in the
-    # future, as well as mandate OCSP-Must-Staple if/when GL's HTTPS server
-    # supports it
     csr = crypto_util.make_csr(priv_key, [hostname], False)
     order = client.new_order(csr)
-    authzr = order.authorizations
 
-    log.info('Created a new order for %s', hostname)
+    log.info('Created a new order for the issuance of a certificate for %s', hostname)
 
-    # authrz is a list of Authorization resources, we need to find the
-    # HTTP-01 challenge and use it
-    for auth_req in authzr:  # pylint: disable=not-an-iterable
-        for chall_body in auth_req.body.challenges:
-            if isinstance(chall_body.chall, challenges.HTTP01):
-                challb = chall_body
-                break
-
-    if challb is None:
-        raise Exception("HTTP01 challenge unavailable!")
+    challb = select_http01_chall(order)
 
     _, chall_tok = challb.response_and_validation(client.net.key)
-    v = chall_body.chall.encode("token")
+    v = challb.chall.encode("token")
+    log.info('Exposing challenge on %s', v)
+    tmp_chall_dict.set(v, ChallTok(chall_tok))
+
+    cr = client.answer_challenge(challb, challb.response(client.net.key))
+    log.debug('Acme CA responded to challenge request with: %s', cr)
+
+    order = client.poll_and_finalize(order)
+
+    return split_certificate_chain(order.fullchain_pem)
+
+
+def request_certificate_renewal(hostname, accnt_key, priv_key, tmp_chall_dict, directory_url):
+    """Perform ACME renewal"""
+
+    client = create_v2_client(directory_url, accnt_key)
+
+    try:
+        client.net.account = client.new_account(
+            messages.NewRegistration.from_data(
+                terms_of_service_agreed=True
+            )
+        )
+
+    except errors.ConflictError as error:
+        existing_reg = messages.RegistrationResource(uri=error.location)
+        existing_reg = client.query_registration(existing_reg)
+        client.update_registration(existing_reg)
+
+    csr = crypto_util.make_csr(priv_key, [hostname], False)
+    order = client.new_order(csr)
+
+    log.info('Created a new order for renewal of the certificate of %s', hostname)
+
+    challb = select_http01_chall(order)
+
+    _, chall_tok = challb.response_and_validation(client.net.key)
+    v = challb.chall.encode("token")
     log.info('Exposing challenge on %s', v)
     tmp_chall_dict.set(v, ChallTok(chall_tok))
 

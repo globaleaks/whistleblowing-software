@@ -57,7 +57,7 @@ class CertificateCheck(DailyJob):
         # Acme renewal checks
         if priv_fact.get_val(u'acme') and datetime.now() > expiration_date - timedelta(days=self.acme_try_renewal):
             try:
-                db_acme_cert_issuance(session, tid)
+                db_acme_cert_renewal(session, tid)
             except Exception as exc:
                 log.err('Automatic HTTPS renewal failed: %s', exc, tid=tid)
 

@@ -481,8 +481,6 @@ def db_acme_cert_issuance(session, tid):
     priv_fact = ConfigFactory(session, tid)
     hostname = State.tenant_cache[tid].hostname
 
-    # Temporary fix for https://github.com/certbot/certbot/issues/6246
-    # raw_accnt_key = priv_fact.get_val(u'acme_accnt_key')
     raw_accnt_key = db_create_acme_key(session, tid)
 
     if isinstance(raw_accnt_key, text_type):
@@ -496,13 +494,38 @@ def db_acme_cert_issuance(session, tid):
 
     tmp_chall_dict = State.tenant_state[tid].acme_tmp_chall_dict
 
-    # Run ACME registration all the way to resolution
-    cert_str, chain_str = letsencrypt.run_acme_reg_to_finish(hostname,
-                                                             accnt_key,
-                                                             priv_key,
-                                                             hostname,
-                                                             tmp_chall_dict,
-                                                             Settings.acme_directory_url)
+    cert_str, chain_str = letsencrypt.request_new_certificate(hostname,
+                                                              accnt_key,
+                                                              priv_key,
+                                                              tmp_chall_dict,
+                                                              Settings.acme_directory_url)
+
+    priv_fact.set_val(u'https_cert', cert_str)
+    priv_fact.set_val(u'https_chain', chain_str)
+    State.tenant_cache[tid].https_cert = cert_str
+    State.tenant_cache[tid].https_chain = chain_str
+
+
+def db_acme_cert_renewal(session, tid):
+    priv_fact = ConfigFactory(session, tid)
+    hostname = State.tenant_cache[tid].hostname
+
+    raw_accnt_key = priv_fact.get_val(u'acme_accnt_key')
+
+    if isinstance(raw_accnt_key, text_type):
+        raw_accnt_key = raw_accnt_key.encode()
+
+    accnt_key = serialization.load_pem_private_key(raw_accnt_key,
+                                                   password=None,
+                                                   backend=default_backend())
+
+    priv_key = priv_fact.get_val(u'https_priv_key')
+
+    cert_str, chain_str = letsencrypt.request_certificate_renewal(hostname,
+                                                                  accnt_key,
+                                                                  priv_key,
+                                                                  State.tenant_state[tid].acme_tmp_chall_dict,
+                                                                  Settings.acme_directory_url)
 
     priv_fact.set_val(u'https_cert', cert_str)
     priv_fact.set_val(u'https_chain', chain_str)
