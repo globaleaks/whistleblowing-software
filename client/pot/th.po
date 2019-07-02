@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"PO-Revision-Date: 2019-07-02 21:03+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -704,6 +704,9 @@ msgstr "โดยการเปิดใช้ตัวเลือกนี้
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "ผู้รับอนุญาตให้เลื่อนวันหมดอายุของการส่ง"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "อนุญาตให้ผู้รับลบส่ง"
@@ -1518,9 +1521,6 @@ msgstr "เลือกอย่างแข็งขัน"
 
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "อนุญาตให้ผู้รับที่จะเลื่อนวันหมดอายุการส่ง"
-
-msgid "The setting is enabled at a global level."
-msgstr "การตั้งค่าเปิดใช้งานในระดับโลก"
 
 msgid "Allow the recipient to delete submissions"
 msgstr "อนุญาตให้ผู้รับลบส่ง"

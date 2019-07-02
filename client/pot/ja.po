@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-08 01:25+0000\n"
-"Last-Translator: Naofumi <naofum@gmail.com>\n"
+"PO-Revision-Date: 2019-07-02 21:03+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -703,6 +703,9 @@ msgstr "このオプションを有効にすることにより、他のウェブ
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "受信者が提出の有効期限を延期することを許可する"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "受信者が提出を削除することを許可する"
@@ -1517,9 +1520,6 @@ msgstr "強制的に選択"
 
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "受信者が提出の有効期限を延期することを許可する"
-
-msgid "The setting is enabled at a global level."
-msgstr "設定は全体で有効になります。"
 
 msgid "Allow the recipient to delete submissions"
 msgstr "受信者が提出を削除することを許可する"

@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"PO-Revision-Date: 2019-07-02 21:03+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -705,6 +705,9 @@ msgstr "Когато тази опция е активирана, разреша
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Разрешаване на получателите да отлагат датата на изтичане на подадения сигнал"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Разрешаване на получателите да изтриват подадени сведения"
@@ -1519,9 +1522,6 @@ msgstr "Задължително избрани "
 
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Разрешаване на получателя да отложи датата на изтичане на сигнал"
-
-msgid "The setting is enabled at a global level."
-msgstr "Тази настройка важи за всички."
 
 msgid "Allow the recipient to delete submissions"
 msgstr "Разрешаване на получателя да изтрива сигнали"

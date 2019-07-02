@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"PO-Revision-Date: 2019-07-02 21:03+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -706,6 +706,9 @@ msgstr "Bằng cách cho phép tùy chọn này, bạn đang cho phép các tran
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Cho phép người nhận để hoãn ngày hết hạn nộp"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Cho phép người nhận để xóa bài nộp"
@@ -1520,9 +1523,6 @@ msgstr "mạnh mẽ chọn"
 
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Cho phép người nhận để hoãn ngày hết hạn nộp hồ sơ"
-
-msgid "The setting is enabled at a global level."
-msgstr "Thiết lập này được kích hoạt ở mức độ toàn cầu."
 
 msgid "Allow the recipient to delete submissions"
 msgstr "Cho phép người nhận để xóa bài nộp"

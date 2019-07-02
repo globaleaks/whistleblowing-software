@@ -5,8 +5,8 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
-# trendspotter <j.podhorecky@volny.cz>, 2019
-# trendspotter <j.podhorecky@volny.cz>, 2018-2019
+# Jiří Podhorecký <j.podhorecky@volny.cz>, 2019
+# Jiří Podhorecký <j.podhorecky@volny.cz>, 2018-2019
 # Lenka Ježková <lenka.jezkova@oziveni.cz>, 2019
 # Miroslav Kučera <mkucera66@seznam.cz>, 2013-2017
 # Mr Higgins, 2016-2018
@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"PO-Revision-Date: 2019-07-02 21:03+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -708,6 +708,9 @@ msgstr "Povolením této volby dovolíte jiným stránkám zobrazovat části to
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Povolit příjemci odložit expiraci podání"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Povolit příjemcům smazat podání"
@@ -1522,9 +1525,6 @@ msgstr "Nastaveno administrátorem"
 
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Povolit příjemci odložit datum expirace podání"
-
-msgid "The setting is enabled at a global level."
-msgstr "Nastavení je povoleno na globální úrovni"
 
 msgid "Allow the recipient to delete submissions"
 msgstr "Povolit příjemci smazat podání"

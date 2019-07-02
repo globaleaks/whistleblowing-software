@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"PO-Revision-Date: 2019-07-02 21:03+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -704,6 +704,9 @@ msgstr "啟動此選項，你將可在其它網站將此吹哨平台嵌入其網
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "允許收件人延後提交的截止日期"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "允許收件人刪除該筆提交揭密"
@@ -1518,9 +1521,6 @@ msgstr "強迫選擇"
 
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "允許收件者延後提交的截止日期"
-
-msgid "The setting is enabled at a global level."
-msgstr "此為全域設定"
 
 msgid "Allow the recipient to delete submissions"
 msgstr "允許收件者刪除提交"

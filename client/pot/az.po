@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"PO-Revision-Date: 2019-07-02 21:03+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -703,6 +703,9 @@ msgstr "Bu seçimi aktivləşdirməklə siz başqa vebsaytlara platformanı sət
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Qəbul edicilərə təqdimatın bitmə tarixini təxirə salmasına icazə verin"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Qəbul edicilərə təqdimatlarını silməsinə icazə verin"
@@ -1517,9 +1520,6 @@ msgstr "Zorla seçilmiş"
 
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Qəbul ediciyə təqdimatın sona çatma tarixini təxirə salmasına icazə verin"
-
-msgid "The setting is enabled at a global level."
-msgstr "Tənzimləmə  qlobal səviyyədə aktivləşdirilib. "
 
 msgid "Allow the recipient to delete submissions"
 msgstr "Qəbul ediciyə təqdimatları silməsinə icazə verin"

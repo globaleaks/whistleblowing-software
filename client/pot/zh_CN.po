@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-08 14:39+0000\n"
-"Last-Translator: ff98sha\n"
+"PO-Revision-Date: 2019-07-02 21:03+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -713,6 +713,9 @@ msgstr "启用此选项代表您允许告密者平台被其他网站使用 ifram
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "允许接收者推迟提交的失效日期"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "允许接收者删除提交物"
@@ -1527,9 +1530,6 @@ msgstr "强行选择"
 
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "允许接收人延长提交截止日期"
-
-msgid "The setting is enabled at a global level."
-msgstr "此设置已在全局级别启用。"
 
 msgid "Allow the recipient to delete submissions"
 msgstr "允许接收人删除提交"

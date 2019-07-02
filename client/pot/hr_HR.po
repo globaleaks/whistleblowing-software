@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"PO-Revision-Date: 2019-07-02 21:03+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -702,6 +702,9 @@ msgstr "Omogućivanjem ove opcije dopuštate drugim web stranicama da uključe p
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Dopusti primateljima da odgode datum isteka predaje"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Dopusti primateljima da brišu predaje"
@@ -1516,9 +1519,6 @@ msgstr "Prisilno odabrani"
 
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Dopusti primateljima da odgode datum isteka predaje"
-
-msgid "The setting is enabled at a global level."
-msgstr "Postavka je omogućena na globalnoj razini."
 
 msgid "Allow the recipient to delete submissions"
 msgstr "Dopusti primatelju da obriše predaje"

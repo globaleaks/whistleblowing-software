@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-19 16:54+0000\n"
-"Last-Translator: ANDRIAMALALA <luceidos22@gmail.com>\n"
+"PO-Revision-Date: 2019-07-02 21:03+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -29,7 +29,7 @@ msgstr ""
 "mime-version: 1.0\n"
 
 msgid "Log in"
-msgstr "Miditra"
+msgstr "Midira"
 
 msgid "Administration interface"
 msgstr "Interface d’administration"
@@ -675,7 +675,7 @@ msgid "Are you a whistleblower?"
 msgstr "Hanao fitorohana ve ianao?"
 
 msgid "Blow the whistle"
-msgstr "Lancer une alerte"
+msgstr "Mandefasa vaovao fanairana"
 
 msgid "Your submission was successful."
 msgstr "Ny fanambarana fitorohana nataonao dia tafita soa aman-tsara."
@@ -713,6 +713,9 @@ msgstr "En activant cette option, vous permettez à d’autres sites Web d’inc
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Autoriser les destinataires à repousser la date d’expiration des envois"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Permettre aux destinataires de supprimer des envois"
@@ -886,7 +889,7 @@ msgid "Label"
 msgstr "Étiquette"
 
 msgid "This field is mandatory"
-msgstr "Ce champ est obligatoire"
+msgstr "Tsy maintsy fenoina ny zavatra angatahina anao eto"
 
 msgid "Edit"
 msgstr "Modifier"
@@ -1528,9 +1531,6 @@ msgstr "Sélectionné de force"
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Autoriser les destinataires à repousser la date d’expiration des envois"
 
-msgid "The setting is enabled at a global level."
-msgstr "Le paramètre est activé globalement."
-
 msgid "Allow the recipient to delete submissions"
 msgstr "Permettre aux destinataires de supprimer des envois"
 
@@ -2000,7 +2000,7 @@ msgid "Invalid phone number"
 msgstr "Le numéro de téléphone est invalide"
 
 msgid "This field is mandatory."
-msgstr "Ce champ est obligatoire."
+msgstr "Tsy maintsy fenoina ny zavatra angatahina anao eto."
 
 msgid "The answer is too short."
 msgstr "La réponse est trop courte"
@@ -2023,10 +2023,10 @@ msgstr "Destinataires sélectionnés :"
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr "Dans cette étape, les réponses aux questions suivantes sont soit manquantes, soit invalides :"
+msgstr "Amin'izao dingana izao, ny valin'ny fanontaniana novalianao manaraka ireto dia tsy feno, na ihany koa tsy mifanaraka amin'ny zavatra angatahina : "
 
 msgid "Submission errors"
-msgstr "Erreurs d’envoi"
+msgstr "Tsy tafita ny zavatra alefanao."
 
 msgid "You must select at least one recipient."
 msgstr "Vous devez au moins choisir un destinataire."

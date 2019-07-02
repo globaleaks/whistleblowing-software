@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"PO-Revision-Date: 2019-07-02 21:03+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -707,6 +707,9 @@ msgstr "اس آپشن کو فعال کرکے، آپ iframes کی اندر پلی
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "وصول کنندگان جمع کرانے کا وقت ختم ہونے کی تاریخ ملتوی کرنے کی اجازت دیں"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "وصول کنندگان گذارشات کو حذف کرنے کی اجازت دیں"
@@ -1521,9 +1524,6 @@ msgstr "زبردستی منتخب شدہ"
 
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "وصول کنندہ جمع کرانے کا وقت ختم ہونے کی تاریخ ملتوی کرنے کی اجازت دیں"
-
-msgid "The setting is enabled at a global level."
-msgstr "یہ ترتیب سیٹنگ عالمی سطح پر فعال ہے"
 
 msgid "Allow the recipient to delete submissions"
 msgstr "وصول کنندہ کو گذارشات حذف کرنے کی اجازت دیں"

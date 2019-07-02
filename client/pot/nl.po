@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"PO-Revision-Date: 2019-07-02 21:03+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -732,6 +732,9 @@ msgstr "Met deze optie is het mogelijk om het platform op andere weblocatie in t
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Ontvangers toestaan de vervaldatum van tips uit te stellen"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Ontvangers toestaan tips te verwijderen"
@@ -1546,9 +1549,6 @@ msgstr "Actief geselecteerd"
 
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "De ontvanger mag de einddatum van de inzending uitstellen"
-
-msgid "The setting is enabled at a global level."
-msgstr "Deze instelling is ingeschakeld op globaal niveau."
 
 msgid "Allow the recipient to delete submissions"
 msgstr "De ontvanger mag de inzendingen verwijderen"

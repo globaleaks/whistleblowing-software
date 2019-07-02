@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"PO-Revision-Date: 2019-07-02 21:03+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -701,6 +701,9 @@ msgstr "இந்த விருப்பத்தை இயக்குவத�
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "பெற்றவர்கள் சமர்ப்பிக்கும் காலாவதி தேதி ஒத்தி அனுமதி"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "பெற்றவர்கள் சமர்ப்பிப்புகளை நீக்க அனுமதிக்க"
@@ -1515,9 +1518,6 @@ msgstr "கட்டாயப்படுத்தி தேர்வு"
 
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "பெறுநர் சமர்ப்பிப்பு காலாவதி தேதி ஒத்தி அனுமதி"
-
-msgid "The setting is enabled at a global level."
-msgstr "அமைப்பை உலக அளவில் செயல்படுத்தப்படும்."
 
 msgid "Allow the recipient to delete submissions"
 msgstr "பெறுநர் சமர்ப்பிப்புகளை நீக்க அனுமதிக்க"

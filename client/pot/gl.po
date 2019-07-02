@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"PO-Revision-Date: 2019-07-02 21:03+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -701,6 +701,9 @@ msgstr "Ao habilitar esta opción, está permitindo que outros sitios inclúan o
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Permitir que os destinatarios pospoñan a data de caducidade da presentacións"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Permitir que os destinatarios borren as presentacións"
@@ -1515,9 +1518,6 @@ msgstr "Seleccionado á forza"
 
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Permitir que o destinatario pospoña a data de caducidade da presentación"
-
-msgid "The setting is enabled at a global level."
-msgstr "A configuración está habilitada a nivel global."
 
 msgid "Allow the recipient to delete submissions"
 msgstr "Permitir ao destinatario borrar envíos "

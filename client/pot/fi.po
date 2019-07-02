@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-05 13:01+0000\n"
+"PO-Revision-Date: 2019-07-02 21:03+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -704,6 +704,9 @@ msgstr "Tämän toiminnallisuuden käyttöönotto mahdollistaa palvelun käytön
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Salli vastaanottajien siirtää vihjeiden vanhentumispäivämäärää myöhemmäksi"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Salli vastaanottajien poistaa lähetettyjä vihjeitä"
@@ -1518,9 +1521,6 @@ msgstr "Aina päällä (ei voi muuttaa)"
 
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Salli vastaanottajan siirtää vihjeen vanhentumispäivämäärää myöhemmäksi"
-
-msgid "The setting is enabled at a global level."
-msgstr "Asetus on otettu käyttöön globaalisti."
 
 msgid "Allow the recipient to delete submissions"
 msgstr "Salli vastaanottajan poistaa vihjeitä"

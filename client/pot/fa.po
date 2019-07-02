@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-06-16 07:31+0000\n"
-"Last-Translator: Reza Ghasemi\n"
+"PO-Revision-Date: 2019-07-02 21:03+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -717,6 +717,9 @@ msgstr "با فعال کردن این گزینه شما به سایت‌های �
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "به دریافت کننده‌ها اجازه بدهید تا تاریخ انقضا گزارش را به تعویق بیاندازند"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "به دریافت کننده‌ها اجازه بدهید که گزارش ها را پاک کنند"
@@ -1531,9 +1534,6 @@ msgstr "انتخاب شده به اجبار"
 
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "اجازه به گیرنده برای به عقب انداختن تاریخ انقضا گزارش"
-
-msgid "The setting is enabled at a global level."
-msgstr "این گزینه در سطح جهانی فعال است."
 
 msgid "Allow the recipient to delete submissions"
 msgstr "اجازه به گیرنده برای حذف گزارش ها"
