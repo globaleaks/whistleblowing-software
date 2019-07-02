@@ -1,3 +1,11 @@
+Changes in version 3.9.8 - 2019-07-02
+    Fix compatibility with IE11
+    Fix visualization of whistleblower identity answers
+    Rewrite letsencrypt renewal routines decoupling them from certificate issuance
+    Fix issues #2608, 2610
+    Update Translations
+    Bump npm dependencies to latest stables versions
+
 Changes in version 3.9.7 - 2019-06-19
    Apply minor bugfixing
    Bump npm dependencies to latest stable versions
