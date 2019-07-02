@@ -58,7 +58,7 @@ GLClient.controller("TipCtrl",
                 steps: [$scope.whistleblower_identity_field]
               };
 
-              $scope.fields = questionnaire.steps[0].children;
+              $scope.fields = $scope.questionnaire.steps[0].children;
               $scope.rows = fieldUtilities.splitRows($scope.fields);
               $scope.field = $scope.whistleblower_identity_field;
 

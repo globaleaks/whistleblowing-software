@@ -32,7 +32,7 @@
     <div data-ng-if="tip.data.identity_provided">
       <div data-ng-if="!whistleblower_identity_field.attrs.visibility_subject_to_authorization.value || (tip.last_iar && tip.last_iar.reply == 'authorized')">
         <div data-ng-repeat="field in whistleblower_identity_field.children | orderBy:['y', 'x']">
-          <span data-ng-init="fieldAnswers=tip.data.whistleblower_identity.value" data-ng-include="'views/partials/tip_field.html'"></span>
+          <span data-ng-init="fieldAnswers=tip.data.whistleblower_identity.value[0]" data-ng-include="'views/partials/tip_field.html'"></span>
         </div>
       </div>
       <div data-ng-if="whistleblower_identity_field.attrs.visibility_subject_to_authorization.value && (!tip.last_iar || tip.last_iar.reply == 'denied')">

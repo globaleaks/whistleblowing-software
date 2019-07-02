@@ -133,7 +133,7 @@ class ReceiverTip_v_30(Model):
     last_access = Column(DateTime)
     access_counter = Column(Integer)
     label = Column(UnicodeText)
-    can_access_whistleblower_identity = Column(Boolean)
+    can_access_whistleblower_identity = Column(Boolean, default=True)
     new = Column(Integer)
 
 

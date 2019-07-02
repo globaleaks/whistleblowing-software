@@ -117,7 +117,7 @@ class ReceiverTip_v_44(Model):
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     access_counter = Column(Integer, default=0, nullable=False)
     label = Column(UnicodeText, default=u'', nullable=False)
-    can_access_whistleblower_identity = Column(Boolean, default=False, nullable=False)
+    can_access_whistleblower_identity = Column(Boolean, default=True, nullable=False)
     new = Column(Integer, default=True, nullable=False)
     enable_notifications = Column(Boolean, default=True, nullable=False)
 
