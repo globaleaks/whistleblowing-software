@@ -1269,7 +1269,7 @@ class _User(Model):
 
     localized_keys = ['description']
 
-    bool_keys = ['password_change_needed'
+    bool_keys = ['password_change_needed',
                  'notification',
                  'can_edit_general_settings',
                  'can_delete_submission',
