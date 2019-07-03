@@ -52,6 +52,7 @@ file_keywords = [
 ]
 
 export_message_keywords = [
+    '{Author}'
     '{Content}'
 ]
 
@@ -381,6 +382,9 @@ class FileKeyword(TipKeyword):
 class ExportMessageKeyword(TipKeyword):
     keyword_list = TipKeyword.keyword_list + export_message_keywords
     data_keys =  TipKeyword.data_keys + ['message']
+
+    def Author(self):
+        return self.data['message']['author']
 
     def Content(self):
         return self.data['message']['content']

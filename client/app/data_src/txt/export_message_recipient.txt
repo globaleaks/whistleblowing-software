@@ -1,4 +1,4 @@
-From: {RecipientName}
+From: {Author}
 Date: {EventTime}
 
 {Content}
