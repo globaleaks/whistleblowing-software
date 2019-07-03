@@ -1157,6 +1157,7 @@ class MockDict:
             'disable_donation_panel': False,
             'enable_ricochet_panel': False,
             'ricochet_address': u'',
+            'do_not_expose_users_names': False,
             'timezone': 0,
             'default_language': u'en',
             'default_password': u'globaleaks',
