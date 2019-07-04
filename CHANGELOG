@@ -1,3 +1,7 @@
+Changes in version 3.9.9 - 2019-07-03
+    Fix issues: #2591, #2611, #2613
+    Update translations
+
 Changes in version 3.9.8 - 2019-07-02
     Fix compatibility with IE11
     Fix visualization of whistleblower identity answers
