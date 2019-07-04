@@ -712,7 +712,7 @@
   "Click the following link to validate this change:": "Click the following link to validate this change:",
   "If you didn't request this change, change your password and contact your system administrator.": "如果你並未作此請求，請儘快更新密碼並連絡通知系統管理者。",
   "Email change request": "電郵變更請求",
-  "From: {RecipientName}": "來自: {RecipientName}",
+  "From: {Author}": "From: {Author}",
   "Date: {EventTime}": "日期: {EventTime}",
   "From: Whistleblower": "From: 吹哨揭密者",
   "Date: {SubmissionDate}": "日期: {SubmissionDate}",

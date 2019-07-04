@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-02 21:03+0000\n"
+"PO-Revision-Date: 2019-07-04 05:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2275,8 +2275,8 @@ msgstr "Hvis du ikke forespurte denne endringen, bytt passord og kontakt din sys
 msgid "Email change request"
 msgstr "E-postendringsforespørsel"
 
-msgid "From: {RecipientName}"
-msgstr "Fra: {RecipientName}"
+msgid "From: {Author}"
+msgstr ""
 
 msgid "Date: {EventTime}"
 msgstr "Dato: {EventTime}"

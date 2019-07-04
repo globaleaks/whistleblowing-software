@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-02 21:03+0000\n"
+"PO-Revision-Date: 2019-07-04 05:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -735,7 +735,7 @@ msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Autoriser les destinataires à repousser la date d’expiration des envois"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr "Ne pas exposer les noms des utilisateurs"
 
 msgid "Allow recipients to delete submissions"
 msgstr "Permettre aux destinataires de supprimer des envois"
@@ -2307,8 +2307,8 @@ msgstr "Si vous n’êtes pas à l’origine de cette demande, changez votre mot
 msgid "Email change request"
 msgstr "Demande de changement d’adresse courriel"
 
-msgid "From: {RecipientName}"
-msgstr "De : {RecipientName}"
+msgid "From: {Author}"
+msgstr ""
 
 msgid "Date: {EventTime}"
 msgstr "Date : {EventTime}"

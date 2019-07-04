@@ -712,7 +712,7 @@
   "Click the following link to validate this change:": "Klik op de volgende link om deze verandering te valideren:",
   "If you didn't request this change, change your password and contact your system administrator.": "Als jij deze verandering niet het aangevraagd, verander dan nu je wachtwoord en neem contact op met de systeemadministrator.",
   "Email change request": "E-mail veranderingsverzoek",
-  "From: {RecipientName}": "Van: {RecipientName}",
+  "From: {Author}": "From: {Author}",
   "Date: {EventTime}": "Datum: {EventTime}",
   "From: Whistleblower": "Van: Klokkenluider",
   "Date: {SubmissionDate}": "Datum: {SubmissionDate}",

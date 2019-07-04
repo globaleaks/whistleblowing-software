@@ -712,7 +712,7 @@
   "Click the following link to validate this change:": "Click the following link to validate this change:",
   "If you didn't request this change, change your password and contact your system administrator.": "Ако не сте поискали тази промяна, променете паролата си и се свържете със системния администратор.",
   "Email change request": "Заявка за промяна на имейла",
-  "From: {RecipientName}": "От: {RecipientName}",
+  "From: {Author}": "From: {Author}",
   "Date: {EventTime}": "Дата: {EventTime}",
   "From: Whistleblower": "От: Източник",
   "Date: {SubmissionDate}": "Дата: {SubmissionDate}",

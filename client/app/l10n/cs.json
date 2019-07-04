@@ -712,7 +712,7 @@
   "Click the following link to validate this change:": "Klepnutím na následující odkaz potvrdíte tuto změnu:",
   "If you didn't request this change, change your password and contact your system administrator.": "Pokud jste o tuto změnu nežádali, změňte heslo a obraťte se na správce systému.",
   "Email change request": "Žádost o změnu e-mailu",
-  "From: {RecipientName}": "Od:: {RecipientName}",
+  "From: {Author}": "From: {Author}",
   "Date: {EventTime}": "Datum: {EventTime}",
   "From: Whistleblower": "Od: Oznamovatel",
   "Date: {SubmissionDate}": "Datum: {SubmissionDate}",

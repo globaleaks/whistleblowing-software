@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-02 21:03+0000\n"
+"PO-Revision-Date: 2019-07-04 05:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2275,8 +2275,8 @@ msgstr "இந்த மாற்றத்தை நீங்கள் கோர
 msgid "Email change request"
 msgstr "மின்னஞ்சல் மாற்ற கோரிக்கை"
 
-msgid "From: {RecipientName}"
-msgstr "இருந்து: {RecipientName}"
+msgid "From: {Author}"
+msgstr ""
 
 msgid "Date: {EventTime}"
 msgstr "தேதி: {EventTime}"

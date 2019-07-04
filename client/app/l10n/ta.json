@@ -712,7 +712,7 @@
   "Click the following link to validate this change:": "Click the following link to validate this change:",
   "If you didn't request this change, change your password and contact your system administrator.": "இந்த மாற்றத்தை நீங்கள் கோரவில்லை என்றால், உங்கள் கடவுச்சொல்லை மாற்றவும் மற்றும் உங்கள் கணினி நிர்வாகியைத் தொடர்புகொள்ளவும்.",
   "Email change request": "மின்னஞ்சல் மாற்ற கோரிக்கை",
-  "From: {RecipientName}": "இருந்து: {RecipientName}",
+  "From: {Author}": "From: {Author}",
   "Date: {EventTime}": "தேதி: {EventTime}",
   "From: Whistleblower": "இருந்து: விசில்ப்ளோயர்",
   "Date: {SubmissionDate}": "தேதி: {SubmissionDate}",

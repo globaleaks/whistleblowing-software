@@ -712,7 +712,7 @@
   "Click the following link to validate this change:": "برای تایید اعتبار تغییر روی لینک زیر کلیک کنید:",
   "If you didn't request this change, change your password and contact your system administrator.": "اگر شما خواستار این تغییر نبودید، گذرواژه خود را تغییر دهید و با مدیر سیستم خود ارتباط برقرار کنید.",
   "Email change request": "درخواست تغییر ایمیل",
-  "From: {RecipientName}": "از: {RecipientName}",
+  "From: {Author}": "From: {Author}",
   "Date: {EventTime}": "تاریخ: {EventTime}",
   "From: Whistleblower": "از: افشاگر",
   "Date: {SubmissionDate}": "تاریخ: {SubmissionDate}",

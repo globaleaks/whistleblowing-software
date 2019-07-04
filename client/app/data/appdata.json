@@ -896,7 +896,7 @@
       "hr_HR": "From: {Author}\nDatum: {EventTime}\n\n{Content}",
       "hu_HU": "From: {Author}\nDátum: {EventTime}\n\n{Content}",
       "id": "From: {Author}\nTanggal: {EventTime} \n\n{Content}",
-      "it": "From: {Author}\nData: {EventTime}\n\n{Content}",
+      "it": "Da: {Author}\nData: {EventTime}\n\n{Content}",
       "ja": "From: {Author}\n日付: {EventTime}\n\n{Content}",
       "ka": "From: {Author}\nთარიღი: {EventTime}\n\n{Content}",
       "ko": "From: {Author}\n날짜 : {EventTime}\n\n{Content}",

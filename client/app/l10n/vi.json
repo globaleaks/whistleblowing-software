@@ -712,7 +712,7 @@
   "Click the following link to validate this change:": "Click the following link to validate this change:",
   "If you didn't request this change, change your password and contact your system administrator.": "If you didn't request this change, change your password and contact your system administrator.",
   "Email change request": "Email change request",
-  "From: {RecipientName}": "Từ: {RecipientName}",
+  "From: {Author}": "From: {Author}",
   "Date: {EventTime}": "Ngày: {EventTime}",
   "From: Whistleblower": "Từ: Whistleblower",
   "Date: {SubmissionDate}": "Ngày: {SubmissionDate}",

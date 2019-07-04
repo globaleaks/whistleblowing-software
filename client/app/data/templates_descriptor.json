@@ -89,6 +89,7 @@
     "{Comments}",
     "{Messages}",
     "{Url}",
+    "{Author}",
     "{Content}"
   ],
   "export_message_whistleblower": [

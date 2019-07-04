@@ -712,7 +712,7 @@
   "Click the following link to validate this change:": "Click the following link to validate this change:",
   "If you didn't request this change, change your password and contact your system administrator.": "Jika Anda tidak meminta perubahan ini, ubah kata sandi Anda dan hubungi administrator sistem Anda.",
   "Email change request": "Permintaan perubahan surel",
-  "From: {RecipientName}": "Dari: {RecipientName}",
+  "From: {Author}": "From: {Author}",
   "Date: {EventTime}": "Tanggal: {EventTime} ",
   "From: Whistleblower": "Dari: Informan publik",
   "Date: {SubmissionDate}": "Tanggal: {SubmissionDate} ",

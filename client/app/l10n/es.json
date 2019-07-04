@@ -712,7 +712,7 @@
   "Click the following link to validate this change:": "Click the following link to validate this change:",
   "If you didn't request this change, change your password and contact your system administrator.": "Si no ha solicitado este cambio, cambie su contraseña y contacte con el Administrador del sistema.",
   "Email change request": "Solicitud de cambio de dirección de correo",
-  "From: {RecipientName}": "De: {RecipientName}",
+  "From: {Author}": "From: {Author}",
   "Date: {EventTime}": "Fecha: {EventTime}",
   "From: Whistleblower": "De: Informante",
   "Date: {SubmissionDate}": "Fecha: {SubmissionDate}",

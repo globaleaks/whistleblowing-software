@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-02 21:03+0000\n"
+"PO-Revision-Date: 2019-07-04 05:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2284,8 +2284,8 @@ msgstr "Si vosté no ha sol.licitat este canvi, canvie la seua contrasenya i con
 msgid "Email change request"
 msgstr "Sol.licitut de canvi de direcció de correu electrònic"
 
-msgid "From: {RecipientName}"
-msgstr "De: {RecipientName}"
+msgid "From: {Author}"
+msgstr ""
 
 msgid "Date: {EventTime}"
 msgstr "Data: {EventTime}"
