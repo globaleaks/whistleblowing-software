@@ -23,54 +23,56 @@
             <span data-translate>Use the first site for administrative purposes only</span>
           </label>
         </div>
-        <div class="form-group">
-          <label>
-            <input data-ng-model="admin.node.enable_signup" type="checkbox" />
-            <span data-translate>Allow users to sign up<span>
-          <label>
-        </div>
-        <div data-ng-if="admin.node.enable_signup">
+	<div data-ng-if="!admin.node.adminonly">
           <div class="form-group">
             <label>
-              <input data-ng-model="admin.node.signup_tos1_enable" type="checkbox" />
-              <span data-translate>Enable terms of service</span> <span>#1</span>
-            </label>
-            <div data-ng-if="admin.node.signup_tos1_enable" class="nested">
-              <div class="form-group">
-                <label data-translate>Title</label>
-                <input data-ng-model="admin.node.signup_tos1_title" type="text" class="form-control"/>
-              </div>
-              <div class="form-group">
-                <label data-translate>Text</label>
-                <div>
-                  <textarea class="form-control" data-ng-model="admin.node.signup_tos1_text" rows="4"></textarea>
+              <input data-ng-model="admin.node.enable_signup" type="checkbox" />
+              <span data-translate>Allow users to sign up<span>
+            <label>
+          </div>
+          <div data-ng-if="admin.node.enable_signup">
+            <div class="form-group">
+              <label>
+                <input data-ng-model="admin.node.signup_tos1_enable" type="checkbox" />
+                <span data-translate>Enable terms of service</span> <span>#1</span>
+              </label>
+              <div data-ng-if="admin.node.signup_tos1_enable" class="nested">
+                <div class="form-group">
+                  <label data-translate>Title</label>
+                  <input data-ng-model="admin.node.signup_tos1_title" type="text" class="form-control"/>
                 </div>
-              </div>
-              <div class="form-group">
-                <label data-translate>Checkbox label</label>
-                <input data-ng-model="admin.node.signup_tos1_checkbox_label" type="text" class="form-control"/>
+                <div class="form-group">
+                  <label data-translate>Text</label>
+                  <div>
+                    <textarea class="form-control" data-ng-model="admin.node.signup_tos1_text" rows="4"></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label data-translate>Checkbox label</label>
+                  <input data-ng-model="admin.node.signup_tos1_checkbox_label" type="text" class="form-control"/>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label>
-              <input data-ng-model="admin.node.signup_tos2_enable" type="checkbox" />
-              <span data-translate>Enable terms of service</span> <span>#2</span>
-            </label>
-            <div data-ng-if="admin.node.signup_tos2_enable" class="nested">
-              <div class="form-group">
-                <label data-translate>Title</label>
-                <input data-ng-model="admin.node.signup_tos2_title" type="text" class="form-control"/>
-              </div>
-              <div class="form-group">
-                <label data-translate>Text</label>
-                <div>
-                  <textarea class="form-control" data-ng-model="admin.node.signup_tos2_text" rows="4"></textarea>
+            <div class="form-group">
+              <label>
+                <input data-ng-model="admin.node.signup_tos2_enable" type="checkbox" />
+                <span data-translate>Enable terms of service</span> <span>#2</span>
+              </label>
+              <div data-ng-if="admin.node.signup_tos2_enable" class="nested">
+                <div class="form-group">
+                  <label data-translate>Title</label>
+                  <input data-ng-model="admin.node.signup_tos2_title" type="text" class="form-control"/>
                 </div>
-              </div>
-              <div class="form-group">
-                <label data-translate>Checkbox label</label>
-                <input data-ng-model="admin.node.signup_tos2_checkbox_label" type="text" class="form-control"/>
+                <div class="form-group">
+                  <label data-translate>Text</label>
+                  <div>
+                    <textarea class="form-control" data-ng-model="admin.node.signup_tos2_text" rows="4"></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label data-translate>Checkbox label</label>
+                  <input data-ng-model="admin.node.signup_tos2_checkbox_label" type="text" class="form-control"/>
+                </div>
               </div>
             </div>
           </div>
