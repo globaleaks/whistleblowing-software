@@ -70,12 +70,11 @@ class FileInstance(BaseHandler):
     invalidate_cache = True
     upload_handler = True
 
-    @inlineCallbacks
     def permission_check(self, id):
-        if id == 'logo' and self.current_user.user_role != 'admin':
-            yield can_edit_general_settings_or_raise(self)
-        elif not self.state.tenant_cache[self.request.tid]['mode'] == 'default' or self.current_user.user_role != 'admin':
-            raise errors.InvalidAuthentication
+        if self.current_user.user_role == 'admin' or id == 'logo':
+            return can_edit_general_settings_or_raise(self)
+
+        raise errors.InvalidAuthentication
 
     @inlineCallbacks
     def post(self, id):
