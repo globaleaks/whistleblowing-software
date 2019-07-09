@@ -36,16 +36,14 @@
       <input class="form-control" data-ng-model="admin.node.whistleblowing_button" type="text" />
     </div>
 
-    <div class="form-group">
+    <div data-ng-if="admin.node.mode === 'eat'" data-ng-include="'views/partials/ricochet_config.html'"></div>
+
+    <div class="form-group" data-ng-if="admin.node.root_tenant || admin.node.mode === 'default'">
       <label>
         <input data-ng-model="admin.node.enable_disclaimer" type="checkbox" />
         <span data-translate>Enable disclaimer</span>
       </label>
-    </div>
 
-    <div data-ng-if="admin.node.mode === 'eat'" data-ng-include="'views/partials/ricochet_config.html'"></div>
-
-    <div class="form-group" data-ng-if="admin.node.mode === 'default'">
       <div class="nested" data-ng-if="admin.node.enable_disclaimer">
         <div class="form-group">
           <label data-translate>Title</label>
