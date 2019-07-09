@@ -62,7 +62,7 @@ def generate_password_reset_token(session, state, tid, username_or_email, allow_
             'type': 'password_reset_validation',
             'user': user_desc,
             'reset_token': user.reset_password_token,
-            'node': db_admin_serialize_node(session, 1, user.language),
+            'node': db_admin_serialize_node(session, tid, user.language),
             'notification': db_get_notification(session, tid, user.language)
         }
 
