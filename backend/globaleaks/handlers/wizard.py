@@ -122,6 +122,9 @@ def db_wizard(session, tid, request, client_using_tor, language):
         # Set data retention policy to 18 months
         context.tip_timetolive = 540
 
+        # Delete the admin user
+        session.delete(admin_user)
+
     # Apply the specific fixes related to whistleblowing.it projects
     if mode == u'whistleblowing.it':
         node.set_val(u'simplified_login', True)
@@ -132,9 +135,6 @@ def db_wizard(session, tid, request, client_using_tor, language):
 
         # Set the recipient name equal to the node name
         receiver_user.name = request['node_name']
-
-        # Delete the admin user
-        session.delete(admin_user)
 
     db_refresh_memory_variables(session, [tid])
 
