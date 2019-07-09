@@ -86,14 +86,15 @@ class ConfigL10NFactory(object):
 
     def update_defaults(self, group, langs, data, reset=False):
         null = datetime_null()
+        templates = data.get('templates', {})
 
         for lang in langs:
             old_keys = []
 
             for cfg in self.get_all(group, lang):
                 old_keys.append(cfg.var_name)
-                if (cfg.update_date == null or reset) and cfg.var_name in data['templates']:
-                    cfg.value = data['templates'][cfg.var_name][lang]
+                if (cfg.update_date == null or reset) and cfg.var_name in templates:
+                    cfg.value = templates[cfg.var_name][lang]
 
             ConfigL10NFactory.initialize(self, list(set(ConfigL10NFilters[group]) - set(old_keys)), lang, data)
 
