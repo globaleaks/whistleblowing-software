@@ -1,3 +1,13 @@
+Changes in version 3.9.12 - 2019-07-11
+    Fix issues #2625, #2626, #2630
+    Improve UI in relation to issue #2627
+    Fix regression #2629
+    Make it possible to reset HTTPS configuration without disabling HTTPS
+    Make it possible for users to reset their password also when simplified login is enabled
+    When a platform is created with a mode different from default, delete the admin user
+    Bump npm dependencies to latest stables versions
+    Update translations
+
 Changes in version 3.9.11 - 2019-07-05
     Revise fix for issue #2612
 
