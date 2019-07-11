@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1157,18 +1157,6 @@ msgstr "Ik g akkoord met de Algemene Voorwaarden"
 msgid "Proceed"
 msgstr "Gaat u verder"
 
-msgid "Congratulations!"
-msgstr "Gefeliciteerd!"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr "Configuratie voltooid. Bekijk de instellingen of activeer nu."
-
-msgid "Review"
-msgstr "Controleren"
-
-msgid "Enable"
-msgstr "Inschakelen"
-
 msgid "Country code"
 msgstr "Landcode"
 
@@ -1214,6 +1202,9 @@ msgstr "Uitgever:"
 
 msgid "Intermediate Certificates"
 msgstr "Tussenliggende certificaten"
+
+msgid "Enable"
+msgstr "Inschakelen"
 
 msgid "Reset"
 msgstr "Reset"
@@ -1958,6 +1949,9 @@ msgid ""
 "reset."
 msgstr "Voer de gebruikersnaam van je account, of je e-mailadres in om een wachtwoordherstel aan te vragen."
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr "Verzoek indienen om wachtwoord te veranderen"
 
@@ -1993,6 +1987,9 @@ msgstr "Datum aanvraag"
 
 msgid "Undeclared"
 msgstr "Niet aangegeven"
+
+msgid "Congratulations!"
+msgstr "Gefeliciteerd!"
 
 msgid "You have completed the platform activation."
 msgstr "Je hebt de activatie van het platform afgerond."

@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1137,18 +1137,6 @@ msgstr "אני מסכים אל תנאיי השירות."
 msgid "Proceed"
 msgstr "המשך"
 
-msgid "Congratulations!"
-msgstr "מזל טוב!"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr ""
-
-msgid "Review"
-msgstr "סקור"
-
-msgid "Enable"
-msgstr "אפשר"
-
 msgid "Country code"
 msgstr "קוד מדינה"
 
@@ -1194,6 +1182,9 @@ msgstr "מנפיק:"
 
 msgid "Intermediate Certificates"
 msgstr ""
+
+msgid "Enable"
+msgstr "אפשר"
 
 msgid "Reset"
 msgstr "אַפֵּס"
@@ -1938,6 +1929,9 @@ msgid ""
 "reset."
 msgstr ""
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr "בקש איפוס סיסמה"
 
@@ -1973,6 +1967,9 @@ msgstr "תאריך הבקשה"
 
 msgid "Undeclared"
 msgstr ""
+
+msgid "Congratulations!"
+msgstr "מזל טוב!"
 
 msgid "You have completed the platform activation."
 msgstr ""

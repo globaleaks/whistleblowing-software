@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1127,18 +1127,6 @@ msgstr "Pristajem na Uvjete pružanja usluge."
 msgid "Proceed"
 msgstr "Nastavi"
 
-msgid "Congratulations!"
-msgstr "Čestitamo!"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr "Konfiguracija završena. Možete pregledati postavke ili ih odmah omogućiti."
-
-msgid "Review"
-msgstr "Pregledaj"
-
-msgid "Enable"
-msgstr "Omogući"
-
 msgid "Country code"
 msgstr "Kod države"
 
@@ -1184,6 +1172,9 @@ msgstr "Izdavatelj:"
 
 msgid "Intermediate Certificates"
 msgstr "Posrednički certifikati"
+
+msgid "Enable"
+msgstr "Omogući"
 
 msgid "Reset"
 msgstr "Ponovno pokreni"
@@ -1928,6 +1919,9 @@ msgid ""
 "reset."
 msgstr "Unesite korisničko ime svog računa ili svoju email adresu kako bi zahtjevali ponovno postavljanje lozinke."
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr "Zahtjev za ponovnim postavljanjem lozinke poslan"
 
@@ -1963,6 +1957,9 @@ msgstr "Datum zahtjeva"
 
 msgid "Undeclared"
 msgstr "Neprijavljeno"
+
+msgid "Congratulations!"
+msgstr "Čestitamo!"
 
 msgid "You have completed the platform activation."
 msgstr "Završili ste aktivaciju platforme."

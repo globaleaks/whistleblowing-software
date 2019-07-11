@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1136,18 +1136,6 @@ msgstr ""
 msgid "Proceed"
 msgstr "Continua"
 
-msgid "Congratulations!"
-msgstr "Felicitări!"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr ""
-
-msgid "Review"
-msgstr ""
-
-msgid "Enable"
-msgstr "Activează:"
-
 msgid "Country code"
 msgstr "Codul țării"
 
@@ -1193,6 +1181,9 @@ msgstr "Eliberat de:"
 
 msgid "Intermediate Certificates"
 msgstr "Certificate intermediare"
+
+msgid "Enable"
+msgstr "Activează:"
 
 msgid "Reset"
 msgstr "Resetează "
@@ -1937,6 +1928,9 @@ msgid ""
 "reset."
 msgstr ""
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr ""
 
@@ -1972,6 +1966,9 @@ msgstr "Data solicitării"
 
 msgid "Undeclared"
 msgstr ""
+
+msgid "Congratulations!"
+msgstr "Felicitări!"
 
 msgid "You have completed the platform activation."
 msgstr ""

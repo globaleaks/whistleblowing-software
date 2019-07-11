@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1124,18 +1124,6 @@ msgstr ""
 msgid "Proceed"
 msgstr "발하다"
 
-msgid "Congratulations!"
-msgstr "치하!"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr ""
-
-msgid "Review"
-msgstr ""
-
-msgid "Enable"
-msgstr "활성화"
-
 msgid "Country code"
 msgstr ""
 
@@ -1181,6 +1169,9 @@ msgstr ""
 
 msgid "Intermediate Certificates"
 msgstr ""
+
+msgid "Enable"
+msgstr "활성화"
 
 msgid "Reset"
 msgstr "다시 놓기"
@@ -1925,6 +1916,9 @@ msgid ""
 "reset."
 msgstr ""
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr ""
 
@@ -1960,6 +1954,9 @@ msgstr "요청 일자"
 
 msgid "Undeclared"
 msgstr ""
+
+msgid "Congratulations!"
+msgstr "치하!"
 
 msgid "You have completed the platform activation."
 msgstr ""

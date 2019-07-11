@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1138,18 +1138,6 @@ msgstr "我同意此服务条款。"
 msgid "Proceed"
 msgstr "已处理"
 
-msgid "Congratulations!"
-msgstr "祝贺你！"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr "阅读该服务条款。"
-
-msgid "Review"
-msgstr "审查"
-
-msgid "Enable"
-msgstr "开启"
-
 msgid "Country code"
 msgstr "国家或地区代码"
 
@@ -1195,6 +1183,9 @@ msgstr "签发者："
 
 msgid "Intermediate Certificates"
 msgstr "中间证书"
+
+msgid "Enable"
+msgstr "开启"
 
 msgid "Reset"
 msgstr "重置"
@@ -1939,6 +1930,9 @@ msgid ""
 "reset."
 msgstr ""
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr ""
 
@@ -1974,6 +1968,9 @@ msgstr "申请日期"
 
 msgid "Undeclared"
 msgstr ""
+
+msgid "Congratulations!"
+msgstr "祝贺你！"
 
 msgid "You have completed the platform activation."
 msgstr "您已完成平台激活。"

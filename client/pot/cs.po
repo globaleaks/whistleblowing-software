@@ -6,6 +6,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # Jiří Podhorecký <j.podhorecky@volny.cz>, 2019
+# Jiří Podhorecký <j.podhorecky@volny.cz>, 2019
 # Jiří Podhorecký <j.podhorecky@volny.cz>, 2018-2019
 # Lenka Ježková <lenka.jezkova@oziveni.cz>, 2019
 # Miroslav Kučera <mkucera66@seznam.cz>, 2013-2017
@@ -14,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -367,7 +368,7 @@ msgid "HTTPS settings"
 msgstr "Nastavení HTTPS"
 
 msgid "URL redirects"
-msgstr ""
+msgstr "přesměrování URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "Prahové hodnoty detekce anomálií"
@@ -1133,18 +1134,6 @@ msgstr "Souhlasím s Podmínkami využívání služby"
 msgid "Proceed"
 msgstr "Provést"
 
-msgid "Congratulations!"
-msgstr "Gratulujeme!"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr "Konfigurace dokončena. Můžete provést kontrolu nastavení nebo ji rovnou povolit."
-
-msgid "Review"
-msgstr "Revidovat"
-
-msgid "Enable"
-msgstr "Povoleno"
-
 msgid "Country code"
 msgstr "Kód země"
 
@@ -1190,6 +1179,9 @@ msgstr "Vydavatel:"
 
 msgid "Intermediate Certificates"
 msgstr "Podřízený certifikát."
+
+msgid "Enable"
+msgstr "Povoleno"
 
 msgid "Reset"
 msgstr "Reset"
@@ -1934,6 +1926,9 @@ msgid ""
 "reset."
 msgstr "Zadejte uživatelské jméno účtu nebo e-mailovou adresu a požádejte o obnovení hesla."
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr "Požádejte o obnovení hesla"
 
@@ -1969,6 +1964,9 @@ msgstr "Datum požadavku"
 
 msgid "Undeclared"
 msgstr "Neurčité"
+
+msgid "Congratulations!"
+msgstr "Gratulujeme!"
 
 msgid "You have completed the platform activation."
 msgstr "Právě jste dokončili aktivaci platformy."
@@ -2227,7 +2225,7 @@ msgid "Registration data:"
 msgstr "Registrační údaje"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "Site: {Url}"
 
 msgid "Name: {Name}"
 msgstr "Jméno: {Jméno} "
@@ -2283,7 +2281,7 @@ msgid "Email change request"
 msgstr "Žádost o změnu e-mailu"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "Od: {Author}"
 
 msgid "Date: {EventTime}"
 msgstr "Datum: {EventTime}"
@@ -2359,7 +2357,7 @@ msgid ""
 msgstr "Toto je emailové upozornění, že příjemce požaduje přístup k identitě oznamovatele podání {TipNum}."
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "K požadavku lze přistupovat na adrese:"
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Nový požadavek na přístup k identitě oznamovatele"
@@ -2390,7 +2388,7 @@ msgid ""
 msgstr "Pokud jste tuto žádost neučinili, můžete tento e-mail ignorovat a smazat."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr ""
+msgstr "Požadavek můžete potvrdit kliknutím na následující odkaz:"
 
 msgid "Password reset instructions"
 msgstr "Pokyny pro obnovení hesla"

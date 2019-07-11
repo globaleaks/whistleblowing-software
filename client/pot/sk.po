@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1133,18 +1133,6 @@ msgstr "Súhlasím s podmienkami užívania služby."
 msgid "Proceed"
 msgstr "Pokračovať"
 
-msgid "Congratulations!"
-msgstr "Gratulujeme!"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr "Konfigurácia dokončená. Môžete vykonať kontrolu nastavenia alebo ju rovno povoliť."
-
-msgid "Review"
-msgstr "Preveriť"
-
-msgid "Enable"
-msgstr "Povoliť"
-
 msgid "Country code"
 msgstr "Kód krajiny"
 
@@ -1190,6 +1178,9 @@ msgstr "Vydavateľ:"
 
 msgid "Intermediate Certificates"
 msgstr "Dočasný certifikát."
+
+msgid "Enable"
+msgstr "Povoliť"
 
 msgid "Reset"
 msgstr "Resetovať"
@@ -1934,6 +1925,9 @@ msgid ""
 "reset."
 msgstr "Vložte používateľské meno účtu alebo emailovú adresu a požiadajte o obnovenie hesla."
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr "Požiadajte o obnovenie hesla"
 
@@ -1969,6 +1963,9 @@ msgstr "Dátum žiadosti"
 
 msgid "Undeclared"
 msgstr "Neohlásený"
+
+msgid "Congratulations!"
+msgstr "Gratulujeme!"
 
 msgid "You have completed the platform activation."
 msgstr "Práve ste dokončili aktiváciu platformy."

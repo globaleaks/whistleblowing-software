@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1157,18 +1157,6 @@ msgstr "Concordo com os termos de licença."
 msgid "Proceed"
 msgstr "Prosseguir"
 
-msgid "Congratulations!"
-msgstr "Parabéns!"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr "Configuração finalizada. Você pode revê-la ou ativá-la agora."
-
-msgid "Review"
-msgstr "Revisão"
-
-msgid "Enable"
-msgstr "Ativar"
-
 msgid "Country code"
 msgstr "Código do país"
 
@@ -1214,6 +1202,9 @@ msgstr "Emissor:"
 
 msgid "Intermediate Certificates"
 msgstr "Certificados intermediários"
+
+msgid "Enable"
+msgstr "Ativar"
 
 msgid "Reset"
 msgstr "Restaurar"
@@ -1958,6 +1949,9 @@ msgid ""
 "reset."
 msgstr "Digite o nome de usuário da sua conta ou seu endereço de e-mail para solicitar uma redefinição de senha."
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr "Solicitar redefinição de senha"
 
@@ -1993,6 +1987,9 @@ msgstr "Data do pedido"
 
 msgid "Undeclared"
 msgstr "Não declarado"
+
+msgid "Congratulations!"
+msgstr "Parabéns!"
 
 msgid "You have completed the platform activation."
 msgstr "Você concluiu a ativação da plataforma."

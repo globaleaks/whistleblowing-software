@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1130,18 +1130,6 @@ msgstr "Съгласен съм с Общите Условия."
 msgid "Proceed"
 msgstr "Продължи"
 
-msgid "Congratulations!"
-msgstr "Поздравления!"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr "Настройката е завършена. Може да разгледате настройките и да ги активирате веднага."
-
-msgid "Review"
-msgstr "Преглед"
-
-msgid "Enable"
-msgstr "Активиране"
-
 msgid "Country code"
 msgstr "Код на държавата"
 
@@ -1187,6 +1175,9 @@ msgstr "Издател:"
 
 msgid "Intermediate Certificates"
 msgstr "Междинни сертификати"
+
+msgid "Enable"
+msgstr "Активиране"
 
 msgid "Reset"
 msgstr "Изчисти"
@@ -1931,6 +1922,9 @@ msgid ""
 "reset."
 msgstr "Въведете потребителското име на профила си или имейл адреса, за да поискате възстановяване на паролата."
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr "Поискване за възстановяване на паролата"
 
@@ -1966,6 +1960,9 @@ msgstr "Дата на заявката"
 
 msgid "Undeclared"
 msgstr "Недклариран"
+
+msgid "Congratulations!"
+msgstr "Поздравления!"
 
 msgid "You have completed the platform activation."
 msgstr "Завършихте активирането на платформата."

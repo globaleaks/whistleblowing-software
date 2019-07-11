@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1134,18 +1134,6 @@ msgstr "Συμφωνώ με τους όρους χρήσης."
 msgid "Proceed"
 msgstr "Συνέχεια"
 
-msgid "Congratulations!"
-msgstr "Συγχαρητήρια!"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr "Η παραμετροποίηση ολοκληρώθηκε. Μπορείτε να επαναθεωρήσετε τις ρυθμίσεις ή να την ενεργοποιήσετε τώρα."
-
-msgid "Review"
-msgstr "Ανασκόπηση"
-
-msgid "Enable"
-msgstr "Ενεργοποίηση"
-
 msgid "Country code"
 msgstr "Κωδικός χώρας"
 
@@ -1191,6 +1179,9 @@ msgstr "Εκδότης:"
 
 msgid "Intermediate Certificates"
 msgstr "Ενδιάμεσα πιστοποιητικά"
+
+msgid "Enable"
+msgstr "Ενεργοποίηση"
 
 msgid "Reset"
 msgstr "Επαναφορά"
@@ -1935,6 +1926,9 @@ msgid ""
 "reset."
 msgstr "Εισάγετε το όνομα χρήστη του λογαριασμού σας ή την διεύθυνση email σας για να αιτηθείτε επαναφορά του κωδικού πρόσβασης."
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr "Αίτηση επαναφοράς κωδικού πρόσβασης"
 
@@ -1970,6 +1964,9 @@ msgstr "Ημερομηνία υποβολής της αίτησης"
 
 msgid "Undeclared"
 msgstr "Αδήλωτη"
+
+msgid "Congratulations!"
+msgstr "Συγχαρητήρια!"
 
 msgid "You have completed the platform activation."
 msgstr "Ολοκληρώσατε την ενεργοποίηση της πλατφόρμας"

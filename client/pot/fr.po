@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1158,18 +1158,6 @@ msgstr "J’accepte les conditions générales d’utilisation."
 msgid "Proceed"
 msgstr "Continuer"
 
-msgid "Congratulations!"
-msgstr "Félicitations !"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr "La configuration est terminée. Vous pouvez vérifier les paramètres ou l’activer maintenant."
-
-msgid "Review"
-msgstr "Vérifier"
-
-msgid "Enable"
-msgstr "Activer"
-
 msgid "Country code"
 msgstr "Indicatif de pays"
 
@@ -1215,6 +1203,9 @@ msgstr "Émetteur :"
 
 msgid "Intermediate Certificates"
 msgstr "Certificats intermédiaires"
+
+msgid "Enable"
+msgstr "Activer"
 
 msgid "Reset"
 msgstr "Réinitialiser"
@@ -1959,6 +1950,9 @@ msgid ""
 "reset."
 msgstr "Saisissez le nom d’utilisateur de votre compte ou votre adresse courriel pour demander une réinitialisation du mot de passe."
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr "Demander une réinitialisation de mot de passe"
 
@@ -1994,6 +1988,9 @@ msgstr "Date de la demande"
 
 msgid "Undeclared"
 msgstr "Non déclarée"
+
+msgid "Congratulations!"
+msgstr "Félicitations !"
 
 msgid "You have completed the platform activation."
 msgstr "L’activation de la plateforme est maintenant terminée."
@@ -2308,7 +2305,7 @@ msgid "Email change request"
 msgstr "Demande de changement d’adresse courriel"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "De : {Author}"
 
 msgid "Date: {EventTime}"
 msgstr "Date : {EventTime}"

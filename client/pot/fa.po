@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1142,18 +1142,6 @@ msgstr "با شرایط استفاده از خدمات موافقم"
 msgid "Proceed"
 msgstr "ادامه بده"
 
-msgid "Congratulations!"
-msgstr "تبریک!"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr "پیکربندی کامل شد. هم اکنون میتوانید تنظیمات را بازبینی کنید یا آن را الان فعال کنید."
-
-msgid "Review"
-msgstr "مرور کنید."
-
-msgid "Enable"
-msgstr "فعّال"
-
 msgid "Country code"
 msgstr "کد کشور"
 
@@ -1199,6 +1187,9 @@ msgstr "صادرکننده:"
 
 msgid "Intermediate Certificates"
 msgstr "گواهی های واسطه"
+
+msgid "Enable"
+msgstr "فعّال"
 
 msgid "Reset"
 msgstr "راه اندازی مجدد"
@@ -1943,6 +1934,9 @@ msgid ""
 "reset."
 msgstr "نام کاربری خود یا آدرس ایمیل را برای درخواست تنظیم مجدد گذرواژه وارد کنید."
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr "درخواست تنظیم مجدد گذرواژه"
 
@@ -1978,6 +1972,9 @@ msgstr "تاریخ درخواست"
 
 msgid "Undeclared"
 msgstr "اعلام نشده"
+
+msgid "Congratulations!"
+msgstr "تبریک!"
 
 msgid "You have completed the platform activation."
 msgstr "شما پلتفورم را فعال کرده اید."

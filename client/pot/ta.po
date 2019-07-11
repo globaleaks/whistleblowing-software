@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1126,18 +1126,6 @@ msgstr "நான் சேவை விதிமுறைகளை ஒப்ப
 msgid "Proceed"
 msgstr "தொடர்க"
 
-msgid "Congratulations!"
-msgstr "வாழ்த்துக்கள்!"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr "கட்டமைப்பு முடிந்தது. நீங்கள் அமைப்புகளை மதிப்பாய்வு செய்யலாம் அல்லது இப்போது அதை இயக்கலாம்."
-
-msgid "Review"
-msgstr "விமர்சனம்"
-
-msgid "Enable"
-msgstr "செயல்படுத்து"
-
 msgid "Country code"
 msgstr "நாட்டின் குறியீடு"
 
@@ -1183,6 +1171,9 @@ msgstr "வழங்குபவர்:"
 
 msgid "Intermediate Certificates"
 msgstr "இடைநிலை சான்றிதழ்கள்"
+
+msgid "Enable"
+msgstr "செயல்படுத்து"
 
 msgid "Reset"
 msgstr "மீட்டமை"
@@ -1927,6 +1918,9 @@ msgid ""
 "reset."
 msgstr "கடவுச்சொல் மீட்டமைப்பைக் கோர உங்கள் கணக்கு பயனர்பெயர் அல்லது மின்னஞ்சல் முகவரி உள்ளிடவும்."
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr "கடவுச்சொல் மீட்டமைப்பைக் கோரவும்"
 
@@ -1962,6 +1956,9 @@ msgstr "கோரிக்கையின் தேதி"
 
 msgid "Undeclared"
 msgstr "அறிவிக்கப்படாத"
+
+msgid "Congratulations!"
+msgstr "வாழ்த்துக்கள்!"
 
 msgid "You have completed the platform activation."
 msgstr "மேடையில் செயல்பாட்டை முடித்துவிட்டீர்கள்."

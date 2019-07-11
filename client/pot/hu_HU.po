@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1140,18 +1140,6 @@ msgstr ""
 msgid "Proceed"
 msgstr "Tovább"
 
-msgid "Congratulations!"
-msgstr "Gratulálunk!"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr ""
-
-msgid "Review"
-msgstr ""
-
-msgid "Enable"
-msgstr ""
-
 msgid "Country code"
 msgstr ""
 
@@ -1196,6 +1184,9 @@ msgid "Issuer:"
 msgstr ""
 
 msgid "Intermediate Certificates"
+msgstr ""
+
+msgid "Enable"
 msgstr ""
 
 msgid "Reset"
@@ -1941,6 +1932,9 @@ msgid ""
 "reset."
 msgstr ""
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr ""
 
@@ -1976,6 +1970,9 @@ msgstr "A kérés dátuma"
 
 msgid "Undeclared"
 msgstr ""
+
+msgid "Congratulations!"
+msgstr "Gratulálunk!"
 
 msgid "You have completed the platform activation."
 msgstr ""

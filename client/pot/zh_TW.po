@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1129,18 +1129,6 @@ msgstr "我同意這份服務个款"
 msgid "Proceed"
 msgstr "進行"
 
-msgid "Congratulations!"
-msgstr "恭喜！"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr "設定完成。你現在可以檢視相關設定或是啟動它了。"
-
-msgid "Review"
-msgstr "檢查"
-
-msgid "Enable"
-msgstr "啟用"
-
 msgid "Country code"
 msgstr "國碼"
 
@@ -1186,6 +1174,9 @@ msgstr "發出者："
 
 msgid "Intermediate Certificates"
 msgstr "中繼憑證"
+
+msgid "Enable"
+msgstr "啟用"
 
 msgid "Reset"
 msgstr "重新設定"
@@ -1930,6 +1921,9 @@ msgid ""
 "reset."
 msgstr "輸入您的帳戶名稱或電郵地址以請求重設密碼。"
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr "請求重設密碼"
 
@@ -1965,6 +1959,9 @@ msgstr "提出要求的日期"
 
 msgid "Undeclared"
 msgstr "未作宣告的"
+
+msgid "Congratulations!"
+msgstr "恭喜！"
 
 msgid "You have completed the platform activation."
 msgstr "已完成平台的激活"

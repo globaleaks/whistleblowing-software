@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1129,18 +1129,6 @@ msgstr ""
 msgid "Proceed"
 msgstr "ดำเนิน"
 
-msgid "Congratulations!"
-msgstr "ขอแสดงความยินดี!"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr ""
-
-msgid "Review"
-msgstr ""
-
-msgid "Enable"
-msgstr "เปิดใช้งาน"
-
 msgid "Country code"
 msgstr ""
 
@@ -1186,6 +1174,9 @@ msgstr ""
 
 msgid "Intermediate Certificates"
 msgstr ""
+
+msgid "Enable"
+msgstr "เปิดใช้งาน"
 
 msgid "Reset"
 msgstr "รีเซ็ต"
@@ -1930,6 +1921,9 @@ msgid ""
 "reset."
 msgstr ""
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr ""
 
@@ -1965,6 +1959,9 @@ msgstr "วันของการร้องขอ"
 
 msgid "Undeclared"
 msgstr ""
+
+msgid "Congratulations!"
+msgstr "ขอแสดงความยินดี!"
 
 msgid "You have completed the platform activation."
 msgstr ""

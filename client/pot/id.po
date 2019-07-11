@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1142,18 +1142,6 @@ msgstr "Saya setuju dengan Persyaratan Layanan."
 msgid "Proceed"
 msgstr "Lanjutkan"
 
-msgid "Congratulations!"
-msgstr "Selamat!"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr "Konfigurasi selesai. Anda dapat mengulas pengaturan atau mengaktifkannya sekarang."
-
-msgid "Review"
-msgstr "Ulasan"
-
-msgid "Enable"
-msgstr "Aktifkan"
-
 msgid "Country code"
 msgstr "Kode Negara"
 
@@ -1199,6 +1187,9 @@ msgstr "Penerbit:"
 
 msgid "Intermediate Certificates"
 msgstr "Sertifikat Menengah"
+
+msgid "Enable"
+msgstr "Aktifkan"
 
 msgid "Reset"
 msgstr "Atur ulang"
@@ -1943,6 +1934,9 @@ msgid ""
 "reset."
 msgstr "Masukkan nama pengguna akun anda atau alamat surel untuk meminta pengaturan ulang kata sandi "
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr "Meminta pengaturan ulang kata sandi "
 
@@ -1978,6 +1972,9 @@ msgstr "Tanggal permintaan"
 
 msgid "Undeclared"
 msgstr "Tidak dideklarasikan"
+
+msgid "Congratulations!"
+msgstr "Selamat!"
 
 msgid "You have completed the platform activation."
 msgstr "Anda telah melengkapi platform aktivasi."

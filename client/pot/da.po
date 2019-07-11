@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1125,18 +1125,6 @@ msgstr "Jeg godkender hermed servicebetingelserne."
 msgid "Proceed"
 msgstr "Fortsæt"
 
-msgid "Congratulations!"
-msgstr "Tillykke!"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr "Konfiguration er gennemført. Du kan nu gennemgå indstillingerne eller aktivere dem."
-
-msgid "Review"
-msgstr "Gennemgå"
-
-msgid "Enable"
-msgstr "Aktiver"
-
 msgid "Country code"
 msgstr "Landekode"
 
@@ -1182,6 +1170,9 @@ msgstr "Udsteder:"
 
 msgid "Intermediate Certificates"
 msgstr "Midlertidige certifikater"
+
+msgid "Enable"
+msgstr "Aktiver"
 
 msgid "Reset"
 msgstr "Nulstil"
@@ -1926,6 +1917,9 @@ msgid ""
 "reset."
 msgstr "Indtast din kontos brugernavn eller din mailadresse for at nulstille dit password."
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr "Anmod om nulstilling af password"
 
@@ -1961,6 +1955,9 @@ msgstr "Dato for forespørgslen"
 
 msgid "Undeclared"
 msgstr "Uerklæret"
+
+msgid "Congratulations!"
+msgstr "Tillykke!"
 
 msgid "You have completed the platform activation."
 msgstr "Du har gennemført aktivering af platformen."

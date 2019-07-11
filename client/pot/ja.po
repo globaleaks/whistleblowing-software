@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-04 05:46+0000\n"
+"PO-Revision-Date: 2019-07-11 09:17+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1128,18 +1128,6 @@ msgstr "利用規約に同意します。"
 msgid "Proceed"
 msgstr "続行"
 
-msgid "Congratulations!"
-msgstr "おめでとうございます"
-
-msgid "Configuration completed. You can review the settings or enable it now."
-msgstr "設定は完了です。 設定を確認するか、今すぐ有効にすることができます。"
-
-msgid "Review"
-msgstr "確認"
-
-msgid "Enable"
-msgstr "有効"
-
 msgid "Country code"
 msgstr "国コード"
 
@@ -1185,6 +1173,9 @@ msgstr "発行者:"
 
 msgid "Intermediate Certificates"
 msgstr "中間証明書"
+
+msgid "Enable"
+msgstr "有効"
 
 msgid "Reset"
 msgstr "リセット"
@@ -1929,6 +1920,9 @@ msgid ""
 "reset."
 msgstr "パスワードの再設定をリクエストするには、アカウントのユーザー名またはメールアドレスを入力してください。"
 
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
 msgid "Request password reset"
 msgstr "パスワードの再設定をリクエスト"
 
@@ -1964,6 +1958,9 @@ msgstr "リクエスト日"
 
 msgid "Undeclared"
 msgstr "未定義"
+
+msgid "Congratulations!"
+msgstr "おめでとうございます"
 
 msgid "You have completed the platform activation."
 msgstr "プラットフォームの有効化が完了しました。"
@@ -2278,7 +2275,7 @@ msgid "Email change request"
 msgstr "メールアドレス変更リクエスト"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "送信元: {Author}"
 
 msgid "Date: {EventTime}"
 msgstr "日付: {EventTime}"
