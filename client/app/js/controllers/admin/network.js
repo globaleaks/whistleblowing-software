@@ -160,14 +160,14 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
     })
     .then(function(resp) {
       $scope.le_terms_of_service = resp.terms_of_service;
-      $scope.setMenu("acmeCfg");
+      $scope.setMenu("acme");
     });
   };
 
   $scope.completeAcme = function() {
     var aRes = new adminAcmeResource({});
     aRes.$update().then(function() {
-      $scope.setMenu("acmeFin");
+      $scope.setMenu("files");
     });
   };
 
