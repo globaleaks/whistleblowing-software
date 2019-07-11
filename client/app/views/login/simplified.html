@@ -13,6 +13,10 @@
         <i class="glyphicon glyphicon-log-in"></i>
         <span data-translate>Log in</span>
       </button>
+
+      <span id="forgot-button" data-ng-if="::node.enable_password_reset">
+        <a class="btn btn-default" href="/#/login/passwordreset" data-translate>Forgot password?</a>
+      </span>
     </div>
   </div>
 
@@ -33,6 +37,10 @@
           <i class="glyphicon glyphicon-log-in"></i>
           <span data-translate>Log in</span>
         </button>
+
+        <span id="forgot-button" data-ng-if="::node.enable_password_reset">
+          <a class="btn btn-default" href="/#/login/passwordreset" data-translate>Forgot password?</a>
+        </span>
       </div>
     </div>
   </div>
