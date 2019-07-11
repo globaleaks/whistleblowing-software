@@ -166,9 +166,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
 
   $scope.completeAcme = function() {
     var aRes = new adminAcmeResource({});
-    aRes.$update().then(function() {
-      $scope.setMenu("files");
-    });
+    aRes.$update().then(refreshConfig);
   };
 
   $scope.statusClass = function(fileSum) {
