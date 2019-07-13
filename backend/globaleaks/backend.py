@@ -18,7 +18,6 @@ from globaleaks.state import State
 from globaleaks.utils.log import log, openLogFile, logFormatter, logFormatter, LogObserver
 from globaleaks.utils.process import disable_swap
 from globaleaks.utils.sock import listen_tcp_on_sock, listen_tls_on_sock, reserve_port_for_ip
-from globaleaks.utils.tls import TLSServerContextFactory
 from globaleaks.utils.utility import fix_file_permissions, drop_privileges
 
 
