@@ -268,6 +268,16 @@ directive("isolateClick", function() {
     }
  };
 }).
+directive('disableCcp', function(){
+  return {
+    scope: {},
+    link:function(scope,element) {
+      element.on('cut copy paste', function (event) {
+        event.preventDefault();
+      });
+    }
+  };
+}).
 directive("convertToNumber", function() {
   return {
     require: "ngModel",
