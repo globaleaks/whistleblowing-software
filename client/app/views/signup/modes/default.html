@@ -41,7 +41,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12 form-group">
+    <div class="col-md-6 form-group">
       <label>
         <span data-translate>Email address</span>
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
@@ -52,6 +52,20 @@
                required>
         <div class="text-danger" data-ng-show="signupForm.mail_address.$error.pattern">
           <span data-translate>Invalid email address</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 form-group">
+      <label>
+        <span data-translate>Email address</span> <span>(</span><span data-translate>Confirmation</span><span>)</span>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+      </label>
+      <div data-ng-class="{'has-error': signupForm.email.$error.required || signupForm.email.$error.pattern}">
+        <div>
+          <input name="email" class="form-control" data-ng-model="confirmation_email" data-ng-attr-placeholder="Email" type="text" required>
+          <div class="text-danger" data-ng-show="signupForm.email.$valid && signup.email != confirmation_email">
+            <span data-translate>Invalid confirmation</span>
+          </div>
         </div>
       </div>
     </div>

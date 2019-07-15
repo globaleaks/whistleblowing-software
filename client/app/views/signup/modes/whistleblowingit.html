@@ -20,17 +20,16 @@
   </div>
   <div class="row">
     <div class="col-md-6 form-group">
-      <label>
-        <span>Email di ruolo</span>
-        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-      </label>
-      <div data-ng-class="{'has-error': signupForm.email.$error.required || signupForm.email.$error.pattern}">
-        <div>
-          <input name="email" class="form-control" data-ng-model="signup.email" data-ng-attr-placeholder="Email" data-ng-pattern="email_regexp" type="text" required>
-          <div class="text-danger" data-ng-show="signupForm.email.$error.pattern">
-            <span data-translate>Invalid email address</span>
-          </div>
-        </div>
+      <label>Ruolo</label>
+      <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+      <div data-ng-class="{'has-error': signupForm.role.$error.required}">
+        <select name="role" class="form-control" data-ng-model="signup.role" required>
+          <option value="option1">Direttore generale</option>
+          <option value="option2">Responsabile ICT</option>
+          <option value="option3">Responsabile internal audit</option>
+          <option value="option4">Responsabile prevenzione corruzione</option>
+          <option value="other">Altro</option>
+        </select>
       </div>
     </div>
     <div class="col-md-6 form-group" data-ng-class="{'has-error': signupForm.phone.$invalid}">
@@ -46,18 +45,35 @@
   </div>
   <div class="row">
     <div class="col-md-6 form-group">
-      <label>Ruolo</label>
-      <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-      <div data-ng-class="{'has-error': signupForm.role.$error.required}">
-        <select name="role" class="form-control" data-ng-model="signup.role" required>
-          <option value="option1">Direttore generale</option>
-          <option value="option2">Responsabile ICT</option>
-          <option value="option3">Responsabile internal audit</option>
-          <option value="option4">Responsabile prevenzione corruzione</option>
-          <option value="other">Altro</option>
-        </select>
+      <label>
+        <span>Email di ruolo</span>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+      </label>
+      <div data-ng-class="{'has-error': signupForm.email.$error.required || signupForm.email.$error.pattern}">
+        <div>
+          <input name="email" class="form-control" data-ng-model="signup.email" data-ng-attr-placeholder="Email" data-ng-pattern="email_regexp" type="text" required>
+          <div class="text-danger" data-ng-show="signupForm.email.$error.pattern">
+            <span data-translate>Invalid email address</span>
+          </div>
+        </div>
       </div>
     </div>
+    <div class="col-md-6 form-group">
+      <label>
+        <span>Email di ruolo (Conferma)</span>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+      </label>
+      <div data-ng-class="{'has-error': signupForm.email.$error.required || signupForm.email.$error.pattern}">
+        <div>
+          <input name="email" class="form-control" data-ng-model="confirmation_email" data-ng-attr-placeholder="Email" type="text" required>
+          <div class="text-danger" data-ng-show="signupForm.email.$valid && signup.email != confirmation_email">
+            <span data-translate>Invalid confirmation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-6 form-group">
       <label>Come sei venuto a conoscenza del progetto?</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
