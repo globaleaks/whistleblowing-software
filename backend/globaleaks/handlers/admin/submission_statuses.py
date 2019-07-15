@@ -18,7 +18,6 @@ def serialize_submission_status(session, row, language):
     submission_status = {
         'id': row.id,
         'system_defined': row.system_defined,
-        'system_usage': row.system_usage,
         'presentation_order': row.presentation_order,
         'substatuses': []
     }
@@ -58,18 +57,18 @@ def db_retrieve_all_submission_statuses(session, tid, language):
                   .order_by(models.SubmissionStatus.presentation_order)
 
     for row in rows:
-        if row.system_defined is False:
-            user_submission_statuses.append(
-                serialize_submission_status(session, row, language)
-            )
+        status_dict = serialize_submission_status(session, row, language)
+        if row.system_defined:
+            system_statuses[row.id] = status_dict
         else:
-            system_statuses[row.system_usage] = serialize_submission_status(session, row, language)
+            user_submission_statuses.append(status_dict)
 
     # Build the final array in the correct order
     submission_statuses.append(system_statuses['new'])
     submission_statuses.append(system_statuses['opened'])
     submission_statuses += user_submission_statuses
     submission_statuses.append(system_statuses['closed'])
+    print(submission_statuses)
 
     return submission_statuses
 
@@ -129,24 +128,6 @@ def update_submission_status(session, tid, submission_status_id, request, langua
         raise errors.ResourceNotFound
 
     update_status_model_from_request(status, request, language)
-
-
-@transact
-def get_id_for_system_status(session, tid, system_status):
-    """Returns the ID of a system defined status"""
-    return db_get_id_for_system_status(session, tid, system_status)
-
-
-def db_get_id_for_system_status(session, tid, system_status):
-    """Returns the UUID of a given submission status"""
-    status = session.query(models.SubmissionStatus) \
-                   .filter(models.SubmissionStatus.tid == tid,
-                           models.SubmissionStatus.system_usage == system_status).one_or_none()
-
-    if status is None:
-        raise errors.ResourceNotFound
-
-    return status.id
 
 
 @transact

@@ -161,8 +161,10 @@ api_spec = [
     (r'/admin/tenants/' + '([0-9]{1,20})', admin_tenant.TenantInstance),
     (r'/admin/manifest', admin_manifest.ManifestHandler),
     (r'/admin/submission_statuses', admin_submission_statuses.SubmissionStatusCollection),
+    (r'/admin/submission_statuses/' + r'(closed)' + r'/substatuses', admin_submission_statuses.SubmissionSubStatusCollection),
     (r'/admin/submission_statuses/' + uuid_regexp, admin_submission_statuses.SubmissionStatusInstance),
     (r'/admin/submission_statuses/' + uuid_regexp + r'/substatuses', admin_submission_statuses.SubmissionSubStatusCollection),
+    (r'/admin/submission_statuses/' + r'(closed)' + r'/substatuses/' + uuid_regexp, admin_submission_statuses.SubmissionSubStatusInstance),
     (r'/admin/submission_statuses/' + uuid_regexp + r'/substatuses/' + uuid_regexp, admin_submission_statuses.SubmissionSubStatusInstance),
 
     (r'/wizard', wizard.Wizard),

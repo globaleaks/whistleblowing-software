@@ -27,7 +27,7 @@
     </div>
   </div>
   <div data-ng-repeat="submissions_status in admin.submission_statuses">
-    <div data-ng-controller="AdminSubmissionStatusEditorCtrl" class="submissionStatusList" data-ng-if="submissions_status.system_usage != 'closed'">
+    <div data-ng-controller="AdminSubmissionStatusEditorCtrl" class="submissionStatusList" data-ng-if="!submissions_status.system_defined">
       <div data-ng-form="submissionStatus-{{$index}}" name="editsubmissionStatus" novalidate>
         <div class="configItem">
           <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">

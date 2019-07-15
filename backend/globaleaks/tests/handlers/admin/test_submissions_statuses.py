@@ -11,7 +11,7 @@ from globaleaks.tests import helpers
 def count_submission_statuses(session, tid):
     """Counts all submission statuses in the system"""
     return session.query(models.SubmissionStatus) \
-        .filter(models.SubmissionStatus.tid==tid).count()
+                  .filter(models.SubmissionStatus.tid==tid).count()
 
 
 @transact
@@ -53,8 +53,7 @@ class SubmissionStatusCollectionDesc(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get_with_substatuses(self):
-        new_status_id = yield submission_statuses.get_id_for_system_status(1, 'new')
-        yield create_substatus(new_status_id)
+        yield create_substatus(u'new')
 
         handler = self.request({}, role='admin')
         response = yield handler.get()
@@ -63,7 +62,7 @@ class SubmissionStatusCollectionDesc(helpers.TestHandlerWithPopulatedDB):
 
         check_status = None
         for status in response:
-            if status['id'] == new_status_id:
+            if status['id'] == u'new':
                 check_status = status
                 break
 
@@ -164,24 +163,22 @@ class SubmissionSubStatusCollectionDesc(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get(self):
-        new_status_id = yield submission_statuses.get_id_for_system_status(1, 'new')
-        yield create_substatus(new_status_id)
+        yield create_substatus(u'new')
 
         handler = self.request({}, role='admin')
-        response = yield handler.get(new_status_id)
+        response = yield handler.get(u'new')
         self.assertEqual(len(response), 1)
 
     @inlineCallbacks
     def test_post(self):
-        new_status_id = yield submission_statuses.get_id_for_system_status(1, 'new')
         data_request = {
             'label': '12345',
             'presentation_order': 0
         }
         handler = self.request(data_request, role='admin')
-        response = yield handler.post(new_status_id)
+        response = yield handler.post(u'new')
 
-        submission_status = yield submission_statuses.retrieve_specific_submission_status(1, new_status_id, u'en')
+        submission_status = yield submission_statuses.retrieve_specific_submission_status(1, u'new', u'en')
         self.assertEqual(len(submission_status['substatuses']), 1)
 
 
@@ -193,10 +190,9 @@ class SubmissionSubStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put(self):
-        new_status_id = yield submission_statuses.get_id_for_system_status(1, 'new')
-        yield create_substatus(new_status_id)
+        yield create_substatus(u'new')
 
-        submission_status = yield submission_statuses.retrieve_specific_submission_status(1, new_status_id, u'en')
+        submission_status = yield submission_statuses.retrieve_specific_submission_status(1, u'new', u'en')
         substatus_uuid = submission_status['substatuses'][0]['id']
 
         data_request = {
@@ -205,21 +201,20 @@ class SubmissionSubStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
         }
 
         handler = self.request(data_request, role='admin')
-        yield handler.put(new_status_id, substatus_uuid)
+        yield handler.put(u'new', substatus_uuid)
 
-        submission_status = yield submission_statuses.retrieve_specific_submission_status(1, new_status_id, u'en')
+        submission_status = yield submission_statuses.retrieve_specific_submission_status(1, u'new', u'en')
         self.assertEqual(submission_status['substatuses'][0]['label'], '12345')
 
     @inlineCallbacks
     def test_delete(self):
-        new_status_id = yield submission_statuses.get_id_for_system_status(1, 'new')
-        yield create_substatus(new_status_id)
+        yield create_substatus(u'new')
 
-        submission_status = yield submission_statuses.retrieve_specific_submission_status(1, new_status_id, u'en')
+        submission_status = yield submission_statuses.retrieve_specific_submission_status(1, u'new', u'en')
         substatus_uuid = submission_status['substatuses'][0]['id']
 
         handler = self.request({}, role='admin')
-        yield handler.delete(new_status_id, substatus_uuid)
+        yield handler.delete(u'new', substatus_uuid)
 
-        submission_status = yield submission_statuses.retrieve_specific_submission_status(1, new_status_id, u'en')
+        submission_status = yield submission_statuses.retrieve_specific_submission_status(1, u'new', u'en')
         self.assertEqual(len(submission_status['substatuses']), 0)

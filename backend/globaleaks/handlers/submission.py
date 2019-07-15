@@ -9,7 +9,6 @@ from six import text_type
 
 from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
-from globaleaks.handlers.admin.submission_statuses import db_get_id_for_system_status
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import get_localized_values
 from globaleaks.orm import transact
@@ -289,7 +288,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
     itip = models.InternalTip()
     itip.tid = tid
-    itip.status = db_get_id_for_system_status(session, tid, u'new')
+    itip.status = u'new'
 
     itip.progressive = db_assign_submission_progressive(session, tid)
 

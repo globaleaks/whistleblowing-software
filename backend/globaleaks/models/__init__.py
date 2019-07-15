@@ -1123,11 +1123,10 @@ class _SubmissionStatus(Model):
     __tablename__ = 'submissionstatus'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    tid = Column(Integer, default=1, nullable=False)
+    tid = Column(Integer, primary_key=True, default=1, nullable=False)
     label = Column(JSON, default=dict, nullable=False)
 
     system_defined = Column(Boolean, nullable=False, default=False)
-    system_usage = Column(UnicodeText, nullable=True)
 
     tip_timetolive = Column(Integer, default=90, nullable=False)
     tip_timetolive_override = Column(Boolean, default=False, nullable=False)
@@ -1152,9 +1151,9 @@ class _SubmissionSubStatus(Model):
     __tablename__ = 'submissionsubstatus'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    tid = Column(Integer, primary_key=True, default=1, nullable=False)
     submissionstatus_id = Column(UnicodeText(36), nullable=False)
     label = Column(JSON, default=dict, nullable=False)
-
     tip_timetolive = Column(Integer, default=90, nullable=False)
     tip_timetolive_override = Column(Boolean, default=False, nullable=False)
     receivers = Column(JSON, default=list, nullable=False)
@@ -1168,7 +1167,7 @@ class _SubmissionSubStatus(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['submissionstatus_id'], ['submissionstatus.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return (ForeignKeyConstraint(['tid', 'submissionstatus_id'], ['submissionstatus.tid', 'submissionstatus.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
 class _SubmissionStatusChange(Model):

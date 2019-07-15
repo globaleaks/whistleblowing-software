@@ -44,6 +44,7 @@ from globaleaks.db.migrations.update_46 import Config_v_45, ConfigL10N_v_45, Con
 from globaleaks.db.migrations.update_47 import Context_v_46, FieldOption_v_46, InternalTip_v_46, SubmissionStatus_v_46, SubmissionSubStatus_v_46
 from globaleaks.db.migrations.update_48 import Field_v_47, FieldOption_v_47
 from globaleaks.db.migrations.update_49 import InternalTip_v_48
+from globaleaks.db.migrations.update_50 import SubmissionStatus_v_49, SubmissionSubStatus_v_49
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
@@ -90,8 +91,8 @@ migration_mapping = OrderedDict([
     ('ReceiverTip', [ReceiverTip_v_30, 0, 0, 0, 0, 0, 0, ReceiverTip_v_38, 0, 0, 0, 0, 0, 0, 0, ReceiverTip_v_40, 0, ReceiverTip_v_42, 0, ReceiverTip_v_44, 0, models._ReceiverTip, 0, 0, 0, 0, 0]),
     ('Redirect', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Redirect, 0]),
     ('SecureFileDelete', [SecureFileDelete_v_24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._SecureFileDelete, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('SubmissionStatus', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, SubmissionStatus_v_46, 0, 0, 0, 0, models._SubmissionStatus, 0, 0, 0]),
-    ('SubmissionSubStatus', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, SubmissionSubStatus_v_46, 0, 0, 0, 0, models._SubmissionSubStatus, 0, 0, 0]),
+    ('SubmissionStatus', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, SubmissionStatus_v_46, 0, 0, 0, 0, SubmissionStatus_v_49, 0, 0, models._SubmissionStatus]),
+    ('SubmissionSubStatus', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, SubmissionSubStatus_v_46, 0, 0, 0, 0, SubmissionSubStatus_v_49, 0, 0, models._SubmissionSubStatus]),
     ('SubmissionStatusChange', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._SubmissionStatusChange, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Signup', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Signup_v_40, 0, Signup_v_41, Signup_v_42, models._Signup, 0, 0, 0, 0, 0, 0, 0]),
     ('Stats', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Stats, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),

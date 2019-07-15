@@ -231,13 +231,13 @@ def receiver_get_rfile_list(session, rtip_id):
 
 def db_set_itip_open_if_new(session, tid, user_id, itip):
     new_status_id = session.query(models.SubmissionStatus.id) \
-                          .filter(models.SubmissionStatus.tid == tid,
-                                  models.SubmissionStatus.system_usage == 'new').one()[0]
+                           .filter(models.SubmissionStatus.id == u'new',
+                                   models.SubmissionStatus.tid == tid).one()[0]
 
     if new_status_id == itip.status:
         open_status_id = session.query(models.SubmissionStatus.id) \
-                              .filter(models.SubmissionStatus.tid == tid,
-                                      models.SubmissionStatus.system_usage == 'opened').one()[0]
+                                .filter(models.SubmissionStatus.id == u'opened',
+                                        models.SubmissionStatus.tid == tid).one()[0]
 
         db_update_submission_status(session, user_id, itip, open_status_id, '')
 

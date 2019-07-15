@@ -195,7 +195,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
     // Find the closed status from the statuses list so we can directly manipulate it
     for (var i = 0; i < $scope.admin.submission_statuses.length; i++) {
       var status = $scope.admin.submission_statuses[i];
-      if (status.system_defined === true && status.system_usage === "closed") {
+      if (status.id === "closed") {
         $scope.submissions_status = status;
         return;
       }
