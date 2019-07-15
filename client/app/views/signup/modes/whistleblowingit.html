@@ -66,7 +66,7 @@
       <div data-ng-class="{'has-error': signupForm.email.$error.required || signupForm.email.$error.pattern}">
         <div>
           <input name="email" class="form-control" data-ng-model="confirmation_email" data-ng-attr-placeholder="Email" data-disable-ccp type="text" required>
-          <div class="text-danger" data-ng-show="signupForm.email.$valid && signup.email != confirmation_email">
+          <div class="text-danger" data-ng-show="signupForm.email.$valid && signup.email !== confirmation_email">
             <span data-translate>Invalid confirmation</span>
           </div>
         </div>
