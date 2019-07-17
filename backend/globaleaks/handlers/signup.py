@@ -114,43 +114,44 @@ def signup_activation(session, state, tid, token, language):
     if signup is None:
         return {}
 
-    if not session.query(models.Config).filter(models.Config.tid == signup.tid).count():
-        tenant = session.query(models.Tenant).filter(models.Tenant.id == signup.tid).one()
+    signup.activation_token = ''
 
-        mode = config.get_val('mode')
+    tenant = session.query(models.Tenant).filter(models.Tenant.id == signup.tid).one()
 
-        db_initialize_tenant(session, tenant, mode)
+    mode = config.get_val('mode')
 
-        password_admin = generateRandomKey(16)
-        password_recipient = generateRandomKey(16)
+    db_initialize_tenant(session, tenant, mode)
 
-        node_name = signup.organization_name if signup.organization_name else signup.subdomain
+    password_admin = generateRandomKey(16)
+    password_recipient = generateRandomKey(16)
 
-        wizard = {
-            'node_language': signup.language,
-            'node_name': node_name,
-            'admin_name': signup.name + ' ' + signup.surname,
-            'admin_password': password_admin,
-            'admin_mail_address': signup.email,
-            'receiver_name': signup.name + ' ' + signup.surname,
-            'receiver_password': password_recipient,
-            'receiver_mail_address': signup.email,
-            'profile': 'default',
-            'enable_developers_exception_notification': True
-        }
+    node_name = signup.organization_name if signup.organization_name else signup.subdomain
 
-        db_wizard(session, signup.tid, wizard, False, language)
+    wizard = {
+        'node_language': signup.language,
+        'node_name': node_name,
+        'admin_name': signup.name + ' ' + signup.surname,
+        'admin_password': password_admin,
+        'admin_mail_address': signup.email,
+        'receiver_name': signup.name + ' ' + signup.surname,
+        'receiver_password': password_recipient,
+        'receiver_mail_address': signup.email,
+        'profile': 'default',
+        'enable_developers_exception_notification': True
+    }
 
-        template_vars = {
-            'type': 'activation',
-            'node': db_admin_serialize_node(session, 1, language),
-            'notification': db_get_notification(session, 1, language),
-            'signup': serialize_signup(signup),
-            'password_admin': password_admin,
-            'password_recipient': password_recipient
-        }
+    db_wizard(session, signup.tid, wizard, False, language)
 
-        state.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
+    template_vars = {
+        'type': 'activation',
+        'node': db_admin_serialize_node(session, 1, language),
+        'notification': db_get_notification(session, 1, language),
+        'signup': serialize_signup(signup),
+        'password_admin': password_admin,
+        'password_recipient': password_recipient
+    }
+
+    state.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
 
     db_refresh_memory_variables(session, [1])
 

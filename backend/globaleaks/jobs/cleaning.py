@@ -35,12 +35,11 @@ class Cleaning(DailyJob):
         for tid in self.state.tenant_state:
             threshold = datetime_now() - timedelta(days=self.state.tenant_cache[tid].wbtip_timetolive)
 
-            wbtips_ids = [r[0] for r in session.query(models.InternalTip.id)
-                                               .filter(models.InternalTip.tid == tid,
-                                                       models.InternalTip.wb_last_access < threshold)]
+            subquery = session.query(models.InternalTip.id) \
+                              .filter(models.InternalTip.tid == tid,
+                                      models.InternalTip.wb_last_access < threshold)
 
-            if wbtips_ids:
-                session.query(models.WhistleblowerTip).filter(models.WhistleblowerTip.id.in_(wbtips_ids)).delete(synchronize_session='fetch')
+            session.query(models.WhistleblowerTip).filter(models.WhistleblowerTip.id.in_(subquery)).delete(synchronize_session='fetch')
 
     def db_clean_expired_itips(self, session):
         """
@@ -123,6 +122,12 @@ class Cleaning(DailyJob):
         # delete archived schemas not used by any existing submission
         subquery = session.query(models.InternalTipAnswers.questionnaire_hash)
         session.query(models.ArchivedSchema).filter(not_(models.ArchivedSchema.hash.in_(subquery))).delete(synchronize_session='fetch')
+
+        # delete the tenants created via signup that has not been completed in 24h
+        subquery = session.query(models.Tenant.id).filter(models.Signup.activation_token != '',
+                                                          models.Signup.tid == models.Tenant.id,
+                                                          models.Tenant.creation_date < datetime_now() - timedelta(days=1))
+        session.query(models.Tenant).filter(models.Tenant.id.in_(subquery)).delete(synchronize_session='fetch')
 
     @transact
     def get_files_to_secure_delete(self, session):
