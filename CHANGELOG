@@ -1,3 +1,9 @@
+Changes in version 3.9.13 - 2019-07-19
+    Disable Copy-Cut-Paste on signup user email confirmation (#2637)
+    On signup ask the user email twice (#2637)
+    Fix login issue on old migrated platforms
+    Fix the gl-admin reset pass in relation to mixed Argon/Scrypt situations
+
 Changes in version 3.9.12 - 2019-07-11
     Fix issues #2625, #2626, #2630
     Improve UI in relation to issue #2627
