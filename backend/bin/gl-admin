@@ -121,11 +121,11 @@ def reset_pass(args):
 
     hashed_password = GCE.hash_password(args.password, salt)
 
-    QUERY = "UPDATE user SET salt=?, password=? WHERE username=? AND tid=?;"
+    QUERY = "UPDATE user SET salt=?, password=?, hash_alg=? WHERE username=? AND tid=?;"
 
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
-    c.execute(QUERY, (salt, hashed_password, args.username, args.tid))
+    c.execute(QUERY, (salt, hashed_password, GCE.HASH, args.username, args.tid))
 
     if c.rowcount != 1:
         print("Failed! The user '{}' does not exist.".format(args.username))
