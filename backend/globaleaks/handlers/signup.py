@@ -54,6 +54,14 @@ def signup(session, state, tid, request, language):
     request['activation_token'] = generateRandomKey(32)
     request['language'] = language
 
+    # Delete the tenants created for the same subdomain that have still not been activated
+    # Ticket reference: https://github.com/globaleaks/GlobaLeaks/issues/2640
+    subquery = session.query(models.Tenant.id).filter(models.Signup.subdomain == request['subdomain'],
+                                                      models.Signup.activation_token != '',
+                                                      models.Tenant.id == models.Signup.tid,
+                                                      models.Tenant.subdomain ==  models.Signup.subdomain)
+    session.query(models.Tenant).filter(models.Tenant.id.in_(subquery)).delete(synchronize_session='fetch')
+
     tenant_id = db_preallocate_tenant(session, {'label': request['subdomain'],
                                                 'subdomain': request['subdomain']}).id
 
