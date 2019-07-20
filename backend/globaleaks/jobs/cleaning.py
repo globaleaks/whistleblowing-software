@@ -59,17 +59,20 @@ class Cleaning(DailyJob):
             for user in session.query(models.User).filter(models.User.role == u'receiver',
                                                           models.UserTenant.user_id == models.User.id,
                                                           models.UserTenant.tenant_id == tid):
-                itip_ids = [id[0] for id in session.query(models.InternalTip.id)
-                                                 .filter(models.InternalTip.tid == tid,
-                                                         models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                                         models.InternalTip.expiration_date < threshold,
-                                                         models.ReceiverTip.receiver_id == user.id)]
 
-                if not len(itip_ids):
+                subquery = session.query(models.InternalTip.id) \
+                                  .filter(models.InternalTip.tid == tid,
+                                          models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                          models.InternalTip.expiration_date < threshold,
+                                          models.ReceiverTip.receiver_id == user.id)
+
+                expiring_submission_count = subquery.count()
+
+                if not expiring_submission_count:
                     continue
 
                 earliest_expiration_date = session.query(func.min(models.InternalTip.expiration_date)) \
-                                                .filter(models.InternalTip.id.in_(itip_ids)).one()[0]
+                                                  .filter(models.InternalTip.id.in_(subquery)).one()[0]
 
                 user_desc = user_serialize_user(session, user, user.language)
 
@@ -78,7 +81,7 @@ class Cleaning(DailyJob):
                    'node': db_admin_serialize_node(session, tid, user.language),
                    'notification': db_get_notification(session, tid, user.language),
                    'user': user_desc,
-                   'expiring_submission_count': len(itip_ids),
+                   'expiring_submission_count': expiring_submission_count,
                    'earliest_expiration_date': datetime_to_ISO8601(earliest_expiration_date)
                 }
 
@@ -102,13 +105,13 @@ class Cleaning(DailyJob):
 
             threshold = datetime_now() - timedelta(days=self.state.tenant_cache[tid].password_change_period)
 
-            ids = [r[0] for r in session.query(models.User.id)
-                                        .join(models.UserTenant)
-                                        .filter(models.User.password_change_date < threshold,
-                                                models.UserTenant.user_id == models.User.id,
-                                                models.UserTenant.tenant_id == tid)]
+            subquery = session.query(models.User.id) \
+                              .join(models.UserTenant) \
+                              .filter(models.User.password_change_date < threshold,
+                                      models.UserTenant.user_id == models.User.id,
+                                      models.UserTenant.tenant_id == tid)
 
-            session.query(models.User).filter(models.User.id.in_(ids)).update({'password_change_needed': True}, synchronize_session='fetch')
+            session.query(models.User).filter(models.User.id.in_(subquery)).update({'password_change_needed': True}, synchronize_session='fetch')
 
     def db_clean(self, session):
         # delete stats older than 1 year
@@ -118,9 +121,8 @@ class Cleaning(DailyJob):
         session.query(models.Anomalies).filter(models.Anomalies.date < datetime_now() - timedelta(365)).delete(synchronize_session='fetch')
 
         # delete archived schemas not used by any existing submission
-        hashes = [x[0] for x in session.query(models.InternalTipAnswers.questionnaire_hash)]
-        if hashes:
-            session.query(models.ArchivedSchema).filter(not_(models.ArchivedSchema.hash.in_(hashes))).delete(synchronize_session='fetch')
+        subquery = session.query(models.InternalTipAnswers.questionnaire_hash)
+        session.query(models.ArchivedSchema).filter(not_(models.ArchivedSchema.hash.in_(subquery))).delete(synchronize_session='fetch')
 
     @transact
     def get_files_to_secure_delete(self, session):

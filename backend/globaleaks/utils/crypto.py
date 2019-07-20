@@ -276,6 +276,16 @@ class GCE(object):
             return PrivateKey(private_key, RawEncoder).encode(HexEncoder).decode('utf-8')
 
         @staticmethod
+        def generate_private_key_backup(private_key):
+            key = GCE.generate_key()
+            backup = GCE.symmetric_encrypt(key, private_key)
+            return key, backup
+
+        @staticmethod
+        def load_private_key_backup(key, backup):
+            return GCE.symmetric_decrypt(key, backup)
+
+        @staticmethod
         def symmetric_encrypt(key, data):
             """
             Perform symmetric encryption using libsodium secretbox (XSalsa20-Poly1305))
