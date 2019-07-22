@@ -268,11 +268,11 @@ directive("isolateClick", function() {
     }
  };
 }).
-directive('disableCcp', function(){
+directive("disableCcp", function(){
   return {
     scope: {},
     link:function(scope,element) {
-      element.on('cut copy paste', function (event) {
+      element.on("cut copy paste", function (event) {
         event.preventDefault();
       });
     }
