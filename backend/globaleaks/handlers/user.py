@@ -223,18 +223,10 @@ class UserInstance(BaseHandler):
     check_roles = {'admin', 'receiver', 'custodian'}
     invalidate_cache = True
 
-    @inlineCallbacks
     def get(self):
-        user = yield get_user(self.current_user.user_tid,
-                              self.current_user.user_id,
-                              self.request.language)
-
-        user['cc'] = ''
-        if self.current_user.cc:
-            user['cc'] = GCE.export_private_key(self.current_user.cc)
-
-        returnValue(user)
-
+        return get_user(self.current_user.user_tid,
+                        self.current_user.user_id,
+                        self.request.language)
 
     def put(self):
         request = self.validate_message(self.request.content.read(), requests.UserUserDesc)
