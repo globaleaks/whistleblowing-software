@@ -147,7 +147,7 @@ def db_user_update_user(session, tid, user_session, request):
         user.password = GCE.hash_password(new_password, user.salt)
         user.password_change_date = datetime_now()
 
-        if State.tenant_cache[1].encryption:
+        if State.tenant_cache[tid].encryption:
             enc_key = GCE.derive_key(request['password'].encode(), user.salt)
             if not user_session.cc:
                 user_session.cc, user.crypto_pub_key = GCE.generate_keypair()

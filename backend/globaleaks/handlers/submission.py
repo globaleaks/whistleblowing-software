@@ -330,7 +330,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     session.add(itip)
     session.flush()
 
-    crypto_is_available = State.tenant_cache[1].encryption
+    crypto_is_available = State.tenant_cache[tid].encryption
 
     # Evaluate if encryption is available
     if crypto_is_available:
