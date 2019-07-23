@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-11 09:17+0000\n"
+"PO-Revision-Date: 2019-07-22 18:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1966,14 +1966,24 @@ msgstr "Du har fullført plattformsaktiveringen."
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Din fløyteblåserplattform er nesten klar!"
 
-msgid "Check your inbox to activate your account."
-msgstr "Sjekk din innboks for å aktivere kontoen din."
+msgid "Check your inbox to activate it."
+msgstr ""
+
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr ""
 
 msgid "Sign up"
 msgstr "Registrer deg"
 
 msgid "Domain"
 msgstr "Domene"
+
+msgid "Confirmation"
+msgstr ""
+
+msgid "Invalid confirmation"
+msgstr ""
 
 msgid "Other"
 msgstr "Annet"

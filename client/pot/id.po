@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-11 09:17+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-07-22 18:01+0000\n"
+"Last-Translator: Robert Dafis <robertdafis@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1982,14 +1982,24 @@ msgstr "Anda telah melengkapi platform aktivasi."
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Platform untuk Informan Publik anda hampir selesai!"
 
-msgid "Check your inbox to activate your account."
-msgstr "Cek kotak masuk anda untuk aktivisasi akun."
+msgid "Check your inbox to activate it."
+msgstr ""
+
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr ""
 
 msgid "Sign up"
 msgstr "Daftar"
 
 msgid "Domain"
 msgstr "Domain"
+
+msgid "Confirmation"
+msgstr "Konfirmasi"
+
+msgid "Invalid confirmation"
+msgstr ""
 
 msgid "Other"
 msgstr "Lainnya"

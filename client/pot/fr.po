@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-11 09:17+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-07-22 18:19+0000\n"
+"Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -392,7 +392,7 @@ msgid "HTTPS settings"
 msgstr "Paramètres HTTPS"
 
 msgid "URL redirects"
-msgstr ""
+msgstr "Redirections d’URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "Seuils de détection des anomalies"
@@ -1951,7 +1951,7 @@ msgid ""
 msgstr "Saisissez le nom d’utilisateur de votre compte ou votre adresse courriel pour demander une réinitialisation du mot de passe."
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "Saisissez votre adresse courriel pour demander une réinitialisation du mot de passe."
 
 msgid "Request password reset"
 msgstr "Demander une réinitialisation de mot de passe"
@@ -1998,14 +1998,24 @@ msgstr "L’activation de la plateforme est maintenant terminée."
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Votre plateforme de lancement d’alerte est presque prête !"
 
-msgid "Check your inbox to activate your account."
-msgstr "Vérifiez votre boîte de réception de courriels pour activer votre compte."
+msgid "Check your inbox to activate it."
+msgstr "Vérifiez votre boîte de réception pour l’activer."
+
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "Si elle n’est pas activée dans les 24 heures, la plateforme sera supprimée automatiquement."
 
 msgid "Sign up"
 msgstr "Inscription"
 
 msgid "Domain"
 msgstr "Domaine"
+
+msgid "Confirmation"
+msgstr "Confirmer"
+
+msgid "Invalid confirmation"
+msgstr "La confirmation est invalide"
 
 msgid "Other"
 msgstr "Autre"

@@ -5,9 +5,9 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
-# Jiří Podhorecký <j.podhorecky@volny.cz>, 2019
-# Jiří Podhorecký <j.podhorecky@volny.cz>, 2019
-# Jiří Podhorecký <j.podhorecky@volny.cz>, 2018-2019
+# trendspotter <j.podhorecky@volny.cz>, 2019
+# trendspotter <j.podhorecky@volny.cz>, 2019
+# trendspotter <j.podhorecky@volny.cz>, 2018-2019
 # Lenka Ježková <lenka.jezkova@oziveni.cz>, 2019
 # Miroslav Kučera <mkucera66@seznam.cz>, 2013-2017
 # Mr Higgins, 2016-2018
@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-11 09:17+0000\n"
+"PO-Revision-Date: 2019-07-22 18:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1974,14 +1974,24 @@ msgstr "Právě jste dokončili aktivaci platformy."
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Vaše whistleblowing platforma je téměř hotova!"
 
-msgid "Check your inbox to activate your account."
-msgstr "Pro dokončení aktivace účtu zkontrolujte svou emailovou schránku."
+msgid "Check your inbox to activate it."
+msgstr ""
+
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr ""
 
 msgid "Sign up"
 msgstr "Registrovat se"
 
 msgid "Domain"
 msgstr "Doména"
+
+msgid "Confirmation"
+msgstr ""
+
+msgid "Invalid confirmation"
+msgstr ""
 
 msgid "Other"
 msgstr "Další"

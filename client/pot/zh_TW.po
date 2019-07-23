@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-11 09:17+0000\n"
+"PO-Revision-Date: 2019-07-22 18:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1969,14 +1969,24 @@ msgstr "已完成平台的激活"
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "吹哨揭密平台已接近完成！"
 
-msgid "Check your inbox to activate your account."
-msgstr "檢查信件來激活帳戶"
+msgid "Check your inbox to activate it."
+msgstr ""
+
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr ""
 
 msgid "Sign up"
 msgstr "註冊"
 
 msgid "Domain"
 msgstr "網域名"
+
+msgid "Confirmation"
+msgstr ""
+
+msgid "Invalid confirmation"
+msgstr ""
 
 msgid "Other"
 msgstr "其它"

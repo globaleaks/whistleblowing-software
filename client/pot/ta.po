@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-11 09:17+0000\n"
+"PO-Revision-Date: 2019-07-22 18:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1966,14 +1966,24 @@ msgstr "மேடையில் செயல்பாட்டை முடி�
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "உங்கள் விசிலடிக்கும் தளம் கிட்டத்தட்ட தயாராக உள்ளது!"
 
-msgid "Check your inbox to activate your account."
-msgstr "உங்கள் கணக்கு செயலாக்க உங்கள் இன்பாக்ஸை சோதனையிடு."
+msgid "Check your inbox to activate it."
+msgstr ""
+
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr ""
 
 msgid "Sign up"
 msgstr "டிஜிட்டல் கையெழுத்திட செய்க"
 
 msgid "Domain"
 msgstr "டொமைன்"
+
+msgid "Confirmation"
+msgstr ""
+
+msgid "Invalid confirmation"
+msgstr ""
 
 msgid "Other"
 msgstr "மற்ற"

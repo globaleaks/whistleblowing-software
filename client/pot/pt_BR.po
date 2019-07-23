@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-11 09:17+0000\n"
+"PO-Revision-Date: 2019-07-22 18:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1950,7 +1950,7 @@ msgid ""
 msgstr "Digite o nome de usuário da sua conta ou seu endereço de e-mail para solicitar uma redefinição de senha."
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "Digite seu endereço de e-mail para solicitar uma redefinição de senha."
 
 msgid "Request password reset"
 msgstr "Solicitar redefinição de senha"
@@ -1997,14 +1997,24 @@ msgstr "Você concluiu a ativação da plataforma."
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Sua plataforma de denúncia está quase pronta!"
 
-msgid "Check your inbox to activate your account."
-msgstr "Verifique sua caixa de entrada para ativar sua conta."
+msgid "Check your inbox to activate it."
+msgstr ""
+
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr ""
 
 msgid "Sign up"
 msgstr "Cadastrar"
 
 msgid "Domain"
 msgstr "Domínio"
+
+msgid "Confirmation"
+msgstr ""
+
+msgid "Invalid confirmation"
+msgstr ""
 
 msgid "Other"
 msgstr "Outros"
@@ -2304,7 +2314,7 @@ msgid "Email change request"
 msgstr "Solicitação de mudança de e-mail"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "De: {Author}"
 
 msgid "Date: {EventTime}"
 msgstr "Data: {EventTime}"

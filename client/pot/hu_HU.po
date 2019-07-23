@@ -17,11 +17,11 @@
 # benewfy <benewfy@gmail.com>, 2015
 # vargaviktor <viktor.varga@gmail.com>, 2014
 # vargaviktor <viktor.varga@gmail.com>, 2014-2018
-# zala krisztina <zalakri@gmail.com>, 2013
+# zala krisztina <zalakri@gmail.com>, 2013,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-11 09:17+0000\n"
+"PO-Revision-Date: 2019-07-22 18:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,7 +70,7 @@ msgid "Home page"
 msgstr "Honlap"
 
 msgid "Changelog"
-msgstr "Változási napló"
+msgstr "Change log"
 
 msgid "License"
 msgstr "Licensz"
@@ -97,7 +97,7 @@ msgid "Anomalies"
 msgstr "Rendellenességek"
 
 msgid "Preferences"
-msgstr "Preferenicák"
+msgstr "Preferenciák"
 
 msgid "User preferences"
 msgstr ""
@@ -139,10 +139,10 @@ msgid "Messages"
 msgstr "Üzenetek"
 
 msgid "Select this recipient."
-msgstr "Ez a címzett kiválasztása."
+msgstr "Címzett kiválasztása."
 
 msgid "Unselect this recipient."
-msgstr "Ez a címzett kiválasztásának törlése."
+msgstr "Címzett kiválasztásának törlése."
 
 msgid "This recipient cannot be deselected."
 msgstr "Ezt a címzettet nem lehet törölni a kiválasztásból."
@@ -210,7 +210,7 @@ msgstr "Összes mentése"
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
 "ensuring confidentiality."
-msgstr "A beadvány küldésére használt kapcsolat HTTPS-sel van védve, biztosítva a bizalmasságot."
+msgstr "A beadvány küldésére használt kapcsolat HTTPS-sel van titkosítva."
 
 msgid ""
 "The connection used to send this submission has been secured with Tor "
@@ -624,10 +624,10 @@ msgid "Unselected by default"
 msgstr ""
 
 msgid "Surname"
-msgstr ""
+msgstr "Vezetéknév"
 
 msgid "New"
-msgstr ""
+msgstr "Új"
 
 msgid "Opened"
 msgstr ""
@@ -642,16 +642,16 @@ msgid "Print"
 msgstr ""
 
 msgid "Previous"
-msgstr ""
+msgstr "Előző"
 
 msgid "Next"
 msgstr "Következő"
 
 msgid "First"
-msgstr ""
+msgstr "Első"
 
 msgid "Last"
-msgstr ""
+msgstr "Utolsó"
 
 msgid "Running"
 msgstr ""
@@ -867,22 +867,22 @@ msgid "Enable automatic backups"
 msgstr ""
 
 msgid "Daily"
-msgstr ""
+msgstr "Naponta"
 
 msgid "Weekly"
-msgstr ""
+msgstr "Hetente"
 
 msgid "Montly"
-msgstr ""
+msgstr "Havonta"
 
 msgid "Remote"
 msgstr ""
 
 msgid "Server"
-msgstr ""
+msgstr "Szerver"
 
 msgid "Port"
-msgstr ""
+msgstr "Port"
 
 msgid "Substatuses"
 msgstr ""
@@ -927,7 +927,7 @@ msgid "Enable disclaimer"
 msgstr ""
 
 msgid "Title"
-msgstr ""
+msgstr "Cím"
 
 msgid "Text"
 msgstr "Szöveg"
@@ -936,7 +936,7 @@ msgid "Footer"
 msgstr "Élőláb"
 
 msgid "Favicon"
-msgstr ""
+msgstr "Favicon"
 
 msgid "Upload"
 msgstr "Feltöltés"
@@ -975,7 +975,7 @@ msgid "Enabled"
 msgstr "Engedélyezve"
 
 msgid "Hidden"
-msgstr ""
+msgstr "Rejtett"
 
 msgid "Disabled"
 msgstr "Leiltva"
@@ -984,7 +984,7 @@ msgid "Questionnaire"
 msgstr "Kérdőívek"
 
 msgid "Additional questionnaire"
-msgstr ""
+msgstr "További kérdőívek"
 
 msgid "Recipients"
 msgstr "Címzettek"
@@ -1132,16 +1132,16 @@ msgid "Using Let's Encrypt requires agreement to their Terms of Service."
 msgstr ""
 
 msgid "Read the Terms of Service"
-msgstr ""
+msgstr "Elolvasom a felhasználási feltételeket"
 
 msgid "I agree to the Terms of Service."
-msgstr ""
+msgstr "Elfogadom a felhasználási feltételeket"
 
 msgid "Proceed"
 msgstr "Tovább"
 
 msgid "Country code"
-msgstr ""
+msgstr "Ország előhívó száma"
 
 msgid "State"
 msgstr "Állam"
@@ -1150,7 +1150,7 @@ msgid "City"
 msgstr "Város"
 
 msgid "Organization"
-msgstr ""
+msgstr "Szervezet"
 
 msgid "Organizational unit"
 msgstr ""
@@ -1260,7 +1260,7 @@ msgid "Example:"
 msgstr "Példa:"
 
 msgid "Attention!"
-msgstr ""
+msgstr "Figyelem!"
 
 msgid ""
 "Configuration in progress. When it is finished you will have to log in "
@@ -1313,7 +1313,7 @@ msgid "Events"
 msgstr "Események"
 
 msgid "Question"
-msgstr ""
+msgstr "kérdés"
 
 msgid "Type"
 msgstr "Típus"
@@ -1385,13 +1385,13 @@ msgid "Add multimedia content"
 msgstr ""
 
 msgid "Image"
-msgstr ""
+msgstr "kép"
 
 msgid "Audio"
-msgstr ""
+msgstr "hanganyag"
 
 msgid "Video"
-msgstr ""
+msgstr "videó"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Tárgy válasz láthatósága gondnok jogosultságnak"
@@ -1409,7 +1409,7 @@ msgid "Trigger conditions"
 msgstr ""
 
 msgid "Sufficient"
-msgstr ""
+msgstr "elegendő"
 
 msgid "Options"
 msgstr "Beállítások"
@@ -1421,7 +1421,7 @@ msgid "Multiplier"
 msgstr ""
 
 msgid "Questions"
-msgstr ""
+msgstr "kérdések"
 
 msgid "Add new question"
 msgstr "Új kérdés hozzáadása"
@@ -1430,10 +1430,10 @@ msgid "Add question from template"
 msgstr "Kérdés hozzáadása sablonból"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "duplikáció"
 
 msgid "Steps"
-msgstr ""
+msgstr "lépések"
 
 msgid "Site settings"
 msgstr ""
@@ -1980,7 +1980,11 @@ msgstr ""
 msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
-msgid "Check your inbox to activate your account."
+msgid "Check your inbox to activate it."
+msgstr ""
+
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
 msgstr ""
 
 msgid "Sign up"
@@ -1988,6 +1992,12 @@ msgstr ""
 
 msgid "Domain"
 msgstr "Domain"
+
+msgid "Confirmation"
+msgstr ""
+
+msgid "Invalid confirmation"
+msgstr ""
 
 msgid "Other"
 msgstr ""
@@ -2113,7 +2123,7 @@ msgid "Place of birth"
 msgstr "Születési hely"
 
 msgid "Social security number"
-msgstr "Személyi azonosító"
+msgstr "Személyi azonosító jel"
 
 msgid "Residence"
 msgstr "Lakóhely"
@@ -2219,10 +2229,10 @@ msgstr "Kezdő lépések"
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr "Érvényes PGP kulcs nélkül a rendszer nem fog tudni titkosított értesítéseket küldeni. "
+msgstr "Érvényes PGP-kulcs nélkül a rendszer nem fog tudni titkosított értesítéseket küldeni. "
 
 msgid "PGP key expiration alert"
-msgstr "PGP Kulcs lejárat értesítés"
+msgstr "PGP-kulcs lejáratról értesítés"
 
 msgid "A new whistleblowing site has been registered."
 msgstr ""
@@ -2402,7 +2412,7 @@ msgstr ""
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr "Ez egy email arról, hogy a PGP kulcsa le fog járni vagy már lejárt."
+msgstr "Ez egy email arról, hogy a PGP-kulcsa le fog járni vagy már lejárt."
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
@@ -2421,7 +2431,7 @@ msgid ""
 "To prevent sending you too many emails, the system has disabled email "
 "notifications until the load returns to normal. In the meantime, you can "
 "normally log onto the platform and manually check for new submissions."
-msgstr "Megelőzésképpen, hogy túl sok e-mailt küldjünk Önnek, a rendszer letiltotta az e-mail értesítéseket, amíg a terhelés vissza nem tér normálisra. Addig is normálisan be tud jelentkezni a platformra és manuálisan ellenőrizheti az új beadványokat."
+msgstr "Megelőzésképpen, hogy túl sok emailt küldjünk Önnek, a rendszer letiltotta az e-mail értesítéseket, amíg a terhelés vissza nem tér normálisra. Addig is be tud jelentkezni a platformra a szokásos módon, és manuálisan ellenőrizheti az új beadványokat."
 
 msgid ""
 "If you don’t mind and would rather receive such a large number of email "

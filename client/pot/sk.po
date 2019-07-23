@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-11 09:17+0000\n"
+"PO-Revision-Date: 2019-07-22 18:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1973,14 +1973,24 @@ msgstr "Práve ste dokončili aktiváciu platformy."
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Vaša whistleblowing platforma je takmer hotová!"
 
-msgid "Check your inbox to activate your account."
-msgstr "Pre dokončenie aktivácie účtu skontrolujte svoju emailovú schránku."
+msgid "Check your inbox to activate it."
+msgstr ""
+
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr ""
 
 msgid "Sign up"
 msgstr "Zaregistrovať sa"
 
 msgid "Domain"
 msgstr "Doména"
+
+msgid "Confirmation"
+msgstr ""
+
+msgid "Invalid confirmation"
+msgstr ""
 
 msgid "Other"
 msgstr "Ďalší"

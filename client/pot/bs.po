@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-11 09:17+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-07-23 09:54+0000\n"
+"Last-Translator: Mersad Avdic <mersad.developer@gmail.com>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -474,7 +474,7 @@ msgid "Custom"
 msgstr ""
 
 msgid "None"
-msgstr ""
+msgstr "Ništa"
 
 msgid "Regular expression"
 msgstr ""
@@ -1466,7 +1466,7 @@ msgid "Reset password"
 msgstr ""
 
 msgid "New password"
-msgstr ""
+msgstr "Nova lozinka"
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1690,13 +1690,13 @@ msgid "Encryption key"
 msgstr ""
 
 msgid "Hide"
-msgstr ""
+msgstr "Sakrij"
 
 msgid "Show"
-msgstr ""
+msgstr "Prikaži"
 
 msgid "Current password"
-msgstr ""
+msgstr "Trenutna lozinka"
 
 msgid "Old password confirmation required"
 msgstr "Potrebno je da unesete staru lozinku"
@@ -1834,7 +1834,7 @@ msgid "Connection"
 msgstr "priključak"
 
 msgid "Never"
-msgstr ""
+msgstr "Nikad"
 
 msgid "Revoked"
 msgstr ""
@@ -1965,13 +1965,23 @@ msgstr ""
 msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
-msgid "Check your inbox to activate your account."
+msgid "Check your inbox to activate it."
+msgstr ""
+
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
 msgstr ""
 
 msgid "Sign up"
 msgstr ""
 
 msgid "Domain"
+msgstr ""
+
+msgid "Confirmation"
+msgstr ""
+
+msgid "Invalid confirmation"
 msgstr ""
 
 msgid "Other"

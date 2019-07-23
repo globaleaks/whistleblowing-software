@@ -10,7 +10,7 @@
 # Antonio de la Piedra <inactive+entactogenic@transifex.com>, 2013
 # Federico Scrinzi <fox91@anche.no>, 2013
 # Francisco Huerta <francisco.huerta@davinci-ti.es>, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2018
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2019
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -18,7 +18,7 @@
 # Iván López Pérez <ioloo00@eresmas.com>, 2013
 # Lucrezia <luz.gatti@gmail.com>, 2013
 # Lucrezia <luz.gatti@gmail.com>, 2013
-# Manuel D. Serrat <manuel.serrat@antifraucv.es>, 2018
+# Manuel D. Serrat <manuel.serrat@antifraucv.es>, 2018-2019
 # Nick Skelsey, 2016
 # Nick Skelsey, 2016
 # Lucrezia <luz.gatti@gmail.com>, 2013
@@ -31,7 +31,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-11 09:17+0000\n"
+"PO-Revision-Date: 2019-07-23 10:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -384,7 +384,7 @@ msgid "HTTPS settings"
 msgstr "Configuración HTTPS"
 
 msgid "URL redirects"
-msgstr ""
+msgstr "Redirección URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "Umbrales de detección de anomalías"
@@ -427,7 +427,7 @@ msgid "Trigger question"
 msgstr "Formular pregunta"
 
 msgid "Triggered by score:"
-msgstr ""
+msgstr "Activado por puntuación"
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Mensaje mostrado sobre la página de estado de la entrega"
@@ -727,7 +727,7 @@ msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Permitir a los receptores posponer la fecha de expiración de la entrega"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr "No mostrar los nombres de usuario"
 
 msgid "Allow recipients to delete submissions"
 msgstr "Permitir a los receptores borrar entregas"
@@ -847,7 +847,7 @@ msgid "Log accesses of internal users"
 msgstr "Registrar los accesos de los usuarios internos"
 
 msgid "Enable custodian user role"
-msgstr ""
+msgstr "Habilitar el rol de usuario Custodio"
 
 msgid "Enable scoring system"
 msgstr "Habilitar sistema de puntuación"
@@ -865,7 +865,7 @@ msgid "Save"
 msgstr "Guardar"
 
 msgid "Reset submissions"
-msgstr ""
+msgstr "Reinicializar envíos"
 
 msgid "To"
 msgstr "Para"
@@ -1051,7 +1051,7 @@ msgid "Let recipients upload files to whistleblowers"
 msgstr "Permitir a los destinatarios subir ficheros para los informantes"
 
 msgid "Scoring system options"
-msgstr ""
+msgstr "Opciones del sistema de puntuación"
 
 msgid "Threshold"
 msgstr "Umbral"
@@ -1344,7 +1344,7 @@ msgid "Terms of service"
 msgstr "Condiciones del servicio"
 
 msgid "Date range"
-msgstr ""
+msgstr "Rango de fechas"
 
 msgid "Map"
 msgstr "Mapa"
@@ -1416,10 +1416,10 @@ msgid "Text shown upon confirmation"
 msgstr "Texto a mostrar tras la confirmación"
 
 msgid "Trigger conditions"
-msgstr ""
+msgstr "Condiciones de activación"
 
 msgid "Sufficient"
-msgstr ""
+msgstr "Suficiente"
 
 msgid "Options"
 msgstr "Opciones"
@@ -1461,7 +1461,7 @@ msgid "Root domain used for secondary sites"
 msgstr "Dominio raíz usado para sitios secundarios"
 
 msgid "Use the first site for administrative purposes only"
-msgstr ""
+msgstr "Utilizar la primera ubicación sólo para propósitos administrativos"
 
 msgid "Allow users to sign up"
 msgstr "Permitir registrarse a los usuarios"
@@ -1603,7 +1603,7 @@ msgid "Site:"
 msgstr "Sitio:"
 
 msgid "Have you already filed a submission? Enter your receipt."
-msgstr "¿Ha rellenado ya un envío? Introduzca su destinatario."
+msgstr "¿Ha rellenado ya un envío? Introduzca su recibo."
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr "El recibo es inválido o bien el envío ha expirado"
@@ -1621,7 +1621,7 @@ msgid "Now type your password, then click 'Log in':"
 msgstr "Ahora escriba su contraseña, y luego haga clic en 'Iniciar sesión':"
 
 msgid "Text shown after the user has selected the option."
-msgstr ""
+msgstr "Texto mostrado después de que el usuario haya seleccionado la opción."
 
 msgid "Confirm"
 msgstr "Confirmar"
@@ -1773,19 +1773,19 @@ msgid "Size:"
 msgstr "Tamaño:"
 
 msgid "Enable the Ricochet panel"
-msgstr ""
+msgstr "Activar el panel Ricochet"
 
 msgid "Address"
 msgstr "Dirección"
 
 msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
+msgstr "Chatee con nosotros anónimamente utilizando la aplicación Ricochet"
 
 msgid "To chat with us use the following Ricochet address:"
-msgstr ""
+msgstr "Para chatear con nosotros utilice la siguiente dirección Ricochet:"
 
 msgid "Download Ricochet at:"
-msgstr ""
+msgstr "Descargar Ricochet desde:"
 
 msgid "The connection is not secure."
 msgstr "La conexión no es segura."
@@ -1943,7 +1943,7 @@ msgid ""
 msgstr "Introduzca el nombre de usuario o su dirección de correo para solicitar una reinicialización de contraseña."
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "Introduzca su dirección de correo para solicitar un reseteo de su contraseña"
 
 msgid "Request password reset"
 msgstr "Solicitar la reinicialización de contraseña"
@@ -1990,14 +1990,24 @@ msgstr "Ha completado la activación de la plataforma."
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "¡Su plataforma para informantes casi está lista!"
 
-msgid "Check your inbox to activate your account."
-msgstr "Revise su bandeja de entrada para activar su cuenta"
+msgid "Check your inbox to activate it."
+msgstr "Compruebe su bandeja de entrada para activarla."
+
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "Si no se activa en las próximas 24 horas, la plataforma se borrará automáticamente."
 
 msgid "Sign up"
 msgstr "Registrarse"
 
 msgid "Domain"
 msgstr "Dominio"
+
+msgid "Confirmation"
+msgstr "Confirmación"
+
+msgid "Invalid confirmation"
+msgstr "Confirmación no válida"
 
 msgid "Other"
 msgstr "Otros"
@@ -2241,7 +2251,7 @@ msgid "Registration data:"
 msgstr "Datos de registro:"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "Ubicación: {Url}"
 
 msgid "Name: {Name}"
 msgstr "Nombre: {Name}"
@@ -2275,7 +2285,7 @@ msgid ""
 msgstr "Este es un correo electrónico para notificarle un nuevo comentario en una entrega existente."
 
 msgid "The submission can be accessed at:"
-msgstr ""
+msgstr "El envío puede ser accedido desde"
 
 msgid "New comment"
 msgstr "Nuevo comentario"
@@ -2286,7 +2296,7 @@ msgid ""
 msgstr "Éste es un mensaje de correo para notificarle que se ha hecho una solicitud de cambiar su dirección de correo electrónico a {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
-msgstr ""
+msgstr "Haga clic en el enlace siguiente para validar el cambio:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2297,7 +2307,7 @@ msgid "Email change request"
 msgstr "Solicitud de cambio de dirección de correo"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "De: {Author}"
 
 msgid "Date: {EventTime}"
 msgstr "Fecha: {EventTime}"
@@ -2373,7 +2383,7 @@ msgid ""
 msgstr "Este es un correo electrónico para notificarle que un receptor ha solicitado acceder a la identidad del informante para la entrega {TipNum}"
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "La petición puede ser accedida desde:"
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Nueva petición de acceso a la identidad de un informante"
@@ -2404,7 +2414,7 @@ msgid ""
 msgstr "Si no ha hecho esta solicitud, puede ignorar y borrar este mensaje tranquilamente."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr ""
+msgstr "Puede confirmar su petición haciendo clic en el enlace siguiente:"
 
 msgid "Password reset instructions"
 msgstr "Instrucciones de reinicialización de contraseñas"
