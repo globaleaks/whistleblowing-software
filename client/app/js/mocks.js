@@ -1,14 +1,6 @@
 GLClient.mockEngine = (function() {
   var mocks = {};
 
-  var addMock = function(path, selector, mock) {
-    if(!(path in mocks)) {
-      mocks[path] = [];
-    }
-
-    mocks[path].push([selector, mock]);
-  };
-
   var applyMock = function (scope, selector, mock) {
     var e = document.querySelector(selector);
     if (e) {
@@ -33,6 +25,16 @@ GLClient.mockEngine = (function() {
         }
       }
     }
+  };
+
+  var addMock = function(path, selector, mock) {
+    if(!(path in mocks)) {
+      mocks[path] = [];
+    }
+
+    mocks[path].push([selector, mock]);
+
+    run(null);
   };
 
   return {
