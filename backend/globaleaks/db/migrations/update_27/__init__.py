@@ -103,7 +103,6 @@ class Notification_v_26(Model):
     port = Column(Integer)
     username = Column(UnicodeText)
     password = Column(UnicodeText)
-    source_name = Column(UnicodeText)
     source_email = Column(UnicodeText)
     security = Column(UnicodeText)
     admin_pgp_alert_mail_title = Column(JSON)

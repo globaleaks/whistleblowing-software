@@ -438,8 +438,6 @@ class MigrationScript(MigrationBase):
                         new_obj.var_name = 'smtp_security'
                     elif old_obj.var_name == 'username':
                         new_obj.var_name = 'smtp_username'
-                    elif old_obj.var_name == 'source_name':
-                        new_obj.var_name = 'smtp_source_name'
                     elif old_obj.var_name == 'source_email':
                         new_obj.var_name = 'smtp_source_email'
                     else:

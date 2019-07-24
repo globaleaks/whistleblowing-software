@@ -117,7 +117,6 @@ class Notification_v_33(models.Model):
     port = Column(Integer, default=9267)
     username = Column(UnicodeText, default=u'hey_you_should_change_me')
     password = Column(UnicodeText, default=u'yes_you_really_should_change_me')
-    source_name = Column(UnicodeText, default=u'GlobaLeaks - CHANGE EMAIL ACCOUNT USED FOR NOTIFICATION')
     source_email = Column(UnicodeText, default=u'notification@demo.globaleaks.org')
     security = Column(UnicodeText, default=u'TLS')
     admin_pgp_alert_mail_title = Column(JSON)

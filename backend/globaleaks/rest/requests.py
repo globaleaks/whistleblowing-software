@@ -314,7 +314,6 @@ AdminNotificationDesc = merge_dicts({
     'smtp_authentication': bool,
     'smtp_username': text_type,
     'smtp_password': text_type,
-    'smtp_source_name': text_type,
     'smtp_source_email': email_regexp,
     'disable_admin_notification_emails': bool,
     'disable_custodian_notification_emails': bool,

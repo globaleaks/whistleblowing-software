@@ -28,7 +28,6 @@ GLConfig_v_37 = {
         'username': Unicode(default=u'hey_you_should_change_me'),
         # See smtp_password in private for password
 
-        'source_name': Unicode(default=u'GlobaLeaks - CHANGE EMAIL ACCOUNT USED FOR NOTIFICATION'),
         'source_email': Unicode(default=u'notification@demo.globaleaks.org'),
 
         'security': Unicode(default=u'TLS'),
