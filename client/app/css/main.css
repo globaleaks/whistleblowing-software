@@ -116,6 +116,10 @@ table {
   border-radius: 5px;
 }
 
+#LoginFormBox {
+  text-align: center;
+}
+
 #LogoBox img {
   max-height: 12em;
 }
@@ -238,7 +242,6 @@ html[dir] .imageUpload .changePictureButton, html[dir] .imageUpload .deletePictu
 }
 
 .keyinput {
-  width: inherit;
   display: inline;
   font-family: monospace;
   font-weight: bold;

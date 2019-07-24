@@ -5,8 +5,8 @@
   margin: 0 auto;
 }
 
-#NodePresentation, #WhistleblowerSubmitBox, #WhistleblowerReceiptBox {
-  font-size: 1.2em;
+#NodePresentation {
+  font-size: 1.3em;
 }
 
 #NodePresentation,
@@ -20,11 +20,7 @@
   white-space: pre-wrap;
 }
 
-#WhistleblowerSubmitBoxHeader {
-  font-size: 1.4em;
-}
-
-#WhistleblowerSubmitBoxButton .btn {
+#WhistleblowerSubmitBox, #WhistleblowerReceiptBox {
   font-size: 1.2em;
 }
 
