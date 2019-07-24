@@ -155,12 +155,6 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
 
     user.last_login = datetime_now()
 
-    x, _ = GCE.generate_keypair()
-    print(x)
-    k, b = generate_private_key_backup(x)
-    x = load_private_key_backup(k, b)
-    print(x)
-
     crypto_prv_key = ''
     if State.tenant_cache[1].encryption:
         if user.crypto_prv_key:
