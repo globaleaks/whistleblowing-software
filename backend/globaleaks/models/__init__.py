@@ -1237,6 +1237,8 @@ class _User(Model):
 
     crypto_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
     crypto_pub_key = Column(LargeBinary(32), default=b'', nullable=False)
+    crypto_rec_key = Column(LargeBinary(80), default=b'', nullable=False)
+    crypto_bkp_key = Column(LargeBinary(72), default=b'', nullable=False)
 
     change_email_address = Column(UnicodeText, default=u'', nullable=False)
     change_email_token = Column(UnicodeText, unique=True, nullable=True)

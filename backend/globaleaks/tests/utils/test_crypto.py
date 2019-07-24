@@ -71,3 +71,10 @@ class TestCryptoUtils(helpers.TestGL):
 
         self.assertFalse(filecmp.cmp(a, b, False))
         self.assertTrue(filecmp.cmp(a, c, False))
+
+    def test_recovery_key(self):
+        prv_key, _ = GCE.generate_keypair()
+        bck_key, rec_key = GCE.generate_recovery_key(prv_key)
+        plain_rec_key = GCE.asymmetric_decrypt(prv_key, rec_key)
+        x = GCE.symmetric_decrypt(plain_rec_key, bck_key)
+        self.assertEqual(x, prv_key)

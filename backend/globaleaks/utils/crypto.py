@@ -268,14 +268,12 @@ class GCE(object):
                    prv_key.public_key.encode(RawEncoder)
 
         @staticmethod
-        def generate_private_key_backup(private_key):
-            key = GCE.generate_key()
-            backup = GCE.symmetric_encrypt(key, private_key)
-            return key, backup
-
-        @staticmethod
-        def load_private_key_backup(key, backup):
-            return GCE.symmetric_decrypt(key, backup)
+        def generate_recovery_key(prv_key):
+            rec_key = GCE.generate_key()
+            pub_key = PrivateKey(prv_key).public_key.encode(RawEncoder)
+            bck_key = GCE.symmetric_encrypt(rec_key, prv_key)
+            rec_key = GCE.asymmetric_encrypt(pub_key, rec_key)
+            return bck_key, rec_key
 
         @staticmethod
         def symmetric_encrypt(key, data):
