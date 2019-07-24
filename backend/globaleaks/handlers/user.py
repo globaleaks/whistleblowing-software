@@ -153,7 +153,7 @@ def db_user_update_user(session, tid, user_session, request):
                 # Th First first password change triggers the generation
                 # of the user encryption private key and its backup
                 user_session.cc, user.crypto_pub_key = GCE.generate_keypair()
-                user.crypto_bkp_key, user.crypto_prv_key = GCE.generate_backup_key(user_session.cc)
+                user.crypto_bkp_key, user.crypto_prv_key = GCE.generate_recovery_key(user_session.cc)
 
             user.crypto_prv_key = GCE.symmetric_encrypt(enc_key, user_session.cc)
 
