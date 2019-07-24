@@ -1,3 +1,6 @@
+Changes in version 3.9.15 - 2019-07-24
+    Fix failure on authentication added in 3.9.14
+
 Changes in version 3.9.14 - 2019-07-23
     Update translations
 
