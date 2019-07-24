@@ -787,14 +787,9 @@ var GLClient = angular.module("GLClient", [
       });
     };
 
-    var applyMocks = function() {
-      GLClient.mockEngine.run($rootScope);
-    };
+    var observer = new MutationObserver(GLClient.mockEngine.run);
 
-    var config = { attributes: false, childList: true, subtree: true };
-    var observer = new MutationObserver(applyMocks);
-    var mocksRoot = document.querySelector("body");
-    observer.observe(mocksRoot, config);
+    observer.observe(document.querySelector("body"), { attributes: false, childList: true, subtree: true });
 
     $rootScope.init();
 }]).

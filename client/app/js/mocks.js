@@ -1,11 +1,11 @@
 GLClient.mockEngine = (function() {
   var mocks = {};
 
-  var applyMock = function (scope, selector, mock) {
+  var applyMock = function (selector, mock) {
     var e = document.querySelector(selector);
     if (e) {
       if (typeof mock === "function") {
-        mock = mock(scope, e);
+        mock = mock(e);
       }
 
       if (mock && e.innerHTML !== mock) {
@@ -14,14 +14,14 @@ GLClient.mockEngine = (function() {
     }
   };
 
-  var run = function(scope) {
+  var run = function() {
     var current_path = document.location.pathname + document.location.hash;
     var path, i;
 
     for (path in mocks) {
       if (path === "*" || path === current_path) {
         for (i=0; i<mocks[path].length; i++) {
-          applyMock(scope, mocks[path][i][0], mocks[path][i][1]);
+          applyMock(mocks[path][i][0], mocks[path][i][1]);
         }
       }
     }
