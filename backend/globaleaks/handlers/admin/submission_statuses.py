@@ -68,7 +68,6 @@ def db_retrieve_all_submission_statuses(session, tid, language):
     submission_statuses.append(system_statuses['opened'])
     submission_statuses += user_submission_statuses
     submission_statuses.append(system_statuses['closed'])
-    print(submission_statuses)
 
     return submission_statuses
 
