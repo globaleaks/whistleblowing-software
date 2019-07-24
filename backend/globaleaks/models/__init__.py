@@ -1261,7 +1261,7 @@ class _User(Model):
     pgp_key_expiration = Column(DateTime, default=datetime_null, nullable=False)
     # END of PGP key fields
 
-    binary_keys = ['crypto_prv_key', 'crypto_pub_key']
+    binary_keys = ['crypto_prv_key', 'crypto_pub_key', 'crypto_rec_key', 'crypto_bkp_key']
 
     unicode_keys = ['username', 'role', 'state',
                     'language', 'mail_address', 'name',
