@@ -22,7 +22,7 @@ angular.module("GLDirectives", []).
       }
     };
 }).
-  directive("receiptvalidator", function() {
+  directive("receiptvalidator", ['Authentication', function(Authentication) {
     return {
       require: "ngModel",
       link: function(scope, elem, attrs, ngModel) {
@@ -45,12 +45,13 @@ angular.module("GLDirectives", []).
           angular.element(elem).val(result);
           if (result.length === 19) {
             ngModel.$setValidity("receiptvalidator", true);
+            Authentication.login(0, 'whistleblower', result)
           }
           return result;
         });
       }
     };
-}).
+}]).
   directive("subdomainvalidator", function() {
     return {
       require: "ngModel",
