@@ -22,15 +22,17 @@ angular.module("GLDirectives", []).
       }
     };
 }).
-  directive("receiptvalidator", ['Authentication', function(Authentication) {
+  directive("receiptvalidator", ["Authentication", function(Authentication) {
     return {
       require: "ngModel",
       link: function(scope, elem, attrs, ngModel) {
         ngModel.$setValidity("receiptvalidator", false);
         ngModel.$parsers.unshift(function(viewValue) {
           var result = "";
+
           ngModel.$setValidity("receiptvalidator", false);
           viewValue = viewValue.replace(/\D/g,"");
+
           while (viewValue.length > 0) {
             result += viewValue.substring(0, 4);
             if(viewValue.length >= 4) {
@@ -42,11 +44,14 @@ angular.module("GLDirectives", []).
               break;
             }
           }
+
           angular.element(elem).val(result);
+
           if (result.length === 19) {
             ngModel.$setValidity("receiptvalidator", true);
-            Authentication.login(0, 'whistleblower', result)
+            Authentication.login(0, "whistleblower", result);
           }
+
           return result;
         });
       }
