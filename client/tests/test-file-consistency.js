@@ -67,7 +67,8 @@ describe("Test file upload/download consistency", function() {
     var rec = new browser.gl.pages.receiver();
 
     wb.performSubmission("Test file consistency", false).then(function(receipt) {
-      wb.viewReceipt(receipt);
+      browser.gl.utils.login_whistleblower(receipt);
+
        // Add each file as an attachment.
       test_meta_files.forEach(function(m_file) {
         wb.submitFile(m_file.origin_path);

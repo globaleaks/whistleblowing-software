@@ -73,17 +73,6 @@ exports.whistleblower = function() {
     return element(by.id("KeyCode")).getText();
   };
 
-  this.viewReceipt = function(receipt) {
-    browser.get("/#/");
-
-    return element(by.model("formatted_receipt")).sendKeys(receipt).then(function() {
-      element(by.id("ReceiptButton")).click().then(function() {
-        browser.gl.utils.waitForUrl("/status");
-      });
-    });
-
-  };
-
   this.submitFile = function(fname) {
     browser.executeScript("angular.element(document.querySelector('input[type=\"file\"]')).attr(\"style\", \"visibility: visible\")");
     return element(by.xpath("//input[@type='file']")).sendKeys(fname).then(function() {

@@ -113,7 +113,6 @@ exports.login_admin = function() {
 exports.login_whistleblower = function(receipt) {
   browser.get("/#/");
   element(by.model("formatted_receipt")).sendKeys(receipt);
-  element(by.id("ReceiptButton")).click();
   exports.waitForUrl("/status");
 };
 
