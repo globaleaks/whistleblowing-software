@@ -38,7 +38,10 @@
   var completed = false;
 
   $scope.updateSubdomain = function() {
-    $scope.signup.subdomain = $scope.signup.organization_name.replace(/[^\w]/gi, "").toLowerCase();
+    $scope.signup.subdomain = "";
+    if ($scope.signup.organization_name) {
+      $scope.signup.subdomain = $scope.signup.organization_name.replace(/[^\w]/gi, "").toLowerCase();
+    }
   };
 
   $scope.complete = function() {
