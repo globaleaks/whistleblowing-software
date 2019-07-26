@@ -16,12 +16,14 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
   function ($scope, $http, AdminSubmissionStatusResource) {
     $scope.editing = false;
 
-    $scope.toggleEditing = function () {
-      if ($scope.submissions_status.system_defined) {
-        return;
-      }
+    $scope.isEditable = function() {
+      return ['new', 'opened'].indexOf($scope.submissions_status.id) === -1;
+    }
 
-      $scope.editing = !$scope.editing;
+    $scope.toggleEditing = function () {
+      if ($scope.isEditable()) {
+        $scope.editing = !$scope.editing;
+      }
     };
 
     $scope.showAddSubstatus = false;
@@ -58,10 +60,6 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
         return;
       }
 
-      if ($scope.admin.submission_statuses[target].system_defined) {
-        return;
-      }
-
       // Because the base data structure and the one we display don't match ...
       var orig_index = ss_idx($scope.admin.submission_statuses[index].id);
       var orig_target = ss_idx($scope.admin.submission_statuses[target].id);
@@ -73,13 +71,9 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
       // Return only the ids we want to reorder
       var reordered_ids = {
         "ids": $scope.admin.submission_statuses.map(function(c) {
-          if (c.system_defined === false) {
-            return c.id;
-          }
+          return c.id;
         }).filter(function (c) {
-          if (c !== null) {
-            return c;
-          }
+          return c;
         })
       };
 

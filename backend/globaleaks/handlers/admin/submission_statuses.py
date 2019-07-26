@@ -188,16 +188,11 @@ def create_submission_substatus(session, tid, submission_status_id, request, lan
 def order_status_elements(session, handler, req_args, *args, **kwargs):
     """Sets the presentation order for status elements"""
 
-    # Presentation order is ignored for statuses
-    statuses = session.query(models.SubmissionStatus)\
-                      .filter(models.SubmissionStatus.tid == handler.request.tid,
-                              models.SubmissionStatus.system_defined == False)
+    statuses = session.query(models.SubmissionStatus) \
+                      .filter(models.SubmissionStatus.tid == handler.request.tid)
 
     id_dict = {status.id: status for status in statuses}
     ids = req_args['ids']
-
-    if len(ids) != len(id_dict) or set(ids) != set(id_dict):
-        raise errors.InputValidationError('list does not contain all context ids')
 
     for i, status_id in enumerate(ids):
         id_dict[status_id].presentation_order = i

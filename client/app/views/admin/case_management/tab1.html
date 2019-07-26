@@ -27,14 +27,14 @@
     </div>
   </div>
   <div data-ng-repeat="submissions_status in admin.submission_statuses">
-    <div data-ng-controller="AdminSubmissionStatusEditorCtrl" class="submissionStatusList" data-ng-if="!submissions_status.system_defined">
+    <div data-ng-controller="AdminSubmissionStatusEditorCtrl" class="submissionStatusList">
       <div data-ng-form="submissionStatus-{{$index}}" name="editsubmissionStatus" novalidate>
         <div class="configItem">
           <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
             <span class="col-md-7 editorHeaderTitle">
               <span>{{submissions_status.label}}</span>
             </span>
-            <span class="col-md-5" data-ng-if="!submissions_status.system_defined">
+            <span class="col-md-5">
               <span class="pull-right">
                 <button data-ng-if="!$first" class="btn btn-xs btn-primary" data-ng-click="moveUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
                   <i class="glyphicon glyphicon-menu-up"></i>
@@ -42,7 +42,7 @@
                 <button data-ng-if="!$last" class="btn btn-xs btn-primary" data-ng-click="moveDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
                   <i class="glyphicon glyphicon-menu-down"></i>
                 </button>
-                <button class="btn btn-xs btn-default" data-ng-show="!editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
+                <button class="btn btn-xs btn-default" data-ng-show="isEditable() && !editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
                   <span data-translate>Edit</span>
                 </button>
                 <button class="btn btn-xs btn-success" data-ng-show="editing" data-ng-disabled="editSubmissionStatus.$invalid" data-ng-click="save_submissions_status(submissions_status); toggleEditing();">
@@ -51,7 +51,7 @@
                 <button class="btn btn-xs btn-default" data-ng-show="editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
                   <span data-translate>Cancel</span>
                 </button>
-                <button class="btn btn-xs btn-danger" data-ng-click="deleteSubmissionStatus(); $event.stopPropagation();">
+                <button class="btn btn-xs btn-danger" data-ng-if="!submissions_status.system_defined" data-ng-click="deleteSubmissionStatus(); $event.stopPropagation();">
                   <span data-translate>Delete</span>
                 </button>
               </span>
@@ -60,91 +60,14 @@
           <div data-ng-if="editing">
             <hr />
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-6" data-ng-if="!submissions_status.system_defined">
                 <div class="form-group">
                   <label data-translate>Label</label>
-                  <input name="name" class="form-control" data-ng-model="submissions_status.label" type="text" required>
+                  <input name="name" class="form-control" data-ng-model="submissions_status.label" data-ng-disabled="submissions_status.system_defined" type="text" required>
                   <div class="text-danger" data-ng-show="editSubmissionStatus.name.$error.required" data-translate>This field is mandatory</div>
                 </div>
               </div>
               <div class="col-md-12" data-ng-include="'views/admin/case_management/substatuses.html'"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <br /><br />
-  <div class="adminConfigSection" data-ng-controller="AdminSubmissionClosingStatusCtrl">
-    <div class="editorTitle">
-      <span data-translate>Closing statuses</span>
-      <button class="btn btn-xs btn-primary show-add-user-btn" data-ng-click="toggleAddStatus()">
-        <i class="glyphicon glyphicon-plus"></i>
-        <span data-translate>Add</span>
-      </button>
-    </div>
-    <div class="row" data-ng-if="showAddStatus" data-ng-controller="AdminSubmissionClosedSubStatusAddCtrl">
-      <div data-ng-form="newClosedSubmissionSubStatus" class="addSubmissionStatus col-md-6" novalidate>
-        <div class="form-group">
-          <label>
-            <span data-translate>Label</span>
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-          </label>
-          <div data-ng-class="{'has-error': newSubmissionStatus.submissions_status.$error.required}">
-            <input name="name" class="form-control" data-ng-model="new_closed_submissions_substatuses.label" type="text" required />
-          </div>
-        </div>
-        <div class="form-group">
-          <button id="add-btn" class="btn btn-primary" data-ng-disabled="newSubmissionStatus.$invalid" data-ng-click="addClosingSubmissionSubStatus(); toggleAddStatus()"
-            type="submit">
-            <i class="glyphicon glyphicon-plus-sign"></i>
-            <span data-translate>Add</span>
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div data-ng-repeat="substatus in submissions_status.substatuses">
-        <div class="col-md-12" data-ng-controller="AdminSubmissionSubStatusEditorCtrl">
-          <div class="configItem">
-            <div class="editorHeader row" data-ng-click="toggleSubstatusEditing(); $event.stopPropagation();">
-              <span class="col-md-7 editorHeaderTitle">
-                <span class="substatusLabel">{{substatus.label}}</span>
-              </span>
-              <span class="col-md-5">
-                <span class="pull-right">
-                  <button data-ng-if="!$first" class="btn btn-xs btn-primary" data-ng-click="moveSsUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
-                    <i class="glyphicon glyphicon-menu-up"></i>
-                  </button>
-                  <button data-ng-if="!$last" class="btn btn-xs btn-primary" data-ng-click="moveSsDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
-                    <i class="glyphicon glyphicon-menu-down"></i>
-                  </button>
-                  <button class="btn btn-xs btn-default" data-ng-show="!substatus_editing" data-ng-click="toggleSubstatusEditing(); $event.stopPropagation();">
-                    <span data-translate>Edit</span>
-                  </button>
-                  <button class="btn btn-xs btn-success" data-ng-show="substatus_editing" data-ng-click="save_submissions_substatuses(substatus);">
-                    <span data-translate>Save</span>
-                  </button>
-                  <button class="btn btn-xs btn-default" data-ng-show="substatus_editing" data-ng-click="toggleSubstatusEditing(); $event.stopPropagation();">
-                    <span data-translate>Cancel</span>
-                  </button>
-                  <button class="btn btn-xs btn-danger" data-ng-click="deleteSubSubmissionStatus(step); $event.stopPropagation();" uib-popover="{{Delete | translate}}"
-                    popover-placement="right">
-                    <span data-translate>Delete</span>
-                  </button>
-                </span>
-              </span>
-            </div>
-            <div data-ng-form="editStep" data-ng-if="substatus_editing">
-              <hr/>
-              <div class="row">
-                <div class="form-group">
-                  <div class="col-md-6">
-                    <label data-translate>Label</label>
-                    <input class="form-control" data-ng-model="substatus.label" type="text" required/>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
