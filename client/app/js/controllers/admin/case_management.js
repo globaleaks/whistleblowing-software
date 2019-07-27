@@ -17,8 +17,8 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
     $scope.editing = false;
 
     $scope.isEditable = function() {
-      return ['new', 'opened'].indexOf($scope.submissions_status.id) === -1;
-    }
+      return ["new", "opened"].indexOf($scope.submissions_status.id) === -1;
+    };
 
     $scope.toggleEditing = function () {
       if ($scope.isEditable()) {
