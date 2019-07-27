@@ -11,7 +11,7 @@ import re
 from datetime import datetime
 from cryptography.hazmat.primitives import constant_time
 from six import text_type, binary_type
-from twisted.internet import abstract, defer
+from twisted.internet import abstract
 from twisted.protocols.basic import FileSender
 
 from globaleaks.event import track_handler

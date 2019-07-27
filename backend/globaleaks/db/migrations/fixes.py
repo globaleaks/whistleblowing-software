@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from sqlalchemy.sql.expression import func
 
-from globaleaks.models import Config, InternalTipData, User
+from globaleaks.models import InternalTipData, User
 
 def db_fix_tip_data(session):
     # Fix for issue: https://github.com/globaleaks/GlobaLeaks/issues/2612

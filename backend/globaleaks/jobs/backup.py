@@ -11,7 +11,7 @@ from globaleaks.handlers.file import db_mark_file_for_secure_deletion
 from globaleaks.jobs.job import DailyJob
 from globaleaks.orm import transact
 from globaleaks.settings import Settings
-from globaleaks.utils.backup import backup_name, backup_type, get_records_to_delete
+from globaleaks.utils.backup import backup_name, get_records_to_delete
 from globaleaks.utils.tar import tardir
 
 

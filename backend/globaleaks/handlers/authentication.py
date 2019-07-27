@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 #
 # Handlers dealing with platform authentication
-from datetime import datetime
 from random import SystemRandom
 from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks.handlers.admin.node import db_admin_serialize_node

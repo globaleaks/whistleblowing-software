@@ -10,7 +10,6 @@ from six import text_type
 from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.internet.threads import deferToThread
 
-from globaleaks import models
 from globaleaks.db import load_tls_dict
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import ConfigFactory

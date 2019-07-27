@@ -9,7 +9,7 @@ import re
 import sys
 
 from six import text_type, binary_type
-from six.moves.urllib.parse import urlsplit, urlunparse, urlunsplit  # pylint: disable=import-error
+from six.moves.urllib.parse import urlsplit, urlunsplit  # pylint: disable=import-error
 
 from twisted.internet import defer
 from twisted.internet.abstract import isIPAddress, isIPv6Address
@@ -53,7 +53,7 @@ from globaleaks.handlers.admin import step as admin_step
 from globaleaks.handlers.admin import tenant as admin_tenant
 from globaleaks.handlers.admin import user as admin_user
 from globaleaks.handlers.admin import submission_statuses as admin_submission_statuses
-from globaleaks.rest import cache, decorators, requests, errors
+from globaleaks.rest import decorators, requests, errors
 from globaleaks.settings import Settings
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
 

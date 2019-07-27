@@ -2,7 +2,6 @@
 from io import BytesIO as StringIO
 
 from twisted.internet import defer
-from twisted.protocols import policies
 from twisted.python import log
 from twisted.web.client import HTTPPageGetter
 from twisted.web.http import HTTPChannel, HTTPFactory, Request

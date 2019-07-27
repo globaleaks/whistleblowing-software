@@ -3,8 +3,6 @@ from datetime import datetime, timedelta
 
 from OpenSSL.crypto import load_certificate, FILETYPE_PEM
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
 from globaleaks.db import load_tls_dict
 from globaleaks.handlers.admin.https import db_acme_cert_renewal

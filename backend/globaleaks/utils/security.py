@@ -3,7 +3,6 @@ import base64
 import binascii
 import os
 import random
-import scrypt
 import string
 import sys
 
