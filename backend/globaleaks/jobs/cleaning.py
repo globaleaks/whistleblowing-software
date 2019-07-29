@@ -27,20 +27,8 @@ __all__ = ['Cleaning']
 class Cleaning(DailyJob):
     monitor_interval = 5 * 60
 
-    def db_clean_expired_wbtips(self, session):
-        """
-        This function checks all the InternalTips and deletes the receipt if the delete threshold is exceeded
-        """
-        for tid in self.state.tenant_state:
-            threshold = datetime_now() - timedelta(days=self.state.tenant_cache[tid].wbtip_timetolive)
-
-            subquery = session.query(models.InternalTip.id) \
-                              .filter(models.InternalTip.tid == tid,
-                                      models.InternalTip.wb_last_access < threshold)
-
-            session.query(models.WhistleblowerTip).filter(models.WhistleblowerTip.id.in_(subquery)).delete(synchronize_session='fetch')
-
-    def db_clean_expired_itips(self, session):
+    @transact
+    def clean_expired_itips(self, session):
         """
         This function, checks all the InternalTips and their expiration date.
         if expired InternalTips are found, it removes that along with
@@ -50,68 +38,75 @@ class Cleaning(DailyJob):
         if itips_ids:
             db_delete_itips(session, itips_ids)
 
-    def db_check_for_expiring_submissions(self, session):
-        for tid in self.state.tenant_state:
-            threshold = datetime_now() + timedelta(hours=self.state.tenant_cache[tid].notification.tip_expiration_threshold)
+    def db_clean_expired_wbtips(self, session, tid):
+        """
+        This function checks all the InternalTips and deletes the receipt if the delete threshold is exceeded
+        """
+        threshold = datetime_now() - timedelta(days=self.state.tenant_cache[tid].wbtip_timetolive)
 
-            for user in session.query(models.User).filter(models.User.role == u'receiver',
-                                                          models.UserTenant.user_id == models.User.id,
-                                                          models.UserTenant.tenant_id == tid):
+        subquery = session.query(models.InternalTip.id) \
+                          .filter(models.InternalTip.tid == tid,
+                                  models.InternalTip.wb_last_access < threshold)
 
-                subquery = session.query(models.InternalTip.id) \
-                                  .filter(models.InternalTip.tid == tid,
-                                          models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                          models.InternalTip.expiration_date < threshold,
-                                          models.ReceiverTip.receiver_id == user.id)
+        session.query(models.WhistleblowerTip).filter(models.WhistleblowerTip.id.in_(subquery)).delete(synchronize_session='fetch')
 
-                expiring_submission_count = subquery.count()
+    def db_check_for_expiring_submissions(self, session, tid):
+        threshold = datetime_now() + timedelta(hours=self.state.tenant_cache[tid].notification.tip_expiration_threshold)
 
-                if not expiring_submission_count:
-                    continue
+        result = session.query(models.User, func.count(models.InternalTip.id), func.min(models.InternalTip.expiration_date)) \
+                        .filter(models.InternalTip.tid == tid,
+                                models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                models.InternalTip.expiration_date < threshold,
+                                models.User.id == models.ReceiverTip.receiver_id) \
+                        .group_by(models.User.id) \
+                        .having(func.count(models.InternalTip.id) > 0) \
+                        .all()
 
-                earliest_expiration_date = session.query(func.min(models.InternalTip.expiration_date)) \
-                                                  .filter(models.InternalTip.id.in_(subquery)).one()[0]
+        for x in result:
+            user = x[0]
+            expiring_submission_count = x[1]
+            earliest_expiration_date = x[2]
 
-                user_desc = user_serialize_user(session, user, user.language)
+            user_desc = user_serialize_user(session, user, user.language)
 
-                data = {
-                   'type': u'tip_expiration_summary',
-                   'node': db_admin_serialize_node(session, tid, user.language),
-                   'notification': db_get_notification(session, tid, user.language),
-                   'user': user_desc,
-                   'expiring_submission_count': expiring_submission_count,
-                   'earliest_expiration_date': datetime_to_ISO8601(earliest_expiration_date)
-                }
+            data = {
+               'type': u'tip_expiration_summary',
+               'node': db_admin_serialize_node(session, tid, user.language),
+               'notification': db_get_notification(session, tid, user.language),
+               'user': user_desc,
+               'expiring_submission_count': expiring_submission_count,
+               'earliest_expiration_date': datetime_to_ISO8601(earliest_expiration_date)
+            }
 
-                subject, body = Templating().get_mail_subject_and_body(data)
+            subject, body = Templating().get_mail_subject_and_body(data)
 
-                session.add(models.Mail({
-                    'tid': tid,
-                    'address': user_desc['mail_address'],
-                    'subject': subject,
-                    'body': body
-                 }))
+            session.add(models.Mail({
+                'tid': tid,
+                'address': user_desc['mail_address'],
+                'subject': subject,
+                'body': body
+            }))
 
-    def db_expire_old_passwords(self, session):
+    def db_expire_old_passwords(self, session, tid):
         """
         Expires passwords if past the last change date
         """
-        for tid in self.state.tenant_state:
-            # if the expiration threshold is 0, ignore it
-            if self.state.tenant_cache[tid].password_change_period == 0:
-                continue
+        # if the expiration threshold is 0, ignore it
+        if self.state.tenant_cache[tid].password_change_period == 0:
+            return
 
-            threshold = datetime_now() - timedelta(days=self.state.tenant_cache[tid].password_change_period)
+        threshold = datetime_now() - timedelta(days=self.state.tenant_cache[tid].password_change_period)
 
-            subquery = session.query(models.User.id) \
-                              .join(models.UserTenant) \
-                              .filter(models.User.password_change_date < threshold,
-                                      models.UserTenant.user_id == models.User.id,
-                                      models.UserTenant.tenant_id == tid)
+        subquery = session.query(models.User.id) \
+                          .join(models.UserTenant) \
+                          .filter(models.User.password_change_date < threshold,
+                                  models.UserTenant.user_id == models.User.id,
+                                  models.UserTenant.tenant_id == tid)
 
-            session.query(models.User).filter(models.User.id.in_(subquery)).update({'password_change_needed': True}, synchronize_session='fetch')
+        session.query(models.User).filter(models.User.id.in_(subquery)).update({'password_change_needed': True}, synchronize_session='fetch')
 
-    def db_clean(self, session):
+    @transact
+    def clean(self, session):
         # delete stats older than 1 year
         session.query(models.Stats).filter(models.Stats.start < datetime_now() - timedelta(90)).delete(synchronize_session='fetch')
 
@@ -155,19 +150,18 @@ class Cleaning(DailyJob):
                 overwrite_and_remove(path)
 
     @transact
-    def daily_clean(self, session):
-        self.db_clean_expired_wbtips(session)
-
-        self.db_clean_expired_itips(session)
-
-        self.db_check_for_expiring_submissions(session)
-
-        self.db_expire_old_passwords(session)
-
-        self.db_clean(session)
+    def per_tenant_clean(self, session, tid):
+        self.db_clean_expired_wbtips(session, tid)
+        self.db_check_for_expiring_submissions(session, tid)
+        self.db_expire_old_passwords(session, tid)
 
     @inlineCallbacks
     def operation(self):
-        yield self.daily_clean()
+        yield self.clean_expired_itips()
+
+        for tid in self.state.tenant_state:
+            yield self.per_tenant_clean(tid)
+
+        yield self.clean()
 
         yield self.perform_secure_deletion_of_files()
