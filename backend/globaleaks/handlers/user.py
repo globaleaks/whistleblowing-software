@@ -92,13 +92,11 @@ def serialize_usertenant_association(row):
 
 
 def db_get_user(session, tid, user_id):
-    user = models.db_get(session,
+    return models.db_get(session,
                          models.User,
                          models.User.id == user_id,
                          models.UserTenant.user_id == user_id,
                          models.UserTenant.tenant_id == tid)
-
-    return user
 
 
 @transact
@@ -153,7 +151,7 @@ def db_user_update_user(session, tid, user_session, request):
                 # Th First first password change triggers the generation
                 # of the user encryption private key and its backup
                 user_session.cc, user.crypto_pub_key = GCE.generate_keypair()
-                user.crypto_bkp_key, user.crypto_prv_key = GCE.generate_recovery_key(user_session.cc)
+                user.crypto_bkp_key, user.crypto_rec_key = GCE.generate_recovery_key(user_session.cc)
 
             user.crypto_prv_key = GCE.symmetric_encrypt(enc_key, user_session.cc)
 
