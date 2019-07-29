@@ -290,7 +290,7 @@ controller("AdminMailCtrl", ["$scope", "$http", "AdminNotificationResource",
   var sendTestMail = function() {
     return $http({
       method: "POST",
-      url: "/admin/notification/mail",
+      url: "admin/notification/mail",
     });
   };
 
