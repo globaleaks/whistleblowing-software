@@ -174,6 +174,7 @@ def create_submission_substatus(session, tid, submission_status_id, request, lan
     db_retrieve_specific_submission_status(session, tid, submission_status_id, language)
 
     substatus_obj = models.SubmissionSubStatus()
+    substatus_obj.tid = tid
     substatus_obj.submissionstatus_id = submission_status_id
 
     update_substatus_model_from_request(substatus_obj, request, language)
@@ -290,8 +291,7 @@ class SubmissionSubStatusInstance(BaseHandler):
 
     @inlineCallbacks
     def delete(self, submission_status_id, submission_substatus_id):
-        yield retrieve_specific_submission_status(self.request.tid, submission_status_id, self.request.language)
-
         yield models.delete(models.SubmissionSubStatus,
-                            models.SubmissionSubStatus.submissionstatus_id == submission_status_id,
-                            models.SubmissionSubStatus.id == submission_substatus_id)
+                            models.SubmissionSubStatus.tid == self.request.tid,
+                            models.SubmissionSubStatus.id == submission_substatus_id,
+                            models.SubmissionSubStatus.submissionstatus_id == submission_status_id)
