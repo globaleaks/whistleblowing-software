@@ -34,8 +34,8 @@
     "zxcvbn": "4.4.2"
   },
   "devDependencies": {
-    "eslint": "6.0.1",
-    "gettext-parser": "4.0.0",
+    "eslint": "6.1.0",
+    "gettext-parser": "4.0.1",
     "grunt": "1.0.4",
     "grunt-angular-templates": "1.1.0",
     "grunt-confirm": "1.0.8",
@@ -49,7 +49,7 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "5.0.0",
     "node-gettext": "2.0.0",
-    "npm-check-updates": "3.1.18",
+    "npm-check-updates": "3.1.20",
     "protractor": "5.4.2",
     "protractor-console-plugin": "0.1.1",
     "q": "1.5.1",
