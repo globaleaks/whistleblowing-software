@@ -198,7 +198,7 @@ class StateClass(ObjectDict):
                         self.tenant_cache[tid].notification.smtp_authentication,
                         self.tenant_cache[tid].notification.smtp_username,
                         self.tenant_cache[tid].notification.smtp_password,
-                        self.tenant_cache[tid].node.name,
+                        self.tenant_cache[tid].name,
                         self.tenant_cache[tid].notification.smtp_source_email,
                         to_address,
                         self.tenant_cache[tid].name + ' - ' + subject,
