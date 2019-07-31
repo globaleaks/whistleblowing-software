@@ -715,7 +715,6 @@ var GLClient = angular.module("GLClient", [
 
     $rootScope.$watch("GLTranslate.state.language", function(new_val) {
       GLTranslate.setLang(new_val);
-      $rootScope.reload();
     });
 
     $rootScope.$on("$routeChangeStart", function() {
@@ -775,7 +774,6 @@ var GLClient = angular.module("GLClient", [
     };
 
     $rootScope.reload = function(new_path) {
-      $rootScope.started = false;
       $rootScope.successes = [];
       $rootScope.errors = [];
       $rootScope.init().then(function() {

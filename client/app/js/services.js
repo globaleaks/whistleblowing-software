@@ -1710,7 +1710,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
   // pointer, and notifies the dependent services of the change.
   function determineLanguage() {
     state.language = bestLanguage(facts);
-    if (state.language !== null) {
+    if (state.language) {
       updateTranslationServices(state.language);
       GLClient.language = state.language;
     }
