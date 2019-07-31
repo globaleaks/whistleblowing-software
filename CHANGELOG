@@ -1,3 +1,6 @@
+Changes in version 3.10.1 - 2019-07-31
+    Fix regression on mail notification added in 3.10.0
+
 Changes in version 3.10.0 - 2019-07-31
     Automatically delete platforms not activated within 24 hours (#2639)
     Implement database support and encryption primitives for Recovery Keys (#2649)
