@@ -1,3 +1,11 @@
+Changes in version 3.10.0 - 2019-07-31
+    Automatically delete platforms not activated within 24 hours (#2639)
+    Implement database support and encryption primitives for Recovery Keys (#2649)
+    Improve UI of Whistleblower Login (#1693)
+    Implement database support for immutable submissions (#2581)
+    Bump npm dependencies to latest stables versions
+    Update translations
+
 Changes in version 3.9.15 - 2019-07-24
     Fix failure on authentication added in 3.9.14
 
