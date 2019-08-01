@@ -210,8 +210,7 @@ controller("AdminRedirectEditCtrl", ["$scope", "AdminRedirectResource",
       AdminRedirectResource.delete({
         id: redirect.id
       }, function(){
-        var idx = $scope.admin.redirect.indexOf(redirect);
-        $scope.admin.redirects.splice(idx, 1);
+        $scope.Utils.deleteFromList($scope.admin.redirects, redirect);
       });
     };
 }]).

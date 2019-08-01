@@ -46,6 +46,7 @@ def create(session, tid, request):
 class RedirectCollection(BaseHandler):
     check_roles = 'admin'
     cache_resource = True
+    invalidate_cache = True
 
     def get(self):
         """
@@ -69,6 +70,7 @@ class RedirectCollection(BaseHandler):
 
 class RedirectInstance(BaseHandler):
     check_roles = 'admin'
+    invalidate_cache = True
 
     @inlineCallbacks
     def delete(self, redirect_id):
