@@ -108,7 +108,7 @@ class Cleaning(DailyJob):
     @transact
     def clean(self, session):
         # delete stats older than 1 year
-        session.query(models.Stats).filter(models.Stats.start < datetime_now() - timedelta(90)).delete(synchronize_session='fetch')
+        session.query(models.Stats).filter(models.Stats.start < datetime_now() - timedelta(365)).delete(synchronize_session='fetch')
 
         # delete anomalies older than 1 year
         session.query(models.Anomalies).filter(models.Anomalies.date < datetime_now() - timedelta(365)).delete(synchronize_session='fetch')
