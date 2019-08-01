@@ -5,6 +5,10 @@
   margin: 0 auto;
 }
 
+#HomePageBox .btn {
+  font-size: inherit;
+}
+
 #NodePresentation {
   font-size: 1.3em;
 }

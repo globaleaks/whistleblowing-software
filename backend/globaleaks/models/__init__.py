@@ -54,7 +54,7 @@ def db_delete(session, model, *args, **kwargs):
 
 @transact
 def delete(session, model, *args, **kwargs):
-    return db_delete(session, model, *args, **kwargs)
+    db_delete(session, model, *args, **kwargs)
 
 
 class LocalizationEngine(object):
