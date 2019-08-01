@@ -1,6 +1,6 @@
 {
   "name": "GlobaLeaks",
-  "version": "3.10.2",
+  "version": "3.10.3",
   "dependencies": {
     "@babel/code-frame": {
       "version": "7.5.5",
