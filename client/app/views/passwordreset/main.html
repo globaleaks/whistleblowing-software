@@ -7,13 +7,12 @@
 <div class="row">	
   <div class="col-md-3">
     <form name="form" autocomplete="off" novalidate>
-      <div class="form-group">
-        <input class="form-control" name="username" data-ng-model="data.username_or_email" type="text" required />
+      <div class="input-group">
+        <input class="form-control" name="username" data-ng-model="request.username_or_email" type="text" required />
+        <span class="input-group-btn">
+          <button class="btn btn-primary" data-ng-click="submit()" type="submit" data-translate>Submit</button>
+        </span>
       </div>
-
-      <button id="login-button" class="btn btn-primary" data-ng-click="submit()" type="submit">
-        <span data-translate>Request password reset</span>
-      </button>
     </form>
   </div>
 </div>

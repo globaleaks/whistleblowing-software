@@ -156,3 +156,17 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
 
         # Ensure the key is unchanged
         self.assertEqual(response['pgp_key_fingerprint'], u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1')
+
+
+class TestUserGetBackupKey(helpers.TestHandlerWithPopulatedDB):
+    _handler = user.UserOperationHandler
+
+    def test_put(self):
+        data_request = {
+            'operation': 'get_backup_key',
+            'args': {}
+        }
+
+        handler = self.request(data_request, role='receiver')
+
+        return handler.put()

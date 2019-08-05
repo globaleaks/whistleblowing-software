@@ -1,5 +1,5 @@
-GLClient.controller("PreferencesCtrl", ["$scope", "$q", "$rootScope", "CONSTANTS",
-  function($scope, $q, $rootScope, CONSTANTS) {
+GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "$uibModal", "$http", "CONSTANTS",
+  function($scope, $rootScope, $q, $http, $uibModal, CONSTANTS) {
     $scope.tabs = [
       {
         title: "Preferences",
@@ -24,9 +24,22 @@ GLClient.controller("PreferencesCtrl", ["$scope", "$q", "$rootScope", "CONSTANTS
       $scope.editingEmailAddress = !$scope.editingEmailAddress;
     };
 
-    $scope.toggleShowEncryptionKey = function() {
-      $scope.showEncryptionKey = !$scope.showEncryptionKey;
-    };
+    $scope.getEncryptionRecoveryKey = function() {
+      return $http({method: "PUT", url: "user/operations", data:{
+        "operation": 'get_recovery_key',
+        "args": {}
+      }}).then(function(data){
+        $scope.erk = data.data.match(/.{1,4}/g).join("-");
+        $uibModal.open({
+          templateUrl: "views/partials/encryption_recovery_key.html",
+          controller: 'ModalCtrl',
+          size: "lg",
+          scope: $scope,
+          backdrop: "static",
+          keyboard: false
+        });
+      });
+    }
 
     $scope.save = function() {
       if ($scope.preferences.pgp_key_remove) {

@@ -79,6 +79,7 @@ api_spec = [
 
     # User Preferences Handler
     (r'/preferences', user.UserInstance),
+    (r'/user/operations', user.UserOperationHandler),
 
     ## Token Handlers ##
     (r'/token', token.TokenCreate),

@@ -58,7 +58,7 @@ from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils import process, tempdict, token, utility
-from globaleaks.utils.crypto import GCE
+from globaleaks.utils.crypto import GCE, Base32Encoder
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
@@ -83,6 +83,10 @@ KEY = GCE.generate_key()
 USER_KEY = GCE.derive_key(VALID_PASSWORD1, VALID_SALT1)
 USER_PRV_KEY, USER_PUB_KEY = GCE.generate_keypair()
 USER_PRV_KEY_ENC = GCE.symmetric_encrypt(USER_KEY, USER_PRV_KEY)
+USER_BKP_KEY, USER_REC_KEY = GCE.generate_recovery_key(USER_PRV_KEY)
+USER_REC_KEY = GCE.asymmetric_decrypt(USER_PRV_KEY, USER_REC_KEY)
+USER_REC_KEY_PLAIN = Base32Encoder().encode(USER_REC_KEY).replace(b'=', b'').decode('utf-8')
+
 GCE_orig_generate_key = GCE.generate_key
 GCE_orig_generate_keypair = GCE.generate_keypair
 
@@ -186,6 +190,8 @@ def mock_users_keys(session):
         user.salt = VALID_SALT1
         user.crypto_prv_key = USER_PRV_KEY_ENC
         user.crypto_pub_key = USER_PUB_KEY
+        user.crypto_bkp_key = USER_BKP_KEY
+        user.crypto_rec_key = USER_REC_KEY
 
 
 @transact

@@ -428,8 +428,31 @@ var GLClient = angular.module("GLClient", [
           access: noAuth()
         }
       }).
-      when("/login/passwordreset/failure", {
-        templateUrl: "views/passwordreset/failure.html",
+      when("/login/passwordreset/failure/token", {
+        templateUrl: "views/passwordreset/failure_token.html",
+        header_title: "Request password reset",
+        resolve: {
+          access: noAuth()
+        }
+      }).
+      when("/login/passwordreset/failure/recovery", {
+        templateUrl: "views/passwordreset/failure_recovery.html",
+        header_title: "Request password reset",
+        resolve: {
+          access: noAuth()
+        }
+      }).
+      when("/password/reset", {
+        templateUrl: "views/empty.html",
+        controller: "PasswordResetCompleteCtrl",
+        header_title: "Request password reset",
+        resolve: {
+          access: noAuth()
+        }
+      }).
+      when("/password/recovery", {
+        templateUrl: "views/passwordreset/recovery.html",
+        controller: "PasswordResetRecoveryCtrl",
         header_title: "Request password reset",
         resolve: {
           access: noAuth()

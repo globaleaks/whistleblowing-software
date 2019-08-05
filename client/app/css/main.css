@@ -234,11 +234,15 @@ html[dir] .imageUpload .changePictureButton, html[dir] .imageUpload .deletePictu
   margin: 0.2em;
 }
 
-.keyinput {
+.keyinput, .recoverykeyinput {
   display: inline;
   font-family: monospace;
   font-weight: bold;
   text-align: center;
+}
+
+.recoverykeyinput {
+  width: 64em;
 }
 
 .nested {

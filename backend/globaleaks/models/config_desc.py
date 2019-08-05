@@ -347,8 +347,6 @@ ConfigFilters['public_node'] = list(set(ConfigFilters['admin_node']) - set([
     'threshold_free_disk_percentage_low',
     'anonymize_outgoing_connections',
     'counter_submissions',
-    'encryption',
-    'two_factor_auth',
     'backup',
     'backup_d',
     'backup_w',

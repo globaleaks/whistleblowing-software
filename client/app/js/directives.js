@@ -31,7 +31,7 @@ angular.module("GLDirectives", []).
           var result = "";
 
           ngModel.$setValidity("receiptvalidator", false);
-          viewValue = viewValue.replace(/\D/g,"");
+          viewValue = viewValue.replace(/\D/g, "");
 
           while (viewValue.length > 0) {
             result += viewValue.substring(0, 4);
@@ -50,6 +50,40 @@ angular.module("GLDirectives", []).
           if (result.length === 19) {
             ngModel.$setValidity("receiptvalidator", true);
             Authentication.login(0, "whistleblower", result);
+          }
+
+          return result;
+        });
+      }
+    };
+}]).
+  directive("recoverykeyvalidator", [function() {
+    return {
+      require: "ngModel",
+      link: function(scope, elem, attrs, ngModel) {
+        ngModel.$setValidity("recoverykeyvalidator", false);
+        ngModel.$parsers.unshift(function(viewValue) {
+          var result = "";
+
+          ngModel.$setValidity("recoverykeyvalidator", false);
+          viewValue = viewValue.replace(/[^[a-zA-Z0-9]/g, "").toUpperCase();
+
+          while (viewValue.length > 0) {
+            result += viewValue.substring(0, 4);
+            if(viewValue.length >= 4) {
+              if (result.length < 64) {
+                result += "-";
+              }
+              viewValue = viewValue.substring(4);
+            } else {
+              break;
+            }
+          }
+
+          angular.element(elem).val(result);
+
+          if (result.length === 64) {
+            ngModel.$setValidity("recoverykeyvalidator", true);
           }
 
           return result;

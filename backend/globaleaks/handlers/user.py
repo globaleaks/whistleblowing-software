@@ -6,12 +6,13 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks import models
 from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.operation import OperationHandler
 from globaleaks.models import get_localized_values
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.pgp import PGPContext
-from globaleaks.utils.crypto import GCE, generateRandomKey
+from globaleaks.utils.crypto import Base32Encoder, GCE, generateRandomKey
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime_null
 
 
@@ -77,7 +78,8 @@ def user_serialize_user(session, user, language):
         'recipient_configuration': user.recipient_configuration,
         'tid': user.tid,
         'notification': user.notification,
-        'usertenant_assocations': user_tenants
+        'usertenant_assocations': user_tenants,
+        'encryption': user.crypto_pub_key != b''
     }
 
     return get_localized_values(ret_dict, user, user.localized_keys, language)
@@ -236,3 +238,23 @@ class UserInstance(BaseHandler):
                                     self.current_user,
                                     request,
                                     self.request.language)
+
+@transact
+def get_recovery_key(session, user_tid, user_id, user_cc):
+    user = db_get_user(session, user_tid, user_id)
+
+    return Base32Encoder().encode(GCE.asymmetric_decrypt(user_cc, user.crypto_rec_key)).replace(b'=', b'')
+
+
+class UserOperationHandler(OperationHandler):
+    check_roles = {'admin', 'receiver', 'custodian'}
+
+    def get_recovery_key(self, req_args, *args, **kwargs):
+        return get_recovery_key(self.current_user.user_tid,
+                                self.current_user.user_id,
+                                self.current_user.cc)
+
+    def operation_descriptors(self):
+        return {
+            'get_recovery_key': (UserOperationHandler.get_recovery_key, {})
+        }

@@ -637,8 +637,13 @@ ExceptionDesc = {
     'agent': text_type
 }
 
-PasswordResetDesc = {
+PasswordReset1Desc = {
     'username_or_email': text_type
+}
+
+PasswordReset2Desc = {
+    'reset_token': text_type,
+    'recovery_key': text_type
 }
 
 SiteSettingsDesc = {

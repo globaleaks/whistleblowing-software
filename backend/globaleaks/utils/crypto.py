@@ -14,7 +14,7 @@ import scrypt
 
 import nacl
 if V(nacl.__version__) >= V('1.2'):
-    from nacl.encoding import RawEncoder, HexEncoder
+    from nacl.encoding import RawEncoder, Base32Encoder
     from nacl.pwhash import argon2id  # pylint: disable=no-name-in-module
     from nacl.public import SealedBox, PrivateKey, PublicKey  # pylint: disable=no-name-in-module
     from nacl.secret import SecretBox
