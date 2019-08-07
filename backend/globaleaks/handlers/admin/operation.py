@@ -87,8 +87,7 @@ class AdminOperationHandler(OperationHandler):
     def reset_user_password(self, req_args, *args, **kwargs):
         return generate_password_reset_token(self.state,
                                              self.request.tid,
-                                             req_args['value'],
-                                             allow_admin_reset=True)
+                                             req_args['value'])
 
     @inlineCallbacks
     def reset_onion_private_key(self, req_args, *args, **kargs):
