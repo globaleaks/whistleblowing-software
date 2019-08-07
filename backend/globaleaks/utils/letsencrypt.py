@@ -60,37 +60,6 @@ def request_new_certificate(hostname, accnt_key, priv_key, tmp_chall_dict, direc
 
     client = create_v2_client(directory_url, accnt_key)
 
-    client.net.account = client.new_account(
-        messages.NewRegistration.from_data(
-            terms_of_service_agreed=True
-        )
-    )
-
-    csr = crypto_util.make_csr(priv_key, [hostname], False)
-    order = client.new_order(csr)
-
-    log.info('Created a new order for the issuance of a certificate for %s', hostname)
-
-    challb = select_http01_chall(order)
-
-    _, chall_tok = challb.response_and_validation(client.net.key)
-    v = challb.chall.encode("token")
-    log.info('Exposing challenge on %s', v)
-    tmp_chall_dict.set(v, ChallTok(chall_tok))
-
-    cr = client.answer_challenge(challb, challb.response(client.net.key))
-    log.debug('Acme CA responded to challenge request with: %s', cr)
-
-    order = client.poll_and_finalize(order)
-
-    return split_certificate_chain(order.fullchain_pem)
-
-
-def request_certificate_renewal(hostname, accnt_key, priv_key, tmp_chall_dict, directory_url):
-    """Perform ACME renewal"""
-
-    client = create_v2_client(directory_url, accnt_key)
-
     try:
         client.net.account = client.new_account(
             messages.NewRegistration.from_data(
@@ -106,7 +75,7 @@ def request_certificate_renewal(hostname, accnt_key, priv_key, tmp_chall_dict, d
     csr = crypto_util.make_csr(priv_key, [hostname], False)
     order = client.new_order(csr)
 
-    log.info('Created a new order for renewal of the certificate of %s', hostname)
+    log.info('Created a new order for the issuance of a certificate for %s', hostname)
 
     challb = select_http01_chall(order)
 

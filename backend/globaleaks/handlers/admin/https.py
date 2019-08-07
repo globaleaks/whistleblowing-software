@@ -13,7 +13,7 @@ from twisted.internet.threads import deferToThread
 from globaleaks.db import load_tls_dict
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import ConfigFactory
-from globaleaks.orm import transact
+from globaleaks.orm import transact, tw
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
@@ -476,11 +476,13 @@ def can_perform_acme_renewal(session, tid):
     return a and b and c
 
 
-def db_acme_cert_issuance(session, tid):
+def db_acme_cert_request(session, tid):
     priv_fact = ConfigFactory(session, tid)
     hostname = State.tenant_cache[tid].hostname
 
-    raw_accnt_key = db_create_acme_key(session, tid)
+    raw_accnt_key = priv_fact.get_val(u'acme_accnt_key')
+    if not raw_accnt_key:
+        raw_accnt_key = db_create_acme_key(session, tid)
 
     if isinstance(raw_accnt_key, text_type):
         raw_accnt_key = raw_accnt_key.encode()
@@ -491,50 +493,16 @@ def db_acme_cert_issuance(session, tid):
 
     priv_key = priv_fact.get_val(u'https_priv_key')
 
-    tmp_chall_dict = State.tenant_state[tid].acme_tmp_chall_dict
-
     cert_str, chain_str = letsencrypt.request_new_certificate(hostname,
                                                               accnt_key,
                                                               priv_key,
-                                                              tmp_chall_dict,
+                                                              State.tenant_state[tid].acme_tmp_chall_dict,
                                                               Settings.acme_directory_url)
 
     priv_fact.set_val(u'https_cert', cert_str)
     priv_fact.set_val(u'https_chain', chain_str)
     State.tenant_cache[tid].https_cert = cert_str
     State.tenant_cache[tid].https_chain = chain_str
-
-
-def db_acme_cert_renewal(session, tid):
-    priv_fact = ConfigFactory(session, tid)
-    hostname = State.tenant_cache[tid].hostname
-
-    raw_accnt_key = priv_fact.get_val(u'acme_accnt_key')
-
-    if isinstance(raw_accnt_key, text_type):
-        raw_accnt_key = raw_accnt_key.encode()
-
-    accnt_key = serialization.load_pem_private_key(raw_accnt_key,
-                                                   password=None,
-                                                   backend=default_backend())
-
-    priv_key = priv_fact.get_val(u'https_priv_key')
-
-    cert_str, chain_str = letsencrypt.request_certificate_renewal(hostname,
-                                                                  accnt_key,
-                                                                  priv_key,
-                                                                  State.tenant_state[tid].acme_tmp_chall_dict,
-                                                                  Settings.acme_directory_url)
-
-    priv_fact.set_val(u'https_cert', cert_str)
-    priv_fact.set_val(u'https_chain', chain_str)
-    State.tenant_cache[tid].https_cert = cert_str
-    State.tenant_cache[tid].https_chain = chain_str
-
-
-@transact
-def acme_cert_issuance(session, tid):
-    return db_acme_cert_issuance(session, tid)
 
 
 class AcmeHandler(BaseHandler):
@@ -554,7 +522,7 @@ class AcmeHandler(BaseHandler):
         if not is_ready:
             raise errors.ForbiddenOperation()
 
-        yield acme_cert_issuance(self.request.tid)
+        yield tw(db_acme_cert_request, self.request.tid)
 
 
 class AcmeChallengeHandler(BaseHandler):
