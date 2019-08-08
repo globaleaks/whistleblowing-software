@@ -1,4 +1,4 @@
-{
+"stats": false,{
   "id": "default",
   "name": "Default",
   "editable": false,
@@ -32,7 +32,7 @@
           "multi_entry_hint": {
             "en": ""
           },
-          "encrypt": true,
+          "stats": false,
           "required": true,
           "attrs": {
             "min_len": {
@@ -76,7 +76,7 @@
           "multi_entry_hint": {
             "en": ""
           },
-          "encrypt": true,
+          "stats": false,
           "required": true,
           "attrs": {
             "min_len": {
@@ -112,7 +112,7 @@
           "multi_entry_hint": {
             "en": ""
           },
-          "encrypt": true,
+          "stats": false,
           "required": false,
           "attrs": {},
           "options": [],

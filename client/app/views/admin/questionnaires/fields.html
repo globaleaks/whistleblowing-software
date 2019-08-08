@@ -140,6 +140,10 @@
               <input data-ng-model="field.preview" type="checkbox">
               <label data-translate>Preview</label>
             </div>
+            <div class="form-group" data-ng-if="field.type !== 'inputbox' && field.type !== 'textarea' && field.type !== 'fileupload'">
+              <input data-ng-model="field.stats" type="checkbox">
+              <label data-translate>Stats</label>
+            </div>
             <div class="form-group">
               <label>
                 <span data-translate>Width</span>

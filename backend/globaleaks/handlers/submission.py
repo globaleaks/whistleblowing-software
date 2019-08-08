@@ -120,14 +120,17 @@ def db_serialize_archived_preview_schema(preview_schema, language):
     return preview
 
 
-def db_save_questionnaire_answers(session, tid, internaltip_id, entries):
+def db_save_questionnaire_answers(session, tid, internaltip_id, entries, stats=None):
     ret = []
 
     for key, value in entries.items():
+        if key not in stats:
+            continue
+
         field_answer = models.FieldAnswer({
-            'internaltip_id': internaltip_id,
-            'key': key,
             'tid': tid,
+            'internaltip_id': internaltip_id,
+            'key': key
         })
 
         session.add(field_answer)
@@ -147,7 +150,7 @@ def db_save_questionnaire_answers(session, tid, internaltip_id, entries):
                 session.add(group)
                 session.flush()
 
-                group_elems = db_save_questionnaire_answers(session, tid, internaltip_id, elem)
+                group_elems = db_save_questionnaire_answers(session, tid, internaltip_id, elem, stats)
                 for group_elem in group_elems:
                     group_elem.fieldanswergroup_id = group.id
 
@@ -383,14 +386,17 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
     if crypto_is_available:
         answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers).encode())).decode()
-    else:
-        db_save_questionnaire_answers(session, tid, itip.id, answers)
 
     db_set_internaltip_answers(session,
                                itip.id,
                                questionnaire_hash,
                                answers,
                                crypto_is_available)
+
+    # Save plaintext answers only for questions that are subject to statistics
+    stats = {x[0] : True for x in session.query(models.Field.id).filter(models.Field.stats == True)}
+    if stats:
+        db_save_questionnaire_answers(session, tid, itip.id, answers, stats)
 
     for filedesc in token.uploaded_files:
         new_file = models.InternalFile()
