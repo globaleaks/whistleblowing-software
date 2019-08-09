@@ -1484,14 +1484,15 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
         parseField: function(field, parsedFields) {
           var self = this;
-          if (!field.editable) {
-            return;
-          }
 
           if (!Object.keys(parsedFields).length) {
             parsedFields.fields = [];
             parsedFields.fields_by_id = {};
             parsedFields.options_by_id = {};
+          }
+
+          if (!field.editable) {
+            return parsedFields;
           }
 
           if (["checkbox", "selectbox", "multichoice"].indexOf(field.type) > -1) {
@@ -1514,22 +1515,22 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
               });
             });
           }
+
+          return parsedFields;
         },
 
-        parseFields: function(fields) {
+        parseFields: function(fields, parsedFields) {
           var self = this;
-          var parsedFields = {};
 
           fields.forEach(function(field) {
-            self.parseField(field, parsedFields);
+            parsedFields = self.parseField(field, parsedFields);
           });
 
           return parsedFields;
         },
 
-        parseQuestionnaire: function(questionnaire) {
+        parseQuestionnaire: function(questionnaire, parsedFields) {
           var self = this;
-          var parsedFields = {};
 
           questionnaire.steps.forEach(function(step) {
             parsedFields = self.parseFields(step.children, parsedFields);

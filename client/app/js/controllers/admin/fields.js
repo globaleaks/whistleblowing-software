@@ -14,8 +14,6 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
 
     $scope.children = $scope.field.children;
 
-    $scope.parsedFields = $scope.fieldUtilities.parseFields($scope.fields);
-
     $scope.toggleEditing = function () {
       $scope.editing = !$scope.editing;
     };

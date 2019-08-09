@@ -70,7 +70,7 @@ controller("AdminQuestionnaireEditorCtrl", ["$scope", "$uibModal", "$http", "Fil
     $scope.showAddStep = !$scope.showAddStep;
   };
 
-  $scope.parsedFields = $scope.fieldUtilities.parseQuestionnaire($scope.questionnaire);
+  $scope.parsedFields = $scope.fieldUtilities.parseQuestionnaire($scope.questionnaire, {});
 
   $scope.delStep = function(step) {
     $scope.Utils.deleteDialog().then(function() {

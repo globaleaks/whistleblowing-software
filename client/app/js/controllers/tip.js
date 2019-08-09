@@ -34,7 +34,7 @@ GLClient.controller("TipCtrl",
 
       for (x=0; x<tip.questionnaires.length; x++) {
         questionnaire = tip.questionnaires[x];
-        $scope.fieldUtilities.parseQuestionnaire(questionnaire);
+        $scope.fieldUtilities.parseQuestionnaire(questionnaire, {});
 
         for (i=0; i<questionnaire.steps.length; i++) {
           step = questionnaire.steps[i];
