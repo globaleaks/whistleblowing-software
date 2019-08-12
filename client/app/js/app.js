@@ -2,58 +2,6 @@
 
 var _flowFactoryProvider;
 
-function extendExceptionHandler($delegate, $injector, stacktraceService) {
-    var uuid4RE = /([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})/g;
-    var uuid4Empt = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
-    // Note this RE is different from our usual email validator
-    var emailRE = /(([\w+-.]){0,100}[\w]{1,100}@([\w+-.]){0,100}.[\w]{1,100})/g;
-    var emailEmpt = "~~~~~~@~~~~~~";
-
-    function scrub(s) {
-      var cleaner = s.replace(uuid4RE, uuid4Empt);
-      cleaner = s.replace(emailRE, emailEmpt);
-      return cleaner;
-    }
-
-    return function(exception, cause) {
-        var $rootScope = $injector.get("$rootScope");
-
-        if ($rootScope.exceptions_count === undefined) {
-          $rootScope.exceptions_count = 0;
-        }
-
-        $rootScope.exceptions_count += 1;
-
-        if ($rootScope.exceptions_count >= 3) {
-          // Give each client the ability to forward only the first 3 exceptions
-          // scattered; this is also important to avoid looping exceptions to
-          // cause looping POST requests.
-          return;
-        }
-
-        $delegate(exception, cause);
-
-        stacktraceService.fromError(exception).then(function(result) {
-          var errorData = angular.toJson({
-            errorUrl: $injector.get("$location").path(),
-            errorMessage: exception.toString(),
-            stackTrace: result,
-            agent: navigator.userAgent
-          });
-
-          $injector.get("$http").post("exception", scrub(errorData));
-        });
-    };
-}
-
-extendExceptionHandler.$inject = ["$delegate", "$injector", "stacktraceService"];
-
-function exceptionConfig($provide) {
-    $provide.decorator("$exceptionHandler", extendExceptionHandler);
-}
-
-exceptionConfig.$inject = ["$provide"];
-
 var GLClient = angular.module("GLClient", [
     "angular.filter",
     "ngAria",
@@ -71,27 +19,18 @@ var GLClient = angular.module("GLClient", [
     "GLFilters",
     "GLCrypto",
     "GLLibs"
-  ]).
-  config(["$compileProvider",
-          "$httpProvider",
-          "$locationProvider",
-          "$provide",
-          "$qProvider",
-          "$routeProvider",
-          "$rootScopeProvider",
-          "$translateProvider",
-          "$uibTooltipProvider",
-          "tmhDynamicLocaleProvider",
-    function($compileProvider, $httpProvider, $locationProvider, $provide, $qProvider, $routeProvider, $rootScopeProvider, $translateProvider, $uibTooltipProvider, tmhDynamicLocaleProvider) {
+]).
+  config(["$compileProvider", function($compileProvider) {
     $compileProvider.debugInfoEnabled(false);
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|local|data):/);
-
-    $qProvider.errorOnUnhandledRejections(false);
-
+}]).
+  config(["$httpProvider", function($httpProvider) {
     $httpProvider.interceptors.push("globaleaksRequestInterceptor");
-
+}]).
+  config(["$locationProvider", function($locationProvider) {
     $locationProvider.hashPrefix("");
-
+}]).
+  config(["$provide", function($provide) {
     $provide.decorator("$templateRequest", ["$delegate", function($delegate) {
       // This decorator is required in order to inject the 'true' for setting ignoreRequestError
       // in relation to https://docs.angularjs.org/error/$compile/tpload
@@ -108,6 +47,59 @@ var GLClient = angular.module("GLClient", [
       return $delegate;
     }]);
 
+    $provide.decorator("$exceptionHandler", ["$delegate", "$injector", "stacktraceService", function ($delegate, $injector, stacktraceService) {
+      var uuid4RE = /([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})/g;
+      var uuid4Empt = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+      // Note this RE is different from our usual email validator
+      var emailRE = /(([\w+-.]){0,100}[\w]{1,100}@([\w+-.]){0,100}.[\w]{1,100})/g;
+      var emailEmpt = "~~~~~~@~~~~~~";
+
+      function scrub(s) {
+      var cleaner = s.replace(uuid4RE, uuid4Empt);
+        cleaner = s.replace(emailRE, emailEmpt);
+        return cleaner;
+      }
+
+      return function(exception, cause) {
+          var $rootScope = $injector.get("$rootScope");
+
+          if ($rootScope.exceptions_count === undefined) {
+            $rootScope.exceptions_count = 0;
+          }
+
+          $rootScope.exceptions_count += 1;
+
+          if ($rootScope.exceptions_count >= 3) {
+            // Give each client the ability to forward only the first 3 exceptions
+            // scattered; this is also important to avoid looping exceptions to
+            // cause looping POST requests.
+            return;
+          }
+
+          $delegate(exception, cause);
+
+          stacktraceService.fromError(exception).then(function(result) {
+              var errorData = angular.toJson({
+              errorUrl: $injector.get("$location").path(),
+              errorMessage: exception.toString(),
+              stackTrace: result,
+              agent: navigator.userAgent
+            });
+
+            $injector.get("$http").post("exception", scrub(errorData));
+          });
+      };
+    }]);
+}]).
+  config(["$qProvider", function($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}]).
+  config(["$rootScopeProvider", function($rootScopeProvider) {
+    // Raise the default digest loop limit to 30 because of the template recursion used by fields:
+    // https://github.com/angular/angular.js/issues/6440
+    $rootScopeProvider.digestTtl(30);
+}]).
+  config(["$routeProvider", function($routeProvider) {
     function requireAuth(role) {
       return ["Access", function(Access) { return Access.isAuthenticated(role); }];
     }
@@ -470,77 +462,74 @@ var GLClient = angular.module("GLClient", [
       otherwise({
         redirectTo: "/"
       });
-
-      $uibTooltipProvider.options({appendToBody: true, trigger: "mouseenter"});
-
-      // Raise the default digest loop limit to 30 because of the template recursion used by fields:
-      // https://github.com/angular/angular.js/issues/6440
-      $rootScopeProvider.digestTtl(30);
-
-      // Configure translation and language providers.
-      $translateProvider.useStaticFilesLoader({
-        prefix: "l10n/",
-        suffix: ""
-      });
-
-      $translateProvider.useInterpolation("noopInterpolation");
-      $translateProvider.useSanitizeValueStrategy("escape");
-
-      tmhDynamicLocaleProvider.localeLocationPattern("{{base64Locales[locale]}}");
-      tmhDynamicLocaleProvider.addLocalePatternValue("base64Locales",
-        {
-         "ar": "js/locale/angular-locale_ar.js",
-         "az": "js/locale/angular-locale_az.js",
-         "bg": "js/locale/angular-locale_ca.js",
-         "bs": "js/locale/angular-locale_bs.js",
-         "ca": "js/locale/angular-locale_ca.js",
-         "ca@valencia": "js/locale/angular-locale_ca-es-valencia.js",
-         "cs": "js/locale/angular-locale_cs.js",
-         "da": "js/locale/angular-locale_da.js",
-         "de": "js/locale/angular-locale_de.js",
-         "el": "js/locale/angular-locale_el.js",
-         "en": "js/locale/angular-locale_en.js",
-         "es": "js/locale/angular-locale_es.js",
-         "fa": "js/locale/angular-locale_fa.js",
-         "fi": "js/locale/angular-locale_fi.js",
-         "fr": "js/locale/angular-locale_fr.js",
-         "gl": "js/locale/angular-locale_gl.js",
-         "he": "js/locale/angular-locale_he.js",
-         "hr-hr": "js/locale/angular-locale_hr-hr.js",
-         "hr-hu": "js/locale/angular-locale_hr-hu.js",
-         "id": "js/locale/angular-locale_id.js",
-         "it": "js/locale/angular-locale_it.js",
-         "ja": "js/locale/angular-locale_ja.js",
-         "ka": "js/locale/angular-locale_ka.js",
-         "ko": "js/locale/angular-locale_ko.js",
-         "mg": "js/locale/angular-locale_mg.js",
-         "nb-no": "js/locale/angular-locale_nb_no.js",
-         "nl": "js/locale/angular-locale_nl.js",
-         "pl": "js/locale/angular-locale_pl.js",
-         "pt-br": "js/locale/angular-locale_pt-br.js",
-         "pt-pt": "js/locale/angular-locale_pt-pt.js",
-         "ro": "js/locale/angular-locale_ro.js",
-         "ru": "js/locale/angular-locale_ru.js",
-         "sk": "js/locale/angular-locale_sk.js",
-         "sl-si": "js/locale/angular-locale_sl.js",
-         "sq": "js/locale/angular-locale_sq.js",
-         "sv": "js/locale/angular-locale_sv.js",
-         "ta": "js/locale/angular-locale_ta.js",
-         "th": "js/locale/angular-locale_th.js",
-         "tr": "js/locale/angular-locale_tr.js",
-         "uk": "js/locale/angular-locale_uk.js",
-         "ur": "js/locale/angular-locale_ur.js",
-         "vi": "js/locale/angular-locale_vi.js",
-         "zn-cn": "js/locale/angular-locale_zh-cn.js",
-         "zh-tw": "js/locale/angular-locale_zh-tw.js"
-        }
-      );
-
 }]).
-  config(['$uibModalProvider', function($uibModalProvider) {
+  config(["$translateProvider", function($translateProvider) {
+    $translateProvider.useStaticFilesLoader({
+      prefix: "l10n/",
+      suffix: ""
+    });
+
+    $translateProvider.useInterpolation("noopInterpolation");
+    $translateProvider.useSanitizeValueStrategy("escape");
+}]).
+  config(["$uibModalProvider", function($uibModalProvider) {
     $uibModalProvider.options.backdrop = "static";
     $uibModalProvider.options.keyboard = false;
     $uibModalProvider.options.focus = true;
+}]).
+  config(["$uibTooltipProvider", function($uibTooltipProvider) {
+    $uibTooltipProvider.options({appendToBody: true, trigger: "mouseenter"});
+}]).
+  config(["tmhDynamicLocaleProvider", function(tmhDynamicLocaleProvider) {
+    tmhDynamicLocaleProvider.localeLocationPattern("{{base64Locales[locale]}}");
+    tmhDynamicLocaleProvider.addLocalePatternValue("base64Locales",
+      {
+       "ar": "js/locale/angular-locale_ar.js",
+       "az": "js/locale/angular-locale_az.js",
+       "bg": "js/locale/angular-locale_ca.js",
+       "bs": "js/locale/angular-locale_bs.js",
+       "ca": "js/locale/angular-locale_ca.js",
+       "ca@valencia": "js/locale/angular-locale_ca-es-valencia.js",
+       "cs": "js/locale/angular-locale_cs.js",
+       "da": "js/locale/angular-locale_da.js",
+       "de": "js/locale/angular-locale_de.js",
+       "el": "js/locale/angular-locale_el.js",
+       "en": "js/locale/angular-locale_en.js",
+       "es": "js/locale/angular-locale_es.js",
+       "fa": "js/locale/angular-locale_fa.js",
+       "fi": "js/locale/angular-locale_fi.js",
+       "fr": "js/locale/angular-locale_fr.js",
+       "gl": "js/locale/angular-locale_gl.js",
+       "he": "js/locale/angular-locale_he.js",
+       "hr-hr": "js/locale/angular-locale_hr-hr.js",
+       "hr-hu": "js/locale/angular-locale_hr-hu.js",
+       "id": "js/locale/angular-locale_id.js",
+       "it": "js/locale/angular-locale_it.js",
+       "ja": "js/locale/angular-locale_ja.js",
+       "ka": "js/locale/angular-locale_ka.js",
+       "ko": "js/locale/angular-locale_ko.js",
+       "mg": "js/locale/angular-locale_mg.js",
+       "nb-no": "js/locale/angular-locale_nb_no.js",
+       "nl": "js/locale/angular-locale_nl.js",
+       "pl": "js/locale/angular-locale_pl.js",
+       "pt-br": "js/locale/angular-locale_pt-br.js",
+       "pt-pt": "js/locale/angular-locale_pt-pt.js",
+       "ro": "js/locale/angular-locale_ro.js",
+       "ru": "js/locale/angular-locale_ru.js",
+       "sk": "js/locale/angular-locale_sk.js",
+       "sl-si": "js/locale/angular-locale_sl.js",
+       "sq": "js/locale/angular-locale_sq.js",
+       "sv": "js/locale/angular-locale_sv.js",
+       "ta": "js/locale/angular-locale_ta.js",
+       "th": "js/locale/angular-locale_th.js",
+       "tr": "js/locale/angular-locale_tr.js",
+       "uk": "js/locale/angular-locale_uk.js",
+       "ur": "js/locale/angular-locale_ur.js",
+       "vi": "js/locale/angular-locale_vi.js",
+       "zn-cn": "js/locale/angular-locale_zh-cn.js",
+       "zh-tw": "js/locale/angular-locale_zh-tw.js"
+      }
+    );
 }]).
   config(["flowFactoryProvider", function (flowFactoryProvider) {
     // Trick to move the flowFactoryProvider config inside run block.
@@ -795,11 +784,6 @@ var GLClient = angular.module("GLClient", [
 
     $rootScope.init();
 }]).
-  factory("stacktraceService", function() {
-    return({
-      fromError: StackTrace.fromError
-    });
-}).
   factory("globaleaksRequestInterceptor", ["$injector", function($injector) {
     return {
      "request": function(config) {
@@ -853,7 +837,7 @@ var GLClient = angular.module("GLClient", [
      }
    };
 }]).
-factory("noopInterpolation", ["$interpolate", "$translateSanitization", function ($interpolate, $translateSanitization) {
+  factory("noopInterpolation", ["$interpolate", "$translateSanitization", function ($interpolate, $translateSanitization) {
   // simple noop interpolation service
 
   var $locale,
@@ -875,4 +859,8 @@ factory("noopInterpolation", ["$interpolate", "$translateSanitization", function
     }
   };
 }]).
-  config(exceptionConfig);
+  factory("stacktraceService", function() {
+    return({
+      fromError: StackTrace.fromError
+    });
+});
