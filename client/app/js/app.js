@@ -537,6 +537,11 @@ var GLClient = angular.module("GLClient", [
       );
 
 }]).
+  config(['$uibModalProvider', function($uibModalProvider) {
+    $uibModalProvider.options.backdrop = "static";
+    $uibModalProvider.options.keyboard = false;
+    $uibModalProvider.options.focus = true;
+}]).
   config(["flowFactoryProvider", function (flowFactoryProvider) {
     // Trick to move the flowFactoryProvider config inside run block.
     _flowFactoryProvider = flowFactoryProvider;
@@ -578,9 +583,7 @@ var GLClient = angular.module("GLClient", [
         controller: "ModalCtrl",
         templateUrl: "views/partials/security_awareness_confidentiality.html",
         size: "lg",
-        scope: $rootScope,
-        backdrop: "static",
-        keyboard: false
+        scope: $rootScope
       });
     };
 
@@ -589,9 +592,7 @@ var GLClient = angular.module("GLClient", [
         templateUrl: "views/partials/disclaimer.html",
         controller: "DisclaimerModalCtrl",
         size: "lg",
-        scope: $rootScope,
-        backdrop: "static",
-        keyboard: false
+        scope: $rootScope
       });
     };
 

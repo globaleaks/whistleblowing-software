@@ -1073,8 +1073,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         var modal = $uibModal.open({
           templateUrl: template,
           controller: "ConfirmableDialogCtrl",
-          backdrop: "static",
-          keyboard: false,
           scope: scope,
           resolve: {
             arg: function () {
@@ -1365,7 +1363,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           angular.forEach(list, function(field) {
             if (self.isFieldTriggered(parent, field, scope.answers, scope.total_score)) {
               field.enabled = true;
-	      if (!(field.id in answers)) {
+              if (!(field.id in answers)) {
                 answers[field.id] = [{}];
               }
             } else {

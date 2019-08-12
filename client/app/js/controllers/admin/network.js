@@ -205,8 +205,6 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
         // The next request is about to disable https meaning the interface is
         // about to be unreachable.
         $uibModal.open({
-          backdrop: "static",
-          keyboard: false,
           templateUrl: "views/partials/disable_input.html",
           controller: "disableInputModalCtrl",
           resolve: {
@@ -224,8 +222,6 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
       var go_url = "https://" + $scope.admin.node.hostname + "/#/admin/network";
 
       $uibModal.open({
-        backdrop: "static",
-        keyboard: false,
         templateUrl: "views/admin/network/redirect_to_https.html",
         controller: "safeRedirectModalCtrl",
         resolve: {
