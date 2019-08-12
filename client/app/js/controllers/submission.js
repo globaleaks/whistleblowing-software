@@ -185,12 +185,6 @@ GLClient.controller("SubmissionCtrl",
     $scope.questionnaire = context.questionnaire;
     $scope.field_id_map = fieldUtilities.build_field_id_map($scope.questionnaire);
 
-    angular.forEach(context.questionnaire.steps, function(step) {
-      angular.forEach(step.children, function(field) {
-        $scope.answers[field.id] = [angular.copy(fieldUtilities.prepare_field_answers_structure(field))];
-      });
-    });
-
     $scope.submission.create(context.id, function () {
       startCountdown();
 
@@ -420,12 +414,6 @@ controller("AdditionalQuestionnaireCtrl",
     $scope.uploads = {};
     $scope.questionnaire = $scope.tip.additional_questionnaire;
     $scope.field_id_map = fieldUtilities.build_field_id_map($scope.questionnaire);
-
-    angular.forEach($scope.questionnaire.steps, function(step) {
-      angular.forEach(step.children, function(field) {
-        $scope.answers[field.id] = [angular.copy(fieldUtilities.prepare_field_answers_structure(field))];
-      });
-    });
   };
 
   $scope.completeSubmission = function() {
@@ -621,7 +609,7 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
   };
 
   $scope.addAnswerEntry = function(entries) {
-    entries.push(angular.copy($scope.field.answer_structure));
+    entries.push({});
   };
 
   $scope.fields = $scope.field.children;

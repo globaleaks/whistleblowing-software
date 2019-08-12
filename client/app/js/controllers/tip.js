@@ -62,10 +62,7 @@ GLClient.controller("TipCtrl",
               $scope.rows = fieldUtilities.splitRows($scope.fields);
               $scope.field = $scope.whistleblower_identity_field;
 
-              for (k = 0; k < $scope.field.children.length; k++) {
-                child = $scope.field.children[k];
-                $scope.answers[child.id] = [angular.copy(fieldUtilities.prepare_field_answers_structure(child))];
-              }
+              fieldUtilities.onAnswersUpdate($scope);
             }
           }
         }
@@ -211,12 +208,6 @@ GLClient.controller("TipCtrl",
     $scope.tip_open_additional_questionnaire = function () {
       $scope.answers = {};
       $scope.uploads = {};
-
-      angular.forEach($scope.tip.additional_questionnaire.steps, function(step) {
-        angular.forEach(step.children, function(field) {
-          $scope.answers[field.id] = [angular.copy($scope.fieldUtilities.prepare_field_answers_structure(field))];
-        });
-      });
 
       $uibModal.open({
         templateUrl: "views/partials/tip_additional_questionnaire_form.html",

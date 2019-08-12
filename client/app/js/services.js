@@ -1196,18 +1196,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         }
       };
 
-      var prepare_field_answers_structure = function(field) {
-        if (field.answers_structure === undefined) {
-          field.answer_structure = {};
-          if (field.type === "fieldgroup") {
-            angular.forEach(field.children, function(child) {
-              field.answer_structure[child.id] = [prepare_field_answers_structure(child)];
-            });
-          }
-        }
-        return field.answer_structure;
-      };
-
       return {
         getValidator: function(field) {
           var validators = {
@@ -1240,8 +1228,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
           return rows;
         },
-
-        prepare_field_answers_structure: prepare_field_answers_structure,
 
         flatten_field: flatten_field,
 
@@ -1379,19 +1365,23 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           angular.forEach(list, function(field) {
             if (self.isFieldTriggered(parent, field, scope.answers, scope.total_score)) {
               field.enabled = true;
+	      if (!(field.id in answers)) {
+                answers[field.id] = [{}];
+              }
             } else {
               field.enabled = false;
-              if (field.id in scope.answers) {
-                scope.answers[field.id].splice(0, scope.answers[field.id].length);
-                scope.answers[field.id].push(angular.copy(self.prepare_field_answers_structure(field)));
+              if (field.id in answers) {
+                answers[field.id].splice(0, answers[field.id].length);
               }
             }
 
-            angular.forEach(list, function(field) {
+            if (field.id in answers) {
               for (i=0; i<answers[field.id].length; i++) {
                 self.updateAnswers(scope, field, field.children, answers[field.id][i]);
               }
-            });
+            } else {
+              self.updateAnswers(scope, field, field.children, {});
+            }
 
             if (!field.enabled) {
               return;

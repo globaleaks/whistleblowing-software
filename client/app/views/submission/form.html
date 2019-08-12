@@ -1,14 +1,14 @@
 <div data-ng-repeat="row in rows" data-ng-init="fieldRow=$index" class="row">
   <div data-ng-repeat="field in row | orderBy:'x'" data-ng-init="fieldCol=$index">
-    <div data-ng-controller="SubmissionFieldCtrl" data-ng-class="getClass(field, row.length)">
-      <div id="{{fieldId}}" class="question" data-ng-if="field.enabled">
+    <div data-ng-if="field.enabled" data-ng-controller="SubmissionFieldCtrl" data-ng-class="getClass(field, row.length)" id="{{fieldId}}">
+      <div class="question">
         <div class="question-label">
           <label data-content="::field.hint" uib-popover="{{::field.hint}}" popover-placement="right">
             <span class="fieldLabel">{{::field.label}}</span>
             <span data-ng-if="::field.hint">
               <i class="glyphicon glyphicon-question-sign"></i>
             </span>
-	    <span data-ng-if="::field.required" class="red sup" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+            <span data-ng-if="::field.required" class="red sup" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
         </div>
         <div class="question-body">
