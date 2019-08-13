@@ -54,48 +54,39 @@ class MigrationBase(object):
     def epilogue(self):
         pass
 
-    def migrate_model_key(self, old_obj, new_obj, key, old_key=None):
-        """
-        Migrate an existing model key allowing key name change
-        """
-        if old_key is None:
-            old_key = key
-
-        old_keys = [c.key for c in old_obj.__table__.columns]
-        if old_key in old_keys:
-            setattr(new_obj, key, getattr(old_obj, old_key))
-
     def update_model_with_new_templates(self, model_obj, var_name, template_list, templates_dict):
-        if var_name in template_list:
-            # check needed to preserve funtionality if templates will be altered in the future
-            if var_name in templates_dict:
-                template_text = templates_dict[var_name]
-            else:
-                template_text = every_language_dict()
+        # check needed to preserve funtionality if templates will be altered in the future
+        if var_name not in template_list:
+            return False
 
-            setattr(model_obj, var_name, template_text)
-            return True
+        if var_name in templates_dict:
+            setattr(model_obj, var_name, templates_dict[var_name])
+        else:
+            setattr(model_obj, var_name, every_language_dict())
 
-        return False
+        return True
 
     def generic_migration_function(self, model_name):
-        old_objects = self.session_old.query(self.model_from[model_name])
+        old_keys = [c.key for c in self.model_from[model_name].__table__.columns]
+        new_keys = [c.key for c in self.model_from[model_name].__table__.columns if c.key in old_keys]
 
-        for old_obj in old_objects:
+        old_objs = self.session_old.query(self.model_from[model_name])
+        for old_obj in old_objs:
             new_obj = self.model_to[model_name](migrate=True)
 
-            for k in [c.key for c in new_obj.__table__.columns]:
-                self.migrate_model_key(old_obj, new_obj, k)
+            for k in new_keys:
+                setattr(new_obj, k, getattr(old_obj, k))
 
             self.session_new.add(new_obj)
 
     def migrate_model(self, model_name):
-        objs_count = self.session_old.query(self.model_from[model_name]).count()
+        if self.entries_count[model_name] <= 0:
+            return
+
+        Settings.print_msg(' * %s [#%d]' % (model_name, self.entries_count[model_name]))
 
         specific_migration_function = getattr(self, 'migrate_%s' % model_name, None)
-        if specific_migration_function is not None:
-            Settings.print_msg(' ł %s [#%d]' % (model_name, objs_count))
-            specific_migration_function()
-        else:
-            Settings.print_msg(' * %s [#%d]' % (model_name, objs_count))
+        if specific_migration_function is None:
             self.generic_migration_function(model_name)
+        else:
+            specific_migration_function()
