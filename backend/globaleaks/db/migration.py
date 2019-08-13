@@ -285,9 +285,6 @@ def perform_migration(version):
         if os.path.exists(path):
             shutil.rmtree(path)
 
-    except Exception as e:
-        print(e)
-
     finally:
         # Always cleanup the temporary directory used for the migration
         for f in os.listdir(tmpdir):
