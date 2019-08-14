@@ -441,6 +441,9 @@ class APIResourceWrapper(Resource):
     def set_headers(self, request):
         request.setHeader(b'Server', b'Globaleaks')
 
+        if request.client_proto == b'https':
+            request.setHeader(b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains')
+
         request.setHeader(b'Content-Language', request.language)
 
         # to reduce possibility for XSS attacks.
