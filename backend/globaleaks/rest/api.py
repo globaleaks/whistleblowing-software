@@ -444,8 +444,6 @@ class APIResourceWrapper(Resource):
         if request.client_proto == b'https':
             request.setHeader(b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains')
 
-        request.setHeader(b'Content-Language', request.language)
-
         # to reduce possibility for XSS attacks.
         request.setHeader(b'X-Content-Type-Options', b'nosniff')
         request.setHeader(b'X-XSS-Protection', b'1; mode=block')
@@ -471,6 +469,8 @@ class APIResourceWrapper(Resource):
             request.setHeader(b'x-check-tor', b'True')
         else:
             request.setHeader(b'x-check-tor', b'False')
+
+        request.setHeader(b'Content-Language', request.language)
 
     def parse_accept_language_header(self, request):
         if b'accept-language' in request.headers:
