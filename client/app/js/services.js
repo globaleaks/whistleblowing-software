@@ -841,8 +841,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
   factory("DefaultL10NResource", ["GLResource", function(GLResource) {
     return new GLResource("l10n/:lang.json", {lang: "@lang"});
 }]).
-  factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$sce", "$uibModal", "$window", "Authentication",
-  function($rootScope, $http, $q, $location, $filter, $sce, $uibModal, $window, Authentication) {
+  factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModal", "$window", "Authentication",
+  function($rootScope, $http, $q, $location, $filter, $uibModal, $window, Authentication) {
     return {
       array_to_map: function(array) {
         var ret = {};
@@ -925,10 +925,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         }
       },
 
-      base64ToTrustedScriptUrl: function(base64_data) {
-        return $sce.trustAsResourceUrl("data:application/javascript;base64," + base64_data);
-      },
-
       update: function (model, cb, errcb) {
         var success = {};
         model.$update(
@@ -958,10 +954,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         }
 
         return "data:image/png;base64," + data;
-      },
-
-      attachCustomJS: function() {
-        return angular.isDefined($rootScope.node) && angular.isDefined($rootScope.node.script);
       },
 
       isWhistleblowerPage: function() {

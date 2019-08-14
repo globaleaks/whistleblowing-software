@@ -481,8 +481,8 @@ var GLClient = angular.module("GLClient", [
     $uibTooltipProvider.options({appendToBody: true, trigger: "mouseenter"});
 }]).
   config(["tmhDynamicLocaleProvider", function(tmhDynamicLocaleProvider) {
-    tmhDynamicLocaleProvider.localeLocationPattern("{{base64Locales[locale]}}");
-    tmhDynamicLocaleProvider.addLocalePatternValue("base64Locales",
+    tmhDynamicLocaleProvider.localeLocationPattern("{{locales[locale]}}");
+    tmhDynamicLocaleProvider.addLocalePatternValue("locales",
       {
        "ar": "js/locale/angular-locale_ar.js",
        "az": "js/locale/angular-locale_az.js",
@@ -502,14 +502,14 @@ var GLClient = angular.module("GLClient", [
        "gl": "js/locale/angular-locale_gl.js",
        "he": "js/locale/angular-locale_he.js",
        "hr-hr": "js/locale/angular-locale_hr-hr.js",
-       "hr-hu": "js/locale/angular-locale_hr-hu.js",
+       "hr-hu": "js/locale/angular-locale_hu-hu.js",
        "id": "js/locale/angular-locale_id.js",
        "it": "js/locale/angular-locale_it.js",
        "ja": "js/locale/angular-locale_ja.js",
        "ka": "js/locale/angular-locale_ka.js",
        "ko": "js/locale/angular-locale_ko.js",
        "mg": "js/locale/angular-locale_mg.js",
-       "nb-no": "js/locale/angular-locale_nb_no.js",
+       "nb-no": "js/locale/angular-locale_nb-no.js",
        "nl": "js/locale/angular-locale_nl.js",
        "pl": "js/locale/angular-locale_pl.js",
        "pt-br": "js/locale/angular-locale_pt-br.js",
@@ -637,10 +637,6 @@ var GLClient = angular.module("GLClient", [
             $rootScope.contexts_by_id[key].additional_questionnaire = $rootScope.questionnaires_by_id[$rootScope.contexts_by_id[key].additional_questionnaire_id];
           }
         });
-
-        if (result.node.favicon) {
-          document.getElementById("favicon").setAttribute("href", "data:image/x-icon;base64," + result.node.favicon);
-        }
 
         $rootScope.connection = {
           "https": $location.protocol() === "https",

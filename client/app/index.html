@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-ng-app="GLClient" data-ng-keydown="keypress($event)" data-ng-strict-di lang="{{GLTranslate.state.language}}">
+<html data-ng-app="GLClient" data-ng-csp data-ng-strict-di data-ng-keydown="keypress($event)" lang="{{GLTranslate.state.language}}">
   <head>
     <title data-ng-bind="pt"></title>
     <meta charset="utf-8" />
@@ -10,7 +10,11 @@
     <!-- Ticket #1480 : Specify the ordered IE support starting from EDGE and ending with 11 -->
     <meta http-equiv="X-UA-Compatible" content="IE=EDGE,11" />
 
+    <link rel="shortcut icon" type="image/x-icon" href="s/favicon" />
+
     <!-- build:css css/styles.css -->
+    <link rel="stylesheet" href="css/loader.css" />
+    <link rel="stylesheet" href="css/angular-csp.css" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/select.min.css" />
     <link rel="stylesheet" href="css/main.css" />
@@ -21,74 +25,10 @@
     <link rel="stylesheet" href="css/print.css" />
     <!-- endbuild -->
 
-    <link id="favicon" rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" type="image/x-icon" />
-
-    <link data-ng-if="::node.css" rel="stylesheet" data-ng-href="data:text/css;base64,{{node.css}}" />
+    <link rel="stylesheet" type="text/css" data-ng-href="s/css" />
   </head>
 
   <body>
-    <style type="text/css">
-      .block-user-input {
-        pointer-events: none;
-        user-select: none;
-      }
-
-      #BrowserNotSupported {
-        display: none;
-        padding: 30px;
-      }
-
-      #PageOverlay {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        z-index: 2147483647;
-        pointer-events: none;
-        user-select: none;
-	background-color: #FFF;
-	opacity: 0.2;
-      }
-
-      #LoaderBox {
-        position: relative;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        font-size: 6em;
-        color: #000;
-      }
-
-      #LoaderBoxContent {
-        margin: 0 auto;
-      }
-
-      .gly-spin {
-        animation: gly-spin 2s infinite linear;
-        text-shadow: #428bca 1px 0 5px;
-      }
-
-      @keyframes gly-spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(359deg); }
-      }
-
-      [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-        display: none !important;
-      }
-    </style>
-
-    <style type="text/css" data-ng-if="!embedded">
-      @media (min-width: 992px) {
-        body {
-          min-height: 100%;
-        }
-      }
-    </style>
-
     <noscript>
       <h1>Error! :(</h1>
       <br /><br />
@@ -204,67 +144,6 @@
     <script src="js/controllers/password_reset.js"></script>
     <!-- endbuild -->
 
-    <script type="text/javascript">
-      if(!window.console) { window.console={}; window.console.log = function(){}; }
-
-      var isBrowserCompatible = function() {
-        var crawlers = [
-          "Googlebot",
-          "Bingbot",
-          "Slurp",
-          "DuckDuckBot",
-          "Baiduspider",
-          "YandexBot",
-          "Sogou",
-          "Exabot",
-          "ia_archiver"
-        ];
-
-        for (var i=0; i < crawlers.length; crawlers++) {
-          if (navigator.userAgent.indexOf(crawlers[i]) !== -1) {
-            return true;
-          }
-        }
-
-        if (typeof window === 'undefined') {
-          return false;
-        }
-
-        if (!(window.File && window.FileList && window.FileReader)) {
-          console.log("GlobaLeaks startup failure: missing support for File API");
-          return false;
-        }
-
-        if (typeof Blob === 'undefined' ||
-            (!Blob.prototype.slice && !Blob.prototype.webkitSlice && !!Blob.prototype.mozSlice)) {
-          console.log("GlobaLeaks startup failure: missing support for Blob API");
-          return false;
-        }
-
-        return true;
-      };
-
-      function loadjsfile(filepath) {
-       var fileref = document.createElement('script');
-       fileref.setAttribute("type", "text/javascript");
-       fileref.setAttribute("src", filepath);
-       if (typeof fileref != "undefined") {
-         document.getElementsByTagName("head")[0].appendChild(fileref);
-       }
-      }
-
-      function start_globaleaks() {
-        if (isBrowserCompatible()) {
-          loadjsfile("js/scripts.js");
-        } else {
-          document.getElementById("BrowserSupported").style.display = "none";
-          document.getElementById("BrowserNotSupported").style.display = "block";
-        }
-      }
-
-      <!-- start_globaleaks(); -->
-    </script>
-
-    <script data-ng-if="Utils.attachCustomJS()" data-ng-src="{{Utils.base64ToTrustedScriptUrl(node.script)}}"></script>
+    <script src="s/script"></script>
   </body>
 </html>

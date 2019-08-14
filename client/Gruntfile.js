@@ -1,5 +1,52 @@
 /* eslint no-console: 0 */
 
+var locales = [
+"js/locale/angular-locale_ar.js",
+"js/locale/angular-locale_az.js",
+"js/locale/angular-locale_ca.js",
+"js/locale/angular-locale_bs.js",
+"js/locale/angular-locale_ca.js",
+"js/locale/angular-locale_ca-es-valencia.js",
+"js/locale/angular-locale_cs.js",
+"js/locale/angular-locale_da.js",
+"js/locale/angular-locale_de.js",
+"js/locale/angular-locale_el.js",
+"js/locale/angular-locale_en.js",
+"js/locale/angular-locale_es.js",
+"js/locale/angular-locale_fa.js",
+"js/locale/angular-locale_fi.js",
+"js/locale/angular-locale_fr.js",
+"js/locale/angular-locale_gl.js",
+"js/locale/angular-locale_he.js",
+"js/locale/angular-locale_hr-hr.js",
+"js/locale/angular-locale_hu-hu.js",
+"js/locale/angular-locale_id.js",
+"js/locale/angular-locale_it.js",
+"js/locale/angular-locale_ja.js",
+"js/locale/angular-locale_ka.js",
+"js/locale/angular-locale_ko.js",
+"js/locale/angular-locale_mg.js",
+"js/locale/angular-locale_nb-no.js",
+"js/locale/angular-locale_nl.js",
+"js/locale/angular-locale_pl.js",
+"js/locale/angular-locale_pt-br.js",
+"js/locale/angular-locale_pt-pt.js",
+"js/locale/angular-locale_ro.js",
+"js/locale/angular-locale_ru.js",
+"js/locale/angular-locale_sk.js",
+"js/locale/angular-locale_sl.js",
+"js/locale/angular-locale_sq.js",
+"js/locale/angular-locale_sv.js",
+"js/locale/angular-locale_ta.js",
+"js/locale/angular-locale_th.js",
+"js/locale/angular-locale_tr.js",
+"js/locale/angular-locale_uk.js",
+"js/locale/angular-locale_ur.js",
+"js/locale/angular-locale_vi.js",
+"js/locale/angular-locale_zh-cn.js",
+"js/locale/angular-locale_zh-tw.js"];
+
+
 module.exports = function(grunt) {
   var fs = require("fs"),
     path = require("path"),
@@ -20,10 +67,7 @@ module.exports = function(grunt) {
       var ext = filepath.split(".").pop();
       var mimetype = (ext in mimeMap) ? mimeMap[ext] : "application/octet-stream";
 
-      fs.accessSync(filepath, fs.F_OK);
-      var filecontent = fs.readFileSync(filepath);
-
-      return "data:" + mimetype + ";charset=utf-8;base64," + new Buffer(filecontent).toString("base64");
+      return "data:" + mimetype + ";charset=utf-8;base64," + new Buffer(fs.readFileSync(filepath)).toString("base64");
     } catch (e) {
       return filepath;
     }
@@ -47,6 +91,7 @@ module.exports = function(grunt) {
     copy: {
       sources: {
         files: [
+          { dest: "app/css", cwd: ".", src: ["node_modules/angular/angular-csp.css"], expand: true, flatten: true },
           { dest: "app/css", cwd: ".", src: ["node_modules/bootstrap-inline-rtl/dist/css/bootstrap.css"], expand: true, flatten: true },
           { dest: "app/css", cwd: ".", src: ["node_modules/ui-select/dist/select.min.css"], expand: true, flatten: true },
           { dest: "app/fonts", cwd: ".", src: ["node_modules/bootstrap-inline-rtl/fonts/*"], expand: true, flatten: true },
@@ -140,20 +185,10 @@ module.exports = function(grunt) {
     "string-replace": {
       pass1: {
         files: {
-          "tmp/index.html": "tmp/index.html",
-          "tmp/css/styles.css": "tmp/css/styles.css",
-          "tmp/js/scripts.js": "tmp/js/scripts.js"
+          "tmp/css/styles.css": "tmp/css/styles.css"
         },
         options: {
           replacements: [
-            {
-              pattern: "<script src=\"js/scripts.js\"></script>",
-              replacement: ""
-            },
-            {
-              pattern: "<!-- start_globaleaks(); -->",
-              replacement: "start_globaleaks();"
-            },
             {
               pattern: "src: url('../fonts/glyphicons-halflings-regular.eot');",
               replacement: ""
@@ -162,12 +197,6 @@ module.exports = function(grunt) {
               pattern: "src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');",
               replacement: function () {
                 return "src: url('" + fileToDataURI("tmp/fonts/glyphicons-halflings-regular.woff") + "') format('woff');";
-              }
-            },
-            {
-              pattern: /js\/locale\/([^'")]+)*/g,
-              replacement: function (match) {
-                return fileToDataURI("tmp/" + match);
               }
             }
           ]
@@ -184,6 +213,10 @@ module.exports = function(grunt) {
               replacement: function () {
                 return fileToDataURI("tmp/css/styles.css");
               }
+            },
+            {
+              pattern: "js/scripts.js",
+              replacement: "js/loader.js"
             }
           ]
         }
@@ -289,15 +322,21 @@ module.exports = function(grunt) {
 
     grunt.file.copy("tmp/index.html", "build/index.html");
     grunt.file.copy("tmp/license.txt", "build/license.txt");
+    grunt.file.copy("tmp/js/loader.js", "build/js/loader.js");
     grunt.file.copy("tmp/js/scripts.js", "build/js/scripts.js");
     grunt.file.copy("tmp/js/plugin.js", "build/js/plugin.js");
 
-    var copy_fun = function(absdir, rootdir, subdir, filename) {
-      grunt.file.copy(absdir, path.join("build/" + dirs[x], subdir || "", filename || ""));
-    };
+    for (x in locales) {
+      grunt.file.copy("tmp/" + locales[x], "build/" + locales[x]);
+    }
 
     dirs = ["l10n", "data"];
+
     for (x in dirs) {
+      var copy_fun = function(absdir, rootdir, subdir, filename) {
+        grunt.file.copy(absdir, path.join("build/" + dirs[x], subdir || "", filename || ""));
+      };
+
       grunt.file.recurse("tmp/" + dirs[x], copy_fun);
     }
 

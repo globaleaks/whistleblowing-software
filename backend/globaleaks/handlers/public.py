@@ -7,8 +7,8 @@ from sqlalchemy import or_
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
-from globaleaks.handlers.admin.file import db_get_file
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.admin.file import db_get_file
 from globaleaks.handlers.admin.submission_statuses import db_retrieve_all_submission_statuses
 from globaleaks.models import get_localized_values
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
@@ -133,9 +133,7 @@ def db_serialize_node(session, tid, language):
     ret_dict['languages_enabled'] = models.EnabledLanguage.list(session, tid) if node_dict['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES)
     ret_dict['languages_supported'] = LANGUAGES_SUPPORTED
 
-    files = [u'logo', u'favicon', u'css', u'script']
-    for x in files:
-        ret_dict[x] = db_get_file(session, tid, x)
+    ret_dict['logo'] = db_get_file(session, tid, 'logo')
 
     if tid != 1:
         root_tenant_node = ConfigFactory(session, 1)
@@ -155,10 +153,6 @@ def db_serialize_node(session, tid, language):
             ret_dict['enable_disclaimer'] = root_tenant_node.get_val(u'enable_disclaimer')
             ret_dict['disclaimer_title'] = root_tenant_l10n.get_val(u'disclaimer_title', language)
             ret_dict['disclaimer_text'] = root_tenant_l10n.get_val(u'disclaimer_text', language)
-
-            for x in files:
-                if not ret_dict[x]:
-                    ret_dict[x] = db_get_file(session, 1, x)
 
     return ret_dict
 

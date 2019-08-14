@@ -444,6 +444,12 @@ class APIResourceWrapper(Resource):
         if request.client_proto == b'https':
             request.setHeader(b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains')
 
+        if State.tenant_cache[request.tid].allow_iframes_inclusion:
+            request.setHeader(b'Content-Security-Policy', 'default-src \'none\'; script-src \'self\'; connect-src \'self\'; style-src \'self\' data:; img-src \'self\' data:; font-src \'self\' data:;')
+        else:
+            request.setHeader(b'Content-Security-Policy', 'default-src \'none\'; script-src \'self\'; connect-src \'self\'; style-src \'self\' data:; img-src \'self\' data:; font-src \'self\' data:; frame-ancestors \'none\'')
+            request.setHeader(b'X-Frame-Options', b'deny')
+
         # to reduce possibility for XSS attacks.
         request.setHeader(b'X-Content-Type-Options', b'nosniff')
         request.setHeader(b'X-XSS-Protection', b'1; mode=block')
