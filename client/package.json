@@ -51,7 +51,6 @@
     "node-gettext": "2.0.0",
     "npm-check-updates": "3.1.20",
     "protractor": "5.4.2",
-    "protractor-console-plugin": "0.1.1",
     "q": "1.5.1",
     "superagent": "5.1.0"
   }
