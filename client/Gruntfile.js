@@ -215,8 +215,14 @@ module.exports = function(grunt) {
               }
             },
             {
-              pattern: "js/scripts.js",
-              replacement: "js/loader.js"
+              pattern: "<script src=\"js/scripts.js\"></script>",
+              replacement: ""
+            },
+            {
+              pattern: "<!-- GLOBALEAKS LOADER -->",
+              replacement: function () {
+                return fs.readFileSync("tmp/loader.html");
+              }
             }
           ]
         }
@@ -322,7 +328,6 @@ module.exports = function(grunt) {
 
     grunt.file.copy("tmp/index.html", "build/index.html");
     grunt.file.copy("tmp/license.txt", "build/license.txt");
-    grunt.file.copy("tmp/js/loader.js", "build/js/loader.js");
     grunt.file.copy("tmp/js/scripts.js", "build/js/scripts.js");
     grunt.file.copy("tmp/js/plugin.js", "build/js/plugin.js");
 

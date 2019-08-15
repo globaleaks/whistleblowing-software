@@ -42,12 +42,6 @@ exports.config = {
       "pages": require("./pages.js")
     };
 
-    browser.addMockModule("GLServices", function () {
-      angular.module("GLServices").factory("Test", function () {
-        return true;
-      });
-    });
-
     browser.addMockModule("disableTooltips", function() {
       angular.module("disableTooltips", []).config(["$uibTooltipProvider", function($uibTooltipProvider) {
         $uibTooltipProvider.options({appendToBody: true, trigger: "none", enable: false});

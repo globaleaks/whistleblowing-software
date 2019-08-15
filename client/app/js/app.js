@@ -14,11 +14,11 @@ var GLClient = angular.module("GLClient", [
     "zxcvbn",
     "ngSanitize",
     "ngFileSaver",
-    "GLServices",
+    "GLCrypto",
     "GLDirectives",
     "GLFilters",
-    "GLCrypto",
-    "GLLibs"
+    "GLLibs",
+    "GLServices"
 ]).
   config(["$compileProvider", function($compileProvider) {
     $compileProvider.debugInfoEnabled(false);
@@ -535,8 +535,8 @@ var GLClient = angular.module("GLClient", [
     // Trick to move the flowFactoryProvider config inside run block.
     _flowFactoryProvider = flowFactoryProvider;
 }]).
-  run(["$rootScope", "$http", "$route", "$routeParams", "$location",  "$filter", "$translate", "$uibModal", "$templateCache", "Authentication", "PublicResource", "Utils", "AdminUtils", "fieldUtilities", "GLTranslate", "Access", "Test",
-      function($rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $templateCache, Authentication, PublicResource, Utils, AdminUtils, fieldUtilities, GLTranslate, Access, Test) {
+  run(["$rootScope", "$http", "$route", "$routeParams", "$location",  "$filter", "$translate", "$uibModal", "$templateCache", "Authentication", "PublicResource", "Utils", "AdminUtils", "fieldUtilities", "GLTranslate", "Access",
+      function($rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $templateCache, Authentication, PublicResource, Utils, AdminUtils, fieldUtilities, GLTranslate, Access) {
     $rootScope.Authentication = Authentication;
     $rootScope.GLTranslate = GLTranslate;
     $rootScope.Utils = Utils;
@@ -586,8 +586,7 @@ var GLClient = angular.module("GLClient", [
     };
 
     $rootScope.evaluateConfidentialityModalOpening = function () {
-      if (!Test && // NOTE used by protractor
-          !$rootScope.connection.tor &&
+      if (!$rootScope.connection.tor &&
           !$rootScope.connection.https &&
           !$rootScope.confidentiality_warning_opened &&
           ["localhost", "127.0.0.1"].indexOf($location.host()) === -1) {
@@ -613,6 +612,8 @@ var GLClient = angular.module("GLClient", [
 
     $rootScope.init = function () {
       return PublicResource.get(function(result, getResponseHeaders) {
+        var script;
+
         $rootScope.node = result.node;
 
         $rootScope.contexts = result.contexts;
@@ -686,6 +687,21 @@ var GLClient = angular.module("GLClient", [
 
         GLTranslate.addNodeFacts($rootScope.node.default_language, $rootScope.node.languages_enabled);
         Utils.set_title();
+
+	if ($rootScope.node.css) {
+          script = document.createElement("link");
+          script.setAttribute("rel", "stylesheet");
+          script.setAttribute("type", "text/css");
+          script.setAttribute("href", "s/css");
+          document.getElementsByTagName("head")[0].appendChild(script);
+        }
+
+	if ($rootScope.node.script) {
+          script = document.createElement("script");
+          script.setAttribute("type", "text/javascript");
+          script.setAttribute("src", "s/script");
+          document.getElementsByTagName("body")[0].appendChild(script);
+        }
 
         $rootScope.started = true;
       }).$promise;
@@ -774,9 +790,9 @@ var GLClient = angular.module("GLClient", [
       });
     };
 
-    var observer = new MutationObserver(GLClient.mockEngine.run);
+    //var observer = new MutationObserver(GLClient.mockEngine.run);
 
-    observer.observe(document.querySelector("body"), { attributes: false, childList: true, subtree: true });
+    //observer.observe(document.querySelector("body"), { attributes: false, childList: true, subtree: true });
 
     $rootScope.init();
 }]).

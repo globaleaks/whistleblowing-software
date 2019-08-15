@@ -86,6 +86,10 @@ Settings.parser.add_option("-C", "--client-path", type='string',
     help="specify client path",
     dest="client_path", default=None)
 
+Settings.parser.add_option("-D", "--disable-csp", action='store_true',
+    help="disable content security policy ]",
+    dest="disable_csp", default=False)
+
 Settings.parser.add_option("-P", "--disable-swap", action='store_true',
     help="disable process swap [default: False]",
     dest="disable_swap", default=False)

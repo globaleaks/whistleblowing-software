@@ -1,7 +1,4 @@
 angular.module("GLServices", ["ngResource"]).
-  factory("Test", function () {
-    return false;
-  }).
   factory("GLResource", ["$resource", function($resource) {
     return function(url, params, actions) {
       var defaults = {

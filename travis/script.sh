@@ -71,7 +71,7 @@ if [ "$GLTEST" = "py2_test" ] || [ "$GLTEST" = "py3_test" ]; then
 
   grunt end2end-coverage-instrument
 
-  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR -k9
+  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR -k9 -D
   sleep 3
 
   node_modules/protractor/bin/webdriver-manager update --gecko=false
@@ -192,7 +192,7 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   setupDependencies 1
   eval $capability
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR
-  sleep 5
+  sleep 3
   cd $TRAVIS_BUILD_DIR/client
   node_modules/protractor/bin/protractor tests/protractor-sauce.config.js
 fi

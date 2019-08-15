@@ -68,6 +68,13 @@ controller("AdminGeneralSettingsCtrl", ["$scope", "$filter", "$http", "Files", "
 
   $scope.admin_files = [
       {
+        "title": "Favicon",
+        "varname": "favicon",
+        "filename": "custom_favicon.ico",
+        "type": "ico",
+        "size": "131072"
+      },
+      {
         "title": "CSS",
         "varname": "css",
         "filename": "custom_stylesheet.css",

@@ -119,6 +119,7 @@ class SettingsClass(object):
 
         self.devel_mode = False
         self.disable_swap = False
+        self.enable_csp = True
 
         # Number of failed login enough to generate an alarm
         self.failed_login_alarm = 5
@@ -193,6 +194,9 @@ class SettingsClass(object):
 
         if self.cmdline_options.disable_swap:
             self.disable_swap = True
+
+        if self.cmdline_options.disable_csp:
+            self.enable_csp = False
 
         self.bind_address = self.cmdline_options.ip
 

@@ -123,7 +123,6 @@ def db_serialize_node(session, tid, language):
     """
     Serialize the public node configuration.
     """
-    # Contexts and Receivers relationship
     node_dict = ConfigFactory(session, tid).serialize('public_node')
     l10n_dict = ConfigL10NFactory(session, tid,).serialize('node', language)
 
@@ -133,7 +132,10 @@ def db_serialize_node(session, tid, language):
     ret_dict['languages_enabled'] = models.EnabledLanguage.list(session, tid) if node_dict['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES)
     ret_dict['languages_supported'] = LANGUAGES_SUPPORTED
 
-    ret_dict['logo'] = db_get_file(session, tid, 'logo')
+    files = [u'logo', u'favicon', u'css', u'script']
+    records = session.query(models.File.id, models.File.data).filter(models.File.tid == tid, models.File.id.in_([u'logo', u'favicon', u'css', u'script']))
+    for x in records:
+        ret_dict[x[0]] = x[1] if x[0] == 'logo' else True
 
     if tid != 1:
         root_tenant_node = ConfigFactory(session, 1)
@@ -146,13 +148,18 @@ def db_serialize_node(session, tid, language):
 
         root_tenant_l10n = ConfigL10NFactory(session, 1)
 
-        if ret_dict['mode'] == u'whistleblowing.it' or ret_dict['mode'] == u'eat':
+        if ret_dict['mode'] != u'default':
             ret_dict['footer'] = root_tenant_l10n.get_val(u'footer', language)
             ret_dict['whistleblowing_question'] = root_tenant_l10n.get_val(u'whistleblowing_question', language)
             ret_dict['whistleblowing_button'] = root_tenant_l10n.get_val(u'whistleblowing_button', language)
             ret_dict['enable_disclaimer'] = root_tenant_node.get_val(u'enable_disclaimer')
             ret_dict['disclaimer_title'] = root_tenant_l10n.get_val(u'disclaimer_title', language)
             ret_dict['disclaimer_text'] = root_tenant_l10n.get_val(u'disclaimer_text', language)
+
+            records = session.query(models.File.id, models.File.data).filter(models.File.tid == 1, models.File.id.in_([u'logo', u'favicon', u'css', u'script']))
+            for x in records:
+                if not ret_dict[x[0]]:
+                    ret_dict[x[0]] = x[1] if x[0] == 'logo' else True
 
     return ret_dict
 
