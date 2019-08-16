@@ -267,7 +267,7 @@ class APIResourceWrapper(Resource):
             e = e.value
         else:
             e.tid = request.tid
-            e.url = request.client_proto + b'://' + request.hostname + request.uri
+            e.url = request.client_proto + b'://' + request.hostname + request.path
             extract_exception_traceback_and_schedule_email(e)
             e = errors.InternalServerError('Unexpected')
 
