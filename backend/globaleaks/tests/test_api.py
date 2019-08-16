@@ -98,20 +98,30 @@ class TestAPI(TestGL):
                 returnedHeaderValue = request.responseHeaders.getRawHeaders(headerName)[0]
                 self.assertEqual(returnedHeaderValue, expectedHeaderValue)
 
-    def test_request_state(self):
-        url = b"https://www.globaleaks.org/"
-
-        request = forge_request(url)
+    def test_request_state_and_redirects(self):
+        # Remote HTTP connection with HTTPS disabled
+        request = forge_request(uri=b'http://www.globaleaks.org/')
         self.api.render(request)
         self.assertFalse(request.client_using_tor)
         self.assertEqual(request.responseCode, 200)
 
-        request = forge_request(url, client_addr=IPv4Address('TCP', '127.0.0.1', 12345))
+        # Local HTTP connection on port 8082 should be marked as not coming from Tor
+        request = forge_request(uri=b'http://127.0.0.1:8082/', client_addr=IPv4Address('TCP', '127.0.0.1', 12345))
         self.api.render(request)
         self.assertFalse(request.client_using_tor)
         self.assertEqual(request.responseCode, 200)
 
+        # Local HTTP connection on port 8083 should be marked as coming from Tor
         request = forge_request(uri=b'http://127.0.0.1:8083/', client_addr=IPv4Address('TCP', '127.0.0.1', 12345))
         self.api.render(request)
         self.assertTrue(request.client_using_tor)
         self.assertEqual(request.responseCode, 200)
+
+        # Remote HTTP connection not coming from Tor should be redirected to HTTPS
+        State.tenant_cache[1].https_enabled = True
+        request = forge_request(uri=b'http://www.globaleaks.org/public', client_addr=IPv4Address('TCP', '8.8.8.8', 12345))
+        self.api.render(request)
+        self.assertFalse(request.client_using_tor)
+        self.assertEqual(request.responseCode, 302)
+        self.assertEqual(request.responseHeaders.getRawHeaders('location')[0], 'https://www.globaleaks.org/public')
+        State.tenant_cache[1].https_enabled = False
