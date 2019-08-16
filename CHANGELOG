@@ -1,3 +1,9 @@
+Changes in version 3.10.6 - 2019-08-16
+    Implement Content Security Policy as by #1998
+    Add Strict Transport Security header removed since HTTPS refactoring
+    Fix issue on HTTPS redirects causing LetsEncrypt renewal to fail
+    Add migration fix for very old setups in relation to commit 238c0dc (#2661)
+
 Changes in version 3.10.5 - 2019-08-13
     Revert regression causing migrations scripts to proceed even on failure
     Apply minor bugfixing
