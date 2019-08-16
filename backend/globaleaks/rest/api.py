@@ -244,15 +244,10 @@ class APIResourceWrapper(Resource):
         return False
 
     def redirect_https(self, request):
-        urlpath = request.URLPath()
-        urlpath.scheme = b'https'
-        request.redirect(urlpath)
+        request.redirect(b'https://' + request.hostname + request.path)
 
     def redirect_tor(self, request):
-        urlpath = request.URLPath()
-        urlpath.scheme = b'http'
-        urlpath.netloc = State.tenant_cache[request.tid].onionnames[0]
-        request.redirect(urlpath)
+        request.redirect(b'http://' + State.tenant_cache[request.tid].onionnames[0] + request.path)
 
     def handle_exception(self, e, request):
         """
