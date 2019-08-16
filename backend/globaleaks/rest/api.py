@@ -442,14 +442,14 @@ class APIResourceWrapper(Resource):
         if State.settings.enable_csp:
             if State.tenant_cache[request.tid].allow_iframes_inclusion:
                 request.setHeader(b'Content-Security-Policy', "default-src 'none';" \
-                                                              "script-src 'self' 'sha256-NMfpLIABY24ibct0VP9INyx4e7e5mzYFSSeNrANIw3U='';" \
+                                                              "script-src 'self';" \
                                                               "connect-src 'self';" \
                                                               "style-src 'self' data:;" \
                                                               "img-src 'self' data:;" \
                                                               "font-src 'self' data:;")
             else:
                 request.setHeader(b'Content-Security-Policy', "default-src 'none';" \
-                                                              "script-src 'self' 'sha256-NMfpLIABY24ibct0VP9INyx4e7e5mzYFSSeNrANIw3U=';" \
+                                                              "script-src 'self';" \
                                                               "connect-src 'self';" \
                                                               "style-src 'self' data:;" \
                                                               "img-src 'self' data:;" \
