@@ -343,7 +343,7 @@ class APIResourceWrapper(Resource):
             self.handle_exception(errors.ResourceNotFound(), request)
             return b''
 
-        request.path = request.path.decode('utf8')
+        request_path = request.path.decode('utf8')
 
         if self.should_redirect_tor(request):
             self.redirect_tor(request)
@@ -354,19 +354,19 @@ class APIResourceWrapper(Resource):
             return b''
 
         if request.tid == 1:
-            match = re.match(r'^/t/([0-9]+)(/.*)', request.path)
+            match = re.match(r'^/t/([0-9]+)(/.*)', request_path)
             if match is not None:
                 groups = match.groups()
-                request.tid, request.path = int(groups[0]), groups[1]
+                request.tid, request_path = int(groups[0]), groups[1]
 
-        if request.path in State.tenant_cache[request.tid]['redirects']:
-            request.redirect(State.tenant_cache[request.tid]['redirects'][request.path])
+        if request_path in State.tenant_cache[request.tid]['redirects']:
+            request.redirect(State.tenant_cache[request.tid]['redirects'][request_path])
             return b''
 
         match = None
         for regexp, handler, args in self._registry:
             try:
-                match = regexp.match(request.path)
+                match = regexp.match(request_path)
             except UnicodeDecodeError:
                 match = None
             if match:
