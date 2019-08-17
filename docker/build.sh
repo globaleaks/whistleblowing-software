@@ -24,7 +24,7 @@ while ! curl -sS -I localhost:8080; do
 done
 
 # Expect html page
-curl -sS --compressed localhost:8080 | grep 'start_globaleaks'
+curl -sS --compressed localhost:8080 | grep 'GLClient'
 
 # Cleanup
 docker rm -f "$CONTAINER_ID"
