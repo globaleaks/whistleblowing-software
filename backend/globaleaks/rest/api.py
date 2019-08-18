@@ -355,9 +355,14 @@ class APIResourceWrapper(Resource):
 
         if request.tid == 1:
             match = re.match(r'^/t/([0-9]+)(/.*)', request_path)
-            if match is not None:
-                groups = match.groups()
-                request.tid, request_path = int(groups[0]), groups[1]
+        else:
+            match = re.match(r'^/t/(1)(/.*)', request_path)
+
+        if match is not None:
+            groups = match.groups()
+            tid = int(groups[0])
+            if tid in State.tenant_cache:
+                request.tid, request_path = tid, groups[1]
 
         if request_path in State.tenant_cache[request.tid]['redirects']:
             request.redirect(State.tenant_cache[request.tid]['redirects'][request_path])
