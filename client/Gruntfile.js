@@ -204,6 +204,27 @@ module.exports = function(grunt) {
       },
       pass2: {
         files: {
+          "tmp/js/scripts.js": "tmp/js/scripts.js"
+        },
+        options: {
+          replacements: [
+            {
+              pattern: "style=\"outline: 0;\"",
+              replacement: "ng-style=\"{\\'outline\\': \\'0\\'}\""
+            },
+            {
+              pattern: "style=\"margin-right: 10px\"",
+              replacement: "ng-style=\"{\\'margin-right\\': \\'10px\\'}\""
+            },
+            {
+              pattern: "style=\"width: 34px;\"",
+              replacement: "ng-style=\"{\\'width\\': \\'34px\\'}\""
+            }
+          ]
+        }
+      },
+      pass3: {
+        files: {
           "tmp/index.html": "tmp/index.html"
         },
         options: {
