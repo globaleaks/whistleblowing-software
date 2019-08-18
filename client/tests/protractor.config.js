@@ -41,6 +41,16 @@ exports.config = {
     defaultTimeoutInterval: 60000
   },
 
+  plugins: [
+    {
+      package: "protractor-console-plugin",
+      failOnWarning: false,
+      failOnError: true,
+      logWarnings: true,
+      exclude: []
+    }
+  ],
+
   onPrepare: function() {
     browser.gl = {
       "utils": require("./utils.js"),

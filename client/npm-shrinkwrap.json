@@ -2218,11 +2218,13 @@
             },
             "argparse": {
               "version": "1.0.10",
-              "from": "argparse@>=1.0.7 <2.0.0"
+              "from": "argparse@1.0.10",
+              "resolved": "https://registry.npmjs.org/argparse/-/argparse-1.0.10.tgz"
             },
             "async": {
               "version": "1.5.2",
-              "from": "async@>=1.0.0 <2.0.0"
+              "from": "async@1.5.2",
+              "resolved": "https://registry.npmjs.org/async/-/async-1.5.2.tgz"
             },
             "escodegen": {
               "version": "1.7.1",
@@ -2243,17 +2245,20 @@
             },
             "js-yaml": {
               "version": "3.13.1",
-              "from": "js-yaml@>=3.0.0 <4.0.0",
+              "from": "js-yaml@3.13.1",
+              "resolved": "https://registry.npmjs.org/js-yaml/-/js-yaml-3.13.1.tgz",
               "dependencies": {
                 "esprima": {
                   "version": "4.0.1",
-                  "from": "esprima@>=4.0.0 <5.0.0"
+                  "from": "esprima@4.0.1",
+                  "resolved": "https://registry.npmjs.org/esprima/-/esprima-4.0.1.tgz"
                 }
               }
             },
             "nopt": {
               "version": "3.0.6",
-              "from": "nopt@>=3.0.0 <4.0.0"
+              "from": "nopt@3.0.6",
+              "resolved": "https://registry.npmjs.org/nopt/-/nopt-3.0.6.tgz"
             },
             "supports-color": {
               "version": "3.2.3",
@@ -2262,7 +2267,8 @@
             },
             "which": {
               "version": "1.3.1",
-              "from": "which@>=1.1.1 <2.0.0"
+              "from": "which@1.3.1",
+              "resolved": "https://registry.npmjs.org/which/-/which-1.3.1.tgz"
             }
           }
         },
@@ -3860,6 +3866,11 @@
           "resolved": "https://registry.npmjs.org/webdriver-manager/-/webdriver-manager-12.1.6.tgz"
         }
       }
+    },
+    "protractor-console-plugin": {
+      "version": "0.1.1",
+      "from": "protractor-console-plugin@0.1.1",
+      "resolved": "https://registry.npmjs.org/protractor-console-plugin/-/protractor-console-plugin-0.1.1.tgz"
     },
     "pseudomap": {
       "version": "1.0.2",
