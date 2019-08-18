@@ -651,7 +651,7 @@ var GLClient = angular.module("GLClient", [
           $rootScope.connection.tor = true;
         } else if ($rootScope.connection.https) {
           var headers = getResponseHeaders();
-          if (headers["x-check-tor"] !== undefined && headers["x-check-tor"] === "true") {
+          if (headers["X-Check-Tor"] !== undefined && headers["X-Check-Tor"] === "true") {
             $rootScope.connection.tor = true;
             if ($rootScope.node.onionservice && !Utils.iframeCheck()) {
               // the check on the iframe is in order to avoid redirects

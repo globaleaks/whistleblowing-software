@@ -5,6 +5,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.db import refresh_memory_variables
 from globaleaks.handlers.admin.node import db_update_enabled_languages
 from globaleaks.orm import tw
+from globaleaks.rest import api
 from globaleaks.state import State
 from globaleaks.tests.helpers import TestGL, forge_request
 
@@ -14,7 +15,6 @@ class TestAPI(TestGL):
     def setUp(self):
         yield TestGL.setUp(self)
 
-        from globaleaks.rest import api
         self.api = api.APIResourceWrapper()
 
         yield tw(db_update_enabled_languages, 1, ['en', 'ar', 'it'], 'en')
@@ -81,17 +81,21 @@ class TestAPI(TestGL):
         ]
 
         server_headers = [
-           ('X-Content-Type-Options', 'nosniff'),
-           ('Expires', '-1'),
-           ('Server', 'Globaleaks'),
-           ('Pragma', 'no-cache'),
            ('Cache-control', 'no-cache, no-store, must-revalidate'),
+           ('Content-Language', 'en'),
+           ('Content-Security-Policy', 'default-src \'none\';script-src \'self\';connect-src \'self\';style-src \'self\' data:;img-src \'self\' data:;font-src \'self\' data:;frame-ancestors \'none\';'),
+           ('Expires', '-1'),
+           ('Pragma', 'no-cache'),
            ('Referrer-Policy', 'no-referrer'),
-           ('X-Frame-Options', 'deny')
+           ('Server', 'Globaleaks'),
+           ('X-Content-Type-Options', 'nosniff'),
+           ('X-Check-Tor', 'False'),
+           ('X-Frame-Options', 'deny'),
+           ('X-XSS-Protection', '1; mode=block'),
         ]
 
-        for meth, status_code in test_cases:
-            request = forge_request(uri=b"https://www.globaleaks.org/", method=meth)
+        for method, status_code in test_cases:
+            request = forge_request(uri=b"https://www.globaleaks.org/", method=method)
             self.api.render(request)
             self.assertEqual(request.responseCode, status_code)
             for headerName, expectedHeaderValue in server_headers:

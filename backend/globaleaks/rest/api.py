@@ -459,7 +459,7 @@ class APIResourceWrapper(Resource):
                                                               "style-src 'self' data:;" \
                                                               "img-src 'self' data:;" \
                                                               "font-src 'self' data:;" \
-                                                              "frame-ancestors 'none'")
+                                                              "frame-ancestors 'none';")
                 request.setHeader(b'X-Frame-Options', b'deny')
 
         # to reduce possibility for XSS attacks.
@@ -484,9 +484,9 @@ class APIResourceWrapper(Resource):
             request.setHeader(b'X-Frame-Options', b'deny')
 
         if request.client_using_tor is True:
-            request.setHeader(b'x-check-tor', b'True')
+            request.setHeader(b'X-Check-Tor', b'True')
         else:
-            request.setHeader(b'x-check-tor', b'False')
+            request.setHeader(b'X-Check-Tor', b'False')
 
         request.setHeader(b'Content-Language', request.language)
 
