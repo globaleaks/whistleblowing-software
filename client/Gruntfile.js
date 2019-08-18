@@ -92,6 +92,7 @@ module.exports = function(grunt) {
       sources: {
         files: [
           { dest: "app/css", cwd: ".", src: ["node_modules/angular/angular-csp.css"], expand: true, flatten: true },
+          { dest: "app/css", cwd: ".", src: ["node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"], expand: true, flatten: true },
           { dest: "app/css", cwd: ".", src: ["node_modules/bootstrap-inline-rtl/dist/css/bootstrap.css"], expand: true, flatten: true },
           { dest: "app/css", cwd: ".", src: ["node_modules/ui-select/dist/select.min.css"], expand: true, flatten: true },
           { dest: "app/fonts", cwd: ".", src: ["node_modules/bootstrap-inline-rtl/fonts/*"], expand: true, flatten: true },
