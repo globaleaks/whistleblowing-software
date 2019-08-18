@@ -62,16 +62,15 @@ describe("admin configure https", function() {
     element(by.id("HTTPSManualMode")).click();
 
     if (browser.gl.utils.testFileUpload()) {
+      browser.gl.utils.fixUploadButtons();
+
       // Upload key
-      browser.executeScript("angular.element(document.querySelectorAll('div.panel.priv-key input[type=\"file\"]')).attr(\"style\", \"display: block; visibility: visible\")");
       element(by.css("div.panel.priv-key input[type=\"file\"]")).sendKeys(files.priv_key);
 
       // Upload cert
-      browser.executeScript("angular.element(document.querySelectorAll('div.panel.cert input[type=\"file\"]')).attr(\"style\", \"display: block; visibility: visible\")");
       element(by.css("div.panel.cert input[type=\"file\"]")).sendKeys(files.cert);
 
       // Upload chain
-      browser.executeScript("angular.element(document.querySelectorAll('div.panel.chain input[type=\"file\"]')).attr(\"style\", \"display: block; visibility: visible\")");
       element(by.css("div.panel.chain input[type=\"file\"]")).sendKeys(files.chain);
 
       // Download the cert and chain

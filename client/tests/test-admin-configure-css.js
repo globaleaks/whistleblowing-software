@@ -14,7 +14,7 @@ describe("Admin configure custom CSS", function() {
 
     var customCSSFile = browser.gl.utils.makeTestFilePath("custom_css.css");
 
-    browser.executeScript("angular.element(document.querySelectorAll('input[type=\"file\"]')).attr(\"style\", \"visibility: visible;\");");
+    browser.gl.utils.fixUploadButtons();
     element(by.css("div.uploadfile.file-css")).element(by.css("input")).sendKeys(customCSSFile);
 
     browser.gl.utils.waitUntilPresent(by.cssContainingText("label", "Project name"));

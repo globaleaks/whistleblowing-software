@@ -120,7 +120,7 @@ describe("globaLeaks process", function() {
 
     browser.gl.utils.login_whistleblower(receipts[0]);
 
-    browser.executeScript("angular.element(document.querySelector('input[type=\"file\"]')).attr(\"style\", \"visibility: visible;\");");
+    browser.gl.utils.fixUploadButtons();
     element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload1).then(function() {
       browser.waitForAngular();
       element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2).then(function() {

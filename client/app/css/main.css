@@ -390,6 +390,11 @@ textarea.form-control {
   visibility: none;
 }
 
+.visible {
+  display: block;
+  visibility: visible;
+}
+
 .badge-info {
   background-color: #337ab7;
 }

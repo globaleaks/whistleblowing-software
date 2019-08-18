@@ -10,7 +10,7 @@ describe("Admin upload custom file", function() {
 
     var customFile = browser.gl.utils.makeTestFilePath("nyancat.pdf");
 
-    browser.executeScript("angular.element(document.querySelectorAll('input[type=\"file\"]')).attr(\"style\", \"visibility: visible\")");
+    browser.executeScript("angular.element(document.querySelectorAll('input[type=\"file\"]'))[4].className+='visible'");
     element(by.css("span.file-custom")).element(by.css("input")).sendKeys(customFile);
 
     browser.gl.utils.waitUntilPresent(by.cssContainingText("label", "Project name"));

@@ -2,6 +2,8 @@ describe("globaLeaks setup wizard", function() {
   it("should allow the user to setup the wizard", function() {
     browser.get("/#/wizard");
 
+    browser.gl.utils.fixUploadButtons();
+
     element.all(by.css(".ButtonNext")).get(0).click();
 
     element(by.model("wizard.node_name")).sendKeys("E2E Test Instance");
