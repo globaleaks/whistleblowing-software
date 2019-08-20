@@ -158,7 +158,7 @@ def db_serialize_node(session, tid, language):
 
             records = session.query(models.File.id, models.File.data).filter(models.File.tid == 1, models.File.id.in_([u'logo', u'favicon', u'css', u'script']))
             for x in records:
-                if not ret_dict[x[0]]:
+                if not ret_dict.get(x[0]):
                     ret_dict[x[0]] = x[1] if x[0] == 'logo' else True
 
     return ret_dict
