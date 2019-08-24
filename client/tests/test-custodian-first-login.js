@@ -1,6 +1,6 @@
 var temporary_password = "typ0drome@absurd.org";
 
-describe("receiver first login", function() {
+describe("custodian first login", function() {
   it("should redirect to /firstlogin upon successful authentication", function() {
     browser.gl.utils.login_custodian("Custodian1", "password", "/#/login", true);
   });
@@ -17,7 +17,7 @@ describe("receiver first login", function() {
   });
 
   it("should be able to change password accessing the user preferences", function() {
-    element(by.cssContainingText("a", "User preferences")).click();
+    element(by.cssContainingText("span", "User preferences")).click();
     element(by.cssContainingText("a", "Password")).click();
     element(by.model("preferences.old_password")).sendKeys(temporary_password);
     element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars["user_password"]);

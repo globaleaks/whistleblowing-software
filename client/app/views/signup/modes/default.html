@@ -11,20 +11,20 @@
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}"
               popover-placement="right">*</span>
       </label>
-      <div data-ng-class="{'has-error': signupForm.subdomain.$error.required || signupForm.subdomain.$error.pattern}">
+      <div data-ng-class="{'has-danger': signupForm.subdomain.$error.required || signupForm.subdomain.$error.pattern}">
         <div class="input-group">
-          <span class="input-group-addon">https://</span>
+          <span class="input-group-prepend"><span class="input-group-text" data-translate>https://</span></span>
           <input name="subdomain" class="form-control" data-ng-model="signup.subdomain" type="text"
                  data-ng-attr-placeholder="{{'Domain' | translate}}" data-ng-pattern="/^[a-z0-9]+$/" required
                  subdomainvalidator>
-          <span class="input-group-addon">.{{node.rootdomain}}</span>
+          <span class="input-group-append"><span class="input-group-text" data-translate>{{node.rootdomain}}</span></span>
         </div>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6 form-group">
-      <div data-ng-class="{'has-error': signupForm.name.$error.required}">
+      <div data-ng-class="{'has-danger': signupForm.name.$error.required}">
         <label data-translate>Name</label>
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
         <input name="name" class="form-control" data-ng-model="signup.name" type="text"
@@ -32,7 +32,7 @@
       </div>
     </div>
     <div class="col-md-6 form-group">
-      <div data-ng-class="{'has-error': signupForm.surname.$error.required}">
+      <div data-ng-class="{'has-danger': signupForm.surname.$error.required}">
         <label data-translate>Surname</label>
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
         <input name="surname" class="form-control" data-ng-model="signup.surname" type="text"
@@ -46,7 +46,7 @@
         <span data-translate>Email address</span>
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       </label>
-      <div data-ng-class="{'has-error': signupForm.mail_address.$error.required || signupForm.mail_address.$error.pattern}">
+      <div data-ng-class="{'has-danger': signupForm.mail_address.$error.required || signupForm.mail_address.$error.pattern}">
         <input name="mail_address" class="form-control" data-ng-model="signup.email"
                data-ng-attr-placeholder="{{'Email address' | translate}}" data-ng-pattern="email_regexp" type="text"
                required>
@@ -60,7 +60,7 @@
         <span data-translate>Email address</span> <span>(</span><span data-translate>Confirmation</span><span>)</span>
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       </label>
-      <div data-ng-class="{'has-error': signupForm.email.$error.required || signupForm.email.$error.pattern}">
+      <div data-ng-class="{'has-danger': signupForm.email.$error.required || signupForm.email.$error.pattern}">
         <div>
           <input name="email" class="form-control" data-ng-model="confirmation_email" data-ng-attr-placeholder="Email" data-disable-ccp type="text" required>
           <div class="text-danger" data-ng-show="signupForm.email.$valid && signup.email !== confirmation_email">
@@ -75,7 +75,7 @@
       <label data-translate>Use case</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}"
             popover-placement="right">*</span>
-      <div data-ng-class="{'has-error': signupForm.use_case.$error.required}">
+      <div data-ng-class="{'has-danger': signupForm.use_case.$error.required}">
         <select name="use_case" class="form-control" data-ng-model="signup.use_case" required>
           <option value="anticorruption" data-translate>Anticorruption</option>
           <option value="corporate_compliance" data-translate>Corporate compliance</option>
@@ -98,7 +98,7 @@
     <div class="col-md-12">
       <button class="ButtonNext btn btn-success" data-ng-click="complete()"
               data-ng-disabled="signupForm.$invalid">
-        <i class="glyphicon glyphicon glyphicon-ok-sign"></i>
+        <i class="fa fa-check-circle"></i>
         <span data-translate>Complete</span>
       </button>
     </div>

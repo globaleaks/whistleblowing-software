@@ -2,8 +2,8 @@
   <div class="editorTitle row">
     <span class="col-md-8">
       <span data-translate>Substatuses</span>
-      <button class="btn btn-xs btn-primary" data-ng-click="toggleAddSubstatus()">
-        <i class="glyphicon glyphicon-plus"></i>
+      <button class="btn btn-sm btn-primary" data-ng-click="toggleAddSubstatus()">
+        <i class="fa fa-plus"></i>
         <span data-translate>Add</span>
       </button>
     </span>
@@ -25,9 +25,9 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <button class="pull-left btn btn-primary" data-ng-disabled="newSubstatus.$invalid"
+              <button class="float-left btn btn-primary" data-ng-disabled="newSubstatus.$invalid"
                       data-ng-click="addSubmissionSubStatus(); toggleAddSubstatus()">
-                <i class="glyphicon glyphicon-plus-sign"></i>
+                <i class="fa fa-plus"></i>
                 <span data-translate>Add</span>
               </button>
             </div>
@@ -37,34 +37,34 @@
     </div>
   </div>
   <div class="row">
-    <div data-ng-repeat="substatus in submissions_status.substatuses">
-      <div class="col-md-12" data-ng-controller="AdminSubmissionSubStatusEditorCtrl">
+    <div data-ng-repeat="substatus in submissions_status.substatuses" class="col-md-12">
+      <div data-ng-controller="AdminSubmissionSubStatusEditorCtrl">
         <div class="configItem">
           <div class="editorHeader row" data-ng-click="toggleSubstatusEditing(); $event.stopPropagation();">
             <span class="col-md-7">
               <span class="substatusLabel">{{substatus.label}}</span>
             </span>
             <span class="col-md-5">
-              <span class="pull-right">
-                <button data-ng-if="!$first" class="btn btn-xs btn-primary" data-ng-click="moveSsUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
-                  <i class="glyphicon glyphicon-menu-up"></i>
+              <span class="float-right">
+                <button data-ng-if="!$first" class="btn btn-sm btn-primary" data-ng-click="moveSsUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
+                  <i class="fa fa-chevron-up"></i>
                 </button>
-                <button data-ng-if="!$last" class="btn btn-xs btn-primary" data-ng-click="moveSsDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
-                  <i class="glyphicon glyphicon-menu-down"></i>
+                <button data-ng-if="!$last" class="btn btn-sm btn-primary" data-ng-click="moveSsDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
+                  <i class="fa fa-chevron-down"></i>
                 </button>
-                <button class="btn btn-xs btn-default" data-ng-show="!substatus_editing"
+                <button class="btn btn-sm btn-secondary" data-ng-show="!substatus_editing"
                         data-ng-click="toggleSubstatusEditing(); $event.stopPropagation();">
                   <span data-translate>Edit</span>
                 </button>
-                <button class="btn btn-xs btn-success" data-ng-show="substatus_editing"
+                <button class="btn btn-sm btn-success" data-ng-show="substatus_editing"
                         data-ng-click="save_submissions_substatuses(substatus);">
                   <span data-translate>Save</span>
                 </button>
-                <button class="btn btn-xs btn-default" data-ng-show="substatus_editing"
+                <button class="btn btn-sm btn-secondary" data-ng-show="substatus_editing"
                         data-ng-click="toggleSubstatusEditing(); $event.stopPropagation();">
                   <span data-translate>Cancel</span>
                 </button>
-                <button class="btn btn-xs btn-danger"
+                <button class="btn btn-sm btn-danger"
                         data-ng-click="deleteSubSubmissionStatus(substatus); $event.stopPropagation();"
                         uib-popover="{{Delete | translate}}"
                         popover-placement="right">

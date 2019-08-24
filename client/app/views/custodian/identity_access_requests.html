@@ -2,13 +2,13 @@
   <div data-ng-controller="CustodianIdentityAccessRequestsCtrl">
     <div class="row">
       <div class="col-md-12">
-            <span class="pull-left">
+            <span class="float-left">
               <span id="link-reload"
                     data-ng-click="reload()"
                     uib-popover="{{'Refresh page' | translate}}"
                     popover-placement="top"
-                    class="btn btn-default">
-                <span class="glyphicon glyphicon-refresh"></span>
+                    class="btn btn-secondary">
+                <span class="fa fa-sync"></span>
               </span>
             </span>
       </div>
@@ -33,8 +33,8 @@
             <td>{{iar.request_user_name | date:'dd-MM-yyyy HH:mm'}}</td>
             <td>{{iar.request_motivation | date:'dd-MM-yyyy HH:mm'}}</td>
             <td>
-              <button class="btn btn-xs btn-primary" data-ng-click="authorize_identity_access_request(iar.id)" data-translate>Authorize</button>&nbsp;
-              <button class="btn btn-xs btn-danger" data-ng-click="file_denied_identity_access_reply(iar.id)" data-translate>Deny</button>
+              <button class="btn btn-sm btn-primary" data-ng-click="authorize_identity_access_request(iar.id)" data-translate>Authorize</button>&nbsp;
+              <button class="btn btn-sm btn-danger" data-ng-click="file_denied_identity_access_reply(iar.id)" data-translate>Deny</button>
             </td>
           </tr>
           </tbody>

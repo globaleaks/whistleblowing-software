@@ -1,24 +1,24 @@
 <div class="modal-header">
     <button type="submit" class="close" aria-hidden="true" data-ng-click="cancel()">
-        <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+        <i class="fa fa-trash-alt-circle"></i>
     </button>
     <div class="modal-title" data-translate>Enter a name for the copy</div>
 </div>
 <div class="modal-body">
     <span data-translate>Name</span>
     <div class="form-group">
-        <div data-ng-class="{'has-error': duplocateQuestionnaire.name.$error.required}">
+        <div data-ng-class="{'has-danger': duplocateQuestionnaire.name.$error.required}">
             <input name="name" class="form-control" data-ng-model="duplicate_questionnaire.name" type="text" required />
         </div>
     </div>
 </div>
 <div class="modal-footer">
-    <span id="modal-action-cancel" class="btn btn-default" data-ng-click="cancel()">
-        <i class="glyphicon glyphicon-remove"></i>
+    <span id="modal-action-cancel" class="btn btn-secondary" data-ng-click="cancel()">
+        <i class="fa fa-trash-alt"></i>
         <span data-translate>Cancel</span>
     </span>
     <span id="modal-action-ok" class="btn btn-primary" data-ng-click="ok()">
-        <i class="glyphicon glyphicon-ok"></i>
+        <i class="fa fa-check-circle"></i>
         <span data-translate>Duplicate</span>
     </span>
 </div>

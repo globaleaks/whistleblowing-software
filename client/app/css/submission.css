@@ -119,7 +119,6 @@
 
 .fileuploadprogress {
   position: relative;
-  width: 11.25em;
   bottom: 0px;
 }
 
@@ -161,10 +160,6 @@ html[dir="ltr"] .question {
 
 html[dir="rtl"] .question {
   padding: 0 0.8em 0 0;
-}
-
-.feature {
-  fill: #ccc;
 }
 
 .mapoutline {

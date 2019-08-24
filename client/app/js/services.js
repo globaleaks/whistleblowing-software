@@ -1620,6 +1620,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     // Set text direction for languages that read from right to left.
     var useRightToLeft = ["ar", "fa", "he", "ur"].indexOf(lang) !== -1;
     document.getElementsByTagName("html")[0].setAttribute("dir", useRightToLeft ? "rtl" : "ltr");
+    document.getElementsByTagName("body")[0].setAttribute("dir", useRightToLeft ? "rtl" : "ltr");
 
     // Update the $translate module to use the new language.
     $translate.use(lang).then(function() {

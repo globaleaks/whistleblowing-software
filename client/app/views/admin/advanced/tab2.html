@@ -1,15 +1,15 @@
 <div class="row">
   <div class="col-md-12">
     <div data-ng-form="redirectAddForm" class="form-inline" isolate-form novalidate>
-      <div class="form-group display-block">
-        <label data-translate>From</label>
+      <div class="form-group d-block">
 	<div class="input-group">
+          <span class="input-group-prepend"><span class="input-group-text" data-translate>From</span></span>
           <input type="text" class="form-control" name="path1" data-ng-model="new_redirect.path1" />
         </div>
       </div>
-      <div class="form-group display-block">
-        <label data-translate>To</label>
-	<span>
+      <div class="form-group d-block">
+	<span class="form-group">
+          <span class="input-group-prepend"><span class="input-group-text" data-translate>To</span></span>
           <input type="text" class="form-control" name="path2" data-ng-model="new_redirect.path2" />
 	</span>
       </div>
@@ -17,7 +17,7 @@
               class="btn btn-primary"
               data-ng-disabled="redirectAddForm.$invalid"
               data-ng-click="add_redirect()">
-        <i class="glyphicon glyphicon-plus-sign"></i>
+        <i class="fa fa-plus"></i>
         <span data-translate>Add</span>
       </button>
     </div>
@@ -39,9 +39,9 @@
           <td>{{redirect.path1}}</td>
           <td>{{redirect.path2}}</td>
           <td>
-            <button class="btn btn-xs btn-danger"
+            <button class="btn btn-sm btn-danger"
                     data-ng-click="delete_redirect(redirect)">
-              <i class="glyphicon glyphicon-trash"></i>
+              <i class="fa fa-trash"></i>
               <span data-translate>Delete</span>
             </button>
           </td>

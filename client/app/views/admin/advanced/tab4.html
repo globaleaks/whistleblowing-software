@@ -6,7 +6,7 @@
       </label>
     </div>
 
-    <div data-ng-if="admin.node.backup" class="well">
+    <div data-ng-if="admin.node.backup" class="card.card-body">
       <div class="row">
         <div class="col-md-4 form-group">
           <label data-translate>Daily</label>
@@ -70,7 +70,7 @@
       <button class="btn btn-success"
               data-ng-disabled="advancedForm.$invalid"
               data-ng-click="updateNode()" type="submit">
-        <i class="glyphicon glyphicon-ok"></i>
+        <i class="fa fa-check-circle"></i>
         <span data-translate>Save</span>
       </button>
     </div>

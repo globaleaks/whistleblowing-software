@@ -1,17 +1,11 @@
 GLClient.
 controller("AdminCtrl",
-    ["$scope", "$route", "$location", "$filter", "resources", "AdminNodeResource", "UpdateService", "CONSTANTS",
-    function($scope, $route, $location, $filter, resources, AdminNodeResource, UpdateService, CONSTANTS) {
+    ["$scope", "$route", "$filter", "resources", "AdminNodeResource", "UpdateService", "CONSTANTS",
+    function($scope, $route, $filter, resources, AdminNodeResource, UpdateService, CONSTANTS) {
   $scope.email_regexp = CONSTANTS.email_regexp;
   $scope.hostname_regexp = CONSTANTS.hostname_regexp;
   $scope.onionservice_regexp = CONSTANTS.onionservice_regexp;
   $scope.https_regexp = CONSTANTS.https_regexp;
-
-  // TODO convert this to a directive
-  // This is used for setting the current menu in the sidebar
-  var current_menu = $location.path().split("/").slice(-1);
-  $scope.active = {};
-  $scope.active[current_menu] = "active";
 
   $scope.update_service = UpdateService;
 

@@ -15,8 +15,8 @@
       </div>
       <br />
       <div class="form-group">
-        <button id="addCustomTextButton" class="pull-left btn btn-primary" data-ng-disabled="!vars.text_to_customize" type="submit" data-ng-click="custom_texts[vars.text_to_customize] = vars.custom_text; custom_texts.$update({'lang': vars.language_to_customize})">
-          <i class="glyphicon glyphicon-plus-sign"></i>
+        <button id="addCustomTextButton" class="float-left btn btn-primary" data-ng-disabled="!vars.text_to_customize" type="submit" data-ng-click="custom_texts[vars.text_to_customize] = vars.custom_text; custom_texts.$update({'lang': vars.language_to_customize})">
+          <i class="fa fa-plus"></i>
           <span data-translate>Add</span>
         </button>
       </div>
@@ -42,8 +42,8 @@
             <td class="preformatted">{{default_texts[key]}}</td>
             <td>
               <span class="preformatted">{{custom_texts[key]}}</span>
-              <button class="deleteCustomTextButton pull-right btn btn-xs btn-danger" data-ng-click="Utils.deleteFromDict(custom_texts, key); custom_texts.$update({'lang': vars.language_to_customize})">
-                <i class="glyphicon" data-ng-class="{'glyphicon-remove': default_texts[key], 'glyphicon-alert': !default_texts[key]}"></i>
+              <button class="deleteCustomTextButton float-right btn btn-sm btn-danger" data-ng-click="Utils.deleteFromDict(custom_texts, key); custom_texts.$update({'lang': vars.language_to_customize})">
+                <i class="fa" data-ng-class="{'fa-trash-alt': default_texts[key], 'fa-alert': !default_texts[key]}"></i>
               </button>
             </td>
           </tr>

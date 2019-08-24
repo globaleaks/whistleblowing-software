@@ -1,5 +1,5 @@
 <form name="passwordChangeForm">
-  <div class="form-group" data-ng-class="{'has-error': passwordChangeForm.oldpassword.$error.required}" data-ng-if='!session.password_change_needed'>
+  <div class="form-group" data-ng-class="{'has-danger': passwordChangeForm.oldpassword.$error.required}" data-ng-if='!session.password_change_needed'>
     <label>
       <span data-translate>Current password</span>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
@@ -10,7 +10,7 @@
     </p>
   </div>
 
-  <div class="form-group" data-ng-class="{'has-error': passwordChangeForm.password.$error.required || passwordChangeForm.password.$error.passwordStrength}">
+  <div class="form-group" data-ng-class="{'has-danger': passwordChangeForm.password.$error.required || passwordChangeForm.password.$error.passwordStrength}">
     <label>
       <span data-translate>New password</span>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <div class="form-group" data-ng-class="{'has-error': preferences.password.length && !passwordChangeForm.password.$error && (passwordChangeForm.checkpassword.$error.required || preferences.password !== preferences.check_password)}">
+  <div class="form-group" data-ng-class="{'has-danger': preferences.password.length && !passwordChangeForm.password.$error && (passwordChangeForm.checkpassword.$error.required || preferences.password !== preferences.check_password)}">
     <label>
       <span data-translate>Type your new password again</span>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
@@ -39,7 +39,7 @@
   <br />
 
   <button type="submit" class="btn btn-success" data-ng-disabled="passwordChangeForm.$invalid || passwordChangeForm.$pristine || preferences.password !== preferences.check_password || (preferences.password !== '' && preferences.password === preferences.old_password)" data-ng-click="save()">
-    <i class="glyphicon glyphicon-ok"></i>
+    <i class="fa fa-check-circle"></i>
     <span data-translate>Save</span>
   </button>
 </div>

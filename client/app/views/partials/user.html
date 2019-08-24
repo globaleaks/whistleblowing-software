@@ -1,15 +1,15 @@
 <div data-ng-hide="session.password_change_needed">
   <div id="LanguagePickerBox" class="languagePick row" data-ng-if="node.languages_enabled.length > 1">
-    <div class="pull-right">
+    <div class="float-right">
       <span data-ng-if="!mobile && languages_enabled_selector.length < 4" data-ng-repeat="item in languages_enabled_selector">
-        <a class="language-link" data-ng-class="{'language-link-selected': GLTranslate.state.language === item.code}" data-uib-popover="{{item.native}} ({{item.name}})" data-popover-placement="bottom" data-ng-click="GLTranslate.state.language = item.code">{{item.native}}</a>
+        <a class="language-link" data-ng-class="{'language-link-selected': GLTranslate.state.language === item.code}" data-uib-popover="{{item.native}} ({{item.name}})" data-popover-placement="bottom" data-ng-click="GLTranslate.state.language = item.code" href="">{{item.native}}</a>
         <span data-ng-if="!$last">|</div>
       </span>
       <select data-ng-if="mobile || languages_enabled_selector.length > 3" class="form-control" data-ng-if="false" data-ng-model="GLTranslate.state.language" data-ng-options="item.code as item.native for item in languages_enabled_selector"></select>
     </div>
   </div>
   <div id="LoginStatusBox" class="row" data-ng-if="Utils.showUserStatusBox()">
-    <div class="pull-right">
+    <div class="float-right">
       <span id="UsernameBox" data-ng-if="session.role !== 'whistleblower'">
         <label>{{preferences.name}}</label>
         <span class="text-separator">|</span>
@@ -28,7 +28,7 @@
     </div>
   </div>
   <div id="LoginFormBox" class="row" data-ng-if="Utils.showLoginForm()">
-    <div class="pull-right">
+    <div class="float-right">
       <div data-translate>Have you already filed a submission? Enter your receipt.</div>
       <div data-ng-include="'views/partials/wb_login.html'"></div>
       <div class="LoginErrorBox red" data-ng-show="errors[0].code == 9" data-translate>The receipt is either invalid or the submission has expired.</div>

@@ -1,8 +1,8 @@
 <div id="UserTenantAssociationsEditBox">
   <label>
     <span data-translate>Sites</span>
-    <button class="btn btn-xs btn-primary add-receiver-btn" data-ng-click="refreshAvailableTenants(); toggleAddUserTenantAssociation()">
-      <i class="glyphicon glyphicon-plus"></i>
+    <button class="btn btn-sm btn-primary add-receiver-btn" data-ng-click="refreshAvailableTenants(); toggleAddUserTenantAssociation()">
+      <i class="fa fa-plus"></i>
       <span data-translate>Add</span>
     </button>
   </label>
@@ -23,13 +23,13 @@
     <li data-ng-repeat="association in user.usertenant_assocations | orderBy:'tenant_id'"">
       <span data-ng-controller="AdminUserTenantAssociationEditorCtrl">
         <span class="action-btns" data-ng-if="association.tenant_id == user.tid">
-            <i class="glyphicon glyphicon-record"></i>
+            <i class="fa fa-adjust"></i>
         </span>
         <span class="action-btns" data-ng-if="association.tenant_id != user.tid" data-ng-click="deleteUserTenantAssociation(association)" uib-popover="{{'Remove' | translate}}">
-          <i class="glyphicon glyphicon-remove"></i>
+          <i class="fa fa-trash-alt"></i>
         </span>
         </span>
-        <span data-ng-class="{'bold': association.tenant_id == user.tid}"><span>{{tenants_by_id[association.tenant_id].id}}: {{tenants_by_id[association.tenant_id].label}}</span><span data-ng-if="association.tenant_id == user.tid"> (<span data-translate>main</span>)</span></span>
+        <span data-ng-class="{'font-weight-bold': association.tenant_id == user.tid}"><span>{{tenants_by_id[association.tenant_id].id}}: {{tenants_by_id[association.tenant_id].label}}</span><span data-ng-if="association.tenant_id == user.tid"> (<span data-translate>main</span>)</span></span>
       </span>
     </li>
   </ol>

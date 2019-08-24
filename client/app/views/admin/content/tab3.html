@@ -7,9 +7,9 @@
                 extend-flow-valid-size="node.maximum_filesize*1024*1024">
         <label data-translate>Files</label>
         <span class="uploadfile file-custom">
-          <span class="btn btn-xs btn-success fileinput-button">
+          <span class="btn btn-sm btn-success fileinput-button">
             <span class="uploadfile" flow-btn>
-              <span class="glyphicon glyphicon-plus"></span>
+              <span class="fa fa-plus"></span>
               <span data-translate>Upload</span>
             </span>
           </span>
@@ -22,11 +22,11 @@
               <td>{{file.name}}</td>
               <td>
                 <a class="btn btn-primary" data-ng-href="s/{{file.name}}" download="{{file.name}}">
-                  <span class="glyphicon glyphicon-download"></span>
+                  <span class="fa fa-download"></span>
                   <span data-translate>Download</span>
                 </a>
                 <a class="btn btn-danger" data-ng-click="delete_file('admin/files/' + file.id)" data-single-click>
-                  <span class="glyphicon glyphicon-trash"></span>
+                  <span class="fa fa-trash"></span>
                   <span data-translate>Delete</span>
                 </a>
               </td>

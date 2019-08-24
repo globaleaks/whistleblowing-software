@@ -92,10 +92,12 @@ module.exports = function(grunt) {
       sources: {
         files: [
           { dest: "app/css", cwd: ".", src: ["node_modules/angular/angular-csp.css"], expand: true, flatten: true },
-          { dest: "app/css", cwd: ".", src: ["node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"], expand: true, flatten: true },
-          { dest: "app/css", cwd: ".", src: ["node_modules/bootstrap-inline-rtl/dist/css/bootstrap.css"], expand: true, flatten: true },
+          { dest: "app/css", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-csp.css"], expand: true, flatten: true },
+          { dest: "app/css", cwd: ".", src: ["node_modules/bootstrap-v4-rtl/dist/css/bootstrap-rtl.css"], expand: true, flatten: true },
+          { dest: "app/css", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/fontawesome.css"], expand: true, flatten: true },
+          { dest: "app/css", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/solid.css"], expand: true, flatten: true },
           { dest: "app/css", cwd: ".", src: ["node_modules/ui-select/dist/select.min.css"], expand: true, flatten: true },
-          { dest: "app/fonts", cwd: ".", src: ["node_modules/bootstrap-inline-rtl/fonts/*"], expand: true, flatten: true },
+          { dest: "app/webfonts", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/webfonts/*"], expand: true, flatten: true },
           { dest: "app/js/locale", cwd: ".", src: ["node_modules/angular-i18n/angular-locale*"], expand: true, flatten: true },
           { dest: "app/js/lib/", cwd: ".", src: ["node_modules/stacktrace-js/dist/stacktrace.min.js"], expand: true, flatten: true },
           { dest: "app/js/lib/", cwd: ".", src: ["node_modules/fast-sha256/sha256.min.js"], expand: true, flatten: true },
@@ -117,6 +119,7 @@ module.exports = function(grunt) {
           { dest: "app/js/lib/", cwd: ".", src: ["node_modules/zxcvbn/dist/zxcvbn.js"], expand: true, flatten: true },
           { dest: "app/js/lib/", cwd: ".", src: ["node_modules/angular-zxcvbn/dist/angular-zxcvbn.js"], expand: true, flatten: true },
           { dest: "app/js/lib/", cwd: ".", src: ["node_modules/angular-dynamic-locale/tmhDynamicLocale.min.js"], expand: true, flatten: true },
+          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-tpls.js"], expand: true, flatten: true },
           { dest: "app/js/lib/", cwd: ".", src: ["node_modules/ui-select/dist/select.min.js"], expand: true, flatten: true },
           { dest: "app/js/lib/", cwd: ".", src: ["node_modules/topojson/dist/topojson.min.js"], expand: true, flatten: true}
         ]
@@ -191,13 +194,13 @@ module.exports = function(grunt) {
         options: {
           replacements: [
             {
-              pattern: "src: url('../fonts/glyphicons-halflings-regular.eot');",
+              pattern: "src: url(\"../webfonts/fa-solid-900.eot\");",
               replacement: ""
             },
             {
-              pattern: "src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');",
+              pattern: "src: url(\"../webfonts/fa-solid-900.eot?#iefix\") format(\"embedded-opentype\"), url(\"../webfonts/fa-solid-900.woff2\") format(\"woff2\"), url(\"../webfonts/fa-solid-900.woff\") format(\"woff\"), url(\"../webfonts/fa-solid-900.ttf\") format(\"truetype\"), url(\"../webfonts/fa-solid-900.svg#fontawesome\") format(\"svg\"); }",
               replacement: function () {
-                return "src: url('" + fileToDataURI("tmp/fonts/glyphicons-halflings-regular.woff") + "') format('woff');";
+                return "src: url('" + fileToDataURI("tmp/webfonts/fa-solid-900.woff") + "') format('woff'); }";
               }
             }
           ]

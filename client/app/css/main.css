@@ -10,8 +10,6 @@ html {
 body {
   position: relative;
   margin: 0;
-  font-family: Verdana, sans-serif;
-  line-height: 1.8;
   color: #222;
 }
 
@@ -24,11 +22,6 @@ body {
     position: absolute;
     bottom: 0;
   }
-}
-
-.container-fluid {
-  width: 95%;
-  margin: 0;
 }
 
 #ContentBox {
@@ -264,7 +257,7 @@ html[dir] .imageUpload .changePictureButton, html[dir] .imageUpload .deletePictu
 }
 
 .fileUploadBox {
-  margin-bottom: 0.8em;
+  margin-bottom: 2em;
 }
 
 .fileUploadProgress {
@@ -347,20 +340,12 @@ html[dir] .imageUpload .changePictureButton, html[dir] .imageUpload .deletePictu
   margin-right: 2px;
 }
 
-.text-bold {
-  font-weight: bold;
-}
-
 .disabled-interface {
   pointer-events: none;
   user-select: none;
   background-color: #eee;
   opacity: 0.60;
   filter: alpha(opacity=0.60);
-}
-
-.panel-heading {
-  font-weight: bold;
 }
 
 textarea.form-control {
@@ -376,35 +361,21 @@ textarea.form-control {
   top: 2.4em;
 }
 
+label.file-upload {
+  margin: 0;
+}
+
 .file-upload input[type="file"] {
   display: none;
 }
 
-.glyphicon-none:before {
+.fa-none:before {
   content: "\2122";
   color: transparent;
 }
 
-.hidden {
-  display: none;
-  visibility: none;
-}
-
-.visible {
-  display: block;
-  visibility: visible;
-}
-
-.badge-info {
-  background-color: #337ab7;
-}
-
-.display-block {
-  display: block;
-}
-
 .red {
-  color: #a94442;
+  color: #d44950;
 }
 
 .underline {
@@ -434,12 +405,8 @@ textarea.form-control {
   padding-left: 2em;
 }
 
-.monospace {
-  font-family: monospace;
-}
-
-.bold {
-  font-weight: bold;
+html[dir] .card {
+  margin-bottom: 1em;
 }
 
 @media (min-width: 768px) {
@@ -493,3 +460,15 @@ html[dir='ltr'] .spaced {
 html[dir='rtl'] .spaced {
   padding-right: 1.4em;
 }
+
+html[dir='rtl'] .fa-arrow-right:before {
+  content: "\f060"; }
+
+html[dir='rtl'] .fa-arrow-left:before {
+  content: "\f061"; }
+
+html[dir='rtl'] .fa-arrow-circle-right:before {
+  content: "\f0a8"; }
+
+html[dir='rtl'] .fa-arrow-circle-left:before {
+  content: "\f0a9"; }

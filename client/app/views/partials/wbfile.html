@@ -1,22 +1,22 @@
-<div class="wbfile panel panel-default">
-  <div class="panel-body">
+<div class="wbfile card card-default">
+  <div class="card-body">
     <div class="top-row">
-      <span class="pull-left">
+      <span class="float-left">
         <span class="text-muted" data-ng-if="ctx === 'download'"><span data-translate>Filename</span>:</span>
         <span class="filename">{{::wbfile.name }}</span>
       </span>
-      <span class="pull-right">
+      <span class="float-right">
         <span data-ng-if="ctx === 'rtip'">
-          <span class="btn btn-primary btn-xs" data-ng-click="downloadWBFile(wbfile)">
-            <span class="glyphicon glyphicon-download"></span> <span data-translate>Download</span>
+          <span class="btn btn-primary btn-sm" data-ng-click="downloadWBFile(wbfile)">
+            <span class="fa fa-download"></span> <span data-translate>Download</span>
           </span>
-          <button data-ng-if="showDeleteWBFile(wbfile)" class="btn btn-danger btn-xs" data-ng-click="deleteWBFile(wbfile)" data-single-click>
-            <span class="glyphicon glyphicon-trash"></span> <span data-translate>Delete</span>
+          <button data-ng-if="showDeleteWBFile(wbfile)" class="btn btn-danger btn-sm" data-ng-click="deleteWBFile(wbfile)" data-single-click>
+            <span class="fa fa-trash"></span> <span data-translate>Delete</span>
           </button>
         </span>
         <span data-ng-if="ctx === 'wbtip'">
           <div class="download-button btn-warning btn btn-small" data-ng-click="downloadWBFile(wbfile)">
-           <i class="glyphicon glyphicon-download-alt"></i> <span data-translate>Download</span>
+           <i class="fa fa-download-alt"></i> <span data-translate>Download</span>
           </div>
         </span>
       </span>

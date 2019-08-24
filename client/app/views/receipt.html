@@ -16,17 +16,17 @@
   <br />
   <div class="row">
     <div class="col-md-6">
-      <div class="panel panel-default" data-ng-init="collapsed = false">
-        <div class="panel-heading">
+      <div class="card card-secondary" data-ng-init="collapsed = false">
+        <div class="card-header">
           <span data-translate>Remember your receipt for this submission.</span>
         </div>
-        <div class="panel-body" data-ng-show="!collapsed">
+        <div class="card-body" data-ng-show="!collapsed">
           <div id="KeyCodeBox">
             <span id="KeyCode">{{formatted_receipt}}</span>
           </div>
           <div data-translate>Use the 16 digit receipt to log in. It will allow you to view any messages we sent you, and also to add extra info.</div>
           <div>
-            <button id="ReceiptButton" class="pull-right btn btn-default" data-ng-click="Authentication.login(0, 'whistleblower', receipt)" data-translate>View your submission</button>
+            <button id="ReceiptButton" class="float-right btn btn-secondary" data-ng-click="Authentication.login(0, 'whistleblower', receipt)" data-translate>View your submission</button>
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@
     <div class="col-md-6" data-ng-if="!node.disable_key_code_hint">
       <div data-ng-include="'views/partials/keycodehint_panel.html'"></div>
     </div>
-    <div class="col-md-6" data-ng-if="node.enable_ricochet_panel">
+    <div class="col-md-6" data-ng-if="node.enable_ricochet_card ">
       <div data-ng-include="'views/partials/ricochet_panel.html'"></div>
     </div>
   </div>

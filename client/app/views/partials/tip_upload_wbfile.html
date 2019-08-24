@@ -1,14 +1,14 @@
-<div id="TipPageWBFileUpload" class="panel panel-default" data-ng-init="collapsed = false">
-  <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
+<div id="TipPageWBFileUpload" class="card card-default" data-ng-init="collapsed = false">
+  <div class="card-header" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <div>
       <span data-translate>Attached files for the whistleblower</span>
-      <span class="pull-right">
-        <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>
-        <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left"></i>
+      <span class="float-right">
+        <i data-ng-if="!collapsed" class="fa fa-square-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>
+        <i data-ng-if="collapsed" class="fa fa-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left"></i>
       </span>
     </div>
   </div>
-  <div class="panel-body" data-ng-show="!collapsed"
+  <div class="card-body" data-ng-show="!collapsed"
        data-ng-controller="RTipWBFileUploadCtrl">
     <div data-ng-repeat="wbfile in tip.wbfiles | orderBy: 'creation_date'">
       <div id="wbfile-{{$index}}" data-wbfile data-ctx="'rtip'"></div>
@@ -21,11 +21,11 @@
         flow-single-file
         extend-flow-valid-size="node.maximum_filesize*1024*1024">
       <span class="input-group">
-        <span class="input-group-addon" data-translate>Description</span>
+        <span class="input-group-prepend"><span class="input-group-text" data-translate>Description</span></span>
         <input type="text" class="form-control" data-ng-model="file_upload_description" />
-        <span class="input-group-btn">
-          <button class="btn btn-warning" data-ng-disabled="!file_upload_description" flow-btn>
-            <span class="glyphicon glyphicon-upload"></span>
+        <span class="input-group-append">
+          <button class="btn btn-primary" data-ng-disabled="!file_upload_description" flow-btn>
+            <span class="fa fa-upload"></span>
             <span data-translate>Upload</span>
           </button>
         </span>

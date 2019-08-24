@@ -6,10 +6,10 @@ describe("admin configure https", function() {
   };
 
   it("should interact with all ui elements", function() {
-    var pk_panel = element(by.css("div.panel.priv-key"));
-    var csr_panel = element(by.css("div.panel.csr"));
-    var cert_panel = element(by.css("div.panel.cert"));
-    var chain_panel = element(by.css("div.panel.chain"));
+    var pk_panel = element(by.css("div.card.priv-key"));
+    var csr_panel = element(by.css("div.card.csr"));
+    var cert_panel = element(by.css("div.card.cert"));
+    var chain_panel = element(by.css("div.card.chain"));
     var modal_action = by.id("modal-action-ok");
 
     browser.setLocation("admin/network");
@@ -65,13 +65,13 @@ describe("admin configure https", function() {
       browser.gl.utils.fixUploadButtons();
 
       // Upload key
-      element(by.css("div.panel.priv-key input[type=\"file\"]")).sendKeys(files.priv_key);
+      element(by.css("div.card.priv-key input[type=\"file\"]")).sendKeys(files.priv_key);
 
       // Upload cert
-      element(by.css("div.panel.cert input[type=\"file\"]")).sendKeys(files.cert);
+      element(by.css("div.card.cert input[type=\"file\"]")).sendKeys(files.cert);
 
       // Upload chain
-      element(by.css("div.panel.chain input[type=\"file\"]")).sendKeys(files.chain);
+      element(by.css("div.card.chain input[type=\"file\"]")).sendKeys(files.chain);
 
       // Download the cert and chain
       if (browser.gl.utils.testFileDownload()) {

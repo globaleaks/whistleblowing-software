@@ -15,15 +15,15 @@
           <div class="col-md-1" data-ng-if="receiver.pgp_key_public !== '' || node.allow_unencrypted">
             <div data-ng-if="submission.selected_receivers[receiver.id]">
               <div data-ng-if="receiver.recipient_configuration === 'default'">
-                <i class="glyphicon glyphicon-check" uib-popover="{{'Unselect this recipient.' | translate}}" popover-placement="right"></i>
+                <i class="fa fa-check-square" uib-popover="{{'Unselect this recipient.' | translate}}" popover-placement="right"></i>
               </div>
               <div data-ng-if="receiver.recipient_configuration === 'forcefully_selected'">
-                <i class="glyphicon glyphicon-check" uib-popover="{{'This recipient cannot be deselected.' | translate}}" popover-placement="right"></i>
+                <i class="fa fa-check-square" uib-popover="{{'This recipient cannot be deselected.' | translate}}" popover-placement="right"></i>
               </div>
             </div>
             <div data-ng-if="!submission.selected_receivers[receiver.id]">
               <div data-ng-if="receiver.recipient_configuration === 'default'">
-                <i class="glyphicon glyphicon-unchecked" uib-popover="{{'Select this recipient.' | translate}}" popover-placement="right"></i>
+                <i class="fa fa-square" uib-popover="{{'Select this recipient.' | translate}}" popover-placement="right"></i>
               </div>
             </div>
           </div>

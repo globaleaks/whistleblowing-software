@@ -1,12 +1,12 @@
-<div id="TipInfoBox" class="panel panel-warning" data-ng-init="collapsed = false">
-  <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
+<div id="TipInfoBox" class="card card.bg-warning" data-ng-init="collapsed = false">
+  <div class="card-header" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <span data-translate>Additional questionnaire</span>
   </div>
-  <div class="panel-body" data-ng-show="!collapsed">
+  <div class="card-body" data-ng-show="!collapsed">
     <div data-translate>Recipients have requested you to fill an additional questionnaire.</div>
-    <div class="pull-right">
+    <div class="float-right">
       <button class="btn btn-primary" data-ng-click="tip_open_additional_questionnaire()">
-        <i class="glyphicon glyphicon-ok"></i>
+        <i class="fa fa-check-circle"></i>
         <span data-translate>Fill the additional questionnaire</span>
       </button>
     </div>

@@ -1,22 +1,24 @@
 <div class="form-group">
   <div class="input-group">
-    <span class="input-group-addon" data-translate>Tor Onion Service</span>
+    <span class="input-group-prepend">
+      <span class="input-group-text" data-translate>Tor Onion Service</span>
+    </span>
     <input name="onionservice" class="form-control" type="text" value="{{admin.node.onionservice ? admin.node.onionservice : ('Not running' | translate)}}" disabled="true" />
-    <span class="input-group-btn">
+    <span class="input-group-append">
       <button class="btn btn-danger" data-ng-disabled="torOnionResetInProgress" data-ng-click="resetOnionPrivateKey()">
-        <i class="glyphicon glyphicon-refresh"></i>
+        <i class="fa fa-sync"></i>
         <span data-translate>Regenerate</span>
       </button>
     </span>
   </div>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-body">
+<div class="card card-default">
+  <div class="card-body">
     <form name="adminNetForm">
       <div class="row">
         <div class="col-md-12">
-          <div class="form-group" data-ng-class="{'has-error': adminNetForm.tb_download_link.$error.pattern}">
+          <div class="form-group" data-ng-class="{'has-danger': adminNetForm.tb_download_link.$error.pattern}">
             <label data-translate>Tor Browser download link</label>
             <input class="form-control" name="tb_download_link" type="url" data-ng-model="admin.node.tb_download_link" data-ng-pattern="https_regexp">
           </div>
@@ -75,7 +77,7 @@
       <div class="row">
         <div class="col-md-6">
           <button class="btn btn-success" data-ng-disabled="adminNetForm.$invalid" data-ng-click="Utils.update(admin.node)" type="submit">
-            <i class="glyphicon glyphicon-ok"></i>
+            <i class="fa fa-check-circle"></i>
             <span data-translate>Save</span>
           </button>
         </div>

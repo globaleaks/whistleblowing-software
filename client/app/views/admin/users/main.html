@@ -4,8 +4,8 @@
     <div class="adminConfigSection" data-ng-controller="AdminUsersCtrl">
       <div class="editorTitle">
         <span data-translate>Users</span>
-        <button class="btn btn-xs btn-primary show-add-user-btn" data-ng-click="toggleAddUser()">
-          <i class="glyphicon glyphicon-plus"></i>
+        <button class="btn btn-sm btn-primary show-add-user-btn" data-ng-click="toggleAddUser()">
+          <i class="fa fa-plus"></i>
           <span data-translate>Add</span>
         </button>
       </div>
@@ -14,7 +14,7 @@
           <div class="form-group">
             <label data-translate>Role</label>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-              <div data-ng-class="{'has-error': newUser.role.$error.required}">
+              <div data-ng-class="{'has-danger': newUser.role.$error.required}">
                 <select name="role" class="form-control" data-ng-model="new_user.role" required>
                   <option value="admin" data-translate>Admin</option>
                   <option value="receiver" data-translate>Recipient</option>
@@ -25,21 +25,21 @@
             <div class="form-group" data-ng-if="new_user.role !== 'receiver' || !node.simplified_login">
               <label data-translate>Username</label>
               <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-              <div data-ng-class="{'has-error': newUser.username.$error.required}">
+              <div data-ng-class="{'has-danger': newUser.username.$error.required}">
                 <input class="form-control" name="username" data-ng-model="new_user.username" type="text" required />
               </div>
             </div>
             <div class="form-group">
               <label data-translate>Name</label>
               <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-              <div data-ng-class="{'has-error': newUser.name.$error.required}">
+              <div data-ng-class="{'has-danger': newUser.name.$error.required}">
                 <input class="form-control" name="name" data-ng-model="new_user.name" type="text" required />
               </div>
             </div>
             <div class="form-group">
               <label data-translate>Email address</label>
               <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-              <div data-ng-class="{'has-error': newUser.email.$error}">
+              <div data-ng-class="{'has-danger': newUser.email.$error}">
                 <input class="form-control" name="email" data-ng-model="new_user.email" data-ng-pattern="email_regexp" type="text" required />
               </div>
               <div class="text-danger" data-ng-show="newUser.email.$error.pattern" data-translate>Invalid email address</div>
@@ -48,13 +48,13 @@
               <label data-translate>Password</label>
               <div>
                 <span data-translate>The default password is:</span>
-                <span class="label label-primary">password</span>
+                <span class="badge badge-primary">password</span>
               </div>
               <div data-translate>The system forces users to change the password at first login.</div>
             </div>
             <div class="form-group">
               <button id="add-btn" class="btn btn-primary" data-ng-disabled="newUser.$invalid" data-ng-click="add_user(); toggleAddUser()" type="submit">
-                <i class="glyphicon glyphicon-plus-sign"></i>
+                <i class="fa fa-plus"></i>
                 <span data-translate>Add</span>
               </button>
             </div>
@@ -67,8 +67,7 @@
             <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
               <span class="col-md-7 editorHeaderTitle">
                 <span>{{user.name}}</span>
-                <span class="label label-primary label-as-badge">
-                  <span data-translate>Role</span><span>:</span>
+                <span class="badge badge-primary">
                   <span data-ng-switch="user.role">
                     <span data-ng-switch-when="admin" data-translate>Admin</span>
                     <span data-ng-switch-when="receiver" data-translate>Recipient</span>
@@ -77,25 +76,25 @@
                 </span>
               </span>
               <span class="col-md-5">
-                <span class="pull-right">
-                  <button class="btn btn-xs btn-default"
+                <span class="float-right">
+                  <button class="btn btn-sm btn-secondary"
                     data-ng-show="!editing"
                     data-ng-click="toggleEditing(); $event.stopPropagation();">
                     <span data-translate>Edit</span>
                   </button>
-                  <button class="btn btn-xs btn-success"
+                  <button class="btn btn-sm btn-success"
                     data-ng-show="editing"
                     data-ng-disabled="editUser.$invalid"
                     data-ng-click="saveUser()">
                     <span data-translate>Save</span>
                   </button>
                   <button
-                    class="btn btn-xs btn-default"
+                    class="btn btn-sm btn-secondary"
                     data-ng-show="editing"
                     data-ng-click="toggleEditing(); $event.stopPropagation();">
                     <span data-translate>Cancel</span>
                   </button>
-                  <button class="btn btn-xs btn-danger"
+                  <button class="btn btn-sm btn-danger"
                     data-ng-if="Authentication.session.user_id !== user.id"
                     data-ng-click="deleteUser(); $event.stopPropagation();">
                     <span data-translate>Delete</span>
@@ -138,16 +137,16 @@
                   <div class="form-group">
                     <label data-translate>Password</label>
                     <div>
-                      <span class="btn btn-default" data-ng-click="resetUserPassword()">
-                        <i class="glyphicon glyphicon-refresh"></i>
+                      <span class="btn btn-secondary" data-ng-click="resetUserPassword()">
+                        <i class="fa fa-sync"></i>
                         <span data-translate>Reset password</span>
                        </span>
-                      <span class="btn btn-default" data-ng-init="user.newpassword = false" data-ng-click="user.newpassword=!user.newpassword">
-                        <i class="glyphicon glyphicon-edit"></i>
+                      <span class="btn btn-secondary" data-ng-init="user.newpassword = false" data-ng-click="user.newpassword=!user.newpassword">
+                        <i class="fa fa-edit"></i>
                         <span data-translate>New password</span>
                       </span>
                     </div>
-                    <div class="form-group" data-ng-if="user.newpassword" data-ng-form="userPasswordForm" data-ng-class="{'has-error': passwordStrength.score > 0 && !userPassword.password.$valid}">
+                    <div class="form-group" data-ng-if="user.newpassword" data-ng-form="userPasswordForm" data-ng-class="{'has-danger': passwordStrength.score > 0 && !userPassword.password.$valid}">
                       <input name="password" class="form-control" data-ng-model="user.password" type="password" autocomplete="off" zxcvbn="passwordStrength" zx-min-score="3" />
                       <zx-password-meter value="passwordStrength"></zx-password-meter>
                       <div class="text-danger" data-ng-show="user.password != '' && editUser.password.$error.passwordStrength">
@@ -159,7 +158,7 @@
                     <input data-ng-model="user.password_change_needed" type="checkbox" />
                     <label data-translate>Force password change</label>
                     <div data-ng-show="user.password_change_needed">
-                     <span class="label label-info" data-translate>Enabled</span>
+                     <span class="badge badge-info" data-translate>Enabled</span>
                       <span data-translate>The user will be forced to change its password on next login.</span>
                     </div>
                   </div>
@@ -198,10 +197,10 @@
                     </div>
                   </div>
                   <div class="form-group" data-ng-show="user.pgp_key_fingerprint === ''">
-                    <div class="position-relative" data-ng-class="{'has-error': !editUser.pgp_key.$valid}">
+                    <div class="position-relative" data-ng-class="{'has-danger': !editUser.pgp_key.$valid}">
                       <label data-translate>Set up encryption by providing a PGP public key</label>
                       <textarea class="form-control" name="pgp_key" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="user.pgp_key_public" data-pgp-pubkey-validator="canBeEmpty"></textarea>
-                      <label file-input="loadPublicKeyFile(file)" file-input-label="Select" class="btn btn-default textarea-btn"></label>
+                      <label file-input="loadPublicKeyFile(file)" file-input-label="Select" class="btn btn-secondary textarea-btn"></label>
                     </div>
                   </div>
                 </div>

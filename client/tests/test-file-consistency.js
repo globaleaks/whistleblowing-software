@@ -127,16 +127,16 @@ describe("Test file upload/download consistency", function() {
     if (!browser.gl.utils.testFileUpload()) return;
 
     // Delete the second wbfile
-    rec.wbfile_widget().element(by.css("#wbfile-1 span span.glyphicon-trash")).click();
+    rec.wbfile_widget().element(by.css("#wbfile-1 span span.fa-trash")).click();
     // Assert the file is gone from the interfaccia
     expect(rec.wbfile_widget().all(by.css("div.wbfile")).count()).toEqual(1);
   });
 
-  it("the recipient should be able to downlad a wbfile", function() {
+  it("the recipient should be able to download a wbfile", function() {
     if (!browser.gl.utils.testFileUpload() || !browser.gl.utils.testFileDownload()) return;
 
     // Let the reciever download the first file
-    rec.wbfile_widget().element(by.css("#wbfile-0 span.btn span.glyphicon-download")).click();
+    rec.wbfile_widget().element(by.css("#wbfile-0")).all(by.cssContainingText("span", "Download")).get(1).click();
     f1_info.waitForDownload();
   });
 

@@ -1,28 +1,28 @@
-<ul id="SidebarCustodian" class="nav nav-pills nav-stacked">
-  <li data-ng-class="active.home">
-    <a href="#/custodian/home">
-      <i class="glyphicon glyphicon-chevron-right"></i>
+<ul id="SidebarCustodian" class="nav flex-column">
+  <li class="nav-item">
+    <a class="nav-link" href="#/custodian/home">
+      <i class="fa fa-chevron-right"></i>
       <span data-translate>Home</span>
     </a>
   </li>
 
-  <li data-ng-class="active.identities">
-    <a href="#/custodian/identityaccessrequests">
-      <i class="glyphicon glyphicon-chevron-right"></i>
+  <li class="nav-item">
+    <a class="nav-link" href="#/custodian/identityaccessrequests">
+      <i class="fa fa-chevron-right"></i>
       <span data-translate>Identities</span>
     </a>
   </li>
 
-  <li data-ng-class="active.preferences">
-    <a href="#/custodian/preferences">
-      <i class="glyphicon glyphicon-chevron-right"></i>
+  <li class="nav-item">
+    <a class="nav-link" href="#/custodian/preferences">
+      <i class="fa fa-chevron-right"></i>
       <span data-translate>User preferences</span>
     </a>
   </li>
 
-  <li data-ng-class="active.content" data-ng-if="preferences.can_edit_general_settings">
-    <a href="#/receiver/content">
-      <i class="glyphicon glyphicon-chevron-right"></i>
+  <li class="nav-item" data-ng-if="preferences.can_edit_general_settings">
+    <a class="nav-link" href="#/receiver/content">
+      <i class="fa fa-chevron-right"></i>
       <span data-translate>Site settings</span>
     </a>
   </li>

@@ -7,7 +7,7 @@
   <p id="Name"><label><span data-translate>Name</span>:</label>
     <span data-ng-if="!editingName">
       <span>{{::preferences.name }}</span>
-      <button class="btn btn-xs btn-default"
+      <button class="btn btn-sm btn-secondary"
         data-ng-show="!editingName"
         data-ng-click="toggleNameEditing(); $event.stopPropagation();">
         <span data-translate>Edit</span>
@@ -18,7 +18,7 @@
   <p id="EmailAddress"><label><span data-translate>Email address</span>:</label>
     <span>
       <span>{{::preferences.mail_address }}</span>
-      <button class="btn btn-xs btn-default"
+      <button class="btn btn-sm btn-secondary"
               data-ng-show="!editingEmailAddress"
               data-ng-click="toggleEmailAddressEditing(); $event.stopPropagation();">
         <span data-translate>Edit</span>
@@ -28,7 +28,7 @@
       <div data-translate>Validation of email address change in progress.</div>
       <div data-translate>Please check your inbox for further instructions.</div>
     </div>
-    <div data-ng-if="editingEmailAddress" class="nested" data-ng-class="{'has-error': preferencesForm.$error.pattern}">
+    <div data-ng-if="editingEmailAddress" class="nested" data-ng-class="{'has-danger': preferencesForm.$error.pattern}">
       <label>Change in:</label>
       <input class="form-control" name="mail_address" data-ng-model="preferences.mail_address" data-ng-pattern="email_regexp" type="text"/>
     </div>
@@ -60,8 +60,8 @@
   <div class="form-group" data-ng-if="preferences.cc">
     <div>
       <label data-translate>Encryption key</label>
-      <span data-ng-show="showEncryptionKey" data-ng-click="toggleShowEncryptionKey()" class="label label-default" data-translate>Hide</span>
-      <span data-ng-hide="showEncryptionKey" data-ng-click="toggleShowEncryptionKey()" class="label label-default" data-translate>Show</span>
+      <span data-ng-show="showEncryptionKey" data-ng-click="toggleShowEncryptionKey()" class="badge badge-default" data-translate>Hide</span>
+      <span data-ng-hide="showEncryptionKey" data-ng-click="toggleShowEncryptionKey()" class="badge badge-default" data-translate>Show</span>
     </div>
     <div data-ng-show="showEncryptionKey">{{preferences.cc}}</div>
   </div>
@@ -79,10 +79,10 @@
       </div>
     </div>
     <div data-ng-hide="preferences.pgp_key_fingerprint !== ''">
-      <div class="position-relative" data-ng-class="{'has-error': pgpkeyForm.$invalid}">
+      <div class="position-relative" data-ng-class="{'has-danger': pgpkeyForm.$invalid}">
         <label data-translate>Set up encryption by providing a PGP public key</label>
 	    <textarea data-pgp-pubkey-validator="canBeEmpty" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="preferences.pgp_key_public"></textarea>
-        <label file-input="loadPublicKeyFile(file)" file-input-label="Select" class="btn btn-default textarea-btn"></label>
+        <label file-input="loadPublicKeyFile(file)" file-input-label="Select" class="btn btn-secondary textarea-btn"></label>
       </div>
     </div>
   </div>
@@ -90,7 +90,7 @@
   <br />
 
   <button type="submit" class="btn btn-success" data-ng-click="save()" data-ng-disabled="preferencesForm.$invalid || pgpkeyForm.$invalid">
-    <i class="glyphicon glyphicon-ok"></i>
+    <i class="fa fa-check-circle"></i>
     <span data-translate>Save</span>
   </button>
 </form>

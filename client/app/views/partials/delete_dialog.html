@@ -1,6 +1,6 @@
 <div class="modal-header">
   <button type="submit" class="close" aria-hidden="true" data-ng-click="cancel()">
-    <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+    <i class="fa fa-trash-alt-circle"></i>
   </button>
   <div class="modal-title" data-translate>Are you sure?</div>
 </div>
@@ -10,12 +10,12 @@
   </div>
 </div>
 <div class="modal-footer">
-  <a id="modal-action-cancel" class="btn btn-default" data-ng-click="cancel()">
-    <i class="glyphicon glyphicon-remove"></i>
+  <button id="modal-action-cancel" class="btn btn-secondary" data-ng-click="cancel()">
+    <i class="fa fa-trash-alt"></i>
     <span data-translate>Cancel</span>
-  </a>
-  <a id="modal-action-ok" class="btn btn-danger" data-ng-click="ok(arg)">
-    <i class="glyphicon glyphicon-ok"></i>
+  </button>
+  <button id="modal-action-ok" class="btn btn-danger" data-ng-click="ok(arg)">
+    <i class="fa fa-check-circle"></i>
     <span data-translate>Delete</span>
-  </a>
+  </button>
 </div>

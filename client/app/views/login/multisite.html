@@ -29,12 +29,12 @@
     </div>
 
     <button id="login-button" class="btn btn-success" data-ng-disabled="Authentication.loginInProgress || loginForm.$invalid" data-ng-click="Authentication.login(vars.site.id, loginData.loginUsername, loginData.loginPassword)" type="submit">
-      <i class="glyphicon glyphicon-log-in"></i>
+      <i class="fas fa-sign-in-alt"></i>
       <span data-translate>Log in</span>
     </button>
 
     <span id="forgot-button" data-ng-if="::node.enable_password_reset">
-      <a class="btn btn-default" href="/#/login/passwordreset" data-translate>Forgot password?</a>
+      <a class="btn btn-secondary" href="/#/login/passwordreset" data-translate>Forgot password?</a>
     </span>
   </div>
 </div>
@@ -46,7 +46,7 @@
   </div>
 
   <button id="login-button" class="btn btn-success" data-ng-disabled="Authentication.loginInProgress || loginForm.$invalid" data-ng-click="Authentication.login(0, loginData.loginUsername, loginData.loginPassword, loginData.loginAuthCode)" type="submit">
-    <i class="glyphicon glyphicon-log-in"></i>
+    <i class="fas fa-sign-in-alt"></i>
     <span data-translate>Log in</span>
   </button>
 </div>

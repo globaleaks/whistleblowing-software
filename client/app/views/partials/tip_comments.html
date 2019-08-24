@@ -1,27 +1,27 @@
-<div id="TipCommunicationComments" class="panel panel-default" data-ng-init="collapsed = false">
-  <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
+<div id="TipCommunicationComments" class="card card-default" data-ng-init="collapsed = false">
+  <div class="card-header" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <div>
       <span data-translate>Comments</span>
-      <span class="pull-right">
-        <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>
-        <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left"></i>
+      <span class="float-right">
+        <i data-ng-if="!collapsed" class="fa fa-square-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>
+        <i data-ng-if="collapsed" class="fa fa-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left"></i>
       </span>
     </div>
   </div>
-  <div class="panel-body" data-ng-show="!collapsed">
+  <div class="card-body" data-ng-show="!collapsed">
     <div data-ng-if="session.role !== 'whistleblower' || tip.enable_two_way_comments" class="row">
       <div class="col-md-12">
         <textarea id="TipCommunicationCommentsInput" data-ng-model="tip.newCommentContent" maxlength="4096" class="form-control" autocomplete="off" dynamic-textarea></textarea>
-        <span class="pull-right">{{tip.newCommentContent.length ? tip.newCommentContent.length : '0'}}/4096</span>
+        <span class="float-right">{{tip.newCommentContent.length ? tip.newCommentContent.length : '0'}}/4096</span>
       </div>
       <div class="col-md-12">
-        <span class="pull-left">
+        <span class="float-left">
           <button id="comment-action-send" class="btn btn-sm btn-primary" data-ng-click="newComment()" data-ng-disabled="!tip.newCommentContent || tip.newCommentContent == ''">
-            <i class="glyphicon glyphicon-comment"></i>
+            <i class="fa fa-comment"></i>
             <span data-translate>Send</span>
           </button>
         </span>
-        <span data-ng-if="session.role === 'receiver' && preferences.can_grant_permissions" class="pull-right form-group">
+        <span data-ng-if="session.role === 'receiver' && preferences.can_grant_permissions" class="float-right form-group">
           <label class="inline-checkbox">
             <input data-ng-model="tip.enable_two_way_comments" data-ng-change="tip.operation('set', {'key': 'enable_two_way_comments', 'value': tip.enable_two_way_comments})" type="checkbox" />
             <span data-translate>Allow the whistleblower to write comments</span>

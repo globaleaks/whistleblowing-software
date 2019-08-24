@@ -1,5 +1,5 @@
 <label>{{admin_file.title}}</label>
-<div class="well well-large uploadfile file-{{ admin_file.varname }}"
+<div class="card.card-body uploadfile file-{{ admin_file.varname }}"
      flow-init="{target: 'admin/files/' + admin_file.varname}"
      flow-files-submitted="$flow.upload()"
      flow-file-success="reload()"
@@ -9,20 +9,20 @@
   <span>
     <div class="btn btn-success fileinput-button">
       <span class="uploadfile" flow-btn>
-        <span class="glyphicon glyphicon-plus"></span>
+        <span class="fa fa-plus"></span>
         <span data-translate>Upload</span>
       </span>
     </div>
   </span>
   <span data-ng-if="node[admin_file.varname]">
     <a class="btn btn-primary" href="{{'s/' + admin_file.varname}}" download="{{admin_file.filename}}">
-      <span class="glyphicon glyphicon-download"></span>
+      <span class="fa fa-download"></span>
       <span data-translate>Download</span>
     </a>
-    <a class="btn btn-danger" data-ng-click="delete_file('admin/files/' + admin_file.varname)">
-      <span class="glyphicon glyphicon-trash"></span>
+    <button class="btn btn-danger" data-ng-click="delete_file('admin/files/' + admin_file.varname)">
+      <span class="fa fa-trash"></span>
       <span data-translate>Delete</span>
-    </a>
+    </button>
   </span>
   <div data-single-error-upload></div>
 </div>

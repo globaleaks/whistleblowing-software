@@ -4,7 +4,7 @@
     <title data-ng-bind="pt"></title>
     <meta charset="utf-8" />
     <meta name="description" content="" data-ng-attr-content="{{node.description}}" />
-    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, user-scalable=yes" />
     <meta name="referrer" content="never" />
 
     <!-- Ticket #1480 : Specify the ordered IE support starting from EDGE and ending with 11 -->
@@ -14,10 +14,12 @@
 
     <!-- build:css css/styles.css -->
     <link rel="stylesheet" href="css/loader.css" />
-    <link rel="stylesheet" href="css/angular-csp.css" />
+    <link rel="stylesheet" href="css/fontawesome.css" />
+    <link rel="stylesheet" href="css/solid.css" />
+    <link rel="stylesheet" href="css/bootstrap-rtl.css" />
     <link rel="stylesheet" href="css/ui-bootstrap-csp.css" />
-    <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/select.min.css" />
+    <link rel="stylesheet" href="css/angular-csp.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/admin.css" />
     <link rel="stylesheet" href="css/home.css" />
@@ -37,7 +39,7 @@
 
         It's common believe that Javascript and security don't sound
         well together, for this reason we suggest to use the Tor Browser,
-        an extremely tuned FireFox browser with Tor integrated.
+        an extremely tuned Firefox browser with Tor integrated.
 
         Here you can download the latest release of the
         <a href="https://www.torproject.org/download/download-easy.html.en">Tor Browser</a>.
@@ -79,7 +81,7 @@
       <div id="PageOverlay" data-ng-hide="started && !showLoadingPanel">
         <div id="LoaderBox">
           <div id="LoaderBoxContent">
-            <div class="glyphicon glyphicon-cog gly-spin"></div>
+            <div class="fa fa-cog fa-spin"></div>
           </div>
         </div>
       </div>

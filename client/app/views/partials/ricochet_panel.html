@@ -1,8 +1,8 @@
-<div id="RicochetBox" class="panel panel-default" data-ng-init="collapsed = false">
-  <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
+<div id="RicochetBox" class="card card-default" data-ng-init="collapsed = false">
+  <div class="card-header" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <span data-translate>Chat with us anonymously using the Ricochet application</span>
   </div>
-  <div class="panel-body" data-ng-show="!collapsed">
+  <div class="card-body" data-ng-show="!collapsed">
     <p><span data-translate>To chat with us use the following Ricochet address:</span> <span class="code">{{node.ricochet_address}}</span></p>
     <p><span data-translate>Download Ricochet at:</span> <a href="https://ricochet.im">https://ricochet.im/</a></p>
   </div>

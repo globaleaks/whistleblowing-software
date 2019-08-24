@@ -4,8 +4,8 @@
     <div class="adminConfigSection">
       <div class="editorTitle">
         <span data-translate>Contexts</span>
-        <button class="btn btn-xs btn-primary show-add-context-btn" data-ng-click="toggleAddContext()">
-          <i class="glyphicon glyphicon-plus"></i>
+        <button class="btn btn-sm btn-primary show-add-context-btn" data-ng-click="toggleAddContext()">
+          <i class="fa fa-plus"></i>
           <span data-translate>Add</span>
         </button>
       </div>
@@ -16,13 +16,13 @@
               <span data-translate>Name</span>
               <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
             </label>
-            <div data-ng-class="{'has-error': newContext.name.$error.required}">
+            <div data-ng-class="{'has-danger': newContext.name.$error.required}">
               <input name="name" class="form-control" data-ng-model="new_context.name" type="text" required />
             </div>
           </div>
           <div class="form-group">
             <button id="add-btn" class="btn btn-primary" data-ng-disabled="newContext.$invalid" data-ng-click="add_context(); toggleAddContext()" type="submit">
-              <i class="glyphicon glyphicon-plus-sign"></i>
+              <i class="fa fa-plus"></i>
               <span data-translate>Add</span>
             </button>
           </div>
@@ -34,34 +34,34 @@
             <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
               <span class="col-md-7 editorHeaderTitle">{{context.name}}</span>
               <span class="col-md-5">
-                <span class="pull-right">
-                  <button data-ng-if="!$first" class="btn btn-xs btn-primary" data-ng-click="moveUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
-                    <i class="glyphicon glyphicon-menu-up"></i>
+                <span class="float-right">
+                  <button data-ng-if="!$first" class="btn btn-sm btn-primary" data-ng-click="moveUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
+                    <i class="fa fa-chevron-up"></i>
                   </button>
-                  <button data-ng-if="!$last" class="btn btn-xs btn-primary" data-ng-click="moveDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
-                    <i class="glyphicon glyphicon-menu-down"></i>
+                  <button data-ng-if="!$last" class="btn btn-sm btn-primary" data-ng-click="moveDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
+                    <i class="fa fa-chevron-down"></i>
                   </button>
                   <button
-                      class="btn btn-xs btn-default"
+                      class="btn btn-sm btn-secondary"
                       data-ng-show="!editing"
                       data-ng-click="toggleEditing(); $event.stopPropagation();">
                     <span data-translate>Edit</span>
                   </button>
                   <button
-                      class="btn btn-xs btn-success"
+                      class="btn btn-sm btn-success"
                       data-ng-show="editing"
                       data-ng-disabled="editContext.$invalid"
                       data-ng-click="save_context(context)">
                     <span data-translate>Save</span>
                   </button>
                   <button
-                      class="btn btn-xs btn-default"
+                      class="btn btn-sm btn-secondary"
                       data-ng-show="editing"
                       data-ng-click="toggleEditing(); $event.stopPropagation();">
                     <span data-translate>Cancel</span>
                   </button>
                   <button
-                      class="btn btn-xs btn-danger"
+                      class="btn btn-sm btn-danger"
                       data-ng-click="deleteContext(); $event.stopPropagation();">
                     <span data-translate>Delete</span>
                   </button>
@@ -105,8 +105,8 @@
                   <div class="form-group">
                     <label>
                       <span data-translate>Recipients</span>
-                      <button class="btn btn-xs btn-primary add-receiver-btn" data-ng-click="toggleSelect()">
-                        <i class="glyphicon glyphicon-plus"></i>
+                      <button class="btn btn-sm btn-primary add-receiver-btn" data-ng-click="toggleSelect()">
+                        <i class="fa fa-plus"></i>
                         <span data-translate>Add</span>
                       </button>
                     </label>
@@ -128,14 +128,14 @@
                         <span data-ng-controller="AdminContextReceiverSelectorCtrl">
                           <span class="action-btns">
                             <span data-ng-if="!$first" data-ng-click="moveUp($index)" uib-popover="{{'Move up' | translate}}">
-                              <i class="glyphicon glyphicon-menu-up"></i>
+                              <i class="fa fa-chevron-up"></i>
                             </span>
-                            <i data-ng-if="$first || $last" class="glyphicon glyphicon-none"></i>
+                            <i data-ng-if="$first || $last" class="fa fa-none"></i>
                             <span data-ng-if="!$last" data-ng-click="moveDown($index)" uib-popover="{{'Move down' | translate}}">
-                              <i class="glyphicon glyphicon-menu-down"></i>
+                              <i class="fa fa-chevron-down"></i>
                             </span>
                             <span data-ng-click="context.receivers.splice($index, 1)" uib-popover="{{'Remove' | translate}}">
-                              <i class="glyphicon glyphicon-remove"></i>
+                              <i class="fa fa-times"></i>
                             </span>
                           </span>
                           <span>{{admin_receivers_by_id[receiver].name}}</span>
@@ -148,7 +148,7 @@
                       <span data-translate>Submission expiration</span> (<span data-translate>days</span>)
                     </label>
                     <div>
-                      <span data-ng-class="{'has-error': editContext.timetolive.$invalid}">
+                      <span data-ng-class="{'has-danger': editContext.timetolive.$invalid}">
                         <input class="form-control" name="timetolive" data-ng-model="context.tip_timetolive" type="number" min="0" max="3650" />
                       </span>
                       <div data-translate>Set the value to 0 to disable this feature.</div>
@@ -160,8 +160,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <button class="btn btn-primary" data-ng-click="show_advanced_settings = !show_advanced_settings" data-ng-init="show_advanced_settings=false">
-                    <i data-ng-if="!show_advanced_settings" class="glyphicon glyphicon-plus"></i>
-                    <i data-ng-if="show_advanced_settings" class="glyphicon glyphicon-minus"></i>
+                    <i data-ng-if="!show_advanced_settings" class="fa fa-plus"></i>
+                    <i data-ng-if="show_advanced_settings" class="fa fa-minus"></i>
                     <span data-translate>Advanced settings</span>
                   </button>
                   <div id="ContextAdvancedSettingsBox">

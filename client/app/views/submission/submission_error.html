@@ -1,6 +1,6 @@
-<div id="SubmissionErrors" class="panel panel-danger">
-  <div class="panel-heading" data-translate>Submission errors</div>
-  <div class="panel-body text-danger">
+<div id="SubmissionErrors" class="card card.bg-danger.text-white">
+  <div class="card-header" data-translate>Submission errors</div>
+  <div class="card-body text-danger">
     <div data-ng-if="!hasPreviousStep()">
       <div data-ng-if="!areReceiversSelected()">
         <p data-translate>You must select at least one recipient.</p>
@@ -9,7 +9,7 @@
     <div data-ng-if="!hasNextStep()">
       <div data-ng-if="Utils.isUploading(uploads)">
         <span data-translate>Waiting for the file(s) to finish uploading.</span>&nbsp;
-        <i class="glyphicon glyphicon-refresh gly-spin"></i>
+        <i class="fa fa-sync gly-spin"></i>
       </div>
       <div data-ng-if="submission.context.show_steps_navigation_interface && !singleStepForm() && (!areReceiversSelected() || vars.submissionForm.$invalid)">
         <p data-translate>The following steps have errors:</p>
