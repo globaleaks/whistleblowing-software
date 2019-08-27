@@ -1254,8 +1254,8 @@ class _User(Model):
     can_grant_permissions = Column(Boolean, default=False, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
 
-    two_factor_enable = Column(Boolean, default=True, nullable=False)
-    two_factor_secret = Column(UnicodeText(16), default="", nullable=False)
+    two_factor_enable = Column(Boolean, default=False, nullable=False)
+    two_factor_secret = Column(LargeBinary(64), default=b'', nullable=False)
 
     # BEGIN of PGP key fields
     pgp_key_fingerprint = Column(UnicodeText, default=u'', nullable=False)
@@ -1263,7 +1263,7 @@ class _User(Model):
     pgp_key_expiration = Column(DateTime, default=datetime_null, nullable=False)
     # END of PGP key fields
 
-    binary_keys = ['crypto_prv_key', 'crypto_pub_key', 'crypto_rec_key', 'crypto_bkp_key']
+    binary_keys = ['crypto_prv_key', 'crypto_pub_key', 'crypto_rec_key', 'crypto_bkp_key', 'two_factor_secret']
 
     unicode_keys = ['username', 'role', 'state',
                     'language', 'mail_address', 'name',
