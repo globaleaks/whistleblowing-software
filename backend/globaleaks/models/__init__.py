@@ -1254,6 +1254,9 @@ class _User(Model):
     can_grant_permissions = Column(Boolean, default=False, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
 
+    two_factor_enable = Column(Boolean, default=True, nullable=False)
+    two_factor_secret = Column(UnicodeText(16), default="", nullable=False)
+
     # BEGIN of PGP key fields
     pgp_key_fingerprint = Column(UnicodeText, default=u'', nullable=False)
     pgp_key_public = Column(UnicodeText, default=u'', nullable=False)
@@ -1265,7 +1268,8 @@ class _User(Model):
     unicode_keys = ['username', 'role', 'state',
                     'language', 'mail_address', 'name',
                     'language', 'change_email_address',
-                    'salt', 'recipient_configuration']
+                    'salt', 'recipient_configuration',
+                    'two_factor_secret']
 
     localized_keys = ['description']
 
@@ -1274,7 +1278,8 @@ class _User(Model):
                  'can_edit_general_settings',
                  'can_delete_submission',
                  'can_postpone_expiration',
-                 'can_grant_permissions']
+                 'can_grant_permissions',
+                 'two_factor_enable']
 
     date_keys = ['creation_date', 'last_login', 'password_change_date', 'pgp_key_expiration']
 
