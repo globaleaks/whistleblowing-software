@@ -779,9 +779,9 @@ class _InternalFile(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     internaltip_id = Column(UnicodeText(36), nullable=False)
     name = Column(UnicodeText, nullable=False)
-    filename = Column(UnicodeText(255), unique=True, nullable=False)
-    content_type = Column(UnicodeText, nullable=False)
-    size = Column(Integer, nullable=False)
+    filename = Column(JSON, default=dict, nullable=False)
+    content_type = Column(JSON, default=dict, nullable=False)
+    size = Column(JSON, default=dict, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
     submission = Column(Integer, default=False, nullable=False)
 
