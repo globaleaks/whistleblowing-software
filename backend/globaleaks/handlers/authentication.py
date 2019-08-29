@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Handlers dealing with platform authentication
+import pyotp
 from random import SystemRandom
 from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks.handlers.admin.node import db_admin_serialize_node
@@ -126,34 +127,6 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
 
     connection_check(client_ip, tid, user.role, client_using_tor)
 
-    if State.tenant_cache[1].two_factor_auth and user.last_login != datetime_null():
-        token = TwoFactorTokens.get(user.id)
-
-        if token is not None and authcode != '':
-            if token.token == authcode:
-                TwoFactorTokens.revoke(user.id)
-            else:
-                raise errors.InvalidTwoFactorAuthCode
-
-        elif token is None and authcode == '':
-            token = TwoFactorTokens.new(user.id)
-
-            data = {
-                'type': '2fa',
-                'authcode': str(token.token)
-            }
-
-            data['node'] = db_admin_serialize_node(session, tid, user.language)
-            data['notification'] = db_get_notification(session, tid, user.language)
-
-            subject, body = Templating().get_mail_subject_and_body(data)
-            State.sendmail(1, user.mail_address, subject, body)
-            raise errors.TwoFactorAuthCodeRequired
-        else:
-            raise errors.TwoFactorAuthCodeRequired
-
-    user.last_login = datetime_now()
-
     crypto_prv_key = ''
     if State.tenant_cache[tid].encryption:
         if user.crypto_prv_key:
@@ -162,6 +135,21 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
         else:
             # Force the password change on which the user key will be created
             user.password_change_needed = True
+
+    two_factor_secret = ''
+    if user.two_factor_enable:
+        two_factor_secret = GCE.asymmetric_decrypt(crypto_prv_key, user.two_factor_secret)
+
+        if authcode != '':
+            two_factor_secret = GCE.asymmetric_decrypt(crypto_prv_key, user.two_factor_secret).decode('utf-8')
+            totp = pyotp.TOTP(two_factor_secret)
+            if not totp.verify(authcode):
+                raise errors.InvalidTwoFactorAuthCode
+
+        else:
+            raise errors.TwoFactorAuthCodeRequired
+
+    user.last_login = datetime_now()
 
     return Sessions.new(tid, user.id, user.tid, user.role, user.password_change_needed, crypto_prv_key)
 

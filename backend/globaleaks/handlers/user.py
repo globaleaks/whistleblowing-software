@@ -1,6 +1,10 @@
 # -*- coding: utf-8
 #
 # Handlers dealing with user preferences
+import pyotp
+
+from six import text_type
+
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
@@ -79,7 +83,8 @@ def user_serialize_user(session, user, language):
         'tid': user.tid,
         'notification': user.notification,
         'usertenant_assocations': user_tenants,
-        'encryption': user.crypto_pub_key != b''
+        'encryption': user.crypto_pub_key != b'',
+        'two_factor_enable': user.two_factor_enable
     }
 
     return get_localized_values(ret_dict, user, user.localized_keys, language)
@@ -246,6 +251,42 @@ def get_recovery_key(session, user_tid, user_id, user_cc):
     return Base32Encoder().encode(GCE.asymmetric_decrypt(user_cc, user.crypto_rec_key)).replace(b'=', b'')
 
 
+@transact
+def enable_2fa_step1(session, user_tid, user_id, user_cc):
+    user = db_get_user(session, user_tid, user_id)
+
+    if (not user.two_factor_secret):
+        two_factor_secret = pyotp.random_base32()
+        user.two_factor_secret = GCE.asymmetric_encrypt(user.crypto_pub_key, two_factor_secret)
+    else:
+        two_factor_secret = GCE.asymmetric_decrypt(user_cc, user.two_factor_secret).decode('utf-8')
+
+    return two_factor_secret
+
+
+@transact
+def enable_2fa_step2(session, user_tid, user_id, user_cc, token):
+    user = db_get_user(session, user_tid, user_id)
+
+    two_factor_secret = GCE.asymmetric_decrypt(user_cc, user.two_factor_secret).decode('utf-8')
+
+    if pyotp.TOTP(two_factor_secret).verify(token):
+        user.two_factor_enable = True
+    else:
+        raise errors.InvalidAuthentication
+
+@transact
+def disable_2fa(session, user_tid, user_id, user_cc):
+    user = db_get_user(session, user_tid, user_id)
+
+    user.two_factor_enable = False
+
+
+@transact
+def get_recovery_key(session, user_tid, user_id, user_cc):
+    user = db_get_user(session, user_tid, user_id)
+
+
 class UserOperationHandler(OperationHandler):
     check_roles = {'admin', 'receiver', 'custodian'}
 
@@ -254,7 +295,26 @@ class UserOperationHandler(OperationHandler):
                                 self.current_user.user_id,
                                 self.current_user.cc)
 
+    def enable_2fa_step1(self, req_args, *args, **kwargs):
+        return enable_2fa_step1(self.current_user.user_tid,
+                                self.current_user.user_id,
+                                self.current_user.cc)
+
+    def enable_2fa_step2(self, req_args, *args, **kwargs):
+        return enable_2fa_step2(self.current_user.user_tid,
+                                self.current_user.user_id,
+                                self.current_user.cc,
+                                req_args['value'])
+
+    def disable_2fa(self, req_args, *args, **kwargs):
+        return disable_2fa(self.current_user.user_tid,
+                           self.current_user.user_id,
+                           self.current_user.cc)
+
     def operation_descriptors(self):
         return {
-            'get_recovery_key': (UserOperationHandler.get_recovery_key, {})
+            'get_recovery_key': (UserOperationHandler.get_recovery_key, {}),
+            'enable_2fa_step1': (UserOperationHandler.enable_2fa_step1, {}),
+            'enable_2fa_step2': (UserOperationHandler.enable_2fa_step2, {'value': text_type}),
+            'disable_2fa': (UserOperationHandler.disable_2fa, {})
         }

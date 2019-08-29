@@ -57,6 +57,13 @@
     <label data-translate>Enable email notifications</label>
   </div>
 
+  <div class="form-group">
+    <label>
+      <input data-ng-model="preferences.two_factor_enable" data-ng-change="toggle2FA()" type="checkbox" />
+      <span data-translate>Enable two factor authentication</span>
+    </label>
+  </div>
+
   <div class="form-group" data-ng-if="preferences.cc">
     <div>
       <label data-translate>Encryption key</label>
@@ -89,11 +96,9 @@
 
   <br />
 
-  <div data-ng-if="node.encryption">
-    <a class="red" data-ng-click="getEncryptionRecoveryKey()" data-translate>Get the encryption recovery key</a>
-  </div>
+  <span data-ng-if="node.encryption" class="btn btn-primary" data-ng-click="getEncryptionRecoveryKey()" data-translate>Get the encryption recovery key</span>
 
-  <br />
+  <br /> <br />
 
   <button type="submit" class="btn btn-success" data-ng-click="save()" data-ng-disabled="preferencesForm.$invalid || pgpkeyForm.$invalid">
     <i class="fa fa-check-circle"></i>

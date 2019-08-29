@@ -41,6 +41,44 @@ GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "
       });
     }
 
+    $scope.toggle2FA = function() {
+      if ($scope.preferences.two_factor_enable) {
+        $scope.preferences.two_factor_enable = false;
+
+        return $http({method: "PUT", url: "user/operations", data:{
+          "operation": 'enable_2fa_step1',
+          "args": {}
+        }}).then(function(data){
+          $scope.two_factor_secret = data.data;
+          var qr = new QRious({
+            value: 'otpauth://totp/GlobaLeaks?secret=' + $scope.two_factor_secret_secret,
+            size: '240'
+          });
+
+          $scope.two_factor_qrcode = qr.toDataURL();
+
+          $scope.Utils.openConfirmableModalDialog("views/partials/enable_2fa.html", {}, $scope).then(function (result) {
+            console.log(result);
+            return $http({method: "PUT", url: "user/operations", data:{
+              "operation": 'enable_2fa_step2',
+              "args": {
+                "value": result
+              }
+            }}).then(function() {
+              $scope.preferences.two_factor_enable = true;
+            });
+          });
+        });
+      } else {
+        return $http({method: "PUT", url: "user/operations", data:{
+          "operation": 'disable_2fa',
+          "args": {}
+        }}).then(function() {
+          $scope.preferences.two_factor_enable = false;
+        });
+      }
+    }
+
     $scope.save = function() {
       if ($scope.preferences.pgp_key_remove) {
         $scope.preferences.pgp_key_public = "";

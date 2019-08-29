@@ -727,6 +727,7 @@ var GLClient = angular.module("GLClient", [
         }
 
         $rootScope.started = true;
+
       }).$promise;
     };
 

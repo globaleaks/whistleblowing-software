@@ -29,7 +29,8 @@ angular.module("GLServices", ["ngResource"]).
             "role": response.role,
             "password_change_needed": response.password_change_needed,
             "homepage": "",
-            "auth_landing_page": ""
+            "auth_landing_page": "",
+            "two_factor_secret": response.two_factor_secret
           };
 
           function initPreferences(prefs) {

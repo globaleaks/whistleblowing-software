@@ -30,6 +30,7 @@ Depends:
  , python-nacl (>= 1.2)
  , python-openssl
  , python-gnupg
+ , python-pyotp
  , python-scrypt
  , python-sqlalchemy
  , python-twisted-core

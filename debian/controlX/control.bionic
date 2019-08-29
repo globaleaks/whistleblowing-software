@@ -30,6 +30,7 @@ Depends:
  , python3-debian
  , python3-nacl (>= 1.2)
  , python3-openssl
+ , python3-pyotp
  , python3-gnupg
  , python3-scrypt
  , python3-sqlalchemy
