@@ -16,16 +16,16 @@
   <br />
   <div class="row">
     <div class="col-md-6">
-      <div class="card card-secondary" data-ng-init="collapsed = false">
+      <div class="card card-secondary">
         <div class="card-header">
           <span data-translate>Remember your receipt for this submission.</span>
         </div>
-        <div class="card-body" data-ng-show="!collapsed">
+        <div class="card-body">
           <div id="KeyCodeBox">
             <span id="KeyCode">{{formatted_receipt}}</span>
           </div>
           <div data-translate>Use the 16 digit receipt to log in. It will allow you to view any messages we sent you, and also to add extra info.</div>
-          <div>
+          <div class="mt-md-3">
             <button id="ReceiptButton" class="float-right btn btn-secondary" data-ng-click="Authentication.login(0, 'whistleblower', receipt)" data-translate>View your submission</button>
           </div>
         </div>
