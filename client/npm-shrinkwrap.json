@@ -3767,6 +3767,11 @@
       "from": "q@1.5.1",
       "resolved": "https://registry.npmjs.org/q/-/q-1.5.1.tgz"
     },
+    "qrious": {
+      "version": "4.0.2",
+      "from": "qrious@latest",
+      "resolved": "https://registry.npmjs.org/qrious/-/qrious-4.0.2.tgz"
+    },
     "qs": {
       "version": "6.5.2",
       "from": "qs@>=6.5.2 <6.6.0",
