@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 #
 # Handler dealing with submissions file uploads and subsequent submissions attachments
-from twisted.internet.defer import inlineCallbacks
+import base64
+
+from six import text_type
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import serializers
 from globaleaks.orm import transact
+from globaleaks.utils.crypto import GCE
 from globaleaks.utils.utility import datetime_now
 
 
@@ -14,17 +17,24 @@ from globaleaks.utils.utility import datetime_now
 def register_ifile_on_db(session, tid, internaltip_id, uploaded_file):
     now = datetime_now()
 
-    session.query(models.InternalTip) \
-           .filter(models.InternalTip.id == internaltip_id, models.InternalTip.tid == tid) \
-           .update({'update_date': now, 'wb_last_access': now})
+    itip = session.query(models.InternalTip) \
+                  .filter(models.InternalTip.id == internaltip_id, models.InternalTip.tid == tid).one()
+
+    itip.update_date = now
+    itip.wb_last_access = now
+
+    if itip.crypto_tip_pub_key:
+        for k in ['name', 'type', 'size']:
+            uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, text_type(uploaded_file[k])))
 
     new_file = models.InternalFile()
     new_file.name = uploaded_file['name']
     new_file.content_type = uploaded_file['type']
     new_file.size = uploaded_file['size']
     new_file.internaltip_id = internaltip_id
-    new_file.submission = uploaded_file['submission']
     new_file.filename = uploaded_file['filename']
+    new_file.submission = uploaded_file['submission']
+    new_file.internaltip_id = internaltip_id
 
     session.add(new_file)
 
@@ -53,12 +63,7 @@ class PostSubmissionAttachment(SubmissionAttachment):
     check_roles = 'whistleblower'
     upload_handler = True
 
-    @inlineCallbacks
     def post(self):
-        itip_id = (yield models.get(models.InternalTip.id,
-                                    models.InternalTip.id==self.current_user.user_id,
-                                    models.InternalTip.tid==self.request.tid))[0]
-
         self.uploaded_file['submission'] = False
 
-        yield register_ifile_on_db(self.request.tid, itip_id, self.uploaded_file)
+        return register_ifile_on_db(self.request.tid, self.current_user.user_id, self.uploaded_file)

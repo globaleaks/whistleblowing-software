@@ -27,21 +27,28 @@ def decrypt_tip(user_key, tip_prv_key, tip):
         questionnaire['answers'] = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(questionnaire['answers'].encode())).decode())
 
     for k in ['whistleblower_identity']:
-        if k in tip['data'] and tip['data'][k]['encrypted'] and tip['data'][k]['value']:
-            tip['data'][k]['value'] = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(tip['data'][k]['value'].encode())).decode())
+        if k in tip['data'] and tip['data'][k]:
+            tip['data'][k] = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(tip['data'][k].encode())).decode())
 
-        # Fix for issue: https://github.com/globaleaks/GlobaLeaks/issues/2612
-        # The bug is due to the fact that the data was initially saved as an array of one entry
-        if k == 'whistleblower_identity' and isinstance(tip['data'][k]['value'], list):
-            tip['data'][k]['value'] = tip['data'][k]['value'][0]
+            # Fix for issue: https://github.com/globaleaks/GlobaLeaks/issues/2612
+            # The bug is due to the fact that the data was initially saved as an array of one entry
+            if k == 'whistleblower_identity' and isinstance(tip['data'][k], list):
+                tip['data'][k] = tip['data'][k][0]
 
     for x in tip['comments'] + tip['messages']:
         x['content'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(x['content'].encode())).decode()
 
+    for x in tip['wbfiles'] + tip['rfiles']:
+        for k in ['name', 'description', 'type', 'size']:
+            if k in x:
+                x[k] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(x[k].encode())).decode()
+                if k == 'size':
+                    x[k] = int(x[k])
+
     return tip
 
 
-def db_set_internaltip_answers(session, itip_id, questionnaire_hash, answers, encrypted):
+def db_set_internaltip_answers(session, itip_id, questionnaire_hash, answers):
     ita = session.query(models.InternalTipAnswers) \
                  .filter(models.InternalTipAnswers.internaltip_id == itip_id, models.InternalTipAnswers.questionnaire_hash == questionnaire_hash).one_or_none()
 
@@ -50,12 +57,11 @@ def db_set_internaltip_answers(session, itip_id, questionnaire_hash, answers, en
 
     ita.internaltip_id = itip_id
     ita.questionnaire_hash = questionnaire_hash
-    ita.encrypted = encrypted
     ita.answers = answers
     session.add(ita)
 
 
-def db_set_internaltip_data(session, itip_id, key, value, encrypted):
+def db_set_internaltip_data(session, itip_id, key, value):
     itd = session.query(models.InternalTipData) \
                  .filter(models.InternalTipData.internaltip_id == itip_id, models.InternalTipData.key == key).one_or_none()
 
@@ -64,8 +70,6 @@ def db_set_internaltip_data(session, itip_id, key, value, encrypted):
 
     itd.internaltip_id = itip_id
     itd.key = key
-    itd.encrypted = encrypted
-
     itd.value = value
     session.add(itd)
 
@@ -120,7 +124,13 @@ def db_serialize_archived_preview_schema(preview_schema, language):
     return preview
 
 
-def db_save_questionnaire_answers(session, tid, internaltip_id, entries, stats=None):
+def db_save_answers_subject_to_stats(session, tid, internaltip_id, entries, stats=None):
+    if stats is None:
+        stats = {x[0] : True for x in session.query(models.Field.id).filter(models.Field.stats == True)}
+
+    if not stats:
+        return
+
     ret = []
 
     for key, value in entries.items():
@@ -150,7 +160,7 @@ def db_save_questionnaire_answers(session, tid, internaltip_id, entries, stats=N
                 session.add(group)
                 session.flush()
 
-                group_elems = db_save_questionnaire_answers(session, tid, internaltip_id, elem, stats)
+                group_elems = db_save_answers_subject_to_stats(session, tid, internaltip_id, elem, stats)
                 for group_elem in group_elems:
                     group_elem.fieldanswergroup_id = group.id
 
@@ -251,10 +261,7 @@ def serialize_usertip(session, usertip, itip, language):
     ret['data'] = {}
 
     for itd in session.query(models.InternalTipData).filter(models.InternalTipData.internaltip_id == itip.id):
-        ret['data'][itd.key] = {
-            'value': itd.value,
-            'encrypted': itd.encrypted
-        }
+        ret['data'][itd.key] = itd.value
 
     return ret
 
@@ -381,34 +388,28 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
         answers[whistleblower_identity.id] = ''
 
-        db_set_internaltip_data(session, itip.id, 'identity_provided', True, False)
-        db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi, crypto_is_available)
+        db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi)
 
     if crypto_is_available:
         answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers).encode())).decode()
 
-    db_set_internaltip_answers(session,
-                               itip.id,
-                               questionnaire_hash,
-                               answers,
-                               crypto_is_available)
+    db_set_internaltip_answers(session, itip.id, questionnaire_hash, answers)
 
-    # Save plaintext answers only for questions that are subject to statistics
-    stats = {x[0] : True for x in session.query(models.Field.id).filter(models.Field.stats == True)}
-    if stats:
-        db_save_questionnaire_answers(session, tid, itip.id, answers, stats)
+    db_save_answers_subject_to_stats(session, tid, itip.id, answers)
 
-    for filedesc in token.uploaded_files:
+    for uploaded_file in token.uploaded_files:
+        if crypto_is_available:
+            for k in ['name', 'type', 'size']:
+                uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, text_type(uploaded_file[k])))
+
         new_file = models.InternalFile()
         new_file.tid = tid
-        new_file.encrypted = crypto_is_available
-        new_file.name = filedesc['name']
-        new_file.description = ""
-        new_file.content_type = filedesc['type']
-        new_file.size = filedesc['size']
+        new_file.name = uploaded_file['name']
+        new_file.content_type = uploaded_file['type']
+        new_file.size = uploaded_file['size']
         new_file.internaltip_id = itip.id
-        new_file.submission = filedesc['submission']
-        new_file.filename = filedesc['filename']
+        new_file.filename = uploaded_file['filename']
+        new_file.submission = uploaded_file['submission']
         session.add(new_file)
         log.debug("=> file associated %s|%s (%d bytes)",
                   new_file.name, new_file.content_type, new_file.size)

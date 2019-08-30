@@ -40,7 +40,7 @@
                 <div class="badge badge-warning" uib-popover="{{'The file is unavailable due to missing pgp key.' | translate}}" popover-placement="bottom" data-translate>file unavailable</div>
               </td>
 	      <td>{{::file.creation_date | date:'dd-MM-yyyy'}}</td>
-	      <td>{{::file.content_type}}</td>
+	      <td>{{::file.type}}</td>
               <td>{{::file.size | byteFmt:2}}</td>
             </tr>
           </tbody>

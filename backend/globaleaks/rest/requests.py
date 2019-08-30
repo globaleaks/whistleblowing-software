@@ -100,7 +100,7 @@ FileDesc = {
     'name': text_type,
     'description': text_type,
     'size': int,
-    'content_type': ContentType,
+    'type': ContentType,
     'date': DateType
 }
 

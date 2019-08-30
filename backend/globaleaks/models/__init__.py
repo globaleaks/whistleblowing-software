@@ -779,9 +779,9 @@ class _InternalFile(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     internaltip_id = Column(UnicodeText(36), nullable=False)
     name = Column(UnicodeText, nullable=False)
-    filename = Column(JSON, default=dict, nullable=False)
-    content_type = Column(JSON, default=dict, nullable=False)
-    size = Column(JSON, default=dict, nullable=False)
+    filename = Column(UnicodeText, default=u'', nullable=False)
+    content_type = Column(JSON, default=u'', nullable=False)
+    size = Column(JSON, default=u'', nullable=False)
     new = Column(Boolean, default=True, nullable=False)
     submission = Column(Integer, default=False, nullable=False)
 
@@ -842,7 +842,6 @@ class _InternalTipAnswers(Model):
     internaltip_id = Column(UnicodeText(36), primary_key=True)
     questionnaire_hash = Column(UnicodeText(64), primary_key=True)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    encrypted = Column(Boolean, default=False, nullable=False)
     answers = Column(JSON, default=dict, nullable=False)
 
     @declared_attr
@@ -858,7 +857,6 @@ class _InternalTipData(Model):
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     value = Column(JSON, default=dict, nullable=False)
-    encrypted = Column(Boolean, default=False, nullable=False)
 
     @declared_attr
     def __table_args__(self):

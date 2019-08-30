@@ -11,7 +11,7 @@ def serialize_ifile(session, ifile):
         'creation_date': datetime_to_ISO8601(ifile.creation_date),
         'name': ifile.name,
         'size': ifile.size,
-        'content_type': ifile.content_type
+        'type': ifile.content_type
     }
 
 
@@ -26,7 +26,7 @@ def serialize_rfile(session, tid, rfile):
         'creation_date': datetime_to_ISO8601(ifile.creation_date),
         'name': ("%s.pgp" % ifile.name) if rfile.status == u'encrypted' else ifile.name,
         'size': ifile.size,
-        'content_type': ifile.content_type,
+        'type': ifile.content_type,
         'filename': rfile.filename,
         'downloads': rfile.downloads,
         'status': rfile.status
@@ -44,7 +44,7 @@ def serialize_wbfile(session, tid, wbfile):
         'creation_date': datetime_to_ISO8601(wbfile.creation_date),
         'name': wbfile.name,
         'size': wbfile.size,
-        'content_type': wbfile.content_type,
+        'type': wbfile.content_type,
         'filename': wbfile.filename,
         'downloads': wbfile.downloads,
         'author': receiver_id,

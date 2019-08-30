@@ -10,7 +10,7 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list, WBFileHandler
 from globaleaks.handlers.submission import serialize_usertip, \
-    db_save_questionnaire_answers, decrypt_tip, \
+    db_save_answers_subject_to_stats, decrypt_tip, \
     db_set_internaltip_answers, db_get_questionnaire, db_archive_questionnaire_schema, db_set_internaltip_data
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -26,7 +26,7 @@ def wb_serialize_ifile(ifile):
         'creation_date': datetime_to_ISO8601(ifile.creation_date),
         'name': ifile.name,
         'size': ifile.size,
-        'content_type': ifile.content_type
+        'type': ifile.content_type
     }
 
 
@@ -40,7 +40,7 @@ def wb_serialize_wbfile(session, wbfile):
         'name': wbfile.name,
         'description': wbfile.description,
         'size': wbfile.size,
-        'content_type': wbfile.content_type,
+        'type': wbfile.content_type,
         'author': receiver_id
     }
 
@@ -170,8 +170,7 @@ def update_identity_information(session, tid, tip_id, identity_field_id, wbi, la
     if itip.crypto_tip_pub_key:
         wbi = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(wbi).encode())).decode()
 
-    db_set_internaltip_data(session, itip.id, 'identity_provided', True, False)
-    db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi, True)
+    db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi)
 
     now = datetime_now()
     itip.update_date = now
@@ -181,8 +180,8 @@ def update_identity_information(session, tid, tip_id, identity_field_id, wbi, la
 @transact
 def store_additional_questionnaire_answers(session, tid, tip_id, answers, language):
     itip = session.query(models.InternalTip) \
-                         .filter(models.InternalTip.id == tip_id,
-                                 models.InternalTip.tid == tid).one()
+                  .filter(models.InternalTip.id == tip_id,
+                          models.InternalTip.tid == tid).one()
 
     if not itip.additional_questionnaire_id:
         return
@@ -192,14 +191,10 @@ def store_additional_questionnaire_answers(session, tid, tip_id, answers, langua
 
     if itip.crypto_tip_pub_key:
         answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers).encode())).decode()
-    else:
-        db_save_questionnaire_answers(session, tid, itip.id, answers)
 
-    db_set_internaltip_answers(session,
-                               itip.id,
-                               questionnaire_hash,
-                               answers,
-                               False)
+    db_set_internaltip_answers(session, itip.id, questionnaire_hash, answers)
+
+    db_save_answers_subject_to_stats(session, tid, itip.id, answers)
 
     itip.additional_questionnaire_id = ''
 
@@ -218,7 +213,7 @@ class WBTipInstance(BaseHandler):
     def get(self):
         tip, crypto_tip_prv_key = yield get_wbtip(self.current_user.user_id, self.request.language)
 
-        if State.tenant_cache[self.request.tid].encryption and crypto_tip_prv_key:
+        if crypto_tip_prv_key:
             tip = yield deferToThread(decrypt_tip, self.current_user.cc, crypto_tip_prv_key, tip)
 
         returnValue(tip)

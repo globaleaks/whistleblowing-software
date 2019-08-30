@@ -54,7 +54,7 @@ def receiver_serialize_rfile(session, rfile):
             'status': 'unavailable',
             'href': "",
             'name': ifile.name,
-            'content_type': ifile.content_type,
+            'type': ifile.content_type,
             'creation_date': datetime_to_ISO8601(ifile.creation_date),
             'size': ifile.size,
             'downloads': rfile.downloads
@@ -67,7 +67,7 @@ def receiver_serialize_rfile(session, rfile):
         'href': "/rtip/" + rfile.receivertip_id + "/download/" + rfile.id,
         # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
         'name': ("%s.pgp" % ifile.name) if rfile.status == u'encrypted' else ifile.name,
-        'content_type': ifile.content_type,
+        'type': ifile.content_type,
         'creation_date': datetime_to_ISO8601(ifile.creation_date),
         'size': ifile.size,
         'downloads': rfile.downloads
@@ -83,7 +83,7 @@ def receiver_serialize_wbfile(session, wbfile):
         'name': wbfile.name,
         'description': wbfile.description,
         'size': wbfile.size,
-        'content_type': wbfile.content_type,
+        'type': wbfile.content_type,
         'downloads': wbfile.downloads,
         'author': rtip.receiver_id
     }
@@ -211,11 +211,17 @@ def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
 
     itip.update_date = rtip.last_access = datetime_now()
 
+    if itip.crypto_tip_pub_key:
+        for k in ['name', 'description', 'type', 'size']:
+            uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, text_type(uploaded_file[k])))
+
     new_file = models.WhistleblowerFile()
+
     new_file.name = uploaded_file['name']
     new_file.description = uploaded_file['description']
     new_file.content_type = uploaded_file['type']
     new_file.size = uploaded_file['size']
+
     new_file.receivertip_id = rtip_id
     new_file.filename = uploaded_file['filename']
 

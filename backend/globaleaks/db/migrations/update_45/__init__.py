@@ -283,14 +283,10 @@ class MigrationScript(MigrationBase):
         for internaltip in self.session_old.query(self.model_from['InternalTip']):
             answers = self.db_serialize_questionnaire_answers(self.session_old, internaltip.tid, internaltip)
 
-            db_set_internaltip_answers(self.session_new,
-                                       internaltip.id,
-                                       internaltip.questionnaire_hash,
-                                       answers,
-                                       False)
+            db_set_internaltip_answers(self.session_new, internaltip.id, internaltip.questionnaire_hash, answers)
 
             for id in ids:
                 if id in answers:
-                    db_set_internaltip_data(self.session_new, internaltip.id, 'identity_provided', True, False)
-                    db_set_internaltip_data(self.session_new, internaltip.id, 'whistleblower_identity', answers[id], False)
+                    db_set_internaltip_data(self.session_new, internaltip.id, 'identity_provided', True)
+                    db_set_internaltip_data(self.session_new, internaltip.id, 'whistleblower_identity', answers[id])
                     break
