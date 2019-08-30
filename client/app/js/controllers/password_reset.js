@@ -9,7 +9,7 @@ GLClient.controller("PasswordResetCtrl", ["$scope", "$location", "$http",
     $http.post("reset/password", $scope.request).then(function() {
       $location.path("/login/passwordreset/requested");
     });
-  }
+  };
 }]).
 controller("PasswordResetCompleteCtrl", ["$scope", "$location", "$http",
   function($scope, $location, $http) {
@@ -19,7 +19,7 @@ controller("PasswordResetCompleteCtrl", ["$scope", "$location", "$http",
   };
 
   $http.put("reset/password", $scope.request).then(function(response) {
-    if(response.data.status == "success") {
+    if(response.data.status === "success") {
       $location.url("/login?token=" + response.data.token);
     } else {
       $location.url("/login/passwordreset/failure/token");
@@ -36,13 +36,13 @@ controller("PasswordResetRecoveryCtrl", ["$scope", "$location", "$http",
 
   $scope.submit = function() {
     $http.put("reset/password", $scope.request).then(function(response) {
-      if(response.data.status == "success") {
+      if(response.data.status === "success") {
         $location.url("/login?token=" + response.data.token);
-      } if (response.data.status == "invalid_recovery_key_provided") {
+      } if (response.data.status === "invalid_recovery_key_provided") {
 	$location.url("/login/passwordreset/failure/recovery");
       } else {
 	$location.url("/login/passwordreset/failure/token");
       }
     });
-  }
+  };
 }]);

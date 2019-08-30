@@ -135,7 +135,6 @@ class MigrationScript(MigrationBase):
                 i += 1
                 new_obj = self.model_to['InternalTip'](migrate=True)
                 for key in [c.key for c in new_obj.__table__.columns]:
-                    new_obj.encrypted = False
                     if key in ['encrypted', 'wb_prv_key', 'wb_pub_key', 'wb_tip_key', 'enc_data']:
                         pass
                     elif key == 'progressive':

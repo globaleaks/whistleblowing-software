@@ -282,11 +282,6 @@ def disable_2fa(session, user_tid, user_id, user_cc):
     user.two_factor_enable = False
 
 
-@transact
-def get_recovery_key(session, user_tid, user_id, user_cc):
-    user = db_get_user(session, user_tid, user_id)
-
-
 class UserOperationHandler(OperationHandler):
     check_roles = {'admin', 'receiver', 'custodian'}
 

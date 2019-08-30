@@ -89,9 +89,7 @@ class MigrationScript(MigrationBase):
             new_obj = self.model_to['InternalFile']()
             old_keys = [c.key for c in old_obj.__table__.columns]
             for key in [c.key for c in new_obj.__table__.columns]:
-                print(key)
                 if key in old_keys:
-                    print(key)
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)

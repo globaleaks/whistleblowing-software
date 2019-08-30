@@ -6,8 +6,7 @@ from globaleaks.models import InternalTipData, User
 def db_fix_tip_data(session):
     # Fix for issue: https://github.com/globaleaks/GlobaLeaks/issues/2612
     # The bug is due to the fact that the data was initially saved as an array of one entry
-    for data in session.query(InternalTipData).filter(InternalTipData.key == 'whistleblower_identity',
-                                                      InternalTipData.encrypted == False):
+    for data in session.query(InternalTipData).filter(InternalTipData.key == 'whistleblower_identity'):
         if isinstance(data.value, list):
             data.value = data.value[0]
 

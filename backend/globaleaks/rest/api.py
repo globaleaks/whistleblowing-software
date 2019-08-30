@@ -466,7 +466,7 @@ class APIResourceWrapper(Resource):
                                              b"document-domain 'none';" \
                                              b"fullscreen 'none';" \
                                              b"geolocation 'none';" \
-                                             b"microphone 'none;" \
+                                             b"microphone 'none';" \
                                              b"speaker 'none';")
 
         # Reduce possibility for XSS attacks.
