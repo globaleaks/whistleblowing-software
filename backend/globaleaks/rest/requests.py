@@ -233,7 +233,7 @@ AdminNodeDesc = {
     'can_grant_permissions': bool,
     'allow_indexing': bool,
     'allow_unencrypted': bool,
-    'allow_iframes_inclusion': bool,
+    'frame_ancestors': text_type,
     'disable_privacy_badge': bool,
     'disable_key_code_hint': bool,
     'disable_donation_panel': bool,

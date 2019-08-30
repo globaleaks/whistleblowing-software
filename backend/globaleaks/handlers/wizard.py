@@ -107,7 +107,7 @@ def db_wizard(session, tid, request, client_using_tor, language):
                         'enable_user_pgp_key_upload',
                         'allow_unencrypted',
                         'anonymize_outgoing_connections',
-                        'allow_iframes_inclusion',
+                        'frame_ancestors',
                         'password_change_period',
                         'default_questionnaire']:
             node.set_val(varname, root_tenant_node.get_val(varname))

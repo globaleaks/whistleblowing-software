@@ -445,44 +445,36 @@ class APIResourceWrapper(Resource):
         if request.client_proto == b'https':
             request.setHeader(b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains')
 
-        if State.settings.enable_csp:
-            if State.tenant_cache[request.tid].allow_iframes_inclusion:
-                request.setHeader(b'Content-Security-Policy', "default-src 'none';" \
-                                                              "script-src 'self';" \
-                                                              "connect-src 'self';" \
-                                                              "style-src 'self' data:;" \
-                                                              "img-src 'self' data:;" \
-                                                              "font-src 'self' data:;")
-            else:
-                request.setHeader(b'Content-Security-Policy', "default-src 'none';" \
-                                                              "script-src 'self';" \
-                                                              "connect-src 'self';" \
-                                                              "style-src 'self' data:;" \
-                                                              "img-src 'self' data:;" \
-                                                              "font-src 'self' data:;" \
-                                                              "frame-ancestors 'none';")
-                request.setHeader(b'X-Frame-Options', b'deny')
+        csp = "default-src 'none';" \
+              "script-src 'self';" \
+              "connect-src 'self';" \
+              "style-src 'self' data:;" \
+              "img-src 'self' data:;" \
+              "font-src 'self' data:;"
 
-        # to reduce possibility for XSS attacks.
+        if State.tenant_cache[request.tid].frame_ancestors:
+            csp += "frame-ancestors " + State.tenant_cache[request.tid].frame_ancestors + ";"
+        else:
+            csp += "frame-ancestors 'none'"
+
+        request.setHeader(b'Content-Security-Policy', csp)
+        request.setHeader(b'X-Frame-Options', b'deny')
+
+        # Reduce possibility for XSS attacks.
         request.setHeader(b'X-Content-Type-Options', b'nosniff')
         request.setHeader(b'X-XSS-Protection', b'1; mode=block')
 
-        # to disable caching
+        # Disable caching
         request.setHeader(b'Cache-control', b'no-cache, no-store, must-revalidate')
         request.setHeader(b'Pragma', b'no-cache')
         request.setHeader(b'Expires', b'-1')
 
-        # to avoid information leakage via referrer
+        # Avoid information leakage via referrer
         request.setHeader(b'Referrer-Policy', b'no-referrer')
 
         # to avoid Robots spidering, indexing, caching
         if not State.tenant_cache[request.tid].allow_indexing:
             request.setHeader(b'X-Robots-Tag', b'noindex')
-
-        # to mitigate clickjaking attacks on iframes block iframe
-        # inclusion setting a deny policy on x-frame-options
-        if not State.tenant_cache[request.tid].allow_iframes_inclusion:
-            request.setHeader(b'X-Frame-Options', b'deny')
 
         if request.client_using_tor is True:
             request.setHeader(b'X-Check-Tor', b'True')

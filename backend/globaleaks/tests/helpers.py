@@ -1155,7 +1155,7 @@ class MockDict:
             'ahmia': False,
             'allow_indexing': False,
             'allow_unencrypted': True,
-            'allow_iframes_inclusion': False,
+            'frame_ancestors': u'',
             'custom_homepage': False,
             'disable_submissions': False,
             'disable_privacy_badge': False,
