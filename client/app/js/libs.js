@@ -4,4 +4,7 @@ angular.module("GLLibs", [])
 })
 .factory("topojson", function() {
   return window.topojson;
+})
+.factory("QRious", function() {
+  return window.QRious;
 });

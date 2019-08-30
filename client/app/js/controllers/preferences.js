@@ -1,5 +1,5 @@
-GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "$uibModal", "$http", "CONSTANTS",
-  function($scope, $rootScope, $q, $http, $uibModal, CONSTANTS) {
+GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "$uibModal", "$http", "QRious", "CONSTANTS",
+  function($scope, $rootScope, $q, $http, $uibModal, QRious, CONSTANTS) {
     $scope.tabs = [
       {
         title: "Preferences",
