@@ -460,6 +460,15 @@ class APIResourceWrapper(Resource):
         request.setHeader(b'Content-Security-Policy', csp)
         request.setHeader(b'X-Frame-Options', b'deny')
 
+        # Disable features that could be used to deanonymize the user
+        request.setHeader(b'Feature-Policy', b"camera 'none';" \
+                                             b"display-capture 'none';" \
+                                             b"document-domain 'none';" \
+                                             b"fullscreen 'none';" \
+                                             b"geolocation 'none';" \
+                                             b"microphone 'none;" \
+                                             b"speaker 'none';")
+
         # Reduce possibility for XSS attacks.
         request.setHeader(b'X-Content-Type-Options', b'nosniff')
         request.setHeader(b'X-XSS-Protection', b'1; mode=block')
