@@ -99,7 +99,7 @@ class SettingsClass(object):
         self.socks_host = "127.0.0.1"
         self.socks_port = 9050
 
-        self.key_bits = 2048
+        self.key_bits = 4096
         self.csr_sign_bits = 512
 
         self.notification_limit = 30

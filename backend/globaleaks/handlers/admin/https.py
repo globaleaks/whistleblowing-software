@@ -27,7 +27,7 @@ def db_create_acme_key(session, tid):
 
     key = rsa.generate_private_key(
         public_exponent=65537,
-        key_size=2048,
+        key_size=Settings.key_bits,
         backend=default_backend()
     )
 
