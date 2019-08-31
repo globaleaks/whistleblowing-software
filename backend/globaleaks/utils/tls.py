@@ -14,8 +14,17 @@ from twisted.internet import ssl
 SSL.OP_SINGLE_ECDH_USE = 0x00080000
 SSL.OP_NO_RENEGOTIATION = 0x40000000
 
-TLS_CIPHER_LIST = b'ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256'
-
+TLS_CIPHER_LIST = b'TLS13-AES-256-GCM-SHA384:' \
+                  b'TLS13-CHACHA20-POLY1305-SHA256:' \
+                  b'ECDHE-ECDSA-AES256-GCM-SHA384:' \
+                  b'ECDHE-ECDSA-CHACHA20-POLY1305:' \
+                  b'ECDHE-ECDSA-AES256-GCM-SHA384:' \
+                  b'ECDHE-ECDSA-AES128-GCM-SHA256:' \
+                  b'ECDHE-ECDSA-AES256-SHA384:' \
+                  b'ECDHE-RSA-AES256-GCM-SHA384:' \
+                  b'ECDHE-RSA-AES128-GCM-SHA256:' \
+                  b'ECDHE-RSA-CHACHA20-POLY1305:' \
+                  b'ECDHE-RSA-AES256-SHA384'
 
 class ValidationException(Exception):
     pass
@@ -108,7 +117,7 @@ def split_pem_chain(s):
 
 
 def new_tls_server_context():
-    ctx = SSL.Context(SSL.TLSv1_2_METHOD)
+    ctx = SSL.Context(SSL.SSLv23_METHOD)
 
     ctx.set_options(SSL.OP_NO_SSLv2 |
                     SSL.OP_NO_SSLv3 |
