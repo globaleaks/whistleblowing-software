@@ -15,7 +15,6 @@ from globaleaks.utils.letsencrypt import ChallTok
 @inlineCallbacks
 def set_init_params(tls_config):
     hostname = 'localhost:9999'
-    yield tw(config.db_set_config_variable, 1, 'https_dh_params', tls_config['dh_params'])
     yield tw(config.db_set_config_variable, 1, 'hostname', hostname)
     State.tenant_cache[1].hostname = hostname
 

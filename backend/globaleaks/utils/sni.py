@@ -141,8 +141,7 @@ class SNIMap(object):
 
         context = TLSServerContextFactory(conf['ssl_key'],
                                           conf['ssl_cert'],
-                                          conf['ssl_intermediate'],
-                                          conf['ssl_dh'])
+                                          conf['ssl_intermediate'])
 
         self.contexts_by_hostname[conf['hostname']] = context
 

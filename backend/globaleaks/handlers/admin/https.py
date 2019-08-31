@@ -86,27 +86,6 @@ class FileResource(object):
         """
         raise errors.MethodNotImplemented()
 
-    @staticmethod
-    @transact
-    def should_gen_dh_params(session, tid):
-        return ConfigFactory(session, tid).get_val(u'https_dh_params') == u''
-
-    @staticmethod
-    @transact
-    def save_dh_params(session, tid, dh_params):
-        ConfigFactory(session, tid).set_val(u'https_dh_params', dh_params)
-
-    @classmethod
-    @inlineCallbacks
-    def generate_dh_params_if_missing(cls, tid):
-        gen_dh = yield FileResource.should_gen_dh_params(tid)
-        if gen_dh:
-            log.info("Generating the HTTPS DH params with %d bits" % Settings.key_bits)
-            dh_params = yield deferToThread(tls.gen_dh_params, Settings.key_bits)
-
-            log.info("Storing the HTTPS DH params")
-            yield cls.save_dh_params(tid, dh_params)
-
 
 class PrivKeyFileRes(FileResource):
     validator = tls.PrivKeyValidator
@@ -301,8 +280,6 @@ class FileHandler(BaseHandler):
 
         file_res_cls = self.get_file_res_or_raise(name)
 
-        yield file_res_cls.generate_dh_params_if_missing(self.request.tid)
-
         ok = yield file_res_cls.create_file(self.request.tid, req['content'])
         if not ok:
             raise errors.InputValidationError()
@@ -310,8 +287,6 @@ class FileHandler(BaseHandler):
     @inlineCallbacks
     def put(self, name):
         file_res_cls = self.get_file_res_or_raise(name)
-
-        yield file_res_cls.generate_dh_params_if_missing(self.request.tid)
 
         yield file_res_cls.perform_file_action(self.request.tid)
 

@@ -34,7 +34,6 @@ def load_tls_dict(session, tid):
         'ssl_key': node.get_val(u'https_priv_key'),
         'ssl_cert': node.get_val(u'https_cert'),
         'ssl_intermediate': node.get_val(u'https_chain'),
-        'ssl_dh': node.get_val(u'https_dh_params'),
         'https_enabled': node.get_val(u'https_enabled'),
         'hostname': node.get_val(u'hostname'),
     }

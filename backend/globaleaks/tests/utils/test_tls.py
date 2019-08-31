@@ -18,8 +18,7 @@ def get_valid_setup():
     valid_setup_files = {
         'key': 'priv_key.pem',
         'cert': 'cert.pem',
-        'chain': 'chain.pem',
-        'dh_params': 'dh_params.pem'
+        'chain': 'chain.pem'
     }
 
     d = {'hostname': 'localhost:9999'}
@@ -35,7 +34,6 @@ def commit_valid_config(session):
     cfg = get_valid_setup()
 
     priv_fact = ConfigFactory(session, 1)
-    priv_fact.set_val(u'https_dh_params', cfg['dh_params'])
     priv_fact.set_val(u'https_priv_key', cfg['key'])
     priv_fact.set_val(u'https_cert', cfg['cert'])
     priv_fact.set_val(u'https_chain', cfg['chain'])
@@ -76,7 +74,6 @@ class TestObjectValidators(TestCase):
             'key': '',
             'cert': '',
             'chain': '',
-            'dh_params': '',
             'ssl_intermediate': '',
             'https_enabled': False,
             'hostname': 'localhost:9999',
@@ -84,8 +81,6 @@ class TestObjectValidators(TestCase):
 
     def test_private_key_invalid(self):
         pkv = tls.PrivKeyValidator()
-
-        self.cfg['ssl_dh'] = self.valid_setup['dh_params']
 
         for fname in self.invalid_files:
             p = os.path.join(self.test_data_dir, 'invalid', fname)
@@ -102,8 +97,6 @@ class TestObjectValidators(TestCase):
             'priv_key.pem'
         ]
 
-        self.cfg['ssl_dh'] = self.valid_setup['dh_params']
-
         for fname in good_keys:
             p = os.path.join(self.test_data_dir, 'valid', fname)
             with open(p, 'r') as f:
@@ -115,7 +108,6 @@ class TestObjectValidators(TestCase):
     def test_cert_invalid(self):
         crtv = tls.CertValidator()
 
-        self.cfg['ssl_dh'] = self.valid_setup['dh_params']
         self.cfg['ssl_key'] = self.valid_setup['key']
 
         for fname in self.invalid_files:
@@ -133,7 +125,6 @@ class TestObjectValidators(TestCase):
             'cert.pem'
         ]
 
-        self.cfg['ssl_dh'] = self.valid_setup['dh_params']
         self.cfg['ssl_key'] = self.valid_setup['key']
 
         for fname in good_certs:
@@ -147,7 +138,6 @@ class TestObjectValidators(TestCase):
     def test_chain_invalid(self):
         chn_v = tls.ChainValidator()
 
-        self.cfg['ssl_dh'] = self.valid_setup['dh_params'].encode()
         self.cfg['ssl_key'] = self.valid_setup['key'].encode()
         self.cfg['ssl_cert'] = self.valid_setup['cert'].encode()
 
@@ -169,7 +159,6 @@ class TestObjectValidators(TestCase):
     def test_chain_valid(self):
         chn_v = tls.ChainValidator()
 
-        self.cfg['ssl_dh'] = self.valid_setup['dh_params'].encode()
         self.cfg['ssl_key'] = self.valid_setup['key'].encode()
         self.cfg['ssl_cert'] = self.valid_setup['cert'].encode()
 
@@ -184,7 +173,6 @@ class TestObjectValidators(TestCase):
     def test_check_expiration(self):
         chn_v = tls.ChainValidator()
 
-        self.cfg['ssl_dh'] = self.valid_setup['dh_params'].encode()
         self.cfg['ssl_key'] = self.valid_setup['key'].encode()
 
         p = os.path.join(self.test_data_dir, 'invalid/expired_cert_with_valid_prv.pem')

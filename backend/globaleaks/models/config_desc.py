@@ -52,7 +52,6 @@ ConfigDescriptor = {
     u'https_csr': Unicode(),
     u'https_cert': Unicode(),
     u'https_chain': Unicode(),
-    u'https_dh_params': Unicode(),
 
     u'admin_api_token_digest': Unicode(),
 
@@ -260,7 +259,6 @@ ConfigFilters = {
         u'https_csr',
         u'https_cert',
         u'https_chain',
-        u'https_dh_params',
         u'admin_api_token_digest',
         u'ip_filter_admin',
         u'ip_filter_admin_enable',
@@ -315,7 +313,6 @@ ConfigFilters['admin_node'] = list(set(ConfigFilters['node']) - set([
     u'https_csr',
     u'https_cert',
     u'https_chain',
-    u'https_dh_params',
     u'admin_api_token_digest'
 ]))
 
