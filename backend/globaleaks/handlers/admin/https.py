@@ -116,7 +116,7 @@ class PrivKeyFileRes(FileResource):
     @inlineCallbacks
     def perform_file_action(cls, tid):
         log.info("Generating the HTTPS key with %d bits" % Settings.key_bits)
-        key = yield deferToThread(tls.gen_rsa_key, Settings.key_bits)
+        key = yield deferToThread(tls.gen_ecc_key, Settings.key_bits)
 
         log.debug("Saving the HTTPS key")
         yield cls.save_tls_key(tid, key)

@@ -2,6 +2,10 @@
 
 import re
 
+from cryptography.hazmat.primitives.asymmetric import ec
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives import serialization
+
 from OpenSSL import crypto, SSL
 from OpenSSL._util import lib as _lib, ffi as _ffi
 from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA, PKey, dump_certificate_request, \
@@ -30,15 +34,16 @@ class ValidationException(Exception):
     pass
 
 
-def gen_rsa_key(bits):
-    """
-    Generate an RSA key and returns it in PEM format.
-    :rtype: An RSA key as an `pyopenssl.OpenSSL.crypto.PKey`
-    """
-    key = PKey()
-    key.generate_key(TYPE_RSA, bits)
+def gen_ecc_key(bits):
+    key = ec.generate_private_key(ec.SECP384R1(), default_backend())
 
-    return crypto.dump_privatekey(SSL.FILETYPE_PEM, key)
+    key = key.private_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PrivateFormat.PKCS8,
+        encryption_algorithm=serialization.NoEncryption(),
+    )
+
+    return key
 
 
 def gen_x509_csr_pem(key_pair, csr_fields, csr_sign_bits):
