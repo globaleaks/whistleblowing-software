@@ -84,9 +84,8 @@ USER_KEY = GCE.derive_key(VALID_PASSWORD1, VALID_SALT1)
 USER_PRV_KEY, USER_PUB_KEY = GCE.generate_keypair()
 USER_PRV_KEY_ENC = GCE.symmetric_encrypt(USER_KEY, USER_PRV_KEY)
 USER_BKP_KEY, USER_REC_KEY = GCE.generate_recovery_key(USER_PRV_KEY)
-USER_REC_KEY = GCE.asymmetric_decrypt(USER_PRV_KEY, USER_REC_KEY)
-USER_REC_KEY_PLAIN = Base32Encoder().encode(USER_REC_KEY).replace(b'=', b'').decode('utf-8')
-
+USER_REC_KEY_PLAIN = GCE.asymmetric_decrypt(USER_PRV_KEY, USER_REC_KEY)
+USER_REC_KEY_PLAIN = Base32Encoder().encode(USER_REC_KEY_PLAIN).replace(b'=', b'').decode('utf-8')
 GCE_orig_generate_key = GCE.generate_key
 GCE_orig_generate_keypair = GCE.generate_keypair
 

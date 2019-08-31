@@ -73,7 +73,7 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
         # Missing recovery key
         handler = self.request({'reset_token': 'correct_reset_token', 'recovery_key': ''})
         ret = yield handler.put()
-        self.assertEqual(ret['status'], 'require_recovery_key')
+        self.assertEqual(ret['status'], 'invalid_recovery_key_provided')
 
         # Wrong recovery key
         handler = self.request({'reset_token': 'correct_reset_token', 'recovery_key': 'wrong_recovery_key'})

@@ -248,6 +248,9 @@ class UserInstance(BaseHandler):
 def get_recovery_key(session, user_tid, user_id, user_cc):
     user = db_get_user(session, user_tid, user_id)
 
+    if not user.crypto_rec_key:
+        return ''
+
     return Base32Encoder().encode(GCE.asymmetric_decrypt(user_cc, user.crypto_rec_key)).replace(b'=', b'')
 
 

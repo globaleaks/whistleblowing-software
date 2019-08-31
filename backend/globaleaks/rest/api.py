@@ -455,7 +455,7 @@ class APIResourceWrapper(Resource):
         if State.tenant_cache[request.tid].frame_ancestors:
             csp += "frame-ancestors " + State.tenant_cache[request.tid].frame_ancestors + ";"
         else:
-            csp += "frame-ancestors 'none'"
+            csp += "frame-ancestors 'none';"
 
         request.setHeader(b'Content-Security-Policy', csp)
         request.setHeader(b'X-Frame-Options', b'deny')
