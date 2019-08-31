@@ -160,6 +160,11 @@ def db_user_update_user(session, tid, user_session, request):
                 user_session.cc, user.crypto_pub_key = GCE.generate_keypair()
                 user.crypto_bkp_key, user.crypto_rec_key = GCE.generate_recovery_key(user_session.cc)
 
+                # If the user had already enabled two factor before encryption was not enable
+                # encrypt the two factor secret
+                if user.two_factor_secret:
+                    user.two_factor_secret = GCE.asymmetric_encrypt(user.crypto_pub_key, user.two_factor_secret)
+
             user.crypto_prv_key = GCE.symmetric_encrypt(enc_key, user_session.cc)
 
     # If the email address changed, send a validation email
@@ -258,10 +263,19 @@ def get_recovery_key(session, user_tid, user_id, user_cc):
 def enable_2fa_step1(session, user_tid, user_id, user_cc):
     user = db_get_user(session, user_tid, user_id)
 
-    if user.crypto_pub_key:
-       user.two_factor_secret = GCE.asymmetric_encrypt(user.crypto_pub_key, two_factor_secret)
+    if not user.two_factor_secret:
+        two_factor_secret = pyotp.random_base32()
+
+        if user.crypto_pub_key:
+           user.two_factor_secret = GCE.asymmetric_encrypt(user.crypto_pub_key, two_factor_secret)
+        else
+           user.two_factor_secret = two_factor_secret
+
     else:
-       user.two_factor_secret = two_factor_secret
+        if user.crypto_pub_key:
+            two_factor_secret = GCE.asymmetric_decrypt(user_cc, user.two_factor_secret).decode('utf-8')
+        else:
+            two_factor_secret = user.two_factor_secret
 
     return two_factor_secret
 
@@ -270,12 +284,16 @@ def enable_2fa_step1(session, user_tid, user_id, user_cc):
 def enable_2fa_step2(session, user_tid, user_id, user_cc, token):
     user = db_get_user(session, user_tid, user_id)
 
-    two_factor_secret = GCE.asymmetric_decrypt(user_cc, user.two_factor_secret).decode('utf-8')
+    if user.crypto_pub_key:
+        two_factor_secret = GCE.asymmetric_decrypt(user_cc, user.two_factor_secret).decode('utf-8')
+    else:
+        two_factor_secret = user.two_factor_secret
 
     if pyotp.TOTP(two_factor_secret).verify(token):
         user.two_factor_enable = True
     else:
         raise errors.InvalidAuthentication
+
 
 @transact
 def disable_2fa(session, user_tid, user_id, user_cc):
