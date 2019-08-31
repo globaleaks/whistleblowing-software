@@ -37,10 +37,6 @@ def validate_password_reset(session, tid, reset_token, recovery_key):
             prv_key = GCE.symmetric_decrypt(recovery_key, user.crypto_bkp_key)
         except:
             return {'status': 'invalid_recovery_key_provided'}
-        finally:
-            # If the recovery key is correct set it as password
-            user.crypto_prv_key = user.crypto_bkp_key
-            user.password = GCE.hash_password(recovery_key, user.salt)
 
     # Token is used, void it out
     user.reset_password_token = None
