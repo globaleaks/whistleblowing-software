@@ -81,11 +81,6 @@ text.axis-worktime {
   width: 87ch;
 }
 
-#wizardLicense {
-  max-height: 400px;
-  overflow-y: scroll;
-}
-
 .default-language, .non-default-language {
   color: #337ab7;
 }

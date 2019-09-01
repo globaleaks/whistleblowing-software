@@ -164,6 +164,13 @@ table {
   text-align: center;
 }
 
+#wizardLicense {
+  max-height: 400px;
+  overflow-y: scroll;
+  border: 1px solid #CCC;
+  padding: 1em;
+}
+
 html[dir] .imageUpload .changePictureButton, html[dir] .imageUpload .deletePictureButton {
   position: absolute;
   bottom: 10px;
