@@ -302,7 +302,7 @@ controller("AdminMailCtrl", ["$scope", "$http", "AdminNotificationResource",
     $scope.admin.notification.smtp_authentication = true;
 
     $scope.Utils.update($scope.admin.notification);
-  }
+  };
 
   $scope.updateThenTestMail = function() {
     AdminNotificationResource.update($scope.admin.notification)
