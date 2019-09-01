@@ -267,8 +267,8 @@ def enable_2fa_step1(session, user_tid, user_id, user_cc):
 
     if user.crypto_pub_key:
         user.two_factor_secret = GCE.asymmetric_encrypt(user.crypto_pub_key, two_factor_secret)
-    else
-        user.two_factor_secret = two_factor_secret
+    else:
+        user.two_factor_secret = two_factor_secret.encode('utf-8')
 
     return two_factor_secret
 
@@ -282,6 +282,7 @@ def enable_2fa_step2(session, user_tid, user_id, user_cc, token):
     else:
         two_factor_secret = user.two_factor_secret
 
+    # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
     if pyotp.TOTP(two_factor_secret).verify(token):
         user.two_factor_enable = True
     else:

@@ -136,14 +136,15 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
             # Force the password change on which the user key will be created
             user.password_change_needed = True
 
-    two_factor_secret = ''
     if user.two_factor_enable:
-        two_factor_secret = GCE.asymmetric_decrypt(crypto_prv_key, user.two_factor_secret)
-
         if authcode != '':
-            two_factor_secret = GCE.asymmetric_decrypt(crypto_prv_key, user.two_factor_secret).decode('utf-8')
-            totp = pyotp.TOTP(two_factor_secret)
-            if not totp.verify(authcode):
+            if user.crypto_pub_key:
+                two_factor_secret = GCE.asymmetric_decrypt(crypto_prv_key, user.two_factor_secret).decode('utf-8')
+            else:
+                two_factor_secret = user.two_factor_secret.decode('utf-8')
+
+            # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
+            if not pyotp.TOTP(two_factor_secret).verify(authcode, valid_window=1):
                 raise errors.InvalidTwoFactorAuthCode
 
         else:
