@@ -445,29 +445,30 @@ class APIResourceWrapper(Resource):
         if request.client_proto == b'https':
             request.setHeader(b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains')
 
-        csp = "default-src 'none';" \
-              "script-src 'self';" \
-              "connect-src 'self';" \
-              "style-src 'self' data:;" \
-              "img-src 'self' data:;" \
-              "font-src 'self' data:;"
+        if Settings.enable_csp:
+            csp = "default-src 'none';" \
+                  "script-src 'self';" \
+                  "connect-src 'self';" \
+                  "style-src 'self' data:;" \
+                  "img-src 'self' data:;" \
+                  "font-src 'self' data:;"
 
-        if State.tenant_cache[request.tid].frame_ancestors:
-            csp += "frame-ancestors " + State.tenant_cache[request.tid].frame_ancestors + ";"
-        else:
-            csp += "frame-ancestors 'none';"
+            if State.tenant_cache[request.tid].frame_ancestors:
+                csp += "frame-ancestors " + State.tenant_cache[request.tid].frame_ancestors + ";"
+            else:
+                csp += "frame-ancestors 'none';"
 
-        request.setHeader(b'Content-Security-Policy', csp)
-        request.setHeader(b'X-Frame-Options', b'deny')
+            request.setHeader(b'Content-Security-Policy', csp)
+            request.setHeader(b'X-Frame-Options', b'deny')
 
-        # Disable features that could be used to deanonymize the user
-        request.setHeader(b'Feature-Policy', b"camera 'none';" \
-                                             b"display-capture 'none';" \
-                                             b"document-domain 'none';" \
-                                             b"fullscreen 'none';" \
-                                             b"geolocation 'none';" \
-                                             b"microphone 'none';" \
-                                             b"speaker 'none';")
+            # Disable features that could be used to deanonymize the user
+            request.setHeader(b'Feature-Policy', b"camera 'none';" \
+                                                 b"display-capture 'none';" \
+                                                 b"document-domain 'none';" \
+                                                 b"fullscreen 'none';" \
+                                                 b"geolocation 'none';" \
+                                                 b"microphone 'none';" \
+                                                 b"speaker 'none';")
 
         # Reduce possibility for XSS attacks.
         request.setHeader(b'X-Content-Type-Options', b'nosniff')
