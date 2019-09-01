@@ -8,8 +8,9 @@ from cryptography.hazmat.primitives import serialization
 
 from OpenSSL import crypto, SSL
 from OpenSSL._util import lib as _lib, ffi as _ffi
-from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA, PKey, dump_certificate_request, \
-    X509Req, _new_mem_buf, _bio_to_string
+
+from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA, \
+    PKey, dump_certificate_request, X509Req, _new_mem_buf, _bio_to_string
 from six import text_type, binary_type
 from twisted.internet import ssl
 
@@ -176,9 +177,15 @@ class TLSServerContextFactory(ssl.ContextFactory):
         priv_key = load_privatekey(FILETYPE_PEM, priv_key)
         self.ctx.use_privatekey(priv_key)
 
-        ecdh = _lib.EC_KEY_new_by_curve_name(_lib.NID_X9_62_prime256v1)  # pylint: disable=no-member
-        ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)  # pylint: disable=no-member
-        _lib.SSL_CTX_set_tmp_ecdh(self.ctx._context, ecdh)  # pylint: disable=no-member
+        # If SSL_CTX_set_ecdh_auto is available then set it so the ECDH curve
+        # will be auto-selected. This function was added in 1.0.2 and made a
+        # noop in 1.1.0+ (where it is set automatically).
+        try:
+            _lib.SSL_CTX_set_ecdh_auto(self.ctx._context, 1) # pylint: disable=no-member
+        except AttributeError:
+            ecdh = _lib.EC_KEY_new_by_curve_name(_lib.NID_X9_62_prime256v1)  # pylint: disable=no-member
+            ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)  # pylint: disable=no-member
+            _lib.SSL_CTX_set_tmp_ecdh(self.ctx._context, ecdh)  # pylint: disable=no-member
 
     def getContext(self):
         return self.ctx
