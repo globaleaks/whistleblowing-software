@@ -35,7 +35,7 @@ class ValidationException(Exception):
 
 
 def gen_ecc_key(bits):
-    key = ec.generate_private_key(ec.SECP384R1(), default_backend())
+    key = ec.generate_private_key(ec.SECP256R1(), default_backend())
 
     key = key.private_bytes(
         encoding=serialization.Encoding.PEM,
@@ -176,7 +176,7 @@ class TLSServerContextFactory(ssl.ContextFactory):
         priv_key = load_privatekey(FILETYPE_PEM, priv_key)
         self.ctx.use_privatekey(priv_key)
 
-        ecdh = _lib.EC_KEY_new_by_curve_name(_lib.NID_secp384r1)  # pylint: disable=no-member
+        ecdh = _lib.EC_KEY_new_by_curve_name(_lib.NID_X9_62_prime256v1)  # pylint: disable=no-member
         ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)  # pylint: disable=no-member
         _lib.SSL_CTX_set_tmp_ecdh(self.ctx._context, ecdh)  # pylint: disable=no-member
 
