@@ -1,5 +1,7 @@
-GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "$uibModal", "$http", "QRious", "CONSTANTS",
-  function($scope, $rootScope, $q, $http, $uibModal, QRious, CONSTANTS) {
+/*global QRious*/
+
+GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "$uibModal", "$http", "CONSTANTS",
+  function($scope, $rootScope, $q, $http, $uibModal, CONSTANTS) {
     $scope.tabs = [
       {
         title: "Preferences",
@@ -51,7 +53,7 @@ GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "
         }}).then(function(data){
           $scope.two_factor_secret = data.data;
           var qr = new QRious({
-            value: "otpauth://totp/GlobaLeaks?secret=" + $scope.two_factor_secret_secret,
+            value: "otpauth://totp/GlobaLeaks?secret=" + $scope.two_factor_secret,
             size: "240"
           });
 
