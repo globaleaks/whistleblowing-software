@@ -1,4 +1,4 @@
-/* global Uint8Array */
+/*global Uint8Array, sha256*/
 
 angular.module("GLCrypto", [])
 .factory("glbcUtil", function() {
@@ -16,7 +16,7 @@ angular.module("GLCrypto", [])
     }
   };
 })
-.factory("glbcProofOfWork", ["$q", "sha256", "glbcUtil", function($q, sha256, glbcUtil) {
+.factory("glbcProofOfWork", ["$q", "glbcUtil", function($q, glbcUtil) {
   // proofOfWork return the answer to the proof of work
   // { [challenge string] -> [ answer index] }
   var getWebCrypto = function() {

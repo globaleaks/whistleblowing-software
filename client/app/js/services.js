@@ -1,3 +1,5 @@
+/*global topojson*/
+
 angular.module("GLServices", ["ngResource"]).
   factory("GLResource", ["$resource", function($resource) {
     return function(url, params, actions) {
@@ -1173,7 +1175,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       }
     };
 }]).
-  factory("fieldUtilities", ["$filter", "$http", "topojson", "CONSTANTS", function($filter, $http, topojson, CONSTANTS) {
+  factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $http, CONSTANTS) {
       var flatten_field = function(id_map, field) {
         if (field.children.length === 0) {
           id_map[field.id] = field;
