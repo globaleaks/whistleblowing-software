@@ -1,0 +1,45 @@
+<div class="modal-header">
+  <div class="modal-title" data-translate>Enable two factor authentication</div>
+</div>
+<div class="modal-body">
+  <div class="row mb-md-3">
+    <div class="col-md-12">
+      <label class="font-weight-bold" data-translate>Instructions</label>
+      <ul>
+        <li data-translate>Install an authenticator app on your phone</li>
+        <li data-translate>Scan the QR code with the app</li>
+        <li data-translate>Enter the two factor authentication code</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row mb-md-5">
+    <div class="col-md-12">
+      <div>
+        <div>
+          <span class="badge badge-primary">1</span>
+          <span class="font-weight-bold" data-translate>Scan the QR code with the app</span>
+        </div>
+	<br />
+        <div class="text-center">
+          <img data-ng-src="{{two_factor_qrcode}}" />
+          <div class="small text-bold">{{two_factor_secret}}</div>
+	</div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-md-5">
+    <div class="col-md-12">
+      <div class="form-group">
+        <div>
+          <span class="badge badge-primary">2</span>
+          <span class="font-weight-bold" data-translate>Enter the two factor authentication code</span>
+        </div>
+        <input class="form-control" data-ng-model="token_2fa" type="text" size="6" maxlength="6" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button data-ng-click="cancel()" class="btn btn-light" data-translate>Close</button>
+  <button data-ng-click="ok(token_2fa)" data-ng-disabled="len(token_2fa) === 6" class="btn btn-success" data-translate>Enable</button>
+</div>
