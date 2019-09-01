@@ -453,8 +453,6 @@ ConfigL10NFilters = {
         u'tip_expiration_summary_mail_title',
         u'tip_mail_template',
         u'tip_mail_title',
-        u'user_credentials',
-        u'2fa_mail_template',
-        u'2fa_mail_title'
+        u'user_credentials'
     ]
 }

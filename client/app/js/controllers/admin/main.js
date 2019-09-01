@@ -271,9 +271,7 @@ controller("AdminMailCtrl", ["$scope", "$http", "AdminNotificationResource",
     "tip_expiration_summary_mail_title",
     "tip_mail_template",
     "tip_mail_title",
-    "user_credentials",
-    "2fa_mail_template",
-    "2fa_mail_title",
+    "user_credentials"
   ];
 
   $scope.tabs = [
@@ -293,6 +291,18 @@ controller("AdminMailCtrl", ["$scope", "$http", "AdminNotificationResource",
       url: "admin/notification/mail",
     });
   };
+
+  $scope.resetSMTPConfiguration = function() {
+    $scope.admin.notification.smtp_server = "mail.globaleaks.org";
+    $scope.admin.notification.smtp_port = 9267;
+    $scope.admin.notification.smtp_username = "globaleaks";
+    $scope.admin.notification.smtp_password = "globaleaks";
+    $scope.admin.notification.smtp_source_email = "notification@mail.globaleaks.org";
+    $scope.admin.notification.smtp_security = "TLS";
+    $scope.admin.notification.smtp_authentication = true;
+
+    $scope.Utils.update($scope.admin.notification);
+  }
 
   $scope.updateThenTestMail = function() {
     AdminNotificationResource.update($scope.admin.notification)
