@@ -263,19 +263,12 @@ def get_recovery_key(session, user_tid, user_id, user_cc):
 def enable_2fa_step1(session, user_tid, user_id, user_cc):
     user = db_get_user(session, user_tid, user_id)
 
-    if not user.two_factor_secret:
-        two_factor_secret = pyotp.random_base32()
+    two_factor_secret = pyotp.random_base32()
 
-        if user.crypto_pub_key:
-           user.two_factor_secret = GCE.asymmetric_encrypt(user.crypto_pub_key, two_factor_secret)
-        else
-           user.two_factor_secret = two_factor_secret
-
-    else:
-        if user.crypto_pub_key:
-            two_factor_secret = GCE.asymmetric_decrypt(user_cc, user.two_factor_secret).decode('utf-8')
-        else:
-            two_factor_secret = user.two_factor_secret
+    if user.crypto_pub_key:
+        user.two_factor_secret = GCE.asymmetric_encrypt(user.crypto_pub_key, two_factor_secret)
+    else
+        user.two_factor_secret = two_factor_secret
 
     return two_factor_secret
 
