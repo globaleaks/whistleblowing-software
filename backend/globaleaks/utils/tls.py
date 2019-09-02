@@ -134,7 +134,7 @@ def new_tls_server_context():
                     SSL.OP_CIPHER_SERVER_PREFERENCE)
 
     ctx.set_mode(SSL.MODE_RELEASE_BUFFERS)
-    ctx.set_session_cache_mode(SSL.SESS_CACHE_OFF)
+    ctx.set_session_cache_mode(SSL.SESS_CACHE_SERVER)
 
     ctx.set_cipher_list(TLS_CIPHER_LIST)
 
