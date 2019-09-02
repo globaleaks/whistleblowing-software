@@ -169,11 +169,11 @@
       <div class="fieldDescription">Se vuoi, puoi modificare l’indirizzo per il whistleblowing del tuo ente indicato qui sotto.</div>
       <div data-ng-class="{'has-danger': signupForm.subdomain.$error.required || signupForm.subdomain.$error.pattern}">
         <div class="input-group">
-          <span class="input-group-prepend"><span class="input-group-text" data-translate>https://</span></span>
+          <span class="input-group-prepend"><span class="input-group-text">https://</span></span>
           <input name="subdomain" class="form-control" data-ng-model="signup.subdomain" type="text"
                  data-ng-pattern="/^[a-z0-9]+$/" required
                  subdomainvalidator>
-          <span class="input-group-append"><span class="input-group-text" data-translate>{{node.rootdomain}}</span></span>
+          <span class="input-group-append"><span class="input-group-text">.{{node.rootdomain}}</span></span>
         </div>
       </div>
     </div>

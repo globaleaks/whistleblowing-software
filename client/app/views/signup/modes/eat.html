@@ -13,11 +13,11 @@
       </label>
       <div data-ng-class="{'has-danger': signupForm.subdomain.$error.required || signupForm.subdomain.$error.pattern}">
         <div class="input-group">
-          <span class="input-group-prepend"><span class="input-group-text" data-translate>https://</span></span>
+          <span class="input-group-prepend"><span class="input-group-text">https://</span></span>
           <input name="subdomain" class="form-control" data-ng-model="signup.subdomain" type="text"
                  data-ng-attr-placeholder="{{'Domain' | translate}}" data-ng-pattern="/^[a-z0-9]+$/" required
                  subdomainvalidator>
-          <span class="input-group-prepend">.{{node.rootdomain}}</span>
+          <span class="input-group-append">.{{node.rootdomain}}</span>
         </div>
       </div>
     </div>
