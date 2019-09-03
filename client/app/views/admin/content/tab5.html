@@ -43,7 +43,7 @@
             <td>
               <span class="preformatted">{{custom_texts[key]}}</span>
               <button class="deleteCustomTextButton float-right btn btn-sm btn-danger" data-ng-click="Utils.deleteFromDict(custom_texts, key); custom_texts.$update({'lang': vars.language_to_customize})">
-                <i class="fa" data-ng-class="{'fa-trash-alt': default_texts[key], 'fa-alert': !default_texts[key]}"></i>
+                <i class="fa" data-ng-class="{'fa-times': default_texts[key], 'fa-alert': !default_texts[key]}"></i>
               </button>
             </td>
           </tr>

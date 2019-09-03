@@ -2,7 +2,7 @@
   <div id="PrivacyBadge" data-ng-if="!node.enable_custom_privacy_badge">
     <div id="PrivacyBadgeTextBox" class="float-left">
       <span class="badge badge-warning">
-        <i class="fa fa-sign"></i>
+        <i class="fa fa-exclamation-circle"></i>
         <span data-translate>Warning</span>
       </span>
       <div data-ng-show="connection.privacy_badge_open">
@@ -18,9 +18,9 @@
       </div>
     </div>
     <div id="PrivacyBoxCloseButton" class="float-right">
-      <a type="submit" data-ng-click="connection.privacy_badge_open = false">
-        <i class="fa fa-trash-alt-circle"></i>
-      </a>
+      <div data-ng-click="connection.privacy_badge_open = false">
+        <i class="fa fa-times"></i>
+      </div>
     </div>
   </div>
   <div id="PrivacyBadgeCustom" data-ng-if="node.enable_custom_privacy_badge">
@@ -28,9 +28,9 @@
       <span id="PrivacyBadgeCustomText" data-ng-show="connection.privacy_badge_open">{{node.custom_privacy_badge_text}}</span>
     </div>
     <div id="PrivacyBoxCloseButton" class="float-right">
-      <a type="submit" data-ng-click="connection.privacy_badge_open = false">
-        <i class="fa fa-trash-alt-circle"></i>
-      </a>
+      <div data-ng-click="connection.privacy_badge_open = false">
+        <i class="fa fa-times"></i>
+      </div>
     </div>
   </div>
   <div class="clearfix"></div>

@@ -137,7 +137,7 @@
 	        </div>
                 <div data-ng-repeat="trigger in step.triggered_by_options" class="nested">
                   <button class="btn btn-sm btn-danger" data-ng-click="delTrigger(trigger)">
-                    <i class="fa fa-trash-alt"></i>
+                    <i class="fa fa-times"></i>
                   </button>
 		  <span>{{parsedFields.fields_by_id[trigger.field].label}}</span>: <span>{{parsedFields.options_by_id[trigger.option].label}}</span> <span data-ng-if='trigger.sufficient'>(<span data-translate>Sufficient</span>)</span>
                 </div>

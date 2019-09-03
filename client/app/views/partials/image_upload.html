@@ -11,7 +11,7 @@
     <button class="deletePictureButton btn btn-circle btn-danger" uib-popover="{{'Delete' | translate}}"
             data-ng-show="imageUploadModel[imageUploadModelAttr] || imageUploadObj.flow.files.length > 0"
             data-ng-click="deletePicture(); $event.stopPropagation();">
-      <span class="fa fa-trash-alt"></span>
+      <span class="fa fa-times"></span>
     </button>
     <div class="imageUploadThumbnail">
       <img alt="preview picture" data-ng-if="imageUploadObj.flow.files.length == 0" data-ng-src="{{Utils.imgDataUri(imageUploadModel[imageUploadModelAttr])}}" class="imageUploadThumbnailContent" />

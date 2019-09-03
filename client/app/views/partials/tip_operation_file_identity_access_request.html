@@ -1,8 +1,8 @@
 <div class="modal-header">
-  <button type="submit" class="close" aria-hidden="true" data-ng-click="cancel()">
-    <i class="fa fa-trash-alt-circle"></i>
-  </button>
   <div class="modal-title" data-translate>Request access to the whistleblower's identity</div>
+  <button type="button" class="close" data-ng-click="cancel()">
+    <i class="fa fa-times"></i>
+  </button>
 </div>
 <div class="modal-body">
   <label data-translate>Please write a motivation</label>
@@ -11,11 +11,11 @@
 </div>
 <div class="modal-footer">
   <span id="modal-action-cancel" class="btn btn-secondary" data-ng-click="cancel()">
-    <i class="fa fa-trash-alt"></i>
+    <i class="fa fa-times"></i>
     <span data-translate>Cancel</span>
   </span>
-  <span id="modal-action-ok" class="btn btn-danger" data-ng-disabled="request_motivation == undefined || request_motivation == ''" data-ng-click="ok()">
-    <i class="fa fa-check-circle"></i>
+  <span id="modal-action-ok" class="btn btn-success" data-ng-disabled="request_motivation == undefined || request_motivation == ''" data-ng-click="ok()">
+    <i class="fa fa-check"></i>
     <span data-translate>Send</span>
   </span>
 </div>

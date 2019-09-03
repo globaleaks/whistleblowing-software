@@ -22,7 +22,7 @@
         <div data-ng-include="'views/submission/fields/whistleblower_identity.html'"></div>
 	<div id="SubmitBox" data-ng-if="submission._submission.identity_provided">
           <button id="SubmitButton" class="btn btn-success float-right" data-ng-click="provideIdentityInformation(whistleblower_identity_field.id, answers)" data-ng-disabled="f.$invalid" type="submit">
-            <i id="SubmitIconOK" class="fa fa-check-circle"></i>
+            <i id="SubmitIconOK" class="fa fa-check"></i>
             <span data-translate>Submit</span>
           </button>
         </div>

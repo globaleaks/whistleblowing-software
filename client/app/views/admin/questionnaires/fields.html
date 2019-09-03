@@ -255,7 +255,7 @@
                       <span>{{field.attrs.min_date.value | date:'dd-MM-yyyy'}}</span>
                       <button class="btn btn-sm btn-danger"
                               data-ng-click="field.attrs.min_date.value = ''; $event.stopPropagation();">
-                        <span class="fa fa-trash-alt"></span>
+                        <span class="fa fa-times"></span>
                       </button>
                     </span>
                     <button data-ng-show="field.attrs.min_date.value === ''" type="button" class="btn btn-sm btn-secondary"><i class="fa fa-calendar"></i></button>
@@ -272,7 +272,7 @@
                       <span>{{field.attrs.max_date.value | date:'dd-MM-yyyy'}}</span>
                       <button class="btn btn-sm btn-danger"
                               data-ng-click="field.attrs.max_date.value = ''; $event.stopPropagation();">
-                        <span class="fa fa-trash-alt"></span>
+                        <span class="fa fa-times"></span>
                       </button>
                     </span>
                     <button data-ng-show="field.attrs.max_date.value === ''" type="button" class="btn btn-sm btn-secondary"><i class="fa fa-calendar"></i></button>
@@ -358,7 +358,7 @@
               </div>
               <div data-ng-repeat="trigger in field.triggered_by_options" class="nested">
                 <button class="btn btn-sm btn-danger" data-ng-click="delTrigger(trigger)">
-                  <i class="fa fa-trash-alt"></i>
+                  <i class="fa fa-times"></i>
                 </button>
                 <span>{{parsedFields.fields_by_id[trigger.field].label}}</span>: <span>{{parsedFields.options_by_id[trigger.option].label}}</span> <span data-ng-if='trigger.sufficient'>(<span data-translate>Sufficient</span>)</span>
               </div>
@@ -386,7 +386,7 @@
                     </div>
                     <div class="col-md-5">
                       <button class="btn btn-sm btn-danger" data-ng-click="delOption(option)">
-                        <i class="fa fa-trash-alt"></i>
+                        <i class="fa fa-times"></i>
                       </button>
                       <button data-ng-disabled="$first" class="btn btn-sm btn-primary" data-ng-click="moveOptionUp($index);" uib-popover="{{'Move up' | translate}}" popover-placement="left">
                         <i class="fa fa-chevron-up"></i>

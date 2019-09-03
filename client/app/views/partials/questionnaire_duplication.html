@@ -1,24 +1,24 @@
 <div class="modal-header">
-    <button type="submit" class="close" aria-hidden="true" data-ng-click="cancel()">
-        <i class="fa fa-trash-alt-circle"></i>
-    </button>
-    <div class="modal-title" data-translate>Enter a name for the copy</div>
+  <div class="modal-title" data-translate>Enter a name for the copy</div>
+  <button type="button" class="close" data-ng-click="cancel()">
+    <i class="fa fa-times"></i>
+  </button>
 </div>
 <div class="modal-body">
-    <span data-translate>Name</span>
-    <div class="form-group">
-        <div data-ng-class="{'has-danger': duplocateQuestionnaire.name.$error.required}">
-            <input name="name" class="form-control" data-ng-model="duplicate_questionnaire.name" type="text" required />
-        </div>
+  <span data-translate>Name</span>
+  <div class="form-group">
+    <div data-ng-class="{'has-danger': duplocateQuestionnaire.name.$error.required}">
+      <input name="name" class="form-control" data-ng-model="duplicate_questionnaire.name" type="text" required />
     </div>
+  </div>
 </div>
 <div class="modal-footer">
-    <span id="modal-action-cancel" class="btn btn-secondary" data-ng-click="cancel()">
-        <i class="fa fa-trash-alt"></i>
-        <span data-translate>Cancel</span>
-    </span>
-    <span id="modal-action-ok" class="btn btn-primary" data-ng-click="ok()">
-        <i class="fa fa-check-circle"></i>
-        <span data-translate>Duplicate</span>
-    </span>
+  <span id="modal-action-cancel" class="btn btn-secondary" data-ng-click="cancel()">
+    <i class="fa fa-times"></i>
+    <span data-translate>Cancel</span>
+  </span>
+  <span id="modal-action-ok" class="btn btn-primary" data-ng-click="ok()">
+    <i class="fa fa-check"></i>
+    <span data-translate>Duplicate</span>
+  </span>
 </div>

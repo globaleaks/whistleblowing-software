@@ -204,9 +204,9 @@
             <span data-ng-if="Utils.isNever(tip.expiration_date)" data-translate>Never</span>
           </td>
           <td class="TipInfoLastAccess">
-            <i data-ng-if="tip.wb_last_access >= tip.update_date" class="fa fa-check-circle"
+            <i data-ng-if="tip.wb_last_access >= tip.update_date" class="fa fa-check"
                 uib-popover="{{'The whistleblower has already read the latest update' | translate }} ({{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
-            <i data-ng-if="tip.wb_last_access < tip.update_date" class="fa fa-trash-alt"
+            <i data-ng-if="tip.wb_last_access < tip.update_date" class="fa fa-times"
                uib-popover="{{'The whistleblower has not read the latest update yet' | translate }}"></i>
           </td>
           <td class="TipInfoFilesCount">{{::tip.file_count}}</td>
