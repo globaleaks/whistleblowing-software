@@ -8,11 +8,11 @@
 
 import collections
 
-from OpenSSL.SSL import Connection, Context, TLSv1_2_METHOD
+from OpenSSL.SSL import Connection, Context
 from twisted.internet.interfaces import IOpenSSLServerConnectionCreator
 from zope.interface import implementer
 
-from globaleaks.utils.tls import ChainValidator, TLSServerContextFactory
+from globaleaks.utils.tls import ChainValidator, TLSServerContextFactory, new_tls_server_context
 
 
 class _NegotiationData(object):
@@ -119,13 +119,13 @@ class _ConnectionProxy(object):
 
 @implementer(IOpenSSLServerConnectionCreator)
 class SNIMap(object):
-    context = Context(TLSv1_2_METHOD)
     configs_by_tid = {}
     contexts_by_hostname = {}
 
     def __init__(self):
+        self.default_context = new_tls_server_context()
         self._negotiationDataForContext = collections.defaultdict(_NegotiationData)
-        self.set_default_context(Context(TLSv1_2_METHOD))
+        self.set_default_context(self.default_context)
 
     def set_default_context(self, context):
         self.context = context
@@ -154,7 +154,7 @@ class SNIMap(object):
             self.contexts_by_hostname.pop(conf['hostname'], None)
 
         if tid == 1:
-            self.set_default_context(Context(TLSv1_2_METHOD))
+            self.set_default_context(self.default_context)
 
     def selectContext(self, connection):
         try:

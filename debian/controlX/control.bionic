@@ -28,10 +28,12 @@ Depends:
  , python3:any
  , python3-acme (>=0.25.1)
  , python3-debian
+ , python3-h2
  , python3-nacl (>= 1.2)
  , python3-openssl
  , python3-pyotp
  , python3-gnupg
+ , python3-priority
  , python3-scrypt
  , python3-sqlalchemy
  , python3-twisted
