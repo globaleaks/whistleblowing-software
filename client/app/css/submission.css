@@ -154,11 +154,11 @@
   padding-bottom: 1.4em;
 }
 
-html[dir="ltr"] .question {
+html[dir="ltr"] .question .question {
   padding: 0 0 0 0.8em;
 }
 
-html[dir="rtl"] .question {
+html[dir="rtl"] .question .question {
   padding: 0 0.8em 0 0;
 }
 
