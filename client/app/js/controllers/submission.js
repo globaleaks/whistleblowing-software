@@ -68,11 +68,6 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.goToStep = function(index, bypassErrors) {
-    if (!bypassErrors && $scope.displayErrors()) {
-      // if some errors are already triggered avoid navigation
-      return;
-    }
-
     $scope.navigation = index;
     $anchorScroll("top");
   };

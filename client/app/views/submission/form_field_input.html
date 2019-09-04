@@ -25,30 +25,26 @@
         </div>
       </div>
       <div data-ng-switch-when="selectbox" data-ng-class="{'has-danger': entry.required_status}">
-        <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="form-control inputelem" data-ng-model="entry['value']" data-ng-required="entry.required_status">
+        <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="custom-select inputelem" data-ng-model="entry['value']" data-ng-required="entry.required_status">
           <option class="d-none" value=""></option>
           <option data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'presentation_order'" id="{{::fieldEntry}}-option-{{::$index}}" value="{{option.id}}">{{::option.label}}</option>
         </select>
       </div>
       <div data-ng-switch-when="multichoice" data-ng-class="{'has-danger': entry.required_status}">
-        <div data-ng-class="{'form-check': (field.attrs.layout_orientation.value != 'horizontal')}">
-          <label data-ng-class="{'form-check-inline': (field.attrs.layout_orientation.value == 'horizontal')}" data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}">
-            <input class="inputelem" type="radio" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
-            <span uib-popover="{{option.hint1}}" data-ng-class="{'underline': option.hint1}">{{::option.label}}</span>
-          </label>
+        <div data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}" class="custom-control custom-radio">
+          <input class="custom-control-input inputelem" type="radio" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
+          <span uib-popover="{{option.hint1}}" class="custom-control-label" data-ng-class="{'underline': option.hint1}">{{::option.label}}</span>
         </div>
-</div>
+      </div>
       <div data-ng-switch-when="checkbox" data-ng-class="{'has-danger': entry.required_status}">
-        <div data-ng-class="{'checkbox': (field.attrs.layout_orientation.value != 'horizontal')}">
-          <label data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'presentation_order'" data-ng-class="{'checkbox-inline': (field.attrs.layout_orientation.value == 'horizontal'), 'has-danger': f['input-' + $parent.entryIndex + '-option-' + entryIndex].$invalid}">
-            <input id="{{::fieldEntry}}"
-                   name="{{'input-' + $parent.entryIndex + '-option-' + entryIndex}}"
-                   class="inputelem"
-                   data-ng-model="entry[option.id]"
-                   data-ng-required="entry.required_status"
-                   type="checkbox" />
-            <span uib-popover="{{option.hint1}}" data-ng-class="{'underline': option.hint1}">{{::option.label}}</span>
-          </label>
+        <div data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'presentation_order'" class="custom-control custom-checkbox">
+          <input id="{{::fieldEntry}}"
+                 name="{{'input-' + $parent.entryIndex + '-option-' + entryIndex}}"
+                 class="custom-control-input inputelem"
+                 data-ng-model="entry[option.id]"
+                 data-ng-required="entry.required_status"
+                 type="checkbox" />
+          <span uib-popover="{{option.hint1}}" class="custom-control-label" data-ng-class="{'underline': option.hint1}">{{::option.label}}</span>
         </div>
       </div>
       <div data-ng-switch-when="date" data-ng-class="{'has-danger': entry.required_status}">
@@ -122,16 +118,16 @@
         <div data-ng-if="field.attrs.attachment.value">
           <a href="{{field.attrs.attachment_url.value}}" target="_blank" rel="noreferrer noopener">{{field.attrs.attachment_text.value}}</a>
         </div>
-        <div class="checkbox" data-ng-class="{'has-danger': entry.required_status}">
+        <div class="form-check" data-ng-class="{'has-danger': entry.required_status}">
           <label>
             <input id="{{::fieldEntry}}"
                    name="input-{{entryIndex}}"
-                   class="inputelem"
+                   class="form-check-input inputelem"
                    data-ng-model="entry['value']"
                    data-ng-required="entry.required_status"
                    value="{{field.value}}"
                    type="checkbox" />
-            <span>{{field.attrs.checkbox_label.value}}</span>
+            <span class="form-check-label">{{field.attrs.checkbox_label.value}}</span>
           </label>
         </div>
       </div>
@@ -139,7 +135,7 @@
         <div id="{{::fieldEntry}}">
           <div class="map"></div>
 	  <div class="input-group">
-		  <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="form-control inputelem" data-ng-model="entry['value']" data-ng-change="field.attrs.topojson.set(entry['value'])" data-ng-required="entry.required_status">
+            <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="custom-select inputelem" data-ng-model="entry['value']" data-ng-change="field.attrs.topojson.set(entry['value'])" data-ng-required="entry.required_status">
               <option data-ng-repeat="option in field.attrs.topojson.geojson.features | orderBy:'properties.name'" value="{{option.id}}">{{::option.properties.name}}</option>
             </select>
             <span class="input-group-append" data-ng-click="entry['value']=''; field.attrs.topojson.reset()" data-ng-disabled="!entry['value']"><i class="input-group-text fa fa-times-circle"></i></span>

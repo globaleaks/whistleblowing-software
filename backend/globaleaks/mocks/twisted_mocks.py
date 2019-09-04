@@ -45,19 +45,8 @@ def mock_HTTPChannel__timeoutConnection(self):
     self.transport.loseConnection()
 
 
-def mock_HTTPChannel__checkPersistence(self, request, version):
-    """
-    This mock is necessary to disable connection persistance
-    This has been considered necessary in relation to some application malfunctions where some
-    connections appeared to remain pending
-    """
-    request.responseHeaders.setRawHeaders(b'connection', [b'close'])
-    return False
-
-
 log.msg = log.err = mock_log
 Request.gotLength = mock_Request_gotLength
 HTTPPageGetter.timeout = mock_HTTPPageGetter_timeout
 HTTPFactory.__init__ = mock_HTTPFactory__init__
 HTTPChannel.timeoutConnection = mock_HTTPChannel__timeoutConnection
-HTTPChannel.checkPersistence = mock_HTTPChannel__checkPersistence

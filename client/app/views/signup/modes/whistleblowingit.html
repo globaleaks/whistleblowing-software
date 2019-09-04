@@ -1,17 +1,17 @@
-<form name="signupForm" novalidate>
+<form name="signupForm" data-ng-class="{'was-validated': validated}" novalidate>
   <div class="row">
     <div class="col-md-12">
       <label class="title">Dati utente:</label>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 form-group" data-ng-class="{'has-danger': signupForm.name.$error.required}">
+    <div class="col-md-6 form-group">
       <label>Nome</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       <input name="name" class="form-control" data-ng-model="signup.name" type="text"
              data-ng-attr-placeholder="Nome" required>
     </div>
-    <div class="col-md-6 form-group" data-ng-class="{'has-danger': signupForm.surname.$error.required}">
+    <div class="col-md-6 form-group">
       <label>Cognome</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       <input name="surname" class="form-control" data-ng-model="signup.surname" type="text"
@@ -22,8 +22,9 @@
     <div class="col-md-6 form-group">
       <label>Ruolo</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-      <div data-ng-class="{'has-danger': signupForm.role.$error.required}">
-        <select name="role" class="form-control" data-ng-model="signup.role" required>
+      <div>
+        <select name="role" class="custom-select" data-ng-model="signup.role" required>
+          <option value=""></option>
           <option value="option1">Direttore generale</option>
           <option value="option2">Responsabile ICT</option>
           <option value="option3">Responsabile internal audit</option>
@@ -32,7 +33,7 @@
         </select>
       </div>
     </div>
-    <div class="col-md-6 form-group" data-ng-class="{'has-danger': signupForm.phone.$invalid}">
+    <div class="col-md-6 form-group">
       <label>Telefono</label> <span class="text-danger"
                                     uib-popover="{{'This field is mandatory' | translate}}"
                                     popover-placement="right">*</span>
@@ -49,12 +50,10 @@
         <span>Email di ruolo</span>
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       </label>
-      <div data-ng-class="{'has-danger': signupForm.email.$error.required || signupForm.email.$error.pattern}">
-        <div>
-          <input name="email" class="form-control" data-ng-model="signup.email" data-ng-attr-placeholder="Email" data-ng-pattern="email_regexp" type="text" required>
-          <div class="text-danger" data-ng-show="signupForm.email.$error.pattern">
-            <span data-translate>Invalid email address</span>
-          </div>
+      <div>
+        <input name="email" class="form-control" data-ng-model="signup.email" data-ng-attr-placeholder="Email" data-ng-pattern="email_regexp" type="text" required>
+        <div class="text-danger" data-ng-show="signupForm.email.$error.pattern">
+          <span data-translate>Invalid email address</span>
         </div>
       </div>
     </div>
@@ -63,12 +62,10 @@
         <span>Email di ruolo (Conferma)</span>
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       </label>
-      <div data-ng-class="{'has-danger': signupForm.email.$error.required || signupForm.email.$error.pattern}">
-        <div>
-          <input name="email" class="form-control" data-ng-model="confirmation_email" data-ng-attr-placeholder="Email" data-disable-ccp type="text" required>
-          <div class="text-danger" data-ng-show="signupForm.email.$valid && signup.email !== confirmation_email">
-            <span data-translate>Invalid confirmation</span>
-          </div>
+      <div>
+        <input name="email" class="form-control" data-ng-model="confirmation_email" data-ng-attr-placeholder="Email" data-disable-ccp type="text" required>
+        <div class="text-danger" data-ng-show="signupForm.email.$valid && signup.email !== confirmation_email">
+          <span data-translate>Invalid confirmation</span>
         </div>
       </div>
     </div>
@@ -77,8 +74,9 @@
     <div class="col-md-6 form-group">
       <label>Come sei venuto a conoscenza del progetto?</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-      <div data-ng-class="{'has-danger': signupForm.hear_channel.$error.required}">
-        <select name="hear_channel" class="form-control" data-ng-model="signup.hear_channel" required>
+      <div>
+        <select name="hear_channel" class="custom-select" data-ng-model="signup.hear_channel" required>
+          <option value=""></option>
           <option value="option1">Convegno di settore</option>
           <option value="option2">Media</option>
           <option value="option3">Motori di ricerca</option>
@@ -96,7 +94,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 form-group" data-ng-class="{'has-danger': signupForm.organization_name.$error.required}">
+    <div class="col-md-6 form-group">
       <label>Nome</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       <input name="organization_name" class="form-control" data-ng-model="signup.organization_name" type="text" data-ng-attr-placeholder="{{'Nome' | translate}}" data-ng-change="updateSubdomain()" required>
@@ -104,8 +102,9 @@
     <div class="col-md-6 form-group">
       <label>Tipo</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-      <div data-ng-class="{'has-danger': signupForm.organization_type.$error.required}">
-        <select name="organization_type" class="form-control" data-ng-model="signup.organization_type" required>
+      <div>
+        <select name="organization_type" class="custom-select" data-ng-model="signup.organization_type" required>
+          <option value=""></option>
           <option value="L10">Agenzie ed enti per il turismo</option>
           <option value="L19">Agenzie ed enti regionali del lavoro</option>
           <option value="L13">Agenzie ed enti regionali di sviluppo agricolo</option>
@@ -167,14 +166,12 @@
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       </label>
       <div class="fieldDescription">Se vuoi, puoi modificare l’indirizzo per il whistleblowing del tuo ente indicato qui sotto.</div>
-      <div data-ng-class="{'has-danger': signupForm.subdomain.$error.required || signupForm.subdomain.$error.pattern}">
-        <div class="input-group">
-          <span class="input-group-prepend"><span class="input-group-text">https://</span></span>
-          <input name="subdomain" class="form-control" data-ng-model="signup.subdomain" type="text"
-                 data-ng-pattern="/^[a-z0-9]+$/" required
-                 subdomainvalidator>
-          <span class="input-group-append"><span class="input-group-text">.{{node.rootdomain}}</span></span>
-        </div>
+      <div class="input-group">
+        <span class="input-group-prepend"><span class="input-group-text">https://</span></span>
+        <input name="subdomain" class="form-control" data-ng-model="signup.subdomain" type="text"
+               data-ng-pattern="/^[a-z0-9]+$/" required
+               subdomainvalidator>
+        <span class="input-group-append"><span class="input-group-text">.{{node.rootdomain}}</span></span>
       </div>
     </div>
   </div>
@@ -182,32 +179,43 @@
     <div class="col-md-4 form-group">
       <label>Regione</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-      <div data-ng-class="{'has-danger': signupForm.organization_location2.$error.required}">
-        <select name="organization_location2" class="form-control" data-ng-model="signup.organization_location2" data-ng-options="x.id as x.nome for x in data_countries_italy_regions" required></select>
+      <div>
+        <select name="organization_location2" class="custom-select" data-ng-model="signup.organization_location2" required>
+          <option value="" selected="selected"></option>
+          <option data-ng-repeat="x in data_countries_italy_regions" value="{{x.nome}}">{{x.id}}</option>
+        </select>
       </div>
     </div>
     <div class="col-md-4 form-group">
       <label>Provincia</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-      <div data-ng-class="{'has-danger': signupForm.organization_location3.$error.required}">
-        <select name="organization_location3" class="form-control" data-ng-model="signup.organization_location3" data-ng-options="x.id as x.nome for x in data_countries_italy_provinces | filter:{'id_regione': signup.organization_location2}:true" data-ng-disabled="!signup.organization_location2" required></select>
+      <div>
+        <select name="organization_location3" class="custom-select" data-ng-model="signup.organization_location3" data-ng-disabled="!signup.organization_location2" required>
+          <option value="" selected="selected"></option>
+          <option data-ng-repeat="x in data_countries_italy_provinces | filter:{'id_regione': signup.organization_location2}:true" value="{{x.nome}}">{{x.id}}</option>
+        </select>
       </div>
     </div>
     <div class="col-md-4 form-group">
       <label>Città</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-      <div data-ng-class="{'has-danger': signupForm.organization_location4.$error.required}">
-        <select name="organization_location4" class="form-control" data-ng-model="signup.organization_location4" data-ng-options="x.id as x.nome for x in data_countries_italy_cities | filter:{'id_provincia': signup.organization_location3}:true" data-ng-disabled="!signup.organization_location3" required></select>
+      <div>
+        <select name="organization_location4" class="custom-select" data-ng-model="signup.organization_location4" data-ng-disabled="!signup.organization_location3" required>
+          <option value="" selected="selected"></option>
+          <option data-ng-repeat="x in data_countries_italy_cities | filter:{'id_provincia': signup.organization_location3}:true" value="{{x.nome}}">{{x.id}}</option>
+          <option value=""></option>
+        </select>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12 form-group" data-ng-class="{'has-danger': signupForm.organization_number_employees.$error.required}">
+    <div class="col-md-12 form-group">
       <label>Numero dipendenti</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       <div class="row">
-        <div class="col-md-6" data-ng-class="{'has-danger': signupForm.organization_number_employees.$error.required}">
-          <select name="organization_number_employees" class="form-control" data-ng-model="signup.organization_number_employees" required>
+        <div class="col-md-6">
+          <select name="organization_number_employees" class="custom-select" data-ng-model="signup.organization_number_employees" required>
+            <option value=""></option>
             <option value="option1">0-15</option>
             <option value="option2">15 - 100</option>
             <option value="option3">100 - 1.000</option>
@@ -225,8 +233,9 @@
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       <div class="fieldDescription">Per numero utenti si intende il bacino di riferimento dell’ente, per un comune sono i cittadini, per una ASL sono gli utenti del servizio sanitario di pertinenza, per l’università gli iscritti, etc.</div>
       <div class="row">
-        <div class="col-md-6" data-ng-class="{'has-danger': signupForm.organization_number_users.$error.required}">
-          <select name="organization_number_users" class="form-control" data-ng-model="signup.organization_number_users" required>
+        <div class="col-md-6">
+          <select name="organization_number_users" class="custom-select" data-ng-model="signup.organization_number_users" required>
+            <option value="" selected="selected"></option>
             <option value="option1">0 - 500</option>
             <option value="option2">500 - 5.000</option>
             <option value="option3">5.000 - 50.000</option>
@@ -239,7 +248,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 form-group" data-ng-class="{'has-danger': signupForm.organization_site.$error.required}">
+    <div class="col-md-6 form-group">
       <label>Sito ente</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       <input name="organization_site" class="form-control" data-ng-model="signup.organization_site" type="text" data-ng-attr-placeholder="{{'Sito ente' | translate}}" required>
@@ -249,12 +258,10 @@
   <div data-ng-include="'views/signup/tos.html'"></div>
   <div class="row">
     <div class="col-md-12">
-      <button class="ButtonNext btn btn-success" data-ng-click="complete()"
-              data-ng-disabled="signupForm.$invalid">
+      <button class="ButtonNext btn btn-success" data-ng-click="(validated = true) && !signupForm.$invalid && complete()">
         <i class="fa fa-check"></i>
         <span data-translate>Complete</span>
       </button>
     </div>
-  </div>
   </div>
 </form>
