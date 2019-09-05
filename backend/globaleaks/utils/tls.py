@@ -15,7 +15,7 @@ from six import text_type, binary_type
 from twisted.internet import ssl
 
 
-#OpenSSL mocks
+# OpenSSL mocks
 SSL.OP_SINGLE_ECDH_USE = 0x00080000
 SSL.OP_NO_RENEGOTIATION = 0x40000000
 SSL.OP_PRIORITIZE_CHACHA = 0x00200000
@@ -31,6 +31,7 @@ TLS_CIPHER_LIST = b'TLS13-AES-256-GCM-SHA384:' \
                   b'ECDHE-RSA-CHACHA20-POLY1305:' \
                   b'ECDHE-ECDSA-AES256-SHA384:' \
                   b'ECDHE-RSA-AES256-SHA384'
+
 
 class ValidationException(Exception):
     pass

@@ -49,12 +49,12 @@ def file_delivery_planning(session):
 
             if ifile.id not in receiverfiles_maps:
                 receiverfiles_maps[ifile.id] = {
-                  'tid': user.tid,
-                  'crypto_tip_pub_key': itip.crypto_tip_pub_key,
-                  'id': ifile.id,
-                  'filename': ifile.filename,
-                  'plaintext_file_needed': False,
-                  'rfiles': [],
+                    'tid': user.tid,
+                    'crypto_tip_pub_key': itip.crypto_tip_pub_key,
+                    'id': ifile.id,
+                    'filename': ifile.filename,
+                    'plaintext_file_needed': False,
+                    'rfiles': [],
                 }
 
             receiverfiles_maps[ifile.id]['rfiles'].append({

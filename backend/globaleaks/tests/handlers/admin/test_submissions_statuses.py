@@ -11,7 +11,7 @@ from globaleaks.tests import helpers
 def count_submission_statuses(session, tid):
     """Counts all submission statuses in the system"""
     return session.query(models.SubmissionStatus) \
-                  .filter(models.SubmissionStatus.tid==tid).count()
+                  .filter(models.SubmissionStatus.tid == tid).count()
 
 
 @transact

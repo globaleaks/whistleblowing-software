@@ -203,7 +203,8 @@ def perform_migration(version):
             to_delete_on_fail.append(new_db_file)
             to_delete_on_success.append(old_db_file)
 
-            log.info("Updating DB from version %d to version %d" % (version, version + 1))
+            log.info("Updating DB from version %d to version %d" %
+                     (version, version + 1))
 
             j = version - FIRST_DATABASE_VERSION_SUPPORTED
             session_old = get_session(make_db_uri(old_db_file))
@@ -302,7 +303,8 @@ for i in range(DATABASE_VERSION - FIRST_DATABASE_VERSION_SUPPORTED + 1):
         if k not in mp:
             mp[k] = []
 
-        x = get_right_model(migration_mapping, k, FIRST_DATABASE_VERSION_SUPPORTED + i)
+        x = get_right_model(migration_mapping, k,
+                            FIRST_DATABASE_VERSION_SUPPORTED + i)
         if x is not None:
             class y(x, Bases[i]):
                 pass

@@ -22,17 +22,17 @@ class TestRunAcmeReg(TestCase):
              'year': 2027,
              'month': 2,
              'day': 25,
-            },
+             },
             {'path': 'invalid/expired_cert.pem',
              'year': 2017,
              'month': 2,
              'day': 4,
-            },
+             },
             {'path': 'invalid/glbc_le_stage_cert.pem',
              'year': 2017,
              'month': 8,
              'day': 22,
-            },
+             },
         ]
 
         for tc in test_cases:

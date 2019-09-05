@@ -38,6 +38,7 @@ def db_get_triggers_by_type(session, type, object_id):
 
     return ret
 
+
 def db_prepare_contexts_serialization(session, contexts):
     data = {'imgs': {}, 'receivers': {}}
 

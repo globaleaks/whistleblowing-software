@@ -78,7 +78,8 @@ class BaseHandler(object):
             msg = "Authentication required"
 
         if msg is not None:
-            self.request.setHeader(b'WWW-Authenticate', b'Basic realm="globaleaks"')
+            self.request.setHeader(b'WWW-Authenticate',
+                                   b'Basic realm="globaleaks"')
             raise errors.HTTPAuthenticationRequired()
 
     @staticmethod
@@ -271,7 +272,8 @@ class BaseHandler(object):
     def write_file_as_download_fo(self, filename, fo):
         self.request.setHeader(b'X-Download-Options', b'noopen')
         self.request.setHeader(b'Content-Type', b'application/octet-stream')
-        self.request.setHeader(b'Content-Disposition', 'attachment; filename="%s"' % filename)
+        self.request.setHeader(b'Content-Disposition',
+                               'attachment; filename="%s"' % filename)
 
         return serve_file(self.request, fo)
 

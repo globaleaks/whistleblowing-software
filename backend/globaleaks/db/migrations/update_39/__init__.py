@@ -583,11 +583,12 @@ class MigrationScript(MigrationBase):
     def epilogue(self):
         self.fail_on_count_mismatch['ShortURL'] = False
 
-        self.session_new.add(self.model_to['Tenant']({'label': '', 'active': True}))
+        self.session_new.add(self.model_to['Tenant'](
+            {'label': '', 'active': True}))
 
         for q in self.session_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].type == u'questionnaire'):
             p = self.session_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].hash == q.hash,
-                                                                           self.model_from['ArchivedSchema'].type == u'preview').one()
+                                                                                 self.model_from['ArchivedSchema'].type == u'preview').one()
 
             new_obj = self.model_to['ArchivedSchema']()
             for key in [c.key for c in new_obj.__table__.columns]:

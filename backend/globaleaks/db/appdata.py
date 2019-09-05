@@ -16,7 +16,8 @@ def load_appdata():
 
 
 def db_load_default_questionnaires(session):
-    qfiles = [os.path.join(Settings.questionnaires_path, path) for path in os.listdir(Settings.questionnaires_path)]
+    qfiles = [os.path.join(Settings.questionnaires_path, path)
+              for path in os.listdir(Settings.questionnaires_path)]
     questionnaires = []
     qids = []
 
@@ -24,15 +25,18 @@ def db_load_default_questionnaires(session):
         questionnaires.append(read_json_file(qfile))
         qids.append(questionnaires[-1]['id'])
 
-    session.query(models.Questionnaire).filter(models.Questionnaire.id.in_(qids)).delete(synchronize_session='fetch')
-    session.query(models.Step).filter(models.Step.questionnaire_id.in_(qids)).delete(synchronize_session='fetch')
+    session.query(models.Questionnaire).filter(
+        models.Questionnaire.id.in_(qids)).delete(synchronize_session='fetch')
+    session.query(models.Step).filter(models.Step.questionnaire_id.in_(
+        qids)).delete(synchronize_session='fetch')
 
     for questionnaire in questionnaires:
         db_create_questionnaire(session, 1, questionnaire, None)
 
 
 def db_load_default_fields(session):
-    ffiles = [os.path.join(Settings.questions_path, path) for path in os.listdir(Settings.questions_path)]
+    ffiles = [os.path.join(Settings.questions_path, path)
+              for path in os.listdir(Settings.questions_path)]
     questions = []
     qids = []
 

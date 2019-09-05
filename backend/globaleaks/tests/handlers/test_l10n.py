@@ -6,7 +6,7 @@ from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
 custom_texts = {
-   '12345': '54321'
+    '12345': '54321'
 }
 
 

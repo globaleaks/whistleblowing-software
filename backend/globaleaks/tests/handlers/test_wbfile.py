@@ -5,7 +5,7 @@ from globaleaks.jobs.delivery import Delivery
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
-attachment=b'hello world'
+attachment = b'hello world'
 
 
 class TestWBFileWorkFlow(helpers.TestHandlerWithPopulatedDB):

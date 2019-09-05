@@ -31,7 +31,8 @@ def disable_swap():
     MCL_FUTURE = 2
 
     if libc.mlockall(MCL_CURRENT | MCL_FUTURE):
-        raise Exception("Failure on mlockall: %s" % os.strerror(ctypes.get_errno()))
+        raise Exception("Failure on mlockall: %s" %
+                        os.strerror(ctypes.get_errno()))
 
 
 def SigQUIT(SIG, FRM):

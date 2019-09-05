@@ -97,7 +97,8 @@ def update_db():
                 migration.perform_data_update(db_file_path)
                 return DATABASE_VERSION
 
-            log.err('Performing schema migration from version %d to version %d', db_version, DATABASE_VERSION)
+            log.err('Performing schema migration from version %d to version %d',
+                    db_version, DATABASE_VERSION)
 
             migration.perform_migration(db_version)
 

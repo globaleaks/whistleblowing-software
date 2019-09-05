@@ -57,8 +57,8 @@ def db_update_step(session, tid, step_id, step_dict, language):
     :return: a serialization of the object
     """
     step = models.db_get(session, models.Step, models.Step.id == step_id,
-                                               models.Questionnaire.id == models.Step.questionnaire_id,
-                                               models.Questionnaire.tid == tid)
+                         models.Questionnaire.id == models.Step.questionnaire_id,
+                         models.Questionnaire.tid == tid)
 
     fill_localized_keys(step_dict, models.Step.localized_keys, language)
 
@@ -133,8 +133,8 @@ class StepCollection(OperationHandler):
             'order_elements': (
                 order_elements,
                 {
-                  'questionnaire_id': requests.uuid_regexp,
-                  'ids': [text_type],
+                    'questionnaire_id': requests.uuid_regexp,
+                    'ids': [text_type],
                 }
             )
         }

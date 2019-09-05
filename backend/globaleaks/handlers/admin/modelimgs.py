@@ -7,14 +7,14 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 
 model_map = {
-  'users': models.UserImg,
-  'contexts': models.ContextImg
+    'users': models.UserImg,
+    'contexts': models.ContextImg
 }
 
 
 def db_get_model_img(session, obj_key, obj_id):
     model = model_map[obj_key]
-    img =  session.query(model).filter(model.id == obj_id).one_or_none()
+    img = session.query(model).filter(model.id == obj_id).one_or_none()
     if img is None:
         return ''
 

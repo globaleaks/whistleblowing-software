@@ -443,7 +443,8 @@ class APIResourceWrapper(Resource):
         request.setHeader(b'Server', b'Globaleaks')
 
         if request.client_proto == b'https':
-            request.setHeader(b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains')
+            request.setHeader(b'Strict-Transport-Security',
+                              b'max-age=31536000; includeSubDomains')
 
         if Settings.enable_csp:
             csp = "default-src 'none';" \

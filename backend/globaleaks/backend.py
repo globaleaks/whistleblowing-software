@@ -15,7 +15,7 @@ from globaleaks.db import create_db, init_db, update_db, \
 from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import Settings
 from globaleaks.state import State
-from globaleaks.utils.log import log, openLogFile, logFormatter, logFormatter, LogObserver
+from globaleaks.utils.log import log, openLogFile, logFormatter, LogObserver
 from globaleaks.utils.process import disable_swap
 from globaleaks.utils.sock import listen_tcp_on_sock, listen_tls_on_sock, reserve_port_for_ip
 from globaleaks.utils.utility import fix_file_permissions, drop_privileges
@@ -65,7 +65,8 @@ class Service(service.Service):
         for port in Settings.bind_local_ports:
             http_sock, fail = reserve_port_for_ip('127.0.0.1', port)
             if fail is not None:
-                log.err("Could not reserve socket for %s (error: %s)", fail[0], fail[1])
+                log.err("Could not reserve socket for %s (error: %s)",
+                        fail[0], fail[1])
             else:
                 self.state.http_socks += [http_sock]
 
@@ -73,7 +74,8 @@ class Service(service.Service):
         for port in Settings.bind_remote_ports:
             sock, fail = reserve_port_for_ip(Settings.bind_address, port+mask)
             if fail is not None:
-                log.err("Could not reserve socket for %s (error: %s)", fail[0], fail[1])
+                log.err("Could not reserve socket for %s (error: %s)",
+                        fail[0], fail[1])
                 continue
 
             if port == 80:

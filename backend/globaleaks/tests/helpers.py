@@ -63,7 +63,7 @@ from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_IS
 from globaleaks.utils.log import log
 
 GCE.ALGORITM_CONFIGURATION['KDF']['ARGON2']['OPSLIMIT'] = GCE.ALGORITM_CONFIGURATION['HASH']['ARGON2']['OPSLIMIT'] = 1
-GCE.ALGORITM_CONFIGURATION['HASH']['SCRYPT']['N'] = 1<<1
+GCE.ALGORITM_CONFIGURATION['HASH']['SCRYPT']['N'] = 1 << 1
 
 ################################################################################
 # BEGIN MOCKS NECESSARY FOR DETERMINISTIC ENCRYPTION
@@ -246,30 +246,30 @@ def get_dummy_field():
 def get_dummy_fieldoption_list():
     return [
         {
-          'id': u'beefcafe-beef-cafe-beef-cafebeefcafe',
-          'label': u'Cafe del mare',
-          'presentation_order': 0,
-          'score_points': 100,
-          'score_type': 0,
-          'trigger_field': '',
-          'trigger_step': '',
-          'trigger_receiver': [],
-          'hint1': '',
-          'hint2': '',
-          'block_submission': False
+            'id': u'beefcafe-beef-cafe-beef-cafebeefcafe',
+            'label': u'Cafe del mare',
+            'presentation_order': 0,
+            'score_points': 100,
+            'score_type': 0,
+            'trigger_field': '',
+            'trigger_step': '',
+            'trigger_receiver': [],
+            'hint1': '',
+            'hint2': '',
+            'block_submission': False
         },
         {
-          'id': u'feefbead-feef-bead-feef-feeffeefbead',
-          'label': u'skrilx is here',
-          'presentation_order': 0,
-          'score_points': 97,
-          'score_type': 0,
-          'trigger_field': '',
-          'trigger_step': '',
-          'trigger_receiver': [],
-          'hint1': '',
-          'hint2': '',
-          'block_submission': False
+            'id': u'feefbead-feef-bead-feef-feeffeefbead',
+            'label': u'skrilx is here',
+            'presentation_order': 0,
+            'score_points': 97,
+            'score_type': 0,
+            'trigger_field': '',
+            'trigger_step': '',
+            'trigger_receiver': [],
+            'hint1': '',
+            'hint2': '',
+            'block_submission': False
         }
     ]
 
@@ -628,8 +628,8 @@ class TestGL(unittest.TestCase):
 
     def get_dummy_redirect(self, x=''):
         return {
-          'path1': '/path1-' + str(x),
-          'path2': '/path2-' + str(x)
+            'path1': '/path1-' + str(x),
+            'path2': '/path2-' + str(x)
         }
 
     def emulate_file_upload(self, token, n):

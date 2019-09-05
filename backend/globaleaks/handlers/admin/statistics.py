@@ -50,8 +50,8 @@ def get_stats(session, tid, week_delta):
     upper_bound = iso_to_gregorian(looked_year, looked_week + 1, 1)
 
     hourlyentries = session.query(Stats).filter(Stats.tid == tid,
-                                              Stats.start >= lower_bound,
-                                              Stats.start <= upper_bound)
+                                                Stats.start >= lower_bound,
+                                                Stats.start <= upper_bound)
 
     week_entries = 0
     week_map = [[dict() for i in range(24)] for j in range(7)]
@@ -185,8 +185,8 @@ class JobsTiming(BaseHandler):
 
         for job in State.jobs:
             response.append({
-              'name': job.name,
-              'timings': job.last_executions
+                'name': job.name,
+                'timings': job.last_executions
             })
 
         return response

@@ -12,7 +12,7 @@ from globaleaks.utils.utility import datetime_null
 # List of variables that on creation are set with the value
 # they have on the root tenant
 inherit_from_root_tenant = [
-  'default_questionnaire'
+    'default_questionnaire'
 ]
 
 

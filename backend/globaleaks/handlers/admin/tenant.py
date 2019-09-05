@@ -21,8 +21,8 @@ from globaleaks.utils.log import log
 
 def initialize_submission_statuses(session, tid):
     for s in [{'id': u'new', 'label': {'en': 'New'}},
-              {'id':u'opened', 'label': {'en': 'Opened'}},
-              {'id':u'closed', 'label': {'en': 'Closed'}}]:
+              {'id': u'opened', 'label': {'en': 'Opened'}},
+              {'id': u'closed', 'label': {'en': 'Closed'}}]:
         state = models.SubmissionStatus()
         state.id = s['id']
         state.tid = tid
@@ -78,8 +78,8 @@ def db_initialize(session, tenant, mode):
 
     if mode == 'default':
         file_descs = [
-          (u'logo', 'data/logo.png'),
-          (u'favicon', 'data/favicon.ico')
+            (u'logo', 'data/logo.png'),
+            (u'favicon', 'data/favicon.ico')
         ]
 
         for file_desc in file_descs:

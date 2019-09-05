@@ -72,7 +72,7 @@ class SOCKS5ClientProtocol(ProtocolWrapper):
 
         self._buf = self._buf[8:]
 
-        if len(self._buf):
+        if self._buf:
             self.wrappedProtocol.dataReceived(self._buf)
 
         self._buf = b''

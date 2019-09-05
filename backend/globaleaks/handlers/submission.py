@@ -152,9 +152,9 @@ def db_save_answers_subject_to_stats(session, tid, internaltip_id, entries, stat
             n = 0
             for elem in value:
                 group = models.FieldAnswerGroup({
-                  'fieldanswer_id': field_answer.id,
-                  'number': n,
-                  'tid': tid,
+                    'fieldanswer_id': field_answer.id,
+                    'number': n,
+                    'tid': tid,
                 })
 
                 session.add(group)

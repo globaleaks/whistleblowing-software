@@ -229,7 +229,8 @@ class TokenAuthHandler(BaseHandler):
             Settings.failed_login_attempts += 1
             raise errors.InvalidAuthentication
 
-        connection_check(self.request.client_ip, tid, session.user_role, self.request.client_using_tor)
+        connection_check(self.request.client_ip, tid,
+                         session.user_role, self.request.client_using_tor)
 
         session = Sessions.regenerate(session.id)
 
@@ -254,7 +255,8 @@ class ReceiptAuthHandler(BaseHandler):
     def post(self):
         request = self.validate_message(self.request.content.read(), requests.ReceiptAuthDesc)
 
-        connection_check(self.request.client_ip, self.request.tid, 'whistleblower', self.request.client_using_tor)
+        connection_check(self.request.client_ip, self.request.tid,
+                         'whistleblower', self.request.client_using_tor)
 
         delay = random_login_delay()
         if delay:

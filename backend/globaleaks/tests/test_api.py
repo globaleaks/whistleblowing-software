@@ -35,11 +35,11 @@ class TestAPI(TestGL):
             self.assertTrue('*' not in check_roles or len(check_roles) == 1)
 
             rest = list(filter(lambda a: a not in ['*',
-                                              'unauthenticated',
-                                              'whistleblower',
-                                              'admin',
-                                              'receiver',
-                                              'custodian'], check_roles))
+                                                   'unauthenticated',
+                                                   'whistleblower',
+                                                   'admin',
+                                                   'receiver',
+                                                   'custodian'], check_roles))
             self.assertTrue(len(rest) == 0)
 
     def test_get_with_no_language_header(self):
@@ -56,17 +56,17 @@ class TestAPI(TestGL):
 
     def test_get_with_gl_language_header_and_accept_language_header_1(self):
         request = forge_request(headers={'GL-Language': 'en',
-                                'Accept-Language': 'en-US,en;q=0.8,it;q=0.6'})
+                                         'Accept-Language': 'en-US,en;q=0.8,it;q=0.6'})
         self.assertEqual(self.api.detect_language(request), 'en')
 
     def test_get_with_gl_language_header_and_accept_language_header_2(self):
         request = forge_request(headers={'GL-Language': 'antani',
-                                'Accept-Language': 'en-US,en;it;q=0.6'})
+                                         'Accept-Language': 'en-US,en;it;q=0.6'})
         self.assertEqual(self.api.detect_language(request), 'en')
 
     def test_get_with_gl_language_header_and_accept_language_header_3(self):
         request = forge_request(headers={'GL-Language': 'antani',
-                                'Accept-Language': 'antani1,antani2;q=0.8,antani3;q=0.6'})
+                                         'Accept-Language': 'antani1,antani2;q=0.8,antani3;q=0.6'})
         self.assertEqual(self.api.detect_language(request), 'en')
 
     def test_status_codes_assigned(self):
@@ -81,17 +81,17 @@ class TestAPI(TestGL):
         ]
 
         server_headers = [
-           ('Cache-control', 'no-cache, no-store, must-revalidate'),
-           ('Content-Language', 'en'),
-           ('Content-Security-Policy', 'default-src \'none\';script-src \'self\';connect-src \'self\';style-src \'self\' data:;img-src \'self\' data:;font-src \'self\' data:;frame-ancestors \'none\';'),
-           ('Expires', '-1'),
-           ('Pragma', 'no-cache'),
-           ('Referrer-Policy', 'no-referrer'),
-           ('Server', 'Globaleaks'),
-           ('X-Content-Type-Options', 'nosniff'),
-           ('X-Check-Tor', 'False'),
-           ('X-Frame-Options', 'deny'),
-           ('X-XSS-Protection', '1; mode=block'),
+            ('Cache-control', 'no-cache, no-store, must-revalidate'),
+            ('Content-Language', 'en'),
+            ('Content-Security-Policy', 'default-src \'none\';script-src \'self\';connect-src \'self\';style-src \'self\' data:;img-src \'self\' data:;font-src \'self\' data:;frame-ancestors \'none\';'),
+            ('Expires', '-1'),
+            ('Pragma', 'no-cache'),
+            ('Referrer-Policy', 'no-referrer'),
+            ('Server', 'Globaleaks'),
+            ('X-Content-Type-Options', 'nosniff'),
+            ('X-Check-Tor', 'False'),
+            ('X-Frame-Options', 'deny'),
+            ('X-XSS-Protection', '1; mode=block'),
         ]
 
         for method, status_code in test_cases:

@@ -249,6 +249,7 @@ class UserInstance(BaseHandler):
                                     request,
                                     self.request.language)
 
+
 @transact
 def get_recovery_key(session, user_tid, user_id, user_cc):
     user = db_get_user(session, user_tid, user_id)

@@ -15,58 +15,58 @@ from globaleaks.models.config_desc import ConfigL10NFilters
 from globaleaks.utils.sets import merge_dicts
 
 
-key_regexp                        = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$'
-key_regexp_or_empty               = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$|^$'
-uuid_regexp                       = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
-uuid_regexp_or_empty              = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$|^$'
-user_role_regexp                  = r'^(admin|custodian|receiver)$'
-user_state_regexp                 = r'^(enabled|disabled)$'
-email_regexp                      = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$'
-email_regexp_or_empty             = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$|^$'
-hostname_regexp                   = r'^[0-9a-z\-\.]+$'
-hostname_regexp_or_empty          = r'^[0-9a-z\-\.]+$|^$'
-subdomain_regexp                  = r'^[0-9a-z]+$'
-subdomain_regexp_or_empty         = r'^[0-9a-z]+$|^$'
-https_url_regexp                  = r'^https://([0-9a-z\-]+)\.(.*)$'
-https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
-landing_page_regexp               = r'^(homepage|submissionpage)$'
-context_selector_type_regexp      = r'^(list|cards|search)$'
-tip_operation_regexp              = r'^(postpone|set)$'
-short_text_regexp                 = r'^.{1,255}$'
+key_regexp = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$'
+key_regexp_or_empty = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$|^$'
+uuid_regexp = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
+uuid_regexp_or_empty = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$|^$'
+user_role_regexp = r'^(admin|custodian|receiver)$'
+user_state_regexp = r'^(enabled|disabled)$'
+email_regexp = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$'
+email_regexp_or_empty = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$|^$'
+hostname_regexp = r'^[0-9a-z\-\.]+$'
+hostname_regexp_or_empty = r'^[0-9a-z\-\.]+$|^$'
+subdomain_regexp = r'^[0-9a-z]+$'
+subdomain_regexp_or_empty = r'^[0-9a-z]+$|^$'
+https_url_regexp = r'^https://([0-9a-z\-]+)\.(.*)$'
+https_url_regexp_or_empty = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
+landing_page_regexp = r'^(homepage|submissionpage)$'
+context_selector_type_regexp = r'^(list|cards|search)$'
+tip_operation_regexp = r'^(postpone|set)$'
+short_text_regexp = r'^.{1,255}$'
 
-token_regexp                      = r'([a-zA-Z0-9]{42})'
-token_type_regexp                 = r'^submission$'
+token_regexp = r'([a-zA-Z0-9]{42})'
+token_type_regexp = r'^submission$'
 
-field_instance_regexp             = (r'^('
-                                     'instance|'
-                                     'reference|'
-                                     'template)$')
+field_instance_regexp = (r'^('
+                         'instance|'
+                         'reference|'
+                         'template)$')
 
-field_type_regexp                 = (r'^('
-                                     'inputbox|'
-                                     'textarea|'
-                                     'selectbox|'
-                                     'multichoice|'
-                                     'checkbox|'
-                                     'tos|'
-                                     'fileupload|'
-                                     'number|'
-                                     'email|'
-                                     'date|'
-                                     'daterange|'
-                                     'map|'
-                                     'fieldgroup)$')
+field_type_regexp = (r'^('
+                     'inputbox|'
+                     'textarea|'
+                     'selectbox|'
+                     'multichoice|'
+                     'checkbox|'
+                     'tos|'
+                     'fileupload|'
+                     'number|'
+                     'email|'
+                     'date|'
+                     'daterange|'
+                     'map|'
+                     'fieldgroup)$')
 
-field_attr_type_regexp            = (r'^('
-                                     'int|'
-                                     'bool|'
-                                     'unicode|'
-                                     'localized)$')
+field_attr_type_regexp = (r'^('
+                          'int|'
+                          'bool|'
+                          'unicode|'
+                          'localized)$')
 
-identityaccessreply_regexp        = (r'^('
-                                     'pending|'
-                                     'authorized|'
-                                     'denied)$')
+identityaccessreply_regexp = (r'^('
+                              'pending|'
+                              'authorized|'
+                              'denied)$')
 
 
 class SkipSpecificValidation:
@@ -187,8 +187,8 @@ CommentDesc = {
 }
 
 OpsDesc = {
-  'operation': text_type,
-  'args': dict,
+    'operation': text_type,
+    'args': dict,
 }
 
 TipOpsDesc = {
@@ -452,12 +452,12 @@ AdminTLSCfgFileResourceDesc = {
 AdminCSRFileDesc = {
     'name': short_text_regexp,
     'content': {
-      'country': r'[A-Za-z]{2}',
-      'province': short_text_regexp,
-      'city': short_text_regexp,
-      'company': short_text_regexp,
-      'department': short_text_regexp,
-      'email': email_regexp
+        'country': r'[A-Za-z]{2}',
+        'province': short_text_regexp,
+        'city': short_text_regexp,
+        'company': short_text_regexp,
+        'department': short_text_regexp,
+        'email': email_regexp
     }
 }
 

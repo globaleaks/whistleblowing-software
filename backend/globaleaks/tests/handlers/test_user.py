@@ -116,7 +116,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
 
         response = yield handler.get()
 
-        email= "change1@test.com"
+        email = "change1@test.com"
         response['mail_address'] = email
         handler = self.request(response, user_id=self.rcvr_id, role='receiver')
         response = yield handler.put()
@@ -124,7 +124,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertNotEqual(response['mail_address'], email)
         self.assertEqual(response['change_email_address'], email)
 
-        email="change2@test.com"
+        email = "change2@test.com"
         response['mail_address'] = email
         handler = self.request(response, user_id=self.rcvr_id, role='receiver')
         response = yield handler.put()

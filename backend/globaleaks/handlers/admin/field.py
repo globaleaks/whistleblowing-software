@@ -204,15 +204,15 @@ def db_update_field(session, tid, field_id, field_dict, language):
     else:
         # partial update
         field.update({
-          'label': field_dict['label'],
-          'hint': field_dict['hint'],
-          'description': field_dict['description'],
-          'placeholder': field_dict['placeholder'],
-          'template_override_id': field_dict['template_override_id'],
-          'x': field_dict['x'],
-          'y': field_dict['y'],
-          'width': field_dict['width'],
-          'required': field_dict['required']
+            'label': field_dict['label'],
+            'hint': field_dict['hint'],
+            'description': field_dict['description'],
+            'placeholder': field_dict['placeholder'],
+            'template_override_id': field_dict['template_override_id'],
+            'x': field_dict['x'],
+            'y': field_dict['y'],
+            'width': field_dict['width'],
+            'required': field_dict['required']
         })
 
     return field

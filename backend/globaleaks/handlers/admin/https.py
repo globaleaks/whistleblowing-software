@@ -303,9 +303,9 @@ def serialize_https_config_summary(session, tid):
         file_summaries[key] = file_res_cls.db_serialize(session, tid)
 
     return {
-      'enabled': config.get_val(u'https_enabled'),
-      'files': file_summaries,
-      'acme': config.get_val(u'acme')
+        'enabled': config.get_val(u'https_enabled'),
+        'files': file_summaries,
+        'acme': config.get_val(u'acme')
     }
 
 
@@ -380,13 +380,14 @@ class CSRFileHandler(FileHandler):
 
         desc = request['content']
         csr_fields = {
-                'C': desc['country'].upper(),
-                'ST': desc['province'],
-                'L': desc['city'],
-                'O': desc['company'],
-                'OU': desc['department'],
-                'CN': State.tenant_cache[self.request.tid].hostname,
-                'emailAddress': desc['email'],  # TODO use current admin user mail
+            'C': desc['country'].upper(),
+            'ST': desc['province'],
+            'L': desc['city'],
+            'O': desc['company'],
+            'OU': desc['department'],
+            'CN': State.tenant_cache[self.request.tid].hostname,
+            # TODO use current admin user mail
+            'emailAddress': desc['email'],
         }
 
         csr_txt = yield self.perform_action(self.request.tid, csr_fields)

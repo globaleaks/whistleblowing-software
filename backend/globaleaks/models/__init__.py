@@ -1379,137 +1379,182 @@ class _WhistleblowerTip(Model):
     @declared_attr
     def __table_args__(self):
         return (UniqueConstraint('tid', 'receipt_hash'),
-                ForeignKeyConstraint(['id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['id'], [
+                                     'internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
 
-class Anomalies(_Anomalies, Base): pass
+class Anomalies(_Anomalies, Base):
+    pass
 
 
-class ArchivedSchema(_ArchivedSchema, Base): pass
+class ArchivedSchema(_ArchivedSchema, Base):
+    pass
 
 
-class AuditLog(_AuditLog, Base): pass
+class AuditLog(_AuditLog, Base):
+    pass
 
 
-class Backup(_Backup, Base): pass
+class Backup(_Backup, Base):
+    pass
 
 
-class Comment(_Comment, Base): pass
+class Comment(_Comment, Base):
+    pass
 
 
-class Config(_Config, Base): pass
+class Config(_Config, Base):
+    pass
 
 
-class ConfigL10N(_ConfigL10N, Base): pass
+class ConfigL10N(_ConfigL10N, Base):
+    pass
 
 
-class Context(_Context, Base): pass
+class Context(_Context, Base):
+    pass
 
 
-class ContextImg(_ContextImg, Base): pass
+class ContextImg(_ContextImg, Base):
+    pass
 
 
-class CustomTexts(_CustomTexts, Base): pass
+class CustomTexts(_CustomTexts, Base):
+    pass
 
 
-class EnabledLanguage(_EnabledLanguage, Base): pass
+class EnabledLanguage(_EnabledLanguage, Base):
+    pass
 
 
-class Field(_Field, Base): pass
+class Field(_Field, Base):
+    pass
 
 
-class FieldAttr(_FieldAttr, Base): pass
+class FieldAttr(_FieldAttr, Base):
+    pass
 
 
-class FieldAnswer(_FieldAnswer, Base): pass
+class FieldAnswer(_FieldAnswer, Base):
+    pass
 
 
-class FieldAnswerGroup(_FieldAnswerGroup, Base): pass
+class FieldAnswerGroup(_FieldAnswerGroup, Base):
+    pass
 
 
-class FieldOption(_FieldOption, Base): pass
+class FieldOption(_FieldOption, Base):
+    pass
 
 
-class FieldOptionTriggerField(_FieldOptionTriggerField, Base): pass
+class FieldOptionTriggerField(_FieldOptionTriggerField, Base):
+    pass
 
 
-class FieldOptionTriggerStep(_FieldOptionTriggerStep, Base): pass
+class FieldOptionTriggerStep(_FieldOptionTriggerStep, Base):
+    pass
 
 
-class File(_File, Base): pass
+class File(_File, Base):
+    pass
 
 
-class IdentityAccessRequest(_IdentityAccessRequest, Base): pass
+class IdentityAccessRequest(_IdentityAccessRequest, Base):
+    pass
 
 
-class InternalFile(_InternalFile, Base): pass
+class InternalFile(_InternalFile, Base):
+    pass
 
 
-class InternalTip(_InternalTip, Base): pass
+class InternalTip(_InternalTip, Base):
+    pass
 
 
-class InternalTipAnswers(_InternalTipAnswers, Base): pass
+class InternalTipAnswers(_InternalTipAnswers, Base):
+    pass
 
 
-class InternalTipData(_InternalTipData, Base): pass
+class InternalTipData(_InternalTipData, Base):
+    pass
 
 
-class Mail(_Mail, Base): pass
+class Mail(_Mail, Base):
+    pass
 
 
-class Message(_Message, Base): pass
+class Message(_Message, Base):
+    pass
 
 
-class Questionnaire(_Questionnaire, Base): pass
+class Questionnaire(_Questionnaire, Base):
+    pass
 
 
-class ReceiverContext(_ReceiverContext, Base): pass
+class ReceiverContext(_ReceiverContext, Base):
+    pass
 
 
-class ReceiverFile(_ReceiverFile, Base): pass
+class ReceiverFile(_ReceiverFile, Base):
+    pass
 
 
-class ReceiverTip(_ReceiverTip, Base): pass
+class ReceiverTip(_ReceiverTip, Base):
+    pass
 
 
-class SecureFileDelete(_SecureFileDelete, Base): pass
+class SecureFileDelete(_SecureFileDelete, Base):
+    pass
 
 
-class Redirect(_Redirect, Base): pass
+class Redirect(_Redirect, Base):
+    pass
 
 
-class Signup(_Signup, Base): pass
+class Signup(_Signup, Base):
+    pass
 
 
-class SubmissionStatus(_SubmissionStatus, Base): pass
+class SubmissionStatus(_SubmissionStatus, Base):
+    pass
 
 
-class SubmissionSubStatus(_SubmissionSubStatus, Base): pass
+class SubmissionSubStatus(_SubmissionSubStatus, Base):
+    pass
 
 
-class SubmissionStatusChange(_SubmissionStatusChange, Base): pass
+class SubmissionStatusChange(_SubmissionStatusChange, Base):
+    pass
 
 
-class Stats(_Stats, Base): pass
+class Stats(_Stats, Base):
+    pass
 
 
-class Step(_Step, Base): pass
+class Step(_Step, Base):
+    pass
 
 
-class Tenant(_Tenant, Base): pass
+class Tenant(_Tenant, Base):
+    pass
 
 
-class User(_User, Base): pass
+class User(_User, Base):
+    pass
 
 
-class UserImg(_UserImg, Base): pass
+class UserImg(_UserImg, Base):
+    pass
 
 
-class UserTenant(_UserTenant, Base): pass
+class UserTenant(_UserTenant, Base):
+    pass
 
 
-class WhistleblowerFile(_WhistleblowerFile, Base): pass
+class WhistleblowerFile(_WhistleblowerFile, Base):
+    pass
 
 
-class WhistleblowerTip(_WhistleblowerTip, Base): pass
+class WhistleblowerTip(_WhistleblowerTip, Base):
+    pass

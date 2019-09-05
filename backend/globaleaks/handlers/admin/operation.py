@@ -58,7 +58,6 @@ def reset_submissions(session, tid):
         db_delete_itip(session, itip)
 
 
-
 class AdminOperationHandler(OperationHandler):
     """
     This interface exposes the enable to configure and verify the platform hostname

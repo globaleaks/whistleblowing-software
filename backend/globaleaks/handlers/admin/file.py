@@ -66,7 +66,7 @@ def get_file(session, tid, id):
 
 
 class FileInstance(BaseHandler):
-    check_roles =  {'admin', 'receiver', 'custodian'}
+    check_roles = {'admin', 'receiver', 'custodian'}
     invalidate_cache = True
     upload_handler = True
 
@@ -109,7 +109,7 @@ class FileInstance(BaseHandler):
 
 
 class FileCollection(BaseHandler):
-    check_roles =  {'admin', 'receiver', 'custodian'}
+    check_roles = {'admin', 'receiver', 'custodian'}
 
     def get(self):
         """

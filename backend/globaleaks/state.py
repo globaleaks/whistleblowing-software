@@ -114,7 +114,8 @@ class StateClass(ObjectDict):
         try:
             os.mkdir(path)
         except OSError as excep:
-            log.debug("Error in creating directory: %s (%s)", path, excep.strerror)
+            log.debug("Error in creating directory: %s (%s)",
+                      path, excep.strerror)
             raise excep
 
         return True

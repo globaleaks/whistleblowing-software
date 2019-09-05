@@ -70,12 +70,12 @@ class Cleaning(DailyJob):
             user_desc = user_serialize_user(session, user, user.language)
 
             data = {
-               'type': u'tip_expiration_summary',
-               'node': db_admin_serialize_node(session, tid, user.language),
-               'notification': db_get_notification(session, tid, user.language),
-               'user': user_desc,
-               'expiring_submission_count': expiring_submission_count,
-               'earliest_expiration_date': datetime_to_ISO8601(earliest_expiration_date)
+                'type': u'tip_expiration_summary',
+                'node': db_admin_serialize_node(session, tid, user.language),
+                'notification': db_get_notification(session, tid, user.language),
+                'user': user_desc,
+                'expiring_submission_count': expiring_submission_count,
+                'earliest_expiration_date': datetime_to_ISO8601(earliest_expiration_date)
             }
 
             subject, body = Templating().get_mail_subject_and_body(data)

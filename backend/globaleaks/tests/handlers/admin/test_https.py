@@ -166,12 +166,12 @@ class TestCSRHandler(helpers.TestHandler):
         State.tenant_cache[1].hostname = 'notreal.ns.com'
 
         d = {
-           'country': 'it',
-           'province': 'regione',
-           'city': 'citta',
-           'company': 'azienda',
-           'department': 'reparto',
-           'email': 'indrizzio@email',
+            'country': 'it',
+            'province': 'regione',
+            'city': 'citta',
+            'company': 'azienda',
+            'department': 'reparto',
+            'email': 'indrizzio@email',
         }
 
         body = {'name': 'csr', 'content': d}

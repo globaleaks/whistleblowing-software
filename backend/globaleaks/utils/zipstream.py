@@ -16,7 +16,7 @@ from six import text_type
 
 __all__ = ["ZipStream"]
 
-ZIP64_LIMIT= (1 << 31) - 1
+ZIP64_LIMIT = (1 << 31) - 1
 ZIP_DEFLATED = 8
 
 # Here are some struct module formats for reading headers
@@ -28,7 +28,8 @@ structFileHeader = b"<4s2B4HlLL2H"  # 12 items, file header record, 30 bytes
 stringFileHeader = b"PK\003\004"   # magic number for file header
 structEndArchive64Locator = b"<4slql"  # 4 items, locate Zip64 header, 20 bytes
 stringEndArchive64Locator = b"PK\x06\x07"  # magic token for locator header
-structEndArchive64 = b"<4sqhhllqqqq"  # 10 items, end of archive (Zip64), 56 bytes
+# 10 items, end of archive (Zip64), 56 bytes
+structEndArchive64 = b"<4sqhhllqqqq"
 stringEndArchive64 = b"PK\x06\x06"  # magic token for Zip64 header
 stringDataDescriptor = b"PK\x07\x08"  # magic number for data descriptor
 
@@ -130,10 +131,10 @@ class ZipInfo(object):
         filename, flag_bits = self._encodeFilenameFlags()
 
         header = struct.pack(structFileHeader, stringFileHeader,
-                 self.extract_version, self.reserved, flag_bits,
-                 self.compress_type, dostime, dosdate, CRC,
-                 compress_size, file_size,
-                 len(filename), len(extra))
+                             self.extract_version, self.reserved, flag_bits,
+                             self.compress_type, dostime, dosdate, CRC,
+                             compress_size, file_size,
+                             len(filename), len(extra))
 
         return header + filename + extra
 

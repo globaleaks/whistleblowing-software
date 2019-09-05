@@ -352,14 +352,14 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
 
 
 class CommentKeyword(TipKeyword):
-    data_keys =  TipKeyword.data_keys + ['comment']
+    data_keys = TipKeyword.data_keys + ['comment']
 
     def EventTime(self):
         return ISO8601_to_pretty_str(self.data['comment']['creation_date'])
 
 
 class MessageKeyword(TipKeyword):
-    data_keys =  TipKeyword.data_keys + ['message']
+    data_keys = TipKeyword.data_keys + ['message']
 
     def EventTime(self):
         return ISO8601_to_pretty_str(self.data['message']['creation_date'])
@@ -367,7 +367,7 @@ class MessageKeyword(TipKeyword):
 
 class FileKeyword(TipKeyword):
     keyword_list = TipKeyword.keyword_list + file_keywords
-    data_keys =  TipKeyword.data_keys + ['file']
+    data_keys = TipKeyword.data_keys + ['file']
 
     def FileName(self):
         return self.data['file']['name']
@@ -381,7 +381,7 @@ class FileKeyword(TipKeyword):
 
 class ExportMessageKeyword(TipKeyword):
     keyword_list = TipKeyword.keyword_list + export_message_keywords
-    data_keys =  TipKeyword.data_keys + ['message']
+    data_keys = TipKeyword.data_keys + ['message']
 
     def Author(self):
         return self.data['message']['author']
@@ -409,7 +409,7 @@ class ExpirationSummaryKeyword(UserNodeKeyword):
 
 class AdminPGPAlertKeyword(UserNodeKeyword):
     keyword_list = UserNodeKeyword.keyword_list + admin_pgp_alert_keywords
-    data_keys =  UserNodeKeyword.data_keys + ['users']
+    data_keys = UserNodeKeyword.data_keys + ['users']
 
     def PGPKeyInfoList(self):
         ret = ''
@@ -435,7 +435,7 @@ class PGPAlertKeyword(UserNodeKeyword):
 
 class AnomalyKeyword(UserNodeKeyword):
     keyword_list = UserNodeKeyword.keyword_list + admin_anomaly_keywords
-    data_keys =  UserNodeKeyword.data_keys + ['alert']
+    data_keys = UserNodeKeyword.data_keys + ['alert']
 
     def AnomalyDetailDisk(self):
         # This happens all the time anomalies are present but disk is ok
@@ -644,7 +644,7 @@ class PasswordResetComplete(UserNodeKeyword):
 
 class IdentityAccessRequestKeyword(UserNodeKeyword):
     keyword_list = UserNodeKeyword.keyword_list + identity_access_request_keywords
-    data_keys =  UserNodeKeyword.data_keys + ['iar', 'tip', 'user']
+    data_keys = UserNodeKeyword.data_keys + ['iar', 'tip', 'user']
 
     def TipNum(self):
         return str(self.data['tip']['progressive'])

@@ -83,14 +83,12 @@ if parse_version(nacl.__version__) >= parse_version('1.2'):
                             opslimit=GCE.ALGORITM_CONFIGURATION['KDF']['ARGON2']['OPSLIMIT'],
                             memlimit=GCE.ALGORITM_CONFIGURATION['KDF']['ARGON2']['MEMLIMIT'])
 
-
     def _hash_argon2(password, salt):
         salt = base64.b64decode(salt)
         hash = argon2id.kdf(32, password, salt[0:16],
                             opslimit=GCE.ALGORITM_CONFIGURATION['HASH']['ARGON2']['OPSLIMIT'],
                             memlimit=GCE.ALGORITM_CONFIGURATION['HASH']['ARGON2']['MEMLIMIT'])
         return base64.b64encode(hash).decode('utf-8')
-
 
     class _StreamingEncryptionObject(object):
         def __init__(self, mode, user_key, filepath):

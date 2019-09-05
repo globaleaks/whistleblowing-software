@@ -63,7 +63,8 @@ def db_update_questionnaire(session, questionnaire, request, language):
 
 
 def db_create_questionnaire(session, tid, questionnaire_dict, language):
-    fill_localized_keys(questionnaire_dict, models.Questionnaire.localized_keys, language)
+    fill_localized_keys(questionnaire_dict,
+                        models.Questionnaire.localized_keys, language)
 
     questionnaire_dict['tid'] = tid
     q = models.db_forge_obj(session, models.Questionnaire, questionnaire_dict)

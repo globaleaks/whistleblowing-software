@@ -75,7 +75,8 @@ def receiver_serialize_rfile(session, rfile):
 
 
 def receiver_serialize_wbfile(session, wbfile):
-    rtip = models.db_get(session, models.ReceiverTip, models.ReceiverTip.id == wbfile.receivertip_id)
+    rtip = models.db_get(session, models.ReceiverTip,
+                         models.ReceiverTip.id == wbfile.receivertip_id)
 
     return {
         'id': wbfile.id,
@@ -311,7 +312,8 @@ def delete_rtip(session, tid, user_id, rtip_id):
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    receiver = models.db_get(session, models.User, models.User.id == rtip.receiver_id)
+    receiver = models.db_get(session, models.User,
+                             models.User.id == rtip.receiver_id)
 
     if not (State.tenant_cache[tid].can_delete_submission or
             receiver.can_delete_submission):
@@ -324,7 +326,8 @@ def delete_rtip(session, tid, user_id, rtip_id):
 def postpone_expiration_date(session, tid, user_id, rtip_id):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    receiver = models.db_get(session, models.User, models.User.id == rtip.receiver_id)
+    receiver = models.db_get(session, models.User,
+                             models.User.id == rtip.receiver_id)
 
     if not (State.tenant_cache[tid].can_postpone_expiration or
             receiver.can_postpone_expiration):
@@ -337,7 +340,8 @@ def postpone_expiration_date(session, tid, user_id, rtip_id):
 def set_internaltip_variable(session, tid, user_id, rtip_id, key, value):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    receiver = models.db_get(session, models.User, models.User.id == rtip.receiver_id)
+    receiver = models.db_get(session, models.User,
+                             models.User.id == rtip.receiver_id)
 
     if not (State.tenant_cache[tid].can_grant_permissions or
             receiver.can_grant_permissions):
@@ -578,7 +582,8 @@ class WhistleblowerFileHandler(BaseHandler):
 
         yield register_wbfile_on_db(self.request.tid, tip_id, self.uploaded_file)
 
-        log.debug("Recorded new WhistleblowerFile %s", self.uploaded_file['name'])
+        log.debug("Recorded new WhistleblowerFile %s",
+                  self.uploaded_file['name'])
 
 
 class WBFileHandler(BaseHandler):

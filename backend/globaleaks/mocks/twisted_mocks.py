@@ -10,8 +10,10 @@ from twisted.web.http import HTTPChannel, HTTPFactory, Request
 HTTPFactory__init__orig = HTTPFactory.__init__
 Request__write__orig = Request.write
 
+
 def mock_log(*args, **kw):
     pass
+
 
 def mock_Request_gotLength(self, length):
     self.content = StringIO()
