@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*
+import pyotp
+
 from six import text_type
 from twisted.internet.defer import inlineCallbacks
 
@@ -170,3 +172,67 @@ class TestUserGetRecoveryKey(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(data_request, role='receiver')
 
         return handler.put()
+
+
+class TestUser2FAEnrollment(helpers.TestHandlerWithPopulatedDB):
+    _handler = user.UserOperationHandler
+
+    @inlineCallbacks
+    def test_2fa(self):
+        # Disable 2FA even if already disabled
+        data_request = {
+            'operation': 'disable_2fa',
+            'args': {}
+        }
+
+        handler = self.request(data_request, role='receiver')
+
+        yield handler.put()
+
+        # Start enrollment for @FA
+        data_request = {
+            'operation': 'enable_2fa_step1',
+            'args': {}
+        }
+
+        handler = self.request(data_request, role='receiver')
+
+        totp_secret = yield handler.put()
+
+        # Attempt enrolling for 2FA with an invalid token
+        data_request = {
+            'operation': 'enable_2fa_step2',
+            'args': {
+                'value': 'invalid_token'
+            }
+        }
+
+        handler = self.request(data_request, role='receiver')
+
+        self.assertFailure(handler.put(), errors.InvalidAuthentication)
+
+        # Attempt enrolling for 2FA with a valid token
+        current_token = pyotp.TOTP(totp_secret).now()
+
+        data_request = {
+            'operation': 'enable_2fa_step2',
+            'args': {
+                'value': current_token
+            }
+        }
+
+        handler = self.request(data_request, role='receiver')
+
+        yield handler.put()
+
+        # Disable an enrolled 2FA
+        current_token = pyotp.TOTP(totp_secret).now()
+
+        data_request = {
+            'operation': 'disable_2fa',
+            'args': {}
+        }
+
+        handler = self.request(data_request, role='receiver')
+
+        yield handler.put()
