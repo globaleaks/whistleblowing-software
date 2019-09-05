@@ -3,6 +3,7 @@ from globaleaks.models import Model
 from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_now, datetime_null
 
+
 class Field_v_50(Model):
     __tablename__ = 'field'
     id = Column((UnicodeText(36)), primary_key=True, default=uuid4)

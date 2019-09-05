@@ -153,7 +153,7 @@ class Model(object):
     def __init__(self, values=None, migrate=False):
         self.update(values)
 
-        self.properties =  [c.key for c in self.__table__.columns]
+        self.properties = [c.key for c in self.__table__.columns]
 
     def update(self, values=None):
         """
@@ -374,7 +374,7 @@ class _ConfigL10N(Model):
     def set_v(self, value):
         value = text_type(value)
         if self.value != value:
-            if self.value != None:
+            if self.value is None:
                 self.update_date = datetime_now()
 
             self.value = value
@@ -412,7 +412,7 @@ class _Context(Model):
     score_threshold_medium = Column(Integer, default=0, nullable=False)
     score_receipt_text_custom = Column(Boolean, default=False, nullable=False)
     score_receipt_text_l = Column(JSON, default=dict, nullable=False)
-    score_receipt_text_m = Column(JSON, default=dict , nullable=False)
+    score_receipt_text_m = Column(JSON, default=dict, nullable=False)
     score_receipt_text_h = Column(JSON, default=dict, nullable=False)
     score_threshold_receipt = Column(Integer, default=0, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
@@ -422,7 +422,7 @@ class _Context(Model):
     # status: 0(disabled), 1(enabled), 2(hidden)
     status = Column(Integer, default=2, nullable=False)
 
-    #TODO: this field is not used and could be removed in the next db migration
+    # TODO: this field is not used and could be removed in the next db migration
     enable_scoring_system = Column(Boolean, default=False, nullable=False)
 
     unicode_keys = ['questionnaire_id', 'additional_questionnaire_id']
@@ -438,30 +438,30 @@ class _Context(Model):
     ]
 
     int_keys = [
-      'status',
-      'tip_timetolive',
-      'maximum_selectable_receivers',
-      'presentation_order',
-      'score_threshold_high',
-      'score_threshold_medium',
-      'score_threshold_receipt'
+        'status',
+        'tip_timetolive',
+        'maximum_selectable_receivers',
+        'presentation_order',
+        'score_threshold_high',
+        'score_threshold_medium',
+        'score_threshold_receipt'
     ]
 
     bool_keys = [
-      'select_all_receivers',
-      'show_small_receiver_cards',
-      'show_context',
-      'show_recipients_details',
-      'show_receivers_in_alphabetical_order',
-      'show_steps_navigation_interface',
-      'allow_recipients_selection',
-      'enable_comments',
-      'enable_messages',
-      'enable_two_way_comments',
-      'enable_two_way_messages',
-      'enable_attachments',
-      'enable_rc_to_wb_files',
-      'score_receipt_text_custom'
+        'select_all_receivers',
+        'show_small_receiver_cards',
+        'show_context',
+        'show_recipients_details',
+        'show_receivers_in_alphabetical_order',
+        'show_steps_navigation_interface',
+        'allow_recipients_selection',
+        'enable_comments',
+        'enable_messages',
+        'enable_two_way_comments',
+        'enable_two_way_messages',
+        'enable_attachments',
+        'enable_rc_to_wb_files',
+        'score_receipt_text_custom'
     ]
 
     list_keys = ['receivers']
@@ -1045,7 +1045,8 @@ class _Signup(Model):
     unicode_keys = ['subdomain', 'language', 'name', 'surname', 'role', 'phone', 'email',
                     'use_case', 'use_case_other',
                     'organization_name', 'organization_type', 'organization_site',
-                    'organization_location1', 'organization_location2', 'organization_location3', 'organization_location4',
+                    'organization_location1', 'organization_location2', 'organization_location3',
+                    'organization_location4',
                     'organization_number_employees', 'organization_number_users',
                     'hear_channel',
                     'client_ip_address', 'client_user_agent',

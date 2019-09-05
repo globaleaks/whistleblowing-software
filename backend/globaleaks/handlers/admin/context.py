@@ -94,6 +94,7 @@ def db_associate_context_receivers(session, tid, context, receiver_ids):
                                             'receiver_id': receiver_id,
                                             'presentation_order': i}))
 
+
 @transact
 def get_context(session, tid, context_id, language):
     """

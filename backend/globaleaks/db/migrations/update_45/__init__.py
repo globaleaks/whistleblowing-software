@@ -190,8 +190,9 @@ class MigrationScript(MigrationBase):
                 ret[answer.key] = answer.value
             else:
                 for group in groups_by_answer.get(answer.id, []):
-                    ret[answer.key] = [self.db_serialize_questionnaire_answers_recursively(session, answers_by_group.get(group.id, []),
-                                                                        answers_by_group, groups_by_answer)]
+                    ret[answer.key] = [
+                        self.db_serialize_questionnaire_answers_recursively(session, answers_by_group.get(group.id, []),
+                                                                            answers_by_group, groups_by_answer)]
         return ret
 
     def db_serialize_questionnaire_answers(self, session, tid, internaltip):

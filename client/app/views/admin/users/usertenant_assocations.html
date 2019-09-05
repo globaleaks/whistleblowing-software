@@ -20,14 +20,13 @@
     </div>
   </div>
   <ol class="selectionList" data-ng-if="user.usertenant_assocations">
-    <li data-ng-repeat="association in user.usertenant_assocations | orderBy:'tenant_id'"">
+    <li data-ng-repeat="association in user.usertenant_assocations | orderBy:'tenant_id'">
       <span data-ng-controller="AdminUserTenantAssociationEditorCtrl">
         <span class="action-btns" data-ng-if="association.tenant_id == user.tid">
             <i class="fa fa-adjust"></i>
         </span>
         <span class="action-btns" data-ng-if="association.tenant_id != user.tid" data-ng-click="deleteUserTenantAssociation(association)" uib-popover="{{'Remove' | translate}}">
           <i class="fa fa-times"></i>
-        </span>
         </span>
         <span data-ng-class="{'font-weight-bold': association.tenant_id == user.tid}"><span>{{tenants_by_id[association.tenant_id].id}}: {{tenants_by_id[association.tenant_id].label}}</span><span data-ng-if="association.tenant_id == user.tid"> (<span data-translate>main</span>)</span></span>
       </span>

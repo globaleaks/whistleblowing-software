@@ -19,7 +19,6 @@ from pkg_resources import parse_version
 
 from six import text_type
 
-
 if parse_version(nacl.__version__) >= parse_version('1.2'):
     from nacl.encoding import RawEncoder, Base32Encoder
     from nacl.pwhash import argon2id  # pylint: disable=no-name-in-module
@@ -84,12 +83,14 @@ if parse_version(nacl.__version__) >= parse_version('1.2'):
                             opslimit=GCE.ALGORITM_CONFIGURATION['KDF']['ARGON2']['OPSLIMIT'],
                             memlimit=GCE.ALGORITM_CONFIGURATION['KDF']['ARGON2']['MEMLIMIT'])
 
+
     def _hash_argon2(password, salt):
         salt = base64.b64decode(salt)
         hash = argon2id.kdf(32, password, salt[0:16],
                             opslimit=GCE.ALGORITM_CONFIGURATION['HASH']['ARGON2']['OPSLIMIT'],
                             memlimit=GCE.ALGORITM_CONFIGURATION['HASH']['ARGON2']['MEMLIMIT'])
         return base64.b64encode(hash).decode('utf-8')
+
 
     class _StreamingEncryptionObject(object):
         def __init__(self, mode, user_key, filepath):
@@ -101,7 +102,7 @@ if parse_version(nacl.__version__) >= parse_version('1.2'):
 
             self.index = 0
 
-            if self.mode =='ENCRYPT':
+            if self.mode == 'ENCRYPT':
                 self.fd = open(filepath, 'wb')
                 self.key = nacl_random(32)
                 self.partial_nonce = nacl_random(16)

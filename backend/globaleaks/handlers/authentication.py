@@ -52,11 +52,11 @@ def random_login_delay():
 
 def connection_check(client_ip, tid, role, client_using_tor):
     ip_filter = State.tenant_cache[tid]['ip_filter'].get(role)
-    if (ip_filter and not check_ip(client_ip, ip_filter)):
+    if ip_filter and not check_ip(client_ip, ip_filter):
         raise errors.AccessLocationInvalid
 
     https_allowed = State.tenant_cache[tid]['https_allowed'].get(role)
-    if (not https_allowed and not client_using_tor):
+    if not https_allowed and not client_using_tor:
         raise errors.TorNetworkRequired
 
 
@@ -297,7 +297,8 @@ class TenantAuthSwitchHandler(BaseHandler):
         tid = int(tid)
         check = yield check_tenant_auth_switch(self.current_user, tid)
         if check:
-            session = Sessions.new(tid, self.current_user.user_id, self.current_user.user_tid, self.current_user.user_role, self.current_user.pcn, self.current_user.cc)
+            session = Sessions.new(tid, self.current_user.user_id, self.current_user.user_tid,
+                                   self.current_user.user_role, self.current_user.pcn, self.current_user.cc)
 
         returnValue({
             'redirect': '/t/%d/#/login?token=%s' % (tid, session.id)

@@ -3,7 +3,7 @@
   <div class="col-md-9" data-ng-controller="AdminAdvancedCtrl" novalidate>
     <uib-tabset>
       <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}">
-        <form name="advancedForm" class="tab-content" data-ng-include="tab.template"></div>
+        <form name="advancedForm" class="tab-content" data-ng-include="tab.template"></form>
       </uib-tab>
     </uib-tabset>
   </div>

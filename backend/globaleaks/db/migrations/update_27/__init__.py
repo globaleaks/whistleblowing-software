@@ -142,7 +142,7 @@ class Notification_v_26(Model):
     send_email_for_every_event = Column(Boolean)
     tip_expiration_threshold = Column(Integer)
     notification_threshold_per_hour = Column(Integer)
-    notification_suspension_time=Column(Integer)
+    notification_suspension_time = Column(Integer)
     exception_email_address = Column(UnicodeText)
     exception_email_pgp_key_info = Column(UnicodeText)
     exception_email_pgp_key_fingerprint = Column(UnicodeText)

@@ -57,9 +57,8 @@
              data-ng-attr-placeholder="Email" data-disable-ccp type="text"
              data-ng-class="{'is-invalid': validated && signup.email !== confirmation_email}"
              required>
-        <div class="text-danger" data-ng-show="validated && signupForm.mail_address.$valid && signup.email !== confirmation_email">
-          <span data-translate>Invalid confirmation</span>
-        </div>
+      <div class="text-danger" data-ng-show="validated && signupForm.mail_address.$valid && signup.email !== confirmation_email">
+        <span data-translate>Invalid confirmation</span>
       </div>
     </div>
   </div>

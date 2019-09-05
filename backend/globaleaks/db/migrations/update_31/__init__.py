@@ -185,7 +185,7 @@ class Notification_v_30(Model):
     send_email_for_every_event = Column(Boolean)
     tip_expiration_threshold = Column(Integer)
     notification_threshold_per_hour = Column(Integer)
-    notification_suspension_time=Column(Integer)
+    notification_suspension_time = Column(Integer)
     exception_email_address = Column(UnicodeText)
     exception_email_pgp_key_info = Column(UnicodeText)
     exception_email_pgp_key_fingerprint = Column(UnicodeText)
@@ -264,7 +264,7 @@ class MigrationScript(MigrationBase):
                     if not os.path.exists(img_path):
                         continue
 
-                    picture =  self.model_to['File']()
+                    picture = self.model_to['File']()
                     with open(img_path, 'r') as img_file:
                         picture.data = base64.b64encode(img_file.read()).decode()
 

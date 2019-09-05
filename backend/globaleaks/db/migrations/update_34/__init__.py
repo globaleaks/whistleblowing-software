@@ -160,7 +160,7 @@ class Notification_v_33(models.Model):
     send_email_for_every_event = Column(Boolean, default=True)
     tip_expiration_threshold = Column(Integer, default=72)
     notification_threshold_per_hour = Column(Integer, default=20)
-    notification_suspension_time=Column(Integer, default=(2 * 3600))
+    notification_suspension_time = Column(Integer, default=(2 * 3600))
     exception_email_address = Column(UnicodeText, default=u'globaleaks-stackexception@lists.globaleaks.org')
     exception_email_pgp_key_fingerprint = Column(UnicodeText, default=u'')
     exception_email_pgp_key_public = Column(UnicodeText, default=u'')

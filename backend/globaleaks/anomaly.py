@@ -30,13 +30,13 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes):
 
     def info_msg_0():
         return "free_disk_megabytes <= %d or free_disk_percentage <= %d" % \
-            (State.tenant_cache[1].threshold_free_disk_megabytes_high,
-             State.tenant_cache[1].threshold_free_disk_percentage_high)
+               (State.tenant_cache[1].threshold_free_disk_megabytes_high,
+                State.tenant_cache[1].threshold_free_disk_percentage_high)
 
     def info_msg_1():
         return "free_disk_megabytes <= %d or free_disk_percentage <= %d" % \
-            (State.tenant_cache[1].threshold_free_disk_megabytes_low,
-             State.tenant_cache[1].threshold_free_disk_percentage_low)
+               (State.tenant_cache[1].threshold_free_disk_megabytes_low,
+                State.tenant_cache[1].threshold_free_disk_percentage_low)
 
     # list of bad conditions ordered starting from the worst case scenario
     return [
@@ -142,7 +142,7 @@ class Alarm(object):
         if previous_activity_sl != self.alarm_levels['activity']:
             log_function("Alarm level changed from %d => %d" %
                          (previous_activity_sl,
-                         self.alarm_levels['activity']))
+                          self.alarm_levels['activity']))
 
         if State.tenant_cache[1].notification.disable_admin_notification_emails:
             return

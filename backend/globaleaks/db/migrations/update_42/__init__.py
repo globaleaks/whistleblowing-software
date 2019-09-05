@@ -99,7 +99,7 @@ class MigrationScript(MigrationBase):
             new_obj = self.model_to['InternalTip']()
             for key in [c.key for c in new_obj.__table__.columns]:
                 new_obj.status = 'antani!'
-                if key == 'status' or key =='substatus':
+                if key == 'status' or key == 'substatus':
                     pass
                 elif key in [c.key for c in old_obj.__table__.columns]:
                     setattr(new_obj, key, getattr(old_obj, key))

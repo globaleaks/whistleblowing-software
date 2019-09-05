@@ -13,7 +13,7 @@ def db_fix_tip_data(session):
 def db_fix_users(session):
     items = session.query(User).filter(func.length(User.password) == 47)
     for item in items:
-        if(item.password[0] == 'b' and item.password[1] == '\'' and item.password[len(item.password) - 1] == '\''):
+        if item.password[0] == 'b' and item.password[1] == '\'' and item.password[len(item.password) - 1] == '\'':
             item.password = item.password[2: -1]
 
 def db_fix(session):

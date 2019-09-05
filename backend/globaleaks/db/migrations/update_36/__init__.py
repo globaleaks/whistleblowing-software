@@ -13,7 +13,7 @@ class MigrationScript(MigrationBase):
         def add_raw_config(session, group, name, customized, value):
             c = config(migrate=True)
             c.var_group = group
-            c.var_name =  name
+            c.var_name = name
             c.customixed = customized
             c.value = {'v': value}
             session.add(c)

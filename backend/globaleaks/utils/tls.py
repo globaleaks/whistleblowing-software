@@ -241,7 +241,7 @@ class PrivKeyValidator(CtxValidator):
 
         # Note that the empty string here prevents valid PKCS8 encrypted
         # keys from being used instead of plain pem keys.
-        priv_key = load_privatekey(FILETYPE_PEM, raw_str, passphrase=b"")
+        load_privatekey(FILETYPE_PEM, raw_str, passphrase=b"")
 
 
 class CertValidator(CtxValidator):

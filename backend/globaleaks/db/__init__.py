@@ -22,7 +22,6 @@ from globaleaks.utils.log import log
 from globaleaks.utils.objectdict import ObjectDict
 
 
-
 def load_tls_dict(session, tid):
     """
     A quick and dirty function to grab all of the tls config for use in subprocesses

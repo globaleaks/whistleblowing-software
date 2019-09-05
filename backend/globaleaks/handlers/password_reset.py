@@ -33,7 +33,7 @@ def validate_password_reset(session, tid, reset_token, recovery_key):
     if user.crypto_prv_key:
         try:
             recovery_key = recovery_key.replace('-', '').upper() + '===='
-            recovery_key = Base32Encoder().decode((recovery_key).encode('utf-8'))
+            recovery_key = Base32Encoder().decode(recovery_key.encode('utf-8'))
             prv_key = GCE.symmetric_decrypt(recovery_key, user.crypto_bkp_key)
         except:
             return {'status': 'invalid_recovery_key_provided'}

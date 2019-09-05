@@ -53,7 +53,7 @@ class Token(object):
     def use(self):
         try:
             self.timedelta_check()
-        except Exception as e:
+        except Exception:
             # Unrecoverable failures so immediately delete the token.
             self.tokenlist.delete(self.id)
             raise
@@ -92,7 +92,7 @@ class TokenList(TempDict):
                 path = os.path.abspath(os.path.join(self.file_path, f['filename']))
                 if os.path.exists(path):
                     os.remove(path)
-            except Exception as e:
+            except Exception:
                 pass
 
     def get(self, key):

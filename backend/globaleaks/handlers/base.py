@@ -69,8 +69,8 @@ class BaseHandler(object):
                 auth_type, data = self.request.headers[b"authorization"].split()
                 usr, pwd = text_type(base64.b64decode(data), 'utf-8').split(":", 1)
                 if auth_type != b"Basic" or \
-                    usr != self.state.tenant_cache[self.request.tid].basic_auth_username or \
-                    pwd != self.state.tenant_cache[self.request.tid].basic_auth_password:
+                        usr != self.state.tenant_cache[self.request.tid].basic_auth_username or \
+                        pwd != self.state.tenant_cache[self.request.tid].basic_auth_password:
                     msg = "Authentication failed"
             except AssertionError:
                 msg = "Authentication failed"
@@ -219,7 +219,7 @@ class BaseHandler(object):
         elif isinstance(message_template, list):
             if not all(BaseHandler.validate_type(x, message_template[0]) for x in jmessage):
                 raise errors.InputValidationError("Not every element in %s is %s" %
-                                                (jmessage, message_template[0]))
+                                                  (jmessage, message_template[0]))
             return True
 
         else:

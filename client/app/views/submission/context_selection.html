@@ -13,7 +13,7 @@
   </div>
   <div data-ng-switch-when="cards">
     <div id="ContextSelectionBox" class="contextCards row">
-      <div id="contextClarification" data-ng-if="node.contexts_clarification">{{node.contexts_clarification}}</div>
+      <div class="contextClarification" data-ng-if="node.contexts_clarification">{{node.contexts_clarification}}</div>
       <div data-ng-repeat="context in selectable_contexts | orderBy:contextsOrderPredicate" id="context-{{$index}}" data-ng-class="{'col-md-6': !node.show_small_context_cards, 'col-md-3': node.show_small_context_cards}" data-ng-click="selectContext(context)">
         <div class="contextCard">
           <div class="contextCardTitle row">
