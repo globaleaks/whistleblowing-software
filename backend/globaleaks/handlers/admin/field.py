@@ -61,7 +61,6 @@ def db_update_fieldoptions(session, field_id, options, language):
 
 
 def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
-    print(attr_dict)
     attr_dict['name'] = attr_name
     attr_dict['field_id'] = field_id
 
