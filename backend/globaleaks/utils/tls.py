@@ -18,16 +18,17 @@ from twisted.internet import ssl
 #OpenSSL mocks
 SSL.OP_SINGLE_ECDH_USE = 0x00080000
 SSL.OP_NO_RENEGOTIATION = 0x40000000
+SSL.OP_PRIORITIZE_CHACHA = 0x00200000
 
 TLS_CIPHER_LIST = b'TLS13-AES-256-GCM-SHA384:' \
-                  b'TLS13-CHACHA20-POLY1305-SHA256:' \
                   b'TLS13-AES-128-GCM-SHA256:' \
+                  b'TLS13-CHACHA20-POLY1305-SHA256:' \
                   b'ECDHE-ECDSA-AES256-GCM-SHA384:' \
                   b'ECDHE-RSA-AES256-GCM-SHA384:' \
-                  b'ECDHE-ECDSA-CHACHA20-POLY1305:' \
-                  b'ECDHE-RSA-CHACHA20-POLY1305:' \
                   b'ECDHE-ECDSA-AES128-GCM-SHA256:' \
                   b'ECDHE-RSA-AES128-GCM-SHA256:' \
+                  b'ECDHE-ECDSA-CHACHA20-POLY1305:' \
+                  b'ECDHE-RSA-CHACHA20-POLY1305:' \
                   b'ECDHE-ECDSA-AES256-SHA384:' \
                   b'ECDHE-RSA-AES256-SHA384'
 
@@ -129,8 +130,7 @@ def new_tls_server_context():
                     SSL.OP_NO_SSLv3 |
                     SSL.OP_SINGLE_ECDH_USE |
                     SSL.OP_NO_COMPRESSION |
-                    SSL.OP_NO_TICKET |
-                    SSL.OP_NO_RENEGOTIATION |
+                    SSL.OP_PRIORITIZE_CHACHA |
                     SSL.OP_CIPHER_SERVER_PREFERENCE)
 
     ctx.set_mode(SSL.MODE_RELEASE_BUFFERS)
