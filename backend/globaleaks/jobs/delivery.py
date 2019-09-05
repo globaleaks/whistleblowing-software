@@ -131,7 +131,7 @@ def process_receiverfiles(state, receiverfiles_maps):
     @param receiverfiles_maps: the mapping of ifile/rfiles to be created on filesystem
     @return: return None
     """
-    for id, receiverfiles_map in receiverfiles_maps.items():
+    for _, receiverfiles_map in receiverfiles_maps.items():
         key = receiverfiles_map['crypto_tip_pub_key']
         filename = receiverfiles_map['filename']
         filecode = filename.split('.')[0]
@@ -181,7 +181,7 @@ def process_whistleblowerfiles(state, whistleblowerfiles_maps):
     @param whistleblowerfiles_maps: descriptos of whistleblower files to be processed
     @return: return None
     """
-    for id, whistleblowerfiles_map in whistleblowerfiles_maps.items():
+    for _, whistleblowerfiles_map in whistleblowerfiles_maps.items():
         key = whistleblowerfiles_map['crypto_tip_pub_key']
         filename = whistleblowerfiles_map['filename']
         filecode = filename.split('.')[0]
