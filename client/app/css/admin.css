@@ -81,10 +81,6 @@ text.axis-worktime {
   width: 87ch;
 }
 
-.default-language, .non-default-language {
-  color: #337ab7;
-}
-
 .non-default-language, .disabled-icon {
   opacity: 0.2;
 }
