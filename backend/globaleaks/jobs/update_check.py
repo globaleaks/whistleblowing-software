@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from debian import deb822
-from distutils.version import LooseVersion as V  # pylint: disable=no-name-in-module,import-error
+from pkg_resources import parse_version
 from six import text_type
 from twisted.internet.defer import inlineCallbacks
 
@@ -24,12 +24,12 @@ def evaluate_update_notification(session, state, latest_version):
 
     stored_latest = priv_fact.get_val(u'latest_version')
 
-    if V(stored_latest) < V(latest_version):
+    if parse_version(stored_latest) < parse_version(latest_version):
         Cache.invalidate()
 
         priv_fact.set_val(u'latest_version', latest_version)
 
-        if V(__version__) == V(latest_version):
+        if parse_version(__version__) == parse_version(latest_version):
             return
 
         for user_desc in db_get_admin_users(session, 1):
@@ -57,7 +57,7 @@ class UpdateCheck(HourlyJob):
         packages_file = yield self.fetch_packages_file()
         packages_file = text_type(packages_file, 'utf-8')
         versions = [p['Version'] for p in deb822.Deb822.iter_paragraphs(packages_file) if p['Package'] == 'globaleaks']
-        versions.sort(key=V)
+        versions.sort(key=parse_version)
 
         latest_version = versions[-1]
 

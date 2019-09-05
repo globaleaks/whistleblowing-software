@@ -20,9 +20,6 @@ import six
 
 from datetime import timedelta
 
-# pylint: disable=no-name-in-module
-from distutils import dir_util
-
 from six import text_type, binary_type
 from six.moves.urllib.parse import urlsplit  # pylint: disable=import-error
 
@@ -168,7 +165,7 @@ def init_state():
     Settings.eval_paths()
 
     if os.path.exists(Settings.working_path):
-        dir_util.remove_tree(Settings.working_path, 0)
+        shutil.rmtree(Settings.working_path)
 
     orm.set_thread_pool(FakeThreadPool())
 

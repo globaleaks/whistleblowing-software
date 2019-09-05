@@ -2,7 +2,7 @@
 # Implements configuration of Tor hidden service
 import os
 
-from distutils.version import LooseVersion  # pylint: disable=no-name-in-module,import-error
+from pkg_resources import parse_version
 
 from txtorcon import build_local_tor_connection
 from twisted.internet import reactor, defer
@@ -184,7 +184,7 @@ class OnionService(Service):
             try:
                 version = yield self.tor_conn.protocol.queue_command("GETINFO version")
                 version = version.split('=')[1]
-                if LooseVersion(version) < LooseVersion('0.3.3.9'):
+                if parse_version(version) < parse_version('0.3.3.9'):
                     self.onion_service_version = 2
             except:
                 pass

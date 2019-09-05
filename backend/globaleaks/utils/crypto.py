@@ -6,24 +6,26 @@ import random
 import string
 import struct
 
-from distutils.version import LooseVersion as V  # pylint: disable=no-name-in-module,import-error
-
 # python-scrypt is still used because not all the versions of pynacl/cryptography includes it
 # this library could be replaced later on in the project
 import scrypt
 
 import nacl
-if V(nacl.__version__) >= V('1.2'):
+
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives import constant_time, hashes
+
+from pkg_resources import parse_version
+
+from six import text_type
+
+
+if parse_version(nacl.__version__) >= parse_version('1.2'):
     from nacl.encoding import RawEncoder, Base32Encoder
     from nacl.pwhash import argon2id  # pylint: disable=no-name-in-module
     from nacl.public import SealedBox, PrivateKey, PublicKey  # pylint: disable=no-name-in-module
     from nacl.secret import SecretBox
     from nacl.utils import random as nacl_random
-
-from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives import constant_time, hashes
-
-from six import text_type
 
 
 crypto_backend = default_backend()
@@ -75,7 +77,7 @@ def _hash_scrypt(password, salt):
     return binascii.hexlify(scrypt.hash(password, salt, N=GCE.ALGORITM_CONFIGURATION['HASH']['SCRYPT']['N'])).decode('utf-8')
 
 
-if V(nacl.__version__) >= V('1.2'):
+if parse_version(nacl.__version__) >= parse_version('1.2'):
     def _kdf_argon2(password, salt):
         salt = base64.b64decode(salt)
         return argon2id.kdf(32, password, salt[0:16],
@@ -167,7 +169,7 @@ if V(nacl.__version__) >= V('1.2'):
 
 class GCE(object):
     # Warning: KDF options by design should be greater than HASH options
-    ENCRYPTION_AVAILABLE = V(nacl.__version__) >= V('1.2')
+    ENCRYPTION_AVAILABLE = parse_version(nacl.__version__) >= parse_version('1.2')
     ALGORITM_CONFIGURATION = {
         'KDF': {
             'ARGON2': {
@@ -193,7 +195,7 @@ class GCE(object):
     }
 
     HASH = 'ARGON2'
-    if V(nacl.__version__) >= V('1.2'):
+    if parse_version(nacl.__version__) >= parse_version('1.2'):
         KDF_FUNCTIONS['ARGON2'] = _kdf_argon2
         HASH_FUNCTIONS['ARGON2'] = _hash_argon2
     else:
@@ -239,7 +241,7 @@ class GCE(object):
 
         return constant_time.bytes_eq(x, hash)
 
-    if V(nacl.__version__) >= V('1.2'):
+    if parse_version(nacl.__version__) >= parse_version('1.2'):
         @staticmethod
         def generate_key():
             """
