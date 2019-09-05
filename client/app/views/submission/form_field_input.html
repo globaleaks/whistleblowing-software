@@ -4,7 +4,7 @@
       <div data-ng-include="'views/submission/fields/whistleblower_identity.html'"></div>
     </div>
     <div data-ng-switch-default data-ng-switch="field.type">
-      <div data-ng-switch-when="textarea" data-ng-class="{'has-danger': f['input-' + entryIndex].$invalid}" data-ng-model-options="{'debounce':250}">
+      <div data-ng-switch-when="textarea" data-ng-model-options="{'debounce':250}">
         <textarea id="{{::fieldEntry}}"
                   data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : 4096"
                   name="input-{{::entryIndex}}"
@@ -24,30 +24,30 @@
           <span data-ng-if="f['input-' + entryIndex].$error.minlength" data-translate>The answer is too short.</span>
         </div>
       </div>
-      <div data-ng-switch-when="selectbox" data-ng-class="{'has-danger': entry.required_status}">
+      <div data-ng-switch-when="selectbox">
         <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="custom-select inputelem" data-ng-model="entry['value']" data-ng-required="entry.required_status">
           <option class="d-none" value=""></option>
           <option data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'presentation_order'" id="{{::fieldEntry}}-option-{{::$index}}" value="{{option.id}}">{{::option.label}}</option>
         </select>
       </div>
-      <div data-ng-switch-when="multichoice" data-ng-class="{'has-danger': entry.required_status}">
-        <div data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}" class="custom-control custom-radio">
-          <input class="custom-control-input inputelem" type="radio" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
-          <span uib-popover="{{option.hint1}}" class="custom-control-label" data-ng-class="{'underline': option.hint1}">{{::option.label}}</span>
+      <div data-ng-switch-when="multichoice">
+        <div data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}">
+          <input class="form-control-input inputelem" type="radio" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
+          <span uib-popover="{{option.hint1}}" class="form-control-label" data-ng-class="{'underline': option.hint1}">{{::option.label}}</span>
         </div>
       </div>
-      <div data-ng-switch-when="checkbox" data-ng-class="{'has-danger': entry.required_status}">
-        <div data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'presentation_order'" class="custom-control custom-checkbox">
+      <div data-ng-switch-when="checkbox">
+        <div data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'presentation_order'">
           <input id="{{::fieldEntry}}"
                  name="{{'input-' + $parent.entryIndex + '-option-' + entryIndex}}"
-                 class="custom-control-input inputelem"
+                 class="form-control-input inputelem"
                  data-ng-model="entry[option.id]"
                  data-ng-required="entry.required_status"
                  type="checkbox" />
-          <span uib-popover="{{option.hint1}}" class="custom-control-label" data-ng-class="{'underline': option.hint1}">{{::option.label}}</span>
+          <span uib-popover="{{option.hint1}}" class="form-control-label" data-ng-class="{'underline': option.hint1}">{{::option.label}}</span>
         </div>
       </div>
-      <div data-ng-switch-when="date" data-ng-class="{'has-danger': entry.required_status}">
+      <div data-ng-switch-when="date">
         <div class="input-group">
           <input id="{{::fieldEntry}}"
                  name="input-{{entryIndex}}"
@@ -66,7 +66,7 @@
           <span class="input-group-append" data-ng-click="open()"><i class="input-group-text fa fa-calendar"></i></span>
         </div>
       </div>
-      <div data-ng-switch-when="daterange" data-ng-class="{'has-danger': entry.required_status}">
+      <div data-ng-switch-when="daterange">
         <span class="form-group form-inline">
           <label data-translate>From</label>
           <div class="input-group">
@@ -118,17 +118,15 @@
         <div data-ng-if="field.attrs.attachment.value">
           <a href="{{field.attrs.attachment_url.value}}" target="_blank" rel="noreferrer noopener">{{field.attrs.attachment_text.value}}</a>
         </div>
-        <div class="form-check" data-ng-class="{'has-danger': entry.required_status}">
-          <label>
-            <input id="{{::fieldEntry}}"
-                   name="input-{{entryIndex}}"
-                   class="form-check-input inputelem"
-                   data-ng-model="entry['value']"
-                   data-ng-required="entry.required_status"
-                   value="{{field.value}}"
-                   type="checkbox" />
-            <span class="form-check-label">{{field.attrs.checkbox_label.value}}</span>
-          </label>
+        <div class="form-check">
+          <input id="{{::fieldEntry}}"
+                 name="input-{{entryIndex}}"
+                 class="form-check-input inputelem"
+                 data-ng-model="entry['value']"
+                 data-ng-required="entry.required_status"
+                 value="{{field.value}}"
+                 type="checkbox" />
+          <span class="form-check-label">{{field.attrs.checkbox_label.value}}</span>
         </div>
       </div>
       <div data-ng-switch-when="map">
@@ -161,7 +159,7 @@
         </div>
         <div data-ng-include="'views/submission/form.html'"></div>
       </div>
-      <div data-ng-switch-default data-ng-class="{'has-danger': entry.required_status}" data-ng-model-options="{'debounce':250}">
+      <div data-ng-switch-default data-ng-model-options="{'debounce':250}">
         <input id="{{::fieldEntry}}"
                name="input-{{entryIndex}}"
                class="form-control inputelem"
@@ -194,9 +192,9 @@
   </div>
   <div data-ng-if="field.type !== 'inputbox' && field.type !== 'textarea' && entry.required_status && displayErrors()" class="float-left red" data-translate>This field is mandatory.</div>
   <div data-ng-if="field.type === 'selectbox'" data-ng-repeat="option in field.options">
-    <div data-ng-show="option.set && option.hint1"><i class="fa fa-info-sign"></i> {{option.hint1}}</div>
+    <div data-ng-show="option.set && option.hint1"><i class="fa fa-primary-sign"></i> {{option.hint1}}</div>
   </div>
   <div data-ng-repeat="option in field.options">
-    <div data-ng-show="option.set && option.hint2" data-ng-class="{'red': option.block_submission}"><i class="fa fa-info-sign"></i> {{option.hint2}}</div>
+    <div data-ng-show="option.set && option.hint2" data-ng-class="{'red': option.block_submission}"><i class="fa fa-primary-sign"></i> {{option.hint2}}</div>
   </div>
 </div>

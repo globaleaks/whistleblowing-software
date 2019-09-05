@@ -416,6 +416,10 @@ label.file-upload {
   padding-left: 2em;
 }
 
+.nav, .pagination, .carousel, .card-title a {
+  cursor: pointer;
+}
+
 html[dir] .card {
   margin-bottom: 1em;
 }

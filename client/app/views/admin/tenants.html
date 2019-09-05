@@ -130,7 +130,7 @@
               <div class="col-md-6">
                 <div class="editorHeaderTitle">
                   <div>
-                    <span class="badge badge.badge-pill badge-info">{{tenant.id}}</span>
+                    <span class="badge badge-secondary">{{tenant.id}}</span>
                     <span>{{tenant.id === 1 ? admin.node.name : tenant.label}}</span>
                   </div>
                   <div data-ng-if="tenant.active && (tenant.onionservice || (tenant.id == 1 && tenant.hostname) || (tenant.id > 1 && (tenant.subdomain || admin.node.rootdomain)))">

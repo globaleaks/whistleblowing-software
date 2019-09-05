@@ -24,7 +24,7 @@
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       <div>
         <select name="role" class="custom-select" data-ng-model="signup.role" required>
-          <option value=""></option>
+          <option value="" selected="selected"></option>
           <option value="option1">Direttore generale</option>
           <option value="option2">Responsabile ICT</option>
           <option value="option3">Responsabile internal audit</option>
@@ -76,7 +76,7 @@
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       <div>
         <select name="hear_channel" class="custom-select" data-ng-model="signup.hear_channel" required>
-          <option value=""></option>
+          <option value="" selected="selected"></option>
           <option value="option1">Convegno di settore</option>
           <option value="option2">Media</option>
           <option value="option3">Motori di ricerca</option>
@@ -104,7 +104,7 @@
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       <div>
         <select name="organization_type" class="custom-select" data-ng-model="signup.organization_type" required>
-          <option value=""></option>
+          <option value="" selected="selected"></option>
           <option value="L10">Agenzie ed enti per il turismo</option>
           <option value="L19">Agenzie ed enti regionali del lavoro</option>
           <option value="L13">Agenzie ed enti regionali di sviluppo agricolo</option>
@@ -182,7 +182,7 @@
       <div>
         <select name="organization_location2" class="custom-select" data-ng-model="signup.organization_location2" required>
           <option value="" selected="selected"></option>
-          <option data-ng-repeat="x in data_countries_italy_regions" value="{{x.nome}}">{{x.id}}</option>
+          <option data-ng-repeat="x in data_countries_italy_regions" value="{{x.id}}">{{x.nome}}</option>
         </select>
       </div>
     </div>
@@ -192,7 +192,7 @@
       <div>
         <select name="organization_location3" class="custom-select" data-ng-model="signup.organization_location3" data-ng-disabled="!signup.organization_location2" required>
           <option value="" selected="selected"></option>
-          <option data-ng-repeat="x in data_countries_italy_provinces | filter:{'id_regione': signup.organization_location2}:true" value="{{x.nome}}">{{x.id}}</option>
+          <option data-ng-repeat="x in data_countries_italy_provinces | filter:{'id_regione': signup.organization_location2}:true" value="{{x.id}}">{{x.nome}}</option>
         </select>
       </div>
     </div>
@@ -202,7 +202,7 @@
       <div>
         <select name="organization_location4" class="custom-select" data-ng-model="signup.organization_location4" data-ng-disabled="!signup.organization_location3" required>
           <option value="" selected="selected"></option>
-          <option data-ng-repeat="x in data_countries_italy_cities | filter:{'id_provincia': signup.organization_location3}:true" value="{{x.nome}}">{{x.id}}</option>
+          <option data-ng-repeat="x in data_countries_italy_cities | filter:{'id_provincia': signup.organization_location3}:true" value="{{x.id}}">{{x.nome}}</option>
           <option value=""></option>
         </select>
       </div>
@@ -215,7 +215,7 @@
       <div class="row">
         <div class="col-md-6">
           <select name="organization_number_employees" class="custom-select" data-ng-model="signup.organization_number_employees" required>
-            <option value=""></option>
+            <option value="" selected="selected"></option>
             <option value="option1">0-15</option>
             <option value="option2">15 - 100</option>
             <option value="option3">100 - 1.000</option>

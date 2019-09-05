@@ -31,7 +31,7 @@
     </div>
     <div id="SubmissionComments" data-ng-if="tip.comments.length > 0" data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true">
       <div id="comment-{{$index}}" data-ng-switch="" on="comment.type">
-        <div data-ng-switch-when="whistleblower" class="alert alert-info">
+        <div data-ng-switch-when="whistleblower" class="alert alert-primary">
           <div class="row">
             <div class="col-md-6">
               <div class="WbNameInMessages" data-translate>Whistleblower</div>

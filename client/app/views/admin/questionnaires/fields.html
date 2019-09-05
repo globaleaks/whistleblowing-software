@@ -6,12 +6,12 @@
         <div class="row">
           <span class="col-md-6">
             <span>{{field.label}}</span>
-            <span class="fieldIndex badge badge-default label-as-badge badge-secondary" data-ng-if="field.step_id !== '' || field.fieldgroup_id !== ''">
+            <span class="fieldIndex badge badge-default" data-ng-if="field.step_id !== '' || field.fieldgroup_id !== ''">
               <span data-translate>Row</span><span>: {{field.y}}</span>
               <span data-translate>Column</span><span>: {{field.x}}</span>
               <span data-translate>Width</span><span>: {{field.width}}</span>
             </span>
-            <span class="fieldType badge badge-primary label-as-badge badge-secondary">
+            <span class="fieldType badge badge-primary">
               <span data-translate>Type</span><span>:</span>
               <span data-ng-switch="" on="field.type">
                 <span data-ng-switch-when="inputbox" data-translate>Single-line text input</span>
@@ -28,16 +28,16 @@
                 <span data-ng-switch-default="default">{{field.type}}</span>
               </span>
             </span>
-            <span data-ng-if="field.preview" class="badge alert-info">
+            <span data-ng-if="field.preview" class="badge badge-default">
               <span uib-popover="{{'Preview' | translate}}" popover-placement="top"><i class="fa fa-list-alt"></i></span>
             </span>
-            <span data-ng-if="field.multi_entry" class="badge alert-warning">
+            <span data-ng-if="field.multi_entry" class="badge badge-warning">
               <span data-ng-switch="" on="field.type">
                 <span data-ng-switch-when="fileupload" uib-popover="{{'Accept multiple file uploads' | translate}}" popover-placement="top"><i class="fa fa-option-horizontal"></i></span>
                 <span data-ng-switch-default uib-popover="{{'Accept multiple answers for the field' | translate}}" popover-placement="top"><i class="fa fa-option-horizontal"></i></span>
               </span>
             </span>
-            <span data-ng-if="field.required" class="badge alert-danger">
+            <span data-ng-if="field.required" class="badge badge-danger">
               <span uib-popover="{{'Required' | translate}}" popover-placement="top"><i class="fa fa-asterisk"></i></span>
             </span>
           </span>

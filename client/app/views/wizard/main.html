@@ -1,5 +1,5 @@
 <form name="wizardForm" novalidate>
-  <div data-ng-show="step == 1">
+  <div data-ng-show="step == 1" data-ng-form="wizardFormStep1">
     <div class="row wizard-block">
       <div class="col-md-12">
         <div class="title1" data-translate>Welcome!</div>
@@ -7,13 +7,13 @@
       </div>
     </div>
     <div class="pager float-right">
-      <button class="ButtonNext btn btn-primary" data-ng-click="step=step+1">
+      <button class="ButtonNext btn btn-primary" data-ng-click="step = 2">
         <span data-translate>Next</span>
         <i class="fa fa-arrow-circle-right"></i>
       </button>
     </div>
   </div>
-  <div data-ng-show="step == 2" data-ng-form="wizardFormStep2">
+  <div data-ng-show="step == 2" data-ng-form="wizardFormStep2" data-ng-class="{'was-validated': validated2}">
     <div class="row wizard-block">
       <div class="col-md-6">
         <div class="row form-group">
@@ -21,24 +21,24 @@
             <span data-translate>Project name</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-danger': wizardFormStep2.node_name.$error.required}">
+          <div class="col-md-8">
             <input name="node_name" class="form-control" data-ng-model="wizard.node_name" data-ng-attr-placeholder="{{'Project name' | translate}}" type="text" required>
           </div>
         </div>
       </div>
     </div>
     <div class="pager float-right">
-      <button class="ButtonPrevious btn btn-primary" data-ng-click="step=step-1">
+      <button class="ButtonPrevious btn btn-primary" data-ng-click="step = 1">
         <i class="fa fa-arrow-circle-left"></i>
         <span data-translate>Previous</span>
       </button>
-      <button class="ButtonNext btn btn-primary" data-ng-click="step=step+1" data-ng-disabled="wizardFormStep2.$invalid">
+      <button class="ButtonNext btn btn-primary" data-ng-click="(validated2 = true) && !wizardFormStep2.$invalid && (step = 4)">
         <span data-translate>Next</span>
         <i class="fa fa-arrow-circle-right"></i>
       </button>
     </div>
   </div>
-  <div data-ng-show="step == 'DISABLED'">
+  <div data-ng-show="step == 3" data-ng-form="wizardFormStep3" data-ng-class="{'was-validated': validated3}">
     <div class="row wizard-block">
       <div class="title" data-translate>Please choose a configuration profile:</div>
       <div class="col-md-6">
@@ -51,17 +51,17 @@
       </div>
     </div>
     <div class="pager float-right">
-      <button class="ButtonPrevious btn btn-primary" data-ng-click="step=step-1">
+      <button class="ButtonPrevious btn btn-primary" data-ng-click="step = 2">
         <i class="fa fa-arrow-circle-left"></i>
         <span data-translate>Previous</span>
       </button>
-      <button class="ButtonNext btn btn-primary" data-ng-click="step=step+1">
+      <button class="ButtonNext btn btn-primary" data-ng-click="(validated3 = true) && !wizardFormStep3.$invalid && (step = 5)">
         <span data-translate>Next</span>
         <i class="fa fa-arrow-circle-right"></i>
       </button>
     </div>
   </div>
-  <div data-ng-show="step == 3" data-ng-form="wizardFormStep4">
+  <div data-ng-show="step == 4" data-ng-form="wizardFormStep4" data-ng-class="{'was-validated': validated4}">
     <div class="row wizard-block">
       <div class="col-md-12 title" data-translate>Admin</div>
       <div class="col-md-6">
@@ -70,7 +70,7 @@
             <span data-translate>Name</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-danger': wizardFormStep4.admin_name.$error.required}">
+          <div class="col-md-8">
             <input name="admin_name" class="form-control" data-ng-model="wizard.admin_name" type="text" data-ng-attr-placeholder="{{'Name' | translate}}" required>
           </div>
         </div>
@@ -79,7 +79,7 @@
             <span data-translate>Email address</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-danger': wizardFormStep4.admin_email.$error.required || wizardFormStep4.admin_email.$error.pattern}">
+          <div class="col-md-8" data-ng-class="{'is-invalid': validated4 && wizardFormStep4.admin_email.$error.required || wizardFormStep4.admin_email.$error.pattern}">
             <input name="admin_email" class="form-control" data-ng-model="wizard.admin_mail_address" data-ng-attr-placeholder="{{'Email address' | translate}}" data-ng-pattern="email_regexp" type="text" required>
             <div class="text-danger" data-ng-show="wizardFormStep4.admin_email.$error.pattern">
               <span data-translate>Invalid email address</span>
@@ -91,7 +91,7 @@
             <span data-translate>Password</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-danger': wizardFormStep4.password.$error.required || wizardFormStep4.password.$error.passwordStrength}">
+          <div class="col-md-8" data-ng-class="{'is-invalid': validated4 && wizardFormStep4.password.$error.required || wizardFormStep4.password.$error.passwordStrength}">
             <input name="password" class="form-control" data-ng-model="wizard.admin_password" type="password" data-ng-attr-placeholder="{{'Password' | translate}}" autocomplete="off" data-zxcvbn="passwordStrength" data-zx-min-score="3" required />
             <zx-password-meter value="passwordStrength"></zx-password-meter>
             <div class="text-danger" data-ng-show="!wizardFormStep4.password.$error.required && wizardFormStep4.password.$error.passwordStrength">
@@ -104,7 +104,7 @@
             <span data-translate>Confirm password</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-danger': wizardFormStep4.checkpassword.$error.required || wizard.admin_password !== admin_check_password}">
+          <div class="col-md-8" data-ng-class="{'is-invalid': validated4 &&  wizardFormStep4.checkpassword.$error.required || wizard.admin_password !== admin_check_password}">
             <input name="checkpassword" class="form-control" data-ng-model="admin_check_password" type="password" data-ng-attr-placeholder="{{'Password' | translate}}" autocomplete="off" required />
             <div class="text-danger" data-ng-show="!wizardFormStep4.password.$error.passwordStrength && (wizard.admin_password !== admin_check_password)" data-translate>The two passwords do not match</div>
           </div>
@@ -118,17 +118,17 @@
       </div>
     </div>
     <div class="pager float-right">
-      <button class="ButtonPrevious btn btn-primary" data-ng-click="step=step-1">
+      <button class="ButtonPrevious btn btn-primary" data-ng-click="step = 2">
         <i class="fa fa-arrow-circle-left"></i>
         <span data-translate>Previous</span>
       </button>
-      <button class="ButtonNext btn btn-primary" data-ng-click="step=step+1" data-ng-disabled="wizardFormStep4.$invalid || (wizard.admin_password !== admin_check_password)">
+      <button class="ButtonNext btn btn-primary" data-ng-click="(validated4 = true) && !(wizardFormStep4.$invalid || (wizard.admin_password !== admin_check_password)) && (step = 5)">
         <span data-translate>Next</span>
         <i class="fa fa-arrow-circle-right"></i>
       </button>
     </div>
   </div>
-  <div data-ng-show="step == 4" data-ng-form="wizardFormStep5">
+  <div data-ng-show="step == 5" data-ng-form="wizardFormStep5" data-ng-class="{'was-validated': validated5}">
     <div class="row wizard-block">
       <div class="col-md-12 title" data-translate>Recipient</div>
       <div class="col-md-6">
@@ -137,7 +137,7 @@
             <span data-translate>Name</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-danger': wizardFormStep5.receiver_name.$error.required}">
+          <div class="col-md-8">
             <input name="receiver_name" class="form-control" data-ng-model="wizard.receiver_name" type="text" data-ng-attr-placeholder="{{'Name' | translate}}" required>
           </div>
         </div>
@@ -146,7 +146,7 @@
             <span data-translate>Email address</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-danger': wizardFormStep5.receiver_email.$error.required || wizardFormStep5.receiver_email.$error.pattern}">
+          <div class="col-md-8" data-ng-class="{'is-invalid': validated5 && wizardFormStep5.receiver_email.$error.required || wizardFormStep5.receiver_email.$error.pattern}">
             <input name="receiver_email" class="form-control" data-ng-model="wizard.receiver_mail_address" data-ng-pattern="email_regexp" type="text" data-ng-attr-placeholder="{{'Email address' | translate}}" required>
             <div class="text-danger" data-ng-show="wizardFormStep5.receiver_email.$error.pattern">
               <span data-translate>Invalid email address</span>
@@ -166,53 +166,47 @@
       </div>
     </div>
     <div class="pager float-right">
-      <button class="ButtonPrevious btn btn-primary" data-ng-click="step=step-1">
+      <button class="ButtonPrevious btn btn-primary" data-ng-click="step = 4">
         <i class="fa fa-arrow-circle-left"></i>
         <span data-translate>Previous</span>
       </button>
-      <button class="ButtonNext btn btn-primary" data-ng-click="step=step+1" data-ng-disabled="wizardFormStep5.$invalid">
+      <button class="ButtonNext btn btn-primary" data-ng-click="(validated5 = true) && !wizardFormStep5.$invalid && (step = 6)">
         <span data-translate>Next</span>
         <i class="fa fa-arrow-circle-right"></i>
       </button>
     </div>
   </div>
-  <div data-ng-show="step == 5" data-ng-form="wizardFormStep6">
+  <div data-ng-show="step == 6" data-ng-form="wizardFormStep6" data-ng-class="{'was-validated': validated6}">
     <div class="row wizard-block">
-      <div class="row form-group">
-        <div class="col-md-12">
+      <div class="form-group">
+        <div>
           <div class="title1" data-translate>License Agreement</div>
           <div class="" data-translate>Please review the license terms before proceeding.</div>
         </div>
-        <div class="col-md-12">
-          <pre id='wizardLicense' class="license" data-ng-include="'license.txt'"></pre>
-          <div>
-            <label>
-              <input name="tosAccept" class="inputelem" type="checkbox" data-ng-required="true" data-ng-model="tosAccept"/>
-              <span class="tos-agreement" data-translate>I have read and agree to the terms of the License Agreement.</span>
-            </label>
-          </div>
-          <div>
-            <label>
-              <input data-ng-model="wizard.enable_developers_exception_notification" type="checkbox">
-              <span data-translate>Notify developers of software problems</span>
-            </label>
-          </div>
-          <div data-translate>By enabling this feature, you will contribute to the development and security of the platform.</div>
+        <pre id='wizardLicense' class="license" data-ng-include="'license.txt'"></pre>
+        <div class="form-check">
+          <input name="tosAccept" class="tos-agreement-input form-check-input inputelem" type="checkbox" data-ng-model="tosAccept" required>
+          <span class="tos-agreement-label form-check-label" data-translate>I have read and agree to the terms of the License Agreement.</span>
         </div>
+        <div class="form-check">
+          <input class="form-check-input inputelem" data-ng-model="wizard.enable_developers_exception_notification" type="checkbox">
+          <span data-translate>Notify developers of software problems</span>
+        </div>
+        <div data-translate>By enabling this feature, you will contribute to the development and security of the platform.</div>
       </div>
     </div>
     <div class="pager float-right">
-      <button class="ButtonPrevious btn btn-primary" data-ng-click="step=step-1">
+      <button class="ButtonPrevious btn btn-primary" data-ng-click="step = 5">
         <i class="fa fa-arrow-circle-left"></i>
         <span data-translate>Previous</span>
       </button>
-      <button class="ButtonNext btn btn-primary" data-ng-click="complete()" data-ng-disabled="wizardFormStep6.$invalid">
+      <button class="ButtonNext btn btn-primary" data-ng-click="(validated6 = true) && !wizardFormStep6.$invalid && complete()">
         <span data-translate>Next</span>
         <i class="fa fa-arrow-circle-right"></i>
       </button>
     </div>
   </div>
-  <div data-ng-show="step == 6">
+  <div data-ng-show="step == 7">
     <div class="row wizard-block">
       <div class="col-md-10">
         <div class="congratulations">

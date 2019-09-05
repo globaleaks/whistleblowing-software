@@ -1,13 +1,11 @@
 <div data-ng-switch="" on="field.type" class="nested">
   <span data-ng-switch-when="checkbox">
-    <ul data-ng-repeat="(k, v) in entry">
-      <div data-ng-repeat="option in field.options">
-        <div data-ng-if="k === option.id && v === true">
-          <i class="fa fa-check-square"></i>
-          <span>{{option.label}}</span>
-        </div>
+    <div data-ng-repeat="(k, v) in entry">
+      <div data-ng-repeat="option in field.options" data-ng-if="k === option.id && v === true">
+        <i class="fa fa-check-square"></i>
+        <span>{{option.label}}</span>
       </div>
-    </ul>
+    </div>
   </span>
 
   <span data-ng-switch-when="selectbox|multichoice" data-ng-switch-when-separator="|">
