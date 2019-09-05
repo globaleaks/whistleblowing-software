@@ -67,7 +67,7 @@ GLClient.controller("SubmissionCtrl",
     return $scope.questionnaire.steps[$scope.navigation];
   };
 
-  $scope.goToStep = function(index, bypassErrors) {
+  $scope.goToStep = function(index) {
     $scope.navigation = index;
     $anchorScroll("top");
   };
