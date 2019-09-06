@@ -95,9 +95,7 @@ describe("Test file upload/download consistency", function() {
   it("the recipient should be able to upload wbfiles", function() {
     if (!browser.gl.utils.testFileUpload()) return;
 
-    wb.performSubmission("Test WBFile process").then(function(r) {
-      receipt = r;
-
+    wb.performSubmission("Test WBFile process").then(function() {
       browser.gl.utils.login_receiver("recipient", browser.gl.utils.vars["user_password"]);
       browser.setLocation("/receiver/tips");
 
