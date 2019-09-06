@@ -95,7 +95,7 @@ elif [ "$GLTEST" = "lint" ]; then
 
   echo "Running pylint checks"
   cd $TRAVIS_BUILD_DIR/backend
-  pylint -r n globaleaks
+  pylint --rcfile ../.pylintrc -r n globaleaks
 
   echo "Running eslint checks"
   cd $TRAVIS_BUILD_DIR/client
