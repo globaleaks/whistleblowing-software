@@ -219,13 +219,13 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
         modal_open.resolve();
       }
     } else {
-      var go_url = "https://" + $scope.admin.node.hostname + "/#/admin/network";
+      var https_url = "https://" + $scope.admin.node.hostname + "/#/admin/network";
 
       $uibModal.open({
-        templateUrl: "views/admin/network/redirect_to_https.html",
+        templateUrl: "views/admin/network/enabled_modal.html",
         controller: "safeRedirectModalCtrl",
         resolve: {
-          https_url: function() { return go_url; },
+          https_url: function() { return https_url; },
           modal_open: function() { return modal_open; },
         },
       });
