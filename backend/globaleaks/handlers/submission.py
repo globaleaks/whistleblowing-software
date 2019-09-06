@@ -280,9 +280,6 @@ def db_create_receivertip(session, receiver, internaltip, can_access_whistleblow
 
 
 def db_create_submission(session, tid, request, token, client_using_tor):
-    if not request['receivers']:
-        raise errors.InputValidationError("need at least one recipient")
-
     answers = request['answers']
 
     context, questionnaire = session.query(models.Context, models.Questionnaire) \
@@ -292,6 +289,13 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
     if not context:
         raise errors.ModelNotFound(models.Context)
+
+    if not request['receivers']:
+        raise errors.InputValidationError("The submission should involve at least one recipient")
+
+    if context.maximum_selectable_receivers > 0 and \
+        len(request['receivers']) > context.maximum_selectable_receivers:
+        raise errors.InputValidationError("The number of recipients selected exceed the configured limit")
 
     steps = db_get_questionnaire(session, tid, questionnaire.id, None)['steps']
     questionnaire_hash = db_archive_questionnaire_schema(session, steps)
@@ -414,9 +418,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
         log.debug("=> file associated %s|%s (%d bytes)",
                   new_file.name, new_file.content_type, new_file.size)
 
-    if context.maximum_selectable_receivers > 0 and \
-                    len(request['receivers']) > context.maximum_selectable_receivers:
-        raise errors.InputValidationError("selected an invalid number of recipients")
+    tip_count = 0
 
     for user in session.query(models.User).filter(models.User.id.in_(request['receivers'])):
         if not crypto_is_available and not user.pgp_key_public and not State.tenant_cache[tid].allow_unencrypted:
@@ -427,6 +429,11 @@ def db_create_submission(session, tid, request, token, client_using_tor):
             _tip_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_tip_prv_key)
 
         db_create_receivertip(session, user, itip, can_access_whistleblower_identity, _tip_key)
+
+        tip_count +=1
+
+    if not tip_count:
+        raise errors.InputValidationError("Unable to deliver the submission to at least one recipient")
 
     return {
         'receipt': receipt,

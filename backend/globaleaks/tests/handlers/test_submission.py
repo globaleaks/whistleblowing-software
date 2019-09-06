@@ -48,7 +48,15 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         returnValue(response['receipt'])
 
     @inlineCallbacks
-    def test_create_submission_valid_submission(self):
+    def test_create_submission_with_no_recipients(self):
+        token = self.getSolvedToken()
+        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
+        self.submission_desc['receivers'] = []
+        handler = self.request(self.submission_desc)
+        self.assertFailure(handler.put(token.id), errors.InputValidationError)
+
+    @inlineCallbacks
+    def test_create_simple_submission(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         yield self.create_submission(self.submission_desc)
 
