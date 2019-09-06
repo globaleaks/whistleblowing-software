@@ -413,10 +413,6 @@ label.file-upload {
   cursor: pointer;
 }
 
-.ui-select-choices.ui-select-choices-content.ui-select-dropdown.dropdown-menu {
-  opacity: 100 !important;
-}
-
 html[dir] .card {
   margin-bottom: 1em;
 }
