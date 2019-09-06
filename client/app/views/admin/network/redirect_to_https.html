@@ -5,15 +5,12 @@
 </div>
 <div class="modal-body">
   <div class="alert alert-primary">
-    <p>
-      <i class="fa fa-cog gly-spin"></i>
-      <span data-translate>Configuration in progress. When it is finished you will have to log in again.</span>
-      <span data-translate>Your browser will be redirected to the following URL.</span>
-    </p>
+    <span data-translate>Configuration in progress. When it is finished you will have to log in again.</span>
+    <span data-translate>Your browser will be redirected to the following URL.</span>
   </div>
   <div class="card.card-body text-center">
     <code>
-      <a data-ng-href="{{$resolve.https_url}}" rel="noferrer noopener">{{ $resolve.https_url }}</a>
+      <a data-ng-href="{{$resolve.https_url}}" rel="noferrer noopener">{{$resolve.https_url}}</a>
     </code>
   </div>
 </div>
