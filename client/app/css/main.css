@@ -299,15 +299,8 @@ html[dir] .imageUpload .changePictureButton, html[dir] .imageUpload .deletePictu
   margin-bottom: 1.25em;
 }
 
-.label-as-badge {
-  margin-left: 0px;
-  margin-right: 3px;
-  border-radius: 1em;
-}
-
 .modal-title {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 1.6em;
 }
 
 #TipList table {
@@ -420,16 +413,18 @@ label.file-upload {
   cursor: pointer;
 }
 
-.open > .dropdown-menu {
-  display: block;
-}
-
 .ui-select-choices.ui-select-choices-content.ui-select-dropdown.dropdown-menu {
   opacity: 100 !important;
 }
 
 html[dir] .card {
   margin-bottom: 1em;
+}
+
+@media (min-width: 992px) {
+  body {
+    min-height: 100%;
+  }
 }
 
 @media (min-width: 768px) {
