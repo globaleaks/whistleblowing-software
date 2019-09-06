@@ -49,8 +49,6 @@ describe("Test file upload/download consistency", function() {
   var f2_text = "file to show to upload and then delete";
   var f2_info = test_meta_files[5];
 
-  var receipt;
-
   // TODO File types left to test:
   // docx, ppt, mp4, mp3, wav, html, zip, > 30mb
 
