@@ -8,6 +8,7 @@ from twisted.trial.unittest import TestCase
 
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
+from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils import tls
 
@@ -141,20 +142,14 @@ class TestObjectValidators(TestCase):
         self.cfg['ssl_key'] = self.valid_setup['key'].encode()
         self.cfg['ssl_cert'] = self.valid_setup['cert'].encode()
 
-        exceptions_from_validation = {'empty.txt'}
-
         for fname in self.invalid_files:
             p = os.path.join(self.test_data_dir, 'invalid', fname)
             with open(p, 'rb') as f:
                 self.cfg['ssl_intermediate'] = f.read()
 
             ok, err = chn_v.validate(self.cfg)
-            if not fname in exceptions_from_validation:
-                self.assertFalse(ok)
-                self.assertIsNotNone(err)
-            else:
-                self.assertTrue(ok)
-                self.assertIsNone(err)
+            self.assertFalse(ok)
+            self.assertIsNotNone(err)
 
     def test_chain_valid(self):
         chn_v = tls.ChainValidator()
@@ -179,13 +174,9 @@ class TestObjectValidators(TestCase):
         with open(p, 'rb') as f:
             self.cfg['ssl_cert'] = f.read()
 
-        #ok, err = chn_v.validate(self.cfg)
-        # self.assertFalse(ok)
-        #self.assertTrue(isinstance(err, tls.ValidationException))
-
-        ok, err = chn_v.validate(self.cfg, check_expiration=False)
-        self.assertTrue(ok)
-        self.assertIsNone(err)
+        ok, err = chn_v.validate(self.cfg, check_expiration=True)
+        self.assertFalse(ok)
+        self.assertTrue(isinstance(err, tls.ValidationException))
 
     def test_get_issuer_name(self):
         test_cases = [

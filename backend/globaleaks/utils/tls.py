@@ -254,11 +254,8 @@ class CertValidator(CtxValidator):
             raise ValidationException('There is no certificate')
 
         possible_chain = split_pem_chain(certificate)
-        if len(possible_chain) < 1:
-            raise ValidationException('The certificate is not in the right format.')
-
-        if len(possible_chain) > 1:
-            raise ValidationException('There is more than one certificate loaded.')
+        if len(possible_chain) < 1 or len(possible_chain) > 1:
+            raise ValidationException('Invalide certificate')
 
         x509 = load_certificate(FILETYPE_PEM, certificate)
 
@@ -271,7 +268,6 @@ class CertValidator(CtxValidator):
 
         ctx.use_privatekey(priv_key)
 
-        # With the certificate loaded check if the key matches
         ctx.check_privatekey()
 
 
@@ -281,10 +277,12 @@ class ChainValidator(CtxValidator):
     def _validate(self, cfg, ctx, check_expiration):
         store = ctx.get_cert_store()
 
-        raw_chain = cfg['ssl_intermediate']
-        chain = split_pem_chain(raw_chain)
+        if not cfg['hostname']:
+            raise ValidationException('No hostname set')
 
-        if not chain and raw_chain:
+        chain = split_pem_chain(cfg['ssl_intermediate'])
+
+        if not chain:
             raise ValidationException('The certificate chain is invalid')
 
         for cert in chain:
@@ -294,6 +292,3 @@ class ChainValidator(CtxValidator):
                 raise ValidationException('An intermediate certificate has expired')
 
             store.add_cert(x509)
-
-        if not cfg['hostname']:
-            raise ValidationException('No hostname set')
