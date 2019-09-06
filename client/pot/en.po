@@ -701,20 +701,8 @@ msgstr "Enable multisite feature"
 msgid "Enable two factor authentication"
 msgstr "Enable two factor authentication"
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "Allow other websites to include the platform inside iframes"
-
-msgid "Warning"
-msgstr "Warning"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Allow the following websites to embed the platform inside iframes"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Allow recipients to postpone expiration date of the submission"
@@ -844,6 +832,9 @@ msgstr "Enable scoring system"
 msgid "Enable experimental features"
 msgstr "Enable experimental features"
 
+msgid "Warning"
+msgstr "Warning"
+
 msgid ""
 "The experimental features may be less stable or even not work at all; "
 "enable this option at your own risk. Support for these features may vary "
@@ -933,9 +924,6 @@ msgstr "Text"
 
 msgid "Footer"
 msgstr "Footer"
-
-msgid "Favicon"
-msgstr "Favicon"
 
 msgid "Upload"
 msgstr "Upload"
@@ -1105,8 +1093,17 @@ msgstr "this configuration only applies to recipients"
 msgid "Test the configuration"
 msgstr "Test the configuration"
 
+msgid "Reset SMTP configuration"
+msgstr "Reset SMTP configuration"
+
 msgid "Template"
 msgstr "Template"
+
+msgid "Configuration in progress"
+msgstr "Configuration in progress"
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr "The platform will be reachable via HTTPS at the following address:"
 
 msgid "Hostname"
 msgstr "Hostname"
@@ -1150,6 +1147,9 @@ msgstr "Organization"
 msgid "Organizational unit"
 msgstr "Organizational unit"
 
+msgid "Generate"
+msgstr "Generate"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing "
 "Request. The Certificate Signing Request can be provided to a Certificate "
@@ -1169,9 +1169,6 @@ msgstr ""
 
 msgid "Private Key"
 msgstr "Private Key"
-
-msgid "Generate"
-msgstr "Generate"
 
 msgid "Certificate Signing Request"
 msgstr "Certificate Signing Request"
@@ -1268,19 +1265,6 @@ msgstr "Each entry must be separated with a comma."
 
 msgid "Example:"
 msgstr "Example:"
-
-msgid "Attention!"
-msgstr "Attention!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "Your browser will be redirected to the following URL."
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
@@ -1602,8 +1586,8 @@ msgstr "Please support Hermes through their donation page."
 msgid "Forgot password?"
 msgstr "Forgot password?"
 
-msgid "Check your inbox and enter the authentication code you received."
-msgstr "Check your inbox and enter the authentication code you received."
+msgid "Enter the two factor authentication code"
+msgstr "Enter the two factor authentication code"
 
 msgid "Authentication failed"
 msgstr "Authentication failed"
@@ -1650,21 +1634,32 @@ msgstr "Assign score points"
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Please note that all the associated data will be permanently lost."
 
-msgid "Your encryption recovery key is:"
-msgstr "Your encryption recovery key is:"
+msgid "Attention!"
+msgstr "Attention!"
 
-msgid "Please annotate and store this key in a safe place."
-msgstr "Please annotate and store this key in a safe place."
+msgid "Instructions"
+msgstr "Instructions"
 
-msgid ""
-"This key will be necessary if you lose your personal password to be able to "
-"recover the access to your account with no data loss."
-msgstr ""
-"This key will be necessary if you lose your personal password to be able to "
-"recover the access to your account with no data loss."
+msgid "Install an authenticator app on your phone"
+msgstr "Install an authenticator app on your phone"
+
+msgid "Scan the QR code with the app"
+msgstr "Scan the QR code with the app"
 
 msgid "Close"
 msgstr "Close"
+
+msgid "Your encryption recovery key is:"
+msgstr "Your encryption recovery key is:"
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
 
 msgid "Welcome!"
 msgstr "Welcome!"
@@ -1757,6 +1752,12 @@ msgstr "Hide"
 
 msgid "Show"
 msgstr "Show"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr "Set up email encryption by providing a PGP public key"
+
+msgid "Get the encryption recovery key"
+msgstr "Get the encryption recovery key"
 
 msgid "Current password"
 msgstr "Current password"
@@ -1983,6 +1984,9 @@ msgstr "Files attached by recipients"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "These files have been attached to your submission by the recipients."
 
+msgid "The provided recovery key is invalid."
+msgstr "The provided recovery key is invalid."
+
 msgid "The provided reset token is invalid or expired."
 msgstr "The provided reset token is invalid or expired."
 
@@ -1995,9 +1999,6 @@ msgstr ""
 
 msgid "Enter your email address to request a password reset."
 msgstr "Enter your email address to request a password reset."
-
-msgid "Request password reset"
-msgstr "Request password reset"
 
 msgid "Enter you encryption recovery key to complete the password reset procedure"
 msgstr "Enter you encryption recovery key to complete the password reset procedure"
@@ -2218,15 +2219,6 @@ msgstr "Job responsibility (role) at the time of the reported fact"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Organization unit and job location at the time of the reported fact"
-
-msgid "Authentication code: {AuthCode}"
-msgstr "Authentication code: {AuthCode}"
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr "The authentication code is valid for 5 minutes."
-
-msgid "Authentication code"
-msgstr "Authentication code"
 
 msgid "Dear {RecipientName},"
 msgstr "Dear {RecipientName},"
