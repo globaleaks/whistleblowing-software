@@ -131,21 +131,4 @@ describe("Test file upload/download consistency", function() {
     // Assert the file is gone from the interfaccia
     expect(rec.wbfile_widget().all(by.css("div.wbfile")).count()).toEqual(1);
   });
-
-  it("the recipient should be able to download a wbfile", function() {
-    if (!browser.gl.utils.testFileUpload() || !browser.gl.utils.testFileDownload()) return;
-
-    // Let the reciever download the first file
-    rec.wbfile_widget().element(by.css("#wbfile-0")).all(by.cssContainingText("span", "Download")).get(1).click();
-    f1_info.waitForDownload();
-  });
-
-  it("a whistleblower should be able to download wbfiles", function() {
-    if (!browser.gl.utils.testFileUpload() || !browser.gl.utils.testFileDownload()) return;
-
-    browser.gl.utils.login_whistleblower(receipt);
-    // Choose the first file which should be f1_info
-    element(by.css("#AttachedWBFile #wbfile-0 div.download-button")).click();
-    f1_info.waitForDownload();
-  });
 });
