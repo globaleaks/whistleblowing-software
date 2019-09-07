@@ -11,6 +11,7 @@ exports.config = {
 
   troubleshoot: false,
   directConnect: true,
+  rootElement: 'html',
 
   params: {
     "testFileDownload": true,
