@@ -4,7 +4,18 @@ describe("admin configure languages", function() {
     browser.setLocation("admin/content");
     element(by.cssContainingText("a", "Languages")).click();
 
-    element(by.model("admin.node.languages_enabled")).evaluate("admin.node.languages_enabled = ['en', 'it', 'de'];");
+    var enableLanguage = function(language) {
+      var button = element(by.model("selected.value"));
+      var input = button.element(by.css('.ui-select-search'));
+
+      element(by.className("add-language-btn")).click();
+      button.click();
+      input.sendKeys(language);
+      element.all(by.css('.ui-select-choices-row-inner span')).first().click();
+    };
+
+    enableLanguage("Deutsch");
+    enableLanguage("Italiano");
 
     element.all(by.cssContainingText("button", "Save")).get(1).click();
 

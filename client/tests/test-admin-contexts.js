@@ -1,19 +1,24 @@
 describe("admin configure, add, and delete contexts", function() {
   it("should configure an existing context", function() {
+    var button, input, ctx;
     browser.setLocation("admin/contexts");
 
-    var ctx = element(by.id("context-0"));
+    ctx = element(by.id("context-0"));
     ctx.element(by.cssContainingText("button", "Edit")).click();
 
-    // Add users and flip switches
     ctx.element(by.className("add-receiver-btn")).click();
-
-    var input = element(by.id("ReceiverContextAdder")).all(by.css("input")).last();
-    input.sendKeys("Recipient2" + protractor.Key.ENTER);
+    button = element(by.id("ReceiverContextAdder")).element(by.model("selected.value"));
+    input = button.element(by.css('.ui-select-search'));
+    button.click();
+    input.sendKeys('Recipient2');
+    element.all(by.css('.ui-select-choices-row-inner span')).first().click();
 
     ctx.element(by.className("add-receiver-btn")).click();
-    input = element(by.id("ReceiverContextAdder")).all(by.css("input")).last();
-    input.sendKeys("Recipient3" + protractor.Key.ENTER);
+    button = element(by.id("ReceiverContextAdder")).element(by.model("selected.value"));
+    input = button.element(by.css('.ui-select-search'));
+    button.click();
+    input.sendKeys('Recipient3');
+    element.all(by.css('.ui-select-choices-row-inner span')).first().click();
 
     ctx.element(by.cssContainingText("button", "Advanced settings")).click();
 
