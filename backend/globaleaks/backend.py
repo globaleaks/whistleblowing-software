@@ -16,7 +16,7 @@ from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.log import log, openLogFile, logFormatter, LogObserver
-from globaleaks.utils.process import disable_swap
+from globaleaks.utils.process import disable_swap, set_proc_title
 from globaleaks.utils.sock import listen_tcp_on_sock, listen_tls_on_sock, reserve_port_for_ip
 from globaleaks.utils.utility import fix_file_permissions, drop_privileges
 
@@ -91,6 +91,8 @@ class Service(service.Service):
                              Settings.gid,
                              0o700,
                              0o600)
+
+        set_proc_title('globaleaks')
 
         drop_privileges(Settings.user, Settings.uid, Settings.gid)
 
