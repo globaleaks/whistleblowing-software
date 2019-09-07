@@ -18,9 +18,6 @@ matrix:
     - env: GLTEST='py2_test' TESTS_REQUIREMENTS='xenial'
       python: "2.7"
 
-    - env: GLTEST='lint'
-      python: "3.6"
-
     - env: GLTEST='docker'
       python: "3.6"
 

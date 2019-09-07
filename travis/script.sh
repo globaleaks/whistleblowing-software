@@ -88,19 +88,6 @@ if [ "$GLTEST" = "py2_test" ] || [ "$GLTEST" = "py3_test" ]; then
     cat coverage/lcov.info | codacy-coverage -c $TRAVIS_COMMIT # Javascript
   fi
 
-elif [ "$GLTEST" = "lint" ]; then
-  pip install pylint
-
-  setupDependencies
-
-  echo "Running pylint checks"
-  cd $TRAVIS_BUILD_DIR/backend
-  pylint --rcfile ../.pylintrc -r n globaleaks
-
-  echo "Running eslint checks"
-  cd $TRAVIS_BUILD_DIR/client
-  grunt eslint
-
 elif [ "$GLTEST" = "docker" ]; then
   cd $TRAVIS_BUILD_DIR/docker && ./build.sh
 
