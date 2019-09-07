@@ -37,6 +37,8 @@ exports.config = {
   },
 
   onPrepare: function() {
+    browser.resetUrl = 'about:blank';
+
     browser.gl = {
       "utils": require("./utils.js"),
       "pages": require("./pages.js")
