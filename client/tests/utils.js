@@ -58,7 +58,7 @@ browser.getCapabilities().then(function(capabilities) {
   exports.fixUploadButtons = function() {
     element.all(by.xpath("//input[@type='file']")).count().then(function(count){
       for (var i=0; i<count; i++) {
-        browser.executeScript("angular.element(document.querySelectorAll('input[type=\"file\"]'))["+ String(i) +"].style=''");
+        browser.executeScript("angular.element(document.querySelectorAll('input[type=\"file\"]'))["+ String(i) +"].className+='d-block visible'");
       }
     });
   };
