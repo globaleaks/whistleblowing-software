@@ -54,14 +54,6 @@ browser.getCapabilities().then(function(capabilities) {
   exports.browserTimeout = function() {
     return 30000;
   };
-
-  exports.fixUploadButtons = function() {
-    element.all(by.xpath("//input[@type='file']")).count().then(function(count){
-      for (var i=0; i<count; i++) {
-        browser.executeScript("angular.element(document.querySelectorAll('input[type=\"file\"]'))["+ String(i) +"].className+='d-block visible'");
-      }
-    });
-  };
 });
 
 exports.waitUntilPresent = function (locator, timeout) {

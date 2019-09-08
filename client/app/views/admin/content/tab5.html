@@ -2,11 +2,15 @@
   <div class="col-md-12">
     <div class="form-group">
       <label data-translate>Language:</label>
-      <select class="form-control" data-ng-model="vars.language_to_customize" data-ng-change="get_l10n(vars.language_to_customize)" data-ng-options="item.code as item.name for item in languages_enabled_selector"></select>
+      <select class="form-control" data-ng-model="vars.language_to_customize" data-ng-change="get_l10n(vars.language_to_customize)">
+        <option data-ng-repeat="item in languages_enabled_selector" value="{{item.code}}">{{item.name}}</option>
+      </select>
     </div>
     <div class="form-group">
       <label data-translate>Add custom text</label>
-      <select class="form-control" data-ng-model="vars.text_to_customize" data-ng-change="vars.custom_text = custom_texts[vars.text_to_customize] ? custom_texts[vars.text_to_customize] : default_texts[vars.text_to_customize]" data-ng-options="item.key as item.value for item in custom_texts_selector"></select>
+      <select class="form-control" data-ng-model="vars.text_to_customize" data-ng-change="vars.custom_text = custom_texts[vars.text_to_customize] ? custom_texts[vars.text_to_customize] : default_texts[vars.text_to_customize]">
+        <option data-ng-repeat="item in custom_texts_selector" value="{{item.key}}">{{item.value}}</option>
+      </select>
       <div data-ng-show="vars.text_to_customize">
         <label data-translate>Custom text</label>
         <div>

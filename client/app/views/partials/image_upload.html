@@ -5,14 +5,17 @@
      flow-files-submitted="$flow.upload()"
      extend-flow-valid-types="['png']">
   <div class="imageUpload">
-    <button class="changePictureButton btn btn-circle btn-primary" flow-btn uib-popover="{{'Edit' | translate}}">
-      <span class="fa fa-edit"></span>
-    </button>
-    <button class="deletePictureButton btn btn-circle btn-danger" uib-popover="{{'Delete' | translate}}"
+    <span class="changePictureButton btn btn-circle btn-primary" uib-popover="{{'Edit' | translate}}">
+      <label for="imageFile">
+        <input type="file" class="custom-file-input" id="imageFile" flow-btn>
+        <i class="fa fa-edit"></i>
+      </label>
+    </span>
+    <span class="deletePictureButton btn btn-circle btn-danger" uib-popover="{{'Delete' | translate}}"
             data-ng-show="imageUploadModel[imageUploadModelAttr] || imageUploadObj.flow.files.length > 0"
             data-ng-click="deletePicture(); $event.stopPropagation();">
       <span class="fa fa-times"></span>
-    </button>
+    </span>
     <div class="imageUploadThumbnail">
       <img alt="preview picture" data-ng-if="imageUploadObj.flow.files.length == 0" data-ng-src="{{Utils.imgDataUri(imageUploadModel[imageUploadModelAttr])}}" class="imageUploadThumbnailContent" />
       <img alt="preview picture" data-ng-if="imageUploadObj.flow.files.length > 0" flow-img="imageUploadObj.flow.files[imageUploadObj.flow.files.length - 1]" class="imageUploadThumbnailContent" />

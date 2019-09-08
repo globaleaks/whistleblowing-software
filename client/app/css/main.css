@@ -369,8 +369,10 @@ label.file-upload {
   margin: 0;
 }
 
-.file-upload input[type="file"] {
-  display: none;
+input[type="file"] {
+  opacity: 0.1;
+  width: 0.1px;
+  height: 0.1px;
 }
 
 .fa-none:before {
@@ -486,3 +488,15 @@ html[dir='rtl'] .fa-arrow-circle-right:before {
 
 html[dir='rtl'] .fa-arrow-circle-left:before {
   content: "\f0a9"; }
+
+.custom-file {
+  width: auto;
+}
+
+.custom-file label, label .file-upload {
+  margin: 0;
+}
+
+.custom-file-label::after {
+  opacity: 0;
+}

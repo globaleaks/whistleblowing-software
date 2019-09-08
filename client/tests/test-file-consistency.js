@@ -97,22 +97,24 @@ describe("Test file upload/download consistency", function() {
       browser.gl.utils.login_receiver("recipient", browser.gl.utils.vars["user_password"]);
       browser.setLocation("/receiver/tips");
 
-      element(by.id("tip-0")).click();
+      element(by.id("tip-0")).evaluate("tip.id").then(function(id) {
+        browser.setLocation("/status/" + id);
 
-      rec.wbfile_widget().element(by.css("input[type=\"text\"]")).sendKeys(f1_text);
-      rec.uploadWBFile(f1_info.origin_path);
+        rec.wbfile_widget().element(by.css("input[type=\"text\"]")).sendKeys(f1_text);
+        rec.uploadWBFile(f1_info.origin_path);
 
-      browser.gl.utils.waitUntilPresent(by.css("#wbfile-0 p.description")).then(function() {
-        expect(rec.wbfile_widget().element(by.css("#wbfile-0 p.description")).getText())
-          .toEqual("Description: " + f1_text);
+        browser.gl.utils.waitUntilPresent(by.css("#wbfile-0 p.description")).then(function() {
+          expect(rec.wbfile_widget().element(by.css("#wbfile-0 p.description")).getText())
+            .toEqual("Description: " + f1_text);
 
-        browser.gl.utils.waitUntilPresent(by.css("#TipPageWBFileUpload input[type=\"text\"]")).then(function() {
-          rec.wbfile_widget().element(by.css("input[type=\"text\"]")).sendKeys(f2_text);
-          rec.uploadWBFile(f2_info.origin_path);
+          browser.gl.utils.waitUntilPresent(by.css("#TipPageWBFileUpload input[type=\"text\"]")).then(function() {
+            rec.wbfile_widget().element(by.css("input[type=\"text\"]")).sendKeys(f2_text);
+            rec.uploadWBFile(f2_info.origin_path);
 
-          browser.gl.utils.waitUntilPresent(by.css("#wbfile-1 p.description")).then(function() {
-            expect(rec.wbfile_widget().element(by.css("#wbfile-1 p.description")).getText())
-              .toEqual("Description: " + f2_text);
+            browser.gl.utils.waitUntilPresent(by.css("#wbfile-1 p.description")).then(function() {
+              expect(rec.wbfile_widget().element(by.css("#wbfile-1 p.description")).getText())
+                .toEqual("Description: " + f2_text);
+            });
           });
         });
       });

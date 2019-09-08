@@ -4,6 +4,8 @@ describe("admin configure languages", function() {
     browser.setLocation("admin/content");
     element(by.cssContainingText("a", "Languages")).click();
 
+    element(by.className("add-language-btn")).click();
+
     var enableLanguage = function(language) {
       var button = element(by.model("selected.value"));
       var input = button.element(by.css('.ui-select-search'));

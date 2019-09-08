@@ -35,56 +35,32 @@ matrix:
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-1' BROWSER='chrome 45'
+    - env: GLTEST='end2end-1' BROWSER='firefox 68'
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-2' BROWSER='firefox 68'
-      python: "3.6"
-      addons:
-        sauce_connect: true
-    - env: GLTEST='end2end-3' BROWSER='firefox 38'
+    - env: GLTEST='end2end-2' BROWSER='safari 12'
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-4' BROWSER='safari 12'
+    - env: GLTEST='end2end-3' BROWSER='edge 18'
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-5' BROWSER='safari 9'
+    - env: GLTEST='end2end-4' BROWSER='ie 11'
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-6' BROWSER='edge 18'
+    - env: GLTEST='end2end-5' BROWSER='android 8'
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-7' BROWSER='ie 11'
-      python: "3.6"
-      addons:
-        sauce_connect: true
-
-    - env: GLTEST='end2end-8' BROWSER='android 8'
-      python: "3.6"
-      addons:
-        sauce_connect: true
-
-    - env: GLTEST='end2end-9' BROWSER='android 5.1'
-      python: "3.6"
-      addons:
-        sauce_connect: true
-
-    - env: GLTEST='end2end-10' BROWSER='iOS 12.4'
-      python: "3.6"
-      addons:
-        sauce_connect: true
-
-    - env: GLTEST='end2end-11' BROWSER='iOS 9'
+    - env: GLTEST='end2end-6' BROWSER='iOS 12.4'
       python: "3.6"
       addons:
         sauce_connect: true
@@ -95,17 +71,12 @@ matrix:
     - env: GLTEST='build_and_install' BUILD_DISTRO='stretch'
     - env: GLTEST='docker'
     - env: GLTEST='end2end-0' BROWSER='chrome 76'
-    - env: GLTEST='end2end-1' BROWSER='chrome 45'
-    - env: GLTEST='end2end-2' BROWSER='firefox 68'
-    - env: GLTEST='end2end-3' BROWSER='firefox 38'
-    - env: GLTEST='end2end-4' BROWSER='safari 12'
-    - env: GLTEST='end2end-5' BROWSER='safari 9'
-    - env: GLTEST='end2end-6' BROWSER='edge 18'
-    - env: GLTEST='end2end-7' BROWSER='ie 11'
-    - env: GLTEST='end2end-8' BROWSER='android 8'
-    - env: GLTEST='end2end-9' BROWSER='android 5.1'
-    - env: GLTEST='end2end-10' BROWSER='iOS 12.4'
-    - env: GLTEST='end2end-11' BROWSER='iOS 9'
+    - env: GLTEST='end2end-1' BROWSER='firefox 68'
+    - env: GLTEST='end2end-2' BROWSER='safari 12'
+    - env: GLTEST='end2end-3' BROWSER='edge 18'
+    - env: GLTEST='end2end-4' BROWSER='ie 11'
+    - env: GLTEST='end2end-5' BROWSER='android 8'
+    - env: GLTEST='end2end-6' BROWSER='iOS 12.4'
 before_install:
   - nvm install stable
   - nvm use stable

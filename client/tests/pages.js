@@ -7,7 +7,6 @@ exports.receiver = function() {
     browser.setLocation("/receiver/preferences");
 
     if (browser.gl.utils.testFileUpload()) {
-      browser.gl.utils.fixUploadButtons();
       element(by.xpath("//input[@type='file']")).sendKeys(pgp_key_path).then(function() {
         return browser.waitForAngular();
       });
@@ -27,7 +26,6 @@ exports.receiver = function() {
   };
 
   this.uploadWBFile = function(fname) {
-    browser.gl.utils.fixUploadButtons();
     return element(by.xpath("//input[@type='file']")).sendKeys(fname).then(function() {
       return browser.waitForAngular();
     });
@@ -56,7 +54,6 @@ exports.whistleblower = function() {
     if (uploadFiles && browser.gl.utils.testFileUpload()) {
       var fileToUpload1 = browser.gl.utils.makeTestFilePath("antani.txt");
       var fileToUpload2 = browser.gl.utils.makeTestFilePath("unknown.filetype");
-      browser.gl.utils.fixUploadButtons();
       element(by.id("step-0")).element(by.id("step-0-field-2-0")).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload1).then(function() {
         browser.waitForAngular();
         element(by.id("step-0")).element(by.id("step-0-field-2-0")).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2).then(function() {
@@ -74,7 +71,6 @@ exports.whistleblower = function() {
   };
 
   this.submitFile = function(fname) {
-    browser.gl.utils.fixUploadButtons();
     return element(by.xpath("//input[@type='file']")).sendKeys(fname).then(function() {
       return browser.waitForAngular();
     });

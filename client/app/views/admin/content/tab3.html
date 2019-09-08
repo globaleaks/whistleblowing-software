@@ -5,11 +5,12 @@
                 flow-files-submitted="$flow.upload()"
                 flow-file-success="reload()"
                 extend-flow-valid-size="node.maximum_filesize*1024*1024">
-        <label data-translate>Files</label>
+        <span data-translate>Files</span>
         <span class="uploadfile file-custom">
-          <span class="btn btn-sm btn-success fileinput-button">
-            <span class="uploadfile" flow-btn>
-              <span class="fa fa-plus"></span>
+          <span class="custom-file">
+            <input id="customFile" class="custom-file-input" type="file" flow-btn />
+            <span class="btn btn-sm btn-primary" for="customFile">
+              <i class="fa fa-upload"></i>
               <span data-translate>Upload</span>
             </span>
           </span>
@@ -21,11 +22,11 @@
             <tr data-ng-repeat="file in files | orderBy:'name'">
               <td>{{file.name}}</td>
               <td>
-                <a class="btn btn-primary" data-ng-href="s/{{file.name}}" download="{{file.name}}">
+                <a class="btn btn-sm btn-primary" data-ng-href="s/{{file.name}}" download="{{file.name}}">
                   <span class="fa fa-download"></span>
                   <span data-translate>Download</span>
                 </a>
-                <button class="btn btn-danger" data-ng-click="delete_file('admin/files/' + file.id)" data-single-click>
+                <button class="btn btn-sm btn-danger" data-ng-click="delete_file('admin/files/' + file.id)" data-single-click>
                   <span class="fa fa-trash"></span>
                   <span data-translate>Delete</span>
                 </button>

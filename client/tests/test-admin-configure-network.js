@@ -62,8 +62,6 @@ describe("admin configure https", function() {
     element(by.id("HTTPSManualMode")).click();
 
     if (browser.gl.utils.testFileUpload()) {
-      browser.gl.utils.fixUploadButtons();
-
       // Upload key
       element(by.css("div.card.priv-key input[type=\"file\"]")).sendKeys(files.priv_key);
 

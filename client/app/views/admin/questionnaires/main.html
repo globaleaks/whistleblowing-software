@@ -6,7 +6,9 @@
         <i class="fa fa-plus"></i>
         <span data-translate>Add</span>
       </button>
-      <label file-input="importQuestionnaire(file)" file-input-label="Import" class="file-upload btn btn-sm btn-secondary"></label>
+      <span class="custom-file">
+        <span file-input="importQuestionnaire(file)" file-input-label="Import" class="file-upload btn btn-sm btn-secondary"></span>
+      </span>
     </div>
     <div class="adminConfigSection row" data-ng-controller="AdminQuestionnaireAddCtrl" data-ng-if="showAddQuestionnaire">
       <form id="newQuestionnaire" class="addQuestionnaire col-md-6" novalidate>

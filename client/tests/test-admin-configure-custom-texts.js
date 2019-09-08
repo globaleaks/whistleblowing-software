@@ -4,7 +4,6 @@ describe("admin configure custom texts", function() {
     browser.setLocation("admin/content");
     element(by.cssContainingText("a", "Text customization")).click();
 
-    expect(element(by.model("vars.language_to_customize")).sendKeys("English"));
     element(by.cssContainingText("option", "Submissions disabled")).click();
     expect(element(by.model("vars.custom_text")).clear().sendKeys("Whistleblowing disabled"));
 

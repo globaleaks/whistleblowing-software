@@ -13,7 +13,7 @@
       <div class="col-md-12">
         <div class="form-inline">
           <span data-ng-if="session.role === 'whistleblower'">
-            <label><span data-translate>Recipient</span>:<span>&nbsp;</span></label>
+            <span><span data-translate>Recipient</span>:<span>&nbsp;</span></span>
             <select id="message-recipient-selector" data-ng-model="tip.msg_receiver_selected" data-ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
           </span>
         </div>
@@ -23,7 +23,7 @@
       <div class="col-md-12">
         <span class="float-left">
           <button id="message-action-send" class="btn btn-sm btn-primary" data-ng-click="newMessage()" data-ng-disabled="!tip.newMessageContent || (session.role === 'whistleblower' && !tip.msg_receiver_selected)">
-            <i class="fa fa-envelope"></i>
+            <i class="fa fa-comment"></i>
             <span data-translate>Send</span>
           </button>
         </span>

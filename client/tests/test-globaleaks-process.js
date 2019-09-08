@@ -47,8 +47,7 @@ describe("globaLeaks process", function() {
     browser.setLocation("/receiver/tips");
 
     element(by.id("tip-0")).evaluate("tip.id").then(function(id) {
-     browser.gl.utils.logout("/login");
-     browser.gl.utils.login_receiver(receiver_username, receiver_password, "/#/status/" + id);
+     browser.setLocation("/status/" + id);
 
      // Configure label_1
      expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
@@ -86,7 +85,8 @@ describe("globaLeaks process", function() {
     browser.gl.utils.login_receiver();
     browser.setLocation("/receiver/tips");
 
-    element(by.id("tip-0")).click().then(function() {
+    element(by.id("tip-0")).evaluate("tip.id").then(function(id) {
+      browser.setLocation("/status/" + id);
       element(by.model("tip.newCommentContent")).sendKeys(comment);
       element(by.id("comment-action-send")).click().then(function() {
         browser.waitForAngular();
@@ -120,7 +120,6 @@ describe("globaLeaks process", function() {
 
     browser.gl.utils.login_whistleblower(receipts[0]);
 
-    browser.gl.utils.fixUploadButtons();
     element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload1).then(function() {
       browser.waitForAngular();
       element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2).then(function() {
@@ -135,7 +134,8 @@ describe("globaLeaks process", function() {
     browser.gl.utils.login_receiver();
     browser.setLocation("/receiver/tips");
 
-    element(by.id("tip-0")).click().then(function() {
+    element(by.id("tip-0")).evaluate("tip.id").then(function(id) {
+      browser.setLocation("/status/" + id);
       element(by.model("tip.newMessageContent")).sendKeys(message);
       element(by.id("message-action-send")).click().then(function() {
         browser.waitForAngular();
@@ -171,20 +171,21 @@ describe("globaLeaks process", function() {
 
     browser.gl.utils.login_receiver();
     browser.setLocation("/receiver/tips");
-    element(by.id("tip-0")).click();
 
-    browser.gl.utils.waitUntilPresent(by.id("tip-action-export"));
+    element(by.id("tip-0")).evaluate("tip.id").then(function(id) {
+      browser.setLocation("/status/" + id);
+      browser.gl.utils.waitUntilPresent(by.id("tip-action-export"));
+      element(by.id("tip-action-export")).click();
 
-    element(by.id("tip-action-export")).click();
+      element.all(by.css(".TipInfoID")).first().getText().then(function(t) {
+        expect(t).toEqual(jasmine.any(String));
+        if (!browser.gl.utils.verifyFileDownload()) {
+          return;
+        }
 
-    element.all(by.css(".TipInfoID")).first().getText().then(function(t) {
-      expect(t).toEqual(jasmine.any(String));
-      if (!browser.gl.utils.verifyFileDownload()) {
-        return;
-      }
-
-      var fullpath = path.resolve(path.join(browser.params.tmpDir, t));
-      browser.gl.utils.waitForFile(fullpath + ".zip");
+        var fullpath = path.resolve(path.join(browser.params.tmpDir, t));
+        browser.gl.utils.waitForFile(fullpath + ".zip");
+      });
     });
   });
 
@@ -192,19 +193,20 @@ describe("globaLeaks process", function() {
     browser.gl.utils.login_receiver();
     browser.setLocation("/receiver/tips");
 
-    element(by.id("tip-0")).click();
+    element(by.id("tip-0")).evaluate("tip.id").then(function(id) {
+      browser.setLocation("/status/" + id);
+      browser.gl.utils.waitUntilPresent(by.id("tip-action-silence"));
 
-    browser.gl.utils.waitUntilPresent(by.id("tip-action-silence"));
-
-    var silence = element(by.id("tip-action-silence"));
-    silence.click();
-    var notif = element(by.id("tip-action-notify"));
-    notif.evaluate("tip.enable_notifications").then(function(enabled) {
-      expect(enabled).toEqual(false);
-      notif.click();
-      silence.evaluate("tip.enable_notifications").then(function(enabled) {
-        expect(enabled).toEqual(true);
-        // TODO Determine if emails are actually blocked.
+      var silence = element(by.id("tip-action-silence"));
+      silence.click();
+      var notif = element(by.id("tip-action-notify"));
+      notif.evaluate("tip.enable_notifications").then(function(enabled) {
+        expect(enabled).toEqual(false);
+        notif.click();
+        silence.evaluate("tip.enable_notifications").then(function(enabled) {
+          expect(enabled).toEqual(true);
+          // TODO Determine if emails are actually blocked.
+        });
       });
     });
   });
@@ -232,16 +234,19 @@ describe("globaLeaks process", function() {
     browser.gl.utils.login_receiver();
     browser.setLocation("/receiver/tips");
 
-    element(by.id("tip-0")).click();
-    // Get the tip's original expiration date.
-    element.all(by.css(".TipInfoID")).first().evaluate("tip.expiration_date").then(function() {
-      element(by.id("tip-action-postpone")).click();
-      element(by.id("modal-action-ok")).click();
+    element(by.id("tip-0")).evaluate("tip.id").then(function(id) {
+      browser.setLocation("/status/" + id);
 
+      // Get the tip's original expiration date.
       element.all(by.css(".TipInfoID")).first().evaluate("tip.expiration_date").then(function() {
-        // TODO
-        // It is currently impossible to test that the expiration date is update because
-        // during the same day of the submission a postpone will result in the same expiration date
+        element(by.id("tip-action-postpone")).click();
+        element(by.id("modal-action-ok")).click();
+
+        element.all(by.css(".TipInfoID")).first().evaluate("tip.expiration_date").then(function() {
+          // TODO
+          // It is currently impossible to test that the expiration date is update because
+          // during the same day of the submission a postpone will result in the same expiration date
+        });
       });
     });
   });
@@ -250,9 +255,10 @@ describe("globaLeaks process", function() {
     browser.gl.utils.login_receiver();
     browser.setLocation("/receiver/tips");
 
-    // Find the uuid of the first tip.
-    element(by.id("tip-0")).click();
-    element(by.id("tip-action-delete")).click();
-    element(by.id("modal-action-ok")).click();
+    element(by.id("tip-0")).evaluate("tip.id").then(function(id) {
+      browser.setLocation("/status/" + id);
+      element(by.id("tip-action-delete")).click();
+      element(by.id("modal-action-ok")).click();
+    });
   });
 });
