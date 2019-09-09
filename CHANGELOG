@@ -1,3 +1,16 @@
+Changes in version 3.10.8 - 2019-08-19
+    Implement HTTP/2
+    Revise HTTPS implementation enabling only TLS1.3 andTLS1.2 with ECDH key exchange
+    Revise Lets'Encrypt implementation requesting ECC certificates with curve prime256v1
+    Prioritize CHACHA20 on clients that don't have AES-NI (e.g., Android devices)
+    Optimize TLS implementation enabling session resumption
+    Implement TOTP 2FA based on RFC 6238
+    Implement HTTP Feature-Policy Header (#2667)
+    Implement encryption of file uploads metadata (#2665)
+    Implement recovery procedure for encryption feature (#2649)
+    Bump Bootstrap to version 4
+    Update translations
+
 Changes in version 3.10.7 - 2019-08-19
     Revise application packaging in relation to CSP rules
     Fix progress bar UI of file uploads
