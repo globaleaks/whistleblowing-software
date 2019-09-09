@@ -373,6 +373,7 @@ input[type="file"] {
   opacity: 0.1;
   width: 0.1px;
   height: 0.1px;
+  line-height: normal;
 }
 
 .fa-none:before {
