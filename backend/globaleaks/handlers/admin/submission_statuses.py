@@ -13,37 +13,38 @@ from globaleaks.orm import transact
 from globaleaks.rest import requests
 
 
-def serialize_submission_status(session, row, language):
+def serialize_submission_status(session, status, language):
     """Serializes a submission status into dictionary form for the client"""
     submission_status = {
-        'id': row.id,
-        'system_defined': row.system_defined,
-        'presentation_order': row.presentation_order,
+        'id': status.id,
+        'system_defined': status.system_defined,
+        'presentation_order': status.presentation_order,
         'substatuses': []
     }
 
     # See if we have any substatuses we need to serialize
-    substatus_rows = session.query(models.SubmissionSubStatus) \
-                            .filter(models.SubmissionSubStatus.submissionstatus_id == row.id) \
-                            .order_by(models.SubmissionSubStatus.presentation_order)
+    substatuses = session.query(models.SubmissionSubStatus) \
+                         .filter(models.SubmissionSubStatus.tid == status.tid,
+                                 models.SubmissionSubStatus.submissionstatus_id == status.id) \
+                        .order_by(models.SubmissionSubStatus.presentation_order)
 
-    for substatus_row in substatus_rows:
+    for substatus in substatuses:
         submission_status['substatuses'].append(
-            serialize_submission_substatus(substatus_row, language)
+            serialize_submission_substatus(substatus, language)
         )
 
-    return get_localized_values(submission_status, row, row.localized_keys, language)
+    return get_localized_values(submission_status, status, status.localized_keys, language)
 
 
-def serialize_submission_substatus(row, language):
+def serialize_submission_substatus(substatus, language):
     """Serializes the submission's substatuses"""
     submission_substatus = {
-        'id': row.id,
-        'submissionstatus_id': row.submissionstatus_id,
-        'presentation_order': row.presentation_order
+        'id': substatus.id,
+        'submissionstatus_id': substatus.submissionstatus_id,
+        'presentation_order': substatus.presentation_order
     }
 
-    return get_localized_values(submission_substatus, row, row.localized_keys, language)
+    return get_localized_values(submission_substatus, substatus, substatus.localized_keys, language)
 
 
 def db_retrieve_all_submission_statuses(session, tid, language):
@@ -52,14 +53,14 @@ def db_retrieve_all_submission_statuses(session, tid, language):
     submission_statuses = []
     user_submission_statuses = []
 
-    rows = session.query(models.SubmissionStatus) \
-                  .filter(models.SubmissionStatus.tid == tid) \
-                  .order_by(models.SubmissionStatus.presentation_order)
+    statuses = session.query(models.SubmissionStatus) \
+                      .filter(models.SubmissionStatus.tid == tid) \
+                      .order_by(models.SubmissionStatus.presentation_order)
 
-    for row in rows:
-        status_dict = serialize_submission_status(session, row, language)
-        if row.system_defined:
-            system_statuses[row.id] = status_dict
+    for status in statuses:
+        status_dict = serialize_submission_status(session, status, language)
+        if status.system_defined:
+            system_statuses[status.id] = status_dict
         else:
             user_submission_statuses.append(status_dict)
 
@@ -79,7 +80,7 @@ def retrieve_all_submission_statuses(session, tid, language):
 
 
 def db_retrieve_specific_submission_status(session, tid, submission_status_id, language):
-    """Retrieves a specific status serialized as a rows"""
+    """Retrieves a specific status"""
     status = session.query(models.SubmissionStatus) \
                    .filter(models.SubmissionStatus.tid == tid,
                            models.SubmissionStatus.id == submission_status_id).one_or_none()
@@ -205,8 +206,9 @@ def order_substatus_elements(session, handler, req_args, *args, **kwargs):
 
     submission_status_id = args[0]
 
-    substatuses = session.query(models.SubmissionSubStatus)\
-                       .filter(models.SubmissionSubStatus.submissionstatus_id == submission_status_id)
+    substatuses = session.query(models.SubmissionSubStatus) \
+                         .filter(models.SubmissionSubStatus.tid == self.request.tid,
+                                 models.SubmissionSubStatus.submissionstatus_id == submission_status_id)
 
     id_dict = {substatus.id: substatus for substatus in substatuses}
     ids = req_args['ids']
