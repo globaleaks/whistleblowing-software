@@ -54,7 +54,7 @@
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       </label>
       <input name="email" class="form-control" data-ng-model="confirmation_email"
-             data-ng-attr-placeholder="Email" data-disable-ccp type="text"
+             data-ng-attr-placeholder="{{'Email address' | translate}}" data-disable-ccp type="text"
              data-ng-class="{'is-invalid': validated && signup.email !== confirmation_email}"
              required>
       <div class="text-danger" data-ng-show="validated && signupForm.mail_address.$valid && signup.email !== confirmation_email">
