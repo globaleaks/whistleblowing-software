@@ -15,14 +15,11 @@ matrix:
     - env: GLTEST='py3_test' TESTS_REQUIREMENTS='bionic' CODACY=true
       python: "3.6"
 
-    - env: GLTEST='py2_test' TESTS_REQUIREMENTS='xenial'
-      python: "2.7"
-
-    - env: GLTEST='docker'
-      python: "3.6"
-
     - env: GLTEST='build_and_install' BUILD_DISTRO='bionic'
       python: "3.6"
+
+    - env: GLTEST='py2_test' TESTS_REQUIREMENTS='xenial'
+      python: "2.7"
 
     - env: GLTEST='build_and_install' BUILD_DISTRO='xenial'
       python: "3.6"
@@ -30,82 +27,85 @@ matrix:
     - env: GLTEST='build_and_install' BUILD_DISTRO='stretch'
       python: "3.6"
 
-    - env: GLTEST='end2end-0' BROWSER='edge 17'
+    - env: GLTEST='docker'
+      python: "3.6"
+
+    - env: GLTEST='end2end-0' BROWSER='chrome 76'
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-1' BROWSER='ie 11'
+    - env: GLTEST='end2end-1' BROWSER='chrome 45'
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-2' BROWSER='firefox 34'
+    - env: GLTEST='end2end-2' BROWSER='firefox 68'
+      python: "3.6"
+      addons:
+        sauce_connect: true
+    - env: GLTEST='end2end-3' BROWSER='firefox 38'
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-3' BROWSER='firefox 63'
+    - env: GLTEST='end2end-4' BROWSER='safari 12'
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-4' BROWSER='chrome 37'
+    - env: GLTEST='end2end-5' BROWSER='safari 9'
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-5' BROWSER='chrome 70'
+    - env: GLTEST='end2end-6' BROWSER='edge 18'
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-6' BROWSER='safari 8'
+    - env: GLTEST='end2end-7' BROWSER='ie 11'
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-7' BROWSER='safari 12'
+    - env: GLTEST='end2end-8' BROWSER='android 8'
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-8' BROWSER='android 4.4'
+    - env: GLTEST='end2end-9' BROWSER='android 5.1'
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-9' BROWSER='android 7.1'
+    - env: GLTEST='end2end-10' BROWSER='iOS 12.4'
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-10' BROWSER='ipad 9.3'
-      python: "3.6"
-      addons:
-        sauce_connect: true
-
-    - env: GLTEST='end2end-11' BROWSER='ipad 12'
+    - env: GLTEST='end2end-11' BROWSER='iOS 9'
       python: "3.6"
       addons:
         sauce_connect: true
 
   allow_failures:
-    - env: GLTEST='build_and_install' BUILD_DISTRO='bionic'
+    - env: GLTEST='py2_test' TESTS_REQUIREMENTS='xenial'
     - env: GLTEST='build_and_install' BUILD_DISTRO='xenial'
     - env: GLTEST='build_and_install' BUILD_DISTRO='stretch'
-    - env: GLTEST='end2end-0' BROWSER='edge 17'
-    - env: GLTEST='end2end-1' BROWSER='ie 11'
-    - env: GLTEST='end2end-2' BROWSER='firefox 34'
-    - env: GLTEST='end2end-3' BROWSER='firefox 63'
-    - env: GLTEST='end2end-4' BROWSER='chrome 37'
-    - env: GLTEST='end2end-5' BROWSER='chrome 70'
-    - env: GLTEST='end2end-6' BROWSER='safari 8'
-    - env: GLTEST='end2end-7' BROWSER='safari 12'
-    - env: GLTEST='end2end-8' BROWSER='android 4.4'
-    - env: GLTEST='end2end-9' BROWSER='android 7.1'
-    - env: GLTEST='end2end-10' BROWSER='ipad 9.3'
-    - env: GLTEST='end2end-11' BROWSER='ipad 12'
+    - env: GLTEST='docker'
+    - env: GLTEST='end2end-0' BROWSER='chrome 76'
+    - env: GLTEST='end2end-1' BROWSER='chrome 45'
+    - env: GLTEST='end2end-2' BROWSER='firefox 68'
+    - env: GLTEST='end2end-3' BROWSER='firefox 38'
+    - env: GLTEST='end2end-4' BROWSER='safari 12'
+    - env: GLTEST='end2end-5' BROWSER='safari 9'
+    - env: GLTEST='end2end-6' BROWSER='edge 18'
+    - env: GLTEST='end2end-7' BROWSER='ie 11'
+    - env: GLTEST='end2end-8' BROWSER='android 8'
+    - env: GLTEST='end2end-9' BROWSER='android 5.1'
+    - env: GLTEST='end2end-10' BROWSER='iOS 12.4'
+    - env: GLTEST='end2end-11' BROWSER='iOS 9'
 before_install:
   - nvm install stable
   - nvm use stable
