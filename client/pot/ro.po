@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:01+0000\n"
-"Last-Translator: pol polearnik <polearnik@mail.ru>\n"
+"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -697,17 +697,8 @@ msgstr ""
 msgid "Enable two factor authentication"
 msgstr ""
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "Permite altor site-uri web pentru a include platforma in interiorul iframe"
-
-msgid "Warning"
-msgstr "Avertizare"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "Prin activarea acestei opțiuni, permiteți alte site-uri pentru a include platforma in interiorul iframe; acest lucru ar putea fi folosite pentru a pune în pericol comunicațiile platformei sau de interceptare utilizatorilor"
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Permite destinatarilor să amâne data de expirare a depunerii"
@@ -808,13 +799,7 @@ msgstr "Nume Utilizator"
 msgid "Password"
 msgstr "Parolă"
 
-msgid "Allow users to reset their passwords"
-msgstr ""
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
+msgid "Enable password reset"
 msgstr ""
 
 msgid "Enable users to upload their PGP keys"
@@ -840,6 +825,9 @@ msgstr ""
 
 msgid "Enable experimental features"
 msgstr "Activați funcțiile experimentale"
+
+msgid "Warning"
+msgstr "Avertizare"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -898,9 +886,6 @@ msgstr "Anulează"
 msgid "Submission statuses"
 msgstr ""
 
-msgid "Closing statuses"
-msgstr ""
-
 msgid "Logo"
 msgstr "Logo"
 
@@ -930,9 +915,6 @@ msgstr "Text"
 
 msgid "Footer"
 msgstr "Subsol, subsol pagină"
-
-msgid "Favicon"
-msgstr ""
 
 msgid "Upload"
 msgstr "Încărcați"
@@ -1066,9 +1048,6 @@ msgstr "Versiune software:"
 msgid "An update is available:"
 msgstr ""
 
-msgid "SMTP name"
-msgstr "nume SMTP"
-
 msgid "SMTP email address"
 msgstr "SMTP adresă de e-mail"
 
@@ -1104,6 +1083,9 @@ msgstr "această configurație se aplică numai beneficiarilor"
 
 msgid "Test the configuration"
 msgstr "Testeaza configuratia"
+
+msgid "Reset SMTP configuration"
+msgstr ""
 
 msgid "Template"
 msgstr "șablon"
@@ -1151,6 +1133,9 @@ msgstr "Organizația"
 msgid "Organizational unit"
 msgstr "Departament"
 
+msgid "Generate"
+msgstr "Generează"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1163,9 +1148,6 @@ msgstr ""
 
 msgid "Private Key"
 msgstr "Cheia privată"
-
-msgid "Generate"
-msgstr "Generează"
 
 msgid "Certificate Signing Request"
 msgstr "Cerere de semnare a certificatului"
@@ -1576,7 +1558,7 @@ msgstr "Vă rugăm să sprijine Hermes prin intermediul paginii lor de donare."
 msgid "Forgot password?"
 msgstr ""
 
-msgid "Check your inbox and enter the authentication code you received."
+msgid "Enter the two factor authentication code"
 msgstr ""
 
 msgid "Authentication failed"
@@ -1623,6 +1605,27 @@ msgstr "Atribuiți puncte"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Luati va rog la cunostinta faptul ca toate datele asociate vor fi pierdute permanent."
+
+msgid "Instructions"
+msgstr "Instrucțiuni"
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr "În&chidere"
+
+msgid "Your encryption recovery key is:"
+msgstr ""
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr ""
 
 msgid "Welcome!"
 msgstr "Bine ați venit!"
@@ -1705,6 +1708,12 @@ msgstr "Ascunde"
 
 msgid "Show"
 msgstr "Arată"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
+msgstr ""
 
 msgid "Current password"
 msgstr "Parolă curentă"
@@ -1920,6 +1929,9 @@ msgstr "Fișiere atașate de către destinatari"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Aceste fișiere au fost atașate conținutului tău de către destinatari."
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr ""
 
@@ -1931,10 +1943,8 @@ msgstr ""
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
-msgid "Request password reset"
-msgstr ""
-
-msgid "Password reset feature is unavailable for admin users."
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
 msgstr ""
 
 msgid "Password reset requested."
@@ -2147,15 +2157,6 @@ msgstr "Responsabilitatea de muncă (rol), în momentul faptului raportat"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Unitate de organizare și locație de locuri de muncă la momentul faptului raportat"
-
-msgid "Authentication code: {AuthCode}"
-msgstr ""
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr ""
-
-msgid "Authentication code"
-msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Buna {RecipientName},"

@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:00+0000\n"
+"PO-Revision-Date: 2019-09-02 17:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -702,17 +702,8 @@ msgstr ""
 msgid "Enable two factor authentication"
 msgstr ""
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "Дозволити іншим сайтам підключати платформу, використовуючи iframes"
-
-msgid "Warning"
-msgstr "Увага!"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "Включивши це налаштування ви дозволяєте іншим веб-сайтам підключати платформу, використовуючи iframes; в кінцевому рахунку це може використовуватися для зловживання платформою або перехоплення користувачів та їх спілкування"
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Дозволити одержувачам продовжувати термін до видалення матеріалів повідомлення."
@@ -813,13 +804,7 @@ msgstr "Ім'я користувача"
 msgid "Password"
 msgstr "Пароль"
 
-msgid "Allow users to reset their passwords"
-msgstr ""
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
+msgid "Enable password reset"
 msgstr ""
 
 msgid "Enable users to upload their PGP keys"
@@ -845,6 +830,9 @@ msgstr ""
 
 msgid "Enable experimental features"
 msgstr "Enable experimental features"
+
+msgid "Warning"
+msgstr "Увага!"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -903,9 +891,6 @@ msgstr "Скасувати"
 msgid "Submission statuses"
 msgstr ""
 
-msgid "Closing statuses"
-msgstr ""
-
 msgid "Logo"
 msgstr "Логотип"
 
@@ -935,9 +920,6 @@ msgstr "Текст"
 
 msgid "Footer"
 msgstr "Нижній колонтитул"
-
-msgid "Favicon"
-msgstr ""
 
 msgid "Upload"
 msgstr "Додати"
@@ -1071,9 +1053,6 @@ msgstr "Версія програмного забезпечення:"
 msgid "An update is available:"
 msgstr ""
 
-msgid "SMTP name"
-msgstr "SMTP name"
-
 msgid "SMTP email address"
 msgstr "SMTP email address"
 
@@ -1109,6 +1088,9 @@ msgstr "this configuration only applies to recipients"
 
 msgid "Test the configuration"
 msgstr "Test the configuration"
+
+msgid "Reset SMTP configuration"
+msgstr ""
 
 msgid "Template"
 msgstr "Template"
@@ -1156,6 +1138,9 @@ msgstr "Організація"
 msgid "Organizational unit"
 msgstr ""
 
+msgid "Generate"
+msgstr "Генерувати"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1168,9 +1153,6 @@ msgstr ""
 
 msgid "Private Key"
 msgstr ""
-
-msgid "Generate"
-msgstr "Генерувати"
 
 msgid "Certificate Signing Request"
 msgstr ""
@@ -1581,7 +1563,7 @@ msgstr "Будь ласка, підтримайте Хабардокс чере�
 msgid "Forgot password?"
 msgstr "Забули пароль?"
 
-msgid "Check your inbox and enter the authentication code you received."
+msgid "Enter the two factor authentication code"
 msgstr ""
 
 msgid "Authentication failed"
@@ -1628,6 +1610,27 @@ msgstr "Призначати бали"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Зверніть увагу, що всі пов'язані з ним дані будуть безповоротно втрачені."
+
+msgid "Instructions"
+msgstr "Інструкції"
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr "Закрити"
+
+msgid "Your encryption recovery key is:"
+msgstr ""
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr ""
 
 msgid "Welcome!"
 msgstr "Ласкаво просимо!"
@@ -1710,6 +1713,12 @@ msgstr "Приховати"
 
 msgid "Show"
 msgstr "Показати"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
+msgstr ""
 
 msgid "Current password"
 msgstr "Поточний пароль"
@@ -1925,6 +1934,9 @@ msgstr "Файли прикріплені одержувачами"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Ці файли були додані до вашого подання одержувачами."
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr "Вказаний маркер відновлення недійсний або термін його дії закінчився."
 
@@ -1936,10 +1948,8 @@ msgstr "Введіть ім'я користувача або електронн�
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
-msgid "Request password reset"
-msgstr "Надіслати запит на скидання пароля"
-
-msgid "Password reset feature is unavailable for admin users."
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
 msgstr ""
 
 msgid "Password reset requested."
@@ -2152,15 +2162,6 @@ msgstr "Відповідальності (роль) на момент право
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Місцерозташування офісу на момент правопорушення про яке повідомляється"
-
-msgid "Authentication code: {AuthCode}"
-msgstr ""
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr ""
-
-msgid "Authentication code"
-msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Шановний {RecipientName},"

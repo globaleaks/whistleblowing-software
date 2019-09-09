@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:00+0000\n"
+"PO-Revision-Date: 2019-09-02 17:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -691,17 +691,8 @@ msgstr "Активиране на мулти-сайтова функционал
 msgid "Enable two factor authentication"
 msgstr "Активиране на двуфакторово удостоверение"
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "Разрешаване на други уебсайтове за включват платформата в iframes"
-
-msgid "Warning"
-msgstr "Предупреждение"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "Когато тази опция е активирана, разрешавате други уебсайтове да включват платформата в iframes; това може потенциално да бъде използвано за застрашаване на платформата или пресичане на комуникацията на потребителите"
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Разрешаване на получателите да отлагат датата на изтичане на подадения сигнал"
@@ -802,14 +793,8 @@ msgstr "Потребителско име"
 msgid "Password"
 msgstr "Парола"
 
-msgid "Allow users to reset their passwords"
-msgstr "Разрешаване на потребителите да възстановяват паролите си"
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
-msgstr "Разрешаването на потребителите да възстановяват паролите си може да занижи сигурността на платформата понеже сигурността на системата става зависима от сигурността на имейл профилите на потребителите."
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Разрешаване на потребителите да задават своите PGP ключове"
@@ -834,6 +819,9 @@ msgstr "Активиране на система за оценяване"
 
 msgid "Enable experimental features"
 msgstr "Включване на експериментални опции"
+
+msgid "Warning"
+msgstr "Предупреждение"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -892,9 +880,6 @@ msgstr "Откажи"
 msgid "Submission statuses"
 msgstr "Статус на подаването на сигнал"
 
-msgid "Closing statuses"
-msgstr "Затваряне на статусите"
-
 msgid "Logo"
 msgstr "Лого"
 
@@ -924,9 +909,6 @@ msgstr "Текст"
 
 msgid "Footer"
 msgstr "Footer"
-
-msgid "Favicon"
-msgstr "Favicon"
 
 msgid "Upload"
 msgstr "Качване"
@@ -1060,9 +1042,6 @@ msgstr "Версия на софтуера:"
 msgid "An update is available:"
 msgstr "Има ново обновление:"
 
-msgid "SMTP name"
-msgstr "SMTP име"
-
 msgid "SMTP email address"
 msgstr "SMTP имейл адрес"
 
@@ -1098,6 +1077,9 @@ msgstr "тази настройка важи единствено за полу�
 
 msgid "Test the configuration"
 msgstr "Тестване на конфигурацията"
+
+msgid "Reset SMTP configuration"
+msgstr ""
 
 msgid "Template"
 msgstr "Шаблон"
@@ -1145,6 +1127,9 @@ msgstr "Организация"
 msgid "Organizational unit"
 msgstr "Отдел в организацията"
 
+msgid "Generate"
+msgstr "Генериране"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1157,9 +1142,6 @@ msgstr "Интерфейсът може да генерира личен клю�
 
 msgid "Private Key"
 msgstr "Таен ключ"
-
-msgid "Generate"
-msgstr "Генериране"
 
 msgid "Certificate Signing Request"
 msgstr "Заявка за сертификат"
@@ -1570,8 +1552,8 @@ msgstr "Моля, подкрепете Хермес през страницат�
 msgid "Forgot password?"
 msgstr "Забравена парола?"
 
-msgid "Check your inbox and enter the authentication code you received."
-msgstr "Проверете входящата си кутия и въведете кодът за удостоверение."
+msgid "Enter the two factor authentication code"
+msgstr ""
 
 msgid "Authentication failed"
 msgstr "Проверката за самоличност е неуспешна"
@@ -1617,6 +1599,27 @@ msgstr "Задайте точки"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Моля, помнете, че всичката свързана информация ще бъде перманентно изтрита."
+
+msgid "Instructions"
+msgstr ""
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr "Затваряне"
+
+msgid "Your encryption recovery key is:"
+msgstr ""
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr ""
 
 msgid "Welcome!"
 msgstr "Добре дошли!"
@@ -1699,6 +1702,12 @@ msgstr "Скрий"
 
 msgid "Show"
 msgstr "Покажи"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
+msgstr ""
 
 msgid "Current password"
 msgstr "Текуща парола"
@@ -1914,6 +1923,9 @@ msgstr "Прикачени, от получателите, файлове"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Тези файлове са прикачени към сигнала от получателите."
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr "Подадения токен за възстановяванее невалиден или изтекъл."
 
@@ -1925,11 +1937,9 @@ msgstr "Въведете потребителското име на профил
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
-msgid "Request password reset"
-msgstr "Поискване за възстановяване на паролата"
-
-msgid "Password reset feature is unavailable for admin users."
-msgstr "Функцията за възстановяване на паролата не е на разположение за администратори."
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
+msgstr ""
 
 msgid "Password reset requested."
 msgstr "Получена е заявка за възстановяване на паролата."
@@ -2141,15 +2151,6 @@ msgstr "Изисквания (роля) за периода на подаден�
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Отдел и местоположение на работата за периода на подадения сигнал"
-
-msgid "Authentication code: {AuthCode}"
-msgstr "Код за удостоверение: {AuthCode}"
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr "Кодът за удостоверение е валиден за 5 минути."
-
-msgid "Authentication code"
-msgstr "Код за удостоверение"
 
 msgid "Dear {RecipientName},"
 msgstr "Скъпи {RecipientName},"

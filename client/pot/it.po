@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-23 13:24+0000\n"
+"PO-Revision-Date: 2019-09-07 18:14+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -705,17 +705,8 @@ msgstr "Abilita la funzionalità multisito"
 msgid "Enable two factor authentication"
 msgstr "Abilita autenticazione a due fattori"
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "Permetti che altri siti possano includere la piattaforma dentro iframes"
-
-msgid "Warning"
-msgstr "Attenzione"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "Abilitando questa opzione stai permettendo ad altri siti di includere la piattaforma mediante iframes. Questo può  essere utilizzato per abusare della piattaforma o per intercettare gli utenti e le loro comunicazioni."
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Permetti ai seguenti siti di include la piattaforma dentro iframes"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Permetti ai riceventi di postporre la data di scadenza delle segnalazioni"
@@ -816,14 +807,8 @@ msgstr "Nome utente"
 msgid "Password"
 msgstr "Password"
 
-msgid "Allow users to reset their passwords"
-msgstr "Permetti agli utenti di reimpostare la loro password."
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
-msgstr "Permettendo agli utenti di reimpostare la loro password riduce la sicurezza della piattaforma in quanto la sicurezza diventerà dipendente dalla sicurezza delle caselle di posta degli utenti."
+msgid "Enable password reset"
+msgstr "Enable password reset"
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Permetti agli utenti di caricare le loro chiavi PGP."
@@ -848,6 +833,9 @@ msgstr "Abilita il sistema di punteggio"
 
 msgid "Enable experimental features"
 msgstr "Abilità funzionalità sperimentali"
+
+msgid "Warning"
+msgstr "Attenzione"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -906,9 +894,6 @@ msgstr "Annulla"
 msgid "Submission statuses"
 msgstr "Stati della segnalazione"
 
-msgid "Closing statuses"
-msgstr "Stati di chiusura"
-
 msgid "Logo"
 msgstr "Logo"
 
@@ -938,9 +923,6 @@ msgstr "Testo"
 
 msgid "Footer"
 msgstr "Piè di pagina"
-
-msgid "Favicon"
-msgstr "Favicon"
 
 msgid "Upload"
 msgstr "Carica"
@@ -1074,9 +1056,6 @@ msgstr "Versione del software:"
 msgid "An update is available:"
 msgstr "È disponibile un aggiornamento:"
 
-msgid "SMTP name"
-msgstr "Nome SMTP"
-
 msgid "SMTP email address"
 msgstr "Indirizzo mail SMTP"
 
@@ -1112,6 +1091,9 @@ msgstr "questa configurazione si applica solo ai riceventi"
 
 msgid "Test the configuration"
 msgstr "Prova la configurazione"
+
+msgid "Reset SMTP configuration"
+msgstr "Resetta la configurazione SMTP"
 
 msgid "Template"
 msgstr "Modello"
@@ -1159,6 +1141,9 @@ msgstr "Organizzazione"
 msgid "Organizational unit"
 msgstr "Unità organizzativa"
 
+msgid "Generate"
+msgstr "Genera"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1171,9 +1156,6 @@ msgstr "L'interfaccia può generare una Private Key e una Certificate Signing Re
 
 msgid "Private Key"
 msgstr "Chiave privata"
-
-msgid "Generate"
-msgstr "Genera"
 
 msgid "Certificate Signing Request"
 msgstr "Richiesta di firma certificato"
@@ -1437,7 +1419,7 @@ msgid "Duplicate"
 msgstr "Duplica"
 
 msgid "Steps"
-msgstr "Passaggi"
+msgstr "Passi"
 
 msgid "Site settings"
 msgstr "Impostazioni sito"
@@ -1584,8 +1566,8 @@ msgstr "Si invita a supportare Hermes attraverso la loro pagina di donazione."
 msgid "Forgot password?"
 msgstr "Password dimenticata?"
 
-msgid "Check your inbox and enter the authentication code you received."
-msgstr "Controlla la tua posta in arrivo e inserisci il codice di autenticazione che hai ricevuto."
+msgid "Enter the two factor authentication code"
+msgstr "Inserisci il codice di autenticazione a due fattori"
 
 msgid "Authentication failed"
 msgstr "Autenticazione fallita"
@@ -1631,6 +1613,27 @@ msgstr "Assegna punteggio"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Si prega di notare che tutti i dati associati saranno persi."
+
+msgid "Instructions"
+msgstr "Istruzioni"
+
+msgid "Install an authenticator app on your phone"
+msgstr "Installa una applicazione di autenticazione sul tuo telefono"
+
+msgid "Scan the QR code with the app"
+msgstr "Scansiona i QR code con la applicazione"
+
+msgid "Close"
+msgstr "Chiudi"
+
+msgid "Your encryption recovery key is:"
+msgstr "La tua chiave di ripristino della crittografia è:"
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr "Ti invitiamo ad annotare e riporre questa chiave in un luogo sicuro. Sarà necessaria nel caso tu perda la tua password personale al fine di recuperare il tuo account senza perdita di dati."
 
 msgid "Welcome!"
 msgstr "Benvenuto!"
@@ -1713,6 +1716,12 @@ msgstr "Nascosto"
 
 msgid "Show"
 msgstr "Mostra"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr "Abilita la cifratura delle email fornendo una chiave PGP pubblica."
+
+msgid "Get the encryption recovery key"
+msgstr "Ottieni la chiave di recupero della cifratura"
 
 msgid "Current password"
 msgstr "Password attuale"
@@ -1902,7 +1911,7 @@ msgid "Questionnaire answers"
 msgstr "Risposte al questionario"
 
 msgid "Step"
-msgstr "Step"
+msgstr "Passo"
 
 msgid "Recipient list"
 msgstr "Lista dei  riceventi"
@@ -1928,6 +1937,9 @@ msgstr "File allegati dai riceventi"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Questi file sono stati allegati alla tua segnalazione dai riceventi."
 
+msgid "The provided recovery key is invalid."
+msgstr "La chiave di recupero fornita non è corretta,"
+
 msgid "The provided reset token is invalid or expired."
 msgstr "Il token di reset fornito non è valido o è scaduto."
 
@@ -1939,11 +1951,9 @@ msgstr "Inserisci lo username legato al tuo account o la tua email per richieder
 msgid "Enter your email address to request a password reset."
 msgstr "Inserisci la tua email per richiedere di reimpostare la password."
 
-msgid "Request password reset"
-msgstr "Richiedi reset della password"
-
-msgid "Password reset feature is unavailable for admin users."
-msgstr "La funzionalità di password reset non è disponibile per gli utenti amministratori."
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
+msgstr "Inserisci la tua chiave di ripristino della crittografia al fine di completare la procedura di password reset."
 
 msgid "Password reset requested."
 msgstr "Richiesta di password reset completata."
@@ -2036,7 +2046,7 @@ msgstr "Riceventi selezionati"
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr "Le risposte alle seguenti domande sono mancanti o non valide:"
+msgstr "In questo passo le risposte alle seguenti domande sono mancanti o non valide:"
 
 msgid "Submission errors"
 msgstr "Errori nella segnalazione"
@@ -2048,7 +2058,7 @@ msgid "Waiting for the file(s) to finish uploading."
 msgstr "In attesa che i file finiscano di essere caricati."
 
 msgid "The following steps have errors:"
-msgstr "I seguenti step presentano alcuni errori:"
+msgstr "I seguenti passi presentano alcuni errori:"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -2155,15 +2165,6 @@ msgstr "Responsabilità lavorativa (ruolo) all'epoca dei fatti segnalati"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Unità organizzativa e sede di lavoro all'epoca dei fatti riportati"
-
-msgid "Authentication code: {AuthCode}"
-msgstr "Codice di autenticazione: {AuthCode}"
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr "Il codice di autenticazione è valido per 5 minuti."
-
-msgid "Authentication code"
-msgstr "Codice di autenticazione"
 
 msgid "Dear {RecipientName},"
 msgstr "Caro {RecipientName}"

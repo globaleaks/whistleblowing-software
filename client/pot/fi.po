@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:00+0000\n"
+"PO-Revision-Date: 2019-09-02 17:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -690,17 +690,8 @@ msgstr "Ota käyttöön samanaikainen kirjautuminen useaan järjestelmään"
 msgid "Enable two factor authentication"
 msgstr ""
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "Salli muiden sivustojen upottaa palvelu iframes-toteutuksena omille verkkosivuilleen."
-
-msgid "Warning"
-msgstr "Varoitus"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "Tämän toiminnallisuuden käyttöönotto mahdollistaa palvelun käytön iframe-toteutuksena muiden sivustojen sisällä. Toiminnallisuutta hyväksikäyttäen palvelun turvallisuus saattaa vaarantua tai käyttäjien  välinen yhteydenpito saatetaan kaapata."
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Salli vastaanottajien siirtää vihjeiden vanhentumispäivämäärää myöhemmäksi"
@@ -801,14 +792,8 @@ msgstr "Käyttäjätunnus"
 msgid "Password"
 msgstr "Salasana"
 
-msgid "Allow users to reset their passwords"
-msgstr "Salli käyttäjien nollata salasanansa"
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
-msgstr "Mikäli käyttäjille sallitaan mahdollisuus määritellä salasanansa uudelleen, palvelun tietoturva saattaa heikentyä, koska tietoturvan taso määräytyy käyttäjän sähköpostin tietoturvan mukaan."
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Salli käyttäjien omien PGP-avaimien tallentaminen"
@@ -833,6 +818,9 @@ msgstr "Ota käyttöön pisteytysjärjestelmä"
 
 msgid "Enable experimental features"
 msgstr "Ota käyttöön koekäytössä olevat toiminnallisuudet"
+
+msgid "Warning"
+msgstr "Varoitus"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -891,9 +879,6 @@ msgstr "Peru"
 msgid "Submission statuses"
 msgstr "Vihjeiden tilat"
 
-msgid "Closing statuses"
-msgstr "Lopetustilat"
-
 msgid "Logo"
 msgstr "Logo"
 
@@ -923,9 +908,6 @@ msgstr "Teksti"
 
 msgid "Footer"
 msgstr "Sivun alatunnisteen teksti"
-
-msgid "Favicon"
-msgstr "Favicon"
 
 msgid "Upload"
 msgstr "Lataa"
@@ -1059,9 +1041,6 @@ msgstr "Käytössä oleva ohjelmistoversio:"
 msgid "An update is available:"
 msgstr "Uusi ohjelmistoversio saatavilla:"
 
-msgid "SMTP name"
-msgstr "SMTP-nimi"
-
 msgid "SMTP email address"
 msgstr "SMTP-sähköpostiosoite"
 
@@ -1097,6 +1076,9 @@ msgstr "tämä asetus koskee ainoastaan vastaanottajia"
 
 msgid "Test the configuration"
 msgstr "Suorita järjestelmätestaus"
+
+msgid "Reset SMTP configuration"
+msgstr ""
 
 msgid "Template"
 msgstr "Mallipohja"
@@ -1144,6 +1126,9 @@ msgstr "Organisaatio"
 msgid "Organizational unit"
 msgstr "Organisaatioyksikkö"
 
+msgid "Generate"
+msgstr "Generoi"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1156,9 +1141,6 @@ msgstr "Tässä näkymässä voit luoda yksityisen salausavaimesi (private key) 
 
 msgid "Private Key"
 msgstr "Yksityinen avain"
-
-msgid "Generate"
-msgstr "Generoi"
 
 msgid "Certificate Signing Request"
 msgstr "Varmenteen allekirjoituspyyntö (CSR)"
@@ -1569,7 +1551,7 @@ msgstr "Voit tukea Hermes-järjestöä heidän lahjoitussivunsa kautta."
 msgid "Forgot password?"
 msgstr "Unohtunut salasana?"
 
-msgid "Check your inbox and enter the authentication code you received."
+msgid "Enter the two factor authentication code"
 msgstr ""
 
 msgid "Authentication failed"
@@ -1616,6 +1598,27 @@ msgstr "Käytä pisteytystä"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Huomaa, että kaikki asiaan liittyvät tiedot poistetaan lopullisesti."
+
+msgid "Instructions"
+msgstr ""
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr "Sulje"
+
+msgid "Your encryption recovery key is:"
+msgstr ""
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr ""
 
 msgid "Welcome!"
 msgstr "Tervetuloa!"
@@ -1698,6 +1701,12 @@ msgstr "Piilota"
 
 msgid "Show"
 msgstr "Näytä"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
+msgstr ""
 
 msgid "Current password"
 msgstr "Nykyinen salasana"
@@ -1913,6 +1922,9 @@ msgstr "Vastaanottajien lisäämät tiedostot"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Tässä vastaanottajien lisäämät vihjeeseesi liittyvät tiedostot."
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr "Nollaustunniste on vanhentunut tai muutoin kelpaamaton."
 
@@ -1924,11 +1936,9 @@ msgstr "Anna tilisi käyttäjänimi tai sähköpostiosoite salasanan nollauspyyn
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
-msgid "Request password reset"
-msgstr "Lähetä salasanan nollauspyyntö"
-
-msgid "Password reset feature is unavailable for admin users."
-msgstr "Toiminto salasanan nollaamiseksi ei ole saatavilla ylläpitokäyttäjille."
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
+msgstr ""
 
 msgid "Password reset requested."
 msgstr "Salasanan nollaus pyydetty."
@@ -2140,15 +2150,6 @@ msgstr "Työtehtävä ilmoitushetkellä"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Organisaatioyksikkö ja työpaikan sijainti raportointihetkellä"
-
-msgid "Authentication code: {AuthCode}"
-msgstr ""
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr ""
-
-msgid "Authentication code"
-msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Hyvä {RecipientName},"

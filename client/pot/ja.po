@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-09-04 11:19+0000\n"
+"Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -689,17 +689,8 @@ msgstr "マルチサイト機能を有効にする"
 msgid "Enable two factor authentication"
 msgstr "2 段階認証を有効にする"
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "他のウェブサイトのインラインフレーム内にプラットフォームを含めることを許可する"
-
-msgid "Warning"
-msgstr "警告"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "このオプションを有効にすることにより、他のウェブサイトのインラインフレーム内にプラットフォームを含めることができるようになります。これにより、プラットフォームが危険にさらされたり、ユーザーの通信が傍受される可能性があります"
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "次のWebサイトがインラインフレーム内にプラットフォームを埋め込むことを許可する"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "受信者が提出の有効期限を延期することを許可する"
@@ -800,14 +791,8 @@ msgstr "ユーザー名"
 msgid "Password"
 msgstr "パスワード"
 
-msgid "Allow users to reset their passwords"
-msgstr "ユーザーによるパスワードのリセットを許可"
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
-msgstr "ユーザーがパスワードをリセットできるようにすると、セキュリティがユーザーの電子メールアカウントのセキュリティに依存するため、プラットフォームのセキュリティが低下する可能性があります。"
+msgid "Enable password reset"
+msgstr "パスワードリセットを有効にする"
 
 msgid "Enable users to upload their PGP keys"
 msgstr "ユーザーがPGP鍵をアップロードできるようにする"
@@ -832,6 +817,9 @@ msgstr "スコアリングシステムを有効にする"
 
 msgid "Enable experimental features"
 msgstr "実験的な機能を有効にする"
+
+msgid "Warning"
+msgstr "警告"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -890,9 +878,6 @@ msgstr "キャンセル"
 msgid "Submission statuses"
 msgstr "提出状況"
 
-msgid "Closing statuses"
-msgstr "終了状況"
-
 msgid "Logo"
 msgstr "ロゴ"
 
@@ -922,9 +907,6 @@ msgstr "テキスト"
 
 msgid "Footer"
 msgstr "フッター"
-
-msgid "Favicon"
-msgstr "日本語"
 
 msgid "Upload"
 msgstr "アップロード"
@@ -1058,9 +1040,6 @@ msgstr "ソフトウェア バージョン:"
 msgid "An update is available:"
 msgstr "アップデートが利用できます。"
 
-msgid "SMTP name"
-msgstr "SMTP 名"
-
 msgid "SMTP email address"
 msgstr "SMTP メールアドレス"
 
@@ -1096,6 +1075,9 @@ msgstr "この設定は受信者に適用するのみです"
 
 msgid "Test the configuration"
 msgstr "設定のテスト"
+
+msgid "Reset SMTP configuration"
+msgstr "SMTP 設定をリセット"
 
 msgid "Template"
 msgstr "テンプレート"
@@ -1143,6 +1125,9 @@ msgstr "組織"
 msgid "Organizational unit"
 msgstr "組織の単位"
 
+msgid "Generate"
+msgstr "生成"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1155,9 +1140,6 @@ msgstr "インタフェースは秘密鍵と証明書署名要求を生成する
 
 msgid "Private Key"
 msgstr "秘密鍵"
-
-msgid "Generate"
-msgstr "生成"
 
 msgid "Certificate Signing Request"
 msgstr "証明書署名要求"
@@ -1568,8 +1550,8 @@ msgstr "ぜひ寄付のページをご覧になり、Hermesをサポートして
 msgid "Forgot password?"
 msgstr "パスワードをお忘れですか?"
 
-msgid "Check your inbox and enter the authentication code you received."
-msgstr "メールを確認して、受け取った認証コードを入力してください。"
+msgid "Enter the two factor authentication code"
+msgstr "2 段階認証コードを入力"
 
 msgid "Authentication failed"
 msgstr "認証に失敗しました"
@@ -1615,6 +1597,27 @@ msgstr "スコアポイントを割り当て"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "すべての関連データが完全に失われますのでご注意ください。"
+
+msgid "Instructions"
+msgstr "説明"
+
+msgid "Install an authenticator app on your phone"
+msgstr "お使いの電話に認証アプリをインストールする"
+
+msgid "Scan the QR code with the app"
+msgstr "アプリでQRコードをスキャンしてください"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Your encryption recovery key is:"
+msgstr "あなたの暗号化回復鍵は:"
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr "この鍵に注釈を付けて安全な場所に保管してください。 個人のパスワードを紛失した場合に、データを失うことなくアカウントへのアクセスを回復する必要があります。"
 
 msgid "Welcome!"
 msgstr "ようこそ!"
@@ -1697,6 +1700,12 @@ msgstr "非表示"
 
 msgid "Show"
 msgstr "表示"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr "PGP公開鍵を入力して、メールの暗号化を設定します"
+
+msgid "Get the encryption recovery key"
+msgstr "暗号化回復鍵を取得する"
 
 msgid "Current password"
 msgstr "現在のパスワード"
@@ -1912,6 +1921,9 @@ msgstr "受信者が添付したファイル"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "これらのファイルは、受信者によって提出に添付されています。"
 
+msgid "The provided recovery key is invalid."
+msgstr "指定された回復鍵は無効です。"
+
 msgid "The provided reset token is invalid or expired."
 msgstr "指定されたリセットトークンが無効または期限切れです。"
 
@@ -1923,11 +1935,9 @@ msgstr "パスワードの再設定をリクエストするには、アカウン
 msgid "Enter your email address to request a password reset."
 msgstr "パスワードの再設定をリクエストするには、メールアドレスを入力してください。"
 
-msgid "Request password reset"
-msgstr "パスワードの再設定をリクエスト"
-
-msgid "Password reset feature is unavailable for admin users."
-msgstr "管理者ユーザーはパスワードリセット機能を使用できません。"
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
+msgstr "暗号化回復鍵を入力して、パスワードのリセット手順を完了してください"
 
 msgid "Password reset requested."
 msgstr "パスワードのリセットをリクエストしました。"
@@ -1969,11 +1979,11 @@ msgid "Your whistleblowing platform is almost ready!"
 msgstr "内部告発プラットフォームがもう少しで準備できます!"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "メールを確認して、有効にしてください。"
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "24時間以内に有効にしない場合、プラットフォームは自動的に削除されます。"
 
 msgid "Sign up"
 msgstr "登録"
@@ -1982,10 +1992,10 @@ msgid "Domain"
 msgstr "ドメイン"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "確認"
 
 msgid "Invalid confirmation"
-msgstr ""
+msgstr "確認できません"
 
 msgid "Other"
 msgstr "その他"
@@ -2139,15 +2149,6 @@ msgstr "報告する事実の時点での役職 (役割)"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "報告する事実の時点での所属、職場"
-
-msgid "Authentication code: {AuthCode}"
-msgstr "認証コード: {AuthCode}"
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr "認証コードは 5 分間有効です。"
-
-msgid "Authentication code"
-msgstr "認証コード"
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} 様"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:00+0000\n"
+"PO-Revision-Date: 2019-09-02 17:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -687,16 +687,7 @@ msgstr ""
 msgid "Enable two factor authentication"
 msgstr ""
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "Dovoli drugim spletnim stranem, da prikazujejo to platformo v iframe okvirjih."
-
-msgid "Warning"
-msgstr "Opozorilo"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
+msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
@@ -798,13 +789,7 @@ msgstr "Uporabniško ime"
 msgid "Password"
 msgstr "Geslo"
 
-msgid "Allow users to reset their passwords"
-msgstr ""
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
+msgid "Enable password reset"
 msgstr ""
 
 msgid "Enable users to upload their PGP keys"
@@ -830,6 +815,9 @@ msgstr ""
 
 msgid "Enable experimental features"
 msgstr "Omogoči eksperimentalne funkcije"
+
+msgid "Warning"
+msgstr "Opozorilo"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -888,9 +876,6 @@ msgstr "Prekliči"
 msgid "Submission statuses"
 msgstr ""
 
-msgid "Closing statuses"
-msgstr ""
-
 msgid "Logo"
 msgstr ""
 
@@ -920,9 +905,6 @@ msgstr "Besedilo"
 
 msgid "Footer"
 msgstr "Noga"
-
-msgid "Favicon"
-msgstr ""
 
 msgid "Upload"
 msgstr "Naloži"
@@ -1056,9 +1038,6 @@ msgstr "Verzija programa:"
 msgid "An update is available:"
 msgstr ""
 
-msgid "SMTP name"
-msgstr "SMTP ime"
-
 msgid "SMTP email address"
 msgstr "SMTP naslov"
 
@@ -1094,6 +1073,9 @@ msgstr ""
 
 msgid "Test the configuration"
 msgstr "Preizkus nastavitev"
+
+msgid "Reset SMTP configuration"
+msgstr ""
 
 msgid "Template"
 msgstr "Predloga"
@@ -1141,6 +1123,9 @@ msgstr ""
 msgid "Organizational unit"
 msgstr ""
 
+msgid "Generate"
+msgstr ""
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1152,9 +1137,6 @@ msgid ""
 msgstr ""
 
 msgid "Private Key"
-msgstr ""
-
-msgid "Generate"
 msgstr ""
 
 msgid "Certificate Signing Request"
@@ -1566,7 +1548,7 @@ msgstr "Prosimo, da podprete Hermes na naši strani za donacije."
 msgid "Forgot password?"
 msgstr ""
 
-msgid "Check your inbox and enter the authentication code you received."
+msgid "Enter the two factor authentication code"
 msgstr ""
 
 msgid "Authentication failed"
@@ -1612,6 +1594,27 @@ msgid "Assign score points"
 msgstr ""
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "Instructions"
+msgstr "Navodila"
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Your encryption recovery key is:"
+msgstr ""
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
 msgstr ""
 
 msgid "Welcome!"
@@ -1695,6 +1698,12 @@ msgstr ""
 
 msgid "Show"
 msgstr "Show"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
+msgstr ""
 
 msgid "Current password"
 msgstr ""
@@ -1910,6 +1919,9 @@ msgstr ""
 msgid "These files have been attached to your submission by the recipients."
 msgstr ""
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr ""
 
@@ -1921,10 +1933,8 @@ msgstr ""
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
-msgid "Request password reset"
-msgstr ""
-
-msgid "Password reset feature is unavailable for admin users."
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
 msgstr ""
 
 msgid "Password reset requested."
@@ -2137,15 +2147,6 @@ msgstr "Odgovornost na delu (vloga) ob poročanju"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Organizacijska enota in lokacija dela ob poročanju"
-
-msgid "Authentication code: {AuthCode}"
-msgstr ""
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr ""
-
-msgid "Authentication code"
-msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Spoštovani {RecipientName},"

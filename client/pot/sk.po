@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:00+0000\n"
+"PO-Revision-Date: 2019-09-02 17:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -694,17 +694,8 @@ msgstr "Povoliť funkciu multisite"
 msgid "Enable two factor authentication"
 msgstr "Povoliť dvojfaktorovú autorizáciu"
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "Povoliť iným stránkam zobrazovať časti tohto webu pomocou iframe."
-
-msgid "Warning"
-msgstr "Varovanie"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "Povolením tejto voľby dovolíte iným stránkam zobrazovať časti tohto webu pomocou iframe. Ich použitie môže znížiť bezpečnosť a dôveryhodnosť komunikácie s používateľmi."
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Povoliť príjemcovi odložiť exspiráciu podania"
@@ -805,14 +796,8 @@ msgstr "Používateľské meno"
 msgid "Password"
 msgstr "Heslo"
 
-msgid "Allow users to reset their passwords"
-msgstr "Dovoliť používateľom resetovať heslo"
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
-msgstr "Umožniť užívateľom resetovať heslá, môže znížiť zabezpečenie platformy, pretože jej bezpečnosť zavisí od zabezpečenia emailových  účtov používateľov."
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Povoliť používateľom nahrať ich PGP kľúče"
@@ -837,6 +822,9 @@ msgstr "Aktivovať systém hodnotenia"
 
 msgid "Enable experimental features"
 msgstr "Povoliť experimentálne funkcie"
+
+msgid "Warning"
+msgstr "Varovanie"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -895,9 +883,6 @@ msgstr "Zrušiť"
 msgid "Submission statuses"
 msgstr "Stav podania"
 
-msgid "Closing statuses"
-msgstr "Uzavretie stavov"
-
 msgid "Logo"
 msgstr "Logo"
 
@@ -927,9 +912,6 @@ msgstr "Text"
 
 msgid "Footer"
 msgstr "Pätička"
-
-msgid "Favicon"
-msgstr "Favicon"
 
 msgid "Upload"
 msgstr "Načítať"
@@ -1063,9 +1045,6 @@ msgstr "Verzia softvéru:"
 msgid "An update is available:"
 msgstr "Je dostupná aktualizácia:"
 
-msgid "SMTP name"
-msgstr "Názov SMTP serveru"
-
 msgid "SMTP email address"
 msgstr "Emailová adresa pre SMTP server"
 
@@ -1101,6 +1080,9 @@ msgstr "táto konfigurácia sa týka iba príjemcov"
 
 msgid "Test the configuration"
 msgstr "Testovať konfiguráciu"
+
+msgid "Reset SMTP configuration"
+msgstr ""
 
 msgid "Template"
 msgstr "Šablóna"
@@ -1148,6 +1130,9 @@ msgstr "Organizácia"
 msgid "Organizational unit"
 msgstr "Organizačná jednotka"
 
+msgid "Generate"
+msgstr "Generovať"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1160,9 +1145,6 @@ msgstr "Toto rozhranie môže vygenerovať súkromný kľúč a žiadosť o podp
 
 msgid "Private Key"
 msgstr "Súkromný kľúč"
-
-msgid "Generate"
-msgstr "Generovať"
 
 msgid "Certificate Signing Request"
 msgstr "Žiadosť o podpis certifikátu"
@@ -1573,8 +1555,8 @@ msgstr "Organizáciu Hermes môžete podporiť na ich darovacej stránke."
 msgid "Forgot password?"
 msgstr "Zabudli ste heslo?"
 
-msgid "Check your inbox and enter the authentication code you received."
-msgstr "Skontrolujte doručenú poštu a zadajte prihlasovací kód, ktorý ste dostali."
+msgid "Enter the two factor authentication code"
+msgstr ""
 
 msgid "Authentication failed"
 msgstr "Overenie zlyhalo"
@@ -1620,6 +1602,27 @@ msgstr "Prideliť bodové skóre"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Upozorňujeme, že všetky súvisiace údaje budú natrvalo odstránené."
+
+msgid "Instructions"
+msgstr ""
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr "Zatvoriť"
+
+msgid "Your encryption recovery key is:"
+msgstr ""
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr ""
 
 msgid "Welcome!"
 msgstr "Vitajte!"
@@ -1702,6 +1705,12 @@ msgstr "Skryť"
 
 msgid "Show"
 msgstr "Zobraziť"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
+msgstr ""
 
 msgid "Current password"
 msgstr "Aktuálne heslo"
@@ -1917,6 +1926,9 @@ msgstr "Prílohy od príjemcov"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Tieto prílohy boli pripojené k vášmu podaniu príjemcami."
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr "Dodaný reset token je neplatný alebo vypršal."
 
@@ -1928,11 +1940,9 @@ msgstr "Vložte používateľské meno účtu alebo emailovú adresu a požiadaj
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
-msgid "Request password reset"
-msgstr "Požiadajte o obnovenie hesla"
-
-msgid "Password reset feature is unavailable for admin users."
-msgstr "Funkcia obnovenia hesla nie je k dispozícii administrátorom."
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
+msgstr ""
 
 msgid "Password reset requested."
 msgstr "Vyžaduje sa obnovenie hesla."
@@ -2144,15 +2154,6 @@ msgstr "Pracovná zodpovednosť (rola) v čase podania"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Organizačná jednotka a miesto práce v čase podania"
-
-msgid "Authentication code: {AuthCode}"
-msgstr "Autentifikačný kód: {AuthCode}"
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr "Autentifikačný kód je platný po dobu 5 minút."
-
-msgid "Authentication code"
-msgstr "Autentifikačný kód"
 
 msgid "Dear {RecipientName},"
 msgstr "Vážený/á {RecipientName},"

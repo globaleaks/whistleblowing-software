@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:00+0000\n"
+"PO-Revision-Date: 2019-09-02 17:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -687,17 +687,8 @@ msgstr ""
 msgid "Enable two factor authentication"
 msgstr ""
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "Tillat andre nettsider å inkludere denne plattformen i iframe-element"
-
-msgid "Warning"
-msgstr "Advarsel"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "Ved å skru på dette vil du tillate andre nettsider å inkludere plattformen i iframe-elementer; dette kan følgelig brukes for å utnytte plattformen eller overhøre brukere og deres kommunikasjon."
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Tillat mottakere å utsette utløpsdatoen for innsendelsen"
@@ -798,13 +789,7 @@ msgstr "Brukernavn"
 msgid "Password"
 msgstr "Passord"
 
-msgid "Allow users to reset their passwords"
-msgstr ""
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
+msgid "Enable password reset"
 msgstr ""
 
 msgid "Enable users to upload their PGP keys"
@@ -830,6 +815,9 @@ msgstr ""
 
 msgid "Enable experimental features"
 msgstr "Skru på eksperimentelle funksjoner"
+
+msgid "Warning"
+msgstr "Advarsel"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -888,9 +876,6 @@ msgstr "Avbryt"
 msgid "Submission statuses"
 msgstr ""
 
-msgid "Closing statuses"
-msgstr ""
-
 msgid "Logo"
 msgstr "Logo"
 
@@ -920,9 +905,6 @@ msgstr "Tekst"
 
 msgid "Footer"
 msgstr "Bunntekst"
-
-msgid "Favicon"
-msgstr "Favicon"
 
 msgid "Upload"
 msgstr "Innlasting"
@@ -1056,9 +1038,6 @@ msgstr "Programvareversjon:"
 msgid "An update is available:"
 msgstr "Oppgradering tilgjengelig:"
 
-msgid "SMTP name"
-msgstr "SMTP-navn"
-
 msgid "SMTP email address"
 msgstr "SMTP for e-postadresse"
 
@@ -1094,6 +1073,9 @@ msgstr "dette oppsettet har bare med mottakere å gjøre"
 
 msgid "Test the configuration"
 msgstr "Test oppsettet"
+
+msgid "Reset SMTP configuration"
+msgstr ""
 
 msgid "Template"
 msgstr "Mal"
@@ -1141,6 +1123,9 @@ msgstr "Organisasjon"
 msgid "Organizational unit"
 msgstr "Organisatorisk enhet"
 
+msgid "Generate"
+msgstr "Generer"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1153,9 +1138,6 @@ msgstr "Grensesnittet kan opprette en privat nøkkel og en sertifikatsigneringsf
 
 msgid "Private Key"
 msgstr "Privat nøkkel"
-
-msgid "Generate"
-msgstr "Generer"
 
 msgid "Certificate Signing Request"
 msgstr "Forespørsel om sertifikatsignering"
@@ -1566,7 +1548,7 @@ msgstr "Støtt Hermes gjennom deres donasjons-side."
 msgid "Forgot password?"
 msgstr ""
 
-msgid "Check your inbox and enter the authentication code you received."
+msgid "Enter the two factor authentication code"
 msgstr ""
 
 msgid "Authentication failed"
@@ -1613,6 +1595,27 @@ msgstr "Tildel poeng"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Merk deg at all tilknyttet data vil gå tapt for godt."
+
+msgid "Instructions"
+msgstr ""
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr "Lukk"
+
+msgid "Your encryption recovery key is:"
+msgstr ""
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr ""
 
 msgid "Welcome!"
 msgstr "Velkommen!"
@@ -1695,6 +1698,12 @@ msgstr "Skjul"
 
 msgid "Show"
 msgstr "Vis"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
+msgstr ""
 
 msgid "Current password"
 msgstr "Gjeldende passord"
@@ -1910,6 +1919,9 @@ msgstr "Filer vedlegt av mottakere"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Disse filene har blitt vedlagt din innsendelse av mottakerne."
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr ""
 
@@ -1921,10 +1933,8 @@ msgstr ""
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
-msgid "Request password reset"
-msgstr ""
-
-msgid "Password reset feature is unavailable for admin users."
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
 msgstr ""
 
 msgid "Password reset requested."
@@ -2137,15 +2147,6 @@ msgstr "Arbeidsansvar (rolle) i det faktaen ble rapportert"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Organisatorisk enhet og arbeidets stedvise plassering i det faktaen ble rapportert"
-
-msgid "Authentication code: {AuthCode}"
-msgstr ""
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr ""
-
-msgid "Authentication code"
-msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Kjære {RecipientName},"

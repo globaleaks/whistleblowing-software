@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:00+0000\n"
+"PO-Revision-Date: 2019-09-02 17:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -688,17 +688,8 @@ msgstr ""
 msgid "Enable two factor authentication"
 msgstr ""
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "Dopusti drugim stranicama da uključe platformu unutar iframe-ova"
-
-msgid "Warning"
-msgstr "Upozorenje"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "Omogućivanjem ove opcije dopuštate drugim web stranicama da uključe platformu unutar iframe-ova; ovo bi potencijalno moglo biti iskorišteno za ugrožavanje platforme ili presretanje korisničkih komunikacija"
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Dopusti primateljima da odgode datum isteka predaje"
@@ -799,14 +790,8 @@ msgstr "Korisničko ime"
 msgid "Password"
 msgstr "Lozinka"
 
-msgid "Allow users to reset their passwords"
-msgstr "Dopusti korisnicima da resetiraju svoje lozinke"
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
-msgstr "Dopuštanje resetiranja lozinke korisnicima može smanjiti sigurnost platforme jer ista postaje ovisna o sigurnosti korisničkog email računa."
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Omogući korisnicima da postave svoje PGP ključeve"
@@ -831,6 +816,9 @@ msgstr ""
 
 msgid "Enable experimental features"
 msgstr "Omogući eksperimentalne značajke"
+
+msgid "Warning"
+msgstr "Upozorenje"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -889,9 +877,6 @@ msgstr "Otkaži"
 msgid "Submission statuses"
 msgstr "Statusi predaje"
 
-msgid "Closing statuses"
-msgstr "Statusi zatvaranja"
-
 msgid "Logo"
 msgstr "Logo"
 
@@ -921,9 +906,6 @@ msgstr "Tekst"
 
 msgid "Footer"
 msgstr "Podnožje"
-
-msgid "Favicon"
-msgstr "Ikona"
 
 msgid "Upload"
 msgstr "Učitaj"
@@ -1057,9 +1039,6 @@ msgstr "Verzija software-a:"
 msgid "An update is available:"
 msgstr "Ažuriranje je dostupno:"
 
-msgid "SMTP name"
-msgstr "SMTP ime"
-
 msgid "SMTP email address"
 msgstr "SMTP email adresa"
 
@@ -1095,6 +1074,9 @@ msgstr "ova postavka se primjenjuje samo na primatelje"
 
 msgid "Test the configuration"
 msgstr "Testiraj konfiguraciju"
+
+msgid "Reset SMTP configuration"
+msgstr ""
 
 msgid "Template"
 msgstr "Obrazac"
@@ -1142,6 +1124,9 @@ msgstr "Organizacija"
 msgid "Organizational unit"
 msgstr "Organizacijska jedinica"
 
+msgid "Generate"
+msgstr "Gneriraj"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1154,9 +1139,6 @@ msgstr "Sučelje može generirati privatni ključ i zahtjev za potpisivanjem cer
 
 msgid "Private Key"
 msgstr "Privatni ključ"
-
-msgid "Generate"
-msgstr "Gneriraj"
 
 msgid "Certificate Signing Request"
 msgstr "Zahtjev za potpisivanje certifikata"
@@ -1567,7 +1549,7 @@ msgstr "Molimo podržite Hermes putem njihove donacijske stranice."
 msgid "Forgot password?"
 msgstr "Zaboravili lozinku?"
 
-msgid "Check your inbox and enter the authentication code you received."
+msgid "Enter the two factor authentication code"
 msgstr ""
 
 msgid "Authentication failed"
@@ -1614,6 +1596,27 @@ msgstr "Dodjeli bodove rezultata"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Imajte na umu da će svi povezani podatci biti trajno izgubljeni."
+
+msgid "Instructions"
+msgstr ""
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr "Zatvori"
+
+msgid "Your encryption recovery key is:"
+msgstr ""
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr ""
 
 msgid "Welcome!"
 msgstr "Dobrodošli!"
@@ -1695,6 +1698,12 @@ msgid "Hide"
 msgstr "Sakrij"
 
 msgid "Show"
+msgstr ""
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
 msgstr ""
 
 msgid "Current password"
@@ -1911,6 +1920,9 @@ msgstr "Datoteke privijene od strane primatelja"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Ove datoteke su privijene Vašoj predaji od strane primatelja."
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr "Predstavljeni token za ponovno postavljanje je neispravan ili je istekao."
 
@@ -1922,11 +1934,9 @@ msgstr "Unesite korisničko ime svog računa ili svoju email adresu kako bi zaht
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
-msgid "Request password reset"
-msgstr "Zahtjev za ponovnim postavljanjem lozinke poslan"
-
-msgid "Password reset feature is unavailable for admin users."
-msgstr "Značajka ponovnog postavljanja lozinke je nedostupna admin korisnicima."
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
+msgstr ""
 
 msgid "Password reset requested."
 msgstr "Ponovno postavljanje lozinke zahtjevano."
@@ -2138,15 +2148,6 @@ msgstr "Poslovna odgovornost (uloga) u doba prijavljene činjenice"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Organizacijska jedinica i lokacija posla u vrijeme prijavljene činjenice"
-
-msgid "Authentication code: {AuthCode}"
-msgstr ""
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr ""
-
-msgid "Authentication code"
-msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Dragi/a {RecipientName},"

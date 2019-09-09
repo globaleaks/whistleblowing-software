@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:00+0000\n"
+"PO-Revision-Date: 2019-09-02 17:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -719,17 +719,8 @@ msgstr ""
 msgid "Enable two factor authentication"
 msgstr ""
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "السماح للمواقع الأخرى بادماج المنصّة داخل النوافذ المدمجة."
-
-msgid "Warning"
-msgstr "تنبيه"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "من خلال تمكين هذا الخيار، فإنك تسمح لمواقع أخرى بشمل المنصة داخل نوافذ الأطر المدمجة. و هو ما يمكن استخدامه لتهديد المنصة أو اعتراض اتصالات المستخدمين."
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "السماح للمتلقي بتأجيل تاريخ انتهاء البلاغ"
@@ -830,13 +821,7 @@ msgstr "اسم المستخدم"
 msgid "Password"
 msgstr "كلمة السرّ"
 
-msgid "Allow users to reset their passwords"
-msgstr ""
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
+msgid "Enable password reset"
 msgstr ""
 
 msgid "Enable users to upload their PGP keys"
@@ -862,6 +847,9 @@ msgstr ""
 
 msgid "Enable experimental features"
 msgstr "تمكين الميزات التجريبية"
+
+msgid "Warning"
+msgstr "تنبيه"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -920,9 +908,6 @@ msgstr "إلغاء"
 msgid "Submission statuses"
 msgstr ""
 
-msgid "Closing statuses"
-msgstr ""
-
 msgid "Logo"
 msgstr "الشعار "
 
@@ -952,9 +937,6 @@ msgstr "نص"
 
 msgid "Footer"
 msgstr "ذيل الصفحة "
-
-msgid "Favicon"
-msgstr "أيقونة المفضّلة"
 
 msgid "Upload"
 msgstr "تحميل"
@@ -1088,9 +1070,6 @@ msgstr "نسخة البرنامج:"
 msgid "An update is available:"
 msgstr "هنالك تحديث متوفّر:"
 
-msgid "SMTP name"
-msgstr "اسم بروتوكول نقل البريد الإلكتروني - SMTP "
-
 msgid "SMTP email address"
 msgstr "البريد الإلكتروني لبروتوكول نقل البريد الإلكتروني - SMTP"
 
@@ -1126,6 +1105,9 @@ msgstr "تنطبق هذه التهيئة فقط على المتلقّين"
 
 msgid "Test the configuration"
 msgstr "ٌإختبر الضّبط"
+
+msgid "Reset SMTP configuration"
+msgstr ""
 
 msgid "Template"
 msgstr "قالب"
@@ -1173,6 +1155,9 @@ msgstr "منظمة"
 msgid "Organizational unit"
 msgstr "وحدة تنظيمية"
 
+msgid "Generate"
+msgstr "توليد"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1185,9 +1170,6 @@ msgstr "هذه الواجهة يمكنها توليد مفتاح خاص وطلب
 
 msgid "Private Key"
 msgstr "مفتاح سرّي"
-
-msgid "Generate"
-msgstr "توليد"
 
 msgid "Certificate Signing Request"
 msgstr "طلب توقيع الشهادة  "
@@ -1598,7 +1580,7 @@ msgstr "الرجاء دعم Hermes من خلال صفحة التبرع."
 msgid "Forgot password?"
 msgstr ""
 
-msgid "Check your inbox and enter the authentication code you received."
+msgid "Enter the two factor authentication code"
 msgstr ""
 
 msgid "Authentication failed"
@@ -1645,6 +1627,27 @@ msgstr "تخصيص نقاط المجموع"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "يرجى ملاحظة أنّه سيتم فقدان جميع البيانات المتعلقة بشكل دائم."
+
+msgid "Instructions"
+msgstr "التعليمات"
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr "‮إغلاق"
+
+msgid "Your encryption recovery key is:"
+msgstr ""
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr ""
 
 msgid "Welcome!"
 msgstr "مرحبا!"
@@ -1727,6 +1730,12 @@ msgstr "إخفاء"
 
 msgid "Show"
 msgstr "عرض"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
+msgstr ""
 
 msgid "Current password"
 msgstr "كلمة السر الحالية"
@@ -1942,6 +1951,9 @@ msgstr "الملفات المرفقة من قبل المتلقّين"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "قد تم إرفاق هذه الملفات إلى بلاغك من قبل المتلقّين."
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr ""
 
@@ -1953,10 +1965,8 @@ msgstr ""
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
-msgid "Request password reset"
-msgstr ""
-
-msgid "Password reset feature is unavailable for admin users."
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
 msgstr ""
 
 msgid "Password reset requested."
@@ -2169,15 +2179,6 @@ msgstr "المسؤولية في العمل (الدور) وقت الابلاغ ع
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "وحدة المنظمة و مكان العمل وقت الابلاغ عن الواقعة"
-
-msgid "Authentication code: {AuthCode}"
-msgstr ""
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr ""
-
-msgid "Authentication code"
-msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "عزيزي {RecipientName},"

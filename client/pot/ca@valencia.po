@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-23 09:01+0000\n"
+"PO-Revision-Date: 2019-09-02 17:47+0000\n"
 "Last-Translator: Manuel D. Serrat <manuel.serrat@antifraucv.es>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -696,17 +696,8 @@ msgstr "Activar la característica multi-lloc"
 msgid "Enable two factor authentication"
 msgstr "Habilitar l'autenticació de doble factor"
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "Permet que altres webs incloguen la plataforma a l'interior d'Iframes"
-
-msgid "Warning"
-msgstr "Advertència"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "En activar aquesta opció, es permet a altres llocs web incloure la plataforma dins de marcs; això es podria utilitzar per posar en perill la plataforma o per interceptar les comunicacions dels usuaris"
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Permet que els destinataris posposen la caducitat del lliurament"
@@ -807,14 +798,8 @@ msgstr "Nom d'usuari"
 msgid "Password"
 msgstr "Contrassenya"
 
-msgid "Allow users to reset their passwords"
-msgstr "Permetre als usuaris reinicialitzar les seues contrasenyes"
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
-msgstr "Permetre als usuaris reinicialitzar les seues contrasenyes pot reduïr la seguretat de la plataforma, donat que la seguretat pasa a dependre de la seguretat dels comptes de correu dels usuaris."
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Activar que els usuaris puguen pujar les seus claus PGP"
@@ -839,6 +824,9 @@ msgstr "Activar el sistema de puntuacions"
 
 msgid "Enable experimental features"
 msgstr "Activa les funcionalitats experimentals"
+
+msgid "Warning"
+msgstr "Advertència"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -897,9 +885,6 @@ msgstr "Cancel·la"
 msgid "Submission statuses"
 msgstr "Estats dels enviaments"
 
-msgid "Closing statuses"
-msgstr "Estats de tancament"
-
 msgid "Logo"
 msgstr "Logotip"
 
@@ -929,9 +914,6 @@ msgstr "Text"
 
 msgid "Footer"
 msgstr "Peu de pàgina"
-
-msgid "Favicon"
-msgstr "Icona de web"
 
 msgid "Upload"
 msgstr "Carrega"
@@ -1065,9 +1047,6 @@ msgstr "Versió del programari:"
 msgid "An update is available:"
 msgstr "Hi ha una actualització disponible:"
 
-msgid "SMTP name"
-msgstr "Nom SMTP"
-
 msgid "SMTP email address"
 msgstr "Adreça electrònica SMTP"
 
@@ -1103,6 +1082,9 @@ msgstr "Aquesta configuració només és aplicable als destinataris"
 
 msgid "Test the configuration"
 msgstr "Proveu la configuració"
+
+msgid "Reset SMTP configuration"
+msgstr ""
 
 msgid "Template"
 msgstr "Plantilla"
@@ -1150,6 +1132,9 @@ msgstr "Organització"
 msgid "Organizational unit"
 msgstr "Unitat organitzativa"
 
+msgid "Generate"
+msgstr "Genera"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1162,9 +1147,6 @@ msgstr "Aquesta interfície pot generar una Clau Privada (PK) i una Sol·licitud
 
 msgid "Private Key"
 msgstr "Clau privada"
-
-msgid "Generate"
-msgstr "Genera"
 
 msgid "Certificate Signing Request"
 msgstr "Sol·licitud de signatura de certificat CSR"
@@ -1575,8 +1557,8 @@ msgstr "Pot donar suport a Hermes mitjançant la seva pàgina de donacions."
 msgid "Forgot password?"
 msgstr "Ha oblidat la contrasenya?"
 
-msgid "Check your inbox and enter the authentication code you received."
-msgstr "Verifique la safata d'entrada i introduïsca el codi d'autenticació que ha rebut."
+msgid "Enter the two factor authentication code"
+msgstr ""
 
 msgid "Authentication failed"
 msgstr "Autenticació fallida"
@@ -1622,6 +1604,27 @@ msgstr "Assigna puntuació"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Recordeu que totes les dades associades es perden definitivament."
+
+msgid "Instructions"
+msgstr ""
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Your encryption recovery key is:"
+msgstr ""
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr ""
 
 msgid "Welcome!"
 msgstr "Benvingut!"
@@ -1704,6 +1707,12 @@ msgstr "Ocultar"
 
 msgid "Show"
 msgstr "Mostrar"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
+msgstr ""
 
 msgid "Current password"
 msgstr " Contrasenya actual"
@@ -1919,6 +1928,9 @@ msgstr "Arxius adjuntats pels receptors"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Aquests arxius s'han adjuntat al seu enviament pels receptors"
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr "El token de reinicialització es invàlid o ha expirat."
 
@@ -1930,11 +1942,9 @@ msgstr "Introduïsca el seu nom d'usuari o la seua direcció de correu per a dem
 msgid "Enter your email address to request a password reset."
 msgstr "Introduïsca la seua direcció de correu per a sol.licitar la reinicialiltzació de la contrasenya."
 
-msgid "Request password reset"
-msgstr "Demanar una reinicialització de la contrasenya"
-
-msgid "Password reset feature is unavailable for admin users."
-msgstr "La funcionalitat de reinicialitzar la contrasenya no es troba disponible per a usuaris administratius."
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
+msgstr ""
 
 msgid "Password reset requested."
 msgstr "Reinicialització de la contrasenya.sol.licitada."
@@ -2146,15 +2156,6 @@ msgstr "Càrrec laboral en el moment dels fets esmentats"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Unitat d'organització i localització del lloc de treball en el moment dels fets esmentats"
-
-msgid "Authentication code: {AuthCode}"
-msgstr "Codi d'autenticació: {AuthCode}"
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr "El codi d'autenticació es vàlid per 5 minuts."
-
-msgid "Authentication code"
-msgstr "Codi d'autenticació"
 
 msgid "Dear {RecipientName},"
 msgstr "Benvolgut/uda {RecipientName},"

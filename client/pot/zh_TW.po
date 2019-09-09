@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:00+0000\n"
+"PO-Revision-Date: 2019-09-02 17:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -690,17 +690,8 @@ msgstr "啟用多個網站功能"
 msgid "Enable two factor authentication"
 msgstr ""
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "讓其它網站能以網頁加框方式嵌入此平台"
-
-msgid "Warning"
-msgstr "警示"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "啟動此選項，你將可在其它網站將此吹哨平台嵌入其網頁框內，但這對於吹哨平台的用戶，其資訊有被攔截的通訊危險。"
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "允許收件人延後提交的截止日期"
@@ -801,14 +792,8 @@ msgstr "用戶名"
 msgid "Password"
 msgstr "密碼"
 
-msgid "Allow users to reset their passwords"
-msgstr "用戶可以重設其密碼"
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
-msgstr "若安全是建立於用戶的電子郵箱，讓用戶請求重設密碼可能會降低平台的安全性。"
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "讓用戶可以上傳自己的 PGP  密鑰"
@@ -833,6 +818,9 @@ msgstr "啟用評分系統"
 
 msgid "Enable experimental features"
 msgstr "開啟示範性功能"
+
+msgid "Warning"
+msgstr "警示"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -891,9 +879,6 @@ msgstr "取消"
 msgid "Submission statuses"
 msgstr "提交狀態"
 
-msgid "Closing statuses"
-msgstr "即將關閉狀態"
-
 msgid "Logo"
 msgstr "Logo"
 
@@ -923,9 +908,6 @@ msgstr "內文"
 
 msgid "Footer"
 msgstr "頁腳"
-
-msgid "Favicon"
-msgstr "網站小圖標"
 
 msgid "Upload"
 msgstr "上傳"
@@ -1059,9 +1041,6 @@ msgstr "軟體版本:"
 msgid "An update is available:"
 msgstr "軟體有更新版"
 
-msgid "SMTP name"
-msgstr "SMTP 名稱"
-
 msgid "SMTP email address"
 msgstr "SMTP 電子郵件"
 
@@ -1097,6 +1076,9 @@ msgstr "這個設定只適用在收件者身上"
 
 msgid "Test the configuration"
 msgstr "測試設定"
+
+msgid "Reset SMTP configuration"
+msgstr ""
 
 msgid "Template"
 msgstr "模版"
@@ -1144,6 +1126,9 @@ msgstr "組織"
 msgid "Organizational unit"
 msgstr "組織的單位"
 
+msgid "Generate"
+msgstr "產生"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1156,9 +1141,6 @@ msgstr "憑證簽章請求可以提供給憑證授權單位來取得憑證。當
 
 msgid "Private Key"
 msgstr "私密金鑰"
-
-msgid "Generate"
-msgstr "產生"
 
 msgid "Certificate Signing Request"
 msgstr "憑證簽署要求"
@@ -1569,7 +1551,7 @@ msgstr "透過捐款頁面支持 Hermes"
 msgid "Forgot password?"
 msgstr "忘記密碼？"
 
-msgid "Check your inbox and enter the authentication code you received."
+msgid "Enter the two factor authentication code"
 msgstr ""
 
 msgid "Authentication failed"
@@ -1616,6 +1598,27 @@ msgstr "指定得分點數"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "請注意所有相關的資料將會永久消失。"
+
+msgid "Instructions"
+msgstr ""
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr "關閉"
+
+msgid "Your encryption recovery key is:"
+msgstr ""
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr ""
 
 msgid "Welcome!"
 msgstr "歡迎！"
@@ -1698,6 +1701,12 @@ msgstr "隱藏"
 
 msgid "Show"
 msgstr "顯示"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
+msgstr ""
 
 msgid "Current password"
 msgstr "現用密碼"
@@ -1913,6 +1922,9 @@ msgstr "收件者所附加的檔案"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "這些檔案是由你提交的收件者所附加的"
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr "所提供的重設符記無效或是已過期。"
 
@@ -1924,11 +1936,9 @@ msgstr "輸入您的帳戶名稱或電郵地址以請求重設密碼。"
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
-msgid "Request password reset"
-msgstr "請求重設密碼"
-
-msgid "Password reset feature is unavailable for admin users."
-msgstr "管理者用戶無法使用密碼重設功能。"
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
+msgstr ""
 
 msgid "Password reset requested."
 msgstr "已請求重設密碼。"
@@ -2140,15 +2150,6 @@ msgstr "報告實情時的工作職責"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "報告實情時的工作組織單位與工作地點"
-
-msgid "Authentication code: {AuthCode}"
-msgstr ""
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr ""
-
-msgid "Authentication code"
-msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "敬愛的 {RecipientName},"

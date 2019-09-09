@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:00+0000\n"
+"PO-Revision-Date: 2019-09-02 17:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -701,17 +701,8 @@ msgstr ""
 msgid "Enable two factor authentication"
 msgstr ""
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "A platform Iframe ablakba beillesztésének engedélyezése más oldalak számára "
-
-msgid "Warning"
-msgstr "Figyelem"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "Ennek az opciónak a bekapcsolásával engedélyezi más weboldalaknak, hogy tartalmazzák a platformot iframe-ken belül; ez potenciálisan felhasználható a platform veszélyeztetésére vagy a felhasználók kommunikációinak lehallgatására"
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Engedély a címzetteknek, hogy meghosszabbítsák a beküldés lejárati dátumát"
@@ -812,13 +803,7 @@ msgstr "Felhasználónév"
 msgid "Password"
 msgstr "Jelszó"
 
-msgid "Allow users to reset their passwords"
-msgstr ""
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
+msgid "Enable password reset"
 msgstr ""
 
 msgid "Enable users to upload their PGP keys"
@@ -844,6 +829,9 @@ msgstr ""
 
 msgid "Enable experimental features"
 msgstr "Kísérleti fejlesztések bekapcsolása"
+
+msgid "Warning"
+msgstr "Figyelem"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -902,9 +890,6 @@ msgstr "Mégse"
 msgid "Submission statuses"
 msgstr ""
 
-msgid "Closing statuses"
-msgstr ""
-
 msgid "Logo"
 msgstr ""
 
@@ -934,9 +919,6 @@ msgstr "Szöveg"
 
 msgid "Footer"
 msgstr "Élőláb"
-
-msgid "Favicon"
-msgstr "Favicon"
 
 msgid "Upload"
 msgstr "Feltöltés"
@@ -1070,9 +1052,6 @@ msgstr "Szoftver verzió:"
 msgid "An update is available:"
 msgstr ""
 
-msgid "SMTP name"
-msgstr "SMTP név"
-
 msgid "SMTP email address"
 msgstr "SMTP email cím"
 
@@ -1107,6 +1086,9 @@ msgid "this configuration only applies to recipients"
 msgstr "ez a konfiguráció csak a címzettekre vonatkozik"
 
 msgid "Test the configuration"
+msgstr ""
+
+msgid "Reset SMTP configuration"
 msgstr ""
 
 msgid "Template"
@@ -1155,6 +1137,9 @@ msgstr "Szervezet"
 msgid "Organizational unit"
 msgstr ""
 
+msgid "Generate"
+msgstr ""
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1166,9 +1151,6 @@ msgid ""
 msgstr ""
 
 msgid "Private Key"
-msgstr ""
-
-msgid "Generate"
 msgstr ""
 
 msgid "Certificate Signing Request"
@@ -1580,7 +1562,7 @@ msgstr "Kérjük támogassa a Hermes-t a támogatói oldalán keresztül"
 msgid "Forgot password?"
 msgstr ""
 
-msgid "Check your inbox and enter the authentication code you received."
+msgid "Enter the two factor authentication code"
 msgstr ""
 
 msgid "Authentication failed"
@@ -1626,6 +1608,27 @@ msgid "Assign score points"
 msgstr ""
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "Instructions"
+msgstr ""
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Your encryption recovery key is:"
+msgstr ""
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
 msgstr ""
 
 msgid "Welcome!"
@@ -1708,6 +1711,12 @@ msgid "Hide"
 msgstr ""
 
 msgid "Show"
+msgstr ""
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
 msgstr ""
 
 msgid "Current password"
@@ -1924,6 +1933,9 @@ msgstr ""
 msgid "These files have been attached to your submission by the recipients."
 msgstr ""
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr ""
 
@@ -1935,10 +1947,8 @@ msgstr ""
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
-msgid "Request password reset"
-msgstr ""
-
-msgid "Password reset feature is unavailable for admin users."
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
 msgstr ""
 
 msgid "Password reset requested."
@@ -2151,15 +2161,6 @@ msgstr "Munka felelőssége (szerepe) a bejelentett tény idejében"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Szervezeti egység és munka helye a bejelentett tény idejében"
-
-msgid "Authentication code: {AuthCode}"
-msgstr ""
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr ""
-
-msgid "Authentication code"
-msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Kedves {RecipientName},"

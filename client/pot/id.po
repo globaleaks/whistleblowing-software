@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:01+0000\n"
-"Last-Translator: Robert Dafis <robertdafis@gmail.com>\n"
+"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -703,17 +703,8 @@ msgstr "Aktifkan fitur multi situs"
 msgid "Enable two factor authentication"
 msgstr "Aktifkan otentikasi 2 faktor"
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "Mengizinkan situs-situs lain menyertakan platform di dalam iframes"
-
-msgid "Warning"
-msgstr "Peringatan"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "Dengan mengaktifkan opsi ini, Anda mengizinkan situs lain menyertakan platform dalam iframes; hal ini dapat membahayakan platform atau menghalangi komunikasi pengguna"
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Penerima dapat mengubah tanggal kedaluwarsa pengiriman "
@@ -814,14 +805,8 @@ msgstr "Nama Pengguna"
 msgid "Password"
 msgstr "Kata sandi"
 
-msgid "Allow users to reset their passwords"
-msgstr "Mengizinkan pengguna untuk mengatur ulang kata sandi mereka"
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
-msgstr "Mengizinkan pengguna untuk mengatur ulang kata sandi mereka karena dapat mengurangi keamanan platform dari ketergantungan pada keamanan akun surel pengguna."
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Mengizinkan pengguna untuk mengunggah kunci PGP mereka."
@@ -846,6 +831,9 @@ msgstr "Aktifkan sistem pencetakan skor"
 
 msgid "Enable experimental features"
 msgstr "Mengaktifkan fitur-fitur eksperimental"
+
+msgid "Warning"
+msgstr "Peringatan"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -904,9 +892,6 @@ msgstr "Batal"
 msgid "Submission statuses"
 msgstr "Status-status pengiriman"
 
-msgid "Closing statuses"
-msgstr "Status penutupan"
-
 msgid "Logo"
 msgstr "Logo"
 
@@ -936,9 +921,6 @@ msgstr "Teks"
 
 msgid "Footer"
 msgstr "Catatan kaki"
-
-msgid "Favicon"
-msgstr "Ikon pintasan"
 
 msgid "Upload"
 msgstr "Unggah"
@@ -1072,9 +1054,6 @@ msgstr "Versi perangkat lunak: "
 msgid "An update is available:"
 msgstr "Pembaruan tersedia:"
 
-msgid "SMTP name"
-msgstr "Nama SMTP"
-
 msgid "SMTP email address"
 msgstr "Alamat surel SMTP"
 
@@ -1110,6 +1089,9 @@ msgstr "konfigurasi ini hanya berlaku untuk penerima"
 
 msgid "Test the configuration"
 msgstr "Mencoba konfigurasi"
+
+msgid "Reset SMTP configuration"
+msgstr ""
 
 msgid "Template"
 msgstr "Format"
@@ -1157,6 +1139,9 @@ msgstr "Organisasi"
 msgid "Organizational unit"
 msgstr "Unit Organisasi"
 
+msgid "Generate"
+msgstr "Membuat"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1169,9 +1154,6 @@ msgstr "Antarmuka ini dapat membuat Kunci Pribadi dan sebuah Permintaan Penandat
 
 msgid "Private Key"
 msgstr "Kunci Pribadi "
-
-msgid "Generate"
-msgstr "Membuat"
 
 msgid "Certificate Signing Request"
 msgstr "Permintaan Penandatanganan Sertifikat"
@@ -1582,8 +1564,8 @@ msgstr "Mohon dukungan kepada Hermes melalui halaman donasi mereka."
 msgid "Forgot password?"
 msgstr "Lupa sandi?"
 
-msgid "Check your inbox and enter the authentication code you received."
-msgstr "Cek kotak masuk Anda dan masukkan kode otentikasi yang Anda terima."
+msgid "Enter the two factor authentication code"
+msgstr ""
 
 msgid "Authentication failed"
 msgstr "Autentikasi gagal"
@@ -1629,6 +1611,27 @@ msgstr "Menentukan poin skor "
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Harap dicatat bahwa semua data yang terkait akan hilang secara permanen."
+
+msgid "Instructions"
+msgstr ""
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr "Tutup"
+
+msgid "Your encryption recovery key is:"
+msgstr ""
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr ""
 
 msgid "Welcome!"
 msgstr "Selamat datang!"
@@ -1711,6 +1714,12 @@ msgstr "Sembunyikan"
 
 msgid "Show"
 msgstr "Tampilkan"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
+msgstr ""
 
 msgid "Current password"
 msgstr "Sandi saat ini"
@@ -1926,6 +1935,9 @@ msgstr "Berkas yang telah ditaut oleh penerima "
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Berkas-berkas ini telah ditaut ke pengiriman anda oleh penerima "
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr "Token pengaturan ulang yang disediakan tidak sah atau kedaluwarsa "
 
@@ -1937,11 +1949,9 @@ msgstr "Masukkan nama pengguna akun anda atau alamat surel untuk meminta pengatu
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
-msgid "Request password reset"
-msgstr "Meminta pengaturan ulang kata sandi "
-
-msgid "Password reset feature is unavailable for admin users."
-msgstr "Fitur mengatur ulang kata sandi tidak tersedia untuk pengguna admin"
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
+msgstr ""
 
 msgid "Password reset requested."
 msgstr "Pengaturan ulang kata sandi telah diminta "
@@ -2153,15 +2163,6 @@ msgstr "Tanggung jawab pekerjaan (posisi) pada saat fakta dilaporkan"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Unit organisasi dan lokasi kerja pada saat fakta dilaporkan"
-
-msgid "Authentication code: {AuthCode}"
-msgstr "Kode Otentikasi: {AuthCode}"
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr "Kode otentikasi berlaku selama 5 menit."
-
-msgid "Authentication code"
-msgstr "Kode otentikasi"
 
 msgid "Dear {RecipientName},"
 msgstr "yang terhormat {RecipientName},"

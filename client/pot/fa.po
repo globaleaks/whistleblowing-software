@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:00+0000\n"
+"PO-Revision-Date: 2019-09-02 17:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -703,17 +703,8 @@ msgstr "فعال سازی ویژگی چند سایت"
 msgid "Enable two factor authentication"
 msgstr "فعال سازی احراز هویت دو عاملی"
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "به سایر تارنماها اجازه داده شود تا محتوی پلفرم را به شکل iframes استفاده کنند"
-
-msgid "Warning"
-msgstr "هشدار"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "با فعال کردن این گزینه شما به سایت‌های دیگر اجازه می‌دهید که پلتفورم به صورت iframe لود کنند; این کار می‌تواند طوری مورد استفاده قرار گیرد که پلتفورم را به خطر بیاندازد یا ارتباطات کاربران را شنود کند."
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "به دریافت کننده‌ها اجازه بدهید تا تاریخ انقضا گزارش را به تعویق بیاندازند"
@@ -814,14 +805,8 @@ msgstr "نام کاربری"
 msgid "Password"
 msgstr "گذرواژه"
 
-msgid "Allow users to reset their passwords"
-msgstr "اجازه به کاربران برای تنظیم مجدد گذرواژه ها"
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
-msgstr "اجازه به کاربران برای تنظیم مجدد گذرواژه‌ها می تواند امنیت پلتفورم را کاهش دهد چپن امنیت آن وابسته به امنیت حساب های کاربری کاربران خواهد بود."
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "اجازه دادن به کاربران برای بارگذاری کلید های PGP خود"
@@ -846,6 +831,9 @@ msgstr "فعال سازی سیستم امتیازدهی"
 
 msgid "Enable experimental features"
 msgstr "فعال کردن امکانات تجربی"
+
+msgid "Warning"
+msgstr "هشدار"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -904,9 +892,6 @@ msgstr "لغو"
 msgid "Submission statuses"
 msgstr "وضعیت های گزارش"
 
-msgid "Closing statuses"
-msgstr "بستن وضعیت ها"
-
 msgid "Logo"
 msgstr "آرم"
 
@@ -936,9 +921,6 @@ msgstr "متن"
 
 msgid "Footer"
 msgstr "پانویس"
-
-msgid "Favicon"
-msgstr "فاویکون"
 
 msgid "Upload"
 msgstr "بارگذاری"
@@ -1072,9 +1054,6 @@ msgstr "نسخه نرم‌افزار:"
 msgid "An update is available:"
 msgstr "یک به روز رسانی موجود می باشد:"
 
-msgid "SMTP name"
-msgstr "نام SMTP"
-
 msgid "SMTP email address"
 msgstr "آدرس ایمیل SMTP"
 
@@ -1110,6 +1089,9 @@ msgstr "این پیکربندی فقط برای گیرندگان اعمال می
 
 msgid "Test the configuration"
 msgstr "آزمایش پیکربندی"
+
+msgid "Reset SMTP configuration"
+msgstr ""
 
 msgid "Template"
 msgstr "قالب"
@@ -1157,6 +1139,9 @@ msgstr "سازمان"
 msgid "Organizational unit"
 msgstr "یگان سازمانی"
 
+msgid "Generate"
+msgstr "تولید"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1169,9 +1154,6 @@ msgstr "این رابط می تواند یک کلید خصوصی و یک درخ�
 
 msgid "Private Key"
 msgstr "کلید خصوصی"
-
-msgid "Generate"
-msgstr "تولید"
 
 msgid "Certificate Signing Request"
 msgstr "درخواست امضا گواهی"
@@ -1582,8 +1564,8 @@ msgstr "لطفا از هرمس از طریق صفحه اهدا پشتیبانی 
 msgid "Forgot password?"
 msgstr "گذرواژه را فراموش کرده اید؟"
 
-msgid "Check your inbox and enter the authentication code you received."
-msgstr "ورودی خود را بررسی کنید و کد احراز هویت دریافت شده را وارد کنید."
+msgid "Enter the two factor authentication code"
+msgstr ""
 
 msgid "Authentication failed"
 msgstr "تایید هویت ناموفق بود"
@@ -1629,6 +1611,27 @@ msgstr "تخصیص امتیاز"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "لطفا توجه داشته باشید که تمام داده های مرتبط برای همیشه از بین خواهند رفت."
+
+msgid "Instructions"
+msgstr "دستورالعمل‌ها"
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr "بستن"
+
+msgid "Your encryption recovery key is:"
+msgstr ""
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr ""
 
 msgid "Welcome!"
 msgstr "خوش آمدید!"
@@ -1711,6 +1714,12 @@ msgstr "پنهان کردن"
 
 msgid "Show"
 msgstr "نمایش"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
+msgstr ""
 
 msgid "Current password"
 msgstr "رمز عبور فعلی"
@@ -1926,6 +1935,9 @@ msgstr "فایل های ضمیمه شده توسط گیرندگان"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "این فایل ها به گزارش های شما توسط گیرندگان ضمیمه شده اند."
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr "نشانه تنظیم مجدد یا معتبر نیست یا انقضا یافته است."
 
@@ -1937,11 +1949,9 @@ msgstr "نام کاربری خود یا آدرس ایمیل را برای درخ
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
-msgid "Request password reset"
-msgstr "درخواست تنظیم مجدد گذرواژه"
-
-msgid "Password reset feature is unavailable for admin users."
-msgstr "ویژگی تنظیم مجدد گذرواژه برای کاربران ادمین ناموجود میباشد."
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
+msgstr ""
 
 msgid "Password reset requested."
 msgstr "تنظیم مجدد گذرواژه درخواست شد."
@@ -2153,15 +2163,6 @@ msgstr "مسئولیت (نقش) شما زمانی‌که این گزارش را 
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "واحد سازمانی و محل کار وقتی این گزارش را ارائه کردید"
-
-msgid "Authentication code: {AuthCode}"
-msgstr "کد احراز هویت:  {AuthCode}"
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr "کد احراز هویت برای 5 دقیقه معتبر می باشد."
-
-msgid "Authentication code"
-msgstr "کد احراز هویت"
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} گرامی،"

@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:01+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -699,17 +699,8 @@ msgstr ""
 msgid "Enable two factor authentication"
 msgstr ""
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "允许其他网站借 iframe 包含此网站内容。"
-
-msgid "Warning"
-msgstr "警告"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "启用此选项代表您允许告密者平台被其他网站使用 iframe 纳入；这可能被用来危及平台或者拦截用户的通信。"
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "允许接收者推迟提交的失效日期"
@@ -810,13 +801,7 @@ msgstr "用户名"
 msgid "Password"
 msgstr "密码"
 
-msgid "Allow users to reset their passwords"
-msgstr ""
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
+msgid "Enable password reset"
 msgstr ""
 
 msgid "Enable users to upload their PGP keys"
@@ -842,6 +827,9 @@ msgstr ""
 
 msgid "Enable experimental features"
 msgstr "启用试验功能"
+
+msgid "Warning"
+msgstr "警告"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -900,9 +888,6 @@ msgstr "取消"
 msgid "Submission statuses"
 msgstr ""
 
-msgid "Closing statuses"
-msgstr ""
-
 msgid "Logo"
 msgstr "标识"
 
@@ -932,9 +917,6 @@ msgstr "文本"
 
 msgid "Footer"
 msgstr "页脚"
-
-msgid "Favicon"
-msgstr "中文"
 
 msgid "Upload"
 msgstr "载入"
@@ -1068,9 +1050,6 @@ msgstr "软件版本："
 msgid "An update is available:"
 msgstr "一个可用更新: "
 
-msgid "SMTP name"
-msgstr "SMTP 名字"
-
 msgid "SMTP email address"
 msgstr "SMTP 电子邮件地址"
 
@@ -1106,6 +1085,9 @@ msgstr "此配置只应用到接收者"
 
 msgid "Test the configuration"
 msgstr "测试配置"
+
+msgid "Reset SMTP configuration"
+msgstr ""
 
 msgid "Template"
 msgstr "模板"
@@ -1153,6 +1135,9 @@ msgstr "机构"
 msgid "Organizational unit"
 msgstr "机构部门"
 
+msgid "Generate"
+msgstr "生成"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1165,9 +1150,6 @@ msgstr ""
 
 msgid "Private Key"
 msgstr "私钥"
-
-msgid "Generate"
-msgstr "生成"
 
 msgid "Certificate Signing Request"
 msgstr "证书签名请求"
@@ -1578,7 +1560,7 @@ msgstr "请通过爱马仕的资助网页支持他们。"
 msgid "Forgot password?"
 msgstr ""
 
-msgid "Check your inbox and enter the authentication code you received."
+msgid "Enter the two factor authentication code"
 msgstr ""
 
 msgid "Authentication failed"
@@ -1625,6 +1607,27 @@ msgstr "指定分数"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "注意：所有相关数据将永久删除。"
+
+msgid "Instructions"
+msgstr ""
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Your encryption recovery key is:"
+msgstr ""
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr ""
 
 msgid "Welcome!"
 msgstr "欢迎！"
@@ -1707,6 +1710,12 @@ msgstr "隐藏"
 
 msgid "Show"
 msgstr "显示"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
+msgstr ""
 
 msgid "Current password"
 msgstr ""
@@ -1922,6 +1931,9 @@ msgstr "来自接收人的附件"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "这些附件由接收人添加至你的提交内容。"
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr ""
 
@@ -1933,10 +1945,8 @@ msgstr ""
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
-msgid "Request password reset"
-msgstr ""
-
-msgid "Password reset feature is unavailable for admin users."
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
 msgstr ""
 
 msgid "Password reset requested."
@@ -2149,15 +2159,6 @@ msgstr "报道事实时的工作职责（角色）"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "报道事实的组织单位和工作地点"
-
-msgid "Authentication code: {AuthCode}"
-msgstr ""
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr ""
-
-msgid "Authentication code"
-msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "亲爱的 {RecipientName}，"

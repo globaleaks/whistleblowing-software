@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:00+0000\n"
+"PO-Revision-Date: 2019-09-02 17:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -687,17 +687,8 @@ msgstr "பன்முனை அம்சத்தை இயக்கு"
 msgid "Enable two factor authentication"
 msgstr ""
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "மற்ற வலைத்தளங்களில் ஃபிரேம்களை உள்ளே மேடையில் சேர்க்க அனுமதிக்க"
-
-msgid "Warning"
-msgstr "எச்சரிக்கை"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "இந்த விருப்பத்தை இயக்குவதன் மூலம், ஃபிரேம்களை உள்ளே மேடையில் சேர்க்க மற்ற வலைத்தளங்களில் அனுமதிக்கிறோம்; இந்த சாத்தியமுள்ள மேடையில் அல்லது இடைமறிப்பு பயனாளிகளின் தொடர்புகள் ஆபத்துக்குள்ளாகுகின்ற பயன்படுத்த முடியும்"
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "பெற்றவர்கள் சமர்ப்பிக்கும் காலாவதி தேதி ஒத்தி அனுமதி"
@@ -798,14 +789,8 @@ msgstr "பயனர்பெயர்"
 msgid "Password"
 msgstr "கடவுச்சொல்"
 
-msgid "Allow users to reset their passwords"
-msgstr "பயனர்கள் தங்கள் கடவுச்சொற்களை மீட்டமைக்க அனுமதிக்கவும்"
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
-msgstr "பயனர்கள் தங்கள் கடவுச்சொற்களை மீட்டெடுக்க அனுமதிக்கும் பாதுகாப்பு காரணமாக, பயனரின் மின்னஞ்சல் கணக்குகளின் பாதுகாப்பு சார்ந்து பாதுகாப்பு ஏற்படுத்தும்."
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "தங்கள் PGP விசையைப் பதிவேற்ற பயனர்களை இயக்கு"
@@ -830,6 +815,9 @@ msgstr "ஸ்கோரிங் அமைப்பை இயக்கு"
 
 msgid "Enable experimental features"
 msgstr "சோதனை அம்சங்களை இயக்கு"
+
+msgid "Warning"
+msgstr "எச்சரிக்கை"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -888,9 +876,6 @@ msgstr "நிராகரி"
 msgid "Submission statuses"
 msgstr "சமர்ப்பிப்பு நிலைகள்"
 
-msgid "Closing statuses"
-msgstr "நிலைகளை மூடு"
-
 msgid "Logo"
 msgstr "சின்னம்"
 
@@ -920,9 +905,6 @@ msgstr "உரை"
 
 msgid "Footer"
 msgstr "அடிக்குறிப்பு"
-
-msgid "Favicon"
-msgstr "ஃபேவிகானை"
 
 msgid "Upload"
 msgstr "பதிவேற்று"
@@ -1056,9 +1038,6 @@ msgstr "மென்பொருள் பதிப்பு:"
 msgid "An update is available:"
 msgstr "புதுப்பிப்பு இருக்கிறது:"
 
-msgid "SMTP name"
-msgstr "SMTP, பெயர்"
-
 msgid "SMTP email address"
 msgstr "SMTP மின்னஞ்சல் முகவரியை"
 
@@ -1094,6 +1073,9 @@ msgstr "இந்த கட்டமைப்பு மட்டுமே பெ
 
 msgid "Test the configuration"
 msgstr "கட்டமைப்பு சோதனை"
+
+msgid "Reset SMTP configuration"
+msgstr ""
 
 msgid "Template"
 msgstr "டெம்ப்ளேட்"
@@ -1141,6 +1123,9 @@ msgstr "நிறுவனம்"
 msgid "Organizational unit"
 msgstr "நிறுவன அலகு"
 
+msgid "Generate"
+msgstr "உருவாக்கு"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1153,9 +1138,6 @@ msgstr "இந்த இடைமுகம் ஒரு தனிப்பட்
 
 msgid "Private Key"
 msgstr "தனிப்பட்ட விசை"
-
-msgid "Generate"
-msgstr "உருவாக்கு"
 
 msgid "Certificate Signing Request"
 msgstr "சான்றிதழ் கையொப்பமிடு கோரிக்கை"
@@ -1566,7 +1548,7 @@ msgstr "தங்கள் நன்கொடை பக்கம் வழி
 msgid "Forgot password?"
 msgstr "கடவுச்சொல்லை மறந்துவிட்டீர்களா?"
 
-msgid "Check your inbox and enter the authentication code you received."
+msgid "Enter the two factor authentication code"
 msgstr ""
 
 msgid "Authentication failed"
@@ -1613,6 +1595,27 @@ msgstr "ஸ்கோர் புள்ளிகள் ஒதுக்க"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "தொடர்புடைய எல்லா தரவு நிரந்தரமாக இழக்கப்படும் என்பதை நினைவில் கொள்க."
+
+msgid "Instructions"
+msgstr ""
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr "நெருக்கமான"
+
+msgid "Your encryption recovery key is:"
+msgstr ""
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr ""
 
 msgid "Welcome!"
 msgstr "வரவேற்பு!"
@@ -1694,6 +1697,12 @@ msgid "Hide"
 msgstr "மறை"
 
 msgid "Show"
+msgstr ""
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
 msgstr ""
 
 msgid "Current password"
@@ -1910,6 +1919,9 @@ msgstr "பெறுநர்கள் இணைத்த கோப்புக�
 msgid "These files have been attached to your submission by the recipients."
 msgstr "இந்த கோப்புகள் பெறுநர்களிடமிருந்து உங்கள் சமர்ப்பிப்பிற்கு இணைக்கப்பட்டுள்ளன."
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr "வழங்கப்பட்ட மீட்டமை டோக்கன் தவறானது அல்லது காலாவதியானது."
 
@@ -1921,11 +1933,9 @@ msgstr "கடவுச்சொல் மீட்டமைப்பைக் �
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
-msgid "Request password reset"
-msgstr "கடவுச்சொல் மீட்டமைப்பைக் கோரவும்"
-
-msgid "Password reset feature is unavailable for admin users."
-msgstr "கடவுச்சொல் மீட்டமைவு அம்சம் நிர்வாக பயனர்களுக்கு கிடைக்காது."
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
+msgstr ""
 
 msgid "Password reset requested."
 msgstr "கடவுச்சொல் மீட்டமைப்பு கோரப்பட்டது."
@@ -2137,15 +2147,6 @@ msgstr "வேலை பொறுப்பை (பங்கு) அறிவ�
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "தகவல் உண்மையில் நேரத்தில் அமைப்பு அலகு மற்றும் வேலை இடம்"
-
-msgid "Authentication code: {AuthCode}"
-msgstr ""
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr ""
-
-msgid "Authentication code"
-msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "அன்பே {RecipientName},"

@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:19+0000\n"
+"PO-Revision-Date: 2019-09-02 17:47+0000\n"
 "Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -660,10 +660,10 @@ msgid "Print"
 msgstr "Imprimer"
 
 msgid "Previous"
-msgstr "Précédent"
+msgstr "Précédente"
 
 msgid "Next"
-msgstr "Suivant"
+msgstr "Suivante"
 
 msgid "First"
 msgstr "Première"
@@ -719,17 +719,8 @@ msgstr "Activer la fonction multisite"
 msgid "Enable two factor authentication"
 msgstr "Activer l’authentification à deux facteurs"
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "Permettre à d’autres sites Web d’inclure la plateforme à l’intérieur de cadres « iframes »"
-
-msgid "Warning"
-msgstr "Avertissement"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "En activant cette option, vous permettez à d’autres sites Web d’inclure la plateforme à l’intérieur de cadres « iframes » ; cela pourrait potentiellement être utilisé afin de compromettre la plateforme ou d’intercepter les communications des utilisateurs."
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Autoriser les destinataires à repousser la date d’expiration des envois"
@@ -830,14 +821,8 @@ msgstr "Nom d’utilisateur"
 msgid "Password"
 msgstr "Mot de passe"
 
-msgid "Allow users to reset their passwords"
-msgstr "Autoriser les utilisateurs à réinitialiser leurs mots de passe"
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
-msgstr "Autoriser les utilisateurs à réinitialiser leurs mots de passe pourrait réduire la sécurité de la plate-forme, car cette sécurité dépendrait de la sécurité des comptes de courriel des utilisateurs."
+msgid "Enable password reset"
+msgstr "Permettre la réinitialisation du mot de passe"
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Permettre aux utilisateurs de téléverser leurs clés PGP"
@@ -862,6 +847,9 @@ msgstr "Activer le système d’évaluation"
 
 msgid "Enable experimental features"
 msgstr "Activer les fonctions expérimentales"
+
+msgid "Warning"
+msgstr "Avertissement"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -920,9 +908,6 @@ msgstr "Annuler"
 msgid "Submission statuses"
 msgstr "États des envois"
 
-msgid "Closing statuses"
-msgstr "États de fermeture"
-
 msgid "Logo"
 msgstr "Logo"
 
@@ -952,9 +937,6 @@ msgstr "Texte"
 
 msgid "Footer"
 msgstr "Bas de page"
-
-msgid "Favicon"
-msgstr "Favoricône"
 
 msgid "Upload"
 msgstr "Téléverser"
@@ -1088,9 +1070,6 @@ msgstr "Version du logiciel :"
 msgid "An update is available:"
 msgstr "Une mise à jour est proposée :"
 
-msgid "SMTP name"
-msgstr "Nom SMTP"
-
 msgid "SMTP email address"
 msgstr "Adresse courriel SMTP"
 
@@ -1126,6 +1105,9 @@ msgstr "cette configuration ne s’applique qu’aux destinataires"
 
 msgid "Test the configuration"
 msgstr "Tester la configuration"
+
+msgid "Reset SMTP configuration"
+msgstr ""
 
 msgid "Template"
 msgstr "Modèle"
@@ -1173,6 +1155,9 @@ msgstr "Organisation"
 msgid "Organizational unit"
 msgstr "Unité organisationnelle"
 
+msgid "Generate"
+msgstr "Générer"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1185,9 +1170,6 @@ msgstr "Cette interface peut générer une clé privée et une demande de signat
 
 msgid "Private Key"
 msgstr "Clé privée"
-
-msgid "Generate"
-msgstr "Générer"
 
 msgid "Certificate Signing Request"
 msgstr "Demande de signature de certificat"
@@ -1598,8 +1580,8 @@ msgstr "Veuillez encourager Hermès en visitant leur page de don."
 msgid "Forgot password?"
 msgstr "Mot de passe oublié ?"
 
-msgid "Check your inbox and enter the authentication code you received."
-msgstr "Vérifiez votre boîte de réception et saisissez le code d’authentification que vous avez reçu."
+msgid "Enter the two factor authentication code"
+msgstr ""
 
 msgid "Authentication failed"
 msgstr "Échec lors de l’authentification"
@@ -1645,6 +1627,27 @@ msgstr "Attribuer un pointage"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Veuillez prendre note que toutes les données associées seront irrémédiablement supprimées."
+
+msgid "Instructions"
+msgstr "Instructions"
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "Your encryption recovery key is:"
+msgstr "Votre clé de récupération de chiffrement est :"
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr ""
 
 msgid "Welcome!"
 msgstr "Bienvenue !"
@@ -1727,6 +1730,12 @@ msgstr "Cacher"
 
 msgid "Show"
 msgstr "Afficher"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
+msgstr ""
 
 msgid "Current password"
 msgstr "Mot de passe actuel"
@@ -1942,6 +1951,9 @@ msgstr "Pièces jointes par les destinataires"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Ces fichiers ont été joints à votre envoi par les destinataires."
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr "Le jeton de réinitialisation fourni est invalide ou expiré."
 
@@ -1953,11 +1965,9 @@ msgstr "Saisissez le nom d’utilisateur de votre compte ou votre adresse courri
 msgid "Enter your email address to request a password reset."
 msgstr "Saisissez votre adresse courriel pour demander une réinitialisation du mot de passe."
 
-msgid "Request password reset"
-msgstr "Demander une réinitialisation de mot de passe"
-
-msgid "Password reset feature is unavailable for admin users."
-msgstr "La fonction de réinitialisation du mot de passe n’est pas offerte pour les administrateurs."
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
+msgstr "Saisissez votre clé de récupération de chiffrement pour achever la procédure de réinitialisation du mot de passe."
 
 msgid "Password reset requested."
 msgstr "Une réinitialisation de mot de passe a été demandée."
@@ -2012,7 +2022,7 @@ msgid "Domain"
 msgstr "Domaine"
 
 msgid "Confirmation"
-msgstr "Confirmer"
+msgstr "Confirmation"
 
 msgid "Invalid confirmation"
 msgstr "La confirmation est invalide"
@@ -2169,15 +2179,6 @@ msgstr "Responsabilité professionnelle (rôle) à l’époque du fait rapporté
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Unité organisationnelle et lieu d’emploi à l’époque du fait rapporté"
-
-msgid "Authentication code: {AuthCode}"
-msgstr "Code d’authentification : {AuthCode}"
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr "Le code d’authentification est valide pendant 5 minutes."
-
-msgid "Authentication code"
-msgstr "Code d’authentification"
 
 msgid "Dear {RecipientName},"
 msgstr "Cher, chère {RecipientName},"

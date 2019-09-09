@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-07-22 18:00+0000\n"
+"PO-Revision-Date: 2019-09-02 17:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -702,17 +702,8 @@ msgstr ""
 msgid "Enable two factor authentication"
 msgstr ""
 
-msgid "Allow other websites to include the platform inside iframes"
-msgstr "Permitir que outros sites da Web incluam a plataforma iframe dentro"
-
-msgid "Warning"
-msgstr "Aviso"
-
-msgid ""
-"By enabling this option, you are allowing other websites to include the "
-"platform inside iframes; this could potentially be used to endanger the "
-"platform or intercept users' communications"
-msgstr "Ao ativar esta opção, está a permitir que os outros sites da Web incluam a plataforma iframe dentro; isto poderá potencialmente ser utilizado para pôr em perigo as comunicações da plataforma ou intercetar utilizadores"
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Permitir que os destinatários adiem a data de expiração da submissão"
@@ -813,13 +804,7 @@ msgstr "Nome de Utilizador"
 msgid "Password"
 msgstr "Palavra-passe"
 
-msgid "Allow users to reset their passwords"
-msgstr ""
-
-msgid ""
-"Allowing users to reset their passwords may reduce the security of the "
-"platform due to security becoming dependent on the security of user's email "
-"accounts."
+msgid "Enable password reset"
 msgstr ""
 
 msgid "Enable users to upload their PGP keys"
@@ -845,6 +830,9 @@ msgstr ""
 
 msgid "Enable experimental features"
 msgstr "Ativar funcionalidades experimentais"
+
+msgid "Warning"
+msgstr "Aviso"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -903,9 +891,6 @@ msgstr "Cancelar"
 msgid "Submission statuses"
 msgstr ""
 
-msgid "Closing statuses"
-msgstr ""
-
 msgid "Logo"
 msgstr "Logótipo"
 
@@ -935,9 +920,6 @@ msgstr "Texto"
 
 msgid "Footer"
 msgstr "Rodapé"
-
-msgid "Favicon"
-msgstr "Favicon"
 
 msgid "Upload"
 msgstr "Enviar"
@@ -1071,9 +1053,6 @@ msgstr "Versão do software:"
 msgid "An update is available:"
 msgstr "Está disponível uma atualização:"
 
-msgid "SMTP name"
-msgstr "Nome de SMTP"
-
 msgid "SMTP email address"
 msgstr "Endereço de e-mail de SMTP"
 
@@ -1109,6 +1088,9 @@ msgstr "esta configuração aplica-se apenas aos destinatários"
 
 msgid "Test the configuration"
 msgstr "Testar a configuração"
+
+msgid "Reset SMTP configuration"
+msgstr ""
 
 msgid "Template"
 msgstr "Modelo"
@@ -1156,6 +1138,9 @@ msgstr "Organização"
 msgid "Organizational unit"
 msgstr "Unidade organizacional"
 
+msgid "Generate"
+msgstr "Gerar"
+
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
 " The Certificate Signing Request can be provided to a Certificate Authority "
@@ -1168,9 +1153,6 @@ msgstr "Esta interface pode gerar uma 'Chave Privada' e um 'Pedido de Assinatura
 
 msgid "Private Key"
 msgstr "Chave Privada"
-
-msgid "Generate"
-msgstr "Gerar"
 
 msgid "Certificate Signing Request"
 msgstr "Pedido de Assinatura de Certificado"
@@ -1581,7 +1563,7 @@ msgstr "Apoie o centro Hermes através da sua página para donativos."
 msgid "Forgot password?"
 msgstr "Esqueceu-se da palavra-passe?"
 
-msgid "Check your inbox and enter the authentication code you received."
+msgid "Enter the two factor authentication code"
 msgstr ""
 
 msgid "Authentication failed"
@@ -1628,6 +1610,27 @@ msgstr "Atribuir pontos"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Por favor, note que todos os dados associados serão perdidos para sempre."
+
+msgid "Instructions"
+msgstr "Instruções"
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "Your encryption recovery key is:"
+msgstr ""
+
+msgid ""
+"Please annotate and store this key in a safe place. It will be necessary if "
+"you lose your personal password to recover the access to your account with "
+"no data loss."
+msgstr ""
 
 msgid "Welcome!"
 msgstr "Bem-vindo!"
@@ -1710,6 +1713,12 @@ msgstr "Ocultar"
 
 msgid "Show"
 msgstr "Mostrar"
+
+msgid "Set up email encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Get the encryption recovery key"
+msgstr ""
 
 msgid "Current password"
 msgstr ""
@@ -1925,6 +1934,9 @@ msgstr "Ficheiros anexados pelos destinatários"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Este ficheiros foram anexados à sua submissão pelos destinatários."
 
+msgid "The provided recovery key is invalid."
+msgstr ""
+
 msgid "The provided reset token is invalid or expired."
 msgstr "O código de redefinição fornecido é inválido ou expirou."
 
@@ -1936,11 +1948,9 @@ msgstr "Insira o nome de utilizador da sua conta ou o seu endereço de e-mail pa
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
-msgid "Request password reset"
-msgstr "Pedido de reposição da palavra-passe"
-
-msgid "Password reset feature is unavailable for admin users."
-msgstr "A funcionalidade de reposição da palavra-passe está indisponível para os utilizadores administradores."
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
+msgstr ""
 
 msgid "Password reset requested."
 msgstr "Solicitada a reposição da palavra--passe."
@@ -2152,15 +2162,6 @@ msgstr "Responsabilidade de trabalho (função) no momento do facto comunicado"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Organização, unidade e local de trabalho no momento do facto relatado"
-
-msgid "Authentication code: {AuthCode}"
-msgstr ""
-
-msgid "The authentication code is valid for 5 minutes."
-msgstr ""
-
-msgid "Authentication code"
-msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Caro {RecipientName},"
