@@ -262,14 +262,21 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
         data = db_prepare_fields_serialization(session, [field])
 
     f_to_serialize = field
+    template_id = None
     if field.template_override_id is not None and serialize_templates is True:
+        template_id = field.template_override_id
         f_to_serialize = session.query(models.Field).filter(models.Field.id == field.template_override_id).one_or_none()
     elif field.template_id is not None and serialize_templates is True:
+        template_id = field.template_id
         f_to_serialize = session.query(models.Field).filter(models.Field.id == field.template_id).one_or_none()
 
     attrs = {}
-    for attr in data['attrs'].get(field.id, {}):
-        attrs[attr.name] = serialize_field_attr(attr, language)
+    if template_id is None or template_id in special_fields:
+        for attr in data['attrs'].get(field.id, {}):
+            attrs[attr.name] = serialize_field_attr(attr, language)
+    else:
+        for attr in data['attrs'].get(template_id, {}):
+            attrs[attr.name] = serialize_field_attr(attr, language)
 
     children = [serialize_field(session, tid, f, language) for f in data['fields'].get(f_to_serialize.id, [])]
     children.sort(key=lambda f:(f['y'], f['x']))

@@ -8,7 +8,7 @@ from sqlalchemy.sql.expression import not_
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.public import get_trigger_model_by_type, serialize_field
+from globaleaks.handlers.public import get_trigger_model_by_type, serialize_field, special_fields
 from globaleaks.models import fill_localized_keys
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -188,7 +188,8 @@ def db_update_field(session, tid, field_id, field_dict, language):
 
     fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
-    db_update_fieldattrs(session, field.id, field_dict['attrs'], language)
+    if field_dict['instance'] == 'reference' and field_dict['template_id'] in special_fields:
+        db_update_fieldattrs(session, field.id, field_dict['attrs'], language)
 
     db_reset_option_triggers(session, 'field', field.id)
 

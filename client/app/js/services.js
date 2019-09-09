@@ -1189,14 +1189,18 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       return {
         getValidator: function(field) {
           var validators = {
-            "custom": field.attrs.regexp.value,
+            "custom": field.attrs.regexp ? field.attrs.regexp : "",
             "none": "",
             "email": CONSTANTS.email_regexp,
             "number": CONSTANTS.number_regexp,
             "phonenumber": CONSTANTS.phonenumber_regexp,
           };
 
-          return validators[field.attrs.input_validation.value];
+          if (field.attrs.input_validation) {
+            return validators[field.attrs.input_validation.value];
+	  } else {
+            return "";
+          }
         },
 
         minY: function(arr) {
