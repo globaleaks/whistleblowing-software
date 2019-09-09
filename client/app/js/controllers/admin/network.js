@@ -219,7 +219,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
         modal_open.resolve();
       }
     } else {
-      var https_url = "https://" + $scope.admin.node.hostname + "/#/admin/network";
+      var https_url = "https://" + $scope.admin.node.hostname + "/#/login";
 
       $uibModal.open({
         templateUrl: "views/admin/network/enabled_modal.html",
