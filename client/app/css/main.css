@@ -67,8 +67,9 @@ table {
 }
 
 #MessagesConsoleBox {
-  width: 15%;
   position: fixed;
+  width: 20%;
+  min-width: 20em;
   z-index: 10;
   top: 1em;
   padding-left: 1em;
