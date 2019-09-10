@@ -27,58 +27,59 @@ describe("admin add, configure, and delete users", function() {
     },
   ];
 
-  it("should add new users", function() {
-    browser.gl.utils.login_admin();
-    browser.setLocation("admin/users");
+  it("should add new users", async function() {
+    await browser.gl.utils.login_admin();
+    await browser.setLocation("admin/users");
 
-    var make_account = function(user) {
-      element(by.css(".show-add-user-btn")).click();
-      element(by.model("new_user.name")).sendKeys(user.name);
-      element(by.model("new_user.email")).sendKeys(user.address);
-      element(by.model("new_user.username")).sendKeys(user.name);
-      element(by.model("new_user.role")).element(by.xpath(".//*[text()='" + user.role + "']")).click();
-      element(by.id("add-btn")).click();
-      browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='" + user.name + "']"));
+    var make_account = async function(user) {
+      await element(by.css(".show-add-user-btn")).click();
+      await element(by.model("new_user.name")).sendKeys(user.name);
+      await element(by.model("new_user.email")).sendKeys(user.address);
+      await element(by.model("new_user.username")).sendKeys(user.name);
+      await element(by.model("new_user.role")).element(by.xpath(".//*[text()='" + user.role + "']")).click();
+      await element(by.id("add-btn")).click();
+      await browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='" + user.name + "']"));
     };
 
-    new_users.forEach(make_account);
+    for(var i=0; i < new_users.length; i++) {
+      await make_account(new_users[i]);
+    }
   });
 
-  it("should configure an existing user", function() {
+  it("should configure an existing user", async function() {
     var user = { name: "Recipient2" };
     var path = "//form[contains(.,\"" + user.name + "\")]";
 
     // Find Recipient2, click edit, flip some toggles, and save.
     var editUsrForm = element(by.xpath(path));
 
-    editUsrForm.element(by.cssContainingText("button", "Edit")).click();
+    await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
 
     // Add a description
     var descriptBox = editUsrForm.element(by.model("user.description"));
     var words = "Description of recipient 2";
-    descriptBox.clear();
-    descriptBox.sendKeys(words);
+    await descriptBox.clear();
+    await descriptBox.sendKeys(words);
 
     // Click Save and check the fields
-    editUsrForm.element(by.cssContainingText("button", "Save")).click();
-    editUsrForm.element(by.cssContainingText("button", "Edit")).click();
+    await editUsrForm.element(by.cssContainingText("button", "Save")).click();
+    await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
 
-    descriptBox.getAttribute("value").then(function(savedDescript) {
-      expect(savedDescript).toEqual(words);
-    });
+    expect(await descriptBox.getAttribute("value")).toEqual(words);
   });
 
-  it("should del existing users", function() {
+  it("should del existing users", async function() {
     // delete's all accounts that match {{ user.name }} for all new_users
-    var delete_account = function(user) {
+    var delete_account = async function(user) {
       var path = "//form[contains(.,\"" + user.name + "\")]";
-      element.all(by.xpath(path)).each(function(div) {
-        div.element(by.cssContainingText("button", "Delete")).click();
-        element(by.id("modal-action-ok")).click();
-      });
+      var elements = element.all(by.xpath(path));
+      for (var i=0; i<elements.length; i++) {
+        await elements[i].element(by.cssContainingText("button", "Delete")).click();
+        await element(by.id("modal-action-ok")).click();
+      }
     };
 
-    delete_account(new_users[2]);
-    delete_account(new_users[3]);
+    await delete_account(new_users[2]);
+    await delete_account(new_users[3]);
   });
 });

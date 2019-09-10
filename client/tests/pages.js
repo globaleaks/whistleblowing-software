@@ -1,78 +1,70 @@
 exports.receiver = function() {
-  this.viewMostRecentSubmission = function() {
-    return element(by.id("tip-0")).click();
+  this.viewMostRecentSubmission = async function() {
+    await element(by.id("tip-0")).click();
   };
 
-  this.addPublicKey = function(pgp_key_path) {
-    browser.setLocation("/receiver/preferences");
+  this.addPublicKey = async function(pgp_key_path) {
+    await browser.setLocation("/receiver/preferences");
 
     if (browser.gl.utils.testFileUpload()) {
-      element(by.xpath("//input[@type='file']")).sendKeys(pgp_key_path).then(function() {
-        return browser.waitForAngular();
-      });
+      await element(by.xpath("//input[@type='file']")).sendKeys(pgp_key_path);
     } else {
       var fs = require("fs");
       var pgp_key = fs.readFileSync(pgp_key_path, {encoding: "utf8", flag: "r"});
       var pgpTxtArea = element(by.model("preferences.pgp_key_public"));
-      pgpTxtArea.clear();
-      pgpTxtArea.sendKeys(pgp_key);
+      await pgpTxtArea.clear();
+      await pgpTxtArea.sendKeys(pgp_key);
     }
 
-    return element.all(by.cssContainingText("span", "Save")).first().click();
+    await element.all(by.cssContainingText("span", "Save")).first().click();
   };
 
   this.wbfile_widget = function() {
     return element(by.css("#TipPageWBFileUpload"));
   };
 
-  this.uploadWBFile = function(fname) {
-    return element(by.xpath("//input[@type='file']")).sendKeys(fname).then(function() {
-      return browser.waitForAngular();
-    });
+  this.uploadWBFile = async function(fname) {
+    await element(by.xpath("//input[@type='file']")).sendKeys(fname);
   };
 };
 
 exports.whistleblower = function() {
-  this.performSubmission = function(title, uploadFiles) {
-    browser.get("/#/submission");
-
-    browser.gl.utils.waitUntilPresent(by.id("submissionForm"));
-
-    browser.wait(function(){
-      // Wait until the proof of work is resolved;
+  this.performSubmission = async function(title, uploadFiles) {
+    var pow = function() {
       return element(by.id("submissionForm")).evaluate("submission").then(function(submission) {
         return submission.pow === true;
       });
-    }, browser.gl.utils.browserTimeout());
+    };
 
-    element(by.id("step-receiver-selection")).element(by.id("receiver-0")).click();
-    element(by.id("step-receiver-selection")).element(by.id("receiver-1")).click();
-    element(by.id("NextStepButton")).click();
-    element(by.id("step-0")).element(by.id("step-0-field-0-0-input-0")).sendKeys(title);
-    element(by.id("step-0")).element(by.id("step-0-field-1-0-input-0")).sendKeys("x y z");
+    await browser.get("/#/submission");
+
+    await browser.gl.utils.waitUntilPresent(by.id("submissionForm"));
+
+    await browser.wait(pow, browser.gl.utils.browserTimeout());
+
+    await element(by.id("step-receiver-selection")).element(by.id("receiver-0")).click();
+    await element(by.id("step-receiver-selection")).element(by.id("receiver-1")).click();
+    await element(by.id("NextStepButton")).click();
+    await element(by.id("step-0")).element(by.id("step-0-field-0-0-input-0")).sendKeys(title);
+    await element(by.id("step-0")).element(by.id("step-0-field-1-0-input-0")).sendKeys("x y z");
 
     if (uploadFiles && browser.gl.utils.testFileUpload()) {
       var fileToUpload1 = browser.gl.utils.makeTestFilePath("antani.txt");
       var fileToUpload2 = browser.gl.utils.makeTestFilePath("unknown.filetype");
-      element(by.id("step-0")).element(by.id("step-0-field-2-0")).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload1).then(function() {
-        browser.waitForAngular();
-        element(by.id("step-0")).element(by.id("step-0-field-2-0")).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2).then(function() {
-          browser.waitForAngular();
-        });
-      });
+      await element(by.id("step-0")).element(by.id("step-0-field-2-0")).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload1);
+      await element(by.id("step-0")).element(by.id("step-0-field-2-0")).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2);
     }
 
     var submit_button = element(by.id("SubmitButton"));
     var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
-    browser.wait(isClickable);
-    submit_button.click();
-    browser.gl.utils.waitForUrl("/receipt");
+    await browser.wait(isClickable);
+    await submit_button.click();
+    await browser.gl.utils.waitForUrl("/receipt");
+
     return element(by.id("KeyCode")).getText();
   };
 
-  this.submitFile = function(fname) {
-    return element(by.xpath("//input[@type='file']")).sendKeys(fname).then(function() {
-      return browser.waitForAngular();
-    });
+  this.submitFile = async function(fname) {
+    await element(by.xpath("//input[@type='file']")).sendKeys(fname);
   };
 };

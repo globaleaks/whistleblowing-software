@@ -1,8 +1,8 @@
-describe("init", function() {
-  it("should load the app", function() {
+describe("init", () => {
+  it("should load the app", async () => {
     var remote = require("selenium-webdriver/remote");
-    browser.driver.setFileDetector(new remote.FileDetector());
+    await browser.driver.setFileDetector(new remote.FileDetector());
 
-    browser.get("/");
+    await browser.get("/");
   });
 });

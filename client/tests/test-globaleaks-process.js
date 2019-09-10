@@ -10,255 +10,219 @@ describe("globaLeaks process", function() {
   var comment_reply = "comment reply";
   var message = "message";
   var message_reply = "message reply";
-  var receiver_username = "recipient";
-  var receiver_password = browser.gl.utils.vars["user_password"];
 
-  var perform_submission = function(done) {
+  var perform_submission = async function() {
     var wb = new browser.gl.pages.whistleblower();
-    wb.performSubmission(tip_text, true).then(function(receipt) {
-      receipts.unshift(receipt);
-      done();
-    });
+    var receipt = await wb.performSubmission(tip_text, true);
+    receipts.unshift(receipt);
   };
 
-  it("Whistleblowers should be able to submit tips (1)", function(done) {
-    perform_submission(done);
+  it("Whistleblowers should be able to submit tips (1)", async function() {
+    await perform_submission();
   });
 
-  it("Whistleblowers should be able to submit tips (2)", function(done) {
-    perform_submission(done);
+  it("Whistleblowers should be able to submit tips (2)", async function() {
+    await perform_submission();
   });
 
-  it("Whistleblowers should be able to submit tips (3)", function(done) {
-    perform_submission(done);
+  it("Whistleblowers should be able to submit tips (3)", async function() {
+    await perform_submission();
   });
 
-  it("Whistleblower should be able to access the last submission", function() {
-    browser.gl.utils.login_whistleblower(receipts[0]);
-    expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
-    browser.gl.utils.logout();
+  it("Whistleblower should be able to access the last submission", async function() {
+    await browser.gl.utils.login_whistleblower(receipts[0]);
+    expect(await element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
+    await browser.gl.utils.logout();
   });
 
-  it("Recipient should be able to access and label the last submission", function() {
+  it("Recipient should be able to access and label the last submission", async function() {
     var label_1 = "interesting!";
     var label_2 = "fake!";
 
-    browser.gl.utils.login_receiver();
-    browser.setLocation("/receiver/tips");
+    await browser.gl.utils.login_receiver();
+    await browser.setLocation("/receiver/tips");
 
-    element(by.id("tip-0")).evaluate("tip.id").then(function(id) {
-     browser.setLocation("/status/" + id);
+    var id = await element(by.id("tip-0")).evaluate("tip.id");
 
-     // Configure label_1
-     expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
-     element(by.model("tip.label")).sendKeys(label_1);
-     element(by.id("assignLabelButton")).click();
+    await browser.setLocation("/status/" + id);
 
-     // Check presence of label_1
-     expect(element(by.id("assignLabelButton")).isPresent()).toBe(false);
-     expect(element(by.id("Label")).getText()).toEqual(label_1);
+    // Configure label_1
+    expect(await element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
+    await element(by.model("tip.label")).sendKeys(label_1);
+    await element(by.id("assignLabelButton")).click();
 
-     // Configure label_2
-     element(by.id("Label")).click();
-     element(by.model("tip.label")).clear().sendKeys(label_2);
-     element(by.id("assignLabelButton")).click();
-    });
+    // Check presence of label_1
+    expect(await element(by.id("assignLabelButton")).isPresent()).toBe(false);
+    expect(await element(by.id("Label")).getText()).toEqual(label_1);
+
+    // Configure label_2
+    await element(by.id("Label")).click();
+    await element(by.model("tip.label")).clear();
+    await element(by.model("tip.label")).sendKeys(label_2);
+    await element(by.id("assignLabelButton")).click();
   });
 
-  it("Recipient should be able to see files and download them", function() {
+  it("Recipient should be able to see files and download them", async function() {
     if (!browser.gl.utils.testFileUpload()) {
       return;
     }
 
-    expect(element.all(by.cssContainingText("button", "download")).count()).toEqual(2);
+    expect(await element.all(by.cssContainingText("button", "download")).count()).toEqual(2);
 
     if (!browser.gl.utils.testFileDownload()) {
       return;
     }
 
-    element.all(by.cssContainingText("button", "download")).get(0).click().then(function() {
-      browser.waitForAngular();
-    });
+    await element.all(by.cssContainingText("button", "download")).get(0).click();
   });
 
-  it("Recipient should be able to leave a comment to the whistleblower", function() {
-    browser.gl.utils.login_receiver();
-    browser.setLocation("/receiver/tips");
+  it("Recipient should be able to leave a comment to the whistleblower", async function() {
+    await browser.gl.utils.login_receiver();
+    await browser.setLocation("/receiver/tips");
 
-    element(by.id("tip-0")).evaluate("tip.id").then(function(id) {
-      browser.setLocation("/status/" + id);
-      element(by.model("tip.newCommentContent")).sendKeys(comment);
-      element(by.id("comment-action-send")).click().then(function() {
-        browser.waitForAngular();
-        element(by.id("comment-0")).element(by.css(".preformatted")).getText().then(function(c) {
-          expect(c).toContain(comment);
-          browser.gl.utils.logout("/login");
-        });
-      });
-    });
+    var id = await element(by.id("tip-0")).evaluate("tip.id");
+
+    await browser.setLocation("/status/" + id);
+    await element(by.model("tip.newCommentContent")).sendKeys(comment);
+    await element(by.id("comment-action-send")).click();
+
+    var c = await element(by.id("comment-0")).element(by.css(".preformatted")).getText();
+
+    expect(c).toContain(comment);
+    await browser.gl.utils.logout("/login");
   });
 
-  it("Whistleblower should be able to read the comment from the receiver and reply", function() {
-    browser.gl.utils.login_whistleblower(receipts[0]);
+  it("Whistleblower should be able to read the comment from the receiver and reply", async function() {
+    await browser.gl.utils.login_whistleblower(receipts[0]);
 
-    element(by.id("comment-0")).element(by.css(".preformatted")).getText().then(function(c) {
-      expect(c).toEqual(comment);
-      element(by.model("tip.newCommentContent")).sendKeys(comment_reply);
-      element(by.id("comment-action-send")).click().then(function() {
-        browser.waitForAngular();
-        element(by.id("comment-0")).element(by.css(".preformatted")).getText().then(function(c) {
-          expect(c).toContain(comment_reply);
-        });
-      });
-    });
+    var c = await element(by.id("comment-0")).element(by.css(".preformatted")).getText();
+    expect(c).toEqual(comment);
+
+    await element(by.model("tip.newCommentContent")).sendKeys(comment_reply);
+    await element(by.id("comment-action-send")).click();
+
+    c = await element(by.id("comment-0")).element(by.css(".preformatted")).getText();
+    expect(c).toContain(comment_reply);
   });
 
-  it("Whistleblower should be able to attach a new file to the last submission", function() {
+  it("Whistleblower should be able to attach a new file to the last submission", async function() {
     if (!browser.gl.utils.testFileUpload()) {
       return;
     }
 
-    browser.gl.utils.login_whistleblower(receipts[0]);
+    await browser.gl.utils.login_whistleblower(receipts[0]);
 
-    element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload1).then(function() {
-      browser.waitForAngular();
-      element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2).then(function() {
-        browser.waitForAngular();
-        // TODO: test file addition
-        browser.gl.utils.logout();
-      });
-    });
+    await element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload1);
+    await element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2);
+
+    // TODO: test file addition
+
+    await browser.gl.utils.logout();
   });
 
-  it("Recipient should be able to start a private discussion with the whistleblower", function() {
-    browser.gl.utils.login_receiver();
-    browser.setLocation("/receiver/tips");
+  it("Recipient should be able to start a private discussion with the whistleblower", async function() {
+    await browser.gl.utils.login_receiver();
+    await browser.setLocation("/receiver/tips");
 
-    element(by.id("tip-0")).evaluate("tip.id").then(function(id) {
-      browser.setLocation("/status/" + id);
-      element(by.model("tip.newMessageContent")).sendKeys(message);
-      element(by.id("message-action-send")).click().then(function() {
-        browser.waitForAngular();
-        element(by.id("message-0")).element(by.css(".preformatted")).getText().then(function(m) {
-          expect(m).toContain(message);
-          browser.gl.utils.logout("/login");
-        });
-      });
-    });
+    var id = await element(by.id("tip-0")).evaluate("tip.id");
+
+    await browser.setLocation("/status/" + id);
+    await element(by.model("tip.newMessageContent")).sendKeys(message);
+    await element(by.id("message-action-send")).click();
+
+    var m = await element(by.id("message-0")).element(by.css(".preformatted")).getText();
+    expect(m).toContain(message);
+
+    await browser.gl.utils.logout("/login");
   });
 
-  it("Whistleblower should be able to read the private message from the receiver and reply", function() {
-    browser.gl.utils.login_whistleblower(receipts[0]);
+  it("Whistleblower should be able to read the private message from the receiver and reply", async function() {
+    await browser.gl.utils.login_whistleblower(receipts[0]);
 
-    element.all(by.options("obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'")).get(1).click().then(function() {
-      element(by.id("message-0")).element(by.css(".preformatted")).getText().then(function(message1) {
-        expect(message1).toEqual(message);
-        element(by.model("tip.newMessageContent")).sendKeys(message_reply);
-        element(by.id("message-action-send")).click().then(function() {
-          browser.waitForAngular();
-          element(by.id("message-0")).element(by.css(".preformatted")).getText().then(function(message2) {
-            expect(message2).toContain(message_reply);
-          });
-        });
-      });
-    });
+    await element.all(by.options("obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'")).get(1).click();
+    var message1 = await element(by.id("message-0")).element(by.css(".preformatted")).getText();
+    expect(message1).toEqual(message);
+
+    await element(by.model("tip.newMessageContent")).sendKeys(message_reply);
+    await element(by.id("message-action-send")).click();
+
+    var message2 = await element(by.id("message-0")).element(by.css(".preformatted")).getText();
+    expect(message2).toContain(message_reply);
   });
 
-  it("Recipient should be able to export the submission", function() {
+  it("Recipient should be able to export the submission", async function() {
     if (!browser.gl.utils.testFileDownload()) {
       return;
     }
 
-    browser.gl.utils.login_receiver();
-    browser.setLocation("/receiver/tips");
+    await browser.gl.utils.login_receiver();
+    await browser.setLocation("/receiver/tips");
 
-    element(by.id("tip-0")).evaluate("tip.id").then(function(id) {
-      browser.setLocation("/status/" + id);
-      browser.gl.utils.waitUntilPresent(by.id("tip-action-export"));
-      element(by.id("tip-action-export")).click();
+    var id = await element(by.id("tip-0")).evaluate("tip.id");
+    await browser.setLocation("/status/" + id);
+    await browser.gl.utils.waitUntilPresent(by.id("tip-action-export"));
+    await element(by.id("tip-action-export")).click();
 
-      element.all(by.css(".TipInfoID")).first().getText().then(function(t) {
-        expect(t).toEqual(jasmine.any(String));
-        if (!browser.gl.utils.verifyFileDownload()) {
-          return;
-        }
+    var t = await element.all(by.css(".TipInfoID")).first().getText();
+    expect(t).toEqual(jasmine.any(String));
 
-        var fullpath = path.resolve(path.join(browser.params.tmpDir, t));
-        browser.gl.utils.waitForFile(fullpath + ".zip");
-      });
-    });
+    if (!browser.gl.utils.verifyFileDownload()) {
+      return;
+    }
+
+    var fullpath = path.resolve(path.join(browser.params.tmpDir, t));
+    await browser.gl.utils.waitForFile(fullpath + ".zip");
   });
 
-  it("Recipient should be able to disable and renable email notifications", function() {
-    browser.gl.utils.login_receiver();
-    browser.setLocation("/receiver/tips");
+  it("Recipient should be able to disable and renable email notifications", async function() {
+    await browser.gl.utils.login_receiver();
+    await browser.setLocation("/receiver/tips");
 
-    element(by.id("tip-0")).evaluate("tip.id").then(function(id) {
-      browser.setLocation("/status/" + id);
-      browser.gl.utils.waitUntilPresent(by.id("tip-action-silence"));
+    var id = await element(by.id("tip-0")).evaluate("tip.id");
+    await browser.setLocation("/status/" + id);
+    await browser.gl.utils.waitUntilPresent(by.id("tip-action-silence"));
 
-      var silence = element(by.id("tip-action-silence"));
-      silence.click();
-      var notif = element(by.id("tip-action-notify"));
-      notif.evaluate("tip.enable_notifications").then(function(enabled) {
-        expect(enabled).toEqual(false);
-        notif.click();
-        silence.evaluate("tip.enable_notifications").then(function(enabled) {
-          expect(enabled).toEqual(true);
-          // TODO Determine if emails are actually blocked.
-        });
-      });
-    });
+    var silence = element(by.id("tip-action-silence"));
+    await silence.click();
+    var notif = element(by.id("tip-action-notify"));
+    var enabled = await notif.evaluate("tip.enable_notifications");
+    expect(enabled).toEqual(false);
+    await notif.click();
+    enabled = await silence.evaluate("tip.enable_notifications");
+    expect(enabled).toEqual(true);
   });
 
-  it("Recipient should be able to postpone all tips", function() {
-    browser.gl.utils.login_receiver();
-    browser.setLocation("/receiver/tips");
+  it("Recipient should be able to postpone all tips", async function() {
+    await browser.gl.utils.login_receiver();
+    await browser.setLocation("/receiver/tips");
 
-    element.all(by.css("#tipListTableBody tr"))
-        .evaluate("tip.expiration_date").then(function() {
-      // Postpone the expiration of all tips
-      element(by.id("tip-action-select-all")).click();
-      element(by.id("tip-action-postpone-selected")).click();
-      element(by.id("modal-action-ok")).click();
-      // Collect the new later expiration dates.
-      element.all(by.css("#tipListTableBody tr")).evaluate("tip.expiration_date").then(function() {
-        // TODO
-        // It is currently impossible to test that the expiration date is update because
-        // during the same day of the submission a postpone will result in the same expiration date
-      });
-    });
+    // Postpone the expiration of all tips
+    await element(by.id("tip-action-select-all")).click();
+    await element(by.id("tip-action-postpone-selected")).click();
+    await element(by.id("modal-action-ok")).click();
   });
 
-  it("Recipient should be able to postpone last submission from its tip page", function() {
-    browser.gl.utils.login_receiver();
-    browser.setLocation("/receiver/tips");
+  it("Recipient should be able to postpone last submission from its tip page", async function() {
+    await browser.gl.utils.login_receiver();
+    await browser.setLocation("/receiver/tips");
 
-    element(by.id("tip-0")).evaluate("tip.id").then(function(id) {
-      browser.setLocation("/status/" + id);
+    var id = await element(by.id("tip-0")).evaluate("tip.id");
 
-      // Get the tip's original expiration date.
-      element.all(by.css(".TipInfoID")).first().evaluate("tip.expiration_date").then(function() {
-        element(by.id("tip-action-postpone")).click();
-        element(by.id("modal-action-ok")).click();
+    await browser.setLocation("/status/" + id);
 
-        element.all(by.css(".TipInfoID")).first().evaluate("tip.expiration_date").then(function() {
-          // TODO
-          // It is currently impossible to test that the expiration date is update because
-          // during the same day of the submission a postpone will result in the same expiration date
-        });
-      });
-    });
+    await element(by.id("tip-action-postpone")).click();
+    await element(by.id("modal-action-ok")).click();
   });
 
-  it("Recipient should be able to delete third submission from its tip page", function() {
-    browser.gl.utils.login_receiver();
-    browser.setLocation("/receiver/tips");
+  it("Recipient should be able to delete third submission from its tip page", async function() {
+    await browser.gl.utils.login_receiver();
+    await browser.setLocation("/receiver/tips");
 
-    element(by.id("tip-0")).evaluate("tip.id").then(function(id) {
-      browser.setLocation("/status/" + id);
-      element(by.id("tip-action-delete")).click();
-      element(by.id("modal-action-ok")).click();
-    });
+    var id = await element(by.id("tip-0")).evaluate("tip.id");
+
+    await browser.setLocation("/status/" + id);
+
+    await element(by.id("tip-action-delete")).click();
+    await element(by.id("modal-action-ok")).click();
   });
 });

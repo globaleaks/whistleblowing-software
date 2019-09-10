@@ -1,74 +1,75 @@
 describe("admin configure advanced settings", function() {
-  it("should perform main configuration", function() {
-    browser.setLocation("admin/advanced_settings");
-    element(by.cssContainingText("a", "Main configuration")).click();
+  it("should perform main configuration", async function() {
+    await browser.setLocation("admin/advanced_settings");
+    await element(by.cssContainingText("a", "Main configuration")).click();
 
     // enable experimental features that by default are disabled
-    element(by.model("admin.node.enable_experimental_features")).click();
-    element(by.model("admin.node.enable_custodian")).click();
+    await element(by.model("admin.node.enable_experimental_features")).click();
+    await element(by.model("admin.node.enable_custodian")).click();
 
     // save settings
-    element.all(by.css("[data-ng-click=\"updateNode()\"]"));
+    await element.all(by.css("[data-ng-click=\"updateNode()\"]")).first().click();
   });
 
-  it("should configure url redirects", function() {
-    browser.setLocation("admin/advanced_settings");
-    element(by.cssContainingText("a", "URL redirects")).click();
+  it("should configure url redirects", async function() {
+    await browser.setLocation("admin/advanced_settings");
+    await element(by.cssContainingText("a", "URL redirects")).click();
 
     for (var i = 0; i < 3; i++) {
-      element(by.model("new_redirect.path1")).sendKeys("yyyyyyyy-" + i.toString());
-      element(by.model("new_redirect.path2")).sendKeys("xxxxxxxx");
-      element(by.cssContainingText("button", "Add")).click();
-      element.all(by.cssContainingText("button", "Delete")).first().click();
+      await element(by.model("new_redirect.path1")).sendKeys("yyyyyyyy-" + i.toString());
+      await element(by.model("new_redirect.path2")).sendKeys("xxxxxxxx");
+      await element(by.cssContainingText("button", "Add")).click();
+      await element.all(by.cssContainingText("button", "Delete")).first().click();
     }
   });
 
-  it("should configure advanced settings", function() {
-    browser.setLocation("admin/advanced_settings");
-    element(by.cssContainingText("a", "Anomaly detection thresholds")).click();
+  it("should configure advanced settings", async function() {
+    await browser.setLocation("admin/advanced_settings");
+    await element(by.cssContainingText("a", "Anomaly detection thresholds")).click();
 
-    expect(element(by.model("admin.node.threshold_free_disk_percentage_high")).getAttribute("value")).toEqual("3");
+    expect(await element(by.model("admin.node.threshold_free_disk_percentage_high")).getAttribute("value")).toEqual("3");
 
-    element(by.model("admin.node.threshold_free_disk_percentage_high")).clear().sendKeys("4");
+    await element(by.model("admin.node.threshold_free_disk_percentage_high")).clear();
+    await element(by.model("admin.node.threshold_free_disk_percentage_high")).sendKeys("4");
 
     // save settings
-    element.all(by.css("[data-ng-click=\"updateNode()\"]")).last().click().then(function() {
-      expect(element(by.model("admin.node.threshold_free_disk_percentage_high")).getAttribute("value")).toEqual("4");
-    });
+    await element.all(by.css("[data-ng-click=\"updateNode()\"]")).get(1).click();
+
+    expect(await element(by.model("admin.node.threshold_free_disk_percentage_high")).getAttribute("value")).toEqual("4");
   });
 });
 
 describe("admin disable submissions", function() {
-  it("should disable submission", function() {
-    browser.setLocation("admin/advanced_settings");
-    element(by.cssContainingText("a", "Main configuration")).click();
+  it("should disable submission", async function() {
+    await browser.setLocation("admin/advanced_settings");
+    await element(by.cssContainingText("a", "Main configuration")).click();
 
-    element(by.model("admin.node.disable_submissions")).click();
-
-    // save settings
-    element.all(by.css("[data-ng-click=\"updateNode()\"]")).first().click().then(function() {
-      expect(element(by.model("admin.node.disable_submissions")).isSelected()).toBeTruthy();
-    });
-
-    browser.get("/#/");
-
-    expect(browser.isElementPresent(element(by.cssContainingText("span", "Submissions disabled")))).toBe(true);
-
-    browser.gl.utils.login_admin();
-
-    browser.setLocation("admin/advanced_settings");
-
-    element(by.model("admin.node.disable_submissions")).click();
+    await element(by.model("admin.node.disable_submissions")).click();
 
     // save settings
-    element.all(by.css("[data-ng-click=\"updateNode()\"]")).first().click().then(function() {
-      expect(element(by.model("admin.node.disable_submissions")).isSelected()).toBeFalsy();
-    });
+    await element.all(by.css("[data-ng-click=\"updateNode()\"]")).first().click();
 
-    browser.get("/#/");
+    expect(await element(by.model("admin.node.disable_submissions")).isSelected()).toBeTruthy();
 
-    expect(browser.isElementPresent(element(by.cssContainingText("button", "Blow the whistle")))).toBe(true);
+    await browser.get("/#/");
 
-    browser.gl.utils.login_admin();
+    expect(await browser.isElementPresent(element(by.cssContainingText("span", "Submissions disabled")))).toBe(true);
+
+    await browser.gl.utils.login_admin();
+
+    await browser.setLocation("admin/advanced_settings");
+
+    await element(by.model("admin.node.disable_submissions")).click();
+
+    // save settings
+    await element.all(by.css("[data-ng-click=\"updateNode()\"]")).first().click();
+
+    expect(await element(by.model("admin.node.disable_submissions")).isSelected()).toBeFalsy();
+
+    await browser.get("/#/");
+
+    expect(await browser.isElementPresent(element(by.cssContainingText("button", "Blow the whistle")))).toBe(true);
+
+    await browser.gl.utils.login_admin();
   });
 });

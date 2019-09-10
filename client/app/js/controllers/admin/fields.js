@@ -43,8 +43,8 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
     };
 
     $scope.showConfiguration = function(field) {
-      if (field.instance === 'instance' &&
-	  ["checkbox", "date", "daterange", "fieldgroup", "inputbox", "map", "selectbox", "textarea", "tos"].indexOf(field.type) > -1) {
+      if (field.instance === "instance" &&
+          ["checkbox", "date", "daterange", "fieldgroup", "inputbox", "map", "selectbox", "textarea", "tos"].indexOf(field.type) > -1) {
         return true;
       }
 

@@ -1,29 +1,28 @@
 describe("admin configure custom texts", function() {
-  it("should perform custom texts configuration", function() {
-    browser.gl.utils.login_admin();
-    browser.setLocation("admin/content");
-    element(by.cssContainingText("a", "Text customization")).click();
+  it("should perform custom texts configuration", async function() {
+    await browser.gl.utils.login_admin();
+    await browser.setLocation("admin/content");
+    await element(by.cssContainingText("a", "Text customization")).click();
 
-    element(by.cssContainingText("option", "Submissions disabled")).click();
-    expect(element(by.model("vars.custom_text")).clear().sendKeys("Whistleblowing disabled"));
-
-    // save settings
-    element(by.id("addCustomTextButton")).click();
-    browser.get("/");
-    expect(browser.isElementPresent(element(by.cssContainingText("button", "Submissions disabled")))).toBe(false);
-    expect(browser.isElementPresent(element(by.cssContainingText("button", "Whistleblowing disabled")))).toBe(true);
-
-    browser.gl.utils.login_admin();
-
-    browser.setLocation("admin/content");
-    element(by.cssContainingText("a", "Text customization")).click();
+    await element(by.cssContainingText("option", "Submissions disabled")).click();
+    await element(by.model("vars.custom_text")).clear();
+    await element(by.model("vars.custom_text")).sendKeys("Whistleblowing disabled");
 
     // save settings
-    element(by.css(".deleteCustomTextButton")).click();
-    browser.get("/");
-    expect(browser.isElementPresent(element(by.cssContainingText("button", "Whistleblowing disabled")))).toBe(false);
-    expect(browser.isElementPresent(element(by.cssContainingText("button", "Submissions disabled")))).toBe(true);
+    await element(by.id("addCustomTextButton")).click();
+    await browser.get("/");
+    expect(await browser.isElementPresent(element(by.cssContainingText("button", "Submissions disabled")))).toBe(false);
+    expect(await browser.isElementPresent(element(by.cssContainingText("button", "Whistleblowing disabled")))).toBe(true);
 
-    browser.gl.utils.login_admin();
+    await browser.gl.utils.login_admin();
+
+    await browser.setLocation("admin/content");
+    await element(by.cssContainingText("a", "Text customization")).click();
+
+    // save settings
+    await element(by.css(".deleteCustomTextButton")).click();
+    await browser.get("/");
+    expect(await browser.isElementPresent(element(by.cssContainingText("button", "Whistleblowing disabled")))).toBe(false);
+    expect(await browser.isElementPresent(element(by.cssContainingText("button", "Submissions disabled")))).toBe(true);
   });
 });

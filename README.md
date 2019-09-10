@@ -5,7 +5,7 @@
 [GlobaLeaks](https://www.globaleaks.org/) is open-source / free software intended to enable secure and anonymous whistleblowing initiatives developed by the [Hermes Center for Transparency and Digital Human Rights](https://www.hermescenter.org/).
 
 ## Build
-| Branch | Status | Quality | Coverage | Browser Compatibility
+| Branch | Status | Quality | Coverage | Browser Tests
 | :---: | :---: | :---: | :---: | :---: |
 | [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=master)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4e072e7e5287478fa56468f3719d94ef?branch=master)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/4e072e7e5287478fa56468f3719d94ef?branch=master)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=master&labels=none)](https://saucelabs.com/u/globaleaks)
 | [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=devel)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4e072e7e5287478fa56468f3719d94ef?branch=devel)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/4e072e7e5287478fa56468f3719d94ef?branch=devel)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=devel&labels=none)](https://saucelabs.com/u/globaleaks)

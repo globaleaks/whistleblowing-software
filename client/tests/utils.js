@@ -58,7 +58,6 @@ browser.getCapabilities().then(function(capabilities) {
 
 exports.waitUntilPresent = function (locator, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
-  browser.waitForAngular();
   return browser.wait(function() {
     return element(locator).isDisplayed().then(function(present) {
       return present;
@@ -71,13 +70,11 @@ exports.waitUntilPresent = function (locator, timeout) {
 exports.waitUntilClickable = function (locator, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
   var EC = protractor.ExpectedConditions;
-  browser.waitForAngular();
   return browser.wait(EC.elementToBeClickable(element(locator)), t);
 };
 
-exports.waitForUrl = function (url, timeout) {
+exports.waitForUrl = async function (url, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
-  browser.waitForAngular();
   return browser.wait(function() {
     return browser.getCurrentUrl().then(function(current_url) {
       current_url = current_url.split("#")[1];
@@ -88,7 +85,6 @@ exports.waitForUrl = function (url, timeout) {
 
 exports.waitForFile = function (filename, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
-  browser.waitForAngular();
   return browser.wait(function() {
     try {
       var buf = fs.readFileSync(filename);
@@ -102,29 +98,29 @@ exports.waitForFile = function (filename, timeout) {
   }, t);
 };
 
-exports.login_admin = function() {
-  browser.get("/#/admin");
-  element(by.model("loginData.loginUsername")).sendKeys("admin");
-  element(by.model("loginData.loginPassword")).sendKeys(exports.vars["user_password"]);
-  element(by.id("login-button")).click();
-  exports.waitForUrl("/admin/home");
+exports.login_admin = async function() {
+  await browser.get("/#/admin");
+  await element(by.model("loginData.loginUsername")).sendKeys("admin");
+  await element(by.model("loginData.loginPassword")).sendKeys(exports.vars["user_password"]);
+  await element(by.id("login-button")).click();
+  await exports.waitForUrl("/admin/home");
 };
 
-exports.login_whistleblower = function(receipt) {
-  browser.get("/#/");
-  element(by.model("formatted_receipt")).sendKeys(receipt);
-  exports.waitForUrl("/status");
+exports.login_whistleblower = async function(receipt) {
+  await browser.get("/#/");
+  await element(by.model("formatted_receipt")).sendKeys(receipt);
+  await exports.waitForUrl("/status");
 };
 
-exports.login_receiver = function(username, password, url, firstlogin) {
+exports.login_receiver = async function(username, password, url, firstlogin) {
   username = username === undefined ? "recipient" : username;
   password = password === undefined ? exports.vars["user_password"] : password;
   url = url === undefined ? "/#/login" : url;
 
-  browser.get(url);
-  element(by.model("loginData.loginUsername")).sendKeys(username);
-  element(by.model("loginData.loginPassword")).sendKeys(password);
-  element(by.id("login-button")).click();
+  await browser.get(url);
+  await element(by.model("loginData.loginUsername")).sendKeys(username);
+  await element(by.model("loginData.loginPassword")).sendKeys(password);
+  await element(by.id("login-button")).click();
 
   if (firstlogin) {
     url = "/forcedpasswordchange";
@@ -133,18 +129,18 @@ exports.login_receiver = function(username, password, url, firstlogin) {
     url = url === "/login" ? "/receiver/home" : url;
   }
 
-  exports.waitForUrl(url);
+  await exports.waitForUrl(url);
 };
 
-exports.login_custodian = function(username, password, url, firstlogin) {
+exports.login_custodian = async function(username, password, url, firstlogin) {
   username = username === undefined ? "Custodian1" : username;
   password = password === undefined ? exports.vars["user_password"] : password;
   url = url === undefined ? "/#/login" : url;
 
-  browser.get(url);
-  element(by.model("loginData.loginUsername")).sendKeys(username);
-  element(by.model("loginData.loginPassword")).sendKeys(password);
-  element(by.id("login-button")).click();
+  await browser.get(url);
+  await element(by.model("loginData.loginUsername")).sendKeys(username);
+  await element(by.model("loginData.loginPassword")).sendKeys(password);
+  await element(by.id("login-button")).click();
 
   if (firstlogin) {
     url = "/forcedpasswordchange";
@@ -153,23 +149,23 @@ exports.login_custodian = function(username, password, url, firstlogin) {
     url = url === "/login" ? "/custodian/home" : url;
   }
 
-  exports.waitForUrl(url);
+  await exports.waitForUrl(url);
 };
 
-exports.logout = function(redirect_url) {
+exports.logout = async function(redirect_url) {
   redirect_url = redirect_url === undefined ? "/" : redirect_url;
-  element(by.id("LogoutLink")).click();
-  exports.waitForUrl(redirect_url);
+  await element(by.id("LogoutLink")).click();
+  await exports.waitForUrl(redirect_url);
 };
 
-exports.clickFirstDisplayed = function(selector) {
+exports.clickFirstDisplayed = async function(selector) {
   var elems = element.all(selector);
 
   var displayedElems = elems.filter(function(elem) {
     return elem.isDisplayed();
   });
 
-  displayedElems.first().click();
+  await displayedElems.first().click();
 };
 
 // Utility Functions for handling File operations

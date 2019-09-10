@@ -1,12 +1,8 @@
+var istanbul = require("istanbul");
+var collector = new istanbul.Collector();
+
 var fs = require("fs");
 var specs = JSON.parse(fs.readFileSync("tests/specs.json"));
-
-var tmp = [];
-for (var i=0; i<specs.length; i++) {
-  tmp.push("tests/" + specs[i]);
-}
-
-specs = tmp;
 
 // The test directory for downloaded files
 var tmpDir = "/tmp/globaleaks-downloads";
@@ -17,6 +13,7 @@ exports.config = {
   baseUrl: "http://127.0.0.1:8082/",
 
   troubleshoot: false,
+  rootElement: 'html',
   directConnect: true,
 
   params: {
@@ -30,6 +27,7 @@ exports.config = {
   capabilities: {
     "browserName": "chrome",
     "chromeOptions": {
+      args: ["--window-size=1280,1024"],
       prefs: {
         "download": {
           "prompt_for_download": false,
@@ -39,13 +37,33 @@ exports.config = {
     }
   },
 
-  allScriptsTimeout: 180000,
+  allScriptsTimeout: 60000,
 
   jasmineNodeOpts: {
     isVerbose: true,
     includeStackTrace: true,
-    defaultTimeoutInterval: 180000
+    defaultTimeoutInterval: 60000
   },
+
+  plugins: [
+    {
+      package: "protractor-console-plugin",
+      failOnWarning: false,
+      failOnError: false,
+      logWarnings: true,
+      exclude: []
+    },
+    {
+      inline: {
+        postTest: async function() {
+          await browser.driver.executeScript("return __coverage__;").then(function(coverageResults) {
+            console.log(1);
+            collector.add(coverageResults);
+          });
+        }
+      }
+    }
+  ],
 
   onPrepare: function() {
     browser.gl = {
@@ -58,6 +76,17 @@ exports.config = {
         $uibTooltipProvider.options({appendToBody: true, trigger: "none", enable: false});
         $uibTooltipProvider.options = function() {};
       }]);
+    });
+  },
+
+  onComplete: async function() {
+    await browser.driver.executeScript("return __coverage__;").then(function(coverageResults) {
+      collector.add(coverageResults);
+
+      istanbul.Report.create("lcov", {
+        dir: "coverage/",
+        includeAllSources: true
+      }).writeReport(collector, true);
     });
   }
 };

@@ -10,8 +10,8 @@ exports.config = {
   baseUrl: "http://127.0.0.1:8082/",
 
   troubleshoot: false,
-  directConnect: true,
   rootElement: 'html',
+  directConnect: true,
 
   params: {
     "testFileDownload": true,

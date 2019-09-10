@@ -1198,7 +1198,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
           if (field.attrs.input_validation) {
             return validators[field.attrs.input_validation.value];
-	  } else {
+          } else {
             return "";
           }
         },

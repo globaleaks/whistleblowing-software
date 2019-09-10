@@ -1,51 +1,49 @@
 describe("Admin configure custom CSS", function() {
-  it("should be able to configure a custom CSS", function() {
+  it("should be able to configure a custom CSS", async function() {
     if (!browser.gl.utils.testFileUpload()) {
       return;
     }
 
     var EC = protractor.ExpectedConditions;
 
-    browser.setLocation("admin/content");
+    await browser.setLocation("admin/content");
 
-    browser.gl.utils.waitUntilPresent(by.cssContainingText("a", "Theme customization"));
+    await browser.gl.utils.waitUntilPresent(by.cssContainingText("a", "Theme customization"));
 
-    element(by.cssContainingText("a", "Theme customization")).click();
+    await element(by.cssContainingText("a", "Theme customization")).click();
 
     var customCSSFile = browser.gl.utils.makeTestFilePath("custom_css.css");
 
-    element(by.css("div.uploadfile.file-css")).element(by.css("input")).sendKeys(customCSSFile);
+    await element(by.css("div.uploadfile.file-css")).element(by.css("input")).sendKeys(customCSSFile);
 
-    browser.gl.utils.waitUntilPresent(by.cssContainingText("label", "Project name"));
+    await browser.gl.utils.waitUntilPresent(by.cssContainingText("label", "Project name"));
 
-    element(by.cssContainingText("a", "Theme customization")).click();
+    await element(by.cssContainingText("a", "Theme customization")).click();
 
     if (browser.gl.utils.testFileDownload() && browser.gl.utils.verifyFileDownload()) {
-      element(by.css("div.uploadfile.file-css")).element(by.cssContainingText("a", "Download"))
-      .click().then(function() {
-        var actualFile = browser.gl.utils.makeSavedFilePath("custom_stylesheet.css");
-        browser.gl.utils.testFileEquality(customCSSFile, actualFile);
-      });
+      var actualFile = browser.gl.utils.makeSavedFilePath("custom_stylesheet.css");
+      await element(by.css("div.uploadfile.file-css")).element(by.cssContainingText("a", "Download")).click();
+      await browser.gl.utils.testFileEquality(customCSSFile, actualFile);
     }
 
-    browser.get("/");
-    expect(EC.invisibilityOf($("#LogoBox")));
+    await browser.get("/");
+    await browser.wait(EC.invisibilityOf($("#LogoBox")));
 
-    browser.get("/#/admin");
-    expect(EC.visibilityOf($("#LogoBox")));
+    await browser.get("/#/admin");
+    await browser.wait(EC.visibilityOf($("#LogoBox")));
 
-    browser.get("/");
-    expect(EC.invisibilityOf($("#LogoBox")));
+    await browser.get("/");
+    await browser.wait(EC.invisibilityOf($("#LogoBox")));
 
-    browser.get("/#/login?embed=true");
-    expect(EC.invisibilityOf($("#login-button")));
+    await browser.get("/#/login?embed=true");
+    await browser.wait(EC.invisibilityOf($("#login-button")));
 
-    browser.gl.utils.login_admin();
-    browser.setLocation("admin/content");
-    element(by.cssContainingText("a", "Theme customization")).click();
-    element.all(by.cssContainingText("button", "Delete")).first().click();
+    await browser.gl.utils.login_admin();
+    await browser.setLocation("admin/content");
+    await element(by.cssContainingText("a", "Theme customization")).click();
+    await element.all(by.cssContainingText("button", "Delete")).first().click();
 
     // wait until redirect to the first tab of the admin/content section
-    browser.gl.utils.waitUntilPresent(by.cssContainingText("label", "Project name"));
+    await browser.gl.utils.waitUntilPresent(by.cssContainingText("label", "Project name"));
   });
 });

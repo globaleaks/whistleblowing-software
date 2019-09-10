@@ -131,7 +131,7 @@ module.exports = function(grunt) {
       build: {
         files: [{ dest: "tmp/", cwd: "app/", src: ["**"], expand: true }]
       },
-      end2end_coverage: {
+      coverage: {
         files: [{
           dest: "build/",
           cwd: "app/",
@@ -143,7 +143,7 @@ module.exports = function(grunt) {
           ],
           expand: true
         }]
-      },
+      }
     },
 
     useminPrepare: {
@@ -288,23 +288,6 @@ module.exports = function(grunt) {
           basePath: "build/"
         }
       }
-    },
-
-    protractor_coverage: {
-      local: {
-        options: {
-          configFile: "tests/protractor-coverage.config.js"
-        }
-      }
-    },
-
-    makeReport: {
-      src: "coverage/*.json",
-      options: {
-        type: "lcov",
-        dir: "coverage",
-        print: "detail"
-      }
     }
   });
 
@@ -317,10 +300,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-contrib-compress");
   grunt.loadNpmTasks("grunt-contrib-concat");
-  grunt.loadNpmTasks("grunt-contrib-connect");
   grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks("grunt-istanbul");
-  grunt.loadNpmTasks("grunt-protractor-coverage");
   grunt.loadNpmTasks("grunt-string-replace");
   grunt.loadNpmTasks("grunt-usemin");
   grunt.loadNpmTasks("gruntify-eslint");
@@ -922,14 +903,15 @@ module.exports = function(grunt) {
 
   // Run this task to fetch translations from transifex and create application files
   grunt.registerTask("updateTranslations", ["fetchTranslations", "makeAppData", "verifyAppData"]);
+
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask("build",
     ["clean", "copy:sources", "copy:build", "includeExternalFiles", "ngtemplates", "useminPrepare", "concat", "usemin", "string-replace", "cleanupWorkingDirectory", "compress"]);
 
-  grunt.registerTask("end2end-coverage-instrument", [
+  grunt.registerTask("instrument-client", [
     "clean",
     "copy:sources",
-    "copy:end2end_coverage",
+    "copy:coverage",
     "instrument"
   ]);
 };
