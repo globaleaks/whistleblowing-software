@@ -1,4 +1,8 @@
-Changes in version 3.10.8 - 2019-08-19
+Changes in version 3.11.1 - 2019-09-10
+    Fix serialization of question templates
+    Apply minor UI fixes
+
+Changes in version 3.11.0 - 2019-09-09
     Implement HTTP/2
     Revise HTTPS implementation enabling only TLS1.3 andTLS1.2 with ECDH key exchange
     Revise Lets'Encrypt implementation requesting ECC certificates with curve prime256v1
