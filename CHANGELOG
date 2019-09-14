@@ -1,3 +1,7 @@
+Changes in version 3.11.2 - 2019-09-16
+    Fix regression #2673
+    Update translations
+
 Changes in version 3.11.1 - 2019-09-10
     Fix serialization of question templates
     Apply minor UI fixes
