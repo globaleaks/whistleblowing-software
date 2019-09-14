@@ -228,6 +228,7 @@ AdminNodeDesc = {
     'https_custodian': bool,
     'https_whistleblower': bool,
     'https_receiver': bool,
+    'https_preload': bool,
     'can_postpone_expiration': bool,
     'can_delete_submission': bool,
     'can_grant_permissions': bool,

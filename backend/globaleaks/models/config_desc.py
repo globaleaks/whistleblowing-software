@@ -52,6 +52,7 @@ ConfigDescriptor = {
     u'https_csr': Unicode(),
     u'https_cert': Unicode(),
     u'https_chain': Unicode(),
+    u'https_preload': Bool(default=False),
 
     u'admin_api_token_digest': Unicode(),
 
@@ -259,6 +260,7 @@ ConfigFilters = {
         u'https_csr',
         u'https_cert',
         u'https_chain',
+        u'https_preload',
         u'admin_api_token_digest',
         u'ip_filter_admin',
         u'ip_filter_admin_enable',
