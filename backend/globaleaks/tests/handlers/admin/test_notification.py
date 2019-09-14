@@ -18,7 +18,7 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
     def test_get(self):
         handler = self.request(role='admin')
         response = yield handler.get()
-        self.assertEqual(response['smtp_server'], 'demo.globaleaks.org')
+        self.assertEqual(response['smtp_server'], 'mail.globaleaks.org')
 
     @inlineCallbacks
     def test_put(self):
