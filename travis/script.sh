@@ -63,7 +63,7 @@ if [ "$GLTEST" = "py2_test" ] || [ "$GLTEST" = "py3_test" ]; then
 
   echo "Running BrowserTesting locally collecting code coverage"
   cd $TRAVIS_BUILD_DIR/client
-  grunt instrument-client
+  ./node_modules/nyc/bin/nyc.js  instrument --complete-copy app build --source-map=false
 
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR -k9 -D
   sleep 3
@@ -78,6 +78,7 @@ if [ "$GLTEST" = "py2_test" ] || [ "$GLTEST" = "py3_test" ]; then
     python-codacy-coverage -r coverage.xml -c $TRAVIS_COMMIT # Python
 
     cd $TRAVIS_BUILD_DIR/client
+    ./node_modules/nyc/bin/nyc.js report --reporter=lcov
     cat coverage/lcov.info | codacy-coverage -c $TRAVIS_COMMIT # Javascript
   fi
 elif [ "$GLTEST" = "docker" ]; then

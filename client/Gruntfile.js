@@ -277,17 +277,6 @@ module.exports = function(grunt) {
           input: "_key:y"
         }
       }
-    },
-
-    instrument: {
-      build: {
-        files: "js/**/*.js",
-        options: {
-          lazy: true,
-          cwd: "app/",
-          basePath: "build/"
-        }
-      }
     }
   });
 
@@ -301,7 +290,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-compress");
   grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks("grunt-contrib-copy");
-  grunt.loadNpmTasks("grunt-istanbul");
   grunt.loadNpmTasks("grunt-string-replace");
   grunt.loadNpmTasks("grunt-usemin");
   grunt.loadNpmTasks("gruntify-eslint");

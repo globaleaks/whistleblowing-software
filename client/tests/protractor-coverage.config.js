@@ -1,5 +1,5 @@
-var istanbul = require("istanbul");
-var collector = new istanbul.Collector();
+var istanbul = require('istanbul-lib-coverage');
+var map = istanbul.createCoverageMap({});
 
 var fs = require("fs");
 var specs = JSON.parse(fs.readFileSync("tests/specs.json"));
@@ -56,9 +56,8 @@ exports.config = {
     {
       inline: {
         postTest: async function() {
-          await browser.driver.executeScript("return __coverage__;").then(function(coverageResults) {
-            console.log(1);
-            collector.add(coverageResults);
+          await browser.driver.executeScript("return __coverage__;").then(function(coverage) {
+            map.merge(coverage);
           });
         }
       }
@@ -80,13 +79,14 @@ exports.config = {
   },
 
   onComplete: async function() {
-    await browser.driver.executeScript("return __coverage__;").then(function(coverageResults) {
-      collector.add(coverageResults);
+    await browser.driver.executeScript("return __coverage__;").then(function(coverage) {
+      map.merge(coverage);
 
-      istanbul.Report.create("lcov", {
-        dir: "coverage/",
-        includeAllSources: true
-      }).writeReport(collector, true);
+      if (!fs.existsSync('.nyc_output')) {
+        fs.mkdirSync('.nyc_output');
+      }
+
+      fs.writeFileSync('.nyc_output/out.json', JSON.stringify(map));
     });
   }
 };
