@@ -1145,6 +1145,7 @@ class MockDict:
             'https_custodian': True,
             'https_whistleblower': True,
             'https_receiver': True,
+            'https_preload': True,
             'can_postpone_expiration': False,
             'can_delete_submission': False,
             'can_grant_permissions': False,
