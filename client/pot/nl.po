@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 10:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2517,7 +2517,7 @@ msgid "Role: {Role}"
 msgstr "Rol: {Role}"
 
 msgid "Username: {Username}"
-msgstr "Gebruikersnaam: {Gebruikersnaam}"
+msgstr "Gebruikersnaam: {Username}"
 
 msgid "Password: {Password}"
-msgstr "Wachtwoord: {Wachtwoord}"
+msgstr "Wachtwoord: {Password}"

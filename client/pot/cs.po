@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 10:41+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2494,7 +2494,7 @@ msgid "Role: {Role}"
 msgstr "Role: {Role}"
 
 msgid "Username: {Username}"
-msgstr "Uživatelské jméno: {Uživatelské jméno} "
+msgstr "Uživatelské jméno: {Username} "
 
 msgid "Password: {Password}"
-msgstr "Heslo: {Heslo}"
+msgstr "Heslo: {Password}"

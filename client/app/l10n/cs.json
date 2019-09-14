@@ -768,6 +768,6 @@
   "You are asked to pay special attention to the information and material contained therein. Please keep in mind that whistleblowers often expose themselves to high personal risks in the interest of the public. Therefore the material provided within this submission should be considered to be of high importance.": "Prosím, věnujte zvláštní pozornost obsaženým informacím a materiálům. Mějte na paměti, že oznamovatelé se často vystavují osobním rizikům. Informacím poskytnutým v rámci tohoto podání by proto měla být věnována vysoká důležitost.",
   "New submission": "Nové podání",
   "Role: {Role}": "Role: {Role}",
-  "Username: {Username}": "Uživatelské jméno: {Uživatelské jméno} ",
-  "Password: {Password}": "Heslo: {Heslo}"
+  "Username: {Username}": "Uživatelské jméno: {Username} ",
+  "Password: {Password}": "Heslo: {Password}"
 }

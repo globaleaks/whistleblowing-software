@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-09-14 08:46+0000\n"
+"Last-Translator: Ali Kamran <kamran@digitalrightsfoundation.pk>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -62,7 +62,7 @@ msgid "Home page"
 msgstr "ابتدائی صحفہ"
 
 msgid "Changelog"
-msgstr ""
+msgstr "لاگ تبدیل کریں"
 
 msgid "License"
 msgstr ""
@@ -478,7 +478,7 @@ msgid "Email address"
 msgstr "ای میل پتہ"
 
 msgid "Custom"
-msgstr ""
+msgstr "مخصوص"
 
 msgid "None"
 msgstr ""
@@ -1624,7 +1624,7 @@ msgid ""
 msgstr ""
 
 msgid "Welcome!"
-msgstr ""
+msgstr "خوش آمدید!"
 
 msgid "For the user documentation, visit:"
 msgstr ""

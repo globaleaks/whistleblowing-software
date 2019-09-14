@@ -314,7 +314,25 @@
     "{EarliestExpirationDate}",
     "{Url}"
   ],
-  "2fa_mail_template": [
-    "{AuthCode}"
+  "signup_mail_template": [
+    "{NodeName}",
+    "{RecipientName}",
+    "{ActivationUrl}"
+  ],
+  "activation_mail_template": [
+    "{NodeName}",
+    "{RecipientName}",
+    "{ActivationUrl}",
+    "{Url}",
+    "{LoginUrl}",
+    "{AdminCredentials}",
+    "{RecipientCredentials}",
+    "{DocumentationUrl}",
+    "{ExpirationDate}"
+  ],
+  "user_credentials": [
+    "{Role}",
+    "{Username}",
+    "{Password}"
   ]
 }
