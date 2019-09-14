@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -812,6 +812,9 @@ msgstr "Permet l'inici de sessió simultani a diversos llocs"
 msgid "Enable simplified login"
 msgstr "Permet l'inici de sessió simplificat"
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr "Nivell de registre"
 
@@ -1091,6 +1094,12 @@ msgstr ""
 msgid "Template"
 msgstr "Plantilla"
 
+msgid "Configuration in progress"
+msgstr ""
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Domini"
 
@@ -1237,17 +1246,6 @@ msgstr "Cada entrada ha d'estar separada amb una coma."
 
 msgid "Example:"
 msgstr "Exemple:"
-
-msgid "Attention!"
-msgstr "Atenció!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Configuración en curso. Cuando haya finalizado tendrá que iniciar sesión de nuevo."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "El vostre navegador serà redirigit a la següent adreça:."
 
 msgid "Tor Onion Service"
 msgstr "Servei Tor Onion"
@@ -1595,6 +1593,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "Confirma extensió"
 
+msgid "Add file"
+msgstr "Afegeix un arxiu"
+
 msgid "Are you sure?"
 msgstr "N'estàs segur?"
 
@@ -1606,6 +1607,9 @@ msgstr "Assigna puntuació"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Recordeu que totes les dades associades es perden definitivament."
+
+msgid "Attention!"
+msgstr "Atenció!"
 
 msgid "Instructions"
 msgstr ""
@@ -1746,9 +1750,6 @@ msgstr "Després, copia i enganxa l'adreça següent al Tor Browser instal·lat:
 
 msgid "Enter a name for the copy"
 msgstr "Introduïu un nom per a la còpia"
-
-msgid "Add file"
-msgstr "Afegeix un arxiu"
 
 msgid "Uploading files…"
 msgstr "Carregant fitxers..."

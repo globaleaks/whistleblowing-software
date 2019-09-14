@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -806,6 +806,9 @@ msgstr ""
 msgid "Enable simplified login"
 msgstr ""
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr ""
 
@@ -1085,6 +1088,12 @@ msgstr ""
 msgid "Template"
 msgstr "Bản mẫu"
 
+msgid "Configuration in progress"
+msgstr ""
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr ""
 
@@ -1231,17 +1240,6 @@ msgstr ""
 
 msgid "Example:"
 msgstr "Thí dụ:"
-
-msgid "Attention!"
-msgstr ""
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr ""
-
-msgid "Your browser will be redirected to the following URL."
-msgstr ""
 
 msgid "Tor Onion Service"
 msgstr ""
@@ -1589,6 +1587,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "Xác nhận"
 
+msgid "Add file"
+msgstr "Thêm tập tin"
+
 msgid "Are you sure?"
 msgstr "Bạn có chắc không?"
 
@@ -1599,6 +1600,9 @@ msgid "Assign score points"
 msgstr "Gán thêm điểm"
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "Attention!"
 msgstr ""
 
 msgid "Instructions"
@@ -1740,9 +1744,6 @@ msgstr "Sau đó, sao chép và dán địa chỉ sau vào trình duyệt Tor:"
 
 msgid "Enter a name for the copy"
 msgstr ""
-
-msgid "Add file"
-msgstr "Thêm tập tin"
 
 msgid "Uploading files…"
 msgstr ""

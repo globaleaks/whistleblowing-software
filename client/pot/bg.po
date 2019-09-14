@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -805,6 +805,9 @@ msgstr "Активиране на мулти-сайтово вписване"
 msgid "Enable simplified login"
 msgstr "Активиране на опростено вписване"
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr "Ниво на логовете"
 
@@ -1084,6 +1087,12 @@ msgstr ""
 msgid "Template"
 msgstr "Шаблон"
 
+msgid "Configuration in progress"
+msgstr "Тече настройка"
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Сървър"
 
@@ -1230,17 +1239,6 @@ msgstr "Всяко допълнение трябва да бъде отделе�
 
 msgid "Example:"
 msgstr "Приме:"
-
-msgid "Attention!"
-msgstr "Внимание!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Тече конфигуриране. Когато то завърши ще трябва да се впишете отново."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "Браузърът Ви ще бъде пренасочен на следния интернет адрес:"
 
 msgid "Tor Onion Service"
 msgstr "Tor onion услуга"
@@ -1588,6 +1586,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "Потвърждение"
 
+msgid "Add file"
+msgstr "Добавяне на файл"
+
 msgid "Are you sure?"
 msgstr "Сигурни ли сте?"
 
@@ -1599,6 +1600,9 @@ msgstr "Задайте точки"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Моля, помнете, че всичката свързана информация ще бъде перманентно изтрита."
+
+msgid "Attention!"
+msgstr "Внимание!"
 
 msgid "Instructions"
 msgstr ""
@@ -1739,9 +1743,6 @@ msgstr "След това копирайте следния адрес в Tor б
 
 msgid "Enter a name for the copy"
 msgstr "Въведете име на копието"
-
-msgid "Add file"
-msgstr "Добавяне на файл"
 
 msgid "Uploading files…"
 msgstr "Качване на файлове..."

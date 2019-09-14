@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:47+0000\n"
-"Last-Translator: Chacal E.\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -832,6 +832,9 @@ msgstr "Ativar o login em vários sites"
 msgid "Enable simplified login"
 msgstr "Ativar login simplificado"
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr "Nível de registro"
 
@@ -1111,6 +1114,12 @@ msgstr ""
 msgid "Template"
 msgstr "Modelo"
 
+msgid "Configuration in progress"
+msgstr "Configuração em andamento"
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Servidor"
 
@@ -1257,17 +1266,6 @@ msgstr "Cada entrada deve ser separada por vírgula."
 
 msgid "Example:"
 msgstr "Exemplo:"
-
-msgid "Attention!"
-msgstr "Atenção!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Configuração em andamento. Quando terminar, você terá que fazer o login novamente."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "Seu navegador será redirecionado a URL"
 
 msgid "Tor Onion Service"
 msgstr "Serviço Onion do Tor"
@@ -1615,6 +1613,9 @@ msgstr "Texto mostrado depois que o usuário selecionou a opção."
 msgid "Confirm"
 msgstr "Confirmar Extensão"
 
+msgid "Add file"
+msgstr "Adicionar arquivo"
+
 msgid "Are you sure?"
 msgstr "Você tem certeza?"
 
@@ -1626,6 +1627,9 @@ msgstr "Atribuir pontos de pontuação"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Favor notar que todos os dados assocados serão permanentemente perdidos."
+
+msgid "Attention!"
+msgstr "Atenção!"
 
 msgid "Instructions"
 msgstr ""
@@ -1766,9 +1770,6 @@ msgstr "Em seguida, copie e cole o seguinte endereço no Tor Browser instalado:"
 
 msgid "Enter a name for the copy"
 msgstr "Digite um nome para a cópia"
-
-msgid "Add file"
-msgstr "Adicionar arquivo"
 
 msgid "Uploading files…"
 msgstr "Subindo arquivos..."

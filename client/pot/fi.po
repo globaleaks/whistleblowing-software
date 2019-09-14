@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -804,6 +804,9 @@ msgstr "Salli samanaikainen kirjautuminen useaan järjestelmään"
 msgid "Enable simplified login"
 msgstr "Ota käyttöön helpotettu kirjautuminen"
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr "Kirjautumistaso"
 
@@ -1083,6 +1086,12 @@ msgstr ""
 msgid "Template"
 msgstr "Mallipohja"
 
+msgid "Configuration in progress"
+msgstr ""
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Tietokoneen nimi"
 
@@ -1229,17 +1238,6 @@ msgstr "Käytä erotusmerkkinä pilkkua "
 
 msgid "Example:"
 msgstr "Esimerkiksi:"
-
-msgid "Attention!"
-msgstr "Huomio!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Asetusten määritys käynnissä. Sinun täytyy kirjautua uudelleen määritysten valmistuttua."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "Selaimesi uudelleenohjataan osoitteeseen "
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
@@ -1587,6 +1585,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "Vahvista laajennus"
 
+msgid "Add file"
+msgstr "Lisää tiedosto"
+
 msgid "Are you sure?"
 msgstr "Oletko varma?"
 
@@ -1598,6 +1599,9 @@ msgstr "Käytä pisteytystä"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Huomaa, että kaikki asiaan liittyvät tiedot poistetaan lopullisesti."
+
+msgid "Attention!"
+msgstr "Huomio!"
 
 msgid "Instructions"
 msgstr ""
@@ -1738,9 +1742,6 @@ msgstr "Jatka sitten palvelun käyttöä kopioimalla ja liittämällä seuraava 
 
 msgid "Enter a name for the copy"
 msgstr "Kirjoita kopiolle nimi"
-
-msgid "Add file"
-msgstr "Lisää tiedosto"
 
 msgid "Uploading files…"
 msgstr "Kopioidaan tiedostoja palvelimelle..."

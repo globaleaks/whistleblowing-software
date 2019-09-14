@@ -31,9 +31,7 @@
       <div data-ng-form="submissionStatus-{{$index}}" name="editsubmissionStatus" novalidate>
         <div class="configItem">
           <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
-            <span class="col-md-7 editorHeaderTitle">
-              <span data-translate>{{submissions_status.label}}</span>
-            </span>
+            <span class="col-md-7 editorHeaderTitle">{{submissions_status.label | translate}}</span>
             <span class="col-md-5">
               <span class="float-right">
                 <button data-ng-if="!$first" class="btn btn-sm btn-primary" data-ng-click="moveUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">

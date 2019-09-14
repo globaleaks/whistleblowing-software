@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 10:41+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -809,6 +809,9 @@ msgstr "Povolit přihlášení na více stránek"
 msgid "Enable simplified login"
 msgstr "Povolit zjednodušené přihlášení"
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr "Přihlašovací úroveň"
 
@@ -1088,6 +1091,12 @@ msgstr ""
 msgid "Template"
 msgstr "Šablona"
 
+msgid "Configuration in progress"
+msgstr "Probíhá konfigurace"
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Hostitelské jméno"
 
@@ -1234,17 +1243,6 @@ msgstr "Každá položka musí být oddělena čárkou."
 
 msgid "Example:"
 msgstr "Příklad:"
-
-msgid "Attention!"
-msgstr "Pozor!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Probíhá konfigurace. Jakmile bude dokončena budete se muset znovu přihlásit."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "Váš prohlížeč bude přesměrován na následující adresu URL."
 
 msgid "Tor Onion Service"
 msgstr "Služba Tor Onion"
@@ -1592,6 +1590,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "Potvrdit"
 
+msgid "Add file"
+msgstr "Přidat soubor"
+
 msgid "Are you sure?"
 msgstr "Jste si jistý?"
 
@@ -1603,6 +1604,9 @@ msgstr "Přidělit bodové skóre"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Prosím, vezměte na vědomí, že všechna související data budou navždy smazána."
+
+msgid "Attention!"
+msgstr "Pozor!"
 
 msgid "Instructions"
 msgstr ""
@@ -1743,9 +1747,6 @@ msgstr "Pak zkopírujte a vložte následující adresy do Tor prohlížeče:"
 
 msgid "Enter a name for the copy"
 msgstr "Zadejte název kopie"
-
-msgid "Add file"
-msgstr "Přidat soubor"
 
 msgid "Uploading files…"
 msgstr "Nahrávám soubory..."

@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -804,6 +804,9 @@ msgstr "開啟多站台登入"
 msgid "Enable simplified login"
 msgstr "開啟簡易登入"
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr "登入層級"
 
@@ -1083,6 +1086,12 @@ msgstr ""
 msgid "Template"
 msgstr "模版"
 
+msgid "Configuration in progress"
+msgstr "設定正在進行中"
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "主機名稱"
 
@@ -1229,17 +1238,6 @@ msgstr "每一筆條目必須用逗號分隔。"
 
 msgid "Example:"
 msgstr "例子："
-
-msgid "Attention!"
-msgstr "注𨐌"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "設置進行中,完成後請再重新登入"
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "你的瀏覽"
 
 msgid "Tor Onion Service"
 msgstr "Tor 洋瞛服務 "
@@ -1587,6 +1585,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "確認"
 
+msgid "Add file"
+msgstr "新增檔案"
+
 msgid "Are you sure?"
 msgstr "你確定嗎？"
 
@@ -1598,6 +1599,9 @@ msgstr "指定得分點數"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "請注意所有相關的資料將會永久消失。"
+
+msgid "Attention!"
+msgstr "注𨐌"
 
 msgid "Instructions"
 msgstr ""
@@ -1738,9 +1742,6 @@ msgstr "然後在 TOR 瀏覧器上複制貼上以下的網址"
 
 msgid "Enter a name for the copy"
 msgstr "為此複本輸入名稱"
-
-msgid "Add file"
-msgstr "新增檔案"
 
 msgid "Uploading files…"
 msgstr "上傳檔案...."

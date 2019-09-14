@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -817,6 +817,9 @@ msgstr "فعال سازی ورود چند سایت"
 msgid "Enable simplified login"
 msgstr "فعال سازی ورود ساده شده"
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr "سطح ثبت کردن وقایع"
 
@@ -1096,6 +1099,12 @@ msgstr ""
 msgid "Template"
 msgstr "قالب"
 
+msgid "Configuration in progress"
+msgstr ""
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "نام سرور"
 
@@ -1242,17 +1251,6 @@ msgstr "هر ورودی می بایستی با یک ویرگول جدا شود."
 
 msgid "Example:"
 msgstr "نمونه:"
-
-msgid "Attention!"
-msgstr "توجه!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "پیکربندی در حال انجام است. زمانی که کامل شد شما باید دوباره وارد شوید."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "مرورگر شما به آدرس اینترنتی زید باز خواهد گشت."
 
 msgid "Tor Onion Service"
 msgstr "سرویس پیازی تور"
@@ -1600,6 +1598,9 @@ msgstr "نمایش متن بعد از اینکه کاربر گزینه را ان
 msgid "Confirm"
 msgstr "تایید "
 
+msgid "Add file"
+msgstr "فایل اضافه کن"
+
 msgid "Are you sure?"
 msgstr "آیا مطمئن هستید؟"
 
@@ -1611,6 +1612,9 @@ msgstr "تخصیص امتیاز"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "لطفا توجه داشته باشید که تمام داده های مرتبط برای همیشه از بین خواهند رفت."
+
+msgid "Attention!"
+msgstr "توجه!"
 
 msgid "Instructions"
 msgstr "دستورالعمل‌ها"
@@ -1751,9 +1755,6 @@ msgstr "سپس این آدرس را در مرورگر درج کنید:"
 
 msgid "Enter a name for the copy"
 msgstr "وارد کردن یک نام برای کپی"
-
-msgid "Add file"
-msgstr "فایل اضافه کن"
 
 msgid "Uploading files…"
 msgstr "در حال آپلود فایل ها..."

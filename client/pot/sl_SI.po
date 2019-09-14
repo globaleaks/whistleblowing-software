@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -801,6 +801,9 @@ msgstr ""
 msgid "Enable simplified login"
 msgstr ""
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr ""
 
@@ -1080,6 +1083,12 @@ msgstr ""
 msgid "Template"
 msgstr "Predloga"
 
+msgid "Configuration in progress"
+msgstr ""
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr ""
 
@@ -1226,17 +1235,6 @@ msgstr ""
 
 msgid "Example:"
 msgstr "Primer:"
-
-msgid "Attention!"
-msgstr ""
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr ""
-
-msgid "Your browser will be redirected to the following URL."
-msgstr ""
 
 msgid "Tor Onion Service"
 msgstr ""
@@ -1584,6 +1582,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "Potrdi razširitev"
 
+msgid "Add file"
+msgstr "Dodaj datoteko"
+
 msgid "Are you sure?"
 msgstr "Ste prepričani ?"
 
@@ -1594,6 +1595,9 @@ msgid "Assign score points"
 msgstr ""
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "Attention!"
 msgstr ""
 
 msgid "Instructions"
@@ -1735,9 +1739,6 @@ msgstr "Potem kopirajte sledeč naslov in ga prilepite v Tor Browser: "
 
 msgid "Enter a name for the copy"
 msgstr ""
-
-msgid "Add file"
-msgstr "Dodaj datoteko"
 
 msgid "Uploading files…"
 msgstr ""

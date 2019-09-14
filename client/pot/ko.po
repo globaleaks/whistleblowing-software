@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -799,6 +799,9 @@ msgstr ""
 msgid "Enable simplified login"
 msgstr ""
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr ""
 
@@ -1078,6 +1081,12 @@ msgstr ""
 msgid "Template"
 msgstr "주형"
 
+msgid "Configuration in progress"
+msgstr ""
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr ""
 
@@ -1224,17 +1233,6 @@ msgstr ""
 
 msgid "Example:"
 msgstr "예:"
-
-msgid "Attention!"
-msgstr ""
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr ""
-
-msgid "Your browser will be redirected to the following URL."
-msgstr ""
 
 msgid "Tor Onion Service"
 msgstr ""
@@ -1582,6 +1580,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "확인"
 
+msgid "Add file"
+msgstr "파일을 추가합니다"
+
 msgid "Are you sure?"
 msgstr "확실합니까?"
 
@@ -1592,6 +1593,9 @@ msgid "Assign score points"
 msgstr "점수 포인트를 할당"
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "Attention!"
 msgstr ""
 
 msgid "Instructions"
@@ -1733,9 +1737,6 @@ msgstr "그런 다음, 복사 토르 브라우저에 다음 주소를 붙여 넣
 
 msgid "Enter a name for the copy"
 msgstr ""
-
-msgid "Add file"
-msgstr "파일을 추가합니다"
 
 msgid "Uploading files…"
 msgstr ""

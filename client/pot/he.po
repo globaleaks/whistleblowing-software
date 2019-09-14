@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -812,6 +812,9 @@ msgstr ""
 msgid "Enable simplified login"
 msgstr ""
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr ""
 
@@ -1091,6 +1094,12 @@ msgstr ""
 msgid "Template"
 msgstr "תבנית"
 
+msgid "Configuration in progress"
+msgstr ""
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "שם מארח"
 
@@ -1237,17 +1246,6 @@ msgstr ""
 
 msgid "Example:"
 msgstr "דוגמה:"
-
-msgid "Attention!"
-msgstr ""
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr ""
-
-msgid "Your browser will be redirected to the following URL."
-msgstr ""
 
 msgid "Tor Onion Service"
 msgstr ""
@@ -1595,6 +1593,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "אשר"
 
+msgid "Add file"
+msgstr "הוסף קובץ"
+
 msgid "Are you sure?"
 msgstr "האם אתה בטוח?"
 
@@ -1605,6 +1606,9 @@ msgid "Assign score points"
 msgstr "הקצאת נקודות ציון"
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "Attention!"
 msgstr ""
 
 msgid "Instructions"
@@ -1746,9 +1750,6 @@ msgstr "לאחר מכן, העתק והדבק כתובת הבאה לדפדפן To
 
 msgid "Enter a name for the copy"
 msgstr ""
-
-msgid "Add file"
-msgstr "הוסף קובץ"
 
 msgid "Uploading files…"
 msgstr "מעלה קבצים..."

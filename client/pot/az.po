@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -803,6 +803,9 @@ msgstr ""
 msgid "Enable simplified login"
 msgstr ""
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr ""
 
@@ -1082,6 +1085,12 @@ msgstr ""
 msgid "Template"
 msgstr "Şablon"
 
+msgid "Configuration in progress"
+msgstr "Quraşdırma davam edir"
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Domen adı"
 
@@ -1228,17 +1237,6 @@ msgstr ""
 
 msgid "Example:"
 msgstr "Məsələn:"
-
-msgid "Attention!"
-msgstr "Diqqət!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Quraşdırma davam edir. Proses başa çatanda yenidən daxil olmalısınız. "
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "Brauzeriniz Sizi növbəti URL-ə götürəcək"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion mərkəzi"
@@ -1586,6 +1584,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "Təsdiqlə"
 
+msgid "Add file"
+msgstr "Fayl əlavə et"
+
 msgid "Are you sure?"
 msgstr "Əminsiniz mi?"
 
@@ -1597,6 +1598,9 @@ msgstr "Hesab nöqtələrini təyin et"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Xahiş edirik bütün əlaqəli məlumatların daimi olaraq silinəcəyini unutmayın."
+
+msgid "Attention!"
+msgstr "Diqqət!"
 
 msgid "Instructions"
 msgstr ""
@@ -1737,9 +1741,6 @@ msgstr "Daha sonra Tor Brauzerə aşağıdakı ünvanı kopyalayıb yapışdır�
 
 msgid "Enter a name for the copy"
 msgstr ""
-
-msgid "Add file"
-msgstr "Fayl əlavə et"
 
 msgid "Uploading files…"
 msgstr "Fayllar yüklənir..."

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -801,6 +801,9 @@ msgstr "Habilitar a entrada de varios sitios"
 msgid "Enable simplified login"
 msgstr "Activar o inicio de sesión simplificado"
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr "Nivel de rexistro"
 
@@ -1080,6 +1083,12 @@ msgstr ""
 msgid "Template"
 msgstr "Modelo"
 
+msgid "Configuration in progress"
+msgstr ""
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Nome do servidor"
 
@@ -1226,17 +1235,6 @@ msgstr "Cada entrada debe estar separada cunha coma."
 
 msgid "Example:"
 msgstr "Exemplo:"
-
-msgid "Attention!"
-msgstr "Atención!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Configuración en progreso. Cando remate deberá iniciar sesión de novo."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "O navegador será redirixido á seguinte URL."
 
 msgid "Tor Onion Service"
 msgstr "Servizo de Tor Onion"
@@ -1584,6 +1582,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "Confirmar"
 
+msgid "Add file"
+msgstr "Engadir ficheiro"
+
 msgid "Are you sure?"
 msgstr "Estás seguro?"
 
@@ -1595,6 +1596,9 @@ msgstr "Asignar puntos"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Ten en conta que todos os datos asociados perderanse permanentemente."
+
+msgid "Attention!"
+msgstr "Atención!"
 
 msgid "Instructions"
 msgstr ""
@@ -1735,9 +1739,6 @@ msgstr "A continuación, copie e pegue o seguinte enderezo no navegador Tor:"
 
 msgid "Enter a name for the copy"
 msgstr "Introduce un nome para a copia"
-
-msgid "Add file"
-msgstr "Engadir ficheiro"
 
 msgid "Uploading files…"
 msgstr "Cargando ficheiros ..."

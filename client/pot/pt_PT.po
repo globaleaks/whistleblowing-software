@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -816,6 +816,9 @@ msgstr ""
 msgid "Enable simplified login"
 msgstr ""
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr ""
 
@@ -1095,6 +1098,12 @@ msgstr ""
 msgid "Template"
 msgstr "Modelo"
 
+msgid "Configuration in progress"
+msgstr ""
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Nome de Hospedeiro"
 
@@ -1241,17 +1250,6 @@ msgstr "Cada entrada deve ser separada por vírgula."
 
 msgid "Example:"
 msgstr "Exemplo:"
-
-msgid "Attention!"
-msgstr "Atenção!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Configuração em progresso. Quando esta terminar, terá que iniciar a sessão novamente."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "O seu navegador será redirecionado para o seguinte URL."
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion - Serviço"
@@ -1599,6 +1597,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "Confirmar"
 
+msgid "Add file"
+msgstr "Adicionar ficheiro"
+
 msgid "Are you sure?"
 msgstr "Tem a certeza?"
 
@@ -1610,6 +1611,9 @@ msgstr "Atribuir pontos"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Por favor, note que todos os dados associados serão perdidos para sempre."
+
+msgid "Attention!"
+msgstr "Atenção!"
 
 msgid "Instructions"
 msgstr "Instruções"
@@ -1750,9 +1754,6 @@ msgstr "Depois, copie e cole o seguinte endereço para o Tor Browser:"
 
 msgid "Enter a name for the copy"
 msgstr "Insira um nome para a cópia"
-
-msgid "Add file"
-msgstr "Adicionar ficheiro"
 
 msgid "Uploading files…"
 msgstr "A enviar ficheiros..."

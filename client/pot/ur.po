@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 08:46+0000\n"
-"Last-Translator: Ali Kamran <kamran@digitalrightsfoundation.pk>\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -625,7 +625,7 @@ msgid "Opened"
 msgstr ""
 
 msgid "Closed"
-msgstr ""
+msgstr "بند ہوگیا "
 
 msgid "Placeholder"
 msgstr ""
@@ -805,6 +805,9 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Enable HSTS preload"
 msgstr ""
 
 msgid "Logging level"
@@ -1086,6 +1089,12 @@ msgstr ""
 msgid "Template"
 msgstr "سانچے"
 
+msgid "Configuration in progress"
+msgstr ""
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr ""
 
@@ -1232,17 +1241,6 @@ msgstr ""
 
 msgid "Example:"
 msgstr "مثال:"
-
-msgid "Attention!"
-msgstr ""
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr ""
-
-msgid "Your browser will be redirected to the following URL."
-msgstr ""
 
 msgid "Tor Onion Service"
 msgstr ""
@@ -1590,6 +1588,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "تصدیق کی توسیع"
 
+msgid "Add file"
+msgstr "فائل شامل کیجیے"
+
 msgid "Are you sure?"
 msgstr "کیا آپ کو یقین ہے؟"
 
@@ -1600,6 +1601,9 @@ msgid "Assign score points"
 msgstr "سکور پوائنٹس مقرر کریں"
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "Attention!"
 msgstr ""
 
 msgid "Instructions"
@@ -1741,9 +1745,6 @@ msgstr "اس کے بعد، ٹور براؤزر انسٹال کرنے کے لیے
 
 msgid "Enter a name for the copy"
 msgstr ""
-
-msgid "Add file"
-msgstr "فائل شامل کیجیے"
 
 msgid "Uploading files…"
 msgstr "فائلیں اپ لوڈ ہو رہی ہیں۔۔۔ "

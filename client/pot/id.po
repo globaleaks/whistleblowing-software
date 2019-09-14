@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -817,6 +817,9 @@ msgstr "Mengizinkan untuk masuk ke banyak situs"
 msgid "Enable simplified login"
 msgstr "Mengaktifkan metode masuk yang mudah"
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr "Tingkat pencatatan"
 
@@ -1096,6 +1099,12 @@ msgstr ""
 msgid "Template"
 msgstr "Format"
 
+msgid "Configuration in progress"
+msgstr ""
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Nama host"
 
@@ -1242,17 +1251,6 @@ msgstr "Setiap masukan harus dipisahkan dengan koma."
 
 msgid "Example:"
 msgstr "Contoh:"
-
-msgid "Attention!"
-msgstr "perhatian!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Perubahan sedang berlangsung. Jika perubahan selesai, Anda harus masuk kembali. "
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "Peramban Anda akan diarahkan ke alamat situs berikut "
 
 msgid "Tor Onion Service"
 msgstr "Layanan Tor Onion"
@@ -1600,6 +1598,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "Konfirmasi"
 
+msgid "Add file"
+msgstr "Tambahkan berkas"
+
 msgid "Are you sure?"
 msgstr "Apakah Anda yakin?"
 
@@ -1611,6 +1612,9 @@ msgstr "Menentukan poin skor "
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Harap dicatat bahwa semua data yang terkait akan hilang secara permanen."
+
+msgid "Attention!"
+msgstr "perhatian!"
 
 msgid "Instructions"
 msgstr ""
@@ -1751,9 +1755,6 @@ msgstr "Lalu, salin dan tempel alamat yang bersangkutan ke dalam Peramban Tor:"
 
 msgid "Enter a name for the copy"
 msgstr "Masukan nama untuk salinan"
-
-msgid "Add file"
-msgstr "Tambahkan berkas"
 
 msgid "Uploading files…"
 msgstr "Mengunggah berkas..."

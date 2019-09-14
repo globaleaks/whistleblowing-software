@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -801,6 +801,9 @@ msgstr "பல தள உள்நுழைவை இயக்கவும்"
 msgid "Enable simplified login"
 msgstr "எளிய உள்நுழைவை இயக்கவும்"
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr "பதிவு நிலை"
 
@@ -1080,6 +1083,12 @@ msgstr ""
 msgid "Template"
 msgstr "டெம்ப்ளேட்"
 
+msgid "Configuration in progress"
+msgstr ""
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "ஹோஸ்ட்பெயர்"
 
@@ -1226,17 +1235,6 @@ msgstr "ஒவ்வொரு நுழைவு ஒரு கமாவால்
 
 msgid "Example:"
 msgstr "உதாரணமாக:"
-
-msgid "Attention!"
-msgstr "கவனம்!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "கட்டமைப்பு முன்னேற்றம். முடிந்ததும் நீங்கள் மீண்டும் உள்நுழைய வேண்டும்."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "உங்கள் உலாவி பின்வரும் URL க்கு திருப்பி விடப்படும்."
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion சேவை"
@@ -1584,6 +1582,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "உறுதிப்படுத்தவும்"
 
+msgid "Add file"
+msgstr "கோப்பு சேர்"
+
 msgid "Are you sure?"
 msgstr "நீ சொல்வது உறுதியா?"
 
@@ -1595,6 +1596,9 @@ msgstr "ஸ்கோர் புள்ளிகள் ஒதுக்க"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "தொடர்புடைய எல்லா தரவு நிரந்தரமாக இழக்கப்படும் என்பதை நினைவில் கொள்க."
+
+msgid "Attention!"
+msgstr "கவனம்!"
 
 msgid "Instructions"
 msgstr ""
@@ -1735,9 +1739,6 @@ msgstr "பின்னர், நகல் மற்றும் தோர�
 
 msgid "Enter a name for the copy"
 msgstr "நகலுக்கு ஒரு பெயரை உள்ளிடவும்"
-
-msgid "Add file"
-msgstr "கோப்பு சேர்"
 
 msgid "Uploading files…"
 msgstr "கோப்புகளை பதிவேற்றுகிறது ..."

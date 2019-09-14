@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-04 11:19+0000\n"
-"Last-Translator: Naofumi <naofum@gmail.com>\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -803,6 +803,9 @@ msgstr "マルチサイトログインを有効にする"
 msgid "Enable simplified login"
 msgstr "簡易ログインを有効にする"
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr "ログ取得レベル"
 
@@ -1082,6 +1085,12 @@ msgstr "SMTP 設定をリセット"
 msgid "Template"
 msgstr "テンプレート"
 
+msgid "Configuration in progress"
+msgstr "設定処理中です"
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "ホスト名"
 
@@ -1228,17 +1237,6 @@ msgstr "各入力はコンマで区切る必要があります。"
 
 msgid "Example:"
 msgstr "例:"
-
-msgid "Attention!"
-msgstr "注意!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "設定の処理中です。 終了したら、もう一度ログインする必要があります。"
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "お使いのブラウザは次の URL にリダイレクトされます。"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion サービス"
@@ -1586,6 +1584,9 @@ msgstr "ユーザーがオプションを選択した後に表示されるテキ
 msgid "Confirm"
 msgstr "延期を確認"
 
+msgid "Add file"
+msgstr "ファイルを追加"
+
 msgid "Are you sure?"
 msgstr "よろしいですか?"
 
@@ -1597,6 +1598,9 @@ msgstr "スコアポイントを割り当て"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "すべての関連データが完全に失われますのでご注意ください。"
+
+msgid "Attention!"
+msgstr "注意!"
 
 msgid "Instructions"
 msgstr "説明"
@@ -1737,9 +1741,6 @@ msgstr "その上で、以下のアドレスをインストールされたTor Br
 
 msgid "Enter a name for the copy"
 msgstr "コピーの名前を入力してください"
-
-msgid "Add file"
-msgstr "ファイルを追加"
 
 msgid "Uploading files…"
 msgstr "ファイルのアップロード中…"

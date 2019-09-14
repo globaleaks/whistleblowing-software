@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -822,6 +822,9 @@ msgstr ""
 msgid "Enable simplified login"
 msgstr ""
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr ""
 
@@ -1101,6 +1104,12 @@ msgstr ""
 msgid "Template"
 msgstr "Шаблон"
 
+msgid "Configuration in progress"
+msgstr ""
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Имя хоста"
 
@@ -1247,17 +1256,6 @@ msgstr ""
 
 msgid "Example:"
 msgstr "Пример:"
-
-msgid "Attention!"
-msgstr "Внимание!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Проходит конфигурация. После ее завершения вы сможете зайти снова. "
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "Ваш браузер будет перенаправлен на следующий адрес."
 
 msgid "Tor Onion Service"
 msgstr "Сервис Tor Onion"
@@ -1605,6 +1603,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "Подтвердите расширение"
 
+msgid "Add file"
+msgstr "Добавить файл"
+
 msgid "Are you sure?"
 msgstr "Вы уверены?"
 
@@ -1616,6 +1617,9 @@ msgstr "Оценить"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Пожалуйста, имейте ввиду, что все связанные данные будут окончательно удалены."
+
+msgid "Attention!"
+msgstr "Внимание!"
 
 msgid "Instructions"
 msgstr "Инструкции"
@@ -1756,9 +1760,6 @@ msgstr "Затем скопируйте и вставьте следующий �
 
 msgid "Enter a name for the copy"
 msgstr ""
-
-msgid "Add file"
-msgstr "Добавить файл"
 
 msgid "Uploading files…"
 msgstr "Загрузка файлов…"

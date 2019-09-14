@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-11 17:26+0000\n"
+"PO-Revision-Date: 2019-09-14 12:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -819,6 +819,9 @@ msgstr "Abilita login multi-sito"
 msgid "Enable simplified login"
 msgstr "Abilita login semplificato"
 
+msgid "Enable HSTS preload"
+msgstr "Abilita HSTS preload"
+
 msgid "Logging level"
 msgstr "Livello di verbosità dei log"
 
@@ -1098,6 +1101,12 @@ msgstr "Resetta la configurazione SMTP"
 msgid "Template"
 msgstr "Modello"
 
+msgid "Configuration in progress"
+msgstr "Configurazione in corso"
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr "La piattaforma sarà raggiungibile via HTTPS al seguente indirizzo:"
+
 msgid "Hostname"
 msgstr "Hostname"
 
@@ -1244,17 +1253,6 @@ msgstr "Ogni valore deve essere separato da una virgola."
 
 msgid "Example:"
 msgstr "Esempio:"
-
-msgid "Attention!"
-msgstr "Attenzione!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Configurazione in corso. Quando sarà terminata dovrai effettuare nuovamente l'accesso."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "Il browser sarà rediretto al seguente URL."
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
@@ -1602,6 +1600,9 @@ msgstr "Testo mostrato dopo che l'utente ha selezionato l'opzione."
 msgid "Confirm"
 msgstr "Conferma"
 
+msgid "Add file"
+msgstr "Aggiungi file"
+
 msgid "Are you sure?"
 msgstr "Sei sicuro?"
 
@@ -1613,6 +1614,9 @@ msgstr "Assegna punteggio"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Si prega di notare che tutti i dati associati saranno persi."
+
+msgid "Attention!"
+msgstr "Attenzione!"
 
 msgid "Instructions"
 msgstr "Istruzioni"
@@ -1753,9 +1757,6 @@ msgstr "Poi, una volta installato, copia ed incolla il seguente indirizzo all'in
 
 msgid "Enter a name for the copy"
 msgstr "Inserisci un nome per la copia"
-
-msgid "Add file"
-msgstr "Aggiungi file"
 
 msgid "Uploading files…"
 msgstr "Caricamento dei file…"

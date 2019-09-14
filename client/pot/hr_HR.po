@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -802,6 +802,9 @@ msgstr "Omogući prijavu na više stranica"
 msgid "Enable simplified login"
 msgstr "Omogući pojednostavljenu prijavu"
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr "Razina zapisa"
 
@@ -1081,6 +1084,12 @@ msgstr ""
 msgid "Template"
 msgstr "Obrazac"
 
+msgid "Configuration in progress"
+msgstr ""
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Hostname"
 
@@ -1227,17 +1236,6 @@ msgstr "Svaki unos mora biti razdvojen zarezom."
 
 msgid "Example:"
 msgstr "Primjer:"
-
-msgid "Attention!"
-msgstr "Pozor!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Konfiguracija u tijeku. Kad završi morat ćete se ponovno prijaviti."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "Vaš preglednik će biti preusmjeren na sljedeći URL."
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
@@ -1585,6 +1583,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "Potvrdi ekstenziju"
 
+msgid "Add file"
+msgstr "Dodaj datoteku"
+
 msgid "Are you sure?"
 msgstr "Jeste li sigurni?"
 
@@ -1596,6 +1597,9 @@ msgstr "Dodjeli bodove rezultata"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Imajte na umu da će svi povezani podatci biti trajno izgubljeni."
+
+msgid "Attention!"
+msgstr "Pozor!"
 
 msgid "Instructions"
 msgstr ""
@@ -1736,9 +1740,6 @@ msgstr "Zatim kopirajte i zalijepite sljedeću adresu u instalirani Tor Pregledn
 
 msgid "Enter a name for the copy"
 msgstr "Unesite ime za kopiju"
-
-msgid "Add file"
-msgstr "Dodaj datoteku"
 
 msgid "Uploading files…"
 msgstr "Postavljanje datoteka..."

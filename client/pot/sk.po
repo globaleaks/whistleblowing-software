@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 10:40+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -808,6 +808,9 @@ msgstr "Povoliť prihlásenie na viacero stránok"
 msgid "Enable simplified login"
 msgstr "Povoliť zjednodušené prihlásenie"
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr "Prihlasovacia úroveň"
 
@@ -1087,6 +1090,12 @@ msgstr ""
 msgid "Template"
 msgstr "Šablóna"
 
+msgid "Configuration in progress"
+msgstr ""
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Hostiteľské meno"
 
@@ -1233,17 +1242,6 @@ msgstr "Každá položka musí byť oddelená čiarkou."
 
 msgid "Example:"
 msgstr "Príklad:"
-
-msgid "Attention!"
-msgstr "Pozor!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Prebieha konfigurácia. Po dokončení sa budete musieť znova prihlásiť."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "Váš prehliadač bude presmerovaný na nasledujúcu adresu URL."
 
 msgid "Tor Onion Service"
 msgstr "Služba Tor Onion"
@@ -1591,6 +1589,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "Potvrdiť"
 
+msgid "Add file"
+msgstr "Pridať súbor"
+
 msgid "Are you sure?"
 msgstr "Ste si istý?"
 
@@ -1602,6 +1603,9 @@ msgstr "Prideliť bodové skóre"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Upozorňujeme, že všetky súvisiace údaje budú natrvalo odstránené."
+
+msgid "Attention!"
+msgstr "Pozor!"
 
 msgid "Instructions"
 msgstr ""
@@ -1742,9 +1746,6 @@ msgstr "Potom skopírujte a vložte nasledujúcu adresu do prehliadača Tor:"
 
 msgid "Enter a name for the copy"
 msgstr "Zadajte názov kópie"
-
-msgid "Add file"
-msgstr "Pridať súbor"
 
 msgid "Uploading files…"
 msgstr "Nahrávam súbory..."

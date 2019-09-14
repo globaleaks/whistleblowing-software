@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:47+0000\n"
-"Last-Translator: Manuel D. Serrat <manuel.serrat@antifraucv.es>\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -810,6 +810,9 @@ msgstr "Permetre obrir sessió multi-lloc."
 msgid "Enable simplified login"
 msgstr "Activar inici de sessió simplificat"
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr "Nivell de log"
 
@@ -1089,6 +1092,12 @@ msgstr ""
 msgid "Template"
 msgstr "Plantilla"
 
+msgid "Configuration in progress"
+msgstr ""
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Domini"
 
@@ -1235,17 +1244,6 @@ msgstr "Cada entrada ha d'estar separada per una cometa."
 
 msgid "Example:"
 msgstr "Exemple:"
-
-msgid "Attention!"
-msgstr "Atenció!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Configuració en progrés. Quan finalitze haurà d'iniciar la connexió de nou."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "El vostre navegador serà redirigit a la següent adreça:."
 
 msgid "Tor Onion Service"
 msgstr "Servei Tor Onion"
@@ -1593,6 +1591,9 @@ msgstr "Text que es mostra després de que l'usuari ha seleccionat l'opció"
 msgid "Confirm"
 msgstr "Confirme"
 
+msgid "Add file"
+msgstr "Afegeixa un arxiu"
+
 msgid "Are you sure?"
 msgstr "Està vosté segur?"
 
@@ -1604,6 +1605,9 @@ msgstr "Assigna puntuació"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Recordeu que totes les dades associades es perden definitivament."
+
+msgid "Attention!"
+msgstr "Atenció!"
 
 msgid "Instructions"
 msgstr ""
@@ -1744,9 +1748,6 @@ msgstr "Després, còpie i enganxe l'adreça següent al Tor Browser instal·lat
 
 msgid "Enter a name for the copy"
 msgstr "Introduïsca un nom per a la còpia"
-
-msgid "Add file"
-msgstr "Afegeixa un arxiu"
 
 msgid "Uploading files…"
 msgstr "Carregant fitxers..."

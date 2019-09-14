@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -801,6 +801,9 @@ msgstr ""
 msgid "Enable simplified login"
 msgstr ""
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr ""
 
@@ -1080,6 +1083,12 @@ msgstr ""
 msgid "Template"
 msgstr "Mal"
 
+msgid "Configuration in progress"
+msgstr "Oppsett underveis"
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Vertsnavn"
 
@@ -1226,17 +1235,6 @@ msgstr ""
 
 msgid "Example:"
 msgstr "Eksempel:"
-
-msgid "Attention!"
-msgstr "Oppmerksomhet!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Oppsett underveis. Når det er fullført vil du måtte logge inn igjen."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "Din nettleser vil bli videresendt til følgende nettadresse."
 
 msgid "Tor Onion Service"
 msgstr "Tor-løktjeneste"
@@ -1584,6 +1582,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "Bekreft tillegg"
 
+msgid "Add file"
+msgstr "Legg til fil"
+
 msgid "Are you sure?"
 msgstr "Er du sikker?"
 
@@ -1595,6 +1596,9 @@ msgstr "Tildel poeng"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Merk deg at all tilknyttet data vil gå tapt for godt."
+
+msgid "Attention!"
+msgstr "Oppmerksomhet!"
 
 msgid "Instructions"
 msgstr ""
@@ -1735,9 +1739,6 @@ msgstr "Deretter, kopier og lim inn følgende adresse i den nå installerte  Tor
 
 msgid "Enter a name for the copy"
 msgstr ""
-
-msgid "Add file"
-msgstr "Legg til fil"
 
 msgid "Uploading files…"
 msgstr "Laster opp filer…"

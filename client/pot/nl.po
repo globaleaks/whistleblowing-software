@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 10:40+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -832,6 +832,9 @@ msgstr "Meerdere-weblocatielogin inschakelen"
 msgid "Enable simplified login"
 msgstr "Vereenvoudigdelogin inschakelen"
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr "Niveau van loggen"
 
@@ -1111,6 +1114,12 @@ msgstr ""
 msgid "Template"
 msgstr "Sjabloon"
 
+msgid "Configuration in progress"
+msgstr "Configuratie wordt uitgevoerd"
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Hostnaam"
 
@@ -1257,17 +1266,6 @@ msgstr "Elke invoer moet worden gescheiden door middel van een komma."
 
 msgid "Example:"
 msgstr "Voorbeeld:"
-
-msgid "Attention!"
-msgstr "Opgelet!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Configuratie wordt uitgevoerd. Wanneer deze voltooid is zult u opnieuw moeten inloggen."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "Uw browser wordt omgeleid naar volgende URL."
 
 msgid "Tor Onion Service"
 msgstr "Tor-onion-dienst"
@@ -1615,6 +1613,9 @@ msgstr "Tekst welke wordt getoond nadat de gebruiker de optie heeft gekozen"
 msgid "Confirm"
 msgstr "Bevestig extentie"
 
+msgid "Add file"
+msgstr "Bestand toevoegen"
+
 msgid "Are you sure?"
 msgstr "Weet je het zeker?"
 
@@ -1626,6 +1627,9 @@ msgstr "Scorepunten toekennen"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Let op, alle hiermee verbonden data gaat permanent verloren."
+
+msgid "Attention!"
+msgstr "Opgelet!"
 
 msgid "Instructions"
 msgstr "Instructies"
@@ -1766,9 +1770,6 @@ msgstr "Kopieer en plak vervolgens het volgende adres in de Tor-browser:"
 
 msgid "Enter a name for the copy"
 msgstr "Voer een naam in voor de kopie"
-
-msgid "Add file"
-msgstr "Bestand toevoegen"
 
 msgid "Uploading files…"
 msgstr "Uploaden bestanden..."

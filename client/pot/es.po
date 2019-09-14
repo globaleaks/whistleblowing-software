@@ -31,8 +31,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:47+0000\n"
-"Last-Translator: Manuel D. Serrat <manuel.serrat@antifraucv.es>\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -825,6 +825,9 @@ msgstr "Activar el inicio de sesión multi-sitio"
 msgid "Enable simplified login"
 msgstr "Activar el inicio de sesión simplificado"
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr "Nivel de log"
 
@@ -1104,6 +1107,12 @@ msgstr ""
 msgid "Template"
 msgstr "Plantilla"
 
+msgid "Configuration in progress"
+msgstr "Configuración en marcha"
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Nombre del equipo"
 
@@ -1250,17 +1259,6 @@ msgstr "Cada entrada debe separarse con una coma."
 
 msgid "Example:"
 msgstr "Ejemplo:"
-
-msgid "Attention!"
-msgstr "¡Atención!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Configuración en curso. Cuando haya finalizado tendrá que iniciar sesión de nuevo."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "Su navegador será redirigido a la siguiente URL."
 
 msgid "Tor Onion Service"
 msgstr "Servicio Tor Onion"
@@ -1608,6 +1606,9 @@ msgstr "Texto mostrado después de que el usuario haya seleccionado la opción."
 msgid "Confirm"
 msgstr "Confirmar"
 
+msgid "Add file"
+msgstr "Añadir fichero"
+
 msgid "Are you sure?"
 msgstr "¿Está seguro?"
 
@@ -1619,6 +1620,9 @@ msgstr "Asignar puntos a la puntuación"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Por favor, observe que todos los datos asociados se perderán de forma permanente"
+
+msgid "Attention!"
+msgstr "¡Atención!"
 
 msgid "Instructions"
 msgstr "Instrucciones"
@@ -1759,9 +1763,6 @@ msgstr "Luego, copie y pegue la siguiente dirección en el Navegador Tor:"
 
 msgid "Enter a name for the copy"
 msgstr "Introduzca un nombre para la copia"
-
-msgid "Add file"
-msgstr "Añadir fichero"
 
 msgid "Uploading files…"
 msgstr "Subiendo ficheros..."

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-02 17:46+0000\n"
+"PO-Revision-Date: 2019-09-14 12:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -800,6 +800,9 @@ msgstr ""
 msgid "Enable simplified login"
 msgstr ""
 
+msgid "Enable HSTS preload"
+msgstr ""
+
 msgid "Logging level"
 msgstr ""
 
@@ -1079,6 +1082,12 @@ msgstr ""
 msgid "Template"
 msgstr "Skabelon"
 
+msgid "Configuration in progress"
+msgstr ""
+
+msgid "The platform will be reachable via HTTPS at the following address:"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Hostnavn"
 
@@ -1225,17 +1234,6 @@ msgstr ""
 
 msgid "Example:"
 msgstr "Eksempel:"
-
-msgid "Attention!"
-msgstr "Bemærk!"
-
-msgid ""
-"Configuration in progress. When it is finished you will have to log in "
-"again."
-msgstr "Konfiguration i gang. Når den er færdig vil det være nødvendigt at logge ind igen."
-
-msgid "Your browser will be redirected to the following URL."
-msgstr "Din browser vil blive viderestillet til følgende URL."
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
@@ -1583,6 +1581,9 @@ msgstr ""
 msgid "Confirm"
 msgstr "Bekræft"
 
+msgid "Add file"
+msgstr "Tilføj fil"
+
 msgid "Are you sure?"
 msgstr "Er du sikker?"
 
@@ -1594,6 +1595,9 @@ msgstr "Tildel pointtal"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Vær opmærksom på, at alle tilknyttede data vil blive permanent slettet."
+
+msgid "Attention!"
+msgstr "Bemærk!"
 
 msgid "Instructions"
 msgstr ""
@@ -1734,9 +1738,6 @@ msgstr "Kopier og indsæt følgende adresse i din Tor browser: "
 
 msgid "Enter a name for the copy"
 msgstr ""
-
-msgid "Add file"
-msgstr "Tilføj fil"
 
 msgid "Uploading files…"
 msgstr "Uploader filer..."
