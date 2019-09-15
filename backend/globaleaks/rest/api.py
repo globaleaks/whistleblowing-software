@@ -303,7 +303,7 @@ class APIResourceWrapper(Resource):
             isIPv6Address(request.hostname)):
             request.tid = 1
         else:
-            request.tid = State.tenant_hostname_id_map.get(request.hostname, 1)
+            request.tid = State.tenant_hostname_id_map.get(request.hostname, None)
 
         request.client_ip = request.getClientIP()
         request.client_proto = b'https' if request.port in [443, 8443] else b'http'
@@ -338,11 +338,13 @@ class APIResourceWrapper(Resource):
 
         self.preprocess(request)
 
-        self.set_headers(request)
-
         if request.tid is None:
-            self.handle_exception(errors.ResourceNotFound(), request)
+            request.tid = 1
+            self.set_headers(request)
+            request.setResponseCode(400)
             return b''
+
+        self.set_headers(request)
 
         request_path = request.path.decode('utf8')
 
@@ -520,6 +522,9 @@ class APIResourceWrapper(Resource):
         return State.tenant_cache[request.tid].default_language
 
     def detect_language(self, request):
+        if request.tid is None:
+            return 'en'
+
         language = request.headers.get(b'gl-language')
         if language is None:
             for l in self.parse_accept_language_header(request):
