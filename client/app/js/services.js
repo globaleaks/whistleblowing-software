@@ -1358,14 +1358,12 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
           angular.forEach(list, function(field) {
             if (self.isFieldTriggered(parent, field, scope.answers, scope.total_score)) {
-              field.enabled = true;
               if (!(field.id in answers)) {
                 answers[field.id] = [{}];
               }
             } else {
-              field.enabled = false;
               if (field.id in answers) {
-                answers[field.id].splice(0, answers[field.id].length);
+                answers[field.id] = [{}];
               }
             }
 
