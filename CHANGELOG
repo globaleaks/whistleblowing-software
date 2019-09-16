@@ -1,3 +1,6 @@
+Changes in version 3.11.3 - 2019-09-16
+    Fix regression #2675
+
 Changes in version 3.11.2 - 2019-09-16
     Fix regression #2673
     Update translations
