@@ -1,3 +1,7 @@
+Changes in version 3.11.4 - 2019-09-16
+    Fix defect in field triggers
+    WBPA: Enable HTTPS preload
+
 Changes in version 3.11.3 - 2019-09-16
     Fix regression #2675
 
