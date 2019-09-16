@@ -199,6 +199,7 @@ def db_refresh_tenant_cache(session, tid_list):
             State.tenant_cache[tid]['https_allowed'][x] = State.tenant_cache[tid].get('https_' + x, True)
 
         if State.tenant_cache[tid].mode == 'whistleblowing.it':
+            State.tenant_cache[tid]['https_preload'] = State.tenant_cache[1]['https_preload']
             State.tenant_cache[tid]['frame_ancestors'] = State.tenant_cache[1]['frame_ancestors']
 
     for redirect in session.query(models.Redirect).filter(models.Redirect.tid.in_(tid_list)):
