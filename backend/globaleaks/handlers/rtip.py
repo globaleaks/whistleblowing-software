@@ -45,19 +45,19 @@ def db_update_submission_status(session, user_id, itip, submission_status_id, su
 
 def receiver_serialize_rfile(session, rfile):
     ifile = session.query(models.InternalFile) \
-                   .filter(models.InternalFile.id == rfile.internalfile_id).one()
+                   .filter(models.InternalFile.id == rfile.internalfile_id).one_or_none()
 
-    if rfile.status == 'unavailable':
+    if ifile is None or rfile.status == 'unavailable':
         return {
-            'id': rfile.id,
-            'internalfile_id': ifile.id,
+            'id': '',
+            'internalfile_id': '',
             'status': 'unavailable',
             'href': "",
-            'name': ifile.name,
-            'type': ifile.content_type,
-            'creation_date': datetime_to_ISO8601(ifile.creation_date),
-            'size': ifile.size,
-            'downloads': rfile.downloads
+            'name': 'unavailable',
+            'content_type': '',
+            'creation_date': '',
+            'size': 0,
+            'downloads': 0
         }
 
     return {
