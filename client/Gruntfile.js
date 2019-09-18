@@ -359,18 +359,10 @@ module.exports = function(grunt) {
 
   function readTransifexrc(){
     var transifexrc = fs.realpathSync(process.env.HOME + "/.transifexrc"),
-      err = fs.stat(transifexrc),
-      usernameRegexp = /username = (.*)/,
-      passwordRegexp = /password = (.*)/,
-      content, login = {};
-
-    if (err) {
-      console.log(transifexrc + " does not exist");
-      console.log("It should contain");
-      console.log("username = <your username>");
-      console.log("password = <your password>");
-      throw "No transifexrc file";
-    }
+        usernameRegexp = /username = (.*)/,
+        passwordRegexp = /password = (.*)/,
+        login = {},
+        content;
 
     content = grunt.file.read(transifexrc);
     login.username = usernameRegexp.exec(content)[1];
