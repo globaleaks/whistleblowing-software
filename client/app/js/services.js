@@ -1181,6 +1181,15 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         };
 
         return $http({method: "PUT", url: "admin/config", data: req});
+      },
+
+      removeFile: function (list, file) {
+        for (var i = list.length - 1; i >= 0; i--) {
+          if (list[i] === file) {
+            list.splice(i, 1);
+            file.abort();
+          }
+        }
       }
     };
 }]).

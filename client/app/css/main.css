@@ -267,11 +267,7 @@ html[dir] .imageUpload .changePictureButton, html[dir] .imageUpload .deletePictu
   width: 100%;
 }
 
-.fileUploadBox {
-  margin-bottom: 2em;
-}
-
-.fileUploadProgress {
+.fileUpload {
   position: absolute;
   top: 0;
   z-index: 100;
@@ -279,20 +275,24 @@ html[dir] .imageUpload .changePictureButton, html[dir] .imageUpload .deletePictu
   width: 11.25em;
   text-align: center;
   line-height: 11.25em;
+  border: 1px solid #CCC;
 }
 
-.fileUploadProgressOverlay {
-  background-color: black;
-  opacity: 0.3;
-  height: 11.25em;
-  width: 11.25em;
+.fileUploadIconSmall {
   position: absolute;
+  font-size: 1em;
+  color: #000;
   top: 0;
+  right: 0px;
 }
 
 .fileUploadIcon {
   font-size: 3em;
-  color: white;
+  color: #000;
+}
+
+.fileUploadProgress {
+  margin-top: 0.5em;
 }
 
 #ReceiverToolbar {

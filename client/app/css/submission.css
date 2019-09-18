@@ -117,11 +117,6 @@
   margin-bottom: 1.25em;
 }
 
-.fileuploadprogress {
-  position: relative;
-  bottom: 0px;
-}
-
 .radio label, .checkbox label {
   display: block;
 }
@@ -177,4 +172,22 @@ div.tooltip {
   border: 0px;
   font-weight: bold;
   pointer-events: none;
+}
+
+
+html[dir] .fileButtons {
+  position: absolute;
+  top: 0;
+  z-index: 666;
+  height: 11.25em;
+  width: 11.25em;
+  padding: 1em;
+}
+
+html[dir="ltr"] .fileButtons {
+  text-align: right;
+}
+
+html[dir="rtl"] .fileButtons {
+  text-align: left;
 }
