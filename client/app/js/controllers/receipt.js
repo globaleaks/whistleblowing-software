@@ -1,4 +1,4 @@
-GLClient.controller("ReceiptController", ["$scope", "Authentication",
+GLClient.controller("ReceiptCtrl", ["$scope", "Authentication",
   function($scope, Authentication) {
     var format_receipt = function(receipt) {
       if (!receipt || receipt.length !== 16) {

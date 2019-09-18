@@ -221,7 +221,7 @@ GLClient.controller("SubmissionCtrl",
     }
 
     $scope.submission._submission.answers = $scope.answers;
-    $scope.submission.submit();
+    return $scope.submission.submit();
   };
 
 

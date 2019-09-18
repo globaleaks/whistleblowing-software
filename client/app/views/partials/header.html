@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-7 float-left">
       <div id="LogoBox" data-ng-if="node.logo">
-        <a href="/#{{ session ? session.auth_landing_page : '/' }}"><img class="img-fluid" alt="project logo" data-ng-src="{{Utils.imgDataUri(node.logo)}}" /></a>
+        <img data-ng-click="setPage('homepage')" class="img-fluid" alt="project logo" data-ng-src="{{Utils.imgDataUri(node.logo)}}" />
       </div>
       <div id="TitleBox">{{ht}}</div>
     </div>

@@ -5,12 +5,6 @@ describe("perform rediects on authenticated pages", function() {
     await browser.gl.utils.waitForUrl("/login?src=%2Fstatus%2F2f0535eb-9710-47e5-8082-5f882d4ec770");
   });
 
-  it("test wbtip redirect to the homepage", async function() {
-    await browser.get("/#/status");
-
-    await browser.gl.utils.waitForUrl("/?src=%2Fstatus");
-  });
-
   it("test admin redirect to login page", async function() {
     await browser.get("/#/admin/advanced_settings");
 

@@ -1,7 +1,7 @@
 <div class="Question" data-ng-form="{{fieldFormVarName}}">
   <div data-ng-controller="SubmissionFormFieldCtrl" data-ng-switch="field.template_id">
     <div data-ng-switch-when="whistleblower_identity">
-      <div data-ng-include="'views/submission/fields/whistleblower_identity.html'"></div>
+      <div data-ng-include="'views/whistleblower/fields/whistleblower_identity.html'"></div>
     </div>
     <div data-ng-switch-default data-ng-switch="field.type">
       <div data-ng-switch-when="textarea" data-ng-model-options="{'debounce':250}">
@@ -161,7 +161,7 @@
             <video controls><source data-ng-src="{{field.attrs.multimedia_url.value}}" type="video/mp4"></video>
           </div>
         </div>
-        <div data-ng-include="'views/submission/form.html'"></div>
+        <div data-ng-include="'views/whistleblower/form.html'"></div>
       </div>
       <div data-ng-switch-default data-ng-model-options="{'debounce':250}">
         <input id="{{::fieldEntry}}"

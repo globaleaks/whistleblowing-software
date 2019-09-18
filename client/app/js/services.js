@@ -52,9 +52,6 @@ angular.module("GLServices", ["ngResource"]).
             self.session.homepage = "#/receiver/home";
             self.session.auth_landing_page = "/receiver/home";
             ReceiverPreferences.get().$promise.then(initPreferences);
-          } else if (self.session.role === "whistleblower") {
-            self.session.auth_landing_page = "/status";
-            self.session.homepage = "#/status";
           }
 
           self.session.role_l10n = function() {
@@ -87,7 +84,9 @@ angular.module("GLServices", ["ngResource"]).
               $location.path($routeParams.src);
             } else {
               // Override the auth_landing_page if a password change is needed
-              if (self.session.password_change_needed) {
+              if (self.session.role === "whistleblower") {
+                $rootScope.setPage('tippage');
+              } else if (self.session.password_change_needed) {
                 // Redirect UI to the ForcedPasswordChange view
                 $location.path("/forcedpasswordchange");
               } else {
@@ -145,13 +144,29 @@ angular.module("GLServices", ["ngResource"]).
 
         self.receipt = "";
 
-        self.logout = function() {
-          var logoutPerformed = function() {
-            self.loginRedirect(true);
-          };
+        self.deleteSession = function() {
+          if ($rootScope.Authentication &&
+              $rootScope.Authentication.session) {
+            $rootScope.Authentication.session = undefined;
+          }
+        };
 
-          $http.delete("session").then(logoutPerformed,
-                                       logoutPerformed);
+        self.logout = function() {
+          var cb;
+
+          if (self.session.role === "whistleblower") {
+            cb = function() {
+              self.deleteSession();
+              $rootScope.setPage('homepage');
+            };
+          } else {
+            cb = function() {
+              self.deleteSession();
+              self.loginRedirect(true);
+            };
+          }
+
+          $http.delete("session").then(cb, cb);
         };
 
         self.loginRedirect = function(isLogout) {
@@ -361,11 +376,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           }
         });
 
-        self._submission.$update(function(result){
+        return self._submission.$update(function(result){
           if (result) {
             Authentication.submission = self._submission;
             Authentication.context = self.context;
-            $location.url("/receipt");
+            $rootScope.setPage("receiptpage");
           }
         });
 
@@ -855,16 +870,17 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       set_title: function() {
         var nodename = $rootScope.node.name ? $rootScope.node.name : "Globaleaks";
         var path = $location.path();
-        var statuspage = "/status";
 
         if (path === "/") {
-          $rootScope.ht = $rootScope.node.header_title_homepage;
-        } else if (path === "/submission") {
-          $rootScope.ht = $rootScope.node.header_title_submissionpage;
-        } else if (path === "/receipt") {
-          $rootScope.ht = $rootScope.node.header_title_receiptpage;
-        } else if (path.substr(0, statuspage.length) === statuspage) {
-          $rootScope.ht = $rootScope.node.header_title_tippage;
+          if ($rootScope.page === 'homepage') {
+            $rootScope.ht = $rootScope.node.header_title_homepage;
+          } else if ($rootScope.page === "submissionpage") {
+            $rootScope.ht = $rootScope.node.header_title_submissionpage;
+          } else if ($rootScope.page === "receiptpage") {
+            $rootScope.ht = $rootScope.node.header_title_receiptpage;
+          } else if ($rootScope.page === 'tippage') {
+            $rootScope.ht = $rootScope.node.header_title_tippage;
+          }
         } else {
           $rootScope.ht = $rootScope.header_title;
         }
@@ -883,12 +899,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           $location.path("/signup");
         } else if (["/signup", "activation"].indexOf(path === -1) && $rootScope.node.adminonly && !$rootScope.Authentication.session) {
           $location.path("/admin");
-        } else  if (path === "/" && $rootScope.node.landing_page === "submissionpage") {
-          $location.path("/submission");
-        } else if (path === "/submission" &&
-            !$rootScope.connection.tor &&
-            !$rootScope.node.https_whistleblower) {
-          $location.path("/");
         }
       },
 

@@ -59,9 +59,10 @@ exports.whistleblower = function() {
     var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
     await browser.wait(isClickable);
     await submit_button.click();
-    await browser.gl.utils.waitForUrl("/receipt");
 
-    return element(by.id("KeyCode")).getText();
+    await browser.gl.utils.waitUntilPresent(by.id("KeyCode"));
+
+    return await element(by.id("KeyCode")).getText();
   };
 
   this.submitFile = async function(fname) {

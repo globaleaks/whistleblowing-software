@@ -109,7 +109,6 @@ exports.login_admin = async function() {
 exports.login_whistleblower = async function(receipt) {
   await browser.get("/#/");
   await element(by.model("formatted_receipt")).sendKeys(receipt);
-  await exports.waitForUrl("/status");
 };
 
 exports.login_receiver = async function(username, password, url, firstlogin) {

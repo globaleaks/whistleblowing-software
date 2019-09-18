@@ -152,6 +152,14 @@ var GLClient = angular.module("GLClient", [
           access: allKinds(),
         }
       }).
+      when("/submission", {
+        templateUrl: "views/whistleblower/submission.html",
+        controller: "SubmissionCtrl",
+        header_title: "",
+        resolve: {
+          access: noAuth(),
+        }
+      }).
       when("/signup", {
         templateUrl: "views/signup/main.html",
         controller: "SignupCtrl",
@@ -168,36 +176,12 @@ var GLClient = angular.module("GLClient", [
           access: allKinds(),
         }
       }).
-      when("/submission", {
-        templateUrl: "views/submission/main.html",
-        controller: "SubmissionCtrl",
-        header_title: "",
-        resolve: {
-          access: noAuth(),
-        }
-      }).
-      when("/receipt", {
-        templateUrl: "views/receipt.html",
-        controller: "ReceiptController",
-        header_title: "Your submission was succesful.",
-        resolve: {
-          access: noAuth(),
-        }
-      }).
       when("/status/:tip_id", {
         templateUrl: "views/receiver/tip.html",
         controller: "TipCtrl",
         header_title: "",
         resolve: {
           access: requireAuth("receiver"),
-        }
-      }).
-      when("/status", {
-        templateUrl: "views/whistleblower/tip.html",
-        controller: "TipCtrl",
-        header_title: "",
-        resolve: {
-          access: requireAuth("whistleblower"),
         }
       }).
       when("/forcedpasswordchange", {
@@ -474,8 +458,8 @@ var GLClient = angular.module("GLClient", [
         }
       }).
       when("/", {
-        templateUrl: "views/home.html",
-        controller: "HomeCtrl",
+        templateUrl: "views/main.html",
+        controller: "MainCtrl",
         header_title: "",
         resolve: {
           access: noAuth(),
@@ -584,6 +568,12 @@ var GLClient = angular.module("GLClient", [
           return $rootScope.Authentication.get_headers();
         }
     };
+
+    $rootScope.setPage = function(page) {
+      $location.url('/');
+      $rootScope.page = page;
+      $rootScope.Utils.set_title();
+    }
 
     $rootScope.closeAlert = function (list, index) {
       list.splice(index, 1);
@@ -733,9 +723,9 @@ var GLClient = angular.module("GLClient", [
     //////////////////////////////////////////////////////////////////
 
     $rootScope.$watch(function() {
-        return $http.pendingRequests.length;
+      return $http.pendingRequests.length;
     }, function(val) {
-        $rootScope.showLoadingPanel = val > 0;
+      $rootScope.showLoadingPanel = val > 0;
     });
 
     $rootScope.$watch("GLTranslate.state.language", function(new_val, old_val) {
