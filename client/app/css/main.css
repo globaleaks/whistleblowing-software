@@ -122,11 +122,10 @@ table {
   text-align: center;
 }
 
-#PrivacyBadgeBox {
+#PrivacyBadge {
   background-color: #222;
   color: #FFF;
   font-size: 1em;
-  padding: 0.8em 1.25em 0.8em 1.25em;
 }
 
 .title1, .title2, .title3 {

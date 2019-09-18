@@ -992,8 +992,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       },
 
       showPrivacyBadge: function() {
-        return (!$rootScope.embedded &&
-                !$rootScope.node.disable_privacy_badge &&
+        return (!$rootScope.node.disable_privacy_badge &&
                 this.isWhistleblowerPage());
       },
 
