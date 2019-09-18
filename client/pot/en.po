@@ -1613,8 +1613,8 @@ msgstr "Assign score points"
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Please note that all the associated data will be permanently lost."
 
-msgid "This is a demo platform. Do not use it for real submissions."
-msgstr "This is a demo platform. Do not use it for real submissions."
+msgid "This is a demo platform, please not use it for real submissions."
+msgstr "This is a demo platform, please not use it for real submissions."
 
 msgid "Attention!"
 msgstr "Attention!"
