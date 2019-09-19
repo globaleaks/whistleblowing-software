@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1538,27 +1538,6 @@ msgstr "Alamat surel baru Anda sudah divalidasi "
 msgid "Before proceeding, please set a new password."
 msgstr "Sebelum melanjutkan, mohon atur kata sandi baru."
 
-msgid "Submissions disabled"
-msgstr "Pengiriman dinonaktifkan "
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Anda sudah terhubung dengan peladen tanpa anonimitas dan peladen ini hanya mendukung pengiriman anonim "
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Format ini menggunakan perangkat lunak GlobaLeaks yang secara khusus dirancang untuk melindungi identitas pengirim dan penerima dalam pertukaran konten."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "Perangkat lunak ini dikembangkan oleh sebuah organisasi non-profit bernama Hermes Center for Transparency and Digital Human Rights."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Mohon dukungan kepada Hermes melalui halaman donasi mereka."
-
 msgid "Forgot password?"
 msgstr "Lupa sandi?"
 
@@ -1612,6 +1591,9 @@ msgstr "Menentukan poin skor "
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Harap dicatat bahwa semua data yang terkait akan hilang secara permanen."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
 
 msgid "Attention!"
 msgstr "perhatian!"
@@ -1957,23 +1939,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr "Pengaturan ulang kata sandi telah diminta "
 
-msgid "Thank you!"
-msgstr "Terima kasih!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Remember your receipt for this submission."
-msgstr "Ingat tanda terima Anda untuk kiriman ini"
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Gunakan 16 angka tanda terima untuk masuk. Anda akan dapat melihat setiap pesan yang kami kirimkan dan juga untuk menambah informasi tambahan."
-
-msgid "View your submission"
-msgstr "Melihat kiriman Anda"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Akses untuk identitas Informan Publik telah diminta oleh pihak otoritas"
@@ -2035,6 +2000,44 @@ msgstr "Masukkan alamat surel yang valid"
 
 msgid "please enter numbers only."
 msgstr "Mohon hanya masukkan nomor"
+
+msgid "Submissions disabled"
+msgstr "Pengiriman dinonaktifkan "
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Anda sudah terhubung dengan peladen tanpa anonimitas dan peladen ini hanya mendukung pengiriman anonim "
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Format ini menggunakan perangkat lunak GlobaLeaks yang secara khusus dirancang untuk melindungi identitas pengirim dan penerima dalam pertukaran konten."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Perangkat lunak ini dikembangkan oleh sebuah organisasi non-profit bernama Hermes Center for Transparency and Digital Human Rights."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Mohon dukungan kepada Hermes melalui halaman donasi mereka."
+
+msgid "Thank you!"
+msgstr "Terima kasih!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Remember your receipt for this submission."
+msgstr "Ingat tanda terima Anda untuk kiriman ini"
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Gunakan 16 angka tanda terima untuk masuk. Anda akan dapat melihat setiap pesan yang kami kirimkan dan juga untuk menambah informasi tambahan."
+
+msgid "View your submission"
+msgstr "Melihat kiriman Anda"
 
 msgid "Recipient selection"
 msgstr "Seleksi penerima"

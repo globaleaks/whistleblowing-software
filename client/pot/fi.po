@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1525,27 +1525,6 @@ msgstr "Uusi sähköpostiosoitteesi on vahvistettu."
 msgid "Before proceeding, please set a new password."
 msgstr "Määritä uusi salasana ennen kuin jatkat."
 
-msgid "Submissions disabled"
-msgstr "Ilmoitusten tekeminen ei mahdollista"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Olet yhdistänyt palvelimen ilman anonymiteettiä ja tämä solmu tukee vain nimettömiä lähetyksiä"
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Tämä palvelu käyttää GlobaLeaks-ohjelmistoa, joka on varta vasten suunniteltu suojaamaan viestien lähettäjiä ja vastaanottajia henkilöllisyyden paljastumiselta vaihdettaessa vuodettavaa materiaalia."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "Ohjelmiston on kehittänyt voittoa tavoittelematon ihmisoikeusjärjestö Hermes Center for Transparency and Digital Human Rights."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Voit tukea Hermes-järjestöä heidän lahjoitussivunsa kautta."
-
 msgid "Forgot password?"
 msgstr "Unohtunut salasana?"
 
@@ -1599,6 +1578,9 @@ msgstr "Käytä pisteytystä"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Huomaa, että kaikki asiaan liittyvät tiedot poistetaan lopullisesti."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
 
 msgid "Attention!"
 msgstr "Huomio!"
@@ -1944,23 +1926,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr "Salasanan nollaus pyydetty."
 
-msgid "Thank you!"
-msgstr "Kiitos!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Remember your receipt for this submission."
-msgstr "Muista tämän lähetyksen kuitti"
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Käytä kirjautumiseen 16-merkkistä kuittinumerosarjaa. Näin pääset katsomaan kaikki sinulle lähetetyt viestit sekä lisäämään vihjeeseen lisätietoja."
-
-msgid "View your submission"
-msgstr "Tarkastele omaa vihjettä"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Valvojalle on lähetetty pyyntö päästä vihjeen antajan henkilötietoihin."
@@ -2022,6 +1987,44 @@ msgstr "ole hyvä ja syötä kelvollinen sähköpostiosoite"
 
 msgid "please enter numbers only."
 msgstr "ole hyvä ja syötä vain numeroita."
+
+msgid "Submissions disabled"
+msgstr "Ilmoitusten tekeminen ei mahdollista"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Olet yhdistänyt palvelimen ilman anonymiteettiä ja tämä solmu tukee vain nimettömiä lähetyksiä"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Tämä palvelu käyttää GlobaLeaks-ohjelmistoa, joka on varta vasten suunniteltu suojaamaan viestien lähettäjiä ja vastaanottajia henkilöllisyyden paljastumiselta vaihdettaessa vuodettavaa materiaalia."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Ohjelmiston on kehittänyt voittoa tavoittelematon ihmisoikeusjärjestö Hermes Center for Transparency and Digital Human Rights."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Voit tukea Hermes-järjestöä heidän lahjoitussivunsa kautta."
+
+msgid "Thank you!"
+msgstr "Kiitos!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Remember your receipt for this submission."
+msgstr "Muista tämän lähetyksen kuitti"
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Käytä kirjautumiseen 16-merkkistä kuittinumerosarjaa. Näin pääset katsomaan kaikki sinulle lähetetyt viestit sekä lisäämään vihjeeseen lisätietoja."
+
+msgid "View your submission"
+msgstr "Tarkastele omaa vihjettä"
 
 msgid "Recipient selection"
 msgstr "Vastaanottajan valinta"

@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1554,27 +1554,6 @@ msgstr ""
 msgid "Before proceeding, please set a new password."
 msgstr ""
 
-msgid "Submissions disabled"
-msgstr "تم تعطيل البلاغات"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "أنت تتصل بالخادم بطريقة لا تخفي هويتك. هذا الخادم يعمل فقط مع المتصلين و البلاغات المجهولة المصدر "
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "هذه المنصة تستعمل برمجيات GlobaLeaks  المصممة خصيصا لحماية هوية مقدّم و متلقّي المواد المسرّبة."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "تم تطوير هذا البرنامج من قبل مركز Hermes الغير ربحي للشفافية وحقوق الإنسان و الحقوق الرقمية."
-
-msgid "Please support Hermes through their donation page."
-msgstr "الرجاء دعم Hermes من خلال صفحة التبرع."
-
 msgid "Forgot password?"
 msgstr ""
 
@@ -1628,6 +1607,9 @@ msgstr "تخصيص نقاط المجموع"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "يرجى ملاحظة أنّه سيتم فقدان جميع البيانات المتعلقة بشكل دائم."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
 
 msgid "Attention!"
 msgstr "انتباه!"
@@ -1973,23 +1955,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Thank you!"
-msgstr "شكرا!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Remember your receipt for this submission."
-msgstr ""
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr ""
-
-msgid "View your submission"
-msgstr "مشاهدة بلاغك"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "تمّ طلب الحصول على هوية المبلغ من الوصيّ."
@@ -2051,6 +2016,44 @@ msgstr "الرجاء إدخال بريد الكتروني صحيح."
 
 msgid "please enter numbers only."
 msgstr "الرجاء ادخال أرقام فقط."
+
+msgid "Submissions disabled"
+msgstr "تم تعطيل البلاغات"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "أنت تتصل بالخادم بطريقة لا تخفي هويتك. هذا الخادم يعمل فقط مع المتصلين و البلاغات المجهولة المصدر "
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "هذه المنصة تستعمل برمجيات GlobaLeaks  المصممة خصيصا لحماية هوية مقدّم و متلقّي المواد المسرّبة."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "تم تطوير هذا البرنامج من قبل مركز Hermes الغير ربحي للشفافية وحقوق الإنسان و الحقوق الرقمية."
+
+msgid "Please support Hermes through their donation page."
+msgstr "الرجاء دعم Hermes من خلال صفحة التبرع."
+
+msgid "Thank you!"
+msgstr "شكرا!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Remember your receipt for this submission."
+msgstr ""
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr ""
+
+msgid "View your submission"
+msgstr "مشاهدة بلاغك"
 
 msgid "Recipient selection"
 msgstr "اختيار المتلقّي"

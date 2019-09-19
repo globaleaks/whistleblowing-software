@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1530,27 +1530,6 @@ msgstr "Vaše nová e-mailová adresa byla ověřena."
 msgid "Before proceeding, please set a new password."
 msgstr "Než budete pokračovat, nastavte prosím nové heslo."
 
-msgid "Submissions disabled"
-msgstr "Podání zakázána"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Připojujete se k serveru neanonymně. Tento server podporuje pouze anonymní podání."
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Tato platforma využívá software nazvaný Globaleaks speciálně vyvinutý za účelem ochrany identity oznamovatelů a příjemců podání."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "Tento software je vyvíjen neziskovou organizací Hermes Centra pro transparentnost a digitální lidská práva."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Podpořit organizaci Hermes můžete na jejich darovací stránce."
-
 msgid "Forgot password?"
 msgstr "Zapoměl(a) jste heslo? "
 
@@ -1604,6 +1583,9 @@ msgstr "Přidělit bodové skóre"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Prosím, vezměte na vědomí, že všechna související data budou navždy smazána."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
 
 msgid "Attention!"
 msgstr "Pozor!"
@@ -1949,23 +1931,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr "Požadováno obnovení hesla."
 
-msgid "Thank you!"
-msgstr "Děkujeme Vám!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Pokusíme se co nejdříve vrátit zpět k vám."
-
-msgid "Remember your receipt for this submission."
-msgstr "Zapamatujte si potvrzení o tomto podání."
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Použijte 16. místný kód k přihlášení. Umožní vám zobrazit všechny zprávy, které jsme vám poslali, a také přidat další informace."
-
-msgid "View your submission"
-msgstr "Zobrazit podání"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Správce byl požádán o přístup k identitě oznamovatele"
@@ -2027,6 +1992,44 @@ msgstr "Prosím vložte platnou emailovou adresu."
 
 msgid "please enter numbers only."
 msgstr "Vkládejte prosím, pouze čísla."
+
+msgid "Submissions disabled"
+msgstr "Podání zakázána"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Připojujete se k serveru neanonymně. Tento server podporuje pouze anonymní podání."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Tato platforma využívá software nazvaný Globaleaks speciálně vyvinutý za účelem ochrany identity oznamovatelů a příjemců podání."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Tento software je vyvíjen neziskovou organizací Hermes Centra pro transparentnost a digitální lidská práva."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Podpořit organizaci Hermes můžete na jejich darovací stránce."
+
+msgid "Thank you!"
+msgstr "Děkujeme Vám!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Pokusíme se co nejdříve vrátit zpět k vám."
+
+msgid "Remember your receipt for this submission."
+msgstr "Zapamatujte si potvrzení o tomto podání."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Použijte 16. místný kód k přihlášení. Umožní vám zobrazit všechny zprávy, které jsme vám poslali, a také přidat další informace."
+
+msgid "View your submission"
+msgstr "Zobrazit podání"
 
 msgid "Recipient selection"
 msgstr "Výběr příjemce"

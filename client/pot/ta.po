@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1522,27 +1522,6 @@ msgstr "உங்கள் புதிய மின்னஞ்சல் மு
 msgid "Before proceeding, please set a new password."
 msgstr "தொடருவதற்கு முன், புதிய கடவுச்சொல்லை அமைக்கவும்."
 
-msgid "Submissions disabled"
-msgstr "சமர்ப்பிப்புகளை முடக்கப்பட்டுள்ளது"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "நீங்கள் தெரியாத இல்லாமல் சர்வர் இணைக்கப்பட்டால் இந்த சர்வர் அநாமதேய சமர்ப்பிப்புகளை மட்டுமே ஆதரிக்கிறது"
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "உள்ளடக்கத்தின் பரிமாற்றத்தில் சமர்ப்பிக்கும் மற்றும் பெறுநருக்கு அடையாளத்தை பாதுகாப்பதற்காக வடிவமைக்கப்பட்ட GlobaLeaks மென்பொருளை இந்த மேடையில் பயன்படுத்துகிறது."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "மென்பொருள் மற்றும் டிரான்ஸ்பரன்சி இலாப ஹெர்ம்ஸ் மையம் டிஜிட்டல் மனித உரிமைகள் உருவாக்கப்பட்டது."
-
-msgid "Please support Hermes through their donation page."
-msgstr "தங்கள் நன்கொடை பக்கம் வழியாக ஹெர்ம்ஸ் ஆதரவு கொள்ளவும்."
-
 msgid "Forgot password?"
 msgstr "கடவுச்சொல்லை மறந்துவிட்டீர்களா?"
 
@@ -1596,6 +1575,9 @@ msgstr "ஸ்கோர் புள்ளிகள் ஒதுக்க"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "தொடர்புடைய எல்லா தரவு நிரந்தரமாக இழக்கப்படும் என்பதை நினைவில் கொள்க."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
 
 msgid "Attention!"
 msgstr "கவனம்!"
@@ -1941,23 +1923,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr "கடவுச்சொல் மீட்டமைப்பு கோரப்பட்டது."
 
-msgid "Thank you!"
-msgstr "நன்றி!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Remember your receipt for this submission."
-msgstr "இந்த சமர்ப்பிப்புக்கான உங்கள் ரசீது நினைவில் கொள்ளுங்கள்."
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "உள்நுழைவதற்கு 16 இலக்க ரசீது பயன்படுத்தவும். இது நாங்கள் உங்களுக்கு அனுப்பிய செய்திகளைப் பார்க்கவும், மேலும் கூடுதல் தகவல்களை சேர்க்கவும் அனுமதிக்கும்."
-
-msgid "View your submission"
-msgstr "உங்கள் சமர்ப்பிப்பு காண்க"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "தகவல் தெரிவிப்பவர் அடையாளத்திற்கான அணுகல் பொறுப்பாளரான கேட்கப்பட்டுள்ளது."
@@ -2019,6 +1984,44 @@ msgstr "சரியான மின்னஞ்சல் முகவரி உ
 
 msgid "please enter numbers only."
 msgstr "எண்களை மட்டும் உள்ளிடவும்."
+
+msgid "Submissions disabled"
+msgstr "சமர்ப்பிப்புகளை முடக்கப்பட்டுள்ளது"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "நீங்கள் தெரியாத இல்லாமல் சர்வர் இணைக்கப்பட்டால் இந்த சர்வர் அநாமதேய சமர்ப்பிப்புகளை மட்டுமே ஆதரிக்கிறது"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "உள்ளடக்கத்தின் பரிமாற்றத்தில் சமர்ப்பிக்கும் மற்றும் பெறுநருக்கு அடையாளத்தை பாதுகாப்பதற்காக வடிவமைக்கப்பட்ட GlobaLeaks மென்பொருளை இந்த மேடையில் பயன்படுத்துகிறது."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "மென்பொருள் மற்றும் டிரான்ஸ்பரன்சி இலாப ஹெர்ம்ஸ் மையம் டிஜிட்டல் மனித உரிமைகள் உருவாக்கப்பட்டது."
+
+msgid "Please support Hermes through their donation page."
+msgstr "தங்கள் நன்கொடை பக்கம் வழியாக ஹெர்ம்ஸ் ஆதரவு கொள்ளவும்."
+
+msgid "Thank you!"
+msgstr "நன்றி!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Remember your receipt for this submission."
+msgstr "இந்த சமர்ப்பிப்புக்கான உங்கள் ரசீது நினைவில் கொள்ளுங்கள்."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "உள்நுழைவதற்கு 16 இலக்க ரசீது பயன்படுத்தவும். இது நாங்கள் உங்களுக்கு அனுப்பிய செய்திகளைப் பார்க்கவும், மேலும் கூடுதல் தகவல்களை சேர்க்கவும் அனுமதிக்கும்."
+
+msgid "View your submission"
+msgstr "உங்கள் சமர்ப்பிப்பு காண்க"
 
 msgid "Recipient selection"
 msgstr "பெறுநரின் தேர்வை"

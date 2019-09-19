@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1530,27 +1530,6 @@ msgstr "Η νέα σας διεύθυνση email επικυρώθηκε."
 msgid "Before proceeding, please set a new password."
 msgstr "Πριν συνεχίσετε, παρακαλώ ορίστε έναν νέο κωδικό πρόσβασης."
 
-msgid "Submissions disabled"
-msgstr "Οι καταχωρίσεις είναι απενεργοποιημένες"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Συνδέεστε χωρίς ανωνυμία σε κόμβο που υποστηρίζει μόνο ανώνυμες υποβολές"
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Αυτή η πλατφόρμα χρησιμοποιεί το λογισμικό GlobaLeaks, που είναι ειδικά σχεδιασμένο για να προστατεύει την ταυτότητα του υποβολέα και του παραλήπτη στην ανταλλαγή περιεχομένου."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "Το λογισμικό έχει αναπτυχθεί από τον μη κερδοσκοπικό οργανισμό Hermes Center for Transparency and Digital Human Rights."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Παρακαλούμε υποστηρίξτε τον Hermes μέσω της σελίδας δωρεάς τους."
-
 msgid "Forgot password?"
 msgstr "Ξεχάσατε τον κωδικό πρόσβασης;"
 
@@ -1604,6 +1583,9 @@ msgstr "Ανάθεση πόντων βαθμολογίας"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Παρακαλούμε σημειώστε ότι όλα τα σχετικά δεδομένα θα χαθούν οριστικά."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
 
 msgid "Attention!"
 msgstr "Προσοχή!"
@@ -1949,23 +1931,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr "Η επαναφορά του κωδικού πρόσβασης αιτήθηκε."
 
-msgid "Thank you!"
-msgstr "Ευχαριστούμε!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Remember your receipt for this submission."
-msgstr ""
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr ""
-
-msgid "View your submission"
-msgstr "Δείτε την υποβολή σας"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Η πρόσβαση στην ταυτότητα του πληροφοριοδότη έχει αιτηθεί στο θεματοφύλακα."
@@ -2027,6 +1992,44 @@ msgstr "Παρακαλούμε εισάγετε μια έγκυρη διεύθυ
 
 msgid "please enter numbers only."
 msgstr "παρακαλούμε εισάγετε μόνο αριθμούς."
+
+msgid "Submissions disabled"
+msgstr "Οι καταχωρίσεις είναι απενεργοποιημένες"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Συνδέεστε χωρίς ανωνυμία σε κόμβο που υποστηρίζει μόνο ανώνυμες υποβολές"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Αυτή η πλατφόρμα χρησιμοποιεί το λογισμικό GlobaLeaks, που είναι ειδικά σχεδιασμένο για να προστατεύει την ταυτότητα του υποβολέα και του παραλήπτη στην ανταλλαγή περιεχομένου."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Το λογισμικό έχει αναπτυχθεί από τον μη κερδοσκοπικό οργανισμό Hermes Center for Transparency and Digital Human Rights."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Παρακαλούμε υποστηρίξτε τον Hermes μέσω της σελίδας δωρεάς τους."
+
+msgid "Thank you!"
+msgstr "Ευχαριστούμε!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Remember your receipt for this submission."
+msgstr ""
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr ""
+
+msgid "View your submission"
+msgstr "Δείτε την υποβολή σας"
 
 msgid "Recipient selection"
 msgstr "Επιλογή παραλήπτη"

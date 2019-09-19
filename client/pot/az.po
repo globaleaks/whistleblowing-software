@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1524,27 +1524,6 @@ msgstr ""
 msgid "Before proceeding, please set a new password."
 msgstr ""
 
-msgid "Submissions disabled"
-msgstr "Təqdimatlar aradan qaldırıldı"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Siz serverə məxfiliyiniz qorunmadan qoşulursunuz və bu server yalnız anonim təqdimatları dəstəkləyir"
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Bu platforma, content təqdimatında göndərənin və alıcının şəxsiyyətini qorumaq üçün xüsusi hazırlanan GlobaLleaks proqramını istifadə edir."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "Proqram,  Hermes Şəffaflıq və Digital İnsan Hüquqları qeyri-kommersiya mərkəzi tərəfindən hazırlanmışdır."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Xahiş edirik ki, Hermes-i onların ianə səhifələri vasitəsi ilə dəstəkləyin"
-
 msgid "Forgot password?"
 msgstr ""
 
@@ -1598,6 +1577,9 @@ msgstr "Hesab nöqtələrini təyin et"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Xahiş edirik bütün əlaqəli məlumatların daimi olaraq silinəcəyini unutmayın."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
 
 msgid "Attention!"
 msgstr "Diqqət!"
@@ -1943,23 +1925,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Thank you!"
-msgstr "Təşəkkürlər!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Remember your receipt for this submission."
-msgstr ""
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr ""
-
-msgid "View your submission"
-msgstr "Təqdimatını nəzərdən keçir"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Mühafizəçidən informasiya ötürənin kimliyinə giriş tələb olunur."
@@ -2021,6 +1986,44 @@ msgstr "Etibarlı  e-mail ünvanı daxil edin."
 
 msgid "please enter numbers only."
 msgstr "xahiş edirik, yalnız rəqəmləri qeyd edin"
+
+msgid "Submissions disabled"
+msgstr "Təqdimatlar aradan qaldırıldı"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Siz serverə məxfiliyiniz qorunmadan qoşulursunuz və bu server yalnız anonim təqdimatları dəstəkləyir"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Bu platforma, content təqdimatında göndərənin və alıcının şəxsiyyətini qorumaq üçün xüsusi hazırlanan GlobaLleaks proqramını istifadə edir."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Proqram,  Hermes Şəffaflıq və Digital İnsan Hüquqları qeyri-kommersiya mərkəzi tərəfindən hazırlanmışdır."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Xahiş edirik ki, Hermes-i onların ianə səhifələri vasitəsi ilə dəstəkləyin"
+
+msgid "Thank you!"
+msgstr "Təşəkkürlər!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Remember your receipt for this submission."
+msgstr ""
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr ""
+
+msgid "View your submission"
+msgstr "Təqdimatını nəzərdən keçir"
 
 msgid "Recipient selection"
 msgstr "Alıcı seçimi"

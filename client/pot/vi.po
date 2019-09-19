@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1527,27 +1527,6 @@ msgstr ""
 msgid "Before proceeding, please set a new password."
 msgstr ""
 
-msgid "Submissions disabled"
-msgstr ""
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Bạn đang kết nối đến máy chủ mà không cần giấu và máy chủ này chỉ hỗ trợ đệ trình ẩn danh"
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr ""
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "Phần mềm này được phát triển bởi Trung tâm Hermes phi lợi nhuận cho minh bạch và Nhân quyền kỹ thuật số."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Xin hãy ủng hộ Hermes thông qua trang quyên góp của họ."
-
 msgid "Forgot password?"
 msgstr ""
 
@@ -1600,6 +1579,9 @@ msgid "Assign score points"
 msgstr "Gán thêm điểm"
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
 
 msgid "Attention!"
@@ -1946,23 +1928,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Thank you!"
-msgstr "Cảm ơn bạn!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Remember your receipt for this submission."
-msgstr ""
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr ""
-
-msgid "View your submission"
-msgstr "Xem trình của bạn"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Truy cập đến danh tính của người tố giác đã được yêu cầu để giám sát."
@@ -2024,6 +1989,44 @@ msgstr ""
 
 msgid "please enter numbers only."
 msgstr ""
+
+msgid "Submissions disabled"
+msgstr ""
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Bạn đang kết nối đến máy chủ mà không cần giấu và máy chủ này chỉ hỗ trợ đệ trình ẩn danh"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr ""
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Phần mềm này được phát triển bởi Trung tâm Hermes phi lợi nhuận cho minh bạch và Nhân quyền kỹ thuật số."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Xin hãy ủng hộ Hermes thông qua trang quyên góp của họ."
+
+msgid "Thank you!"
+msgstr "Cảm ơn bạn!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Remember your receipt for this submission."
+msgstr ""
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr ""
+
+msgid "View your submission"
+msgstr "Xem trình của bạn"
 
 msgid "Recipient selection"
 msgstr "lựa chọn người nhận"

@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1543,27 +1543,6 @@ msgstr ""
 msgid "Before proceeding, please set a new password."
 msgstr ""
 
-msgid "Submissions disabled"
-msgstr "Подача материала недоступна"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Вы присоединяетесь к узлу не анонимно, данный узел поддерживает только анонимные материалы"
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Эта платформа использует ПО GlobaLeaks, которое специально разработано для того, чтобы защитить личности отправителя и получателя при передаче информации."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "Программное обеспечение разработано некоммерческой организацией Hermes Center for Transparency and Digital Human Rights."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Пожалуйста, поддержите Hermes, сделав пожертвование на их сайте."
-
 msgid "Forgot password?"
 msgstr ""
 
@@ -1617,6 +1596,9 @@ msgstr "Оценить"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Пожалуйста, имейте ввиду, что все связанные данные будут окончательно удалены."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
 
 msgid "Attention!"
 msgstr "Внимание!"
@@ -1962,23 +1944,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Thank you!"
-msgstr "Спасибо!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Remember your receipt for this submission."
-msgstr ""
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr ""
-
-msgid "View your submission"
-msgstr "Просмотреть ваш материал"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "مخبر کی شناخت تک رسائی نگرانی کرنے کی درخواست کی گئی ہے."
@@ -2040,6 +2005,44 @@ msgstr "пожалуйста введите действительный адр�
 
 msgid "please enter numbers only."
 msgstr "пожалуйста введите только цифры."
+
+msgid "Submissions disabled"
+msgstr "Подача материала недоступна"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Вы присоединяетесь к узлу не анонимно, данный узел поддерживает только анонимные материалы"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Эта платформа использует ПО GlobaLeaks, которое специально разработано для того, чтобы защитить личности отправителя и получателя при передаче информации."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Программное обеспечение разработано некоммерческой организацией Hermes Center for Transparency and Digital Human Rights."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Пожалуйста, поддержите Hermes, сделав пожертвование на их сайте."
+
+msgid "Thank you!"
+msgstr "Спасибо!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Remember your receipt for this submission."
+msgstr ""
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr ""
+
+msgid "View your submission"
+msgstr "Просмотреть ваш материал"
 
 msgid "Recipient selection"
 msgstr "Выбор получателя"

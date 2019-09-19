@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1523,27 +1523,6 @@ msgstr "Vaša nova email adresa je ovjerena."
 msgid "Before proceeding, please set a new password."
 msgstr "Prije nego nastavite, molim0 postavite novu lozinku."
 
-msgid "Submissions disabled"
-msgstr "Predaje onemogućene"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Povezujete se s poslužiteljem bez anonimnosti, a ovaj poslužitelj podržava samo anonimne predaje"
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Ova platforma koristi GlobaLeakes software specifično dizajniran kako bi zaštitio identitet predavatelja i primatelja u razmjeni sadržaja."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "Ovaj software razvija neprofitni Hermes Centar za transparentnost i digitalna ljudska prava."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Molimo podržite Hermes putem njihove donacijske stranice."
-
 msgid "Forgot password?"
 msgstr "Zaboravili lozinku?"
 
@@ -1597,6 +1576,9 @@ msgstr "Dodjeli bodove rezultata"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Imajte na umu da će svi povezani podatci biti trajno izgubljeni."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
 
 msgid "Attention!"
 msgstr "Pozor!"
@@ -1942,23 +1924,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr "Ponovno postavljanje lozinke zahtjevano."
 
-msgid "Thank you!"
-msgstr "Hvala Vam!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Remember your receipt for this submission."
-msgstr ""
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr ""
-
-msgid "View your submission"
-msgstr "Pregledajte svoju prijavu"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Od skrbnika se zahtjevao pristup identitetu zviždača."
@@ -2020,6 +1985,44 @@ msgstr "molimo unesite valjanu email adresu."
 
 msgid "please enter numbers only."
 msgstr "molimo unesite samo brojeve."
+
+msgid "Submissions disabled"
+msgstr "Predaje onemogućene"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Povezujete se s poslužiteljem bez anonimnosti, a ovaj poslužitelj podržava samo anonimne predaje"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Ova platforma koristi GlobaLeakes software specifično dizajniran kako bi zaštitio identitet predavatelja i primatelja u razmjeni sadržaja."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Ovaj software razvija neprofitni Hermes Centar za transparentnost i digitalna ljudska prava."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Molimo podržite Hermes putem njihove donacijske stranice."
+
+msgid "Thank you!"
+msgstr "Hvala Vam!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Remember your receipt for this submission."
+msgstr ""
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr ""
+
+msgid "View your submission"
+msgstr "Pregledajte svoju prijavu"
 
 msgid "Recipient selection"
 msgstr "Odabir primatelja"

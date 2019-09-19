@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1532,27 +1532,6 @@ msgstr ""
 msgid "Before proceeding, please set a new password."
 msgstr ""
 
-msgid "Submissions disabled"
-msgstr "Livrari dezactivate"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Vă conectați la server fără anonimat și acest server suportă numai depuneri anonime"
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Aceasta platforma foloseste software-ul GlobaLeaks care a fost creat special pentru a proteja identitatea informatorului si a destinatarului in timpul schimbului de continut."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "Software-ul este dezvoltat de non-profit Hermes Centrul pentru Transparență și Drepturile Omului Digital."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Vă rugăm să sprijine Hermes prin intermediul paginii lor de donare."
-
 msgid "Forgot password?"
 msgstr ""
 
@@ -1606,6 +1585,9 @@ msgstr "Atribuiți puncte"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Luati va rog la cunostinta faptul ca toate datele asociate vor fi pierdute permanent."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
 
 msgid "Attention!"
 msgstr ""
@@ -1951,23 +1933,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Thank you!"
-msgstr "Mulțumesc!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Remember your receipt for this submission."
-msgstr ""
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr ""
-
-msgid "View your submission"
-msgstr "Vizualizați prezentarea ta"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Accesul la identitatea informatorului a fost solicitată custode."
@@ -2029,6 +1994,44 @@ msgstr "Te rog introdu o adresa de email valida."
 
 msgid "please enter numbers only."
 msgstr "Te rog introdu numai numere."
+
+msgid "Submissions disabled"
+msgstr "Livrari dezactivate"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Vă conectați la server fără anonimat și acest server suportă numai depuneri anonime"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Aceasta platforma foloseste software-ul GlobaLeaks care a fost creat special pentru a proteja identitatea informatorului si a destinatarului in timpul schimbului de continut."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Software-ul este dezvoltat de non-profit Hermes Centrul pentru Transparență și Drepturile Omului Digital."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Vă rugăm să sprijine Hermes prin intermediul paginii lor de donare."
+
+msgid "Thank you!"
+msgstr "Mulțumesc!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Remember your receipt for this submission."
+msgstr ""
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr ""
+
+msgid "View your submission"
+msgstr "Vizualizați prezentarea ta"
 
 msgid "Recipient selection"
 msgstr "selecţia destinatarului"

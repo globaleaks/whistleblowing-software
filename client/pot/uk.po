@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1537,27 +1537,6 @@ msgstr "Ваша нова адреса електронної пошти бул�
 msgid "Before proceeding, please set a new password."
 msgstr "Перш ніж продовжити, будь ласка, встановіть новий пароль."
 
-msgid "Submissions disabled"
-msgstr "Повідомлення деактивовані"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Ви підключаєтеся до вузла без анонімності. Цей вузол підтримує тільки анонімну подачу матеріалів"
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Ця платформа використовує програмне забезпечення спеціально розроблене для безпечного обміну матеріалів, захисту інформатора і одержувача."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "Мета даної платформи - покращити ефективність антикорупційних розслідувань."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Будь ласка, підтримайте Хабардокс через нашу сторінку пожертвувань або просто розкажіть про Хабардокс друзям."
-
 msgid "Forgot password?"
 msgstr "Забули пароль?"
 
@@ -1611,6 +1590,9 @@ msgstr "Призначати бали"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Зверніть увагу, що всі пов'язані з ним дані будуть безповоротно втрачені."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
 
 msgid "Attention!"
 msgstr "Увага!"
@@ -1956,23 +1938,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr "Запит на скидання паролю надіслано."
 
-msgid "Thank you!"
-msgstr "Дякуємо!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Remember your receipt for this submission."
-msgstr ""
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr ""
-
-msgid "View your submission"
-msgstr "Переглянути ваш матеріал"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Запит на інформацію про особу викривача було надіслано куратору"
@@ -2034,6 +1999,44 @@ msgstr "будь ласка, введіть дійсну адресу елект
 
 msgid "please enter numbers only."
 msgstr "будь ласка, введіть лише цифри."
+
+msgid "Submissions disabled"
+msgstr "Повідомлення деактивовані"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Ви підключаєтеся до вузла без анонімності. Цей вузол підтримує тільки анонімну подачу матеріалів"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Ця платформа використовує програмне забезпечення спеціально розроблене для безпечного обміну матеріалів, захисту інформатора і одержувача."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Мета даної платформи - покращити ефективність антикорупційних розслідувань."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Будь ласка, підтримайте Хабардокс через нашу сторінку пожертвувань або просто розкажіть про Хабардокс друзям."
+
+msgid "Thank you!"
+msgstr "Дякуємо!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Remember your receipt for this submission."
+msgstr ""
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr ""
+
+msgid "View your submission"
+msgstr "Переглянути ваш матеріал"
 
 msgid "Recipient selection"
 msgstr "Вибір одержувача"

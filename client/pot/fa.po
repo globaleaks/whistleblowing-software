@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1538,27 +1538,6 @@ msgstr "آدرس ایمیل جدید شما معتبر شناخته شده اس�
 msgid "Before proceeding, please set a new password."
 msgstr "قبل از ادامه  لطفا یک گذرواژه جدید تنظیم کنید."
 
-msgid "Submissions disabled"
-msgstr "گزارش ها غیر فعال شدند"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "شما بدون ناشناسی به گره متصل شده اید و این گره فقط گزارش های ناشناس را قبول میکند"
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "پلتفورم از نرم افزار GlobaLeaks که با هدف محافظت از هویت ارسال کننده و گیرنده در تبادل محتوا ایجاد شده استفاده می کند."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "نرم افزار توسط مرکز غیر-انتفاعی هرمس برای شفافیت و حقوق بشر دیجیتال توسعه داده شده است."
-
-msgid "Please support Hermes through their donation page."
-msgstr "لطفا از هرمس از طریق صفحه اهدا پشتیبانی کنید."
-
 msgid "Forgot password?"
 msgstr "گذرواژه را فراموش کرده اید؟"
 
@@ -1612,6 +1591,9 @@ msgstr "تخصیص امتیاز"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "لطفا توجه داشته باشید که تمام داده های مرتبط برای همیشه از بین خواهند رفت."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
 
 msgid "Attention!"
 msgstr "توجه!"
@@ -1957,23 +1939,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr "تنظیم مجدد گذرواژه درخواست شد."
 
-msgid "Thank you!"
-msgstr "متشکریم!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "ما در اسرع وقت با شما تماس خواهیم گرفت."
-
-msgid "Remember your receipt for this submission."
-msgstr "رسید خود برای این گزارش را به یاد داشته باشید."
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "از 16 رقم رسید برای وارد شدن استفاده کنید. به شما اجازه این را می دهد تا هر پیامی که به شما ارسال کردیم را ببینید، و همچنین اطلاعات بیشتری اضافه کنید."
-
-msgid "View your submission"
-msgstr "گزارش خود را ببینید"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "دسترسی به هویت افشاگر از ‍داده بان درخواست شده است."
@@ -2035,6 +2000,44 @@ msgstr "لطفا یک آدرس ایمیل معتبر وارد کنید."
 
 msgid "please enter numbers only."
 msgstr "لطفا فقط عدد وارد کنید."
+
+msgid "Submissions disabled"
+msgstr "گزارش ها غیر فعال شدند"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "شما بدون ناشناسی به گره متصل شده اید و این گره فقط گزارش های ناشناس را قبول میکند"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "پلتفورم از نرم افزار GlobaLeaks که با هدف محافظت از هویت ارسال کننده و گیرنده در تبادل محتوا ایجاد شده استفاده می کند."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "نرم افزار توسط مرکز غیر-انتفاعی هرمس برای شفافیت و حقوق بشر دیجیتال توسعه داده شده است."
+
+msgid "Please support Hermes through their donation page."
+msgstr "لطفا از هرمس از طریق صفحه اهدا پشتیبانی کنید."
+
+msgid "Thank you!"
+msgstr "متشکریم!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "ما در اسرع وقت با شما تماس خواهیم گرفت."
+
+msgid "Remember your receipt for this submission."
+msgstr "رسید خود برای این گزارش را به یاد داشته باشید."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "از 16 رقم رسید برای وارد شدن استفاده کنید. به شما اجازه این را می دهد تا هر پیامی که به شما ارسال کردیم را ببینید، و همچنین اطلاعات بیشتری اضافه کنید."
+
+msgid "View your submission"
+msgstr "گزارش خود را ببینید"
 
 msgid "Recipient selection"
 msgstr "انتخاب گیرنده"

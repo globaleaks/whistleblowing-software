@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1520,27 +1520,6 @@ msgstr ""
 msgid "Before proceeding, please set a new password."
 msgstr ""
 
-msgid "Submissions disabled"
-msgstr ""
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "당신은 익명없이 서버에 연결하는이 서버는 익명 제출 지원"
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr ""
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "이 소프트웨어는 비영리 투명성에 대한 에르메스 센터와 디지털 인권에 의해 개발되고있다."
-
-msgid "Please support Hermes through their donation page."
-msgstr "자신의 기부 페이지를 통해 헤르메스를 지원하십시오."
-
 msgid "Forgot password?"
 msgstr ""
 
@@ -1593,6 +1572,9 @@ msgid "Assign score points"
 msgstr "점수 포인트를 할당"
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
 
 msgid "Attention!"
@@ -1939,23 +1921,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Thank you!"
-msgstr "고맙습니다!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Remember your receipt for this submission."
-msgstr ""
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr ""
-
-msgid "View your submission"
-msgstr "제출보기"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "고발자의 신원에 대한 액세스는 관리인에게 요청하고있다."
@@ -2017,6 +1982,44 @@ msgstr ""
 
 msgid "please enter numbers only."
 msgstr ""
+
+msgid "Submissions disabled"
+msgstr ""
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "당신은 익명없이 서버에 연결하는이 서버는 익명 제출 지원"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr ""
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "이 소프트웨어는 비영리 투명성에 대한 에르메스 센터와 디지털 인권에 의해 개발되고있다."
+
+msgid "Please support Hermes through their donation page."
+msgstr "자신의 기부 페이지를 통해 헤르메스를 지원하십시오."
+
+msgid "Thank you!"
+msgstr "고맙습니다!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Remember your receipt for this submission."
+msgstr ""
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr ""
+
+msgid "View your submission"
+msgstr "제출보기"
 
 msgid "Recipient selection"
 msgstr "받는 사람 선택"

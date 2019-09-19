@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1553,27 +1553,6 @@ msgstr "Seu novo endereço de e-mail foi validado."
 msgid "Before proceeding, please set a new password."
 msgstr "Antes de continuar, defina uma nova senha."
 
-msgid "Submissions disabled"
-msgstr "Submissões desabilitadas"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Você está se conectando a este dispositivo publicamente e este dispositivo suporta apenas submissões anônimas"
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Esta plataforma faz uso do software da GlobaLeaks especificamente projetado para proteger a identidade do submissor e destinatário na troca de conteúdo."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "O software é desenvolvido pela organização sem fins lucrativos Hermes Center for Transparency and Digital Human Rights."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Por favor, apoiem Hermes através de sua página de doações."
-
 msgid "Forgot password?"
 msgstr "Esqueceu a senha?"
 
@@ -1627,6 +1606,9 @@ msgstr "Atribuir pontos de pontuação"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Favor notar que todos os dados assocados serão permanentemente perdidos."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
 
 msgid "Attention!"
 msgstr "Atenção!"
@@ -1972,23 +1954,6 @@ msgstr "Insira sua chave de recuperação de criptografia para concluir o proced
 msgid "Password reset requested."
 msgstr "Redefinição de senha solicitada."
 
-msgid "Thank you!"
-msgstr "Obrigado!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Nós tentaremos entrar em contato com você o mais breve possível."
-
-msgid "Remember your receipt for this submission."
-msgstr "Lembre-se de seu recibo para este envio."
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Use o recibo de 16 dígitos para fazer o login. Ele permitirá que você veja todas as mensagens que lhe enviamos e também para adicionar informações extras."
-
-msgid "View your submission"
-msgstr "Veja sua submissão"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Acesso à identidade de um delator foi solicitado ao curador."
@@ -2050,6 +2015,44 @@ msgstr "favor digitar um email válido"
 
 msgid "please enter numbers only."
 msgstr "favor digitar somente números"
+
+msgid "Submissions disabled"
+msgstr "Submissões desabilitadas"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Você está se conectando a este dispositivo publicamente e este dispositivo suporta apenas submissões anônimas"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Esta plataforma faz uso do software da GlobaLeaks especificamente projetado para proteger a identidade do submissor e destinatário na troca de conteúdo."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "O software é desenvolvido pela organização sem fins lucrativos Hermes Center for Transparency and Digital Human Rights."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Por favor, apoiem Hermes através de sua página de doações."
+
+msgid "Thank you!"
+msgstr "Obrigado!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Nós tentaremos entrar em contato com você o mais breve possível."
+
+msgid "Remember your receipt for this submission."
+msgstr "Lembre-se de seu recibo para este envio."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Use o recibo de 16 dígitos para fazer o login. Ele permitirá que você veja todas as mensagens que lhe enviamos e também para adicionar informações extras."
+
+msgid "View your submission"
+msgstr "Veja sua submissão"
 
 msgid "Recipient selection"
 msgstr "Seleção de destinatário"

@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1541,27 +1541,6 @@ msgstr ""
 msgid "Before proceeding, please set a new password."
 msgstr ""
 
-msgid "Submissions disabled"
-msgstr "Gönderimler devre dışı bırakıldı"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Sisteme anonim olmadan bağlanıyorsunuz ve bu sistem sadece anonim gönderimleri destekliyor."
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr ""
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "Bu yazılım kar amacı gütmeyen Kamuyu Aydınlatma ve Sayısal İnsan Hakları için Hermes Merkezi tarafından geliştirilmektedir."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Lütfen Hermes'i bağış sayfalarından destekleyin."
-
 msgid "Forgot password?"
 msgstr ""
 
@@ -1614,6 +1593,9 @@ msgid "Assign score points"
 msgstr "Puanları tahsis et"
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
 
 msgid "Attention!"
@@ -1960,23 +1942,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Thank you!"
-msgstr "Teşekkürler!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Remember your receipt for this submission."
-msgstr ""
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr ""
-
-msgid "View your submission"
-msgstr "Gönderiminizi görüntüleyin"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Koruyucu, ihbarcının kimliğine erişim talep etti"
@@ -2038,6 +2003,44 @@ msgstr "lütfen geçerli bir e-posta adresi girin."
 
 msgid "please enter numbers only."
 msgstr "Lütfen yalnızca sayı girin."
+
+msgid "Submissions disabled"
+msgstr "Gönderimler devre dışı bırakıldı"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Sisteme anonim olmadan bağlanıyorsunuz ve bu sistem sadece anonim gönderimleri destekliyor."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr ""
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Bu yazılım kar amacı gütmeyen Kamuyu Aydınlatma ve Sayısal İnsan Hakları için Hermes Merkezi tarafından geliştirilmektedir."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Lütfen Hermes'i bağış sayfalarından destekleyin."
+
+msgid "Thank you!"
+msgstr "Teşekkürler!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Remember your receipt for this submission."
+msgstr ""
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr ""
+
+msgid "View your submission"
+msgstr "Gönderiminizi görüntüleyin"
 
 msgid "Recipient selection"
 msgstr "Alıcı seçimi"

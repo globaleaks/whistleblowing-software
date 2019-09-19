@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:46+0000\n"
+"PO-Revision-Date: 2019-09-19 14:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -706,7 +706,7 @@ msgid "Enable two factor authentication"
 msgstr "Abilita autenticazione a due fattori"
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Permetti ai seguenti siti di include la piattaforma dentro iframes"
+msgstr "Permetti ai seguenti siti di includetr la piattaforma attraverso iframes"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Permetti ai riceventi di postporre la data di scadenza delle segnalazioni"
@@ -1540,27 +1540,6 @@ msgstr "Il tuo nuovo indirizzo email è stato validato."
 msgid "Before proceeding, please set a new password."
 msgstr "Prima di procedere, sei pregato di impostare una nuova password."
 
-msgid "Submissions disabled"
-msgstr "Segnalazioni disabilitate"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Ti stai connettendo a questo nodo in maniera non anonima,  ed esso supporta solo trasmissioni anonime"
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Questa piattaforma fa uso del software GlobaLeaks, specificatamente progettato per proteggere l'identità del whistleblower e del ricevente nello scambio di informazioni."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "Il software è progettato dall'organizzazione no-profit Hermes Center for Transparency and Digital Human Rights."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Si invita a supportare Hermes attraverso la loro pagina di donazione."
-
 msgid "Forgot password?"
 msgstr "Password dimenticata?"
 
@@ -1614,6 +1593,9 @@ msgstr "Assegna punteggio"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Si prega di notare che tutti i dati associati saranno persi."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Questa è una piattaforma dimostrativa, si prega di non usarla per verse segnalazioni."
 
 msgid "Attention!"
 msgstr "Attenzione!"
@@ -1959,23 +1941,6 @@ msgstr "Inserisci la tua chiave di ripristino della crittografia al fine di comp
 msgid "Password reset requested."
 msgstr "Richiesta di password reset completata."
 
-msgid "Thank you!"
-msgstr "Grazie!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Cercheremo di risponderti quanto prima."
-
-msgid "Remember your receipt for this submission."
-msgstr "Memorizza la tua ricevuta per la segnalazione."
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Usa la ricevuta di 16 cifre per ritornare e vedere eventuali messaggi che ti avremo inviato o se pensi che ci sia altro che avresti dovuto allegare."
-
-msgid "View your submission"
-msgstr "Vedi la tua segnalazione"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "L'accesso all'identità del whistleblower è stato richiesto al custode."
@@ -2037,6 +2002,44 @@ msgstr "si prega di inserire un indirizzo email valido."
 
 msgid "please enter numbers only."
 msgstr "si prega di inserire solo numeri."
+
+msgid "Submissions disabled"
+msgstr "Segnalazioni disabilitate"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Ti stai connettendo a questo nodo in maniera non anonima,  ed esso supporta solo trasmissioni anonime"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Questa piattaforma fa uso del software GlobaLeaks, specificatamente progettato per proteggere l'identità del whistleblower e del ricevente nello scambio di informazioni."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Il software è progettato dall'organizzazione no-profit Hermes Center for Transparency and Digital Human Rights."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Si invita a supportare Hermes attraverso la loro pagina di donazione."
+
+msgid "Thank you!"
+msgstr "Grazie!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Cercheremo di risponderti quanto prima."
+
+msgid "Remember your receipt for this submission."
+msgstr "Memorizza la tua ricevuta per la segnalazione."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Usa la ricevuta di 16 cifre per ritornare e vedere eventuali messaggi che ti avremo inviato o se pensi che ci sia altro che avresti dovuto allegare."
+
+msgid "View your submission"
+msgstr "Vedi la tua segnalazione"
 
 msgid "Recipient selection"
 msgstr "Selezione del ricevente"

@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -804,7 +804,7 @@ msgid "Enable simplified login"
 msgstr "簡易ログインを有効にする"
 
 msgid "Enable HSTS preload"
-msgstr ""
+msgstr "HSTS プリロードを有効にする"
 
 msgid "Logging level"
 msgstr "ログ取得レベル"
@@ -1089,7 +1089,7 @@ msgid "Configuration in progress"
 msgstr "設定処理中です"
 
 msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
+msgstr "プラットフォームは、HTTPS経由で次のアドレスに到達可能です:"
 
 msgid "Hostname"
 msgstr "ホスト名"
@@ -1524,27 +1524,6 @@ msgstr "新しいメールアドレスが検証されました。"
 msgid "Before proceeding, please set a new password."
 msgstr "次に進む前に、新しいパスワードを設定してください。"
 
-msgid "Submissions disabled"
-msgstr "提出は無効です"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "あなたは匿名性が無いままサーバーに接続しています。このサーバーは匿名による提出のみをサポートします。"
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "このプラットフォームはコンテンツの交換において、提出者と受信者の身元の保護を特別に用意したGlobaLeaksソフトウェアを使用します。"
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "このソフトウェアは非営利団体Hermes Center for Transparency and Digital Human Rightsによって開発されました。"
-
-msgid "Please support Hermes through their donation page."
-msgstr "ぜひ寄付のページをご覧になり、Hermesをサポートしてください。"
-
 msgid "Forgot password?"
 msgstr "パスワードをお忘れですか?"
 
@@ -1598,6 +1577,9 @@ msgstr "スコアポイントを割り当て"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "すべての関連データが完全に失われますのでご注意ください。"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
 
 msgid "Attention!"
 msgstr "注意!"
@@ -1943,23 +1925,6 @@ msgstr "暗号化回復鍵を入力して、パスワードのリセット手順
 msgid "Password reset requested."
 msgstr "パスワードのリセットをリクエストしました。"
 
-msgid "Thank you!"
-msgstr "ありがとうございます!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "できるだけ早くあなたが戻ってこられますように。"
-
-msgid "Remember your receipt for this submission."
-msgstr "この提出に関する受領番号を覚えておいてください。"
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "16桁の受領番号を使用してログインください。私たちがあなたに送信したメッセージを表示したり、追加の情報を入力することができます。"
-
-msgid "View your submission"
-msgstr "あなたの提出を見る"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "内部告発者の身元へのアクセスを管理人にリクエストしました。"
@@ -2021,6 +1986,44 @@ msgstr "正しいメールアドレスを入力してください。"
 
 msgid "please enter numbers only."
 msgstr "数字のみで入力してください。"
+
+msgid "Submissions disabled"
+msgstr "提出は無効です"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "あなたは匿名性が無いままサーバーに接続しています。このサーバーは匿名による提出のみをサポートします。"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "このプラットフォームはコンテンツの交換において、提出者と受信者の身元の保護を特別に用意したGlobaLeaksソフトウェアを使用します。"
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "このソフトウェアは非営利団体Hermes Center for Transparency and Digital Human Rightsによって開発されました。"
+
+msgid "Please support Hermes through their donation page."
+msgstr "ぜひ寄付のページをご覧になり、Hermesをサポートしてください。"
+
+msgid "Thank you!"
+msgstr "ありがとうございます!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "できるだけ早くあなたが戻ってこられますように。"
+
+msgid "Remember your receipt for this submission."
+msgstr "この提出に関する受領番号を覚えておいてください。"
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "16桁の受領番号を使用してログインください。私たちがあなたに送信したメッセージを表示したり、追加の情報を入力することができます。"
+
+msgid "View your submission"
+msgstr "あなたの提出を見る"
 
 msgid "Recipient selection"
 msgstr "受信者の選択"

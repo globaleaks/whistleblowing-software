@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -535,7 +535,7 @@ msgid "System overview"
 msgstr ""
 
 msgid "Stats"
-msgstr ""
+msgstr "stats(سٹیٹس)"
 
 msgid "Activities"
 msgstr "سرگرمیاں "
@@ -544,10 +544,10 @@ msgid "Submissions"
 msgstr "گذارشات"
 
 msgid "Users"
-msgstr ""
+msgstr "صارفین"
 
 msgid "From"
-msgstr ""
+msgstr "کی طرف سے"
 
 msgid "Number of downloads"
 msgstr ""
@@ -841,7 +841,7 @@ msgid "Reset submissions"
 msgstr ""
 
 msgid "To"
-msgstr ""
+msgstr "کی طرف"
 
 msgid "Add"
 msgstr "شامل کریں"
@@ -1096,7 +1096,7 @@ msgid "The platform will be reachable via HTTPS at the following address:"
 msgstr ""
 
 msgid "Hostname"
-msgstr ""
+msgstr "ھوسٹ کا نام"
 
 msgid "Verify"
 msgstr "تصدیق کریں"
@@ -1453,7 +1453,7 @@ msgid "Reset password"
 msgstr "پاس ورڈ ری سیٹ کریں"
 
 msgid "New password"
-msgstr ""
+msgstr "نیا پاس ورڈ"
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1528,27 +1528,6 @@ msgstr ""
 msgid "Before proceeding, please set a new password."
 msgstr ""
 
-msgid "Submissions disabled"
-msgstr ""
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "آپ اپنا نام ظاہر نہ کئے بغیر نوڈ سے منسلک ہیں اور یہ نوڈ صرف گمنام گذارشات کی تائید کرتی ہے۔"
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr ""
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "سافٹ ویئر کو غیر منافع بخش ٹرانسپیرنسی اور ڈیجیٹل حقوق انسانی کے لئے ہرمیس مرکز کی طرف سے تیار کیا گیا ہے۔"
-
-msgid "Please support Hermes through their donation page."
-msgstr "عطیہ کے صفحے کے ذریعے ہرمیس کی حمایت کریں."
-
 msgid "Forgot password?"
 msgstr ""
 
@@ -1601,6 +1580,9 @@ msgid "Assign score points"
 msgstr "سکور پوائنٹس مقرر کریں"
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
 
 msgid "Attention!"
@@ -1707,7 +1689,7 @@ msgid "Hide"
 msgstr "چھپائیے"
 
 msgid "Show"
-msgstr ""
+msgstr "دکھائیے"
 
 msgid "Set up email encryption by providing a PGP public key"
 msgstr ""
@@ -1947,23 +1929,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Thank you!"
-msgstr "شکریہ"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Remember your receipt for this submission."
-msgstr ""
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr ""
-
-msgid "View your submission"
-msgstr "اپنی داخل کردہ گذارشات دیکھ لیں"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "مخبر کی شناخت تک رسائی نگرانی کرنے کی درخواست کی گئی ہے."
@@ -1994,7 +1959,7 @@ msgid "Sign up"
 msgstr ""
 
 msgid "Domain"
-msgstr ""
+msgstr "ڈومین"
 
 msgid "Confirmation"
 msgstr ""
@@ -2025,6 +1990,44 @@ msgstr ""
 
 msgid "please enter numbers only."
 msgstr ""
+
+msgid "Submissions disabled"
+msgstr ""
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "آپ اپنا نام ظاہر نہ کئے بغیر نوڈ سے منسلک ہیں اور یہ نوڈ صرف گمنام گذارشات کی تائید کرتی ہے۔"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr ""
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "سافٹ ویئر کو غیر منافع بخش ٹرانسپیرنسی اور ڈیجیٹل حقوق انسانی کے لئے ہرمیس مرکز کی طرف سے تیار کیا گیا ہے۔"
+
+msgid "Please support Hermes through their donation page."
+msgstr "عطیہ کے صفحے کے ذریعے ہرمیس کی حمایت کریں."
+
+msgid "Thank you!"
+msgstr "شکریہ"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Remember your receipt for this submission."
+msgstr ""
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr ""
+
+msgid "View your submission"
+msgstr "اپنی داخل کردہ گذارشات دیکھ لیں"
 
 msgid "Recipient selection"
 msgstr "وصول کنندہ کا انتخاب"

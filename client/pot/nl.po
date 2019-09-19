@@ -24,7 +24,7 @@
 # Mieke van Heesewijk <mieke@netdem.nl>, 2013
 # M M <wouter.moraal92@gmail.com>, 2015
 # Nathan Follens, 2016-2017
-# Meteor0id, 2019
+# Meteor 0id, 2019
 # Niels ten Oever <niels@digitaldissidents.org>, 2013
 # Niels ten Oever <niels@digitaldissidents.org>, 2013
 # Teun Gautier <gautier@groene.nl>, 2013
@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1553,27 +1553,6 @@ msgstr "Jouw nieuwe e-mail adres is gevalideerd."
 msgid "Before proceeding, please set a new password."
 msgstr "Voor je verdergaat, stel alsjeblieft een nieuw wachtwoord in."
 
-msgid "Submissions disabled"
-msgstr "Inzendingen  uitgeschakeld"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "U bent een niet-anonieme verbinding tot stand aan het brengen en deze weblocatie ondersteunt alleen anonieme inzendingen."
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Dit platform maakt gebruik van de GlobaLeaks software, welke speciaal ontworpen is om de identiteit van de indiener en ontvanger te beschermen tijdens het uitwisselen van bestanden."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "De software is ontwikkeld door de non-profit Hermes Centrum voor transparantie en digitale mensenrechten."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Steun Hermes via haar donatiepagina"
-
 msgid "Forgot password?"
 msgstr "Wachtwoord vergeten?"
 
@@ -1627,6 +1606,9 @@ msgstr "Scorepunten toekennen"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Let op, alle hiermee verbonden data gaat permanent verloren."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
 
 msgid "Attention!"
 msgstr "Opgelet!"
@@ -1972,23 +1954,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr "Wachtwoord veranderen aangevraagd."
 
-msgid "Thank you!"
-msgstr "Bedankt!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "We zullen ons best doen zo snel als mogelijk op je te reageren."
-
-msgid "Remember your receipt for this submission."
-msgstr "Onthoud de code voor jouw inzending."
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Gebruik de 16 cijferige code om in te loggen. Hiermee heb je de mogelijkheid berichten te bekijken die wij verstuurd hebben naar jou, en je kunt tevens extra informatie toevoegen"
-
-msgid "View your submission"
-msgstr "Bekijk je inzending"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "De toezichthouder heeft een aanvraag ingediend om toegang te krijgen tot de identiteit van de klokkenluider."
@@ -2050,6 +2015,44 @@ msgstr "vul een geldig e-mailadres in."
 
 msgid "please enter numbers only."
 msgstr "vul enkel getallen in."
+
+msgid "Submissions disabled"
+msgstr "Inzendingen  uitgeschakeld"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "U bent een niet-anonieme verbinding tot stand aan het brengen en deze weblocatie ondersteunt alleen anonieme inzendingen."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Dit platform maakt gebruik van de GlobaLeaks software, welke speciaal ontworpen is om de identiteit van de indiener en ontvanger te beschermen tijdens het uitwisselen van bestanden."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "De software is ontwikkeld door de non-profit Hermes Centrum voor transparantie en digitale mensenrechten."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Steun Hermes via haar donatiepagina"
+
+msgid "Thank you!"
+msgstr "Bedankt!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "We zullen ons best doen zo snel als mogelijk op je te reageren."
+
+msgid "Remember your receipt for this submission."
+msgstr "Onthoud de code voor jouw inzending."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Gebruik de 16 cijferige code om in te loggen. Hiermee heb je de mogelijkheid berichten te bekijken die wij verstuurd hebben naar jou, en je kunt tevens extra informatie toevoegen"
+
+msgid "View your submission"
+msgstr "Bekijk je inzending"
 
 msgid "Recipient selection"
 msgstr "Ontvangerselectie"

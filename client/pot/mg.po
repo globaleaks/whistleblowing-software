@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1534,27 +1534,6 @@ msgstr "Votre nouvelle adresse courriel a été validée."
 msgid "Before proceeding, please set a new password."
 msgstr "Avant de continuer, veuillez définir un nouveau mot de passe."
 
-msgid "Submissions disabled"
-msgstr "Envois désactivés"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Vous êtes connecté à ce serveur sans anonymat, mais il ne prend en charge que les envois anonymes."
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Cette plateforme utilise le logiciel GlobaLeaks, spécialement conçu pour protéger l’identité de l’expéditeur et du destinataire lors d’échanges d’informations."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "Le logiciel est développé par le Centre Hermès pour la transparence et les droits numériques de la personne, sans but lucratif."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Veuillez encourager Hermès en visitant leur page de don."
-
 msgid "Forgot password?"
 msgstr "Mot de passe oublié ?"
 
@@ -1608,6 +1587,9 @@ msgstr "Attribuer un pointage"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Veuillez prendre note que toutes les données associées seront irrémédiablement supprimées."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
 
 msgid "Attention!"
 msgstr "Attention !"
@@ -1953,23 +1935,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr "Une réinitialisation de mot de passe a été demandée."
 
-msgid "Thank you!"
-msgstr "Misaotra anao !"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Hiezaka ny hifanerasera aminao ao anatin'ny fotoana fohy izahay."
-
-msgid "Remember your receipt for this submission."
-msgstr "Tadidio ary ny tarehimarika miisa 16 omena anao mba ahafahanao miditra indray amin'io fitorohana nataonao io."
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Ampiasao ny tarehimarika miisa 16 anananao mba ahafahanao miditra amin'ny fitorohana efa nataonao. Rehefa taditra ianao dia ahita ireo hafatra izay alefan'ny tompon'andraikitra mandray ny fitorohana, ary ahafahanao manome fanampim-baovao sy porofo bebe kokoa."
-
-msgid "View your submission"
-msgstr "Eto raha hijery ny fitorohana nalefanao"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "L’accès à l’identité du lanceur d’alerte a été demandé au gardien. "
@@ -2031,6 +1996,44 @@ msgstr "veuillez saisir une adresse courriel valide."
 
 msgid "please enter numbers only."
 msgstr "veuillez ne saisir que des chiffres."
+
+msgid "Submissions disabled"
+msgstr "Envois désactivés"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Vous êtes connecté à ce serveur sans anonymat, mais il ne prend en charge que les envois anonymes."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Cette plateforme utilise le logiciel GlobaLeaks, spécialement conçu pour protéger l’identité de l’expéditeur et du destinataire lors d’échanges d’informations."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Le logiciel est développé par le Centre Hermès pour la transparence et les droits numériques de la personne, sans but lucratif."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Veuillez encourager Hermès en visitant leur page de don."
+
+msgid "Thank you!"
+msgstr "Misaotra anao !"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Hiezaka ny hifanerasera aminao ao anatin'ny fotoana fohy izahay."
+
+msgid "Remember your receipt for this submission."
+msgstr "Tadidio ary ny tarehimarika miisa 16 omena anao mba ahafahanao miditra indray amin'io fitorohana nataonao io."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Ampiasao ny tarehimarika miisa 16 anananao mba ahafahanao miditra amin'ny fitorohana efa nataonao. Rehefa taditra ianao dia ahita ireo hafatra izay alefan'ny tompon'andraikitra mandray ny fitorohana, ary ahafahanao manome fanampim-baovao sy porofo bebe kokoa."
+
+msgid "View your submission"
+msgstr "Eto raha hijery ny fitorohana nalefanao"
 
 msgid "Recipient selection"
 msgstr "Sélection du destinataire"

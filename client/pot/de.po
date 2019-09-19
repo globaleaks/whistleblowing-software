@@ -47,7 +47,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1118,7 +1118,7 @@ msgid "Test the configuration"
 msgstr "Konfiguration testen"
 
 msgid "Reset SMTP configuration"
-msgstr ""
+msgstr "SMTP-Konfiguration zurücksetzen"
 
 msgid "Template"
 msgstr "Vorlage"
@@ -1388,7 +1388,7 @@ msgid "Checkbox label"
 msgstr ""
 
 msgid "Add multimedia content"
-msgstr ""
+msgstr "Multimedia-Inhalt hinzufügen"
 
 msgid "Image"
 msgstr "Bild"
@@ -1445,7 +1445,7 @@ msgid "Site settings"
 msgstr "Seiteneinstellungen"
 
 msgid "Case management"
-msgstr ""
+msgstr "Fall-Verwaltung"
 
 msgid "Network settings"
 msgstr "Netzwerkeinstellungen"
@@ -1504,7 +1504,7 @@ msgid "Language"
 msgstr "Sprache"
 
 msgid "Enable email notifications"
-msgstr ""
+msgstr "E-Mail-Benachrichtigungen aktivieren"
 
 msgid "Details of the PGP key:"
 msgstr "Details des PGP-Schlüssels:"
@@ -1562,27 +1562,6 @@ msgstr ""
 msgid "Before proceeding, please set a new password."
 msgstr ""
 
-msgid "Submissions disabled"
-msgstr "Einreichungen deaktiviert"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Sie versuchen, eine nicht anonyme Verbindung zu diesem server herzustellen. Dieser server.erlaubt nur anonyme Verbindungen. "
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Diese Plattform nutzt die GlobaLeaks-Software, die speziell entwickelt wurde, um die Identität des Hinweisgebers und des Empfängers während des Austauschs von Material zu schützen."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "Die Software wird von der Non-Profit-Organisation Hermes Center for Transparency and Digital Human Rights entwickelt."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Bitte unterstützen Sie Hermes über seine Spendenseite."
-
 msgid "Forgot password?"
 msgstr "Passwort vergessen?"
 
@@ -1636,6 +1615,9 @@ msgstr "Vergeben Sie Punkte"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Bitte beachten Sie, dass alle zugehörigen Daten unwiederbringlich verloren gehen."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
 
 msgid "Attention!"
 msgstr "Achtung!"
@@ -1981,23 +1963,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Thank you!"
-msgstr "Vielen Dank!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Remember your receipt for this submission."
-msgstr "Merken Sie sich Ihren Schlüsselcode für diese Einreichung."
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Verwenden Sie den 16-stelligen Zahlencode, um sich einzuloggen. Anschließend können Sie die Mitteilungen sehen, die wir Ihnen geschickt haben, und zusätzliche Informationen hinzufügen."
-
-msgid "View your submission"
-msgstr "Ihre Einreichung ansehen"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Zugriff auf die Identität des Hinweisgebers wurde beim Verwalter angefordert."
@@ -2059,6 +2024,44 @@ msgstr "bitte geben SIe eine gültige E-Mail-Adresse ein."
 
 msgid "please enter numbers only."
 msgstr "bitte nur Zahlen eingeben."
+
+msgid "Submissions disabled"
+msgstr "Einreichungen deaktiviert"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Sie versuchen, eine nicht anonyme Verbindung zu diesem server herzustellen. Dieser server.erlaubt nur anonyme Verbindungen. "
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Diese Plattform nutzt die GlobaLeaks-Software, die speziell entwickelt wurde, um die Identität des Hinweisgebers und des Empfängers während des Austauschs von Material zu schützen."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Die Software wird von der Non-Profit-Organisation Hermes Center for Transparency and Digital Human Rights entwickelt."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Bitte unterstützen Sie Hermes über seine Spendenseite."
+
+msgid "Thank you!"
+msgstr "Vielen Dank!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Remember your receipt for this submission."
+msgstr "Merken Sie sich Ihren Schlüsselcode für diese Einreichung."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Verwenden Sie den 16-stelligen Zahlencode, um sich einzuloggen. Anschließend können Sie die Mitteilungen sehen, die wir Ihnen geschickt haben, und zusätzliche Informationen hinzufügen."
+
+msgid "View your submission"
+msgstr "Ihre Einreichung ansehen"
 
 msgid "Recipient selection"
 msgstr "Empfängerauswahl"

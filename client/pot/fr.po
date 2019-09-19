@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -720,7 +720,7 @@ msgid "Enable two factor authentication"
 msgstr "Activer l’authentification à deux facteurs"
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgstr "Permettre aux sites Web suivants d’intégrer la plateforme à l’intérieur de cadres « iframes »"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Autoriser les destinataires à repousser la date d’expiration des envois"
@@ -834,7 +834,7 @@ msgid "Enable simplified login"
 msgstr "Activer la connexion simplifiée"
 
 msgid "Enable HSTS preload"
-msgstr ""
+msgstr "Activer le préchargement HSTS"
 
 msgid "Logging level"
 msgstr "Niveau de journalisation"
@@ -1110,7 +1110,7 @@ msgid "Test the configuration"
 msgstr "Tester la configuration"
 
 msgid "Reset SMTP configuration"
-msgstr ""
+msgstr "Réinitialiser la configuration SMTP"
 
 msgid "Template"
 msgstr "Modèle"
@@ -1119,7 +1119,7 @@ msgid "Configuration in progress"
 msgstr "Configuration en cours"
 
 msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
+msgstr "La plateforme sera accessible par HTTPS à l’adresse suivante :"
 
 msgid "Hostname"
 msgstr "Nom d’hôte"
@@ -1554,32 +1554,11 @@ msgstr "Votre nouvelle adresse courriel a été validée."
 msgid "Before proceeding, please set a new password."
 msgstr "Avant de continuer, veuillez définir un nouveau mot de passe."
 
-msgid "Submissions disabled"
-msgstr "Envois désactivés"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Vous êtes connecté à ce serveur sans anonymat, mais il ne prend en charge que les envois anonymes."
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Cette plateforme utilise le logiciel GlobaLeaks, spécialement conçu pour protéger l’identité de l’expéditeur et du destinataire lors d’échanges d’informations."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "Le logiciel est développé par le Centre Hermès pour la transparence et les droits numériques de la personne, sans but lucratif."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Veuillez encourager Hermès en visitant leur page de don."
-
 msgid "Forgot password?"
 msgstr "Mot de passe oublié ?"
 
 msgid "Enter the two factor authentication code"
-msgstr ""
+msgstr "Saisissez le code d’authentification à deux facteurs"
 
 msgid "Authentication failed"
 msgstr "Échec lors de l’authentification"
@@ -1629,6 +1608,9 @@ msgstr "Attribuer un pointage"
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Veuillez prendre note que toutes les données associées seront irrémédiablement supprimées."
 
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
+
 msgid "Attention!"
 msgstr "Attention !"
 
@@ -1636,10 +1618,10 @@ msgid "Instructions"
 msgstr "Instructions"
 
 msgid "Install an authenticator app on your phone"
-msgstr ""
+msgstr "Installez une appli d’authentification sur votre téléphone"
 
 msgid "Scan the QR code with the app"
-msgstr ""
+msgstr "Balayez le code QR avec l’appli"
 
 msgid "Close"
 msgstr "Fermer"
@@ -1651,7 +1633,7 @@ msgid ""
 "Please annotate and store this key in a safe place. It will be necessary if "
 "you lose your personal password to recover the access to your account with "
 "no data loss."
-msgstr ""
+msgstr "Veuillez prendre cette clé par écrit et la garder en lieu sûr. Si vous perdiez votre mot de passe personnel, elle serait exigée afin d’accéder à votre compte sans perte de données."
 
 msgid "Welcome!"
 msgstr "Bienvenue !"
@@ -1736,10 +1718,10 @@ msgid "Show"
 msgstr "Afficher"
 
 msgid "Set up email encryption by providing a PGP public key"
-msgstr ""
+msgstr "Configurez le chiffrement des courriels en fournissant une clé publique PGP"
 
 msgid "Get the encryption recovery key"
-msgstr ""
+msgstr "Obtenez la clé de récupération de chiffrement"
 
 msgid "Current password"
 msgstr "Mot de passe actuel"
@@ -1953,7 +1935,7 @@ msgid "These files have been attached to your submission by the recipients."
 msgstr "Ces fichiers ont été joints à votre envoi par les destinataires."
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "La clé de récupération fournie n’est pas valide."
 
 msgid "The provided reset token is invalid or expired."
 msgstr "Le jeton de réinitialisation fourni est invalide ou expiré."
@@ -1972,23 +1954,6 @@ msgstr "Saisissez votre clé de récupération de chiffrement pour achever la pr
 
 msgid "Password reset requested."
 msgstr "Une réinitialisation de mot de passe a été demandée."
-
-msgid "Thank you!"
-msgstr "Merci !"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Nous essaierons de vous contacter dès que possible."
-
-msgid "Remember your receipt for this submission."
-msgstr "Souvenez-vous de votre reçu pour cet envoi."
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Utilisez le reçu à 16 chiffres pour vous connecter. Il vous permettra de lire les messages que nous vous avons envoyés, et aussi d’ajouter des renseignements complémentaires."
-
-msgid "View your submission"
-msgstr "Visualisez votre envoi"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -2051,6 +2016,44 @@ msgstr "veuillez saisir une adresse courriel valide."
 
 msgid "please enter numbers only."
 msgstr "veuillez ne saisir que des chiffres."
+
+msgid "Submissions disabled"
+msgstr "Envois désactivés"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Vous êtes connecté à ce serveur sans anonymat, mais il ne prend en charge que les envois anonymes."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Cette plateforme utilise le logiciel GlobaLeaks, spécialement conçu pour protéger l’identité de l’expéditeur et du destinataire lors d’échanges d’informations."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Le logiciel est développé par le Centre Hermès pour la transparence et les droits numériques de la personne, sans but lucratif."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Veuillez encourager Hermès en visitant leur page de don."
+
+msgid "Thank you!"
+msgstr "Merci !"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Nous essaierons de vous contacter dès que possible."
+
+msgid "Remember your receipt for this submission."
+msgstr "Souvenez-vous de votre reçu pour cet envoi."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Utilisez le reçu à 16 chiffres pour vous connecter. Il vous permettra de lire les messages que nous vous avons envoyés, et aussi d’ajouter des renseignements complémentaires."
+
+msgid "View your submission"
+msgstr "Visualisez votre envoi"
 
 msgid "Recipient selection"
 msgstr "Sélection du destinataire"

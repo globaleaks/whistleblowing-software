@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-14 12:44+0000\n"
+"PO-Revision-Date: 2019-09-19 13:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1519,27 +1519,6 @@ msgstr ""
 msgid "Before proceeding, please set a new password."
 msgstr ""
 
-msgid "Submissions disabled"
-msgstr ""
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "თქვენ დამაკავშირებელი სერვერზე გარეშე ანონიმურობის და ამ სერვერზე მხარს უჭერს მხოლოდ ანონიმური წარდგინება"
-
-msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr ""
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "პროგრამული უზრუნველყოფა მიერ შემუშავებული არაკომერციული Hermes ცენტრი გამჭვირვალობა და ციფრული ადამიანის უფლებები."
-
-msgid "Please support Hermes through their donation page."
-msgstr "გთხოვთ მხარი Hermes მათი შემოწირულობის გვერდი."
-
 msgid "Forgot password?"
 msgstr ""
 
@@ -1592,6 +1571,9 @@ msgid "Assign score points"
 msgstr "მიანიჭეთ ქულა რაოდენობა"
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
 
 msgid "Attention!"
@@ -1938,23 +1920,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Thank you!"
-msgstr "მადლობა!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Remember your receipt for this submission."
-msgstr ""
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr ""
-
-msgid "View your submission"
-msgstr "ნახეთ თქვენი წარდგენის"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "ხელმისაწვდომობა მამხილებლის ვინაობა უკვე მოითხოვა მზრუნველი."
@@ -2016,6 +1981,44 @@ msgstr ""
 
 msgid "please enter numbers only."
 msgstr ""
+
+msgid "Submissions disabled"
+msgstr ""
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "თქვენ დამაკავშირებელი სერვერზე გარეშე ანონიმურობის და ამ სერვერზე მხარს უჭერს მხოლოდ ანონიმური წარდგინება"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr ""
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "პროგრამული უზრუნველყოფა მიერ შემუშავებული არაკომერციული Hermes ცენტრი გამჭვირვალობა და ციფრული ადამიანის უფლებები."
+
+msgid "Please support Hermes through their donation page."
+msgstr "გთხოვთ მხარი Hermes მათი შემოწირულობის გვერდი."
+
+msgid "Thank you!"
+msgstr "მადლობა!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Remember your receipt for this submission."
+msgstr ""
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr ""
+
+msgid "View your submission"
+msgstr "ნახეთ თქვენი წარდგენის"
 
 msgid "Recipient selection"
 msgstr "მიმღების შერჩევა"
