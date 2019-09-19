@@ -790,7 +790,7 @@ var GLClient = angular.module("GLClient", [
          $rootScope.$emit("REFRESH");
        }
 
-       if (((e.which || e.keyCode) === 112) && (e.ctrlKey || e.metaKey)) { /* (ctrl or meta) + F1 */
+       if ((e.which || e.keyCode) === 112) { /* F1 */
          e.preventDefault();
          $rootScope.test_encryption = true;
        }

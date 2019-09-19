@@ -98,17 +98,29 @@ exports.waitForFile = function (filename, timeout) {
   }, t);
 };
 
-exports.login_admin = async function() {
-  await browser.get("/#/admin");
-  await element(by.model("loginData.loginUsername")).sendKeys("admin");
-  await element(by.model("loginData.loginPassword")).sendKeys(exports.vars["user_password"]);
-  await element(by.id("login-button")).click();
-  await exports.waitForUrl("/admin/home");
-};
-
 exports.login_whistleblower = async function(receipt) {
   await browser.get("/#/");
   await element(by.model("formatted_receipt")).sendKeys(receipt);
+};
+
+exports.login_admin = async function(username, password, url, firstlogin) {
+  username = username === undefined ? "admin" : username;
+  password = password === undefined ? exports.vars["user_password"] : password;
+  url = url === undefined ? "/#/login" : url;
+
+  await browser.get(url);
+  await element(by.model("loginData.loginUsername")).sendKeys(username);
+  await element(by.model("loginData.loginPassword")).sendKeys(password);
+  await element(by.id("login-button")).click();
+
+  if (firstlogin) {
+    url = "/forcedpasswordchange";
+  } else {
+    url = url.split("#")[1];
+    url = url === "/login" ? "/admin/home" : url;
+  }
+
+  await exports.waitForUrl(url);
 };
 
 exports.login_receiver = async function(username, password, url, firstlogin) {
