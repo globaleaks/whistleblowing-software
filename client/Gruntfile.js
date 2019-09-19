@@ -286,7 +286,7 @@ module.exports = function(grunt) {
         ]
       },
       dist: {
-        src: ['tmp/css/*.css', '!tmp/css/nopostcss.css']
+        src: 'tmp/css/*.css'
       }
     }
   });

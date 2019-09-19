@@ -449,3 +449,8 @@ input[type="file"] {
 .custom-file-label::after {
   opacity: 0;
 }
+
+html[dir="rtl"] #creditCard,  html[dir="ltr"] #creditCard {
+  width: 20em;
+  direction: ltr;
+}
