@@ -1,3 +1,6 @@
+Changes in version 3.11.6 - 2019-09-19
+    Fix packaging issue of 3.11.5 in relation to bootstrap inclusion
+
 Changes in version 3.11.5 - 2019-09-19
     Bump npm dependencies to latest stables versions
     Make it possible for the whistleblower to remove a file before
