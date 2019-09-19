@@ -277,6 +277,17 @@ module.exports = function(grunt) {
           input: "_key:y"
         }
       }
+    },
+
+    postcss: {
+      options: {
+        processors: [
+          require('postcss-rtl')()
+        ]
+      },
+      dist: {
+        src: 'tmp/css/*.css'
+      }
     }
   });
 
@@ -290,6 +301,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-compress");
   grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks("grunt-contrib-copy");
+  grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks("grunt-string-replace");
   grunt.loadNpmTasks("grunt-usemin");
   grunt.loadNpmTasks("gruntify-eslint");
@@ -886,7 +898,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask("build",
-    ["clean", "copy:sources", "copy:build", "includeExternalFiles", "ngtemplates", "useminPrepare", "concat", "usemin", "string-replace", "cleanupWorkingDirectory", "compress"]);
+    ["clean", "copy:sources", "copy:build", "includeExternalFiles", "ngtemplates", "useminPrepare", "concat", "postcss", "usemin", "string-replace", "cleanupWorkingDirectory", "compress"]);
 
   grunt.registerTask("instrument-client", [
     "clean",
