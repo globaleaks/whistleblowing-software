@@ -129,11 +129,6 @@
   font-size: 1.25em;
 }
 
-#creditCard {
-  width: 20em;
-  direction: ltr;
-}
-
 .err-link {
   padding: 2px 4px;
   background-color: #f9f2f4;
@@ -149,12 +144,8 @@
   padding-bottom: 1.4em;
 }
 
-html[dir="ltr"] .question .question {
+.question .question {
   padding: 0 0 0 0.8em;
-}
-
-html[dir="rtl"] .question .question {
-  padding: 0 0.8em 0 0;
 }
 
 .mapoutline {
@@ -175,7 +166,7 @@ div.tooltip {
 }
 
 
-html[dir] .fileButtons {
+.fileButtons {
   position: absolute;
   top: 0;
   z-index: 666;
@@ -184,10 +175,6 @@ html[dir] .fileButtons {
   padding: 1em;
 }
 
-html[dir="ltr"] .fileButtons {
+.fileButtons {
   text-align: right;
-}
-
-html[dir="rtl"] .fileButtons {
-  text-align: left;
 }

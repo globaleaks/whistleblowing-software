@@ -68,10 +68,10 @@
           <span class="input-group-append" data-ng-click="open()"><i class="input-group-text fa fa-calendar"></i></span>
         </div>
       </div>
-      <div data-ng-switch-when="daterange">
-        <span class="form-group form-inline">
+      <div data-ng-switch-when="daterange" class="form-inline">
+        <span class="form-group">
           <label data-translate>From</label>
-          <div class="input-group">
+          <div class="input-group mx-1">
             <input id="{{::fieldEntry}}"
                    name="input-{{entryIndex}}"
                    class="form-control inputelem"
@@ -90,9 +90,9 @@
             <span class="input-group-append" data-ng-click="openStart()"><i class="input-group-text fa fa-calendar"></i></span>
           </div>
         </span>
-        <span class="form-group form-inline spaced" data-ng-if="daterange.start">
+        <span class="form-group mx-1" data-ng-if="daterange.start">
           <label data-translate>To</label>
-          <div class="input-group">
+          <div class="input-group mx-1">
             <input id="{{::fieldEntry}}"
                    name="input-{{entryIndex}}"
                    class="form-control inputelem"
@@ -111,7 +111,7 @@
             <span class="input-group-append" data-ng-click="openEnd()"><i class="input-group-text fa fa-calendar"></i></span>
           </div>
         </span>
-        <span class="spaced" data-ng-if="daterange.start">
+        <span class="ml-1" data-ng-if="daterange.start">
           <button type="button" class="btn btn-secondary" ng-click="clear()"><i class="fa fa-times-circle"></i></button>
         </span>
       </div>

@@ -171,7 +171,8 @@ table {
   padding: 1em;
 }
 
-html[dir] .imageUpload .changePictureButton, html[dir] .imageUpload .deletePictureButton {
+.imageUpload .changePictureButton,
+.imageUpload .deletePictureButton {
   position: absolute;
   bottom: 10px;
   text-align: center;
@@ -339,11 +340,6 @@ html[dir] .imageUpload .changePictureButton, html[dir] .imageUpload .deletePictu
   min-height: 30px;
 }
 
-.side-spaced {
-  margin-left: 2px;
-  margin-right: 2px;
-}
-
 .disabled-interface {
   pointer-events: none;
   user-select: none;
@@ -407,16 +403,11 @@ input[type="file"] {
   line-height: 1.1;
 }
 
-.spaced-heading-elem {
-  padding-right: 2em;
-  padding-left: 2em;
-}
-
 .nav, .pagination, .carousel, .card-title a {
   cursor: pointer;
 }
 
-html[dir] .card {
+.card {
   margin-bottom: 1em;
 }
 
@@ -432,69 +423,26 @@ html[dir] .card {
   }
 }
 
-html[dir] .btn-circle {
-  width: 2em;
-  height: 2em;
-  font-size: 0.8em;
-  text-align: center;
-  line-height: 1.428571429;
-  border-radius: 1em;
-  padding: 0;
-}
-
-html[dir='ltr'] #LogoBox,
-html[dir='ltr'] #TitleBox,
-html[dir='rtl'] #UserBox {
+#LogoBox,
+#TitleBox {
   float: left;
 }
 
-html[dir='rtl'] #LogoBox,
-html[dir='rtl'] #TitleBox,
-html[dir='ltr'] #UserBox {
+#UserBox {
   float: right;
 }
 
-html[dir='ltr'] .textarea-btn {
-  right: 1em;
-}
-
-html[dir='rtl'] .textarea-btn {
+.textarea-btn,
+.imageUpload .changePictureButton,
+.imageUpload .deletePictureButton {
   left: 1em;
 }
-
-html[dir='ltr'] .imageUpload .changePictureButton, html[dir='rtl'] .imageUpload .deletePictureButton {
-  left: 10px;
-}
-
-html[dir='ltr'] .imageUpload .changePictureButton, html[dir='rtl'] .imageUpload .deletePictureButton {
-  right: 10px;
-}
-
-html[dir='ltr'] .spaced {
-  padding-left: 1.4em;
-}
-
-html[dir='rtl'] .spaced {
-  padding-right: 1.4em;
-}
-
-html[dir='rtl'] .fa-arrow-right:before {
-  content: "\f060"; }
-
-html[dir='rtl'] .fa-arrow-left:before {
-  content: "\f061"; }
-
-html[dir='rtl'] .fa-arrow-circle-right:before {
-  content: "\f0a8"; }
-
-html[dir='rtl'] .fa-arrow-circle-left:before {
-  content: "\f0a9"; }
 
 .custom-file {
   width: auto;
 }
 
-.custom-file label, label .file-upload {
+.imageUploadBox label, .custom-file label, label .file-upload {
   margin: 0;
 }
 
