@@ -1,3 +1,12 @@
+Changes in version 3.11.5 - 2019-09-19
+    Bump npm dependencies to latest stables versions
+    Make it possible for the whistleblower to remove a file before
+    upload completion (#2521)
+    Add demo badge to inform users to not use the platform for
+    real submissions
+    Avoid user of browser navigation reducing browser evidences (#2668)
+    Update translations
+
 Changes in version 3.11.4 - 2019-09-16
     Fix defect in field triggers
     WBPA: Enable HTTPS preload
