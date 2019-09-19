@@ -91,8 +91,8 @@ table {
   white-space: pre-wrap;
 }
 
-#LanguagePickerBox {
-  margin-bottom: 0.8em;
+#LanguagePickerBox, #LoginStatusBox, #LoginFormBox {
+  display: flex;
 }
 
 .language-link {
