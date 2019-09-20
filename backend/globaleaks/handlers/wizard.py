@@ -109,7 +109,8 @@ def db_wizard(session, tid, request, client_using_tor, language):
                         'anonymize_outgoing_connections',
                         'frame_ancestors',
                         'password_change_period',
-                        'default_questionnaire']:
+                        'default_questionnaire',
+                        'enable_password_reset']:
             node.set_val(varname, root_tenant_node.get_val(varname))
 
         context.questionnaire_id = root_tenant_node.get_val(u'default_questionnaire')
