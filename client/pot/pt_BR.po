@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-09-20 03:29+0000\n"
+"Last-Translator: Chacal E.\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -719,7 +719,7 @@ msgid "Enable two factor authentication"
 msgstr "Ativar autenticação por dois fatores"
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgstr "Permitir que os sites a seguir incorporem a plataforma dentro de iframes"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Permitir que pessoas destinatárias adiem a data de expiração de envios"
@@ -833,7 +833,7 @@ msgid "Enable simplified login"
 msgstr "Ativar login simplificado"
 
 msgid "Enable HSTS preload"
-msgstr ""
+msgstr "Ativar pré-carregamento do HSTS"
 
 msgid "Logging level"
 msgstr "Nível de registro"
@@ -1109,7 +1109,7 @@ msgid "Test the configuration"
 msgstr "Testar a configuração"
 
 msgid "Reset SMTP configuration"
-msgstr ""
+msgstr "Redefinir configuração SMTP"
 
 msgid "Template"
 msgstr "Modelo"
@@ -1118,7 +1118,7 @@ msgid "Configuration in progress"
 msgstr "Configuração em andamento"
 
 msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
+msgstr "A plataforma estará acessível via HTTPS no seguinte endereço:"
 
 msgid "Hostname"
 msgstr "Servidor"
@@ -1557,7 +1557,7 @@ msgid "Forgot password?"
 msgstr "Esqueceu a senha?"
 
 msgid "Enter the two factor authentication code"
-msgstr ""
+msgstr "Digite o código de autenticação de dois fatores"
 
 msgid "Authentication failed"
 msgstr "Falha na Autenticação"
@@ -1608,19 +1608,19 @@ msgid "Please note that all the associated data will be permanently lost."
 msgstr "Favor notar que todos os dados assocados serão permanentemente perdidos."
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
+msgstr "Esta é uma plataforma de demonstração, não a utilize para envios reais."
 
 msgid "Attention!"
 msgstr "Atenção!"
 
 msgid "Instructions"
-msgstr ""
+msgstr "Instruções"
 
 msgid "Install an authenticator app on your phone"
-msgstr ""
+msgstr "Instale um aplicativo autenticador no seu telefone"
 
 msgid "Scan the QR code with the app"
-msgstr ""
+msgstr "Digitalize o código QR com o aplicativo"
 
 msgid "Close"
 msgstr "Fechar"
@@ -1632,7 +1632,7 @@ msgid ""
 "Please annotate and store this key in a safe place. It will be necessary if "
 "you lose your personal password to recover the access to your account with "
 "no data loss."
-msgstr ""
+msgstr "Anote e armazene essa chave em um local seguro. Será necessário se você perder sua senha pessoal para recuperar o acesso à sua conta sem perda de dados."
 
 msgid "Welcome!"
 msgstr "Bem vindo!"
@@ -1717,10 +1717,10 @@ msgid "Show"
 msgstr "Mostrar"
 
 msgid "Set up email encryption by providing a PGP public key"
-msgstr ""
+msgstr "Configure a criptografia de email fornecendo uma chave pública PGP"
 
 msgid "Get the encryption recovery key"
-msgstr ""
+msgstr "Obtenha a chave de recuperação de criptografia"
 
 msgid "Current password"
 msgstr "Senha atual"
@@ -1934,7 +1934,7 @@ msgid "These files have been attached to your submission by the recipients."
 msgstr "Esses arquivos foram anexados à sua submissão pelo destinatário."
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "A chave de recuperação fornecida é inválida."
 
 msgid "The provided reset token is invalid or expired."
 msgstr "O token de redefinição fornecido é inválido ou expirou."

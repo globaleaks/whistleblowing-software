@@ -503,7 +503,7 @@
   "The operation will reset the configuration and cannot be undone.": "操作によって設定がリセットされ、元に戻すことはできません。",
   "Assign score points": "スコアポイントを割り当て",
   "Please note that all the associated data will be permanently lost.": "すべての関連データが完全に失われますのでご注意ください。",
-  "This is a demo platform, please do not use it for real submissions.": "This is a demo platform, please do not use it for real submissions.",
+  "This is a demo platform, please do not use it for real submissions.": "これはデモプラットフォームです。実際の提出には使用しないでください。",
   "Attention!": "注意!",
   "Instructions": "説明",
   "Install an authenticator app on your phone": "お使いの電話に認証アプリをインストールする",

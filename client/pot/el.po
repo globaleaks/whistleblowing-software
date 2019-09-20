@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Adrian Pappas <pappasadrian@gmail.com>, 2018-2019
+# Alexandros Melidis <almel01@gmail.com>, 2019
 # annapapa1980 <anpapath3@gmail.com>, 2015
 # annapapa1980 <anpapath3@gmail.com>, 2015
 # Elektra M. <safiragon@yahoo.gr>, 2017
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2019
 # Vasilis Fotopoulos <basalba@gmail.com>, 2015
 # Wasilis <m.wasilis@yahoo.de>, 2013
 # Wasilis Mandratzis-Walz, 2015
@@ -15,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-20 14:42+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -368,7 +369,7 @@ msgid "HTTPS settings"
 msgstr "Ρυθμίσεις HTTPS"
 
 msgid "URL redirects"
-msgstr ""
+msgstr "Ανακατεύθυνση URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "Όρια ανίχνευσης ανωμαλίας"
@@ -495,7 +496,7 @@ msgid "Activate"
 msgstr "Ενεργοποίηση"
 
 msgid "Disactivate"
-msgstr ""
+msgstr "Απενεργοποιώ"
 
 msgid "Search"
 msgstr "Αναζήτηση"
@@ -642,7 +643,7 @@ msgid "Next"
 msgstr "Επόμενο"
 
 msgid "First"
-msgstr ""
+msgstr "Πρώτο"
 
 msgid "Last"
 msgstr "Τελευταίο"
@@ -687,22 +688,22 @@ msgstr "Ενεργοποίηση κρυπτογράφησης"
 
 msgid ""
 "Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
+msgstr "Το σύστημα επιτρέπεται να αποθηκεύει δεδομένα όταν δεν είναι διαθέσιμη η κρυπτογράφηση"
 
 msgid "Enable multisite feature"
-msgstr ""
+msgstr "Ενεργοποίηση της λειτουργίας πολλαπλών ιστοχώρων"
 
 msgid "Enable two factor authentication"
 msgstr "Ενεργοποίηση πιστοποίησης δυο παραγόντων"
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgstr "Στους κάτωθι ιστοχώρους επιτρέπεται να ενσωματώνουν την πλατφόρμα εντός iframes"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Επιτρέψτε στους παραλήπτες να αναβάλουν την ημερομηνία λήξης της υποβολής"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr "Μην εκθέσετε τα ονόματα των χρηστών"
 
 msgid "Allow recipients to delete submissions"
 msgstr "Επιτρέψτε στους παραλήπτες να διαγράφουν υποβολές"
@@ -731,7 +732,7 @@ msgid "Disable the privacy panel"
 msgstr "Απενεργοποιήστε το πλαίσιο προστασίας της ιδιωτικότητας "
 
 msgid "Disable the receipt hint"
-msgstr ""
+msgstr "Απενεργοποιήστε την υπόμνηση απόδειξης"
 
 msgid "Disable the donation panel"
 msgstr "Απενεργοποιήστε το πάνελ δωρεών"
@@ -798,7 +799,7 @@ msgid "Password"
 msgstr "Κωδικός Πρόσβασης"
 
 msgid "Enable password reset"
-msgstr ""
+msgstr "Ενεργοποιήστε την αλλαγή κωδικού "
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Να επιτρέπεται στους χρήστες να ανεβάζουν τα κλειδιά PGP τους"
@@ -1023,7 +1024,7 @@ msgid "Scoring system options"
 msgstr ""
 
 msgid "Threshold"
-msgstr ""
+msgstr "Κατώφλι"
 
 msgid "Value"
 msgstr "Τιμή"
@@ -2026,7 +2027,7 @@ msgstr ""
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr ""
+msgstr "Χρησιμοποιείστε το 16ψήφιο αποδεικτικό για να συνδεθείτε. Θα σας επιτρέψει να δείτε τα μηνύματα που σας στέλνουμε, και να προσθέσετε επιπλέον πληροφορές. "
 
 msgid "View your submission"
 msgstr "Δείτε την υποβολή σας"
@@ -2240,7 +2241,7 @@ msgid "Registration data:"
 msgstr "Δεδομένα εγγραφής:"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "Ιστοχώρος: (Url)"
 
 msgid "Name: {Name}"
 msgstr "Όνομα: {Name}"
@@ -2274,7 +2275,7 @@ msgid ""
 msgstr "Αυτό είναι ένα email για να σας ειδοποιήσουμε πως έγινε ένα νέο σχόλιο σε μια υπάρχουσα υποβολή."
 
 msgid "The submission can be accessed at:"
-msgstr ""
+msgstr "Η καταχώρηση είναι προσβάσιμη στο: "
 
 msgid "New comment"
 msgstr "Νέο σχόλιο"
@@ -2285,7 +2286,7 @@ msgid ""
 msgstr "Αυτό είναι ένα email για να σας ειδοποιήσουμε πως έγινε ένα αίτημα για αλλαγή της διεύθυνσης email σας σε {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
-msgstr ""
+msgstr "Κάντε κλίκ στον ακόλουθο σύνδεσμο για να επικυρώσετε αυτή την αλλαγή."
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2296,7 +2297,7 @@ msgid "Email change request"
 msgstr "Αίτηση αλλαγής email"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "Από: {Author}"
 
 msgid "Date: {EventTime}"
 msgstr "Ημερομηνία: {EventTime}"
