@@ -1,9 +1,7 @@
 # -*- coding: utf-8
 from six import text_type
-from six.moves.urllib.parse import urlunsplit  # pylint: disable=import-error
 
 from twisted.internet.defer import inlineCallbacks, returnValue
-from twisted.web.client import readBody
 
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.operation import OperationHandler
@@ -70,19 +68,6 @@ class AdminOperationHandler(OperationHandler):
         yield check_hostname(self.request.tid, req_args['value'])
         yield tw(db_set_config_variable, self.request.tid, u'hostname', req_args['value'])
 
-    @inlineCallbacks
-    def verify_hostname(self, req_args, *args, **kwargs):
-        net_agent = self.state.get_agent()
-
-        url = urlunsplit(('http', req_args['value'], 'robots.txt', None, None)).encode()
-
-        resp = yield net_agent.request(b'GET', url)
-        body = yield readBody(resp)
-
-        server_h = resp.headers.getRawHeaders(b'Server', [None])[-1].lower()
-        if not body.startswith(b'User-agent: *') or server_h != b'globaleaks':
-            raise EnvironmentError('Response unexpected')
-
     def reset_user_password(self, req_args, *args, **kwargs):
         return generate_password_reset_token(self.state,
                                              self.request.tid,
@@ -105,7 +90,6 @@ class AdminOperationHandler(OperationHandler):
     def operation_descriptors(self):
         return {
             'set_hostname': (AdminOperationHandler.set_hostname, {'value': text_type}),
-            'verify_hostname': (AdminOperationHandler.verify_hostname, {'value': text_type}),
             'reset_user_password': (AdminOperationHandler.reset_user_password, {'value': text_type}),
             'reset_onion_private_key': (AdminOperationHandler.reset_onion_private_key, {}),
             'reset_submissions': (AdminOperationHandler.reset_submissions, {})

@@ -15,26 +15,7 @@ GLClient.controller("AdminNetworkCtrl", ["$scope", "$http", function($scope, $ht
   ];
 
   $scope.setHostname = function() {
-    $scope.verifyFailed = false;
     $scope.Utils.setHostname($scope.admin.node.hostname);
-  };
-
-  $scope.verifyHostname = function() {
-    $scope.verifyFailed = false;
-
-    var req = {
-      "operation": "verify_hostname",
-      "args": {
-        "value": $scope.admin.node.hostname
-      }
-    };
-
-    return $http({method: "PUT", url: "admin/config", data: req}).then(
-      function() {
-        $scope.verifyFailed = false;
-      }, function() {
-        $scope.verifyFailed = true;
-    });
   };
 
   $scope.resetOnionPrivateKey = function() {

@@ -38,12 +38,6 @@ class TestHostnameConfig(helpers.TestHandler):
 
         yield self.pp.start_defer
 
-        handler = self.request({'operation': 'verify_hostname', 'args': {'value': 'antani.gov'}}, role='admin')
-        yield self.assertFailure(handler.put(), Exception)
-
-        handler = self.request({'operation': 'verify_hostname', 'args': {'value': 'localhost:43434'}}, role='admin')
-        yield handler.put()
-
         for value in ['', 'onion', 'localhost', 'antani.onion', 'antani.localhost']:
             handler = self.request({'operation': 'set_hostname', 'args': {'value': value}}, role='admin')
             yield self.assertFailure(handler.put(), errors.InputValidationError)
