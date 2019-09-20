@@ -182,7 +182,7 @@ def db_user_update_user(session, tid, user_session, request):
             'user': user_desc,
             'new_email_address': request['mail_address'],
             'validation_token': user.change_email_token,
-            'node': db_admin_serialize_node(session, 1, user.language),
+            'node': db_admin_serialize_node(session, tid, user.language),
             'notification': db_get_notification(session, tid, user.language)
         }
 
