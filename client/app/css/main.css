@@ -432,7 +432,6 @@ input[type="file"] {
   float: right;
 }
 
-.textarea-btn,
 .imageUpload .changePictureButton,
 .imageUpload .deletePictureButton {
   left: 1em;
@@ -448,6 +447,10 @@ input[type="file"] {
 
 .custom-file-label::after {
   opacity: 0;
+}
+
+.textarea-btn {
+  right: 1em;
 }
 
 html[dir="rtl"] #creditCard,  html[dir="ltr"] #creditCard {

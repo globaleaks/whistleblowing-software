@@ -7,14 +7,14 @@
           <input type="text" class="form-control" name="path1" data-ng-model="new_redirect.path1" />
         </div>
       </div>
-      <div class="form-group d-block">
-	<span class="form-group">
+      <div class="form-group d-block ml-2">
+	<span class="input-group">
           <span class="input-group-prepend"><span class="input-group-text" data-translate>To</span></span>
           <input type="text" class="form-control" name="path2" data-ng-model="new_redirect.path2" />
 	</span>
       </div>
       <button type="submit"
-              class="btn btn-primary"
+              class="btn btn-primary ml-2"
               data-ng-disabled="redirectAddForm.$invalid"
               data-ng-click="add_redirect()">
         <i class="fa fa-plus"></i>
