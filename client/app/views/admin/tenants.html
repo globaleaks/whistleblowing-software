@@ -188,6 +188,15 @@
                     <label data-translate>Hostname</label>
                     <input name="name" class="form-control" data-ng-model="tenant.subdomain" type="text" subdomainvalidator required>
                   </div>
+                  <div class="form-group">
+                    <label data-translate>Mode:</label>
+                    <select name="type" class="form-control" data-ng-model="tenant.mode" required>
+                      <option value="default">DEFAULT</option>
+                      <option value="demo">DEMO</option>
+                      <option value="whistleblowing.it">WHISTLEBLOWINGPA</option>
+                      <option value="eat">EAT</option>
+                    </select>
+                  </div>
                   <div class="form-group" data-ng-if="tenant.signup" data-ng-include="'views/partials/signup.html'"></div>
                 </div>
               </div>

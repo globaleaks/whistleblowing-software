@@ -12,7 +12,8 @@ from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.admin import file
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.orm import transact
+from globaleaks.models.config import db_set_config_variable
+from globaleaks.orm import transact, tw
 from globaleaks.rest import requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
@@ -125,7 +126,9 @@ def update(session, id, request):
 
     # A tenant created via signup but not activated may require initialization
     if not session.query(models.Config).filter(models.Config.tid == id).count():
-        db_initialize(session, tenant, 'default')
+        db_initialize(session, tenant, request['mode'])
+    else:
+        db_set_config_variable(session, id, u'mode', request['mode'])
 
     db_refresh_memory_variables(session, [id])
 
