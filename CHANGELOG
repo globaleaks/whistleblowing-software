@@ -1,3 +1,7 @@
+Changes in version 3.11.8 - 2019-09-20
+    Apply minor bugfixing
+    Update translations
+
 Changes in version 3.11.6 - 2019-09-19
     Fix packaging issue of 3.11.5 in relation to bootstrap inclusion
 
