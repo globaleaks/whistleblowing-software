@@ -1,5 +1,16 @@
 angular.module("GLClient")
 .controller("TenantCtrl", ["$scope", function($scope) {
+  $scope.tabs = [
+    {
+      title:"Main configuration",
+      template:"views/admin/sites/tab1.html"
+    },
+    {
+      title:"Sites",
+      template:"views/admin/sites/tab2.html"
+    },
+  ];
+
   $scope.search = undefined;
   $scope.currentPage = 1;
   $scope.itemsPerPage = 20;

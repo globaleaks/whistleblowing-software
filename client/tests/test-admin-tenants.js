@@ -1,6 +1,8 @@
 describe("admin configure, add, and delete tenants", function() {
   it("should add new tenant", async function() {
-    await browser.setLocation("admin/tenants");
+    await browser.setLocation("admin/sites");
+
+    await element(by.cssContainingText("a", "Sites")).click();
 
     var add_tenant = async function(tenant_label) {
       await element(by.css(".show-add-tenant-btn")).click();
