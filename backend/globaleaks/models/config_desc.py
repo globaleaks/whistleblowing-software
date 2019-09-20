@@ -162,8 +162,6 @@ ConfigDescriptor = {
     u'ip_filter_whistleblower': Unicode(default=u''),
     u'ip_filter_whistleblower_enable': Bool(default=False),
 
-    u'two_factor_auth': Bool(default=False),
-
     u'backup': Bool(default=False),
     u'backup_d': Int(default=3),
     u'backup_w': Int(default=3),
@@ -275,7 +273,6 @@ ConfigFilters = {
         u'log_level',
         u'log_accesses_of_internal_users',
         u'encryption',
-        u'two_factor_auth',
         u'multisite',
         u'adminonly',
         u'backup',
