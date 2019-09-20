@@ -570,9 +570,14 @@ var GLClient = angular.module("GLClient", [
     };
 
     $rootScope.setPage = function(page) {
-      $location.url('/');
+      $location.path('/');
       $rootScope.page = page;
       $rootScope.Utils.set_title();
+    }
+
+    $rootScope.setHomepage = function() {
+      $rootScope.setPage('homepage');
+      $rootScope.reload();
     }
 
     $rootScope.closeAlert = function (list, index) {
