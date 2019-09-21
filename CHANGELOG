@@ -1,4 +1,7 @@
-Changes in version 3.11.8 - 2019-09-20
+Changes in version 3.11.8 - 2019-09-21
+    Fix reversed check on HSTS preload header injection introduced in 3.11.4
+
+Changes in version 3.11.7 - 2019-09-20
     Apply minor bugfixing
     Update translations
 
