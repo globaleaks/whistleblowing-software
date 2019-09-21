@@ -444,7 +444,7 @@ class APIResourceWrapper(Resource):
     def set_headers(self, request):
         request.setHeader(b'Server', b'Globaleaks')
 
-        if request.client_proto == b'http':
+        if request.client_proto == b'https':
             if State.tenant_cache[request.tid].https_preload:
                 request.setHeader(b'Strict-Transport-Security',
                                   b'max-age=31536000; includeSubDomains; preload')
