@@ -61,11 +61,7 @@ class TestObjectValidators(TestCase):
             # DER formatted key
             'rsa_key.der',
             # PKCS8 encrypted private key
-            'rsa_key_monalisa_pass.pem',
-            # A cert and chain for the key that are mistakenly combinded
-            'cert_and_chain.pem',
-            # A certficate repeated a few times
-            'duplicated_chain.pem',
+            'rsa_key_monalisa_pass.pem'
         ]
 
         self.valid_setup = get_valid_setup()
@@ -201,8 +197,6 @@ class TestObjectValidators(TestCase):
             ('invalid/glbc_le_stage_cert.pem', 1),
             ('invalid/expired_cert.pem', 1),
             ('invalid/le-staging-chain.pem', 1),
-            ('invalid/cert_and_chain.pem', 2),
-            ('invalid/duplicated_chain.pem', 4),
             ('valid/chains/comodo_chain.pem', 3),
         ]
 
@@ -216,8 +210,3 @@ class TestObjectValidators(TestCase):
                 calced_chain_len = len(chain)
 
             self.assertEqual(calced_chain_len, chain_len)
-
-            # Check one time that the parse produced real results
-            if chain_path == 'invalid/cert_and_chain.pem':
-                self.assertEqual(self.valid_setup['cert'], chain[0])
-                self.assertEqual(self.valid_setup['chain'], chain[1])
