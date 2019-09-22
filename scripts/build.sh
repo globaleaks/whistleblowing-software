@@ -2,7 +2,7 @@
 
 set -e
 
-TARGETS="xenial stretch bionic"
+TARGETS="bionic xenial buster stretch"
 DISTRIBUTION="bionic"
 TAG="master"
 LOCAL_ENV=0

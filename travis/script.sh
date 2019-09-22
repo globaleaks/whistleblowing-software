@@ -107,6 +107,10 @@ elif [ "$GLTEST" = "build_and_install" ]; then
     sudo debootstrap --arch=amd64 xenial "$chroot" http://archive.ubuntu.com/ubuntu/
     sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" > /tmp/globaleaks_chroot/etc/apt/sources.list'
     sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu xenial-updates main universe" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
+  elif [ $BUILD_DISTRO = "buster" ]; then
+    sudo debootstrap --arch=amd64 buster "$chroot" http://deb.debian.org/debian/
+    sudo su -c 'echo "deb http://deb.debian.org/debian buster main contrib" > /tmp/globaleaks_chroot/etc/apt/sources.list'
+    sudo su -c 'echo "deb http://deb.debian.org/debian buster main contrib" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
   elif [ $BUILD_DISTRO = "stretch" ]; then
     sudo debootstrap --arch=amd64 stretch "$chroot" http://deb.debian.org/debian/
     sudo su -c 'echo "deb http://deb.debian.org/debian stretch main contrib" > /tmp/globaleaks_chroot/etc/apt/sources.list'

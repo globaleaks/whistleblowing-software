@@ -5,13 +5,15 @@ echo "Running Build & Install"
 distro="$(lsb_release -cs)"
 sudo apt-get -y update
 
-sudo apt-get -y install curl git debhelper devscripts dh-apparmor dh-python python python-pip python-setuptools python-sphinx
+sudo apt-get -y install curl git debhelper devscripts dh-apparmor dh-python python
 
-if [ $distro = "bionic" ]; then
+if [ $distro = "bionic" ] || [ "$distro" = "buster" ]; then
   sudo apt-get -y install python3-pip python3-setuptools python3-sphinx
+else
+  sudo apt-get -y install python-pip python-setuptools python-sphinx
 fi
 
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
 sudo apt-get -y install nodejs
 cd /build/GlobaLeaks
 sed -ie 's/key_bits = 2048/key_bits = 512/g' backend/globaleaks/settings.py
