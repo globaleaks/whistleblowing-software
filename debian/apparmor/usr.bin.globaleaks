@@ -13,9 +13,11 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     capability dac_read_search,
     capability sys_tty_config,
 
+    /etc/ r,
+    /etc/debian_version r,
     /etc/lsb-release r,
     /etc/mime.types r,
-    /etc/python2.7/** r,
+    /usr/python{,2,2.7,3,3.[0-9]}/** r,
 
     @{PROC}/ r,
     @{PROC}/@{pid}/fd/ r,
