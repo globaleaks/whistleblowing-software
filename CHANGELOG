@@ -1,3 +1,6 @@
+Changes in version 3.11.10 - 2019-09-22
+    Set Debian Buster as main supported platform
+
 Changes in version 3.11.9 - 2019-09-22
     Add packaging for Debian Buster (#2676)
 
