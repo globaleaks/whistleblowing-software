@@ -12,13 +12,14 @@ matrix:
   fast_finish: true
   include:
     - env: GLTEST='py3_test' TESTS_REQUIREMENTS='buster' CODACY=true
-      dist: buster
-      python: "3.7"
+      dist: bionic
+      python: "3.6"
       addons:
         chrome: stable
 
     - env: GLTEST='build_and_install' BUILD_DISTRO='buster'
-      python: "3.7"
+      dist: bionic
+      python: "3.6"
 
     - env: GLTEST='py2_test' TESTS_REQUIREMENTS='xenial'
       dist: xenial
@@ -27,60 +28,60 @@ matrix:
         chrome: stable
 
     - env: GLTEST='build_and_install' BUILD_DISTRO='bionic'
-      dist: bionic
-      python: "3.7"
+      dist: bionc
+      python: "3.6"
 
     - env: GLTEST='build_and_install' BUILD_DISTRO='xenial'
       dist: bionic
-      python: "3.7"
+      python: "3.6"
 
     - env: GLTEST='build_and_install' BUILD_DISTRO='stretch'
       dist: bionic
-      python: "3.7"
+      python: "3.6"
 
     - env: GLTEST='docker'
       dist: bionic
-      python: "3.7"
+      python: "3.6"
 
     - env: GLTEST='end2end-0' BROWSER='chrome 76'
       dist: bionic
-      python: "3.7"
+      python: "3.6"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-1' BROWSER='firefox 68'
       dist: bionic
-      python: "3.7"
+      python: "3.6"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-2' BROWSER='safari 12'
       dist: bionic
-      python: "3.7"
+      python: "3.6"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-3' BROWSER='edge 18'
       dist: bionic
-      python: "3.7"
+      python: "3.6"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-4' BROWSER='ie 11'
       dist: bionic
-      python: "3.7"
+      python: "3.6"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-5' BROWSER='android 8'
       dist: bionic
-      python: "3.7"
+      python: "3.6"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-6' BROWSER='iOS 12.4'
       dist: bionic
-      python: "3.7"
+      python: "3.6"
       addons:
         sauce_connect: true
 

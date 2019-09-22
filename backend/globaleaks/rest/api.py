@@ -295,7 +295,6 @@ class APIResourceWrapper(Resource):
         else:
             request.hostname = request.getRequestHostname()
 
-        request.hostname = request.hostname.split(b':')[0]
         request.port = request.getHost().port
 
         if (request.hostname == b'localhost' or
