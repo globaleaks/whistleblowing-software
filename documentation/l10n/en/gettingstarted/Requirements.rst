@@ -15,9 +15,9 @@ Hardware requirements
 
 Software requirements
 ---------------------
-GlobaLeaks is designed to run on GNU/Linux and  developed and tested specifically for Ubuntu Bionic 18.04
+GlobaLeaks is designed to run on GNU/Linux and  developed and tested specifically for Debian 10 (Buster)
 
-The software lifecycle of the platform includes full support for all Ubuntu LTS versions starting from Ubuntu Xenial 16.04.
+The software lifecycle of the platform includes full support for all Debian and Ubuntu LTS versions starting from Debian 9 and Ubuntu 16.04.
 
 On these platforms the support is guaranteed following the `Release End of Life <https://www.ubuntu.com/info/release-end-of-life>`_ defined by Ubuntu.
 

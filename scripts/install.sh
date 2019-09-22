@@ -208,9 +208,9 @@ echo "Detected OS: $DISTRO - $DISTRO_CODENAME"
 
 last_command "check_distro"
 
-if echo "$DISTRO_CODENAME" | grep -vqE "^bionic$" ; then
-  echo "WARNING: GlobaLeaks is actively developed and tested specifically for Ubuntu Bionic 18.04"
-  echo "WARNING: The software lifecycle of the platform includes full support for all Ubuntu LTS versions starting from Ubuntu Xenial 16.04"
+if echo "$DISTRO_CODENAME" | grep -vqE "^buster$" ; then
+  echo "WARNING: GlobaLeaks is actively developed and tested specifically for Debian 10 (Buster)"
+  echo "WARNING: The software lifecycle of the platform includes full support for all Debian and Ubuntu LTS versions starting from Debian 9 Ubuntu 16.04"
 
   prompt_for_continuation
 fi
@@ -269,8 +269,8 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^(bionic|buster|stretch|xenial)$"; then
   echo "No packages available for the current distribution; the install script will use the Bionic repository."
   echo "In case of a failure refer to the wiki for manual setup possibilities."
   echo "GlobaLeaks wiki: https://github.com/globaleaks/GlobaLeaks/wiki"
-  DISTRO="Ubuntu"
-  DISTRO_CODENAME="bionic"
+  DISTRO="Debian"
+  DISTRO_CODENAME="buster"
 fi
 
 echo "Adding GlobaLeaks PGP key to trusted APT keys"

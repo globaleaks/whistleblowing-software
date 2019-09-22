@@ -23,11 +23,11 @@ distro='unknown'
 if platform.system() == 'Linux':
     distro = platform.linux_distribution()[2]
 
-    if distro != 'bionic':
-        print("WARNING: The long term supported platform is Ubuntu Bionic (18.04)")
+    if distro != 'buster':
+        print("WARNING: The current long term supported platform is Debian 10 (Buster)")
         print("WARNING: It is recommended to use only this platform to ensure stability and security")
         print("WARNING: Read about Technical Requirements at: https://docs.globaleaks.org/en/latest/TechnicalRequirements.html")
-        print("WARNING: If it's an old Ubuntu, read more about updating at: https://docs.globaleaks.org/en/latest/UpgradeGuide.html")
+        print("WARNING: If it's an old Debian or Ubuntu, read more about updating at: https://docs.globaleaks.org/en/latest/UpgradeGuide.html")
 
 elif platform.system() == 'Windows':
     print("WARNING: Windows support is extremely experimental at this time, and should not be used for production environments")
