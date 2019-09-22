@@ -439,24 +439,6 @@ class TestGL(unittest.TestCase):
 
         self.internationalized_text = load_appdata()['node']['whistleblowing_button']
 
-    def call_spigot(self):
-        """
-        Required for clearing scheduled callbacks in the testReactor that have yet to run.
-        If a unittest has scheduled something, we execute it before moving on.
-        """
-        deferred_fns = self.test_reactor.getDelayedCalls()
-        i = 0
-        while len(deferred_fns) != 0:
-            yield deferred_fns[0].getTime()
-            if i >= 30:
-                raise Exception("stuck in callback loop")
-            i += 1
-            deferred_fns = self.test_reactor.getDelayedCalls()
-        raise StopIteration
-
-    def tearDown(self):
-        self.test_reactor.pump(self.call_spigot())
-
     @transact
     def set_hostnames(self, session, i):
         hosts = [('www.globaleaks.org', 'aaaaaaaaaaaaaaaa.onion'),
