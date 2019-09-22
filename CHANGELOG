@@ -1,3 +1,6 @@
+Changes in version 3.11.11 - 2019-09-22
+    Disable Twisted logging in H2Connection and HTTPChannel class
+
 Changes in version 3.11.10 - 2019-09-22
     Set Debian Buster as main supported platform
 
