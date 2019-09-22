@@ -13,8 +13,7 @@ exports.vars = {
     "Terms of service",
     "Date",
     "Group of questions"
-  ],
-  "testFileDir": "./tests/files"
+  ]
 };
 
 browser.getCapabilities().then(function(capabilities) {
@@ -182,7 +181,7 @@ exports.clickFirstDisplayed = async function(selector) {
 // Utility Functions for handling File operations
 
 exports.makeTestFilePath = function(name) {
-  return path.resolve(path.join(exports.vars.testFileDir, name));
+  return path.resolve(path.join(browser.params.testDir, 'files', name));
 };
 
 exports.makeSavedFilePath = function(name) {

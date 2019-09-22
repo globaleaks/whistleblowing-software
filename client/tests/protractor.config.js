@@ -16,7 +16,8 @@ exports.config = {
   params: {
     "testFileDownload": true,
     "verifyFileDownload": false,
-    "tmpDir": tmpDir
+    "tmpDir": tmpDir,
+    "testDir": __dirname
   },
 
   specs: specs,

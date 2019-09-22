@@ -25,6 +25,7 @@ exports.config = {
     "testFileDownload": false,
     "verifyFileDownload": false,
     "tmpDir": "/tmp/globaleaks-download",
+    "testDir": __dirname
   },
 
   specs: specs,
