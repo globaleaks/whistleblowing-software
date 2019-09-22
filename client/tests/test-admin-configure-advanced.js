@@ -7,7 +7,7 @@ describe("admin configure advanced settings", function() {
     await element(by.model("admin.node.enable_experimental_features")).click();
     await element(by.model("admin.node.enable_custodian")).click();
 
-    await element(by.css("body").sendKeys(protractor.Key.F1);
+    await element(by.css("body")).sendKeys(protractor.Key.F1);
 
     await element(by.model("admin.node.encryption")).click();
 
