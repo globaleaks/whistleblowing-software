@@ -258,7 +258,6 @@ done
 
 echo " + required TCP sockets open"
 
-
 # The supported platforms are experimentally more than only Ubuntu as
 # publicly communicated to users.
 #
@@ -280,14 +279,8 @@ echo "$GLOBALEAKS_PGP_KEY" > $TMPFILE
 DO "apt-key add $TMPFILE"
 DO "rm $TMPFILE"
 
-
-if echo "$DISTRO_CODENAME" | grep -qE "^(wheezy)$"; then
-  echo "Installing python-software-properties"
-  DO "apt-get -y install python-software-properties"
-else
-  echo "Installing software-properties-common"
-  DO "apt-get -y install software-properties-common"
-fi
+echo "Installing software-properties-common"
+DO "apt-get -y install software-properties-common"
 
 # try adding universe repo only on Ubuntu
 if echo "$DISTRO" | grep -qE "^(Ubuntu)$"; then
