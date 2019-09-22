@@ -21,6 +21,15 @@ def mock_Request_gotLength(self, length):
 log.msg = log.err = mock_log
 Request.gotLength = mock_Request_gotLength
 
+
+def mock_HTTPChannel__timeoutConnection(self):
+    """
+    This mock is required to just comment a log line and apply patch fix introduced in Twisted 17.1.0
+    https://github.com/twisted/twisted/commit/5f37cd1b83a2609f23a9dab46fd023cc941153f2
+    """
+    self.transport.loseConnection()
+
+
 # Mocks applied to versions of twisted < 17.0.1
 if parse_version(__version__) <= parse_version('17.1.0'):
     HTTPFactory__init__orig = HTTPFactory.__init__
@@ -31,13 +40,6 @@ if parse_version(__version__) <= parse_version('17.1.0'):
         timeout is set to 60 instead of 60 * 60 * 12.
         """
         HTTPFactory__init__orig(self, logPath, timeout, logFormatter)
-
-    def mock_HTTPChannel__timeoutConnection(self):
-        """
-        This mock is required to just comment a log line and apply patch fix introduced in Twisted 17.1.0
-        https://github.com/twisted/twisted/commit/5f37cd1b83a2609f23a9dab46fd023cc941153f2
-        """
-        self.transport.loseConnection()
 
     HTTPFactory.__init__ = mock_HTTPFactory__init__
     HTTPChannel.timeoutConnection = mock_HTTPChannel__timeoutConnection
