@@ -3,6 +3,7 @@
 profile usr.bin.globaleaks flags=(attach_disconnected) {
     #include <abstractions/base>
     #include <abstractions/nameservice>
+    #include <abstractions/openssl>
 
     capability setgid,
     capability setuid,
@@ -17,7 +18,7 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     /etc/debian_version r,
     /etc/lsb-release r,
     /etc/mime.types r,
-    /usr/python{,2,2.7,3,3.[0-9]}/** r,
+    /etc/python{,2,2.7,3,3.[0-9]}/** r,
 
     @{PROC}/ r,
     @{PROC}/@{pid}/fd/ r,
@@ -48,15 +49,12 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     /{,var/}run/tor/control rw,
     /{,var/}run/tor/control.authcookie r,
 
-    /{run,dev}/shm/ r,
-    /{run,dev}/shm/globaleaks/ rwk,
-    /{run,dev}/shm/globaleaks/** lrwk,
-
     owner /tmp/** rwkl,
     owner /var/tmp/** rwkl,
 
     # Explicit silent deny rules:
-    deny /bin/uname x,      # needed by os.uname in pip
-    deny /usr/bin/gcc-** x, # needed to silent deny errors for gpg trying to use gcc wtf?!
-    deny /sbin/ldconfig x,  # needed to silent deny errors for gpg
+    # Explicit silent deny rules:
+    deny /usr/bin/gcc-** x,
+    deny /usr/bin/x86_64-linux-gnu-** x,
+    deny /sbin/ldconfig x,
 }
