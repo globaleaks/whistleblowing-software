@@ -329,6 +329,7 @@ def forge_request(uri=b'https://www.globaleaks.org/',
 
     x = host.split(b':')
     if len(x) > 1:
+        host = x[0]
         port = int(x[1])
     else:
         port = 80
