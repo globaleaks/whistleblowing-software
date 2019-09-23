@@ -1,3 +1,8 @@
+Changes in version 3.11.13 - 2019-09-23
+    Apply revision to apparmor profile
+    Fix export of tip comments
+    Apply mix fixes in relation to RTL layout
+
 Changes in version 3.11.12 - 2019-09-23
     Fix CSS processing in relation to RTL and pre-existent configs (#2677)
 
