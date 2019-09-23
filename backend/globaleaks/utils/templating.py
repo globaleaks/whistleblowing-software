@@ -52,7 +52,7 @@ file_keywords = [
 ]
 
 export_message_keywords = [
-    '{Author}'
+    '{Author}',
     '{Content}'
 ]
 
