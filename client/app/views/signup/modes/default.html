@@ -11,8 +11,7 @@
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}"
               popover-placement="right">*</span>
       </label>
-      <div class="input-group">
-        <span class="input-group-prepend"><span class="input-group-text">https://</span></span>
+      <div class="input-group ltr">
         <input name="subdomain" class="form-control" data-ng-model="signup.subdomain" type="text"
                data-ng-attr-placeholder="{{'Domain' | translate}}" data-ng-pattern="/^[a-z0-9]+$/" required
                subdomainvalidator>
@@ -41,7 +40,7 @@
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       </label>
       <input name="mail_address" class="form-control" data-ng-model="signup.email"
-             data-ng-attr-placeholder="{{'Email address' | translate}}" data-ng-pattern="email_regexp" type="text"
+             data-ng-attr-placeholder="{{'Email address' | translate}}" data-ng-pattern="email_regexp" type="email"
              data-ng-class="{'is-invalid': validated && signupForm.mail_address.$error.pattern}"
              required>
       <div class="text-danger" data-ng-show="signupForm.mail_address.$error.pattern">
@@ -54,7 +53,7 @@
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       </label>
       <input name="email" class="form-control" data-ng-model="confirmation_email"
-             data-ng-attr-placeholder="{{'Email address' | translate}}" data-disable-ccp type="text"
+             data-ng-attr-placeholder="{{'Email address' | translate}}" data-disable-ccp type="email"
              data-ng-class="{'is-invalid': validated && signup.email !== confirmation_email}"
              required>
       <div class="text-danger" data-ng-show="validated && signupForm.mail_address.$valid && signup.email !== confirmation_email">

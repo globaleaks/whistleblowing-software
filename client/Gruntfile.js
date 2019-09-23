@@ -1,50 +1,50 @@
 /* eslint no-console: 0 */
 
 var locales = [
-"js/locale/angular-locale_ar.js",
-"js/locale/angular-locale_az.js",
-"js/locale/angular-locale_ca.js",
-"js/locale/angular-locale_bs.js",
-"js/locale/angular-locale_ca.js",
-"js/locale/angular-locale_ca-es-valencia.js",
-"js/locale/angular-locale_cs.js",
-"js/locale/angular-locale_da.js",
-"js/locale/angular-locale_de.js",
-"js/locale/angular-locale_el.js",
-"js/locale/angular-locale_en.js",
-"js/locale/angular-locale_es.js",
-"js/locale/angular-locale_fa.js",
-"js/locale/angular-locale_fi.js",
-"js/locale/angular-locale_fr.js",
-"js/locale/angular-locale_gl.js",
-"js/locale/angular-locale_he.js",
-"js/locale/angular-locale_hr-hr.js",
-"js/locale/angular-locale_hu-hu.js",
-"js/locale/angular-locale_id.js",
-"js/locale/angular-locale_it.js",
-"js/locale/angular-locale_ja.js",
-"js/locale/angular-locale_ka.js",
-"js/locale/angular-locale_ko.js",
-"js/locale/angular-locale_mg.js",
-"js/locale/angular-locale_nb-no.js",
-"js/locale/angular-locale_nl.js",
-"js/locale/angular-locale_pl.js",
-"js/locale/angular-locale_pt-br.js",
-"js/locale/angular-locale_pt-pt.js",
-"js/locale/angular-locale_ro.js",
-"js/locale/angular-locale_ru.js",
-"js/locale/angular-locale_sk.js",
-"js/locale/angular-locale_sl.js",
-"js/locale/angular-locale_sq.js",
-"js/locale/angular-locale_sv.js",
-"js/locale/angular-locale_ta.js",
-"js/locale/angular-locale_th.js",
-"js/locale/angular-locale_tr.js",
-"js/locale/angular-locale_uk.js",
-"js/locale/angular-locale_ur.js",
-"js/locale/angular-locale_vi.js",
-"js/locale/angular-locale_zh-cn.js",
-"js/locale/angular-locale_zh-tw.js"];
+"lib/js/locale/angular-locale_ar.js",
+"lib/js/locale/angular-locale_az.js",
+"lib/js/locale/angular-locale_ca.js",
+"lib/js/locale/angular-locale_bs.js",
+"lib/js/locale/angular-locale_ca.js",
+"lib/js/locale/angular-locale_ca-es-valencia.js",
+"lib/js/locale/angular-locale_cs.js",
+"lib/js/locale/angular-locale_da.js",
+"lib/js/locale/angular-locale_de.js",
+"lib/js/locale/angular-locale_el.js",
+"lib/js/locale/angular-locale_en.js",
+"lib/js/locale/angular-locale_es.js",
+"lib/js/locale/angular-locale_fa.js",
+"lib/js/locale/angular-locale_fi.js",
+"lib/js/locale/angular-locale_fr.js",
+"lib/js/locale/angular-locale_gl.js",
+"lib/js/locale/angular-locale_he.js",
+"lib/js/locale/angular-locale_hr-hr.js",
+"lib/js/locale/angular-locale_hu-hu.js",
+"lib/js/locale/angular-locale_id.js",
+"lib/js/locale/angular-locale_it.js",
+"lib/js/locale/angular-locale_ja.js",
+"lib/js/locale/angular-locale_ka.js",
+"lib/js/locale/angular-locale_ko.js",
+"lib/js/locale/angular-locale_mg.js",
+"lib/js/locale/angular-locale_nb-no.js",
+"lib/js/locale/angular-locale_nl.js",
+"lib/js/locale/angular-locale_pl.js",
+"lib/js/locale/angular-locale_pt-br.js",
+"lib/js/locale/angular-locale_pt-pt.js",
+"lib/js/locale/angular-locale_ro.js",
+"lib/js/locale/angular-locale_ru.js",
+"lib/js/locale/angular-locale_sk.js",
+"lib/js/locale/angular-locale_sl.js",
+"lib/js/locale/angular-locale_sq.js",
+"lib/js/locale/angular-locale_sv.js",
+"lib/js/locale/angular-locale_ta.js",
+"lib/js/locale/angular-locale_th.js",
+"lib/js/locale/angular-locale_tr.js",
+"lib/js/locale/angular-locale_uk.js",
+"lib/js/locale/angular-locale_ur.js",
+"lib/js/locale/angular-locale_vi.js",
+"lib/js/locale/angular-locale_zh-cn.js",
+"lib/js/locale/angular-locale_zh-tw.js"];
 
 
 module.exports = function(grunt) {
@@ -81,8 +81,8 @@ module.exports = function(grunt) {
       src: [
         "Gruntfile.js",
         "app/js/**/*.js",
-        "!app/js/lib/*.js",
-        "!app/js/locale/*.js",
+        "!app/lib/js/*.js",
+        "!app/lib/js/locale/*.js",
         "tests/*.js"
       ]
     },
@@ -94,38 +94,38 @@ module.exports = function(grunt) {
     copy: {
       sources: {
         files: [
-          { dest: "app/css/lib/", cwd: ".", src: ["node_modules/angular/angular-csp.css"], expand: true, flatten: true },
-          { dest: "app/css/lib/", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-csp.css"], expand: true, flatten: true },
-          { dest: "app/css/lib/", cwd: ".", src: ["node_modules/bootstrap/dist/css/bootstrap.css"], expand: true, flatten: true },
-          { dest: "app/css/lib/", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/fontawesome.css"], expand: true, flatten: true },
-          { dest: "app/css/lib/", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/solid.css"], expand: true, flatten: true },
-          { dest: "app/css/lib/", cwd: ".", src: ["node_modules/ui-select/dist/select.min.css"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/fast-sha256/sha256.min.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/@flowjs/flow.js/dist/flow.min.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/@flowjs/ng-flow/dist/ng-flow.min.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/angular/angular.min.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/angular-aria/angular-aria.min.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/angular-dynamic-locale/tmhDynamicLocale.min.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/angular-file-saver/dist/angular-file-saver.min.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/angular-filter/dist/angular-filter.min.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/angular-resource/angular-resource.min.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/angular-route/angular-route.min.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/angular-sanitize/angular-sanitize.min.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/angular-translate/dist/angular-translate.min.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/angular-translate-loader-url/angular-translate-loader-url.min.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/angular-zxcvbn/dist/angular-zxcvbn.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/d3/dist/d3.min.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/file-saver/FileSaver.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/stacktrace-js/dist/stacktrace.min.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/topojson/dist/topojson.min.js"], expand: true, flatten: true},
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/qrious/dist/qrious.min.js"], expand: true, flatten: true},
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/zxcvbn/dist/zxcvbn.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-tpls.js"], expand: true, flatten: true },
-          { dest: "app/js/lib/", cwd: ".", src: ["node_modules/ui-select/dist/select.min.js"], expand: true, flatten: true },
-          { dest: "app/js/locale", cwd: ".", src: ["node_modules/angular-i18n/angular-locale*"], expand: true, flatten: true },
-          { dest: "app/webfonts", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/webfonts/*"], expand: true, flatten: true }
+          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/angular/angular-csp.css"], expand: true, flatten: true },
+          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-csp.css"], expand: true, flatten: true },
+          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/bootstrap/dist/css/bootstrap.css"], expand: true, flatten: true },
+          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/fontawesome.css"], expand: true, flatten: true },
+          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/solid.css"], expand: true, flatten: true },
+          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/ui-select/dist/select.min.css"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/fast-sha256/sha256.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/@flowjs/flow.js/dist/flow.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/@flowjs/ng-flow/dist/ng-flow.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular/angular.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-aria/angular-aria.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-dynamic-locale/tmhDynamicLocale.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-file-saver/dist/angular-file-saver.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-filter/dist/angular-filter.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-resource/angular-resource.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-route/angular-route.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-sanitize/angular-sanitize.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-translate/dist/angular-translate.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-translate-loader-url/angular-translate-loader-url.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-zxcvbn/dist/angular-zxcvbn.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/d3/dist/d3.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/file-saver/FileSaver.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/stacktrace-js/dist/stacktrace.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/topojson/dist/topojson.min.js"], expand: true, flatten: true},
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/qrious/dist/qrious.min.js"], expand: true, flatten: true},
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/zxcvbn/dist/zxcvbn.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-tpls.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ui-select/dist/select.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/locale", cwd: ".", src: ["node_modules/angular-i18n/angular-locale*"], expand: true, flatten: true },
+          { dest: "app/lib/webfonts", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/webfonts/*"], expand: true, flatten: true }
         ]
       },
       build: {
@@ -138,8 +138,8 @@ module.exports = function(grunt) {
           src: [
             "**",
             "!js/**/*.js", // Don't copy scripts that will be instrumented,
-            "js/lib/*.js", // and copy scripts that should not be instrumented.
-            "js/locale/*.js"
+            "lib/js/*.js", // and copy scripts that should not be instrumented.
+            "lib/js/locale/*.js"
           ],
           expand: true
         }]
@@ -204,7 +204,7 @@ module.exports = function(grunt) {
             {
               pattern: "src: url(\"../webfonts/fa-solid-900.eot?#iefix\") format(\"embedded-opentype\"), url(\"../webfonts/fa-solid-900.woff2\") format(\"woff2\"), url(\"../webfonts/fa-solid-900.woff\") format(\"woff\"), url(\"../webfonts/fa-solid-900.ttf\") format(\"truetype\"), url(\"../webfonts/fa-solid-900.svg#fontawesome\") format(\"svg\"); }",
               replacement: function () {
-                return "src: url('" + fileToDataURI("tmp/webfonts/fa-solid-900.woff") + "') format('woff'); }";
+                return "src: url('" + fileToDataURI("tmp/lib/webfonts/fa-solid-900.woff") + "') format('woff'); }";
               }
             }
           ]
@@ -286,7 +286,7 @@ module.exports = function(grunt) {
         ]
       },
       dist: {
-        src: 'tmp/css/lib/*.css'
+        src: 'tmp/lib/css/*.css'
       }
     }
   });

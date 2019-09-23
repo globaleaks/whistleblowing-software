@@ -38,6 +38,14 @@ body {
   font-size: 1.25em;
 }
 
+.ltr {
+  direction: ltr;
+}
+
+.rtl {
+  direction: rtl;
+}
+
 #AttributionClause {
   margin-top: 0.5em;
 }
@@ -437,6 +445,10 @@ input[type="file"] {
 
 .textarea-btn {
   right: 1em;
+}
+
+html[dir="rtl"] input[type=email], html[dir="ltr"] input[type=email] {
+  direction: ltr;
 }
 
 html[dir="rtl"] #creditCard,  html[dir="ltr"] #creditCard {
