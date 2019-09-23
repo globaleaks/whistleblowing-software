@@ -94,12 +94,12 @@ module.exports = function(grunt) {
     copy: {
       sources: {
         files: [
-          { dest: "app/css", cwd: ".", src: ["node_modules/angular/angular-csp.css"], expand: true, flatten: true },
-          { dest: "app/css", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-csp.css"], expand: true, flatten: true },
-          { dest: "app/css", cwd: ".", src: ["node_modules/bootstrap/dist/css/bootstrap.css"], expand: true, flatten: true },
-          { dest: "app/css", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/fontawesome.css"], expand: true, flatten: true },
-          { dest: "app/css", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/solid.css"], expand: true, flatten: true },
-          { dest: "app/css", cwd: ".", src: ["node_modules/ui-select/dist/select.min.css"], expand: true, flatten: true },
+          { dest: "app/css/lib/", cwd: ".", src: ["node_modules/angular/angular-csp.css"], expand: true, flatten: true },
+          { dest: "app/css/lib/", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-csp.css"], expand: true, flatten: true },
+          { dest: "app/css/lib/", cwd: ".", src: ["node_modules/bootstrap/dist/css/bootstrap.css"], expand: true, flatten: true },
+          { dest: "app/css/lib/", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/fontawesome.css"], expand: true, flatten: true },
+          { dest: "app/css/lib/", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/solid.css"], expand: true, flatten: true },
+          { dest: "app/css/lib/", cwd: ".", src: ["node_modules/ui-select/dist/select.min.css"], expand: true, flatten: true },
           { dest: "app/js/lib/", cwd: ".", src: ["node_modules/fast-sha256/sha256.min.js"], expand: true, flatten: true },
           { dest: "app/js/lib/", cwd: ".", src: ["node_modules/@flowjs/flow.js/dist/flow.min.js"], expand: true, flatten: true },
           { dest: "app/js/lib/", cwd: ".", src: ["node_modules/@flowjs/ng-flow/dist/ng-flow.min.js"], expand: true, flatten: true },
@@ -286,7 +286,7 @@ module.exports = function(grunt) {
         ]
       },
       dist: {
-        src: 'tmp/css/*.css'
+        src: 'tmp/css/lib/*.css'
       }
     }
   });

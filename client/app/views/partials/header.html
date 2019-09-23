@@ -1,13 +1,13 @@
 <div id="HeaderBox" class="p-3">
   <div class="row">
     <div class="col-md-7 float-left">
-      <div id="LogoBox" data-ng-if="node.logo">
+      <div id="LogoBox" class="float-left" data-ng-if="node.logo">
         <img data-ng-click="setHomepage()" class="img-fluid" alt="project logo" data-ng-src="{{Utils.imgDataUri(node.logo)}}" />
       </div>
-      <div id="TitleBox">{{ht}}</div>
+      <div id="TitleBox" class="float-left">{{ht}}</div>
     </div>
     <div class="col-md-5 float-right">
-      <span id="UserBox" data-ng-include="'views/partials/user.html'"></span>
+      <span id="UserBox" class="float-right" data-ng-include="'views/partials/user.html'"></span>
     </div>
   </div>
 </div>

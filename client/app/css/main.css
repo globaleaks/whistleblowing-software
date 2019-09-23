@@ -423,20 +423,6 @@ input[type="file"] {
   }
 }
 
-#LogoBox,
-#TitleBox {
-  float: left;
-}
-
-#UserBox {
-  float: right;
-}
-
-.imageUpload .changePictureButton,
-.imageUpload .deletePictureButton {
-  left: 1em;
-}
-
 .custom-file {
   width: auto;
 }

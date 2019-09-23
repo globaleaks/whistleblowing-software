@@ -90,3 +90,13 @@ text.axis-worktime {
   overflow: auto;
   max-height: 8em;
 }
+
+[dir="ltr"] .imageUpload .changePictureButton,
+[dir="ltr"] .imageUpload .deletePictureButton {
+  left: 1em;
+}
+
+[dir="rtl"] .imageUpload .changePictureButton,
+[dir="rtl"] .imageUpload .deletePictureButton {
+  right: 1em;
+}
