@@ -3,8 +3,8 @@ Maintainer: Random GlobaLeaks developers <info@globaleaks.org>
 Section: web
 Priority: optional
 Build-Depends:
- build-essential
  , debhelper
+ , devscripts
  , dh-apparmor
  , dh-python
  , python (>= 2.7)
@@ -19,6 +19,7 @@ Architecture: all
 Depends:
  , ${misc:Depends}
  , ${python:Depends}
+ , adduser
  , apparmor
  , apparmor-utils
  , gnupg1

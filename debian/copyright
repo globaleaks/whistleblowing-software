@@ -1,5 +1,8 @@
-Format: http://dep.debian.net/deps/dep5
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: globaleaks
+Upstream-Context: info@globaleaks.org
+Source: https://github.com/globaleaks/GlobaLeaks
 
 Files: *
-Copyright: © 2011-2017, Hermes Center for Transparency and Digital Human Rights - GlobaLeaks Project
+Copyright: © 2011-2019, Hermes Center for Transparency and Digital Human Rights - GlobaLeaks Project
 License: AGPL-3.1+
