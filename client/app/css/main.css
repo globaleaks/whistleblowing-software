@@ -438,9 +438,8 @@ input[type="file"] {
   line-height: 34px;
 }
 
-.drop-drop.drag-over {
-  background: #5CB85C;
-  color: #fff
+.drag-over {
+  border-color: #007bff;
 }
 
 .custom-file {
