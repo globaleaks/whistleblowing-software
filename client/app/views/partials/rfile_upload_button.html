@@ -1,25 +1,32 @@
 <div data-ng-init="fileinput = field ? field.id : 'status_page'; uploads[fileinput] = {}">
   <div data-ng-controller="RFileUploadCtrl"
-       flow-init="{target: fileupload_url}"
-       flow-files-submitted="$flow.upload()"
-       flow-name="uploads[fileinput]"
-       extend-flow-valid-size="node.maximum_filesize*1024*1024">
+       data-flow-init="{target: fileupload_url}"
+       data-flow-files-submitted="$flow.upload()"
+       data-flow-name="uploads[fileinput]"
+       data-flow-drop
+       data-flow-drag-enter="dragClass='drag-over'"
+       data-flow-drag-leave="dragClass=''"
+       data-extend-flow-valid-size="node.maximum_filesize*1024*1024"
+       data-ng-class="dragClass"
+       class="drag-drop">
     <div data-ng-if="field === undefined || field.multi_entry">
       <div class="custom-file">
         <input id="customFile" class="custom-file-input" type="file" flow-btn />
-        <label class="btn btn-sm btn-primary" for="customFile">
+        <label class="btn btn-sm btn-outline-primary" for="customFile">
           <i class="fa fa-paperclip"></i>
           <span data-translate>Add file</span>
 	</label>
+        <span data-ng-if="!mobile" class="mx-2 small text-secondary" data-translate>Choose a file or drag it here.</span>
       </div>
     </div>
     <div data-ng-if="field !== undefined && !field.multi_entry">
       <div class="custom-file">
         <input id="customFile" class="custom-file-input" data-ng-disabled="disabled" type="file" flow-btn flow-single-file>
-        <label class="btn btn-sm btn-primary" for="customFile">
+        <label class="btn btn-sm btn-outline-primary" for="customFile">
           <i class="fa fa-paperclip"></i>
           <span data-translate>Add file</span>
         </label>
+	<span data-ng-if="!mobile" class="mx-2 small text-secondary" data-translate>Choose a file or drag it here.</span>
       </div>
     </div>
     <div errors-upload></div>

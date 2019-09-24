@@ -431,6 +431,18 @@ input[type="file"] {
   }
 }
 
+.drag-drop {
+  padding: 15px;
+  border: 2px #f1f1f1 dashed;
+  border-radius: 5px;
+  line-height: 34px;
+}
+
+.drop-drop.drag-over {
+  background: #5CB85C;
+  color: #fff
+}
+
 .custom-file {
   width: auto;
 }
