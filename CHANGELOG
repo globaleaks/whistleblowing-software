@@ -1,4 +1,7 @@
-Changes in version 3.11.13 - 2019-09-23
+Changes in version 3.11.15 - 2019-09-24
+    Fix javascript packaging path
+
+Changes in version 3.11.14 - 2019-09-23
     Apply revisions to apparmor profile
 
 Changes in version 3.11.13 - 2019-09-23
