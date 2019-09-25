@@ -1,3 +1,8 @@
+Changes in version 3.11.16 - 2019-09-26
+    Add support drag and drop of files (#2063)
+    Make TLS intermediate certificate optional
+    Bump npm dependencies to latest stables versions
+
 Changes in version 3.11.15 - 2019-09-24
     Fix javascript packaging path
 
