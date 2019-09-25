@@ -119,17 +119,17 @@ class _ConnectionProxy(object):
 
 @implementer(IOpenSSLServerConnectionCreator)
 class SNIMap(object):
+    default_context = None
     configs_by_tid = {}
     contexts_by_hostname = {}
 
     def __init__(self):
-        self.default_context = new_tls_server_context()
         self._negotiationDataForContext = collections.defaultdict(_NegotiationData)
-        self.set_default_context(self.default_context)
+        self.set_default_context(new_tls_server_context())
 
     def set_default_context(self, context):
-        self.context = context
-        self.context.set_tlsext_servername_callback(self.selectContext)
+        self.default_context = context
+        self.default_context.set_tlsext_servername_callback(self.selectContext)
 
     def load(self, tid, conf):
         chnv = ChainValidator()
@@ -154,7 +154,7 @@ class SNIMap(object):
             self.contexts_by_hostname.pop(conf['hostname'], None)
 
         if tid == 1:
-            self.set_default_context(self.default_context)
+            self.set_default_context(new_tls_server_context())
 
     def selectContext(self, connection):
         try:
@@ -163,14 +163,17 @@ class SNIMap(object):
             common_name = ''
 
         if common_name in self.contexts_by_hostname:
-            newContext = self.contexts_by_hostname[common_name].getContext()
-            negotiationData = self._negotiationDataForContext[connection.get_context()]
-            negotiationData.negotiateNPN(newContext)
-            negotiationData.negotiateALPN(newContext)
-            connection.set_context(newContext)
+            context = self.contexts_by_hostname[common_name].getContext()
+        else:
+            context = self.default_context
+
+        negotiationData = self._negotiationDataForContext[connection.get_context()]
+        negotiationData.negotiateNPN(context)
+        negotiationData.negotiateALPN(context)
+        connection.set_context(context)
 
     def serverConnectionForTLS(self, protocol):
-        return _ConnectionProxy(Connection(self.context, None), self)
+        return _ConnectionProxy(Connection(self.default_context, None), self)
 
     def _npnAdvertiseCallbackForContext(self, context, callback):
         self._negotiationDataForContext[context].npnAdvertiseCallback = (
