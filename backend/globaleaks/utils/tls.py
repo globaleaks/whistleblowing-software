@@ -277,13 +277,7 @@ class ChainValidator(CtxValidator):
     def _validate(self, cfg, ctx, check_expiration):
         store = ctx.get_cert_store()
 
-        if not cfg['hostname']:
-            raise ValidationException('No hostname set')
-
         chain = split_pem_chain(cfg['ssl_intermediate'])
-
-        if not chain:
-            raise ValidationException('The certificate chain is invalid')
 
         for cert in chain:
             x509 = load_certificate(FILETYPE_PEM, cert)
