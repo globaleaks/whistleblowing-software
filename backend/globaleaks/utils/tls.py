@@ -249,6 +249,9 @@ class CertValidator(CtxValidator):
     parents = [PrivKeyValidator]
 
     def _validate(self, cfg, ctx, check_expiration):
+        if not cfg['hostname']:
+            raise ValidationException('No hostname set')
+
         certificate = cfg['ssl_cert']
         if not certificate:
             raise ValidationException('There is no certificate')

@@ -20,7 +20,7 @@
     </p>
   </form>
 </div>
-<div id="HTTPSSettings" data-ng-controller="AdminHTTPSConfigCtrl">
+<div id="HTTPSSettings" data-ng-controller="AdminHTTPSConfigCtrl" data-ng-show="admin.node.hostname">
   <div class="card card-default">
     <div class="card-body" data-ng-switch="menuState">
       <div data-ng-switch-when="setup">
