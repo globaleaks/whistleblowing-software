@@ -17,11 +17,11 @@ Features
 
 - Accessible Rich Internet Application compliant to `WAI-ARIA <https://www.w3.org/WAI/intro/aria>`_
 
-- Empbedded internationalization and localization support
+- Embedded internationalization and localization support
 
 - Fully translated in `more thant 30 languages <https://transifex.com/otf/globaleaks/>`_
 
-- Support for Right-to-left (RTL) design
+- Support for Right-to-Left (RTL) design
 
 - Integrated support for PGP and AES encryption
 
@@ -31,9 +31,15 @@ Features
 
 - All-in-one solution including embedded webserver and SQLite database
 
-- Fully unit-tested and end2end tested on commit with test code coverage over 90%
+- Integrated network sandboxing (IPTables)
 
-- Support for all common database systems: MySQL, PostgreSQL and MS SQL Server
+- Integrated application sandboxing (AppArmor)
+
+- Two-Factor Authentication (2FA) support compliant to `standard TOTP RFC 6238 <https://tools.ietf.org/html/rfc6238>`_
+
+- Support for multi-tenancy and multi-site
+
+- Fully unit-tested and end2end tested on commit with test code coverage over 90%
 
 - Strong security with `5 independent audits <https://github.com/globaleaks/GlobaLeaks/wiki/Penetration-Tests>`_
 
