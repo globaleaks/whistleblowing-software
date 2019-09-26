@@ -14,9 +14,7 @@ GLClient.controller("AdminNetworkCtrl", ["$scope", "$http", function($scope, $ht
     }
   ];
 
-  $scope.setHostname = function() {
-    $scope.Utils.setHostname($scope.admin.node.hostname);
-  };
+  $scope.hostname = $scope.admin.node.hostname;
 
   $scope.resetOnionPrivateKey = function() {
     var req = {
@@ -40,12 +38,6 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
 
   $scope.setMenu = function(state) {
     $scope.menuState = state;
-  };
-
-  $scope.saveNodeAndProceed = function() {
-    $scope.Utils.setHostname($scope.admin.node.hostname).then(function() {
-      $scope.Utils.update($scope.admin.node, function(){ $scope.setMenu("choice"); });
-    });
   };
 
   $scope.parseTLSConfig = function(tlsConfig) {

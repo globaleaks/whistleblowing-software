@@ -1180,7 +1180,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           }
         };
 
-        return $http({method: "PUT", url: "admin/config", data: req});
+        return $http({method: "PUT", url: "admin/config", data: req}).then(function() { $rootScope.reload() });
       },
 
       removeFile: function (list, file) {

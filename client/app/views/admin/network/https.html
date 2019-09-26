@@ -5,11 +5,11 @@
       <input name="hostname"
              class="form-control"
              type="text"
-             data-ng-model="admin.node.hostname"
+             data-ng-model="hostname"
              data-ng-pattern="hostname_regexp"
-             data-ng-class="{'has-danger': adminNetForm.hostname.$error.pattern}" />
+	     data-ng-class="{'has-danger': adminNetForm.hostname.$error.pattern}" />
       <span class="input-group-append">
-        <button class="btn btn-success" data-ng-disabled="admin.node.hostname === ''" data-ng-click="setHostname()" data-translate>Save</button>
+        <button class="btn btn-success" data-ng-click="Utils.setHostname(hostname)" data-ng-disabled="hostname === admin.node.hostname" data-translate>Save</button>
       </span>
     </p>
     <p class="text-danger" data-ng-show="adminNetForm.hostname.$error.pattern">
@@ -24,10 +24,7 @@
   <div class="card card-default">
     <div class="card-body" data-ng-switch="menuState">
       <div data-ng-switch-when="setup">
-        <div data-ng-include="'views/admin/network/https_setup_start.html'"></div>
-      </div>
-      <div data-ng-switch-when="choice">
-        <div data-ng-include="'views/admin/network/https_setup_choices.html'"></div>
+        <div data-ng-include="'views/admin/network/https_setup.html'"></div>
       </div>
       <div data-ng-switch-when="files">
         <div data-ng-include="'views/admin/network/https_files.html'"></div>

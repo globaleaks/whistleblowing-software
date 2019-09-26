@@ -17,12 +17,9 @@ from globaleaks.services.onion import set_onion_service_info, get_onion_service_
 @transact
 def check_hostname(session, tid, input_hostname):
     """
-    Ensure the hostname does not collide across tenants or include an origin
-    that it shouldn't.
+    Ensure the hostname does not collide across tenants or
+    include an origin that it shouldn't.
     """
-    if input_hostname == '':
-        raise errors.InputValidationError('Hostname cannot be empty')
-
     root_hostname = ConfigFactory(session, 1).get_val(u'hostname')
 
     forbidden_endings = ['onion', 'localhost']
