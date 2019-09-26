@@ -264,6 +264,9 @@ def get_recovery_key(session, user_tid, user_id, user_cc):
 def enable_2fa_step1(session, user_tid, user_id, user_cc):
     user = db_get_user(session, user_tid, user_id)
 
+    if user.two_factor_secret:
+        return user.two_factor_secret
+
     two_factor_secret = pyotp.random_base32()
 
     if user.crypto_pub_key:
@@ -295,6 +298,7 @@ def disable_2fa(session, user_tid, user_id, user_cc):
     user = db_get_user(session, user_tid, user_id)
 
     user.two_factor_enable = False
+    user.two_factor_secret = b''
 
 
 class UserOperationHandler(OperationHandler):

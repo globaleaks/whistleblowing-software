@@ -1,0 +1,13 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <span data-translate>Before proceeding, please enable the two factor authentication.</span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6" data-ng-include="'views/partials/enable_2fa.html'"></div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <button data-ng-click="enable2FA(vars.token_2fa)" data-ng-disabled="vars.token_2fa.length !== 6" class="btn btn-success" data-translate>Proceed</button>
+  </div>
+</div>

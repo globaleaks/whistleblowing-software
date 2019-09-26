@@ -1204,6 +1204,7 @@ class MockDict:
             'enable_user_pgp_key_upload': False,
             'log_level': 'DEBUG',
             'log_accesses_of_internal_users': False,
+            '2fa': False,
             'encryption': False,
             'multisite': False,
             'adminonly': False,

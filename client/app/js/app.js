@@ -192,6 +192,14 @@ var GLClient = angular.module("GLClient", [
           access: requireAuth("*"),
         }
       }).
+      when("/enabletwofactorauth", {
+        templateUrl: "views/enable_two_factor.html",
+        controller: "EnableTwoFactorAuthCtrl",
+        header_title: "Enable two factor authentication",
+        resolve: {
+          access: requireAuth("*"),
+        }
+      }).
       when("/receiver/home", {
         templateUrl: "views/receiver/home.html",
         controller: "ReceiverCtrl",

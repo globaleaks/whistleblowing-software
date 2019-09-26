@@ -32,7 +32,7 @@ angular.module("GLServices", ["ngResource"]).
             "password_change_needed": response.password_change_needed,
             "homepage": "",
             "auth_landing_page": "",
-            "two_factor_secret": response.two_factor_secret
+            "two_factor": response.two_factor
           };
 
           function initPreferences(prefs) {
@@ -86,9 +86,6 @@ angular.module("GLServices", ["ngResource"]).
               // Override the auth_landing_page if a password change is needed
               if (self.session.role === "whistleblower") {
                 $rootScope.setPage('tippage');
-              } else if (self.session.password_change_needed) {
-                // Redirect UI to the ForcedPasswordChange view
-                $location.path("/forcedpasswordchange");
               } else {
                 $location.path(self.session.auth_landing_page);
               }
@@ -153,6 +150,8 @@ angular.module("GLServices", ["ngResource"]).
 
         self.logout = function() {
           var cb;
+
+          $rootScope.Authentication.authcoderequired = false;
 
           if (self.session.role === "whistleblower") {
             cb = function() {
@@ -899,6 +898,13 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           $location.path("/signup");
         } else if (["/signup", "activation"].indexOf(path === -1) && $rootScope.node.adminonly && !$rootScope.Authentication.session) {
           $location.path("/admin");
+        } else if ($rootScope.Authentication.session) {
+          if ($rootScope.Authentication.session.password_change_needed) {
+            $location.path("/forcedpasswordchange");
+          } else if ($rootScope.node.two_factor && !$rootScope.Authentication.session.two_factor) {
+            console.log($rootScope.Authentication.session);
+            $location.path("/enabletwofactorauth");
+          }
         }
       },
 

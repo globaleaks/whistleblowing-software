@@ -13,6 +13,8 @@ GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "
       }
     ];
 
+    $scope.vars = {};
+
     $scope.email_regexp = CONSTANTS.email_regexp;
     $scope.editingName = false;
     $scope.editingEmail = false;
@@ -59,7 +61,7 @@ GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "
 
           $scope.two_factor_qrcode = qr.toDataURL();
 
-          $scope.Utils.openConfirmableModalDialog("views/partials/enable_2fa.html", {}, $scope).then(function (result) {
+          $scope.Utils.openConfirmableModalDialog("views/partials/enable_2fa_modal.html", {}, $scope).then(function (result) {
             return $http({method: "PUT", url: "user/operations", data:{
               "operation": "enable_2fa_step2",
               "args": {

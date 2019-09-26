@@ -293,6 +293,7 @@ AdminNodeDesc = {
     'enable_user_pgp_key_upload': bool,
     'log_level': text_type,
     'log_accesses_of_internal_users': bool,
+    'two_factor': bool,
     'encryption': bool,
     'multisite': bool,
     'adminonly': bool,

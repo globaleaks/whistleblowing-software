@@ -94,7 +94,7 @@ def login_whistleblower(session, tid, receipt):
         user_key = GCE.derive_key(receipt.encode('utf-8'), State.tenant_cache[tid].receipt_salt)
         crypto_prv_key = GCE.symmetric_decrypt(user_key, wbtip.crypto_prv_key)
 
-    return Sessions.new(tid, wbtip.id, tid, 'whistleblower', False, crypto_prv_key)
+    return Sessions.new(tid, wbtip.id, tid, 'whistleblower', False, False, crypto_prv_key)
 
 
 @transact
@@ -144,6 +144,8 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
                 two_factor_secret = user.two_factor_secret.decode('utf-8')
 
             # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
+            print(authcode)
+            print(two_factor_secret)
             if not pyotp.TOTP(two_factor_secret).verify(authcode, valid_window=1):
                 raise errors.InvalidTwoFactorAuthCode
 
@@ -152,7 +154,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
 
     user.last_login = datetime_now()
 
-    return Sessions.new(tid, user.id, user.tid, user.role, user.password_change_needed, crypto_prv_key)
+    return Sessions.new(tid, user.id, user.tid, user.role, user.password_change_needed, user.two_factor_enable, crypto_prv_key)
 
 
 @transact
@@ -299,8 +301,12 @@ class TenantAuthSwitchHandler(BaseHandler):
         tid = int(tid)
         check = yield check_tenant_auth_switch(self.current_user, tid)
         if check:
-            session = Sessions.new(tid, self.current_user.user_id, self.current_user.user_tid,
-                                   self.current_user.user_role, self.current_user.pcn, self.current_user.cc)
+            session = Sessions.new(tid, self.current_user.user_id,
+                                   self.current_user.user_tid,
+                                   self.current_user.user_role,
+                                   self.current_user.pcn,
+                                   self.current_user.two_factor,
+                                   self.current_user.cc)
 
         returnValue({
             'redirect': '/t/%d/#/login?token=%s' % (tid, session.id)
