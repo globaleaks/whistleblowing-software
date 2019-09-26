@@ -632,16 +632,6 @@ class PasswordResetValidation(UserNodeKeyword):
         return url + '?token=' + self.data['reset_token']
 
 
-class PasswordResetComplete(UserNodeKeyword):
-    keyword_list = NodeKeyword.keyword_list + password_reset_complete_keywords
-
-    data_keys = NodeKeyword.data_keys + \
-        ['new_password']
-
-    def NewPassword(self):
-        return self.data['new_password']
-
-
 class IdentityAccessRequestKeyword(UserNodeKeyword):
     keyword_list = UserNodeKeyword.keyword_list + identity_access_request_keywords
     data_keys = UserNodeKeyword.data_keys + ['iar', 'tip', 'user']
@@ -682,7 +672,6 @@ supported_template_types = {
     u'activation': PlatformSignupKeyword,
     u'email_validation': EmailValidationKeyword,
     u'password_reset_validation': PasswordResetValidation,
-    u'password_reset_complete': PasswordResetComplete,
     u'user_credentials': UserCredentials,
     u'identity_access_request': IdentityAccessRequestKeyword,
     u'2fa': TwoFactorAuthKeyword
