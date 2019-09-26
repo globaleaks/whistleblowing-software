@@ -242,7 +242,9 @@ class PrivKeyValidator(CtxValidator):
 
         # Note that the empty string here prevents valid PKCS8 encrypted
         # keys from being used instead of plain pem keys.
-        load_privatekey(FILETYPE_PEM, raw_str, passphrase=b"")
+        key = load_privatekey(FILETYPE_PEM, raw_str, passphrase=b"")
+
+        ctx.use_privatekey(key)
 
 
 class CertValidator(CtxValidator):
@@ -256,8 +258,8 @@ class CertValidator(CtxValidator):
         if not certificate:
             raise ValidationException('There is no certificate')
 
-        possible_chain = split_pem_chain(certificate)
-        if len(possible_chain) < 1 or len(possible_chain) > 1:
+        certs = split_pem_chain(certificate)
+        if len(certs) != 1:
             raise ValidationException('Invalide certificate')
 
         x509 = load_certificate(FILETYPE_PEM, certificate)
@@ -266,10 +268,6 @@ class CertValidator(CtxValidator):
             raise ValidationException('The certficate has expired')
 
         ctx.use_certificate(x509)
-
-        priv_key = load_privatekey(FILETYPE_PEM, cfg['ssl_key'], passphrase=b'')
-
-        ctx.use_privatekey(priv_key)
 
         ctx.check_privatekey()
 
@@ -281,6 +279,9 @@ class ChainValidator(CtxValidator):
         store = ctx.get_cert_store()
 
         chain = split_pem_chain(cfg['ssl_intermediate'])
+
+        if len(chain) < 1:
+            raise ValidationException('Invalide certificate chain')
 
         for cert in chain:
             x509 = load_certificate(FILETYPE_PEM, cert)
