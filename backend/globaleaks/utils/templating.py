@@ -114,7 +114,8 @@ email_validation_keywords = [
 ]
 
 password_reset_validation_keywords = [
-    '{RecipientName}'
+    '{RecipientName}',
+    '{Username}'
 ]
 
 password_reset_complete_keywords = [
@@ -622,6 +623,9 @@ class PasswordResetValidation(UserNodeKeyword):
 
     data_keys = NodeKeyword.data_keys + \
         ['reset_token']
+
+    def Username(self):
+        return '%s' % self.data['user']['username']
 
     def UrlPath(self):
         if self.data['user']['encryption']:
