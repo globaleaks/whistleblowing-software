@@ -38,7 +38,7 @@ class TestHostnameConfig(helpers.TestHandler):
 
         yield self.pp.start_defer
 
-        for value in ['', 'onion', 'localhost', 'antani.onion', 'antani.localhost']:
+        for value in ['onion', 'localhost', 'antani.onion', 'antani.localhost']:
             handler = self.request({'operation': 'set_hostname', 'args': {'value': value}}, role='admin')
             yield self.assertFailure(handler.put(), errors.InputValidationError)
 
