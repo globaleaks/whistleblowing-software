@@ -8,7 +8,7 @@ from globaleaks.state import State
 
 
 class RobotstxtHandler(BaseHandler):
-    check_roles = '*'
+    check_roles = 'none'
 
     def get(self):
         """

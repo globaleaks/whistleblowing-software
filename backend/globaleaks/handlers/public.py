@@ -401,7 +401,7 @@ def get_public_resources(session, tid, language):
 
 
 class PublicResource(BaseHandler):
-    check_roles = '*'
+    check_roles = 'none'
     cache_resource = True
 
     @inlineCallbacks

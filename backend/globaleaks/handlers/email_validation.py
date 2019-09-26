@@ -31,7 +31,7 @@ def db_validate_address_change(session, validation_token):
 
 
 class EmailValidation(BaseHandler):
-    check_roles = '*'
+    check_roles = 'none'
     redirect_url = "/#/email/validation/success"
 
     @inlineCallbacks

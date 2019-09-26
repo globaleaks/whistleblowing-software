@@ -9,7 +9,7 @@ from globaleaks.utils.fs import directory_traversal_check
 
 
 class StaticFileHandler(BaseHandler):
-    check_roles = '*'
+    check_roles = 'none'
     handler_exec_time_threshold = 30
 
     def __init__(self, state, request, path):

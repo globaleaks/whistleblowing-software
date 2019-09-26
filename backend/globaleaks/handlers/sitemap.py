@@ -7,7 +7,7 @@ from globaleaks.state import State
 
 
 class SitemapHandler(BaseHandler):
-    check_roles = '*'
+    check_roles = 'none'
 
     def get(self):
         """

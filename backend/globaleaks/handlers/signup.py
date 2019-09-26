@@ -160,7 +160,7 @@ class Signup(BaseHandler):
     """
     Signup handler
     """
-    check_roles = 'unauthenticated'
+    check_roles = 'none'
     invalidate_cache = False
     root_tenant_only = True
 
@@ -178,7 +178,7 @@ class SignupActivation(BaseHandler):
     """
     Signup handler
     """
-    check_roles = 'unauthenticated'
+    check_roles = 'none'
     invalidate_cache = False
     root_tenant_only = True
     refresh_connection_endpoints = True

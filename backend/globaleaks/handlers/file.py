@@ -36,7 +36,7 @@ def get_file_id(session, tid, name):
 
 
 class FileHandler(BaseHandler):
-    check_roles = '*'
+    check_roles = 'none'
 
     @inlineCallbacks
     def get(self, name):
@@ -56,7 +56,7 @@ class FileHandler(BaseHandler):
 
 
 class AppFileHandler(BaseHandler):
-    check_roles = '*'
+    check_roles = 'none'
 
     @inlineCallbacks
     def get(self, name):

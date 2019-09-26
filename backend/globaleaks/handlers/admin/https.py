@@ -502,7 +502,7 @@ class AcmeHandler(BaseHandler):
 
 
 class AcmeChallengeHandler(BaseHandler):
-    check_roles = 'unauthenticated'
+    check_roles = 'none'
     bypass_basic_auth = True
 
     def get(self, token):

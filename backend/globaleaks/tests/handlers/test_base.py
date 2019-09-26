@@ -11,7 +11,7 @@ FUTURE = 100
 
 
 class BaseHandlerMock(BaseHandler):
-    check_roles = 'unauthenticated'
+    check_roles = 'none'
 
     def get(self):
         return

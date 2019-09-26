@@ -31,7 +31,7 @@ def get_site_list(session):
 
 
 class SiteCollection(BaseHandler):
-    check_roles = '*'
+    check_roles = 'none'
     root_tenant_only = True
 
     def get(self):

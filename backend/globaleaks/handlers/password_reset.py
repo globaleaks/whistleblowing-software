@@ -82,7 +82,7 @@ def generate_password_reset_token(session, state, tid, username_or_email):
 
 
 class PasswordResetHandler(BaseHandler):
-    check_roles = 'unauthenticated'
+    check_roles = 'none'
 
     def post(self):
         if State.tenant_cache[self.request.tid]['enable_password_reset'] is False:

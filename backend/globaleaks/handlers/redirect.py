@@ -15,7 +15,7 @@ class SpecialRedirectHandler(BaseHandler):
     """
     This handler implement the platform special redirects
     """
-    check_roles = '*'
+    check_roles = 'none'
 
     def get(self, path):
         self.redirect(url_map[path])
