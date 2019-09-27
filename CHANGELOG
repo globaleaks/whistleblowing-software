@@ -1,3 +1,8 @@
+Changes in version 3.11.17 - 2019-09-27
+    Improve UX for enforced password change
+    Implement possibility to enforce two factor authentication (#2681)
+    Ensure that on enforced password are not reused (#2614)
+
 Changes in version 3.11.16 - 2019-09-26
     Add support drag and drop of files (#2063)
     Make TLS intermediate certificate optional
