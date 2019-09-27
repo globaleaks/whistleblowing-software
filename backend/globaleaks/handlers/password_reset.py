@@ -96,9 +96,6 @@ class PasswordResetHandler(BaseHandler):
                                              request['username_or_email'])
 
     def put(self):
-        if State.tenant_cache[self.request.tid]['enable_password_reset'] is False:
-            return
-
         request = self.validate_message(self.request.content.read(),
                                         requests.PasswordReset2Desc)
 
