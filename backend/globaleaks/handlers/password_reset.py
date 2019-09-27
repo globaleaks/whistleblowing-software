@@ -44,7 +44,7 @@ def validate_password_reset(session, tid, reset_token, recovery_key):
     user.password_change_needed = True
 
     session = Sessions.new(tid, user.id, user.tid, user.role,
-                           user.password_change_needed, prv_key)
+                           user.password_change_needed, user.two_factor_enable, prv_key)
 
     return {'status': 'success', 'token': session.id}
 

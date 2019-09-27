@@ -209,7 +209,7 @@ class TestUser2FAEnrollment(helpers.TestHandlerWithPopulatedDB):
 
         handler = self.request(data_request, role='receiver')
 
-        self.assertFailure(handler.put(), errors.InvalidAuthentication)
+        self.assertFailure(handler.put(), errors.InvalidTwoFactorAuthCode)
 
         # Attempt enrolling for 2FA with a valid token
         current_token = pyotp.TOTP(totp_secret).now()

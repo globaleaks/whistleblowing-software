@@ -925,7 +925,7 @@ class TestHandler(TestGLWithPopulatedDB):
             handler.request.headers[b'x-session'] = headers.get('x-session').encode()
 
         elif role is not None:
-            session = Sessions.new(1, user_id, 1, role, False, USER_PRV_KEY)
+            session = Sessions.new(1, user_id, 1, role, False, False, USER_PRV_KEY)
             handler.request.headers[b'x-session'] = session.id.encode()
 
         if handler.upload_handler:
@@ -1204,7 +1204,7 @@ class MockDict:
             'enable_user_pgp_key_upload': False,
             'log_level': 'DEBUG',
             'log_accesses_of_internal_users': False,
-            '2fa': False,
+            'two_factor': False,
             'encryption': False,
             'multisite': False,
             'adminonly': False,
