@@ -132,7 +132,7 @@ class PasswordReuseError(GLException):
     """
     Error signaling that the choosen new password is already used
     """
-    reason = "The new password must differ from previous passwords."
+    reason = "The new password must differ from the previous."
     error_code = 11
     status_code = 406
 
