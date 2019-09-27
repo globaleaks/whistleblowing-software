@@ -128,10 +128,18 @@ class NotAuthenticated(GLException):
     reason = "Not Authenticated"
 
 
+class PasswordReuseError(GLException):
+    """
+    Error signaling that the choosen new password is already used
+    """
+    reason = "The new password must differ from previous passwords."
+    error_code = 11
+    status_code = 406
+
+
 class InvalidOldPassword(GLException):
     """
-    Receiver or Node required the old password equal to the current password,
-    before change with a new secret.
+    Error signaling that the provided old password is wrong
     """
     reason = "The specified old password is not valid"
     error_code = 12

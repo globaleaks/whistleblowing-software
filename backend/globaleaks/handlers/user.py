@@ -152,7 +152,13 @@ def db_user_update_user(session, tid, user_session, request):
             user.hash_alg = GCE.HASH
             user.salt = GCE.generate_salt()
 
-        user.password = GCE.hash_password(new_password, user.salt)
+        password_hash = GCE.hash_password(new_password, user.salt)
+
+        # Check that the new password is different form the current password
+        if user.password == password_hash:
+            raise errors.PasswordReuseError
+
+        user.password = password_hash
         user.password_change_date = datetime_now()
 
         if State.tenant_cache[tid].encryption:
