@@ -116,7 +116,7 @@ def db_wizard(session, tid, request, client_using_tor, language):
         context.questionnaire_id = root_tenant_node.get_val(u'default_questionnaire')
 
     # Apply the general settings to apply on all mode != default
-    if mode != u'default':
+    if mode in [u'whistleblowing.it', u'eat']:
         # Enable the recipient user to configure platform general settings
         receiver_user.can_edit_general_settings = True
 
