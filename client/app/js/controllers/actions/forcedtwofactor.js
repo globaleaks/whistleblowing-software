@@ -27,6 +27,7 @@ GLClient.controller("EnableTwoFactorAuthCtrl", ["$scope", "$http", "$location",
                       }
                     }}).then(function() {
                       $scope.Authentication.session.two_factor = true;
+                      $scope.preferences.two_factor_enable = true;
 		      $location.path($scope.Authentication.session.auth_landing_page);
 		    });
     };

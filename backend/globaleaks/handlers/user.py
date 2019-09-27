@@ -299,7 +299,7 @@ def enable_2fa_step2(session, user_tid, user_id, user_cc, token):
     if pyotp.TOTP(two_factor_secret).verify(token):
         user.two_factor_enable = True
     else:
-        raise errors.InvalidAuthentication
+        raise errors.InvalidTwoFactorAuthCode
 
 
 @transact
