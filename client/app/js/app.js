@@ -184,16 +184,16 @@ var GLClient = angular.module("GLClient", [
           access: requireAuth("receiver"),
         }
       }).
-      when("/forcedpasswordchange", {
-        templateUrl: "views/forced_password_change.html",
+      when("/actions/forcedpasswordchange", {
+        templateUrl: "views/actions/forced_password_change.html",
         controller: "ForcedPasswordChangeCtrl",
         header_title: "Change your password",
         resolve: {
           access: requireAuth("*"),
         }
       }).
-      when("/enabletwofactorauth", {
-        templateUrl: "views/enable_two_factor.html",
+      when("/actions/forcedtwofactor", {
+        templateUrl: "views/actions/forced_two_factor.html",
         controller: "EnableTwoFactorAuthCtrl",
         header_title: "Enable two factor authentication",
         resolve: {

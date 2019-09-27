@@ -900,10 +900,10 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           $location.path("/admin");
         } else if ($rootScope.Authentication.session) {
           if ($rootScope.Authentication.session.password_change_needed) {
-            $location.path("/forcedpasswordchange");
+            $location.path("/actions/forcedpasswordchange");
           } else if ($rootScope.node.two_factor && !$rootScope.Authentication.session.two_factor) {
             console.log($rootScope.Authentication.session);
-            $location.path("/enabletwofactorauth");
+            $location.path("/actions/forcedtwofactor");
           }
         }
       },
