@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -674,6 +674,35 @@ msgstr "你的提交已成功"
 msgid "Submission status"
 msgstr "提交狀態"
 
+msgid "Before proceeding, please set a new password."
+msgstr "繼續之前，請設一個新密碼。"
+
+msgid "New password"
+msgstr "新密碼"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "所選用的密碼太過薄弱，要使它更安全請加入特殊字元、數字和符號。"
+
+msgid "The new password must be different from the current one."
+msgstr "新密碼必須與舊密碼不同"
+
+msgid "Type your new password again"
+msgstr "重新輸入密碼"
+
+msgid "The two passwords do not match"
+msgstr "密碼不相符"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "進行"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "取消提交"
 
@@ -686,9 +715,6 @@ msgstr "若無法加密時，可讓系統明文儲存資料"
 
 msgid "Enable multisite feature"
 msgstr "啟用多個網站功能"
-
-msgid "Enable two factor authentication"
-msgstr ""
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
@@ -706,6 +732,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "允許收件者在某特定揭密事件上授權許可吹哨者"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "可讓搜尋引擎進行索引"
@@ -1095,9 +1124,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "主機名稱"
 
-msgid "Verify"
-msgstr "查證"
-
 msgid "Invalid input format."
 msgstr "無效的輸入格式"
 
@@ -1116,9 +1142,6 @@ msgstr "閱課"
 
 msgid "I agree to the Terms of Service."
 msgstr "我同意這份服務个款"
-
-msgid "Proceed"
-msgstr "進行"
 
 msgid "Country code"
 msgstr "國碼"
@@ -1172,8 +1195,9 @@ msgstr "啟用"
 msgid "Reset"
 msgstr "重新設定"
 
-msgid "Select an option:"
-msgstr "挑選一個選項："
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "這個平台透過此介面支援 HTTPS "
 
 msgid "Automatic configuration"
 msgstr "自動設定"
@@ -1196,13 +1220,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "手動設定精靈會指引你從另一套憑證授權單位來完成 HTTPS 的設定戈"
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "這個平台透過此介面支援 HTTPS "
-
-msgid "The connection to the configured domain failed."
-msgstr "連線到設定的域名失敗了"
 
 msgid "Auto-renewal"
 msgstr "自動更新"
@@ -1449,13 +1466,8 @@ msgstr "系統要求使用者在首次登入時更改密碼"
 msgid "Reset password"
 msgstr "重設密碼"
 
-msgid "New password"
-msgstr "新密碼"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "所選用的密碼太過薄弱，要使它更安全請加入特殊字元、數字和符號。"
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "強迫變更密碼"
@@ -1522,9 +1534,6 @@ msgstr "驗證連結不正確或是已經過期。"
 msgid "Your new email address has been validated."
 msgstr "您的新電郵已通過驗證。"
 
-msgid "Before proceeding, please set a new password."
-msgstr "繼續之前，請設一個新密碼。"
-
 msgid "Forgot password?"
 msgstr "忘記密碼？"
 
@@ -1585,13 +1594,13 @@ msgstr ""
 msgid "Attention!"
 msgstr "注𨐌"
 
-msgid "Instructions"
-msgstr ""
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
@@ -1700,15 +1709,6 @@ msgstr "現用密碼"
 msgid "Old password confirmation required"
 msgstr "要求確認舊密碼"
 
-msgid "The new password must be different from the current one."
-msgstr "新密碼必須與舊密碼不同"
-
-msgid "Type your new password again"
-msgstr "重新輸入密碼"
-
-msgid "The two passwords do not match"
-msgstr "密碼不相符"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1724,6 +1724,9 @@ msgstr "然後在 TOR 瀏覧器上複制貼上以下的網址"
 
 msgid "Enter a name for the copy"
 msgstr "為此複本輸入名稱"
+
+msgid "Select a file or drag it here."
+msgstr ""
 
 msgid "Uploading files…"
 msgstr "上傳檔案...."
@@ -2389,8 +2392,8 @@ msgstr "新訊息"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
-msgstr "您會收到本郵件是因為您請求為帳戶重設密碼。"
+"the account: {Username}"
+msgstr ""
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

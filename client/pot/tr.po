@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -690,6 +690,35 @@ msgstr "Gönderiminiz başarıyla tamamlandı."
 msgid "Submission status"
 msgstr "Gönderme durumu"
 
+msgid "Before proceeding, please set a new password."
+msgstr ""
+
+msgid "New password"
+msgstr ""
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Belirtilen şifre çok zayıf. Daha fazla rakam, özel karakte, olağandışı semboller ekleyerek daha güvenli yapın."
+
+msgid "The new password must be different from the current one."
+msgstr "Yeni parola, geçerli paroladan farklı olmalıdır."
+
+msgid "Type your new password again"
+msgstr "Yeni şifrenizi tekrar girin"
+
+msgid "The two passwords do not match"
+msgstr "İki parola eşleşmiyor"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Devam Et"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "Gönderimleri devre dışı bırak"
 
@@ -701,9 +730,6 @@ msgid ""
 msgstr ""
 
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Allow the following websites to embed the platform inside iframes"
@@ -722,6 +748,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Belirli gönderimlerde alıcıların ihbarcılara yetki vermesine izin verin"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "Arama motoru dizinlemeyi etkinleştir"
@@ -1111,9 +1140,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "Makine adı"
 
-msgid "Verify"
-msgstr "Doğrula"
-
 msgid "Invalid input format."
 msgstr ""
 
@@ -1132,9 +1158,6 @@ msgstr ""
 
 msgid "I agree to the Terms of Service."
 msgstr ""
-
-msgid "Proceed"
-msgstr "Devam Et"
 
 msgid "Country code"
 msgstr "Ülke kodu"
@@ -1188,7 +1211,8 @@ msgstr "Etkinleştir"
 msgid "Reset"
 msgstr "Sıfırla"
 
-msgid "Select an option:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
 msgstr ""
 
 msgid "Automatic configuration"
@@ -1211,13 +1235,6 @@ msgstr ""
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr ""
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr ""
-
-msgid "The connection to the configured domain failed."
 msgstr ""
 
 msgid "Auto-renewal"
@@ -1465,13 +1482,8 @@ msgstr "Sistem, kullanıcıları ilk girişte şifrelerini değiştirmeye zorlar
 msgid "Reset password"
 msgstr ""
 
-msgid "New password"
+msgid "Disable two factor authentication"
 msgstr ""
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "Belirtilen şifre çok zayıf. Daha fazla rakam, özel karakte, olağandışı semboller ekleyerek daha güvenli yapın."
 
 msgid "Force password change"
 msgstr "Şifre değişikliğine zorla"
@@ -1538,9 +1550,6 @@ msgstr ""
 msgid "Your new email address has been validated."
 msgstr ""
 
-msgid "Before proceeding, please set a new password."
-msgstr ""
-
 msgid "Forgot password?"
 msgstr ""
 
@@ -1601,13 +1610,13 @@ msgstr ""
 msgid "Attention!"
 msgstr ""
 
-msgid "Instructions"
-msgstr "Yönergeler"
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
@@ -1716,15 +1725,6 @@ msgstr ""
 msgid "Old password confirmation required"
 msgstr "Eski parola doğrulaması gerekli"
 
-msgid "The new password must be different from the current one."
-msgstr "Yeni parola, geçerli paroladan farklı olmalıdır."
-
-msgid "Type your new password again"
-msgstr "Yeni şifrenizi tekrar girin"
-
-msgid "The two passwords do not match"
-msgstr "İki parola eşleşmiyor"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1739,6 +1739,9 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Sonra, şu adresi kopyalayıp Tor Browser'a yapıştırın:"
 
 msgid "Enter a name for the copy"
+msgstr ""
+
+msgid "Select a file or drag it here."
 msgstr ""
 
 msgid "Uploading files…"
@@ -2405,7 +2408,7 @@ msgstr "Yeni mesaj"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
+"the account: {Username}"
 msgstr ""
 
 msgid ""

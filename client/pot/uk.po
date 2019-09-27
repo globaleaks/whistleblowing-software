@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -686,6 +686,35 @@ msgstr "Звернення було успішне."
 msgid "Submission status"
 msgstr "Статус подання"
 
+msgid "Before proceeding, please set a new password."
+msgstr "Перш ніж продовжити, будь ласка, встановіть новий пароль."
+
+msgid "New password"
+msgstr "Новий пароль"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Пароль занадто слабкий. Додайте спеціальні символи, цифри і незвичайні символи."
+
+msgid "The new password must be different from the current one."
+msgstr "Новий пароль повинен відрізнятися від поточного."
+
+msgid "Type your new password again"
+msgstr "Введіть ваш пароль знову"
+
+msgid "The two passwords do not match"
+msgstr "Два паролі не збігаються"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Продовжити"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "Відключити повідомлення"
 
@@ -697,9 +726,6 @@ msgid ""
 msgstr ""
 
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Allow the following websites to embed the platform inside iframes"
@@ -718,6 +744,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Дозволити одержувачам обирати які типи повідомлень можуть надсилати інформатори "
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "Включити індексацію пошуковими системами"
@@ -1107,9 +1136,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "Ім'я хосту"
 
-msgid "Verify"
-msgstr "Перевірити"
-
 msgid "Invalid input format."
 msgstr "Недійсний формат вводу"
 
@@ -1128,9 +1154,6 @@ msgstr ""
 
 msgid "I agree to the Terms of Service."
 msgstr ""
-
-msgid "Proceed"
-msgstr "Продовжити"
 
 msgid "Country code"
 msgstr ""
@@ -1184,7 +1207,8 @@ msgstr "Увімкнути"
 msgid "Reset"
 msgstr "Скинути налаштування"
 
-msgid "Select an option:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
 msgstr ""
 
 msgid "Automatic configuration"
@@ -1207,13 +1231,6 @@ msgstr ""
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr ""
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr ""
-
-msgid "The connection to the configured domain failed."
 msgstr ""
 
 msgid "Auto-renewal"
@@ -1461,13 +1478,8 @@ msgstr "Система змушує користувачів змінити па
 msgid "Reset password"
 msgstr "Відновити пароль"
 
-msgid "New password"
-msgstr "Новий пароль"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "Пароль занадто слабкий. Додайте спеціальні символи, цифри і незвичайні символи."
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "Примусити змінити пароль"
@@ -1534,9 +1546,6 @@ msgstr ""
 msgid "Your new email address has been validated."
 msgstr "Ваша нова адреса електронної пошти була перевірена."
 
-msgid "Before proceeding, please set a new password."
-msgstr "Перш ніж продовжити, будь ласка, встановіть новий пароль."
-
 msgid "Forgot password?"
 msgstr "Забули пароль?"
 
@@ -1597,13 +1606,13 @@ msgstr ""
 msgid "Attention!"
 msgstr "Увага!"
 
-msgid "Instructions"
-msgstr "Інструкції"
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
@@ -1712,15 +1721,6 @@ msgstr "Поточний пароль"
 msgid "Old password confirmation required"
 msgstr "Вимагається підтвердження старого паролю"
 
-msgid "The new password must be different from the current one."
-msgstr "Новий пароль повинен відрізнятися від поточного."
-
-msgid "Type your new password again"
-msgstr "Введіть ваш пароль знову"
-
-msgid "The two passwords do not match"
-msgstr "Два паролі не збігаються"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1735,6 +1735,9 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Потім скопіюйте і вставте наступну адресу у встановленій Tor Browser:"
 
 msgid "Enter a name for the copy"
+msgstr ""
+
+msgid "Select a file or drag it here."
 msgstr ""
 
 msgid "Uploading files…"
@@ -2401,7 +2404,7 @@ msgstr "Нове Повідомлення"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
+"the account: {Username}"
 msgstr ""
 
 msgid ""

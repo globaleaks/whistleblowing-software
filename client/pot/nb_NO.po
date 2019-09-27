@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -671,6 +671,35 @@ msgstr "Din innsendelse var vellykket."
 msgid "Submission status"
 msgstr "Statusside for innsendelser"
 
+msgid "Before proceeding, please set a new password."
+msgstr ""
+
+msgid "New password"
+msgstr "Nytt passord"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Valgt passord for svakt. Gjør det sikrere ved å legge til spesielle tegn, tall og uvanlige symboler."
+
+msgid "The new password must be different from the current one."
+msgstr "Det nye passordet må være forskjellig fra det gamle."
+
+msgid "Type your new password again"
+msgstr "Skriv inn ditt nye passord igjen"
+
+msgid "The two passwords do not match"
+msgstr "De to passordene samsvarer ikke"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Fortsett"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "Skru av innsendelser"
 
@@ -682,9 +711,6 @@ msgid ""
 msgstr ""
 
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Allow the following websites to embed the platform inside iframes"
@@ -703,6 +729,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Tillat mottakere å forære rettigheter til fløyteblåsere på gitte innsendelser"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "Skru på søkemotor-indeksering"
@@ -1092,9 +1121,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "Vertsnavn"
 
-msgid "Verify"
-msgstr "Bekreft"
-
 msgid "Invalid input format."
 msgstr "Ugyldig inndata-format"
 
@@ -1113,9 +1139,6 @@ msgstr "Les tjenestevilkårene"
 
 msgid "I agree to the Terms of Service."
 msgstr "Jeg samtykker til tjenestevilkårene"
-
-msgid "Proceed"
-msgstr "Fortsett"
 
 msgid "Country code"
 msgstr "Landskode"
@@ -1169,8 +1192,9 @@ msgstr "Skru på"
 msgid "Reset"
 msgstr "Tilbakestill"
 
-msgid "Select an option:"
-msgstr "Gjør et valg:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Plattformen støtter oppsett av HTTPS gjennom dette grensesnittet."
 
 msgid "Automatic configuration"
 msgstr "Automatisk oppsett"
@@ -1193,13 +1217,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Veiviseren vil geleide deg gjennom manuelt oppsett av HTTPS og validering derav på vegne av en alternativ sertifikatsmyndighet."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "Plattformen støtter oppsett av HTTPS gjennom dette grensesnittet."
-
-msgid "The connection to the configured domain failed."
-msgstr "Tilkoblingen til oppsatt domene mislyktes."
 
 msgid "Auto-renewal"
 msgstr "Automatisk fornyelse"
@@ -1446,13 +1463,8 @@ msgstr "Systemet tvinger brukere til å endre passordet ved første innlogging."
 msgid "Reset password"
 msgstr "Tilbakestill passord"
 
-msgid "New password"
-msgstr "Nytt passord"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "Valgt passord for svakt. Gjør det sikrere ved å legge til spesielle tegn, tall og uvanlige symboler."
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "Påtving passordendring"
@@ -1519,9 +1531,6 @@ msgstr ""
 msgid "Your new email address has been validated."
 msgstr ""
 
-msgid "Before proceeding, please set a new password."
-msgstr ""
-
 msgid "Forgot password?"
 msgstr ""
 
@@ -1582,13 +1591,13 @@ msgstr ""
 msgid "Attention!"
 msgstr "Oppmerksomhet!"
 
-msgid "Instructions"
-msgstr ""
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
@@ -1697,15 +1706,6 @@ msgstr "Gjeldende passord"
 msgid "Old password confirmation required"
 msgstr "Bekreftelse av gammelt passord påkrevd"
 
-msgid "The new password must be different from the current one."
-msgstr "Det nye passordet må være forskjellig fra det gamle."
-
-msgid "Type your new password again"
-msgstr "Skriv inn ditt nye passord igjen"
-
-msgid "The two passwords do not match"
-msgstr "De to passordene samsvarer ikke"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1720,6 +1720,9 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Deretter, kopier og lim inn følgende adresse i den nå installerte  Tor-nettleseren:"
 
 msgid "Enter a name for the copy"
+msgstr ""
+
+msgid "Select a file or drag it here."
 msgstr ""
 
 msgid "Uploading files…"
@@ -2386,7 +2389,7 @@ msgstr "Ny melding"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
+"the account: {Username}"
 msgstr ""
 
 msgid ""

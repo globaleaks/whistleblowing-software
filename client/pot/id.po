@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -687,6 +687,35 @@ msgstr "Kiriman Anda berhasil"
 msgid "Submission status"
 msgstr "Status pengiriman"
 
+msgid "Before proceeding, please set a new password."
+msgstr "Sebelum melanjutkan, mohon atur kata sandi baru."
+
+msgid "New password"
+msgstr "Kata sandi baru"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Pemilihan kata sandi terlalu lemah. Buatlah lebih aman dengan menambahkan beberapa huruf, angka, dan simbol yang tidak biasa."
+
+msgid "The new password must be different from the current one."
+msgstr "Kata sandi baru harus berbeda dari yang sekarang."
+
+msgid "Type your new password again"
+msgstr "Ketik lagi kata sandi baru Anda."
+
+msgid "The two passwords do not match"
+msgstr "Kedua kata kunci tidak cocok."
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Lanjutkan"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "Menonaktifkan kiriman"
 
@@ -699,9 +728,6 @@ msgstr "Izinkan sistem untuk menyimpan data dalam bentuk plaintext ketika enkrip
 
 msgid "Enable multisite feature"
 msgstr "Aktifkan fitur multi situs"
-
-msgid "Enable two factor authentication"
-msgstr "Aktifkan otentikasi 2 faktor"
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
@@ -719,6 +745,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Izinkan penerima memberikan izin kepada informan publik pada kiriman tertentu"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "Aktifkan pencatatan mesin pencari"
@@ -1108,9 +1137,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "Nama host"
 
-msgid "Verify"
-msgstr "Verifikasi"
-
 msgid "Invalid input format."
 msgstr "Format masukan tidak valid."
 
@@ -1129,9 +1155,6 @@ msgstr "Baca Persyaratan Layanan"
 
 msgid "I agree to the Terms of Service."
 msgstr "Saya setuju dengan Persyaratan Layanan."
-
-msgid "Proceed"
-msgstr "Lanjutkan"
 
 msgid "Country code"
 msgstr "Kode Negara"
@@ -1185,8 +1208,9 @@ msgstr "Aktifkan"
 msgid "Reset"
 msgstr "Atur ulang"
 
-msgid "Select an option:"
-msgstr "Pilih satu opsi"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Platform mendukung konfigurasi HTTPS melalui antarmuka ini. "
 
 msgid "Automatic configuration"
 msgstr "Konfigurasi Otomatis"
@@ -1209,13 +1233,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Petunjuk konfigurasi manual akan memandu Anda ke pengaturan HTTPS dari otoritas yang mengeluarkan sertifikat alternatif. "
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "Platform mendukung konfigurasi HTTPS melalui antarmuka ini. "
-
-msgid "The connection to the configured domain failed."
-msgstr "Koneksi ke domain yang terkonfigurasi gagal. "
 
 msgid "Auto-renewal"
 msgstr "pembaruan automatis"
@@ -1462,13 +1479,8 @@ msgstr "Sistem memaksa pengguna untuk mengganti kata sandi saat pertama kali men
 msgid "Reset password"
 msgstr "Mengganti ulang kata sandi"
 
-msgid "New password"
-msgstr "Kata sandi baru"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "Pemilihan kata sandi terlalu lemah. Buatlah lebih aman dengan menambahkan beberapa huruf, angka, dan simbol yang tidak biasa."
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "Disarankan untuk mengganti kata sandi"
@@ -1535,9 +1547,6 @@ msgstr "Tautan validasi tidak benar atau sudah berakhir."
 msgid "Your new email address has been validated."
 msgstr "Alamat surel baru Anda sudah divalidasi "
 
-msgid "Before proceeding, please set a new password."
-msgstr "Sebelum melanjutkan, mohon atur kata sandi baru."
-
 msgid "Forgot password?"
 msgstr "Lupa sandi?"
 
@@ -1598,14 +1607,14 @@ msgstr ""
 msgid "Attention!"
 msgstr "perhatian!"
 
-msgid "Instructions"
-msgstr ""
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
 msgstr ""
+
+msgid "Enable two factor authentication"
+msgstr "Aktifkan otentikasi 2 faktor"
 
 msgid "Close"
 msgstr "Tutup"
@@ -1713,15 +1722,6 @@ msgstr "Sandi saat ini"
 msgid "Old password confirmation required"
 msgstr "Diperlukan konfirmasi kata sandi sebelumnya"
 
-msgid "The new password must be different from the current one."
-msgstr "Kata sandi baru harus berbeda dari yang sekarang."
-
-msgid "Type your new password again"
-msgstr "Ketik lagi kata sandi baru Anda."
-
-msgid "The two passwords do not match"
-msgstr "Kedua kata kunci tidak cocok."
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1737,6 +1737,9 @@ msgstr "Lalu, salin dan tempel alamat yang bersangkutan ke dalam Peramban Tor:"
 
 msgid "Enter a name for the copy"
 msgstr "Masukan nama untuk salinan"
+
+msgid "Select a file or drag it here."
+msgstr ""
 
 msgid "Uploading files…"
 msgstr "Mengunggah berkas..."
@@ -2402,8 +2405,8 @@ msgstr "Pesan baru"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
-msgstr "Anda menerima surel ini karena pengaturan ulang kata sandi telah diminta untuk akun Anda. "
+"the account: {Username}"
+msgstr ""
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -672,6 +672,35 @@ msgstr "Vaša prijava je uspjela."
 msgid "Submission status"
 msgstr "Status predaje"
 
+msgid "Before proceeding, please set a new password."
+msgstr "Prije nego nastavite, molim0 postavite novu lozinku."
+
+msgid "New password"
+msgstr "Nova lozinka"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Odabrana lozinka je preslaba. Ojačajte ju dodajući posebne znakove, brojeve i neobične simbole."
+
+msgid "The new password must be different from the current one."
+msgstr "Nova lozinka mora biti različita od trenutne."
+
+msgid "Type your new password again"
+msgstr "Ponovno upišite svoju novu lozinku"
+
+msgid "The two passwords do not match"
+msgstr "Dvije lozinke se ne podudaraju"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Nastavi"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "Onemogući predaje"
 
@@ -683,9 +712,6 @@ msgid ""
 msgstr ""
 
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Allow the following websites to embed the platform inside iframes"
@@ -704,6 +730,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Dozvoli primateljima da daju dopuštenja zviždačima na određenim predajama"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "Omogući indeksiranje tražilica"
@@ -1093,9 +1122,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "Hostname"
 
-msgid "Verify"
-msgstr "Verificiraj"
-
 msgid "Invalid input format."
 msgstr "Pogrešan format unosa."
 
@@ -1114,9 +1140,6 @@ msgstr "Pročitaj Uvjete pružanja usluge."
 
 msgid "I agree to the Terms of Service."
 msgstr "Pristajem na Uvjete pružanja usluge."
-
-msgid "Proceed"
-msgstr "Nastavi"
 
 msgid "Country code"
 msgstr "Kod države"
@@ -1170,8 +1193,9 @@ msgstr "Omogući"
 msgid "Reset"
 msgstr "Ponovno pokreni"
 
-msgid "Select an option:"
-msgstr "Odaberite opciju:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Platforma podržava konfiguriranje HTTPS-a kroz ovo sučelje."
 
 msgid "Automatic configuration"
 msgstr "Automatska konfiguracija"
@@ -1194,13 +1218,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Čarobnjak za ručnu konfiguraciju će Vas voditi kroz postavljanje HTTPS-a od alternativnog autoriteta za certifikate."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "Platforma podržava konfiguriranje HTTPS-a kroz ovo sučelje."
-
-msgid "The connection to the configured domain failed."
-msgstr "Veza s konfiguriranom domenom nije uspjela."
 
 msgid "Auto-renewal"
 msgstr "Automatska obnova"
@@ -1447,13 +1464,8 @@ msgstr "Sustav prisiljava korisnike da promijene lozinku pri prvoj prijavi."
 msgid "Reset password"
 msgstr "Resetiraj lozinku"
 
-msgid "New password"
-msgstr "Nova lozinka"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "Odabrana lozinka je preslaba. Ojačajte ju dodajući posebne znakove, brojeve i neobične simbole."
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "Prisili promjenu lozinke"
@@ -1520,9 +1532,6 @@ msgstr "Link za ovjeru je neispravan ili je istekao."
 msgid "Your new email address has been validated."
 msgstr "Vaša nova email adresa je ovjerena."
 
-msgid "Before proceeding, please set a new password."
-msgstr "Prije nego nastavite, molim0 postavite novu lozinku."
-
 msgid "Forgot password?"
 msgstr "Zaboravili lozinku?"
 
@@ -1583,13 +1592,13 @@ msgstr ""
 msgid "Attention!"
 msgstr "Pozor!"
 
-msgid "Instructions"
-msgstr ""
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
@@ -1698,15 +1707,6 @@ msgstr "Trenutna lozinka"
 msgid "Old password confirmation required"
 msgstr "Potrebna je potvrda stare lozinke"
 
-msgid "The new password must be different from the current one."
-msgstr "Nova lozinka mora biti različita od trenutne."
-
-msgid "Type your new password again"
-msgstr "Ponovno upišite svoju novu lozinku"
-
-msgid "The two passwords do not match"
-msgstr "Dvije lozinke se ne podudaraju"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1722,6 +1722,9 @@ msgstr "Zatim kopirajte i zalijepite sljedeću adresu u instalirani Tor Pregledn
 
 msgid "Enter a name for the copy"
 msgstr "Unesite ime za kopiju"
+
+msgid "Select a file or drag it here."
+msgstr ""
 
 msgid "Uploading files…"
 msgstr "Postavljanje datoteka..."
@@ -2387,8 +2390,8 @@ msgstr "Nova poruka"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
-msgstr "Dobili ste ovaj email jer je za Vaš račun zahtjevano ponovno postavljanje lozinke."
+"the account: {Username}"
+msgstr ""
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

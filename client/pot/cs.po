@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -679,6 +679,35 @@ msgstr "Vaše podání proběhlo úspěšně."
 msgid "Submission status"
 msgstr "Stav podáni"
 
+msgid "Before proceeding, please set a new password."
+msgstr "Než budete pokračovat, nastavte prosím nové heslo."
+
+msgid "New password"
+msgstr "Nové heslo"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Zvolené heslo je příliš slabé. Jeho bezpečnost zvýšíte přidáním speciálních znaků, čísel a dalších symbolů."
+
+msgid "The new password must be different from the current one."
+msgstr "Nové heslo musí být rozdílné od stávajícího."
+
+msgid "Type your new password again"
+msgstr "Zadejte své nové heslo"
+
+msgid "The two passwords do not match"
+msgstr "Hesla nejsou shodná"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Provést"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "Zakázat podání"
 
@@ -691,9 +720,6 @@ msgstr "Umožněte systému ukládat data do otevřeného textu, pokud šifrová
 
 msgid "Enable multisite feature"
 msgstr "Povolit funkci multisite "
-
-msgid "Enable two factor authentication"
-msgstr "Povolit dvoufaktorové ověřování"
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
@@ -711,6 +737,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Povolit příjemcům přiřazovat oprávnění oznamovatelům ke konkrétním podáním"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "Povolit vyhledávačům indexování."
@@ -1100,9 +1129,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "Hostitelské jméno"
 
-msgid "Verify"
-msgstr "Ověřit"
-
 msgid "Invalid input format."
 msgstr "Neplatný vstupní formát."
 
@@ -1121,9 +1147,6 @@ msgstr "Přečíst podmínky využívání služby"
 
 msgid "I agree to the Terms of Service."
 msgstr "Souhlasím s Podmínkami využívání služby"
-
-msgid "Proceed"
-msgstr "Provést"
 
 msgid "Country code"
 msgstr "Kód země"
@@ -1177,8 +1200,9 @@ msgstr "Povoleno"
 msgid "Reset"
 msgstr "Reset"
 
-msgid "Select an option:"
-msgstr "Zvolte možnost:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Platforma podporuje konfiguraci HTTPS prostřednictvím tohoto rozhraní."
 
 msgid "Automatic configuration"
 msgstr "Automatická konfigurace"
@@ -1201,13 +1225,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Průvodce manuální konfigurací vás provede nastavením HTTPS od alternativní certifikační autority."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "Platforma podporuje konfiguraci HTTPS prostřednictvím tohoto rozhraní."
-
-msgid "The connection to the configured domain failed."
-msgstr "Připojení k nakonfigurované doméně se nezdařilo."
 
 msgid "Auto-renewal"
 msgstr "Automatické obnovení"
@@ -1454,13 +1471,8 @@ msgstr "Systém vynutí u uživatele změnu hesla po prvním přihlášení."
 msgid "Reset password"
 msgstr "Resetovat heslo"
 
-msgid "New password"
-msgstr "Nové heslo"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "Zvolené heslo je příliš slabé. Jeho bezpečnost zvýšíte přidáním speciálních znaků, čísel a dalších symbolů."
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "Vynutit změnu hesla"
@@ -1527,9 +1539,6 @@ msgstr "Odkaz k ověření je buď nesprávný nebo vypršel."
 msgid "Your new email address has been validated."
 msgstr "Vaše nová e-mailová adresa byla ověřena."
 
-msgid "Before proceeding, please set a new password."
-msgstr "Než budete pokračovat, nastavte prosím nové heslo."
-
 msgid "Forgot password?"
 msgstr "Zapoměl(a) jste heslo? "
 
@@ -1590,14 +1599,14 @@ msgstr ""
 msgid "Attention!"
 msgstr "Pozor!"
 
-msgid "Instructions"
-msgstr ""
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
 msgstr ""
+
+msgid "Enable two factor authentication"
+msgstr "Povolit dvoufaktorové ověřování"
 
 msgid "Close"
 msgstr "Zavřít"
@@ -1705,15 +1714,6 @@ msgstr "Současné heslo"
 msgid "Old password confirmation required"
 msgstr "Požadováno potvrzení starého hesla"
 
-msgid "The new password must be different from the current one."
-msgstr "Nové heslo musí být rozdílné od stávajícího."
-
-msgid "Type your new password again"
-msgstr "Zadejte své nové heslo"
-
-msgid "The two passwords do not match"
-msgstr "Hesla nejsou shodná"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1729,6 +1729,9 @@ msgstr "Pak zkopírujte a vložte následující adresy do Tor prohlížeče:"
 
 msgid "Enter a name for the copy"
 msgstr "Zadejte název kopie"
+
+msgid "Select a file or drag it here."
+msgstr ""
 
 msgid "Uploading files…"
 msgstr "Nahrávám soubory..."
@@ -2394,8 +2397,8 @@ msgstr "Nová zpráva"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
-msgstr "Tento email jste obdrželi, protože bylo požadováno obnovení hesla pro váš účet."
+"the account: {Username}"
+msgstr ""
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

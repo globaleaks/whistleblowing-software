@@ -19,6 +19,7 @@
 # Just ATranslater <transifex@weinand.nl>, 2017
 # kwadronaut <kwadronaut@autistici.org>, 2017
 # Marcel Oomens <mail@marceloomens.com>, 2015-2017
+# Meteor 0id, 2019
 # Midgard, 2015
 # Mieke van Heesewijk <mieke@netdem.nl>, 2013
 # Mieke van Heesewijk <mieke@netdem.nl>, 2013
@@ -38,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -391,7 +392,7 @@ msgid "HTTPS settings"
 msgstr "HTTPS-instellingen"
 
 msgid "URL redirects"
-msgstr ""
+msgstr "URL-verwijzingen"
 
 msgid "Anomaly detection thresholds"
 msgstr "Drempels voor anomaliedetectie"
@@ -702,6 +703,35 @@ msgstr "Je inzending was succesvol."
 msgid "Submission status"
 msgstr "Status inzending"
 
+msgid "Before proceeding, please set a new password."
+msgstr "Voor je verdergaat, stel alsjeblieft een nieuw wachtwoord in."
+
+msgid "New password"
+msgstr "Nieuw wachtwoord"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Het gekozen wachtwoord is te zwak. Maak het veiliger door er speciale tekens, nummers en ongebruikelijke symbolen in te voegen."
+
+msgid "The new password must be different from the current one."
+msgstr "Het nieuwe wachtwoord moet verschillen van het huidige."
+
+msgid "Type your new password again"
+msgstr "Typ je wachtwoord opnieuw"
+
+msgid "The two passwords do not match"
+msgstr "De wachtwoorden komen niet overeen"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Gaat u verder"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "Inzendingen uitschakelen"
 
@@ -715,9 +745,6 @@ msgstr "Het systeem toestaan om gegevens op te slaan in gewoon tekstformaat wann
 msgid "Enable multisite feature"
 msgstr "Functie voor meerdere-weblocaties inschakelen"
 
-msgid "Enable two factor authentication"
-msgstr "Twee-factor-authenticatie inschakelen"
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
 
@@ -725,7 +752,7 @@ msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Ontvangers toestaan de vervaldatum van tips uit te stellen"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr "Gebruikersnamen niet prijsgeven"
 
 msgid "Allow recipients to delete submissions"
 msgstr "Ontvangers toestaan tips te verwijderen"
@@ -734,6 +761,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Ontvangers toestaan om klokkenluiders per tip rechten toe te wijzen"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "Zoekmachine-indexering inschakelen"
@@ -821,7 +851,7 @@ msgid "Password"
 msgstr "Wachtwoord"
 
 msgid "Enable password reset"
-msgstr ""
+msgstr "wachtwoordreset inschakelen"
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Gebruikers toestaan hun PGP sleutel te uploaden"
@@ -833,7 +863,7 @@ msgid "Enable simplified login"
 msgstr "Vereenvoudigdelogin inschakelen"
 
 msgid "Enable HSTS preload"
-msgstr ""
+msgstr "HSTS-preload inschakelen"
 
 msgid "Logging level"
 msgstr "Niveau van loggen"
@@ -1123,9 +1153,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "Hostnaam"
 
-msgid "Verify"
-msgstr "Bevestigen"
-
 msgid "Invalid input format."
 msgstr "Ongeldig invoerformaat."
 
@@ -1144,9 +1171,6 @@ msgstr "Lees de Algemene Voorwaarden"
 
 msgid "I agree to the Terms of Service."
 msgstr "Ik g akkoord met de Algemene Voorwaarden"
-
-msgid "Proceed"
-msgstr "Gaat u verder"
 
 msgid "Country code"
 msgstr "Landcode"
@@ -1200,8 +1224,9 @@ msgstr "Inschakelen"
 msgid "Reset"
 msgstr "Reset"
 
-msgid "Select an option:"
-msgstr "Kies een optie:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Het platform ondersteunt de configuratie van HTTPS via deze koppeling."
 
 msgid "Automatic configuration"
 msgstr "Automatische configuratie"
@@ -1224,13 +1249,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "De wizard voor handmatige configuratie leidt u door de inrichting van HTTPS van een alternatieve certificeringsinstelling. "
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "Het platform ondersteunt de configuratie van HTTPS via deze koppeling."
-
-msgid "The connection to the configured domain failed."
-msgstr "De verbinding met het ingestelde domein is mislukt."
 
 msgid "Auto-renewal"
 msgstr "Auto-hernieuwing"
@@ -1477,13 +1495,8 @@ msgstr "Het systeem verlangt van haar gebruikers om het wachtwoord te veranderen
 msgid "Reset password"
 msgstr "Wachtwoord resetten"
 
-msgid "New password"
-msgstr "Nieuw wachtwoord"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "Het gekozen wachtwoord is te zwak. Maak het veiliger door er speciale tekens, nummers en ongebruikelijke symbolen in te voegen."
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "Forceer wachtwoord verandering"
@@ -1550,9 +1563,6 @@ msgstr "De validatiekoppeling is ofwel incorrect of is verlopen."
 msgid "Your new email address has been validated."
 msgstr "Jouw nieuwe e-mail adres is gevalideerd."
 
-msgid "Before proceeding, please set a new password."
-msgstr "Voor je verdergaat, stel alsjeblieft een nieuw wachtwoord in."
-
 msgid "Forgot password?"
 msgstr "Wachtwoord vergeten?"
 
@@ -1613,14 +1623,14 @@ msgstr ""
 msgid "Attention!"
 msgstr "Opgelet!"
 
-msgid "Instructions"
-msgstr "Instructies"
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
 msgstr ""
+
+msgid "Enable two factor authentication"
+msgstr "Twee-factor-authenticatie inschakelen"
 
 msgid "Close"
 msgstr "Sluiten"
@@ -1728,15 +1738,6 @@ msgstr "Huidig wachtwoord"
 msgid "Old password confirmation required"
 msgstr "Bevestiging van oud wachtwoord vereist"
 
-msgid "The new password must be different from the current one."
-msgstr "Het nieuwe wachtwoord moet verschillen van het huidige."
-
-msgid "Type your new password again"
-msgstr "Typ je wachtwoord opnieuw"
-
-msgid "The two passwords do not match"
-msgstr "De wachtwoorden komen niet overeen"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1752,6 +1753,9 @@ msgstr "Kopieer en plak vervolgens het volgende adres in de Tor-browser:"
 
 msgid "Enter a name for the copy"
 msgstr "Voer een naam in voor de kopie"
+
+msgid "Select a file or drag it here."
+msgstr ""
 
 msgid "Uploading files…"
 msgstr "Uploaden bestanden..."
@@ -1974,7 +1978,7 @@ msgid "Your whistleblowing platform is almost ready!"
 msgstr "Je klokkenluiders-platvorm is bijna klaar!"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "Kijk in je postvak-in om het te activeren."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
@@ -1990,7 +1994,7 @@ msgid "Confirmation"
 msgstr "Bevestiging"
 
 msgid "Invalid confirmation"
-msgstr ""
+msgstr "Bevestiging ongeldig"
 
 msgid "Other"
 msgstr "Other"
@@ -2417,8 +2421,8 @@ msgstr "Nieuw bericht"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
-msgstr "Je ontvangt deze e-mail omdat er een wachtwoord verandering is aangevraagd voor jouw account."
+"the account: {Username}"
+msgstr ""
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

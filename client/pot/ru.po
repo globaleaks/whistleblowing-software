@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -692,6 +692,35 @@ msgstr "Подача материала успешно завершена."
 msgid "Submission status"
 msgstr "Статус подачи материала"
 
+msgid "Before proceeding, please set a new password."
+msgstr ""
+
+msgid "New password"
+msgstr "Новый пароль"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Выбранный пароль слишком ненадёжен. Сделайте его более надежным, добавив специальные символы, цифры и необычные символы."
+
+msgid "The new password must be different from the current one."
+msgstr "Новый пароль должен отличаться от старого."
+
+msgid "Type your new password again"
+msgstr "Введите снова свой новый пароль"
+
+msgid "The two passwords do not match"
+msgstr "Введенные пароли не совпадают"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Продолжить"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "Лишить возможности публиковать материалы"
 
@@ -704,9 +733,6 @@ msgstr "Разрешить системе сохранить информаци�
 
 msgid "Enable multisite feature"
 msgstr "Включить настройку мульти-сайтов"
-
-msgid "Enable two factor authentication"
-msgstr ""
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
@@ -724,6 +750,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Разрешить получателям предоставлять информаторам разрешение доступа к обозначенным документам"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "Включить индексирование поисковых систем"
@@ -1113,9 +1142,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "Имя хоста"
 
-msgid "Verify"
-msgstr "Проверка"
-
 msgid "Invalid input format."
 msgstr "Недопустимый формат ввода."
 
@@ -1134,9 +1160,6 @@ msgstr "Читать условия использования"
 
 msgid "I agree to the Terms of Service."
 msgstr "Я согласна с условиями использования."
-
-msgid "Proceed"
-msgstr "Продолжить"
 
 msgid "Country code"
 msgstr "Код страны"
@@ -1190,8 +1213,9 @@ msgstr "Включить"
 msgid "Reset"
 msgstr "Сбросить"
 
-msgid "Select an option:"
-msgstr "Выберите один из предложенных вариантов:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Платформа поддерживает конфигурацию HTTPS через этот интерфейс."
 
 msgid "Automatic configuration"
 msgstr "Автоматическая настройка"
@@ -1214,13 +1238,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Мастер настройки проведет вас через процесс конфигурации, позволяя настроить HTTPS из альтернативного центра сертификации. "
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "Платформа поддерживает конфигурацию HTTPS через этот интерфейс."
-
-msgid "The connection to the configured domain failed."
-msgstr "Не удалось установить соединение с указанным доменом."
 
 msgid "Auto-renewal"
 msgstr "Aвтоматическое продление"
@@ -1467,13 +1484,8 @@ msgstr "Система принуждает пользователей изме�
 msgid "Reset password"
 msgstr "Сброс пароля"
 
-msgid "New password"
-msgstr "Новый пароль"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "Выбранный пароль слишком ненадёжен. Сделайте его более надежным, добавив специальные символы, цифры и необычные символы."
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "Принудительная смена пароля"
@@ -1540,9 +1552,6 @@ msgstr ""
 msgid "Your new email address has been validated."
 msgstr ""
 
-msgid "Before proceeding, please set a new password."
-msgstr ""
-
 msgid "Forgot password?"
 msgstr ""
 
@@ -1603,13 +1612,13 @@ msgstr ""
 msgid "Attention!"
 msgstr "Внимание!"
 
-msgid "Instructions"
-msgstr "Инструкции"
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
@@ -1718,15 +1727,6 @@ msgstr "Текущий пароль"
 msgid "Old password confirmation required"
 msgstr "Необходимо подтверждение старого пароля"
 
-msgid "The new password must be different from the current one."
-msgstr "Новый пароль должен отличаться от старого."
-
-msgid "Type your new password again"
-msgstr "Введите снова свой новый пароль"
-
-msgid "The two passwords do not match"
-msgstr "Введенные пароли не совпадают"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1741,6 +1741,9 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Затем скопируйте и вставьте следующий адрес в адресную строку Tor Browser:"
 
 msgid "Enter a name for the copy"
+msgstr ""
+
+msgid "Select a file or drag it here."
 msgstr ""
 
 msgid "Uploading files…"
@@ -2407,7 +2410,7 @@ msgstr "Новое сообщение"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
+"the account: {Username}"
 msgstr ""
 
 msgid ""

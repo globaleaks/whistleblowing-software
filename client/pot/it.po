@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 14:40+0000\n"
+"PO-Revision-Date: 2019-09-27 08:03+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -689,6 +689,35 @@ msgstr "La tua segnalazione è stata inviata con successo."
 msgid "Submission status"
 msgstr "Stato della segnalazione"
 
+msgid "Before proceeding, please set a new password."
+msgstr "Prima di procedere, sei pregato di impostare una nuova password."
+
+msgid "New password"
+msgstr "Nuova password"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "La password scelta non è adeguata. Rendila più sicura aggiungendo dei caratteri special, numeri e simboli inusuali."
+
+msgid "The new password must be different from the current one."
+msgstr "La nuova password deve essere differente dalla password corrente."
+
+msgid "Type your new password again"
+msgstr "Digita ancora una volta la tua nuova password"
+
+msgid "The two passwords do not match"
+msgstr "Le due password non corrispondono"
+
+msgid "The new password must differ from the previous."
+msgstr "La nuova password deve essere differente dalle precedenti."
+
+msgid "Proceed"
+msgstr "Procedi"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "Prima di procedere, ti preghiamo di abilitare l'autenticazione a due fattori."
+
 msgid "Disable submissions"
 msgstr "Disabilita le segnalazioni"
 
@@ -701,9 +730,6 @@ msgstr "Permetti al sistema di memorizzare i dati in chiaro quando la cifratura 
 
 msgid "Enable multisite feature"
 msgstr "Abilita la funzionalità multisito"
-
-msgid "Enable two factor authentication"
-msgstr "Abilita autenticazione a due fattori"
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "Permetti ai seguenti siti di includetr la piattaforma attraverso iframes"
@@ -721,6 +747,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Permetti ai riceventi di modificare i privilegi dei whistleblower su specifiche segnalazioni"
+
+msgid "Require two factor authentication"
+msgstr "Richiedi autenticazione a due fattori"
 
 msgid "Enable search engines indexing"
 msgstr "Abilita l'indicizzazione da parte dei motori di ricerca"
@@ -1110,9 +1139,6 @@ msgstr "La piattaforma sarà raggiungibile via HTTPS al seguente indirizzo:"
 msgid "Hostname"
 msgstr "Hostname"
 
-msgid "Verify"
-msgstr "Verifica"
-
 msgid "Invalid input format."
 msgstr "Formato non valido."
 
@@ -1131,9 +1157,6 @@ msgstr "Leggi i Termini di Servizio"
 
 msgid "I agree to the Terms of Service."
 msgstr "Sottoscrivo i Termini di Servizio."
-
-msgid "Proceed"
-msgstr "Procedi"
 
 msgid "Country code"
 msgstr "Codice paese"
@@ -1187,8 +1210,9 @@ msgstr "Abilita"
 msgid "Reset"
 msgstr "Resetta"
 
-msgid "Select an option:"
-msgstr "Seleziona una opzione:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "La piattaforma supporta la configurazione di HTTPS attraverso questa interfaccia."
 
 msgid "Automatic configuration"
 msgstr "Configurazione automatica"
@@ -1211,13 +1235,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "La procedura di configurazione manuale ti guiderà alla abilitazione di HTTPS tramite una Certification Authority alternativa."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "La piattaforma supporta la configurazione di HTTPS attraverso questa interfaccia."
-
-msgid "The connection to the configured domain failed."
-msgstr "La connessione al dominio configurato è fallita."
 
 msgid "Auto-renewal"
 msgstr "Rinnovo automatico"
@@ -1464,13 +1481,8 @@ msgstr "Il sistema forza gli utenti a cambiare la password al primo login."
 msgid "Reset password"
 msgstr "Ripristina password"
 
-msgid "New password"
-msgstr "Nuova password"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "La password scelta non è adeguata. Rendila più sicura aggiungendo dei caratteri special, numeri e simboli inusuali."
+msgid "Disable two factor authentication"
+msgstr "Disabilita autenticazione a due fattori"
 
 msgid "Force password change"
 msgstr "Forza il cambiamento della password"
@@ -1537,9 +1549,6 @@ msgstr "L'indirizzo di validazione è invalido o scaduto."
 msgid "Your new email address has been validated."
 msgstr "Il tuo nuovo indirizzo email è stato validato."
 
-msgid "Before proceeding, please set a new password."
-msgstr "Prima di procedere, sei pregato di impostare una nuova password."
-
 msgid "Forgot password?"
 msgstr "Password dimenticata?"
 
@@ -1600,14 +1609,14 @@ msgstr "Questa è una piattaforma dimostrativa, si prega di non usarla per verse
 msgid "Attention!"
 msgstr "Attenzione!"
 
-msgid "Instructions"
-msgstr "Istruzioni"
-
 msgid "Install an authenticator app on your phone"
 msgstr "Installa una applicazione di autenticazione sul tuo telefono"
 
 msgid "Scan the QR code with the app"
 msgstr "Scansiona i QR code con la applicazione"
+
+msgid "Enable two factor authentication"
+msgstr "Abilita autenticazione a due fattori"
 
 msgid "Close"
 msgstr "Chiudi"
@@ -1715,15 +1724,6 @@ msgstr "Password attuale"
 msgid "Old password confirmation required"
 msgstr "È necessario confermare la vecchia password"
 
-msgid "The new password must be different from the current one."
-msgstr "La nuova password deve essere differente dalla password corrente."
-
-msgid "Type your new password again"
-msgstr "Digita ancora una volta la tua nuova password"
-
-msgid "The two passwords do not match"
-msgstr "Le due password non corrispondono"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1739,6 +1739,9 @@ msgstr "Poi, una volta installato, copia ed incolla il seguente indirizzo all'in
 
 msgid "Enter a name for the copy"
 msgstr "Inserisci un nome per la copia"
+
+msgid "Select a file or drag it here."
+msgstr "Seleziona un file o trascinalo quì"
 
 msgid "Uploading files…"
 msgstr "Caricamento dei file…"
@@ -2404,8 +2407,8 @@ msgstr "Nuovo messaggio"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
-msgstr "Ricevi questa email perché é stato richiesto un password reset per il tuo account."
+"the account: {Username}"
+msgstr "Ricevi questa email perché é stato richiesto un password reset per l'account: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

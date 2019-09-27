@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -674,6 +674,35 @@ msgstr "Vihjeesi lähettäminen onnistui."
 msgid "Submission status"
 msgstr "Vihjeen tila"
 
+msgid "Before proceeding, please set a new password."
+msgstr "Määritä uusi salasana ennen kuin jatkat."
+
+msgid "New password"
+msgstr "Uusi salasana"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Salasanasi on liian yksinkertainen. Tee siitä turvallisempi käyttämällä erikoismerkkejä ja numeroita."
+
+msgid "The new password must be different from the current one."
+msgstr "Uusi salasana ei voi olla sama kuin parhaillaan käytössä oleva."
+
+msgid "Type your new password again"
+msgstr "Kirjoita uusi salasana uudelleen"
+
+msgid "The two passwords do not match"
+msgstr "Annetut salasanat eivät vastaa toisiaan"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Jatka"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "Poista vihjeiden lähettäminen käytöstä"
 
@@ -686,9 +715,6 @@ msgstr "Salli järjestelmän tallentaa salaamattomat tiedot tekstimuotoisena"
 
 msgid "Enable multisite feature"
 msgstr "Ota käyttöön samanaikainen kirjautuminen useaan järjestelmään"
-
-msgid "Enable two factor authentication"
-msgstr ""
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
@@ -706,6 +732,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Salli vastaanottajien myöntää lupia vihjeiden lähettäjille"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "Ota käyttöön hakukoneiden indeksointi"
@@ -1095,9 +1124,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "Tietokoneen nimi"
 
-msgid "Verify"
-msgstr "Todenna"
-
 msgid "Invalid input format."
 msgstr "Syötteen muoto ei kelpaa"
 
@@ -1116,9 +1142,6 @@ msgstr "Lue käyttöehdot"
 
 msgid "I agree to the Terms of Service."
 msgstr "Hyväksyn käyttöehdot"
-
-msgid "Proceed"
-msgstr "Jatka"
 
 msgid "Country code"
 msgstr "Maakoodi"
@@ -1172,8 +1195,9 @@ msgstr "Ota käyttöön"
 msgid "Reset"
 msgstr "Nollaa"
 
-msgid "Select an option:"
-msgstr "Valitse:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Voit määrittää järjestelmän HTTPS-asetukset tässä näkymässä."
 
 msgid "Automatic configuration"
 msgstr "Automaattinen asetusten määritys"
@@ -1196,13 +1220,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Manuaaliasetusten avustettu asennustoiminto auttaa sinua asentamaan vaihtoehtoisen varmenneviranomaisen tarjoaman HTTPS-yhteyden. "
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "Voit määrittää järjestelmän HTTPS-asetukset tässä näkymässä."
-
-msgid "The connection to the configured domain failed."
-msgstr "Yhteys järjestelmäasetuksissa määritettyyn verkkotunnukseen (domain) epäonnistui."
 
 msgid "Auto-renewal"
 msgstr "Automaattinen uusiminen"
@@ -1449,13 +1466,8 @@ msgstr "Järjestelmä pakottaa käyttäjät vaihtamaan salasanan ensimmäisen ki
 msgid "Reset password"
 msgstr "Salasanan uusiminen"
 
-msgid "New password"
-msgstr "Uusi salasana"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "Salasanasi on liian yksinkertainen. Tee siitä turvallisempi käyttämällä erikoismerkkejä ja numeroita."
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "Pakota salasanan vaihto"
@@ -1522,9 +1534,6 @@ msgstr "Vahvistuslinkki on joko virheellinen tai vanhentunut."
 msgid "Your new email address has been validated."
 msgstr "Uusi sähköpostiosoitteesi on vahvistettu."
 
-msgid "Before proceeding, please set a new password."
-msgstr "Määritä uusi salasana ennen kuin jatkat."
-
 msgid "Forgot password?"
 msgstr "Unohtunut salasana?"
 
@@ -1585,13 +1594,13 @@ msgstr ""
 msgid "Attention!"
 msgstr "Huomio!"
 
-msgid "Instructions"
-msgstr ""
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
@@ -1700,15 +1709,6 @@ msgstr "Nykyinen salasana"
 msgid "Old password confirmation required"
 msgstr "Vahvistus vanhalla salasanalla vaadittu"
 
-msgid "The new password must be different from the current one."
-msgstr "Uusi salasana ei voi olla sama kuin parhaillaan käytössä oleva."
-
-msgid "Type your new password again"
-msgstr "Kirjoita uusi salasana uudelleen"
-
-msgid "The two passwords do not match"
-msgstr "Annetut salasanat eivät vastaa toisiaan"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1724,6 +1724,9 @@ msgstr "Jatka sitten palvelun käyttöä kopioimalla ja liittämällä seuraava 
 
 msgid "Enter a name for the copy"
 msgstr "Kirjoita kopiolle nimi"
+
+msgid "Select a file or drag it here."
+msgstr ""
 
 msgid "Uploading files…"
 msgstr "Kopioidaan tiedostoja palvelimelle..."
@@ -2389,8 +2392,8 @@ msgstr "Uusi viesti"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
-msgstr "Sait tämän sähköpostiviestin, koska käyttäjätilisi salasana on pyydetty vaihtamaan uuteen."
+"the account: {Username}"
+msgstr ""
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

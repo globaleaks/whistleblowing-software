@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -686,6 +686,35 @@ msgstr "A sua submissão foi bem sucedida."
 msgid "Submission status"
 msgstr "Estado de submissão"
 
+msgid "Before proceeding, please set a new password."
+msgstr "Antes de continuar, por favor, defina uma nova palavra-passe."
+
+msgid "New password"
+msgstr "Nova palavra-passe"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "A palavra-passe escolhida é muito fraca. Torne-a mais segura, adicionando carateres especiais, números e símbolos incomuns."
+
+msgid "The new password must be different from the current one."
+msgstr "A nova palavra-passe deve ser diferente da atual."
+
+msgid "Type your new password again"
+msgstr "Digite de novo a sua palavra-passe"
+
+msgid "The two passwords do not match"
+msgstr "As palavras-passe não correspondem"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Prosseguir"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "Desativar submissões"
 
@@ -697,9 +726,6 @@ msgid ""
 msgstr ""
 
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Allow the following websites to embed the platform inside iframes"
@@ -718,6 +744,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Permitir que os destinatários concedam permissões aos informadores nas submissões específicas"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "Ativar a indexação dos motores de pesquisa"
@@ -1107,9 +1136,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "Nome de Hospedeiro"
 
-msgid "Verify"
-msgstr "Verificar"
-
 msgid "Invalid input format."
 msgstr "Formato de entrada inválido."
 
@@ -1128,9 +1154,6 @@ msgstr "Ler os Termos de Serviço"
 
 msgid "I agree to the Terms of Service."
 msgstr "Eu concordo com os termos de serviço."
-
-msgid "Proceed"
-msgstr "Prosseguir"
 
 msgid "Country code"
 msgstr "Código do país"
@@ -1184,8 +1207,9 @@ msgstr "Ativar"
 msgid "Reset"
 msgstr "Reiniciar"
 
-msgid "Select an option:"
-msgstr "Selecione uma opção:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "A plataforma suporta a configuração de HTTPS através desta interface."
 
 msgid "Automatic configuration"
 msgstr "Configuração automática"
@@ -1208,13 +1232,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "O assistente de configuração manual irá guiá-lo através da configuração de HTTPS a partir de uma 'Autoridade de Certificação' alternativa."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "A plataforma suporta a configuração de HTTPS através desta interface."
-
-msgid "The connection to the configured domain failed."
-msgstr "A ligação para o domínio configurado falhou."
 
 msgid "Auto-renewal"
 msgstr "Renovação automática"
@@ -1461,13 +1478,8 @@ msgstr "O sistema força os utilizadores a alterarem a palavra-passe no primeiro
 msgid "Reset password"
 msgstr "Repor palavra-passe"
 
-msgid "New password"
-msgstr "Nova palavra-passe"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "A palavra-passe escolhida é muito fraca. Torne-a mais segura, adicionando carateres especiais, números e símbolos incomuns."
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "Forçar alteração da palavra-passe"
@@ -1534,9 +1546,6 @@ msgstr "A hiperligação de validação está incorreta ou expirou."
 msgid "Your new email address has been validated."
 msgstr "O seu novo endereço de e-mail foi validado."
 
-msgid "Before proceeding, please set a new password."
-msgstr "Antes de continuar, por favor, defina uma nova palavra-passe."
-
 msgid "Forgot password?"
 msgstr "Esqueceu-se da palavra-passe?"
 
@@ -1597,13 +1606,13 @@ msgstr ""
 msgid "Attention!"
 msgstr "Atenção!"
 
-msgid "Instructions"
-msgstr "Instruções"
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
@@ -1712,15 +1721,6 @@ msgstr ""
 msgid "Old password confirmation required"
 msgstr "Necessária confirmação da palavra-passe antiga"
 
-msgid "The new password must be different from the current one."
-msgstr "A nova palavra-passe deve ser diferente da atual."
-
-msgid "Type your new password again"
-msgstr "Digite de novo a sua palavra-passe"
-
-msgid "The two passwords do not match"
-msgstr "As palavras-passe não correspondem"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1736,6 +1736,9 @@ msgstr "Depois, copie e cole o seguinte endereço para o Tor Browser:"
 
 msgid "Enter a name for the copy"
 msgstr "Insira um nome para a cópia"
+
+msgid "Select a file or drag it here."
+msgstr ""
 
 msgid "Uploading files…"
 msgstr "A enviar ficheiros..."
@@ -2401,8 +2404,8 @@ msgstr "Nova mensagem"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
-msgstr "Está a receber esta mensagem porque foi solicitada uma reposição da palavra-passe para a sua conta."
+"the account: {Username}"
+msgstr ""
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

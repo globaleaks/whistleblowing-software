@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -671,6 +671,35 @@ msgstr "A túa presentación foi exitosa."
 msgid "Submission status"
 msgstr "Estado de envío"
 
+msgid "Before proceeding, please set a new password."
+msgstr "Antes de continuar, estableza un novo contrasinal."
+
+msgid "New password"
+msgstr "Novo contrasinal"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "O contrasinal elixido é demasiado débil. Faino máis seguro agregando especial caracteres, números e símbolos pouco comúns."
+
+msgid "The new password must be different from the current one."
+msgstr "O novo contrasinal debe ser diferente do actual."
+
+msgid "Type your new password again"
+msgstr "Escriba outra vez o novo contrasinal  "
+
+msgid "The two passwords do not match"
+msgstr "Os dous contrasinais non coinciden"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Proceder"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "Deshabilita envíos"
 
@@ -683,9 +712,6 @@ msgstr "Permitir que o sistema almacene os datos en texto plano cando o cifrado 
 
 msgid "Enable multisite feature"
 msgstr "Habilitar características de multisite"
-
-msgid "Enable two factor authentication"
-msgstr "Activar a autenticación de dous factores"
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
@@ -703,6 +729,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Permitir aos destinatarios conceder permisos a denunciantes en presentacións específicas"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "Activar a indexación dos motores de busca"
@@ -1092,9 +1121,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "Nome do servidor"
 
-msgid "Verify"
-msgstr "Verifique"
-
 msgid "Invalid input format."
 msgstr "Formato de entrada non válido."
 
@@ -1113,9 +1139,6 @@ msgstr "Lea os Termos de servizo"
 
 msgid "I agree to the Terms of Service."
 msgstr "Acepto as Condicións de servizo."
-
-msgid "Proceed"
-msgstr "Proceder"
 
 msgid "Country code"
 msgstr "Código do país"
@@ -1169,8 +1192,9 @@ msgstr "Activar"
 msgid "Reset"
 msgstr "Restablecer"
 
-msgid "Select an option:"
-msgstr "Selecciona unha opción:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "A plataforma soporta a configuración de HTTPS a través desta interface."
 
 msgid "Automatic configuration"
 msgstr "Configuración automática"
@@ -1193,13 +1217,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "O asistente de configuración manual guiaralle a través da configuración de HTTPS a partir dunha Autoridade de Certificación alternativa."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "A plataforma soporta a configuración de HTTPS a través desta interface."
-
-msgid "The connection to the configured domain failed."
-msgstr "Errou a conexión co dominio configurado."
 
 msgid "Auto-renewal"
 msgstr "Renovación automática"
@@ -1446,13 +1463,8 @@ msgstr "O sistema obriga aos usuarios a cambiar o contrasinal ao iniciar sesión
 msgid "Reset password"
 msgstr "Restablecer o contrasinal"
 
-msgid "New password"
-msgstr "Novo contrasinal"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "O contrasinal elixido é demasiado débil. Faino máis seguro agregando especial caracteres, números e símbolos pouco comúns."
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "Forzar o cambio de contrasinal"
@@ -1519,9 +1531,6 @@ msgstr "A ligazón de validación é incorrecta ou caducou."
 msgid "Your new email address has been validated."
 msgstr "A túa nova dirección de correo electrónico foi validada."
 
-msgid "Before proceeding, please set a new password."
-msgstr "Antes de continuar, estableza un novo contrasinal."
-
 msgid "Forgot password?"
 msgstr "Esqueceu o contrasinal?"
 
@@ -1582,14 +1591,14 @@ msgstr ""
 msgid "Attention!"
 msgstr "Atención!"
 
-msgid "Instructions"
-msgstr ""
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
 msgstr ""
+
+msgid "Enable two factor authentication"
+msgstr "Activar a autenticación de dous factores"
 
 msgid "Close"
 msgstr "Pechar"
@@ -1697,15 +1706,6 @@ msgstr "Contrasinal actual"
 msgid "Old password confirmation required"
 msgstr "Necesítase unha confirmación de contrasinal antiga"
 
-msgid "The new password must be different from the current one."
-msgstr "O novo contrasinal debe ser diferente do actual."
-
-msgid "Type your new password again"
-msgstr "Escriba outra vez o novo contrasinal  "
-
-msgid "The two passwords do not match"
-msgstr "Os dous contrasinais non coinciden"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1721,6 +1721,9 @@ msgstr "A continuación, copie e pegue o seguinte enderezo no navegador Tor:"
 
 msgid "Enter a name for the copy"
 msgstr "Introduce un nome para a copia"
+
+msgid "Select a file or drag it here."
+msgstr ""
 
 msgid "Uploading files…"
 msgstr "Cargando ficheiros ..."
@@ -2386,8 +2389,8 @@ msgstr "Nova mensaxe"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
-msgstr "Recibes este correo electrónico porque se solicitou un restablecemento de contrasinal para a túa conta."
+"the account: {Username}"
+msgstr ""
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

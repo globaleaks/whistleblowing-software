@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -676,6 +676,35 @@ msgstr "trình của bạn đã thành công."
 msgid "Submission status"
 msgstr ""
 
+msgid "Before proceeding, please set a new password."
+msgstr ""
+
+msgid "New password"
+msgstr "Mật khẩu mới"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr ""
+
+msgid "The new password must be different from the current one."
+msgstr ""
+
+msgid "Type your new password again"
+msgstr "Gõ vào mật khẩu mới của bạn lần nữa"
+
+msgid "The two passwords do not match"
+msgstr "Hai mật khẩu không khớp lẫn nhau"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Tiếp tục"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "Vô hiệu hóa đệ trình"
 
@@ -687,9 +716,6 @@ msgid ""
 msgstr ""
 
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Allow the following websites to embed the platform inside iframes"
@@ -708,6 +734,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Cho phép người nhận để cấp quyền cho người tố cáo về đệ trình cụ thể"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "Bật công cụ tìm kiếm lập chỉ mục"
@@ -1097,9 +1126,6 @@ msgstr ""
 msgid "Hostname"
 msgstr ""
 
-msgid "Verify"
-msgstr "Phối kiểm"
-
 msgid "Invalid input format."
 msgstr ""
 
@@ -1118,9 +1144,6 @@ msgstr ""
 
 msgid "I agree to the Terms of Service."
 msgstr ""
-
-msgid "Proceed"
-msgstr "Tiếp tục"
 
 msgid "Country code"
 msgstr ""
@@ -1174,7 +1197,8 @@ msgstr "Cho phép"
 msgid "Reset"
 msgstr "Cài đặt lại"
 
-msgid "Select an option:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
 msgstr ""
 
 msgid "Automatic configuration"
@@ -1197,13 +1221,6 @@ msgstr ""
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr ""
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr ""
-
-msgid "The connection to the configured domain failed."
 msgstr ""
 
 msgid "Auto-renewal"
@@ -1451,12 +1468,7 @@ msgstr "Người sử dụng lực lượng hệ thống để thay đổi mật
 msgid "Reset password"
 msgstr "Đặt lại mật khẩu"
 
-msgid "New password"
-msgstr "Mật khẩu mới"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
+msgid "Disable two factor authentication"
 msgstr ""
 
 msgid "Force password change"
@@ -1524,9 +1536,6 @@ msgstr ""
 msgid "Your new email address has been validated."
 msgstr ""
 
-msgid "Before proceeding, please set a new password."
-msgstr ""
-
 msgid "Forgot password?"
 msgstr ""
 
@@ -1587,13 +1596,13 @@ msgstr ""
 msgid "Attention!"
 msgstr ""
 
-msgid "Instructions"
-msgstr ""
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
@@ -1702,15 +1711,6 @@ msgstr ""
 msgid "Old password confirmation required"
 msgstr "Yêu cầu xác nhận mật khẩu cũ"
 
-msgid "The new password must be different from the current one."
-msgstr ""
-
-msgid "Type your new password again"
-msgstr "Gõ vào mật khẩu mới của bạn lần nữa"
-
-msgid "The two passwords do not match"
-msgstr "Hai mật khẩu không khớp lẫn nhau"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1725,6 +1725,9 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Sau đó, sao chép và dán địa chỉ sau vào trình duyệt Tor:"
 
 msgid "Enter a name for the copy"
+msgstr ""
+
+msgid "Select a file or drag it here."
 msgstr ""
 
 msgid "Uploading files…"
@@ -2391,7 +2394,7 @@ msgstr "Tin nhắn mới"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
+"the account: {Username}"
 msgstr ""
 
 msgid ""

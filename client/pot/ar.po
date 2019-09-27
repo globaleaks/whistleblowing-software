@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -703,6 +703,35 @@ msgstr "تمّ الابلاغ بنجاح."
 msgid "Submission status"
 msgstr "حالة البلاغ"
 
+msgid "Before proceeding, please set a new password."
+msgstr ""
+
+msgid "New password"
+msgstr "كلمة السر الجديدة"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "كلمة السر المختارة ضعيفة جدا. الرجاء تعزيز قوتها باضافة أحرف خاصة و أرقام و رموز غير معتادة."
+
+msgid "The new password must be different from the current one."
+msgstr "لا بدّ أن تكون كلمة السر الجديدة مختلفة عن كلمة السر الحالية."
+
+msgid "Type your new password again"
+msgstr "أعد كتابة كلمة السرّ الجديدة"
+
+msgid "The two passwords do not match"
+msgstr "كلمتا السرّ لا تتطابقان "
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "مواصلة"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "منع البلاغات"
 
@@ -714,9 +743,6 @@ msgid ""
 msgstr ""
 
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Allow the following websites to embed the platform inside iframes"
@@ -735,6 +761,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "السماح للمتقبلين بمنح تراخيص للمبلغين بشأن بلاغات معينة"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "تفعيل فهرسة محركات البحث"
@@ -1124,9 +1153,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "اسم المضيف"
 
-msgid "Verify"
-msgstr "تحقّق"
-
 msgid "Invalid input format."
 msgstr "صيغة الإدخال غير صالحة."
 
@@ -1145,9 +1171,6 @@ msgstr "اقرأ بنود الخدمة"
 
 msgid "I agree to the Terms of Service."
 msgstr "أوافق على شروط الخدمة."
-
-msgid "Proceed"
-msgstr "مواصلة"
 
 msgid "Country code"
 msgstr "مفتاح الدّولة"
@@ -1201,8 +1224,9 @@ msgstr "تمكين"
 msgid "Reset"
 msgstr "إعادة ضبط"
 
-msgid "Select an option:"
-msgstr "حدّد اختيارا:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "تمكّن المنصة تهيئة HTTPS من خلال هذه الواجهة."
 
 msgid "Automatic configuration"
 msgstr "الترتيب التلقائي"
@@ -1225,13 +1249,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "سيوجّهك معالج التهيئة اليدوي خلال تمكين HTTPS من مرجع مصدّق بديل."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "تمكّن المنصة تهيئة HTTPS من خلال هذه الواجهة."
-
-msgid "The connection to the configured domain failed."
-msgstr "تعذّر الاتصال بالنطاق الذي تمت تهيئته."
 
 msgid "Auto-renewal"
 msgstr "تجديد تلقائي"
@@ -1478,13 +1495,8 @@ msgstr "النضام يجبر المستخدمين على تغيير كلمة ا
 msgid "Reset password"
 msgstr "إعادة ضبط كلمة السر"
 
-msgid "New password"
-msgstr "كلمة السر الجديدة"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "كلمة السر المختارة ضعيفة جدا. الرجاء تعزيز قوتها باضافة أحرف خاصة و أرقام و رموز غير معتادة."
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr " الاجبار على تغيير كلمة المرور "
@@ -1551,9 +1563,6 @@ msgstr ""
 msgid "Your new email address has been validated."
 msgstr ""
 
-msgid "Before proceeding, please set a new password."
-msgstr ""
-
 msgid "Forgot password?"
 msgstr ""
 
@@ -1614,13 +1623,13 @@ msgstr ""
 msgid "Attention!"
 msgstr "انتباه!"
 
-msgid "Instructions"
-msgstr "التعليمات"
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
@@ -1729,15 +1738,6 @@ msgstr "كلمة السر الحالية"
 msgid "Old password confirmation required"
 msgstr "تأكيد كلمة المرور القديمةمطلوب"
 
-msgid "The new password must be different from the current one."
-msgstr "لا بدّ أن تكون كلمة السر الجديدة مختلفة عن كلمة السر الحالية."
-
-msgid "Type your new password again"
-msgstr "أعد كتابة كلمة السرّ الجديدة"
-
-msgid "The two passwords do not match"
-msgstr "كلمتا السرّ لا تتطابقان "
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1752,6 +1752,9 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "ثمّ، انسخ والصق العنوان التالي في متصفّح Tor."
 
 msgid "Enter a name for the copy"
+msgstr ""
+
+msgid "Select a file or drag it here."
 msgstr ""
 
 msgid "Uploading files…"
@@ -2418,7 +2421,7 @@ msgstr "رسالة جديدة"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
+"the account: {Username}"
 msgstr ""
 
 msgid ""

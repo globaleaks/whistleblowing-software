@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-20 09:06+0000\n"
-"Last-Translator: Naofumi <naofum@gmail.com>\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -673,6 +673,35 @@ msgstr "あなたの提出は成功しました。"
 msgid "Submission status"
 msgstr "提出ステータスページ"
 
+msgid "Before proceeding, please set a new password."
+msgstr "次に進む前に、新しいパスワードを設定してください。"
+
+msgid "New password"
+msgstr "新しいパスワード"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "選択したパスワードは弱すぎます。より安全にするため、特殊文字、数字、および一般的ではない記号を追加してください。"
+
+msgid "The new password must be different from the current one."
+msgstr "新しいパスワードは、現在のものと異なっている必要があります。"
+
+msgid "Type your new password again"
+msgstr "新しいパスワードを再入力してください"
+
+msgid "The two passwords do not match"
+msgstr "二つのパスワードが一致しません"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "続行"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "提出を無効にする"
 
@@ -685,9 +714,6 @@ msgstr "暗号化が利用できない場合に、平文でシステムにデー
 
 msgid "Enable multisite feature"
 msgstr "マルチサイト機能を有効にする"
-
-msgid "Enable two factor authentication"
-msgstr "2 段階認証を有効にする"
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "次のWebサイトがインラインフレーム内にプラットフォームを埋め込むことを許可する"
@@ -705,6 +731,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "受信者が、特定の提出の内部告発者に権限を付与することを許可します"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "検索エンジンのインデックス化を有効にする"
@@ -1094,9 +1123,6 @@ msgstr "プラットフォームは、HTTPS経由で次のアドレスに到達�
 msgid "Hostname"
 msgstr "ホスト名"
 
-msgid "Verify"
-msgstr "確認"
-
 msgid "Invalid input format."
 msgstr "不正な入力形式。"
 
@@ -1115,9 +1141,6 @@ msgstr "利用規約を読む"
 
 msgid "I agree to the Terms of Service."
 msgstr "利用規約に同意します。"
-
-msgid "Proceed"
-msgstr "続行"
 
 msgid "Country code"
 msgstr "国コード"
@@ -1171,8 +1194,9 @@ msgstr "有効"
 msgid "Reset"
 msgstr "リセット"
 
-msgid "Select an option:"
-msgstr "オプションの選択:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "このインタフェースを介して、プラットフォームは HTTPS の設定をサポートします。"
 
 msgid "Automatic configuration"
 msgstr "自動設定"
@@ -1195,13 +1219,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "手動設定ウィザードは、代替認証局からの HTTPS の設定をガイドします。"
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "このインタフェースを介して、プラットフォームは HTTPS の設定をサポートします。"
-
-msgid "The connection to the configured domain failed."
-msgstr "設定したドメイン名への接続に失敗しました。"
 
 msgid "Auto-renewal"
 msgstr "自動更新"
@@ -1448,13 +1465,8 @@ msgstr "システムにより、ユーザーが最初のログイン時にパス
 msgid "Reset password"
 msgstr "パスワードをリセット"
 
-msgid "New password"
-msgstr "新しいパスワード"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "選択したパスワードは弱すぎます。より安全にするため、特殊文字、数字、および一般的ではない記号を追加してください。"
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "強制的にパスワードを変更する"
@@ -1521,9 +1533,6 @@ msgstr "検証リンクが間違っているか、有効期限が切れていま
 msgid "Your new email address has been validated."
 msgstr "新しいメールアドレスが検証されました。"
 
-msgid "Before proceeding, please set a new password."
-msgstr "次に進む前に、新しいパスワードを設定してください。"
-
 msgid "Forgot password?"
 msgstr "パスワードをお忘れですか?"
 
@@ -1584,14 +1593,14 @@ msgstr "これはデモプラットフォームです。実際の提出には使
 msgid "Attention!"
 msgstr "注意!"
 
-msgid "Instructions"
-msgstr "説明"
-
 msgid "Install an authenticator app on your phone"
 msgstr "お使いの電話に認証アプリをインストールする"
 
 msgid "Scan the QR code with the app"
 msgstr "アプリでQRコードをスキャンしてください"
+
+msgid "Enable two factor authentication"
+msgstr "2 段階認証を有効にする"
 
 msgid "Close"
 msgstr "閉じる"
@@ -1699,15 +1708,6 @@ msgstr "現在のパスワード"
 msgid "Old password confirmation required"
 msgstr "旧パスワードの確認が必要"
 
-msgid "The new password must be different from the current one."
-msgstr "新しいパスワードは、現在のものと異なっている必要があります。"
-
-msgid "Type your new password again"
-msgstr "新しいパスワードを再入力してください"
-
-msgid "The two passwords do not match"
-msgstr "二つのパスワードが一致しません"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1723,6 +1723,9 @@ msgstr "その上で、以下のアドレスをインストールされたTor Br
 
 msgid "Enter a name for the copy"
 msgstr "コピーの名前を入力してください"
+
+msgid "Select a file or drag it here."
+msgstr ""
 
 msgid "Uploading files…"
 msgstr "ファイルのアップロード中…"
@@ -2388,8 +2391,8 @@ msgstr "新しいメッセージ"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
-msgstr "あなたのアカウントのパスワードの再設定がリクエストされたため、このメールが届きました。"
+"the account: {Username}"
+msgstr ""
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

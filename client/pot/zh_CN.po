@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -683,6 +683,35 @@ msgstr "您的提交成功。"
 msgid "Submission status"
 msgstr "提交状态"
 
+msgid "Before proceeding, please set a new password."
+msgstr ""
+
+msgid "New password"
+msgstr "新密码"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "密码强度太弱，请添加特殊字符、数字和非常用符号以加强密码。"
+
+msgid "The new password must be different from the current one."
+msgstr "新密码不能与当前密码相同。"
+
+msgid "Type your new password again"
+msgstr "请重新输入你的新密码"
+
+msgid "The two passwords do not match"
+msgstr "密码不匹配"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "已处理"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "禁用提交"
 
@@ -694,9 +723,6 @@ msgid ""
 msgstr ""
 
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Allow the following websites to embed the platform inside iframes"
@@ -715,6 +741,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "允许接收者为告密者授予在特定提交上的权限"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "启用搜索引擎索引"
@@ -1104,9 +1133,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "主机名"
 
-msgid "Verify"
-msgstr "验证"
-
 msgid "Invalid input format."
 msgstr "无效输入格式。"
 
@@ -1125,9 +1151,6 @@ msgstr "阅读服务条款"
 
 msgid "I agree to the Terms of Service."
 msgstr "我同意此服务条款。"
-
-msgid "Proceed"
-msgstr "已处理"
 
 msgid "Country code"
 msgstr "国家或地区代码"
@@ -1181,8 +1204,9 @@ msgstr "开启"
 msgid "Reset"
 msgstr "重置"
 
-msgid "Select an option:"
-msgstr "选择：·"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "平台支持通过此接口配置 HTTPS 连接。"
 
 msgid "Automatic configuration"
 msgstr "自动配置"
@@ -1205,13 +1229,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr ""
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "平台支持通过此接口配置 HTTPS 连接。"
-
-msgid "The connection to the configured domain failed."
-msgstr "无法连接已配置的域。"
 
 msgid "Auto-renewal"
 msgstr ""
@@ -1458,13 +1475,8 @@ msgstr "系统强制用户在首次登录时更改密码。"
 msgid "Reset password"
 msgstr "重设密码"
 
-msgid "New password"
-msgstr "新密码"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "密码强度太弱，请添加特殊字符、数字和非常用符号以加强密码。"
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "强制更改密码"
@@ -1531,9 +1543,6 @@ msgstr ""
 msgid "Your new email address has been validated."
 msgstr ""
 
-msgid "Before proceeding, please set a new password."
-msgstr ""
-
 msgid "Forgot password?"
 msgstr ""
 
@@ -1594,13 +1603,13 @@ msgstr ""
 msgid "Attention!"
 msgstr "注意！"
 
-msgid "Instructions"
-msgstr ""
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
@@ -1709,15 +1718,6 @@ msgstr ""
 msgid "Old password confirmation required"
 msgstr "旧密码确认请求"
 
-msgid "The new password must be different from the current one."
-msgstr "新密码不能与当前密码相同。"
-
-msgid "Type your new password again"
-msgstr "请重新输入你的新密码"
-
-msgid "The two passwords do not match"
-msgstr "密码不匹配"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1732,6 +1732,9 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "然后，复制并粘贴下列地址到已安装的 Tor 浏览器："
 
 msgid "Enter a name for the copy"
+msgstr ""
+
+msgid "Select a file or drag it here."
 msgstr ""
 
 msgid "Uploading files…"
@@ -2398,7 +2401,7 @@ msgstr "新消息"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
+"the account: {Username}"
 msgstr ""
 
 msgid ""

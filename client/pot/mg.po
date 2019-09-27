@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -683,6 +683,35 @@ msgstr "Ny fanambarana fitorohana nataonao dia tafita soa aman-tsara."
 msgid "Submission status"
 msgstr "Momba ilay fitorohana"
 
+msgid "Before proceeding, please set a new password."
+msgstr "Avant de continuer, veuillez définir un nouveau mot de passe."
+
+msgid "New password"
+msgstr "Nouveau mot de passe"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Le mot de passe choisi est trop faible. Sécurisez-le en y ajoutant des caractères spéciaux et des chiffres et des symboles inhabituels."
+
+msgid "The new password must be different from the current one."
+msgstr "Le nouveau mot de passe doit être différent de l’actuel."
+
+msgid "Type your new password again"
+msgstr "Saisissez votre nouveau mot de passe de nouveau"
+
+msgid "The two passwords do not match"
+msgstr "Les deux mots de passe ne correspondent pas"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Continuer"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "Désactiver les envois"
 
@@ -695,9 +724,6 @@ msgstr "Autoriser le système à enregistrer les données en clair quand le chif
 
 msgid "Enable multisite feature"
 msgstr "Activer la fonction multisite"
-
-msgid "Enable two factor authentication"
-msgstr "Activer l’authentification à deux facteurs"
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
@@ -715,6 +741,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Permettre aux destinataires de donner des permissions aux lanceurs d’alerte pour des envois spécifiques"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "Activer l’indexation par les moteurs de recherche"
@@ -1104,9 +1133,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "Nom d’hôte"
 
-msgid "Verify"
-msgstr "Vérifier"
-
 msgid "Invalid input format."
 msgstr "Le format de saisie est invalide."
 
@@ -1125,9 +1151,6 @@ msgstr "Lire les conditions générales d’utilisation"
 
 msgid "I agree to the Terms of Service."
 msgstr "J’accepte les conditions générales d’utilisation."
-
-msgid "Proceed"
-msgstr "Continuer"
 
 msgid "Country code"
 msgstr "Code de pays"
@@ -1181,8 +1204,9 @@ msgstr "Activer"
 msgid "Reset"
 msgstr "Réinitialiser"
 
-msgid "Select an option:"
-msgstr "Sélectionner une option :"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "La plateforme prend en charge la configuration de HTTPS par cette interface."
 
 msgid "Automatic configuration"
 msgstr "Configuration automatique"
@@ -1205,13 +1229,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "L’assistant de configuration vous guidera dans les étapes de paramétrage de HTTPS à partir d’une autorité de certification alternative."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "La plateforme prend en charge la configuration de HTTPS par cette interface."
-
-msgid "The connection to the configured domain failed."
-msgstr "Échec de connexion au domaine configuré."
 
 msgid "Auto-renewal"
 msgstr "Renouvellement automatique"
@@ -1458,13 +1475,8 @@ msgstr "Le système oblige les utilisateurs à modifier leur mot de passe lors d
 msgid "Reset password"
 msgstr "Réinitialiser le mot  de passe"
 
-msgid "New password"
-msgstr "Nouveau mot de passe"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "Le mot de passe choisi est trop faible. Sécurisez-le en y ajoutant des caractères spéciaux et des chiffres et des symboles inhabituels."
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "Forcer un changement de mot de passe"
@@ -1531,9 +1543,6 @@ msgstr "Soit le lien de validation est incorrect soit il est expiré."
 msgid "Your new email address has been validated."
 msgstr "Votre nouvelle adresse courriel a été validée."
 
-msgid "Before proceeding, please set a new password."
-msgstr "Avant de continuer, veuillez définir un nouveau mot de passe."
-
 msgid "Forgot password?"
 msgstr "Mot de passe oublié ?"
 
@@ -1594,14 +1603,14 @@ msgstr ""
 msgid "Attention!"
 msgstr "Attention !"
 
-msgid "Instructions"
-msgstr ""
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
 msgstr ""
+
+msgid "Enable two factor authentication"
+msgstr "Activer l’authentification à deux facteurs"
 
 msgid "Close"
 msgstr ""
@@ -1709,15 +1718,6 @@ msgstr "Mot de passe actuel"
 msgid "Old password confirmation required"
 msgstr "La confirmation de l’ancien mot de passe est exigée"
 
-msgid "The new password must be different from the current one."
-msgstr "Le nouveau mot de passe doit être différent de l’actuel."
-
-msgid "Type your new password again"
-msgstr "Saisissez votre nouveau mot de passe de nouveau"
-
-msgid "The two passwords do not match"
-msgstr "Les deux mots de passe ne correspondent pas"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1733,6 +1733,9 @@ msgstr "Copier et coller ensuite l’adresse suivante dans le navigateur Tor :"
 
 msgid "Enter a name for the copy"
 msgstr "Saisir un nom pour la copie"
+
+msgid "Select a file or drag it here."
+msgstr ""
 
 msgid "Uploading files…"
 msgstr "Téléversement des fichiers…"
@@ -2398,8 +2401,8 @@ msgstr "Nouveau message"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
-msgstr "Vous recevez ce courriel, car une réinitialisation de mot de passe a été demandée pour votre compte."
+"the account: {Username}"
+msgstr ""
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

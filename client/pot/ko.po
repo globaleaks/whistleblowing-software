@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -669,6 +669,35 @@ msgstr "제출 성공했습니다."
 msgid "Submission status"
 msgstr ""
 
+msgid "Before proceeding, please set a new password."
+msgstr ""
+
+msgid "New password"
+msgstr "새 패스워드:"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr ""
+
+msgid "The new password must be different from the current one."
+msgstr ""
+
+msgid "Type your new password again"
+msgstr "새 암호를 다시 입력"
+
+msgid "The two passwords do not match"
+msgstr "두 암호가 일치하지 않습니다"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "발하다"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "안 제출"
 
@@ -680,9 +709,6 @@ msgid ""
 msgstr ""
 
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Allow the following websites to embed the platform inside iframes"
@@ -701,6 +727,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "받는 사람이 특정 제출에 대한 내부 고발자에 대한 사용 권한을 부여 할 수 있도록 허용"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "검색 엔진의 색인을 사용하도록 설정"
@@ -1090,9 +1119,6 @@ msgstr ""
 msgid "Hostname"
 msgstr ""
 
-msgid "Verify"
-msgstr "검증"
-
 msgid "Invalid input format."
 msgstr ""
 
@@ -1111,9 +1137,6 @@ msgstr ""
 
 msgid "I agree to the Terms of Service."
 msgstr ""
-
-msgid "Proceed"
-msgstr "발하다"
 
 msgid "Country code"
 msgstr ""
@@ -1167,7 +1190,8 @@ msgstr "활성화"
 msgid "Reset"
 msgstr "다시 놓기"
 
-msgid "Select an option:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
 msgstr ""
 
 msgid "Automatic configuration"
@@ -1190,13 +1214,6 @@ msgstr ""
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr ""
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr ""
-
-msgid "The connection to the configured domain failed."
 msgstr ""
 
 msgid "Auto-renewal"
@@ -1444,12 +1461,7 @@ msgstr "시스템 강제로 사용자가 처음 로그인 할 때 암호를 변�
 msgid "Reset password"
 msgstr ""
 
-msgid "New password"
-msgstr "새 패스워드:"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
+msgid "Disable two factor authentication"
 msgstr ""
 
 msgid "Force password change"
@@ -1517,9 +1529,6 @@ msgstr ""
 msgid "Your new email address has been validated."
 msgstr ""
 
-msgid "Before proceeding, please set a new password."
-msgstr ""
-
 msgid "Forgot password?"
 msgstr ""
 
@@ -1580,13 +1589,13 @@ msgstr ""
 msgid "Attention!"
 msgstr ""
 
-msgid "Instructions"
-msgstr ""
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
@@ -1695,15 +1704,6 @@ msgstr "현재 비밀번호"
 msgid "Old password confirmation required"
 msgstr "이전 암호 확인 필요"
 
-msgid "The new password must be different from the current one."
-msgstr ""
-
-msgid "Type your new password again"
-msgstr "새 암호를 다시 입력"
-
-msgid "The two passwords do not match"
-msgstr "두 암호가 일치하지 않습니다"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1718,6 +1718,9 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "그런 다음, 복사 토르 브라우저에 다음 주소를 붙여 넣기 :"
 
 msgid "Enter a name for the copy"
+msgstr ""
+
+msgid "Select a file or drag it here."
 msgstr ""
 
 msgid "Uploading files…"
@@ -2384,7 +2387,7 @@ msgstr "새로운 메시지"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
+"the account: {Username}"
 msgstr ""
 
 msgid ""

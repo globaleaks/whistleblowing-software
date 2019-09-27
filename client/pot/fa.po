@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -687,6 +687,35 @@ msgstr "گزارش شما با موفقیت انجام شد."
 msgid "Submission status"
 msgstr "وضعیت گزارش"
 
+msgid "Before proceeding, please set a new password."
+msgstr "قبل از ادامه  لطفا یک گذرواژه جدید تنظیم کنید."
+
+msgid "New password"
+msgstr "رمز عبور جدید"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "گذرواژه انتخاب شده بیش از حد ضعیف می باشد. با افزودن کاراکتر های خاص، اعداد، نماد های غیرمعمول آن را امن تر کنید."
+
+msgid "The new password must be different from the current one."
+msgstr "گذرواژه جدید می بایستی از گذرواژه فعلی متفاوت باشد."
+
+msgid "Type your new password again"
+msgstr "گذرواژه جدیدتان رو دوباره تایپ کنید"
+
+msgid "The two passwords do not match"
+msgstr "دو گذرواژه یکی نیستند"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "ادامه بده"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "غیرفعال‌سازی گزارش"
 
@@ -699,9 +728,6 @@ msgstr "اجازه به سیستم برای ذخیره سازی داده در م
 
 msgid "Enable multisite feature"
 msgstr "فعال سازی ویژگی چند سایت"
-
-msgid "Enable two factor authentication"
-msgstr "فعال سازی احراز هویت دو عاملی"
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
@@ -719,6 +745,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "به دریافت کننده و به افشاگر اجازه یک گزارش خاص داده شود"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "فعال کردن ایندکس سازی موتورهای جستجو"
@@ -1108,9 +1137,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "نام سرور"
 
-msgid "Verify"
-msgstr "تایید"
-
 msgid "Invalid input format."
 msgstr "فرمت ورودی نامعتبر است"
 
@@ -1129,9 +1155,6 @@ msgstr "خواندن شرایط استفاده از خدمات"
 
 msgid "I agree to the Terms of Service."
 msgstr "با شرایط استفاده از خدمات موافقم"
-
-msgid "Proceed"
-msgstr "ادامه بده"
 
 msgid "Country code"
 msgstr "کد کشور"
@@ -1185,8 +1208,9 @@ msgstr "فعّال"
 msgid "Reset"
 msgstr "راه اندازی مجدد"
 
-msgid "Select an option:"
-msgstr "انتخاب یک گزینه:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "پلتفورم پیکربندی HTTPS را از طریق این رابط پشتیبانی می کند."
 
 msgid "Automatic configuration"
 msgstr "پیکربندی خودکار:"
@@ -1209,13 +1233,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "ویزارد پیکربندی دستی شما را در نصب HTTPS از یک مرجع صدور گواهی دیگر راهنمایی خواهد کرد."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "پلتفورم پیکربندی HTTPS را از طریق این رابط پشتیبانی می کند."
-
-msgid "The connection to the configured domain failed."
-msgstr "اتصال به دامنه پیکربندی شده ناموفق بود."
 
 msgid "Auto-renewal"
 msgstr "تمدید-خودکار"
@@ -1462,13 +1479,8 @@ msgstr "سیستم کاربرها را در ورود اول وادار به تغ
 msgid "Reset password"
 msgstr "تنظیم مجدد گذرواژه"
 
-msgid "New password"
-msgstr "رمز عبور جدید"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "گذرواژه انتخاب شده بیش از حد ضعیف می باشد. با افزودن کاراکتر های خاص، اعداد، نماد های غیرمعمول آن را امن تر کنید."
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "وادار به تغییر گذرواژه"
@@ -1535,9 +1547,6 @@ msgstr "لینک تایید یا نادرست می باشد یا انقضا یا
 msgid "Your new email address has been validated."
 msgstr "آدرس ایمیل جدید شما معتبر شناخته شده است."
 
-msgid "Before proceeding, please set a new password."
-msgstr "قبل از ادامه  لطفا یک گذرواژه جدید تنظیم کنید."
-
 msgid "Forgot password?"
 msgstr "گذرواژه را فراموش کرده اید؟"
 
@@ -1598,14 +1607,14 @@ msgstr ""
 msgid "Attention!"
 msgstr "توجه!"
 
-msgid "Instructions"
-msgstr "دستورالعمل‌ها"
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
 msgstr ""
+
+msgid "Enable two factor authentication"
+msgstr "فعال سازی احراز هویت دو عاملی"
 
 msgid "Close"
 msgstr "بستن"
@@ -1713,15 +1722,6 @@ msgstr "رمز عبور فعلی"
 msgid "Old password confirmation required"
 msgstr "تایید گذرواژه قبلی لازم است"
 
-msgid "The new password must be different from the current one."
-msgstr "گذرواژه جدید می بایستی از گذرواژه فعلی متفاوت باشد."
-
-msgid "Type your new password again"
-msgstr "گذرواژه جدیدتان رو دوباره تایپ کنید"
-
-msgid "The two passwords do not match"
-msgstr "دو گذرواژه یکی نیستند"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1737,6 +1737,9 @@ msgstr "سپس این آدرس را در مرورگر درج کنید:"
 
 msgid "Enter a name for the copy"
 msgstr "وارد کردن یک نام برای کپی"
+
+msgid "Select a file or drag it here."
+msgstr ""
 
 msgid "Uploading files…"
 msgstr "در حال آپلود فایل ها..."
@@ -2402,8 +2405,8 @@ msgstr "پیام جدید"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
-msgstr "شما این ایمیل را دریافت میکنید چون یک درخواست تنظیم مجدد گذرواژه برای حساب شما خواسته شده است."
+"the account: {Username}"
+msgstr ""
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

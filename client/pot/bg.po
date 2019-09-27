@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -675,6 +675,35 @@ msgstr "Подаването на сигнала е успешно."
 msgid "Submission status"
 msgstr "Статус на сигнала"
 
+msgid "Before proceeding, please set a new password."
+msgstr "Преди да продължите, моля задайте нова парола."
+
+msgid "New password"
+msgstr "Нова парола"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Избраната парола е твърде слаба. Направете я по-сигурна като добавите специални символи, цифри и необичайни символи."
+
+msgid "The new password must be different from the current one."
+msgstr "Новата парола трябва да бъде различна от текущата."
+
+msgid "Type your new password again"
+msgstr "Напишете новата парола отново"
+
+msgid "The two passwords do not match"
+msgstr "Двете пароли не съвпадат"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Продължи"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "Забрана за подаване на сигнали"
 
@@ -687,9 +716,6 @@ msgstr "Разрешаване на системата да складира и�
 
 msgid "Enable multisite feature"
 msgstr "Активиране на мулти-сайтова функционалност"
-
-msgid "Enable two factor authentication"
-msgstr "Активиране на двуфакторово удостоверение"
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
@@ -707,6 +733,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Разрешаване на получателите да дават привилегии на източника за определен подаден сигнал"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "Активиране на индексиране от търсещите машини"
@@ -1096,9 +1125,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "Сървър"
 
-msgid "Verify"
-msgstr "Проверка"
-
 msgid "Invalid input format."
 msgstr "Невалиден формат на данните."
 
@@ -1117,9 +1143,6 @@ msgstr "Прочитане на Общите Условия."
 
 msgid "I agree to the Terms of Service."
 msgstr "Съгласен съм с Общите Условия."
-
-msgid "Proceed"
-msgstr "Продължи"
 
 msgid "Country code"
 msgstr "Код на държавата"
@@ -1173,8 +1196,9 @@ msgstr "Активиране"
 msgid "Reset"
 msgstr "Изчисти"
 
-msgid "Select an option:"
-msgstr "Изберте опция:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Платформата поддържа конфиругация на HTTPS през интефейса."
 
 msgid "Automatic configuration"
 msgstr "Автоматична настройка"
@@ -1197,13 +1221,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Ръчната настройка с наръчника ще Ви преведе през настройките за HTTPS от алтернативна Компания за Сертификати."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "Платформата поддържа конфиругация на HTTPS през интефейса."
-
-msgid "The connection to the configured domain failed."
-msgstr "Връзката до настроеният домейн е неуспешна."
 
 msgid "Auto-renewal"
 msgstr "Автоматично подновяване"
@@ -1450,13 +1467,8 @@ msgstr "Системата изисква потребителя да проме
 msgid "Reset password"
 msgstr "Възстановяване на парола"
 
-msgid "New password"
-msgstr "Нова парола"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "Избраната парола е твърде слаба. Направете я по-сигурна като добавите специални символи, цифри и необичайни символи."
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "Изискване на смяна на паролата"
@@ -1523,9 +1535,6 @@ msgstr "Връзката за валидиране е грешна или е и�
 msgid "Your new email address has been validated."
 msgstr "Новият Ви имейл е валидиран."
 
-msgid "Before proceeding, please set a new password."
-msgstr "Преди да продължите, моля задайте нова парола."
-
 msgid "Forgot password?"
 msgstr "Забравена парола?"
 
@@ -1586,14 +1595,14 @@ msgstr ""
 msgid "Attention!"
 msgstr "Внимание!"
 
-msgid "Instructions"
-msgstr ""
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
 msgstr ""
+
+msgid "Enable two factor authentication"
+msgstr "Активиране на двуфакторово удостоверение"
 
 msgid "Close"
 msgstr "Затваряне"
@@ -1701,15 +1710,6 @@ msgstr "Текуща парола"
 msgid "Old password confirmation required"
 msgstr "Нужно е потвърджение на старата парола"
 
-msgid "The new password must be different from the current one."
-msgstr "Новата парола трябва да бъде различна от текущата."
-
-msgid "Type your new password again"
-msgstr "Напишете новата парола отново"
-
-msgid "The two passwords do not match"
-msgstr "Двете пароли не съвпадат"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1725,6 +1725,9 @@ msgstr "След това копирайте следния адрес в Tor б
 
 msgid "Enter a name for the copy"
 msgstr "Въведете име на копието"
+
+msgid "Select a file or drag it here."
+msgstr ""
 
 msgid "Uploading files…"
 msgstr "Качване на файлове..."
@@ -2390,8 +2393,8 @@ msgstr "Ново съобщение"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
-msgstr "Получавате този имейл, защото е получена заявка за промяна на имейл адреса на Вашият профил."
+"the account: {Username}"
+msgstr ""
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

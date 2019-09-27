@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -680,6 +680,35 @@ msgstr "El seu lliurament s'ha efectuat amb èxit."
 msgid "Submission status"
 msgstr "Estat de l'enviament"
 
+msgid "Before proceeding, please set a new password."
+msgstr "Abans de continuar, per favor establixca una nova contrasenya."
+
+msgid "New password"
+msgstr "Nueva contrasenya"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "La contrasenya escollida és massa dèbil. Fes-la més segura afegint caràcters especials, nombres i símbols inusuals."
+
+msgid "The new password must be different from the current one."
+msgstr "La nova contrasenya ha de ser diferent de l'actual."
+
+msgid "Type your new password again"
+msgstr "Escriu una altra vegada la nova contrassenya"
+
+msgid "The two passwords do not match"
+msgstr "Les dues contrasenyes no son iguals"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Procedir"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "Deshabilita els enviaments"
 
@@ -692,9 +721,6 @@ msgstr "Permetre al sistema emmagatzemar en text pla si el xifrat no es troba di
 
 msgid "Enable multisite feature"
 msgstr "Activar la característica multi-lloc"
-
-msgid "Enable two factor authentication"
-msgstr "Habilitar l'autenticació de doble factor"
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
@@ -712,6 +738,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Permet als destinataris concedir permisos als informadors sobre determinats enviaments"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "Habilita els motors de cerca d'indexació"
@@ -1101,9 +1130,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "Domini"
 
-msgid "Verify"
-msgstr "Verifica"
-
 msgid "Invalid input format."
 msgstr "Format d'entrada no vàlid"
 
@@ -1122,9 +1148,6 @@ msgstr "Llegir les condicions d'ús"
 
 msgid "I agree to the Terms of Service."
 msgstr "Estic d'acord amb les condicions d'ús"
-
-msgid "Proceed"
-msgstr "Procedir"
 
 msgid "Country code"
 msgstr "Codi de país"
@@ -1178,8 +1201,9 @@ msgstr "Habilitar"
 msgid "Reset"
 msgstr "Restablix"
 
-msgid "Select an option:"
-msgstr "Tria una opció:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "La plataforma admet la configuració d'HTTPS a través d'aquesta interfície."
 
 msgid "Automatic configuration"
 msgstr "Configuració automàtica"
@@ -1202,13 +1226,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "L'assistent de configuració vos guiarà a través de la configuració d'HTTPS des d'una Autoritat de Certificació alternativa."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "La plataforma admet la configuració d'HTTPS a través d'aquesta interfície."
-
-msgid "The connection to the configured domain failed."
-msgstr "Ha fallat la connexió al domini configurat."
 
 msgid "Auto-renewal"
 msgstr "Renovació automàtica"
@@ -1455,13 +1472,8 @@ msgstr "El sistema obliga a canviar la contrasenya la primera vegada que s'inici
 msgid "Reset password"
 msgstr "Reinicialitzar contrasenya"
 
-msgid "New password"
-msgstr "Nueva contrasenya"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "La contrasenya escollida és massa dèbil. Fes-la més segura afegint caràcters especials, nombres i símbols inusuals."
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "Força un canvi de contrasenya"
@@ -1528,9 +1540,6 @@ msgstr "L'enllaç de validació és incorrecte o ha expirat."
 msgid "Your new email address has been validated."
 msgstr "La seua nova adreça de correu ha segut validada."
 
-msgid "Before proceeding, please set a new password."
-msgstr "Abans de continuar, per favor establixca una nova contrasenya."
-
 msgid "Forgot password?"
 msgstr "Ha oblidat la contrasenya?"
 
@@ -1591,14 +1600,14 @@ msgstr ""
 msgid "Attention!"
 msgstr "Atenció!"
 
-msgid "Instructions"
-msgstr ""
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
 msgstr ""
+
+msgid "Enable two factor authentication"
+msgstr "Habilitar l'autenticació de doble factor"
 
 msgid "Close"
 msgstr ""
@@ -1706,15 +1715,6 @@ msgstr " Contrasenya actual"
 msgid "Old password confirmation required"
 msgstr "Es requereix confirmació de l'anterior contrassenya"
 
-msgid "The new password must be different from the current one."
-msgstr "La nova contrasenya ha de ser diferent de l'actual."
-
-msgid "Type your new password again"
-msgstr "Escriu una altra vegada la nova contrassenya"
-
-msgid "The two passwords do not match"
-msgstr "Les dues contrasenyes no son iguals"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1730,6 +1730,9 @@ msgstr "Després, còpie i enganxe l'adreça següent al Tor Browser instal·lat
 
 msgid "Enter a name for the copy"
 msgstr "Introduïsca un nom per a la còpia"
+
+msgid "Select a file or drag it here."
+msgstr ""
 
 msgid "Uploading files…"
 msgstr "Carregant fitxers..."
@@ -2395,8 +2398,8 @@ msgstr "Nou missatge"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
-msgstr "Vosté rep este correu perquè s'ha sol.licitat una reinicialització de la contrasenya del seu compte."
+"the account: {Username}"
+msgstr ""
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

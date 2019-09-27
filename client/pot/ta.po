@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-19 13:00+0000\n"
+"PO-Revision-Date: 2019-09-27 08:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -671,6 +671,35 @@ msgstr "உங்கள் சமர்ப்பிப்பு வெற்ற�
 msgid "Submission status"
 msgstr "சமர்ப்பிக்கும் நிலை"
 
+msgid "Before proceeding, please set a new password."
+msgstr "தொடருவதற்கு முன், புதிய கடவுச்சொல்லை அமைக்கவும்."
+
+msgid "New password"
+msgstr "புதிய கடவுச்சொல்"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "தேர்ந்தெடுத்த கடவுச்சொல் மிகவும் பலவீனமாக உள்ளது. சிறப்பு எழுத்துக்கள், எண்கள், மற்றும் அசாதாரண குறியீடுகளை சேர்ப்பதன் மூலம் இது இன்னும் பாதுகாப்பாக இருங்கள்."
+
+msgid "The new password must be different from the current one."
+msgstr "புதிய கடவுச்சொல் தற்போதைய ஒன்றிலிருந்து வேறுபட்டதாக இருக்க வேண்டும்."
+
+msgid "Type your new password again"
+msgstr "உங்கள் புதிய கடவுச்சொல்லை மீண்டும் தட்டச்சு"
+
+msgid "The two passwords do not match"
+msgstr "இரண்டு கடவுச்சொற்களும் ஒன்றாயில்லை"
+
+msgid "The new password must differ from the previous."
+msgstr ""
+
+msgid "Proceed"
+msgstr "தொடர்க"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr ""
+
 msgid "Disable submissions"
 msgstr "சமர்ப்பிப்புகளை முடக்கு"
 
@@ -683,9 +712,6 @@ msgstr "மறையாக்குதல் கிடைக்காத போ�
 
 msgid "Enable multisite feature"
 msgstr "பன்முனை அம்சத்தை இயக்கு"
-
-msgid "Enable two factor authentication"
-msgstr ""
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
@@ -703,6 +729,9 @@ msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "பெற்றவர்கள் குறிப்பிட்ட சமர்ப்பிப்புகளை இம்மாதிரி செய்ய அனுமதிகளை வழங்க அனுமதி"
+
+msgid "Require two factor authentication"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "தேடுபொறிகள் திருப்பு இயக்கு"
@@ -1092,9 +1121,6 @@ msgstr ""
 msgid "Hostname"
 msgstr "ஹோஸ்ட்பெயர்"
 
-msgid "Verify"
-msgstr "சரிபார்க்க"
-
 msgid "Invalid input format."
 msgstr "தவறான உள்ளீட்டு வடிவமைப்பு."
 
@@ -1113,9 +1139,6 @@ msgstr "சேவை விதிமுறைகளைப் படிக்க�
 
 msgid "I agree to the Terms of Service."
 msgstr "நான் சேவை விதிமுறைகளை ஒப்புக்கொள்கிறீர்கள்."
-
-msgid "Proceed"
-msgstr "தொடர்க"
 
 msgid "Country code"
 msgstr "நாட்டின் குறியீடு"
@@ -1169,8 +1192,9 @@ msgstr "செயல்படுத்து"
 msgid "Reset"
 msgstr "மீட்டமை"
 
-msgid "Select an option:"
-msgstr "ஒரு விருப்பத்தைத் தேர்ந்தெடுக்கவும்:"
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "தளம் இந்த இடைமுகத்தின் வழியாக HTTPS இன் கட்டமைப்பு ஆதரிக்கிறது."
 
 msgid "Automatic configuration"
 msgstr "தானியங்கி கட்டமைப்பு"
@@ -1193,13 +1217,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "கையேடு கட்டமைப்பு வழிகாட்டி ஒரு மாற்று சான்றிதழ் ஆணையத்திலிருந்து HTTPS அமைப்பின் மூலம் உங்களுக்கு வழிகாட்டும்."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "தளம் இந்த இடைமுகத்தின் வழியாக HTTPS இன் கட்டமைப்பு ஆதரிக்கிறது."
-
-msgid "The connection to the configured domain failed."
-msgstr "கட்டமைக்கப்பட்ட டொமைனுக்கான இணைப்பு தோல்வியடைந்தது."
 
 msgid "Auto-renewal"
 msgstr "ஆட்டோ புதுப்பித்தல்"
@@ -1446,13 +1463,8 @@ msgstr "அமைப்பு படைகள் செய்த முதல்
 msgid "Reset password"
 msgstr "கடவுச்சொல்லை மீட்டமைக்க"
 
-msgid "New password"
-msgstr "புதிய கடவுச்சொல்"
-
-msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "தேர்ந்தெடுத்த கடவுச்சொல் மிகவும் பலவீனமாக உள்ளது. சிறப்பு எழுத்துக்கள், எண்கள், மற்றும் அசாதாரண குறியீடுகளை சேர்ப்பதன் மூலம் இது இன்னும் பாதுகாப்பாக இருங்கள்."
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Force password change"
 msgstr "படை கடவுச்சொல்லை மாற்றம்"
@@ -1519,9 +1531,6 @@ msgstr "சரிபார்த்தல் இணைப்பு தவறா�
 msgid "Your new email address has been validated."
 msgstr "உங்கள் புதிய மின்னஞ்சல் முகவரி சரிபார்க்கப்பட்டது."
 
-msgid "Before proceeding, please set a new password."
-msgstr "தொடருவதற்கு முன், புதிய கடவுச்சொல்லை அமைக்கவும்."
-
 msgid "Forgot password?"
 msgstr "கடவுச்சொல்லை மறந்துவிட்டீர்களா?"
 
@@ -1582,13 +1591,13 @@ msgstr ""
 msgid "Attention!"
 msgstr "கவனம்!"
 
-msgid "Instructions"
-msgstr ""
-
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
+msgstr ""
+
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
@@ -1697,15 +1706,6 @@ msgstr "தற்போதைய கடவுச்சொல்"
 msgid "Old password confirmation required"
 msgstr "பழைய கடவுச்சொல் உறுதிப்படுத்தல் அவசியம்"
 
-msgid "The new password must be different from the current one."
-msgstr "புதிய கடவுச்சொல் தற்போதைய ஒன்றிலிருந்து வேறுபட்டதாக இருக்க வேண்டும்."
-
-msgid "Type your new password again"
-msgstr "உங்கள் புதிய கடவுச்சொல்லை மீண்டும் தட்டச்சு"
-
-msgid "The two passwords do not match"
-msgstr "இரண்டு கடவுச்சொற்களும் ஒன்றாயில்லை"
-
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1721,6 +1721,9 @@ msgstr "பின்னர், நகல் மற்றும் தோர�
 
 msgid "Enter a name for the copy"
 msgstr "நகலுக்கு ஒரு பெயரை உள்ளிடவும்"
+
+msgid "Select a file or drag it here."
+msgstr ""
 
 msgid "Uploading files…"
 msgstr "கோப்புகளை பதிவேற்றுகிறது ..."
@@ -2386,8 +2389,8 @@ msgstr "புதிய தகவல்"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
-"your account."
-msgstr "உங்கள் கணக்கு கடவுச்சொல் மீட்டமைப்பு கோரியதால், இந்த மின்னஞ்சலைப் பெறுகிறீர்கள்."
+"the account: {Username}"
+msgstr ""
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
