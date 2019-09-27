@@ -294,7 +294,7 @@ def enable_2fa_step2(session, user_tid, user_id, user_cc, token):
 
 
 @transact
-def disable_2fa(session, user_tid, user_id, user_cc):
+def disable_2fa(session, user_tid, user_id):
     user = db_get_user(session, user_tid, user_id)
 
     user.two_factor_enable = False
@@ -322,8 +322,7 @@ class UserOperationHandler(OperationHandler):
 
     def disable_2fa(self, req_args, *args, **kwargs):
         return disable_2fa(self.current_user.user_tid,
-                           self.current_user.user_id,
-                           self.current_user.cc)
+                           self.current_user.user_id)
 
     def operation_descriptors(self):
         return {

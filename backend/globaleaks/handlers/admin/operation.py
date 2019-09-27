@@ -7,6 +7,7 @@ from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.password_reset import generate_password_reset_token
 from globaleaks.handlers.rtip import db_delete_itip
+from globaleaks.handlers.user import disable_2fa
 from globaleaks.models import Config, InternalTip
 from globaleaks.models.config import ConfigFactory, db_set_config_variable
 from globaleaks.orm import transact, tw
@@ -60,6 +61,9 @@ class AdminOperationHandler(OperationHandler):
     check_roles = 'admin'
     invalidate_cache = True
 
+    def disable_2fa(self, req_args, *args, **kwargs):
+        return disable_2fa(self.request.tid, req_args['value'])
+
     @inlineCallbacks
     def set_hostname(self, req_args, *args, **kwargs):
         yield check_hostname(self.request.tid, req_args['value'])
@@ -86,8 +90,9 @@ class AdminOperationHandler(OperationHandler):
 
     def operation_descriptors(self):
         return {
-            'set_hostname': (AdminOperationHandler.set_hostname, {'value': text_type}),
-            'reset_user_password': (AdminOperationHandler.reset_user_password, {'value': text_type}),
+            'disable_2fa': (AdminOperationHandler.disable_2fa, {'value': text_type}),
             'reset_onion_private_key': (AdminOperationHandler.reset_onion_private_key, {}),
-            'reset_submissions': (AdminOperationHandler.reset_submissions, {})
+            'reset_submissions': (AdminOperationHandler.reset_submissions, {}),
+            'reset_user_password': (AdminOperationHandler.reset_user_password, {'value': text_type}),
+            'set_hostname': (AdminOperationHandler.set_hostname, {'value': text_type})
         }

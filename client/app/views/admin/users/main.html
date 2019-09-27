@@ -137,14 +137,18 @@
                 <div class="form-group">
                   <label data-translate>Password</label>
                   <div>
-                      <span class="btn btn-secondary" data-ng-click="resetUserPassword()">
-                        <i class="fa fa-sync"></i>
-                        <span data-translate>Reset password</span>
-                       </span>
+                    <span class="btn btn-secondary" data-ng-click="resetUserPassword()">
+                      <i class="fa fa-sync"></i>
+                      <span data-translate>Reset password</span>
+                    </span>
                     <span class="btn btn-secondary" data-ng-init="user.newpassword = false" data-ng-click="user.newpassword=!user.newpassword">
-                        <i class="fa fa-edit"></i>
-                        <span data-translate>New password</span>
-                      </span>
+                      <i class="fa fa-edit"></i>
+                      <span data-translate>New password</span>
+                    </span>
+                    <span class="btn btn-danger" data-ng-if="user.two_factor_enable" data-ng-click="disable2FA()">
+                      <i class="fa fa-ban"></i>
+                      <span data-translate>Disable two factor authentication</span>
+                    </span>
                   </div>
                   <div class="form-group" data-ng-if="user.newpassword" data-ng-form="userPasswordForm" data-ng-class="{'has-danger': passwordStrength.score > 0 && !userPassword.password.$valid}">
                     <input name="password" class="form-control" data-ng-model="user.password" type="password" autocomplete="off" zxcvbn="passwordStrength" zx-min-score="3" />

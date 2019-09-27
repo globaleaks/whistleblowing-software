@@ -69,6 +69,19 @@ GLClient.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
         $rootScope.successes.push({message: "Success!"});
       });
     };
+
+    $scope.disable2FA = function() {
+      $http.put(
+        "admin/config", {
+          "operation": "disable_2fa",
+          "args": {
+            "value": $scope.user.id
+          }
+      }).then(function() {
+	$scope.user.two_factor_enable = false;
+        $rootScope.successes.push({message: "Success!"});
+      });
+    };
 }]).
 controller("AdminUserTenantAssociationAddCtrl", ["$scope", "$http", "$filter",
 function ($scope, $http, $filter) {
