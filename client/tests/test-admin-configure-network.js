@@ -2,7 +2,7 @@ describe("admin configure https", function() {
   var files = {
     priv_key: browser.gl.utils.makeTestFilePath("../../../backend/globaleaks/tests/data/https/valid/priv_key.pem"),
     cert: browser.gl.utils.makeTestFilePath("../../../backend/globaleaks/tests/data/https/valid/cert.pem"),
-    chain: browser.gl.utils.makeTestFilePath("../../../backend/globaleaks/tests/data/https/valid/chain.pem"),
+    chain: browser.gl.utils.makeTestFilePath("../../../backend/globaleaks/tests/data/https/valid/chains/comodo.pem"),
   };
 
   it("should interact with all ui elements", async function() {
@@ -16,13 +16,11 @@ describe("admin configure https", function() {
 
     await element(by.cssContainingText("a", "HTTPS")).click();
 
-    await element(by.model("admin.node.hostname")).clear();
-    await element(by.model("admin.node.hostname")).sendKeys("antani.gov");
-    await element(by.model("admin.node.hostname")).click();
+    await element(by.model("hostname")).clear();
+    await element(by.model("hostname")).sendKeys("antani.gov");
+    await element(by.model("hostname")).click();
 
     await element.all(by.cssContainingText("button", "Save")).get(0).click();
-
-    await element(by.cssContainingText("button", "Proceed")).click();
 
     await element(by.id("HTTPSManualMode")).click();
 
@@ -30,6 +28,7 @@ describe("admin configure https", function() {
     await pk_panel.element(by.cssContainingText("button", "Generate")).click();
 
     // Generate csr
+    await browser.gl.utils.waitUntilClickable(by.id("csrGen"));
     await element(by.id("csrGen")).click();
 
     await csr_panel.element(by.model("csr_cfg.country")).sendKeys("IT");
@@ -38,26 +37,29 @@ describe("admin configure https", function() {
     await csr_panel.element(by.model("csr_cfg.company")).sendKeys("Internet Widgets LTD");
     await csr_panel.element(by.model("csr_cfg.department")).sendKeys("Suite reviews");
     await csr_panel.element(by.model("csr_cfg.email")).sendKeys("nocontact@certs.may.hurt");
+
+    await browser.gl.utils.waitUntilClickable(by.id("csrSubmit"));
     await element(by.id("csrSubmit")).click();
 
     // Download csr
     if (browser.gl.utils.testFileDownload()) {
+      await browser.gl.utils.waitUntilClickable(by.id("downloadCsr"));
       await csr_panel.element(by.id("downloadCsr")).click();
     }
 
     // Delete csr
+    await browser.gl.utils.waitUntilClickable(by.id("deleteCsr"));
     await element(by.id("deleteCsr")).click();
     await browser.gl.utils.waitUntilPresent(modal_action);
     await element(modal_action).click();
     await browser.wait(protractor.ExpectedConditions.stalenessOf(element(by.id("deleteCsr"))));
 
     // Delete key
+    await browser.gl.utils.waitUntilClickable(by.id("deleteKey"));
     await element(by.id("deleteKey")).click();
     await browser.gl.utils.waitUntilPresent(modal_action);
     await element(modal_action).click();
     await browser.wait(protractor.ExpectedConditions.stalenessOf(element(by.id("deleteKey"))));
-
-    await element(by.cssContainingText("button", "Proceed")).click();
 
     await element(by.id("HTTPSManualMode")).click();
 

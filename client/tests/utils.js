@@ -3,6 +3,7 @@ var path = require("path");
 var crypto = require("crypto");
 
 exports.vars = {
+  "wizard_password": "w1z4rdp4ssw0rd!",
   "user_password": "ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#",
   "field_types": [
     "Single-line text input",
@@ -113,7 +114,7 @@ exports.login_admin = async function(username, password, url, firstlogin) {
   await element(by.id("login-button")).click();
 
   if (firstlogin) {
-    url = "/forcedpasswordchange";
+    url = "/actions/forcedpasswordchange";
   } else {
     url = url.split("#")[1];
     url = url === "/login" ? "/admin/home" : url;
@@ -133,7 +134,7 @@ exports.login_receiver = async function(username, password, url, firstlogin) {
   await element(by.id("login-button")).click();
 
   if (firstlogin) {
-    url = "/forcedpasswordchange";
+    url = "/actions/forcedpasswordchange";
   } else {
     url = url.split("#")[1];
     url = url === "/login" ? "/receiver/home" : url;
@@ -153,7 +154,7 @@ exports.login_custodian = async function(username, password, url, firstlogin) {
   await element(by.id("login-button")).click();
 
   if (firstlogin) {
-    url = "/forcedpasswordchange";
+    url = "/actions/forcedpasswordchange";
   } else {
     url = url.split("#")[1];
     url = url === "/login" ? "/custodian/home" : url;

@@ -140,7 +140,6 @@ class NodeInstance(BaseHandler):
         """
         Get the node infos.
         """
-
         config_node = yield self.determine_allow_config_filter()
         serialized_node = yield tw(db_admin_serialize_node,
                                    self.request.tid,

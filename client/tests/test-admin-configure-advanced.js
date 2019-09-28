@@ -14,22 +14,7 @@ describe("admin configure advanced settings", function() {
     // save settings
     await element.all(by.css("[data-ng-click=\"updateNode()\"]")).first().click();
   });
-});
 
-describe("admin after enabling encryption", function() {
-  it("should redirect to password change upon successful authentication", async function() {
-    await browser.gl.utils.login_admin("admin", browser.gl.utils.vars["user_password"], "/#/login", true);
-  });
-
-  it("should be able to change password from the default one", async function() {
-    await element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars["user_password"]);
-    await element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars["user_password"]);
-    await element(by.css("[data-ng-click=\"save()\"]")).click();
-    await browser.gl.utils.waitForUrl("/admin/home");
-  });
-});
-
-describe("admin configure advanced settings", function() {
   it("should configure url redirects", async function() {
     await browser.setLocation("admin/advanced_settings");
     await element(by.cssContainingText("a", "URL redirects")).click();

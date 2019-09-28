@@ -96,8 +96,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
     city: "",
     company: "",
     department: "",
-    email: "",
-    commonname: "",
+    email: ""
   };
 
   $scope.csr_state = {
