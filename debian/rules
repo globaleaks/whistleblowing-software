@@ -1,6 +1,4 @@
 #!/usr/bin/make -f
-#export DH_VERBOSE=1
-
 export PYBUILD_NAME=globaleaks
 export PYBUILD_DISABLE=test
 export PYBUILD_INSTALL_ARGS=--no-compile
@@ -20,7 +18,7 @@ endif
 
 
 %:
-	dh $@ --with $(PYTHON_VER) --buildsystem=pybuild --sourcedirectory=backend/; \
+	dh $@ --with $(PYTHON_VER) --buildsystem=pybuild --sourcedirectory=backend/
 
 override_dh_install:
 	dh_apparmor --profile-name=usr.bin.globaleaks
