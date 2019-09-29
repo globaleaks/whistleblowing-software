@@ -66,7 +66,7 @@ echo "Step 2/7: update"
 sudo apt-get update
 
 echo "Step 3/7: apt-get install"
-sudo apt-get install build-essential curl dh-apparmor dput git python-dev python-pip python-setuptools python-sphinx python-virtualenv python3-pip python3-setuptools python3-sphinx python3-virtualenv
+sudo apt-get install curl dh-apparmor debhelper devscripts dput git python-dev python-pip python-setuptools python-sphinx python-virtualenv python3-pip python3-setuptools python3-sphinx python3-virtualenv
 
 echo "Step 4/7: git clone"
 git clone https://github.com/globaleaks/GlobaLeaks.git
