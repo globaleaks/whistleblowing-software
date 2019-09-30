@@ -280,7 +280,7 @@ class ChainValidator(CtxValidator):
 
         chain = split_pem_chain(cfg['ssl_intermediate'])
 
-        if len(chain) < 1 or cfg['ssl_intermediate'] == cfg['ssl_cert']:
+        if cfg['ssl_intermediate'] == cfg['ssl_cert']:
             raise ValidationException('Invalide certificate chain')
 
         for cert in chain:
