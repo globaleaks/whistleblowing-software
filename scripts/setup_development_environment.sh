@@ -46,8 +46,8 @@ if which lsb_release >/dev/null; then
   DISTRO_CODENAME="$( lsb_release -cs )"
 fi
 
-if [ "$DISTRO" != "Ubuntu" ]; then
- echo "Failure: this script is meant to be used only on Ubuntu"
+if echo "$DISTRO" | grep -vqE "^(Debian|Ubuntu)$"; then
+ echo "Failure: this script is meant to be used only on Debian and Ubuntu"
  exit 1
 fi
 
@@ -58,40 +58,27 @@ fi
 
 echo "GlobaLeaks Setup Development Environment Script"
 
-echo "Step 1/7: add universe repository"
-sudo apt-get install software-properties-common
-sudo add-apt-repository universe
-
-echo "Step 2/7: update"
 sudo apt-get update
+sudo apt-get install curl dh-apparmor debhelper devscripts dput git libopenssl-dev python-dev python-pip python-setuptools python-sphinx python-virtualenv python3-dev python3-pip python3-setuptools python3-sphinx python3-venv
 
-echo "Step 3/7: apt-get install"
-sudo apt-get install curl dh-apparmor debhelper devscripts dput git python-dev python-pip python-setuptools python-sphinx python-virtualenv python3-pip python3-setuptools python3-sphinx python3-virtualenv
-
-echo "Step 4/7: git clone"
 git clone https://github.com/globaleaks/GlobaLeaks.git
 if [ "$TAG" != "master"]; then
   cd GlobaLeaks/ && git checkout $TAG && cd ..
 fi
 
-echo "Step 5/7: install npm and node"
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
-echo "Step 6/7: setup client dependencies"
 cd GlobaLeaks/client
 npm install -d
 ./node_modules/grunt/bin/grunt copy:sources
 cd ../../
 
-echo "Step 7/7: prepare backend virtualenv"
 cd GlobaLeaks/backend
-
 rm requirements.txt
-
 cp requirements/requirements-$DISTRO_CODENAME.txt requirements.txt
 
-virtualenv -p python2.7 glenv
-source glenv/bin/activate
+python3 -mvenv env
+source env/bin/activate
 python setup.py develop --always-unzip 
 cd ../../
