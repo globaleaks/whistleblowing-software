@@ -17,7 +17,7 @@ Package: globaleaks
 Architecture: all
 Depends:
   ${misc:Depends},
-  ${python:Depends}
+  ${python:Depends},
   adduser,
   apparmor,
   apparmor-utils,
