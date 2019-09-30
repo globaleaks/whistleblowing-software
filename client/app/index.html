@@ -85,7 +85,7 @@
         <div id="FooterBox" data-ng-if="!embedded" data-ng-include="'views/partials/footer.html'"></div>
       </div>
 
-      <div id="PageOverlay" data-ng-hide="started && !showLoadingPanel">
+      <div id="PageOverlay" class="ng-cloak" data-ng-hide="started && !showLoadingPanel">
         <div id="LoaderBox">
           <div id="LoaderBoxContent">
             <div class="spinner-border text-secondary" role="status">
