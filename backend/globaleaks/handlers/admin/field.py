@@ -188,8 +188,7 @@ def db_update_field(session, tid, field_id, field_dict, language):
 
     fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
-    if field_dict['instance'] == 'reference' and field_dict['template_id'] in special_fields:
-        db_update_fieldattrs(session, field.id, field_dict['attrs'], language)
+    db_update_fieldattrs(session, field.id, field_dict['attrs'], language)
 
     db_reset_option_triggers(session, 'field', field.id)
 
