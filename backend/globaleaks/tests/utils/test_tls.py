@@ -25,7 +25,7 @@ def get_valid_setup():
     d = {'hostname': 'localhost:9999'}
     for k, fname in valid_setup_files.items():
         with open(os.path.join(test_data_dir, 'valid', fname), 'r') as fd:
-            d[k] = text_type(fd.read())
+            d[k] = fd.read().encode('utf-8')
 
     return d
 
@@ -132,26 +132,23 @@ class TestObjectValidators(TestCase):
             self.assertTrue(ok)
             self.assertIsNone(err)
 
-    def test_chain_invalid(self):
+    def test_cert_loaded_twice(self):
         chn_v = tls.ChainValidator()
 
-        self.cfg['ssl_key'] = self.valid_setup['key'].encode()
-        self.cfg['ssl_cert'] = self.valid_setup['cert'].encode()
+        self.cfg['ssl_key'] = self.valid_setup['key']
+        self.cfg['ssl_cert'] = self.valid_setup['cert']
 
-        for fname in self.invalid_files:
-            p = os.path.join(self.test_data_dir, 'invalid', fname)
-            with open(p, 'rb') as f:
-                self.cfg['ssl_intermediate'] = f.read()
+        self.cfg['ssl_intermediate'] = self.valid_setup['cert']
 
-            ok, err = chn_v.validate(self.cfg)
-            self.assertFalse(ok)
-            self.assertIsNotNone(err)
+        ok, err = chn_v.validate(self.cfg)
+        self.assertFalse(ok)
+        self.assertIsNotNone(err)
 
     def test_chain_valid(self):
         chn_v = tls.ChainValidator()
 
-        self.cfg['ssl_key'] = self.valid_setup['key'].encode()
-        self.cfg['ssl_cert'] = self.valid_setup['cert'].encode()
+        self.cfg['ssl_key'] = self.valid_setup['key']
+        self.cfg['ssl_cert'] = self.valid_setup['cert']
 
         p = os.path.join(self.test_data_dir, 'valid', 'chains/comodo.pem')
         with open(p, 'rb') as f:
@@ -164,7 +161,7 @@ class TestObjectValidators(TestCase):
     def test_check_expiration(self):
         chn_v = tls.ChainValidator()
 
-        self.cfg['ssl_key'] = self.valid_setup['key'].encode()
+        self.cfg['ssl_key'] = self.valid_setup['key']
 
         p = os.path.join(self.test_data_dir, 'invalid/expired_cert_with_valid_prv.pem')
         with open(p, 'rb') as f:
