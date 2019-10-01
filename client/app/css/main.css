@@ -24,6 +24,10 @@ body {
   }
 }
 
+#ContenBox, #NoScript {
+  padding: 2em;
+}
+
 #FooterBox {
   width: 100%;
   padding: 1em;
