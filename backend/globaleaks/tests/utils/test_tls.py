@@ -132,20 +132,17 @@ class TestObjectValidators(TestCase):
             self.assertTrue(ok)
             self.assertIsNone(err)
 
-    def test_chain_invalid(self):
+    def test_duplicated_cert_as_chain(self):
         chn_v = tls.ChainValidator()
 
         self.cfg['ssl_key'] = self.valid_setup['key'].encode()
         self.cfg['ssl_cert'] = self.valid_setup['cert'].encode()
 
-        for fname in self.invalid_files:
-            p = os.path.join(self.test_data_dir, 'invalid', fname)
-            with open(p, 'rb') as f:
-                self.cfg['ssl_intermediate'] = f.read()
+        self.cfg['ssl_intermediate'] = self.valid_setup['cert'].encode('utf-8')
 
-            ok, err = chn_v.validate(self.cfg)
-            self.assertFalse(ok)
-            self.assertIsNotNone(err)
+        ok, err = chn_v.validate(self.cfg)
+        self.assertFalse(ok)
+        self.assertIsNotNone(err)
 
     def test_chain_valid(self):
         chn_v = tls.ChainValidator()
