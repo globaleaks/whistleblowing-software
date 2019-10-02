@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-10-02 08:57+0000\n"
+"Last-Translator: Nathan Tran\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -489,7 +489,7 @@ msgid "Label the submission"
 msgstr ""
 
 msgid "Activate"
-msgstr ""
+msgstr "Kích hoạt"
 
 msgid "Disactivate"
 msgstr ""
@@ -534,7 +534,7 @@ msgid "System overview"
 msgstr ""
 
 msgid "Stats"
-msgstr ""
+msgstr "Thống kê"
 
 msgid "Activities"
 msgstr ""
@@ -546,7 +546,7 @@ msgid "Users"
 msgstr "Người dùng"
 
 msgid "From"
-msgstr ""
+msgstr "Từ"
 
 msgid "Number of downloads"
 msgstr ""
@@ -645,7 +645,7 @@ msgid "Last"
 msgstr "Chót"
 
 msgid "Running"
-msgstr ""
+msgstr "Đang chạy"
 
 msgid "Not running"
 msgstr ""
@@ -1124,7 +1124,7 @@ msgid "The platform will be reachable via HTTPS at the following address:"
 msgstr ""
 
 msgid "Hostname"
-msgstr ""
+msgstr "Tên máy chủ"
 
 msgid "Invalid input format."
 msgstr ""
@@ -1835,7 +1835,7 @@ msgid "Connection"
 msgstr "liên quan"
 
 msgid "Never"
-msgstr ""
+msgstr "Không bao giờ"
 
 msgid "Revoked"
 msgstr ""

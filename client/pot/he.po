@@ -4,7 +4,7 @@
 # Damian S., 2015
 # DarLink <darlink@gmail.com>, 2015
 # DarLink <darlink@gmail.com>, 2015
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2019
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # ION, 2018-2019
@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-02 16:34+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1844,7 +1844,7 @@ msgid "Never"
 msgstr "לעולם לא"
 
 msgid "Revoked"
-msgstr ""
+msgstr "בוטל"
 
 msgid "-"
 msgstr "-"
@@ -2333,7 +2333,7 @@ msgid ""
 msgstr ""
 
 msgid "Expiration date: {ExpirationDate}"
-msgstr ""
+msgstr "תאריך תפוגה: {ExpirationDate}"
 
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"

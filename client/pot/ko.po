@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-10-02 08:57+0000\n"
+"Last-Translator: SEPT____ <xpressengine3@mail.beo.kr>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -527,7 +527,7 @@ msgid "System overview"
 msgstr ""
 
 msgid "Stats"
-msgstr ""
+msgstr "통계"
 
 msgid "Activities"
 msgstr ""
@@ -560,7 +560,7 @@ msgid "Accepted file types are:"
 msgstr ""
 
 msgid "Scheduled jobs"
-msgstr ""
+msgstr "예약된 일감"
 
 msgid "Sites management"
 msgstr ""
@@ -638,7 +638,7 @@ msgid "Last"
 msgstr "마지막"
 
 msgid "Running"
-msgstr ""
+msgstr "가동중"
 
 msgid "Not running"
 msgstr ""
@@ -1117,7 +1117,7 @@ msgid "The platform will be reachable via HTTPS at the following address:"
 msgstr ""
 
 msgid "Hostname"
-msgstr ""
+msgstr "호스트 이름"
 
 msgid "Invalid input format."
 msgstr ""
@@ -1173,7 +1173,7 @@ msgid "Certificate Signing Request"
 msgstr ""
 
 msgid "Certificate"
-msgstr ""
+msgstr "인증서"
 
 msgid "Valid until:"
 msgstr ""
