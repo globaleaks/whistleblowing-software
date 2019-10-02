@@ -68,7 +68,7 @@ class AdminOperationHandler(OperationHandler):
     def set_hostname(self, req_args, *args, **kwargs):
         yield check_hostname(self.request.tid, req_args['value'])
         yield tw(db_set_config_variable, self.request.tid, u'hostname', req_args['value'])
-        self.state.tenant_cache[self.request.tid].hostname = req_args['value'].decode('utf-8-')
+        self.state.tenant_cache[self.request.tid].hostname = req_args['value']
 
     def reset_user_password(self, req_args, *args, **kwargs):
         return generate_password_reset_token(self.state,

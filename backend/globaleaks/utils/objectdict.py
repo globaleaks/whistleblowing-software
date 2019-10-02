@@ -11,7 +11,4 @@ class ObjectDict(dict):
             raise AttributeError(name)
 
     def __setattr__(self, name, value):
-        if isinstance(value, str):
-            value = value.encode('utf-8')
-
         self[name] = value
