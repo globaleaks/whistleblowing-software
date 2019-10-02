@@ -28,6 +28,7 @@ Depends:
   python:any (>= 2.7.5-5~), python:any (<< 2.8),
   python-acme (>= 0.25.1),
   python-debian,
+  python-distro,
   python-nacl (>= 1.2),
   python-openssl,
   python-gnupg,

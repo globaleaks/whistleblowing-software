@@ -3,7 +3,15 @@
 from __future__ import print_function
 
 import os
+
 import platform
+
+# Code compatible with python 2, <3.5 and distributions including python3-distro
+try:
+    from distro import linux_distribution
+except:
+    from platform import linux_distribution
+
 import sys
 import mimetypes
 
@@ -21,7 +29,7 @@ sys.path.insert(0, root)
 
 distro='unknown'
 if platform.system() == 'Linux':
-    distro = platform.linux_distribution()[2]
+    distro = linux_distribution()[2]
 
     if distro != 'buster':
         print("WARNING: The current long term supported platform is Debian 10 (Buster)")

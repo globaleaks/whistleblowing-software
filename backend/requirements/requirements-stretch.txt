@@ -4,6 +4,7 @@ acme==0.25.1
 chardet==2.3.0
 cffi==1.9.1
 cryptography==1.9
+distro=1.0.1
 enum34==1.1.2
 idna==2.0
 pyOpenSSL==16.2.0
