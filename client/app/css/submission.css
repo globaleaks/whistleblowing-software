@@ -21,6 +21,10 @@
   position: relative;
 }
 
+.contextCard, .contextList {
+  cursor: pointer;
+}
+
 .contextCard, .contextList, .receiverCard {
   margin-bottom: 1em;
   padding: 1em;
