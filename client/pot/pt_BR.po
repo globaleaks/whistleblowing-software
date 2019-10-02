@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-10-02 03:31+0000\n"
+"Last-Translator: Chacal E.\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -723,13 +723,13 @@ msgid "The two passwords do not match"
 msgstr "As duas senhas não coincidem"
 
 msgid "The new password must differ from the previous."
-msgstr ""
+msgstr "A nova senha deve ser diferente da anterior."
 
 msgid "Proceed"
 msgstr "Prosseguir"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr ""
+msgstr "Antes de continuar, ative a autenticação de dois fatores."
 
 msgid "Disable submissions"
 msgstr "Desativas envios"
@@ -762,7 +762,7 @@ msgid ""
 msgstr "Permitir destinatários conceder permissões aos delatores em submissões específicas"
 
 msgid "Require two factor authentication"
-msgstr ""
+msgstr "Exigir autenticação de dois fatores"
 
 msgid "Enable search engines indexing"
 msgstr "Habilitar indexação aos motores de busca"
@@ -1495,7 +1495,7 @@ msgid "Reset password"
 msgstr "Redefinir senha"
 
 msgid "Disable two factor authentication"
-msgstr ""
+msgstr "Desativar autenticação de dois fatores"
 
 msgid "Force password change"
 msgstr "Forçar mudança de senha"
@@ -1754,7 +1754,7 @@ msgid "Enter a name for the copy"
 msgstr "Digite um nome para a cópia"
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "Selecione um arquivo ou arraste-o aqui."
 
 msgid "Uploading files…"
 msgstr "Subindo arquivos..."
@@ -2421,7 +2421,7 @@ msgstr "Nova mensagem"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr ""
+msgstr "Você está recebendo este e-mail porque uma redefinição de senha foi solicitada para a conta: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

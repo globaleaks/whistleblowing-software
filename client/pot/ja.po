@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-09-29 15:15+0000\n"
+"Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -694,13 +694,13 @@ msgid "The two passwords do not match"
 msgstr "二つのパスワードが一致しません"
 
 msgid "The new password must differ from the previous."
-msgstr ""
+msgstr "新しいパスワードは、前のものから変える必要があります。"
 
 msgid "Proceed"
 msgstr "続行"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr ""
+msgstr "次に進む前に、2要素認証を有効にしてください。"
 
 msgid "Disable submissions"
 msgstr "提出を無効にする"
@@ -733,7 +733,7 @@ msgid ""
 msgstr "受信者が、特定の提出の内部告発者に権限を付与することを許可します"
 
 msgid "Require two factor authentication"
-msgstr ""
+msgstr "2要素認証が必要です"
 
 msgid "Enable search engines indexing"
 msgstr "検索エンジンのインデックス化を有効にする"
@@ -1466,7 +1466,7 @@ msgid "Reset password"
 msgstr "パスワードをリセット"
 
 msgid "Disable two factor authentication"
-msgstr ""
+msgstr "2要素認証を無効にする"
 
 msgid "Force password change"
 msgstr "強制的にパスワードを変更する"
@@ -1537,7 +1537,7 @@ msgid "Forgot password?"
 msgstr "パスワードをお忘れですか?"
 
 msgid "Enter the two factor authentication code"
-msgstr "2 段階認証コードを入力"
+msgstr "2要素認証コードを入力"
 
 msgid "Authentication failed"
 msgstr "認証に失敗しました"
@@ -1600,7 +1600,7 @@ msgid "Scan the QR code with the app"
 msgstr "アプリでQRコードをスキャンしてください"
 
 msgid "Enable two factor authentication"
-msgstr "2 段階認証を有効にする"
+msgstr "2要素認証を有効にする"
 
 msgid "Close"
 msgstr "閉じる"
@@ -1725,7 +1725,7 @@ msgid "Enter a name for the copy"
 msgstr "コピーの名前を入力してください"
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "ファイルを選択するか、ここにドラッグしてください。"
 
 msgid "Uploading files…"
 msgstr "ファイルのアップロード中…"
@@ -2392,7 +2392,7 @@ msgstr "新しいメッセージ"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr ""
+msgstr "パスワードのリセットが要求されたため、このメールを受信しています。アカウント: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
