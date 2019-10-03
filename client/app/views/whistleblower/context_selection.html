@@ -1,7 +1,7 @@
 <div id="SubmissionStepContext" data-ng-switch="node.context_selector_type">
   <div data-ng-switch-when="list">
     <div id="ContextSelectorBox" class="row">
-      <div class="contextClarification" data-ng-if="node.contexts_clarification">{{node.contexts_clarification}}</div>
+      <div class="contextClarification mb-2" data-ng-if="node.contexts_clarification">{{node.contexts_clarification}}</div>
       <div data-ng-repeat="context in selectable_contexts | orderBy:contextsOrderPredicate" id="context-{{$index}}" class="col-md-12" data-ng-click="selectContext(context)">
         <div class="contextList">
           <div class="contextListContent">
