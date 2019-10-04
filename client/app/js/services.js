@@ -190,8 +190,8 @@ angular.module("GLServices", ["ngResource"]).
           if (angular.isUndefined(self.session)) {
             return false;
           }
-          var r = self.session.role;
-          return (r === "admin" || r === "receiver" || r === "custodian");
+
+          return ["admin", "receiver", "custodian"].indexOf(self.session.role) !== -1;
         };
 
         self.get_headers = function() {
