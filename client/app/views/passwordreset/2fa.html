@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label data-translate>Enter the two factor authentication code</label>
+      <input class="form-control" data-ng-model="request.auth_code" type="text" size="6" maxlength="6" required />
+    </div>
+
+    <button class="btn btn-success" data-ng-disabled="request.auth_code.length !== 6" data-ng-click="submit()" type="submit">
+      <span data-translate>Proceed</span>
+    </button>
+  </div>
+</div>
