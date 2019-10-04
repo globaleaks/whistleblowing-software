@@ -144,8 +144,6 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
                 two_factor_secret = user.two_factor_secret.decode('utf-8')
 
             # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
-            print(authcode)
-            print(two_factor_secret)
             if not pyotp.TOTP(two_factor_secret).verify(authcode, valid_window=1):
                 raise errors.InvalidTwoFactorAuthCode
 
