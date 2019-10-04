@@ -7,7 +7,7 @@ from globaleaks.utils.utility import read_file
 
 
 class ManifestHandler(BaseHandler):
-    check_roles = {'admin', 'receiver', 'custodian'}
+    check_roles = 'user'
 
     def get(self):
         """

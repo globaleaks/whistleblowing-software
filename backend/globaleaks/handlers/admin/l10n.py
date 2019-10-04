@@ -41,7 +41,7 @@ def update(session, tid, lang, request):
 
 
 class AdminL10NHandler(BaseHandler):
-    check_roles = {'admin', 'receiver', 'custodian'}
+    check_roles = 'user'
     invalidate_cache = True
 
     @inlineCallbacks

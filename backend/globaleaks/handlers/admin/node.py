@@ -120,7 +120,7 @@ def db_update_node(session, tid, request, language):
 
 
 class NodeInstance(BaseHandler):
-    check_roles = {'admin', 'receiver', 'custodian'}
+    check_roles = 'user'
     cache_resource = True
     invalidate_cache = True
 

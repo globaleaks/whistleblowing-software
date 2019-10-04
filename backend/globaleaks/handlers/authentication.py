@@ -273,7 +273,7 @@ class SessionHandler(BaseHandler):
     """
     Session handler for authenticated users
     """
-    check_roles = {'admin', 'receiver', 'custodian', 'whistleblower'}
+    check_roles = {'user', 'whistleblower'}
 
     def get(self):
         """
@@ -292,7 +292,7 @@ class TenantAuthSwitchHandler(BaseHandler):
     """
     Login handler for switching tenant
     """
-    check_roles = {'admin', 'receiver', 'custodian'}
+    check_roles = 'user'
 
     @inlineCallbacks
     def get(self, tid):

@@ -242,7 +242,7 @@ class UserInstance(BaseHandler):
         - notification settings
         - pgp key
     """
-    check_roles = {'admin', 'receiver', 'custodian'}
+    check_roles = 'user'
     invalidate_cache = True
 
     def get(self):
@@ -311,7 +311,7 @@ def disable_2fa(session, user_tid, user_id):
 
 
 class UserOperationHandler(OperationHandler):
-    check_roles = {'admin', 'receiver', 'custodian'}
+    check_roles = 'user'
 
     def get_recovery_key(self, req_args, *args, **kwargs):
         return get_recovery_key(self.current_user.user_tid,
