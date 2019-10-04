@@ -37,7 +37,7 @@
     "zxcvbn": "4.4.2"
   },
   "devDependencies": {
-    "eslint": "6.4.0",
+    "eslint": "6.5.1",
     "gettext-parser": "4.0.2",
     "grunt": "1.0.4",
     "grunt-angular-templates": "1.2.0",
