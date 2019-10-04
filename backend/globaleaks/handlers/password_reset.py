@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 #
 # Validates the token for password reset changes
+import pyotp
+
 from datetime import datetime, timedelta
 from sqlalchemy import or_
 
@@ -15,7 +17,7 @@ from globaleaks.utils.utility import datetime_now
 
 
 @transact
-def validate_password_reset(session, tid, reset_token, recovery_key):
+def validate_password_reset(session, tid, reset_token, auth_code, recovery_key):
     """Retrieves a user given a password reset validation token"""
     now = datetime.now()
     prv_key = ''
@@ -36,7 +38,12 @@ def validate_password_reset(session, tid, reset_token, recovery_key):
             recovery_key = Base32Encoder().decode(recovery_key.encode('utf-8'))
             prv_key = GCE.symmetric_decrypt(recovery_key, user.crypto_bkp_key)
         except:
-            return {'status': 'invalid_recovery_key_provided'}
+            return {'status': 'require_recovery_key'}
+
+    elif user.two_factor_enable:
+        two_factor_secret = user.two_factor_secret.decode('utf-8')
+        if not pyotp.TOTP(two_factor_secret).verify(auth_code, valid_window=1):
+            return {'status': 'require_two_factor_authentication'}
 
     # Token is used, void it out
     user.reset_password_token = None
@@ -101,4 +108,5 @@ class PasswordResetHandler(BaseHandler):
 
         return validate_password_reset(self.request.tid,
                                        request['reset_token'],
+                                       request['auth_code'],
                                        request['recovery_key'])

@@ -629,7 +629,7 @@ class PasswordResetValidation(UserNodeKeyword):
 
     def UrlPath(self):
         if self.data['user']['encryption']:
-            url = '/#/password/recovery'
+            url = '/#/password/reset/recovery'
         else:
             url = '/#/password/reset'
 

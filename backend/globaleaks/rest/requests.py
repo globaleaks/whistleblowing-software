@@ -644,7 +644,8 @@ PasswordReset1Desc = {
 
 PasswordReset2Desc = {
     'reset_token': text_type,
-    'recovery_key': text_type
+    'recovery_key': text_type,
+    'auth_code': text_type
 }
 
 SiteSettingsDesc = {
