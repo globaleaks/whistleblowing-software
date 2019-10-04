@@ -304,6 +304,17 @@ class APIResourceWrapper(Resource):
         else:
             request.tid = State.tenant_hostname_id_map.get(request.hostname, None)
 
+        if request.tid == 1:
+            match = re.match(b'^/t/([0-9]+)(/.*)', request.path)
+        else:
+            match = re.match(b'^/t/(1)(/.*)', request.path)
+
+        if match is not None:
+            groups = match.groups()
+            tid = int(groups[0])
+            if tid in State.tenant_cache:
+                request.tid, request.path = tid, groups[1]
+
         request.client_ip = request.getClientIP()
         request.client_proto = b'https' if request.port in [443, 8443] else b'http'
 
@@ -345,8 +356,6 @@ class APIResourceWrapper(Resource):
 
         self.set_headers(request)
 
-        request_path = request.path.decode('utf8')
-
         if self.should_redirect_tor(request):
             self.redirect_tor(request)
             return b''
@@ -355,16 +364,7 @@ class APIResourceWrapper(Resource):
             self.redirect_https(request)
             return b''
 
-        if request.tid == 1:
-            match = re.match(r'^/t/([0-9]+)(/.*)', request_path)
-        else:
-            match = re.match(r'^/t/(1)(/.*)', request_path)
-
-        if match is not None:
-            groups = match.groups()
-            tid = int(groups[0])
-            if tid in State.tenant_cache:
-                request.tid, request_path = tid, groups[1]
+        request_path = request.path.decode('utf8')
 
         if request_path in State.tenant_cache[request.tid]['redirects']:
             request.redirect(State.tenant_cache[request.tid]['redirects'][request_path])
