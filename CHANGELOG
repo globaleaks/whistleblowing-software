@@ -1,3 +1,8 @@
+Changes in version 3.11.22 - 2019-10-04
+    Combine password reset with 2fa
+    Enable password reset in default configuration
+    Apply minor budgfixing
+
 Changes in version 3.11.21 - 2019-10-02
     Update translations
 
