@@ -174,7 +174,7 @@ ConfigDescriptor = {
     u'backup_remote_username': Unicode(default=u''),
     u'backup_remote_password': Unicode(default=u''),
 
-    u'enable_password_reset': Bool(default=False),
+    u'enable_password_reset': Bool(default=True),
     u'enable_user_pgp_key_upload': Bool(default=True),
 
     u'log_level': Unicode(default=u'ERROR'),
