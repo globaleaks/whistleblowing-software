@@ -83,10 +83,9 @@ def db_associate_context_receivers(session, tid, context, receiver_ids):
     if not receiver_ids:
         return
 
-    if session.query(models.Context).filter(models.Context.id == context.id,
-                                            models.Context.tid == models.UserTenant.tenant_id,
-                                            models.User.id.in_(receiver_ids),
-                                            models.UserTenant.user_id == models.User.id).count == 0:
+    if not session.query(models.Context).filter(models.Context.id == context.id,
+                                                models.Context.tid == models.User.tid,
+                                                models.User.id.in_(receiver_ids)).count:
         raise errors.InputValidationError()
 
     for i, receiver_id in enumerate(receiver_ids):

@@ -11,8 +11,7 @@ from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import db_get_user, \
                                      parse_pgp_options, \
-                                     user_serialize_user, \
-                                     serialize_usertenant_association
+                                     user_serialize_user
 
 from globaleaks.models import fill_localized_keys
 from globaleaks.orm import transact
@@ -20,19 +19,6 @@ from globaleaks.rest import requests, errors
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE
 from globaleaks.utils.utility import datetime_now, uuid4
-
-
-def db_create_usertenant_association(session, user_id, tenant_id):
-    usertenant = models.UserTenant()
-    usertenant.user_id = user_id
-    usertenant.tenant_id = tenant_id
-    session.add(usertenant)
-    return serialize_usertenant_association(usertenant)
-
-
-@transact
-def create_usertenant_association(session, user_id, tenant_id):
-    return db_create_usertenant_association(session, user_id, tenant_id)
 
 
 @transact
@@ -47,8 +33,7 @@ def db_create_user(session, tid, request, language):
 
     if request['username']:
         user = session.query(models.User).filter(models.User.username == text_type(request['username']),
-                                                 models.UserTenant.user_id == models.User.id,
-                                                 models.UserTenant.tenant_id == tid).one_or_none()
+                                                 models.User.tid == tid).one_or_none()
         if user is not None:
             raise errors.InputValidationError('Username already in use')
 
@@ -83,8 +68,6 @@ def db_create_user(session, tid, request, language):
 
     session.flush()
 
-    db_create_usertenant_association(session, user.id, tid)
-
     return user
 
 
@@ -98,8 +81,7 @@ def db_admin_update_user(session, tid, user_id, request, language):
 
     if user.username != request['username']:
         check = session.query(models.User).filter(models.User.username == text_type(request['username']),
-                                                  models.UserTenant.user_id == models.User.id,
-                                                  models.UserTenant.tenant_id == tid).one_or_none()
+                                                  models.User.tid == tid).one_or_none()
         if check is not None:
             raise errors.InputValidationError('Username already in use')
 
@@ -138,8 +120,7 @@ def delete_user(session, tid, user_id):
 
 def db_get_admin_users(session, tid):
     users = session.query(models.User).filter(models.User.role == u'admin',
-                                              models.UserTenant.user_id == models.User.id,
-                                              models.UserTenant.tenant_id == tid)
+                                              models.User.tid == tid)
 
     return [user_serialize_user(session, user, State.tenant_cache[tid].default_language) for user in users]
 
@@ -151,8 +132,7 @@ def get_receiver_list(session, tid, language):
         (list) the list of recipients
     """
     users = session.query(models.User).filter(models.User.role == u'receiver',
-                                              models.UserTenant.user_id == models.User.id,
-                                              models.UserTenant.tenant_id == tid)
+                                              models.User.tid == tid)
 
     return [user_serialize_user(session, user, language) for user in users]
 
@@ -163,8 +143,7 @@ def get_user_list(session, tid, language):
     Returns:
         (list) the list of users
     """
-    users = session.query(models.User).filter(models.UserTenant.user_id == models.User.id,
-                                              models.UserTenant.tenant_id == tid)
+    users = session.query(models.User).filter(models.User.tid == tid)
 
     return [user_serialize_user(session, user, language) for user in users]
 
@@ -207,25 +186,3 @@ class UserInstance(BaseHandler):
         Delete the specified user.
         """
         return delete_user(self.request.tid, user_id)
-
-
-class UserTenantCollection(BaseHandler):
-    check_roles = 'admin'
-    invalidate_cache = True
-    root_tenant_only = True
-
-    def post(self, user_id):
-        """Creates a list of user/tenant associations"""
-        request = self.validate_message(self.request.content.read(), requests.UserTenantDesc)
-        return create_usertenant_association(user_id, request['tenant_id'])
-
-
-class UserTenantInstance(BaseHandler):
-    check_role = 'admin'
-    invalidate_cache = True
-    root_tenant_only = True
-
-    def delete(self, user_id, tenant_id):
-        return models.delete(models.UserTenant,
-                             models.UserTenant.user_id == user_id,
-                             models.UserTenant.tenant_id == tenant_id)

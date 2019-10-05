@@ -190,16 +190,6 @@ def mock_users_keys(session):
         user.crypto_rec_key = USER_REC_KEY
 
 
-@transact
-def associate_users_of_first_tenant_to_second_tenant(session):
-    users_of_tenant_1 = session.query(models.User).filter(models.User.tid == 1)
-    for user in users_of_tenant_1:
-        user_tenant = models.UserTenant()
-        user_tenant.user_id = user.id
-        user_tenant.tenant_id = 2
-        session.add(user_tenant)
-
-
 def get_dummy_step():
     return {
         'id': '',
@@ -753,8 +743,6 @@ class TestGLWithPopulatedDB(TestGL):
             t = yield create_tenant({'mode': 'default', 'label': name, 'active': True, 'subdomain': name})
             yield tw(db_wizard, t['id'], self.dummyWizard, True, u'en')
             yield self.set_hostnames(i+1)
-
-        yield associate_users_of_first_tenant_to_second_tenant()
 
     @transact
     def add_whistleblower_identity_field_to_step(self, session, step_id):

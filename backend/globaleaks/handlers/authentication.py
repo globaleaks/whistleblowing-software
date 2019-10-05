@@ -7,7 +7,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import InternalTip, User, UserTenant, WhistleblowerTip
+from globaleaks.models import InternalTip, User, WhistleblowerTip
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.sessions import Sessions
@@ -106,8 +106,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
 
     users = session.query(User).filter(User.username == username,
                                        User.state != u'disabled',
-                                       UserTenant.user_id == User.id,
-                                       UserTenant.tenant_id == tid).distinct()
+                                       User.tid == tid).distinct()
     for u in users:
         if GCE.check_password(u.hash_alg, password, u.salt, u.password):
             user = u
@@ -153,20 +152,6 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
     user.last_login = datetime_now()
 
     return Sessions.new(tid, user.id, user.tid, user.role, user.password_change_needed, user.two_factor_enable, crypto_prv_key)
-
-
-@transact
-def check_tenant_auth_switch(session, current_user, tid):
-    # check that the user can really access the tenant requested
-
-    # grant users of the root tenant access to every tenant
-    if current_user.tid == 1:
-        return True
-
-    ut = session.query(UserTenant).filter(UserTenant.user_id == current_user.user_id,
-                                          UserTenant.tenant_id == tid).one()
-
-    return ut is not None
 
 
 class AuthenticationHandler(BaseHandler):
@@ -292,20 +277,18 @@ class TenantAuthSwitchHandler(BaseHandler):
     """
     Login handler for switching tenant
     """
-    check_roles = 'user'
+    check_roles = 'admin'
 
-    @inlineCallbacks
     def get(self, tid):
-        tid = int(tid)
-        check = yield check_tenant_auth_switch(self.current_user, tid)
-        if check:
-            session = Sessions.new(tid, self.current_user.user_id,
-                                   self.current_user.user_tid,
-                                   self.current_user.user_role,
-                                   self.current_user.pcn,
-                                   self.current_user.two_factor,
-                                   self.current_user.cc)
+        if self.request.tid != 1:
+            raise errors.InvalidAuthentication
 
-        returnValue({
-            'redirect': '/t/%d/#/login?token=%s' % (tid, session.id)
-        })
+        tid = int(tid)
+        session = Sessions.new(tid, self.current_user.user_id,
+                               self.current_user.user_tid,
+                               self.current_user.user_role,
+                               self.current_user.pcn,
+                               self.current_user.two_factor,
+                               self.current_user.cc)
+
+        return {'redirect': '/t/%d/#/login?token=%s' % (tid, session.id)}

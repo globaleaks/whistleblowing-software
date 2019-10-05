@@ -374,8 +374,7 @@ def db_get_questionnaire_list(session, tid, language):
 def db_get_public_receiver_list(session, tid, language):
     receivers = session.query(models.User).filter(models.User.role == u'receiver',
                                                   models.User.state != u'disabled',
-                                                  models.UserTenant.user_id == models.User.id,
-                                                  models.UserTenant.tenant_id == tid)
+                                                  models.User.tid == tid)
 
     data = db_prepare_receivers_serialization(session, receivers)
 

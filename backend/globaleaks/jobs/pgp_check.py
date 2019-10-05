@@ -25,8 +25,7 @@ def db_get_expired_or_expiring_pgp_users(session, tids_list):
     return session.query(models.User).filter(models.User.pgp_key_public != u'',
                                              models.User.pgp_key_expiration != datetime_null(),
                                              models.User.pgp_key_expiration < threshold,
-                                             models.UserTenant.user_id == models.User.id,
-                                             models.UserTenant.tenant_id.in_(tids_list))
+                                             models.User.tid.in_(tids_list))
 
 
 class PGPCheck(DailyJob):

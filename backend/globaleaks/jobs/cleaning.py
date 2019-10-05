@@ -98,10 +98,8 @@ class Cleaning(DailyJob):
         threshold = datetime_now() - timedelta(days=self.state.tenant_cache[tid].password_change_period)
 
         subquery = session.query(models.User.id) \
-                          .join(models.UserTenant) \
                           .filter(models.User.password_change_date < threshold,
-                                  models.UserTenant.user_id == models.User.id,
-                                  models.UserTenant.tenant_id == tid)
+                                  models.User.tid == tid)
 
         session.query(models.User).filter(models.User.id.in_(subquery)).update({'password_change_needed': True}, synchronize_session='fetch')
 

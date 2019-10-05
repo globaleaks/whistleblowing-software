@@ -17,9 +17,7 @@ from globaleaks.utils.utility import datetime_to_ISO8601
 def receiver_serialize_receiver(session, tid, user, language):
     # take only contexts for the current tenant
     contexts = [x[0] for x in session.query(models.ReceiverContext.context_id)
-                                     .filter(models.ReceiverContext.receiver_id == user.id,
-                                             models.UserTenant.user_id == user.id,
-                                             models.UserTenant.tenant_id == tid)]
+                                     .filter(models.ReceiverContext.receiver_id == user.id)]
 
     ret_dict = user_serialize_user(session, user, language)
 

@@ -1291,21 +1291,6 @@ class _User(Model):
                 CheckConstraint(self.recipient_configuration.in_(['default', 'forcefully_selected'])))
 
 
-class _UserTenant(Model):
-    """
-    Class used for implementing user-tenant association
-    """
-    __tablename__ = 'usertenant'
-
-    user_id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    tenant_id = Column(Integer, primary_key=True, default=1)
-
-    @declared_attr
-    def __table_args__(self):
-        return (ForeignKeyConstraint(['user_id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['tenant_id'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
-
-
 class _UserImg(Model):
     """
     Class used for storing user pictures
@@ -1545,10 +1530,6 @@ class User(_User, Base):
 
 
 class UserImg(_UserImg, Base):
-    pass
-
-
-class UserTenant(_UserTenant, Base):
     pass
 
 

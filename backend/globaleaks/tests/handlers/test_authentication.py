@@ -31,18 +31,6 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(Sessions), 1)
 
     @inlineCallbacks
-    def test_successful_multitenant_login(self):
-        handler = self.request({
-            'tid': 2,
-            'username': 'admin',
-            'password': helpers.VALID_PASSWORD1,
-            'authcode': ''
-        })
-
-        response = yield handler.post()
-        self.assertTrue('redirect' in response)
-
-    @inlineCallbacks
     def test_successful_multitenant_login_switch(self):
         handler = self.request({
             'tid': 1,

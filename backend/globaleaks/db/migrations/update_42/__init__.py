@@ -160,12 +160,6 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
-            user_tenant = self.model_to['UserTenant']()
-            user_tenant.user_id = new_obj.id
-            user_tenant.tenant_id = new_obj.tid
-            self.session_new.add(user_tenant)
-            self.entries_count['UserTenant'] += 1
-
     def epilogue(self):
         tenants = self.session_old.query(self.model_from['Tenant'])
         for tenant in tenants:
