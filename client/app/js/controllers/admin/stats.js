@@ -26,10 +26,8 @@ GLClient.controller("StatisticsCtrl", ["$scope", "$filter", "StatsCollection",
           "valid": 0
       },
       valid is a status flag:
-          A) 0 means that data is meaningful
-          B) -1 missing result: node shut down
-          C) -2 future hour, we can't have data
-          D) -3 current hour
+          0 means that data is meaningful
+          -1 no stats available for this hour
       */
 
       data.forEach(function(d) {
@@ -121,25 +119,13 @@ GLClient.controller("StatisticsCtrl", ["$scope", "$filter", "StatsCollection",
                   return "white";
               }
 
-              if (d.valid === -2) {
-                  return "yellow";
-              }
-
-              if (d.valid === -3) {
-                  return "red";
-              }
-
               return colorScale(d.value);
           });
 
       heatMap.append("title").text(function(d) {
           // if strings are updated here remember to update client/translation.html to push them on transifex
           if (d.valid === -1) {
-              return "";
-          } else if (d.valid === -2) {
-              return $filter("translate")("Missing data") + ":\n" + $filter("translate")("no stats available for the future.");
-          } else if (d.valid === -3) {
-              return $filter("translate")("Missing data") + ":\n" + $filter("translate")("no stats available for current hour; check activities page.");
+              return $filter("translate")("Missing data") + ":\n" + $filter("translate")("no stats available for this hour.");
           } else {
               return $filter("translate")("Activities") + ": " + d.value;
           }
