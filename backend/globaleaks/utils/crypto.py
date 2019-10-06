@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 import base64
 import binascii
+import math
 import os
+import psutil
 import random
 import string
 import struct
+import timeit
 
 # python-scrypt is still used because not all the versions of pynacl/cryptography includes it
 # this library could be replaced later on in the project
@@ -73,21 +76,21 @@ def _hash_scrypt(password, salt):
 
     # old version of globalealeaks have used hexelify in place of base64;
     # the function is still used for compatibility reasons
-    return binascii.hexlify(scrypt.hash(password, salt, N=GCE.ALGORITM_CONFIGURATION['HASH']['SCRYPT']['N'])).decode('utf-8')
+    return binascii.hexlify(scrypt.hash(password, salt, N=__GCE.ALGORITM_CONFIGURATION['SCRYPT']['N'])).decode('utf-8')
 
 
 if parse_version(nacl.__version__) >= parse_version('1.2'):
     def _kdf_argon2(password, salt):
         salt = base64.b64decode(salt)
         return argon2id.kdf(32, password, salt[0:16],
-                            opslimit=GCE.ALGORITM_CONFIGURATION['KDF']['ARGON2']['OPSLIMIT'],
-                            memlimit=GCE.ALGORITM_CONFIGURATION['KDF']['ARGON2']['MEMLIMIT'])
+                            opslimit=_GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT']+1,
+                            memlimit=1 << _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'])
 
     def _hash_argon2(password, salt):
         salt = base64.b64decode(salt)
         hash = argon2id.kdf(32, password, salt[0:16],
-                            opslimit=GCE.ALGORITM_CONFIGURATION['HASH']['ARGON2']['OPSLIMIT'],
-                            memlimit=GCE.ALGORITM_CONFIGURATION['HASH']['ARGON2']['MEMLIMIT'])
+                            opslimit=_GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'],
+                            memlimit=1 << _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'])
         return base64.b64encode(hash).decode('utf-8')
 
     class _StreamingEncryptionObject(object):
@@ -104,13 +107,13 @@ if parse_version(nacl.__version__) >= parse_version('1.2'):
                 self.fd = open(filepath, 'wb')
                 self.key = nacl_random(32)
                 self.partial_nonce = nacl_random(16)
-                key = GCE.asymmetric_encrypt(self.user_key, self.key)
+                key = _GCE.asymmetric_encrypt(self.user_key, self.key)
                 self.fd.write(key)
                 self.fd.write(self.partial_nonce)
             else:
                 self.fd = open(filepath, 'rb')
                 x = self.fd.read(80)
-                self.key = GCE.asymmetric_decrypt(self.user_key, x)
+                self.key = _GCE.asymmetric_decrypt(self.user_key, x)
                 self.partial_nonce = self.fd.read(16)
 
             self.box = SecretBox(self.key)
@@ -166,24 +169,16 @@ if parse_version(nacl.__version__) >= parse_version('1.2'):
             self.close()
 
 
-class GCE(object):
+class _GCE(object):
     # Warning: KDF options by design should be greater than HASH options
     ENCRYPTION_AVAILABLE = parse_version(nacl.__version__) >= parse_version('1.2')
     ALGORITM_CONFIGURATION = {
-        'KDF': {
-            'ARGON2': {
-                'MEMLIMIT': 1 << 27,  # 128MB
-                'OPSLIMIT': 17
-            }
+        'ARGON2': {
+            'MEMLIMIT': 27,  # 128MB
+            'OPSLIMIT': 16
         },
-        'HASH': {
-            'ARGON2': {
-                'MEMLIMIT': 1 << 27,  # 128MB
-                'OPSLIMIT': 16
-            },
-            'SCRYPT': {
-                'N': 1 << 14  # Value used in old protocol
-            }
+        'SCRYPT': {
+            'N': 1 << 14  # Value used in old protocol
         }
     }
 
@@ -199,6 +194,51 @@ class GCE(object):
         HASH_FUNCTIONS['ARGON2'] = _hash_argon2
     else:
         HASH = 'SCRYPT'
+
+    def set_params(self, memlimit, opslimit):
+        _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'] = memlimit
+        _GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'] = opslimit
+
+    def auto_tune(self):
+        _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'] = 27
+        _GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'] = 1
+
+        salt = self.generate_salt()
+
+        if _GCE.ENCRYPTION_AVAILABLE:
+            memlimit = int(math.log((psutil.virtual_memory().available / 10), 2))
+            while(1):
+
+                start = timeit.default_timer()
+
+                self.hash_password('autotune', salt)
+
+                stop = timeit.default_timer()
+
+                if int(stop - start) > 1:
+                    # Stay below 1 sec of computation
+                    _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'] -= 1
+                    break
+
+                _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'] += 1
+
+            _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'] = memlimit
+
+            while(1):
+                start = timeit.default_timer()
+
+                self.hash_password('autotune', salt)
+
+                stop = timeit.default_timer()
+
+                if int(stop - start) > 1:
+                    # Stay below 1 sec of computation
+                    _GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'] -= 1
+                    break
+
+                _GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'] += 1
+
+        return _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'], _GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT']
 
     @staticmethod
     def generate_receipt():
@@ -224,9 +264,9 @@ class GCE(object):
         salt = _convert_to_bytes(salt)
 
         if algorithm is None:
-            algorithm = GCE.HASH
+            algorithm = _GCE.HASH
 
-        return GCE.HASH_FUNCTIONS[algorithm](password, salt)
+        return _GCE.HASH_FUNCTIONS[algorithm](password, salt)
 
     @staticmethod
     def check_password(algorithm, password, salt, hash):
@@ -236,7 +276,7 @@ class GCE(object):
         password = _convert_to_bytes(password)
         salt = _convert_to_bytes(salt)
         hash = _convert_to_bytes(hash)
-        x = _convert_to_bytes(GCE.HASH_FUNCTIONS[algorithm](password, salt))
+        x = _convert_to_bytes(_GCE.HASH_FUNCTIONS[algorithm](password, salt))
 
         return constant_time.bytes_eq(x, hash)
 
@@ -256,7 +296,7 @@ class GCE(object):
             password = _convert_to_bytes(password)
             salt = _convert_to_bytes(salt)
 
-            return GCE.KDF_FUNCTIONS['ARGON2'](password, salt)
+            return _GCE.KDF_FUNCTIONS['ARGON2'](password, salt)
 
         @staticmethod
         def generate_keypair():
@@ -270,10 +310,10 @@ class GCE(object):
 
         @staticmethod
         def generate_recovery_key(prv_key):
-            rec_key = GCE.generate_key()
+            rec_key = _GCE.generate_key()
             pub_key = PrivateKey(prv_key).public_key.encode(RawEncoder)
-            bck_key = GCE.symmetric_encrypt(rec_key, prv_key)
-            rec_key = GCE.asymmetric_encrypt(pub_key, rec_key)
+            bck_key = _GCE.symmetric_encrypt(rec_key, prv_key)
+            rec_key = _GCE.asymmetric_encrypt(pub_key, rec_key)
             return bck_key, rec_key
 
         @staticmethod
@@ -314,3 +354,6 @@ class GCE(object):
         @staticmethod
         def streaming_encryption_open(mode, user_key, filepath):
             return _StreamingEncryptionObject(mode, user_key, filepath)
+
+
+GCE = _GCE()

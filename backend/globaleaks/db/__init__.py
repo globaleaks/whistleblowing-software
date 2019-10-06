@@ -11,13 +11,14 @@ from sqlalchemy import exc as sa_exc
 from globaleaks import models, DATABASE_VERSION
 from globaleaks.db.appdata import db_load_default_questionnaires, db_load_default_fields
 from globaleaks.models import Config
-from globaleaks.models.config import ConfigFactory
+from globaleaks.models.config import ConfigFactory, db_get_config_variable, db_set_config_variable
 from globaleaks.models.config_desc import ConfigFilters
 from globaleaks.orm import transact, transact_sync, get_session, make_db_uri
 from globaleaks.sessions import Session
 from globaleaks.settings import Settings
 from globaleaks.state import State, TenantState
 from globaleaks.utils import fs
+from globaleaks.utils.crypto import GCE
 from globaleaks.utils.log import log
 from globaleaks.utils.objectdict import ObjectDict
 
@@ -75,8 +76,22 @@ def create_db():
 def init_db(session):
     from globaleaks.handlers.admin import tenant
     tenant.db_create(session, {'mode': 'default', 'label': 'root'})
+
+    memlimit, opslimit = GCE.auto_tune()
+
+    db_set_config_variable(session, 1, 'encryption_memlimit', memlimit)
+    db_set_config_variable(session, 1, 'encryption_opslimit', opslimit)
+
     db_load_default_questionnaires(session)
     db_load_default_fields(session)
+
+
+@transact_sync
+def init_crypto(session):
+    memlimit = db_get_config_variable(session, 1, 'encryption_memlimit')
+    opslimit = db_get_config_variable(session, 1, 'encryption_opslimit')
+
+    GCE.set_params(memlimit, opslimit)
 
 
 def update_db():

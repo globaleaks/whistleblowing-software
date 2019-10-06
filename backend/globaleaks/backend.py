@@ -11,6 +11,7 @@ from twisted.python.log import ILogObserver
 from twisted.web import server
 
 from globaleaks.db import create_db, init_db, update_db, \
+    init_crypto, \
     sync_refresh_memory_variables, sync_clean_untracked_files, sync_initialize_snimap
 from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import Settings
@@ -151,6 +152,8 @@ class Service(service.Service):
         if ret == 0:
             create_db()
             init_db()
+
+        init_crypto()
 
         sync_clean_untracked_files()
         sync_refresh_memory_variables()

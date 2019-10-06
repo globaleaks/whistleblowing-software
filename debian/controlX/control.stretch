@@ -32,6 +32,7 @@ Depends:
   python-nacl (>= 1.2),
   python-openssl,
   python-gnupg,
+  python-psutil,
   python-pyotp,
   python-scrypt,
   python-sqlalchemy,

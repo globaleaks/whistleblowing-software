@@ -62,8 +62,8 @@ from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_IS
     sum_dicts
 from globaleaks.utils.log import log
 
-GCE.ALGORITM_CONFIGURATION['KDF']['ARGON2']['OPSLIMIT'] = GCE.ALGORITM_CONFIGURATION['HASH']['ARGON2']['OPSLIMIT'] = 1
-GCE.ALGORITM_CONFIGURATION['HASH']['SCRYPT']['N'] = 1 << 1
+GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'] = 1
+GCE.ALGORITM_CONFIGURATION['SCRYPT']['N'] = 1 << 1
 
 ################################################################################
 # BEGIN MOCKS NECESSARY FOR DETERMINISTIC ENCRYPTION
@@ -87,12 +87,10 @@ GCE_orig_generate_key = GCE.generate_key
 GCE_orig_generate_keypair = GCE.generate_keypair
 
 
-@staticmethod
 def GCE_mock_generate_key():
     return KEY
 
 
-@staticmethod
 def GCE_mock_generate_keypair():
     return USER_PRV_KEY, USER_PUB_KEY
 

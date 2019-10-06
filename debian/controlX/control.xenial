@@ -29,6 +29,7 @@ Depends:
   python-debian,
   python-nacl,
   python-openssl,
+  python-psutil,
   python-pyotp,
   python-gnupg,
   python-scrypt,
