@@ -165,12 +165,10 @@ def process_receiverfiles(state, receiverfiles_maps):
                             log.err("%d# Unable to complete PGP encrypt for %s on %s: %s. marking the file as unavailable.",
                                     rcounter, rfileinfo['receiver']['name'], rfileinfo['filename'], excep)
                             rfileinfo['status'] = u'unavailable'
-                    elif state.tenant_cache[receiverfiles_map['tid']].allow_unencrypted:
+                    else:
                         receiverfiles_map['plaintext_file_needed'] = True
                         rfileinfo['filename'] = plaintext_name
                         rfileinfo['status'] = u'reference'
-                    else:
-                        rfileinfo['status'] = u'nokey'
 
         if receiverfiles_map['plaintext_file_needed']:
             write_plaintext_file(sf, plaintext_path)

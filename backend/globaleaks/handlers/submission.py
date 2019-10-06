@@ -421,9 +421,6 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     tip_count = 0
 
     for user in session.query(models.User).filter(models.User.id.in_(request['receivers'])):
-        if not crypto_is_available and not user.pgp_key_public and not State.tenant_cache[tid].allow_unencrypted:
-            continue
-
         _tip_key = b''
         if crypto_is_available:
             _tip_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_tip_prv_key)

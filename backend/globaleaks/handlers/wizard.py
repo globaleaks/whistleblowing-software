@@ -38,7 +38,6 @@ def db_wizard(session, tid, request, client_using_tor, language):
     # Guess Tor configuration from thee media used on first configuration and
     # if the user is using Tor preserve node anonymity and perform outgoing connections via Tor
     node.set_val(u'reachable_via_web', not client_using_tor)
-    node.set_val(u'allow_unencrypted', not client_using_tor)
     node.set_val(u'anonymize_outgoing_connections', client_using_tor)
 
     node_l10n = config.ConfigL10NFactory(session, tid)
@@ -105,7 +104,6 @@ def db_wizard(session, tid, request, client_using_tor, language):
                         'can_delete_submission',
                         'can_postpone_expiration',
                         'enable_user_pgp_key_upload',
-                        'allow_unencrypted',
                         'anonymize_outgoing_connections',
                         'frame_ancestors',
                         'password_change_period',

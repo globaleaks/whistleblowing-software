@@ -317,12 +317,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           if (self.context.receivers.indexOf(receiver.id) !== -1) {
             self.receivers.push(receiver);
 
-            if (receiver.pgp_key_public !== "" || $rootScope.node.allow_unencrypted) {
-              if (receiver.recipient_configuration === "default") {
-                self.selected_receivers[receiver.id] = self.context.select_all_receivers;
-              } else if (receiver.recipient_configuration === "forcefully_selected") {
-                self.selected_receivers[receiver.id] = true;
-              }
+            if (receiver.recipient_configuration === "default") {
+              self.selected_receivers[receiver.id] = self.context.select_all_receivers;
+            } else if (receiver.recipient_configuration === "forcefully_selected") {
+              self.selected_receivers[receiver.id] = true;
             }
           }
         });

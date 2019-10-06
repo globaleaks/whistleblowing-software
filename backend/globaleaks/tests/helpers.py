@@ -416,10 +416,6 @@ class TestGL(unittest.TestCase):
             yield db.create_db()
             yield db.init_db()
 
-        allow_unencrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
-
-        yield tw(db_set_config_variable, 1, u'allow_unencrypted', allow_unencrypted)
-
         yield self.set_hostnames(1)
 
         yield db.refresh_memory_variables()
@@ -1122,7 +1118,6 @@ class MockDict:
             'can_grant_permissions': False,
             'ahmia': False,
             'allow_indexing': False,
-            'allow_unencrypted': True,
             'frame_ancestors': u'',
             'custom_homepage': False,
             'disable_submissions': False,

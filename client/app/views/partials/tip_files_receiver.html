@@ -33,11 +33,8 @@
                   <span data-translate>download</span>
                 </button>
               </td>
-              <td data-ng-show="file.status === 'unavailable'">
-                <div class="badge badge-warning" uib-popover="{{'The file is unavailable due to an internal error.' | translate}}" popover-placement="bottom" data-translate>file unavailable</div>
-              </td>
-              <td data-ng-show="file.status === 'nokey'">
-                <div class="badge badge-warning" uib-popover="{{'The file is unavailable due to missing pgp key.' | translate}}" popover-placement="bottom" data-translate>file unavailable</div>
+              <td data-ng-show="file.status === 'unavailable' || file.status === 'nokey'">
+                <div class="badge badge-warning" data-translate>file unavailable</div>
               </td>
 	      <td>{{::file.creation_date | date:'dd-MM-yyyy'}}</td>
 	      <td>{{::file.type}}</td>

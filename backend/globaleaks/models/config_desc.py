@@ -97,7 +97,6 @@ ConfigDescriptor = {
     u'https_custodian': Bool(default=True),
     u'https_whistleblower': Bool(default=True),
     u'https_receiver': Bool(default=True),
-    u'allow_unencrypted': Bool(default=False),
     u'frame_ancestors': Unicode(default=u''),
 
     u'can_postpone_expiration': Bool(default=True),
@@ -205,7 +204,6 @@ ConfigFilters = {
         u'https_custodian',
         u'https_whistleblower',
         u'https_receiver',
-        u'allow_unencrypted',
         u'frame_ancestors',
         u'can_postpone_expiration',
         u'can_delete_submission',
