@@ -126,7 +126,11 @@ def db_serialize_archived_preview_schema(preview_schema, language):
 
 def db_save_answers_subject_to_stats(session, tid, internaltip_id, entries, stats=None):
     if stats is None:
-        stats = {x[0] : True for x in session.query(models.Field.id).filter(models.Field.stats == True)}
+        if State.tenant_cache[1]['mode'] != 'eat':
+            stats = {x[0] : True for x in session.query(models.Field.id).filter(models.Field.stats == True)}
+        else:
+            # On EAT project do currently consider every answer subject to stats
+            stats = {x[0] : True for x in session.query(models.Field.id).filter(models.Field.stats == True)}
 
     if not stats:
         return
