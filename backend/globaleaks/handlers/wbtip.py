@@ -79,6 +79,9 @@ def get_wbtip(session, itip_id, language):
 def serialize_wbtip(session, wbtip, itip, language):
     ret = serialize_usertip(session, itip, itip, language)
 
+    if 'whistleblower_identity' in ret['data']:
+        ret['data']['whistleblower_identity_provided'] = True
+
     ret['comments'] = db_get_itip_comment_list(session, itip.id)
     ret['messages'] = db_get_itip_message_list(session, itip.id)
     ret['rfiles'] = db_get_rfile_list(session, itip.id)

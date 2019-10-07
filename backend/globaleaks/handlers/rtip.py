@@ -138,7 +138,7 @@ def serialize_rtip(session, rtip, itip, language):
     ret = serialize_usertip(session, rtip, itip, language)
 
     if 'whistleblower_identity' in ret['data']:
-        ret['data']['whistleblower_identity_present'] = True
+        ret['data']['whistleblower_identity_provided'] = True
         if not rtip.can_access_whistleblower_identity:
             del ret['data']['whistleblower_identity']
 

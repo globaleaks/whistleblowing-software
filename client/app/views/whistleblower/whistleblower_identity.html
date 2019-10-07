@@ -1,9 +1,12 @@
-<div id="TipInfoBox" class="card card-default" data-ng-init="collapsed = false; submission = {}">
+<div id="TipInfoBox" class="card card-default" data-ng-init="collapsed = tip.data.whistleblower_identity_provided; submission = {}">
   <div class="card-header" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <div>
       <span>
-        <span data-ng-if="tip.data.whistleblower_identity" data-translate>Identity</span>
-	<span data-ng-if="!tip.data.whistleblower_identity">{{whistleblower_identity_field.label}}</span>
+	<span>
+          <span data-ng-if="tip.data.whistleblower_identity" data-translate>Identity</span>
+          <span data-ng-if="!tip.data.whistleblower_identity">{{whistleblower_identity_field.label}}</span>
+          <span data-ng-if="tip.data.whistleblower_identity_provided" class="btn btn-sm btn-link"><span data-ng-if="collapsed" data-translate>show</span><span data-ng-if="!collapsed" data-translate>hide</span></span>
+	</span>
         <span class="float-right">
           <i data-ng-if="!collapsed" class="fa fa-caret-square-up" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>
           <i data-ng-if="collapsed" class="fa fa-caret-square-down" uib-popover="{{'Expand' | translate}}" popover-placement="left"></i>
@@ -17,9 +20,9 @@
         <span data-ng-init="fieldAnswers=tip.data.whistleblower_identity" data-ng-include="'views/partials/tip_field.html'"></span>
       <dd>
     </div>
-    <div data-ng-if="!tip.data.whistleblower_identity">
+    <div data-ng-if="!tip.data.whistleblower_identity_provided">
       <div data-ng-form="f" class="submissionFieldInput">
-        <div data-ng-include="'views/submission/fields/whistleblower_identity.html'"></div>
+        <div data-ng-include="'views/whistleblower/fields/whistleblower_identity.html'"></div>
 	<div id="SubmitBox" data-ng-if="submission._submission.identity_provided">
           <button id="SubmitButton" class="btn btn-success float-right" data-ng-click="provideIdentityInformation(whistleblower_identity_field.id, answers)" data-ng-disabled="f.$invalid" type="submit">
             <i id="SubmitIconOK" class="fa fa-check"></i>
