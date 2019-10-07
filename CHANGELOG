@@ -1,7 +1,17 @@
+Changes in version 3.11.23 - 2019-10-07
+    Simplify User model removing incomplete multi tenant support
+    Update ER representation of the database schema
+    Improve privacy of whistleblower identity by showing the widget collapsed
+    by default (#2497)
+    On the EAT project archive questionnaire answer considering every answer
+    subject to stats
+    Apply minor bugfixing
+    Update translations
+
 Changes in version 3.11.22 - 2019-10-04
     Combine password reset with 2fa
     Enable password reset in default configuration
-    Apply minor budgfixing
+    Apply minor bugfixing
 
 Changes in version 3.11.21 - 2019-10-02
     Update translations
