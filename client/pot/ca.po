@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -78,14 +78,8 @@ msgstr "Plantilles d'avisos"
 msgid "Missing data"
 msgstr "Falta la data"
 
-msgid "no stats available for the future."
-msgstr "No hi ha estadístiques disponibles per al futur."
-
 msgid "no stats available for this hour."
 msgstr "No hi ha estadístiques disponibles per a l'hora actual."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "No hi ha estadístiques disponibles per l'hora actual; revisa la pàgina d'activitats."
 
 msgid "Delete"
 msgstr "Esborrar"
@@ -101,15 +95,6 @@ msgstr "Paràmetres d'usuari"
 
 msgid "Notification settings"
 msgstr "Configuracions de notificació"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Aquest destinatari ha configurat la clau de xifrat."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Aquest destinatari no ha configurat la clau de xifrat."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "El fitxer no està disponible a causa d'un error intern."
 
 msgid "file unavailable"
 msgstr "fitxer no disponible"
@@ -587,12 +572,6 @@ msgstr "Mostra les opcions alfabèticament"
 msgid "Enable email notifications for:"
 msgstr "Habilitar les notificacions de correu per:"
 
-msgid "Software updates"
-msgstr "Actualitzacions de programari"
-
-msgid "Software problems"
-msgstr "Problemes de programari"
-
 msgid "Disable"
 msgstr "Deshabilitar "
 
@@ -717,38 +696,31 @@ msgstr "Deshabilita els enviaments"
 msgid "Enable encryption"
 msgstr "Activa el xifratge"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr "Permet que el sistema emmagatzemi dades en text pla quan el xifrat no estigui disponible"
-
 msgid "Enable multisite feature"
 msgstr "Activa la característica multisite"
 
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgid "Allow recipients to delete submissions"
+msgstr "Permet que els destinataris esborrin els lliuraments"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Permet que els destinataris posposin la caducitat del lliurament"
-
-msgid "Do not expose users' names"
-msgstr ""
-
-msgid "Allow recipients to delete submissions"
-msgstr "Permet que els destinataris esborrin els lliuraments"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Permet als destinataris concedir permisos als informadors sobre determinats enviaments"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Habilita els motors de cerca d'indexació"
 
 msgid "Description"
 msgstr "Descripció"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Habilita distintiu personalitzat de privacitat"
@@ -777,6 +749,12 @@ msgstr "Per raons de seguretat l'accés del informador està subjecte a caducita
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Ajustar aquesta configuració només si sap el que està fent."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr "Periodicitat de canvi de contrasenya"
@@ -828,9 +806,6 @@ msgstr "Nom d'usuari"
 
 msgid "Password"
 msgstr "Contrassenya"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Permet que els usuaris carreguin les seves claus PGP"
@@ -1523,9 +1498,6 @@ msgstr "Permet al destinatari concedir permisos als informadors sobre determinat
 
 msgid "User has administrative access to the following features:"
 msgstr "L'usuari té accés administratiu a les següents funcions:"
-
-msgid "main"
-msgstr "principal"
 
 msgid "Request date"
 msgstr "Data de sol·licitud"

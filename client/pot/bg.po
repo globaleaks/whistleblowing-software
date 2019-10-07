@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,14 +71,8 @@ msgstr "Темплейт съобщения"
 msgid "Missing data"
 msgstr "Липсващи данни"
 
-msgid "no stats available for the future."
-msgstr "няма налични статистически данни за бъдещето."
-
 msgid "no stats available for this hour."
 msgstr "няма статистика за този час."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "няма налични статистически данни за текущия час; проверете страницата с активността."
 
 msgid "Delete"
 msgstr "Изтрий"
@@ -94,15 +88,6 @@ msgstr "Потребителски настройки"
 
 msgid "Notification settings"
 msgstr "Настройки на известяванията"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Този получател е настроил ключ за криптиране."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Този потребител не е настроил ключ за криптиране."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "Файлът не е достъпен поради вътрешна грешка."
 
 msgid "file unavailable"
 msgstr "недостъпен файл"
@@ -580,12 +565,6 @@ msgstr "Показване на опциите по азбучен ред"
 msgid "Enable email notifications for:"
 msgstr "Активиране на имейл известия за:"
 
-msgid "Software updates"
-msgstr "Софтуерни обновления"
-
-msgid "Software problems"
-msgstr "Софтуерни проблеми"
-
 msgid "Disable"
 msgstr "Деактивиране"
 
@@ -710,38 +689,31 @@ msgstr "Забрана за подаване на сигнали"
 msgid "Enable encryption"
 msgstr "Активиране на криптиране"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr "Разрешаване на системата да складира информация в некриптиран формат, когато криптирането не е на разположение"
-
 msgid "Enable multisite feature"
 msgstr "Активиране на мулти-сайтова функционалност"
 
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgid "Allow recipients to delete submissions"
+msgstr "Разрешаване на получателите да изтриват подадени сведения"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Разрешаване на получателите да отлагат датата на изтичане на подадения сигнал"
-
-msgid "Do not expose users' names"
-msgstr ""
-
-msgid "Allow recipients to delete submissions"
-msgstr "Разрешаване на получателите да изтриват подадени сведения"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Разрешаване на получателите да дават привилегии на източника за определен подаден сигнал"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Активиране на индексиране от търсещите машини"
 
 msgid "Description"
 msgstr "Описание"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Активиране на потребителски панел за избирателна поверителност"
@@ -770,6 +742,12 @@ msgstr "От съображения за сигурност достъпът н�
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Променяйте тази настройки единствено ако знаете какво вършите."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr "Интервал за промяна на паролата"
@@ -821,9 +799,6 @@ msgstr "Потребителско име"
 
 msgid "Password"
 msgstr "Парола"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Разрешаване на потребителите да задават своите PGP ключове"
@@ -1516,9 +1491,6 @@ msgstr "Разрешаване на получателите да дават п�
 
 msgid "User has administrative access to the following features:"
 msgstr "Потребителят има административен достъп до следните функции:"
-
-msgid "main"
-msgstr "основна"
 
 msgid "Request date"
 msgstr "Дата на заявката"

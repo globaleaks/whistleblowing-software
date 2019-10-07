@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,14 +82,8 @@ msgstr "Modelos de notificação"
 msgid "Missing data"
 msgstr "Dados em falta"
 
-msgid "no stats available for the future."
-msgstr "não estão disponíveis estatísticas para o futuro."
-
 msgid "no stats available for this hour."
 msgstr "não estão disponíveis estatísticas para esta hora."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "não estão disponíveis estatísticas para a hora atual; verifique a página de atividades."
 
 msgid "Delete"
 msgstr "Eliminar"
@@ -105,15 +99,6 @@ msgstr "Preferências do utilizador"
 
 msgid "Notification settings"
 msgstr "Configurações da notificação"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Este destinatário configurou a chave de encriptação."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Este destinatário não configurou a chave de encriptação."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "O ficheiro está indisponível devido a um erro interno."
 
 msgid "file unavailable"
 msgstr "ficheiro indisponível"
@@ -591,12 +576,6 @@ msgstr "Exibir opções alfabeticamente "
 msgid "Enable email notifications for:"
 msgstr "Ativar notificações por e-mail para:"
 
-msgid "Software updates"
-msgstr "Atualizações de software"
-
-msgid "Software problems"
-msgstr "Problemas com software"
-
 msgid "Disable"
 msgstr "Desativar"
 
@@ -721,38 +700,31 @@ msgstr "Desativar submissões"
 msgid "Enable encryption"
 msgstr ""
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "Permitir que os destinatários adiem a data de expiração da submissão"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Permitir que os destinatários eliminem as submissões"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Permitir que os destinatários adiem a data de expiração da submissão"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Permitir que os destinatários concedam permissões aos informadores nas submissões específicas"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Ativar a indexação dos motores de pesquisa"
 
 msgid "Description"
 msgstr "Descrição"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Permitir um painel de privacidade personalizado"
@@ -781,6 +753,12 @@ msgstr "Por motivos de segurança o acesso do informador está sujeito a prazo d
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Só ajuste esta definição se souber o que está a fazer."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr ""
@@ -832,9 +810,6 @@ msgstr "Nome de Utilizador"
 
 msgid "Password"
 msgstr "Palavra-passe"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1527,9 +1502,6 @@ msgstr "Permitir que o destinatário conceda permissões aos informadores nas su
 
 msgid "User has administrative access to the following features:"
 msgstr " O utilizador tem acesso administrativo para as seguintes funcionalidades:"
-
-msgid "main"
-msgstr ""
 
 msgid "Request date"
 msgstr "Data do Pedido"

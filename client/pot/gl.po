@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,14 +67,8 @@ msgstr "Modelos de notificacións"
 msgid "Missing data"
 msgstr "Falta de datos"
 
-msgid "no stats available for the future."
-msgstr "Non hai estatísticas dispoñibles para o futuro."
-
 msgid "no stats available for this hour."
 msgstr "Non hai estatísticas dispoñibles nesta hora."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "non hai estatísticas dispoñibles para a hora actual; verifica a páxina de actividades."
 
 msgid "Delete"
 msgstr "Eliminar"
@@ -90,15 +84,6 @@ msgstr "Preferencias do usuario"
 
 msgid "Notification settings"
 msgstr "Configuración de notificacións"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Este destinatario configurou a chave de cifrado."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Este destinatario non configurou a chave de cifrado."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "O ficheiro non está dispoñible debido a un erro interno."
 
 msgid "file unavailable"
 msgstr "ficheiro non dispoñible"
@@ -576,12 +561,6 @@ msgstr "Mostrar opcións alfabéticamente"
 msgid "Enable email notifications for:"
 msgstr "Habilitar as notificacións de correo electrónico para:"
 
-msgid "Software updates"
-msgstr "Actualizacións de software"
-
-msgid "Software problems"
-msgstr "Problemas de software"
-
 msgid "Disable"
 msgstr "Desactivar"
 
@@ -706,38 +685,31 @@ msgstr "Deshabilita envíos"
 msgid "Enable encryption"
 msgstr "Activar cifrado"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr "Permitir que o sistema almacene os datos en texto plano cando o cifrado non estea dispoñible"
-
 msgid "Enable multisite feature"
 msgstr "Habilitar características de multisite"
 
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgid "Allow recipients to delete submissions"
+msgstr "Permitir que os destinatarios borren as presentacións"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Permitir que os destinatarios pospoñan a data de caducidade da presentacións"
-
-msgid "Do not expose users' names"
-msgstr ""
-
-msgid "Allow recipients to delete submissions"
-msgstr "Permitir que os destinatarios borren as presentacións"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Permitir aos destinatarios conceder permisos a denunciantes en presentacións específicas"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Activar a indexación dos motores de busca"
 
 msgid "Description"
 msgstr "Descrición"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Habilita o panel de privacidade personalizado"
@@ -766,6 +738,12 @@ msgstr "Por motivos de seguridade, o acceso ao denunciante está suxeito a caduc
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Repara esta configuración só se sabe o que está a facer."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr "Intervalo de cambio de contrasinal"
@@ -817,9 +795,6 @@ msgstr "Nome de usuario"
 
 msgid "Password"
 msgstr "Contrasinal"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Permitir aos usuarios cargar as súas chaves PGP"
@@ -1512,9 +1487,6 @@ msgstr "Permitir ao destinatario conceder permisos a denunciantes específicos"
 
 msgid "User has administrative access to the following features:"
 msgstr "O usuario ten acceso administrativo ás seguintes características:"
-
-msgid "main"
-msgstr "principal"
 
 msgid "Request date"
 msgstr "Data de solicitude"

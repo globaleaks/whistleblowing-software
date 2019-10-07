@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-02 08:57+0000\n"
-"Last-Translator: Nathan Tran\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -72,14 +72,8 @@ msgstr "Mẫu thông báo"
 msgid "Missing data"
 msgstr "Dữ liệu bị mất"
 
-msgid "no stats available for the future."
-msgstr "không có số liệu thống kê có sẵn cho tương lai."
-
 msgid "no stats available for this hour."
 msgstr "không có số liệu thống kê có sẵn cho giờ này."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "không có số liệu thống kê có sẵn cho giờ hiện hành; kiểm tra trang hoạt động."
 
 msgid "Delete"
 msgstr "Xóa"
@@ -95,15 +89,6 @@ msgstr "Sở thích người dùng"
 
 msgid "Notification settings"
 msgstr "Thiết lập thông báo"
-
-msgid "This recipient has configured the encryption key."
-msgstr "nhận này được cấu hình khóa mã hóa."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "nhận này chưa thay đổi khóa mã hóa."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "Các tập tin là không có sẵn do lỗi nội bộ."
 
 msgid "file unavailable"
 msgstr "nộp không có sẵn"
@@ -581,12 +566,6 @@ msgstr ""
 msgid "Enable email notifications for:"
 msgstr ""
 
-msgid "Software updates"
-msgstr ""
-
-msgid "Software problems"
-msgstr ""
-
 msgid "Disable"
 msgstr "Tắt"
 
@@ -711,38 +690,31 @@ msgstr "Vô hiệu hóa đệ trình"
 msgid "Enable encryption"
 msgstr ""
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "Cho phép người nhận để hoãn ngày hết hạn nộp"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Cho phép người nhận để xóa bài nộp"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Cho phép người nhận để hoãn ngày hết hạn nộp"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Cho phép người nhận để cấp quyền cho người tố cáo về đệ trình cụ thể"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Bật công cụ tìm kiếm lập chỉ mục"
 
 msgid "Description"
 msgstr "Mô tả"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Kích hoạt tính năng bảng điều khiển riêng tư tùy chỉnh"
@@ -770,6 +742,12 @@ msgid ""
 msgstr ""
 
 msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -822,9 +800,6 @@ msgstr "Người dùng"
 
 msgid "Password"
 msgstr "Mật khẩu"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1516,9 +1491,6 @@ msgid ""
 msgstr "Cho phép người nhận để cấp quyền cho người tố cáo về đệ trình cụ thể"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
-
-msgid "main"
 msgstr ""
 
 msgid "Request date"

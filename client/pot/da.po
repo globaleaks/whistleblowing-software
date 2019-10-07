@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,14 +66,8 @@ msgstr "Notifikationsskabeloner"
 msgid "Missing data"
 msgstr "Manglende data"
 
-msgid "no stats available for the future."
-msgstr "ingen statistik tilgængelig for fremtiden."
-
 msgid "no stats available for this hour."
 msgstr "ingen statistik tilgængelig for denne time."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "ingen statistik tilgængelig for nuværende time; tjek aktivitetssiden."
 
 msgid "Delete"
 msgstr "Slet"
@@ -89,15 +83,6 @@ msgstr ""
 
 msgid "Notification settings"
 msgstr "Notifikationsindstillinger"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Denne modtager har konfigureret krypteringsnøglen."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Denne modtager har ikke konfigureret krypteringsnøglen."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "Denne fil er utilgængelig grundet en intern fejl."
 
 msgid "file unavailable"
 msgstr "fil utilgængelig"
@@ -575,12 +560,6 @@ msgstr "Alfabetisk visning af muligheder"
 msgid "Enable email notifications for:"
 msgstr "Aktiver mail-notifikationer for:"
 
-msgid "Software updates"
-msgstr "Programopdateringer"
-
-msgid "Software problems"
-msgstr "Programfejl"
-
 msgid "Disable"
 msgstr "Deaktivere"
 
@@ -705,38 +684,31 @@ msgstr "Deaktiver indsendelser"
 msgid "Enable encryption"
 msgstr ""
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "Tillad modtagere at udsætte udløbsdatoen for indsendelsen"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Tillad modtagere at slette indsendelser"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Tillad modtagere at udsætte udløbsdatoen for indsendelsen"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Lad modtagere give whistleblowere tilladelser på specifikke indsendelser"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Aktiver søgemaskiners indeksering"
 
 msgid "Description"
 msgstr "Beskrivelse"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Aktiver brugertilpasset privatlivspanel"
@@ -765,6 +737,12 @@ msgstr "Af sikkerhedsmæssige årsager vil whistleblowerens adgang til materiale
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Du skal kun justere denne indstilling hvis du ved, hvad du gør."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr ""
@@ -816,9 +794,6 @@ msgstr "Brugernavn"
 
 msgid "Password"
 msgstr "Password"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1510,9 +1485,6 @@ msgid ""
 msgstr "Lad modtageren give whistleblowere tilladelser på specifikke indsendelser"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
-
-msgid "main"
 msgstr ""
 
 msgid "Request date"

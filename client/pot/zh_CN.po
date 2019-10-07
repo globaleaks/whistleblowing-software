@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,14 +79,8 @@ msgstr "通知模板"
 msgid "Missing data"
 msgstr "缺少数据"
 
-msgid "no stats available for the future."
-msgstr "没有对未来的可用数据。"
-
 msgid "no stats available for this hour."
 msgstr "此小时没有统计数据可用。"
-
-msgid "no stats available for current hour; check activities page."
-msgstr "没有可供当前时间的统计数据可用；请查阅活动页面。"
 
 msgid "Delete"
 msgstr "删除"
@@ -102,15 +96,6 @@ msgstr "用户偏好"
 
 msgid "Notification settings"
 msgstr "通知设置"
-
-msgid "This recipient has configured the encryption key."
-msgstr "这个接收者配置了加密密钥。"
-
-msgid "This recipient has not configured the encryption key."
-msgstr "这个接收者还没配置加密密钥。"
-
-msgid "The file is unavailable due to an internal error."
-msgstr "由于内部错误，该文件无法获得。"
 
 msgid "file unavailable"
 msgstr "文件无法获得"
@@ -588,12 +573,6 @@ msgstr "按字母序显示选项"
 msgid "Enable email notifications for:"
 msgstr "启用邮件提醒: "
 
-msgid "Software updates"
-msgstr "软件更新"
-
-msgid "Software problems"
-msgstr "软件问题"
-
 msgid "Disable"
 msgstr "禁用"
 
@@ -718,38 +697,31 @@ msgstr "禁用提交"
 msgid "Enable encryption"
 msgstr "启用加密"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "允许接收者推迟提交的失效日期"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "允许接收者删除提交物"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "允许接收者推迟提交的失效日期"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "允许接收者为告密者授予在特定提交上的权限"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "启用搜索引擎索引"
 
 msgid "Description"
 msgstr "描述"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "启用自定义隐私面板"
@@ -778,6 +750,12 @@ msgstr "出于安全考量，揭发人访问权限在到期后将被撤销。"
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "仅在需要时可调整该设置。请慎重使用并防止发生意外。"
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr "密码存活期"
@@ -829,9 +807,6 @@ msgstr "用户名"
 
 msgid "Password"
 msgstr "密码"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1523,9 +1498,6 @@ msgid ""
 msgstr "允许该接收者为告密者授予在特定提交上的权限"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
-
-msgid "main"
 msgstr ""
 
 msgid "Request date"

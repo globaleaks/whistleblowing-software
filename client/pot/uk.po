@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,14 +82,8 @@ msgstr "Шаблони повідомлень"
 msgid "Missing data"
 msgstr "Відсутні дані"
 
-msgid "no stats available for the future."
-msgstr "немає статистики стосовно майбутнього часу."
-
 msgid "no stats available for this hour."
 msgstr "немає статистики для цієї години."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "немає статистики для поточної години; перевірити сторінку активності."
 
 msgid "Delete"
 msgstr "Видалити"
@@ -105,15 +99,6 @@ msgstr "Налаштування користувача"
 
 msgid "Notification settings"
 msgstr "Налаштування оповіщень"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Одержувач налаштував ключ шифрування."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Одержувач не налаштував ключ шифрування."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "Файл недоступний через внутрішню помилку."
 
 msgid "file unavailable"
 msgstr "файл недоступний"
@@ -591,12 +576,6 @@ msgstr "Відобразити параметри в алфавітному по
 msgid "Enable email notifications for:"
 msgstr "Увімкнути сповіщення електронною поштою для:"
 
-msgid "Software updates"
-msgstr ""
-
-msgid "Software problems"
-msgstr ""
-
 msgid "Disable"
 msgstr "Вимкнути"
 
@@ -721,38 +700,31 @@ msgstr "Відключити повідомлення"
 msgid "Enable encryption"
 msgstr ""
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "Дозволити одержувачам продовжувати термін до видалення матеріалів повідомлення."
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Дозволити одержувачам видаляти матеріали"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Дозволити одержувачам продовжувати термін до видалення матеріалів повідомлення."
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Дозволити одержувачам обирати які типи повідомлень можуть надсилати інформатори "
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Включити індексацію пошуковими системами"
 
 msgid "Description"
 msgstr "Опис"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Увімкнути значок конфіденційності"
@@ -781,6 +753,12 @@ msgstr "Для додаткової безпеки доступ інформат
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Tweak this setting only if you know what you are doing."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr ""
@@ -832,9 +810,6 @@ msgstr "Ім'я користувача"
 
 msgid "Password"
 msgstr "Пароль"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1526,9 +1501,6 @@ msgid ""
 msgstr "Дозволити одержувачу обирати які типи повідомлень можуть надсилати інформатори "
 
 msgid "User has administrative access to the following features:"
-msgstr ""
-
-msgid "main"
 msgstr ""
 
 msgid "Request date"

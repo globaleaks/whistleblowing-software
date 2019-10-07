@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-02 09:46+0000\n"
-"Last-Translator: Imran Ali Mughal <mughalscomputers@gmail.com>\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -73,14 +73,8 @@ msgstr "نوٹیفکیشن کے سانچوں"
 msgid "Missing data"
 msgstr " غائب مواد"
 
-msgid "no stats available for the future."
-msgstr "مستقبل کےلیے اعدادوشمار دستیاب نہیں۔"
-
 msgid "no stats available for this hour."
 msgstr "اس وقت کے لئے دستیاب نہیں اعدادوشمار."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "اس گھنٹے کے لیے اعدادوشمار دستیاب نہیں؛ سرگرمیوں کا صفحہ دیکھیں"
 
 msgid "Delete"
 msgstr "حذف"
@@ -96,15 +90,6 @@ msgstr ""
 
 msgid "Notification settings"
 msgstr "اطلاع کی ترتیبات"
-
-msgid "This recipient has configured the encryption key."
-msgstr "اس وصول کنندہ نے خفیہ کاری کلید کو ترتیب دیا ہے"
-
-msgid "This recipient has not configured the encryption key."
-msgstr "اس وصول کنندہ نے خفیہ کاری کلید کو ترتیب نہیں دیا ہے"
-
-msgid "The file is unavailable due to an internal error."
-msgstr "ایک داخلی خرابی کی وجہ سےفائل دستیاب نہیں ہے."
 
 msgid "file unavailable"
 msgstr "فائل دستیاب نہیں ہے"
@@ -582,12 +567,6 @@ msgstr ""
 msgid "Enable email notifications for:"
 msgstr ""
 
-msgid "Software updates"
-msgstr ""
-
-msgid "Software problems"
-msgstr ""
-
 msgid "Disable"
 msgstr ""
 
@@ -712,38 +691,31 @@ msgstr "غیر فعال گذارشات"
 msgid "Enable encryption"
 msgstr ""
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "وصول کنندگان جمع کرانے کا وقت ختم ہونے کی تاریخ ملتوی کرنے کی اجازت دیں"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "وصول کنندگان گذارشات کو حذف کرنے کی اجازت دیں"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "وصول کنندگان جمع کرانے کا وقت ختم ہونے کی تاریخ ملتوی کرنے کی اجازت دیں"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "وصول کنندگان کو مخصوص گذارشات پر مخبر کو اجازت دینے کا مجاز بنائیں"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "سرچ انجن اشاریہ سازی فعال کیجیے"
 
 msgid "Description"
 msgstr "وضاحت"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "روایتی پرائیویسی کے امیتازات فعال کریں"
@@ -771,6 +743,12 @@ msgid ""
 msgstr ""
 
 msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -823,9 +801,6 @@ msgstr "صارف کا نام"
 
 msgid "Password"
 msgstr "پاس ورڈ"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1517,9 +1492,6 @@ msgid ""
 msgstr "مخصوص گذارشات پر whistleblowers کے لئے اجازت عطا کرنے کے وصول کنندہ کی اجازت دیں"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
-
-msgid "main"
 msgstr ""
 
 msgid "Request date"

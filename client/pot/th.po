@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-02 08:57+0000\n"
-"Last-Translator: Martus Translations <translations@martus.org>\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -70,14 +70,8 @@ msgstr "แม่แบบการแจ้งเตือน"
 msgid "Missing data"
 msgstr "ข้อมูลที่หายไป"
 
-msgid "no stats available for the future."
-msgstr "สถิติที่สามารถใช้ได้สำหรับอนาคต"
-
 msgid "no stats available for this hour."
 msgstr "สถิติที่สามารถใช้ได้สำหรับชั่วโมงนี้"
-
-msgid "no stats available for current hour; check activities page."
-msgstr "สถิติที่สามารถใช้ได้สำหรับชั่วโมงในปัจจุบัน กิจกรรมหน้าการตรวจสอบ"
 
 msgid "Delete"
 msgstr "ลบ"
@@ -93,15 +87,6 @@ msgstr ""
 
 msgid "Notification settings"
 msgstr "การตั้งค่าการแจ้งเตือน"
-
-msgid "This recipient has configured the encryption key."
-msgstr "ผู้รับคนนี้มีการกำหนดค่าคีย์การเข้ารหัสลับ"
-
-msgid "This recipient has not configured the encryption key."
-msgstr "ผู้รับนี้ยังไม่ได้กำหนดค่าคีย์การเข้ารหัสลับ"
-
-msgid "The file is unavailable due to an internal error."
-msgstr "ไฟล์ที่ใช้งานไม่ได้เนื่องจากข้อผิดพลาดภายใน"
 
 msgid "file unavailable"
 msgstr "ยื่นไม่พร้อมใช้งาน"
@@ -579,12 +564,6 @@ msgstr ""
 msgid "Enable email notifications for:"
 msgstr ""
 
-msgid "Software updates"
-msgstr ""
-
-msgid "Software problems"
-msgstr ""
-
 msgid "Disable"
 msgstr "ระงับการใช้งาน"
 
@@ -709,38 +688,31 @@ msgstr "ส่งปิดการใช้งาน"
 msgid "Enable encryption"
 msgstr ""
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "ผู้รับอนุญาตให้เลื่อนวันหมดอายุของการส่ง"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "อนุญาตให้ผู้รับลบส่ง"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "ผู้รับอนุญาตให้เลื่อนวันหมดอายุของการส่ง"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "อนุญาตให้ผู้รับการให้สิทธิ์กับโบในการส่งที่เฉพาะเจาะจง"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "เปิดใช้งานการจัดทำดัชนีเครื่องมือค้นหา"
 
 msgid "Description"
 msgstr "ลักษณะ"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "เปิดใช้งานแผงความเป็นส่วนตัวที่กำหนดเอง"
@@ -768,6 +740,12 @@ msgid ""
 msgstr ""
 
 msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -820,9 +798,6 @@ msgstr "ชื่อผู้ใช้"
 
 msgid "Password"
 msgstr "รหัสผ่าน"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1514,9 +1489,6 @@ msgid ""
 msgstr "อนุญาตให้ผู้รับการให้สิทธิ์กับโบในการส่งที่เฉพาะเจาะจง"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
-
-msgid "main"
 msgstr ""
 
 msgid "Request date"

@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-02 16:34+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -78,13 +78,7 @@ msgstr "תבניות התראה"
 msgid "Missing data"
 msgstr "נתונים חסרים"
 
-msgid "no stats available for the future."
-msgstr "אין סטטיסטיקה עתידית"
-
 msgid "no stats available for this hour."
-msgstr "אין סטטיסטיקה לשעה אחרונהף בדוק עמוד הפעילות"
-
-msgid "no stats available for current hour; check activities page."
 msgstr "אין סטטיסטיקה לשעה אחרונהף בדוק עמוד הפעילות"
 
 msgid "Delete"
@@ -101,15 +95,6 @@ msgstr "העדפות משתמש"
 
 msgid "Notification settings"
 msgstr "הגדרות התראה"
-
-msgid "This recipient has configured the encryption key."
-msgstr " המקבל הזה מוגדר מפתח ההצפנה."
-
-msgid "This recipient has not configured the encryption key."
-msgstr " המקבל הזה לא  הגדיר מפתח ההצפנה."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "הקובץ אינו זמין עקב שגיאה פנימית."
 
 msgid "file unavailable"
 msgstr "קובץ לא זמין"
@@ -587,12 +572,6 @@ msgstr ""
 msgid "Enable email notifications for:"
 msgstr ""
 
-msgid "Software updates"
-msgstr "עדכוני תוכנה"
-
-msgid "Software problems"
-msgstr "בעיות תוכנה"
-
 msgid "Disable"
 msgstr "השבת"
 
@@ -717,38 +696,31 @@ msgstr "השבת הגשות"
 msgid "Enable encryption"
 msgstr "אפשר הצפנה"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "אפשר מקבלים לדחות את מועד תפוגה של ההגשה"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "אפשר מקבלים למחוק הגשות"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "אפשר מקבלים לדחות את מועד תפוגה של ההגשה"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "אפשר מקבלים להעניק הרשאות שחושפים את עוולות על הגשות ספציפיות"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "אפשר אינדקס מנועי חיפוש"
 
 msgid "Description"
 msgstr "תיאור"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "אפשר תג פרטיות מותאם אישית"
@@ -776,6 +748,12 @@ msgid ""
 msgstr ""
 
 msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -828,9 +806,6 @@ msgstr "שם משתמש"
 
 msgid "Password"
 msgstr "סיסמה"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1523,9 +1498,6 @@ msgstr "לאפשר לנמען להעניק הרשאות שחושפים את עו
 
 msgid "User has administrative access to the following features:"
 msgstr ""
-
-msgid "main"
-msgstr "ראשי"
 
 msgid "Request date"
 msgstr "תאריך בקשה"

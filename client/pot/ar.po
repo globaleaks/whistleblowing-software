@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,14 +99,8 @@ msgstr "نماذج الإشعارات "
 msgid "Missing data"
 msgstr "معطيات ناقصة "
 
-msgid "no stats available for the future."
-msgstr "لا احصائيات متاحة في المستقبل."
-
 msgid "no stats available for this hour."
 msgstr "لا احصائيات متوفرة في الوقت الحالي."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "لا احصائيات متاحة في الساعة الراهنة، يرجى تصفح صفحة الأنشطة."
 
 msgid "Delete"
 msgstr "حذف"
@@ -122,15 +116,6 @@ msgstr "تفضيلات المستخدم"
 
 msgid "Notification settings"
 msgstr "إعدادات الإشعارات"
-
-msgid "This recipient has configured the encryption key."
-msgstr "لقد كون هذا المتلقي مفتاح التشفير."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "هذا المتلقي لم يكون مفتاح التشفير."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "الملف غير متوفر بسبب خطأ داخلي."
 
 msgid "file unavailable"
 msgstr "الملف غير متوفر"
@@ -608,12 +593,6 @@ msgstr "إظهار الخيارات بترتيب أبجدي"
 msgid "Enable email notifications for:"
 msgstr "تمكين اشعارات البريد الالكتروني الى :"
 
-msgid "Software updates"
-msgstr "تحديثات البرنامج"
-
-msgid "Software problems"
-msgstr "أعطاب البرنامج"
-
 msgid "Disable"
 msgstr "إلغاء"
 
@@ -738,38 +717,31 @@ msgstr "منع البلاغات"
 msgid "Enable encryption"
 msgstr ""
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "السماح للمتلقي بتأجيل تاريخ انتهاء البلاغ"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "السماح للمتلقي بحذف البلاغات"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "السماح للمتلقي بتأجيل تاريخ انتهاء البلاغ"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "السماح للمتقبلين بمنح تراخيص للمبلغين بشأن بلاغات معينة"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "تفعيل فهرسة محركات البحث"
 
 msgid "Description"
 msgstr "وصف"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "تمكين شريط الخصوصيّة المخصّص"
@@ -798,6 +770,12 @@ msgstr "لأسباب أمنية يخضع نفاذ المبلغ لانتهاء ا
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr " عدّل هذه الإعدادات فقط إذا كنت تعرف ما تقوم به."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr ""
@@ -849,9 +827,6 @@ msgstr "اسم المستخدم"
 
 msgid "Password"
 msgstr "كلمة السرّ"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1543,9 +1518,6 @@ msgid ""
 msgstr "السماح للمتقبل بمنح تراخيص للمبلغين بشأن بلاغات معينة"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
-
-msgid "main"
 msgstr ""
 
 msgid "Request date"

@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-02 03:31+0000\n"
-"Last-Translator: Chacal E.\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -98,14 +98,8 @@ msgstr "Modelos de notificação"
 msgid "Missing data"
 msgstr "Dados ausentes"
 
-msgid "no stats available for the future."
-msgstr "Futuramente, não disponibilizar estatísticas."
-
 msgid "no stats available for this hour."
 msgstr "Não há estatísticas disponíveis para esta hora."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "Nenhuma estatística disponível para a hora atual; verifique a página de atividades."
 
 msgid "Delete"
 msgstr "Apagar"
@@ -121,15 +115,6 @@ msgstr "Preferências do usuário"
 
 msgid "Notification settings"
 msgstr "Configurações de notificações"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Este destinatário configurou a chave de criptografia."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Este destinatário não configurou a chave de criptografia."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "O arquivo não encontra-se disponível devido a um erro interno."
 
 msgid "file unavailable"
 msgstr "arquivo não disponível"
@@ -607,12 +592,6 @@ msgstr "Exibir opções alfabeticamente"
 msgid "Enable email notifications for:"
 msgstr "Ativar notificações de e-mail para:"
 
-msgid "Software updates"
-msgstr "Atualização do software"
-
-msgid "Software problems"
-msgstr "Problemas de software"
-
 msgid "Disable"
 msgstr "Desabilitar"
 
@@ -737,38 +716,31 @@ msgstr "Desativas envios"
 msgid "Enable encryption"
 msgstr "Ativar criptografia"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr "Permitir que o sistema armazene dados em texto não criptografado quando a criptografia não estiver disponível"
-
 msgid "Enable multisite feature"
 msgstr "Ativar recurso multisite"
 
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Permitir que os sites a seguir incorporem a plataforma dentro de iframes"
+msgid "Allow recipients to delete submissions"
+msgstr "Permitir que pessoas destinatárias apaguem envios"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Permitir que pessoas destinatárias adiem a data de expiração de envios"
-
-msgid "Do not expose users' names"
-msgstr "Não exponha nomes' de usuários"
-
-msgid "Allow recipients to delete submissions"
-msgstr "Permitir que pessoas destinatárias apaguem envios"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Permitir destinatários conceder permissões aos delatores em submissões específicas"
 
-msgid "Require two factor authentication"
-msgstr "Exigir autenticação de dois fatores"
-
 msgid "Enable search engines indexing"
 msgstr "Habilitar indexação aos motores de busca"
 
 msgid "Description"
 msgstr "Descrição"
+
+msgid "Do not expose users' names"
+msgstr "Não exponha nomes' de usuários"
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Permitir que os sites a seguir incorporem a plataforma dentro de iframes"
 
 msgid "Enable custom privacy panel"
 msgstr "Habilitar painel personalizado de privacidade"
@@ -797,6 +769,12 @@ msgstr "Por razões de segurança o acesso do delator está sujeito à expiraç�
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Ajustar esta configuração somente se Você sabe o que está fazendo."
+
+msgid "Require two factor authentication"
+msgstr "Exigir autenticação de dois fatores"
+
+msgid "Enable password reset"
+msgstr "Ativar redefinição de senha"
 
 msgid "Password change interval"
 msgstr "Intervalo de alteração de senha"
@@ -848,9 +826,6 @@ msgstr "Usuário"
 
 msgid "Password"
 msgstr "Senha"
-
-msgid "Enable password reset"
-msgstr "Ativar redefinição de senha"
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Permitir que os usuários façam upload de suas chaves PGP"
@@ -1543,9 +1518,6 @@ msgstr "Permitir o destinatário conceder permissões aos delatores sobre submis
 
 msgid "User has administrative access to the following features:"
 msgstr "O usuário tem acesso administrativo aos seguintes recursos:"
-
-msgid "main"
-msgstr "Principal"
 
 msgid "Request date"
 msgstr "Data da solicitação"

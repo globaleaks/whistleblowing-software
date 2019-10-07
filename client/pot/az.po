@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,14 +69,8 @@ msgstr "Xəbərdarlıq üzlüyü"
 msgid "Missing data"
 msgstr "Çatışmayan məlumat"
 
-msgid "no stats available for the future."
-msgstr "gələcək üçün statistika yoxdur"
-
 msgid "no stats available for this hour."
 msgstr "bu saat üçün statistika yoxdur"
-
-msgid "no stats available for current hour; check activities page."
-msgstr "bu saata statistika yoxdur; fəaliyyət səhifəsini yoxla."
 
 msgid "Delete"
 msgstr "Sil"
@@ -92,15 +86,6 @@ msgstr ""
 
 msgid "Notification settings"
 msgstr "Xəbərdarlıq quraşdırmaları"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Bu alıcı şifrələmə açarını yaratdı."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Bu alıcı şifrələmə açarını yaratmayıb."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "Daxili xətaya görə fayl əlçatan deyil."
 
 msgid "file unavailable"
 msgstr "fayl yoxdur"
@@ -578,12 +563,6 @@ msgstr "Seçimləri əlifba sırası ilə göstər"
 msgid "Enable email notifications for:"
 msgstr "Email bildirişlərini aktivləşdirin: "
 
-msgid "Software updates"
-msgstr "Proqram yeniləmələri"
-
-msgid "Software problems"
-msgstr "Proqram problemləri"
-
 msgid "Disable"
 msgstr "Söndür"
 
@@ -708,38 +687,31 @@ msgstr "Təqdimatları sıradan çıxart"
 msgid "Enable encryption"
 msgstr ""
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "Qəbul edicilərə təqdimatın bitmə tarixini təxirə salmasına icazə verin"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Qəbul edicilərə təqdimatlarını silməsinə icazə verin"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Qəbul edicilərə təqdimatın bitmə tarixini təxirə salmasına icazə verin"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Qəbul edicilərə, informasiya ötürənlərin müəyyən təsdiqlərə çıxışı üçün icazə verin"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Axtarış motorlarının indeksləşməsini aktivləşdirin"
 
 msgid "Description"
 msgstr "Açıqlama"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Fərdi gizlilik panelini aktiv edin"
@@ -768,6 +740,12 @@ msgstr "Təhlükəsizlik səbəblərinə görə informasiya ötürənin mövzuya
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Bu tənzimləməni, nə etdiyinizi bildiyiniz halda istifadə edin. "
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr ""
@@ -819,9 +797,6 @@ msgstr "İstifadəçi adı"
 
 msgid "Password"
 msgstr "Şifrə"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1513,9 +1488,6 @@ msgid ""
 msgstr "Qəbul ediciyə, informasiya ötürənlərin müəyyən təsdiqlərə çıxışı üçün icazə verin"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
-
-msgid "main"
 msgstr ""
 
 msgid "Request date"

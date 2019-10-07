@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,14 +99,8 @@ msgstr "Modèles de notification"
 msgid "Missing data"
 msgstr "Données manquantes"
 
-msgid "no stats available for the future."
-msgstr "aucune statistique n’existe pour le futur."
-
 msgid "no stats available for this hour."
 msgstr "aucune statistique n’existe pour cette heure."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "aucune donnée n’existe pour l’heure courante ; consultez la page des activités."
 
 msgid "Delete"
 msgstr "Supprimer"
@@ -122,15 +116,6 @@ msgstr "Préférences de l’utilisateur"
 
 msgid "Notification settings"
 msgstr "Paramètres de notification"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Ce destinataire a configuré la clé de chiffrement."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Ce destinataire n’a pas configuré la clé de chiffrement."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "Ce fichier n’est pas disponible suite à une erreur interne."
 
 msgid "file unavailable"
 msgstr "fichier non disponible"
@@ -608,12 +593,6 @@ msgstr "Afficher les options en ordre alphabétique"
 msgid "Enable email notifications for:"
 msgstr "Activer les notifications par courriel pour :"
 
-msgid "Software updates"
-msgstr "Mises à jour logicielles"
-
-msgid "Software problems"
-msgstr "Problèmes logiciels"
-
 msgid "Disable"
 msgstr "Désactiver"
 
@@ -738,38 +717,31 @@ msgstr "Désactiver les envois"
 msgid "Enable encryption"
 msgstr "Activer le chiffrement"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr "Autoriser le système à enregistrer les données en clair quand le chiffrement n’est pas proposé"
-
 msgid "Enable multisite feature"
 msgstr "Activer la fonction multisite"
 
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Permettre aux sites Web suivants d’intégrer la plateforme à l’intérieur de cadres « iframes »"
+msgid "Allow recipients to delete submissions"
+msgstr "Permettre aux destinataires de supprimer des envois"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Autoriser les destinataires à repousser la date d’expiration des envois"
-
-msgid "Do not expose users' names"
-msgstr "Ne pas exposer les noms des utilisateurs"
-
-msgid "Allow recipients to delete submissions"
-msgstr "Permettre aux destinataires de supprimer des envois"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Permettre aux destinataires de donner des permissions aux lanceurs d’alerte pour des envois spécifiques"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Activer l’indexation par les moteurs de recherche"
 
 msgid "Description"
 msgstr "Description"
+
+msgid "Do not expose users' names"
+msgstr "Ne pas exposer les noms des utilisateurs"
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Permettre aux sites Web suivants d’intégrer la plateforme à l’intérieur de cadres « iframes »"
 
 msgid "Enable custom privacy panel"
 msgstr "Activer le volet de confidentialité personnalisée"
@@ -798,6 +770,12 @@ msgstr "Pour des raisons de sécurité, l’accès du lanceur d’alerte peut ex
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "N’ajustez ce paramètre que si vous savez ce que vous faites"
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr "Permettre la réinitialisation du mot de passe"
 
 msgid "Password change interval"
 msgstr "Intervalle de changement du mot de passe"
@@ -849,9 +827,6 @@ msgstr "Nom d’utilisateur"
 
 msgid "Password"
 msgstr "Mot de passe"
-
-msgid "Enable password reset"
-msgstr "Permettre la réinitialisation du mot de passe"
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Permettre aux utilisateurs de téléverser leurs clés PGP"
@@ -1544,9 +1519,6 @@ msgstr "Permettre au destinataire de donner des permissions aux lanceurs d’ale
 
 msgid "User has administrative access to the following features:"
 msgstr "L’utilisateur a un accès d’administration aux fonctions suivantes :"
-
-msgid "main"
-msgstr "principale"
 
 msgid "Request date"
 msgstr "Date de la demande"

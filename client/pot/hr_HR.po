@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,14 +68,8 @@ msgstr "Obrasci obavijesti"
 msgid "Missing data"
 msgstr "Nedostaju podatci"
 
-msgid "no stats available for the future."
-msgstr "nema statistike dostupne za budućnost."
-
 msgid "no stats available for this hour."
 msgstr "nema dostupne statistike za ovaj sat."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "nema statistike dostupne za trenutno vrijeme; provjerite stranicu s aktivnostima."
 
 msgid "Delete"
 msgstr "Obriši"
@@ -91,15 +85,6 @@ msgstr "Korisničke postavke"
 
 msgid "Notification settings"
 msgstr "Postavke obavijesti"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Ovaj primatelj je konfigurirao ključ enkripcije."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Ovaj primatelj nije konfigurirao ključ enkripcije."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "Datoteka nije dostupna zbog interne greške."
 
 msgid "file unavailable"
 msgstr "datoteka nije dostupna"
@@ -577,12 +562,6 @@ msgstr "Prikaži opcije po abecedi"
 msgid "Enable email notifications for:"
 msgstr "Omogući email obavijesti za:"
 
-msgid "Software updates"
-msgstr "Software ažuriranja"
-
-msgid "Software problems"
-msgstr "Software problemi"
-
 msgid "Disable"
 msgstr "Onemogući"
 
@@ -707,38 +686,31 @@ msgstr "Onemogući predaje"
 msgid "Enable encryption"
 msgstr "Omogući enkripciju"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "Dopusti primateljima da odgode datum isteka predaje"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Dopusti primateljima da brišu predaje"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Dopusti primateljima da odgode datum isteka predaje"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Dozvoli primateljima da daju dopuštenja zviždačima na određenim predajama"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Omogući indeksiranje tražilica"
 
 msgid "Description"
 msgstr "Opis"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Omogući prilagođenu ploču privatnosti"
@@ -767,6 +739,12 @@ msgstr "Zbog sigurnosnih razloga, zviždačev pristup ima rok isteka."
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Podešavajte ovu postavku samo ako znate što radite."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr "Interval promjene lozinke"
@@ -818,9 +796,6 @@ msgstr "Korisničko ime"
 
 msgid "Password"
 msgstr "Lozinka"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Omogući korisnicima da postave svoje PGP ključeve"
@@ -1513,9 +1488,6 @@ msgstr "Dozvoli primatelju da daje dopuštenje zviždačima na određenim predaj
 
 msgid "User has administrative access to the following features:"
 msgstr "Korisnik ima administrativni pristup sljedećim značajkama:"
-
-msgid "main"
-msgstr "glavno"
 
 msgid "Request date"
 msgstr "Datum zahtjeva"

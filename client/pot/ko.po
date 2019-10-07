@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-02 08:57+0000\n"
-"Last-Translator: SEPT____ <xpressengine3@mail.beo.kr>\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -65,14 +65,8 @@ msgstr "알림 템플릿"
 msgid "Missing data"
 msgstr "누락 된 데이터"
 
-msgid "no stats available for the future."
-msgstr "미래에 사용할 수있는 통계가 없습니다."
-
 msgid "no stats available for this hour."
 msgstr "이 시간에 사용할 수있는 통계가 없습니다."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "현재 시간에 사용할 수있는 통계가 없다; 활동 페이지를 확인합니다."
 
 msgid "Delete"
 msgstr "지우다"
@@ -88,15 +82,6 @@ msgstr ""
 
 msgid "Notification settings"
 msgstr "알림 설정"
-
-msgid "This recipient has configured the encryption key."
-msgstr "이 수신자는 암호화 키를 구성했습니다."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "이 수신자는 암호화 키를 구성하지 않았습니다."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "이 파일은 내부 오류로 인해 사용할 수 없습니다."
 
 msgid "file unavailable"
 msgstr "사용할 수없는 파일"
@@ -574,12 +559,6 @@ msgstr ""
 msgid "Enable email notifications for:"
 msgstr ""
 
-msgid "Software updates"
-msgstr "소프트웨어 업데이트"
-
-msgid "Software problems"
-msgstr ""
-
 msgid "Disable"
 msgstr "비활성화"
 
@@ -704,38 +683,31 @@ msgstr "안 제출"
 msgid "Enable encryption"
 msgstr ""
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "받는 사람이 제출 기한을 연기 할 수 있도록 허용"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "받는 사람이 제출을 삭제할 수"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "받는 사람이 제출 기한을 연기 할 수 있도록 허용"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "받는 사람이 특정 제출에 대한 내부 고발자에 대한 사용 권한을 부여 할 수 있도록 허용"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "검색 엔진의 색인을 사용하도록 설정"
 
 msgid "Description"
 msgstr "기술"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "사용자의 개인 정보 보호 패널 사용"
@@ -763,6 +735,12 @@ msgid ""
 msgstr ""
 
 msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -815,9 +793,6 @@ msgstr "사용자 이름"
 
 msgid "Password"
 msgstr "암호"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1509,9 +1484,6 @@ msgid ""
 msgstr "받는 사람이 특정 제출에 대한 내부 고발자에 대한 사용 권한을 부여 할 수 있도록 허용"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
-
-msgid "main"
 msgstr ""
 
 msgid "Request date"

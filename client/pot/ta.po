@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,14 +67,8 @@ msgstr "அறிவித்தல் வார்ப்புருக்க�
 msgid "Missing data"
 msgstr "தரவு காணவில்லை "
 
-msgid "no stats available for the future."
-msgstr "எதிர்காலத்துக்கு புள்ளிவிவரம் இல்லை."
-
 msgid "no stats available for this hour."
 msgstr "எந்த புள்ளிவிவரங்கள் இந்த மணி நேரம் கிடைக்கும்."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "தற்போதைய மணிநேரத்திற்கு புள்ளி விவரங்கள் இல்லை; நடவடிக்கைகள் பக்கம் பார்க்கவும்."
 
 msgid "Delete"
 msgstr "நீக்கு"
@@ -90,15 +84,6 @@ msgstr "பயனர் விருப்பத்தேர்வுகள்"
 
 msgid "Notification settings"
 msgstr "அறிவித்தல் அமைப்புகளை"
-
-msgid "This recipient has configured the encryption key."
-msgstr "இந்த பெறுநர் குறியாக்க விசை அமைத்துள்ளது."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "இந்த பெறுநர் குறியாக்க விசை கட்டமைக்கப்பட்ட இல்லை."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "கோப்பு அகப்பிழையினால் கிடைக்கவில்லை."
 
 msgid "file unavailable"
 msgstr "கோப்பு கிடைக்கவில்லை"
@@ -576,12 +561,6 @@ msgstr "அகரவரிசை விருப்பத்தேர்வு�
 msgid "Enable email notifications for:"
 msgstr "மின்னஞ்சல் அறிவிப்புகளை இயக்கவும்:"
 
-msgid "Software updates"
-msgstr "மென்பொருள் மேம்படுத்தல்கள்"
-
-msgid "Software problems"
-msgstr "மென்பொருள் பிரச்சினைகள்"
-
 msgid "Disable"
 msgstr "முடக்கு"
 
@@ -706,38 +685,31 @@ msgstr "சமர்ப்பிப்புகளை முடக்கு"
 msgid "Enable encryption"
 msgstr "மறையாக்குதல் இயக்கு"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr "மறையாக்குதல் கிடைக்காத போது, ​​தரவு சாண்ட்டெட்டில் சேமித்து வைக்க கணினி அனுமதிக்கவும்"
-
 msgid "Enable multisite feature"
 msgstr "பன்முனை அம்சத்தை இயக்கு"
 
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgid "Allow recipients to delete submissions"
+msgstr "பெற்றவர்கள் சமர்ப்பிப்புகளை நீக்க அனுமதிக்க"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "பெற்றவர்கள் சமர்ப்பிக்கும் காலாவதி தேதி ஒத்தி அனுமதி"
-
-msgid "Do not expose users' names"
-msgstr ""
-
-msgid "Allow recipients to delete submissions"
-msgstr "பெற்றவர்கள் சமர்ப்பிப்புகளை நீக்க அனுமதிக்க"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "பெற்றவர்கள் குறிப்பிட்ட சமர்ப்பிப்புகளை இம்மாதிரி செய்ய அனுமதிகளை வழங்க அனுமதி"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "தேடுபொறிகள் திருப்பு இயக்கு"
 
 msgid "Description"
 msgstr "விபரம்"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "விருப்ப தனியுரிமை குழு இயக்கு"
@@ -766,6 +738,12 @@ msgstr "பாதுகாப்பு காரணங்களுக்கா�
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "நீங்கள் என்ன செய்கிறீர்கள் என்பதை அறிந்தால் மட்டுமே இந்த அமைப்பை மாற்றவும்."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr "கடவுச்சொல் மாற்றம் இடைவெளி"
@@ -817,9 +795,6 @@ msgstr "பயனர்பெயர்"
 
 msgid "Password"
 msgstr "கடவுச்சொல்"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "தங்கள் PGP விசையைப் பதிவேற்ற பயனர்களை இயக்கு"
@@ -1512,9 +1487,6 @@ msgstr "பெறுநர் குறிப்பிட்ட சமர்ப�
 
 msgid "User has administrative access to the following features:"
 msgstr "பின்வரும் அம்சங்களுக்கு நிர்வாகி அணுகல் உள்ளது:"
-
-msgid "main"
-msgstr "முக்கிய"
 
 msgid "Request date"
 msgstr "கோரிக்கை தேதி"

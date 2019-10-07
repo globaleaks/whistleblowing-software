@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,14 +88,8 @@ msgstr "Шаблоны уведомлений"
 msgid "Missing data"
 msgstr "Отсутствуют данные"
 
-msgid "no stats available for the future."
-msgstr "нет статистических данных на будущее."
-
 msgid "no stats available for this hour."
 msgstr "нет статистических данных на этот час."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "нет статистических данных для этого часа; проверьте страницу активности."
 
 msgid "Delete"
 msgstr "Удалить"
@@ -111,15 +105,6 @@ msgstr "Настройки пользователя"
 
 msgid "Notification settings"
 msgstr "Настройки уведомлений"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Этот получатель настроил ключ шифрования."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Этот получатель не настроил ключ шифрования."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "Файл недоступен из-за внутренней ошибки."
 
 msgid "file unavailable"
 msgstr "файл недоступен"
@@ -597,12 +582,6 @@ msgstr "Показать варианты по алфавиту"
 msgid "Enable email notifications for:"
 msgstr "Включить уведомления электронной почты о:"
 
-msgid "Software updates"
-msgstr "Обновления программного обеспечения"
-
-msgid "Software problems"
-msgstr "Проблемы программного обеспечения"
-
 msgid "Disable"
 msgstr "Отключить"
 
@@ -727,38 +706,31 @@ msgstr "Лишить возможности публиковать матери�
 msgid "Enable encryption"
 msgstr "Включить шифрование"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr "Разрешить системе сохранить информацию в обычном текстовом формате, когда шифрование невозможно"
-
 msgid "Enable multisite feature"
 msgstr "Включить настройку мульти-сайтов"
 
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgid "Allow recipients to delete submissions"
+msgstr "Разрешить получателям удалять материалы"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Разрешить получателям отложить дату истечения срока подачи"
-
-msgid "Do not expose users' names"
-msgstr ""
-
-msgid "Allow recipients to delete submissions"
-msgstr "Разрешить получателям удалять материалы"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Разрешить получателям предоставлять информаторам разрешение доступа к обозначенным документам"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Включить индексирование поисковых систем"
 
 msgid "Description"
 msgstr "Описание"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Включить пользовательскую панель приватности"
@@ -787,6 +759,12 @@ msgstr "Доступ информатора ограничен по времен
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Изменяйте эту настройку только если знаете, что делаете."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr "Интервал для смены пароля"
@@ -838,9 +816,6 @@ msgstr "Имя пользователя"
 
 msgid "Password"
 msgstr "Пароль"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1532,9 +1507,6 @@ msgid ""
 msgstr "مخصوص گذارشات پر whistleblowers کے لئے اجازت عطا کرنے کے وصول کنندہ کی اجازت دیں"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
-
-msgid "main"
 msgstr ""
 
 msgid "Request date"

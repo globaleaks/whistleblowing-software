@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,14 +83,8 @@ msgstr "Format pemberitahuan"
 msgid "Missing data"
 msgstr "Data hilang"
 
-msgid "no stats available for the future."
-msgstr "statistik tidak tersedia untuk waktu berikutnya."
-
 msgid "no stats available for this hour."
 msgstr "Statistik tidak tersedia saat ini."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "statistik tidak tersedia saat ini; periksa halaman aktivitas."
 
 msgid "Delete"
 msgstr "Hapus"
@@ -106,15 +100,6 @@ msgstr "Preferensi pengguna"
 
 msgid "Notification settings"
 msgstr "Pengaturan notifikasi"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Penerima telah mengubah kunci enkripsi"
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Penerima  belum mengubah kunci enkripsi."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "File tidak tersedia karena kesalahan internal."
 
 msgid "file unavailable"
 msgstr "file tidak tersedia"
@@ -592,12 +577,6 @@ msgstr "Tampilkan pilihan sesuai abjad "
 msgid "Enable email notifications for:"
 msgstr "Aktifkan notifikasi surel untuk:"
 
-msgid "Software updates"
-msgstr "Pembaruan perangkat lunak"
-
-msgid "Software problems"
-msgstr "masalah perangkat lunak"
-
 msgid "Disable"
 msgstr "Non Aktifkan"
 
@@ -722,38 +701,31 @@ msgstr "Menonaktifkan kiriman"
 msgid "Enable encryption"
 msgstr "Aktifkan enkripsi"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr "Izinkan sistem untuk menyimpan data dalam bentuk plaintext ketika enkripsi tidak tersedia"
-
 msgid "Enable multisite feature"
 msgstr "Aktifkan fitur multi situs"
 
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgid "Allow recipients to delete submissions"
+msgstr "Penerima dapat menghapus pengiriman "
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Penerima dapat mengubah tanggal kedaluwarsa pengiriman "
-
-msgid "Do not expose users' names"
-msgstr ""
-
-msgid "Allow recipients to delete submissions"
-msgstr "Penerima dapat menghapus pengiriman "
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Izinkan penerima memberikan izin kepada informan publik pada kiriman tertentu"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Aktifkan pencatatan mesin pencari"
 
 msgid "Description"
 msgstr "Deskripsi"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Aktifkan panel privasi kustom"
@@ -782,6 +754,12 @@ msgstr "Untuk alasan keamanan, akses informan publik hanya tersedia selama jangk
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Ganti pengaturan ini jika Anda tahu langkah yang sedang dilakukan."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr "Interval perubahan kata sandi"
@@ -833,9 +811,6 @@ msgstr "Nama Pengguna"
 
 msgid "Password"
 msgstr "Kata sandi"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Mengizinkan pengguna untuk mengunggah kunci PGP mereka."
@@ -1528,9 +1503,6 @@ msgstr "Izinkan penerima memberikan izin kepada informan publik pada pengiriman 
 
 msgid "User has administrative access to the following features:"
 msgstr "Pengguna mempunyai akses administratif untuk beberapa fitur berikut:"
-
-msgid "main"
-msgstr "utama "
 
 msgid "Request date"
 msgstr "Permintaan tanggal"

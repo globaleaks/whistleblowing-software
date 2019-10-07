@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,14 +86,8 @@ msgstr "Bildirim şablonları"
 msgid "Missing data"
 msgstr "Kayıp veri"
 
-msgid "no stats available for the future."
-msgstr "İlerisi için herhangi bir istatistik mevcut değil."
-
 msgid "no stats available for this hour."
 msgstr "Bu saat için herhangi bir istatistik mevcut değil."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "İçinde bulunulan saat için herhangi bir istatistik mevcut değil, etkinlikler sayfasını kontrol edin."
 
 msgid "Delete"
 msgstr "Sil"
@@ -109,15 +103,6 @@ msgstr "Kullanıcı tercihleri"
 
 msgid "Notification settings"
 msgstr "Bildirim ayarları"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Bu alıcı, şifreleme anahtarını yapılandırdı."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Bu alıcı şifreleme anahtarını yapılandırmamış."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "Dahili bir hatadan dolayı dosya kullanılabilir değil."
 
 msgid "file unavailable"
 msgstr "Dosya kullanılamıyor"
@@ -595,12 +580,6 @@ msgstr "Seçenekleri alfabetik olarak görüntüleme"
 msgid "Enable email notifications for:"
 msgstr "Şunun için e-posta bildirimlerini etkinleştir:"
 
-msgid "Software updates"
-msgstr "Yazılım güncellemeleri"
-
-msgid "Software problems"
-msgstr "Yazılım problemleri"
-
 msgid "Disable"
 msgstr "Devre Dışı Bırak"
 
@@ -725,38 +704,31 @@ msgstr "Gönderimleri devre dışı bırak"
 msgid "Enable encryption"
 msgstr "Şifrelemeyi etkinleştir"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "Alıcıların gönderimlerin geçerlilik tarihini ertelemelerine izin ver"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Alıcıların gönderimleri silmelerine izin ver"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Alıcıların gönderimlerin geçerlilik tarihini ertelemelerine izin ver"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Belirli gönderimlerde alıcıların ihbarcılara yetki vermesine izin verin"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Arama motoru dizinlemeyi etkinleştir"
 
 msgid "Description"
 msgstr "Açıklama"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Özel gizlilik panelini etkinleştir"
@@ -784,6 +756,12 @@ msgid ""
 msgstr ""
 
 msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -836,9 +814,6 @@ msgstr "Kullanıcı Adı"
 
 msgid "Password"
 msgstr "Parola"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1530,9 +1505,6 @@ msgid ""
 msgstr "Belirli gönderimlerde alıcının ihbarcılara yetki vermesine izin verin"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
-
-msgid "main"
 msgstr ""
 
 msgid "Request date"

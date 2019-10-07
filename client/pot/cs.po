@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,14 +75,8 @@ msgstr "Šablony notifikací"
 msgid "Missing data"
 msgstr "Chybějící data"
 
-msgid "no stats available for the future."
-msgstr "žádné dostupné údaje do budoucna."
-
 msgid "no stats available for this hour."
 msgstr "pro tuto hodinu nejsou dostupné údaje."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "pro tuto hodinu nejsou dostupné údaje. Zkontrolujte stránku aktivit."
 
 msgid "Delete"
 msgstr "Smazat"
@@ -98,15 +92,6 @@ msgstr "Předvolby uživatele"
 
 msgid "Notification settings"
 msgstr "Nastavení notifikací"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Příjemce si nastavil šifrovací klíč."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Příjemce nemá vytvořený šifrovací klíč"
-
-msgid "The file is unavailable due to an internal error."
-msgstr "Soubor nedostupný kvůli interní chybě."
 
 msgid "file unavailable"
 msgstr "Soubor nedostupný"
@@ -584,12 +569,6 @@ msgstr "Zobrazit v abecedním pořadí"
 msgid "Enable email notifications for:"
 msgstr "Povolit emailové notifikace pro:"
 
-msgid "Software updates"
-msgstr "Softwareové aktualizace"
-
-msgid "Software problems"
-msgstr "Softwareové problémy"
-
 msgid "Disable"
 msgstr "Zakázat"
 
@@ -714,38 +693,31 @@ msgstr "Zakázat podání"
 msgid "Enable encryption"
 msgstr "Povolit šifrování"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr "Umožněte systému ukládat data do otevřeného textu, pokud šifrování není k dispozici"
-
 msgid "Enable multisite feature"
 msgstr "Povolit funkci multisite "
 
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgid "Allow recipients to delete submissions"
+msgstr "Povolit příjemcům smazat podání"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Povolit příjemci odložit expiraci podání"
-
-msgid "Do not expose users' names"
-msgstr ""
-
-msgid "Allow recipients to delete submissions"
-msgstr "Povolit příjemcům smazat podání"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Povolit příjemcům přiřazovat oprávnění oznamovatelům ke konkrétním podáním"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Povolit vyhledávačům indexování."
 
 msgid "Description"
 msgstr "Popis"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Povolit vlastní panel soukromí"
@@ -774,6 +746,12 @@ msgstr "Přístup oznamovatele má z bezpečnostích důvodů časově omezenou 
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Toto nastavení neměnte, ledaže opravdu víte co děláte."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr "Interval změny hesla"
@@ -825,9 +803,6 @@ msgstr "Uživatelské jméno"
 
 msgid "Password"
 msgstr "Heslo"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Povolit uživatelům nahrát jejich PGP klíče"
@@ -1520,9 +1495,6 @@ msgstr "Povolit příjemci přiřazovat oprávnění oznamovatelům ke konkrétn
 
 msgid "User has administrative access to the following features:"
 msgstr "Uživatel má přístup ke správě následujících funkcí:"
-
-msgid "main"
-msgstr "hlavní"
 
 msgid "Request date"
 msgstr "Datum požadavku"

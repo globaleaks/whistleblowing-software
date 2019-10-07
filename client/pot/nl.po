@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,14 +99,8 @@ msgstr "Bericht templates"
 msgid "Missing data"
 msgstr "Ontbrekende gegevens"
 
-msgid "no stats available for the future."
-msgstr "geen statistieken beschikbaar voor de toekomst."
-
 msgid "no stats available for this hour."
 msgstr "geen statistieken beschikbaar voor dit uur."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "geen statistieken beschikbaar voor het huidige uur; controleer de activiteitenpagina."
 
 msgid "Delete"
 msgstr "Verwijderen"
@@ -122,15 +116,6 @@ msgstr "Gebruikersvoorkeuren"
 
 msgid "Notification settings"
 msgstr "Notificatie-instellingen"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Deze ontvanger heeft de versleutelingssleutel geconfigureerd."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Deze ontvanger heeft de versleutelingssleutel nog niet geconfigureerd."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "Door een interne foutmelding is dit bestand is niet beschikbaar."
 
 msgid "file unavailable"
 msgstr "bestand niet beschikbaar"
@@ -608,12 +593,6 @@ msgstr "Toon opties alfabetisch"
 msgid "Enable email notifications for:"
 msgstr "Activeer e-mailmelding voor:"
 
-msgid "Software updates"
-msgstr "Software updates"
-
-msgid "Software problems"
-msgstr "Softwareproblemen"
-
 msgid "Disable"
 msgstr "Uitschakelen"
 
@@ -738,38 +717,31 @@ msgstr "Inzendingen uitschakelen"
 msgid "Enable encryption"
 msgstr "Encryptie inschakelen"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr "Het systeem toestaan om gegevens op te slaan in gewoon tekstformaat wanneer encryptie niet beschikbaar is"
-
 msgid "Enable multisite feature"
 msgstr "Functie voor meerdere-weblocaties inschakelen"
 
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgid "Allow recipients to delete submissions"
+msgstr "Ontvangers toestaan tips te verwijderen"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Ontvangers toestaan de vervaldatum van tips uit te stellen"
-
-msgid "Do not expose users' names"
-msgstr "Gebruikersnamen niet prijsgeven"
-
-msgid "Allow recipients to delete submissions"
-msgstr "Ontvangers toestaan tips te verwijderen"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Ontvangers toestaan om klokkenluiders per tip rechten toe te wijzen"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Zoekmachine-indexering inschakelen"
 
 msgid "Description"
 msgstr "Omschrijving"
+
+msgid "Do not expose users' names"
+msgstr "Gebruikersnamen niet prijsgeven"
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Gepersonaliseerd privacy-paneel inschakelen"
@@ -798,6 +770,12 @@ msgstr "Omwille van de veiligheid verloopt het toegangsrecht van de klokkenluide
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Stel deze instellingen alleen bij als u weet wat u doet."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr "wachtwoordreset inschakelen"
 
 msgid "Password change interval"
 msgstr "Wachtwoord-wijzigingsinterval"
@@ -849,9 +827,6 @@ msgstr "Gebruikersnaam"
 
 msgid "Password"
 msgstr "Wachtwoord"
-
-msgid "Enable password reset"
-msgstr "wachtwoordreset inschakelen"
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Gebruikers toestaan hun PGP sleutel te uploaden"
@@ -1544,9 +1519,6 @@ msgstr "De ontvanger toestaan om per tip klokkenluiders rechten toe te wijzen"
 
 msgid "User has administrative access to the following features:"
 msgstr "Gebruiker heeft administratortoegang tot de volgende functies:"
-
-msgid "main"
-msgstr "Basis"
 
 msgid "Request date"
 msgstr "Aanvraagdatum"

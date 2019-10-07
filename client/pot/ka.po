@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-02 08:56+0000\n"
-"Last-Translator: IDRASSI Mounir <mounir.idrassi@idrix.fr>\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -64,14 +64,8 @@ msgstr "შეტყობინება თარგები"
 msgid "Missing data"
 msgstr "დაკარგული მონაცემები"
 
-msgid "no stats available for the future."
-msgstr "სტატისტიკა მიუწვდომელია მომავალში."
-
 msgid "no stats available for this hour."
 msgstr "სტატისტიკა მიუწვდომელია ამ საათში."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "სტატისტიკა მიუწვდომელია მიმდინარე საათში; შეამოწმეთ საქმიანობის გვერდზე."
 
 msgid "Delete"
 msgstr "წაშლა"
@@ -87,15 +81,6 @@ msgstr ""
 
 msgid "Notification settings"
 msgstr "შეტყობინების პარამეტრები"
-
-msgid "This recipient has configured the encryption key."
-msgstr "ეს მიმღები კონფიგურაცია დაშიფვრის გასაღები."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "ეს მიმღები ჯერ არ შეუყვანია დაშიფვრის გასაღები."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "ფაილი მიუწვდომელია შიდა შეცდომა."
 
 msgid "file unavailable"
 msgstr "წარადგინოს unavailable"
@@ -573,12 +558,6 @@ msgstr ""
 msgid "Enable email notifications for:"
 msgstr ""
 
-msgid "Software updates"
-msgstr ""
-
-msgid "Software problems"
-msgstr ""
-
 msgid "Disable"
 msgstr "გამორთვა"
 
@@ -703,38 +682,31 @@ msgstr "შეზღუდული შესაძლებლობები�
 msgid "Enable encryption"
 msgstr ""
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "ნება მიმღები გადადების ვადის წარდგენის"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "ნება მიმღები წაშლა წარდგინება"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "ნება მიმღები გადადების ვადის წარდგენის"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "ნება მიმღები გასცეს ნებართვები მამხილებელთა კონკრეტული წარდგინება"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "ჩართვა საძიებო სისტემებში ინდექსირებას"
 
 msgid "Description"
 msgstr "აღწერა"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "მორგებული კონფიდენციალურობის პანელი"
@@ -762,6 +734,12 @@ msgid ""
 msgstr ""
 
 msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -814,9 +792,6 @@ msgstr "ნიკი"
 
 msgid "Password"
 msgstr "პაროლი"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1508,9 +1483,6 @@ msgid ""
 msgstr "მისცემს მიმღები გასცეს ნებართვები მამხილებელთა კონკრეტული წარდგინება"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
-
-msgid "main"
 msgstr ""
 
 msgid "Request date"

@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,14 +81,8 @@ msgstr "Értesítési sablonok"
 msgid "Missing data"
 msgstr "Hiányzó adat"
 
-msgid "no stats available for the future."
-msgstr "nincs elérhető statisztika a jövőre nézve."
-
 msgid "no stats available for this hour."
 msgstr "nincs elérhető statisztika erre az órára."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "nincs elérhető statisztika az aktuális órára; nézze meg az aktivitás oldalt"
 
 msgid "Delete"
 msgstr "Törlés"
@@ -104,15 +98,6 @@ msgstr ""
 
 msgid "Notification settings"
 msgstr "Értesítés beállítások"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Ez a címzett konfigurálta a titkosítási kulcsot."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Ez a címzett nem konfigurált titkosítási kulcsot."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "A fájl nem elérhető egy belső hiba miatt."
 
 msgid "file unavailable"
 msgstr "fájl nem elérhető"
@@ -590,12 +575,6 @@ msgstr ""
 msgid "Enable email notifications for:"
 msgstr ""
 
-msgid "Software updates"
-msgstr ""
-
-msgid "Software problems"
-msgstr ""
-
 msgid "Disable"
 msgstr ""
 
@@ -720,38 +699,31 @@ msgstr "Feltöltéstek letiltása"
 msgid "Enable encryption"
 msgstr ""
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "Engedély a címzetteknek, hogy meghosszabbítsák a beküldés lejárati dátumát"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Engedély a címzetteknek, hogy töröljék a beküldést"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Engedély a címzetteknek, hogy meghosszabbítsák a beküldés lejárati dátumát"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Engedélyezés a címzetteknek, hogy jogosultságokat biztosítsanak a szivárogtatóknak különleges beadványoknál"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Keresőmotorok indexelésének engedélyezése"
 
 msgid "Description"
 msgstr "Leírás"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Egyedi adatvédelmi panel engedélyezése"
@@ -780,6 +752,12 @@ msgstr "Biztonsági okokból az informátor hozzáférése lejár."
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Csak akkor nyúljon ehhez a beállításhoz ha tudja mit csinál."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr ""
@@ -831,9 +809,6 @@ msgstr "Felhasználónév"
 
 msgid "Password"
 msgstr "Jelszó"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1525,9 +1500,6 @@ msgid ""
 msgstr "Engedélyezés a címzettnek, hogy jogosultságokat biztosítson a szivárogtatóknak különleges beadványoknál"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
-
-msgid "main"
 msgstr ""
 
 msgid "Request date"

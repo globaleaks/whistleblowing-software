@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,14 +70,8 @@ msgstr "通知模版"
 msgid "Missing data"
 msgstr "遺失的資料"
 
-msgid "no stats available for the future."
-msgstr "尚無未來的統計資料"
-
 msgid "no stats available for this hour."
 msgstr "尚無這小時的統計資料"
-
-msgid "no stats available for current hour; check activities page."
-msgstr "尚無這小時的統計資料，請檢查活動頁"
 
 msgid "Delete"
 msgstr "刪除"
@@ -93,15 +87,6 @@ msgstr "用戶偏好"
 
 msgid "Notification settings"
 msgstr "通知設定"
-
-msgid "This recipient has configured the encryption key."
-msgstr "收件者已設定加密金鑰 "
-
-msgid "This recipient has not configured the encryption key."
-msgstr "收件者未設定加密金鑰"
-
-msgid "The file is unavailable due to an internal error."
-msgstr "檔案因內部錯誤無法取得"
 
 msgid "file unavailable"
 msgstr "檔案無法取得"
@@ -579,12 +564,6 @@ msgstr "以字母次序顯示項項"
 msgid "Enable email notifications for:"
 msgstr "開啟電郵通知選項給:"
 
-msgid "Software updates"
-msgstr "軟體更新"
-
-msgid "Software problems"
-msgstr "軟體問題"
-
 msgid "Disable"
 msgstr "關閉"
 
@@ -709,38 +688,31 @@ msgstr "取消提交"
 msgid "Enable encryption"
 msgstr "啟用加密功能"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr "若無法加密時，可讓系統明文儲存資料"
-
 msgid "Enable multisite feature"
 msgstr "啟用多個網站功能"
 
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgid "Allow recipients to delete submissions"
+msgstr "允許收件人刪除該筆提交揭密"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "允許收件人延後提交的截止日期"
-
-msgid "Do not expose users' names"
-msgstr ""
-
-msgid "Allow recipients to delete submissions"
-msgstr "允許收件人刪除該筆提交揭密"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "允許收件者在某特定揭密事件上授權許可吹哨者"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "可讓搜尋引擎進行索引"
 
 msgid "Description"
 msgstr "描述"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "啟用自定的隱私面版"
@@ -769,6 +741,12 @@ msgstr "因安全考量，吹哨者的存取權限已過期"
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "唯有知道自己在做什麼的情況下才進行此處設定的調整"
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr "密碼變更間隔"
@@ -820,9 +798,6 @@ msgstr "用戶名"
 
 msgid "Password"
 msgstr "密碼"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "讓用戶可以上傳自己的 PGP  密鑰"
@@ -1515,9 +1490,6 @@ msgstr "允許收件者在某特定揭密事件上授權許可吹哨者"
 
 msgid "User has administrative access to the following features:"
 msgstr "管理級的用戶可以有以下權限功能："
-
-msgid "main"
-msgstr "主要"
 
 msgid "Request date"
 msgstr "請求日期"

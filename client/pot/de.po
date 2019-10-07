@@ -47,8 +47,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 12:46+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -107,14 +107,8 @@ msgstr "Benachrichtigungsvorlagen"
 msgid "Missing data"
 msgstr "Fehlende Daten"
 
-msgid "no stats available for the future."
-msgstr "keine Statistiken für die Zukunft verfügbar."
-
 msgid "no stats available for this hour."
 msgstr "keine Statistiken für diese Stunde verfügbar."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "es sind keine Statistiken für die aktuelle Stunde verfügbar; schau auf der Aktivitäten-Seite nach."
 
 msgid "Delete"
 msgstr "Löschen"
@@ -130,15 +124,6 @@ msgstr "Benutzereinstellungen"
 
 msgid "Notification settings"
 msgstr "Benachrichtigungseinstellungen"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Dieser Empfänger hat den Verschlüsselungsschlüssel konfiguriert."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Dieser Empfänger hat den Verschlüsselungsschlüssel nicht konfiguriert."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "Die datei ist aufgrund eines internen Fehlers nicht verfügbar."
 
 msgid "file unavailable"
 msgstr "Datei nicht verfügbar"
@@ -616,12 +601,6 @@ msgstr "Optionen alphabetisch anzeigen"
 msgid "Enable email notifications for:"
 msgstr "E-Mail-Benachrichtigungen aktivieren für:"
 
-msgid "Software updates"
-msgstr "Softwareaktualisierungen"
-
-msgid "Software problems"
-msgstr "Softwareprobleme"
-
 msgid "Disable"
 msgstr "Deaktivieren"
 
@@ -746,38 +725,31 @@ msgstr "Einreichungen deaktivieren"
 msgid "Enable encryption"
 msgstr "Verschlüsselung aktivieren"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "Empfängern das Hinausschieben des Ablaufdatums der Einreichung erlauben"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Empfängern das Löschen von Einreichungen erlauben"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Empfängern das Hinausschieben des Ablaufdatums der Einreichung erlauben"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Empfängern bei bestimmten Einreichungen die Rechtevergabe an Hinweisgeber erlauben"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Suchmaschinenindizierung aktivieren"
 
 msgid "Description"
 msgstr "Beschreibung"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Benutzerdefiniertes Datenschutzpanel aktivieren"
@@ -806,6 +778,12 @@ msgstr "Aus Sicherheitsgründen unterliegt der Hinweisgeberzugriff einem Ablaufd
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Die Einstellung nur ändern, wenn Sie wissen, was sie tun."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr "Passwortänderungsintervall"
@@ -857,9 +835,6 @@ msgstr "Benutzername"
 
 msgid "Password"
 msgstr "Passwort"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1551,9 +1526,6 @@ msgid ""
 msgstr "Empfänger bei bestimmten Einreichungen die Rechtevergabe an Hinweisgeber erlauben"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
-
-msgid "main"
 msgstr ""
 
 msgid "Request date"

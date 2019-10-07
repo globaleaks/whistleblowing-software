@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-29 15:15+0000\n"
-"Last-Translator: Naofumi <naofum@gmail.com>\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -69,14 +69,8 @@ msgstr "通知のテンプレート"
 msgid "Missing data"
 msgstr "データがありません"
 
-msgid "no stats available for the future."
-msgstr "将来の利用可能な統計はありません。"
-
 msgid "no stats available for this hour."
 msgstr "現在の時間に利用可能な統計はありません。"
-
-msgid "no stats available for current hour; check activities page."
-msgstr "現在の時間に利用可能な統計はありません。活動ページを確認してください。"
 
 msgid "Delete"
 msgstr "削除"
@@ -92,15 +86,6 @@ msgstr "ユーザー設定"
 
 msgid "Notification settings"
 msgstr "通知設定"
-
-msgid "This recipient has configured the encryption key."
-msgstr "この受信者は暗号化鍵を設定しています。"
-
-msgid "This recipient has not configured the encryption key."
-msgstr "この受信者は暗号化鍵を設定していません。"
-
-msgid "The file is unavailable due to an internal error."
-msgstr "内部エラーによりファイルは利用できません。"
 
 msgid "file unavailable"
 msgstr "利用不能なファイル"
@@ -578,12 +563,6 @@ msgstr "オプションをアルファベット順に表示"
 msgid "Enable email notifications for:"
 msgstr "メール通知を有効化:"
 
-msgid "Software updates"
-msgstr "ソフトウェアアップデート"
-
-msgid "Software problems"
-msgstr "ソフトウェアの問題"
-
 msgid "Disable"
 msgstr "無効"
 
@@ -708,38 +687,31 @@ msgstr "提出を無効にする"
 msgid "Enable encryption"
 msgstr "暗号化を有効にする"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr "暗号化が利用できない場合に、平文でシステムにデータを格納することを許可する"
-
 msgid "Enable multisite feature"
 msgstr "マルチサイト機能を有効にする"
 
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "次のWebサイトがインラインフレーム内にプラットフォームを埋め込むことを許可する"
+msgid "Allow recipients to delete submissions"
+msgstr "受信者が提出を削除することを許可する"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "受信者が提出の有効期限を延期することを許可する"
-
-msgid "Do not expose users' names"
-msgstr "ユーザーの名前を公開しない"
-
-msgid "Allow recipients to delete submissions"
-msgstr "受信者が提出を削除することを許可する"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "受信者が、特定の提出の内部告発者に権限を付与することを許可します"
 
-msgid "Require two factor authentication"
-msgstr "2要素認証が必要です"
-
 msgid "Enable search engines indexing"
 msgstr "検索エンジンのインデックス化を有効にする"
 
 msgid "Description"
 msgstr "説明"
+
+msgid "Do not expose users' names"
+msgstr "ユーザーの名前を公開しない"
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "次のWebサイトがインラインフレーム内にプラットフォームを埋め込むことを許可する"
 
 msgid "Enable custom privacy panel"
 msgstr "カスタムのプライバシー・バッジを有効にする"
@@ -768,6 +740,12 @@ msgstr "セキュリティ上の理由から、内部告発のアクセスは有
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "何を行うかを理解している場合にのみ、この設定を調整してください。"
+
+msgid "Require two factor authentication"
+msgstr "2要素認証が必要です"
+
+msgid "Enable password reset"
+msgstr "パスワードリセットを有効にする"
 
 msgid "Password change interval"
 msgstr "パスワード変更間隔"
@@ -819,9 +797,6 @@ msgstr "ユーザー名"
 
 msgid "Password"
 msgstr "パスワード"
-
-msgid "Enable password reset"
-msgstr "パスワードリセットを有効にする"
 
 msgid "Enable users to upload their PGP keys"
 msgstr "ユーザーがPGP鍵をアップロードできるようにする"
@@ -1514,9 +1489,6 @@ msgstr "その受信者が、特定の提出の内部告発者に権限を付与
 
 msgid "User has administrative access to the following features:"
 msgstr "ユーザーは、次の機能への管理アクセス権があります:"
-
-msgid "main"
-msgstr "メイン"
 
 msgid "Request date"
 msgstr "リクエスト日"

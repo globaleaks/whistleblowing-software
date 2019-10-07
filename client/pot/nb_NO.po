@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,14 +67,8 @@ msgstr "Maler for merknader"
 msgid "Missing data"
 msgstr "Mangler data"
 
-msgid "no stats available for the future."
-msgstr "fremtidig statistikk ikke tilgjengelig"
-
 msgid "no stats available for this hour."
 msgstr "ingen statistikk for denne timen."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "ingen statistikk tilgjengelig for gjeldende time; sjekk aktivitetssiden."
 
 msgid "Delete"
 msgstr "Slett"
@@ -90,15 +84,6 @@ msgstr "Brukervalg"
 
 msgid "Notification settings"
 msgstr "Merknadsinnstillinger"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Denne mottakeren har satt opp krypteringsnøkkelen."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Denne mottakeren har ikke satt opp krypteringsnøkkelen."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "Filen er utilgjengelig som følge av en intern feil."
 
 msgid "file unavailable"
 msgstr "fil utilgjengelig"
@@ -576,12 +561,6 @@ msgstr "Vis valg alfabetisk"
 msgid "Enable email notifications for:"
 msgstr "Skru på e-postmerknader for:"
 
-msgid "Software updates"
-msgstr "Programvareoppdateringer"
-
-msgid "Software problems"
-msgstr "Programvareproblemer"
-
 msgid "Disable"
 msgstr "Skru av"
 
@@ -706,38 +685,31 @@ msgstr "Skru av innsendelser"
 msgid "Enable encryption"
 msgstr ""
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "Tillat mottakere å utsette utløpsdatoen for innsendelsen"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Tillat mottakere å slette innsendelser"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Tillat mottakere å utsette utløpsdatoen for innsendelsen"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Tillat mottakere å forære rettigheter til fløyteblåsere på gitte innsendelser"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Skru på søkemotor-indeksering"
 
 msgid "Description"
 msgstr "Beskrivelse"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Skru på egentilpasset personvernspanel"
@@ -766,6 +738,12 @@ msgstr "Av sikkerhetsgrunner er fløyteblåsertilgang noe som utløper."
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Bare endre denne innstillingen hvis du vet hva du driver på med."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr ""
@@ -817,9 +795,6 @@ msgstr "Brukernavn"
 
 msgid "Password"
 msgstr "Passord"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1511,9 +1486,6 @@ msgid ""
 msgstr "Tillat mottaker å forære rettigheter til fløyteblåsere på gitte innsendelser."
 
 msgid "User has administrative access to the following features:"
-msgstr ""
-
-msgid "main"
 msgstr ""
 
 msgid "Request date"

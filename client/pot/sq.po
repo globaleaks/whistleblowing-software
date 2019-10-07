@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-02 08:57+0000\n"
-"Last-Translator: Adam Lynn <adam@opentechfund.org>\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -67,14 +67,8 @@ msgstr "Njoftimi templates"
 msgid "Missing data"
 msgstr "Të dhënat që mungojnë"
 
-msgid "no stats available for the future."
-msgstr "s'ka statistika të disponueshme për të ardhmen."
-
 msgid "no stats available for this hour."
 msgstr "Nuk ka statistika në dispozicion për këtë orë."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "s'ka statistika të disponueshme për këtë orë; kontrolloni faqen e veprimtarive"
 
 msgid "Delete"
 msgstr "Hiqeni"
@@ -90,15 +84,6 @@ msgstr "Parapëlqime përdoruesi"
 
 msgid "Notification settings"
 msgstr "Konfigurimi i Njoftimit"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Marrësi ka konfiguruar çelësin e shifrimit."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Marrësi s'e ka konfiguruar çelësin e shifrimit."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "Skedari s'është i disponueshëm, për shkak të një gabimi të brendshëm."
 
 msgid "file unavailable"
 msgstr "skedari s'është i disponueshëm"
@@ -576,12 +561,6 @@ msgstr ""
 msgid "Enable email notifications for:"
 msgstr ""
 
-msgid "Software updates"
-msgstr ""
-
-msgid "Software problems"
-msgstr ""
-
 msgid "Disable"
 msgstr "Çaktivizoje"
 
@@ -706,38 +685,31 @@ msgstr "parashtresat Çaktivizo"
 msgid "Enable encryption"
 msgstr ""
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "Lejojnë përfituesit për të shtyrë datën e skadimit të dorëzimit"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Lejojnë përfituesit për të fshirë parashtresat"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Lejojnë përfituesit për të shtyrë datën e skadimit të dorëzimit"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Lejojnë përfituesit për të dhënë leje për informuesit në aplikimet specifike"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Mundësoni indeksimin e motorëve të kërkimit"
 
 msgid "Description"
 msgstr "Përshkrim"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Aftësoni panelin e privatësisë së përshtatur"
@@ -765,6 +737,12 @@ msgid ""
 msgstr ""
 
 msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -817,9 +795,6 @@ msgstr "Emër përdoruesi"
 
 msgid "Password"
 msgstr "Fjalëkalim"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1511,9 +1486,6 @@ msgid ""
 msgstr "Lejo marrësi të japë leje për informuesit në aplikimet specifike"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
-
-msgid "main"
 msgstr ""
 
 msgid "Request date"

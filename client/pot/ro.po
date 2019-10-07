@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-02 08:57+0000\n"
-"Last-Translator: titus <titus0818@gmail.com>\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -77,14 +77,8 @@ msgstr "șabloane de notificare"
 msgid "Missing data"
 msgstr "Date lipsa"
 
-msgid "no stats available for the future."
-msgstr "Nu există statistici disponibile pentru viitor."
-
 msgid "no stats available for this hour."
 msgstr "Nu există statistici disponibile pentru această oră."
-
-msgid "no stats available for current hour; check activities page."
-msgstr "Nu există statistici disponibile pentru ora curentă; verifica pagina de activități."
 
 msgid "Delete"
 msgstr "Şterge"
@@ -100,15 +94,6 @@ msgstr ""
 
 msgid "Notification settings"
 msgstr "setările de notificare"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Acest destinatar a configurat cheia de criptare."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Acest destinatar nu a configurat cheia de criptare."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "Din cauza unei erori interne, fișierul nu este disponibil."
 
 msgid "file unavailable"
 msgstr "Document indisponibil"
@@ -586,12 +571,6 @@ msgstr ""
 msgid "Enable email notifications for:"
 msgstr ""
 
-msgid "Software updates"
-msgstr "Actualizări software"
-
-msgid "Software problems"
-msgstr ""
-
 msgid "Disable"
 msgstr "Dezactivează"
 
@@ -716,38 +695,31 @@ msgstr "depuneri Disable"
 msgid "Enable encryption"
 msgstr ""
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
-
 msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "Permite destinatarilor să amâne data de expirare a depunerii"
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
 msgstr "Permite destinatarilor să ștergeți depuneri"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Permite destinatarilor să amâne data de expirare a depunerii"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Permite destinatarilor să acorde permisiuni pentru informatori postărilor specifice"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Activați motoarele de căutare de indexare"
 
 msgid "Description"
 msgstr "Descriere"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Activați panoul de confidențialitate personalizat"
@@ -776,6 +748,12 @@ msgstr "Din motive de siguranta accesul informatorului este pe cale de a fi bloc
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Modifica aceasta setare numai daca sti ce faci."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr ""
@@ -827,9 +805,6 @@ msgstr "Nume Utilizator"
 
 msgid "Password"
 msgstr "Parolă"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr ""
@@ -1521,9 +1496,6 @@ msgid ""
 msgstr "Permite destinatarului să acorde permisiuni pentru informatorii postărilor specifice"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
-
-msgid "main"
 msgstr ""
 
 msgid "Request date"

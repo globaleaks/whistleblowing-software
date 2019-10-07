@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-09-27 08:01+0000\n"
+"PO-Revision-Date: 2019-10-06 19:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,14 +70,8 @@ msgstr "Ilmoituspohjat"
 msgid "Missing data"
 msgstr "Puuttuvat tiedot"
 
-msgid "no stats available for the future."
-msgstr "Tilasto ei vielä saatavilla."
-
 msgid "no stats available for this hour."
 msgstr "tälle tunnille ei ole tilastoja saatavilla "
-
-msgid "no stats available for current hour; check activities page."
-msgstr "Kuluvan tunnin tilastot ei vielä saatavilla. Tarkista Tapahtumat-välilehti."
 
 msgid "Delete"
 msgstr "Poista"
@@ -93,15 +87,6 @@ msgstr "Käyttäjän asetukset"
 
 msgid "Notification settings"
 msgstr "Ilmoitusasetukset"
-
-msgid "This recipient has configured the encryption key."
-msgstr "Tämä vastaanottaja on asettanut salausavaimen."
-
-msgid "This recipient has not configured the encryption key."
-msgstr "Tämä vastaanottaja ei ole asettanut salausavainta."
-
-msgid "The file is unavailable due to an internal error."
-msgstr "Tiedosto ei ole saatavilla sisäisen virheen vuoksi."
 
 msgid "file unavailable"
 msgstr "tiedosto ei ole saatavilla"
@@ -579,12 +564,6 @@ msgstr "Näytä valinnat aakkosjärjestyksessä"
 msgid "Enable email notifications for:"
 msgstr "Ota sähköpostiilmoitukset käyttöön:"
 
-msgid "Software updates"
-msgstr "Ohjelmistopäivitykset"
-
-msgid "Software problems"
-msgstr "Ohjelmisto-ongelmat"
-
 msgid "Disable"
 msgstr "Poista käytöstä"
 
@@ -709,38 +688,31 @@ msgstr "Poista vihjeiden lähettäminen käytöstä"
 msgid "Enable encryption"
 msgstr "Käytä salausta"
 
-msgid ""
-"Allow the system to store data in plaintext when encryption is not available"
-msgstr "Salli järjestelmän tallentaa salaamattomat tiedot tekstimuotoisena"
-
 msgid "Enable multisite feature"
 msgstr "Ota käyttöön samanaikainen kirjautuminen useaan järjestelmään"
 
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgid "Allow recipients to delete submissions"
+msgstr "Salli vastaanottajien poistaa lähetettyjä vihjeitä"
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Salli vastaanottajien siirtää vihjeiden vanhentumispäivämäärää myöhemmäksi"
-
-msgid "Do not expose users' names"
-msgstr ""
-
-msgid "Allow recipients to delete submissions"
-msgstr "Salli vastaanottajien poistaa lähetettyjä vihjeitä"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
 "submissions"
 msgstr "Salli vastaanottajien myöntää lupia vihjeiden lähettäjille"
 
-msgid "Require two factor authentication"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Ota käyttöön hakukoneiden indeksointi"
 
 msgid "Description"
 msgstr "Kuvaus"
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Ota käyttöön oma yksityisyyskulkukortti"
@@ -769,6 +741,12 @@ msgstr "Turvallisuussyistä johtuen vihjeen antajan käyttöoikeudella on vanhen
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Säädä tätä asetusta vain jos tiedät, mitä olet tekemässä."
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Enable password reset"
+msgstr ""
 
 msgid "Password change interval"
 msgstr "Salasanan vaihtoväli"
@@ -820,9 +798,6 @@ msgstr "Käyttäjätunnus"
 
 msgid "Password"
 msgstr "Salasana"
-
-msgid "Enable password reset"
-msgstr ""
 
 msgid "Enable users to upload their PGP keys"
 msgstr "Salli käyttäjien omien PGP-avaimien tallentaminen"
@@ -1515,9 +1490,6 @@ msgstr "Salli vastaanottajan myöntää vihjeiden lähettäjille vihjekohtaisia 
 
 msgid "User has administrative access to the following features:"
 msgstr "Käyttäjällä on ylläpito-oikeudet seuraaviin toimintoihin:"
-
-msgid "main"
-msgstr "yleisasetukset"
 
 msgid "Request date"
 msgstr "Pyynnön päivämäärä"
