@@ -1209,6 +1209,14 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       };
 
       return {
+         getClass: function(field, row_length) {
+            if (field.width !== 0) {
+              return "col-md-" + field.width;
+            }
+
+            return "col-md-" + ((row_length > 12) ? 1 : (12 / row_length));
+        },
+
         getValidator: function(field) {
           var validators = {
             "custom": field.attrs.regexp ? field.attrs.regexp : "",

@@ -461,14 +461,6 @@ controller("SubmissionStepCtrl", ["$scope", "$filter", "fieldUtilities",
 
   $scope.rows = fieldUtilities.splitRows($scope.fields);
 
-  $scope.getClass = function(field, row_length) {
-    if (field.width !== 0) {
-      return "col-md-" + field.width;
-    }
-
-    return "col-md-" + ((row_length > 12) ? 1 : (12 / row_length));
-  };
-
   $scope.status = {
     opened: false,
   };
@@ -593,6 +585,8 @@ controller("SubmissionFieldEntryCtrl", ["$scope",
     $scope.fieldEntry = $scope.fieldId + "-input-" + $scope.$index;
 }]).
 controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope, fieldUtilities) {
+  $scope.getClass = fieldUtilities.getClass;
+
   $scope.fieldFormVarName = fieldUtilities.fieldFormName($scope.field.id + "$" + $scope.$index);
 
   $scope.getAnswersEntries = function(entry) {
