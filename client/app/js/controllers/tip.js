@@ -5,6 +5,10 @@ GLClient.controller("TipCtrl",
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = "#";
 
+    $scope.itemsPerPage = 5;
+    $scope.currentCommentsPage = 1;
+    $scope.currentMessagesPage = 1;
+
     $scope.answers = {};
     $scope.uploads = {};
 

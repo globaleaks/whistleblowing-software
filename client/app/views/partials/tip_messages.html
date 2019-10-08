@@ -35,13 +35,24 @@
         </span>
       </div>
     </div>
-    <div id="SubmissionMessages" data-ng-switch="session.role">
-      <div data-ng-switch-when='receiver' data-ng-repeat="message in tip.messages | orderBy:'creation_date':true">
+    <div id="SubmissionMessages">
+      <div data-ng-repeat="message in tip.messages | orderBy:'creation_date':true | limitTo:itemsPerPage:((currentMessagesPage - 1) * itemsPerPage)">
         <div data-ng-include="'views/partials/tip_message.html'"></div>
       </div>
-      <div data-ng-switch-when='whistleblower' data-ng-if="tip.msg_receiver_selected" data-ng-repeat="message in tip.messages | filter: {receiver_involved: tip.msg_receiver_selected} | orderBy:'creation_date':true">
-        <div data-ng-include="'views/partials/tip_message.html'"></div>
-      </div>
+    </div>
+    <div class="text-center" data-ng-show="tip.messages.length > itemsPerPage">
+      <ul uib-pagination
+          total-items="tip.messages.length"
+          first-text="<< {{'First' | translate}}"
+          last-text="{{'Last' | translate}} >>"
+          previous-text="< {{'Previous' | translate}}"
+          next-text="{{'Next' | translate}} >"
+          items-per-page="itemsPerPage"
+          data-ng-model="currentMessagesPage"
+          max-size="5"
+          class="pagination-sm"
+          boundary-links="true"
+          force-ellipses="true"></ul>
     </div>
   </div>
 </div>

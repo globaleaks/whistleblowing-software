@@ -29,7 +29,7 @@
         </span>
       </div>
     </div>
-    <div id="SubmissionComments" data-ng-if="tip.comments.length > 0" data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true">
+    <div id="SubmissionComments" data-ng-if="tip.comments.length > 0" data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true| limitTo:itemsPerPage:((currentCommentsPage - 1) * itemsPerPage)">
       <div id="comment-{{$index}}" data-ng-switch="" on="comment.type">
         <div data-ng-switch-when="whistleblower" class="alert alert-primary">
           <div class="row">
@@ -54,6 +54,20 @@
           <div class="preformatted">{{::comment.content}}</div>
         </div>
       </div>
+    </div>
+    <div class="text-center" data-ng-show="tip.comments.length > itemsPerPage">
+      <ul uib-pagination
+          total-items="tip.comments.length"
+          first-text="<< {{'First' | translate}}"
+          last-text="{{'Last' | translate}} >>"
+          previous-text="< {{'Previous' | translate}}"
+          next-text="{{'Next' | translate}} >"
+          items-per-page="itemsPerPage"
+          data-ng-model="currentCommentsPage"
+          max-size="5"
+          class="pagination-sm"
+          boundary-links="true"
+          force-ellipses="true"></ul>
     </div>
   </div>
 </div>
