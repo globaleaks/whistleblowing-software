@@ -1,3 +1,9 @@
+Changes in version 3.11.25 - 2019-10-08
+    Implement pagination for Comments and Messaging (#531)
+    Apply text revisions thanks to the community support
+    Revise UI of Custodian functionalities
+    Update translations
+
 Changes in version 3.11.24 - 2019-10-07
     Postpone application of EAT patch included in previous release
 
