@@ -27,6 +27,7 @@ def serialize_identityaccessrequest(session, identityaccessrequest):
         'reply_user_name': reply_user.id if reply_user is not None else '',
         'reply': identityaccessrequest.reply,
         'reply_motivation': identityaccessrequest.reply_motivation,
+        'submission_progressive': itip.progressive,
         'submission_date': datetime_to_ISO8601(itip.creation_date)
     }
 
@@ -34,8 +35,7 @@ def serialize_identityaccessrequest(session, identityaccessrequest):
 @transact
 def get_identityaccessrequest_list(session, tid):
     return [serialize_identityaccessrequest(session, iar)
-        for iar in session.query(models.IdentityAccessRequest).filter(models.IdentityAccessRequest.reply == u'pending',
-                                                                      models.IdentityAccessRequest.receivertip_id == models.ReceiverTip.id,
+        for iar in session.query(models.IdentityAccessRequest).filter(models.IdentityAccessRequest.receivertip_id == models.ReceiverTip.id,
                                                                       models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                                                       models.InternalTip.tid == tid)]
 

@@ -20,6 +20,7 @@
           <thead>
           <tr>
             <th data-translate>Request date</th>
+            <th data-translate>ID</th>
             <th data-translate>Submission date</th>
             <th data-translate>User</th>
             <th data-translate>Request motivation</th>
@@ -27,14 +28,21 @@
           </tr>
           </thead>
           <tbody>
-          <tr id="iar-{{$index}}" data-ng-repeat="iar in iars | filter:search">
+          <tr id="iar-{{$index}}" data-ng-repeat="iar in iars | filter:search | orderBy:request_date:true">
             <td>{{iar.request_date | date:'dd-MM-yyyy HH:mm'}}</td>
+            <td>{{iar.submission_progressive}}</td>
             <td>{{iar.submission_date | date:'dd-MM-yyyy HH:mm'}}</td>
             <td>{{iar.request_user_name | date:'dd-MM-yyyy HH:mm'}}</td>
             <td>{{iar.request_motivation | date:'dd-MM-yyyy HH:mm'}}</td>
             <td>
-              <button class="btn btn-sm btn-primary" data-ng-click="authorize_identity_access_request(iar.id)" data-translate>Authorize</button>&nbsp;
-              <button class="btn btn-sm btn-danger" data-ng-click="file_denied_identity_access_reply(iar.id)" data-translate>Deny</button>
+              <span data-ng-switch="iar.reply">
+                <span data-ng-switch-when="authorized" data-translate>Authorized</span>
+                <span data-ng-switch-when="denied" data-translate>Denied</span>
+                <span data-ng-switch-when="pending">
+                  <button class="btn btn-sm btn-primary" data-ng-click="authorize_identity_access_request(iar.id)" data-translate>Authorize</button>&nbsp;
+                  <button class="btn btn-sm btn-danger" data-ng-click="file_denied_identity_access_reply(iar.id)" data-translate>Deny</button>
+                </span>
+              </span>
             </td>
           </tr>
           </tbody>
