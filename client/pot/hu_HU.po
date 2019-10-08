@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -147,6 +147,9 @@ msgstr "HITELKÁRTYA"
 msgid "YOUR NAME"
 msgstr "AZ ÖN NEVE"
 
+msgid "Label the submission"
+msgstr "Címkézze a beküldést"
+
 msgid "Postpone the expiration date"
 msgstr "Lejárati idő meghosszabítása"
 
@@ -171,6 +174,12 @@ msgstr "Személyes üzenetek"
 msgid "Preview"
 msgstr "Előnézet"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "Mozgatás fel"
 
@@ -191,6 +200,9 @@ msgstr "Exportálás"
 
 msgid "Save all"
 msgstr "Összes mentése"
+
+msgid "Access control"
+msgstr ""
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -479,9 +491,6 @@ msgstr "Semmi"
 msgid "Regular expression"
 msgstr "Reguláris kifejezés"
 
-msgid "Label the submission"
-msgstr "Címkézze a beküldést"
-
 msgid "Activate"
 msgstr "Aktiválás"
 
@@ -754,9 +763,6 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Csak akkor nyúljon ehhez a beállításhoz ha tudja mit csinál."
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -1101,6 +1107,30 @@ msgstr ""
 msgid "Template"
 msgstr "Sablon"
 
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Role"
+msgstr "Szerep"
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Recipient"
+msgstr "Címzett"
+
+msgid "Whistleblower"
+msgstr "Szivárogtató"
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "Példa:"
+
 msgid "Configuration in progress"
 msgstr ""
 
@@ -1217,30 +1247,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr ""
-
-msgid "Restrict access to specific IP addresses"
-msgstr ""
-
-msgid "Role"
-msgstr "Szerep"
-
-msgid "Whitelisted IP addresses"
-msgstr ""
-
-msgid "Admin"
-msgstr "Admin"
-
-msgid "Recipient"
-msgstr "Címzett"
-
-msgid "Whistleblower"
-msgstr "Szivárogtató"
-
-msgid "Each entry must be separated with a comma."
-msgstr ""
-
-msgid "Example:"
-msgstr "Példa:"
 
 msgid "Tor Onion Service"
 msgstr ""
@@ -1504,6 +1510,9 @@ msgstr ""
 
 msgid "Request date"
 msgstr "Kérés dátuma"
+
+msgid "ID"
+msgstr ""
 
 msgid "Authorization"
 msgstr ""

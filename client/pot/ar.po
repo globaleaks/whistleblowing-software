@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -165,6 +165,9 @@ msgstr "بطاقة الائتمان"
 msgid "YOUR NAME"
 msgstr "اسمك"
 
+msgid "Label the submission"
+msgstr "صنّف البلاغ"
+
 msgid "Postpone the expiration date"
 msgstr "تأجيل تاريخ نهاية الصلوحية"
 
@@ -189,6 +192,12 @@ msgstr "رسائل خاصة"
 msgid "Preview"
 msgstr "معاينة"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "حرك الى الاعلى"
 
@@ -209,6 +218,9 @@ msgstr "إخراج"
 
 msgid "Save all"
 msgstr "تخزين الكل"
+
+msgid "Access control"
+msgstr "سيطرة الوصول"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -497,9 +509,6 @@ msgstr "لا شيء"
 msgid "Regular expression"
 msgstr "تعبير نمطي"
 
-msgid "Label the submission"
-msgstr "صنّف البلاغ"
-
 msgid "Activate"
 msgstr "تفعيل"
 
@@ -772,9 +781,6 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr " عدّل هذه الإعدادات فقط إذا كنت تعرف ما تقوم به."
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -1119,6 +1125,30 @@ msgstr ""
 msgid "Template"
 msgstr "قالب"
 
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Role"
+msgstr "دور"
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Admin"
+msgstr "مشرف"
+
+msgid "Recipient"
+msgstr "المتلقّي"
+
+msgid "Whistleblower"
+msgstr "مبلّغ"
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "مثال"
+
 msgid "Configuration in progress"
 msgstr "التهيئة قيد التقدم"
 
@@ -1235,30 +1265,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "السماح للمبلّغين بالاتصال عبر HTTPS يحافظ على خصوصيتهم ولكن لا يضمن حجب هويّاتهم."
-
-msgid "Restrict access to specific IP addresses"
-msgstr ""
-
-msgid "Role"
-msgstr "دور"
-
-msgid "Whitelisted IP addresses"
-msgstr ""
-
-msgid "Admin"
-msgstr "مشرف"
-
-msgid "Recipient"
-msgstr "المتلقّي"
-
-msgid "Whistleblower"
-msgstr "مبلّغ"
-
-msgid "Each entry must be separated with a comma."
-msgstr ""
-
-msgid "Example:"
-msgstr "مثال"
 
 msgid "Tor Onion Service"
 msgstr "خدمة Tor onion"
@@ -1522,6 +1528,9 @@ msgstr ""
 
 msgid "Request date"
 msgstr "تاريخ الطلب"
+
+msgid "ID"
+msgstr "المُعرِّف"
 
 msgid "Authorization"
 msgstr "تفويض"

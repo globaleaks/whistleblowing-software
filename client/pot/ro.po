@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -143,6 +143,9 @@ msgstr "CARD DE CREDIT"
 msgid "YOUR NAME"
 msgstr "Numele"
 
+msgid "Label the submission"
+msgstr "Marcheaza livrarea"
+
 msgid "Postpone the expiration date"
 msgstr "Amâna data de expirare"
 
@@ -167,6 +170,12 @@ msgstr "Mesaje private"
 msgid "Preview"
 msgstr "previzualizare"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "deplasa în sus"
 
@@ -187,6 +196,9 @@ msgstr "Export"
 
 msgid "Save all"
 msgstr "Salvează tot"
+
+msgid "Access control"
+msgstr "Controlul Accesului"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -475,9 +487,6 @@ msgstr "Nici unul"
 msgid "Regular expression"
 msgstr "Expresie uzuala"
 
-msgid "Label the submission"
-msgstr "Marcheaza livrarea"
-
 msgid "Activate"
 msgstr "Activeaza"
 
@@ -750,9 +759,6 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Modifica aceasta setare numai daca sti ce faci."
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -1097,6 +1103,30 @@ msgstr ""
 msgid "Template"
 msgstr "șablon"
 
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Role"
+msgstr "Rol"
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Admin"
+msgstr "admin"
+
+msgid "Recipient"
+msgstr "Destinatar"
+
+msgid "Whistleblower"
+msgstr "Informator"
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "Exemplu:"
+
 msgid "Configuration in progress"
 msgstr ""
 
@@ -1213,30 +1243,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr ""
-
-msgid "Restrict access to specific IP addresses"
-msgstr ""
-
-msgid "Role"
-msgstr "Rol"
-
-msgid "Whitelisted IP addresses"
-msgstr ""
-
-msgid "Admin"
-msgstr "admin"
-
-msgid "Recipient"
-msgstr "Destinatar"
-
-msgid "Whistleblower"
-msgstr "Informator"
-
-msgid "Each entry must be separated with a comma."
-msgstr ""
-
-msgid "Example:"
-msgstr "Exemplu:"
 
 msgid "Tor Onion Service"
 msgstr "Serviciul Tor"
@@ -1500,6 +1506,9 @@ msgstr ""
 
 msgid "Request date"
 msgstr "Data ceruta"
+
+msgid "ID"
+msgstr "ID"
 
 msgid "Authorization"
 msgstr "Autorizare"

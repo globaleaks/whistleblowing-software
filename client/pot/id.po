@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,6 +149,9 @@ msgstr "KARTU KREDIT"
 msgid "YOUR NAME"
 msgstr "NAMA ANDA"
 
+msgid "Label the submission"
+msgstr "Judul pengiriman"
+
 msgid "Postpone the expiration date"
 msgstr "Menunda tanggal kedaluwarsa"
 
@@ -173,6 +176,12 @@ msgstr "Pesan pribadi"
 msgid "Preview"
 msgstr "Peninjauan"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "Bergerak ke atas"
 
@@ -193,6 +202,9 @@ msgstr "Ekspor"
 
 msgid "Save all"
 msgstr "Simpan semua"
+
+msgid "Access control"
+msgstr "Kendali akses"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -481,9 +493,6 @@ msgstr "Tidak ada"
 msgid "Regular expression"
 msgstr "Ekspresi  reguler "
 
-msgid "Label the submission"
-msgstr "Judul pengiriman"
-
 msgid "Activate"
 msgstr "Aktivasi"
 
@@ -756,9 +765,6 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Ganti pengaturan ini jika Anda tahu langkah yang sedang dilakukan."
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -1103,6 +1109,30 @@ msgstr ""
 msgid "Template"
 msgstr "Format"
 
+msgid "Restrict access to specific IP addresses"
+msgstr "Batasi akses ke alamat IP tertentu"
+
+msgid "Role"
+msgstr "Peran"
+
+msgid "Whitelisted IP addresses"
+msgstr "Alamat-alamat IP yang di daftarputihkan "
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Recipient"
+msgstr "Penerima"
+
+msgid "Whistleblower"
+msgstr "Informan publik"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Setiap masukan harus dipisahkan dengan koma."
+
+msgid "Example:"
+msgstr "Contoh:"
+
 msgid "Configuration in progress"
 msgstr ""
 
@@ -1219,30 +1249,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "Mengizinkan informan publik terhubung melalui HTTPS menjaga privasi mereka, tetapi tidak membuat mereka menjadi anonim"
-
-msgid "Restrict access to specific IP addresses"
-msgstr "Batasi akses ke alamat IP tertentu"
-
-msgid "Role"
-msgstr "Peran"
-
-msgid "Whitelisted IP addresses"
-msgstr "Alamat-alamat IP yang di daftarputihkan "
-
-msgid "Admin"
-msgstr "Admin"
-
-msgid "Recipient"
-msgstr "Penerima"
-
-msgid "Whistleblower"
-msgstr "Informan publik"
-
-msgid "Each entry must be separated with a comma."
-msgstr "Setiap masukan harus dipisahkan dengan koma."
-
-msgid "Example:"
-msgstr "Contoh:"
 
 msgid "Tor Onion Service"
 msgstr "Layanan Tor Onion"
@@ -1506,6 +1512,9 @@ msgstr "Pengguna mempunyai akses administratif untuk beberapa fitur berikut:"
 
 msgid "Request date"
 msgstr "Permintaan tanggal"
+
+msgid "ID"
+msgstr ""
 
 msgid "Authorization"
 msgstr "Otorisasi"

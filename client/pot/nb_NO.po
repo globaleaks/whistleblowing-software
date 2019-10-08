@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -133,6 +133,9 @@ msgstr "KREDITTKORT"
 msgid "YOUR NAME"
 msgstr "DITT NAVN"
 
+msgid "Label the submission"
+msgstr "Fest en merkelapp ved innsendelsen"
+
 msgid "Postpone the expiration date"
 msgstr "Utsett utløpsdato"
 
@@ -157,6 +160,12 @@ msgstr "Privat korrespondanse"
 msgid "Preview"
 msgstr "Forhåndsvisning"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "Flytt oppover"
 
@@ -177,6 +186,9 @@ msgstr "Exporter"
 
 msgid "Save all"
 msgstr "Lagre alle"
+
+msgid "Access control"
+msgstr "Tilgangskontroll"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -465,9 +477,6 @@ msgstr "Ingen"
 msgid "Regular expression"
 msgstr "Regulært uttrykk"
 
-msgid "Label the submission"
-msgstr "Fest en merkelapp ved innsendelsen"
-
 msgid "Activate"
 msgstr "Aktiver"
 
@@ -740,9 +749,6 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Bare endre denne innstillingen hvis du vet hva du driver på med."
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -1087,6 +1093,30 @@ msgstr ""
 msgid "Template"
 msgstr "Mal"
 
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Role"
+msgstr "Rolle"
+
+msgid "Whitelisted IP addresses"
+msgstr "Hvitlistede IP-adresser"
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Recipient"
+msgstr "Mottaker"
+
+msgid "Whistleblower"
+msgstr "Fløyteblåser/varsler"
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "Eksempel:"
+
 msgid "Configuration in progress"
 msgstr "Oppsett underveis"
 
@@ -1203,30 +1233,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "Å tillate fløyteblåsere å koble til over HTTPS ivaretar deres personvern, men ikke deres anonymitet."
-
-msgid "Restrict access to specific IP addresses"
-msgstr ""
-
-msgid "Role"
-msgstr "Rolle"
-
-msgid "Whitelisted IP addresses"
-msgstr "Hvitlistede IP-adresser"
-
-msgid "Admin"
-msgstr "Admin"
-
-msgid "Recipient"
-msgstr "Mottaker"
-
-msgid "Whistleblower"
-msgstr "Fløyteblåser/varsler"
-
-msgid "Each entry must be separated with a comma."
-msgstr ""
-
-msgid "Example:"
-msgstr "Eksempel:"
 
 msgid "Tor Onion Service"
 msgstr "Tor-løktjeneste"
@@ -1490,6 +1496,9 @@ msgstr ""
 
 msgid "Request date"
 msgstr "Forespør dato"
+
+msgid "ID"
+msgstr "ID"
 
 msgid "Authorization"
 msgstr "Godkjenning"

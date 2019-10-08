@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -165,6 +165,9 @@ msgstr "CARTE DE CRÉDIT"
 msgid "YOUR NAME"
 msgstr "VOTRE NOM"
 
+msgid "Label the submission"
+msgstr "Étiqueter l’envoi"
+
 msgid "Postpone the expiration date"
 msgstr "Repousser la date d’expiration"
 
@@ -189,6 +192,12 @@ msgstr "Messages privés"
 msgid "Preview"
 msgstr "Aperçu"
 
+msgid "The whistleblower has already read the last update"
+msgstr "Le lanceur d’alerte a déjà lu la dernière mise à jour"
+
+msgid "The whistleblower has not read the last update yet"
+msgstr "Le lanceur d’alerte n’a pas lu la dernière mise à jour"
+
 msgid "Move up"
 msgstr "Déplacer vers le haut"
 
@@ -209,6 +218,9 @@ msgstr "Exporter"
 
 msgid "Save all"
 msgstr "Tout enregistrer"
+
+msgid "Access control"
+msgstr "Contrôle de l'accès"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -497,9 +509,6 @@ msgstr "Aucune"
 msgid "Regular expression"
 msgstr "Expression rationnelle"
 
-msgid "Label the submission"
-msgstr "Étiqueter l’envoi"
-
 msgid "Activate"
 msgstr "Activer"
 
@@ -703,13 +712,13 @@ msgid "The two passwords do not match"
 msgstr "Les deux mots de passe ne correspondent pas"
 
 msgid "The new password must differ from the previous."
-msgstr ""
+msgstr "Le nouveau mot de passe doit être différent du précédent."
 
 msgid "Proceed"
 msgstr "Continuer"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr ""
+msgstr "Avant de poursuivre, veuillez activer l’authentification à deux facteurs."
 
 msgid "Disable submissions"
 msgstr "Désactiver les envois"
@@ -772,10 +781,7 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "N’ajustez ce paramètre que si vous savez ce que vous faites"
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
-msgstr "Permettre la réinitialisation du mot de passe"
+msgstr "Exiger l’authentification à deux facteurs"
 
 msgid "Password change interval"
 msgstr "Intervalle de changement du mot de passe"
@@ -1119,6 +1125,30 @@ msgstr "Réinitialiser la configuration SMTP"
 msgid "Template"
 msgstr "Modèle"
 
+msgid "Restrict access to specific IP addresses"
+msgstr "Réserver l’accès à des adresses IP précises"
+
+msgid "Role"
+msgstr "Rôle"
+
+msgid "Whitelisted IP addresses"
+msgstr "Adresses IP sur liste blanche"
+
+msgid "Admin"
+msgstr "Administrateur"
+
+msgid "Recipient"
+msgstr "Destinataire"
+
+msgid "Whistleblower"
+msgstr "Lanceur d’alerte"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Chaque entrée doit être séparée par une virgule."
+
+msgid "Example:"
+msgstr "Exemple :"
+
 msgid "Configuration in progress"
 msgstr "Configuration en cours"
 
@@ -1235,30 +1265,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "Permettre aux lanceurs d’alerte de se connecter par HTTPS assure la protection de leurs renseignements personnels, mais pas leur anonymat."
-
-msgid "Restrict access to specific IP addresses"
-msgstr "Réserver l’accès à des adresses IP précises"
-
-msgid "Role"
-msgstr "Rôle"
-
-msgid "Whitelisted IP addresses"
-msgstr "Adresses IP sur liste blanche"
-
-msgid "Admin"
-msgstr "Administrateur"
-
-msgid "Recipient"
-msgstr "Destinataire"
-
-msgid "Whistleblower"
-msgstr "Lanceur d’alerte"
-
-msgid "Each entry must be separated with a comma."
-msgstr "Chaque entrée doit être séparée par une virgule."
-
-msgid "Example:"
-msgstr "Exemple :"
 
 msgid "Tor Onion Service"
 msgstr "Service oignon Tor"
@@ -1471,7 +1477,7 @@ msgid "Reset password"
 msgstr "Réinitialiser le mot  de passe"
 
 msgid "Disable two factor authentication"
-msgstr ""
+msgstr "Désactiver l’authentification à deux facteurs"
 
 msgid "Force password change"
 msgstr "Forcer un changement de mot de passe"
@@ -1522,6 +1528,9 @@ msgstr "L’utilisateur a un accès d’administration aux fonctions suivantes 
 
 msgid "Request date"
 msgstr "Date de la demande"
+
+msgid "ID"
+msgstr "ID"
 
 msgid "Authorization"
 msgstr "Autorisation"

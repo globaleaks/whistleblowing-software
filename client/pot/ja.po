@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -135,6 +135,9 @@ msgstr "クレジットカード"
 msgid "YOUR NAME"
 msgstr "あなたの名前"
 
+msgid "Label the submission"
+msgstr "提出にラベルを付ける"
+
 msgid "Postpone the expiration date"
 msgstr "有効期限を延期する"
 
@@ -159,6 +162,12 @@ msgstr "プライベート・メッセージ"
 msgid "Preview"
 msgstr "プレビュー"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "上に移動"
 
@@ -179,6 +188,9 @@ msgstr "エクスポート"
 
 msgid "Save all"
 msgstr "すべて保存"
+
+msgid "Access control"
+msgstr "アクセス制御"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -467,9 +479,6 @@ msgstr "なし"
 msgid "Regular expression"
 msgstr "正規表現"
 
-msgid "Label the submission"
-msgstr "提出にラベルを付ける"
-
 msgid "Activate"
 msgstr "アクティブにする"
 
@@ -743,9 +752,6 @@ msgstr "何を行うかを理解している場合にのみ、この設定を調
 
 msgid "Require two factor authentication"
 msgstr "2要素認証が必要です"
-
-msgid "Enable password reset"
-msgstr "パスワードリセットを有効にする"
 
 msgid "Password change interval"
 msgstr "パスワード変更間隔"
@@ -1089,6 +1095,30 @@ msgstr "SMTP 設定をリセット"
 msgid "Template"
 msgstr "テンプレート"
 
+msgid "Restrict access to specific IP addresses"
+msgstr "特定のIPアドレスにアクセスを制限する"
+
+msgid "Role"
+msgstr "役割"
+
+msgid "Whitelisted IP addresses"
+msgstr "ホワイトリストIPアドレス"
+
+msgid "Admin"
+msgstr "管理者"
+
+msgid "Recipient"
+msgstr "受信者"
+
+msgid "Whistleblower"
+msgstr "内部告発者"
+
+msgid "Each entry must be separated with a comma."
+msgstr "各入力はコンマで区切る必要があります。"
+
+msgid "Example:"
+msgstr "例:"
+
 msgid "Configuration in progress"
 msgstr "設定処理中です"
 
@@ -1205,30 +1235,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "内部通報者が HTTPS 経由で接続できるようにすると、プライバシーは保持されますが、匿名性は維持されません。"
-
-msgid "Restrict access to specific IP addresses"
-msgstr "特定のIPアドレスにアクセスを制限する"
-
-msgid "Role"
-msgstr "役割"
-
-msgid "Whitelisted IP addresses"
-msgstr "ホワイトリストIPアドレス"
-
-msgid "Admin"
-msgstr "管理者"
-
-msgid "Recipient"
-msgstr "受信者"
-
-msgid "Whistleblower"
-msgstr "内部告発者"
-
-msgid "Each entry must be separated with a comma."
-msgstr "各入力はコンマで区切る必要があります。"
-
-msgid "Example:"
-msgstr "例:"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion サービス"
@@ -1492,6 +1498,9 @@ msgstr "ユーザーは、次の機能への管理アクセス権があります
 
 msgid "Request date"
 msgstr "リクエスト日"
+
+msgid "ID"
+msgstr "ID"
 
 msgid "Authorization"
 msgstr "認証"

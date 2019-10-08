@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -145,6 +145,9 @@ msgstr "信用卡"
 msgid "YOUR NAME"
 msgstr "您的名字"
 
+msgid "Label the submission"
+msgstr "提交内容类型"
+
 msgid "Postpone the expiration date"
 msgstr "推迟失效日期"
 
@@ -169,6 +172,12 @@ msgstr "私人信息"
 msgid "Preview"
 msgstr "预览"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "上移"
 
@@ -189,6 +198,9 @@ msgstr "导出"
 
 msgid "Save all"
 msgstr "全部保存"
+
+msgid "Access control"
+msgstr "访问控制"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -477,9 +489,6 @@ msgstr "空"
 msgid "Regular expression"
 msgstr "正则表达式"
 
-msgid "Label the submission"
-msgstr "提交内容类型"
-
 msgid "Activate"
 msgstr "激活"
 
@@ -752,9 +761,6 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "仅在需要时可调整该设置。请慎重使用并防止发生意外。"
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -1099,6 +1105,30 @@ msgstr ""
 msgid "Template"
 msgstr "模板"
 
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Role"
+msgstr "角色"
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Admin"
+msgstr "管理员"
+
+msgid "Recipient"
+msgstr "接收者"
+
+msgid "Whistleblower"
+msgstr "告密者"
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "例子："
+
 msgid "Configuration in progress"
 msgstr ""
 
@@ -1215,30 +1245,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr ""
-
-msgid "Restrict access to specific IP addresses"
-msgstr ""
-
-msgid "Role"
-msgstr "角色"
-
-msgid "Whitelisted IP addresses"
-msgstr ""
-
-msgid "Admin"
-msgstr "管理员"
-
-msgid "Recipient"
-msgstr "接收者"
-
-msgid "Whistleblower"
-msgstr "告密者"
-
-msgid "Each entry must be separated with a comma."
-msgstr ""
-
-msgid "Example:"
-msgstr "例子："
 
 msgid "Tor Onion Service"
 msgstr "Tor 洋葱服务"
@@ -1502,6 +1508,9 @@ msgstr ""
 
 msgid "Request date"
 msgstr "请求日期"
+
+msgid "ID"
+msgstr "标识"
 
 msgid "Authorization"
 msgstr "授权"

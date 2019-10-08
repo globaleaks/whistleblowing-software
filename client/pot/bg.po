@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -137,6 +137,9 @@ msgstr "КРЕДИТНА КАРТА"
 msgid "YOUR NAME"
 msgstr "ВАШЕТО ИМЕ"
 
+msgid "Label the submission"
+msgstr "Заглавие на пуснатия сигнал"
+
 msgid "Postpone the expiration date"
 msgstr "Отлагане на датата на изтичане"
 
@@ -161,6 +164,12 @@ msgstr "Лични съобщения"
 msgid "Preview"
 msgstr "Преглед"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "Премести нагоре"
 
@@ -181,6 +190,9 @@ msgstr "Изнасяне"
 
 msgid "Save all"
 msgstr "Запазване на всички"
+
+msgid "Access control"
+msgstr "Контрол на достъпа"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -469,9 +481,6 @@ msgstr "Липсва"
 msgid "Regular expression"
 msgstr "Regular expression"
 
-msgid "Label the submission"
-msgstr "Заглавие на пуснатия сигнал"
-
 msgid "Activate"
 msgstr "Активиране"
 
@@ -744,9 +753,6 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Променяйте тази настройки единствено ако знаете какво вършите."
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -1091,6 +1097,30 @@ msgstr ""
 msgid "Template"
 msgstr "Шаблон"
 
+msgid "Restrict access to specific IP addresses"
+msgstr "Ограничаване на достъпа до списък от IP адреси"
+
+msgid "Role"
+msgstr "Роля"
+
+msgid "Whitelisted IP addresses"
+msgstr "Удобрени IP адреси"
+
+msgid "Admin"
+msgstr "Администратор"
+
+msgid "Recipient"
+msgstr "Получател"
+
+msgid "Whistleblower"
+msgstr "Източник"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Всяко допълнение трябва да бъде отделено със запетая."
+
+msgid "Example:"
+msgstr "Приме:"
+
 msgid "Configuration in progress"
 msgstr "Тече настройка"
 
@@ -1207,30 +1237,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "Разрешаването на източниците да се свързват през HTTPS запазва тяхното личн пространство, но не и анонимност."
-
-msgid "Restrict access to specific IP addresses"
-msgstr "Ограничаване на достъпа до списък от IP адреси"
-
-msgid "Role"
-msgstr "Роля"
-
-msgid "Whitelisted IP addresses"
-msgstr "Удобрени IP адреси"
-
-msgid "Admin"
-msgstr "Администратор"
-
-msgid "Recipient"
-msgstr "Получател"
-
-msgid "Whistleblower"
-msgstr "Източник"
-
-msgid "Each entry must be separated with a comma."
-msgstr "Всяко допълнение трябва да бъде отделено със запетая."
-
-msgid "Example:"
-msgstr "Приме:"
 
 msgid "Tor Onion Service"
 msgstr "Tor onion услуга"
@@ -1494,6 +1500,9 @@ msgstr "Потребителят има административен дост�
 
 msgid "Request date"
 msgstr "Дата на заявката"
+
+msgid "ID"
+msgstr "ID"
 
 msgid "Authorization"
 msgstr "Резрешение"

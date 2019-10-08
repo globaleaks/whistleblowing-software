@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,6 +136,9 @@ msgstr "LUOTTOKORTTI"
 msgid "YOUR NAME"
 msgstr "NIMESI"
 
+msgid "Label the submission"
+msgstr "Anna vihjeelle nimi"
+
 msgid "Postpone the expiration date"
 msgstr "Siirrä vanhentumispäivää myöhäisemmäksi"
 
@@ -160,6 +163,12 @@ msgstr "Yksityisviestit"
 msgid "Preview"
 msgstr "Esikatselu"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "Siirrä ylemmäs"
 
@@ -180,6 +189,9 @@ msgstr "Vie"
 
 msgid "Save all"
 msgstr "Tallenna kaikki"
+
+msgid "Access control"
+msgstr ""
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -468,9 +480,6 @@ msgstr "Ei mitään"
 msgid "Regular expression"
 msgstr "Säännöllinen lauseke (regexp)"
 
-msgid "Label the submission"
-msgstr "Anna vihjeelle nimi"
-
 msgid "Activate"
 msgstr "Ota käyttöön"
 
@@ -743,9 +752,6 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Säädä tätä asetusta vain jos tiedät, mitä olet tekemässä."
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -1090,6 +1096,30 @@ msgstr ""
 msgid "Template"
 msgstr "Mallipohja"
 
+msgid "Restrict access to specific IP addresses"
+msgstr "Estä pääsy tietyistä IP-osoitteista"
+
+msgid "Role"
+msgstr "Rooli"
+
+msgid "Whitelisted IP addresses"
+msgstr "Sallitut IP-osoitteet"
+
+msgid "Admin"
+msgstr "Ylläpitäjä"
+
+msgid "Recipient"
+msgstr "Vastaanottaja"
+
+msgid "Whistleblower"
+msgstr "Vihjeenantaja"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Käytä erotusmerkkinä pilkkua "
+
+msgid "Example:"
+msgstr "Esimerkiksi:"
+
 msgid "Configuration in progress"
 msgstr ""
 
@@ -1206,30 +1236,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "Mikäli vihjeen lähettäjien sallitaan käyttää HTTPS-yhteyttä, heidän yksityisyytensä pysyy turvassa mutta anonymiteetti ei."
-
-msgid "Restrict access to specific IP addresses"
-msgstr "Estä pääsy tietyistä IP-osoitteista"
-
-msgid "Role"
-msgstr "Rooli"
-
-msgid "Whitelisted IP addresses"
-msgstr "Sallitut IP-osoitteet"
-
-msgid "Admin"
-msgstr "Ylläpitäjä"
-
-msgid "Recipient"
-msgstr "Vastaanottaja"
-
-msgid "Whistleblower"
-msgstr "Vihjeenantaja"
-
-msgid "Each entry must be separated with a comma."
-msgstr "Käytä erotusmerkkinä pilkkua "
-
-msgid "Example:"
-msgstr "Esimerkiksi:"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
@@ -1493,6 +1499,9 @@ msgstr "Käyttäjällä on ylläpito-oikeudet seuraaviin toimintoihin:"
 
 msgid "Request date"
 msgstr "Pyynnön päivämäärä"
+
+msgid "ID"
+msgstr "Tunniste"
 
 msgid "Authorization"
 msgstr "Käyttölupa"

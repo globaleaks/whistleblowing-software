@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -138,6 +138,9 @@ msgstr "THẺ TÍN DỤNG"
 msgid "YOUR NAME"
 msgstr "TÊN CỦA BẠN"
 
+msgid "Label the submission"
+msgstr ""
+
 msgid "Postpone the expiration date"
 msgstr "Hoãn ngày hết hạn"
 
@@ -162,6 +165,12 @@ msgstr "Tin nhắn riêng tư"
 msgid "Preview"
 msgstr "Xem sơ lược"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "Di chuyển lên"
 
@@ -182,6 +191,9 @@ msgstr "Xuất"
 
 msgid "Save all"
 msgstr "Lưu tất cả"
+
+msgid "Access control"
+msgstr ""
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -470,9 +482,6 @@ msgstr "Không có"
 msgid "Regular expression"
 msgstr ""
 
-msgid "Label the submission"
-msgstr ""
-
 msgid "Activate"
 msgstr "Kích hoạt"
 
@@ -745,9 +754,6 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr ""
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -1092,6 +1098,30 @@ msgstr ""
 msgid "Template"
 msgstr "Bản mẫu"
 
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Role"
+msgstr "Vai trò"
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Admin"
+msgstr "quản trị viên"
+
+msgid "Recipient"
+msgstr "Người nhận"
+
+msgid "Whistleblower"
+msgstr "Người tố giác"
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "Thí dụ:"
+
 msgid "Configuration in progress"
 msgstr ""
 
@@ -1208,30 +1238,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr ""
-
-msgid "Restrict access to specific IP addresses"
-msgstr ""
-
-msgid "Role"
-msgstr "Vai trò"
-
-msgid "Whitelisted IP addresses"
-msgstr ""
-
-msgid "Admin"
-msgstr "quản trị viên"
-
-msgid "Recipient"
-msgstr "Người nhận"
-
-msgid "Whistleblower"
-msgstr "Người tố giác"
-
-msgid "Each entry must be separated with a comma."
-msgstr ""
-
-msgid "Example:"
-msgstr "Thí dụ:"
 
 msgid "Tor Onion Service"
 msgstr ""
@@ -1495,6 +1501,9 @@ msgstr ""
 
 msgid "Request date"
 msgstr "Ngày yêu cầu"
+
+msgid "ID"
+msgstr "Số"
 
 msgid "Authorization"
 msgstr "cho phép"

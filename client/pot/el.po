@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 20:51+0000\n"
-"Last-Translator: Yvette Agostini <mnemosyne@logioshermes.org>\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -143,6 +143,9 @@ msgstr "ΠΙΣΤΩΤΙΚΗ ΚΑΡΤΑ"
 msgid "YOUR NAME"
 msgstr "ΤΟ ΟΝΟΜΑ ΣΑΣ"
 
+msgid "Label the submission"
+msgstr "Προσθήκη ετικέτας για την υποβολή"
+
 msgid "Postpone the expiration date"
 msgstr "Αναβολή της ημερομηνίας λήξης"
 
@@ -167,6 +170,12 @@ msgstr "Προσωπικά μηνύματα"
 msgid "Preview"
 msgstr "Προεπισκόπηση"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "Μετακίνηση προς τα επάνω"
 
@@ -187,6 +196,9 @@ msgstr "Εξαγωγή"
 
 msgid "Save all"
 msgstr "Αποθήκευση όλων"
+
+msgid "Access control"
+msgstr "Έλεγχος πρόσβασης"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -475,9 +487,6 @@ msgstr "Κανένα"
 msgid "Regular expression"
 msgstr "Κανονική έκφραση"
 
-msgid "Label the submission"
-msgstr "Προσθήκη ετικέτας για την υποβολή"
-
 msgid "Activate"
 msgstr "Ενεργοποίηση"
 
@@ -751,9 +760,6 @@ msgstr "Πειράξτε αυτή την ρύθμιση μόνο αν ξέρετ
 
 msgid "Require two factor authentication"
 msgstr ""
-
-msgid "Enable password reset"
-msgstr "Ενεργοποιήστε την αλλαγή κωδικού "
 
 msgid "Password change interval"
 msgstr "Συχνότητα αλλαγής κωδικού πρόσβασης"
@@ -1097,6 +1103,30 @@ msgstr "Επαναφορά των ρυθμίσεων SMTP"
 msgid "Template"
 msgstr "Πρότυπο"
 
+msgid "Restrict access to specific IP addresses"
+msgstr "Περιορισμός πρόσβασης σε συγκεκριμένες διευθύνσεις IP"
+
+msgid "Role"
+msgstr "Ρόλος"
+
+msgid "Whitelisted IP addresses"
+msgstr "Εγκεκριμένες διευθύνσεις IP"
+
+msgid "Admin"
+msgstr "Διαχειριστής"
+
+msgid "Recipient"
+msgstr "Παραλήπτης"
+
+msgid "Whistleblower"
+msgstr "Πληροφοριοδότης"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Κάθε καταχώρηση θα πρέπει να χωρίζεται από την προηγούμενη με ένα κόμμα."
+
+msgid "Example:"
+msgstr "Παράδειγμα:"
+
 msgid "Configuration in progress"
 msgstr "Ρυθμίσεις συστήματος σε εξέλιξη"
 
@@ -1213,30 +1243,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "Το να επιτρέπεται στους πληροφοριοδότες να συνδέονται μέσω HTTPS διατηρεί την ιδιωτικότητά τους, αλλά όχι την ανωνυμία τους."
-
-msgid "Restrict access to specific IP addresses"
-msgstr "Περιορισμός πρόσβασης σε συγκεκριμένες διευθύνσεις IP"
-
-msgid "Role"
-msgstr "Ρόλος"
-
-msgid "Whitelisted IP addresses"
-msgstr "Εγκεκριμένες διευθύνσεις IP"
-
-msgid "Admin"
-msgstr "Διαχειριστής"
-
-msgid "Recipient"
-msgstr "Παραλήπτης"
-
-msgid "Whistleblower"
-msgstr "Πληροφοριοδότης"
-
-msgid "Each entry must be separated with a comma."
-msgstr "Κάθε καταχώρηση θα πρέπει να χωρίζεται από την προηγούμενη με ένα κόμμα."
-
-msgid "Example:"
-msgstr "Παράδειγμα:"
 
 msgid "Tor Onion Service"
 msgstr "Υπηρεσία Tor Onion"
@@ -1500,6 +1506,9 @@ msgstr "Ο χρήστης έχει πρόσβαση διαχειριστή στ�
 
 msgid "Request date"
 msgstr "Ημερομηνία αίτησης"
+
+msgid "ID"
+msgstr "Ταυτότητα"
 
 msgid "Authorization"
 msgstr "Εξουσιοδότηση"

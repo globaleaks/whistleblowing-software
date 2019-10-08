@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -140,6 +140,9 @@ msgstr "Kreditná karta"
 msgid "YOUR NAME"
 msgstr "Vaše meno"
 
+msgid "Label the submission"
+msgstr "Štítok podania"
+
 msgid "Postpone the expiration date"
 msgstr "Odložiť vypršanie platnosti"
 
@@ -164,6 +167,12 @@ msgstr "Súkromné správy"
 msgid "Preview"
 msgstr "Náhľad"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "Posunúť hore"
 
@@ -184,6 +193,9 @@ msgstr "Export"
 
 msgid "Save all"
 msgstr "Uložiť všetko"
+
+msgid "Access control"
+msgstr ""
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -472,9 +484,6 @@ msgstr "Žiaden"
 msgid "Regular expression"
 msgstr "Regulárny výraz"
 
-msgid "Label the submission"
-msgstr "Štítok podania"
-
 msgid "Activate"
 msgstr "Aktivovať"
 
@@ -747,9 +756,6 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Toto nastavenie nemeňte, ibaže naozaj viete, čo robíte."
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -1094,6 +1100,30 @@ msgstr ""
 msgid "Template"
 msgstr "Šablóna"
 
+msgid "Restrict access to specific IP addresses"
+msgstr "Obmedziť prístup k určitým IP adresám"
+
+msgid "Role"
+msgstr "Role"
+
+msgid "Whitelisted IP addresses"
+msgstr "Povolené IP adresy"
+
+msgid "Admin"
+msgstr "Administrátor"
+
+msgid "Recipient"
+msgstr "Príjemca"
+
+msgid "Whistleblower"
+msgstr "Oznamovateľ"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Každá položka musí byť oddelená čiarkou."
+
+msgid "Example:"
+msgstr "Príklad:"
+
 msgid "Configuration in progress"
 msgstr ""
 
@@ -1210,30 +1240,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "Umožnenie pripojenia oznamovateľov cez HTTPS zachováva ich súkromie, ale nie ich anonymitu."
-
-msgid "Restrict access to specific IP addresses"
-msgstr "Obmedziť prístup k určitým IP adresám"
-
-msgid "Role"
-msgstr "Role"
-
-msgid "Whitelisted IP addresses"
-msgstr "Povolené IP adresy"
-
-msgid "Admin"
-msgstr "Administrátor"
-
-msgid "Recipient"
-msgstr "Príjemca"
-
-msgid "Whistleblower"
-msgstr "Oznamovateľ"
-
-msgid "Each entry must be separated with a comma."
-msgstr "Každá položka musí byť oddelená čiarkou."
-
-msgid "Example:"
-msgstr "Príklad:"
 
 msgid "Tor Onion Service"
 msgstr "Služba Tor Onion"
@@ -1497,6 +1503,9 @@ msgstr "Používateľ má prístup k správe týchto funkcií:"
 
 msgid "Request date"
 msgstr "Dátum žiadosti"
+
+msgid "ID"
+msgstr ""
 
 msgid "Authorization"
 msgstr "Autorizácia"

@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,6 +149,9 @@ msgstr "کارت اعتباری"
 msgid "YOUR NAME"
 msgstr "نام شما"
 
+msgid "Label the submission"
+msgstr "برچسب زدن گزارش"
+
 msgid "Postpone the expiration date"
 msgstr "تعویق زمان انقضاء"
 
@@ -173,6 +176,12 @@ msgstr "پیام خصوصی"
 msgid "Preview"
 msgstr "نمایش"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "بالا بردن"
 
@@ -193,6 +202,9 @@ msgstr "دریافت"
 
 msgid "Save all"
 msgstr "ذخیره‌ی همه"
+
+msgid "Access control"
+msgstr ""
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -481,9 +493,6 @@ msgstr "هیـچ"
 msgid "Regular expression"
 msgstr "عبارت باقاعده"
 
-msgid "Label the submission"
-msgstr "برچسب زدن گزارش"
-
 msgid "Activate"
 msgstr "فعال كردن"
 
@@ -756,9 +765,6 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "تنظیمات را فقط در صورتی تغییر دهید که میدانید دارید چه کار می کنید."
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -1103,6 +1109,30 @@ msgstr ""
 msgid "Template"
 msgstr "قالب"
 
+msgid "Restrict access to specific IP addresses"
+msgstr "محدود کردن دسترسی به IP های مشخص"
+
+msgid "Role"
+msgstr "نقش"
+
+msgid "Whitelisted IP addresses"
+msgstr "آدرس های IP قرار گرفته در لیست سفید"
+
+msgid "Admin"
+msgstr "مدیر"
+
+msgid "Recipient"
+msgstr "دریافت کننده"
+
+msgid "Whistleblower"
+msgstr "سوت‌زن"
+
+msgid "Each entry must be separated with a comma."
+msgstr "هر ورودی می بایستی با یک ویرگول جدا شود."
+
+msgid "Example:"
+msgstr "نمونه:"
+
 msgid "Configuration in progress"
 msgstr ""
 
@@ -1219,30 +1249,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "اجازه دادن به افشاگر برای اتصال از طریق HTTPS حریم خصوصی آن ها را حفظ می کند اما گمنامی آن ها را حفظ نخواهند کرد."
-
-msgid "Restrict access to specific IP addresses"
-msgstr "محدود کردن دسترسی به IP های مشخص"
-
-msgid "Role"
-msgstr "نقش"
-
-msgid "Whitelisted IP addresses"
-msgstr "آدرس های IP قرار گرفته در لیست سفید"
-
-msgid "Admin"
-msgstr "مدیر"
-
-msgid "Recipient"
-msgstr "دریافت کننده"
-
-msgid "Whistleblower"
-msgstr "سوت‌زن"
-
-msgid "Each entry must be separated with a comma."
-msgstr "هر ورودی می بایستی با یک ویرگول جدا شود."
-
-msgid "Example:"
-msgstr "نمونه:"
 
 msgid "Tor Onion Service"
 msgstr "سرویس پیازی تور"
@@ -1506,6 +1512,9 @@ msgstr "کاربر دارای دسترسی مدیریتی به ویژگی های
 
 msgid "Request date"
 msgstr "تاریخ درخواست"
+
+msgid "ID"
+msgstr "مشخصات "
 
 msgid "Authorization"
 msgstr "احراز هویت"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -133,6 +133,9 @@ msgstr "KREDITNA KARTICA"
 msgid "YOUR NAME"
 msgstr "VAŠE IME"
 
+msgid "Label the submission"
+msgstr "Označi prispevek"
+
 msgid "Postpone the expiration date"
 msgstr "Preloži rok trajanja"
 
@@ -157,6 +160,12 @@ msgstr "Zasebna sporočila"
 msgid "Preview"
 msgstr "Predogled"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "Premakni gor"
 
@@ -177,6 +186,9 @@ msgstr "Izvozi"
 
 msgid "Save all"
 msgstr "Shrani vse"
+
+msgid "Access control"
+msgstr ""
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -465,9 +477,6 @@ msgstr "Ni podatka"
 msgid "Regular expression"
 msgstr ""
 
-msgid "Label the submission"
-msgstr "Označi prispevek"
-
 msgid "Activate"
 msgstr "Aktiviraj"
 
@@ -740,9 +749,6 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr ""
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -1087,6 +1093,30 @@ msgstr ""
 msgid "Template"
 msgstr "Predloga"
 
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Role"
+msgstr "Vloga"
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Recipient"
+msgstr "Prejemnik"
+
+msgid "Whistleblower"
+msgstr "Žvižgač"
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "Primer:"
+
 msgid "Configuration in progress"
 msgstr ""
 
@@ -1203,30 +1233,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr ""
-
-msgid "Restrict access to specific IP addresses"
-msgstr ""
-
-msgid "Role"
-msgstr "Vloga"
-
-msgid "Whitelisted IP addresses"
-msgstr ""
-
-msgid "Admin"
-msgstr "Admin"
-
-msgid "Recipient"
-msgstr "Prejemnik"
-
-msgid "Whistleblower"
-msgstr "Žvižgač"
-
-msgid "Each entry must be separated with a comma."
-msgstr ""
-
-msgid "Example:"
-msgstr "Primer:"
 
 msgid "Tor Onion Service"
 msgstr ""
@@ -1490,6 +1496,9 @@ msgstr ""
 
 msgid "Request date"
 msgstr "Datum zahtevka"
+
+msgid "ID"
+msgstr ""
 
 msgid "Authorization"
 msgstr "Avtorizacija"

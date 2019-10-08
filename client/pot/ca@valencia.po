@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -142,6 +142,9 @@ msgstr "TARGETA DE CRÈDIT"
 msgid "YOUR NAME"
 msgstr "EL SEU NOM"
 
+msgid "Label the submission"
+msgstr "Etiqueta l'enviament"
+
 msgid "Postpone the expiration date"
 msgstr "Pospose la data de caducitat"
 
@@ -166,6 +169,12 @@ msgstr "Missatges privats"
 msgid "Preview"
 msgstr "Vista prèvia"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "Pujar"
 
@@ -186,6 +195,9 @@ msgstr "Exportar"
 
 msgid "Save all"
 msgstr "Guarde-ho tot"
+
+msgid "Access control"
+msgstr ""
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -474,9 +486,6 @@ msgstr "Cap"
 msgid "Regular expression"
 msgstr "Expressió regular"
 
-msgid "Label the submission"
-msgstr "Etiqueta l'enviament"
-
 msgid "Activate"
 msgstr "Activa"
 
@@ -749,9 +758,6 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Ajustar aquesta configuració només si sap el que està fent."
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -1096,6 +1102,30 @@ msgstr ""
 msgid "Template"
 msgstr "Plantilla"
 
+msgid "Restrict access to specific IP addresses"
+msgstr "Restringir l'accés a les direccions IP específiques"
+
+msgid "Role"
+msgstr "Tasca"
+
+msgid "Whitelisted IP addresses"
+msgstr "Direccions IP en llista blanca"
+
+msgid "Admin"
+msgstr "Administrador"
+
+msgid "Recipient"
+msgstr "Destinatari"
+
+msgid "Whistleblower"
+msgstr "Informador"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Cada entrada ha d'estar separada per una cometa."
+
+msgid "Example:"
+msgstr "Exemple:"
+
 msgid "Configuration in progress"
 msgstr ""
 
@@ -1212,30 +1242,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "Permetre que els informadors es puguen connectar amb HTTPS protegeix la seua privadesa, però no el seu anonimat."
-
-msgid "Restrict access to specific IP addresses"
-msgstr "Restringir l'accés a les direccions IP específiques"
-
-msgid "Role"
-msgstr "Tasca"
-
-msgid "Whitelisted IP addresses"
-msgstr "Direccions IP en llista blanca"
-
-msgid "Admin"
-msgstr "Administrador"
-
-msgid "Recipient"
-msgstr "Destinatari"
-
-msgid "Whistleblower"
-msgstr "Informador"
-
-msgid "Each entry must be separated with a comma."
-msgstr "Cada entrada ha d'estar separada per una cometa."
-
-msgid "Example:"
-msgstr "Exemple:"
 
 msgid "Tor Onion Service"
 msgstr "Servei Tor Onion"
@@ -1499,6 +1505,9 @@ msgstr "L'usuari té accés administratiu a les funcions següents:"
 
 msgid "Request date"
 msgstr "Data de sol·licitud"
+
+msgid "ID"
+msgstr ""
 
 msgid "Authorization"
 msgstr "Autorització"

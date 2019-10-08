@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -130,6 +130,9 @@ msgstr "საკრედიტო ბარათი"
 msgid "YOUR NAME"
 msgstr "თქვენი სახელი"
 
+msgid "Label the submission"
+msgstr ""
+
 msgid "Postpone the expiration date"
 msgstr "გადადეთ ვადის გასვლის თარიღი"
 
@@ -154,6 +157,12 @@ msgstr "პირადი შეტყობინებები"
 msgid "Preview"
 msgstr "Preview"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "გადატანა up"
 
@@ -174,6 +183,9 @@ msgstr "ექსპორტი"
 
 msgid "Save all"
 msgstr "შენახვა ყველა"
+
+msgid "Access control"
+msgstr ""
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -462,9 +474,6 @@ msgstr "არა"
 msgid "Regular expression"
 msgstr ""
 
-msgid "Label the submission"
-msgstr ""
-
 msgid "Activate"
 msgstr ""
 
@@ -737,9 +746,6 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr ""
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -1084,6 +1090,30 @@ msgstr ""
 msgid "Template"
 msgstr "თარგი"
 
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Role"
+msgstr "როლი"
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Admin"
+msgstr "admin"
+
+msgid "Recipient"
+msgstr "მიმღები"
+
+msgid "Whistleblower"
+msgstr ""
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "მაგალითად:"
+
 msgid "Configuration in progress"
 msgstr ""
 
@@ -1200,30 +1230,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr ""
-
-msgid "Restrict access to specific IP addresses"
-msgstr ""
-
-msgid "Role"
-msgstr "როლი"
-
-msgid "Whitelisted IP addresses"
-msgstr ""
-
-msgid "Admin"
-msgstr "admin"
-
-msgid "Recipient"
-msgstr "მიმღები"
-
-msgid "Whistleblower"
-msgstr ""
-
-msgid "Each entry must be separated with a comma."
-msgstr ""
-
-msgid "Example:"
-msgstr "მაგალითად:"
 
 msgid "Tor Onion Service"
 msgstr ""
@@ -1487,6 +1493,9 @@ msgstr ""
 
 msgid "Request date"
 msgstr "მოთხოვნა თარიღი"
+
+msgid "ID"
+msgstr ""
 
 msgid "Authorization"
 msgstr "ავტორიზაცია"

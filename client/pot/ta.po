@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -133,6 +133,9 @@ msgstr "கடன் அட்டை"
 msgid "YOUR NAME"
 msgstr "உங்கள் பெயர்"
 
+msgid "Label the submission"
+msgstr "சமர்ப்பிப்புக்கு லேபிளிடுங்கள்"
+
 msgid "Postpone the expiration date"
 msgstr "காலாவதி தேதி ஒத்தி"
 
@@ -157,6 +160,12 @@ msgstr "தனியார் செய்திகளை"
 msgid "Preview"
 msgstr "முன்னோட்டம்"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "மேலே நகர்த்து"
 
@@ -177,6 +186,9 @@ msgstr "ஏற்றுமதி"
 
 msgid "Save all"
 msgstr "அனைத்தையும் சேமி"
+
+msgid "Access control"
+msgstr ""
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -465,9 +477,6 @@ msgstr "எதுவுமில்லை"
 msgid "Regular expression"
 msgstr "வழக்கமான வெளிப்பாடு"
 
-msgid "Label the submission"
-msgstr "சமர்ப்பிப்புக்கு லேபிளிடுங்கள்"
-
 msgid "Activate"
 msgstr "செயல்படுத்தவும்"
 
@@ -740,9 +749,6 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "நீங்கள் என்ன செய்கிறீர்கள் என்பதை அறிந்தால் மட்டுமே இந்த அமைப்பை மாற்றவும்."
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -1087,6 +1093,30 @@ msgstr ""
 msgid "Template"
 msgstr "டெம்ப்ளேட்"
 
+msgid "Restrict access to specific IP addresses"
+msgstr "குறிப்பிட்ட ஐபி முகவரிகளுக்கு அணுகல் கட்டுப்படுத்தவும்"
+
+msgid "Role"
+msgstr "பங்கு"
+
+msgid "Whitelisted IP addresses"
+msgstr "அனுமதிக்கப்பட்ட IP முகவரிகள்"
+
+msgid "Admin"
+msgstr "நிர்வாகம்"
+
+msgid "Recipient"
+msgstr "பெறுநரின்"
+
+msgid "Whistleblower"
+msgstr "விசில் ப்ளோயர்"
+
+msgid "Each entry must be separated with a comma."
+msgstr "ஒவ்வொரு நுழைவு ஒரு கமாவால் பிரிக்கப்பட்டிருக்க வேண்டும்."
+
+msgid "Example:"
+msgstr "உதாரணமாக:"
+
 msgid "Configuration in progress"
 msgstr ""
 
@@ -1203,30 +1233,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "HTTPS ஐ இணைக்க விசையைப் பிளேயர்கள் தங்கள் தனியுரிமையை பாதுகாக்கின்றன, ஆனால் அவர்களின் பெயரை அல்ல."
-
-msgid "Restrict access to specific IP addresses"
-msgstr "குறிப்பிட்ட ஐபி முகவரிகளுக்கு அணுகல் கட்டுப்படுத்தவும்"
-
-msgid "Role"
-msgstr "பங்கு"
-
-msgid "Whitelisted IP addresses"
-msgstr "அனுமதிக்கப்பட்ட IP முகவரிகள்"
-
-msgid "Admin"
-msgstr "நிர்வாகம்"
-
-msgid "Recipient"
-msgstr "பெறுநரின்"
-
-msgid "Whistleblower"
-msgstr "விசில் ப்ளோயர்"
-
-msgid "Each entry must be separated with a comma."
-msgstr "ஒவ்வொரு நுழைவு ஒரு கமாவால் பிரிக்கப்பட்டிருக்க வேண்டும்."
-
-msgid "Example:"
-msgstr "உதாரணமாக:"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion சேவை"
@@ -1490,6 +1496,9 @@ msgstr "பின்வரும் அம்சங்களுக்கு ந�
 
 msgid "Request date"
 msgstr "கோரிக்கை தேதி"
+
+msgid "ID"
+msgstr ""
 
 msgid "Authorization"
 msgstr "அங்கீகார"

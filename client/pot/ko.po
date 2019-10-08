@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -131,6 +131,9 @@ msgstr "신용 카드"
 msgid "YOUR NAME"
 msgstr "당신의 이름"
 
+msgid "Label the submission"
+msgstr ""
+
 msgid "Postpone the expiration date"
 msgstr "만료일 연기"
 
@@ -155,6 +158,12 @@ msgstr "개인 메시지"
 msgid "Preview"
 msgstr "시사"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "위로 이동"
 
@@ -175,6 +184,9 @@ msgstr "수출"
 
 msgid "Save all"
 msgstr "모든 저장"
+
+msgid "Access control"
+msgstr "접근 제어"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -463,9 +475,6 @@ msgstr "없음"
 msgid "Regular expression"
 msgstr ""
 
-msgid "Label the submission"
-msgstr ""
-
 msgid "Activate"
 msgstr "활성화"
 
@@ -738,9 +747,6 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr ""
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -1085,6 +1091,30 @@ msgstr ""
 msgid "Template"
 msgstr "주형"
 
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Role"
+msgstr "역할"
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Admin"
+msgstr "관리자"
+
+msgid "Recipient"
+msgstr "받는 사람"
+
+msgid "Whistleblower"
+msgstr ""
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "예:"
+
 msgid "Configuration in progress"
 msgstr ""
 
@@ -1201,30 +1231,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr ""
-
-msgid "Restrict access to specific IP addresses"
-msgstr ""
-
-msgid "Role"
-msgstr "역할"
-
-msgid "Whitelisted IP addresses"
-msgstr ""
-
-msgid "Admin"
-msgstr "관리자"
-
-msgid "Recipient"
-msgstr "받는 사람"
-
-msgid "Whistleblower"
-msgstr ""
-
-msgid "Each entry must be separated with a comma."
-msgstr ""
-
-msgid "Example:"
-msgstr "예:"
 
 msgid "Tor Onion Service"
 msgstr ""
@@ -1488,6 +1494,9 @@ msgstr ""
 
 msgid "Request date"
 msgstr "요청 날짜"
+
+msgid "ID"
+msgstr ""
 
 msgid "Authorization"
 msgstr "권한 부여"

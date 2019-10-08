@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-06 19:11+0000\n"
+"PO-Revision-Date: 2019-10-08 13:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,6 +136,9 @@ msgstr "信用卡"
 msgid "YOUR NAME"
 msgstr "你的名字"
 
+msgid "Label the submission"
+msgstr "分類此次提交"
+
 msgid "Postpone the expiration date"
 msgstr "延後到期日"
 
@@ -160,6 +163,12 @@ msgstr "私人訊息"
 msgid "Preview"
 msgstr "預覧"
 
+msgid "The whistleblower has already read the last update"
+msgstr ""
+
+msgid "The whistleblower has not read the last update yet"
+msgstr ""
+
 msgid "Move up"
 msgstr "向上移動"
 
@@ -180,6 +189,9 @@ msgstr "匯出"
 
 msgid "Save all"
 msgstr "儲存全部"
+
+msgid "Access control"
+msgstr "存取控制"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -468,9 +480,6 @@ msgstr "None"
 msgid "Regular expression"
 msgstr "正規表達"
 
-msgid "Label the submission"
-msgstr "分類此次提交"
-
 msgid "Activate"
 msgstr "激活"
 
@@ -743,9 +752,6 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "唯有知道自己在做什麼的情況下才進行此處設定的調整"
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Enable password reset"
 msgstr ""
 
 msgid "Password change interval"
@@ -1090,6 +1096,30 @@ msgstr ""
 msgid "Template"
 msgstr "模版"
 
+msgid "Restrict access to specific IP addresses"
+msgstr "限特定 IP 地址之讀取"
+
+msgid "Role"
+msgstr "角色"
+
+msgid "Whitelisted IP addresses"
+msgstr "IP 地址白名單"
+
+msgid "Admin"
+msgstr "管理者"
+
+msgid "Recipient"
+msgstr "收件者"
+
+msgid "Whistleblower"
+msgstr "吹哨揭密者"
+
+msgid "Each entry must be separated with a comma."
+msgstr "每一筆條目必須用逗號分隔。"
+
+msgid "Example:"
+msgstr "例子："
+
 msgid "Configuration in progress"
 msgstr "設定正在進行中"
 
@@ -1206,30 +1236,6 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "可讓吹哨揭弊者透過連接 HTTPS 來保護其隱私但這無法保持匿名。"
-
-msgid "Restrict access to specific IP addresses"
-msgstr "限特定 IP 地址之讀取"
-
-msgid "Role"
-msgstr "角色"
-
-msgid "Whitelisted IP addresses"
-msgstr "IP 地址白名單"
-
-msgid "Admin"
-msgstr "管理者"
-
-msgid "Recipient"
-msgstr "收件者"
-
-msgid "Whistleblower"
-msgstr "吹哨揭密者"
-
-msgid "Each entry must be separated with a comma."
-msgstr "每一筆條目必須用逗號分隔。"
-
-msgid "Example:"
-msgstr "例子："
 
 msgid "Tor Onion Service"
 msgstr "Tor 洋瞛服務 "
@@ -1493,6 +1499,9 @@ msgstr "管理級的用戶可以有以下權限功能："
 
 msgid "Request date"
 msgstr "請求日期"
+
+msgid "ID"
+msgstr "識別"
 
 msgid "Authorization"
 msgstr "授權"
