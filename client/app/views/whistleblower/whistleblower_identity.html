@@ -5,7 +5,7 @@
 	<span>
           <span data-ng-if="tip.data.whistleblower_identity" data-translate>Identity</span>
           <span data-ng-if="!tip.data.whistleblower_identity">{{whistleblower_identity_field.label}}</span>
-          <span data-ng-if="tip.data.whistleblower_identity_provided" class="btn btn-sm btn-link"><span data-ng-if="collapsed" data-translate>show</span><span data-ng-if="!collapsed" data-translate>hide</span></span>
+          <span data-ng-if="tip.data.whistleblower_identity_provided" class="btn btn-sm btn-link"><span data-ng-if="collapsed" data-translate>Show</span><span data-ng-if="!collapsed" data-translate>Hide</span></span>
 	</span>
         <span class="float-right">
           <i data-ng-if="!collapsed" class="fa fa-caret-square-up" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>

@@ -9,8 +9,8 @@ GLClient.controller("AdminNetworkCtrl", ["$scope", "$http", function($scope, $ht
       template: "views/admin/network/tor.html"
     },
     {
-      title:"IP access control",
-      template: "views/admin/network/ip_access_control.html"
+      title:"Access control",
+      template: "views/admin/network/access_control.html"
     }
   ];
 
