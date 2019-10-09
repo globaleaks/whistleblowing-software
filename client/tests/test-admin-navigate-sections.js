@@ -25,7 +25,7 @@ describe("verify navigation of admin sections", function() {
     await element(by.cssContainingText("a", "Network settings")).click();
     await element(by.cssContainingText("ul li a", "Tor")).click();
     await element(by.cssContainingText("ul li a", "HTTPS")).click();
-    await element(by.cssContainingText("ul li a", "Access control").click();
+    await element(by.cssContainingText("ul li a", "Access control")).click();
 
     await element(by.cssContainingText("a", "Advanced settings")).click();
     await element(by.cssContainingText("ul li a", "Main configuration")).click();
