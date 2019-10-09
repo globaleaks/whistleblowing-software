@@ -2,7 +2,7 @@
   <div id="NodePresentation" data-ng-if="node.presentation">{{::node.presentation}}</div>
 
   <div id="WhistleblowerBox" class="d-block mx-auto">
-    <div id="WhistleblowerSubmitBoxButton" data-ng-show="node.disable_submissions || !node.accept_submissions || (!node.https_whistleblower && !connection.tor)">
+    <div id="WhistleblowerSubmitBoxButton" data-ng-show="node.disable_submissions || (!node.https_whistleblower && !connection.tor)">
       <button class="btn btn-danger disabled">
         <i class="fa fa-ban-circle"></i>
         <span data-translate>Submissions disabled</span>
@@ -11,7 +11,7 @@
     <div data-ng-show="!node.https_whistleblower && !connection.tor">
       <p class="text-danger" data-translate>You are connecting to the server without anonymity and this server supports only anonymous submissions</p>
     </div>
-    <div data-ng-show="!node.disable_submissions && node.accept_submissions && (node.https_whistleblower || connection.tor)">
+    <div data-ng-show="!node.disable_submissions && (node.https_whistleblower || connection.tor)">
       <div id="WhistleblowerSubmitBox">
         <div id="WhistleblowerSubmitBoxHeader">{{::node.whistleblowing_question}}</div>
         <div id="WhistleblowerSubmitBoxButton">

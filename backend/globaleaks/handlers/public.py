@@ -4,7 +4,7 @@
 import copy
 
 from sqlalchemy import or_
-from twisted.internet.defer import inlineCallbacks, returnValue
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers.base import BaseHandler
@@ -14,7 +14,6 @@ from globaleaks.models import get_localized_values
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.orm import transact
 from globaleaks.state import State
-from globaleaks.utils.ip import check_ip
 from globaleaks.utils.sets import merge_dicts
 
 
@@ -403,17 +402,8 @@ class PublicResource(BaseHandler):
     check_roles = 'none'
     cache_resource = True
 
-    @inlineCallbacks
     def get(self):
         """
         Get the public resource
         """
-        ret = yield get_public_resources(self.request.tid, self.request.language)
-
-        ret['node']['accept_submissions'] = State.accept_submissions
-
-        if (self.state.tenant_cache[self.request.tid]['ip_filter_whistleblower_enable'] and
-            not check_ip(self.state.tenant_cache[self.request.tid]['ip_filter_whistleblower'], self.request.client_ip)):
-            ret['node']['accept_submissions'] = False
-
-        returnValue(ret)
+        return get_public_resources(self.request.tid, self.request.language)
