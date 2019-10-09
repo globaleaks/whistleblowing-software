@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 13:24+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-10-09 12:42+0000\n"
+"Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -163,10 +163,10 @@ msgid "Preview"
 msgstr "プレビュー"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "この内部告発者は既に最後の更新を読んでいます"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "この内部告発者はまだ最後の更新を読んでいません"
 
 msgid "Move up"
 msgstr "上に移動"
@@ -634,6 +634,9 @@ msgstr "実行中"
 
 msgid "Not running"
 msgstr "実行していません"
+
+msgid "Send a test email to your email address."
+msgstr "お使いのメールアドレスにテストメールを送信します。"
 
 msgid "Select the context of your submission:"
 msgstr "提出のコンテキストを選択してください:"

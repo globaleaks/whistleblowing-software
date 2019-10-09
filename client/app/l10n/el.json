@@ -201,6 +201,7 @@
   "Last": "Τελευταίο",
   "Running": "Εκτελείται",
   "Not running": "Δεν εκτελείται",
+  "Send a test email to your email address.": "Στείλτε ένα δοκιμαστικό email στη διεύθυνση ηλεκτρονικού ταχυδρομείου σας.",
   "Select the context of your submission:": "Επιλέξτε τη θεματική ενότητα της υποβολής σας:",
   "Warning! You are not anonymous.": "Προσοχή! Δεν είστε ανώνυμος.",
   "Sending submissions over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the submission anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers like Internet Explorer, Firefox, Chrome, Opera etc.": "Στέλνοντας υποβολές μέσω HTTPS εκθέτει την πράξη ότι το κάνετε, αλλά όχι το περιεχόμενο.\n\nΕπίσης, κρύβοντας το γεγονός ότι υποβάλετε κάτι, καθιστά την υποβολή ανώνυμη, κάτι που συνιστούμε πολύ.\n\nΑυτό μπορεί να επιτευχθεί με τη χρήση του Περιηγητή Tor, που προσφέρει ανωνυμοποίηση που δεν είναι εφικτή με άλλους περιηγητές όπως ο Internet Explorer, Firefox, Chrome, Opera, κλπ.",

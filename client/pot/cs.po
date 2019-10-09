@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 13:24+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-10-08 16:35+0000\n"
+"Last-Translator: Mr Higgins\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -640,6 +640,9 @@ msgstr "Běží"
 
 msgid "Not running"
 msgstr "Neběží"
+
+msgid "Send a test email to your email address."
+msgstr "Poslat test email na Vaši email adresu."
 
 msgid "Select the context of your submission:"
 msgstr "Vyberte kontext vašeho podání"

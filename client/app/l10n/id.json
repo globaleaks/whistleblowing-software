@@ -201,6 +201,7 @@
   "Last": "Terakhir",
   "Running": "menjalankan",
   "Not running": "tidak berjalan",
+  "Send a test email to your email address.": "Send a test email to your email address.",
   "Select the context of your submission:": "Pilih konteks pengiriman Anda",
   "Warning! You are not anonymous.": "Peringatan! Identitas Anda diketahui.",
   "Sending submissions over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the submission anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers like Internet Explorer, Firefox, Chrome, Opera etc.": "Mengirim kiriman melalui HTTPS akan meyingkap tindakan tersebut, tapi tidak kontennya.\n\nJuga, menyembunyikan fakta bahwa Anda mengirim sesuatu yang membuat kiriman Anda anonim, dimana hal ini sangat direkomendasikan.\n\nHal ini dapat dicapai dengan menggunakan Peramban Tor, menyediakan anonimitas yang tidak tersedia di peramban lain seperti Internet Explorer, Firefox, Chrome, Opera dsb.",

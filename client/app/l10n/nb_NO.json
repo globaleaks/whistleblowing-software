@@ -201,6 +201,7 @@
   "Last": "Sist",
   "Running": "Kjører",
   "Not running": "Kjører ikke",
+  "Send a test email to your email address.": "Send en test-e-post til din e-postadresse.",
   "Select the context of your submission:": "Velg bindeleddsinformasjonen tilhørende din innsendelse:",
   "Warning! You are not anonymous.": "Advarsel! Du er ikke anonym.",
   "Sending submissions over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the submission anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers like Internet Explorer, Firefox, Chrome, Opera etc.": "Innsendelser over HTTPS avslører utførelsen derav, men ikke innholdet.\n\nNår du også skjuler at du sender inn noe, kalles dette anonym innsendelse, hvilket betyr at du nyter full beskyttelse.\n\nAnonyme innsendelser anbefales og kan kjøres gjennom Tor-nettleseren. En spesiell nettleser som anonymiserer din kommunikasjon med plattformen, ulikt Internet Explorer, Firefox, Chrome, Opera osv.",

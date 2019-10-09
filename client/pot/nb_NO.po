@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 13:24+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-10-08 16:35+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -632,6 +632,9 @@ msgstr "Kjører"
 
 msgid "Not running"
 msgstr "Kjører ikke"
+
+msgid "Send a test email to your email address."
+msgstr "Send en test-e-post til din e-postadresse."
 
 msgid "Select the context of your submission:"
 msgstr "Velg bindeleddsinformasjonen tilhørende din innsendelse:"

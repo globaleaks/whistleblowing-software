@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 13:24+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-10-08 16:35+0000\n"
+"Last-Translator: Communia <ameaneantie@riseup.net>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -663,6 +663,9 @@ msgstr "Executando"
 
 msgid "Not running"
 msgstr "Não executando"
+
+msgid "Send a test email to your email address."
+msgstr "Enviar um e-mail de teste para o seu endereco e-mail"
 
 msgid "Select the context of your submission:"
 msgstr "Selecionar o assunto do seu envio:"

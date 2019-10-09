@@ -201,6 +201,7 @@
   "Last": "Dernière",
   "Running": "Fonctionne",
   "Not running": "Ne fonctionne pas",
+  "Send a test email to your email address.": "Send a test email to your email address.",
   "Select the context of your submission:": "Choisir le contexte de votre envoi :",
   "Warning! You are not anonymous.": "Avertissement ! Vous n’êtes pas anonyme.",
   "Sending submissions over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the submission anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers like Internet Explorer, Firefox, Chrome, Opera etc.": "Le fait même de transmettre des envois par HTTPS révèle les transmissions, mais pas leur contenu.\n\nSi vous cachez aussi le fait que vous envoyez quelque chose, nous avons alors un envoi anonyme, ce qui est fortement recommandé.\n\nLe navigateur Tor permet de le faire en fournissant une anonymisation que les autres navigateurs tels qu’Internet Explorer, Firefox, Chrome, Opera, etc. ne proposent pas.",

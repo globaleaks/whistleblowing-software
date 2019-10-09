@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 13:24+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-10-08 16:35+0000\n"
+"Last-Translator: ulkar!(($-2017 <ulkernatiqqizis@gmail.com>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -634,6 +634,9 @@ msgstr "İşləyir"
 
 msgid "Not running"
 msgstr "İşləmir"
+
+msgid "Send a test email to your email address."
+msgstr "E-mail ünvanınıza test maili göndərin"
 
 msgid "Select the context of your submission:"
 msgstr "Təqdimatınızın məzmunu seçin:"

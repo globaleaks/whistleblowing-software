@@ -201,6 +201,7 @@
   "Last": "Posledné",
   "Running": "Beží",
   "Not running": "Nebeží",
+  "Send a test email to your email address.": "Send a test email to your email address.",
   "Select the context of your submission:": "Vyberte kontext vášho podania",
   "Warning! You are not anonymous.": "Varovanie! Nie ste anonymný.",
   "Sending submissions over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the submission anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers like Internet Explorer, Firefox, Chrome, Opera etc.": "Počas odosielania informácií cez HTTPS je viditeľné, že tak robíte, nie je však jednoducho zistiteľný obsah správ. \n\n Takisto utajenie Vašej aktivity podstatne chráni anonymitu, a preto Vám ho veľmi odporúčame. \n\n Toho možno dosiahnuť použitím prehliadača Tor Browser, ktorý obsahuje anonymizujúce nastavenia, ktoré nie sú bežne k dispozícii v ostatných prehliadačoch ako Internet Explorer, Firefox, Chrome, Opera, atď.",

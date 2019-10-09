@@ -201,6 +201,7 @@
   "Last": "Last",
   "Running": "இயங்கும்",
   "Not running": "இயங்கவில்லை",
+  "Send a test email to your email address.": "Send a test email to your email address.",
   "Select the context of your submission:": "உங்கள் சமர்ப்பிப்பு சூழலில் தேர்வு:",
   "Warning! You are not anonymous.": "எச்சரிக்கை! நீங்கள் அநாமதேய இல்லை.",
   "Sending submissions over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the submission anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers like Internet Explorer, Firefox, Chrome, Opera etc.": "நீங்கள் ஏதாவது சமர்ப்பிக்கிறீர்கள் என்ற உண்மையை மறைத்து, சமர்ப்பிப்பதை அநாமதேயமான, இது வலுவாக பரிந்துரைக்கப்படுகிறது. \n\n உலாவி இதைப் பயன்படுத்தி இன்டர்நெட் எக்ஸ்ப்ளோரர், பயர்பாக்ஸ், குரோம், ஒபேரா போன்ற பிற உலாவிகளில் காணப்படாத ஒரு டொமைன் உலாவியை வழங்குகின்றது.",

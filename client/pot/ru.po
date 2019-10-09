@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 13:24+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-10-08 16:35+0000\n"
+"Last-Translator: Kristina Tyskiewicz <savannah5k@yahoo.com>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -653,6 +653,9 @@ msgstr "Запущен"
 
 msgid "Not running"
 msgstr "Не запущен"
+
+msgid "Send a test email to your email address."
+msgstr "Послать тестовый e-mail на вашу эл. почту"
 
 msgid "Select the context of your submission:"
 msgstr "Выберите контекст для ваших материалов:"

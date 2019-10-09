@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 13:24+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-10-08 16:35+0000\n"
+"Last-Translator: Igor <lyricaltumor@gmail.com>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -633,6 +633,9 @@ msgstr "Pokrenuto"
 
 msgid "Not running"
 msgstr "Nije pokrenuto"
+
+msgid "Send a test email to your email address."
+msgstr "Pošaljite testni email na svoju email adresu."
 
 msgid "Select the context of your submission:"
 msgstr "Odaberite kontekst svoje predaje:"

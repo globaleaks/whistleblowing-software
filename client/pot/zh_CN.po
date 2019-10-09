@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 13:24+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-10-08 16:35+0000\n"
+"Last-Translator: Meng San\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -644,6 +644,9 @@ msgstr "正在运行"
 
 msgid "Not running"
 msgstr "未运行"
+
+msgid "Send a test email to your email address."
+msgstr "发送测试邮件至你的邮箱地址。"
 
 msgid "Select the context of your submission:"
 msgstr "选项提交内容类型："
