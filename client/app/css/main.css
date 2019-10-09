@@ -66,6 +66,7 @@ table {
 #HeaderBox {
   color: #FFF;
   background-color: #428bca;
+  padding: 1em;
 }
 
 #HeaderBox:after {
@@ -134,6 +135,15 @@ table {
   background-color: #222;
   color: #FFF;
   font-size: 1em;
+  padding: 1em;
+}
+
+#DemoBadge {
+  padding: 1em;
+}
+
+#ContentBox {
+  padding: 2em;
 }
 
 .title1, .title2, .title3 {
