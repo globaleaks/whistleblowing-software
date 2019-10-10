@@ -1,3 +1,6 @@
+Changes in version 3.11.27 - 2019-10-10
+    Fix typo preventing authentication on old migrated platforms
+
 Changes in version 3.11.26 - 2019-10-09
     Apply minor bugfixing
     Update translations
