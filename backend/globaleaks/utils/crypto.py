@@ -76,7 +76,7 @@ def _hash_scrypt(password, salt):
 
     # old version of globalealeaks have used hexelify in place of base64;
     # the function is still used for compatibility reasons
-    return binascii.hexlify(scrypt.hash(password, salt, N=__GCE.ALGORITM_CONFIGURATION['SCRYPT']['N'])).decode('utf-8')
+    return binascii.hexlify(scrypt.hash(password, salt, N=_GCE.ALGORITM_CONFIGURATION['SCRYPT']['N'])).decode('utf-8')
 
 
 if parse_version(nacl.__version__) >= parse_version('1.2'):
