@@ -21,16 +21,12 @@ class SitemapHandler(BaseHandler):
         data = "<?xml version='1.0' encoding='UTF-8' ?>\n" + \
                "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9' xmlns:xhtml='http://www.w3.org/1999/xhtml'>\n"
 
-        tids = [self.request.tid]
-        if self.request.tid == 1:
-            tids = State.tenant_cache.keys()
+        urls = ['/#/']
 
-        for tid in tids:
-            urls = ['/#/']
+        if State.tenant_cache[self.request.tid].hostname:
+            site = 'https://' + State.tenant_cache[self.request.tid].hostname
 
-            site = 'https://' + State.tenant_cache[tid].hostname
-
-            if tid == 1 and State.tenant_cache[1].enable_signup:
+            if self.request.tid == 1 and State.tenant_cache[1].enable_signup:
                 urls.append('/#/signup')
             else:
                 urls.append('/#/submission')
@@ -41,8 +37,8 @@ class SitemapHandler(BaseHandler):
                         "    <changefreq>weekly</changefreq>\n" + \
                         "    <priority>1.00</priority>\n"
 
-                for lang in sorted(State.tenant_cache[tid].languages_enabled):
-                    if lang != State.tenant_cache[tid].default_language:
+                for lang in sorted(State.tenant_cache[self.request.tid].languages_enabled):
+                    if lang != State.tenant_cache[self.request.tid].default_language:
                         l = lang.lower()
                         l = l.replace('_', '-')
                         data += "<xhtml:link rel='alternate' hreflang='" + l + "' href='" + site + url + "?lang=" + lang + "' />\n"
