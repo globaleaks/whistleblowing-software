@@ -24,7 +24,7 @@ body {
   }
 }
 
-#ContenBox, #NoScript {
+#ContenBox, #NoScript, #BrowserNotSupported {
   padding: 2em;
 }
 
