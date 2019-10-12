@@ -17,3 +17,7 @@ TODO
 Reset your password
 -------------------
 TODO
+
+Enable Two-Factor-Authentication (2FA)
+--------------------------------------
+TODO
