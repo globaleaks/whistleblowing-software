@@ -20,12 +20,10 @@ controller("ConfirmableDialogCtrl", ["$scope", "$uibModalInstance", "arg", funct
   };
 }]);
 
-GLClient.controller("DisclaimerModalCtrl", ["$scope", "$location", "$uibModalInstance",
-                    function($scope, $location, $uibModalInstance) {
+GLClient.controller("DisclaimerModalCtrl", ["$scope", "$rootScope", "$uibModalInstance",
+                    function($scope, $rootScope, $uibModalInstance) {
   $scope.ok = function () {
     $uibModalInstance.close();
-    if ($location.path() === "/") {
-      $location.path("/submission");
-    }
+    $rootScope.setPage('submissionpage');
   };
 }]);
