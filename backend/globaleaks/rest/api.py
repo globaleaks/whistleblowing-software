@@ -189,7 +189,7 @@ api_spec = [
 class APIResourceWrapper(Resource):
     _registry = None
     isLeaf = True
-    method_map = {'get': 200, 'post': 201, 'put': 202, 'delete': 200}
+    method_map = {'head': 200, 'get': 200, 'post': 201, 'put': 202, 'delete': 200}
 
     def __init__(self):
         Resource.__init__(self)
@@ -211,7 +211,7 @@ class APIResourceWrapper(Resource):
 
             if not hasattr(handler, '_decorated'):
                 handler._decorated = True
-                for m in ['get', 'put', 'post', 'delete']:
+                for m in ['head', 'get', 'put', 'post', 'delete']:
                     if hasattr(handler, m):
                         decorators.decorate_method(handler, m)
 
@@ -382,6 +382,9 @@ class APIResourceWrapper(Resource):
             return b''
 
         method = request.method.lower().decode('utf-8')
+
+        if method == 'head':
+            method = 'get'
 
         if method not in self.method_map.keys() or not hasattr(handler, method):
             self.handle_exception(errors.MethodNotImplemented(), request)
