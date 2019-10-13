@@ -36,9 +36,5 @@ var isBrowserCompatible = function() {
 if (!isBrowserCompatible()) {
   document.getElementById("BrowserSupported").style.display = "none";
   document.getElementById("BrowserNotSupported").style.display = "block";
-} else {
-  var script = document.createElement("script");
-  script.setAttribute("type", "text/javascript");
-  script.setAttribute("src", "js/scripts.js");
-  document.getElementsByTagName("body")[0].appendChild(script);
+  throw new Error("Client not supported");
 }

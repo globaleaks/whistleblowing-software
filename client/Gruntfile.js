@@ -242,10 +242,6 @@ module.exports = function(grunt) {
               replacement: function () {
                 return fileToDataURI("tmp/css/styles.css");
               }
-            },
-            {
-              pattern: "<script src=\"js/scripts.js\"></script>",
-              replacement: "<script src=\"js/loader.js\"></script>"
             }
           ]
         }
