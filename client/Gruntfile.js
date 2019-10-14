@@ -238,10 +238,8 @@ module.exports = function(grunt) {
         options: {
           replacements: [
             {
-              pattern: "css/styles.css",
-              replacement: function () {
-                return fileToDataURI("tmp/css/styles.css");
-              }
+              pattern: "<link rel=\"stylesheet\" href=\"css/styles.css\">",
+              replacement: ""
             }
           ]
         }
@@ -255,7 +253,7 @@ module.exports = function(grunt) {
         },
         expand: true,
         cwd: "build/",
-        src: ["index.html", "license.txt", "js/*"],
+        src: ["index.html", "license.txt", "css/*", "js/*"],
         dest: "build/",
         rename: function(dest, src) {
           return dest + "/" + src + ".gz";
@@ -328,6 +326,8 @@ module.exports = function(grunt) {
 
     grunt.file.copy("tmp/index.html", "build/index.html");
     grunt.file.copy("tmp/license.txt", "build/license.txt");
+    grunt.file.copy("tmp/css/loader.css", "build/css/loader.css");
+    grunt.file.copy("tmp/css/styles.css", "build/css/styles.css");
     grunt.file.copy("tmp/js/loader.js", "build/js/loader.js");
     grunt.file.copy("tmp/js/scripts.js", "build/js/scripts.js");
     grunt.file.copy("tmp/js/plugin.js", "build/js/plugin.js");

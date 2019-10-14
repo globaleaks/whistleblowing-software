@@ -12,6 +12,13 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="s/favicon" />
 
+    <link rel="preload" href="css/loader.css" as="style" />
+    <link rel="preload" href="js/loader.js" as="script" />
+    <link rel="preload" href="css/styles.css" as="style" />
+    <link rel="preload" href="js/scripts.js" as="script" />
+
+    <link rel="stylesheet" href="css/loader.css" />
+
     <!-- build:css css/styles.css -->
     <link rel="stylesheet" href="lib/css/fontawesome.css" />
     <link rel="stylesheet" href="lib/css/solid.css" />
@@ -19,7 +26,6 @@
     <link rel="stylesheet" href="lib/css/ui-bootstrap-csp.css" />
     <link rel="stylesheet" href="lib/css/select.min.css" />
     <link rel="stylesheet" href="lib/css/angular-csp.css" />
-    <link rel="stylesheet" href="css/loader.css" />
     <link rel="stylesheet" href="css/fontawesome-rtl-fix.css" />
     <link rel="stylesheet" href="css/ui-select-bootstrap4-fix.css" />
     <link rel="stylesheet" href="css/main.css" />
@@ -83,17 +89,18 @@
         <footer id="FooterBox" data-ng-if="!embedded" data-ng-include="'views/partials/footer.html'"></footer>
       </div>
 
-      <div id="PageOverlay" class="ng-cloak" data-ng-hide="started && !showLoadingPanel">
+      <div id="PageOverlay" data-ng-hide="started && !showLoadingPanel">
         <div id="LoaderBox">
           <div id="LoaderBoxContent">
-            <div class="spinner-border text-secondary" role="status">
+            <div class="loader">
           </div>
         </div>
       </div>
     </div>
 
-    <!-- build:js js/scripts.js -->
     <script src="js/loader.js"></script>
+
+    <!-- build:js js/scripts.js -->
     <script src="lib/js/qrious.min.js"></script>
     <script src="lib/js/angular.min.js"></script>
     <script src="lib/js/angular-aria.min.js"></script>

@@ -721,6 +721,12 @@ var GLClient = angular.module("GLClient", [
         GLTranslate.addNodeFacts($rootScope.node.default_language, $rootScope.node.languages_enabled);
         Utils.set_title();
 
+        script = document.createElement("link");
+        script.setAttribute("rel", "stylesheet");
+        script.setAttribute("type", "text/css");
+        script.setAttribute("href", "css/styles.css");
+        document.getElementsByTagName("head")[0].appendChild(script);
+
 	if ($rootScope.node.css) {
           script = document.createElement("link");
           script.setAttribute("rel", "stylesheet");
