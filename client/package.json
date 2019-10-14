@@ -24,7 +24,6 @@
     "angular-translate": "2.18.1",
     "angular-translate-loader-static-files": "2.18.1",
     "angular-translate-loader-url": "2.18.1",
-    "angular-zxcvbn": "3.2.2",
     "bootstrap": "4.3.1",
     "d3": "5.12.0",
     "fast-sha256": "1.1.0",
@@ -33,8 +32,7 @@
     "stacktrace-js": "2.0.1",
     "topojson": "3.0.2",
     "ui-bootstrap4": "3.0.6",
-    "ui-select": "0.19.8",
-    "zxcvbn": "4.4.2"
+    "ui-select": "0.19.8"
   },
   "devDependencies": {
     "eslint": "6.5.1",

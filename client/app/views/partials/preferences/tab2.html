@@ -10,14 +10,14 @@
     </p>
   </div>
 
-  <div class="form-group" data-ng-class="{'has-danger': passwordChangeForm.password.$error.required || passwordChangeForm.password.$error.passwordStrength}">
+  <div class="form-group" data-ng-class="{'has-danger': passwordChangeForm.password.$error.required || passwordChangeForm.password.$error.passwordStrengthValidator}">
     <label>
       <span data-translate>New password</span>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
     </label>
-    <input class="form-control" name="password" data-ng-model="preferences.password" type="password" autocomplete="off" data-zxcvbn="passwordStrength" data-zx-min-score="3" required />
-    <zx-password-meter value="passwordStrength"></zx-password-meter>
-    <div class="text-danger" data-ng-show="!passwordChangeForm.password.$error.required && passwordChangeForm.password.$error.passwordStrength">
+    <input class="form-control" name="password" data-ng-model="preferences.password" type="password" autocomplete="off" data-password-strength-validator required />
+    <password-meter data-ng-show="passwordStrengthScore" value="passwordStrengthScore"></password-meter>
+    <div class="text-danger" data-ng-show="passwordStrengthScore && passwordStrengthScore < 2">
       <p data-translate>The chosen password is too weak. Make it more secure by adding special characters, numbers, and unusual symbols.</p>
      </div>
     <div class="text-danger" data-ng-show="preferences.password !== '' && preferences.password === preferences.old_password">
@@ -31,7 +31,7 @@
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
     </label>
     <input class="form-control" name="checkpassword" data-ng-model="preferences.check_password" type="password" autocomplete="off" required/>
-    <p class="text-danger" data-ng-show="preferences.password.length && !passwordChangeForm.password.$error.passwordStrength && (preferences.password !== preferences.check_password)">
+    <p class="text-danger" data-ng-show="preferences.password.length && !passwordChangeForm.password.$error.passwordStrengthValidator && (preferences.password !== preferences.check_password)">
       <span data-translate>The two passwords do not match</span>
     </p>
   </div>

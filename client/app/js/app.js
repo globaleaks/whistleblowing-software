@@ -11,7 +11,6 @@ var GLClient = angular.module("GLClient", [
     "tmh.dynamicLocale",
     "flow",
     "pascalprecht.translate",
-    "zxcvbn",
     "ngSanitize",
     "ngFileSaver",
     "GLCrypto",

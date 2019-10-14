@@ -145,10 +145,10 @@
                       <span data-translate>Disable two factor authentication</span>
                     </span>
                   </div>
-                  <div class="form-group" data-ng-if="user.newpassword" data-ng-form="userPasswordForm" data-ng-class="{'has-danger': passwordStrength.score > 0 && !userPassword.password.$valid}">
-                    <input name="password" class="form-control" data-ng-model="user.password" type="password" autocomplete="off" zxcvbn="passwordStrength" zx-min-score="3" />
-                    <zx-password-meter value="passwordStrength"></zx-password-meter>
-                    <div class="text-danger" data-ng-show="user.password != '' && editUser.password.$error.passwordStrength">
+                  <div class="form-group" data-ng-if="user.newpassword" data-ng-form="userPasswordForm" data-ng-class="{'has-danger': !editUser.password.$error.passwordStrengthValidator && !userPassword.password.$valid}">
+                    <input name="password" class="form-control" data-ng-model="user.password" type="password" autocomplete="off" data-password-strength-validator />
+                    <password-meter data-ng-show="passwordStrengthScore" value="passwordStrengthScore"></password-meter>
+                    <div class="text-danger" data-ng-show="passwordStrengthScore && passwordStrengthScore < 2">
                       <p data-translate>The chosen password is too weak. Make it more secure by adding special characters, numbers, and unusual symbols.</p>
                     </div>
                   </div>

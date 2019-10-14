@@ -104,7 +104,7 @@ angular.module("GLDirectives", []).
       }
     };
 }).
-directive("zxPasswordMeter", function() {
+directive("passwordMeter", function() {
   return {
     scope: {
       value: "="
@@ -115,29 +115,13 @@ directive("zxPasswordMeter", function() {
       scope.text = "";
 
       scope.$watch("value", function(newValue) {
-        if (newValue === undefined) {
-          return;
-        }
-
-        if (newValue.password === "undefined") { // <- intentionally as string
-          // Short term fix for:
-          // https://github.com/ghostbar/angular-zxcvbn/issues/13
-          newValue.password = "";
-        }
-
-        if (newValue.password === "") {
-          scope.type = null;
-          scope.text = "";
-        } else if (newValue.score < 3) {
-          newValue.score = 1;
+        if (newValue < 2) {
           scope.type = "danger";
           scope.text = "Weak";
-        } else if (newValue.score < 4) {
-          // guesses needed >= 10^8, <= 10^10
+        } else if (newValue < 3) {
           scope.type = "warning";
           scope.text = "Acceptable";
         } else {
-          // guesses needed >= 10^10
           scope.type = "success";
           scope.text = "Strong";
         }
@@ -284,7 +268,7 @@ directive("fileInput", function() {
     },
     link: function (scope, iElement) {
       iElement.find("input").on("change", function (event) {
-	if(event.target.files && event.target.files.length > 0) {
+        if(event.target.files && event.target.files.length > 0) {
           scope.$apply(function(){
             scope.fileInput({file: event.target.files[0]});
           });
@@ -328,6 +312,59 @@ directive("convertToNumber", function() {
       ngModel.$formatters.push(function(val) {
         return val !== null ? "" + val : null;
       });
+    }
+  };
+}).
+directive("passwordStrengthValidator", function() {
+  function link(scope, elem, attrs, ngModel) {
+    ngModel.$validators.passwordStrengthValidator = function(pwd) {
+      var check, ltr, i, l;
+      var variation = 0;
+      var letters = {};
+      var score = 0;
+
+      if (pwd) {
+        /* Score character variation */
+        var variations = {
+          lower: /[a-z]/.test(pwd),
+          upper: /[A-Z]/.test(pwd),
+          symbols: /\W/.test(pwd),
+          digits: /\d/.test(pwd)
+        };
+
+        for (check in variations) {
+          variation += variations[check] ? 1 : 0;
+        }
+
+        /* Score unique letters */
+        for (i = 0, l = pwd.length; i < l; i++) {
+          if (!letters[pwd[i]]) {
+            letters[pwd[i]] = 1;
+            score += 1;
+          }
+        }
+
+        if (score > 10 && pwd.length >= 12 && variation == 4) {
+          score = 3;
+        } else if (score > 8 && pwd.length >= 10 && variation >= 3) {
+          score = 2;
+        } else {
+          score = 1;
+        }
+      }
+
+      scope.$parent.passwordStrengthScore = score;
+
+      return score > 1;
+    }
+  }
+
+  return {
+    restrict: "A",
+    require: "ngModel",
+    link: link,
+    scope: {
+      passwordStrengthValidator: "@",
     }
   };
 });
