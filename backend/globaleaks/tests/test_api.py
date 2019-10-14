@@ -70,7 +70,7 @@ class TestAPI(TestGL):
     def test_status_codes_assigned(self):
         test_cases = [
             (b'GET', 200),
-            (b'HEAD', 501),
+            (b'HEAD', 200),
             (b'POST', 501),
             (b'PUT', 501),
             (b'DELETE', 501),
@@ -81,7 +81,7 @@ class TestAPI(TestGL):
         server_headers = [
             ('Cache-control', 'no-cache, no-store, must-revalidate'),
             ('Content-Language', 'en'),
-            ('Content-Security-Policy', 'default-src \'none\';script-src \'self\';connect-src \'self\';style-src \'self\' data:;img-src \'self\' data:;font-src \'self\' data:;frame-ancestors \'none\';'),
+            ('Content-Security-Policy', 'default-src \'none\';script-src \'self\';connect-src \'self\';style-src \'self\';img-src \'self\' data:;font-src \'self\' data:;frame-ancestors \'none\';'),
             ('Expires', '-1'),
             ('Pragma', 'no-cache'),
             ('Referrer-Policy', 'no-referrer'),
