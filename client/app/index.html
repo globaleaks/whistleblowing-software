@@ -1,9 +1,9 @@
 <!doctype html>
 <html data-ng-app="GLClient" data-ng-csp data-ng-strict-di data-ng-keydown="keypress($event)" lang="{{GLTranslate.state.language}}">
   <head>
-    <title data-ng-bind="pt">GlobaLeaks</title>
+    <title data-ng-bind="pt ? pt : 'Globaleakss'"></title>
     <meta charset="utf-8" />
-    <meta name="description" content="Secure Whistleblowing Platform" data-ng-attr-content="{{node.description}}" />
+    <meta name="description" data-ng-attr-content="{{node.description ? node.description : 'Secure Whistleblowing Platform'}}" />
     <meta name="viewport" content="width=device-width, user-scalable=yes" />
     <meta name="referrer" content="never" />
 
