@@ -69,6 +69,7 @@ def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
 
     o = session.query(models.FieldAttr).filter(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name).one_or_none()
     if o is None:
+        attr_dict['id'] = ''
         o = models.db_forge_obj(session, models.FieldAttr, attr_dict)
     else:
         o.update(attr_dict)
@@ -83,7 +84,7 @@ def db_update_fieldattrs(session, field_id, field_attrs, language):
         return
 
     to_remove = session.query(models.FieldAttr.id).filter(models.FieldAttr.field_id == field_id,
-                                                                  not_(models.FieldAttr.id.in_(attrs_ids)))
+                                                          not_(models.FieldAttr.id.in_(attrs_ids)))
 
     session.query(models.FieldAttr).filter(models.FieldAttr.id.in_(to_remove.subquery())).delete(synchronize_session='fetch')
 
