@@ -34,17 +34,12 @@
   margin: 0 auto;
 }
 
-#LoaderBoxContent .spinner-border {
-  width: 6em;
-  height: 6em;
-}
-
 .loader {
-  border: 1em solid #EEE;
-  border-top: 1em solid #CCC;
+  border: 1em solid #CCC;
+  border-top: 1em solid #AAA;
   border-radius: 50%;
-  width: 6em;
-  height: 6em;
+  width: 8em;
+  height: 8em;
   animation: spin 1.5s linear infinite;
 }
 
