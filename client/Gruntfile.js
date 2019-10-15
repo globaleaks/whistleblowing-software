@@ -96,9 +96,9 @@ module.exports = function(grunt) {
         files: [
           { dest: "app/lib/css/", cwd: ".", src: ["node_modules/angular/angular-csp.css"], expand: true, flatten: true },
           { dest: "app/lib/css/", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-csp.css"], expand: true, flatten: true },
-          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/bootstrap/dist/css/bootstrap.css"], expand: true, flatten: true },
-          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/fontawesome.css"], expand: true, flatten: true },
-          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/solid.css"], expand: true, flatten: true },
+          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/bootstrap/dist/css/bootstrap.min.css"], expand: true, flatten: true },
+          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css"], expand: true, flatten: true },
+          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/solid.min.css"], expand: true, flatten: true },
           { dest: "app/lib/css/", cwd: ".", src: ["node_modules/ui-select/dist/select.min.css"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/fast-sha256/sha256.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/@flowjs/flow.js/dist/flow.min.js"], expand: true, flatten: true },
@@ -116,7 +116,7 @@ module.exports = function(grunt) {
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/d3/dist/d3.min.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/file-saver/FileSaver.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/file-saver/FileSaver.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/stacktrace-js/dist/stacktrace.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/topojson/dist/topojson.min.js"], expand: true, flatten: true},
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/qrious/dist/qrious.min.js"], expand: true, flatten: true},
@@ -196,13 +196,9 @@ module.exports = function(grunt) {
         options: {
           replacements: [
             {
-              pattern: "src: url(\"../webfonts/fa-solid-900.eot\");",
-              replacement: ""
-            },
-            {
-              pattern: "src: url(\"../webfonts/fa-solid-900.eot?#iefix\") format(\"embedded-opentype\"), url(\"../webfonts/fa-solid-900.woff2\") format(\"woff2\"), url(\"../webfonts/fa-solid-900.woff\") format(\"woff\"), url(\"../webfonts/fa-solid-900.ttf\") format(\"truetype\"), url(\"../webfonts/fa-solid-900.svg#fontawesome\") format(\"svg\"); }",
+              pattern: "src:url(../webfonts/fa-solid-900.eot);src:url(../webfonts/fa-solid-900.eot?#iefix) format(\"embedded-opentype\"),url(../webfonts/fa-solid-900.woff2) format(\"woff2\"),url(../webfonts/fa-solid-900.woff) format(\"woff\"),url(../webfonts/fa-solid-900.ttf) format(\"truetype\"),url(../webfonts/fa-solid-900.svg#fontawesome) format(\"svg\")",
               replacement: function () {
-                return "src: url('" + fileToDataURI("tmp/lib/webfonts/fa-solid-900.woff") + "') format('woff'); }";
+                return "src:url('" + fileToDataURI("tmp/lib/webfonts/fa-solid-900.woff") + "') format('woff');";
               }
             }
           ]
