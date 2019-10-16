@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 16:35+0000\n"
+"PO-Revision-Date: 2019-10-16 14:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -685,9 +685,10 @@ msgid "New password"
 msgstr "رمز عبور جدید"
 
 msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "گذرواژه انتخاب شده بیش از حد ضعیف می باشد. با افزودن کاراکتر های خاص، اعداد، نماد های غیرمعمول آن را امن تر کنید."
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special symbol."
+msgstr ""
 
 msgid "The new password must be different from the current one."
 msgstr "گذرواژه جدید می بایستی از گذرواژه فعلی متفاوت باشد."
@@ -1454,6 +1455,9 @@ msgstr "غیرفعال"
 msgid "Configure"
 msgstr "پیکربندی"
 
+msgid "Subdomain"
+msgstr ""
+
 msgid "The default password is:"
 msgstr "گذرواژه پیش فرض:"
 
@@ -1465,6 +1469,11 @@ msgstr "تنظیم مجدد گذرواژه"
 
 msgid "Disable two factor authentication"
 msgstr ""
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "گذرواژه انتخاب شده بیش از حد ضعیف می باشد. با افزودن کاراکتر های خاص، اعداد، نماد های غیرمعمول آن را امن تر کنید."
 
 msgid "Force password change"
 msgstr "وادار به تغییر گذرواژه"

@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 16:35+0000\n"
+"PO-Revision-Date: 2019-10-16 14:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -680,9 +680,10 @@ msgid "New password"
 msgstr "Contrassenya nova"
 
 msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "La contrasenya escollida és massa dèbil. Fes-la més segura afegint-hi caràcters especials, nombres i símbols inusuals."
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special symbol."
+msgstr ""
 
 msgid "The new password must be different from the current one."
 msgstr "La nova contrasenya ha de ser diferent de l'actual."
@@ -1449,6 +1450,9 @@ msgstr "Inactiu"
 msgid "Configure"
 msgstr "Configura"
 
+msgid "Subdomain"
+msgstr ""
+
 msgid "The default password is:"
 msgstr "La contrasenya d'usuari per defecte és:"
 
@@ -1460,6 +1464,11 @@ msgstr "Restablir contrasenya "
 
 msgid "Disable two factor authentication"
 msgstr ""
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "La contrasenya escollida és massa dèbil. Fes-la més segura afegint-hi caràcters especials, nombres i símbols inusuals."
 
 msgid "Force password change"
 msgstr "Força un canvi de contrasenya"

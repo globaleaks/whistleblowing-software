@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-09 12:42+0000\n"
-"Last-Translator: Naofumi <naofum@gmail.com>\n"
+"PO-Revision-Date: 2019-10-16 14:16+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -671,9 +671,10 @@ msgid "New password"
 msgstr "新しいパスワード"
 
 msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "選択したパスワードは弱すぎます。より安全にするため、特殊文字、数字、および一般的ではない記号を追加してください。"
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special symbol."
+msgstr ""
 
 msgid "The new password must be different from the current one."
 msgstr "新しいパスワードは、現在のものと異なっている必要があります。"
@@ -1440,6 +1441,9 @@ msgstr "非アクティブ"
 msgid "Configure"
 msgstr "設定"
 
+msgid "Subdomain"
+msgstr "サブドメイン"
+
 msgid "The default password is:"
 msgstr "デフォルトのパスワードは:"
 
@@ -1451,6 +1455,11 @@ msgstr "パスワードをリセット"
 
 msgid "Disable two factor authentication"
 msgstr "2要素認証を無効にする"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "選択したパスワードは弱すぎます。より安全にするため、特殊文字、数字、および一般的ではない記号を追加してください。"
 
 msgid "Force password change"
 msgstr "強制的にパスワードを変更する"

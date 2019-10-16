@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 16:35+0000\n"
-"Last-Translator: Meng San\n"
+"PO-Revision-Date: 2019-10-16 14:16+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -681,9 +681,10 @@ msgid "New password"
 msgstr "新密码"
 
 msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "密码强度太弱，请添加特殊字符、数字和非常用符号以加强密码。"
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special symbol."
+msgstr ""
 
 msgid "The new password must be different from the current one."
 msgstr "新密码不能与当前密码相同。"
@@ -1450,6 +1451,9 @@ msgstr "未激活"
 msgid "Configure"
 msgstr "配置"
 
+msgid "Subdomain"
+msgstr "子域名"
+
 msgid "The default password is:"
 msgstr "默认密码:"
 
@@ -1461,6 +1465,11 @@ msgstr "重设密码"
 
 msgid "Disable two factor authentication"
 msgstr ""
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "密码强度太弱，请添加特殊字符、数字和非常用符号以加强密码。"
 
 msgid "Force password change"
 msgstr "强制更改密码"

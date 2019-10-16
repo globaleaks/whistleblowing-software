@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 16:35+0000\n"
-"Last-Translator: Kristina Tyskiewicz <savannah5k@yahoo.com>\n"
+"PO-Revision-Date: 2019-10-16 14:16+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -690,9 +690,10 @@ msgid "New password"
 msgstr "Новый пароль"
 
 msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "Выбранный пароль слишком ненадёжен. Сделайте его более надежным, добавив специальные символы, цифры и необычные символы."
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special symbol."
+msgstr ""
 
 msgid "The new password must be different from the current one."
 msgstr "Новый пароль должен отличаться от старого."
@@ -1459,6 +1460,9 @@ msgstr "Неактивный"
 msgid "Configure"
 msgstr "Настроить"
 
+msgid "Subdomain"
+msgstr "Субдомейн"
+
 msgid "The default password is:"
 msgstr "Пароль по умолчанию:"
 
@@ -1470,6 +1474,11 @@ msgstr "Сброс пароля"
 
 msgid "Disable two factor authentication"
 msgstr ""
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Выбранный пароль слишком ненадёжен. Сделайте его более надежным, добавив специальные символы, цифры и необычные символы."
 
 msgid "Force password change"
 msgstr "Принудительная смена пароля"

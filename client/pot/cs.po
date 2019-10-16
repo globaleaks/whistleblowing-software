@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 16:35+0000\n"
-"Last-Translator: Mr Higgins\n"
+"PO-Revision-Date: 2019-10-16 14:16+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -677,9 +677,10 @@ msgid "New password"
 msgstr "Nové heslo"
 
 msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "Zvolené heslo je příliš slabé. Jeho bezpečnost zvýšíte přidáním speciálních znaků, čísel a dalších symbolů."
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special symbol."
+msgstr ""
 
 msgid "The new password must be different from the current one."
 msgstr "Nové heslo musí být rozdílné od stávajícího."
@@ -1446,6 +1447,9 @@ msgstr "Neaktivní"
 msgid "Configure"
 msgstr "Nastavení"
 
+msgid "Subdomain"
+msgstr "Podstránky"
+
 msgid "The default password is:"
 msgstr "Výchozí heslo je:"
 
@@ -1457,6 +1461,11 @@ msgstr "Resetovat heslo"
 
 msgid "Disable two factor authentication"
 msgstr ""
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Zvolené heslo je příliš slabé. Jeho bezpečnost zvýšíte přidáním speciálních znaků, čísel a dalších symbolů."
 
 msgid "Force password change"
 msgstr "Vynutit změnu hesla"

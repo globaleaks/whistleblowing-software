@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 16:35+0000\n"
-"Last-Translator: Inpresentia I.\n"
+"PO-Revision-Date: 2019-10-16 14:16+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -679,9 +679,10 @@ msgid "New password"
 msgstr "Parola nouă"
 
 msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "Parola aleasa este prea slaba. Fa-o mai sigura prin a adauga caractere speciale, numere si simboluri neobisnuite."
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special symbol."
+msgstr ""
 
 msgid "The new password must be different from the current one."
 msgstr "Parola noua trebuie sa fie diferita fata de cea actuala."
@@ -1448,6 +1449,9 @@ msgstr ""
 msgid "Configure"
 msgstr "Configurează"
 
+msgid "Subdomain"
+msgstr ""
+
 msgid "The default password is:"
 msgstr ""
 
@@ -1459,6 +1463,11 @@ msgstr ""
 
 msgid "Disable two factor authentication"
 msgstr ""
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Parola aleasa este prea slaba. Fa-o mai sigura prin a adauga caractere speciale, numere si simboluri neobisnuite."
 
 msgid "Force password change"
 msgstr "Schimbarea parolei"
@@ -1680,7 +1689,7 @@ msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Encryption key"
-msgstr ""
+msgstr "Cheia de criptare"
 
 msgid "Hide"
 msgstr "Ascunde"

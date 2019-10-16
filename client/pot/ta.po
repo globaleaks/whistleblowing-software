@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 16:35+0000\n"
+"PO-Revision-Date: 2019-10-16 14:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -669,9 +669,10 @@ msgid "New password"
 msgstr "புதிய கடவுச்சொல்"
 
 msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "தேர்ந்தெடுத்த கடவுச்சொல் மிகவும் பலவீனமாக உள்ளது. சிறப்பு எழுத்துக்கள், எண்கள், மற்றும் அசாதாரண குறியீடுகளை சேர்ப்பதன் மூலம் இது இன்னும் பாதுகாப்பாக இருங்கள்."
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special symbol."
+msgstr ""
 
 msgid "The new password must be different from the current one."
 msgstr "புதிய கடவுச்சொல் தற்போதைய ஒன்றிலிருந்து வேறுபட்டதாக இருக்க வேண்டும்."
@@ -1438,6 +1439,9 @@ msgstr "செயல்படா"
 msgid "Configure"
 msgstr "கட்டமைக்க"
 
+msgid "Subdomain"
+msgstr ""
+
 msgid "The default password is:"
 msgstr "முன்னிருப்பு கடவுச்சொல்:"
 
@@ -1449,6 +1453,11 @@ msgstr "கடவுச்சொல்லை மீட்டமைக்க"
 
 msgid "Disable two factor authentication"
 msgstr ""
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "தேர்ந்தெடுத்த கடவுச்சொல் மிகவும் பலவீனமாக உள்ளது. சிறப்பு எழுத்துக்கள், எண்கள், மற்றும் அசாதாரண குறியீடுகளை சேர்ப்பதன் மூலம் இது இன்னும் பாதுகாப்பாக இருங்கள்."
 
 msgid "Force password change"
 msgstr "படை கடவுச்சொல்லை மாற்றம்"

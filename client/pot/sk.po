@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 16:35+0000\n"
+"PO-Revision-Date: 2019-10-16 14:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -676,9 +676,10 @@ msgid "New password"
 msgstr "Nové heslo"
 
 msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "Zvolené heslo je príliš slabé. Jeho bezpečnosť zvýšite pridaním špeciálnych znakov, čísiel a ďalších symbolov."
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special symbol."
+msgstr ""
 
 msgid "The new password must be different from the current one."
 msgstr "Nové heslo sa musí líšiť od aktuálneho."
@@ -1445,6 +1446,9 @@ msgstr "Neaktívny"
 msgid "Configure"
 msgstr "Nastavenie"
 
+msgid "Subdomain"
+msgstr ""
+
 msgid "The default password is:"
 msgstr "Prednastavené heslo je:"
 
@@ -1456,6 +1460,11 @@ msgstr "Resetovať heslo"
 
 msgid "Disable two factor authentication"
 msgstr ""
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Zvolené heslo je príliš slabé. Jeho bezpečnosť zvýšite pridaním špeciálnych znakov, čísiel a ďalších symbolov."
 
 msgid "Force password change"
 msgstr "Vynútiť zmenu hesla"

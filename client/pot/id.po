@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 16:35+0000\n"
+"PO-Revision-Date: 2019-10-16 14:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -685,9 +685,10 @@ msgid "New password"
 msgstr "Kata sandi baru"
 
 msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "Pemilihan kata sandi terlalu lemah. Buatlah lebih aman dengan menambahkan beberapa huruf, angka, dan simbol yang tidak biasa."
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special symbol."
+msgstr ""
 
 msgid "The new password must be different from the current one."
 msgstr "Kata sandi baru harus berbeda dari yang sekarang."
@@ -1454,6 +1455,9 @@ msgstr "Tidak aktif"
 msgid "Configure"
 msgstr "Konfigurasikan"
 
+msgid "Subdomain"
+msgstr ""
+
 msgid "The default password is:"
 msgstr "Kata sandi bawaan adalah:"
 
@@ -1465,6 +1469,11 @@ msgstr "Mengganti ulang kata sandi"
 
 msgid "Disable two factor authentication"
 msgstr ""
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Pemilihan kata sandi terlalu lemah. Buatlah lebih aman dengan menambahkan beberapa huruf, angka, dan simbol yang tidak biasa."
 
 msgid "Force password change"
 msgstr "Disarankan untuk mengganti kata sandi"

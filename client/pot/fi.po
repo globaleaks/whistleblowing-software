@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 16:35+0000\n"
+"PO-Revision-Date: 2019-10-16 14:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -164,10 +164,10 @@ msgid "Preview"
 msgstr "Esikatselu"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "Vihjeen lähettäjä on jo lukenut viimeisimmän päivityksen"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "Vihjeen lähettäjä ei ole vielä lukenut viimeisintä päivitystä"
 
 msgid "Move up"
 msgstr "Siirrä ylemmäs"
@@ -360,7 +360,7 @@ msgid "HTTPS settings"
 msgstr "HTTPS asetukset"
 
 msgid "URL redirects"
-msgstr ""
+msgstr "URL-uudelleenohjaukset"
 
 msgid "Anomaly detection thresholds"
 msgstr "Poikkeaman havainnointikynnys"
@@ -403,7 +403,7 @@ msgid "Trigger question"
 msgstr "Aseta jatkokysymys"
 
 msgid "Triggered by score:"
-msgstr ""
+msgstr "Käytetään pistemäärän mukaan"
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Vihjeen tila -sivun yläreunassa näytettävä viesti"
@@ -484,7 +484,7 @@ msgid "Activate"
 msgstr "Ota käyttöön"
 
 msgid "Disactivate"
-msgstr ""
+msgstr "Pois päältä"
 
 msgid "Search"
 msgstr "Haku"
@@ -607,7 +607,7 @@ msgid "New"
 msgstr "Uusi"
 
 msgid "Opened"
-msgstr ""
+msgstr "Avattu"
 
 msgid "Closed"
 msgstr "Suljettu"
@@ -616,7 +616,7 @@ msgid "Placeholder"
 msgstr ""
 
 msgid "Print"
-msgstr ""
+msgstr "Tulosta"
 
 msgid "Previous"
 msgstr "Edellinen"
@@ -637,7 +637,7 @@ msgid "Not running"
 msgstr "Ei käynnissä"
 
 msgid "Send a test email to your email address."
-msgstr ""
+msgstr "Lähetä testisähköposti omaan sähköpostiosoitteeseen"
 
 msgid "Select the context of your submission:"
 msgstr "Valitse vihjeen aihe:"
@@ -672,9 +672,10 @@ msgid "New password"
 msgstr "Uusi salasana"
 
 msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "Salasanasi on liian yksinkertainen. Tee siitä turvallisempi käyttämällä erikoismerkkejä ja numeroita."
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special symbol."
+msgstr ""
 
 msgid "The new password must be different from the current one."
 msgstr "Uusi salasana ei voi olla sama kuin parhaillaan käytössä oleva."
@@ -686,13 +687,13 @@ msgid "The two passwords do not match"
 msgstr "Annetut salasanat eivät vastaa toisiaan"
 
 msgid "The new password must differ from the previous."
-msgstr ""
+msgstr "Uuden salasanan täytyy olla eri kuin edellisen."
 
 msgid "Proceed"
 msgstr "Jatka"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr ""
+msgstr "Voit jatkaa, kun olet ottanut käyttöösi kaksivaiheisen tunnistautumisen."
 
 msgid "Disable submissions"
 msgstr "Poista vihjeiden lähettäminen käytöstä"
@@ -721,10 +722,10 @@ msgid "Description"
 msgstr "Kuvaus"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr "Älä paljasta käyttäjien nimiä"
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgstr "Salli seuraavien sivustojen upottaa palvelu iframes-toteutuksena omille verkkosivuilleen"
 
 msgid "Enable custom privacy panel"
 msgstr "Ota käyttöön oma yksityisyyskulkukortti"
@@ -755,7 +756,7 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Säädä tätä asetusta vain jos tiedät, mitä olet tekemässä."
 
 msgid "Require two factor authentication"
-msgstr ""
+msgstr "Kaksivaiheinen tunnistus vaaditaan"
 
 msgid "Password change interval"
 msgstr "Salasanan vaihtoväli"
@@ -818,7 +819,7 @@ msgid "Enable simplified login"
 msgstr "Ota käyttöön helpotettu kirjautuminen"
 
 msgid "Enable HSTS preload"
-msgstr ""
+msgstr "Ota HSTS-esilataus käyttöön"
 
 msgid "Logging level"
 msgstr "Kirjautumistaso"
@@ -827,7 +828,7 @@ msgid "Log accesses of internal users"
 msgstr "Tallenna sisäisten käyttäjien kirjautumiset"
 
 msgid "Enable custodian user role"
-msgstr ""
+msgstr "Ota käyttöön valvontarooli"
 
 msgid "Enable scoring system"
 msgstr "Ota käyttöön pisteytysjärjestelmä"
@@ -848,7 +849,7 @@ msgid "Save"
 msgstr "Tallenna"
 
 msgid "Reset submissions"
-msgstr ""
+msgstr "Nollaa lähetetyt vihjeet"
 
 msgid "To"
 msgstr "Vastaanottaja"
@@ -1028,7 +1029,7 @@ msgid "Let recipients upload files to whistleblowers"
 msgstr "Salli vastaanottajien lähettää tiedostoja vihjeiden lähettäjille"
 
 msgid "Scoring system options"
-msgstr ""
+msgstr "Pisteytysjärjestelmän asetukset"
 
 msgid "Threshold"
 msgstr "Kynnysarvo"
@@ -1043,13 +1044,13 @@ msgid "High"
 msgstr "Korkea"
 
 msgid "Customize the message shown in the receipt page"
-msgstr ""
+msgstr "Muokkaa kuittisivulla näkyvää viestiä"
 
 msgid "Low"
 msgstr "Matala"
 
 msgid "Assign the receipt only to submissions reaching score:"
-msgstr ""
+msgstr "Liitä kuittaus vain lähetettyihin vihjeisiin, jotka saavuttavat pistemäärän:"
 
 msgid "Software version:"
 msgstr "Käytössä oleva ohjelmistoversio:"
@@ -1094,7 +1095,7 @@ msgid "Test the configuration"
 msgstr "Suorita järjestelmätestaus"
 
 msgid "Reset SMTP configuration"
-msgstr ""
+msgstr "Nollaa SMTP-asetukset"
 
 msgid "Template"
 msgstr "Mallipohja"
@@ -1124,10 +1125,10 @@ msgid "Example:"
 msgstr "Esimerkiksi:"
 
 msgid "Configuration in progress"
-msgstr ""
+msgstr "Asetusten määritys käynnissä"
 
 msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
+msgstr "Järjestelmään saa yhteyden HTTPS-protokollalla osoitteessa:"
 
 msgid "Hostname"
 msgstr "Tietokoneen nimi"
@@ -1304,7 +1305,7 @@ msgid "Terms of service"
 msgstr "Käyttöehdot"
 
 msgid "Date range"
-msgstr ""
+msgstr "Päivämäärärajaus"
 
 msgid "Map"
 msgstr "Kartta"
@@ -1352,13 +1353,13 @@ msgid "Checkbox label"
 msgstr "Valintaruudun teksti"
 
 msgid "Add multimedia content"
-msgstr ""
+msgstr "Liitä mukaan multimediasisältöä"
 
 msgid "Image"
-msgstr ""
+msgstr "Kuva"
 
 msgid "Audio"
-msgstr ""
+msgstr "Ääni"
 
 msgid "Video"
 msgstr "Video"
@@ -1441,6 +1442,9 @@ msgstr "Ei toiminnassa"
 msgid "Configure"
 msgstr "Aseta"
 
+msgid "Subdomain"
+msgstr ""
+
 msgid "The default password is:"
 msgstr "Oletussalasana:"
 
@@ -1452,6 +1456,11 @@ msgstr "Salasanan uusiminen"
 
 msgid "Disable two factor authentication"
 msgstr ""
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Salasanasi on liian yksinkertainen. Tee siitä turvallisempi käyttämällä erikoismerkkejä ja numeroita."
 
 msgid "Force password change"
 msgstr "Pakota salasanan vaihto"

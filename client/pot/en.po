@@ -40,7 +40,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-08 16:35+0000\n"
+"PO-Revision-Date: 2019-10-16 14:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: English (http://www.transifex.com/otf/globaleaks/language/en/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -702,9 +702,10 @@ msgid "New password"
 msgstr "New password"
 
 msgid ""
-"The chosen password is too weak. Make it more secure by adding special "
-"characters, numbers, and unusual symbols."
-msgstr "The chosen password is too weak. Make it more secure by adding special characters, numbers, and unusual symbols."
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special symbol."
+msgstr "The chosen password is too weak. A valid password should be at least 10 characters long and contain a variety of characters including at least a lowercase character, a capital character, a number and a special symbol."
 
 msgid "The new password must be different from the current one."
 msgstr "The new password must be different from the current one."
@@ -1471,6 +1472,9 @@ msgstr "Inactive"
 msgid "Configure"
 msgstr "Configure"
 
+msgid "Subdomain"
+msgstr "Subdomain"
+
 msgid "The default password is:"
 msgstr "The default password is:"
 
@@ -1482,6 +1486,11 @@ msgstr "Reset password"
 
 msgid "Disable two factor authentication"
 msgstr "Disable two factor authentication"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "The chosen password is too weak. Make it more secure by adding special characters, numbers, and unusual symbols."
 
 msgid "Force password change"
 msgstr "Force password change"
