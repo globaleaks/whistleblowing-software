@@ -384,10 +384,11 @@ label.file-upload {
 }
 
 input[type="file"] {
-  opacity: 0.1;
+  color: transparent;
   width: 0.1px;
   height: 0.1px;
   line-height: normal;
+  z-index: 0;
 }
 
 .fa-none:before {
