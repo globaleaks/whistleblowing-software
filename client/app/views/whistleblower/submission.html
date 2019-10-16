@@ -15,7 +15,7 @@
           </a>
         </li>
       </ul>
-      <div id="SubmissionTabsContentBox" class="tab-content">
+      <div id="SubmissionTabsContentBox" class="col-md-12 tab-content">
         <div data-ng-if="displayErrors()" data-ng-include="'views/whistleblower/submission_error.html'"></div>
         <div id="step-receiver-selection" data-ng-if="receiver_selection_step">
           <div data-ng-show="navigation === receiver_selection_step_index" data-ng-include="'views/whistleblower/receiver_selection.html'"></div>
@@ -29,26 +29,24 @@
         <div class="clearfix"></div>
       </div>
     </div>
-    <div class="row" data-ng-hide="submission.blocked">
-      <div class="col-md-7">
-        <div id="SubmissionButtons">
-          <button id="PreviousStepButton" class="btn btn-secondary" data-ng-show="hasPreviousStep()" data-ng-click="decrementStep()">
-            <i class="fa fa-arrow-circle-left"></i>
-            <span data-translate>Previous</span>
-          </button>
+    <div data-ng-hide="submission.blocked">
+      <div id="SubmissionButtons">
+        <button id="PreviousStepButton" class="btn btn-secondary" data-ng-show="hasPreviousStep()" data-ng-click="decrementStep()">
+          <i class="fa fa-arrow-circle-left"></i>
+          <span data-translate>Previous</span>
+        </button>
 
-          <button id="NextStepButton" class="btn btn-secondary" data-ng-show="hasNextStep()" data-ng-click="incrementStep()">
-            <span data-translate>Next</span>
-            <i class="fa fa-arrow-circle-right"></i>
-          </button>
+        <button id="NextStepButton" class="btn btn-secondary" data-ng-show="hasNextStep()" data-ng-click="incrementStep()">
+          <span data-translate>Next</span>
+          <i class="fa fa-arrow-circle-right"></i>
+        </button>
 
-          <button id="SubmitButton" class="btn btn-success" data-ng-show="!hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="submission.wait || !submission.pow" type="submit">
-            <i data-ng-show="submission.wait || !submission.pow" id="SubmitIconWait" class="fa fa-clock"></i>
-            <i data-ng-hide="submission.wait || !submission.pow" id="SubmitIconOK" class="fa fa-check"></i>
-            <span data-translate>Submit</span>
-            <span data-ng-show="submission.wait">({{submission.countdown}})</span>
-          </button>
-        </div>
+        <button id="SubmitButton" class="btn btn-success" data-ng-show="!hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="submission.wait || !submission.pow" type="submit">
+          <i data-ng-show="submission.wait || !submission.pow" id="SubmitIconWait" class="fa fa-clock"></i>
+          <i data-ng-hide="submission.wait || !submission.pow" id="SubmitIconOK" class="fa fa-check"></i>
+          <span data-translate>Submit</span>
+          <span data-ng-show="submission.wait">({{submission.countdown}})</span>
+        </button>
       </div>
     </div>
   </form>
