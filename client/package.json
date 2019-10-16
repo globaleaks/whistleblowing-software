@@ -27,7 +27,7 @@
     "bootstrap": "4.3.1",
     "d3": "5.12.0",
     "fast-sha256": "1.1.0",
-    "popper.js": "1.15.0",
+    "popper.js": "1.16.0",
     "qrious": "4.0.2",
     "stacktrace-js": "2.0.1",
     "topojson": "3.0.2",
