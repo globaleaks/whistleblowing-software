@@ -1,3 +1,6 @@
+Changes in version 3.11.29 - 2019-10-16
+    Apply minor style fixes
+
 Changes in version 3.11.28 - 2019-10-16
     Add virtualhost to access.log (#2703)
     Improve loading implementing resource preload
