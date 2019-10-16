@@ -36,7 +36,7 @@ controller("PasswordResetCompleteCtrl", ["$scope", "$location", "$http",
     });
   };
 
-  if($location.path === "/password/reset") {
+  if($location.path() === "/password/reset") {
     $scope.submit();
   }
 }]);
