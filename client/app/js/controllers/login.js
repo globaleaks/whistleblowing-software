@@ -55,7 +55,8 @@ function($scope, $location, $filter, Sites) {
 
       var ret = $scope.sites;
       ret = ret.filter(function(item) {
-        return item.label.toLowerCase().indexOf(search) !== -1 && item.id !== 1;
+        var text = item.label+item.subdomain;
+        return text.toLowerCase().indexOf(search) !== -1 && item.id !== 1;
       });
 
       $scope.selectableSites = $filter("orderBy")(ret, "label");

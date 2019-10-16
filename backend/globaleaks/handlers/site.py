@@ -17,10 +17,15 @@ def serialize_site(session, tenant, signup=None):
     }
 
     if tenant.id in State.tenant_cache:
-        tc = State.tenant_cache[tenant.id]
-        ret['label'] = tc.name
-        ret['hostname'] = tc.hostname
-        ret['onionservice'] = tc.onionservice
+       tc = State.tenant_cache[tenant.id]
+
+       if tc.mode == 'default':
+           ret['hostname'] = tc.hostname
+           ret['onionservice'] = tc.onionservice
+       elif tenant.id in State.tenant_cache:
+           rt = State.tenant_cache[1]
+           ret['hostname'] = tenant.subdomain + '.' + rt.rootdomain
+           ret['onionservice'] = tenant.subdomain + '.' + rt.onionservice
 
     return ret
 
