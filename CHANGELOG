@@ -1,3 +1,17 @@
+Changes in version 3.11.28 - 2019-10-16
+    Add virtualhost to access.log (#2703)
+    Improve loading implementing resource preload
+    Optimize code of password complexity meter removing zxcvbn library
+    Improve style of NoScrypt message
+    Improve Search Engine Optimizatin
+    Fix disclaimer implementation reducing forensic traces
+    Improve HTTP interface implementing HEAD method
+    Improve multisite login UI adding the domain name
+    Fix implementation of password reset link
+    Fix configuration for instance of question templates
+    Update translations
+    Bump npm dependencies to latest version
+
 Changes in version 3.11.27 - 2019-10-10
     Fix typo preventing authentication on old migrated platforms
 
