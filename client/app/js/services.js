@@ -201,9 +201,7 @@ angular.module("GLServices", ["ngResource"]).
             h["X-Session"] = self.session.id;
           }
 
-          if (GLTranslate.state.language !== null) {
-            h["GL-Language"] = GLTranslate.state.language;
-          }
+          h["GL-Language"] = GLTranslate.state.language;
 
           return h;
         };
@@ -1704,19 +1702,20 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
   // defined.
   // { object -> string }
   function bestLanguage(facts) {
+    var lang = null;
     if (isSelectable(facts.userChoice)) {
-      return facts.userChoice;
+      lang = facts.userChoice;
     } else if (isSelectable(facts.urlParam)) {
-      return facts.urlParam;
+      lang = facts.urlParam;
     } else if (isSelectable(facts.userPreference)) {
-      return facts.userPreference;
+      lang = facts.userPreference;
     } else if (isSelectable(facts.browserSniff)) {
-      return facts.browserSniff;
+      lang = facts.browserSniff;
     } else if (isSelectable(facts.nodeDefault)) {
-      return facts.nodeDefault;
-    } else {
-      return null;
+      lang = facts.nodeDefault;
     }
+
+    return lang;
   }
 
   // determineLanguage contains all of the scope creeping ugliness of the
