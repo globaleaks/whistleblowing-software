@@ -18,7 +18,7 @@
     <input class="form-control" name="password" data-ng-model="preferences.password" type="password" autocomplete="off" data-password-strength-validator required />
     <password-meter data-ng-show="passwordStrengthScore" value="passwordStrengthScore"></password-meter>
     <div class="text-danger" data-ng-show="passwordStrengthScore && passwordStrengthScore < 2">
-      <p data-translate>The chosen password is too weak. A valid password should be at least 10 characters long and contain a variety of characters including at least a lowercase character, a capital character, a number and a special symbol.</p>
+      <p data-translate>The chosen password is too weak. A valid password should be at least 10 characters long and contain a variety of characters including at least a lowercase character, a capital character, a number and a special character.</p>
      </div>
     <div class="text-danger" data-ng-show="preferences.password !== '' && preferences.password === preferences.old_password">
       <p data-translate>The new password must be different from the current one.</p>
