@@ -585,8 +585,6 @@ controller("SubmissionFieldEntryCtrl", ["$scope",
     $scope.fieldEntry = $scope.fieldId + "-input-" + $scope.$index;
 }]).
 controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope, fieldUtilities) {
-  $scope.getClass = fieldUtilities.getClass;
-
   $scope.fieldFormVarName = fieldUtilities.fieldFormName($scope.field.id + "$" + $scope.$index);
 
   $scope.getAnswersEntries = function(entry) {

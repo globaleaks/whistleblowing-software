@@ -12,8 +12,6 @@ GLClient.controller("TipCtrl",
     $scope.answers = {};
     $scope.uploads = {};
 
-    $scope.getClass = fieldUtilities.getClass;
-
     $scope.showEditLabelInput = false;
 
     $scope.getAnswersEntries = function(entry) {

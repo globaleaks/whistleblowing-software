@@ -1,5 +1,5 @@
 <div data-ng-repeat="row in rows" data-ng-init="fieldRow=$index" class="row">
-  <div data-ng-repeat="field in row | orderBy:'x'" data-ng-init="fieldCol=$index" data-ng-if="field.enabled"  data-ng-class="getClass(field, row.length)">
+  <div data-ng-repeat="field in row | orderBy:'x'" data-ng-init="fieldCol=$index" data-ng-if="field.enabled"  data-ng-class="fieldUtilities.getClass(field, row.length)">
     <div data-ng-controller="SubmissionFieldCtrl" id="{{fieldId}}" class="question">
       <div class="question-label">
         <label data-content="::field.hint" uib-popover="{{::field.hint}}" popover-placement="right">
