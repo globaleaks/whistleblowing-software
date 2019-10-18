@@ -1,52 +1,5 @@
 /* eslint no-console: 0 */
 
-var locales = [
-"lib/js/locale/angular-locale_ar.js",
-"lib/js/locale/angular-locale_az.js",
-"lib/js/locale/angular-locale_ca.js",
-"lib/js/locale/angular-locale_bs.js",
-"lib/js/locale/angular-locale_ca.js",
-"lib/js/locale/angular-locale_ca-es-valencia.js",
-"lib/js/locale/angular-locale_cs.js",
-"lib/js/locale/angular-locale_da.js",
-"lib/js/locale/angular-locale_de.js",
-"lib/js/locale/angular-locale_el.js",
-"lib/js/locale/angular-locale_en.js",
-"lib/js/locale/angular-locale_es.js",
-"lib/js/locale/angular-locale_fa.js",
-"lib/js/locale/angular-locale_fi.js",
-"lib/js/locale/angular-locale_fr.js",
-"lib/js/locale/angular-locale_gl.js",
-"lib/js/locale/angular-locale_he.js",
-"lib/js/locale/angular-locale_hr-hr.js",
-"lib/js/locale/angular-locale_hu-hu.js",
-"lib/js/locale/angular-locale_id.js",
-"lib/js/locale/angular-locale_it.js",
-"lib/js/locale/angular-locale_ja.js",
-"lib/js/locale/angular-locale_ka.js",
-"lib/js/locale/angular-locale_ko.js",
-"lib/js/locale/angular-locale_mg.js",
-"lib/js/locale/angular-locale_nb-no.js",
-"lib/js/locale/angular-locale_nl.js",
-"lib/js/locale/angular-locale_pl.js",
-"lib/js/locale/angular-locale_pt-br.js",
-"lib/js/locale/angular-locale_pt-pt.js",
-"lib/js/locale/angular-locale_ro.js",
-"lib/js/locale/angular-locale_ru.js",
-"lib/js/locale/angular-locale_sk.js",
-"lib/js/locale/angular-locale_sl.js",
-"lib/js/locale/angular-locale_sq.js",
-"lib/js/locale/angular-locale_sv.js",
-"lib/js/locale/angular-locale_ta.js",
-"lib/js/locale/angular-locale_th.js",
-"lib/js/locale/angular-locale_tr.js",
-"lib/js/locale/angular-locale_uk.js",
-"lib/js/locale/angular-locale_ur.js",
-"lib/js/locale/angular-locale_vi.js",
-"lib/js/locale/angular-locale_zh-cn.js",
-"lib/js/locale/angular-locale_zh-tw.js"];
-
-
 module.exports = function(grunt) {
   var fs = require("fs"),
     path = require("path"),
@@ -326,11 +279,7 @@ module.exports = function(grunt) {
     grunt.file.copy("tmp/js/scripts.js", "build/js/scripts.js");
     grunt.file.copy("tmp/js/plugin.js", "build/js/plugin.js");
 
-    for (x in locales) {
-      grunt.file.copy("tmp/" + locales[x], "build/" + locales[x]);
-    }
-
-    dirs = ["l10n", "data"];
+    dirs = ["data", "l10n", "lib/js/locale/"];
 
     for (x in dirs) {
       var copy_fun = function(absdir, rootdir, subdir, filename) {
