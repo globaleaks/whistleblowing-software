@@ -502,55 +502,14 @@ var GLClient = angular.module("GLClient", [
     $uibTooltipProvider.options({appendToBody: true, trigger: "mouseenter"});
 }]).
   config(["tmhDynamicLocaleProvider", function(tmhDynamicLocaleProvider) {
-    tmhDynamicLocaleProvider.localeLocationPattern("{{locales[locale]}}");
-    tmhDynamicLocaleProvider.addLocalePatternValue("locales",
-      {
-       "ar": "lib/js/locale/angular-locale_ar.js",
-       "az": "lib/js/locale/angular-locale_az.js",
-       "bg": "lib/js/locale/angular-locale_ca.js",
-       "bs": "lib/js/locale/angular-locale_bs.js",
-       "ca": "lib/js/locale/angular-locale_ca.js",
-       "ca@valencia": "lib/js/locale/angular-locale_ca-es-valencia.js",
-       "cs": "lib/js/locale/angular-locale_cs.js",
-       "da": "lib/js/locale/angular-locale_da.js",
-       "de": "lib/js/locale/angular-locale_de.js",
-       "el": "lib/js/locale/angular-locale_el.js",
-       "en": "lib/js/locale/angular-locale_en.js",
-       "es": "lib/js/locale/angular-locale_es.js",
-       "fa": "lib/js/locale/angular-locale_fa.js",
-       "fi": "lib/js/locale/angular-locale_fi.js",
-       "fr": "lib/js/locale/angular-locale_fr.js",
-       "gl": "lib/js/locale/angular-locale_gl.js",
-       "he": "lib/js/locale/angular-locale_he.js",
-       "hr-hr": "lib/js/locale/angular-locale_hr-hr.js",
-       "hr-hu": "lib/js/locale/angular-locale_hu-hu.js",
-       "id": "lib/js/locale/angular-locale_id.js",
-       "it": "lib/js/locale/angular-locale_it.js",
-       "ja": "lib/js/locale/angular-locale_ja.js",
-       "ka": "lib/js/locale/angular-locale_ka.js",
-       "ko": "lib/js/locale/angular-locale_ko.js",
-       "mg": "lib/js/locale/angular-locale_mg.js",
-       "nb-no": "lib/js/locale/angular-locale_nb-no.js",
-       "nl": "lib/js/locale/angular-locale_nl.js",
-       "pl": "lib/js/locale/angular-locale_pl.js",
-       "pt-br": "lib/js/locale/angular-locale_pt-br.js",
-       "pt-pt": "lib/js/locale/angular-locale_pt-pt.js",
-       "ro": "lib/js/locale/angular-locale_ro.js",
-       "ru": "lib/js/locale/angular-locale_ru.js",
-       "sk": "lib/js/locale/angular-locale_sk.js",
-       "sl-si": "lib/js/locale/angular-locale_sl.js",
-       "sq": "lib/js/locale/angular-locale_sq.js",
-       "sv": "lib/js/locale/angular-locale_sv.js",
-       "ta": "lib/js/locale/angular-locale_ta.js",
-       "th": "lib/js/locale/angular-locale_th.js",
-       "tr": "lib/js/locale/angular-locale_tr.js",
-       "uk": "lib/js/locale/angular-locale_uk.js",
-       "ur": "lib/js/locale/angular-locale_ur.js",
-       "vi": "lib/js/locale/angular-locale_vi.js",
-       "zn-cn": "lib/js/locale/angular-locale_zh-cn.js",
-       "zh-tw": "lib/js/locale/angular-locale_zh-tw.js"
-      }
-    );
+    var map = {
+      "ca@valencia": "ca-es-valencia",
+      "sl-si": "sl"
+    }
+
+    tmhDynamicLocaleProvider.addLocalePatternValue("map", map);
+
+    tmhDynamicLocaleProvider.localeLocationPattern("{{map[locale] ? 'lib/js/locale/angular-locale_' + map[locale] +'.js' : 'lib/js/locale/angular-locale_' + locale +'.js'}}");
 }]).
   config(["flowFactoryProvider", function (flowFactoryProvider) {
     // Trick to move the flowFactoryProvider config inside run block.
