@@ -65,7 +65,6 @@ module.exports = function(grunt) {
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-route/angular-route.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-sanitize/angular-sanitize.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-translate/dist/angular-translate.min.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-translate-loader-url/angular-translate-loader-url.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/d3/dist/d3.min.js"], expand: true, flatten: true },
