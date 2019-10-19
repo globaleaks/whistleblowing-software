@@ -9,7 +9,7 @@
              data-ng-pattern="hostname_regexp"
 	     data-ng-class="{'has-danger': adminNetForm.hostname.$error.pattern}" />
       <span class="input-group-append">
-        <button class="btn btn-success" data-ng-click="Utils.setHostname(hostname) && (admin.node.hostname = hostname)" data-ng-disabled="hostname === admin.node.hostname" data-translate>Save</button>
+        <button class="btn btn-success" data-ng-click="Utils.setHostname(hostname)" data-ng-disabled="hostname === admin.node.hostname" data-translate>Save</button>
       </span>
     </p>
     <p class="text-danger" data-ng-show="adminNetForm.hostname.$error.pattern">
