@@ -426,10 +426,6 @@ input[type="file"] {
   cursor: pointer;
 }
 
-.card {
-  margin-bottom: 1rem;
-}
-
 @media (min-width: 992px) {
   body {
     min-height: 100%;
