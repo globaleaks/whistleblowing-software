@@ -519,6 +519,8 @@ var GLClient = angular.module("GLClient", [
       function($rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $templateCache, Authentication, PublicResource, Utils, AdminUtils, fieldUtilities, GLTranslate, Access) {
     var script;
 
+    $rootScope.started = false;
+
     script = document.createElement("link");
     script.setAttribute("rel", "stylesheet");
     script.setAttribute("type", "text/css");
@@ -536,10 +538,6 @@ var GLClient = angular.module("GLClient", [
     $rootScope.errors = [];
     $rootScope.embedded = $location.search().embedded === "true";
     $rootScope.mobile = /Mobi|Android/i.test(navigator.userAgent);
-
-    $rootScope.node = {};
-    $rootScope.contexts = {};
-    $rootScope.receivers = {};
 
     _flowFactoryProvider.defaults = {
         chunkSize: 1000 * 1024,
@@ -602,7 +600,7 @@ var GLClient = angular.module("GLClient", [
     };
 
     $rootScope.evaluateDisclaimerModalOpening = function () {
-      if ($rootScope.node.enable_disclaimer &&
+      if ($rootScope.public.node.enable_disclaimer &&
           !$rootScope.disclaimer_modal_opened) {
         $rootScope.disclaimer_modal_opened = true;
         $rootScope.open_disclaimer_modal();
@@ -616,9 +614,10 @@ var GLClient = angular.module("GLClient", [
       return PublicResource.get(function(result, getResponseHeaders) {
         var script;
 
-        $rootScope.node = result.node;
+        $rootScope.public = result;
+        $rootScope.started = true;
 
-	if ($rootScope.node.css) {
+	if ($rootScope.public.node.css) {
           script = document.createElement("link");
           script.setAttribute("rel", "stylesheet");
           script.setAttribute("type", "text/css");
@@ -626,20 +625,15 @@ var GLClient = angular.module("GLClient", [
           document.getElementsByTagName("head")[0].appendChild(script);
         }
 
-	if ($rootScope.node.script) {
+	if ($rootScope.public.node.script) {
           script = document.createElement("script");
           script.setAttribute("type", "text/javascript");
           script.setAttribute("src", "s/script");
           document.getElementsByTagName("body")[0].appendChild(script);
         }
 
-        $rootScope.contexts = result.contexts;
         $rootScope.contexts_by_id = $rootScope.Utils.array_to_map(result.contexts);
-
-        $rootScope.receivers = result.receivers;
         $rootScope.receivers_by_id = $rootScope.Utils.array_to_map(result.receivers);
-
-        $rootScope.questionnaires = result.questionnaires;
         $rootScope.questionnaires_by_id = $rootScope.Utils.array_to_map(result.questionnaires);
 
         $rootScope.submission_statuses = result.submission_statuses;
@@ -670,11 +664,11 @@ var GLClient = angular.module("GLClient", [
           var headers = getResponseHeaders();
           if (headers["X-Check-Tor"] !== undefined && headers["X-Check-Tor"] === "true") {
             $rootScope.connection.tor = true;
-            if ($rootScope.node.onionservice && !Utils.iframeCheck()) {
+            if ($rootScope.public.node.onionservice && !Utils.iframeCheck()) {
               // the check on the iframe is in order to avoid redirects
               // when the application is included inside iframes in order to not
               // mix HTTPS resources with HTTP resources.
-              $location.path("http://" + $rootScope.node.onionservice + "/#" + $location.url());
+              $location.path("http://" + $rootScope.public.node.onionservice + "/#" + $location.url());
             }
           }
         }
@@ -684,9 +678,9 @@ var GLClient = angular.module("GLClient", [
         $rootScope.languages_enabled = {};
         $rootScope.languages_enabled_selector = [];
         $rootScope.languages_supported = {};
-        angular.forEach($rootScope.node.languages_supported, function (lang) {
+        angular.forEach($rootScope.public.node.languages_supported, function (lang) {
           $rootScope.languages_supported[lang.code] = lang;
-          if ($rootScope.node.languages_enabled.indexOf(lang.code) !== -1) {
+          if ($rootScope.public.node.languages_enabled.indexOf(lang.code) !== -1) {
             $rootScope.languages_enabled[lang.code] = lang;
             $rootScope.languages_enabled_selector.push(lang);
           }
@@ -694,7 +688,7 @@ var GLClient = angular.module("GLClient", [
 
         $rootScope.languages_enabled_selector = $filter("orderBy")($rootScope.languages_enabled_selector, "code");
 
-        if ($rootScope.node.enable_experimental_features) {
+        if ($rootScope.public.node.enable_experimental_features) {
           $rootScope.isFieldTriggered = fieldUtilities.isFieldTriggered;
         } else {
           $rootScope.isFieldTriggered = $rootScope.dumb_function;
@@ -702,7 +696,7 @@ var GLClient = angular.module("GLClient", [
 
         $rootScope.evaluateConfidentialityModalOpening();
 
-        GLTranslate.addNodeFacts($rootScope.node.default_language, $rootScope.node.languages_enabled);
+        GLTranslate.addNodeFacts($rootScope.public.node.default_language, $rootScope.public.node.languages_enabled);
         Utils.set_title();
       }).$promise;
     };

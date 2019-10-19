@@ -16,7 +16,7 @@
   </div>
 
   <div data-ng-if="vars.site !== null">
-    <div data-ng-if="node.mode !== 'whistleblowing.it'">
+    <div data-ng-if="public.node.mode !== 'whistleblowing.it'">
       <div class="form-group">
         <label data-translate>Username</label>
         <input class="form-control" name="username" data-ng-model="loginData.loginUsername" type="text" required />
@@ -33,7 +33,7 @@
       <span data-translate>Log in</span>
     </button>
 
-    <span id="forgot-button" data-ng-if="::node.enable_password_reset">
+    <span id="forgot-button" data-ng-if="::public.node.enable_password_reset">
       <a class="btn btn-secondary" href="/t/{{vars.site.id}}/#/login/passwordreset" data-translate>Forgot password?</a>
     </span>
   </div>

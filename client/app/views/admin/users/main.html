@@ -22,7 +22,7 @@
               </select>
             </div>
           </div>
-          <div class="form-group" data-ng-if="new_user.role !== 'receiver' || !node.simplified_login">
+          <div class="form-group" data-ng-if="new_user.role !== 'receiver' || !public.node.simplified_login">
             <label data-translate>Username</label>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
             <div data-ng-class="{'has-danger': newUser.username.$error.required}">
@@ -113,7 +113,7 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                <div class="form-group" data-ng-if="user.role !== 'receiver' || !node.simplified_login">
+                <div class="form-group" data-ng-if="user.role !== 'receiver' || !public.node.simplified_login">
                   <label data-translate>Username</label>
                   <input class="form-control" name="username" data-ng-model="user.username" type="text" required />
                   <div class="text-danger" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
@@ -213,15 +213,15 @@
                     <option value="forcefully_selected" data-translate>Forcefully selected</option>
                   </select>
                 </div>
-                <div class="form-group" data-ng-if="!node.can_postpone_expiration">
+                <div class="form-group" data-ng-if="!public.node.can_postpone_expiration">
                   <input data-ng-model="user.can_postpone_expiration" type="checkbox" />
                   <label data-translate>Allow the recipient to postpone the submission expiration date</label>
                 </div>
-                <div class="form-group" data-ng-if="!node.can_delete_submission">
+                <div class="form-group" data-ng-if="!public.node.can_delete_submission">
                   <input data-ng-model="user.can_delete_submission" type="checkbox" />
                   <label data-translate>Allow the recipient to delete submissions</label>
                 </div>
-                <div class="form-group" data-ng-if="!node.can_grant_permissions">
+                <div class="form-group" data-ng-if="!public.node.can_grant_permissions">
                   <input data-ng-model="user.can_grant_permissions" type="checkbox" />
                   <label data-translate>Allow the recipient to grant permissions to whistleblowers on specific submissions</label>
                 </div>

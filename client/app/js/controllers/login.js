@@ -13,12 +13,12 @@ function($scope, $location, $filter, Sites) {
 
   if ($location.path() === "/receipt") {
     $scope.login_template = "views/login/receipt.html";
-  } else if ($location.path() === "/login" && $scope.node.simplified_login) {
+  } else if ($location.path() === "/login" && $scope.public.node.simplified_login) {
     $scope.login_template = "views/login/simplified.html";
-  } else if ($location.path() === "/multisitelogin" && $scope.node.multisite_login) {
+  } else if ($location.path() === "/multisitelogin" && $scope.public.node.multisite_login) {
     $scope.login_template = "views/login/multisite.html";
 
-    if ($scope.node.mode === "whistleblowing.it") {
+    if ($scope.public.node.mode === "whistleblowing.it") {
       $scope.loginData.loginUsername = "recipient";
     }
   } else {
@@ -31,7 +31,7 @@ function($scope, $location, $filter, Sites) {
     return;
   }
 
-  if ($scope.node.root_tenant) {
+  if ($scope.public.node.root_tenant) {
     Sites.query(function(result) {
       $scope.vars = {
         "site": null

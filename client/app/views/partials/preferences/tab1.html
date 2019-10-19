@@ -40,7 +40,7 @@
   </div>
   <div data-ng-if="preferences.description !== ''"><label data-translate>Description</label> {{::preferences.description }}</div>
 
-  <div id="Contexts" data-ng-if="session.role === 'receiver' && contexts.length > 1">
+  <div id="Contexts" data-ng-if="session.role === 'receiver' && public.contexts.length > 1">
     <label><span data-translate>Contexts</span></label>
     <ul data-ng-repeat="context_id in preferences.contexts">
       <li>{{contexts_by_id[context_id].name}}</li>
@@ -73,7 +73,7 @@
     <div data-ng-show="showEncryptionKey">{{preferences.cc}}</div>
   </div>
 
-  <div id="EditPGP" data-ng-form="pgpkeyForm" data-ng-if="node.enable_user_pgp_key_upload">
+  <div id="EditPGP" data-ng-form="pgpkeyForm" data-ng-if="public.node.enable_user_pgp_key_upload">
     <div data-ng-show="preferences.pgp_key_fingerprint !== ''">
       <div class="form-group">
         <label data-translate>Details of the PGP key:</label>

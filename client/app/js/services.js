@@ -311,7 +311,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         self.selected_receivers = {};
         self.receivers = [];
 
-        angular.forEach($rootScope.receivers, function(receiver) {
+        angular.forEach($rootScope.public.receivers, function(receiver) {
           if (self.context.receivers.indexOf(receiver.id) !== -1) {
             self.receivers.push(receiver);
 
@@ -1575,7 +1575,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     nodeDefault: undefined
   };
 
-  // This is a value set by the node.
+  // This is a value set by the public.node.
   var enabledLanguages = [];
 
   // Country codes with multiple languages or an '_XX' extension
@@ -1657,7 +1657,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
     // Update the $translate module to use the new language.
     $translate.use(lang).then(function() {
-      // TODO reload the new translations returned by node.
+      // TODO reload the new translations returned by public.node.
     });
 
     // For languages that are of the form 'zh_TW', handle the mapping of 'lang'

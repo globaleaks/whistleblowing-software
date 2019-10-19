@@ -1,8 +1,8 @@
 <div data-ng-if="!Authentication.authcoderequired">
-  <div data-ng-if="receivers.length === 1">
-    <div class="form-group" data-ng-init="loginData.loginUsername = receivers[0].username">
+  <div data-ng-if="public.receivers.length === 1">
+    <div class="form-group" data-ng-init="loginData.loginUsername = public.receivers[0].username">
       <label data-translate>Username:</label>
-      <input class="form-control" name="label" placeholder="{{node.name}}" type="text" disabled />
+      <input class="form-control" name="label" placeholder="{{public.node.name}}" type="text" disabled />
     </div>
     <div class="form-group">
       <label data-translate>Password:</label>
@@ -14,16 +14,16 @@
         <span data-translate>Log in</span>
       </button>
 
-      <span id="forgot-button" data-ng-if="::node.enable_password_reset">
+      <span id="forgot-button" data-ng-if="::public.node.enable_password_reset">
         <a class="btn btn-secondary" href="/#/login/passwordreset" data-translate>Forgot password?</a>
       </span>
     </div>
   </div>
 
-  <div data-ng-if="receivers.length >= 2">
+  <div data-ng-if="public.receivers.length >= 2">
     <div class="form-group">
       <label data-translate>Please select your account:</label>
-      <select class="form-control" data-ng-model="loginData.loginUsername" data-ng-options="item.username as item.name for item in receivers | orderBy:'name'" required></select>
+      <select class="form-control" data-ng-model="loginData.loginUsername" data-ng-options="item.username as item.name for item in public.receivers | orderBy:'name'" required></select>
     </div>
 
     <div data-ng-show="loginData.loginUsername">
@@ -38,7 +38,7 @@
           <span data-translate>Log in</span>
         </button>
 
-        <span id="forgot-button" data-ng-if="::node.enable_password_reset">
+        <span id="forgot-button" data-ng-if="::public.node.enable_password_reset">
           <a class="btn btn-secondary" href="/#/login/passwordreset" data-translate>Forgot password?</a>
         </span>
       </div>

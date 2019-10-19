@@ -65,7 +65,7 @@
               <i class="fa fa-barcode"></i>
             </span>
           </th>
-          <th class="TipInfoContext" data-ng-if="contexts.length > 1">
+          <th class="TipInfoContext" data-ng-if="public.contexts.length > 1">
             <span data-ng-click="sortKey = 'context_name'; sortReverse = !sortReverse">
               <span data-translate>Context</span>
               <i class="fa fa-inbox"></i>
@@ -194,7 +194,7 @@
             </span>
           </td>
           <td class="TipInfoID">#{{::tip.progressive}}</td>
-          <td class="TipInfoContext" data-ng-if="contexts.length > 1">{{::tip.context_name}}</td>
+          <td class="TipInfoContext" data-ng-if="public.contexts.length > 1">{{::tip.context_name}}</td>
           <td class="TipInfoLabel">{{::tip.label}}</td>
 	  <td class="TipInfoStatus"><span>{{tip.submissionStatusStr}}</span></td>
           <td class="TipInfoSubmissionDate">{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>

@@ -85,7 +85,7 @@ controller("AdminGeneralSettingsCtrl", ["$scope", "$filter", "$http", "Files", "
   ];
 
   $scope.vars = {
-    "language_to_customize": $scope.node.default_language
+    "language_to_customize": $scope.public.node.default_language
   };
 
   $scope.get_l10n = function(lang) {

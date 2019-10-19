@@ -1,7 +1,7 @@
 GLClient.controller("WizardCtrl", ["$scope", "$location", "$route", "$http", "Authentication", "GLTranslate", "CONSTANTS",
                     function($scope, $location, $route, $http, Authentication, GLTranslate, CONSTANTS) {
   /* if the wizard has been already performed redirect to the homepage */
-  if ($scope.node.wizard_done) {
+  if ($scope.public.node.wizard_done) {
     $location.path("/");
     return;
   }

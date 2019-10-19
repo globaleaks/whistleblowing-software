@@ -5,7 +5,7 @@ GLClient.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
       $scope.showAddUser = !$scope.showAddUser;
     };
 
-    if ($scope.node.root_tenant) {
+    if ($scope.public.node.root_tenant) {
       AdminTenantResource.query(function(result) {
         $scope.admin.tenants = result;
         $scope.tenants_by_id = $scope.Utils.array_to_map($scope.admin.tenants);

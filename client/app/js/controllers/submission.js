@@ -17,9 +17,9 @@ GLClient.controller("SubmissionCtrl",
     return $scope.firstStepIndex() === $scope.lastStepIndex();
   };
 
-  $scope.contextsOrderPredicate = $scope.node.show_contexts_in_alphabetical_order ? "name" : "presentation_order";
+  $scope.contextsOrderPredicate = $scope.public.node.show_contexts_in_alphabetical_order ? "name" : "presentation_order";
 
-  $scope.selectable_contexts = $filter("filter")($scope.contexts, {"status": 1});
+  $scope.selectable_contexts = $filter("filter")($scope.public.contexts, {"status": 1});
   $scope.selectable_contexts = $filter("orderBy")($scope.selectable_contexts, $scope.contextsOrderPredicate);
 
   var startCountdown = function() {
@@ -272,7 +272,7 @@ GLClient.controller("SubmissionCtrl",
     var context = null;
 
     if ($scope.context_id) {
-      context = $filter("filter")($scope.contexts,
+      context = $filter("filter")($scope.public.contexts,
                                   {"id": $scope.context_id})[0];
     } else if ($scope.selectable_contexts.length === 1) {
       context = $scope.selectable_contexts[0];
