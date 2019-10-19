@@ -1,7 +1,7 @@
 <div data-ng-show="choseManCfg" data-translate>This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.</div>
 <br />
 <div class="https-file-res">
-  <div class="card card-default priv-key">
+  <div class="card card-default priv-key mb-1">
     <div class="card-body" data-ng-class="{'disabled-interface': tls_config.enabled || tls_config.acme}">
       <span data-ng-class="statusClass(tls_config.files.priv_key)">
         <span class="font-weight-bold">1</span>
@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <div data-ng-if="tls_config.files.priv_key.gen && !tls_config.acme" class="card card-default csr">
+  <div data-ng-if="tls_config.files.priv_key.gen && !tls_config.acme" class="card card-default csr mb-1">
     <div class="card-body" data-ng-class="{'disabled-interface': state < 0 || tls_config.acme}">
       <span data-ng-class="statusClass(tls_config.files.csr)">
         <span class="font-weight-bold">2</span>
@@ -61,7 +61,7 @@
     </div>
   </div>
 
-  <div class="card card-default cert">
+  <div class="card card-default cert mb-1">
     <div class="card-body" data-ng-class="{'disabled-interface': state <= 0 || tls_config.acme}">
       <span data-ng-class="statusClass(tls_config.files.cert)">
         <span class="font-weight-bold">{{(!tls_config.acme && tls_config.files.priv_key.gen) ? '3' : '2'}}</span>
@@ -90,7 +90,7 @@
     </div>
   </div>
 
-  <div class="card card-default chain">
+  <div class="card card-default chain mb-1">
     <div class="card-body" data-ng-class="{'disabled-interface': state <= 1 || tls_config.acme}">
       <span data-ng-class="statusClass(tls_config.files.chain)">
         <span class="font-weight-bold">{{(tls_config.acme && tls_config.files.priv_key.gen) ? '4' : '3'}}</span>

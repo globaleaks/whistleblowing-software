@@ -71,7 +71,7 @@ angular.module("GLServices", ["ngResource"]).
             self.loginInProgress = false;
 
             if ("redirect" in response.data) {
-              if ($rootScope.embedded && $rootScope.node.allows_iframes_inclusion) {
+              if ($rootScope.embedded && $rootScope.public.node.allows_iframes_inclusion) {
                 $window.parent.postMessage({"cmd": "redirect", "data": response.data["redirect"]}, "*");
               } else {
                 $window.location.replace(response.data["redirect"]);
@@ -863,18 +863,18 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       },
 
       set_title: function() {
-        var nodename = $rootScope.node.name ? $rootScope.node.name : "Globaleaks";
+        var nodename = $rootScope.public.node.name ? $rootScope.public.node.name : "Globaleaks";
         var path = $location.path();
 
         if (path === "/") {
           if ($rootScope.page === 'homepage') {
-            $rootScope.ht = $rootScope.node.header_title_homepage;
+            $rootScope.ht = $rootScope.public.node.header_title_homepage;
           } else if ($rootScope.page === "submissionpage") {
-            $rootScope.ht = $rootScope.node.header_title_submissionpage;
+            $rootScope.ht = $rootScope.public.node.header_title_submissionpage;
           } else if ($rootScope.page === "receiptpage") {
-            $rootScope.ht = $rootScope.node.header_title_receiptpage;
+            $rootScope.ht = $rootScope.public.node.header_title_receiptpage;
           } else if ($rootScope.page === 'tippage') {
-            $rootScope.ht = $rootScope.node.header_title_tippage;
+            $rootScope.ht = $rootScope.public.node.header_title_tippage;
           }
         } else {
           $rootScope.ht = $rootScope.header_title;
@@ -888,16 +888,16 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       route_check: function() {
         var path = $location.path();
 
-        if (!$rootScope.node.wizard_done) {
+        if (!$rootScope.public.node.wizard_done) {
           $location.path("/wizard");
-        } else if (path === "/" && $rootScope.node.enable_signup) {
+        } else if (path === "/" && $rootScope.public.node.enable_signup) {
           $location.path("/signup");
-        } else if (["/signup", "activation"].indexOf(path === -1) && $rootScope.node.adminonly && !$rootScope.Authentication.session) {
+        } else if (["/signup", "activation"].indexOf(path === -1) && $rootScope.public.node.adminonly && !$rootScope.Authentication.session) {
           $location.path("/admin");
         } else if ($rootScope.Authentication.session) {
           if ($rootScope.Authentication.session.password_change_needed) {
             $location.path("/actions/forcedpasswordchange");
-          } else if ($rootScope.node.two_factor && !$rootScope.Authentication.session.two_factor) {
+          } else if ($rootScope.public.node.two_factor && !$rootScope.Authentication.session.two_factor) {
             console.log($rootScope.Authentication.session);
             $location.path("/actions/forcedtwofactor");
           }
@@ -990,11 +990,11 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       },
 
       showUserStatusBox: function() {
-        return $rootScope.node.wizard_done && angular.isDefined($rootScope.session);
+        return $rootScope.public.node.wizard_done && angular.isDefined($rootScope.session);
       },
 
       showPrivacyBadge: function() {
-        return (!$rootScope.node.disable_privacy_badge &&
+        return (!$rootScope.public.node.disable_privacy_badge &&
                 this.isWhistleblowerPage());
       },
 
@@ -1407,7 +1407,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
               return;
             }
 
-            if (scope.node.enable_scoring_system) {
+            if (scope.public.node.enable_scoring_system) {
               angular.forEach(scope.answers[field.id], function(entry) {
                 self.calculateScore(scope, field, entry);
               });

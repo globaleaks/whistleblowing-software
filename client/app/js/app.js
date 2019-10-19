@@ -517,18 +517,29 @@ var GLClient = angular.module("GLClient", [
 }]).
   run(["$rootScope", "$http", "$route", "$routeParams", "$location",  "$filter", "$translate", "$uibModal", "$templateCache", "Authentication", "PublicResource", "Utils", "AdminUtils", "fieldUtilities", "GLTranslate", "Access",
       function($rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $templateCache, Authentication, PublicResource, Utils, AdminUtils, fieldUtilities, GLTranslate, Access) {
+    var script;
+
+    script = document.createElement("link");
+    script.setAttribute("rel", "stylesheet");
+    script.setAttribute("type", "text/css");
+    script.setAttribute("href", "css/styles.css");
+    document.getElementsByTagName("head")[0].appendChild(script);
+
     $rootScope.Authentication = Authentication;
     $rootScope.GLTranslate = GLTranslate;
     $rootScope.Utils = Utils;
     $rootScope.fieldUtilities = fieldUtilities;
     $rootScope.AdminUtils = AdminUtils;
 
-    $rootScope.started = false;
     $rootScope.showLoadingPanel = false;
     $rootScope.successes = [];
     $rootScope.errors = [];
     $rootScope.embedded = $location.search().embedded === "true";
     $rootScope.mobile = /Mobi|Android/i.test(navigator.userAgent);
+
+    $rootScope.node = {};
+    $rootScope.contexts = {};
+    $rootScope.receivers = {};
 
     _flowFactoryProvider.defaults = {
         chunkSize: 1000 * 1024,
@@ -607,6 +618,21 @@ var GLClient = angular.module("GLClient", [
 
         $rootScope.node = result.node;
 
+	if ($rootScope.node.css) {
+          script = document.createElement("link");
+          script.setAttribute("rel", "stylesheet");
+          script.setAttribute("type", "text/css");
+          script.setAttribute("href", "s/css");
+          document.getElementsByTagName("head")[0].appendChild(script);
+        }
+
+	if ($rootScope.node.script) {
+          script = document.createElement("script");
+          script.setAttribute("type", "text/javascript");
+          script.setAttribute("src", "s/script");
+          document.getElementsByTagName("body")[0].appendChild(script);
+        }
+
         $rootScope.contexts = result.contexts;
         $rootScope.contexts_by_id = $rootScope.Utils.array_to_map(result.contexts);
 
@@ -678,30 +704,6 @@ var GLClient = angular.module("GLClient", [
 
         GLTranslate.addNodeFacts($rootScope.node.default_language, $rootScope.node.languages_enabled);
         Utils.set_title();
-
-        script = document.createElement("link");
-        script.setAttribute("rel", "stylesheet");
-        script.setAttribute("type", "text/css");
-        script.setAttribute("href", "css/styles.css");
-        document.getElementsByTagName("head")[0].appendChild(script);
-
-	if ($rootScope.node.css) {
-          script = document.createElement("link");
-          script.setAttribute("rel", "stylesheet");
-          script.setAttribute("type", "text/css");
-          script.setAttribute("href", "s/css");
-          document.getElementsByTagName("head")[0].appendChild(script);
-        }
-
-	if ($rootScope.node.script) {
-          script = document.createElement("script");
-          script.setAttribute("type", "text/javascript");
-          script.setAttribute("src", "s/script");
-          document.getElementsByTagName("body")[0].appendChild(script);
-        }
-
-        $rootScope.started = true;
-
       }).$promise;
     };
 

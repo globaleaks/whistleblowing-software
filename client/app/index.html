@@ -77,7 +77,7 @@
     </div>
 
     <div id="BrowserSupported" data-ng-class="{'block-user-input': showLoadingPanel}">
-      <div data-ng-if="started" class="ng-cloak" data-ng-class="Utils.classExtension()">
+      <div class="ng-cloak" data-ng-class="Utils.classExtension()">
         <div data-ng-if="!node.root_tenant && node.mode === 'demo'" data-ng-include="'views/partials/demo.html'"></div>
         <div data-ng-if="Utils.showPrivacyBadge()" data-ng-include="'views/partials/privacybadge.html'"></div>
         <div data-ng-if="!embedded" data-ng-include="'views/partials/header.html'"></div>
@@ -89,7 +89,7 @@
         <footer id="FooterBox" data-ng-if="!embedded" data-ng-include="'views/partials/footer.html'"></footer>
       </div>
 
-      <div id="PageOverlay" data-ng-hide="started && !showLoadingPanel">
+      <div id="PageOverlay" data-ng-hide="!showLoadingPanel">
         <div id="LoaderBox">
           <div id="LoaderBoxContent">
             <div class="loader">
