@@ -10,13 +10,10 @@
     <!-- Ticket #1480 : Specify the ordered IE support starting from EDGE and ending with 11 -->
     <meta http-equiv="X-UA-Compatible" content="IE=EDGE,11" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="s/favicon" />
-
     <!-- PRELOAD -->
 
-    <link rel="stylesheet" href="css/loader.css" />
-
     <!-- build:css css/styles.css -->
+    <link rel="stylesheet" href="css/loader.css" />
     <link rel="stylesheet" href="lib/css/fontawesome.min.css" />
     <link rel="stylesheet" href="lib/css/solid.min.css" />
     <link rel="stylesheet" href="lib/css/bootstrap.min.css" />
@@ -53,49 +50,25 @@
       </div>
     </noscript>
 
-    <div id="BrowserNotSupported">
-      <h1>[EN] Warning! :(</h1><br /><br />
-      <div>
-        You are running an unsupported and potentially vulnerable browser.<br /><br />
-        You are strongly advised to download and install the Tor Browser.<br/>
-        The Tor Browser includes various privacy and security enhancements not present in other browsers.<br /><br />
-        <a href="https://www.torproject.org/download/download-easy.html.en" target="_blank" rel="noreferrer noopener" class="text-center">[ Download the Tor Browser ]</a><br /><br />
-        This is the list of the other supported browsers:<br />
-        <ul>
-          <li>Mozilla Firefox &gt;= 38</li>
-          <li>Google Chrome &gt;= 45</li>
-          <li>Safari: &gt;= 8</li>
-          <li>Edge: &gt;= 12</li>
-          <li>Internet Explorer &gt;= 11</li>
-          <li>iOS &gt;= 9</li>
-          <li>Android &gt;= 4.4</li>
-        </ul>
+    <div class="ng-cloak" data-ng-class="{'block-user-input': showLoadingPanel}">
+      <div data-ng-if="!public.node.root_tenant && public.node.mode === 'demo'" data-ng-include="'views/partials/demo.html'"></div>
+      <div data-ng-if="Utils.showPrivacyBadge()" data-ng-include="'views/partials/privacybadge.html'"></div>
+      <div data-ng-if="!embedded" data-ng-include="'views/partials/header.html'"></div>
+      <div id="MessagesConsoleBox" data-ng-include="'views/partials/messageconsole.html'"></div>
+      <div id="ContentBox">
+        <a id="top"></a>
+        <div data-ng-view=""></div>
       </div>
+      <footer id="FooterBox" data-ng-if="!embedded" data-ng-include="'views/partials/footer.html'"></footer>
     </div>
 
-    <div id="BrowserSupported" data-ng-class="{'block-user-input': showLoadingPanel}">
-      <div class="ng-cloak" data-ng-class="Utils.classExtension()">
-        <div data-ng-if="!public.node.root_tenant && public.node.mode === 'demo'" data-ng-include="'views/partials/demo.html'"></div>
-        <div data-ng-if="Utils.showPrivacyBadge()" data-ng-include="'views/partials/privacybadge.html'"></div>
-        <div data-ng-if="!embedded" data-ng-include="'views/partials/header.html'"></div>
-        <div id="MessagesConsoleBox" data-ng-include="'views/partials/messageconsole.html'"></div>
-        <div id="ContentBox">
-          <a id="top"></a>
-          <div data-ng-view=""></div>
-        </div>
-        <footer id="FooterBox" data-ng-if="!embedded" data-ng-include="'views/partials/footer.html'"></footer>
-      </div>
-
-      <div id="PageOverlay" data-ng-hide="!showLoadingPanel">
-        <div id="LoaderBox">
-          <div id="LoaderBoxContent">
-            <div class="loader">
-          </div>
+    <div id="PageOverlay" data-ng-hide="!showLoadingPanel">
+      <div id="LoaderBox">
+        <div id="LoaderBoxContent">
+          <div class="loader">
         </div>
       </div>
     </div>
-
-    <script src="js/loader.js"></script>
 
     <!-- build:js js/scripts.js -->
     <script src="lib/js/qrious.min.js"></script>
