@@ -12,7 +12,7 @@
 }
 
 .fieldAnswer {
-  margin-bottom: 0.8em;
+  margin-bottom: 1rem;
 }
 
 .TipLabel {
@@ -28,11 +28,11 @@
 }
 
 #SubmissionComments, #SubmissionMessages {
-  margin-top: 1.25em;
+  margin-top: 1rem;
 }
 
 #StatusPageMessage {
-  margin: 1.25em;
+  margin: 1rem;
   color: #8a6d3b;
   background-color: #fcf8e3;
   border: 1px solid #faebcc;
@@ -49,5 +49,5 @@
 }
 
 .question {
-  margin-bottom: 0.2em;
+  margin-bottom: 0.2rem;
 }

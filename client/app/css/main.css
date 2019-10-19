@@ -15,7 +15,7 @@ body {
 
 @media (min-width: 992px) {
   body {
-    padding-bottom: 12em;
+    padding-bottom: 12rem;
   }
 
   #FooterBox {
@@ -25,17 +25,17 @@ body {
 }
 
 #ContenBox, #NoScript, #BrowserNotSupported {
-  padding: 2em;
+  padding: 2rem;
 }
 
 #FooterBox {
   width: 100%;
-  padding: 1em;
+  padding: 1rem;
   border-top: 1px solid #E5E5E5;
   background-color: #F5F5F5;
   color: #333;
   text-align: center;
-  font-size: 1.25em;
+  font-size: 1.25rem;
 }
 
 .ltr {
@@ -47,7 +47,7 @@ body {
 }
 
 #AttributionClause {
-  margin-top: 0.5em;
+  margin-top: 0.5rem;
 }
 
 a, a:hover, a:active, a:focus {
@@ -55,7 +55,7 @@ a, a:hover, a:active, a:focus {
 }
 
 input, textarea, select {
-  padding-bottom: 0.5em;
+  padding-bottom: 0.5rem;
 }
 
 table {
@@ -66,7 +66,7 @@ table {
 #HeaderBox {
   color: #FFF;
   background-color: #428bca;
-  padding: 1em;
+  padding: 1rem;
 }
 
 #HeaderBox:after {
@@ -78,24 +78,24 @@ table {
 #MessagesConsoleBox {
   position: fixed;
   width: 20%;
-  min-width: 20em;
+  min-width: 20rem;
   z-index: 10;
-  top: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
+  top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 #LogoBox, #TitleBox, #UserBox {
   z-index: 10;
-  padding: 1em;
+  padding: 1rem;
 }
 
 #LogoBox {
-  width: 16em;
+  width: 16rem;
 }
 
 #TitleBox {
-  font-size: 2em;
+  font-size: 2rem;
   font-weight: bold;
   white-space: pre-wrap;
 }
@@ -114,7 +114,7 @@ table {
 
 #LoginStatusBox, #LoginFormBox {
   color: #000;
-  padding: 1em;
+  padding: 1rem;
   background-color: #FFF;
   border-radius: 5px;
 }
@@ -124,7 +124,7 @@ table {
 }
 
 #LogoBox img {
-  max-height: 12em;
+  max-height: 12rem;
 }
 
 .receipt {
@@ -134,35 +134,35 @@ table {
 #PrivacyBadge {
   background-color: #222;
   color: #FFF;
-  font-size: 1em;
-  padding: 1em;
+  font-size: 1rem;
+  padding: 1rem;
 }
 
 #DemoBadge {
-  padding: 1em;
+  padding: 1rem;
 }
 
 #ContentBox {
-  padding: 2em;
+  padding: 2rem;
 }
 
 .title1, .title2, .title3 {
-  margin-top: 0.8em;
-  margin-bottom: 0.8em;
-  line-height: 1.25em;
+  margin-top: 1rem;
+  margin-bottom: 1em;
+  line-height: 1.25rem;
 }
 
 .title1 {
-  font-size: 1.3em;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
 .title2 {
-  font-size: 1.2em;
+  font-size: 1.2rem;
 }
 
 .title3 {
-  font-size: 1.1em;
+  font-size: 1.1rem;
 }
 
 .tab-content {
@@ -175,8 +175,8 @@ table {
 
 .imageUpload {
   position: relative;
-  width: 10em;
-  height: 10em;
+  width: 10rem;
+  height: 10rem;
   border: 1px solid #DDD;
   z-index: 0;
   text-align: center;
@@ -186,7 +186,7 @@ table {
   max-height: 400px;
   overflow-y: scroll;
   border: 1px solid #CCC;
-  padding: 1em;
+  padding: 1rem;
 }
 
 .imageUpload .changePictureButton,
@@ -204,18 +204,18 @@ table {
 }
 
 .imageThumbnail, .imageUploadThumbnail, .contextCardFrame, .receiverCardFrame {
-  height: 10em;
-  margin-bottom: 1em;
+  height: 10rem;
+  margin-bottom: 1rem;
 }
 
 .contextListContent {
-  height: 5em;
+  height: 5rem;
 }
 
 .contextListContent div, .contextListContent span,
 .contextFrame div, .contextFrame span,
 .receiverFrame div, .receiverFrame span {
-  padding: 0.5em;
+  padding: 0.5rem;
 }
 
 .imageUploadThumbnailContent, .contextImg, .receiverImg {
@@ -230,21 +230,21 @@ table {
 
 .wizard-block {
   position: relative;
-  margin-top: 2em;
-  margin-bottom: 2em;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .wizard-block .title {
   position: relative;
-  font-size: 1.3em;
+  font-size: 1.2rem;
   color: #000;
-  margin-bottom: 1em;
+  margin-bottom: 1rem;
 }
 
 .wizard-help-hint {
   border-left: 3px solid #8a6d3b;
   background-color: #fcf8e3;
-  padding: 1.25em;
+  padding: 1.25rem;
 }
 
 .LoginErrorBox, .LoginErrorBoxHomepage {
@@ -252,12 +252,12 @@ table {
 }
 
 .LoginErrorBox {
-  margin: 0.2em;
+  margin: 0.2rem;
 }
 
 .LoginErrorBoxHomepage {
   text-align: center;
-  margin: 0.2em;
+  margin: 0.2rem;
 }
 
 .keyinput, .recoverykeyinput {
@@ -268,17 +268,17 @@ table {
 }
 
 .recoverykeyinput {
-  width: 64em;
+  width: 64rem;
 }
 
 .nested {
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .imgPreview {
-  height: 11.25em;
-  width: 11.25em;
+  height: 10rem;
+  width: 10rem;
 }
 
 .imgPreview img {
@@ -290,36 +290,36 @@ table {
   position: absolute;
   top: 0;
   z-index: 100;
-  height: 11.25em;
-  width: 11.25em;
+  height: 10rem;
+  width: 10rem;
   text-align: center;
-  line-height: 11.25em;
+  line-height: 10rem;
   border: 1px solid #CCC;
 }
 
 .fileUploadIconSmall {
   position: absolute;
-  font-size: 1em;
+  font-size: 10rem;
   color: #000;
   top: 0;
   right: 0px;
 }
 
 .fileUploadIcon {
-  font-size: 3em;
+  font-size: 2rem;
   color: #000;
 }
 
 .fileUploadProgress {
-  margin-top: 0.5em;
+  margin-top: 0.5rem;
 }
 
 #ReceiverToolbar {
-  margin-bottom: 1.25em;
+  margin-bottom: 1.25rem;
 }
 
 .modal-title {
-  font-size: 1.6em;
+  font-size: 1.3rem;
 }
 
 #TipList table {
@@ -328,7 +328,7 @@ table {
 
 #TipList th, #TipList td {
   white-space: nowrap;
-  min-width: 5em;
+  min-width: 5rem;
 }
 
 @keyframes fadeinout {
@@ -376,7 +376,7 @@ textarea.form-control {
 
 .textarea-btn {
   position: absolute;
-  top: 2.4em;
+  top: 2rem;
 }
 
 label.file-upload {
@@ -415,7 +415,7 @@ input[type="file"] {
   background-color: #f5f5f5;
   color: #333;
   border: 1px solid #ccc;
-  max-height: 15em;
+  max-height: 15rem;
   overflow: auto;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -427,7 +427,7 @@ input[type="file"] {
 }
 
 .card {
-  margin-bottom: 1em;
+  margin-bottom: 1rem;
 }
 
 @media (min-width: 992px) {
@@ -466,7 +466,7 @@ input[type="file"] {
 }
 
 .textarea-btn {
-  right: 1em;
+  right: 1rem;
 }
 
 html[dir="rtl"] input[type=email], html[dir="ltr"] input[type=email] {
@@ -474,6 +474,6 @@ html[dir="rtl"] input[type=email], html[dir="ltr"] input[type=email] {
 }
 
 html[dir="rtl"] #creditCard,  html[dir="ltr"] #creditCard {
-  width: 20em;
+  width: 20rem;
   direction: ltr;
 }

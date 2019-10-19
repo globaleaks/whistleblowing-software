@@ -1,7 +1,7 @@
 #HomePageBox {
   text-align: center;
   color: #5a5a5a;
-  font-size: 1em;
+  font-size: 1rem;
   margin: 0 auto;
 }
 
@@ -10,12 +10,12 @@
 }
 
 #NodePresentation {
-  font-size: 1.3em;
+  font-size: 1.2rem;
 }
 
 #NodePresentation,
 #WhistleblowerSubmitBox {
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
 }
 
 #NodePresentation,
@@ -25,9 +25,9 @@
 }
 
 #WhistleblowerSubmitBox, #WhistleblowerReceiptBox {
-  font-size: 1.2em;
+  font-size: 1.2rem;
 }
 
 #DonationPanel {
-  margin-top: 3em;
+  margin-top: 2rem;
 }

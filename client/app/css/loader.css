@@ -35,11 +35,11 @@
 }
 
 .loader {
-  border: 1rem solid #CCC;
-  border-top: 1rem solid #AAA;
+  border: 0.5rem solid #CCC;
+  border-top: 0.5rem solid #AAA;
   border-radius: 50%;
-  width: 8rem;
-  height: 8rem;
+  width: 6rem;
+  height: 6rem;
   animation: spin 1.5s linear infinite;
 }
 

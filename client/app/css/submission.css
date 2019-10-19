@@ -1,5 +1,5 @@
 #contextClarification {
-  font-size: 1.125em;
+  font-size: 1.2rem;
 }
 
 #contextClarification,
@@ -14,7 +14,7 @@
 }
 
 .fieldDescription {
-  font-size: 0.9em;
+  font-size: 1rem;
 }
 
 .contextCards, .receiverCards {
@@ -26,8 +26,8 @@
 }
 
 .contextCard, .contextList, .receiverCard {
-  margin-bottom: 1em;
-  padding: 1em;
+  margin-bottom: 1rem;
+  padding: 1rem;
   background-color: white;
   border: 1px solid #DDD;
   border-radius: 4px;
@@ -35,7 +35,7 @@
 }
 
 .contextCardTitle, .receiverCardTitle {
-  margin-bottom: 0.8em;
+  margin-bottom: 1rem;
 }
 
 .receiverCard.selected, .contextCard:hover {
@@ -55,7 +55,7 @@
 }
 
 .fieldAnswerEntryLast {
-  margin-bottom: 0.8em;
+  margin-bottom: 1rem;
 }
 
 .fieldAnswerEntryLabel:after {
@@ -65,13 +65,13 @@
 }
 
 .submissionFieldInput {
-  padding-left: 0.8em;
+  padding-left: 1rem;
 }
 
 #StepTitle {
-  font-size: 1.25em;
+  font-size: 1.2rem;
   font-weight: bold;
-  margin-bottom: 1.25em;
+  margin-bottom: 1.2rem;
 }
 
 .fileName {
@@ -90,25 +90,25 @@
 
 #KeyCodeBox {
   background-color: #EEE;
-  margin: 1.25em auto;
-  padding: 1.25em;
+  margin: 2rem auto;
+  padding: 2rem;
   width: 80%;
   text-align: center;
   font-family: monospace;
-  font-size: 1.25em;
+  font-size: 1.2rem;
   font-weight: bold;
-  border-radius: 0.8em;
+  border-radius: 1rem;
   direction: ltr;
 }
 
 #KeyImg {
-  margin-left: 2em;
-  margin-right: 2em;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 #SubmissionButtons button {
   margin-left: 0px;
-  margin-right: 0.8em;
+  margin-right: 1rem;
 }
 
 #SubmissionErrors {
@@ -116,9 +116,9 @@
 }
 
 #FileUploadsHeader {
-  font-size: 1.25em;
-  margin-top: 1.25em;
-  margin-bottom: 1.25em;
+  font-size: 1.2rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
 }
 
 .radio label, .checkbox label {
@@ -130,7 +130,7 @@
 }
 
 .cc-text-2 {
-  font-size: 1.25em;
+  font-size: 1.2rem;
 }
 
 .err-link {
@@ -145,11 +145,11 @@
 }
 
 .question-body {
-  padding-bottom: 1.4em;
+  padding-bottom: 1rem;
 }
 
 .question .question {
-  padding: 0 0 0 0.8em;
+  padding: 0 0 0 1rem;
 }
 
 .mapoutline {
@@ -161,8 +161,7 @@
 div.tooltip {
   position: absolute;
   text-align: center;
-  padding: 2px;
-  font: 1em;
+  font: 1rem;
   background: #fff;
   border: 0px;
   font-weight: bold;
@@ -174,9 +173,9 @@ div.tooltip {
   position: absolute;
   top: 0;
   z-index: 666;
-  height: 11.25em;
-  width: 11.25em;
-  padding: 1em;
+  height: 10rem;
+  width: 10rem;
+  padding: 1rem;
 }
 
 .fileButtons {

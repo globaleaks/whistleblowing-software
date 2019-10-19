@@ -7,9 +7,9 @@
   box-shadow: 2px 1px 5px #888888;
   border: 1px solid #CCC;
   border-radius: 3px;
-  padding: 16px;
-  margin-top: 1em;
-  margin-bottom: 0.2em;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 #StepAddBox, #StepsEditBox, #FieldsEditBox, #ContextAdvancedSettingsBox, #SubstateEditBox {
@@ -18,7 +18,7 @@
 
 .addField, .addFieldFromTemplate {
   clear: both;
-  margin-bottom: 0.8em;
+  margin-bottom: 1rem;
 }
 
 .field {
@@ -47,13 +47,13 @@
 }
 
 .fieldOption {
-  margin-bottom: 0.8em;
+  margin-bottom: 1rem;
 }
 
 .selectionList {
   background-color: #fff;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   border: 1px solid #cccccc;
 }
 
@@ -88,15 +88,15 @@ text.axis-worktime {
 .selectionList {
   list-style-type: none;
   overflow: auto;
-  max-height: 8em;
+  max-height: 8rem;
 }
 
 [dir="ltr"] .imageUpload .changePictureButton,
 [dir="ltr"] .imageUpload .deletePictureButton {
-  left: 1em;
+  left: 1rem;
 }
 
 [dir="rtl"] .imageUpload .changePictureButton,
 [dir="rtl"] .imageUpload .deletePictureButton {
-  right: 1em;
+  right: 1rem;
 }
