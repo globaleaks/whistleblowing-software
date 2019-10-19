@@ -186,6 +186,13 @@ module.exports = function(grunt) {
             {
               pattern: "<link rel=\"stylesheet\" href=\"css/styles.css\">",
               replacement: ""
+            },
+            {
+              pattern: "<!-- PRELOAD -->\n",
+              replacement: "<link rel=\"preload\" href=\"css/loader.css\" as=\"style\" />" +
+		           "<link rel=\"preload\" href=\"js/loader.js\" as=\"script\" />" +
+		           "<link rel=\"preload\" href=\"css/styles.css\" as=\"style\" />" +
+		           "<link rel=\"preload\" href=\"js/scripts.js\" as=\"script\" />\n"
             }
           ]
         }
