@@ -29,7 +29,7 @@
   </div>
   <div id="LoginFormBox" data-ng-if="Utils.showLoginForm()">
     <div class="float-right">
-      <div data-translate>Have you already filed a submission? Enter your receipt.</div>
+      <label for="receipt" data-translate>Have you already filed a submission? Enter your receipt.</label>
       <div data-ng-include="'views/partials/wb_login.html'"></div>
       <div class="LoginErrorBox red" data-ng-show="errors[0].code == 9" data-translate>The receipt is either invalid or the submission has expired.</div>
     </div>
