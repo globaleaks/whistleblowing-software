@@ -20,7 +20,6 @@ var GLClient = angular.module("GLClient", [
 ]).
   config(["$compileProvider", function($compileProvider) {
     $compileProvider.debugInfoEnabled(false);
-    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|local|data):/);
 }]).
   config(["$httpProvider", function($httpProvider) {
     $httpProvider.interceptors.push("globaleaksRequestInterceptor");
