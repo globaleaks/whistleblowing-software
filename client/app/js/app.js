@@ -612,24 +612,31 @@ var GLClient = angular.module("GLClient", [
 
     $rootScope.init = function () {
       return PublicResource.get(function(result, getResponseHeaders) {
-        var script;
+        var elem;
 
         $rootScope.public = result;
         $rootScope.started = true;
 
 	if ($rootScope.public.node.css) {
-          script = document.createElement("link");
-          script.setAttribute("rel", "stylesheet");
-          script.setAttribute("type", "text/css");
-          script.setAttribute("href", "s/css");
-          document.getElementsByTagName("head")[0].appendChild(script);
+          elem = document.createElement("link");
+          elem.setAttribute("rel", "stylesheet");
+          elem.setAttribute("type", "text/css");
+          elem.setAttribute("href", "s/css");
+          document.getElementsByTagName("head")[0].appendChild(elem);
         }
 
 	if ($rootScope.public.node.script) {
-          script = document.createElement("script");
-          script.setAttribute("type", "text/javascript");
-          script.setAttribute("src", "s/script");
-          document.getElementsByTagName("body")[0].appendChild(script);
+          elem = document.createElement("script");
+          elem.setAttribute("type", "text/javascript");
+          elem.setAttribute("src", "s/script");
+          document.getElementsByTagName("body")[0].appendChild(elem);
+        }
+
+	if ($rootScope.public.node.favicon) {
+          elem = document.createElement('link');
+          elem.setAttribute("rel", "shortcut icon");
+          elem.setAttribute("href", 'data:image/png;base64,' + $rootScope.public.node.favicon);
+          document.getElementsByTagName('head')[0].appendChild(elem);
         }
 
         $rootScope.contexts_by_id = $rootScope.Utils.array_to_map(result.contexts);

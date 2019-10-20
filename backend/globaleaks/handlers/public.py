@@ -135,7 +135,7 @@ def db_serialize_node(session, tid, language):
     files = [u'logo', u'favicon', u'css', u'script']
     records = session.query(models.File.id, models.File.data).filter(models.File.tid == tid, models.File.id.in_([u'logo', u'favicon', u'css', u'script']))
     for x in records:
-        ret_dict[x[0]] = x[1] if x[0] == 'logo' else True
+        ret_dict[x[0]] = x[1] if x[0] in [u'logo', u'favicon'] else True
 
     if tid != 1:
         root_tenant_node = ConfigFactory(session, 1)
@@ -159,7 +159,7 @@ def db_serialize_node(session, tid, language):
             records = session.query(models.File.id, models.File.data).filter(models.File.tid == 1, models.File.id.in_([u'logo', u'favicon', u'css', u'script']))
             for x in records:
                 if not ret_dict.get(x[0]):
-                    ret_dict[x[0]] = x[1] if x[0] == 'logo' else True
+                    ret_dict[x[0]] = x[1] if x[0] in [u'logo', u'favicon'] else True
 
     return ret_dict
 
