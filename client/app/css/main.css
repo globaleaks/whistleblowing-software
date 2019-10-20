@@ -2,26 +2,14 @@
   word-wrap: break-word;
 }
 
-html {
+html, body {
   height: 100%;
+  color: #222;
   background-color: #FFF;
 }
 
-body {
-  position: relative;
-  margin: 0;
-  color: #222;
-}
-
-@media (min-width: 992px) {
-  body {
-    padding-bottom: 12rem;
-  }
-
-  #FooterBox {
-    position: absolute;
-    bottom: 0;
-  }
+#PageContent {
+  flex: 1 0 auto;
 }
 
 #ContenBox, #NoScript, #BrowserNotSupported {
@@ -29,11 +17,9 @@ body {
 }
 
 #FooterBox {
-  width: 100%;
-  padding: 1rem;
+  flex-shrink: none;
   border-top: 1px solid #E5E5E5;
   background-color: #F5F5F5;
-  color: #333;
   text-align: center;
   font-size: 1.25rem;
 }
