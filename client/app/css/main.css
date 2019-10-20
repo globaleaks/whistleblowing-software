@@ -13,7 +13,7 @@ html, body {
 }
 
 #ContentBox, #NoScript, #FooterBox, #DemoBadge {
-  padding: 1rem;
+  padding: 2rem;
 }
 
 #FooterBox {
