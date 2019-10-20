@@ -23,15 +23,11 @@
   opacity: 0.2;
 }
 
-#LoaderBox {
+#Loader {
   position: relative;
   margin: 0 auto;
   display: flex;
   align-items: center;
-}
-
-#LoaderBoxContent {
-  margin: 0 auto;
 }
 
 .loader {
