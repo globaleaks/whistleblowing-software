@@ -204,7 +204,7 @@ module.exports = function(grunt) {
         },
         expand: true,
         cwd: "build/",
-        src: ["index.html", "license.txt", "css/*", "js/*"],
+        src: ["index.html", "license.txt", "css/*", "js/*", "lib/js/locale/*"],
         dest: "build/",
         rename: function(dest, src) {
           return dest + "/" + src + ".gz";
