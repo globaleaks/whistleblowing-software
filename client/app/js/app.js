@@ -722,7 +722,7 @@ var GLClient = angular.module("GLClient", [
     });
 
     $rootScope.$on("$routeChangeStart", function() {
-      if ($rootScope.node) {
+      if ($rootScope.public.node) {
         Utils.route_check();
       }
 
