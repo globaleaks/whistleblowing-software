@@ -150,7 +150,7 @@ ConfigDescriptor = {
     u'context_selector_type': Unicode(default=u'list'),
 
     u'reachable_via_web': Bool(default=True),
-    u'anonymize_outgoing_connections': Bool(default=True),
+    u'anonymize_outgoing_connections': Bool(default=False),
 
     u'ip_filter_admin': Unicode(default=u''),
     u'ip_filter_admin_enable': Bool(default=False),
