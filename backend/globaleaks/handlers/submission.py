@@ -455,6 +455,8 @@ class SubmissionInstance(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.SubmissionDesc)
 
+        request['mobile'] = self.request.client_mobile
+
         token = self.state.tokens.pop(token_id, None)
 
         if token is None:

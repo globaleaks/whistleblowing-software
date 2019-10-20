@@ -536,7 +536,6 @@ var GLClient = angular.module("GLClient", [
     $rootScope.successes = [];
     $rootScope.errors = [];
     $rootScope.embedded = $location.search().embedded === "true";
-    $rootScope.mobile = /Mobi|Android/i.test(navigator.userAgent);
 
     _flowFactoryProvider.defaults = {
         chunkSize: 1000 * 1024,
