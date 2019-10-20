@@ -762,10 +762,10 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['questionnaire_id'])
         self.dummySubmission['total_score'] = 0
 
-        yield create_submission(1,
-                                self.dummySubmission,
-                                token,
-                                True)
+        self.lastReceipt = (yield create_submission(1,
+                                                   self.dummySubmission,
+                                                   token,
+                                                   True))['receipt']
 
     @inlineCallbacks
     def perform_post_submission_actions(self):

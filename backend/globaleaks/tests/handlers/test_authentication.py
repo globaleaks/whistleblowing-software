@@ -186,7 +186,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     def test_successful_whistleblower_login(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
-            'receipt': self.dummySubmission['receipt']
+            'receipt': self.lastReceipt
         })
         handler.request.client_using_tor = True
         response = yield handler.post()
@@ -197,7 +197,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     def test_accept_whistleblower_login_in_https(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
-            'receipt': self.dummySubmission['receipt']
+            'receipt': self.lastReceipt
         }, headers={'X-Tor2Web': 'whatever'})
         State.tenant_cache[1]['https_allowed']['whistleblower'] = True
         response = yield handler.post()
@@ -208,7 +208,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     def test_deny_whistleblower_login_in_https(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
-            'receipt': self.dummySubmission['receipt']
+            'receipt': self.lastReceipt
         }, headers={'X-Tor2Web': 'whatever'})
         State.tenant_cache[1]['https_allowed']['whistleblower'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
@@ -221,7 +221,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         """
         yield self.perform_full_submission_actions()
         handler = self.request({
-            'receipt': self.dummySubmission['receipt']
+            'receipt': self.lastReceipt
         })
         handler.request.client_using_tor = True
         response = yield handler.post()
@@ -285,7 +285,7 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
         self._handler = authentication.ReceiptAuthHandler
 
         handler = self.request({
-            'receipt': self.dummySubmission['receipt']
+            'receipt': self.lastReceipt
         })
 
         handler.request.client_using_tor = True
