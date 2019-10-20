@@ -1,28 +1,23 @@
 <div class="row">
-  <div class="col-md-6">
-    <div data-ng-show="step === 1" class="wizard-block" data-ng-switch="public.node.mode">
-      <div data-ng-switch-when="whistleblowing.it">
-        <div data-ng-include="'views/signup/modes/whistleblowingit.html'"></div>
-      </div>
-      <div data-ng-switch-when="eat">
-        <div data-ng-include="'views/signup/modes/eat.html'"></div>
-      </div>
-      <div data-ng-switch-default>
-        <div data-ng-include="'views/signup/modes/default.html'"></div>
-      </div>
+  <div data-ng-show="step === 1" class="col-md-6 wizard-block" data-ng-switch="public.node.mode">
+    <div data-ng-switch-when="whistleblowing.it">
+      <div data-ng-include="'views/signup/modes/whistleblowingit.html'"></div>
     </div>
-    <div data-ng-show="step === 2" class="wizard-block">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="congratulations">
-            <div class="title1" data-translate>Success!</div>
-            <div>
-              <span data-translate>Your whistleblowing platform is almost ready!</span>
-              <span data-translate>Check your inbox to activate it.</span>
-              <br />
-              <span data-translate>If not activated within 24 hours the platform will be automatically deleted.</span>
-            </div>
-          </div>
+    <div data-ng-switch-when="eat">
+      <div data-ng-include="'views/signup/modes/eat.html'"></div>
+    </div>
+    <div data-ng-switch-default>
+      <div data-ng-include="'views/signup/modes/default.html'"></div>
+    </div>
+  </div>
+  <div data-ng-show="step === 2" class="col-md-12 wizard-block">
+    <div class="congratulations">
+      <div class="title1" data-translate>Success!</div>
+        <div>
+          <span data-translate>Your whistleblowing platform is almost ready!</span>
+          <span data-translate>Check your inbox to activate it.</span>
+          <br />
+          <span data-translate>If not activated within 24 hours the platform will be automatically deleted.</span>
         </div>
       </div>
     </div>
