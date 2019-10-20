@@ -1,10 +1,10 @@
-FROM ubuntu:18.04
+FROM debian:10
 
 RUN apt-get update -q && \
     apt-get install -y gpg curl supervisor && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-RUN echo "deb http://deb.globaleaks.org bionic/" > /etc/apt/sources.list.d/globaleaks.list
+RUN echo "deb http://deb.globaleaks.org buster/" > /etc/apt/sources.list.d/globaleaks.list
 RUN curl -sS https://deb.globaleaks.org/globaleaks.asc | apt-key add -
 RUN apt-get update -q && \
     apt-get install -y globaleaks && \
