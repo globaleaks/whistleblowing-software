@@ -12,8 +12,8 @@ html, body {
   flex: 1 0 auto;
 }
 
-#ContenBox, #NoScript, #BrowserNotSupported {
-  padding: 2rem;
+#ContentBox, #NoScript, #FooterBox, #DemoBadge {
+  padding: 1rem;
 }
 
 #FooterBox {
@@ -30,10 +30,6 @@ html, body {
 
 .rtl {
   direction: rtl;
-}
-
-#AttributionClause {
-  margin-top: 0.5rem;
 }
 
 a, a:hover, a:active, a:focus {
@@ -122,14 +118,6 @@ table {
   color: #FFF;
   font-size: 1rem;
   padding: 1rem;
-}
-
-#DemoBadge {
-  padding: 1rem;
-}
-
-#ContentBox {
-  padding: 2rem;
 }
 
 .title1, .title2, .title3 {

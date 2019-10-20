@@ -3,11 +3,6 @@
   user-select: none;
 }
 
-#BrowserNotSupported {
-  display: none;
-  padding: 30px;
-}
-
 #PageOverlay {
   position: fixed;
   width: 100%;
@@ -28,11 +23,8 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-}
-
-.loader {
   border: 0.5rem solid #CCC;
-  border-top: 0.5rem solid #AAA;
+  border-top-color: #AAA;
   border-radius: 50%;
   width: 6rem;
   height: 6rem;
