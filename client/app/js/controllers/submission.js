@@ -69,7 +69,7 @@ GLClient.controller("SubmissionCtrl",
 
   $scope.goToStep = function(index) {
     $scope.navigation = index;
-    $anchorScroll("top");
+    $anchorScroll("ContentBox");
   };
 
   $scope.firstStepIndex = function() {
@@ -127,7 +127,7 @@ GLClient.controller("SubmissionCtrl",
       for (var i = $scope.navigation + 1; i <= $scope.lastStepIndex(); i++) {
         if (fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.navigation = i;
-          $anchorScroll("top");
+          $anchorScroll("ContentBox");
           return;
         }
       }
@@ -140,7 +140,7 @@ GLClient.controller("SubmissionCtrl",
       for (var i = $scope.navigation - 1; i >= $scope.firstStepIndex(); i--) {
         if (i === -1 || fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.navigation = i;
-          $anchorScroll("top");
+          $anchorScroll("ContentBox");
           return;
         }
       }
@@ -216,7 +216,7 @@ GLClient.controller("SubmissionCtrl",
     $scope.submitPressed = true;
 
     if (!$scope.areReceiversSelected() || !$scope.checkForInvalidFields()) {
-      $anchorScroll("top");
+      $anchorScroll("ContentBox");
       return;
     }
 
@@ -321,7 +321,7 @@ controller("AdditionalQuestionnaireCtrl",
 
   $scope.goToStep = function(index) {
     $scope.navigation = index;
-    $anchorScroll("top");
+    $anchorScroll("ContentBox");
   };
 
   $scope.firstStepIndex = function() {
@@ -367,7 +367,7 @@ controller("AdditionalQuestionnaireCtrl",
 
   $scope.incrementStep = function() {
     if ($scope.navigation > -1 && !$scope.checkForInvalidFields()) {
-      $anchorScroll("top");
+      $anchorScroll("ContentBox");
       return;
     }
 
@@ -376,7 +376,7 @@ controller("AdditionalQuestionnaireCtrl",
       for (var i = $scope.navigation + 1; i <= $scope.lastStepIndex(); i++) {
         if (fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.navigation = i;
-          $anchorScroll("top");
+          $anchorScroll("ContentBox");
           return;
         }
       }
@@ -389,7 +389,7 @@ controller("AdditionalQuestionnaireCtrl",
       for (var i = $scope.navigation - 1; i >= $scope.firstStepIndex(); i--) {
         if (i === -1 || fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.navigation = i;
-          $anchorScroll("top");
+          $anchorScroll("ContentBox");
           return;
         }
       }
@@ -415,7 +415,7 @@ controller("AdditionalQuestionnaireCtrl",
     $scope.submitPressed = true;
 
     if (!$scope.checkForInvalidFields()) {
-      $anchorScroll("top");
+      $anchorScroll("ContentBox");
       return;
     }
 
