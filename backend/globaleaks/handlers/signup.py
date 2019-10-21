@@ -147,8 +147,8 @@ def signup_activation(session, state, tid, token, language):
         'node': db_admin_serialize_node(session, 1, language),
         'notification': db_get_notification(session, 1, language),
         'signup': serialize_signup(signup),
-        'password_admin': password_admin,
-        'password_recipient': password_recipient
+        'password_admin': wizard['admin_password'],
+        'password_recipient': wizard['receiver_password']
     }
 
     state.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)

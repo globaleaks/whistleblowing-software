@@ -581,6 +581,9 @@ class PlatformSignupKeyword(NodeKeyword):
         return self.data['signup']['language']
 
     def AdminCredentials(self):
+        if not self.data['password_admin']:
+            return ''
+
         data = {
             'type': 'user_credentials',
             'role': 'admin',
@@ -591,6 +594,9 @@ class PlatformSignupKeyword(NodeKeyword):
         return Templating().format_template(self.data['notification']['user_credentials'], data) + '\n\n'
 
     def RecipientCredentials(self):
+        if not self.data['password_recipient']:
+            return ''
+
         data = {
             'type': 'user_credentials',
             'role': 'recipient',

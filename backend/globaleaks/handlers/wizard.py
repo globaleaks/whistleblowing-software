@@ -117,6 +117,7 @@ def db_wizard(session, tid, request, client_using_tor, language):
         context.tip_timetolive = 540
 
         # Delete the admin user
+        request['admin_password'] = ''
         session.delete(admin_user)
 
     # Apply the specific fixes related to whistleblowing.it projects
