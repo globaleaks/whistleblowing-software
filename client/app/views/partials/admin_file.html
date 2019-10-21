@@ -15,7 +15,7 @@
       </label>
     </div>
   </span>
-  <span data-ng-if="node[admin_file.varname]">
+  <span data-ng-show="public.node[admin_file.varname]">
     <a class="btn btn-sm btn-primary" href="{{'s/' + admin_file.varname}}" download="{{admin_file.filename}}">
       <span class="fa fa-download"></span>
       <span data-translate>Download</span>

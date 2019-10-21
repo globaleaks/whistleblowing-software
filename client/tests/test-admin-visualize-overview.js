@@ -4,7 +4,7 @@ describe("verify navigation of admin overview sections", function() {
 
     await element(by.cssContainingText("a", "System overview")).click();
 
-    var pageContent = element(by.id("PageContent"));
+    var pageContent = element(by.id("SectionContent"));
 
     await pageContent.element(by.cssContainingText("a", "Stats")).click();
     await pageContent.element(by.cssContainingText("a", "Activities")).click();

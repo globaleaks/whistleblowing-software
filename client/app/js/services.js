@@ -971,7 +971,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       isWhistleblowerPage: function() {
         var path = $location.path();
         return (path === "/" ||
-                path === "/start" ||
                 path === "/submission" ||
                 path === "/receipt" ||
                 path === "/status");
