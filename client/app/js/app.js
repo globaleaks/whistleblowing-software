@@ -613,28 +613,41 @@ var GLClient = angular.module("GLClient", [
         var elem;
 
         $rootScope.public = result;
-        $rootScope.started = true;
 
-	if ($rootScope.public.node.css) {
-          elem = document.createElement("link");
-          elem.setAttribute("rel", "stylesheet");
-          elem.setAttribute("type", "text/css");
-          elem.setAttribute("href", "s/css");
-          document.getElementsByTagName("head")[0].appendChild(elem);
+        if ($rootScope.public.node.css) {
+          elem = document.getElementById("load-custom-css");
+          if (elem === null) {
+            elem = document.createElement("link");
+            elem.setAttribute("id", "load-custom-css");
+            elem.setAttribute("rel", "stylesheet");
+            elem.setAttribute("type", "text/css");
+            elem.setAttribute("href", "s/css");
+            document.getElementsByTagName("head")[0].appendChild(elem);
+          }
         }
 
 	if ($rootScope.public.node.script) {
-          elem = document.createElement("script");
-          elem.setAttribute("type", "text/javascript");
-          elem.setAttribute("src", "s/script");
-          document.getElementsByTagName("body")[0].appendChild(elem);
+          elem = document.getElementById("load-custom-script");
+          if (elem === null) {
+            elem = document.createElement("script")
+            elem.setAttribute("id", "load-custom-script");
+            elem.setAttribute("type", "text/javascript");
+            elem.setAttribute("src", "s/script");
+            document.getElementsByTagName("body")[0].appendChild(elem);
+          };
         }
 
-	if ($rootScope.public.node.favicon) {
-          elem = document.createElement('link');
-          elem.setAttribute("rel", "shortcut icon");
-          elem.setAttribute("href", 'data:image/png;base64,' + $rootScope.public.node.favicon);
-          document.getElementsByTagName('head')[0].appendChild(elem);
+        if ($rootScope.public.node.favicon) {
+          elem = document.getElementById("load-favicon");
+          if (elem === null) {
+            elem = document.createElement('link');
+            elem.setAttribute("id", "load-favicon");
+            elem.setAttribute("rel", "shortcut icon");
+            elem.setAttribute("href", 'data:image/png;base64,' + $rootScope.public.node.favicon);
+            document.getElementsByTagName('head')[0].appendChild(elem);
+          } else {
+            elem.setAttribute("href", 'data:image/png;base64,' + $rootScope.public.node.favicon);
+          }
         }
 
         $rootScope.contexts_by_id = $rootScope.Utils.array_to_map(result.contexts);
@@ -703,6 +716,8 @@ var GLClient = angular.module("GLClient", [
 
         GLTranslate.addNodeFacts($rootScope.public.node.default_language, $rootScope.public.node.languages_enabled);
         Utils.set_title();
+
+        $rootScope.started = true;
       }).$promise;
     };
 
@@ -722,7 +737,7 @@ var GLClient = angular.module("GLClient", [
     });
 
     $rootScope.$on("$routeChangeStart", function() {
-      if ($rootScope.public.node) {
+      if ($rootScope.public) {
         Utils.route_check();
       }
 
