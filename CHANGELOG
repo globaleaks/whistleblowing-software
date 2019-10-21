@@ -1,3 +1,10 @@
+Changes in version 3.11.30 - 2019-10-21
+    Optimize accesibility of the application (rank 92% of LightHouse)
+    Optimize performance of first load (rank 65% of LightHouse)
+    Optimize SEO of the appplication (rank 100% of LightHouse)
+    Revise CSS using rem in place of em to ease customizations
+    Update translations
+
 Changes in version 3.11.29 - 2019-10-16
     Apply minor style fixes
 
