@@ -233,6 +233,18 @@ module.exports = function(grunt) {
       dist: {
         src: 'tmp/lib/css/*.css'
       }
+    },
+
+    uglify: {
+      options: {
+        sourceMap: true,
+        sourceMapName: 'build/js/scripts.js.map'
+      },
+      minify: {
+        files: {
+          'build/js/scripts.js': ['build/js/scripts.js']
+        }
+      }
     }
   });
 
@@ -246,6 +258,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-compress");
   grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks("grunt-contrib-copy");
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks("grunt-string-replace");
   grunt.loadNpmTasks("grunt-usemin");
@@ -839,7 +852,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask("build",
-    ["clean", "copy:sources", "copy:build", "includeExternalFiles", "ngtemplates", "postcss", "useminPrepare", "concat", "usemin", "string-replace", "cleanupWorkingDirectory", "compress"]);
+    ["clean", "copy:sources", "copy:build", "includeExternalFiles", "ngtemplates", "postcss", "useminPrepare", "concat", "usemin", "string-replace", "cleanupWorkingDirectory", "uglify", "compress"]);
 
   grunt.registerTask("instrument-client", [
     "clean",
