@@ -1,4 +1,4 @@
-<div id="SubmissionStepReceiver" class="receiverCards">
+<div id="SubmissionStepReceiver" class="receiverCards clearfix">
   <div id="StepTitle" data-ng-if="!show_steps_navigation_bar" data-translate>Recipient selection</div>
   <div class="stepDescription">{{submission.context.recipients_clarification}}</div>
   <div data-ng-if="submission.context.maximum_selectable_receivers !== 0 && !submission.context.select_all_receivers" id="MaxSelectableReceiverBox" class="clearfix">
@@ -38,4 +38,3 @@
     </div>
   </div>
 </div>
-<div class="clearfix"></div>
