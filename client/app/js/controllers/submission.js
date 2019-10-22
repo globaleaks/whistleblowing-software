@@ -46,7 +46,7 @@ GLClient.controller("SubmissionCtrl",
       return true;
     }
 
-    return $scope.submission.count_selected_receivers() < $scope.submission.context.maximum_selectable_receivers;
+    return $scope.submission.selected_receivers_count < $scope.submission.context.maximum_selectable_receivers;
   };
 
   $scope.switch_selection = function (receiver) {
@@ -57,6 +57,8 @@ GLClient.controller("SubmissionCtrl",
     if ($scope.submission.selected_receivers[receiver.id] || $scope.selectable()) {
       $scope.submission.selected_receivers[receiver.id] = !$scope.submission.selected_receivers[receiver.id];
     }
+
+    $scope.submission.count_selected_receivers();
   };
 
   $scope.getCurrentStepIndex = function() {

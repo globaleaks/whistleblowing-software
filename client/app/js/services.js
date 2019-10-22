@@ -282,7 +282,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.done = false;
 
       self.isDisabled = function() {
-        return self.count_selected_receivers() === 0 ||
+        return self.selected_receivers_count === 0 ||
                self.wait ||
                !self.pow ||
                self.done;
@@ -297,7 +297,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           }
         });
 
-        return count;
+	self.selected_receivers_count = count;
       };
 
       self.setContextReceivers = function(context_id) {
@@ -322,6 +322,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             }
           }
         });
+
+	self.count_selected_receivers();
       };
 
       /**
