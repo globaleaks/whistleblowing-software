@@ -92,7 +92,7 @@
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'is-invalid': validated4 && wizardFormStep4.password.$error.required || wizardFormStep4.password.$error.passwordStrength}">
-            <input name="password" class="form-control" data-ng-model="wizard.admin_password" type="password" data-ng-attr-placeholder="{{'Password' | translate}}" autocomplete="off" data-password-strenght-validator required />
+            <input name="password" class="form-control" data-ng-model="wizard.admin_password" type="password" data-ng-attr-placeholder="{{'Password' | translate}}" autocomplete="off" data-password-strength-validator required />
             <password-meter data-ng-show="passwordStrengthScore" value="passwordStrengthScore"></password-meter>
             <div class="text-danger" data-ng-show="!wizardFormStep4.password.$error.required && wizardFormStep4.password.$error.passwordStrengthValidator">
               <p data-translate>The chosen password is too weak. A valid password should be at least 10 characters long and contain a variety of characters including at least a lowercase character, a capital character, a number and a special character.</p>
