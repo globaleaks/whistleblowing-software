@@ -9,7 +9,7 @@ GLClient.controller("SubmissionCtrl",
 
   $scope.navigation = -1;
 
-  $scope.submitPressed = false;
+  $scope.navigationPressed = false;
 
   $scope.total_score = 0;
 
@@ -124,6 +124,8 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.incrementStep = function() {
+    $scope.navigationPressed = true;
+
     if ($scope.hasNextStep()) {
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.navigation + 1; i <= $scope.lastStepIndex(); i++) {
@@ -215,7 +217,7 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.completeSubmission = function() {
-    $scope.submitPressed = true;
+    $scope.navigationPressed = true;
 
     if (!$scope.areReceiversSelected() || !$scope.checkForInvalidFields()) {
       $anchorScroll("ContentBox");
@@ -247,7 +249,7 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.displayErrors = function() {
-    if (!($scope.submitPressed || $scope.submission.done)) {
+    if (!($scope.navigationPressed || $scope.submission.done)) {
       return false;
     }
 
@@ -305,7 +307,7 @@ controller("AdditionalQuestionnaireCtrl",
 
   $scope.navigation = 0;
 
-  $scope.submitPressed = false;
+  $scope.navigationPressed = false;
 
   $scope.total_score = 0;
 
@@ -368,6 +370,8 @@ controller("AdditionalQuestionnaireCtrl",
   };
 
   $scope.incrementStep = function() {
+    $scope.navigationPressed = true;
+
     if ($scope.navigation > -1 && !$scope.checkForInvalidFields()) {
       $anchorScroll("ContentBox");
       return;
@@ -414,7 +418,7 @@ controller("AdditionalQuestionnaireCtrl",
   };
 
   $scope.completeSubmission = function() {
-    $scope.submitPressed = true;
+    $scope.navigationPressed = true;
 
     if (!$scope.checkForInvalidFields()) {
       $anchorScroll("ContentBox");
