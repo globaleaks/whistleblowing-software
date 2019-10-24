@@ -2,10 +2,10 @@
   word-wrap: break-word;
 }
 
-html, body {
-  height: 100%;
+body {
   color: #222;
   background-color: #FFF;
+  min-height: 100vh;
 }
 
 #PageContent {
@@ -17,7 +17,6 @@ html, body {
 }
 
 #FooterBox {
-  flex-shrink: none;
   border-top: 1px solid #E5E5E5;
   background-color: #F5F5F5;
   text-align: center;
@@ -398,12 +397,6 @@ input[type="file"] {
 
 .nav, .pagination, .carousel, .card-title a {
   cursor: pointer;
-}
-
-@media (min-width: 992px) {
-  body {
-    min-height: 100%;
-  }
 }
 
 @media (min-width: 768px) {
