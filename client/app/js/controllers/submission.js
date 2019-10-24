@@ -9,7 +9,7 @@ GLClient.controller("SubmissionCtrl",
 
   $scope.navigation = -1;
 
-  $scope.navigationPressed = false;
+  $scope.validate = {};
 
   $scope.total_score = 0;
 
@@ -123,8 +123,21 @@ GLClient.controller("SubmissionCtrl",
     return true;
   };
 
+  $scope.runValidation = function() {
+    $scope.validate[$scope.navigation] = true;
+
+    if (!$scope.areReceiversSelected() || !$scope.checkForInvalidFields()) {
+      $anchorScroll("ContentBox");
+      return false;
+    }
+
+    return true;
+  }
+
   $scope.incrementStep = function() {
-    $scope.navigationPressed = true;
+    if (!$scope.runValidation()) {
+      return;
+    }
 
     if ($scope.hasNextStep()) {
       $scope.vars.submissionForm.$dirty = false;
@@ -150,6 +163,7 @@ GLClient.controller("SubmissionCtrl",
       }
     }
   };
+
   $scope.areReceiversSelected = function() {
     for (var rec_id in $scope.submission.selected_receivers) {
       if ($scope.submission.selected_receivers[rec_id]) {
@@ -217,10 +231,7 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.completeSubmission = function() {
-    $scope.navigationPressed = true;
-
-    if (!$scope.areReceiversSelected() || !$scope.checkForInvalidFields()) {
-      $anchorScroll("ContentBox");
+    if (!$scope.runValidation()) {
       return;
     }
 
@@ -249,7 +260,7 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.displayErrors = function() {
-    if (!($scope.navigationPressed || $scope.submission.done)) {
+    if (!($scope.validate[$scope.navigation] || $scope.submission.done)) {
       return false;
     }
 
@@ -307,7 +318,7 @@ controller("AdditionalQuestionnaireCtrl",
 
   $scope.navigation = 0;
 
-  $scope.navigationPressed = false;
+  $scope.validate = {};
 
   $scope.total_score = 0;
 
@@ -369,11 +380,19 @@ controller("AdditionalQuestionnaireCtrl",
     return true;
   };
 
-  $scope.incrementStep = function() {
-    $scope.navigationPressed = true;
+  $scope.runValidation = function() {
+    $scope.validate[$scope.navigation] = true;
 
     if ($scope.navigation > -1 && !$scope.checkForInvalidFields()) {
       $anchorScroll("ContentBox");
+      return false;
+    }
+
+    return true;
+  }
+
+  $scope.incrementStep = function() {
+    if (!$scope.runValidation()) {
       return;
     }
 
@@ -418,7 +437,7 @@ controller("AdditionalQuestionnaireCtrl",
   };
 
   $scope.completeSubmission = function() {
-    $scope.navigationPressed = true;
+    $scope.validate[$scope.navigation] = true;
 
     if (!$scope.checkForInvalidFields()) {
       $anchorScroll("ContentBox");
