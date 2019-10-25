@@ -19,18 +19,6 @@
   color: #428bca;
 }
 
-.WbNameInMessages {
-  font-weight: bold;
-}
-
-.ReceiverNameInMessages {
-  font-weight: bold;
-}
-
-#SubmissionComments, #SubmissionMessages {
-  margin-top: 1rem;
-}
-
 #StatusPageMessage {
   margin: 1rem;
   color: #8a6d3b;
@@ -41,13 +29,9 @@
 }
 
 #SearchFilter {
-  margin: 0 5px;
+  margin: 0 0.4rem;
 }
 
 .fieldLabel {
   font-weight: bold;
-}
-
-.question {
-  margin-bottom: 0.2rem;
 }

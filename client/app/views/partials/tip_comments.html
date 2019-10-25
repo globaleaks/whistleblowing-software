@@ -30,32 +30,24 @@
       </div>
     </div>
     <div id="SubmissionComments" data-ng-if="tip.comments.length > 0" data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true| limitTo:itemsPerPage:((currentCommentsPage - 1) * itemsPerPage)">
-      <div id="comment-{{$index}}" data-ng-switch="" on="comment.type">
+      <div id="comment-{{$index}}" data-ng-switch="comment.type" class="mt-2">
         <div data-ng-switch-when="whistleblower" class="alert alert-primary">
           <div class="row">
-            <div class="col-md-6">
-              <div class="WbNameInMessages" data-translate>Whistleblower</div>
-            </div>
-            <div class="col-md-6 text-right">
-              <div>{{::comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
-            </div>
+            <div class="col-md-6" data-translate>Whistleblower</div>
+            <div class="col-md-6 text-right">{{::comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
           </div>
           <div class="preformatted">{{::comment.content}}</div>
         </div>
         <div data-ng-switch-when="receiver" class="alert alert-success">
           <div class="row">
-            <div class="col-md-6">
-              <div class="ReceiverNameInMessages">{{::comment.author}}</div>
-            </div>
-            <div class="col-md-6 text-right">
-              <div>{{::comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
-            </div>
+            <div class="col-md-6">{{::comment.author}}</div>
+	    <div class="col-md-6 text-right">{{::comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
           </div>
           <div class="preformatted">{{::comment.content}}</div>
         </div>
       </div>
     </div>
-    <div class="text-center" data-ng-show="tip.comments.length > itemsPerPage">
+    <div class="mt-2 text-center" data-ng-show="tip.comments.length > itemsPerPage">
       <ul uib-pagination
           total-items="tip.comments.length"
           first-text="<< {{'First' | translate}}"

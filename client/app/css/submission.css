@@ -38,8 +38,9 @@
   margin-bottom: 1rem;
 }
 
-.receiverCard.selected, .contextCard:hover {
-  background-color: #fcf8e3;
+.contextCard:hover, .contextList:hover, .receiverCard.selected {
+  background-color: #428bca;
+  color: #FFF;
 }
 
 .receiverCard.disabled {
@@ -47,7 +48,7 @@
 }
 
 .fieldAnswerEntry {
-  margin-top: 15px;
+  margin-top: 1rem;
 }
 
 .fieldAnswerEntryFirst {
@@ -98,12 +99,6 @@
   font-size: 1.2rem;
   font-weight: bold;
   border-radius: 1rem;
-  direction: ltr;
-}
-
-#KeyImg {
-  margin-left: 2rem;
-  margin-right: 2rem;
 }
 
 #SubmissionButtons button {
@@ -121,12 +116,8 @@
   margin-bottom: 1.2rem;
 }
 
-.radio label, .checkbox label {
-  display: block;
-}
-
 .cc-text-1 {
-  font-size: 35px;
+  font-size: 2rem;
 }
 
 .cc-text-2 {
@@ -134,7 +125,7 @@
 }
 
 .err-link {
-  padding: 2px 4px;
+  padding: 2px 0.4em;
   background-color: #f9f2f4;
   border-radius: 4px;
   color: #c7254e;

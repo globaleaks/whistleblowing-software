@@ -1,23 +1,15 @@
-<div id="message-{{$index}}" data-ng-switch="" on="message.type">
+<div id="message-{{$index}}" data-ng-switch="message.type" class="mt-2">
   <div data-ng-switch-when="whistleblower" class="alert alert-primary">
     <div class="row">
-      <div class="col-md-6">
-        <div class="WbNameInMessages" data-translate>Whistleblower</div>
-      </div>
-      <div class="col-md-6 text-right">
-        <div>{{::message.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
-      </div>
+      <div class="col-md-6" data-translate>Whistleblower</div>
+      <div class="col-md-6 text-right">{{::message.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
     </div>
     <div class="preformatted">{{::message.content}}</div>
   </div>
   <div data-ng-switch-when="receiver" class="alert alert-success">
     <div class="row">
-      <div class="col-md-6">
-        <div class="WbNameInMessages">{{::message.author}}</div>
-      </div>
-      <div class="col-md-6 text-right">
-        <div>{{::message.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
-      </div>
+      <div class="col-md-6">{{::message.author}}</div>
+      <div class="col-md-6 text-right">{{::message.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
     </div>
     <div class="preformatted">{{::message.content}}</div>
   </div>

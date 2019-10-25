@@ -139,7 +139,7 @@ table {
 }
 
 .tab-content {
-  padding-top: 20px;
+  padding-top: 1rem;
 }
 
 .preformatted {
@@ -156,7 +156,7 @@ table {
 }
 
 #wizardLicense {
-  max-height: 400px;
+  max-height: 20rem;
   overflow-y: scroll;
   border: 1px solid #CCC;
   padding: 1rem;
@@ -165,7 +165,7 @@ table {
 .imageUpload .changePictureButton,
 .imageUpload .deletePictureButton {
   position: absolute;
-  bottom: 10px;
+  bottom: 1rem;
   text-align: center;
   z-index: 10;
 }
@@ -275,7 +275,7 @@ table {
   font-size: 10rem;
   color: #000;
   top: 0;
-  right: 0px;
+  right: 0;
 }
 
 .fileUploadIcon {
@@ -309,10 +309,6 @@ table {
   50% { opacity: 1; }
 }
 
-.file-upload-error {
-  margin-top: 10px;
-}
-
 .verticalAlignHelper {
   display: inline-block;
   height: 100%;
@@ -321,10 +317,6 @@ table {
 
 .file-info-row {
   margin-top: 10px;
-}
-
-.wbfile label {
-  margin: 0;
 }
 
 .wbfile .top-row {
@@ -343,17 +335,9 @@ textarea.form-control {
   resize: vertical;
 }
 
-.position-relative {
-  position: relative;
-}
-
 .textarea-btn {
   position: absolute;
   top: 2rem;
-}
-
-label.file-upload {
-  margin: 0;
 }
 
 input[type="file"] {
@@ -367,14 +351,6 @@ input[type="file"] {
 .fa-none:before {
   content: "\2122";
   color: transparent;
-}
-
-.red {
-  color: #d44950;
-}
-
-.underline {
-  text-decoration: underline;
 }
 
 .sup {
@@ -399,6 +375,10 @@ input[type="file"] {
   cursor: pointer;
 }
 
+.card {
+  margin-bottom: 1rem;
+}
+
 @media (min-width: 768px) {
   .modal-lg .modal-dialog {
     width: 600px;
@@ -420,7 +400,7 @@ input[type="file"] {
   width: auto;
 }
 
-.imageUploadBox label, .custom-file label, label .file-upload {
+[dir] label {
   margin: 0;
 }
 
@@ -432,11 +412,15 @@ input[type="file"] {
   right: 1rem;
 }
 
-html[dir="rtl"] input[type=email], html[dir="ltr"] input[type=email] {
-  direction: ltr;
+#creditCard {
+  width: 20rem;
 }
 
-html[dir="rtl"] #creditCard,  html[dir="ltr"] #creditCard {
-  width: 20rem;
+html[dir="rtl"] input[type=email],
+html[dir="ltr"] input[type=email],
+html[dir="rtl"] #creditCard,
+html[dir="ltr"] #creditCard,
+html[dir="rtl"] #KeyCodeBox,
+html[dir="ltr"] #KeyCodeBox {
   direction: ltr;
 }
