@@ -117,28 +117,6 @@ angular.module("GLServices", ["ngResource"]).
           }
         };
 
-        self.getLoginUri = function (role, path) {
-          var loginUri = "/login";
-
-          if (role === undefined ) {
-            if (path === "/status") {
-              loginUri = "/";
-            } else if (path.indexOf("/admin") === 0) {
-              loginUri = "/admin";
-            } else if (path.indexOf("/custodian") === 0) {
-              loginUri = "/login";
-            }
-          } else if (role === "whistleblower") {
-            loginUri = ("/");
-          } else if (role === "admin") {
-            loginUri = "/admin";
-          } else if (role === "custodian") {
-            loginUri = "/login";
-          }
-
-          return loginUri;
-        };
-
         self.receipt = "";
 
         self.deleteSession = function() {
@@ -170,12 +148,15 @@ angular.module("GLServices", ["ngResource"]).
 
         self.loginRedirect = function(isLogout) {
           var role = self.session === undefined ? undefined : self.session.role;
+          var source_path = $location.path();
 
           self.session = undefined;
 
-          var source_path = $location.path();
-
-          var redirect_path = self.getLoginUri(role, source_path);
+          if (role === undefined && role !== "whistleblower") {
+            redirect_path = "/login";
+          } else {
+            redirect_path = "/";
+          }
 
           // Only redirect if we are not already on the login page
           if (source_path !== redirect_path) {
