@@ -8,7 +8,7 @@ describe("perform rediects on authenticated pages", function() {
   it("test admin redirect to login page", async function() {
     await browser.get("/#/admin/advanced_settings");
 
-    await browser.gl.utils.waitForUrl("/admin?src=%2Fadmin%2Fadvanced_settings");
+    await browser.gl.utils.waitForUrl("/login?src=%2Fadmin%2Fadvanced_settings");
   });
 
   it("test custodian redirect to login page", async function() {
