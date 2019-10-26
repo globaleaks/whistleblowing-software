@@ -3,7 +3,7 @@
     <img class="receiverImg" alt="user picture" data-ng-src="{{::Utils.imgDataUri(preferences.picture)}}" /><br />
   </div>
   <div id="Username"><label><span data-translate>Username</span>:</label> {{::preferences.username }}</div>
-  <div id="Role"><label><span data-translate>Role</span>:</label> <span>{{::session.role_l10n()}}</span></div>
+  <div id="Role"><label><span data-translate>Role</span>:</label> <span>{{::Authentication.session.role_l10n()}}</span></div>
   <div id="Name"><label><span data-translate>Name</span>:</label>
     <span data-ng-if="!editingName">
       <span>{{::preferences.name }}</span>
@@ -40,7 +40,7 @@
   </div>
   <div data-ng-if="preferences.description !== ''"><label data-translate>Description</label> {{::preferences.description }}</div>
 
-  <div id="Contexts" data-ng-if="session.role === 'receiver' && public.contexts.length > 1">
+  <div id="Contexts" data-ng-if="Authentication.session.role === 'receiver' && public.contexts.length > 1">
     <label><span data-translate>Contexts</span></label>
     <ul data-ng-repeat="context_id in preferences.contexts">
       <li>{{contexts_by_id[context_id].name}}</li>

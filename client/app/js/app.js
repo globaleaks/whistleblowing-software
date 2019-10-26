@@ -474,10 +474,7 @@ var GLClient = angular.module("GLClient", [
       when("/", {
         templateUrl: "views/main.html",
         controller: "MainCtrl",
-        header_title: "",
-        resolve: {
-          access: noAuth(),
-        }
+        header_title: ""
       }).
       otherwise({
         redirectTo: "/"
@@ -776,12 +773,6 @@ var GLClient = angular.module("GLClient", [
 
     $rootScope.$on("REFRESH", function() {
       $rootScope.reload();
-    });
-
-    $rootScope.$watch(function () {
-      return Authentication.session;
-    }, function () {
-      $rootScope.session = Authentication.session;
     });
 
     $rootScope.keypress = function(e) {

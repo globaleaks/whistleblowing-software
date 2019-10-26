@@ -39,7 +39,7 @@ controller("AdminGeneralSettingsCtrl", ["$scope", "$filter", "$http", "Files", "
     }
   ];
 
-  if ($scope.session.role === "admin") {
+  if ($scope.Authentication.session.role === "admin") {
     $scope.tabs = $scope.tabs.concat([
       {
         title: "Theme customization",

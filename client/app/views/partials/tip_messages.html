@@ -9,10 +9,10 @@
     </div>
   </div>
   <div class="card-body" data-ng-show="!collapsed">
-    <div data-ng-if="session.role !== 'whistleblower' || tip.enable_two_way_messages" class="row">
+    <div data-ng-if="Authentication.session.role !== 'whistleblower' || tip.enable_two_way_messages" class="row">
       <div class="col-md-12">
         <div class="form-inline">
-          <span data-ng-if="session.role === 'whistleblower'">
+          <span data-ng-if="Authentication.session.role === 'whistleblower'">
             <span><span data-translate>Recipient</span>:<span>&nbsp;</span></span>
             <select id="message-recipient-selector" data-ng-model="tip.msg_receiver_selected" data-ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
           </span>
@@ -22,12 +22,12 @@
       </div>
       <div class="col-md-12">
         <span class="float-left">
-          <button id="message-action-send" class="btn btn-sm btn-primary" data-ng-click="newMessage()" data-ng-disabled="!tip.newMessageContent || (session.role === 'whistleblower' && !tip.msg_receiver_selected)">
+          <button id="message-action-send" class="btn btn-sm btn-primary" data-ng-click="newMessage()" data-ng-disabled="!tip.newMessageContent || (Authentication.session.role === 'whistleblower' && !tip.msg_receiver_selected)">
             <i class="fa fa-comment"></i>
             <span data-translate>Send</span>
           </button>
         </span>
-        <span data-ng-if="session.role === 'receiver' && preferences.can_grant_permissions" class="float-right form-group">
+        <span data-ng-if="Authentication.session.role === 'receiver' && preferences.can_grant_permissions" class="float-right form-group">
           <label>
             <input data-ng-model="tip.enable_two_way_messages" data-ng-change="tip.operation('set', {'key': 'enable_two_way_messages', 'value': tip.enable_two_way_messages})" type="checkbox" />
             <span data-translate>Allow the whistleblower to send messages</span>

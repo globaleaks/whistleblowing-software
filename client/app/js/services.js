@@ -120,9 +120,8 @@ angular.module("GLServices", ["ngResource"]).
         self.receipt = "";
 
         self.deleteSession = function() {
-          if ($rootScope.Authentication &&
-              $rootScope.Authentication.session) {
-            $rootScope.Authentication.session = undefined;
+          if (self.session) {
+            self.session = undefined;
           }
         };
 
@@ -150,17 +149,8 @@ angular.module("GLServices", ["ngResource"]).
           var role = self.session === undefined ? undefined : self.session.role;
           var source_path = $location.path();
 
-          self.session = undefined;
-
-          if (role === undefined && role !== "whistleblower") {
-            redirect_path = "/login";
-          } else {
-            redirect_path = "/";
-          }
-
-          // Only redirect if we are not already on the login page
-          if (source_path !== redirect_path) {
-            $location.path(redirect_path);
+          if (source_path !== '/login') {
+            $location.path('/login');
             if (!isLogout) {
               $location.search("src=" + source_path);
             }
@@ -881,7 +871,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           if ($rootScope.Authentication.session.password_change_needed) {
             $location.path("/actions/forcedpasswordchange");
           } else if ($rootScope.public.node.two_factor && !$rootScope.Authentication.session.two_factor) {
-            console.log($rootScope.Authentication.session);
             $location.path("/actions/forcedtwofactor");
           }
         }
@@ -972,7 +961,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       },
 
       showUserStatusBox: function() {
-        return $rootScope.public.node.wizard_done && angular.isDefined($rootScope.session);
+        return $rootScope.public.node.wizard_done && angular.isDefined($rootScope.Authentication.session);
       },
 
       showPrivacyBadge: function() {

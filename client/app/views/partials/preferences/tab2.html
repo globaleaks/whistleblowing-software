@@ -1,5 +1,5 @@
 <form name="passwordChangeForm">
-  <div class="form-group" data-ng-class="{'has-danger': passwordChangeForm.oldpassword.$error.required}" data-ng-if='!session.password_change_needed'>
+  <div class="form-group" data-ng-class="{'has-danger': passwordChangeForm.oldpassword.$error.required}" data-ng-if='!Authentication.session.password_change_needed'>
     <label>
       <span data-translate>Current password</span>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>

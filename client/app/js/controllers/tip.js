@@ -85,7 +85,7 @@ GLClient.controller("TipCtrl",
       return field.type !== "fileupload";
     };
 
-    if ($scope.session.role === "whistleblower") {
+    if ($scope.Authentication.session.role === "whistleblower") {
       $scope.fileupload_url = "wbtip/rfile";
 
       $scope.tip = new WBTip(function(tip) {
@@ -123,7 +123,7 @@ GLClient.controller("TipCtrl",
         }
       });
 
-    } else if ($scope.session.role === "receiver") {
+    } else if ($scope.Authentication.session.role === "receiver") {
       $scope.preferences = ReceiverPreferences.get();
 
       $scope.tip = new RTip({id: $scope.tip_id}, function(tip) {
