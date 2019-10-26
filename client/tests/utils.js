@@ -182,7 +182,7 @@ exports.clickFirstDisplayed = async function(selector) {
 // Utility Functions for handling File operations
 
 exports.makeTestFilePath = function(name) {
-  return path.resolve(path.join(browser.params.testDir, 'files', name));
+  return path.resolve(path.join(browser.params.testDir, "files", name));
 };
 
 exports.makeSavedFilePath = function(name) {

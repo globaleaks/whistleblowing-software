@@ -24,6 +24,6 @@ GLClient.controller("DisclaimerModalCtrl", ["$scope", "$rootScope", "$uibModalIn
                     function($scope, $rootScope, $uibModalInstance) {
   $scope.ok = function () {
     $uibModalInstance.close();
-    $rootScope.setPage('submissionpage');
+    $rootScope.setPage("submissionpage");
   };
 }]);

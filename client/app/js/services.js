@@ -85,7 +85,7 @@ angular.module("GLServices", ["ngResource"]).
             } else {
               // Override the auth_landing_page if a password change is needed
               if (self.session.role === "whistleblower") {
-                $rootScope.setPage('tippage');
+                $rootScope.setPage("tippage");
               } else {
                 $location.path(self.session.auth_landing_page);
               }
@@ -133,7 +133,7 @@ angular.module("GLServices", ["ngResource"]).
           if (self.session.role === "whistleblower") {
             cb = function() {
               self.deleteSession();
-              $rootScope.setPage('homepage');
+              $rootScope.setPage("homepage");
             };
           } else {
             cb = function() {
@@ -146,11 +146,10 @@ angular.module("GLServices", ["ngResource"]).
         };
 
         self.loginRedirect = function(isLogout) {
-          var role = self.session === undefined ? undefined : self.session.role;
           var source_path = $location.path();
 
-          if (source_path !== '/login') {
-            $location.path('/login');
+          if (source_path !== "/login") {
+            $location.path("/login");
             if (!isLogout) {
               $location.search("src=" + source_path);
             }
@@ -840,13 +839,13 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         var path = $location.path();
 
         if (path === "/") {
-          if ($rootScope.page === 'homepage') {
+          if ($rootScope.page === "homepage") {
             $rootScope.ht = $rootScope.public.node.header_title_homepage;
           } else if ($rootScope.page === "submissionpage") {
             $rootScope.ht = $rootScope.public.node.header_title_submissionpage;
           } else if ($rootScope.page === "receiptpage") {
             $rootScope.ht = $rootScope.public.node.header_title_receiptpage;
-          } else if ($rootScope.page === 'tippage') {
+          } else if ($rootScope.page === "tippage") {
             $rootScope.ht = $rootScope.public.node.header_title_tippage;
           }
         } else {
@@ -1153,7 +1152,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           }
         };
 
-        return $http({method: "PUT", url: "admin/config", data: req}).then(function() { $rootScope.reload() });
+        return $http({method: "PUT", url: "admin/config", data: req}).then(function() { $rootScope.reload(); });
       },
 
       removeFile: function (list, file) {

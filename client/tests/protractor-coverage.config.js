@@ -1,4 +1,4 @@
-var istanbul = require('istanbul-lib-coverage');
+var istanbul = require("istanbul-lib-coverage");
 var map = istanbul.createCoverageMap({});
 
 var fs = require("fs");
@@ -13,7 +13,7 @@ exports.config = {
   baseUrl: "http://127.0.0.1:8082/",
 
   troubleshoot: false,
-  rootElement: 'html',
+  rootElement: "html",
   directConnect: true,
 
   params: {
@@ -83,11 +83,11 @@ exports.config = {
     await browser.driver.executeScript("return __coverage__;").then(function(coverage) {
       map.merge(coverage);
 
-      if (!fs.existsSync('.nyc_output')) {
-        fs.mkdirSync('.nyc_output');
+      if (!fs.existsSync(".nyc_output")) {
+        fs.mkdirSync(".nyc_output");
       }
 
-      fs.writeFileSync('.nyc_output/out.json', JSON.stringify(map));
+      fs.writeFileSync(".nyc_output/out.json", JSON.stringify(map));
     });
   }
 };

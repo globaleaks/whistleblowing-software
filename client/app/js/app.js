@@ -501,7 +501,7 @@ var GLClient = angular.module("GLClient", [
     var map = {
       "ca@valencia": "ca-es-valencia",
       "sl-si": "sl"
-    }
+    };
 
     tmhDynamicLocaleProvider.addLocalePatternValue("map", map);
 
@@ -548,15 +548,15 @@ var GLClient = angular.module("GLClient", [
     };
 
     $rootScope.setPage = function(page) {
-      $location.path('/');
+      $location.path("/");
       $rootScope.page = page;
       $rootScope.Utils.set_title();
-    }
+    };
 
     $rootScope.setHomepage = function() {
-      $rootScope.setPage('homepage');
+      $rootScope.setPage("homepage");
       $rootScope.reload();
-    }
+    };
 
     $rootScope.closeAlert = function (list, index) {
       list.splice(index, 1);
@@ -626,24 +626,24 @@ var GLClient = angular.module("GLClient", [
 	if ($rootScope.public.node.script) {
           elem = document.getElementById("load-custom-script");
           if (elem === null) {
-            elem = document.createElement("script")
+            elem = document.createElement("script");
             elem.setAttribute("id", "load-custom-script");
             elem.setAttribute("type", "text/javascript");
             elem.setAttribute("src", "s/script");
             document.getElementsByTagName("body")[0].appendChild(elem);
-          };
+          }
         }
 
         if ($rootScope.public.node.favicon) {
           elem = document.getElementById("load-favicon");
           if (elem === null) {
-            elem = document.createElement('link');
+            elem = document.createElement("link");
             elem.setAttribute("id", "load-favicon");
             elem.setAttribute("rel", "shortcut icon");
-            elem.setAttribute("href", 'data:image/png;base64,' + $rootScope.public.node.favicon);
-            document.getElementsByTagName('head')[0].appendChild(elem);
+            elem.setAttribute("href", "data:image/png;base64," + $rootScope.public.node.favicon);
+            document.getElementsByTagName("head")[0].appendChild(elem);
           } else {
-            elem.setAttribute("href", 'data:image/png;base64,' + $rootScope.public.node.favicon);
+            elem.setAttribute("href", "data:image/png;base64," + $rootScope.public.node.favicon);
           }
         }
 

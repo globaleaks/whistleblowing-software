@@ -132,7 +132,7 @@ GLClient.controller("SubmissionCtrl",
     }
 
     return true;
-  }
+  };
 
   $scope.incrementStep = function() {
     if (!$scope.runValidation()) {
@@ -389,7 +389,7 @@ controller("AdditionalQuestionnaireCtrl",
     }
 
     return true;
-  }
+  };
 
   $scope.incrementStep = function() {
     if (!$scope.runValidation()) {

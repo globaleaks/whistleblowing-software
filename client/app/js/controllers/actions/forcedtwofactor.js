@@ -18,17 +18,19 @@ GLClient.controller("EnableTwoFactorAuthCtrl", ["$scope", "$http", "$location",
     });
 
     $scope.enable2FA = function() {
-      return $http({method: "PUT",
-	            url: "user/operations",
-	            data:{
-                      "operation": "enable_2fa_step2",
-                      "args": {
-                        "value": $scope.vars.token_2fa
-                      }
-                    }}).then(function() {
-                      $scope.Authentication.session.two_factor = true;
-                      $scope.preferences.two_factor_enable = true;
-		      $location.path($scope.Authentication.session.auth_landing_page);
-		    });
+      return $http({
+        method: "PUT",
+        url: "user/operations",
+        data: {
+          "operation": "enable_2fa_step2",
+          "args": {
+            "value": $scope.vars.token_2fa
+          }
+	}
+      }).then(function() {
+        $scope.Authentication.session.two_factor = true;
+        $scope.preferences.two_factor_enable = true;
+        $location.path($scope.Authentication.session.auth_landing_page);
+      });
     };
 }]);

@@ -190,7 +190,7 @@ module.exports = function(grunt) {
             {
               pattern: "<!-- PRELOAD -->\n",
               replacement: "<link rel=\"preload\" href=\"css/styles.css\" as=\"style\" />" +
-		           "<link rel=\"preload\" href=\"js/scripts.js\" as=\"script\" />\n"
+                           "<link rel=\"preload\" href=\"js/scripts.js\" as=\"script\" />\n"
             }
           ]
         }
@@ -227,7 +227,7 @@ module.exports = function(grunt) {
     cssmin: {
       target: {
         files: {
-          'build/css/styles.css': 'build/css/styles.css'
+          "build/css/styles.css": "build/css/styles.css"
         }
       }
     },
@@ -235,22 +235,22 @@ module.exports = function(grunt) {
     postcss: {
       options: {
         processors: [
-          require('postcss-rtl')()
+          require("postcss-rtl")()
         ]
       },
       dist: {
-        src: 'tmp/lib/css/*.css'
+        src: "tmp/lib/css/*.css"
       }
     },
 
     uglify: {
       options: {
         sourceMap: true,
-        sourceMapName: 'build/js/scripts.js.map'
+        sourceMapName: "build/js/scripts.js.map"
       },
       minify: {
         files: {
-          'build/js/scripts.js': ['build/js/scripts.js']
+          "build/js/scripts.js": ["build/js/scripts.js"]
         }
       }
     }
@@ -267,8 +267,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks("grunt-contrib-cssmin");
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-postcss');
+  grunt.loadNpmTasks("grunt-contrib-uglify");
+  grunt.loadNpmTasks("grunt-postcss");
   grunt.loadNpmTasks("grunt-string-replace");
   grunt.loadNpmTasks("grunt-usemin");
   grunt.loadNpmTasks("gruntify-eslint");

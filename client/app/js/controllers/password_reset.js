@@ -16,14 +16,14 @@ controller("PasswordResetCompleteCtrl", ["$scope", "$location", "$http",
 
   $scope.request = {
     "reset_token": $location.search().token,
-    "recovery_key": $location.search().recovery || '',
-    "auth_code": ''
+    "recovery_key": $location.search().recovery || "",
+    "auth_code": ""
   };
 
   $scope.submit = function() {
     $http.put("reset/password", $scope.request).then(function(response) {
-      $scope.request.recovery_key = '';
-      $scope.request.auth_code = '';
+      $scope.request.recovery_key = "";
+      $scope.request.auth_code = "";
       if(response.data.status === "success") {
         $location.url("/login?token=" + response.data.token);
       } else if (response.data.status === "require_recovery_key") {

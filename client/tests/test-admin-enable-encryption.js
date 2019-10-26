@@ -12,7 +12,7 @@ describe("admin configure advanced settings", function() {
   });
 
   it("should redirect to password change upon successful authentication", async function() {
-    await browser.gl.utils.login_admin("admin", 'w1z4rdp4ssw0rd!', "/#/login", true);
+    await browser.gl.utils.login_admin("admin", "w1z4rdp4ssw0rd!", "/#/login", true);
   });
 
   it("should be able to change password from the default one", async function() {
