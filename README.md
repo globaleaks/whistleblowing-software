@@ -18,7 +18,9 @@ For the developer documentation refer to the [GlobaLeaks's Developer Documentati
 ## Community and professional support
 If you need technical support, have general questions, or have new ideas for GlobaLeaks, please post your message on the [community support forum](https://forum.globaleaks.org/).
 
-Join our [Slack Chat](http://slack.hermescenter.org) to get in touch with the development team and the GlobaLeaks community (#globaleaks-dev for development #globaleaks-support-[EN|IT] for community support)!
+Join our [Slack Chat](http://slack.hermescenter.org) to get in touch with the development team and the GlobaLeaks community:
+* #globaleaks-dev to participate in development discussions
+* #gl-support-eng and #gl-support-ita for the community support in English and Italian respectively
 
 If you want to contribute to software development or report a bug, please open an issue on [GitHub](https://github.com/globaleaks/GlobaLeaks/issues/).
 
