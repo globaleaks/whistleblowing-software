@@ -638,6 +638,7 @@
   "View your submission": "Se over din innsendelse",
   "Recipient selection": "Valg av mottaker",
   "Recipients selected:": "Mottakere valgt:",
+  "You have reached the maximum number of selectable recipients.": "You have reached the maximum number of selectable recipients.",
   "In this step the answers to the following questions are either missing or invalid:": "Disse spørsmålene har ugyldige eller manglende svar i dette steget.",
   "Submission errors": "Innsendelsesfeil",
   "You must select at least one recipient.": "Du må velge ihvertfall én mottaker.",

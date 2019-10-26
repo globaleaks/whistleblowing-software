@@ -638,6 +638,7 @@
   "View your submission": "Tarkastele omaa vihjettä",
   "Recipient selection": "Vastaanottajan valinta",
   "Recipients selected:": "Valitsemasi vastaanottajat:",
+  "You have reached the maximum number of selectable recipients.": "You have reached the maximum number of selectable recipients.",
   "In this step the answers to the following questions are either missing or invalid:": "Vastaukset tämän vaiheen kyseessä oleviin kysymyksiin joko puuttuvat tai eivät kelpaa:",
   "Submission errors": "Vihjeen lähettämisen ongelmat",
   "You must select at least one recipient.": "Sinun täytyy valita vähintään yksi vastaanottaja.",

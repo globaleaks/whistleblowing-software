@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-17 06:14+0000\n"
+"PO-Revision-Date: 2019-10-26 14:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2033,6 +2033,9 @@ msgstr "Címzett kiválasztása"
 
 msgid "Recipients selected:"
 msgstr "Kiválasztott címzettek:"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-17 06:14+0000\n"
+"PO-Revision-Date: 2019-10-26 14:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -703,7 +703,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr ""
+msgstr "A senha escolhida é muito fraca. Uma senha válida deve ter pelo menos 10 caracteres e conter uma variedade de caracteres, incluindo pelo menos um caractere minúsculo, um caractere maiúsculo, um número e um caractere especial."
 
 msgid "The new password must be different from the current one."
 msgstr "A nova senha deve ser diferente da atual."
@@ -1471,7 +1471,7 @@ msgid "Configure"
 msgstr "Configurar"
 
 msgid "Subdomain"
-msgstr ""
+msgstr "Subdomínio"
 
 msgid "The default password is:"
 msgstr "A senha padrão é:"
@@ -2050,6 +2050,9 @@ msgstr "Seleção de destinatário"
 
 msgid "Recipients selected:"
 msgstr "Destinatários selecionados:"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

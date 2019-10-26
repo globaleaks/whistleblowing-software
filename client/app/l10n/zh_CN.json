@@ -638,6 +638,7 @@
   "View your submission": "查看您的提交",
   "Recipient selection": "选定接收者",
   "Recipients selected:": "选择的接收者：",
+  "You have reached the maximum number of selectable recipients.": "You have reached the maximum number of selectable recipients.",
   "In this step the answers to the following questions are either missing or invalid:": "此步骤下，未回答以下问题或答案无效:",
   "Submission errors": "提交出错",
   "You must select at least one recipient.": "必须至少选择一位收件人。",

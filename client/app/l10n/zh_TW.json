@@ -638,6 +638,7 @@
   "View your submission": "檢視你的揭密提交",
   "Recipient selection": "選擇收件者",
   "Recipients selected:": "已選擇的收件者",
+  "You have reached the maximum number of selectable recipients.": "You have reached the maximum number of selectable recipients.",
   "In this step the answers to the following questions are either missing or invalid:": "在本步驟中，請回答下列問題是否為遺失或無效：",
   "Submission errors": "提交出錯",
   "You must select at least one recipient.": "你必須至少挑選一位收件者",

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-17 06:14+0000\n"
+"PO-Revision-Date: 2019-10-26 14:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2019,6 +2019,9 @@ msgstr "Selección de destinatarios"
 
 msgid "Recipients selected:"
 msgstr "Destinatarios seleccionados:"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

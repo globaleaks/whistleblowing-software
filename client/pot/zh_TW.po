@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-17 06:14+0000\n"
+"PO-Revision-Date: 2019-10-26 14:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2022,6 +2022,9 @@ msgstr "選擇收件者"
 
 msgid "Recipients selected:"
 msgstr "已選擇的收件者"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

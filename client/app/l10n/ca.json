@@ -638,6 +638,7 @@
   "View your submission": "Mira el teu enviament",
   "Recipient selection": "Selecciona el destinatari",
   "Recipients selected:": "Destinataris seleccionats:",
+  "You have reached the maximum number of selectable recipients.": "You have reached the maximum number of selectable recipients.",
   "In this step the answers to the following questions are either missing or invalid:": "En aquest pas, les respostes a les següents preguntes falten o són invàlides:",
   "Submission errors": "Manca informació en els següents passos",
   "You must select at least one recipient.": "Has de seleccionar com a mínim un destinatari.",

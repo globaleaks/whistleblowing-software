@@ -638,6 +638,7 @@
   "View your submission": "Переглянути ваш матеріал",
   "Recipient selection": "Вибір одержувача",
   "Recipients selected:": "Обрані одержувачі:",
+  "You have reached the maximum number of selectable recipients.": "You have reached the maximum number of selectable recipients.",
   "In this step the answers to the following questions are either missing or invalid:": "На даному кроці відсутні або недійсні відповіді на наступні питання:",
   "Submission errors": "Помилки повідослень",
   "You must select at least one recipient.": "Ви повинні вибрати щонайменше одного одержувача.",

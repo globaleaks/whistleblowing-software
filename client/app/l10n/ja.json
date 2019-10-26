@@ -638,6 +638,7 @@
   "View your submission": "あなたの提出を見る",
   "Recipient selection": "受信者の選択",
   "Recipients selected:": "選択された受信者:",
+  "You have reached the maximum number of selectable recipients.": "You have reached the maximum number of selectable recipients.",
   "In this step the answers to the following questions are either missing or invalid:": "このステップでは、以下の質問に対する回答が見つからないか、無効です:",
   "Submission errors": "提出エラー",
   "You must select at least one recipient.": "少なくとも一人の受信者を選択する必要があります。",

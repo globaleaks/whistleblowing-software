@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-17 06:14+0000\n"
+"PO-Revision-Date: 2019-10-26 14:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -171,10 +171,10 @@ msgid "Preview"
 msgstr "Προεπισκόπηση"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "Ο καταγγέλλων έχει ήδη διαβάσει την τελευταία ενημέρωση"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "Ο καταγγέλλων δεν έχει διαβάσει ακόμα την τελευταία ενημέρωση."
 
 msgid "Move up"
 msgstr "Μετακίνηση προς τα επάνω"
@@ -682,7 +682,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr ""
+msgstr "Ο κωδικός που επιλέξατε είναι αρκετά αδύναμος. Ένας έγκυρος κωδικός πρέπει να αποτελείται από τουλάχιστον 10 χαρακτήρες και να περιλαμβάνει τουλάχιστον ένα πεζό χαρακτήρα, ένα κεφαλαίο χαρακτήρα, έναν αριθμό και ένα ειδικό χαρακτήρα."
 
 msgid "The new password must be different from the current one."
 msgstr "Ο νέος κωδικός πρόσβασης θα πρέπει να είναι διαφορετικός από τον τρέχοντα."
@@ -694,13 +694,13 @@ msgid "The two passwords do not match"
 msgstr "Οι δύο κωδικοί πρόσβασης δεν ταιριάζουν"
 
 msgid "The new password must differ from the previous."
-msgstr ""
+msgstr "Ο νέος κωδικός πρέπει να διαφέρει από τον προηγούμενο. "
 
 msgid "Proceed"
 msgstr "Συνέχεια"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr ""
+msgstr "Πρίν προχωρήσετε, παρακαλώ ενεργοποιήστε την αυθεντικοποίηση δύο παραγόντων."
 
 msgid "Disable submissions"
 msgstr "Απενεργοποίηση υποβολών"
@@ -763,7 +763,7 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Πειράξτε αυτή την ρύθμιση μόνο αν ξέρετε τι κάνετε."
 
 msgid "Require two factor authentication"
-msgstr ""
+msgstr "Απαιτείστε αυθεντικοποίηση δύο παραγόντων"
 
 msgid "Password change interval"
 msgstr "Συχνότητα αλλαγής κωδικού πρόσβασης"
@@ -1450,7 +1450,7 @@ msgid "Configure"
 msgstr "Διαμόρφωση "
 
 msgid "Subdomain"
-msgstr ""
+msgstr "Subdomain"
 
 msgid "The default password is:"
 msgstr "Ο προκαθορισμένος κωδικός πρόσβασης είναι:"
@@ -1462,7 +1462,7 @@ msgid "Reset password"
 msgstr "Επαναφορά κωδικού πρόσβασης"
 
 msgid "Disable two factor authentication"
-msgstr ""
+msgstr "Απενεργοποιείστε την αυθεντικοποίηση δύο παραγόντων"
 
 msgid "Force password change"
 msgstr "Εξαναγκασμός αλλαγής κωδικού πρόσβασης"
@@ -1721,7 +1721,7 @@ msgid "Enter a name for the copy"
 msgstr "Εισαγωγή ονόματος για το αντίγραφο"
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "Επιλέξτε αρχείο ή σύρετέ το εδώ."
 
 msgid "Uploading files…"
 msgstr "Ανέβασμα αρχείων ..."
@@ -2029,6 +2029,9 @@ msgstr "Επιλογή παραλήπτη"
 
 msgid "Recipients selected:"
 msgstr "Επιλεγμένοι παραλήπτες:"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -2388,7 +2391,7 @@ msgstr "Νέο μήνυμα"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr ""
+msgstr "Λαμβάνετε αυτό το email επειδή ζητήθηκε ανάκτηση κωδικού για το λογαριασμό:"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

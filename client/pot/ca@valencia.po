@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-17 06:14+0000\n"
+"PO-Revision-Date: 2019-10-26 14:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -170,10 +170,10 @@ msgid "Preview"
 msgstr "Vista prèvia"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "L'alertador ja ha llegit l'última actualització"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "L'alertador encara no ha llegit l'última actualització"
 
 msgid "Move up"
 msgstr "Pujar"
@@ -197,7 +197,7 @@ msgid "Save all"
 msgstr "Guarde-ho tot"
 
 msgid "Access control"
-msgstr ""
+msgstr "Control d'accés"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -643,7 +643,7 @@ msgid "Not running"
 msgstr "No s'està executant"
 
 msgid "Send a test email to your email address."
-msgstr ""
+msgstr "Enviar un missatge de prova a la seua direcció de correu"
 
 msgid "Select the context of your submission:"
 msgstr "Seleccione el context del seu enviament:"
@@ -681,7 +681,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr ""
+msgstr "La contrasenya triada és massa feble. Una contrasenya vàlida hauria de tindre al menys 10 caràcters de longitud, i contindre una varietat de caràcters, incloent al menys una lletra minúscula, una lletra majúscula, un número i un caràcter especial."
 
 msgid "The new password must be different from the current one."
 msgstr "La nova contrasenya ha de ser diferent de l'actual."
@@ -693,13 +693,13 @@ msgid "The two passwords do not match"
 msgstr "Les dues contrasenyes no son iguals"
 
 msgid "The new password must differ from the previous."
-msgstr ""
+msgstr "La nova contrasenya ha de ser diferent a l'anterior"
 
 msgid "Proceed"
 msgstr "Procedir"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr ""
+msgstr "Abans de continuar, per favor active l'autenticació de doble factor."
 
 msgid "Disable submissions"
 msgstr "Deshabilita els enviaments"
@@ -731,7 +731,7 @@ msgid "Do not expose users' names"
 msgstr "No mostrar els noms del usuaris"
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgstr "Permetre a les webs següents que integren la plataforma dins d'iframes"
 
 msgid "Enable custom privacy panel"
 msgstr "Habilita distintiu personalitzat de privacitat"
@@ -762,7 +762,7 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Ajustar aquesta configuració només si sap el que està fent."
 
 msgid "Require two factor authentication"
-msgstr ""
+msgstr "Requerir autenticació de doble factor"
 
 msgid "Password change interval"
 msgstr "Interval de canvi de contrasenya"
@@ -825,7 +825,7 @@ msgid "Enable simplified login"
 msgstr "Activar inici de sessió simplificat"
 
 msgid "Enable HSTS preload"
-msgstr ""
+msgstr "Habilitar la precàrrega HSTS "
 
 msgid "Logging level"
 msgstr "Nivell de log"
@@ -1101,7 +1101,7 @@ msgid "Test the configuration"
 msgstr "Proveu la configuració"
 
 msgid "Reset SMTP configuration"
-msgstr ""
+msgstr "Reinicialitzar la configuració SMTP"
 
 msgid "Template"
 msgstr "Plantilla"
@@ -1131,10 +1131,10 @@ msgid "Example:"
 msgstr "Exemple:"
 
 msgid "Configuration in progress"
-msgstr ""
+msgstr "Configuració en progrés"
 
 msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
+msgstr "La plataforma serà accesible via HTTPS a la següent adreça:"
 
 msgid "Hostname"
 msgstr "Domini"
@@ -1449,7 +1449,7 @@ msgid "Configure"
 msgstr "Configurar"
 
 msgid "Subdomain"
-msgstr ""
+msgstr "Subdomini"
 
 msgid "The default password is:"
 msgstr "La contrasenya d'usuari per defecte és:"
@@ -1461,7 +1461,7 @@ msgid "Reset password"
 msgstr "Reinicialitzar contrasenya"
 
 msgid "Disable two factor authentication"
-msgstr ""
+msgstr "Desactivar l'autenticació de doble factor"
 
 msgid "Force password change"
 msgstr "Força un canvi de contrasenya"
@@ -1514,7 +1514,7 @@ msgid "Request date"
 msgstr "Data de sol·licitud"
 
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 msgid "Authorization"
 msgstr "Autorització"
@@ -1532,7 +1532,7 @@ msgid "Forgot password?"
 msgstr "Ha oblidat la contrasenya?"
 
 msgid "Enter the two factor authentication code"
-msgstr ""
+msgstr "Introduïr el codi d'autenticació de doble factor"
 
 msgid "Authentication failed"
 msgstr "Autenticació fallida"
@@ -1583,31 +1583,31 @@ msgid "Please note that all the associated data will be permanently lost."
 msgstr "Recordeu que totes les dades associades es perden definitivament."
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
+msgstr "Ésta es una plataforma de demostració, per favor no la utilitze per a enviaments reals."
 
 msgid "Attention!"
 msgstr "Atenció!"
 
 msgid "Install an authenticator app on your phone"
-msgstr ""
+msgstr "Instal·lar una aplicació d'aunteticació al seu telèfon"
 
 msgid "Scan the QR code with the app"
-msgstr ""
+msgstr "Escanejar el codi QR amb l'aplicació"
 
 msgid "Enable two factor authentication"
 msgstr "Habilitar l'autenticació de doble factor"
 
 msgid "Close"
-msgstr ""
+msgstr "Tancar"
 
 msgid "Your encryption recovery key is:"
-msgstr ""
+msgstr "La seua clau de recuperació de xifrat es: "
 
 msgid ""
 "Please annotate and store this key in a safe place. It will be necessary if "
 "you lose your personal password to recover the access to your account with "
 "no data loss."
-msgstr ""
+msgstr "Per favor, anote i emmagatzeme esta clau a un lloc segur. Serà necessària si perd la seua contrasenya personal per a recuperar l'accés al seu compte sense perdua de dades."
 
 msgid "Welcome!"
 msgstr "Benvingut!"
@@ -1692,10 +1692,10 @@ msgid "Show"
 msgstr "Mostrar"
 
 msgid "Set up email encryption by providing a PGP public key"
-msgstr ""
+msgstr "Configurar el xifrat del correu propocionant una clau pública PGP"
 
 msgid "Get the encryption recovery key"
-msgstr ""
+msgstr "Obtindre la clau de recuperación de xifrat"
 
 msgid "Current password"
 msgstr " Contrasenya actual"
@@ -1720,7 +1720,7 @@ msgid "Enter a name for the copy"
 msgstr "Introduïsca un nom per a la còpia"
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "Seleccionar un arxiu o arrastrar-lo ací."
 
 msgid "Uploading files…"
 msgstr "Carregant fitxers..."
@@ -1903,7 +1903,7 @@ msgid "These files have been attached to your submission by the recipients."
 msgstr "Aquests arxius s'han adjuntat al seu enviament pels receptors"
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "La clau de recuperación proporcionada no es vàlida."
 
 msgid "The provided reset token is invalid or expired."
 msgstr "El token de reinicialització es invàlid o ha expirat."
@@ -1918,7 +1918,7 @@ msgstr "Introduïsca la seua direcció de correu per a sol.licitar la reiniciali
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr ""
+msgstr "Introduïsca la clau de recuperació de xifrat per a completar el procedimient de restabliment de la contrasenya"
 
 msgid "Password reset requested."
 msgstr "Reinicialització de la contrasenya.sol.licitada."
@@ -2028,6 +2028,9 @@ msgstr "Seleccione el destinatari"
 
 msgid "Recipients selected:"
 msgstr "Destinataris seleccionats:"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -2387,7 +2390,7 @@ msgstr "Nou missatge"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr ""
+msgstr "Vosté rep este correu perquè s'ha sol.licitat el restabliment de la contrasenya per al compte: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

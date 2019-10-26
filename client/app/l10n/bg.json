@@ -638,6 +638,7 @@
   "View your submission": "Преглед на сигнала",
   "Recipient selection": "Избор на получатели",
   "Recipients selected:": "Избранит получатели:",
+  "You have reached the maximum number of selectable recipients.": "You have reached the maximum number of selectable recipients.",
   "In this step the answers to the following questions are either missing or invalid:": "В тази стъпка отговорите на въпросте или липсват или са невалидни:",
   "Submission errors": "Грешка в подаването",
   "You must select at least one recipient.": "Трябва да изберете поне един получател.",

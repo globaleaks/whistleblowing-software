@@ -638,6 +638,7 @@
   "View your submission": "Просмотреть ваш материал",
   "Recipient selection": "Выбор получателя",
   "Recipients selected:": "Выбранные получатели:",
+  "You have reached the maximum number of selectable recipients.": "You have reached the maximum number of selectable recipients.",
   "In this step the answers to the following questions are either missing or invalid:": "Отсутствующие или недостоверные ответы на следующие вопросы:",
   "Submission errors": "Ошибки подачи материала",
   "You must select at least one recipient.": "Вам необходимо выбрать по меньшей мере одного получателя.",

@@ -638,6 +638,7 @@
   "View your submission": "مشاهدة بلاغك",
   "Recipient selection": "اختيار المتلقّي",
   "Recipients selected:": "المتلقّون المختارون :",
+  "You have reached the maximum number of selectable recipients.": "You have reached the maximum number of selectable recipients.",
   "In this step the answers to the following questions are either missing or invalid:": " بهذه الخطوة , الإجابات على هذه الأسئلة مفقودة أو غير صالحة:",
   "Submission errors": "أخطاء البلاغ",
   "You must select at least one recipient.": "يجب تحديد مستلم واحد على الأقل.",

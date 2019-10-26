@@ -638,6 +638,7 @@
   "View your submission": "Zobrazit podání",
   "Recipient selection": "Výběr příjemce",
   "Recipients selected:": "Vybraní příjemci:",
+  "You have reached the maximum number of selectable recipients.": "You have reached the maximum number of selectable recipients.",
   "In this step the answers to the following questions are either missing or invalid:": "V tomto kroku jsou odpovědi na následující otázky buď chybějící nebo neplatné:",
   "Submission errors": "Chyby podání",
   "You must select at least one recipient.": "Musíte vybrat alespoň jednoho příjemce.",

@@ -638,6 +638,7 @@
   "View your submission": "Visualisez votre envoi",
   "Recipient selection": "Sélection du destinataire",
   "Recipients selected:": "Destinataires sélectionnés :",
+  "You have reached the maximum number of selectable recipients.": "You have reached the maximum number of selectable recipients.",
   "In this step the answers to the following questions are either missing or invalid:": "Dans cette étape, les réponses aux questions suivantes sont soit manquantes, soit invalides :",
   "Submission errors": "Erreurs d’envoi",
   "You must select at least one recipient.": "Vous devez au moins choisir un destinataire.",
