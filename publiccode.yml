@@ -1,9 +1,9 @@
 name: GlobaLeaks
-releaseDate: '2019-10-21'
+releaseDate: '2019-10-26'
 publiccodeYmlVersion: '0.2'
 url: 'https://github.com/globaleaks/GlobaLeaks'
 landingURL: 'https://github.com/globaleaks/GlobaLeaks'
-softwareVersion: 3.11.30
+softwareVersion: 3.11.31
 softwareType: standalone/web
 developmentStatus: stable
 platforms:
@@ -17,7 +17,7 @@ maintenance:
   contacts:
     - name: Giovanni Pellerano
       email: giovanni.pellerano@hermescenter.org
-      phone: '+393289590046'
+      phone: '+390287186005'
       affiliation: CTO at Hermes Center for Transparency and Digital Human Rights
 legal:
   license: AGPL-3.0
