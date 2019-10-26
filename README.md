@@ -33,13 +33,12 @@ Other resources:
 * [ITA] [Applicazione in Riuso](https://developers.italia.it/it/software/globaleaks-globaleaks-f22648.html) secondo [Linee Guida Acquisizione e Riuso](https://docs.italia.it/italia/developers-italia/lg-acquisizione-e-riuso-software-per-pa-docs/it/stabile/) del Codice Amministrazione Digitale Art 69. comma 2
 * [ITA] [Regole di Riuso](https://globaleaks.org/it/anticorruzione/regole-di-riuso-a-cui-devono-attenersi-le-pubbliche-amministrazioni-che-modificano-il-software-di-whistleblowing-globaleaks/) a cui devono attenersi le Pubbliche Amministrazioni che modificano il software di Whistleblowing GlobaLeaks
 
-
 ## Donate
 To support the GlobaLeaks project you can help us with donations that will goes entirely for the software development.
 
 [Help us by sending us a small donation!](https://www.globaleaks.org/donate)
 
 ## License
-This software is released under the AGPLv3 licenses. See [LICENSE file](https://github.com/globaleaks/GlobaLeaks/blob/master/LICENSE) for more information on Additional Terms as per [7(b)](https://github.com/globaleaks/GlobaLeaks/blob/master/LICENSE#L684) and [7(c)](https://github.com/globaleaks/GlobaLeaks/blob/master/LICENSE#L713).
+This software is released under the AGPLv3 license. See [LICENSE file](https://github.com/globaleaks/GlobaLeaks/blob/master/LICENSE) for more information on Additional Terms as per [7(b)](https://github.com/globaleaks/GlobaLeaks/blob/master/LICENSE#L684) and [7(c)](https://github.com/globaleaks/GlobaLeaks/blob/master/LICENSE#L713).
 
 Copyright (c) 2011-2019 - [Hermes Center for Transparency and Digital Human Rights](https://www.hermescenter.org)
