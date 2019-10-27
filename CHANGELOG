@@ -1,3 +1,6 @@
+Changes in version 3.11.33 - 2019-11-27
+    Fix issue #2717
+
 Changes in version 3.11.32 - 2019-11-27
     Improve UI of language selector
     Update translations
