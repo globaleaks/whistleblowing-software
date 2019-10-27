@@ -16,7 +16,7 @@ class RobotstxtHandler(BaseHandler):
         """
         self.request.setHeader(b'Content-Type', b'text/plain')
 
-        if State.tenant_cache[self.request.tid].mode == 'demo' or \
+        if (self.request.tid != 1 and State.tenant_cache[self.request.tid].mode == 'demo') or \
            (not State.tenant_cache[self.request.tid].allow_indexing):
             return "User-agent: *\nDisallow: /"
 
