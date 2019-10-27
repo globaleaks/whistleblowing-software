@@ -1,3 +1,7 @@
+Changes in version 3.11.32 - 2019-11-27
+    Improve UI of language selector
+    Update translations
+
 Changes in version 3.11.31 - 2019-11-26
     Improve UI of maximum recipients feature (#2530)
     Improve client minification
