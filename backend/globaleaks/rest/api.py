@@ -325,7 +325,7 @@ class APIResourceWrapper(Resource):
         if 'x-tor2web' in request.headers:
             request.client_using_tor = False
 
-        request.client_ua = request.headers.get(b'user-agent', u'')
+        request.client_ua = request.headers.get(b'user-agent', b'')
 
         request.client_mobile = re.match(b'Mobi|Android', request.client_ua, re.IGNORECASE) is not None
 
