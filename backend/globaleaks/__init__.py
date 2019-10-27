@@ -34,7 +34,7 @@ LANGUAGES_SUPPORTED = [
     {'code': 'en', 'name': 'English', 'native': u'English'},
     {'code': 'es', 'name': 'Spanish', 'native': u'Espa\xf1ol'},
     {'code': 'fa', 'name': 'Persian', 'native': u'\u0641\u0627\u0631\u0633\u06cc'},
-    {'code': 'fi', 'name': 'Finnish', 'native': u'Finnish'},
+    {'code': 'fi', 'name': 'Finnish', 'native': u'Suomi'},
     {'code': 'fr', 'name': 'French', 'native': u'Fran\xe7ais'},
     {'code': 'gl', 'name': 'Galician', 'native': u'Galego'},
     {'code': 'he', 'name': 'Hebrew', 'native': u'\u05e2\u05d1\u05e8\u05d9\u05ea'},
