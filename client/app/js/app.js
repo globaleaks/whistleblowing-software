@@ -693,15 +693,13 @@ var GLClient = angular.module("GLClient", [
         $rootScope.languages_enabled = {};
         $rootScope.languages_enabled_selector = [];
         $rootScope.languages_supported = {};
-        angular.forEach($rootScope.public.node.languages_supported, function (lang) {
+        angular.forEach($rootScope.public.node.languages_supported, function(lang) {
           $rootScope.languages_supported[lang.code] = lang;
           if ($rootScope.public.node.languages_enabled.indexOf(lang.code) !== -1) {
             $rootScope.languages_enabled[lang.code] = lang;
             $rootScope.languages_enabled_selector.push(lang);
           }
         });
-
-        $rootScope.languages_enabled_selector = $filter("orderBy")($rootScope.languages_enabled_selector, "code");
 
         if ($rootScope.public.node.enable_experimental_features) {
           $rootScope.isFieldTriggered = fieldUtilities.isFieldTriggered;

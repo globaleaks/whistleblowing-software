@@ -5,7 +5,7 @@
         <a class="language-link" data-ng-class="{'language-link-selected': GLTranslate.state.language === item.code}" data-uib-popover="{{item.native}} ({{item.name}})" data-popover-placement="bottom" data-ng-click="GLTranslate.state.language = item.code" href="">{{item.native}}</a>
         <span data-ng-if="!$last">|</span>
       </span>
-      <select data-ng-if="mobile || languages_enabled_selector.length > 3" class="form-control" data-ng-if="false" data-ng-model="GLTranslate.state.language" data-ng-options="item.code as item.native for item in languages_enabled_selector"></select>
+      <select data-ng-if="mobile || languages_enabled_selector.length > 3" class="form-control" data-ng-model="GLTranslate.state.language" data-ng-options="item.code as item.ui for item in languages_enabled_selector"></select>
     </div>
   </div>
   <div id="LoginStatusBox" data-ng-if="Utils.showUserStatusBox()">

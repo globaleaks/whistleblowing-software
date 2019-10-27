@@ -15,9 +15,9 @@
               <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
                 <span data-ng-bind="$select.selected.native"></span>
               </ui-select-match>
-              <ui-select-choices data-repeat="language in admin.node.languages_supported | filter:langNotEnabledFilter | filter: {native: $select.search}">
-                <span data-ng-bind-html="language.native | highlight: $select.search"></span>
-                <span>[{{language.code}}]</span>
+              <ui-select-choices data-repeat="language in admin.node.languages_supported | filter:langNotEnabledFilter | filter: {ui: $select.search}">
+                <span data-ng-bind-html="language.ui | highlight: $select.search"></span>
+		<span>[{{language.code}}]</span>
               </ui-select-choices>
             </ui-select>
           </div>
@@ -39,7 +39,7 @@
               </span>
               <i data-ng-if="lang_code === admin.node.default_language" class="fa fa-times disabled-icon"></i>
             </span>
-            <label>[{{lang_code}}] {{languages_supported[lang_code]['native']}}</label>
+	    <label>{{languages_supported[lang_code]['ui']}} [{{lang_code}}]</label>
           </li>
         </ul>
       </div>
