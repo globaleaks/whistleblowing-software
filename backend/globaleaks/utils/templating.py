@@ -329,7 +329,6 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
         ret = ''
 
         status = None
-        substatus = None
 
         for s in self.data['submission_statuses']:
             if self.data['tip']['status'] == s['id']:
