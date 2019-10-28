@@ -12,6 +12,7 @@ from globaleaks import models
 from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
+from globaleaks.handlers.admin.submission_statuses import db_retrieve_all_submission_statuses
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip
 from globaleaks.handlers.user import user_serialize_user
@@ -45,7 +46,8 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
         'context': admin_serialize_context(session, context, language),
         'comments': rtip_dict['comments'],
         'messages': rtip_dict['messages'],
-        'files': []
+        'files': [],
+        'submission_statuses': db_retrieve_all_submission_statuses(session, tid, language)
     }
 
     export_template = Templating().format_template(export_dict['notification']['export_template'], export_dict).encode('utf-8')

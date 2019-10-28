@@ -1,6 +1,7 @@
 ID: {TipNum}
 Date: {SubmissionDate}
 Label: {TipLabel}
+Status: {TipStatus}
 Context: {ContextName}
 
 {QuestionnaireAnswers}

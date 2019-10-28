@@ -39,6 +39,7 @@ tip_keywords = [
     '{TipID}',
     '{TipNum}',
     '{TipLabel}',
+    '{TipStatus}',
     '{EventTime}',
     '{SubmissionDate}',
     '{QuestionnaireAnswers}',
@@ -323,6 +324,26 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
 
     def TipLabel(self):
         return self.data['tip']['label']
+
+    def TipStatus(self):
+        ret = ''
+
+        status = None
+        substatus = None
+
+        for s in self.data['submission_statuses']:
+            if self.data['tip']['status'] == s['id']:
+                status = s
+                ret += s['label']
+                break
+
+        if status is not None:
+            for s in status['substatuses']:
+                if self.data['tip']['substatus'] == s['id']:
+                    ret += ' (' + s['label'] + ')'
+                    break
+
+        return ret
 
     def EventTime(self):
         return ISO8601_to_pretty_str(self.data['tip']['creation_date'])

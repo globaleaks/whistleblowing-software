@@ -8,6 +8,7 @@ from globaleaks import models
 from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
+from globaleaks.handlers.admin.submission_statuses import db_retrieve_all_submission_statuses
 from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serialize_comment
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import LoopingJob
@@ -154,6 +155,7 @@ class MailGenerator(object):
 
     def process_mail_creation(self, session, tid, data):
         user_id = data['user']['id']
+        language = data['user']['language']
 
         # Do not spool emails if the receiver has opted out of ntfns for this tip.
         if not data['tip']['enable_notifications']:
@@ -180,12 +182,14 @@ class MailGenerator(object):
             # to send the notification_limit_reached
             data['type'] = u'receiver_notification_limit_reached'
 
-        data['node'] = self.serialize_config(session, 'node', tid, data['user']['language'])
+        data['node'] = self.serialize_config(session, 'node', tid, language)
+
+        data['submission_statuses'] = db_retrieve_all_submission_statuses(session, tid, language)
 
         if data['node']['mode'] != u'whistleblowing.it':
-            data['notification'] = self.serialize_config(session, 'notification', tid, data['user']['language'])
+            data['notification'] = self.serialize_config(session, 'notification', tid, language)
         else:
-            data['notification'] = self.serialize_config(session, 'notification', 1, data['user']['language'])
+            data['notification'] = self.serialize_config(session, 'notification', 1, language)
 
         subject, body = Templating().get_mail_subject_and_body(data)
 
