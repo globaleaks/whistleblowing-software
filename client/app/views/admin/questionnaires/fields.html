@@ -157,7 +157,7 @@
             </div>
           </div>
         </div>
-        <div class="row" data-ng-if="showConfiguration(field)">
+        <div class="row" data-ng-if="field.instance !== 'reference'">
           <div class="col-md-12">
             <div data-ng-if="field.type === 'inputbox' || field.type === 'textarea'">
               <div class="form-group">

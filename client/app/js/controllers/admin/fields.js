@@ -42,19 +42,6 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
       return type;
     };
 
-    $scope.showConfiguration = function(field) {
-      if (field.instance === "instance" &&
-          ["checkbox", "date", "daterange", "fieldgroup", "inputbox", "map", "selectbox", "textarea", "tos"].indexOf(field.type) > -1) {
-        return true;
-      }
-
-      if (field.instance === "template" && (["whistleblower_identity"].indexOf(field.id) > -1)) {
-        return true;
-      }
-
-      return false;
-    };
-
     $scope.showOptions = function(field) {
       if (["checkbox", "selectbox", "multichoice"].indexOf(field.type) > -1) {
         return true;
