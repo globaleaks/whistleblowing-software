@@ -1,3 +1,6 @@
+Changes in version 3.11.35 - 2019-10-28
+    Revise UI of context selection
+
 Changes in version 3.11.34 - 2019-10-28
     Revise authentication decorator ensuring session.tid/request.id correspondance
     Improve UI in relation to responsivenes
