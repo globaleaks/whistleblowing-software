@@ -3,10 +3,11 @@
   word-break: break-word;
 }
 
-body {
+html, body {
   color: #222;
   background-color: #FFF;
-  min-height: 100vh;
+  height: 100%;
+  min-height: 400px;
 }
 
 #PageContent {
