@@ -402,6 +402,10 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     db_save_answers_subject_to_stats(session, tid, itip.id, answers)
 
     for uploaded_file in token.uploaded_files:
+        print(request['removed_files'])
+        if uploaded_file['id'] in request['removed_files']:
+            continue
+
         if crypto_is_available:
             for k in ['name', 'type', 'size']:
                 uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, text_type(uploaded_file[k])))

@@ -332,7 +332,7 @@ class BaseHandler(object):
             return
 
         total_file_size = int(self.request.args[b'flowTotalSize'][0])
-        flow_identifier = self.request.args[b'flowIdentifier'][0]
+        file_id = self.request.args[b'flowIdentifier'][0].decode('utf-8')
 
         chunk_size = len(self.request.args[b'file'][0])
         if ((chunk_size / (1024 * 1024)) > self.state.tenant_cache[self.request.tid].maximum_filesize or
@@ -340,10 +340,10 @@ class BaseHandler(object):
             log.err("File upload request rejected: file too big", tid=self.request.tid)
             raise errors.FileTooBig(self.state.tenant_cache[self.request.tid].maximum_filesize)
 
-        if flow_identifier not in self.state.TempUploadFiles:
-            self.state.TempUploadFiles.set(flow_identifier, SecureTemporaryFile(Settings.tmp_path))
+        if file_id not in self.state.TempUploadFiles:
+            self.state.TempUploadFiles.set(file_id, SecureTemporaryFile(Settings.tmp_path))
 
-        f = self.state.TempUploadFiles[flow_identifier]
+        f = self.state.TempUploadFiles[file_id]
         with f.open('w') as f:
             f.write(self.request.args[b'file'][0])
 
@@ -359,6 +359,7 @@ class BaseHandler(object):
         filename = self.request.args[b'flowFilename'][0].decode('utf-8')
 
         self.uploaded_file = {
+            'id': file_id,
             'date': datetime_now(),
             'name': filename,
             'type': mime_type,

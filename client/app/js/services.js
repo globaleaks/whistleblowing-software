@@ -312,7 +312,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           answers: {},
           answer: 0,
           total_score: 0,
-          mobile: $rootScope.mobile
+          mobile: $rootScope.mobile,
+          removed_files: []
         });
 
         self._token = new TokenResource({"type": "submission"}).$save(function(token) {
@@ -1155,7 +1156,11 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         return $http({method: "PUT", url: "admin/config", data: req}).then(function() { $rootScope.reload(); });
       },
 
-      removeFile: function (list, file) {
+      removeFile: function (submission, list, file) {
+        if (submission._submission.removed_files !== undefined) {
+          submission._submission.removed_files.push(String(file.uniqueIdentifier));
+        }
+
         for (var i = list.length - 1; i >= 0; i--) {
           if (list[i] === file) {
             list.splice(i, 1);

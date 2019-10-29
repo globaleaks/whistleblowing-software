@@ -286,6 +286,7 @@ def get_dummy_file(filename=None, content=None):
     State.TempUploadFiles[os.path.basename(temporary_file.filepath)] = temporary_file
 
     return {
+        'id': filename,
         'date': datetime_now(),
         'name': filename,
         'description': 'description',
@@ -582,7 +583,7 @@ class TestGL(unittest.TestCase):
         defer.returnValue({
             'context_id': context_id,
             'receivers': context['receivers'],
-            'files': [],
+            'removed_files': [],
             'answer': 0,
             'identity_provided': False,
             'total_score': 0,
@@ -761,6 +762,7 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['identity_provided'] = False
         self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['questionnaire_id'])
         self.dummySubmission['total_score'] = 0
+        self.dummySubmission['removed_files'] = []
 
         self.lastReceipt = (yield create_submission(1,
                                                    self.dummySubmission,
@@ -1080,7 +1082,7 @@ class MockDict:
             'context_id': '',
             'answers': {},
             'receivers': [],
-            'files': [],
+            'removed_files': [],
             'mobile': False
         }
 
