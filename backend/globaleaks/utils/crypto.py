@@ -195,51 +195,6 @@ class _GCE(object):
     else:
         HASH = 'SCRYPT'
 
-    def set_params(self, memlimit, opslimit):
-        _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'] = memlimit
-        _GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'] = opslimit
-
-    def auto_tune(self):
-        _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'] = 27
-        _GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'] = 1
-
-        salt = self.generate_salt()
-
-        if _GCE.ENCRYPTION_AVAILABLE:
-            memlimit = int(math.log((psutil.virtual_memory().available / 10), 2))
-            while(1):
-
-                start = timeit.default_timer()
-
-                self.hash_password('autotune', salt)
-
-                stop = timeit.default_timer()
-
-                if int(stop - start) > 1:
-                    # Stay below 1 sec of computation
-                    _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'] -= 1
-                    break
-
-                _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'] += 1
-
-            _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'] = memlimit
-
-            while(1):
-                start = timeit.default_timer()
-
-                self.hash_password('autotune', salt)
-
-                stop = timeit.default_timer()
-
-                if int(stop - start) > 1:
-                    # Stay below 1 sec of computation
-                    _GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'] -= 1
-                    break
-
-                _GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'] += 1
-
-        return _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'], _GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT']
-
     @staticmethod
     def generate_receipt():
         """

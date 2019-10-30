@@ -12,21 +12,6 @@ salt = GCE.generate_salt()
 
 
 class TestCryptoUtils(helpers.TestGL):
-    def test_set_params(self):
-        GCE.set_params(123, 321)
-
-        self.assertEqual(GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'], 123)
-        self.assertEqual(GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'], 321)
-
-        GCE.set_params(27, 1)
-
-    def test_auto_tune(self):
-        GCE.auto_tune()
-
-        self.assertTrue(GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'] > 27)
-
-        GCE.set_params(27, 1)
-
     def test_generate_key(self):
         GCE.generate_key()
 

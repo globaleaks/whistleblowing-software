@@ -180,8 +180,6 @@ ConfigDescriptor = {
     u'log_accesses_of_internal_users': Bool(default=False),
 
     u'encryption': Bool(default=False),
-    u'encryption_memlimit': Int(default=27),
-    u'encryption_opslimit': Int(default=16),
 
     u'multisite': Bool(default=False),
     u'adminonly': Bool(default=False)
