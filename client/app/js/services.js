@@ -312,7 +312,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           answers: {},
           answer: 0,
           total_score: 0,
-          mobile: $rootScope.mobile,
           removed_files: []
         });
 
