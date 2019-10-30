@@ -2324,9 +2324,9 @@
       "dev": true
     },
     "fast-sha256": {
-      "version": "1.1.0",
-      "resolved": "https://registry.npmjs.org/fast-sha256/-/fast-sha256-1.1.0.tgz",
-      "integrity": "sha1-tkAYlAPH/w15bRJRocH2lUxA57Q="
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/fast-sha256/-/fast-sha256-1.1.1.tgz",
+      "integrity": "sha512-CKUjAtRhTHaLueE7eUPX4009H7yMZxxBWHYxvzCn3WySKza5+S5EknF86zpOzF4Is4/qNUzbrhtC19gUMzCUdQ=="
     },
     "figgy-pudding": {
       "version": "3.5.1",
@@ -4534,22 +4534,43 @@
       }
     },
     "make-fetch-happen": {
-      "version": "5.0.0",
-      "resolved": "https://registry.npmjs.org/make-fetch-happen/-/make-fetch-happen-5.0.0.tgz",
-      "integrity": "sha512-nFr/vpL1Jc60etMVKeaLOqfGjMMb3tAHFVJWxHOFCFS04Zmd7kGlMxo0l1tzfhoQje0/UPnd0X8OeGUiXXnfPA==",
+      "version": "5.0.1",
+      "resolved": "https://registry.npmjs.org/make-fetch-happen/-/make-fetch-happen-5.0.1.tgz",
+      "integrity": "sha512-b4dfaMvUDR67zxUq1+GN7Ke9rH5WvGRmoHuMH7l+gmUCR2tCXFP6mpeJ9Dp+jB6z8mShRopSf1vLRBhRs8Cu5w==",
       "dev": true,
       "requires": {
         "agentkeepalive": "^3.4.1",
         "cacache": "^12.0.0",
         "http-cache-semantics": "^3.8.1",
         "http-proxy-agent": "^2.1.0",
-        "https-proxy-agent": "^2.2.1",
+        "https-proxy-agent": "^2.2.3",
         "lru-cache": "^5.1.1",
         "mississippi": "^3.0.0",
         "node-fetch-npm": "^2.0.2",
         "promise-retry": "^1.1.1",
         "socks-proxy-agent": "^4.0.0",
         "ssri": "^6.0.0"
+      },
+      "dependencies": {
+        "debug": {
+          "version": "3.2.6",
+          "resolved": "https://registry.npmjs.org/debug/-/debug-3.2.6.tgz",
+          "integrity": "sha512-mel+jf7nrtEl5Pn1Qx46zARXKDpBbvzezse7p7LqINmdoIk8PYP5SySaxEmYv6TZ0JyEKA1hsCId6DIhgITtWQ==",
+          "dev": true,
+          "requires": {
+            "ms": "^2.1.1"
+          }
+        },
+        "https-proxy-agent": {
+          "version": "2.2.4",
+          "resolved": "https://registry.npmjs.org/https-proxy-agent/-/https-proxy-agent-2.2.4.tgz",
+          "integrity": "sha512-OmvfoQ53WLjtA9HeYP9RNrWMJzzAz1JGaSFr1nijg0PVR1JaD/xbJq1mdEIIlxGpXp9eSe/O2LgU9DJmTPd0Eg==",
+          "dev": true,
+          "requires": {
+            "agent-base": "^4.3.0",
+            "debug": "^3.1.0"
+          }
+        }
       }
     },
     "map-age-cleaner": {
@@ -5025,9 +5046,9 @@
       "dev": true
     },
     "npm-check-updates": {
-      "version": "3.1.25",
-      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-3.1.25.tgz",
-      "integrity": "sha512-B2tAgclEby1VyoN4cZp5Zm+iam72jQV1c2uZIcoNwB0cBbJQZaI1Xj+uxkYkoDs2w4DuaM1hQUavIZgfGKkCgg==",
+      "version": "3.1.26",
+      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-3.1.26.tgz",
+      "integrity": "sha512-TQSMJgS7AdbdPsK5TsCNMa+7vdL7HLQrXKrwLMxPLiJtrnye9HEqJZK+U8VdbSq+qrjdt5lgm0g5vRmSSSOcvw==",
       "dev": true,
       "requires": {
         "chalk": "^2.4.2",
@@ -5472,9 +5493,9 @@
       }
     },
     "pacote": {
-      "version": "9.5.8",
-      "resolved": "https://registry.npmjs.org/pacote/-/pacote-9.5.8.tgz",
-      "integrity": "sha512-0Tl8Oi/K0Lo4MZmH0/6IsT3gpGf9eEAznLXEQPKgPq7FscnbUOyopnVpwXlnQdIbCUaojWy1Wd7VMyqfVsRrIw==",
+      "version": "9.5.9",
+      "resolved": "https://registry.npmjs.org/pacote/-/pacote-9.5.9.tgz",
+      "integrity": "sha512-S1nYW9ly+3btn3VmwRAk2LG3TEh8mkrFdY+psbnHSk8oPODbZ28uG0Z0d3yI0EpqcpLR6BukoVRf3H4IbGCkPQ==",
       "dev": true,
       "requires": {
         "bluebird": "^3.5.3",
