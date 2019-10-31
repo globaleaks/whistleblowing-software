@@ -720,6 +720,7 @@
   "From: Whistleblower": "Gönderen: İhbarcı",
   "Date: {SubmissionDate}": "Tarih: {SubmissionDate}",
   "Label: {TipLabel}": "Etiket: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Kategori: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "Bu e-posta, {TipNum} sayılı gönderime ihbarcının yeni dosya eklediğini bildirmek için gönderilmiştir.",
   "New attachment": "Yeni ek",

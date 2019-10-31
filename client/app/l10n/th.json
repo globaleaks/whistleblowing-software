@@ -720,6 +720,7 @@
   "From: Whistleblower": "จาก: Whistleblower",
   "Date: {SubmissionDate}": "วันที่: {SubmissionDate}",
   "Label: {TipLabel}": "ป้ายชื่อ: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "บริบท: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "นี่คืออีเมลแจ้งให้ทราบว่าการส่ง whistleblower {TipNum} ได้แนบวัสดุใหม่",
   "New attachment": "ที่แนบมาใหม่",

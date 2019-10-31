@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-26 14:08+0000\n"
+"PO-Revision-Date: 2019-10-28 19:14+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2307,6 +2307,9 @@ msgstr "日期：{SubmissionDate}"
 
 msgid "Label: {TipLabel}"
 msgstr "标签：{TipLabel}"
+
+msgid "Status: {TipStatus}"
+msgstr ""
 
 msgid "Context: {ContextName}"
 msgstr "类型：{ContextName}"

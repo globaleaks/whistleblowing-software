@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-26 14:08+0000\n"
+"PO-Revision-Date: 2019-10-28 19:14+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2327,6 +2327,9 @@ msgstr "التاريخ: {SubmissionDate}"
 
 msgid "Label: {TipLabel}"
 msgstr "التسمية: {TipLabel}"
+
+msgid "Status: {TipStatus}"
+msgstr ""
 
 msgid "Context: {ContextName}"
 msgstr "السياق: {ContextName}"

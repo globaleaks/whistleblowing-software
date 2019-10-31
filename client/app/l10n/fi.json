@@ -720,6 +720,7 @@
   "From: Whistleblower": "Lähettäjä: Vihjeen antaja",
   "Date: {SubmissionDate}": "Päivämäärä: {SubmissionDate}",
   "Label: {TipLabel}": "Otsikko: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Aihe: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "Vihjeen {TipNum} lähettäjä on liittänyt vihjeeseensä uutta materiaalia.",
   "New attachment": "Uusi liitetiedosto",

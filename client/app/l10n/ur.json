@@ -720,6 +720,7 @@
   "From: Whistleblower": "منجانب: whistleblower کی",
   "Date: {SubmissionDate}": "تاریخ اشاعت: {SubmissionDate}",
   "Label: {TipLabel}": "لیبل: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "سیاق و سباق: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "اس جمع آوری {TipNum} فیصد کا مخبر نئے مواد کے ساتھ منسلک ہے کہ آپ کو مطلع کرنے کے لئے ایک ای میل ہے.",
   "New attachment": "نیا انسلاک",

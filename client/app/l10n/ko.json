@@ -720,6 +720,7 @@
   "From: Whistleblower": "보낸 사람 : 내부자 고발",
   "Date: {SubmissionDate}": "날짜 : {SubmissionDate}",
   "Label: {TipLabel}": "레이블 : {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "컨텍스트 : {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "이 제출 %의 {TipNum} 의 %의 내부 고발자가 새로운 자료를 첨부했음을 알리는 이메일입니다.",
   "New attachment": "새 첨부 파일",

@@ -720,6 +720,7 @@
   "From: Whistleblower": "Fra: Fløyteblåser",
   "Date: {SubmissionDate}": "Dato: {SubmissionDate}",
   "Label: {TipLabel}": "Merkelapp: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Bindeleddsinformasjon: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "Denne e-postens hensikt er å varsle deg om at en fløyteblåser bak innsendelse {TipNum} har lagt ved nytt materiale.",
   "New attachment": "Nytt vedlegg",

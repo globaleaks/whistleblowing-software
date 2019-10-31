@@ -720,6 +720,7 @@
   "From: Whistleblower": "Van: Klokkenluider",
   "Date: {SubmissionDate}": "Datum: {SubmissionDate}",
   "Label: {TipLabel}": "Label: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Context: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "Dit is een mailtje om je erop te wijzen dat de klokkenluider van inzending {TipNum} een bijlage heeft toegevoegd met nieuw materiaal.",
   "New attachment": "Nieuwe bijlage",

@@ -720,6 +720,7 @@
   "From: Whistleblower": "De : lanceur d’alerte",
   "Date: {SubmissionDate}": "Date : {SubmissionDate}",
   "Label: {TipLabel}": "Étiquette : {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Contexte : {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "Le but de ce courriel est de vous signaler que le lanceur de l’alerte {TipNum} a ajouté de nouveaux documents.",
   "New attachment": "Nouveau fichier joint",

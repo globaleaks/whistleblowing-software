@@ -720,6 +720,7 @@
   "From: Whistleblower": "ავტორი: Whistleblower",
   "Date: {SubmissionDate}": "თარიღი: {SubmissionDate}",
   "Label: {TipLabel}": "ჟანრი: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "კონტექსტი: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "ეს არის ელ გაცნობებთ, რომ მამხილებელთა წარდგენის {TipNum} ერთვის ახალი მასალა.",
   "New attachment": "ახალი დანართი",

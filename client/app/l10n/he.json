@@ -720,6 +720,7 @@
   "From: Whistleblower": "מאת: חושף שחיתות",
   "Date: {SubmissionDate}": "תאריך: {SubmissionDate}",
   "Label: {TipLabel}": "תווית: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "הקשר: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "זוהי הודעת דוא\"ל כדי להודיע ​​לך כי המתריע של {TipNum} צרף חומר חדש.",
   "New attachment": "מצורף חדש",

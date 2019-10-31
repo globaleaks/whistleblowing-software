@@ -720,6 +720,7 @@
   "From: Whistleblower": "От: Източник",
   "Date: {SubmissionDate}": "Дата: {SubmissionDate}",
   "Label: {TipLabel}": "Относно: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Контекст: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "Този имейл Ви уведомява, че източникът за сигнал {TipNum} е прикрепил нов материал.",
   "New attachment": "Прикачване на нов файл",

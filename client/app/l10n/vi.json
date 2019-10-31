@@ -720,6 +720,7 @@
   "From: Whistleblower": "Từ: Whistleblower",
   "Date: {SubmissionDate}": "Ngày: {SubmissionDate}",
   "Label: {TipLabel}": "Nhãn: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Bối cảnh: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "Đây là một email thông báo cho bạn rằng các tố giác nộp {TipNum} đã gắn vật liệu mới.",
   "New attachment": "tập tin đính kèm mới",

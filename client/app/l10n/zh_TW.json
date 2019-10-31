@@ -720,6 +720,7 @@
   "From: Whistleblower": "From: 吹哨揭密者",
   "Date: {SubmissionDate}": "日期: {SubmissionDate}",
   "Label: {TipLabel}": "標誌: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "內文: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "這個電子郵件通知提交 {TipNum} 的揭密者已附加新的材料",
   "New attachment": "新附件",

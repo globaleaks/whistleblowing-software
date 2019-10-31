@@ -720,6 +720,7 @@
   "From: Whistleblower": "من: المبلغ",
   "Date: {SubmissionDate}": "التاريخ: {SubmissionDate}",
   "Label: {TipLabel}": "التسمية: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "السياق: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "هذا هو البريد الالكتروني لإعلامك بأن المبلغ {TipNum} قد قام بارفاق مواد جديدة.",
   "New attachment": "مرفق جديد",

@@ -720,6 +720,7 @@
   "From: Whistleblower": "Від: Інформатора",
   "Date: {SubmissionDate}": "Дата: {SubmissionDate}",
   "Label: {TipLabel}": "Позначка: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Назва тематики: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "Повідомляємо що інформатор, який надав свідчення {TipNum} , додав новий файл. ",
   "New attachment": "Новий додаток",

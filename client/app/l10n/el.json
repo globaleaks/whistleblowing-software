@@ -720,6 +720,7 @@
   "From: Whistleblower": "Από: Πληροφοριοδότη",
   "Date: {SubmissionDate}": "Ημερομηνία: {SubmissionDate}",
   "Label: {TipLabel}": "Ετικέτα: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Θεματική ενότητα: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "Αυτό είναι ένα email για να σας ειδοποιήσουμε ότι ο πληροφοριοδότης της υποβολής {TipNum} έχει επισυνάψει νέο υλικό.",
   "New attachment": "Νέο συνημμένο",

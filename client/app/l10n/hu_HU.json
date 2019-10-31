@@ -720,6 +720,7 @@
   "From: Whistleblower": "Feladó: Szivárogtató",
   "Date: {SubmissionDate}": "Dátum: {SubmissionDate}",
   "Label: {TipLabel}": "Címke: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Context: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.",
   "New attachment": "Új melléklet",

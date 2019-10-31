@@ -2,12 +2,13 @@
 # Translators:
 # Aesthese, 2016
 # Bo Elkjaer <bo_elkjaer@riseup.net>, 2018
+# Denis Smajlović <mail@deni.dk>, 2019
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-26 14:08+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-10-29 12:29+0000\n"
+"Last-Translator: Denis Smajlović <mail@deni.dk>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -79,7 +80,7 @@ msgid "Preferences"
 msgstr "Indstillinger"
 
 msgid "User preferences"
-msgstr ""
+msgstr "Brugerindstillinger"
 
 msgid "Notification settings"
 msgstr "Notifikationsindstillinger"
@@ -160,10 +161,10 @@ msgid "Preview"
 msgstr "Forhåndsvisning"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "Whistlebloweren har allerede læst den seneste opdatering."
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "Whistlebloweren har ikke læst den seneste opdatering endnu."
 
 msgid "Move up"
 msgstr "Flyt op"
@@ -187,7 +188,7 @@ msgid "Save all"
 msgstr "Gem alle"
 
 msgid "Access control"
-msgstr ""
+msgstr "Adgangskontrol"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -480,7 +481,7 @@ msgid "Activate"
 msgstr "Aktiver"
 
 msgid "Disactivate"
-msgstr ""
+msgstr "Deaktivér"
 
 msgid "Search"
 msgstr "Søg"
@@ -603,7 +604,7 @@ msgid "New"
 msgstr "Ny"
 
 msgid "Opened"
-msgstr ""
+msgstr "Åbnet"
 
 msgid "Closed"
 msgstr "Lukket"
@@ -633,7 +634,7 @@ msgid "Not running"
 msgstr "Kører ikke"
 
 msgid "Send a test email to your email address."
-msgstr ""
+msgstr "Send en testbesked til din emailadresse."
 
 msgid "Select the context of your submission:"
 msgstr "Vælg den sammenhæng, din indsendelse indgår i:"
@@ -665,13 +666,13 @@ msgid "Before proceeding, please set a new password."
 msgstr "Før du fortsætter bedes du indstille nyt password."
 
 msgid "New password"
-msgstr ""
+msgstr "Ny adgangskode"
 
 msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr ""
+msgstr "Den valgte adgangskode er for svag. En gyldig adgangskode bør være mindst 10 tegn lang og som minimum indeholde ét småt bogstav, ét stort bogstav, ét tal og ét specialtegn."
 
 msgid "The new password must be different from the current one."
 msgstr "Det nye password skal være forskelligt fra det nuværende."
@@ -683,19 +684,19 @@ msgid "The two passwords do not match"
 msgstr "De to password matcher ikke"
 
 msgid "The new password must differ from the previous."
-msgstr ""
+msgstr "Den nye adgangskode skal være forskellige fra den gamle."
 
 msgid "Proceed"
 msgstr "Fortsæt"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr ""
+msgstr "Aktivér venligst 2-faktorgodkendelse inden du fortsætter."
 
 msgid "Disable submissions"
 msgstr "Deaktiver indsendelser"
 
 msgid "Enable encryption"
-msgstr ""
+msgstr "Aktivér kryptering"
 
 msgid "Enable multisite feature"
 msgstr ""
@@ -752,7 +753,7 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Du skal kun justere denne indstilling hvis du ved, hvad du gør."
 
 msgid "Require two factor authentication"
-msgstr ""
+msgstr "Kræv 2-faktorgodkendelse"
 
 msgid "Password change interval"
 msgstr ""
@@ -806,7 +807,7 @@ msgid "Password"
 msgstr "Password"
 
 msgid "Enable users to upload their PGP keys"
-msgstr ""
+msgstr "Tillad brugere at uploade deres PGP-nøgler"
 
 msgid "Enable multi-site login"
 msgstr ""
@@ -854,16 +855,16 @@ msgid "Add"
 msgstr "Tilføj"
 
 msgid "Enable automatic backups"
-msgstr ""
+msgstr "Slå automatiske backups til"
 
 msgid "Daily"
-msgstr ""
+msgstr "Dagligt"
 
 msgid "Weekly"
-msgstr ""
+msgstr "Ugentligt"
 
 msgid "Montly"
-msgstr ""
+msgstr "Månedligt"
 
 msgid "Remote"
 msgstr ""
@@ -1352,13 +1353,13 @@ msgid "Add multimedia content"
 msgstr ""
 
 msgid "Image"
-msgstr ""
+msgstr "Billede"
 
 msgid "Audio"
-msgstr ""
+msgstr "Lyd"
 
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Synlighed af svaret kræver godkendelse fra den tilsynsførende"
@@ -2294,6 +2295,9 @@ msgstr "Dato:  {SubmissionDate}"
 
 msgid "Label: {TipLabel}"
 msgstr "Mærket: {TipLabel}"
+
+msgid "Status: {TipStatus}"
+msgstr ""
 
 msgid "Context: {ContextName}"
 msgstr "Sammenhæng:  {ContextName}"

@@ -720,6 +720,7 @@
   "From: Whistleblower": "Od: Oznamovatel",
   "Date: {SubmissionDate}": "Datum: {SubmissionDate}",
   "Label: {TipLabel}": "Štítek: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Kontext: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "Toto je e-mailové upozornění, že oznamovatel zaslal nový materiál k podání {TipNum}.",
   "New attachment": "Nová příloha",

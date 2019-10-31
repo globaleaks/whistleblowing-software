@@ -720,6 +720,7 @@
   "From: Whistleblower": "இருந்து: விசில்ப்ளோயர்",
   "Date: {SubmissionDate}": "தேதி: {SubmissionDate}",
   "Label: {TipLabel}": "லேபிள்: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "சூழல்: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "இந்த சமர்ப்பிப்பு {TipNum} என்ற தகவல் தெரிவிப்பவர் புதிய பொருள் இணைத்துள்ளார் என்று அறிவிக்கிறோம் மின்னஞ்சல் உள்ளது.",
   "New attachment": "புதிய இணைப்பு",

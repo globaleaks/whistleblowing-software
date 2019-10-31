@@ -720,6 +720,7 @@
   "From: Whistleblower": "From: Whistleblower",
   "Date: {SubmissionDate}": "Date: {SubmissionDate}",
   "Label: {TipLabel}": "Label: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Context: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.",
   "New attachment": "New attachment",

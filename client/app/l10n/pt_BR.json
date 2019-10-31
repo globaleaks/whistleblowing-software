@@ -720,6 +720,7 @@
   "From: Whistleblower": "De: Delator",
   "Date: {SubmissionDate}": "Data: {SubmissionDate}",
   "Label: {TipLabel}": "Títulol: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Assunto: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "Este é um e-mail para lhe notificar que o delator da submissão {TipNum} anexou um novo material.",
   "New attachment": "Novo anexo",

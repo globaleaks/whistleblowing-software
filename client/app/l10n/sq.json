@@ -720,6 +720,7 @@
   "From: Whistleblower": "From: Whistleblower",
   "Date: {SubmissionDate}": "Date: {SubmissionDate}",
   "Label: {TipLabel}": "Label: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Konteksti: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "Kjo është një email që të ju njoftojmë se zbuluesi i dorëzimit {TipNum} ka bashkangjitur materiale të reja.",
   "New attachment": "lidhja e re",

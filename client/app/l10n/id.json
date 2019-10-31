@@ -720,6 +720,7 @@
   "From: Whistleblower": "Dari: Informan publik",
   "Date: {SubmissionDate}": "Tanggal: {SubmissionDate} ",
   "Label: {TipLabel}": "Label: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Konteks: {ContextName} ",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "Surel ini untuk memberi tahu Anda bahwa kiriman dari informan publik {TipNum} telah melampirkan materi baru.",
   "New attachment": "Lampiran baru",

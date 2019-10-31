@@ -720,6 +720,7 @@
   "From: Whistleblower": "De la: Whistleblower",
   "Date: {SubmissionDate}": "Data: {SubmissionDate}",
   "Label: {TipLabel}": "Casa de discuri: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Context: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "Acesta este un e-mail pentru a vă anunța că avertizorului de depunere {TipNum} a atașat un material nou.",
   "New attachment": "atașament nou",

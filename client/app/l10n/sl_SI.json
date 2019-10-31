@@ -720,6 +720,7 @@
   "From: Whistleblower": "Od: Žvižgača",
   "Date: {SubmissionDate}": "Datum: {SubmissionDate}",
   "Label: {TipLabel}": "Oznaka: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Tematika: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.",
   "New attachment": "Nova priloga",

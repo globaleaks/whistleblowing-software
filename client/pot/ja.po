@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-27 12:34+0000\n"
+"PO-Revision-Date: 2019-10-29 12:39+0000\n"
 "Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -405,7 +405,7 @@ msgid "Triggered by score:"
 msgstr "スコアでトリガーされました:"
 
 msgid "Message shown on top of the status page of the submission"
-msgstr "提出のステータスページの上部に表示されるメッセージ"
+msgstr "提出の状況ページの上部に表示されるメッセージ"
 
 msgid "Copy and paste the PGP public key here"
 msgstr "PGP公開鍵をここにコピーアンドペーストしてください"
@@ -662,7 +662,7 @@ msgid "Your submission was successful."
 msgstr "あなたの提出は成功しました。"
 
 msgid "Submission status"
-msgstr "提出ステータスページ"
+msgstr "提出状況"
 
 msgid "Before proceeding, please set a new password."
 msgstr "次に進む前に、新しいパスワードを設定してください。"
@@ -1004,7 +1004,7 @@ msgid "Show small recipient cards on submission interface"
 msgstr "提出インターフェースに小さな受信者カードを表示"
 
 msgid "Show recipient details on the status page of the submission"
-msgstr "提出のステータスページで受信者の詳細を表示する"
+msgstr "提出の状況ページで受信者の詳細を表示する"
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "受信者を選択するインターフェイスの先頭に表示されるテキスト"
@@ -2297,6 +2297,9 @@ msgstr "日付: {SubmissionDate}"
 
 msgid "Label: {TipLabel}"
 msgstr "ラベル: {TipLabel}"
+
+msgid "Status: {TipStatus}"
+msgstr "状況: {TipStatus}"
 
 msgid "Context: {ContextName}"
 msgstr "コンテキスト: {ContextName}"

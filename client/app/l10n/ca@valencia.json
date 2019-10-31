@@ -720,6 +720,7 @@
   "From: Whistleblower": "De: Informador",
   "Date: {SubmissionDate}": "Data: {SubmissionDate}",
   "Label: {TipLabel}": "Etiqueta: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Context: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "Amb aquest missatge de correu electrònic et volem notificar que l'informador del lliurament {TipNum} ha adjuntat material nou.",
   "New attachment": "Adjunta un nou fitxer",

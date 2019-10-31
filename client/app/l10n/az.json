@@ -720,6 +720,7 @@
   "From: Whistleblower": "dan: İnformasiya ötürən",
   "Date: {SubmissionDate}": "Tarix: {SubmissionDate}",
   "Label: {TipLabel}": "Yarlıq: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Məzmun: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "Bu, informasiya ötürənin yeni material {TipNum}  əlavə etməsiylə bağlı göndərilən e-maildir. ",
   "New attachment": "Yeni əlavə",

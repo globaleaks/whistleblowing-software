@@ -183,6 +183,7 @@
     "{TipID}",
     "{TipNum}",
     "{TipLabel}",
+    "{TipStatus}",
     "{EventTime}",
     "{SubmissionDate}",
     "{QuestionnaireAnswers}",

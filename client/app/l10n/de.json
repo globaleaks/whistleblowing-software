@@ -720,6 +720,7 @@
   "From: Whistleblower": "Von: Hinweisgeber",
   "Date: {SubmissionDate}": "Datum: {SubmissionDate}",
   "Label: {TipLabel}": "Bezeichnung: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "Kontext: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "Diese E-Mail teilt Ihnen mit, dass der Hinweisgeber von {TipNum} neues Material angehängt hat.",
   "New attachment": "Neuer Anhang",

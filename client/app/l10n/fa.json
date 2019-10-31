@@ -720,6 +720,7 @@
   "From: Whistleblower": "از: افشاگر",
   "Date: {SubmissionDate}": "تاریخ: {SubmissionDate}",
   "Label: {TipLabel}": "برچسب: {TipLabel}",
+  "Status: {TipStatus}": "Status: {TipStatus}",
   "Context: {ContextName}": "زمینه: {ContextName}",
   "This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.": "این ایمیل برای این است که به شما اطلاع دهد که افشاگر گزارش {TipNum} یک چیز جدید ضمیمه کرده است.",
   "New attachment": "ضمایم جدید",
