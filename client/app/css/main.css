@@ -84,7 +84,7 @@ table {
 }
 
 #LanguagePickerBox, #LoginStatusBox, #LoginFormBox {
-  display: inline-block;
+  display: flex;
 }
 
 .language-link {
