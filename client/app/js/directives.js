@@ -318,7 +318,7 @@ directive("convertToNumber", function() {
 directive("passwordStrengthValidator", function() {
   function link(scope, elem, attrs, ngModel) {
     ngModel.$validators.passwordStrengthValidator = function(pwd) {
-      var check, i, l;
+      var check, i;
       var variation = 0;
       var letters = {};
       var score = 0;
@@ -336,8 +336,8 @@ directive("passwordStrengthValidator", function() {
           variation += variations[check] ? 1 : 0;
         }
 
-        /* Score unique letters */
-        for (i = 0, l = pwd.length; i < l; i++) {
+        /* Score only unique letters */
+        for (i = 0; i < pwd.length; i++) {
           if (!letters[pwd[i]]) {
             letters[pwd[i]] = 1;
             score += 1;
@@ -346,7 +346,7 @@ directive("passwordStrengthValidator", function() {
 
         if (score > 10 && pwd.length >= 12 && variation === 4) {
           score = 3;
-        } else if (score > 8 && pwd.length >= 10 && variation >= 3) {
+        } else if (score > 7 && pwd.length >= 10 && variation >= 3) {
           score = 2;
         } else {
           score = 1;
