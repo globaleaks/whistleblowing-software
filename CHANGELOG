@@ -1,3 +1,10 @@
+Changes in version 3.11.36 - 2019-10-31
+    Bump npm dependencies to lates version
+    Implement feature #2521
+    Export tip status inside the submission export (#2526)
+    Revise CSS in relation to UI responsivenes
+    Update translations
+
 Changes in version 3.11.35 - 2019-10-28
     Revise UI of context selection
 
