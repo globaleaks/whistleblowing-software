@@ -1,3 +1,7 @@
+Changes in version 3.11.37 - 2019-10-31
+    Apply minor fixes
+    Update translations
+
 Changes in version 3.11.36 - 2019-10-31
     Bump npm dependencies to lates version
     Implement feature #2521
