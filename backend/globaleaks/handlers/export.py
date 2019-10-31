@@ -7,6 +7,7 @@ from io import BytesIO
 from six import text_type
 from twisted.internet import abstract
 from twisted.internet.defer import Deferred, inlineCallbacks
+from twisted.internet.threads import deferToThread
 
 from globaleaks import models
 from globaleaks.handlers.admin.context import admin_serialize_context
@@ -15,6 +16,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.submission_statuses import db_retrieve_all_submission_statuses
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip
+from globaleaks.handlers.submission import decrypt_tip
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.settings import Settings
@@ -49,12 +51,6 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
         'files': [],
         'submission_statuses': db_retrieve_all_submission_statuses(session, tid, language)
     }
-
-    export_template = Templating().format_template(export_dict['notification']['export_template'], export_dict).encode('utf-8')
-
-    export_template = msdos_encode(text_type(export_template, 'utf-8')).encode('utf-8')
-
-    export_dict['files'].append({'fo': BytesIO(export_template), 'name': 'data.txt', 'forged': True})
 
     for rfile in session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == rtip_id):
         rfile.last_access = datetime_now()
@@ -131,6 +127,10 @@ class ExportHandler(BaseHandler):
                                           self.request.language)
 
         if tip_export['crypto_tip_prv_key']:
+            tip_export['tip'] = yield deferToThread(decrypt_tip, self.current_user.cc, tip_export['crypto_tip_prv_key'], tip_export['tip'])
+            tip_export['comments'] = tip_export['tip']['comments']
+            tip_export['messages'] = tip_export['tip']['messages']
+
             for file_dict in tip_export['files']:
                 if file_dict['forged']:
                     continue
@@ -138,6 +138,12 @@ class ExportHandler(BaseHandler):
                 tip_prv_key = GCE.asymmetric_decrypt(self.current_user.cc, tip_export['crypto_tip_prv_key'])
                 file_dict['fo'] = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, file_dict['path'])
                 del file_dict['path']
+
+        export_template = Templating().format_template(tip_export['notification']['export_template'], tip_export).encode('utf-8')
+
+        export_template = msdos_encode(text_type(export_template, 'utf-8')).encode('utf-8')
+
+        tip_export['files'].append({'fo': BytesIO(export_template), 'name': 'data.txt', 'forged': True})
 
         self.request.setHeader(b'X-Download-Options', b'noopen')
         self.request.setHeader(b'Content-Type', b'application/octet-stream')
