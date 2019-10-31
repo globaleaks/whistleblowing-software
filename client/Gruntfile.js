@@ -301,7 +301,9 @@ module.exports = function(grunt) {
     grunt.file.copy("tmp/license.txt", "build/license.txt");
     grunt.file.copy("tmp/css/styles.css", "build/css/styles.css");
     grunt.file.copy("tmp/js/scripts.js", "build/js/scripts.js");
-    grunt.file.copy("tmp/js/plugin.js", "build/js/plugin.js");
+
+    grunt.file.copy("tmp/globaleaks-embedded.css", "build/globaleaks-embedded.css");
+    grunt.file.copy("tmp/globaleaks-embedded.js", "build/globaleaks-embedded.js");
 
     dirs = ["data", "l10n", "lib/js/locale/"];
 
