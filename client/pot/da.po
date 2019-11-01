@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-29 12:29+0000\n"
-"Last-Translator: Denis Smajlović <mail@deni.dk>\n"
+"PO-Revision-Date: 2019-11-01 14:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1975,6 +1975,9 @@ msgstr "Skriv venligst en gyldig mailadresse."
 
 msgid "please enter numbers only."
 msgstr "Skriv venligst kun tal."
+
+msgid "invalid input format."
+msgstr ""
 
 msgid "Submissions disabled"
 msgstr "Indsendelser er slået fra"

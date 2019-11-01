@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-31 18:10+0000\n"
+"PO-Revision-Date: 2019-11-01 14:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1993,6 +1993,9 @@ msgstr "si prega di inserire un indirizzo email valido."
 
 msgid "please enter numbers only."
 msgstr "si prega di inserire solo numeri."
+
+msgid "invalid input format."
+msgstr "formato non valido."
 
 msgid "Submissions disabled"
 msgstr "Segnalazioni disabilitate"

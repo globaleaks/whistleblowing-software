@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-28 19:14+0000\n"
+"PO-Revision-Date: 2019-11-01 14:19+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1978,6 +1978,9 @@ msgstr "請輪入一個有效的電子郵件"
 
 msgid "please enter numbers only."
 msgstr "請只輸入數字"
+
+msgid "invalid input format."
+msgstr ""
 
 msgid "Submissions disabled"
 msgstr "提交功能取消"

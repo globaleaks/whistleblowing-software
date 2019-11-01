@@ -33,8 +33,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-31 13:10+0000\n"
-"Last-Translator: Ines Branco Lopez <ibranco@fibgar.org>\n"
+"PO-Revision-Date: 2019-11-01 14:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2001,6 +2001,9 @@ msgstr "por favor, introduce una dirección de correo electrónico válida."
 
 msgid "please enter numbers only."
 msgstr "por favor, introduce únicamente números."
+
+msgid "invalid input format."
+msgstr ""
 
 msgid "Submissions disabled"
 msgstr "Entregas deshabilitadas."

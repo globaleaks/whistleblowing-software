@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-10-28 19:14+0000\n"
+"PO-Revision-Date: 2019-11-01 14:19+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1975,6 +1975,9 @@ msgstr "சரியான மின்னஞ்சல் முகவரி உ
 
 msgid "please enter numbers only."
 msgstr "எண்களை மட்டும் உள்ளிடவும்."
+
+msgid "invalid input format."
+msgstr ""
 
 msgid "Submissions disabled"
 msgstr "சமர்ப்பிப்புகளை முடக்கப்பட்டுள்ளது"

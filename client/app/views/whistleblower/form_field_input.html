@@ -207,7 +207,7 @@
               <span data-ng-switch-when="email" data-translate>please enter a valid email address.</span>
               <span data-ng-switch-when="number" class="text-danger" data-translate>please enter numbers only.</span>
               <span data-ng-switch-when="phonenumber" class="text-danger" data-translate>please enter numbers only.</span>
-              <span data-ng-switch-when="custom" class="text-danger" data-translate>invalid format.</span>
+              <span data-ng-switch-when="custom" class="text-danger" data-translate>invalid input format.</span>
             </span>
           </div>
           <div data-ng-if="entry['value'].length && maxlength >= 0 && (maxlength - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{maxlength}}</div>

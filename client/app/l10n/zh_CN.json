@@ -626,6 +626,7 @@
   "The specified input is not valid:": "特定输入无效：",
   "please enter a valid email address.": "请输入有效的电子邮箱地址。",
   "please enter numbers only.": "输入必须为数字。",
+  "invalid input format.": "invalid input format.",
   "Submissions disabled": "提交已禁用",
   "You are connecting to the server without anonymity and this server supports only anonymous submissions": "你没有使用匿名身份连接到节点但是这个节点只支持匿名提交材料。",
   "This platform makes use of GlobaLeaks software specifically designed to protect the identity for submitter and recipient in the exchange of content.": "本平台使用了 GlobaLeaks 软件。该软件专门用来在资料交换时保护发送人与接收人的身份。",

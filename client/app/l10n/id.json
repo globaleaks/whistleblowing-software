@@ -626,6 +626,7 @@
   "The specified input is not valid:": "Masukan yang ditentukan tidak valid",
   "please enter a valid email address.": "Masukkan alamat surel yang valid",
   "please enter numbers only.": "Mohon hanya masukkan nomor",
+  "invalid input format.": "invalid input format.",
   "Submissions disabled": "Pengiriman dinonaktifkan ",
   "You are connecting to the server without anonymity and this server supports only anonymous submissions": "Anda sudah terhubung dengan peladen tanpa anonimitas dan peladen ini hanya mendukung pengiriman anonim ",
   "This platform makes use of GlobaLeaks software specifically designed to protect the identity for submitter and recipient in the exchange of content.": "Format ini menggunakan perangkat lunak GlobaLeaks yang secara khusus dirancang untuk melindungi identitas pengirim dan penerima dalam pertukaran konten.",
