@@ -8,8 +8,9 @@ GLClient.controller("SubmissionCtrl",
   $scope.context = undefined;
 
   $scope.navigation = -1;
+  $scope.displayErrors = false;
 
-  $scope.validate = {};
+  $scope.validate = -1;
 
   $scope.total_score = 0;
 
@@ -72,6 +73,7 @@ GLClient.controller("SubmissionCtrl",
   $scope.goToStep = function(index) {
     $scope.navigation = index;
     $anchorScroll("ContentBox");
+    $scope.updateDisplayErrors();
   };
 
   $scope.firstStepIndex = function() {
@@ -124,10 +126,13 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.runValidation = function() {
-    $scope.validate[$scope.navigation] = true;
+    if ($scope.validate < $scope.navigation) {
+      $scope.validate = $scope.navigation;
+    }
 
     if (!$scope.areReceiversSelected() || !$scope.checkForInvalidFields()) {
       $anchorScroll("ContentBox");
+      $scope.updateDisplayErrors();
       return false;
     }
 
@@ -143,8 +148,7 @@ GLClient.controller("SubmissionCtrl",
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.navigation + 1; i <= $scope.lastStepIndex(); i++) {
         if (fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
-          $scope.navigation = i;
-          $anchorScroll("ContentBox");
+          $scope.goToStep(i);
           return;
         }
       }
@@ -156,8 +160,7 @@ GLClient.controller("SubmissionCtrl",
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.navigation - 1; i >= $scope.firstStepIndex(); i--) {
         if (i === -1 || fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
-          $scope.navigation = i;
-          $anchorScroll("ContentBox");
+          $scope.goToStep(i);
           return;
         }
       }
@@ -259,24 +262,18 @@ GLClient.controller("SubmissionCtrl",
     }
   };
 
-  $scope.displayErrors = function() {
-    if (!($scope.validate[$scope.navigation] || $scope.submission.done)) {
-      return false;
+  $scope.updateDisplayErrors = function() {
+    if (!(($scope.navigation <= $scope.validate) || $scope.submission.done)) {
+      $scope.displayErrors = false;
+    } else if (!($scope.hasPreviousStep() || !$scope.hasNextStep()) && !$scope.areReceiversSelected()) {
+      $scope.displayErrors = true;
+    } else if (!$scope.hasNextStep() && $scope.submissionHasErrors()) {
+      $scope.displayErrors = true;
+    } else if ($scope.displayStepErrors($scope.navigation)) {
+      $scope.displayErrors = true;
+    } else {
+      $scope.displayErrors = false;
     }
-
-    if (!($scope.hasPreviousStep() || !$scope.hasNextStep()) && !$scope.areReceiversSelected()) {
-      return true;
-    }
-
-    if (!$scope.hasNextStep() && $scope.submissionHasErrors()) {
-      return true;
-    }
-
-    if ($scope.displayStepErrors($scope.navigation)) {
-      return true;
-    }
-
-    return false;
   };
 
   $scope.evaluateDisclaimerModalOpening();
@@ -306,6 +303,7 @@ GLClient.controller("SubmissionCtrl",
 
     $scope.$watch("answers", function () {
       fieldUtilities.onAnswersUpdate($scope);
+      $scope.updateDisplayErrors();
     }, true);
   });
 }]).
@@ -317,8 +315,9 @@ controller("AdditionalQuestionnaireCtrl",
   $scope.fieldUtilities = fieldUtilities;
 
   $scope.navigation = 0;
+  $scope.displayErrors = false;
 
-  $scope.validate = {};
+  $scope.validate = -1;
 
   $scope.total_score = 0;
 
@@ -337,6 +336,7 @@ controller("AdditionalQuestionnaireCtrl",
   $scope.goToStep = function(index) {
     $scope.navigation = index;
     $anchorScroll("ContentBox");
+    $scope.updateDisplayErrors();
   };
 
   $scope.firstStepIndex = function() {
@@ -381,10 +381,13 @@ controller("AdditionalQuestionnaireCtrl",
   };
 
   $scope.runValidation = function() {
-    $scope.validate[$scope.navigation] = true;
+    if ($scope.validate < $scope.navigation) {
+      $scope.validate = $scope.navigation
+    }
 
     if ($scope.navigation > -1 && !$scope.checkForInvalidFields()) {
       $anchorScroll("ContentBox");
+      $scope.updateDisplayErrors();
       return false;
     }
 
@@ -400,8 +403,7 @@ controller("AdditionalQuestionnaireCtrl",
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.navigation + 1; i <= $scope.lastStepIndex(); i++) {
         if (fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
-          $scope.navigation = i;
-          $anchorScroll("ContentBox");
+          $scope.goToStep(i);
           return;
         }
       }
@@ -413,8 +415,7 @@ controller("AdditionalQuestionnaireCtrl",
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.navigation - 1; i >= $scope.firstStepIndex(); i--) {
         if (i === -1 || fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
-          $scope.navigation = i;
-          $anchorScroll("ContentBox");
+          $scope.goToStep(i);
           return;
         }
       }
@@ -437,7 +438,7 @@ controller("AdditionalQuestionnaireCtrl",
   };
 
   $scope.completeSubmission = function() {
-    $scope.validate[$scope.navigation] = true;
+    $scope.validate = $scope.navigation;
 
     if (!$scope.checkForInvalidFields()) {
       $anchorScroll("ContentBox");
@@ -463,8 +464,8 @@ controller("AdditionalQuestionnaireCtrl",
     }
   };
 
-  $scope.displayErrors = function() {
-    return false;
+  $scope.updateDisplayErrors = function() {
+      $scope.displayErrors = false;
   };
 
   $scope.cancel = function () {
@@ -474,6 +475,7 @@ controller("AdditionalQuestionnaireCtrl",
   // Watch for changes in certain variables
   $scope.$watch("answers", function () {
     fieldUtilities.onAnswersUpdate($scope);
+    $scope.updateDisplayErrors();
   }, true);
 
   $scope.prepareSubmission();
