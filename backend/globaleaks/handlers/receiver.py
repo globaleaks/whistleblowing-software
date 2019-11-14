@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 #
 # API handling recipient user functionalities
+import base64
+import json
+
 from sqlalchemy.sql.expression import func, distinct
 
 from globaleaks import models
@@ -11,6 +14,7 @@ from globaleaks.handlers.user import db_get_user, db_user_update_user, user_seri
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
+from globaleaks.utils.crypto import GCE
 from globaleaks.utils.utility import datetime_to_ISO8601
 
 
@@ -47,7 +51,7 @@ def update_receiver_settings(session, tid, user_session, request, language):
 
 
 @transact
-def get_receivertip_list(session, tid, receiver_id, language):
+def get_receivertip_list(session, tid, receiver_id, user_key, language):
     rtip_summary_list = []
 
     rtips = session.query(models.ReceiverTip).filter(models.ReceiverTip.receiver_id == receiver_id,
@@ -60,18 +64,19 @@ def get_receivertip_list(session, tid, receiver_id, language):
         return []
 
     itips_by_id = {}
-    aqs_by_itip = {}
+    ps_by_itip = {}
     comments_by_itip = {}
     internalfiles_by_itip = {}
     messages_by_rtip = {}
 
-    for itip, archivedschema in session.query(models.InternalTip, models.ArchivedSchema) \
-                                       .filter(models.InternalTip.id.in_(itips_ids),
-                                               models.ArchivedSchema.hash == models.InternalTipAnswers.questionnaire_hash,
-                                               models.InternalTipAnswers.internaltip_id == models.InternalTip.id,
-                                               models.InternalTip.tid == tid):
+
+    for itip, aqs in session.query(models.InternalTip, models.ArchivedSchema) \
+                           .filter(models.InternalTip.id.in_(itips_ids),
+                                   models.ArchivedSchema.hash == models.InternalTipAnswers.questionnaire_hash,
+                                   models.InternalTipAnswers.internaltip_id == models.InternalTip.id,
+                                   models.InternalTip.tid == tid):
         itips_by_id[itip.id] = itip
-        aqs_by_itip[itip.id] = archivedschema
+        ps_by_itip[itip.id] = aqs.preview
 
     result = session.query(models.ReceiverTip.id, func.count(distinct(models.Message.id))) \
                     .filter(models.ReceiverTip.receiver_id == receiver_id,
@@ -94,7 +99,13 @@ def get_receivertip_list(session, tid, receiver_id, language):
 
     for rtip in rtips:
         internaltip = itips_by_id[rtip.internaltip_id]
-        archivedschema = aqs_by_itip[rtip.internaltip_id]
+
+        preview = itip.preview
+
+        if itip.crypto_tip_pub_key:
+            tip_key = GCE.asymmetric_decrypt(user_key, rtip.crypto_tip_prv_key)
+
+            preview = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(itip.preview.encode())).decode())
 
         rtip_summary_list.append({
             'id': rtip.id,
@@ -111,8 +122,8 @@ def get_receivertip_list(session, tid, receiver_id, language):
             'comment_count': comments_by_itip.get(internaltip.id, 0),
             'message_count': messages_by_rtip.get(rtip.id, 0),
             'https': internaltip.https,
-            'preview_schema': db_serialize_archived_preview_schema(archivedschema.preview, language),
-            'preview': internaltip.preview,
+            'preview_schema': db_serialize_archived_preview_schema(ps_by_itip[rtip.internaltip_id], language),
+            'preview': preview,
             'score': internaltip.total_score,
             'label': rtip.label,
             'status': internaltip.status,
@@ -179,6 +190,7 @@ class TipsCollection(BaseHandler):
     def get(self):
         return get_receivertip_list(self.request.tid,
                                     self.current_user.user_id,
+                                    self.current_user.cc,
                                     self.request.language)
 
 

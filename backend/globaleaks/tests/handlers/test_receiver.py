@@ -67,7 +67,7 @@ class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
 
         yield set_expiration_of_all_rtips_to_unlimited()
 
-        rtips = yield receiver.get_receivertip_list(1, self.dummyReceiver_1['id'], 'en')
+        rtips = yield receiver.get_receivertip_list(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
         rtips_ids = [rtip['id'] for rtip in rtips]
 
         postpone_map = {}
@@ -82,7 +82,7 @@ class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(data_request, user_id=self.dummyReceiver_1['id'], role='receiver')
         yield handler.put()
 
-        rtips = yield receiver.get_receivertip_list(1, self.dummyReceiver_1['id'], 'en')
+        rtips = yield receiver.get_receivertip_list(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
 
         for rtip in rtips:
             self.assertNotEqual(postpone_map[rtip['id']], rtip['expiration_date'])
@@ -92,7 +92,7 @@ class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
         for _ in range(3):
             yield self.perform_full_submission_actions()
 
-        rtips = yield receiver.get_receivertip_list(1, self.dummyReceiver_1['id'], 'en')
+        rtips = yield receiver.get_receivertip_list(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
         rtips_ids = [rtip['id'] for rtip in rtips]
 
         data_request = {
@@ -103,6 +103,6 @@ class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(data_request, user_id=self.dummyReceiver_1['id'], role='receiver')
         yield handler.put()
 
-        rtips = yield receiver.get_receivertip_list(1, self.dummyReceiver_1['id'], 'en')
+        rtips = yield receiver.get_receivertip_list(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
 
         self.assertEqual(len(rtips), 0)

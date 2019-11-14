@@ -299,6 +299,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
     steps = db_get_questionnaire(session, tid, questionnaire.id, None)['steps']
     questionnaire_hash = db_archive_questionnaire_schema(session, steps)
+    preview = extract_answers_preview(steps, answers)
 
     itip = models.InternalTip()
     itip.tid = tid
@@ -338,8 +339,6 @@ def db_create_submission(session, tid, request, token, client_using_tor):
         can_access_whistleblower_identity = not x[1]
 
     itip.enable_whistleblower_identity = whistleblower_identity is not None
-
-    itip.preview = extract_answers_preview(steps, answers)
 
     session.add(itip)
     session.flush()
@@ -395,7 +394,10 @@ def db_create_submission(session, tid, request, token, client_using_tor):
         db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi)
 
     if crypto_is_available:
+        preview = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(preview).encode())).decode()
         answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers).encode())).decode()
+
+    itip.preview = preview
 
     db_set_internaltip_answers(session, itip.id, questionnaire_hash, answers)
 
