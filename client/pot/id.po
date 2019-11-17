@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-01 14:19+0000\n"
+"PO-Revision-Date: 2019-11-07 14:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -650,6 +650,9 @@ msgid "Not running"
 msgstr "tidak berjalan"
 
 msgid "Send a test email to your email address."
+msgstr ""
+
+msgid "Block the submission"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -1983,16 +1986,7 @@ msgstr "Kolom ini wajib diisi."
 msgid "The answer is too short."
 msgstr "Jawaban terlalu singkat"
 
-msgid "The specified input is not valid:"
-msgstr "Masukan yang ditentukan tidak valid"
-
-msgid "please enter a valid email address."
-msgstr "Masukkan alamat surel yang valid"
-
-msgid "please enter numbers only."
-msgstr "Mohon hanya masukkan nomor"
-
-msgid "invalid input format."
+msgid "The specified input is not valid."
 msgstr ""
 
 msgid "Submissions disabled"
@@ -2004,14 +1998,10 @@ msgid ""
 msgstr "Anda sudah terhubung dengan peladen tanpa anonimitas dan peladen ini hanya mendukung pengiriman anonim "
 
 msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Format ini menggunakan perangkat lunak GlobaLeaks yang secara khusus dirancang untuk melindungi identitas pengirim dan penerima dalam pertukaran konten."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "Perangkat lunak ini dikembangkan oleh sebuah organisasi non-profit bernama Hermes Center for Transparency and Digital Human Rights."
+"This platform makes use of the GlobaLeaks software designed by the Hermes "
+"Center for Transparency and Digital Human Rights to protect the identity of "
+"the whistleblower."
+msgstr ""
 
 msgid "Please support Hermes through their donation page."
 msgstr "Mohon dukungan kepada Hermes melalui halaman donasi mereka."

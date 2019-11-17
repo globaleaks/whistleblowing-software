@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-01 14:19+0000\n"
+"PO-Revision-Date: 2019-11-07 14:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -634,6 +634,9 @@ msgid "Not running"
 msgstr "இயங்கவில்லை"
 
 msgid "Send a test email to your email address."
+msgstr ""
+
+msgid "Block the submission"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -1967,16 +1970,7 @@ msgstr "இந்த புலம் கட்டாயமாகும்."
 msgid "The answer is too short."
 msgstr "பதில் மிகவும் குறுகியதாக உள்ளது."
 
-msgid "The specified input is not valid:"
-msgstr "குறிப்பிட்ட உள்ளீடு செல்லுபடியாகாது:"
-
-msgid "please enter a valid email address."
-msgstr "சரியான மின்னஞ்சல் முகவரி உள்ளிடவும்."
-
-msgid "please enter numbers only."
-msgstr "எண்களை மட்டும் உள்ளிடவும்."
-
-msgid "invalid input format."
+msgid "The specified input is not valid."
 msgstr ""
 
 msgid "Submissions disabled"
@@ -1988,14 +1982,10 @@ msgid ""
 msgstr "நீங்கள் தெரியாத இல்லாமல் சர்வர் இணைக்கப்பட்டால் இந்த சர்வர் அநாமதேய சமர்ப்பிப்புகளை மட்டுமே ஆதரிக்கிறது"
 
 msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "உள்ளடக்கத்தின் பரிமாற்றத்தில் சமர்ப்பிக்கும் மற்றும் பெறுநருக்கு அடையாளத்தை பாதுகாப்பதற்காக வடிவமைக்கப்பட்ட GlobaLeaks மென்பொருளை இந்த மேடையில் பயன்படுத்துகிறது."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "மென்பொருள் மற்றும் டிரான்ஸ்பரன்சி இலாப ஹெர்ம்ஸ் மையம் டிஜிட்டல் மனித உரிமைகள் உருவாக்கப்பட்டது."
+"This platform makes use of the GlobaLeaks software designed by the Hermes "
+"Center for Transparency and Digital Human Rights to protect the identity of "
+"the whistleblower."
+msgstr ""
 
 msgid "Please support Hermes through their donation page."
 msgstr "தங்கள் நன்கொடை பக்கம் வழியாக ஹெர்ம்ஸ் ஆதரவு கொள்ளவும்."

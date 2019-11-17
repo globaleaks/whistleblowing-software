@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-01 14:19+0000\n"
+"PO-Revision-Date: 2019-11-07 14:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -667,6 +667,9 @@ msgstr "Wordt niet uitgevoerd"
 
 msgid "Send a test email to your email address."
 msgstr "Verstuur een mailtje om je e-mailadres te testen."
+
+msgid "Block the submission"
+msgstr ""
 
 msgid "Select the context of your submission:"
 msgstr "Selecteer de context van uw inzending:"
@@ -1999,17 +2002,8 @@ msgstr "Dit veld is verplicht"
 msgid "The answer is too short."
 msgstr "Antwoord is te kort."
 
-msgid "The specified input is not valid:"
-msgstr "Deze invoer is niet geldig:"
-
-msgid "please enter a valid email address."
-msgstr "vul een geldig e-mailadres in."
-
-msgid "please enter numbers only."
-msgstr "vul enkel getallen in."
-
-msgid "invalid input format."
-msgstr ""
+msgid "The specified input is not valid."
+msgstr "Deze invoer is niet geldig."
 
 msgid "Submissions disabled"
 msgstr "Inzendingen  uitgeschakeld"
@@ -2020,14 +2014,10 @@ msgid ""
 msgstr "U bent een niet-anonieme verbinding tot stand aan het brengen en deze weblocatie ondersteunt alleen anonieme inzendingen."
 
 msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Dit platform maakt gebruik van de GlobaLeaks software, welke speciaal ontworpen is om de identiteit van de indiener en ontvanger te beschermen tijdens het uitwisselen van bestanden."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "De software is ontwikkeld door de non-profit Hermes Centrum voor transparantie en digitale mensenrechten."
+"This platform makes use of the GlobaLeaks software designed by the Hermes "
+"Center for Transparency and Digital Human Rights to protect the identity of "
+"the whistleblower."
+msgstr ""
 
 msgid "Please support Hermes through their donation page."
 msgstr "Steun Hermes via haar donatiepagina"

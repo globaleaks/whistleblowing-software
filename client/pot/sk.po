@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-01 14:19+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-11-12 11:18+0000\n"
+"Last-Translator: Lenka Ježková <lenka.jezkova@oziveni.cz>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -168,10 +168,10 @@ msgid "Preview"
 msgstr "Náhľad"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "Oznamovateľ čítal poslednú aktualizáciu."
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "Oznamovateľ ešte nečítal poslednú aktualizáciu."
 
 msgid "Move up"
 msgstr "Posunúť hore"
@@ -195,7 +195,7 @@ msgid "Save all"
 msgstr "Uložiť všetko"
 
 msgid "Access control"
-msgstr ""
+msgstr "Riadenie prístupu"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -364,7 +364,7 @@ msgid "HTTPS settings"
 msgstr "Nastavenie HTTPS"
 
 msgid "URL redirects"
-msgstr ""
+msgstr "Presmerovanie URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "Prahové hodnoty detekcie anomálií"
@@ -587,7 +587,7 @@ msgid "Use as default"
 msgstr "Použiť ako prednastavené"
 
 msgid "Create your whistleblowing platform"
-msgstr "Vytvorte svoju vlastnú whistleblowing platformu"
+msgstr "Vytvorte svoju vlastnú whistleblowingovú platformu"
 
 msgid "Collapse"
 msgstr "Zbaliť"
@@ -641,7 +641,10 @@ msgid "Not running"
 msgstr "Nebeží"
 
 msgid "Send a test email to your email address."
-msgstr ""
+msgstr "Poslať testovací email na Vašu emailovú adresu."
+
+msgid "Block the submission"
+msgstr "Blokovať podanie"
 
 msgid "Select the context of your submission:"
 msgstr "Vyberte kontext vášho podania"
@@ -679,7 +682,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr ""
+msgstr "Zvolené heslo je príliš slabé. Heslo by malo byť aspoň 10 znakov dlhé a malo by obsahovať malé písmeno, veľké písmeno, číslo a špeciálny znak."
 
 msgid "The new password must be different from the current one."
 msgstr "Nové heslo sa musí líšiť od aktuálneho."
@@ -691,13 +694,13 @@ msgid "The two passwords do not match"
 msgstr "Heslá sa nezhodujú"
 
 msgid "The new password must differ from the previous."
-msgstr ""
+msgstr "Nové heslo musí byť odlišné od súčasného."
 
 msgid "Proceed"
 msgstr "Pokračovať"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr ""
+msgstr "Pred pokračovaním povoľte dvojfaktorové overenie."
 
 msgid "Disable submissions"
 msgstr "Zakázať podanie"
@@ -726,10 +729,10 @@ msgid "Description"
 msgstr "Popis"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr "Neuvádzajte mená užívateľov."
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgstr "Povoľte nasledujúcom stránkam vložiť platformu do prvkov iframe."
 
 msgid "Enable custom privacy panel"
 msgstr "Povoliť vlastný panel súkromia"
@@ -760,7 +763,7 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Toto nastavenie nemeňte, ibaže naozaj viete, čo robíte."
 
 msgid "Require two factor authentication"
-msgstr ""
+msgstr "Vyžaduje dvojfaktorové overenie"
 
 msgid "Password change interval"
 msgstr "Interval zmeny hesla"
@@ -823,7 +826,7 @@ msgid "Enable simplified login"
 msgstr "Povoliť zjednodušené prihlásenie"
 
 msgid "Enable HSTS preload"
-msgstr ""
+msgstr "Povoliť predbežné načítanie HSTS"
 
 msgid "Logging level"
 msgstr "Prihlasovacia úroveň"
@@ -832,7 +835,7 @@ msgid "Log accesses of internal users"
 msgstr "Prístupy interných používateľov"
 
 msgid "Enable custodian user role"
-msgstr ""
+msgstr " Povoliť úlohu depozitára"
 
 msgid "Enable scoring system"
 msgstr "Aktivovať systém hodnotenia"
@@ -1033,7 +1036,7 @@ msgid "Let recipients upload files to whistleblowers"
 msgstr "Povoliť príjemcom nahrať súbory pre oznamovateľov"
 
 msgid "Scoring system options"
-msgstr ""
+msgstr "Možnosti bodovania systému"
 
 msgid "Threshold"
 msgstr "Prah"
@@ -1099,7 +1102,7 @@ msgid "Test the configuration"
 msgstr "Testovať konfiguráciu"
 
 msgid "Reset SMTP configuration"
-msgstr ""
+msgstr "Resetujte SMTP configuration"
 
 msgid "Template"
 msgstr "Šablóna"
@@ -1129,10 +1132,10 @@ msgid "Example:"
 msgstr "Príklad:"
 
 msgid "Configuration in progress"
-msgstr ""
+msgstr "Prebieha konfigurácia"
 
 msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
+msgstr "Platforma bude dostupná cez HTTPS na adrese:"
 
 msgid "Hostname"
 msgstr "Hostiteľské meno"
@@ -1309,7 +1312,7 @@ msgid "Terms of service"
 msgstr "Podmienky používania služby"
 
 msgid "Date range"
-msgstr ""
+msgstr "Časové obdobie"
 
 msgid "Map"
 msgstr "Mapa"
@@ -1327,7 +1330,7 @@ msgid "Width"
 msgstr "Šírka"
 
 msgid "Multiple choice input"
-msgstr ""
+msgstr "Vstup z výberu možností"
 
 msgid "Question group"
 msgstr "Skupina otázok"
@@ -1447,7 +1450,7 @@ msgid "Configure"
 msgstr "Nastavenie"
 
 msgid "Subdomain"
-msgstr ""
+msgstr "Podstránky"
 
 msgid "The default password is:"
 msgstr "Prednastavené heslo je:"
@@ -1459,7 +1462,7 @@ msgid "Reset password"
 msgstr "Resetovať heslo"
 
 msgid "Disable two factor authentication"
-msgstr ""
+msgstr "Zakázať dvojfaktorové overovanie"
 
 msgid "Force password change"
 msgstr "Vynútiť zmenu hesla"
@@ -1512,7 +1515,7 @@ msgid "Request date"
 msgstr "Dátum žiadosti"
 
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 msgid "Authorization"
 msgstr "Autorizácia"
@@ -1530,7 +1533,7 @@ msgid "Forgot password?"
 msgstr "Zabudli ste heslo?"
 
 msgid "Enter the two factor authentication code"
-msgstr ""
+msgstr "Zadajte dvojfaktorový overovací kód"
 
 msgid "Authentication failed"
 msgstr "Overenie zlyhalo"
@@ -1560,7 +1563,7 @@ msgid "Now type your password, then click 'Log in':"
 msgstr "Teraz zadajte svoje heslo a kliknite na \"Prihlásiť sa\":"
 
 msgid "Text shown after the user has selected the option."
-msgstr ""
+msgstr "Text bude zobrazený po tom, čo používateľ vybral jednu z možností."
 
 msgid "Confirm"
 msgstr "Potvrdiť"
@@ -1581,16 +1584,16 @@ msgid "Please note that all the associated data will be permanently lost."
 msgstr "Upozorňujeme, že všetky súvisiace údaje budú natrvalo odstránené."
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
+msgstr "Toto je demo platforma, nepoužívajte ju prosím pre skutočné podanie."
 
 msgid "Attention!"
 msgstr "Pozor!"
 
 msgid "Install an authenticator app on your phone"
-msgstr ""
+msgstr "Nainštalujte si do telefónu overovací aplikáciu"
 
 msgid "Scan the QR code with the app"
-msgstr ""
+msgstr "Naskenujte QR kód pomocou aplikácie"
 
 msgid "Enable two factor authentication"
 msgstr "Povoliť dvojfaktorovú autorizáciu"
@@ -1599,13 +1602,13 @@ msgid "Close"
 msgstr "Zatvoriť"
 
 msgid "Your encryption recovery key is:"
-msgstr ""
+msgstr "Váš šifrovací kľúč pre obnovenie je:"
 
 msgid ""
 "Please annotate and store this key in a safe place. It will be necessary if "
 "you lose your personal password to recover the access to your account with "
 "no data loss."
-msgstr ""
+msgstr "Tento kľúč prosím vložte a uložte na bezpečné miesto. Pokiaľ ho stratíte, bude potrebné obnoviť prístup k vášmu účtu bez straty dát."
 
 msgid "Welcome!"
 msgstr "Vitajte!"
@@ -1690,10 +1693,10 @@ msgid "Show"
 msgstr "Zobraziť"
 
 msgid "Set up email encryption by providing a PGP public key"
-msgstr ""
+msgstr "Nastavte šifrovanie e-mailov zadaním verejného kľúča PGP"
 
 msgid "Get the encryption recovery key"
-msgstr ""
+msgstr "Získajte kľúč pre obnovenie šifrovanie"
 
 msgid "Current password"
 msgstr "Aktuálne heslo"
@@ -1718,7 +1721,7 @@ msgid "Enter a name for the copy"
 msgstr "Zadajte názov kópie"
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "Vyberte súbor alebo ho sem pretiahnite."
 
 msgid "Uploading files…"
 msgstr "Nahrávam súbory..."
@@ -1739,19 +1742,19 @@ msgid "Size:"
 msgstr "Veľkosť:"
 
 msgid "Enable the Ricochet panel"
-msgstr ""
+msgstr "Povoľte panel Ricochet"
 
 msgid "Address"
 msgstr "Adresa"
 
 msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
+msgstr "Chatujte s nami anonymne pomocou aplikácie Ricochet"
 
 msgid "To chat with us use the following Ricochet address:"
-msgstr ""
+msgstr "K chatovanie s nami použite nasledujúci adresu Ricochet:"
 
 msgid "Download Ricochet at:"
-msgstr ""
+msgstr "Stiahnite Ricochet na:"
 
 msgid "The connection is not secure."
 msgstr "Spojenie nie je bezpečné."
@@ -1901,7 +1904,7 @@ msgid "These files have been attached to your submission by the recipients."
 msgstr "Tieto prílohy boli pripojené k vášmu podaniu príjemcami."
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "Poskytnutý obnovovacia kľúč je neplatný."
 
 msgid "The provided reset token is invalid or expired."
 msgstr "Dodaný reset token je neplatný alebo vypršal."
@@ -1912,11 +1915,11 @@ msgid ""
 msgstr "Vložte používateľské meno účtu alebo emailovú adresu a požiadajte o obnovenie hesla."
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "Zadajte svoju e-mailovú adresu pre reset hesla."
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr ""
+msgstr "Zadajte kód na obnovenie šifrovanie a dokončite postup pre resetovanie hesla"
 
 msgid "Password reset requested."
 msgstr "Vyžaduje sa obnovenie hesla."
@@ -1938,14 +1941,14 @@ msgid "You have completed the platform activation."
 msgstr "Práve ste dokončili aktiváciu platformy."
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr "Vaša whistleblowing platforma je takmer hotová!"
+msgstr "Vaša whistleblowingová platforma je takmer hotová!"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "Skontrolujte svoju doručenú poštu pre aktiváciu."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "Pokiaľ nedôjde k aktivácii do 24 hodín, bude platforma automaticky odstránená."
 
 msgid "Sign up"
 msgstr "Zaregistrovať sa"
@@ -1954,10 +1957,10 @@ msgid "Domain"
 msgstr "Doména"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "Potvrdenie"
 
 msgid "Invalid confirmation"
-msgstr ""
+msgstr "Neplatné potvrdenie"
 
 msgid "Other"
 msgstr "Ďalší"
@@ -1974,17 +1977,8 @@ msgstr "Toto pole je povinné."
 msgid "The answer is too short."
 msgstr "Odpoveď je príliš krátka."
 
-msgid "The specified input is not valid:"
-msgstr "Zadaný vstup nie je platný:"
-
-msgid "please enter a valid email address."
-msgstr "Prosím zadajte platnú emailovú adresu."
-
-msgid "please enter numbers only."
-msgstr "Zadajte, prosím, iba čísla."
-
-msgid "invalid input format."
-msgstr ""
+msgid "The specified input is not valid."
+msgstr "Zadaný vstup nie je platný."
 
 msgid "Submissions disabled"
 msgstr "Podania zakázané"
@@ -1995,14 +1989,10 @@ msgid ""
 msgstr "K uzlu sa pripájate neanonymne, pričom tento konkrétny uzol podporuje iba anonymné podania"
 
 msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Táto platforma využíva softvér GlobaLeaks špeciálne navrhnutý na ochranu identity oznamovateľov a príjemcov podania. "
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "Tento softvér je vyvíjaný neziskovou organizáciou Hermes Centra pre transparentnosť a digitálne ľudské práva."
+"This platform makes use of the GlobaLeaks software designed by the Hermes "
+"Center for Transparency and Digital Human Rights to protect the identity of "
+"the whistleblower."
+msgstr "Táto platforma využíva GlobaLeaks softvér vytvorený spoločnosťou Hermes Center for Transparency and Digital Human Rights na zabezpečenie identity oznamovateľa."
 
 msgid "Please support Hermes through their donation page."
 msgstr "Organizáciu Hermes môžete podporiť na ich darovacej stránke."
@@ -2031,7 +2021,7 @@ msgid "Recipients selected:"
 msgstr "Vybraní príjemcovia:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr ""
+msgstr "Dosiahli ste maximálneho počtu voliteľných príjemcov."
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -2236,7 +2226,7 @@ msgid "Registration data:"
 msgstr "Registračné údaje:"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "Site: {Url}"
 
 msgid "Name: {Name}"
 msgstr "Meno: {Meno} "
@@ -2292,7 +2282,7 @@ msgid "Email change request"
 msgstr "Žiadosť o zmenu emailu"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "Od: {Author}"
 
 msgid "Date: {EventTime}"
 msgstr "Dátum: {EventTime}"
@@ -2307,7 +2297,7 @@ msgid "Label: {TipLabel}"
 msgstr "Štítok: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
+msgstr "Stav:{TipStatus}"
 
 msgid "Context: {ContextName}"
 msgstr "Kontext: {ContextName}"
@@ -2394,7 +2384,7 @@ msgstr "Nová správa"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr ""
+msgstr "Oznamovateľ ešte nečítal poslednú aktualizáciu."
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

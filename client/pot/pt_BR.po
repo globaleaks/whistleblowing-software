@@ -19,7 +19,7 @@
 # Eduardo Bonsi, 2013
 # Eduardo Bonsi, 2013
 # Eduardo Bonsi, 2013-2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2018
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2019
 # Hamilton Junior Mendes Lopes <gigas_x_141@hotmail.com>, 2015
 # Hellen Cristina Silva <hlncrsilva@gmail.com>, 2015
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-01 14:19+0000\n"
+"PO-Revision-Date: 2019-11-07 14:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -666,6 +666,9 @@ msgstr "Não executando"
 
 msgid "Send a test email to your email address."
 msgstr "Enviar um e-mail de teste para o seu endereco e-mail"
+
+msgid "Block the submission"
+msgstr ""
 
 msgid "Select the context of your submission:"
 msgstr "Selecionar o assunto do seu envio:"
@@ -1998,17 +2001,8 @@ msgstr "Este campo é obrigatório."
 msgid "The answer is too short."
 msgstr "A resposta é muito curta."
 
-msgid "The specified input is not valid:"
-msgstr "A entrada especificada não é válida:"
-
-msgid "please enter a valid email address."
-msgstr "favor digitar um email válido"
-
-msgid "please enter numbers only."
-msgstr "favor digitar somente números"
-
-msgid "invalid input format."
-msgstr ""
+msgid "The specified input is not valid."
+msgstr "A entrada especificada não é válida."
 
 msgid "Submissions disabled"
 msgstr "Submissões desabilitadas"
@@ -2019,14 +2013,10 @@ msgid ""
 msgstr "Você está se conectando a este dispositivo publicamente e este dispositivo suporta apenas submissões anônimas"
 
 msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Esta plataforma faz uso do software da GlobaLeaks especificamente projetado para proteger a identidade do submissor e destinatário na troca de conteúdo."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "O software é desenvolvido pela organização sem fins lucrativos Hermes Center for Transparency and Digital Human Rights."
+"This platform makes use of the GlobaLeaks software designed by the Hermes "
+"Center for Transparency and Digital Human Rights to protect the identity of "
+"the whistleblower."
+msgstr ""
 
 msgid "Please support Hermes through their donation page."
 msgstr "Por favor, apoiem Hermes através de sua página de doações."

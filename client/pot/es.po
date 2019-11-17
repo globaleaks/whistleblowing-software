@@ -33,7 +33,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-01 14:19+0000\n"
+"PO-Revision-Date: 2019-11-07 14:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -661,6 +661,9 @@ msgstr "Detenido"
 
 msgid "Send a test email to your email address."
 msgstr "Enviar un correo de prueba a tu dirección de correo electrónico."
+
+msgid "Block the submission"
+msgstr ""
 
 msgid "Select the context of your submission:"
 msgstr "Seleccione el contexto de su entrega:"
@@ -1993,17 +1996,8 @@ msgstr "Este campo es obligatorio."
 msgid "The answer is too short."
 msgstr "La respuesta es demasiado corta."
 
-msgid "The specified input is not valid:"
-msgstr "La entrada especificada no es válida:"
-
-msgid "please enter a valid email address."
-msgstr "por favor, introduce una dirección de correo electrónico válida."
-
-msgid "please enter numbers only."
-msgstr "por favor, introduce únicamente números."
-
-msgid "invalid input format."
-msgstr ""
+msgid "The specified input is not valid."
+msgstr "La entrada especificada no es válida."
 
 msgid "Submissions disabled"
 msgstr "Entregas deshabilitadas."
@@ -2014,14 +2008,10 @@ msgid ""
 msgstr "Te estas conectando al servidor de forma no anónima y este nodo sólo soporta entregas anónimas"
 
 msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "Esta plataforma hace uso del software GlobaLeaks diseñado específicamente para proteger la identidad para el alertador y el destinatario en el intercambio de contenido."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "El software es desarrollado por la organización sin ánimo de lucro Hermes Center for Transparency an Digital Human Rights."
+"This platform makes use of the GlobaLeaks software designed by the Hermes "
+"Center for Transparency and Digital Human Rights to protect the identity of "
+"the whistleblower."
+msgstr ""
 
 msgid "Please support Hermes through their donation page."
 msgstr "Por favor, patrocina a Hermes a través de su página de donación."

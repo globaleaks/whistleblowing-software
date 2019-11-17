@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-01 14:19+0000\n"
+"PO-Revision-Date: 2019-11-07 14:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -638,6 +638,9 @@ msgstr "無執行"
 
 msgid "Send a test email to your email address."
 msgstr "寄一封測試信件到你的電子郵箱"
+
+msgid "Block the submission"
+msgstr ""
 
 msgid "Select the context of your submission:"
 msgstr "選擇你提交的內文說明"
@@ -1970,16 +1973,7 @@ msgstr "此欄位為必填"
 msgid "The answer is too short."
 msgstr "這個答案太過簡短"
 
-msgid "The specified input is not valid:"
-msgstr "這個特定的輸入無效："
-
-msgid "please enter a valid email address."
-msgstr "請輪入一個有效的電子郵件"
-
-msgid "please enter numbers only."
-msgstr "請只輸入數字"
-
-msgid "invalid input format."
+msgid "The specified input is not valid."
 msgstr ""
 
 msgid "Submissions disabled"
@@ -1991,14 +1985,10 @@ msgid ""
 msgstr "你正連結到正常運行的伺服器上，它僅支援匿名的揭密提交"
 
 msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "本平台使用 GlobaLeaks 軟體，是特別設計來保護上傳者與收件者的身份，保護他們交換資料的內容。"
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "這種軟體是由非營利的 Hermes Center for Transparency and Digital Human Rights 所開發"
+"This platform makes use of the GlobaLeaks software designed by the Hermes "
+"Center for Transparency and Digital Human Rights to protect the identity of "
+"the whistleblower."
+msgstr ""
 
 msgid "Please support Hermes through their donation page."
 msgstr "透過捐款頁面支持 Hermes"

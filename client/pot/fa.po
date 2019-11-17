@@ -20,10 +20,11 @@
 # Reza Ghasemi, 2019
 # signal89, 2014
 # signal89, 2014
+# Vox, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-01 14:19+0000\n"
+"PO-Revision-Date: 2019-11-07 14:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -177,10 +178,10 @@ msgid "Preview"
 msgstr "نمایش"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "افشاگر آخرین بروزرسانی را خوانده است"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "افشاگر هنوز آخرین بروزرسانی را نخوانده است"
 
 msgid "Move up"
 msgstr "بالا بردن"
@@ -204,7 +205,7 @@ msgid "Save all"
 msgstr "ذخیره‌ی همه"
 
 msgid "Access control"
-msgstr ""
+msgstr "کنترل دسترسی"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -373,7 +374,7 @@ msgid "HTTPS settings"
 msgstr "تنظیمات HTTPS"
 
 msgid "URL redirects"
-msgstr ""
+msgstr "تغییر مسیر آدرس"
 
 msgid "Anomaly detection thresholds"
 msgstr "آستانه تشخیص ناهنجاری"
@@ -650,6 +651,9 @@ msgid "Not running"
 msgstr "در حال اجرا نمی باشد"
 
 msgid "Send a test email to your email address."
+msgstr "یک ایمیل آزمایشی به آدرس ایمیل خود ارسال کنید."
+
+msgid "Block the submission"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -688,7 +692,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr ""
+msgstr "رمزعبور انتخابی بسیار ضعیف است. یک رمز عبور معتبر باید حداقل به طول ۱۰ کاراکتر بوده و از حداقل یک کاراکتر با حروف کوچک، یک حروف بزرگ، یک شماره و یک کاراکتر خاص تشکیل شده باشد."
 
 msgid "The new password must be different from the current one."
 msgstr "گذرواژه جدید می بایستی از گذرواژه فعلی متفاوت باشد."
@@ -700,13 +704,13 @@ msgid "The two passwords do not match"
 msgstr "دو گذرواژه یکی نیستند"
 
 msgid "The new password must differ from the previous."
-msgstr ""
+msgstr "رمزعبور جدید باید با رمزعبور قبلی متفاوت باشد."
 
 msgid "Proceed"
 msgstr "ادامه بده"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr ""
+msgstr "قبل از ادامه، لطفا احراز هویت دو عاملی را فعال کنید."
 
 msgid "Disable submissions"
 msgstr "غیرفعال‌سازی گزارش"
@@ -735,10 +739,10 @@ msgid "Description"
 msgstr "توضیح"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr "نام‌های کاربران را افشا نکنید"
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgstr "به وبسایت‌های زیر اجازه دهید تا پلتفرم را در iframe جاسازی کنند"
 
 msgid "Enable custom privacy panel"
 msgstr "فعال سازی پنل پوشیدگی اختصاصی"
@@ -769,7 +773,7 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "تنظیمات را فقط در صورتی تغییر دهید که میدانید دارید چه کار می کنید."
 
 msgid "Require two factor authentication"
-msgstr ""
+msgstr "نیاز به احراز هویت دو عاملی"
 
 msgid "Password change interval"
 msgstr "بازه تغییر گذرواژه"
@@ -832,7 +836,7 @@ msgid "Enable simplified login"
 msgstr "فعال سازی ورود ساده شده"
 
 msgid "Enable HSTS preload"
-msgstr ""
+msgstr "فعالسازی HSTS preload"
 
 msgid "Logging level"
 msgstr "سطح ثبت کردن وقایع"
@@ -1108,7 +1112,7 @@ msgid "Test the configuration"
 msgstr "آزمایش پیکربندی"
 
 msgid "Reset SMTP configuration"
-msgstr ""
+msgstr "تنظیم مجدد تنظیمات SMTP"
 
 msgid "Template"
 msgstr "قالب"
@@ -1138,10 +1142,10 @@ msgid "Example:"
 msgstr "نمونه:"
 
 msgid "Configuration in progress"
-msgstr ""
+msgstr "تنظیمات در حال انجام است"
 
 msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
+msgstr "پلتفرم توسط HTTPS در آدرس‌های زیر در دسترس است:"
 
 msgid "Hostname"
 msgstr "نام سرور"
@@ -1456,7 +1460,7 @@ msgid "Configure"
 msgstr "پیکربندی"
 
 msgid "Subdomain"
-msgstr ""
+msgstr "زیردامنه"
 
 msgid "The default password is:"
 msgstr "گذرواژه پیش فرض:"
@@ -1468,7 +1472,7 @@ msgid "Reset password"
 msgstr "تنظیم مجدد گذرواژه"
 
 msgid "Disable two factor authentication"
-msgstr ""
+msgstr "غیرفعالسازی احراز هویت دو عاملی"
 
 msgid "Force password change"
 msgstr "وادار به تغییر گذرواژه"
@@ -1539,7 +1543,7 @@ msgid "Forgot password?"
 msgstr "گذرواژه را فراموش کرده اید؟"
 
 msgid "Enter the two factor authentication code"
-msgstr ""
+msgstr "کد احراز هویت دو عاملی را وارد کنید"
 
 msgid "Authentication failed"
 msgstr "تایید هویت ناموفق بود"
@@ -1590,16 +1594,16 @@ msgid "Please note that all the associated data will be permanently lost."
 msgstr "لطفا توجه داشته باشید که تمام داده های مرتبط برای همیشه از بین خواهند رفت."
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
+msgstr "این یک پلتفرم نمایشی است، لطفا از آن برای ارسال واقعی استفاده نکنید."
 
 msgid "Attention!"
 msgstr "توجه!"
 
 msgid "Install an authenticator app on your phone"
-msgstr ""
+msgstr "لطفا یک برنامه احراز هویت بر روی موبایل خود نصب کنید."
 
 msgid "Scan the QR code with the app"
-msgstr ""
+msgstr "کد QR را با برنامه اسکن کنید"
 
 msgid "Enable two factor authentication"
 msgstr "فعال سازی احراز هویت دو عاملی"
@@ -1608,13 +1612,13 @@ msgid "Close"
 msgstr "بستن"
 
 msgid "Your encryption recovery key is:"
-msgstr ""
+msgstr "کد بازیابی رمزگذاری شما عبارت است از:"
 
 msgid ""
 "Please annotate and store this key in a safe place. It will be necessary if "
 "you lose your personal password to recover the access to your account with "
 "no data loss."
-msgstr ""
+msgstr "لطفا این کلید را در جایی امن یادداشت و نگهداری کنید. در صورتی فراموشی رمزعبور، برای بازیابی دسترسی به حساب خود بدون از دست رفتن داده می‌توانید از این کلید استفاده کنید."
 
 msgid "Welcome!"
 msgstr "خوش آمدید!"
@@ -1699,10 +1703,10 @@ msgid "Show"
 msgstr "نمایش"
 
 msgid "Set up email encryption by providing a PGP public key"
-msgstr ""
+msgstr "با ارائه کلید عمومی PGP، رمزگذاری ایمیل را راه‌اندازی کنید"
 
 msgid "Get the encryption recovery key"
-msgstr ""
+msgstr "کلید بازیابی رمزگذاری را دریافت کنید"
 
 msgid "Current password"
 msgstr "رمز عبور فعلی"
@@ -1727,7 +1731,7 @@ msgid "Enter a name for the copy"
 msgstr "وارد کردن یک نام برای کپی"
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "فایل را انتخاب کرده و یا به اینجا بکشید."
 
 msgid "Uploading files…"
 msgstr "در حال آپلود فایل ها..."
@@ -1748,19 +1752,19 @@ msgid "Size:"
 msgstr "سایز:"
 
 msgid "Enable the Ricochet panel"
-msgstr ""
+msgstr "پنل Ricochet را فعال کنید"
 
 msgid "Address"
 msgstr "آدرس"
 
 msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
+msgstr "با برنامه Ricochet به صورت ناشناس با ما گفتگو کنید"
 
 msgid "To chat with us use the following Ricochet address:"
-msgstr ""
+msgstr "برای گفتگو با ما از آدرس Ricochet زیر استفاده کنید:"
 
 msgid "Download Ricochet at:"
-msgstr ""
+msgstr "Ricochet را از اینجا بارگیری کنید:"
 
 msgid "The connection is not secure."
 msgstr "ارتباط امن نمی باشد."
@@ -1910,7 +1914,7 @@ msgid "These files have been attached to your submission by the recipients."
 msgstr "این فایل ها به گزارش های شما توسط گیرندگان ضمیمه شده اند."
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "کلید بازیابی ارائه شده نامعتبر است."
 
 msgid "The provided reset token is invalid or expired."
 msgstr "نشانه تنظیم مجدد یا معتبر نیست یا انقضا یافته است."
@@ -1921,11 +1925,11 @@ msgid ""
 msgstr "نام کاربری خود یا آدرس ایمیل را برای درخواست تنظیم مجدد گذرواژه وارد کنید."
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "برای درخواست تنظیم مجدد رمزعبور، آدرس ایمیل خود را وارد کنید."
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr ""
+msgstr "برای کامل کردن پروسه تنظیم مجدد رمزعبور، کلید بازیابی رمزگذاری خود را وارد کنید"
 
 msgid "Password reset requested."
 msgstr "تنظیم مجدد گذرواژه درخواست شد."
@@ -1950,11 +1954,11 @@ msgid "Your whistleblowing platform is almost ready!"
 msgstr "پلتفورم افشاگری شما تقریبا آماده می باشد!"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "برای فعالسازی، صندوق خود را بررسی کنید."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "در صورتی که فعالسازی طی ۲۴ ساعت صورت نپذیرد، پلتفرم به صورت خودکار حذف خواهد شد."
 
 msgid "Sign up"
 msgstr "عضویت"
@@ -1963,10 +1967,10 @@ msgid "Domain"
 msgstr "دامنه"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "تائیدیه"
 
 msgid "Invalid confirmation"
-msgstr ""
+msgstr "تائیدیه نامعتبر"
 
 msgid "Other"
 msgstr "دیگر"
@@ -1983,17 +1987,8 @@ msgstr "این فیلد اجباری می باشد."
 msgid "The answer is too short."
 msgstr "پاسخ بیش از حد کوتاه می باشد."
 
-msgid "The specified input is not valid:"
-msgstr "ورودی مشخص شده معتبر نمی باشد:"
-
-msgid "please enter a valid email address."
-msgstr "لطفا یک آدرس ایمیل معتبر وارد کنید."
-
-msgid "please enter numbers only."
-msgstr "لطفا فقط عدد وارد کنید."
-
-msgid "invalid input format."
-msgstr ""
+msgid "The specified input is not valid."
+msgstr "ورودی خاص معتبر نیست."
 
 msgid "Submissions disabled"
 msgstr "گزارش ها غیر فعال شدند"
@@ -2004,14 +1999,10 @@ msgid ""
 msgstr "شما بدون ناشناسی به گره متصل شده اید و این گره فقط گزارش های ناشناس را قبول میکند"
 
 msgid ""
-"This platform makes use of GlobaLeaks software specifically designed to "
-"protect the identity for submitter and recipient in the exchange of content."
-msgstr "پلتفورم از نرم افزار GlobaLeaks که با هدف محافظت از هویت ارسال کننده و گیرنده در تبادل محتوا ایجاد شده استفاده می کند."
-
-msgid ""
-"The software is developed by the non-profit Hermes Center for Transparency "
-"and Digital Human Rights."
-msgstr "نرم افزار توسط مرکز غیر-انتفاعی هرمس برای شفافیت و حقوق بشر دیجیتال توسعه داده شده است."
+"This platform makes use of the GlobaLeaks software designed by the Hermes "
+"Center for Transparency and Digital Human Rights to protect the identity of "
+"the whistleblower."
+msgstr ""
 
 msgid "Please support Hermes through their donation page."
 msgstr "لطفا از هرمس از طریق صفحه اهدا پشتیبانی کنید."
@@ -2040,7 +2031,7 @@ msgid "Recipients selected:"
 msgstr "گیرنده‌های انتخاب‌شده:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr ""
+msgstr "شما به حداکثر مجاز تعداد دریافت‌کنندگان قابل انتخاب رسیده‌اید."
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -2301,7 +2292,7 @@ msgid "Email change request"
 msgstr "درخواست تغییر ایمیل"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "از: {Author}"
 
 msgid "Date: {EventTime}"
 msgstr "تاریخ: {EventTime}"
@@ -2316,7 +2307,7 @@ msgid "Label: {TipLabel}"
 msgstr "برچسب: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
+msgstr "وضعیت: {TipStatus}"
 
 msgid "Context: {ContextName}"
 msgstr "زمینه: {ContextName}"
@@ -2403,7 +2394,7 @@ msgstr "پیام جدید"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr ""
+msgstr "شما این ایمیل را دریافت کرده‌اید زیرا یک درخواست تنظیم مجدد رمزعبور برای حساب شما، {Username}، ارسال شده است."
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
