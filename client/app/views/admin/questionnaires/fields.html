@@ -255,7 +255,7 @@
                       <span>{{field.attrs.min_date.value | date:'dd-MM-yyyy'}}</span>
                       <button class="btn btn-sm btn-danger"
                               data-ng-click="field.attrs.min_date.value = ''; $event.stopPropagation();">
-                        <span class="fa fa-times"></span>
+                        <i class="fa fa-times"></i>
                       </button>
                     </span>
                     <button data-ng-show="field.attrs.min_date.value === ''" type="button" class="btn btn-sm btn-secondary"><i class="fa fa-calendar"></i></button>
@@ -272,7 +272,7 @@
                       <span>{{field.attrs.max_date.value | date:'dd-MM-yyyy'}}</span>
                       <button class="btn btn-sm btn-danger"
                               data-ng-click="field.attrs.max_date.value = ''; $event.stopPropagation();">
-                        <span class="fa fa-times"></span>
+                        <i class="fa fa-times"></i>
                       </button>
                     </span>
                     <button data-ng-show="field.attrs.max_date.value === ''" type="button" class="btn btn-sm btn-secondary"><i class="fa fa-calendar"></i></button>
