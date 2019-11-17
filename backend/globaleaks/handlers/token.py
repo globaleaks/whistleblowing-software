@@ -24,7 +24,8 @@ class TokenCreate(BaseHandler):
 
         request = self.validate_message(self.request.content.read(), requests.TokenReqDesc)
 
-        if (request['type'] == 'submission' and not self.state.accept_submissions) or \
+        if (request['type'] == 'submission' and (not self.state.accept_submissions or
+                                                 self.state.tenant_cache[self.request.tid]['disable_submissions'])) or \
             (self.state.tenant_cache[self.request.tid]['ip_filter_whistleblower_enable'] and
              not check_ip(self.state.tenant_cache[self.request.tid]['ip_filter_whistleblower'], self.request.client_ip)):
             raise errors.SubmissionDisabled

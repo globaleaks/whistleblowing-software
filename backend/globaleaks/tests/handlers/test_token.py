@@ -3,6 +3,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import token
 from globaleaks.jobs import anomalies
+from globaleaks.rest import errors
 from globaleaks.tests import helpers
 
 
@@ -23,6 +24,15 @@ class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):
         response = yield handler.post()
 
         self.assert_default_token_values(response)
+
+    def test_post_disabled_submissions(self):
+        token = self.state.tenant_cache[1]['disable_submissions'] = True
+
+        handler = self.request({'type': 'submission'})
+
+        handler.request.client_using_tor = True
+
+        self.assertRaises(errors.SubmissionDisabled, handler.post)
 
 
 class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
