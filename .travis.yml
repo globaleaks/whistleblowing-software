@@ -43,13 +43,13 @@ matrix:
       dist: bionic
       python: "3.6"
 
-    - env: GLTEST='end2end-0' BROWSER='chrome 76'
+    - env: GLTEST='end2end-0' BROWSER='chrome 78'
       dist: bionic
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-1' BROWSER='firefox 68'
+    - env: GLTEST='end2end-1' BROWSER='firefox 70'
       dist: bionic
       python: "3.6"
       addons:
