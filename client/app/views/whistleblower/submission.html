@@ -1,7 +1,7 @@
 <div data-ng-if="!submission.context" data-ng-include="'views/whistleblower/context_selection.html'"></div>
 
 <div data-ng-if="submission.context">
-  <form id="submissionForm" class="col-md-12" name="vars.submissionForm" autocomplete="off" novalidate>
+  <form id="submissionForm" class="col-md-12" name="vars.submissionForm" autocomplete="off" novalidate data-ng-class="{'was-validated': displayErrors()}">
     <div class="tabbable tabs-below">
       <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" data-ng-if="submission.context.show_steps_navigation_interface && submission.context.questionnaire.steps.length > 1">
         <li data-ng-if="receiver_selection_step" class="nav-item">
@@ -16,7 +16,7 @@
         </li>
       </ul>
       <div id="SubmissionTabsContentBox" class="tab-content">
-        <div data-ng-if="displayErrors" data-ng-include="'views/whistleblower/submission_error.html'"></div>
+        <div data-ng-if="displayErrors()" data-ng-include="'views/whistleblower/submission_error.html'"></div>
         <div id="step-receiver-selection" data-ng-if="receiver_selection_step">
           <div data-ng-show="navigation === receiver_selection_step_index" data-ng-include="'views/whistleblower/receiver_selection.html'"></div>
         </div>
