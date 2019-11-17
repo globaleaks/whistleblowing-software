@@ -171,6 +171,9 @@ def is_expired(check_date, seconds=0, minutes=0, hours=0, days=0):
     @return:
         if now > check_date + (seconds+minutes+hours)
         True is returned, else False
+        :param minutes:
+        :param hours:
+        :param days:
     """
     total_hours = (days * 24) + hours
     check = check_date + timedelta(seconds=seconds, minutes=minutes, hours=total_hours)

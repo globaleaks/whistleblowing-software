@@ -27,6 +27,8 @@ def weekmap_to_heatmap(week_map):
 @transact
 def get_stats(session, tid, week_delta):
     """
+    :param session:
+    :param tid:
     :param week_delta: commonly is 0, mean that you're taking this
         week. -1 is the previous week.
     At the moment do not support negative number and change of the year.

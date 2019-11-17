@@ -65,6 +65,7 @@ def gen_x509_csr(key_pair, csr_fields, csr_sign_bits):
     certificate request using the passed keypair. Note that the default digest
     is sha256.
 
+    :param csr_sign_bits:
     :param key_pair: The key pair that will sign the request
     :type key_pair: :py:data:`OpenSSL.crypto.PKey` the key must have an attached
     private component.

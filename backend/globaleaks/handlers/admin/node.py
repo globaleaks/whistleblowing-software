@@ -78,6 +78,8 @@ def db_update_node(session, tid, request, language):
     """
     Update and serialize the node infos
 
+    :param tid:
+    :param request:
     :param session: the session on which perform queries.
     :param language: the language in which to localize data
     :return: a dictionary representing the serialization of the node

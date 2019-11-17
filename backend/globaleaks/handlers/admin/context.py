@@ -20,6 +20,7 @@ def admin_serialize_context(session, context, language):
     """
     Serialize the specified context
 
+    :param context:
     :param session: the session on which perform queries.
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the context.
@@ -68,6 +69,7 @@ def get_context_list(session, tid, language):
     """
     Returns the context list.
 
+    :param tid:
     :param session: the session on which perform queries.
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the contexts.
@@ -181,6 +183,9 @@ def update_context(session, tid, context_id, request, language):
 
     Returns:
             (dict) the serialized object updated
+            :param session:
+            :param tid:
+            :param language:
     """
     context = models.db_get(session, models.Context, models.Context.tid == tid, models.Context.id == context_id)
     context = db_update_context(session, tid, context, request, language)

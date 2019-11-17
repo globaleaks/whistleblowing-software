@@ -61,6 +61,18 @@ def sendmail(tid, smtp_host, smtp_port, security, authentication, username, pass
 
     @return: a {Deferred} that returns a success {bool} if the message was passed
              to the server.
+             :param tid:
+             :param smtp_host:
+             :param smtp_port:
+             :param security:
+             :param authentication:
+             :param username:
+             :param password:
+             :param from_name:
+             :param from_address:
+             :param anonymize:
+             :param socks_host:
+             :param socks_port:
     """
     try:
         timeout = 30

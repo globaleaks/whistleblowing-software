@@ -32,6 +32,7 @@ def get_questionnaire_list(session, tid, language):
     """
     Returns the questionnaire list.
 
+    :param tid:
     :param session: the session on which perform queries.
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the questionnaires.
@@ -107,6 +108,9 @@ def update_questionnaire(session, tid, questionnaire_id, request, language):
 
     Returns:
             (dict) the serialized object updated
+            :param session:
+            :param tid:
+            :param language:
     """
     questionnaire = models.db_get(session, models.Questionnaire, models.Questionnaire.tid == tid, models.Questionnaire.id == questionnaire_id)
 

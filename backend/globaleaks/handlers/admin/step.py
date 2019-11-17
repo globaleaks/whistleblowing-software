@@ -20,6 +20,8 @@ def db_create_step(session, tid, step_dict, language):
     """
     Create the specified step
 
+    :param tid:
+    :param step_dict:
     :param session: the session on which perform queries.
     :param language: the language of the specified steps.
     """
@@ -50,6 +52,7 @@ def db_update_step(session, tid, step_id, step_dict, language):
     """
     Update the specified step with the details.
 
+    :param tid:
     :param session: the session on which perform queries.
     :param step_id: the step_id of the step to update
     :param step_dict: the step definition dict

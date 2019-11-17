@@ -374,6 +374,7 @@ class BaseHandler(object):
         @param uploaded_file: uploaded_file data struct
         @param the file destination
         @return: a descriptor dictionary for the saved file
+        :param destination:
         """
         try:
             log.debug('Creating file %s with %d bytes', destination, self.uploaded_file['size'])

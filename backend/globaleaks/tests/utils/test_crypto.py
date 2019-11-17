@@ -50,7 +50,7 @@ class TestCryptoUtils(helpers.TestGL):
 
         with open(a, 'rb') as input_fd, GCE.streaming_encryption_open('ENCRYPT', pub_key, b) as seo:
             chunk = input_fd.read(1)
-            while(True):
+            while True:
                 x = input_fd.read(1)
                 if not x:
                     seo.encrypt_chunk(chunk, 1)
@@ -63,7 +63,7 @@ class TestCryptoUtils(helpers.TestGL):
         with open(c, 'wb') as output_fd,\
              GCE.streaming_encryption_open('DECRYPT', prv_key, b) as seo:
 
-            while(True):
+            while True:
                 last, data = seo.decrypt_chunk()
                 output_fd.write(data)
                 if last:

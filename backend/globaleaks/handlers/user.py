@@ -47,8 +47,9 @@ def user_serialize_user(session, user, language):
     """
     Serialize user description
 
+    :param user:
+    :param language:
     :param session: the session on which perform queries.
-    :param username: the username of the user to be serialized
     :return: a serialization of the object
     """
     picture = db_get_model_img(session, 'users', user.id)
