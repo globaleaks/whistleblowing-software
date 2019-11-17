@@ -374,7 +374,9 @@ ConfigFilters['general_settings'] = [
     'favicon',
     'languages_enabled',
     'default_language',
-    'languages_supported'
+    'languages_supported',
+    'enable_ricochet_panel',
+    'ricochet_address'
 ]
 
 

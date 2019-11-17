@@ -650,7 +650,9 @@ SiteSettingsDesc = {
     'name': text_type,
     'header_title_homepage': text_type,
     'presentation': text_type,
-    'footer': text_type
+    'footer': text_type,
+    'enable_ricochet_panel': bool,
+    'ricochet_address': text_type
 }
 
 QuestionnaireDuplicationDesc = {
