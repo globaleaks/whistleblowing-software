@@ -11,6 +11,10 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
     $scope.toggleAddStatus = function () {
       $scope.showAddStatus = !$scope.showAddStatus;
     };
+
+    $scope.isSystemDefined = function (state) {
+      return ["new", "opened", "closed"].indexOf(state.id) !== -1;
+    }
   }
 ]).controller("AdminSubmissionStatusEditorCtrl", ["$scope", "$http", "AdminSubmissionStatusResource",
   function ($scope, $http, AdminSubmissionStatusResource) {

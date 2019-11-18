@@ -28,7 +28,6 @@ def initialize_submission_statuses(session, tid):
         state.id = s['id']
         state.tid = tid
         state.label = s['label']
-        state.system_defined = True
         session.add(state)
 
 

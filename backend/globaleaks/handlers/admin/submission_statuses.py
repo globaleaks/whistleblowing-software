@@ -17,7 +17,6 @@ def serialize_submission_status(session, status, language):
     """Serializes a submission status into dictionary form for the client"""
     submission_status = {
         'id': status.id,
-        'system_defined': status.system_defined,
         'presentation_order': status.presentation_order,
         'substatuses': []
     }
@@ -59,7 +58,7 @@ def db_retrieve_all_submission_statuses(session, tid, language):
 
     for status in statuses:
         status_dict = serialize_submission_status(session, status, language)
-        if status.system_defined:
+        if status.id in ['new', 'opened', 'closed']:
             system_statuses[status.id] = status_dict
         else:
             user_submission_statuses.append(status_dict)

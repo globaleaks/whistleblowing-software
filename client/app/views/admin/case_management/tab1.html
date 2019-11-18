@@ -49,7 +49,7 @@
                 <button class="btn btn-sm btn-secondary" data-ng-show="editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
                   <span data-translate>Cancel</span>
                 </button>
-                <button class="btn btn-sm btn-danger" data-ng-if="!submissions_status.system_defined" data-ng-click="deleteSubmissionStatus(); $event.stopPropagation();">
+                <button class="btn btn-sm btn-danger" data-ng-if="!isSystemDefined(submissions_status)" data-ng-click="deleteSubmissionStatus(); $event.stopPropagation();">
                   <span data-translate>Delete</span>
                 </button>
               </span>
@@ -58,7 +58,7 @@
           <div data-ng-if="editing">
             <hr />
             <div class="row">
-              <div class="col-md-6" data-ng-if="!submissions_status.system_defined">
+              <div class="col-md-6" data-ng-if="!isSystemDefined(submissions_status)">
                 <div class="form-group">
                   <label data-translate>Label</label>
                   <input name="name" class="form-control" data-ng-model="submissions_status.label" data-ng-disabled="submissions_status.system_defined" type="text" required>
