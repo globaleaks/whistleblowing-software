@@ -76,64 +76,6 @@ def generate_api_token():
     return token, sha512(token.encode())
 
 
-def _overwrite(absolutefpath, pattern):
-    count = 0
-    length = len(pattern)
-
-    with open(absolutefpath, 'w+') as f:
-        f.seek(0)
-        while count < length:
-            f.write(pattern)
-            count += len(pattern)
-
-
-def overwrite_and_remove(absolutefpath, iterations_number=1):
-    """
-    Overwrite the file with all_zeros, all_ones, random patterns
-
-    Note: At each iteration the original size of the file is altered.
-    """
-    log.debug("Starting secure deletion of file %s", absolutefpath)
-
-    randomgen = random.SystemRandom()
-
-    try:
-        # in the following loop, the file is open and closed on purpose, to trigger flush operations
-        all_zeros = "\0\0\0\0" * 1024               # 4kb of zeros
-
-        if sys.version_info[0] == 2:
-            all_ones = "FFFFFFFF".decode("hex") * 1024  # 4kb of ones
-        else:
-            all_ones = "\xFF" * 4096
-
-        for iteration in range(iterations_number):
-            OPTIMIZATION_RANDOM_BLOCK = randomgen.randint(4096, 4096 * 2)
-
-            random_pattern = ""
-            for _ in range(OPTIMIZATION_RANDOM_BLOCK):
-                random_pattern += str(randomgen.randrange(256))
-
-            log.debug("Excecuting rewrite iteration (%d out of %d)",
-                      iteration, iterations_number)
-
-            _overwrite(absolutefpath, all_zeros)
-            _overwrite(absolutefpath, all_ones)
-            _overwrite(absolutefpath, random_pattern)
-
-    except Exception as excep:
-        log.err("Unable to perform secure overwrite for file %s: %s",
-                absolutefpath, excep)
-
-    finally:
-        try:
-            os.remove(absolutefpath)
-        except OSError as excep:
-            log.err("Unable to perform unlink operation on file %s: %s",
-                    absolutefpath, excep)
-
-    log.debug("Performed deletion of file: %s", absolutefpath)
-
-
 def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
     """
     check that an 'untrusted_path' matches a 'trusted_absolute_path' prefix
