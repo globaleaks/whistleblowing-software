@@ -56,15 +56,14 @@
       <div id="Loader"></div>
     </div>
 
-    <div id="PageContent" data-ng-if="started" data-ng-class="Utils.classExtension()">
+    <div id="Pagecontent" data-ng-if="started" data-ng-class="Utils.classExtension()">
       <div data-ng-if="!public.node.root_tenant && public.node.mode === 'demo'" data-ng-include="'views/partials/demo.html'"></div>
       <div data-ng-if="Utils.showPrivacyBadge()" data-ng-include="'views/partials/privacybadge.html'"></div>
       <div data-ng-if="!embedded" data-ng-include="'views/partials/header.html'"></div>
       <div id="MessagesConsoleBox" data-ng-include="'views/partials/messageconsole.html'"></div>
       <div id="ContentBox" data-ng-view=""></div>
+      <footer id="FooterBox" data-ng-if="started && !embedded" data-ng-include="'views/partials/footer.html'"></footer>
     </div>
-
-    <footer id="FooterBox" data-ng-if="started && !embedded" data-ng-include="'views/partials/footer.html'"></footer>
 
     <!-- build:js js/scripts.js -->
     <script src="lib/js/qrious.min.js"></script>

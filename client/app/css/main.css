@@ -10,10 +10,6 @@ html, body {
   min-height: 400px;
 }
 
-#PageContent {
-  flex: 1 0 auto;
-}
-
 #ContentBox, #NoScript, #FooterBox, #DemoBadge {
   padding: 2rem;
 }
