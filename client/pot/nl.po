@@ -28,6 +28,7 @@
 # Meteor 0id, 2019
 # Niels ten Oever <niels@digitaldissidents.org>, 2013
 # Niels ten Oever <niels@digitaldissidents.org>, 2013
+# Paco Mens <mens@freepressunlimited.org>, 2019
 # Teun Gautier <gautier@groene.nl>, 2013
 # Raf Rasenberg <raf@webconexus.nl>, 2019
 # Robin van der Vliet <info@robinvandervliet.nl>, 2015
@@ -39,7 +40,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-07 14:51+0000\n"
+"PO-Revision-Date: 2019-11-20 13:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -193,10 +194,10 @@ msgid "Preview"
 msgstr "Voorbeeld"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "De klokkenluider heeft de laatste update al gelezen"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "De klokkenluider heeft de laatste update nog niet gelezen"
 
 msgid "Move up"
 msgstr "Omhoog"
@@ -669,7 +670,7 @@ msgid "Send a test email to your email address."
 msgstr "Verstuur een mailtje om je e-mailadres te testen."
 
 msgid "Block the submission"
-msgstr ""
+msgstr "Blokkeer de inzending"
 
 msgid "Select the context of your submission:"
 msgstr "Selecteer de context van uw inzending:"
@@ -707,7 +708,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr ""
+msgstr "Het gekozen wachtwoord is te zwak. Een goed wachtwoord moet tenminste 10 tekens bevatten, waaronder een hoofdletter, kleine letter, cijfer, en een symbool."
 
 msgid "The new password must be different from the current one."
 msgstr "Het nieuwe wachtwoord moet verschillen van het huidige."
@@ -719,13 +720,13 @@ msgid "The two passwords do not match"
 msgstr "De wachtwoorden komen niet overeen"
 
 msgid "The new password must differ from the previous."
-msgstr ""
+msgstr "Het nieuwe wachtwoord moet anders zijn dan de vorige."
 
 msgid "Proceed"
 msgstr "Gaat u verder"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr ""
+msgstr "Zet two-factor-authentication aan voordat je verdergaat."
 
 msgid "Disable submissions"
 msgstr "Inzendingen uitschakelen"
@@ -757,7 +758,7 @@ msgid "Do not expose users' names"
 msgstr "Gebruikersnamen niet prijsgeven"
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgstr "Sta de volgende websites toe om het platform weer te geven door middel van iframes"
 
 msgid "Enable custom privacy panel"
 msgstr "Gepersonaliseerd privacy-paneel inschakelen"
@@ -788,7 +789,7 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Stel deze instellingen alleen bij als u weet wat u doet."
 
 msgid "Require two factor authentication"
-msgstr ""
+msgstr "Vereis two-factor-authentication"
 
 msgid "Password change interval"
 msgstr "Wachtwoord-wijzigingsinterval"
@@ -860,7 +861,7 @@ msgid "Log accesses of internal users"
 msgstr "Log toegang door interne-gebruikers"
 
 msgid "Enable custodian user role"
-msgstr ""
+msgstr "Activeer de custodian gebruikersrol"
 
 msgid "Enable scoring system"
 msgstr "Waarderingssysteem inschakelen"
@@ -1061,7 +1062,7 @@ msgid "Let recipients upload files to whistleblowers"
 msgstr "Sta ontvanger toe om bestanden te versturen voor klokkenluiders"
 
 msgid "Scoring system options"
-msgstr ""
+msgstr "Beoordelingssysteem opties"
 
 msgid "Threshold"
 msgstr "Drempelwaarde"
@@ -1127,7 +1128,7 @@ msgid "Test the configuration"
 msgstr "Test de instellingen"
 
 msgid "Reset SMTP configuration"
-msgstr ""
+msgstr "Reset SMTP configuratie"
 
 msgid "Template"
 msgstr "Sjabloon"
@@ -1160,7 +1161,7 @@ msgid "Configuration in progress"
 msgstr "Configuratie wordt uitgevoerd"
 
 msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
+msgstr "Het platform zal bereikbaar zijn via HTTPS op het volgende adres:"
 
 msgid "Hostname"
 msgstr "Hostnaam"
@@ -1487,7 +1488,7 @@ msgid "Reset password"
 msgstr "Wachtwoord resetten"
 
 msgid "Disable two factor authentication"
-msgstr ""
+msgstr "Deactiveer two-factor-authentication"
 
 msgid "Force password change"
 msgstr "Forceer wachtwoord verandering"
@@ -1558,7 +1559,7 @@ msgid "Forgot password?"
 msgstr "Wachtwoord vergeten?"
 
 msgid "Enter the two factor authentication code"
-msgstr ""
+msgstr "Vul de two-factor-authentication code in"
 
 msgid "Authentication failed"
 msgstr "Authenticatie is mislukt"
@@ -1609,16 +1610,16 @@ msgid "Please note that all the associated data will be permanently lost."
 msgstr "Let op, alle hiermee verbonden data gaat permanent verloren."
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
+msgstr "Dit is een test platform, gebruik het niet voor echte inzendingen."
 
 msgid "Attention!"
 msgstr "Opgelet!"
 
 msgid "Install an authenticator app on your phone"
-msgstr ""
+msgstr "Installeer een authenticatie app op je telefoon"
 
 msgid "Scan the QR code with the app"
-msgstr ""
+msgstr "Scan de QR code met de app"
 
 msgid "Enable two factor authentication"
 msgstr "Twee-factor-authenticatie inschakelen"
@@ -1627,13 +1628,13 @@ msgid "Close"
 msgstr "Sluiten"
 
 msgid "Your encryption recovery key is:"
-msgstr ""
+msgstr "De herstelcode voor de versleuteling is: "
 
 msgid ""
 "Please annotate and store this key in a safe place. It will be necessary if "
 "you lose your personal password to recover the access to your account with "
 "no data loss."
-msgstr ""
+msgstr "Leg deze code vast op een veilige plaats. Deze zal nodig zijn als u uw persoonlijke wachtwoord kwijt raakt om de toegang tot uw account te herstellen zonder het verlies van data."
 
 msgid "Welcome!"
 msgstr "Welkom"
@@ -1718,10 +1719,10 @@ msgid "Show"
 msgstr "Tonen"
 
 msgid "Set up email encryption by providing a PGP public key"
-msgstr ""
+msgstr "Versleuteling instellen met een PGP-publieke sleutel"
 
 msgid "Get the encryption recovery key"
-msgstr ""
+msgstr "Ontvang de herstelcode voor de versleuteling"
 
 msgid "Current password"
 msgstr "Huidig wachtwoord"
@@ -1746,7 +1747,7 @@ msgid "Enter a name for the copy"
 msgstr "Voer een naam in voor de kopie"
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "Selecteer een bestand of sleep het hierheen."
 
 msgid "Uploading files…"
 msgstr "Uploaden bestanden..."
@@ -1767,19 +1768,19 @@ msgid "Size:"
 msgstr "Grootte:"
 
 msgid "Enable the Ricochet panel"
-msgstr ""
+msgstr "Activeer de Ricochet panel"
 
 msgid "Address"
 msgstr "Adres 2"
 
 msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
+msgstr "Chat anoniem met ons door middel van de Ricochet applicatie"
 
 msgid "To chat with us use the following Ricochet address:"
-msgstr ""
+msgstr "Gebruik het volgende Ricochet adres om met ons te chatten:"
 
 msgid "Download Ricochet at:"
-msgstr ""
+msgstr "Download Ricochet hier:"
 
 msgid "The connection is not secure."
 msgstr "De verbinding is onbeveiligd."
@@ -1929,7 +1930,7 @@ msgid "These files have been attached to your submission by the recipients."
 msgstr "Deze bestanden zijn door de ontvangers als bijlage toegevoegd aan jouw inzending."
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "De ingediende herstelcode is ongeldig."
 
 msgid "The provided reset token is invalid or expired."
 msgstr "De ingediende herstel token is ongeldig of verlopen."
@@ -1940,11 +1941,11 @@ msgid ""
 msgstr "Voer de gebruikersnaam van je account, of je e-mailadres in om een wachtwoordherstel aan te vragen."
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "Voer je e-mailadres in om een wachtwoordherstel aan te vragen."
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr ""
+msgstr "Vul de herstelcode voor de versleuteling in om de wachtwoord reset procedure te voltooien"
 
 msgid "Password reset requested."
 msgstr "Wachtwoord veranderen aangevraagd."
@@ -1973,7 +1974,7 @@ msgstr "Kijk in je postvak-in om het te activeren."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "Het platform wordt automatisch verwijderd als het niet binnen 24 uur wordt geactiveerd."
 
 msgid "Sign up"
 msgstr "Aanmelden"
@@ -2017,7 +2018,7 @@ msgid ""
 "This platform makes use of the GlobaLeaks software designed by the Hermes "
 "Center for Transparency and Digital Human Rights to protect the identity of "
 "the whistleblower."
-msgstr ""
+msgstr "Dit platform maakt gebruik van GlobaLeaks software ontwikkeld door the Hermes Center for Transparency and Digital Human Rights om de identiteit van de klokkenluider te beschermen."
 
 msgid "Please support Hermes through their donation page."
 msgstr "Steun Hermes via haar donatiepagina"
@@ -2046,7 +2047,7 @@ msgid "Recipients selected:"
 msgstr "Ontvangers geselecteerd:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr ""
+msgstr "Het maximum aantal selecteerbare ontvangers is bereikt."
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -2307,7 +2308,7 @@ msgid "Email change request"
 msgstr "E-mail veranderingsverzoek"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "Van: {Author}"
 
 msgid "Date: {EventTime}"
 msgstr "Datum: {EventTime}"
@@ -2322,7 +2323,7 @@ msgid "Label: {TipLabel}"
 msgstr "Label: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
+msgstr "Status: {TipStatus}"
 
 msgid "Context: {ContextName}"
 msgstr "Context: {ContextName}"
@@ -2409,7 +2410,7 @@ msgstr "Nieuw bericht"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr ""
+msgstr "Je ontvangt deze e-mail omdat een wachtwoord reset is aangevraagd voor dit account: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
