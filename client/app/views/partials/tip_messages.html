@@ -1,16 +1,14 @@
 <div id="TipCommunicationMessages" class="card card-default" data-ng-init="collapsed = false">
-  <div class="card-header" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
-    <div>
-      <span data-translate>Private messages</span>
-      <span class="float-right">
-        <i data-ng-if="!collapsed" class="fa fa-caret-square-up" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>
-        <i data-ng-if="collapsed" class="fa fa-caret-square-down" uib-popover="{{'Expand' | translate}}" popover-placement="left"></i>
-      </span>
-    </div>
+  <div class="card-header clearfix" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
+    <span data-translate>Private messages</span>
+    <span class="float-right">
+      <i data-ng-if="!collapsed" class="fa fa-caret-square-up" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>
+      <i data-ng-if="collapsed" class="fa fa-caret-square-down" uib-popover="{{'Expand' | translate}}" popover-placement="left"></i>
+    </span>
   </div>
   <div class="card-body" data-ng-show="!collapsed">
     <div data-ng-if="Authentication.session.role !== 'whistleblower' || tip.enable_two_way_messages" class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 clearfix">
         <div class="form-inline">
           <span data-ng-if="Authentication.session.role === 'whistleblower'">
             <span><span data-translate>Recipient</span>:<span>&nbsp;</span></span>
@@ -20,7 +18,7 @@
         <textarea id="TipCommunicationMessagesInput" data-ng-model="tip.newMessageContent" maxlength="4096" class="form-control" autocomplete="off" dynamic-textarea></textarea>
         <span class="float-right">{{tip.newMessagesContent.length ? tip.newMessagesContent.length : '0'}}/4096</span>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-12 clearfix">
         <span class="float-left">
           <button id="message-action-send" class="btn btn-sm btn-primary" data-ng-click="newMessage()" data-ng-disabled="!tip.newMessageContent || (Authentication.session.role === 'whistleblower' && !tip.msg_receiver_selected)">
             <i class="fa fa-comment"></i>

@@ -1,9 +1,9 @@
-<div id="SubmissionStepReceiver" class="receiverCards clearfix">
+<div id="SubmissionStepReceiver" class="receiverCards">
   <div id="StepTitle" data-ng-if="!show_steps_navigation_bar" data-translate>Recipient selection</div>
   <div class="stepDescription">{{submission.context.recipients_clarification}}</div>
-  <div data-ng-if="submission.context.maximum_selectable_receivers !== 0 && !submission.context.select_all_receivers" id="MaxSelectableReceiverBox" class="clearfix">
+  <div data-ng-if="submission.context.maximum_selectable_receivers !== 0 && !submission.context.select_all_receivers" id="MaxSelectableReceiverBox">
     <div><span data-translate>Recipients selected:</span> {{submission.selected_receivers_count}}/{{submission.context.maximum_selectable_receivers}}</div>
-    <div class="red" data-ng-if="submission.selected_receivers_count === submission.context.maximum_selectable_receivers" data-translate>You have reached the maximum number of selectable recipients.</div>
+    <div class="text-danger" data-ng-if="submission.selected_receivers_count === submission.context.maximum_selectable_receivers" data-translate>You have reached the maximum number of selectable recipients.</div>
   </div>
   <div id="ReceiverSelectionBox" class="row">
     <div data-ng-repeat="receiver in submission.receivers | orderBy:receiversOrderPredicate" id="receiver-{{$index}}" data-ng-class="{'col-md-6': !submission.context.show_small_receiver_cards, 'col-md-3': submission.context.show_small_receiver_cards}" data-ng-click="switch_selection(receiver)">

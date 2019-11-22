@@ -1,7 +1,7 @@
 <div id="TipInfoBox" class="card card-default" data-ng-init="collapsed = tip.data.whistleblower_identity_provided; submission = {}">
   <div class="card-header" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <div>
-      <span>
+      <span class="clearfix">
 	<span>
           <span data-ng-if="tip.data.whistleblower_identity" data-translate>Identity</span>
           <span data-ng-if="!tip.data.whistleblower_identity">{{whistleblower_identity_field.label}}</span>

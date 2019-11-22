@@ -65,17 +65,17 @@
       <form id="user-{{$index}}" name="editUser" data-ng-controller="AdminUserEditorCtrl" novalidate>
         <div class="configItem">
           <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
-              <span class="col-md-7 editorHeaderTitle">
-                <span>{{user.name}}</span>
-                <span class="badge badge-primary">
-                  <span data-ng-switch="user.role">
-                    <span data-ng-switch-when="admin" data-translate>Admin</span>
-                    <span data-ng-switch-when="receiver" data-translate>Recipient</span>
-                    <span data-ng-switch-when="custodian" data-translate>Custodian</span>
-                  </span>
+            <span class="col-md-7 editorHeaderTitle">
+              <span>{{user.name}}</span>
+              <span class="badge badge-primary">
+                <span data-ng-switch="user.role">
+                  <span data-ng-switch-when="admin" data-translate>Admin</span>
+                  <span data-ng-switch-when="receiver" data-translate>Recipient</span>
+                  <span data-ng-switch-when="custodian" data-translate>Custodian</span>
                 </span>
               </span>
-            <span class="col-md-5">
+            </span>
+            <span class="col-md-5 clearfix">
                 <span class="float-right">
                   <button class="btn btn-sm btn-secondary"
                           data-ng-show="!editing"

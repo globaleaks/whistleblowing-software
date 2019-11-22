@@ -33,7 +33,7 @@
           <div class="configItem">
             <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
               <span class="col-md-7 editorHeaderTitle">{{context.name}}</span>
-              <span class="col-md-5">
+              <span class="col-md-5 clearfix">
                 <span class="float-right">
                   <button data-ng-if="!$first" class="btn btn-sm btn-primary" data-ng-click="moveUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
                     <i class="fa fa-chevron-up"></i>

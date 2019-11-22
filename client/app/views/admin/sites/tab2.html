@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="editorTitle">
+    <div class="editorTitle clearfix">
       <span data-translate>Sites</span>
       <button class="btn btn-sm btn-primary show-add-tenant-btn" data-ng-click="toggleAddTenant()">
         <i class="fa fa-plus"></i>
@@ -33,7 +33,7 @@
           <option value="eat">EAT</option>
         </select>
       </div>
-      <div class="form-group">
+      <div class="form-group clearfix">
         <button id="add-btn" class="float-left btn btn-primary" data-ng-disabled="newTenantForm.$invalid" data-ng-click="addTenant(); toggleAddTenant()" type="button">
           <i class="fa fa-plus"></i>
           <span data-translate>Add</span>
@@ -65,7 +65,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6" data-ng-if="tenant.id > 1">
+            <div class="col-md-6 clearfix" data-ng-if="tenant.id > 1">
                 <span class="float-right">
                   <span data-ng-show="tenant.active" class="btn btn-sm btn-primary"
                         data-ng-click="toggleActivation($event)"

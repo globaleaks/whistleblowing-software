@@ -1,5 +1,5 @@
 <div data-ng-hide="Authentication.session.password_change_needed" class="mb-2">
-  <div id="LanguagePickerBox" data-ng-if="public.node.languages_enabled.length > 1" class="mb-2">
+  <div id="LanguagePickerBox" data-ng-if="public.node.languages_enabled.length > 1" class="mb-2 clearfix">
     <div class="float-right">
       <span data-ng-if="languages_enabled_selector.length < 4" data-ng-repeat="item in languages_enabled_selector">
         <a class="language-link" data-ng-class="{'language-link-selected': GLTranslate.state.language === item.code}" data-uib-popover="{{item.native}} ({{item.name}})" data-popover-placement="bottom" data-ng-click="GLTranslate.state.language = item.code" href="">{{item.native}}</a>
@@ -8,7 +8,7 @@
       <select data-ng-if="languages_enabled_selector.length > 3" class="form-control" data-ng-model="GLTranslate.state.language" data-ng-options="item.code as item.ui for item in languages_enabled_selector"></select>
     </div>
   </div>
-  <div id="LoginStatusBox" data-ng-if="Utils.showUserStatusBox()">
+  <div id="LoginStatusBox" class="clearfix" data-ng-if="Utils.showUserStatusBox()">
     <div class="float-right">
       <span id="UsernameBox" data-ng-if="Authentication.session.role !== 'whistleblower'">
         <label>{{preferences.name}}</label>
@@ -27,7 +27,7 @@
       </span>
     </div>
   </div>
-  <div id="LoginFormBox" data-ng-if="Utils.showLoginForm()">
+  <div id="LoginFormBox" class="clearfix" data-ng-if="Utils.showLoginForm()">
     <div class="float-right">
       <label for="receipt" data-translate>Have you already filed a submission? Enter your receipt.</label>
       <div data-ng-include="'views/partials/wb_login.html'"></div>

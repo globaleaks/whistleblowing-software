@@ -24,7 +24,7 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="form-group">
+            <div class="form-group clearfix">
               <button id="add-step-btn" class="float-left btn btn-primary" data-ng-disabled="newStep.$invalid" data-ng-click="add_step(); toggleAddStep()">
                 <i class="fa fa-plus"></i>
                 <span data-translate>Add</span>
@@ -44,7 +44,7 @@
               <span class="stepIndex badge badge-secondary">{{$index + 1}}</span>
               <span class="stepLabel">{{step.label}}</span>
             </span>
-            <span class="col-md-5">
+            <span class="col-md-5 clearfix">
               <span class="float-right">
                 <button data-ng-show="!$first" class="actionButton btn btn-sm btn-primary" data-ng-click="moveUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
                   <i class="fa fa-chevron-up"></i>

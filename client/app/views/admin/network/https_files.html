@@ -2,7 +2,7 @@
 <br />
 <div class="https-file-res">
   <div class="card card-default priv-key mb-1">
-    <div class="card-body" data-ng-class="{'disabled-interface': tls_config.enabled || tls_config.acme}">
+    <div class="card-body clearfix" data-ng-class="{'disabled-interface': tls_config.enabled || tls_config.acme}">
       <span data-ng-class="statusClass(tls_config.files.priv_key)">
         <span class="font-weight-bold">1</span>
         <span class="font-weight-bold" data-translate>Private Key</span>
@@ -27,7 +27,7 @@
   </div>
 
   <div data-ng-if="tls_config.files.priv_key.gen && !tls_config.acme" class="card card-default csr mb-1">
-    <div class="card-body" data-ng-class="{'disabled-interface': state < 0 || tls_config.acme}">
+    <div class="card-body clearfix" data-ng-class="{'disabled-interface': state < 0 || tls_config.acme}">
       <span data-ng-class="statusClass(tls_config.files.csr)">
         <span class="font-weight-bold">2</span>
         <span class="font-weight-bold" data-translate>Certificate Signing Request</span>
@@ -46,7 +46,7 @@
           <div data-ng-include="'views/admin/network/https_csr_gen.html'"></div>
         </div>
       </span>
-      <span data-ng-if="tls_config.files.csr.set">
+      <span data-ng-if="tls_config.files.csr.set" class="clearfix">
         <span class="float-right">
           <button id="downloadCsr" class="btn btn-sm btn-primary" data-ng-click="downloadFile(file_resources.csr)">
             <i class="fa fa-file-export"></i>
@@ -62,7 +62,7 @@
   </div>
 
   <div class="card card-default cert mb-1">
-    <div class="card-body" data-ng-class="{'disabled-interface': state <= 0 || tls_config.acme}">
+    <div class="card-body clearfix" data-ng-class="{'disabled-interface': state <= 0 || tls_config.acme}">
       <span data-ng-class="statusClass(tls_config.files.cert)">
         <span class="font-weight-bold">{{(!tls_config.acme && tls_config.files.priv_key.gen) ? '3' : '2'}}</span>
         <span class="font-weight-bold" data-translate>Certificate</span>
@@ -91,7 +91,7 @@
   </div>
 
   <div class="card card-default chain mb-1">
-    <div class="card-body" data-ng-class="{'disabled-interface': state <= 1 || tls_config.acme}">
+    <div class="card-body clearfix" data-ng-class="{'disabled-interface': state <= 1 || tls_config.acme}">
       <span data-ng-class="statusClass(tls_config.files.chain)">
         <span class="font-weight-bold">{{(tls_config.acme && tls_config.files.priv_key.gen) ? '4' : '3'}}</span>
         <span class="font-weight-bold" data-translate>Intermediate Certificates</span>
