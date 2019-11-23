@@ -14,7 +14,6 @@ from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE
 from six import text_type, binary_type
 from twisted.internet import ssl
 
-
 # OpenSSL mocks
 SSL.OP_SINGLE_ECDH_USE = 0x00080000
 SSL.OP_NO_RENEGOTIATION = 0x40000000
@@ -31,6 +30,9 @@ TLS_CIPHER_LIST = b'TLS13-AES-256-GCM-SHA384:' \
                   b'ECDHE-RSA-CHACHA20-POLY1305:' \
                   b'ECDHE-ECDSA-AES256-SHA384:' \
                   b'ECDHE-RSA-AES256-SHA384'
+
+
+trustRoot = ssl.platformTrust()
 
 
 class ValidationException(Exception):
@@ -155,6 +157,17 @@ def new_tls_client_context():
 
     ctx.set_mode(SSL.MODE_RELEASE_BUFFERS)
     ctx.set_session_cache_mode(SSL.SESS_CACHE_OFF)
+
+    # It'd be nice if pyOpenSSL let us pass None here for this behavior (as
+    # the underlying OpenSSL API call allows NULL to be passed).  It
+    # doesn't, so we'll supply a function which does the same thing.
+    def _verifyCallback(conn, cert, errno, depth, preverify_ok):
+        return preverify_ok
+
+    ctx.set_verify(SSL.VERIFY_PEER, _verifyCallback)
+    ctx.set_verify_depth(100)
+
+    trustRoot._addCACertsToContext(ctx)
 
     return ctx
 
