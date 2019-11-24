@@ -472,7 +472,7 @@ var GLClient = angular.module("GLClient", [
         }
       }).
       when("/", {
-        templateUrl: "views/main.html",
+        templateUrl: "views/whistleblower/main.html",
         controller: "MainCtrl",
         header_title: ""
       }).
