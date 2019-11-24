@@ -22,14 +22,9 @@ class Node_v_32(models.Model):
     languages_enabled = Column(JSON, default=LANGUAGES_SUPPORTED_CODES)
     default_language = Column(UnicodeText, default=u'en')
     default_timezone = Column(Integer, default=0)
-    default_password = Column(UnicodeText, default=u'globaleaks')
     description = Column(JSON, default=dict)
     presentation = Column(JSON, default=dict)
     footer = Column(JSON, default=dict)
-    security_awareness_title = Column(JSON, default=dict)
-    security_awareness_text = Column(JSON, default=dict)
-    maximum_namesize = Column(Integer, default=128)
-    maximum_textsize = Column(Integer, default=4096)
     maximum_filesize = Column(Integer, default=30)
     tor2web_admin = Column(Boolean, default=True)
     tor2web_custodian = Column(Boolean, default=True)
@@ -40,43 +35,32 @@ class Node_v_32(models.Model):
     disable_encryption_warnings = Column(Boolean, default=False)
     allow_iframes_inclusion = Column(Boolean, default=False)
     submission_minimum_delay = Column(Integer, default=10)
-    submission_maximum_ttl = Column(Integer, default=10800)
     can_postpone_expiration = Column(Boolean, default=False)
     can_delete_submission = Column(Boolean, default=False)
     can_grant_permissions = Column(Boolean, default=False)
-    ahmia = Column(Boolean, default=False)
     allow_indexing = Column(Boolean, default=False)
     wizard_done = Column(Boolean, default=False)
 
     disable_submissions = Column(Boolean, default=False)
     disable_privacy_badge = Column(Boolean, default=False)
-    disable_security_awareness_badge = Column(Boolean, default=False)
-    disable_security_awareness_questions = Column(Boolean, default=False)
     disable_key_code_hint = Column(Boolean, default=False)
 
     enable_captcha = Column(Boolean, default=True)
-    enable_proof_of_work = Column(Boolean, default=True)
 
     enable_experimental_features = Column(Boolean, default=False)
 
     whistleblowing_question = Column(JSON, default=dict)
     whistleblowing_button = Column(JSON, default=dict)
-    whistleblowing_receipt_prompt = Column(JSON, default=dict)
 
     simplified_login = Column(Boolean, default=True)
 
     enable_custom_privacy_badge = Column(Boolean, default=False)
-    custom_privacy_badge_tor = Column(JSON, default=dict)
-    custom_privacy_badge_none = Column(JSON, default=dict)
 
     header_title_homepage = Column(JSON, default=dict)
     header_title_submissionpage = Column(JSON, default=dict)
     header_title_receiptpage = Column(JSON, default=dict)
     header_title_tippage = Column(JSON, default=dict)
 
-    widget_comments_title = Column(JSON, default=dict)
-    widget_messages_title = Column(JSON, default=dict)
-    widget_files_title = Column(JSON, default=dict)
 
     landing_page = Column(UnicodeText, default=u'homepage')
 
@@ -138,7 +122,6 @@ class User_v_32(models.Model):
     username = Column(UnicodeText)
     password = Column(UnicodeText)
     salt = Column(UnicodeText)
-    deletable = Column(Boolean, default=True)
     name = Column(UnicodeText)
     description = Column(JSON)
     public_name = Column(UnicodeText)
@@ -150,11 +133,9 @@ class User_v_32(models.Model):
     timezone = Column(Integer)
     password_change_needed = Column(Boolean, default=True)
     password_change_date = Column(DateTime, default=datetime_null)
-    pgp_key_info = Column(UnicodeText, default=u'')
     pgp_key_fingerprint = Column(UnicodeText, default=u'')
     pgp_key_public = Column(UnicodeText, default=u'')
     pgp_key_expiration = Column(DateTime, default=datetime_null)
-    pgp_key_status = Column(UnicodeText, default=u'disabled')
     img_id = Column(UnicodeText(36))
 
 

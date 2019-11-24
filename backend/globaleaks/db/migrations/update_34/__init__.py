@@ -27,14 +27,9 @@ class Node_v_33(models.Model):
     receipt_salt = Column(UnicodeText)
     languages_enabled = Column(JSON)
     default_language = Column(UnicodeText, default=u'en')
-    default_password = Column(UnicodeText, default=u'globaleaks')
     description = Column(JSON, default=dict)
     presentation = Column(JSON, default=dict)
     footer = Column(JSON, default=dict)
-    security_awareness_title = Column(JSON, default=dict)
-    security_awareness_text = Column(JSON, default=dict)
-    maximum_namesize = Column(Integer, default=128)
-    maximum_textsize = Column(Integer, default=4096)
     maximum_filesize = Column(Integer, default=30)
     tor2web_admin = Column(Boolean, default=True)
     tor2web_custodian = Column(Boolean, default=True)
@@ -45,35 +40,24 @@ class Node_v_33(models.Model):
     disable_encryption_warnings = Column(Boolean, default=False)
     allow_iframes_inclusion = Column(Boolean, default=False)
     submission_minimum_delay = Column(Integer, default=10)
-    submission_maximum_ttl = Column(Integer, default=10800)
     can_postpone_expiration = Column(Boolean, default=False)
     can_delete_submission = Column(Boolean, default=False)
     can_grant_permissions = Column(Boolean, default=False)
-    ahmia = Column(Boolean, default=False)
     allow_indexing = Column(Boolean, default=False)
     wizard_done = Column(Boolean, default=False)
     disable_submissions = Column(Boolean, default=False)
     disable_privacy_badge = Column(Boolean, default=False)
-    disable_security_awareness_badge = Column(Boolean, default=False)
-    disable_security_awareness_questions = Column(Boolean, default=False)
     disable_key_code_hint = Column(Boolean, default=False)
     enable_captcha = Column(Boolean, default=True)
-    enable_proof_of_work = Column(Boolean, default=True)
     enable_experimental_features = Column(Boolean, default=False)
     whistleblowing_question = Column(JSON, default=dict)
     whistleblowing_button = Column(JSON, default=dict)
-    whistleblowing_receipt_prompt = Column(JSON, default=dict)
     simplified_login = Column(Boolean, default=True)
     enable_custom_privacy_badge = Column(Boolean, default=False)
-    custom_privacy_badge_tor = Column(JSON, default=dict)
-    custom_privacy_badge_none = Column(JSON, default=dict)
     header_title_homepage = Column(JSON, default=dict)
     header_title_submissionpage = Column(JSON, default=dict)
     header_title_receiptpage = Column(JSON, default=dict)
     header_title_tippage = Column(JSON, default=dict)
-    widget_comments_title = Column(JSON, default=dict)
-    widget_messages_title = Column(JSON, default=dict)
-    widget_files_title = Column(JSON, default=dict)
     landing_page = Column(UnicodeText, default=u'homepage')
     contexts_clarification = Column(JSON, default=dict)
     show_small_context_cards = Column(Boolean, default=False)
@@ -91,21 +75,13 @@ class Node_v_33(models.Model):
         'description',
         'presentation',
         'footer',
-        'security_awareness_title',
-        'security_awareness_text',
         'whistleblowing_question',
         'whistleblowing_button',
-        'whistleblowing_receipt_prompt',
-        'custom_privacy_badge_tor',
-        'custom_privacy_badge_none',
         'header_title_homepage',
         'header_title_submissionpage',
         'header_title_receiptpage',
         'header_title_tippage',
         'contexts_clarification',
-        'widget_comments_title',
-        'widget_messages_title',
-        'widget_files_title'
     ]
 
 
@@ -126,8 +102,6 @@ class Notification_v_33(models.Model):
     admin_anomaly_disk_medium = Column(JSON)
     admin_anomaly_disk_high = Column(JSON)
     admin_anomaly_activities = Column(JSON)
-    admin_test_static_mail_template = Column(JSON)
-    admin_test_static_mail_title = Column(JSON)
     tip_mail_template = Column(JSON)
     tip_mail_title = Column(JSON)
     file_mail_template = Column(JSON)
@@ -156,10 +130,8 @@ class Notification_v_33(models.Model):
     disable_admin_notification_emails = Column(Boolean, default=False)
     disable_custodian_notification_emails = Column(Boolean, default=False)
     disable_receiver_notification_emails = Column(Boolean, default=False)
-    send_email_for_every_event = Column(Boolean, default=True)
     tip_expiration_threshold = Column(Integer, default=72)
     notification_threshold_per_hour = Column(Integer, default=20)
-    notification_suspension_time = Column(Integer, default=(2 * 3600))
     exception_email_address = Column(UnicodeText, default=u'globaleaks-stackexception@lists.globaleaks.org')
     exception_email_pgp_key_fingerprint = Column(UnicodeText, default=u'')
     exception_email_pgp_key_public = Column(UnicodeText, default=u'')
@@ -174,8 +146,6 @@ class Notification_v_33(models.Model):
         'admin_anomaly_activities',
         'admin_pgp_alert_mail_title',
         'admin_pgp_alert_mail_template',
-        'admin_test_static_mail_template',
-        'admin_test_static_mail_title',
         'pgp_alert_mail_title',
         'pgp_alert_mail_template',
         'tip_mail_template',

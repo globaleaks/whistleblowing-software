@@ -381,7 +381,6 @@ class User_v_38(Model):
     username = Column(UnicodeText, default=u'')
     password = Column(UnicodeText, default=u'')
     salt = Column(UnicodeText)
-    deletable = Column(Boolean, default=True)
     name = Column(UnicodeText, default=u'')
     description = Column(JSON, default=dict)
     public_name = Column(UnicodeText, default=u'')
@@ -444,23 +443,6 @@ class MigrationScript(MigrationBase):
                         new_obj.var_name = old_obj.var_name
                 elif key == 'value':
                     new_obj.value = old_obj.value['v']
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)
-
-    def migrate_ConfigL10N(self):
-        old_objs = self.session_old.query(self.model_from['ConfigL10N'])
-        for old_obj in old_objs:
-            new_obj = self.model_to['ConfigL10N']()
-            for key in [c.key for c in new_obj.__table__.columns]:
-                if key == 'tid':
-                    new_obj.tid = 1
-                elif key == 'var_name':
-                    if old_obj.var_name == 'custom_privacy_badge_none':
-                        new_obj.var_name = 'custom_privacy_badge'
-                    else:
-                        new_obj.var_name = old_obj.var_name
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 

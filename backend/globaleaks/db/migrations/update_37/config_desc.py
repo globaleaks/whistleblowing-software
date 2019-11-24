@@ -55,11 +55,8 @@ GLConfig_v_37 = {
         'tb_download_link': Unicode(default=u'https://www.torproject.org/download/download'),
 
         'default_language': Unicode(default=u'en'),
-        'default_password': Unicode(default=u'globaleaks'),
 
         # Advanced settings
-        'maximum_namesize': Int(default=128),
-        'maximum_textsize': Int(default=4096),
         'maximum_filesize': Int(default=30),
         'tor2web_admin': Bool(default=True),
         'tor2web_custodian': Bool(default=True),
@@ -70,7 +67,6 @@ GLConfig_v_37 = {
         'disable_encryption_warnings': Bool(default=False),
         'allow_iframes_inclusion': Bool(default=False),
         'submission_minimum_delay': Int(default=10),
-        'submission_maximum_ttl': Int(default=10800),  # Seconds
 
         # privileges of receivers
         'can_postpone_expiration': Bool(default=False),
@@ -83,12 +79,9 @@ GLConfig_v_37 = {
 
         'disable_submissions': Bool(default=False),
         'disable_privacy_badge': Bool(default=False),
-        'disable_security_awareness_badge': Bool(default=False),
-        'disable_security_awareness_questions': Bool(default=False),
         'disable_key_code_hint': Bool(default=False),
 
         'enable_captcha': Bool(default=True),
-        'enable_proof_of_work': Bool(default=True),
 
         'enable_experimental_features': Bool(default=False),
 

@@ -112,7 +112,6 @@ class Field_v_45(Model):
     editable = Column(Boolean, default=True, nullable=False)
     template_id = Column(UnicodeText(36))
     template_override_id = Column(UnicodeText(36))
-    encrypt = Column(Boolean, default=True, nullable=False)
 
 
 class InternalFile_v_45(Model):

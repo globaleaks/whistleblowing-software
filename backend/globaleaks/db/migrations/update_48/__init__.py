@@ -27,7 +27,6 @@ class Field_v_47(Model):
     editable = Column(Boolean, default=True, nullable=False)
     template_id = Column(UnicodeText(36))
     template_override_id = Column(UnicodeText(36), nullable=True)
-    encrypt = Column(Boolean, default=True, nullable=False)
 
 
 class FieldOption_v_47(Model):

@@ -13,7 +13,6 @@ class User_v_24(Model):
     username = Column(UnicodeText)
     password = Column(UnicodeText)
     salt = Column(UnicodeText)
-    deletable = Column(Boolean)
     name = Column(UnicodeText)
     description = Column(JSON)
     role = Column(UnicodeText)
@@ -24,11 +23,9 @@ class User_v_24(Model):
     timezone = Column(Integer)
     password_change_needed = Column(Boolean)
     password_change_date = Column(DateTime)
-    pgp_key_info = Column(UnicodeText)
     pgp_key_fingerprint = Column(UnicodeText)
     pgp_key_public = Column(UnicodeText)
     pgp_key_expiration = Column(DateTime)
-    pgp_key_status = Column(UnicodeText)
 
 
 class SecureFileDelete_v_24(Model):

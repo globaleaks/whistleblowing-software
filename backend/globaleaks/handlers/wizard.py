@@ -48,7 +48,6 @@ def db_wizard(session, tid, request, client_using_tor, language):
     admin_desc['mail_address'] = request['admin_mail_address']
     admin_desc['language'] = language
     admin_desc['role'] = u'admin'
-    admin_desc['deletable'] = False
     admin_desc['pgp_key_remove'] = False
 
     admin_user = db_create_user(session, tid, admin_desc, language)
@@ -63,7 +62,6 @@ def db_wizard(session, tid, request, client_using_tor, language):
     receiver_desc['mail_address'] = request['receiver_mail_address']
     receiver_desc['language'] = language
     receiver_desc['role'] = u'receiver'
-    receiver_desc['deletable'] = True
     receiver_desc['pgp_key_remove'] = False
 
     receiver_user = db_create_user(session, tid, receiver_desc, language)
