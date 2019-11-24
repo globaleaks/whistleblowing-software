@@ -916,9 +916,6 @@ msgstr "Cancel"
 msgid "Submission statuses"
 msgstr "Submission statuses"
 
-msgid "Tags"
-msgstr "Tags"
-
 msgid "Logo"
 msgstr "Logo"
 
@@ -2044,18 +2041,6 @@ msgid ""
 msgstr ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-
-msgid ""
-"This platform makes use of the GlobaLeaks software designed by the Hermes "
-"Center for Transparency and Digital Human Rights to protect the identity of "
-"the whistleblower."
-msgstr ""
-"This platform makes use of the GlobaLeaks software designed by the Hermes "
-"Center for Transparency and Digital Human Rights to protect the identity of "
-"the whistleblower."
-
-msgid "Please support Hermes through their donation page."
-msgstr "Please support Hermes through their donation page."
 
 msgid "Thank you!"
 msgstr "Thank you!"
