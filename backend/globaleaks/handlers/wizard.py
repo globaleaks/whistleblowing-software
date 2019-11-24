@@ -92,7 +92,7 @@ def db_wizard(session, tid, request, client_using_tor, language):
         node.set_val(u'hostname', tenant.subdomain + '.' + root_tenant_node.get_val(u'rootdomain'))
 
         for varname in ['reachable_via_web',
-                        'disable_key_code_hint',
+                        'enable_receipt_hint',
                         'disable_privacy_badge',
                         'simplified_login',
                         'can_delete_submission',

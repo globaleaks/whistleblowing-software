@@ -110,7 +110,7 @@ ConfigDescriptor = {
     u'disable_submissions': Bool(default=False),
     u'disable_privacy_badge': Bool(default=False),
     u'enable_disclaimer': Bool(default=False),
-    u'disable_key_code_hint': Bool(default=False),
+    u'enable_receipt_hint': Bool(default=False),
 
     u'enable_ricochet_panel': Bool(default=False),
     u'ricochet_address': Unicode(default=u''),
@@ -213,7 +213,7 @@ ConfigFilters = {
         u'disable_submissions',
         u'disable_privacy_badge',
         u'enable_disclaimer',
-        u'disable_key_code_hint',
+        u'enable_receipt_hint',
         u'enable_ricochet_panel',
         u'ricochet_address',
         u'do_not_expose_users_names',
