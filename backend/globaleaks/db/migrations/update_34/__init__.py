@@ -57,7 +57,6 @@ class Node_v_33(models.Model):
     disable_security_awareness_badge = Column(Boolean, default=False)
     disable_security_awareness_questions = Column(Boolean, default=False)
     disable_key_code_hint = Column(Boolean, default=False)
-    disable_donation_panel = Column(Boolean, default=False)
     enable_captcha = Column(Boolean, default=True)
     enable_proof_of_work = Column(Boolean, default=True)
     enable_experimental_features = Column(Boolean, default=False)

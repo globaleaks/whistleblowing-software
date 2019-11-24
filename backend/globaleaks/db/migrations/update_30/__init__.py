@@ -44,7 +44,6 @@ class Node_v_29(Model):
     disable_security_awareness_badge = Column(Boolean)
     disable_security_awareness_questions = Column(Boolean)
     disable_key_code_hint = Column(Boolean)
-    disable_donation_panel = Column(Boolean)
     enable_captcha = Column(Boolean)
     enable_proof_of_work = Column(Boolean)
     enable_experimental_features = Column(Boolean)

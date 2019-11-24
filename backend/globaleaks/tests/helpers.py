@@ -1121,7 +1121,6 @@ class MockDict:
             'disable_submissions': False,
             'disable_privacy_badge': False,
             'disable_key_code_hint': False,
-            'disable_donation_panel': False,
             'enable_ricochet_panel': False,
             'ricochet_address': u'',
             'do_not_expose_users_names': False,

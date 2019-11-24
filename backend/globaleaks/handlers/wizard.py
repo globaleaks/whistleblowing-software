@@ -94,7 +94,6 @@ def db_wizard(session, tid, request, client_using_tor, language):
         for varname in ['reachable_via_web',
                         'disable_key_code_hint',
                         'disable_privacy_badge',
-                        'disable_donation_panel',
                         'simplified_login',
                         'can_delete_submission',
                         'can_postpone_expiration',

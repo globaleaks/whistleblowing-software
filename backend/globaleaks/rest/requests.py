@@ -236,7 +236,6 @@ AdminNodeDesc = {
     'frame_ancestors': text_type,
     'disable_privacy_badge': bool,
     'disable_key_code_hint': bool,
-    'disable_donation_panel': bool,
     'enable_ricochet_panel': bool,
     'ricochet_address': text_type,
     'do_not_expose_users_names': bool,
