@@ -1,7 +1,4 @@
-GLClient.controller("CustodianCtrl", [function() {
-  //
-}]).
-controller("CustodianIdentityAccessRequestsCtrl", ["$scope",  "$http", "$route",  "$uibModal", "IdentityAccessRequests",
+GLClient.controller("CustodianIdentityAccessRequestsCtrl", ["$scope", "$http", "$route",  "$uibModal", "IdentityAccessRequests",
   function($scope, $http, $route, $uibModal, IdentityAccessRequests) {
   $scope.iars = IdentityAccessRequests.query();
 

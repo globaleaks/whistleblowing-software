@@ -9,7 +9,7 @@
              data-ng-pattern="hostname_regexp"
 	     data-ng-class="{'has-danger': adminNetForm.hostname.$error.pattern}" />
       <span class="input-group-append">
-        <button class="btn btn-success" data-ng-click="Utils.setHostname(hostname)" data-ng-disabled="hostname === admin.node.hostname" data-translate>Save</button>
+        <button class="btn btn-success" data-ng-click="Utils.setHostname(hostname)" data-ng-disabled="hostname === resources.node.hostname" data-translate>Save</button>
       </span>
     </p>
     <p class="text-danger" data-ng-show="adminNetForm.hostname.$error.pattern">
@@ -20,7 +20,7 @@
     </p>
   </form>
 </div>
-<div id="HTTPSSettings" data-ng-controller="AdminHTTPSConfigCtrl" data-ng-show="admin.node.hostname">
+<div id="HTTPSSettings" data-ng-controller="AdminHTTPSConfigCtrl" data-ng-show="resources.node.hostname">
   <div class="card card-default">
     <div class="card-body" data-ng-switch="menuState">
       <div data-ng-switch-when="setup">

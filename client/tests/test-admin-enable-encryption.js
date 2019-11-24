@@ -5,7 +5,7 @@ describe("admin configure advanced settings", function() {
 
     await element(by.css("body")).sendKeys(protractor.Key.F1);
 
-    await element(by.model("admin.node.encryption")).click();
+    await element(by.model("resources.node.encryption")).click();
 
     // save settings
     await element.all(by.css("[data-ng-click=\"updateNode()\"]")).first().click();

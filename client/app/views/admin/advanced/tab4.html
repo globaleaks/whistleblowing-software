@@ -1,49 +1,49 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>
-      <input data-ng-model="admin.node.backup" type="checkbox" />
+      <input data-ng-model="resources.node.backup" type="checkbox" />
       <span data-translate>Enable automatic backups</span>
     </label>
   </div>
 
-  <div data-ng-if="admin.node.backup" class="card.card-body">
+  <div data-ng-if="resources.node.backup" class="card.card-body">
     <div class="row">
       <div class="col-md-4 form-group">
         <label data-translate>Daily</label>
-        <input class="form-control" data-ng-model="admin.node.backup_d" type="number" min="0" />
+        <input class="form-control" data-ng-model="resources.node.backup_d" type="number" min="0" />
       </div>
 
       <div class="col-md-4 form-group">
         <label data-translate>Weekly</label>
-        <input class="form-control" data-ng-model="admin.node.backup_w" type="number" min="0" />
+        <input class="form-control" data-ng-model="resources.node.backup_w" type="number" min="0" />
       </div>
 
       <div class="col-md-4  form-group">
         <label data-translate>Montly</label>
-        <input class="form-control" data-ng-model="admin.node.backup_m" type="number" min="0" />
+        <input class="form-control" data-ng-model="resources.node.backup_m" type="number" min="0" />
       </div>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.backup_remote" type="checkbox" />
+        <input data-ng-model="resources.node.backup_remote" type="checkbox" />
         <span data-translate>Remote</span>
       </label>
     </div>
 
-    <div data-ng-if="admin.node.backup_remote">
+    <div data-ng-if="resources.node.backup_remote">
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
             <label data-translate>Server</label>
-            <input class="form-control" data-ng-model="admin.node.backup_remote_server" type="text" />
+            <input class="form-control" data-ng-model="resources.node.backup_remote_server" type="text" />
           </div>
         </div>
 
         <div class="col-md-6">
           <div class="form-group">
             <label data-translate>Port</label>
-            <input class="form-control" data-ng-model="admin.node.backup_remote_port" type="number" min="1" />
+            <input class="form-control" data-ng-model="resources.node.backup_remote_port" type="number" min="1" />
           </div>
         </div>
       </div>
@@ -52,14 +52,14 @@
         <div class="col-md-6">
           <div class="form-group">
             <label data-translate>Username</label>
-            <input class="form-control" data-ng-model="admin.node.backup_remote_username" type="text" />
+            <input class="form-control" data-ng-model="resources.node.backup_remote_username" type="text" />
           </div>
         </div>
 
         <div class="col-md-6">
           <div class="form-group">
             <label data-translate>Password</label>
-            <input class="form-control" data-ng-model="admin.node.backup_remote_password" type="password" />
+            <input class="form-control" data-ng-model="resources.node.backup_remote_password" type="password" />
           </div>
         </div>
       </div>

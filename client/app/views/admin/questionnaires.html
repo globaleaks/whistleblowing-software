@@ -1,10 +1,7 @@
-<div class="row">
-  <div id="Sidebar" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
-  <div class="col-md-9" data-ng-controller="AdminQuestionnaireCtrl">
-    <uib-tabset>
-      <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}">
-        <div class="tab-content" data-ng-include="tab.template"></div>
-      </uib-tab>
-    </uib-tabset>
-  </div>
-</div>
+<div data-ng-controller="AdminQuestionnaireCtrl">
+  <uib-tabset>
+    <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}">
+      <div class="tab-content" data-ng-include="tab.template"></div>
+    </uib-tab>
+  </uib-tabset>
+</div>L

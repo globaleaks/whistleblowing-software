@@ -30,7 +30,7 @@ angular.module("GLClient")
 
   $scope.addTenant = function() {
     $scope.newTenant.$save(function(tenant){
-      $scope.admin.tenants.push(tenant);
+      $scope.resources.tenants.push(tenant);
       $scope.newTenant = new $scope.AdminUtils.new_tenant();
     });
   };
@@ -75,7 +75,7 @@ angular.module("GLClient")
   $scope.deleteTenant = function($event) {
     $event.stopPropagation();
     $scope.Utils.deleteDialog().then(function() {
-      return $scope.Utils.deleteResource(AdminTenantResource, $scope.admin.tenants, tenant);
+      return $scope.Utils.deleteResource(AdminTenantResource, $scope.resources.tenants, tenant);
     });
   };
 }]);

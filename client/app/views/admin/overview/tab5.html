@@ -7,7 +7,7 @@
       </th>
     </tr>
   </thead>
-  <tbody data-ng-repeat="job in admin.jobs_overview | orderBy:'name'">
+  <tbody data-ng-repeat="job in resources.jobs_overview | orderBy:'name'">
     <tr>
       <td><b>{{::job.name}}</b></td>
       <td data-ng-repeat="t in [0,1,2,3,4,5,6,7,8,9]">

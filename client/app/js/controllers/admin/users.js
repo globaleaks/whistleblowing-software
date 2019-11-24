@@ -7,8 +7,8 @@ GLClient.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
 
     if ($scope.public.node.root_tenant) {
       AdminTenantResource.query(function(result) {
-        $scope.admin.tenants = result;
-        $scope.tenants_by_id = $scope.Utils.array_to_map($scope.admin.tenants);
+        $scope.resources.tenants = result;
+        $scope.tenants_by_id = $scope.Utils.array_to_map($scope.resources.tenants);
       });
     }
 
@@ -16,7 +16,7 @@ GLClient.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
   function($scope, $rootScope, $http, AdminUserResource) {
     $scope.deleteUser = function() {
       $scope.Utils.deleteDialog().then(function() {
-        return $scope.Utils.deleteResource(AdminUserResource, $scope.admin.users, $scope.user);
+        return $scope.Utils.deleteResource(AdminUserResource, $scope.resources.users, $scope.user);
       });
     };
 
@@ -96,7 +96,7 @@ controller("AdminUserAddCtrl", ["$scope",
       user.mail_address = $scope.new_user.email;
 
       user.$save(function(new_user){
-        $scope.admin.users.push(new_user);
+        $scope.resources.users.push(new_user);
         $scope.new_user = {};
       });
     };

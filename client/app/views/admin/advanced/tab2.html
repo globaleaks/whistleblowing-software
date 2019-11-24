@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <div data-ng-form="redirectAddForm" class="form-inline" isolate-form novalidate>
+    <div data-ng-form="redirectAddForm" class="form-inline" isolate-form>
       <div class="form-group d-block">
 	<div class="input-group">
           <span class="input-group-prepend"><span class="input-group-text" data-translate>From</span></span>
@@ -35,7 +35,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr data-ng-repeat="redirect in admin.redirects | orderBy:'redirect'" data-ng-controller="AdminRedirectEditCtrl">
+        <tr data-ng-repeat="redirect in resources.redirects | orderBy:'redirect'" data-ng-controller="AdminRedirectEditCtrl">
           <td>{{redirect.path1}}</td>
           <td>{{redirect.path2}}</td>
           <td>

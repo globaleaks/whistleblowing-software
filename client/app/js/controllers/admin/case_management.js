@@ -37,13 +37,13 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
 
     $scope.deleteSubmissionStatus = function() {
       $scope.Utils.deleteDialog().then(function() {
-        return $scope.Utils.deleteResource(AdminSubmissionStatusResource, $scope.admin.submission_statuses, $scope.submissions_status);
+        return $scope.Utils.deleteResource(AdminSubmissionStatusResource, $scope.resources.submission_statuses, $scope.submissions_status);
       });
     };
 
     function ss_idx(ss_id) {
-      for (var i = 0; i < $scope.admin.submission_statuses.length; i++) {
-        var status = $scope.admin.submission_statuses[i];
+      for (var i = 0; i < $scope.resources.submission_statuses.length; i++) {
+        var status = $scope.resources.submission_statuses[i];
         if (status.id === ss_id) {
           return i;
         }
@@ -60,21 +60,21 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
 
       var target = index + n;
 
-      if (target < 0 || target >= $scope.admin.submission_statuses.length) {
+      if (target < 0 || target >= $scope.resources.submission_statuses.length) {
         return;
       }
 
       // Because the base data structure and the one we display don't match ...
-      var orig_index = ss_idx($scope.admin.submission_statuses[index].id);
-      var orig_target = ss_idx($scope.admin.submission_statuses[target].id);
+      var orig_index = ss_idx($scope.resources.submission_statuses[index].id);
+      var orig_target = ss_idx($scope.resources.submission_statuses[target].id);
 
-      var moving_status = $scope.admin.submission_statuses[orig_index];
-      $scope.admin.submission_statuses[orig_index] = $scope.admin.submission_statuses[orig_target];
-      $scope.admin.submission_statuses[orig_target] = moving_status;
+      var moving_status = $scope.resources.submission_statuses[orig_index];
+      $scope.resources.submission_statuses[orig_index] = $scope.resources.submission_statuses[orig_target];
+      $scope.resources.submission_statuses[orig_target] = moving_status;
 
       // Return only the ids we want to reorder
       var reordered_ids = {
-        "ids": $scope.admin.submission_statuses.map(function(c) {
+        "ids": $scope.resources.submission_statuses.map(function(c) {
           return c.id;
         }).filter(function (c) {
           return c;
@@ -96,7 +96,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
   }
 ]).controller("AdminSubmissionStatusAddCtrl", ["$scope", "$http",
   function ($scope, $http) {
-    var presentation_order = $scope.newItemOrder($scope.admin.submission_statuses, "presentation_order");
+    var presentation_order = $scope.newItemOrder($scope.resources.submission_statuses, "presentation_order");
 
     $scope.addSubmissionStatus = function () {
       var new_submissions_status = {
@@ -108,7 +108,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
         "admin/submission_statuses",
         new_submissions_status
       ).then(function (result) {
-        $scope.admin.submission_statuses.push(result.data);
+        $scope.resources.submission_statuses.push(result.data);
       });
     };
 }]).controller("AdminSubmissionSubStatusCtrl", [
@@ -191,8 +191,8 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
     };
 
     // Find the closed status from the statuses list so we can directly manipulate it
-    for (var i = 0; i < $scope.admin.submission_statuses.length; i++) {
-      var status = $scope.admin.submission_statuses[i];
+    for (var i = 0; i < $scope.resources.submission_statuses.length; i++) {
+      var status = $scope.resources.submission_statuses[i];
       if (status.id === "closed") {
         $scope.submissions_status = status;
         return;

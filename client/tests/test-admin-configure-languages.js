@@ -6,7 +6,7 @@ describe("admin configure languages", function() {
 
     await element(by.className("add-language-btn")).click();
 
-    await element(by.model("admin.node.languages_enabled")).evaluate("admin.node.languages_enabled = ['en', 'it', 'de'];");
+    await element(by.model("resources.node.languages_enabled")).evaluate("resources.node.languages_enabled = ['en', 'it', 'de'];");
 
     await element.all(by.cssContainingText("button", "Save")).get(1).click();
 
@@ -39,7 +39,7 @@ describe("admin configure languages", function() {
     // Verify that the default is set to german
     await browser.setLocation("admin/content");
     await element(by.cssContainingText("a", "Languages")).click();
-    expect(await element(by.model("admin.node.default_language")).getAttribute("value")).toEqual("de");
+    expect(await element(by.model("resources.node.default_language")).getAttribute("value")).toEqual("de");
 
     // Switch the default to english and disable german
     await element.all(by.css(".non-default-language")).get(0).click();
@@ -51,7 +51,7 @@ describe("admin configure languages", function() {
     // Verify that the new default is set again to english that is the first language among en/it
     await browser.setLocation("admin/content");
     await element(by.cssContainingText("a", "Languages")).click();
-    expect(await element(by.model("admin.node.default_language")).getAttribute("value")).toEqual("en");
+    expect(await element(by.model("resources.node.default_language")).getAttribute("value")).toEqual("en");
 
     await element.all(by.cssContainingText("button", "Save")).get(1).click();
   });

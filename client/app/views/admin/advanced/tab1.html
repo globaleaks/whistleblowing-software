@@ -2,63 +2,63 @@
   <div class="col-md-12">
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.disable_submissions" type="checkbox" />
+        <input data-ng-model="resources.node.disable_submissions" type="checkbox" />
         <span data-translate>Disable submissions</span>
       </label>
     </div>
 
-    <div class="form-group" data-ng-show="test_encryption && admin.node.encryption_available" data-ng-disabled="admin.node.encryption">
+    <div class="form-group" data-ng-show="test_encryption && resources.node.encryption_available" data-ng-disabled="resources.node.encryption">
       <label>
-        <input data-ng-model="admin.node.encryption" type="checkbox" />
+        <input data-ng-model="resources.node.encryption" type="checkbox" />
         <span data-translate>Enable encryption</span>
       </label>
     </div>
 
-    <div class="form-group" data-ng-if="admin.node.root_tenant">
+    <div class="form-group" data-ng-if="resources.node.root_tenant">
       <label>
-        <input data-ng-model="admin.node.multisite" type="checkbox" />
+        <input data-ng-model="resources.node.multisite" type="checkbox" />
         <span data-translate>Enable multisite feature</span>
       </label>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.can_delete_submission" type="checkbox" />
+        <input data-ng-model="resources.node.can_delete_submission" type="checkbox" />
         <span data-translate>Allow recipients to delete submissions</span>
       </label>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.can_postpone_expiration" type="checkbox" />
+        <input data-ng-model="resources.node.can_postpone_expiration" type="checkbox" />
         <span data-translate>Allow recipients to postpone expiration date of the submission</span>
       </label>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.can_grant_permissions" type="checkbox" />
+        <input data-ng-model="resources.node.can_grant_permissions" type="checkbox" />
         <span data-translate>Allow recipients to grant permissions to whistleblowers on specific submissions</span>
       </label>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.allow_indexing" type="checkbox" />
+        <input data-ng-model="resources.node.allow_indexing" type="checkbox" />
         <span data-translate>Enable search engines indexing</span>
       </label>
     </div>
 
-    <div class="form-group" data-ng-if="admin.node.allow_indexing">
+    <div class="form-group" data-ng-if="resources.node.allow_indexing">
       <label data-translate>Description</label>
       <div>
-        <textarea class="form-control" data-ng-model="admin.node.description"></textarea>
+        <textarea class="form-control" data-ng-model="resources.node.description"></textarea>
       </div>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.do_not_expose_users_names" type="checkbox" />
+        <input data-ng-model="resources.node.do_not_expose_users_names" type="checkbox" />
         <span data-translate>Do not expose users' names</span>
       </label>
     </div>
@@ -66,35 +66,35 @@
     <div class="form-group">
       <label data-translate>Allow the following websites to embed the platform inside iframes</label>
       <div>
-        <input class="form-control" data-ng-model="admin.node.frame_ancestors" type="text" />
+        <input class="form-control" data-ng-model="resources.node.frame_ancestors" type="text" />
       </div>
     </div>
 
-    <div class="form-group" data-ng-if="!admin.node.disable_privacy_badge">
+    <div class="form-group" data-ng-if="!resources.node.disable_privacy_badge">
       <label>
-        <input data-ng-model="admin.node.enable_custom_privacy_badge" type="checkbox" />
+        <input data-ng-model="resources.node.enable_custom_privacy_badge" type="checkbox" />
         <span data-translate>Enable custom privacy panel</span>
       </label>
     </div>
 
-    <div class="form-group" data-ng-if="!admin.node.disable_privacy_badge && admin.node.enable_custom_privacy_badge">
+    <div class="form-group" data-ng-if="!resources.node.disable_privacy_badge && resources.node.enable_custom_privacy_badge">
       <label data-translate>Custom privacy panel</label>
       <label>(<span data-translate>Text shown when the whistleblower is not using Tor</span>)</label>
       <div>
-        <input class="form-control" data-ng-model="admin.node.custom_privacy_badge_text" type="text" />
+        <input class="form-control" data-ng-model="resources.node.custom_privacy_badge_text" type="text" />
       </div>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.disable_privacy_badge" type="checkbox" />
+        <input data-ng-model="resources.node.disable_privacy_badge" type="checkbox" />
         <span data-translate>Disable the privacy panel</span>
       </label>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.enable_receipt_hint" type="checkbox" />
+        <input data-ng-model="resources.node.enable_receipt_hint" type="checkbox" />
         <span data-translate>Enable the receipt hint</span>
       </label>
     </div>
@@ -103,28 +103,28 @@
 
     <div class="form-group">
       <label data-translate>Amount of days till whistleblower access expires</label>
-      <input class="form-control" data-ng-model="admin.node.wbtip_timetolive" type="number" min="1" />
+      <input class="form-control" data-ng-model="resources.node.wbtip_timetolive" type="number" min="1" />
       <div data-translate>For security reasons the whistleblower access is subject to expiration.</div>
       <div data-translate>Tweak this setting only if you know what you are doing.</div>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.two_factor" type="checkbox" />
+        <input data-ng-model="resources.node.two_factor" type="checkbox" />
         <span data-translate>Require two factor authentication</span>
       </label>
     </div>
 
     <div class="form-group">
       <label data-translate>Password change interval</label>
-      <input class="form-control" data-ng-model="admin.node.password_change_period" type="number" min="0" />
+      <input class="form-control" data-ng-model="resources.node.password_change_period" type="number" min="0" />
       <div data-translate>For security reasons, password changes are required at regular intervals.</div>
       <div data-translate>Set the value to 0 to disable this feature.</div>
     </div>
 
     <div class="form-group">
       <label data-translate>Landing page</label>
-      <select name="type" class="form-control" data-ng-model="admin.node.landing_page" required>
+      <select name="type" class="form-control" data-ng-model="resources.node.landing_page" required>
         <option value="homepage">home</option>
         <option value="submissionpage">submission</option>
       </select>
@@ -132,42 +132,42 @@
 
     <div class="form-group">
       <label data-translate>Default questionnaire</label>
-      <select class="form-control" data-ng-model="admin.node.default_questionnaire" data-ng-options="item.id as item.name for item in admin.questionnaires"></select>
+      <select class="form-control" data-ng-model="resources.node.default_questionnaire" data-ng-options="item.id as item.name for item in resources.questionnaires"></select>
     </div>
 
     <div class="form-group">
       <label data-translate>Title of the submission page</label>
       <div>
-        <textarea class="form-control" data-ng-model="admin.node.header_title_submissionpage"></textarea>
+        <textarea class="form-control" data-ng-model="resources.node.header_title_submissionpage"></textarea>
       </div>
     </div>
 
     <div class="form-group">
       <label data-translate>Text shown on top of the interface for selecting contexts</label>
       <div>
-        <textarea class="form-control" data-ng-model="admin.node.contexts_clarification"></textarea>
+        <textarea class="form-control" data-ng-model="resources.node.contexts_clarification"></textarea>
       </div>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.show_contexts_in_alphabetical_order" type="checkbox" />
+        <input data-ng-model="resources.node.show_contexts_in_alphabetical_order" type="checkbox" />
         <span data-translate>Show contexts in alphabetical order</span>
       </label>
     </div>
 
     <div class="form-group">
       <label data-translate>Type of context selector:</label>
-      <select name="type" class="form-control" data-ng-model="admin.node.context_selector_type" required>
+      <select name="type" class="form-control" data-ng-model="resources.node.context_selector_type" required>
         <option value="list">list</option>
         <option value="cards">cards</option>
         <option value="search">search</option>
       </select>
     </div>
 
-    <div class="form-group" data-ng-if="admin.node.context_selector_type === 'cards'">
+    <div class="form-group" data-ng-if="resources.node.context_selector_type === 'cards'">
       <label>
-        <input data-ng-model="admin.node.show_small_context_cards" type="checkbox" />
+        <input data-ng-model="resources.node.show_small_context_cards" type="checkbox" />
         <span data-translate>Show small context cards on submission interface</span>
       </label>
     </div>
@@ -175,14 +175,14 @@
     <div class="form-group">
       <label data-translate>Title of the receipt page</label>
       <div>
-        <textarea class="form-control" data-ng-model="admin.node.header_title_receiptpage"></textarea>
+        <textarea class="form-control" data-ng-model="resources.node.header_title_receiptpage"></textarea>
       </div>
     </div>
 
     <div class="form-group">
       <label data-translate>Title of the submission status page</label>
       <div>
-        <textarea class="form-control" data-ng-model="admin.node.header_title_tippage"></textarea>
+        <textarea class="form-control" data-ng-model="resources.node.header_title_tippage"></textarea>
       </div>
     </div>
 
@@ -191,61 +191,61 @@
         <span data-translate>Size limit for file attachments</span>
         <span data-translate>in megabytes</span>
       </label>
-      <input class="form-control" data-ng-model="admin.node.maximum_filesize" type="number" min="0" />
+      <input class="form-control" data-ng-model="resources.node.maximum_filesize" type="number" min="0" />
     </div>
 
     <div class="form-group">
-      <input data-ng-model="admin.node.enable_admin_exception_notification" type="checkbox">
+      <input data-ng-model="resources.node.enable_admin_exception_notification" type="checkbox">
       <label data-translate>Notify administrators of software problems</label>
     </div>
 
     <div class="form-group">
-      <input data-ng-model="admin.node.enable_developers_exception_notification" type="checkbox">
+      <input data-ng-model="resources.node.enable_developers_exception_notification" type="checkbox">
       <label data-translate>Notify developers of software problems</label>
       <div data-translate>By enabling this feature, you will contribute to the development and security of the platform.</div>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.basic_auth" type="checkbox" />
+        <input data-ng-model="resources.node.basic_auth" type="checkbox" />
         <span data-translate>Enable HTTP Basic Authentication to limit platform access</span>
       </label>
-      <div data-ng-if="admin.node.basic_auth" class="nested">
+      <div data-ng-if="resources.node.basic_auth" class="nested">
         <label data-translate>Username</label>
-        <input class="form-control" name="username" data-ng-model="admin.node.basic_auth_username" type="text" autocomplete="off" />
+        <input class="form-control" name="username" data-ng-model="resources.node.basic_auth_username" type="text" autocomplete="off" />
         <label data-translate>Password</label>
-        <input class="form-control" name="password" data-ng-model="admin.node.basic_auth_password" type="text" autocomplete="off" />
+        <input class="form-control" name="password" data-ng-model="resources.node.basic_auth_password" type="text" autocomplete="off" />
       </div>
     </div>
 
     <div class="form-group">
-      <input data-ng-model="admin.node.enable_user_pgp_key_upload" type="checkbox" />
+      <input data-ng-model="resources.node.enable_user_pgp_key_upload" type="checkbox" />
       <label data-translate>Enable users to upload their PGP keys</label>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.multisite_login" type="checkbox" />
+        <input data-ng-model="resources.node.multisite_login" type="checkbox" />
         <span data-translate>Enable multi-site login</span>
       </label>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.simplified_login" type="checkbox" />
+        <input data-ng-model="resources.node.simplified_login" type="checkbox" />
         <span data-translate>Enable simplified login</span>
       </label>
     </div>
 
     <div class="form-group">
-      <input data-ng-model="admin.node.https_preload" type="checkbox" />
+      <input data-ng-model="resources.node.https_preload" type="checkbox" />
       <label data-translate>Enable HSTS preload</label>
     </div>
 
-    <div data-ng-if="admin.node.root_tenant">
+    <div data-ng-if="resources.node.root_tenant">
       <div class="form-group">
         <label data-translate>Logging level</label>
-        <select class="form-control" data-ng-model="admin.node.log_level">
+        <select class="form-control" data-ng-model="resources.node.log_level">
           <option value="ERROR">ERROR</option>
           <option value="INFO">INFO</option>
           <option value="DEBUG">DEBUG</option>
@@ -254,26 +254,26 @@
     </div>
 
     <div class="form-group">
-      <input data-ng-model="admin.node.log_accesses_of_internal_users" type="checkbox" />
+      <input data-ng-model="resources.node.log_accesses_of_internal_users" type="checkbox" />
       <label data-translate>Log accesses of internal users</label>
     </div>
 
     <div class="form-group">
-      <input data-ng-model="admin.node.enable_custodian" type="checkbox">
+      <input data-ng-model="resources.node.enable_custodian" type="checkbox">
       <label data-translate>Enable custodian user role</label>
     </div>
 
     <div class="form-group">
-      <input data-ng-model="admin.node.enable_scoring_system" type="checkbox">
+      <input data-ng-model="resources.node.enable_scoring_system" type="checkbox">
       <label data-translate>Enable scoring system</label>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.enable_experimental_features" type="checkbox" />
+        <input data-ng-model="resources.node.enable_experimental_features" type="checkbox" />
         <span data-translate>Enable experimental features</span>
       </label>
-      <div data-ng-if="admin.node.enable_experimental_features">
+      <div data-ng-if="resources.node.enable_experimental_features">
         <span class="badge badge-warning" data-translate>Warning</span>
         <span data-translate>The experimental features may be less stable or even not work at all; enable this option at your own risk. Support for these features may vary and they may be removed in the future.</span>
       </div>

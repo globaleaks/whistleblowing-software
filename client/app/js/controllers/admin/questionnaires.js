@@ -14,9 +14,9 @@ GLClient.controller("AdminQuestionnaireCtrl",
 
   $scope.deleted_fields_ids = [];
 
-  $scope.admin.get_field_attrs = function(type) {
-    if (type in $scope.admin.field_attrs) {
-      return $scope.admin.field_attrs[type];
+  $scope.resources.get_field_attrs = function(type) {
+    if (type in $scope.resources.field_attrs) {
+      return $scope.resources.field_attrs[type];
     } else {
       return {};
     }
@@ -52,7 +52,7 @@ GLClient.controller("AdminQuestionnaireCtrl",
 
   $scope.delete_questionnaire = function(questionnaire) {
     $scope.Utils.deleteDialog().then(function() {
-      return $scope.Utils.deleteResource(AdminQuestionnaireResource, $scope.admin.questionnaires, questionnaire);
+      return $scope.Utils.deleteResource(AdminQuestionnaireResource, $scope.resources.questionnaires, questionnaire);
     });
   };
 }]).
@@ -112,7 +112,7 @@ controller("AdminQuestionnaireAddCtrl", ["$scope", function($scope) {
     questionnaire.name = $scope.new_questionnaire.name;
 
     questionnaire.$save(function(new_questionnaire){
-      $scope.admin.questionnaires.push(new_questionnaire);
+      $scope.resources.questionnaires.push(new_questionnaire);
       $scope.new_questionnaire = {};
     });
   };

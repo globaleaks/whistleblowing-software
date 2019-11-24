@@ -2,7 +2,7 @@
   <div class="col-md-6">
     <div class="form-group">
       <label data-translate>Mode:</label>
-      <select name="type" class="form-control" data-ng-model="admin.node.mode" required>
+      <select name="type" class="form-control" data-ng-model="resources.node.mode" required>
         <option value="default">DEFAULT</option>
         <option value="demo">DEMO</option>
         <option value="whistleblowing.it">WHISTLEBLOWINGPA</option>
@@ -12,64 +12,64 @@
     <div class="form-group">
       <label data-translate>Root domain used for secondary sites</label>
       <div>
-        <input class="form-control" data-ng-model="admin.node.rootdomain" type="text" />
+        <input class="form-control" data-ng-model="resources.node.rootdomain" type="text" />
       </div>
     </div>
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.adminonly" type="checkbox" />
+        <input data-ng-model="resources.node.adminonly" type="checkbox" />
         <span data-translate>Use the first site for administrative purposes only</span>
       </label>
     </div>
-    <div data-ng-if="!admin.node.adminonly">
+    <div data-ng-if="!resources.node.adminonly">
       <div class="form-group">
         <label>
-          <input data-ng-model="admin.node.enable_signup" type="checkbox" />
+          <input data-ng-model="resources.node.enable_signup" type="checkbox" />
           <span data-translate>Allow users to sign up</span>
         </label>
       </div>
-      <div data-ng-if="admin.node.enable_signup">
+      <div data-ng-if="resources.node.enable_signup">
         <div class="form-group">
           <label>
-            <input data-ng-model="admin.node.signup_tos1_enable" type="checkbox" />
+            <input data-ng-model="resources.node.signup_tos1_enable" type="checkbox" />
             <span data-translate>Enable terms of service</span> <span>#1</span>
           </label>
-          <div data-ng-if="admin.node.signup_tos1_enable" class="nested">
+          <div data-ng-if="resources.node.signup_tos1_enable" class="nested">
             <div class="form-group">
               <label data-translate>Title</label>
-              <input data-ng-model="admin.node.signup_tos1_title" type="text" class="form-control"/>
+              <input data-ng-model="resources.node.signup_tos1_title" type="text" class="form-control"/>
             </div>
             <div class="form-group">
               <label data-translate>Text</label>
               <div>
-                <textarea class="form-control" data-ng-model="admin.node.signup_tos1_text" rows="4"></textarea>
+                <textarea class="form-control" data-ng-model="resources.node.signup_tos1_text" rows="4"></textarea>
               </div>
             </div>
             <div class="form-group">
               <label data-translate>Checkbox label</label>
-              <input data-ng-model="admin.node.signup_tos1_checkbox_label" type="text" class="form-control"/>
+              <input data-ng-model="resources.node.signup_tos1_checkbox_label" type="text" class="form-control"/>
             </div>
           </div>
         </div>
         <div class="form-group">
           <label>
-            <input data-ng-model="admin.node.signup_tos2_enable" type="checkbox" />
+            <input data-ng-model="resources.node.signup_tos2_enable" type="checkbox" />
             <span data-translate>Enable terms of service</span> <span>#2</span>
           </label>
-          <div data-ng-if="admin.node.signup_tos2_enable" class="nested">
+          <div data-ng-if="resources.node.signup_tos2_enable" class="nested">
             <div class="form-group">
               <label data-translate>Title</label>
-              <input data-ng-model="admin.node.signup_tos2_title" type="text" class="form-control"/>
+              <input data-ng-model="resources.node.signup_tos2_title" type="text" class="form-control"/>
             </div>
             <div class="form-group">
               <label data-translate>Text</label>
               <div>
-                <textarea class="form-control" data-ng-model="admin.node.signup_tos2_text" rows="4"></textarea>
+                <textarea class="form-control" data-ng-model="resources.node.signup_tos2_text" rows="4"></textarea>
               </div>
             </div>
             <div class="form-group">
               <label data-translate>Checkbox label</label>
-              <input data-ng-model="admin.node.signup_tos2_checkbox_label" type="text" class="form-control"/>
+              <input data-ng-model="resources.node.signup_tos2_checkbox_label" type="text" class="form-control"/>
             </div>
           </div>
         </div>

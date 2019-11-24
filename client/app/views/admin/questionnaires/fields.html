@@ -289,7 +289,7 @@
                 <input data-ng-model="field.required" type="checkbox">
                 <label data-translate>Required</label>
               </div>
-              <div class="form-group" data-ng-if="admin.node.enable_custodian">
+              <div class="form-group" data-ng-if="resources.node.enable_custodian">
                 <input data-ng-model="field.attrs.visibility_subject_to_authorization.value" type="checkbox">
                 <label data-translate>Subject answer visibility to custodian authorization</label>
               </div>
@@ -318,7 +318,7 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="form-group" data-ng-if="admin.node.enable_scoring_system">
+            <div class="form-group" data-ng-if="resources.node.enable_scoring_system">
               <label data-translate>Triggered by score:</label>
               <select class="form-control" data-ng-model="field.triggered_by_score" convert-to-number>
                 <option value="0" data-translate>Low</option>
@@ -409,7 +409,7 @@
                           <i class="fa fa-user"></i>
                         </button>
                       </span>
-                      <span data-ng-if="admin.node.enable_scoring_system">
+                      <span data-ng-if="resources.node.enable_scoring_system">
                         <button class="btn btn-sm" data-ng-class="option.score_type !== 0 ? 'btn-warning' : 'btn-secondary'" data-ng-click="assignScorePointsDialog(option)" uib-popover="{{'Assign score points' | translate}}" popover-placement="left">
                           <i class="fa fa-flash"></i>
                           <span data-ng-if="option.score_type !== 0">
@@ -437,7 +437,7 @@
                   <i class="fa fa-plus"></i>
                   <span data-translate>Add new question</span>
                 </button>
-                <button class="btn btn-sm btn-primary show-add-question-from-template-btn" data-ng-click="toggleAddQuestionFromTemplate()" data-ng-if="field.instance === 'instance' && admin.fieldtemplates.length > 0">
+                <button class="btn btn-sm btn-primary show-add-question-from-template-btn" data-ng-click="toggleAddQuestionFromTemplate()" data-ng-if="field.instance === 'instance' && resources.fieldtemplates.length > 0">
                   <i class="fa fa-plus"></i>
                   <span data-translate>Add question from template</span>
                 </button>

@@ -1,7 +1,7 @@
 GLClient.controller("AdminContextsCtrl",
   ["$scope", "AdminContextResource",
   function($scope, AdminContextResource) {
-  $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.admin.users);
+  $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.resources.users);
 
   $scope.save_context = function (context, cb) {
     if (context.additional_questionnaire_id === null) {
@@ -40,19 +40,19 @@ controller("AdminContextEditorCtrl", ["$scope", "$rootScope", "$http", "AdminCon
     $event.stopPropagation();
 
     var target = index + n;
-    if (target < 0 || target >= $scope.admin.contexts.length) {
+    if (target < 0 || target >= $scope.resources.contexts.length) {
       return;
     }
 
-    $scope.admin.contexts[index] = $scope.admin.contexts[target];
-    $scope.admin.contexts[target] = $scope.context;
+    $scope.resources.contexts[index] = $scope.resources.contexts[target];
+    $scope.resources.contexts[target] = $scope.context;
 
     $http({
       method: "PUT",
       url: "/admin/contexts",
       data: {
         "operation": "order_elements",
-        "args": {"ids": $scope.admin.contexts.map(function(c) { return c.id; })},
+        "args": {"ids": $scope.resources.contexts.map(function(c) { return c.id; })},
       },
     }).then(function() {
       $rootScope.successes.push({});
@@ -96,7 +96,7 @@ controller("AdminContextEditorCtrl", ["$scope", "$rootScope", "$http", "AdminCon
 
   $scope.deleteContext = function() {
     $scope.Utils.deleteDialog().then(function() {
-      return $scope.Utils.deleteResource(AdminContextResource, $scope.admin.contexts, $scope.context);
+      return $scope.Utils.deleteResource(AdminContextResource, $scope.resources.contexts, $scope.context);
     });
   };
 }]).
@@ -121,11 +121,11 @@ controller("AdminContextAddCtrl", ["$scope", function($scope) {
     var context = new $scope.AdminUtils.new_context();
 
     context.name = $scope.new_context.name;
-    context.questionnaire_id = $scope.admin.node.default_questionnaire;
-    context.presentation_order = $scope.newItemOrder($scope.admin.contexts, "presentation_order");
+    context.questionnaire_id = $scope.resources.node.default_questionnaire;
+    context.presentation_order = $scope.newItemOrder($scope.resources.contexts, "presentation_order");
 
     context.$save(function(new_context){
-      $scope.admin.contexts.push(new_context);
+      $scope.resources.contexts.push(new_context);
       $scope.new_context = {};
     });
   };

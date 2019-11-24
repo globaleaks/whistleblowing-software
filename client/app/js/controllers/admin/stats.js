@@ -1,7 +1,7 @@
 GLClient.controller("StatisticsCtrl", ["$scope", "$filter", "StatsCollection",
   function($scope, $filter, StatsCollection) {
     $scope.week_delta = 0;
-    $scope.blob = {};
+    $scope.blob = undefined;
 
     var margin = { top: 50, right: 0, bottom: 100, left: 30 },
       width = 960 - margin.left - margin.right,

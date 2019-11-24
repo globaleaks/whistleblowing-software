@@ -1,7 +1,4 @@
-GLClient.controller("ReceiverCtrl", [function() {
-  //
-}]).
-controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$route", "$location", "$uibModal", "RTipExport", "ReceiverTips",
+GLClient.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$route", "$location", "$uibModal", "RTipExport", "ReceiverTips",
   function($scope, $filter, $http, $route, $location, $uibModal, RTipExport, ReceiverTips) {
   $scope.search = undefined;
   $scope.currentPage = 1;

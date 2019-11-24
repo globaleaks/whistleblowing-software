@@ -10,6 +10,11 @@ html, body {
   min-height: 400px;
 }
 
+[dir] .container-fluid {
+  padding: 0;
+  overflow-x: hidden;
+}
+
 #ContentBox, #NoScript, #FooterBox, #DemoBadge {
   padding: 2rem;
 }

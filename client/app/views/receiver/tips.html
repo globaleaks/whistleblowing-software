@@ -3,52 +3,53 @@
     <span class="float-left">
       <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission">
         <span id="tip-action-select-all"
-            data-ng-if="selected_tips.length !== tips.length"
-            data-ng-click="select_all()"
-            uib-popover="{{'Select all' | translate}}"
-            popover-placement="top"
-            class="btn btn-secondary">
+              data-ng-if="selected_tips.length !== tips.length"
+              data-ng-click="select_all()"
+              uib-popover="{{'Select all' | translate}}"
+              popover-placement="top"
+              class="btn btn-secondary">
           <i class="fa fa-square"></i>
         </span>
 
         <span id="tip-action-select-all"
-            data-ng-if="selected_tips.length === tips.length"
-            data-ng-click="deselect_all()"
-            uib-popover="{{'Deselect all' | translate}}"
-            popover-placement="top"
-            class="btn btn-secondary">
+              data-ng-if="selected_tips.length === tips.length"
+              data-ng-click="deselect_all()"
+              uib-popover="{{'Deselect all' | translate}}"
+              popover-placement="top"
+              class="btn btn-secondary">
           <i class="fa fa-check-square"></i>
         </span>
 
         <span id="tip-action-postpone-selected"
-            data-ng-if="selected_tips.length && preferences.can_postpone_expiration"
-            data-ng-click="tip_postpone_all()"
-            uib-popover="{{'Postpone the expiration date' | translate}}"
-            popover-placement="top"
-            class="btn btn-secondary">
+              data-ng-if="selected_tips.length && preferences.can_postpone_expiration"
+              data-ng-click="tip_postpone_all()"
+              uib-popover="{{'Postpone the expiration date' | translate}}"
+              popover-placement="top"
+              class="btn btn-secondary">
           <i class="fa fa-clock"></i>
         </span>
 
         <span id="tip-action-delete-selected"
-          data-ng-if="selected_tips.length && preferences.can_delete_submission"
-          data-ng-click="tip_delete_all()"
-          uib-popover="{{'Delete' | translate}}"
-          popover-placement="top"
-          class="btn btn-secondary">
+              data-ng-if="selected_tips.length && preferences.can_delete_submission"
+              data-ng-click="tip_delete_all()"
+              uib-popover="{{'Delete' | translate}}"
+              popover-placement="top"
+              class="btn btn-secondary">
           <span class="fa fa-trash"></span>
         </span>
       </span>
 
       <span id="tip-action-reload"
-        data-ng-click="reload()"
-        uib-popover="{{'Refresh page' | translate}}"
-        popover-placement="top"
-        class="btn btn-secondary">
+            data-ng-click="reload()"
+            uib-popover="{{'Refresh page' | translate}}"
+            popover-placement="top"
+            class="btn btn-secondary">
         <span class="fa fa-sync"></span>
       </span>
 
       <span id="SearchFilter" class="form-group float-right">
-        <input type="text" class="form-control" data-ng-attr-placeholder="{{'Search' | translate}}" data-ng-model="search">
+        <input type="text" class="form-control" data-ng-attr-placeholder="{{'Search' | translate}}"
+               data-ng-model="search">
       </span>
     </span>
   </div>
@@ -58,14 +59,14 @@
   <div class="col-md-12 table-responsive">
     <table class="table table-striped" id="tipList" data-ng-init="sortKey = 'creation_date'; sortReverse=true;">
       <thead>
-        <tr>
-          <th></th>
-          <th class="TipInfoID">
+      <tr>
+        <th></th>
+        <th class="TipInfoID">
             <span>
               <i class="fa fa-barcode"></i>
             </span>
-          </th>
-          <th class="TipInfoContext" data-ng-if="public.contexts.length > 1">
+        </th>
+        <th class="TipInfoContext" data-ng-if="public.contexts.length > 1">
             <span data-ng-click="sortKey = 'context_name'; sortReverse = !sortReverse">
               <span data-translate>Context</span>
               <i class="fa fa-inbox"></i>
@@ -74,8 +75,8 @@
                 <span data-ng-show="sortReverse" class="fa fa-triangle-top"></span>
               </span>
             </span>
-          </th>
-          <th class="TipInfoLabel">
+        </th>
+        <th class="TipInfoLabel">
             <span data-ng-click="sortKey = 'label'; sortReverse = !sortReverse">
               <i class="fa fa-tag"></i>
               <span data-translate>Label</span>
@@ -84,8 +85,8 @@
                 <span data-ng-show="sortReverse" class="fa fa-triangle-top"></span>
               </span>
             </span>
-          </th>
-          <th class="TipInfoStatus">
+        </th>
+        <th class="TipInfoStatus">
             <span data-ng-click="sortKey = 'creation_date'; sortReverse = !sortReverse">
               <i class="fa fa-dot-circle"></i>
               <span data-translate>Status</span>
@@ -94,8 +95,8 @@
                 <span data-ng-show="sortReverse" class="fa fa-triangle-top"></span>
               </span>
             </span>
-          </th>
-          <th class="TipInfoSubmissionDate">
+        </th>
+        <th class="TipInfoSubmissionDate">
             <span data-ng-click="sortKey = 'creation_date'; sortReverse = !sortReverse">
               <i class="fa fa-clock"></i>
               <span data-translate>Submission date</span>
@@ -104,8 +105,8 @@
                 <span data-ng-show="sortReverse" class="fa fa-triangle-top"></span>
               </span>
             </span>
-          </th>
-          <th class="TipInfoUpdateDate">
+        </th>
+        <th class="TipInfoUpdateDate">
             <span data-ng-click="sortKey = 'update_date'; sortReverse = !sortReverse">
               <i class="fa fa-clock"></i>
               <span data-translate>Last update</span>
@@ -114,8 +115,8 @@
                 <span data-ng-show="sortReverse" class="fa fa-triangle-top"></span>
               </span>
             </span>
-          </th>
-          <th class="TipInfoExpirationDate">
+        </th>
+        <th class="TipInfoExpirationDate">
             <span data-ng-click="sortKey = 'expiration_date'; sortReverse = !sortReverse">
               <i class="fa fa-hourglass"></i>
               <span data-translate>Expiration date</span>
@@ -124,11 +125,11 @@
                 <span data-ng-show="sortReverse" class="fa fa-triangle-top"></span>
               </span>
             </span>
-          </th>
-          <th class="TipInfoReadReceipt">
-            <i class="fa fa-eye"></i>
-          </th>
-          <th class="TipInfoFilesCount">
+        </th>
+        <th class="TipInfoReadReceipt">
+          <i class="fa fa-eye"></i>
+        </th>
+        <th class="TipInfoFilesCount">
             <span data-ng-click="sortKey = 'file_count'; sortReverse = !sortReverse">
               <i class="fa fa-file"></i>
               <span class="btn btn-sm" data-ng-show="sortKey == 'file_count'">
@@ -136,8 +137,8 @@
                 <span data-ng-show="sortReverse" class="fa fa-triangle-top"></span>
               </span>
             </span>
-          </th>
-          <th class="TipInfoCommentsCount">
+        </th>
+        <th class="TipInfoCommentsCount">
             <span data-ng-click="sortKey = 'comment_count'; sortReverse = !sortReverse">
               <i class="fa fa-comment"></i>
               <span class="btn btn-sm" data-ng-show="sortKey == 'comment_count'">
@@ -145,8 +146,8 @@
                 <span data-ng-show="sortReverse" class="fa fa-triangle-top"></span>
               </span>
             </span>
-          </th>
-          <th class="TipInfoMessagesCount">
+        </th>
+        <th class="TipInfoMessagesCount">
             <span data-ng-click="sortKey = 'message_count'; sortReverse = !sortReverse">
               <i class="fa fa-envelope"></i>
               <span class="btn btn-sm" data-ng-show="sortKey == 'message_count'">
@@ -154,14 +155,14 @@
                 <span data-ng-show="sortReverse" class="fa fa-triangle-top"></span>
               </span>
             </span>
-          </th>
-          <th class="TipInfoPreview">
+        </th>
+        <th class="TipInfoPreview">
             <span>
               <i class="fa fa-list-alt"></i>
               <span data-translate>Preview</span>
             </span>
-          </th>
-          <th class="TipInfoScore">
+        </th>
+        <th class="TipInfoScore">
             <span data-ng-click="$parent.sortKey = 'total_score'; sortReverse = !sortReverse">
               <i class="fa fa-flash"></i>
               <span data-translate>Score</span>
@@ -170,21 +171,26 @@
                 <span data-ng-show="sortReverse" class="fa fa-triangle-top"></span>
               </span>
             </span>
-          </th>
-        </tr>
+        </th>
+      </tr>
       </thead>
       <tbody id="tipListTableBody">
-        <tr id="tip-{{$index}}" data-ng-repeat="tip in filteredTips | orderBy:sortKey:sortReverse | limitTo:itemsPerPage:((currentPage - 1) * itemsPerPage)" data-ng-class="{'newTip': tip.new, 'selectedTip': isSelected(tip.id)}" class="tip-action-open" data-ng-click="Utils.go('/status/' + tip.id)">
-          <td>
+      <tr id="tip-{{$index}}"
+          data-ng-repeat="tip in filteredTips | orderBy:sortKey:sortReverse | limitTo:itemsPerPage:((currentPage - 1) * itemsPerPage)"
+          data-ng-class="{'newTip': tip.new, 'selectedTip': isSelected(tip.id)}" class="tip-action-open"
+          data-ng-click="Utils.go('/status/' + tip.id)">
+        <td>
             <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission">
-              <span class="btn btn-sm btn-secondary" data-ng-if="isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
+              <span class="btn btn-sm btn-secondary" data-ng-if="isSelected(tip.id)"
+                    data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
                 <i class="fa fa-check-square"></i>
               </span>
-              <span class="btn btn-sm btn-secondary" data-ng-if="!isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
+              <span class="btn btn-sm btn-secondary" data-ng-if="!isSelected(tip.id)"
+                    data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
                 <i class="fa fa-square"></i>
               </span>
             </span>
-            <span name="TipExport"
+          <span name="TipExport"
                 data-ng-click="exportTip(tip); $event.stopPropagation()"
                 uib-popover="{{'Export' | translate}}" popover-placement="top"
                 novalidate>
@@ -192,36 +198,38 @@
                 <i class="fa fa-save"></i>
               </button>
             </span>
-          </td>
-          <td class="TipInfoID">#{{::tip.progressive}}</td>
-          <td class="TipInfoContext" data-ng-if="public.contexts.length > 1">{{::tip.context_name}}</td>
-          <td class="TipInfoLabel">{{::tip.label}}</td>
-	  <td class="TipInfoStatus"><span>{{tip.submissionStatusStr}}</span></td>
-          <td class="TipInfoSubmissionDate">{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
-          <td class="TipInfoUpdateDate">{{::tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
-          <td class="TipInfoExpirationDate">
-            <span data-ng-if="!Utils.isNever(tip.expiration_date)">{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
-            <span data-ng-if="Utils.isNever(tip.expiration_date)" data-translate>Never</span>
-          </td>
-          <td class="TipInfoLastAccess">
-            <i data-ng-if="tip.wb_last_access >= tip.update_date" class="fa fa-check"
-                uib-popover="{{'The whistleblower has already read the latest update' | translate }} ({{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
-            <i data-ng-if="tip.wb_last_access < tip.update_date" class="fa fa-times"
-               uib-popover="{{'The whistleblower has not read the latest update yet' | translate }}"></i>
-          </td>
-          <td class="TipInfoFilesCount">{{::tip.file_count}}</td>
-          <td class="TipInfoCommentCount">{{::tip.comment_count}}</td>
-          <td class="TipInfoMessageCount">{{::tip.message_count}}</td>
-          <td class="TipInfoPreview">
-            <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true" data-ng-include="'views/partials/tip_field.html'"></div>
-          </td>
-	  <td class="TipInfoScore" data-ng-switch="tip.score">
-            <span data-ng-switch-when="0" data-translate>-</span>
-            <span class="badge badge-success" data-ng-switch-when="1" data-translate>Low</span>
-            <span class="badge badge-warning" data-ng-switch-when="2" data-translate>Medium</span>
-            <span class="badge badge-danger" data-ng-switch-when="3" data-translate>High</span>
-          </td>
-        </tr>
+        </td>
+        <td class="TipInfoID">#{{::tip.progressive}}</td>
+        <td class="TipInfoContext" data-ng-if="public.contexts.length > 1">{{::tip.context_name}}</td>
+        <td class="TipInfoLabel">{{::tip.label}}</td>
+        <td class="TipInfoStatus"><span>{{tip.submissionStatusStr}}</span></td>
+        <td class="TipInfoSubmissionDate">{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
+        <td class="TipInfoUpdateDate">{{::tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
+        <td class="TipInfoExpirationDate">
+          <span
+              data-ng-if="!Utils.isNever(tip.expiration_date)">{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
+          <span data-ng-if="Utils.isNever(tip.expiration_date)" data-translate>Never</span>
+        </td>
+        <td class="TipInfoLastAccess">
+          <i data-ng-if="tip.wb_last_access >= tip.update_date" class="fa fa-check"
+             uib-popover="{{'The whistleblower has already read the latest update' | translate }} ({{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
+          <i data-ng-if="tip.wb_last_access < tip.update_date" class="fa fa-times"
+             uib-popover="{{'The whistleblower has not read the latest update yet' | translate }}"></i>
+        </td>
+        <td class="TipInfoFilesCount">{{::tip.file_count}}</td>
+        <td class="TipInfoCommentCount">{{::tip.comment_count}}</td>
+        <td class="TipInfoMessageCount">{{::tip.message_count}}</td>
+        <td class="TipInfoPreview">
+          <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true"
+               data-ng-include="'views/partials/tip_field.html'"></div>
+        </td>
+        <td class="TipInfoScore" data-ng-switch="tip.score">
+          <span data-ng-switch-when="0" data-translate>-</span>
+          <span class="badge badge-success" data-ng-switch-when="1" data-translate>Low</span>
+          <span class="badge badge-warning" data-ng-switch-when="2" data-translate>Medium</span>
+          <span class="badge badge-danger" data-ng-switch-when="3" data-translate>High</span>
+        </td>
+      </tr>
       </tbody>
     </table>
 

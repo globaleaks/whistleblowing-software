@@ -96,7 +96,7 @@
                 </div>
               </div>
             </div>
-            <div class="row" data-ng-if="admin.node.enable_scoring_system">
+            <div class="row" data-ng-if="resources.node.enable_scoring_system">
               <div class="form-group col-md-12">
                 <label data-translate>Triggered by score:</label>
                 <select class="form-control" data-ng-model="step.triggered_by_score" convert-to-number>
@@ -152,7 +152,7 @@
                       <i class="fa fa-plus"></i>
                       <span data-translate>Add new question</span>
                     </button>
-                    <button class="btn btn-sm btn-primary show-add-question-from-template-btn" data-ng-click="toggleAddQuestionFromTemplate()" data-ng-if="admin.fieldtemplates.length > 0">
+                    <button class="btn btn-sm btn-primary show-add-question-from-template-btn" data-ng-click="toggleAddQuestionFromTemplate()" data-ng-if="resources.fieldtemplates.length > 0">
                       <i class="fa fa-plus"></i>
                       <span data-translate>Add question from template</span>
                     </button>

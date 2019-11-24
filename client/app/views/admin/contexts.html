@@ -1,44 +1,45 @@
-<div class="row">
-  <div id="Sidebar" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
-  <div class="col-md-9" data-ng-controller="AdminContextsCtrl">
-    <div class="adminConfigSection">
-      <div class="editorTitle">
-        <span data-translate>Contexts</span>
-        <button class="btn btn-sm btn-primary show-add-context-btn" data-ng-click="toggleAddContext()">
+<div class="adminConfigSection" data-ng-controller="AdminContextsCtrl">
+  <div class="editorTitle">
+    <span data-translate>Contexts</span>
+    <button class="btn btn-sm btn-primary show-add-context-btn" data-ng-click="toggleAddContext()">
+      <i class="fa fa-plus"></i>
+      <span data-translate>Add</span>
+    </button>
+  </div>
+  <div class="row" data-ng-controller="AdminContextAddCtrl" data-ng-if="showAddContext">
+    <div data-ng-form="newContext" class="addContext col-md-6">
+      <div class="form-group">
+        <label>
+          <span data-translate>Name</span>
+          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}"
+                popover-placement="right">*</span>
+        </label>
+        <div data-ng-class="{'has-danger': newContext.name.$error.required}">
+          <input name="name" class="form-control" data-ng-model="new_context.name" type="text" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <button id="add-btn" class="btn btn-primary" data-ng-disabled="newContext.$invalid"
+                data-ng-click="add_context(); toggleAddContext()" type="submit">
           <i class="fa fa-plus"></i>
           <span data-translate>Add</span>
         </button>
       </div>
-      <div class="row" data-ng-controller="AdminContextAddCtrl" data-ng-if="showAddContext">
-        <div data-ng-form="newContext" class="addContext col-md-6" novalidate>
-          <div class="form-group">
-            <label>
-              <span data-translate>Name</span>
-              <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-            </label>
-            <div data-ng-class="{'has-danger': newContext.name.$error.required}">
-              <input name="name" class="form-control" data-ng-model="new_context.name" type="text" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <button id="add-btn" class="btn btn-primary" data-ng-disabled="newContext.$invalid" data-ng-click="add_context(); toggleAddContext()" type="submit">
-              <i class="fa fa-plus"></i>
-              <span data-translate>Add</span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div data-ng-repeat="context in admin.contexts">
-        <form id="context-{{$index}}" name="editContext" data-ng-controller="AdminContextEditorCtrl" novalidate>
-          <div class="configItem">
-            <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
-              <span class="col-md-7 editorHeaderTitle">{{context.name}}</span>
-              <span class="col-md-5 clearfix">
+    </div>
+  </div>
+  <div data-ng-repeat="context in resources.contexts">
+    <form id="context-{{$index}}" name="editContext" data-ng-controller="AdminContextEditorCtrl" novalidate>
+      <div class="configItem">
+        <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
+          <span class="col-md-7 editorHeaderTitle">{{context.name}}</span>
+          <span class="col-md-5 clearfix">
                 <span class="float-right">
-                  <button data-ng-if="!$first" class="btn btn-sm btn-primary" data-ng-click="moveUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
+                  <button data-ng-if="!$first" class="btn btn-sm btn-primary" data-ng-click="moveUp($event, $index)"
+                          uib-popover="{{'Move up' | translate}}" popover-placement="left">
                     <i class="fa fa-chevron-up"></i>
                   </button>
-                  <button data-ng-if="!$last" class="btn btn-sm btn-primary" data-ng-click="moveDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
+                  <button data-ng-if="!$last" class="btn btn-sm btn-primary" data-ng-click="moveDown($event, $index)"
+                          uib-popover="{{'Move down' | translate}}" popover-placement="left">
                     <i class="fa fa-chevron-down"></i>
                   </button>
                   <button
@@ -67,262 +68,285 @@
                   </button>
                 </span>
               </span>
-            </div>
-            <div data-ng-if="editing">
-              <hr />
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <div image-upload image-upload-model="context" image-upload-model-attr="picture" image-upload-url="{{'admin/contexts/' + context.id + '/img'}}"></div>
+        </div>
+        <div data-ng-if="editing">
+          <hr/>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div image-upload image-upload-model="context" image-upload-model-attr="picture"
+                     image-upload-url="{{'admin/contexts/' + context.id + '/img'}}"></div>
+              </div>
+              <div class="form-group">
+                <label data-translate>Name</label>
+                <input name="name" class="form-control" data-ng-model="context.name" type="text" required>
+                <div class="text-danger" data-ng-show="editContext.name.$error.required" data-translate>This field is
+                  mandatory
+                </div>
+              </div>
+              <div class="form-group">
+                <label data-translate>Status</label>
+                <select class="form-control" data-ng-model="context.status" convert-to-number>
+                  <option value="1" data-translate>Enabled</option>
+                  <option value="2" data-translate>Hidden</option>
+                  <option value="0" data-translate>Disabled</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label data-translate>Description</label>
+                <textarea name="description" class="form-control" data-ng-model="context.description"></textarea>
+              </div>
+              <div class="form-group">
+                <label data-translate>Questionnaire</label>
+                <select class="form-control" data-ng-model="context.questionnaire_id"
+                        data-ng-options="item.id as item.name for item in resources.questionnaires"></select>
+              </div>
+              <div class="form-group">
+                <label data-translate>Additional questionnaire</label>
+                <select class="form-control" data-ng-model="context.additional_questionnaire_id"
+                        data-ng-options="item.id as item.name for item in resources.questionnaires">
+                  <option data-ng-if="context.additional_questionnaire_id" value=''></option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>
+                  <span data-translate>Recipients</span>
+                  <button class="btn btn-sm btn-primary add-receiver-btn" data-ng-click="toggleSelect()">
+                    <i class="fa fa-plus"></i>
+                    <span data-translate>Add</span>
+                  </button>
+                </label>
+                <div id="ReceiverContextAdder" class="row">
+                  <div class="col-md-12" data-ng-if="showSelect">
+                    <ui-select data-ng-model="selected.value" data-theme="bootstrap"
+                               data-on-select='moveReceiver($item)'>
+                      <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
+                        <span data-ng-bind="$select.selected.name"></span>
+                      </ui-select-match>
+                      <ui-select-choices
+                          data-repeat="receiver in resources.users | filter: {role: 'receiver', name: $selected.search} | filter:receiverNotSelectedFilter">
+                        <span data-ng-bind-html="receiver.name | highlight: $select.search"></span>
+                      </ui-select-choices>
+                    </ui-select>
+                    <br/>
                   </div>
-                  <div class="form-group">
-                    <label data-translate>Name</label>
-                    <input name="name" class="form-control" data-ng-model="context.name" type="text" required>
-                    <div class="text-danger" data-ng-show="editContext.name.$error.required" data-translate>This field is mandatory</div>
-                  </div>
-                  <div class="form-group">
-                    <label data-translate>Status</label>
-                    <select class="form-control" data-ng-model="context.status" convert-to-number>
-                      <option value="1" data-translate>Enabled</option>
-                      <option value="2" data-translate>Hidden</option>
-                      <option value="0" data-translate>Disabled</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label data-translate>Description</label>
-                    <textarea name="description" class="form-control" data-ng-model="context.description"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label data-translate>Questionnaire</label>
-                    <select class="form-control" data-ng-model="context.questionnaire_id" data-ng-options="item.id as item.name for item in admin.questionnaires"></select>
-                  </div>
-                  <div class="form-group">
-                    <label data-translate>Additional questionnaire</label>
-                    <select class="form-control" data-ng-model="context.additional_questionnaire_id" data-ng-options="item.id as item.name for item in admin.questionnaires">
-                      <option data-ng-if="context.additional_questionnaire_id" value=''></option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label>
-                      <span data-translate>Recipients</span>
-                      <button class="btn btn-sm btn-primary add-receiver-btn" data-ng-click="toggleSelect()">
-                        <i class="fa fa-plus"></i>
-                        <span data-translate>Add</span>
-                      </button>
-                    </label>
-                    <div id="ReceiverContextAdder" class="row">
-                      <div class="col-md-12" data-ng-if="showSelect">
-                        <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='moveReceiver($item)'>
-                          <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
-                            <span data-ng-bind="$select.selected.name"></span>
-                          </ui-select-match>
-                          <ui-select-choices data-repeat="receiver in admin.users | filter: {role: 'receiver', name: $selected.search} | filter:receiverNotSelectedFilter">
-                            <span data-ng-bind-html="receiver.name | highlight: $select.search"></span>
-                          </ui-select-choices>
-                        </ui-select>
-                        <br/>
-                      </div>
-                    </div>
-                    <ol class="selectionList">
-                      <li data-ng-repeat="receiver in context.receivers">
+                </div>
+                <ol class="selectionList">
+                  <li data-ng-repeat="receiver in context.receivers">
                         <span data-ng-controller="AdminContextReceiverSelectorCtrl">
                           <span class="action-btns">
-                            <span data-ng-if="!$first" data-ng-click="moveUp($index)" uib-popover="{{'Move up' | translate}}">
+                            <span data-ng-if="!$first" data-ng-click="moveUp($index)"
+                                  uib-popover="{{'Move up' | translate}}">
                               <i class="fa fa-chevron-up"></i>
                             </span>
                             <i data-ng-if="$first || $last" class="fa fa-none"></i>
-                            <span data-ng-if="!$last" data-ng-click="moveDown($index)" uib-popover="{{'Move down' | translate}}">
+                            <span data-ng-if="!$last" data-ng-click="moveDown($index)"
+                                  uib-popover="{{'Move down' | translate}}">
                               <i class="fa fa-chevron-down"></i>
                             </span>
-                            <span data-ng-click="context.receivers.splice($index, 1)" uib-popover="{{'Remove' | translate}}">
+                            <span data-ng-click="context.receivers.splice($index, 1)"
+                                  uib-popover="{{'Remove' | translate}}">
                               <i class="fa fa-times"></i>
                             </span>
                           </span>
                           <span>{{admin_receivers_by_id[receiver].name}}</span>
                         </span>
-                      </li>
-                    </ol>
-                  </div>
-                  <div class="form-group">
-                    <label>
-                      <span data-translate>Submission expiration</span> (<span data-translate>days</span>)
-                    </label>
-                    <div>
+                  </li>
+                </ol>
+              </div>
+              <div class="form-group">
+                <label>
+                  <span data-translate>Submission expiration</span> (<span data-translate>days</span>)
+                </label>
+                <div>
                       <span data-ng-class="{'has-danger': editContext.timetolive.$invalid}">
-                        <input class="form-control" name="timetolive" data-ng-model="context.tip_timetolive" type="number" min="0" max="3650" />
+                        <input class="form-control" name="timetolive" data-ng-model="context.tip_timetolive"
+                               type="number" min="0" max="3650"/>
                       </span>
-                      <div data-translate>Set the value to 0 to disable this feature.</div>
-                    </div>
-                  </div>
+                  <div data-translate>Set the value to 0 to disable this feature.</div>
                 </div>
               </div>
-              <hr />
-              <div class="row">
-                <div class="col-md-12">
-                  <button class="btn btn-primary" data-ng-click="show_advanced_settings = !show_advanced_settings" data-ng-init="show_advanced_settings=false">
-                    <i data-ng-if="!show_advanced_settings" class="fa fa-plus"></i>
-                    <i data-ng-if="show_advanced_settings" class="fa fa-minus"></i>
-                    <span data-translate>Advanced settings</span>
-                  </button>
-                  <div id="ContextAdvancedSettingsBox">
-                    <div class="row" data-ng-show="show_advanced_settings">
-                      <div class="col-md-6">
+            </div>
+          </div>
+          <hr/>
+          <div class="row">
+            <div class="col-md-12">
+              <button class="btn btn-primary" data-ng-click="show_advanced_settings = !show_advanced_settings"
+                      data-ng-init="show_advanced_settings=false">
+                <i data-ng-if="!show_advanced_settings" class="fa fa-plus"></i>
+                <i data-ng-if="show_advanced_settings" class="fa fa-minus"></i>
+                <span data-translate>Advanced settings</span>
+              </button>
+              <div id="ContextAdvancedSettingsBox">
+                <div class="row" data-ng-show="show_advanced_settings">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="inline-checkbox">
+                        <input data-ng-model="context.show_steps_navigation_interface" type="checkbox"/>
+                        <span data-translate>Show the questionnaire navigation interface</span>
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label class="inline-checkbox">
+                        <input data-ng-model="context.allow_recipients_selection" type="checkbox"/>
+                        <span data-translate>Allow whistleblowers to select their recipients</span>
+                      </label>
+                    </div>
+                    <div data-ng-show="context.allow_recipients_selection" class="form-group well">
+                      <div class="form-group">
+                        <label class="inline-checkbox">
+                          <input data-ng-model="context.select_all_receivers"
+                                 data-ng-disabled="!context.allow_recipients_selection"
+                                 type="checkbox"
+                                 data-ng-click="context.maximum_selectable_receivers=0"/>
+                          <span data-translate>Select all recipients by default</span>
+                        </label>
+                      </div>
+                      <div class="form-group">
+                        <label class="inline-checkbox">
+                          <span data-translate>Maximum number of selectable recipients:</span>
+                          <p data-translate>(0 = unlimited)</p>
+                          <input class="form-control" data-ng-model="context.maximum_selectable_receivers"
+                                 type="number" min="0" data-ng-disabled="context.select_all_receivers"/>
+                        </label>
+                      </div>
+                      <div class="form-group">
+                        <label class="inline-checkbox">
+                          <input data-ng-model="context.show_receivers_in_alphabetical_order" type="checkbox"/>
+                          <span data-translate>Show recipients in alphabetical order</span>
+                        </label>
+                      </div>
+                      <div class="form-group">
+                        <label class="inline-checkbox">
+                          <input data-ng-model="context.show_small_receiver_cards" type="checkbox"/>
+                          <span data-translate>Show small recipient cards on submission interface</span>
+                        </label>
+                      </div>
+                      <div class="form-group">
+                        <label class="inline-checkbox">
+                          <input data-ng-model="context.show_recipients_details" type="checkbox"/>
+                          <span data-translate>Show recipient details on the status page of the submission</span>
+                        </label>
+                      </div>
+                      <div class="form-group">
+                        <label data-translate>Text shown on top of the interface for selecting recipients</label>
+                        <textarea name="description" class="form-control"
+                                  data-ng-model="context.recipients_clarification"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="inline-checkbox">
+                        <input data-ng-model="context.enable_comments" type="checkbox"/>
+                        <span data-translate>Enable comments</span>
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label class="inline-checkbox"
+                             data-ng-if="resources.node.enable_experimental_features && context.enable_comments">
+                        <input data-ng-model="context.enable_two_way_comments" type="checkbox"/>
+                        <span data-translate>Allow whistleblowers to write comments</span>
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label class="inline-checkbox">
+                        <input data-ng-model="context.enable_messages" type="checkbox"/>
+                        <span data-translate>Enable private messages</span>
+                      </label>
+                    </div>
+                    <div class="form-group"
+                         data-ng-if="resources.node.enable_experimental_features && context.enable_messages">
+                      <label class="inline-checkbox">
+                        <input data-ng-model="context.enable_two_way_messages" type="checkbox"/>
+                        <span data-translate>Allow whistleblowers to send messages</span>
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label class="inline-checkbox">
+                        <input data-ng-model="context.enable_attachments" type="checkbox"/>
+                        <span data-translate>Let whistleblowers add attachments onto existing submissions</span>
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label class="inline-checkbox">
+                        <input data-ng-model="context.enable_rc_to_wb_files" type="checkbox"/>
+                        <span data-translate>Let recipients upload files to whistleblowers</span>
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label data-translate>Message shown on top of the status page of the submission</label>
+                      <div>
+                          <textarea name="description" class="form-control"
+                                    data-ng-model="context.status_page_message"></textarea>
+                      </div>
+                    </div>
+                    <div data-ng-if="resources.node.enable_scoring_system">
+                      <label data-ng-translate>Scoring system options</label>
+                      <div class="form-group well">
+                        <table class="table table-bordered">
+                          <thead>
+                          <th data-translate>Threshold</th>
+                          <th data-translate>Value</th>
+                          </thead>
+                          <tbody>
+                          <tr>
+                            <td data-translate>Medium</td>
+                            <td><input class="form-control" data-ng-model="context.score_threshold_medium"
+                                       type="number"/></td>
+                          </tr>
+                          <tr>
+                            <td data-translate>High</td>
+                            <td><input class="form-control" data-ng-model="context.score_threshold_high"
+                                       type="number"/></td>
+                          </tr>
+                          </tbody>
+                        </table>
                         <div class="form-group">
                           <label class="inline-checkbox">
-                            <input data-ng-model="context.show_steps_navigation_interface" type="checkbox" />
-                            <span data-translate>Show the questionnaire navigation interface</span>
+                            <input data-ng-model="context.score_receipt_text_custom" type="checkbox"/>
+                            <span data-translate>Customize the message shown in the receipt page</span>
                           </label>
-                        </div>
-                        <div class="form-group">
-                          <label class="inline-checkbox">
-                            <input data-ng-model="context.allow_recipients_selection" type="checkbox" />
-                            <span data-translate>Allow whistleblowers to select their recipients</span>
-                          </label>
-                        </div>
-                        <div data-ng-show="context.allow_recipients_selection" class="form-group well">
-                          <div class="form-group">
-                            <label class="inline-checkbox">
-                              <input data-ng-model="context.select_all_receivers" data-ng-disabled="!context.allow_recipients_selection"
-                                     type="checkbox"
-                                     data-ng-click="context.maximum_selectable_receivers=0" />
-                              <span data-translate>Select all recipients by default</span>
-                            </label>
-                          </div>
-                          <div class="form-group">
-                            <label class="inline-checkbox">
-                              <span data-translate>Maximum number of selectable recipients:</span> <p data-translate>(0 = unlimited)</p>
-                              <input class="form-control" data-ng-model="context.maximum_selectable_receivers" type="number" min="0"  data-ng-disabled="context.select_all_receivers"/>
-                            </label>
-                          </div>
-                          <div class="form-group">
-                            <label class="inline-checkbox">
-                              <input data-ng-model="context.show_receivers_in_alphabetical_order" type="checkbox" />
-                              <span data-translate>Show recipients in alphabetical order</span>
-                            </label>
-                          </div>
-                          <div class="form-group">
-                            <label class="inline-checkbox">
-                              <input data-ng-model="context.show_small_receiver_cards" type="checkbox" />
-                              <span data-translate>Show small recipient cards on submission interface</span>
-                            </label>
-                          </div>
-                          <div class="form-group">
-                            <label class="inline-checkbox">
-                              <input data-ng-model="context.show_recipients_details" type="checkbox" />
-                              <span data-translate>Show recipient details on the status page of the submission</span>
-                            </label>
-                          </div>
-                          <div class="form-group">
-                            <label data-translate>Text shown on top of the interface for selecting recipients</label>
-                            <textarea name="description" class="form-control" data-ng-model="context.recipients_clarification"></textarea>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="inline-checkbox">
-                            <input data-ng-model="context.enable_comments" type="checkbox" />
-                            <span data-translate>Enable comments</span>
-                          </label>
-                        </div>
-                        <div class="form-group">
-                          <label class="inline-checkbox" data-ng-if="admin.node.enable_experimental_features && context.enable_comments">
-                            <input data-ng-model="context.enable_two_way_comments" type="checkbox" />
-                            <span data-translate>Allow whistleblowers to write comments</span>
-                          </label>
-                        </div>
-                        <div class="form-group">
-                          <label class="inline-checkbox">
-                            <input data-ng-model="context.enable_messages" type="checkbox" />
-                            <span data-translate>Enable private messages</span>
-                          </label>
-                        </div>
-                        <div class="form-group" data-ng-if="admin.node.enable_experimental_features && context.enable_messages">
-                          <label class="inline-checkbox">
-                            <input data-ng-model="context.enable_two_way_messages" type="checkbox" />
-                            <span data-translate>Allow whistleblowers to send messages</span>
-                          </label>
-                        </div>
-                        <div class="form-group">
-                          <label class="inline-checkbox">
-                            <input data-ng-model="context.enable_attachments" type="checkbox" />
-                            <span data-translate>Let whistleblowers add attachments onto existing submissions</span>
-                          </label>
-                        </div>
-                        <div class="form-group">
-                          <label class="inline-checkbox">
-                            <input data-ng-model="context.enable_rc_to_wb_files" type="checkbox" />
-                            <span data-translate>Let recipients upload files to whistleblowers</span>
-                          </label>
-                        </div>
-                        <div class="form-group">
-                          <label data-translate>Message shown on top of the status page of the submission</label>
-                          <div>
-                            <textarea name="description" class="form-control" data-ng-model="context.status_page_message"></textarea>
-                          </div>
-                        </div>
-                        <div data-ng-if="admin.node.enable_scoring_system">
-                          <label data-ng-translate>Scoring system options</label>
-                          <div class="form-group well">
-                            <table class="table table-bordered">
-                              <thead>
-                                <th data-translate>Threshold</th>
-                                <th data-translate>Value</th>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td data-translate>Medium</td>
-                                  <td><input class="form-control" data-ng-model="context.score_threshold_medium" type="number" /></td>
-                                </tr>
-                                <tr>
-                                  <td data-translate>High</td>
-                                  <td><input class="form-control" data-ng-model="context.score_threshold_high" type="number" /></td>
-                                </tr>
-                              </tbody>
-                            </table>
+                          <div class="nested" data-ng-if="context.score_receipt_text_custom">
                             <div class="form-group">
-                              <label class="inline-checkbox">
-                                <input data-ng-model="context.score_receipt_text_custom" type="checkbox"/>
-                                <span data-translate>Customize the message shown in the receipt page</span>
-                              </label>
-                              <div class="nested" data-ng-if="context.score_receipt_text_custom">
-                                <div class="form-group">
-                                  <label data-translate>Low</label>
-                                  <div>
-                                    <textarea class="form-control" data-ng-model="context.score_receipt_text_l"></textarea>
-                                  </div>
-                                </div>
-                                <div class="form-group">
-                                  <label data-translate>Medium</label>
-                                  <div>
-                                    <textarea class="form-control" data-ng-model="context.score_receipt_text_m"></textarea>
-                                  </div>
-                                </div>
-                                <div class="form-group">
-                                  <label data-translate>High</label>
-                                  <div>
-                                    <textarea class="form-control" data-ng-model="context.score_receipt_text_h"></textarea>
-                                  </div>
-                                </div>
+                              <label data-translate>Low</label>
+                              <div>
+                                  <textarea class="form-control"
+                                            data-ng-model="context.score_receipt_text_l"></textarea>
                               </div>
-                              <label data-translate>Assign the receipt only to submissions reaching score:</label>
-                              <select class="form-control" data-ng-model="context.score_threshold_receipt" convert-to-number>
-                                <option value="0" data-translate>Low</option>
-                                <option value="1" data-translate>Medium</option>
-                                <option value="2" data-translate>High</option>
-                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label data-translate>Medium</label>
+                              <div>
+                                  <textarea class="form-control"
+                                            data-ng-model="context.score_receipt_text_m"></textarea>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label data-translate>High</label>
+                              <div>
+                                  <textarea class="form-control"
+                                            data-ng-model="context.score_receipt_text_h"></textarea>
+                              </div>
                             </div>
                           </div>
+                          <label data-translate>Assign the receipt only to submissions reaching score:</label>
+                          <select class="form-control" data-ng-model="context.score_threshold_receipt"
+                                  convert-to-number>
+                            <option value="0" data-translate>Low</option>
+                            <option value="1" data-translate>Medium</option>
+                            <option value="2" data-translate>High</option>
+                          </select>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <hr />
-              <div class="form-group">UUID: <a href="/#/submission?context={{context.id}}">{{context.id}}</a></div>
             </div>
           </div>
-        </form>
+          <hr/>
+          <div class="form-group">UUID: <a href="/#/submission?context={{context.id}}">{{context.id}}</a></div>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>

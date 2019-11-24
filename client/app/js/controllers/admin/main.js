@@ -1,7 +1,7 @@
 GLClient.
 controller("AdminCtrl",
-    ["$scope", "$route", "$filter", "resources", "AdminNodeResource", "UpdateService", "CONSTANTS",
-    function($scope, $route, $filter, resources, AdminNodeResource, UpdateService, CONSTANTS) {
+    ["$scope", "$route", "$filter", "AdminNodeResource", "UpdateService", "CONSTANTS",
+    function($scope, $route, $filter, AdminNodeResource, UpdateService, CONSTANTS) {
   $scope.email_regexp = CONSTANTS.email_regexp;
   $scope.hostname_regexp = CONSTANTS.hostname_regexp;
   $scope.onionservice_regexp = CONSTANTS.onionservice_regexp;
@@ -9,10 +9,8 @@ controller("AdminCtrl",
 
   $scope.update_service = UpdateService;
 
-  $scope.admin = resources;
-
   $scope.updateNode = function() {
-    $scope.Utils.update($scope.admin.node, function() { $scope.$emit("REFRESH"); });
+    $scope.Utils.update($scope.resources.node, function() { $scope.$emit("REFRESH"); });
   };
 
   $scope.newItemOrder = function(objects, key) {
@@ -120,16 +118,16 @@ controller("AdminGeneralSettingsCtrl", ["$scope", "$filter", "$http", "Files", "
   };
 
   $scope.langNotEnabledFilter = function(lang_obj) {
-    return $scope.admin.node.languages_enabled.indexOf(lang_obj.code) === -1;
+    return $scope.resources.node.languages_enabled.indexOf(lang_obj.code) === -1;
   };
 
   $scope.enableLanguage = function(lang_obj) {
-    $scope.admin.node.languages_enabled.push(lang_obj.code);
+    $scope.resources.node.languages_enabled.push(lang_obj.code);
   };
 
   $scope.removeLang = function(idx, lang_code) {
-    if (lang_code === $scope.admin.node.default_language) { return; }
-    $scope.admin.node.languages_enabled.splice(idx, 1);
+    if (lang_code === $scope.resources.node.default_language) { return; }
+    $scope.resources.node.languages_enabled.splice(idx, 1);
   };
 
   $scope.update_files = function () {
@@ -166,7 +164,7 @@ controller("AdminAdvancedCtrl", ["$scope", "$http", function($scope, $http) {
     },
   ];
 
-  if ($scope.admin.node.root_tenant) {
+  if ($scope.resources.node.root_tenant) {
     $scope.tabs.push({
       title:"Anomaly detection thresholds",
       template:"views/admin/advanced/tab3.html"
@@ -200,7 +198,7 @@ controller("AdminAdvancedCtrl", ["$scope", "$http", function($scope, $http) {
     redirect.path2 = $scope.new_redirect.path2;
 
     redirect.$save(function(new_redirect){
-      $scope.admin.redirects.push(new_redirect);
+      $scope.resources.redirects.push(new_redirect);
       $scope.new_redirect = {};
     });
   };
@@ -211,7 +209,7 @@ controller("AdminRedirectEditCtrl", ["$scope", "AdminRedirectResource",
       AdminRedirectResource.delete({
         id: redirect.id
       }, function(){
-        $scope.Utils.deleteFromList($scope.admin.redirects, redirect);
+        $scope.Utils.deleteFromList($scope.resources.redirects, redirect);
       });
     };
 }]).
@@ -293,19 +291,19 @@ controller("AdminMailCtrl", ["$scope", "$http", "AdminNotificationResource",
   };
 
   $scope.resetSMTPConfiguration = function() {
-    $scope.admin.notification.smtp_server = "mail.globaleaks.org";
-    $scope.admin.notification.smtp_port = 9267;
-    $scope.admin.notification.smtp_username = "globaleaks";
-    $scope.admin.notification.smtp_password = "globaleaks";
-    $scope.admin.notification.smtp_source_email = "notification@mail.globaleaks.org";
-    $scope.admin.notification.smtp_security = "TLS";
-    $scope.admin.notification.smtp_authentication = true;
+    $scope.resources.notification.smtp_server = "mail.globaleaks.org";
+    $scope.resources.notification.smtp_port = 9267;
+    $scope.resources.notification.smtp_username = "globaleaks";
+    $scope.resources.notification.smtp_password = "globaleaks";
+    $scope.resources.notification.smtp_source_email = "notification@mail.globaleaks.org";
+    $scope.resources.notification.smtp_security = "TLS";
+    $scope.resources.notification.smtp_authentication = true;
 
-    $scope.Utils.update($scope.admin.notification);
+    $scope.Utils.update($scope.resources.notification);
   };
 
   $scope.updateThenTestMail = function() {
-    AdminNotificationResource.update($scope.admin.notification)
+    AdminNotificationResource.update($scope.resources.notification)
     .$promise.then(function() { return sendTestMail(); }, function() { });
   };
 }]).

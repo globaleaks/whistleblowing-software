@@ -31,7 +31,7 @@
     <!-- endbuild -->
   </head>
 
-  <body class="d-flex flex-column" data-ng-class="{'block-user-input': showLoadingPanel}" data-flow-prevent-drop>
+  <body class="container-fluid d-flex flex-column" data-ng-class="{'block-user-input': showLoadingPanel}" data-flow-prevent-drop>
     <noscript>
       <div id="NoScript">
         <h1>Error! :(</h1>
@@ -61,7 +61,10 @@
       <div data-ng-if="Utils.showPrivacyBadge()" data-ng-include="'views/partials/privacybadge.html'"></div>
       <div data-ng-if="!embedded" data-ng-include="'views/partials/header.html'"></div>
       <div id="MessagesConsoleBox" data-ng-include="'views/partials/messageconsole.html'"></div>
-      <div id="ContentBox" data-ng-view=""></div>
+      <div id="ContentBox" class="row">
+        <div data-ng-if="sidebar" class="col-md-3" data-ng-include="sidebar"></div>
+        <div data-ng-class="{'col-md-9': sidebar, 'col-md-12': !sidebar}" data-ng-view=""></div>
+      </div>
       <footer id="FooterBox" data-ng-if="started && !embedded" data-ng-include="'views/partials/footer.html'"></footer>
     </div>
 

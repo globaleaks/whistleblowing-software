@@ -15,23 +15,23 @@
             <tbody>
               <tr>
                 <td data-translate>Admin</td>
-                <td><input data-ng-model="admin.node.ip_filter_admin_enable" type="checkbox"></td>
-                <td><input data-ng-if="admin.node.ip_filter_admin_enable" class="form-control" name="ip_filter_list" data-ng-model="admin.node.ip_filter_admin" type="text" autocomplete="off" /></td>
+                <td><input data-ng-model="resources.node.ip_filter_admin_enable" type="checkbox"></td>
+                <td><input data-ng-if="resources.node.ip_filter_admin_enable" class="form-control" name="ip_filter_list" data-ng-model="resources.node.ip_filter_admin" type="text" autocomplete="off" /></td>
               </tr>
               <tr>
                 <td data-translate>Custodian</td>
-                <td><input data-ng-model="admin.node.ip_filter_custodian_enable" type="checkbox"></td>
-                <td><input data-ng-if="admin.node.ip_filter_custodian_enable" class="form-control" name="ip_filter_list" data-ng-model="admin.node.ip_filter_custodian" type="text" autocomplete="off" /></td>
+                <td><input data-ng-model="resources.node.ip_filter_custodian_enable" type="checkbox"></td>
+                <td><input data-ng-if="resources.node.ip_filter_custodian_enable" class="form-control" name="ip_filter_list" data-ng-model="resources.node.ip_filter_custodian" type="text" autocomplete="off" /></td>
               </tr>
               <tr>
                 <td data-translate>Recipient</td>
-                <td><input data-ng-model="admin.node.ip_filter_receiver_enable" type="checkbox"></td>
-                <td><input data-ng-if="admin.node.ip_filter_receiver_enable" class="form-control" name="ip_filter_list" data-ng-model="admin.node.ip_filter_receiver" type="text" autocomplete="off" /></td>
+                <td><input data-ng-model="resources.node.ip_filter_receiver_enable" type="checkbox"></td>
+                <td><input data-ng-if="resources.node.ip_filter_receiver_enable" class="form-control" name="ip_filter_list" data-ng-model="resources.node.ip_filter_receiver" type="text" autocomplete="off" /></td>
               </tr>
               <tr>
                 <td data-translate>Whistleblower</td>
-                <td><input data-ng-model="admin.node.ip_filter_whistleblower_enable" type="checkbox"></td>
-                <td><input data-ng-if="admin.node.ip_filter_whistleblower_enable" class="form-control" name="ip_filter_list" data-ng-model="admin.node.ip_filter_whistleblower" type="text" autocomplete="off" /></td>
+                <td><input data-ng-model="resources.node.ip_filter_whistleblower_enable" type="checkbox"></td>
+                <td><input data-ng-if="resources.node.ip_filter_whistleblower_enable" class="form-control" name="ip_filter_list" data-ng-model="resources.node.ip_filter_whistleblower" type="text" autocomplete="off" /></td>
               </tr>
             </tbody>
           </table>
@@ -44,7 +44,7 @@
       <hr />
       <div class="row">
         <div class="col-md-6">
-          <button id="AccessControlSave" class="btn btn-success" data-ng-disabled="adminIPAccessControlForm.$invalid" data-ng-click="Utils.update(admin.node)" type="submit">
+          <button id="AccessControlSave" class="btn btn-success" data-ng-disabled="adminIPAccessControlForm.$invalid" data-ng-click="Utils.update(resources.node)" type="submit">
             <i class="fa fa-check"></i>
             <span data-translate>Save</span>
           </button>

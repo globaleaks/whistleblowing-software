@@ -1,6 +1,6 @@
 GLClient.controller("AdminFieldEditorCtrl", ["$scope",
   function($scope) {
-    $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.admin.users);
+    $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.resources.users);
 
     $scope.editing = false;
     $scope.new_field = {};
@@ -138,7 +138,7 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
       var field = $scope.AdminUtils.new_field("", $scope.field.id);
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
-      field.attrs = $scope.admin.get_field_attrs(field.type);
+      field.attrs = $scope.resources.get_field_attrs(field.type);
       field.y = $scope.newItemOrder($scope.field.children, "y");
 
       field.instance = $scope.field.instance;
@@ -203,7 +203,7 @@ controller("AdminFieldTemplatesCtrl", ["$scope", "AdminFieldTemplateResource",
   function($scope, AdminFieldTemplateResource) {
     $scope.fieldResource = AdminFieldTemplateResource;
 
-    $scope.admin.fieldtemplates.$promise.then(function(fields) {
+    $scope.resources.fieldtemplates.$promise.then(function(fields) {
       $scope.fields = fields;
     });
   }
@@ -217,7 +217,7 @@ controller("AdminFieldTemplatesAddCtrl", ["$scope",
       field.instance = "template";
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
-      field.attrs = $scope.admin.get_field_attrs(field.type);
+      field.attrs = $scope.resources.get_field_attrs(field.type);
 
       field.$save(function(new_field){
         $scope.fields.push(new_field);

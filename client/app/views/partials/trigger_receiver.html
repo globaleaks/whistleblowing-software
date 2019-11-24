@@ -11,7 +11,7 @@
       <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
         <span data-ng-bind="$select.selected.name"></span>
       </ui-select-match>
-      <ui-select-choices data-repeat="user in admin.users | filter: {role: 'receiver', name: $selected.search} | filter:receiverNotSelectedFilter">
+      <ui-select-choices data-repeat="user in resources.users | filter: {role: 'receiver', name: $selected.search} | filter:receiverNotSelectedFilter">
         <span data-ng-bind-html="user.name | highlight: $select.search"></span>
       </ui-select-choices>
     </ui-select>

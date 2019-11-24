@@ -14,7 +14,7 @@ GLClient.controller("AdminNetworkCtrl", ["$scope", "$http", function($scope, $ht
     }
   ];
 
-  $scope.hostname = $scope.admin.node.hostname;
+  $scope.hostname = $scope.resources.node.hostname;
 
   $scope.resetOnionPrivateKey = function() {
     var req = {
@@ -23,7 +23,7 @@ GLClient.controller("AdminNetworkCtrl", ["$scope", "$http", function($scope, $ht
     };
 
     return $http({method: "PUT", url: "admin/config", data: req}).then(function(response) {
-      $scope.admin.node.onionservice = response.data.onionservice;
+      $scope.resources.node.onionservice = response.data.onionservice;
     });
   };
 }]).
@@ -34,7 +34,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
   $scope.showHostnameSetter = false;
   $scope.choseManCfg = false;
   $scope.saveClicked = false;
-  $scope.skipVerify = $scope.admin.node.hostname !== "";
+  $scope.skipVerify = $scope.resources.node.hostname !== "";
 
   $scope.setMenu = function(state) {
     $scope.menuState = state;
@@ -191,7 +191,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
         modal_open.resolve();
       }
     } else {
-      var https_url = "https://" + $scope.admin.node.hostname + "/#/login";
+      var https_url = "https://" + $scope.resources.node.hostname + "/#/login";
 
       $uibModal.open({
         templateUrl: "views/admin/network/enabled_modal.html",
