@@ -1964,9 +1964,9 @@
       "dev": true
     },
     "eslint": {
-      "version": "6.7.0",
-      "resolved": "https://registry.npmjs.org/eslint/-/eslint-6.7.0.tgz",
-      "integrity": "sha512-dQpj+PaHKHfXHQ2Imcw5d853PTvkUGbHk/MR68KQUl98EgKDCdh4vLRH1ZxhqeQjQFJeg8fgN0UwmNhN3l8dDQ==",
+      "version": "6.7.1",
+      "resolved": "https://registry.npmjs.org/eslint/-/eslint-6.7.1.tgz",
+      "integrity": "sha512-UWzBS79pNcsDSxgxbdjkmzn/B6BhsXMfUaOHnNwyE8nD+Q6pyT96ow2MccVayUTV4yMid4qLhMiQaywctRkBLA==",
       "dev": true,
       "requires": {
         "@babel/code-frame": "^7.0.0",
@@ -5086,9 +5086,9 @@
       "dev": true
     },
     "npm-check-updates": {
-      "version": "3.2.1",
-      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-3.2.1.tgz",
-      "integrity": "sha512-gYXHGc9mAncGrEMjs2uRJgOdWRP5CR9iZ+HyUNf4eqjtdDV6jLvi2e19G5BEpdvc8fU73J+B5m8ALYB49du/EA==",
+      "version": "3.2.2",
+      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-3.2.2.tgz",
+      "integrity": "sha512-smZLGQWYbNOQVL787LwxTKakhTll/GZ4EwlKRfskD+eTCSpxdwpbkUHbT0QxyCf1uZw86TXeAFGw8ETzmW3Fqw==",
       "dev": true,
       "requires": {
         "chalk": "^2.4.2",
