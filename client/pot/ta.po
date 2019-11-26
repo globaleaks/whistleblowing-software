@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-07 14:51+0000\n"
+"PO-Revision-Date: 2019-11-24 23:48+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -739,11 +739,8 @@ msgstr "உரை தகவல் தெரிவிப்பவர் தோ
 msgid "Disable the privacy panel"
 msgstr "தனியுரிமை குழு முடக்கு"
 
-msgid "Disable the receipt hint"
-msgstr "ரசீது குறிப்பை முடக்கு"
-
-msgid "Disable the donation panel"
-msgstr "நன்கொடை குழு முடக்கு"
+msgid "Enable the receipt hint"
+msgstr ""
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "அம்பலப்படுத்தியவர் அணுகல் காலாவதியாகும் வரை நாட்கள்"
@@ -1980,15 +1977,6 @@ msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
 msgstr "நீங்கள் தெரியாத இல்லாமல் சர்வர் இணைக்கப்பட்டால் இந்த சர்வர் அநாமதேய சமர்ப்பிப்புகளை மட்டுமே ஆதரிக்கிறது"
-
-msgid ""
-"This platform makes use of the GlobaLeaks software designed by the Hermes "
-"Center for Transparency and Digital Human Rights to protect the identity of "
-"the whistleblower."
-msgstr ""
-
-msgid "Please support Hermes through their donation page."
-msgstr "தங்கள் நன்கொடை பக்கம் வழியாக ஹெர்ம்ஸ் ஆதரவு கொள்ளவும்."
 
 msgid "Thank you!"
 msgstr "நன்றி!"

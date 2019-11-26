@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-07 14:51+0000\n"
+"PO-Revision-Date: 2019-11-24 23:48+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -739,11 +739,8 @@ msgstr "Tekst som vises når fløyteblåseren ikke bruker Tor"
 msgid "Disable the privacy panel"
 msgstr "Skru av personvernspanelet"
 
-msgid "Disable the receipt hint"
+msgid "Enable the receipt hint"
 msgstr ""
-
-msgid "Disable the donation panel"
-msgstr "Skru av donasjonspanelet"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Antall dager til fløyteblåser-tilgang utløper"
@@ -1980,15 +1977,6 @@ msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
 msgstr "Din tilknytning til tjeneren er ikke anonym, denne tjeneren støtter bare anonyme innsendelser"
-
-msgid ""
-"This platform makes use of the GlobaLeaks software designed by the Hermes "
-"Center for Transparency and Digital Human Rights to protect the identity of "
-"the whistleblower."
-msgstr ""
-
-msgid "Please support Hermes through their donation page."
-msgstr "Støtt Hermes gjennom deres donasjons-side."
 
 msgid "Thank you!"
 msgstr "Takk!"

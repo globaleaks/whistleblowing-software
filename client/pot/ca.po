@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-07 14:51+0000\n"
+"PO-Revision-Date: 2019-11-24 23:48+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -750,11 +750,8 @@ msgstr "El text es mostra quan l'informador no fa servir Tor"
 msgid "Disable the privacy panel"
 msgstr "Deshabilita el distintiu de privacitat "
 
-msgid "Disable the receipt hint"
-msgstr "Desactiva el suggeriment de recepció"
-
-msgid "Disable the donation panel"
-msgstr "Deshabilita el tauler de donació"
+msgid "Enable the receipt hint"
+msgstr ""
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Quantitat de dies fins a l'accés dels informadors expira"
@@ -1991,15 +1988,6 @@ msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
 msgstr "S'està connectant al servidor de manera no anònima i aquest servidor només admet entregues anònimes"
-
-msgid ""
-"This platform makes use of the GlobaLeaks software designed by the Hermes "
-"Center for Transparency and Digital Human Rights to protect the identity of "
-"the whistleblower."
-msgstr ""
-
-msgid "Please support Hermes through their donation page."
-msgstr "Si us plau, dóna suport a Hermes mitjançant la seva pàgina de donacions."
 
 msgid "Thank you!"
 msgstr "Gràcies!"

@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-07 14:51+0000\n"
+"PO-Revision-Date: 2019-11-24 23:48+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -751,11 +751,8 @@ msgstr "未使用 Tor 浏览告密者时显示的文本"
 msgid "Disable the privacy panel"
 msgstr "禁用隐私面板"
 
-msgid "Disable the receipt hint"
+msgid "Enable the receipt hint"
 msgstr ""
-
-msgid "Disable the donation panel"
-msgstr "禁用捐赠面板"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "揭发人访问权限到期天数"
@@ -1992,15 +1989,6 @@ msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
 msgstr "你没有使用匿名身份连接到节点但是这个节点只支持匿名提交材料。"
-
-msgid ""
-"This platform makes use of the GlobaLeaks software designed by the Hermes "
-"Center for Transparency and Digital Human Rights to protect the identity of "
-"the whistleblower."
-msgstr ""
-
-msgid "Please support Hermes through their donation page."
-msgstr "请通过爱马仕的资助网页支持他们。"
 
 msgid "Thank you!"
 msgstr "谢谢您！"

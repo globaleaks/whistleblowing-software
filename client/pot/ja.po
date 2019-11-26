@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-08 13:31+0000\n"
+"PO-Revision-Date: 2019-11-25 15:30+0000\n"
 "Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -741,11 +741,8 @@ msgstr "内部告発者がTorを使用していないときに表示するテキ
 msgid "Disable the privacy panel"
 msgstr "プライバシー・バッジを無効にする"
 
-msgid "Disable the receipt hint"
-msgstr "受領番号のヒントを無効にする"
-
-msgid "Disable the donation panel"
-msgstr "寄付のパネルを無効にする"
+msgid "Enable the receipt hint"
+msgstr "受領番号のヒントを有効にする"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "内部告発者のアクセス有効期限が切れるまでの日数"
@@ -1982,15 +1979,6 @@ msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
 msgstr "あなたは匿名性が無いままサーバーに接続しています。このサーバーは匿名による提出のみをサポートします。"
-
-msgid ""
-"This platform makes use of the GlobaLeaks software designed by the Hermes "
-"Center for Transparency and Digital Human Rights to protect the identity of "
-"the whistleblower."
-msgstr "このプラットフォームは、内部告発者の身元を保護するために、Hermes Center for Transparency and Digital Human Rights によって設計された GlobaLeaks ソフトウェアを使用します。"
-
-msgid "Please support Hermes through their donation page."
-msgstr "ぜひ寄付のページをご覧になり、Hermesをサポートしてください。"
 
 msgid "Thank you!"
 msgstr "ありがとうございます!"

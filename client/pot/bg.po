@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-17 14:08+0000\n"
+"PO-Revision-Date: 2019-11-24 23:48+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -744,11 +744,8 @@ msgstr "Текстът се показва, когато източникът н
 msgid "Disable the privacy panel"
 msgstr "Деактивирай панела за поверителност"
 
-msgid "Disable the receipt hint"
-msgstr "Деактивиране на подксазка за получено съобщение"
-
-msgid "Disable the donation panel"
-msgstr "Деактивиране на панела за дарения"
+msgid "Enable the receipt hint"
+msgstr ""
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Брой дни преди достъпът на подаващия сигнал да изтече"
@@ -1985,15 +1982,6 @@ msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
 msgstr "Свързвате се със сървър по неанонимен начин, а този сървър поддържа единствено подаване на анонимни сигнали"
-
-msgid ""
-"This platform makes use of the GlobaLeaks software designed by the Hermes "
-"Center for Transparency and Digital Human Rights to protect the identity of "
-"the whistleblower."
-msgstr "Платформата използва софтуер на GlobaLeaks, разработен от Hermes Center for Transparency and Digital Human Rights, за да се защити самоличността на подаващия сигнал"
-
-msgid "Please support Hermes through their donation page."
-msgstr "Моля, подкрепете Hermes през страницата им за дарения."
 
 msgid "Thank you!"
 msgstr "Блгагодарим Ви!"

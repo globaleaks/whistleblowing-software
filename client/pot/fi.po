@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-07 14:51+0000\n"
+"PO-Revision-Date: 2019-11-24 23:48+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -191,7 +191,7 @@ msgid "Save all"
 msgstr "Tallenna kaikki"
 
 msgid "Access control"
-msgstr ""
+msgstr "Käyttöoikeuksien hallinta"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -613,7 +613,7 @@ msgid "Closed"
 msgstr "Suljettu"
 
 msgid "Placeholder"
-msgstr ""
+msgstr "Täyteteksti"
 
 msgid "Print"
 msgstr "Tulosta"
@@ -640,7 +640,7 @@ msgid "Send a test email to your email address."
 msgstr "Lähetä testisähköposti omaan sähköpostiosoitteeseen"
 
 msgid "Block the submission"
-msgstr ""
+msgstr "Estä vihjeen lähettäminen"
 
 msgid "Select the context of your submission:"
 msgstr "Valitse vihjeen aihe:"
@@ -678,7 +678,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr ""
+msgstr "Valitsemasi salasana on liian yksinkertainen. Salasanan täytyy olla vähintään 10 merkkiä pitkä ja sisältää vähintään yksi pieni ja iso kirjain sekä numero ja erikoismerkki."
 
 msgid "The new password must be different from the current one."
 msgstr "Uusi salasana ei voi olla sama kuin parhaillaan käytössä oleva."
@@ -742,11 +742,8 @@ msgstr "Ilmoitusteksti käyttäjille, jotka eivät käytä Tor-selainta"
 msgid "Disable the privacy panel"
 msgstr "Ota pois käytöstä yksityisyyskulkukortti"
 
-msgid "Disable the receipt hint"
-msgstr "Poista kuittivinkki käytöstä"
-
-msgid "Disable the donation panel"
-msgstr "Ota pois käytöstä lahjoitusteksti"
+msgid "Enable the receipt hint"
+msgstr ""
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Päivien määrä, jolloin vihjeenantajan pääsy vihjeen tietoihin umpeutuu"
@@ -1380,10 +1377,10 @@ msgid "Text shown upon confirmation"
 msgstr "Vahvistuksen yhteydessä näytettävä teksti"
 
 msgid "Trigger conditions"
-msgstr ""
+msgstr "Jatkokysymyksen valinnat"
 
 msgid "Sufficient"
-msgstr ""
+msgstr "Riittävä"
 
 msgid "Options"
 msgstr "Valinnat"
@@ -1425,7 +1422,7 @@ msgid "Root domain used for secondary sites"
 msgstr "Käytetään pääverkkotunnusta toissijaisille palveluille"
 
 msgid "Use the first site for administrative purposes only"
-msgstr ""
+msgstr "Käytä ensimmäistä sivustoa vain ylläpidollisiin tarkoituksiin"
 
 msgid "Allow users to sign up"
 msgstr "Salli käyttäjien rekisteröityä palveluun"
@@ -1446,7 +1443,7 @@ msgid "Configure"
 msgstr "Aseta"
 
 msgid "Subdomain"
-msgstr ""
+msgstr "Alidomain"
 
 msgid "The default password is:"
 msgstr "Oletussalasana:"
@@ -1458,7 +1455,7 @@ msgid "Reset password"
 msgstr "Salasanan uusiminen"
 
 msgid "Disable two factor authentication"
-msgstr ""
+msgstr "Poista kaksivaiheinen kirjautuminen käytöstä"
 
 msgid "Force password change"
 msgstr "Pakota salasanan vaihto"
@@ -1529,19 +1526,19 @@ msgid "Forgot password?"
 msgstr "Unohtunut salasana?"
 
 msgid "Enter the two factor authentication code"
-msgstr ""
+msgstr "Kirjoita kaksivaiheisen kirjautumisen koodi"
 
 msgid "Authentication failed"
 msgstr "Tunnistautuminen epäonnistui"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "Koodi on virheellinen tai sen käyttöaika on umpeutunut"
 
 msgid "Site:"
 msgstr "Palvelu:"
 
 msgid "Have you already filed a submission? Enter your receipt."
-msgstr ""
+msgstr "Oletko jo lähettänyt vihjeen? Kirjoita kuittauksesi."
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr "Kuitti on virheellinen tai lähetys on vanhentunut"
@@ -1559,7 +1556,7 @@ msgid "Now type your password, then click 'Log in':"
 msgstr "Kirjoita nyt salasanasi, napsauta sitten ’Kirjaudu’:"
 
 msgid "Text shown after the user has selected the option."
-msgstr ""
+msgstr "Näytettävä teksti kun käyttäjä on tehnyt valinnan."
 
 msgid "Confirm"
 msgstr "Vahvista laajennus"
@@ -1580,31 +1577,31 @@ msgid "Please note that all the associated data will be permanently lost."
 msgstr "Huomaa, että kaikki asiaan liittyvät tiedot poistetaan lopullisesti."
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
+msgstr "Tämä on palvelun esittelyversio, eikä se sovellu oikeiden vihjeiden lähettämiseen."
 
 msgid "Attention!"
 msgstr "Huomio!"
 
 msgid "Install an authenticator app on your phone"
-msgstr ""
+msgstr "Asenna kirjautumissovellus puhelimeesi"
 
 msgid "Scan the QR code with the app"
-msgstr ""
+msgstr "Skannaa QR-koodi puhelimen sovelluksella"
 
 msgid "Enable two factor authentication"
-msgstr ""
+msgstr "Ota käyttöön kaksivaiheinen kirjautuminen"
 
 msgid "Close"
 msgstr "Sulje"
 
 msgid "Your encryption recovery key is:"
-msgstr ""
+msgstr "Salausavaimesi tietojen palauttamista varten on:"
 
 msgid ""
 "Please annotate and store this key in a safe place. It will be necessary if "
 "you lose your personal password to recover the access to your account with "
 "no data loss."
-msgstr ""
+msgstr "Kirjoita tämä salausavain ylös ja tallenna se turvalliseen paikkaan. Tarvitset sitä, jos unohdat henkilökohtaisen salasanasi."
 
 msgid "Welcome!"
 msgstr "Tervetuloa!"
@@ -1680,7 +1677,7 @@ msgid "Please check your inbox for further instructions."
 msgstr "Lisäohjeita löydät sähköpostistasi."
 
 msgid "Encryption key"
-msgstr ""
+msgstr "Salausavain"
 
 msgid "Hide"
 msgstr "Piilota"
@@ -1689,10 +1686,10 @@ msgid "Show"
 msgstr "Näytä"
 
 msgid "Set up email encryption by providing a PGP public key"
-msgstr ""
+msgstr "Määritä sähköpostin salaus julkisella PGP-avaimella"
 
 msgid "Get the encryption recovery key"
-msgstr ""
+msgstr "Lataa salausavain tietojen palautusta varten"
 
 msgid "Current password"
 msgstr "Nykyinen salasana"
@@ -1717,7 +1714,7 @@ msgid "Enter a name for the copy"
 msgstr "Kirjoita kopiolle nimi"
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "Valitse tiedosto tai raahaa se tähän."
 
 msgid "Uploading files…"
 msgstr "Kopioidaan tiedostoja palvelimelle..."
@@ -1738,19 +1735,19 @@ msgid "Size:"
 msgstr "Koko:"
 
 msgid "Enable the Ricochet panel"
-msgstr ""
+msgstr "Ota käyttöön Ricochet-järjestelmä"
 
 msgid "Address"
 msgstr "Osoite"
 
 msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
+msgstr "Keskustele kanssamme anonyymisti Ricochet-sovelluksen avulla"
 
 msgid "To chat with us use the following Ricochet address:"
-msgstr ""
+msgstr "Käytä keskusteluun seuraavaa Ricochet-osoitetta:"
 
 msgid "Download Ricochet at:"
-msgstr ""
+msgstr "Lataa Ricochet osoitteesta:"
 
 msgid "The connection is not secure."
 msgstr "Yhteys ei ole turvallinen."
@@ -1900,7 +1897,7 @@ msgid "These files have been attached to your submission by the recipients."
 msgstr "Tässä vastaanottajien lisäämät vihjeeseesi liittyvät tiedostot."
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "Palautusta varten syötetty salausavain ei kelpaa"
 
 msgid "The provided reset token is invalid or expired."
 msgstr "Nollaustunniste on vanhentunut tai muutoin kelpaamaton."
@@ -1911,11 +1908,11 @@ msgid ""
 msgstr "Anna tilisi käyttäjänimi tai sähköpostiosoite salasanan nollauspyynnön lähettämiseksi."
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "Kirjoita sähköpostiosoitteesi pyytääksesi salasanan nollaamista."
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr ""
+msgstr "Kirjoita vielä tietojen palauttamista varten käytettävä salausavaimesi"
 
 msgid "Password reset requested."
 msgstr "Salasanan nollaus pyydetty."
@@ -1940,11 +1937,11 @@ msgid "Your whistleblowing platform is almost ready!"
 msgstr "Vihjepalvelusi on melkein valmis käyttöön otettavaksi!"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "Tarkista sähköpostisi aktivoidaksesi käyttäjätilisi."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "Sivusto tuhotaan automaattisesti, mikäli tunnusta ei aktivoida 24 tunnin sisällä."
 
 msgid "Sign up"
 msgstr "Rekisteröidy"
@@ -1953,10 +1950,10 @@ msgid "Domain"
 msgstr "Verkkotunnus"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "Varmistus"
 
 msgid "Invalid confirmation"
-msgstr ""
+msgstr "Virheellinen varmistus"
 
 msgid "Other"
 msgstr "Muut"
@@ -1974,7 +1971,7 @@ msgid "The answer is too short."
 msgstr "Vastaus on liian lyhyt."
 
 msgid "The specified input is not valid."
-msgstr ""
+msgstr "Määritelty syöte ei kelpaa."
 
 msgid "Submissions disabled"
 msgstr "Ilmoitusten tekeminen ei mahdollista"
@@ -1984,20 +1981,11 @@ msgid ""
 "only anonymous submissions"
 msgstr "Olet yhdistänyt palvelimen ilman anonymiteettiä ja tämä solmu tukee vain nimettömiä lähetyksiä"
 
-msgid ""
-"This platform makes use of the GlobaLeaks software designed by the Hermes "
-"Center for Transparency and Digital Human Rights to protect the identity of "
-"the whistleblower."
-msgstr ""
-
-msgid "Please support Hermes through their donation page."
-msgstr "Voit tukea Hermes-järjestöä heidän lahjoitussivunsa kautta."
-
 msgid "Thank you!"
 msgstr "Kiitos!"
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "Vastaamme niin pian kuin mahdollista."
 
 msgid "Remember your receipt for this submission."
 msgstr "Muista tämän lähetyksen kuitti"
@@ -2017,7 +2005,7 @@ msgid "Recipients selected:"
 msgstr "Valitsemasi vastaanottajat:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr ""
+msgstr "Maksimimäärä vastaanottojia saavutettu."
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -2222,7 +2210,7 @@ msgid "Registration data:"
 msgstr "Rekisteröintitiedot:"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "Palvelun osoite: {Url}"
 
 msgid "Name: {Name}"
 msgstr "Nimi: {Name}"
@@ -2256,7 +2244,7 @@ msgid ""
 msgstr "Palvelussa olevaan vihjeeseen on lisätty uusi kommentti."
 
 msgid "The submission can be accessed at:"
-msgstr ""
+msgstr "Vihjeen tietoihin pääsee osoitteessa: "
 
 msgid "New comment"
 msgstr "Uusi kommentti"
@@ -2267,7 +2255,7 @@ msgid ""
 msgstr "Pyyntö sähköpostiosoitteesi muuttamiseksi muotoon {NewEmailAddress} on tehty."
 
 msgid "Click the following link to validate this change:"
-msgstr ""
+msgstr "Ole hyvä ja klikkaa oheista linkkiä vahvistaaksesi tämän muutoksen:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2278,7 +2266,7 @@ msgid "Email change request"
 msgstr "Muutospyyntö sähköpostilla"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "Lähettäjä: {Author}"
 
 msgid "Date: {EventTime}"
 msgstr "Päivämäärä: {EventTime}"
@@ -2293,7 +2281,7 @@ msgid "Label: {TipLabel}"
 msgstr "Otsikko: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
+msgstr "Vihjeen tila: {TipStatus}"
 
 msgid "Context: {ContextName}"
 msgstr "Aihe: {ContextName}"
@@ -2357,7 +2345,7 @@ msgid ""
 msgstr "Vastaanottaja on pyytänyt pääsyä vihjeen {TipNum} lähettäjän henkilötietoihin."
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "Pyyntö löytyy osoitteesta:"
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Uusi pyyntö päästä käsiksi vihjeen antajan henkilötietoihin"
@@ -2380,7 +2368,7 @@ msgstr "Uusi viesti"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr ""
+msgstr "Sait tämän sähköpostiviestin, koska käyttäjätilin '{Username}' salasana on pyydetty vaihtamaan uuteen."
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
@@ -2388,7 +2376,7 @@ msgid ""
 msgstr "Jos et ole tämän pyynnön tekijä, voit turvallisesti jättää tämän sähköpostiviestin huomiotta ja poistaa sen."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr ""
+msgstr "Voit vahvistaa pyyntösi oheista linkkiä klikkaamalla:"
 
 msgid "Password reset instructions"
 msgstr "Ohjeet salanasan uusimiseksi"

@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-17 14:06+0000\n"
+"PO-Revision-Date: 2019-11-24 23:48+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -741,11 +741,8 @@ msgstr "Tekst prikazan kad zviždač ne koristi Tor"
 msgid "Disable the privacy panel"
 msgstr "Onemogući ploču privatnosti"
 
-msgid "Disable the receipt hint"
-msgstr "Onemogući potvrdu o prijemu"
-
-msgid "Disable the donation panel"
-msgstr "Onemogući ploču za donacije"
+msgid "Enable the receipt hint"
+msgstr ""
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Broj dana preostalih do isteka zviždačevog pristupa"
@@ -1982,15 +1979,6 @@ msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
 msgstr "Povezujete se s poslužiteljem bez anonimnosti, a ovaj poslužitelj podržava samo anonimne predaje"
-
-msgid ""
-"This platform makes use of the GlobaLeaks software designed by the Hermes "
-"Center for Transparency and Digital Human Rights to protect the identity of "
-"the whistleblower."
-msgstr "Ova platforma koristi GlobaLeaks softver kojeg je izradio Hermes Center for Transparency and Digital Human Rights kako bi identitet \"zviždača\" bio zaštićen"
-
-msgid "Please support Hermes through their donation page."
-msgstr "Molimo podržite Hermes putem njihove donacijske stranice."
 
 msgid "Thank you!"
 msgstr "Hvala Vam!"

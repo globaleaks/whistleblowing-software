@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-07 14:51+0000\n"
+"PO-Revision-Date: 2019-11-24 23:48+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -744,11 +744,8 @@ msgstr "Văn bản hiển thị khi tố cáo là không sử dụng Tor"
 msgid "Disable the privacy panel"
 msgstr "Vô hiệu hóa bảng điều khiển riêng tư"
 
-msgid "Disable the receipt hint"
+msgid "Enable the receipt hint"
 msgstr ""
-
-msgid "Disable the donation panel"
-msgstr "Vô hiệu hóa các bảng tặng"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr ""
@@ -1985,15 +1982,6 @@ msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
 msgstr "Bạn đang kết nối đến máy chủ mà không cần giấu và máy chủ này chỉ hỗ trợ đệ trình ẩn danh"
-
-msgid ""
-"This platform makes use of the GlobaLeaks software designed by the Hermes "
-"Center for Transparency and Digital Human Rights to protect the identity of "
-"the whistleblower."
-msgstr ""
-
-msgid "Please support Hermes through their donation page."
-msgstr "Xin hãy ủng hộ Hermes thông qua trang quyên góp của họ."
 
 msgid "Thank you!"
 msgstr "Cảm ơn bạn!"

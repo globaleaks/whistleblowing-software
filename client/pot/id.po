@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-07 14:51+0000\n"
+"PO-Revision-Date: 2019-11-24 23:48+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -755,11 +755,8 @@ msgstr "Teks muncul ketika informan publik tidak menggunakan Tor"
 msgid "Disable the privacy panel"
 msgstr "Menonaktifkan panel privasi"
 
-msgid "Disable the receipt hint"
-msgstr "Nonaktifkan petunjuk tanda terima"
-
-msgid "Disable the donation panel"
-msgstr "Menonaktifkan panel donasi"
+msgid "Enable the receipt hint"
+msgstr ""
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Waktu yang tersedia sebelum akses berakhir"
@@ -1996,15 +1993,6 @@ msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
 msgstr "Anda sudah terhubung dengan peladen tanpa anonimitas dan peladen ini hanya mendukung pengiriman anonim "
-
-msgid ""
-"This platform makes use of the GlobaLeaks software designed by the Hermes "
-"Center for Transparency and Digital Human Rights to protect the identity of "
-"the whistleblower."
-msgstr ""
-
-msgid "Please support Hermes through their donation page."
-msgstr "Mohon dukungan kepada Hermes melalui halaman donasi mereka."
 
 msgid "Thank you!"
 msgstr "Terima kasih!"

@@ -17,14 +17,14 @@
 # Morpheus, 2013
 # Morpheus, 2013
 # Peyman A <pymnpe@gmail.com>, 2018
-# Reza Ghasemi, 2019
+# magnifico, 2019
 # signal89, 2014
 # signal89, 2014
 # Vox, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-07 14:51+0000\n"
+"PO-Revision-Date: 2019-11-24 23:48+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -756,11 +756,8 @@ msgstr "وقتی افشاگر از شبکه تور استفاده نمیکند �
 msgid "Disable the privacy panel"
 msgstr "غیر فعال کردن پنل پوشیدگی"
 
-msgid "Disable the receipt hint"
-msgstr "غیر فعال کردن راهنما رسید"
-
-msgid "Disable the donation panel"
-msgstr "غیرفعال کردن پنل کمک مالی"
+msgid "Enable the receipt hint"
+msgstr ""
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "تعداد روز تا انقضا دسترسی افشاگر"
@@ -1997,15 +1994,6 @@ msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
 msgstr "شما بدون ناشناسی به گره متصل شده اید و این گره فقط گزارش های ناشناس را قبول میکند"
-
-msgid ""
-"This platform makes use of the GlobaLeaks software designed by the Hermes "
-"Center for Transparency and Digital Human Rights to protect the identity of "
-"the whistleblower."
-msgstr ""
-
-msgid "Please support Hermes through their donation page."
-msgstr "لطفا از هرمس از طریق صفحه اهدا پشتیبانی کنید."
 
 msgid "Thank you!"
 msgstr "متشکریم!"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-07 14:51+0000\n"
+"PO-Revision-Date: 2019-11-24 23:48+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -737,11 +737,8 @@ msgstr "텍스트 고발자가 토르를 사용하지 않을 때 표시"
 msgid "Disable the privacy panel"
 msgstr "개인 정보 보호 패널을 사용하지 않도록 설정"
 
-msgid "Disable the receipt hint"
+msgid "Enable the receipt hint"
 msgstr ""
-
-msgid "Disable the donation panel"
-msgstr "기부 패널을 사용하지 않도록 설정"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr ""
@@ -1978,15 +1975,6 @@ msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
 msgstr "당신은 익명없이 서버에 연결하는이 서버는 익명 제출 지원"
-
-msgid ""
-"This platform makes use of the GlobaLeaks software designed by the Hermes "
-"Center for Transparency and Digital Human Rights to protect the identity of "
-"the whistleblower."
-msgstr ""
-
-msgid "Please support Hermes through their donation page."
-msgstr "자신의 기부 페이지를 통해 헤르메스를 지원하십시오."
 
 msgid "Thank you!"
 msgstr "고맙습니다!"

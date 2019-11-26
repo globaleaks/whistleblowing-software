@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-07 14:51+0000\n"
+"PO-Revision-Date: 2019-11-24 23:48+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -771,11 +771,8 @@ msgstr "النص الظاهر حين لا يستخدم المبلغ متصفح �
 msgid "Disable the privacy panel"
 msgstr "تعطيل شارة الخصوصية"
 
-msgid "Disable the receipt hint"
+msgid "Enable the receipt hint"
 msgstr ""
-
-msgid "Disable the donation panel"
-msgstr "تعطيل لوحة التبرع"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "عدد الأيام حتى تنتهي صلوحية نفاذ المبلغ."
@@ -2012,15 +2009,6 @@ msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
 msgstr "أنت تتصل بالخادم بطريقة لا تخفي هويتك. هذا الخادم يعمل فقط مع المتصلين و البلاغات المجهولة المصدر "
-
-msgid ""
-"This platform makes use of the GlobaLeaks software designed by the Hermes "
-"Center for Transparency and Digital Human Rights to protect the identity of "
-"the whistleblower."
-msgstr ""
-
-msgid "Please support Hermes through their donation page."
-msgstr "الرجاء دعم Hermes من خلال صفحة التبرع."
 
 msgid "Thank you!"
 msgstr "شكرا!"
