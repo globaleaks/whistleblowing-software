@@ -1,3 +1,9 @@
+Changes in version 3.11.42 - 2019-11-26
+    Implement certificate chain verification for outgoinv HTTPS and SMTPS (#2732)
+    Apply minor bugfixing
+    Bump npm dependencies to latest versions
+    update translations
+
 Changes in version 3.11.41 - 2019-11-20
     Apply minor bugfixing
 
@@ -18,7 +24,7 @@ Changes in version 3.11.37 - 2019-10-31
     Update translations
 
 Changes in version 3.11.36 - 2019-10-31
-    Bump npm dependencies to lates version
+    Bump npm dependencies to latest versions
     Implement feature #2521
     Export tip status inside the submission export (#2526)
     Revise CSS in relation to UI responsivenes
