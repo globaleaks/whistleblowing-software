@@ -15,6 +15,10 @@ html, body {
   overflow-x: hidden;
 }
 
+#PageContent {
+  flex: 1 0 auto;
+}
+
 #ContentBox, #NoScript, #FooterBox, #DemoBadge {
   padding: 2rem;
 }
