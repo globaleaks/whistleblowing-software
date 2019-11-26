@@ -15,7 +15,8 @@
   </div>
   <br />
   <div class="row">
-    <div class="col-md-6">
+    <div data-ng-class="{'col-md-6': (public.node.enable_receipt_hint && !public.node.enable_ricochet_panel) || (!public.node.enable_receipt_hint && public.node.enable_ricochet_panel),
+                         'col-md-12': !((public.node.enable_receipt_hint && !public.node.enable_ricochet_panel) || (!public.node.enable_receipt_hint && public.node.enable_ricochet_panel))}">
       <div class="card card-secondary">
         <div class="card-header">
           <span data-translate>Remember your receipt for this submission.</span>
