@@ -14,6 +14,9 @@ from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE
 from six import text_type, binary_type
 from twisted.internet import ssl
 
+from globaleaks.utils.log import log
+
+
 # OpenSSL mocks
 SSL.OP_SINGLE_ECDH_USE = 0x00080000
 SSL.OP_NO_RENEGOTIATION = 0x40000000
@@ -161,8 +164,11 @@ def new_tls_client_context():
     # It'd be nice if pyOpenSSL let us pass None here for this behavior (as
     # the underlying OpenSSL API call allows NULL to be passed).  It
     # doesn't, so we'll supply a function which does the same thing.
-    def _verifyCallback(conn, cert, errno, depth, preverify_ok):
-        return preverify_ok
+    def _verifyCallback(conn, cert, errno, depth, ok):
+        if not ok:
+            log.err("Unable to verify validity of certificate: %s" % cert.get_subject())
+
+        return ok
 
     ctx.set_verify(SSL.VERIFY_PEER, _verifyCallback)
     ctx.set_verify_depth(100)
