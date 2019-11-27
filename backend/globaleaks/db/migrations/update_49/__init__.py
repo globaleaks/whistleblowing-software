@@ -1,5 +1,5 @@
 # -*- coding: UTF-8
-from globaleaks.db.migrations.update import MigrationBase
+from globaleaks.db.migrations.update import MigrationBase as MigrationScript
 
 from globaleaks.models import Model
 from globaleaks.models.properties import *
@@ -27,7 +27,3 @@ class InternalTip_v_48(Model):
     wb_access_counter = Column(Integer, default=0, nullable=False)
     status = Column(UnicodeText(36), nullable=True)
     substatus = Column(UnicodeText(36), nullable=True)
-
-
-class MigrationScript(MigrationBase):
-    pass

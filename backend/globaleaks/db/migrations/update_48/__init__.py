@@ -1,5 +1,5 @@
 # -*- coding: UTF-8
-from globaleaks.db.migrations.update import MigrationBase
+from globaleaks.db.migrations.update import MigrationBase as MigrationScript
 
 from globaleaks.models import Model
 from globaleaks.models.properties import *
@@ -40,7 +40,3 @@ class FieldOption_v_47(Model):
     score_points = Column(Integer, default=0, nullable=False)
     score_type = Column(Integer, default=0, nullable=False)
     trigger_receiver = Column(JSON, default=list, nullable=True)
-
-
-class MigrationScript(MigrationBase):
-    pass

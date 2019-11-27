@@ -1,5 +1,5 @@
 # -*- coding: UTF-8
-from globaleaks.db.migrations.update import MigrationBase
+from globaleaks.db.migrations.update import MigrationBase as MigrationScript
 from globaleaks.models import Model
 from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null
@@ -129,7 +129,3 @@ class WhistleblowerTip_v_42(Model):
     wb_pub_key = Column(UnicodeText, default=u'', nullable=False)
     wb_tip_key = Column(UnicodeText, default=u'', nullable=False)
     enc_data = Column(UnicodeText, default=u'', nullable=False)
-
-
-class MigrationScript(MigrationBase):
-    pass
