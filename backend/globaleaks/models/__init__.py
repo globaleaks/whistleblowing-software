@@ -1117,9 +1117,6 @@ class _SubmissionStatus(Model):
     tid = Column(Integer, primary_key=True, default=1, nullable=False)
     label = Column(JSON, default=dict, nullable=False)
 
-    # TODO: UNUSED, remove this at next db migration
-    system_defined = Column(Boolean, nullable=False, default=False)
-
     tip_timetolive = Column(Integer, default=90, nullable=False)
     tip_timetolive_override = Column(Boolean, default=False, nullable=False)
     receivers = Column(JSON, default=list, nullable=False)
