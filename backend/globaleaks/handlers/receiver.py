@@ -98,7 +98,7 @@ def get_receivertip_list(session, tid, receiver_id, user_key, language):
         internalfiles_by_itip[itip_id] = count
 
     for rtip in rtips:
-        internaltip = itips_by_id[rtip.internaltip_id]
+        itip = itips_by_id[rtip.internaltip_id]
 
         preview = itip.preview
 
@@ -109,25 +109,25 @@ def get_receivertip_list(session, tid, receiver_id, user_key, language):
 
         rtip_summary_list.append({
             'id': rtip.id,
-            'creation_date': datetime_to_ISO8601(internaltip.creation_date),
+            'creation_date': datetime_to_ISO8601(itip.creation_date),
             'last_access': datetime_to_ISO8601(rtip.last_access),
-            'wb_last_access': datetime_to_ISO8601(internaltip.wb_last_access),
-            'update_date': datetime_to_ISO8601(internaltip.update_date),
-            'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
-            'progressive': internaltip.progressive,
-            'new': rtip.access_counter == 0 or rtip.last_access < internaltip.update_date,
-            'context_id': internaltip.context_id,
+            'wb_last_access': datetime_to_ISO8601(itip.wb_last_access),
+            'update_date': datetime_to_ISO8601(itip.update_date),
+            'expiration_date': datetime_to_ISO8601(itip.expiration_date),
+            'progressive': itip.progressive,
+            'new': rtip.access_counter == 0 or rtip.last_access < itip.update_date,
+            'context_id': itip.context_id,
             'access_counter': rtip.access_counter,
-            'file_count': internalfiles_by_itip.get(internaltip.id, 0),
-            'comment_count': comments_by_itip.get(internaltip.id, 0),
+            'file_count': internalfiles_by_itip.get(itip.id, 0),
+            'comment_count': comments_by_itip.get(itip.id, 0),
             'message_count': messages_by_rtip.get(rtip.id, 0),
-            'https': internaltip.https,
+            'https': itip.https,
             'preview_schema': db_serialize_archived_preview_schema(ps_by_itip[rtip.internaltip_id], language),
             'preview': preview,
-            'score': internaltip.total_score,
+            'score': itip.total_score,
             'label': rtip.label,
-            'status': internaltip.status,
-            'substatus': internaltip.substatus
+            'status': itip.status,
+            'substatus': itip.substatus
         })
 
     return rtip_summary_list
