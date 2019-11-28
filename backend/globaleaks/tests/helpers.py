@@ -1120,6 +1120,7 @@ class MockDict:
             'disable_submissions': False,
             'disable_privacy_badge': False,
             'enable_receipt_hint': False,
+            'enable_private_labels': False,
             'enable_ricochet_panel': False,
             'ricochet_address': u'',
             'do_not_expose_users_names': False,
