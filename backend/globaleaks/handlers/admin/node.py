@@ -97,6 +97,9 @@ def db_update_node(session, tid, request, language):
         config.set_val(u'basic_auth_username', '')
         config.set_val(u'basic_auth_password', '')
 
+    if request['enable_ricochet_panel'] and not request['ricochet_address']:
+        request['enable_ricochet_panel'] = False
+
     # Validate that IP addresses/ranges we're getting are goo
     if 'ip_filter_admin' in request and request['ip_filter_admin_enable'] and request['ip_filter_admin']:
         parse_csv_ip_ranges_to_ip_networks(request['ip_filter_admin'])
