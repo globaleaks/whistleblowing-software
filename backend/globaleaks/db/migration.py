@@ -46,7 +46,7 @@ from globaleaks.db.migrations.update_48 import Field_v_47, FieldOption_v_47
 from globaleaks.db.migrations.update_49 import InternalTip_v_48
 from globaleaks.db.migrations.update_50 import SubmissionStatus_v_49, SubmissionSubStatus_v_49, User_v_49
 from globaleaks.db.migrations.update_51 import Field_v_50, InternalFile_v_50, User_v_50
-from globaleaks.db.migrations.update_52 import SubmissionStatus_v_51
+from globaleaks.db.migrations.update_52 import InternalTip_v_51, SubmissionStatus_v_51
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
@@ -79,7 +79,7 @@ migration_mapping = OrderedDict([
     ('File', [-1, -1, -1, -1, -1, -1, -1, File_v_38, 0, 0, 0, 0, 0, 0, 0, models._File, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('IdentityAccessRequest', [IdentityAccessRequest_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._IdentityAccessRequest, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('InternalFile', [InternalFile_v_25, 0, InternalFile_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, InternalFile_v_40, 0, InternalFile_v_45, 0, 0, 0, 0, InternalFile_v_50, 0, 0, 0, InternalFile_v_50, models._InternalFile, 0]),
-    ('InternalTip', [InternalTip_v_32, 0, 0, 0, 0, 0, 0, 0, 0, InternalTip_v_34, 0, InternalTip_v_38, 0, 0, 0, InternalTip_v_40, 0, InternalTip_v_41, InternalTip_v_42, InternalTip_v_44, 0, InternalTip_v_45, InternalTip_v_46, InternalTip_v_48, 0, models._InternalTip, 0, 0, 0]),
+    ('InternalTip', [InternalTip_v_32, 0, 0, 0, 0, 0, 0, 0, 0, InternalTip_v_34, 0, InternalTip_v_38, 0, 0, 0, InternalTip_v_40, 0, InternalTip_v_41, InternalTip_v_42, InternalTip_v_44, 0, InternalTip_v_45, InternalTip_v_46, InternalTip_v_48, 0, InternalTip_v_51, 0, 0, models._InternalTip]),
     ('InternalTipAnswers', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._InternalTipAnswers, 0, 0, 0, 0, 0, 0, 0]),
     ('InternalTipData', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._InternalTipData, 0, 0, 0, 0, 0, 0, 0]),
     ('Mail', [-1, -1, Mail_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Mail, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
