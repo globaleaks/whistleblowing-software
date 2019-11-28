@@ -810,6 +810,8 @@ class _InternalTip(Model):
     enable_attachments = Column(Boolean, default=True, nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
 
+    label = Column(UnicodeText, default='', nullable=False)
+
     additional_questionnaire_id = Column(UnicodeText(36))
 
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
@@ -984,6 +986,8 @@ class _ReceiverTip(Model):
     can_access_whistleblower_identity = Column(Boolean, default=False, nullable=True)
     new = Column(Boolean, default=True, nullable=False)
     enable_notifications = Column(Boolean, default=True, nullable=False)
+
+    label = Column(UnicodeText, default='', nullable=False)
 
     crypto_tip_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
 

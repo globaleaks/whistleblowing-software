@@ -109,6 +109,7 @@ ConfigDescriptor = {
     'disable_privacy_badge': Bool(default=False),
     'enable_disclaimer': Bool(default=False),
     'enable_receipt_hint': Bool(default=False),
+    'enable_private_labels': Bool(default=False),
 
     'enable_ricochet_panel': Bool(default=False),
     'ricochet_address': Unicode(default=''),
@@ -211,6 +212,7 @@ ConfigFilters = {
         'disable_privacy_badge',
         'enable_disclaimer',
         'enable_receipt_hint',
+        'enable_private_labels',
         'enable_ricochet_panel',
         'ricochet_address',
         'do_not_expose_users_names',

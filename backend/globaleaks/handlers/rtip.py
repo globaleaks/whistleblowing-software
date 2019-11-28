@@ -143,7 +143,12 @@ def serialize_rtip(session, rtip, itip, language):
 
     ret['id'] = rtip.id
     ret['receiver_id'] = user_id
-    ret['label'] = rtip.label
+
+    if State.tenant_cache[itip.tid].enable_private_labels:
+        ret['label'] = rtip.label
+    else:
+        ret['label'] = itip.label
+
     ret['comments'] = db_get_itip_comment_list(session, itip.id)
     ret['messages'] = db_get_itip_message_list(session, rtip.id)
     ret['rfiles'] = db_receiver_get_rfile_list(session, rtip.id)
@@ -358,6 +363,25 @@ def set_receivertip_variable(session, tid, user_id, rtip_id, key, value):
 
 
 @transact
+def update_label(session, tid, user_id, rtip_id, key, value):
+    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+
+    if itip.crypto_tip_pub_key:
+        value = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, value)).decode()
+
+    if State.tenant_cache[tid].enable_private_labels:
+        setattr(rtip, key, value)
+    else:
+        setattr(itip, key, value)
+
+
+@transact
+def set_receivertip_variable(session, tid, user_id, rtip_id, key, value):
+    rtip, _ = db_access_rtip(session, tid, user_id, rtip_id)
+    setattr(rtip, key, value)
+
+
+@transact
 def update_tip_submission_status(session, tid, user_id, rtip_id, submission_status_uuid, submission_substatus_uuid):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
@@ -481,6 +505,13 @@ def delete_wbfile(session, tid, user_id, file_id):
     session.delete(wbfile)
 
 
+def decrypt_label(user_key, tip_prv_key, tip):
+    tip_key = GCE.asymmetric_decrypt(user_key, tip_prv_key)
+
+    if tip['label']:
+        tip['label'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(tip['label'].encode())).decode()
+
+
 class RTipInstance(OperationHandler):
     """
     This interface exposes the Receiver's Tip
@@ -520,7 +551,7 @@ class RTipInstance(OperationHandler):
         return postpone_expiration_date(self.request.tid, self.current_user.user_id, tip_id)
 
     def update_label(self, req_args, tip_id, *args, **kwargs):
-        return set_receivertip_variable(self.request.tid, self.current_user.user_id, tip_id, 'label', req_args['value'])
+        return update_label(self.request.tid, self.current_user.user_id, tip_id, 'label', req_args['value'])
 
     def update_submission_status(self, req_args, tip_id, *args, **kwargs):
         return update_tip_submission_status(self.request.tid, self.current_user.user_id, tip_id,
