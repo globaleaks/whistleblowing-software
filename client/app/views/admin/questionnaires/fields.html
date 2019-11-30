@@ -125,7 +125,7 @@
               <input data-ng-model="field.required" type="checkbox">
               <label data-translate>Required</label>
             </div>
-            <div class="form-group" data-ng-if="::(field.type === 'fieldgroup' || field.type === 'fileupload') && field.template_id === ''">
+            <div class="form-group" data-ng-if="(field.type === 'fieldgroup' || field.type === 'fileupload') && field.template_id === ''">
               <div data-ng-switch="" on="typeSwitch(field.type)">
                 <input data-ng-model="field.multi_entry" type="checkbox">
                 <label data-ng-switch-when="fileupload" data-translate>Accept multiple file uploads</label>
@@ -136,7 +136,7 @@
               <label data-translate>Hint shown on the button for adding an additional answer</label>
               <input name="multi_entry_hint" class="form-control" data-ng-model="field.multi_entry_hint" type="text" data-ng-disabled="!field.editable">
             </div>
-            <div class="form-group" data-ng-if="::fieldIsMarkableSubjectToPreview">
+            <div class="form-group" data-ng-if="fieldIsMarkableSubjectToPreview">
               <input data-ng-model="field.preview" type="checkbox">
               <label data-translate>Preview</label>
             </div>

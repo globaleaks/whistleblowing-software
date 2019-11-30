@@ -21,7 +21,7 @@
           </thead>
           <tbody id="fileListBody">
             <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles">
-              <td>{{::file.name}}</td>
+              <td>{{file.name}}</td>
               <td data-ng-show="file.status !== 'unavailable'">
                 <button class="btn btn-secondary tip-action-download-file"
                         uib-popover="{{'Download' | translate}}"
@@ -34,9 +34,9 @@
               <td data-ng-show="file.status === 'unavailable' || file.status === 'nokey'">
                 <div class="badge badge-warning" data-translate>file unavailable</div>
               </td>
-	      <td>{{::file.creation_date | date:'dd-MM-yyyy'}}</td>
-	      <td>{{::file.type}}</td>
-              <td>{{::file.size | byteFmt:2}}</td>
+	      <td>{{file.creation_date | date:'dd-MM-yyyy'}}</td>
+	      <td>{{file.type}}</td>
+              <td>{{file.size | byteFmt:2}}</td>
             </tr>
           </tbody>
         </table>

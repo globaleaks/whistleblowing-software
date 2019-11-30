@@ -9,10 +9,10 @@
   </thead>
   <tbody id="userListBody">
     <tr data-ng-repeat="user in resources.users">
-      <td class="col-md-3">{{::user.username}}</td>
-      <td class="col-md-3">{{::user.role}}</td>
-      <td class="col-md-3">{{::user.name}}</td>
-      <td class="col-md-3">{{::user.last_login | date:'dd-MM-yyyy HH:mm'}}</td>
+      <td class="col-md-3">{{user.username}}</td>
+      <td class="col-md-3">{{user.role}}</td>
+      <td class="col-md-3">{{user.name}}</td>
+      <td class="col-md-3">{{user.last_login | date:'dd-MM-yyyy HH:mm'}}</td>
     </tr>
   </tbody>
 </table>

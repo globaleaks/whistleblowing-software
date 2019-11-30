@@ -3,7 +3,7 @@
     <div class="top-row clearfix">
       <span class="float-left">
         <span class="text-muted" data-ng-if="ctx === 'download'"><span data-translate>Filename</span>:</span>
-        <span class="filename">{{::wbfile.name }}</span>
+        <span class="filename">{{wbfile.name }}</span>
       </span>
       <span class="float-right">
         <span data-ng-if="ctx === 'rtip'">
@@ -24,26 +24,26 @@
     <p class="file-info-row">
       <span class="px-1">
         <span class="text-muted" data-translate>From</span>:&nbsp;
-        <span>{{::wbfile.author | wbfileCreator: tip.receivers }}</span>
+        <span>{{wbfile.author | wbfileCreator: tip.receivers }}</span>
       </span>
       <span class="px-1">
         <span class="text-muted" data-translate>Creation date</span>:&nbsp;
-        <span>{{::wbfile.creation_date | date:'dd-MM-yyyy HH:MM'}}</span>
+        <span>{{wbfile.creation_date | date:'dd-MM-yyyy HH:MM'}}</span>
       </span>
       <span class="px-1">
         <span class="text-muted" data-translate>Size:</span>
-        <span>{{::wbfile.size | byteFmt:2}}</span>
+        <span>{{wbfile.size | byteFmt:2}}</span>
       </span>
       <span class="px-1" data-ng-if="ctx === 'rtip'">
         <span class="text-muted" data-translate>Number of downloads</span>:&nbsp;
-        <span>{{::wbfile.downloads}}</span>
+        <span>{{wbfile.downloads}}</span>
       </span>
     </p>
     <p class="description" data-ng-if="wbfile.description !== ''">
       <span class="text-muted">
         <span data-translate>Description</span>:
       </span>
-      <span>{{::wbfile.description }}</span>
+      <span>{{wbfile.description }}</span>
     </p>
   </div>
 </div>

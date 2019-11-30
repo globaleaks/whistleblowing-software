@@ -20,10 +20,10 @@
           </thead>
           <tbody id="fileListBody">
             <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles | orderBy:'creation_date'">
-              <td>{{::file.name}}</td>
-              <td>{{::file.creation_date | date:'dd-MM-yyyy'}}</td>
-              <td>{{::file.type}}</td>
-	      <td>{{::file.size | byteFmt:2}}</td>
+              <td>{{file.name}}</td>
+              <td>{{file.creation_date | date:'dd-MM-yyyy'}}</td>
+              <td>{{file.type}}</td>
+	      <td>{{file.size | byteFmt:2}}</td>
             </tr>
           </tbody>
         </table>

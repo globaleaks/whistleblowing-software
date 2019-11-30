@@ -199,15 +199,15 @@
               </button>
             </span>
         </td>
-        <td class="TipInfoID">#{{::tip.progressive}}</td>
-        <td class="TipInfoContext" data-ng-if="public.contexts.length > 1">{{::tip.context_name}}</td>
-        <td class="TipInfoLabel">{{::tip.label}}</td>
+        <td class="TipInfoID">#{{tip.progressive}}</td>
+        <td class="TipInfoContext" data-ng-if="public.contexts.length > 1">{{tip.context_name}}</td>
+        <td class="TipInfoLabel">{{tip.label}}</td>
         <td class="TipInfoStatus"><span>{{tip.submissionStatusStr}}</span></td>
-        <td class="TipInfoSubmissionDate">{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
-        <td class="TipInfoUpdateDate">{{::tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
+        <td class="TipInfoSubmissionDate">{{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
+        <td class="TipInfoUpdateDate">{{tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
         <td class="TipInfoExpirationDate">
           <span
-              data-ng-if="!Utils.isNever(tip.expiration_date)">{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
+              data-ng-if="!Utils.isNever(tip.expiration_date)">{{tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
           <span data-ng-if="Utils.isNever(tip.expiration_date)" data-translate>Never</span>
         </td>
         <td class="TipInfoLastAccess">
@@ -216,9 +216,9 @@
           <i data-ng-if="tip.wb_last_access < tip.update_date" class="fas fa-times"
              uib-popover="{{'The whistleblower has not read the latest update yet' | translate }}"></i>
         </td>
-        <td class="TipInfoFilesCount">{{::tip.file_count}}</td>
-        <td class="TipInfoCommentCount">{{::tip.comment_count}}</td>
-        <td class="TipInfoMessageCount">{{::tip.message_count}}</td>
+        <td class="TipInfoFilesCount">{{tip.file_count}}</td>
+        <td class="TipInfoCommentCount">{{tip.comment_count}}</td>
+        <td class="TipInfoMessageCount">{{tip.message_count}}</td>
         <td class="TipInfoPreview">
           <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true"
                data-ng-include="'views/partials/tip_field.html'"></div>

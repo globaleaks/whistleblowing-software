@@ -5,14 +5,14 @@
     </div>
     <div data-ng-switch-default data-ng-switch="field.type">
       <div data-ng-switch-when="textarea" data-ng-model-options="{'debounce':250}">
-        <textarea id="{{::fieldEntry}}"
+        <textarea id="{{fieldEntry}}"
                   data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : 4096"
-                  name="input-{{::entryIndex}}"
+                  name="input-{{entryIndex}}"
                   class="form-control inputelem"
                   data-ng-model="entry['value']"
                   data-ng-minlength="field.attrs.min_len.value"
-                  maxlength="{{::maxlength}}"
-                  aria-label="{{::field.label}}"
+                  maxlength="{{maxlength}}"
+                  aria-label="{{field.label}}"
                   data-ng-required="entry.required_status"
                   data-ng-attr-placeholder="{{field.placeholder}}"
                   dynamic-textarea></textarea>
@@ -25,39 +25,39 @@
         </div>
       </div>
       <div data-ng-switch-when="selectbox">
-        <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="custom-select inputelem" data-ng-model="entry['value']" data-ng-required="entry.required_status">
+        <select id="{{fieldEntry}}" name="{{'input-' +  entryIndex}}" class="custom-select inputelem" data-ng-model="entry['value']" data-ng-required="entry.required_status">
           <option class="d-none" value=""></option>
-          <option data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'presentation_order'" id="{{::fieldEntry}}-option-{{::$index}}" value="{{option.id}}">{{::option.label}}</option>
+          <option data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'presentation_order'" id="{{fieldEntry}}-option-{{$index}}" value="{{option.id}}">{{option.label}}</option>
         </select>
       </div>
       <div data-ng-switch-when="multichoice">
-        <div data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}">
-          <input class="form-control-input inputelem" type="radio" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
-          <span uib-popover="{{option.hint1}}" class="form-control-label" data-ng-class="{'text-underline': option.hint1}">{{::option.label}}</span>
+        <div data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}">
+          <input class="form-control-input inputelem" type="radio" id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
+          <span uib-popover="{{option.hint1}}" class="form-control-label" data-ng-class="{'text-underline': option.hint1}">{{option.label}}</span>
         </div>
       </div>
       <div data-ng-switch-when="checkbox">
         <div data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'presentation_order'">
           <label>
-            <input id="{{::fieldEntry}}"
+            <input id="{{fieldEntry}}"
                    name="{{'input-' + $parent.entryIndex + '-option-' + entryIndex}}"
                    class="form-control-input inputelem"
                    data-ng-model="entry[option.id]"
                    data-ng-required="entry.required_status"
                    type="checkbox" />
-            <span uib-popover="{{option.hint1}}" class="form-control-label" data-ng-class="{'text-underline': option.hint1}">{{::option.label}}</span>
+            <span uib-popover="{{option.hint1}}" class="form-control-label" data-ng-class="{'text-underline': option.hint1}">{{option.label}}</span>
 	  </labal>
         </div>
       </div>
       <div data-ng-switch-when="date">
         <div class="input-group">
-          <input id="{{::fieldEntry}}"
+          <input id="{{fieldEntry}}"
                  name="input-{{entryIndex}}"
                  class="form-control inputelem"
                  type="text"
                  maxlength="4096"
                  readonly="readonly"
-                 aria-label="{{::field.label}}"
+                 aria-label="{{field.label}}"
                  data-ng-model="entry['value']"
                  data-ng-required="entry.required_status"
                  data-ng-click="open()"
@@ -72,13 +72,13 @@
         <span class="form-group">
           <label data-translate>From</label>
           <div class="input-group mx-1">
-            <input id="{{::fieldEntry}}"
+            <input id="{{fieldEntry}}"
                    name="input-{{entryIndex}}"
                    class="form-control inputelem"
                    type="text"
                    maxlength="4096"
                    readonly="readonly"
-                   aria-label="{{::field.label}}"
+                   aria-label="{{field.label}}"
                    data-ng-model="daterange.start"
                    data-ng-required="entry.required_status"
                    data-ng-attr-placeholder="{{field.placeholder}}"
@@ -93,13 +93,13 @@
         <span class="form-group mx-1" data-ng-if="daterange.start">
           <label data-translate>To</label>
           <div class="input-group mx-1">
-            <input id="{{::fieldEntry}}"
+            <input id="{{fieldEntry}}"
                    name="input-{{entryIndex}}"
                    class="form-control inputelem"
                    type="text"
                    maxlength="4096"
                    readonly="readonly"
-                   aria-label="{{::field.label}}"
+                   aria-label="{{field.label}}"
                    data-ng-model="daterange.end"
                    data-ng-required="entry.required_status"
                    data-ng-attr-placeholder="{{field.placeholder}}"
@@ -122,7 +122,7 @@
         </div>
         <div class="form-check">
           <label>
-            <input id="{{::fieldEntry}}"
+            <input id="{{fieldEntry}}"
                    name="input-{{entryIndex}}"
                    class="form-check-input inputelem"
                    data-ng-model="entry['value']"
@@ -134,18 +134,18 @@
         </div>
       </div>
       <div data-ng-switch-when="map">
-        <div id="{{::fieldEntry}}">
+        <div id="{{fieldEntry}}">
           <div class="map"></div>
 	  <div class="input-group">
-            <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="custom-select inputelem" data-ng-model="entry['value']" data-ng-change="field.attrs.topojson.set(entry['value'])" data-ng-required="entry.required_status">
-              <option data-ng-repeat="option in field.attrs.topojson.geojson.features | orderBy:'properties.name'" value="{{option.id}}">{{::option.properties.name}}</option>
+            <select id="{{fieldEntry}}" name="{{'input-' +  entryIndex}}" class="custom-select inputelem" data-ng-model="entry['value']" data-ng-change="field.attrs.topojson.set(entry['value'])" data-ng-required="entry.required_status">
+              <option data-ng-repeat="option in field.attrs.topojson.geojson.features | orderBy:'properties.name'" value="{{option.id}}">{{option.properties.name}}</option>
             </select>
             <span class="input-group-append" data-ng-click="entry['value']=''; field.attrs.topojson.reset()" data-ng-disabled="!entry['value']"><i class="input-group-text fas fa-times-circle"></i></span>
           </div>
         </div>
       </div>
       <div data-ng-switch-when="fileupload">
-        <div id="{{::fieldEntry}}" data-ng-include="'views/partials/rfile_upload_button.html'"></div>
+        <div id="{{fieldEntry}}" data-ng-include="'views/partials/rfile_upload_button.html'"></div>
       </div>
       <div data-ng-switch-when="fieldgroup">
         <div data-ng-if="field.attrs.multimedia.value" data-ng-switch="field.attrs.multimedia_type.value">
@@ -164,7 +164,7 @@
         <div data-ng-include="'views/whistleblower/form.html'"></div>
       </div>
       <div data-ng-switch-default data-ng-model-options="{'debounce':250}">
-        <input id="{{::fieldEntry}}"
+        <input id="{{fieldEntry}}"
                name="input-{{entryIndex}}"
                class="form-control inputelem"
                data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : 4096"
@@ -174,7 +174,7 @@
                maxlength="{{maxlength}}"
                data-ng-required="entry.required_status"
                data-ng-attr-placeholder="{{field.placeholder}}"
-               aria-label="{{::field.label}}"
+               aria-label="{{field.label}}"
                type="text" />
         <div class="clearfix">
           <div data-ng-if="f['input-' + entryIndex].$error.pattern" class="text-danger" data-translate>The specified input is not valid.</div>

@@ -2,15 +2,15 @@
   <div data-ng-switch-when="whistleblower" class="alert alert-primary">
     <div class="row">
       <div class="col-md-6" data-translate>Whistleblower</div>
-      <div class="col-md-6 text-right">{{::message.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
+      <div class="col-md-6 text-right">{{message.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
     </div>
-    <div class="preformatted">{{::message.content}}</div>
+    <div class="preformatted">{{message.content}}</div>
   </div>
   <div data-ng-switch-when="receiver" class="alert alert-success">
     <div class="row">
-      <div class="col-md-6">{{::message.author}}</div>
-      <div class="col-md-6 text-right">{{::message.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
+      <div class="col-md-6">{{message.author}}</div>
+      <div class="col-md-6 text-right">{{message.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
     </div>
-    <div class="preformatted">{{::message.content}}</div>
+    <div class="preformatted">{{message.content}}</div>
   </div>
 </div>

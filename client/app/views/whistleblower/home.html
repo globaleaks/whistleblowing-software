@@ -1,5 +1,5 @@
 <div id="HomePageBox">
-  <div id="NodePresentation" data-ng-if="public.node.presentation">{{::public.node.presentation}}</div>
+  <div id="NodePresentation" data-ng-if="public.node.presentation">{{public.node.presentation}}</div>
 
   <div id="WhistleblowerBox" class="d-block mx-auto">
     <div id="WhistleblowerSubmitBoxButtonDisabled" data-ng-show="public.node.disable_submissions || (!public.node.https_whistleblower && !connection.tor)">
@@ -13,9 +13,9 @@
     </div>
     <div data-ng-show="!public.node.disable_submissions && (public.node.https_whistleblower || connection.tor)">
       <div id="WhistleblowerSubmitBox">
-        <div id="WhistleblowerSubmitBoxHeader">{{::public.node.whistleblowing_question}}</div>
+        <div id="WhistleblowerSubmitBoxHeader">{{public.node.whistleblowing_question}}</div>
         <div id="WhistleblowerSubmitBoxButton">
-          <button data-ng-click="evaluateDisclaimerModalOpening() || setPage('submissionpage')" class="btn btn-primary">{{::public.node.whistleblowing_button}}</button>
+          <button data-ng-click="evaluateDisclaimerModalOpening() || setPage('submissionpage')" class="btn btn-primary">{{public.node.whistleblowing_button}}</button>
         </div>
       </div>
       <div id="WhistleblowerReceiptBox" data-ng-include="'views/partials/wb_login_box.html'"></div>

@@ -15,9 +15,9 @@
     <div data-ng-include="'views/whistleblower/form_field_input.html'"></div>
   </div>
 </div>
-<div data-ng-if="::field.multi_entry && field.type === 'fieldgroup'" class="float-right">
+<div data-ng-if="field.multi_entry && field.type === 'fieldgroup'" class="float-right">
   <button class="btn btn-primary" data-ng-click="addAnswerEntry(entries, field.id)">
     <i class="fas fa-plus"></i>
-    <span>{{::field.multi_entry_hint}}</span>
+    <span>{{field.multi_entry_hint}}</span>
   </button>
 </div>
