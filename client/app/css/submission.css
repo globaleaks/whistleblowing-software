@@ -3,7 +3,6 @@
 }
 
 #contextClarification,
-.contextListDescription,
 .contextCardDescription,
 .receiverDescription,
 .stepDescription,
@@ -21,11 +20,11 @@
   position: relative;
 }
 
-.contextCard, .contextList {
+.contextCard {
   cursor: pointer;
 }
 
-.contextCard, .contextList, .receiverCard {
+.contextCard, .receiverCard {
   margin-bottom: 1rem;
   padding: 1rem;
   background-color: white;
@@ -44,7 +43,7 @@
   margin-bottom: 1rem;
 }
 
-.contextCard:hover, .contextList:hover, .receiverCard.selected {
+.contextCard:hover, .receiverCard.selected {
   background-color: #428bca;
   color: #FFF;
 }
