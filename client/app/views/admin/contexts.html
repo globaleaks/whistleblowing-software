@@ -2,7 +2,7 @@
   <div class="editorTitle">
     <span data-translate>Contexts</span>
     <button class="btn btn-sm btn-primary show-add-context-btn" data-ng-click="toggleAddContext()">
-      <i class="fa fa-plus"></i>
+      <i class="fas fa-plus"></i>
       <span data-translate>Add</span>
     </button>
   </div>
@@ -21,7 +21,7 @@
       <div class="form-group">
         <button id="add-btn" class="btn btn-primary" data-ng-disabled="newContext.$invalid"
                 data-ng-click="add_context(); toggleAddContext()" type="submit">
-          <i class="fa fa-plus"></i>
+          <i class="fas fa-plus"></i>
           <span data-translate>Add</span>
         </button>
       </div>
@@ -36,11 +36,11 @@
                 <span class="float-right">
                   <button data-ng-if="!$first" class="btn btn-sm btn-primary" data-ng-click="moveUp($event, $index)"
                           uib-popover="{{'Move up' | translate}}" popover-placement="left">
-                    <i class="fa fa-chevron-up"></i>
+                    <i class="fas fa-chevron-up"></i>
                   </button>
                   <button data-ng-if="!$last" class="btn btn-sm btn-primary" data-ng-click="moveDown($event, $index)"
                           uib-popover="{{'Move down' | translate}}" popover-placement="left">
-                    <i class="fa fa-chevron-down"></i>
+                    <i class="fas fa-chevron-down"></i>
                   </button>
                   <button
                       class="btn btn-sm btn-secondary"
@@ -112,7 +112,7 @@
                 <label>
                   <span data-translate>Recipients</span>
                   <button class="btn btn-sm btn-primary add-receiver-btn" data-ng-click="toggleSelect()">
-                    <i class="fa fa-plus"></i>
+                    <i class="fas fa-plus"></i>
                     <span data-translate>Add</span>
                   </button>
                 </label>
@@ -137,16 +137,16 @@
                           <span class="action-btns">
                             <span data-ng-if="!$first" data-ng-click="moveUp($index)"
                                   uib-popover="{{'Move up' | translate}}">
-                              <i class="fa fa-chevron-up"></i>
+                              <i class="fas fa-chevron-up"></i>
                             </span>
-                            <i data-ng-if="$first || $last" class="fa fa-none"></i>
+                            <i data-ng-if="$first || $last" class="fas fa-none"></i>
                             <span data-ng-if="!$last" data-ng-click="moveDown($index)"
                                   uib-popover="{{'Move down' | translate}}">
-                              <i class="fa fa-chevron-down"></i>
+                              <i class="fas fa-chevron-down"></i>
                             </span>
                             <span data-ng-click="context.receivers.splice($index, 1)"
                                   uib-popover="{{'Remove' | translate}}">
-                              <i class="fa fa-times"></i>
+                              <i class="fas fa-times"></i>
                             </span>
                           </span>
                           <span>{{admin_receivers_by_id[receiver].name}}</span>
@@ -173,8 +173,8 @@
             <div class="col-md-12">
               <button class="btn btn-primary" data-ng-click="show_advanced_settings = !show_advanced_settings"
                       data-ng-init="show_advanced_settings=false">
-                <i data-ng-if="!show_advanced_settings" class="fa fa-plus"></i>
-                <i data-ng-if="show_advanced_settings" class="fa fa-minus"></i>
+                <i data-ng-if="!show_advanced_settings" class="fas fa-plus"></i>
+                <i data-ng-if="show_advanced_settings" class="fas fa-minus"></i>
                 <span data-translate>Advanced settings</span>
               </button>
               <div id="ContextAdvancedSettingsBox">

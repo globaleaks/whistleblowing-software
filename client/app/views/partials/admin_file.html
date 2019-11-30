@@ -10,18 +10,18 @@
     <div class="custom-file">
       <input id="customFile-{{admin_file.varname}}" class="custom-file-input" type="file" flow-btn>
       <label class="btn btn-sm btn-primary" for="customFile-{{admin_file.varname}}">
-        <i class="fa fa-upload"></i>
+        <i class="fas fa-upload"></i>
         <span data-translate>Add file</span>
       </label>
     </div>
   </span>
   <span data-ng-show="public.node[admin_file.varname]">
     <a class="btn btn-sm btn-primary" href="{{'s/' + admin_file.varname}}" download="{{admin_file.filename}}">
-      <i class="fa fa-download"></i>
+      <i class="fas fa-download"></i>
       <span data-translate>Download</span>
     </a>
     <button class="btn btn-sm btn-danger" data-ng-click="delete_file('admin/files/' + admin_file.varname)">
-      <span class="fa fa-trash"></span>
+      <span class="fas fa-trash"></span>
       <span data-translate>Delete</span>
     </button>
   </span>

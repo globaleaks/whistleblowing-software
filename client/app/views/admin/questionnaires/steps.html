@@ -3,7 +3,7 @@
     <span class="col-md-8">
       <span data-translate>Steps</span>
       <button class="btn btn-sm btn-primary show-add-step-btn" data-ng-click="toggleAddStep()">
-        <i class="fa fa-plus"></i>
+        <i class="fas fa-plus"></i>
         <span data-translate>Add</span>
       </button>
     </span>
@@ -26,7 +26,7 @@
           <div class="col-md-12">
             <div class="form-group clearfix">
               <button id="add-step-btn" class="float-left btn btn-primary" data-ng-disabled="newStep.$invalid" data-ng-click="add_step(); toggleAddStep()">
-                <i class="fa fa-plus"></i>
+                <i class="fas fa-plus"></i>
                 <span data-translate>Add</span>
               </button>
             </div>
@@ -47,10 +47,10 @@
             <span class="col-md-5 clearfix">
               <span class="float-right">
                 <button data-ng-show="!$first" class="actionButton btn btn-sm btn-primary" data-ng-click="moveUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
-                  <i class="fa fa-chevron-up"></i>
+                  <i class="fas fa-chevron-up"></i>
                 </button>
                 <button data-ng-show="!$last" class="actionButton btn btn-sm btn-primary" data-ng-click="moveDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
-                  <i class="fa fa-chevron-down"></i>
+                  <i class="fas fa-chevron-down"></i>
                 </button>
                 <button
                   class="btn btn-sm btn-secondary"
@@ -109,7 +109,7 @@
                 <label>
                   <span data-translate>Trigger conditions</span>
                   <button class="btn btn-sm btn-primary show-add-question-btn" data-ng-click="toggleAddTrigger()">
-                    <i class="fa fa-plus"></i>
+                    <i class="fas fa-plus"></i>
                     <span data-translate>Add</span>
                   </button>
                 </label>
@@ -130,14 +130,14 @@
                   </div>
                   <div class="form-group">
                     <button id="add-step-btn" class="btn btn-primary" data-ng-disabled="!new_trigger.field || !new_trigger.option" data-ng-click="addTrigger()">
-                      <i class="fa fa-plus"></i>
+                      <i class="fas fa-plus"></i>
                       <span data-translate>Add</span>
                     </button>
                   </div>
 	        </div>
                 <div data-ng-repeat="trigger in step.triggered_by_options" class="nested">
                   <button class="btn btn-sm btn-danger" data-ng-click="delTrigger(trigger)">
-                    <i class="fa fa-times"></i>
+                    <i class="fas fa-times"></i>
                   </button>
 		  <span>{{parsedFields.fields_by_id[trigger.field].label}}</span>: <span>{{parsedFields.options_by_id[trigger.option].label}}</span> <span data-ng-if='trigger.sufficient'>(<span data-translate>Sufficient</span>)</span>
                 </div>
@@ -149,11 +149,11 @@
                   <label>
                     <span data-translate>Questions</span>
                     <button class="btn btn-sm btn-primary show-add-question-btn" data-ng-click="toggleAddQuestion()">
-                      <i class="fa fa-plus"></i>
+                      <i class="fas fa-plus"></i>
                       <span data-translate>Add new question</span>
                     </button>
                     <button class="btn btn-sm btn-primary show-add-question-from-template-btn" data-ng-click="toggleAddQuestionFromTemplate()" data-ng-if="resources.fieldtemplates.length > 0">
-                      <i class="fa fa-plus"></i>
+                      <i class="fas fa-plus"></i>
                       <span data-translate>Add question from template</span>
                     </button>
                   </label>

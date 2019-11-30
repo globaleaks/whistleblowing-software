@@ -65,7 +65,7 @@
                  datepicker-options="dateOptions"
                  is-open="status.opened"
                  show-button-bar="false" />
-          <span class="input-group-append" data-ng-click="open()"><i class="input-group-text fa fa-calendar"></i></span>
+          <span class="input-group-append" data-ng-click="open()"><i class="input-group-text fas fa-calendar"></i></span>
         </div>
       </div>
       <div data-ng-switch-when="daterange" class="form-inline">
@@ -87,7 +87,7 @@
                    datepicker-options="dateOptions1"
                    is-open="status.openedStart"
                    show-button-bar="false" />
-            <span class="input-group-append" data-ng-click="openStart()"><i class="input-group-text fa fa-calendar"></i></span>
+            <span class="input-group-append" data-ng-click="openStart()"><i class="input-group-text fas fa-calendar"></i></span>
           </div>
         </span>
         <span class="form-group mx-1" data-ng-if="daterange.start">
@@ -108,11 +108,11 @@
                    datepicker-options="dateOptions2"
                    is-open="status.openedEnd"
 		   show-button-bar="false" />
-            <span class="input-group-append" data-ng-click="openEnd()"><i class="input-group-text fa fa-calendar"></i></span>
+            <span class="input-group-append" data-ng-click="openEnd()"><i class="input-group-text fas fa-calendar"></i></span>
           </div>
         </span>
         <span class="ml-1" data-ng-if="daterange.start">
-          <button type="button" class="btn btn-secondary" ng-click="clear()"><i class="fa fa-times-circle"></i></button>
+          <button type="button" class="btn btn-secondary" ng-click="clear()"><i class="fas fa-times-circle"></i></button>
         </span>
       </div>
       <div data-ng-switch-when="tos">
@@ -140,7 +140,7 @@
             <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="custom-select inputelem" data-ng-model="entry['value']" data-ng-change="field.attrs.topojson.set(entry['value'])" data-ng-required="entry.required_status">
               <option data-ng-repeat="option in field.attrs.topojson.geojson.features | orderBy:'properties.name'" value="{{option.id}}">{{::option.properties.name}}</option>
             </select>
-            <span class="input-group-append" data-ng-click="entry['value']=''; field.attrs.topojson.reset()" data-ng-disabled="!entry['value']"><i class="input-group-text fa fa-times-circle"></i></span>
+            <span class="input-group-append" data-ng-click="entry['value']=''; field.attrs.topojson.reset()" data-ng-disabled="!entry['value']"><i class="input-group-text fas fa-times-circle"></i></span>
           </div>
         </div>
       </div>
@@ -189,9 +189,9 @@
   </div>
   <div data-ng-if="field.type !== 'inputbox' && field.type !== 'textarea' && entry.required_status && displayErrors()" class="text-danger" data-translate>This field is mandatory.</div>
   <div data-ng-if="field.type === 'selectbox'" data-ng-repeat="option in field.options">
-    <div data-ng-show="option.set && option.hint1"><i class="fa fa-primary-sign"></i> {{option.hint1}}</div>
+    <div data-ng-show="option.set && option.hint1"><i class="fas fa-primary-sign"></i> {{option.hint1}}</div>
   </div>
   <div data-ng-repeat="option in field.options">
-    <div data-ng-show="option.set && option.hint2" data-ng-class="{'red': option.block_submission}"><i class="fa fa-primary-sign"></i> {{option.hint2}}</div>
+    <div data-ng-show="option.set && option.hint2" data-ng-class="{'red': option.block_submission}"><i class="fas fa-primary-sign"></i> {{option.hint2}}</div>
   </div>
 </div>

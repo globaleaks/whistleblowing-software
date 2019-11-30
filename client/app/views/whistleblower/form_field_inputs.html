@@ -8,7 +8,7 @@
       </span>
       <span class="float-right">
         <span class="text-danger" uib-popover="{{'Remove' | translate}}" popover-placement="right" data-ng-click="Utils.deleteFromList(entries, entry)">
-          <i class="fa fa-times"></i>
+          <i class="fas fa-times"></i>
         </span>
       </span>
     </div>
@@ -17,7 +17,7 @@
 </div>
 <div data-ng-if="::field.multi_entry && field.type === 'fieldgroup'" class="float-right">
   <button class="btn btn-primary" data-ng-click="addAnswerEntry(entries, field.id)">
-    <i class="fa fa-plus"></i>
+    <i class="fas fa-plus"></i>
     <span>{{::field.multi_entry_hint}}</span>
   </button>
 </div>

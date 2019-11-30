@@ -8,12 +8,12 @@
     <label class="changePictureButton text-primary"
 	   for="imageFile"
 	   uib-popover="{{'Edit' | translate}}"
-	   data-ng-show="!imageUploadModel[imageUploadModelAttr] && imageUploadObj.flow.files.length == 0"><input type="file" class="custom-file-input" id="imageFile" flow-btn><i class="fa fa-edit"></i></label>
+	   data-ng-show="!imageUploadModel[imageUploadModelAttr] && imageUploadObj.flow.files.length == 0"><input type="file" class="custom-file-input" id="imageFile" flow-btn><i class="fas fa-edit"></i></label>
     <span class="deletePictureButton text-danger"
 	    uib-popover="{{'Delete' | translate}}"
             data-ng-show="imageUploadModel[imageUploadModelAttr] || imageUploadObj.flow.files.length > 0"
             data-ng-click="deletePicture(); $event.stopPropagation();">
-      <i class="fa fa-times"></i>
+      <i class="fas fa-times"></i>
     </span>
     <div class="imageUploadThumbnail">
       <img data-ng-if="imageUploadObj.flow.files.length == 0" data-ng-src="{{Utils.imgDataUri(imageUploadModel[imageUploadModelAttr])}}" class="imageUploadThumbnailContent" />

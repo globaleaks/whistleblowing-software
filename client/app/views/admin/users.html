@@ -2,7 +2,7 @@
   <div class="editorTitle">
     <span data-translate>Users</span>
     <button class="btn btn-sm btn-primary show-add-user-btn" data-ng-click="toggleAddUser()">
-      <i class="fa fa-plus"></i>
+      <i class="fas fa-plus"></i>
       <span data-translate>Add</span>
     </button>
   </div>
@@ -57,7 +57,7 @@
       <div class="form-group">
         <button id="add-btn" class="btn btn-primary" data-ng-disabled="newUser.$invalid"
                 data-ng-click="add_user(); toggleAddUser()" type="submit">
-          <i class="fa fa-plus"></i>
+          <i class="fas fa-plus"></i>
           <span data-translate>Add</span>
         </button>
       </div>
@@ -138,16 +138,16 @@
               <label data-translate>Password</label>
               <div>
                 <span class="btn btn-secondary" data-ng-click="resetUserPassword()">
-                  <i class="fa fa-sync"></i>
+                  <i class="fas fa-sync"></i>
                   <span data-translate>Reset password</span>
                 </span>
                 <span class="btn btn-secondary" data-ng-init="user.newpassword = false"
                       data-ng-click="user.newpassword=!user.newpassword">
-                  <i class="fa fa-edit"></i>
+                  <i class="fas fa-edit"></i>
                   <span data-translate>New password</span>
                 </span>
                 <span class="btn btn-danger" data-ng-if="user.two_factor_enable" data-ng-click="disable2FA()">
-                  <i class="fa fa-ban"></i>
+                  <i class="fas fa-ban"></i>
                   <span data-translate>Disable two factor authentication</span>
                 </span>
               </div>

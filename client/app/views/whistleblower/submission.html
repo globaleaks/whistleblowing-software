@@ -30,18 +30,18 @@
     </div>
     <div data-ng-hide="submission.blocked" id="SubmissionButtons">
       <button id="PreviousStepButton" class="btn btn-secondary" data-ng-show="hasPreviousStep()" data-ng-click="decrementStep()">
-        <i class="fa fa-arrow-circle-left"></i>
+        <i class="fas fa-arrow-circle-left"></i>
         <span data-translate>Previous</span>
       </button>
 
       <button id="NextStepButton" class="btn btn-secondary" data-ng-show="hasNextStep()" data-ng-click="incrementStep()">
         <span data-translate>Next</span>
-        <i class="fa fa-arrow-circle-right"></i>
+        <i class="fas fa-arrow-circle-right"></i>
       </button>
 
       <button id="SubmitButton" class="btn btn-success" data-ng-show="!hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="submission.wait || !submission.pow" type="submit">
-        <i data-ng-show="submission.wait || !submission.pow" id="SubmitIconWait" class="fa fa-clock"></i>
-        <i data-ng-hide="submission.wait || !submission.pow" id="SubmitIconOK" class="fa fa-check"></i>
+        <i data-ng-show="submission.wait || !submission.pow" id="SubmitIconWait" class="fas fa-clock"></i>
+        <i data-ng-hide="submission.wait || !submission.pow" id="SubmitIconOK" class="fas fa-check"></i>
         <span data-translate>Submit</span>
         <span data-ng-show="submission.wait">({{submission.countdown}})</span>
       </button>

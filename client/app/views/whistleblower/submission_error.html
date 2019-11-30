@@ -9,7 +9,7 @@
     <div data-ng-if="!hasNextStep()">
       <div data-ng-if="Utils.isUploading(uploads)">
         <span data-translate>Waiting for the file(s) to finish uploading.</span>&nbsp;
-        <i class="fa fa-sync gly-spin"></i>
+        <i class="fas fa-sync gly-spin"></i>
       </div>
       <div data-ng-if="submission.context.show_steps_navigation_interface && !singleStepForm() && (!areReceiversSelected() || vars.submissionForm.$invalid)">
         <p data-translate>The following steps have errors:</p>

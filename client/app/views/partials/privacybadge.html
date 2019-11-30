@@ -3,7 +3,7 @@
     <div data-ng-if="!public.node.enable_custom_privacy_badge">
       <div id="PrivacyBadgeTextBox" class="float-left">
         <span class="badge badge-warning">
-          <i class="fa fa-exclamation-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
           <span data-translate>Warning</span>
         </span>
         <div data-ng-show="connection.privacy_badge_open">
@@ -11,7 +11,7 @@
             <div data-translate>It appears that you are browsing this site without any extra privacy and security!</div>
             <div data-translate>You are strongly advised to visit this site using the desktop app called Tor Browser, that protects your identity.</div>
           </div>
-      <div id="PrivacyBadgeDownloadLink"><a href="{{public.node.tb_download_link}}" target="_blank" rel="noreferrer noopener" class="btn btn-sm btn-secondary"><i class="fa fa-download"></i> <span data-translate>Download the Tor Browser</span></a></div>
+      <div id="PrivacyBadgeDownloadLink"><a href="{{public.node.tb_download_link}}" target="_blank" rel="noreferrer noopener" class="btn btn-sm btn-secondary"><i class="fas fa-download"></i> <span data-translate>Download the Tor Browser</span></a></div>
           <div data-ng-show="public.node.onionservice != ''">
             <span data-translate>Then, copy and paste the following address into the Tor Browser:</span>
             <span>{{public.node.onionservice}}</span>
@@ -20,7 +20,7 @@
       </div>
       <div id="PrivacyBoxCloseButton" class="float-right">
         <div data-ng-click="connection.privacy_badge_open = false">
-          <i class="fa fa-times"></i>
+          <i class="fas fa-times"></i>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
       </div>
       <div id="PrivacyBoxCloseButton" class="float-right">
         <div data-ng-click="connection.privacy_badge_open = false">
-          <i class="fa fa-times"></i>
+          <i class="fas fa-times"></i>
         </div>
       </div>
     </div>

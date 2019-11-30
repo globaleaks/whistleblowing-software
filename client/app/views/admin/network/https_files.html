@@ -13,12 +13,12 @@
           <label id="keyUpload" file-input="postFile(file, file_resources.priv_key)" file-input-label="Upload" class="file-upload btn btn-sm btn-primary"></label>
         </span>
         <button id="pkGen" class="btn btn-sm btn-success" data-ng-if="!tls_config.files.priv_key.set" data-ng-click="gen_priv_key()">
-            <i class="fa fa-cog"></i>
+            <i class="fas fa-cog"></i>
           <span data-translate>Generate</span>
         </button>
         <span data-ng-if="tls_config.files.priv_key.set">
           <button id="deleteKey" class="btn btn-sm btn-danger" data-ng-click="deleteFile(file_resources.priv_key)">
-            <i class="fa fa-times"></i>
+            <i class="fas fa-times"></i>
             <span data-translate>Delete</span>
           </button>
         </span>
@@ -36,7 +36,7 @@
       <span data-ng-if="!tls_config.files.csr.set">
         <span class="float-right">
           <button id="csrGen" class="btn btn-sm btn-success" data-ng-hide="csr_state.open" data-ng-click="csr_state.open = true">
-            <i class="fa fa-cog"></i>
+            <i class="fas fa-cog"></i>
             <span data-translate>Generate</span>
           </button>
           <button type="submit" class="close" data-ng-show="csr_state.open" data-ng-click="csr_state.open = false" aria-label="Close">&times;</button>
@@ -49,11 +49,11 @@
       <span data-ng-if="tls_config.files.csr.set" class="clearfix">
         <span class="float-right">
           <button id="downloadCsr" class="btn btn-sm btn-primary" data-ng-click="downloadFile(file_resources.csr)">
-            <i class="fa fa-file-export"></i>
+            <i class="fas fa-file-export"></i>
             <span data-translate>Download</span>
           </button>
           <button id="deleteCsr" class="btn btn-sm btn-danger" data-ng-click="deleteFile(file_resources.csr)">
-            <i class="fa fa-times"></i>
+            <i class="fas fa-times"></i>
             <span data-translate>Delete</span>
           </button>
         </span>
@@ -78,11 +78,11 @@
         </span>
         <span data-ng-if="tls_config.files.cert.set">
           <button id="downloadCert" class="btn btn-sm btn-primary" data-ng-click="downloadFile(file_resources.cert)">
-            <i class="fa fa-file-export"></i>
+            <i class="fas fa-file-export"></i>
             <span data-translate>Download</span>
           </button>
           <button id="deleteCert" class="btn btn-sm btn-danger" data-ng-click="deleteFile(file_resources.cert)">
-            <i class="fa fa-times"></i>
+            <i class="fas fa-times"></i>
             <span data-translate>Delete</span>
           </button>
         </span>
@@ -107,11 +107,11 @@
         </span>
         <span data-ng-if="tls_config.files.chain.set">
           <button id="downloadChain" class="btn btn-sm btn-primary" data-ng-click="downloadFile(file_resources.chain)">
-            <i class="fa fa-file-export"></i>
+            <i class="fas fa-file-export"></i>
             <span data-translate>Download</span>
           </button>
           <button id="deleteChain" class="btn btn-sm btn-danger" data-ng-click="deleteFile(file_resources.chain)">
-            <i class="fa fa-times"></i>
+            <i class="fas fa-times"></i>
             <span data-translate>Delete</span>
           </button>
         </span>

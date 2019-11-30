@@ -25,19 +25,19 @@
               </div>
               <div class="fileButtons">
                 <div data-ng-if="!file.isComplete() || !submission._submission.id" class="removeFileButton text-danger">
-                  <div class="btn btn-sm btn-danger" data-ng-click="Utils.removeFile(submission, uploads[fileinput].files, file)"><i class="fa fa-times"></i></div>
+                  <div class="btn btn-sm btn-danger" data-ng-click="Utils.removeFile(submission, uploads[fileinput].files, file)"><i class="fas fa-times"></i></div>
                 </div>
               </div>
               <div class="fileUpload">
                 <div>
                   <div class="fileUploadIcon" data-ng-show="file.error">
-                    <i class="fa fa-ban-circle"></i>
+                    <i class="fas fa-ban-circle"></i>
                   </div>
                   <div class="fileUploadIcon" data-ng-show="!file.error && !file.isComplete()">
-                    <i class="fa fa-clock"></i>
+                    <i class="fas fa-clock"></i>
                   </div>
                   <div class="fileUploadIcon" data-ng-show="!file.error && file.isComplete()">
-                    <i class="fa fa-check"></i>
+                    <i class="fas fa-check"></i>
                   </div>
                 </div>
                 <div class="fileUploadProgress progress progress-striped">

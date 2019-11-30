@@ -10,7 +10,7 @@
           <span class="custom-file">
             <input id="customFile" class="custom-file-input" type="file" flow-btn />
             <label class="btn btn-sm btn-primary" for="customFile">
-              <i class="fa fa-upload"></i>
+              <i class="fas fa-upload"></i>
               <span data-translate>Upload</span>
             </label>
           </span>
@@ -23,11 +23,11 @@
               <td>{{file.name}}</td>
               <td>
                 <a class="btn btn-sm btn-primary" data-ng-href="s/{{file.name}}" download="{{file.name}}">
-                  <i class="fa fa-download"></i>
+                  <i class="fas fa-download"></i>
                   <span data-translate>Download</span>
                 </a>
                 <button class="btn btn-sm btn-danger" data-ng-click="delete_file('admin/files/' + file.id)" data-single-click>
-                  <i class="fa fa-trash"></i>
+                  <i class="fas fa-trash"></i>
                   <span data-translate>Delete</span>
                 </button>
               </td>

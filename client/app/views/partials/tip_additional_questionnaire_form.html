@@ -1,7 +1,7 @@
 <div class="modal-header">
   <div class="modal-title" data-translate>Additional questionnaire</div>
   <button type="submit" class="close" aria-hidden="true" data-ng-click="cancel()">
-    <i class="fa fa-times"></i>
+    <i class="fas fa-times"></i>
   </button>
 </div>
 <div class="modal-body">
@@ -30,17 +30,17 @@
 <div class="modal-footer">
   <div id="SubmissionButtons">
     <button id="PreviousStepButton" class="btn btn-secondary" data-ng-show="hasPreviousStep()" data-ng-click="decrementStep()">
-      <i class="fa fa-arrow-circle-left"></i>
+      <i class="fas fa-arrow-circle-left"></i>
       <span data-translate>Previous</span>
     </button>
 
     <button id="NextStepButton" class="btn btn-secondary" data-ng-show="hasNextStep()" data-ng-click="incrementStep()">
       <span data-translate>Next</span>
-      <i class="fa fa-arrow-circle-right"></i>
+      <i class="fas fa-arrow-circle-right"></i>
     </button>
 
     <button id="SubmitButton" class="btn btn-success" data-ng-show="!hasNextStep()" data-ng-click="completeSubmission()" type="submit">
-      <i id="SubmitIconOK" class="fa fa-check"></i>
+      <i id="SubmitIconOK" class="fas fa-check"></i>
       <span data-translate>Submit</span>
       <span data-ng-show="submission.wait">({{submission.countdown}})</span>
     </button>

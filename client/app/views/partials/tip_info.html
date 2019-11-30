@@ -7,7 +7,7 @@
           <span data-ng-if="!showEditLabelInput" class="TipLabel" data-ng-click="editLabel();"
                 uib-popover="{{'Label the submission' | translate}}" popover-placement="right">
             <span id="Label">{{::tip.label}}</span>
-            <i class="fa fa-tag"></i>
+            <i class="fas fa-tag"></i>
           </span>
 
           <span data-ng-if="showEditLabelInput" class="form-inline">
@@ -15,7 +15,7 @@
               <input id="assignLabelInput" type="text" class="form-control" data-ng-attr-placeholder="{{'Label' | translate}}" data-ng-model="tip.label" />
               <span class="input-group-append" uib-popover="{{'Assign a label to the submission' | translate}}" popover-placement="right">
                 <button id="assignLabelButton" class="btn btn-primary" data-ng-click="updateLabel(tip.label);">
-                  <i class="fa fa-tag"></i>
+                  <i class="fas fa-tag"></i>
                 </button>
               </span>
             </div>
@@ -32,41 +32,41 @@
       <thead>
       <tr>
         <th class="TipInfoID" data-ng-if="::Authentication.session.role == 'receiver'">
-          <i class="fa fa-barcode"></i>
+          <i class="fas fa-barcode"></i>
         </th>
         <th class="TipInfoContext" data-ng-if="public.contexts.length > 1">
-          <i class="fa fa-inbox"></i>
+          <i class="fas fa-inbox"></i>
           <span data-translate>Context</span>
         </th>
         <th class="TipInfoSubmissionDate">
-          <i class="fa fa-clock"></i>
+          <i class="fas fa-clock"></i>
           <span data-translate>Creation date</span>
         </th>
         <th class="TipInfoLastUpdate">
-          <i class="fa fa-clock"></i>
+          <i class="fas fa-clock"></i>
           <span data-translate>Last update</span>
         </th>
         <th class="TipInfoExpirationDate">
-          <i class="fa fa-hourglass"></i>
+          <i class="fas fa-hourglass"></i>
           <span data-translate>Expiration date</span>
         </th>
         <th class="TipInfoAccessExpiration" data-ng-if="::Authentication.session.role === 'receiver'">
-          <i class="fa fa-hourglass"></i>
+          <i class="fas fa-hourglass"></i>
           <span data-translate>Access expiration</span>
         </th>
         <th class="TipInfoReadReceipt" data-ng-if="::Authentication.session.role === 'receiver'">
-          <i class="fa fa-eye"></i>
+          <i class="fas fa-eye"></i>
         </th>
         <th class="TipInfoConnection">
-          <i class="fa fa-network-wired"></i>
+          <i class="fas fa-network-wired"></i>
           <span data-translate>Connection</span>
         </th>
         <th class="TipInfoSubmissionStatus">
-          <i class="fa fa-dot-circle"></i>
+          <i class="fas fa-dot-circle"></i>
           <span data-translate>Status</span>
         </th>
         <th class="TipInfoScore" data-ng-if="::Authentication.session.role == 'receiver' && public.node.enable_scoring_system">
-          <i class="fa fa-flash"></i>
+          <i class="fas fa-flash"></i>
           <span data-translate>Score</span>
         </th>
       </tr>
@@ -91,9 +91,9 @@
                 popover-placement="left" data-translate>Revoked</span>
         </td>
         <td class="TipInfoLastAccess" data-ng-if="::Authentication.session.role == 'receiver'">
-          <i data-ng-if="tip.wb_last_access >= tip.update_date" class="fa fa-check"
+          <i data-ng-if="tip.wb_last_access >= tip.update_date" class="fas fa-check"
              uib-popover="{{'The whistleblower has already read the latest update' | translate }} ({{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
-          <i data-ng-if="tip.wb_last_access < tip.update_date" class="fa fa-times"
+          <i data-ng-if="tip.wb_last_access < tip.update_date" class="fas fa-times"
              uib-popover="{{'The whistleblower has not read the latest update yet' | translate }}"></i>
         </td>
         <td class="TipInfoConnection">

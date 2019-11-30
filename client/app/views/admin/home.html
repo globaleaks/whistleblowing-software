@@ -5,7 +5,7 @@
     </uib-tab>
     <uib-tab data-index="1">
       <uib-tab-heading>
-        <i data-ng-show="update_service.update_needed" class="fa fa-exclamation-sign text-danger"></i>
+        <i data-ng-show="update_service.update_needed" class="fas fa-exclamation-sign text-danger"></i>
         <span data-translate>Changelog</span>
       </uib-tab-heading>
       <div class="tab-content">
@@ -15,7 +15,7 @@
               <label><span data-translate>Software version:</span> {{resources.node.version}}</label>
             </div>
             <div data-ng-show="update_service.update_needed" class="alert bg-danger">
-              <span><i class="fa fa-primary-sign"></i></span> <span data-translate>An update is available:</span> <span>{{ update_service.latest_version }}</span>
+              <span><i class="fas fa-primary-sign"></i></span> <span data-translate>An update is available:</span> <span>{{ update_service.latest_version }}</span>
             </div>
           </div>
         </div>

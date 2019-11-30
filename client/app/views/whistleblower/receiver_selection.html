@@ -15,15 +15,15 @@
           <div class="col-md-1">
             <div data-ng-if="submission.selected_receivers[receiver.id]">
               <div data-ng-if="receiver.recipient_configuration === 'default'">
-                <i class="fa fa-check-square" uib-popover="{{'Unselect this recipient.' | translate}}" popover-placement="right"></i>
+                <i class="fas fa-check-square" uib-popover="{{'Unselect this recipient.' | translate}}" popover-placement="right"></i>
               </div>
               <div data-ng-if="receiver.recipient_configuration === 'forcefully_selected'">
-                <i class="fa fa-check-square" uib-popover="{{'This recipient cannot be deselected.' | translate}}" popover-placement="right"></i>
+                <i class="fas fa-check-square" uib-popover="{{'This recipient cannot be deselected.' | translate}}" popover-placement="right"></i>
               </div>
             </div>
             <div data-ng-if="!submission.selected_receivers[receiver.id]">
               <div data-ng-if="receiver.recipient_configuration === 'default'">
-                <i class="fa fa-square" uib-popover="{{'Select this recipient.' | translate}}" popover-placement="right"></i>
+                <i class="fas fa-square" uib-popover="{{'Select this recipient.' | translate}}" popover-placement="right"></i>
               </div>
             </div>
           </div>

@@ -2,8 +2,8 @@
   <div class="card-header clearfix" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss(); $event.stopPropagation();">
     <span data-translate>Recipient list</span>
     <span class="float-right">
-      <i data-ng-if="!collapsed" class="fa fa-caret-square-up" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>
-      <i data-ng-if="collapsed" class="fa fa-caret-square-down" uib-popover="{{'Expand' | translate}}" popover-placement="left"></i>
+      <i data-ng-if="!collapsed" class="fas fa-caret-square-up" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>
+      <i data-ng-if="collapsed" class="fas fa-caret-square-down" uib-popover="{{'Expand' | translate}}" popover-placement="left"></i>
     </span>
   </div>
   <div class="card-body" data-ng-show="!collapsed">
@@ -11,7 +11,7 @@
       <span data-ng-repeat="receiver in tip.receivers | orderBy:'name'">
         <span id="receiver-{{$index}}">
           <span class="badge badge-primary" data-ng-show="receiver.last_access > tip.update_date" uib-popover="{{'The recipient has already read the latest update' | translate}}" popover-placement="top">
-            <i class="fa fa-check"></i>
+            <i class="fas fa-check"></i>
             <span>{{::receiver.name}}</span>
           </span>
           <span class="badge badge-warning" data-ng-show="receiver.last_access <= tip.update_date" uib-popover="{{'The recipient has not read the latest update yet' | translate}}" popover-placement="top">
