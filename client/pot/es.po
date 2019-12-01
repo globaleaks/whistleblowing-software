@@ -33,8 +33,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-24 23:48+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-11-28 16:23+0000\n"
+"Last-Translator: Ines Branco Lopez <ibranco@fibgar.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -663,7 +663,7 @@ msgid "Send a test email to your email address."
 msgstr "Enviar un correo de prueba a tu dirección de correo electrónico."
 
 msgid "Block the submission"
-msgstr ""
+msgstr "Impedir la entrega"
 
 msgid "Select the context of your submission:"
 msgstr "Seleccione el contexto de su entrega:"
@@ -766,7 +766,7 @@ msgid "Disable the privacy panel"
 msgstr "Deshabilitar el panel de privacidad"
 
 msgid "Enable the receipt hint"
-msgstr ""
+msgstr "Permitir la notificación de recepción"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Número de días hasta que el acceso del alertador caduque"

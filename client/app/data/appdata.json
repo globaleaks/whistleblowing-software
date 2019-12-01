@@ -885,7 +885,7 @@
       "cs": "ID: {TipNum}\nDatum: {SubmissionDate}\nŠtítek: {TipLabel}\nStav:{TipStatus}\nKontext: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "da": "ID: {TipNum}\nDato:  {SubmissionDate}\nMærket: {TipLabel}\nStatus: {TipStatus}\nSammenhæng:  {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "de": "ID: {TipNum}\nDatum: {SubmissionDate}\nBezeichnung: {TipLabel}\nStatus: {TipStatus}\nKontext: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
-      "el": "ID: {TipNum}\nΗμερομηνία: {SubmissionDate}\nΕτικέτα: {TipLabel}\nStatus: {TipStatus}\nΘεματική ενότητα: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
+      "el": "ID: {TipNum}\nΗμερομηνία: {SubmissionDate}\nΕτικέτα: {TipLabel}\nΚατάσταση: {TipStatus}\nΘεματική ενότητα: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "en": "ID: {TipNum}\nDate: {SubmissionDate}\nLabel: {TipLabel}\nStatus: {TipStatus}\nContext: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "es": "ID: {TipNum}\nFecha: {SubmissionDate}\nEtiqueta: {TipLabel}\nEstado: {TipStatus}\nContexto: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "fa": "ID: {TipNum}\nتاریخ: {SubmissionDate}\nبرچسب: {TipLabel}\nوضعیت: {TipStatus}\nزمینه: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
