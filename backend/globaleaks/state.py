@@ -89,7 +89,7 @@ class StateClass(ObjectDict):
         self.create_directories()
         self.cleaning_dead_files()
 
-        self.tokens = TokenList(self.settings.tmp_path)
+        self.tokens = TokenList(self, self.settings.tmp_path)
 
     def set_orm_tp(self, orm_tp):
         self.orm_tp = orm_tp

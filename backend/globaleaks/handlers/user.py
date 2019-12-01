@@ -138,8 +138,8 @@ def db_user_update_user(session, tid, user_session, request):
                 raise errors.InvalidOldPassword
 
         # Regenerate the password hash only if different from the best choice on the platform
-        if user.hash_alg != GCE.HASH:
-            user.hash_alg = GCE.HASH
+        if user.hash_alg != 'ARGON2':
+            user.hash_alg = 'ARGON2'
             user.salt = GCE.generate_salt()
 
         password_hash = GCE.hash_password(new_password, user.salt)

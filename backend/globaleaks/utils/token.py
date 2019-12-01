@@ -45,7 +45,7 @@ class Token(object):
         if not self.solved:
             return False
 
-        if self.type == 'submission' and GCE.ENCRYPTION_AVAILABLE:
+        if self.type == 'submission' and self.tokenlist.state.tenant_cache[self.tid].encryption:
             self.tip_key = GCE.generate_key()
 
         return True
@@ -75,7 +75,8 @@ class Token(object):
 
 
 class TokenList(TempDict):
-    def __init__(self, file_path, *args, **kwds):
+    def __init__(self, state, file_path, *args, **kwds):
+        self.state = state
         self.file_path = file_path
         TempDict.__init__(self, *args, **kwds)
 

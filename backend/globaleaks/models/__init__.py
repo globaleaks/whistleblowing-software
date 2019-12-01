@@ -1219,7 +1219,7 @@ class _User(Model):
     username = Column(UnicodeText, default=u'', nullable=False)
 
     salt = Column(UnicodeText(24), nullable=False)
-    hash_alg = Column(UnicodeText, default=u'SCRYPT', nullable=False)
+    hash_alg = Column(UnicodeText, default=u'ARGON2', nullable=False)
     password = Column(UnicodeText, default=u'', nullable=False)
 
     name = Column(UnicodeText, default=u'', nullable=False)
@@ -1354,7 +1354,7 @@ class _WhistleblowerTip(Model):
     tid = Column(Integer, default=1, nullable=False)
     receipt_hash = Column(UnicodeText(128), nullable=False)
 
-    hash_alg = Column(UnicodeText, default=u'SCRYPT', nullable=False)
+    hash_alg = Column(UnicodeText, default=u'ARGON2', nullable=False)
 
     crypto_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
     crypto_pub_key = Column(LargeBinary(32), default=b'', nullable=False)

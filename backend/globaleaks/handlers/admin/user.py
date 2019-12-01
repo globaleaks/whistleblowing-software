@@ -57,7 +57,6 @@ def db_create_user(session, tid, request, language):
     if request['password']:
         password = request['password']
 
-    user.hash_alg = GCE.HASH
     user.salt = GCE.generate_salt()
     user.password = GCE.hash_password(password, user.salt)
 
@@ -89,7 +88,7 @@ def db_admin_update_user(session, tid, user_id, request, language):
 
     password = request['password']
     if password:
-        user.hash_alg = GCE.HASH
+        user.hash_alg = 'ARGON2'
         user.salt = GCE.generate_salt()
         user.password = GCE.hash_password(password, user.salt)
         user.password_change_date = datetime_now()

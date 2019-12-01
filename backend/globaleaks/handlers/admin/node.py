@@ -25,7 +25,6 @@ def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
     config = ConfigFactory(session, tid).serialize(config_node)
 
     misc_dict = {
-        'encryption_available': GCE.ENCRYPTION_AVAILABLE,
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': models.EnabledLanguage.list(session, tid),
         'root_tenant': tid == 1,
