@@ -1,3 +1,10 @@
+Changes in version 3.11.43 - 2019-12-01
+    Add error logging on impossibility to validate a TLS Certificate (#2732)
+    Improve font selection in relation to feature #2530
+    Fix serialization of encrypted tips in relation to tip preview
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 3.11.42 - 2019-11-26
     Implement certificate chain verification for outgoinv HTTPS and SMTPS (#2732)
     Apply minor bugfixing
