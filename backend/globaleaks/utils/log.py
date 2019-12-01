@@ -4,7 +4,6 @@ from __future__ import print_function, unicode_literals
 import codecs
 import logging
 import os
-import six
 import sys
 import traceback
 from datetime import datetime
@@ -22,19 +21,13 @@ def log_remove_escapes(s):
     """
     This function removes escape sequence from log strings
     """
-    if isinstance(s, six.text_type):
-        return six.text_type(codecs.encode(s, 'unicode_escape'), 'utf-8')
+    if isinstance(s, str):
+        return str(codecs.encode(s, 'unicode_escape'), 'utf-8')
     else:
         try:
-            if six.PY2:
-                string = s.decode('utf-8').encode('unicode_escape')
-            else:
-                string = six.text_type(s, 'unicode_escape')
+            string = str(s, 'unicode_escape')
         except UnicodeDecodeError:
-            if six.PY2:
-                return codecs.encode(s, 'string_escape')
-            else:
-                return six.text_type(s, 'string_escape')
+            return str(s, 'string_escape')
         except Exception as e:
             return "Failure in log_remove_escapes %r" % e
         else:

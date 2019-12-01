@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 import ipaddress
 
-from six import text_type, binary_type
-
-
 def parse_csv_ip_ranges_to_ip_networks(ip_str):
     """Parse a list of IP addresses and/or CIDRs"""
     try:
-        ip_str = text_type(ip_str)
+        ip_str = str(ip_str)
 
         ip_network_list = []
 
@@ -41,7 +38,7 @@ def check_ip(client_ip, ip_filter):
     try:
         ip_networks = parse_csv_ip_ranges_to_ip_networks(ip_filter)
 
-        if isinstance(client_ip, binary_type):
+        if isinstance(client_ip, bytes):
             client_ip = client_ip.decode()
 
         client_ip_obj = ipaddress.ip_address(client_ip)

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 
-from six import text_type
 from OpenSSL import crypto
 from OpenSSL.crypto import FILETYPE_PEM
 from twisted.trial.unittest import TestCase
@@ -25,7 +24,7 @@ def get_valid_setup():
     d = {'hostname': 'localhost:9999'}
     for k, fname in valid_setup_files.items():
         with open(os.path.join(test_data_dir, 'valid', fname), 'r') as fd:
-            d[k] = text_type(fd.read())
+            d[k] = str(fd.read())
 
     return d
 

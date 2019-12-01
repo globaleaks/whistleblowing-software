@@ -2,7 +2,6 @@
 import os
 
 from io import BytesIO
-from six import unichr
 from twisted.internet.defer import inlineCallbacks
 from zipfile import ZipFile
 
@@ -15,7 +14,7 @@ class TestZipStream(helpers.TestGL):
     def setUp(self):
         yield helpers.TestGL.setUp(self)
 
-        self.unicode_seq = ''.join(unichr(x) for x in range(0x400, 0x40A))
+        self.unicode_seq = ''.join(chr(x) for x in range(0x400, 0x40A))
 
         self.files = [
           {'name': __file__, 'fo': open(os.path.abspath(__file__), 'rb')},

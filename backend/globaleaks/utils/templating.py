@@ -7,8 +7,6 @@ import copy
 
 from datetime import timedelta
 
-from six import text_type
-
 from globaleaks import __version__
 from globaleaks.rest import errors
 from globaleaks.utils.utility import datetime_to_pretty_str, \
@@ -309,7 +307,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
             data['message'] = copy.deepcopy(message)
             template = 'export_message_whistleblower' if (message['type'] == 'whistleblower') else 'export_message_recipient'
             ret += indent_text('-' * 40) + '\n'
-            ret += indent_text(text_type(Templating().format_template(self.data['notification'][template], data))) + '\n\n'
+            ret += indent_text(str(Templating().format_template(self.data['notification'][template], data))) + '\n\n'
 
         return ret
 

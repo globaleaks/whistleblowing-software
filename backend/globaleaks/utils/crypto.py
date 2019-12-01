@@ -22,11 +22,12 @@ from nacl.public import SealedBox, PrivateKey, PublicKey  # pylint: disable=no-n
 from nacl.secret import SecretBox
 from nacl.utils import random as nacl_random
 
+
 crypto_backend = default_backend()
 
 
 def _convert_to_bytes(arg):
-    if isinstance(arg, text_type):
+    if isinstance(arg, str):
         arg = arg.encode('utf-8')
 
     return arg
@@ -272,12 +273,12 @@ class _GCE(object):
 
     @staticmethod
     def asymmetric_encrypt(pub_key, data):
-    """
-    Perform asymmetric encryption using libsodium sealedbox (Curve25519, XSalsa20-Poly1305)
-    """
-    pub_key = PublicKey(pub_key, RawEncoder)
-    data = _convert_to_bytes(data)
-    return SealedBox(pub_key).encrypt(data)
+        """
+        Perform asymmetric encryption using libsodium sealedbox (Curve25519, XSalsa20-Poly1305)
+        """
+        pub_key = PublicKey(pub_key, RawEncoder)
+        data = _convert_to_bytes(data)
+        return SealedBox(pub_key).encrypt(data)
 
     @staticmethod
     def asymmetric_decrypt(prv_key, data):

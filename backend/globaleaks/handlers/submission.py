@@ -5,8 +5,6 @@ import base64
 import copy
 import json
 
-from six import text_type
-
 from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
 from globaleaks.handlers.base import BaseHandler
@@ -167,7 +165,7 @@ def db_save_answers_subject_to_stats(session, tid, internaltip_id, entries, stat
                 n += 1
         else:
             field_answer.is_leaf = True
-            field_answer.value = text_type(value)
+            field_answer.value = str(value)
 
         ret.append(field_answer)
 
@@ -184,7 +182,7 @@ def extract_answers_preview(questionnaire, answers):
 
 
 def db_archive_questionnaire_schema(session, questionnaire):
-    hash = text_type(sha256(json.dumps(questionnaire, sort_keys=True)))
+    hash = str(sha256(json.dumps(questionnaire, sort_keys=True)))
     if session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == hash).count():
         return hash
 
@@ -409,7 +407,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
         if crypto_is_available:
             for k in ['name', 'type', 'size']:
-                uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, text_type(uploaded_file[k])))
+                uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, str(uploaded_file[k])))
 
         new_file = models.InternalFile()
         new_file.tid = tid

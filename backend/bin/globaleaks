@@ -6,19 +6,10 @@ import os
 
 import platform
 
-# Code compatible with python 2, <3.5 and distributions including python3-distro
-try:
-    from distro import linux_distribution
-except:
-    from platform import linux_distribution
+from distro import linux_distribution
 
 import sys
 import mimetypes
-
-# Use UTF-8 for all string to unicode conversions
-if sys.version[0] == '2':
-    reload(sys)
-    sys.setdefaultencoding('utf8')
 
 # Avoid writing bytecode files at runtime
 sys.dont_write_bytecode = True

@@ -9,8 +9,6 @@
 # This code differs from handlers/file.py because files here are not tracked in the DB
 import json
 
-from six import binary_type
-
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
@@ -54,7 +52,7 @@ class AdminL10NHandler(BaseHandler):
     def put(self, lang):
         yield can_edit_general_settings_or_raise(self)
         content = self.request.content.read()
-        if isinstance(content, binary_type):
+        if isinstance(content, bytes):
             content = content.decode('utf-8')
 
         result = yield update(self.request.tid, lang, json.loads(content))

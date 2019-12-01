@@ -8,8 +8,7 @@ import json
 import re
 import sys
 
-from six import text_type, binary_type
-from six.moves.urllib.parse import urlsplit, urlunsplit  # pylint: disable=import-error
+from urllib.parse import urlsplit, urlunsplit  # pylint: disable=import-error
 
 from twisted.internet import defer
 from twisted.internet.abstract import isIPAddress, isIPv6Address
@@ -221,7 +220,7 @@ class APIResourceWrapper(Resource):
         hostname = request.hostname
         tenant_hostname = State.tenant_cache[request.tid].hostname
 
-        if isinstance(hostname, binary_type):
+        if isinstance(hostname, bytes):
             hostname = request.hostname.decode('utf-8')
 
         if ((hostname != State.tenant_cache[request.tid] and
@@ -284,16 +283,7 @@ class APIResourceWrapper(Resource):
 
     def preprocess(self, request):
         request.headers = request.getAllHeaders()
-
-        # Twisted annoyingly different between Py2/Py3
-        # which requires us to handle this specially in each
-        # case.
-
-        if sys.version[0] == '2':
-            request.hostname = request.getRequestHostname().decode('utf-8')
-        else:
-            request.hostname = request.getRequestHostname()
-
+        request.hostname = request.getRequestHostname()
         request.port = request.getHost().port
 
         if (request.hostname == b'localhost' or
@@ -320,7 +310,7 @@ class APIResourceWrapper(Resource):
         request.client_using_tor = request.client_ip in State.tor_exit_set or \
                                    request.port == 8083
 
-        if isinstance(request.client_ip, binary_type):
+        if isinstance(request.client_ip, bytes):
             request.client_ip = request.client_ip.decode('utf-8')
 
         if 'x-tor2web' in request.headers:
@@ -330,7 +320,7 @@ class APIResourceWrapper(Resource):
 
         request.client_mobile = re.match(b'Mobi|Android', request.client_ua, re.IGNORECASE) is not None
 
-        request.language = text_type(self.detect_language(request))
+        request.language = str(self.detect_language(request))
         if b'multilang' in request.args:
             request.language = None
 
@@ -394,7 +384,7 @@ class APIResourceWrapper(Resource):
             return b''
 
         f = getattr(handler, method)
-        groups = [text_type(g) for g in match.groups()]
+        groups = [str(g) for g in match.groups()]
 
         self.handler = handler(State, request, **args)
 
@@ -433,7 +423,7 @@ class APIResourceWrapper(Resource):
                         ret = json.dumps(ret, separators=(',', ':'))
                         request.setHeader(b'content-type', b'application/json')
 
-                    if isinstance(ret, text_type):
+                    if isinstance(ret, str):
                         ret = ret.encode()
 
                     request.write(ret)
@@ -506,7 +496,7 @@ class APIResourceWrapper(Resource):
 
     def parse_accept_language_header(self, request):
         if b'accept-language' in request.headers:
-            languages = text_type(request.headers[b'accept-language'], 'utf-8').split(",")
+            languages = str(request.headers[b'accept-language'], 'utf-8').split(",")
             locales = []
             for language in languages:
                 parts = language.strip().split(";")
@@ -536,7 +526,7 @@ class APIResourceWrapper(Resource):
                     language = l
                     break
         else:
-            language = text_type(language, 'utf-8')
+            language = str(language, 'utf-8')
 
         if language is None or language not in State.tenant_cache[request.tid].languages_enabled:
             language = State.tenant_cache[request.tid].default_language

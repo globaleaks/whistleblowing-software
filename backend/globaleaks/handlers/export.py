@@ -4,7 +4,6 @@
 import os
 
 from io import BytesIO
-from six import text_type
 from twisted.internet import abstract
 from twisted.internet.defer import Deferred, inlineCallbacks
 from twisted.internet.threads import deferToThread
@@ -141,7 +140,7 @@ class ExportHandler(BaseHandler):
 
         export_template = Templating().format_template(tip_export['notification']['export_template'], tip_export).encode('utf-8')
 
-        export_template = msdos_encode(text_type(export_template, 'utf-8')).encode('utf-8')
+        export_template = msdos_encode(str(export_template, 'utf-8')).encode('utf-8')
 
         tip_export['files'].append({'fo': BytesIO(export_template), 'name': 'data.txt', 'forged': True})
 

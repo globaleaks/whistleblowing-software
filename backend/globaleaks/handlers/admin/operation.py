@@ -1,6 +1,4 @@
 # -*- coding: utf-8
-from six import text_type
-
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.db import db_refresh_memory_variables
@@ -83,9 +81,9 @@ class AdminOperationHandler(OperationHandler):
 
     def operation_descriptors(self):
         return {
-            'disable_2fa': (AdminOperationHandler.disable_2fa, {'value': text_type}),
+            'disable_2fa': (AdminOperationHandler.disable_2fa, {'value': str}),
             'reset_onion_private_key': (AdminOperationHandler.reset_onion_private_key, {}),
             'reset_submissions': (AdminOperationHandler.reset_submissions, {}),
-            'reset_user_password': (AdminOperationHandler.reset_user_password, {'value': text_type}),
-            'set_hostname': (AdminOperationHandler.set_hostname, {'value': text_type})
+            'reset_user_password': (AdminOperationHandler.reset_user_password, {'value': str}),
+            'set_hostname': (AdminOperationHandler.set_hostname, {'value': str})
         }

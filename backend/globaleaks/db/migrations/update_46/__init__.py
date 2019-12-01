@@ -1,5 +1,4 @@
 # -*- coding: UTF-8
-from six import binary_type
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.submission import db_assign_submission_progressive
 from globaleaks.models import config_desc, Model
@@ -19,7 +18,7 @@ class Config_v_45(Model):
             return
 
         self.tid = values['tid']
-        self.var_name = text_type(values['var_name'])
+        self.var_name = str(values['var_name'])
         self.set_v(values['value'])
 
     def set_v(self, val):
@@ -27,8 +26,8 @@ class Config_v_45(Model):
         if val is None:
             val = desc._type()
 
-        if isinstance(desc, config_desc.Unicode) and isinstance(val, binary_type):
-            val = text_type(val, 'utf-8')
+        if isinstance(desc, config_desc.Unicode) and isinstance(val, bytes):
+            val = str(val, 'utf-8')
 
         if not isinstance(val, desc._type):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))

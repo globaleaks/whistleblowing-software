@@ -9,7 +9,6 @@
 
 import copy
 
-from six import text_type
 from globaleaks import models
 from globaleaks.models.config_desc import ConfigL10NFilters
 from globaleaks.utils.sets import merge_dicts
@@ -90,15 +89,15 @@ DateType = r'(.*)'
 ContentType = r'(.*)'
 
 AdminTenantDesc = {
-    'label': text_type,
-    'mode': text_type,
+    'label': str,
+    'mode': str,
     'active': bool,
     'subdomain': subdomain_regexp_or_empty
 }
 
 FileDesc = {
-    'name': text_type,
-    'description': text_type,
+    'name': str,
+    'description': str,
     'size': int,
     'type': ContentType,
     'date': DateType
@@ -106,18 +105,18 @@ FileDesc = {
 
 AuthDesc = {
     'tid': int,
-    'username': text_type,
-    'password': text_type,
-    'authcode': text_type
+    'username': str,
+    'password': str,
+    'authcode': str
 }
 
 TokenAuthDesc = {
     'tid': int,
-    'token': text_type
+    'token': str
 }
 
 ReceiptAuthDesc = {
-    'receipt': text_type
+    'receipt': str
 }
 
 TokenReqDesc = {
@@ -138,56 +137,56 @@ SubmissionDesc = {
 }
 
 UserUserDesc = {
-    'username': text_type,
-    'name': text_type,
-    'description': text_type,
+    'username': str,
+    'name': str,
+    'description': str,
     'role': user_role_regexp,
-    'password': text_type,
-    'old_password': text_type,
+    'password': str,
+    'old_password': str,
     'password_change_needed': bool,
     'state': user_state_regexp,
     'mail_address': email_regexp,
     'pgp_key_remove': bool,
-    'pgp_key_fingerprint': text_type,
-    'pgp_key_expiration': text_type,
-    'pgp_key_public': text_type,
-    'language': text_type,
+    'pgp_key_fingerprint': str,
+    'pgp_key_expiration': str,
+    'pgp_key_public': str,
+    'language': str,
     'notification': bool,
     'can_edit_general_settings': bool,
     'can_delete_submission': bool,
     'can_postpone_expiration': bool,
     'can_grant_permissions': bool,
-    'recipient_configuration': text_type
+    'recipient_configuration': str
 }
 
 ReceiverReceiverDesc = {
-    'username': text_type,
-    'name': text_type,
-    'description': text_type,
+    'username': str,
+    'name': str,
+    'description': str,
     'role': user_role_regexp,
-    'password': text_type,
-    'old_password': text_type,
+    'password': str,
+    'old_password': str,
     'password_change_needed': bool,
     'mail_address': email_regexp,
     'pgp_key_remove': bool,
-    'pgp_key_fingerprint': text_type,
-    'pgp_key_expiration': text_type,
-    'pgp_key_public': text_type,
+    'pgp_key_fingerprint': str,
+    'pgp_key_expiration': str,
+    'pgp_key_public': str,
     'notification': bool,
-    'language': text_type
+    'language': str
 }
 
 ReceiverOperationDesc = {
-    'operation': text_type,
+    'operation': str,
     'rtips': [uuid_regexp]
 }
 
 CommentDesc = {
-    'content': text_type
+    'content': str
 }
 
 OpsDesc = {
-    'operation': text_type,
+    'operation': str,
     'args': dict,
 }
 
@@ -197,7 +196,7 @@ TipOpsDesc = {
 }
 
 AdditionalQuestionnaireAnswers = {
-    'cmd': text_type,
+    'cmd': str,
     'answers': dict
 }
 
@@ -207,22 +206,22 @@ WhisleblowerIdentityAnswers = {
 }
 
 AdminNodeDesc = {
-    'name': text_type,
-    'description': text_type,
-    'presentation': text_type,
-    'footer': text_type,
+    'name': str,
+    'description': str,
+    'presentation': str,
+    'footer': str,
     'enable_disclaimer': bool,
-    'disclaimer_title': text_type,
-    'disclaimer_text': text_type,
+    'disclaimer_title': str,
+    'disclaimer_text': str,
     'rootdomain': hostname_regexp_or_empty,
-    'whistleblowing_question': text_type,
-    'whistleblowing_button': text_type,
+    'whistleblowing_question': str,
+    'whistleblowing_button': str,
     'tb_download_link': https_url_regexp,
-    'languages_enabled': [text_type],
+    'languages_enabled': [str],
     'languages_supported': list,
     'timezone': int,
-    'default_language': text_type,
-    'default_questionnaire': text_type,
+    'default_language': str,
+    'default_questionnaire': str,
     'maximum_filesize': int,
     'https_admin': bool,
     'https_custodian': bool,
@@ -233,11 +232,11 @@ AdminNodeDesc = {
     'can_delete_submission': bool,
     'can_grant_permissions': bool,
     'allow_indexing': bool,
-    'frame_ancestors': text_type,
+    'frame_ancestors': str,
     'disable_privacy_badge': bool,
     'enable_receipt_hint': bool,
     'enable_ricochet_panel': bool,
-    'ricochet_address': text_type,
+    'ricochet_address': str,
     'do_not_expose_users_names': bool,
     'disable_submissions': bool,
     'multisite_login': bool,
@@ -246,24 +245,24 @@ AdminNodeDesc = {
     'enable_scoring_system': bool,
     'enable_experimental_features': bool,
     'enable_signup': bool,
-    'mode': text_type,
+    'mode': str,
     'signup_tos1_enable': bool,
-    'signup_tos1_title': text_type,
-    'signup_tos1_text': text_type,
-    'signup_tos1_checkbox_label': text_type,
+    'signup_tos1_title': str,
+    'signup_tos1_text': str,
+    'signup_tos1_checkbox_label': str,
     'signup_tos2_enable': bool,
-    'signup_tos2_title': text_type,
-    'signup_tos2_text': text_type,
-    'signup_tos2_checkbox_label': text_type,
+    'signup_tos2_title': str,
+    'signup_tos2_text': str,
+    'signup_tos2_checkbox_label': str,
     'enable_custom_privacy_badge': bool,
-    'custom_privacy_badge_text': text_type,
-    'header_title_homepage': text_type,
-    'header_title_submissionpage': text_type,
-    'header_title_receiptpage': text_type,
-    'header_title_tippage': text_type,
+    'custom_privacy_badge_text': str,
+    'header_title_homepage': str,
+    'header_title_submissionpage': str,
+    'header_title_receiptpage': str,
+    'header_title_tippage': str,
     'landing_page': landing_page_regexp,
     'context_selector_type': context_selector_type_regexp,
-    'contexts_clarification': text_type,
+    'contexts_clarification': str,
     'show_contexts_in_alphabetical_order': bool,
     'show_small_context_cards': bool,
     'threshold_free_disk_megabytes_high': int,
@@ -273,23 +272,23 @@ AdminNodeDesc = {
     'password_change_period': int,
     'wbtip_timetolive': int,
     'basic_auth': bool,
-    'basic_auth_username': text_type,
-    'basic_auth_password': text_type,
+    'basic_auth_username': str,
+    'basic_auth_password': str,
     'reachable_via_web': bool,
     'anonymize_outgoing_connections': bool,
     'enable_admin_exception_notification': bool,
     'enable_developers_exception_notification': bool,
     'ip_filter_admin_enable': bool,
-    'ip_filter_admin': text_type,
+    'ip_filter_admin': str,
     'ip_filter_custodian_enable': bool,
-    'ip_filter_custodian': text_type,
+    'ip_filter_custodian': str,
     'ip_filter_receiver_enable': bool,
-    'ip_filter_receiver': text_type,
+    'ip_filter_receiver': str,
     'ip_filter_whistleblower_enable': bool,
-    'ip_filter_whistleblower': text_type,
+    'ip_filter_whistleblower': str,
     'enable_password_reset': bool,
     'enable_user_pgp_key_upload': bool,
-    'log_level': text_type,
+    'log_level': str,
     'log_accesses_of_internal_users': bool,
     'two_factor': bool,
     'encryption': bool,
@@ -300,19 +299,19 @@ AdminNodeDesc = {
     'backup_w': int,
     'backup_m': int,
     'backup_remote': bool,
-    'backup_remote_server': text_type,
+    'backup_remote_server': str,
     'backup_remote_port': int,
-    'backup_remote_username': text_type,
-    'backup_remote_password': text_type
+    'backup_remote_username': str,
+    'backup_remote_password': str
 }
 
 AdminNotificationDesc = merge_dicts({
-    'smtp_server': text_type,
+    'smtp_server': str,
     'smtp_port': int,
-    'smtp_security': text_type,  # 'TLS' or 'SSL' only
+    'smtp_security': str,  # 'TLS' or 'SSL' only
     'smtp_authentication': bool,
-    'smtp_username': text_type,
-    'smtp_password': text_type,
+    'smtp_username': str,
+    'smtp_password': str,
     'smtp_source_email': email_regexp,
     'disable_admin_notification_emails': bool,
     'disable_custodian_notification_emails': bool,
@@ -321,14 +320,14 @@ AdminNotificationDesc = merge_dicts({
     'notification_threshold_per_hour': int,
     'reset_templates': bool
   },
-  {k: text_type for k in ConfigL10NFilters['notification']}
+  {k: str for k in ConfigL10NFilters['notification']}
 )
 
 AdminFieldOptionDesc = {
     'id': uuid_regexp_or_empty,
-    'label': text_type,
-    'hint1': text_type,
-    'hint2': text_type,
+    'label': str,
+    'hint1': str,
+    'hint2': str,
     'block_submission': bool,
     'presentation_order': int,
     'score_type': int,
@@ -340,7 +339,7 @@ AdminFieldOptionDescRaw = get_multilang_request_format(AdminFieldOptionDesc, mod
 
 AdminFieldAttrDesc = {
     'id': uuid_regexp_or_empty,
-    'name': text_type,
+    'name': str,
     'type': field_attr_type_regexp,
     'value': SkipSpecificValidation
 }
@@ -355,12 +354,12 @@ AdminFieldDesc = {
     'template_override_id': key_regexp_or_empty,
     'step_id': uuid_regexp_or_empty,
     'fieldgroup_id': key_regexp_or_empty,
-    'label': text_type,
-    'description': text_type,
-    'hint': text_type,
-    'placeholder': text_type,
+    'label': str,
+    'description': str,
+    'hint': str,
+    'placeholder': str,
     'multi_entry': bool,
-    'multi_entry_hint': text_type,
+    'multi_entry_hint': str,
     'x': int,
     'y': int,
     'width': int,
@@ -382,8 +381,8 @@ AdminFieldDescRaw['options'] = [AdminFieldOptionDescRaw]
 
 AdminStepDesc = {
     'id': uuid_regexp_or_empty,
-    'label': text_type,
-    'description': text_type,
+    'label': str,
+    'description': str,
     'children': [AdminFieldDesc],
     'questionnaire_id': key_regexp_or_empty,
     'presentation_order': int,
@@ -396,7 +395,7 @@ AdminStepDescRaw['children'] = [AdminFieldDescRaw]
 
 AdminQuestionnaireDesc = {
     'id': key_regexp_or_empty,
-    'name': text_type,
+    'name': str,
     'steps': list
 }
 
@@ -405,9 +404,9 @@ AdminQuestionnaireDescRaw['steps'] = list
 
 AdminContextDesc = {
     'id': uuid_regexp_or_empty,
-    'name': text_type,
+    'name': str,
     'status': int,
-    'description': text_type,
+    'description': str,
     'maximum_selectable_receivers': int,
     'tip_timetolive': int,
     'receivers': [uuid_regexp],
@@ -424,13 +423,13 @@ AdminContextDesc = {
     'score_threshold_medium': int,
     'score_threshold_high': int,
     'score_receipt_text_custom': bool,
-    'score_receipt_text_l': text_type,
-    'score_receipt_text_m': text_type,
-    'score_receipt_text_h': text_type,
+    'score_receipt_text_l': str,
+    'score_receipt_text_m': str,
+    'score_receipt_text_h': str,
     'score_threshold_receipt': int,
     'presentation_order': int,
-    'recipients_clarification': text_type,
-    'status_page_message': text_type,
+    'recipients_clarification': str,
+    'status_page_message': str,
     'show_steps_navigation_interface': bool,
     'show_receivers_in_alphabetical_order': bool,
     'questionnaire_id': key_regexp_or_empty,
@@ -438,14 +437,14 @@ AdminContextDesc = {
 }
 
 AdminTLSCertFilesConfigDesc = {
-    'priv_key': text_type,
-    'chain': text_type,
-    'cert': text_type,
+    'priv_key': str,
+    'chain': str,
+    'cert': str,
 }
 
 AdminTLSCfgFileResourceDesc = {
-    'name': text_type,
-    'content': text_type,
+    'name': str,
+    'content': str,
 }
 
 AdminCSRFileDesc = {
@@ -461,24 +460,24 @@ AdminCSRFileDesc = {
 }
 
 AdminRedirectDesc = {
-    'path1': text_type,
-    'path2': text_type
+    'path1': str,
+    'path2': str
 }
 
 NodeDesc = {
-    'name': text_type,
-    'description': text_type,
-    'presentation': text_type,
-    'footer': text_type,
+    'name': str,
+    'description': str,
+    'presentation': str,
+    'footer': str,
     'enable_disclaimer': bool,
-    'disclaimer_title': text_type,
-    'disclaimer_text': text_type,
+    'disclaimer_title': str,
+    'disclaimer_text': str,
     'hostname': hostname_regexp_or_empty,
     'rootdomain': hostname_regexp_or_empty,
     'tb_download_link': https_url_regexp,
-    'languages_enabled': [text_type],
+    'languages_enabled': [str],
     'languages_supported': list,
-    'default_language': text_type,
+    'default_language': str,
     'maximum_filesize': int,
     'https_admin': bool,
     'https_custodian': bool,
@@ -493,7 +492,7 @@ NodeDesc = {
     'multisite_login': bool,
     'simplified_login': bool,
     'enable_custom_privacy_badge': bool,
-    'custom_privacy_badge_text': text_type
+    'custom_privacy_badge_text': str
 }
 
 TipOverviewDesc = {
@@ -508,16 +507,16 @@ TipsOverviewDesc = [TipOverviewDesc]
 FileOverviewDesc = {
     'id': uuid_regexp,
     'itip': uuid_regexp,
-    'path': text_type
+    'path': str
 }
 
 ReceiverIdentityAccessRequestDesc = {
-    'request_motivation': text_type
+    'request_motivation': str
 }
 
 CustodianIdentityAccessRequestDesc = {
     'reply': identityaccessreply_regexp,
-    'reply_motivation': text_type
+    'reply_motivation': str
 }
 
 FilesOverviewDesc = [FileOverviewDesc]
@@ -533,15 +532,15 @@ StatsDesc = {
 StatsCollectionDesc = [StatsDesc]
 
 AnomalyDesc = {
-    'message': text_type,
+    'message': str,
     'creation_date': DateType
 }
 
 AnomalyCollectionDesc = [AnomalyDesc]
 
 ReceiverDesc = {
-    'name': text_type,
-    'description': text_type,
+    'name': str,
+    'description': str,
     'id': uuid_regexp,
     'state': user_state_regexp,
     'can_delete_submission': bool,
@@ -553,9 +552,9 @@ ReceiverCollectionDesc = [ReceiverDesc]
 
 ContextDesc = {
     'id': uuid_regexp,
-    'name': text_type,
+    'name': str,
     'status': int,
-    'description': text_type,
+    'description': str,
     'presentation_order': int,
     'receivers': [uuid_regexp],
     'select_all_receivers': bool,
@@ -569,7 +568,7 @@ ContextDesc = {
     'enable_two_way_messages': bool,
     'enable_attachments': bool,
     'show_receivers_in_alphabetical_order': bool,
-    'picture': text_type
+    'picture': str
 }
 
 ContextCollectionDesc = [ContextDesc]
@@ -593,78 +592,78 @@ InternalTipDesc = {
 }
 
 WizardDesc = {
-    'node_language': text_type,
-    'node_name': text_type,
-    'admin_name': text_type,
-    'admin_password': text_type,
-    'admin_mail_address': text_type,
-    'receiver_name': text_type,
-    'receiver_password': text_type,
-    'receiver_mail_address': text_type,
+    'node_language': str,
+    'node_name': str,
+    'admin_name': str,
+    'admin_password': str,
+    'admin_mail_address': str,
+    'receiver_name': str,
+    'receiver_password': str,
+    'receiver_mail_address': str,
     'profile': r'^(default)$',
     'enable_developers_exception_notification': bool
 }
 
 SignupDesc = {
     'subdomain': subdomain_regexp,
-    'name': text_type,
-    'surname': text_type,
-    'role': text_type,
-    'phone': text_type,
-    'email': text_type,
-    'use_case': text_type,
-    'use_case_other': text_type,
-    'organization_name': text_type,
-    'organization_type': text_type,
-    'organization_location1': text_type,
-    'organization_location2': text_type,
-    'organization_location3': text_type,
-    'organization_location4': text_type,
-    'organization_site': text_type,
-    'organization_number_employees': text_type,
-    'organization_number_users': text_type,
-    'hear_channel': text_type,
+    'name': str,
+    'surname': str,
+    'role': str,
+    'phone': str,
+    'email': str,
+    'use_case': str,
+    'use_case_other': str,
+    'organization_name': str,
+    'organization_type': str,
+    'organization_location1': str,
+    'organization_location2': str,
+    'organization_location3': str,
+    'organization_location4': str,
+    'organization_site': str,
+    'organization_number_employees': str,
+    'organization_number_users': str,
+    'hear_channel': str,
     'tos1': bool,
     'tos2': bool
 }
 
 ExceptionDesc = {
-    'errorUrl': text_type,
-    'errorMessage': text_type,
+    'errorUrl': str,
+    'errorMessage': str,
     'stackTrace': list,
-    'agent': text_type
+    'agent': str
 }
 
 PasswordReset1Desc = {
-    'username_or_email': text_type
+    'username_or_email': str
 }
 
 PasswordReset2Desc = {
-    'reset_token': text_type,
-    'recovery_key': text_type,
-    'auth_code': text_type
+    'reset_token': str,
+    'recovery_key': str,
+    'auth_code': str
 }
 
 SiteSettingsDesc = {
-    'name': text_type,
-    'header_title_homepage': text_type,
-    'presentation': text_type,
-    'footer': text_type,
+    'name': str,
+    'header_title_homepage': str,
+    'presentation': str,
+    'footer': str,
     'enable_ricochet_panel': bool,
-    'ricochet_address': text_type
+    'ricochet_address': str
 }
 
 QuestionnaireDuplicationDesc = {
-    'questionnaire_id': text_type,
-    'new_name': text_type
+    'questionnaire_id': str,
+    'new_name': str
 }
 
 SubmissionStatusDesc = {
-    'label': text_type,
+    'label': str,
     'presentation_order': int
 }
 
 SubmissionSubStatusDesc = {
-    'label': text_type,
+    'label': str,
     'presentation_order': int
 }

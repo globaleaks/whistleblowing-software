@@ -4,7 +4,6 @@
 import base64
 import os
 
-from six import text_type
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
@@ -32,7 +31,7 @@ def db_mark_file_for_secure_deletion(session, directory, filename):
 
 @transact
 def get_file_id(session, tid, name):
-    return models.db_get(session, models.File, models.File.tid == tid, models.File.name == text_type(name)).id
+    return models.db_get(session, models.File, models.File.tid == tid, models.File.name == name).id
 
 
 class FileHandler(BaseHandler):

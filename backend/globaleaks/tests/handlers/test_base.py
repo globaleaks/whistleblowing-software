@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 
-from six import text_type
-
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest.errors import InputValidationError
 from globaleaks.tests import helpers
@@ -35,7 +33,7 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
 
     def test_validate_message_valid(self):
         dummy_json = json.dumps({'spam': 'ham'})
-        dummy_message_template = {'spam': text_type}
+        dummy_message_template = {'spam': str}
 
         self.assertEqual(json.loads(dummy_json), BaseHandler.validate_message(dummy_json, dummy_message_template))
 
@@ -50,14 +48,14 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue(BaseHandler.validate_type('foca', str))
         self.assertTrue(BaseHandler.validate_type(True, bool))
         self.assertTrue(BaseHandler.validate_type(4, int))
-        self.assertTrue(BaseHandler.validate_type(u'foca', text_type))
+        self.assertTrue(BaseHandler.validate_type(u'foca', str))
         self.assertTrue(BaseHandler.validate_type(['foca', 'fessa'], list))
         self.assertTrue(BaseHandler.validate_type({'foca': 1}, dict))
 
     def test_validate_type_invalid(self):
         self.assertFalse(BaseHandler.validate_type(1, str))
-        self.assertFalse(BaseHandler.validate_type(1, text_type))
-        self.assertFalse(BaseHandler.validate_type(False, text_type))
+        self.assertFalse(BaseHandler.validate_type(1, str))
+        self.assertFalse(BaseHandler.validate_type(False, str))
         self.assertFalse(BaseHandler.validate_type({}, list))
         self.assertFalse(BaseHandler.validate_type(True, dict))
 
@@ -65,7 +63,7 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue(BaseHandler.validate_python_type('foca', str))
         self.assertTrue(BaseHandler.validate_python_type(True, bool))
         self.assertTrue(BaseHandler.validate_python_type(4, int))
-        self.assertTrue(BaseHandler.validate_python_type(u'foca', text_type))
+        self.assertTrue(BaseHandler.validate_python_type(u'foca', str))
         self.assertTrue(BaseHandler.validate_python_type(None, dict))
 
     def test_validate_regexp_valid(self):

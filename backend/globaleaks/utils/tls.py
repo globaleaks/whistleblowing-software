@@ -8,10 +8,9 @@ from cryptography.hazmat.primitives import serialization
 
 from OpenSSL import crypto, SSL
 from OpenSSL._util import lib as _lib, ffi as _ffi
-
 from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA, \
     PKey, dump_certificate_request, X509Req, _new_mem_buf, _bio_to_string
-from six import text_type, binary_type
+
 from twisted.internet import ssl
 
 from globaleaks.utils.log import log
@@ -123,8 +122,9 @@ def split_pem_chain(s):
     gex = re.compile(gex_str, re.DOTALL)
 
     try:
-        if isinstance(s, binary_type):
-            s = text_type(s, 'utf-8')
+        if isinstance(s, bytes):
+            s = s.decode('utf-8')
+
         return [m.group(0) for m in gex.finditer(s)]
     except UnicodeDecodeError:
         return None

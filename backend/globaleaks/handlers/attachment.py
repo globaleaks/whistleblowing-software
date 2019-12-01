@@ -3,8 +3,6 @@
 # Handler dealing with submissions file uploads and subsequent submissions attachments
 import base64
 
-from six import text_type
-
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import serializers
@@ -25,7 +23,7 @@ def register_ifile_on_db(session, tid, internaltip_id, uploaded_file):
 
     if itip.crypto_tip_pub_key:
         for k in ['name', 'type', 'size']:
-            uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, text_type(uploaded_file[k])))
+            uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, str(uploaded_file[k])))
 
     new_file = models.InternalFile()
     new_file.name = uploaded_file['name']

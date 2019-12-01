@@ -10,7 +10,6 @@ import re
 
 from datetime import datetime
 from cryptography.hazmat.primitives import constant_time
-from six import text_type, binary_type
 from twisted.internet import abstract
 from twisted.protocols.basic import FileSender
 
@@ -67,7 +66,7 @@ class BaseHandler(object):
         if b"authorization" in self.request.headers:
             try:
                 auth_type, data = self.request.headers[b"authorization"].split()
-                usr, pwd = text_type(base64.b64decode(data), 'utf-8').split(":", 1)
+                usr, pwd = str(base64.b64decode(data), 'utf-8').split(":", 1)
                 if auth_type != b"Basic" or \
                         usr != self.state.tenant_cache[self.request.tid].basic_auth_username or \
                         pwd != self.state.tenant_cache[self.request.tid].basic_auth_password:
@@ -112,7 +111,7 @@ class BaseHandler(object):
         Return True if the python class matches the given regexp.
         """
         try:
-            value = text_type(value)
+            value = str(value)
         except:
             return False
 
@@ -229,7 +228,7 @@ class BaseHandler(object):
     @staticmethod
     def validate_message(message, message_template):
         try:
-            if isinstance(message, binary_type):
+            if isinstance(message, bytes):
                 message = message.decode('utf-8')
 
             jmessage = json.loads(message)
@@ -291,7 +290,7 @@ class BaseHandler(object):
         if session_id is None:
             return
 
-        session = Sessions.get(text_type(session_id, 'utf-8'))
+        session = Sessions.get(str(session_id, 'utf-8'))
 
         if session is not None and session.tid == self.request.tid:
             self.request.current_user = session
@@ -312,9 +311,9 @@ class BaseHandler(object):
     def get_api_session(self):
         token = ''
         if b'api-token' in self.request.args:
-            token = binary_type(self.request.args[b'api-token'][0])
+            token = bytes(self.request.args[b'api-token'][0])
         elif b'x-api-token' in self.request.headers:
-            token = binary_type(self.request.headers[b'x-api-token'])
+            token = bytes(self.request.headers[b'x-api-token'])
 
         # Assert the input is okay and the api_token state is acceptable
         if self.request.tid != 1 or \
@@ -352,7 +351,7 @@ class BaseHandler(object):
 
             f.finalize_write()
 
-        mime_type, _ = mimetypes.guess_type(text_type(self.request.args[b'flowFilename'][0], 'utf-8'))
+        mime_type, _ = mimetypes.guess_type(str(self.request.args[b'flowFilename'][0], 'utf-8'))
         if mime_type is None:
             mime_type = 'application/octet-stream'
 

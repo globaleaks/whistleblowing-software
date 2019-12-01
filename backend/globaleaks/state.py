@@ -4,8 +4,6 @@ import re
 import sys
 import traceback
 
-from six import text_type
-
 from twisted.internet import defer
 from twisted.mail.smtp import SMTPError
 from twisted.python.failure import Failure
@@ -233,12 +231,11 @@ class StateClass(ObjectDict):
         mail_subject = "GlobaLeaks Exception"
         delivery_list = self.tenant_cache[1].notification.exception_delivery_list
 
-        mail_body = text_type("Platform: %s\nHost: %s (%s)\nVersion: %s\n\n%s"
-                          % (self.tenant_cache[1].name,
-                             self.tenant_cache[1].hostname,
-                             self.tenant_cache[1].onionservice,
-                             __version__,
-                             exception_text))
+        mail_body = "Platform: %s\nHost: %s (%s)\nVersion: %s\n\n%s" % (self.tenant_cache[1].name,
+                                                                        self.tenant_cache[1].hostname,
+                                                                        self.tenant_cache[1].onionservice,
+                                                                        __version__,
+                                                                        exception_text)
 
         for mail_address, pgp_key_public in delivery_list:
             # Opportunisticly encrypt the mail body. NOTE that mails will go out

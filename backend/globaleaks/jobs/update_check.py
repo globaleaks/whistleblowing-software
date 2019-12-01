@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from debian import deb822
 from pkg_resources import parse_version
-from six import text_type
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import __version__
@@ -55,7 +54,7 @@ class UpdateCheck(HourlyJob):
     def operation(self):
         log.debug('Fetching latest GlobaLeaks version from repository')
         packages_file = yield self.fetch_packages_file()
-        packages_file = text_type(packages_file, 'utf-8')
+        packages_file = str(packages_file, 'utf-8')
         versions = [p['Version'] for p in deb822.Deb822.iter_paragraphs(packages_file) if p['Package'] == 'globaleaks']
         versions.sort(key=parse_version)
 

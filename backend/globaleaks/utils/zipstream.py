@@ -12,8 +12,6 @@ import struct
 import time
 import zlib
 
-from six import text_type
-
 __all__ = ["ZipStream"]
 
 ZIP64_LIMIT = (1 << 31) - 1
@@ -86,7 +84,7 @@ class ZipInfo(object):
         self.file_size = 0
 
     def _encodeFilenameFlags(self):
-        if isinstance(self.filename, text_type):
+        if isinstance(self.filename, str):
             try:
                 return self.filename.encode('ascii'), self.flag_bits
             except UnicodeEncodeError:

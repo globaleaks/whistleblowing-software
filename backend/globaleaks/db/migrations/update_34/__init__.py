@@ -2,8 +2,6 @@
 import base64
 import os
 
-from six import binary_type, text_type
-
 from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.db.migrations.update_34.config_desc import GLConfig_v_35
@@ -226,7 +224,7 @@ class MigrationScript(MigrationBase):
 
         # Migrate private fields
         salt = old_node.receipt_salt
-        if isinstance(old_node.receipt_salt, binary_type):
+        if isinstance(old_node.receipt_salt, bytes):
             salt = salt.decode()
 
         self.session_new.add(self.model_to['Config']('private', 'receipt_salt', salt))

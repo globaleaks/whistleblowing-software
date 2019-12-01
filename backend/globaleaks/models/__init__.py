@@ -7,8 +7,6 @@ from __future__ import absolute_import
 import collections
 import copy
 
-from six import binary_type
-
 from globaleaks.models import config_desc
 from globaleaks.models.properties import *
 from globaleaks.orm import transact
@@ -170,7 +168,7 @@ class Model(object):
 
         for k in getattr(self, 'unicode_keys'):
             if k in values and values[k] is not None:
-                setattr(self, k, text_type(values[k]))
+                setattr(self, k, str(values[k]))
 
         for k in getattr(self, 'int_keys'):
             if k in values and values[k] is not None:
@@ -210,7 +208,7 @@ class Model(object):
                 setattr(self, k, values[k])
 
     def __setattr__(self, name, value):
-        if name not in self.binary_keys and isinstance(value, binary_type):
+        if name not in self.binary_keys and isinstance(value, bytes):
             value = value.decode()
 
         return super(Model, self).__setattr__(name, value)
@@ -239,8 +237,8 @@ class Model(object):
                 else:
                     ret[k] = ''
 
-            if isinstance(ret[k], binary_type):
-                ret[k] = text_type(ret[k])
+            if isinstance(ret[k], bytes):
+                ret[k] = str(ret[k])
 
         for k in self.list_keys:
             ret[k] = []
@@ -328,7 +326,7 @@ class _Config(Model):
             return
 
         self.tid = values['tid']
-        self.var_name = text_type(values['var_name'])
+        self.var_name = str(values['var_name'])
         self.set_v(values['value'])
 
     def set_v(self, val):
@@ -336,8 +334,8 @@ class _Config(Model):
         if val is None:
             val = desc._type()
 
-        if isinstance(desc, config_desc.Unicode) and isinstance(val, binary_type):
-            val = text_type(val, 'utf-8')
+        if isinstance(desc, config_desc.Unicode) and isinstance(val, bytes):
+            val = str(val, 'utf-8')
 
         if not isinstance(val, desc._type):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
@@ -367,12 +365,12 @@ class _ConfigL10N(Model):
             return
 
         self.tid = values['tid']
-        self.lang = text_type(values['lang'])
-        self.var_name = text_type(values['var_name'])
-        self.value = text_type(values['value'])
+        self.lang = str(values['lang'])
+        self.var_name = str(values['var_name'])
+        self.value = str(values['value'])
 
     def set_v(self, value):
-        value = text_type(value)
+        value = str(value)
         if self.value != value:
             if self.value is None:
                 self.update_date = datetime_now()
@@ -521,7 +519,7 @@ class _EnabledLanguage(Model):
             return
 
         self.tid = tid
-        self.name = text_type(name)
+        self.name = str(name)
 
     @classmethod
     def list(cls, session, tid):

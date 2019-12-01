@@ -4,7 +4,6 @@
 #   *****
 # Implementation of the code executed on handler /admin/contexts
 #
-from six import text_type
 from sqlalchemy.sql.expression import not_
 
 from globaleaks import models
@@ -229,7 +228,7 @@ class ContextsCollection(OperationHandler):
 
     def operation_descriptors(self):
         return {
-            'order_elements': (order_elements, {'ids': [text_type]}),
+            'order_elements': (order_elements, {'ids': [str]}),
         }
 
 

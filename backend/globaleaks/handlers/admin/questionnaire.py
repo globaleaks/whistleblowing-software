@@ -7,8 +7,6 @@
 
 import uuid
 
-from six import text_type
-
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models, QUESTIONNAIRE_EXPORT_VERSION
@@ -130,13 +128,13 @@ def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
 
     # We need to change the primary key references and so this can be reimported
     # as a new questionnaire
-    q['id'] = text_type(uuid.uuid4())
+    q['id'] = str(uuid.uuid4())
     q['editable'] = True
 
     # Each step has a UUID that needs to be replaced
 
     def fix_field_pass_1(field):
-        new_child_id = text_type(uuid.uuid4())
+        new_child_id = str(uuid.uuid4())
         id_map[field['id']] = new_child_id
         field['id'] = new_child_id
 
@@ -149,13 +147,13 @@ def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
         for option in field['options']:
             option_id = option.get('id', None)
             if option_id is not None:
-                new_option_id = text_type(uuid.uuid4())
+                new_option_id = str(uuid.uuid4())
                 id_map[option['id']] = new_option_id
                 option['id'] = new_option_id
 
         # And now we need to keep going down the latter
         for attr in field['attrs'].values():
-            attr['id'] = text_type(uuid.uuid4())
+            attr['id'] = str(uuid.uuid4())
 
         # Recursion!
         for child in field['children']:
@@ -174,7 +172,7 @@ def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
 
     # Step1: replacement of IDs
     for step in q['steps']:
-        new_step_id = text_type(uuid.uuid4())
+        new_step_id = str(uuid.uuid4())
         id_map[step['id']] = new_step_id
         step['id'] = new_step_id
 

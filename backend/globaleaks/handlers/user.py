@@ -3,8 +3,6 @@
 # Handlers dealing with user preferences
 import pyotp
 
-from six import text_type
-
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
@@ -320,6 +318,6 @@ class UserOperationHandler(OperationHandler):
         return {
             'get_recovery_key': (UserOperationHandler.get_recovery_key, {}),
             'enable_2fa_step1': (UserOperationHandler.enable_2fa_step1, {}),
-            'enable_2fa_step2': (UserOperationHandler.enable_2fa_step2, {'value': text_type}),
+            'enable_2fa_step2': (UserOperationHandler.enable_2fa_step2, {'value': str}),
             'disable_2fa': (UserOperationHandler.disable_2fa, {})
         }

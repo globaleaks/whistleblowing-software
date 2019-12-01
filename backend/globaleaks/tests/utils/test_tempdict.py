@@ -18,9 +18,8 @@ def expireCallback(self):
 class TestTempDict(helpers.TestGL):
     def test_timeout(self):
         timeout = 1337
-        size_limit = 1000000
 
-        xxx = TempDict(timeout=timeout, size_limit=size_limit)
+        xxx = TempDict(timeout=timeout)
 
         xxx.expireCallback = expireCallback
 
@@ -36,20 +35,3 @@ class TestTempDict(helpers.TestGL):
         self.assertEqual(len(xxx), 0)
 
         self.assertEqual(TestObject.callbacks_count, timeout)
-
-    def test_size_limit(self):
-        timeout = 666
-        size_limit = 666
-
-        xxx = TempDict(timeout=timeout, size_limit=size_limit)
-
-        for x in range(1, size_limit * 2):
-            xxx.set(x, TestObject(x))
-            if x < size_limit:
-                self.assertEqual(len(xxx), x)
-                self.assertEqual(xxx.get(x).id, x)
-                self.assertEqual(xxx.get(x + 1), None)
-            else:
-                self.assertEqual(len(xxx), size_limit)
-                self.assertEqual(xxx.get(x - size_limit + 1).id, x - size_limit + 1)
-                self.assertEqual(xxx.get(x - size_limit), None)

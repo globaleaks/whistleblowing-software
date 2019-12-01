@@ -4,7 +4,6 @@
 import base64
 import os
 
-from six import text_type
 from twisted.internet.threads import deferToThread
 from twisted.internet.defer import inlineCallbacks, returnValue
 
@@ -216,7 +215,7 @@ def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
 
     if itip.crypto_tip_pub_key:
         for k in ['name', 'description', 'type', 'size']:
-            uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, text_type(uploaded_file[k])))
+            uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, str(uploaded_file[k])))
 
     new_file = models.WhistleblowerFile()
 
@@ -504,9 +503,9 @@ class RTipInstance(OperationHandler):
           'set': (RTipInstance.set_tip_val,
                   {'key': '^(enable_two_way_comments|enable_two_way_messages|enable_attachments|enable_notifications)$',
                    'value': bool}),
-          'update_label': (RTipInstance.update_label, {'value': text_type}),
-          'update_status': (RTipInstance.update_submission_status, {'status': text_type,
-                                                                    'substatus': text_type})
+          'update_label': (RTipInstance.update_label, {'value': str}),
+          'update_status': (RTipInstance.update_submission_status, {'status': str,
+                                                                    'substatus': str})
         }
 
     def set_tip_val(self, req_args, tip_id, *args, **kwargs):

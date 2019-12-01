@@ -2,8 +2,6 @@
 import os
 import shutil
 
-from six import text_type
-
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.db.migrations.update_37.config_desc import GLConfig_v_37
 from globaleaks.models import *
@@ -50,8 +48,8 @@ class Config_v_38(Model):
         if migrate:
             return
 
-        self.var_group = text_type(group)
-        self.var_name = text_type(name)
+        self.var_group = str(group)
+        self.var_name = str(name)
 
         self.set_v(value)
 
@@ -68,7 +66,7 @@ class Config_v_38(Model):
         if val is None:
             val = desc._type()
         if isinstance(desc, config_desc.Unicode) and isinstance(val, str):
-            val = text_type(val)
+            val = str(val)
         if not isinstance(val, desc._type):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
 
@@ -92,13 +90,13 @@ class ConfigL10N_v_38(Model):
         if migrate:
             return
 
-        self.lang = text_type(lang_code)
-        self.var_group = text_type(group)
-        self.var_name = text_type(var_name)
-        self.value = text_type(value)
+        self.lang = str(lang_code)
+        self.var_group = str(group)
+        self.var_name = str(var_name)
+        self.value = str(value)
 
     def set_v(self, value):
-        value = text_type(value)
+        value = str(value)
         if self.value != value:
             self.value = value
             self.customized = True
@@ -144,7 +142,7 @@ class EnabledLanguage_v_38(Model):
         if migrate:
             return
 
-        self.name = text_type(name)
+        self.name = str(name)
 
     @classmethod
     def list(cls, session):
@@ -200,7 +198,7 @@ class FieldAttr_v_38(Model):
             else:
                 setattr(self, 'value', value)
         else:
-            setattr(self, 'value', text_type(values['value']))
+            setattr(self, 'value', str(values['value']))
 
 
 class FieldOption_v_38(Model):

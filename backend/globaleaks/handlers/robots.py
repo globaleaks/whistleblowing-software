@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 #
 # Implementation of robots.txt resource
-from six import binary_type
-
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.state import State
 
@@ -21,7 +19,7 @@ class RobotstxtHandler(BaseHandler):
             return "User-agent: *\nDisallow: /"
 
         hostname = State.tenant_cache[self.request.tid].hostname
-        if isinstance(hostname, binary_type):
+        if isinstance(hostname, bytes):
             hostname = hostname.decode('utf-8')
 
         data = "User-agent: *\n"

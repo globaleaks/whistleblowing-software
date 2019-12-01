@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 # Handle manipulation of submission statuses
-from six import text_type
-
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
@@ -235,7 +233,7 @@ class SubmissionStatusCollection(OperationHandler):
 
     def operation_descriptors(self):
         return {
-            'order_elements': (order_status_elements, {'ids': [text_type]}),
+            'order_elements': (order_status_elements, {'ids': [str]}),
         }
 
 
@@ -275,7 +273,7 @@ class SubmissionSubStatusCollection(OperationHandler):
 
     def operation_descriptors(self):
         return {
-            'order_elements': (order_substatus_elements, {'ids': [text_type]}),
+            'order_elements': (order_substatus_elements, {'ids': [str]}),
         }
 
 

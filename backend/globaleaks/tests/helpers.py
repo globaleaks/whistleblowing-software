@@ -4,24 +4,16 @@ Utilities and basic TestCases.
 """
 import sys
 
-try:  # Python 2
-    reload(sys)  # pylint: disable=undefined-variable
-    sys.setdefaultencoding('utf8')  # pylint: disable=no-member
-except NameError:
-    pass  # Python 3
-
 import base64
 import copy
 import json
 import os
 import shutil
 import signal
-import six
 
 from datetime import timedelta
 
-from six import text_type, binary_type
-from six.moves.urllib.parse import urlsplit  # pylint: disable=import-error
+from urllib.parse import urlsplit  # pylint: disable=import-error
 
 from twisted.internet import defer, task
 from twisted.internet.address import IPv4Address
@@ -106,7 +98,7 @@ DATA_DIR = os.path.join(TEST_DIR, 'data')
 kp = os.path.join(DATA_DIR, 'gpg')
 for filename in os.listdir(kp):
     with open(os.path.join(kp, filename)) as pgp_file:
-        PGPKEYS[filename] = text_type(pgp_file.read())
+        PGPKEYS[filename] = pgp_file.read()
 
 
 def deferred_sleep_mock(seconds):
@@ -270,7 +262,7 @@ def get_dummy_file(filename=None, content=None):
     files_count += 1
 
     if filename is None:
-        filename = ''.join(six.unichr(x) for x in range(0x400, 0x40A)).join('-%d' % files_count)
+        filename = ''.join(chr(x) for x in range(0x400, 0x40A)).join('-%d' % files_count)
 
     content_type = u'application/octet'
 
@@ -337,7 +329,7 @@ def forge_request(uri=b'https://www.globaleaks.org/',
 
     def getResponseBody():
         # Ugh, hack. Twisted returns this all as bytes, and we want it as str
-        if isinstance(request.written[0], binary_type):
+        if isinstance(request.written[0], bytes):
             return b''.join(request.written)
         else:
             return ''.join(request.written)
@@ -369,12 +361,11 @@ def forge_request(uri=b'https://www.globaleaks.org/',
 
     class fakeBody(object):
         def read(self):
-            if isinstance(body, dict):
-                ret = json.dumps(body)
-            else:
-                ret = body
+            ret = body
+            if isinstance(ret, dict):
+                ret = json.dumps(ret)
 
-            if isinstance(ret, text_type):
+            if isinstance(ret, str):
                 ret = ret.encode('utf-8')
 
             return ret
@@ -508,8 +499,7 @@ class TestGL(unittest.TestCase):
         new_u = dict(MockDict().dummyUser)
         new_u['role'] = role
         new_u['username'] = username
-        new_u['name'] = new_u['mail_address'] = \
-            text_type("%s@%s.xxx" % (username, username))
+        new_u['name'] = new_u['mail_address'] = "%s@%s.xxx" % (username, username)
         new_u['description'] = u''
         new_u['password'] = VALID_PASSWORD1
         new_u['state'] = u'enabled'
@@ -541,7 +531,7 @@ class TestGL(unittest.TestCase):
             for child in field['children']:
                 self.fill_random_field_recursively(value, child)
         else:
-            value = {'value': text_type(''.join(six.unichr(x) for x in range(0x400, 0x4FF)))}
+            value = {'value': ''.join(chr(x) for x in range(0x400, 0x4FF))}
 
         answers[field['id']] = [value]
 

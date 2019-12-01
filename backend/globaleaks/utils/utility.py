@@ -12,8 +12,8 @@ import os
 import platform
 import re
 import uuid
+
 from datetime import datetime, timedelta
-from six import text_type, binary_type
 
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred
@@ -97,7 +97,7 @@ def uuid4():
 
     The function is not intended to be used for security reasons.
     """
-    return text_type(uuid.uuid4())
+    return str(uuid.uuid4())
 
 
 def sum_dicts(*dicts):
@@ -253,7 +253,7 @@ def asn1_datestr_to_datetime(s):
     """
     Returns a datetime for the passed asn1 formatted string
     """
-    if isinstance(s, binary_type):
+    if isinstance(s, bytes):
         s = s.decode('utf-8')
 
     return datetime.strptime(s[:14], "%Y%m%d%H%M%S")

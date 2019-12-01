@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import re
-from six import text_type
 
 from globaleaks.utils.agent import get_page
 
@@ -14,7 +13,7 @@ class TorExitSet(set):
     def processData(self, data):
         self.clear()
 
-        for ip in re.findall(r'ExitAddress ([^ ]*) ', text_type(data)):
+        for ip in re.findall(r'ExitAddress ([^ ]*) ', str(data)):
             self.add(ip)
 
     def update(self, agent):

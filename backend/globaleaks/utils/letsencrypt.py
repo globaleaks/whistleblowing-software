@@ -4,7 +4,6 @@ import re
 
 from datetime import datetime
 from acme import challenges, client, crypto_util, messages, errors
-from six import text_type
 
 from globaleaks.utils.log import log
 
@@ -37,7 +36,7 @@ def split_certificate_chain(full_chain_pem):
 
 
 def convert_asn1_date(asn1_bytes):
-    return datetime.strptime(text_type(asn1_bytes, 'utf-8'), '%Y%m%d%H%M%SZ')
+    return datetime.strptime(str(asn1_bytes, 'utf-8'), '%Y%m%d%H%M%SZ')
 
 
 def create_v2_client(directory_url, accnt_key):

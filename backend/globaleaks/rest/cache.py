@@ -2,11 +2,8 @@
 import gzip
 import io
 
-from six import text_type
-
-
 def gzipdata(data):
-    if isinstance(data, text_type):
+    if isinstance(data, str):
         data = data.encode()
 
     fgz = io.BytesIO()

@@ -11,8 +11,6 @@ from cryptography.hazmat.primitives import hashes
 from globaleaks.rest import errors
 from globaleaks.utils.log import log
 
-from six import text_type
-
 
 crypto_backend = default_backend()
 
@@ -21,10 +19,11 @@ def sha256(data):
     h = hashes.Hash(hashes.SHA256(), backend=crypto_backend)
 
     # Transparently convert str types to bytes
-    if isinstance(data, text_type):
+    if isinstance(data, str):
         data = data.encode()
 
     h.update(data)
+
     return binascii.b2a_hex(h.finalize())
 
 
@@ -32,10 +31,11 @@ def sha512(data):
     h = hashes.Hash(hashes.SHA512(), backend=crypto_backend)
 
     # Transparently convert str types to bytes
-    if isinstance(data, text_type):
+    if isinstance(data, str):
         data = data.encode()
 
     h.update(data)
+
     return binascii.b2a_hex(h.finalize())
 
 
@@ -58,7 +58,7 @@ def generateRandomSalt():
     Return a base64 encoded string with 128 bit of entropy
     """
 
-    # Py3 fix explaination: Normally, we'd use text_type here,
+    # Py3 fix explaination: Normally, we'd use str here,
     # however, on Py2, scrypt *wants* str on both Python2/3, (and throws an
     # an exception). As B64 encoded data is always ASCII, this should be
     # able to go safely in and out of the database.
