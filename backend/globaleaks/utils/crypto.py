@@ -9,14 +9,11 @@ import string
 import struct
 import timeit
 
-# python-scrypt is still used because not all the versions of pynacl/cryptography includes it
-# this library could be replaced later on in the project
-import scrypt
-
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import constant_time, hashes
 
 from nacl.encoding import RawEncoder, Base32Encoder
+from nacl.hashlib import scrypt
 from nacl.pwhash import argon2id  # pylint: disable=no-name-in-module
 from nacl.public import SealedBox, PrivateKey, PublicKey  # pylint: disable=no-name-in-module
 from nacl.secret import SecretBox
@@ -69,7 +66,8 @@ def _hash_scrypt(password, salt):
 
     # old version of globalealeaks have used hexelify in place of base64;
     # the function is still used for compatibility reasons
-    return binascii.hexlify(scrypt.hash(password, salt, N=_GCE.ALGORITM_CONFIGURATION['SCRYPT']['N'])).decode('utf-8')
+    hash = scrypt(password, salt, _GCE.ALGORITM_CONFIGURATION['SCRYPT']['N'])
+    return binascii.hexlify(hash).decode('utf-8')
 
 
 def _kdf_argon2(password, salt):
