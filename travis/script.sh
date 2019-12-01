@@ -32,11 +32,7 @@ setupClientDependencies() {
 setupBackendDependencies() {
   cd $TRAVIS_BUILD_DIR/backend  # to install backend dependencies
   rm -rf requirements.txt
-  if [ "$GLTEST" = "py2_test" ]; then
-    pip install -r requirements/requirements-xenial.txt
-  else
-    pip3 install -r requirements/requirements-bionic.txt
-  fi
+  pip3 install -r requirements/requirements-bionic.txt
 }
 
 setupDependencies() {
@@ -103,26 +99,14 @@ elif [ "$GLTEST" = "build_and_install" ]; then
     sudo debootstrap --arch=amd64 bionic "$chroot" http://archive.ubuntu.com/ubuntu/
     sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu bionic main universe" > /tmp/globaleaks_chroot/etc/apt/sources.list'
     sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main universe" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
-  elif [ $BUILD_DISTRO = "xenial" ]; then
-    sudo debootstrap --arch=amd64 xenial "$chroot" http://archive.ubuntu.com/ubuntu/
-    sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" > /tmp/globaleaks_chroot/etc/apt/sources.list'
-    sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu xenial-updates main universe" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
   elif [ $BUILD_DISTRO = "buster" ]; then
     sudo debootstrap --arch=amd64 buster "$chroot" http://deb.debian.org/debian/
     sudo su -c 'echo "deb http://deb.debian.org/debian buster main contrib" > /tmp/globaleaks_chroot/etc/apt/sources.list'
     sudo su -c 'echo "deb http://deb.debian.org/debian buster main contrib" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
-  elif [ $BUILD_DISTRO = "stretch" ]; then
-    sudo debootstrap --arch=amd64 stretch "$chroot" http://deb.debian.org/debian/
-    sudo su -c 'echo "deb http://deb.debian.org/debian stretch main contrib" > /tmp/globaleaks_chroot/etc/apt/sources.list'
-    sudo su -c 'echo "deb http://deb.debian.org/debian stretch main contrib" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
   fi
 
-  if [ $BUILD_DISTRO = "bionic" ] || [ $BUILD_DISTRO = "xenial" ]; then
+  if [ $BUILD_DISTRO = "bionic" ]; then
     sudo mount --rbind /dev/pts "$chroot/dev/pts"
-  fi
-
-  if [ $BUILD_DISTRO = "xenial" ]; then
-    sudo mount --rbind /dev/shm "$chroot/dev/shm"
   fi
 
   sudo mount --rbind /proc "$chroot/proc"

@@ -21,22 +21,8 @@ matrix:
       dist: bionic
       python: "3.6"
 
-    - env: GLTEST='py2_test' TESTS_REQUIREMENTS='xenial'
-      dist: xenial
-      python: "2.7"
-      addons:
-        chrome: stable
-
     - env: GLTEST='build_and_install' BUILD_DISTRO='bionic'
       dist: bionc
-      python: "3.6"
-
-    - env: GLTEST='build_and_install' BUILD_DISTRO='xenial'
-      dist: bionic
-      python: "3.6"
-
-    - env: GLTEST='build_and_install' BUILD_DISTRO='stretch'
-      dist: bionic
       python: "3.6"
 
     - env: GLTEST='docker'
@@ -86,10 +72,6 @@ matrix:
         sauce_connect: true
 
   allow_failures:
-    - env: GLTEST='py2_test' TESTS_REQUIREMENTS='xenial'
-    - env: GLTEST='build_and_install' BUILD_DISTRO='bionic'
-    - env: GLTEST='build_and_install' BUILD_DISTRO='xenial'
-    - env: GLTEST='build_and_install' BUILD_DISTRO='stretch'
     - env: GLTEST='docker'
     - env: GLTEST='end2end-0' BROWSER='chrome 78'
     - env: GLTEST='end2end-1' BROWSER='firefox 70'

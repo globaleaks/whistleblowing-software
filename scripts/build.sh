@@ -2,8 +2,8 @@
 
 set -e
 
-TARGETS="bionic xenial buster stretch"
-DISTRIBUTION="bionic"
+TARGETS="buster bionic"
+DISTRIBUTION="buster"
 TAG="master"
 LOCAL_ENV=0
 NOSIGN=0
@@ -15,7 +15,7 @@ usage() {
   echo " -h"
   echo -e " -t tagname (build specific release/branch)"
   echo -e " -l (Use local repository & enviroment)"
-  echo -e " -d distribution (available: bionic, xenial, stretch)"
+  echo -e " -d distribution (available: buster, bionic)"
   echo -e " -n (do not sign)"
   echo -e " -p (push on repository)"
 }
