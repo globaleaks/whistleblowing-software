@@ -11,7 +11,13 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
     """
     Overwrite the file with all_zeros, all_ones, random patterns
 
-    Note: At each iteration the original size of the file is altered.
+    Note: This feature is a legacy security measure known to has important
+          drawbacks and to not be effective on all the situations as it
+          depends on specific filesystems and storage devices.
+
+          The effective solution on which the system does relies is encryption
+          and this feature is maintained just as additional countermeasure
+          and for educational and historical reasons.
     """
     log.debug("Starting secure deletion of file %s", absolutefpath)
 
