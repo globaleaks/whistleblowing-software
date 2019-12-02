@@ -14,7 +14,7 @@
         <div data-ng-controller="AdminFieldTemplatesAddCtrl" data-ng-include="'views/admin/questionnaires/add_field.html'"></div>
       </div>
     </div>
-    <div class="col-md-12" data-ng-repeat="field in fields | orderBy:'label'">
+    <div class="col-md-12" data-ng-repeat="field in fields | filter: {editable: true} | orderBy:'label'">
       <div data-ng-include="'views/admin/questionnaires/fields.html'"></div>
     </div>
   </div>
