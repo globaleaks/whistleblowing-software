@@ -24,15 +24,10 @@ from globaleaks.utils.log import log
 def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
     config = ConfigFactory(session, tid).serialize(config_node)
 
-    # Contexts and Receivers relationship
-    configured = session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id == models.Context.id,
-                                                              models.Context.tid).count() > 0
-
     misc_dict = {
         'encryption_available': GCE.ENCRYPTION_AVAILABLE,
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': models.EnabledLanguage.list(session, tid),
-        'configured': configured,
         'root_tenant': tid == 1,
         'https_possible': tid == 1 or State.tenant_cache[1].reachable_via_web,
     }
