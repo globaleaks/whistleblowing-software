@@ -40,13 +40,6 @@ def check_hostname(session, tid, input_hostname):
 
 
 @transact
-def set_config_variable(session, tid, var, val):
-    db_set_config_variable(session, tid, var, val)
-
-    db_refresh_memory_variables(session, [tid])
-
-
-@transact
 def reset_submissions(session, tid):
     session.query(Config).filter(Config.tid == tid, Config.var_name == u'counter_submissions').update({'value': 0})
 
@@ -68,6 +61,7 @@ class AdminOperationHandler(OperationHandler):
     def set_hostname(self, req_args, *args, **kwargs):
         yield check_hostname(self.request.tid, req_args['value'])
         yield tw(db_set_config_variable, self.request.tid, u'hostname', req_args['value'])
+        yield tw(db_refresh_memory_variables, [self.request.tid])
         self.state.tenant_cache[self.request.tid].hostname = req_args['value']
 
     def reset_user_password(self, req_args, *args, **kwargs):
