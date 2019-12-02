@@ -11,7 +11,7 @@ from sqlalchemy import exc as sa_exc
 from globaleaks import models, DATABASE_VERSION
 from globaleaks.db.appdata import db_load_default_questionnaires, db_load_default_fields
 from globaleaks.models import Config
-from globaleaks.models.config import ConfigFactory, db_get_config_variable, db_set_config_variable
+from globaleaks.models.config import ConfigFactory
 from globaleaks.models.config_desc import ConfigFilters
 from globaleaks.orm import transact, transact_sync, get_session, make_db_uri
 from globaleaks.sessions import Session
