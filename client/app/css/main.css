@@ -316,12 +316,6 @@ table {
   50% { opacity: 1; }
 }
 
-.verticalAlignHelper {
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-}
-
 .file-info-row {
   margin-top: 10px;
 }

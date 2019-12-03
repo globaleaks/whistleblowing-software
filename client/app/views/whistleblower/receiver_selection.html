@@ -21,18 +21,17 @@
                 <i class="fas fa-check-square" uib-popover="{{'This recipient cannot be deselected.' | translate}}" popover-placement="right"></i>
               </div>
             </div>
-            <div data-ng-if="!submission.selected_receivers[receiver.id]">
-              <div data-ng-if="receiver.recipient_configuration === 'default'">
-                <i class="far fa-square" uib-popover="{{'Select this recipient.' | translate}}" popover-placement="right"></i>
-              </div>
+            <div data-ng-if="!submission.selected_receivers[receiver.id] && receiver.recipient_configuration === 'default'">
+              <i class="far fa-square" uib-popover="{{'Select this recipient.' | translate}}" popover-placement="right"></i>
             </div>
           </div>
         </div>
-        <div class="receiverCardContent row">
-          <div class="receiverCardFrame" data-ng-class="{'col-md-3': !submission.context.show_small_receiver_cards, 'col-md-12': submission.context.show_small_receiver_cards}">
-            <span class="verticalAlignHelper"></span><img class="receiverImg" alt="recipient picture" data-ng-if="receiver.picture !== ''" data-ng-src="{{Utils.imgDataUri(receiver.picture)}}" />
-          </div>
-          <div data-ng-if="!submission.context.show_small_receiver_cards" class="receiverDescription col-md-7">{{receiver.description}}</div>
+        <div data-ng-if="submission.context.show_small_receiver_cards" class="row receiverCardContent">
+          <div data-ng-if="receiver.picture"class="col-md-6"><img class="receiverImg" alt="receiver picture" data-ng-src="{{Utils.imgDataUri(receiver.picture)}}" /></div>
+        </div>
+        <div data-ng-if="!submission.context.show_small_receiver_cards" class="row receiverCardContent">
+          <div class="col-md-4" data-ng-if="receiver.picture"><img class="receiverImg" alt="receiver picture" data-ng-src="{{Utils.imgDataUri(receiver.picture)}}" /></div>
+          <div data-ng-class="{'col-md-12': !receiver.picture, 'col-md-8': receiver.picture}"><div data-ng-if="receiver.description" class="receiverDescription">{{receiver.description}}</div></div>
         </div>
       </div>
     </div>
