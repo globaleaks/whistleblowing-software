@@ -431,3 +431,11 @@ html[dir="rtl"] #KeyCodeBox,
 html[dir="ltr"] #KeyCodeBox {
   direction: ltr;
 }
+
+.nav-link.active {
+  font-weight: bold;
+}
+
+.nav-link.active .fa-chevron-right {
+  color: #000;
+}

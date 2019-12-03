@@ -735,6 +735,12 @@ var GLClient = angular.module("GLClient", [
     //////////////////////////////////////////////////////////////////
 
     $rootScope.$watch(function() {
+      return $location.path();
+    }, function(val) {
+      $rootScope.location_path = val;
+    });
+
+    $rootScope.$watch(function() {
       return $http.pendingRequests.length;
     }, function(val) {
       $rootScope.showLoadingPanel = val > 0;

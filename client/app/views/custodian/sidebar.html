@@ -1,27 +1,27 @@
 <ul id="SidebarCustodian" class="nav flex-column">
   <li class="nav-item">
-    <a class="nav-link" href="#/custodian/home">
+    <a class="nav-link" href="#/custodian/home" data-ng-class="{'active': location_path === '/custodian/home'}">
       <i class="fas fa-chevron-right"></i>
       <span data-translate>Home</span>
     </a>
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" href="#/custodian/identityaccessrequests">
+    <a class="nav-link" href="#/custodian/identityaccessrequests" data-ng-class="{'active': location_path === '/custodian/identityaccessrequest'}">
       <i class="fas fa-chevron-right"></i>
       <span data-translate>Identities</span>
     </a>
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" href="#/custodian/preferences">
+    <a class="nav-link" href="#/custodian/preferences" data-ng-class="{'active': location_path === '/custodian/preferences'}">
       <i class="fas fa-chevron-right"></i>
       <span data-translate>User preferences</span>
     </a>
   </li>
 
   <li class="nav-item" data-ng-if="preferences.can_edit_general_settings">
-    <a class="nav-link" href="#/receiver/content">
+    <a class="nav-link" href="#/receiver/content" data-ng-class="{'active': location_path === '/receiver/content'}">
       <i class="fas fa-chevron-right"></i>
       <span data-translate>Site settings</span>
     </a>
