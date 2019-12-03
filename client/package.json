@@ -56,7 +56,6 @@
     "postcss-rtl": "1.5.0",
     "protractor": "6.0.0",
     "protractor-console-plugin": "0.1.1",
-    "q": "1.5.1",
-    "superagent": "5.1.1"
+    "superagent": "5.1.2"
   }
 }
