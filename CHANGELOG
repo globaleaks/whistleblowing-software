@@ -1,3 +1,8 @@
+Changes in version 3.11.44 - 2019-12-03
+    Apply minor UI fixes
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 3.11.43 - 2019-12-01
     Add error logging on impossibility to validate a TLS Certificate (#2732)
     Improve font selection in relation to feature #2530
@@ -9,7 +14,7 @@ Changes in version 3.11.42 - 2019-11-26
     Implement certificate chain verification for outgoinv HTTPS and SMTPS (#2732)
     Apply minor bugfixing
     Bump npm dependencies to latest versions
-    update translations
+    Update translations
 
 Changes in version 3.11.41 - 2019-11-20
     Apply minor bugfixing
