@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-24 23:48+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-12-03 08:14+0000\n"
+"Last-Translator: Joan Bitlloch <joanbit@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -172,10 +172,10 @@ msgid "Preview"
 msgstr "Vista prèvia"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "L'informador ja ha llegit la darrera actualització"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "L'informador encara no ha llegit la darrera actualització"
 
 msgid "Move up"
 msgstr "Puja"
@@ -368,7 +368,7 @@ msgid "HTTPS settings"
 msgstr "configuracions en HTTPS"
 
 msgid "URL redirects"
-msgstr ""
+msgstr "Redireccions de URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "Llindars de detecció d'anomalies"
@@ -411,7 +411,7 @@ msgid "Trigger question"
 msgstr "Pregunta detonant"
 
 msgid "Triggered by score:"
-msgstr ""
+msgstr "Es desencadena a partir d'una puntuació superior a:"
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "El missatge es mostra a sobre de la pàgina de l'estatus del lliurament"
@@ -492,7 +492,7 @@ msgid "Activate"
 msgstr "Activa"
 
 msgid "Disactivate"
-msgstr ""
+msgstr "Desactiva"
 
 msgid "Search"
 msgstr "Cerca"
@@ -615,7 +615,7 @@ msgid "New"
 msgstr "Nova"
 
 msgid "Opened"
-msgstr ""
+msgstr "Obert"
 
 msgid "Closed"
 msgstr "Tancat"
@@ -633,10 +633,10 @@ msgid "Next"
 msgstr "Endavant"
 
 msgid "First"
-msgstr ""
+msgstr "Primer"
 
 msgid "Last"
-msgstr ""
+msgstr "Últim"
 
 msgid "Running"
 msgstr "S'està executant"
@@ -648,7 +648,7 @@ msgid "Send a test email to your email address."
 msgstr "Envia un correu electrònic de prova a la teva adreça electrònica."
 
 msgid "Block the submission"
-msgstr ""
+msgstr "Bloquejar l'entrega"
 
 msgid "Select the context of your submission:"
 msgstr "Selecciona el context del teu enviament:"
@@ -686,7 +686,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr ""
+msgstr "La contrasenya escollida és massa feble. Una contrasenya vàlida hauria de tenir com a mínim 10 caràcters i ha de contenir una varietat de caràcters, incloent almenys un minúscula, un majúscula, un número i un caràcter especial."
 
 msgid "The new password must be different from the current one."
 msgstr "La nova contrasenya ha de ser diferent de l'actual."
@@ -698,7 +698,7 @@ msgid "The two passwords do not match"
 msgstr "Les dues contrassenyes introduides no coincideixen"
 
 msgid "The new password must differ from the previous."
-msgstr ""
+msgstr "La nova contrasenya ha de ser diferent de les prèvies."
 
 msgid "Proceed"
 msgstr "Procedir"
@@ -736,7 +736,7 @@ msgid "Do not expose users' names"
 msgstr ""
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgstr "Permet que altres webs incloguin la plataforma a l'interior d'Iframes"
 
 msgid "Enable custom privacy panel"
 msgstr "Habilita distintiu personalitzat de privacitat"
@@ -751,7 +751,7 @@ msgid "Disable the privacy panel"
 msgstr "Deshabilita el distintiu de privacitat "
 
 msgid "Enable the receipt hint"
-msgstr ""
+msgstr "Activa el suggeriment de recepció"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Quantitat de dies fins a l'accés dels informadors expira"

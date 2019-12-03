@@ -20,7 +20,7 @@
 # magnifico, 2019
 # signal89, 2014
 # signal89, 2014
-# Vox, 2019
+# b0b47d46632b78a09a40de799fda9a65, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"

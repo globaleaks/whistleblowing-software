@@ -233,7 +233,7 @@
   "Custom privacy panel": "Vlastní panel soukromí",
   "Text shown when the whistleblower is not using Tor": "Text znázorňující, že oznamovatel nevyužívá Tor",
   "Disable the privacy panel": "Zakázat panel o ochraně osobních údajů.",
-  "Enable the receipt hint": "Enable the receipt hint",
+  "Enable the receipt hint": "Povolit možnost pro příjem ",
   "Amount of days till whistleblower access expires": "Počet dní do vypršení přístupu oznamovatele",
   "For security reasons the whistleblower access is subject to expiration.": "Přístup oznamovatele má z bezpečnostích důvodů časově omezenou platnost.",
   "Tweak this setting only if you know what you are doing.": "Toto nastavení neměnte, ledaže opravdu víte co děláte.",
