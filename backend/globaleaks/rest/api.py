@@ -224,7 +224,8 @@ class APIResourceWrapper(Resource):
         if isinstance(hostname, binary_type):
             hostname = request.hostname.decode('utf-8')
 
-        if ((hostname.endswith(State.tenant_cache[1].rootdomain) and
+        if ((hostname != State.tenant_cache[request.tid] and
+             hostname.endswith('.' + State.tenant_cache[1].rootdomain) and
              State.tenant_cache[1].https_enabled) or
             (hostname == tenant_hostname and
              State.tenant_cache[request.tid].https_enabled)) and \

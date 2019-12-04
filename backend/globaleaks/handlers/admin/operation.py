@@ -24,8 +24,6 @@ def check_hostname(session, tid, input_hostname):
     root_hostname = ConfigFactory(session, 1).get_val(u'hostname')
 
     forbidden_endings = ['onion', 'localhost']
-    if tid != 1 and root_hostname != '':
-        forbidden_endings.append(root_hostname)
 
     for v in forbidden_endings:
         if input_hostname.endswith(v):
