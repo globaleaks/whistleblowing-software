@@ -461,7 +461,8 @@ class APIResourceWrapper(Resource):
                   "connect-src 'self';" \
                   "style-src 'self';" \
                   "img-src 'self' data:;" \
-                  "font-src 'self' data:;"
+                  "font-src 'self' data:;" \
+                  "media-src 'self';"
 
             if State.tenant_cache[request.tid].frame_ancestors:
                 csp += "frame-ancestors " + State.tenant_cache[request.tid].frame_ancestors + ";"
