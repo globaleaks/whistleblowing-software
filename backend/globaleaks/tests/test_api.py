@@ -81,7 +81,7 @@ class TestAPI(TestGL):
         server_headers = [
             ('Cache-control', 'no-cache, no-store, must-revalidate'),
             ('Content-Language', 'en'),
-            ('Content-Security-Policy', 'default-src \'none\';script-src \'self\';connect-src \'self\';style-src \'self\';img-src \'self\' data:;font-src \'self\' data:;frame-ancestors \'none\';'),
+            ('Content-Security-Policy', 'default-src \'none\';script-src \'self\';connect-src \'self\';style-src \'self\';img-src \'self\' data:;font-src \'self\' data:;media-src \'self\';frame-ancestors \'none\';'),
             ('Expires', '-1'),
             ('Pragma', 'no-cache'),
             ('Referrer-Policy', 'no-referrer'),
