@@ -66,7 +66,7 @@ class TwoFactorAuthCodeRequired(GLException):
     """
     reason = "Two Factor authentication required"
     error_code = 4
-    status_code = 401
+    status_code = 300
 
 
 class HTTPAuthenticationRequired(GLException):
