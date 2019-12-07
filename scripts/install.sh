@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo -e "Running the GlobaLeaks installation...\nIn case of failure please report encountered issues to the ticketing system at: https://github.com/globaleaks/GlobaLeaks/issues\n"
+
 # User Permission Check
 if [ ! $(id -u) = 0 ]; then
   echo "Error: GlobaLeaks install script must be run by root"
@@ -163,29 +165,6 @@ function prompt_for_continuation () {
     done
   fi
 }
-
-function atexit {
-  echo "For Professional Support requests please visit: https://www.globaleaks.org/contact/"
-  echo "Please report encountered issues to the Community Forum at https://forum.globaleaks.org"
-
-  if [ $TEST -eq 1 ]; then
-    REAL_DISTRO_CODENAME="test-$REAL_DISTRO_CODENAME"
-  fi
-
-  LAST_COMMAND=$(cat $TMPDIR/last_command)
-  LAST_STATUS=$(cat $TMPDIR/last_status)
-
-  curl "https://deb.globaleaks.org/install-globaleaks.sh" \
-       -G -m 10 \
-       --data-urlencode "DISTRO=$REAL_DISTRO_CODENAME" \
-       --data-urlencode "LAST_COMMAND=$LAST_COMMAND" \
-       --data-urlencode "LAST_STATUS=$LAST_STATUS" \
-       >/dev/null 2>/dev/null
-
-  rm  -r $TMPDIR
-}
-
-trap atexit EXIT
 
 for arg in "$@"; do
   shift
