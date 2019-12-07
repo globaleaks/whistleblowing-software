@@ -141,7 +141,9 @@
                   <i class="fas fa-sync"></i>
                   <span data-translate>Reset password</span>
                 </span>
-                <span class="btn btn-secondary" data-ng-init="user.newpassword = false"
+                <span class="btn btn-secondary"
+		      data-ng-if="!resources.node.encryption"
+		      data-ng-init="user.newpassword = false"
                       data-ng-click="user.newpassword=!user.newpassword">
                   <i class="fas fa-edit"></i>
                   <span data-translate>New password</span>

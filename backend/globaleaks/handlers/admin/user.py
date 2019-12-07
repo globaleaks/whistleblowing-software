@@ -85,13 +85,11 @@ def db_admin_update_user(session, tid, user_id, request, language):
     user.update(request)
 
     password = request['password']
-    if password:
+    if password and not user.crypto_pub_key:
         user.hash_alg = 'ARGON2'
         user.salt = GCE.generate_salt()
         user.password = GCE.hash_password(password, user.salt)
         user.password_change_date = datetime_now()
-        user.crypto_prv_key = b''
-        user.crypto_pub_key = b''
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
