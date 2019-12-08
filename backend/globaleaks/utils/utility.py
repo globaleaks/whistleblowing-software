@@ -3,8 +3,6 @@
 #   *******
 #
 # Utility Functions
-from __future__ import print_function
-
 import glob
 import io
 import json

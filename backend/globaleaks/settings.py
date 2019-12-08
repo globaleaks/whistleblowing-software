@@ -1,8 +1,6 @@
 # -*- coding: utf-8
 # settings: Define Settings, main class handling GlobaLeeaks runtime settings
 # ******
-from __future__ import print_function
-
 import getpass
 import os
 import platform

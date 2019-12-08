@@ -2,8 +2,6 @@
 """
 ORM Models definitions.
 """
-from __future__ import absolute_import
-
 import collections
 import copy
 
