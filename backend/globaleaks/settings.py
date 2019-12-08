@@ -32,9 +32,7 @@ external_counted_events = {
 }
 
 
-class SettingsClass(object):
-    __metaclass__ = Singleton
-
+class SettingsClass(object, metaclass=Singleton):
     def __init__(self):
         # command line parsing utils
         self.parser = OptionParser()

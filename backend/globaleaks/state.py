@@ -45,9 +45,7 @@ class TenantState(object):
         self.Alarm = getAlarm(state)
 
 
-class StateClass(ObjectDict):
-    __metaclass__ = Singleton
-
+class StateClass(ObjectDict, metaclass=Singleton):
     def __init__(self):
         self.settings = Settings
 

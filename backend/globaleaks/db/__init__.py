@@ -165,7 +165,7 @@ def db_set_cache_exception_delivery_list(session, tenant_cache):
         results = session.query(models.User.mail_address, models.User.pgp_key_public).filter(models.User.role == u'admin')
         lst.extend([(mail, pub_key) for mail, pub_key in results])
 
-    tenant_cache.notification.exception_delivery_list = filter(lambda x: x[0] != '', lst)
+    tenant_cache.notification.exception_delivery_list = [x for x in lst if x[0] != '']
 
 
 def db_refresh_tenant_cache(session, tid_list):
