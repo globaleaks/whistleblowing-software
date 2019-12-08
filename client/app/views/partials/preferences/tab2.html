@@ -5,7 +5,7 @@
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
     </label>
     <input class="form-control" name="oldpassword" data-ng-model="preferences.old_password" type="password" autocomplete="off" required />
-    <p class="text-danger" data-ng-show="passwordChangeForm.oldpassword.$error.required">
+    <p class="text-danger" data-ng-show="preferences.password && passwordChangeForm.oldpassword.$error.required">
       <span data-translate>Old password confirmation required</span>
     </p>
   </div>
