@@ -45,15 +45,15 @@ class CertificateCheck(DailyJob):
     def cert_expiration_checks(self, session, tid):
         priv_fact = models.config.ConfigFactory(session, tid)
 
-        if not priv_fact.get_val(u'https_enabled'):
+        if not priv_fact.get_val('https_enabled'):
             return
 
-        cert = load_certificate(FILETYPE_PEM, priv_fact.get_val(u'https_cert'))
+        cert = load_certificate(FILETYPE_PEM, priv_fact.get_val('https_cert'))
         expiration_date = letsencrypt.convert_asn1_date(cert.get_notAfter())
         expiration_date_iso = datetime_to_ISO8601(expiration_date)
 
         # Acme renewal checks
-        if priv_fact.get_val(u'acme') and datetime.now() > expiration_date - timedelta(days=self.acme_try_renewal):
+        if priv_fact.get_val('acme') and datetime.now() > expiration_date - timedelta(days=self.acme_try_renewal):
             try:
                 db_acme_cert_request(session, tid)
             except Exception as exc:

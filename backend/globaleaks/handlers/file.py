@@ -39,7 +39,7 @@ class FileHandler(BaseHandler):
     def get(self, name):
         if name in appfiles:
             file_tid = self.request.tid
-            if self.state.tenant_cache[self.request.tid]['mode'] != u'default' and name in ['css', 'script']:
+            if self.state.tenant_cache[self.request.tid]['mode'] != 'default' and name in ['css', 'script']:
                 file_tid = 1
 
             self.request.setHeader(b'Content-Type', appfiles[name])

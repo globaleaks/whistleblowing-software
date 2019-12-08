@@ -167,8 +167,8 @@ class Field_v_38(Model):
     fieldgroup_id = Column(UnicodeText(36))
     step_id = Column(UnicodeText(36))
     template_id = Column(UnicodeText(36))
-    type = Column(UnicodeText, default=u'inputbox')
-    instance = Column(UnicodeText, default=u'instance')
+    type = Column(UnicodeText, default='inputbox')
+    instance = Column(UnicodeText, default='instance')
     editable = Column(Boolean, default=True)
 
 
@@ -216,9 +216,9 @@ class FieldAnswer_v_38(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     internaltip_id = Column(UnicodeText(36))
     fieldanswergroup_id = Column(UnicodeText(36))
-    key = Column(UnicodeText, default=u'')
+    key = Column(UnicodeText, default='')
     is_leaf = Column(Boolean, default=True)
-    value = Column(UnicodeText, default=u'')
+    value = Column(UnicodeText, default='')
 
 
 class FieldAnswerGroup_v_38(Model):
@@ -287,7 +287,7 @@ class ReceiverTip_v_38(Model):
     receiver_id = Column(UnicodeText(36))
     last_access = Column(DateTime, default=datetime_null)
     access_counter = Column(Integer, default=0)
-    label = Column(UnicodeText, default=u'')
+    label = Column(UnicodeText, default='')
     can_access_whistleblower_identity = Column(Boolean, default=True)
     new = Column(Integer, default=True)
     enable_notifications = Column(Boolean, default=True)
@@ -296,7 +296,7 @@ class ReceiverTip_v_38(Model):
 class Receiver_v_38(Model):
     __tablename__ = 'receiver'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    configuration = Column(UnicodeText, default=u'default')
+    configuration = Column(UnicodeText, default='default')
     can_delete_submission = Column(Boolean, default=False)
     can_postpone_expiration = Column(Boolean, default=False)
     can_grant_permissions = Column(Boolean, default=False)
@@ -345,11 +345,11 @@ class IdentityAccessRequest_v_38(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     receivertip_id = Column(UnicodeText(36))
     request_date = Column(DateTime, default=datetime_now)
-    request_motivation = Column(UnicodeText, default=u'')
+    request_motivation = Column(UnicodeText, default='')
     reply_date = Column(DateTime, default=datetime_null)
     reply_user_id = Column(UnicodeText(36))
-    reply_motivation = Column(UnicodeText, default=u'')
-    reply = Column(UnicodeText, default=u'pending')
+    reply_motivation = Column(UnicodeText, default='')
+    reply = Column(UnicodeText, default='pending')
 
 
 class Message_v_38(Model):
@@ -376,21 +376,21 @@ class User_v_38(Model):
     __tablename__ = 'user'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime, default=datetime_now)
-    username = Column(UnicodeText, default=u'')
-    password = Column(UnicodeText, default=u'')
+    username = Column(UnicodeText, default='')
+    password = Column(UnicodeText, default='')
     salt = Column(UnicodeText)
-    name = Column(UnicodeText, default=u'')
+    name = Column(UnicodeText, default='')
     description = Column(JSON, default=dict)
-    public_name = Column(UnicodeText, default=u'')
-    role = Column(UnicodeText, default=u'receiver')
-    state = Column(UnicodeText, default=u'enabled')
+    public_name = Column(UnicodeText, default='')
+    role = Column(UnicodeText, default='receiver')
+    state = Column(UnicodeText, default='enabled')
     last_login = Column(DateTime, default=datetime_null)
-    mail_address = Column(UnicodeText, default=u'')
+    mail_address = Column(UnicodeText, default='')
     language = Column(UnicodeText)
     password_change_needed = Column(Boolean, default=True)
     password_change_date = Column(DateTime, default=datetime_null)
-    pgp_key_fingerprint = Column(UnicodeText, default=u'')
-    pgp_key_public = Column(UnicodeText, default=u'')
+    pgp_key_fingerprint = Column(UnicodeText, default='')
+    pgp_key_public = Column(UnicodeText, default='')
     pgp_key_expiration = Column(DateTime, default=datetime_null)
     img_id = Column(UnicodeText(36))
 
@@ -471,7 +471,7 @@ class MigrationScript(MigrationBase):
                 elif key == 'receipt_hash':
                     wbtip = self.session_old.query(self.model_from['WhistleblowerTip']) \
                                           .filter(self.model_from['WhistleblowerTip'].id == old_obj.id).one_or_none()
-                    new_obj.receipt_hash = wbtip.receipt_hash if wbtip is not None else u''
+                    new_obj.receipt_hash = wbtip.receipt_hash if wbtip is not None else ''
                 elif key == 'https':
                     new_obj.https = old_obj.tor2web
                 else:
@@ -566,9 +566,9 @@ class MigrationScript(MigrationBase):
         self.session_new.add(self.model_to['Tenant'](
             {'label': '', 'active': True}))
 
-        for q in self.session_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].type == u'questionnaire'):
+        for q in self.session_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].type == 'questionnaire'):
             p = self.session_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].hash == q.hash,
-                                                                                 self.model_from['ArchivedSchema'].type == u'preview').one()
+                                                                                 self.model_from['ArchivedSchema'].type == 'preview').one()
 
             new_obj = self.model_to['ArchivedSchema']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -593,7 +593,7 @@ class MigrationScript(MigrationBase):
                 new_file = File()
                 new_file.id = uuid4()
                 new_file.name = filename
-                new_file.data = u''
+                new_file.data = ''
                 self.session_new.add(new_file)
                 shutil.move(filepath,
                             os.path.abspath(os.path.join(Settings.files_path, new_file.id)))

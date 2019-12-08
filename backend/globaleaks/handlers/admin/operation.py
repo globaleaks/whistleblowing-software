@@ -19,7 +19,7 @@ def check_hostname(session, tid, input_hostname):
     Ensure the hostname does not collide across tenants or
     include an origin that it shouldn't.
     """
-    root_hostname = ConfigFactory(session, 1).get_val(u'hostname')
+    root_hostname = ConfigFactory(session, 1).get_val('hostname')
 
     forbidden_endings = ['onion', 'localhost']
 
@@ -29,7 +29,7 @@ def check_hostname(session, tid, input_hostname):
 
     existing_hostnames = {h.value for h in session.query(Config)
                                                   .filter(Config.tid != tid,
-                                                          Config.var_name == u'hostname')}
+                                                          Config.var_name == 'hostname')}
 
     if input_hostname in existing_hostnames:
         raise errors.InputValidationError('Hostname already reserved')
@@ -37,7 +37,7 @@ def check_hostname(session, tid, input_hostname):
 
 @transact
 def reset_submissions(session, tid):
-    session.query(Config).filter(Config.tid == tid, Config.var_name == u'counter_submissions').update({'value': 0})
+    session.query(Config).filter(Config.tid == tid, Config.var_name == 'counter_submissions').update({'value': 0})
 
     for itip in session.query(InternalTip).filter(InternalTip.tid == tid):
         db_delete_itip(session, itip)
@@ -56,7 +56,7 @@ class AdminOperationHandler(OperationHandler):
     @inlineCallbacks
     def set_hostname(self, req_args, *args, **kwargs):
         yield check_hostname(self.request.tid, req_args['value'])
-        yield tw(db_set_config_variable, self.request.tid, u'hostname', req_args['value'])
+        yield tw(db_set_config_variable, self.request.tid, 'hostname', req_args['value'])
         yield tw(db_refresh_memory_variables, [self.request.tid])
         self.state.tenant_cache[self.request.tid].hostname = req_args['value']
 
@@ -67,8 +67,8 @@ class AdminOperationHandler(OperationHandler):
 
     @inlineCallbacks
     def reset_onion_private_key(self, req_args, *args, **kargs):
-        yield set_onion_service_info(self.request.tid, u'', u'')
-        yield self.state.onion_service_job.add_hidden_service(self.request.tid, u'', u'')
+        yield set_onion_service_info(self.request.tid, '', '')
+        yield self.state.onion_service_job.add_hidden_service(self.request.tid, '', '')
         yield self.state.onion_service_job.remove_unwanted_hidden_services()
 
         onion_details = yield get_onion_service_info(self.request.tid)

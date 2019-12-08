@@ -25,8 +25,8 @@ __all__ = ['OnionService']
 
 def db_get_onion_service_info(session, tid):
     node = ConfigFactory(session, tid)
-    hostname = node.get_val(u'onionservice')
-    key = node.get_val(u'tor_onion_key')
+    hostname = node.get_val('onionservice')
+    key = node.get_val('tor_onion_key')
 
     return tid, hostname, key
 
@@ -39,8 +39,8 @@ def get_onion_service_info(session, tid):
 @transact
 def set_onion_service_info(session, tid, hostname, key):
     node = ConfigFactory(session, tid)
-    node.set_val(u'onionservice', hostname)
-    node.set_val(u'tor_onion_key', key)
+    node.set_val('onionservice', hostname)
+    node.set_val('tor_onion_key', key)
 
 
 @transact
@@ -48,7 +48,7 @@ def list_onion_service_info(session):
     return [db_get_onion_service_info(session, x[0])
         for x in session.query(models.Tenant.id).filter(models.Tenant.active == True,
                                                         models.Tenant.id == models.Config.tid,
-                                                        models.Config.var_name == u'tor',
+                                                        models.Config.var_name == 'tor',
                                                         models.Config.value == True)]
 
 

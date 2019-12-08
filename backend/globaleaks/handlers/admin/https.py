@@ -35,8 +35,8 @@ def db_create_acme_key(session, tid):
         encryption_algorithm=serialization.NoEncryption(),
     )
 
-    priv_fact.set_val(u'acme', True)
-    priv_fact.set_val(u'acme_accnt_key', key)
+    priv_fact.set_val('acme', True)
+    priv_fact.set_val('acme_accnt_key', key)
 
     return key
 
@@ -98,8 +98,8 @@ class PrivKeyFileRes(FileResource):
         pkv = cls.validator()
         ok, _ = pkv.validate(db_cfg)
         if ok:
-            config.set_val(u'https_priv_key', raw_key)
-            config.set_val(u'https_priv_gen', False)
+            config.set_val('https_priv_key', raw_key)
+            config.set_val('https_priv_gen', False)
 
         return ok
 
@@ -107,8 +107,8 @@ class PrivKeyFileRes(FileResource):
     @transact
     def save_tls_key(session, tid, prv_key):
         config = ConfigFactory(session, tid)
-        config.set_val(u'https_priv_key', prv_key)
-        config.set_val(u'https_priv_gen', True)
+        config.set_val('https_priv_key', prv_key)
+        config.set_val('https_priv_gen', True)
 
     @classmethod
     @inlineCallbacks
@@ -123,16 +123,16 @@ class PrivKeyFileRes(FileResource):
     @transact
     def delete_file(session, tid):
         config = ConfigFactory(session, tid)
-        config.set_val(u'https_priv_key', u'')
-        config.set_val(u'https_priv_gen', False)
+        config.set_val('https_priv_key', '')
+        config.set_val('https_priv_gen', False)
 
     @staticmethod
     def db_serialize(session, tid):
         config = ConfigFactory(session, tid)
 
         return {
-            'set': config.get_val(u'https_priv_key') != u'',
-            'gen': config.get_val(u'https_priv_gen')
+            'set': config.get_val('https_priv_key') != '',
+            'gen': config.get_val('https_priv_gen')
         }
 
 
@@ -150,7 +150,7 @@ class CertFileRes(FileResource):
         cv = cls.validator()
         ok, _ = cv.validate(db_cfg)
         if ok:
-            config.set_val(u'https_cert', raw_cert)
+            config.set_val('https_cert', raw_cert)
             State.tenant_cache[tid].https_cert = raw_cert
 
         return ok
@@ -158,17 +158,17 @@ class CertFileRes(FileResource):
     @staticmethod
     @transact
     def delete_file(session, tid):
-        ConfigFactory(session, tid).set_val(u'https_cert', u'')
+        ConfigFactory(session, tid).set_val('https_cert', '')
         State.tenant_cache[tid].https_cert = ''
 
     @staticmethod
     @transact
     def get_file(session, tid):
-        return ConfigFactory(session, tid).get_val(u'https_cert')
+        return ConfigFactory(session, tid).get_val('https_cert')
 
     @staticmethod
     def db_serialize(session, tid):
-        c = ConfigFactory(session, tid).get_val(u'https_cert')
+        c = ConfigFactory(session, tid).get_val('https_cert')
         if len(c) == 0:
             return {'name': 'cert', 'set': False}
 
@@ -197,23 +197,23 @@ class ChainFileRes(FileResource):
         cv = cls.validator()
         ok, _ = cv.validate(db_cfg)
         if ok:
-            config.set_val(u'https_chain', raw_chain)
+            config.set_val('https_chain', raw_chain)
 
         return ok
 
     @staticmethod
     @transact
     def delete_file(session, tid):
-        ConfigFactory(session, tid).set_val(u'https_chain', u'')
+        ConfigFactory(session, tid).set_val('https_chain', '')
 
     @staticmethod
     @transact
     def get_file(session, tid):
-        return ConfigFactory(session, tid).get_val(u'https_chain')
+        return ConfigFactory(session, tid).get_val('https_chain')
 
     @staticmethod
     def db_serialize(session, tid):
-        c = ConfigFactory(session, tid).get_val(u'https_chain')
+        c = ConfigFactory(session, tid).get_val('https_chain')
         if len(c) == 0:
             return {'name': 'chain', 'set': False}
 
@@ -232,23 +232,23 @@ class CsrFileRes(FileResource):
     @classmethod
     @transact
     def create_file(session, cls, tid, raw_csr):
-        ConfigFactory(session, tid).set_val(u'https_csr', raw_csr)
+        ConfigFactory(session, tid).set_val('https_csr', raw_csr)
 
         return True
 
     @staticmethod
     @transact
     def delete_file(session, tid):
-        ConfigFactory(session, tid).set_val(u'https_csr', u'')
+        ConfigFactory(session, tid).set_val('https_csr', '')
 
     @staticmethod
     @transact
     def get_file(session, tid):
-        return ConfigFactory(session, tid).get_val(u'https_csr')
+        return ConfigFactory(session, tid).get_val('https_csr')
 
     @staticmethod
     def db_serialize(session, tid):
-        csr = ConfigFactory(session, tid).get_val(u'https_csr')
+        csr = ConfigFactory(session, tid).get_val('https_csr')
         return {'name': 'csr', 'set': len(csr) != 0}
 
 
@@ -301,9 +301,9 @@ def serialize_https_config_summary(session, tid):
         file_summaries[key] = file_res_cls.db_serialize(session, tid)
 
     return {
-        'enabled': config.get_val(u'https_enabled'),
+        'enabled': config.get_val('https_enabled'),
         'files': file_summaries,
-        'acme': config.get_val(u'acme')
+        'acme': config.get_val('acme')
     }
 
 
@@ -319,14 +319,14 @@ def try_to_enable_https(session, tid):
     if not ok:
         raise errors.InputValidationError()
 
-    config.set_val(u'https_enabled', True)
+    config.set_val('https_enabled', True)
     State.tenant_cache[tid].https_enabled = True
     State.snimap.load(tid, tls_config)
 
 
 @transact
 def disable_https(session, tid):
-    ConfigFactory(session, tid).set_val(u'https_enabled', False)
+    ConfigFactory(session, tid).set_val('https_enabled', False)
     State.tenant_cache[tid].https_enabled = False
     State.snimap.unload(tid)
 
@@ -334,14 +334,14 @@ def disable_https(session, tid):
 @transact
 def reset_https_config(session, tid):
     config = ConfigFactory(session, tid)
-    config.set_val(u'https_enabled', False)
-    config.set_val(u'https_priv_gen', False)
-    config.set_val(u'https_priv_key', '')
-    config.set_val(u'https_cert', '')
-    config.set_val(u'https_chain', '')
-    config.set_val(u'https_csr', '')
-    config.set_val(u'acme', False)
-    config.set_val(u'acme_accnt_key', '')
+    config.set_val('https_enabled', False)
+    config.set_val('https_priv_gen', False)
+    config.set_val('https_priv_key', '')
+    config.set_val('https_cert', '')
+    config.set_val('https_chain', '')
+    config.set_val('https_csr', '')
+    config.set_val('acme', False)
+    config.set_val('acme_accnt_key', '')
 
     State.tenant_cache[tid].https_enabled = False
 
@@ -428,16 +428,16 @@ class AcmeAccntKeyRes:
 @transact
 def can_perform_acme_run(session, tid):
     config = ConfigFactory(session, tid)
-    acme = config.get_val(u'acme')
-    no_cert_set = config.get_val(u'https_cert') == u''
+    acme = config.get_val('acme')
+    no_cert_set = config.get_val('https_cert') == ''
     return acme and no_cert_set
 
 
 @transact
 def is_acme_configured(session, tid):
     config = ConfigFactory(session, tid)
-    acme = config.get_val(u'acme')
-    cert_set = config.get_val(u'https_cert') != u''
+    acme = config.get_val('acme')
+    cert_set = config.get_val('https_cert') != ''
     return acme and cert_set
 
 
@@ -445,8 +445,8 @@ def is_acme_configured(session, tid):
 def can_perform_acme_renewal(session, tid):
     priv_fact = ConfigFactory(session, tid)
     a = is_acme_configured(session, tid)
-    b = priv_fact.get_val(u'https_enabled')
-    c = priv_fact.get_val(u'https_cert')
+    b = priv_fact.get_val('https_enabled')
+    c = priv_fact.get_val('https_cert')
     return a and b and c
 
 
@@ -454,7 +454,7 @@ def db_acme_cert_request(session, tid):
     priv_fact = ConfigFactory(session, tid)
     hostname = State.tenant_cache[tid].hostname
 
-    raw_accnt_key = priv_fact.get_val(u'acme_accnt_key')
+    raw_accnt_key = priv_fact.get_val('acme_accnt_key')
     if not raw_accnt_key:
         raw_accnt_key = db_create_acme_key(session, tid)
 
@@ -465,7 +465,7 @@ def db_acme_cert_request(session, tid):
                                                    password=None,
                                                    backend=default_backend())
 
-    priv_key = priv_fact.get_val(u'https_priv_key')
+    priv_key = priv_fact.get_val('https_priv_key')
 
     cert_str, chain_str = letsencrypt.request_new_certificate(hostname,
                                                               accnt_key,
@@ -473,8 +473,8 @@ def db_acme_cert_request(session, tid):
                                                               State.tenant_state[tid].acme_tmp_chall_dict,
                                                               Settings.acme_directory_url)
 
-    priv_fact.set_val(u'https_cert', cert_str)
-    priv_fact.set_val(u'https_chain', chain_str)
+    priv_fact.set_val('https_cert', cert_str)
+    priv_fact.set_val('https_chain', chain_str)
     State.tenant_cache[tid].https_cert = cert_str
     State.tenant_cache[tid].https_chain = chain_str
 

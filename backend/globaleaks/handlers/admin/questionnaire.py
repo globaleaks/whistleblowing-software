@@ -140,7 +140,7 @@ def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
 
         # Tweak the fiel in order to make a raw copy
         field['editable'] = True
-        field['instance'] = u'instance'
+        field['instance'] = 'instance'
         field['template_id'] = field['template_override_id'] = ''
 
         # Rewrite the option ID if it exists

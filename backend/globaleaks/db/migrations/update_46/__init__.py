@@ -75,7 +75,7 @@ class Context_v_45(Model):
     status_page_message = Column(JSON, default=dict, nullable=False)
     show_receivers_in_alphabetical_order = Column(Boolean, default=True, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
-    questionnaire_id = Column(UnicodeText(36), default=u'default', nullable=False)
+    questionnaire_id = Column(UnicodeText(36), default='default', nullable=False)
     additional_questionnaire_id = Column(UnicodeText(36))
 
 
@@ -106,8 +106,8 @@ class Field_v_45(Model):
     triggered_by_score = Column(Integer, default=0, nullable=False)
     step_id = Column(UnicodeText(36))
     fieldgroup_id = Column(UnicodeText(36))
-    type = Column(UnicodeText, default=u'inputbox', nullable=False)
-    instance = Column(UnicodeText, default=u'instance', nullable=False)
+    type = Column(UnicodeText, default='inputbox', nullable=False)
+    instance = Column(UnicodeText, default='instance', nullable=False)
     editable = Column(Boolean, default=True, nullable=False)
     template_id = Column(UnicodeText(36))
     template_override_id = Column(UnicodeText(36))
@@ -153,7 +153,7 @@ class InternalTip_v_45(Model):
 class Receiver_v_45(Model):
     __tablename__ = 'receiver'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    configuration = Column(UnicodeText, default=u'default', nullable=False)
+    configuration = Column(UnicodeText, default='default', nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
     can_postpone_expiration = Column(Boolean, default=False, nullable=False)
     can_grant_permissions = Column(Boolean, default=False, nullable=False)
@@ -164,29 +164,29 @@ class User_v_45(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     tid = Column(Integer, default=1, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    username = Column(UnicodeText, default=u'', nullable=False)
+    username = Column(UnicodeText, default='', nullable=False)
     salt = Column(UnicodeText(24), nullable=False)
-    hash_alg = Column(UnicodeText, default=u'SCRYPT', nullable=False)
-    password = Column(UnicodeText, default=u'', nullable=False)
-    name = Column(UnicodeText, default=u'', nullable=False)
+    hash_alg = Column(UnicodeText, default='SCRYPT', nullable=False)
+    password = Column(UnicodeText, default='', nullable=False)
+    name = Column(UnicodeText, default='', nullable=False)
     description = Column(JSON, default=dict, nullable=False)
-    role = Column(UnicodeText, default=u'receiver', nullable=False)
-    state = Column(UnicodeText, default=u'enabled', nullable=False)
+    role = Column(UnicodeText, default='receiver', nullable=False)
+    state = Column(UnicodeText, default='enabled', nullable=False)
     last_login = Column(DateTime, default=datetime_never, nullable=False)
-    mail_address = Column(UnicodeText, default=u'', nullable=False)
+    mail_address = Column(UnicodeText, default='', nullable=False)
     language = Column(UnicodeText, nullable=False)
     password_change_needed = Column(Boolean, default=True, nullable=False)
     password_change_date = Column(DateTime, default=datetime_never, nullable=False)
     crypto_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
     crypto_pub_key = Column(LargeBinary(32), default=b'', nullable=False)
-    change_email_address = Column(UnicodeText, default=u'', nullable=False)
+    change_email_address = Column(UnicodeText, default='', nullable=False)
     change_email_token = Column(UnicodeText, unique=True, nullable=True)
     change_email_date = Column(DateTime, default=datetime_never, nullable=False)
     reset_password_token = Column(UnicodeText, unique=True, nullable=True)
     reset_password_date = Column(UnicodeText, default=datetime_never, nullable=False)
     notification = Column(Boolean, default=True, nullable=False)
-    pgp_key_fingerprint = Column(UnicodeText, default=u'', nullable=False)
-    pgp_key_public = Column(UnicodeText, default=u'', nullable=False)
+    pgp_key_fingerprint = Column(UnicodeText, default='', nullable=False)
+    pgp_key_public = Column(UnicodeText, default='', nullable=False)
     pgp_key_expiration = Column(DateTime, default=datetime_never, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
 
@@ -340,13 +340,13 @@ class MigrationScript(MigrationBase):
         tenants = self.session_new.query(self.model_from['Tenant'])
         for t in tenants:
             m = self.model_from['Config']
-            a = self.session_new.query(m.value).filter(m.tid == t.id, m.var_name == u'ip_filter_authenticated_enable').one_or_none()
-            b = self.session_new.query(m.value).filter(m.tid == t.id, m.var_name == u'ip_filter_authenticated').one_or_none()
+            a = self.session_new.query(m.value).filter(m.tid == t.id, m.var_name == 'ip_filter_authenticated_enable').one_or_none()
+            b = self.session_new.query(m.value).filter(m.tid == t.id, m.var_name == 'ip_filter_authenticated').one_or_none()
 
             if a is None or b is None:
                 continue
 
             for c in ['admin', 'custodian', 'receiver']:
-                self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': u'ip_filter_' + c + '_enable', 'value': a[0]}))
-                self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': u'ip_filter_' + c, 'value': b[0]}))
+                self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': 'ip_filter_' + c + '_enable', 'value': a[0]}))
+                self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': 'ip_filter_' + c, 'value': b[0]}))
                 self.entries_count['Config'] += 2

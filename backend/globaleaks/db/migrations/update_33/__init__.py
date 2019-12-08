@@ -10,15 +10,15 @@ class Node_v_32(models.Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     version = Column(UnicodeText, default=str(__version__))
     version_db = Column(UnicodeText, default=str(DATABASE_VERSION))
-    name = Column(UnicodeText, default=u'')
+    name = Column(UnicodeText, default='')
     basic_auth = Column(Boolean, default=False)
-    basic_auth_username = Column(UnicodeText, default=u'')
-    basic_auth_password = Column(UnicodeText, default=u'')
-    public_site = Column(UnicodeText, default=u'')
-    hidden_service = Column(UnicodeText, default=u'')
+    basic_auth_username = Column(UnicodeText, default='')
+    basic_auth_password = Column(UnicodeText, default='')
+    public_site = Column(UnicodeText, default='')
+    hidden_service = Column(UnicodeText, default='')
     receipt_salt = Column(UnicodeText)
     languages_enabled = Column(JSON, default=LANGUAGES_SUPPORTED_CODES)
-    default_language = Column(UnicodeText, default=u'en')
+    default_language = Column(UnicodeText, default='en')
     default_timezone = Column(Integer, default=0)
     description = Column(JSON, default=dict)
     presentation = Column(JSON, default=dict)
@@ -60,7 +60,7 @@ class Node_v_32(models.Model):
     header_title_tippage = Column(JSON, default=dict)
 
 
-    landing_page = Column(UnicodeText, default=u'homepage')
+    landing_page = Column(UnicodeText, default='homepage')
 
     contexts_clarification = Column(JSON, default=dict)
     show_small_context_cards = Column(Boolean, default=False)
@@ -74,7 +74,7 @@ class Node_v_32(models.Model):
     threshold_free_disk_percentage_medium = Column(Integer, default=5)
     threshold_free_disk_percentage_low = Column(Integer, default=10)
 
-    context_selector_type = Column(UnicodeText, default=u'list')
+    context_selector_type = Column(UnicodeText, default='list')
 
 
 class InternalTip_v_32(models.Model):
@@ -131,8 +131,8 @@ class User_v_32(models.Model):
     timezone = Column(Integer)
     password_change_needed = Column(Boolean, default=True)
     password_change_date = Column(DateTime, default=datetime_null)
-    pgp_key_fingerprint = Column(UnicodeText, default=u'')
-    pgp_key_public = Column(UnicodeText, default=u'')
+    pgp_key_fingerprint = Column(UnicodeText, default='')
+    pgp_key_public = Column(UnicodeText, default='')
     pgp_key_expiration = Column(DateTime, default=datetime_null)
     img_id = Column(UnicodeText(36))
 

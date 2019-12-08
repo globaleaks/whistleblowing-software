@@ -22,7 +22,7 @@ from globaleaks.utils.utility import uuid4
 def get_files(session, tid):
     ret = []
 
-    for sf in session.query(models.File).filter(models.File.name != u"", models.File.tid == tid):
+    for sf in session.query(models.File).filter(models.File.name != "", models.File.tid == tid):
         ret.append({
             'id': sf.id,
             'name': sf.name,
@@ -86,12 +86,12 @@ class FileInstance(BaseHandler):
                 data = encrypted_file.read()
 
             data = base64.b64encode(data).decode()
-            d = yield add_file(self.request.tid, id, u'', data)
+            d = yield add_file(self.request.tid, id, '', data)
         else:
             id = uuid4()
             path = os.path.join(self.state.settings.files_path, id)
             d = yield self.write_upload_plaintext_to_disk(path)
-            yield add_file(self.request.tid, id, self.uploaded_file['name'], u'')
+            yield add_file(self.request.tid, id, self.uploaded_file['name'], '')
 
         returnValue(d)
 

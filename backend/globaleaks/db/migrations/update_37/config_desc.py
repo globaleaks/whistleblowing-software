@@ -8,7 +8,7 @@ from globaleaks.utils.utility import datetime_null, iso_strf_time
 GLConfig_v_37 = {
     'private': {
         'receipt_salt': Unicode(default=GCE.generate_salt()),
-        'smtp_password': Unicode(default=u'yes_you_really_should_change_me'),
+        'smtp_password': Unicode(default='yes_you_really_should_change_me'),
 
         'version': Unicode(default=Unicode(__version__)),
         'version_db': Int(default=DATABASE_VERSION),
@@ -22,15 +22,15 @@ GLConfig_v_37 = {
         'https_enabled': Bool(default=False),
     },
     'notification': {
-        'server': Unicode(default=u'demo.globaleaks.org'),
+        'server': Unicode(default='demo.globaleaks.org'),
         'port': Int(default=9267),
 
-        'username': Unicode(default=u'hey_you_should_change_me'),
+        'username': Unicode(default='hey_you_should_change_me'),
         # See smtp_password in private for password
 
-        'source_email': Unicode(default=u'notification@demo.globaleaks.org'),
+        'source_email': Unicode(default='notification@demo.globaleaks.org'),
 
-        'security': Unicode(default=u'TLS'),
+        'security': Unicode(default='TLS'),
         'disable_admin_notification_emails': Bool(default=False),
         'disable_custodian_notification_emails': Bool(default=False),
         'disable_receiver_notification_emails': Bool(default=False),
@@ -38,23 +38,23 @@ GLConfig_v_37 = {
         'tip_expiration_threshold': Int(default=72),  # Hours
         'notification_threshold_per_hour': Int(default=20),
 
-        'exception_email_address': Unicode(default=u'globaleaks-stackexception@lists.globaleaks.org'),
-        'exception_email_pgp_key_fingerprint': Unicode(default=u''),
-        'exception_email_pgp_key_public': Unicode(default=u''),
+        'exception_email_address': Unicode(default='globaleaks-stackexception@lists.globaleaks.org'),
+        'exception_email_pgp_key_fingerprint': Unicode(default=''),
+        'exception_email_pgp_key_public': Unicode(default=''),
         'exception_email_pgp_key_expiration': Unicode(default=iso_strf_time(datetime_null())),
     },
     'node': {
-        'name': Unicode(default=u''),
+        'name': Unicode(default=''),
 
         'basic_auth': Bool(default=False),
-        'basic_auth_username': Unicode(default=u''),
-        'basic_auth_password': Unicode(default=u''),
+        'basic_auth_username': Unicode(default=''),
+        'basic_auth_password': Unicode(default=''),
 
-        'public_site': Unicode(default=u''),
-        'hidden_service': Unicode(default=u''),
-        'tb_download_link': Unicode(default=u'https://www.torproject.org/download/download'),
+        'public_site': Unicode(default=''),
+        'hidden_service': Unicode(default=''),
+        'tb_download_link': Unicode(default='https://www.torproject.org/download/download'),
 
-        'default_language': Unicode(default=u'en'),
+        'default_language': Unicode(default='en'),
 
         # Advanced settings
         'maximum_filesize': Int(default=30),
@@ -89,7 +89,7 @@ GLConfig_v_37 = {
 
         'enable_custom_privacy_badge': Bool(default=False),
 
-        'landing_page': Unicode(default=u'homepage'),
+        'landing_page': Unicode(default='homepage'),
 
         'show_small_context_cards': Bool(default=False),
         'show_contexts_in_alphabetical_order': Bool(default=False),
@@ -104,6 +104,6 @@ GLConfig_v_37 = {
         'threshold_free_disk_percentage_medium': Int(default=5),
         'threshold_free_disk_percentage_low': Int(default=10),
 
-        'context_selector_type': Unicode(default=u'list'),
+        'context_selector_type': Unicode(default='list'),
     },
 }

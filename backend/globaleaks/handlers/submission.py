@@ -73,7 +73,7 @@ def db_set_internaltip_data(session, itip_id, key, value):
 
 
 def db_assign_submission_progressive(session, tid):
-    counter = session.query(models.Config).filter(models.Config.tid == tid, models.Config.var_name == u'counter_submissions').one()
+    counter = session.query(models.Config).filter(models.Config.tid == tid, models.Config.var_name == 'counter_submissions').one()
     counter.value += 1
     return counter.value
 
@@ -86,7 +86,7 @@ def _db_serialize_archived_field_recursively(field, language):
         if 'type' not in field['attrs'][key]:
             continue
 
-        if field['attrs'][key]['type'] == u'localized':
+        if field['attrs'][key]['type'] == 'localized':
             if language in field['attrs'][key].get('value', []):
                 field['attrs'][key]['value'] = field['attrs'][key]['value'][language]
             else:
@@ -301,7 +301,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
     itip = models.InternalTip()
     itip.tid = tid
-    itip.status = u'new'
+    itip.status = 'new'
 
     itip.progressive = db_assign_submission_progressive(session, tid)
 
@@ -323,11 +323,11 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     itip.enable_attachments = context.enable_attachments
 
     x = session.query(models.Field, models.FieldAttr.value) \
-               .filter(models.Field.template_id == u'whistleblower_identity',
+               .filter(models.Field.template_id == 'whistleblower_identity',
                        models.Field.step_id == models.Step.id,
                        models.Step.questionnaire_id == context.questionnaire_id,
                        models.FieldAttr.field_id == models.Field.id,
-                       models.FieldAttr.name == u'visibility_subject_to_authorization').one_or_none()
+                       models.FieldAttr.name == 'visibility_subject_to_authorization').one_or_none()
 
     whistleblower_identity = None
     can_access_whistleblower_identity = True

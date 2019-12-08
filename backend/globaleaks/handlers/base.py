@@ -100,7 +100,7 @@ class BaseHandler(object):
                 return False
 
         if python_type == bool:
-            if value == u'true' or value == u'false':
+            if value == 'true' or value == 'false':
                 return True
 
         return isinstance(value, python_type)
@@ -296,7 +296,7 @@ class BaseHandler(object):
             self.request.current_user = session
 
             if self.request.current_user.user_role != 'whistleblower' and \
-               self.state.tenant_cache[1].get(u'log_accesses_of_internal_users', False):
+               self.state.tenant_cache[1].get('log_accesses_of_internal_users', False):
                 self.request.log_ip_and_ua = True
 
         return session

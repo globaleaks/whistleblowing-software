@@ -24,7 +24,7 @@ def db_validate_address_change(session, validation_token):
 
     user.mail_address = user.change_email_address
     user.change_email_token = None
-    user.change_email_address = u''
+    user.change_email_address = ''
     user.change_email_date = datetime_now()
 
     return True

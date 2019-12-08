@@ -129,7 +129,7 @@ class SettingsClass(object, metaclass=Singleton):
         self.log_file_size = 1000000  # 1MB
         self.num_log_files = self.log_size / self.log_file_size
 
-        self.AES_key_id_regexp = u'[A-Za-z0-9]{16}'
+        self.AES_key_id_regexp = '[A-Za-z0-9]{16}'
         self.AES_file_regexp = r'(.*)\.aes'
         self.AES_file_regexp_comp = re.compile(self.AES_file_regexp)
         self.AES_keyfile_prefix = "aeskey-"

@@ -105,7 +105,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
     user = None
 
     users = session.query(User).filter(User.username == username,
-                                       User.state != u'disabled',
+                                       User.state != 'disabled',
                                        User.tid == tid).distinct()
     for u in users:
         if GCE.check_password(u.hash_alg, password, u.salt, u.password):

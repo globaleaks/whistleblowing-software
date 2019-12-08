@@ -132,10 +132,10 @@ def db_serialize_node(session, tid, language):
     ret_dict['languages_enabled'] = models.EnabledLanguage.list(session, tid) if node_dict['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES)
     ret_dict['languages_supported'] = LANGUAGES_SUPPORTED
 
-    files = [u'logo', u'favicon', u'css', u'script']
-    records = session.query(models.File.id, models.File.data).filter(models.File.tid == tid, models.File.id.in_([u'logo', u'favicon', u'css', u'script']))
+    files = ['logo', 'favicon', 'css', 'script']
+    records = session.query(models.File.id, models.File.data).filter(models.File.tid == tid, models.File.id.in_(['logo', 'favicon', 'css', 'script']))
     for x in records:
-        ret_dict[x[0]] = x[1] if x[0] in [u'logo', u'favicon'] else True
+        ret_dict[x[0]] = x[1] if x[0] in ['logo', 'favicon'] else True
 
     if tid != 1:
         root_tenant_node = ConfigFactory(session, 1)
@@ -144,22 +144,22 @@ def db_serialize_node(session, tid, language):
             ret_dict[varname] = root_tenant_node.get_val(varname)
 
         if language not in models.EnabledLanguage.list(session, tid):
-            language = root_tenant_node.get_val(u'default_language')
+            language = root_tenant_node.get_val('default_language')
 
         root_tenant_l10n = ConfigL10NFactory(session, 1)
 
-        if ret_dict['mode'] != u'default':
-            ret_dict['footer'] = root_tenant_l10n.get_val(u'footer', language)
-            ret_dict['whistleblowing_question'] = root_tenant_l10n.get_val(u'whistleblowing_question', language)
-            ret_dict['whistleblowing_button'] = root_tenant_l10n.get_val(u'whistleblowing_button', language)
-            ret_dict['enable_disclaimer'] = root_tenant_node.get_val(u'enable_disclaimer')
-            ret_dict['disclaimer_title'] = root_tenant_l10n.get_val(u'disclaimer_title', language)
-            ret_dict['disclaimer_text'] = root_tenant_l10n.get_val(u'disclaimer_text', language)
+        if ret_dict['mode'] != 'default':
+            ret_dict['footer'] = root_tenant_l10n.get_val('footer', language)
+            ret_dict['whistleblowing_question'] = root_tenant_l10n.get_val('whistleblowing_question', language)
+            ret_dict['whistleblowing_button'] = root_tenant_l10n.get_val('whistleblowing_button', language)
+            ret_dict['enable_disclaimer'] = root_tenant_node.get_val('enable_disclaimer')
+            ret_dict['disclaimer_title'] = root_tenant_l10n.get_val('disclaimer_title', language)
+            ret_dict['disclaimer_text'] = root_tenant_l10n.get_val('disclaimer_text', language)
 
-            records = session.query(models.File.id, models.File.data).filter(models.File.tid == 1, models.File.id.in_([u'logo', u'favicon', u'css', u'script']))
+            records = session.query(models.File.id, models.File.data).filter(models.File.tid == 1, models.File.id.in_(['logo', 'favicon', 'css', 'script']))
             for x in records:
                 if not ret_dict.get(x[0]):
-                    ret_dict[x[0]] = x[1] if x[0] in [u'logo', u'favicon'] else True
+                    ret_dict[x[0]] = x[1] if x[0] in ['logo', 'favicon'] else True
 
     return ret_dict
 
@@ -247,7 +247,7 @@ def serialize_field_attr(attr, language):
         'value': attr.value
     }
 
-    if attr.type == u'localized':
+    if attr.type == 'localized':
         get_localized_values(ret_dict, ret_dict, ['value'], language)
 
     return ret_dict
@@ -371,8 +371,8 @@ def db_get_questionnaire_list(session, tid, language):
 
 
 def db_get_public_receiver_list(session, tid, language):
-    receivers = session.query(models.User).filter(models.User.role == u'receiver',
-                                                  models.User.state != u'disabled',
+    receivers = session.query(models.User).filter(models.User.role == 'receiver',
+                                                  models.User.state != 'disabled',
                                                   models.User.tid == tid)
 
     data = db_prepare_receivers_serialization(session, receivers)

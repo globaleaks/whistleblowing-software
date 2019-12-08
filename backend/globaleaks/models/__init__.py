@@ -178,9 +178,9 @@ class Model(object):
 
         for k in getattr(self, 'bool_keys'):
             if k in values and values[k] is not None:
-                if values[k] == u'true':
+                if values[k] == 'true':
                     value = True
-                elif values[k] == u'false':
+                elif values[k] == 'false':
                     value = False
                 else:
                     value = bool(values[k])
@@ -223,7 +223,7 @@ class Model(object):
             if value is not None:
                 if k in self.localized_keys:
                     if language is not None:
-                        ret[k] = value[language] if language in value else u''
+                        ret[k] = value[language] if language in value else ''
                     else:
                         ret[k] = value
 
@@ -412,7 +412,7 @@ class _Context(Model):
     score_receipt_text_h = Column(JSON, default=dict, nullable=False)
     score_threshold_receipt = Column(Integer, default=0, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
-    questionnaire_id = Column(UnicodeText(36), default=u'default', nullable=False)
+    questionnaire_id = Column(UnicodeText(36), default='default', nullable=False)
     additional_questionnaire_id = Column(UnicodeText(36))
 
     # status: 0(disabled), 1(enabled), 2(hidden)
@@ -557,8 +557,8 @@ class _Field(Model):
     step_id = Column(UnicodeText(36))
     fieldgroup_id = Column(UnicodeText(36))
 
-    type = Column(UnicodeText, default=u'inputbox', nullable=False)
-    instance = Column(UnicodeText, default=u'instance', nullable=False)
+    type = Column(UnicodeText, default='inputbox', nullable=False)
+    instance = Column(UnicodeText, default='instance', nullable=False)
     editable = Column(Boolean, default=True, nullable=False)
 
     template_id = Column(UnicodeText(36))
@@ -627,9 +627,9 @@ class _FieldAnswer(Model):
 
     internaltip_id = Column(UnicodeText(36), nullable=True)
     fieldanswergroup_id = Column(UnicodeText(36), nullable=True)
-    key = Column(UnicodeText, default=u'', nullable=False)
+    key = Column(UnicodeText, default='', nullable=False)
     is_leaf = Column(Boolean, default=True, nullable=False)
-    value = Column(UnicodeText, default=u'', nullable=False)
+    value = Column(UnicodeText, default='', nullable=False)
 
     unicode_keys = ['internaltip_id', 'key', 'value']
     bool_keys = ['is_leaf']
@@ -716,7 +716,7 @@ class _File(Model):
     tid = Column(Integer, primary_key=True, default=1)
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
 
-    name = Column(UnicodeText, default=u'', nullable=False)
+    name = Column(UnicodeText, default='', nullable=False)
     data = Column(UnicodeText, nullable=False)
 
     unicode_keys = ['data', 'name']
@@ -734,7 +734,7 @@ class _AuditLog(Model):
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     event_date = Column(DateTime, default=datetime_now, nullable=False)
-    event_type = Column(UnicodeText(24), default=u'', nullable=False)
+    event_type = Column(UnicodeText(24), default='', nullable=False)
     event_severity = Column(Integer, default=0, nullable=False)
     event_data = Column(JSON, nullable=True)
     user_id = Column(UnicodeText(36), nullable=True)
@@ -753,11 +753,11 @@ class _IdentityAccessRequest(Model):
 
     receivertip_id = Column(UnicodeText(36), nullable=False)
     request_date = Column(DateTime, default=datetime_now, nullable=False)
-    request_motivation = Column(UnicodeText, default=u'')
+    request_motivation = Column(UnicodeText, default='')
     reply_date = Column(DateTime, default=datetime_null, nullable=False)
-    reply_user_id = Column(UnicodeText(36), default=u'', nullable=False)
-    reply_motivation = Column(UnicodeText, default=u'', nullable=False)
-    reply = Column(UnicodeText, default=u'pending', nullable=False)
+    reply_user_id = Column(UnicodeText(36), default='', nullable=False)
+    reply_motivation = Column(UnicodeText, default='', nullable=False)
+    reply = Column(UnicodeText, default='pending', nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -775,9 +775,9 @@ class _InternalFile(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     internaltip_id = Column(UnicodeText(36), nullable=False)
     name = Column(UnicodeText, nullable=False)
-    filename = Column(UnicodeText, default=u'', nullable=False)
-    content_type = Column(JSON, default=u'', nullable=False)
-    size = Column(JSON, default=u'', nullable=False)
+    filename = Column(UnicodeText, default='', nullable=False)
+    content_type = Column(JSON, default='', nullable=False)
+    size = Column(JSON, default='', nullable=False)
     new = Column(Boolean, default=True, nullable=False)
     submission = Column(Integer, default=False, nullable=False)
 
@@ -911,7 +911,7 @@ class _Questionnaire(Model):
 
     tid = Column(Integer, default=1, nullable=False)
 
-    name = Column(UnicodeText, default=u'', nullable=False)
+    name = Column(UnicodeText, default='', nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
     editable = Column(Boolean, default=True, nullable=False)
 
@@ -958,7 +958,7 @@ class _ReceiverFile(Model):
     downloads = Column(Integer, default=0, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
-    status = Column(UnicodeText, default=u'processing', nullable=False)
+    status = Column(UnicodeText, default='processing', nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -981,7 +981,7 @@ class _ReceiverTip(Model):
     receiver_id = Column(UnicodeText(36), nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     access_counter = Column(Integer, default=0, nullable=False)
-    label = Column(UnicodeText, default=u'', nullable=False)
+    label = Column(UnicodeText, default='', nullable=False)
     can_access_whistleblower_identity = Column(Boolean, default=False, nullable=True)
     new = Column(Boolean, default=True, nullable=False)
     enable_notifications = Column(Boolean, default=True, nullable=False)
@@ -1015,28 +1015,28 @@ class _Signup(Model):
     language = Column(UnicodeText, nullable=False)
     name = Column(UnicodeText, nullable=False)
     surname = Column(UnicodeText, nullable=False)
-    role = Column(UnicodeText, default=u'', nullable=False)
-    phone = Column(UnicodeText, default=u'', nullable=False)
+    role = Column(UnicodeText, default='', nullable=False)
+    phone = Column(UnicodeText, default='', nullable=False)
     email = Column(UnicodeText, nullable=False)
-    use_case = Column(UnicodeText, default=u'', nullable=False)
-    use_case_other = Column(UnicodeText, default=u'', nullable=False)
-    organization_name = Column(UnicodeText, default=u'', nullable=False)
-    organization_type = Column(UnicodeText, default=u'', nullable=False)
-    organization_location1 = Column(UnicodeText, default=u'', nullable=False)
-    organization_location2 = Column(UnicodeText, default=u'', nullable=False)
-    organization_location3 = Column(UnicodeText, default=u'', nullable=False)
-    organization_location4 = Column(UnicodeText, default=u'', nullable=False)
-    organization_site = Column(UnicodeText, default=u'', nullable=False)
-    organization_number_employees = Column(UnicodeText, default=u'', nullable=False)
-    organization_number_users = Column(UnicodeText, default=u'', nullable=False)
-    hear_channel = Column(UnicodeText, default=u'', nullable=False)
+    use_case = Column(UnicodeText, default='', nullable=False)
+    use_case_other = Column(UnicodeText, default='', nullable=False)
+    organization_name = Column(UnicodeText, default='', nullable=False)
+    organization_type = Column(UnicodeText, default='', nullable=False)
+    organization_location1 = Column(UnicodeText, default='', nullable=False)
+    organization_location2 = Column(UnicodeText, default='', nullable=False)
+    organization_location3 = Column(UnicodeText, default='', nullable=False)
+    organization_location4 = Column(UnicodeText, default='', nullable=False)
+    organization_site = Column(UnicodeText, default='', nullable=False)
+    organization_number_employees = Column(UnicodeText, default='', nullable=False)
+    organization_number_users = Column(UnicodeText, default='', nullable=False)
+    hear_channel = Column(UnicodeText, default='', nullable=False)
     activation_token = Column(UnicodeText, nullable=False)
 
-    client_ip_address = Column(UnicodeText, default=u'', nullable=False)
-    client_user_agent = Column(UnicodeText, default=u'', nullable=False)
+    client_ip_address = Column(UnicodeText, default='', nullable=False)
+    client_user_agent = Column(UnicodeText, default='', nullable=False)
     registration_date = Column(DateTime, default=datetime_now, nullable=False)
-    tos1 = Column(UnicodeText, default=u'', nullable=False)
-    tos2 = Column(UnicodeText, default=u'', nullable=False)
+    tos1 = Column(UnicodeText, default='', nullable=False)
+    tos2 = Column(UnicodeText, default='', nullable=False)
 
     unicode_keys = ['subdomain', 'language', 'name', 'surname', 'role', 'phone', 'email',
                     'use_case', 'use_case_other',
@@ -1192,10 +1192,10 @@ class _Tenant(Model):
 
     id = Column(Integer, primary_key=True, nullable=False)
 
-    label = Column(UnicodeText, default=u'', nullable=False)
+    label = Column(UnicodeText, default='', nullable=False)
     active = Column(Boolean, default=False, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    subdomain = Column(UnicodeText, default=u'', nullable=False)
+    subdomain = Column(UnicodeText, default='', nullable=False)
 
     unicode_keys = ['label', 'subdomain']
     bool_keys = ['active']
@@ -1212,20 +1212,20 @@ class _User(Model):
     tid = Column(Integer, default=1, nullable=False)
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    username = Column(UnicodeText, default=u'', nullable=False)
+    username = Column(UnicodeText, default='', nullable=False)
 
     salt = Column(UnicodeText(24), nullable=False)
-    hash_alg = Column(UnicodeText, default=u'ARGON2', nullable=False)
-    password = Column(UnicodeText, default=u'', nullable=False)
+    hash_alg = Column(UnicodeText, default='ARGON2', nullable=False)
+    password = Column(UnicodeText, default='', nullable=False)
 
-    name = Column(UnicodeText, default=u'', nullable=False)
+    name = Column(UnicodeText, default='', nullable=False)
     description = Column(JSON, default=dict, nullable=False)
 
     # roles: 'admin', 'receiver', 'custodian'
-    role = Column(UnicodeText, default=u'receiver', nullable=False)
-    state = Column(UnicodeText, default=u'enabled', nullable=False)
+    role = Column(UnicodeText, default='receiver', nullable=False)
+    state = Column(UnicodeText, default='enabled', nullable=False)
     last_login = Column(DateTime, default=datetime_null, nullable=False)
-    mail_address = Column(UnicodeText, default=u'', nullable=False)
+    mail_address = Column(UnicodeText, default='', nullable=False)
     language = Column(UnicodeText, nullable=False)
     password_change_needed = Column(Boolean, default=True, nullable=False)
     password_change_date = Column(DateTime, default=datetime_null, nullable=False)
@@ -1235,7 +1235,7 @@ class _User(Model):
     crypto_rec_key = Column(LargeBinary(80), default=b'', nullable=False)
     crypto_bkp_key = Column(LargeBinary(72), default=b'', nullable=False)
 
-    change_email_address = Column(UnicodeText, default=u'', nullable=False)
+    change_email_address = Column(UnicodeText, default='', nullable=False)
     change_email_token = Column(UnicodeText, unique=True, nullable=True)
     change_email_date = Column(DateTime, default=datetime_null, nullable=False)
 
@@ -1244,7 +1244,7 @@ class _User(Model):
 
     notification = Column(Boolean, default=True, nullable=False)
 
-    recipient_configuration = Column(UnicodeText, default=u'default', nullable=False)
+    recipient_configuration = Column(UnicodeText, default='default', nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
     can_postpone_expiration = Column(Boolean, default=False, nullable=False)
     can_grant_permissions = Column(Boolean, default=False, nullable=False)
@@ -1254,8 +1254,8 @@ class _User(Model):
     two_factor_secret = Column(LargeBinary(64), default=b'', nullable=False)
 
     # BEGIN of PGP key fields
-    pgp_key_fingerprint = Column(UnicodeText, default=u'', nullable=False)
-    pgp_key_public = Column(UnicodeText, default=u'', nullable=False)
+    pgp_key_fingerprint = Column(UnicodeText, default='', nullable=False)
+    pgp_key_public = Column(UnicodeText, default='', nullable=False)
     pgp_key_expiration = Column(DateTime, default=datetime_null, nullable=False)
     # END of PGP key fields
 
@@ -1336,7 +1336,7 @@ class _WhistleblowerIdentity(Model):
 
     id = Column(UnicodeText(36), primary_key=True)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    identity = Column(UnicodeText, default=u'', nullable=False)
+    identity = Column(UnicodeText, default='', nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -1350,7 +1350,7 @@ class _WhistleblowerTip(Model):
     tid = Column(Integer, default=1, nullable=False)
     receipt_hash = Column(UnicodeText(128), nullable=False)
 
-    hash_alg = Column(UnicodeText, default=u'ARGON2', nullable=False)
+    hash_alg = Column(UnicodeText, default='ARGON2', nullable=False)
 
     crypto_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
     crypto_pub_key = Column(LargeBinary(32), default=b'', nullable=False)

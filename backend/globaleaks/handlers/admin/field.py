@@ -64,7 +64,7 @@ def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
     attr_dict['name'] = attr_name
     attr_dict['field_id'] = field_id
 
-    if attr_dict['type'] == u'localized' and language is not None:
+    if attr_dict['type'] == 'localized' and language is not None:
         fill_localized_keys(attr_dict, ['value'], language)
 
     o = session.query(models.FieldAttr).filter(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name).one_or_none()
@@ -129,7 +129,7 @@ def db_create_field(session, tid, field_dict, language):
                                   models.Step.id == field_dict['step_id'])
 
             field = session.query(models.Field) \
-                           .filter(models.Field.template_id == u'whistleblower_identity',
+                           .filter(models.Field.template_id == 'whistleblower_identity',
                                    models.Field.step_id == models.Step.id,
                                    models.Step.questionnaire_id.in_(q_id.subquery())).one_or_none()
 
@@ -261,7 +261,7 @@ def get_fieldtemplate_list(session, tid, language):
     Serialize all the field templates localizing their content depending on the language.
     """
     templates = session.query(models.Field).filter(models.Field.tid.in_(set([1, tid])),
-                                                   models.Field.instance == u'template',
+                                                   models.Field.instance == 'template',
                                                    models.Field.fieldgroup_id == None)
 
     return [serialize_field(session, tid, f, language) for f in templates]

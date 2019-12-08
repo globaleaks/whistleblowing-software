@@ -104,7 +104,7 @@ class Context_v_30(Model):
     status_page_message = Column(JSON)
     show_receivers_in_alphabetical_order = Column(Boolean)
     presentation_order = Column(Integer)
-    questionnaire_id = Column(UnicodeText(36), default=u'default')
+    questionnaire_id = Column(UnicodeText(36), default='default')
 
 
 class ReceiverTip_v_30(Model):
@@ -212,13 +212,13 @@ class MigrationScript(MigrationBase):
             elif key == 'basic_auth':
                 new_node.basic_auth = False
             elif key == 'basic_auth_username':
-                new_node.basic_auth_username = u''
+                new_node.basic_auth_username = ''
             elif key == 'basic_auth_password':
-                new_node.basic_auth_password = u''
+                new_node.basic_auth_password = ''
             elif key == 'contexts_clarification':
                 new_node.contexts_clarification = old_node.context_selector_label
             elif key == 'context_selector_type':
-                new_node.context_selector_type = u'list'
+                new_node.context_selector_type = 'list'
             elif key == 'show_small_context_cards':
                 new_node.show_small_context_cards = False
             else:

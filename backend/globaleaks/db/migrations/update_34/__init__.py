@@ -15,16 +15,16 @@ class Node_v_33(models.Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     version = Column(UnicodeText)
     version_db = Column(UnicodeText)
-    name = Column(UnicodeText, default=u'')
+    name = Column(UnicodeText, default='')
     basic_auth = Column(Boolean, default=False)
-    basic_auth_username = Column(UnicodeText, default=u'')
-    basic_auth_password = Column(UnicodeText, default=u'')
-    public_site = Column(UnicodeText, default=u'')
-    hidden_service = Column(UnicodeText, default=u'')
-    tb_download_link = Column(UnicodeText, default=u'https://www.torproject.org/download/download')
+    basic_auth_username = Column(UnicodeText, default='')
+    basic_auth_password = Column(UnicodeText, default='')
+    public_site = Column(UnicodeText, default='')
+    hidden_service = Column(UnicodeText, default='')
+    tb_download_link = Column(UnicodeText, default='https://www.torproject.org/download/download')
     receipt_salt = Column(UnicodeText)
     languages_enabled = Column(JSON)
-    default_language = Column(UnicodeText, default=u'en')
+    default_language = Column(UnicodeText, default='en')
     description = Column(JSON, default=dict)
     presentation = Column(JSON, default=dict)
     footer = Column(JSON, default=dict)
@@ -56,7 +56,7 @@ class Node_v_33(models.Model):
     header_title_submissionpage = Column(JSON, default=dict)
     header_title_receiptpage = Column(JSON, default=dict)
     header_title_tippage = Column(JSON, default=dict)
-    landing_page = Column(UnicodeText, default=u'homepage')
+    landing_page = Column(UnicodeText, default='homepage')
     contexts_clarification = Column(JSON, default=dict)
     show_small_context_cards = Column(Boolean, default=False)
     show_contexts_in_alphabetical_order = Column(Boolean, default=False)
@@ -67,7 +67,7 @@ class Node_v_33(models.Model):
     threshold_free_disk_percentage_high = Column(Integer, default=3)
     threshold_free_disk_percentage_medium = Column(Integer, default=5)
     threshold_free_disk_percentage_low = Column(Integer, default=10)
-    context_selector_type = Column(UnicodeText, default=u'list')
+    context_selector_type = Column(UnicodeText, default='list')
 
     localized_keys = [
         'description',
@@ -86,12 +86,12 @@ class Node_v_33(models.Model):
 class Notification_v_33(models.Model):
     __tablename__ = 'notification'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    server = Column(UnicodeText, default=u'demo.globaleaks.org')
+    server = Column(UnicodeText, default='demo.globaleaks.org')
     port = Column(Integer, default=9267)
-    username = Column(UnicodeText, default=u'hey_you_should_change_me')
-    password = Column(UnicodeText, default=u'yes_you_really_should_change_me')
-    source_email = Column(UnicodeText, default=u'notification@demo.globaleaks.org')
-    security = Column(UnicodeText, default=u'TLS')
+    username = Column(UnicodeText, default='hey_you_should_change_me')
+    password = Column(UnicodeText, default='yes_you_really_should_change_me')
+    source_email = Column(UnicodeText, default='notification@demo.globaleaks.org')
+    security = Column(UnicodeText, default='TLS')
     admin_pgp_alert_mail_title = Column(JSON)
     admin_pgp_alert_mail_template = Column(JSON)
     admin_anomaly_mail_template = Column(JSON)
@@ -130,9 +130,9 @@ class Notification_v_33(models.Model):
     disable_receiver_notification_emails = Column(Boolean, default=False)
     tip_expiration_threshold = Column(Integer, default=72)
     notification_threshold_per_hour = Column(Integer, default=20)
-    exception_email_address = Column(UnicodeText, default=u'globaleaks-stackexception@lists.globaleaks.org')
-    exception_email_pgp_key_fingerprint = Column(UnicodeText, default=u'')
-    exception_email_pgp_key_public = Column(UnicodeText, default=u'')
+    exception_email_address = Column(UnicodeText, default='globaleaks-stackexception@lists.globaleaks.org')
+    exception_email_pgp_key_fingerprint = Column(UnicodeText, default='')
+    exception_email_pgp_key_public = Column(UnicodeText, default='')
     exception_email_pgp_key_expiration = Column(DateTime, default=datetime_null)
 
     localized_keys = [
@@ -180,7 +180,7 @@ class MigrationScript(MigrationBase):
         with open(os.path.join(Settings.client_path, 'data', 'favicon.ico'), 'rb') as favicon_file:
             data = favicon_file.read()
             new_file = self.model_to['File']()
-            new_file.id = u'favicon'
+            new_file.id = 'favicon'
             new_file.data = base64.b64encode(data).decode()
             self.session_new.add(new_file)
             self.entries_count['File'] += 1
@@ -190,7 +190,7 @@ class MigrationScript(MigrationBase):
             with open(file_path, 'r') as homepage_file:
                 data = homepage_file.read()
                 new_file = self.model_to['File']()
-                new_file.id = u'homepage'
+                new_file.id = 'homepage'
                 new_file.data = base64.b64encode(data).decode()
                 self.session_new.add(new_file)
                 self.entries_count['File'] += 1

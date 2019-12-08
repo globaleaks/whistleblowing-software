@@ -30,7 +30,7 @@ class Context_v_46(Model):
     show_receivers_in_alphabetical_order = Column(Boolean, default=True, nullable=False)
     enable_scoring_system = Column(Boolean, default=False, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
-    questionnaire_id = Column(UnicodeText(36), default=u'default', nullable=False)
+    questionnaire_id = Column(UnicodeText(36), default='default', nullable=False)
     additional_questionnaire_id = Column(UnicodeText(36))
     status = Column(Integer, default=2, nullable=False)
 

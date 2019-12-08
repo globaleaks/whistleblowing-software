@@ -70,7 +70,7 @@ class Cleaning(DailyJob):
             user_desc = user_serialize_user(session, user, user.language)
 
             data = {
-                'type': u'tip_expiration_summary',
+                'type': 'tip_expiration_summary',
                 'node': db_admin_serialize_node(session, tid, user.language),
                 'notification': db_get_notification(session, tid, user.language),
                 'user': user_desc,

@@ -56,7 +56,7 @@ def user_serialize_user(session, user, language):
         'id': user.id,
         'username': user.username,
         'password': '',
-        'old_password': u'',
+        'old_password': '',
         'salt': '',
         'role': user.role,
         'state': user.state,

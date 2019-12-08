@@ -16,7 +16,7 @@ class Field_v_37(models.Model):
     x = Column(Integer, default=0)
     y = Column(Integer, default=0)
     width = Column(Integer, default=0)
-    key = Column(UnicodeText, default=u'')
+    key = Column(UnicodeText, default='')
     label = Column(JSON)
     description = Column(JSON)
     hint = Column(JSON)
@@ -29,16 +29,16 @@ class Field_v_37(models.Model):
     fieldgroup_id = Column(UnicodeText(36))
     step_id = Column(UnicodeText(36))
     template_id = Column(UnicodeText(36))
-    type = Column(UnicodeText, default=u'inputbox')
-    instance = Column(UnicodeText, default=u'instance')
+    type = Column(UnicodeText, default='inputbox')
+    instance = Column(UnicodeText, default='instance')
     editable = Column(Boolean, default=True)
 
 
 class Questionnaire_v_37(models.Model):
     __tablename__ = 'questionnaire'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    key = Column(UnicodeText, default=u'')
-    name = Column(UnicodeText, default=u'')
+    key = Column(UnicodeText, default='')
+    name = Column(UnicodeText, default='')
     show_steps_navigation_bar = Column(Boolean, default=False)
     steps_navigation_requires_completion = Column(Boolean, default=False)
     enable_whistleblower_identity = Column(Boolean, default=False)
@@ -67,7 +67,7 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_Context(self):
-        questionnaire_default = self.session_old.query(self.model_from['Questionnaire']).filter(self.model_from['Questionnaire'].key == u'default').one_or_none()
+        questionnaire_default = self.session_old.query(self.model_from['Questionnaire']).filter(self.model_from['Questionnaire'].key == 'default').one_or_none()
         questionnaire_default_id = questionnaire_default.id if questionnaire_default is not None else 'hack'
 
         old_objs = self.session_old.query(self.model_from['Context'])
@@ -76,7 +76,7 @@ class MigrationScript(MigrationBase):
             for key in [c.key for c in new_obj.__table__.columns]:
                 if key == 'questionnaire_id':
                     if old_obj.questionnaire_id is None or old_obj.questionnaire_id == questionnaire_default_id:
-                        setattr(new_obj, 'questionnaire_id', u'default')
+                        setattr(new_obj, 'questionnaire_id', 'default')
                     else:
                         setattr(new_obj, key, getattr(old_obj, key))
                 else:
@@ -85,7 +85,7 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_Field(self):
-        field_wbi = self.session_old.query(self.model_from['Field']).filter(self.model_from['Field'].key == u'whistleblower_identity').one()
+        field_wbi = self.session_old.query(self.model_from['Field']).filter(self.model_from['Field'].key == 'whistleblower_identity').one()
         field_wbi_id = field_wbi.id if field_wbi is not None else 'hack'
 
         old_objs = self.session_old.query(self.model_from['Field'])

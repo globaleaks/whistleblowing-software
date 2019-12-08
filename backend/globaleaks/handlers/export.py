@@ -38,7 +38,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
     rtip_dict = serialize_rtip(session, rtip, itip, language)
 
     export_dict = {
-        'type': u'export_template',
+        'type': 'export_template',
         'node': db_admin_serialize_node(session, tid, language),
         'notification': db_get_notification(session, tid, language),
         'tip': rtip_dict,

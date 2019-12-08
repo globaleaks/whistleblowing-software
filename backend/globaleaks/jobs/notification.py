@@ -19,10 +19,10 @@ from globaleaks.utils.templating import Templating
 
 
 trigger_template_map = {
-    'ReceiverTip': u'tip',
-    'Message': u'message',
-    'Comment': u'comment',
-    'ReceiverFile': u'file'
+    'ReceiverTip': 'tip',
+    'Message': 'message',
+    'Comment': 'comment',
+    'ReceiverFile': 'file'
 }
 
 
@@ -98,7 +98,7 @@ class MailGenerator(object):
 
     def process_Message(self, session, message, data):
         # if the message was created by a receiver do not generate mails
-        if message.type == u"receiver":
+        if message.type == "receiver":
             return
 
         user, context, rtip = session.query(models.User, models.Context, models.ReceiverTip) \
@@ -180,13 +180,13 @@ class MailGenerator(object):
 
             # simply changing the type of the notification causes
             # to send the notification_limit_reached
-            data['type'] = u'receiver_notification_limit_reached'
+            data['type'] = 'receiver_notification_limit_reached'
 
         data['node'] = self.serialize_config(session, 'node', tid, language)
 
         data['submission_statuses'] = db_retrieve_all_submission_statuses(session, tid, language)
 
-        if data['node']['mode'] != u'whistleblowing.it':
+        if data['node']['mode'] != 'whistleblowing.it':
             data['notification'] = self.serialize_config(session, 'notification', tid, language)
         else:
             data['notification'] = self.serialize_config(session, 'notification', 1, language)

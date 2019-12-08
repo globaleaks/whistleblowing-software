@@ -96,9 +96,9 @@ class FieldAnswer_v_29(Model):
     __tablename__ = 'fieldanswer'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     internaltip_id = Column(UnicodeText(36))
-    key = Column(UnicodeText, default=u'')
+    key = Column(UnicodeText, default='')
     is_leaf = Column(Boolean, default=True)
-    value = Column(UnicodeText, default=u'')
+    value = Column(UnicodeText, default='')
 
 
 class FieldAnswerGroup_v_29(Model):

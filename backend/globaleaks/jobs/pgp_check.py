@@ -22,7 +22,7 @@ __all__ = ['PGPCheck']
 def db_get_expired_or_expiring_pgp_users(session, tids_list):
     threshold = datetime_now() + timedelta(days=15)
 
-    return session.query(models.User).filter(models.User.pgp_key_public != u'',
+    return session.query(models.User).filter(models.User.pgp_key_public != '',
                                              models.User.pgp_key_expiration != datetime_null(),
                                              models.User.pgp_key_expiration < threshold,
                                              models.User.tid.in_(tids_list))
@@ -36,7 +36,7 @@ class PGPCheck(DailyJob):
             user_language = user_desc['language']
 
             data = {
-                'type': u'admin_pgp_alert',
+                'type': 'admin_pgp_alert',
                 'node': db_admin_serialize_node(session, tid, user_language),
                 'notification': db_get_notification(session, tid, user_language),
                 'users': expired_or_expiring,
@@ -51,7 +51,7 @@ class PGPCheck(DailyJob):
         user_language = user_desc['language']
 
         data = {
-            'type': u'pgp_alert',
+            'type': 'pgp_alert',
             'node': db_admin_serialize_node(session, tid, user_language),
             'notification': db_get_notification(session, tid, user_language),
             'user': user_desc

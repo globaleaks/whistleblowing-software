@@ -21,12 +21,12 @@ DEB_PACKAGE_URL = b'https://deb.globaleaks.org/buster/Packages'
 def evaluate_update_notification(session, state, latest_version):
     priv_fact = ConfigFactory(session, 1)
 
-    stored_latest = priv_fact.get_val(u'latest_version')
+    stored_latest = priv_fact.get_val('latest_version')
 
     if parse_version(stored_latest) < parse_version(latest_version):
         Cache.invalidate()
 
-        priv_fact.set_val(u'latest_version', latest_version)
+        priv_fact.set_val('latest_version', latest_version)
 
         if parse_version(__version__) == parse_version(latest_version):
             return

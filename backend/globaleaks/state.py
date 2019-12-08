@@ -185,7 +185,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
             # during unit testing do not try to send the mail
             return defer.succeed(True)
 
-        if self.tenant_cache[tid].mode != u'default':
+        if self.tenant_cache[tid].mode != 'default':
             tid = 1
 
         return sendmail(tid,

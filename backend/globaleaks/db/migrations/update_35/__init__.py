@@ -89,7 +89,7 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_User(self):
-        default_language = self.session_new.query(self.model_to['Config']).filter(self.model_to['Config'].var_name == u'default_language').one().value['v']
+        default_language = self.session_new.query(self.model_to['Config']).filter(self.model_to['Config'].var_name == 'default_language').one().value['v']
         enabled_languages = [r[0] for r in self.session_old.query(self.model_to['EnabledLanguage'].name)]
 
         old_objs = self.session_old.query(self.model_from['User'])
@@ -125,7 +125,7 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def epilogue(self):
-        c = self.session_new.query(self.model_to['Config']).filter(self.model_to['Config'].var_name == u'wbtip_timetolive').one()
+        c = self.session_new.query(self.model_to['Config']).filter(self.model_to['Config'].var_name == 'wbtip_timetolive').one()
         if int(c.value['v']) < 5:
             c.value['v'] = 90
         elif int(c.value['v']) > 365 * 2:

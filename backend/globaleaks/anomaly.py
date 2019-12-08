@@ -63,7 +63,7 @@ def generate_admin_alert_mail(session, tid, alert):
         user_language = user_desc['language']
 
         data = {
-            'type': u'admin_anomaly',
+            'type': 'admin_anomaly',
             'node': db_admin_serialize_node(session, tid, user_language),
             'notification': db_get_notification(session, tid, user_language),
             'alert': alert,

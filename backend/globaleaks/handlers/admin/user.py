@@ -39,7 +39,7 @@ def db_create_user(session, tid, request, language):
         'tid': tid,
         'username': request['username'],
         'role': request['role'],
-        'state': u'enabled',
+        'state': 'enabled',
         'name': request['name'],
         'description': request['description'],
         'language': language,
@@ -51,7 +51,7 @@ def db_create_user(session, tid, request, language):
     if not request['username']:
         user.username = user.id = uuid4()
 
-    password = u'password'
+    password = 'password'
     if request['password']:
         password = request['password']
 
@@ -114,7 +114,7 @@ def delete_user(session, tid, user_id):
 
 
 def db_get_admin_users(session, tid):
-    users = session.query(models.User).filter(models.User.role == u'admin',
+    users = session.query(models.User).filter(models.User.role == 'admin',
                                               models.User.tid == tid)
 
     return [user_serialize_user(session, user, State.tenant_cache[tid].default_language) for user in users]
@@ -126,7 +126,7 @@ def get_receiver_list(session, tid, language):
     Returns:
         (list) the list of recipients
     """
-    users = session.query(models.User).filter(models.User.role == u'receiver',
+    users = session.query(models.User).filter(models.User.role == 'receiver',
                                               models.User.tid == tid)
 
     return [user_serialize_user(session, user, language) for user in users]

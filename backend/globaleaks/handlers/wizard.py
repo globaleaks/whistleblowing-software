@@ -24,30 +24,30 @@ def db_wizard(session, tid, request, client_using_tor, language):
     else:
         root_tenant_node = node
 
-    if node.get_val(u'wizard_done'):
+    if node.get_val('wizard_done'):
         log.err("DANGER: Wizard already initialized!", tid=tid)
         raise errors.ForbiddenOperation
 
     db_update_enabled_languages(session, tid, [language], language)
 
-    node.set_val(u'name', request['node_name'])
-    node.set_val(u'default_language', language)
-    node.set_val(u'wizard_done', True)
-    node.set_val(u'enable_developers_exception_notification', request['enable_developers_exception_notification'])
+    node.set_val('name', request['node_name'])
+    node.set_val('default_language', language)
+    node.set_val('wizard_done', True)
+    node.set_val('enable_developers_exception_notification', request['enable_developers_exception_notification'])
 
     node_l10n = config.ConfigL10NFactory(session, tid)
-    node_l10n.set_val(u'header_title_homepage', language, request['node_name'])
+    node_l10n.set_val('header_title_homepage', language, request['node_name'])
 
     profiles.load_profile(session, tid, request['profile'])
 
     admin_desc = models.User().dict(language)
     admin_desc['name'] = request['admin_name']
-    admin_desc['username'] = u'admin'
+    admin_desc['username'] = 'admin'
     admin_desc['password'] = request['admin_password']
     admin_desc['name'] = request['admin_name']
     admin_desc['mail_address'] = request['admin_mail_address']
     admin_desc['language'] = language
-    admin_desc['role'] = u'admin'
+    admin_desc['role'] = 'admin'
     admin_desc['pgp_key_remove'] = False
 
     admin_user = db_create_user(session, tid, admin_desc, language)
@@ -56,19 +56,19 @@ def db_wizard(session, tid, request, client_using_tor, language):
 
     receiver_desc = models.User().dict(language)
     receiver_desc['name'] = request['receiver_name']
-    receiver_desc['username'] = u'recipient'
+    receiver_desc['username'] = 'recipient'
     receiver_desc['password'] = request['receiver_password']
     receiver_desc['name'] = request['receiver_name']
     receiver_desc['mail_address'] = request['receiver_mail_address']
     receiver_desc['language'] = language
-    receiver_desc['role'] = u'receiver'
+    receiver_desc['role'] = 'receiver'
     receiver_desc['pgp_key_remove'] = False
 
     receiver_user = db_create_user(session, tid, receiver_desc, language)
 
     context_desc = models.Context().dict(language)
     context_desc['status'] = 1
-    context_desc['name'] = u'Default'
+    context_desc['name'] = 'Default'
     context_desc['receivers'] = [receiver_user.id]
 
     context = db_create_context(session, tid, context_desc, language)
@@ -84,10 +84,10 @@ def db_wizard(session, tid, request, client_using_tor, language):
     tenant = models.db_get(session, models.Tenant, models.Tenant.id == tid)
     tenant.label = request['node_name']
 
-    mode = node.get_val(u'mode')
+    mode = node.get_val('mode')
 
-    if mode != u'default':
-        node.set_val(u'hostname', tenant.subdomain + '.' + root_tenant_node.get_val(u'rootdomain'))
+    if mode != 'default':
+        node.set_val('hostname', tenant.subdomain + '.' + root_tenant_node.get_val('rootdomain'))
 
         for varname in ['reachable_via_web',
                         'enable_receipt_hint',
@@ -103,10 +103,10 @@ def db_wizard(session, tid, request, client_using_tor, language):
                         'enable_password_reset']:
             node.set_val(varname, root_tenant_node.get_val(varname))
 
-        context.questionnaire_id = root_tenant_node.get_val(u'default_questionnaire')
+        context.questionnaire_id = root_tenant_node.get_val('default_questionnaire')
 
     # Apply the general settings to apply on all mode != default
-    if mode in [u'whistleblowing.it', u'eat']:
+    if mode in ['whistleblowing.it', 'eat']:
         # Enable the recipient user to configure platform general settings
         receiver_user.can_edit_general_settings = True
 
@@ -118,9 +118,9 @@ def db_wizard(session, tid, request, client_using_tor, language):
         session.delete(admin_user)
 
     # Apply the specific fixes related to whistleblowing.it projects
-    if mode == u'whistleblowing.it':
-        node.set_val(u'simplified_login', True)
-        node.set_val(u'tor', False)
+    if mode == 'whistleblowing.it':
+        node.set_val('simplified_login', True)
+        node.set_val('tor', False)
 
         # Enable recipients to load files to the whistleblower
         context.enable_rc_to_wb_files = True

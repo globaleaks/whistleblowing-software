@@ -31,11 +31,11 @@ def load_tls_dict(session, tid):
 
     return {
         'tid': tid,
-        'ssl_key': node.get_val(u'https_priv_key'),
-        'ssl_cert': node.get_val(u'https_cert'),
-        'ssl_intermediate': node.get_val(u'https_chain'),
-        'https_enabled': node.get_val(u'https_enabled'),
-        'hostname': node.get_val(u'hostname'),
+        'ssl_key': node.get_val('https_priv_key'),
+        'ssl_cert': node.get_val('https_cert'),
+        'ssl_intermediate': node.get_val('https_chain'),
+        'https_enabled': node.get_val('https_enabled'),
+        'hostname': node.get_val('hostname'),
     }
 
 
@@ -47,7 +47,7 @@ def get_db_file(db_path):
     path = os.path.join(db_path, 'globaleaks.db')
     if os.path.exists(path):
         session = get_session(make_db_uri(path))
-        version_db = session.query(models.Config.value).filter(Config.tid == 1, Config.var_name == u'version_db').one()[0]
+        version_db = session.query(models.Config.value).filter(Config.tid == 1, Config.var_name == 'version_db').one()[0]
         session.close()
         return version_db, path
 
@@ -159,10 +159,10 @@ def db_set_cache_exception_delivery_list(session, tenant_cache):
     lst = []
 
     if not Settings.devel_mode and tenant_cache.enable_developers_exception_notification:
-        lst.append((u'globaleaks-stackexception@lists.globaleaks.org', ''))
+        lst.append(('globaleaks-stackexception@lists.globaleaks.org', ''))
 
     if tenant_cache.enable_admin_exception_notification:
-        results = session.query(models.User.mail_address, models.User.pgp_key_public).filter(models.User.role == u'admin')
+        results = session.query(models.User.mail_address, models.User.pgp_key_public).filter(models.User.role == 'admin')
         lst.extend([(mail, pub_key) for mail, pub_key in results])
 
     tenant_cache.notification.exception_delivery_list = [x for x in lst if x[0] != '']

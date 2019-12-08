@@ -65,7 +65,7 @@ def receiver_serialize_rfile(session, rfile):
         'status': rfile.status,
         'href': "/rtip/" + rfile.receivertip_id + "/download/" + rfile.id,
         # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
-        'name': ("%s.pgp" % ifile.name) if rfile.status == u'encrypted' else ifile.name,
+        'name': ("%s.pgp" % ifile.name) if rfile.status == 'encrypted' else ifile.name,
         'type': ifile.content_type,
         'creation_date': datetime_to_ISO8601(ifile.creation_date),
         'size': ifile.size,
@@ -239,12 +239,12 @@ def receiver_get_rfile_list(session, rtip_id):
 
 def db_set_itip_open_if_new(session, tid, user_id, itip):
     new_status_id = session.query(models.SubmissionStatus.id) \
-                           .filter(models.SubmissionStatus.id == u'new',
+                           .filter(models.SubmissionStatus.id == 'new',
                                    models.SubmissionStatus.tid == tid).one()[0]
 
     if new_status_id == itip.status:
         open_status_id = session.query(models.SubmissionStatus.id) \
-                                .filter(models.SubmissionStatus.id == u'opened',
+                                .filter(models.SubmissionStatus.id == 'opened',
                                         models.SubmissionStatus.tid == tid).one()[0]
 
         db_update_submission_status(session, user_id, itip, open_status_id, '')
@@ -374,7 +374,7 @@ def db_get_itip_comment_list(session, itip_id):
 
 
 def db_create_identityaccessrequest_notifications(session, tid, itip, rtip, iar):
-    users = session.query(models.User).filter(models.User.role == u'custodian', models.User.notification == True)
+    users = session.query(models.User).filter(models.User.role == 'custodian', models.User.notification == True)
     for user in users:
         node = db_admin_serialize_node(session, tid, user.language)
         context = session.query(models.Context).filter(models.Context.id == itip.context_id, models.Context.tid == tid).one()
@@ -389,7 +389,7 @@ def db_create_identityaccessrequest_notifications(session, tid, itip, rtip, iar)
         data['iar'] = serialize_identityaccessrequest(session, iar)
         data['node'] = db_admin_serialize_node(session, tid, user.language)
 
-        if data['node']['mode'] == u'default':
+        if data['node']['mode'] == 'default':
             data['notification'] = db_get_notification(session, tid, user.language)
         else:
             data['notification'] = db_get_notification(session, 1, user.language)
@@ -427,7 +427,7 @@ def create_comment(session, tid, user_id, user_key, rtip_id, content):
 
     comment = models.Comment()
     comment.internaltip_id = itip.id
-    comment.type = u'receiver'
+    comment.type = 'receiver'
     comment.author_id = rtip.receiver_id
 
     if itip.crypto_tip_pub_key:
@@ -460,7 +460,7 @@ def create_message(session, tid, user_id, user_key, rtip_id, content):
 
     msg = models.Message()
     msg.receivertip_id = rtip.id
-    msg.type = u'receiver'
+    msg.type = 'receiver'
 
     if itip.crypto_tip_pub_key:
         msg.content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()

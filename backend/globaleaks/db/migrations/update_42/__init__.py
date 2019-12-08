@@ -13,10 +13,10 @@ class InternalTip_v_41(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     tid = Column(Integer, default=1, nullable=False)
     encrypted = Column(Boolean, default=False, nullable=False)
-    wb_prv_key = Column(UnicodeText, default=u'', nullable=False)
-    wb_pub_key = Column(UnicodeText, default=u'', nullable=False)
-    wb_tip_key = Column(UnicodeText, default=u'', nullable=False)
-    enc_data = Column(UnicodeText, default=u'', nullable=False)
+    wb_prv_key = Column(UnicodeText, default='', nullable=False)
+    wb_pub_key = Column(UnicodeText, default='', nullable=False)
+    wb_tip_key = Column(UnicodeText, default='', nullable=False)
+    enc_data = Column(UnicodeText, default='', nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     update_date = Column(DateTime, default=datetime_now, nullable=False)
     context_id = Column(UnicodeText(36), nullable=False)
@@ -46,22 +46,22 @@ class Signup_v_41(Model):
     language = Column(UnicodeText, nullable=False)
     name = Column(UnicodeText, nullable=False)
     surname = Column(UnicodeText, nullable=False)
-    role = Column(UnicodeText, default=u'', nullable=False)
+    role = Column(UnicodeText, default='', nullable=False)
     email = Column(UnicodeText, nullable=False)
-    phone = Column(UnicodeText, default=u'', nullable=False)
-    use_case = Column(UnicodeText, default=u'', nullable=False)
-    use_case_other = Column(UnicodeText, default=u'', nullable=False)
-    organization_name = Column(UnicodeText, default=u'', nullable=False)
-    organization_type = Column(UnicodeText, default=u'', nullable=False)
-    organization_city = Column(UnicodeText, default=u'', nullable=False)
-    organization_province = Column(UnicodeText, default=u'', nullable=False)
-    organization_region = Column(UnicodeText, default=u'', nullable=False)
-    organization_country = Column(UnicodeText, default=u'', nullable=False)
-    organization_number_employee = Column(UnicodeText, default=u'', nullable=False)
-    organization_number_users = Column(UnicodeText, default=u'', nullable=False)
+    phone = Column(UnicodeText, default='', nullable=False)
+    use_case = Column(UnicodeText, default='', nullable=False)
+    use_case_other = Column(UnicodeText, default='', nullable=False)
+    organization_name = Column(UnicodeText, default='', nullable=False)
+    organization_type = Column(UnicodeText, default='', nullable=False)
+    organization_city = Column(UnicodeText, default='', nullable=False)
+    organization_province = Column(UnicodeText, default='', nullable=False)
+    organization_region = Column(UnicodeText, default='', nullable=False)
+    organization_country = Column(UnicodeText, default='', nullable=False)
+    organization_number_employee = Column(UnicodeText, default='', nullable=False)
+    organization_number_users = Column(UnicodeText, default='', nullable=False)
     activation_token = Column(UnicodeText, nullable=False)
     registration_date = Column(DateTime, default=datetime_now, nullable=False)
-    tos = Column(UnicodeText, default=u'', nullable=False)
+    tos = Column(UnicodeText, default='', nullable=False)
 
 
 class MigrationScript(MigrationBase):
@@ -163,9 +163,9 @@ class MigrationScript(MigrationBase):
     def epilogue(self):
         tenants = self.session_old.query(self.model_from['Tenant'])
         for tenant in tenants:
-            for s in [{'label': {'en': 'New'}, 'system_usage': u'new'},
-                      {'label': {'en': 'Opened'}, 'system_usage': u'opened'},
-                      {'label': {'en': 'Closed'}, 'system_usage': u'closed'}]:
+            for s in [{'label': {'en': 'New'}, 'system_usage': 'new'},
+                      {'label': {'en': 'Opened'}, 'system_usage': 'opened'},
+                      {'label': {'en': 'Closed'}, 'system_usage': 'closed'}]:
                 state = self.model_to['SubmissionStatus']()
                 state.tid = tenant.id
                 state.label = s['label']
@@ -184,4 +184,4 @@ class MigrationScript(MigrationBase):
                                                 .filter(self.model_to['SubmissionStatus'].tid == tenant.id,
                                                         self.model_to['SubmissionStatus'].system_usage.in_(['open','opened'])).one()[0]
 
-                db_update_submission_status(self.session_new, u'', itip, open_status_id, u'')
+                db_update_submission_status(self.session_new, '', itip, open_status_id, '')

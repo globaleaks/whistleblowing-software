@@ -109,7 +109,7 @@ def create_comment(session, tid, wbtip_id, user_key, content):
 
     comment = models.Comment()
     comment.internaltip_id = wbtip_id
-    comment.type = u'whistleblower'
+    comment.type = 'whistleblower'
 
     if itip.crypto_tip_pub_key:
         comment.content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
@@ -150,7 +150,7 @@ def create_message(session, tid, wbtip_id, user_key, receiver_id, content):
 
     msg = models.Message()
     msg.receivertip_id = rtip_id
-    msg.type = u'whistleblower'
+    msg.type = 'whistleblower'
 
     if itip.crypto_tip_pub_key:
         msg.content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()

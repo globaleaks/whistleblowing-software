@@ -135,7 +135,7 @@ def initialize_config(session, tid, mode):
         # Initialization valid for secondary tenants
         variables['mode'] = mode
 
-    if mode == u'whistleblowing.it':
+    if mode == 'whistleblowing.it':
         root_tenant_node = ConfigFactory(session, 1).serialize('node')
         for name in inherit_from_root_tenant:
             variables[name] = root_tenant_node[name]

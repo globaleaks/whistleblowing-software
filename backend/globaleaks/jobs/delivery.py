@@ -36,7 +36,7 @@ def file_delivery_planning(session):
             receiverfile.internalfile_id = ifile.id
             receiverfile.receivertip_id = rtip.id
             receiverfile.filename = ifile.filename
-            receiverfile.status = u'processing'
+            receiverfile.status = 'processing'
 
             # https://github.com/globaleaks/GlobaLeaks/issues/444
             # avoid to mark the receiverfile as new if it is part of a submission
@@ -161,15 +161,15 @@ def process_receiverfiles(state, receiverfiles_maps):
                                                   rfileinfo['receiver']['pgp_key_fingerprint'],
                                                   pgp_path)
                             rfileinfo['filename'] = pgp_name
-                            rfileinfo['status'] = u'encrypted'
+                            rfileinfo['status'] = 'encrypted'
                         except Exception as excep:
                             log.err("%d# Unable to complete PGP encrypt for %s on %s: %s. marking the file as unavailable.",
                                     rcounter, rfileinfo['receiver']['name'], rfileinfo['filename'], excep)
-                            rfileinfo['status'] = u'unavailable'
+                            rfileinfo['status'] = 'unavailable'
                     else:
                         receiverfiles_map['plaintext_file_needed'] = True
                         rfileinfo['filename'] = plaintext_name
-                        rfileinfo['status'] = u'reference'
+                        rfileinfo['status'] = 'reference'
 
         if receiverfiles_map['plaintext_file_needed']:
             write_plaintext_file(sf, plaintext_path)

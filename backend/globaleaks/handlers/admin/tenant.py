@@ -21,9 +21,9 @@ from globaleaks.utils.log import log
 
 
 def initialize_submission_statuses(session, tid):
-    for s in [{'id': u'new', 'label': {'en': 'New'}},
-              {'id': u'opened', 'label': {'en': 'Opened'}},
-              {'id': u'closed', 'label': {'en': 'Closed'}}]:
+    for s in [{'id': 'new', 'label': {'en': 'New'}},
+              {'id': 'opened', 'label': {'en': 'Opened'}},
+              {'id': 'closed', 'label': {'en': 'Closed'}}]:
         state = models.SubmissionStatus()
         state.id = s['id']
         state.tid = tid
@@ -39,9 +39,9 @@ def serialize_tenant(session, tenant, signup=None):
         'label': tenant.label,
         'active': tenant.active,
         'subdomain': tenant.subdomain,
-        'hostname': u'',
-        'onionservice': u'',
-        'mode': u''
+        'hostname': '',
+        'onionservice': '',
+        'mode': ''
     }
 
     if tenant.id in State.tenant_cache:
@@ -72,20 +72,20 @@ def db_initialize(session, tenant, mode):
 
     models.config.initialize_config(session, tenant.id, mode)
 
-    models.config.add_new_lang(session, tenant.id, u'en', appdata)
+    models.config.add_new_lang(session, tenant.id, 'en', appdata)
 
     initialize_submission_statuses(session, tenant.id)
 
     if mode == 'default':
         file_descs = [
-            (u'logo', 'data/logo.png'),
-            (u'favicon', 'data/favicon.ico')
+            ('logo', 'data/logo.png'),
+            ('favicon', 'data/favicon.ico')
         ]
 
         for file_desc in file_descs:
             with open(os.path.join(Settings.client_path, file_desc[1]), 'rb') as f:
                 data = base64.b64encode(f.read()).decode()
-                file.db_add_file(session, tenant.id, file_desc[0], u'', data)
+                file.db_add_file(session, tenant.id, file_desc[0], '', data)
 
 
 def db_create(session, desc):
@@ -127,7 +127,7 @@ def update(session, id, request):
     if not session.query(models.Config).filter(models.Config.tid == id).count():
         db_initialize(session, tenant, request['mode'])
     else:
-        db_set_config_variable(session, id, u'mode', request['mode'])
+        db_set_config_variable(session, id, 'mode', request['mode'])
 
     db_refresh_memory_variables(session, [id])
 

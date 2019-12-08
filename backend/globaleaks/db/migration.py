@@ -137,7 +137,7 @@ def perform_data_update(db_file):
     try:
         cfg = ConfigFactory(session, 1)
 
-        stored_ver = cfg.get_val(u'version')
+        stored_ver = cfg.get_val('version')
 
         if stored_ver != __version__:
             # The below commands can change the current store based on the what is
@@ -150,9 +150,9 @@ def perform_data_update(db_file):
 
             db_fix(session)
 
-            cfg.set_val(u'version', __version__)
-            cfg.set_val(u'latest_version', __version__)
-            cfg.set_val(u'version_db', DATABASE_VERSION)
+            cfg.set_val('version', __version__)
+            cfg.set_val('latest_version', __version__)
+            cfg.set_val('version_db', DATABASE_VERSION)
 
         session.commit()
     except:
