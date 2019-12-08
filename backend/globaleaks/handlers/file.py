@@ -12,9 +12,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 
 appfiles = {
-    'favicon': 'image-x-icon',
     'css': 'text/css',
-    'logo': 'image/png',
     'script': 'application/javascript'
 }
 
@@ -52,20 +50,3 @@ class FileHandler(BaseHandler):
             id = yield get_file_id(self.request.tid, name)
             path = os.path.abspath(os.path.join(self.state.settings.files_path, id))
             yield self.write_file(name, path)
-
-
-class AppFileHandler(BaseHandler):
-    check_roles = 'none'
-
-    @inlineCallbacks
-    def get(self, name):
-        if name not in appfiles:
-            return
-
-        file_tid = self.request.tid
-        if self.state.tenant_cache[self.request.tid]['mode'] != u'default' and name in ['css', 'script']:
-            file_tid = 1
-
-        self.request.setHeader(b'Content-Type', appfiles[name])
-        x = yield get_file(file_tid, name)
-        returnValue(base64.b64decode(x))
