@@ -6,8 +6,8 @@
 # alfalb_mansil, 2014
 # alfalb_mansil, 2014
 # Communia <ameaneantie@riseup.net>, 2016
-# Chacal E., 2019
-# Chacal E., 2018-2019
+# C. E., 2019
+# C. E., 2018-2019
 # Claudio M. Vieira <clmantovani@bol.com.br>, 2015
 # Cleber de Souza Corrêa <cscorrea@gmail.com>, 2014
 # Communia <ameaneantie@riseup.net>, 2016
@@ -39,7 +39,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2019-11-25 15:33+0000\n"
-"Last-Translator: Chacal E.\n"
+"Last-Translator: C. E.\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
