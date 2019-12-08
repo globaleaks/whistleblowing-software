@@ -1,3 +1,8 @@
+Changes in version 3.11.46 - 2019-12-08
+    Revise installation script in relation to installation privacy
+    Deprecate compatibility with python2
+    Update translations
+
 Changes in version 3.11.45 - 2019-12-04
     Fixes issue #2737 and #2738
 
