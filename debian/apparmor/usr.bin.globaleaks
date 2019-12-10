@@ -16,8 +16,7 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     capability sys_tty_config,
 
     /etc/ r,
-    /etc/debian_version r,
-    /etc/lsb-release r,
+    /etc/os-release r,
     /etc/mime.types r,
 
     @{PROC}/ r,
@@ -33,16 +32,6 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     /bin/sh ix,
     /bin/dash ix,
     /usr/bin/gpg{,1} ix,
-
-    # Rules added to make it work /usb/bin/lsb_release
-    /etc/apport/blacklist.d/* r,
-    /etc/apt/apt.conf.d/* r,
-    /etc/default/apport r,
-    /usr/bin/dpkg-query ixr,
-    /usr/bin/lsb_release ixr,
-
-    # Rules added as workaround for Scalaway vps
-    /etc/scw-release r,
 
     /usr/ r,
     /usr/share/** r,

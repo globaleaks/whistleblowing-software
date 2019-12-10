@@ -6,8 +6,6 @@ import os
 
 import platform
 
-from distro import linux_distribution
-
 import sys
 import mimetypes
 
@@ -18,18 +16,13 @@ this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
 
-distro='unknown'
-if platform.system() == 'Linux':
-    distro = linux_distribution()[2]
+from globaleaks.utils.utility import get_distribution_codename
 
-    if distro != 'buster':
-        print("WARNING: The current long term supported platform is Debian 10 (Buster)")
-        print("WARNING: It is recommended to use only this platform to ensure stability and security")
-        print("WARNING: Read about Technical Requirements at: https://docs.globaleaks.org/en/latest/TechnicalRequirements.html")
-        print("WARNING: If it's an old Debian or Ubuntu, read more about updating at: https://docs.globaleaks.org/en/latest/UpgradeGuide.html")
+if get_distribution_codename() != 'buster':
+    print("WARNING: The current long term supported platform is Debian 10 (Buster)")
+    print("WARNING: It is recommended to use only this platform to ensure stability and security")
+    print("WARNING: To upgrade your system consult: https://docs.globaleaks.org/en/latest/UpgradeGuide.html")
 
-elif platform.system() == 'Windows':
-    print("WARNING: Windows support is extremely experimental at this time, and should not be used for production environments")
 
 # this import seems unused but it is required in order to load the mocks
 import globaleaks.mocks.twisted_mocks  # pylint: disable=W0611

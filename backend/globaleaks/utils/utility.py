@@ -20,6 +20,19 @@ from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.utils.log import log
 
 
+def get_distribution_codename():
+    try:
+        with open("/etc/os-release", "r") as fd:
+            for line in fd:
+                key, value = line.split("=")
+                if key == "VERSION_CODENAME":
+                    return value.strip().strip("\"")
+    except:
+        pass
+
+    return ""
+
+
 def get_disk_space(path):
     if platform.system() != 'Windows':
         statvfs = os.statvfs(path)
