@@ -35,6 +35,13 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     /usr/bin/gpg{,1} ix,
     /usr/bin/python{,2,2.7,3,3.[0-9]} ixr,
 
+    # Rules added to make it work /usb/bin/lsb_release
+    /etc/apport/blacklist.d/* r,
+    /etc/apt/apt.conf.d/* r,
+    /etc/default/apport r,
+    /usr/bin/dpkg-query ixr,
+    /usr/bin/lsb_release ixr,
+
     /usr/ r,
     /usr/share/** r,
 
