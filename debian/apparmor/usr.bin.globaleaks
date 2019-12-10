@@ -42,6 +42,9 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     /usr/bin/dpkg-query ixr,
     /usr/bin/lsb_release ixr,
 
+    # Rules added as workaround for Scalaway vps
+    /etc/scw-release r,
+
     /usr/ r,
     /usr/share/** r,
 
