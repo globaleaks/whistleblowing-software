@@ -3,6 +3,9 @@ set -e
 
 echo "Running Build & Install"
 distro="$(lsb_release -cs)"
+
+cd /build/GlobaLeaks
+
 sudo apt-get -y update
 
 sudo apt-get -y install curl git debhelper devscripts dh-apparmor dh-python python
@@ -13,9 +16,12 @@ else
   sudo apt-get -y install python-pip python-setuptools python-sphinx
 fi
 
-curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
+curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
+echo "deb https://deb.nodesource.com/node_10.x $distro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+echo "deb-src https://deb.nodesource.com/node_10.x $distro main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
+
+sudo apt-get update
 sudo apt-get -y install nodejs
-cd /build/GlobaLeaks
 sed -ie 's/key_bits = 2048/key_bits = 512/g' backend/globaleaks/settings.py
 sed -ie 's/csr_sign_bits = 512/csr_sign_bits = 256/g' backend/globaleaks/settings.py
 rm debian/control backend/requirements.txt
