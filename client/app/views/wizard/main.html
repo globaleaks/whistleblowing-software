@@ -79,8 +79,8 @@
             <span data-translate>Email address</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'is-invalid': validated4 && wizardFormStep4.admin_email.$error.required || wizardFormStep4.admin_email.$error.pattern}">
-            <input name="admin_email" class="form-control" data-ng-model="wizard.admin_mail_address" data-ng-attr-placeholder="{{'Email address' | translate}}" data-ng-pattern="email_regexp" type="text" required>
+          <div class="col-md-8">
+            <input name="admin_email" class="form-control" data-ng-model="wizard.admin_mail_address" data-ng-attr-placeholder="{{'Email address' | translate}}" data-ng-pattern="email_regexp" type="text" data-ng-class="{'is-invalid': validated4 && (wizardFormStep4.admin_email.$error.required || wizardFormStep4.admin_email.$error.pattern)}" required>
             <div class="text-danger" data-ng-show="wizardFormStep4.admin_email.$error.pattern">
               <span data-translate>Invalid email address</span>
             </div>
@@ -91,8 +91,8 @@
             <span data-translate>Password</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'is-invalid': validated4 && wizardFormStep4.password.$error.required || wizardFormStep4.password.$error.passwordStrength}">
-            <input name="password" class="form-control" data-ng-model="wizard.admin_password" type="password" data-ng-attr-placeholder="{{'Password' | translate}}" autocomplete="off" data-password-strength-validator required />
+          <div class="col-md-8">
+            <input name="password" class="form-control" data-ng-model="wizard.admin_password" type="password" data-ng-attr-placeholder="{{'Password' | translate}}" autocomplete="off" data-password-strength-validator data-ng-class="{'is-invalid': validated4 && (wizardFormStep4.password.$error.required || (wizardFormStep4.password.$error.passwordStrength))}" required />
             <password-meter data-ng-show="passwordStrengthScore" value="passwordStrengthScore"></password-meter>
             <div class="text-danger" data-ng-show="!wizardFormStep4.password.$error.required && wizardFormStep4.password.$error.passwordStrengthValidator">
               <p data-translate>The chosen password is too weak. A valid password should be at least 10 characters long and contain a variety of characters including at least a lowercase character, a capital character, a number and a special character.</p>
@@ -104,9 +104,9 @@
             <span data-translate>Confirm password</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'is-invalid': validated4 &&  wizardFormStep4.checkpassword.$error.required || wizard.admin_password !== admin_check_password}">
-            <input name="checkpassword" class="form-control" data-ng-model="admin_check_password" type="password" data-ng-attr-placeholder="{{'Password' | translate}}" autocomplete="off" required />
-            <div class="text-danger" data-ng-show="!wizardFormStep4.password.$error.passwordStrengthValidator && wizard.admin_password && (wizard.admin_password !== admin_check_password)" data-translate>The two passwords do not match</div>
+          <div class="col-md-8">
+            <input name="checkpassword" class="form-control" data-ng-model="admin_check_password" type="password" data-ng-attr-placeholder="{{'Password' | translate}}" autocomplete="off" data-ng-class="{'is-invalid': validated4 && (!wizardFormStep4.password.$error.passwordStrengthValidator && wizard.admin_password && (wizard.admin_password !== admin_check_password))}" required />
+            <div class="text-danger" data-ng-show="validated4  && (!wizardFormStep4.password.$error.passwordStrengthValidator && wizard.admin_password && (wizard.admin_password !== admin_check_password))" data-translate>The two passwords do not match</div>
           </div>
         </div>
       </div>
@@ -146,8 +146,8 @@
             <span data-translate>Email address</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'is-invalid': validated5 && wizardFormStep5.receiver_email.$error.required || wizardFormStep5.receiver_email.$error.pattern}">
-            <input name="receiver_email" class="form-control" data-ng-model="wizard.receiver_mail_address" data-ng-pattern="email_regexp" type="text" data-ng-attr-placeholder="{{'Email address' | translate}}" required>
+          <div class="col-md-8">
+            <input name="receiver_email" class="form-control" data-ng-model="wizard.receiver_mail_address" data-ng-pattern="email_regexp" type="text" data-ng-attr-placeholder="{{'Email address' | translate}}" data-ng-class="{'is-invalid': validated5 && wizardFormStep5.receiver_email.$error.required || wizardFormStep5.receiver_email.$error.pattern}" required>
             <div class="text-danger" data-ng-show="wizardFormStep5.receiver_email.$error.pattern">
               <span data-translate>Invalid email address</span>
             </div>

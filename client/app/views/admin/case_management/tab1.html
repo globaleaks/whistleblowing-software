@@ -13,7 +13,7 @@
           <span data-translate>Label</span>
           <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
         </label>
-        <div data-ng-class="{'has-danger': newSubmissionStatus.submissions_status.$error.required}">
+        <div data-ng-class="{'is-invalid': newSubmissionStatus.submissions_status.$error.required}">
           <input name="name" class="form-control" data-ng-model="new_submissions_status.label" type="text" required />
         </div>
       </div>

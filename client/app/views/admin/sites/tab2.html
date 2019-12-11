@@ -21,8 +21,8 @@
           <span data-translate>Label</span>
           <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
         </label>
-        <div data-ng-class="{'has-danger': newTenantForm.label.$error.required}">
-          <input name="label" class="form-control" data-ng-model="newTenant.label" maxlength="120" type="text" required />
+        <div>
+          <input name="label" class="form-control" data-ng-model="newTenant.label" maxlength="120" type="text" data-ng-class="{'is-invalid': newTenantForm.label.$error.required}" required />
         </div>
       </div>
       <div class="form-group">

@@ -1,4 +1,4 @@
-<div class="form-group" data-ng-class="{'has-danger': adminNetForm.hostname.$error.pattern}">
+<div class="form-group">
   <form name="adminNetForm" novalidate>
     <p class="input-group">
       <span class="input-group-prepend"><span class="input-group-text" data-translate>Hostname</span></span>
@@ -7,7 +7,7 @@
              type="text"
              data-ng-model="hostname"
              data-ng-pattern="hostname_regexp"
-	     data-ng-class="{'has-danger': adminNetForm.hostname.$error.pattern}" />
+	     data-ng-class="{'is-invalid': adminNetForm.hostname.$error.pattern}" />
       <span class="input-group-append">
         <button class="btn btn-success" data-ng-click="Utils.setHostname(hostname)" data-ng-disabled="hostname === resources.node.hostname" data-translate>Save</button>
       </span>

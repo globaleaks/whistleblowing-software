@@ -7,9 +7,7 @@
 <div class="modal-body">
   <span data-translate>Name</span>
   <div class="form-group">
-    <div data-ng-class="{'has-danger': duplocateQuestionnaire.name.$error.required}">
-      <input name="name" class="form-control" data-ng-model="duplicate_questionnaire.name" type="text" required />
-    </div>
+    <input name="name" class="form-control" data-ng-model="duplicate_questionnaire.name" type="text" data-ng-class="{'is-invalid': duplocateQuestionnaire.name.$error.required}" required />
   </div>
 </div>
 <div class="modal-footer">

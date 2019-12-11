@@ -29,9 +29,9 @@
     <div data-translate>Validation of email address change in progress.</div>
     <div data-translate>Please check your inbox for further instructions.</div>
   </div>
-  <div data-ng-if="editingEmailAddress" class="nested" data-ng-class="{'has-danger': preferencesForm.$error.pattern}">
+  <div data-ng-if="editingEmailAddress" class="nested">
     <label>Change in:</label>
-    <input class="form-control" name="mail_address" data-ng-model="preferences.mail_address" data-ng-pattern="email_regexp" type="email" />
+    <input class="form-control" name="mail_address" data-ng-model="preferences.mail_address" data-ng-pattern="email_regexp" type="email" data-ng-class="{'is-invalid': preferencesForm.$error.pattern}" />
   </div>
   <div class="form-group" data-ng-show="editingEmail">
     <label data-translate>Email address</label>
@@ -86,9 +86,9 @@
       </div>
     </div>
     <div data-ng-hide="preferences.pgp_key_fingerprint !== ''">
-      <div class="position-relative" data-ng-class="{'has-danger': pgpkeyForm.$invalid}">
+      <div class="position-relative">
         <label data-translate>Set up email encryption by providing a PGP public key</label>
-        <textarea data-pgp-pubkey-validator="canBeEmpty" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="preferences.pgp_key_public"></textarea>
+        <textarea data-pgp-pubkey-validator="canBeEmpty" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="preferences.pgp_key_public" data-ng-class="{'is-invalid': pgpkeyForm.$invalid}"></textarea>
         <label file-input="loadPublicKeyFile(file)" file-input-label="Select" class="btn btn-sm btn-secondary textarea-btn"></label>
       </div>
     </div>
