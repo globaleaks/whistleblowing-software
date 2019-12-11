@@ -1535,7 +1535,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
      "phonenumber_regexp": /^[+]?[ \d]+$/,
      "hostname_regexp": /^[a-z0-9-.]+$|^$/,
      "https_regexp": /^https:\/\/([a-z0-9-]+)\.(.*)$|^$/,
-     "uuid_regexp": /^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$/
+     "uuid_regexp": /^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$/,
+     "domain_list_regexp": /^((([a-z0-9.]+,)*[a-z0-9.]+)|)$/
 }).
   factory("GLTranslate", ["$translate", "$location","tmhDynamicLocale",
   function($translate, $location, tmhDynamicLocale) {

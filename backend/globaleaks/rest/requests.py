@@ -32,6 +32,7 @@ landing_page_regexp = r'^(homepage|submissionpage)$'
 context_selector_type_regexp = r'^(list|cards|search)$'
 tip_operation_regexp = r'^(postpone|set)$'
 short_text_regexp = r'^.{1,255}$'
+domain_list_regexp = r'^((([a-z0-9\.]+,)*[a-z0-9\.]+)|)$'
 
 token_regexp = r'([a-zA-Z0-9]{42})'
 token_type_regexp = r'^submission$'
@@ -232,7 +233,7 @@ AdminNodeDesc = {
     'can_delete_submission': bool,
     'can_grant_permissions': bool,
     'allow_indexing': bool,
-    'frame_ancestors': str,
+    'frame_ancestors': domain_list_regexp,
     'disable_privacy_badge': bool,
     'enable_receipt_hint': bool,
     'enable_ricochet_panel': bool,

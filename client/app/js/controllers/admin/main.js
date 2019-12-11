@@ -6,6 +6,7 @@ controller("AdminCtrl",
   $scope.hostname_regexp = CONSTANTS.hostname_regexp;
   $scope.onionservice_regexp = CONSTANTS.onionservice_regexp;
   $scope.https_regexp = CONSTANTS.https_regexp;
+  $scope.domain_list_regexp = CONSTANTS.domain_list_regexp;
 
   $scope.update_service = UpdateService;
 
