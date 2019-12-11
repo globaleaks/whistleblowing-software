@@ -64,7 +64,7 @@ if [ "$GLTEST" = "py2_test" ] || [ "$GLTEST" = "py3_test" ]; then
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR -k9 -D
   sleep 3
 
-  ./node_modules/protractor/bin/webdriver-manager update --versions.chrome 77.0.3865.75
+  ./node_modules/protractor/bin/webdriver-manager update --versions.chrome 78.0.3904.70
 
   ./node_modules/protractor/bin/protractor tests/protractor-coverage.config.js
 
