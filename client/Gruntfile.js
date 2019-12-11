@@ -47,6 +47,7 @@ module.exports = function(grunt) {
     copy: {
       sources: {
         files: [
+          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/angular/angular-csp.css"], expand: true, flatten: true },
           { dest: "app/lib/css/", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-csp.css"], expand: true, flatten: true },
           { dest: "app/lib/css/", cwd: ".", src: ["node_modules/bootstrap/dist/css/bootstrap.min.css"], expand: true, flatten: true },
           { dest: "app/lib/css/", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css"], expand: true, flatten: true },
@@ -67,7 +68,6 @@ module.exports = function(grunt) {
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-sanitize/angular-sanitize.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-translate/dist/angular-translate.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/d3/dist/d3.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/file-saver/FileSaver.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/qrcode-generator/qrcode.js"], expand: true, flatten: true },
