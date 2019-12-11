@@ -47,7 +47,6 @@ module.exports = function(grunt) {
     copy: {
       sources: {
         files: [
-          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/angular/angular-csp.css"], expand: true, flatten: true },
           { dest: "app/lib/css/", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-csp.css"], expand: true, flatten: true },
           { dest: "app/lib/css/", cwd: ".", src: ["node_modules/bootstrap/dist/css/bootstrap.min.css"], expand: true, flatten: true },
           { dest: "app/lib/css/", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css"], expand: true, flatten: true },
@@ -62,6 +61,7 @@ module.exports = function(grunt) {
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-dynamic-locale/tmhDynamicLocale.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-file-saver/dist/angular-file-saver.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-filter/dist/angular-filter.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-qrcode/angular-qrcode.js"], expand: true, flatten: true},
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-resource/angular-resource.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-route/angular-route.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-sanitize/angular-sanitize.min.js"], expand: true, flatten: true },
@@ -70,9 +70,9 @@ module.exports = function(grunt) {
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/d3/dist/d3.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/file-saver/FileSaver.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/qrcode-generator/qrcode.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/stacktrace-js/dist/stacktrace.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/topojson/dist/topojson.min.js"], expand: true, flatten: true},
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/qrious/dist/qrious.min.js"], expand: true, flatten: true},
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-tpls.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ui-select/dist/select.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/locale", cwd: ".", src: ["node_modules/angular-i18n/angular-locale*"], expand: true, flatten: true },

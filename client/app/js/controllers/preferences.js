@@ -19,6 +19,7 @@ GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "
     $scope.editingName = false;
     $scope.editingEmail = false;
     $scope.showEncryptionKey = false;
+    $scope.qrcode_string = '';
 
     $scope.toggleNameEditing = function () {
       $scope.editingName = !$scope.editingName;
@@ -54,12 +55,7 @@ GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "
           "args": {}
         }}).then(function(data){
           $scope.two_factor_secret = data.data;
-          var qr = new QRious({
-            value: "otpauth://totp/GlobaLeaks?secret=" + $scope.two_factor_secret,
-            size: "240"
-          });
-
-          $scope.two_factor_qrcode = qr.toDataURL();
+          $scope.qrcode_string = "otpauth://totp/GlobaLeaks?secret=" + $scope.two_factor_secret
 
           $scope.Utils.openConfirmableModalDialog("views/partials/enable_2fa_modal.html", {}, $scope).then(function (result) {
             return $http({method: "PUT", url: "user/operations", data:{
