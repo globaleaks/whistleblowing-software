@@ -5,7 +5,8 @@
 # axel_89, 2015
 # axel_89, 2015
 # Mihai, 2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018
+# Cristina Lupu <cristina@cji.ro>, 2019
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2019
 # Inpresentia I., 2016
 # Inpresentia I., 2016
 # Matei Imola <imolam11@gmail.com>, 2016
@@ -17,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-24 23:48+0000\n"
+"PO-Revision-Date: 2019-12-12 11:48+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +31,7 @@ msgid "Log in"
 msgstr "Autentificare"
 
 msgid "Administration interface"
-msgstr "Interfața de Adminstrare"
+msgstr "Interfața de adminstrare"
 
 msgid "Main configuration"
 msgstr "Configurație principală"
@@ -48,7 +49,7 @@ msgid "Advanced settings"
 msgstr "Setări avansate"
 
 msgid "Questionnaire configuration"
-msgstr "configurare chestionar"
+msgstr "Configurare chestionar"
 
 msgid "Question templates"
 msgstr "șabloane de întrebare"
@@ -57,7 +58,7 @@ msgid "Questionnaires"
 msgstr "Chestionare"
 
 msgid "Add new questionnaire"
-msgstr "Adăuga chestionar nou"
+msgstr "Adăuga un chestionar nou"
 
 msgid "Home"
 msgstr "Pagina de start"
@@ -75,7 +76,7 @@ msgid "Notification templates"
 msgstr "șabloane de notificare"
 
 msgid "Missing data"
-msgstr "Date lipsa"
+msgstr "Date lipsă"
 
 msgid "no stats available for this hour."
 msgstr "Nu există statistici disponibile pentru această oră."
@@ -90,7 +91,7 @@ msgid "Preferences"
 msgstr "Preferințe"
 
 msgid "User preferences"
-msgstr ""
+msgstr "Preferințele utilizatorului"
 
 msgid "Notification settings"
 msgstr "setările de notificare"
@@ -99,16 +100,16 @@ msgid "file unavailable"
 msgstr "Document indisponibil"
 
 msgid "Recipient interface"
-msgstr "interfaţă destinatar"
+msgstr "Interfaţă destinatar"
 
 msgid "Creation date"
-msgstr "Data crearii"
+msgstr "Data creării"
 
 msgid "Expiration date"
 msgstr "Data expirării"
 
 msgid "Last Access"
-msgstr "Ultima Viziă"
+msgstr "Ultima accesare"
 
 msgid "Files"
 msgstr "Fişiere"
@@ -123,10 +124,10 @@ msgid "Select this recipient."
 msgstr "Selectați acest destinatar."
 
 msgid "Unselect this recipient."
-msgstr "Deselectezi acestui destinatar."
+msgstr "Deselectați acest destinatar."
 
 msgid "This recipient cannot be deselected."
-msgstr "Acest destinatar nu poate fi deselectată."
+msgstr "Acest destinatar nu poate fi deselectat."
 
 msgid "Details"
 msgstr "Detalii"
@@ -141,13 +142,13 @@ msgid "CREDIT CARD"
 msgstr "CARD DE CREDIT"
 
 msgid "YOUR NAME"
-msgstr "Numele"
+msgstr "Numele dumneavoastră"
 
 msgid "Label the submission"
 msgstr "Marcheaza livrarea"
 
 msgid "Postpone the expiration date"
-msgstr "Amâna data de expirare"
+msgstr "Amână data de expirare"
 
 msgid "Select all"
 msgstr "Selectează tot "
@@ -162,37 +163,37 @@ msgid "Context"
 msgstr "Context"
 
 msgid "Submission date"
-msgstr "Data depunerii"
+msgstr "Data trimiterii"
 
 msgid "Private messages"
 msgstr "Mesaje private"
 
 msgid "Preview"
-msgstr "previzualizare"
+msgstr "Previzualizare"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "Avertizorul de integritate a citit deja ultimul update. "
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "Avertizorul de integritate nu a citit încă ultimul update. "
 
 msgid "Move up"
-msgstr "deplasa în sus"
+msgstr "Urcă"
 
 msgid "Move down"
-msgstr "coborî"
+msgstr "Coboară"
 
 msgid "Move left"
 msgstr "Mută ​​la stânga"
 
 msgid "Move right"
-msgstr "Misca-te la dreapta"
+msgstr "Mută la dreapta"
 
 msgid "Import"
-msgstr "Import"
+msgstr "Importă"
 
 msgid "Export"
-msgstr "Export"
+msgstr "Exportă"
 
 msgid "Save all"
 msgstr "Salvează tot"
@@ -203,18 +204,18 @@ msgstr "Controlul Accesului"
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
 "ensuring confidentiality."
-msgstr "Conexiunea utilizată pentru a trimite această trimitere a fost securizat cu HTTPS asigurarea confidențialității."
+msgstr "Conexiunea utilizată pentru a trimite acest mesaj a fost securizată prin HTTPS pentru a asigura confidențialitatea."
 
 msgid ""
 "The connection used to send this submission has been secured with Tor "
 "ensuring confidentiality and anonymity."
-msgstr "Conexiunea folosita pentru trimiterea acestei livrari a fost securizata prin Tor asigurand astfel confidentialitate si anonimitate."
+msgstr "Conexiunea utilizată pentru a trimite acest mesaj a fost securizată prin Tor pentru a asigura confidențialitatea și anonimitatea."
 
 msgid "vertical"
-msgstr "vertical"
+msgstr "Vertical"
 
 msgid "horizontal"
-msgstr "orizontală"
+msgstr "Orizontal"
 
 msgid "Number"
 msgstr "Număr"
@@ -223,22 +224,22 @@ msgid "Email"
 msgstr "Email"
 
 msgid "Date"
-msgstr "Data"
+msgstr "Dată"
 
 msgid "Regular expression validator"
 msgstr "validator expresie regulată"
 
 msgid "Minimum number of input characters"
-msgstr "Numărul minim de caractere de intrare"
+msgstr "Numărul minim de caractere"
 
 msgid "Maximum number of input characters"
-msgstr "Numărul maxim de caractere de intrare"
+msgstr "Numărul maxim de caractere"
 
 msgid "Earliest selectable date"
-msgstr "Cea mai veche dată de selecție"
+msgstr "Cea mai veche dată ce poate fi selectată"
 
 msgid "Latest selectable date"
-msgstr "Cea mai recentă dată selectabile"
+msgstr "Cea mai recentă dată ce poate fi selectată"
 
 msgid "0 = auto"
 msgstr "0 = auto"
@@ -253,7 +254,7 @@ msgid "False"
 msgstr "Fals"
 
 msgid "Yes"
-msgstr "da"
+msgstr "Da"
 
 msgid "No"
 msgstr "Nu"
@@ -262,40 +263,40 @@ msgid "Attachment"
 msgstr "Atașament"
 
 msgid "Attachments"
-msgstr "atașamente"
+msgstr "Atașamente"
 
 msgid "Change your password"
 msgstr "Schimbați-vă parola"
 
 msgid "List of submissions"
-msgstr "Lista de depuneri"
+msgstr "Lista trimiterilor"
 
 msgid "List of access requests to whistleblowers' identities"
-msgstr "Lista cererilor de acces la identitatea informatorilor"
+msgstr "Lista cererilor de acces la identitatea avertizorilor de integritate"
 
 msgid "User"
 msgstr "Utilizator"
 
 msgid "Motivation"
-msgstr "Motivatia"
+msgstr "Motivul"
 
 msgid "Status"
-msgstr "stare"
+msgstr "Status"
 
 msgid "Request motivation"
-msgstr "motivație cerere"
+msgstr "Motivul solicitării"
 
 msgid "Reply motivation"
 msgstr "Răspundeți motivație"
 
 msgid "Request status"
-msgstr "Stare solicitare"
+msgstr "Statusul solicitării"
 
 msgid "Custodian"
 msgstr "Custode"
 
 msgid "Custodian of the identities"
-msgstr "Custode identităților"
+msgstr "Custodele identităților"
 
 msgid "Identity"
 msgstr "Identitate"
@@ -304,16 +305,16 @@ msgid "Available"
 msgstr "Disponibil"
 
 msgid "Not available"
-msgstr "Nu e disponibil"
+msgstr "Indisponibil"
 
 msgid "Access requested"
-msgstr "accesul solicitat"
+msgstr "Accesul a fost solicitat"
 
 msgid "Request access to the whistleblower's identity"
-msgstr "Solicitați acces la identitatea informatorului "
+msgstr "Solicitați accesul pentru a vizualiza identitatea avertizorului de integritate.  "
 
 msgid "Please write a motivation"
-msgstr "Vă rugăm să scrie o motivație"
+msgstr "Vă rugăm să motivați"
 
 msgid "Reply to the request"
 msgstr "Răspundeți cererii"
@@ -322,25 +323,25 @@ msgid "Authorized"
 msgstr "Autorizat"
 
 msgid "Denied"
-msgstr "negată"
+msgstr "Neautorizat"
 
 msgid "Waiting for authorization"
-msgstr "Se așteaptă autorizare"
+msgstr "Se așteaptă autorizarea"
 
 msgid "New request"
-msgstr "solicitare nouă"
+msgstr "Solicitare nouă"
 
 msgid "Authorize"
-msgstr "Autoriza"
+msgstr "Autorizează"
 
 msgid "Deny"
-msgstr "tăgădui"
+msgstr "Refuză"
 
 msgid "Deny access to the whistleblower's identity"
-msgstr "Interzice accesul la identitatea informatorului "
+msgstr "Interzice accesul la identitatea avertizorului de integritate "
 
 msgid "Authorize access to the whistleblower's identity"
-msgstr "Permite accesul la identitatea informatorului"
+msgstr "Permite accesul la identitatea avertizorului de integritate."
 
 msgid "Templates"
 msgstr "Template-uri"
@@ -358,31 +359,31 @@ msgid "in characters"
 msgstr "cu caractere"
 
 msgid "in megabytes"
-msgstr "în megaocteți"
+msgstr "în megabiți"
 
 msgid "in percentage"
 msgstr "în procente"
 
 msgid "HTTPS settings"
-msgstr "setările HTTPS"
+msgstr "Setările HTTPS"
 
 msgid "URL redirects"
-msgstr ""
+msgstr "Redirecționări URL"
 
 msgid "Anomaly detection thresholds"
-msgstr "praguri de detectare a anomaliilor"
+msgstr "Praguri de detectare a anomaliilor"
 
 msgid "High risk"
 msgstr "Risc ridicat"
 
 msgid "Medium risk"
-msgstr "risc mediu de"
+msgstr "Risc mediu"
 
 msgid "Low risk"
-msgstr "Risc scazut"
+msgstr "Risc scăzut"
 
 msgid "Available disk space"
-msgstr "spațiu disponibil pe disc"
+msgstr "Spațiu disponibil pe disc"
 
 msgid "Last update"
 msgstr "Ultima actualizare"
@@ -395,7 +396,7 @@ msgid ""
 msgstr "Această interfață permite configurarea template-uri de e-mail folosite pentru a notifica custozi."
 
 msgid "Disable notifications to administrators"
-msgstr "Dezactivați notificările administratorilor"
+msgstr "Dezactivați notificările către administratori"
 
 msgid "Disable notifications to custodians"
 msgstr "Dezactivați notificările către custozi"
@@ -422,16 +423,16 @@ msgid "Password strength:"
 msgstr "Puterea parolei:"
 
 msgid "Weak"
-msgstr "Slab"
+msgstr "Slabă"
 
 msgid "Acceptable"
-msgstr "Acceptabil"
+msgstr "Acceptabilă"
 
 msgid "Strong"
-msgstr "Puternic"
+msgstr "Puternică"
 
 msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Textul afișat pe partea de sus a interfeței pentru selectarea contexte"
+msgstr "Textul afișat în partea de sus a interfeței pentru selectarea contextelor"
 
 msgid "Show small context cards on submission interface"
 msgstr "Afișați cărți de context mici pe interfata de depunere"
@@ -440,66 +441,66 @@ msgid "Type of context selector:"
 msgstr "Tipul de selectare a contextului:"
 
 msgid "Type to search…"
-msgstr ""
+msgstr "Tastează pentru a căuta"
 
 msgid "Silence email notifications"
-msgstr "Notificare e-mail silentioasa"
+msgstr "Pune pe silent notificările e-mail-urilor"
 
 msgid "Turn on email notifications"
-msgstr "Activeaza notificarile pentru email"
+msgstr "Activează notificarile pentru email-uri"
 
 msgid "Enter an email address for the administrator"
-msgstr "Introdu o adresa de email pentru administrator"
+msgstr "Introdu o adresă de email pentru administrator"
 
 msgid "Enter a password for the administrator"
-msgstr "Introdu o parola pentru administrator"
+msgstr "Introdu o parolă pentru administrator"
 
 msgid "Test configuration"
-msgstr "Testeaza configuratia"
+msgstr "Testează configurația"
 
 msgid "Failed logins"
 msgstr "Autentificări eşuate"
 
 msgid "Successful logins"
-msgstr "Logare Reușită"
+msgstr "Logare reușită"
 
 msgid "Started submissions"
-msgstr "depuneri începute"
+msgstr "Depuneri începute"
 
 msgid "Completed submissions"
-msgstr "depuneri finalizate"
+msgstr "Depuneri finalizate"
 
 msgid "Failed submissions"
-msgstr "Trimitere esuata"
+msgstr "Depuneri eșuate"
 
 msgid "Input validation"
-msgstr "Validare de intrare"
+msgstr "Validarea input-ului"
 
 msgid "Email address"
-msgstr "Adresa de email"
+msgstr "Adresă de email"
 
 msgid "Custom"
-msgstr "Personalizat"
+msgstr "Personalizare"
 
 msgid "None"
 msgstr "Nici unul"
 
 msgid "Regular expression"
-msgstr "Expresie uzuala"
+msgstr "Expresie uzuală"
 
 msgid "Activate"
-msgstr "Activeaza"
+msgstr "Activează"
 
 msgid "Disactivate"
-msgstr ""
+msgstr "Dezactivează"
 
 msgid "Search"
-msgstr "Cauta"
+msgstr "Caută"
 
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr "Acest text personalizat nu mai este afisat pe platforma. Textul original a fost modificat sau sters."
+msgstr "Acest text personalizat nu mai este afișat pe platformă. Textul original a fost modificat sau sters."
 
 msgid ""
 "Unless the whistleblower checks the submission by this time, their access to"
@@ -2453,10 +2454,10 @@ msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Data de expirare cea mai apropiată este {EarliestExpirationDate}."
 
 msgid "Please remember to check them before they are deleted."
-msgstr "Vă rog să nu uitați să le verificați înainte de a fi șterse"
+msgstr "Nu uitați să le verificați înainte de a fi șterse"
 
 msgid "Some submissions will expire soon"
-msgstr "Unele conținuturi vor expira în curând"
+msgstr "Unele depuneri vor expira în curând."
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
@@ -2472,13 +2473,13 @@ msgid ""
 msgstr ""
 
 msgid "New submission"
-msgstr "depunere nouă"
+msgstr "Depunere nouă"
 
 msgid "Role: {Role}"
-msgstr ""
+msgstr "Rol: {Role}"
 
 msgid "Username: {Username}"
-msgstr ""
+msgstr "Utilizator: {Username}"
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "Parolă: {Password}"
