@@ -43,7 +43,6 @@ class FileHandler(BaseHandler):
                 x = yield get_file(1, name)
 
             self.request.setHeader(b'Content-Type', appfiles[name])
-            x = yield get_file(file_tid, name)
             x = base64.b64decode(x)
             returnValue(x)
         else:
