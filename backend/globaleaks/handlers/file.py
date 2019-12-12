@@ -38,9 +38,9 @@ class FileHandler(BaseHandler):
     @inlineCallbacks
     def get(self, name):
         if name in appfiles:
-            file_tid = self.request.tid
-            if self.state.tenant_cache[self.request.tid]['mode'] != 'default' and name in ['css', 'script']:
-                file_tid = 1
+            x = yield get_file(self.request.tid, name)
+            if not x and self.state.tenant_cache[self.request.tid]['mode'] != 'default':
+                x = yield get_file(1, name)
 
             self.request.setHeader(b'Content-Type', appfiles[name])
             x = yield get_file(file_tid, name)
