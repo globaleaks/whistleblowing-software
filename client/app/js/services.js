@@ -955,10 +955,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         };
       },
 
-      showLoginForm: function () {
-        return $location.path() === "/submission";
-      },
-
       showUserStatusBox: function() {
         return $rootScope.public.node.wizard_done && angular.isDefined($rootScope.Authentication.session);
       },
