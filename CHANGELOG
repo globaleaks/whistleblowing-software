@@ -1,3 +1,6 @@
+Changes in version 3.11.53 - 2019-12-12
+    Fix defect regression on customization provisioning introducted in 3.11.53
+
 Changes in version 3.11.52 - 2019-12-12
     Apply minor UI improvements
 
