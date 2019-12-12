@@ -63,7 +63,9 @@
       <div data-ng-if="!embedded" data-ng-include="'views/partials/header.html'"></div>
       <div id="MessagesConsoleBox" data-ng-include="'views/partials/messageconsole.html'"></div>
       <div id="ContentBox" class="row">
-        <div data-ng-if="sidebar" class="col-md-3" data-ng-include="sidebar"></div>
+        <div data-ng-if="sidebar" class="col-md-3">
+	  <ul id="Sidebar" class="nav flex-column" data-ng-include="sidebar"></ul>
+	</div>
         <div data-ng-class="{'col-md-9': sidebar, 'col-md-12': !sidebar}" data-ng-view=""></div>
       </div>
     </div>
