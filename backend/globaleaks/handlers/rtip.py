@@ -99,7 +99,7 @@ def serialize_comment(session, comment):
                          .filter(models.User.id == comment.author_id).one_or_none()
 
         if _author is not None:
-            author = _author.name
+            author = _author.public_name
 
     return {
         'id': comment.id,
@@ -119,7 +119,7 @@ def serialize_message(session, message):
     if message.type == 'whistleblower':
         author = 'Whistleblower'
     else:
-        author = receiver_involved.name
+        author = receiver_involved.public_name
 
     return {
         'id': message.id,

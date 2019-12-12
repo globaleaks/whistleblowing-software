@@ -15,6 +15,17 @@
     </span>
     <input data-ng-if="editingName" class="form-control" name="name" data-ng-model="preferences.name" type="text" required />
   </div>
+  <div id="PublicName"><label><span data-translate>Public name</span>:</label>
+    <span data-ng-if="!editingPublicName">
+      <span>{{preferences.public_name }}</span>
+      <button class="btn btn-sm btn-secondary"
+              data-ng-show="!editingPublicName"
+              data-ng-click="togglePublicNameEditing(); $event.stopPropagation();">
+        <span data-translate>Edit</span>
+      </button>
+    </span>
+    <input data-ng-if="editingPublicName" class="form-control" name="public_name" data-ng-model="preferences.public_name" type="text" required />
+  </div>
   <div id="EmailAddress"><label><span data-translate>Email address</span>:</label>
     <div>
       <span>{{preferences.mail_address }}</span>

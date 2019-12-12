@@ -46,7 +46,7 @@ from globaleaks.db.migrations.update_48 import Field_v_47, FieldOption_v_47
 from globaleaks.db.migrations.update_49 import InternalTip_v_48
 from globaleaks.db.migrations.update_50 import SubmissionStatus_v_49, SubmissionSubStatus_v_49, User_v_49
 from globaleaks.db.migrations.update_51 import Field_v_50, InternalFile_v_50, User_v_50
-from globaleaks.db.migrations.update_52 import InternalTip_v_51, SubmissionStatus_v_51
+from globaleaks.db.migrations.update_52 import InternalTip_v_51, SubmissionStatus_v_51, User_v_51
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
@@ -101,7 +101,7 @@ migration_mapping = OrderedDict([
     ('Step', [Step_v_27, 0, 0, 0, Step_v_29, 0, Step_v_38, 0, 0, 0, 0, 0, 0, 0, 0, Step_v_44, 0, 0, 0, 0, 0, models._Step, 0, 0, 0, 0, 0, 0, 0]),
     ('StepField', [StepField_v_27, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
     ('Tenant', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Tenant, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('User', [User_v_24, User_v_30, 0, 0, 0, 0, 0, User_v_31, User_v_32, User_v_38, 0, 0, 0, 0, 0, User_v_40, 0, User_v_42, 0, User_v_44, 0, User_v_45, User_v_49, 0, 0, 0, User_v_50, models._User, 0]),
+    ('User', [User_v_24, User_v_30, 0, 0, 0, 0, 0, User_v_31, User_v_32, User_v_38, 0, 0, 0, 0, 0, User_v_40, 0, User_v_42, 0, User_v_44, 0, User_v_45, User_v_49, 0, 0, 0, User_v_50, User_v_51, models._User]),
     ('UserImg', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._UserImg, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('WhistleblowerFile', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, WhistleblowerFile_v_38, 0, 0, 0, WhistleblowerFile_v_40, 0, WhistleblowerFile_v_44, 0, 0, 0, WhistleblowerFile_v_45, models._WhistleblowerFile, 0, 0, 0, 0, 0, 0]),
     ('WhistleblowerTip', [WhistleblowerTip_v_32, 0, 0, 0, 0, 0, 0, 0, 0, WhistleblowerTip_v_34, 0, WhistleblowerTip_v_38, 0, 0, 0, -1, -1, -1, WhistleblowerTip_v_42, WhistleblowerTip_v_44, 0, models._WhistleblowerTip, 0, 0, 0, 0, 0, 0, 0])

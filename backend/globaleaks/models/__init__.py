@@ -1219,6 +1219,8 @@ class _User(Model):
     name = Column(UnicodeText, default='', nullable=False)
     description = Column(JSON, default=dict, nullable=False)
 
+    public_name = Column(UnicodeText, default='', nullable=False)
+
     # roles: 'admin', 'receiver', 'custodian'
     role = Column(UnicodeText, default='receiver', nullable=False)
     state = Column(UnicodeText, default='enabled', nullable=False)
@@ -1260,7 +1262,8 @@ class _User(Model):
     binary_keys = ['crypto_prv_key', 'crypto_pub_key', 'crypto_rec_key', 'crypto_bkp_key', 'two_factor_secret']
 
     unicode_keys = ['username', 'role', 'state',
-                    'language', 'mail_address', 'name',
+                    'language', 'mail_address',
+                    'name', 'public_name',
                     'language', 'change_email_address',
                     'salt', 'recipient_configuration',
                     'two_factor_secret']

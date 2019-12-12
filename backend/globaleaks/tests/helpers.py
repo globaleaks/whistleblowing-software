@@ -497,7 +497,7 @@ class TestGL(unittest.TestCase):
         new_u = dict(MockDict().dummyUser)
         new_u['role'] = role
         new_u['username'] = username
-        new_u['name'] = new_u['mail_address'] = "%s@%s.xxx" % (username, username)
+        new_u['name'] = new_u['public_name'] = new_u['mail_address'] = "%s@%s.xxx" % (username, username)
         new_u['description'] = u''
         new_u['password'] = VALID_PASSWORD1
         new_u['state'] = u'enabled'
@@ -1103,7 +1103,6 @@ class MockDict:
             'enable_private_labels': False,
             'enable_ricochet_panel': False,
             'ricochet_address': u'',
-            'do_not_expose_users_names': False,
             'timezone': 0,
             'default_language': u'en',
             'default_questionnaire': u'default',

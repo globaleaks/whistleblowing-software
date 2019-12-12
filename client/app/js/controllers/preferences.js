@@ -15,12 +15,17 @@ GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "
 
     $scope.email_regexp = CONSTANTS.email_regexp;
     $scope.editingName = false;
+    $scope.editingPublicName = false;
     $scope.editingEmail = false;
     $scope.showEncryptionKey = false;
     $scope.qrcode_string = "";
 
     $scope.toggleNameEditing = function () {
       $scope.editingName = !$scope.editingName;
+    };
+
+    $scope.togglePublicNameEditing = function() {
+      $scope.editingPublicName = !$scope.editingPublicName;
     };
 
     $scope.toggleEmailAddressEditing = function() {

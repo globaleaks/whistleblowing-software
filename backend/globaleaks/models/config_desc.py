@@ -113,7 +113,6 @@ ConfigDescriptor = {
 
     'enable_ricochet_panel': Bool(default=False),
     'ricochet_address': Unicode(default=''),
-    'do_not_expose_users_names': Bool(default=False),
 
     'counter_submissions': Int(default=0),
 
@@ -215,7 +214,6 @@ ConfigFilters = {
         'enable_private_labels',
         'enable_ricochet_panel',
         'ricochet_address',
-        'do_not_expose_users_names',
         'enable_signup',
         'mode',
         'signup_tos1_enable',

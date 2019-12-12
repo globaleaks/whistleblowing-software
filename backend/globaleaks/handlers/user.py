@@ -63,6 +63,7 @@ def user_serialize_user(session, user, language):
         'last_login': datetime_to_ISO8601(user.last_login),
         'name': user.name,
         'description': user.description,
+        'public_name': user.public_name,
         'mail_address': user.mail_address,
         'change_email_address': user.change_email_address,
         'language': user.language,
@@ -131,6 +132,7 @@ def db_user_update_user(session, tid, user_session, request):
 
     user.language = request.get('language', State.tenant_cache[tid].default_language)
     user.name = request['name']
+    user.public_name = request['public_name'] if request['public_name'] else request['name']
 
     if request['password']:
         if user.password_change_needed:
