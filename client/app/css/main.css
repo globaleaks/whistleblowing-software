@@ -240,10 +240,7 @@ table {
   margin: 0.2rem;
 }
 
-.keyinput, .recoverykeyinput {
-  display: inline;
-  font-family: monospace;
-  font-weight: bold;
+.receiptinput, .recoverykeyinput {
   text-align: center;
 }
 
