@@ -136,7 +136,7 @@ ConfigDescriptor = {
     'show_contexts_in_alphabetical_order': Bool(default=True),
 
     'password_change_period': Int(default=90),  # Days
-    'wbtip_timetolive': Int(default=90),  # Days
+    'wbtip_timetolive': Int(default=365),  # Days
 
     'threshold_free_disk_megabytes_high': Int(default=200),
     'threshold_free_disk_megabytes_low': Int(default=1000),
