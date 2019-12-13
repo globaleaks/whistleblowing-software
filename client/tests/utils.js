@@ -101,6 +101,7 @@ exports.waitForFile = function (filename, timeout) {
 exports.login_whistleblower = async function(receipt) {
   await browser.get("/#/");
   await element(by.model("formatted_receipt")).sendKeys(receipt);
+  await element(by.id("ReceiptButton")).click();
 };
 
 exports.login_admin = async function(username, password, url, firstlogin) {
