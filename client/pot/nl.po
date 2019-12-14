@@ -19,13 +19,13 @@
 # Just ATranslater <transifex@weinand.nl>, 2017
 # kwadronaut <kwadronaut@autistici.org>, 2017
 # Marcel Oomens <mail@marceloomens.com>, 2015-2017
-# Meteor 0id, 2019
+# Meteor0id, 2019
 # Midgard, 2015
 # Mieke van Heesewijk <mieke@netdem.nl>, 2013
 # Mieke van Heesewijk <mieke@netdem.nl>, 2013
 # M M <wouter.moraal92@gmail.com>, 2015
 # Nathan Follens, 2016-2017
-# Meteor 0id, 2019
+# Meteor0id, 2019
 # Niels ten Oever <niels@digitaldissidents.org>, 2013
 # Niels ten Oever <niels@digitaldissidents.org>, 2013
 # Paco Mens <mens@freepressunlimited.org>, 2019

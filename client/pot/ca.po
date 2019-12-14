@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-12-03 08:14+0000\n"
+"PO-Revision-Date: 2019-12-13 14:18+0000\n"
 "Last-Translator: Joan Bitlloch <joanbit@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -621,7 +621,7 @@ msgid "Closed"
 msgstr "Tancat"
 
 msgid "Placeholder"
-msgstr ""
+msgstr "Propietari del lloc"
 
 msgid "Print"
 msgstr "Imprimeix"
@@ -704,7 +704,7 @@ msgid "Proceed"
 msgstr "Procedir"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr ""
+msgstr "Abans de continuar, si-us-plau activa l'autenticació de dues passes"
 
 msgid "Disable submissions"
 msgstr "Deshabilita els enviaments"
@@ -733,7 +733,7 @@ msgid "Description"
 msgstr "Descripció"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr "No mostrar els noms d'usuari"
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "Permet que altres webs incloguin la plataforma a l'interior d'Iframes"
@@ -764,7 +764,7 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Ajustar aquesta configuració només si sap el que està fent."
 
 msgid "Require two factor authentication"
-msgstr ""
+msgstr "Requereix autenticació de dues passes"
 
 msgid "Password change interval"
 msgstr "Periodicitat de canvi de contrasenya"
@@ -827,7 +827,7 @@ msgid "Enable simplified login"
 msgstr "Permet l'inici de sessió simplificat"
 
 msgid "Enable HSTS preload"
-msgstr ""
+msgstr "Activa la pre-càrrega HSTS"
 
 msgid "Logging level"
 msgstr "Nivell de registre"
@@ -836,7 +836,7 @@ msgid "Log accesses of internal users"
 msgstr "Registre d'accés dels usuaris interns"
 
 msgid "Enable custodian user role"
-msgstr ""
+msgstr "Activa el rol d'usuari del custodi"
 
 msgid "Enable scoring system"
 msgstr "Activa el sistema de puntuació"
@@ -857,7 +857,7 @@ msgid "Save"
 msgstr "Desa"
 
 msgid "Reset submissions"
-msgstr ""
+msgstr "Restablir enviaments"
 
 msgid "To"
 msgstr "A"
@@ -1037,7 +1037,7 @@ msgid "Let recipients upload files to whistleblowers"
 msgstr "Permet als receptors carregar arxius per als informadors"
 
 msgid "Scoring system options"
-msgstr ""
+msgstr "Opcions del sistema de puntuació"
 
 msgid "Threshold"
 msgstr "Llindar"
@@ -1052,13 +1052,13 @@ msgid "High"
 msgstr "Alt"
 
 msgid "Customize the message shown in the receipt page"
-msgstr ""
+msgstr "Personalitza el missatge mostrat a la pàgina de confirmació de la recepció"
 
 msgid "Low"
 msgstr "Baix"
 
 msgid "Assign the receipt only to submissions reaching score:"
-msgstr ""
+msgstr "Assigna el rebut només als enviaments que arriben a la puntuació:"
 
 msgid "Software version:"
 msgstr "Versió del programari:"
@@ -1103,7 +1103,7 @@ msgid "Test the configuration"
 msgstr "Proveu la configuració"
 
 msgid "Reset SMTP configuration"
-msgstr ""
+msgstr "Restableix la configuració de SMTP"
 
 msgid "Template"
 msgstr "Plantilla"
@@ -1133,10 +1133,10 @@ msgid "Example:"
 msgstr "Exemple:"
 
 msgid "Configuration in progress"
-msgstr ""
+msgstr "Configuració en curs"
 
 msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
+msgstr "La plataforma serà accessible mitjançant HTTPS a la següent adreça:"
 
 msgid "Hostname"
 msgstr "Domini"
@@ -1313,7 +1313,7 @@ msgid "Terms of service"
 msgstr "Condicions del servei"
 
 msgid "Date range"
-msgstr ""
+msgstr "Interval de dates"
 
 msgid "Map"
 msgstr "Mapa"
@@ -1361,13 +1361,13 @@ msgid "Checkbox label"
 msgstr "Etiqueta de la casella de verificació"
 
 msgid "Add multimedia content"
-msgstr ""
+msgstr "Afegir contingut multimèdia"
 
 msgid "Image"
-msgstr ""
+msgstr "Imatge"
 
 msgid "Audio"
-msgstr ""
+msgstr "Àudio"
 
 msgid "Video"
 msgstr "Vídeo"
@@ -1385,10 +1385,10 @@ msgid "Text shown upon confirmation"
 msgstr "Text que es mostra com a confirmació"
 
 msgid "Trigger conditions"
-msgstr ""
+msgstr "Condicions detonants"
 
 msgid "Sufficient"
-msgstr ""
+msgstr "Suficient"
 
 msgid "Options"
 msgstr "Opcions"
@@ -1430,7 +1430,7 @@ msgid "Root domain used for secondary sites"
 msgstr "Domini arrel utilitzat per a llocs secundaris"
 
 msgid "Use the first site for administrative purposes only"
-msgstr ""
+msgstr "Utilitzeu el primer web només per a fins administratius"
 
 msgid "Allow users to sign up"
 msgstr "Permetre als usuaris registrar-se"
@@ -1451,7 +1451,7 @@ msgid "Configure"
 msgstr "Configura"
 
 msgid "Subdomain"
-msgstr ""
+msgstr "Subdomini"
 
 msgid "The default password is:"
 msgstr "La contrasenya d'usuari per defecte és:"
@@ -1463,7 +1463,7 @@ msgid "Reset password"
 msgstr "Restablir contrasenya "
 
 msgid "Disable two factor authentication"
-msgstr ""
+msgstr "Desactiva l'autenticació de dues passes"
 
 msgid "Force password change"
 msgstr "Força un canvi de contrasenya"
@@ -1534,7 +1534,7 @@ msgid "Forgot password?"
 msgstr "Has oblidat la contrasenya?"
 
 msgid "Enter the two factor authentication code"
-msgstr ""
+msgstr "Introduïu el codi d’autenticació de dues passes"
 
 msgid "Authentication failed"
 msgstr "Autentificació fallida"
@@ -1546,7 +1546,7 @@ msgid "Site:"
 msgstr "Lloc web:"
 
 msgid "Have you already filed a submission? Enter your receipt."
-msgstr ""
+msgstr "Ja heu fet algun enviament? Introduïu el vostre codi de rebut."
 
 msgid "The receipt is either invalid or the submission has expired."
 msgstr "El rebut no és vàlid o l'enviament ha caducat."
@@ -1564,7 +1564,7 @@ msgid "Now type your password, then click 'Log in':"
 msgstr "Ara escriu la teva contrasenya, després clica \"Inicia sessió\":"
 
 msgid "Text shown after the user has selected the option."
-msgstr ""
+msgstr "Text que es mostra després que l’usuari hagi seleccionat l’opció."
 
 msgid "Confirm"
 msgstr "Confirma extensió"
@@ -1585,16 +1585,16 @@ msgid "Please note that all the associated data will be permanently lost."
 msgstr "Recordeu que totes les dades associades es perden definitivament."
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
+msgstr "Aquesta és una plataforma de demostració, no la utilitzeu per a enviaments reals."
 
 msgid "Attention!"
 msgstr "Atenció!"
 
 msgid "Install an authenticator app on your phone"
-msgstr ""
+msgstr "Instal·leu una aplicació d'autenticació al vostre telèfon"
 
 msgid "Scan the QR code with the app"
-msgstr ""
+msgstr "Escanegeu el codi QR amb l'aplicació de mòbil"
 
 msgid "Enable two factor authentication"
 msgstr "Activa l'autenticació de dues passes"
@@ -1603,13 +1603,13 @@ msgid "Close"
 msgstr "Tanca"
 
 msgid "Your encryption recovery key is:"
-msgstr ""
+msgstr "La vostra clau de recuperació de xifrat és:"
 
 msgid ""
 "Please annotate and store this key in a safe place. It will be necessary if "
 "you lose your personal password to recover the access to your account with "
 "no data loss."
-msgstr ""
+msgstr "Anoteu i guardeu aquesta clau en un lloc segur. Serà necessari si perdeu la vostra contrasenya personal per recuperar l’accés al vostre compte sense pèrdues de dades."
 
 msgid "Welcome!"
 msgstr "Welcome!"
@@ -1694,10 +1694,10 @@ msgid "Show"
 msgstr "Mostra"
 
 msgid "Set up email encryption by providing a PGP public key"
-msgstr ""
+msgstr "Configura el xifrat de correu electrònic proporcionant una clau pública PGP"
 
 msgid "Get the encryption recovery key"
-msgstr ""
+msgstr "Obtenir la clau de recuperació de xifrat"
 
 msgid "Current password"
 msgstr "Contrassenya actual"
@@ -1722,7 +1722,7 @@ msgid "Enter a name for the copy"
 msgstr "Introduïu un nom per a la còpia"
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "Seleccioneu un fitxer o arrossegueu-lo aquí."
 
 msgid "Uploading files…"
 msgstr "Carregant fitxers..."
@@ -1743,19 +1743,19 @@ msgid "Size:"
 msgstr "Mida:"
 
 msgid "Enable the Ricochet panel"
-msgstr ""
+msgstr "Activa el tauler de Ricochet"
 
 msgid "Address"
 msgstr "Adreça"
 
 msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
+msgstr "Xateja amb nosaltres de manera anònima mitjançant l’aplicació Ricochet"
 
 msgid "To chat with us use the following Ricochet address:"
-msgstr ""
+msgstr "Per xatejar amb nosaltres, utilitza la següent adreça de Ricochet:"
 
 msgid "Download Ricochet at:"
-msgstr ""
+msgstr "Descarregueu Ricochet a:"
 
 msgid "The connection is not secure."
 msgstr "La connexió no és segura"
@@ -1905,7 +1905,7 @@ msgid "These files have been attached to your submission by the recipients."
 msgstr "Aquests arxius s'han adjuntat al seu enviament per el receptor"
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "La clau de recuperació proporcionada no és vàlida."
 
 msgid "The provided reset token is invalid or expired."
 msgstr "El token de restabliment proporcionat no és vàlid o està caducat."
@@ -1916,11 +1916,11 @@ msgid ""
 msgstr "Introduïu el nom d'usuari o la vostra adreça electrònica del vostre compte per sol·licitar la restauració de la contrasenya."
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "Introduïu la vostra adreça electrònica per sol·licitar la restauració de la contrasenya."
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr ""
+msgstr "Introduïu la clau de recuperació de xifratge per completar el procediment de restabliment de contrasenya"
 
 msgid "Password reset requested."
 msgstr "S'ha sol·licitat la restauració de la contrasenya."
@@ -1945,11 +1945,11 @@ msgid "Your whistleblowing platform is almost ready!"
 msgstr "¡Su plataforma para informantes casi está lista!"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "Comproveu la vostra safata d'entrada per activar-la."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "Si no s’activa en 24 hores, la plataforma s’eliminarà automàticament."
 
 msgid "Sign up"
 msgstr "Registrar‐se"
@@ -1958,10 +1958,10 @@ msgid "Domain"
 msgstr "Domini"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "Confirmació"
 
 msgid "Invalid confirmation"
-msgstr ""
+msgstr "Confirmació no vàlida"
 
 msgid "Other"
 msgstr "Altres"
@@ -1979,7 +1979,7 @@ msgid "The answer is too short."
 msgstr "La respuesta es demasiado corta."
 
 msgid "The specified input is not valid."
-msgstr ""
+msgstr "La informació que has introduït no és vàlida."
 
 msgid "Submissions disabled"
 msgstr "Enviaments deshabilitats"
@@ -1993,7 +1993,7 @@ msgid "Thank you!"
 msgstr "Gràcies!"
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "Intentarem tornar amb tu al més aviat possible."
 
 msgid "Remember your receipt for this submission."
 msgstr "Recorda el teu codi per a aquesta comunicació."
@@ -2013,7 +2013,7 @@ msgid "Recipients selected:"
 msgstr "Destinataris seleccionats:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr ""
+msgstr "Has arribat al límit de nombre màxim de destinataris permesos."
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -2218,7 +2218,7 @@ msgid "Registration data:"
 msgstr "Dades de registre:"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "Lloc web: {Url}"
 
 msgid "Name: {Name}"
 msgstr "Nom: {Name}"
@@ -2252,7 +2252,7 @@ msgid ""
 msgstr "Aquest és un correu electrònic per avisar-te d'un nou comentari d'un enviament anterior."
 
 msgid "The submission can be accessed at:"
-msgstr ""
+msgstr "Es pot accedir al lliurament a:"
 
 msgid "New comment"
 msgstr "Nou commentari"
@@ -2263,7 +2263,7 @@ msgid ""
 msgstr "Aquest és un correu electrònic per notificar-li que s'ha fet una sol·licitud per canviar la vostra adreça de correu electrònic a {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
-msgstr ""
+msgstr "Feu clic al següent enllaç per validar aquest canvi:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2274,7 +2274,7 @@ msgid "Email change request"
 msgstr "Petició de canvi d'adreça de correu"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "De: {Author}"
 
 msgid "Date: {EventTime}"
 msgstr "Data: {EventTime}"
@@ -2289,7 +2289,7 @@ msgid "Label: {TipLabel}"
 msgstr "Etiqueta: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
+msgstr "Estat: {TipStatus}"
 
 msgid "Context: {ContextName}"
 msgstr "Context: {ContextName}"
@@ -2353,7 +2353,7 @@ msgid ""
 msgstr "Amb aquest missatge de correu electrònic et volem notificar que el destinatari ha demanat accedir a la identitat de l'informador de l'entrega {TipNum}."
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "Pots accedir a la petició a:"
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Nova petició d'accés a la identitat de l'informador"
@@ -2376,7 +2376,7 @@ msgstr "Nous missatge"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr ""
+msgstr "Heu rebut aquest correu electrònic perquè s'ha sol·licitat un restabliment de la contrasenya per al compte:  {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
@@ -2384,7 +2384,7 @@ msgid ""
 msgstr "Si no heu fet aquesta sol·licitud, podeu ignorar i suprimir aquest correu electrònic de manera segura."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr ""
+msgstr "Podeu confirmar la vostra sol·licitud fent clic a l'enllaç següent:"
 
 msgid "Password reset instructions"
 msgstr "Instruccions de restabliment de la contrasenya"
