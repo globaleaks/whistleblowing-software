@@ -11,7 +11,7 @@ import sys
 from optparse import OptionParser
 
 from globaleaks import __version__
-from globaleaks.orm import make_db_uri, set_db_uri
+from globaleaks.orm import make_db_uri, set_db_uri, enable_orm_debug
 from globaleaks.utils.singleton import Singleton
 
 this_directory = os.path.dirname(__file__)
@@ -222,7 +222,8 @@ class SettingsClass(object, metaclass=Singleton):
         if self.cmdline_options.devel_mode:
             self.set_devel_mode()
 
-        self.orm_debug = self.cmdline_options.orm_debug
+        if self.cmdline_options.orm_debug:
+            enable_orm_debug()
 
         if self.cmdline_options.working_path:
             self.working_path = self.cmdline_options.working_path

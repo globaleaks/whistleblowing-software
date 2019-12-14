@@ -2,19 +2,23 @@
 import platform
 import random
 import time
+import warnings
 
 from sqlalchemy import create_engine, event
-from sqlalchemy.exc import OperationalError
+from sqlalchemy.exc import OperationalError, SAWarning
 from sqlalchemy.orm import sessionmaker
 
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
 
-
-__DB_URI = 'sqlite:'
-__THREAD_POOL = None
+_DEBUG = False
+_DB_URI = 'sqlite:'
+_THREAD_POOL = None
 
 TRANSACTION_RETRIES = 20
+
+
+warnings.filterwarnings('ignore', '.', SAWarning)
 
 
 def make_db_uri(db_file):
@@ -36,20 +40,19 @@ def make_db_uri(db_file):
 
 
 def set_db_uri(db_uri):
-    global __DB_URI
-    __DB_URI = db_uri
+    global _DB_URI
+    _DB_URI = db_uri
 
 
 def get_db_uri():
-    global __DB_URI
-    return __DB_URI
+    return _DB_URI
 
 
 def get_engine(db_uri=None, foreign_keys=True):
     if db_uri is None:
         db_uri = get_db_uri()
 
-    engine = create_engine(db_uri, connect_args={'timeout': 30})
+    engine = create_engine(db_uri, connect_args={'timeout': 30}, echo=_DEBUG)
 
     @event.listens_for(engine, "connect")
     def do_connect(conn, connection_record):
@@ -67,14 +70,18 @@ def get_session_from_dbpath(db_path=None, foreign_keys=True):
     return get_session(make_db_uri(db_path), foreign_keys)
 
 
+def enable_orm_debug():
+    global _DEBUG
+    _DEBUG = True
+
+
 def set_thread_pool(thread_pool):
-    global __THREAD_POOL
-    __THREAD_POOL = thread_pool
+    global _THREAD_POOL
+    _THREAD_POOL = thread_pool
 
 
 def get_thread_pool():
-    global __THREAD_POOL
-    return __THREAD_POOL
+    return _THREAD_POOL
 
 
 class transact(object):
