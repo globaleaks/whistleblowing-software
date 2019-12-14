@@ -989,8 +989,6 @@ class _ReceiverTip(Model):
     crypto_tip_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
 
     binary_keys = ['crypto_tip_prv_key']
-    unicode_keys = ['label']
-    bool_keys = ['enable_notifications']
 
     @declared_attr
     def __table_args__(self):
