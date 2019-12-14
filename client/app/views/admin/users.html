@@ -13,7 +13,7 @@
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}"
               popover-placement="right">*</span>
         <div>
-          <select name="role" class="form-control" data-ng-model="new_user.role" data-ng-class="{'is-invalid': newUser.role.$error.required}" required>
+          <select name="role" class="form-control" data-ng-model="new_user.role" required>
             <option value="admin" data-translate>Admin</option>
             <option value="receiver" data-translate>Recipient</option>
             <option data-ng-if="resources.node.enable_custodian" value="custodian" data-translate>Custodian</option>
@@ -25,7 +25,7 @@
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}"
               popover-placement="right">*</span>
         <div>
-          <input class="form-control" name="username" data-ng-model="new_user.username" type="text" data-ng-class="{'is-invalid': newUser.username.$error.required}" required/>
+          <input class="form-control" name="username" data-ng-model="new_user.username" type="text" required/>
         </div>
       </div>
       <div class="form-group">
@@ -33,7 +33,7 @@
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}"
               popover-placement="right">*</span>
         <div>
-          <input class="form-control" name="name" data-ng-model="new_user.name" type="text" data-ng-class="{'is-invalid': newUser.name.$error.required}" required/>
+          <input class="form-control" name="name" data-ng-model="new_user.name" type="text" required/>
         </div>
       </div>
       <div class="form-group">
@@ -41,7 +41,7 @@
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}"
               popover-placement="right">*</span>
         <div>
-          <input class="form-control" name="email" data-ng-model="new_user.email" data-ng-pattern="email_regexp" type="email" data-ng-class="{'is-invalid': newUser.email.$error}" required/>
+          <input class="form-control" name="email" data-ng-model="new_user.email" data-ng-pattern="email_regexp" type="email" data-ng-class="{'is-invalid': newUser.email.$error.pattern}" required/>
         </div>
         <div class="text-danger" data-ng-show="newUser.email.$error.pattern" data-translate>Invalid email address</div>
       </div>
