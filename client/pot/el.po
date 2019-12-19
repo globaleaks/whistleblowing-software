@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-12-02 08:41+0000\n"
+"PO-Revision-Date: 2019-12-16 14:33+0000\n"
 "Last-Translator: Alexandros Melidis <almel01@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -271,7 +271,7 @@ msgid "List of submissions"
 msgstr "Λίστα καταχωρήσεων"
 
 msgid "List of access requests to whistleblowers' identities"
-msgstr "Λίστα αιτημάτων πρόσβασης σε ταυτότητες πληροφοριοδοτών"
+msgstr "Λίστα αιτημάτων πρόσβασης σε ταυτότητες καταγγελόντων"
 
 msgid "User"
 msgstr "Χρήστης"
@@ -310,7 +310,7 @@ msgid "Access requested"
 msgstr "Η πρόσβαση αιτήθηκε"
 
 msgid "Request access to the whistleblower's identity"
-msgstr "Αίτημα πρόσβασης στην ταυτότητα του πληροφοριοδότη"
+msgstr "Αίτημα πρόσβασης στην ταυτότητα του προσώπου που υποβάλλει την αναφορά"
 
 msgid "Please write a motivation"
 msgstr "Παρακαλούμε γράψτε ένα κίνητρο"
@@ -337,10 +337,10 @@ msgid "Deny"
 msgstr "Απόρριψη"
 
 msgid "Deny access to the whistleblower's identity"
-msgstr "Να απορριφθεί η πρόσβαση στην ταυτότητα του πληροφοριοδότη"
+msgstr "Να απορριφθεί η πρόσβαση στην ταυτότητα του προσώπου που υποβάλλει την αναφορά"
 
 msgid "Authorize access to the whistleblower's identity"
-msgstr "Να εγκριθεί η πρόσβαση στην ταυτότητα του πληροφοριοδότη"
+msgstr "Να εγκριθεί η πρόσβαση στην ταυτότητα του προσώπου που υποβάλλει την αναφορά"
 
 msgid "Templates"
 msgstr "Πρότυπα"
@@ -753,11 +753,11 @@ msgid "Enable the receipt hint"
 msgstr "Ενεργοποιήστε τη βοήθεια για το αποδεικτικό."
 
 msgid "Amount of days till whistleblower access expires"
-msgstr "Αριθμός ημερών μέχρι την λήξη της πρόσβασης του πληροφοριοδότη"
+msgstr "Αριθμός ημερών μέχρι την λήξη της πρόσβασης του προσώπου που υποβάλλει την αναφορά"
 
 msgid ""
 "For security reasons the whistleblower access is subject to expiration."
-msgstr "Για λόγους ασφαλείας η πρόσβαση του πληροφοριοδότη υπόκειται σε λήξη."
+msgstr "Για λόγους ασφαλείας η πρόσβαση του προσώπου που υποβάλλει την αναφορά υπόκειται σε λήξη."
 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Πειράξτε αυτή την ρύθμιση μόνο αν ξέρετε τι κάνετε."
@@ -916,7 +916,7 @@ msgid "Presentation"
 msgstr "Παρουσίαση"
 
 msgid "Question to solicit possible whistleblowers"
-msgstr "Ερώτηση για την επιδίωξη πιθανών πληροφοριοδοτών"
+msgstr "Ερώτηση για την επιδίωξη πιθανών προσώπων που υποβάλλουν αναφορές"
 
 msgid "Whistleblowing button"
 msgstr "Πλήκτρο πληροφοριοδότησης"
@@ -994,7 +994,7 @@ msgid "Show the questionnaire navigation interface"
 msgstr "Δείξτε την διεπαφή πλοήγησης στο ερωτηματολόγιο"
 
 msgid "Allow whistleblowers to select their recipients"
-msgstr "Να επιτρέπεται στους πληροφοριοδότες να επιλέγουν τους παραλήπτες τους"
+msgstr "Να επιτρέπεται στα πρόσωπα που υποβάλλουν αναφορές να επιλέγουν τους παραλήπτες τους"
 
 msgid "Select all recipients by default"
 msgstr "Προεπιλογή όλων των παραληπτών"
@@ -1021,19 +1021,19 @@ msgid "Enable comments"
 msgstr "Ενεργοποίηση σχολίων"
 
 msgid "Allow whistleblowers to write comments"
-msgstr "Να επιτρέπεται στους πληροφοριοδότες να γράφουν σχόλια"
+msgstr "Να επιτρέπεται στα πρόσωπα που υποβάλλουν αναφορές να γράφουν σχόλια"
 
 msgid "Enable private messages"
 msgstr "Ενεργοποίηση προσωπικών μηνυμάτων "
 
 msgid "Allow whistleblowers to send messages"
-msgstr "Να επιτρέπεται στους πληροφοριοδότες να στέλνουν μηνύματα"
+msgstr "Να επιτρέπεται στα πρόσωπα που υποβάλλουν αναφορές να στέλνουν μηνύματα"
 
 msgid "Let whistleblowers add attachments onto existing submissions"
-msgstr "Να επιτρέπεται στους πληροφοριοδότες να προσθέτουν συνημμένα σε υπάρχουσες καταχωρημένες αναφορές"
+msgstr "Να επιτρέπεται στα πρόσωπα που υποβάλλουν αναφορές να προσθέτουν συνημμένα σε υπάρχουσες καταχωρημένες αναφορές"
 
 msgid "Let recipients upload files to whistleblowers"
-msgstr "Να επιτρέπεται στους παραλήπτες να ανεβάζουν αρχεία για τους πληροφοριοδότες"
+msgstr "Να επιτρέπεται στους παραλήπτες να ανεβάζουν αρχεία για τα πρόσωπα που υποβάλλουν αναφορές"
 
 msgid "Scoring system options"
 msgstr "Επιλογές συστήματος βαθμολογίας - σκόρ"
@@ -1246,7 +1246,7 @@ msgstr "Κίνδυνος"
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
-msgstr "Το να επιτρέπεται στους πληροφοριοδότες να συνδέονται μέσω HTTPS διατηρεί την ιδιωτικότητά τους, αλλά όχι την ανωνυμία τους."
+msgstr "Το να επιτρέπεται στα πρόσωπα που υποβάλλουν αναφορές να συνδέονται μέσω HTTPS διατηρεί την ιδιωτικότητά τους, αλλά όχι την ανωνυμία τους."
 
 msgid "Tor Onion Service"
 msgstr "Υπηρεσία Tor Onion"
@@ -1584,7 +1584,7 @@ msgid "Please note that all the associated data will be permanently lost."
 msgstr "Παρακαλούμε σημειώστε ότι όλα τα σχετικά δεδομένα θα χαθούν οριστικά."
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Ο διάυλος αναφορών είναι δοκιμαστικός, παρακαλούμε μην την χρησιμοποιείτε για πραγματικές αναφορές."
+msgstr "Ο δίαυλος αναφορών είναι δοκιμαστικός, παρακαλούμε μην την χρησιμοποιείτε για πραγματικές αναφορές."
 
 msgid "Attention!"
 msgstr "Προσοχή!"
@@ -1792,7 +1792,7 @@ msgid "Send"
 msgstr "Αποστολή"
 
 msgid "Allow the whistleblower to write comments"
-msgstr "Να επιτρέπεται στον πληροφοριοδότη να γράφει σχόλια"
+msgstr "Να επιτρέπεται στο πρόσωπο που υποβάλλει αναφορά να γράφει σχόλια"
 
 msgid "From:"
 msgstr "Από:"
@@ -1816,7 +1816,7 @@ msgid "No files have been uploaded!"
 msgstr "Δεν ανέβηκε κανένα αρχείο!"
 
 msgid "Allow the whistleblower to add attachments to the submission"
-msgstr "Να επιτρέπεται στον πληροφοριοδότη να προσθέτει συνημμένα στην αναφορά του"
+msgstr "Να επιτρέπεται στο πρόσωπο που υποβάλλει την αναφορά να προσθέτει συνημμένα στην αναφορά του"
 
 msgid "Submission"
 msgstr "Καταχώρηση"
@@ -1837,7 +1837,7 @@ msgid "-"
 msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
-msgstr "Να επιτρέπεται στον πληροφοριοδότη να στέλνει μηνύματα"
+msgstr "Να επιτρέπεται στο πρόσωπο που υποβάλλει την αναφορά να στέλνει μηνύματα"
 
 msgid "Are you sure that you want to delete the submission?"
 msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε την αναφορά;"
@@ -1886,7 +1886,7 @@ msgid "Submission status:"
 msgstr "Κατάσταση αναφοράς:"
 
 msgid "Attached files for the whistleblower"
-msgstr "Συνημμένα αρχεία για τον πληροφοριοδότη"
+msgstr "Συνημμένα αρχεία για το πρόσωπο που υποβάλλει την αναφορά"
 
 msgid "Upload a file:"
 msgstr "Ανεβάστε ένα αρχείο:"
@@ -1926,7 +1926,7 @@ msgstr "Η επαναφορά του κωδικού πρόσβασης αιτή�
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr "Η πρόσβαση στην ταυτότητα του πληροφοριοδότη έχει αιτηθεί στο θεματοφύλακα."
+msgstr "Η πρόσβαση στην ταυτότητα του προσώπου που υποβάλλει την αναφορά έχει αιτηθεί στο θεματοφύλακα."
 
 msgid "Date of the request"
 msgstr "Ημερομηνία υποβολής της αίτησης"
@@ -2141,7 +2141,7 @@ msgid "Dear {RecipientName},"
 msgstr "Αγαπητέ/ή {RecipientName},"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr "Ο διάυλος αναφορών σας είναι πλέον προσβάσιμος στο:"
+msgstr "Ο δίαυλος αναφορών σας είναι πλέον προσβάσιμος στο:"
 
 msgid "To log in, visit:"
 msgstr "Για να συνδεθείτε, επισκεφτείτε:"
@@ -2333,10 +2333,10 @@ msgstr "Αποτυχία ανανέωσης πιστοποιητικού HTTPS"
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
-msgstr "Αυτό είναι ένα email για να σας ειδοποιήσουμε ότι ένας θεματοφύλακας ενέκρινε την πρόσβασή σας στην ταυτότητα του πληροφοριοδότη για την υποβολή {TipNum}."
+msgstr "Αυτό είναι ένα email για να σας ειδοποιήσουμε ότι ένας θεματοφύλακας ενέκρινε την πρόσβασή σας στην ταυτότητα του προσώπου που υποβάλλει την αναφορά για την υποβολή {TipNum}."
 
 msgid "Access to whistleblower's identity authorized"
-msgstr "Η πρόσβαση στην ταυτότητα του πληροφοριοδότη εγκρίθηκε"
+msgstr "Η πρόσβαση στην ταυτότητα του προσώπου που υποβάλλει την αναφορά εγκρίθηκε"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
@@ -2344,26 +2344,26 @@ msgid ""
 msgstr "Αυτό είναι ένα email για να σας ειδοποιήσουμε ότι ένας θεματοφύλακας δεν ενέκρινε την πρόσβαση στην ταυτότητα του πληροφοριοδότη για την υποβολή {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
-msgstr "Η πρόσβαση στην ταυτότητα του πληροφοριοδότη απορρίφθηκε"
+msgstr "Η πρόσβαση στην ταυτότητα του  προσώπου που υποβάλλει την αναφορά απορρίφθηκε"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the submission {TipNum}"
-msgstr "Αυτό είναι ένα email για να σας ειδοποιήσουμε ότι ο παραλήπτης έχει ζητήσει πρόσβαση στην ταυτότητα του πληροφοριοδότη της υποβολής {TipNum}"
+msgstr "Αυτό είναι ένα email για να σας ειδοποιήσουμε ότι ο παραλήπτης έχει ζητήσει πρόσβαση στην ταυτότητα του  προσώπου που υποβάλλει την αναφορά  {TipNum}"
 
 msgid "The request can be accessed at:"
 msgstr "Το αίτημα είναι προσβάσιμο εδώ:"
 
 msgid "New request of access to a whistleblower's identity"
-msgstr "Νέο αίτημα πρόσβασης στην ταυτότητα ενός πληροφοριοδότη"
+msgstr "Νέο αίτημα πρόσβασης στην ταυτότητα ενός  προσώπου που υποβάλλει την αναφορά"
 
 msgid ""
 "This is an email to notify you that the whistleblower for the submission "
 "{TipNum} has provided their identity."
-msgstr "Αυτό είναι ένα email για να σας ειδοποιήσουμε ο πληροφοριοδότης της αναφοράς {TipNum} παρείχε την ταυτότητά του."
+msgstr "Αυτό είναι ένα email για να σας ειδοποιήσουμε το  πρόσωπο που υποβάλλει την αναφορά {TipNum} παρείχε την ταυτότητά του."
 
 msgid "The whistleblower has provided their identity"
-msgstr "Ο πληροφοριοδότης παρείχε την ταυτότητά του"
+msgstr "Το  πρόσωπο που υποβάλλει την αναφορά παρείχε την ταυτότητά του"
 
 msgid ""
 "This is an email to notify you of a new message on an existing submission."
@@ -2461,7 +2461,7 @@ msgstr "Ορισμένες υποβολές θα λήξουν σύντομα"
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their submission."
-msgstr "Αυτό είναι ένα email για να σας ειδοποιήσουμε ότι ένας πληροφοριοδότης σας έχει επιλέξει ως παραλήπτη της αναφοράς του."
+msgstr "Αυτό είναι ένα email για να σας ειδοποιήσουμε ότι ένα  πρόσωπο που υποβάλλει αναφορά σας έχει επιλέξει ως παραλήπτη της αναφοράς του."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2469,7 +2469,7 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this submission should be considered to be of "
 "high importance."
-msgstr "Σας ζητούμε να δώσετε ιδιαίτερη προσοχή στις πληροφορίες και το υλικό που παρέχεται παρακάτω. Παρακαλώ έχετε υπόψιν ότι οι πληροφοριοδότες συχνά εκθέτουν τον εαυτό τους σε υψηλό προσωπικό κίνδυνο για το κοινό συμφέρον. Οπότε, το υλικό που παρέχεται στη συγκεκριμένη αναφορά θα πρέπει να θεωρηθεί ως υψηλής σημασίας."
+msgstr "Σας ζητούμε να δώσετε ιδιαίτερη προσοχή στις πληροφορίες και το υλικό που παρέχεται παρακάτω. Παρακαλώ έχετε υπόψιν ότι τα  πρόσωπα που υποβάλλουν  αναφορές συχνά εκθέτουν τον εαυτό τους σε υψηλό προσωπικό κίνδυνο για το κοινό συμφέρον. Οπότε, το υλικό που παρέχεται στη συγκεκριμένη αναφορά θα πρέπει να θεωρηθεί ως υψηλής σημασίας."
 
 msgid "New submission"
 msgstr "Νέα αναφορά"

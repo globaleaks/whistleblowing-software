@@ -233,7 +233,7 @@
   "Custom privacy panel": "Mukautettu yksityisyysasetusten hallintapaneeli",
   "Text shown when the whistleblower is not using Tor": "Ilmoitusteksti käyttäjille, jotka eivät käytä Tor-selainta",
   "Disable the privacy panel": "Ota pois käytöstä yksityisyyskulkukortti",
-  "Enable the receipt hint": "Enable the receipt hint",
+  "Enable the receipt hint": "Ota kuittivinkki käyttöön",
   "Amount of days till whistleblower access expires": "Päivien määrä, jolloin vihjeenantajan pääsy vihjeen tietoihin umpeutuu",
   "For security reasons the whistleblower access is subject to expiration.": "Turvallisuussyistä johtuen vihjeen antajan käyttöoikeudella on vanhentumispäivämäärä.",
   "Tweak this setting only if you know what you are doing.": "Säädä tätä asetusta vain jos tiedät, mitä olet tekemässä.",
