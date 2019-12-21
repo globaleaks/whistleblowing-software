@@ -38,17 +38,6 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         yield handler.put()
 
     @inlineCallbacks
-    def test_put_with_remove_pgp_flag_true(self):
-        handler = self.request(user_id=self.rcvr_id, role='receiver')
-
-        response = yield handler.get()
-
-        response['pgp_key_remove'] = True
-
-        handler = self.request(response, user_id=self.rcvr_id, role='receiver')
-        yield handler.put()
-
-    @inlineCallbacks
     def test_handler_update_key(self):
         handler = self.request(user_id=self.rcvr_id, role='receiver')
 
@@ -129,34 +118,6 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         response = yield handler.put()
 
         self.assertEqual(response['change_email_address'], email)
-
-    @inlineCallbacks
-    def test_confirm_user_pgp_disable_works(self):
-        State.tenant_cache[1]['enable_user_pgp_key_upload'] = False
-        handler = self.request(user_id=self.rcvr_id, role='receiver')
-
-        response = yield handler.get()
-
-        # check that the key is initialized at start
-
-        self.assertNotEqual(response['pgp_key_public'], u'')
-
-        self.assertEqual(response['pgp_key_fingerprint'],
-                        u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1')
-
-        self.assertEqual(response['pgp_key_public'],
-                        helpers.PGPKEYS['VALID_PGP_KEY1_PUB'])
-
-        self.assertEqual(response['pgp_key_expiration'], '1970-01-01T00:00:00Z')
-
-        # perform and test key update
-        response['pgp_key_public'] = helpers.PGPKEYS['VALID_PGP_KEY2_PUB']
-        response['pgp_key_remove'] = False
-        handler = self.request(response, user_id=self.rcvr_id, role='receiver')
-        response = yield handler.put()
-
-        # Ensure the key is unchanged
-        self.assertEqual(response['pgp_key_fingerprint'], u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1')
 
 
 class TestUserGetRecoveryKey(helpers.TestHandlerWithPopulatedDB):

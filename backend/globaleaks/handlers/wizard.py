@@ -95,7 +95,6 @@ def db_wizard(session, tid, request, client_using_tor, language):
                         'simplified_login',
                         'can_delete_submission',
                         'can_postpone_expiration',
-                        'enable_user_pgp_key_upload',
                         'anonymize_outgoing_connections',
                         'frame_ancestors',
                         'password_change_period',

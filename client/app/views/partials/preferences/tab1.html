@@ -73,7 +73,7 @@
     <div data-ng-show="showEncryptionKey">{{preferences.cc}}</div>
   </div>
 
-  <div id="EditPGP" data-ng-form="pgpkeyForm" data-ng-if="public.node.enable_user_pgp_key_upload">
+  <div id="EditPGP" data-ng-form="pgpkeyForm">
     <div data-ng-show="preferences.pgp_key_fingerprint !== ''">
       <div class="form-group">
         <label data-translate>Details of the PGP key:</label>

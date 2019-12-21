@@ -185,9 +185,7 @@ def db_user_update_user(session, tid, user_session, request):
 
         State.format_and_send_mail(session, tid, user_desc, template_vars)
 
-    # If the platform allows users to change PGP keys, process it
-    if State.tenant_cache[tid]['enable_user_pgp_key_upload'] is True:
-        parse_pgp_options(user, request)
+    parse_pgp_options(user, request)
 
     return user
 

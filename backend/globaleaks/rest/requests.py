@@ -288,7 +288,6 @@ AdminNodeDesc = {
     'ip_filter_whistleblower_enable': bool,
     'ip_filter_whistleblower': str,
     'enable_password_reset': bool,
-    'enable_user_pgp_key_upload': bool,
     'log_level': str,
     'log_accesses_of_internal_users': bool,
     'two_factor': bool,

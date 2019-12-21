@@ -1164,7 +1164,6 @@ class MockDict:
             'ip_filter_whistleblower_enable': False,
             'counter_submissions': 0,
             'enable_password_reset': True,
-            'enable_user_pgp_key_upload': False,
             'log_level': 'DEBUG',
             'log_accesses_of_internal_users': False,
             'two_factor': False,

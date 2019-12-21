@@ -171,7 +171,6 @@ ConfigDescriptor = {
     'backup_remote_password': Unicode(default=''),
 
     'enable_password_reset': Bool(default=True),
-    'enable_user_pgp_key_upload': Bool(default=True),
 
     'log_level': Unicode(default='ERROR'),
     'log_accesses_of_internal_users': Bool(default=False),
@@ -266,7 +265,6 @@ ConfigFilters = {
         'ip_filter_whistleblower',
         'ip_filter_whistleblower_enable',
         'enable_password_reset',
-        'enable_user_pgp_key_upload',
         'log_level',
         'log_accesses_of_internal_users',
         'two_factor',
