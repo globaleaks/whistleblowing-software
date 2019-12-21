@@ -125,12 +125,12 @@ def db_user_update_user(session, tid, user_session, request):
     new_password = request['password']
     old_password = request['old_password']
 
-    if new_password:
+    if request['password']:
         if user.password_change_needed:
             user.password_change_needed = False
         else:
             if not GCE.check_password(user.hash_alg,
-                                      old_password,
+                                      request['old_password'],
                                       user.salt,
                                       user.password):
                 raise errors.InvalidOldPassword
@@ -140,7 +140,7 @@ def db_user_update_user(session, tid, user_session, request):
             user.hash_alg = 'ARGON2'
             user.salt = GCE.generate_salt()
 
-        password_hash = GCE.hash_password(new_password, user.salt)
+        password_hash = GCE.hash_password(request['password'], user.salt)
 
         # Check that the new password is different form the current password
         if user.password == password_hash:
