@@ -35,13 +35,13 @@ def validate_password_reset(session, tid, reset_token, auth_code, recovery_key):
     if user.crypto_prv_key:
         try:
             recovery_key = recovery_key.replace('-', '').upper() + '===='
-            recovery_key = Base32Encoder().decode(recovery_key.encode('utf-8'))
+            recovery_key = Base32Encoder().decode(recovery_key.encode())
             prv_key = GCE.symmetric_decrypt(recovery_key, user.crypto_bkp_key)
         except:
             return {'status': 'require_recovery_key'}
 
     elif user.two_factor_enable:
-        two_factor_secret = user.two_factor_secret.decode('utf-8')
+        two_factor_secret = user.two_factor_secret.decode()
         if not pyotp.TOTP(two_factor_secret).verify(auth_code, valid_window=1):
             return {'status': 'require_two_factor_authentication'}
 

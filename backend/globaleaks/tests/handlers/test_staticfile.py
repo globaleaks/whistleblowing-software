@@ -16,7 +16,7 @@ class TestStaticFileHandler(helpers.TestHandler):
     def test_get_existent(self):
         handler = self.request(kwargs={'path': Settings.client_path})
         yield handler.get('')
-        self.assertTrue(str(handler.request.getResponseBody(), 'utf-8').startswith('<!doctype html>'))
+        self.assertTrue(handler.request.getResponseBody().startswith(b'<!doctype html>'))
 
     def test_get_unexistent(self):
         handler = self.request(kwargs={'path': Settings.client_path})

@@ -36,7 +36,7 @@ def split_certificate_chain(full_chain_pem):
 
 
 def convert_asn1_date(asn1_bytes):
-    return datetime.strptime(str(asn1_bytes, 'utf-8'), '%Y%m%d%H%M%SZ')
+    return datetime.strptime(asn1_bytes.decode(), '%Y%m%d%H%M%SZ')
 
 
 def create_v2_client(directory_url, accnt_key):

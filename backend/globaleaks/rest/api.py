@@ -221,7 +221,7 @@ class APIResourceWrapper(Resource):
         tenant_hostname = State.tenant_cache[request.tid].hostname
 
         if isinstance(hostname, bytes):
-            hostname = request.hostname.decode('utf-8')
+            hostname = request.hostname.decode()
 
         if ((hostname != State.tenant_cache[request.tid] and
              hostname.endswith('.' + State.tenant_cache[1].rootdomain) and
@@ -311,7 +311,7 @@ class APIResourceWrapper(Resource):
                                    request.port == 8083
 
         if isinstance(request.client_ip, bytes):
-            request.client_ip = request.client_ip.decode('utf-8')
+            request.client_ip = request.client_ip.decode()
 
         if 'x-tor2web' in request.headers:
             request.client_using_tor = False
@@ -355,7 +355,7 @@ class APIResourceWrapper(Resource):
             self.redirect_https(request)
             return b''
 
-        request_path = request.path.decode('utf8')
+        request_path = request.path.decode()
 
         if request_path in State.tenant_cache[request.tid]['redirects']:
             request.redirect(State.tenant_cache[request.tid]['redirects'][request_path])
@@ -374,7 +374,7 @@ class APIResourceWrapper(Resource):
             self.handle_exception(errors.ResourceNotFound(), request)
             return b''
 
-        method = request.method.lower().decode('utf-8')
+        method = request.method.lower().decode()
 
         if method == 'head':
             method = 'get'
@@ -496,7 +496,7 @@ class APIResourceWrapper(Resource):
 
     def parse_accept_language_header(self, request):
         if b'accept-language' in request.headers:
-            languages = str(request.headers[b'accept-language'], 'utf-8').split(",")
+            languages = request.headers[b'accept-language'].decode().split(",")
             locales = []
             for language in languages:
                 parts = language.strip().split(";")
@@ -526,7 +526,7 @@ class APIResourceWrapper(Resource):
                     language = l
                     break
         else:
-            language = str(language, 'utf-8')
+            language = language.decode()
 
         if language is None or language not in State.tenant_cache[request.tid].languages_enabled:
             language = State.tenant_cache[request.tid].default_language

@@ -138,9 +138,9 @@ class ExportHandler(BaseHandler):
                 file_dict['fo'] = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, file_dict['path'])
                 del file_dict['path']
 
-        export_template = Templating().format_template(tip_export['notification']['export_template'], tip_export).encode('utf-8')
+        export_template = Templating().format_template(tip_export['notification']['export_template'], tip_export).encode()
 
-        export_template = msdos_encode(str(export_template, 'utf-8')).encode('utf-8')
+        export_template = msdos_encode(export_template.decode()).encode()
 
         tip_export['files'].append({'fo': BytesIO(export_template), 'name': 'data.txt', 'forged': True})
 

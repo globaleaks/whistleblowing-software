@@ -20,7 +20,7 @@ class RobotstxtHandler(BaseHandler):
 
         hostname = State.tenant_cache[self.request.tid].hostname
         if isinstance(hostname, bytes):
-            hostname = hostname.decode('utf-8')
+            hostname = hostname.decode()
 
         data = "User-agent: *\n"
         data += "Allow: /\n"

@@ -27,7 +27,7 @@ class Config_v_45(Model):
             val = desc._type()
 
         if isinstance(desc, config_desc.Unicode) and isinstance(val, bytes):
-            val = str(val, 'utf-8')
+            val = val.decode()
 
         if not isinstance(val, desc._type):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))

@@ -19,7 +19,7 @@ class TestZipStream(helpers.TestGL):
         self.files = [
           {'name': __file__, 'fo': open(os.path.abspath(__file__), 'rb')},
           {'name': __file__, 'path': os.path.abspath(__file__)},
-          {'name': self.unicode_seq, 'fo': BytesIO(self.unicode_seq.encode('utf-8'))}
+          {'name': self.unicode_seq, 'fo': BytesIO(self.unicode_seq.encode())}
         ]
 
     def test_zipstream(self):

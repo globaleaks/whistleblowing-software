@@ -25,13 +25,13 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     # order to get our headers properly encoded (with QP).
     # You may want to avoid this if your headers are already ASCII, just so people
     # can read the raw message without getting a headache.
-    multipart['Subject'] = Header(title.encode('utf-8'), 'UTF-8').encode()
+    multipart['Subject'] = Header(title.encode(), 'UTF-8').encode()
     multipart['Date'] = utils.formatdate()
-    multipart['To'] = Header(dest_name.encode('utf-8'), 'UTF-8').encode() + " <" + dest_mail + ">"
-    multipart['From'] = Header(src_name.encode('utf-8'), 'UTF-8').encode() + " <" + src_mail + ">"
+    multipart['To'] = Header(dest_name.encode(), 'UTF-8').encode() + " <" + dest_mail + ">"
+    multipart['From'] = Header(src_name.encode(), 'UTF-8').encode() + " <" + src_mail + ">"
     multipart['X-Mailer'] = "fnord"
 
-    multipart.attach(MIMEText(mail_body.encode('utf-8'), 'plain', 'UTF-8'))
+    multipart.attach(MIMEText(mail_body.encode(), 'plain', 'UTF-8'))
 
     multipart_as_bytes = multipart.as_bytes()  # pylint: disable=no-member
 
@@ -83,8 +83,8 @@ def sendmail(tid, smtp_host, smtp_port, security, authentication, username, pass
         smtp_deferred = defer.Deferred()
 
         factory = ESMTPSenderFactory(
-            username.encode('utf-8') if authentication else None,
-            password.encode('utf-8') if authentication else None,
+            username.encode() if authentication else None,
+            password.encode() if authentication else None,
             from_address,
             to_address,
             message,
@@ -100,9 +100,9 @@ def sendmail(tid, smtp_host, smtp_port, security, authentication, username, pass
 
         if anonymize:
             socksProxy = TCP4ClientEndpoint(reactor, socks_host, socks_port, timeout=timeout)
-            endpoint = SOCKS5ClientEndpoint(smtp_host.encode('utf-8'), smtp_port, socksProxy)
+            endpoint = SOCKS5ClientEndpoint(smtp_host.encode(), smtp_port, socksProxy)
         else:
-            endpoint = TCP4ClientEndpoint(reactor, smtp_host.encode('utf-8'), smtp_port, timeout=timeout)
+            endpoint = TCP4ClientEndpoint(reactor, smtp_host.encode(), smtp_port, timeout=timeout)
 
         conn_deferred = endpoint.connect(factory)
 

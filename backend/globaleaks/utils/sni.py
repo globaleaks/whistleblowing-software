@@ -158,7 +158,7 @@ class SNIMap(object):
 
     def selectContext(self, connection):
         try:
-            common_name = connection.get_servername().decode('utf-8')
+            common_name = connection.get_servername().decode()
         except:
             common_name = ''
 

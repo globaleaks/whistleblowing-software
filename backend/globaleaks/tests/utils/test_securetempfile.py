@@ -15,4 +15,4 @@ class TestSecureTemporaryFiles(helpers.TestGL):
 
         with a.open('r') as f:
             for x in range(1000):
-                self.assertTrue(antani == str(f.read(10), 'utf-8'))
+                self.assertTrue(antani == f.read(10).decode())

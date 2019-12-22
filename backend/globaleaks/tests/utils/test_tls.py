@@ -137,7 +137,7 @@ class TestObjectValidators(TestCase):
         self.cfg['ssl_key'] = self.valid_setup['key'].encode()
         self.cfg['ssl_cert'] = self.valid_setup['cert'].encode()
 
-        self.cfg['ssl_intermediate'] = self.valid_setup['cert'].encode('utf-8')
+        self.cfg['ssl_intermediate'] = self.valid_setup['cert'].encode()
 
         ok, err = chn_v.validate(self.cfg)
         self.assertFalse(ok)

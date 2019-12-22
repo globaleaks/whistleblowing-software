@@ -265,7 +265,7 @@ def asn1_datestr_to_datetime(s):
     Returns a datetime for the passed asn1 formatted string
     """
     if isinstance(s, bytes):
-        s = s.decode('utf-8')
+        s = s.decode()
 
     return datetime.strptime(s[:14], "%Y%m%d%H%M%S")
 

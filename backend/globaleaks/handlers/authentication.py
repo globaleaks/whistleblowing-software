@@ -91,7 +91,7 @@ def login_whistleblower(session, tid, receipt):
 
     crypto_prv_key = ''
     if State.tenant_cache[tid].encryption and wbtip.crypto_prv_key:
-        user_key = GCE.derive_key(receipt.encode('utf-8'), State.tenant_cache[tid].receipt_salt)
+        user_key = GCE.derive_key(receipt.encode(), State.tenant_cache[tid].receipt_salt)
         crypto_prv_key = GCE.symmetric_decrypt(user_key, wbtip.crypto_prv_key)
 
     return Sessions.new(tid, wbtip.id, tid, 'whistleblower', False, False, crypto_prv_key)
@@ -129,7 +129,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
     crypto_prv_key = ''
     if State.tenant_cache[tid].encryption:
         if user.crypto_prv_key:
-            user_key = GCE.derive_key(password.encode('utf-8'), user.salt)
+            user_key = GCE.derive_key(password.encode(), user.salt)
             crypto_prv_key = GCE.symmetric_decrypt(user_key, user.crypto_prv_key)
         else:
             # Force the password change on which the user key will be created
@@ -138,9 +138,9 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
     if user.two_factor_enable:
         if authcode != '':
             if user.crypto_pub_key:
-                two_factor_secret = GCE.asymmetric_decrypt(crypto_prv_key, user.two_factor_secret).decode('utf-8')
+                two_factor_secret = GCE.asymmetric_decrypt(crypto_prv_key, user.two_factor_secret).decode()
             else:
-                two_factor_secret = user.two_factor_secret.decode('utf-8')
+                two_factor_secret = user.two_factor_secret.decode()
 
             # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
             if not pyotp.TOTP(two_factor_secret).verify(authcode, valid_window=1):

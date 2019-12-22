@@ -123,7 +123,7 @@ def split_pem_chain(s):
 
     try:
         if isinstance(s, bytes):
-            s = s.decode('utf-8')
+            s = s.decode()
 
         return [m.group(0) for m in gex.finditer(s)]
     except UnicodeDecodeError:

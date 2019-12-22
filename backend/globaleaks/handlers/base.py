@@ -66,7 +66,7 @@ class BaseHandler(object):
         if b"authorization" in self.request.headers:
             try:
                 auth_type, data = self.request.headers[b"authorization"].split()
-                usr, pwd = str(base64.b64decode(data), 'utf-8').split(":", 1)
+                usr, pwd = base64.b64decode(data).decode().split(":", 1)
                 if auth_type != b"Basic" or \
                         usr != self.state.tenant_cache[self.request.tid].basic_auth_username or \
                         pwd != self.state.tenant_cache[self.request.tid].basic_auth_password:
@@ -229,7 +229,7 @@ class BaseHandler(object):
     def validate_message(message, message_template):
         try:
             if isinstance(message, bytes):
-                message = message.decode('utf-8')
+                message = message.decode()
 
             jmessage = json.loads(message)
         except ValueError:
@@ -290,7 +290,7 @@ class BaseHandler(object):
         if session_id is None:
             return
 
-        session = Sessions.get(str(session_id, 'utf-8'))
+        session = Sessions.get(session_id.decode())
 
         if session is not None and session.tid == self.request.tid:
             self.request.current_user = session
@@ -331,7 +331,7 @@ class BaseHandler(object):
             return
 
         total_file_size = int(self.request.args[b'flowTotalSize'][0])
-        file_id = self.request.args[b'flowIdentifier'][0].decode('utf-8')
+        file_id = self.request.args[b'flowIdentifier'][0].decode()
 
         chunk_size = len(self.request.args[b'file'][0])
         if ((chunk_size / (1024 * 1024)) > self.state.tenant_cache[self.request.tid].maximum_filesize or
@@ -351,11 +351,11 @@ class BaseHandler(object):
 
             f.finalize_write()
 
-        mime_type, _ = mimetypes.guess_type(str(self.request.args[b'flowFilename'][0], 'utf-8'))
+        mime_type, _ = mimetypes.guess_type(self.request.args[b'flowFilename'][0].decode())
         if mime_type is None:
             mime_type = 'application/octet-stream'
 
-        filename = self.request.args[b'flowFilename'][0].decode('utf-8')
+        filename = self.request.args[b'flowFilename'][0].decode()
 
         self.uploaded_file = {
             'id': file_id,

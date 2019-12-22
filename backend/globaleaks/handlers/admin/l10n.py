@@ -53,7 +53,7 @@ class AdminL10NHandler(BaseHandler):
         yield can_edit_general_settings_or_raise(self)
         content = self.request.content.read()
         if isinstance(content, bytes):
-            content = content.decode('utf-8')
+            content = content.decode()
 
         result = yield update(self.request.tid, lang, json.loads(content))
         returnValue(result)

@@ -88,7 +88,7 @@ class ZipInfo(object):
             try:
                 return self.filename.encode('ascii'), self.flag_bits
             except UnicodeEncodeError:
-                return self.filename.encode('utf-8'), self.flag_bits | 0x800
+                return self.filename.encode(), self.flag_bits | 0x800
         else:
             return self.filename, self.flag_bits
 

@@ -20,7 +20,7 @@ def log_remove_escapes(s):
     This function removes escape sequence from log strings
     """
     if isinstance(s, str):
-        return str(codecs.encode(s, 'unicode_escape'), 'utf-8')
+        return codecs.encode(s, 'unicode_escape').decode()
     else:
         try:
             string = str(s, 'unicode_escape')

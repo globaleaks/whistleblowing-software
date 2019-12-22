@@ -25,7 +25,7 @@ crypto_backend = default_backend()
 
 def _convert_to_bytes(arg):
     if isinstance(arg, str):
-        arg = arg.encode('utf-8')
+        arg = arg.encode()
 
     return arg
 
@@ -67,7 +67,7 @@ def _hash_scrypt(password, salt):
     # old version of globalealeaks have used hexelify in place of base64;
     # the function is still used for compatibility reasons
     hash = scrypt(password, salt, _GCE.ALGORITM_CONFIGURATION['SCRYPT']['N'])
-    return binascii.hexlify(hash).decode('utf-8')
+    return binascii.hexlify(hash).decode()
 
 
 def _kdf_argon2(password, salt):
@@ -81,7 +81,7 @@ def _hash_argon2(password, salt):
     hash = argon2id.kdf(32, password, salt[0:16],
                         opslimit=_GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'],
                         memlimit=1 << _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'])
-    return base64.b64encode(hash).decode('utf-8')
+    return base64.b64encode(hash).decode()
 
 class _StreamingEncryptionObject(object):
     def __init__(self, mode, user_key, filepath):
