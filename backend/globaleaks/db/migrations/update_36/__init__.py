@@ -22,14 +22,14 @@ class MigrationScript(MigrationBase):
 
         self.session_new.query(config).filter(config.var_group == 'node', config.var_name == 'public_site').delete()
 
-        add_raw_config(self.session_new, 'node', 'hostname', domain != '', str(domain))
+        add_raw_config(self.session_new, 'node', 'hostname', domain != '', domain)
 
         o = urlparse(self.session_new.query(config).filter(config.var_name == 'hidden_service').one().value['v'])
         domain = o.hostname if not o.hostname is None else ''
 
         self.session_new.query(config).filter(config.var_group == 'node', config.var_name == 'hidden_service').delete(synchronize_session='fetch')
 
-        add_raw_config(self.session_new, 'node', 'onionservice', domain != '', str(domain))
+        add_raw_config(self.session_new, 'node', 'onionservice', domain != '', domain)
 
         add_raw_config(self.session_new, 'node', 'reachable_via_web', False, False)
         self.entries_count['Config'] += 1

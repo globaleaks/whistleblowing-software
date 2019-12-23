@@ -585,8 +585,8 @@ class TestGL(unittest.TestCase):
 
     def get_dummy_redirect(self, x=''):
         return {
-            'path1': '/path1-' + str(x),
-            'path2': '/path2-' + str(x)
+            'path1': '/path1-' + x,
+            'path2': '/path2-' + x
         }
 
     def emulate_file_upload(self, token, n):

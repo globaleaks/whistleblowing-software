@@ -71,7 +71,7 @@ class PGPContext(object):
         """
         Encrypt a file with the specified PGP key
         """
-        encrypted_obj = self.gnupg.encrypt_file(input_file, str(key_fingerprint), output=output_path)
+        encrypted_obj = self.gnupg.encrypt_file(input_file, key_fingerprint, output=output_path)
 
         if not encrypted_obj.ok:
             raise errors.InputValidationError
@@ -82,7 +82,7 @@ class PGPContext(object):
         """
         Encrypt a text message with the specified key
         """
-        encrypted_obj = self.gnupg.encrypt(plaintext, str(key_fingerprint))
+        encrypted_obj = self.gnupg.encrypt(plaintext, key_fingerprint)
 
         if not encrypted_obj.ok:
             raise errors.InputValidationError

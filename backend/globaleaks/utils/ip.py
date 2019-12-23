@@ -4,7 +4,7 @@ import ipaddress
 def parse_csv_ip_ranges_to_ip_networks(ip_str):
     """Parse a list of IP addresses and/or CIDRs"""
     try:
-        ip_str = str(ip_str)
+        ip_str = ip_str
 
         ip_network_list = []
 

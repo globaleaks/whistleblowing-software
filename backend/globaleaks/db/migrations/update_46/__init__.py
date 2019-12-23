@@ -18,7 +18,7 @@ class Config_v_45(Model):
             return
 
         self.tid = values['tid']
-        self.var_name = str(values['var_name'])
+        self.var_name = values['var_name']
         self.set_v(values['value'])
 
     def set_v(self, val):

@@ -1,5 +1,4 @@
 # -*- coding: utf-8
-import platform
 import random
 import time
 import warnings
@@ -22,22 +21,7 @@ warnings.filterwarnings('ignore', '.', SAWarning)
 
 
 def make_db_uri(db_file):
-    # ugly ugly hack to allow this to work properly on windows
-    prefix = 'sqlite://'
-
-    if platform.system() == 'Windows':
-        # Specifically, the problem is SQLite is expecting a double-backslashed path
-        # on Windows (i.e., c:\\dir\\db) despite this being a Python API. If anything
-        # this feels like a bug somewhere, but until then, this hack is required.
-        #
-        # The expected start path becomes sqlite+pysqlite:///C:\\test\\test.db
-        prefix += '/'
-        db_file = str(db_file).replace('\\', '\\\\')
-    else:
-        prefix += '//'
-
-    return prefix + db_file
-
+    return 'sqlite:////' + db_file
 
 def set_db_uri(db_uri):
     global _DB_URI

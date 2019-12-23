@@ -110,11 +110,6 @@ class BaseHandler(object):
         """
         Return True if the python class matches the given regexp.
         """
-        try:
-            value = str(value)
-        except:
-            return False
-
         return bool(re.match(type, value))
 
     @staticmethod

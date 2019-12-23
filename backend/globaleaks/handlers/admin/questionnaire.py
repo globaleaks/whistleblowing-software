@@ -5,8 +5,6 @@
 # Implementation of the code executed on handler /admin/questionnaires
 #
 
-import uuid
-
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models, QUESTIONNAIRE_EXPORT_VERSION
@@ -16,7 +14,7 @@ from globaleaks.handlers.public import serialize_questionnaire
 from globaleaks.models import fill_localized_keys
 from globaleaks.orm import transact
 from globaleaks.rest import requests
-from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
+from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, uuid4
 
 
 def db_get_questionnaire_list(session, tid, language):
@@ -128,13 +126,13 @@ def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
 
     # We need to change the primary key references and so this can be reimported
     # as a new questionnaire
-    q['id'] = str(uuid.uuid4())
+    q['id'] = uuid4()
     q['editable'] = True
 
     # Each step has a UUID that needs to be replaced
 
     def fix_field_pass_1(field):
-        new_child_id = str(uuid.uuid4())
+        new_child_id = uuid4()
         id_map[field['id']] = new_child_id
         field['id'] = new_child_id
 
@@ -147,13 +145,13 @@ def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
         for option in field['options']:
             option_id = option.get('id', None)
             if option_id is not None:
-                new_option_id = str(uuid.uuid4())
+                new_option_id = uuid4()
                 id_map[option['id']] = new_option_id
                 option['id'] = new_option_id
 
         # And now we need to keep going down the latter
         for attr in field['attrs'].values():
-            attr['id'] = str(uuid.uuid4())
+            attr['id'] = uuid4()
 
         # Recursion!
         for child in field['children']:
@@ -172,7 +170,7 @@ def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
 
     # Step1: replacement of IDs
     for step in q['steps']:
-        new_step_id = str(uuid.uuid4())
+        new_step_id = uuid4()
         id_map[step['id']] = new_step_id
         step['id'] = new_step_id
 

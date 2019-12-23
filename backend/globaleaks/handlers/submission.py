@@ -165,7 +165,7 @@ def db_save_answers_subject_to_stats(session, tid, internaltip_id, entries, stat
                 n += 1
         else:
             field_answer.is_leaf = True
-            field_answer.value = str(value)
+            field_answer.value = value
 
         ret.append(field_answer)
 
@@ -407,7 +407,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
         if crypto_is_available:
             for k in ['name', 'type', 'size']:
-                uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, str(uploaded_file[k])))
+                uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, uploaded_file[k]))
 
         new_file = models.InternalFile()
         new_file.tid = tid

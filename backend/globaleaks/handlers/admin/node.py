@@ -41,7 +41,7 @@ def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
 
 def db_update_enabled_languages(session, tid, languages_enabled, default_language):
     cur_enabled_langs = models.EnabledLanguage.list(session, tid)
-    new_enabled_langs = [str(y) for y in languages_enabled]
+    new_enabled_langs = [y for y in languages_enabled]
 
     if len(new_enabled_langs) < 1:
         raise errors.InputValidationError("No languages enabled!")

@@ -17,7 +17,7 @@ class JSON(types.TypeDecorator):
 
     def process_bind_param(self, value, dialect):
         if value is not None:
-            return str(json.dumps(value))
+            return json.dumps(value)
 
         return value
 

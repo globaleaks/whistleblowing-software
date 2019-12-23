@@ -320,7 +320,7 @@ class APIResourceWrapper(Resource):
 
         request.client_mobile = re.match(b'Mobi|Android', request.client_ua, re.IGNORECASE) is not None
 
-        request.language = str(self.detect_language(request))
+        request.language = self.detect_language(request)
         if b'multilang' in request.args:
             request.language = None
 
@@ -384,7 +384,7 @@ class APIResourceWrapper(Resource):
             return b''
 
         f = getattr(handler, method)
-        groups = [str(g) for g in match.groups()]
+        groups = [g for g in match.groups()]
 
         self.handler = handler(State, request, **args)
 

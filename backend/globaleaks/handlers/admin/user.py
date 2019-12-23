@@ -30,7 +30,7 @@ def db_create_user(session, tid, request, language):
     fill_localized_keys(request, models.User.localized_keys, language)
 
     if request['username']:
-        user = session.query(models.User).filter(models.User.username == str(request['username']),
+        user = session.query(models.User).filter(models.User.username == request['username'],
                                                  models.User.tid == tid).one_or_none()
         if user is not None:
             raise errors.InputValidationError('Username already in use')
@@ -77,7 +77,7 @@ def db_admin_update_user(session, tid, user_id, request, language):
     user = db_get_user(session, tid, user_id)
 
     if user.username != request['username']:
-        check = session.query(models.User).filter(models.User.username == str(request['username']),
+        check = session.query(models.User).filter(models.User.username == request['username'],
                                                   models.User.tid == tid).one_or_none()
         if check is not None:
             raise errors.InputValidationError('Username already in use')

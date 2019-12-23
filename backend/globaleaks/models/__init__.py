@@ -166,7 +166,7 @@ class Model(object):
 
         for k in getattr(self, 'unicode_keys'):
             if k in values and values[k] is not None:
-                setattr(self, k, str(values[k]))
+                setattr(self, k, values[k])
 
         for k in getattr(self, 'int_keys'):
             if k in values and values[k] is not None:
@@ -324,7 +324,7 @@ class _Config(Model):
             return
 
         self.tid = values['tid']
-        self.var_name = str(values['var_name'])
+        self.var_name = values['var_name']
         self.set_v(values['value'])
 
     def set_v(self, val):
@@ -363,12 +363,11 @@ class _ConfigL10N(Model):
             return
 
         self.tid = values['tid']
-        self.lang = str(values['lang'])
-        self.var_name = str(values['var_name'])
-        self.value = str(values['value'])
+        self.lang = values['lang']
+        self.var_name = values['var_name']
+        self.value = values['value']
 
     def set_v(self, value):
-        value = str(value)
         if self.value != value:
             if self.value is None:
                 self.update_date = datetime_now()
@@ -517,7 +516,7 @@ class _EnabledLanguage(Model):
             return
 
         self.tid = tid
-        self.name = str(name)
+        self.name = name
 
     @classmethod
     def list(cls, session, tid):

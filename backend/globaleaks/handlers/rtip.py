@@ -215,7 +215,7 @@ def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
 
     if itip.crypto_tip_pub_key:
         for k in ['name', 'description', 'type', 'size']:
-            uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, str(uploaded_file[k])))
+            uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, uploaded_file[k]))
 
     new_file = models.WhistleblowerFile()
 

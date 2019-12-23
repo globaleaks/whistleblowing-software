@@ -48,8 +48,8 @@ class Config_v_38(Model):
         if migrate:
             return
 
-        self.var_group = str(group)
-        self.var_name = str(name)
+        self.var_group = group
+        self.var_name = name
 
         self.set_v(value)
 
@@ -66,7 +66,7 @@ class Config_v_38(Model):
         if val is None:
             val = desc._type()
         if isinstance(desc, config_desc.Unicode) and isinstance(val, str):
-            val = str(val)
+            val = val
         if not isinstance(val, desc._type):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
 
@@ -90,13 +90,13 @@ class ConfigL10N_v_38(Model):
         if migrate:
             return
 
-        self.lang = str(lang_code)
-        self.var_group = str(group)
-        self.var_name = str(var_name)
-        self.value = str(value)
+        self.lang = lang_code
+        self.var_group = group
+        self.var_name = var_name
+        self.value = value
 
     def set_v(self, value):
-        value = str(value)
+        value = value
         if self.value != value:
             self.value = value
             self.customized = True
@@ -142,11 +142,11 @@ class EnabledLanguage_v_38(Model):
         if migrate:
             return
 
-        self.name = str(name)
+        self.name = name
 
     @classmethod
     def list(cls, session):
-        return [name for name in session.query(cls.name)]
+        return [name[0] for name in session.query(cls.name)]
 
 
 class Field_v_38(Model):
@@ -198,7 +198,7 @@ class FieldAttr_v_38(Model):
             else:
                 setattr(self, 'value', value)
         else:
-            setattr(self, 'value', str(values['value']))
+            setattr(self, 'value', values['value'])
 
 
 class FieldOption_v_38(Model):
