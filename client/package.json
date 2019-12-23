@@ -36,7 +36,7 @@
     "ui-select": "0.19.8"
   },
   "devDependencies": {
-    "eslint": "6.7.2",
+    "eslint": "6.8.0",
     "gettext-parser": "4.0.2",
     "grunt": "1.0.4",
     "grunt-angular-templates": "1.2.0",
@@ -53,10 +53,10 @@
     "gruntify-eslint": "5.0.0",
     "node-gettext": "2.0.0",
     "npm-check-updates": "4.0.1",
-    "nyc": "14.1.1",
+    "nyc": "15.0.0",
     "postcss-rtl": "1.5.0",
     "protractor": "6.0.0",
     "protractor-console-plugin": "0.1.1",
-    "superagent": "5.1.2"
+    "superagent": "5.1.3"
   }
 }
