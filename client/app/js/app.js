@@ -204,7 +204,7 @@ var GLClient = angular.module("GLClient", [
       when("/receiver/home", {
         templateUrl: "views/receiver/home.html",
         header_title: "Home",
-        sidebar: 'views/receiver/sidebar.html',
+        sidebar: "views/receiver/sidebar.html",
         resolve: {
           access: requireAuth("receiver"),
         }
@@ -212,7 +212,7 @@ var GLClient = angular.module("GLClient", [
       when("/receiver/preferences", {
         templateUrl: "views/receiver/preferences.html",
         header_title: "User preferences",
-        sidebar: 'views/receiver/sidebar.html',
+        sidebar: "views/receiver/sidebar.html",
         resolve: {
           access: requireAuth("receiver"),
         }
@@ -221,7 +221,7 @@ var GLClient = angular.module("GLClient", [
         templateUrl: "views/receiver/content.html",
         controller: "AdminCtrl",
         header_title: "Site settings",
-        sidebar: 'views/receiver/sidebar.html',
+        sidebar: "views/receiver/sidebar.html",
         resolve: {
           resources: fetchResources("acl", ["node"]),
         }
@@ -238,7 +238,7 @@ var GLClient = angular.module("GLClient", [
         templateUrl: "views/admin/home.html",
         controller: "AdminCtrl",
         header_title: "Home",
-        sidebar: 'views/admin/sidebar.html',
+        sidebar: "views/admin/sidebar.html",
         resolve: {
            access: requireAuth("admin"),
           resources: fetchResources("acl", ["manifest", "node"]),
@@ -248,7 +248,7 @@ var GLClient = angular.module("GLClient", [
         templateUrl: "views/admin/preferences.html",
         controller: "AdminCtrl",
         header_title: "Preferences",
-        sidebar: 'views/admin/sidebar.html',
+        sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
           resources: fetchResources("admin", ["node"]),
@@ -258,7 +258,7 @@ var GLClient = angular.module("GLClient", [
         templateUrl: "views/admin/content.html",
         controller: "AdminCtrl",
         header_title: "Site settings",
-        sidebar: 'views/admin/sidebar.html',
+        sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
           resources: fetchResources("acl", ["node"]),
@@ -268,7 +268,7 @@ var GLClient = angular.module("GLClient", [
         templateUrl: "views/admin/contexts.html",
         controller: "AdminCtrl",
         header_title: "Contexts",
-        sidebar: 'views/admin/sidebar.html',
+        sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
           resources: fetchResources("admin", ["contexts", "node", "questionnaires", "users"]),
@@ -278,7 +278,7 @@ var GLClient = angular.module("GLClient", [
         templateUrl: "views/admin/questionnaires.html",
         controller: "AdminCtrl",
         header_title: "Questionnaires",
-        sidebar: 'views/admin/sidebar.html',
+        sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
           resources: fetchResources("admin", ["fieldtemplates", "field_attrs", "node", "questionnaires", "users"]),
@@ -288,7 +288,7 @@ var GLClient = angular.module("GLClient", [
         templateUrl: "views/admin/users.html",
         controller: "AdminCtrl",
         header_title: "Users",
-        sidebar: 'views/admin/sidebar.html',
+        sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
           resources: fetchResources("admin", ["node", "users"]),
@@ -298,7 +298,7 @@ var GLClient = angular.module("GLClient", [
         templateUrl: "views/admin/mail.html",
         controller: "AdminCtrl",
         header_title: "Notification settings",
-        sidebar: 'views/admin/sidebar.html',
+        sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
           resources: fetchResources("admin", ["node", "notification"]),
@@ -308,7 +308,7 @@ var GLClient = angular.module("GLClient", [
         templateUrl: "views/admin/network.html",
         controller: "AdminCtrl",
         header_title: "Network settings",
-        sidebar: 'views/admin/sidebar.html',
+        sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
           resources: fetchResources("admin", ["node"]),
@@ -318,7 +318,7 @@ var GLClient = angular.module("GLClient", [
         templateUrl: "views/admin/advanced.html",
         controller: "AdminCtrl",
         header_title: "Advanced settings",
-        sidebar: 'views/admin/sidebar.html',
+        sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
           resources: fetchResources("admin", ["node", "questionnaires", "redirects"]),
@@ -328,7 +328,7 @@ var GLClient = angular.module("GLClient", [
         templateUrl: "views/admin/overview.html",
         controller: "AdminCtrl",
         header_title: "System overview",
-        sidebar: 'views/admin/sidebar.html',
+        sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
           resources: fetchResources("admin", ["node", "activities", "anomalies", "jobs_overview", "users"]),
@@ -338,7 +338,7 @@ var GLClient = angular.module("GLClient", [
         templateUrl: "views/admin/sites.html",
         controller: "AdminCtrl",
         header_title: "Sites management",
-        sidebar: 'views/admin/sidebar.html',
+        sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
           resources: fetchResources("admin", ["node", "tenants"]),
@@ -348,7 +348,7 @@ var GLClient = angular.module("GLClient", [
         templateUrl: "views/admin/case_management.html",
         controller: "AdminCtrl",
         header_title: "Case management",
-        sidebar: 'views/admin/sidebar.html',
+        sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
           resources: fetchResources("admin", ["node", "submission_statuses"]),
@@ -357,7 +357,7 @@ var GLClient = angular.module("GLClient", [
       when("/custodian/home", {
         templateUrl: "views/custodian/home.html",
         header_title: "Home",
-        sidebar: 'views/custodian/sidebar.html',
+        sidebar: "views/custodian/sidebar.html",
         resolve: {
           access: requireAuth("custodian"),
         }
@@ -365,7 +365,7 @@ var GLClient = angular.module("GLClient", [
       when("/custodian/preferences", {
         templateUrl: "views/custodian/preferences.html",
         header_title: "User preferences",
-        sidebar: 'views/custodian/sidebar.html',
+        sidebar: "views/custodian/sidebar.html",
         resolve: {
           access: requireAuth("custodian"),
         }
@@ -374,7 +374,7 @@ var GLClient = angular.module("GLClient", [
         templateUrl: "views/custodian/content.html",
         controller: "AdminCtrl",
         header_title: "Site settings",
-        sidebar: 'views/custodian/sidebar.html',
+        sidebar: "views/custodian/sidebar.html",
         resolve: {
           access: requireAuth("custodian"),
           resources: fetchResources("acl", ["node"]),
