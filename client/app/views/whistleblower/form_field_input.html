@@ -170,7 +170,7 @@
                data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : 4096"
                data-ng-model="entry['value']"
                data-ng-minlength="field.attrs.min_len.value"
-               data-ng-pattern="validator"
+               data-ng-pattern="validator.value"
                maxlength="{{maxlength}}"
                data-ng-required="entry.required_status"
                data-ng-attr-placeholder="{{field.placeholder}}"
