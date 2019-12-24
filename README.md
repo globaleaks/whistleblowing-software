@@ -43,4 +43,4 @@ To support the GlobaLeaks project you can help us with donations that will goes 
 ## License
 This software is released under the AGPLv3 license. See [LICENSE file](https://github.com/globaleaks/GlobaLeaks/blob/master/LICENSE) for more information on Additional Terms as per [7(b)](https://github.com/globaleaks/GlobaLeaks/blob/master/LICENSE#L684) and [7(c)](https://github.com/globaleaks/GlobaLeaks/blob/master/LICENSE#L713).
 
-Copyright (c) 2011-2019 - [Hermes Center for Transparency and Digital Human Rights](https://www.hermescenter.org)
+Copyright (c) 2011-2020 - [Hermes Center for Transparency and Digital Human Rights](https://www.hermescenter.org)
