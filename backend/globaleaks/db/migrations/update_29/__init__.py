@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from globaleaks.db.migrations.update import MigrationBase
+from globaleaks.db.migrations.update import MigrationBase as MigrationScript
 from globaleaks.models import Model
 from globaleaks.models.properties import *
 
@@ -77,31 +77,3 @@ class Context_v_28(Model):
     questionnaire_layout = Column(UnicodeText)
     show_receivers_in_alphabetical_order = Column(Boolean)
     presentation_order = Column(Integer)
-
-
-class MigrationScript(MigrationBase):
-    def migrate_Node(self):
-        old_node = self.session_old.query(self.model_from['Node']).one()
-        new_node = self.model_to['Node']()
-
-        for key in [c.key for c in new_node.__table__.columns]:
-            if key == 'disable_submissions':
-                new_node.disable_submissions = False
-            else:
-                setattr(new_node, key, getattr(old_node, key))
-
-        self.session_new.add(new_node)
-
-    def migrate_Context(self):
-        old_objs = self.session_old.query(self.model_from['Context'])
-        for old_obj in old_objs:
-            new_obj = self.model_to['Context']()
-            for key in [c.key for c in new_obj.__table__.columns]:
-                if key == 'show_steps_navigation_bar':
-                    new_obj.show_steps_navigation_bar = True
-                elif key == 'steps_navigation_requires_completion':
-                    new_obj.steps_navigation_requires_completion = False
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)

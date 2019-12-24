@@ -185,26 +185,12 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_file)
             self.entries_count['File'] += 1
 
-        file_path = os.path.join(Settings.files_path, 'custom_homepage.html')
-        if os.path.exists(file_path):
-            with open(file_path, 'r') as homepage_file:
-                data = homepage_file.read()
-                new_file = self.model_to['File']()
-                new_file.id = 'homepage'
-                new_file.data = base64.b64encode(data).decode()
-                self.session_new.add(new_file)
-                self.entries_count['File'] += 1
-
-            os.remove(file_path)
-
         #### Create ConfigL10N table and rows ####
         for lang in old_node.languages_enabled:
             self.session_new.add(self.model_to['EnabledLanguage'](lang))
 
         self._migrate_l10n_static_config(old_node, 'node')
         self._migrate_l10n_static_config(old_notif, 'templates')
-
-        # TODO assert that localized_keys matches exactly what is stored in the DB
 
         #### Create Config table and rows ####
 
@@ -223,11 +209,7 @@ class MigrationScript(MigrationBase):
             self.session_new.add(self.model_to['Config']('notification', var_name, old_val))
 
         # Migrate private fields
-        salt = old_node.receipt_salt
-        if isinstance(old_node.receipt_salt, bytes):
-            salt = salt.decode()
-
-        self.session_new.add(self.model_to['Config']('private', 'receipt_salt', salt))
+        self.session_new.add(self.model_to['Config']('private', 'receipt_salt', old_node.receipt_salt))
         self.session_new.add(self.model_to['Config']('private', 'smtp_password', old_notif.password))
 
         # Set old verions that will be then handled by the version update

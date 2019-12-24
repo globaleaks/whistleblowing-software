@@ -1106,7 +1106,6 @@ class MockDict:
             'can_grant_permissions': False,
             'allow_indexing': False,
             'frame_ancestors': u'',
-            'custom_homepage': False,
             'disable_submissions': False,
             'disable_privacy_badge': False,
             'enable_receipt_hint': False,

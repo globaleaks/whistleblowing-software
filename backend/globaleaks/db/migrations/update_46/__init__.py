@@ -26,12 +26,6 @@ class Config_v_45(Model):
         if val is None:
             val = desc._type()
 
-        if isinstance(desc, config_desc.Unicode) and isinstance(val, bytes):
-            val = val.decode()
-
-        if not isinstance(val, desc._type):
-            raise ValueError("Cannot assign %s with %s" % (self, type(val)))
-
         if self.value != val:
             self.value = val
 
