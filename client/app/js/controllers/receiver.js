@@ -15,7 +15,7 @@ GLClient.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$route"
   $scope.filteredTips = $scope.tips;
 
   $scope.$watch("search", function (value) {
-    if (value !== undefined) {
+    if (typeof value !== "undefined") {
       $scope.currentPage = 1;
       $scope.filteredTips = $filter("filter")($scope.tips, value);
     }

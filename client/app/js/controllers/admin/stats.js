@@ -160,7 +160,7 @@ GLClient.controller("StatisticsCtrl", ["$scope", "$filter", "StatsCollection",
     };
 
     $scope.update_week = function () {
-        if ($scope.week_delta === undefined || $scope.week_delta > 0) {
+        if (typeof $scope.week_delta === "undefined" || $scope.week_delta > 0) {
             $scope.week_delta = 0;
         }
 

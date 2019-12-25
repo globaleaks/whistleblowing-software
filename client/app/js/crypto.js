@@ -58,7 +58,7 @@ angular.module("GLCrypto", [])
             damnIE = $q.resolve(sha256(toHash));
         }
 
-        if (damnIE.then !== undefined) {
+        if (typeof damnIE.then !== "undefined") {
           damnIE.then(xxx);
         } else {
           damnIE.oncomplete = function(r) { xxx(r.target.result); };

@@ -7,7 +7,7 @@ function($scope, $location, $filter, Sites) {
   };
 
   // If already logged in, just go to the landing page.
-  if ($scope.Authentication.session !== undefined && $scope.Authentication.session.auth_landing_page) {
+  if (typeof $scope.Authentication.session !== "undefined" && $scope.Authentication.session.auth_landing_page) {
     $location.path($scope.Authentication.session.auth_landing_page);
   }
 

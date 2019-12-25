@@ -91,7 +91,7 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.hasNextStep = function() {
-    if ($scope.context === undefined) {
+    if (typeof $scope.context === "undefined") {
       return false;
     }
 
@@ -99,7 +99,7 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.hasPreviousStep = function() {
-    if ($scope.context === undefined) {
+    if (typeof $scope.context === "undefined") {
       return false;
     }
 
@@ -613,7 +613,7 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
   $scope.fieldFormVarName = fieldUtilities.fieldFormName($scope.field.id + "$" + $scope.$index);
 
   $scope.getAnswersEntries = function(entry) {
-    if (entry === undefined) {
+    if (typeof entry === "undefined") {
       return $scope.answers[$scope.field.id];
     }
 

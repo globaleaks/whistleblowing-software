@@ -18,7 +18,7 @@ angular.module("GLClient")
   $scope.newTenant = new $scope.AdminUtils.new_tenant();
 
   $scope.$watch("search", function (value) {
-    if (value !== undefined) {
+    if (typeof value !== "undefined") {
       $scope.currentPage = 1;
     }
   });

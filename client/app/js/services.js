@@ -60,8 +60,8 @@ angular.module("GLServices", ["ngResource"]).
         };
 
         self.login = function(tid, username, password, authcode, token, cb) {
-          if (authcode === undefined) {
-              authcode = "";
+          if (typeof authcode === "undefined") {
+            authcode = "";
           }
 
           self.loginInProgress = true;
@@ -186,7 +186,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     FORBIDDEN: 403,
 
     isUnauth: function () {
-      if (Authentication.session === undefined) {
+      if (typeof Authentication.session === "undefined") {
         return $q.resolve(Access.OK);
       } else {
         return $q.reject(Access.FORBIDDEN);
@@ -881,7 +881,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
       getYOrderProperty: function(elem) {
         var key = "presentation_order";
-        if (elem[key] === undefined) {
+        if (typeof elem[key] === "undefined") {
           key = "y";
         }
         return key;
@@ -913,10 +913,10 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         model.$update(
           function() {
             $rootScope.successes.push(success);
-            if (cb !== undefined) { cb(); }
+            if (typeof cb !== "undefined") { cb(); }
           },
           function() {
-            if (errcb !== undefined) {
+            if (typeof errcb !== "undefined") {
               errcb();
             }
           }
@@ -1152,7 +1152,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       },
 
       removeFile: function (submission, list, file) {
-        if (submission._submission.removed_files !== undefined) {
+        if (typeof submission._submission.removed_files !== "undefined") {
           submission._submission.removed_files.push(String(file.uniqueIdentifier));
         }
 
@@ -1255,7 +1255,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
             if (answers_obj.hasOwnProperty(key) && answers_obj[key] instanceof Array && answers_obj[key].length) {
               r = this.findField(answers_obj[key][0], field_id);
-              if (r !== undefined) {
+              if (typeof r !== "undefined") {
                 return r;
               }
             }
@@ -1285,7 +1285,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           for (i=0; i < field.triggered_by_options.length; i++) {
             var trigger = field.triggered_by_options[i];
             var answers_field = this.findField(answers, trigger.field);
-            if (answers_field === undefined) {
+            if (typeof answers_field === "undefined") {
               continue;
             }
 

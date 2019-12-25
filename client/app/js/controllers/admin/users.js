@@ -37,7 +37,7 @@ GLClient.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
         user.pgp_key_public = "";
       }
 
-      if (user.pgp_key_public !== undefined && user.pgp_key_public !== "") {
+      if (user.pgp_key_public !== "") {
         user.pgp_key_remove = false;
       }
 
@@ -90,7 +90,7 @@ controller("AdminUserAddCtrl", ["$scope",
     $scope.add_user = function() {
       var user = new $scope.AdminUtils.new_user();
 
-      user.username = $scope.new_user.username !== undefined ? $scope.new_user.username : "";
+      user.username = typeof $scope.new_user.username !== "undefined" ? $scope.new_user.username : "";
       user.role = $scope.new_user.role;
       user.name = $scope.new_user.name;
       user.mail_address = $scope.new_user.email;

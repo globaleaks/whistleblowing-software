@@ -48,7 +48,7 @@ controller("RFileUploadCtrl", ["$scope", function($scope) {
   $scope.$on("flow::fileAdded", function () {
     $scope.file_error_msgs = [];
 
-    if ($scope.field !== undefined && !$scope.field.multi_entry) {
+    if (typeof $scope.field !== "undefined" && !$scope.field.multi_entry) {
       // if the field allows to load only one file disable the button
       // as soon as a file is loaded.
       $scope.disabled = true;

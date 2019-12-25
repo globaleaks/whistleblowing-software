@@ -15,7 +15,7 @@ GLClient.controller("TipCtrl",
     $scope.showEditLabelInput = false;
 
     $scope.getAnswersEntries = function(entry) {
-      if (entry === undefined) {
+      if (typeof entry === "undefined") {
         return $scope.answers[$scope.field.id];
       }
 
@@ -74,7 +74,7 @@ GLClient.controller("TipCtrl",
     };
 
     $scope.hasMultipleEntries = function(field_answer) {
-      if (field_answer !== undefined) {
+      if (typeof field_answer !== "undefined") {
         return field_answer.length > 1;
       }
 

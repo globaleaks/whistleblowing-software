@@ -61,7 +61,7 @@ var GLClient = angular.module("GLClient", [
       return function(exception, cause) {
           var $rootScope = $injector.get("$rootScope");
 
-          if ($rootScope.exceptions_count === undefined) {
+          if (typeof $rootScope.exceptions_count === "undefined") {
             $rootScope.exceptions_count = 0;
           }
 
