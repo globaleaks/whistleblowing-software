@@ -8,7 +8,7 @@ import json
 import re
 import sys
 
-from urllib.parse import urlsplit, urlunsplit  # pylint: disable=import-error
+from urllib.parse import urlsplit # pylint: disable=import-error
 
 from twisted.internet import defer
 from twisted.internet.abstract import isIPAddress, isIPv6Address

@@ -13,7 +13,7 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.admin import file
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import db_set_config_variable
-from globaleaks.orm import transact, tw
+from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.settings import Settings
 from globaleaks.state import State

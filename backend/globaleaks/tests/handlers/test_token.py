@@ -26,7 +26,7 @@ class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):
         self.assert_default_token_values(response)
 
     def test_post_disabled_submissions(self):
-        token = self.state.tenant_cache[1]['disable_submissions'] = True
+        self.state.tenant_cache[1]['disable_submissions'] = True
 
         handler = self.request({'type': 'submission'})
 

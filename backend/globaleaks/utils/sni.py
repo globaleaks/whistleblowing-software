@@ -8,7 +8,7 @@
 
 import collections
 
-from OpenSSL.SSL import Connection, Context
+from OpenSSL.SSL import Connection
 from twisted.internet.interfaces import IOpenSSLServerConnectionCreator
 from zope.interface import implementer
 

@@ -122,8 +122,6 @@ def db_user_update_user(session, tid, user_session, request):
 
     user.language = request.get('language', State.tenant_cache[tid].default_language)
     user.name = request['name']
-    new_password = request['password']
-    old_password = request['old_password']
 
     if request['password']:
         if user.password_change_needed:

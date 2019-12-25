@@ -47,7 +47,6 @@ class TestCryptoUtils(helpers.TestGL):
        self.assertFalse(GCE.check_password('SCRYPT', password, salt, 'nohashnoparty'))
 
     def test_encrypt_and_decrypt_file(self):
-        chunk_size = 1
         prv_key, pub_key = GCE.generate_keypair()
         a = __file__
         b = os.path.join(Settings.tmp_path, 'b')

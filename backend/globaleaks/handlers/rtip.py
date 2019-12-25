@@ -376,7 +376,6 @@ def db_get_itip_comment_list(session, itip_id):
 def db_create_identityaccessrequest_notifications(session, tid, itip, rtip, iar):
     users = session.query(models.User).filter(models.User.role == 'custodian', models.User.notification == True)
     for user in users:
-        node = db_admin_serialize_node(session, tid, user.language)
         context = session.query(models.Context).filter(models.Context.id == itip.context_id, models.Context.tid == tid).one()
 
         data = {

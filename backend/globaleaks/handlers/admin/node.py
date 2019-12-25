@@ -14,7 +14,6 @@ from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.orm import tw
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
-from globaleaks.utils.crypto import GCE
 from globaleaks.utils.ip import parse_csv_ip_ranges_to_ip_networks
 from globaleaks.utils.log import log
 

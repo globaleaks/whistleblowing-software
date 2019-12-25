@@ -4,7 +4,6 @@
 import copy
 
 from sqlalchemy import or_
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers.base import BaseHandler
@@ -132,7 +131,6 @@ def db_serialize_node(session, tid, language):
     ret_dict['languages_enabled'] = models.EnabledLanguage.list(session, tid) if node_dict['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES)
     ret_dict['languages_supported'] = LANGUAGES_SUPPORTED
 
-    files = ['logo', 'favicon', 'css', 'script']
     records = session.query(models.File.id, models.File.data).filter(models.File.tid == tid, models.File.id.in_(['logo', 'favicon', 'css', 'script']))
     for x in records:
         ret_dict[x[0]] = x[1] if x[0] in ['logo', 'favicon'] else True

@@ -62,7 +62,7 @@ class TestSignupActivation(helpers.TestHandler):
 
         self._handler = signup.Signup
         handler = self.request(self.dummySignup)
-        r = yield handler.post()
+        yield handler.post()
 
         self._handler = signup.SignupActivation
         handler = self.request(self.dummySignup)

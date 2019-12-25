@@ -8,7 +8,7 @@ from sqlalchemy.sql.expression import not_
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.public import get_trigger_model_by_type, serialize_field, special_fields
+from globaleaks.handlers.public import get_trigger_model_by_type, serialize_field
 from globaleaks.models import fill_localized_keys
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests

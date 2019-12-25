@@ -15,7 +15,7 @@ from globaleaks.state import State
 from globaleaks.utils.crypto import sha256, GCE
 from globaleaks.utils.log import log
 from globaleaks.utils.utility import get_expiration, \
-    datetime_never, datetime_to_ISO8601
+    datetime_to_ISO8601
 
 
 def decrypt_tip(user_key, tip_prv_key, tip):

@@ -4,8 +4,6 @@
 import pyotp
 from random import SystemRandom
 from twisted.internet.defer import inlineCallbacks, returnValue
-from globaleaks.handlers.admin.node import db_admin_serialize_node
-from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import InternalTip, User, WhistleblowerTip
 from globaleaks.orm import transact
@@ -13,12 +11,10 @@ from globaleaks.rest import errors, requests
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
-from globaleaks.twofactor import TwoFactorTokens
 from globaleaks.utils.crypto import GCE
 from globaleaks.utils.ip import check_ip
 from globaleaks.utils.log import log
-from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import datetime_now, datetime_null, deferred_sleep
+from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 
 def random_login_delay():

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 import random
-import sys
 
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log

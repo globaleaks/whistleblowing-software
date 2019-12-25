@@ -7,7 +7,7 @@ from globaleaks.handlers.password_reset import generate_password_reset_token
 from globaleaks.handlers.rtip import db_delete_itip
 from globaleaks.handlers.user import disable_2fa
 from globaleaks.models import Config, InternalTip
-from globaleaks.models.config import ConfigFactory, db_set_config_variable
+from globaleaks.models.config import db_set_config_variable
 from globaleaks.orm import transact, tw
 from globaleaks.rest import errors
 from globaleaks.services.onion import set_onion_service_info, get_onion_service_info
@@ -19,7 +19,6 @@ def check_hostname(session, tid, input_hostname):
     Ensure the hostname does not collide across tenants or
     include an origin that it shouldn't.
     """
-    root_hostname = ConfigFactory(session, 1).get_val('hostname')
 
     forbidden_endings = ['onion', 'localhost']
 
