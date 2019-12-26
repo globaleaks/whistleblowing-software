@@ -4,7 +4,6 @@ acme==0.25.1
 chardet==3.0.4
 cffi==1.11.5
 cryptography==2.1.4
-distro==1.0.1
 idna==2.6
 psutil==5.4.2
 pyOpenSSL==17.5.0
