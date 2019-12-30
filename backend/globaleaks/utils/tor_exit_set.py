@@ -13,7 +13,7 @@ class TorExitSet(set):
     def processData(self, data):
         self.clear()
 
-        for ip in re.findall(r'ExitAddress ([^ ]*) ', data):
+        for ip in re.findall(r'ExitAddress ([^ ]*) ', data.decode()):
             self.add(ip)
 
     def update(self, agent):
