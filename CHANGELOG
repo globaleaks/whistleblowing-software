@@ -1,3 +1,9 @@
+Changes in version 3.11.57 - 2019-12-30
+    Fix issue #2756
+    Remove apparmor rule for dash previously required by gnupg
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 3.11.56 - 2019-12-25
     Fix issue #2755
 
