@@ -10,6 +10,7 @@
 # Hamed Behravan <behravan.hamed@gmail.com>, 2015
 # 1bdf31d1c1e9cb24d6578874174ff2c7, 2016
 # Kamyar Behrang <k.g.behrang@gmail.com>, 2016
+# magnifico, 2019
 # mohammad.s.n, 2013
 # mohammad.s.n, 2013
 # Morpheus, 2013
@@ -24,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-24 23:48+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-12-27 13:58+0000\n"
+"Last-Translator: magnifico\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -654,7 +655,7 @@ msgid "Send a test email to your email address."
 msgstr "یک ایمیل آزمایشی به آدرس ایمیل خود ارسال کنید."
 
 msgid "Block the submission"
-msgstr ""
+msgstr "مسدود سازی ارسال"
 
 msgid "Select the context of your submission:"
 msgstr "زمینه گزارش خود را انتخاب کنید:"
@@ -757,7 +758,7 @@ msgid "Disable the privacy panel"
 msgstr "غیر فعال کردن پنل پوشیدگی"
 
 msgid "Enable the receipt hint"
-msgstr ""
+msgstr "فعال سازی راهنما رسید"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "تعداد روز تا انقضا دسترسی افشاگر"
