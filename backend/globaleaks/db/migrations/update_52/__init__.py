@@ -2,6 +2,7 @@
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import Model
 from globaleaks.models.properties import *
+from globaleaks.utils.crypto import Base64Encoder
 from globaleaks.utils.utility import datetime_now, datetime_never, datetime_null
 
 
@@ -28,9 +29,6 @@ class InternalTip_v_51(Model):
     wb_access_counter = Column(Integer, default=0, nullable=False)
     status = Column(UnicodeText(36), nullable=True)
     substatus = Column(UnicodeText(36), nullable=True)
-    crypto_tip_pub_key = Column(LargeBinary(32), default=b'', nullable=False)
-
-    binary_keys = ['crypto_tip_pub_key']
 
 
 class SubmissionStatus_v_51(Model):
@@ -65,10 +63,6 @@ class User_v_51(Model):
     language = Column(UnicodeText, nullable=False)
     password_change_needed = Column(Boolean, default=True, nullable=False)
     password_change_date = Column(DateTime, default=datetime_null, nullable=False)
-    crypto_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
-    crypto_pub_key = Column(LargeBinary(32), default=b'', nullable=False)
-    crypto_rec_key = Column(LargeBinary(80), default=b'', nullable=False)
-    crypto_bkp_key = Column(LargeBinary(72), default=b'', nullable=False)
     change_email_address = Column(UnicodeText, default='', nullable=False)
     change_email_token = Column(UnicodeText, unique=True, nullable=True)
     change_email_date = Column(DateTime, default=datetime_null, nullable=False)
@@ -86,8 +80,6 @@ class User_v_51(Model):
     pgp_key_public = Column(UnicodeText, default='', nullable=False)
     pgp_key_expiration = Column(DateTime, default=datetime_null, nullable=False)
 
-    binary_keys = ['crypto_prv_key', 'crypto_pub_key', 'crypto_rec_key', 'crypto_bkp_key', 'two_factor_secret']
-
 
 class MigrationScript(MigrationBase):
     def migrate_User(self):
@@ -100,7 +92,12 @@ class MigrationScript(MigrationBase):
         for old_obj in old_objs:
             new_obj = self.model_to['User']()
             for key in [c.key for c in new_obj.__table__.columns]:
-                if key == 'public_name':
+                if key in ['crypto_prv_key', 'crypto_pub_key', 'crypto_bkp_key', 'crypto_rec_key']:
+                    continue
+                elif key == 'two_factor_secret':
+                    if old_obj.two_factor_secret:
+                        new_obj.two_factor_secret = Base64Encoder.encode(old_obj.two_factor_secret)
+                elif key == 'public_name':
                     if x:
                       new_obj.public_name = platform_name
                     else:

@@ -70,7 +70,7 @@ def get_receivertip_list(session, tid, receiver_id, user_key, language):
         preview = itip.preview
 
         if itip.crypto_tip_pub_key:
-            tip_key = GCE.asymmetric_decrypt(user_key, rtip.crypto_tip_prv_key)
+            tip_key = GCE.asymmetric_decrypt(user_key, base64.b64decode(rtip.crypto_tip_prv_key))
 
             preview = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(itip.preview.encode())).decode())
 

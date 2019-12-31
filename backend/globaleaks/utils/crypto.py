@@ -9,7 +9,7 @@ import struct
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import constant_time, hashes
 
-from nacl.encoding import RawEncoder, Base32Encoder
+from nacl.encoding import RawEncoder, Base32Encoder, Base64Encoder
 from nacl.hashlib import scrypt
 from nacl.pwhash import argon2id  # pylint: disable=no-name-in-module
 from nacl.public import SealedBox, PrivateKey, PublicKey  # pylint: disable=no-name-in-module
@@ -73,12 +73,14 @@ def _kdf_argon2(password, salt):
                         opslimit=_GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT']+1,
                         memlimit=1 << _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'])
 
+
 def _hash_argon2(password, salt):
     salt = base64.b64decode(salt)
     hash = argon2id.kdf(32, password, salt[0:16],
                         opslimit=_GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'],
                         memlimit=1 << _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'])
     return base64.b64encode(hash).decode()
+
 
 class _StreamingEncryptionObject(object):
     def __init__(self, mode, user_key, filepath):
@@ -234,20 +236,22 @@ class _GCE(object):
     @staticmethod
     def generate_keypair():
         """
-        Generate a curbe25519 keypair
+        Generate a curve25519 keypair
         """
         prv_key = PrivateKey.generate()
 
-        return prv_key.encode(RawEncoder), \
-               prv_key.public_key.encode(RawEncoder)
+        a, b = prv_key.encode(Base64Encoder), \
+               prv_key.public_key.encode(Base64Encoder)
+        print(a)
+        return a, b
 
     @staticmethod
     def generate_recovery_key(prv_key):
         rec_key = _GCE.generate_key()
-        pub_key = PrivateKey(prv_key).public_key.encode(RawEncoder)
-        bck_key = _GCE.symmetric_encrypt(rec_key, prv_key)
+        pub_key = PrivateKey(prv_key, Base64Encoder).public_key.encode(Base64Encoder)
+        bkp_key = _GCE.symmetric_encrypt(rec_key, prv_key)
         rec_key = _GCE.asymmetric_encrypt(pub_key, rec_key)
-        return bck_key, rec_key
+        return Base64Encoder.encode(bkp_key), Base32Encoder.encode(rec_key)
 
     @staticmethod
     def symmetric_encrypt(key, data):
@@ -271,7 +275,7 @@ class _GCE(object):
         """
         Perform asymmetric encryption using libsodium sealedbox (Curve25519, XSalsa20-Poly1305)
         """
-        pub_key = PublicKey(pub_key, RawEncoder)
+        pub_key = PublicKey(pub_key, Base64Encoder)
         data = _convert_to_bytes(data)
         return SealedBox(pub_key).encrypt(data)
 
@@ -280,7 +284,7 @@ class _GCE(object):
         """
         Perform asymmetric decryption using libsodium sealedbox (Curve25519, XSalsa20-Poly1305)
         """
-        prv_key = PrivateKey(prv_key, RawEncoder)
+        prv_key = PrivateKey(prv_key, Base64Encoder)
         data = _convert_to_bytes(data)
         return SealedBox(prv_key).decrypt(data)
 

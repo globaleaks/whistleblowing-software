@@ -14,7 +14,7 @@ from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.pgp import PGPContext
-from globaleaks.utils.crypto import Base32Encoder, GCE, generateRandomKey
+from globaleaks.utils.crypto import Base64Encoder, GCE, generateRandomKey
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime_null
 
 
@@ -163,15 +163,16 @@ def db_user_update_user(session, tid, user_session, request):
             if not user_session.cc:
                 # Th First first password change triggers the generation
                 # of the user encryption private key and its backup
-                user_session.cc, user.crypto_pub_key = GCE.generate_keypair()
+                user_session.cc, crypto_pub_key = GCE.generate_keypair()
+                user.crypto_pub_key = Base64Encoder.encode(crypto_pub_key)
                 user.crypto_bkp_key, user.crypto_rec_key = GCE.generate_recovery_key(user_session.cc)
 
                 # If the user had already enabled two factor before encryption was not enable
                 # encrypt the two factor secret
                 if user.two_factor_secret:
-                    user.two_factor_secret = GCE.asymmetric_encrypt(user.crypto_pub_key, user.two_factor_secret)
+                    user.two_factor_secret = Base64Encoder.encode(GCE.asymmetric_encrypt(user.crypto_pub_key, user.two_factor_secret))
 
-            user.crypto_prv_key = GCE.symmetric_encrypt(enc_key, user_session.cc)
+            user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_session.cc))
 
     # If the email address changed, send a validation email
     if request['mail_address'] != user.mail_address:
@@ -254,7 +255,7 @@ def get_recovery_key(session, user_tid, user_id, user_cc):
     if not user.crypto_rec_key:
         return ''
 
-    return Base32Encoder().encode(GCE.asymmetric_decrypt(user_cc, user.crypto_rec_key)).replace(b'=', b'')
+    return Base64Encoder().encode(GCE.asymmetric_decrypt(user_cc, Base64Encoder.decode(user.crypto_rec_key))).replace(b'=', b'')
 
 
 @transact
@@ -267,9 +268,9 @@ def enable_2fa_step1(session, user_tid, user_id, user_cc):
     two_factor_secret = pyotp.random_base32()
 
     if user.crypto_pub_key:
-        user.two_factor_secret = GCE.asymmetric_encrypt(user.crypto_pub_key, two_factor_secret)
+        user.two_factor_secret = Base64Encoder.encode(GCE.asymmetric_encrypt(user.crypto_pub_key, two_factor_secret))
     else:
-        user.two_factor_secret = two_factor_secret.encode('utf-8')
+        user.two_factor_secret = two_factor_secret
 
     return two_factor_secret
 
@@ -279,7 +280,7 @@ def enable_2fa_step2(session, user_tid, user_id, user_cc, token):
     user = db_get_user(session, user_tid, user_id)
 
     if user.crypto_pub_key:
-        two_factor_secret = GCE.asymmetric_decrypt(user_cc, user.two_factor_secret).decode('utf-8')
+        two_factor_secret = GCE.asymmetric_decrypt(user_cc, Base64Encoder.decode(user.two_factor_secret))
     else:
         two_factor_secret = user.two_factor_secret
 

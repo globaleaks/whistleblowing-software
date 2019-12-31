@@ -11,7 +11,6 @@ from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils.utility import datetime_now, datetime_never, datetime_null, datetime_to_ISO8601
 
-
 def db_forge_obj(session, mock_class, mock_fields):
     obj = mock_class(mock_fields)
     session.add(obj)
@@ -135,7 +134,6 @@ class Model(object):
     """
     # initialize empty list for the base classes
     properties = []
-    binary_keys = []
     unicode_keys = []
     localized_keys = []
     int_keys = []
@@ -206,7 +204,7 @@ class Model(object):
                 setattr(self, k, values[k])
 
     def __setattr__(self, name, value):
-        if name not in self.binary_keys and isinstance(value, bytes):
+        if isinstance(value, bytes):
             value = value.decode()
 
         return super(Model, self).__setattr__(name, value)
@@ -332,8 +330,8 @@ class _Config(Model):
         if val is None:
             val = desc._type()
 
-        if isinstance(desc, config_desc.Unicode) and isinstance(val, bytes):
-            val = str(val, 'utf-8')
+        if isinstance(val, bytes):
+            val = val.decode()
 
         if not isinstance(val, desc._type):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
@@ -820,9 +818,7 @@ class _InternalTip(Model):
     status = Column(UnicodeText(36), nullable=True)
     substatus = Column(UnicodeText(36), nullable=True)
 
-    crypto_tip_pub_key = Column(LargeBinary(32), default=b'', nullable=False)
-
-    binary_keys = ['crypto_tip_pub_key']
+    crypto_tip_pub_key = Column(UnicodeText(56), default='', nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -989,9 +985,7 @@ class _ReceiverTip(Model):
 
     label = Column(UnicodeText, default='', nullable=False)
 
-    crypto_tip_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
-
-    binary_keys = ['crypto_tip_prv_key']
+    crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -1230,10 +1224,10 @@ class _User(Model):
     password_change_needed = Column(Boolean, default=True, nullable=False)
     password_change_date = Column(DateTime, default=datetime_null, nullable=False)
 
-    crypto_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
-    crypto_pub_key = Column(LargeBinary(32), default=b'', nullable=False)
-    crypto_rec_key = Column(LargeBinary(80), default=b'', nullable=False)
-    crypto_bkp_key = Column(LargeBinary(72), default=b'', nullable=False)
+    crypto_prv_key = Column(UnicodeText(84), default='', nullable=False)
+    crypto_pub_key = Column(UnicodeText(56), default='', nullable=False)
+    crypto_rec_key = Column(UnicodeText(80), default='', nullable=False)
+    crypto_bkp_key = Column(UnicodeText(84), default='', nullable=False)
 
     change_email_address = Column(UnicodeText, default='', nullable=False)
     change_email_token = Column(UnicodeText, unique=True, nullable=True)
@@ -1251,15 +1245,13 @@ class _User(Model):
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
 
     two_factor_enable = Column(Boolean, default=False, nullable=False)
-    two_factor_secret = Column(LargeBinary(64), default=b'', nullable=False)
+    two_factor_secret = Column(UnicodeText(64), default='', nullable=False)
 
     # BEGIN of PGP key fields
     pgp_key_fingerprint = Column(UnicodeText, default='', nullable=False)
     pgp_key_public = Column(UnicodeText, default='', nullable=False)
     pgp_key_expiration = Column(DateTime, default=datetime_null, nullable=False)
     # END of PGP key fields
-
-    binary_keys = ['crypto_prv_key', 'crypto_pub_key', 'crypto_rec_key', 'crypto_bkp_key', 'two_factor_secret']
 
     unicode_keys = ['username', 'role', 'state',
                     'language', 'mail_address',
@@ -1353,11 +1345,9 @@ class _WhistleblowerTip(Model):
 
     hash_alg = Column(UnicodeText, default='ARGON2', nullable=False)
 
-    crypto_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
-    crypto_pub_key = Column(LargeBinary(32), default=b'', nullable=False)
-    crypto_tip_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
-
-    binary_keys = ['crypto_prv_key', 'crypto_pub_key', 'crypto_tip_prv_key']
+    crypto_prv_key = Column(UnicodeText(84), default='', nullable=False)
+    crypto_pub_key = Column(UnicodeText(56), default='', nullable=False)
+    crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
 
     @declared_attr
     def __table_args__(self):

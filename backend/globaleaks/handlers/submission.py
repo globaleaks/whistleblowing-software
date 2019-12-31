@@ -12,7 +12,7 @@ from globaleaks.models import get_localized_values
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
-from globaleaks.utils.crypto import sha256, GCE
+from globaleaks.utils.crypto import sha256, Base64Encoder, GCE
 from globaleaks.utils.log import log
 from globaleaks.utils.utility import get_expiration, \
     datetime_to_ISO8601
@@ -275,7 +275,7 @@ def db_create_receivertip(session, receiver, internaltip, can_access_whistleblow
     receivertip.internaltip_id = internaltip.id
     receivertip.receiver_id = receiver.id
     receivertip.can_access_whistleblower_identity = can_access_whistleblower_identity
-    receivertip.crypto_tip_prv_key = enc_key
+    receivertip.crypto_tip_prv_key = Base64Encoder().encode(enc_key)
 
     session.add(receivertip)
 
@@ -375,9 +375,9 @@ def db_create_submission(session, tid, request, token, client_using_tor):
             crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
             wb_key = GCE.derive_key(receipt.encode(), receipt_salt)
             wb_prv_key, wb_pub_key = GCE.generate_keypair()
-            wbtip.crypto_prv_key = GCE.symmetric_encrypt(wb_key, wb_prv_key)
+            wbtip.crypto_prv_key = Base64Encoder().encode(GCE.symmetric_encrypt(wb_key, wb_prv_key))
             wbtip.crypto_pub_key = wb_pub_key
-            wbtip.crypto_tip_prv_key = GCE.asymmetric_encrypt(wb_pub_key, crypto_tip_prv_key)
+            wbtip.crypto_tip_prv_key = Base64Encoder().encode(GCE.asymmetric_encrypt(wb_pub_key, crypto_tip_prv_key))
 
         session.add(wbtip)
     else:
@@ -429,7 +429,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     for user in session.query(models.User).filter(models.User.id.in_(request['receivers'])):
         _tip_key = b''
         if crypto_is_available:
-            _tip_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_tip_prv_key)
+            _tip_key = GCE.asymmetric_encrypt(Base64Encoder().decode(user.crypto_pub_key), crypto_tip_prv_key)
 
         db_create_receivertip(session, user, itip, can_access_whistleblower_identity, _tip_key)
 

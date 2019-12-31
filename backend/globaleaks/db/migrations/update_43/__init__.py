@@ -37,20 +37,6 @@ class InternalTip_v_42(Model):
     substatus = Column(UnicodeText(36), nullable=True)
 
 
-class ReceiverTip_v_42(Model):
-    __tablename__ = 'receivertip'
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    tip_key = Column(UnicodeText, default='', nullable=False)
-    internaltip_id = Column(UnicodeText(36), nullable=False)
-    receiver_id = Column(UnicodeText(36), nullable=False)
-    last_access = Column(DateTime, default=datetime_null, nullable=False)
-    access_counter = Column(Integer, default=0, nullable=False)
-    label = Column(UnicodeText, default='', nullable=False)
-    can_access_whistleblower_identity = Column(Boolean, default=True, nullable=False)
-    new = Column(Integer, default=True, nullable=False)
-    enable_notifications = Column(Boolean, default=True, nullable=False)
-
-
 class Signup_v_42(Model):
     __tablename__ = 'signup'
 
@@ -116,16 +102,3 @@ class User_v_42(Model):
     pgp_key_fingerprint = Column(UnicodeText, default='', nullable=False)
     pgp_key_public = Column(UnicodeText, default='', nullable=False)
     pgp_key_expiration = Column(DateTime, default=datetime_null, nullable=False)
-
-
-class WhistleblowerTip_v_42(Model):
-    __tablename__ = 'whistleblowertip'
-
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    tid = Column(Integer, default=1, nullable=False)
-    receipt_hash = Column(UnicodeText(128), nullable=False)
-
-    wb_prv_key = Column(UnicodeText, default='', nullable=False)
-    wb_pub_key = Column(UnicodeText, default='', nullable=False)
-    wb_tip_key = Column(UnicodeText, default='', nullable=False)
-    enc_data = Column(UnicodeText, default='', nullable=False)

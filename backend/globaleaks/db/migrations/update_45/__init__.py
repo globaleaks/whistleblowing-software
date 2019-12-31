@@ -249,27 +249,13 @@ class MigrationScript(MigrationBase):
             for key in [c.key for c in new_obj.__table__.columns]:
                 if key == 'hash_alg':
                     new_obj.hash_alg = 'SCRYPT'
-                elif key in ['crypto_pub_key', 'crypto_prv_key', 'notification']:
+                elif key in ['notification']:
                     continue
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
             if old_obj.id in receivers_by_id:
                 new_obj.notification = receivers_by_id[old_obj.id].tip_notification
-
-            self.session_new.add(new_obj)
-
-    def migrate_WhistleblowerTip(self):
-        old_objs = self.session_old.query(self.model_from['WhistleblowerTip'])
-        for old_obj in old_objs:
-            new_obj = self.model_to['WhistleblowerTip']()
-            for key in [c.key for c in new_obj.__table__.columns]:
-                if key == 'hash_alg':
-                    new_obj.hash_alg = 'SCRYPT'
-                elif key in ['crypto_pub_key', 'crypto_prv_key', 'crypto_tip_prv_key']:
-                    continue
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
 

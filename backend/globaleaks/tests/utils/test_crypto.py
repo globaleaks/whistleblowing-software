@@ -4,7 +4,7 @@ import os
 
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
-from globaleaks.utils.crypto import GCE
+from globaleaks.utils.crypto import Base64Encoder, GCE
 
 password = b'password'
 message = b'message'
@@ -79,6 +79,6 @@ class TestCryptoUtils(helpers.TestGL):
     def test_recovery_key(self):
         prv_key, _ = GCE.generate_keypair()
         bck_key, rec_key = GCE.generate_recovery_key(prv_key)
-        plain_rec_key = GCE.asymmetric_decrypt(prv_key, rec_key)
-        x = GCE.symmetric_decrypt(plain_rec_key, bck_key)
+        plain_rec_key = GCE.asymmetric_decrypt(prv_key, Base64Encoder.decode(rec_key))
+        x = GCE.symmetric_decrypt(plain_rec_key, Base64Encoder.decode(bck_key))
         self.assertEqual(x, prv_key)

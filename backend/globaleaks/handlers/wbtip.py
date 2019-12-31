@@ -68,7 +68,7 @@ def db_get_wbtip(session, itip_id, language):
     itip.wb_access_counter += 1
     itip.wb_last_access = datetime_now()
 
-    return serialize_wbtip(session, wbtip, itip, language), wbtip.crypto_tip_prv_key
+    return serialize_wbtip(session, wbtip, itip, language), base64.b64decode(wbtip.crypto_tip_prv_key)
 
 
 @transact

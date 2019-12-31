@@ -60,10 +60,6 @@ class User_v_50(Model):
     language = Column(UnicodeText, nullable=False)
     password_change_needed = Column(Boolean, default=True, nullable=False)
     password_change_date = Column(DateTime, default=datetime_null, nullable=False)
-    crypto_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
-    crypto_pub_key = Column(LargeBinary(32), default=b'', nullable=False)
-    crypto_rec_key = Column(LargeBinary(80), default=b'', nullable=False)
-    crypto_bkp_key = Column(LargeBinary(72), default=b'', nullable=False)
     change_email_address = Column(UnicodeText, default='', nullable=False)
     change_email_token = Column(UnicodeText, unique=True, nullable=True)
     change_email_date = Column(DateTime, default=datetime_null, nullable=False)
@@ -78,8 +74,6 @@ class User_v_50(Model):
     pgp_key_fingerprint = Column(UnicodeText, default='', nullable=False)
     pgp_key_public = Column(UnicodeText, default='', nullable=False)
     pgp_key_expiration = Column(DateTime, default=datetime_null, nullable=False)
-
-    binary_keys = ['crypto_prv_key', 'crypto_pub_key']
 
 
 class MigrationScript(MigrationBase):

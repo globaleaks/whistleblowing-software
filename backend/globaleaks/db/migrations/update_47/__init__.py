@@ -69,9 +69,6 @@ class InternalTip_v_46(Model):
     wb_access_counter = Column(Integer, default=0, nullable=False)
     status = Column(UnicodeText(36), nullable=True)
     substatus = Column(UnicodeText(36), nullable=True)
-    crypto_tip_pub_key = Column(LargeBinary(32), default=b'', nullable=False)
-
-    binary_keys = ['crypto_tip_pub_key']
 
 
 class SubmissionStatus_v_46(Model):

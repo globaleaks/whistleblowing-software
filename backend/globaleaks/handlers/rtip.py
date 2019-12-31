@@ -263,7 +263,7 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
     rtip.access_counter += 1
     rtip.last_access = datetime_now()
 
-    return serialize_rtip(session, rtip, itip, language), rtip.crypto_tip_prv_key
+    return serialize_rtip(session, rtip, itip, language), base64.b64decode(rtip.crypto_tip_prv_key)
 
 
 def db_delete_itips_files(session, itips_ids):
@@ -643,7 +643,7 @@ class WBFileHandler(BaseHandler):
 
         self.access_wbfile(session, wbfile)
 
-        return serializers.serialize_wbfile(session, tid, wbfile), wbtip.crypto_tip_prv_key
+        return serializers.serialize_wbfile(session, tid, wbfile), base64.b64decode(wbtip.crypto_tip_prv_key)
 
     @inlineCallbacks
     def get(self, wbfile_id):
@@ -712,7 +712,7 @@ class ReceiverFileDownload(BaseHandler):
         rfile.last_access = datetime_now()
         rfile.downloads += 1
 
-        return serializers.serialize_rfile(session, tid, rfile), rtip.crypto_tip_prv_key
+        return serializers.serialize_rfile(session, tid, rfile), base64.b64decode(rtip.crypto_tip_prv_key)
 
     @inlineCallbacks
     def get(self, rfile_id):

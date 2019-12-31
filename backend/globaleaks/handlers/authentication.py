@@ -11,7 +11,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
-from globaleaks.utils.crypto import GCE
+from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.ip import check_ip
 from globaleaks.utils.log import log
 from globaleaks.utils.utility import datetime_now, deferred_sleep
@@ -88,7 +88,7 @@ def login_whistleblower(session, tid, receipt):
     crypto_prv_key = ''
     if State.tenant_cache[tid].encryption and wbtip.crypto_prv_key:
         user_key = GCE.derive_key(receipt.encode(), State.tenant_cache[tid].receipt_salt)
-        crypto_prv_key = GCE.symmetric_decrypt(user_key, wbtip.crypto_prv_key)
+        crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(wbtip.crypto_prv_key))
 
     return Sessions.new(tid, wbtip.id, tid, 'whistleblower', False, False, crypto_prv_key)
 
@@ -127,6 +127,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
         if user.crypto_prv_key:
             user_key = GCE.derive_key(password.encode(), user.salt)
             crypto_prv_key = GCE.symmetric_decrypt(user_key, user.crypto_prv_key)
+            crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(user.crypto_prv_key))
         else:
             # Force the password change on which the user key will be created
             user.password_change_needed = True
@@ -134,9 +135,9 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
     if user.two_factor_enable:
         if authcode != '':
             if user.crypto_pub_key:
-                two_factor_secret = GCE.asymmetric_decrypt(crypto_prv_key, user.two_factor_secret).decode()
+                two_factor_secret = GCE.asymmetric_decrypt(crypto_prv_key, Base64Encoder.decode(user.two_factor_secret))
             else:
-                two_factor_secret = user.two_factor_secret.decode()
+                two_factor_secret = user.two_factor_secret
 
             # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
             if not pyotp.TOTP(two_factor_secret).verify(authcode, valid_window=1):

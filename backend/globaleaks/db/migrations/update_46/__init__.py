@@ -141,7 +141,6 @@ class InternalTip_v_45(Model):
     wb_access_counter = Column(Integer, default=0, nullable=False)
     status = Column(UnicodeText(36), nullable=True)
     substatus = Column(UnicodeText(36), nullable=True)
-    crypto_tip_pub_key = Column(LargeBinary(32), default=b'', nullable=False)
 
 
 class Receiver_v_45(Model):
@@ -171,8 +170,6 @@ class User_v_45(Model):
     language = Column(UnicodeText, nullable=False)
     password_change_needed = Column(Boolean, default=True, nullable=False)
     password_change_date = Column(DateTime, default=datetime_never, nullable=False)
-    crypto_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
-    crypto_pub_key = Column(LargeBinary(32), default=b'', nullable=False)
     change_email_address = Column(UnicodeText, default='', nullable=False)
     change_email_token = Column(UnicodeText, unique=True, nullable=True)
     change_email_date = Column(DateTime, default=datetime_never, nullable=False)
