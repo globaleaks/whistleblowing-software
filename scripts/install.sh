@@ -8,24 +8,6 @@ if [ ! $(id -u) = 0 ]; then
   exit 1
 fi
 
-# Preliminary requirements check
-ERR=0
-echo "Checking preliminary packaging GlobaLeaks requirements"
-for REQ in apt-key apt-get gpg
-do
-  if which $REQ >/dev/null; then
-    echo " + $REQ requirement met"
-  else
-    ERR=$((ERR+1))
-    echo " - $REQ requirement not met"
-  fi
-done
-
-if [ $ERR -ne 0 ]; then
-  echo "Error: Found ${ERR} unmet requirements"
-  exit 1
-fi
-
 function DO () {
   CMD="$1"
 
