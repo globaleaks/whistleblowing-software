@@ -59,14 +59,14 @@ GCE.ALGORITM_CONFIGURATION['SCRYPT']['N'] = 1 << 1
 
 ################################################################################
 # BEGIN MOCKS NECESSARY FOR DETERMINISTIC ENCRYPTION
-VALID_PASSWORD1 = u'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'
+VALID_PASSWORD1 = 'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'
 VALID_PASSWORD2 = VALID_PASSWORD1
 VALID_SALT1 = GCE.generate_salt()
 VALID_SALT2 = GCE.generate_salt()
 VALID_HASH1 = GCE.hash_password(VALID_PASSWORD1, VALID_SALT1)
 VALID_HASH2 = GCE.hash_password(VALID_PASSWORD2, VALID_SALT2)
 VALID_BASE64_IMG = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII='
-INVALID_PASSWORD = u'antani'
+INVALID_PASSWORD = 'antani'
 
 KEY = GCE.generate_key()
 USER_KEY = GCE.derive_key(VALID_PASSWORD1, VALID_SALT1)
@@ -183,12 +183,12 @@ def mock_users_keys(session):
 def get_dummy_step():
     return {
         'id': '',
-        'label': u'Step 1',
-        'description': u'Step Description',
+        'label': 'Step 1',
+        'description': 'Step Description',
         'presentation_order': 0,
         'triggered_by_score': 0,
         'triggered_by_options': [],
-        'questionnaire_id': u'',
+        'questionnaire_id': '',
         'children': []
     }
 
@@ -202,12 +202,12 @@ def get_dummy_field():
         'template_override_id': '',
         'step_id': '',
         'fieldgroup_id': '',
-        'label': u'antani',
-        'placeholder': u'',
-        'type': u'checkbox',
+        'label': 'antani',
+        'placeholder': '',
+        'type': 'checkbox',
         'preview': False,
-        'description': u'field description',
-        'hint': u'field hint',
+        'description': 'field description',
+        'hint': 'field hint',
         'multi_entry': False,
         'multi_entry_hint': '',
         'stats': False,
@@ -226,8 +226,8 @@ def get_dummy_field():
 def get_dummy_fieldoption_list():
     return [
         {
-            'id': u'beefcafe-beef-cafe-beef-cafebeefcafe',
-            'label': u'Cafe del mare',
+            'id': 'beefcafe-beef-cafe-beef-cafebeefcafe',
+            'label': 'Cafe del mare',
             'presentation_order': 0,
             'score_points': 100,
             'score_type': 0,
@@ -239,8 +239,8 @@ def get_dummy_fieldoption_list():
             'block_submission': False
         },
         {
-            'id': u'feefbead-feef-bead-feef-feeffeefbead',
-            'label': u'skrilx is here',
+            'id': 'feefbead-feef-bead-feef-feeffeefbead',
+            'label': 'skrilx is here',
             'presentation_order': 0,
             'score_points': 97,
             'score_type': 0,
@@ -264,7 +264,7 @@ def get_dummy_file(filename=None, content=None):
     if filename is None:
         filename = ''.join(chr(x) for x in range(0x400, 0x40A)).join('-%d' % files_count)
 
-    content_type = u'application/octet'
+    content_type = 'application/octet'
 
     if content is None:
         content = base64.b64decode(VALID_BASE64_IMG)
@@ -430,7 +430,7 @@ class TestGL(unittest.TestCase):
         dummyStuff = MockDict()
 
         self.dummyWizard = {
-            'node_language': u'en',
+            'node_language': 'en',
             'node_name': 'test',
             'admin_name': 'Giovanni Pellerano',
             'admin_password': 'P4ssword',
@@ -498,9 +498,9 @@ class TestGL(unittest.TestCase):
         new_u['role'] = role
         new_u['username'] = username
         new_u['name'] = new_u['public_name'] = new_u['mail_address'] = "%s@%s.xxx" % (username, username)
-        new_u['description'] = u''
+        new_u['description'] = ''
         new_u['password'] = VALID_PASSWORD1
-        new_u['state'] = u'enabled'
+        new_u['state'] = 'enabled'
         new_u['salt'] = VALID_SALT1
 
         return new_u
@@ -721,12 +721,12 @@ class TestGLWithPopulatedDB(TestGL):
         for i in range(1, self.population_of_tenants):
             name = 'tenant-' + str(i+1)
             t = yield create_tenant({'mode': 'default', 'label': name, 'active': True, 'subdomain': name})
-            yield tw(db_wizard, t['id'], self.dummyWizard, True, u'en')
+            yield tw(db_wizard, t['id'], self.dummyWizard, True, 'en')
             yield self.set_hostnames(i+1)
 
     @transact
     def add_whistleblower_identity_field_to_step(self, session, step_id):
-        wbf = session.query(models.Field).filter(models.Field.id == u'whistleblower_identity', models.Field.tid == 1).one()
+        wbf = session.query(models.Field).filter(models.Field.id == 'whistleblower_identity', models.Field.tid == 1).one()
 
         reference_field = get_dummy_field()
         reference_field['instance'] = 'reference'
@@ -919,7 +919,7 @@ class TestCollectionHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        yield self._test_desc['create'](1, data, u'en')
+        yield self._test_desc['create'](1, data, 'en')
 
         handler = self.request(role='admin')
 
@@ -953,7 +953,7 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](1, data, u'en')
+        data = yield self._test_desc['create'](1, data, 'en')
 
         handler = self.request(data, role='admin')
 
@@ -967,7 +967,7 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](1, data, u'en')
+        data = yield self._test_desc['create'](1, data, 'en')
 
         for k, v in self._test_desc['data'].items():
             data[k] = v
@@ -987,7 +987,7 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](1, data, u'en')
+        data = yield self._test_desc['create'](1, data, 'en')
 
         handler = self.request(data, role='admin')
 
@@ -1008,21 +1008,21 @@ class MockDict:
     def __init__(self):
         self.dummyUser = {
             'id': '',
-            'username': u'maker@iz.cool.yeah',
+            'username': 'maker@iz.cool.yeah',
             'password': VALID_PASSWORD1,
             'old_password': '',
             'salt': VALID_SALT1,
-            'role': u'receiver',
-            'state': u'enabled',
-            'name': u'Generic User',
-            'description': u'King MockDummy',
-            'last_login': u'1970-01-01 00:00:00.000000',
-            'language': u'en',
+            'role': 'receiver',
+            'state': 'enabled',
+            'name': 'Generic User',
+            'description': 'King MockDummy',
+            'last_login': '1970-01-01 00:00:00.000000',
+            'language': 'en',
             'password_change_needed': False,
-            'password_change_date': u'1970-01-01 00:00:00.000000',
-            'pgp_key_fingerprint': u'',
-            'pgp_key_public': u'',
-            'pgp_key_expiration': u'1970-01-01 00:00:00.000000',
+            'password_change_date': '1970-01-01 00:00:00.000000',
+            'pgp_key_fingerprint': '',
+            'pgp_key_public': '',
+            'pgp_key_expiration': '1970-01-01 00:00:00.000000',
             'pgp_key_remove': False,
             'can_edit_general_settings': False,
             'notification': True,
@@ -1035,12 +1035,12 @@ class MockDict:
 
         self.dummyContext = {
             'id': '',
-            'name': u'Already localized name',
-            'description': u'Already localized desc',
-            'recipients_clarification': u'',
+            'name': 'Already localized name',
+            'description': 'Already localized desc',
+            'recipients_clarification': '',
             'presentation_order': 0,
             'receivers': [],
-            'questionnaire_id': u'default',
+            'questionnaire_id': 'default',
             'additional_questionnaire_id': '',
             'select_all_receivers': True,
             'tip_timetolive': 20,
@@ -1068,20 +1068,20 @@ class MockDict:
         }
 
         self.dummyNode = {
-            'name': u'Please, set me: name/title',
-            'description': u'Pleæs€, set m€: d€scription',
-            'presentation': u'This is whæt æpp€ærs on top',
-            'footer': u'check it out https://www.youtube.com/franksentus ;)',
+            'name': 'Please, set me: name/title',
+            'description': 'Pleæs€, set m€: d€scription',
+            'presentation': 'This is whæt æpp€ærs on top',
+            'footer': 'check it out https://www.youtube.com/franksentus ;)',
             'enable_disclaimer': False,
-            'disclaimer_title': u'',
-            'disclaimer_text': u'',
-            'whistleblowing_question': u'',
-            'whistleblowing_button': u'',
-            'hostname': u'www.globaleaks.org',
-            'onionservice': u'',
-            'rootdomain': u'antani.gov',
-            'tb_download_link': u'https://www.torproject.org/download/download',
-            'email': u'email@dummy.net',
+            'disclaimer_title': '',
+            'disclaimer_text': '',
+            'whistleblowing_question': '',
+            'whistleblowing_button': '',
+            'hostname': 'www.globaleaks.org',
+            'onionservice': '',
+            'rootdomain': 'antani.gov',
+            'tb_download_link': 'https://www.torproject.org/download/download',
+            'email': 'email@dummy.net',
             'languages_supported': [],  # ignored
             'languages_enabled': ['it', 'en'],
             'latest_version': __version__,
@@ -1096,41 +1096,41 @@ class MockDict:
             'can_delete_submission': False,
             'can_grant_permissions': False,
             'allow_indexing': False,
-            'frame_ancestors': u'',
+            'frame_ancestors': '',
             'disable_submissions': False,
             'disable_privacy_badge': False,
             'enable_receipt_hint': False,
             'enable_private_labels': False,
             'enable_ricochet_panel': False,
-            'ricochet_address': u'',
+            'ricochet_address': '',
             'timezone': 0,
-            'default_language': u'en',
-            'default_questionnaire': u'default',
-            'admin_language': u'en',
+            'default_language': 'en',
+            'default_questionnaire': 'default',
+            'admin_language': 'en',
             'multisite_login': False,
             'simplified_login': False,
             'enable_scoring_system': False,
             'enable_custodian': False,
             'enable_experimental_features': False,
             'enable_signup': True,
-            'mode': u'default',
+            'mode': 'default',
             'signup_tos1_enable': False,
-            'signup_tos1_title': u'',
-            'signup_tos1_text': u'',
-            'signup_tos1_checkbox_label': u'',
+            'signup_tos1_title': '',
+            'signup_tos1_text': '',
+            'signup_tos1_checkbox_label': '',
             'signup_tos2_enable': False,
-            'signup_tos2_title': u'',
-            'signup_tos2_text': u'',
-            'signup_tos2_checkbox_label': u'',
+            'signup_tos2_title': '',
+            'signup_tos2_text': '',
+            'signup_tos2_checkbox_label': '',
             'enable_custom_privacy_badge': False,
-            'custom_privacy_badge_text': u'',
-            'header_title_homepage': u'',
-            'header_title_submissionpage': u'',
-            'header_title_receiptpage': u'',
-            'header_title_tippage': u'',
-            'landing_page': u'homepage',
-            'context_selector_type': u'list',
-            'contexts_clarification': u'',
+            'custom_privacy_badge_text': '',
+            'header_title_homepage': '',
+            'header_title_submissionpage': '',
+            'header_title_receiptpage': '',
+            'header_title_tippage': '',
+            'landing_page': 'homepage',
+            'context_selector_type': 'list',
+            'contexts_clarification': '',
             'show_contexts_in_alphabetical_order': False,
             'show_small_context_cards': False,
             'threshold_free_disk_megabytes_high': 200,
@@ -1143,13 +1143,13 @@ class MockDict:
             'anonymize_outgoing_connections': False,
             'enable_admin_exception_notification': True,
             'enable_developers_exception_notification': True,
-            'ip_filter_admin': u'',
+            'ip_filter_admin': '',
             'ip_filter_admin_enable': False,
-            'ip_filter_custodian': u'',
+            'ip_filter_custodian': '',
             'ip_filter_custodian_enable': False,
-            'ip_filter_receiver': u'',
+            'ip_filter_receiver': '',
             'ip_filter_receiver_enable': False,
-            'ip_filter_whistleblower': u'',
+            'ip_filter_whistleblower': '',
             'ip_filter_whistleblower_enable': False,
             'counter_submissions': 0,
             'enable_password_reset': True,
@@ -1164,13 +1164,13 @@ class MockDict:
             'backup_w': 3,
             'backup_m': 3,
             'backup_remote': False,
-            'backup_remote_server': u'',
+            'backup_remote_server': '',
             'backup_remote_port': 22,
-            'backup_remote_username': u'',
-            'backup_remote_password': u'',
+            'backup_remote_username': '',
+            'backup_remote_password': '',
             'basic_auth': False,
-            'basic_auth_username': u'',
-            'basic_auth_password': u''
+            'basic_auth_username': '',
+            'basic_auth_password': ''
         }
 
 

@@ -37,7 +37,7 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
         State.tenant_cache[1]['enable_password_reset'] = True
 
         for r in (yield user.get_receiver_list(1, 'en')):
-            if r['pgp_key_fingerprint'] == u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
+            if r['pgp_key_fingerprint'] == 'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
                 self.rcvr_id = r['id']
                 self.user = r
 

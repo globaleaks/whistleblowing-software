@@ -29,28 +29,28 @@ class TestAdminL10NHandler(helpers.TestHandler):
 
     @inlineCallbacks
     def test_put(self):
-        check = yield admin_l10n.get(1, u'en')
+        check = yield admin_l10n.get(1, 'en')
         self.assertEqual(empty_texts, check)
 
         handler = self.request(custom_texts1, role='admin')
         yield handler.put(lang=u'en')
-        check = yield admin_l10n.get(1, u'en')
+        check = yield admin_l10n.get(1, 'en')
         self.assertEqual(custom_texts1, check)
 
         handler = self.request(custom_texts1, role='admin')
         yield handler.put(lang=u'en')
-        check = yield admin_l10n.get(1, u'en')
+        check = yield admin_l10n.get(1, 'en')
         self.assertEqual(custom_texts2, check)
 
     @inlineCallbacks
     def test_delete(self):
         yield self.test_put()
 
-        check = yield admin_l10n.get(1, u'en')
+        check = yield admin_l10n.get(1, 'en')
         self.assertEqual(custom_texts1, check)
 
         handler = self.request({}, role='admin')
         handler.delete(lang=u'en')
 
-        check = yield admin_l10n.get(1, u'en')
+        check = yield admin_l10n.get(1, 'en')
         self.assertEqual(empty_texts, check)

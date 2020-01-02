@@ -26,7 +26,7 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
         notif_desc = yield handler.get()
 
         notif_desc['smtp_server'] = stuff
-        notif_desc['smtp_password'] = u'widdlyscuds'
+        notif_desc['smtp_password'] = 'widdlyscuds'
 
         handler = self.request(notif_desc, role='admin')
         response = yield handler.put()
@@ -38,7 +38,7 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
         notif_desc = yield handler.get()
 
         notif_desc['reset_templates'] = True
-        notif_desc['smtp_password'] = u'widdlyscuds'
+        notif_desc['smtp_password'] = 'widdlyscuds'
 
         handler = self.request(notif_desc, role='admin')
         response = yield handler.put()

@@ -207,7 +207,7 @@ def set_var(args, silent=False):
 
 
 def enable_api_token(args):
-    args.varname = u'admin_api_token_digest'
+    args.varname = 'admin_api_token_digest'
 
 def generate_api_token():
     """
@@ -222,7 +222,7 @@ def generate_api_token():
     print('You now have the only copy, keep it somewhere safe.')
 
 def disable_api_token(args):
-    args.varname = u'admin_api_token_digest'
+    args.varname = 'admin_api_token_digest'
     args.value = ''
 
     set_var(args, silent=True)

@@ -13,7 +13,7 @@ class TestAdminCollection(helpers.TestCollectionHandler):
         'create': user.create_user,
         'data': {
             'role': 'admin',
-            'name': u'Mario Rossi',
+            'name': 'Mario Rossi',
             'mail_address': 'admin@theguardian.com',
             'language': 'en'
         }
@@ -51,7 +51,7 @@ class TestReceiverCollection(TestAdminCollection):
         'create': user.create_user,
         'data': {
             'role': 'receiver',
-            'name': u'Mario Rossi',
+            'name': 'Mario Rossi',
             'mail_address': 'receiver@theguardian.com',
             'language': 'en'
         }
@@ -64,7 +64,7 @@ class TestReceiverInstance(TestAdminInstance):
         'create': user.create_user,
         'data': {
             'role': 'receiver',
-            'name': u'Mario Rossi',
+            'name': 'Mario Rossi',
             'mail_address': 'receiver@theguardian.com',
             'language': 'en',
             'recipient_configuration': 'forcefully_selected'
@@ -78,7 +78,7 @@ class TestCustodianCollection(TestAdminCollection):
         'create': user.create_user,
         'data': {
             'role': 'custodian',
-            'name': u'Mario Rossi',
+            'name': 'Mario Rossi',
             'mail_address': 'custodian@theguardian.com',
             'language': 'en'
         }

@@ -270,7 +270,7 @@ class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_post(self):
         body = {
-            'request_motivation': u''
+            'request_motivation': ''
         }
 
         rtip_descs = yield self.get_rtips()

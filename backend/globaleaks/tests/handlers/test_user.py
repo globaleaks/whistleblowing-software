@@ -17,7 +17,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
 
         for r in (yield admin.user.get_receiver_list(1, 'en')):
-            if r['pgp_key_fingerprint'] == u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
+            if r['pgp_key_fingerprint'] == 'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
                 self.rcvr_id = r['id']
 
     @inlineCallbacks
@@ -45,10 +45,10 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
 
         # check that the key is initialized at start
 
-        self.assertNotEqual(response['pgp_key_public'], u'')
+        self.assertNotEqual(response['pgp_key_public'], '')
 
         self.assertEqual(response['pgp_key_fingerprint'],
-                         u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1')
+                         'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1')
 
         self.assertEqual(response['pgp_key_public'],
                          helpers.PGPKEYS['VALID_PGP_KEY1_PUB'])
@@ -62,7 +62,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         response = yield handler.put()
 
         self.assertEqual(response['pgp_key_fingerprint'],
-                         u'CECDC5D2B721900E65639268846C82DB1F9B45E2')
+                         'CECDC5D2B721900E65639268846C82DB1F9B45E2')
 
         self.assertEqual(response['pgp_key_public'],
                          helpers.PGPKEYS['VALID_PGP_KEY2_PUB'])

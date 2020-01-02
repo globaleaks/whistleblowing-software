@@ -14,7 +14,7 @@ class TestFileInstance(helpers.TestHandler):
 
         yield handler.post(u'antani')
 
-        img = yield file.get_file(1, u'antani')
+        img = yield file.get_file(1, 'antani')
         self.assertEqual(img, helpers.VALID_BASE64_IMG)
 
     @inlineCallbacks
@@ -22,7 +22,7 @@ class TestFileInstance(helpers.TestHandler):
         handler = self.request({}, role='admin')
         yield handler.delete(u'antani')
 
-        img = yield file.get_file(1, u'antani')
+        img = yield file.get_file(1, 'antani')
         self.assertEqual(img, '')
 
 

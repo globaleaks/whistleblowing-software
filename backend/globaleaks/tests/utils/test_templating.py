@@ -15,18 +15,18 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
 
         data = {}
         data['type'] = 'tip'
-        data['user'] = yield user.get_user(1, self.dummyReceiver_1['id'], u'en')
-        data['context'] = yield admin.context.get_context(1, self.dummyContext['id'], u'en')
-        data['notification'] = yield tw(admin.notification.db_get_notification, 1, u'en')
-        data['node'] = yield tw(admin.node.db_admin_serialize_node, 1, u'en')
-        data['submission_statuses'] = yield tw(admin.submission_statuses.db_retrieve_all_submission_statuses, 1, u'en')
+        data['user'] = yield user.get_user(1, self.dummyReceiver_1['id'], 'en')
+        data['context'] = yield admin.context.get_context(1, self.dummyContext['id'], 'en')
+        data['notification'] = yield tw(admin.notification.db_get_notification, 1, 'en')
+        data['node'] = yield tw(admin.node.db_admin_serialize_node, 1, 'en')
+        data['submission_statuses'] = yield tw(admin.submission_statuses.db_retrieve_all_submission_statuses, 1, 'en')
 
         for tip in self.dummyRTips:
             if tip['receiver_id'] == self.dummyReceiver_1['id']:
                 tip_id = tip['id']
                 break
 
-        data['tip'], _ = yield rtip.get_rtip(1, self.dummyReceiver_1['id'], tip_id, u'en')
+        data['tip'], _ = yield rtip.get_rtip(1, self.dummyReceiver_1['id'], tip_id, 'en')
 
         data['comments'] = data['tip']['comments']
         data['comment'] = data['comments'][0]

@@ -18,7 +18,7 @@ class TestIdentityAccessRequestInstance(helpers.TestHandlerWithPopulatedDB):
             yield rtip.create_identityaccessrequest(1,
                                                     rtip_desc['receiver_id'],
                                                     rtip_desc['id'],
-                                                    {'request_motivation': u'request motivation'})
+                                                    {'request_motivation': 'request motivation'})
 
     @inlineCallbacks
     def test_get_new_identityaccessrequest(self):

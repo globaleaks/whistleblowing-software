@@ -40,7 +40,7 @@ class TestSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):
 
     def test_post_file_on_unexistent_submission(self):
         handler = self.request()
-        self.assertRaises(Exception, handler.post, u'unexistent_submission')
+        self.assertRaises(Exception, handler.post, 'unexistent_submission')
 
 
 class TestPostSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):

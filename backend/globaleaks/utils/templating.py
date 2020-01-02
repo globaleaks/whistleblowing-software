@@ -459,7 +459,7 @@ class AnomalyKeyword(UserNodeKeyword):
     def AnomalyDetailDisk(self):
         # This happens all the time anomalies are present but disk is ok
         if self.data['alert']['alarm_levels']['disk_space'] == 0:
-            return u''
+            return ''
 
         if self.data['alert']['alarm_levels']['disk_space'] == 1:
             return self.data['notification']['admin_anomaly_disk_low']
@@ -469,7 +469,7 @@ class AnomalyKeyword(UserNodeKeyword):
     def AnomalyDetailActivities(self):
         # This happens all the time there is not anomalous traffic
         if self.data['alert']['alarm_levels']['activity'] == 0:
-            return u''
+            return ''
 
         return self.data['notification']['admin_anomaly_activities']
 
@@ -680,29 +680,29 @@ class TwoFactorAuthKeyword(NodeKeyword):
 
 
 supported_template_types = {
-    u'tip': TipKeyword,
-    u'comment': CommentKeyword,
-    u'message': MessageKeyword,
-    u'file': FileKeyword,
-    u'tip_expiration_summary': ExpirationSummaryKeyword,
-    u'pgp_alert': PGPAlertKeyword,
-    u'admin_pgp_alert': AdminPGPAlertKeyword,
-    u'receiver_notification_limit_reached': UserNodeKeyword,
-    u'export_template': TipKeyword,
-    u'export_message': ExportMessageKeyword,
-    u'admin_anomaly': AnomalyKeyword,
-    u'admin_test': UserNodeKeyword,
-    u'https_certificate_expiration': CertificateExprKeyword,
-    u'https_certificate_renewal_failure': CertificateExprKeyword,
-    u'software_update_available': SoftwareUpdateKeyword,
-    u'admin_signup_alert': AdminPlatformSignupKeyword,
-    u'signup': PlatformSignupKeyword,
-    u'activation': PlatformSignupKeyword,
-    u'email_validation': EmailValidationKeyword,
-    u'password_reset_validation': PasswordResetValidation,
-    u'user_credentials': UserCredentials,
-    u'identity_access_request': IdentityAccessRequestKeyword,
-    u'2fa': TwoFactorAuthKeyword
+    'tip': TipKeyword,
+    'comment': CommentKeyword,
+    'message': MessageKeyword,
+    'file': FileKeyword,
+    'tip_expiration_summary': ExpirationSummaryKeyword,
+    'pgp_alert': PGPAlertKeyword,
+    'admin_pgp_alert': AdminPGPAlertKeyword,
+    'receiver_notification_limit_reached': UserNodeKeyword,
+    'export_template': TipKeyword,
+    'export_message': ExportMessageKeyword,
+    'admin_anomaly': AnomalyKeyword,
+    'admin_test': UserNodeKeyword,
+    'https_certificate_expiration': CertificateExprKeyword,
+    'https_certificate_renewal_failure': CertificateExprKeyword,
+    'software_update_available': SoftwareUpdateKeyword,
+    'admin_signup_alert': AdminPlatformSignupKeyword,
+    'signup': PlatformSignupKeyword,
+    'activation': PlatformSignupKeyword,
+    'email_validation': EmailValidationKeyword,
+    'password_reset_validation': PasswordResetValidation,
+    'user_credentials': UserCredentials,
+    'identity_access_request': IdentityAccessRequestKeyword,
+    '2fa': TwoFactorAuthKeyword
 }
 
 
@@ -747,7 +747,7 @@ class Templating(object):
         else:
             raise NotImplementedError('This data_type (%s) is not supported' % ['data.type'])
 
-        if data['type'] in [u'tip', u'comment', u'file', u'message']:
+        if data['type'] in ['tip', 'comment', 'file', 'message']:
             prefix = '{TipNum} '
             if data['tip']['label']:
                 prefix += '[{TipLabel}] '

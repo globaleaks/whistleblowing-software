@@ -12,8 +12,8 @@ class TestPGP(helpers.TestGL):
     def test_encrypt_message(self):
         fake_receiver_desc = {
             'pgp_key_public': helpers.PGPKEYS['VALID_PGP_KEY1_PUB'],
-            'pgp_key_fingerprint': u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1',
-            'username': u'fake@username.net',
+            'pgp_key_fingerprint': 'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1',
+            'username': 'fake@username.net',
         }
 
         pgpctx = PGPContext()
@@ -30,8 +30,8 @@ class TestPGP(helpers.TestGL):
 
         fake_receiver_desc = {
             'pgp_key_public': helpers.PGPKEYS['VALID_PGP_KEY1_PRV'],
-            'pgp_key_fingerprint': u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1',
-            'username': u'fake@username.net',
+            'pgp_key_fingerprint': 'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1',
+            'username': 'fake@username.net',
         }
 
         # these are the same lines used in delivery.py

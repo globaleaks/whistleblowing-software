@@ -20,7 +20,7 @@ class TestQuestionnairesCollection(helpers.TestCollectionHandler):
         'model': Questionnaire,
         'create': questionnaire.create_questionnaire,
         'data': {
-            'name': u'test'
+            'name': 'test'
         }
     }
 
@@ -48,7 +48,7 @@ class TestQuestionnaireInstance(helpers.TestInstanceHandler):
         'model': Questionnaire,
         'create': questionnaire.create_questionnaire,
         'data': {
-            'name': u'test'
+            'name': 'test'
         }
     }
 
@@ -60,7 +60,7 @@ class TestQuestionnareDuplication(helpers.TestHandlerWithPopulatedDB):
     def get_new_questionnare(self, session):
         """Returns first questionnare ID"""
         questionnare_obj = session.query(models.Questionnaire).filter(
-            models.Questionnaire.id != u'default').first()
+            models.Questionnaire.id != 'default').first()
         session.expunge(questionnare_obj)
         return questionnare_obj
 

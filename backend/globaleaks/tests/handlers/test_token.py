@@ -11,7 +11,7 @@ class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):
     _handler = token.TokenCreate
 
     def assert_default_token_values(self, token):
-        self.assertEqual(token['type'], u'submission')
+        self.assertEqual(token['type'], 'submission')
 
     @inlineCallbacks
     def test_post(self):

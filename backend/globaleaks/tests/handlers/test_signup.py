@@ -56,7 +56,7 @@ class TestSignupActivation(helpers.TestHandler):
     def test_get_with_valid_activation_token_mode_whistleblowing_it(self):
         yield tw(db_set_config_variable, 1, 'enable_signup', True)
 
-        yield tw(db_set_config_variable, 1, 'mode', u'whistleblowing.it')
+        yield tw(db_set_config_variable, 1, 'mode', 'whistleblowing.it')
 
         yield self.test_model_count(models.User, 0)
 
