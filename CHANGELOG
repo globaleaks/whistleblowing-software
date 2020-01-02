@@ -1,3 +1,6 @@
+Changes in version 3.11.58 - 2020-01-02
+    Fix defect in exceptions logging
+
 Changes in version 3.11.57 - 2019-12-30
     Fix issue #2756
     Remove apparmor rule for dash previously required by gnupg
