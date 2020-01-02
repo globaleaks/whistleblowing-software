@@ -19,11 +19,7 @@ class PGPContext(object):
             tempdir = tempfile.mkdtemp(prefix=tempdirprefix)
 
         try:
-            gpgbinary = 'gpg'
-            if os.path.exists('/usr/bin/gpg1'):
-                gpgbinary = 'gpg1'
-
-            self.gnupg = GPG(gpgbinary=gpgbinary, gnupghome=tempdir, options=['--trust-model', 'always'])
+            self.gnupg = GPG(gnupghome=tempdir, options=['--trust-model', 'always'])
             self.gnupg.encoding = "UTF-8"
         except OSError as excep:
             log.err("Critical, OS error in operating with GnuPG home: %s", excep)

@@ -27,7 +27,7 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     /usr/bin/ r,
     /usr/bin/globaleaks r,
 
-    /usr/bin/gpg{,1} ix,
+    /usr/bin/gpg ix,
 
     /usr/ r,
     /usr/share/** r,
