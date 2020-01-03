@@ -117,11 +117,6 @@ password_reset_validation_keywords = [
     '{Username}'
 ]
 
-password_reset_complete_keywords = [
-    '{RecipientName}',
-    '{NewPassword}'
-]
-
 identity_access_request_keywords = [
     '{RecipientName}',
     '{TipNum}',

@@ -436,8 +436,6 @@ ConfigL10NFilters = {
         'identity_provided_mail_title',
         'message_mail_template',
         'message_mail_title',
-        'password_reset_complete_mail_template',
-        'password_reset_complete_mail_title',
         'password_reset_validation_mail_template',
         'password_reset_validation_mail_title',
         'pgp_alert_mail_template',
