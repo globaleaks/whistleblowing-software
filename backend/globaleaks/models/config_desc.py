@@ -355,6 +355,7 @@ ConfigFilters['public_node'] = list(set(ConfigFilters['admin_node']) - set([
 ConfigFilters['general_settings'] = [
     'logo',
     'name',
+    'header_title_prefix',
     'header_title_homepage',
     'header_title_submissionpage',
     'header_title_receiptpage',
@@ -384,6 +385,7 @@ ConfigL10NFilters = {
         'whistleblowing_question',
         'whistleblowing_button',
         'custom_privacy_badge_text',
+        'header_title_prefix',
         'header_title_homepage',
         'header_title_submissionpage',
         'header_title_receiptpage',

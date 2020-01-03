@@ -834,26 +834,34 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       },
 
       set_title: function() {
-        var nodename = $rootScope.public.node.name ? $rootScope.public.node.name : "Globaleaks";
-        var path = $location.path();
+        var pt1 = $rootScope.public.node.header_title_prefix,
+            pt2 = "";
 
-        if (path === "/") {
+        if ($location.path() === "/") {
           if ($rootScope.page === "homepage") {
-            $rootScope.ht = $rootScope.public.node.header_title_homepage;
+            pt2 = $rootScope.public.node.header_title_homepage;
           } else if ($rootScope.page === "submissionpage") {
-            $rootScope.ht = $rootScope.public.node.header_title_submissionpage;
+            pt2 = $rootScope.public.node.header_title_submissionpage;
           } else if ($rootScope.page === "receiptpage") {
-            $rootScope.ht = $rootScope.public.node.header_title_receiptpage;
+            pt2 = $rootScope.public.node.header_title_receiptpage;
           } else if ($rootScope.page === "tippage") {
-            $rootScope.ht = $rootScope.public.node.header_title_tippage;
+            pt2 = $rootScope.public.node.header_title_tippage;
           }
         } else {
-          $rootScope.ht = $rootScope.header_title;
+          pt2 = $rootScope.header_title;
         }
 
-        $rootScope.ht = $filter("translate")($rootScope.ht);
+        pt2 = $filter("translate")(pt2);
 
-        $rootScope.pt = ($rootScope.ht !== "" && $rootScope.ht !== nodename) ? nodename + " - " + $rootScope.ht : nodename;
+	if (pt1 && pt2) {
+          $rootScope.pt = pt1 + " - " + pt2;
+        } else {
+          if (pt1) {
+            $rootScope.pt = pt1;
+          } else {
+            $rootScope.pt = pt2;
+          }
+        }
       },
 
       route_check: function() {

@@ -258,6 +258,7 @@ AdminNodeDesc = {
     'signup_tos2_checkbox_label': str,
     'enable_custom_privacy_badge': bool,
     'custom_privacy_badge_text': str,
+    'header_title_prefix': str,
     'header_title_homepage': str,
     'header_title_submissionpage': str,
     'header_title_receiptpage': str,
