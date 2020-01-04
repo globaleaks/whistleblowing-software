@@ -377,27 +377,27 @@
       "integrity": "sha512-nB/xe7JQWF9nLvhHommAICQ3eWrfRETo0EVGFESi952CDzDa+GAJ/2BFBNw44QqQPxj1Xua/uYKrbLsOGWZdbQ=="
     },
     "angular-translate": {
-      "version": "2.18.1",
-      "resolved": "https://registry.npmjs.org/angular-translate/-/angular-translate-2.18.1.tgz",
-      "integrity": "sha512-Mw0kFBqsv5j8ItL9IhRZunIlVmIRW6iFsiTmRs9wGr2QTt8z4rehYlWyHos8qnXc/kyOYJiW50iH50CSNHGB9A==",
+      "version": "2.18.2",
+      "resolved": "https://registry.npmjs.org/angular-translate/-/angular-translate-2.18.2.tgz",
+      "integrity": "sha512-aAtNieh0fUv6yM6vKuWsdswT0BbOf6kvsu+QZ15Fp10rKEienMs3M8aPWyd9IVZ5pA1GaRJir6T8OvWGG4J+Fw==",
       "requires": {
-        "angular": ">=1.2.26 <=1.7"
+        "angular": "^1.7.9"
       }
     },
     "angular-translate-loader-static-files": {
-      "version": "2.18.1",
-      "resolved": "https://registry.npmjs.org/angular-translate-loader-static-files/-/angular-translate-loader-static-files-2.18.1.tgz",
-      "integrity": "sha512-5MuyzAROfc493kjLjKlLGLBzXiRmZIFbcWZGutDRxW5SRXSpwrH0u0hh0ENNnUyUQbe2vUspHNPIuZqlq8qIhw==",
+      "version": "2.18.2",
+      "resolved": "https://registry.npmjs.org/angular-translate-loader-static-files/-/angular-translate-loader-static-files-2.18.2.tgz",
+      "integrity": "sha512-fhQNn2e0LOOH3YY5fFeLIgSGHuF/QvoX5dqnF7eaacpEMCzBf6OkVp1SMwEhjGjDIuntJbLGCh5CM5dMpiZYUA==",
       "requires": {
-        "angular-translate": "~2.18.1"
+        "angular-translate": "~2.18.2"
       }
     },
     "angular-translate-loader-url": {
-      "version": "2.18.1",
-      "resolved": "https://registry.npmjs.org/angular-translate-loader-url/-/angular-translate-loader-url-2.18.1.tgz",
-      "integrity": "sha512-BH7HQkg6PEaFNeyMiifXwwK6WNT4OvmgfEvznx6+A5Kp8O2eU7nFZREP/Tl+NqxYYaSQDAKfwRxrjq0q/Q+LHQ==",
+      "version": "2.18.2",
+      "resolved": "https://registry.npmjs.org/angular-translate-loader-url/-/angular-translate-loader-url-2.18.2.tgz",
+      "integrity": "sha512-jaRF7F5xB6TgtTkDlmpV7DhjTXgJlN2FWQTFc47gM/xynB/nMw6TpNAXnJ/5KZlWSI5IDpisCp6gYeyLucZBgg==",
       "requires": {
-        "angular-translate": "~2.18.1"
+        "angular-translate": "~2.18.2"
       }
     },
     "ansi-align": {
