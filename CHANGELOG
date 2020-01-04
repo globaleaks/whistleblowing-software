@@ -1,3 +1,7 @@
+Changes in version 3.11.59 - 2020-01-04
+    Fix defect in application responsiveness
+    Bump npm dependencies to latest versions
+
 Changes in version 3.11.58 - 2020-01-02
     Fix defect in exceptions logging
 
