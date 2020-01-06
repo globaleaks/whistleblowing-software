@@ -17,7 +17,7 @@ from globaleaks.state import State
 from globaleaks.utils.utility import deferred_sleep
 from globaleaks.utils.log import log
 
-from globaleaks.mocks.txtorcon_mocks import EphemeralHiddenService
+from txtorcon.torconfig import EphemeralHiddenService
 
 
 __all__ = ['OnionService']
