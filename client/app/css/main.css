@@ -240,6 +240,10 @@ table {
   margin: 0.2rem;
 }
 
+#WhistleblowerLoginForm .input-group {
+  width: 20rem;
+}
+
 .receiptinput, .recoverykeyinput {
   text-align: center;
 }
