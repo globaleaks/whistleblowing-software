@@ -2,7 +2,6 @@
 from globaleaks import DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.db.appdata import load_appdata
 from globaleaks.settings import Settings
-from globaleaks.utils.utility import every_language_dict
 
 
 class MigrationBase(object):
@@ -53,18 +52,6 @@ class MigrationBase(object):
 
     def epilogue(self):
         pass
-
-    def update_model_with_new_templates(self, model_obj, var_name, template_list, templates_dict):
-        # check needed to preserve funtionality if templates will be altered in the future
-        if var_name not in template_list:
-            return False
-
-        if var_name in templates_dict:
-            setattr(model_obj, var_name, templates_dict[var_name])
-        else:
-            setattr(model_obj, var_name, every_language_dict())
-
-        return True
 
     def generic_migration_function(self, model_name):
         old_keys = [c.key for c in self.model_from[model_name].__table__.columns]

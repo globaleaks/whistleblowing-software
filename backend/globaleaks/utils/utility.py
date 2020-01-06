@@ -121,10 +121,6 @@ def sum_dicts(*dicts):
     return ret
 
 
-def every_language_dict(default_text=''):
-    return {code: default_text for code in LANGUAGES_SUPPORTED_CODES}
-
-
 def deferred_sleep(timeout):
     d = Deferred()
 

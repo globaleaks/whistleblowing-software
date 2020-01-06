@@ -177,14 +177,8 @@ class MigrationScript(MigrationBase):
         old_node = self.session_old.query(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
-        new_templates = [
-        ]
-
         for key in [c.key for c in new_node.__table__.columns]:
-            if self.update_model_with_new_templates(new_node, key, new_templates, self.appdata['node']):
-                continue
-
-            elif key == 'allow_indexing':
+            if key == 'allow_indexing':
                 new_node.allow_indexing = False
 
             elif key in ['logo_id', 'css_id']:
