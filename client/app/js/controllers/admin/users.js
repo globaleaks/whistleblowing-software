@@ -85,7 +85,7 @@ GLClient.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
 }]).
 controller("AdminUserAddCtrl", ["$scope",
   function($scope) {
-    $scope.new_user = {};
+    $scope.new_user = {"send_account_activation_link": true};
 
     $scope.add_user = function() {
       var user = new $scope.AdminUtils.new_user();
@@ -97,7 +97,7 @@ controller("AdminUserAddCtrl", ["$scope",
 
       user.$save(function(new_user){
         $scope.resources.users.push(new_user);
-        $scope.new_user = {};
+        $scope.new_user = {"send_account_activation_link": true};
       });
     };
 }]);

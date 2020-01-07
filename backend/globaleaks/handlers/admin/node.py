@@ -14,6 +14,7 @@ from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.orm import tw
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
+from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.ip import parse_csv_ip_ranges_to_ip_networks
 from globaleaks.utils.log import log
 
@@ -65,7 +66,7 @@ def db_update_enabled_languages(session, tid, languages_enabled, default_languag
         session.query(models.EnabledLanguage).filter(models.EnabledLanguage.tid == tid, models.EnabledLanguage.name.in_(to_remove)).delete(synchronize_session='fetch')
 
 
-def db_update_node(session, tid, request, language):
+def db_update_node(session, tid, user_session, request, language):
     """
     Update and serialize the node infos
 
@@ -76,6 +77,9 @@ def db_update_node(session, tid, request, language):
     :return: a dictionary representing the serialization of the node
     """
     config = ConfigFactory(session, tid)
+
+    enable_escrow = not config.get_val('escrow') and request.get('escrow', False)
+    disable_escrow = user_session.ek and config.get_val('escrow') and not request.get('escrow', False)
 
     config.update('node', request)
 
@@ -106,6 +110,19 @@ def db_update_node(session, tid, request, language):
 
     if language in models.EnabledLanguage.list(session, tid):
         ConfigL10NFactory(session, tid).update('node', request, language)
+
+    if  enable_escrow:
+        crypto_escrow_prv_key, State.tenant_cache[tid].crypto_escrow_pub_key = GCE.generate_keypair()
+        user = models.db_get(session, models.User, models.User.id == user_session.user_id)
+        user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(user_session.cc, crypto_escrow_prv_key))
+
+    if disable_escrow:
+        if tid == 1:
+            session.query(models.User).update({'crypto_escrow_bkp1_key': ''}, synchronize_session='fetch')
+
+        session.query(models.User).filter(models.User.tid == tid).update({'crypto_escrow_prv_key': '', 'crypto_escrow_bkp2_key': ''}, synchronize_session='fetch')
+
+    config.set_val('crypto_escrow_pub_key', State.tenant_cache[tid].crypto_escrow_pub_key)
 
     db_refresh_memory_variables(session, [tid])
 
@@ -156,6 +173,7 @@ class NodeInstance(BaseHandler):
 
         serialized_node = yield tw(db_update_node,
                                    self.request.tid,
+                                   self.current_user,
                                    request,
                                    self.request.language)
         returnValue(serialized_node)

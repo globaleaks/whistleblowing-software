@@ -90,7 +90,7 @@ def login_whistleblower(session, tid, receipt):
         user_key = GCE.derive_key(receipt.encode(), State.tenant_cache[tid].receipt_salt)
         crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(wbtip.crypto_prv_key))
 
-    return Sessions.new(tid, wbtip.id, tid, 'whistleblower', False, False, crypto_prv_key)
+    return Sessions.new(tid, wbtip.id, tid, 'whistleblower', False, False, crypto_prv_key, '')
 
 
 @transact
@@ -126,7 +126,6 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
     if State.tenant_cache[tid].encryption:
         if user.crypto_prv_key:
             user_key = GCE.derive_key(password.encode(), user.salt)
-            crypto_prv_key = GCE.symmetric_decrypt(user_key, user.crypto_prv_key)
             crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(user.crypto_prv_key))
         else:
             # Force the password change on which the user key will be created
@@ -148,7 +147,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
 
     user.last_login = datetime_now()
 
-    return Sessions.new(tid, user.id, user.tid, user.role, user.password_change_needed, user.two_factor_enable, crypto_prv_key)
+    return Sessions.new(tid, user.id, user.tid, user.role, user.password_change_needed, user.two_factor_enable, crypto_prv_key, user.crypto_escrow_prv_key)
 
 
 class AuthenticationHandler(BaseHandler):
@@ -281,11 +280,13 @@ class TenantAuthSwitchHandler(BaseHandler):
             raise errors.InvalidAuthentication
 
         tid = int(tid)
-        session = Sessions.new(tid, self.current_user.user_id,
+        session = Sessions.new(tid,
+                               self.current_user.user_id,
                                self.current_user.user_tid,
                                self.current_user.user_role,
                                False,
                                self.current_user.two_factor,
-                               self.current_user.cc)
+                               self.current_user.cc,
+                               self.current_user.ek)
 
         return {'redirect': '/t/%d/#/login?token=%s' % (tid, session.id)}

@@ -1206,7 +1206,7 @@ class _User(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     username = Column(UnicodeText, default='', nullable=False)
 
-    salt = Column(UnicodeText(24), nullable=False)
+    salt = Column(UnicodeText(24), default='', nullable=False)
     hash_alg = Column(UnicodeText, default='ARGON2', nullable=False)
     password = Column(UnicodeText, default='', nullable=False)
 
@@ -1228,6 +1228,10 @@ class _User(Model):
     crypto_pub_key = Column(UnicodeText(56), default='', nullable=False)
     crypto_rec_key = Column(UnicodeText(80), default='', nullable=False)
     crypto_bkp_key = Column(UnicodeText(84), default='', nullable=False)
+
+    crypto_escrow_prv_key = Column(UnicodeText(84), default='', nullable=False)
+    crypto_escrow_bkp1_key = Column(UnicodeText(84), default='', nullable=False)
+    crypto_escrow_bkp2_key = Column(UnicodeText(84), default='', nullable=False)
 
     change_email_address = Column(UnicodeText, default='', nullable=False)
     change_email_token = Column(UnicodeText, unique=True, nullable=True)

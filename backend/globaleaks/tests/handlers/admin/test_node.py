@@ -87,6 +87,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
                                 'hostname', 'onionservice',
                                 'tor',
                                 'encryption',
+                                'crypto_escrow_pub_key',
                                 '2fa',
                                 'multisite',
                                 'backup',

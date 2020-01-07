@@ -46,12 +46,10 @@
         <div class="text-danger" data-ng-show="newUser.email.$error.pattern" data-translate>Invalid email address</div>
       </div>
       <div class="form-group">
-        <label data-translate>Password</label>
-        <div>
-          <span data-translate>The default password is:</span>
-          <span class="badge badge-primary">password</span>
+        <div class="form-check">
+          <input class="form-check-input inputelem" type="checkbox" data-ng-model="new_user.send_account_activation_link">
+          <span class="form-check-label" data-translate>Send an account activation link to the user.</span>
         </div>
-        <div data-translate>The system forces users to change the password at first login.</div>
       </div>
       <div class="form-group">
         <button id="add-btn" class="btn btn-primary" data-ng-disabled="newUser.$invalid"
@@ -141,16 +139,20 @@
             <div class="form-group">
               <label data-translate>Password</label>
               <div>
-                <span class="btn btn-secondary" data-ng-click="resetUserPassword()">
+		      <span class="btn btn-secondary" data-ng-click="resetUserPassword()" data-ng-if="user.last_login === '1970-01-01T00:00:00Z'">
                   <i class="fas fa-sync"></i>
-                  <span data-translate>Reset password</span>
+                  <span data-translate>Send activation link</span>
+                </span>
+		<span class="btn btn-secondary" data-ng-click="resetUserPassword()" data-ng-if="user.last_login !== '1970-01-01T00:00:00Z'">
+                  <i class="fas fa-sync"></i>
+                  <span data-translate>Send reset link</span>
                 </span>
                 <span class="btn btn-secondary"
-		      data-ng-if="!resources.node.encryption"
-		      data-ng-init="user.newpassword = false"
+                      data-ng-if="!user.encryption || preferences.escrow"
+                      data-ng-init="user.newpassword = false"
                       data-ng-click="user.newpassword=!user.newpassword">
                   <i class="fas fa-edit"></i>
-                  <span data-translate>New password</span>
+                  <span data-translate>Set password</span>
                 </span>
                 <span class="btn btn-danger" data-ng-if="user.two_factor_enable" data-ng-click="disable2FA()">
                   <i class="fas fa-ban"></i>
@@ -196,7 +198,7 @@
               <label data-translate>Enable email notifications</label>
             </div>
           </div>
-        </div>
+	</div>
         <div class="row">
           <div class="col-md-12">
             <div class="form-group" data-ng-show="user.pgp_key_fingerprint !== ''">
@@ -221,6 +223,14 @@
                 <label file-input="loadPublicKeyFile(file)" file-input-label="Select"
                        class="btn btn-sm btn-secondary textarea-btn"></label>
               </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" data-ng-if="user.role === 'admin'">
+          <div class="col-md-12">
+            <div class="form-group" data-ng-if="public.node.escrow">
+              <input data-ng-model="user.escrow" type="checkbox" data-ng-disabled="!preferences.escrow" data-ng-change="Utils.applyConfig('toggle_escrow', user.id)">
+              <label data-translate>Grant the user the capability of resetting users' passwords</label>
             </div>
           </div>
         </div>

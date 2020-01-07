@@ -123,20 +123,23 @@ def signup_activation(session, state, tid, token, language):
     db_initialize_tenant(session, tenant, mode)
 
     password_admin = generateRandomKey(16)
-    password_recipient = generateRandomKey(16)
+    password_receiver = generateRandomKey(16)
 
     node_name = signup.organization_name if signup.organization_name else signup.subdomain
 
     wizard = {
         'node_language': signup.language,
         'node_name': node_name,
+        'admin_username': 'admin',
         'admin_name': signup.name + ' ' + signup.surname,
         'admin_password': password_admin,
         'admin_mail_address': signup.email,
+        'receiver_username': 'recipient',
         'receiver_name': signup.name + ' ' + signup.surname,
-        'receiver_password': password_recipient,
+        'receiver_password': password_receiver,
         'receiver_mail_address': signup.email,
         'profile': 'default',
+        'skip_recipient_account_creation': False,
         'enable_developers_exception_notification': True
     }
 
@@ -153,7 +156,7 @@ def signup_activation(session, state, tid, token, language):
 
     state.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
 
-    db_refresh_memory_variables(session, [1])
+    db_refresh_memory_variables(session, [tid])
 
 
 class Signup(BaseHandler):

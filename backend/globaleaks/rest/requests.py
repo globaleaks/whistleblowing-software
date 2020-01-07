@@ -158,7 +158,8 @@ AdminUserDesc = {
     'can_delete_submission': bool,
     'can_postpone_expiration': bool,
     'can_grant_permissions': bool,
-    'recipient_configuration': str
+    'recipient_configuration': str,
+    'send_account_activation_link': bool
 }
 
 UserUserDesc = {
@@ -295,6 +296,7 @@ AdminNodeDesc = {
     'log_accesses_of_internal_users': bool,
     'two_factor': bool,
     'encryption': bool,
+    'escrow': bool,
     'multisite': bool,
     'adminonly': bool,
     'backup': bool,
@@ -597,13 +599,16 @@ InternalTipDesc = {
 WizardDesc = {
     'node_language': str,
     'node_name': str,
+    'admin_username': str,
     'admin_name': str,
     'admin_password': str,
     'admin_mail_address': str,
+    'receiver_username': str,
     'receiver_name': str,
     'receiver_password': str,
     'receiver_mail_address': str,
     'profile': r'^(default)$',
+    'skip_recipient_account_creation': bool,
     'enable_developers_exception_notification': bool
 }
 

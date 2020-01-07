@@ -12,6 +12,7 @@ describe("globaLeaks setup wizard", function() {
 
     //await element.all(by.css('.ButtonNext')).get(2).click();
 
+    await element(by.model("wizard.admin_username")).sendKeys("admin");
     await element(by.model("wizard.admin_name")).sendKeys("Admin");
     await element(by.model("wizard.admin_mail_address")).sendKeys("globaleaks-admin@mailinator.com");
     await element(by.model("wizard.admin_password")).sendKeys(browser.gl.utils.vars["wizard_password"]);
@@ -19,6 +20,7 @@ describe("globaLeaks setup wizard", function() {
 
     await element.all(by.css(".ButtonNext")).get(3).click();
 
+    await element(by.model("wizard.receiver_username")).sendKeys("recipient");
     await element(by.model("wizard.receiver_name")).sendKeys("Recipient1");
     await element(by.model("wizard.receiver_mail_address")).sendKeys("globaleaks-receiver1@mailinator.com");
 

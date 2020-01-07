@@ -9,12 +9,12 @@ from globaleaks import models
 from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
-from globaleaks.models import get_localized_values
+from globaleaks.models import config, get_localized_values
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.pgp import PGPContext
-from globaleaks.utils.crypto import Base64Encoder, GCE, generateRandomKey
+from globaleaks.utils.crypto import Base32Encoder, Base64Encoder, GCE, generateRandomKey
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime_null
 
 
@@ -52,6 +52,13 @@ def user_serialize_user(session, user, language):
     """
     picture = db_get_model_img(session, 'users', user.id)
 
+    if user.role == 'receiver':
+        # take only contexts for the current tenant
+        contexts = [x[0] for x in session.query(models.ReceiverContext.context_id)
+                                     .filter(models.ReceiverContext.receiver_id == user.id)]
+    else:
+        contexts = []
+
     ret_dict = {
         'id': user.id,
         'username': user.username,
@@ -77,21 +84,21 @@ def user_serialize_user(session, user, language):
         'can_edit_general_settings': user.can_edit_general_settings,
         'tid': user.tid,
         'notification': user.notification,
-        'encryption': user.crypto_pub_key != b'',
-        'two_factor_enable': user.two_factor_enable
+        'encryption': user.crypto_pub_key != '',
+        'escrow': user.crypto_escrow_prv_key != '',
+        'two_factor_enable': user.two_factor_enable,
+        'recipient_configuration': user.recipient_configuration,
+        'can_postpone_expiration': user.can_postpone_expiration,
+        'can_delete_submission': user.can_delete_submission,
+        'can_grant_permissions': user.can_grant_permissions,
+        'contexts': contexts
     }
 
-    if user.role == 'receiver':
-        # take only contexts for the current tenant
-        contexts = [x[0] for x in session.query(models.ReceiverContext.context_id)
-                                     .filter(models.ReceiverContext.receiver_id == user.id)]
-
+    if user.tid in State.tenant_cache:
         ret_dict.update({
-            'recipient_configuration': user.recipient_configuration,
             'can_postpone_expiration': State.tenant_cache[user.tid].can_postpone_expiration or user.can_postpone_expiration,
             'can_delete_submission': State.tenant_cache[user.tid].can_delete_submission or user.can_delete_submission,
-            'can_grant_permissions': State.tenant_cache[user.tid].can_grant_permissions or user.can_grant_permissions,
-            'contexts': contexts
+            'can_grant_permissions': State.tenant_cache[user.tid].can_grant_permissions or user.can_grant_permissions
         })
 
     return get_localized_values(ret_dict, user, user.localized_keys, language)
@@ -125,6 +132,8 @@ def db_user_update_user(session, tid, user_session, request):
     """
     from globaleaks.handlers.admin.notification import db_get_notification
     from globaleaks.handlers.admin.node import db_admin_serialize_node
+
+    node = config.ConfigFactory(session, tid)
 
     user = models.db_get(session,
                          models.User,
@@ -163,8 +172,7 @@ def db_user_update_user(session, tid, user_session, request):
             if not user_session.cc:
                 # Th First first password change triggers the generation
                 # of the user encryption private key and its backup
-                user_session.cc, crypto_pub_key = GCE.generate_keypair()
-                user.crypto_pub_key = Base64Encoder.encode(crypto_pub_key)
+                user_session.cc, user.crypto_pub_key = GCE.generate_keypair()
                 user.crypto_bkp_key, user.crypto_rec_key = GCE.generate_recovery_key(user_session.cc)
 
                 # If the user had already enabled two factor before encryption was not enable
@@ -173,6 +181,12 @@ def db_user_update_user(session, tid, user_session, request):
                     user.two_factor_secret = Base64Encoder.encode(GCE.asymmetric_encrypt(user.crypto_pub_key, user.two_factor_secret))
 
             user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_session.cc))
+
+            if State.tenant_cache[1].crypto_escrow_pub_key:
+                user.crypto_escrow_bkp1_key = Base64Encoder.encode(GCE.asymmetric_encrypt(State.tenant_cache[1].crypto_escrow_pub_key, user_session.cc))
+
+            if State.tenant_cache[tid].crypto_escrow_pub_key:
+                user.crypto_escrow_bkp2_key = Base64Encoder.encode(GCE.asymmetric_encrypt(State.tenant_cache[tid].crypto_escrow_pub_key, user_session.cc))
 
     # If the email address changed, send a validation email
     if request['mail_address'] != user.mail_address:
@@ -255,7 +269,7 @@ def get_recovery_key(session, user_tid, user_id, user_cc):
     if not user.crypto_rec_key:
         return ''
 
-    return Base64Encoder().encode(GCE.asymmetric_decrypt(user_cc, Base64Encoder.decode(user.crypto_rec_key))).replace(b'=', b'')
+    return Base32Encoder.encode(GCE.asymmetric_decrypt(user_cc, Base64Encoder.decode(user.crypto_rec_key.encode()))).replace(b'=', b'')
 
 
 @transact

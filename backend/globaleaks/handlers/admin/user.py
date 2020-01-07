@@ -7,6 +7,7 @@
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.password_reset import db_generate_password_reset_token
 from globaleaks.handlers.user import db_get_user, \
                                      parse_pgp_options, \
                                      user_serialize_user
@@ -15,7 +16,7 @@ from globaleaks.models import fill_localized_keys
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
-from globaleaks.utils.crypto import GCE
+from globaleaks.utils.crypto import GCE, Base64Encoder
 from globaleaks.utils.utility import datetime_now, uuid4
 
 
@@ -52,12 +53,7 @@ def db_create_user(session, tid, request, language):
     if not request['username']:
         user.username = user.id = uuid4()
 
-    password = 'password'
-    if request['password']:
-        password = request['password']
-
     user.salt = GCE.generate_salt()
-    user.password = GCE.hash_password(password, user.salt)
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
@@ -66,10 +62,13 @@ def db_create_user(session, tid, request, language):
 
     session.flush()
 
+    if request.get('send_account_activation_link', False):
+        db_generate_password_reset_token(session, tid, user)
+
     return user
 
 
-def db_admin_update_user(session, tid, user_id, request, language):
+def db_admin_update_user(session, tid, user_session, user_id, request, language):
     """
     Updates the specified user.
     """
@@ -86,9 +85,21 @@ def db_admin_update_user(session, tid, user_id, request, language):
     user.update(request)
 
     password = request['password']
-    if password and not user.crypto_pub_key:
-        user.hash_alg = 'ARGON2'
-        user.salt = GCE.generate_salt()
+    if password:
+        if not user.crypto_pub_key:
+            user.hash_alg = 'ARGON2'
+            user.salt = GCE.generate_salt()
+        elif user_session.ek:
+            enc_key = GCE.derive_key(request['password'].encode(), user.salt)
+            crypto_escrow_prv_key = GCE.asymmetric_decrypt(user_session.cc, Base64Encoder.decode(user_session.ek))
+
+            if tid == 1:
+                user_cc = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(user.crypto_escrow_bkp1_key))
+            else:
+                user_cc = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(user.crypto_escrow_bkp2_key))
+
+            user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_cc))
+
         user.password = GCE.hash_password(password, user.salt)
         user.password_change_date = datetime_now()
 
@@ -102,8 +113,8 @@ def db_admin_update_user(session, tid, user_id, request, language):
 
 
 @transact
-def admin_update_user(session, tid, user_id, request, language):
-    return user_serialize_user(session, db_admin_update_user(session, tid, user_id, request, language), language)
+def admin_update_user(session, tid, user_session, user_id, request, language):
+    return user_serialize_user(session, db_admin_update_user(session, tid, user_session, user_id, request, language), language)
 
 
 @transact
@@ -175,7 +186,7 @@ class UserInstance(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.AdminUserDesc)
 
-        return admin_update_user(self.request.tid, user_id, request, self.request.language)
+        return admin_update_user(self.request.tid, self.current_user, user_id, request, self.request.language)
 
     def delete(self, user_id):
         """

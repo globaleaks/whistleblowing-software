@@ -73,7 +73,7 @@ class TestAdminPasswordReset(helpers.TestHandlerWithPopulatedDB):
         data_request = {
             'operation': 'reset_user_password',
             'args': {
-                'value': self.user['username']
+                'value': self.user['id']
             }
         }
 

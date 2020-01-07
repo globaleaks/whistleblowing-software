@@ -73,7 +73,7 @@ USER_KEY = GCE.derive_key(VALID_PASSWORD1, VALID_SALT1)
 USER_PRV_KEY, USER_PUB_KEY = GCE.generate_keypair()
 USER_PRV_KEY_ENC = Base64Encoder().encode(GCE.symmetric_encrypt(USER_KEY, USER_PRV_KEY))
 USER_BKP_KEY, USER_REC_KEY = GCE.generate_recovery_key(USER_PRV_KEY)
-USER_REC_KEY_PLAIN = GCE.asymmetric_decrypt(USER_PRV_KEY, Base32Encoder.decode(USER_REC_KEY))
+USER_REC_KEY_PLAIN = GCE.asymmetric_decrypt(USER_PRV_KEY, Base64Encoder.decode(USER_REC_KEY))
 USER_REC_KEY_PLAIN = Base32Encoder().encode(USER_REC_KEY_PLAIN).replace(b'=', b'').decode('utf-8')
 GCE_orig_generate_key = GCE.generate_key
 GCE_orig_generate_keypair = GCE.generate_keypair
@@ -432,13 +432,16 @@ class TestGL(unittest.TestCase):
         self.dummyWizard = {
             'node_language': 'en',
             'node_name': 'test',
+            'admin_username': 'admin',
             'admin_name': 'Giovanni Pellerano',
             'admin_password': 'P4ssword',
             'admin_mail_address': 'evilaliv3@globaleaks.org',
+            'receiver_username': 'receipient',
             'receiver_name': 'Fabio Pietrosanti',
-            'receiver_password': 'P4ssword',
+            'receiver_password': '',
             'receiver_mail_address': 'naif@globaleaks.org',
             'profile': 'default',
+            'skip_recipient_account_creation': False,
             'enable_developers_exception_notification': True
         }
 
@@ -893,7 +896,7 @@ class TestHandler(TestGLWithPopulatedDB):
             handler.request.headers[b'x-session'] = headers.get('x-session').encode()
 
         elif role is not None:
-            session = Sessions.new(1, user_id, 1, role, False, False, USER_PRV_KEY)
+            session = Sessions.new(1, user_id, 1, role, False, False, USER_PRV_KEY, '')
             handler.request.headers[b'x-session'] = session.id.encode()
 
         if handler.upload_handler:
@@ -1124,6 +1127,7 @@ class MockDict:
             'signup_tos2_checkbox_label': '',
             'enable_custom_privacy_badge': False,
             'custom_privacy_badge_text': '',
+            'header_title_prefix': '',
             'header_title_homepage': '',
             'header_title_submissionpage': '',
             'header_title_receiptpage': '',
@@ -1157,6 +1161,7 @@ class MockDict:
             'log_accesses_of_internal_users': False,
             'two_factor': False,
             'encryption': False,
+            'escrow': False,
             'multisite': False,
             'adminonly': False,
             'backup': False,

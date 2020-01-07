@@ -2,7 +2,7 @@ var temporary_password = "typ0drome@absurd.org";
 
 describe("custodian first login", function() {
   it("should redirect to /firstlogin upon successful authentication", async function() {
-    await browser.gl.utils.login_custodian("Custodian1", "password", "/#/login", true);
+    await browser.gl.utils.login_custodian("Custodian1", "globaleaks123!", "/#/login", true);
   });
 
   it("should be able to change password from the default one", async function() {

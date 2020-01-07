@@ -240,10 +240,8 @@ class _GCE(object):
         """
         prv_key = PrivateKey.generate()
 
-        a, b = prv_key.encode(Base64Encoder), \
+        return prv_key.encode(Base64Encoder), \
                prv_key.public_key.encode(Base64Encoder)
-        print(a)
-        return a, b
 
     @staticmethod
     def generate_recovery_key(prv_key):
@@ -251,7 +249,7 @@ class _GCE(object):
         pub_key = PrivateKey(prv_key, Base64Encoder).public_key.encode(Base64Encoder)
         bkp_key = _GCE.symmetric_encrypt(rec_key, prv_key)
         rec_key = _GCE.asymmetric_encrypt(pub_key, rec_key)
-        return Base64Encoder.encode(bkp_key), Base32Encoder.encode(rec_key)
+        return Base64Encoder.encode(bkp_key), Base64Encoder.encode(rec_key)
 
     @staticmethod
     def symmetric_encrypt(key, data):

@@ -25,7 +25,7 @@ GLClient.controller("WizardCtrl", ["$scope", "$location", "$route", "$http", "Au
   };
 
   $scope.goToAdminInterface = function() {
-    Authentication.login(0, "admin", $scope.wizard.admin_password, "", "", function() {
+    Authentication.login(0, $scope.wizard.admin_username, $scope.wizard.admin_password, "", "", function() {
       $scope.reload("/admin/home");
     });
   };
@@ -50,12 +50,15 @@ GLClient.controller("WizardCtrl", ["$scope", "$location", "$route", "$http", "Au
   $scope.wizard = {
     "node_language": GLTranslate.state.language,
     "node_name": "",
-    "admin_password": "",
+    "admin_username": "",
     "admin_name": "",
     "admin_mail_address": "",
+    "admin_password": "",
+    "receiver_username": "",
     "receiver_name": "",
-    "receiver_password": "",
     "receiver_mail_address": "",
+    "receiver_password": "",
+    "skip_recipient_account_creation": false,
     "profile": "default",
     "enable_developers_exception_notification": true
   };

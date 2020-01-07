@@ -3,14 +3,15 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.operation import OperationHandler
-from globaleaks.handlers.password_reset import generate_password_reset_token
+from globaleaks.handlers.password_reset import generate_password_reset_token_by_user_id
 from globaleaks.handlers.rtip import db_delete_itip
-from globaleaks.handlers.user import disable_2fa
+from globaleaks.handlers.user import db_get_user, disable_2fa
 from globaleaks.models import Config, InternalTip
 from globaleaks.models.config import db_set_config_variable
 from globaleaks.orm import transact, tw
 from globaleaks.rest import errors
 from globaleaks.services.onion import set_onion_service_info, get_onion_service_info
+from globaleaks.utils.crypto import Base64Encoder, GCE
 
 
 @transact
@@ -19,7 +20,6 @@ def check_hostname(session, tid, input_hostname):
     Ensure the hostname does not collide across tenants or
     include an origin that it shouldn't.
     """
-
     forbidden_endings = ['onion', 'localhost']
 
     for v in forbidden_endings:
@@ -42,6 +42,22 @@ def reset_submissions(session, tid):
         db_delete_itip(session, itip)
 
 
+@transact
+def toggle_escrow(session, tid, user_session, user_id):
+    if user_session.user_id == user_id or not user_session.ek:
+        return
+
+    user = db_get_user(session, tid, user_id)
+    if not user.crypto_pub_key:
+        return
+
+    if not user.crypto_escrow_prv_key:
+        crypto_escrow_prv_key = GCE.asymmetric_decrypt(user_session.cc, Base64Encoder.decode(user_session.ek))
+        user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_escrow_prv_key))
+    else:
+        user.crypto_escrow_prv_key = ''
+
+
 class AdminOperationHandler(OperationHandler):
     """
     This interface exposes the enable to configure and verify the platform hostname
@@ -60,9 +76,8 @@ class AdminOperationHandler(OperationHandler):
         self.state.tenant_cache[self.request.tid].hostname = req_args['value']
 
     def reset_user_password(self, req_args, *args, **kwargs):
-        return generate_password_reset_token(self.state,
-                                             self.request.tid,
-                                             req_args['value'])
+        return generate_password_reset_token_by_user_id(self.request.tid,
+                                                        req_args['value'])
 
     @inlineCallbacks
     def reset_onion_private_key(self, req_args, *args, **kargs):
@@ -78,11 +93,15 @@ class AdminOperationHandler(OperationHandler):
     def reset_submissions(self, req_args, *args, **kwargs):
         return reset_submissions(self.request.tid)
 
+    def toggle_escrow(self, req_args, *args, **kwargs):
+        return toggle_escrow(self.request.tid, self.current_user, req_args['value'])
+
     def operation_descriptors(self):
         return {
             'disable_2fa': (AdminOperationHandler.disable_2fa, {'value': str}),
             'reset_onion_private_key': (AdminOperationHandler.reset_onion_private_key, {}),
             'reset_submissions': (AdminOperationHandler.reset_submissions, {}),
             'reset_user_password': (AdminOperationHandler.reset_user_password, {'value': str}),
-            'set_hostname': (AdminOperationHandler.set_hostname, {'value': str})
+            'set_hostname': (AdminOperationHandler.set_hostname, {'value': str}),
+            'toggle_escrow': (AdminOperationHandler.toggle_escrow, {'value': str})
         }

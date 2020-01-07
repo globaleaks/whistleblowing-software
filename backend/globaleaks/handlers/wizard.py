@@ -10,8 +10,26 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import config, profiles
 from globaleaks.orm import tw
 from globaleaks.rest import requests, errors
+from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.utility import datetime_now
 from globaleaks.utils.log import log
+
+
+def db_gen_user_keys(session, tid, user, password):
+    enc_key = GCE.derive_key(password.encode(), user.salt)
+    crypto_prv_key, user.crypto_pub_key = GCE.generate_keypair()
+    user.crypto_bkp_key, user.crypto_rec_key = GCE.generate_recovery_key(crypto_prv_key)
+    user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, crypto_prv_key))
+
+    tid_1_escrow = config.ConfigFactory(session, 1).get_val('crypto_escrow_pub_key')
+    if tid_1_escrow:
+        user.crypto_escrow_bkp1_key = Base64Encoder.encode(GCE.asymmetric_encrypt(tid_1_escrow, crypto_prv_key))
+
+    tid_n_escrow = config.ConfigFactory(session, tid).get_val('crypto_escrow_pub_key')
+    if tid_n_escrow:
+        user.crypto_escrow_bkp2_key = Base64Encoder.encode(GCE.asymmetric_encrypt(tid_n_escrow, crypto_prv_key))
+
+    return crypto_prv_key
 
 
 def db_wizard(session, tid, request, client_using_tor, language):
@@ -40,9 +58,12 @@ def db_wizard(session, tid, request, client_using_tor, language):
 
     profiles.load_profile(session, tid, request['profile'])
 
+    crypto_escrow_prv_key, crypto_escrow_pub_key = GCE.generate_keypair()
+    node.set_val('crypto_escrow_pub_key', crypto_escrow_pub_key)
+
     admin_desc = models.User().dict(language)
+    admin_desc['username'] = request['admin_username']
     admin_desc['name'] = request['admin_name']
-    admin_desc['username'] = 'admin'
     admin_desc['password'] = request['admin_password']
     admin_desc['name'] = request['admin_name']
     admin_desc['mail_address'] = request['admin_mail_address']
@@ -51,25 +72,33 @@ def db_wizard(session, tid, request, client_using_tor, language):
     admin_desc['pgp_key_remove'] = False
 
     admin_user = db_create_user(session, tid, admin_desc, language)
+    admin_user.password = GCE.hash_password(request['admin_password'], admin_user.salt)
+    db_gen_user_keys(session, tid, admin_user, request['admin_password'])
+    admin_user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(admin_user.crypto_pub_key, crypto_escrow_prv_key))
     admin_user.password_change_needed = False
     admin_user.password_change_date = datetime_now()
 
-    receiver_desc = models.User().dict(language)
-    receiver_desc['name'] = request['receiver_name']
-    receiver_desc['username'] = 'recipient'
-    receiver_desc['password'] = request['receiver_password']
-    receiver_desc['name'] = request['receiver_name']
-    receiver_desc['mail_address'] = request['receiver_mail_address']
-    receiver_desc['language'] = language
-    receiver_desc['role'] = 'receiver'
-    receiver_desc['pgp_key_remove'] = False
-
-    receiver_user = db_create_user(session, tid, receiver_desc, language)
+    receiver_user = None
+    if not request['skip_recipient_account_creation']:
+        receiver_desc = models.User().dict(language)
+        receiver_desc['username'] = request['receiver_username']
+        receiver_desc['name'] = request['receiver_name']
+        receiver_desc['password'] = request['receiver_password']
+        receiver_desc['mail_address'] = request['receiver_mail_address']
+        receiver_desc['language'] = language
+        receiver_desc['role'] = 'receiver'
+        receiver_desc['pgp_key_remove'] = False
+        receiver_desc['send_account_activation_link'] = not request['skip_recipient_account_creation']
+        receiver_user = db_create_user(session, tid, receiver_desc, language)
+        if receiver_desc['password']:
+            receiver_user.password = GCE.hash_password(receiver_desc['password'], receiver_user.salt)
+            db_gen_user_keys(session, tid, receiver_user, receiver_desc['password'])
 
     context_desc = models.Context().dict(language)
     context_desc['status'] = 1
     context_desc['name'] = 'Default'
-    context_desc['receivers'] = [receiver_user.id]
+
+    context_desc['receivers'] = [receiver_user.id] if receiver_user else []
 
     context = db_create_context(session, tid, context_desc, language)
 
@@ -106,8 +135,9 @@ def db_wizard(session, tid, request, client_using_tor, language):
 
     # Apply the general settings to apply on all mode != default
     if mode in ['whistleblowing.it', 'eat']:
-        # Enable the recipient user to configure platform general settings
-        receiver_user.can_edit_general_settings = True
+        if receiver_user is not None:
+            # Enable the recipient user to configure platform general settings
+            receiver_user.can_edit_general_settings = True
 
         # Set data retention policy to 18 months
         context.tip_timetolive = 540
@@ -124,8 +154,9 @@ def db_wizard(session, tid, request, client_using_tor, language):
         # Enable recipients to load files to the whistleblower
         context.enable_rc_to_wb_files = True
 
-        # Set the recipient name equal to the node name
-        receiver_user.name = request['node_name']
+        if receiver_user is not None:
+            # Set the recipient name equal to the node name
+            receiver_user.name = request['node_name']
 
     db_refresh_memory_variables(session, [tid])
 

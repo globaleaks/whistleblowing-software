@@ -655,6 +655,11 @@ class PasswordResetValidation(UserNodeKeyword):
         return url + '?token=' + self.data['reset_token']
 
 
+class AccountActivation(PasswordResetValidation):
+    def UrlPath(self):
+        return '/#/activation' + '?token=' + self.data['reset_token']
+
+
 class IdentityAccessRequestKeyword(UserNodeKeyword):
     keyword_list = UserNodeKeyword.keyword_list + identity_access_request_keywords
     data_keys = UserNodeKeyword.data_keys + ['iar', 'tip', 'user']
@@ -695,6 +700,7 @@ supported_template_types = {
     'activation': PlatformSignupKeyword,
     'email_validation': EmailValidationKeyword,
     'password_reset_validation': PasswordResetValidation,
+    'account_activation': PasswordResetValidation,
     'user_credentials': UserCredentials,
     'identity_access_request': IdentityAccessRequestKeyword,
     '2fa': TwoFactorAuthKeyword

@@ -422,28 +422,28 @@ var GLClient = angular.module("GLClient", [
       when("/login/passwordreset", {
         templateUrl: "views/passwordreset/main.html",
         controller: "PasswordResetCtrl",
-        header_title: "Request password reset",
+        header_title: "Password reset",
         resolve: {
           access: noAuth()
         }
       }).
       when("/login/passwordreset/requested", {
         templateUrl: "views/passwordreset/requested.html",
-        header_title: "Request password reset",
+        header_title: "Password reset",
         resolve: {
           access: noAuth()
         }
       }).
       when("/login/passwordreset/failure/token", {
         templateUrl: "views/passwordreset/failure_token.html",
-        header_title: "Request password reset",
+        header_title: "Password reset",
         resolve: {
           access: noAuth()
         }
       }).
       when("/login/passwordreset/failure/recovery", {
         templateUrl: "views/passwordreset/failure_recovery.html",
-        header_title: "Request password reset",
+        header_title: "Password reset",
         resolve: {
           access: noAuth()
         }
@@ -451,7 +451,7 @@ var GLClient = angular.module("GLClient", [
       when("/password/reset", {
         templateUrl: "views/empty.html",
         controller: "PasswordResetCompleteCtrl",
-        header_title: "Request password reset",
+        header_title: "Password reset",
         resolve: {
           access: noAuth()
         }
@@ -459,7 +459,7 @@ var GLClient = angular.module("GLClient", [
       when("/password/reset/2fa", {
         templateUrl: "views/passwordreset/2fa.html",
         controller: "PasswordResetCompleteCtrl",
-        header_title: "Request password reset",
+        header_title: "Password reset",
         resolve: {
           access: noAuth()
         }
@@ -467,7 +467,7 @@ var GLClient = angular.module("GLClient", [
       when("/password/reset/recovery", {
         templateUrl: "views/passwordreset/recovery.html",
         controller: "PasswordResetCompleteCtrl",
-        header_title: "Request password reset",
+        header_title: "Password reset",
         resolve: {
           access: noAuth()
         }

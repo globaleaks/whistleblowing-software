@@ -784,6 +784,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       user.can_delete_submission = false;
       user.can_postpone_expiration = false;
       user.can_grant_permissions = false;
+      user.send_account_activation_link = true;
       return user;
     },
 
@@ -1147,11 +1148,11 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         $window.print();
       },
 
-      setHostname: function(hostname) {
+      applyConfig: function(cmd, value) {
         var req = {
-          "operation": "set_hostname",
+          "operation": cmd,
           "args": {
-            "value": hostname
+            "value": value
           }
         };
 

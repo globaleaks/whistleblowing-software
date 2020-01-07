@@ -176,6 +176,8 @@ ConfigDescriptor = {
     'log_accesses_of_internal_users': Bool(default=False),
 
     'encryption': Bool(default=False),
+    'escrow': Bool(default=True),
+    'crypto_escrow_pub_key': Unicode(default=''),
 
     'multisite': Bool(default=False),
     'adminonly': Bool(default=False)
@@ -269,6 +271,8 @@ ConfigFilters = {
         'log_accesses_of_internal_users',
         'two_factor',
         'encryption',
+        'escrow',
+        'crypto_escrow_pub_key',
         'multisite',
         'adminonly',
         'backup',
@@ -402,6 +406,8 @@ ConfigL10NFilters = {
     'notification': [
         'activation_mail_template',
         'activation_mail_title',
+        'account_activation_mail_template',
+        'account_activation_mail_title',
         'admin_anomaly_activities',
         'admin_anomaly_disk_high',
         'admin_anomaly_disk_low',

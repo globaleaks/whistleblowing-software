@@ -7,10 +7,17 @@
       </label>
     </div>
 
-    <div class="form-group" data-ng-show="test_encryption" data-ng-disabled="resources.node.encryption">
+    <div class="form-group" data-ng-show="test_encryption || resources.node.encryption">
       <label>
-        <input data-ng-model="resources.node.encryption" type="checkbox" />
+        <input data-ng-model="resources.node.encryption" type="checkbox" data-ng-disabled="resources.node.encryption" />
         <span data-translate>Enable encryption</span>
+      </label>
+    </div>
+
+    <div class="form-group" data-ng-show="resources.node.encryption">
+      <label>
+        <input data-ng-model="resources.node.escrow" type="checkbox" data-ng-disabled="resources.node.escrow && !preferences.escrow" />
+        <span data-translate>Enable encryption's keys recovery</span>
       </label>
     </div>
 

@@ -67,6 +67,15 @@
       <div class="col-md-6">
         <div class="row form-group">
           <label class="col-md-4">
+            <span data-translate>Username</span>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+          </label>
+          <div class="col-md-8">
+            <input name="admin_name" class="form-control" data-ng-model="wizard.admin_username" type="text" data-ng-attr-placeholder="{{'Username' | translate}}" required>
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-md-4">
             <span data-translate>Name</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
@@ -110,12 +119,6 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="wizard-help-hint">
-          <span data-translate>The default username is:</span>
-          <span class="badge badge-warning">admin</span>
-        </div>
-      </div>
     </div>
     <div class="pager float-right">
       <button class="ButtonPrevious btn btn-primary" data-ng-click="step = 2">
@@ -132,37 +135,49 @@
     <div class="row wizard-block">
       <div class="col-md-12 title" data-translate>Recipient</div>
       <div class="col-md-6">
-        <div class="row form-group">
-          <label class="col-md-4">
-            <span data-translate>Name</span>
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-          </label>
-          <div class="col-md-8">
-            <input name="receiver_name" class="form-control" data-ng-model="wizard.receiver_name" type="text" data-ng-attr-placeholder="{{'Name' | translate}}" required>
+        <div data-ng-if="!wizard.skip_recipient_account_creation">
+          <div class="row form-group">
+            <label class="col-md-4">
+              <span data-translate>Username</span>
+              <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+            </label>
+            <div class="col-md-8">
+              <input name="admin_name" class="form-control" data-ng-model="wizard.receiver_username" type="text" data-ng-attr-placeholder="{{'Username' | translate}}" required>
+            </div>
+          </div>
+          <div class="row form-group">
+            <label class="col-md-4">
+              <span data-translate>Name</span>
+              <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+            </label>
+            <div class="col-md-8">
+              <input name="receiver_name" class="form-control" data-ng-model="wizard.receiver_name" type="text" data-ng-attr-placeholder="{{'Name' | translate}}" data-ng-disabled="wizard.skip_recipient_account_creation" required>
+            </div>
+          </div>
+          <div class="row form-group">
+            <label class="col-md-4">
+              <span data-translate>Email address</span>
+              <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+            </label>
+            <div class="col-md-8">
+              <input name="receiver_email" class="form-control" data-ng-model="wizard.receiver_mail_address" data-ng-pattern="email_regexp" type="text" data-ng-attr-placeholder="{{'Email address' | translate}}" data-ng-class="{'is-invalid': validated5 && wizardFormStep5.receiver_email.$error.required || wizardFormStep5.receiver_email.$error.pattern}" data-ng-disabled="wizard.skip_recipient_account_creation" required>
+              <div class="text-danger" data-ng-show="wizardFormStep5.receiver_email.$error.pattern">
+                <span data-translate>Invalid email address</span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row form-group">
-          <label class="col-md-4">
-            <span data-translate>Email address</span>
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-          </label>
-          <div class="col-md-8">
-            <input name="receiver_email" class="form-control" data-ng-model="wizard.receiver_mail_address" data-ng-pattern="email_regexp" type="text" data-ng-attr-placeholder="{{'Email address' | translate}}" data-ng-class="{'is-invalid': validated5 && wizardFormStep5.receiver_email.$error.required || wizardFormStep5.receiver_email.$error.pattern}" required>
-            <div class="text-danger" data-ng-show="wizardFormStep5.receiver_email.$error.pattern">
-              <span data-translate>Invalid email address</span>
+          <div class="col-md-12">
+            <div class="form-check">
+              <input class="form-check-input inputelem" type="checkbox" data-ng-model="wizard.skip_recipient_account_creation">
+              <span class="form-check-label" data-translate>Skip the recipient account creation.</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="wizard-help-hint">
-          <span data-translate>The default username is:</span>
-          <span class="badge badge-warning">recipient</span>
-        </div>
-        <div class="wizard-help-hint">
-          <span data-translate>The default password is:</span>
-          <span class="badge badge-warning">password</span>
-        </div>
+      <div class="col-md-6" data-ng-if="!wizard.skip_recipient_account_creation">
+        <div class="wizard-help-hint" data-translate>The user will receive an activation link via email.</div>
       </div>
     </div>
     <div class="pager float-right">

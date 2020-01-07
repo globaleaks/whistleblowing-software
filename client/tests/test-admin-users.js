@@ -46,8 +46,8 @@ describe("admin add, configure, and delete users", function() {
     }
   });
 
-  it("should configure an existing user", async function() {
-    var user = { name: "Recipient2" };
+  it("should configure an Recipient 1", async function() {
+    var user = { name: "Recipient1" };
     var path = "//form[contains(.,\"" + user.name + "\")]";
 
     // Find Recipient2, click edit, flip some toggles, and save.
@@ -57,15 +57,34 @@ describe("admin add, configure, and delete users", function() {
 
     // Add a description
     var descriptBox = editUsrForm.element(by.model("user.description"));
-    var words = "Description of recipient 2";
+    var words = "Description of recipient 1";
     await descriptBox.clear();
     await descriptBox.sendKeys(words);
+
+    await editUsrForm.all(by.cssContainingText("span", "Set password")).first().click();
+    await element(by.model("user.password")).sendKeys("globaleaks123!");
 
     // Click Save and check the fields
     await editUsrForm.element(by.cssContainingText("button", "Save")).click();
     await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
 
     expect(await descriptBox.getAttribute("value")).toEqual(words);
+  });
+
+  it("should configure an Custodian 1", async function() {
+    var user = { name: "Custodian1" };
+    var path = "//form[contains(.,\"" + user.name + "\")]";
+
+    // Find Recipient2, click edit, flip some toggles, and save.
+    var editUsrForm = element(by.xpath(path));
+
+    await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
+
+    await editUsrForm.all(by.cssContainingText("span", "Set password")).first().click();
+    await element(by.model("user.password")).sendKeys("globaleaks123!");
+
+    // Click Save and check the fields
+    await editUsrForm.element(by.cssContainingText("button", "Save")).click();
   });
 
   it("should del existing users", async function() {
