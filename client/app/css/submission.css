@@ -52,6 +52,10 @@
   background-color: #f2dede;
 }
 
+#selectedContext {
+  margin-bottom: 1rem;
+}
+
 .fieldAnswerEntry {
   margin-top: 1rem;
 }

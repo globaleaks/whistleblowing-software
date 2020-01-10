@@ -1,6 +1,10 @@
 <div data-ng-if="!submission.context" data-ng-include="'views/whistleblower/context_selection.html'"></div>
-
-<div data-ng-if="submission.context">
+  <div id="selectedContext" data-ng-if="selectable_contexts.length > 1">
+    <div><b>Selected context:</b> {{submission.context.name}}</div>
+    <div class="row">
+      <div class="col-md-2" data-ng-if="submission.context.picture"><img class="contextImg" alt="context picture" data-ng-src="{{Utils.imgDataUri(submission.context.picture)}}" /></div>
+    </div>
+  </div>
   <form id="submissionForm" name="vars.submissionForm" autocomplete="off" novalidate data-ng-class="{'was-validated': displayErrors()}">
     <div class="tabbable tabs-below">
       <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" data-ng-if="submission.context.show_steps_navigation_interface && submission.context.questionnaire.steps.length > 1">
