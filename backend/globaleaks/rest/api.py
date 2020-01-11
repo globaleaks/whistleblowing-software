@@ -108,7 +108,6 @@ api_spec = [
     (r'/wbtip/' + uuid_regexp + r'/update', wbtip.WBTipAdditionalQuestionnaire),
 
     ## Receiver Handlers ##
-    (r'/receiver/preferences', receiver.ReceiverInstance),
     (r'/receiver/tips', receiver.TipsCollection),
     (r'/rtip/operations', receiver.TipsOperations),
 

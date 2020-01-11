@@ -10,44 +10,11 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_itip
 from globaleaks.handlers.submission import db_serialize_archived_preview_schema
-from globaleaks.handlers.user import db_get_user, db_user_update_user, user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE
 from globaleaks.utils.utility import datetime_to_ISO8601
-
-
-def receiver_serialize_receiver(session, tid, user, language):
-    # take only contexts for the current tenant
-    contexts = [x[0] for x in session.query(models.ReceiverContext.context_id)
-                                     .filter(models.ReceiverContext.receiver_id == user.id)]
-
-    ret_dict = user_serialize_user(session, user, language)
-
-    ret_dict.update({
-        'can_postpone_expiration': State.tenant_cache[tid].can_postpone_expiration or user.can_postpone_expiration,
-        'can_delete_submission': State.tenant_cache[tid].can_delete_submission or user.can_delete_submission,
-        'can_grant_permissions': State.tenant_cache[tid].can_grant_permissions or user.can_grant_permissions,
-        'notification': user.notification,
-        'contexts': contexts
-    })
-
-    return ret_dict
-
-
-@transact
-def get_receiver_settings(session, tid, user_id, language):
-    user = db_get_user(session, tid, user_id)
-
-    return receiver_serialize_receiver(session, tid, user, language)
-
-
-@transact
-def update_receiver_settings(session, tid, user_session, request, language):
-    user = db_user_update_user(session, tid, user_session, request)
-
-    return receiver_serialize_receiver(session, tid, user, language)
 
 
 @transact
@@ -154,30 +121,6 @@ def perform_tips_operation(session, tid, receiver_id, operation, rtips_ids):
 
         else:
             raise errors.ForbiddenOperation
-
-
-class ReceiverInstance(BaseHandler):
-    """
-    This handler allow receivers to modify some of their fields:
-        - language
-        - password
-        - notification settings
-        - pgp key
-    """
-    check_roles = 'receiver'
-
-    def get(self):
-        return get_receiver_settings(self.request.tid,
-                                     self.current_user.user_id,
-                                     self.request.language)
-
-    def put(self):
-        request = self.validate_message(self.request.content.read(), requests.ReceiverReceiverDesc)
-
-        return update_receiver_settings(self.request.tid,
-                                        self.current_user,
-                                        request,
-                                        self.request.language)
 
 
 class TipsCollection(BaseHandler):

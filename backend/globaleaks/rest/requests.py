@@ -137,7 +137,7 @@ SubmissionDesc = {
     'total_score': int
 }
 
-UserUserDesc = {
+AdminUserDesc = {
     'username': str,
     'name': str,
     'description': str,
@@ -160,7 +160,7 @@ UserUserDesc = {
     'recipient_configuration': str
 }
 
-ReceiverReceiverDesc = {
+UserUserDesc = {
     'username': str,
     'name': str,
     'description': str,
@@ -173,8 +173,8 @@ ReceiverReceiverDesc = {
     'pgp_key_fingerprint': str,
     'pgp_key_expiration': str,
     'pgp_key_public': str,
-    'notification': bool,
-    'language': str
+    'language': str,
+    'notification': bool
 }
 
 ReceiverOperationDesc = {

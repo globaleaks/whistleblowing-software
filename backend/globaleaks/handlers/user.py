@@ -74,15 +74,24 @@ def user_serialize_user(session, user, language):
         'pgp_key_remove': False,
         'picture': picture,
         'can_edit_general_settings': user.can_edit_general_settings,
-        'can_delete_submission': user.can_delete_submission,
-        'can_postpone_expiration': user.can_postpone_expiration,
-        'can_grant_permissions': user.can_grant_permissions,
-        'recipient_configuration': user.recipient_configuration,
         'tid': user.tid,
         'notification': user.notification,
         'encryption': user.crypto_pub_key != b'',
         'two_factor_enable': user.two_factor_enable
     }
+
+    if user.role == 'receiver':
+        # take only contexts for the current tenant
+        contexts = [x[0] for x in session.query(models.ReceiverContext.context_id)
+                                     .filter(models.ReceiverContext.receiver_id == user.id)]
+
+        ret_dict.update({
+            'recipient_configuration': user.recipient_configuration,
+            'can_postpone_expiration': State.tenant_cache[user.tid].can_postpone_expiration or user.can_postpone_expiration,
+            'can_delete_submission': State.tenant_cache[user.tid].can_delete_submission or user.can_delete_submission,
+            'can_grant_permissions': State.tenant_cache[user.tid].can_grant_permissions or user.can_grant_permissions,
+            'contexts': contexts
+        })
 
     return get_localized_values(ret_dict, user, user.localized_keys, language)
 

@@ -50,6 +50,7 @@ class TestReceiverCollection(TestAdminCollection):
         'model': models.User,
         'create': user.create_user,
         'data': {
+            'role': 'receiver',
             'name': u'Mario Rossi',
             'mail_address': 'receiver@theguardian.com',
             'language': 'en'
@@ -62,10 +63,11 @@ class TestReceiverInstance(TestAdminInstance):
         'model': models.User,
         'create': user.create_user,
         'data': {
+            'role': 'receiver',
             'name': u'Mario Rossi',
             'mail_address': 'receiver@theguardian.com',
             'language': 'en',
-            'can_delete_submission': False
+            'recipient_configuration': 'forcefully_selected'
         }
     }
 

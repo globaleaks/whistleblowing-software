@@ -159,7 +159,7 @@ class UsersCollection(BaseHandler):
         Create a new user
         """
         request = self.validate_message(self.request.content.read(),
-                                        requests.UserUserDesc)
+                                        requests.AdminUserDesc)
 
         return create_user(self.request.tid, request, self.request.language)
 
@@ -172,7 +172,7 @@ class UserInstance(BaseHandler):
         """
         Update the specified user.
         """
-        request = self.validate_message(self.request.content.read(), requests.UserUserDesc)
+        request = self.validate_message(self.request.content.read(), requests.AdminUserDesc)
 
         return admin_update_user(self.request.tid, user_id, request, self.request.language)
 

@@ -15,8 +15,8 @@ angular.module("GLServices", ["ngResource"]).
     };
   }]).
   factory("Authentication",
-    ["$filter", "$http", "$location", "$window", "$routeParams", "$rootScope", "GLTranslate", "UserPreferences", "ReceiverPreferences",
-    function($filter, $http, $location, $window, $routeParams, $rootScope, GLTranslate, UserPreferences, ReceiverPreferences) {
+    ["$filter", "$http", "$location", "$window", "$routeParams", "$rootScope", "GLTranslate", "UserPreferences",
+    function($filter, $http, $location, $window, $routeParams, $rootScope, GLTranslate, UserPreferences) {
       function Session(){
         var self = this;
 
@@ -43,16 +43,15 @@ angular.module("GLServices", ["ngResource"]).
           if (self.session.role === "admin") {
             self.session.homepage = "#/admin/home";
             self.session.auth_landing_page = "/admin/home";
-            UserPreferences.get().$promise.then(initPreferences);
           } else if (self.session.role === "custodian") {
             self.session.homepage = "#/custodian/home";
             self.session.auth_landing_page = "/custodian/home";
-            UserPreferences.get().$promise.then(initPreferences);
           } else if (self.session.role === "receiver") {
             self.session.homepage = "#/receiver/home";
             self.session.auth_landing_page = "/receiver/home";
-            ReceiverPreferences.get().$promise.then(initPreferences);
-          }
+	  }
+
+	  UserPreferences.get().$promise.then(initPreferences);
 
           self.session.role_l10n = function() {
             return $filter("translate")(self.session.role.charAt(0).toUpperCase() + self.session.role.substr(1));
@@ -541,9 +540,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         }
       });
     };
-}]).
-  factory("ReceiverPreferences", ["GLResource", function(GLResource) {
-    return new GLResource("receiver/preferences");
 }]).
   factory("ReceiverTips", ["GLResource", function(GLResource) {
     return new GLResource("receiver/tips");

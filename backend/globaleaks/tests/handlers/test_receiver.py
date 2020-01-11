@@ -13,27 +13,6 @@ from globaleaks.utils.utility import datetime_never
 def set_expiration_of_all_rtips_to_unlimited(session):
     session.query(models.InternalTip).update({'expiration_date': datetime_never()})
 
-
-class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
-    _handler = receiver.ReceiverInstance
-
-    @inlineCallbacks
-    def setUp(self):
-        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        self.rcvr_id = (yield user.get_receiver_list(1, 'en'))[0]['id']
-
-    @inlineCallbacks
-    def test_disable_tip_notification(self):
-        handler = self.request(user_id=self.rcvr_id, role='receiver')
-
-        response = yield handler.get()
-
-        response['notification'] = False
-
-        handler = self.request(response, user_id=self.rcvr_id, role='receiver')
-        yield handler.put()
-
-
 class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = receiver.TipsCollection
 

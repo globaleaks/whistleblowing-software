@@ -1,6 +1,6 @@
 GLClient.controller("TipCtrl",
-  ["$scope", "$location", "$filter", "$route", "$routeParams", "$uibModal", "$http", "Authentication", "RTip", "WBTip", "ReceiverPreferences", "RTipExport", "RTipDownloadRFile", "WBTipDownloadFile", "fieldUtilities",
-  function($scope, $location, $filter, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities) {
+  ["$scope", "$location", "$filter", "$route", "$routeParams", "$uibModal", "$http", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadRFile", "WBTipDownloadFile", "fieldUtilities",
+  function($scope, $location, $filter, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities) {
     $scope.fieldUtilities = fieldUtilities;
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = "#";
@@ -124,8 +124,6 @@ GLClient.controller("TipCtrl",
       });
 
     } else if ($scope.Authentication.session.role === "receiver") {
-      $scope.preferences = ReceiverPreferences.get();
-
       $scope.tip = new RTip({id: $scope.tip_id}, function(tip) {
         $scope.tip = tip;
         $scope.tip.context = $scope.contexts_by_id[$scope.tip.context_id];

@@ -467,12 +467,10 @@ class TestGL(unittest.TestCase):
 
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
-        self.dummyAdminUser = self.get_dummy_user('admin', 'admin')
-        self.dummyCustodianUser = self.get_dummy_user('custodian', 'custodian1')
-        self.dummyReceiverUser_1 = self.get_dummy_user('receiver', 'receiver1')
-        self.dummyReceiverUser_2 = self.get_dummy_user('receiver', 'receiver2')
-        self.dummyReceiver_1 = self.get_dummy_receiver('receiver1')  # the one without PGP
-        self.dummyReceiver_2 = self.get_dummy_receiver('receiver2')  # the one with PGP
+        self.dummyAdmin = self.get_dummy_user('admin', 'admin')
+        self.dummyCustodian = self.get_dummy_user('custodian', 'custodian1')
+        self.dummyReceiver_1 = self.get_dummy_receiver('receiver1')
+        self.dummyReceiver_2 = self.get_dummy_receiver('receiver2')
 
         if self.encryption_scenario == 'ENCRYPTED':
             self.dummyReceiver_1['pgp_key_public'] = PGPKEYS['VALID_PGP_KEY1_PUB']
@@ -509,7 +507,7 @@ class TestGL(unittest.TestCase):
 
     def get_dummy_receiver(self, username):
         new_u = self.get_dummy_user('receiver', username)
-        new_r = dict(MockDict().dummyReceiver)
+        new_r = dict(MockDict().dummyUser)
 
         return sum_dicts(new_r, new_u)
 
@@ -693,23 +691,21 @@ class TestGLWithPopulatedDB(TestGL):
     @inlineCallbacks
     def fill_data(self):
         # fill_data/create_admin
-        self.dummyAdminUser = yield create_user(1, copy.deepcopy(self.dummyAdminUser), 'en')
+        self.dummyAdmin = yield create_user(1, self.dummyAdmin, 'en')
 
         # fill_data/create_custodian
-        self.dummyCustodianUser = yield create_user(1, copy.deepcopy(self.dummyCustodianUser), 'en')
+        self.dummyCustodian = yield create_user(1, self.dummyCustodian, 'en')
 
         # fill_data/create_receiver
-        self.dummyReceiver_1 = yield create_user(1, copy.deepcopy(self.dummyReceiver_1), 'en')
-        self.dummyReceiverUser_1['id'] = self.dummyReceiver_1['id']
-        self.dummyReceiver_2 = yield create_user(1, copy.deepcopy(self.dummyReceiver_2), 'en')
-        self.dummyReceiverUser_2['id'] = self.dummyReceiver_2['id']
+        self.dummyReceiver_1 = yield create_user(1, self.dummyReceiver_1, 'en')
+        self.dummyReceiver_2 = yield create_user(1, self.dummyReceiver_2, 'en')
         receivers_ids = [self.dummyReceiver_1['id'], self.dummyReceiver_2['id']]
 
         yield mock_users_keys()
 
         # fill_data/create_context
         self.dummyContext['receivers'] = receivers_ids
-        self.dummyContext = yield create_context(1, copy.deepcopy(self.dummyContext), 'en')
+        self.dummyContext = yield create_context(1, self.dummyContext, 'en')
 
         self.dummyQuestionnaire = yield get_questionnaire(1, self.dummyContext['questionnaire_id'], 'en')
 
@@ -887,11 +883,11 @@ class TestHandler(TestGLWithPopulatedDB):
 
         if user_id is None and role is not None:
             if role == 'admin':
-                user_id = self.dummyAdminUser['id']
+                user_id = self.dummyAdmin['id']
             elif role == 'receiver':
-                user_id = self.dummyReceiverUser_1['id']
+                user_id = self.dummyReceiver_1['id']
             elif role == 'custodian':
-                user_id = self.dummyCustodianUser['id']
+                user_id = self.dummyCustodian['id']
 
         if headers is not None and headers.get('x-session', None) is not None:
             handler.request.headers[b'x-session'] = headers.get('x-session').encode()
@@ -938,7 +934,6 @@ class TestCollectionHandler(TestHandler):
         data = self.get_dummy_request()
 
         for k, v in self._test_desc['data'].items():
-            self.assertNotEqual(data[k], v)
             data[k] = v
 
         handler = self.request(data, role='admin')
@@ -1030,17 +1025,13 @@ class MockDict:
             'pgp_key_expiration': u'1970-01-01 00:00:00.000000',
             'pgp_key_remove': False,
             'can_edit_general_settings': False,
-            'notification': True
+            'notification': True,
+            'recipient_configuration': 'default',
+            'can_delete_submission': False,
+            'can_postpone_expiration': False,
+            'can_grant_permissions': False,
+            'contexts': []
         }
-
-        self.dummyReceiver = copy.deepcopy(self.dummyUser)
-
-        self.dummyReceiver = sum_dicts(self.dummyReceiver, {
-            'can_delete_submission': True,
-            'can_postpone_expiration': True,
-            'contexts': [],
-            'configuration': 'default'
-        })
 
         self.dummyContext = {
             'id': '',
