@@ -175,7 +175,7 @@ ConfigDescriptor = {
     'log_level': Unicode(default='ERROR'),
     'log_accesses_of_internal_users': Bool(default=False),
 
-    'encryption': Bool(default=False),
+    'encryption': Bool(default=True),
     'escrow': Bool(default=True),
     'crypto_escrow_pub_key': Unicode(default=''),
 

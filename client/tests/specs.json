@@ -1,7 +1,6 @@
 [
   "test-init.js",
   "test-admin-perform-wizard.js",
-  "test-admin-enable-encryption.js",
   "test-admin-login.js",
   "test-admin-navigate-sections.js",
   "test-admin-configure-advanced.js",

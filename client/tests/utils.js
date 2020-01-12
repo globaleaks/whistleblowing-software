@@ -3,7 +3,6 @@ var path = require("path");
 var crypto = require("crypto");
 
 exports.vars = {
-  "wizard_password": "w1z4rdp4ssw0rd!",
   "user_password": "ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#",
   "field_types": [
     "Single-line text input",
