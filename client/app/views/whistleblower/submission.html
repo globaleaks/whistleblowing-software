@@ -1,6 +1,6 @@
 <div data-ng-if="!submission.context" data-ng-include="'views/whistleblower/context_selection.html'"></div>
   <div id="selectedContext" data-ng-if="selectable_contexts.length > 1">
-    <div><b>Selected context:</b> {{submission.context.name}}</div>
+    <div>{{submission.context.name}}</div>
     <div class="row">
       <div class="col-md-2" data-ng-if="submission.context.picture"><img class="contextImg" alt="context picture" data-ng-src="{{Utils.imgDataUri(submission.context.picture)}}" /></div>
     </div>
@@ -43,7 +43,7 @@
         <i class="fas fa-arrow-circle-right"></i>
       </button>
 
-      <button id="SubmitButton" class="btn btn-success" data-ng-show="!hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="submission.wait || !submission.pow" type="submit">
+      <button id="SubmitButton" class="btn btn-success" data-ng-show="submission.context && !hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="submission.wait || !submission.pow" type="submit">
         <i data-ng-show="submission.wait || !submission.pow" id="SubmitIconWait" class="fas fa-clock"></i>
         <i data-ng-hide="submission.wait || !submission.pow" id="SubmitIconOK" class="fas fa-check-circle"></i>
         <span data-translate>Submit</span>
