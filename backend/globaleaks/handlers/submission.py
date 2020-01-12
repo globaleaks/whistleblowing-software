@@ -346,16 +346,8 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
     crypto_is_available = State.tenant_cache[tid].encryption
 
-    # Evaluate if encryption is available
     if crypto_is_available:
-        users_count = session.query(models.User) \
-                             .filter(models.User.id.in_(request['receivers']),
-                                     models.User.crypto_prv_key != b'').count()
-
-        crypto_is_available = users_count == len(request['receivers'])
-
-        if crypto_is_available:
-            crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
+        crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
 
     # Evaluate if the whistleblower tip should be generated
     if ((not State.tenant_cache[tid].enable_scoring_system) or
@@ -427,9 +419,12 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     tip_count = 0
 
     for user in session.query(models.User).filter(models.User.id.in_(request['receivers'])):
-        _tip_key = b''
+        _tip_key = ''
         if crypto_is_available:
-            _tip_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_tip_prv_key)
+            if user.crypto_pub_key:
+                _tip_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_tip_prv_key)
+            else:
+                continue
 
         db_create_receivertip(session, user, itip, can_access_whistleblower_identity, _tip_key)
 
