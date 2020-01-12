@@ -40,18 +40,20 @@ angular.module("GLServices", ["ngResource"]).
             GLTranslate.addUserPreference(prefs.language);
           }
 
-          if (self.session.role === "admin") {
-            self.session.homepage = "#/admin/home";
-            self.session.auth_landing_page = "/admin/home";
-          } else if (self.session.role === "custodian") {
-            self.session.homepage = "#/custodian/home";
-            self.session.auth_landing_page = "/custodian/home";
-          } else if (self.session.role === "receiver") {
-            self.session.homepage = "#/receiver/home";
-            self.session.auth_landing_page = "/receiver/home";
-	  }
+          if (self.session.role !== "whistleblower") {
+            if (self.session.role === "admin") {
+              self.session.homepage = "#/admin/home";
+              self.session.auth_landing_page = "/admin/home";
+            } else if (self.session.role === "custodian") {
+              self.session.homepage = "#/custodian/home";
+              self.session.auth_landing_page = "/custodian/home";
+            } else if (self.session.role === "receiver") {
+              self.session.homepage = "#/receiver/home";
+              self.session.auth_landing_page = "/receiver/home";
+            }
 
-	  UserPreferences.get().$promise.then(initPreferences);
+            UserPreferences.get().$promise.then(initPreferences);
+          }
 
           self.session.role_l10n = function() {
             return $filter("translate")(self.session.role.charAt(0).toUpperCase() + self.session.role.substr(1));
