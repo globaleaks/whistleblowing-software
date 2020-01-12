@@ -29,12 +29,6 @@ describe("globaLeaks process", function() {
     await perform_submission();
   });
 
-  it("Whistleblower should be able to access the last submission", async function() {
-    await browser.gl.utils.login_whistleblower(receipts[0]);
-    expect(await element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
-    await browser.gl.utils.logout();
-  });
-
   it("Recipient should be able to access and label the last submission", async function() {
     var label_1 = "interesting!";
     var label_2 = "fake!";
