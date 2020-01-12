@@ -27,7 +27,7 @@
       </span>
     </div>
   </div>
-  <div id="LoginFormBox" data-ng-if="page === 'submissionpage'">
+  <div id="LoginFormBox" data-ng-if="page === 'submissionpage' && !Authentication.session">
     <div class="float-right">
       <label for="receipt" data-translate>Have you already filed a submission? Enter your receipt.</label>
       <div data-ng-include="'views/partials/wb_login.html'"></div>
