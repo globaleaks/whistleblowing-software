@@ -20,11 +20,6 @@ from globaleaks.utils.crypto import GCE, Base64Encoder
 from globaleaks.utils.utility import datetime_now, uuid4
 
 
-@transact
-def create_user(session, tid, request, language):
-    return user_serialize_user(session, db_create_user(session, tid, request, language), language)
-
-
 def db_create_user(session, tid, request, language):
     request['tid'] = tid
 
@@ -66,6 +61,11 @@ def db_create_user(session, tid, request, language):
         db_generate_password_reset_token(session, tid, user)
 
     return user
+
+
+@transact
+def create_user(session, tid, request, language):
+    return user_serialize_user(session, db_create_user(session, tid, request, language), language)
 
 
 def db_admin_update_user(session, tid, user_session, user_id, request, language):

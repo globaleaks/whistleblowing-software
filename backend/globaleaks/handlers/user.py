@@ -91,7 +91,8 @@ def user_serialize_user(session, user, language):
         'can_postpone_expiration': user.can_postpone_expiration,
         'can_delete_submission': user.can_delete_submission,
         'can_grant_permissions': user.can_grant_permissions,
-        'contexts': contexts
+        'contexts': contexts,
+        'send_account_activation_link': False
     }
 
     if user.tid in State.tenant_cache:
