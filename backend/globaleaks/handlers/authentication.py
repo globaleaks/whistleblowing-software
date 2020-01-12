@@ -283,7 +283,7 @@ class TenantAuthSwitchHandler(BaseHandler):
         session = Sessions.new(tid, self.current_user.user_id,
                                self.current_user.user_tid,
                                self.current_user.user_role,
-                               self.current_user.pcn,
+                               False,
                                self.current_user.two_factor,
                                self.current_user.cc)
 
