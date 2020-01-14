@@ -53,6 +53,7 @@ def receiver_serialize_rfile(session, rfile):
             'status': 'unavailable',
             'href': "",
             'name': 'unavailable',
+            'filename': '',
             'content_type': '',
             'creation_date': '',
             'size': 0,
@@ -66,10 +67,12 @@ def receiver_serialize_rfile(session, rfile):
         'href': "/rtip/" + rfile.receivertip_id + "/download/" + rfile.id,
         # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
         'name': ("%s.pgp" % ifile.name) if rfile.status == 'encrypted' else ifile.name,
+        'filename': rfile.filename,
         'type': ifile.content_type,
         'creation_date': datetime_to_ISO8601(ifile.creation_date),
         'size': ifile.size,
-        'downloads': rfile.downloads
+        'downloads': rfile.downloads,
+        'path': os.path.join(Settings.attachments_path, rfile.filename)
     }
 
 
@@ -81,11 +84,13 @@ def receiver_serialize_wbfile(session, wbfile):
         'id': wbfile.id,
         'creation_date': datetime_to_ISO8601(wbfile.creation_date),
         'name': wbfile.name,
+        'filename': wbfile.filename,
         'description': wbfile.description,
         'size': wbfile.size,
         'type': wbfile.content_type,
         'downloads': wbfile.downloads,
-        'author': rtip.receiver_id
+        'author': rtip.receiver_id,
+        'path': os.path.join(Settings.attachments_path, wbfile.filename)
     }
 
 
@@ -220,7 +225,7 @@ def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
 
     if itip.crypto_tip_pub_key:
         for k in ['name', 'description', 'type', 'size']:
-            uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, uploaded_file[k]))
+            uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, str(uploaded_file[k])))
 
     new_file = models.WhistleblowerFile()
 
@@ -719,15 +724,13 @@ class ReceiverFileDownload(BaseHandler):
         rfile, tip_prv_key = yield self.download_rfile(self.request.tid, self.current_user.user_id, rfile_id)
 
         filelocation = os.path.join(Settings.attachments_path, rfile['filename'])
-
         directory_traversal_check(Settings.attachments_path, filelocation)
 
         if tip_prv_key:
             tip_prv_key = GCE.asymmetric_decrypt(self.current_user.cc, tip_prv_key)
-            fo = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
-            yield self.write_file_as_download_fo(rfile['name'], fo)
-        else:
-            yield self.write_file_as_download(rfile['name'], filelocation)
+            filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
+
+        yield self.write_file_as_download_fo(rfile['name'], filelocation)
 
 
 class IdentityAccessRequestsCollection(BaseHandler):

@@ -20,9 +20,7 @@ describe("globaLeaks setup wizard", function() {
 
     await element.all(by.css(".ButtonNext")).get(3).click();
 
-    await element(by.model("wizard.receiver_username")).sendKeys("recipient");
-    await element(by.model("wizard.receiver_name")).sendKeys("Recipient1");
-    await element(by.model("wizard.receiver_mail_address")).sendKeys("globaleaks-receiver1@mailinator.com");
+    await element.all(by.model("wizard.skip_recipient_account_creation")).click();
 
     await element.all(by.css(".ButtonNext")).get(4).click();
 

@@ -30,19 +30,19 @@ class TestCertificateCheck(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_cert_check_sched(self):
-        yield self.test_model_count(models.Mail, 0)
+        yield self.test_model_count(models.Mail, 2)
 
         yield CertificateCheck().run()
 
-        yield self.test_model_count(models.Mail, 0)
+        yield self.test_model_count(models.Mail, 2)
 
         CertificateCheck.notify_expr_within = 15*365
         yield CertificateCheck().run()
 
-        yield self.test_model_count(models.Mail, 1)
+        yield self.test_model_count(models.Mail, 3)
 
         State.tenant_cache[1].notification.disable_admin_notification_emails = True
 
         yield CertificateCheck().run()
 
-        yield self.test_model_count(models.Mail, 1)
+        yield self.test_model_count(models.Mail, 3)

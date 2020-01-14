@@ -945,7 +945,7 @@ class TestCollectionHandler(TestHandler):
             data = yield handler.post()
 
             for k, v in self._test_desc['data'].items():
-                self.assertTrue(data[k], v)
+                self.assertEqual(data[k], v)
 
 
 class TestInstanceHandler(TestHandler):

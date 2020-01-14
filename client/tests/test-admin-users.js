@@ -2,6 +2,11 @@ describe("admin add, configure, and delete users", function() {
   var new_users = [
     {
       role: "Recipient",
+      name: "Recipient1",
+      address: "globaleaks-receiver1@mailinator.com",
+    },
+    {
+      role: "Recipient",
       name: "Recipient2",
       address: "globaleaks-receiver2@mailinator.com",
     },
@@ -9,16 +14,6 @@ describe("admin add, configure, and delete users", function() {
       role: "Recipient",
       name: "Recipient3",
       address: "globaleaks-receiver3@mailinator.com",
-    },
-    {
-      role: "Recipient",
-      name: "Recipient4",
-      address: "globaleaks-receiver4@mailinator.com",
-    },
-    {
-      role: "Recipient",
-      name: "Recipient5",
-      address: "globaleaks-receiver5@mailinator.com",
     },
     {
       role: "Custodian",
@@ -69,6 +64,22 @@ describe("admin add, configure, and delete users", function() {
     await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
 
     expect(await descriptBox.getAttribute("value")).toEqual(words);
+  });
+
+  it("should configure an Recipient 2", async function() {
+    var user = { name: "Recipient2" };
+    var path = "//form[contains(.,\"" + user.name + "\")]";
+
+    // Find Recipient2, click edit, flip some toggles, and save.
+    var editUsrForm = element(by.xpath(path));
+
+    await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
+
+    await editUsrForm.all(by.cssContainingText("span", "Set password")).first().click();
+    await element(by.model("user.password")).sendKeys("globaleaks123!");
+
+    // Click Save and check the fields
+    await editUsrForm.element(by.cssContainingText("button", "Save")).click();
   });
 
   it("should configure an Custodian 1", async function() {

@@ -40,8 +40,6 @@ class TestWBFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
                 if wbfile_desc['id'] in deleted_wbfiles_ids:
                     continue
 
-                self.assertEqual(wbfile_desc['description'], 'description')
-
                 handler = self.request(role='receiver', user_id=rtip_desc['receiver_id'])
                 yield handler.delete(wbfile_desc['id'])
 

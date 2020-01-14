@@ -1,24 +1,19 @@
 describe("admin configure, add, and delete contexts", function() {
   it("should configure an existing context", async function() {
-    var button, input, ctx;
+    var i, button, input, ctx;
     await browser.setLocation("admin/contexts");
 
     ctx = element(by.id("context-0"));
     await ctx.element(by.cssContainingText("button", "Edit")).click();
 
-    await ctx.element(by.className("add-receiver-btn")).click();
-    button = element(by.id("ReceiverContextAdder")).element(by.model("selected.value"));
-    input = button.element(by.css(".ui-select-search"));
-    await button.click();
-    await input.sendKeys("Recipient2");
-    await element.all(by.css(".ui-select-choices-row-inner span")).first().click();
-
-    await ctx.element(by.className("add-receiver-btn")).click();
-    button = element(by.id("ReceiverContextAdder")).element(by.model("selected.value"));
-    input = button.element(by.css(".ui-select-search"));
-    await button.click();
-    await input.sendKeys("Recipient3");
-    await element.all(by.css(".ui-select-choices-row-inner span")).first().click();
+    for (i = 0; i<=2; i++) {
+      await ctx.element(by.className("add-receiver-btn")).click();
+      button = element(by.id("ReceiverContextAdder")).element(by.model("selected.value"));
+      input = button.element(by.css(".ui-select-search"));
+      await button.click();
+      await input.sendKeys("Recipient" + i.toString());
+      await element.all(by.css(".ui-select-choices-row-inner span")).first().click();
+    }
 
     await ctx.element(by.cssContainingText("button", "Advanced settings")).click();
 

@@ -413,13 +413,11 @@ def db_create_submission(session, tid, request, token, client_using_tor):
         new_file.filename = uploaded_file['filename']
         new_file.submission = uploaded_file['submission']
         session.add(new_file)
-        log.debug("=> file associated %s|%s (%d bytes)",
-                  new_file.name, new_file.content_type, new_file.size)
 
     tip_count = 0
 
     for user in session.query(models.User).filter(models.User.id.in_(request['receivers'])):
-        _tip_key = ''
+        _tip_key = b''
         if crypto_is_available:
             if user.crypto_pub_key:
                 _tip_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_tip_prv_key)

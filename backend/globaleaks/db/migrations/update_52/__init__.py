@@ -92,7 +92,7 @@ class MigrationScript(MigrationBase):
         for old_obj in old_objs:
             new_obj = self.model_to['User']()
             for key in [c.key for c in new_obj.__table__.columns]:
-                if key.startswith('crypto_'):
+                if key.startswith('crypto_') or key == 'readonly':
                     continue
                 elif key == 'two_factor_secret':
                     if old_obj.two_factor_secret:

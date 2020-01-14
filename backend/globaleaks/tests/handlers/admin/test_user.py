@@ -15,7 +15,8 @@ class TestAdminCollection(helpers.TestCollectionHandler):
             'role': 'admin',
             'name': 'Mario Rossi',
             'mail_address': 'admin@theguardian.com',
-            'language': 'en'
+            'language': 'en',
+            'send_account_activation_link': False
         }
     }
 
@@ -53,7 +54,8 @@ class TestReceiverCollection(TestAdminCollection):
             'role': 'receiver',
             'name': 'Mario Rossi',
             'mail_address': 'receiver@theguardian.com',
-            'language': 'en'
+            'language': 'en',
+            'send_account_activation_link': False
         }
     }
 
@@ -80,12 +82,13 @@ class TestCustodianCollection(TestAdminCollection):
             'role': 'custodian',
             'name': 'Mario Rossi',
             'mail_address': 'custodian@theguardian.com',
-            'language': 'en'
+            'language': 'en',
+            'send_account_activation_link': False
         }
     }
 
 
-class TestCustodianInstance(TestAdminCollection):
+class TestCustodianInstance(TestAdminInstance):
     _test_desc = {
         'model': models.User,
         'create': user.create_user,

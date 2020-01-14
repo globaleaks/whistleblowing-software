@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 #
 # API handling export of submissions
-import os
-
 from io import BytesIO
 from twisted.internet import abstract
 from twisted.internet.defer import Deferred, inlineCallbacks
@@ -18,8 +16,7 @@ from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip
 from globaleaks.handlers.submission import decrypt_tip
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
-from globaleaks.settings import Settings
-from globaleaks.utils.crypto import GCE
+from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import msdos_encode, datetime_now
 from globaleaks.utils.zipstream import ZipStream
@@ -37,39 +34,16 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
 
     rtip_dict = serialize_rtip(session, rtip, itip, language)
 
-    export_dict = {
+    return {
         'type': 'export_template',
         'node': db_admin_serialize_node(session, tid, language),
         'notification': db_get_notification(session, tid, language),
         'tip': rtip_dict,
-        'crypto_tip_prv_key': rtip.crypto_tip_prv_key,
+        'crypto_tip_prv_key': Base64Encoder.decode(rtip.crypto_tip_prv_key),
         'user': user_serialize_user(session, user, language),
         'context': admin_serialize_context(session, context, language),
-        'comments': rtip_dict['comments'],
-        'messages': rtip_dict['messages'],
-        'files': [],
         'submission_statuses': db_retrieve_all_submission_statuses(session, tid, language)
     }
-
-    for rfile in session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == rtip_id):
-        rfile.last_access = datetime_now()
-        rfile.downloads += 1
-        file_dict = models.serializers.serialize_rfile(session, tid, rfile)
-        file_dict['name'] = 'files/' + file_dict['name']
-        file_dict['path'] = os.path.join(Settings.attachments_path, file_dict['filename'])
-        file_dict['forged'] = False
-        export_dict['files'].append(file_dict)
-
-    for wf in session.query(models.WhistleblowerFile).filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                                             models.ReceiverTip.internaltip_id == rtip.internaltip_id,
-                                                             models.InternalTip.id == rtip.internaltip_id):
-        file_dict = models.serializers.serialize_wbfile(session, tid, wf)
-        file_dict['name'] = 'files_from_recipients/' + file_dict['name']
-        file_dict['path'] = os.path.join(Settings.attachments_path, file_dict['filename'])
-        file_dict['forged'] = True  # To be removed as soon it will be encrypted
-        export_dict['files'].append(file_dict)
-
-    return export_dict
 
 
 class ZipStreamProducer(object):
@@ -127,27 +101,36 @@ class ExportHandler(BaseHandler):
 
         if tip_export['crypto_tip_prv_key']:
             tip_export['tip'] = yield deferToThread(decrypt_tip, self.current_user.cc, tip_export['crypto_tip_prv_key'], tip_export['tip'])
-            tip_export['comments'] = tip_export['tip']['comments']
-            tip_export['messages'] = tip_export['tip']['messages']
 
-            for file_dict in tip_export['files']:
-                if file_dict['forged']:
+            for file_dict in tip_export['tip']['rfiles'] + tip_export['tip']['wbfiles']:
+                if file_dict.get('forged'):
                     continue
 
                 tip_prv_key = GCE.asymmetric_decrypt(self.current_user.cc, tip_export['crypto_tip_prv_key'])
                 file_dict['fo'] = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, file_dict['path'])
                 del file_dict['path']
 
-        export_template = Templating().format_template(tip_export['notification']['export_template'], tip_export).encode()
+        for file_dict in tip_export['tip']['rfiles']:
+            file_dict['name'] = 'files/' + file_dict['name']
 
+        for file_dict in tip_export['tip']['wbfiles']:
+            file_dict['name'] = 'files_attached_from_recipients/' + file_dict['name']
+
+        tip_export['comments'] = tip_export['tip']['comments']
+        tip_export['messages'] = tip_export['tip']['messages']
+
+        files = tip_export['tip']['rfiles'] + tip_export['tip']['wbfiles']
+        del tip_export['tip']['rfiles'], tip_export['tip']['wbfiles']
+
+        export_template = Templating().format_template(tip_export['notification']['export_template'], tip_export).encode()
         export_template = msdos_encode(export_template.decode()).encode()
 
-        tip_export['files'].append({'fo': BytesIO(export_template), 'name': 'data.txt', 'forged': True})
+        files.append({'fo': BytesIO(export_template), 'name': 'data.txt', 'forged': True})
 
         self.request.setHeader(b'X-Download-Options', b'noopen')
         self.request.setHeader(b'Content-Type', b'application/octet-stream')
         self.request.setHeader(b'Content-Disposition', b'attachment; filename="submission.zip"')
 
-        self.zip_stream = iter(ZipStream(tip_export['files']))
+        self.zip_stream = iter(ZipStream(files))
 
         yield ZipStreamProducer(self, self.zip_stream).start()

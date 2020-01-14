@@ -124,7 +124,7 @@ exports.login_admin = async function(username, password, url, firstlogin) {
 };
 
 exports.login_receiver = async function(username, password, url, firstlogin) {
-  username = username === undefined ? "recipient" : username;
+  username = username === undefined ? "Recipient1" : username;
   password = password === undefined ? exports.vars["user_password"] : password;
   url = url === undefined ? "/#/login" : url;
 

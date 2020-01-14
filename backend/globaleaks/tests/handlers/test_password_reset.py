@@ -56,7 +56,7 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertNotEqual(user.reset_password_token, None)
 
         # Check that an mail has been created
-        yield self.test_model_count(models.Mail, 1)
+        yield self.test_model_count(models.Mail, 3)
 
     @inlineCallbacks
     def test_put(self):

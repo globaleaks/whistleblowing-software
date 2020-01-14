@@ -1247,7 +1247,7 @@ class _User(Model):
     can_postpone_expiration = Column(Boolean, default=False, nullable=False)
     can_grant_permissions = Column(Boolean, default=False, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
-    read_only = Column(Boolean, default=False, nullable=False)
+    readonly = Column(Boolean, default=False, nullable=False)
 
     two_factor_enable = Column(Boolean, default=False, nullable=False)
     two_factor_secret = Column(UnicodeText(64), default='', nullable=False)
@@ -1273,7 +1273,8 @@ class _User(Model):
                  'can_delete_submission',
                  'can_postpone_expiration',
                  'can_grant_permissions',
-                 'two_factor_enable']
+                 'two_factor_enable',
+                 'readonly']
 
     date_keys = ['creation_date', 'last_login', 'password_change_date', 'pgp_key_expiration']
 

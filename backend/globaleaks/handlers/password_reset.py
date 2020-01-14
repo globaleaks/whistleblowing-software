@@ -85,7 +85,6 @@ def db_generate_password_reset_token(session, tid, user):
 
 @transact
 def generate_password_reset_token_by_user_id(session, tid, user_id):
-    print(user_id)
     user = db_get_user(session, tid, user_id)
 
     db_generate_password_reset_token(session, tid, user)
