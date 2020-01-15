@@ -190,19 +190,6 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
         modal_open.promise.then($scope.tls_config.$disable).then(refreshConfig);
         modal_open.resolve();
       }
-    } else {
-      var https_url = "https://" + $scope.resources.node.hostname + "/#/login";
-
-      $uibModal.open({
-        templateUrl: "views/admin/network/enabled_modal.html",
-        controller: "safeRedirectModalCtrl",
-        resolve: {
-          https_url: function() { return https_url; },
-          modal_open: function() { return modal_open; },
-        },
-      });
-
-      modal_open.promise.then($scope.tls_config.$enable);
     }
   };
 
@@ -235,10 +222,4 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
 }])
 .controller("disableInputModalCtrl", ["$scope", function($scope) {
   $scope.$resolve.modal_open.resolve();
-}])
-.controller("safeRedirectModalCtrl", ["$scope", "$timeout", "$route", function($scope, $timeout, $route) {
-  $scope.$resolve.modal_open.resolve();
-  $timeout(function() {
-    $route.reload();
-  }, 15000);
 }]);
