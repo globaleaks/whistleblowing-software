@@ -41,7 +41,7 @@
       <input class="form-control" data-ng-model="resources.node.whistleblowing_button" type="text" />
     </div>
 
-    <div data-ng-if="public.node.mode !== 'eat'" data-ng-include="'views/partials/ricochet_config.html'"></div>
+    <div data-ng-if="public.node.mode === 'eat'" data-ng-include="'views/partials/ricochet_config.html'"></div>
 
     <div class="form-group" data-ng-if="resources.node.root_tenant || resources.node.mode === 'default'">
       <label>
