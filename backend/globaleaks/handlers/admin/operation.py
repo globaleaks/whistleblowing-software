@@ -19,6 +19,8 @@ def check_hostname(session, tid, input_hostname):
     Ensure the hostname does not collide across tenants or
     include an origin that it shouldn't.
     """
+    if input_hostname == '':
+        return
 
     forbidden_endings = ['onion', 'localhost']
 
