@@ -365,10 +365,8 @@ class BaseHandler(object):
 
     def write_upload_plaintext_to_disk(self, destination):
         """
-        @param uploaded_file: uploaded_file data struct
-        @param the file destination
+        :param destination: the path where to store the file
         @return: a descriptor dictionary for the saved file
-        :param destination:
         """
         try:
             log.debug('Creating file %s with %d bytes', destination, self.uploaded_file['size'])

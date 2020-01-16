@@ -21,17 +21,17 @@ class TestHostnameConfig(helpers.TestHandler):
         # Add a file to the tmp dir
         with open('./robots.txt', 'w') as f:
             f.write("User-agent: *\n" +
-                    "Allow: /\n"+
+                    "Allow: /\n" +
                     "Sitemap: http://localhost/sitemap.xml")
 
         # Start the HTTP server proxy requests will be forwarded to.
         self.pp = helpers.SimpleServerPP()
 
         # An extended SimpleHTTPServer to handle the addition of the globaleaks header
-        e = ""+\
-        "from SimpleHTTPServer import SimpleHTTPRequestHandler as rH; "+\
-        "from SimpleHTTPServer import test as t; "+\
-        "of = rH.end_headers; rH.end_headers = lambda s: s.send_header('Server', 'GlobaLeaks') or of(s); "+\
+        e = "" + \
+        "from SimpleHTTPServer import SimpleHTTPRequestHandler as rH; " + \
+        "from SimpleHTTPServer import test as t; " + \
+        "of = rH.end_headers; rH.end_headers = lambda s: s.send_header('Server', 'GlobaLeaks') or of(s); " + \
         "t(HandlerClass=rH)"
 
         yield reactor.spawnProcess(self.pp, 'python', args=['python', '-c', e, '43434'], usePTY=True)

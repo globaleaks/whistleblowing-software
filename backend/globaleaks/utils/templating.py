@@ -220,7 +220,7 @@ class ContextKeyword(Keyword):
 
 class TipKeyword(UserNodeKeyword, ContextKeyword):
     keyword_list = UserNodeKeyword.keyword_list + ContextKeyword.keyword_list + tip_keywords
-    data_keys =  UserNodeKeyword.data_keys + ContextKeyword.data_keys + ['tip']
+    data_keys = UserNodeKeyword.data_keys + ContextKeyword.data_keys + ['tip']
 
     def dump_field_entry(self, output, field, entry, indent_n):
 
@@ -229,7 +229,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
         if field_type == 'checkbox':
             for k, v in entry.items():
                 for option in field['options']:
-                    if k == option.get('id', '') and v == True:
+                    if k == option.get('id', '') and v is True:
                         output += indent(indent_n) + option['label'] + '\n'
         elif field_type in ['selectbox']:
             for option in field['options']:
@@ -240,7 +240,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
             if date is not None:
                 output += indent(indent_n) + ISO8601_to_pretty_str(entry.get('value')) + '\n'
         elif field_type == 'tos':
-            answer = '☑' if entry.get('value', '') == True else '☐'
+            answer = '☑' if entry.get('value', '') is True else '☐'
             output += indent(indent_n) + answer + '\n'
         elif field_type == 'fieldgroup':
             output = self.dump_fields(output, field['children'], entry, indent_n)
@@ -266,7 +266,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
             for field in row:
                 if field['id'] not in answers or \
                    field['type'] == 'fileupload' or \
-                   field['template_id'] ==  'whistleblower_identity':
+                   field['template_id'] == 'whistleblower_identity':
                     continue
 
                 if field['id'] in answers:
@@ -290,7 +290,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
 
         for step in questionnaire:
             output += step['label'] + '\n'
-            output = self.dump_fields(output, step['children'], answers, 1) +'\n'
+            output = self.dump_fields(output, step['children'], answers, 1) + '\n'
 
         return output
 
@@ -409,7 +409,7 @@ class ExportMessageKeyword(TipKeyword):
 
 class ExpirationSummaryKeyword(UserNodeKeyword):
     keyword_list = UserNodeKeyword.keyword_list + expiration_summary_keywords
-    data_keys =  UserNodeKeyword.data_keys + ['expiring_submission_count', 'earliest_expiration_date']
+    data_keys = UserNodeKeyword.data_keys + ['expiring_submission_count', 'earliest_expiration_date']
 
     def ExpiringSubmissionCount(self):
         return str(self.data['expiring_submission_count'])

@@ -55,7 +55,7 @@ def user_serialize_user(session, user, language):
     if user.role == 'receiver':
         # take only contexts for the current tenant
         contexts = [x[0] for x in session.query(models.ReceiverContext.context_id)
-                                     .filter(models.ReceiverContext.receiver_id == user.id)]
+                                         .filter(models.ReceiverContext.receiver_id == user.id)]
     else:
         contexts = []
 

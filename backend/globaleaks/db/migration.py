@@ -175,7 +175,7 @@ def perform_migration(version):
         log.info("Migrations from DB version lower than %d are no longer supported!" % FIRST_DATABASE_VERSION_SUPPORTED)
         quit()
 
-    tmpdir =  os.path.abspath(os.path.join(Settings.tmp_path, 'tmp'))
+    tmpdir = os.path.abspath(os.path.join(Settings.tmp_path, 'tmp'))
     if version < 41:
         orig_db_file = os.path.abspath(os.path.join(Settings.working_path, 'db', 'glbackend-%d.db' % version))
     else:

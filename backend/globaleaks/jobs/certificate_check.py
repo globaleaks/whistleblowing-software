@@ -39,7 +39,7 @@ class CertificateCheck(DailyJob):
 
     @transact
     def check_tenants_for_cert_expiration(self, session):
-        for tenant in session.query(models.Tenant.id).filter(models.Tenant.active == True):
+        for tenant in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True)):
             self.cert_expiration_checks(session, tenant[0])
 
     def cert_expiration_checks(self, session, tid):

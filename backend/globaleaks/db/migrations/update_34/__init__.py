@@ -185,21 +185,16 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_file)
             self.entries_count['File'] += 1
 
-        #### Create ConfigL10N table and rows ####
         for lang in old_node.languages_enabled:
             self.session_new.add(self.model_to['EnabledLanguage'](lang))
 
         self._migrate_l10n_static_config(old_node, 'node')
         self._migrate_l10n_static_config(old_notif, 'templates')
 
-        #### Create Config table and rows ####
-
-        # Migrate Config saved in Node
         for var_name, _ in GLConfig_v_35['node'].items():
             old_val = getattr(old_node, var_name)
             self.session_new.add(self.model_to['Config']('node', var_name, old_val))
 
-        # Migrate Config saved in Notification
         for var_name, _ in GLConfig_v_35['notification'].items():
             old_val = getattr(old_notif, var_name)
 

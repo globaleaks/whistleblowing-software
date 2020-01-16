@@ -81,7 +81,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
     def check5(self, session):
         # Ensure admin PW ready for reset
         pw_reset_count = session.query(models.User) \
-                                .filter(models.User.password_change_needed == True,
+                                .filter(models.User.password_change_needed.is_(True),
                                         models.User.tid == 1) \
                                 .count()
         self.assertEqual(pw_reset_count, 4)

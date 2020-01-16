@@ -6,9 +6,6 @@
 
 import json
 import re
-import sys
-
-from urllib.parse import urlsplit # pylint: disable=import-error
 
 from twisted.internet import defer
 from twisted.internet.abstract import isIPAddress, isIPv6Address
@@ -63,32 +60,32 @@ key_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|[a-
 api_spec = [
     (r'/exception', exception.ExceptionHandler),
 
-    ## Authentication Handlers ##
+    # Authentication Handlers
     (r'/authentication', authentication.AuthenticationHandler),
     (r'/tokenauth', authentication.TokenAuthHandler),
     (r'/receiptauth', authentication.ReceiptAuthHandler),
     (r'/session', authentication.SessionHandler),
     (r'/tenantauthswitch/' + tid_regexp, authentication.TenantAuthSwitchHandler),
 
-    ## Public API ##
+    # Public API
     (r'/public', public.PublicResource),
 
-    ## Sites API ##
+    # Sites API
     (r'/sites', site.SiteCollection),
 
     # User Preferences Handler
     (r'/preferences', user.UserInstance),
     (r'/user/operations', user.UserOperationHandler),
 
-    ## Token Handlers ##
+    # Token Handlers
     (r'/token', token.TokenCreate),
     (r'/token/' + requests.token_regexp, token.TokenInstance),
 
-    ## Submission Handlers ##
+    # Submission Handlers
     (r'/submission/' + requests.token_regexp, submission.SubmissionInstance),
     (r'/submission/' + requests.token_regexp + r'/file', attachment.SubmissionAttachment),
 
-    ## Receiver Tip Handlers ##
+    # Receiver Tip Handlers
     (r'/rtip/' + uuid_regexp, rtip.RTipInstance),
     (r'/rtip/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
     (r'/rtip/' + uuid_regexp + r'/messages', rtip.ReceiverMsgCollection),
@@ -107,7 +104,7 @@ api_spec = [
     (r'/wbtip/' + uuid_regexp + r'/provideidentityinformation', wbtip.WBTipIdentityHandler),
     (r'/wbtip/' + uuid_regexp + r'/update', wbtip.WBTipAdditionalQuestionnaire),
 
-    ## Receiver Handlers ##
+    # Receiver Handlers
     (r'/receiver/tips', receiver.TipsCollection),
     (r'/rtip/operations', receiver.TipsOperations),
 
@@ -121,14 +118,13 @@ api_spec = [
     (r'/reset/password', password_reset.PasswordResetHandler),
     (r'/reset/password/(.+)', password_reset.PasswordResetHandler),
 
-    ## Admin Handlers ##
+    # Admin Handlers
     (r'/admin/node', admin_node.NodeInstance),
     (r'/admin/users', admin_user.UsersCollection),
     (r'/admin/users/' + uuid_regexp, admin_user.UserInstance),
-
     (r'/admin/contexts', admin_context.ContextsCollection),
     (r'/admin/contexts/' + uuid_regexp, admin_context.ContextInstance),
-    (r'/admin/(users|contexts)/' + uuid_regexp  + r'/img', admin_modelimgs.ModelImgInstance),
+    (r'/admin/(users|contexts)/' + uuid_regexp + r'/img', admin_modelimgs.ModelImgInstance),
     (r'/admin/questionnaires', admin_questionnaire.QuestionnairesCollection),
     (r'/admin/questionnaires/duplicate', admin_questionnaire.QuestionnareDuplication),
     (r'/admin/questionnaires/' + key_regexp, admin_questionnaire.QuestionnaireInstance),
@@ -171,7 +167,7 @@ api_spec = [
     (r'/admin/config/acme/run', https.AcmeHandler),
     (r'/.well-known/acme-challenge/([a-zA-Z0-9_\-]{42,44})', https.AcmeChallengeHandler),
 
-    ## Special Files Handlers##
+    # Special Files Handlers
     (r'/robots.txt', robots.RobotstxtHandler),
     (r'/sitemap.xml', sitemap.SitemapHandler),
     (r'/s/(.+)', file.FileHandler),

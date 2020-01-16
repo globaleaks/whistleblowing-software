@@ -202,7 +202,7 @@ class TLSServerContextFactory(ssl.ContextFactory):
         # will be auto-selected. This function was added in 1.0.2 and made a
         # noop in 1.1.0+ (where it is set automatically).
         try:
-            _lib.SSL_CTX_set_ecdh_auto(self.ctx._context, 1) # pylint: disable=no-member
+            _lib.SSL_CTX_set_ecdh_auto(self.ctx._context, 1)  # pylint: disable=no-member
         except AttributeError:
             ecdh = _lib.EC_KEY_new_by_curve_name(_lib.NID_X9_62_prime256v1)  # pylint: disable=no-member
             ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)  # pylint: disable=no-member
@@ -210,6 +210,7 @@ class TLSServerContextFactory(ssl.ContextFactory):
 
     def getContext(self):
         return self.ctx
+
 
 class TLSClientContextFactory(ssl.ClientContextFactory):
     def getContext(self):

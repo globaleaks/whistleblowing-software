@@ -182,6 +182,6 @@ class MigrationScript(MigrationBase):
             for itip in itips:
                 open_status_id = self.session_new.query(self.model_to['SubmissionStatus'].id)\
                                                 .filter(self.model_to['SubmissionStatus'].tid == tenant.id,
-                                                        self.model_to['SubmissionStatus'].system_usage.in_(['open','opened'])).one()[0]
+                                                        self.model_to['SubmissionStatus'].system_usage.in_(['open', 'opened'])).one()[0]
 
                 db_update_submission_status(self.session_new, '', itip, open_status_id, '')

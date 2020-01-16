@@ -68,7 +68,6 @@ def get_context_list(session, tid, language):
     """
     Returns the context list.
 
-    :param tid:
     :param session: the session on which perform queries.
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the contexts.
@@ -78,7 +77,7 @@ def get_context_list(session, tid, language):
                   key=lambda x: x['presentation_order'])
 
 
-def db_associate_context_receivers(session, tid, context, receiver_ids):
+def db_associate_context_receivers(session, context, receiver_ids):
     session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id == context.id).delete(synchronize_session='fetch')
 
     if not receiver_ids:
@@ -134,7 +133,7 @@ def db_update_context(session, tid, context, request, language):
 
     context.update(request)
 
-    db_associate_context_receivers(session, tid, context, request['receivers'])
+    db_associate_context_receivers(session, context, request['receivers'])
 
     return context
 
@@ -146,7 +145,7 @@ def db_create_context(session, tid, request, language):
 
     context = models.db_forge_obj(session, models.Context, request)
 
-    db_associate_context_receivers(session, tid, context, request['receivers'])
+    db_associate_context_receivers(session, context, request['receivers'])
 
     return context
 
@@ -173,18 +172,6 @@ def update_context(session, tid, context_id, request, language):
     Updates the specified context. If the key receivers is specified we remove
     the current receivers of the Context and reset set it to the new specified
     ones.
-
-    Args:
-        context_id:
-
-        request:
-            (dict) the request to use to set the attributes of the Context
-
-    Returns:
-            (dict) the serialized object updated
-            :param session:
-            :param tid:
-            :param language:
     """
     context = models.db_get(session, models.Context, models.Context.tid == tid, models.Context.id == context_id)
     context = db_update_context(session, tid, context, request, language)

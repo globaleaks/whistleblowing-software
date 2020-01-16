@@ -18,14 +18,14 @@ class MigrationScript(MigrationBase):
             session.add(c)
 
         o = urlparse(self.session_new.query(config).filter(config.var_name == 'public_site').one().value['v'])
-        domain = o.hostname if not o.hostname is None else ''
+        domain = o.hostname if o.hostname is not None else ''
 
         self.session_new.query(config).filter(config.var_group == 'node', config.var_name == 'public_site').delete()
 
         add_raw_config(self.session_new, 'node', 'hostname', domain != '', domain)
 
         o = urlparse(self.session_new.query(config).filter(config.var_name == 'hidden_service').one().value['v'])
-        domain = o.hostname if not o.hostname is None else ''
+        domain = o.hostname if o.hostname is not None else ''
 
         self.session_new.query(config).filter(config.var_group == 'node', config.var_name == 'hidden_service').delete(synchronize_session='fetch')
 

@@ -17,22 +17,22 @@ def serialize_site(session, tenant, signup=None):
     }
 
     if tenant.id in State.tenant_cache:
-       tc = State.tenant_cache[tenant.id]
+        tc = State.tenant_cache[tenant.id]
 
-       if tc.mode == 'default':
-           ret['hostname'] = tc.hostname
-           ret['onionservice'] = tc.onionservice
-       elif tenant.id in State.tenant_cache:
-           rt = State.tenant_cache[1]
-           ret['hostname'] = tenant.subdomain + '.' + rt.rootdomain
-           ret['onionservice'] = tenant.subdomain + '.' + rt.onionservice
+        if tc.mode == 'default':
+            ret['hostname'] = tc.hostname
+            ret['onionservice'] = tc.onionservice
+        elif tenant.id in State.tenant_cache:
+            rt = State.tenant_cache[1]
+            ret['hostname'] = tenant.subdomain + '.' + rt.rootdomain
+            ret['onionservice'] = tenant.subdomain + '.' + rt.onionservice
 
     return ret
 
 
 @transact
 def get_site_list(session):
-    return [serialize_site(session, t) for t in session.query(models.Tenant).filter(models.Tenant.active == True)]
+    return [serialize_site(session, t) for t in session.query(models.Tenant).filter(models.Tenant.active.is_(True))]
 
 
 class SiteCollection(BaseHandler):

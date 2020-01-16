@@ -127,7 +127,7 @@ def db_serialize_archived_preview_schema(preview_schema, language):
 
 def db_save_answers_subject_to_stats(session, tid, internaltip_id, entries, stats=None):
     if stats is None:
-        stats = {x[0] : True for x in session.query(models.Field.id).filter(models.Field.stats == True)}
+        stats = {x[0]: True for x in session.query(models.Field.id).filter(models.Field.stats.is_(True))}
 
     if not stats:
         return
@@ -426,7 +426,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
         db_create_receivertip(session, user, itip, can_access_whistleblower_identity, _tip_key)
 
-        tip_count +=1
+        tip_count += 1
 
     if not tip_count:
         raise errors.InputValidationError("Unable to deliver the submission to at least one recipient")

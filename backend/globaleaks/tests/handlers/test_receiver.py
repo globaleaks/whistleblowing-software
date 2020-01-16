@@ -13,6 +13,7 @@ from globaleaks.utils.utility import datetime_never
 def set_expiration_of_all_rtips_to_unlimited(session):
     session.query(models.InternalTip).update({'expiration_date': datetime_never()})
 
+
 class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = receiver.TipsCollection
 

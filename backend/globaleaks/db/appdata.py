@@ -70,7 +70,7 @@ def db_fix_fields_attrs(session):
             _filter = not_(models.FieldAttr.name.in_(attrs_to_keep_for_type)), \
                       models.FieldAttr.field_id == models.Field.id, \
                       models.Field.type == field_type, \
-                      models.Field.template_id == None
+                      models.Field.template_id.is_(None)
         else:
             # Look for dropped attrs in non-standard field_groups like whistleblower_identity
             _filter = not_(models.FieldAttr.name.in_(attrs_to_keep_for_type)), \

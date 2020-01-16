@@ -26,7 +26,7 @@ def file_delivery_planning(session):
     whistleblowerfiles_maps = {}
 
     for ifile, itip in session.query(models.InternalFile, models.InternalTip)\
-                              .filter(models.InternalFile.new == True,
+                              .filter(models.InternalFile.new.is_(True),
                                       models.InternalTip.id == models.InternalFile.internaltip_id):
         ifile.new = False
         for rtip, user in session.query(models.ReceiverTip, models.User) \
@@ -70,9 +70,9 @@ def file_delivery_planning(session):
             })
 
     for wbfile, itip in session.query(models.WhistleblowerFile, models.InternalTip)\
-                                .filter(models.WhistleblowerFile.new == True,
-                                        models.ReceiverTip.id == models.WhistleblowerFile.receivertip_id,
-                                        models.InternalTip.id == models.ReceiverTip.internaltip_id):
+                               .filter(models.WhistleblowerFile.new.is_(True),
+                                       models.ReceiverTip.id == models.WhistleblowerFile.receivertip_id,
+                                       models.InternalTip.id == models.ReceiverTip.internaltip_id):
 
         wbfile.new = False
         whistleblowerfiles_maps[wbfile.id] = {
@@ -127,11 +127,6 @@ def write_encrypted_file(key, sf, dest_path):
 
 
 def process_receiverfiles(state, receiverfiles_maps):
-    """
-    @param receiverfiles_maps: the mapping of ifile/rfiles to be created on filesystem
-    @return: return None
-    :param state:
-    """
     for _, receiverfiles_map in receiverfiles_maps.items():
         key = receiverfiles_map['crypto_tip_pub_key']
         filename = receiverfiles_map['filename']

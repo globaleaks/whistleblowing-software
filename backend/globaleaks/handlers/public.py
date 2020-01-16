@@ -276,7 +276,7 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
             attrs[attr.name] = serialize_field_attr(attr, language)
 
     children = [serialize_field(session, tid, f, language) for f in data['fields'].get(f_to_serialize.id, [])]
-    children.sort(key=lambda f:(f['y'], f['x']))
+    children.sort(key=lambda f: (f['y'], f['x']))
 
     ret_dict = {
         'id': field.id,
@@ -313,7 +313,7 @@ def serialize_step(session, tid, step, language, serialize_templates=True):
     data = db_prepare_fields_serialization(session, children)
 
     children = [serialize_field(session, tid, f, language, data, serialize_templates=serialize_templates) for f in children]
-    children.sort(key=lambda f:(f['y'], f['x']))
+    children.sort(key=lambda f: (f['y'], f['x']))
 
     ret_dict = {
         'id': step.id,

@@ -16,7 +16,7 @@ from globaleaks.settings import Settings
 from globaleaks.utils.utility import read_json_file
 
 
-def db_create_trigger(session, tid, option_id, type, object_id, sufficient):
+def db_create_trigger(session, option_id, type, object_id, sufficient):
     o = get_trigger_model_by_type(type)()
     o.option_id = option_id
     o.object_id = object_id
@@ -161,7 +161,7 @@ def db_create_field(session, tid, field_dict, language):
         db_update_fieldoptions(session, field.id, options, language)
 
         for trigger in field_dict.get('triggered_by_options', []):
-            db_create_trigger(session, tid, trigger['option'], 'field', field.id, trigger.get('sufficient', True))
+            db_create_trigger(session, trigger['option'], 'field', field.id, trigger.get('sufficient', True))
 
     if field.instance != 'reference':
         for c in field_dict.get('children', []):
@@ -194,7 +194,7 @@ def db_update_field(session, tid, field_id, field_dict, language):
     db_reset_option_triggers(session, 'field', field.id)
 
     for trigger in field_dict.get('triggered_by_options', []):
-        db_create_trigger(session, tid, trigger['option'], 'field', field.id, trigger.get('sufficient', True))
+        db_create_trigger(session, trigger['option'], 'field', field.id, trigger.get('sufficient', True))
 
     if field_dict['instance'] != 'reference':
         db_update_fieldoptions(session, field.id, field_dict['options'], language)
@@ -262,7 +262,7 @@ def get_fieldtemplate_list(session, tid, language):
     """
     templates = session.query(models.Field).filter(models.Field.tid.in_(set([1, tid])),
                                                    models.Field.instance == 'template',
-                                                   models.Field.fieldgroup_id == None)
+                                                   models.Field.fieldgroup_id.is_(None))
 
     return [serialize_field(session, tid, f, language) for f in templates]
 

@@ -36,7 +36,6 @@ def get_receivertip_list(session, tid, receiver_id, user_key, language):
     internalfiles_by_itip = {}
     messages_by_rtip = {}
 
-
     for itip, aqs in session.query(models.InternalTip, models.ArchivedSchema) \
                            .filter(models.InternalTip.id.in_(itips_ids),
                                    models.ArchivedSchema.hash == models.InternalTipAnswers.questionnaire_hash,

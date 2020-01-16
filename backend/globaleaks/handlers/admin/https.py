@@ -480,7 +480,7 @@ def db_acme_cert_request(session, tid):
 
 
 class AcmeHandler(BaseHandler):
-    check_roles='admin'
+    check_roles = 'admin'
 
     @inlineCallbacks
     def post(self):

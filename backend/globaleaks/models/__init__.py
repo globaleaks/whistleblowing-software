@@ -11,6 +11,7 @@ from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils.utility import datetime_now, datetime_never, datetime_null, datetime_to_ISO8601
 
+
 def db_forge_obj(session, mock_class, mock_fields):
     obj = mock_class(mock_fields)
     session.add(obj)
@@ -337,7 +338,7 @@ class _Config(Model):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
 
         if self.value != val:
-            if self.value != None:
+            if self.value is not None:
                 self.update_date = datetime_now()
 
             self.value = val
@@ -568,9 +569,7 @@ class _Field(Model):
                 ForeignKeyConstraint(['fieldgroup_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['template_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['template_override_id'], ['field.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'),
-                CheckConstraint(self.instance.in_(['instance',
-                                                  'reference',
-                                                  'template'])),)
+                CheckConstraint(self.instance.in_(['instance', 'reference', 'template'])),)
 
     unicode_keys = ['type', 'instance', 'key']
     int_keys = ['x', 'y', 'width', 'triggered_by_score']

@@ -7,17 +7,21 @@ from twisted.web.http import HTTPChannel, Request
 
 from zope.interface import implementer
 
+
 @implementer(ILogObserver)
 class NullObserver(object):
     def __call__(self, event):
         pass
 
+
 # Mocks applied to every twisted version
 def mock_log(*args, **kw):
     pass
 
+
 def mock_Request_gotLength(self, length):
     self.content = StringIO()
+
 
 log.msg = log.info = log.err = mock_log
 

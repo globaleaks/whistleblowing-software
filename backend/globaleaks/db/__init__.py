@@ -40,7 +40,7 @@ def load_tls_dict(session, tid):
 
 
 def load_tls_dict_list(session):
-    return [load_tls_dict(session, tid[0]) for tid in session.query(models.Tenant.id).filter(models.Tenant.active == True)]
+    return [load_tls_dict(session, tid[0]) for tid in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True))]
 
 
 def get_db_file(db_path):
@@ -209,7 +209,7 @@ def db_refresh_tenant_cache(session, tid_list):
 
 
 def db_refresh_memory_variables(session, to_refresh=None):
-    tenant_map = {tenant.id: tenant for tenant in session.query(models.Tenant).filter(models.Tenant.active == True)}
+    tenant_map = {tenant.id: tenant for tenant in session.query(models.Tenant).filter(models.Tenant.active.is_(True))}
 
     existing_tids = set(tenant_map.keys())
     cached_tids = set(State.tenant_state.keys())

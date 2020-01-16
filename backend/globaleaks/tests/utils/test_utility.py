@@ -49,7 +49,7 @@ class TestUtility(unittest.TestCase):
 
     def test_datetime_to_pretty_str(self):
         self.assertEqual(utility.datetime_to_pretty_str(utility.datetime_null()),
-                        'Thursday 01 January 1970 00:00 (UTC)')
+                         'Thursday 01 January 1970 00:00 (UTC)')
 
     def test_ISO8601_to_pretty_str(self):
         self.assertEqual(utility.ISO8601_to_pretty_str(None), 'Thursday 01 January 1970 00:00 (UTC)')

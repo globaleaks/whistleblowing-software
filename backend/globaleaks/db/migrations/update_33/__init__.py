@@ -59,7 +59,6 @@ class Node_v_32(models.Model):
     header_title_receiptpage = Column(JSON, default=dict)
     header_title_tippage = Column(JSON, default=dict)
 
-
     landing_page = Column(UnicodeText, default='homepage')
 
     contexts_clarification = Column(JSON, default=dict)

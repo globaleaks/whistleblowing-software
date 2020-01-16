@@ -41,25 +41,6 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
 def sendmail(tid, smtp_host, smtp_port, security, authentication, username, password, from_name, from_address, to_address, subject, body, anonymize=True, socks_host='127.0.0.1', socks_port=9050):
     """
     Send an email using SMTPS/SMTP+TLS and maybe torify the connection.
-
-    @param to_address: the 'To:' field of the email
-    @param subject: the mail subject
-    @param body: the mail body
-
-    @return: a {Deferred} that returns a success {bool} if the message was passed
-             to the server.
-             :param tid:
-             :param smtp_host:
-             :param smtp_port:
-             :param security:
-             :param authentication:
-             :param username:
-             :param password:
-             :param from_name:
-             :param from_address:
-             :param anonymize:
-             :param socks_host:
-             :param socks_port:
     """
     try:
         timeout = 30

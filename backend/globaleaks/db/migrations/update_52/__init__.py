@@ -99,9 +99,9 @@ class MigrationScript(MigrationBase):
                         new_obj.two_factor_secret = Base64Encoder.encode(old_obj.two_factor_secret)
                 elif key == 'public_name':
                     if x:
-                      new_obj.public_name = platform_name
+                        new_obj.public_name = platform_name
                     else:
-                      new_obj.public_name = old_obj.name
+                        new_obj.public_name = old_obj.name
 
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))

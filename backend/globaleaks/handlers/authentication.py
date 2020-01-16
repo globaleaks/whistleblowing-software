@@ -69,11 +69,11 @@ def login_whistleblower(session, tid, receipt):
         for alg in algorithms:
             hashes.append(GCE.hash_password(receipt, State.tenant_cache[tid].receipt_salt, alg))
 
-        x  = session.query(WhistleblowerTip, InternalTip) \
-                    .filter(WhistleblowerTip.receipt_hash.in_(hashes),
-                            WhistleblowerTip.tid == tid,
-                            InternalTip.id == WhistleblowerTip.id,
-                            InternalTip.tid == WhistleblowerTip.tid).one_or_none()
+        x = session.query(WhistleblowerTip, InternalTip) \
+                   .filter(WhistleblowerTip.receipt_hash.in_(hashes),
+                           WhistleblowerTip.tid == tid,
+                           InternalTip.id == WhistleblowerTip.id,
+                           InternalTip.tid == WhistleblowerTip.tid).one_or_none()
 
     if x is None:
         log.debug("Whistleblower login: Invalid receipt")

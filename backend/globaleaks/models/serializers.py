@@ -18,8 +18,8 @@ def serialize_ifile(session, ifile):
 # ReceiverFile
 def serialize_rfile(session, tid, rfile):
     ifile = session.query(models.InternalFile) \
-                 .filter(models.InternalFile.id == models.ReceiverFile.internalfile_id,
-                         models.ReceiverFile.id == rfile.id).one()
+                   .filter(models.InternalFile.id == models.ReceiverFile.internalfile_id,
+                           models.ReceiverFile.id == rfile.id).one()
 
     return {
         'id': rfile.id,

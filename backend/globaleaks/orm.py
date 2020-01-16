@@ -23,6 +23,7 @@ warnings.filterwarnings('ignore', '.', SAWarning)
 def make_db_uri(db_file):
     return 'sqlite:////' + db_file
 
+
 def set_db_uri(db_uri):
     global _DB_URI
     _DB_URI = db_uri

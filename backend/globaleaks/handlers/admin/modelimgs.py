@@ -27,7 +27,7 @@ def get_model_img(session, obj_key, obj_id):
 
 
 @transact
-def add_model_img(session, tid, obj_key, obj_id, data):
+def add_model_img(session, obj_key, obj_id, data):
     model = model_map[obj_key]
     data = base64.b64encode(data).decode()
     img = session.query(model).filter(model.id == obj_id).one_or_none()
@@ -53,7 +53,7 @@ class ModelImgInstance(BaseHandler):
         with sf.open('r') as encrypted_file:
             data = encrypted_file.read()
 
-        return add_model_img(self.request.tid, obj_key, obj_id, data)
+        return add_model_img(obj_key, obj_id, data)
 
     def delete(self, obj_key, obj_id):
         return del_model_img(self.request.tid, obj_key, obj_id)

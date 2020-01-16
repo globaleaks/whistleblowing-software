@@ -195,7 +195,7 @@ class MigrationScript(MigrationBase):
                                                                             answers_by_group, groups_by_answer)]
         return ret
 
-    def db_serialize_questionnaire_answers(self, session, tid, internaltip):
+    def db_serialize_questionnaire_answers(self, session, internaltip):
         answers = []
         answers_by_group = {}
         groups_by_answer = {}
@@ -268,7 +268,7 @@ class MigrationScript(MigrationBase):
                                                .filter(self.model_from['Field'].template_id == 'whistleblower_identity')]
 
         for internaltip in self.session_old.query(self.model_from['InternalTip']):
-            answers = self.db_serialize_questionnaire_answers(self.session_old, internaltip.tid, internaltip)
+            answers = self.db_serialize_questionnaire_answers(self.session_old, internaltip)
 
             db_set_internaltip_answers(self.session_new, internaltip.id, internaltip.questionnaire_hash, answers)
 

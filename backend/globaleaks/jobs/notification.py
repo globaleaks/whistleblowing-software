@@ -138,7 +138,7 @@ class MailGenerator(object):
         user, context, rtip, ifile = session.query(models.User, models.Context, models.ReceiverTip, models.InternalFile) \
                                             .filter(models.User.id == models.ReceiverTip.receiver_id,
                                                     models.InternalFile.id == rfile.internalfile_id,
-                                                    models.InternalFile.submission == False,
+                                                    models.InternalFile.submission.is_(False),
                                                     models.InternalTip.id == models.InternalFile.internaltip_id,
                                                     models.ReceiverTip.id == rfile.receivertip_id,
                                                     models.Context.id == models.InternalTip.context_id).one()
@@ -235,7 +235,7 @@ class MailGenerator(object):
                                                                    models.InternalTip.tid.in_(silent_tids)):
                     x.new = False
 
-            for element in session.query(model).filter(model.new == True):
+            for element in session.query(model).filter(model.new.is_(True)):
                 element.new = False
 
                 data = {

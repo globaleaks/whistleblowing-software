@@ -137,7 +137,8 @@ class Alarm(object):
 
         # if there are some anomaly or we're nearby, record it.
         if self.number_of_anomalies >= 1 or self.alarm_levels['activity'] >= 1:
-            State.tenant_state[tid].AnomaliesQ.append([datetime_now(), self.event_matrix, self.alarm_levels['activity']])
+            State.tenant_state[tid].AnomaliesQ.append(
+                [datetime_now(), self.event_matrix, self.alarm_levels['activity']])
 
         if previous_activity_sl != self.alarm_levels['activity']:
             log_function("Alarm level changed from %d => %d" %

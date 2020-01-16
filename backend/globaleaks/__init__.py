@@ -74,7 +74,7 @@ for l in LANGUAGES_SUPPORTED:
     if l['name'] == l['native']:
         l['ui'] = l['name']
     else:
-       l['ui'] = l['name'] + ' | ' + l['native']
+        l['ui'] = l['name'] + ' | ' + l['native']
 
 # Creating LANGUAGES_SUPPORTED_CODES form the ordered LANGUAGES_SUPPORTED
 LANGUAGES_SUPPORTED_CODES = {i['code'] for i in LANGUAGES_SUPPORTED}
