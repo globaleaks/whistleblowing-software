@@ -20,7 +20,7 @@ __all__ = ['Backup']
 
 def db_perform_backup(session, version, id):
     timestamp = int(time.time())
-    backupfile = backup_name(version, id, timestamp)
+    backupfile = backup_name(id, timestamp)
     dst = os.path.join(Settings.backup_path, backupfile)
 
     tardir(dst, Settings.working_path)
