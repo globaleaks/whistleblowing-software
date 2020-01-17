@@ -30,9 +30,16 @@ from globaleaks.utils.utility import get_expiration, datetime_now, datetime_neve
 
 
 def db_update_submission_status(session, user_id, itip, submission_status_id, submission_substatus_id):
+    """
+    Transaction for registering a change of status of a submission
+    :param session: An ORM session
+    :param user_id: A user ID of the user changing the state
+    :param itip:  The ID of the submission
+    :param submission_status_id:  The new status ID
+    :param submission_substatus_id: A new substatus ID
+    """
     itip.status = submission_status_id
     itip.substatus = submission_substatus_id or None
-
     submission_status_change = models.SubmissionStatusChange()
     submission_status_change.internaltip_id = itip.id
     submission_status_change.status = submission_status_id
@@ -42,7 +49,28 @@ def db_update_submission_status(session, user_id, itip, submission_status_id, su
     session.add(submission_status_change)
 
 
+@transact
+def update_tip_submission_status(session, tid, user_id, rtip_id, submission_status_id, submission_substatus_id):
+    """
+    Transaction for registering a change of status of a submission
+    :param session: An ORM session
+    :param user_id: A user ID of the user changing the state
+    :param itip:  The ID of the submission
+    :param submission_status_id:  The new status ID
+    :param submission_substatus_id: A new substatus ID
+    """
+    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+
+    db_update_submission_status(session, user_id, itip, submission_status_id, submission_substatus_id)
+
+
 def receiver_serialize_rfile(session, rfile):
+    """
+    Transaction returning a serialized descriptor of an rfile
+    :param session: An ORM session
+    :param rfile: A model to be serialized
+    :return: A serialized description of the model specified
+    """
     ifile = session.query(models.InternalFile) \
                    .filter(models.InternalFile.id == rfile.internalfile_id).one_or_none()
 
@@ -77,6 +105,12 @@ def receiver_serialize_rfile(session, rfile):
 
 
 def receiver_serialize_wbfile(session, wbfile):
+    """
+    Transaction returning a serialized descriptor of an wbfile
+    :param session: An ORM session
+    :param wbfile: A model to be serialized
+    :return: A serialized description of the model specified
+    """
     rtip = models.db_get(session, models.ReceiverTip,
                          models.ReceiverTip.id == wbfile.receivertip_id)
 
@@ -95,6 +129,12 @@ def receiver_serialize_wbfile(session, wbfile):
 
 
 def serialize_comment(session, comment):
+    """
+    Transaction returning a serialized descriptor of a comment
+    :param session: An ORM session
+    :param comment: A model to be serialized
+    :return: A serialized description of the model specified
+    """
     author = 'Recipient'
 
     if comment.type == 'whistleblower':
@@ -116,6 +156,12 @@ def serialize_comment(session, comment):
 
 
 def serialize_message(session, message):
+    """
+    Transaction returning a serialized descriptor of a message
+    :param session: An ORM session
+    :param message: A model to be serialized
+    :return: A serialized description of the model specified
+    """
     receiver_involved = session.query(models.User) \
                                .filter(models.User.id == models.ReceiverTip.receiver_id,
                                        models.ReceiverTip.id == models.Message.receivertip_id,
@@ -137,6 +183,14 @@ def serialize_message(session, message):
 
 
 def serialize_rtip(session, rtip, itip, language):
+    """
+    Transaction returning a serialized descriptor of a tip
+    :param session: An ORM session
+    :param rtip: A model to be serialized
+    :param itip: A itip object referenced by the model to be serialized
+    :param language: A language of the serialization
+    :return: A serialized description of the model specified
+    """
     user_id = rtip.receiver_id
 
     ret = serialize_usertip(session, rtip, itip, language)
@@ -165,6 +219,14 @@ def serialize_rtip(session, rtip, itip, language):
 
 
 def db_access_rtip(session, tid, user_id, rtip_id):
+    """
+    Transaction retrieving an rtip and performing basic access checks
+    :param session: An ORM session
+    :param tid: A tenant ID of the user
+    :param user_id: A user ID
+    :param rtip_id: the requested rtip ID
+    :return: A model requested
+    """
     return models.db_get(session,
                          (models.ReceiverTip, models.InternalTip),
                          models.ReceiverTip.id == rtip_id,
@@ -176,7 +238,7 @@ def db_access_rtip(session, tid, user_id, rtip_id):
 def db_access_wbfile(session, tid, user_id, wbfile_id):
     """
     Transaction retrieving an wbfile and performing basic access checks
-    :param session: A ORM session
+    :param session: An ORM session
     :param tid: A tenant ID of the user
     :param user_id: A user ID
     :param wbfile_id: the requested wbfile ID
@@ -200,13 +262,36 @@ def db_access_wbfile(session, tid, user_id, wbfile_id):
 
 
 def db_receiver_get_rfile_list(session, rtip_id):
+    """
+    Transaction retrieving the list of rfiles attached to an rtip
+    :param session: An ORM session
+    :param rtip_id: A rtip ID
+    :return: A list of serializations of the retrieved models
+    """
     rfiles = session.query(models.ReceiverFile) \
                     .filter(models.ReceiverFile.receivertip_id == rtip_id)
 
     return [receiver_serialize_rfile(session, rfile) for rfile in rfiles]
 
 
+@transact
+def receiver_get_rfile_list(session, rtip_id):
+    """
+    Transaction retrieving the list of rfiles attached to an rtip
+    :param session: An ORM session
+    :param rtip_id: A rtip ID
+    :return: A list of serializations of the retrieved models
+    """
+    return db_receiver_get_rfile_list(session, rtip_id)
+
+
 def db_receiver_get_wbfile_list(session, itip_id):
+    """
+    Transaction retrieving the list of rfiles attached to an itip
+    :param session: An ORM session
+    :param itip_id: A itip ID
+    :return: A list of serializations of the retrieved models
+    """
     rtips = session.query(models.ReceiverTip) \
                    .filter(models.ReceiverTip.internaltip_id == itip_id)
 
@@ -222,6 +307,14 @@ def db_receiver_get_wbfile_list(session, itip_id):
 
 @transact
 def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
+    """
+    Register a file on the database
+    :param session: An ORM session
+    :param tid: A tenant id
+    :param rtip_id: A id of the rtip on which attaching the file
+    :param uploaded_file: A file to be attached
+    :return: A descriptor of the file
+    """
     rtip, itip = session.query(models.ReceiverTip, models.InternalTip) \
                         .filter(models.ReceiverTip.id == rtip_id,
                                 models.ReceiverTip.internaltip_id == models.InternalTip.id,
@@ -248,12 +341,14 @@ def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
     return serializers.serialize_wbfile(session, tid, new_file)
 
 
-@transact
-def receiver_get_rfile_list(session, rtip_id):
-    return db_receiver_get_rfile_list(session, rtip_id)
-
-
 def db_set_itip_open_if_new(session, tid, user_id, itip):
+    """
+    Transaction setting a submission status to open if the current status is new
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: A user ID of the user opening the submission
+    :param itip: A submission
+    """
     new_status_id = session.query(models.SubmissionStatus.id) \
                            .filter(models.SubmissionStatus.id == 'new',
                                    models.SubmissionStatus.tid == tid).one()[0]
@@ -267,6 +362,15 @@ def db_set_itip_open_if_new(session, tid, user_id, itip):
 
 
 def db_get_rtip(session, tid, user_id, rtip_id, language):
+    """
+    Transaction retrieving an rtip
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: A user ID of the user opening the submission
+    :param rtip_id: A rtip ID to accessed
+    :param language: A language to be used for the serialization
+    :return:  The serialized descriptor of the rtip
+    """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     db_set_itip_open_if_new(session, tid, user_id, itip)
@@ -277,7 +381,26 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
     return serialize_rtip(session, rtip, itip, language), base64.b64decode(rtip.crypto_tip_prv_key)
 
 
+@transact
+def get_rtip(session, tid, user_id, rtip_id, language):
+    """
+    Transaction retrieving an rtip
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: A user ID of the user opening the submission
+    :param rtip_id: A rtip ID to accessed
+    :param language: A language to be used for the serialization
+    :return:  The serialized descriptor of the rtip
+    """
+    return db_get_rtip(session, tid, user_id, rtip_id, language)
+
+
 def db_delete_itips_files(session, itips_ids):
+    """
+    Transaction for deleting the files attached to the specified submissions
+    :param session: An ORM session
+    :param itips_ids: A list of submissions ID
+    """
     ifiles_ids = set()
     files_names = set()
 
@@ -302,17 +425,32 @@ def db_delete_itips_files(session, itips_ids):
 
 
 def db_delete_itips(session, itips_ids):
+    """
+    Transaction for deleting a list of submissions
+    :param session: An ORM session
+    :param itips_ids: A list of submissions ID
+    """
     db_delete_itips_files(session, itips_ids)
 
     session.query(models.InternalTip) \
            .filter(models.InternalTip.id.in_(itips_ids)).delete(synchronize_session='fetch')
 
 
-def db_delete_itip(session, itip):
-    db_delete_itips(session, [itip.id])
+def db_delete_itip(session, itip_id):
+    """
+    Transaction for deleting a submission
+    :param session: An ORM session
+    :param itip: A submission ID
+    """
+    db_delete_itips(session, [itip_id])
 
 
 def db_postpone_expiration(session, itip):
+    """
+    Transaction for postponing the expiration of a submission
+    :param session: An ORM session
+    :param itip: A submission model to be postponed
+    """
     context = session.query(models.Context).filter(models.Context.id == itip.context_id).one()
 
     if context.tip_timetolive > 0:
@@ -324,8 +462,11 @@ def db_postpone_expiration(session, itip):
 @transact
 def delete_rtip(session, tid, user_id, rtip_id):
     """
-    Delete internalTip is possible only to Receiver with
-    the dedicated property.
+    Transaction for deleting a submission
+    :param session: An ORM session
+    :param tid: A tenant ID of the user performing the operation
+    :param user_id: A user ID of the user performing the operation
+    :param rtip_id: A rtip ID of the submission object of the operation
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
@@ -336,11 +477,18 @@ def delete_rtip(session, tid, user_id, rtip_id):
             receiver.can_delete_submission):
         raise errors.ForbiddenOperation
 
-    db_delete_itip(session, itip)
+    db_delete_itip(session, itip.id)
 
 
 @transact
 def postpone_expiration(session, tid, user_id, rtip_id):
+    """
+    Transaction for postponing the expiration of a submission
+    :param session: An ORM session
+    :param tid: A tenant ID of the user performing the operation
+    :param user_id: A user ID of the user performing the operation
+    :param rtip_id: A rtip ID of the submission object of the operation
+    """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     receiver = models.db_get(session, models.User,
@@ -355,6 +503,15 @@ def postpone_expiration(session, tid, user_id, rtip_id):
 
 @transact
 def set_internaltip_variable(session, tid, user_id, rtip_id, key, value):
+    """
+    Transaction for setting properties of a submission
+    :param session: An ORM session
+    :param tid: A tenant ID of the user performing the operation
+    :param user_id: A user ID of the user performing the operation
+    :param rtip_id: A rtip ID of the submission object of the operation
+    :param key: A key of the property to be set
+    :param value: A value to be assigned to the property
+    """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     receiver = models.db_get(session, models.User,
@@ -366,17 +523,16 @@ def set_internaltip_variable(session, tid, user_id, rtip_id, key, value):
 
     setattr(itip, key, value)
 
-
 @transact
 def set_receivertip_variable(session, tid, user_id, rtip_id, key, value):
     """
     Transaction for setting properties of a submission
-    :param session: A ORM session
-    :param tid: The tenant ID of the user performing the operation
-    :param user_id: The user ID of the user performing the operation
-    :param rtip_id: The rtip ID of the submission object of the operation
-    :param key: The key of the property to be set
-    :param value: The value to be assigned to the property
+    :param session: An ORM session
+    :param tid: A tenant ID of the user performing the operation
+    :param user_id: A user ID of the user performing the operation
+    :param rtip_id: A rtip ID of the submission object of the operation
+    :param key: A key of the property to be set
+    :param value: A value to be assigned to the property
     """
     rtip, _ = db_access_rtip(session, tid, user_id, rtip_id)
     setattr(rtip, key, value)
@@ -386,11 +542,11 @@ def set_receivertip_variable(session, tid, user_id, rtip_id, key, value):
 def update_label(session, tid, user_id, rtip_id, value):
     """
     Transaction for setting the label of a submission
-    :param session: A ORM session
-    :param tid: The tenant ID of the user performing the operation
-    :param user_id: The user ID of the user performing the operation
-    :param rtip_id: The rtip ID of the submission object of the operation
-    :param value: The value to be assigned to the label property
+    :param session: An ORM session
+    :param tid: A tenant ID of the user performing the operation
+    :param user_id: A user ID of the user performing the operation
+    :param rtip_id: A rtip ID of the submission object of the operation
+    :param value: A value to be assigned to the label property
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
@@ -403,29 +559,25 @@ def update_label(session, tid, user_id, rtip_id, value):
         setattr(itip, 'label', value)
 
 
-@transact
-def set_receivertip_variable(session, tid, user_id, rtip_id, key, value):
-    rtip, _ = db_access_rtip(session, tid, user_id, rtip_id)
-    setattr(rtip, key, value)
-
-
-@transact
-def update_tip_submission_status(session, tid, user_id, rtip_id, submission_status_uuid, submission_substatus_uuid):
-    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
-
-    db_update_submission_status(session, user_id, itip, submission_status_uuid, submission_substatus_uuid)
-
-
-@transact
-def get_rtip(session, tid, user_id, rtip_id, language):
-    return db_get_rtip(session, tid, user_id, rtip_id, language)
-
-
 def db_get_itip_comment_list(session, itip_id):
+    """
+    Transaction for retrieving the list of comments associated to a submission
+    :param session: An ORM session
+    :param itip_id: A submission object of the request
+    :return: A serialized descriptor of the comments
+    """
     return [serialize_comment(session, comment) for comment in session.query(models.Comment).filter(models.Comment.internaltip_id == itip_id)]
 
 
 def db_create_identityaccessrequest_notifications(session, tid, itip, rtip, iar):
+    """
+    Transaction for the creation of notifications related to identity access requests
+    :param session: An ORM session
+    :param tid: A tenant ID on which the request is issued
+    :param itip: A itip ID of the tip involved in the request
+    :param rtip: A rtip ID of the rtip involved in the request
+    :param iar: A identity access request model
+    """
     users = session.query(models.User).filter(models.User.role == 'custodian', models.User.notification.is_(True))
     for user in users:
         context = session.query(models.Context).filter(models.Context.id == itip.context_id, models.Context.tid == tid).one()
@@ -457,6 +609,14 @@ def db_create_identityaccessrequest_notifications(session, tid, itip, rtip, iar)
 
 @transact
 def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
+    """
+    Transaction for the creation of notifications related to identity access requests
+    :param session: An ORM session
+    :param tid: A tenant ID of the user issuing the request
+    :param user_id: A user ID of the user issuing the request
+    :param rtip_id: A rtip_id ID of the rtip involved in the request
+    :param iar: A content of the request
+    """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     iar = models.IdentityAccessRequest()
@@ -470,8 +630,27 @@ def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
     return serialize_identityaccessrequest(session, iar)
 
 
+def db_get_rtip_identityaccessrequest_list(session, rtip_id):
+    """
+    Transaction for retrieving identity associated to an rtip
+    :param session: An ORM session
+    :param rtip_id: An rtip ID
+    :return: The list of descriptors of the identity access requests associated to the specified rtip
+    """
+    return [serialize_identityaccessrequest(session, iar) for iar in session.query(models.IdentityAccessRequest).filter(models.IdentityAccessRequest.receivertip_id == rtip_id)]
+
+
 @transact
 def create_comment(session, tid, user_id, rtip_id, content):
+    """
+    Transaction for registering a new comment
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: The user id of the user creating the comment
+    :param rtip_id: The rtip associated to the comment to be created
+    :param content: The content of the comment
+    :return: A serialized descriptor of the comment
+    """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     itip.update_date = rtip.last_access = datetime_now()
@@ -493,16 +672,17 @@ def create_comment(session, tid, user_id, rtip_id, content):
     return ret
 
 
-def db_get_itip_message_list(session, rtip_id):
-    return [serialize_message(session, message) for message in session.query(models.Message).filter(models.Message.receivertip_id == rtip_id)]
-
-
-def db_get_rtip_identityaccessrequest_list(session, rtip_id):
-    return [serialize_identityaccessrequest(session, iar) for iar in session.query(models.IdentityAccessRequest).filter(models.IdentityAccessRequest.receivertip_id == rtip_id)]
-
-
 @transact
 def create_message(session, tid, user_id, rtip_id, content):
+    """
+    Transaction for registering a new message
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: The user id of the user creating the message
+    :param rtip_id: The rtip associated to the message to be created
+    :param content: The content of the message
+    :return: A serialized descriptor of the message
+    """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     itip.update_date = rtip.last_access = datetime_now()
@@ -522,8 +702,25 @@ def create_message(session, tid, user_id, rtip_id, content):
     return ret
 
 
+def db_get_itip_message_list(session, rtip_id):
+    """
+    Transact for retrieving the list of comments associated to a tip
+    :param session: An ORM session
+    :param rtip_id: An rtip ID
+    :return: A serialized list of descriptors of messages associated to the specified rtip
+    """
+    return [serialize_message(session, message) for message in session.query(models.Message).filter(models.Message.receivertip_id == rtip_id)]
+
+
 @transact
 def delete_wbfile(session, tid, user_id, file_id):
+    """
+    Transation for deleting a wbfile
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: The user ID of the user performing the operation
+    :param file_id: The file ID of the wbfile to be deleted
+    """
     wbfile = db_access_wbfile(session, tid, user_id, file_id)
     db_mark_file_for_secure_deletion(session, Settings.attachments_path, wbfile.filename)
     session.delete(wbfile)
@@ -754,7 +951,7 @@ class ReceiverFileDownload(BaseHandler):
 
 class IdentityAccessRequestsCollection(BaseHandler):
     """
-    This interface allow to perform identity access requests.
+    Handler responsible of the creation of identity access requests
     """
     check_roles = 'receiver'
 

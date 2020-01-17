@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-#
-# Base class for implementing handlers for executing commands/operations
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
 
 
 class OperationHandler(BaseHandler):
+    """
+    Base handler for implementing handlers for executing platform configuration
+    """
     def operation_descriptors(self):
         raise NotImplementedError
 

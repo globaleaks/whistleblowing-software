@@ -7,6 +7,9 @@ from globaleaks.state import State
 
 
 class SitemapHandler(BaseHandler):
+    """
+    Handler responsible of serving the sitemap.xml resource
+    """
     check_roles = 'none'
 
     def get(self):

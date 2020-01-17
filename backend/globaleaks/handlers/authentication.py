@@ -19,7 +19,7 @@ from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 def random_login_delay():
     """
-    in case of failed_login_attempts introduces
+    The facuntion in case of failed_login_attempts introduces
     an exponential increasing delay between 0 and 42 seconds
 
         the function implements the following table:
@@ -47,6 +47,13 @@ def random_login_delay():
 
 
 def connection_check(client_ip, tid, role, client_using_tor):
+    """
+    Accept or refuse a connection in relation to the platform settings
+    :param client_ip: A client IP
+    :param tid: A tenant ID
+    :param role: A user role
+    :param client_using_tor: A boolean for signaling Tor use
+    """
     ip_filter = State.tenant_cache[tid]['ip_filter'].get(role)
     if ip_filter and not check_ip(client_ip, ip_filter):
         raise errors.AccessLocationInvalid
@@ -59,7 +66,11 @@ def connection_check(client_ip, tid, role, client_using_tor):
 @transact
 def login_whistleblower(session, tid, receipt):
     """
-    login_whistleblower returns a session
+    Login transaction for whistleblowers' access
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param receipt: A provided receipt
+    :return: Returns a user session in case of success
     """
     x = None
 
@@ -96,7 +107,15 @@ def login_whistleblower(session, tid, receipt):
 @transact
 def login(session, tid, username, password, authcode, client_using_tor, client_ip):
     """
-    login returns a session
+    Login transaction for users' access
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param username: A provided username
+    :param password: A provided password
+    :param authcode: A provided authcode
+    :param client_using_tor: A boolean signaling Tor usage
+    :param client_ip:  The client IP
+    :return: Returns a user session in case of success
     """
     user = None
 

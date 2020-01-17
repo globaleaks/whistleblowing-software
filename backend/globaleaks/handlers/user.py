@@ -21,6 +21,8 @@ from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime
 def parse_pgp_options(user, request):
     """
     Used for parsing PGP key infos and fill related user configurations.
+    :param user: A user model
+    :param request: A request to be parsed
     """
     pgp_key_public = request['pgp_key_public']
     remove_key = request['pgp_key_remove']
@@ -43,10 +45,10 @@ def parse_pgp_options(user, request):
 
 def user_serialize_user(session, user, language):
     """
-    Serialize user description
+    Serialize user model
 
-    :param user:
-    :param language:
+    :param user: the user object
+    :param language: the language of the data
     :param session: the session on which perform queries.
     :return: a serialization of the object
     """
@@ -104,6 +106,13 @@ def user_serialize_user(session, user, language):
 
 
 def db_get_user(session, tid, user_id):
+    """
+    Transaction for retrieving a user model given an id
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: A id of the user to retrieve
+    :return: A retrieved model
+    """
     return models.db_get(session,
                          models.User,
                          models.User.id == user_id,
@@ -112,6 +121,13 @@ def db_get_user(session, tid, user_id):
 
 @transact
 def get_user(session, tid, user_id, language):
+    """
+    Transaction for retrieving a user model given an id
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: A id of the user to retrieve
+    :return: A serialization of the retrieved user
+    """
     user = db_get_user(session, tid, user_id)
 
     return user_serialize_user(session, user, language)
@@ -119,15 +135,12 @@ def get_user(session, tid, user_id, language):
 
 def db_user_update_user(session, tid, user_session, request):
     """
-    Updates the specified user.
-    This version of the function is specific for users that with comparison with
-    admins can change only few things:
-      - real name
-      - email address
-      - preferred language
-      - the password (with old password check)
-      - pgp key
-    raises: globaleaks.errors.ResourceNotFound` if the receiver does not exist.
+    Transaction for updating an existing user
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_session: A session of the user invoking the transaction
+    :param request: A user request data
+    :return: A user model
     """
     from globaleaks.handlers.admin.notification import db_get_notification
     from globaleaks.handlers.admin.node import db_admin_serialize_node
@@ -213,6 +226,15 @@ def db_user_update_user(session, tid, user_session, request):
 
 @transact
 def update_user_settings(session, tid, user_session, request, language):
+    """
+    Transaction for updating an existing user
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_session: A session of the user invoking the transaction
+    :param request: A user request data
+    :param language: A language to be used when serializing the user
+    :return: A serialization of user model
+    """
     user = db_user_update_user(session, tid, user_session, request)
 
     return user_serialize_user(session, user, language)
@@ -236,11 +258,7 @@ def can_edit_general_settings_or_raise(handler):
 
 class UserInstance(BaseHandler):
     """
-    This handler allow users to modify some of their fields:
-        - language
-        - password
-        - notification settings
-        - pgp key
+    Handler that enables users to update their own setings
     """
     check_roles = 'user'
     invalidate_cache = True
@@ -263,8 +281,8 @@ class UserInstance(BaseHandler):
 def get_recovery_key(session, tid, user_id, user_cc):
     """
     Transaction to get a user recovery key
-    :param session: The ORM session
-    :param user_tid: The user
+    :param session: An ORM session
+    :param user_tid: A user
     :param user_id:
     :param user_cc:
     :return:
@@ -305,10 +323,10 @@ def enable_2fa_step1(session, tid, user_id):
 def enable_2fa_step2(session, tid, user_id, user_cc, token):
     """
         Transact for the first step of 2fa enrollment (completion)
-    :param session: The ORM session
-    :param tid: The tenant ID
-    :param user_id: The user ID
-    :param user_cc: The user private key
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: A user ID
+    :param user_cc: A user private key
     :param token: A token for OTP authentication
     """
     user = db_get_user(session, tid, user_id)

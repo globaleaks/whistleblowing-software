@@ -7,6 +7,10 @@ from twisted.internet import reactor
 
 
 def set_proc_title(title):
+    """
+    Set the process title
+    :param title: A title to be assigned to the process
+    """
     libc = ctypes.cdll.LoadLibrary('libc.so.6')
     buff = ctypes.create_string_buffer(len(title) + 1)
     buff.value = title.encode()
@@ -14,6 +18,10 @@ def set_proc_title(title):
 
 
 def set_pdeathsig(sig):
+    """
+    Set the PDEATH Signal
+    :param sig: A signal that the process need to receive when the parent process dies
+    """
     PR_SET_PDEATHSIG = 1
     libc = ctypes.cdll.LoadLibrary('libc.so.6')
     libc.prctl.argtypes = (ctypes.c_int, ctypes.c_ulong, ctypes.c_ulong,
@@ -25,6 +33,9 @@ def set_pdeathsig(sig):
 
 
 def disable_swap():
+    """
+    Disable the usage of SWAP
+    """
     libc = ctypes.CDLL("libc.so.6", use_errno=True)
 
     MCL_CURRENT = 1
@@ -36,6 +47,11 @@ def disable_swap():
 
 
 def SigQUIT(SIG, FRM):
+    """
+    Handler of process QUIT signal
+    :param SIG: the received signal
+    :param FRM: the pid of the
+    """
     try:
         if reactor.running:
             reactor.stop()

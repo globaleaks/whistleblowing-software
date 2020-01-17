@@ -18,29 +18,45 @@ from globaleaks.utils.log import log
 
 
 def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
-    # This example is of an email with text and html alternatives.
+    """
+    Prepare the mail headers
+    :param src_name: A source name
+    :param src_mail: A source email adddress
+    :param dest_name: A destination name
+    :param dest_mail: A destination email address
+    :param mail_subject: A mail subject
+    :param mail_body: A mail body
+    :return: A mail headers
+    """
     multipart = MIMEMultipart('alternative')
-
-    # We need to use Header objects here instead of just assigning the strings in
-    # order to get our headers properly encoded (with QP).
-    # You may want to avoid this if your headers are already ASCII, just so people
-    # can read the raw message without getting a headache.
     multipart['Subject'] = Header(title.encode(), 'UTF-8').encode()
     multipart['Date'] = utils.formatdate()
     multipart['To'] = Header(dest_name.encode(), 'UTF-8').encode() + " <" + dest_mail + ">"
     multipart['From'] = Header(src_name.encode(), 'UTF-8').encode() + " <" + src_mail + ">"
     multipart['X-Mailer'] = "fnord"
-
     multipart.attach(MIMEText(mail_body.encode(), 'plain', 'UTF-8'))
-
-    multipart_as_bytes = multipart.as_bytes()  # pylint: disable=no-member
-
-    return BytesIO(multipart_as_bytes)  # pylint: disable=no-member
+    return BytesIO(multipart.as_bytes())  # pylint: disable=no-member
 
 
 def sendmail(tid, smtp_host, smtp_port, security, authentication, username, password, from_name, from_address, to_address, subject, body, anonymize=True, socks_host='127.0.0.1', socks_port=9050):
     """
     Send an email using SMTPS/SMTP+TLS and maybe torify the connection.
+    :param tid: A tenant id
+    :param smtp_host: A SMTP host
+    :param smtp_port: A SMTP port
+    :param security: A type of security to be applied (SMTPS/SMTP+TLS)
+    :param authentication: A boolean to enable authentication
+    :param username: A mail account username
+    :param password: A mail account password
+    :param from_name: A from name
+    :param from_address: A from address
+    :param to_address:  The to address
+    :param subject: A mail subject
+    :param body: A mail body
+    :param anonymize: A boolean to enable anonymous mail connection
+    :param socks_host: A socks host to be used for the mail connection
+    :param socks_port: A socks port to be used for the mail connection
+    :return: A deferred resource resolving at the end of the connection
     """
     try:
         timeout = 30

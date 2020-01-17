@@ -19,6 +19,15 @@ from globaleaks.utils.utility import datetime_to_ISO8601
 
 @transact
 def get_receivertip_list(session, tid, receiver_id, user_key, language):
+    """
+    Return list of submissions received by the specified receiver
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param receiver_id: The receiver ID
+    :param user_key: The user key to be used for decrypting data
+    :param language: The language to be used during data serialization
+    :return: A list of submissions descriptors
+    """
     rtip_summary_list = []
 
     rtips = session.query(models.ReceiverTip).filter(models.ReceiverTip.receiver_id == receiver_id,
@@ -101,6 +110,14 @@ def get_receivertip_list(session, tid, receiver_id, user_key, language):
 
 @transact
 def perform_tips_operation(session, tid, receiver_id, operation, rtips_ids):
+    """
+    Transaction for performing operation on submissions (postpone/delete)
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param receiver_id: A recipient ID
+    :param operation: An operation command (postpone/delete)
+    :param rtips_ids: The set of submissions on which performing the specified operation
+    """
     receiver = models.db_get(session, models.User,
                              models.User.id == receiver_id)
 
@@ -140,8 +157,7 @@ class TipsCollection(BaseHandler):
 
 class TipsOperations(BaseHandler):
     """
-    This interface receive some operation (postpone or delete) and a list of
-    tips to apply.
+    Handler that enables to issue operations on submissions
     """
     check_roles = 'receiver'
 

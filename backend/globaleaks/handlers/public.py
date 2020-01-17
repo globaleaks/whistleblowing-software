@@ -7,7 +7,6 @@ from sqlalchemy import or_
 
 from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.admin.file import db_get_file
 from globaleaks.handlers.admin.submission_statuses import db_retrieve_all_submission_statuses
 from globaleaks.models import get_localized_values
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
@@ -20,6 +19,11 @@ special_fields = ['whistleblower_identity']
 
 
 def get_trigger_model_by_type(type):
+    """
+    Get trigger model type given the object type
+    :param type:
+    :return:
+    """
     if type == 'field':
         return models.FieldOptionTriggerField
     elif type == 'step':
@@ -27,6 +31,13 @@ def get_trigger_model_by_type(type):
 
 
 def db_get_triggers_by_type(session, type, object_id):
+    """
+    Transaction for retrieving field triggers associated to an object given the type of trigger
+    :param session: An ORM session
+    :param type: The type of trigger involved in the lookup
+    :param object_id: The object on which performing the lookup
+    :return: A list of triggers descriptors
+    """
     ret = []
 
     m = get_trigger_model_by_type(type)
@@ -38,6 +49,12 @@ def db_get_triggers_by_type(session, type, object_id):
 
 
 def db_prepare_contexts_serialization(session, contexts):
+    """
+    Transaction to prepare and optimize context serialization
+    :param session: An ORM session
+    :param contexts: The list of context for which preparing the serialization
+    :return: The set of retrieved objects necessary for optimizing the serialization
+    """
     data = {'imgs': {}, 'receivers': {}}
 
     contexts_ids = [c.id for c in contexts]
@@ -56,6 +73,12 @@ def db_prepare_contexts_serialization(session, contexts):
 
 
 def db_prepare_receivers_serialization(session, receivers):
+    """
+    Transaction to prepare and optimize receiver serialization
+    :param session: An ORM session
+    :param receivers: The list of receivers for which preparing the serialization
+    :return: The set of retrieved objects necessary for optimizing the serialization
+    """
     data = {'imgs': {}}
 
     receivers_ids = [r.id for r in receivers]
@@ -68,6 +91,12 @@ def db_prepare_receivers_serialization(session, receivers):
 
 
 def db_prepare_fields_serialization(session, fields):
+    """
+    Transaction to prepare and optimize fields serialization
+    :param session: An ORM session
+    :param fields: The list of receivers for which preparing the serialization
+    :return: The set of retrieved objects necessary for optimizing the serialization
+    """
     ret = {
         'fields': {},
         'attrs': {},
@@ -121,6 +150,10 @@ def db_prepare_fields_serialization(session, fields):
 def db_serialize_node(session, tid, language):
     """
     Serialize the public node configuration.
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param language: The language to be used during serialization
+    :return: The serialization of the public node configuration
     """
     node_dict = ConfigFactory(session, tid).serialize('public_node')
     l10n_dict = ConfigL10NFactory(session, tid,).serialize('node', language)
@@ -165,6 +198,11 @@ def db_serialize_node(session, tid, language):
 def serialize_context(session, context, language, data=None):
     """
     Serialize a context.
+    :param session: An ORM session
+    :param context: The context to be serialized
+    :param language: The language to be used during serialization
+    :param data: The dictionary of prefetched resources
+    :return:
     """
     ret_dict = {
         'id': context.id,
@@ -200,27 +238,12 @@ def serialize_context(session, context, language, data=None):
     return get_localized_values(ret_dict, context, context.localized_keys, language)
 
 
-def serialize_questionnaire(session, tid, questionnaire, language, serialize_templates=True):
-    """
-    Serialize a questionnaire.
-    """
-    steps = session.query(models.Step).filter(models.Step.questionnaire_id == questionnaire.id,
-                                              models.Questionnaire.id == questionnaire.id)
-
-    ret_dict = {
-        'id': questionnaire.id,
-        'editable': questionnaire.editable and questionnaire.tid == tid,
-        'name': questionnaire.name,
-        'steps': sorted([serialize_step(session, tid, s, language, serialize_templates=serialize_templates) for s in steps],
-                        key=lambda x: x['presentation_order'])
-    }
-
-    return get_localized_values(ret_dict, questionnaire, questionnaire.localized_keys, language)
-
-
 def serialize_field_option(option, language):
     """
     Serialize a field option.
+    :param option: The option to be serialized
+    :param language: The language to be used during serialization
+    :return: The serialized resource
     """
     ret_dict = {
         'id': option.id,
@@ -237,6 +260,9 @@ def serialize_field_option(option, language):
 def serialize_field_attr(attr, language):
     """
     Serialize a field attribute.
+    :param attr: The option to be serialized
+    :param language: The language to be used during serialization
+    :return: The serialized resource
     """
     ret_dict = {
         'id': attr.id,
@@ -254,6 +280,12 @@ def serialize_field_attr(attr, language):
 def serialize_field(session, tid, field, language, data=None, serialize_templates=True):
     """
     Serialize a field.
+    :param tid: A tenant ID
+    :param field: The option to be serialized
+    :param language: The language to be used during serialization
+    :param data: The dictionary of prefetched resources
+    :param serialize_templates: A boolean to require template serialization
+    :return: The serialized resource
     """
     if data is None:
         data = db_prepare_fields_serialization(session, [field])
@@ -307,6 +339,11 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
 def serialize_step(session, tid, step, language, serialize_templates=True):
     """
     Serialize a step.
+    :param tid: A tenant ID
+    :param step: The option to be serialized
+    :param language: The language to be used during serialization
+    :param serialize_templates: A boolean to require template serialization
+    :return: The serialized resource
     """
     children = session.query(models.Field).filter(models.Field.step_id == step.id)
 
@@ -327,9 +364,39 @@ def serialize_step(session, tid, step, language, serialize_templates=True):
     return get_localized_values(ret_dict, step, step.localized_keys, language)
 
 
+def serialize_questionnaire(session, tid, questionnaire, language, serialize_templates=True):
+    """
+    Serialize a questionnaire.
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param questionnaire: A questionnaire model
+    :param language: The language to be used during serialization
+    :param serialize_templates: A boolean to require template serialization
+    :return: The serialized resource
+    """
+    steps = session.query(models.Step).filter(models.Step.questionnaire_id == questionnaire.id,
+                                              models.Questionnaire.id == questionnaire.id)
+
+    ret_dict = {
+        'id': questionnaire.id,
+        'editable': questionnaire.editable and questionnaire.tid == tid,
+        'name': questionnaire.name,
+        'steps': sorted([serialize_step(session, tid, s, language, serialize_templates=serialize_templates) for s in steps],
+                        key=lambda x: x['presentation_order'])
+    }
+
+    return get_localized_values(ret_dict, questionnaire, questionnaire.localized_keys, language)
+
+
 def serialize_receiver(session, user, language, data=None):
     """
     Serialize a receiver.
+    :param tid: A tenant ID
+    :param receiver: The option to be serialized
+    :param language: The language to be used during serialization
+    :param data: The dictionary of prefetched resources
+    :param serialize_templates: A boolean to require template serialization
+    :return: The serialized resource
     """
     if data is None:
         data = db_prepare_receivers_serialization(session, [user])
@@ -349,16 +416,15 @@ def serialize_receiver(session, user, language, data=None):
     return get_localized_values(ret_dict, user, user.localized_keys, language)
 
 
-def db_get_public_context_list(session, tid, language):
-    contexts = session.query(models.Context).filter(models.Context.status > 0,
-                                                    models.Context.tid == tid)
-
-    data = db_prepare_contexts_serialization(session, contexts)
-
-    return [serialize_context(session, context, language, data) for context in contexts]
-
-
 def db_get_questionnaire_list(session, tid, language):
+    """
+    Transaction that serialize the list of public contexts
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param language: The language to be used for the serialization
+    :return: A list of contexts descriptors
+    """
+
     questionnaires = session.query(models.Questionnaire).filter(models.Questionnaire.tid.in_(set([1, tid])),
                                                                 or_(models.Context.questionnaire_id == models.Questionnaire.id,
                                                                     models.Context.additional_questionnaire_id == models.Questionnaire.id),
@@ -368,7 +434,30 @@ def db_get_questionnaire_list(session, tid, language):
     return [serialize_questionnaire(session, tid, questionnaire, language) for questionnaire in questionnaires]
 
 
+def db_get_public_context_list(session, tid, language):
+    """
+    Transaction that serialize the list of public contexts
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param language: The language to be used for the serialization
+    :return: A list of contexts descriptors
+    """
+    contexts = session.query(models.Context).filter(models.Context.status > 0,
+                                                    models.Context.tid == tid)
+
+    data = db_prepare_contexts_serialization(session, contexts)
+
+    return [serialize_context(session, context, language, data) for context in contexts]
+
+
 def db_get_public_receiver_list(session, tid, language):
+    """
+    Transaction that serialize the list of public receivers
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param language: The language to be used for the serialization
+    :return: A list of receivers descriptors
+    """
     receivers = session.query(models.User).filter(models.User.role == 'receiver',
                                                   models.User.state != 'disabled',
                                                   models.User.tid == tid)
@@ -387,6 +476,13 @@ def db_get_public_receiver_list(session, tid, language):
 
 @transact
 def get_public_resources(session, tid, language):
+    """
+    Transaction that compose the public API
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param language: The language to be used for serialization
+    :return: The public API descriptor
+    """
     return {
         'node': db_serialize_node(session, tid, language),
         'contexts': db_get_public_context_list(session, tid, language),
@@ -397,6 +493,9 @@ def get_public_resources(session, tid, language):
 
 
 class PublicResource(BaseHandler):
+    """
+    Handler responsible of serving the public API
+    """
     check_roles = 'none'
     cache_resource = True
 

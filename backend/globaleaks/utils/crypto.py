@@ -21,6 +21,11 @@ crypto_backend = default_backend()
 
 
 def _convert_to_bytes(arg):
+    """
+    Convert the argument to bytes if of string type
+    :param arg: a string or a byte object
+    :return: the converted byte object
+    """
     if isinstance(arg, str):
         arg = arg.encode()
 
@@ -28,20 +33,40 @@ def _convert_to_bytes(arg):
 
 
 def _sha(alg, data):
+    """
+    Perform the sha of the passed data
+    :param alg: A specific hash algorithm
+    :param data: A data to be hashed
+    :return: A hash value
+    """
     h = hashes.Hash(alg, backend=crypto_backend)
     h.update(_convert_to_bytes(data))
     return binascii.b2a_hex(h.finalize())
 
 
 def sha256(data):
+    """
+    Perform the sha256 of the passed thata
+    :param data: A data to be hashed
+    :return: A hash value
+    """
     return _sha(hashes.SHA256(), data)
 
 
 def sha512(data):
+    """
+    Perform the sha512 of the passed thata
+    :param data: A data to be hashed
+    :return: A hash value
+    """
     return _sha(hashes.SHA512(), data)
 
 
 def generateApiToken():
+    """
+    Generate an API token
+    :return: An API token to be used for authentication
+    """
     token = generateRandomKey(32)
     return token, sha512(token.encode())
 

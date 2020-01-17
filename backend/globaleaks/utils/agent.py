@@ -12,6 +12,9 @@ def get_tor_agent(socks_host=b'127.0.0.1', socks_port=9050):
 
     It is implicitly understood that the socks_port points to the locally
     configured tor daemon
+    :param socks_host: the sock host
+    :param socks_port: the sock port
+    :return: an initialized agent using the specificed sock config
     """
     torServerEndpoint = TCP4ClientEndpoint(reactor, socks_host, socks_port)
 
@@ -19,9 +22,16 @@ def get_tor_agent(socks_host=b'127.0.0.1', socks_port=9050):
 
 
 def get_web_agent():
-    """An HTTP agent that connects to the web without using Tor"""
+    """An HTTP agent that connects to the web without using Tor
+    :return: A simple initialized agent
+    """
     return Agent(reactor, connectTimeout=5)
 
 
 def get_page(agent, url):
+    """Perform a get request to the specified url and return response content
+    :param agent: An agent to be used to issue the request
+    :param url: A url to be fetched
+    :return: A content returned by the url resource
+    """
     return agent.request(b'GET', url).addCallback(readBody)

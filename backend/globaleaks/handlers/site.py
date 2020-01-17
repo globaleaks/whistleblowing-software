@@ -7,6 +7,12 @@ from globaleaks.state import State
 
 
 def serialize_site(session, tenant):
+    """
+    Transaction serializing the tenant descriptor
+    :param session: An ORM session
+    :param tenant:  The tenant model
+    :return: A serialization of the provided model
+    """
     ret = {
         'id': tenant.id,
         'label': tenant.label,
@@ -32,10 +38,18 @@ def serialize_site(session, tenant):
 
 @transact
 def get_site_list(session):
+    """
+    Transaction return the list of the active tenants
+    :param session:
+    :return:
+    """
     return [serialize_site(session, t) for t in session.query(models.Tenant).filter(models.Tenant.active.is_(True))]
 
 
 class SiteCollection(BaseHandler):
+    """
+    Handler responsible of publishing the list of available tenants
+    """
     check_roles = 'none'
     root_tenant_only = True
 

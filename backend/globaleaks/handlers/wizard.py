@@ -16,15 +16,25 @@ from globaleaks.utils.log import log
 
 
 def db_gen_user_keys(session, tid, user, password):
+    """
+    A transaction generating and saving user keys
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user: A user object
+    :param password: A user's password
+    :return: A private key generated for the user
+    """
     enc_key = GCE.derive_key(password.encode(), user.salt)
     crypto_prv_key, user.crypto_pub_key = GCE.generate_keypair()
     user.crypto_bkp_key, user.crypto_rec_key = GCE.generate_recovery_key(crypto_prv_key)
     user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, crypto_prv_key))
 
+    # Create an escrow backup for the root tenant
     tid_1_escrow = config.ConfigFactory(session, 1).get_val('crypto_escrow_pub_key')
     if tid_1_escrow:
         user.crypto_escrow_bkp1_key = Base64Encoder.encode(GCE.asymmetric_encrypt(tid_1_escrow, crypto_prv_key))
 
+    # Create an escrow backup for the actual tenant
     tid_n_escrow = config.ConfigFactory(session, tid).get_val('crypto_escrow_pub_key')
     if tid_n_escrow:
         user.crypto_escrow_bkp2_key = Base64Encoder.encode(GCE.asymmetric_encrypt(tid_n_escrow, crypto_prv_key))
@@ -35,9 +45,9 @@ def db_gen_user_keys(session, tid, user, password):
 def db_wizard(session, tid, request):
     """
     Transaction for the handling of wizard request
-    :param session: The ORM session
-    :param tid: The tenant ID
-    :param request: The user request
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param request: A user request
     """
     language = request['node_language']
 

@@ -2,10 +2,12 @@
 #
 # Implementation of robots.txt resource
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.state import State
 
 
 class RobotstxtHandler(BaseHandler):
+    """
+    Handler that implements the Robot.txt api
+    """
     check_roles = 'none'
 
     def get(self):
@@ -14,11 +16,11 @@ class RobotstxtHandler(BaseHandler):
         """
         self.request.setHeader(b'Content-Type', b'text/plain')
 
-        if (self.request.tid != 1 and State.tenant_cache[self.request.tid].mode == 'demo') or \
-           (not State.tenant_cache[self.request.tid].allow_indexing):
+        if (self.request.tid != 1 and self.state.tenant_cache[self.request.tid].mode == 'demo') or \
+           (not self.state.tenant_cache[self.request.tid].allow_indexing):
             return "User-agent: *\nDisallow: /"
 
-        hostname = State.tenant_cache[self.request.tid].hostname
+        hostname = self.state.tenant_cache[self.request.tid].hostname
         if isinstance(hostname, bytes):
             hostname = hostname.decode()
 

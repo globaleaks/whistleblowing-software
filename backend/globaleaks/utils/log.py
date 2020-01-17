@@ -12,12 +12,19 @@ from twisted.web.http import _escape
 
 
 def timedelta_to_milliseconds(t):
+    """
+    Convert a timedelta to millisecond
+    :param t: the time delta object to be converted
+    :return: the timedelta representation in milliseconds
+    """
     return (t.microseconds + (t.seconds + t.days * 24 * 3600) * 10**6) / 10**3.0
 
 
 def log_remove_escapes(s):
     """
     This function removes escape sequence from log strings
+    :param s: A string to be escaped
+    :return:  The escaped string
     """
     if isinstance(s, str):
         return codecs.encode(s, 'unicode_escape').decode()
@@ -33,6 +40,13 @@ def log_remove_escapes(s):
 
 
 def openLogFile(logfile, max_file_size, rotated_log_files):
+    """
+    Open a log file
+    :param logfile: A log file path
+    :param max_file_size: A maximum size accepted before rotation
+    :param rotated_log_files: A number of rotated log files
+    :return: A file descriptor
+    """
     name = os.path.basename(logfile)
     directory = os.path.dirname(logfile)
 
@@ -43,6 +57,12 @@ def openLogFile(logfile, max_file_size, rotated_log_files):
 
 
 def logFormatter(timestamp, request):
+    """
+    Log the request adding timestamp
+    :param timestamp: A timestamp of the log entry
+    :param request: A request to be logged
+    :return: A formatted log entry
+    """
     duration = -1
 
     if hasattr(request, 'start_time'):

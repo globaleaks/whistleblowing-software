@@ -17,6 +17,9 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
           The effective solution on which the system does relies is encryption
           and this feature is maintained just as additional countermeasure
           and for educational and historical reasons.
+
+    :param absolutefpath: the absolute path of the file to overwrite
+    :param iterations_number: the number of overwrite operations
     """
     log.debug("Starting secure deletion of file %s", absolutefpath)
 
@@ -67,7 +70,9 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
 
 def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
     """
-    check that an 'untrusted_path' matches a 'trusted_absolute_path' prefix
+    Check that an 'untrusted_path' matches a 'trusted_absolute_path' prefix
+    :param trusted_absolute_prefix: A prefix of the sandbox
+    :param untrusted_path:  The untrasted path
     """
     if not os.path.isabs(trusted_absolute_prefix):
         raise Exception("programming error: trusted_absolute_prefix is not an absolute path: %s" %

@@ -31,11 +31,21 @@ def select_http01_chall(orderr):
 
 
 def split_certificate_chain(full_chain_pem):
+    """
+    Parse and split a certificate chain
+    :param full_chain_pem: the PEM chain of certificates
+    :return: the list of certificates contained in the PEM chain
+    """
     certificates = re.findall('-----BEGIN CERTIFICATE-----.*?-----END CERTIFICATE-----', full_chain_pem, re.DOTALL)
     return certificates[0], ''.join(certificates[1:])
 
 
 def convert_asn1_date(asn1_bytes):
+    """
+    Print a date in asn1 format
+    :param asn1_bytes: the daate to be printed
+    :return:
+    """
     return datetime.strptime(asn1_bytes.decode(), '%Y%m%d%H%M%SZ')
 
 

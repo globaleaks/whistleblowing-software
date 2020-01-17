@@ -18,6 +18,11 @@ from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 def serialize_signup(signup):
+    """
+    Transaction serializing the signup descriptor
+    :param signup: A signup model
+    :return: A serialization of the provided model
+    """
     return {
         'name': signup.name,
         'surname': signup.surname,
@@ -45,8 +50,13 @@ def serialize_signup(signup):
     }
 
 
-@transact
 def signup(session, request, language):
+    """
+    Transact handling the registration of a new signup
+    :param session: An ORM session
+    :param request: A user request
+    :param language: A language of the request
+    """
     config = ConfigFactory(session, 1)
 
     if not config.get_val('enable_signup'):
@@ -106,6 +116,12 @@ def signup(session, request, language):
 
 @transact
 def signup_activation(session, token, language):
+    """
+    Transaction registering the activation of a platform registered via signup
+    :param session: An ORM session
+    :param token: A activation token
+    :param language: A language of the request
+    """
     config = ConfigFactory(session, 1)
 
     if not config.get_val('enable_signup'):
@@ -162,7 +178,7 @@ def signup_activation(session, token, language):
 
 class Signup(BaseHandler):
     """
-    Signup handler
+    Signup handler responsible of registration
     """
     check_roles = 'none'
     invalidate_cache = False
@@ -180,7 +196,7 @@ class Signup(BaseHandler):
 
 class SignupActivation(BaseHandler):
     """
-    Signup handler
+    Signup handler responsible of activation
     """
     check_roles = 'none'
     invalidate_cache = False

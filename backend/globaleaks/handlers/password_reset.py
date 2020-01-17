@@ -20,7 +20,7 @@ from globaleaks.utils.utility import datetime_now, datetime_null
 def db_generate_password_reset_token(session, user):
     """
     Transaction for issuing password reset tokens
-    :param session: A ORM session
+    :param session: An ORM session
     :param user: The user for which issuing a password reset token
     """
     user.reset_password_token = generateRandomKey(32)
@@ -45,8 +45,52 @@ def db_generate_password_reset_token(session, user):
 
 
 @transact
+def generate_password_reset_token_by_user_id(session, tid, user_id):
+    """
+    Transaction for generatin ag password reset token for a user identified by an user ID
+    :param session: An ORM session
+    :param tid: The tenant on
+    :param user_id:
+    :return:
+    """
+    user = db_get_user(session, tid, user_id)
+
+    db_generate_password_reset_token(session, user)
+
+    return {'redirect': '/login/passwordreset/requested'}
+
+
+@transact
+def generate_password_reset_token_by_username_or_mail(session, tid, username_or_email):
+    """
+    Transaction for generating a password reset token for a user identified by a username or email
+    :param session:
+    :param tid:
+    :param user_id:
+    :return:
+    """
+    users = session.query(models.User).filter(
+      or_(models.User.username == username_or_email,
+          models.User.mail_address == username_or_email),
+      models.User.tid == tid
+    ).distinct()
+
+    for user in users:
+        db_generate_password_reset_token(session, user)
+
+    return {'redirect': '/login/passwordreset/requested'}
+
+
+@transact
 def validate_password_reset(session, reset_token, auth_code, recovery_key):
-    """Retrieves a user given a password reset validation token"""
+    """
+    Retrieves a user given a password reset validation token
+    :param session: An ORM session
+    :param reset_token: A reset token
+    :param auth_code: A two factor authentication code (optional)
+    :param recovery_key: An encryption recovery key (optional)
+    :return: A descriptor describing the result of the operation
+    """
     now = datetime.now()
     prv_key = ''
 
@@ -82,29 +126,6 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
                            user.password_change_needed, user.two_factor_enable, prv_key, user.crypto_escrow_prv_key)
 
     return {'status': 'success', 'token': session.id}
-
-
-@transact
-def generate_password_reset_token_by_user_id(session, tid, user_id):
-    user = db_get_user(session, tid, user_id)
-
-    db_generate_password_reset_token(session, user)
-
-    return {'redirect': '/login/passwordreset/requested'}
-
-
-@transact
-def generate_password_reset_token_by_username_or_mail(session, tid, username_or_email):
-    users = session.query(models.User).filter(
-      or_(models.User.username == username_or_email,
-          models.User.mail_address == username_or_email),
-      models.User.tid == tid
-    ).distinct()
-
-    for user in users:
-        db_generate_password_reset_token(session, user)
-
-    return {'redirect': '/login/passwordreset/requested'}
 
 
 class PasswordResetHandler(BaseHandler):

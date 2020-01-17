@@ -13,6 +13,14 @@ from globaleaks.utils.utility import datetime_now
 
 @transact
 def register_ifile_on_db(session, tid, internaltip_id, uploaded_file):
+    """
+    Register a file on the database
+    :param session: An ORM session
+    :param tid: A tenant id
+    :param internaltip_id: A id of the submission on which attaching the file
+    :param uploaded_file: A file to be attached
+    :return: A descriptor of the file
+    """
     now = datetime_now()
 
     itip = session.query(models.InternalTip) \

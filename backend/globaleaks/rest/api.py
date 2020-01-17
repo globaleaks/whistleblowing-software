@@ -253,7 +253,7 @@ class APIResourceWrapper(Resource):
 
         @param e: A `Twisted.python.Failure` instance that wraps a `GLException`
                   or a normal `Exception`
-        @param request: The `twisted.web.Request`
+        @param request: A `twisted.web.Request`
         """
         if isinstance(e, errors.GLException):
             pass
