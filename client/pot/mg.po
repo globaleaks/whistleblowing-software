@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-24 23:48+0000\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -651,6 +651,15 @@ msgstr ""
 msgid "Block the submission"
 msgstr ""
 
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Choisir le contexte de votre envoi :"
 
@@ -713,6 +722,9 @@ msgstr "Désactiver les envois"
 msgid "Enable encryption"
 msgstr "Activer le chiffrement"
 
+msgid "Enable encryption's keys recovery"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Activer la fonction multisite"
 
@@ -733,11 +745,11 @@ msgstr "Activer l’indexation par les moteurs de recherche"
 msgid "Description"
 msgstr "Description"
 
-msgid "Do not expose users' names"
-msgstr ""
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
+
+msgid "Invalid input format."
+msgstr "Le format de saisie est invalide."
 
 msgid "Enable custom privacy panel"
 msgstr "Activer le volet de confidentialité personnalisée"
@@ -818,9 +830,6 @@ msgstr "Nom d’utilisateur"
 msgid "Password"
 msgstr "Mot de passe"
 
-msgid "Enable users to upload their PGP keys"
-msgstr "Permettre aux utilisateurs de téléverser leurs clés PGP"
-
 msgid "Enable multi-site login"
 msgstr "Activer la connexion multisite"
 
@@ -841,6 +850,9 @@ msgstr ""
 
 msgid "Enable scoring system"
 msgstr "Activer le système d’évaluation"
+
+msgid "Enable private labels"
+msgstr ""
 
 msgid "Enable experimental features"
 msgstr "Activer les fonctions expérimentales"
@@ -911,6 +923,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Nom du projet"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "Titre de la page d’accueil"
 
@@ -949,9 +964,6 @@ msgstr "Ajouter un texte personnalisé"
 
 msgid "Custom text"
 msgstr "Texte personnalisé"
-
-msgid "Custom texts"
-msgstr "Textes personnalisés"
 
 msgid "Original text"
 msgstr "Texte original"
@@ -1133,17 +1145,8 @@ msgstr "Chaque entrée doit être séparée par une virgule."
 msgid "Example:"
 msgstr "Exemple :"
 
-msgid "Configuration in progress"
-msgstr ""
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
-
 msgid "Hostname"
 msgstr "Nom d’hôte"
-
-msgid "Invalid input format."
-msgstr "Le format de saisie est invalide."
 
 msgid "Input should be similar to:"
 msgstr "L’entrée devrait être similaire à :"
@@ -1454,14 +1457,17 @@ msgstr "Configurer"
 msgid "Subdomain"
 msgstr ""
 
-msgid "The default password is:"
-msgstr "Le mot de passe par défaut :"
+msgid "Send an account activation link to the user."
+msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "Le système oblige les utilisateurs à modifier leur mot de passe lors de la première connexion."
+msgid "Public name"
+msgstr ""
 
-msgid "Reset password"
-msgstr "Réinitialiser le mot  de passe"
+msgid "Send reset link"
+msgstr ""
+
+msgid "Set password"
+msgstr ""
 
 msgid "Disable two factor authentication"
 msgstr ""
@@ -1489,6 +1495,9 @@ msgstr "Supprimer la clé PGP"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Configurer le chiffrement en fournissant une clé publique PGP"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr ""
 
 msgid "Configuration"
 msgstr "Configuration"
@@ -2049,8 +2058,8 @@ msgstr "Ces profils contiennent les paramètres utilisés par des projets couron
 msgid "Confirm password"
 msgstr "Confirmer le mot de passe"
 
-msgid "The default username is:"
-msgstr "Le nom d’utilisateur par défaut est :"
+msgid "The user will receive an activation link via email."
+msgstr ""
 
 msgid "License Agreement"
 msgstr "Contrat de licence"
@@ -2142,6 +2151,36 @@ msgstr "Unité organisationnelle et lieu d’emploi à l’époque du fait rappo
 msgid "Dear {RecipientName},"
 msgstr "Cher, chère {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr "Nom d’utilisateur : {Username}"
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid "This link will expire in 3 days."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr "Salutations cordiales,"
+
+msgid "Account activation"
+msgstr ""
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "Il est maintenant possible d’accéder à votre plateforme de lancement d’alerte sur :"
 
@@ -2153,9 +2192,6 @@ msgstr "Renseignements sur les utilisateurs :"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "La plateforme sera supprimée automatiquement le :"
-
-msgid "Kind regards,"
-msgstr "Salutations cordiales,"
 
 msgid "Access instructions"
 msgstr "Instructions d’accès"
@@ -2478,9 +2514,6 @@ msgstr "Nouvel envoi"
 
 msgid "Role: {Role}"
 msgstr "Rôle : {Role}"
-
-msgid "Username: {Username}"
-msgstr "Nom d’utilisateur : {Username}"
 
 msgid "Password: {Password}"
 msgstr "Mot de passe : {Password}"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-24 23:48+0000\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -639,6 +639,15 @@ msgstr ""
 msgid "Block the submission"
 msgstr ""
 
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "உங்கள் சமர்ப்பிப்பு சூழலில் தேர்வு:"
 
@@ -701,6 +710,9 @@ msgstr "சமர்ப்பிப்புகளை முடக்கு"
 msgid "Enable encryption"
 msgstr "மறையாக்குதல் இயக்கு"
 
+msgid "Enable encryption's keys recovery"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "பன்முனை அம்சத்தை இயக்கு"
 
@@ -721,11 +733,11 @@ msgstr "தேடுபொறிகள் திருப்பு இயக�
 msgid "Description"
 msgstr "விபரம்"
 
-msgid "Do not expose users' names"
-msgstr ""
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
+
+msgid "Invalid input format."
+msgstr "தவறான உள்ளீட்டு வடிவமைப்பு."
 
 msgid "Enable custom privacy panel"
 msgstr "விருப்ப தனியுரிமை குழு இயக்கு"
@@ -806,9 +818,6 @@ msgstr "பயனர்பெயர்"
 msgid "Password"
 msgstr "கடவுச்சொல்"
 
-msgid "Enable users to upload their PGP keys"
-msgstr "தங்கள் PGP விசையைப் பதிவேற்ற பயனர்களை இயக்கு"
-
 msgid "Enable multi-site login"
 msgstr "பல தள உள்நுழைவை இயக்கவும்"
 
@@ -829,6 +838,9 @@ msgstr ""
 
 msgid "Enable scoring system"
 msgstr "ஸ்கோரிங் அமைப்பை இயக்கு"
+
+msgid "Enable private labels"
+msgstr ""
 
 msgid "Enable experimental features"
 msgstr "சோதனை அம்சங்களை இயக்கு"
@@ -899,6 +911,9 @@ msgstr "சின்னம்"
 msgid "Project name"
 msgstr "திட்ட பெயர்"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "முகப்பு தலைப்பு"
 
@@ -937,9 +952,6 @@ msgstr "தனிப்பயன் உரையைச் சேர்க்க�
 
 msgid "Custom text"
 msgstr "தனிப்பயன் உரை"
-
-msgid "Custom texts"
-msgstr "விருப்ப நூல்கள்"
 
 msgid "Original text"
 msgstr "அசல் உரை"
@@ -1121,17 +1133,8 @@ msgstr "ஒவ்வொரு நுழைவு ஒரு கமாவால்
 msgid "Example:"
 msgstr "உதாரணமாக:"
 
-msgid "Configuration in progress"
-msgstr ""
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
-
 msgid "Hostname"
 msgstr "ஹோஸ்ட்பெயர்"
-
-msgid "Invalid input format."
-msgstr "தவறான உள்ளீட்டு வடிவமைப்பு."
 
 msgid "Input should be similar to:"
 msgstr "உள்ளீடு இதற்கு ஒத்திருக்க வேண்டும்:"
@@ -1442,14 +1445,17 @@ msgstr "கட்டமைக்க"
 msgid "Subdomain"
 msgstr ""
 
-msgid "The default password is:"
-msgstr "முன்னிருப்பு கடவுச்சொல்:"
+msgid "Send an account activation link to the user."
+msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "அமைப்பு படைகள் செய்த முதல் உள்நுழைவு பாஸ்வேர்டை மாற்ற."
+msgid "Public name"
+msgstr ""
 
-msgid "Reset password"
-msgstr "கடவுச்சொல்லை மீட்டமைக்க"
+msgid "Send reset link"
+msgstr ""
+
+msgid "Set password"
+msgstr ""
 
 msgid "Disable two factor authentication"
 msgstr ""
@@ -1477,6 +1483,9 @@ msgstr "PGP சாவியை நீக்கவும்"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "ஒரு பிஜிபி பொது விசையை வழங்குவதன் மூலம் குறியாக்க அமைக்கவும்"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr ""
 
 msgid "Configuration"
 msgstr "கட்டமைப்பு"
@@ -1680,7 +1689,7 @@ msgid "Hide"
 msgstr "மறை"
 
 msgid "Show"
-msgstr ""
+msgstr "காண்பி"
 
 msgid "Set up email encryption by providing a PGP public key"
 msgstr ""
@@ -2037,8 +2046,8 @@ msgstr "இந்த சுயவிவரங்களில் வெற்ற�
 msgid "Confirm password"
 msgstr "பாஸ்வேர்டை உறுதி"
 
-msgid "The default username is:"
-msgstr "இயல்புநிலை பயனர்பெயர்:"
+msgid "The user will receive an activation link via email."
+msgstr ""
 
 msgid "License Agreement"
 msgstr "உரிம ஒப்பந்தத்தின்"
@@ -2130,6 +2139,36 @@ msgstr "தகவல் உண்மையில் நேரத்தில் 
 msgid "Dear {RecipientName},"
 msgstr "அன்பே {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr "பயனர்பெயர்: {Username}"
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid "This link will expire in 3 days."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr "Kind regards,"
+
+msgid "Account activation"
+msgstr ""
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "இப்போது உங்கள் விசிலடிக்கும் தளம் இப்போது அணுகக்கூடியது:"
 
@@ -2141,9 +2180,6 @@ msgstr "பயனரின் சான்றுகள்:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "தளம் தானாகவே நீக்கப்படும்:"
-
-msgid "Kind regards,"
-msgstr "Kind regards,"
 
 msgid "Access instructions"
 msgstr "அணுகல் வழிமுறைகள்"
@@ -2466,9 +2502,6 @@ msgstr "புதிய சமர்ப்பிப்பு"
 
 msgid "Role: {Role}"
 msgstr "பங்கு: {Role}"
-
-msgid "Username: {Username}"
-msgstr "பயனர்பெயர்: {Username}"
 
 msgid "Password: {Password}"
 msgstr "கடவுச்சொல்: {Password}"

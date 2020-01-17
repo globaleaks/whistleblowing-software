@@ -1,7 +1,7 @@
 # 
 # Translators:
 # Alexandre Girard <transifex@alexgirard.com>, 2013-2014
-# AO <ao@localizationlab.org>, 2018-2019
+# AO <ao@localizationlab.org>, 2018-2020
 # marco calamari <marcoc@marcoc.it>, 2013
 # Charles Peltier <charles@cl-info.fr>, 2015
 # AO <ao@localizationlab.org>, 2015-2018
@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-25 15:16+0000\n"
-"Last-Translator: AO <ao@localizationlab.org>\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -612,7 +612,7 @@ msgid "Use as default"
 msgstr "Utiliser comme valeur par défaut"
 
 msgid "Create your whistleblowing platform"
-msgstr "Créez votre plateforme de lancement d’alerte"
+msgstr "Créez votre plateforme de lancement d’alertes"
 
 msgid "Collapse"
 msgstr "Réduire"
@@ -670,6 +670,15 @@ msgstr "Envoyer un courriel de test à votre adresse courriel."
 
 msgid "Block the submission"
 msgstr "Bloquer l’envoi"
+
+msgid "Skip the recipient account creation."
+msgstr "Ignorer la création du compte du destinataire."
+
+msgid "Send activation link"
+msgstr "Envoyer un lien d’activation"
+
+msgid "Password reset"
+msgstr "Réinitialisation du mot de passe"
 
 msgid "Select the context of your submission:"
 msgstr "Choisir le contexte de votre envoi :"
@@ -733,6 +742,9 @@ msgstr "Désactiver les envois"
 msgid "Enable encryption"
 msgstr "Activer le chiffrement"
 
+msgid "Enable encryption's keys recovery"
+msgstr "Permettre la récupération des clés de chiffrement"
+
 msgid "Enable multisite feature"
 msgstr "Activer la fonction multisite"
 
@@ -753,11 +765,11 @@ msgstr "Activer l’indexation par les moteurs de recherche"
 msgid "Description"
 msgstr "Description"
 
-msgid "Do not expose users' names"
-msgstr "Ne pas exposer les noms des utilisateurs"
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "Permettre aux sites Web suivants d’intégrer la plateforme à l’intérieur de cadres « iframes »"
+
+msgid "Invalid input format."
+msgstr "Le format de saisie est invalide."
 
 msgid "Enable custom privacy panel"
 msgstr "Activer le volet de confidentialité personnalisée"
@@ -838,9 +850,6 @@ msgstr "Nom d’utilisateur"
 msgid "Password"
 msgstr "Mot de passe"
 
-msgid "Enable users to upload their PGP keys"
-msgstr "Permettre aux utilisateurs de téléverser leurs clés PGP"
-
 msgid "Enable multi-site login"
 msgstr "Activer la connexion multisite"
 
@@ -861,6 +870,9 @@ msgstr "Activer le rôle de gardien"
 
 msgid "Enable scoring system"
 msgstr "Activer le système d’évaluation"
+
+msgid "Enable private labels"
+msgstr "Activer les étiquettes privées"
 
 msgid "Enable experimental features"
 msgstr "Activer les fonctions expérimentales"
@@ -931,6 +943,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Nom du projet"
 
+msgid "Header title"
+msgstr "Titre de l’en-tête"
+
 msgid "Homepage title"
 msgstr "Titre de la page d’accueil"
 
@@ -969,9 +984,6 @@ msgstr "Ajouter un texte personnalisé"
 
 msgid "Custom text"
 msgstr "Texte personnalisé"
-
-msgid "Custom texts"
-msgstr "Textes personnalisés"
 
 msgid "Original text"
 msgstr "Texte original"
@@ -1153,17 +1165,8 @@ msgstr "Chaque entrée doit être séparée par une virgule."
 msgid "Example:"
 msgstr "Exemple :"
 
-msgid "Configuration in progress"
-msgstr "Configuration en cours"
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr "La plateforme sera accessible par HTTPS à l’adresse suivante :"
-
 msgid "Hostname"
 msgstr "Nom d’hôte"
-
-msgid "Invalid input format."
-msgstr "Le format de saisie est invalide."
 
 msgid "Input should be similar to:"
 msgstr "L’entrée devrait être similaire à :"
@@ -1474,14 +1477,17 @@ msgstr "Configurer"
 msgid "Subdomain"
 msgstr "Sous-domaine"
 
-msgid "The default password is:"
-msgstr "Le mot de passe par défaut :"
+msgid "Send an account activation link to the user."
+msgstr "Envoyer un lien d’activation du compte à l’utilisateur."
 
-msgid "The system forces users to change the password at first login."
-msgstr "Le système oblige les utilisateurs à modifier leur mot de passe lors de la première connexion."
+msgid "Public name"
+msgstr "Nom public"
 
-msgid "Reset password"
-msgstr "Réinitialiser le mot  de passe"
+msgid "Send reset link"
+msgstr "Envoyer un lien de réinitialisation"
+
+msgid "Set password"
+msgstr "Définir un mot de passe"
 
 msgid "Disable two factor authentication"
 msgstr "Désactiver l’authentification à deux facteurs"
@@ -1509,6 +1515,9 @@ msgstr "Supprimer la clé PGP"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Configurer le chiffrement en fournissant une clé publique PGP"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr "Accorder à l’utilisateur la possibilité de réinitialiser les mots de passe des utilisateurs"
 
 msgid "Configuration"
 msgstr "Configuration"
@@ -1963,7 +1972,7 @@ msgid "You have completed the platform activation."
 msgstr "L’activation de la plateforme est maintenant terminée."
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr "Votre plateforme de lancement d’alerte est presque prête !"
+msgstr "Votre plateforme de lancement d’alertes est presque prête !"
 
 msgid "Check your inbox to activate it."
 msgstr "Vérifiez votre boîte de réception pour l’activer."
@@ -2056,7 +2065,7 @@ msgstr "Les étapes suivantes présentent des erreurs :"
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr "La procédure étape par étape suivante vous guidera dans la création de votre plateforme de lancement d’alerte."
+msgstr "La procédure étape par étape suivante vous guidera dans la création de votre plateforme de lancement d’alertes."
 
 msgid "Please choose a configuration profile:"
 msgstr "Veuillez choisir un profil de configuration :"
@@ -2069,8 +2078,8 @@ msgstr "Ces profils contiennent les paramètres utilisés par des projets couron
 msgid "Confirm password"
 msgstr "Confirmer le mot de passe"
 
-msgid "The default username is:"
-msgstr "Le nom d’utilisateur par défaut est :"
+msgid "The user will receive an activation link via email."
+msgstr "L’utilisateur recevra un lien d’activation par courriel."
 
 msgid "License Agreement"
 msgstr "Contrat de licence"
@@ -2162,8 +2171,38 @@ msgstr "Unité organisationnelle et lieu d’emploi à l’époque du fait rappo
 msgid "Dear {RecipientName},"
 msgstr "Cher, chère {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr "Vous recevez ce courriel, car un compte utilisateur a été créé pour vous sur le système : {Site}"
+
+msgid "Username: {Username}"
+msgstr "Nom d’utilisateur : {Username}"
+
+msgid "Activation link: {Url}"
+msgstr "Lien d’activation : {Url}"
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr "Veuillez cliquer sur le lien d’activation afin de poursuivre l’activation du compte et définir votre mot de passe d’utilisateur."
+
+msgid "This link will expire in 3 days."
+msgstr "Ce lien arrivera à expiration dans trois jours."
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr "Une fois l’activation réussie, vous pourrez accéder au système par le lien suivant : {LoginUrl}"
+
+msgid "Kind regards,"
+msgstr "Salutations cordiales,"
+
+msgid "Account activation"
+msgstr "Activation du compte"
+
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr "Il est maintenant possible d’accéder à votre plateforme de lancement d’alerte sur :"
+msgstr "Il est maintenant possible d’accéder à votre plateforme de lancement d’alertes sur :"
 
 msgid "To log in, visit:"
 msgstr "Pour vous connecter, visitez :"
@@ -2173,9 +2212,6 @@ msgstr "Renseignements sur les utilisateurs :"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "La plateforme sera supprimée automatiquement le :"
-
-msgid "Kind regards,"
-msgstr "Salutations cordiales,"
 
 msgid "Access instructions"
 msgstr "Instructions d’accès"
@@ -2498,9 +2534,6 @@ msgstr "Nouvel envoi"
 
 msgid "Role: {Role}"
 msgstr "Rôle : {Role}"
-
-msgid "Username: {Username}"
-msgstr "Nom d’utilisateur : {Username}"
 
 msgid "Password: {Password}"
 msgstr "Mot de passe : {Password}"

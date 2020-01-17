@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-24 23:48+0000\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -639,6 +639,15 @@ msgstr "Send en testbesked til din emailadresse."
 msgid "Block the submission"
 msgstr ""
 
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Vælg den sammenhæng, din indsendelse indgår i:"
 
@@ -701,6 +710,9 @@ msgstr "Deaktiver indsendelser"
 msgid "Enable encryption"
 msgstr "Aktivér kryptering"
 
+msgid "Enable encryption's keys recovery"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr ""
 
@@ -721,11 +733,11 @@ msgstr "Aktiver søgemaskiners indeksering"
 msgid "Description"
 msgstr "Beskrivelse"
 
-msgid "Do not expose users' names"
-msgstr ""
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
+
+msgid "Invalid input format."
+msgstr "Ugyldigt inputformat"
 
 msgid "Enable custom privacy panel"
 msgstr "Aktiver brugertilpasset privatlivspanel"
@@ -806,9 +818,6 @@ msgstr "Brugernavn"
 msgid "Password"
 msgstr "Password"
 
-msgid "Enable users to upload their PGP keys"
-msgstr "Tillad brugere at uploade deres PGP-nøgler"
-
 msgid "Enable multi-site login"
 msgstr ""
 
@@ -828,6 +837,9 @@ msgid "Enable custodian user role"
 msgstr ""
 
 msgid "Enable scoring system"
+msgstr ""
+
+msgid "Enable private labels"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -899,6 +911,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Projektnavn"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "Titel på hjemmesiden"
 
@@ -937,9 +952,6 @@ msgstr "Tilføj brugerdefineret tekst"
 
 msgid "Custom text"
 msgstr "Brugerdefineret tekst"
-
-msgid "Custom texts"
-msgstr "Brugerdefinerede tekster"
 
 msgid "Original text"
 msgstr "Oprindelig tekst"
@@ -1121,17 +1133,8 @@ msgstr ""
 msgid "Example:"
 msgstr "Eksempel:"
 
-msgid "Configuration in progress"
-msgstr ""
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
-
 msgid "Hostname"
 msgstr "Hostnavn"
-
-msgid "Invalid input format."
-msgstr "Ugyldigt inputformat"
 
 msgid "Input should be similar to:"
 msgstr "Input skal svare til:"
@@ -1442,13 +1445,16 @@ msgstr "Konfigurer"
 msgid "Subdomain"
 msgstr ""
 
-msgid "The default password is:"
-msgstr "Standard-password er:"
+msgid "Send an account activation link to the user."
+msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "Systemet tvinger brugere til at skifte password første gang de logger ind."
+msgid "Public name"
+msgstr ""
 
-msgid "Reset password"
+msgid "Send reset link"
+msgstr ""
+
+msgid "Set password"
 msgstr ""
 
 msgid "Disable two factor authentication"
@@ -1477,6 +1483,9 @@ msgstr "Fjern PGP nøglen"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Opsæt kryptering ved at indsende en offentlig PGP nøgle"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr ""
 
 msgid "Configuration"
 msgstr "Konfiguration"
@@ -2037,8 +2046,8 @@ msgstr "Disse profiler indeholder indstillinger, der bruges af projekter, der er
 msgid "Confirm password"
 msgstr "Bekræft password"
 
-msgid "The default username is:"
-msgstr "Standard-brugernavnet er:"
+msgid "The user will receive an activation link via email."
+msgstr ""
 
 msgid "License Agreement"
 msgstr "Licensaftale"
@@ -2130,6 +2139,36 @@ msgstr "Organisationsenhed og jobplacering på tidspunktet for de indrapportered
 msgid "Dear {RecipientName},"
 msgstr "Kære {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid "This link will expire in 3 days."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr "Med venlig hilsen"
+
+msgid "Account activation"
+msgstr ""
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "Din whistleblowing-platform kan nu tilgås på:"
 
@@ -2141,9 +2180,6 @@ msgstr "Brugerens legitimationsoplysninger:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "Platformen vil blive automatisk slettet den:"
-
-msgid "Kind regards,"
-msgstr "Med venlig hilsen"
 
 msgid "Access instructions"
 msgstr "Adgangsvejledning"
@@ -2465,9 +2501,6 @@ msgid "New submission"
 msgstr "Ny indsendelse"
 
 msgid "Role: {Role}"
-msgstr ""
-
-msgid "Username: {Username}"
 msgstr ""
 
 msgid "Password: {Password}"

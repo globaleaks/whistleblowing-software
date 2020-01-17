@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-12-17 10:56+0000\n"
-"Last-Translator: Panu Ahvenharju\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -642,6 +642,15 @@ msgstr "Lähetä testisähköposti omaan sähköpostiosoitteeseen"
 msgid "Block the submission"
 msgstr "Estä vihjeen lähettäminen"
 
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Valitse vihjeen aihe:"
 
@@ -704,6 +713,9 @@ msgstr "Poista vihjeiden lähettäminen käytöstä"
 msgid "Enable encryption"
 msgstr "Käytä salausta"
 
+msgid "Enable encryption's keys recovery"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Ota käyttöön samanaikainen kirjautuminen useaan järjestelmään"
 
@@ -724,11 +736,11 @@ msgstr "Ota käyttöön hakukoneiden indeksointi"
 msgid "Description"
 msgstr "Kuvaus"
 
-msgid "Do not expose users' names"
-msgstr "Älä paljasta käyttäjien nimiä"
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "Salli seuraavien sivustojen upottaa palvelu iframes-toteutuksena omille verkkosivuilleen"
+
+msgid "Invalid input format."
+msgstr "Syötteen muoto ei kelpaa"
 
 msgid "Enable custom privacy panel"
 msgstr "Ota käyttöön oma yksityisyyskulkukortti"
@@ -809,9 +821,6 @@ msgstr "Käyttäjätunnus"
 msgid "Password"
 msgstr "Salasana"
 
-msgid "Enable users to upload their PGP keys"
-msgstr "Salli käyttäjien omien PGP-avaimien tallentaminen"
-
 msgid "Enable multi-site login"
 msgstr "Salli samanaikainen kirjautuminen useaan järjestelmään"
 
@@ -832,6 +841,9 @@ msgstr "Ota käyttöön valvontarooli"
 
 msgid "Enable scoring system"
 msgstr "Ota käyttöön pisteytysjärjestelmä"
+
+msgid "Enable private labels"
+msgstr ""
 
 msgid "Enable experimental features"
 msgstr "Ota käyttöön koekäytössä olevat toiminnallisuudet"
@@ -902,6 +914,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Palvelun nimi"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "Otsikkoteksti"
 
@@ -940,9 +955,6 @@ msgstr "Valitse korvattava teksti"
 
 msgid "Custom text"
 msgstr "Kirjoita oma käännös"
-
-msgid "Custom texts"
-msgstr "Omat käännökset"
 
 msgid "Original text"
 msgstr "Lähdeteksti"
@@ -1124,17 +1136,8 @@ msgstr "Käytä erotusmerkkinä pilkkua "
 msgid "Example:"
 msgstr "Esimerkiksi:"
 
-msgid "Configuration in progress"
-msgstr "Asetusten määritys käynnissä"
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr "Järjestelmään saa yhteyden HTTPS-protokollalla osoitteessa:"
-
 msgid "Hostname"
 msgstr "Tietokoneen nimi"
-
-msgid "Invalid input format."
-msgstr "Syötteen muoto ei kelpaa"
 
 msgid "Input should be similar to:"
 msgstr "Tekstikentän sallittu muoto: "
@@ -1445,14 +1448,17 @@ msgstr "Aseta"
 msgid "Subdomain"
 msgstr "Alidomain"
 
-msgid "The default password is:"
-msgstr "Oletussalasana:"
+msgid "Send an account activation link to the user."
+msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "Järjestelmä pakottaa käyttäjät vaihtamaan salasanan ensimmäisen kirjautumisen yhteydessä."
+msgid "Public name"
+msgstr "Julkinen nimi"
 
-msgid "Reset password"
-msgstr "Salasanan uusiminen"
+msgid "Send reset link"
+msgstr ""
+
+msgid "Set password"
+msgstr "Aseta salasana"
 
 msgid "Disable two factor authentication"
 msgstr "Poista kaksivaiheinen kirjautuminen käytöstä"
@@ -1480,6 +1486,9 @@ msgstr "Poista PGP-avain"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Määritä salaus PGP-avaimella"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr ""
 
 msgid "Configuration"
 msgstr "Asetukset"
@@ -2040,8 +2049,8 @@ msgstr "Näistä profiileista löydät kullekin aiheelle räätälöityjä ja on
 msgid "Confirm password"
 msgstr "Vahvista salasana"
 
-msgid "The default username is:"
-msgstr "Oletuskäyttäjänimi: "
+msgid "The user will receive an activation link via email."
+msgstr ""
 
 msgid "License Agreement"
 msgstr "Lisenssisopimus"
@@ -2133,6 +2142,36 @@ msgstr "Organisaatioyksikkö ja työpaikan sijainti raportointihetkellä"
 msgid "Dear {RecipientName},"
 msgstr "Hyvä {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr "Käyttäjätunnus: {Username}"
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid "This link will expire in 3 days."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr "Ystävällisin terveisin,"
+
+msgid "Account activation"
+msgstr ""
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "Vihjepalvelusi on nyt käyttövalmis osoitteessa "
 
@@ -2144,9 +2183,6 @@ msgstr "Käyttäjien kirjautumistiedot: "
 
 msgid "The platform will be automatically deleted on:"
 msgstr "Päivämäärä, jolloin palvelu tuhotaan automaattisesti: "
-
-msgid "Kind regards,"
-msgstr "Ystävällisin terveisin,"
 
 msgid "Access instructions"
 msgstr "Ohjeet palvelun käytön aloittamiseksi"
@@ -2469,9 +2505,6 @@ msgstr "Uusi lähetys"
 
 msgid "Role: {Role}"
 msgstr "Rooli: {Role}"
-
-msgid "Username: {Username}"
-msgstr "Käyttäjätunnus: {Username}"
 
 msgid "Password: {Password}"
 msgstr "Salasana: {Password}"

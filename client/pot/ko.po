@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-24 23:48+0000\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -637,6 +637,15 @@ msgstr ""
 msgid "Block the submission"
 msgstr ""
 
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "제출의 컨텍스트를 선택합니다 :"
 
@@ -699,6 +708,9 @@ msgstr "안 제출"
 msgid "Enable encryption"
 msgstr ""
 
+msgid "Enable encryption's keys recovery"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr ""
 
@@ -719,10 +731,10 @@ msgstr "검색 엔진의 색인을 사용하도록 설정"
 msgid "Description"
 msgstr "기술"
 
-msgid "Do not expose users' names"
+msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
 
-msgid "Allow the following websites to embed the platform inside iframes"
+msgid "Invalid input format."
 msgstr ""
 
 msgid "Enable custom privacy panel"
@@ -804,9 +816,6 @@ msgstr "사용자 이름"
 msgid "Password"
 msgstr "암호"
 
-msgid "Enable users to upload their PGP keys"
-msgstr ""
-
 msgid "Enable multi-site login"
 msgstr ""
 
@@ -826,6 +835,9 @@ msgid "Enable custodian user role"
 msgstr ""
 
 msgid "Enable scoring system"
+msgstr ""
+
+msgid "Enable private labels"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -897,6 +909,9 @@ msgstr "로고"
 msgid "Project name"
 msgstr "프로젝트 이름"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "홈페이지 제목"
 
@@ -934,9 +949,6 @@ msgid "Add custom text"
 msgstr ""
 
 msgid "Custom text"
-msgstr ""
-
-msgid "Custom texts"
 msgstr ""
 
 msgid "Original text"
@@ -1119,17 +1131,8 @@ msgstr ""
 msgid "Example:"
 msgstr "예:"
 
-msgid "Configuration in progress"
-msgstr ""
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
-
 msgid "Hostname"
 msgstr "호스트 이름"
-
-msgid "Invalid input format."
-msgstr ""
 
 msgid "Input should be similar to:"
 msgstr ""
@@ -1440,14 +1443,17 @@ msgstr "구성"
 msgid "Subdomain"
 msgstr ""
 
-msgid "The default password is:"
+msgid "Send an account activation link to the user."
 msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "시스템 강제로 사용자가 처음 로그인 할 때 암호를 변경합니다."
+msgid "Public name"
+msgstr "공개 이름"
 
-msgid "Reset password"
+msgid "Send reset link"
 msgstr ""
+
+msgid "Set password"
+msgstr "패스워드 설정"
 
 msgid "Disable two factor authentication"
 msgstr ""
@@ -1475,6 +1481,9 @@ msgstr "PGP 키를 제거"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "PGP 공개 키를 제공하여 암호화를 설정"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr ""
 
 msgid "Configuration"
 msgstr "구성"
@@ -2035,7 +2044,7 @@ msgstr ""
 msgid "Confirm password"
 msgstr "비밀번호 확인"
 
-msgid "The default username is:"
+msgid "The user will receive an activation link via email."
 msgstr ""
 
 msgid "License Agreement"
@@ -2128,6 +2137,36 @@ msgstr "보고 된 사실시 조직 단위 및 작업 위치"
 msgid "Dear {RecipientName},"
 msgstr "친애 %의 {RecipientName} 를,"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid "This link will expire in 3 days."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr "종류 안부,"
+
+msgid "Account activation"
+msgstr ""
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr ""
 
@@ -2139,9 +2178,6 @@ msgstr ""
 
 msgid "The platform will be automatically deleted on:"
 msgstr ""
-
-msgid "Kind regards,"
-msgstr "종류 안부,"
 
 msgid "Access instructions"
 msgstr ""
@@ -2463,9 +2499,6 @@ msgid "New submission"
 msgstr "뉴 제출"
 
 msgid "Role: {Role}"
-msgstr ""
-
-msgid "Username: {Username}"
 msgstr ""
 
 msgid "Password: {Password}"

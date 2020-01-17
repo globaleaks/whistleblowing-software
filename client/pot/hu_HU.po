@@ -1,5 +1,6 @@
 # 
 # Translators:
+# b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # benewfy <benewfy@gmail.com>, 2015
 # benewfy <benewfy@gmail.com>, 2015-2016
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2017-2018
@@ -17,12 +18,12 @@
 # benewfy <benewfy@gmail.com>, 2015
 # vargaviktor <viktor.varga@gmail.com>, 2014
 # vargaviktor <viktor.varga@gmail.com>, 2014-2018
-# zala krisztina <zalakri@gmail.com>, 2013,2019
+# zala krisztina <zalakri@gmail.com>, 2013,2019-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-12-09 11:34+0000\n"
-"Last-Translator: zala krisztina <zalakri@gmail.com>\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -371,7 +372,7 @@ msgid "HTTPS settings"
 msgstr "HTTPS beállítások"
 
 msgid "URL redirects"
-msgstr ""
+msgstr "Átirányítás"
 
 msgid "Anomaly detection thresholds"
 msgstr "Anomália érzékelés határértékek"
@@ -573,7 +574,7 @@ msgid "Scheduled jobs"
 msgstr ""
 
 msgid "Sites management"
-msgstr ""
+msgstr "Oldalak kezelése"
 
 msgid "Regenerate"
 msgstr ""
@@ -624,7 +625,7 @@ msgid "Closed"
 msgstr "Lezárva"
 
 msgid "Placeholder"
-msgstr ""
+msgstr "Felirat helye"
 
 msgid "Print"
 msgstr "Nyomtatás"
@@ -651,6 +652,15 @@ msgid "Send a test email to your email address."
 msgstr "Küldjön teszt email az email címére."
 
 msgid "Block the submission"
+msgstr ""
+
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -689,7 +699,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr ""
+msgstr "A kiválasztott jelszó nem elég erős. A jelszónak legalább 10 karakteresnek kell lennie, és tartalmaznia kell kis- és nagybetűket, számot és speciális karaktert is."
 
 msgid "The new password must be different from the current one."
 msgstr "Az új jelszó nem egyezhet meg az eddigivel"
@@ -713,10 +723,13 @@ msgid "Disable submissions"
 msgstr "Feltöltéstek letiltása"
 
 msgid "Enable encryption"
+msgstr "Titkosítás engedélyezése"
+
+msgid "Enable encryption's keys recovery"
 msgstr ""
 
 msgid "Enable multisite feature"
-msgstr ""
+msgstr "Multisite engedélyezése"
 
 msgid "Allow recipients to delete submissions"
 msgstr "Engedély a címzetteknek, hogy töröljék a beküldést"
@@ -735,11 +748,11 @@ msgstr "Keresőmotorok indexelésének engedélyezése"
 msgid "Description"
 msgstr "Leírás"
 
-msgid "Do not expose users' names"
-msgstr ""
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
+
+msgid "Invalid input format."
+msgstr "Érvénytelen formátum"
 
 msgid "Enable custom privacy panel"
 msgstr "Egyedi adatvédelmi panel engedélyezése"
@@ -820,9 +833,6 @@ msgstr "Felhasználónév"
 msgid "Password"
 msgstr "Jelszó"
 
-msgid "Enable users to upload their PGP keys"
-msgstr ""
-
 msgid "Enable multi-site login"
 msgstr ""
 
@@ -830,18 +840,21 @@ msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable HSTS preload"
-msgstr ""
+msgstr "HSTS betöltés engedélyezése"
 
 msgid "Logging level"
 msgstr ""
 
 msgid "Log accesses of internal users"
-msgstr ""
+msgstr "Belső felhasználók belépési logja"
 
 msgid "Enable custodian user role"
 msgstr ""
 
 msgid "Enable scoring system"
+msgstr ""
+
+msgid "Enable private labels"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -881,7 +894,7 @@ msgid "Montly"
 msgstr "Havonta"
 
 msgid "Remote"
-msgstr ""
+msgstr "Távoli hozzáférés"
 
 msgid "Server"
 msgstr "Szerver"
@@ -908,10 +921,13 @@ msgid "Submission statuses"
 msgstr ""
 
 msgid "Logo"
-msgstr ""
+msgstr "Logó"
 
 msgid "Project name"
 msgstr "Projekt név"
+
+msgid "Header title"
+msgstr ""
 
 msgid "Homepage title"
 msgstr "Honlap cím"
@@ -952,9 +968,6 @@ msgstr "Egyéni szöveg hozzáadása"
 msgid "Custom text"
 msgstr "Egyéni szöveg"
 
-msgid "Custom texts"
-msgstr "Egyéni szöveg"
-
 msgid "Original text"
 msgstr "Eredeti szöveg"
 
@@ -989,10 +1002,10 @@ msgid "Recipients"
 msgstr "Címzettek"
 
 msgid "Submission expiration"
-msgstr ""
+msgstr "Beküldés lejárata"
 
 msgid "days"
-msgstr ""
+msgstr "nap(ok)"
 
 msgid "Show the questionnaire navigation interface"
 msgstr ""
@@ -1046,19 +1059,19 @@ msgid "Threshold"
 msgstr ""
 
 msgid "Value"
-msgstr ""
+msgstr "Érték"
 
 msgid "Medium"
-msgstr ""
+msgstr "Közepes"
 
 msgid "High"
-msgstr ""
+msgstr "Magas"
 
 msgid "Customize the message shown in the receipt page"
 msgstr ""
 
 msgid "Low"
-msgstr ""
+msgstr "Alacsony"
 
 msgid "Assign the receipt only to submissions reaching score:"
 msgstr ""
@@ -1067,7 +1080,7 @@ msgid "Software version:"
 msgstr "Szoftver verzió:"
 
 msgid "An update is available:"
-msgstr ""
+msgstr "Frissítés elérhető:"
 
 msgid "SMTP email address"
 msgstr "SMTP email cím"
@@ -1085,7 +1098,7 @@ msgid "Transport Security"
 msgstr "Átvitel biztonsága"
 
 msgid "Require authentication"
-msgstr ""
+msgstr "Jóváhagyást igényel"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "A küldésre váró emaileket a beállítás visszakapcsolása után újraküldjük."
@@ -1103,7 +1116,7 @@ msgid "this configuration only applies to recipients"
 msgstr "ez a konfiguráció csak a címzettekre vonatkozik"
 
 msgid "Test the configuration"
-msgstr ""
+msgstr "Beállítások tesztelése"
 
 msgid "Reset SMTP configuration"
 msgstr ""
@@ -1135,16 +1148,7 @@ msgstr ""
 msgid "Example:"
 msgstr "Példa:"
 
-msgid "Configuration in progress"
-msgstr ""
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
-
 msgid "Hostname"
-msgstr ""
-
-msgid "Invalid input format."
 msgstr ""
 
 msgid "Input should be similar to:"
@@ -1201,7 +1205,7 @@ msgid "Certificate"
 msgstr ""
 
 msgid "Valid until:"
-msgstr ""
+msgstr "Érvényességi idő:"
 
 msgid "Issuer:"
 msgstr ""
@@ -1316,10 +1320,10 @@ msgid "Terms of service"
 msgstr "Használati feltételek"
 
 msgid "Date range"
-msgstr ""
+msgstr "Időszak"
 
 msgid "Map"
-msgstr ""
+msgstr "Térkép"
 
 msgid "Group of questions"
 msgstr "Kérdések csoportja"
@@ -1445,28 +1449,31 @@ msgid "Sites"
 msgstr ""
 
 msgid "Active"
-msgstr ""
+msgstr "Aktív"
 
 msgid "Inactive"
-msgstr ""
+msgstr "Inaktív"
 
 msgid "Configure"
-msgstr ""
+msgstr "Beállítás"
 
 msgid "Subdomain"
 msgstr ""
 
-msgid "The default password is:"
+msgid "Send an account activation link to the user."
 msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "A rendszer kényszeríti a felhasználót első bejelentkezéskor a jelszava cseréjére."
-
-msgid "Reset password"
+msgid "Public name"
 msgstr ""
+
+msgid "Send reset link"
+msgstr ""
+
+msgid "Set password"
+msgstr "Jelszó beállítása"
 
 msgid "Disable two factor authentication"
-msgstr ""
+msgstr "2-faktoros belépés kikapcsolása"
 
 msgid "Force password change"
 msgstr "Jelszó változtatás kényszerítése"
@@ -1478,7 +1485,7 @@ msgid "Language"
 msgstr "Nyelv:"
 
 msgid "Enable email notifications"
-msgstr ""
+msgstr "E-mail értesítések bekapcsolása"
 
 msgid "Details of the PGP key:"
 msgstr "A PGP kulcs részletei:"
@@ -1490,6 +1497,9 @@ msgid "Remove the PGP key"
 msgstr "PGP kulcs eltávolítása"
 
 msgid "Set up encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Grant the user the capability of resetting users' passwords"
 msgstr ""
 
 msgid "Configuration"
@@ -1519,7 +1529,7 @@ msgid "Request date"
 msgstr "Kérés dátuma"
 
 msgid "ID"
-msgstr ""
+msgstr "Azonosító"
 
 msgid "Authorization"
 msgstr ""
@@ -1531,19 +1541,19 @@ msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
 msgid "Your new email address has been validated."
-msgstr ""
+msgstr "Az új e-mailcím aktiválásra került"
 
 msgid "Forgot password?"
-msgstr ""
+msgstr "Elfelejtett jelszó"
 
 msgid "Enter the two factor authentication code"
-msgstr ""
+msgstr "Adja meg a 2-faktoros belépés ellenőrző kódját"
 
 msgid "Authentication failed"
 msgstr "Az azonosítás nem sikerült"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "A kód érvénytelen vagy lejárt."
 
 msgid "Site:"
 msgstr ""
@@ -1603,7 +1613,7 @@ msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
-msgstr ""
+msgstr "Bezár"
 
 msgid "Your encryption recovery key is:"
 msgstr ""
@@ -1615,7 +1625,7 @@ msgid ""
 msgstr ""
 
 msgid "Welcome!"
-msgstr ""
+msgstr "Üdvözöljük!"
 
 msgid "For the user documentation, visit:"
 msgstr ""
@@ -1667,7 +1677,7 @@ msgid "Resource not found"
 msgstr ""
 
 msgid "Forbidden operation"
-msgstr ""
+msgstr "Tiltott művelet"
 
 msgid "The specified old password is not valid"
 msgstr "A megadott régi jelszó nem megfelelő"
@@ -1691,10 +1701,10 @@ msgid "Encryption key"
 msgstr ""
 
 msgid "Hide"
-msgstr ""
+msgstr "Elrejt"
 
 msgid "Show"
-msgstr ""
+msgstr "Mutat"
 
 msgid "Set up email encryption by providing a PGP public key"
 msgstr ""
@@ -1703,7 +1713,7 @@ msgid "Get the encryption recovery key"
 msgstr ""
 
 msgid "Current password"
-msgstr ""
+msgstr "Jelenlegi jelszó"
 
 msgid "Old password confirmation required"
 msgstr "Régi jelszó megerősítése kötelező"
@@ -1722,10 +1732,10 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Utána másolja át a következő címet a telepített Tor Böngészőbe:"
 
 msgid "Enter a name for the copy"
-msgstr ""
+msgstr "Adja meg a másolat nevét"
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "Válasszon ki egy fájlt a számítógépéről vagy húzza ide"
 
 msgid "Uploading files…"
 msgstr "Fájlok feltöltése…"
@@ -1743,25 +1753,25 @@ msgid "seconds"
 msgstr "másodpercet"
 
 msgid "Size:"
-msgstr ""
+msgstr "Méret"
 
 msgid "Enable the Ricochet panel"
-msgstr ""
+msgstr "Ricochet panel engedélyezése"
 
 msgid "Address"
 msgstr "Cím"
 
 msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
+msgstr "Chateljen velünk névtelenül a Ricochet applikáció használatával"
 
 msgid "To chat with us use the following Ricochet address:"
-msgstr ""
+msgstr "Chateléshez kérjük használka a következő Ricochet címet:"
 
 msgid "Download Ricochet at:"
-msgstr ""
+msgstr "Ricochet applikáció letöltése:"
 
 msgid "The connection is not secure."
-msgstr ""
+msgstr "A kapcsolat nem biztonságos."
 
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
@@ -1772,16 +1782,16 @@ msgid "Use case"
 msgstr ""
 
 msgid "Anticorruption"
-msgstr ""
+msgstr "Korrupcióellenesség"
 
 msgid "Corporate compliance"
-msgstr ""
+msgstr "Vállalati compliance"
 
 msgid "Investigative journalism"
-msgstr ""
+msgstr "Oknyomozó újságírás"
 
 msgid "Civic activism"
-msgstr ""
+msgstr "Civil/állampolgári aktivizmus"
 
 msgid "Submit"
 msgstr "Küldés"
@@ -1790,7 +1800,7 @@ msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr ""
 
 msgid "Fill the additional questionnaire"
-msgstr ""
+msgstr "Kérjük, töltse ki a kérdőívet"
 
 msgid "Send"
 msgstr "Küldés"
@@ -1799,10 +1809,10 @@ msgid "Allow the whistleblower to write comments"
 msgstr "A szivárogtató írhat megjegyzéseket"
 
 msgid "From:"
-msgstr ""
+msgstr "Feladó:"
 
 msgid "To:"
-msgstr ""
+msgstr "Címzett:"
 
 msgid "Filename"
 msgstr "Fájlnév"
@@ -1826,19 +1836,19 @@ msgid "Submission"
 msgstr "Feltöltés"
 
 msgid "Access expiration"
-msgstr ""
+msgstr "Hozzáférés lejár"
 
 msgid "Connection"
 msgstr "Kapcsolat"
 
 msgid "Never"
-msgstr ""
+msgstr "Soha"
 
 msgid "Revoked"
-msgstr ""
+msgstr "Visszahívott"
 
 msgid "-"
-msgstr ""
+msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "A szivárogtató küldhet üzeneteket"
@@ -1887,13 +1897,13 @@ msgid "Recipient list"
 msgstr "Címzett lista"
 
 msgid "Submission status:"
-msgstr ""
+msgstr "Beküldés állapota:"
 
 msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
-msgstr ""
+msgstr "Fájl feltöltése:"
 
 msgid "Logout"
 msgstr "Kilépés"
@@ -1902,31 +1912,31 @@ msgid "The key code is either invalid or the submission has expired."
 msgstr "A kulcs kód vagy nem érvényes,vagy a beküldés lejárt."
 
 msgid "Files attached by recipients"
-msgstr ""
+msgstr "Címzettek csatolt fájljai"
 
 msgid "These files have been attached to your submission by the recipients."
-msgstr ""
+msgstr "A címzettek az alábbi fájlokat csatolták a bejelentéshez."
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "A megadott visszaállítási kulcs érvénytelen."
 
 msgid "The provided reset token is invalid or expired."
-msgstr ""
+msgstr "A megadott törlési kulcs érvénytelen vagy lejárt."
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr ""
+msgstr "Új jelszó kéréséhez adja meg a felhasználónevét vagy az e-mailcímét."
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "Új jelszó kéréséhez adja meg az e-mailcímét."
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
 msgstr ""
 
 msgid "Password reset requested."
-msgstr ""
+msgstr "Új jelszó kérése megtörtént."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1942,44 +1952,44 @@ msgid "Congratulations!"
 msgstr "Gratulálunk!"
 
 msgid "You have completed the platform activation."
-msgstr ""
+msgstr "Sikeresen befejezte a platform aktiválását."
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
+msgstr "A szivárogtató platform hamarosan készen áll!"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "Ellenőrizze az e-mailjeit, és aktiválja a platformot."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "Ha 24 órán belül nem aktiválja a platformot, az automatikusan törlésre kerül."
 
 msgid "Sign up"
-msgstr ""
+msgstr "Feliratkozás"
 
 msgid "Domain"
 msgstr "Domain"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "Megerősítés"
 
 msgid "Invalid confirmation"
-msgstr ""
+msgstr "Érvénytelen megerősítés"
 
 msgid "Other"
-msgstr ""
+msgstr "Egyéb"
 
 msgid "Complete"
 msgstr ""
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "Érvénytelen telefonszám"
 
 msgid "This field is mandatory."
-msgstr ""
+msgstr "Kötelező mező."
 
 msgid "The answer is too short."
-msgstr ""
+msgstr "A megadott válasz túl rövid."
 
 msgid "The specified input is not valid."
 msgstr ""
@@ -2051,17 +2061,17 @@ msgstr ""
 msgid "Confirm password"
 msgstr "Jelszó megerősítése"
 
-msgid "The default username is:"
-msgstr ""
+msgid "The user will receive an activation link via email."
+msgstr "A felhasználó e-mailben kap egy aktiválási linket."
 
 msgid "License Agreement"
-msgstr ""
+msgstr "Felhasználási feltételek"
 
 msgid "Please review the license terms before proceeding."
-msgstr ""
+msgstr "Kérjük, továbblépés előtt olvassa el a felhasználási feltételeket."
 
 msgid "I have read and agree to the terms of the License Agreement."
-msgstr ""
+msgstr "Elolvastam és elfogadom a felhasználási feltételeket."
 
 msgid "You have completed the platform wizard."
 msgstr "Sikeresen befejezte a platform varázslót."
@@ -2103,7 +2113,7 @@ msgid "Female"
 msgstr "Nő"
 
 msgid "Other gender identity"
-msgstr ""
+msgstr "Egyéb, nem szeretném megadni"
 
 msgid "Date of birth"
 msgstr "Születési idő"
@@ -2144,11 +2154,41 @@ msgstr "Szervezeti egység és munka helye a bejelentett tény idejében"
 msgid "Dear {RecipientName},"
 msgstr "Kedves {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr "Azért kapta ezt az e-mailt, mert létrejött a felhasználói fiókja a rendszerben: {Site}"
+
+msgid "Username: {Username}"
+msgstr "Felhasználónév: {Username}"
+
+msgid "Activation link: {Url}"
+msgstr "Aktiválási link: {Url}"
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr "Kattintson az linkre a fiók aktiválásához, és állítson be jelszót."
+
+msgid "This link will expire in 3 days."
+msgstr "Ez a link 3 napon múlva lejár."
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr "Sikeres aktiválás után a következő link segítségével férhet hozzá a rendszerhez: {LoginUrl}"
+
+msgid "Kind regards,"
+msgstr "Szívélyes üdvözlettel,"
+
+msgid "Account activation"
+msgstr "Felhasználói fiók aktiválása"
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr ""
 
 msgid "To log in, visit:"
-msgstr ""
+msgstr "Belépéshez menjen erre az oldalra:"
 
 msgid "Users' credentials:"
 msgstr ""
@@ -2156,11 +2196,8 @@ msgstr ""
 msgid "The platform will be automatically deleted on:"
 msgstr ""
 
-msgid "Kind regards,"
-msgstr "Szívélyes üdvözlettel,"
-
 msgid "Access instructions"
-msgstr ""
+msgstr "Hozzáférési információk"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
@@ -2215,28 +2252,28 @@ msgid "PGP key expiration alert"
 msgstr "PGP-kulcs lejáratról értesítés"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "Új közérdekű belentő oldal került regisztrálásra."
 
 msgid "Registration data:"
-msgstr ""
+msgstr "Regisztrációs adatok:"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "Weboldal: {Url}"
 
 msgid "Name: {Name}"
-msgstr ""
+msgstr "Név: {Name}"
 
 msgid "Email: {Email}"
-msgstr ""
+msgstr "E-mailcím: {Email}"
 
 msgid "Language: {Language}"
-msgstr ""
+msgstr "Nyelv: {Language}"
 
 msgid "Use case: {UseCase}"
 msgstr ""
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "Új közérdekű bejelentő weboldal regisztrációja"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2266,18 +2303,18 @@ msgid ""
 msgstr ""
 
 msgid "Click the following link to validate this change:"
-msgstr ""
+msgstr "Kattintson a következő linkre a módosítás jóváhagyásához:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr ""
+msgstr "Ha nem ön kérte ezt a módosítást, változtassa meg a jelszavát, és vegye fel a kapcsolatot a rendszergazdával."
 
 msgid "Email change request"
-msgstr ""
+msgstr "E-mailcím módosítás kérése"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "Feladó: {Author}"
 
 msgid "Date: {EventTime}"
 msgstr "Dátum: {EventTime}"
@@ -2292,7 +2329,7 @@ msgid "Label: {TipLabel}"
 msgstr "Címke: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
+msgstr "Státusz: {TipStatus}"
 
 msgid "Context: {ContextName}"
 msgstr ""
@@ -2319,7 +2356,7 @@ msgid ""
 msgstr ""
 
 msgid "Log in to solve the issue."
-msgstr ""
+msgstr "Lépjen be a probléma megoldásához."
 
 msgid "Expiration alert for HTTPS certificate"
 msgstr ""
@@ -2329,7 +2366,7 @@ msgid ""
 msgstr ""
 
 msgid "The system will keep trying."
-msgstr ""
+msgstr "A rendszer újrapróbálkozik."
 
 msgid "Failed HTTPS certificate renewal"
 msgstr ""
@@ -2356,7 +2393,7 @@ msgid ""
 msgstr ""
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "Az igénylés a következő címen érhető el:"
 
 msgid "New request of access to a whistleblower's identity"
 msgstr ""
@@ -2387,10 +2424,10 @@ msgid ""
 msgstr ""
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr ""
+msgstr "A következő linkre kattintva megerősítheti kérését:"
 
 msgid "Password reset instructions"
-msgstr ""
+msgstr "Jelszó visszaállítási tanácsok"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
@@ -2426,10 +2463,10 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "Értesítések tőle: {NodeName} átmenetileg felfüggesztve"
 
 msgid "Click the link to activate the platform:"
-msgstr ""
+msgstr "Kattinton a linkre a platform aktiválásához:"
 
 msgid "Activation"
-msgstr ""
+msgstr "Aktiválás"
 
 msgid "A software update is available."
 msgstr "Egy szoftver frissítés elérhető."
@@ -2479,10 +2516,7 @@ msgid "New submission"
 msgstr "Új beadvány"
 
 msgid "Role: {Role}"
-msgstr ""
-
-msgid "Username: {Username}"
-msgstr ""
+msgstr "Szerep: {Role}"
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "Jelszó: {Password}"

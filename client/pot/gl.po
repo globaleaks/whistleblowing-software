@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-24 23:48+0000\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -639,6 +639,15 @@ msgstr ""
 msgid "Block the submission"
 msgstr ""
 
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Selecciona o contexto do teu envío:"
 
@@ -701,6 +710,9 @@ msgstr "Deshabilita envíos"
 msgid "Enable encryption"
 msgstr "Activar cifrado"
 
+msgid "Enable encryption's keys recovery"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Habilitar características de multisite"
 
@@ -721,11 +733,11 @@ msgstr "Activar a indexación dos motores de busca"
 msgid "Description"
 msgstr "Descrición"
 
-msgid "Do not expose users' names"
-msgstr ""
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
+
+msgid "Invalid input format."
+msgstr "Formato de entrada non válido."
 
 msgid "Enable custom privacy panel"
 msgstr "Habilita o panel de privacidade personalizado"
@@ -806,9 +818,6 @@ msgstr "Nome de usuario"
 msgid "Password"
 msgstr "Contrasinal"
 
-msgid "Enable users to upload their PGP keys"
-msgstr "Permitir aos usuarios cargar as súas chaves PGP"
-
 msgid "Enable multi-site login"
 msgstr "Habilitar a entrada de varios sitios"
 
@@ -829,6 +838,9 @@ msgstr ""
 
 msgid "Enable scoring system"
 msgstr "Habilita o sistema de puntuación"
+
+msgid "Enable private labels"
+msgstr ""
 
 msgid "Enable experimental features"
 msgstr "Habilitar funcións experimentais"
@@ -899,6 +911,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Nome do proxecto"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "Título da páxina de inicio"
 
@@ -937,9 +952,6 @@ msgstr "Engadir texto personalizado"
 
 msgid "Custom text"
 msgstr "Texto personalizado"
-
-msgid "Custom texts"
-msgstr "Textos personalizados"
 
 msgid "Original text"
 msgstr "Texto orixinal"
@@ -1121,17 +1133,8 @@ msgstr "Cada entrada debe estar separada cunha coma."
 msgid "Example:"
 msgstr "Exemplo:"
 
-msgid "Configuration in progress"
-msgstr ""
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
-
 msgid "Hostname"
 msgstr "Nome do servidor"
-
-msgid "Invalid input format."
-msgstr "Formato de entrada non válido."
 
 msgid "Input should be similar to:"
 msgstr "A entrada debe ser similar a:"
@@ -1442,14 +1445,17 @@ msgstr "Configurar"
 msgid "Subdomain"
 msgstr ""
 
-msgid "The default password is:"
-msgstr "O contrasinal predeterminado é:"
+msgid "Send an account activation link to the user."
+msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "O sistema obriga aos usuarios a cambiar o contrasinal ao iniciar sesión."
+msgid "Public name"
+msgstr ""
 
-msgid "Reset password"
-msgstr "Restablecer o contrasinal"
+msgid "Send reset link"
+msgstr ""
+
+msgid "Set password"
+msgstr "Establecer contrasinal"
 
 msgid "Disable two factor authentication"
 msgstr ""
@@ -1477,6 +1483,9 @@ msgstr "Elimine a chave PGP"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Configure o cifrado proporcionando unha clave pública PGP"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr ""
 
 msgid "Configuration"
 msgstr "Configuración"
@@ -2037,8 +2046,8 @@ msgstr "Estes perfís conteñen axustes utilizados por proxectos exitosos en cad
 msgid "Confirm password"
 msgstr "Confirme o contrasinal"
 
-msgid "The default username is:"
-msgstr "O nome de usuario predeterminado é:"
+msgid "The user will receive an activation link via email."
+msgstr ""
 
 msgid "License Agreement"
 msgstr "Acordo de licenza"
@@ -2130,6 +2139,36 @@ msgstr "Unidade organizativa e lugar de traballo no momento do feito reportado"
 msgid "Dear {RecipientName},"
 msgstr "Estimado {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr "Nome de usuario: {Username}"
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid "This link will expire in 3 days."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr "Saúdos,"
+
+msgid "Account activation"
+msgstr ""
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "A túa plataforma de denuncias agora está dispoñible en:"
 
@@ -2141,9 +2180,6 @@ msgstr "Credenciales dos usuarios:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "A plataforma eliminarase automaticamente en:"
-
-msgid "Kind regards,"
-msgstr "Saúdos,"
 
 msgid "Access instructions"
 msgstr "Instrucións de acceso"
@@ -2466,9 +2502,6 @@ msgstr "Nova presentación"
 
 msgid "Role: {Role}"
 msgstr "Rol: {Role}"
-
-msgid "Username: {Username}"
-msgstr "Nome de usuario: {Username}"
 
 msgid "Password: {Password}"
 msgstr "Contrasinal: {Password}"

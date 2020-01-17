@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-24 23:48+0000\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -641,6 +641,15 @@ msgstr "Pošaljite testni email na svoju email adresu."
 msgid "Block the submission"
 msgstr "blokiraj podnošenje"
 
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Odaberite kontekst svoje predaje:"
 
@@ -703,6 +712,9 @@ msgstr "Onemogući predaje"
 msgid "Enable encryption"
 msgstr "Omogući enkripciju"
 
+msgid "Enable encryption's keys recovery"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Omogući prikazivanje na više web stranica"
 
@@ -723,11 +735,11 @@ msgstr "Omogući indeksiranje tražilica"
 msgid "Description"
 msgstr "Opis"
 
-msgid "Do not expose users' names"
-msgstr "Ne pokazuj imena korisnika"
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "Omogući da se na sljedećim web stranicama uključi ova platforma"
+
+msgid "Invalid input format."
+msgstr "Pogrešan format unosa."
 
 msgid "Enable custom privacy panel"
 msgstr "Omogući prilagođenu ploču privatnosti"
@@ -808,9 +820,6 @@ msgstr "Korisničko ime"
 msgid "Password"
 msgstr "Lozinka"
 
-msgid "Enable users to upload their PGP keys"
-msgstr "Omogući korisnicima da postave svoje PGP ključeve"
-
 msgid "Enable multi-site login"
 msgstr "Omogući prijavu na više stranica"
 
@@ -831,6 +840,9 @@ msgstr "Omogući ulogu korisnika - staratelja"
 
 msgid "Enable scoring system"
 msgstr "Omogući bodovanje"
+
+msgid "Enable private labels"
+msgstr ""
 
 msgid "Enable experimental features"
 msgstr "Omogući eksperimentalne značajke"
@@ -901,6 +913,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Naziv projekta"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "Naslov naslovne stranice"
 
@@ -939,9 +954,6 @@ msgstr "Dodaj prilagođeni tekst"
 
 msgid "Custom text"
 msgstr "Prilagođeni tekst"
-
-msgid "Custom texts"
-msgstr "Prilagođeni tekstovi"
 
 msgid "Original text"
 msgstr "Originalni tekst"
@@ -1123,17 +1135,8 @@ msgstr "Svaki unos mora biti razdvojen zarezom."
 msgid "Example:"
 msgstr "Primjer:"
 
-msgid "Configuration in progress"
-msgstr "Konfiguracija traje"
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr "Platforma će biti dostupna kroz HTTPS na slijedećim adresama"
-
 msgid "Hostname"
 msgstr "Hostname"
-
-msgid "Invalid input format."
-msgstr "Pogrešan format unosa."
 
 msgid "Input should be similar to:"
 msgstr "Unos bi trebao biti sličan:"
@@ -1444,14 +1447,17 @@ msgstr "Konfiguriraj"
 msgid "Subdomain"
 msgstr "poddomena"
 
-msgid "The default password is:"
-msgstr "Zadana lozinka je:"
+msgid "Send an account activation link to the user."
+msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "Sustav prisiljava korisnike da promijene lozinku pri prvoj prijavi."
+msgid "Public name"
+msgstr ""
 
-msgid "Reset password"
-msgstr "Resetiraj lozinku"
+msgid "Send reset link"
+msgstr ""
+
+msgid "Set password"
+msgstr ""
 
 msgid "Disable two factor authentication"
 msgstr "Onesposobi dvostrukupotvrdu"
@@ -1479,6 +1485,9 @@ msgstr "Ukloni PGP ključ"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Postavite enkripciju pružanjem PGP javnog ključa"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr ""
 
 msgid "Configuration"
 msgstr "Konfiguracija"
@@ -2039,8 +2048,8 @@ msgstr "Ovi profili sadržavaju postavke koje koriste uspješni projekti u relev
 msgid "Confirm password"
 msgstr "Potvrdi lozinku"
 
-msgid "The default username is:"
-msgstr "Zadano korisničko ime je:"
+msgid "The user will receive an activation link via email."
+msgstr ""
 
 msgid "License Agreement"
 msgstr "Dogovor o licenci"
@@ -2132,6 +2141,36 @@ msgstr "Organizacijska jedinica i lokacija posla u vrijeme prijavljene činjenic
 msgid "Dear {RecipientName},"
 msgstr "Dragi/a {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr "Korisničko ime: {Username}"
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid "This link will expire in 3 days."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr "S poštovanjem,"
+
+msgid "Account activation"
+msgstr ""
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "Vaša zvičdačka platforma je sad dostupna na:"
 
@@ -2143,9 +2182,6 @@ msgstr "Korisničke vjerodajnice:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "Platforma će biti automatski obrisana:"
-
-msgid "Kind regards,"
-msgstr "S poštovanjem,"
 
 msgid "Access instructions"
 msgstr "Upute za pristup"
@@ -2468,9 +2504,6 @@ msgstr "Nova predaja"
 
 msgid "Role: {Role}"
 msgstr "Uloga: {Role}"
-
-msgid "Username: {Username}"
-msgstr "Korisničko ime: {Username}"
 
 msgid "Password: {Password}"
 msgstr "Lozinka: {Password}"

@@ -40,7 +40,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-24 23:48+0000\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -672,6 +672,15 @@ msgstr "Verstuur een mailtje om je e-mailadres te testen."
 msgid "Block the submission"
 msgstr "Blokkeer de inzending"
 
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Selecteer de context van uw inzending:"
 
@@ -734,6 +743,9 @@ msgstr "Inzendingen uitschakelen"
 msgid "Enable encryption"
 msgstr "Encryptie inschakelen"
 
+msgid "Enable encryption's keys recovery"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Functie voor meerdere-weblocaties inschakelen"
 
@@ -754,11 +766,11 @@ msgstr "Zoekmachine-indexering inschakelen"
 msgid "Description"
 msgstr "Omschrijving"
 
-msgid "Do not expose users' names"
-msgstr "Gebruikersnamen niet prijsgeven"
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "Sta de volgende websites toe om het platform weer te geven door middel van iframes"
+
+msgid "Invalid input format."
+msgstr "Ongeldig invoerformaat."
 
 msgid "Enable custom privacy panel"
 msgstr "Gepersonaliseerd privacy-paneel inschakelen"
@@ -839,9 +851,6 @@ msgstr "Gebruikersnaam"
 msgid "Password"
 msgstr "Wachtwoord"
 
-msgid "Enable users to upload their PGP keys"
-msgstr "Gebruikers toestaan hun PGP sleutel te uploaden"
-
 msgid "Enable multi-site login"
 msgstr "Meerdere-weblocatielogin inschakelen"
 
@@ -862,6 +871,9 @@ msgstr "Activeer de custodian gebruikersrol"
 
 msgid "Enable scoring system"
 msgstr "Waarderingssysteem inschakelen"
+
+msgid "Enable private labels"
+msgstr ""
 
 msgid "Enable experimental features"
 msgstr "Experimentele functies inschakelen"
@@ -932,6 +944,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Naam van initiatief"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "Titel van hoofdpagina"
 
@@ -970,9 +985,6 @@ msgstr "Voeg aangepaste tekst toe"
 
 msgid "Custom text"
 msgstr "Aangepaste tekst"
-
-msgid "Custom texts"
-msgstr "Aangepaste teksten"
 
 msgid "Original text"
 msgstr "Orginele tekst"
@@ -1154,17 +1166,8 @@ msgstr "Elke invoer moet worden gescheiden door middel van een komma."
 msgid "Example:"
 msgstr "Voorbeeld:"
 
-msgid "Configuration in progress"
-msgstr "Configuratie wordt uitgevoerd"
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr "Het platform zal bereikbaar zijn via HTTPS op het volgende adres:"
-
 msgid "Hostname"
 msgstr "Hostnaam"
-
-msgid "Invalid input format."
-msgstr "Ongeldig invoerformaat."
 
 msgid "Input should be similar to:"
 msgstr "Invoer moet lijken op:"
@@ -1475,14 +1478,17 @@ msgstr "Configureer"
 msgid "Subdomain"
 msgstr "Subdomein"
 
-msgid "The default password is:"
-msgstr "Het standaard wachtwoord is:"
+msgid "Send an account activation link to the user."
+msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "Het systeem verlangt van haar gebruikers om het wachtwoord te veranderen op de eerste login."
+msgid "Public name"
+msgstr "Publieke naam"
 
-msgid "Reset password"
-msgstr "Wachtwoord resetten"
+msgid "Send reset link"
+msgstr ""
+
+msgid "Set password"
+msgstr "Wachtwoord instellen"
 
 msgid "Disable two factor authentication"
 msgstr "Deactiveer two-factor-authentication"
@@ -1510,6 +1516,9 @@ msgstr "Verwijder de PGP-sleutel"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Versleuteling instellen met een PGP-publieke sleutel"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr ""
 
 msgid "Configuration"
 msgstr "Configuratie"
@@ -2070,8 +2079,8 @@ msgstr "Deze profielen bevatten instellingen die reeds succesvol zijn getest in 
 msgid "Confirm password"
 msgstr "Bevestig wachtwoord"
 
-msgid "The default username is:"
-msgstr "De standaard gebruikersnaam is:"
+msgid "The user will receive an activation link via email."
+msgstr ""
 
 msgid "License Agreement"
 msgstr "Licentie-overeenkomst"
@@ -2163,6 +2172,36 @@ msgstr "Departement en locatie ten tijde van de misstand"
 msgid "Dear {RecipientName},"
 msgstr "Beste {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr "Gebruikersnaam: {Username}"
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid "This link will expire in 3 days."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr "Met vriendelijke groet,"
+
+msgid "Account activation"
+msgstr ""
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "Je klokkenluiders-platvorm is nu benaderbaar via:"
 
@@ -2174,9 +2213,6 @@ msgstr "Geloofsbrieven bij deze gebruiker:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "Het platvorm wordt automatisch gewist op:"
-
-msgid "Kind regards,"
-msgstr "Met vriendelijke groet,"
 
 msgid "Access instructions"
 msgstr "Toegangsinstructies"
@@ -2499,9 +2535,6 @@ msgstr "Nieuwe inzending"
 
 msgid "Role: {Role}"
 msgstr "Rol: {Role}"
-
-msgid "Username: {Username}"
-msgstr "Gebruikersnaam: {Username}"
 
 msgid "Password: {Password}"
 msgstr "Wachtwoord: {Password}"

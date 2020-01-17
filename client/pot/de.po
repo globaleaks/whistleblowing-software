@@ -1,7 +1,7 @@
 # 
 # Translators:
 # Charles Peltier <charles@cl-info.fr>, 2015
-# Ettore Atalan <atalanttore@googlemail.com>, 2014-2019
+# Ettore Atalan <atalanttore@googlemail.com>, 2014-2020
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
@@ -47,7 +47,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-24 23:48+0000\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -679,6 +679,15 @@ msgstr "Senden Sie eine Test-E-Mail an Ihre E-Mail-Adresse."
 msgid "Block the submission"
 msgstr ""
 
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Wählen Sie den Kontext Ihrer Einreichung aus:"
 
@@ -741,6 +750,9 @@ msgstr "Einreichungen deaktivieren"
 msgid "Enable encryption"
 msgstr "Verschlüsselung aktivieren"
 
+msgid "Enable encryption's keys recovery"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr ""
 
@@ -761,11 +773,11 @@ msgstr "Suchmaschinenindizierung aktivieren"
 msgid "Description"
 msgstr "Beschreibung"
 
-msgid "Do not expose users' names"
-msgstr ""
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
+
+msgid "Invalid input format."
+msgstr "Ungültiges Eingabeformat."
 
 msgid "Enable custom privacy panel"
 msgstr "Benutzerdefiniertes Datenschutzpanel aktivieren"
@@ -846,9 +858,6 @@ msgstr "Benutzername"
 msgid "Password"
 msgstr "Passwort"
 
-msgid "Enable users to upload their PGP keys"
-msgstr ""
-
 msgid "Enable multi-site login"
 msgstr ""
 
@@ -868,6 +877,9 @@ msgid "Enable custodian user role"
 msgstr ""
 
 msgid "Enable scoring system"
+msgstr ""
+
+msgid "Enable private labels"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -939,6 +951,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Projektname"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "Internetseiten-Titel"
 
@@ -977,9 +992,6 @@ msgstr "Benutzerdefinierten Text hinzufügen"
 
 msgid "Custom text"
 msgstr "Benutzerdefinierter Text"
-
-msgid "Custom texts"
-msgstr "Benutzerdefinierte Texte"
 
 msgid "Original text"
 msgstr "Originaltext"
@@ -1161,17 +1173,8 @@ msgstr ""
 msgid "Example:"
 msgstr "Beispiel:"
 
-msgid "Configuration in progress"
-msgstr "Konfiguration läuft"
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
-
 msgid "Hostname"
 msgstr "Hostname"
-
-msgid "Invalid input format."
-msgstr "Ungültiges Eingabeformat."
 
 msgid "Input should be similar to:"
 msgstr "Eingabe sollte ähnlich sein wie:"
@@ -1482,14 +1485,17 @@ msgstr "Konfigurieren"
 msgid "Subdomain"
 msgstr "Subdomain"
 
-msgid "The default password is:"
-msgstr "Das Standardpasswort ist:"
+msgid "Send an account activation link to the user."
+msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "Das System erzwingt das Ändern des Passworts bei der ersten Anmeldung."
+msgid "Public name"
+msgstr "Öffentlicher Name"
 
-msgid "Reset password"
-msgstr "Passwort zurücksetzen"
+msgid "Send reset link"
+msgstr ""
+
+msgid "Set password"
+msgstr "Passwort festlegen"
 
 msgid "Disable two factor authentication"
 msgstr ""
@@ -1517,6 +1523,9 @@ msgstr "PGP-Schlüssel entfernen"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Richten Sie die Verschlüsselung durch einen öffentlichen PGP-Schlüssel Bereitstellung"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr ""
 
 msgid "Configuration"
 msgstr "Konfiguration"
@@ -1990,7 +1999,7 @@ msgid "Confirmation"
 msgstr "Bestätigung"
 
 msgid "Invalid confirmation"
-msgstr ""
+msgstr "Ungültige Bestätigung"
 
 msgid "Other"
 msgstr "Andere"
@@ -2077,8 +2086,8 @@ msgstr "Diese Profile enthalten Einstellungen, die von erfolgreichen Projekten i
 msgid "Confirm password"
 msgstr "Passwort bestätigen"
 
-msgid "The default username is:"
-msgstr "Der Standardbenutzername ist:"
+msgid "The user will receive an activation link via email."
+msgstr ""
 
 msgid "License Agreement"
 msgstr "Lizenzvereinbarung"
@@ -2170,6 +2179,36 @@ msgstr "Organisationseinheit und Arbeitsplatz zum Zeitpunkt der gemeldeten Sache
 msgid "Dear {RecipientName},"
 msgstr "Sehr geehrte(r) {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr "Benutzername: {Username}"
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid "This link will expire in 3 days."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr "Mit freundlichen Grüßen"
+
+msgid "Account activation"
+msgstr ""
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr ""
 
@@ -2181,9 +2220,6 @@ msgstr ""
 
 msgid "The platform will be automatically deleted on:"
 msgstr ""
-
-msgid "Kind regards,"
-msgstr "Mit freundlichen Grüßen"
 
 msgid "Access instructions"
 msgstr ""
@@ -2318,7 +2354,7 @@ msgid "Label: {TipLabel}"
 msgstr "Bezeichnung: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
+msgstr "Status: {TipStatus}"
 
 msgid "Context: {ContextName}"
 msgstr "Kontext: {ContextName}"
@@ -2506,9 +2542,6 @@ msgstr "Neue Einreichung"
 
 msgid "Role: {Role}"
 msgstr "Rolle: {Role}"
-
-msgid "Username: {Username}"
-msgstr "Benutzername: {Username}"
 
 msgid "Password: {Password}"
 msgstr "Passwort: {Password}"

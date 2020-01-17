@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-24 23:48+0000\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -644,6 +644,15 @@ msgstr "Изпращане на тестови имейл до вашия име
 msgid "Block the submission"
 msgstr "Блокирай подадения сигнал"
 
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Изберете контекста на подадения сигнал:"
 
@@ -706,6 +715,9 @@ msgstr "Забрана за подаване на сигнали"
 msgid "Enable encryption"
 msgstr "Активиране на криптиране"
 
+msgid "Enable encryption's keys recovery"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Активиране на мулти-сайтова функционалност"
 
@@ -726,11 +738,11 @@ msgstr "Активиране на индексирането на инструм
 msgid "Description"
 msgstr "Описание"
 
-msgid "Do not expose users' names"
-msgstr "Не разкривайте потребителските имена"
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "Дайте разрешение за следните сайтове, за да прикачите платформата във вътрешния фрейм"
+
+msgid "Invalid input format."
+msgstr "Невалиден формат на данните."
 
 msgid "Enable custom privacy panel"
 msgstr "Активиране на потребителски панел за избирателна поверителност"
@@ -811,9 +823,6 @@ msgstr "Потребителско име"
 msgid "Password"
 msgstr "Парола"
 
-msgid "Enable users to upload their PGP keys"
-msgstr "Разрешаване на потребителите да задават своите PGP кодове"
-
 msgid "Enable multi-site login"
 msgstr "Активиране на мулти-сайтово вписване"
 
@@ -834,6 +843,9 @@ msgstr ""
 
 msgid "Enable scoring system"
 msgstr "Активиране на система за оценяване"
+
+msgid "Enable private labels"
+msgstr ""
 
 msgid "Enable experimental features"
 msgstr "Включване на експериментални опции"
@@ -904,6 +916,9 @@ msgstr "Лого"
 msgid "Project name"
 msgstr "Име на проект"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "Заглавие на началната страница"
 
@@ -942,9 +957,6 @@ msgstr "Добавяне на собствен текст"
 
 msgid "Custom text"
 msgstr "Собствен текст"
-
-msgid "Custom texts"
-msgstr "Собствени текстове"
 
 msgid "Original text"
 msgstr "Оригинален текст"
@@ -1126,17 +1138,8 @@ msgstr "Всяко допълнение трябва да бъде отделе�
 msgid "Example:"
 msgstr "Пример:"
 
-msgid "Configuration in progress"
-msgstr "В ход е конфигурация"
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr "Достъп до платформата ще има чрез HTTPS на следните адреси:"
-
 msgid "Hostname"
 msgstr "Сървър"
-
-msgid "Invalid input format."
-msgstr "Невалиден формат на данните."
 
 msgid "Input should be similar to:"
 msgstr "Информацията трябва да бъде подобна на:"
@@ -1447,14 +1450,17 @@ msgstr "Конфигурирай"
 msgid "Subdomain"
 msgstr "Под-домейн"
 
-msgid "The default password is:"
-msgstr "Паролата по подразбиране е:"
+msgid "Send an account activation link to the user."
+msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "Системата изисква потребителя да промени паролата си при първото вписване."
+msgid "Public name"
+msgstr ""
 
-msgid "Reset password"
-msgstr "Възстановяване на парола"
+msgid "Send reset link"
+msgstr ""
+
+msgid "Set password"
+msgstr ""
 
 msgid "Disable two factor authentication"
 msgstr "Изключи двуфакторната иденфикация"
@@ -1482,6 +1488,9 @@ msgstr "Премахване на PGP ключ"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Заложете криптиране като зададете PGP публичен ключ"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr ""
 
 msgid "Configuration"
 msgstr "Настройки"
@@ -2042,8 +2051,8 @@ msgstr "Тези профили съдържат настройки използ
 msgid "Confirm password"
 msgstr "Потвърдете паролата"
 
-msgid "The default username is:"
-msgstr "Потребителско име по подразбиране:"
+msgid "The user will receive an activation link via email."
+msgstr ""
 
 msgid "License Agreement"
 msgstr "Лицензионно споразумение"
@@ -2135,6 +2144,36 @@ msgstr "Отдел в компанията и локация по времето
 msgid "Dear {RecipientName},"
 msgstr "Скъпи {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr "Потребителско име: {Username}"
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid "This link will expire in 3 days."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr "Поздрави, "
+
+msgid "Account activation"
+msgstr ""
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "Вашата платформа за податели на сигнали е достъпна на:"
 
@@ -2146,9 +2185,6 @@ msgstr "Данни за потребителя:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "Платформата ще бъде автоматично изтрита на:"
-
-msgid "Kind regards,"
-msgstr "Поздрави, "
 
 msgid "Access instructions"
 msgstr "Инструкции за достъп"
@@ -2471,9 +2507,6 @@ msgstr "Нов сигнал"
 
 msgid "Role: {Role}"
 msgstr "Роля: {Role}"
-
-msgid "Username: {Username}"
-msgstr "Потребителско име: {Username}"
 
 msgid "Password: {Password}"
 msgstr "Парола: {Password}"

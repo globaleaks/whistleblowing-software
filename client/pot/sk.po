@@ -5,7 +5,7 @@
 # Jakub Srna <jaksrn@gmail.com>, 2013-2014
 # Jakub Srna <jaksrn@gmail.com>, 2014
 # Jakub Srna <jaksrn@gmail.com>, 2014
-# Lenka Ježková <lenka.jezkova@oziveni.cz>, 2019
+# Lenka Ježková <lenka.jezkova@oziveni.cz>, 2019-2020
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2013-2014
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-12-05 19:57+0000\n"
-"Last-Translator: Lenka Ježková <lenka.jezkova@oziveni.cz>\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -646,6 +646,15 @@ msgstr "Poslať testovací email na Vašu emailovú adresu."
 msgid "Block the submission"
 msgstr "Blokovať podanie"
 
+msgid "Skip the recipient account creation."
+msgstr "Preskočiť vytvorenie účtu príjemcu."
+
+msgid "Send activation link"
+msgstr "Odoslať odkaz k aktivácii."
+
+msgid "Password reset"
+msgstr "Resetovať heslo"
+
 msgid "Select the context of your submission:"
 msgstr "Vyberte kontext vášho podania:"
 
@@ -708,6 +717,9 @@ msgstr "Zakázať podanie"
 msgid "Enable encryption"
 msgstr "Povoliť šifrovanie"
 
+msgid "Enable encryption's keys recovery"
+msgstr "Povoliť obnovenie šifrovacích kľúčov"
+
 msgid "Enable multisite feature"
 msgstr "Povoliť funkciu multisite"
 
@@ -728,11 +740,11 @@ msgstr "Povoliť vyhľadávačom indexovanie"
 msgid "Description"
 msgstr "Popis"
 
-msgid "Do not expose users' names"
-msgstr "Neuvádzajte mená užívateľov."
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "Povoľte nasledujúcom stránkam vložiť platformu do prvkov iframe."
+
+msgid "Invalid input format."
+msgstr "Neplatný vstupný formát."
 
 msgid "Enable custom privacy panel"
 msgstr "Povoliť používateľský panel"
@@ -813,9 +825,6 @@ msgstr "Používateľské meno"
 msgid "Password"
 msgstr "Heslo"
 
-msgid "Enable users to upload their PGP keys"
-msgstr "Povoliť používateľom nahrať ich PGP kľúče"
-
 msgid "Enable multi-site login"
 msgstr "Povoliť prihlásenie na viacero stránok"
 
@@ -836,6 +845,9 @@ msgstr " Povoliť úlohu depozitára"
 
 msgid "Enable scoring system"
 msgstr "Aktivovať systém hodnotenia"
+
+msgid "Enable private labels"
+msgstr "Povoliť súkromné štítky"
 
 msgid "Enable experimental features"
 msgstr "Povoliť experimentálne funkcie"
@@ -906,6 +918,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Názov projektu"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "Názov domovskej stránky"
 
@@ -944,9 +959,6 @@ msgstr "Pridať vlastný text"
 
 msgid "Custom text"
 msgstr "Vlastný text"
-
-msgid "Custom texts"
-msgstr "Vlastné texty"
 
 msgid "Original text"
 msgstr "Originálny text"
@@ -1128,17 +1140,8 @@ msgstr "Každá položka musí byť oddelená čiarkou."
 msgid "Example:"
 msgstr "Príklad:"
 
-msgid "Configuration in progress"
-msgstr "Prebieha konfigurácia"
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr "Platforma bude dostupná cez HTTPS na adrese:"
-
 msgid "Hostname"
 msgstr "Hostiteľské meno"
-
-msgid "Invalid input format."
-msgstr "Neplatný vstupný formát."
 
 msgid "Input should be similar to:"
 msgstr "Vstup by mal byť podobný:"
@@ -1449,14 +1452,17 @@ msgstr "Nastavenie"
 msgid "Subdomain"
 msgstr "Podstránky"
 
-msgid "The default password is:"
-msgstr "Prednastavené heslo je:"
+msgid "Send an account activation link to the user."
+msgstr "Poslať užívateľovi odkaz k aktivácii účtu."
 
-msgid "The system forces users to change the password at first login."
-msgstr "Systém vynúti používateľov zmeniť heslo pri prvom prihlásení."
+msgid "Public name"
+msgstr "Verejne meno"
 
-msgid "Reset password"
-msgstr "Resetovať heslo"
+msgid "Send reset link"
+msgstr "Odoslať odkaz k resetovanie"
+
+msgid "Set password"
+msgstr ""
 
 msgid "Disable two factor authentication"
 msgstr "Zakázať dvojfaktorové overovanie"
@@ -1484,6 +1490,9 @@ msgstr "Odstrániť PGP kľúč"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Nastavte šifrovanie pomocou verejného kľúča PGP."
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr "Poskytnúť užívateľovi možnosť resetovania užívateľských hesiel"
 
 msgid "Configuration"
 msgstr "Konfigurácia"
@@ -2044,8 +2053,8 @@ msgstr "Tieto profily obsahujú nastavenia používané už vyskúšanými a ús
 msgid "Confirm password"
 msgstr "Potvrdiť heslo"
 
-msgid "The default username is:"
-msgstr "Prednastavené používateľské meno je:"
+msgid "The user will receive an activation link via email."
+msgstr "Užívateľ dostane e-mail s odkazom na aktiváciu."
 
 msgid "License Agreement"
 msgstr "Licenčná zmluva"
@@ -2137,6 +2146,36 @@ msgstr "Organizačná jednotka a miesto práce v čase podania"
 msgid "Dear {RecipientName},"
 msgstr "Vážený/á {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr "Tento e-mail ste dostali, pretože pre vás bol v systéme vytvorený užívateľský účet: {Site}"
+
+msgid "Username: {Username}"
+msgstr "Používateľské meno: {Username} "
+
+msgid "Activation link: {Url}"
+msgstr "Aktivačný odkaz: {Url}"
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr "Kliknite na aktivačný odkaz, aby ste pokračovali k aktivácii účtu a nastavili svoje užívateľské heslo."
+
+msgid "This link will expire in 3 days."
+msgstr "Platnosť tohto odkazu vyprší za 3 dni."
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr "Po úspešnej aktivácii budete mať prístup do systému pomocou nasledujúceho odkazu: {LoginUrl}"
+
+msgid "Kind regards,"
+msgstr "S pozdravom,"
+
+msgid "Account activation"
+msgstr "Aktivácia účtu"
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "Vaša whistleblowingová platforma je dostupná na:"
 
@@ -2148,9 +2187,6 @@ msgstr "Poverovacie údaje používateľa:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "Platforma bude automaticky zmazaná:"
-
-msgid "Kind regards,"
-msgstr "S pozdravom,"
 
 msgid "Access instructions"
 msgstr "Prístupové pokyny"
@@ -2473,9 +2509,6 @@ msgstr "Nové podanie"
 
 msgid "Role: {Role}"
 msgstr "Role: {Role}"
-
-msgid "Username: {Username}"
-msgstr "Používateľské meno: {Username} "
 
 msgid "Password: {Password}"
 msgstr "Heslo: {Password}"

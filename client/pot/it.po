@@ -2,7 +2,7 @@
 # Translators:
 # Andrea Lusuardi <uovobw@gmail.com>, 2013
 # marco calamari <marcoc@marcoc.it>, 2013
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2019
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2020
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013-2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-25 19:47+0000\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -657,6 +657,15 @@ msgstr "Invia una email di test al tuo indirizzo email."
 msgid "Block the submission"
 msgstr "Blocca la segnalazione"
 
+msgid "Skip the recipient account creation."
+msgstr "Salta creazione dell'account di ricezione."
+
+msgid "Send activation link"
+msgstr "Invia link di attivazione"
+
+msgid "Password reset"
+msgstr "Resetta password"
+
 msgid "Select the context of your submission:"
 msgstr "Seleziona il contesto della tua segnalazione"
 
@@ -719,6 +728,9 @@ msgstr "Disabilita le segnalazioni"
 msgid "Enable encryption"
 msgstr "Abilita la cifratura"
 
+msgid "Enable encryption's keys recovery"
+msgstr "Abilita meccanismo di recupero delle chiavi di crittografia"
+
 msgid "Enable multisite feature"
 msgstr "Abilita la funzionalità multisito"
 
@@ -739,11 +751,11 @@ msgstr "Abilita l'indicizzazione da parte dei motori di ricerca"
 msgid "Description"
 msgstr "Descrizione"
 
-msgid "Do not expose users' names"
-msgstr "Non esporre i nomi degli utenti"
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "Permetti ai seguenti siti di includetr la piattaforma attraverso iframes"
+
+msgid "Invalid input format."
+msgstr "Formato non valido."
 
 msgid "Enable custom privacy panel"
 msgstr "Abilita privacy panel personalizzato"
@@ -824,9 +836,6 @@ msgstr "Nome utente"
 msgid "Password"
 msgstr "Password"
 
-msgid "Enable users to upload their PGP keys"
-msgstr "Permetti agli utenti di caricare le loro chiavi PGP."
-
 msgid "Enable multi-site login"
 msgstr "Abilita login multi-sito"
 
@@ -847,6 +856,9 @@ msgstr "Abilita il ruolo del custode"
 
 msgid "Enable scoring system"
 msgstr "Abilita il sistema di punteggio"
+
+msgid "Enable private labels"
+msgstr "Abilita le etichette private"
 
 msgid "Enable experimental features"
 msgstr "Abilità funzionalità sperimentali"
@@ -917,6 +929,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Nome del progetto"
 
+msgid "Header title"
+msgstr "Titolo della testata"
+
 msgid "Homepage title"
 msgstr "Titolo della homepage"
 
@@ -955,9 +970,6 @@ msgstr "Aggiungi testo personalizzato"
 
 msgid "Custom text"
 msgstr "Testo personalizzato"
-
-msgid "Custom texts"
-msgstr "Testi personalizzati"
 
 msgid "Original text"
 msgstr "Testo originale"
@@ -1139,17 +1151,8 @@ msgstr "Ogni valore deve essere separato da una virgola."
 msgid "Example:"
 msgstr "Esempio:"
 
-msgid "Configuration in progress"
-msgstr "Configurazione in corso"
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr "La piattaforma sarà raggiungibile via HTTPS al seguente indirizzo:"
-
 msgid "Hostname"
 msgstr "Hostname"
-
-msgid "Invalid input format."
-msgstr "Formato non valido."
 
 msgid "Input should be similar to:"
 msgstr "Il formato corretto è simile ha:"
@@ -1460,14 +1463,17 @@ msgstr "Configura"
 msgid "Subdomain"
 msgstr "Sottodominio"
 
-msgid "The default password is:"
-msgstr "La password di default è:"
+msgid "Send an account activation link to the user."
+msgstr "Invia un link di attivazione dell'account all'utente"
 
-msgid "The system forces users to change the password at first login."
-msgstr "Il sistema forza gli utenti a cambiare la password al primo login."
+msgid "Public name"
+msgstr "Nome pubblico"
 
-msgid "Reset password"
-msgstr "Ripristina password"
+msgid "Send reset link"
+msgstr "Invia link di reset"
+
+msgid "Set password"
+msgstr "Imposta password"
 
 msgid "Disable two factor authentication"
 msgstr "Disabilita autenticazione a due fattori"
@@ -1495,6 +1501,9 @@ msgstr "Rimuovi la chiave PGP."
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Attiva la crittografia caricando una chiave pubblica PGP"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr "Abilita l'utente a poter resettare le password degli utenti."
 
 msgid "Configuration"
 msgstr "Configurazione"
@@ -2055,8 +2064,8 @@ msgstr "Questi profili contengono impostazioni utilizzate da progetti di success
 msgid "Confirm password"
 msgstr "Conferma la password"
 
-msgid "The default username is:"
-msgstr "Lo username di default è:"
+msgid "The user will receive an activation link via email."
+msgstr "L'utente riceverà un link di attivazione via email."
 
 msgid "License Agreement"
 msgstr "Accordi di licenza"
@@ -2148,6 +2157,36 @@ msgstr "Unità organizzativa e sede di lavoro all'epoca dei fatti riportati"
 msgid "Dear {RecipientName},"
 msgstr "Gentile {RecipientName}"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr "Ricevi questa email perchè un account utente è stato creato per te sul sistema: {Site}"
+
+msgid "Username: {Username}"
+msgstr "Username: {Username}"
+
+msgid "Activation link: {Url}"
+msgstr "Link di attivazione: {Url}"
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr "Si prega di cliccare sul link di attivazione per procedere all'attivazione dell'account e ad impostare la tua password personale."
+
+msgid "This link will expire in 3 days."
+msgstr "Il link scadrà in 3 giorni."
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr "Dopo il completamento della procedura di attivazione potrai accedere al sistema attraverso il link: {LoginUrl}"
+
+msgid "Kind regards,"
+msgstr "Distinti saluti,"
+
+msgid "Account activation"
+msgstr "Attivazione accont"
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "La tua piattaforma di whistleblowing è ora accessibile all'indirizzo:"
 
@@ -2159,9 +2198,6 @@ msgstr "Credenziali delle utenze:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "La piattaforma verrà automaticamente cancellata il:"
-
-msgid "Kind regards,"
-msgstr "Distinti saluti,"
 
 msgid "Access instructions"
 msgstr "Istruzioni per l'accesso"
@@ -2484,9 +2520,6 @@ msgstr "Nuova segnalazione"
 
 msgid "Role: {Role}"
 msgstr "Ruolo: {Role}"
-
-msgid "Username: {Username}"
-msgstr "Username: {Username}"
 
 msgid "Password: {Password}"
 msgstr "Password: {Password}"

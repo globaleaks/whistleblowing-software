@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-12-11 12:35+0000\n"
-"Last-Translator: Emma Peel\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -658,6 +658,15 @@ msgstr "E-posta adresinize bir test e-postası gönderin."
 msgid "Block the submission"
 msgstr ""
 
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Gönderiminizin içeriğini seçin:"
 
@@ -720,6 +729,9 @@ msgstr "Gönderimleri devre dışı bırak"
 msgid "Enable encryption"
 msgstr "Şifrelemeyi etkinleştir"
 
+msgid "Enable encryption's keys recovery"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr ""
 
@@ -740,10 +752,10 @@ msgstr "Arama motoru dizinlemeyi etkinleştir"
 msgid "Description"
 msgstr "Açıklama"
 
-msgid "Do not expose users' names"
+msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
 
-msgid "Allow the following websites to embed the platform inside iframes"
+msgid "Invalid input format."
 msgstr ""
 
 msgid "Enable custom privacy panel"
@@ -825,9 +837,6 @@ msgstr "Kullanıcı Adı"
 msgid "Password"
 msgstr "Parola"
 
-msgid "Enable users to upload their PGP keys"
-msgstr ""
-
 msgid "Enable multi-site login"
 msgstr ""
 
@@ -847,6 +856,9 @@ msgid "Enable custodian user role"
 msgstr ""
 
 msgid "Enable scoring system"
+msgstr ""
+
+msgid "Enable private labels"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -918,6 +930,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Proje adı"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "Anasayfa başlığı"
 
@@ -956,9 +971,6 @@ msgstr "Özel metin ekleyin"
 
 msgid "Custom text"
 msgstr "Özel metin"
-
-msgid "Custom texts"
-msgstr "Özel metinler"
 
 msgid "Original text"
 msgstr "Orijinal metin"
@@ -1140,17 +1152,8 @@ msgstr ""
 msgid "Example:"
 msgstr "Örnek:"
 
-msgid "Configuration in progress"
-msgstr ""
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
-
 msgid "Hostname"
 msgstr "Makine adı"
-
-msgid "Invalid input format."
-msgstr ""
 
 msgid "Input should be similar to:"
 msgstr ""
@@ -1461,13 +1464,16 @@ msgstr "Yapılandır"
 msgid "Subdomain"
 msgstr ""
 
-msgid "The default password is:"
+msgid "Send an account activation link to the user."
 msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "Sistem, kullanıcıları ilk girişte şifrelerini değiştirmeye zorlar."
+msgid "Public name"
+msgstr ""
 
-msgid "Reset password"
+msgid "Send reset link"
+msgstr ""
+
+msgid "Set password"
 msgstr ""
 
 msgid "Disable two factor authentication"
@@ -1496,6 +1502,9 @@ msgstr "PGP anahtarını kaldır"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Bir PGP açık anahtarı belirterek şifrelemeyi kurun"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr ""
 
 msgid "Configuration"
 msgstr "Yapılandırma"
@@ -2056,7 +2065,7 @@ msgstr ""
 msgid "Confirm password"
 msgstr "Parolayı onayla"
 
-msgid "The default username is:"
+msgid "The user will receive an activation link via email."
 msgstr ""
 
 msgid "License Agreement"
@@ -2149,6 +2158,36 @@ msgstr "Hakkında bilgi verilen olay sırasındaki kurumu ve iş yeri"
 msgid "Dear {RecipientName},"
 msgstr "Sayın {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid "This link will expire in 3 days."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr "Saygılarımızla,"
+
+msgid "Account activation"
+msgstr ""
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr ""
 
@@ -2160,9 +2199,6 @@ msgstr ""
 
 msgid "The platform will be automatically deleted on:"
 msgstr ""
-
-msgid "Kind regards,"
-msgstr "Saygılarımızla,"
 
 msgid "Access instructions"
 msgstr ""
@@ -2484,9 +2520,6 @@ msgid "New submission"
 msgstr "Yeni gönderim"
 
 msgid "Role: {Role}"
-msgstr ""
-
-msgid "Username: {Username}"
 msgstr ""
 
 msgid "Password: {Password}"

@@ -5,7 +5,7 @@
 # axel_89, 2015
 # axel_89, 2015
 # Mihai, 2014
-# Cristina Lupu <cristina@cji.ro>, 2019
+# Cristina Lupu <cristina@cji.ro>, 2019-2020
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2019
 # Inpresentia I., 2016
 # Inpresentia I., 2016
@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-12-19 15:59+0000\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -573,13 +573,13 @@ msgid "Sites management"
 msgstr "Administrarea website-urilor"
 
 msgid "Regenerate"
-msgstr ""
+msgstr "Regenerare"
 
 msgid "Display options alphabetically"
 msgstr "Prezentați opțiunile în ordine alfabetică"
 
 msgid "Enable email notifications for:"
-msgstr "Porniți notificările pe email pentru:"
+msgstr "Activează notificările pe email pentru:"
 
 msgid "Disable"
 msgstr "Dezactivează"
@@ -621,7 +621,7 @@ msgid "Closed"
 msgstr "Închisă"
 
 msgid "Placeholder"
-msgstr ""
+msgstr "Marker"
 
 msgid "Print"
 msgstr "Tipărește"
@@ -649,6 +649,15 @@ msgstr "Trimite un email de test către adresa ta de email."
 
 msgid "Block the submission"
 msgstr "Blochează sesizarea"
+
+msgid "Skip the recipient account creation."
+msgstr "Sări peste crearea contului pentru destinatar."
+
+msgid "Send activation link"
+msgstr "Trimite link-ul pentru activare"
+
+msgid "Password reset"
+msgstr "Resetează parola"
 
 msgid "Select the context of your submission:"
 msgstr "Selectează contextul sesizării tale:"
@@ -704,13 +713,16 @@ msgid "Proceed"
 msgstr "Mergeți mai departe"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Înainte de a începe, vă rugăm să porniți autentificarea în doi pași."
+msgstr "Înainte de a începe, te rugăm să activezi autentificarea în doi pași."
 
 msgid "Disable submissions"
 msgstr "Dezactivează sesizările"
 
 msgid "Enable encryption"
-msgstr "Pornește criptarea"
+msgstr "Activează criptarea"
+
+msgid "Enable encryption's keys recovery"
+msgstr "Activează recuperarea codului de criptare"
 
 msgid "Enable multisite feature"
 msgstr "Activează funcționalitatea multi-site"
@@ -732,11 +744,11 @@ msgstr "Activează indexarea pentru motoarele de căutare"
 msgid "Description"
 msgstr "Descriere"
 
-msgid "Do not expose users' names"
-msgstr "Nu devoala numele utilizatorilor"
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "Permite următoarelor website-uri să includă platforma în frame-urile lor"
+
+msgid "Invalid input format."
+msgstr "Inputul are format invalid"
 
 msgid "Enable custom privacy panel"
 msgstr "Activează panoul de confidențialitate personalizat"
@@ -817,9 +829,6 @@ msgstr "Nume Utilizator"
 msgid "Password"
 msgstr "Parolă"
 
-msgid "Enable users to upload their PGP keys"
-msgstr "Permite utilizatorilor să încarce cheile PGP"
-
 msgid "Enable multi-site login"
 msgstr "Activează autentificarea multi-site"
 
@@ -830,16 +839,19 @@ msgid "Enable HSTS preload"
 msgstr "Pornește previzualizarea HSTS"
 
 msgid "Logging level"
-msgstr ""
+msgstr "Nivel acces "
 
 msgid "Log accesses of internal users"
-msgstr ""
+msgstr "Niveluri de acces pentru utilizatorii interni"
 
 msgid "Enable custodian user role"
 msgstr "Pornește rolul de custode al utilizatorului"
 
 msgid "Enable scoring system"
 msgstr "Pornește sistemul de scoring"
+
+msgid "Enable private labels"
+msgstr "Activează etichetele private"
 
 msgid "Enable experimental features"
 msgstr "Activează funcțiile experimentale"
@@ -910,6 +922,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Numele proiectului"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "Titlul paginii de start"
 
@@ -948,9 +963,6 @@ msgstr "Adaugă text personalizat"
 
 msgid "Custom text"
 msgstr "Text personalizat"
-
-msgid "Custom texts"
-msgstr "Texte personalizate"
 
 msgid "Original text"
 msgstr "Textul original"
@@ -1085,7 +1097,7 @@ msgid "Require authentication"
 msgstr "Solicită autentificarea"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
-msgstr ""
+msgstr "Când opțiunea este reactivată, mesajele în așteptare vor fi transmise."
 
 msgid "Reset notification templates to default"
 msgstr "Resetează template-urile de notificare la setările inițiale"
@@ -1132,17 +1144,8 @@ msgstr "Fiecare intrare trebuie separată prin virgulă"
 msgid "Example:"
 msgstr "Exemplu:"
 
-msgid "Configuration in progress"
-msgstr "Configurarea este în desfășurare"
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr "Platforma poate fi accesată prin HTTPS la următoarea adesă:"
-
 msgid "Hostname"
 msgstr ""
-
-msgid "Invalid input format."
-msgstr "Inputul are format invalid"
 
 msgid "Input should be similar to:"
 msgstr "Inputul trebuie să fie similar cu:"
@@ -1307,7 +1310,7 @@ msgid "Selection box"
 msgstr "Caseta de selecție"
 
 msgid "Checkbox"
-msgstr ""
+msgstr "Căsuță de verificare"
 
 msgid "Terms of service"
 msgstr "Termeni și condiții"
@@ -1453,14 +1456,17 @@ msgstr "Configurează"
 msgid "Subdomain"
 msgstr "Sub-domeniu"
 
-msgid "The default password is:"
-msgstr "Parola standard este:"
+msgid "Send an account activation link to the user."
+msgstr "Trimite un link pentru activarea contului către utilizator."
 
-msgid "The system forces users to change the password at first login."
-msgstr "Sistemul obligă utilizatorii să schimbe parola la prima conectare."
+msgid "Public name"
+msgstr "Nume public"
 
-msgid "Reset password"
-msgstr "Resetează parola"
+msgid "Send reset link"
+msgstr "Trimite link-ul pentru resetare."
+
+msgid "Set password"
+msgstr "Setează parola"
 
 msgid "Disable two factor authentication"
 msgstr "Oprește autentificarea în doi pași"
@@ -1488,6 +1494,9 @@ msgstr "Îndepărtează cheia PGP"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Pornește criptarea furnizând o cheie PGP publică"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr "Permite utilizatorului să poate să își reseteze parola."
 
 msgid "Configuration"
 msgstr "Configurare"
@@ -2048,8 +2057,8 @@ msgstr "Aceste profile conțin setări folosite în proiecte de succes din domen
 msgid "Confirm password"
 msgstr "Confirmă parola"
 
-msgid "The default username is:"
-msgstr "Numele de utilizator standard este:"
+msgid "The user will receive an activation link via email."
+msgstr "Utilizatorul va primi pe email un link pentru acctivare."
 
 msgid "License Agreement"
 msgstr "Licență"
@@ -2141,6 +2150,36 @@ msgstr "Unitate de organizare și locație de locuri de muncă la momentul faptu
 msgid "Dear {RecipientName},"
 msgstr "Buna {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr "Primești acest email deoarece ți-a fost creat un cont de utilizator în sistem: {Site} ."
+
+msgid "Username: {Username}"
+msgstr "Utilizator: {Username}"
+
+msgid "Activation link: {Url}"
+msgstr "Link pentru activare: {Url}"
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr "Accesează linkul pentru a continua cu activarea continului și pentru a seta parola de utilizator."
+
+msgid "This link will expire in 3 days."
+msgstr "Acest link va expira în 3 zile."
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr "După activarea cu succes vei putea accesa sistemul prin acest link: {LoginUrl} "
+
+msgid "Kind regards,"
+msgstr "Salutări calde,"
+
+msgid "Account activation"
+msgstr "Activarea contului"
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "Platforma dumneavoastră pentru avertizori de integritate este accesibilă la: "
 
@@ -2152,9 +2191,6 @@ msgstr "Datele de autentificare pentru utilizator:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "Platforma va fi ștearsă în mod automat pe: "
-
-msgid "Kind regards,"
-msgstr "Salutări calde,"
 
 msgid "Access instructions"
 msgstr "Instrucțiuni de acces"
@@ -2477,9 +2513,6 @@ msgstr "Sesizare nouă"
 
 msgid "Role: {Role}"
 msgstr "Rol: {Role}"
-
-msgid "Username: {Username}"
-msgstr "Utilizator: {Username}"
 
 msgid "Password: {Password}"
 msgstr "Parolă: {Password}"

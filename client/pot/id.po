@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-24 23:48+0000\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -655,6 +655,15 @@ msgstr ""
 msgid "Block the submission"
 msgstr ""
 
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Pilih konteks pengiriman Anda"
 
@@ -717,6 +726,9 @@ msgstr "Menonaktifkan kiriman"
 msgid "Enable encryption"
 msgstr "Aktifkan enkripsi"
 
+msgid "Enable encryption's keys recovery"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Aktifkan fitur multi situs"
 
@@ -737,11 +749,11 @@ msgstr "Aktifkan pencatatan mesin pencari"
 msgid "Description"
 msgstr "Deskripsi"
 
-msgid "Do not expose users' names"
-msgstr ""
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
+
+msgid "Invalid input format."
+msgstr "Format masukan tidak valid."
 
 msgid "Enable custom privacy panel"
 msgstr "Aktifkan panel privasi kustom"
@@ -822,9 +834,6 @@ msgstr "Nama Pengguna"
 msgid "Password"
 msgstr "Kata sandi"
 
-msgid "Enable users to upload their PGP keys"
-msgstr "Mengizinkan pengguna untuk mengunggah kunci PGP mereka."
-
 msgid "Enable multi-site login"
 msgstr "Mengizinkan untuk masuk ke banyak situs"
 
@@ -845,6 +854,9 @@ msgstr ""
 
 msgid "Enable scoring system"
 msgstr "Aktifkan sistem pencetakan skor"
+
+msgid "Enable private labels"
+msgstr ""
 
 msgid "Enable experimental features"
 msgstr "Mengaktifkan fitur-fitur eksperimental"
@@ -915,6 +927,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Judul Proyek"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "Judul laman utama"
 
@@ -953,9 +968,6 @@ msgstr "Tambahkan teks kustom"
 
 msgid "Custom text"
 msgstr "Teks kustom"
-
-msgid "Custom texts"
-msgstr "Teks-teks kustom"
 
 msgid "Original text"
 msgstr "Teks original"
@@ -1137,17 +1149,8 @@ msgstr "Setiap masukan harus dipisahkan dengan koma."
 msgid "Example:"
 msgstr "Contoh:"
 
-msgid "Configuration in progress"
-msgstr ""
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
-
 msgid "Hostname"
 msgstr "Nama host"
-
-msgid "Invalid input format."
-msgstr "Format masukan tidak valid."
 
 msgid "Input should be similar to:"
 msgstr "Masukan seharusnya mirip dengan:"
@@ -1458,14 +1461,17 @@ msgstr "Konfigurasikan"
 msgid "Subdomain"
 msgstr ""
 
-msgid "The default password is:"
-msgstr "Kata sandi bawaan adalah:"
+msgid "Send an account activation link to the user."
+msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "Sistem memaksa pengguna untuk mengganti kata sandi saat pertama kali mengakses."
+msgid "Public name"
+msgstr "Nama publik"
 
-msgid "Reset password"
-msgstr "Mengganti ulang kata sandi"
+msgid "Send reset link"
+msgstr ""
+
+msgid "Set password"
+msgstr "Setel kata sandi"
 
 msgid "Disable two factor authentication"
 msgstr ""
@@ -1493,6 +1499,9 @@ msgstr "Menghapus kunci PGP "
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Memasang enkripsi dengan menyediakan kunci publik PGP"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr ""
 
 msgid "Configuration"
 msgstr "Konfigurasi"
@@ -2053,8 +2062,8 @@ msgstr "Profil berikut berisi pengaturan yang digunakan oleh proyek-proyek yang 
 msgid "Confirm password"
 msgstr "Konfirmasi kata sandi"
 
-msgid "The default username is:"
-msgstr "Nama pengguna bawaan adalah:"
+msgid "The user will receive an activation link via email."
+msgstr ""
 
 msgid "License Agreement"
 msgstr "Persetujuan lisensi"
@@ -2146,6 +2155,36 @@ msgstr "Unit organisasi dan lokasi kerja pada saat fakta dilaporkan"
 msgid "Dear {RecipientName},"
 msgstr "yang terhormat {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr "Nama pengguna: {Username}"
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid "This link will expire in 3 days."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr "salam,"
+
+msgid "Account activation"
+msgstr ""
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "Platform whistleblowing Anda sekarang dapat diakses di:"
 
@@ -2157,9 +2196,6 @@ msgstr "Jaminan pengguna:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "platform akan dihapus secara otomatis pada:"
-
-msgid "Kind regards,"
-msgstr "salam,"
 
 msgid "Access instructions"
 msgstr "instruksi untuk  mengakses"
@@ -2482,9 +2518,6 @@ msgstr "Pengiriman baru"
 
 msgid "Role: {Role}"
 msgstr "Peran: {Role}"
-
-msgid "Username: {Username}"
-msgstr "Nama pengguna: {Username}"
 
 msgid "Password: {Password}"
 msgstr "Kata sandi: {Password}"

@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-12-13 14:18+0000\n"
-"Last-Translator: Joan Bitlloch <joanbit@gmail.com>\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -650,6 +650,15 @@ msgstr "Envia un correu electrònic de prova a la teva adreça electrònica."
 msgid "Block the submission"
 msgstr "Bloquejar l'entrega"
 
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Selecciona el context del teu enviament:"
 
@@ -712,6 +721,9 @@ msgstr "Deshabilita els enviaments"
 msgid "Enable encryption"
 msgstr "Activa el xifratge"
 
+msgid "Enable encryption's keys recovery"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Activa la característica multisite"
 
@@ -732,11 +744,11 @@ msgstr "Habilita els motors de cerca d'indexació"
 msgid "Description"
 msgstr "Descripció"
 
-msgid "Do not expose users' names"
-msgstr "No mostrar els noms d'usuari"
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "Permet que altres webs incloguin la plataforma a l'interior d'Iframes"
+
+msgid "Invalid input format."
+msgstr "Format d'entrada no vàlid"
 
 msgid "Enable custom privacy panel"
 msgstr "Habilita distintiu personalitzat de privacitat"
@@ -817,9 +829,6 @@ msgstr "Nom d'usuari"
 msgid "Password"
 msgstr "Contrassenya"
 
-msgid "Enable users to upload their PGP keys"
-msgstr "Permet que els usuaris carreguin les seves claus PGP"
-
 msgid "Enable multi-site login"
 msgstr "Permet l'inici de sessió simultani a diversos llocs"
 
@@ -840,6 +849,9 @@ msgstr "Activa el rol d'usuari del custodi"
 
 msgid "Enable scoring system"
 msgstr "Activa el sistema de puntuació"
+
+msgid "Enable private labels"
+msgstr ""
 
 msgid "Enable experimental features"
 msgstr "Activa els trets experimentals"
@@ -910,6 +922,9 @@ msgstr "Logotip"
 msgid "Project name"
 msgstr "Nom de la iniciativa"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "Títol de la pàgina d'inici"
 
@@ -948,9 +963,6 @@ msgstr "Afegeix text personalitzat"
 
 msgid "Custom text"
 msgstr "Text personalitzat"
-
-msgid "Custom texts"
-msgstr "Textos personalitzats"
 
 msgid "Original text"
 msgstr "Text original"
@@ -1132,17 +1144,8 @@ msgstr "Cada entrada ha d'estar separada amb una coma."
 msgid "Example:"
 msgstr "Exemple:"
 
-msgid "Configuration in progress"
-msgstr "Configuració en curs"
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr "La plataforma serà accessible mitjançant HTTPS a la següent adreça:"
-
 msgid "Hostname"
 msgstr "Domini"
-
-msgid "Invalid input format."
-msgstr "Format d'entrada no vàlid"
 
 msgid "Input should be similar to:"
 msgstr "L'entrada hauria de ser similar a:"
@@ -1453,14 +1456,17 @@ msgstr "Configura"
 msgid "Subdomain"
 msgstr "Subdomini"
 
-msgid "The default password is:"
-msgstr "La contrasenya d'usuari per defecte és:"
+msgid "Send an account activation link to the user."
+msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "El sistema obliga a canviar la contrasenya el primer cop que s'inicia sessió."
+msgid "Public name"
+msgstr ""
 
-msgid "Reset password"
-msgstr "Restablir contrasenya "
+msgid "Send reset link"
+msgstr ""
+
+msgid "Set password"
+msgstr ""
 
 msgid "Disable two factor authentication"
 msgstr "Desactiva l'autenticació de dues passes"
@@ -1488,6 +1494,9 @@ msgstr "Elimina la clau PGP"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Estableix l'encriptació oferint una clau pública PGP"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr ""
 
 msgid "Configuration"
 msgstr "Configuració"
@@ -2048,8 +2057,8 @@ msgstr "Aquests perfils contenen la configuració utilitzada per projectes exito
 msgid "Confirm password"
 msgstr "Confirma la contrassenya"
 
-msgid "The default username is:"
-msgstr "El nom d'usuari per defecte és:"
+msgid "The user will receive an activation link via email."
+msgstr ""
 
 msgid "License Agreement"
 msgstr "Acord de llicència"
@@ -2141,6 +2150,36 @@ msgstr "Unitat d'organització i localització de feina en el moment dels fets e
 msgid "Dear {RecipientName},"
 msgstr "Benvolgut/uda {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr "Nom d'usuari: {Username}"
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid "This link will expire in 3 days."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr "Rep una salutació cordial,"
+
+msgid "Account activation"
+msgstr ""
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "Su plataforma para informantes está ahora accesible en:"
 
@@ -2152,9 +2191,6 @@ msgstr "Credenciales de los usuarios:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "The platform will be automatically deleted on:"
-
-msgid "Kind regards,"
-msgstr "Rep una salutació cordial,"
 
 msgid "Access instructions"
 msgstr "Instruccions d'accés"
@@ -2477,9 +2513,6 @@ msgstr "Nou enviament"
 
 msgid "Role: {Role}"
 msgstr "Rol: {Role}"
-
-msgid "Username: {Username}"
-msgstr "Nom d'usuari: {Username}"
 
 msgid "Password: {Password}"
 msgstr "Contrasenya: {Password}"

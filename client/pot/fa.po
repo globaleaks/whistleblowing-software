@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-12-27 13:58+0000\n"
-"Last-Translator: magnifico\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -657,6 +657,15 @@ msgstr "یک ایمیل آزمایشی به آدرس ایمیل خود ارسا�
 msgid "Block the submission"
 msgstr "مسدود سازی ارسال"
 
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "زمینه گزارش خود را انتخاب کنید:"
 
@@ -719,6 +728,9 @@ msgstr "غیرفعال‌سازی گزارش"
 msgid "Enable encryption"
 msgstr "فعال سازی رمزگذاری"
 
+msgid "Enable encryption's keys recovery"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "فعال سازی ویژگی چند سایت"
 
@@ -739,11 +751,11 @@ msgstr "فعال کردن ایندکس سازی موتورهای جستجو"
 msgid "Description"
 msgstr "توضیح"
 
-msgid "Do not expose users' names"
-msgstr "نام‌های کاربران را افشا نکنید"
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "به وبسایت‌های زیر اجازه دهید تا پلتفرم را در iframe جاسازی کنند"
+
+msgid "Invalid input format."
+msgstr "فرمت ورودی نامعتبر است"
 
 msgid "Enable custom privacy panel"
 msgstr "فعال سازی پنل پوشیدگی اختصاصی"
@@ -824,9 +836,6 @@ msgstr "نام کاربری"
 msgid "Password"
 msgstr "گذرواژه"
 
-msgid "Enable users to upload their PGP keys"
-msgstr "اجازه دادن به کاربران برای بارگذاری کلید های PGP خود"
-
 msgid "Enable multi-site login"
 msgstr "فعال سازی ورود چند سایت"
 
@@ -847,6 +856,9 @@ msgstr "فعال سازی نقش کاربر نگهبان"
 
 msgid "Enable scoring system"
 msgstr "فعال سازی سیستم امتیازدهی"
+
+msgid "Enable private labels"
+msgstr ""
 
 msgid "Enable experimental features"
 msgstr "فعال کردن امکانات تجربی"
@@ -917,6 +929,9 @@ msgstr "آرم"
 msgid "Project name"
 msgstr "نام پروژه"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "اسم صفحه اصلی"
 
@@ -955,9 +970,6 @@ msgstr "افزودن متن سفارشی"
 
 msgid "Custom text"
 msgstr "متن سفارشی"
-
-msgid "Custom texts"
-msgstr "متن های سفارشی"
 
 msgid "Original text"
 msgstr "متن اصلی"
@@ -1139,17 +1151,8 @@ msgstr "هر ورودی می بایستی با یک ویرگول جدا شود."
 msgid "Example:"
 msgstr "نمونه:"
 
-msgid "Configuration in progress"
-msgstr "تنظیمات در حال انجام است"
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr "پلتفرم توسط HTTPS در آدرس‌های زیر در دسترس است:"
-
 msgid "Hostname"
 msgstr "نام سرور"
-
-msgid "Invalid input format."
-msgstr "فرمت ورودی نامعتبر است"
 
 msgid "Input should be similar to:"
 msgstr "ورودی باید مشابه به این ها باشد:"
@@ -1460,14 +1463,17 @@ msgstr "پیکربندی"
 msgid "Subdomain"
 msgstr "زیردامنه"
 
-msgid "The default password is:"
-msgstr "گذرواژه پیش فرض:"
+msgid "Send an account activation link to the user."
+msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "سیستم کاربرها را در ورود اول وادار به تغییر گذرواژه میکند."
+msgid "Public name"
+msgstr "نام عمومی"
 
-msgid "Reset password"
-msgstr "تنظیم مجدد گذرواژه"
+msgid "Send reset link"
+msgstr ""
+
+msgid "Set password"
+msgstr "تنظیم گذرواژه"
 
 msgid "Disable two factor authentication"
 msgstr "غیرفعالسازی احراز هویت دو عاملی"
@@ -1495,6 +1501,9 @@ msgstr "کلید پی جی پی را حذف کن"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "برپاسازی رمزگذاری با تامین کلید عمومی PGP"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr ""
 
 msgid "Configuration"
 msgstr "تنظیم ترکیبات"
@@ -2055,8 +2064,8 @@ msgstr "این پروفایل ها شامل تنظیمات استفاده شده
 msgid "Confirm password"
 msgstr "تایید رمز"
 
-msgid "The default username is:"
-msgstr "نام کاربری پیش فرض:"
+msgid "The user will receive an activation link via email."
+msgstr ""
 
 msgid "License Agreement"
 msgstr "توافق گواهینامه"
@@ -2148,6 +2157,36 @@ msgstr "واحد سازمانی و محل کار وقتی این گزارش را
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} گرامی،"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr "نام کاربری: {Username}"
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid "This link will expire in 3 days."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr "با سپاس،"
+
+msgid "Account activation"
+msgstr ""
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "پلتفورم افشاگری شما از این طریق قابل دسترسی میباشد:"
 
@@ -2159,9 +2198,6 @@ msgstr "اعتبار نامه های کاربران:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "پلتفورم به صورت خودکار در این تاریخ حذف خواهد شد:"
-
-msgid "Kind regards,"
-msgstr "با سپاس،"
 
 msgid "Access instructions"
 msgstr "دستور العمل های دسترسی"
@@ -2484,9 +2520,6 @@ msgstr "گزارش جدید"
 
 msgid "Role: {Role}"
 msgstr "نقش: {Role}"
-
-msgid "Username: {Username}"
-msgstr "نام کاربری: {Username}"
 
 msgid "Password: {Password}"
 msgstr "گذرواژه: {Password}"

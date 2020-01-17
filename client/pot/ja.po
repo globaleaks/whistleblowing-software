@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-25 15:30+0000\n"
-"Last-Translator: Naofumi <naofum@gmail.com>\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -641,6 +641,15 @@ msgstr "お使いのメールアドレスにテストメールを送信します
 msgid "Block the submission"
 msgstr "提出をブロック"
 
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "提出のコンテキストを選択してください:"
 
@@ -703,6 +712,9 @@ msgstr "提出を無効にする"
 msgid "Enable encryption"
 msgstr "暗号化を有効にする"
 
+msgid "Enable encryption's keys recovery"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "マルチサイト機能を有効にする"
 
@@ -723,11 +735,11 @@ msgstr "検索エンジンのインデックス化を有効にする"
 msgid "Description"
 msgstr "説明"
 
-msgid "Do not expose users' names"
-msgstr "ユーザーの名前を公開しない"
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "次のWebサイトがインラインフレーム内にプラットフォームを埋め込むことを許可する"
+
+msgid "Invalid input format."
+msgstr "不正な入力形式。"
 
 msgid "Enable custom privacy panel"
 msgstr "カスタムのプライバシー・バッジを有効にする"
@@ -808,9 +820,6 @@ msgstr "ユーザー名"
 msgid "Password"
 msgstr "パスワード"
 
-msgid "Enable users to upload their PGP keys"
-msgstr "ユーザーがPGP鍵をアップロードできるようにする"
-
 msgid "Enable multi-site login"
 msgstr "マルチサイトログインを有効にする"
 
@@ -831,6 +840,9 @@ msgstr "管理人のユーザー役割を有効にする"
 
 msgid "Enable scoring system"
 msgstr "スコアリングシステムを有効にする"
+
+msgid "Enable private labels"
+msgstr ""
 
 msgid "Enable experimental features"
 msgstr "実験的な機能を有効にする"
@@ -901,6 +913,9 @@ msgstr "ロゴ"
 msgid "Project name"
 msgstr "プロジェクト名"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "ホームページのタイトル"
 
@@ -938,9 +953,6 @@ msgid "Add custom text"
 msgstr "カスタムのテキストを追加"
 
 msgid "Custom text"
-msgstr "カスタムのテキスト"
-
-msgid "Custom texts"
 msgstr "カスタムのテキスト"
 
 msgid "Original text"
@@ -1123,17 +1135,8 @@ msgstr "各入力はコンマで区切る必要があります。"
 msgid "Example:"
 msgstr "例:"
 
-msgid "Configuration in progress"
-msgstr "設定処理中です"
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr "プラットフォームは、HTTPS経由で次のアドレスに到達可能です:"
-
 msgid "Hostname"
 msgstr "ホスト名"
-
-msgid "Invalid input format."
-msgstr "不正な入力形式。"
 
 msgid "Input should be similar to:"
 msgstr "入力は次のようになります:"
@@ -1444,14 +1447,17 @@ msgstr "設定"
 msgid "Subdomain"
 msgstr "サブドメイン"
 
-msgid "The default password is:"
-msgstr "デフォルトのパスワードは:"
+msgid "Send an account activation link to the user."
+msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "システムにより、ユーザーが最初のログイン時にパスワードを変更することを強制します。"
+msgid "Public name"
+msgstr ""
 
-msgid "Reset password"
-msgstr "パスワードをリセット"
+msgid "Send reset link"
+msgstr ""
+
+msgid "Set password"
+msgstr "パスワードを設定"
 
 msgid "Disable two factor authentication"
 msgstr "2要素認証を無効にする"
@@ -1479,6 +1485,9 @@ msgstr "PGP鍵を削除"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "PGP公開鍵を提供して暗号化を設定"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr ""
 
 msgid "Configuration"
 msgstr "設定"
@@ -2039,8 +2048,8 @@ msgstr "これらのプロファイルには、それぞれのフィールドで
 msgid "Confirm password"
 msgstr "パスワードを確認"
 
-msgid "The default username is:"
-msgstr "デフォルトのユーザー名は:"
+msgid "The user will receive an activation link via email."
+msgstr ""
 
 msgid "License Agreement"
 msgstr "ライセンス契約"
@@ -2132,6 +2141,36 @@ msgstr "報告する事実の時点での所属、職場"
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} 様"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr "ユーザー名: {Username}"
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid "This link will expire in 3 days."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr "敬具"
+
+msgid "Account activation"
+msgstr ""
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "内部告発プラットフォームがアクセス可能になりました:"
 
@@ -2143,9 +2182,6 @@ msgstr "ユーザーの資格情報:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "プラットフォームは自動的に削除されます:"
-
-msgid "Kind regards,"
-msgstr "敬具"
 
 msgid "Access instructions"
 msgstr "アクセス方法"
@@ -2468,9 +2504,6 @@ msgstr "新しい提出"
 
 msgid "Role: {Role}"
 msgstr "役割: {Role}"
-
-msgid "Username: {Username}"
-msgstr "ユーザー名: {Username}"
 
 msgid "Password: {Password}"
 msgstr "パスワード: {Password}"

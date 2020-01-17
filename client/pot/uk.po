@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-24 23:48+0000\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -654,6 +654,15 @@ msgstr "Відправити тестовий лист на Вашу елект�
 msgid "Block the submission"
 msgstr ""
 
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Оберіть контекст Вашого повідомлення"
 
@@ -716,6 +725,9 @@ msgstr "Відключити повідомлення"
 msgid "Enable encryption"
 msgstr ""
 
+msgid "Enable encryption's keys recovery"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr ""
 
@@ -736,11 +748,11 @@ msgstr "Включити індексацію пошуковими систем�
 msgid "Description"
 msgstr "Опис"
 
-msgid "Do not expose users' names"
-msgstr ""
-
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
+
+msgid "Invalid input format."
+msgstr "Недійсний формат вводу"
 
 msgid "Enable custom privacy panel"
 msgstr "Увімкнути значок конфіденційності"
@@ -821,9 +833,6 @@ msgstr "Ім'я користувача"
 msgid "Password"
 msgstr "Пароль"
 
-msgid "Enable users to upload their PGP keys"
-msgstr ""
-
 msgid "Enable multi-site login"
 msgstr ""
 
@@ -843,6 +852,9 @@ msgid "Enable custodian user role"
 msgstr ""
 
 msgid "Enable scoring system"
+msgstr ""
+
+msgid "Enable private labels"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -914,6 +926,9 @@ msgstr "Логотип"
 msgid "Project name"
 msgstr "Назва ініціативи"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "Назва домашньої сторінки"
 
@@ -952,9 +967,6 @@ msgstr "Add custom text"
 
 msgid "Custom text"
 msgstr "Custom text"
-
-msgid "Custom texts"
-msgstr "Custom texts"
 
 msgid "Original text"
 msgstr "Original text"
@@ -1136,17 +1148,8 @@ msgstr ""
 msgid "Example:"
 msgstr "Приклад:"
 
-msgid "Configuration in progress"
-msgstr ""
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
-
 msgid "Hostname"
 msgstr "Ім'я хосту"
-
-msgid "Invalid input format."
-msgstr "Недійсний формат вводу"
 
 msgid "Input should be similar to:"
 msgstr ""
@@ -1457,14 +1460,17 @@ msgstr "Налаштування"
 msgid "Subdomain"
 msgstr ""
 
-msgid "The default password is:"
+msgid "Send an account activation link to the user."
 msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "Система змушує користувачів змінити пароль при першому вході."
+msgid "Public name"
+msgstr ""
 
-msgid "Reset password"
-msgstr "Відновити пароль"
+msgid "Send reset link"
+msgstr ""
+
+msgid "Set password"
+msgstr "Задати пароль"
 
 msgid "Disable two factor authentication"
 msgstr ""
@@ -1492,6 +1498,9 @@ msgstr "Видалити PGP ключ"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Налаштуйте шифрування надвши відкритий ключ PGP"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr ""
 
 msgid "Configuration"
 msgstr "Налаштування"
@@ -2052,7 +2061,7 @@ msgstr ""
 msgid "Confirm password"
 msgstr "Підтвердить пароль"
 
-msgid "The default username is:"
+msgid "The user will receive an activation link via email."
 msgstr ""
 
 msgid "License Agreement"
@@ -2145,6 +2154,36 @@ msgstr "Місцерозташування офісу на момент прав
 msgid "Dear {RecipientName},"
 msgstr "Шановний {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid "This link will expire in 3 days."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr "З повагою,"
+
+msgid "Account activation"
+msgstr ""
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr ""
 
@@ -2156,9 +2195,6 @@ msgstr ""
 
 msgid "The platform will be automatically deleted on:"
 msgstr ""
-
-msgid "Kind regards,"
-msgstr "З повагою,"
 
 msgid "Access instructions"
 msgstr ""
@@ -2480,9 +2516,6 @@ msgid "New submission"
 msgstr "Нове повідомлення"
 
 msgid "Role: {Role}"
-msgstr ""
-
-msgid "Username: {Username}"
 msgstr ""
 
 msgid "Password: {Password}"

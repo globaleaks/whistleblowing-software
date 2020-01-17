@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-11-24 23:48+0000\n"
+"PO-Revision-Date: 2020-01-17 16:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -639,6 +639,15 @@ msgstr ""
 msgid "Block the submission"
 msgstr ""
 
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr ""
+
+msgid "Password reset"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Zgjidhni kontekstin e paraqitjes tuaj:"
 
@@ -701,6 +710,9 @@ msgstr "parashtresat Çaktivizo"
 msgid "Enable encryption"
 msgstr ""
 
+msgid "Enable encryption's keys recovery"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr ""
 
@@ -721,10 +733,10 @@ msgstr "Mundësoni indeksimin e motorëve të kërkimit"
 msgid "Description"
 msgstr "Përshkrim"
 
-msgid "Do not expose users' names"
+msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
 
-msgid "Allow the following websites to embed the platform inside iframes"
+msgid "Invalid input format."
 msgstr ""
 
 msgid "Enable custom privacy panel"
@@ -806,9 +818,6 @@ msgstr "Emër përdoruesi"
 msgid "Password"
 msgstr "Fjalëkalim"
 
-msgid "Enable users to upload their PGP keys"
-msgstr ""
-
 msgid "Enable multi-site login"
 msgstr ""
 
@@ -828,6 +837,9 @@ msgid "Enable custodian user role"
 msgstr ""
 
 msgid "Enable scoring system"
+msgstr ""
+
+msgid "Enable private labels"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -899,6 +911,9 @@ msgstr ""
 msgid "Project name"
 msgstr "Emri i projektit"
 
+msgid "Header title"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "Titulli i Kryefaqes "
 
@@ -936,9 +951,6 @@ msgid "Add custom text"
 msgstr ""
 
 msgid "Custom text"
-msgstr ""
-
-msgid "Custom texts"
 msgstr ""
 
 msgid "Original text"
@@ -1121,16 +1133,7 @@ msgstr ""
 msgid "Example:"
 msgstr "Shembull:"
 
-msgid "Configuration in progress"
-msgstr ""
-
-msgid "The platform will be reachable via HTTPS at the following address:"
-msgstr ""
-
 msgid "Hostname"
-msgstr ""
-
-msgid "Invalid input format."
 msgstr ""
 
 msgid "Input should be similar to:"
@@ -1442,14 +1445,17 @@ msgstr "Formësoni"
 msgid "Subdomain"
 msgstr ""
 
-msgid "The default password is:"
+msgid "Send an account activation link to the user."
 msgstr ""
 
-msgid "The system forces users to change the password at first login."
-msgstr "Sistemi i shtrëngon përdoruesit që të ndryshojnë fjalëkalimin që kur futen për herë të parë."
+msgid "Public name"
+msgstr "Emri publik"
 
-msgid "Reset password"
+msgid "Send reset link"
 msgstr ""
+
+msgid "Set password"
+msgstr "Fute fjalëkalimin"
 
 msgid "Disable two factor authentication"
 msgstr ""
@@ -1477,6 +1483,9 @@ msgstr "Lëvizeni çelësin PGP "
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Ngritur encryption, duke siguruar një çelës publik PGP"
+
+msgid "Grant the user the capability of resetting users' passwords"
+msgstr ""
 
 msgid "Configuration"
 msgstr "Konfigurimi"
@@ -1941,7 +1950,7 @@ msgid ""
 msgstr ""
 
 msgid "Sign up"
-msgstr ""
+msgstr "Regjistrohuni"
 
 msgid "Domain"
 msgstr "Domen"
@@ -2037,7 +2046,7 @@ msgstr ""
 msgid "Confirm password"
 msgstr "Konfirmoni fjalëkalimin"
 
-msgid "The default username is:"
+msgid "The user will receive an activation link via email."
 msgstr ""
 
 msgid "License Agreement"
@@ -2130,6 +2139,36 @@ msgstr "njësi organizative dhe vendin e punës në kohën e faktit raportuar"
 msgid "Dear {RecipientName},"
 msgstr "Dear {RecipientName},"
 
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid "This link will expire in 3 days."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr "Me respekt, "
+
+msgid "Account activation"
+msgstr ""
+
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr ""
 
@@ -2141,9 +2180,6 @@ msgstr ""
 
 msgid "The platform will be automatically deleted on:"
 msgstr ""
-
-msgid "Kind regards,"
-msgstr "Me respekt, "
 
 msgid "Access instructions"
 msgstr ""
@@ -2465,9 +2501,6 @@ msgid "New submission"
 msgstr "dorëzimi i ri"
 
 msgid "Role: {Role}"
-msgstr ""
-
-msgid "Username: {Username}"
 msgstr ""
 
 msgid "Password: {Password}"
