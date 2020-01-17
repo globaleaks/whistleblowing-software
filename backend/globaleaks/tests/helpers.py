@@ -2,10 +2,7 @@
 """
 Utilities and basic TestCases.
 """
-import sys
-
 import base64
-import copy
 import json
 import os
 import shutil

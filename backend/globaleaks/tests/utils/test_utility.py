@@ -3,7 +3,6 @@ import re
 from datetime import datetime
 from twisted.trial import unittest
 
-from globaleaks.rest import errors
 from globaleaks.utils import utility
 
 

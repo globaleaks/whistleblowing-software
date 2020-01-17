@@ -18,7 +18,7 @@ from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import msdos_encode, datetime_now
+from globaleaks.utils.utility import msdos_encode
 from globaleaks.utils.zipstream import ZipStream
 
 

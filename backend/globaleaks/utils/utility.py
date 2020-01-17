@@ -16,7 +16,6 @@ from datetime import datetime, timedelta
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred
 
-from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.utils.log import log
 
 

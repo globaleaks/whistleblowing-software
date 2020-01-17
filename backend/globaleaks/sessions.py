@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from globaleaks.settings import Settings
-from globaleaks.utils.crypto import generateRandomKey, Base64Encoder
+from globaleaks.utils.crypto import generateRandomKey
 from globaleaks.utils.tempdict import TempDict
 
 

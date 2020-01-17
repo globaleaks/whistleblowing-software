@@ -1,5 +1,4 @@
 # -*- coding: UTF-8
-from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.rtip import db_update_submission_status
 from globaleaks.models import Model
