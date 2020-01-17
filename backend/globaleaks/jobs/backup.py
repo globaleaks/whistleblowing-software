@@ -1,5 +1,4 @@
 # -*- coding: utf-8
-# Implementation of the daily operations.
 import os
 import time
 from datetime import datetime
@@ -18,7 +17,7 @@ from globaleaks.utils.tar import tardir
 __all__ = ['Backup']
 
 
-def db_perform_backup(session, version, id):
+def db_perform_backup(session, id):
     timestamp = int(time.time())
     backupfile = backup_name(id, timestamp)
     dst = os.path.join(Settings.backup_path, backupfile)
@@ -43,7 +42,7 @@ class Backup(DailyJob):
         if not self.state.tenant_cache[1].backup:
             return
 
-        db_perform_backup(session, self.state.tenant_cache[1].version, self.state.tenant_cache[1].id)
+        db_perform_backup(session, self.state.tenant_cache[1].id)
 
     @transact
     def check_backup_records_to_delete(self, session):

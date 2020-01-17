@@ -1,5 +1,5 @@
 # -*- coding: utf-8
-# Implement refresh of the list of exit nodes IPs.
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.job import HourlyJob

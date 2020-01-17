@@ -20,12 +20,8 @@ class RobotstxtHandler(BaseHandler):
            (not self.state.tenant_cache[self.request.tid].allow_indexing):
             return "User-agent: *\nDisallow: /"
 
-        hostname = self.state.tenant_cache[self.request.tid].hostname
-        if isinstance(hostname, bytes):
-            hostname = hostname.decode()
-
         data = "User-agent: *\n"
         data += "Allow: /\n"
-        data += "Sitemap: https://%s/sitemap.xml" % hostname
+        data += "Sitemap: https://%s/sitemap.xml" % self.state.tenant_cache[self.request.tid].hostname
 
         return data

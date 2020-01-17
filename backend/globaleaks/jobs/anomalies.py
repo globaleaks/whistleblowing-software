@@ -1,8 +1,4 @@
 # -*- coding: utf-8 -*-
-
-# Implement anomalies check
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.anomaly import check_anomalies
 from globaleaks.jobs.job import LoopingJob
 
@@ -13,6 +9,5 @@ class Anomalies(LoopingJob):
     """
     interval = 60
 
-    @inlineCallbacks
     def operation(self):
-        yield check_anomalies()
+        return check_anomalies()

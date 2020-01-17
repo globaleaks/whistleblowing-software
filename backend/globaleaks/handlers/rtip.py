@@ -652,14 +652,15 @@ def create_comment(session, tid, user_id, rtip_id, content):
 
     itip.update_date = rtip.last_access = datetime_now()
 
+    _content = content
     if itip.crypto_tip_pub_key:
-        content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
+        _content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
 
     comment = models.Comment()
     comment.internaltip_id = itip.id
     comment.type = 'receiver'
     comment.author_id = rtip.receiver_id
-    comment.content = content
+    comment.content = _content
     session.add(comment)
     session.flush()
 
@@ -684,13 +685,14 @@ def create_message(session, tid, user_id, rtip_id, content):
 
     itip.update_date = rtip.last_access = datetime_now()
 
+    _content = content
     if itip.crypto_tip_pub_key:
-        content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
+        _content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
 
     msg = models.Message()
     msg.receivertip_id = rtip.id
     msg.type = 'receiver'
-    msg.content = content
+    msg.content = _content
     session.add(msg)
     session.flush()
 

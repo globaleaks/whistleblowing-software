@@ -223,9 +223,6 @@ class BaseHandler(object):
     @staticmethod
     def validate_message(message, message_template):
         try:
-            if isinstance(message, bytes):
-                message = message.decode()
-
             jmessage = json.loads(message)
         except ValueError:
             raise errors.InputValidationError("Invalid JSON format")

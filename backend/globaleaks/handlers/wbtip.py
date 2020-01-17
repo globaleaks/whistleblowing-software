@@ -79,15 +79,14 @@ def create_comment(session, tid, wbtip_id, content):
 
     itip.update_date = itip.wb_last_access = datetime_now()
 
+    _content = content
+    if itip.crypto_tip_pub_key:
+        _content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
+
     comment = models.Comment()
     comment.internaltip_id = wbtip_id
     comment.type = 'whistleblower'
-
-    if itip.crypto_tip_pub_key:
-        comment.content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
-    else:
-        comment.content = content
-
+    comment.content = _content
     session.add(comment)
     session.flush()
 
@@ -120,15 +119,14 @@ def create_message(session, tid, wbtip_id, receiver_id, content):
 
     itip.update_date = itip.wb_last_access = datetime_now()
 
+    _content = content
+    if itip.crypto_tip_pub_key:
+        _content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
+
     msg = models.Message()
     msg.receivertip_id = rtip_id
     msg.type = 'whistleblower'
-
-    if itip.crypto_tip_pub_key:
-        msg.content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
-    else:
-        msg.content = content
-
+    msg.content = _content
     session.add(msg)
     session.flush()
 

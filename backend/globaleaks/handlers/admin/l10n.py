@@ -20,7 +20,7 @@ def get(session, tid, lang):
     """
     texts = session.query(models.CustomTexts).filter(models.CustomTexts.tid == tid,
                                                      models.CustomTexts.lang == lang).one_or_none()
-    return text.texts if texts is not None else {}
+    return texts.texts if texts is not None else {}
 
 
 @transact
@@ -53,11 +53,7 @@ class AdminL10NHandler(BaseHandler):
     @inlineCallbacks
     def put(self, lang):
         yield can_edit_general_settings_or_raise(self)
-        content = self.request.content.read()
-        if isinstance(content, bytes):
-            content = content.decode()
-
-        result = yield update(self.request.tid, lang, json.loads(content))
+        result = yield update(self.request.tid, lang, json.loads(self.request.content.read()))
         returnValue(result)
 
     @inlineCallbacks
