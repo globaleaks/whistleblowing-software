@@ -1,5 +1,4 @@
 # -*- coding: utf-8
-# Implementation of admin statistics handlers
 import operator
 from datetime import timedelta
 

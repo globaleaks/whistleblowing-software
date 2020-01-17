@@ -1,9 +1,4 @@
-
 # -*- coding: UTF-8
-#
-#   tenant
-#   *****
-# Implementation of the Tenant handlers
 import base64
 import os
 

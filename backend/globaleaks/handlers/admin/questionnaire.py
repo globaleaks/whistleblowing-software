@@ -1,10 +1,4 @@
 # -*- coding: utf-8
-#
-#   /admin/questionnaires
-#   *****
-# Implementation of the code executed on handler /admin/questionnaires
-#
-
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models, QUESTIONNAIRE_EXPORT_VERSION

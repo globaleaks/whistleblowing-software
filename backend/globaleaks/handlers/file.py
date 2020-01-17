@@ -7,9 +7,9 @@ import os
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
-from globaleaks.handlers.admin.file import get_file
+from globaleaks.handlers.admin.file import db_get_file
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.orm import transact
+from globaleaks.orm import transact, tw
 
 
 appfiles = {
@@ -55,9 +55,9 @@ class FileHandler(BaseHandler):
     @inlineCallbacks
     def get(self, name):
         if name in appfiles:
-            x = yield get_file(self.request.tid, name)
+            x = yield tw(db_get_file, self.request.tid, name)
             if not x and self.state.tenant_cache[self.request.tid]['mode'] != 'default':
-                x = yield get_file(1, name)
+                x = yield tw(db_get_file, 1, name)
 
             self.request.setHeader(b'Content-Type', appfiles[name])
             x = base64.b64decode(x)

@@ -661,7 +661,7 @@ class TestGL(unittest.TestCase):
                                 models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id,
                                 models.WhistleblowerTip.receipt_hash == hashed_receipt)
 
-        return [models.serializers.serialize_rfile(session, 1, rfile) for rfile in rfiles]
+        return [models.serializers.serialize_rfile(session, rfile) for rfile in rfiles]
 
     def db_test_model_count(self, session, model, n):
         self.assertEqual(session.query(model).count(), n)

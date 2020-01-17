@@ -1,11 +1,4 @@
 # -*- coding: utf-8
-#
-#   /admin/contexts
-#   *****
-# Implementation of the code executed on handler /admin/contexts
-#
-from sqlalchemy.sql.expression import not_
-
 from globaleaks import models
 from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
@@ -18,9 +11,8 @@ from globaleaks.rest import requests, errors
 def admin_serialize_context(session, context, language):
     """
     Serialize the specified context
-
-    :param context:
-    :param session: the session on which perform queries.
+    :param session: the session on which perform queries
+    :param context: The object to be serialized
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the context.
     """
@@ -68,7 +60,8 @@ def get_context_list(session, tid, language):
     """
     Returns the context list.
 
-    :param session: the session on which perform queries.
+    :param session: An ORM session
+    :param tid: The tenant ID on which perform the lookup
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the contexts.
     """
@@ -78,6 +71,13 @@ def get_context_list(session, tid, language):
 
 
 def db_associate_context_receivers(session, context, receiver_ids):
+    """
+    Transaction for associating receivers to a context
+    :param session: An ORM session
+    :param context: The context on which associate the specified receivers
+    :param receiver_ids: A list of receivers ids to be associated to the context
+    :return:
+    """
     session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id == context.id).delete(synchronize_session='fetch')
 
     if not receiver_ids:
@@ -97,8 +97,12 @@ def db_associate_context_receivers(session, context, receiver_ids):
 @transact
 def get_context(session, tid, context_id, language):
     """
-    Returns:
-        (dict) the context with the specified id.
+    Transaction for retrieving a context serialized in the specified language
+    :param session: The ORM session
+    :param tid: The tenant ID
+    :param context_id: The contaxt ID
+    :param language: The language to be used for the serialization
+    :return: a context descriptor serialized in the specified language
     """
     context = session.query(models.Context).filter(models.Context.tid == tid, models.Context.id == context_id).one()
 
@@ -106,6 +110,13 @@ def get_context(session, tid, context_id, language):
 
 
 def fill_context_request(tid, request, language):
+    """
+    An utility function for correcting requests for context configuration
+    :param tid: The tenant ID
+    :param request: The request data
+    :param language: The language of the request
+    :return: The request data corrected in some values
+    """
     request['tid'] = tid
     fill_localized_keys(request, models.Context.localized_keys, language)
 
@@ -120,28 +131,20 @@ def fill_context_request(tid, request, language):
     return request
 
 
-def check_context_questionnaire_association(session, tid, questionnaire_id):
-    if session.query(models.Questionnaire).filter(models.Questionnaire.id == questionnaire_id,
-                                                  not_(models.Questionnaire.tid.in_(set([1, tid])))).count():
-        raise errors.InputValidationError()
-
-
-def db_update_context(session, tid, context, request, language):
-    request = fill_context_request(tid, request, language)
-
-    check_context_questionnaire_association(session, tid, request['questionnaire_id'])
-
-    context.update(request)
-
-    db_associate_context_receivers(session, context, request['receivers'])
-
-    return context
-
-
 def db_create_context(session, tid, request, language):
+    """
+    Transaction for creating a context
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param context: The object to be updated
+    :param request: The request data
+    :param language: The request language
+    :return: The created context
+    """
     request = fill_context_request(tid, request, language)
 
-    check_context_questionnaire_association(session, tid, request['questionnaire_id'])
+    if not request['questionnaire_id']:
+        raise errors.InputValidationError()
 
     context = models.db_forge_obj(session, models.Context, request)
 
@@ -153,25 +156,50 @@ def db_create_context(session, tid, request, language):
 @transact
 def create_context(session, tid, request, language):
     """
-    Creates a new context from the request of a client.
-
-    Args:
-        (dict) the request containing the keys to set on the model.
-
-    Returns:
-        (dict) representing the configured context
+    Transaction for creating a context
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param context: The object to be updated
+    :param request: The request data
+    :param language: The request language
+    :return: A serialized descriptor of the context
     """
     context = db_create_context(session, tid, request, language)
 
     return admin_serialize_context(session, context, language)
 
 
+def db_update_context(session, tid, context, request, language):
+    """
+    Transaction for updating a context
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param context: The object to be updated
+    :param request: The request data
+    :param language: The request language
+    :return: The updated context
+    """
+    request = fill_context_request(tid, request, language)
+
+    if not request['questionnaire_id']:
+        raise errors.InputValidationError()
+
+    context.update(request)
+
+    db_associate_context_receivers(session, context, request['receivers'])
+
+    return context
+
 @transact
 def update_context(session, tid, context_id, request, language):
     """
-    Updates the specified context. If the key receivers is specified we remove
-    the current receivers of the Context and reset set it to the new specified
-    ones.
+    Transaction for updating a context
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param context: The object to be updated
+    :param request: The request data
+    :param language: The request language
+    :return: A serialized descriptor of the context
     """
     context = models.db_get(session, models.Context, models.Context.tid == tid, models.Context.id == context_id)
     context = db_update_context(session, tid, context, request, language)
@@ -180,8 +208,14 @@ def update_context(session, tid, context_id, request, language):
 
 
 @transact
-def order_elements(session, handler, req_args, *args, **kwargs):
-    ctxs = session.query(models.Context).filter(models.Context.tid == handler.request.tid)
+def order_elements(session, tid, req_args, *args, **kwargs):
+    """
+    Transaction for reodering context elements
+    :param session:  An ORM session
+    :param tid: The tenant ID
+    :param req_args: The request arguments
+    """
+    ctxs = session.query(models.Context).filter(models.Context.tid == tid)
 
     id_dict = {ctx.id: ctx for ctx in ctxs}
     ids = req_args['ids']

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# Handle manipulation of submission statuses
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models

@@ -1,9 +1,4 @@
 # -*- coding: utf-8
-#
-#   user
-#   *****
-# Implementation of the User model functionalities
-#
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.base import BaseHandler

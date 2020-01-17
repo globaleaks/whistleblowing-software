@@ -1,12 +1,4 @@
 # -*- coding: utf-8 -*-
-#
-# admin/lang
-#  **************
-#
-# Backend supports for jQuery File Uploader, and implementation of the
-# file language statically uploaded by the Admin
-
-# This code differs from handlers/file.py because files here are not tracked in the DB
 import json
 
 from twisted.internet.defer import inlineCallbacks, returnValue
@@ -19,21 +11,31 @@ from globaleaks.orm import transact
 
 @transact
 def get(session, tid, lang):
-    texts = session.query(models.CustomTexts).filter(
-        models.CustomTexts.tid == tid, models.CustomTexts.lang == lang).one_or_none()
-    if texts is None:
-        return {}
-
-    return texts.texts
+    """
+    Transaction for retrieving the texts customization of a tenant
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param lang: The language to be used for the lookup
+    :return: The sequence of customizations
+    """
+    texts = session.query(models.CustomTexts).filter(models.CustomTexts.tid == tid,
+                                                     models.CustomTexts.lang == lang).one_or_none()
+    return text.texts if texts is not None else {}
 
 
 @transact
 def update(session, tid, lang, request):
-    texts = session.query(models.CustomTexts).filter(
-        models.CustomTexts.tid == tid, models.CustomTexts.lang == lang).one_or_none()
+    """
+    Transaction for updating the texts customizations of a tenant
+    :param session: An ORM session
+    :param tid: A tentant ID
+    :param lang: The language to be used for the update
+    :param request: The customization data
+    """
+    texts = session.query(models.CustomTexts).filter(models.CustomTexts.tid == tid,
+                                                     models.CustomTexts.lang == lang).one_or_none()
     if texts is None:
-        session.add(models.CustomTexts(
-            {'tid': tid, 'lang': lang, 'texts': request}))
+        session.add(models.CustomTexts({'tid': tid, 'lang': lang, 'texts': request}))
     else:
         texts.texts = request
 

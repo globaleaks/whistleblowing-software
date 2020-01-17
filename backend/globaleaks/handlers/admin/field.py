@@ -1,9 +1,4 @@
 # -*- coding: utf-8
-#
-#   /admin/fields
-#   *****
-# Implementation of the code executed on handler /admin/fields
-#
 from sqlalchemy.sql.expression import not_
 
 from globaleaks import models
@@ -16,7 +11,27 @@ from globaleaks.settings import Settings
 from globaleaks.utils.utility import read_json_file
 
 
-def db_create_trigger(session, option_id, type, object_id, sufficient):
+def fieldtree_ancestors(session, field_id):
+    """
+    Transaction to extract the parents of a field
+    :param session: An ORM session
+    :param file_id: The field ID
+    """
+    field = session.query(models.Field).filter(models.Field.id == field_id).one_or_none()
+    if field.fieldgroup_id is not None:
+        yield field.fieldgroup_id
+        yield fieldtree_ancestors(session, field.fieldgroup_id)
+
+
+def db_create_option_trigger(session, option_id, type, object_id, sufficient):
+    """
+    Transaction for creating an option trigger
+    :param session: An ORM session
+    :param option_id: The option id
+    :param type: The trigger type
+    :param object_id: The object to be connected to the trigger
+    :param sufficient: A boolean indicating if the condition is sufficient
+    """
     o = get_trigger_model_by_type(type)()
     o.option_id = option_id
     o.object_id = object_id
@@ -25,11 +40,27 @@ def db_create_trigger(session, option_id, type, object_id, sufficient):
 
 
 def db_reset_option_triggers(session, type, object_id):
+    """
+    Transaction for resetting every option trigger set on the specified object
+    :param session: An ORM session
+    :param type: The type of trigger to be reset
+    :param object_id: The object on which reset the triggers
+    """
     m = get_trigger_model_by_type(type)
     session.query(m).filter(m.object_id == object_id).delete(synchronize_session='fetch')
 
 
 def db_update_fieldoption(session, field_id, fieldoption_id, option_dict, language, idx):
+    """
+    Transaction to update a field option
+    :param session: An ORM session
+    :param field_id: The field ID of the field on which the option is set
+    :param fieldoption_id: The option ID
+    :param option_dict: The option configuration
+    :param language: The language of the request
+    :param idx: The order index with reference to the other options set
+    :return: The serialized descriptor of the option
+    """
     option_dict['field_id'] = field_id
 
     fill_localized_keys(option_dict, models.FieldOption.localized_keys, language)
@@ -49,6 +80,13 @@ def db_update_fieldoption(session, field_id, fieldoption_id, option_dict, langua
 
 
 def db_update_fieldoptions(session, field_id, options, language):
+    """
+    Transaction to update a set of options at once
+    :param session: An ORM session
+    :param field_id: The field on which the options are set
+    :param options: The list of options to be updated
+    :param language: The language of the request
+    """
     options_ids = [db_update_fieldoption(session, field_id, option['id'], option, language, idx) for idx, option in enumerate(options)]
 
     if not options_ids:
@@ -61,6 +99,15 @@ def db_update_fieldoptions(session, field_id, options, language):
 
 
 def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
+    """
+    Transaction for updating a fieldattr
+    :param session: An ORM session
+    :param field_id: The field on which the attribute is configured
+    :param attr_name: The attribute name
+    :param attr_dict: The attribute configuration
+    :param language: The language of the request
+    :return: The ID of the attribute
+    """
     attr_dict['name'] = attr_name
     attr_dict['field_id'] = field_id
 
@@ -78,6 +125,13 @@ def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
 
 
 def db_update_fieldattrs(session, field_id, field_attrs, language):
+    """
+    Transaction to update a set of fieldattrs at once
+    :param session: An ORM session
+    :param field_id: The field on which the fieldattrs are set
+    :param options: The list of fieldattrs to be updated
+    :param language: The language of the request
+    """
     attrs_ids = [db_update_fieldattr(session, field_id, attr_name, attr, language) for attr_name, attr in field_attrs.items()]
 
     if not attrs_ids:
@@ -89,44 +143,55 @@ def db_update_fieldattrs(session, field_id, field_attrs, language):
     session.query(models.FieldAttr).filter(models.FieldAttr.id.in_(to_remove.subquery())).delete(synchronize_session='fetch')
 
 
-def check_field_association(session, tid, field_dict):
-    if field_dict.get('fieldgroup_id', '') and session.query(models.Field).filter(models.Field.id == field_dict['fieldgroup_id'],
-                                                                                  models.Field.tid != tid).count():
+def check_field_association(session, tid, request):
+    """
+    Transaction to check consistency of field association
+    :param session: The ORM session
+    :param tid: The tenant ID
+    :param request: The request data to be verified
+    """
+    if request.get('fieldgroup_id', '') and session.query(models.Field).filter(models.Field.id == request['fieldgroup_id'],
+                                                                               models.Field.tid != tid).count():
         raise errors.InputValidationError()
 
-    if field_dict.get('template_id', '') and session.query(models.Field).filter(models.Field.id == field_dict['template_id'],
-                                                                                not_(models.Field.tid.in_(set([1, tid])))).count():
+    if request.get('template_id', '') and session.query(models.Field).filter(models.Field.id == request['template_id'],
+                                                                             not_(models.Field.tid.in_(set([1, tid])))).count():
         raise errors.InputValidationError()
 
-    if field_dict.get('step_id', '') and session.query(models.Field).filter(models.Step.id == field_dict['step_id'],
-                                                                            models.Questionnaire.id == models.Step.questionnaire_id,
-                                                                            not_(models.Questionnaire.tid.in_(set([1, tid])))).count():
+    if request.get('step_id', '') and session.query(models.Field).filter(models.Step.id == request['step_id'],
+                                                                         models.Questionnaire.id == models.Step.questionnaire_id,
+                                                                         not_(models.Questionnaire.tid.in_(set([1, tid])))).count():
         raise errors.InputValidationError()
 
-    if field_dict.get('fieldgroup_id', ''):
-        ancestors = set(fieldtree_ancestors(session, field_dict['fieldgroup_id']))
-        if field_dict['id'] == field_dict['fieldgroup_id'] or field_dict['id'] in ancestors:
+    if request.get('fieldgroup_id', ''):
+        ancestors = set(fieldtree_ancestors(session, request['fieldgroup_id']))
+        if request['id'] == request['fieldgroup_id'] or request['id'] in ancestors:
             raise errors.InputValidationError("Provided field association would cause recursion loop")
 
 
-def db_create_field(session, tid, field_dict, language):
+def db_create_field(session, tid, request, language):
     """
-    Create and add a new field to the session, then return the new serialized object.
+    Transaction for creating a field
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param request: The request data
+    :param language: The language of the request
+    :return: The created field
     """
-    field_dict['tid'] = tid
+    request['tid'] = tid
 
-    fill_localized_keys(field_dict, models.Field.localized_keys, language)
+    fill_localized_keys(request, models.Field.localized_keys, language)
 
-    check_field_association(session, tid, field_dict)
+    check_field_association(session, tid, request)
 
-    if field_dict.get('template_id', '') != '':
-        if field_dict['template_id'] == 'whistleblower_identity':
-            if field_dict.get('step_id', '') == '':
+    if request.get('template_id', '') != '':
+        if request['template_id'] == 'whistleblower_identity':
+            if request.get('step_id', '') == '':
                 raise errors.InputValidationError("Cannot associate whistleblower identity field to a fieldgroup")
 
             q_id = session.query(models.Questionnaire.id) \
                           .filter(models.Questionnaire.id == models.Step.questionnaire_id,
-                                  models.Step.id == field_dict['step_id'])
+                                  models.Step.id == request['step_id'])
 
             field = session.query(models.Field) \
                            .filter(models.Field.template_id == 'whistleblower_identity',
@@ -136,16 +201,16 @@ def db_create_field(session, tid, field_dict, language):
             if field is not None:
                 raise errors.InputValidationError("Whistleblower identity field already present")
 
-        field = models.db_forge_obj(session, models.Field, field_dict)
+        field = models.db_forge_obj(session, models.Field, request)
 
-        template = session.query(models.Field).filter(models.Field.id == field_dict['template_id']).one()
+        template = session.query(models.Field).filter(models.Field.id == request['template_id']).one()
 
         field.label = template.label
         field.description = template.description
         field.hint = template.hint
         field.placeholder = template.placeholder
 
-        attrs = field_dict.get('attrs')
+        attrs = request.get('attrs')
         if not attrs:
             field_attrs = read_json_file(Settings.field_attrs_file)
             attrs = field_attrs.get(field.template_id, {})
@@ -153,18 +218,18 @@ def db_create_field(session, tid, field_dict, language):
         db_update_fieldattrs(session, field.id, attrs, None)
 
     else:
-        field = models.db_forge_obj(session, models.Field, field_dict)
-        attrs = field_dict.get('attrs')
-        options = field_dict.get('options')
+        field = models.db_forge_obj(session, models.Field, request)
+        attrs = request.get('attrs')
+        options = request.get('options')
 
         db_update_fieldattrs(session, field.id, attrs, language)
         db_update_fieldoptions(session, field.id, options, language)
 
-        for trigger in field_dict.get('triggered_by_options', []):
-            db_create_trigger(session, trigger['option'], 'field', field.id, trigger.get('sufficient', True))
+        for trigger in request.get('triggered_by_options', []):
+            db_create_option_trigger(session, trigger['option'], 'field', field.id, trigger.get('sufficient', True))
 
     if field.instance != 'reference':
-        for c in field_dict.get('children', []):
+        for c in request.get('children', []):
             c['tid'] = field.tid
             c['fieldgroup_id'] = field.id
             db_create_field(session, tid, c, language)
@@ -173,47 +238,60 @@ def db_create_field(session, tid, field_dict, language):
 
 
 @transact
-def create_field(session, tid, field_dict, language):
+def create_field(session, tid, request, language):
     """
-    Transaction that perform db_create_field
+    Transaction for creating a field
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param request: The request data
+    :param language: The language of the request
+    :return: The serializated descriptor of the created field
     """
-    field = db_create_field(session, tid, field_dict, language)
+    field = db_create_field(session, tid, request, language)
 
     return serialize_field(session, tid, field, language)
 
 
-def db_update_field(session, tid, field_id, field_dict, language):
+def db_update_field(session, tid, field_id, request, language):
+    """
+    Transaction for updating a field
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param request: The request data
+    :param language: The language of the request
+    :return: The updated field
+    """
     field = models.db_get(session, models.Field, models.Field.tid == tid, models.Field.id == field_id)
 
-    check_field_association(session, tid, field_dict)
+    check_field_association(session, tid, request)
 
-    fill_localized_keys(field_dict, models.Field.localized_keys, language)
+    fill_localized_keys(request, models.Field.localized_keys, language)
 
-    db_update_fieldattrs(session, field.id, field_dict['attrs'], language)
+    db_update_fieldattrs(session, field.id, request['attrs'], language)
 
     db_reset_option_triggers(session, 'field', field.id)
 
-    for trigger in field_dict.get('triggered_by_options', []):
-        db_create_trigger(session, trigger['option'], 'field', field.id, trigger.get('sufficient', True))
+    for trigger in request.get('triggered_by_options', []):
+        db_create_option_trigger(session, trigger['option'], 'field', field.id, trigger.get('sufficient', True))
 
-    if field_dict['instance'] != 'reference':
-        db_update_fieldoptions(session, field.id, field_dict['options'], language)
+    if request['instance'] != 'reference':
+        db_update_fieldoptions(session, field.id, request['options'], language)
 
         # full update
-        field.update(field_dict)
+        field.update(request)
 
     else:
         # partial update
         field.update({
-            'label': field_dict['label'],
-            'hint': field_dict['hint'],
-            'description': field_dict['description'],
-            'placeholder': field_dict['placeholder'],
-            'template_override_id': field_dict['template_override_id'],
-            'x': field_dict['x'],
-            'y': field_dict['y'],
-            'width': field_dict['width'],
-            'required': field_dict['required']
+            'label': request['label'],
+            'hint': request['hint'],
+            'description': request['description'],
+            'placeholder': request['placeholder'],
+            'template_override_id': request['template_override_id'],
+            'x': request['x'],
+            'y': request['y'],
+            'width': request['width'],
+            'required': request['required']
         })
 
     return field
@@ -222,7 +300,12 @@ def db_update_field(session, tid, field_id, field_dict, language):
 @transact
 def update_field(session, tid, field_id, field, language):
     """
-    Update the specified field with the details.
+    Transaction for updating a field
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param request: The request data
+    :param language: The language of the request
+    :return: The serialized descriptor of the updated field
     """
     field = db_update_field(session, tid, field_id, field, language)
 
@@ -232,7 +315,10 @@ def update_field(session, tid, field_id, field, language):
 @transact
 def delete_field(session, tid, field_id):
     """
-    Delete the field object corresponding to field_id
+    Trandaction to delete a field
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param field_id: The id of the field to be deleted
     """
     field = models.db_get(session, models.Field, models.Field.tid == tid, models.Field.id == field_id)
 
@@ -245,20 +331,14 @@ def delete_field(session, tid, field_id):
     session.delete(field)
 
 
-def fieldtree_ancestors(session, id):
-    """
-    Given a field_id, recursively extract its parents.
-    """
-    field = session.query(models.Field).filter(models.Field.id == id).one_or_none()
-    if field.fieldgroup_id is not None:
-        yield field.fieldgroup_id
-        yield fieldtree_ancestors(session, field.fieldgroup_id)
-
-
 @transact
 def get_fieldtemplate_list(session, tid, language):
     """
-    Serialize all the field templates localizing their content depending on the language.
+    Transaction to retrieve the list of the field templates defined on a tenant
+    :param session: An ORM session
+    :param tid: The tenant ID on which perform the lookup
+    :param language: The language of the request
+    :return: The list of serialized field template descriptors
     """
     templates = session.query(models.Field).filter(models.Field.tid.in_(set([1, tid])),
                                                    models.Field.instance == 'template',

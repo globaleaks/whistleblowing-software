@@ -3,8 +3,13 @@ from globaleaks import models
 from globaleaks.utils.utility import datetime_to_ISO8601
 
 
-# InternaltFile
 def serialize_ifile(session, ifile):
+    """
+    Transaction for serializing ifiles
+    :param session: An ORM session
+    :param ifile: The ifile to be serialized
+    :return: The serialized ifile
+    """
     return {
         'id': ifile.id,
         'creation_date': datetime_to_ISO8601(ifile.creation_date),
@@ -14,8 +19,13 @@ def serialize_ifile(session, ifile):
     }
 
 
-# ReceiverFile
 def serialize_rfile(session, rfile):
+    """
+    Transaction for serializing rfile
+    :param session: An ORM session
+    :param ifile: The rfile to be serialized
+    :return: The serialized rfile
+    """
     ifile = session.query(models.InternalFile) \
                    .filter(models.InternalFile.id == models.ReceiverFile.internalfile_id,
                            models.ReceiverFile.id == rfile.id).one()
@@ -31,10 +41,14 @@ def serialize_rfile(session, rfile):
         'status': rfile.status
     }
 
-# WhistleblowerFile
-
 
 def serialize_wbfile(session, wbfile):
+    """
+    Transaction for serializing wbfile
+    :param session: An ORM session
+    :param ifile: The wbfile to be serialized
+    :return: The serialized wbfile
+    """
     receiver_id = session.query(models.ReceiverTip.receiver_id) \
                          .filter(models.ReceiverTip.id == wbfile.receivertip_id).one()
 

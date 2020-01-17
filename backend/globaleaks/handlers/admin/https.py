@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from OpenSSL import crypto
-from OpenSSL.crypto import load_certificate, FILETYPE_PEM
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
@@ -41,11 +40,6 @@ def db_create_acme_key(session, tid):
     return key
 
 
-@transact
-def create_acme_key(session, tid):
-    return db_create_acme_key(session, tid)
-
-
 class FileResource(object):
     """
     An interface for interacting with files stored on disk or in the db
@@ -62,9 +56,6 @@ class FileResource(object):
     @staticmethod
     @transact
     def get_file(session, tid):
-        """
-        :rtype: A `unicode` string
-        """
         raise errors.MethodNotImplemented()
 
     @staticmethod
@@ -79,9 +70,6 @@ class FileResource(object):
 
     @staticmethod
     def db_serialize(session, tid):
-        """
-        :rtype: A `dict` to be converted into JSON for delivery to a client
-        """
         raise errors.MethodNotImplemented()
 
 
@@ -172,7 +160,7 @@ class CertFileRes(FileResource):
         if len(c) == 0:
             return {'name': 'cert', 'set': False}
 
-        x509 = crypto.load_certificate(FILETYPE_PEM, c)
+        x509 = crypto.load_certificate(crypto.FILETYPE_PEM, c)
         expr_date = format_cert_expr_date(x509.get_notAfter())
 
         return {
@@ -217,7 +205,7 @@ class ChainFileRes(FileResource):
         if len(c) == 0:
             return {'name': 'chain', 'set': False}
 
-        x509 = load_certificate(FILETYPE_PEM, c)
+        x509 = crypto.load_certificate(crypto.FILETYPE_PEM, c)
         expr_date = format_cert_expr_date(x509.get_notAfter())
 
         return {

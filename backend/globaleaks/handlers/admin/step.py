@@ -1,11 +1,6 @@
 # -*- coding: utf-8
-#
-#   /admin/steps
-#   *****
-# Implementation of the code executed on handler /admin/steps
-#
 from globaleaks import models
-from globaleaks.handlers.admin.field import db_create_field, db_update_field, db_create_trigger, db_reset_option_triggers
+from globaleaks.handlers.admin.field import db_create_field, db_update_field, db_create_option_trigger, db_reset_option_triggers
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.public import serialize_step
@@ -28,7 +23,7 @@ def db_create_step(session, tid, step_dict, language):
     step = models.db_forge_obj(session, models.Step, step_dict)
 
     for trigger in step_dict.get('triggered_by_options', []):
-        db_create_trigger(session, tid, trigger['option'], 'step', step.id, trigger.get('sufficient', True))
+        db_create_option_trigger(session, tid, trigger['option'], 'step', step.id, trigger.get('sufficient', True))
 
     for c in step_dict['children']:
         c['tid'] = tid
@@ -71,7 +66,7 @@ def db_update_step(session, tid, step_id, step_dict, language):
     db_reset_option_triggers(session, 'step', step.id)
 
     for trigger in step_dict.get('triggered_by_options', []):
-        db_create_trigger(session, tid, trigger['option'], 'step', step.id, trigger.get('sufficient', True))
+        db_create_option_trigger(session, tid, trigger['option'], 'step', step.id, trigger.get('sufficient', True))
 
     return step
 
