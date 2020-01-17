@@ -32,7 +32,13 @@ def db_gen_user_keys(session, tid, user, password):
     return crypto_prv_key
 
 
-def db_wizard(session, tid, request, client_using_tor, language):
+def db_wizard(session, tid, request):
+    """
+    Transaction for the handling of wizard request
+    :param session: The ORM session
+    :param tid: The tenant ID
+    :param request: The user request
+    """
     language = request['node_language']
 
     node = config.ConfigFactory(session, tid)
@@ -172,4 +178,4 @@ class Wizard(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.WizardDesc)
 
-        return tw(db_wizard, self.request.tid, request, self.request.client_using_tor, self.request.language)
+        return tw(db_wizard, self.request.tid, request)

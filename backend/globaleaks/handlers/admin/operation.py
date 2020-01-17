@@ -4,7 +4,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.password_reset import generate_password_reset_token_by_user_id
-from globaleaks.handlers.rtip import db_delete_itip
+from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import db_get_user, disable_2fa
 from globaleaks.models import Config, InternalTip
 from globaleaks.models.config import db_set_config_variable
@@ -41,8 +41,9 @@ def check_hostname(session, tid, input_hostname):
 def reset_submissions(session, tid):
     session.query(Config).filter(Config.tid == tid, Config.var_name == 'counter_submissions').update({'value': 0})
 
-    for itip in session.query(InternalTip).filter(InternalTip.tid == tid):
-        db_delete_itip(session, itip)
+    itip_ids = [x[0] for x in session.query(InternalTip.id).filter(InternalTip.tid == tid)]
+
+    db_delete_itips(session, itip_ids)
 
 
 @transact

@@ -11,8 +11,8 @@ from cryptography.hazmat.primitives import constant_time, hashes
 
 from nacl.encoding import RawEncoder, Base32Encoder, Base64Encoder
 from nacl.hashlib import scrypt
-from nacl.pwhash import argon2id  # pylint: disable=no-name-in-module
-from nacl.public import SealedBox, PrivateKey, PublicKey  # pylint: disable=no-name-in-module
+from nacl.pwhash import argon2id
+from nacl.public import SealedBox, PrivateKey, PublicKey
 from nacl.secret import SecretBox
 from nacl.utils import random as nacl_random
 

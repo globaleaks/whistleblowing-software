@@ -58,7 +58,7 @@ def db_create_user(session, tid, request, language):
     session.flush()
 
     if request.get('send_account_activation_link', False):
-        db_generate_password_reset_token(session, tid, user)
+        db_generate_password_reset_token(session, user)
 
     return user
 

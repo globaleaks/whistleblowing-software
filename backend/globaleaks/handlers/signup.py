@@ -12,6 +12,7 @@ from globaleaks.handlers.wizard import db_wizard
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
+from globaleaks.state import State
 from globaleaks.utils.crypto import generateRandomKey
 from globaleaks.utils.utility import datetime_to_ISO8601
 
@@ -45,7 +46,7 @@ def serialize_signup(signup):
 
 
 @transact
-def signup(session, state, tid, request, language):
+def signup(session, request, language):
     config = ConfigFactory(session, 1)
 
     if not config.get_val('enable_signup'):
@@ -88,7 +89,7 @@ def signup(session, state, tid, request, language):
         'signup': signup_dict
     }
 
-    state.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
+    State.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
 
     # Email 2 - Admin Notification
     for user_desc in db_get_admin_users(session, 1):
@@ -100,11 +101,11 @@ def signup(session, state, tid, request, language):
             'signup': signup_dict
         }
 
-        state.format_and_send_mail(session, 1, user_desc, template_vars)
+        State.format_and_send_mail(session, 1, user_desc, template_vars)
 
 
 @transact
-def signup_activation(session, state, tid, token, language):
+def signup_activation(session, token, language):
     config = ConfigFactory(session, 1)
 
     if not config.get_val('enable_signup'):
@@ -143,7 +144,7 @@ def signup_activation(session, state, tid, token, language):
         'enable_developers_exception_notification': True
     }
 
-    db_wizard(session, signup.tid, wizard, False, language)
+    db_wizard(session, signup.tid, wizard)
 
     template_vars = {
         'type': 'activation',
@@ -154,9 +155,9 @@ def signup_activation(session, state, tid, token, language):
         'password_recipient': wizard['receiver_password']
     }
 
-    state.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
+    State.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
 
-    db_refresh_memory_variables(session, [tid])
+    db_refresh_memory_variables(session, [signup.tid])
 
 
 class Signup(BaseHandler):
@@ -174,7 +175,7 @@ class Signup(BaseHandler):
         request['client_ip_address'] = self.request.client_ip
         request['client_user_agent'] = self.request.client_ua
 
-        return signup(self.state, self.request.tid, request, self.request.language)
+        return signup(request, self.request.language)
 
 
 class SignupActivation(BaseHandler):
@@ -187,4 +188,4 @@ class SignupActivation(BaseHandler):
     refresh_connection_endpoints = True
 
     def get(self, token):
-        return signup_activation(self.state, self.request.tid, token, self.request.language)
+        return signup_activation(token, self.request.language)

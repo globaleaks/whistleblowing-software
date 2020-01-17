@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-#
-# Validates the token for password reset changes
 import pyotp
 
 from datetime import datetime, timedelta
 from sqlalchemy import or_
 
 from globaleaks import models
+from globaleaks.handlers.admin.notification import db_get_notification
+from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.user import db_get_user
+from globaleaks.handlers.user import db_get_user, user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.sessions import Sessions
@@ -17,8 +17,35 @@ from globaleaks.utils.crypto import generateRandomKey, Base32Encoder, Base64Enco
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 
+def db_generate_password_reset_token(session, user):
+    """
+    Transaction for issuing password reset tokens
+    :param session: A ORM session
+    :param user: The user for which issuing a password reset token
+    """
+    user.reset_password_token = generateRandomKey(32)
+    user.reset_password_date = datetime_now()
+
+    if user.last_login > datetime_null():
+        template = 'password_reset_validation'
+    else:
+        template = 'account_activation'
+
+    user_desc = user_serialize_user(session, user, user.language)
+
+    template_vars = {
+        'type': template,
+        'user': user_desc,
+        'reset_token': user.reset_password_token,
+        'node': db_admin_serialize_node(session, user.tid, user.language),
+        'notification': db_get_notification(session, user.tid, user.language)
+    }
+
+    State.format_and_send_mail(session, user.tid, user_desc, template_vars)
+
+
 @transact
-def validate_password_reset(session, tid, reset_token, auth_code, recovery_key):
+def validate_password_reset(session, reset_token, auth_code, recovery_key):
     """Retrieves a user given a password reset validation token"""
     now = datetime.now()
     prv_key = ''
@@ -51,43 +78,17 @@ def validate_password_reset(session, tid, reset_token, auth_code, recovery_key):
     user.reset_password_date = now
     user.password_change_needed = True
 
-    session = Sessions.new(tid, user.id, user.tid, user.role,
+    session = Sessions.new(user.tid, user.id, user.tid, user.role,
                            user.password_change_needed, user.two_factor_enable, prv_key, user.crypto_escrow_prv_key)
 
     return {'status': 'success', 'token': session.id}
-
-
-def db_generate_password_reset_token(session, tid, user):
-    from globaleaks.handlers.admin.notification import db_get_notification
-    from globaleaks.handlers.admin.node import db_admin_serialize_node
-    from globaleaks.handlers.user import user_serialize_user
-
-    user.reset_password_token = generateRandomKey(32)
-    user.reset_password_date = datetime_now()
-
-    if user.last_login > datetime_null():
-        template = 'password_reset_validation'
-    else:
-        template = 'account_activation'
-
-    user_desc = user_serialize_user(session, user, user.language)
-
-    template_vars = {
-        'type': template,
-        'user': user_desc,
-        'reset_token': user.reset_password_token,
-        'node': db_admin_serialize_node(session, tid, user.language),
-        'notification': db_get_notification(session, tid, user.language)
-    }
-
-    State.format_and_send_mail(session, tid, user_desc, template_vars)
 
 
 @transact
 def generate_password_reset_token_by_user_id(session, tid, user_id):
     user = db_get_user(session, tid, user_id)
 
-    db_generate_password_reset_token(session, tid, user)
+    db_generate_password_reset_token(session, user)
 
     return {'redirect': '/login/passwordreset/requested'}
 
@@ -101,12 +102,13 @@ def generate_password_reset_token_by_username_or_mail(session, tid, username_or_
     ).distinct()
 
     for user in users:
-        db_generate_password_reset_token(session, tid, user)
+        db_generate_password_reset_token(session, user)
 
     return {'redirect': '/login/passwordreset/requested'}
 
 
 class PasswordResetHandler(BaseHandler):
+    """Handler that implements password reset API"""
     check_roles = 'none'
 
     def post(self):
@@ -123,7 +125,6 @@ class PasswordResetHandler(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.PasswordReset2Desc)
 
-        return validate_password_reset(self.request.tid,
-                                       request['reset_token'],
+        return validate_password_reset(request['reset_token'],
                                        request['auth_code'],
                                        request['recovery_key'])

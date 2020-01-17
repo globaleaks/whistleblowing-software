@@ -1024,7 +1024,7 @@ class _Signup(Model):
     organization_number_employees = Column(UnicodeText, default='', nullable=False)
     organization_number_users = Column(UnicodeText, default='', nullable=False)
     hear_channel = Column(UnicodeText, default='', nullable=False)
-    activation_token = Column(UnicodeText, nullable=False)
+    activation_token = Column(UnicodeText, unique=True, nullable=False)
 
     client_ip_address = Column(UnicodeText, default='', nullable=False)
     client_user_agent = Column(UnicodeText, default='', nullable=False)

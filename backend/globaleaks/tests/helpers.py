@@ -724,7 +724,7 @@ class TestGLWithPopulatedDB(TestGL):
         for i in range(1, self.population_of_tenants):
             name = 'tenant-' + str(i+1)
             t = yield create_tenant({'mode': 'default', 'label': name, 'active': True, 'subdomain': name})
-            yield tw(db_wizard, t['id'], self.dummyWizard, True, 'en')
+            yield tw(db_wizard, t['id'], self.dummyWizard)
             yield self.set_hostnames(i+1)
 
     @transact
@@ -765,13 +765,11 @@ class TestGLWithPopulatedDB(TestGL):
         for rtip_desc in self.dummyRTips:
             yield rtip.create_comment(1,
                                       rtip_desc['receiver_id'],
-                                      USER_PRV_KEY,
                                       rtip_desc['id'],
                                       'comment')
 
             yield rtip.create_message(1,
                                       rtip_desc['receiver_id'],
-                                      USER_PRV_KEY,
                                       rtip_desc['id'],
                                       'message')
 
@@ -780,13 +778,11 @@ class TestGLWithPopulatedDB(TestGL):
         for wbtip_desc in self.dummyWBTips:
             yield wbtip.create_comment(1,
                                        wbtip_desc['id'],
-                                       USER_PRV_KEY,
                                        'comment')
 
             for receiver_id in wbtip_desc['receivers_ids']:
                 yield wbtip.create_message(1,
                                            wbtip_desc['id'],
-                                           USER_PRV_KEY,
                                            receiver_id,
                                            'message')
 

@@ -90,7 +90,7 @@ def serialize_wbtip(session, wbtip, itip, language):
 
 
 @transact
-def create_comment(session, tid, wbtip_id, user_key, content):
+def create_comment(session, tid, wbtip_id, content):
     wbtip, itip = session.query(models.WhistleblowerTip, models.InternalTip)\
                          .filter(models.WhistleblowerTip.id == wbtip_id,
                                  models.InternalTip.id == models.WhistleblowerTip.id,
@@ -129,7 +129,7 @@ def db_get_itip_message_list(session, wbtip_id):
 
 
 @transact
-def create_message(session, tid, wbtip_id, user_key, receiver_id, content):
+def create_message(session, tid, wbtip_id, receiver_id, content):
     wbtip, itip, rtip_id = session.query(models.WhistleblowerTip, models.InternalTip, models.ReceiverTip.id) \
                                   .filter(models.WhistleblowerTip.id == wbtip_id,
                                           models.ReceiverTip.internaltip_id == wbtip_id,
@@ -227,7 +227,7 @@ class WBTipCommentCollection(BaseHandler):
 
     def post(self):
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
-        return create_comment(self.request.tid, self.current_user.user_id, self.current_user.cc, request['content'])
+        return create_comment(self.request.tid, self.current_user.user_id, request['content'])
 
 
 class WBTipMessageCollection(BaseHandler):
@@ -241,7 +241,7 @@ class WBTipMessageCollection(BaseHandler):
 
     def post(self, receiver_id):
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
-        return create_message(self.request.tid, self.current_user.user_id, self.current_user.cc, receiver_id, request['content'])
+        return create_message(self.request.tid, self.current_user.user_id, receiver_id, request['content'])
 
 
 class WBTipWBFileHandler(WBFileHandler):

@@ -6,7 +6,7 @@ from globaleaks.orm import transact
 from globaleaks.state import State
 
 
-def serialize_site(session, tenant, signup=None):
+def serialize_site(session, tenant):
     ret = {
         'id': tenant.id,
         'label': tenant.label,

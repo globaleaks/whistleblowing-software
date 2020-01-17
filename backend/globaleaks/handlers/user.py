@@ -50,14 +50,12 @@ def user_serialize_user(session, user, language):
     :param session: the session on which perform queries.
     :return: a serialization of the object
     """
+    contexts = []
     picture = db_get_model_img(session, 'users', user.id)
 
     if user.role == 'receiver':
-        # take only contexts for the current tenant
-        contexts = [x[0] for x in session.query(models.ReceiverContext.context_id)
-                                         .filter(models.ReceiverContext.receiver_id == user.id)]
-    else:
-        contexts = []
+        for x in session.query(models.ReceiverContext.context_id).filter(models.ReceiverContext.receiver_id == user.id):
+            contexts.append(x[0])
 
     ret_dict = {
         'id': user.id,
@@ -133,8 +131,6 @@ def db_user_update_user(session, tid, user_session, request):
     """
     from globaleaks.handlers.admin.notification import db_get_notification
     from globaleaks.handlers.admin.node import db_admin_serialize_node
-
-    node = config.ConfigFactory(session, tid)
 
     user = models.db_get(session,
                          models.User,
@@ -264,8 +260,16 @@ class UserInstance(BaseHandler):
 
 
 @transact
-def get_recovery_key(session, user_tid, user_id, user_cc):
-    user = db_get_user(session, user_tid, user_id)
+def get_recovery_key(session, tid, user_id, user_cc):
+    """
+    Transaction to get a user recovery key
+    :param session: The ORM session
+    :param user_tid: The user
+    :param user_id:
+    :param user_cc:
+    :return:
+    """
+    user = db_get_user(session, tid, user_id)
 
     if not user.crypto_rec_key:
         return ''
@@ -274,8 +278,15 @@ def get_recovery_key(session, user_tid, user_id, user_cc):
 
 
 @transact
-def enable_2fa_step1(session, user_tid, user_id, user_cc):
-    user = db_get_user(session, user_tid, user_id)
+def enable_2fa_step1(session, tid, user_id):
+    """
+    Transact for the first step of 2fa enrollment (start)
+    :param session:
+    :param tid:
+    :param user_id:
+    :return:
+    """
+    user = db_get_user(session, tid, user_id)
 
     if user.two_factor_secret:
         return user.two_factor_secret
@@ -291,8 +302,16 @@ def enable_2fa_step1(session, user_tid, user_id, user_cc):
 
 
 @transact
-def enable_2fa_step2(session, user_tid, user_id, user_cc, token):
-    user = db_get_user(session, user_tid, user_id)
+def enable_2fa_step2(session, tid, user_id, user_cc, token):
+    """
+        Transact for the first step of 2fa enrollment (completion)
+    :param session: The ORM session
+    :param tid: The tenant ID
+    :param user_id: The user ID
+    :param user_cc: The user private key
+    :param token: A token for OTP authentication
+    """
+    user = db_get_user(session, tid, user_id)
 
     if user.crypto_pub_key:
         two_factor_secret = GCE.asymmetric_decrypt(user_cc, Base64Encoder.decode(user.two_factor_secret))
@@ -307,11 +326,17 @@ def enable_2fa_step2(session, user_tid, user_id, user_cc, token):
 
 
 @transact
-def disable_2fa(session, user_tid, user_id):
-    user = db_get_user(session, user_tid, user_id)
+def disable_2fa(session, tid, user_id):
+    """
+    Transaction for disabling the two factor authentication
+    :param session:
+    :param tid:
+    :param user_id:
+    """
+    user = db_get_user(session, tid, user_id)
 
     user.two_factor_enable = False
-    user.two_factor_secret = b''
+    user.two_factor_secret = ''
 
 
 class UserOperationHandler(OperationHandler):
@@ -324,8 +349,7 @@ class UserOperationHandler(OperationHandler):
 
     def enable_2fa_step1(self, req_args, *args, **kwargs):
         return enable_2fa_step1(self.current_user.user_tid,
-                                self.current_user.user_id,
-                                self.current_user.cc)
+                                self.current_user.user_id)
 
     def enable_2fa_step2(self, req_args, *args, **kwargs):
         return enable_2fa_step2(self.current_user.user_tid,

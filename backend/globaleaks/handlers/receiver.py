@@ -8,7 +8,7 @@ from sqlalchemy.sql.expression import func, distinct
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_itip
+from globaleaks.handlers.rtip import db_postpone_expiration, db_delete_itips
 from globaleaks.handlers.submission import db_serialize_archived_preview_schema
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
@@ -107,19 +107,21 @@ def perform_tips_operation(session, tid, receiver_id, operation, rtips_ids):
     can_postpone_expiration = State.tenant_cache[tid].can_postpone_expiration or receiver.can_postpone_expiration
     can_delete_submission = State.tenant_cache[tid].can_delete_submission or receiver.can_delete_submission
 
-    for itip in session.query(models.InternalTip) \
-                       .filter(models.ReceiverTip.receiver_id == receiver_id,
-                               models.ReceiverTip.id.in_(rtips_ids),
-                               models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                               models.InternalTip.tid == tid):
-        if operation == 'postpone' and can_postpone_expiration:
-            db_postpone_expiration_date(session, tid, itip)
+    itips = session.query(models.InternalTip) \
+                   .filter(models.ReceiverTip.receiver_id == receiver_id,
+                           models.ReceiverTip.id.in_(rtips_ids),
+                           models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                           models.InternalTip.tid == tid)
 
-        elif operation == 'delete' and can_delete_submission:
-            db_delete_itip(session, itip)
+    if operation == 'postpone' and can_postpone_expiration:
+        for itip in itips:
+            db_postpone_expiration(session, tid, itip)
 
-        else:
-            raise errors.ForbiddenOperation
+    elif operation == 'delete' and can_delete_submission:
+        db_delete_itips(session, [itip.id for itip in itips])
+
+    else:
+        raise errors.ForbiddenOperation
 
 
 class TipsCollection(BaseHandler):

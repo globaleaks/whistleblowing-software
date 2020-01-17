@@ -174,12 +174,18 @@ def db_access_rtip(session, tid, user_id, rtip_id):
 
 
 def db_access_wbfile(session, tid, user_id, wbfile_id):
-    itips = session.query(models.InternalTip) \
-                   .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                           models.ReceiverTip.receiver_id == user_id,
-                           models.InternalTip.tid == tid)
-
-    itips_ids = [itip.id for itip in itips]
+    """
+    Transaction retrieving an wbfile and performing basic access checks
+    :param session: A ORM session
+    :param tid: A tenant ID of the user
+    :param user_id: A user ID
+    :param wbfile_id: the requested wbfile ID
+    :return: A model requested
+    """
+    itips_ids = [x[0] for x in session.query(models.InternalTip.id) \
+                                      .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                              models.ReceiverTip.receiver_id == user_id,
+                                              models.InternalTip.tid == tid)]
 
     wbfile = session.query(models.WhistleblowerFile) \
                     .filter(models.WhistleblowerFile.id == wbfile_id,
@@ -306,8 +312,8 @@ def db_delete_itip(session, itip):
     db_delete_itips(session, [itip.id])
 
 
-def db_postpone_expiration_date(session, tid, itip):
-    context = session.query(models.Context).filter(models.Context.id == itip.context_id, models.Context.tid == tid).one()
+def db_postpone_expiration(session, itip):
+    context = session.query(models.Context).filter(models.Context.id == itip.context_id).one()
 
     if context.tip_timetolive > 0:
         itip.expiration_date = get_expiration(context.tip_timetolive)
@@ -334,7 +340,7 @@ def delete_rtip(session, tid, user_id, rtip_id):
 
 
 @transact
-def postpone_expiration_date(session, tid, user_id, rtip_id):
+def postpone_expiration(session, tid, user_id, rtip_id):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     receiver = models.db_get(session, models.User,
@@ -344,7 +350,7 @@ def postpone_expiration_date(session, tid, user_id, rtip_id):
             receiver.can_postpone_expiration):
         raise errors.ForbiddenOperation
 
-    db_postpone_expiration_date(session, tid, itip)
+    db_postpone_expiration(session, itip)
 
 
 @transact
@@ -363,21 +369,38 @@ def set_internaltip_variable(session, tid, user_id, rtip_id, key, value):
 
 @transact
 def set_receivertip_variable(session, tid, user_id, rtip_id, key, value):
+    """
+    Transaction for setting properties of a submission
+    :param session: A ORM session
+    :param tid: The tenant ID of the user performing the operation
+    :param user_id: The user ID of the user performing the operation
+    :param rtip_id: The rtip ID of the submission object of the operation
+    :param key: The key of the property to be set
+    :param value: The value to be assigned to the property
+    """
     rtip, _ = db_access_rtip(session, tid, user_id, rtip_id)
     setattr(rtip, key, value)
 
 
 @transact
-def update_label(session, tid, user_id, rtip_id, key, value):
+def update_label(session, tid, user_id, rtip_id, value):
+    """
+    Transaction for setting the label of a submission
+    :param session: A ORM session
+    :param tid: The tenant ID of the user performing the operation
+    :param user_id: The user ID of the user performing the operation
+    :param rtip_id: The rtip ID of the submission object of the operation
+    :param value: The value to be assigned to the label property
+    """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     if itip.crypto_tip_pub_key:
         value = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, value)).decode()
 
     if State.tenant_cache[tid].enable_private_labels:
-        setattr(rtip, key, value)
+        setattr(rtip, 'label', value)
     else:
-        setattr(itip, key, value)
+        setattr(itip, 'label', value)
 
 
 @transact
@@ -448,21 +471,19 @@ def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
 
 
 @transact
-def create_comment(session, tid, user_id, user_key, rtip_id, content):
+def create_comment(session, tid, user_id, rtip_id, content):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     itip.update_date = rtip.last_access = datetime_now()
+
+    if itip.crypto_tip_pub_key:
+        content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
 
     comment = models.Comment()
     comment.internaltip_id = itip.id
     comment.type = 'receiver'
     comment.author_id = rtip.receiver_id
-
-    if itip.crypto_tip_pub_key:
-        comment.content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
-    else:
-        comment.content = content
-
+    comment.content = content
     session.add(comment)
     session.flush()
 
@@ -481,20 +502,18 @@ def db_get_rtip_identityaccessrequest_list(session, rtip_id):
 
 
 @transact
-def create_message(session, tid, user_id, user_key, rtip_id, content):
+def create_message(session, tid, user_id, rtip_id, content):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     itip.update_date = rtip.last_access = datetime_now()
 
+    if itip.crypto_tip_pub_key:
+        msg.content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
+
     msg = models.Message()
     msg.receivertip_id = rtip.id
     msg.type = 'receiver'
-
-    if itip.crypto_tip_pub_key:
-        msg.content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
-    else:
-        msg.content = content
-
+    msg.content = content
     session.add(msg)
     session.flush()
 
@@ -553,10 +572,10 @@ class RTipInstance(OperationHandler):
         return set_internaltip_variable(self.request.tid, self.current_user.user_id, tip_id, key, value)
 
     def postpone_expiration(self, _, tip_id, *args, **kwargs):
-        return postpone_expiration_date(self.request.tid, self.current_user.user_id, tip_id)
+        return postpone_expiration(self.request.tid, self.current_user.user_id, tip_id)
 
     def update_label(self, req_args, tip_id, *args, **kwargs):
-        return update_label(self.request.tid, self.current_user.user_id, tip_id, 'label', req_args['value'])
+        return update_label(self.request.tid, self.current_user.user_id, tip_id, req_args['value'])
 
     def update_submission_status(self, req_args, tip_id, *args, **kwargs):
         return update_tip_submission_status(self.request.tid, self.current_user.user_id, tip_id,
@@ -578,7 +597,7 @@ class RTipCommentCollection(BaseHandler):
     def post(self, tip_id):
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
 
-        return create_comment(self.request.tid, self.current_user.user_id, self.current_user.cc, tip_id, request['content'])
+        return create_comment(self.request.tid, self.current_user.user_id, tip_id, request['content'])
 
 
 class ReceiverMsgCollection(BaseHandler):
@@ -590,7 +609,7 @@ class ReceiverMsgCollection(BaseHandler):
     def post(self, tip_id):
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
 
-        return create_message(self.request.tid, self.current_user.user_id, self.current_user.cc, tip_id, request['content'])
+        return create_message(self.request.tid, self.current_user.user_id, tip_id, request['content'])
 
 
 class WhistleblowerFileHandler(BaseHandler):

@@ -29,14 +29,8 @@ import globaleaks.mocks.twisted_mocks  # pylint: disable=W0611
 
 from twisted.python import usage
 
-# Win32 can't use the standard _twistd_unix, but provides it's own variant
-if platform.system() == 'Windows':
-    from twisted.scripts._twistw import ServerOptions
-    from twisted.scripts._twistw import WindowsApplicationRunner as TwistedApplicationRunner
-else:
-    from twisted.scripts._twistd_unix import ServerOptions
-    from twisted.scripts._twistd_unix import UnixApplicationRunner as TwistedApplicationRunner
-
+from twisted.scripts._twistd_unix import ServerOptions
+from twisted.scripts._twistd_unix import UnixApplicationRunner as TwistedApplicationRunner
 
 from globaleaks import DATABASE_VERSION
 from globaleaks.settings import Settings
