@@ -550,9 +550,6 @@ def update_label(session, tid, user_id, rtip_id, value):
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    if itip.crypto_tip_pub_key:
-        value = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, value)).decode()
-
     if State.tenant_cache[tid].enable_private_labels:
         setattr(rtip, 'label', value)
     else:
@@ -724,13 +721,6 @@ def delete_wbfile(session, tid, user_id, file_id):
     wbfile = db_access_wbfile(session, tid, user_id, file_id)
     db_mark_file_for_secure_deletion(session, Settings.attachments_path, wbfile.filename)
     session.delete(wbfile)
-
-
-def decrypt_label(user_key, tip_prv_key, tip):
-    tip_key = GCE.asymmetric_decrypt(user_key, tip_prv_key)
-
-    if tip['label']:
-        tip['label'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(tip['label'].encode())).decode()
 
 
 class RTipInstance(OperationHandler):
