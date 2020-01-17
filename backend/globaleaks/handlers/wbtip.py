@@ -12,6 +12,7 @@ from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_ge
 from globaleaks.handlers.submission import serialize_usertip, \
     db_save_answers_subject_to_stats, decrypt_tip, \
     db_set_internaltip_answers, db_get_questionnaire, db_archive_questionnaire_schema, db_set_internaltip_data
+from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.utils.crypto import GCE
@@ -19,35 +20,12 @@ from globaleaks.utils.log import log
 from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
 
 
-def wb_serialize_ifile(ifile):
-    return {
-        'id': ifile.id,
-        'creation_date': datetime_to_ISO8601(ifile.creation_date),
-        'name': ifile.name,
-        'size': ifile.size,
-        'type': ifile.content_type
-    }
-
-
-def wb_serialize_wbfile(session, wbfile):
-    receiver_id = session.query(models.ReceiverTip.receiver_id) \
-                         .filter(models.ReceiverTip.id == wbfile.receivertip_id).one()[0]
-
-    return {
-        'id': wbfile.id,
-        'creation_date': datetime_to_ISO8601(wbfile.creation_date),
-        'name': wbfile.name,
-        'description': wbfile.description,
-        'size': wbfile.size,
-        'type': wbfile.content_type,
-        'author': receiver_id
-    }
-
-
 def db_get_rfile_list(session, itip_id):
-    return [wb_serialize_ifile(ifile) for ifile in session.query(models.InternalFile)
-                                                          .filter(models.InternalFile.internaltip_id == itip_id,
-                                                                  models.InternalTip.id == itip_id)]
+    ifiles = session.query(models.InternalFile) \
+                    .filter(models.InternalFile.internaltip_id == itip_id,
+                            models.InternalTip.id == itip_id)
+
+    return [serializers.serialize_ifile(session, ifile) for ifile in ifiles]
 
 
 def db_get_wbfile_list(session, itip_id):
@@ -55,7 +33,7 @@ def db_get_wbfile_list(session, itip_id):
                      .filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
                              models.ReceiverTip.internaltip_id == itip_id)
 
-    return [wb_serialize_wbfile(session, wbfile) for wbfile in wbfiles]
+    return [serializers.serialize_wbfile(session, wbfile) for wbfile in wbfiles]
 
 
 def db_get_wbtip(session, itip_id, language):

@@ -132,7 +132,7 @@ def perform_tips_operation(session, tid, receiver_id, operation, rtips_ids):
 
     if operation == 'postpone' and can_postpone_expiration:
         for itip in itips:
-            db_postpone_expiration(session, tid, itip)
+            db_postpone_expiration(session, itip)
 
     elif operation == 'delete' and can_delete_submission:
         db_delete_itips(session, [itip.id for itip in itips])

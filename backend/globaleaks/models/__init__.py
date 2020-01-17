@@ -982,8 +982,6 @@ class _ReceiverTip(Model):
     new = Column(Boolean, default=True, nullable=False)
     enable_notifications = Column(Boolean, default=True, nullable=False)
 
-    label = Column(UnicodeText, default='', nullable=False)
-
     crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
 
     @declared_attr

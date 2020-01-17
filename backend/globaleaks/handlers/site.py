@@ -40,8 +40,8 @@ def serialize_site(session, tenant):
 def get_site_list(session):
     """
     Transaction return the list of the active tenants
-    :param session:
-    :return:
+    :param session: A ORM session
+    :return: The list of active tenants
     """
     return [serialize_site(session, t) for t in session.query(models.Tenant).filter(models.Tenant.active.is_(True))]
 

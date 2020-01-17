@@ -33,6 +33,7 @@ def get_files(session, tid):
 
 
 def db_add_file(session, tid, id, name, data):
+    file_obj = None
     if id is not None:
         file_obj = session.query(models.File).filter(models.File.tid == tid, models.File.id == id).one_or_none()
 

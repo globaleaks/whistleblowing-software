@@ -338,7 +338,7 @@ def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
 
     session.add(new_file)
 
-    return serializers.serialize_wbfile(session, tid, new_file)
+    return serializers.serialize_wbfile(session, new_file)
 
 
 def db_set_itip_open_if_new(session, tid, user_id, itip):
@@ -685,7 +685,7 @@ def create_message(session, tid, user_id, rtip_id, content):
     itip.update_date = rtip.last_access = datetime_now()
 
     if itip.crypto_tip_pub_key:
-        msg.content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
+        content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
 
     msg = models.Message()
     msg.receivertip_id = rtip.id
@@ -854,7 +854,7 @@ class WBFileHandler(BaseHandler):
 
         self.access_wbfile(session, wbfile)
 
-        return serializers.serialize_wbfile(session, tid, wbfile), base64.b64decode(wbtip.crypto_tip_prv_key)
+        return serializers.serialize_wbfile(session, wbfile), base64.b64decode(wbtip.crypto_tip_prv_key)
 
     @inlineCallbacks
     def get(self, wbfile_id):
@@ -923,7 +923,7 @@ class ReceiverFileDownload(BaseHandler):
         rfile.last_access = datetime_now()
         rfile.downloads += 1
 
-        return serializers.serialize_rfile(session, tid, rfile), base64.b64decode(rtip.crypto_tip_prv_key)
+        return serializers.serialize_rfile(session, rfile), base64.b64decode(rtip.crypto_tip_prv_key)
 
     @inlineCallbacks
     def get(self, rfile_id):

@@ -10,6 +10,8 @@ from globaleaks.utils.templating import Templating, supported_template_types
 class notifTemplateTest(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def test_keywords_conversion(self):
+        tip_id = ''
+
         yield self.perform_full_submission_actions()
         yield Delivery().run()
 

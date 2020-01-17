@@ -50,6 +50,7 @@ def serialize_signup(signup):
     }
 
 
+@transact
 def signup(session, request, language):
     """
     Transact handling the registration of a new signup

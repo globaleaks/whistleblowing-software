@@ -46,7 +46,9 @@ def get_l10n(session, tid, lang):
     custom_texts = session.query(models.CustomTexts).filter(models.CustomTexts.lang == lang, models.CustomTexts.tid == tid).one_or_none()
     custom_texts = custom_texts.texts if custom_texts is not None else {}
 
-    texts = read_json_file(path).update(custom_texts)
+    texts = read_json_file(path)
+
+    texts.update(custom_texts)
 
     return texts
 

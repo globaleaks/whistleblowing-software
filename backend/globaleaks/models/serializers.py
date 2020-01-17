@@ -1,5 +1,4 @@
 # -*- coding: utf-8
-
 from globaleaks import models
 from globaleaks.utils.utility import datetime_to_ISO8601
 
@@ -16,7 +15,7 @@ def serialize_ifile(session, ifile):
 
 
 # ReceiverFile
-def serialize_rfile(session, tid, rfile):
+def serialize_rfile(session, rfile):
     ifile = session.query(models.InternalFile) \
                    .filter(models.InternalFile.id == models.ReceiverFile.internalfile_id,
                            models.ReceiverFile.id == rfile.id).one()
@@ -35,7 +34,7 @@ def serialize_rfile(session, tid, rfile):
 # WhistleblowerFile
 
 
-def serialize_wbfile(session, tid, wbfile):
+def serialize_wbfile(session, wbfile):
     receiver_id = session.query(models.ReceiverTip.receiver_id) \
                          .filter(models.ReceiverTip.id == wbfile.receivertip_id).one()
 
