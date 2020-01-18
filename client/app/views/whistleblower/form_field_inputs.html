@@ -1,6 +1,6 @@
 <div class="fieldAnswerEntry" data-ng-repeat="entry in entries" data-ng-class="{'fieldAnswerEntryFirst': $first, 'fieldAnswerEntryLast': $last}" data-ng-init="entryIndex=$index">
   <div data-ng-controller="SubmissionFieldEntryCtrl">
-    <div class="fieldAnswerEntryLabel" data-ng-if="entries.length > 1" class="clearfix">
+    <div class="fieldAnswerEntryLabel clearfix" data-ng-if="entries.length > 1">
       <span class="float-left">
         <label class="text-muted">
           <span>#{{entryIndex + 1}}</span>
