@@ -82,6 +82,19 @@ class User_v_51(Model):
 
 
 class MigrationScript(MigrationBase):
+    def migrate_Signup(self):
+        old_objs = self.session_old.query(self.model_from['Signup'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['Signup']()
+            for key in [c.key for c in new_obj.__table__.columns]:
+                if key == 'activation_token' and old_obj.activation_token == '':
+                    new_obj.activation_token = None
+                    continue
+
+                setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
+
     def migrate_User(self):
         x = self.session_old.query(self.model_from['Config'].value).filter(self.model_from['Config'].tid == 1, self.model_from['Config'].var_name == 'do_not_expose_users_names').one_or_none()
         x = x[0] if x is not None else False
