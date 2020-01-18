@@ -4,8 +4,7 @@ from datetime import datetime, timedelta
 from OpenSSL.crypto import load_certificate, FILETYPE_PEM
 
 from globaleaks import models
-from globaleaks.db import load_tls_dict
-from globaleaks.handlers.admin.https import db_acme_cert_request
+from globaleaks.handlers.admin.https import db_acme_cert_request, load_tls_dict
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users

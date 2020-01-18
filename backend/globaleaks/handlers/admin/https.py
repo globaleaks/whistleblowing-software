@@ -7,7 +7,7 @@ from cryptography.hazmat.primitives.asymmetric import rsa
 from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.internet.threads import deferToThread
 
-from globaleaks.db import load_tls_dict
+from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact, tw
@@ -17,6 +17,23 @@ from globaleaks.state import State
 from globaleaks.utils import letsencrypt, tls
 from globaleaks.utils.log import log
 from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date
+
+
+def load_tls_dict(session, tid):
+    node = ConfigFactory(session, tid)
+
+    return {
+        'tid': tid,
+        'ssl_key': node.get_val('https_priv_key'),
+        'ssl_cert': node.get_val('https_cert'),
+        'ssl_intermediate': node.get_val('https_chain'),
+        'https_enabled': node.get_val('https_enabled'),
+        'hostname': node.get_val('hostname'),
+    }
+
+
+def load_tls_dict_list(session):
+    return [load_tls_dict(session, tid[0]) for tid in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True))]
 
 
 def db_create_acme_key(session, tid):

@@ -10,38 +10,16 @@ from sqlalchemy import exc as sa_exc
 
 from globaleaks import models, DATABASE_VERSION
 from globaleaks.db.appdata import db_load_default_questionnaires, db_load_default_fields
+from globaleaks.handlers.admin.https import load_tls_dict_list
 from globaleaks.models import Config
-from globaleaks.models.config import ConfigFactory
 from globaleaks.models.config_desc import ConfigFilters
 from globaleaks.orm import transact, transact_sync, get_session, make_db_uri
 from globaleaks.sessions import Session
 from globaleaks.settings import Settings
 from globaleaks.state import State, TenantState
 from globaleaks.utils import fs
-from globaleaks.utils.crypto import GCE
 from globaleaks.utils.log import log
 from globaleaks.utils.objectdict import ObjectDict
-
-
-def load_tls_dict(session, tid):
-    """
-    A quick and dirty function to grab all of the tls config for use in subprocesses
-    """
-    node = ConfigFactory(session, tid)
-
-    return {
-        'tid': tid,
-        'ssl_key': node.get_val('https_priv_key'),
-        'ssl_cert': node.get_val('https_cert'),
-        'ssl_intermediate': node.get_val('https_chain'),
-        'https_enabled': node.get_val('https_enabled'),
-        'hostname': node.get_val('hostname'),
-    }
-
-
-def load_tls_dict_list(session):
-    return [load_tls_dict(session, tid[0]) for tid in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True))]
-
 
 def get_db_file(db_path):
     path = os.path.join(db_path, 'globaleaks.db')
