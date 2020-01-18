@@ -1,6 +1,7 @@
 # -*- coding: utf-8
 #
 # Handlers implementing platform signup
+from sqlalchemy import not_
 from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
@@ -69,7 +70,7 @@ def signup(session, request, language):
     # Delete the tenants created for the same subdomain that have still not been activated
     # Ticket reference: https://github.com/globaleaks/GlobaLeaks/issues/2640
     subquery = session.query(models.Tenant.id).filter(models.Signup.subdomain == request['subdomain'],
-                                                      models.Signup.activation_token != '',
+                                                      not_(models.Signup.activation_token.is_(None)),
                                                       models.Tenant.id == models.Signup.tid,
                                                       models.Tenant.subdomain == models.Signup.subdomain)
     session.query(models.Tenant).filter(models.Tenant.id.in_(subquery)).delete(synchronize_session='fetch')
@@ -128,13 +129,16 @@ def signup_activation(session, token, language):
     if not config.get_val('enable_signup'):
         raise errors.ForbiddenOperation
 
-    signup = session.query(models.Signup).filter(models.Signup.activation_token == token).one_or_none()
-    if signup is None:
+    ret = session.query(models.Signup, models.Tenant) \
+                 .filter(models.Signup.activation_token == token,
+                         models.Tenant.id == models.Signup.tid).one_or_none()
+
+    if ret is None:
         return {}
 
-    signup.activation_token = ''
+    signup, tenant = ret[0], ret[1]
 
-    tenant = session.query(models.Tenant).filter(models.Tenant.id == signup.tid).one()
+    signup.activation_token = None
 
     mode = config.get_val('mode')
 
