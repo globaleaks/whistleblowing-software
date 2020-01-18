@@ -27,7 +27,7 @@
           </div>
         </div>
         <div data-ng-if="submission.context.show_small_receiver_cards" class="row receiverCardContent">
-          <div data-ng-if="receiver.picture"class="col-md-6"><img class="receiverImg" alt="receiver picture" data-ng-src="{{Utils.imgDataUri(receiver.picture)}}" /></div>
+          <div data-ng-if="receiver.picture" class="col-md-6"><img class="receiverImg" alt="receiver picture" data-ng-src="{{Utils.imgDataUri(receiver.picture)}}" /></div>
         </div>
         <div data-ng-if="!submission.context.show_small_receiver_cards" class="row receiverCardContent">
           <div class="col-md-4" data-ng-if="receiver.picture"><img class="receiverImg" alt="receiver picture" data-ng-src="{{Utils.imgDataUri(receiver.picture)}}" /></div>
