@@ -379,7 +379,7 @@ class APIResourceWrapper(Resource):
             return b''
 
         f = getattr(handler, method)
-        groups = [g for g in match.groups()]
+        groups = match.groups()
 
         self.handler = handler(State, request, **args)
 

@@ -322,7 +322,7 @@ def enable_2fa_step1(session, tid, user_id):
 @transact
 def enable_2fa_step2(session, tid, user_id, user_cc, token):
     """
-        Transact for the first step of 2fa enrollment (completion)
+    Transact for the first step of 2fa enrollment (completion)
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_id: A user ID

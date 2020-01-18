@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-#
-# Base class for all the handlers
 import base64
 import collections
 import json
@@ -326,8 +324,8 @@ class BaseHandler(object):
         file_id = self.request.args[b'flowIdentifier'][0].decode()
 
         chunk_size = len(self.request.args[b'file'][0])
-        if ((chunk_size / (1024 * 1024)) > self.state.tenant_cache[self.request.tid].maximum_filesize or
-            (total_file_size / (1024 * 1024)) > self.state.tenant_cache[self.request.tid].maximum_filesize):
+        if ((chunk_size // (1024 * 1024)) > self.state.tenant_cache[self.request.tid].maximum_filesize or
+            (total_file_size // (1024 * 1024)) > self.state.tenant_cache[self.request.tid].maximum_filesize):
             log.err("File upload request rejected: file too big", tid=self.request.tid)
             raise errors.FileTooBig(self.state.tenant_cache[self.request.tid].maximum_filesize)
 
@@ -391,6 +389,6 @@ class BaseHandler(object):
         track_handler(self)
 
         if self.uniform_answer_time:
-            needed_delay = (Settings.side_channels_guard - (self.request.execution_time.microseconds / 1000)) / 1000
+            needed_delay = (float(Settings.side_channels_guard) - (float(self.request.execution_time.microseconds) / float(1000))) / float(1000)
             if needed_delay > 0:
                 return deferred_sleep(needed_delay)

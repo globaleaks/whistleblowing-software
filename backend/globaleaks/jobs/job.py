@@ -154,10 +154,10 @@ class JobsMonitor(LoopingJob):
                 if execution_time < 60:
                     error = "Job %s is taking more than %d seconds to execute" % (job.name, execution_time)
                 elif execution_time < 3600:
-                    minutes = int(execution_time / 60)
+                    minutes = execution_time // 60
                     error = "Job %s is taking more than %d minutes to execute" % (job.name, minutes)
                 else:
-                    hours = int(execution_time / 3600)
+                    hours = execution_time // 3600
                     error = "Job %s is taking more than %d hours to execute" % (job.name, hours)
                 error_msg += error + '\n'
                 log.err(error)

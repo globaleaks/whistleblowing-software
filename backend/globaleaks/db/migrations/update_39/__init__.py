@@ -63,10 +63,10 @@ class Config_v_38(Model):
 
     def set_v(self, val):
         desc = self.find_descriptor(GLConfig_v_37, self.var_group, self.var_name)
+
         if val is None:
             val = desc._type()
-        if isinstance(desc, config_desc.Unicode) and isinstance(val, str):
-            val = val
+
         if not isinstance(val, desc._type):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
 
@@ -544,7 +544,7 @@ class MigrationScript(MigrationBase):
                     new_obj.file_path = old_obj.file_path.replace('files/submission', 'attachments')
                     try:
                         shutil.move(old_obj.file_path, new_obj.file_path)
-                    except:
+                    except Exception:
                         pass
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
@@ -607,5 +607,5 @@ class MigrationScript(MigrationBase):
         try:
             # Depending of when the system was installed this directory may not exist
             shutil.rmtree(os.path.abspath(os.path.join(Settings.working_path, 'files/encrypted_upload')))
-        except:
+        except Exception:
             pass

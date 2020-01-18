@@ -72,7 +72,7 @@ class ConfigL10NFactory(object):
             self.session.add(ConfigL10N({'tid': self.tid, 'lang': lang, 'var_name': key, 'value': value}))
 
     def get_all(self, group, lang):
-        return [r for r in self.session.query(ConfigL10N).filter(ConfigL10N.tid == self.tid, ConfigL10N.lang == lang, ConfigL10N.var_name.in_(ConfigL10NFilters[group]))]
+        return list(self.session.query(ConfigL10N).filter(ConfigL10N.tid == self.tid, ConfigL10N.lang == lang, ConfigL10N.var_name.in_(ConfigL10NFilters[group])))
 
     def serialize(self, group, lang):
         rows = self.get_all(group, lang)

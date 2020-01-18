@@ -52,7 +52,7 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
 
         handler = self.request(request_payload)
 
-        response = yield handler.put(token.id)
+        yield handler.put(token.id)
 
         token.use()
 
@@ -72,6 +72,6 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
 
         handler = self.request(request_payload)
 
-        response = yield handler.put(token.id)
+        yield handler.put(token.id)
 
         self.assertRaises(Exception, token.use)

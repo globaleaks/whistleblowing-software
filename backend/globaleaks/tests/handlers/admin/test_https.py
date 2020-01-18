@@ -139,9 +139,6 @@ class TestConfigHandler(helpers.TestHandler):
 
         handler = self.request(role='admin')
 
-        response = yield handler.get()
-
-        # Config is ready to go. So launch the subprocesses.
         yield handler.post()
         response = yield handler.get()
         self.assertTrue(response['enabled'])

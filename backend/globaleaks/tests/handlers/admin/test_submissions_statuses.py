@@ -179,7 +179,7 @@ class SubmissionSubStatusCollectionDesc(helpers.TestHandlerWithPopulatedDB):
             'presentation_order': 0
         }
         handler = self.request(data_request, role='admin')
-        response = yield handler.post(u'new')
+        yield handler.post(u'new')
 
         submission_status = yield submission_statuses.retrieve_specific_submission_status(1, 'new', 'en')
         self.assertEqual(len(submission_status['substatuses']), 1)

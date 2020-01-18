@@ -185,9 +185,6 @@ class TestUser2FAEnrollment(helpers.TestHandlerWithPopulatedDB):
 
         yield handler.put()
 
-        # Disable an enrolled 2FA
-        current_token = pyotp.TOTP(totp_secret).now()
-
         data_request = {
             'operation': 'disable_2fa',
             'args': {}

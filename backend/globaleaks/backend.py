@@ -9,6 +9,9 @@ from twisted.internet import reactor, defer
 from twisted.python.log import ILogObserver
 from twisted.web import server
 
+from globaleaks.jobs import job, jobs_list
+from globaleaks.services import onion
+
 from globaleaks.db import create_db, init_db, update_db, \
     sync_refresh_memory_variables, sync_clean_untracked_files, sync_initialize_snimap
 from globaleaks.rest.api import APIResourceWrapper
@@ -65,7 +68,7 @@ class Service(service.Service):
             http_sock, fail = reserve_port_for_ip('127.0.0.1', port)
             if fail is not None:
                 log.err("Could not reserve socket for %s (error: %s)",
-                        fail[0], fail[1])
+                        fail.args[0], fail.args[1])
             else:
                 self.state.http_socks += [http_sock]
 
@@ -74,7 +77,7 @@ class Service(service.Service):
             sock, fail = reserve_port_for_ip(Settings.bind_address, port+mask)
             if fail is not None:
                 log.err("Could not reserve socket for %s (error: %s)",
-                        fail[0], fail[1])
+                        fail.args[0], fail.args[1])
                 continue
 
             if port == 80:
@@ -115,18 +118,14 @@ class Service(service.Service):
         return d
 
     def start_jobs(self):
-        from globaleaks.jobs import jobs_list
-        from globaleaks.services import onion
-        from globaleaks.jobs.job import JobsMonitor
-
-        for job in jobs_list:
-            self.state.jobs.append(job())
+        for j in jobs_list:
+            self.state.jobs.append(j())
 
         self.state.onion_service_job = onion.OnionService()
         # The only service job currently is the OnionService
         self.state.services.append(self.state.onion_service_job)
 
-        self.state.jobs_monitor = JobsMonitor(self.state.jobs)
+        self.state.jobs_monitor = job.JobsMonitor(self.state.jobs)
 
     def stop_jobs(self):
         deferred_list = []
