@@ -11,11 +11,21 @@ from globaleaks.state import State
 
 @transact
 def get_redirect_list(session, tid):
+    """
+    Transaction for fetching the full list of redirects configured on a tenant
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :return: The list of redirects configured on a tenant
+    """
     return [serialize_redirect(redirect) for redirect in session.query(models.Redirect).filter(models.Redirect.tid == tid)]
 
 
 @inlineCallbacks
 def update_redirects_state(tid):
+    """
+    Function to fetch and configure the list of redirects configured on a tenant
+    :param tid: The tenant for which configure the redirects
+    """
     State.tenant_cache[tid]['redirects'] = {}
 
     redirects = yield get_redirect_list(tid)
@@ -26,6 +36,13 @@ def update_redirects_state(tid):
 
 @transact
 def create(session, tid, request):
+    """
+    Transaction for registering the creation of a redirect for a tenant
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param request: The request data
+    :return: The descriptor of the registered redirect
+    """
     request['tid'] = tid
     redirect = models.db_forge_obj(session, models.Redirect, request)
     return serialize_redirect(redirect)

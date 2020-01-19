@@ -1,6 +1,5 @@
 # -*- coding: utf-8
-# datainit.py: database initialization
-#   ******************
+
 import os
 from sqlalchemy import not_
 
@@ -12,10 +11,18 @@ from globaleaks.utils.utility import read_json_file
 
 
 def load_appdata():
+    """
+    Utility function to load the application data file
+    :return: Return the parsed application data file
+    """
     return read_json_file(Settings.appdata_file)
 
 
 def db_load_default_questionnaires(session):
+    """
+    Transaction for loading default questionnaires
+    :param session: An ORM session
+    """
     qfiles = [os.path.join(Settings.questionnaires_path, path)
               for path in os.listdir(Settings.questionnaires_path)]
     questionnaires = []
@@ -34,6 +41,10 @@ def db_load_default_questionnaires(session):
 
 
 def db_load_default_fields(session):
+    """
+    Transaction for loading default questions
+    :param session: An ORM session
+    """
     ffiles = [os.path.join(Settings.questions_path, path)
               for path in os.listdir(Settings.questions_path)]
     questions = []
@@ -56,6 +67,7 @@ def db_fix_fields_attrs(session):
     Ensures that the current store and the field_attrs.json file correspond.
     The content of the field_attrs dict is used to add and remove all of the
     excepted forms of field_attrs for FieldAttrs in the db.
+    :param session: An ORM session
     """
     field_attrs = read_json_file(Settings.field_attrs_file)
 
@@ -86,5 +98,9 @@ def db_fix_fields_attrs(session):
 
 
 def db_update_defaults(session):
+    """
+    Transaction for updating application defaults
+    :param session: An ORM session
+    """
     db_load_default_questionnaires(session)
     db_load_default_fields(session)

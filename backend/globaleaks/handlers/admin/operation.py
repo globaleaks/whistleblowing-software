@@ -15,30 +15,38 @@ from globaleaks.utils.crypto import Base64Encoder, GCE
 
 
 @transact
-def check_hostname(session, tid, input_hostname):
+def check_hostname(session, tid, hostname):
     """
-    Ensure the hostname does not collide across tenants or
-    include an origin that it shouldn't.
+    Ensure the hostname does not collide across tenants or include an origin that it shouldn't.
+    :param session: An ORM session
+    :param tid: A tenant id
+    :param input_hostname:
+    :return:
     """
-    if input_hostname == '':
+    if hostname == '':
         return
 
     forbidden_endings = ['onion', 'localhost']
 
     for v in forbidden_endings:
-        if input_hostname.endswith(v):
+        if hostname.endswith(v):
             raise errors.InputValidationError('Hostname contains a forbidden origin')
 
     existing_hostnames = {h.value for h in session.query(Config)
                                                   .filter(Config.tid != tid,
                                                           Config.var_name == 'hostname')}
 
-    if input_hostname in existing_hostnames:
+    if hostname in existing_hostnames:
         raise errors.InputValidationError('Hostname already reserved')
 
 
 @transact
 def reset_submissions(session, tid):
+    """
+    Transaction to reset the submissions of the specified tenant
+    :param session: An ORM session
+    :param tid: A tenant ID
+    """
     session.query(Config).filter(Config.tid == tid, Config.var_name == 'counter_submissions').update({'value': 0})
 
     itip_ids = [x[0] for x in session.query(InternalTip.id).filter(InternalTip.tid == tid)]
@@ -48,6 +56,13 @@ def reset_submissions(session, tid):
 
 @transact
 def toggle_escrow(session, tid, user_session, user_id):
+    """
+    Transaction to toggle key escrow access for user an user given its id
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_session: The current user session
+    :param user_id: The user for which togling the key escrow access
+    """
     if user_session.user_id == user_id or not user_session.ek:
         return
 

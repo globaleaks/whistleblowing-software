@@ -109,6 +109,13 @@ migration_mapping = OrderedDict([
 
 
 def get_right_model(migration_mapping, model_name, version):
+    """
+    Utility function to retrieve the model corresponding to a specific model name in a specific database version
+    :param migration_mapping: The model mappung table
+    :param model_name: The model name
+    :param version: The database version
+    :return: The model corresponding to a specific model name in a specific database version
+    """
     table_index = (version - FIRST_DATABASE_VERSION_SUPPORTED)
 
     if migration_mapping[model_name][table_index] == -1:
@@ -123,6 +130,10 @@ def get_right_model(migration_mapping, model_name, version):
 
 
 def perform_data_update(db_file):
+    """
+    Update the database including up-to-date application data
+    :param db_file: The database file path
+    """
     session = get_session(make_db_uri(db_file), foreign_keys=False)
 
     enabled_languages = [lang.name for lang in session.query(models.EnabledLanguage)]
@@ -165,8 +176,8 @@ def perform_data_update(db_file):
 
 def perform_migration(version):
     """
-    @param version:
-    @return:
+    Utility function for performing a database migration
+    :param version: The current version of the database to update
     """
     to_delete_on_fail = []
     to_delete_on_success = []

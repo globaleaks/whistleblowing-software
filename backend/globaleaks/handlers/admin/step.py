@@ -89,23 +89,11 @@ def order_elements(session, handler, req_args, *args, **kwargs):
 
 
 class StepCollection(OperationHandler):
-    """
-    Operation to create a step
-
-    /admin/steps
-    """
     check_roles = 'admin'
     cache_resource = True
     invalidate_cache = True
 
     def post(self):
-        """
-        Create a new step.
-
-        :return: the serialized step
-        :rtype: StepDesc
-        :raises InputValidationError: if validation fails.
-        """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminStepDesc)
 
@@ -124,23 +112,10 @@ class StepCollection(OperationHandler):
 
 
 class StepInstance(BaseHandler):
-    """
-    Operation to iterate over a specific requested Step
-
-    /admin/step
-    """
     check_roles = 'admin'
     invalidate_cache = True
 
     def put(self, step_id):
-        """
-        Update attributes of the specified step
-
-        :param step_id:
-        :return: the serialized step
-        :rtype: StepDesc
-        :raises InputValidationError: if validation fails.
-        """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminStepDesc)
 

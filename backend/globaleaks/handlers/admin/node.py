@@ -15,27 +15,14 @@ from globaleaks.utils.ip import parse_csv_ip_ranges_to_ip_networks
 from globaleaks.utils.log import log
 
 
-def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
-    config = ConfigFactory(session, tid).serialize(config_node)
-
-    misc_dict = {
-        'languages_supported': LANGUAGES_SUPPORTED,
-        'languages_enabled': models.EnabledLanguage.list(session, tid),
-        'root_tenant': tid == 1,
-        'https_possible': tid == 1 or State.tenant_cache[1].reachable_via_web,
-    }
-
-    if tid != 1:
-        root_tenant_node = ConfigFactory(session, 1)
-        misc_dict['version'] = root_tenant_node.get_val('version')
-        misc_dict['latest_version'] = root_tenant_node.get_val('latest_version')
-
-    l10n_dict = ConfigL10NFactory(session, tid).serialize('node', language)
-
-    return utils.sets.merge_dicts(config, misc_dict, l10n_dict)
-
-
 def db_update_enabled_languages(session, tid, languages_enabled, default_language):
+    """
+    Transaction for updating the enabled languages for a tenant
+    :param session: An ORM session
+    :param tid: A tenant id
+    :param languages_enabled: The list of enabled languages
+    :param default_language: The language to be set as default
+    """
     cur_enabled_langs = models.EnabledLanguage.list(session, tid)
     new_enabled_langs = [y for y in languages_enabled]
 

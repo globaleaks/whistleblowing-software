@@ -54,13 +54,14 @@ def db_create_questionnaire(session, tid, questionnaire_dict, language):
 @transact
 def create_questionnaire(session, tid, request, language):
     """
-    Creates a new questionnaire from the request of a client.
-
-    Args:
-        (dict) the request containing the keys to set on the model.
-
-    Returns:
-        (dict) representing the configured questionnaire
+    Updates the specified questionnaire. If the key receivers is specified we remove
+    the current receivers of the Questionnaire and reset set it to the new specified
+    ones.
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param request: The request data
+    :param language: The language of the request
+    :return: A serialized descriptor of the questionnaire
     """
     questionnaire = db_create_questionnaire(session, tid, request, language)
 

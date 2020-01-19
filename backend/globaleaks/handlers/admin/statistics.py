@@ -13,7 +13,9 @@ from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, \
 
 def weekmap_to_heatmap(week_map):
     """
-    convert a list of list with dict inside, in a flat list
+    Convert a list of list with dict inside, in a flat list
+    :param week_map: A week map
+    :return: A flat list obtained from the week map
     """
     retlist = []
     for _, weekday in enumerate(week_map):

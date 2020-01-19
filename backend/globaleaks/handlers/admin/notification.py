@@ -14,7 +14,14 @@ from globaleaks.utils.sets import merge_dicts
 from globaleaks.utils.templating import Templating
 
 
-def admin_serialize_notification(session, tid, language):
+def db_get_notification(session, tid, language):
+    """
+    Transaction to get the notification settings for the specified tenant
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param language: The language to be used in the serialization
+    :return: the serialization of notification settings for the specified tenant
+    """
     config_dict = ConfigFactory(session, tid).serialize('admin_notification')
 
     conf_l10n_dict = ConfigL10NFactory(session, tid).serialize('notification', language)

@@ -1,6 +1,4 @@
 # -*- coding: utf-8
-# Database routines
-# ******************
 import os
 import sys
 import traceback
@@ -21,7 +19,13 @@ from globaleaks.utils import fs
 from globaleaks.utils.log import log
 from globaleaks.utils.objectdict import ObjectDict
 
+
 def get_db_file(db_path):
+    """
+    Utility function to retrieve the database file path
+    :param db_path: The path where to look for the database file
+    :return: The version and the path of the existing database file
+    """
     path = os.path.join(db_path, 'globaleaks.db')
     if os.path.exists(path):
         session = get_session(make_db_uri(path))
@@ -52,6 +56,10 @@ def create_db():
 
 @transact_sync
 def init_db(session):
+    """
+    Transaction for initializing the application database
+    :param session: An ORM session
+    """
     from globaleaks.handlers.admin import tenant
     tenant.db_create(session, {'mode': 'default', 'label': 'root'})
     db_update_defaults(session)
@@ -59,7 +67,8 @@ def init_db(session):
 
 def update_db():
     """
-    This function handles update of an existing database
+    This function handles the update of an existing database
+    :return: The database version
     """
     db_version, db_file_path = get_db_file(Settings.working_path)
     if db_version == 0:
@@ -94,7 +103,9 @@ def update_db():
 
 def db_get_tracked_files(session):
     """
-    returns a list the basenames of files tracked by InternalFile and ReceiverFile.
+    Transaction for retrieving the list of attachment files tracked by the application database
+    :param session: An ORM session
+    :return: The list of filenames of the attachment files
     """
     ifiles = list(session.query(models.InternalFile.filename).distinct())
     rfiles = list(session.query(models.ReceiverFile.filename).distinct())
@@ -106,8 +117,8 @@ def db_get_tracked_files(session):
 @transact_sync
 def sync_clean_untracked_files(session):
     """
-    removes files in Settings.attachments_path that are not
-    tracked by InternalFile/ReceiverFile.
+    Transaction for removing files that are not tracked by the application database
+    :param session: An ORM session
     """
     tracked_files = db_get_tracked_files(session)
     for filesystem_file in os.listdir(Settings.attachments_path):
@@ -122,6 +133,10 @@ def sync_clean_untracked_files(session):
 
 @transact_sync
 def sync_initialize_snimap(session):
+    """
+    Transaction for loading TLS certificates and initialize the SNI map
+    :param session: An ORM session
+    """
     for cfg in load_tls_dict_list(session):
         if cfg['https_enabled']:
             State.snimap.load(cfg['tid'], cfg)

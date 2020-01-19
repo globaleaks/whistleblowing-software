@@ -319,7 +319,7 @@ def update_field(session, tid, field_id, field, language):
 @transact
 def delete_field(session, tid, field_id):
     """
-    Trandaction to delete a field
+    Transaction to delete a field
     :param session: An ORM session
     :param tid: The tenant ID
     :param field_id: The id of the field to be deleted
