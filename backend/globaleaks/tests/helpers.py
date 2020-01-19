@@ -32,8 +32,8 @@ from globaleaks.handlers import rtip, wbtip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.context import create_context, get_context
 from globaleaks.handlers.admin.field import db_create_field
-from globaleaks.handlers.admin.questionnaire import get_questionnaire, db_get_questionnaire
-from globaleaks.handlers.admin.step import create_step
+from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
+from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.admin.tenant import create as create_tenant
 from globaleaks.handlers.admin.user import create_user
 from globaleaks.handlers.wizard import db_wizard
@@ -707,13 +707,13 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyContext['receivers'] = receivers_ids
         self.dummyContext = yield create_context(1, self.dummyContext, 'en')
 
-        self.dummyQuestionnaire = yield get_questionnaire(1, self.dummyContext['questionnaire_id'], 'en')
+        self.dummyQuestionnaire = yield tw(db_get_questionnaire, 1, self.dummyContext['questionnaire_id'], 'en')
 
         self.dummyQuestionnaire['steps'].append(get_dummy_step())
         self.dummyQuestionnaire['steps'][1]['questionnaire_id'] = self.dummyContext['questionnaire_id']
         self.dummyQuestionnaire['steps'][1]['label'] = 'Whistleblower identity'
         self.dummyQuestionnaire['steps'][1]['presentation_order'] = 1
-        self.dummyQuestionnaire['steps'][1] = yield create_step(1, self.dummyQuestionnaire['steps'][1], 'en')
+        self.dummyQuestionnaire['steps'][1] = yield tw(db_create_step, 1, self.dummyQuestionnaire['steps'][1], 'en')
 
         if self.complex_field_population:
             yield self.add_whistleblower_identity_field_to_step(self.dummyQuestionnaire['steps'][1]['id'])

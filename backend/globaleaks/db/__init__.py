@@ -9,11 +9,11 @@ import warnings
 from sqlalchemy import exc as sa_exc
 
 from globaleaks import models, DATABASE_VERSION
-from globaleaks.db.appdata import db_load_default_questionnaires, db_load_default_fields
+from globaleaks.db.appdata import db_update_defaults
 from globaleaks.handlers.admin.https import load_tls_dict_list
-from globaleaks.models import Config
+from globaleaks.models import Base, Config
 from globaleaks.models.config_desc import ConfigFilters
-from globaleaks.orm import transact, transact_sync, get_session, make_db_uri
+from globaleaks.orm import get_engine, get_session, make_db_uri, transact, transact_sync
 from globaleaks.sessions import Session
 from globaleaks.settings import Settings
 from globaleaks.state import State, TenantState
@@ -39,9 +39,9 @@ def get_db_file(db_path):
 
 
 def create_db():
-    from globaleaks.orm import get_engine
-    from globaleaks.models import Base
-
+    """
+    Utility function to create a new database
+    """
     engine = get_engine()
     engine.execute('PRAGMA foreign_keys = ON')
     engine.execute('PRAGMA secure_delete = ON')
@@ -54,9 +54,7 @@ def create_db():
 def init_db(session):
     from globaleaks.handlers.admin import tenant
     tenant.db_create(session, {'mode': 'default', 'label': 'root'})
-
-    db_load_default_questionnaires(session)
-    db_load_default_fields(session)
+    db_update_defaults(session)
 
 
 def update_db():
@@ -98,11 +96,11 @@ def db_get_tracked_files(session):
     """
     returns a list the basenames of files tracked by InternalFile and ReceiverFile.
     """
-    ifiles = [x[0] for x in session.query(models.InternalFile.filename)]
-    rfiles = [x[0] for x in session.query(models.ReceiverFile.filename)]
-    wbfiles = [x[0] for x in session.query(models.WhistleblowerFile.filename)]
+    ifiles = list(session.query(models.InternalFile.filename).distinct())
+    rfiles = list(session.query(models.ReceiverFile.filename).distinct())
+    wbfiles = list(session.query(models.WhistleblowerFile.filename).distinct())
 
-    return [files for files in list(set(ifiles + rfiles + wbfiles))]
+    return [x[0] for x in ifiles + rfiles + wbfiles]
 
 
 @transact_sync
@@ -115,8 +113,8 @@ def sync_clean_untracked_files(session):
     for filesystem_file in os.listdir(Settings.attachments_path):
         if filesystem_file not in tracked_files:
             file_to_remove = os.path.join(Settings.attachments_path, filesystem_file)
+            log.debug('Removing untracked file: %s', file_to_remove)
             try:
-                log.debug('Removing untracked file: %s', file_to_remove)
                 fs.overwrite_and_remove(file_to_remove)
             except OSError:
                 log.err('Failed to remove untracked file', file_to_remove)

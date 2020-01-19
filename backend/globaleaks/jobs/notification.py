@@ -8,7 +8,7 @@ from globaleaks import models
 from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.admin.submission_statuses import db_retrieve_all_submission_statuses
+from globaleaks.handlers.admin.submission_statuses import db_get_submission_statuses
 from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serialize_comment
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import LoopingJob
@@ -184,7 +184,7 @@ class MailGenerator(object):
 
         data['node'] = self.serialize_config(session, 'node', tid, language)
 
-        data['submission_statuses'] = db_retrieve_all_submission_statuses(session, tid, language)
+        data['submission_statuses'] = db_get_submission_statuses(session, tid, language)
 
         if data['node']['mode'] != 'whistleblowing.it':
             data['notification'] = self.serialize_config(session, 'notification', tid, language)

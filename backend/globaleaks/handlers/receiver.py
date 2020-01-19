@@ -143,8 +143,8 @@ def perform_tips_operation(session, tid, receiver_id, operation, rtips_ids):
 
 class TipsCollection(BaseHandler):
     """
-    This interface return the summary list of the Tips available for the authenticated Receiver
-    GET /tips
+
+    Handler dealing with submissions fetch
     """
     check_roles = 'receiver'
 

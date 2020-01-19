@@ -6,28 +6,22 @@ from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_questionnaire
 from globaleaks.models import fill_localized_keys
-from globaleaks.orm import transact
+from globaleaks.orm import transact, tw
 from globaleaks.rest import requests
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, uuid4
 
 
-def db_get_questionnaire_list(session, tid, language):
+def db_get_questionnaires(session, tid, language):
+    """
+    Transaction to retrieve the questionnnaires associated to a tenant
+    :param session: the session on which perform queries.
+    :param tid: A tenant ID
+    :param language: The language to be used for the serialization
+    :return: a dictionary representing the serialization of the questionnaires.
+    """
     questionnaires = session.query(models.Questionnaire).filter(models.Questionnaire.tid.in_(set([1, tid])))
 
     return [serialize_questionnaire(session, tid, questionnaire, language) for questionnaire in questionnaires]
-
-
-@transact
-def get_questionnaire_list(session, tid, language):
-    """
-    Returns the questionnaire list.
-
-    :param tid:
-    :param session: the session on which perform queries.
-    :param language: the language in which to localize data.
-    :return: a dictionary representing the serialization of the questionnaires.
-    """
-    return db_get_questionnaire_list(session, tid, language)
 
 
 def db_get_questionnaire(session, tid, questionnaire_id, language, serialize_templates=True):
@@ -35,22 +29,12 @@ def db_get_questionnaire(session, tid, questionnaire_id, language, serialize_tem
     Returns:
         (dict) the questionnaire with the specified id.
     """
-    questionnaire = models.db_get(session, models.Questionnaire, models.Questionnaire.tid.in_(set([1, tid])), models.Questionnaire.id == questionnaire_id)
+    questionnaire = models.db_get(session,
+                                  models.Questionnaire,
+                                  models.Questionnaire.tid.in_(set([1, tid])),
+                                  models.Questionnaire.id == questionnaire_id)
 
     return serialize_questionnaire(session, tid, questionnaire, language, serialize_templates=serialize_templates)
-
-
-@transact
-def get_questionnaire(session, tid, questionnaire_id, language, serialize_templates=True):
-    return db_get_questionnaire(session, tid, questionnaire_id, language, serialize_templates=serialize_templates)
-
-
-def db_update_questionnaire(session, questionnaire, request, language):
-    fill_localized_keys(request, models.Questionnaire.localized_keys, language)
-
-    questionnaire.update(request)
-
-    return questionnaire
 
 
 def db_create_questionnaire(session, tid, questionnaire_dict, language):
@@ -83,24 +67,37 @@ def create_questionnaire(session, tid, request, language):
     return serialize_questionnaire(session, tid, questionnaire, language)
 
 
+def db_update_questionnaire(session, questionnaire, request, language):
+    """
+    Updates the specified questionnaire. If the key receivers is specified we remove
+    the current receivers of the Questionnaire and reset set it to the new specified
+    ones.
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param questionnaire_id: A questionnaire ID
+    :param request: The request data
+    :param language: The language of the request
+    :return: A serialized descriptor of the questionnaire
+    """
+    fill_localized_keys(request, models.Questionnaire.localized_keys, language)
+
+    questionnaire.update(request)
+
+    return questionnaire
+
+
 @transact
 def update_questionnaire(session, tid, questionnaire_id, request, language):
     """
     Updates the specified questionnaire. If the key receivers is specified we remove
     the current receivers of the Questionnaire and reset set it to the new specified
     ones.
-
-    Args:
-        questionnaire_id:
-
-        request:
-            (dict) the request to use to set the attributes of the Questionnaire
-
-    Returns:
-            (dict) the serialized object updated
-            :param session:
-            :param tid:
-            :param language:
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param questionnaire_id: A questionnaire ID
+    :param request: The request data
+    :param language: The language of the request
+    :return: A serialized descriptor of the questionnaire
     """
     questionnaire = models.db_get(session, models.Questionnaire, models.Questionnaire.tid == tid, models.Questionnaire.id == questionnaire_id)
 
@@ -112,11 +109,15 @@ def update_questionnaire(session, tid, questionnaire_id, request, language):
 @transact
 def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
     """
-    Duplicates a questionaire, assigning new IDs to all sub components
+    Transaction for duplicating an existing questionnaire
+    :param session: An ORM session
+    :param tid: A tnenat ID
+    :param questionnaire_id A questionnaire ID
+    :param new_name: The name to be assigned to the new questionnaire
     """
     id_map = {}
 
-    q = db_get_questionnaire(session, tid, questionnaire_id, None, serialize_templates=False)
+    q = db_get_questionnaire(session, tid, questionnaire_id, None, False)
 
     # We need to change the primary key references and so this can be reimported
     # as a new questionnaire
@@ -197,7 +198,7 @@ class QuestionnairesCollection(BaseHandler):
         """
         Return all the questionnaires.
         """
-        return get_questionnaire_list(self.request.tid, self.request.language)
+        return tw(db_get_questionnaires, self.request.tid, self.request.language)
 
     def post(self):
         """
@@ -236,7 +237,7 @@ class QuestionnaireInstance(BaseHandler):
         """
         Export questionnaire JSON
         """
-        q = yield get_questionnaire(self.request.tid, questionnaire_id, None)
+        q = yield tw(db_get_questionnaire, self.request.tid, questionnaire_id, None)
         q['export_date'] = datetime_to_ISO8601(datetime_now())
         q['export_version'] = QUESTIONNAIRE_EXPORT_VERSION
         returnValue(q)

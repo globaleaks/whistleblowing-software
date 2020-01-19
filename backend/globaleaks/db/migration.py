@@ -50,10 +50,10 @@ from globaleaks.db.migrations.update_52 import InternalTip_v_51, SubmissionStatu
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
-from globaleaks.models.config import ConfigFactory
 from globaleaks.settings import Settings
 from globaleaks.utils.fs import overwrite_and_remove
 from globaleaks.utils.log import log
+
 
 migration_mapping = OrderedDict([
     ('Anomalies', [-1, -1, -1, -1, -1, -1, Anomalies_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models._Anomalies, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
@@ -136,7 +136,7 @@ def perform_data_update(db_file):
                         "Read about how to handle this condition at: https://github.com/globaleaks/GlobaLeaks/wiki/Upgrade-Guide#lang-drop" % removed_languages)
 
     try:
-        cfg = ConfigFactory(session, 1)
+        cfg = config.ConfigFactory(session, 1)
 
         stored_ver = cfg.get_val('version')
 
@@ -214,6 +214,7 @@ def perform_migration(version):
                 Base.metadata.create_all(engine)
             else:
                 Bases[j+1].metadata.create_all(engine)
+
             session_new = sessionmaker(bind=engine)()
 
             # Here is instanced the migration script

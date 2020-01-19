@@ -3,7 +3,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.admin import submission_statuses
-from globaleaks.orm import transact
+from globaleaks.orm import tw, transact
 from globaleaks.tests import helpers
 
 
@@ -94,7 +94,7 @@ class SubmissionStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
         """Create a new status and then edit it"""
         status_id = ''
         yield self.create_test_status()
-        statuses = yield submission_statuses.retrieve_all_submission_statuses(1, 'en')
+        statuses = yield tw(submission_statuses.db_get_submission_statuses, 1, 'en')
 
         for status in statuses:
             if status['label'] == 'test_status':
@@ -109,7 +109,7 @@ class SubmissionStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
         self._handler = submission_statuses.SubmissionStatusInstance
         handler = self.request(data_request, role='admin')
         yield handler.put(status_id)
-        statuses = yield submission_statuses.retrieve_all_submission_statuses(1, 'en')
+        statuses = yield tw(submission_statuses.db_get_submission_statuses, 1, 'en')
 
         found_label = False
 
@@ -125,7 +125,7 @@ class SubmissionStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
         """Delete a status (if possible)"""
         status_id = ''
         yield self.create_test_status()
-        statuses = yield submission_statuses.retrieve_all_submission_statuses(1, 'en')
+        statuses = yield tw(submission_statuses.db_get_submission_statuses, 1, 'en')
 
         for status in statuses:
             if status['label'] == 'test_status':
@@ -143,7 +143,7 @@ class SubmissionStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
         """Delete a status (if possible)"""
         status_id = ''
         yield self.create_test_status()
-        statuses = yield submission_statuses.retrieve_all_submission_statuses(1, 'en')
+        statuses = yield tw(submission_statuses.db_get_submission_statuses, 1, 'en')
 
         for status in statuses:
             if status['label'] == 'test_status':
@@ -181,7 +181,7 @@ class SubmissionSubStatusCollectionDesc(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(data_request, role='admin')
         yield handler.post(u'new')
 
-        submission_status = yield submission_statuses.retrieve_specific_submission_status(1, 'new', 'en')
+        submission_status = yield tw(submission_statuses.db_get_submission_status, 1, 'new', 'en')
         self.assertEqual(len(submission_status['substatuses']), 1)
 
 
@@ -195,7 +195,7 @@ class SubmissionSubStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
     def test_put(self):
         yield create_substatus(u'new')
 
-        submission_status = yield submission_statuses.retrieve_specific_submission_status(1, 'new', 'en')
+        submission_status = yield tw(submission_statuses.db_get_submission_status, 1, 'new', 'en')
         substatus_id = submission_status['substatuses'][0]['id']
 
         data_request = {
@@ -206,18 +206,18 @@ class SubmissionSubStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(data_request, role='admin')
         yield handler.put(u'new', substatus_id)
 
-        submission_status = yield submission_statuses.retrieve_specific_submission_status(1, 'new', 'en')
+        submission_status = yield tw(submission_statuses.db_get_submission_status, 1, 'new', 'en')
         self.assertEqual(submission_status['substatuses'][0]['label'], '12345')
 
     @inlineCallbacks
     def test_delete(self):
         yield create_substatus(u'new')
 
-        submission_status = yield submission_statuses.retrieve_specific_submission_status(1, 'new', 'en')
+        submission_status = yield tw(submission_statuses.db_get_submission_status, 1, 'new', 'en')
         substatus_id = submission_status['substatuses'][0]['id']
 
         handler = self.request({}, role='admin')
         yield handler.delete(u'new', substatus_id)
 
-        submission_status = yield submission_statuses.retrieve_specific_submission_status(1, 'new', 'en')
+        submission_status = yield tw(submission_statuses.db_get_submission_status, 1, 'new', 'en')
         self.assertEqual(len(submission_status['substatuses']), 0)

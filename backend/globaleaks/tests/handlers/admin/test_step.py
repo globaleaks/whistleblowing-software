@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-from globaleaks.handlers import admin
-from globaleaks.handlers.admin.step import create_step
-from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
+
+from globaleaks.handlers import admin
+from globaleaks.handlers.admin.step import db_create_step
+from globaleaks.orm import tw
+from globaleaks.tests import helpers
 
 
 class TestStepCollection(helpers.TestHandler):
@@ -31,7 +33,7 @@ class TestStepInstance(helpers.TestHandler):
         """
         step = helpers.get_dummy_step()
         step['questionnaire_id'] = 'default'
-        step = yield create_step(1, step, 'en')
+        step = yield tw(db_create_step, 1, step, 'en')
 
         step['presentation_order'] = 666
 
@@ -47,7 +49,7 @@ class TestStepInstance(helpers.TestHandler):
         """
         step = helpers.get_dummy_step()
         step['questionnaire_id'] = 'default'
-        step = yield create_step(1, step, 'en')
+        step = yield tw(db_create_step, 1, step, 'en')
 
         handler = self.request(role='admin')
         yield handler.delete(step['id'])

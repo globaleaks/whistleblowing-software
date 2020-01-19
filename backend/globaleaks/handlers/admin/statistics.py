@@ -109,23 +109,30 @@ def get_stats(session, tid, week_delta):
 
 @transact
 def get_anomaly_history(session, tid, limit):
-    anomalies = session.query(Anomalies).filter(Anomalies.tid == tid).order_by(Anomalies.date.desc())[:limit]
-
-    anomaly_history = []
-    for _, anomaly in enumerate(anomalies):
-        anomaly_entry = dict({
+    """
+    Transaction for fetching the anomalies registered for a specific tenant
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param limit: The limit of retrieved objects
+    :return:
+    """
+    ret = []
+    for anomaly in session.query(Anomalies).filter(Anomalies.tid == tid).order_by(Anomalies.date.desc())[:limit]:
+        entry = dict({
             'date': datetime_to_ISO8601(anomaly.date),
             'alarm': anomaly.alarm,
             'events': [],
         })
+
         for event_type, event_count in anomaly.events.items():
-            anomaly_entry['events'].append({
+            entry['events'].append({
                 'type': event_type,
                 'count': event_count,
             })
-        anomaly_history.append(anomaly_entry)
 
-    return anomaly_history
+        ret.append(entry)
+
+    return ret
 
 
 class AnomalyCollection(BaseHandler):

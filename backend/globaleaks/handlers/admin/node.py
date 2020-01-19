@@ -62,15 +62,42 @@ def db_update_enabled_languages(session, tid, languages_enabled, default_languag
         session.query(models.EnabledLanguage).filter(models.EnabledLanguage.tid == tid, models.EnabledLanguage.name.in_(to_remove)).delete(synchronize_session='fetch')
 
 
+def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
+    """
+    Transaction for fetching the node configuration as admin
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param language: The language to be used on serialization
+    :param config_node: The set of variables to be serialized
+    :return: Return the serialized configuration for the specified tenant
+    """
+    config = ConfigFactory(session, tid).serialize(config_node)
+
+    misc_dict = {
+        'languages_supported': LANGUAGES_SUPPORTED,
+        'languages_enabled': models.EnabledLanguage.list(session, tid),
+        'root_tenant': tid == 1,
+        'https_possible': tid == 1 or State.tenant_cache[1].reachable_via_web,
+    }
+
+    if tid != 1:
+        root_tenant_node = ConfigFactory(session, 1)
+        misc_dict['version'] = root_tenant_node.get_val('version')
+        misc_dict['latest_version'] = root_tenant_node.get_val('latest_version')
+
+    l10n_dict = ConfigL10NFactory(session, tid).serialize('node', language)
+
+    return utils.sets.merge_dicts(config, misc_dict, l10n_dict)
+
 def db_update_node(session, tid, user_session, request, language):
     """
-    Update and serialize the node infos
-
-    :param tid:
-    :param request:
-    :param session: the session on which perform queries.
+    Transaction to update the node configuration
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_session: The current user session
+    :param request: The request data
     :param language: the language in which to localize data
-    :return: a dictionary representing the serialization of the node
+    :return: Return the serialized configuration for the specified tenant
     """
     config = ConfigFactory(session, tid)
 

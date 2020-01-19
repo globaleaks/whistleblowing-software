@@ -28,10 +28,6 @@ def admin_serialize_notification(session, tid, language):
     return merge_dicts(config_dict, cmd_flags, conf_l10n_dict)
 
 
-def db_get_notification(session, tid, language):
-    return admin_serialize_notification(session, tid, language)
-
-
 @transact
 def update_notification(session, tid, request, language):
     config = ConfigFactory(session, tid)
@@ -48,7 +44,7 @@ def update_notification(session, tid, request, language):
 
     db_refresh_memory_variables(session, [tid])
 
-    return admin_serialize_notification(session, tid, language)
+    return db_get_notification(session, tid, language)
 
 
 class NotificationInstance(BaseHandler):

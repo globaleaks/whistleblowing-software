@@ -7,7 +7,7 @@ from sqlalchemy import or_
 
 from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.admin.submission_statuses import db_retrieve_all_submission_statuses
+from globaleaks.handlers.admin.submission_statuses import db_get_submission_statuses
 from globaleaks.models import get_localized_values
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.orm import transact
@@ -18,16 +18,10 @@ from globaleaks.utils.sets import merge_dicts
 special_fields = ['whistleblower_identity']
 
 
-def get_trigger_model_by_type(type):
-    """
-    Get trigger model type given the object type
-    :param type:
-    :return:
-    """
-    if type == 'field':
-        return models.FieldOptionTriggerField
-    elif type == 'step':
-        return models.FieldOptionTriggerStep
+trigger_map = {
+    'field': models.FieldOptionTriggerField,
+    'step': models.FieldOptionTriggerStep
+}
 
 
 def db_get_triggers_by_type(session, type, object_id):
@@ -40,7 +34,7 @@ def db_get_triggers_by_type(session, type, object_id):
     """
     ret = []
 
-    m = get_trigger_model_by_type(type)
+    m = trigger_map[type]
     for x in session.query(models.FieldOption.field_id, models.FieldOption.id, m.sufficient) \
                     .filter(models.FieldOption.id == m.option_id, m.object_id == object_id):
         ret.append({'field': x[0], 'option': x[1], 'sufficient': x[2]})
@@ -375,14 +369,14 @@ def serialize_questionnaire(session, tid, questionnaire, language, serialize_tem
     :return: The serialized resource
     """
     steps = session.query(models.Step).filter(models.Step.questionnaire_id == questionnaire.id,
-                                              models.Questionnaire.id == questionnaire.id)
+                                              models.Questionnaire.id == questionnaire.id) \
+                                       .order_by(models.Step.presentation_order)
 
     ret_dict = {
         'id': questionnaire.id,
         'editable': questionnaire.editable and questionnaire.tid == tid,
         'name': questionnaire.name,
-        'steps': sorted([serialize_step(session, tid, s, language, serialize_templates=serialize_templates) for s in steps],
-                        key=lambda x: x['presentation_order'])
+        'steps': [serialize_step(session, tid, s, language, serialize_templates=serialize_templates) for s in steps]
     }
 
     return get_localized_values(ret_dict, questionnaire, questionnaire.localized_keys, language)
@@ -416,7 +410,7 @@ def serialize_receiver(session, user, language, data=None):
     return get_localized_values(ret_dict, user, user.localized_keys, language)
 
 
-def db_get_questionnaire_list(session, tid, language):
+def db_get_questionnaires(session, tid, language):
     """
     Transaction that serialize the list of public contexts
     :param session: An ORM session
@@ -425,11 +419,12 @@ def db_get_questionnaire_list(session, tid, language):
     :return: A list of contexts descriptors
     """
 
-    questionnaires = session.query(models.Questionnaire).filter(models.Questionnaire.tid.in_(set([1, tid])),
-                                                                or_(models.Context.questionnaire_id == models.Questionnaire.id,
-                                                                    models.Context.additional_questionnaire_id == models.Questionnaire.id),
-                                                                models.Context.status > 0,
-                                                                models.Context.tid == tid)
+    questionnaires = session.query(models.Questionnaire) \
+                            .filter(models.Questionnaire.tid.in_(set([1, tid])),
+                                    or_(models.Context.questionnaire_id == models.Questionnaire.id,
+                                        models.Context.additional_questionnaire_id == models.Questionnaire.id),
+                                    models.Context.status > 0,
+                                    models.Context.tid == tid)
 
     return [serialize_questionnaire(session, tid, questionnaire, language) for questionnaire in questionnaires]
 
@@ -486,9 +481,9 @@ def get_public_resources(session, tid, language):
     return {
         'node': db_serialize_node(session, tid, language),
         'contexts': db_get_public_context_list(session, tid, language),
-        'questionnaires': db_get_questionnaire_list(session, tid, language),
+        'questionnaires': db_get_questionnaires(session, tid, language),
         'receivers': db_get_public_receiver_list(session, tid, language),
-        'submission_statuses': db_retrieve_all_submission_statuses(session, tid, language)
+        'submission_statuses': db_get_submission_statuses(session, tid, language)
     }
 
 

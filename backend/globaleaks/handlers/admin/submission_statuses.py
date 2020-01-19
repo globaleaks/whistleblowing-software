@@ -6,7 +6,7 @@ from globaleaks.rest import errors
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.models import fill_localized_keys, get_localized_values
-from globaleaks.orm import transact
+from globaleaks.orm import transact, tw
 from globaleaks.rest import requests
 
 
@@ -22,12 +22,10 @@ def serialize_submission_status(session, status, language):
     substatuses = session.query(models.SubmissionSubStatus) \
                          .filter(models.SubmissionSubStatus.tid == status.tid,
                                  models.SubmissionSubStatus.submissionstatus_id == status.id) \
-                        .order_by(models.SubmissionSubStatus.presentation_order)
+                         .order_by(models.SubmissionSubStatus.presentation_order)
 
     for substatus in substatuses:
-        submission_status['substatuses'].append(
-            serialize_submission_substatus(substatus, language)
-        )
+        submission_status['substatuses'].append(serialize_submission_substatus(substatus, language))
 
     return get_localized_values(submission_status, status, status.localized_keys, language)
 
@@ -43,7 +41,7 @@ def serialize_submission_substatus(substatus, language):
     return get_localized_values(submission_substatus, substatus, substatus.localized_keys, language)
 
 
-def db_retrieve_all_submission_statuses(session, tid, language):
+def db_get_submission_statuses(session, tid, language):
     """Retrieves all submission statuses"""
     system_statuses = {}
     submission_statuses = []
@@ -69,13 +67,7 @@ def db_retrieve_all_submission_statuses(session, tid, language):
     return submission_statuses
 
 
-@transact
-def retrieve_all_submission_statuses(session, tid, language):
-    """Transact version of db_retrieve_all_submission_statuses"""
-    return db_retrieve_all_submission_statuses(session, tid, language)
-
-
-def db_retrieve_specific_submission_status(session, tid, submission_status_id, language):
+def db_get_submission_status(session, tid, submission_status_id, language):
     """Retrieves a specific status"""
     status = session.query(models.SubmissionStatus) \
                    .filter(models.SubmissionStatus.tid == tid,
@@ -87,34 +79,26 @@ def db_retrieve_specific_submission_status(session, tid, submission_status_id, l
     return serialize_submission_status(session, status, language)
 
 
-@transact
-def retrieve_specific_submission_status(session, tid, submission_status_id, language):
-    """Transact version of db_retrieve_specific_submission_status"""
-    return db_retrieve_specific_submission_status(session, tid, submission_status_id, language)
-
-
-def update_status_model_from_request(model_obj, request, language):
+def db_update_status_model_from_request(model_obj, request, language):
     """Populates the model from the request, as well as setting default values"""
     fill_localized_keys(request, models.SubmissionStatus.localized_keys, language)
     model_obj.update(request)
     return model_obj
 
 
-@transact
-def create_submission_status(session, tid, request, language):
+def db_create_submission_status(session, tid, request, language):
     """Creates submission status"""
     new_status = models.SubmissionStatus()
     new_status.tid = tid
-    update_status_model_from_request(new_status, request, language)
 
+    db_update_status_model_from_request(new_status, request, language)
     session.add(new_status)
     session.flush()
 
     return serialize_submission_status(session, new_status, language)
 
 
-@transact
-def update_submission_status(session, tid, submission_status_id, request, language):
+def db_update_submission_status(session, tid, submission_status_id, request, language):
     """Updates the submission status from request objects"""
     status = session.query(models.SubmissionStatus) \
                    .filter(models.SubmissionStatus.tid == tid,
@@ -123,31 +107,17 @@ def update_submission_status(session, tid, submission_status_id, request, langua
     if status is None:
         raise errors.ResourceNotFound
 
-    update_status_model_from_request(status, request, language)
+    db_update_status_model_from_request(status, request, language)
 
 
-@transact
-def get_submission_status(session, tid, submission_status_id):
-    """Returns the UUID of a given submission status"""
-    status = session.query(models.SubmissionStatus) \
-                   .filter(models.SubmissionStatus.tid == tid,
-                           models.SubmissionStatus.id == submission_status_id).one_or_none()
-
-    if status is None:
-        raise errors.ResourceNotFound
-
-    return status
-
-
-def update_substatus_model_from_request(model_obj, request, language):
+def db_update_substatus_model_from_request(model_obj, request, language):
     """Populates the model off each value from requests['substatus']"""
     fill_localized_keys(request, models.SubmissionSubStatus.localized_keys, language)
     model_obj.update(request)
     return model_obj
 
 
-@transact
-def update_submission_substatus(session, tid, submission_status_id, substatus_id, request, language):
+def db_update_submission_substatus(session, tid, submission_status_id, substatus_id, request, language):
     """Updates a substatus from a request object"""
     substatus = session.query(models.SubmissionSubStatus) \
                       .filter(models.SubmissionStatus.id == submission_status_id,
@@ -158,23 +128,17 @@ def update_submission_substatus(session, tid, submission_status_id, substatus_id
     if substatus is None:
         raise errors.ResourceNotFound
 
-    update_substatus_model_from_request(substatus, request, language)
+    db_update_substatus_model_from_request(substatus, request, language)
 
 
-@transact
-def create_submission_substatus(session, tid, submission_status_id, request, language):
+def db_create_submission_substatus(session, tid, submission_status_id, request, language):
     """Creates a substatus"""
-
-    # Safety check here, make sure that the submission status we're looking for
-    # 1. exists
-    # 2. is part of our tid
-    db_retrieve_specific_submission_status(session, tid, submission_status_id, language)
 
     substatus_obj = models.SubmissionSubStatus()
     substatus_obj.tid = tid
     substatus_obj.submissionstatus_id = submission_status_id
 
-    update_substatus_model_from_request(substatus_obj, request, language)
+    db_update_substatus_model_from_request(substatus_obj, request, language)
 
     session.add(substatus_obj)
     session.flush()
@@ -222,13 +186,13 @@ class SubmissionStatusCollection(OperationHandler):
     invalidate_cache = True
 
     def get(self):
-        return retrieve_all_submission_statuses(self.request.tid, self.request.language)
+        return tw(db_get_submission_statuses, self.request.tid, self.request.language)
 
     def post(self):
         request = self.validate_message(self.request.content.read(),
                                         requests.SubmissionStatusDesc)
 
-        return create_submission_status(self.request.tid, request, self.request.language)
+        return tw(db_create_submission_status, self.request.tid, request, self.request.language)
 
     def operation_descriptors(self):
         return {
@@ -245,7 +209,7 @@ class SubmissionStatusInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.SubmissionStatusDesc)
 
-        return update_submission_status(self.request.tid, submission_status_id, request, self.request.language)
+        return tw(db_update_submission_status, self.request.tid, submission_status_id, request, self.request.language)
 
     def delete(self, submission_status_id):
         return models.delete(models.SubmissionStatus,
@@ -260,7 +224,10 @@ class SubmissionSubStatusCollection(OperationHandler):
 
     @inlineCallbacks
     def get(self, submission_status_id):
-        submission_status = yield retrieve_specific_submission_status(self.request.tid, submission_status_id, self.request.language)
+        submission_status = yield tw(db_get_submission_status,
+                                     self.request.tid,
+                                     submission_status_id,
+                                     self.request.language)
 
         returnValue(submission_status['substatuses'])
 
@@ -268,7 +235,7 @@ class SubmissionSubStatusCollection(OperationHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.SubmissionSubStatusDesc)
 
-        return create_submission_substatus(self.request.tid, submission_status_id, request, self.request.language)
+        return tw(db_create_submission_substatus, self.request.tid, submission_status_id, request, self.request.language)
 
     def operation_descriptors(self):
         return {
@@ -285,11 +252,14 @@ class SubmissionSubStatusInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.SubmissionSubStatusDesc)
 
-        return update_submission_substatus(self.request.tid, submission_status_id, submission_substatus_id, request, self.request.language)
+        return tw(db_update_submission_substatus,
+                  self.request.tid, submission_status_id,
+                  submission_substatus_id,
+                  request,
+                  self.request.language)
 
-    @inlineCallbacks
     def delete(self, submission_status_id, submission_substatus_id):
-        yield models.delete(models.SubmissionSubStatus,
+        return models.delete(models.SubmissionSubStatus,
                             models.SubmissionSubStatus.tid == self.request.tid,
                             models.SubmissionSubStatus.id == submission_substatus_id,
                             models.SubmissionSubStatus.submissionstatus_id == submission_status_id)

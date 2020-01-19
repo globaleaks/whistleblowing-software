@@ -6,7 +6,7 @@ from datetime import timedelta
 from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.admin.user import db_get_admin_users
+from globaleaks.handlers.admin.user import db_get_users
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import DailyJob
 from globaleaks.orm import transact
@@ -32,7 +32,7 @@ class PGPCheck(DailyJob):
     monitor_interval = 5 * 60
 
     def prepare_admin_pgp_alerts(self, session, tid, expired_or_expiring):
-        for user_desc in db_get_admin_users(session, tid):
+        for user_desc in db_get_users(session, tid, 'admin'):
             user_language = user_desc['language']
 
             data = {

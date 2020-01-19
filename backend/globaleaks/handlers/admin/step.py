@@ -5,50 +5,43 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.public import serialize_step
 from globaleaks.models import fill_localized_keys
-from globaleaks.orm import transact
+from globaleaks.orm import transact, tw
 from globaleaks.rest import requests, errors
 
 
-def db_create_step(session, tid, step_dict, language):
+def db_create_step(session, tid, request, language):
     """
-    Create the specified step
+    Transaction for creating a step
 
-    :param tid:
-    :param step_dict:
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param request: The request data
     :param session: the session on which perform queries.
     :param language: the language of the specified steps.
     """
-    fill_localized_keys(step_dict, models.Step.localized_keys, language)
+    fill_localized_keys(request, models.Step.localized_keys, language)
 
-    step = models.db_forge_obj(session, models.Step, step_dict)
+    step = models.db_forge_obj(session, models.Step, request)
 
-    for trigger in step_dict.get('triggered_by_options', []):
+    for trigger in request.get('triggered_by_options', []):
         db_create_option_trigger(session, tid, trigger['option'], 'step', step.id, trigger.get('sufficient', True))
 
-    for c in step_dict['children']:
+    for c in request['children']:
         c['tid'] = tid
         c['step_id'] = step.id
         db_create_field(session, tid, c, language)
 
-    return step
+    return serialize_step(session, tid, step, language)
 
 
-@transact
-def create_step(session, tid, step, language):
+def db_update_step(session, tid, step_id, request, language):
     """
-    Transaction that perform db_create_step
-    """
-    return serialize_step(session, tid, db_create_step(session, tid, step, language), language)
+    Transaction for updating a step
 
-
-def db_update_step(session, tid, step_id, step_dict, language):
-    """
-    Update the specified step with the details.
-
-    :param tid:
-    :param session: the session on which perform queries.
+    :param session: An ORM session
+    :param tid: The tenant ID
     :param step_id: the step_id of the step to update
-    :param step_dict: the step definition dict
+    :param request: the step definition dict
     :param language: the language of the step definition dict
     :return: a serialization of the object
     """
@@ -56,32 +49,26 @@ def db_update_step(session, tid, step_id, step_dict, language):
                          models.Questionnaire.id == models.Step.questionnaire_id,
                          models.Questionnaire.tid == tid)
 
-    fill_localized_keys(step_dict, models.Step.localized_keys, language)
+    fill_localized_keys(request, models.Step.localized_keys, language)
 
-    step.update(step_dict)
+    step.update(request)
 
-    for child in step_dict['children']:
+    for child in request['children']:
         db_update_field(session, tid, child['id'], child, language)
 
     db_reset_option_triggers(session, 'step', step.id)
 
-    for trigger in step_dict.get('triggered_by_options', []):
+    for trigger in request.get('triggered_by_options', []):
         db_create_option_trigger(session, tid, trigger['option'], 'step', step.id, trigger.get('sufficient', True))
 
-    return step
+    return serialize_step(session, tid, step, language)
 
 
-@transact
-def update_step(session, tid, step_id, request, language):
-    return serialize_step(session, tid, db_update_step(session, tid, step_id, request, language), language)
-
-
-@transact
-def delete_step(session, tid, step_id):
-    q_ids = session.query(models.Questionnaire.id).filter(models.Questionnaire.tid == tid)
+def db_delete_step(session, tid, step_id):
+    subquery = session.query(models.Questionnaire.id).filter(models.Questionnaire.tid == tid).subquery()
 
     session.query(models.Step).filter(models.Step.id == step_id,
-                                      models.Step.questionnaire_id.in_(q_ids.subquery())).delete(synchronize_session='fetch')
+                                      models.Step.questionnaire_id.in_(subquery)).delete(synchronize_session='fetch')
 
 
 @transact
@@ -122,7 +109,7 @@ class StepCollection(OperationHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminStepDesc)
 
-        return create_step(self.request.tid, request, self.request.language)
+        return tw(db_create_step, self.request.tid, request, self.request.language)
 
     def operation_descriptors(self):
         return {
@@ -157,13 +144,7 @@ class StepInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminStepDesc)
 
-        return update_step(self.request.tid, step_id, request, self.request.language)
+        return tw(db_update_step, self.request.tid, step_id, request, self.request.language)
 
     def delete(self, step_id):
-        """
-        Delete the specified step.
-
-        :param step_id:
-        :raises InputValidationError: if validation fails.
-        """
-        return delete_step(self.request.tid, step_id)
+        return tw(db_delete_step, self.request.tid, step_id)

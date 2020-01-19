@@ -8,7 +8,7 @@ from globaleaks.handlers.user import db_get_user, \
                                      user_serialize_user
 
 from globaleaks.models import fill_localized_keys
-from globaleaks.orm import transact
+from globaleaks.orm import transact, tw
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE, Base64Encoder
@@ -104,48 +104,17 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
     if user.role == 'admin':
         db_refresh_memory_variables(session, [tid])
 
-    return user
+    return user_serialize_user(session, user, language)
 
 
-@transact
-def admin_update_user(session, tid, user_session, user_id, request, language):
-    return user_serialize_user(session, db_admin_update_user(session, tid, user_session, user_id, request, language), language)
+def db_get_users(session, tid, role=None, language=None):
+    if role is None:
+        users = session.query(models.User).filter(models.User.tid == tid)
+    else:
+        users = session.query(models.User).filter(models.User.tid == tid,
+                                                  models.User.role == role)
 
-
-@transact
-def delete_user(session, tid, user_id):
-    user = db_get_user(session, tid, user_id)
-
-    if user is not None:
-        session.delete(user)
-
-
-def db_get_admin_users(session, tid):
-    users = session.query(models.User).filter(models.User.role == 'admin',
-                                              models.User.tid == tid)
-
-    return [user_serialize_user(session, user, State.tenant_cache[tid].default_language) for user in users]
-
-
-@transact
-def get_receiver_list(session, tid, language):
-    """
-    Returns:
-        (list) the list of recipients
-    """
-    users = session.query(models.User).filter(models.User.role == 'receiver',
-                                              models.User.tid == tid)
-
-    return [user_serialize_user(session, user, language) for user in users]
-
-
-@transact
-def get_user_list(session, tid, language):
-    """
-    Returns:
-        (list) the list of users
-    """
-    users = session.query(models.User).filter(models.User.tid == tid)
+    language = language if language is not None else State.tenant_cache[tid].default_language
 
     return [user_serialize_user(session, user, language) for user in users]
 
@@ -159,7 +128,7 @@ class UsersCollection(BaseHandler):
         """
         Return all the users.
         """
-        return get_user_list(self.request.tid, self.request.language)
+        return tw(db_get_users, self.request.tid, None, self.request.language)
 
     def post(self):
         """
@@ -181,10 +150,17 @@ class UserInstance(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.AdminUserDesc)
 
-        return admin_update_user(self.request.tid, self.current_user, user_id, request, self.request.language)
+        return tw(db_admin_update_user,
+                  self.request.tid,
+                  self.current_user,
+                  user_id,
+                  request,
+                  self.request.language)
 
     def delete(self, user_id):
         """
         Delete the specified user.
         """
-        return delete_user(self.request.tid, user_id)
+        return models.delete(models.User,
+                             models.User.tid == self.request.tid,
+                             models.User.id == user_id)

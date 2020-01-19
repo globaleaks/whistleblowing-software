@@ -7,7 +7,7 @@ from globaleaks import models
 from globaleaks.handlers.admin.https import db_acme_cert_request, load_tls_dict
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.admin.user import db_get_admin_users
+from globaleaks.handlers.admin.user import db_get_users
 from globaleaks.jobs.job import DailyJob
 from globaleaks.orm import transact
 from globaleaks.utils import letsencrypt
@@ -23,7 +23,7 @@ class CertificateCheck(DailyJob):
     should_restart_https = False
 
     def certificate_mail_creation(self, session, mail_type, tid, expiration_date):
-        for user_desc in db_get_admin_users(session, tid):
+        for user_desc in db_get_users(session, tid, 'admin'):
             lang = user_desc['language']
 
             template_vars = {

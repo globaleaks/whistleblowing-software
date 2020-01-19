@@ -6,7 +6,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.admin.user import db_get_admin_users
+from globaleaks.handlers.admin.user import db_get_users
 from globaleaks.orm import transact
 from globaleaks.rest.cache import Cache
 from globaleaks.state import State
@@ -59,7 +59,7 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes):
 
 @transact
 def generate_admin_alert_mail(session, tid, alert):
-    for user_desc in db_get_admin_users(session, tid):
+    for user_desc in db_get_users(session, tid, 'admin'):
         user_language = user_desc['language']
 
         data = {

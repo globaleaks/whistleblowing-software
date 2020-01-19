@@ -3,7 +3,7 @@ from sqlalchemy.sql.expression import not_
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.public import get_trigger_model_by_type, serialize_field
+from globaleaks.handlers.public import serialize_field, trigger_map
 from globaleaks.models import fill_localized_keys
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -32,7 +32,7 @@ def db_create_option_trigger(session, option_id, type, object_id, sufficient):
     :param object_id: The object to be connected to the trigger
     :param sufficient: A boolean indicating if the condition is sufficient
     """
-    o = get_trigger_model_by_type(type)()
+    o = trigger_map[type]()
     o.option_id = option_id
     o.object_id = object_id
     o.sufficient = sufficient
@@ -46,7 +46,7 @@ def db_reset_option_triggers(session, type, object_id):
     :param type: The type of trigger to be reset
     :param object_id: The object on which reset the triggers
     """
-    m = get_trigger_model_by_type(type)
+    m = trigger_map[type]
     session.query(m).filter(m.object_id == object_id).delete(synchronize_session='fetch')
 
 
@@ -92,10 +92,12 @@ def db_update_fieldoptions(session, field_id, options, language):
     if not options_ids:
         return
 
-    to_remove = session.query(models.FieldOption.id).filter(models.FieldOption.field_id == field_id,
-                                                            not_(models.FieldOption.id.in_(options_ids)))
+    subquery = session.query(models.FieldOption.id) \
+                      .filter(models.FieldOption.field_id == field_id,
+                              not_(models.FieldOption.id.in_(options_ids))) \
+                      .subquery()
 
-    session.query(models.FieldOption).filter(models.FieldOption.id.in_(to_remove.subquery())).delete(synchronize_session='fetch')
+    session.query(models.FieldOption).filter(models.FieldOption.id.in_(subquery)).delete(synchronize_session='fetch')
 
 
 def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
@@ -137,10 +139,12 @@ def db_update_fieldattrs(session, field_id, field_attrs, language):
     if not attrs_ids:
         return
 
-    to_remove = session.query(models.FieldAttr.id).filter(models.FieldAttr.field_id == field_id,
-                                                          not_(models.FieldAttr.id.in_(attrs_ids)))
+    subquery = session.query(models.FieldAttr.id) \
+                      .filter(models.FieldAttr.field_id == field_id,
+                              not_(models.FieldAttr.id.in_(attrs_ids))) \
+                      .subquery()
 
-    session.query(models.FieldAttr).filter(models.FieldAttr.id.in_(to_remove.subquery())).delete(synchronize_session='fetch')
+    session.query(models.FieldAttr).filter(models.FieldAttr.id.in_(subquery)).delete(synchronize_session='fetch')
 
 
 def check_field_association(session, tid, request):

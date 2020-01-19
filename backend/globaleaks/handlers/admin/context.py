@@ -19,6 +19,7 @@ def admin_serialize_context(session, context, language):
     receivers = [r[0] for r in session.query(models.ReceiverContext.receiver_id)
                                       .filter(models.ReceiverContext.context_id == context.id)
                                       .order_by(models.ReceiverContext.presentation_order)]
+
     picture = db_get_model_img(session, 'contexts', context.id)
 
     ret_dict = {
@@ -56,7 +57,7 @@ def admin_serialize_context(session, context, language):
 
 
 @transact
-def get_context_list(session, tid, language):
+def get_contexts(session, tid, language):
     """
     Returns the context list.
 
@@ -65,9 +66,11 @@ def get_context_list(session, tid, language):
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the contexts.
     """
-    return sorted([admin_serialize_context(session, context, language)
-                      for context in session.query(models.Context).filter(models.Context.tid == tid)],
-                  key=lambda x: x['presentation_order'])
+    contexts = session.query(models.Context) \
+                      .filter(models.Context.tid == tid) \
+                      .order_by(models.Context.presentation_order)
+
+    return [admin_serialize_context(session, context, language) for context in contexts]
 
 
 def db_associate_context_receivers(session, context, receiver_ids):
@@ -236,7 +239,7 @@ class ContextsCollection(OperationHandler):
         """
         Return all the contexts.
         """
-        return get_context_list(self.request.tid, self.request.language)
+        return get_contexts(self.request.tid, self.request.language)
 
     def post(self):
         """
@@ -264,10 +267,15 @@ class ContextInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminContextDesc)
 
-        return update_context(self.request.tid, context_id, request, self.request.language)
+        return update_context(self.request.tid,
+                              context_id,
+                              request,
+                              self.request.language)
 
     def delete(self, context_id):
         """
         Delete the specified context.
         """
-        return models.delete(models.Context, models.Context.tid == self.request.tid, models.Context.id == context_id)
+        return models.delete(models.Context,
+                             models.Context.tid == self.request.tid,
+                             models.Context.id == context_id)

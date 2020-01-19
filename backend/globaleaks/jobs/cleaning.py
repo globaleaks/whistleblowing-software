@@ -46,7 +46,8 @@ class Cleaning(DailyJob):
 
         subquery = session.query(models.InternalTip.id) \
                           .filter(models.InternalTip.tid == tid,
-                                  models.InternalTip.wb_last_access < threshold)
+                                  models.InternalTip.wb_last_access < threshold) \
+                          .subquery()
 
         session.query(models.WhistleblowerTip).filter(models.WhistleblowerTip.id.in_(subquery)).delete(synchronize_session='fetch')
 
@@ -99,7 +100,8 @@ class Cleaning(DailyJob):
 
         subquery = session.query(models.User.id) \
                           .filter(models.User.password_change_date < threshold,
-                                  models.User.tid == tid)
+                                  models.User.tid == tid) \
+                          .subquery()
 
         session.query(models.User).filter(models.User.id.in_(subquery)).update({'password_change_needed': True}, synchronize_session='fetch')
 
@@ -112,13 +114,14 @@ class Cleaning(DailyJob):
         session.query(models.Anomalies).filter(models.Anomalies.date < datetime_now() - timedelta(365)).delete(synchronize_session='fetch')
 
         # delete archived schemas not used by any existing submission
-        subquery = session.query(models.InternalTipAnswers.questionnaire_hash)
+        subquery = session.query(models.InternalTipAnswers.questionnaire_hash).subquery()
         session.query(models.ArchivedSchema).filter(not_(models.ArchivedSchema.hash.in_(subquery))).delete(synchronize_session='fetch')
 
         # delete the tenants created via signup that has not been completed in 24h
         subquery = session.query(models.Tenant.id).filter(models.Signup.activation_token != '',
                                                           models.Signup.tid == models.Tenant.id,
-                                                          models.Tenant.creation_date < datetime_now() - timedelta(days=1))
+                                                          models.Tenant.creation_date < datetime_now() - timedelta(days=1)) \
+                                                  .subquery()
         session.query(models.Tenant).filter(models.Tenant.id.in_(subquery)).delete(synchronize_session='fetch')
 
     @transact

@@ -7,7 +7,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.tenant import db_preallocate as db_preallocate_tenant,\
     db_initialize as db_initialize_tenant, db_refresh_memory_variables
-from globaleaks.handlers.admin.user import db_get_admin_users
+from globaleaks.handlers.admin.user import db_get_users
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.wizard import db_wizard
 from globaleaks.models.config import ConfigFactory
@@ -69,10 +69,13 @@ def signup(session, request, language):
 
     # Delete the tenants created for the same subdomain that have still not been activated
     # Ticket reference: https://github.com/globaleaks/GlobaLeaks/issues/2640
-    subquery = session.query(models.Tenant.id).filter(models.Signup.subdomain == request['subdomain'],
-                                                      not_(models.Signup.activation_token.is_(None)),
-                                                      models.Tenant.id == models.Signup.tid,
-                                                      models.Tenant.subdomain == models.Signup.subdomain)
+    subquery = session.query(models.Tenant.id) \
+                      .filter(models.Signup.subdomain == request['subdomain'],
+                              not_(models.Signup.activation_token.is_(None)),
+                              models.Tenant.id == models.Signup.tid,
+                              models.Tenant.subdomain == models.Signup.subdomain) \
+                      .subquery()
+
     session.query(models.Tenant).filter(models.Tenant.id.in_(subquery)).delete(synchronize_session='fetch')
 
     tenant_id = db_preallocate_tenant(session, {'label': request['subdomain'],
@@ -104,7 +107,7 @@ def signup(session, request, language):
     State.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
 
     # Email 2 - Admin Notification
-    for user_desc in db_get_admin_users(session, 1):
+    for user_desc in db_get_users(session, 1, 'admin'):
         template_vars = {
             'type': 'admin_signup_alert',
             'node': db_admin_serialize_node(session, 1, user_desc['language']),

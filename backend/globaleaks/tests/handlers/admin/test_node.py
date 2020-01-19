@@ -5,7 +5,7 @@ from globaleaks import __version__
 from globaleaks import models
 from globaleaks.handlers.admin import node, user
 from globaleaks.models.config_desc import ConfigL10NFilters
-from globaleaks.orm import transact
+from globaleaks.orm import transact, tw
 from globaleaks.rest.errors import InputValidationError, InvalidAuthentication
 from globaleaks.tests import helpers
 
@@ -32,7 +32,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
 
-        for r in (yield user.get_receiver_list(1, 'en')):
+        for r in (yield tw(user.db_get_users, 1, 'receiver', 'en')):
             if r['pgp_key_fingerprint'] == 'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
                 self.rcvr_id = r['id']
 

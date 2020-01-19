@@ -5,8 +5,8 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers import password_reset
-from globaleaks.handlers.admin import user
-from globaleaks.orm import transact
+from globaleaks.handlers.admin.user import db_get_users
+from globaleaks.orm import transact, tw
 from globaleaks.state import State
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_now
@@ -20,12 +20,6 @@ def set_reset_token(session, user_id, validation_token):
     user.reset_password_date = datetime_now()
 
 
-@transact
-def get_user(session, user_id):
-    user = models.db_get(session, models.User, models.User.id == user_id)
-    session.expunge(user)
-    return user
-
 
 class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = password_reset.PasswordResetHandler
@@ -36,7 +30,7 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
 
         State.tenant_cache[1]['enable_password_reset'] = True
 
-        for r in (yield user.get_receiver_list(1, 'en')):
+        for r in (yield tw(db_get_users, 1, 'receiver', 'en')):
             if r['pgp_key_fingerprint'] == 'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
                 self.rcvr_id = r['id']
                 self.user = r
@@ -50,10 +44,6 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(data_request)
 
         yield handler.post()
-
-        # Check if the token has been issued
-        user = yield get_user(self.rcvr_id)
-        self.assertNotEqual(user.reset_password_token, None)
 
         # Check that an mail has been created
         yield self.test_model_count(models.Mail, 3)

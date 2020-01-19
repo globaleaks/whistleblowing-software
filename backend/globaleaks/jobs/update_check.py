@@ -6,7 +6,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import __version__
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.admin.user import db_get_admin_users
+from globaleaks.handlers.admin.user import db_get_users
 from globaleaks.jobs.job import HourlyJob
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
@@ -31,7 +31,7 @@ def evaluate_update_notification(session, state, latest_version):
         if parse_version(__version__) == parse_version(latest_version):
             return
 
-        for user_desc in db_get_admin_users(session, 1):
+        for user_desc in db_get_users(session, 1, 'admin'):
             lang = user_desc['language']
             template_vars = {
                 'type': 'software_update_available',

@@ -62,3 +62,16 @@ def serialize_wbfile(session, wbfile):
         'downloads': wbfile.downloads,
         'author': receiver_id,
     }
+
+
+def serialize_redirect(redirect):
+    """
+    Transact for serializing a redirect
+    :param redirect: The redirect to be serialized
+    :return: The serialized redirect
+    """
+    return {
+        'id': redirect.id,
+        'path1': redirect.path1,
+        'path2': redirect.path2
+    }

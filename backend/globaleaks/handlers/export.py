@@ -10,7 +10,7 @@ from globaleaks import models
 from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.admin.submission_statuses import db_retrieve_all_submission_statuses
+from globaleaks.handlers.admin.submission_statuses import db_get_submission_statuses
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip
 from globaleaks.handlers.submission import decrypt_tip
@@ -42,7 +42,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
         'crypto_tip_prv_key': Base64Encoder.decode(rtip.crypto_tip_prv_key),
         'user': user_serialize_user(session, user, language),
         'context': admin_serialize_context(session, context, language),
-        'submission_statuses': db_retrieve_all_submission_statuses(session, tid, language)
+        'submission_statuses': db_get_submission_statuses(session, tid, language)
     }
 
 

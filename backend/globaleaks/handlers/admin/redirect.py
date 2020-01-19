@@ -3,17 +3,10 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.models.serializers import serialize_redirect
 from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.state import State
-
-
-def serialize_redirect(redirect):
-    return {
-        'id': redirect.id,
-        'path1': redirect.path1,
-        'path2': redirect.path2
-    }
 
 
 @transact
