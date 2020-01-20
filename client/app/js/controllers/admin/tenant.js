@@ -37,15 +37,13 @@ angular.module("GLClient")
 }])
 .controller("TenantEditorCtrl", ["$scope", "$rootScope", "$http", "$window", "AdminTenantResource",
   function($scope, $rootScope, $http, $window, AdminTenantResource) {
-  var tenant = $scope.tenant;
-
   $scope.toggleEditing = function($event) {
     $event.stopPropagation();
     $scope.editing = !$scope.editing;
   };
 
   $scope.isRemovableTenant = function() {
-    return tenant.id !== 1;
+    return $scope.tenant.id !== 1;
   };
 
   $scope.isCurrentTenant = function() {
@@ -54,8 +52,8 @@ angular.module("GLClient")
 
   $scope.toggleActivation = function($event) {
     $event.stopPropagation();
-    tenant.active = !tenant.active;
-    tenant.$update();
+    $scope.tenant.active = !$scope.tenant.active;
+    $scope.tenant.$update();
   };
 
   $scope.configureTenant = function($event, tid) {
@@ -66,8 +64,8 @@ angular.module("GLClient")
   };
 
   $scope.saveTenant = function() {
-    tenant.subdomain = angular.isDefined(tenant.subdomain) ? tenant.subdomain : "";
-    tenant.$update().then(function() {
+    $scope.tenant.subdomain = angular.isDefined($scope.tenant.subdomain) ? $scope.tenant.subdomain : "";
+    $scope.tenant.$update().then(function() {
       $rootScope.successes.push({});
     });
   };
