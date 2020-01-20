@@ -6,6 +6,7 @@ from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.admin import file
+from globaleaks.handlers.admin.submission_statuses import db_initialize_submission_statuses
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import db_set_config_variable
 from globaleaks.orm import transact
@@ -13,17 +14,6 @@ from globaleaks.rest import requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.log import log
-
-
-def initialize_submission_statuses(session, tid):
-    for s in [{'id': 'new', 'label': {'en': 'New'}},
-              {'id': 'opened', 'label': {'en': 'Opened'}},
-              {'id': 'closed', 'label': {'en': 'Closed'}}]:
-        state = models.SubmissionStatus()
-        state.id = s['id']
-        state.tid = tid
-        state.label = s['label']
-        session.add(state)
 
 
 def serialize_tenant(session, tenant, signup=None):
@@ -69,7 +59,7 @@ def db_initialize(session, tenant, mode):
 
     models.config.add_new_lang(session, tenant.id, 'en', appdata)
 
-    initialize_submission_statuses(session, tenant.id)
+    db_initialize_submission_statuses(session, tenant.id)
 
     if mode == 'default':
         file_descs = [

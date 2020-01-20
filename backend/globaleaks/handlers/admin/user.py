@@ -16,6 +16,14 @@ from globaleaks.utils.utility import datetime_now, uuid4
 
 
 def db_create_user(session, tid, request, language):
+    """
+    Transaction for creating a new user
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param request: The request data
+    :param language: The language of the request
+    :return: The serialized descriptor of the created object
+    """
     request['tid'] = tid
 
     fill_localized_keys(request, models.User.localized_keys, language)
@@ -60,12 +68,27 @@ def db_create_user(session, tid, request, language):
 
 @transact
 def create_user(session, tid, request, language):
+    """
+    Transaction for creating a new user
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param request: The request data
+    :param language: The language of the request
+    :return: The serialized descriptor of the created object
+    """
     return user_serialize_user(session, db_create_user(session, tid, request, language), language)
 
 
 def db_admin_update_user(session, tid, user_session, user_id, request, language):
     """
-    Updates the specified user.
+    Transaction for updating an existing user
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_session: The current user session
+    :param user_id: The ID of the user to update
+    :param request: The request data
+    :param language: The language of the request
+    :return: The serialized descriptor of the updated object
     """
     fill_localized_keys(request, models.User.localized_keys, language)
 
@@ -108,6 +131,14 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
 
 
 def db_get_users(session, tid, role=None, language=None):
+    """
+    Transaction for retrieving the list of users defined on a tenant
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param role: The role of the users to be retriven
+    :param language: The language to be used during serialization
+    :return: A list of serialized descriptors of the users defined on the specified tenant
+    """
     if role is None:
         users = session.query(models.User).filter(models.User.tid == tid)
     else:

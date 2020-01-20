@@ -6,10 +6,7 @@ describe("admin configure advanced settings", function() {
     // enable experimental features that by default are disabled
     await element(by.model("resources.node.enable_experimental_features")).click();
     await element(by.model("resources.node.enable_custodian")).click();
-
-    await element(by.css("body")).sendKeys(protractor.Key.F1);
-
-    await element(by.model("resources.node.encryption")).click();
+    await element(by.model("resources.node.multisite")).click();
 
     // save settings
     await element.all(by.css("[data-ng-click=\"updateNode()\"]")).first().click();
