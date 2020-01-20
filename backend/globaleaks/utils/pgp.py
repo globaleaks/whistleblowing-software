@@ -30,8 +30,8 @@ class PGPContext(object):
 
     def load_key(self, key):
         """
-        @param key
-        @return: a dict with the expiration date and the key fingerprint
+        :param key: A PGP key to be loaded
+        :return: a dict with the expiration date and the key fingerprint
         """
         try:
             import_result = self.gnupg.import_keys(key)

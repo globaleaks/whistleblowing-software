@@ -11,14 +11,15 @@
 #
 # All configuration values have a default; values that are commented out
 # serve to show the default.
+import os
+import sys
 
-#import sys
-#import os
+import sphinx_rtd_theme
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('../backend/globaleaks/'))
 
 # -- General configuration ------------------------------------------------
 
@@ -28,7 +29,15 @@
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.todo']
+extensions = [
+  'sphinx.ext.autodoc',
+  'sphinx.ext.autosummary',
+  'sphinx.ext.coverage',
+  'sphinx.ext.inheritance_diagram',
+  'sphinx.ext.viewcode',
+  'sphinx_rtd_theme',
+  'autoapi.extension'
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -46,7 +55,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'GlobaLeaks'
-copyright = u'Copyright (c) 2011-2019 - Hermes Center for Transparency and Digital Human Rights'
+copyright = u'Copyright (c) 2011-2020 - Hermes Center for Transparency and Digital Human Rights'
 author = u'Hermes Center for Transparency and Digital Human Rights'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -107,7 +116,7 @@ todo_include_todos = False
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -266,7 +275,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc, 'GlobaLeaks', u'GlobaLeaks Documentation',
-     author, 'GlobaLeaks', 'One line description of project.',
+     author, 'GlobaLeaks', 'GlobaLeaks is open-source / free software intended to enable secure and anonymous whistleblowing',
      'Miscellaneous'),
 ]
 
@@ -281,3 +290,16 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
+
+autodoc_member_order = 'bysource'
+autodoc_default_flags = ['members', 'show-inheritance', 'undoc-members']
+autoclass_content = 'both'
+autosummary_generate = True
+
+autoapy_type = 'python'
+autoapi_dirs = ['../backend/globaleaks/']
+autoapi_add_toctree_entry = False
+
+autoapi_modules = {
+  'globaleaks': {'output': 'globaleaks'}
+}

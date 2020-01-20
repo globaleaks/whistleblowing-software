@@ -33,6 +33,7 @@ def select_http01_chall(orderr):
 def split_certificate_chain(full_chain_pem):
     """
     Parse and split a certificate chain
+
     :param full_chain_pem: the PEM chain of certificates
     :return: the list of certificates contained in the PEM chain
     """
@@ -43,6 +44,7 @@ def split_certificate_chain(full_chain_pem):
 def convert_asn1_date(asn1_bytes):
     """
     Print a date in asn1 format
+
     :param asn1_bytes: the daate to be printed
     :return:
     """

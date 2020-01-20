@@ -20,6 +20,7 @@ from globaleaks.utils.log import log
 def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     """
     Prepare the mail headers
+
     :param src_name: A source name
     :param src_mail: A source email adddress
     :param dest_name: A destination name
@@ -41,6 +42,7 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
 def sendmail(tid, smtp_host, smtp_port, security, authentication, username, password, from_name, from_address, to_address, subject, body, anonymize=True, socks_host='127.0.0.1', socks_port=9050):
     """
     Send an email using SMTPS/SMTP+TLS and maybe torify the connection.
+
     :param tid: A tenant id
     :param smtp_host: A SMTP host
     :param smtp_port: A SMTP port

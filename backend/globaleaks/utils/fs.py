@@ -10,13 +10,13 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
     """
     Overwrite the file with all_zeros, all_ones, random patterns
 
-    Note: This feature is a legacy security measure known to has important
-          drawbacks and to not be effective on all the situations as it
-          depends on specific filesystems and storage devices.
+    This feature is a legacy security measure known to has important
+    drawbacks and to not be effective on all the situations as it
+    depends on specific filesystems and storage devices.
 
-          The effective solution on which the system does relies is encryption
-          and this feature is maintained just as additional countermeasure
-          and for educational and historical reasons.
+    the effective solution on which the system does relies is encryption
+    and this feature is maintained just as additional countermeasure
+    and for educational and historical reasons.
 
     :param absolutefpath: the absolute path of the file to overwrite
     :param iterations_number: the number of overwrite operations
@@ -71,6 +71,7 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
 def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
     """
     Check that an 'untrusted_path' matches a 'trusted_absolute_path' prefix
+
     :param trusted_absolute_prefix: A prefix of the sandbox
     :param untrusted_path:  The untrasted path
     """

@@ -9,6 +9,7 @@ from twisted.internet import reactor
 def set_proc_title(title):
     """
     Set the process title
+
     :param title: A title to be assigned to the process
     """
     libc = ctypes.cdll.LoadLibrary('libc.so.6')
@@ -20,6 +21,7 @@ def set_proc_title(title):
 def set_pdeathsig(sig):
     """
     Set the PDEATH Signal
+
     :param sig: A signal that the process need to receive when the parent process dies
     """
     PR_SET_PDEATHSIG = 1
@@ -49,6 +51,7 @@ def disable_swap():
 def SigQUIT(SIG, FRM):
     """
     Handler of process QUIT signal
+
     :param SIG: the received signal
     :param FRM: the pid of the
     """

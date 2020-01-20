@@ -22,3 +22,9 @@ Welcome to GlobaLeaks's Documentation!
         :maxdepth: 4
 
         user/index
+
+.. toctree::
+        :name: sourcecode
+        :maxdepth: 4
+
+        sourcecode/index

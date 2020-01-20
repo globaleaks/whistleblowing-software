@@ -4,6 +4,7 @@ import ipaddress
 
 def parse_csv_ip_ranges_to_ip_networks(ip_str):
     """Parse a list of IP addresses and/or CIDRs
+
     :param ip_str: the string of comma separated IP
     :return: the list of parsed IPs
     """
