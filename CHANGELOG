@@ -1,3 +1,12 @@
+Changes in version 3.11.63 - 2020-01-20
+    Fix check on user-context association on the same tenant
+    Bump npm dependencies to latest versions
+    Fix minor lint errors
+    Make it possible to reset the platform hostname
+    Hide score UI when the feature is disabled
+    Remove ricochet configuration visibility in content settings
+    When creating a new context set the tip time to live to 90 days
+
 Changes in version 3.11.62 - 2020-01-12
     Apply user suggestions for feature #2643
 
