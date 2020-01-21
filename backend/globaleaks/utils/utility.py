@@ -104,8 +104,6 @@ def fix_file_permissions(path, uid, gid, dchmod, fchmod):
 def uuid4():
     """
     This function returns a uuid4.
-
-    The function is not intended to be used for security reasons.
     """
     return str(uuid.uuid4())
 
@@ -130,8 +128,8 @@ def deferred_sleep(timeout):
 
 def msdos_encode(s):
     """
-    This functions returns a new string with all occurences of newlines
-    preprended with a carriage return.
+    This functions returns a new string with all occurrences of newlines
+    prepended with a carriage return.
     """
     return re.sub(r'(\r\n)|(\n)', '\r\n', s)
 
@@ -142,28 +140,28 @@ def iso_strf_time(d):
 
 def datetime_null():
     """
-    @return: a utc datetime object representing a null date
+    :return: a utc datetime object representing a null date
     """
     return datetime(1970, 1, 1, 0, 0)
 
 
 def datetime_now():
     """
-    @return: a utc datetime object for the current time
+    :return: a utc datetime object for the current time
     """
     return datetime.utcnow()
 
 
 def datetime_never():
     """
-    @return: a utc datetime object representing the 1st January 3000
+    :return: a utc datetime object representing the 1st January 3000
     """
     return datetime(3000, 1, 1, 0, 0)
 
 
 def get_expiration(days):
     """
-    @return: a utc datetime object representing an expiration time calculated as the current date + N days
+    :return: a utc datetime object representing an expiration time calculated as the current date + N days
     """
     date = datetime.utcnow()
     return datetime(year=date.year, month=date.month, day=date.day, hour=00, minute=00, second=00) + timedelta(days=days+1)
@@ -171,15 +169,6 @@ def get_expiration(days):
 
 def is_expired(check_date, seconds=0, minutes=0, hours=0, days=0):
     """
-    @param check_date: a datetime or a timestap
-    @param seconds, minutes, hours, day
-        the time to live of the element
-    @return:
-        if now > check_date + (seconds+minutes+hours)
-        True is returned, else False
-        :param minutes:
-        :param hours:
-        :param days:
     """
     total_hours = (days * 24) + hours
     check = check_date + timedelta(seconds=seconds, minutes=minutes, hours=total_hours)
@@ -189,7 +178,7 @@ def is_expired(check_date, seconds=0, minutes=0, hours=0, days=0):
 
 def datetime_to_ISO8601(date):
     """
-    conver a datetime into ISO8601 date
+    Convert a datetime into ISO8601 date
     """
     if date is None:
         date = datetime_null()
@@ -199,7 +188,7 @@ def datetime_to_ISO8601(date):
 
 def ISO8601_to_datetime(isodate):
     """
-    convert an ISO8601 date into a datetime
+    Convert an ISO8601 date into a datetime
     """
     isodate = isodate[:19]  # we srip the eventual Z at the end
 
@@ -208,14 +197,14 @@ def ISO8601_to_datetime(isodate):
 
 def datetime_to_pretty_str(date):
     """
-    print a datetime in pretty formatted str format
+    Print a datetime in pretty formatted str format
     """
     return date.strftime("%A %d %B %Y %H:%M (UTC)")
 
 
 def ISO8601_to_day_str(isodate, tz=0):
     """
-    print a ISO8601 in DD/MM/YYYY formatted str
+    Print a ISO8601 in DD/MM/YYYY formatted str
     """
     date = datetime(year=int(isodate[0:4]),
                     month=int(isodate[5:7]),
@@ -234,7 +223,7 @@ def ISO8601_to_day_str(isodate, tz=0):
 
 def ISO8601_to_pretty_str(isodate, tz=0):
     """
-    convert a ISO8601 in pretty formatted str format
+    Convert a ISO8601 in pretty formatted str format
     """
     if isodate is None:
         isodate = datetime_null().isoformat()

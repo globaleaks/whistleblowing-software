@@ -126,6 +126,7 @@ def get_user(session, tid, user_id, language):
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_id: A id of the user to retrieve
+    :param language: The language to be used in the serialization
     :return: A serialization of the retrieved user
     """
     user = db_get_user(session, tid, user_id)
@@ -281,11 +282,12 @@ class UserInstance(BaseHandler):
 def get_recovery_key(session, tid, user_id, user_cc):
     """
     Transaction to get a user recovery key
+
     :param session: An ORM session
-    :param user_tid: A user
-    :param user_id:
-    :param user_cc:
-    :return:
+    :param tid: The tenant ID
+    :param user_id: The user ID
+    :param user_cc: The user key
+    :return: The recovery key encoded base32
     """
     user = db_get_user(session, tid, user_id)
 
@@ -299,6 +301,7 @@ def get_recovery_key(session, tid, user_id, user_cc):
 def enable_2fa_step1(session, tid, user_id):
     """
     Transact for the first step of 2fa enrollment (start)
+
     :param session:
     :param tid:
     :param user_id:
@@ -323,6 +326,7 @@ def enable_2fa_step1(session, tid, user_id):
 def enable_2fa_step2(session, tid, user_id, user_cc, token):
     """
     Transact for the first step of 2fa enrollment (completion)
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_id: A user ID
@@ -347,6 +351,7 @@ def enable_2fa_step2(session, tid, user_id, user_cc, token):
 def disable_2fa(session, tid, user_id):
     """
     Transaction for disabling the two factor authentication
+
     :param session:
     :param tid:
     :param user_id:

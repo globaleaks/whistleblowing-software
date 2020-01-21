@@ -14,8 +14,9 @@ from globaleaks.utils.utility import read_json_file
 def fieldtree_ancestors(session, field_id):
     """
     Transaction to extract the parents of a field
+
     :param session: An ORM session
-    :param file_id: The field ID
+    :param field_id: The field ID
     """
     field = session.query(models.Field).filter(models.Field.id == field_id).one_or_none()
     if field.fieldgroup_id is not None:
@@ -26,6 +27,7 @@ def fieldtree_ancestors(session, field_id):
 def db_create_option_trigger(session, option_id, type, object_id, sufficient):
     """
     Transaction for creating an option trigger
+
     :param session: An ORM session
     :param option_id: The option id
     :param type: The trigger type
@@ -42,6 +44,7 @@ def db_create_option_trigger(session, option_id, type, object_id, sufficient):
 def db_reset_option_triggers(session, type, object_id):
     """
     Transaction for resetting every option trigger set on the specified object
+
     :param session: An ORM session
     :param type: The type of trigger to be reset
     :param object_id: The object on which reset the triggers
@@ -53,6 +56,7 @@ def db_reset_option_triggers(session, type, object_id):
 def db_update_fieldoption(session, field_id, fieldoption_id, option_dict, language, idx):
     """
     Transaction to update a field option
+
     :param session: An ORM session
     :param field_id: The field ID of the field on which the option is set
     :param fieldoption_id: The option ID
@@ -82,6 +86,7 @@ def db_update_fieldoption(session, field_id, fieldoption_id, option_dict, langua
 def db_update_fieldoptions(session, field_id, options, language):
     """
     Transaction to update a set of options at once
+
     :param session: An ORM session
     :param field_id: The field on which the options are set
     :param options: The list of options to be updated
@@ -103,6 +108,7 @@ def db_update_fieldoptions(session, field_id, options, language):
 def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
     """
     Transaction for updating a fieldattr
+
     :param session: An ORM session
     :param field_id: The field on which the attribute is configured
     :param attr_name: The attribute name
@@ -129,9 +135,10 @@ def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
 def db_update_fieldattrs(session, field_id, field_attrs, language):
     """
     Transaction to update a set of fieldattrs at once
+
     :param session: An ORM session
     :param field_id: The field on which the fieldattrs are set
-    :param options: The list of fieldattrs to be updated
+    :param field_attrs: The list of fieldattrs to be updated
     :param language: The language of the request
     """
     attrs_ids = [db_update_fieldattr(session, field_id, attr_name, attr, language) for attr_name, attr in field_attrs.items()]
@@ -150,6 +157,7 @@ def db_update_fieldattrs(session, field_id, field_attrs, language):
 def check_field_association(session, tid, request):
     """
     Transaction to check consistency of field association
+
     :param session: The ORM session
     :param tid: The tenant ID
     :param request: The request data to be verified
@@ -176,6 +184,7 @@ def check_field_association(session, tid, request):
 def db_create_field(session, tid, request, language):
     """
     Transaction for creating a field
+
     :param session: An ORM session
     :param tid: The tenant ID
     :param request: The request data
@@ -245,6 +254,7 @@ def db_create_field(session, tid, request, language):
 def create_field(session, tid, request, language):
     """
     Transaction for creating a field
+
     :param session: An ORM session
     :param tid: The tenant ID
     :param request: The request data
@@ -259,8 +269,10 @@ def create_field(session, tid, request, language):
 def db_update_field(session, tid, field_id, request, language):
     """
     Transaction for updating a field
+
     :param session: An ORM session
     :param tid: The tenant ID
+    :param field_id: The ID of the object to be updated
     :param request: The request data
     :param language: The language of the request
     :return: The updated field
@@ -320,6 +332,7 @@ def update_field(session, tid, field_id, field, language):
 def delete_field(session, tid, field_id):
     """
     Transaction to delete a field
+
     :param session: An ORM session
     :param tid: The tenant ID
     :param field_id: The id of the field to be deleted
@@ -339,6 +352,7 @@ def delete_field(session, tid, field_id):
 def get_fieldtemplate_list(session, tid, language):
     """
     Transaction to retrieve the list of the field templates defined on a tenant
+
     :param session: An ORM session
     :param tid: The tenant ID on which perform the lookup
     :param language: The language of the request

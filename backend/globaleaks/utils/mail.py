@@ -17,7 +17,7 @@ from globaleaks.utils.tls import TLSClientContextFactory
 from globaleaks.utils.log import log
 
 
-def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
+def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, mail_subject, mail_body):
     """
     Prepare the mail headers
 
@@ -30,7 +30,7 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     :return: A mail headers
     """
     multipart = MIMEMultipart('alternative')
-    multipart['Subject'] = Header(title.encode(), 'UTF-8').encode()
+    multipart['Subject'] = Header(mail_subject.encode(), 'UTF-8').encode()
     multipart['Date'] = utils.formatdate()
     multipart['To'] = Header(dest_name.encode(), 'UTF-8').encode() + " <" + dest_mail + ">"
     multipart['From'] = Header(src_name.encode(), 'UTF-8').encode() + " <" + src_mail + ">"
@@ -109,7 +109,7 @@ def sendmail(tid, smtp_host, smtp_port, security, authentication, username, pass
 
         def failure_cb(failure):
             """
-            @param failure {Failure {twisted.internet.FirstError {Failure}}}
+            :param failure {Failure {twisted.internet.FirstError {Failure}}}
             """
             log.err("SMTP connection failed (Exception: %s)",
                     failure.value.subFailure.value, tid=tid)
@@ -118,7 +118,7 @@ def sendmail(tid, smtp_host, smtp_port, security, authentication, username, pass
 
         def success_cb(results):
             """
-            @param results {list of (success, return_val) tuples}
+            :param results {list of (success, return_val) tuples}
             """
             return True
 

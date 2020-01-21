@@ -19,7 +19,7 @@ from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 def random_login_delay():
     """
-    The facuntion in case of failed_login_attempts introduces
+    The function in case of failed_login_attempts introduces
     an exponential increasing delay between 0 and 42 seconds
 
         the function implements the following table:
@@ -49,6 +49,7 @@ def random_login_delay():
 def connection_check(client_ip, tid, role, client_using_tor):
     """
     Accept or refuse a connection in relation to the platform settings
+
     :param client_ip: A client IP
     :param tid: A tenant ID
     :param role: A user role
@@ -67,6 +68,7 @@ def connection_check(client_ip, tid, role, client_using_tor):
 def login_whistleblower(session, tid, receipt):
     """
     Login transaction for whistleblowers' access
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param receipt: A provided receipt
@@ -108,6 +110,7 @@ def login_whistleblower(session, tid, receipt):
 def login(session, tid, username, password, authcode, client_using_tor, client_ip):
     """
     Login transaction for users' access
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param username: A provided username

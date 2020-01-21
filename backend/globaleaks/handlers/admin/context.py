@@ -11,6 +11,7 @@ from globaleaks.rest import requests, errors
 def admin_serialize_context(session, context, language):
     """
     Serialize the specified context
+
     :param session: the session on which perform queries
     :param context: The object to be serialized
     :param language: the language in which to localize data.
@@ -76,6 +77,7 @@ def get_contexts(session, tid, language):
 def db_associate_context_receivers(session, context, receiver_ids):
     """
     Transaction for associating receivers to a context
+
     :param session: An ORM session
     :param context: The context on which associate the specified receivers
     :param receiver_ids: A list of receivers ids to be associated to the context
@@ -101,6 +103,7 @@ def db_associate_context_receivers(session, context, receiver_ids):
 def get_context(session, tid, context_id, language):
     """
     Transaction for retrieving a context serialized in the specified language
+
     :param session: The ORM session
     :param tid: The tenant ID
     :param context_id: The contaxt ID
@@ -115,6 +118,7 @@ def get_context(session, tid, context_id, language):
 def fill_context_request(tid, request, language):
     """
     An utility function for correcting requests for context configuration
+
     :param tid: The tenant ID
     :param request: The request data
     :param language: The language of the request
@@ -137,9 +141,9 @@ def fill_context_request(tid, request, language):
 def db_create_context(session, tid, request, language):
     """
     Transaction for creating a context
+
     :param session: An ORM session
     :param tid: The tenant ID
-    :param context: The object to be updated
     :param request: The request data
     :param language: The request language
     :return: The created context
@@ -160,9 +164,9 @@ def db_create_context(session, tid, request, language):
 def create_context(session, tid, request, language):
     """
     Transaction for creating a context
+
     :param session: An ORM session
     :param tid: The tenant ID
-    :param context: The object to be updated
     :param request: The request data
     :param language: The request language
     :return: A serialized descriptor of the context
@@ -175,6 +179,7 @@ def create_context(session, tid, request, language):
 def db_update_context(session, tid, context, request, language):
     """
     Transaction for updating a context
+
     :param session: An ORM session
     :param tid: The tenant ID
     :param context: The object to be updated
@@ -197,9 +202,10 @@ def db_update_context(session, tid, context, request, language):
 def update_context(session, tid, context_id, request, language):
     """
     Transaction for updating a context
+
     :param session: An ORM session
     :param tid: The tenant ID
-    :param context: The object to be updated
+    :param context_id: The ID of object to be updated
     :param request: The request data
     :param language: The request language
     :return: A serialized descriptor of the context
@@ -214,6 +220,7 @@ def update_context(session, tid, context_id, request, language):
 def order_elements(session, tid, req_args, *args, **kwargs):
     """
     Transaction for reodering context elements
+
     :param session:  An ORM session
     :param tid: The tenant ID
     :param req_args: The request arguments

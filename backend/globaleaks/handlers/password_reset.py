@@ -20,6 +20,7 @@ from globaleaks.utils.utility import datetime_now, datetime_null
 def db_generate_password_reset_token(session, user):
     """
     Transaction for issuing password reset tokens
+
     :param session: An ORM session
     :param user: The user for which issuing a password reset token
     """
@@ -47,7 +48,8 @@ def db_generate_password_reset_token(session, user):
 @transact
 def generate_password_reset_token_by_user_id(session, tid, user_id):
     """
-    Transaction for generatin ag password reset token for a user identified by an user ID
+    Transaction for generatin ag password reset token for a user identified by a user ID
+
     :param session: An ORM session
     :param tid: The tenant on
     :param user_id:
@@ -64,10 +66,11 @@ def generate_password_reset_token_by_user_id(session, tid, user_id):
 def generate_password_reset_token_by_username_or_mail(session, tid, username_or_email):
     """
     Transaction for generating a password reset token for a user identified by a username or email
-    :param session:
-    :param tid:
-    :param user_id:
-    :return:
+
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param username_or_email: The username or the email of an user
+    :return: A descriptor of the result
     """
     users = session.query(models.User).filter(
       or_(models.User.username == username_or_email,

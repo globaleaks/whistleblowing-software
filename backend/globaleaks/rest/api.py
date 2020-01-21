@@ -251,9 +251,9 @@ class APIResourceWrapper(Resource):
         to the client and it spools a mail in the case the exception is unknown
         and unhandled.
 
-        @param e: A `Twisted.python.Failure` instance that wraps a `GLException`
+        :param e: A `Twisted.python.Failure` instance that wraps a `GLException`
                   or a normal `Exception`
-        @param request: A `twisted.web.Request`
+        :param request: A `twisted.web.Request`
         """
         if isinstance(e, errors.GLException):
             pass
@@ -321,9 +321,9 @@ class APIResourceWrapper(Resource):
 
     def render(self, request):
         """
-        @param request: `twisted.web.Request`
+        :param request: `twisted.web.Request`
 
-        @return: empty `str` or `NOT_DONE_YET`
+        :return: empty `str` or `NOT_DONE_YET`
         """
         request_finished = [False]
 
@@ -408,7 +408,7 @@ class APIResourceWrapper(Resource):
             """
             Concludes successful execution of a `BaseHandler` instance
 
-            @param ret: A `dict`, `list`, `str`, `None` or something unexpected
+            :param ret: A `dict`, `list`, `str`, `None` or something unexpected
             """
             yield self.handler.execution_check()
 

@@ -156,10 +156,6 @@ class BaseHandler(object):
 
         This message must be either a dict or a list. This function may be called
         recursively to validate sub-parameters that are also go GLType.
-
-        message: the message string that should be validated
-
-        message_type: the GLType class it should match.
         """
         if isinstance(message_template, dict):
             success_check = 0
@@ -361,7 +357,7 @@ class BaseHandler(object):
     def write_upload_plaintext_to_disk(self, destination):
         """
         :param destination: the path where to store the file
-        @return: a descriptor dictionary for the saved file
+        :return: a descriptor dictionary for the saved file
         """
         try:
             log.debug('Creating file %s with %d bytes', destination, self.uploaded_file['size'])

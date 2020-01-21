@@ -14,6 +14,7 @@ from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, \
 def weekmap_to_heatmap(week_map):
     """
     Convert a list of list with dict inside, in a flat list
+
     :param week_map: A week map
     :return: A flat list obtained from the week map
     """
@@ -28,11 +29,11 @@ def weekmap_to_heatmap(week_map):
 @transact
 def get_stats(session, tid, week_delta):
     """
+    Get the set of statistics collected for a specific week
+
     :param session:
     :param tid:
-    :param week_delta: commonly is 0, mean that you're taking this
-        week. -1 is the previous week.
-    At the moment do not support negative number and change of the year.
+    :param week_delta: commonly is 0, mean that you're taking this week. -1 is the previous week.
     """
     now = datetime_now()
     week_delta = abs(int(week_delta))
@@ -113,10 +114,11 @@ def get_stats(session, tid, week_delta):
 def get_anomaly_history(session, tid, limit):
     """
     Transaction for fetching the anomalies registered for a specific tenant
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param limit: The limit of retrieved objects
-    :return:
+    :return: The list of detected anomalies
     """
     ret = []
     for anomaly in session.query(Anomalies).filter(Anomalies.tid == tid).order_by(Anomalies.date.desc())[:limit]:

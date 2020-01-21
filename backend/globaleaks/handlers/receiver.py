@@ -18,9 +18,10 @@ from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 @transact
-def get_receivertip_list(session, tid, receiver_id, user_key, language):
+def get_receivertips(session, tid, receiver_id, user_key, language):
     """
     Return list of submissions received by the specified receiver
+
     :param session: An ORM session
     :param tid: The tenant ID
     :param receiver_id: The receiver ID
@@ -112,6 +113,7 @@ def get_receivertip_list(session, tid, receiver_id, user_key, language):
 def perform_tips_operation(session, tid, receiver_id, operation, rtips_ids):
     """
     Transaction for performing operation on submissions (postpone/delete)
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param receiver_id: A recipient ID
@@ -149,7 +151,7 @@ class TipsCollection(BaseHandler):
     check_roles = 'receiver'
 
     def get(self):
-        return get_receivertip_list(self.request.tid,
+        return get_receivertips(self.request.tid,
                                     self.current_user.user_id,
                                     self.current_user.cc,
                                     self.request.language)

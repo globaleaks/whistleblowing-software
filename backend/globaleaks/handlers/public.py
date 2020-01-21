@@ -273,7 +273,9 @@ def serialize_field_attr(attr, language):
 
 def serialize_field(session, tid, field, language, data=None, serialize_templates=True):
     """
-    Serialize a field.
+    Serialize a field
+
+    :param session: An ORM session
     :param tid: A tenant ID
     :param field: The option to be serialized
     :param language: The language to be used during serialization
@@ -333,6 +335,8 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
 def serialize_step(session, tid, step, language, serialize_templates=True):
     """
     Serialize a step.
+
+    :param session: An ORM session
     :param tid: A tenant ID
     :param step: The option to be serialized
     :param language: The language to be used during serialization
@@ -385,11 +389,11 @@ def serialize_questionnaire(session, tid, questionnaire, language, serialize_tem
 def serialize_receiver(session, user, language, data=None):
     """
     Serialize a receiver.
-    :param tid: A tenant ID
-    :param receiver: The option to be serialized
+
+    :param session: An ORM session
+    :param user: The model to be serialized
     :param language: The language to be used during serialization
     :param data: The dictionary of prefetched resources
-    :param serialize_templates: A boolean to require template serialization
     :return: The serialized resource
     """
     if data is None:
@@ -412,13 +416,13 @@ def serialize_receiver(session, user, language, data=None):
 
 def db_get_questionnaires(session, tid, language):
     """
-    Transaction that serialize the list of public contexts
+    Transaction that serialize the list of public questionnaires
+
     :param session: An ORM session
     :param tid: The tenant ID
     :param language: The language to be used for the serialization
     :return: A list of contexts descriptors
     """
-
     questionnaires = session.query(models.Questionnaire) \
                             .filter(models.Questionnaire.tid.in_(set([1, tid])),
                                     or_(models.Context.questionnaire_id == models.Questionnaire.id,
@@ -429,9 +433,10 @@ def db_get_questionnaires(session, tid, language):
     return [serialize_questionnaire(session, tid, questionnaire, language) for questionnaire in questionnaires]
 
 
-def db_get_public_context_list(session, tid, language):
+def db_get_contexts(session, tid, language):
     """
     Transaction that serialize the list of public contexts
+
     :param session: An ORM session
     :param tid: The tenant ID
     :param language: The language to be used for the serialization
@@ -445,9 +450,10 @@ def db_get_public_context_list(session, tid, language):
     return [serialize_context(session, context, language, data) for context in contexts]
 
 
-def db_get_public_receiver_list(session, tid, language):
+def db_get_receivers(session, tid, language):
     """
     Transaction that serialize the list of public receivers
+
     :param session: An ORM session
     :param tid: The tenant ID
     :param language: The language to be used for the serialization
@@ -473,6 +479,7 @@ def db_get_public_receiver_list(session, tid, language):
 def get_public_resources(session, tid, language):
     """
     Transaction that compose the public API
+
     :param session: An ORM session
     :param tid: The tenant ID
     :param language: The language to be used for serialization
@@ -480,9 +487,9 @@ def get_public_resources(session, tid, language):
     """
     return {
         'node': db_serialize_node(session, tid, language),
-        'contexts': db_get_public_context_list(session, tid, language),
+        'contexts': db_get_contexts(session, tid, language),
         'questionnaires': db_get_questionnaires(session, tid, language),
-        'receivers': db_get_public_receiver_list(session, tid, language),
+        'receivers': db_get_receivers(session, tid, language),
         'submission_statuses': db_get_submission_statuses(session, tid, language)
     }
 

@@ -18,10 +18,10 @@ from globaleaks.utils.crypto import Base64Encoder, GCE
 def check_hostname(session, tid, hostname):
     """
     Ensure the hostname does not collide across tenants or include an origin that it shouldn't.
+
     :param session: An ORM session
     :param tid: A tenant id
-    :param input_hostname:
-    :return:
+    :param hostname: The hostname to be evaluated
     """
     if hostname == '':
         return
@@ -44,6 +44,7 @@ def check_hostname(session, tid, hostname):
 def reset_submissions(session, tid):
     """
     Transaction to reset the submissions of the specified tenant
+
     :param session: An ORM session
     :param tid: A tenant ID
     """
@@ -58,6 +59,7 @@ def reset_submissions(session, tid):
 def toggle_escrow(session, tid, user_session, user_id):
     """
     Transaction to toggle key escrow access for user an user given its id
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_session: The current user session

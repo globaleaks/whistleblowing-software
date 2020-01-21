@@ -126,8 +126,14 @@ def write_encrypted_file(key, sf, dest_path):
         log.err("Unable to create plaintext file %s: %s", dest_path, excep)
 
 
-def process_receiverfiles(state, receiverfiles_maps):
-    for _, receiverfiles_map in receiverfiles_maps.items():
+def process_receiverfiles(state, files_maps):
+    """
+    Function that process uploaded receiverfiles
+
+    :param state: A reference to the application state
+    :param files_maps: descriptos of whistleblower files to be processed
+    """
+    for _, receiverfiles_map in files_maps.items():
         key = receiverfiles_map['crypto_tip_pub_key']
         filename = receiverfiles_map['filename']
         filecode = filename.split('.')[0]
@@ -170,13 +176,14 @@ def process_receiverfiles(state, receiverfiles_maps):
             write_plaintext_file(sf, plaintext_path)
 
 
-def process_whistleblowerfiles(state, whistleblowerfiles_maps):
+def process_whistleblowerfiles(state, files_maps):
     """
-    @param whistleblowerfiles_maps: descriptos of whistleblower files to be processed
-    @return: return None
-    :param state:
+    Function that process uploaded whistleblowerfiles
+
+    :param state: A reference to the application state
+    :param files_maps: descriptos of whistleblower files to be processed
     """
-    for _, whistleblowerfiles_map in whistleblowerfiles_maps.items():
+    for _, whistleblowerfiles_map in files_maps.items():
         key = whistleblowerfiles_map['crypto_tip_pub_key']
         filename = whistleblowerfiles_map['filename']
         filecode = filename.split('.')[0]
@@ -196,8 +203,8 @@ def process_whistleblowerfiles(state, whistleblowerfiles_maps):
 
 
 @transact
-def update_receiverfiles(session, receiverfiles_maps):
-    for id, receiverfiles_map in receiverfiles_maps.items():
+def update_receiverfiles(session, files_maps):
+    for id, receiverfiles_map in files_maps.items():
         ifile = session.query(models.InternalFile).filter(models.InternalFile.id == id).one_or_none()
         if ifile is None:
             continue
@@ -213,8 +220,8 @@ def update_receiverfiles(session, receiverfiles_maps):
 
 
 @transact
-def update_whistleblowerfiles(session, whistleblowerfiles_maps):
-    for id, whistleblowerfiles_map in whistleblowerfiles_maps.items():
+def update_whistleblowerfiles(session, files_maps):
+    for id, whistleblowerfiles_map in files_maps.items():
         wbfile = session.query(models.WhistleblowerFile).filter(models.WhistleblowerFile.id == id).one_or_none()
         if wbfile is not None:
             wbfile.new = False

@@ -91,8 +91,7 @@ class IdentityAccessRequestInstance(BaseHandler):
 
 class IdentityAccessRequestsCollection(BaseHandler):
     """
-    This interface return the list of the requests of access to whislteblower identities
-    GET /identityrequests
+    This handler allow custodians to manage an identity access request by a receiver
     """
     check_roles = 'custodian'
 

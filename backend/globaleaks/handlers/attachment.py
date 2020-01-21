@@ -15,6 +15,7 @@ from globaleaks.utils.utility import datetime_now
 def register_ifile_on_db(session, tid, internaltip_id, uploaded_file):
     """
     Register a file on the database
+
     :param session: An ORM session
     :param tid: A tenant id
     :param internaltip_id: A id of the submission on which attaching the file
@@ -49,7 +50,7 @@ def register_ifile_on_db(session, tid, internaltip_id, uploaded_file):
 
 class SubmissionAttachment(BaseHandler):
     """
-    WhistleBlower interface to upload a new file for a non-finalized submission
+    Whistleblower interface to upload a new file for a non-finalized submission
     """
     check_roles = 'none'
     upload_handler = True
@@ -64,7 +65,7 @@ class SubmissionAttachment(BaseHandler):
 
 class PostSubmissionAttachment(SubmissionAttachment):
     """
-    WhistleBlower interface to upload a new file for an existing submission
+    Whistleblower interface to upload a new file for an existing submission
     """
     check_roles = 'whistleblower'
     upload_handler = True

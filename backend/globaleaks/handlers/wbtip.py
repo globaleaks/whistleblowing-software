@@ -175,10 +175,6 @@ def store_additional_questionnaire_answers(session, tid, tip_id, answers, langua
 class WBTipInstance(BaseHandler):
     """
     This interface expose the Whistleblower Tip.
-
-    Tip is the safe area, created with an expiration time, where Receivers (and optionally)
-    Whistleblower can discuss about the submission, comments, collaborative voting, forward,
-    promote, and perform other operations in this protected environment.
     """
     check_roles = 'whistleblower'
 
@@ -194,10 +190,7 @@ class WBTipInstance(BaseHandler):
 
 class WBTipCommentCollection(BaseHandler):
     """
-    Interface use to write comments inside of a Tip, is not implemented as CRUD because we've not
-    needs, at the moment, to delete/update comments once has been published. Comments is intended, now,
-    as a stone written consideration about Tip reliability, therefore no editing and rethinking is
-    permitted.
+    This interface expose the Whistleblower Tip Comments
     """
     check_roles = 'whistleblower'
 
@@ -208,10 +201,7 @@ class WBTipCommentCollection(BaseHandler):
 
 class WBTipMessageCollection(BaseHandler):
     """
-    This interface return the lists of the private messages exchanged between
-    whistleblower and the specified receiver requested in GET
-
-    Supports the creation of a new message for the requested receiver
+    This interface expose the Whistleblower Tip Messages
     """
     check_roles = 'whistleblower'
 

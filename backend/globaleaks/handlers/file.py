@@ -20,7 +20,8 @@ appfiles = {
 
 def db_mark_file_for_secure_deletion(session, directory, filename):
     """
-    Transation for marking a file for secure deletion
+    Transaction for marking a file for secure deletion
+
     :param session: An ORM session
     :param directory: A path of the directory containing the file
     :param filename: A file name
@@ -38,6 +39,7 @@ def db_mark_file_for_secure_deletion(session, directory, filename):
 def get_file_id(session, tid, name):
     """
     Transaction returning a file ID given the file name
+
     :param session: An ORM session
     :param tid: A tenant on which performing the lookup
     :param name: A file name

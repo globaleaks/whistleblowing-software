@@ -181,10 +181,10 @@ def new_tls_client_context():
 class TLSServerContextFactory(ssl.ContextFactory):
     def __init__(self, priv_key, certificate, intermediate):
         """
-        @param priv_key: String representation of the private key
-        @param certificate: String representation of the certificate
-        @param intermediate: String representation of the intermediate file
-        @param dh: String representation of the DH parameters
+        :param priv_key: String representation of the private key
+        :param certificate: String representation of the certificate
+        :param intermediate: String representation of the intermediate file
+        :param dh: String representation of the DH parameters
         """
         self.ctx = new_tls_server_context()
 

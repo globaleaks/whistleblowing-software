@@ -13,6 +13,7 @@ from globaleaks.utils.utility import read_json_file
 def load_appdata():
     """
     Utility function to load the application data file
+
     :return: Return the parsed application data file
     """
     return read_json_file(Settings.appdata_file)
@@ -67,6 +68,7 @@ def db_fix_fields_attrs(session):
     Ensures that the current store and the field_attrs.json file correspond.
     The content of the field_attrs dict is used to add and remove all of the
     excepted forms of field_attrs for FieldAttrs in the db.
+
     :param session: An ORM session
     """
     field_attrs = read_json_file(Settings.field_attrs_file)
@@ -100,6 +102,7 @@ def db_fix_fields_attrs(session):
 def db_update_defaults(session):
     """
     Transaction for updating application defaults
+
     :param session: An ORM session
     """
     db_load_default_questionnaires(session)

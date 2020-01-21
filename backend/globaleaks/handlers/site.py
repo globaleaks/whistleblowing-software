@@ -9,6 +9,7 @@ from globaleaks.state import State
 def serialize_site(session, tenant):
     """
     Transaction serializing the tenant descriptor
+
     :param session: An ORM session
     :param tenant:  The tenant model
     :return: A serialization of the provided model
@@ -40,6 +41,7 @@ def serialize_site(session, tenant):
 def get_site_list(session):
     """
     Transaction return the list of the active tenants
+
     :param session: A ORM session
     :return: The list of active tenants
     """

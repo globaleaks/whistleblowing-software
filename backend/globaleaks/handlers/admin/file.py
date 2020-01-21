@@ -17,6 +17,7 @@ from globaleaks.utils.utility import uuid4
 def get_files(session, tid):
     """
     Transaction to retrieve the list of files configured on a tenant
+
     :param session: An ORM session
     :param tid: The tenant ID on which perform the lookup
     :return: A list of descriptors of the configured files
@@ -36,21 +37,22 @@ def get_files(session, tid):
 def db_add_file(session, tid, file_id, name, data):
     """
     Transaction to register a file on a tenant
+
     :param session: An ORM session
     :param tid: The tenant ID
-    :param id: The file id
+    :param file_id: The ID of the file to be added
     :param name: The file name
     :param data: The file content
     """
     file_obj = None
-    if id is not None:
+    if file_id is not None:
         file_obj = session.query(models.File).filter(models.File.tid == tid, models.File.id == file_id).one_or_none()
 
     if file_obj is None:
         file_obj = models.File()
         file_obj.tid = tid
 
-        if id is not None:
+        if file_id is not None:
             file_obj.id = file_id
 
         session.add(file_obj)
@@ -63,10 +65,11 @@ def db_add_file(session, tid, file_id, name, data):
 def db_get_file(session, tid, file_id):
     """
     Transaction thecontent of the file identified by the specified id
+
     :param session: An ORM session
     :param tid: A tenant ID
-    :param id: A file ID
-    :return: return the content of the file
+    :param file_id: A file ID
+    :return: The content of the file
     """
     file_obj = session.query(models.File).filter(models.File.tid == tid, models.File.id == file_id).one_or_none()
 

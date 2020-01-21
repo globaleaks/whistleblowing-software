@@ -21,6 +21,7 @@ from globaleaks.utils.utility import datetime_to_ISO8601
 def serialize_signup(signup):
     """
     Transaction serializing the signup descriptor
+
     :param signup: A signup model
     :return: A serialization of the provided model
     """
@@ -55,6 +56,7 @@ def serialize_signup(signup):
 def signup(session, request, language):
     """
     Transact handling the registration of a new signup
+
     :param session: An ORM session
     :param request: A user request
     :param language: A language of the request
@@ -123,6 +125,7 @@ def signup(session, request, language):
 def signup_activation(session, token, language):
     """
     Transaction registering the activation of a platform registered via signup
+
     :param session: An ORM session
     :param token: A activation token
     :param language: A language of the request

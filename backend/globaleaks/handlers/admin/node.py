@@ -18,6 +18,7 @@ from globaleaks.utils.log import log
 def db_update_enabled_languages(session, tid, languages_enabled, default_language):
     """
     Transaction for updating the enabled languages for a tenant
+
     :param session: An ORM session
     :param tid: A tenant id
     :param languages_enabled: The list of enabled languages
@@ -52,6 +53,7 @@ def db_update_enabled_languages(session, tid, languages_enabled, default_languag
 def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
     """
     Transaction for fetching the node configuration as admin
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param language: The language to be used on serialization
@@ -79,6 +81,7 @@ def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
 def db_update_node(session, tid, user_session, request, language):
     """
     Transaction to update the node configuration
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_session: The current user session
@@ -175,7 +178,6 @@ class NodeInstance(BaseHandler):
         """
         Update the node infos.
         """
-
         config_node = yield self.determine_allow_config_filter()
 
         request = yield self.validate_message(self.request.content.read(),

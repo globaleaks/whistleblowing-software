@@ -17,6 +17,7 @@ from globaleaks.utils.templating import Templating
 def db_get_notification(session, tid, language):
     """
     Transaction to get the notification settings for the specified tenant
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param language: The language to be used in the serialization

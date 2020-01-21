@@ -14,6 +14,7 @@ from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, uuid4
 def db_get_questionnaires(session, tid, language):
     """
     Transaction to retrieve the questionnnaires associated to a tenant
+
     :param session: the session on which perform queries.
     :param tid: A tenant ID
     :param language: The language to be used for the serialization
@@ -25,10 +26,6 @@ def db_get_questionnaires(session, tid, language):
 
 
 def db_get_questionnaire(session, tid, questionnaire_id, language, serialize_templates=True):
-    """
-    Returns:
-        (dict) the questionnaire with the specified id.
-    """
     questionnaire = models.db_get(session,
                                   models.Questionnaire,
                                   models.Questionnaire.tid.in_(set([1, tid])),
@@ -57,6 +54,7 @@ def create_questionnaire(session, tid, request, language):
     Updates the specified questionnaire. If the key receivers is specified we remove
     the current receivers of the Questionnaire and reset set it to the new specified
     ones.
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param request: The request data
@@ -68,49 +66,32 @@ def create_questionnaire(session, tid, request, language):
     return serialize_questionnaire(session, tid, questionnaire, language)
 
 
-def db_update_questionnaire(session, questionnaire, request, language):
+def db_update_questionnaire(session, questionnaire_id, request, language):
     """
     Updates the specified questionnaire. If the key receivers is specified we remove
     the current receivers of the Questionnaire and reset set it to the new specified
     ones.
+
     :param session: An ORM session
-    :param tid: A tenant ID
-    :param questionnaire_id: A questionnaire ID
-    :param request: The request data
-    :param language: The language of the request
-    :return: A serialized descriptor of the questionnaire
-    """
-    fill_localized_keys(request, models.Questionnaire.localized_keys, language)
-
-    questionnaire.update(request)
-
-    return questionnaire
-
-
-@transact
-def update_questionnaire(session, tid, questionnaire_id, request, language):
-    """
-    Updates the specified questionnaire. If the key receivers is specified we remove
-    the current receivers of the Questionnaire and reset set it to the new specified
-    ones.
-    :param session: An ORM session
-    :param tid: A tenant ID
-    :param questionnaire_id: A questionnaire ID
+    :param questionnaire_id: The ID of the model to be updated
     :param request: The request data
     :param language: The language of the request
     :return: A serialized descriptor of the questionnaire
     """
     questionnaire = models.db_get(session, models.Questionnaire, models.Questionnaire.tid == tid, models.Questionnaire.id == questionnaire_id)
 
-    questionnaire = db_update_questionnaire(session, questionnaire, request, language)
+    fill_localized_keys(request, models.Questionnaire.localized_keys, language)
 
-    return serialize_questionnaire(session, tid, questionnaire, language)
+    questionnaire.update(request)
+
+    return  serialize_questionnaire(session, tid, questionnaire, language)
 
 
 @transact
 def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
     """
     Transaction for duplicating an existing questionnaire
+
     :param session: An ORM session
     :param tid: A tnenat ID
     :param questionnaire_id A questionnaire ID
@@ -225,7 +206,7 @@ class QuestionnaireInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminQuestionnaireDesc)
 
-        return update_questionnaire(self.request.tid, questionnaire_id, request, self.request.language)
+        return tw(db_update_questionnaire, self.request.tid, questionnaire_id, request, self.request.language)
 
     def delete(self, questionnaire_id):
         """

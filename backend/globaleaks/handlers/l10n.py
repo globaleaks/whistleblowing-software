@@ -15,7 +15,8 @@ from globaleaks.utils.utility import read_json_file
 
 def langfile_path(lang):
     """
-    Functio that returns the json filepath given a language
+    Function that returns the json filepath given a language
+
     :param lang: Language
     :return: A file path of the json file containing the specified language
     """
@@ -26,6 +27,7 @@ def langfile_path(lang):
 def get_l10n(session, tid, lang):
     """
     Transaction for retrieving the custom texts configured for a specific language
+
     :param session: An ORM session
     :param tid:  The tenant ID of the tenant on which perform the lookup
     :param lang: A requested language

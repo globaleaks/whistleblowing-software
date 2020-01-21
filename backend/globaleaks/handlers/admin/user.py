@@ -18,6 +18,7 @@ from globaleaks.utils.utility import datetime_now, uuid4
 def db_create_user(session, tid, request, language):
     """
     Transaction for creating a new user
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param request: The request data
@@ -70,6 +71,7 @@ def db_create_user(session, tid, request, language):
 def create_user(session, tid, request, language):
     """
     Transaction for creating a new user
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param request: The request data
@@ -82,6 +84,7 @@ def create_user(session, tid, request, language):
 def db_admin_update_user(session, tid, user_session, user_id, request, language):
     """
     Transaction for updating an existing user
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_session: The current user session
@@ -133,6 +136,7 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
 def db_get_users(session, tid, role=None, language=None):
     """
     Transaction for retrieving the list of users defined on a tenant
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param role: The role of the users to be retriven

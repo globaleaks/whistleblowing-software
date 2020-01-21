@@ -17,7 +17,8 @@ from globaleaks.utils.log import log
 
 def db_gen_user_keys(session, tid, user, password):
     """
-    A transaction generating and saving user keys
+    Transaction generating and saving user keys
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param user: A user object
@@ -45,6 +46,7 @@ def db_gen_user_keys(session, tid, user, password):
 def db_wizard(session, tid, request):
     """
     Transaction for the handling of wizard request
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param request: A user request
