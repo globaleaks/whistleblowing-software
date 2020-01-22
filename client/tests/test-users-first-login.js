@@ -36,7 +36,7 @@ describe("Recipient2 first login", function() {
   });
 });
 
-describe("Custodian first login", function() {
+describe("Custodian1 first login", function() {
   it("should redirect to /firstlogin upon successful authentication", async function() {
     await browser.gl.utils.login_custodian("Custodian1", "globaleaks123!", "/#/login", true);
   });
@@ -46,5 +46,18 @@ describe("Custodian first login", function() {
     await element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars["user_password"]);
     await element(by.css("[data-ng-click=\"save()\"]")).click();
     await browser.gl.utils.waitForUrl("/custodian/home");
+  });
+});
+
+describe("Admin2 first login", function() {
+  it("should redirect to /firstlogin upon successful authentication", async function() {
+    await browser.gl.utils.login_custodian("Admin2", "globaleaks123!", "/#/login", true);
+  });
+
+  it("should be able to change password from the default one", async function() {
+    await element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars["user_password"]);
+    await element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars["user_password"]);
+    await element(by.css("[data-ng-click=\"save()\"]")).click();
+    await browser.gl.utils.waitForUrl("/admin/home");
   });
 });
