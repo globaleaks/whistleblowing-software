@@ -1,7 +1,7 @@
 # -*- coding: utf-8
 # Implement a proof of work token to prevent resources exhaustion
 import os
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 from globaleaks.utils.crypto import sha256, generateRandomKey, GCE
 from globaleaks.utils.tempdict import TempDict
@@ -17,7 +17,7 @@ class Token(object):
         self.tid = tid
         self.id = generateRandomKey(42)
         self.type = type
-        self.creation_date = datetime.utcnow()
+        self.creation_date = datetime_now()
 
         self.uploaded_files = []
 
@@ -26,11 +26,11 @@ class Token(object):
 
     def timedelta_check(self):
         now = datetime_now()
-        start = (self.creation_date + timedelta(seconds=self.min_ttl))
-        if not start < now:
+        start = self.creation_date + timedelta(seconds=self.min_ttl)
+        if now < start:
             raise Exception("TokenFalure: Too early to use this token")
 
-        end = (self.creation_date + timedelta(self.max_ttl))
+        end = self.creation_date + timedelta(seconds=self.max_ttl)
         if now > end:
             raise Exception("TokenFailure: Too late to use this token")
 
@@ -84,8 +84,7 @@ class TokenList(TempDict):
         self.file_path = file_path
 
     def get_timeout(self):
-        return Token.min_ttl + \
-               Token.max_ttl
+        return Token.max_ttl
 
     def expireCallback(self, item):
         for f in item.uploaded_files:
