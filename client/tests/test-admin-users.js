@@ -18,8 +18,13 @@ describe("admin add, configure, and delete users", function() {
     {
       role: "Custodian",
       name: "Custodian1",
-      address: "globaleaks-custodian@mailinator.com",
+      address: "globaleaks-custodian1@mailinator.com",
     },
+    {
+      role: "Admin",
+      name: "Admin2",
+      address: "globaleaks-admin2@mailinator.com",
+    }
   ];
 
   it("should add new users", async function() {
