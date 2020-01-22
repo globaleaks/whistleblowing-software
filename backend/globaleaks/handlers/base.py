@@ -7,6 +7,7 @@ import os
 import re
 
 from datetime import datetime
+
 from cryptography.hazmat.primitives import constant_time
 from twisted.internet import abstract
 from twisted.protocols.basic import FileSender
@@ -14,10 +15,11 @@ from twisted.protocols.basic import FileSender
 from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
 from globaleaks.utils.crypto import sha512
-from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
+from globaleaks.utils.crypto import sha512
 from globaleaks.utils.log import log
+from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 # https://github.com/globaleaks/GlobaLeaks/issues/1601

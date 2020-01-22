@@ -66,13 +66,14 @@ def create_questionnaire(session, tid, request, language):
     return serialize_questionnaire(session, tid, questionnaire, language)
 
 
-def db_update_questionnaire(session, questionnaire_id, request, language):
+def db_update_questionnaire(session, tid, questionnaire_id, request, language):
     """
     Updates the specified questionnaire. If the key receivers is specified we remove
     the current receivers of the Questionnaire and reset set it to the new specified
     ones.
 
     :param session: An ORM session
+    :param tid: A tenant ID
     :param questionnaire_id: The ID of the model to be updated
     :param request: The request data
     :param language: The language of the request
