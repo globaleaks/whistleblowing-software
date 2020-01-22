@@ -103,6 +103,22 @@ describe("admin add, configure, and delete users", function() {
     await editUsrForm.element(by.cssContainingText("button", "Save")).click();
   });
 
+  it("should configure an Admin 2", async function() {
+    var user = { name: "Admin2" };
+    var path = "//form[contains(.,\"" + user.name + "\")]";
+
+    // Find Recipient2, click edit, flip some toggles, and save.
+    var editUsrForm = element(by.xpath(path));
+
+    await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
+
+    await editUsrForm.all(by.cssContainingText("span", "Set password")).first().click();
+    await element(by.model("user.password")).sendKeys("globaleaks123!");
+
+    // Click Save and check the fields
+    await editUsrForm.element(by.cssContainingText("button", "Save")).click();
+  });
+
   it("should del existing users", async function() {
     // delete's all accounts that match {{ user.name }} for all new_users
     var delete_account = async function(user) {
