@@ -46,7 +46,7 @@ describe("admin add, configure, and delete users", function() {
     }
   });
 
-  it("should configure an Recipient 1", async function() {
+  it("should configure Recipient 1", async function() {
     var user = { name: "Recipient1" };
     var path = "//form[contains(.,\"" + user.name + "\")]";
 
@@ -71,7 +71,7 @@ describe("admin add, configure, and delete users", function() {
     expect(await descriptBox.getAttribute("value")).toEqual(words);
   });
 
-  it("should configure an Recipient 2", async function() {
+  it("should configure Recipient 2", async function() {
     var user = { name: "Recipient2" };
     var path = "//form[contains(.,\"" + user.name + "\")]";
 
@@ -87,7 +87,7 @@ describe("admin add, configure, and delete users", function() {
     await editUsrForm.element(by.cssContainingText("button", "Save")).click();
   });
 
-  it("should configure an Custodian 1", async function() {
+  it("should configure Custodian 1", async function() {
     var user = { name: "Custodian1" };
     var path = "//form[contains(.,\"" + user.name + "\")]";
 
