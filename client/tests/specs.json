@@ -12,7 +12,7 @@
   "test-admin-configure-custom-texts.js",
   "test-admin-configure-mail.js",
   "test-admin-configure-network.js",
-  "test-admin-users.js",
+  "test-admin-configure-users.js",
   "test-admin-contexts.js",
   "test-admin-questionnaires.js",
   "test-receiver-first-login.js",
