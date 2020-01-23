@@ -29,29 +29,29 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import get_expiration, datetime_now, datetime_never, datetime_to_ISO8601
 
 
-def db_update_submission_status(session, user_id, itip, submission_status_id, submission_substatus_id):
+def db_update_submission_status(session, user_id, itip, status_id, substatus_id):
     """
     Transaction for registering a change of status of a submission
 
     :param session: An ORM session
     :param user_id: A user ID of the user changing the state
     :param itip:  The ID of the submission
-    :param submission_status_id:  The new status ID
-    :param submission_substatus_id: A new substatus ID
+    :param status_id:  The new status ID
+    :param substatus_id: A new substatus ID
     """
-    itip.status = submission_status_id
-    itip.substatus = submission_substatus_id or None
+    itip.status = status_id
+    itip.substatus = substatus_id or None
     submission_status_change = models.SubmissionStatusChange()
     submission_status_change.internaltip_id = itip.id
-    submission_status_change.status = submission_status_id
-    submission_status_change.substatus = submission_substatus_id or None
+    submission_status_change.status = status_id
+    submission_status_change.substatus = substatus_id or None
     submission_status_change.changed_by = user_id
 
     session.add(submission_status_change)
 
 
 @transact
-def update_tip_submission_status(session, tid, user_id, rtip_id, submission_status_id, submission_substatus_id):
+def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, substatus_id):
     """
     Transaction for registering a change of status of a submission
 
@@ -59,12 +59,12 @@ def update_tip_submission_status(session, tid, user_id, rtip_id, submission_stat
     :param tid: The tenant ID
     :param user_id: A user ID of the user changing the state
     :param rtip_id: The ID of the rtip accessed by the user
-    :param submission_status_id:  The new status ID
-    :param submission_substatus_id: A new substatus ID
+    :param status_id:  The new status ID
+    :param substatus_id: A new substatus ID
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    db_update_submission_status(session, user_id, itip, submission_status_id, submission_substatus_id)
+    db_update_submission_status(session, user_id, itip, status_id, substatus_id)
 
 
 def receiver_serialize_rfile(session, rfile):
