@@ -1,3 +1,8 @@
+Changes in version 3.11.64 - 2020-01-23
+    Fix regression in questionnaires update introduced in 3.11.63
+    Enforce file download on Terms of Service attachments (#2763)
+    Fix defect in submission token implementaton preventing expiration
+
 Changes in version 3.11.63 - 2020-01-20
     Fix check on user-context association on the same tenant
     Bump npm dependencies to latest versions
