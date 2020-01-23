@@ -9,7 +9,7 @@
     "url": "git@github.com:globaleaks/GlobaLeaks.git"
   },
   "dependencies": {
-    "@flowjs/flow.js": "2.13.2",
+    "@flowjs/flow.js": "2.14.0",
     "@flowjs/ng-flow": "2.7.8",
     "@fortawesome/fontawesome-free": "5.12.0",
     "angular": "1.7.9",
@@ -28,7 +28,7 @@
     "bootstrap": "4.4.1",
     "d3": "5.15.0",
     "fast-sha256": "1.3.0",
-    "popper.js": "1.16.0",
+    "popper.js": "1.16.1",
     "qrcode-generator": "1.4.4",
     "stacktrace-js": "2.0.2",
     "topojson": "3.0.2",
