@@ -1,3 +1,6 @@
+Changes in version 3.11.65 - 2020-01-23
+    Fix package version
+
 Changes in version 3.11.64 - 2020-01-23
     Fix regression in questionnaires update introduced in 3.11.63
     Enforce file download on Terms of Service attachments (#2763)
