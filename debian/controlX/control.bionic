@@ -22,7 +22,7 @@ Depends:
   adduser,
   apparmor,
   apparmor-utils,
-  gnupg1,
+  gnupg,
   haveged,
   iptables,
   lsb-base,
