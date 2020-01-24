@@ -1,12 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
-
-try:
-    input = raw_input
-except NameError:
-    pass
-
 import argparse
 import json
 import os
@@ -16,7 +9,6 @@ import subprocess as sp
 import sys
 
 from datetime import datetime
-from six import text_type
 
 from globaleaks.db import get_db_file
 from globaleaks.orm import make_db_uri, get_engine
@@ -98,7 +90,6 @@ def restore(args):
 
     # TODO remove workdir str fmt
     sp.check_call("find %s -type f -exec shred -vzn 3 {} \;" % args.workdir, shell=True)
-    #sp.check_call(["rm", "-rf", args.workdir])
 
     print("Extracting the archive {}".format(args.backuppath))
     sp.check_call(["tar", "-xf", args.backuppath, "-C", '/var/globaleaks'])
@@ -265,13 +256,13 @@ pw_p.set_defaults(func=reset_pass)
 rv_p = subp.add_parser("getvar", help="get database config variable")
 add_db_path_arg(rv_p)
 rv_p.add_argument("--tid", help="the tenant id", default='1', type=int)
-rv_p.add_argument("varname", help="the name of the config var", default='version', type=text_type)
+rv_p.add_argument("varname", help="the name of the config var", default='version', type=str)
 rv_p.set_defaults(func=get_var)
 
 sv_p = subp.add_parser("setvar", help="set database config variable")
 add_db_path_arg(sv_p)
 sv_p.add_argument("--tid", help="the tenant id", default='1', type=int)
-sv_p.add_argument("varname", help="the name of the config var", type=text_type)
+sv_p.add_argument("varname", help="the name of the config var", type=str)
 sv_p.add_argument("value", help="value which must be of the correct type Bool(0|1), Int(0-9^9), String(everything else)")
 sv_p.set_defaults(func=set_var)
 
