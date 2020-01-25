@@ -27,6 +27,7 @@ trigger_map = {
 def db_get_triggers_by_type(session, type, object_id):
     """
     Transaction for retrieving field triggers associated to an object given the type of trigger
+
     :param session: An ORM session
     :param type: The type of trigger involved in the lookup
     :param object_id: The object on which performing the lookup
@@ -45,6 +46,7 @@ def db_get_triggers_by_type(session, type, object_id):
 def db_prepare_contexts_serialization(session, contexts):
     """
     Transaction to prepare and optimize context serialization
+
     :param session: An ORM session
     :param contexts: The list of context for which preparing the serialization
     :return: The set of retrieved objects necessary for optimizing the serialization
@@ -69,6 +71,7 @@ def db_prepare_contexts_serialization(session, contexts):
 def db_prepare_receivers_serialization(session, receivers):
     """
     Transaction to prepare and optimize receiver serialization
+
     :param session: An ORM session
     :param receivers: The list of receivers for which preparing the serialization
     :return: The set of retrieved objects necessary for optimizing the serialization
@@ -87,6 +90,7 @@ def db_prepare_receivers_serialization(session, receivers):
 def db_prepare_fields_serialization(session, fields):
     """
     Transaction to prepare and optimize fields serialization
+
     :param session: An ORM session
     :param fields: The list of receivers for which preparing the serialization
     :return: The set of retrieved objects necessary for optimizing the serialization
@@ -144,6 +148,7 @@ def db_prepare_fields_serialization(session, fields):
 def db_serialize_node(session, tid, language):
     """
     Serialize the public node configuration.
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param language: The language to be used during serialization
@@ -192,6 +197,7 @@ def db_serialize_node(session, tid, language):
 def serialize_context(session, context, language, data=None):
     """
     Serialize a context.
+
     :param session: An ORM session
     :param context: The context to be serialized
     :param language: The language to be used during serialization
@@ -235,6 +241,7 @@ def serialize_context(session, context, language, data=None):
 def serialize_field_option(option, language):
     """
     Serialize a field option.
+
     :param option: The option to be serialized
     :param language: The language to be used during serialization
     :return: The serialized resource
@@ -254,6 +261,7 @@ def serialize_field_option(option, language):
 def serialize_field_attr(attr, language):
     """
     Serialize a field attribute.
+
     :param attr: The option to be serialized
     :param language: The language to be used during serialization
     :return: The serialized resource
@@ -365,6 +373,7 @@ def serialize_step(session, tid, step, language, serialize_templates=True):
 def serialize_questionnaire(session, tid, questionnaire, language, serialize_templates=True):
     """
     Serialize a questionnaire.
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param questionnaire: A questionnaire model

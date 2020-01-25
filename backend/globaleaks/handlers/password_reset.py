@@ -88,6 +88,7 @@ def generate_password_reset_token_by_username_or_mail(session, tid, username_or_
 def validate_password_reset(session, reset_token, auth_code, recovery_key):
     """
     Retrieves a user given a password reset validation token
+
     :param session: An ORM session
     :param reset_token: A reset token
     :param auth_code: A two factor authentication code (optional)

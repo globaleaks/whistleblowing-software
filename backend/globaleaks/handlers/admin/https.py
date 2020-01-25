@@ -22,6 +22,7 @@ from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date
 def load_tls_dict(session, tid):
     """
     Transaction for loading the TLS configuration of a tenant
+
     :param session: An ORM session
     :param tid: A tenant ID
     :return: The serialized TLS configuration for the specified tenant

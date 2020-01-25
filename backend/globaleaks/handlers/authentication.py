@@ -22,16 +22,16 @@ def login_delay():
     The function in case of failed_login_attempts introduces
     an exponential increasing delay between 0 and 42 seconds
 
-        the function implements the following table:
-            ----------------------------------
-           | failed_attempts |      delay     |
-           | x < 5           | 0              |
-           | 5               | random(5, 25)  |
-           | 6               | random(6, 36)  |
-           | 7               | random(7, 42)  |
-           | 8 <= x <= 42    | random(x, 42)  |
-           | x > 42          | 42             |
-            ----------------------------------
+    the function implements the following table:
+     ----------------------------------
+    | failed_attempts |      delay     |
+    | x < 5           | 0              |
+    | 5               | random(5, 25)  |
+    | 6               | random(6, 36)  |
+    | 7               | random(7, 42)  |
+    | 8 <= x <= 42    | random(x, 42)  |
+    | x > 42          | 42             |
+     ----------------------------------
     """
     failed_attempts = Settings.failed_login_attempts
 

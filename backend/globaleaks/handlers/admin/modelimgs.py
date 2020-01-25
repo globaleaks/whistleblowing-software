@@ -14,6 +14,7 @@ model_map = {
 def db_get_model_img(session, obj_type, obj_id):
     """
     Transaction for retrieving the image associated to a model type
+
     :param session: An ORM session
     :param obj_type: The model type
     :param obj_id: The object ID

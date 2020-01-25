@@ -21,6 +21,7 @@ from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime
 def parse_pgp_options(user, request):
     """
     Used for parsing PGP key infos and fill related user configurations.
+
     :param user: A user model
     :param request: A request to be parsed
     """
@@ -108,6 +109,7 @@ def user_serialize_user(session, user, language):
 def db_get_user(session, tid, user_id):
     """
     Transaction for retrieving a user model given an id
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_id: A id of the user to retrieve
@@ -123,6 +125,7 @@ def db_get_user(session, tid, user_id):
 def get_user(session, tid, user_id, language):
     """
     Transaction for retrieving a user model given an id
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_id: A id of the user to retrieve
@@ -137,6 +140,7 @@ def get_user(session, tid, user_id, language):
 def db_user_update_user(session, tid, user_session, request):
     """
     Transaction for updating an existing user
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_session: A session of the user invoking the transaction
@@ -229,6 +233,7 @@ def db_user_update_user(session, tid, user_session, request):
 def update_user_settings(session, tid, user_session, request, language):
     """
     Transaction for updating an existing user
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_session: A session of the user invoking the transaction

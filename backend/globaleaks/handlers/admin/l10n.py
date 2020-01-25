@@ -13,6 +13,7 @@ from globaleaks.orm import transact
 def get(session, tid, lang):
     """
     Transaction for retrieving the texts customization of a tenant
+
     :param session: An ORM session
     :param tid: A tenant ID
     :param lang: The language to be used for the lookup
@@ -27,6 +28,7 @@ def get(session, tid, lang):
 def update(session, tid, lang, request):
     """
     Transaction for updating the texts customizations of a tenant
+
     :param session: An ORM session
     :param tid: A tentant ID
     :param lang: The language to be used for the update
