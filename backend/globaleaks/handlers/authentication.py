@@ -17,7 +17,7 @@ from globaleaks.utils.log import log
 from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 
-def random_login_delay():
+def login_delay():
     """
     The function in case of failed_login_attempts introduces
     an exponential increasing delay between 0 and 42 seconds
@@ -41,9 +41,7 @@ def random_login_delay():
         min_sleep = failed_attempts if failed_attempts < 42 else 42
         max_sleep = n if n < 42 else 42
 
-        return SystemRandom().randint(min_sleep, max_sleep)
-
-    return 0
+        return deferred_sleep(SystemRandom().randint(min_sleep, max_sleep))
 
 
 def connection_check(client_ip, tid, role, client_using_tor):
@@ -181,11 +179,9 @@ class AuthenticationHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self):
-        request = self.validate_message(self.request.content.read(), requests.AuthDesc)
+        yield login_delay()
 
-        delay = random_login_delay()
-        if delay:
-            yield deferred_sleep(delay)
+        request = self.validate_message(self.request.content.read(), requests.AuthDesc)
 
         tid = int(request['tid'])
         if tid == 0:
@@ -217,15 +213,13 @@ class TokenAuthHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self):
+        yield login_delay()
+
         request = self.validate_message(self.request.content.read(), requests.TokenAuthDesc)
 
         tid = int(request['tid'])
         if tid == 0:
             tid = self.request.tid
-
-        delay = random_login_delay()
-        if delay:
-            yield deferred_sleep(delay)
 
         session = Sessions.get(request['token'])
         if session is None or session.tid != tid:
@@ -256,14 +250,12 @@ class ReceiptAuthHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self):
+        yield login_delay()
+
         request = self.validate_message(self.request.content.read(), requests.ReceiptAuthDesc)
 
         connection_check(self.request.client_ip, self.request.tid,
                          'whistleblower', self.request.client_using_tor)
-
-        delay = random_login_delay()
-        if delay:
-            yield deferred_sleep(delay)
 
         session = yield login_whistleblower(self.request.tid, request['receipt'])
 
