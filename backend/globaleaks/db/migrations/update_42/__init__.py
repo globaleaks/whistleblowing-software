@@ -8,7 +8,6 @@ from globaleaks.utils.utility import datetime_now, datetime_null
 
 class InternalTip_v_41(Model):
     __tablename__ = 'internaltip'
-
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     tid = Column(Integer, default=1, nullable=False)
     encrypted = Column(Boolean, default=False, nullable=False)
@@ -38,7 +37,6 @@ class InternalTip_v_41(Model):
 
 class Signup_v_41(Model):
     __tablename__ = 'signup'
-
     id = Column(Integer, primary_key=True, nullable=False)
     tid = Column(Integer, nullable=True)
     subdomain = Column(UnicodeText, unique=True, nullable=False)
@@ -65,10 +63,9 @@ class Signup_v_41(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_Context(self):
-        old_objs = self.session_old.query(self.model_from['Context'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Context']):
             new_obj = self.model_to['Context']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             if old_obj.tip_timetolive == -1:
@@ -77,10 +74,9 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_FieldAttr(self):
-        old_objs = self.session_old.query(self.model_from['FieldAttr'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['FieldAttr']):
             new_obj = self.model_to['FieldAttr']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             if old_obj.name == 'text_of_confirmation_question_upon_negative_answer':
@@ -93,14 +89,13 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_InternalTip(self):
-        old_objs = self.session_old.query(self.model_from['InternalTip'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['InternalTip']):
             new_obj = self.model_to['InternalTip']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 new_obj.status = 'antani!'
                 if key == 'status' or key == 'substatus':
                     pass
-                elif key in [c.key for c in old_obj.__table__.columns]:
+                elif key in old_obj.__table__.columns._data.keys():
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
@@ -113,10 +108,9 @@ class MigrationScript(MigrationBase):
                 self.session_new.add(new_wbtip)
 
     def migrate_Signup(self):
-        old_objs = self.session_old.query(self.model_from['Signup'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Signup']):
             new_obj = self.model_to['Signup']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key not in old_obj.__table__.columns:
                     continue
 
@@ -129,14 +123,13 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_Stats(self):
-        old_objs = self.session_old.query(self.model_from['Stats'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Stats']):
             if not old_obj.summary:
                 self.entries_count['Stats'] -= 1
                 continue
 
             new_obj = self.model_to['Stats']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key not in old_obj.__table__.columns:
                     continue
 
@@ -145,14 +138,11 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_User(self):
-        old_objs = self.session_old.query(self.model_from['User'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['User']):
             new_obj = self.model_to['User']()
-            for key in [c.key for c in new_obj.__table__.columns]:
-                if key not in old_obj.__table__.columns:
-                    continue
-
-                setattr(new_obj, key, getattr(old_obj, key))
+            for key in new_obj.__table__.columns._data.keys():
+                if hasattr(old_obj, key):
+                    setattr(new_obj, key, getattr(old_obj, key))
 
             if new_obj.username == '':
                 new_obj.username = new_obj.id
@@ -161,6 +151,7 @@ class MigrationScript(MigrationBase):
 
     def epilogue(self):
         tenants = self.session_old.query(self.model_from['Tenant'])
+
         for tenant in tenants:
             for s in [{'label': {'en': 'New'}, 'system_usage': 'new'},
                       {'label': {'en': 'Opened'}, 'system_usage': 'opened'},

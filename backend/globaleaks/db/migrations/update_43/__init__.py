@@ -7,13 +7,9 @@ from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null
 
 class InternalTip_v_42(Model):
     __tablename__ = 'internaltip'
-
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-
     tid = Column(Integer, default=1, nullable=False)
-
     encrypted = Column(Boolean, default=False, nullable=False)
-
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     update_date = Column(DateTime, default=datetime_now, nullable=False)
     context_id = Column(UnicodeText(36), nullable=False)
@@ -29,17 +25,14 @@ class InternalTip_v_42(Model):
     enable_two_way_messages = Column(Boolean, default=True, nullable=False)
     enable_attachments = Column(Boolean, default=True, nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
-
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
     wb_access_counter = Column(Integer, default=0, nullable=False)
-
     status = Column(UnicodeText(36), nullable=False)
     substatus = Column(UnicodeText(36), nullable=True)
 
 
 class Signup_v_42(Model):
     __tablename__ = 'signup'
-
     id = Column(Integer, primary_key=True, nullable=False)
     tid = Column(Integer, nullable=False)
     subdomain = Column(UnicodeText, unique=True, nullable=False)
@@ -62,10 +55,8 @@ class Signup_v_42(Model):
     organization_number_users = Column(UnicodeText, default='', nullable=False)
     hear_channel = Column(UnicodeText, default='', nullable=False)
     activation_token = Column(UnicodeText, nullable=False)
-
     password_admin = Column(UnicodeText, default='', nullable=False)
     password_recipient = Column(UnicodeText, default='', nullable=False)
-
     client_ip_address = Column(UnicodeText, default='', nullable=False)
     client_user_agent = Column(UnicodeText, default='', nullable=False)
     registration_date = Column(DateTime, default=datetime_now, nullable=False)

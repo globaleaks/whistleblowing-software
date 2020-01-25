@@ -226,10 +226,9 @@ class MigrationScript(MigrationBase):
         return self.db_serialize_questionnaire_answers_recursively(session, answers, answers_by_group, groups_by_answer)
 
     def migrate_FieldAttr(self):
-        old_objs = self.session_old.query(self.model_from['FieldAttr'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['FieldAttr']):
             new_obj = self.model_to['FieldAttr']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             if new_obj.type == 'bool':
@@ -239,14 +238,12 @@ class MigrationScript(MigrationBase):
 
     def migrate_User(self):
         receivers_by_id = {}
-        old_objs = self.session_old.query(self.model_from['Receiver'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Receiver']):
             receivers_by_id[old_obj.id] = old_obj
 
-        old_objs = self.session_old.query(self.model_from['User'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['User']):
             new_obj = self.model_to['User']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'hash_alg':
                     new_obj.hash_alg = 'SCRYPT'
                 elif key in ['notification']:

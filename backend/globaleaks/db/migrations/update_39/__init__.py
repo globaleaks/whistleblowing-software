@@ -416,14 +416,19 @@ class WhistleblowerFile_v_38(Model):
 
 
 class MigrationScript(MigrationBase):
-    def migrate_ArchivedSchema(self):
-        return
+    skip_model_migration = {
+        'ArchivedSchema': True,
+        'ShortURL': True
+    }
+
+    skip_count_check = {
+        'ShortURL': True
+    }
 
     def migrate_Config(self):
-        old_objs = self.session_old.query(self.model_from['Config'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Config']):
             new_obj = self.model_to['Config'](migrate=True)
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'tid':
                     new_obj.tid = 1
                 elif key == 'var_name':
@@ -446,14 +451,10 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
-    def migrate_ShortURL(self):
-        pass
-
     def migrate_FieldAttr(self):
-        old_objs = self.session_old.query(self.model_from['FieldAttr'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['FieldAttr']):
             new_obj = self.model_to['FieldAttr']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             if new_obj.name == 'display_alphabetically':
@@ -462,10 +463,9 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_InternalTip(self):
-        old_objs = self.session_old.query(self.model_from['InternalTip'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['InternalTip']):
             new_obj = self.model_to['InternalTip']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'tid':
                     new_obj.tid = 1
                 elif key == 'receipt_hash':
@@ -482,10 +482,9 @@ class MigrationScript(MigrationBase):
     def migrate_ReceiverContext(self):
         model_from = self.model_from['Receiver']
         used_presentation_order = []
-        old_objs = self.session_old.query(self.model_from['ReceiverContext'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['ReceiverContext']):
             new_obj = self.model_to['ReceiverContext']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'tid':
                     new_obj.tid = 1
                 elif key == 'presentation_order':
@@ -501,8 +500,7 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_File(self):
-        old_objs = self.session_old.query(self.model_from['File'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['File']):
             obj_id = None
             u = self.session_old.query(self.model_from['User']).filter(self.model_from['User'].img_id == old_obj.id).one_or_none()
             c = self.session_old.query(self.model_from['Context']).filter(self.model_from['Context'].img_id == old_obj.id).one_or_none()
@@ -519,7 +517,7 @@ class MigrationScript(MigrationBase):
             else:
                 new_obj = self.model_to['File']()
 
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'tid':
                     new_obj.tid = 1
                 elif key == 'name':
@@ -533,11 +531,10 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_File_XXX(self, XXX):
-        old_objs = self.session_old.query(self.model_from[XXX])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from[XXX]):
             new_obj = self.model_to[XXX]()
 
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'tid':
                     new_obj.tid = 1
                 elif key == 'file_path':
@@ -561,8 +558,6 @@ class MigrationScript(MigrationBase):
         return self.migrate_File_XXX('WhistleblowerFile')
 
     def epilogue(self):
-        self.fail_on_count_mismatch['ShortURL'] = False
-
         self.session_new.add(self.model_to['Tenant'](
             {'label': '', 'active': True}))
 
@@ -571,7 +566,7 @@ class MigrationScript(MigrationBase):
                                                                                  self.model_from['ArchivedSchema'].type == 'preview').one()
 
             new_obj = self.model_to['ArchivedSchema']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'tid':
                     new_obj.tid = 1
                 elif key == 'preview':

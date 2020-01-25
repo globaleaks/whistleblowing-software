@@ -62,10 +62,9 @@ class InternalTip_v_34(models.Model):
 
 class MigrationScript(MigrationBase):
     def migrate_Context(self):
-        old_objs = self.session_old.query(self.model_from['Context'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Context']):
             new_obj = self.model_to['Context']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'tip_timetolive':
                     tip_ttl = 5 * 365
                     if old_obj.tip_timetolive > tip_ttl:
@@ -92,10 +91,9 @@ class MigrationScript(MigrationBase):
         default_language = self.session_new.query(self.model_to['Config']).filter(self.model_to['Config'].var_name == 'default_language').one().value['v']
         enabled_languages = [r[0] for r in self.session_old.query(self.model_to['EnabledLanguage'].name)]
 
-        old_objs = self.session_old.query(self.model_from['User'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['User']):
             new_obj = self.model_to['User']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key in ['pgp_key_public', 'pgp_key_fingerprint'] and getattr(old_obj, key) is None:
                     setattr(new_obj, key, '')
 
@@ -112,15 +110,13 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_WhistleblowerTip(self):
-        old_objs = self.session_old.query(self.model_from['WhistleblowerTip'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['WhistleblowerTip']):
             new_obj = self.model_to['WhistleblowerTip']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'id':
                     new_obj.id = old_obj.internaltip_id
-                    continue
-
-                setattr(new_obj, key, getattr(old_obj, key))
+                else:
+                    setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
 

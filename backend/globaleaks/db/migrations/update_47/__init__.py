@@ -91,10 +91,9 @@ class SubmissionSubStatus_v_46(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_Field(self):
-        old_objs = self.session_old.query(self.model_from['Field'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Field']):
             new_obj = self.model_to['Field']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'triggered_by_score':
                     if old_obj.triggered_by_score:
                         new_obj.triggered_by_score = 1
@@ -104,10 +103,9 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_FieldOption(self):
-        old_objs = self.session_old.query(self.model_from['FieldOption'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['FieldOption']):
             new_obj = self.model_to['FieldOption']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)

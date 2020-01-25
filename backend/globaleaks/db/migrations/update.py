@@ -8,6 +8,8 @@ class MigrationBase(object):
     """
     This is the base class used by every Updater
     """
+    skip_model_migration = {}
+    skip_count_check = {}
 
     def __init__(self, migration_mapping, start_version, session_old, session_new):
         self.appdata = load_appdata()
@@ -21,7 +23,6 @@ class MigrationBase(object):
         self.model_from = {}
         self.model_to = {}
         self.entries_count = {}
-        self.fail_on_count_mismatch = {}
 
         expected = DATABASE_VERSION + 1 - FIRST_DATABASE_VERSION_SUPPORTED
         for model_name, model_history in migration_mapping.items():
@@ -29,13 +30,12 @@ class MigrationBase(object):
             if length != expected:
                 raise TypeError('Number of status mismatch for table {}, expected:{} actual:{}'.format(model_name, expected, length))
 
-            self.fail_on_count_mismatch[model_name] = True
-
             self.model_from[model_name] = migration_mapping[model_name][start_version - FIRST_DATABASE_VERSION_SUPPORTED]
             self.model_to[model_name] = migration_mapping[model_name][start_version + 1 - FIRST_DATABASE_VERSION_SUPPORTED]
 
-            self.entries_count[model_name] = 0
-            if self.model_from[model_name] is not None and self.model_to[model_name] is not None:
+            if self.model_from[model_name] is None or self.model_to[model_name] is None:
+                self.entries_count[model_name] = 0
+            else:
                 self.entries_count[model_name] = self.session_old.query(self.model_from[model_name]).count()
 
         self.session_new.commit()
@@ -57,8 +57,7 @@ class MigrationBase(object):
         old_keys = [c.key for c in self.model_from[model_name].__table__.columns]
         new_keys = [c.key for c in self.model_from[model_name].__table__.columns if c.key in old_keys]
 
-        old_objs = self.session_old.query(self.model_from[model_name])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from[model_name]):
             new_obj = self.model_to[model_name](migrate=True)
 
             for k in new_keys:
@@ -67,7 +66,7 @@ class MigrationBase(object):
             self.session_new.add(new_obj)
 
     def migrate_model(self, model_name):
-        if self.entries_count[model_name] <= 0:
+        if self.entries_count[model_name] <= 0 or self.skip_model_migration.get(model_name, False):
             return
 
         Settings.print_msg(' * %s [#%d]' % (model_name, self.entries_count[model_name]))

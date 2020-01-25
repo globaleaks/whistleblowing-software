@@ -199,10 +199,9 @@ class WhistleblowerFile_v_45(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_Config(self):
-        old_objs = self.session_old.query(self.model_from['Config'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Config']):
             new_obj = self.model_to['Config']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'update_date':
                     if old_obj.customized:
                         new_obj.update_date = datetime_now()
@@ -215,58 +214,48 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_ConfigL10N(self):
-        old_objs = self.session_old.query(self.model_from['ConfigL10N'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['ConfigL10N']):
             new_obj = self.model_to['ConfigL10N']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'update_date':
                     if old_obj.customized:
                         new_obj.update_date = datetime_now()
                     else:
                         new_obj.update_date = datetime_null()
-
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
 
     def migrate_Context(self):
-        old_objs = self.session_old.query(self.model_from['Context'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Context']):
             new_obj = self.model_to['Context']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'status':
                     new_obj.status = 1 if old_obj.show_context else 2
                     continue
-                elif not hasattr(old_obj, key):
-                    continue
-
-                setattr(new_obj, key, getattr(old_obj, key))
+                elif hasattr(old_obj, key):
+                    setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
 
     def migrate_FieldOption(self):
-        old_objs = self.session_old.query(self.model_from['FieldOption'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['FieldOption']):
             new_obj = self.model_to['FieldOption']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'score_type':
                     if old_obj.score_points != 0:
                         new_obj.score_type = 1
-                    continue
-                elif key in ['trigger_step', 'trigger_receiver']:
-                    continue
-
-                setattr(new_obj, key, getattr(old_obj, key))
+                elif hasattr(old_obj, key):
+                    setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
 
     def migrate_InternalTip(self):
         ids = {}
-        old_objs = self.session_old.query(self.model_from['InternalTip'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['InternalTip']):
             new_obj = self.model_to['InternalTip']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             if new_obj.progressive in ids:
@@ -278,8 +267,7 @@ class MigrationScript(MigrationBase):
 
     def migrate_InternalFile(self):
         filenames = {}
-        old_objs = self.session_old.query(self.model_from['InternalFile'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['InternalFile']):
             if old_obj.filename in filenames:
                 self.entries_count['InternalFile'] -= 1
                 continue
@@ -287,15 +275,14 @@ class MigrationScript(MigrationBase):
             filenames[old_obj.filename] = True
 
             new_obj = self.model_to['InternalFile']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
 
     def migrate_WhistleblowerFile(self):
         filenames = {}
-        old_objs = self.session_old.query(self.model_from['WhistleblowerFile'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['WhistleblowerFile']):
             if old_obj.filename in filenames:
                 self.entries_count['WhistleblowerFile'] -= 1
                 continue
@@ -303,17 +290,16 @@ class MigrationScript(MigrationBase):
             filenames[old_obj.filename] = True
 
             new_obj = self.model_to['WhistleblowerFile']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
 
     def migrate_User(self):
-        old_objs = self.session_old.query(self.model_from['User'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['User']):
             receiver = self.session_old.query(self.model_from['Receiver']).filter(self.model_from['Receiver'].id == old_obj.id).one_or_none()
             new_obj = self.model_to['User']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key in ['can_delete_submission', 'can_grant_permissions', 'can_postpone_expiration']:
                     if receiver is not None:
                         setattr(new_obj, key, getattr(receiver, key))
@@ -328,8 +314,7 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def epilogue(self):
-        tenants = self.session_new.query(self.model_from['Tenant'])
-        for t in tenants:
+        for t in self.session_new.query(self.model_from['Tenant']):
             m = self.model_from['Config']
             a = self.session_new.query(m.value).filter(m.tid == t.id, m.var_name == 'ip_filter_authenticated_enable').one_or_none()
             b = self.session_new.query(m.value).filter(m.tid == t.id, m.var_name == 'ip_filter_authenticated').one_or_none()

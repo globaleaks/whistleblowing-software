@@ -31,9 +31,7 @@ class Field_v_47(Model):
 
 class FieldOption_v_47(Model):
     __tablename__ = 'fieldoption'
-
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-
     field_id = Column(UnicodeText(36), nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
     label = Column(JSON, nullable=False)

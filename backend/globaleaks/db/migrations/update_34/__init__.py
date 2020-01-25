@@ -241,10 +241,9 @@ class MigrationScript(MigrationBase):
                 self.session_new.add(s)
 
     def migrate_Field(self):
-        old_objs = self.session_old.query(self.model_from['Field'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Field']):
             new_obj = self.model_to['Field']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             if (new_obj.instance == 'instance' and new_obj.step_id is None and new_obj.fieldgroup_id is None or

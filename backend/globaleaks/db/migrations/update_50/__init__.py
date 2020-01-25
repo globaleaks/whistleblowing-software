@@ -68,10 +68,9 @@ class MigrationScript(MigrationBase):
     status_map = {}
 
     def migrate_Signup(self):
-        old_objs = self.session_old.query(self.model_from['Signup'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Signup']):
             new_obj = self.model_to['Signup']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             new_obj.activation_token = ''
@@ -79,10 +78,9 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_SubmissionStatus(self):
-        old_objs = self.session_old.query(self.model_from['SubmissionStatus'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['SubmissionStatus']):
             new_obj = self.model_to['SubmissionStatus']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             if old_obj.system_defined:
@@ -96,10 +94,9 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_SubmissionSubStatus(self):
-        old_objs = self.session_old.query(self.model_from['SubmissionSubStatus'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['SubmissionSubStatus']):
             new_obj = self.model_to['SubmissionSubStatus']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'tid':
                     p_model = self.model_from['SubmissionStatus']
                     p = self.session_old.query(p_model).filter(p_model.id == old_obj.submissionstatus_id).one()
@@ -113,12 +110,10 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_User(self):
-        old_objs = self.session_old.query(self.model_from['User'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['User']):
             new_obj = self.model_to['User']()
-            old_keys = [c.key for c in old_obj.__table__.columns]
-            for key in [c.key for c in new_obj.__table__.columns]:
-                if key in old_keys:
+            for key in new_obj.__table__.columns._data.keys():
+                if hasattr(old_obj, key):
                     setattr(new_obj, key, getattr(old_obj, key))
 
             if new_obj.recipient_configuration == 'unselectable':
@@ -128,7 +123,6 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def epilogue(self):
-        objs = self.session_new.query(self.model_to['InternalTip'])
-        for obj in objs:
+        for obj in self.session_new.query(self.model_to['InternalTip']):
             if obj.status in self.status_map:
                 obj.status = self.status_map[obj.status]

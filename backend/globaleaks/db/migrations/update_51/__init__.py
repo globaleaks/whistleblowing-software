@@ -78,12 +78,10 @@ class User_v_50(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_InternalFile(self):
-        old_objs = self.session_old.query(self.model_from['InternalFile'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['InternalFile']):
             new_obj = self.model_to['InternalFile']()
-            old_keys = [c.key for c in old_obj.__table__.columns]
-            for key in [c.key for c in new_obj.__table__.columns]:
-                if key in old_keys:
+            for key in new_obj.__table__.columns._data.keys():
+                if hasattr(old_obj, key):
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)

@@ -148,7 +148,7 @@ class Model(object):
     def __init__(self, values=None, migrate=False):
         self.update(values)
 
-        self.properties = [c.key for c in self.__table__.columns]
+        self.properties = self.__table__.columns._data.keys()
 
     def update(self, values=None):
         """

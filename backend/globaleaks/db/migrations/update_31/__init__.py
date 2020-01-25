@@ -177,7 +177,7 @@ class MigrationScript(MigrationBase):
         old_node = self.session_old.query(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
-        for key in [c.key for c in new_node.__table__.columns]:
+        for key in new_node.__table__.columns._data.keys():
             if key == 'allow_indexing':
                 new_node.allow_indexing = False
 
@@ -226,10 +226,9 @@ class MigrationScript(MigrationBase):
                 os.remove(p)
 
     def migrate_User(self):
-        old_objs = self.session_old.query(self.model_from['User'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['User']):
             new_obj = self.model_to['User']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'img_id':
                     img_path = os.path.join(Settings.files_path, old_obj.id + ".png")
                     if not os.path.exists(img_path):
@@ -248,10 +247,9 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_Context(self):
-        old_objs = self.session_old.query(self.model_from['Context'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Context']):
             new_obj = self.model_to['Context']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'img_id':
                     continue
                 elif key == 'show_small_receiver_cards':

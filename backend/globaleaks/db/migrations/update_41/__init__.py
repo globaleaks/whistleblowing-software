@@ -125,16 +125,15 @@ class WhistleblowerFile_v_40(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_InternalTip(self):
-        tenants = self.session_old.query(self.model_from['Tenant'])
-        for tenant in tenants:
+        for tenant in self.session_old.query(self.model_from['Tenant']):
+            i = 0
             old_objs = self.session_old.query(self.model_from['InternalTip']) \
                                        .filter(self.model_from['InternalTip'].tid == tenant.id) \
                                        .order_by(self.model_from['InternalTip'].creation_date)
-            i = 0
             for old_obj in old_objs:
                 i += 1
                 new_obj = self.model_to['InternalTip'](migrate=True)
-                for key in [c.key for c in new_obj.__table__.columns]:
+                for key in new_obj.__table__.columns._data.keys():
                     if key in ['encrypted', 'wb_prv_key', 'wb_pub_key', 'wb_tip_key', 'enc_data']:
                         pass
                     elif key == 'progressive':
@@ -145,10 +144,9 @@ class MigrationScript(MigrationBase):
                 self.session_new.add(new_obj)
 
     def migrate_InternalFile(self):
-        old_objs = self.session_old.query(self.model_from['InternalFile'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['InternalFile']):
             new_obj = self.model_to['InternalFile'](migrate=True)
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'filename':
                     new_obj.filename = os.path.basename(old_obj.file_path)
                 else:
@@ -157,10 +155,9 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_ReceiverFile(self):
-        old_objs = self.session_old.query(self.model_from['ReceiverFile'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['ReceiverFile']):
             new_obj = self.model_to['ReceiverFile'](migrate=True)
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'filename':
                     new_obj.filename = os.path.basename(old_obj.file_path)
                 else:
@@ -169,10 +166,9 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_WhistleblowerFile(self):
-        old_objs = self.session_old.query(self.model_from['WhistleblowerFile'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['WhistleblowerFile']):
             new_obj = self.model_to['WhistleblowerFile'](migrate=True)
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'filename':
                     new_obj.filename = os.path.basename(old_obj.file_path)
                 else:
@@ -181,8 +177,7 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def epilogue(self):
-        tenants = self.session_old.query(self.model_from['Tenant'])
-        for tenant in tenants:
+        for tenant in self.session_old.query(self.model_from['Tenant']):
             count = self.session_old.query(self.model_from['InternalTip']).filter(self.model_from['InternalTip'].tid == tenant.id).count()
             self.session_new.add(self.model_to['Config']({'tid': tenant.id, 'var_name': 'counter_submissions', 'value': count}))
             self.entries_count['Config'] += 1

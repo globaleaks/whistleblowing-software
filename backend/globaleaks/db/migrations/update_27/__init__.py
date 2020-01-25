@@ -143,7 +143,7 @@ class MigrationScript(MigrationBase):
         old_node = self.session_old.query(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
-        for key in [c.key for c in new_node.__table__.columns]:
+        for key in new_node.__table__.columns._data.keys():
             if key == 'enable_experimental_features':
                 new_node.enable_experimental_features = False
             else:
@@ -152,10 +152,9 @@ class MigrationScript(MigrationBase):
         self.session_new.add(new_node)
 
     def migrate_Context(self):
-        old_objs = self.session_old.query(self.model_from['Context'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Context']):
             new_obj = self.model_to['Context']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'show_recipients_details':
                     new_obj.show_recipients_details = old_obj.show_receivers
                 elif key == 'allow_recipients_selection':

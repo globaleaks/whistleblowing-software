@@ -54,10 +54,9 @@ def replace_templates_variables(value):
 
 class MigrationScript(MigrationBase):
     def migrate_ConfigL10N(self):
-        old_objs = self.session_old.query(self.model_from['ConfigL10N'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['ConfigL10N']):
             new_obj = self.model_to['ConfigL10N']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 value = getattr(old_obj, key)
                 if key == 'value':
                     value = replace_templates_variables(value)
@@ -70,17 +69,15 @@ class MigrationScript(MigrationBase):
         questionnaire_default = self.session_old.query(self.model_from['Questionnaire']).filter(self.model_from['Questionnaire'].key == 'default').one_or_none()
         questionnaire_default_id = questionnaire_default.id if questionnaire_default is not None else 'hack'
 
-        old_objs = self.session_old.query(self.model_from['Context'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Context']):
             new_obj = self.model_to['Context']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'questionnaire_id':
                     if old_obj.questionnaire_id is None or old_obj.questionnaire_id == questionnaire_default_id:
                         setattr(new_obj, 'questionnaire_id', 'default')
-                    else:
-                        setattr(new_obj, key, getattr(old_obj, key))
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
+                        continue
+
+                setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
 
@@ -88,10 +85,9 @@ class MigrationScript(MigrationBase):
         field_wbi = self.session_old.query(self.model_from['Field']).filter(self.model_from['Field'].key == 'whistleblower_identity').one()
         field_wbi_id = field_wbi.id if field_wbi is not None else 'hack'
 
-        old_objs = self.session_old.query(self.model_from['Field'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Field']):
             new_obj = self.model_to['Field']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             if old_obj.key == 'whistleblower_identity':
@@ -106,13 +102,12 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_Questionnaire(self):
-        old_objs = self.session_old.query(self.model_from['Questionnaire'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Questionnaire']):
             new_obj = self.model_to['Questionnaire']()
-            for key in [c.key for c in new_obj.__table__.columns]:
-                setattr(new_obj, key, getattr(old_obj, key))
-
-            if old_obj.key == 'default':
-                setattr(new_obj, 'id', 'default')
+            for key in new_obj.__table__.columns._data.keys():
+                if old_obj.key == 'default':
+                    setattr(new_obj, 'id', 'default')
+                else:
+                    setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)

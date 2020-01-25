@@ -19,10 +19,9 @@ class InternalFile_v_25(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_InternalFile(self):
-        old_objs = self.session_old.query(self.model_from['InternalFile'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['InternalFile']):
             new_obj = self.model_to['InternalFile']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'submission':
                     new_obj.submission = True
                 else:

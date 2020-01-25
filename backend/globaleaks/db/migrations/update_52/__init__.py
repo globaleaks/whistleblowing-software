@@ -82,16 +82,18 @@ class User_v_51(Model):
 
 
 class MigrationScript(MigrationBase):
+    skip_count_check = {
+        'Config': True
+    }
+
     def migrate_Signup(self):
-        old_objs = self.session_old.query(self.model_from['Signup'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Signup']):
             new_obj = self.model_to['Signup']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'activation_token' and old_obj.activation_token == '':
                     new_obj.activation_token = None
-                    continue
-
-                setattr(new_obj, key, getattr(old_obj, key))
+                else:
+                    setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
 
@@ -101,10 +103,9 @@ class MigrationScript(MigrationBase):
 
         platform_name = self.session_new.query(self.model_from['Config'].value).filter(self.model_from['Config'].tid == 1, self.model_from['Config'].var_name == 'name').one()[0]
 
-        old_objs = self.session_old.query(self.model_from['User'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['User']):
             new_obj = self.model_to['User']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key.startswith('crypto_') or key == 'readonly':
                     continue
                 elif key == 'two_factor_secret':
@@ -115,8 +116,17 @@ class MigrationScript(MigrationBase):
                         new_obj.public_name = platform_name
                     else:
                         new_obj.public_name = old_obj.name
-
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
+
+
+    def epilogue(self):
+        # This migration epilogue is necessary because the default variable of the variables is
+        # the opposite of what it is necessary to be configured on migrated nodes
+        self.session_new.query(self.model_to['Config']).filter(self.model_to['Config'].var_name.in_(['encryption'])).delete(synchronize_session='fetch')
+
+        for t in self.session_new.query(self.model_from['Tenant']):
+            self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': 'encryption', 'value': False}))
+            self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': 'escrow', 'value': False}))

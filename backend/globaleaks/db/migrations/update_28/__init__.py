@@ -46,37 +46,32 @@ class FieldOption_v_27(Model):
 
 class FieldField_v_27(Model):
     __tablename__ = 'field_field'
-
     parent_id = Column(UnicodeText(36), primary_key=True)
     child_id = Column(UnicodeText(36), primary_key=True)
 
 
 class StepField_v_27(Model):
     __tablename__ = 'step_field'
-
     step_id = Column(UnicodeText(36), primary_key=True)
     field_id = Column(UnicodeText(36), primary_key=True)
 
 
 class MigrationScript(MigrationBase):
     def migrate_Step(self):
-        old_objs = self.session_old.query(self.model_from['Step'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Step']):
             new_obj = self.model_to['Step']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'triggered_by_score':
                     new_obj.triggered_by_score = 0
-                    continue
-
-                setattr(new_obj, key, getattr(old_obj, key))
+                else:
+                    setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
 
     def migrate_Field(self):
-        old_objs = self.session_old.query(self.model_from['Field'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Field']):
             new_obj = self.model_to['Field']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'preview':
                     if old_obj.preview is None:
                         new_obj.preview = False
@@ -97,16 +92,6 @@ class MigrationScript(MigrationBase):
                     new_obj.triggered_by_score = 0
 
                 else:
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)
-
-    def migrate_FieldOption(self):
-        old_objs = self.session_old.query(self.model_from['FieldOption'])
-        for old_obj in old_objs:
-            new_obj = self.model_to['FieldOption']()
-            for key in [c.key for c in new_obj.__table__.columns]:
-                if key != 'trigger_field':
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)

@@ -115,11 +115,10 @@ class MigrationScript(MigrationBase):
     def migrate_File(self):
         old_node = self.session_old.query(self.model_from['Node']).one()
 
-        old_objs = self.session_old.query(self.model_from['File'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['File']):
             new_obj = self.model_to['File']()
 
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'id':
                     if old_obj.id == old_node.logo_id:
                         new_obj.id = 'logo'
@@ -133,10 +132,9 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_Comment(self):
-        old_objs = self.session_old.query(self.model_from['Comment'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['Comment']):
             new_obj = self.model_to['Comment']()
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'author_id':
                     if old_obj.type == 'whistleblower':
                         continue
@@ -151,18 +149,6 @@ class MigrationScript(MigrationBase):
                         if old_user is not None:
                             new_obj.author_id = old_user.id
 
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)
-
-    def migrate_User(self):
-        old_objs = self.session_old.query(self.model_from['User'])
-        for old_obj in old_objs:
-            new_obj = self.model_to['User']()
-            for key in [c.key for c in new_obj.__table__.columns]:
-                if key == 'public_name':
-                    new_obj.public_name = old_obj.name
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 

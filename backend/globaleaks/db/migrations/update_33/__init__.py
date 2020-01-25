@@ -38,41 +38,29 @@ class Node_v_32(models.Model):
     can_grant_permissions = Column(Boolean, default=False)
     allow_indexing = Column(Boolean, default=False)
     wizard_done = Column(Boolean, default=False)
-
     disable_submissions = Column(Boolean, default=False)
     disable_privacy_badge = Column(Boolean, default=False)
     disable_key_code_hint = Column(Boolean, default=False)
-
     enable_captcha = Column(Boolean, default=True)
-
     enable_experimental_features = Column(Boolean, default=False)
-
     whistleblowing_question = Column(JSON, default=dict)
     whistleblowing_button = Column(JSON, default=dict)
-
     simplified_login = Column(Boolean, default=True)
-
     enable_custom_privacy_badge = Column(Boolean, default=False)
-
     header_title_homepage = Column(JSON, default=dict)
     header_title_submissionpage = Column(JSON, default=dict)
     header_title_receiptpage = Column(JSON, default=dict)
     header_title_tippage = Column(JSON, default=dict)
-
     landing_page = Column(UnicodeText, default='homepage')
-
     contexts_clarification = Column(JSON, default=dict)
     show_small_context_cards = Column(Boolean, default=False)
     show_contexts_in_alphabetical_order = Column(Boolean, default=False)
-
     threshold_free_disk_megabytes_high = Column(Integer, default=200)
     threshold_free_disk_megabytes_medium = Column(Integer, default=500)
     threshold_free_disk_megabytes_low = Column(Integer, default=1000)
-
     threshold_free_disk_percentage_high = Column(Integer, default=3)
     threshold_free_disk_percentage_medium = Column(Integer, default=5)
     threshold_free_disk_percentage_low = Column(Integer, default=10)
-
     context_selector_type = Column(UnicodeText, default='list')
 
 
@@ -81,24 +69,19 @@ class InternalTip_v_32(models.Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime, default=datetime_now)
     update_date = Column(DateTime, default=datetime_now)
-
     context_id = Column(UnicodeText(36))
-
     questionnaire_hash = Column(UnicodeText)
     preview = Column(JSON)
     progressive = Column(Integer, default=0)
     tor2web = Column(Boolean, default=False)
     total_score = Column(Integer, default=0)
     expiration_date = Column(DateTime)
-
     identity_provided = Column(Boolean, default=False)
     identity_provided_date = Column(DateTime, default=datetime_null)
-
     enable_two_way_comments = Column(Boolean, default=True)
     enable_two_way_messages = Column(Boolean, default=True)
     enable_attachments = Column(Boolean, default=True)
     enable_whistleblower_identity = Column(Boolean, default=False)
-
     new = Column(Integer, default=True)
 
 
@@ -107,7 +90,6 @@ class WhistleblowerTip_v_32(models.Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     internaltip_id = Column(UnicodeText(36))
     receipt_hash = Column(UnicodeText)
-
     last_access = Column(DateTime, default=datetime_now)
     access_counter = Column(Integer, default=0)
 
@@ -138,8 +120,7 @@ class User_v_32(models.Model):
 
 class MigrationScript(MigrationBase):
     def migrate_InternalTip(self):
-        old_objs = self.session_old.query(self.model_from['InternalTip'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['InternalTip']):
             new_obj = self.model_to['InternalTip']()
 
             old_wbtip_model = self.model_from['WhistleblowerTip']
@@ -148,7 +129,7 @@ class MigrationScript(MigrationBase):
                 self.entries_count['InternalTip'] -= 1
                 continue
 
-            for key in [c.key for c in new_obj.__table__.columns]:
+            for key in new_obj.__table__.columns._data.keys():
                 if key == 'wb_last_access':
                     if old_wbtip.last_access != datetime_null():
                         new_obj.wb_last_access = old_wbtip.last_access
@@ -158,13 +139,3 @@ class MigrationScript(MigrationBase):
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
-
-    def migrate_Node(self):
-        old_node = self.session_old.query(self.model_from['Node']).one()
-        new_node = self.model_to['Node']()
-
-        for key in [c.key for c in new_node.__table__.columns]:
-            if key not in ['tb_download_link', 'wbtip_timetolive']:
-                setattr(new_node, key, getattr(old_node, key))
-
-        self.session_new.add(new_node)
