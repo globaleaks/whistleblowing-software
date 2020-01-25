@@ -13,7 +13,7 @@ class MigrationScript(MigrationBase):
             c = config(migrate=True)
             c.var_group = group
             c.var_name = name
-            c.customixed = customized
+            c.customized = customized
             c.value = {'v': value}
             session.add(c)
 

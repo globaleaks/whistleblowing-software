@@ -54,14 +54,12 @@ class MigrationBase(object):
         pass
 
     def generic_migration_function(self, model_name):
-        old_keys = [c.key for c in self.model_from[model_name].__table__.columns]
-        new_keys = [c.key for c in self.model_from[model_name].__table__.columns if c.key in old_keys]
-
         for old_obj in self.session_old.query(self.model_from[model_name]):
             new_obj = self.model_to[model_name](migrate=True)
 
-            for k in new_keys:
-                setattr(new_obj, k, getattr(old_obj, k))
+            for key in [c.key for c in self.model_to[model_name].__table__.columns]:
+                if hasattr(old_obj, key):
+                    setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
 
