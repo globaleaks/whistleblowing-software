@@ -1,0 +1,16 @@
+/* override table width restrictions */
+@media screen and (min-width: 767px) {
+
+   .wy-nav-content {
+        max-width: 100% !important;
+    }
+
+    .wy-table-responsive table td, .wy-table-responsive table th {
+        white-space: normal !important;;
+    }
+
+    .wy-table-responsive {
+        overflow: visible !important;
+        max-width: 100%;
+    }
+}

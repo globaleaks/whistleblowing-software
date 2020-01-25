@@ -302,3 +302,6 @@ autoapi_add_toctree_entry = False
 autoapi_modules = {
   'globaleaks': {'output': 'globaleaks'}
 }
+
+def setup(app):
+   app.add_stylesheet("custom.css")
