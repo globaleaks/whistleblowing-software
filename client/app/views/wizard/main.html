@@ -142,7 +142,10 @@
               <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
             </label>
             <div class="col-md-8">
-              <input name="admin_name" class="form-control" data-ng-model="wizard.receiver_username" type="text" data-ng-attr-placeholder="{{'Username' | translate}}" required>
+              <input name="admin_name" class="form-control" data-ng-model="wizard.receiver_username" type="text" data-ng-attr-placeholder="{{'Username' | translate}}"  data-ng-class="{'is-invalid': wizard.receiver_username === wizard.admin_username}" required>
+              <div class="text-danger" data-ng-show="wizard.receiver_username === wizard.admin_username">
+                <span data-translate>The recipient username must be different from the admin username.</span>
+              </div>
             </div>
           </div>
           <div class="row form-group">
@@ -185,7 +188,7 @@
         <i class="fas fa-arrow-circle-left"></i>
         <span data-translate>Previous</span>
       </button>
-      <button class="ButtonNext btn btn-primary" data-ng-click="(validated5 = true) && !wizardFormStep5.$invalid && (step = 6)">
+      <button class="ButtonNext btn btn-primary" data-ng-click="(validated5 = true) && !(wizardFormStep5.$invalid || (wizard.receiver_username === wizard.admin_username)) && (step = 6)">
         <span data-translate>Next</span>
         <i class="fas fa-arrow-circle-right"></i>
       </button>
