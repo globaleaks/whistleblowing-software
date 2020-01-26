@@ -212,17 +212,7 @@ class APIResourceWrapper(Resource):
             self._registry.append((re.compile(pattern), handler, args))
 
     def should_redirect_https(self, request):
-        hostname = request.hostname
-        tenant_hostname = State.tenant_cache[request.tid].hostname
-
-        if isinstance(hostname, bytes):
-            hostname = request.hostname.decode()
-
-        if ((hostname != State.tenant_cache[request.tid] and
-             hostname.endswith('.' + State.tenant_cache[1].rootdomain) and
-             State.tenant_cache[1].https_enabled) or
-            (hostname == tenant_hostname and
-             State.tenant_cache[request.tid].https_enabled)) and \
+        if State.tenant_cache[request.tid].https_enabled and \
            request.client_proto == b'http' and \
            request.client_ip not in Settings.local_hosts:
             return True
@@ -238,7 +228,7 @@ class APIResourceWrapper(Resource):
         return False
 
     def redirect_https(self, request):
-        request.redirect(b'https://' + request.hostname + request.path)
+        request.redirect(b'https://' + State.tenant_cache[request.tid].hostname.encode() + request.path)
 
     def redirect_tor(self, request):
         request.redirect(b'http://' + State.tenant_cache[request.tid].onionnames[0] + request.path)
