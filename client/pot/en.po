@@ -1639,6 +1639,9 @@ msgstr "Enable two factor authentication"
 msgid "Close"
 msgstr "Close"
 
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "Before proceeding please read carefully the documentation at:"
+
 msgid "Your encryption recovery key is:"
 msgstr "Your encryption recovery key is:"
 
