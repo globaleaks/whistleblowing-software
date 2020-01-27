@@ -53,13 +53,11 @@ def user_serialize_user(session, user, language):
     :param session: the session on which perform queries.
     :return: a serialization of the object
     """
-    contexts = []
     picture = db_get_model_img(session, 'users', user.id)
 
-    if user.role == 'receiver':
-        for x in session.query(models.ReceiverContext.context_id).filter(models.ReceiverContext.receiver_id == user.id):
-            contexts.append(x[0])
-
+    # take only contexts for the current tenant
+    contexts = [x[0] for x in session.query(models.ReceiverContext.context_id)
+                                     .filter(models.ReceiverContext.receiver_id == user.id)]
     ret_dict = {
         'id': user.id,
         'username': user.username,
