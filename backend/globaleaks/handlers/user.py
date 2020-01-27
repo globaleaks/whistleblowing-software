@@ -52,6 +52,10 @@ def user_serialize_user(session, user, language):
     """
     picture = db_get_model_img(session, 'users', user.id)
 
+    # take only contexts for the current tenant
+    contexts = [x[0] for x in session.query(models.ReceiverContext.context_id)
+                                     .filter(models.ReceiverContext.receiver_id == user.id)]
+
     ret_dict = {
         'id': user.id,
         'username': user.username,
@@ -77,21 +81,13 @@ def user_serialize_user(session, user, language):
         'tid': user.tid,
         'notification': user.notification,
         'encryption': user.crypto_pub_key != b'',
-        'two_factor_enable': user.two_factor_enable
+        'two_factor_enable': user.two_factor_enable,
+        'recipient_configuration': user.recipient_configuration,
+        'can_postpone_expiration': State.tenant_cache[user.tid].can_postpone_expiration or user.can_postpone_expiration,
+        'can_delete_submission': State.tenant_cache[user.tid].can_delete_submission or user.can_delete_submission,
+        'can_grant_permissions': State.tenant_cache[user.tid].can_grant_permissions or user.can_grant_permissions,
+        'contexts': contexts
     }
-
-    if user.role == 'receiver':
-        # take only contexts for the current tenant
-        contexts = [x[0] for x in session.query(models.ReceiverContext.context_id)
-                                     .filter(models.ReceiverContext.receiver_id == user.id)]
-
-        ret_dict.update({
-            'recipient_configuration': user.recipient_configuration,
-            'can_postpone_expiration': State.tenant_cache[user.tid].can_postpone_expiration or user.can_postpone_expiration,
-            'can_delete_submission': State.tenant_cache[user.tid].can_delete_submission or user.can_delete_submission,
-            'can_grant_permissions': State.tenant_cache[user.tid].can_grant_permissions or user.can_grant_permissions,
-            'contexts': contexts
-        })
 
     return get_localized_values(ret_dict, user, user.localized_keys, language)
 
