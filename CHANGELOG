@@ -1,3 +1,6 @@
+Changes in version 3.11.68 - 2020-01-28
+    Fix regression preventing to configure admin users
+
 Changes in version 3.11.67 - 2020-01-23
     Improve packaging removing unused dependencies
     Revise old migration scripts fixing defect in migration of db 36
