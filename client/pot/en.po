@@ -1380,6 +1380,9 @@ msgstr "Accept multiple answers"
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Hint shown on the button for adding an additional answer"
 
+msgid "Encrypt"
+msgstr "Encrypt"
+
 msgid "Template override"
 msgstr "Template override"
 
