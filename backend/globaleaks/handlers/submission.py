@@ -122,11 +122,11 @@ def db_serialize_archived_preview_schema(preview_schema, language):
     return preview
 
 
-def db_save_answers_subject_to_stats(session, tid, internaltip_id, entries, stats=None):
-    if stats is None:
-        stats = {x[0]: True for x in session.query(models.Field.id).filter(models.Field.stats.is_(True))}
+def db_save_plaintext_answers(session, tid, internaltip_id, entries, skip_encryption=None):
+    if skip_encryption is None:
+        skip_encryption = {x[0]: True for x in session.query(models.Field.id).filter(models.Field.encrypt.is_(False))}
 
-    if not stats:
+    if not skip_encryption:
         return
 
     ret = []
@@ -158,7 +158,7 @@ def db_save_answers_subject_to_stats(session, tid, internaltip_id, entries, stat
                 session.add(group)
                 session.flush()
 
-                group_elems = db_save_answers_subject_to_stats(session, tid, internaltip_id, elem, stats)
+                group_elems = db_save_plaintext_answers(session, tid, internaltip_id, elem, skip_encryption)
                 for group_elem in group_elems:
                     group_elem.fieldanswergroup_id = group.id
 
@@ -391,7 +391,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
     db_set_internaltip_answers(session, itip.id, questionnaire_hash, answers)
 
-    db_save_answers_subject_to_stats(session, tid, itip.id, answers)
+    db_save_plaintext_answers(session, tid, itip.id, answers)
 
     for uploaded_file in token.uploaded_files:
         if uploaded_file['id'] in request['removed_files']:
