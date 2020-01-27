@@ -6,6 +6,31 @@ from globaleaks.utils.crypto import Base64Encoder
 from globaleaks.utils.utility import datetime_now, datetime_never, datetime_null
 
 
+class Field_v_51(Model):
+    __tablename__ = 'field'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    tid = Column(Integer, default=1, nullable=False)
+    x = Column(Integer, default=0, nullable=False)
+    y = Column(Integer, default=0, nullable=False)
+    width = Column(Integer, default=0, nullable=False)
+    label = Column(JSON, default=dict, nullable=False)
+    description = Column(JSON, default=dict, nullable=False)
+    hint = Column(JSON, default=dict, nullable=False)
+    placeholder = Column(JSON, default=dict, nullable=False)
+    required = Column(Boolean, default=False, nullable=False)
+    preview = Column(Boolean, default=False, nullable=False)
+    multi_entry = Column(Boolean, default=False, nullable=False)
+    multi_entry_hint = Column(JSON, default=dict, nullable=False)
+    triggered_by_score = Column(Integer, default=0, nullable=False)
+    step_id = Column(UnicodeText(36))
+    fieldgroup_id = Column(UnicodeText(36))
+    type = Column(UnicodeText, default='inputbox', nullable=False)
+    instance = Column(UnicodeText, default='instance', nullable=False)
+    editable = Column(Boolean, default=True, nullable=False)
+    template_id = Column(UnicodeText(36))
+    template_override_id = Column(UnicodeText(36), nullable=True)
+
+
 class InternalTip_v_51(Model):
     __tablename__ = 'internaltip'
 
