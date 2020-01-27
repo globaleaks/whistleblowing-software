@@ -24,7 +24,6 @@ class Field_v_37(models.Model):
     preview = Column(Boolean, default=False)
     multi_entry = Column(Boolean, default=False)
     multi_entry_hint = Column(JSON)
-    stats_enabled = Column(Boolean, default=False)
     triggered_by_score = Column(Integer, default=0)
     fieldgroup_id = Column(UnicodeText(36))
     step_id = Column(UnicodeText(36))

@@ -47,7 +47,6 @@ class Field_v_44(Model):
     preview = Column(Boolean, default=False, nullable=False)
     multi_entry = Column(Boolean, default=False, nullable=False)
     multi_entry_hint = Column(JSON, nullable=False)
-    stats_enabled = Column(Boolean, default=False, nullable=False)
     triggered_by_score = Column(Integer, default=0, nullable=False)
     template_id = Column(UnicodeText(36))
     fieldgroup_id = Column(UnicodeText(36))

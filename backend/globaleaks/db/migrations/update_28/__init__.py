@@ -18,7 +18,6 @@ class Field_v_27(Model):
     preview = Column(Boolean)
     multi_entry = Column(Boolean)
     multi_entry_hint = Column(JSON)
-    stats_enabled = Column(Boolean)
     activated_by_score = Column(Integer)
     template_id = Column(UnicodeText(36))
     type = Column(UnicodeText)
