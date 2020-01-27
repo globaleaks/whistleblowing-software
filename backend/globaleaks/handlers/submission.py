@@ -132,7 +132,7 @@ def db_save_plaintext_answers(session, tid, internaltip_id, entries, skip_encryp
     ret = []
 
     for key, value in entries.items():
-        if key not in stats:
+        if key not in skip_encryption:
             continue
 
         field_answer = models.FieldAnswer({
@@ -383,6 +383,8 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
         db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi)
 
+    db_save_plaintext_answers(session, tid, itip.id, answers)
+
     if crypto_is_available:
         preview = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(preview).encode())).decode()
         answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers).encode())).decode()
@@ -390,8 +392,6 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     itip.preview = preview
 
     db_set_internaltip_answers(session, itip.id, questionnaire_hash, answers)
-
-    db_save_plaintext_answers(session, tid, itip.id, answers)
 
     for uploaded_file in token.uploaded_files:
         if uploaded_file['id'] in request['removed_files']:
