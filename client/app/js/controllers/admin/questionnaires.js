@@ -62,7 +62,7 @@ controller("AdminQuestionnaireEditorCtrl", ["$scope", "$uibModal", "$http", "Fil
   $scope.editing = false;
 
   $scope.toggleEditing = function () {
-    $scope.editing = !$scope.editing;
+    $scope.editing = $scope.questionnaire.editable && !$scope.editing;
   };
 
   $scope.showAddStep = false;
