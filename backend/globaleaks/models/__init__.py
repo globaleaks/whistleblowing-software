@@ -412,6 +412,7 @@ class _Context(Model):
     presentation_order = Column(Integer, default=0, nullable=False)
     questionnaire_id = Column(UnicodeText(36), default='default', nullable=False)
     additional_questionnaire_id = Column(UnicodeText(36))
+    languages = Column(JSON, default=list, nullable=False)
 
     # status: 0(disabled), 1(enabled), 2(hidden)
     status = Column(Integer, default=2, nullable=False)
@@ -458,7 +459,7 @@ class _Context(Model):
         'score_receipt_text_custom'
     ]
 
-    list_keys = ['receivers']
+    list_keys = ['receivers', 'languages']
 
     @declared_attr
     def __table_args__(self):

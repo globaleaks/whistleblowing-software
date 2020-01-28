@@ -451,12 +451,18 @@ def db_get_contexts(session, tid, language):
     :param language: The language to be used for the serialization
     :return: A list of contexts descriptors
     """
+    ret = []
+
     contexts = session.query(models.Context).filter(models.Context.status > 0,
                                                     models.Context.tid == tid)
 
     data = db_prepare_contexts_serialization(session, contexts)
 
-    return [serialize_context(session, context, language, data) for context in contexts]
+    for context in contexts:
+        if not context.languages or language in context.languages:
+            ret.append(serialize_context(session, context, language, data))
+
+    return ret
 
 
 def db_get_receivers(session, tid, language):
