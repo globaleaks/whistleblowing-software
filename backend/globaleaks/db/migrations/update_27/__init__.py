@@ -139,18 +139,6 @@ class MigrationScript(MigrationBase):
             new_logo_path = os.path.abspath(os.path.join(Settings.files_path, 'logo.png'))
             shutil.move(old_logo_path, new_logo_path)
 
-    def migrate_Node(self):
-        old_node = self.session_old.query(self.model_from['Node']).one()
-        new_node = self.model_to['Node']()
-
-        for key in new_node.__table__.columns._data.keys():
-            if key == 'enable_experimental_features':
-                new_node.enable_experimental_features = False
-            else:
-                setattr(new_node, key, getattr(old_node, key))
-
-        self.session_new.add(new_node)
-
     def migrate_Context(self):
         for old_obj in self.session_old.query(self.model_from['Context']):
             new_obj = self.model_to['Context']()

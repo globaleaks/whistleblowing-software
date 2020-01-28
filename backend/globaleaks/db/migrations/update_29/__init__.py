@@ -36,7 +36,7 @@ class Node_v_28(Model):
     disable_privacy_badge = Column(Boolean)
     disable_key_code_hint = Column(Boolean)
     enable_captcha = Column(Boolean)
-    enable_experimental_features = Column(Boolean)
+    enable_experimental_features = Column(Boolean, default=False)
     whistleblowing_question = Column(JSON)
     whistleblowing_button = Column(JSON)
     simplified_login = Column(Boolean)

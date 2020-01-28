@@ -48,8 +48,7 @@ class MigrationScript(MigrationBase):
         self.session_new.add(new_node)
 
     def migrate_User(self):
-        old_objs = self.session_old.query(self.model_from['User'])
-        for old_obj in old_objs:
+        for old_obj in self.session_old.query(self.model_from['User']):
             new_obj = self.model_to['User']()
 
             for key in new_obj.__table__.columns._data.keys():

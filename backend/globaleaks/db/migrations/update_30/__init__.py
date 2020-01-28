@@ -89,7 +89,7 @@ class Step_v_29(Model):
     label = Column(JSON)
     description = Column(JSON)
     presentation_order = Column(Integer)
-    triggered_by_score = Column(Integer)
+    triggered_by_score = Column(Integer, default=0)
 
 
 class FieldAnswer_v_29(Model):

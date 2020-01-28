@@ -137,22 +137,8 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
-    def migrate_User(self):
-        for old_obj in self.session_old.query(self.model_from['User']):
-            new_obj = self.model_to['User']()
-            for key in new_obj.__table__.columns._data.keys():
-                if hasattr(old_obj, key):
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            if new_obj.username == '':
-                new_obj.username = new_obj.id
-
-            self.session_new.add(new_obj)
-
     def epilogue(self):
-        tenants = self.session_old.query(self.model_from['Tenant'])
-
-        for tenant in tenants:
+        for tenant in self.session_old.query(self.model_from['Tenant']):
             for s in [{'label': {'en': 'New'}, 'system_usage': 'new'},
                       {'label': {'en': 'Opened'}, 'system_usage': 'opened'},
                       {'label': {'en': 'Closed'}, 'system_usage': 'closed'}]:
@@ -163,9 +149,8 @@ class MigrationScript(MigrationBase):
                 state.system_usage = s['system_usage']
                 self.session_new.add(state)
 
-        self.session_new.flush()
+            self.session_new.flush()
 
-        for tenant in tenants:
             itips = self.session_new.query(self.model_to['InternalTip'])\
                                     .filter(self.model_to['InternalTip'].context_id == self.model_to['Context'].id,
                                             self.model_to['Context'].tid == tenant.id)
