@@ -1,4 +1,7 @@
-<div data-ng-if="!submission.context" data-ng-include="'views/whistleblower/context_selection.html'"></div>
+<div data-ng-if="selectable_contexts.length && !submission.context">
+  <div data-ng-if="!submission.context" data-ng-include="'views/whistleblower/context_selection.html'"></div>
+</div>
+<div data-ng-if="submission.context">
   <div id="selectedContext" data-ng-if="selectable_contexts.length > 1">
     <div>{{submission.context.name}}</div>
     <div class="row">

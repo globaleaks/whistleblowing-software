@@ -268,7 +268,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           }
         });
 
-	self.selected_receivers_count = count;
+        self.selected_receivers_count = count;
       };
 
       self.setContextReceivers = function(context_id) {
