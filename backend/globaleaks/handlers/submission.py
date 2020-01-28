@@ -344,6 +344,9 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     crypto_is_available = State.tenant_cache[tid].encryption
 
     if crypto_is_available:
+        crypto_is_available = session.query(models.User).filter(models.User.id.in_(request['receivers']), models.User.crypto_pub_key == '').count() == 0
+
+    if crypto_is_available:
         crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
 
     # Evaluate if the whistleblower tip should be generated
