@@ -17,7 +17,7 @@
               </ui-select-match>
               <ui-select-choices data-repeat="language in resources.node.languages_supported | filter:langNotEnabledFilter | filter: {ui: $select.search}">
                 <span data-ng-bind-html="language.ui | highlight: $select.search"></span>
-		<span>[{{language.code}}]</span>
+                <span>[{{language.code}}]</span>
               </ui-select-choices>
             </ui-select>
           </div>
@@ -39,7 +39,7 @@
               </span>
               <i data-ng-if="lang_code === resources.node.default_language" class="fas fa-times disabled-icon"></i>
             </span>
-	    <label>{{languages_supported[lang_code]['ui']}} [{{lang_code}}]</label>
+            <label>{{languages_supported[lang_code]['ui']}} [{{lang_code}}]</label>
           </li>
         </ul>
       </div>
