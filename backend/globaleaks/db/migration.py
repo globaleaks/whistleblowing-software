@@ -46,7 +46,7 @@ from globaleaks.db.migrations.update_48 import Field_v_47, FieldOption_v_47
 from globaleaks.db.migrations.update_49 import InternalTip_v_48
 from globaleaks.db.migrations.update_50 import SubmissionStatus_v_49, SubmissionSubStatus_v_49, User_v_49
 from globaleaks.db.migrations.update_51 import Field_v_50, InternalFile_v_50, User_v_50
-from globaleaks.db.migrations.update_52 import Field_v_51, InternalTip_v_51, SubmissionStatus_v_51, User_v_51
+from globaleaks.db.migrations.update_52 import Field_v_51, InternalTip_v_51, InternalTipData_v_51, SubmissionStatus_v_51, User_v_51
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
@@ -81,7 +81,7 @@ migration_mapping = OrderedDict([
     ('InternalFile', [InternalFile_v_25, 0, InternalFile_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, InternalFile_v_40, 0, InternalFile_v_45, 0, 0, 0, 0, InternalFile_v_50, 0, 0, 0, InternalFile_v_50, models._InternalFile, 0]),
     ('InternalTip', [InternalTip_v_32, 0, 0, 0, 0, 0, 0, 0, 0, InternalTip_v_34, 0, InternalTip_v_38, 0, 0, 0, InternalTip_v_40, 0, InternalTip_v_41, InternalTip_v_42, InternalTip_v_44, 0, InternalTip_v_45, InternalTip_v_46, InternalTip_v_48, 0, InternalTip_v_51, 0, 0, models._InternalTip]),
     ('InternalTipAnswers', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._InternalTipAnswers, 0, 0, 0, 0, 0, 0, 0]),
-    ('InternalTipData', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._InternalTipData, 0, 0, 0, 0, 0, 0, 0]),
+    ('InternalTipData', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, InternalTipData_v_51, 0, 0, 0, 0, 0, 0, models._InternalTipData]),
     ('Mail', [-1, -1, Mail_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Mail, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Message', [Message_v_31, 0, 0, 0, 0, 0, 0, 0, Message_v_38, 0, 0, 0, 0, 0, 0, models._Message, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Node', [Node_v_26, 0, 0, Node_v_28, 0, Node_v_29, Node_v_30, Node_v_31, Node_v_32, Node_v_33, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),

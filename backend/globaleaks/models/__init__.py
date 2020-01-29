@@ -843,11 +843,10 @@ class _InternalTipAnswers(Model):
 
 
 class _InternalTipData(Model):
-    __tablename__ = 'InternalTipData'
+    __tablename__ = 'Internaltipdata'
 
     internaltip_id = Column(UnicodeText(36), primary_key=True)
     key = Column(UnicodeText, primary_key=True)
-
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     value = Column(JSON, default=dict, nullable=False)
 

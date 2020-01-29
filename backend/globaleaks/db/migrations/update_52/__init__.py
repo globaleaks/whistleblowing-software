@@ -56,9 +56,16 @@ class InternalTip_v_51(Model):
     substatus = Column(UnicodeText(36), nullable=True)
 
 
+class InternalTipData_v_51(Model):
+    __tablename__ = 'InternalTipData'
+    internaltip_id = Column(UnicodeText(36), primary_key=True)
+    key = Column(UnicodeText, primary_key=True)
+    creation_date = Column(DateTime, default=datetime_now, nullable=False)
+    value = Column(JSON, default=dict, nullable=False)
+
+
 class SubmissionStatus_v_51(Model):
     __tablename__ = 'submissionstatus'
-
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     tid = Column(Integer, primary_key=True, default=1, nullable=False)
     label = Column(JSON, default=dict, nullable=False)
@@ -71,7 +78,6 @@ class SubmissionStatus_v_51(Model):
 
 class User_v_51(Model):
     __tablename__ = 'user'
-
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     tid = Column(Integer, default=1, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
