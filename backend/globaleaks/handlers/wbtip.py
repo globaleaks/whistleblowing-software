@@ -162,12 +162,12 @@ def store_additional_questionnaire_answers(session, tid, tip_id, answers, langua
     steps = db_get_questionnaire(session, tid, itip.additional_questionnaire_id, None)['steps']
     questionnaire_hash = db_archive_questionnaire_schema(session, steps)
 
+    db_save_plaintext_answers(session, tid, itip.id, answers)
+
     if itip.crypto_tip_pub_key:
         answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers).encode())).decode()
 
     db_set_internaltip_answers(session, itip.id, questionnaire_hash, answers)
-
-    db_save_plaintext_answers(session, tid, itip.id, answers)
 
     itip.additional_questionnaire_id = ''
 
