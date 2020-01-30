@@ -275,9 +275,16 @@
                     <div class="form-group">
                       <label data-translate>Message shown on top of the status page of the submission</label>
                       <div>
-                          <textarea name="description" class="form-control"
-                                    data-ng-model="context.status_page_message"></textarea>
+                        <textarea name="description" class="form-control"
+                                  data-ng-model="context.status_page_message"></textarea>
                       </div>
+                    </div>
+                    <div class="form-group">
+                      <label data-translate>Additional questionnaire</label>
+                      <select class="form-control" data-ng-model="context.additional_questionnaire_id"
+                              data-ng-options="item.id as item.name for item in resources.questionnaires">
+                        <option data-ng-if="context.additional_questionnaire_id" value=''></option>
+                      </select>
                     </div>
                     <div class="form-group">
                       <label data-translate>Languages</label>
