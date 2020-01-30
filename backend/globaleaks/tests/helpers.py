@@ -1033,6 +1033,7 @@ class MockDict:
             'id': '',
             'name': 'Already localized name',
             'description': 'Already localized desc',
+            'languages': "en",
             'recipients_clarification': '',
             'presentation_order': 0,
             'receivers': [],

@@ -33,6 +33,7 @@ context_selector_type_regexp = r'^(list|cards|search)$'
 tip_operation_regexp = r'^(postpone|set)$'
 short_text_regexp = r'^.{1,255}$'
 domain_list_regexp = r'^((([a-z0-9\.]+,)*[a-z0-9\.]+)|)$'
+languages_list_regexp = r'^([a-zA-Z-]+)?(,\s*[a-zA-Z-]+)*$'
 
 token_regexp = r'([a-zA-Z0-9]{42})'
 token_type_regexp = r'^submission$'
@@ -412,6 +413,7 @@ AdminContextDesc = {
     'name': str,
     'status': int,
     'description': str,
+    'languages': languages_list_regexp,
     'maximum_selectable_receivers': int,
     'tip_timetolive': int,
     'receivers': [uuid_regexp],
@@ -560,6 +562,7 @@ ContextDesc = {
     'name': str,
     'status': int,
     'description': str,
+    'languages': languages_list_regexp,
     'presentation_order': int,
     'receivers': [uuid_regexp],
     'select_all_receivers': bool,

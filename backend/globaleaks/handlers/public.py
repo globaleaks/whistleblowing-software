@@ -202,12 +202,12 @@ def serialize_context(session, context, language, data=None):
     :param context: The context to be serialized
     :param language: The language to be used during serialization
     :param data: The dictionary of prefetched resources
-    :return:
     """
     ret_dict = {
         'id': context.id,
         'status': context.status,
         'presentation_order': context.presentation_order,
+        'languages': context.languages,
         'tip_timetolive': context.tip_timetolive,
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
@@ -459,7 +459,9 @@ def db_get_contexts(session, tid, language):
     data = db_prepare_contexts_serialization(session, contexts)
 
     for context in contexts:
-        if not context.languages or language in context.languages:
+        print(language)
+        print([x.strip().lower() for x in context.languages.split(',')])
+        if not context.languages or language.lower() in [x.strip().lower() for x in context.languages.split(',')]:
             ret.append(serialize_context(session, context, language, data))
 
     return ret

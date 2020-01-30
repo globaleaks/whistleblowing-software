@@ -412,7 +412,7 @@ class _Context(Model):
     presentation_order = Column(Integer, default=0, nullable=False)
     questionnaire_id = Column(UnicodeText(36), default='default', nullable=False)
     additional_questionnaire_id = Column(UnicodeText(36))
-    languages = Column(JSON, default=list, nullable=False)
+    languages = Column(UnicodeText, default='', nullable=False)
 
     # status: 0(disabled), 1(enabled), 2(hidden)
     status = Column(Integer, default=2, nullable=False)
@@ -420,7 +420,7 @@ class _Context(Model):
     # TODO: this field is not used and could be removed in the next db migration
     enable_scoring_system = Column(Boolean, default=False, nullable=False)
 
-    unicode_keys = ['questionnaire_id', 'additional_questionnaire_id']
+    unicode_keys = ['questionnaire_id', 'additional_questionnaire_id', 'languages']
 
     localized_keys = [
         'name',
@@ -459,7 +459,7 @@ class _Context(Model):
         'score_receipt_text_custom'
     ]
 
-    list_keys = ['receivers', 'languages']
+    list_keys = ['receivers']
 
     @declared_attr
     def __table_args__(self):

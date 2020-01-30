@@ -643,6 +643,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       context.status = 2;
       context.name = "";
       context.description = "";
+      context.languages = "",
       context.presentation_order = 0;
       context.tip_timetolive = 90;
       context.show_recipients_details = false;
