@@ -459,8 +459,6 @@ def db_get_contexts(session, tid, language):
     data = db_prepare_contexts_serialization(session, contexts)
 
     for context in contexts:
-        print(language)
-        print([x.strip().lower() for x in context.languages.split(',')])
         if not context.languages or language.lower() in [x.strip().lower() for x in context.languages.split(',')]:
             ret.append(serialize_context(session, context, language, data))
 
