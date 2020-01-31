@@ -6,6 +6,42 @@ from globaleaks.utils.crypto import Base64Encoder
 from globaleaks.utils.utility import datetime_now, datetime_never, datetime_null
 
 
+class Context_v_51(Model):
+    __tablename__ = 'context'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    tid = Column(Integer, default=1, nullable=False)
+    show_steps_navigation_interface = Column(Boolean, default=True, nullable=False)
+    show_small_receiver_cards = Column(Boolean, default=False, nullable=False)
+    show_recipients_details = Column(Boolean, default=False, nullable=False)
+    allow_recipients_selection = Column(Boolean, default=False, nullable=False)
+    maximum_selectable_receivers = Column(Integer, default=0, nullable=False)
+    select_all_receivers = Column(Boolean, default=True, nullable=False)
+    enable_comments = Column(Boolean, default=True, nullable=False)
+    enable_messages = Column(Boolean, default=False, nullable=False)
+    enable_two_way_comments = Column(Boolean, default=True, nullable=False)
+    enable_two_way_messages = Column(Boolean, default=True, nullable=False)
+    enable_attachments = Column(Boolean, default=True, nullable=False)
+    enable_rc_to_wb_files = Column(Boolean, default=False, nullable=False)
+    tip_timetolive = Column(Integer, default=90, nullable=False)
+    name = Column(JSON, default=dict, nullable=False)
+    description = Column(JSON, default=dict, nullable=False)
+    recipients_clarification = Column(JSON, default=dict, nullable=False)
+    status_page_message = Column(JSON, default=dict, nullable=False)
+    show_receivers_in_alphabetical_order = Column(Boolean, default=True, nullable=False)
+    score_threshold_high = Column(Integer, default=0, nullable=False)
+    score_threshold_medium = Column(Integer, default=0, nullable=False)
+    score_receipt_text_custom = Column(Boolean, default=False, nullable=False)
+    score_receipt_text_l = Column(JSON, default=dict, nullable=False)
+    score_receipt_text_m = Column(JSON, default=dict, nullable=False)
+    score_receipt_text_h = Column(JSON, default=dict, nullable=False)
+    score_threshold_receipt = Column(Integer, default=0, nullable=False)
+    presentation_order = Column(Integer, default=0, nullable=False)
+    questionnaire_id = Column(UnicodeText(36), default='default', nullable=False)
+    additional_questionnaire_id = Column(UnicodeText(36))
+    status = Column(Integer, default=2, nullable=False)
+    enable_scoring_system = Column(Boolean, default=False, nullable=False)
+
+
 class Field_v_51(Model):
     __tablename__ = 'field'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)

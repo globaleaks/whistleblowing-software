@@ -46,7 +46,7 @@ from globaleaks.db.migrations.update_48 import Field_v_47, FieldOption_v_47
 from globaleaks.db.migrations.update_49 import InternalTip_v_48
 from globaleaks.db.migrations.update_50 import SubmissionStatus_v_49, SubmissionSubStatus_v_49, User_v_49
 from globaleaks.db.migrations.update_51 import Field_v_50, InternalFile_v_50, User_v_50
-from globaleaks.db.migrations.update_52 import Field_v_51, InternalTip_v_51, InternalTipData_v_51, SubmissionStatus_v_51, User_v_51
+from globaleaks.db.migrations.update_52 import Context_v_51, Field_v_51, InternalTip_v_51, InternalTipData_v_51, SubmissionStatus_v_51, User_v_51
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
@@ -63,7 +63,7 @@ migration_mapping = OrderedDict([
     ('Comment', [Comment_v_31, 0, 0, 0, 0, 0, 0, 0, Comment_v_38, 0, 0, 0, 0, 0, 0, models._Comment, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Config', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Config_v_38, 0, 0, 0, 0, Config_v_45, 0, 0, 0, 0, 0, 0, models._Config, 0, 0, 0, 0, 0, 0]),
     ('ConfigL10N', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, ConfigL10N_v_38, 0, 0, 0, 0, ConfigL10N_v_45, 0, 0, 0, 0, 0, 0, models._ConfigL10N, 0, 0, 0, 0, 0, 0]),
-    ('Context', [Context_v_26, 0, 0, Context_v_28, 0, Context_v_29, Context_v_30, Context_v_34, 0, 0, 0, Context_v_38, 0, 0, 0, Context_v_44, 0, 0, 0, 0, 0, Context_v_45, Context_v_46, models._Context, 0, 0, 0, 0, 0]),
+    ('Context', [Context_v_26, 0, 0, Context_v_28, 0, Context_v_29, Context_v_30, Context_v_34, 0, 0, 0, Context_v_38, 0, 0, 0, Context_v_44, 0, 0, 0, 0, 0, Context_v_45, Context_v_46, Context_v_51, 0, 0, 0, 0, models._Context]),
     ('ContextImg', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._ContextImg, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('CustomTexts', [-1, -1, -1, -1, -1, -1, -1, -1, CustomTexts_v_38, 0, 0, 0, 0, 0, 0, models._CustomTexts, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('EnabledLanguage', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, EnabledLanguage_v_38, 0, 0, 0, 0, models._EnabledLanguage, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
