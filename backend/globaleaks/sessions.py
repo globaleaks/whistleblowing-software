@@ -25,6 +25,7 @@ class Session(object):
         return {
             'session_id': self.id,
             'role': self.user_role,
+            'encryption': self.cc != '',
             'user_id': self.user_id,
             'user_tid': self.user_tid,
             'session_expiration': self.getTime(),

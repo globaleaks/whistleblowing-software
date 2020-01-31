@@ -75,15 +75,6 @@
     </label>
   </div>
 
-  <div class="form-group" data-ng-if="preferences.cc">
-    <div>
-      <label data-translate>Encryption key</label>
-      <span data-ng-show="showEncryptionKey" data-ng-click="toggleShowEncryptionKey()" class="badge badge-default" data-translate>Hide</span>
-      <span data-ng-hide="showEncryptionKey" data-ng-click="toggleShowEncryptionKey()" class="badge badge-default" data-translate>Show</span>
-    </div>
-    <div data-ng-show="showEncryptionKey">{{preferences.cc}}</div>
-  </div>
-
   <div id="EditPGP" data-ng-form="pgpkeyForm">
     <div data-ng-show="preferences.pgp_key_fingerprint !== ''">
       <div class="form-group">
@@ -107,7 +98,7 @@
 
   <br />
 
-  <span data-ng-if="user.encryption" class="btn btn-primary" data-ng-click="getEncryptionRecoveryKey()" data-translate>Get the encryption recovery key</span>
+  <span data-ng-if="preferences.encryption" class="btn btn-primary" data-ng-click="getEncryptionRecoveryKey()" data-translate>Account recovery key</span>
 
   <br /> <br />
 
