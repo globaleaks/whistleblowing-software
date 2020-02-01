@@ -2,16 +2,19 @@
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.db import db_refresh_memory_variables
+from globaleaks.handlers.admin.node import db_admin_serialize_node
+from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.password_reset import generate_password_reset_token_by_user_id
 from globaleaks.handlers.rtip import db_delete_itips
-from globaleaks.handlers.user import db_get_user, disable_2fa
+from globaleaks.handlers.user import db_get_user, disable_2fa, get_user
 from globaleaks.models import Config, InternalTip
 from globaleaks.models.config import db_set_config_variable
 from globaleaks.orm import transact, tw
 from globaleaks.rest import errors
 from globaleaks.services.onion import set_onion_service_info, get_onion_service_info
 from globaleaks.utils.crypto import Base64Encoder, GCE
+from globaleaks.utils.templating import Templating
 
 
 @transact
@@ -89,13 +92,6 @@ class AdminOperationHandler(OperationHandler):
     def disable_2fa(self, req_args, *args, **kwargs):
         return disable_2fa(self.request.tid, req_args['value'])
 
-    @inlineCallbacks
-    def set_hostname(self, req_args, *args, **kwargs):
-        yield check_hostname(self.request.tid, req_args['value'])
-        yield tw(db_set_config_variable, self.request.tid, 'hostname', req_args['value'])
-        yield tw(db_refresh_memory_variables, [self.request.tid])
-        self.state.tenant_cache[self.request.tid].hostname = req_args['value']
-
     def reset_user_password(self, req_args, *args, **kwargs):
         return generate_password_reset_token_by_user_id(self.request.tid,
                                                         req_args['value'])
@@ -114,6 +110,33 @@ class AdminOperationHandler(OperationHandler):
     def reset_submissions(self, req_args, *args, **kwargs):
         return reset_submissions(self.request.tid)
 
+    @inlineCallbacks
+    def set_hostname(self, req_args, *args, **kwargs):
+        yield check_hostname(self.request.tid, req_args['value'])
+        yield tw(db_set_config_variable, self.request.tid, 'hostname', req_args['value'])
+        yield tw(db_refresh_memory_variables, [self.request.tid])
+        self.state.tenant_cache[self.request.tid].hostname = req_args['value']
+
+    @inlineCallbacks
+    def test_mail(self, req_args, *args, **kwargs):
+        tid = self.request.tid
+        user = yield get_user(tid,
+                              self.current_user.user_id,
+                              self.state.tenant_cache[tid].default_language)
+
+        language = user['language']
+
+        data = {
+            'type': 'admin_test',
+            'node': (yield tw(db_admin_serialize_node, tid, language)),
+            'notification': (yield tw(db_get_notification, tid, language)),
+            'user': user,
+        }
+
+        subject, body = Templating().get_mail_subject_and_body(data)
+
+        yield self.state.sendmail(tid, user['mail_address'], subject, body)
+
     def toggle_escrow(self, req_args, *args, **kwargs):
         return toggle_escrow(self.request.tid, self.current_user, req_args['value'])
 
@@ -124,5 +147,6 @@ class AdminOperationHandler(OperationHandler):
             'reset_submissions': (AdminOperationHandler.reset_submissions, {}),
             'reset_user_password': (AdminOperationHandler.reset_user_password, {'value': str}),
             'set_hostname': (AdminOperationHandler.set_hostname, {'value': str}),
+            'test_mail': (AdminOperationHandler.test_mail, {}),
             'toggle_escrow': (AdminOperationHandler.toggle_escrow, {'value': str})
         }

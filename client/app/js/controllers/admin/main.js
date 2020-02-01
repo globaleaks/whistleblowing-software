@@ -295,10 +295,12 @@ controller("AdminMailCtrl", ["$scope", "$http", "AdminNotificationResource",
   ];
 
   var sendTestMail = function() {
-    return $http({
-      method: "POST",
-      url: "admin/notification/mail",
-    });
+    var req = {
+      "operation": "test_mail",
+      "args": {}
+    };
+
+    return $http({method: "PUT", url: "admin/config", data: req});
   };
 
   $scope.resetSMTPConfiguration = function() {

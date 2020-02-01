@@ -47,12 +47,3 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
         for k in appdata_dict['templates']:
             if k in requests.AdminNotificationDesc:
                 self.assertEqual(response[k], appdata_dict['templates'][k]['en'])
-
-
-class TestNotificationTestInstance(helpers.TestHandlerWithPopulatedDB):
-    _handler = admin.notification.NotificationTestInstance
-
-    @inlineCallbacks
-    def test_post(self):
-        handler = self.request(role='admin')
-        yield handler.post()

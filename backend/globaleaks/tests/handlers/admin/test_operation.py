@@ -124,3 +124,17 @@ class TestAdminResetSubmissions(helpers.TestHandlerWithPopulatedDB):
         yield self.test_model_count(models.Message, 0)
         yield self.test_model_count(models.Mail, 2)
         yield self.test_model_count(models.SecureFileDelete, 4)
+
+
+class TestAdminTestMail(helpers.TestHandlerWithPopulatedDB):
+    _handler = AdminOperationHandler
+
+    def test_put(self):
+        data_request = {
+            'operation': 'test_mail',
+            'args': {}
+        }
+
+        handler = self.request(data_request, role='admin')
+
+        return handler.put()
