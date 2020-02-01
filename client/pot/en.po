@@ -1524,8 +1524,8 @@ msgstr "Remove the PGP key"
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Set up encryption by providing a PGP public key"
 
-msgid "Grant the user the capability of resetting users' passwords"
-msgstr "Grant the user the capability of resetting users' passwords"
+msgid "Give this admin ability to reset user passwords"
+msgstr "Give this admin ability to reset user passwords"
 
 msgid "Configuration"
 msgstr "Configuration"
@@ -1645,17 +1645,15 @@ msgstr "Close"
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Before proceeding please read carefully the documentation at:"
 
-msgid "Your encryption recovery key is:"
-msgstr "Your encryption recovery key is:"
+msgid "Your account recovery key is:"
+msgstr "Your account recovery key is:"
 
 msgid ""
-"Please annotate and store this key in a safe place. It will be necessary if "
-"you lose your personal password to recover the access to your account with "
-"no data loss."
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
 msgstr ""
-"Please annotate and store this key in a safe place. It will be necessary if "
-"you lose your personal password to recover the access to your account with "
-"no data loss."
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
 
 msgid "Welcome!"
 msgstr "Welcome!"
@@ -1740,20 +1738,11 @@ msgstr "Validation of email address change in progress."
 msgid "Please check your inbox for further instructions."
 msgstr "Please check your inbox for further instructions."
 
-msgid "Encryption key"
-msgstr "Encryption key"
-
-msgid "Hide"
-msgstr "Hide"
-
-msgid "Show"
-msgstr "Show"
-
 msgid "Set up email encryption by providing a PGP public key"
 msgstr "Set up email encryption by providing a PGP public key"
 
-msgid "Get the encryption recovery key"
-msgstr "Get the encryption recovery key"
+msgid "Account recovery key"
+msgstr "Account recovery key"
 
 msgid "Current password"
 msgstr "Current password"
@@ -1816,6 +1805,19 @@ msgstr "To chat with us use the following Ricochet address:"
 
 msgid "Download Ricochet at:"
 msgstr "Download Ricochet at:"
+
+msgid ""
+"By using the Tor Network and creating an onion service, Ricochet is an "
+"instant messaging that allows you to chat while protecting your privacy and "
+"staying anonymous by not revealing your location or IP address. You won't "
+"notice any difference from a non-secure chat, except that you will be using "
+"a unique ID instead of a phone number/email/username."
+msgstr ""
+"By using the Tor Network and creating an onion service, Ricochet is an "
+"instant messaging that allows you to chat while protecting your privacy and "
+"staying anonymous by not revealing your location or IP address. You won't "
+"notice any difference from a non-secure chat, except that you will be using "
+"a unique ID instead of a phone number/email/username."
 
 msgid "The connection is not secure."
 msgstr "The connection is not secure."
@@ -1992,6 +1994,12 @@ msgstr "Enter you encryption recovery key to complete the password reset procedu
 
 msgid "Password reset requested."
 msgstr "Password reset requested."
+
+msgid "Show"
+msgstr "Show"
+
+msgid "Hide"
+msgstr "Hide"
 
 msgid "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Access to the whistleblower's identity has been requested to the custodian."
