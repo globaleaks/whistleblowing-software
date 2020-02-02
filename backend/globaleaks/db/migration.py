@@ -46,7 +46,7 @@ from globaleaks.db.migrations.update_48 import Field_v_47, FieldOption_v_47
 from globaleaks.db.migrations.update_49 import InternalTip_v_48
 from globaleaks.db.migrations.update_50 import SubmissionStatus_v_49, SubmissionSubStatus_v_49, User_v_49
 from globaleaks.db.migrations.update_51 import Field_v_50, InternalFile_v_50, User_v_50
-from globaleaks.db.migrations.update_52 import Context_v_51, Field_v_51, InternalTip_v_51, InternalTipData_v_51, SubmissionStatus_v_51, User_v_51
+from globaleaks.db.migrations.update_52 import Context_v_51, CustomTexts_v_51, Field_v_51, InternalTip_v_51, InternalTipData_v_51, SubmissionStatus_v_51, User_v_51
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base

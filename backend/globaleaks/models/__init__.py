@@ -490,10 +490,7 @@ class _CustomTexts(Model):
     """
     __tablename__ = 'customtexts'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
-    tid = Column(Integer, default=1, nullable=False)
-
+    tid = Column(Integer, default=1, primary_key=True)
     lang = Column(UnicodeText(5), primary_key=True)
     texts = Column(JSON, default=dict, nullable=False)
 

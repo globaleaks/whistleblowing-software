@@ -42,6 +42,14 @@ class Context_v_51(Model):
     enable_scoring_system = Column(Boolean, default=False, nullable=False)
 
 
+class CustomTexts_v_51(Model):
+    __tablename__ = 'customtexts'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    tid = Column(Integer, default=1, nullable=False)
+    lang = Column(UnicodeText(5), primary_key=True)
+    texts = Column(JSON, default=dict, nullable=False)
+
+
 class Field_v_51(Model):
     __tablename__ = 'field'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
