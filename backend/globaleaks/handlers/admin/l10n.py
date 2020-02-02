@@ -34,12 +34,7 @@ def update(session, tid, lang, request):
     :param lang: The language to be used for the update
     :param request: The customization data
     """
-    texts = session.query(models.CustomTexts).filter(models.CustomTexts.tid == tid,
-                                                     models.CustomTexts.lang == lang).one_or_none()
-    if texts is None:
-        session.add(models.CustomTexts({'tid': tid, 'lang': lang, 'texts': request}))
-    else:
-        texts.texts = request
+    session.merge(models.CustomTexts({'tid': tid, 'lang': lang, 'texts': request}))
 
 
 class AdminL10NHandler(BaseHandler):

@@ -44,22 +44,12 @@ def db_add_file(session, tid, file_id, name, data):
     :param name: The file name
     :param data: The file content
     """
-    file_obj = None
-    if file_id is not None:
-        file_obj = session.query(models.File).filter(models.File.tid == tid, models.File.id == file_id).one_or_none()
-
-    if file_obj is None:
-        file_obj = models.File()
-        file_obj.tid = tid
-
-        if file_id is not None:
-            file_obj.id = file_id
-
-        session.add(file_obj)
-
+    file_obj = models.File()
+    file_obj.tid = tid
+    file_obj.id = file_id
     file_obj.name = name
     file_obj.data = data
-
+    session.merge(file_obj)
 
 
 def db_get_file(session, tid, file_id):
