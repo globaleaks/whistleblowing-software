@@ -35,7 +35,7 @@ def db_load_default_questionnaires(session):
 
     session.query(models.Questionnaire) \
            .filter(models.Questionnaire.id.in_(qids)) \
-           .delete(synchronize_session='fetch')
+           .delete(synchronize_session=False)
 
     for questionnaire in questionnaires:
         db_create_questionnaire(session, 1, questionnaire, None)
@@ -57,7 +57,7 @@ def db_load_default_fields(session):
 
     session.query(models.Field) \
            .filter(models.Field.id.in_(qids)) \
-           .delete(synchronize_session='fetch')
+           .delete(synchronize_session=False)
 
     for question in questions:
         db_create_field(session, 1, question, None)

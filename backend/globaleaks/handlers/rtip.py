@@ -452,7 +452,7 @@ def db_delete_itips(session, itips_ids):
     db_delete_itips_files(session, itips_ids)
 
     session.query(models.InternalTip) \
-           .filter(models.InternalTip.id.in_(itips_ids)).delete(synchronize_session='fetch')
+           .filter(models.InternalTip.id.in_(itips_ids)).delete(synchronize_session=False)
 
 
 def db_delete_itip(session, itip_id):

@@ -46,8 +46,8 @@ def db_update_enabled_languages(session, tid, languages_enabled, default_languag
 
     to_remove = list(set(cur_enabled_langs) - set(new_enabled_langs))
     if to_remove:
-        session.query(models.User).filter(models.User.tid == tid, models.User.language.in_(to_remove)).update({'language': default_language}, synchronize_session='fetch')
-        session.query(models.EnabledLanguage).filter(models.EnabledLanguage.tid == tid, models.EnabledLanguage.name.in_(to_remove)).delete(synchronize_session='fetch')
+        session.query(models.User).filter(models.User.tid == tid, models.User.language.in_(to_remove)).update({'language': default_language}, synchronize_session=False)
+        session.query(models.EnabledLanguage).filter(models.EnabledLanguage.tid == tid, models.EnabledLanguage.name.in_(to_remove)).delete(synchronize_session=False)
 
 
 def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
@@ -131,9 +131,9 @@ def db_update_node(session, tid, user_session, request, language):
 
     if disable_escrow:
         if tid == 1:
-            session.query(models.User).update({'crypto_escrow_bkp1_key': ''}, synchronize_session='fetch')
+            session.query(models.User).update({'crypto_escrow_bkp1_key': ''}, synchronize_session=False)
 
-        session.query(models.User).filter(models.User.tid == tid).update({'crypto_escrow_prv_key': '', 'crypto_escrow_bkp2_key': ''}, synchronize_session='fetch')
+        session.query(models.User).filter(models.User.tid == tid).update({'crypto_escrow_prv_key': '', 'crypto_escrow_bkp2_key': ''}, synchronize_session=False)
 
     config.set_val('crypto_escrow_pub_key', State.tenant_cache[tid].crypto_escrow_pub_key)
 

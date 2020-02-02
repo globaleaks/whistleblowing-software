@@ -83,7 +83,7 @@ def db_associate_context_receivers(session, context, receiver_ids):
     :param context: The context on which associate the specified receivers
     :param receiver_ids: A list of receivers ids to be associated to the context
     """
-    session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id == context.id).delete(synchronize_session='fetch')
+    session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id == context.id).delete(synchronize_session=False)
 
     if not receiver_ids:
         return

@@ -27,7 +27,7 @@ class MigrationScript(MigrationBase):
         o = urlparse(self.session_new.query(config).filter(config.var_name == 'hidden_service').one().value['v'])
         domain = o.hostname if o.hostname is not None else ''
 
-        self.session_new.query(config).filter(config.var_group == 'node', config.var_name == 'hidden_service').delete(synchronize_session='fetch')
+        self.session_new.query(config).filter(config.var_group == 'node', config.var_name == 'hidden_service').delete(synchronize_session=False)
 
         add_raw_config(self.session_new, 'node', 'onionservice', domain != '', domain)
 

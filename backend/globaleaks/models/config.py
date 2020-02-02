@@ -54,7 +54,7 @@ class ConfigFactory(object):
         extra = list(actual - allowed)
 
         if extra:
-            self.session.query(Config).filter(Config.tid == self.tid, Config.var_name.in_(extra)).delete(synchronize_session='fetch')
+            self.session.query(Config).filter(Config.tid == self.tid, Config.var_name.in_(extra)).delete(synchronize_session=False)
 
         missing = list(allowed - actual)
         for key in missing:
@@ -157,7 +157,7 @@ def update_defaults(session, tid, appdata):
     langs = EnabledLanguage.list(session, tid)
 
     session.query(ConfigL10N).filter(ConfigL10N.tid == tid,
-                                     not_(ConfigL10N.var_name.in_(list(set(ConfigL10NFilters['node']).union(ConfigL10NFilters['notification']))))).delete(synchronize_session='fetch')
+                                     not_(ConfigL10N.var_name.in_(list(set(ConfigL10NFilters['node']).union(ConfigL10NFilters['notification']))))).delete(synchronize_session=False)
 
     ConfigL10NFactory(session, tid).update_defaults('node', langs, appdata['node'])
     ConfigL10NFactory(session, tid).update_defaults('notification', langs, appdata['templates'])

@@ -200,7 +200,7 @@ class MigrationScript(MigrationBase):
     def epilogue(self):
         # This migration epilogue is necessary because the default variable of the variables is
         # the opposite of what it is necessary to be configured on migrated nodes
-        self.session_new.query(self.model_to['Config']).filter(self.model_to['Config'].var_name.in_(['encryption'])).delete(synchronize_session='fetch')
+        self.session_new.query(self.model_to['Config']).filter(self.model_to['Config'].var_name.in_(['encryption'])).delete(synchronize_session=False)
 
         for t in self.session_new.query(self.model_from['Tenant']):
             self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': 'encryption', 'value': False}))

@@ -35,7 +35,7 @@ def add_model_img(session, obj_key, obj_id, data):
 @transact
 def del_model_img(session, obj_key, obj_id):
     model = model_map[obj_key]
-    session.query(model).filter(model.id == obj_id).delete(synchronize_session='fetch')
+    session.query(model).filter(model.id == obj_id).delete(synchronize_session=False)
 
 
 class ModelImgInstance(BaseHandler):

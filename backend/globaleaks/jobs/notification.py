@@ -247,12 +247,12 @@ class MailGenerator(object):
 
 @transact
 def delete_sent_mails(session, mail_ids):
-    session.query(models.Mail).filter(models.Mail.id.in_(mail_ids)).delete(synchronize_session='fetch')
+    session.query(models.Mail).filter(models.Mail.id.in_(mail_ids)).delete(synchronize_session=False)
 
 
 @transact
 def get_mails_from_the_pool(session):
-    session.query(models.Mail).filter(models.Mail.processing_attempts > 9).delete(synchronize_session='fetch')
+    session.query(models.Mail).filter(models.Mail.processing_attempts > 9).delete(synchronize_session=False)
     session.query(models.Mail).update({'processing_attempts': models.Mail.processing_attempts + 1})
 
     ret = []

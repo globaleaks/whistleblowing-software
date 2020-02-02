@@ -68,7 +68,7 @@ def db_delete_step(session, tid, step_id):
     subquery = session.query(models.Questionnaire.id).filter(models.Questionnaire.tid == tid).subquery()
 
     session.query(models.Step).filter(models.Step.id == step_id,
-                                      models.Step.questionnaire_id.in_(subquery)).delete(synchronize_session='fetch')
+                                      models.Step.questionnaire_id.in_(subquery)).delete(synchronize_session=False)
 
 
 @transact

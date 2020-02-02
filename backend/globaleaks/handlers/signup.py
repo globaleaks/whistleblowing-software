@@ -78,7 +78,7 @@ def signup(session, request, language):
                               models.Tenant.subdomain == models.Signup.subdomain) \
                       .subquery()
 
-    session.query(models.Tenant).filter(models.Tenant.id.in_(subquery)).delete(synchronize_session='fetch')
+    session.query(models.Tenant).filter(models.Tenant.id.in_(subquery)).delete(synchronize_session=False)
 
     tenant_id = db_preallocate_tenant(session, {'label': request['subdomain'],
                                                 'subdomain': request['subdomain']}).id
