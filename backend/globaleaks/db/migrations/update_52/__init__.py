@@ -191,6 +191,12 @@ class MigrationScript(MigrationBase):
                         new_obj.public_name = platform_name
                     else:
                         new_obj.public_name = old_obj.name
+
+                elif key =='password':
+                    password = getattr(old_obj, key)
+                    if password[0] == 'b' and password[1] == '\'' and password[len(password) - 1] == '\'':
+                        password = password[2: -1]
+                        setattr(new_obj, key, password)
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
@@ -201,6 +207,12 @@ class MigrationScript(MigrationBase):
         # This migration epilogue is necessary because the default variable of the variables is
         # the opposite of what it is necessary to be configured on migrated nodes
         self.session_new.query(self.model_to['Config']).filter(self.model_to['Config'].var_name.in_(['encryption'])).delete(synchronize_session=False)
+
+        # Fix for issue: https://github.com/globaleaks/GlobaLeaks/issues/2612
+        # The bug is due to the fact that the data was initially saved as an array of one entry
+        for data in self.session_new.query(self.model_to['InternalTipData']).filter(self.model_to['InternalTipData'].key == 'whistleblower_identity'):
+            if isinstance(data.value, list):
+                data.value = data.value[0]
 
         for t in self.session_new.query(self.model_from['Tenant']):
             self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': 'encryption', 'value': False}))
