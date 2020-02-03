@@ -21,11 +21,8 @@ class PGPContext(object):
         try:
             self.gnupg = GPG(gnupghome=tempdir, options=['--trust-model', 'always'])
             self.gnupg.encoding = "UTF-8"
-        except OSError as excep:
-            log.err("Critical, OS error in operating with GnuPG home: %s", excep)
-            raise
         except Exception as excep:
-            log.err("Unable to instance PGP object: %s" % excep)
+            log.err("Unable to instance GnuPGP: %s" % excep)
             raise
 
     def load_key(self, key):
@@ -35,33 +32,30 @@ class PGPContext(object):
         """
         try:
             import_result = self.gnupg.import_keys(key)
+
+            if not import_result.fingerprints:
+                raise errors.InputValidationError
+
+            fingerprint = import_result.fingerprints[0]
+
+            # looking if the key is effectively reachable
+            all_keys = self.gnupg.list_keys()
+
+            expiration = datetime.utcfromtimestamp(0)
+            for k in all_keys:
+                if k['fingerprint'] == fingerprint:
+                    if k['expires']:
+                        expiration = datetime.utcfromtimestamp(int(k['expires']))
+                    break
+
+            return {
+                'fingerprint': fingerprint,
+                'expiration': expiration
+            }
+
         except Exception as excep:
             log.err("Error in PGP import_keys: %s", excep)
             raise errors.InputValidationError
-
-        if not import_result.fingerprints:
-            raise errors.InputValidationError
-
-        fingerprint = import_result.fingerprints[0]
-
-        # looking if the key is effectively reachable
-        try:
-            all_keys = self.gnupg.list_keys()
-        except Exception as excep:
-            log.err("Error in PGP list_keys: %s", excep)
-            raise errors.InputValidationError
-
-        expiration = datetime.utcfromtimestamp(0)
-        for k in all_keys:
-            if k['fingerprint'] == fingerprint:
-                if k['expires']:
-                    expiration = datetime.utcfromtimestamp(int(k['expires']))
-                break
-
-        return {
-            'fingerprint': fingerprint,
-            'expiration': expiration
-        }
 
     def encrypt_file(self, key_fingerprint, input_file, output_path):
         """
