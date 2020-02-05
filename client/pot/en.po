@@ -521,8 +521,8 @@ msgstr "Download the Tor Browser"
 msgid "This is the list of the other supported browsers:"
 msgstr "This is the list of the other supported browsers:"
 
-msgid "System overview"
-msgstr "System overview"
+msgid "Audit log"
+msgstr "Audit log"
 
 msgid "Stats"
 msgstr "Stats"
@@ -910,6 +910,39 @@ msgstr "Server"
 msgid "Port"
 msgstr "Port"
 
+msgid "Stats of the week:"
+msgstr "Stats of the week:"
+
+msgid "Free disk space"
+msgstr "Free disk space"
+
+msgid "Event ID"
+msgstr "Event ID"
+
+msgid "Time"
+msgstr "Time"
+
+msgid "Event"
+msgstr "Event"
+
+msgid "Response time"
+msgstr "Response time"
+
+msgid "Role"
+msgstr "Role"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Last access"
+msgstr "Last access"
+
+msgid "Alarm level"
+msgstr "Alarm level"
+
+msgid "Events"
+msgstr "Events"
+
 msgid "Substatuses"
 msgstr "Substatuses"
 
@@ -987,9 +1020,6 @@ msgstr "Custom translation"
 
 msgid "Contexts"
 msgstr "Contexts"
-
-msgid "Name"
-msgstr "Name"
 
 msgid "Enabled"
 msgstr "Enabled"
@@ -1134,9 +1164,6 @@ msgstr "Template"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Restrict access to specific IP addresses"
-
-msgid "Role"
-msgstr "Role"
 
 msgid "Whitelisted IP addresses"
 msgstr "Whitelisted IP addresses"
@@ -1292,33 +1319,6 @@ msgstr "Let the platform be reachable without Tor"
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr "Roles enabled to use the platform without Tor"
-
-msgid "Stats of the week:"
-msgstr "Stats of the week:"
-
-msgid "Free disk space"
-msgstr "Free disk space"
-
-msgid "Event ID"
-msgstr "Event ID"
-
-msgid "Time"
-msgstr "Time"
-
-msgid "Event"
-msgstr "Event"
-
-msgid "Response time"
-msgstr "Response time"
-
-msgid "Last access"
-msgstr "Last access"
-
-msgid "Alarm level"
-msgstr "Alarm level"
-
-msgid "Events"
-msgstr "Events"
 
 msgid "Question"
 msgstr "Question"
@@ -1808,16 +1808,16 @@ msgstr "Download Ricochet at:"
 
 msgid ""
 "By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging that allows you to chat while protecting your privacy and "
-"staying anonymous by not revealing your location or IP address. You won't "
-"notice any difference from an insecure chat, except that you will be using "
-"a unique address instead of a phone number/email/username."
+"instant messaging app that allows you to chat while protecting your privacy "
+"and staying anonymous by not revealing your location or IP address. You "
+"won't notice any difference from an insecure chat, except that you will be "
+"using a unique address instead of a phone number/email/username."
 msgstr ""
 "By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging that allows you to chat while protecting your privacy and "
-"staying anonymous by not revealing your location or IP address. You won't "
-"notice any difference from an insecure chat, except that you will be using "
-"a unique address instead of a phone number/email/username."
+"instant messaging app that allows you to chat while protecting your privacy "
+"and staying anonymous by not revealing your location or IP address. You "
+"won't notice any difference from an insecure chat, except that you will be "
+"using a unique address instead of a phone number/email/username."
 
 msgid "The connection is not secure."
 msgstr "The connection is not secure."
