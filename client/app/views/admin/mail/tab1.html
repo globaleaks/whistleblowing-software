@@ -76,11 +76,6 @@
     </div>
 
     <div class="form-group">
-      <label data-translate>Maximum emails per hour before triggering email suspension</label> <label>(<span data-translate>this configuration only applies to recipients</span>)</label>
-      <input class="form-control" data-ng-model="resources.notification.notification_threshold_per_hour" type="number" />
-    </div>
-
-    <div class="form-group">
       <button uib-popover="{{'Send a test email to your email address.' | translate}}"
               popover-placement="right"
               data-ng-click="updateThenTestMail();"

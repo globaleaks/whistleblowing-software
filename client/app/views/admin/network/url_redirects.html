@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-md-12">
+    <div data-ng-form="redirectAddForm" class="form-inline" isolate-form>
+      <div class="form-group d-block">
+	<div class="input-group">
+          <span class="input-group-prepend"><span class="input-group-text" data-translate>From</span></span>
+          <input type="text" class="form-control" name="path1" data-ng-model="new_redirect.path1" />
+        </div>
+      </div>
+      <div class="form-group d-block ml-2">
+	<span class="input-group">
+          <span class="input-group-prepend"><span class="input-group-text" data-translate>To</span></span>
+          <input type="text" class="form-control" name="path2" data-ng-model="new_redirect.path2" />
+	</span>
+      </div>
+      <button type="submit"
+              class="btn btn-primary ml-2"
+              data-ng-disabled="redirectAddForm.$invalid"
+              data-ng-click="add_redirect()">
+        <i class="fas fa-plus"></i>
+        <span data-translate>Add</span>
+      </button>
+    </div>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="col-md-3" data-translate>From</th>
+          <th class="col-md-9" data-translate>To</th>
+          <th class="col-md-1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="redirect in resources.redirects | orderBy:'redirect'" data-ng-controller="AdminRedirectEditCtrl">
+          <td>{{redirect.path1}}</td>
+          <td>{{redirect.path2}}</td>
+          <td>
+            <button class="btn btn-sm btn-danger"
+                    data-ng-click="delete_redirect(redirect)">
+              <i class="fas fa-trash"></i>
+              <span data-translate>Delete</span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

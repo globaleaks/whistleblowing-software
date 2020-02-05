@@ -125,7 +125,6 @@ class Notification_v_26(Model):
     disable_custodian_notification_emails = Column(Boolean)
     disable_receiver_notification_emails = Column(Boolean)
     tip_expiration_threshold = Column(Integer)
-    notification_threshold_per_hour = Column(Integer)
     exception_email_address = Column(UnicodeText)
     exception_email_pgp_key_fingerprint = Column(UnicodeText)
     exception_email_pgp_key_public = Column(UnicodeText)

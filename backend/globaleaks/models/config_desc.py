@@ -67,7 +67,6 @@ ConfigDescriptor = {
     'disable_receiver_notification_emails': Bool(default=False),
 
     'tip_expiration_threshold': Int(default=72),  # Hours
-    'notification_threshold_per_hour': Int(default=20),
 
     'enable_admin_exception_notification': Bool(default=False),
     'enable_developers_exception_notification': Bool(default=True),
@@ -296,8 +295,7 @@ ConfigFilters = {
         'disable_admin_notification_emails',
         'disable_custodian_notification_emails',
         'disable_receiver_notification_emails',
-        'tip_expiration_threshold',
-        'notification_threshold_per_hour'
+        'tip_expiration_threshold'
     ]
 }
 

@@ -1,43 +1,77 @@
-<div class="row">
-  <div class="col-md-12">
-    <table class="table-responsive">
-      <thead>
-        <tr>
-          <th></th>
-          <th data-translate>Low risk</th>
-          <th data-translate>High risk</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <label>
-              <span data-translate>Available disk space</span>
-              <span>(</span><span data-translate>in megabytes</span><span>)</span>
-            </label>
-          </td>
-          <td><input class="form-control" data-ng-model="resources.node.threshold_free_disk_megabytes_low" type="number" min="0" /></td>
-          <td><input class="form-control" data-ng-model="resources.node.threshold_free_disk_megabytes_high" type="number" min="0" /></td>
-        </tr>
-        <tr>
-          <td>
-            <label>
-              <span data-translate>Available disk space</span>
-              <span>(</span><span data-translate>in percentage</span><span>)</span>
-            </label>
-          </td>
-          <td><input class="form-control" data-ng-model="resources.node.threshold_free_disk_percentage_low" type="number"  min="0" max="100" /></td>
-          <td><input class="form-control" data-ng-model="resources.node.threshold_free_disk_percentage_high" type="number"  min="0" max="100" /></td>
-        </tr>
-      </tbody>
-    </table>
+<div class="col-md-6">
+  <div class="form-group">
+    <label>
+      <input data-ng-model="resources.node.backup" type="checkbox" />
+      <span data-translate>Enable automatic backups</span>
+    </label>
   </div>
-</div>
-<div class="form-group">
-  <button class="btn btn-success"
-          data-ng-disabled="advancedForm.$invalid"
-          data-ng-click="updateNode()" type="submit">
-    <i class="fas fa-check"></i>
-    <span data-translate>Save</span>
-  </button>
+
+  <div data-ng-if="resources.node.backup" class="card.card-body">
+    <div class="row">
+      <div class="col-md-4 form-group">
+        <label data-translate>Daily</label>
+        <input class="form-control" data-ng-model="resources.node.backup_d" type="number" min="0" />
+      </div>
+
+      <div class="col-md-4 form-group">
+        <label data-translate>Weekly</label>
+        <input class="form-control" data-ng-model="resources.node.backup_w" type="number" min="0" />
+      </div>
+
+      <div class="col-md-4  form-group">
+        <label data-translate>Montly</label>
+        <input class="form-control" data-ng-model="resources.node.backup_m" type="number" min="0" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>
+        <input data-ng-model="resources.node.backup_remote" type="checkbox" />
+        <span data-translate>Remote</span>
+      </label>
+    </div>
+
+    <div data-ng-if="resources.node.backup_remote">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label data-translate>Server</label>
+            <input class="form-control" data-ng-model="resources.node.backup_remote_server" type="text" />
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label data-translate>Port</label>
+            <input class="form-control" data-ng-model="resources.node.backup_remote_port" type="number" min="1" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label data-translate>Username</label>
+            <input class="form-control" data-ng-model="resources.node.backup_remote_username" type="text" />
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label data-translate>Password</label>
+            <input class="form-control" data-ng-model="resources.node.backup_remote_password" type="password" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-success"
+            data-ng-disabled="advancedForm.$invalid"
+            data-ng-click="updateNode()" type="submit">
+      <i class="fas fa-check"></i>
+      <span data-translate>Save</span>
+    </button>
+  </div>
 </div>

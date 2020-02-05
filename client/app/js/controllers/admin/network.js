@@ -1,16 +1,21 @@
-GLClient.controller("AdminNetworkCtrl", ["$scope", "$http", function($scope, $http) {
+GLClient.
+controller("AdminNetworkCtrl", ["$scope", "$http", function($scope, $http) {
   $scope.tabs = [
     {
-      title:"HTTPS",
+      title: "HTTPS",
       template: "views/admin/network/https.html"
     },
     {
-      title:"Tor",
+      title: "Tor",
       template: "views/admin/network/tor.html"
     },
     {
-      title:"Access control",
+      title: "Access control",
       template: "views/admin/network/access_control.html"
+    },
+    {
+      title: "URL redirects",
+      template: "views/admin/network/url_redirects.html"
     }
   ];
 
@@ -24,6 +29,20 @@ GLClient.controller("AdminNetworkCtrl", ["$scope", "$http", function($scope, $ht
 
     return $http({method: "PUT", url: "admin/config", data: req}).then(function(response) {
       $scope.resources.node.onionservice = response.data.onionservice;
+    });
+  };
+
+  $scope.new_redirect = {};
+
+  $scope.add_redirect = function() {
+    var redirect = new $scope.AdminUtils.new_redirect();
+
+    redirect.path1 = $scope.new_redirect.path1;
+    redirect.path2 = $scope.new_redirect.path2;
+
+    redirect.$save(function(new_redirect){
+      $scope.resources.redirects.push(new_redirect);
+      $scope.new_redirect = {};
     });
   };
 }]).
@@ -156,7 +175,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
 
     $uibModal.open({
       templateUrl: "views/partials/admin_review_action.html",
-      controller: "AdminReviewModalCtrl",
+      controller: "reviewModalCtrl",
       resolve: {
         targetFunc: function() { return targetFunc; },
       },
@@ -213,13 +232,10 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
 
     $uibModal.open({
       templateUrl: "views/partials/admin_review_action.html",
-      controller: "AdminReviewModalCtrl",
+      controller: "reviewModalCtrl",
       resolve: {
         targetFunc: function() { return targetFunc; },
       },
     });
   };
-}])
-.controller("disableInputModalCtrl", ["$scope", function($scope) {
-  $scope.$resolve.modal_open.resolve();
 }]);

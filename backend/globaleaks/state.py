@@ -65,7 +65,6 @@ class StateClass(ObjectDict, metaclass=Singleton):
 
         self.exceptions = {}
         self.exceptions_email_count = 0
-        self.mail_counters = {}
         self.stats_collection_start_time = datetime_now()
 
         self.accept_submissions = True
@@ -164,19 +163,12 @@ class StateClass(ObjectDict, metaclass=Singleton):
             except Exception as excep:
                 log.debug("Error while evaluating removal for %s: %s", path, excep)
 
-    def get_mail_counter(self, receiver_id):
-        return self.mail_counters.get(receiver_id, 0)
-
-    def increment_mail_counter(self, receiver_id):
-        self.mail_counters[receiver_id] = self.mail_counters.get(receiver_id, 0) + 1
-
     def reset_hourly(self):
         for tid in self.tenant_state:
             self.tenant_state[tid] = TenantState(self)
 
         self.exceptions.clear()
         self.exceptions_email_count = 0
-        self.mail_counters.clear()
 
         self.stats_collection_start_time = datetime_now()
 

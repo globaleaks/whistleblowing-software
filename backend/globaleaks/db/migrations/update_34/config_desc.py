@@ -36,7 +36,6 @@ GLConfig_v_35 = {
         'disable_receiver_notification_emails': Bool(default=False),
 
         'tip_expiration_threshold': Int(default=72),  # Hours
-        'notification_threshold_per_hour': Int(default=20),
 
         'exception_email_address': Unicode(default='globaleaks-stackexception@lists.globaleaks.org'),
         'exception_email_pgp_key_fingerprint': Unicode(default=''),

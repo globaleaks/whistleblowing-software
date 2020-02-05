@@ -883,12 +883,6 @@ msgstr "Save"
 msgid "Reset submissions"
 msgstr "Reset submissions"
 
-msgid "To"
-msgstr "To"
-
-msgid "Add"
-msgstr "Add"
-
 msgid "Enable automatic backups"
 msgstr "Enable automatic backups"
 
@@ -945,6 +939,9 @@ msgstr "Events"
 
 msgid "Substatuses"
 msgstr "Substatuses"
+
+msgid "Add"
+msgstr "Add"
 
 msgid "Label"
 msgstr "Label"
@@ -1138,20 +1135,11 @@ msgstr "Transport Security"
 msgid "Require authentication"
 msgstr "Require authentication"
 
-msgid "When the option is re-enabled the spooled emails will be sent out."
-msgstr "When the option is re-enabled the spooled emails will be sent out."
-
 msgid "Reset notification templates to default"
 msgstr "Reset notification templates to default"
 
 msgid "Number of hours before sending a submission expiration alert"
 msgstr "Number of hours before sending a submission expiration alert"
-
-msgid "Maximum emails per hour before triggering email suspension"
-msgstr "Maximum emails per hour before triggering email suspension"
-
-msgid "this configuration only applies to recipients"
-msgstr "this configuration only applies to recipients"
 
 msgid "Test the configuration"
 msgstr "Test the configuration"
@@ -1319,6 +1307,9 @@ msgstr "Let the platform be reachable without Tor"
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr "Roles enabled to use the platform without Tor"
+
+msgid "To"
+msgstr "To"
 
 msgid "Question"
 msgstr "Question"
@@ -2563,30 +2554,6 @@ msgid ""
 msgstr ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-
-msgid "It appears that {NodeName} is receiving a large number of requests."
-msgstr "It appears that {NodeName} is receiving a large number of requests."
-
-msgid ""
-"To prevent sending you too many emails, the system has disabled email "
-"notifications until the load returns to normal. In the meantime, you can "
-"normally log onto the platform and manually check for new submissions."
-msgstr ""
-"To prevent sending you too many emails, the system has disabled email "
-"notifications until the load returns to normal. In the meantime, you can "
-"normally log onto the platform and manually check for new submissions."
-
-msgid ""
-"If you don’t mind and would rather receive such a large number of email "
-"notifications anyhow, please contact your technical support to have them "
-"modify this setting accordingly."
-msgstr ""
-"If you don’t mind and would rather receive such a large number of email "
-"notifications anyhow, please contact your technical support to have them "
-"modify this setting accordingly."
-
-msgid "Notifications from {NodeName} have been temporarily suspended"
-msgstr "Notifications from {NodeName} have been temporarily suspended"
 
 msgid "Click the link to activate the platform:"
 msgstr "Click the link to activate the platform:"

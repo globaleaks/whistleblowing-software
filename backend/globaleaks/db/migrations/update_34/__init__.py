@@ -129,7 +129,6 @@ class Notification_v_33(models.Model):
     disable_custodian_notification_emails = Column(Boolean, default=False)
     disable_receiver_notification_emails = Column(Boolean, default=False)
     tip_expiration_threshold = Column(Integer, default=72)
-    notification_threshold_per_hour = Column(Integer, default=20)
     exception_email_address = Column(UnicodeText, default='globaleaks-stackexception@lists.globaleaks.org')
     exception_email_pgp_key_fingerprint = Column(UnicodeText, default='')
     exception_email_pgp_key_public = Column(UnicodeText, default='')

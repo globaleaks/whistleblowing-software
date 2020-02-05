@@ -323,7 +323,6 @@ AdminNotificationDesc = merge_dicts({
     'disable_custodian_notification_emails': bool,
     'disable_receiver_notification_emails': bool,
     'tip_expiration_threshold': int,
-    'notification_threshold_per_hour': int,
     'reset_templates': bool
   },
   {k: str for k in ConfigL10NFilters['notification']}

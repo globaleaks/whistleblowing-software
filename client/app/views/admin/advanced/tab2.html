@@ -1,52 +1,43 @@
 <div class="row">
   <div class="col-md-12">
-    <div data-ng-form="redirectAddForm" class="form-inline" isolate-form>
-      <div class="form-group d-block">
-	<div class="input-group">
-          <span class="input-group-prepend"><span class="input-group-text" data-translate>From</span></span>
-          <input type="text" class="form-control" name="path1" data-ng-model="new_redirect.path1" />
-        </div>
-      </div>
-      <div class="form-group d-block ml-2">
-	<span class="input-group">
-          <span class="input-group-prepend"><span class="input-group-text" data-translate>To</span></span>
-          <input type="text" class="form-control" name="path2" data-ng-model="new_redirect.path2" />
-	</span>
-      </div>
-      <button type="submit"
-              class="btn btn-primary ml-2"
-              data-ng-disabled="redirectAddForm.$invalid"
-              data-ng-click="add_redirect()">
-        <i class="fas fa-plus"></i>
-        <span data-translate>Add</span>
-      </button>
-    </div>
-  </div>
-</div>
-<br />
-<div class="row">
-  <div class="col-md-12">
-    <table class="table">
+    <table class="table-responsive">
       <thead>
         <tr>
-          <th class="col-md-3" data-translate>From</th>
-          <th class="col-md-9" data-translate>To</th>
-          <th class="col-md-1"></th>
+          <th></th>
+          <th data-translate>Low risk</th>
+          <th data-translate>High risk</th>
         </tr>
       </thead>
       <tbody>
-        <tr data-ng-repeat="redirect in resources.redirects | orderBy:'redirect'" data-ng-controller="AdminRedirectEditCtrl">
-          <td>{{redirect.path1}}</td>
-          <td>{{redirect.path2}}</td>
+        <tr>
           <td>
-            <button class="btn btn-sm btn-danger"
-                    data-ng-click="delete_redirect(redirect)">
-              <i class="fas fa-trash"></i>
-              <span data-translate>Delete</span>
-            </button>
+            <label>
+              <span data-translate>Available disk space</span>
+              <span>(</span><span data-translate>in megabytes</span><span>)</span>
+            </label>
           </td>
+          <td><input class="form-control" data-ng-model="resources.node.threshold_free_disk_megabytes_low" type="number" min="0" /></td>
+          <td><input class="form-control" data-ng-model="resources.node.threshold_free_disk_megabytes_high" type="number" min="0" /></td>
+        </tr>
+        <tr>
+          <td>
+            <label>
+              <span data-translate>Available disk space</span>
+              <span>(</span><span data-translate>in percentage</span><span>)</span>
+            </label>
+          </td>
+          <td><input class="form-control" data-ng-model="resources.node.threshold_free_disk_percentage_low" type="number"  min="0" max="100" /></td>
+          <td><input class="form-control" data-ng-model="resources.node.threshold_free_disk_percentage_high" type="number"  min="0" max="100" /></td>
         </tr>
       </tbody>
     </table>
   </div>
+</div>
+<div class="form-group">
+  <button class="btn btn-success"
+          data-ng-disabled="advancedForm.$invalid"
+          data-ng-click="updateNode()" type="submit">
+    <i class="fas fa-check"></i>
+    <span data-translate>Save</span>
+  </button>
 </div>

@@ -162,26 +162,6 @@ class MailGenerator(object):
             log.debug("Discarding emails for %s due to receiver's preference.", user_id)
             return
 
-        # https://github.com/globaleaks/GlobaLeaks/issues/798
-        # TODO: the current solution is global and configurable only by the admin
-        sent_emails = self.state.get_mail_counter(user_id)
-        if sent_emails >= self.state.tenant_cache[tid].notification.notification_threshold_per_hour:
-            log.debug("Discarding emails for receiver %s due to threshold already exceeded for the current hour",
-                      user_id)
-            return
-
-        self.state.increment_mail_counter(user_id)
-        if sent_emails >= self.state.tenant_cache[tid].notification.notification_threshold_per_hour:
-            log.info("Reached threshold of %d emails with limit of %d for receiver %s",
-                     sent_emails,
-                     self.state.tenant_cache[tid].notification.notification_threshold_per_hour,
-                     user_id,
-                     tid=tid)
-
-            # simply changing the type of the notification causes
-            # to send the notification_limit_reached
-            data['type'] = 'receiver_notification_limit_reached'
-
         data['node'] = self.serialize_config(session, 'node', tid, language)
 
         data['submission_statuses'] = db_get_submission_statuses(session, tid, language)
