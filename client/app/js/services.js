@@ -806,7 +806,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
   factory("UserPreferences", ["GLResource", function(GLResource) {
     return new GLResource("preferences", {}, {"update": {method: "PUT"}});
 }]).
-  factory("JobsOverview", ["GLResource", function(GLResource) {
+  factory("JobsAuditLog", ["GLResource", function(GLResource) {
     return new GLResource("admin/jobs");
 }]).
   factory("StatsCollection", ["GLResource", function(GLResource) {

@@ -38,7 +38,7 @@ describe("verify navigation of admin sections", function() {
     await element(by.cssContainingText("ul li a", "URL redirects")).click();
     await element(by.cssContainingText("ul li a", "Anomaly detection thresholds")).click();
 
-    await element(by.cssContainingText("a", "System overview")).click();
+    await element(by.cssContainingText("a", "Audit log")).click();
     await element(by.cssContainingText("ul li a", "Stats")).click();
     await element(by.cssContainingText("ul li a", "Activities")).click();
     await element.all(by.cssContainingText("ul li a", "Users")).get(1).click();
