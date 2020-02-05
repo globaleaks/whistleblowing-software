@@ -728,8 +728,8 @@ msgstr "Disable submissions"
 msgid "Enable encryption"
 msgstr "Enable encryption"
 
-msgid "Enable encryption's keys recovery"
-msgstr "Enable encryption's keys recovery"
+msgid "Enable administrators to change user passwords"
+msgstr "Enable administrators to change user passwords"
 
 msgid "Enable multisite feature"
 msgstr "Enable multisite feature"
@@ -1524,8 +1524,8 @@ msgstr "Remove the PGP key"
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Set up encryption by providing a PGP public key"
 
-msgid "Give this admin ability to reset user passwords"
-msgstr "Give this admin ability to reset user passwords"
+msgid "Give this admin ability to change user passwords"
+msgstr "Give this admin ability to change user passwords"
 
 msgid "Configuration"
 msgstr "Configuration"
