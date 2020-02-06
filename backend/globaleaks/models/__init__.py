@@ -247,9 +247,7 @@ class _Anomalies(Model):
     __tablename__ = 'anomalies'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     tid = Column(Integer, default=1, nullable=False)
-
     date = Column(DateTime, nullable=False)
     alarm = Column(Integer, nullable=False)
     events = Column(JSON, default=dict, nullable=False)
@@ -263,7 +261,6 @@ class _ArchivedSchema(Model):
     __tablename__ = 'archivedschema'
 
     hash = Column(UnicodeText(64), primary_key=True)
-
     schema = Column(JSON, default=dict, nullable=False)
     preview = Column(JSON, default=dict, nullable=False)
 
@@ -288,7 +285,6 @@ class _Comment(Model):
     __tablename__ = 'comment'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     internaltip_id = Column(UnicodeText(36), nullable=False)
     author_id = Column(UnicodeText(36))
@@ -381,9 +377,7 @@ class _Context(Model):
     __tablename__ = 'context'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     tid = Column(Integer, default=1, nullable=False)
-
     show_steps_navigation_interface = Column(Boolean, default=True, nullable=False)
     show_small_receiver_cards = Column(Boolean, default=False, nullable=False)
     show_recipients_details = Column(Boolean, default=False, nullable=False)
@@ -474,7 +468,6 @@ class _ContextImg(Model):
     __tablename__ = 'contextimg'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     data = Column(UnicodeText, nullable=False)
 
     unicode_keys = ['data']
@@ -532,13 +525,10 @@ class _Field(Model):
     __tablename__ = 'field'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     tid = Column(Integer, default=1, nullable=False)
-
     x = Column(Integer, default=0, nullable=False)
     y = Column(Integer, default=0, nullable=False)
     width = Column(Integer, default=0, nullable=False)
-
     label = Column(JSON, default=dict, nullable=False)
     description = Column(JSON, default=dict, nullable=False)
     hint = Column(JSON, default=dict, nullable=False)
@@ -549,14 +539,11 @@ class _Field(Model):
     multi_entry = Column(Boolean, default=False, nullable=False)
     multi_entry_hint = Column(JSON, default=dict, nullable=False)
     triggered_by_score = Column(Integer, default=0, nullable=False)
-
     step_id = Column(UnicodeText(36))
     fieldgroup_id = Column(UnicodeText(36))
-
     type = Column(UnicodeText, default='inputbox', nullable=False)
     instance = Column(UnicodeText, default='instance', nullable=False)
     editable = Column(Boolean, default=True, nullable=False)
-
     template_id = Column(UnicodeText(36))
     template_override_id = Column(UnicodeText(36), nullable=True)
 
@@ -580,7 +567,6 @@ class _FieldAttr(Model):
     __tablename__ = 'fieldattr'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-
     field_id = Column(UnicodeText(36), nullable=False)
     name = Column(UnicodeText, nullable=False)
     type = Column(UnicodeText, nullable=False)
@@ -618,7 +604,6 @@ class _FieldAnswer(Model):
     __tablename__ = 'fieldanswer'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     internaltip_id = Column(UnicodeText(36), nullable=True)
     fieldanswergroup_id = Column(UnicodeText(36), nullable=True)
     key = Column(UnicodeText, default='', nullable=False)
@@ -653,7 +638,6 @@ class _FieldOption(Model):
     __tablename__ = 'fieldoption'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-
     field_id = Column(UnicodeText(36), nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
     label = Column(JSON, default=dict, nullable=False)
@@ -709,7 +693,6 @@ class _File(Model):
 
     tid = Column(Integer, primary_key=True, default=1)
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     name = Column(UnicodeText, default='', nullable=False)
     data = Column(UnicodeText, nullable=False)
 
@@ -787,13 +770,10 @@ class _InternalTip(Model):
     __tablename__ = 'internaltip'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     tid = Column(Integer, default=1, nullable=False)
-
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     update_date = Column(DateTime, default=datetime_now, nullable=False)
     context_id = Column(UnicodeText(36), nullable=False)
-
     preview = Column(JSON, default=dict, nullable=False)
     progressive = Column(Integer, default=0, nullable=False)
     https = Column(Boolean, default=False, nullable=False)
@@ -804,17 +784,12 @@ class _InternalTip(Model):
     enable_two_way_messages = Column(Boolean, default=True, nullable=False)
     enable_attachments = Column(Boolean, default=True, nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
-
     label = Column(UnicodeText, default='', nullable=False)
-
     additional_questionnaire_id = Column(UnicodeText(36))
-
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
     wb_access_counter = Column(Integer, default=0, nullable=False)
-
     status = Column(UnicodeText(36), nullable=True)
     substatus = Column(UnicodeText(36), nullable=True)
-
     crypto_tip_pub_key = Column(UnicodeText(56), default='', nullable=False)
 
     @declared_attr
@@ -860,9 +835,7 @@ class _Mail(Model):
     __tablename__ = 'mail'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     tid = Column(Integer, default=1, nullable=False)
-
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     address = Column(UnicodeText, nullable=False)
     subject = Column(UnicodeText, nullable=False)
@@ -884,7 +857,6 @@ class _Message(Model):
     __tablename__ = 'message'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     receivertip_id = Column(UnicodeText(36), nullable=False)
     content = Column(UnicodeText, nullable=False)
@@ -901,9 +873,7 @@ class _Questionnaire(Model):
     __tablename__ = 'questionnaire'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     tid = Column(Integer, default=1, nullable=False)
-
     name = Column(UnicodeText, default='', nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
     editable = Column(Boolean, default=True, nullable=False)
@@ -925,7 +895,6 @@ class _ReceiverContext(Model):
 
     context_id = Column(UnicodeText(36), primary_key=True)
     receiver_id = Column(UnicodeText(36), primary_key=True)
-
     presentation_order = Column(Integer, default=0, nullable=False)
 
     unicode_keys = ['context_id', 'receiver_id']
@@ -944,7 +913,6 @@ class _ReceiverFile(Model):
     __tablename__ = 'receiverfile'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     internalfile_id = Column(UnicodeText(36), nullable=False)
     receivertip_id = Column(UnicodeText(36), nullable=False)
     filename = Column(UnicodeText(255), nullable=False)
@@ -969,7 +937,6 @@ class _ReceiverTip(Model):
     __tablename__ = 'receivertip'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     internaltip_id = Column(UnicodeText(36), nullable=False)
     receiver_id = Column(UnicodeText(36), nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
@@ -978,7 +945,6 @@ class _ReceiverTip(Model):
     can_access_whistleblower_identity = Column(Boolean, default=False, nullable=True)
     new = Column(Boolean, default=True, nullable=False)
     enable_notifications = Column(Boolean, default=True, nullable=False)
-
     crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
 
     @declared_attr
@@ -989,9 +955,7 @@ class _ReceiverTip(Model):
 
 class _SecureFileDelete(Model):
     __tablename__ = 'securefiledelete'
-
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     filepath = Column(UnicodeText, nullable=False)
 
 
@@ -1020,7 +984,6 @@ class _Signup(Model):
     organization_number_users = Column(UnicodeText, default='', nullable=False)
     hear_channel = Column(UnicodeText, default='', nullable=False)
     activation_token = Column(UnicodeText, unique=True, nullable=True)
-
     client_ip_address = Column(UnicodeText, default='', nullable=False)
     client_user_agent = Column(UnicodeText, default='', nullable=False)
     registration_date = Column(DateTime, default=datetime_now, nullable=False)
@@ -1051,9 +1014,7 @@ class _Redirect(Model):
     __tablename__ = 'redirect'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     tid = Column(Integer, default=1, nullable=False)
-
     path1 = Column(UnicodeText, nullable=False)
     path2 = Column(UnicodeText, nullable=False)
 
@@ -1068,7 +1029,6 @@ class _Step(Model):
     __tablename__ = 'step'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     questionnaire_id = Column(UnicodeText(36), nullable=False)
     label = Column(JSON, default=dict, nullable=False)
     description = Column(JSON, default=dict, nullable=False)
@@ -1088,9 +1048,7 @@ class _Stats(Model):
     __tablename__ = 'stats'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-
     tid = Column(Integer, default=1, nullable=False)
-
     start = Column(DateTime, nullable=False)
     summary = Column(JSON, default=dict, nullable=False)
 
@@ -1108,11 +1066,9 @@ class _SubmissionStatus(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     tid = Column(Integer, primary_key=True, default=1, nullable=False)
     label = Column(JSON, default=dict, nullable=False)
-
     tip_timetolive = Column(Integer, default=90, nullable=False)
     tip_timetolive_override = Column(Boolean, default=False, nullable=False)
     receivers = Column(JSON, default=list, nullable=False)
-
     presentation_order = Column(Integer, default=0, nullable=False)
 
     localized_keys = ['label']
@@ -1138,9 +1094,7 @@ class _SubmissionSubStatus(Model):
     tip_timetolive = Column(Integer, default=90, nullable=False)
     tip_timetolive_override = Column(Boolean, default=False, nullable=False)
     receivers = Column(JSON, default=list, nullable=False)
-
     presentation_order = Column(Integer, default=0, nullable=False)
-
     localized_keys = ['label']
     int_keys = ['presentation_order', 'tip_timetolive']
     bool_keys = ['tip_timetolive_override']
@@ -1177,7 +1131,6 @@ class _Tenant(Model):
     __tablename__ = 'tenant'
 
     id = Column(Integer, primary_key=True, nullable=False)
-
     label = Column(UnicodeText, default='', nullable=False)
     active = Column(Boolean, default=False, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
@@ -1194,22 +1147,15 @@ class _User(Model):
     __tablename__ = 'user'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     tid = Column(Integer, default=1, nullable=False)
-
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     username = Column(UnicodeText, default='', nullable=False)
-
     salt = Column(UnicodeText(24), default='', nullable=False)
     hash_alg = Column(UnicodeText, default='ARGON2', nullable=False)
     password = Column(UnicodeText, default='', nullable=False)
-
     name = Column(UnicodeText, default='', nullable=False)
     description = Column(JSON, default=dict, nullable=False)
-
     public_name = Column(UnicodeText, default='', nullable=False)
-
-    # roles: 'admin', 'receiver', 'custodian'
     role = Column(UnicodeText, default='receiver', nullable=False)
     state = Column(UnicodeText, default='enabled', nullable=False)
     last_login = Column(DateTime, default=datetime_null, nullable=False)
@@ -1217,32 +1163,25 @@ class _User(Model):
     language = Column(UnicodeText, nullable=False)
     password_change_needed = Column(Boolean, default=True, nullable=False)
     password_change_date = Column(DateTime, default=datetime_null, nullable=False)
-
     crypto_prv_key = Column(UnicodeText(84), default='', nullable=False)
     crypto_pub_key = Column(UnicodeText(56), default='', nullable=False)
     crypto_rec_key = Column(UnicodeText(80), default='', nullable=False)
     crypto_bkp_key = Column(UnicodeText(84), default='', nullable=False)
-
     crypto_escrow_prv_key = Column(UnicodeText(84), default='', nullable=False)
     crypto_escrow_bkp1_key = Column(UnicodeText(84), default='', nullable=False)
     crypto_escrow_bkp2_key = Column(UnicodeText(84), default='', nullable=False)
-
     change_email_address = Column(UnicodeText, default='', nullable=False)
     change_email_token = Column(UnicodeText, unique=True, nullable=True)
     change_email_date = Column(DateTime, default=datetime_null, nullable=False)
-
     reset_password_token = Column(UnicodeText, unique=True, nullable=True)
     reset_password_date = Column(UnicodeText, default=datetime_null, nullable=False)
-
     notification = Column(Boolean, default=True, nullable=False)
-
     recipient_configuration = Column(UnicodeText, default='default', nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
     can_postpone_expiration = Column(Boolean, default=False, nullable=False)
     can_grant_permissions = Column(Boolean, default=False, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
     readonly = Column(Boolean, default=False, nullable=False)
-
     two_factor_enable = Column(Boolean, default=False, nullable=False)
     two_factor_secret = Column(UnicodeText(64), default='', nullable=False)
 
@@ -1288,7 +1227,6 @@ class _UserImg(Model):
     __tablename__ = 'userimg'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     data = Column(UnicodeText, nullable=False)
 
     unicode_keys = ['data']
@@ -1307,7 +1245,6 @@ class _WhistleblowerFile(Model):
     __tablename__ = 'whistleblowerfile'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     receivertip_id = Column(UnicodeText(36), nullable=False)
     name = Column(UnicodeText, nullable=False)
     filename = Column(UnicodeText(255), unique=True, nullable=False)
@@ -1342,9 +1279,7 @@ class _WhistleblowerTip(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     tid = Column(Integer, default=1, nullable=False)
     receipt_hash = Column(UnicodeText(128), nullable=False)
-
     hash_alg = Column(UnicodeText, default='ARGON2', nullable=False)
-
     crypto_prv_key = Column(UnicodeText(84), default='', nullable=False)
     crypto_pub_key = Column(UnicodeText(56), default='', nullable=False)
     crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
@@ -1352,8 +1287,7 @@ class _WhistleblowerTip(Model):
     @declared_attr
     def __table_args__(self):
         return (UniqueConstraint('tid', 'receipt_hash'),
-                ForeignKeyConstraint(['id'], [
-                                     'internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
 
