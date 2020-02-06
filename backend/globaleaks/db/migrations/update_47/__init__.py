@@ -28,7 +28,6 @@ class Context_v_46(Model):
     recipients_clarification = Column(JSON, default=dict, nullable=False)
     status_page_message = Column(JSON, default=dict, nullable=False)
     show_receivers_in_alphabetical_order = Column(Boolean, default=True, nullable=False)
-    enable_scoring_system = Column(Boolean, default=False, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
     questionnaire_id = Column(UnicodeText(36), default='default', nullable=False)
     additional_questionnaire_id = Column(UnicodeText(36))

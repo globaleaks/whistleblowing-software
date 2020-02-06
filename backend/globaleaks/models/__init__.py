@@ -407,12 +407,7 @@ class _Context(Model):
     questionnaire_id = Column(UnicodeText(36), default='default', nullable=False)
     additional_questionnaire_id = Column(UnicodeText(36))
     languages = Column(UnicodeText, default='', nullable=False)
-
-    # status: 0(disabled), 1(enabled), 2(hidden)
-    status = Column(Integer, default=2, nullable=False)
-
-    # TODO: this field is not used and could be removed in the next db migration
-    enable_scoring_system = Column(Boolean, default=False, nullable=False)
+    status = Column(Integer, default=2, nullable=False)  # status: 0(disabled), 1(enabled), 2(hidden)
 
     unicode_keys = ['questionnaire_id', 'additional_questionnaire_id', 'languages']
 

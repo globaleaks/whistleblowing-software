@@ -39,7 +39,6 @@ class Context_v_51(Model):
     questionnaire_id = Column(UnicodeText(36), default='default', nullable=False)
     additional_questionnaire_id = Column(UnicodeText(36))
     status = Column(Integer, default=2, nullable=False)
-    enable_scoring_system = Column(Boolean, default=False, nullable=False)
 
 
 class CustomTexts_v_51(Model):
