@@ -1054,9 +1054,6 @@ msgstr "Select all recipients by default"
 msgid "Maximum number of selectable recipients:"
 msgstr "Maximum number of selectable recipients:"
 
-msgid "(0 = unlimited)"
-msgstr "(0 = unlimited)"
-
 msgid "Show recipients in alphabetical order"
 msgstr "Show recipients in alphabetical order"
 
