@@ -1,5 +1,3 @@
-/*global QRious*/
-
 GLClient.controller("EnableTwoFactorAuthCtrl", ["$scope", "$http", "$location",
   function($scope, $http, $location) {
     $scope.vars = {};
@@ -9,12 +7,7 @@ GLClient.controller("EnableTwoFactorAuthCtrl", ["$scope", "$http", "$location",
       "args": {}
     }}).then(function(data){
       $scope.two_factor_secret = data.data;
-      var qr = new QRious({
-        value: "otpauth://totp/GlobaLeaks?secret=" + $scope.two_factor_secret,
-        size: "240"
-      });
-
-      $scope.two_factor_qrcode = qr.toDataURL();
+      $scope.qrcode_string = "otpauth://totp/GlobaLeaks?secret=" + $scope.two_factor_secret;
     });
 
     $scope.enable2FA = function() {
