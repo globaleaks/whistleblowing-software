@@ -28,6 +28,7 @@ describe("verify navigation of admin sections", function() {
     await element(by.cssContainingText("ul li a", "Tor")).click();
     await element(by.cssContainingText("ul li a", "HTTPS")).click();
     await element(by.cssContainingText("ul li a", "Access control")).click();
+    await element(by.cssContainingText("ul li a", "URL redirects")).click();
 
     await element(by.cssContainingText("a", "Sites management")).click();
     await element(by.cssContainingText("ul li a", "Main configuration")).click();
@@ -35,7 +36,6 @@ describe("verify navigation of admin sections", function() {
 
     await element(by.cssContainingText("a", "Advanced settings")).click();
     await element(by.cssContainingText("ul li a", "Main configuration")).click();
-    await element(by.cssContainingText("ul li a", "URL redirects")).click();
     await element(by.cssContainingText("ul li a", "Anomaly detection thresholds")).click();
 
     await element(by.cssContainingText("a", "Audit log")).click();

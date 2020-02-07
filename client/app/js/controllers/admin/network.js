@@ -238,4 +238,14 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
       },
     });
   };
+}]).
+controller("AdminRedirectEditCtrl", ["$scope", "AdminRedirectResource",
+  function($scope, AdminRedirectResource) {
+    $scope.delete_redirect = function(redirect) {
+      AdminRedirectResource.delete({
+        id: redirect.id
+      }, function(){
+        $scope.Utils.deleteFromList($scope.resources.redirects, redirect);
+      });
+    };
 }]);

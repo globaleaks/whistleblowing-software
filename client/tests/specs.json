@@ -13,7 +13,7 @@
   "test-admin-custom-file.js",
   "test-internationalization.js",
   "test-admin-configure-custom-texts.js",
-  "test-admin-configure-mail.js",
+  "test-admin-configure-notifications.js",
   "test-admin-configure-network.js",
   "test-admin-contexts.js",
   "test-admin-questionnaires.js",

@@ -61,11 +61,11 @@ controller("AdminMailCtrl", ["$scope", "$http", "AdminNotificationResource",
   $scope.tabs = [
     {
       title:"Main configuration",
-      template:"views/admin/mail/tab1.html"
+      template:"views/admin/notifications/tab1.html"
     },
     {
       title:"Notification templates",
-      template:"views/admin/mail/tab2.html"
+      template:"views/admin/notifications/tab2.html"
     }
   ];
 

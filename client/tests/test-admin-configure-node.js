@@ -24,7 +24,7 @@ describe("admin configure node", function() {
   });
 
   it("should configure node advanced settings", async function() {
-    await browser.setLocation("admin/advanced_settings");
+    await browser.setLocation("admin/advanced");
 
     await element(by.model("resources.node.enable_experimental_features")).click();
   });

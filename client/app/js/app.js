@@ -294,8 +294,8 @@ var GLClient = angular.module("GLClient", [
           resources: fetchResources("admin", ["node", "users"]),
         }
       }).
-      when("/admin/mail", {
-        templateUrl: "views/admin/mail.html",
+      when("/admin/notifications", {
+        templateUrl: "views/admin/notifications.html",
         controller: "AdminCtrl",
         header_title: "Notification settings",
         sidebar: "views/admin/sidebar.html",
@@ -311,17 +311,17 @@ var GLClient = angular.module("GLClient", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["node"]),
+          resources: fetchResources("admin", ["node", "redirects"]),
         }
       }).
-      when("/admin/advanced_settings", {
+      when("/admin/advanced", {
         templateUrl: "views/admin/advanced.html",
         controller: "AdminCtrl",
         header_title: "Advanced settings",
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["node", "questionnaires", "redirects"]),
+          resources: fetchResources("admin", ["node", "questionnaires"]),
         }
       }).
       when("/admin/auditlog", {
@@ -344,8 +344,8 @@ var GLClient = angular.module("GLClient", [
           resources: fetchResources("admin", ["node", "tenants"]),
         }
       }).
-      when("/admin/case_management", {
-        templateUrl: "views/admin/case_management.html",
+      when("/admin/casemanagement", {
+        templateUrl: "views/admin/casemanagement.html",
         controller: "AdminCtrl",
         header_title: "Case management",
         sidebar: "views/admin/sidebar.html",

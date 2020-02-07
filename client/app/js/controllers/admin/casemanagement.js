@@ -2,7 +2,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
   $scope.tabs = [
     {
       title:"Submission statuses",
-      template:"views/admin/case_management/tab1.html"
+      template:"views/admin/casemanagement/tab1.html"
     }
   ];
 }]).controller("AdminSubmissionStatusCtrl", ["$scope",

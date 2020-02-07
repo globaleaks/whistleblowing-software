@@ -93,4 +93,16 @@ describe("admin configure https", function() {
       await element(modal_action).click();
     }
   });
+
+  it("should configure url redirects", async function() {
+    await browser.setLocation("admin/network");
+    await element(by.cssContainingText("a", "URL redirects")).click();
+
+    for (var i = 0; i < 3; i++) {
+      await element(by.model("new_redirect.path1")).sendKeys("yyyyyyyy-" + i.toString());
+      await element(by.model("new_redirect.path2")).sendKeys("xxxxxxxx");
+      await element(by.cssContainingText("button", "Add")).click();
+      await element.all(by.cssContainingText("button", "Delete")).first().click();
+    }
+  });
 });

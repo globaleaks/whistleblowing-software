@@ -10,13 +10,13 @@ controller("AdminAdvancedCtrl", ["$scope", "$http", function($scope, $http) {
   if ($scope.resources.node.root_tenant) {
     $scope.tabs.push({
       title:"Anomaly detection thresholds",
-      template:"views/admin/advanced/tab1.html"
+      template:"views/admin/advanced/tab2.html"
     });
 
     /*
     $scope.tabs.push({
       title: "Backups",
-      template: "views/admin/advanced/tab2.html"
+      template: "views/admin/advanced/tab3.html"
     });
     */
   }

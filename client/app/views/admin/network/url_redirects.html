@@ -35,7 +35,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr data-ng-repeat="redirect in resources.redirects | orderBy:'redirect'" data-ng-controller="AdminRedirectEditCtrl">
+        <tr data-ng-repeat="redirect in resources.redirects | orderBy:'path1'" data-ng-controller="AdminRedirectEditCtrl">
           <td>{{redirect.path1}}</td>
           <td>{{redirect.path2}}</td>
           <td>

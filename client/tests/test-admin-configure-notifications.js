@@ -1,7 +1,7 @@
 describe("admin configure mail", function() {
   it("should configure mail", async function() {
     await browser.gl.utils.login_admin();
-    await browser.setLocation("admin/mail");
+    await browser.setLocation("admin/notifications");
 
     expect(await element(by.model("resources.notification.tip_expiration_threshold")).getAttribute("value")).toEqual("72");
 
