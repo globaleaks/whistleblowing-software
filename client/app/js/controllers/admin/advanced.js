@@ -45,4 +45,16 @@ controller("AdminAdvancedCtrl", ["$scope", "$http", function($scope, $http) {
       $scope.new_redirect = {};
     });
   };
+
+  $scope.toggleEncryption = function() {
+    if ($scope.resources.node.encryption) {
+      $scope.Utils.openConfirmableModalDialog("views/partials/enable_encryption.html").then(
+      function() {
+        return $scope.resources.node.encryption = true;
+      },
+      function() {
+        return $scope.resources.node.encryption = false;
+      });
+    }
+  };
 }]);

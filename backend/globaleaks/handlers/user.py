@@ -180,7 +180,7 @@ def db_user_update_user(session, tid, user_session, request):
         user.password = password_hash
         user.password_change_date = datetime_now()
 
-        if State.tenant_cache[tid].encryption:
+        if State.tenant_cache[tid].encryption or user_session.cc:
             enc_key = GCE.derive_key(request['password'].encode(), user.salt)
             if not user_session.cc:
                 # Th First first password change triggers the generation
@@ -312,7 +312,7 @@ def enable_2fa_step1(session, tid, user_id):
 
     user.two_factor_secret = pyotp.random_base32()
 
-    return two_factor_secret
+    return user.two_factor_secret
 
 
 @transact

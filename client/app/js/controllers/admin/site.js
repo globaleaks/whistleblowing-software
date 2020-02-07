@@ -28,16 +28,6 @@ controller("AdminCtrl",
 
     return max + 1;
   };
-
-  $scope.enableEncryption = function() {
-    $scope.Utils.openConfirmableModalDialog("views/partials/enable_encryption.html").then(
-    function() {
-      return $scope.resources.node.encryption = true;
-    },
-    function() {
-      return $scope.resources.node.encryption = false;
-    });
-  };
 }]).
 controller("AdminGeneralSettingsCtrl", ["$scope", "$filter", "$http", "Files", "AdminL10NResource", "DefaultL10NResource",
   function($scope, $filter, $http, Files, AdminL10NResource, DefaultL10NResource){

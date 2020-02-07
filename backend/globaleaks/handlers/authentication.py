@@ -97,7 +97,7 @@ def login_whistleblower(session, tid, receipt):
     itip.wb_last_access = datetime_now()
 
     crypto_prv_key = ''
-    if State.tenant_cache[tid].encryption and wbtip.crypto_prv_key:
+    if wbtip.crypto_prv_key:
         user_key = GCE.derive_key(receipt.encode(), State.tenant_cache[tid].receipt_salt)
         crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(wbtip.crypto_prv_key))
 
@@ -143,13 +143,12 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
     connection_check(client_ip, tid, user.role, client_using_tor)
 
     crypto_prv_key = ''
-    if State.tenant_cache[tid].encryption:
-        if user.crypto_prv_key:
-            user_key = GCE.derive_key(password.encode(), user.salt)
-            crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(user.crypto_prv_key))
-        else:
-            # Force the password change on which the user key will be created
-            user.password_change_needed = True
+    if user.crypto_prv_key:
+        user_key = GCE.derive_key(password.encode(), user.salt)
+        crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(user.crypto_prv_key))
+    elif State.tenant_cache[tid].encryption and user.crypto_prv_key:
+        # Force the password change on which the user key will be created
+        user.password_change_needed = True
 
     if user.two_factor_enable:
         if authcode != '':
