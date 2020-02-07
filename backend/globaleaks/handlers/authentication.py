@@ -153,13 +153,8 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
 
     if user.two_factor_enable:
         if authcode != '':
-            if user.crypto_pub_key:
-                two_factor_secret = GCE.asymmetric_decrypt(crypto_prv_key, Base64Encoder.decode(user.two_factor_secret))
-            else:
-                two_factor_secret = user.two_factor_secret
-
             # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
-            if not pyotp.TOTP(two_factor_secret).verify(authcode, valid_window=1):
+            if not pyotp.TOTP(user.two_factor_secret).verify(authcode, valid_window=1):
                 raise errors.InvalidTwoFactorAuthCode
 
         else:

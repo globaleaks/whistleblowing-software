@@ -188,11 +188,6 @@ def db_user_update_user(session, tid, user_session, request):
                 user_session.cc, user.crypto_pub_key = GCE.generate_keypair()
                 user.crypto_bkp_key, user.crypto_rec_key = GCE.generate_recovery_key(user_session.cc)
 
-                # If the user had already enabled two factor before encryption was not enable
-                # encrypt the two factor secret
-                if user.two_factor_secret:
-                    user.two_factor_secret = Base64Encoder.encode(GCE.asymmetric_encrypt(user.crypto_pub_key, user.two_factor_secret))
-
             user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_session.cc))
 
             if State.tenant_cache[1].crypto_escrow_pub_key:
@@ -315,12 +310,7 @@ def enable_2fa_step1(session, tid, user_id):
     if user.two_factor_secret:
         return user.two_factor_secret
 
-    two_factor_secret = pyotp.random_base32()
-
-    if user.crypto_pub_key:
-        user.two_factor_secret = Base64Encoder.encode(GCE.asymmetric_encrypt(user.crypto_pub_key, two_factor_secret))
-    else:
-        user.two_factor_secret = two_factor_secret
+    user.two_factor_secret = pyotp.random_base32()
 
     return two_factor_secret
 
@@ -338,13 +328,8 @@ def enable_2fa_step2(session, tid, user_id, user_cc, token):
     """
     user = db_get_user(session, tid, user_id)
 
-    if user.crypto_pub_key:
-        two_factor_secret = GCE.asymmetric_decrypt(user_cc, Base64Encoder.decode(user.two_factor_secret))
-    else:
-        two_factor_secret = user.two_factor_secret
-
     # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
-    if pyotp.TOTP(two_factor_secret).verify(token):
+    if pyotp.TOTP(user.two_factor_secret).verify(token):
         user.two_factor_enable = True
     else:
         raise errors.InvalidTwoFactorAuthCode
