@@ -2,7 +2,7 @@
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import Model
 from globaleaks.models.properties import *
-from globaleaks.utils.crypto import Base64Encoder
+from globaleaks.utils.crypto import Base32Encoder
 from globaleaks.utils.utility import datetime_now, datetime_never, datetime_null
 
 
@@ -184,7 +184,7 @@ class MigrationScript(MigrationBase):
                     continue
                 elif key == 'two_factor_secret':
                     if old_obj.two_factor_secret:
-                        new_obj.two_factor_secret = Base64Encoder.encode(old_obj.two_factor_secret)
+                        new_obj.two_factor_secret = Base32Encoder.encode(old_obj.two_factor_secret)
                 elif key == 'public_name':
                     if x:
                         new_obj.public_name = platform_name

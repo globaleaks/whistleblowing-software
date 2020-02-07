@@ -1178,7 +1178,7 @@ class _User(Model):
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
     readonly = Column(Boolean, default=False, nullable=False)
     two_factor_enable = Column(Boolean, default=False, nullable=False)
-    two_factor_secret = Column(UnicodeText(64), default='', nullable=False)
+    two_factor_secret = Column(UnicodeText(16), default='', nullable=False)
 
     # BEGIN of PGP key fields
     pgp_key_fingerprint = Column(UnicodeText, default='', nullable=False)
