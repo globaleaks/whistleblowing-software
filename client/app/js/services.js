@@ -640,7 +640,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     new_context: function() {
       var context = new AdminContextResource();
       context.id = "";
-      context.status = 2;
+      context.status = "hidden";
       context.name = "";
       context.description = "";
       context.languages = "",

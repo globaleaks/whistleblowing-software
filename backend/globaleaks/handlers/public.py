@@ -10,6 +10,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.submission_statuses import db_get_submission_statuses
 from globaleaks.models import get_localized_values
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
+from globaleaks.models.enums import EnumContextStatus
 from globaleaks.orm import transact
 from globaleaks.state import State
 from globaleaks.utils.sets import merge_dicts
@@ -436,7 +437,7 @@ def db_get_questionnaires(session, tid, language):
                             .filter(models.Questionnaire.tid.in_(set([1, tid])),
                                     or_(models.Context.questionnaire_id == models.Questionnaire.id,
                                         models.Context.additional_questionnaire_id == models.Questionnaire.id),
-                                    models.Context.status > 0,
+                                    models.Context.status != EnumContextStatus.disabled.value,
                                     models.Context.tid == tid)
 
     return [serialize_questionnaire(session, tid, questionnaire, language) for questionnaire in questionnaires]
@@ -453,7 +454,7 @@ def db_get_contexts(session, tid, language):
     """
     ret = []
 
-    contexts = session.query(models.Context).filter(models.Context.status > 0,
+    contexts = session.query(models.Context).filter(models.Context.status != EnumContextStatus.disabled.value,
                                                     models.Context.tid == tid)
 
     data = db_prepare_contexts_serialization(session, contexts)
@@ -474,7 +475,7 @@ def db_get_receivers(session, tid, language):
     :param language: The language to be used for the serialization
     :return: A list of receivers descriptors
     """
-    receivers = session.query(models.User).filter(models.User.role == 'receiver',
+    receivers = session.query(models.User).filter(models.User.role == models.EnumUserRole.receiver.value,
                                                   models.User.state != 'disabled',
                                                   models.User.tid == tid)
 

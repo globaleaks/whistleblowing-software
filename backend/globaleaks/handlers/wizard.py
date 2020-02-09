@@ -113,8 +113,8 @@ def db_wizard(session, tid, request):
             db_gen_user_keys(session, tid, receiver_user, receiver_desc['password'])
 
     context_desc = models.Context().dict(language)
-    context_desc['status'] = 1
     context_desc['name'] = 'Default'
+    context_desc['status'] = 'enabled'
 
     context_desc['receivers'] = [receiver_user.id] if receiver_user else []
 

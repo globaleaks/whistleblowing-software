@@ -74,9 +74,17 @@ class Field_v_51(Model):
     template_override_id = Column(UnicodeText(36), nullable=True)
 
 
+class FieldAttr_v_51(Model):
+    __tablename__ = 'fieldattr'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    field_id = Column(UnicodeText(36), nullable=False)
+    name = Column(UnicodeText, nullable=False)
+    type = Column(UnicodeText, nullable=False)
+    value = Column(JSON, default=dict, nullable=False)
+
+
 class InternalTip_v_51(Model):
     __tablename__ = 'internaltip'
-
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     tid = Column(Integer, default=1, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
@@ -105,6 +113,28 @@ class InternalTipData_v_51(Model):
     key = Column(UnicodeText, primary_key=True)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     value = Column(JSON, default=dict, nullable=False)
+
+
+class Message_v_51(Model):
+    __tablename__ = 'message'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    creation_date = Column(DateTime, default=datetime_now, nullable=False)
+    receivertip_id = Column(UnicodeText(36), nullable=False)
+    content = Column(UnicodeText, nullable=False)
+    type = Column(UnicodeText, nullable=False)
+    new = Column(Boolean, default=True, nullable=False)
+
+
+class ReceiverFile_v_51(Model):
+    __tablename__ = 'receiverfile'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    internalfile_id = Column(UnicodeText(36), nullable=False)
+    receivertip_id = Column(UnicodeText(36), nullable=False)
+    filename = Column(UnicodeText(255), nullable=False)
+    downloads = Column(Integer, default=0, nullable=False)
+    last_access = Column(DateTime, default=datetime_null, nullable=False)
+    new = Column(Boolean, default=True, nullable=False)
+    status = Column(UnicodeText, default='processing', nullable=False)
 
 
 class SubmissionStatus_v_51(Model):
@@ -159,6 +189,28 @@ class MigrationScript(MigrationBase):
     skip_count_check = {
         'Config': True
     }
+
+    def migrate_Context(self):
+        for old_obj in self.session_old.query(self.model_from['Context']):
+            new_obj = self.model_to['Context']()
+            for key in new_obj.__table__.columns._data.keys():
+                if key not in old_obj.__table__.columns._data.keys():
+                    continue
+
+                if key == 'status':
+                    value = getattr(old_obj, key)
+                    if value == 0:
+                       value = 'disabled'
+                    elif value == 1:
+                       value = 'enabled'
+                    else:
+                       value = 'hidden'
+
+                    setattr(new_obj, key, value)
+                else:
+                    setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
 
     def migrate_Signup(self):
         for old_obj in self.session_old.query(self.model_from['Signup']):

@@ -6,6 +6,7 @@ import collections
 import copy
 
 from globaleaks.models import config_desc
+from globaleaks.models.enums import *
 from globaleaks.models.properties import *
 from globaleaks.orm import transact
 from globaleaks.rest import errors
@@ -234,9 +235,6 @@ class Model(object):
                 else:
                     ret[k] = ''
 
-            if isinstance(ret[k], bytes):
-                ret[k] = str(ret[k])
-
         for k in self.list_keys:
             ret[k] = []
 
@@ -407,9 +405,14 @@ class _Context(Model):
     questionnaire_id = Column(UnicodeText(36), default='default', nullable=False)
     additional_questionnaire_id = Column(UnicodeText(36))
     languages = Column(UnicodeText, default='', nullable=False)
-    status = Column(Integer, default=2, nullable=False)  # status: 0(disabled), 1(enabled), 2(hidden)
+    status = Column(Enum(EnumContextStatus), default='hidden', nullable=False)
 
-    unicode_keys = ['questionnaire_id', 'additional_questionnaire_id', 'languages']
+    unicode_keys = [
+        'questionnaire_id',
+        'additional_questionnaire_id',
+        'languages',
+        'status'
+    ]
 
     localized_keys = [
         'name',
@@ -422,13 +425,12 @@ class _Context(Model):
     ]
 
     int_keys = [
-        'status',
         'tip_timetolive',
         'maximum_selectable_receivers',
         'presentation_order',
         'score_threshold_high',
         'score_threshold_medium',
-        'score_threshold_receipt'
+        'score_threshold_receipt',
     ]
 
     bool_keys = [
@@ -453,7 +455,8 @@ class _Context(Model):
     @declared_attr
     def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['questionnaire_id'], ['questionnaire.id'], deferrable=True, initially='DEFERRED'))
+                ForeignKeyConstraint(['questionnaire_id'], ['questionnaire.id'], deferrable=True, initially='DEFERRED'),
+                CheckConstraint(self.status.in_(EnumContextStatus.keys())))
 
 
 class _ContextImg(Model):
@@ -537,7 +540,7 @@ class _Field(Model):
     step_id = Column(UnicodeText(36))
     fieldgroup_id = Column(UnicodeText(36))
     type = Column(UnicodeText, default='inputbox', nullable=False)
-    instance = Column(UnicodeText, default='instance', nullable=False)
+    instance = Column(Enum(EnumFieldInstance), default='instance', nullable=False)
     editable = Column(Boolean, default=True, nullable=False)
     template_id = Column(UnicodeText(36))
     template_override_id = Column(UnicodeText(36), nullable=True)
@@ -549,7 +552,7 @@ class _Field(Model):
                 ForeignKeyConstraint(['fieldgroup_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['template_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['template_override_id'], ['field.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'),
-                CheckConstraint(self.instance.in_(['instance', 'reference', 'template'])),)
+                CheckConstraint(self.instance.in_(EnumFieldInstance.keys())))
 
     unicode_keys = ['type', 'instance', 'key']
     int_keys = ['x', 'y', 'width', 'triggered_by_score']
@@ -564,7 +567,7 @@ class _FieldAttr(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     field_id = Column(UnicodeText(36), nullable=False)
     name = Column(UnicodeText, nullable=False)
-    type = Column(UnicodeText, nullable=False)
+    type = Column(Enum(EnumFieldAttrType), nullable=False)
     value = Column(JSON, default=dict, nullable=False)
 
     unicode_keys = ['field_id', 'name', 'type']
@@ -572,10 +575,7 @@ class _FieldAttr(Model):
     @declared_attr
     def __table_args__(self):
         return (ForeignKeyConstraint(['field_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                CheckConstraint(self.type.in_(['int',
-                                               'bool',
-                                               'unicode',
-                                               'localized'])))
+                CheckConstraint(self.type.in_(EnumFieldAttrType.keys())))
 
     def update(self, values=None):
         super(_FieldAttr, self).update(values)
@@ -855,13 +855,13 @@ class _Message(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     receivertip_id = Column(UnicodeText(36), nullable=False)
     content = Column(UnicodeText, nullable=False)
-    type = Column(UnicodeText, nullable=False)
+    type = Column(Enum(EnumMessageType), nullable=False)
     new = Column(Boolean, default=True, nullable=False)
 
     @declared_attr
     def __table_args__(self):
         return (ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                CheckConstraint(self.type.in_(['receiver', 'whistleblower'])))
+                CheckConstraint(self.type.in_(EnumMessageType.keys())))
 
 
 class _Questionnaire(Model):
@@ -915,12 +915,13 @@ class _ReceiverFile(Model):
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
     status = Column(UnicodeText, default='processing', nullable=False)
+    status = Column(Enum(EnumFileStatus), default='processing', nullable=False)
 
     @declared_attr
     def __table_args__(self):
         return (ForeignKeyConstraint(['internalfile_id'], ['internalfile.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                CheckConstraint(self.status.in_(['processing', 'reference', 'encrypted', 'unavailable', 'nokey'])))
+                CheckConstraint(self.status.in_(EnumFileStatus.keys())))
 
 
 class _ReceiverTip(Model):
@@ -1151,8 +1152,8 @@ class _User(Model):
     name = Column(UnicodeText, default='', nullable=False)
     description = Column(JSON, default=dict, nullable=False)
     public_name = Column(UnicodeText, default='', nullable=False)
-    role = Column(UnicodeText, default='receiver', nullable=False)
-    state = Column(UnicodeText, default='enabled', nullable=False)
+    role = Column(Enum(EnumUserRole), default='receiver', nullable=False)
+    state = Column(Enum(EnumUserState), default='enabled', nullable=False)
     last_login = Column(DateTime, default=datetime_null, nullable=False)
     mail_address = Column(UnicodeText, default='', nullable=False)
     language = Column(UnicodeText, nullable=False)
@@ -1171,7 +1172,7 @@ class _User(Model):
     reset_password_token = Column(UnicodeText, unique=True, nullable=True)
     reset_password_date = Column(UnicodeText, default=datetime_null, nullable=False)
     notification = Column(Boolean, default=True, nullable=False)
-    recipient_configuration = Column(UnicodeText, default='default', nullable=False)
+    recipient_configuration = Column(Enum(EnumRecipientConfiguration), default='default', nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
     can_postpone_expiration = Column(Boolean, default=False, nullable=False)
     can_grant_permissions = Column(Boolean, default=False, nullable=False)
@@ -1210,9 +1211,9 @@ class _User(Model):
     def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 UniqueConstraint('tid', 'username'),
-                CheckConstraint(self.role.in_(['admin', 'receiver', 'custodian'])),
-                CheckConstraint(self.state.in_(['disabled', 'enabled'])),
-                CheckConstraint(self.recipient_configuration.in_(['default', 'forcefully_selected'])))
+                CheckConstraint(self.role.in_(EnumUserRole.keys())),
+                CheckConstraint(self.state.in_(EnumUserState.keys())),
+                CheckConstraint(self.recipient_configuration.in_(EnumRecipientConfiguration.keys())))
 
 
 class _UserImg(Model):

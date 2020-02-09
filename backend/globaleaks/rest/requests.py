@@ -410,7 +410,7 @@ AdminQuestionnaireDescRaw['steps'] = list
 AdminContextDesc = {
     'id': uuid_regexp_or_empty,
     'name': str,
-    'status': int,
+    'status': str,
     'description': str,
     'languages': languages_list_regexp,
     'maximum_selectable_receivers': int,
@@ -559,7 +559,7 @@ ReceiverCollectionDesc = [ReceiverDesc]
 ContextDesc = {
     'id': uuid_regexp,
     'name': str,
-    'status': int,
+    'status': str,
     'description': str,
     'languages': languages_list_regexp,
     'presentation_order': int,

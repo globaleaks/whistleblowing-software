@@ -13,39 +13,58 @@ from globaleaks.db.appdata import db_update_defaults, load_appdata
 
 from globaleaks.db.migrations.update_25 import User_v_24, SecureFileDelete_v_24
 from globaleaks.db.migrations.update_26 import InternalFile_v_25
-from globaleaks.db.migrations.update_27 import Node_v_26, Context_v_26, Notification_v_26
-from globaleaks.db.migrations.update_28 import Field_v_27, Step_v_27, FieldField_v_27, StepField_v_27, FieldOption_v_27
+from globaleaks.db.migrations.update_27 import Node_v_26, Context_v_26, \
+    Notification_v_26
+from globaleaks.db.migrations.update_28 import Field_v_27, Step_v_27, \
+    FieldField_v_27, StepField_v_27, FieldOption_v_27
 from globaleaks.db.migrations.update_29 import Context_v_28, Node_v_28
-from globaleaks.db.migrations.update_30 import Node_v_29, Context_v_29, Step_v_29, FieldAnswer_v_29, \
+from globaleaks.db.migrations.update_30 import Node_v_29, Context_v_29, \
+    Step_v_29, FieldAnswer_v_29, \
     FieldAnswerGroup_v_29, FieldAnswerGroupFieldAnswer_v_29
-from globaleaks.db.migrations.update_31 import Node_v_30, Context_v_30, User_v_30, ReceiverTip_v_30, Notification_v_30
-from globaleaks.db.migrations.update_32 import Node_v_31, Comment_v_31, Message_v_31, User_v_31
-from globaleaks.db.migrations.update_33 import Node_v_32, WhistleblowerTip_v_32, InternalTip_v_32, User_v_32
+from globaleaks.db.migrations.update_31 import Node_v_30, Context_v_30, \
+    User_v_30, ReceiverTip_v_30, Notification_v_30
+from globaleaks.db.migrations.update_32 import Node_v_31, Comment_v_31, \
+    Message_v_31, User_v_31
+from globaleaks.db.migrations.update_33 import Node_v_32, \
+    WhistleblowerTip_v_32, InternalTip_v_32, User_v_32
 from globaleaks.db.migrations.update_34 import Node_v_33, Notification_v_33
-from globaleaks.db.migrations.update_35 import Context_v_34, InternalTip_v_34, WhistleblowerTip_v_34
+from globaleaks.db.migrations.update_35 import Context_v_34, InternalTip_v_34, \
+        WhistleblowerTip_v_34
 from globaleaks.db.migrations.update_38 import Field_v_37, Questionnaire_v_37
 from globaleaks.db.migrations.update_39 import \
-    Anomalies_v_38, ArchivedSchema_v_38, Comment_v_38, Config_v_38, ConfigL10N_v_38, \
-    Context_v_38, CustomTexts_v_38, EnabledLanguage_v_38, \
+    Anomalies_v_38, ArchivedSchema_v_38, Comment_v_38, Config_v_38, \
+    ConfigL10N_v_38, Context_v_38, CustomTexts_v_38, EnabledLanguage_v_38, \
     Field_v_38, FieldAnswer_v_38, FieldAnswerGroup_v_38, FieldAttr_v_38, \
     FieldOption_v_38, File_v_38, IdentityAccessRequest_v_38, \
     InternalFile_v_38, InternalTip_v_38, Mail_v_38, Message_v_38, \
     Questionnaire_v_38, Receiver_v_38, ReceiverContext_v_38, \
     ReceiverFile_v_38, ReceiverTip_v_38, \
     Step_v_38, User_v_38, WhistleblowerFile_v_38, WhistleblowerTip_v_38
-from globaleaks.db.migrations.update_41 import InternalFile_v_40, InternalTip_v_40, ReceiverFile_v_40, ReceiverTip_v_40, \
+from globaleaks.db.migrations.update_41 import InternalFile_v_40, \
+    InternalTip_v_40, ReceiverFile_v_40, ReceiverTip_v_40, \
     Signup_v_40, User_v_40, WhistleblowerFile_v_40
 from globaleaks.db.migrations.update_42 import InternalTip_v_41, Signup_v_41
-from globaleaks.db.migrations.update_43 import InternalTip_v_42, Signup_v_42, User_v_42
-from globaleaks.db.migrations.update_45 import Context_v_44, Field_v_44, InternalTip_v_44, Receiver_v_44, ReceiverFile_v_44, \
-    ReceiverTip_v_44, Step_v_44, User_v_44, WhistleblowerFile_v_44, WhistleblowerTip_v_44
-from globaleaks.db.migrations.update_46 import Config_v_45, ConfigL10N_v_45, Context_v_45, Field_v_45, FieldOption_v_45, InternalFile_v_45, InternalTip_v_45, Receiver_v_45, User_v_45, WhistleblowerFile_v_45
-from globaleaks.db.migrations.update_47 import Context_v_46, FieldOption_v_46, InternalTip_v_46, SubmissionStatus_v_46, SubmissionSubStatus_v_46
+from globaleaks.db.migrations.update_43 import InternalTip_v_42, Signup_v_42, \
+    User_v_42
+from globaleaks.db.migrations.update_45 import Context_v_44, Field_v_44, \
+    InternalTip_v_44, Receiver_v_44, ReceiverFile_v_44, \
+    ReceiverTip_v_44, Step_v_44, User_v_44, WhistleblowerFile_v_44, \
+    WhistleblowerTip_v_44
+from globaleaks.db.migrations.update_46 import Config_v_45, ConfigL10N_v_45, \
+    Context_v_45, Field_v_45, FieldOption_v_45, InternalFile_v_45, \
+    InternalTip_v_45, Receiver_v_45, User_v_45, WhistleblowerFile_v_45
+from globaleaks.db.migrations.update_47 import Context_v_46, FieldOption_v_46, \
+    InternalTip_v_46, SubmissionStatus_v_46, SubmissionSubStatus_v_46
 from globaleaks.db.migrations.update_48 import Field_v_47, FieldOption_v_47
 from globaleaks.db.migrations.update_49 import InternalTip_v_48
-from globaleaks.db.migrations.update_50 import SubmissionStatus_v_49, SubmissionSubStatus_v_49, User_v_49
-from globaleaks.db.migrations.update_51 import Field_v_50, InternalFile_v_50, User_v_50
-from globaleaks.db.migrations.update_52 import Context_v_51, CustomTexts_v_51, Field_v_51, InternalTip_v_51, InternalTipData_v_51, SubmissionStatus_v_51, User_v_51
+from globaleaks.db.migrations.update_50 import SubmissionStatus_v_49, \
+    SubmissionSubStatus_v_49, User_v_49
+from globaleaks.db.migrations.update_51 import Field_v_50, InternalFile_v_50, \
+    User_v_50
+from globaleaks.db.migrations.update_52 import Context_v_51, \
+    CustomTexts_v_51, Field_v_51, FieldAttr_v_51, InternalTip_v_51, \
+    InternalTipData_v_51, Message_v_51, ReceiverFile_v_51, \
+    SubmissionStatus_v_51, User_v_51
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
@@ -70,7 +89,7 @@ migration_mapping = OrderedDict([
     ('FieldAnswer', [FieldAnswer_v_29, 0, 0, 0, 0, 0, FieldAnswer_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models._FieldAnswer, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('FieldAnswerGroup', [FieldAnswerGroup_v_29, 0, 0, 0, 0, 0, FieldAnswerGroup_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models._FieldAnswerGroup, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('FieldAnswerGroupFieldAnswer', [FieldAnswerGroupFieldAnswer_v_29, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
-    ('FieldAttr', [FieldAttr_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._FieldAttr, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('FieldAttr', [FieldAttr_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, FieldAttr_v_51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._FieldAttr]),
     ('FieldField', [FieldField_v_27, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
     ('FieldOption', [FieldOption_v_27, 0, 0, 0, FieldOption_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, FieldOption_v_45, 0, 0, 0, 0, 0, 0, FieldOption_v_46, FieldOption_v_47, models._FieldOption, 0, 0, 0, 0]),
     ('FieldOptionTriggerField', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._FieldOptionTriggerField, 0, 0, 0, 0, 0]),
@@ -82,13 +101,13 @@ migration_mapping = OrderedDict([
     ('InternalTipAnswers', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._InternalTipAnswers, 0, 0, 0, 0, 0, 0, 0]),
     ('InternalTipData', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, InternalTipData_v_51, 0, 0, 0, 0, 0, 0, models._InternalTipData]),
     ('Mail', [-1, -1, Mail_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Mail, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('Message', [Message_v_31, 0, 0, 0, 0, 0, 0, 0, Message_v_38, 0, 0, 0, 0, 0, 0, models._Message, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('Message', [Message_v_31, 0, 0, 0, 0, 0, 0, 0, Message_v_38, 0, 0, 0, 0, 0, 0, Message_v_51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Message]),
     ('Node', [Node_v_26, 0, 0, Node_v_28, 0, Node_v_29, Node_v_30, Node_v_31, Node_v_32, Node_v_33, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
     ('Notification', [Notification_v_26, 0, 0, Notification_v_30, 0, 0, 0, Notification_v_33, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
     ('Questionnaire', [-1, -1, -1, -1, -1, -1, Questionnaire_v_37, 0, 0, 0, 0, 0, 0, 0, Questionnaire_v_38, models._Questionnaire, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Receiver', [Receiver_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, Receiver_v_44, 0, 0, 0, 0, 0, Receiver_v_45, -1, -1, -1, -1, -1, -1, -1]),
     ('ReceiverContext', [ReceiverContext_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._ReceiverContext, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('ReceiverFile', [ReceiverFile_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ReceiverFile_v_40, 0, ReceiverFile_v_44, 0, 0, 0, models._ReceiverFile, 0, 0, 0, 0, 0, 0, 0]),
+    ('ReceiverFile', [ReceiverFile_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ReceiverFile_v_40, 0, ReceiverFile_v_44, 0, 0, 0, ReceiverFile_v_51, 0, 0, 0, 0, 0, 0, models._ReceiverFile]),
     ('ReceiverTip', [ReceiverTip_v_30, 0, 0, 0, 0, 0, 0, ReceiverTip_v_38, 0, 0, 0, 0, 0, 0, 0, ReceiverTip_v_40, 0, ReceiverTip_v_44, 0, 0, 0, models._ReceiverTip, 0, 0, 0, 0, 0, 0, 0]),
     ('Redirect', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Redirect, 0, 0, 0]),
     ('SecureFileDelete', [SecureFileDelete_v_24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._SecureFileDelete, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
