@@ -342,7 +342,7 @@ class _ConfigL10N(Model):
     __tablename__ = 'config_l10n'
 
     tid = Column(Integer, primary_key=True, default=1)
-    lang = Column(UnicodeText(5), primary_key=True)
+    lang = Column(UnicodeText(12), primary_key=True)
     var_name = Column(UnicodeText(64), primary_key=True)
     value = Column(UnicodeText, nullable=False)
     update_date = Column(DateTime, default=datetime_null, nullable=False)
@@ -482,7 +482,7 @@ class _CustomTexts(Model):
     __tablename__ = 'customtexts'
 
     tid = Column(Integer, default=1, primary_key=True)
-    lang = Column(UnicodeText(5), primary_key=True)
+    lang = Column(UnicodeText(12), primary_key=True)
     texts = Column(JSON, default=dict, nullable=False)
 
     unicode_keys = ['lang']
@@ -497,7 +497,7 @@ class _EnabledLanguage(Model):
     __tablename__ = 'enabledlanguage'
 
     tid = Column(Integer, primary_key=True, default=1, nullable=False)
-    name = Column(UnicodeText(5), primary_key=True, nullable=False)
+    name = Column(UnicodeText(12), primary_key=True, nullable=False)
 
     def __init__(self, tid=1, name=None, migrate=False):
         if migrate:
@@ -961,7 +961,7 @@ class _Signup(Model):
     id = Column(Integer, primary_key=True)
     tid = Column(Integer, nullable=False)
     subdomain = Column(UnicodeText, unique=True, nullable=False)
-    language = Column(UnicodeText, nullable=False)
+    language = Column(UnicodeText(12), nullable=False)
     name = Column(UnicodeText, nullable=False)
     surname = Column(UnicodeText, nullable=False)
     role = Column(UnicodeText, default='', nullable=False)
@@ -1156,7 +1156,7 @@ class _User(Model):
     state = Column(Enum(EnumUserState), default='enabled', nullable=False)
     last_login = Column(DateTime, default=datetime_null, nullable=False)
     mail_address = Column(UnicodeText, default='', nullable=False)
-    language = Column(UnicodeText, nullable=False)
+    language = Column(UnicodeText(12), nullable=False)
     password_change_needed = Column(Boolean, default=True, nullable=False)
     password_change_date = Column(DateTime, default=datetime_null, nullable=False)
     crypto_prv_key = Column(UnicodeText(84), default='', nullable=False)
