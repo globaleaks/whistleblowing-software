@@ -704,6 +704,7 @@ class _AuditLog(Model):
     """
     __tablename__ = 'auditlog'
 
+    tid = Column(Integer, default=1)
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     event_date = Column(DateTime, default=datetime_now, nullable=False)
     event_type = Column(UnicodeText(24), default='', nullable=False)
