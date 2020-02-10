@@ -914,7 +914,6 @@ class _ReceiverFile(Model):
     downloads = Column(Integer, default=0, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
-    status = Column(UnicodeText, default='processing', nullable=False)
     status = Column(Enum(EnumFileStatus), default='processing', nullable=False)
 
     @declared_attr
@@ -1091,6 +1090,7 @@ class _SubmissionSubStatus(Model):
     tip_timetolive_override = Column(Boolean, default=False, nullable=False)
     receivers = Column(JSON, default=list, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
+
     localized_keys = ['label']
     int_keys = ['presentation_order', 'tip_timetolive']
     bool_keys = ['tip_timetolive_override']
