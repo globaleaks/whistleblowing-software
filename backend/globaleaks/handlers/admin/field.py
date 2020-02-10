@@ -78,7 +78,7 @@ def db_update_fieldoption(session, field_id, fieldoption_id, option_dict, langua
     else:
         o.update(option_dict)
 
-    o.presentation_order = idx
+    o.order = idx
 
     return o.id
 

@@ -5,7 +5,7 @@ GLClient.controller("AdminStepAddCtrl", ["$scope",
     $scope.add_step = function() {
       var step = new $scope.AdminUtils.new_step($scope.questionnaire.id);
       step.label = $scope.new_step.label;
-      step.presentation_order = $scope.newItemOrder($scope.questionnaire.steps, "presentation_order");
+      step.order = $scope.newItemOrder($scope.questionnaire.steps, "order");
 
       step.$save(function(new_step){
         $scope.questionnaire.steps.push(new_step);

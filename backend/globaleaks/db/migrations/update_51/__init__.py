@@ -1,4 +1,4 @@
-from globaleaks.db.migrations.update import MigrationBase
+from globaleaks.db.migrations.update import MigrationBase as MigrationScript
 from globaleaks.models import Model
 from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_now, datetime_null
@@ -74,14 +74,3 @@ class User_v_50(Model):
     pgp_key_fingerprint = Column(UnicodeText, default='', nullable=False)
     pgp_key_public = Column(UnicodeText, default='', nullable=False)
     pgp_key_expiration = Column(DateTime, default=datetime_null, nullable=False)
-
-
-class MigrationScript(MigrationBase):
-    def migrate_InternalFile(self):
-        for old_obj in self.session_old.query(self.model_from['InternalFile']):
-            new_obj = self.model_to['InternalFile']()
-            for key in new_obj.__table__.columns._data.keys():
-                if hasattr(old_obj, key):
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)

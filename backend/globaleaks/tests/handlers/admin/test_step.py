@@ -35,12 +35,12 @@ class TestStepInstance(helpers.TestHandler):
         step['questionnaire_id'] = 'default'
         step = yield tw(db_create_step, 1, step, 'en')
 
-        step['presentation_order'] = 666
+        step['order'] = 666
 
         handler = self.request(step, role='admin')
         response = yield handler.put(step['id'])
         self.assertEqual(step['id'], response['id'])
-        self.assertEqual(response['presentation_order'], 666)
+        self.assertEqual(response['order'], 666)
 
     @inlineCallbacks
     def test_delete(self):

@@ -182,7 +182,7 @@ def get_dummy_step():
         'id': '',
         'label': 'Step 1',
         'description': 'Step Description',
-        'presentation_order': 0,
+        'order': 0,
         'triggered_by_score': 0,
         'triggered_by_options': [],
         'questionnaire_id': '',
@@ -225,7 +225,7 @@ def get_dummy_fieldoption_list():
         {
             'id': 'beefcafe-beef-cafe-beef-cafebeefcafe',
             'label': 'Cafe del mare',
-            'presentation_order': 0,
+            'order': 0,
             'score_points': 100,
             'score_type': 0,
             'trigger_field': '',
@@ -238,7 +238,7 @@ def get_dummy_fieldoption_list():
         {
             'id': 'feefbead-feef-bead-feef-feeffeefbead',
             'label': 'skrilx is here',
-            'presentation_order': 0,
+            'order': 0,
             'score_points': 97,
             'score_type': 0,
             'trigger_field': '',
@@ -712,7 +712,7 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyQuestionnaire['steps'].append(get_dummy_step())
         self.dummyQuestionnaire['steps'][1]['questionnaire_id'] = self.dummyContext['questionnaire_id']
         self.dummyQuestionnaire['steps'][1]['label'] = 'Whistleblower identity'
-        self.dummyQuestionnaire['steps'][1]['presentation_order'] = 1
+        self.dummyQuestionnaire['steps'][1]['order'] = 1
         self.dummyQuestionnaire['steps'][1] = yield tw(db_create_step, 1, self.dummyQuestionnaire['steps'][1], 'en')
 
         if self.complex_field_population:
@@ -1035,7 +1035,7 @@ class MockDict:
             'description': 'Already localized desc',
             'languages': "en",
             'recipients_clarification': '',
-            'presentation_order': 0,
+            'order': 0,
             'receivers': [],
             'questionnaire_id': 'default',
             'additional_questionnaire_id': '',

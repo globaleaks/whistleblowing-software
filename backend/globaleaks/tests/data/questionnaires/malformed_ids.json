@@ -59,7 +59,7 @@
               "label": {
                 "en": "alert('hello there!')"
               },
-              "presentation_order": 0,
+              "order": 0,
               "score_points": 0,
               "trigger_field": ""
             },
@@ -68,7 +68,7 @@
               "label": {
                 "en": "alert('xss')"
               },
-              "presentation_order": 1,
+              "order": 1,
               "score_points": 0,
               "trigger_field": ""
             },
@@ -77,7 +77,7 @@
               "label": {
                 "en": "alert('hello there!')"
               },
-              "presentation_order": 2,
+              "order": 2,
               "score_points": 0,
               "trigger_field": ""
             },
@@ -86,7 +86,7 @@
               "label": {
                 "en": "d"
               },
-              "presentation_order": 3,
+              "order": 3,
               "score_points": 0,
               "trigger_field": ""
             }
@@ -111,7 +111,7 @@
       "label": {
         "en": "generic step"
       },
-      "presentation_order": 0,
+      "order": 0,
       "questionnaire_id": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"
     },
     {
@@ -157,7 +157,7 @@
       "label": {
         "en": "final step"
       },
-      "presentation_order": 1,
+      "order": 1,
       "questionnaire_id": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"
     }
   ],

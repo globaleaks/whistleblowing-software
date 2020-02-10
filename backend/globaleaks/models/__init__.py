@@ -401,11 +401,11 @@ class _Context(Model):
     score_receipt_text_m = Column(JSON, default=dict, nullable=False)
     score_receipt_text_h = Column(JSON, default=dict, nullable=False)
     score_threshold_receipt = Column(Integer, default=0, nullable=False)
-    presentation_order = Column(Integer, default=0, nullable=False)
     questionnaire_id = Column(UnicodeText(36), default='default', nullable=False)
     additional_questionnaire_id = Column(UnicodeText(36))
     languages = Column(UnicodeText, default='', nullable=False)
     status = Column(Enum(EnumContextStatus), default='hidden', nullable=False)
+    order = Column(Integer, default=0, nullable=False)
 
     unicode_keys = [
         'questionnaire_id',
@@ -427,7 +427,7 @@ class _Context(Model):
     int_keys = [
         'tip_timetolive',
         'maximum_selectable_receivers',
-        'presentation_order',
+        'order',
         'score_threshold_high',
         'score_threshold_medium',
         'score_threshold_receipt',
@@ -634,7 +634,7 @@ class _FieldOption(Model):
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     field_id = Column(UnicodeText(36), nullable=False)
-    presentation_order = Column(Integer, default=0, nullable=False)
+    order = Column(Integer, default=0, nullable=False)
     label = Column(JSON, default=dict, nullable=False)
     hint1 = Column(JSON, default=dict, nullable=False)
     hint2 = Column(JSON, default=dict, nullable=False)
@@ -645,7 +645,7 @@ class _FieldOption(Model):
 
     unicode_keys = ['field_id']
     bool_keys = ['block_submission']
-    int_keys = ['presentation_order', 'score_type', 'score_points']
+    int_keys = ['order', 'score_type', 'score_points']
     json_keys = ['trigger_receiver']
     localized_keys = ['hint1', 'hint2', 'label']
 
@@ -890,10 +890,10 @@ class _ReceiverContext(Model):
 
     context_id = Column(UnicodeText(36), primary_key=True)
     receiver_id = Column(UnicodeText(36), primary_key=True)
-    presentation_order = Column(Integer, default=0, nullable=False)
+    order = Column(Integer, default=0, nullable=False)
 
     unicode_keys = ['context_id', 'receiver_id']
-    int_keys = ['presentation_order']
+    int_keys = ['order']
 
     @declared_attr
     def __table_args__(self):
@@ -1027,11 +1027,11 @@ class _Step(Model):
     questionnaire_id = Column(UnicodeText(36), nullable=False)
     label = Column(JSON, default=dict, nullable=False)
     description = Column(JSON, default=dict, nullable=False)
-    presentation_order = Column(Integer, default=0, nullable=False)
     triggered_by_score = Column(Integer, default=0, nullable=False)
+    order = Column(Integer, default=0, nullable=False)
 
     unicode_keys = ['questionnaire_id']
-    int_keys = ['presentation_order', 'triggered_by_score']
+    int_keys = ['order', 'triggered_by_score']
     localized_keys = ['label', 'description']
 
     @declared_attr
@@ -1064,10 +1064,10 @@ class _SubmissionStatus(Model):
     tip_timetolive = Column(Integer, default=90, nullable=False)
     tip_timetolive_override = Column(Boolean, default=False, nullable=False)
     receivers = Column(JSON, default=list, nullable=False)
-    presentation_order = Column(Integer, default=0, nullable=False)
+    order = Column(Integer, default=0, nullable=False)
 
     localized_keys = ['label']
-    int_keys = ['presentation_order', 'tip_timetolive']
+    int_keys = ['order', 'tip_timetolive']
     bool_keys = ['tip_timetolive_override']
     json_keys = ['receivers']
 
@@ -1089,10 +1089,10 @@ class _SubmissionSubStatus(Model):
     tip_timetolive = Column(Integer, default=90, nullable=False)
     tip_timetolive_override = Column(Boolean, default=False, nullable=False)
     receivers = Column(JSON, default=list, nullable=False)
-    presentation_order = Column(Integer, default=0, nullable=False)
+    order = Column(Integer, default=0, nullable=False)
 
     localized_keys = ['label']
-    int_keys = ['presentation_order', 'tip_timetolive']
+    int_keys = ['order', 'tip_timetolive']
     bool_keys = ['tip_timetolive_override']
     json_keys = ['receivers']
 

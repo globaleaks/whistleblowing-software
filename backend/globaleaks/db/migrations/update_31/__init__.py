@@ -172,6 +172,12 @@ class Notification_v_30(Model):
 
 
 class MigrationScript(MigrationBase):
+    renamed_attrs = {
+        'Context': {
+            'show_small_receiver_cards': 'show_small_cards'
+        }
+    }
+
     def migrate_Node(self):
         old_node = self.session_old.query(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
@@ -240,19 +246,6 @@ class MigrationScript(MigrationBase):
                     self.session_new.add(picture)
                     new_obj.picture_id = picture.id
                     os.remove(img_path)
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)
-
-    def migrate_Context(self):
-        for old_obj in self.session_old.query(self.model_from['Context']):
-            new_obj = self.model_to['Context']()
-            for key in new_obj.__table__.columns._data.keys():
-                if key == 'img_id':
-                    continue
-                elif key == 'show_small_receiver_cards':
-                    new_obj.show_small_receiver_cards = old_obj.show_small_cards
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 

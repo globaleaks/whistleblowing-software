@@ -19,7 +19,7 @@ def admin_serialize_context(session, context, language):
     """
     receivers = [r[0] for r in session.query(models.ReceiverContext.receiver_id)
                                       .filter(models.ReceiverContext.context_id == context.id)
-                                      .order_by(models.ReceiverContext.presentation_order)]
+                                      .order_by(models.ReceiverContext.order)]
 
     picture = db_get_model_img(session, 'contexts', context.id)
 
@@ -46,7 +46,7 @@ def admin_serialize_context(session, context, language):
         'score_receipt_text_m': context.score_receipt_text_m,
         'score_receipt_text_h': context.score_receipt_text_h,
         'score_threshold_receipt': context.score_threshold_receipt,
-        'presentation_order': context.presentation_order,
+        'order': context.order,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'show_steps_navigation_interface': context.show_steps_navigation_interface,
         'questionnaire_id': context.questionnaire_id,
@@ -70,7 +70,7 @@ def get_contexts(session, tid, language):
     """
     contexts = session.query(models.Context) \
                       .filter(models.Context.tid == tid) \
-                      .order_by(models.Context.presentation_order)
+                      .order_by(models.Context.order)
 
     return [admin_serialize_context(session, context, language) for context in contexts]
 
@@ -96,7 +96,7 @@ def db_associate_context_receivers(session, context, receiver_ids):
     for i, receiver_id in enumerate(receiver_ids):
         session.add(models.ReceiverContext({'context_id': context.id,
                                             'receiver_id': receiver_id,
-                                            'presentation_order': i}))
+                                            'order': i}))
 
 
 @transact
@@ -234,7 +234,7 @@ def order_elements(session, tid, req_args, *args, **kwargs):
         raise errors.InputValidationError('list does not contain all context ids')
 
     for i, ctx_id in enumerate(ids):
-        id_dict[ctx_id].presentation_order = i
+        id_dict[ctx_id].order = i
 
 
 class ContextsCollection(OperationHandler):

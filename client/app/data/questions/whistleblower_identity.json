@@ -355,7 +355,7 @@
       "x": 0,
       "options": [
         {
-          "presentation_order": 0,
+          "order": 0,
           "trigger_field": "",
           "score_points": 0,
           "label": {
@@ -407,7 +407,7 @@
           "id": ""
         },
         {
-          "presentation_order": 1,
+          "order": 1,
           "trigger_field": "",
           "score_points": 0,
           "label": {
@@ -459,7 +459,7 @@
           "id": ""
         },
         {
-          "presentation_order": 2,
+          "order": 2,
           "trigger_field": "",
           "score_points": 0,
           "label": {

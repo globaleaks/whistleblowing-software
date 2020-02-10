@@ -12,7 +12,7 @@
         <span data-translate>Questionnaire</span>
         <span>{{$index + 1}}</span>
       </div>
-      <div data-ng-repeat="step in questionnaire.steps | orderBy:'presentation_order'">
+      <div data-ng-repeat="step in questionnaire.steps | orderBy:'order'">
         <dt id="step={{$index}}" data-ng-if="questionnaire.steps.length > 1 && tip.context.show_steps_navigation_interface && step.enabled">
           <span data-translate>Step</span>
           <span>{{$index + 1}}: {{step.label}}</span>

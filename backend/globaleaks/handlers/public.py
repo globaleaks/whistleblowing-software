@@ -60,7 +60,7 @@ def db_prepare_contexts_serialization(session, contexts):
         for o in session.query(models.ContextImg).filter(models.ContextImg.id.in_(contexts_ids)):
             data['imgs'][o.id] = o.data
 
-        for o in session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id.in_(contexts_ids)).order_by(models.ReceiverContext.presentation_order):
+        for o in session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id.in_(contexts_ids)).order_by(models.ReceiverContext.order):
             if o.context_id not in data['receivers']:
                 data['receivers'][o.context_id] = []
 
@@ -137,7 +137,7 @@ def db_prepare_fields_serialization(session, fields):
 
         objs = session.query(models.FieldOption)\
                     .filter(models.FieldOption.field_id.in_(fields_ids)) \
-                    .order_by(models.FieldOption.presentation_order)
+                    .order_by(models.FieldOption.order)
         for obj in objs:
             if obj.field_id not in ret['options']:
                 ret['options'][obj.field_id] = []
@@ -207,7 +207,7 @@ def serialize_context(session, context, language, data=None):
     ret_dict = {
         'id': context.id,
         'status': context.status,
-        'presentation_order': context.presentation_order,
+        'order': context.order,
         'languages': context.languages,
         'tip_timetolive': context.tip_timetolive,
         'select_all_receivers': context.select_all_receivers,
@@ -249,7 +249,7 @@ def serialize_field_option(option, language):
     """
     ret_dict = {
         'id': option.id,
-        'presentation_order': option.presentation_order,
+        'order': option.order,
         'block_submission': option.block_submission,
         'score_points': option.score_points,
         'score_type': option.score_type,
@@ -362,7 +362,7 @@ def serialize_step(session, tid, step, language, serialize_templates=True):
     ret_dict = {
         'id': step.id,
         'questionnaire_id': step.questionnaire_id,
-        'presentation_order': step.presentation_order,
+        'order': step.order,
         'triggered_by_score': step.triggered_by_score,
         'triggered_by_options': db_get_triggers_by_type(session, 'step', step.id),
         'children': children
@@ -384,7 +384,7 @@ def serialize_questionnaire(session, tid, questionnaire, language, serialize_tem
     """
     steps = session.query(models.Step).filter(models.Step.questionnaire_id == questionnaire.id,
                                               models.Questionnaire.id == questionnaire.id) \
-                                       .order_by(models.Step.presentation_order)
+                                       .order_by(models.Step.order)
 
     ret_dict = {
         'id': questionnaire.id,

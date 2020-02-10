@@ -10,6 +10,7 @@ class MigrationBase(object):
     """
     skip_model_migration = {}
     skip_count_check = {}
+    renamed_attrs = {}
 
     def __init__(self, migration_mapping, start_version, session_old, session_new):
         self.appdata = load_appdata()
@@ -58,8 +59,13 @@ class MigrationBase(object):
             new_obj = self.model_to[model_name](migrate=True)
 
             for key in [c.key for c in self.model_to[model_name].__table__.columns]:
-                if hasattr(old_obj, key):
-                    setattr(new_obj, key, getattr(old_obj, key))
+                old_key = key
+
+                if model_name in self.renamed_attrs and key in self.renamed_attrs[model_name]:
+                    old_key = self.renamed_attrs[model_name][key]
+
+                if hasattr(old_obj, old_key):
+                    setattr(new_obj, key, getattr(old_obj, old_key))
 
             self.session_new.add(new_obj)
 

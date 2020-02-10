@@ -41,9 +41,8 @@ class MigrationScript(MigrationBase):
         for key in new_node.__table__.columns._data.keys():
             if key == 'receipt_salt':
                 new_node.receipt_salt = sha512(old_node.receipt_salt.encode())[:32]
-                continue
-
-            setattr(new_node, key, getattr(old_node, key))
+            else:
+                setattr(new_node, key, getattr(old_node, key))
 
         self.session_new.add(new_node)
 
@@ -54,8 +53,7 @@ class MigrationScript(MigrationBase):
             for key in new_obj.__table__.columns._data.keys():
                 if key == 'salt':
                     new_obj.salt = sha512(old_obj.salt.encode())[:32]
-                    continue
-
-                setattr(new_obj, key, getattr(old_obj, key))
+                else:
+                    setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)

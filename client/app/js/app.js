@@ -672,7 +672,7 @@ var GLClient = angular.module("GLClient", [
 
         angular.forEach($rootScope.questionnaires_by_id, function(element, key) {
           $rootScope.fieldUtilities.parseQuestionnaire($rootScope.questionnaires_by_id[key], {});
-          $rootScope.questionnaires_by_id[key].steps = $filter("orderBy")($rootScope.questionnaires_by_id[key].steps, "presentation_order");
+          $rootScope.questionnaires_by_id[key].steps = $filter("orderBy")($rootScope.questionnaires_by_id[key].steps, "order");
         });
 
         angular.forEach($rootScope.contexts_by_id, function(element, key) {

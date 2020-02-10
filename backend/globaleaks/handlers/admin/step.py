@@ -85,7 +85,7 @@ def order_elements(session, handler, req_args, *args, **kwargs):
         raise errors.InputValidationError('list does not contain all context ids')
 
     for i, step_id in enumerate(ids):
-        id_dict[step_id].presentation_order = i
+        id_dict[step_id].order = i
 
 
 class StepCollection(OperationHandler):

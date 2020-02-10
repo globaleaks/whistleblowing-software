@@ -83,6 +83,20 @@ class FieldAttr_v_51(Model):
     value = Column(JSON, default=dict, nullable=False)
 
 
+class FieldOption_v_51(Model):
+    __tablename__ = 'fieldoption'
+
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    field_id = Column(UnicodeText(36), nullable=False)
+    label = Column(JSON, default=dict, nullable=False)
+    hint1 = Column(JSON, default=dict, nullable=False)
+    hint2 = Column(JSON, default=dict, nullable=False)
+    score_points = Column(Integer, default=0, nullable=False)
+    score_type = Column(Integer, default=0, nullable=False)
+    block_submission = Column(Boolean, default=False, nullable=False)
+    trigger_receiver = Column(JSON, default=list, nullable=False)
+    presentation_order = Column(Integer, default=0, nullable=False)
+
 class InternalTip_v_51(Model):
     __tablename__ = 'internaltip'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
@@ -125,6 +139,13 @@ class Message_v_51(Model):
     new = Column(Boolean, default=True, nullable=False)
 
 
+class ReceiverContext_v_51(Model):
+    __tablename__ = 'receiver_context'
+    context_id = Column(UnicodeText(36), primary_key=True)
+    receiver_id = Column(UnicodeText(36), primary_key=True)
+    presentation_order = Column(Integer, default=0, nullable=False)
+
+
 class ReceiverFile_v_51(Model):
     __tablename__ = 'receiverfile'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
@@ -137,12 +158,34 @@ class ReceiverFile_v_51(Model):
     status = Column(UnicodeText, default='processing', nullable=False)
 
 
+class Step_v_51(Model):
+    __tablename__ = 'step'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    questionnaire_id = Column(UnicodeText(36), nullable=False)
+    label = Column(JSON, default=dict, nullable=False)
+    description = Column(JSON, default=dict, nullable=False)
+    presentation_order = Column(Integer, default=0, nullable=False)
+    triggered_by_score = Column(Integer, default=0, nullable=False)
+
+
 class SubmissionStatus_v_51(Model):
     __tablename__ = 'submissionstatus'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     tid = Column(Integer, primary_key=True, default=1, nullable=False)
     label = Column(JSON, default=dict, nullable=False)
     system_defined = Column(Boolean, nullable=False, default=False)
+    tip_timetolive = Column(Integer, default=90, nullable=False)
+    tip_timetolive_override = Column(Boolean, default=False, nullable=False)
+    receivers = Column(JSON, default=list, nullable=False)
+    presentation_order = Column(Integer, default=0, nullable=False)
+
+
+class SubmissionSubStatus_v_51(Model):
+    __tablename__ = 'submissionsubstatus'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    tid = Column(Integer, primary_key=True, default=1, nullable=False)
+    submissionstatus_id = Column(UnicodeText(36), nullable=False)
+    label = Column(JSON, default=dict, nullable=False)
     tip_timetolive = Column(Integer, default=90, nullable=False)
     tip_timetolive_override = Column(Boolean, default=False, nullable=False)
     receivers = Column(JSON, default=list, nullable=False)
@@ -188,6 +231,14 @@ class User_v_51(Model):
 class MigrationScript(MigrationBase):
     skip_count_check = {
         'Config': True
+    }
+
+    renamed_attrs = {
+        'FieldOption': {'order': 'presentation_order'},
+        'ReceiverContext': {'order': 'presentation_order'},
+        'Step': {'order': 'presentation_order'},
+        'SubmissionStatus': {'order': 'presentation_order'},
+        'SubmissionSubStatus': {'order': 'presentation_order'}
     }
 
     def migrate_Context(self):

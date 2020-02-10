@@ -478,25 +478,6 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
-    def migrate_ReceiverContext(self):
-        model_from = self.model_from['Receiver']
-        used_presentation_order = []
-        for old_obj in self.session_old.query(self.model_from['ReceiverContext']):
-            new_obj = self.model_to['ReceiverContext']()
-            for key in new_obj.__table__.columns._data.keys():
-                if key == 'tid':
-                    new_obj.tid = 1
-                elif key == 'presentation_order':
-                    presentation_order = self.session_old.query(model_from).filter(model_from.id == old_obj.receiver_id).one().presentation_order
-                    while presentation_order in used_presentation_order:
-                        presentation_order += 1
-
-                    used_presentation_order.append(presentation_order)
-                    new_obj.presentation_order = presentation_order
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)
 
     def migrate_File(self):
         for old_obj in self.session_old.query(self.model_from['File']):

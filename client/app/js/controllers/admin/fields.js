@@ -79,7 +79,7 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
 	"trigger_receiver": []
       };
 
-      new_option.presentation_order = $scope.newItemOrder($scope.field.options, "presentation_order");
+      new_option.order = $scope.newItemOrder($scope.field.options, "order");
 
       $scope.field.options.push(new_option);
     };

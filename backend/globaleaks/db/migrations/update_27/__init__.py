@@ -132,21 +132,14 @@ class Notification_v_26(Model):
 
 
 class MigrationScript(MigrationBase):
+    renamed_attrs = {
+      'Context': {
+          'show_recipients_details': 'show_receivers',
+          'allow_recipients_selection': 'show_receivers'
+      },
+    }
     def prologue(self):
         old_logo_path = os.path.abspath(os.path.join(Settings.files_path, 'globaleaks_logo.png'))
         if os.path.exists(old_logo_path):
             new_logo_path = os.path.abspath(os.path.join(Settings.files_path, 'logo.png'))
             shutil.move(old_logo_path, new_logo_path)
-
-    def migrate_Context(self):
-        for old_obj in self.session_old.query(self.model_from['Context']):
-            new_obj = self.model_to['Context']()
-            for key in new_obj.__table__.columns._data.keys():
-                if key == 'show_recipients_details':
-                    new_obj.show_recipients_details = old_obj.show_receivers
-                elif key == 'allow_recipients_selection':
-                    new_obj.allow_recipients_selection = old_obj.show_receivers
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)

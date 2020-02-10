@@ -96,12 +96,12 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
   }
 ]).controller("AdminSubmissionStatusAddCtrl", ["$scope", "$http",
   function ($scope, $http) {
-    var presentation_order = $scope.newItemOrder($scope.resources.submission_statuses, "presentation_order");
+    var order = $scope.newItemOrder($scope.resources.submission_statuses, "order");
 
     $scope.addSubmissionStatus = function () {
       var new_submissions_status = {
         "label": $scope.new_submissions_status.label,
-        "presentation_order": presentation_order
+        "order": order
       };
 
       $http.post(
@@ -164,12 +164,12 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
   }
 ]).controller("AdminSubmissionSubStatusAddCtrl", ["$scope", "$http",
   function ($scope, $http) {
-    $scope.presentation_order = $scope.newItemOrder($scope.submissions_status.substatuses, "presentation_order");
+    $scope.order = $scope.newItemOrder($scope.submissions_status.substatuses, "order");
 
     $scope.addSubmissionSubStatus = function () {
       var new_submissions_substatuses = {
         "label": $scope.new_substatus.label,
-        "presentation_order": $scope.presentation_order
+        "order": $scope.order
       };
 
       $http.post(
@@ -201,13 +201,13 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
   }
 ]).controller("AdminSubmissionClosedSubStatusAddCtrl", ["$scope", "$http",
   function ($scope, $http) {
-    $scope.closed_ss_presentation_order = $scope.newItemOrder($scope.submissions_status.substatuses, "presentation_order");
+    $scope.closed_ss_order = $scope.newItemOrder($scope.submissions_status.substatuses, "order");
 
     // It would be nice to refactor this with addSubmissionSubStatus
     $scope.addClosingSubmissionSubStatus = function () {
       var new_submissions_substatuses = {
         "label": $scope.new_closed_submissions_substatuses.label,
-        "presentation_order": $scope.closed_ss_presentation_order
+        "order": $scope.closed_ss_order
       };
 
       $http.post(

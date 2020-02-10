@@ -122,7 +122,7 @@ controller("AdminContextAddCtrl", ["$scope", function($scope) {
 
     context.name = $scope.new_context.name;
     context.questionnaire_id = $scope.resources.node.default_questionnaire;
-    context.presentation_order = $scope.newItemOrder($scope.resources.contexts, "presentation_order");
+    context.order = $scope.newItemOrder($scope.resources.contexts, "order");
 
     context.$save(function(new_context){
       $scope.resources.contexts.push(new_context);

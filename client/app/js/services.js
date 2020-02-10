@@ -644,7 +644,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       context.name = "";
       context.description = "";
       context.languages = "",
-      context.presentation_order = 0;
+      context.order = 0;
       context.tip_timetolive = 90;
       context.show_recipients_details = false;
       context.allow_recipients_selection = false;
@@ -689,7 +689,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       step.id = "";
       step.label = "";
       step.description = "";
-      step.presentation_order = 0;
+      step.order = 0;
       step.children = [];
       step.questionnaire_id = questionnaire_id;
       step.triggered_by_score = 0;
@@ -889,7 +889,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       },
 
       getYOrderProperty: function(elem) {
-        var key = "presentation_order";
+        var key = "order";
         if (typeof elem[key] === "undefined") {
           key = "y";
         }

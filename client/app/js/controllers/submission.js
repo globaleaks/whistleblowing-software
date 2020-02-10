@@ -17,7 +17,7 @@ GLClient.controller("SubmissionCtrl",
     return $scope.firstStepIndex() === $scope.lastStepIndex();
   };
 
-  $scope.contextsOrderPredicate = $scope.public.node.show_contexts_in_alphabetical_order ? "name" : "presentation_order";
+  $scope.contextsOrderPredicate = $scope.public.node.show_contexts_in_alphabetical_order ? "name" : "order";
 
   $scope.selectable_contexts = $filter("filter")($scope.public.contexts, {"status": 'enabled'});
   $scope.selectable_contexts = $filter("orderBy")($scope.selectable_contexts, $scope.contextsOrderPredicate);

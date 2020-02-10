@@ -334,7 +334,7 @@ AdminFieldOptionDesc = {
     'hint1': str,
     'hint2': str,
     'block_submission': bool,
-    'presentation_order': int,
+    'order': int,
     'score_type': int,
     'score_points': int,
     'trigger_receiver': list
@@ -390,7 +390,7 @@ AdminStepDesc = {
     'description': str,
     'children': [AdminFieldDesc],
     'questionnaire_id': key_regexp_or_empty,
-    'presentation_order': int,
+    'order': int,
     'triggered_by_score': int,
     'triggered_by_options': list
 }
@@ -433,7 +433,7 @@ AdminContextDesc = {
     'score_receipt_text_m': str,
     'score_receipt_text_h': str,
     'score_threshold_receipt': int,
-    'presentation_order': int,
+    'order': int,
     'recipients_clarification': str,
     'status_page_message': str,
     'show_steps_navigation_interface': bool,
@@ -562,7 +562,7 @@ ContextDesc = {
     'status': str,
     'description': str,
     'languages': languages_list_regexp,
-    'presentation_order': int,
+    'order': int,
     'receivers': [uuid_regexp],
     'select_all_receivers': bool,
     'tip_timetolive': int,
@@ -670,10 +670,10 @@ QuestionnaireDuplicationDesc = {
 
 SubmissionStatusDesc = {
     'label': str,
-    'presentation_order': int
+    'order': int
 }
 
 SubmissionSubStatusDesc = {
     'label': str,
-    'presentation_order': int
+    'order': int
 }

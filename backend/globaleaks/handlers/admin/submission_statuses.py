@@ -21,7 +21,7 @@ def serialize_submission_substatus(substatus, language):
     submission_substatus = {
         'id': substatus.id,
         'submissionstatus_id': substatus.submissionstatus_id,
-        'presentation_order': substatus.presentation_order
+        'order': substatus.order
     }
 
     return get_localized_values(submission_substatus, substatus, substatus.localized_keys, language)
@@ -38,7 +38,7 @@ def serialize_submission_status(session, status, language):
     """
     submission_status = {
         'id': status.id,
-        'presentation_order': status.presentation_order,
+        'order': status.order,
         'substatuses': []
     }
 
@@ -46,7 +46,7 @@ def serialize_submission_status(session, status, language):
     substatuses = session.query(models.SubmissionSubStatus) \
                          .filter(models.SubmissionSubStatus.tid == status.tid,
                                  models.SubmissionSubStatus.submissionstatus_id == status.id) \
-                         .order_by(models.SubmissionSubStatus.presentation_order)
+                         .order_by(models.SubmissionSubStatus.order)
 
     for substatus in substatuses:
         submission_status['substatuses'].append(serialize_submission_substatus(substatus, language))
@@ -86,7 +86,7 @@ def db_get_submission_statuses(session, tid, language):
 
     statuses = session.query(models.SubmissionStatus) \
                       .filter(models.SubmissionStatus.tid == tid) \
-                      .order_by(models.SubmissionStatus.presentation_order)
+                      .order_by(models.SubmissionStatus.order)
 
     for status in statuses:
         status_dict = serialize_submission_status(session, status, language)
@@ -247,7 +247,7 @@ def order_status_elements(session, handler, req_args, *args, **kwargs):
     ids = req_args['ids']
 
     for i, status_id in enumerate(ids):
-        id_dict[status_id].presentation_order = i
+        id_dict[status_id].order = i
 
 
 @transact
@@ -266,7 +266,7 @@ def order_substatus_elements(session, handler, req_args, *args, **kwargs):
         raise errors.InputValidationError('list does not contain all context ids')
 
     for i, substatus_id in enumerate(ids):
-        id_dict[substatus_id].presentation_order = i
+        id_dict[substatus_id].order = i
 
 
 class SubmissionStatusCollection(OperationHandler):

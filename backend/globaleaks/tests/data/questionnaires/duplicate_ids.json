@@ -33,7 +33,7 @@
               "label": {
                 "en": "a"
               },
-              "presentation_order": 0,
+              "order": 0,
               "score_points": 0,
               "trigger_field": "",
               "trigger_step": ""
@@ -43,7 +43,7 @@
               "label": {
                 "en": "b"
               },
-              "presentation_order": 1,
+              "order": 1,
               "score_points": 0,
               "trigger_field": "",
               "trigger_step": ""
@@ -53,7 +53,7 @@
               "label": {
                 "en": "c"
               },
-              "presentation_order": 2,
+              "order": 2,
               "score_points": 0,
               "trigger_field": "",
               "trigger_step": ""
@@ -63,7 +63,7 @@
               "label": {
                 "en": "d"
               },
-              "presentation_order": 3,
+              "order": 3,
               "score_points": 0,
               "trigger_field": "",
               "trigger_step": ""
@@ -89,7 +89,7 @@
       "label": {
         "en": "generic step"
       },
-      "presentation_order": 0,
+      "order": 0,
       "questionnaire_id": "b170589b-30d6-4ec1-ae52-18659b2a606b",
       "triggered_by_options": [],
       "triggered_by_score": 0
@@ -137,7 +137,7 @@
       "label": {
         "en": "final step"
       },
-      "presentation_order": 1,
+      "order": 1,
       "questionnaire_id": "b170589b-30d6-4ec1-ae52-18659b2a606b",
       "triggered_by_options": [],
       "triggered_by_score": 0
