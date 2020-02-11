@@ -1,3 +1,10 @@
+Changes in version 3.11.69 - 2020-02-11
+    Fix qrcode visualization in forced two factor authentication mode
+    Fix listing of identity access requests
+    Show context selection interface only when multiple contexts are available
+    Update version of chrome used during testing
+    Fix migration of whistleblower identity customizations
+
 Changes in version 3.11.68 - 2020-01-28
     Fix regression preventing to configure admin users
 
