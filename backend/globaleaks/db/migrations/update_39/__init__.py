@@ -371,6 +371,11 @@ class Questionnaire_v_38(Model):
     editable = Column(Boolean, default=True)
 
 
+class SecureFileDelete_v_38(Model):
+    __tablename__ = 'securefiledelete'
+    filepath = Column(UnicodeText, primary_key=True)
+
+
 class User_v_38(Model):
     __tablename__ = 'user'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
