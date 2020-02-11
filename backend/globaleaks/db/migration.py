@@ -154,7 +154,7 @@ def perform_data_update(db_file):
     Update the database including up-to-date application data
     :param db_file: The database file path
     """
-    session = get_session(make_db_uri(db_file))
+    session = get_session(make_db_uri(db_file), foreign_keys=False)
 
     enabled_languages = [lang.name for lang in session.query(models.EnabledLanguage)]
 
