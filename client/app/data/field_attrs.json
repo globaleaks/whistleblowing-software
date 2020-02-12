@@ -20,7 +20,7 @@
     "checkbox_label": {"type": "localized", "value": ""},
     "attachment": {"type": "bool", "value": false},
     "attachment_text": {"type": "localized", "value": ""},
-    "attachment_url": {"type": "unicode", "value": ""}
+    "attachment_url": {"type": "localized", "value": ""}
  },
   "date": {
     "min_date": {"type": "unicode", "value": ""},

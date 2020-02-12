@@ -1,6 +1,7 @@
 # -*- coding: UTF-8
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import Model
+from globaleaks.models.enums import EnumFieldAttrType
 from globaleaks.models.properties import *
 from globaleaks.utils.crypto import Base32Encoder
 from globaleaks.utils.utility import datetime_now, datetime_never, datetime_null
@@ -262,6 +263,23 @@ class MigrationScript(MigrationBase):
                     value = 0
 
                 setattr(new_obj, key, value)
+
+            self.session_new.add(new_obj)
+
+    def migrate_FieldAttr(self):
+        for old_obj in self.session_old.query(self.model_from['FieldAttr']):
+            new_obj = self.model_to['FieldAttr']()
+            for key in new_obj.__table__.columns._data.keys():
+                if key in old_obj.__table__.columns._data.keys():
+                    setattr(new_obj, key, getattr(old_obj, key))
+
+            if new_obj.name == 'attachment_url':
+                x = {}
+                for l in self.session_old.query(self.model_from['EnabledLanguage'].name):
+                    x[l[0]] = old_obj.value
+
+                new_obj.type = EnumFieldAttrType.localized.name
+                new_obj.value = x
 
             self.session_new.add(new_obj)
 
