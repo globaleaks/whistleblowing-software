@@ -300,7 +300,8 @@ class MigrationScript(MigrationBase):
                     password = getattr(old_obj, key)
                     if password[0] == 'b' and password[1] == '\'' and password[len(password) - 1] == '\'':
                         password = password[2: -1]
-                        setattr(new_obj, key, password)
+
+                    setattr(new_obj, key, password)
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
