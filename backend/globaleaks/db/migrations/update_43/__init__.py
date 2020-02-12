@@ -31,39 +31,6 @@ class InternalTip_v_42(Model):
     substatus = Column(UnicodeText(36), nullable=True)
 
 
-class Signup_v_42(Model):
-    __tablename__ = 'signup'
-    id = Column(Integer, primary_key=True, nullable=False)
-    tid = Column(Integer, nullable=False)
-    subdomain = Column(UnicodeText, unique=True, nullable=False)
-    language = Column(UnicodeText, nullable=False)
-    name = Column(UnicodeText, nullable=False)
-    surname = Column(UnicodeText, nullable=False)
-    role = Column(UnicodeText, default='', nullable=False)
-    phone = Column(UnicodeText, default='', nullable=False)
-    email = Column(UnicodeText, nullable=False)
-    use_case = Column(UnicodeText, default='', nullable=False)
-    use_case_other = Column(UnicodeText, default='', nullable=False)
-    organization_name = Column(UnicodeText, default='', nullable=False)
-    organization_type = Column(UnicodeText, default='', nullable=False)
-    organization_location1 = Column(UnicodeText, default='', nullable=False)
-    organization_location2 = Column(UnicodeText, default='', nullable=False)
-    organization_location3 = Column(UnicodeText, default='', nullable=False)
-    organization_location4 = Column(UnicodeText, default='', nullable=False)
-    organization_site = Column(UnicodeText, default='', nullable=False)
-    organization_number_employees = Column(UnicodeText, default='', nullable=False)
-    organization_number_users = Column(UnicodeText, default='', nullable=False)
-    hear_channel = Column(UnicodeText, default='', nullable=False)
-    activation_token = Column(UnicodeText, nullable=False)
-    password_admin = Column(UnicodeText, default='', nullable=False)
-    password_recipient = Column(UnicodeText, default='', nullable=False)
-    client_ip_address = Column(UnicodeText, default='', nullable=False)
-    client_user_agent = Column(UnicodeText, default='', nullable=False)
-    registration_date = Column(DateTime, default=datetime_now, nullable=False)
-    tos1 = Column(UnicodeText, default='', nullable=False)
-    tos2 = Column(UnicodeText, default='', nullable=False)
-
-
 class User_v_42(Model):
     __tablename__ = 'user'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)

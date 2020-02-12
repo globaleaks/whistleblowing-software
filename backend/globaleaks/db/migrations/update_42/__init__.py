@@ -35,32 +35,6 @@ class InternalTip_v_41(Model):
     wb_access_counter = Column(Integer, default=0, nullable=False)
 
 
-class Signup_v_41(Model):
-    __tablename__ = 'signup'
-    id = Column(Integer, primary_key=True, nullable=False)
-    tid = Column(Integer, nullable=True)
-    subdomain = Column(UnicodeText, unique=True, nullable=False)
-    language = Column(UnicodeText, nullable=False)
-    name = Column(UnicodeText, nullable=False)
-    surname = Column(UnicodeText, nullable=False)
-    role = Column(UnicodeText, default='', nullable=False)
-    email = Column(UnicodeText, nullable=False)
-    phone = Column(UnicodeText, default='', nullable=False)
-    use_case = Column(UnicodeText, default='', nullable=False)
-    use_case_other = Column(UnicodeText, default='', nullable=False)
-    organization_name = Column(UnicodeText, default='', nullable=False)
-    organization_type = Column(UnicodeText, default='', nullable=False)
-    organization_city = Column(UnicodeText, default='', nullable=False)
-    organization_province = Column(UnicodeText, default='', nullable=False)
-    organization_region = Column(UnicodeText, default='', nullable=False)
-    organization_country = Column(UnicodeText, default='', nullable=False)
-    organization_number_employee = Column(UnicodeText, default='', nullable=False)
-    organization_number_users = Column(UnicodeText, default='', nullable=False)
-    activation_token = Column(UnicodeText, nullable=False)
-    registration_date = Column(DateTime, default=datetime_now, nullable=False)
-    tos = Column(UnicodeText, default='', nullable=False)
-
-
 class MigrationScript(MigrationBase):
     def migrate_Context(self):
         for old_obj in self.session_old.query(self.model_from['Context']):
@@ -106,21 +80,6 @@ class MigrationScript(MigrationBase):
                 new_wbtip.tid = old_obj.tid
                 new_wbtip.receipt_hash = old_obj.receipt_hash
                 self.session_new.add(new_wbtip)
-
-    def migrate_Signup(self):
-        for old_obj in self.session_old.query(self.model_from['Signup']):
-            new_obj = self.model_to['Signup']()
-            for key in new_obj.__table__.columns._data.keys():
-                if key not in old_obj.__table__.columns:
-                    continue
-
-                setattr(new_obj, key, getattr(old_obj, key))
-
-            if old_obj.tid is None:
-                self.entries_count['Signup'] -= 1
-                continue
-
-            self.session_new.add(new_obj)
 
     def migrate_Stats(self):
         for old_obj in self.session_old.query(self.model_from['Stats']):

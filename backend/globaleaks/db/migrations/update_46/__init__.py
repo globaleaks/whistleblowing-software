@@ -319,10 +319,8 @@ class MigrationScript(MigrationBase):
             a = self.session_new.query(m.value).filter(m.tid == t.id, m.var_name == 'ip_filter_authenticated_enable').one_or_none()
             b = self.session_new.query(m.value).filter(m.tid == t.id, m.var_name == 'ip_filter_authenticated').one_or_none()
 
-            if a is None or b is None:
-                continue
-
-            for c in ['admin', 'custodian', 'receiver']:
-                self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': 'ip_filter_' + c + '_enable', 'value': a[0]}))
-                self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': 'ip_filter_' + c, 'value': b[0]}))
-                self.entries_count['Config'] += 2
+            if a is not None or b is not None:
+                for c in ['admin', 'custodian', 'receiver']:
+                    self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': 'ip_filter_' + c + '_enable', 'value': a[0]}))
+                    self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': 'ip_filter_' + c, 'value': b[0]}))
+                    self.entries_count['Config'] += 2

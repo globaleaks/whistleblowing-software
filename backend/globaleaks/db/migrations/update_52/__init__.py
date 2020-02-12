@@ -248,8 +248,9 @@ class MigrationScript(MigrationBase):
                 if key not in old_obj.__table__.columns._data.keys():
                     continue
 
+                value = getattr(old_obj, key)
+
                 if key == 'status':
-                    value = getattr(old_obj, key)
                     if value == 0:
                        value = 'disabled'
                     elif value == 1:
@@ -257,9 +258,10 @@ class MigrationScript(MigrationBase):
                     else:
                        value = 'hidden'
 
-                    setattr(new_obj, key, value)
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
+                if key == 'tip_timetolive' and value < 0:
+                    value = 0
+
+                setattr(new_obj, key, value)
 
             self.session_new.add(new_obj)
 

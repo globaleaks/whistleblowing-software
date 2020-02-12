@@ -95,12 +95,6 @@ class ConfigL10N_v_38(Model):
         self.var_name = var_name
         self.value = value
 
-    def set_v(self, value):
-        value = value
-        if self.value != value:
-            self.value = value
-            self.customized = True
-
 
 class Context_v_38(Model):
     __tablename__ = 'context'
@@ -187,17 +181,6 @@ class FieldAttr_v_38(Model):
 
         if values is None:
             return
-
-        if self.type == 'localized':
-            value = values['value']
-            previous = getattr(self, 'value')
-
-            if previous and isinstance(previous, dict):
-                previous.update(value)
-            else:
-                setattr(self, 'value', value)
-        else:
-            setattr(self, 'value', values['value'])
 
 
 class FieldOption_v_38(Model):

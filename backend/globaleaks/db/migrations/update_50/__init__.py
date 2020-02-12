@@ -67,16 +67,6 @@ class User_v_49(Model):
 class MigrationScript(MigrationBase):
     status_map = {}
 
-    def migrate_Signup(self):
-        for old_obj in self.session_old.query(self.model_from['Signup']):
-            new_obj = self.model_to['Signup']()
-            for key in new_obj.__table__.columns._data.keys():
-                setattr(new_obj, key, getattr(old_obj, key))
-
-            new_obj.activation_token = ''
-
-            self.session_new.add(new_obj)
-
     def migrate_SubmissionStatus(self):
         for old_obj in self.session_old.query(self.model_from['SubmissionStatus']):
             new_obj = self.model_to['SubmissionStatus']()
