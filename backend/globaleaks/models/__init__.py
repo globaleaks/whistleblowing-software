@@ -811,7 +811,7 @@ class _InternalTipAnswers(Model):
 
 
 class _InternalTipData(Model):
-    __tablename__ = 'Internaltipdata'
+    __tablename__ = 'internaltipdata'
 
     internaltip_id = Column(UnicodeText(36), primary_key=True)
     key = Column(UnicodeText, primary_key=True)
