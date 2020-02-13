@@ -13,12 +13,6 @@
     "{RecipientName}",
     "{PGPKeyInfo}"
   ],
-  "receiver_notification_limit_reached_mail_template": [
-    "{NodeName}",
-    "{HiddenService}",
-    "{PublicSite}",
-    "{RecipientName}"
-  ],
   "software_update_available_mail_title": [
     "{NodeName}",
     "{HiddenService}",
@@ -208,12 +202,6 @@
     "{Url}",
     "{FileName}",
     "{FileSize}"
-  ],
-  "receiver_notification_limit_reached_mail_title": [
-    "{NodeName}",
-    "{HiddenService}",
-    "{PublicSite}",
-    "{RecipientName}"
   ],
   "tip_mail_template": [
     "{NodeName}",
