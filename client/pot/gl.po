@@ -91,7 +91,7 @@ msgstr "ficheiro non dispoñible"
 msgid "Recipient interface"
 msgstr "Interface de destinatario"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Data de creación"
 
 msgid "Expiration date"

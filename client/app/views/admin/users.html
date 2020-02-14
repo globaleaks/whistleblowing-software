@@ -182,7 +182,7 @@
               <textarea name="description" class="form-control" data-ng-model="user.description"></textarea>
             </div>
             <div class="form-group">
-              <label data-translate>Status</label>
+              <label data-translate>State</label>
               <select class="form-control" data-ng-model="user.state">
                 <option value="disabled" data-translate>Disabled</option>
                 <option value="enabled" data-translate>Enabled</option>
@@ -245,15 +245,15 @@
             </div>
             <div class="form-group" data-ng-if="!public.node.can_postpone_expiration">
               <input data-ng-model="user.can_postpone_expiration" type="checkbox"/>
-              <label data-translate>Allow the recipient to postpone the submission expiration date</label>
+              <label data-translate>Allow the recipient to postpone the report expiration date</label>
             </div>
             <div class="form-group" data-ng-if="!public.node.can_delete_submission">
               <input data-ng-model="user.can_delete_submission" type="checkbox"/>
-              <label data-translate>Allow the recipient to delete submissions</label>
+              <label data-translate>Allow the recipient to delete reports</label>
             </div>
             <div class="form-group" data-ng-if="!public.node.can_grant_permissions">
               <input data-ng-model="user.can_grant_permissions" type="checkbox"/>
-              <label data-translate>Allow the recipient to grant permissions to whistleblowers on specific submissions</label>
+              <label data-translate>Allow the recipient to grant permissions to whistleblowers on specific reports</label>
             </div>
           </div>
         </div>

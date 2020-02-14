@@ -103,7 +103,7 @@ msgstr "fichier non disponible"
 msgid "Recipient interface"
 msgstr "Interface du destinataire"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Daty namoronana azy"
 
 msgid "Expiration date"

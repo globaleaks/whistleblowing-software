@@ -123,7 +123,7 @@ msgstr "arquivo não disponível"
 msgid "Recipient interface"
 msgstr "Interface de Destinatário"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Data de criação"
 
 msgid "Expiration date"

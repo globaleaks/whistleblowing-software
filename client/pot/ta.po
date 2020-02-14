@@ -91,7 +91,7 @@ msgstr "கோப்பு கிடைக்கவில்லை"
 msgid "Recipient interface"
 msgstr "பெறுநரின் இடைமுகம்"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "உருவாக்கிய தேதி"
 
 msgid "Expiration date"

@@ -91,7 +91,7 @@ msgstr "nedostopna datoteka"
 msgid "Recipient interface"
 msgstr "Prejemnikov vmesnik"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Datum vnosa"
 
 msgid "Expiration date"

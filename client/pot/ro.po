@@ -102,7 +102,7 @@ msgstr "document indisponibil"
 msgid "Recipient interface"
 msgstr "Interfaţă destinatar"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Data creării"
 
 msgid "Expiration date"

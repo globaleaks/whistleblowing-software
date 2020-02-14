@@ -99,7 +99,7 @@ msgstr "Soubor nedostupný"
 msgid "Recipient interface"
 msgstr "Rozhraní příjemce"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Datum vytvoření"
 
 msgid "Expiration date"

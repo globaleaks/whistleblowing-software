@@ -2,10 +2,10 @@
   <div class="card-header">
     <div class="row">
       <span class="col-md-6">
-        <span data-translate>Submission</span><span data-ng-if="Authentication.session.role == 'receiver'">:</span>
+        <span data-translate>Report</span><span data-ng-if="Authentication.session.role == 'receiver'">:</span>
         <span data-ng-if="Authentication.session.role == 'receiver'">
           <span data-ng-if="!showEditLabelInput" class="TipLabel" data-ng-click="editLabel();"
-                uib-popover="{{'Label the submission' | translate}}" popover-placement="right">
+                uib-popover="{{'Label the report' | translate}}" popover-placement="right">
             <span id="Label">{{tip.label}}</span>
             <i class="fas fa-tag"></i>
           </span>
@@ -13,7 +13,7 @@
           <span data-ng-if="showEditLabelInput" class="form-inline">
             <div id="AssignLabelInput"  class="input-group">
               <input id="assignLabelInput" type="text" class="form-control" data-ng-attr-placeholder="{{'Label' | translate}}" data-ng-model="tip.label" />
-              <span class="input-group-append" uib-popover="{{'Assign a label to the submission' | translate}}" popover-placement="right">
+              <span class="input-group-append" uib-popover="{{'Assign a label to the report' | translate}}" popover-placement="right">
                 <button id="assignLabelButton" class="btn btn-primary" data-ng-click="updateLabel(tip.label);">
                   <i class="fas fa-tag"></i>
                 </button>
@@ -40,7 +40,7 @@
         </th>
         <th class="TipInfoSubmissionDate">
           <i class="fas fa-clock"></i>
-          <span data-translate>Creation date</span>
+          <span data-translate>Date</span>
         </th>
         <th class="TipInfoLastUpdate">
           <i class="fas fa-clock"></i>
@@ -63,7 +63,7 @@
         </th>
         <th class="TipInfoSubmissionStatus">
           <i class="fas fa-dot-circle"></i>
-          <span data-translate>Status</span>
+          <span data-translate>State</span>
         </th>
         <th class="TipInfoScore" data-ng-if="Authentication.session.role == 'receiver' && public.node.enable_scoring_system">
           <i class="fas fa-flash"></i>
@@ -83,11 +83,11 @@
         </td>
         <td class="TipInfoAccessExpiration" data-ng-if="Authentication.session.role === 'receiver'">
             <span data-ng-if="!tip.wb_access_revoked"
-                  uib-popover="{{'Unless the whistleblower checks the submission by this time, their access to it will expire.' | translate}}"
+                  uib-popover="{{'Unless the whistleblower checks the report by this time, their access to it will expire.' | translate}}"
                   popover-placement="left">{{tip.wb_last_access | expirationDate:public.node.wbtip_timetolive | date:'dd-MM-yyyy HH:mm'}}</span>
           <span data-ng-if="tip.wb_access_revoked"
                 class="badge badge-warning"
-                uib-popover="{{'The whistleblower can no longer access the submission' | translate}}"
+                uib-popover="{{'The whistleblower can no longer access the report' | translate}}"
                 popover-placement="left" data-translate>Revoked</span>
         </td>
         <td class="TipInfoLastAccess" data-ng-if="Authentication.session.role == 'receiver'">
@@ -98,9 +98,9 @@
         </td>
         <td class="TipInfoConnection">
             <span data-ng-if="tip.https"
-                  uib-popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="left">HTTPS</span>
+                  uib-popover="{{'The connection has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="left">HTTPS</span>
           <span data-ng-if="!tip.https"
-                uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="left">Tor</span>
+                uib-popover="{{'The connection has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="left">Tor</span>
         </td>
 	<td class="TipInfoSubmissionStatus">{{tip.submissionStatusStr}}</td>
         <td class="TipInfoScore" data-ng-if="Authentication.session.role == 'receiver'" data-ng-switch="tip.score">

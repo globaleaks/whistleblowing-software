@@ -94,7 +94,7 @@ msgstr "tiedosto ei ole saatavilla"
 msgid "Recipient interface"
 msgstr "Vastaanottajan näkymä"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Luontipäivämäärä"
 
 msgid "Expiration date"

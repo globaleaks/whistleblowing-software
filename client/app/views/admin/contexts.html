@@ -85,7 +85,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label data-translate>Status</label>
+                <label data-translate>State</label>
                 <select class="form-control" data-ng-model="context.status" convert-to-number>
                   <option value="enabled" data-translate>Enabled</option>
                   <option value="hidden" data-translate>Hidden</option>
@@ -156,7 +156,7 @@
               </div>
               <div class="form-group">
                 <label>
-                  <span data-translate>Submission expiration</span> (<span data-translate>days</span>)
+                  <span data-translate>Expiration date</span> (<span data-translate>days</span>)
                 </label>
                 <div>
                       <span data-ng-class="{'is-invalid': editContext.timetolive.$invalid}">
@@ -225,7 +225,7 @@
                       <div class="form-group">
                         <label class="inline-checkbox">
                           <input data-ng-model="context.show_recipients_details" type="checkbox"/>
-                          <span data-translate>Show recipient details on the status page of the submission</span>
+                          <span data-translate>Show recipient details on the status page of the report</span>
                         </label>
                       </div>
                       <div class="form-group">
@@ -263,7 +263,7 @@
                     <div class="form-group">
                       <label class="inline-checkbox">
                         <input data-ng-model="context.enable_attachments" type="checkbox"/>
-                        <span data-translate>Let whistleblowers add attachments onto existing submissions</span>
+                        <span data-translate>Let whistleblowers add attachments onto existing reports</span>
                       </label>
                     </div>
                     <div class="form-group">
@@ -273,7 +273,7 @@
                       </label>
                     </div>
                     <div class="form-group">
-                      <label data-translate>Message shown on top of the status page of the submission</label>
+                      <label data-translate>Message shown on top of the status page of the report</label>
                       <div>
                         <textarea name="description" class="form-control"
                                   data-ng-model="context.status_page_message"></textarea>
@@ -341,7 +341,7 @@
                               </div>
                             </div>
                           </div>
-                          <label data-translate>Assign the receipt only to submissions reaching score:</label>
+                          <label data-translate>Assign the receipt only to reports reaching score:</label>
                           <select class="form-control" data-ng-model="context.score_threshold_receipt"
                                   convert-to-number>
                             <option value="0" data-translate>Low</option>

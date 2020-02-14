@@ -131,7 +131,7 @@ msgstr "Datei nicht verfügbar"
 msgid "Recipient interface"
 msgstr "Empfängeroberfläche"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Erstellungsdatum"
 
 msgid "Expiration date"

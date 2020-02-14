@@ -106,7 +106,7 @@ msgstr "fájl nem elérhető"
 msgid "Recipient interface"
 msgstr "Címzett felület"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Létrehozás ideje"
 
 msgid "Expiration date"

@@ -6,7 +6,7 @@
   "steps": [
     {
       "label": {
-        "en": "Fill out your submission"
+        "en": "Fill out your report"
       },
       "description": {
         "en": ""
@@ -20,7 +20,7 @@
           "type": "inputbox",
           "preview": true,
           "description": {
-            "en": "Describe your submission in a few words."
+            "en": "Describe your report in a few words."
           },
           "hint": {
             "en": ""
@@ -64,7 +64,7 @@
           "type": "textarea",
           "preview": false,
           "description": {
-            "en": "Describe your submission in detail."
+            "en": "Describe your report in detail."
           },
           "hint": {
             "en": ""
@@ -100,7 +100,7 @@
           "type": "fileupload",
           "preview": false,
           "description": {
-            "en": "Attach files relevant to the submission."
+            "en": "Attach files relevant to the report."
           },
           "hint": {
             "en": ""

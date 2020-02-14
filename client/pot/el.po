@@ -101,7 +101,7 @@ msgstr "μη διαθέσιμο αρχείο"
 msgid "Recipient interface"
 msgstr "Διεπαφή παραλήπτη"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Ημερομηνία δημιουργίας"
 
 msgid "Expiration date"

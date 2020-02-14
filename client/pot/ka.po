@@ -88,7 +88,7 @@ msgstr "წარადგინოს unavailable"
 msgid "Recipient interface"
 msgstr "მიმღების ინტერფეისი"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "შექმნის თარიღი"
 
 msgid "Expiration date"

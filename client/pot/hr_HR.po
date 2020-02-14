@@ -93,7 +93,7 @@ msgstr "datoteka nije dostupna"
 msgid "Recipient interface"
 msgstr "Sučelje primatelja"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Datum stvaranja"
 
 msgid "Expiration date"

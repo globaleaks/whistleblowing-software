@@ -1,8 +1,8 @@
 Dear {RecipientName},
 
-This is an email to notify you that a custodian has authorized you to access to the whistleblowing identity for the submission {TipNum}.
+This is an email to notify you that a custodian has authorized you to access to the whistleblowing identity for the report {TipNum}.
 
-The submission can be accessed at:
+The report can be accessed at:
 {Url}
 
 Kind regards,

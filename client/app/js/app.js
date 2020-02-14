@@ -229,7 +229,7 @@ var GLClient = angular.module("GLClient", [
       when("/receiver/tips", {
         templateUrl: "views/receiver/tips.html",
         controller: "ReceiverTipsCtrl",
-        header_title: "List of submissions",
+        header_title: "Reports",
         resolve: {
           access: requireAuth("receiver"),
         }
@@ -382,7 +382,7 @@ var GLClient = angular.module("GLClient", [
       }).
       when("/custodian/identityaccessrequests", {
         templateUrl: "views/custodian/identity_access_requests.html",
-        header_title: "List of access requests to whistleblowers' identities",
+        header_title: "Access requests",
         resolve: {
           access: requireAuth("custodian"),
         }

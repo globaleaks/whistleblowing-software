@@ -96,7 +96,7 @@ msgstr "nộp không có sẵn"
 msgid "Recipient interface"
 msgstr "giao diện người nhận"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Ngày thành lập"
 
 msgid "Expiration date"

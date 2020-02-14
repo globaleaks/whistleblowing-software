@@ -93,7 +93,7 @@ msgstr "fayl yoxdur"
 msgid "Recipient interface"
 msgstr "Alıcı paneli"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Yaradılma tarixi"
 
 msgid "Expiration date"

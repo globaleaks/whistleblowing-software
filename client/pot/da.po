@@ -91,7 +91,7 @@ msgstr "fil utilgængelig"
 msgid "Recipient interface"
 msgstr "Modtagerinterface"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Oprettelsesdato"
 
 msgid "Expiration date"

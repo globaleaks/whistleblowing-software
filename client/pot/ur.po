@@ -97,7 +97,7 @@ msgstr "فائل دستیاب نہیں ہے"
 msgid "Recipient interface"
 msgstr "وصول کنندہ کا انٹرفیس"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "تاریخِ تخلیق"
 
 msgid "Expiration date"

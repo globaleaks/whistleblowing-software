@@ -89,7 +89,7 @@ msgstr "사용할 수없는 파일"
 msgid "Recipient interface"
 msgstr "받는 사람 인터페이스"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "작성 날짜"
 
 msgid "Expiration date"

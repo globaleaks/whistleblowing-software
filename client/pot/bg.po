@@ -96,7 +96,7 @@ msgstr "Недостъпен файл"
 msgid "Recipient interface"
 msgstr "Интерфейс на получателя"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Дата на създаване"
 
 msgid "Expiration date"

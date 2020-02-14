@@ -93,7 +93,7 @@ msgstr "利用不能なファイル"
 msgid "Recipient interface"
 msgstr "受信者インターフェース"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "作成日"
 
 msgid "Expiration date"

@@ -124,7 +124,7 @@ msgstr "bestand niet beschikbaar"
 msgid "Recipient interface"
 msgstr "Ontvangers-dashboard"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Datum van aanmaken"
 
 msgid "Expiration date"

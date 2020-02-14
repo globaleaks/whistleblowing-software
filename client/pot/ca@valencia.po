@@ -100,7 +100,7 @@ msgstr "fitxer no disponible"
 msgid "Recipient interface"
 msgstr "Interfície de destinatari"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Data de creació"
 
 msgid "Expiration date"

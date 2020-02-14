@@ -102,7 +102,7 @@ msgstr "קובץ לא זמין"
 msgid "Recipient interface"
 msgstr "ממשק המקבל"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "תאריך יצירה"
 
 msgid "Expiration date"

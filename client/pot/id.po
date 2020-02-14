@@ -107,7 +107,7 @@ msgstr "file tidak tersedia"
 msgid "Recipient interface"
 msgstr "Antarmuka penerima"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Tanggal pembuatan"
 
 msgid "Expiration date"

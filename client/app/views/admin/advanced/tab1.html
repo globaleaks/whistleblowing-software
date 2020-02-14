@@ -31,21 +31,21 @@
     <div class="form-group">
       <label>
         <input data-ng-model="resources.node.can_delete_submission" type="checkbox" />
-        <span data-translate>Allow recipients to delete submissions</span>
+        <span data-translate>Allow recipients to delete reports</span>
       </label>
     </div>
 
     <div class="form-group">
       <label>
         <input data-ng-model="resources.node.can_postpone_expiration" type="checkbox" />
-        <span data-translate>Allow recipients to postpone expiration date of the submission</span>
+        <span data-translate>Allow recipients to postpone expiration date of the report</span>
       </label>
     </div>
 
     <div class="form-group">
       <label>
         <input data-ng-model="resources.node.can_grant_permissions" type="checkbox" />
-        <span data-translate>Allow recipients to grant permissions to whistleblowers on specific submissions</span>
+        <span data-translate>Allow recipients to grant permissions to whistleblowers on specific reports</span>
       </label>
     </div>
 
@@ -181,7 +181,7 @@
     </div>
 
     <div class="form-group">
-      <label data-translate>Title of the submission status page</label>
+      <label data-translate>Title of the status page of the report</label>
       <div>
         <textarea class="form-control" data-ng-model="resources.node.header_title_tippage"></textarea>
       </div>
@@ -209,7 +209,7 @@
     <div class="form-group">
       <label>
         <input data-ng-model="resources.node.basic_auth" type="checkbox" />
-        <span data-translate>Enable HTTP Basic Authentication to limit platform access</span>
+        <span data-translate>Enable HTTP Basic Authentication</span>
       </label>
       <div data-ng-if="resources.node.basic_auth" class="nested">
         <label data-translate>Username</label>
@@ -291,7 +291,7 @@
       <button class="btn btn-danger"
         data-ng-click="resetSubmissions()">
         <i class="fas fa-trash"></i>
-        <span data-translate>Reset submissions</span>
+        <span data-translate>Reset reports</span>
       </button>
     </div>
   </div>

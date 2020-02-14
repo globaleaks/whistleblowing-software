@@ -117,7 +117,7 @@ msgstr "plik niedostępny"
 msgid "Recipient interface"
 msgstr "Interfejs odbiorcy"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Data utworzenia"
 
 msgid "Expiration date"

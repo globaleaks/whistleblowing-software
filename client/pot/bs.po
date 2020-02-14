@@ -90,7 +90,7 @@ msgstr "datoteka nije dostupna"
 msgid "Recipient interface"
 msgstr "primalac sučelje"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Datum kreiranja"
 
 msgid "Expiration date"

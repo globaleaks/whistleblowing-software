@@ -91,7 +91,7 @@ msgstr "fil utilgjengelig"
 msgid "Recipient interface"
 msgstr "Mottaker-grensesnitt"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Opprettelsesdato"
 
 msgid "Expiration date"

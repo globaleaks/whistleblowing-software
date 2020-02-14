@@ -94,7 +94,7 @@ msgstr "ยื่นไม่พร้อมใช้งาน"
 msgid "Recipient interface"
 msgstr "อินเตอร์เฟซของผู้รับ"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "วันที่สร้าง"
 
 msgid "Expiration date"

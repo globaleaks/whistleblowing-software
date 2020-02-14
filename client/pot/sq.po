@@ -91,7 +91,7 @@ msgstr "skedari s'është i disponueshëm"
 msgid "Recipient interface"
 msgstr "Ndërfaqja e Marrësit"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Data e Krijimit"
 
 msgid "Expiration date"

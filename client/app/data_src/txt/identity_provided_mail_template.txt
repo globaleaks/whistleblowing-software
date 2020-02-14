@@ -1,8 +1,8 @@
 Dear {RecipientName},
 
-This is an email to notify you that the whistleblower for the submission {TipNum} has provided their identity.
+This is an email to notify you that the whistleblower for the report {TipNum} has provided their identity.
 
-The submission can be accessed at:
+The report can be accessed at:
 {Url}
 
 Kind regards,

@@ -103,7 +103,7 @@ msgstr "文件无法获得"
 msgid "Recipient interface"
 msgstr "接收者界面"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "创建日期"
 
 msgid "Expiration date"

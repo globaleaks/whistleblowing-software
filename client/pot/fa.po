@@ -109,7 +109,7 @@ msgstr "فایل در دسترس نیست"
 msgid "Recipient interface"
 msgstr "رابط دریافتکننده"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "تاریخ تولید"
 
 msgid "Expiration date"

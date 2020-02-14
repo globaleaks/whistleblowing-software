@@ -110,7 +110,7 @@ msgstr "Dosya kullanılamıyor"
 msgid "Recipient interface"
 msgstr "Alıcı arayüzü"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Oluşturma tarihi"
 
 msgid "Expiration date"

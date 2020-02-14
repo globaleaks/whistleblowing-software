@@ -106,7 +106,7 @@ msgstr "файл недоступний"
 msgid "Recipient interface"
 msgstr "Інтерфейс одержувача"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Дата Створення"
 
 msgid "Expiration date"

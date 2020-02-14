@@ -98,7 +98,7 @@ msgstr "súbor nie je k dispozícii"
 msgid "Recipient interface"
 msgstr "Rozhranie príjemca"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Dátum vytvorenia"
 
 msgid "Expiration date"

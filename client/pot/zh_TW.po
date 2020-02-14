@@ -94,7 +94,7 @@ msgstr "檔案無法取得"
 msgid "Recipient interface"
 msgstr "收件者介面"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "建立日期"
 
 msgid "Expiration date"

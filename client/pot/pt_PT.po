@@ -106,7 +106,7 @@ msgstr "ficheiro indisponível"
 msgid "Recipient interface"
 msgstr "Interface do destinatário"
 
-msgid "Creation date"
+msgid "Date"
 msgstr "Data de criação"
 
 msgid "Expiration date"

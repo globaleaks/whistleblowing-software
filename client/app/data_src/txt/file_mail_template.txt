@@ -1,8 +1,8 @@
 Dear {RecipientName},
 
-This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.
+This is an email to notify you that the whistleblower of report {TipNum} has attached new material.
 
-The submission can be accessed at:
+The report can be accessed at:
 {Url}
 
 Kind regards,
