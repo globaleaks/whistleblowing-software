@@ -104,7 +104,7 @@
         </td>
 	<td class="TipInfoSubmissionStatus">{{tip.submissionStatusStr}}</td>
         <td class="TipInfoScore" data-ng-if="Authentication.session.role == 'receiver'" data-ng-switch="tip.score">
-          <span data-ng-switch-when="0" data-translate>-</span>
+          <span data-ng-switch-when="0">-</span>
           <span class="badge badge-success" data-ng-switch-when="1" data-translate>Low</span>
           <span class="badge badge-warning" data-ng-switch-when="2" data-translate>Medium</span>
           <span class="badge badge-danger" data-ng-switch-when="3" data-translate>High</span>
