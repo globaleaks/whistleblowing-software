@@ -28,6 +28,20 @@
       </label>
     </div>
 
+    <div class="form-group" data-ng-if="resources.node.multisite">
+      <label>
+        <input data-ng-model="resources.node.multisite_login" type="checkbox" />
+        <span data-translate>Enable multi-site login</span>
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>
+        <input data-ng-model="resources.node.simplified_login" type="checkbox" />
+        <span data-translate>Enable simplified login</span>
+      </label>
+    </div>
+
     <div class="form-group">
       <label>
         <input data-ng-model="resources.node.can_delete_submission" type="checkbox" />
@@ -103,27 +117,6 @@
     <div data-ng-include="'views/partials/ricochet_config.html'"></div>
 
     <div class="form-group">
-      <label data-translate>Amount of days till whistleblower access expires</label>
-      <input class="form-control" data-ng-model="resources.node.wbtip_timetolive" type="number" min="1" />
-      <div data-translate>For security reasons the whistleblower access is subject to expiration.</div>
-      <div data-translate>Tweak this setting only if you know what you are doing.</div>
-    </div>
-
-    <div class="form-group">
-      <label>
-        <input data-ng-model="resources.node.two_factor" type="checkbox" />
-        <span data-translate>Require two factor authentication</span>
-      </label>
-    </div>
-
-    <div class="form-group">
-      <label data-translate>Password change interval</label>
-      <input class="form-control" data-ng-model="resources.node.password_change_period" type="number" min="0" />
-      <div data-translate>For security reasons, password changes are required at regular intervals.</div>
-      <div data-translate>Set the value to 0 to disable this feature.</div>
-    </div>
-
-    <div class="form-group">
       <label data-translate>Landing page</label>
       <select name="type" class="form-control" data-ng-model="resources.node.landing_page" required>
         <option value="homepage">home</option>
@@ -196,14 +189,8 @@
     </div>
 
     <div class="form-group">
-      <input data-ng-model="resources.node.enable_admin_exception_notification" type="checkbox">
-      <label data-translate>Notify administrators of software problems</label>
-    </div>
-
-    <div class="form-group">
-      <input data-ng-model="resources.node.enable_developers_exception_notification" type="checkbox">
-      <label data-translate>Notify developers of software problems</label>
-      <div data-translate>By enabling this feature, you will contribute to the development and security of the platform.</div>
+      <input data-ng-model="resources.node.https_preload" type="checkbox" />
+      <label data-translate>Enable HSTS preload</label>
     </div>
 
     <div class="form-group">
@@ -221,21 +208,38 @@
 
     <div class="form-group">
       <label>
-        <input data-ng-model="resources.node.multisite_login" type="checkbox" />
-        <span data-translate>Enable multi-site login</span>
+        <input data-ng-model="resources.node.two_factor" type="checkbox" />
+        <span data-translate>Require two factor authentication</span>
       </label>
     </div>
 
     <div class="form-group">
-      <label>
-        <input data-ng-model="resources.node.simplified_login" type="checkbox" />
-        <span data-translate>Enable simplified login</span>
-      </label>
+      <label data-translate>Password change interval</label>
+      <input class="form-control" data-ng-model="resources.node.password_change_period" type="number" min="0" />
+      <div data-translate>For security reasons, password changes are required at regular intervals.</div>
+      <div data-translate>Set the value to 0 to disable this feature.</div>
     </div>
 
     <div class="form-group">
-      <input data-ng-model="resources.node.https_preload" type="checkbox" />
-      <label data-translate>Enable HSTS preload</label>
+      <label data-translate>Amount of days till whistleblower access expires</label>
+      <input class="form-control" data-ng-model="resources.node.wbtip_timetolive" type="number" min="1" />
+      <div data-translate>For security reasons the whistleblower access is subject to expiration.</div>
+      <div data-translate>Tweak this setting only if you know what you are doing.</div>
+    </div>
+
+    <div class="form-group">
+      <input data-ng-model="resources.node.enable_custodian" type="checkbox">
+      <label data-translate>Enable custodian user role</label>
+    </div>
+
+    <div class="form-group">
+      <input data-ng-model="resources.node.enable_scoring_system" type="checkbox">
+      <label data-translate>Enable scoring system</label>
+    </div>
+
+    <div class="form-group">
+      <input data-ng-model="resources.node.enable_private_labels" type="checkbox">
+      <label data-translate>Enable private labels</label>
     </div>
 
     <div data-ng-if="resources.node.root_tenant">
@@ -255,18 +259,14 @@
     </div>
 
     <div class="form-group">
-      <input data-ng-model="resources.node.enable_custodian" type="checkbox">
-      <label data-translate>Enable custodian user role</label>
+      <input data-ng-model="resources.node.enable_admin_exception_notification" type="checkbox">
+      <label data-translate>Notify administrators of software problems</label>
     </div>
 
     <div class="form-group">
-      <input data-ng-model="resources.node.enable_scoring_system" type="checkbox">
-      <label data-translate>Enable scoring system</label>
-    </div>
-
-    <div class="form-group">
-      <input data-ng-model="resources.node.enable_private_labels" type="checkbox">
-      <label data-translate>Enable private labels</label>
+      <input data-ng-model="resources.node.enable_developers_exception_notification" type="checkbox">
+      <label data-translate>Notify developers of software problems</label>
+      <div data-translate>By enabling this feature, you will contribute to the development and security of the platform.</div>
     </div>
 
     <div class="form-group">
