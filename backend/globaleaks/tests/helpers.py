@@ -1108,7 +1108,6 @@ class MockDict:
             'simplified_login': False,
             'enable_scoring_system': False,
             'enable_custodian': False,
-            'enable_experimental_features': False,
             'enable_signup': True,
             'mode': 'default',
             'signup_tos1_enable': False,

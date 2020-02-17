@@ -247,7 +247,6 @@ AdminNodeDesc = {
     'simplified_login': bool,
     'enable_custodian': bool,
     'enable_scoring_system': bool,
-    'enable_experimental_features': bool,
     'enable_signup': bool,
     'mode': str,
     'signup_tos1_enable': bool,

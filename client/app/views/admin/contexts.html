@@ -241,20 +241,18 @@
                       </label>
                     </div>
                     <div class="form-group">
-                      <label class="inline-checkbox"
-                             data-ng-if="resources.node.enable_experimental_features && context.enable_comments">
+                      <label class="inline-checkbox" data-ng-if="context.enable_comments">
                         <input data-ng-model="context.enable_two_way_comments" type="checkbox"/>
                         <span data-translate>Allow whistleblowers to write comments</span>
                       </label>
                     </div>
                     <div class="form-group">
-                      <label class="inline-checkbox">
+                      <label class="inline-checkbox">i
                         <input data-ng-model="context.enable_messages" type="checkbox"/>
                         <span data-translate>Enable private messages</span>
                       </label>
                     </div>
-                    <div class="form-group"
-                         data-ng-if="resources.node.enable_experimental_features && context.enable_messages">
+                    <div class="form-group" data-ng-if="context.enable_messages">
                       <label class="inline-checkbox">
                         <input data-ng-model="context.enable_two_way_messages" type="checkbox"/>
                         <span data-translate>Allow whistleblowers to send messages</span>
