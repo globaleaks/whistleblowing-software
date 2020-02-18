@@ -719,6 +719,12 @@ msgstr "Enable administrators to change user passwords"
 msgid "Enable multisite feature"
 msgstr "Enable multisite feature"
 
+msgid "Enable multi-site login"
+msgstr "Enable multi-site login"
+
+msgid "Enable simplified login"
+msgstr "Enable simplified login"
+
 msgid "Allow recipients to delete reports"
 msgstr "Allow recipients to delete reports"
 
@@ -755,27 +761,6 @@ msgstr "Disable the privacy panel"
 msgid "Enable the receipt hint"
 msgstr "Enable the receipt hint"
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "Amount of days till whistleblower access expires"
-
-msgid "For security reasons the whistleblower access is subject to expiration."
-msgstr "For security reasons the whistleblower access is subject to expiration."
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "Tweak this setting only if you know what you are doing."
-
-msgid "Require two factor authentication"
-msgstr "Require two factor authentication"
-
-msgid "Password change interval"
-msgstr "Password change interval"
-
-msgid "For security reasons, password changes are required at regular intervals."
-msgstr "For security reasons, password changes are required at regular intervals."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Set the value to 0 to disable this feature."
-
 msgid "Landing page"
 msgstr "Landing page"
 
@@ -797,6 +782,54 @@ msgstr "Title of the status page of the report"
 msgid "Size limit for file attachments"
 msgstr "Size limit for file attachments"
 
+msgid "Enable HSTS preload"
+msgstr "Enable HSTS preload"
+
+msgid "Enable HTTP Basic Authentication"
+msgstr "Enable HTTP Basic Authentication"
+
+msgid "Username"
+msgstr "Username"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Require two factor authentication"
+msgstr "Require two factor authentication"
+
+msgid "Password change interval"
+msgstr "Password change interval"
+
+msgid "For security reasons, password changes are required at regular intervals."
+msgstr "For security reasons, password changes are required at regular intervals."
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Set the value to 0 to disable this feature."
+
+msgid "Amount of days till whistleblower access expires"
+msgstr "Amount of days till whistleblower access expires"
+
+msgid "For security reasons the whistleblower access is subject to expiration."
+msgstr "For security reasons the whistleblower access is subject to expiration."
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr "Tweak this setting only if you know what you are doing."
+
+msgid "Enable custodian user role"
+msgstr "Enable custodian user role"
+
+msgid "Enable scoring system"
+msgstr "Enable scoring system"
+
+msgid "Enable private labels"
+msgstr "Enable private labels"
+
+msgid "Logging level"
+msgstr "Logging level"
+
+msgid "Log accesses of internal users"
+msgstr "Log accesses of internal users"
+
 msgid "Notify administrators of software problems"
 msgstr "Notify administrators of software problems"
 
@@ -809,54 +842,6 @@ msgid ""
 msgstr ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "Enable HTTP Basic Authentication"
-
-msgid "Username"
-msgstr "Username"
-
-msgid "Password"
-msgstr "Password"
-
-msgid "Enable multi-site login"
-msgstr "Enable multi-site login"
-
-msgid "Enable simplified login"
-msgstr "Enable simplified login"
-
-msgid "Enable HSTS preload"
-msgstr "Enable HSTS preload"
-
-msgid "Logging level"
-msgstr "Logging level"
-
-msgid "Log accesses of internal users"
-msgstr "Log accesses of internal users"
-
-msgid "Enable custodian user role"
-msgstr "Enable custodian user role"
-
-msgid "Enable scoring system"
-msgstr "Enable scoring system"
-
-msgid "Enable private labels"
-msgstr "Enable private labels"
-
-msgid "Enable experimental features"
-msgstr "Enable experimental features"
-
-msgid "Warning"
-msgstr "Warning"
-
-msgid ""
-"The experimental features may be less stable or even not work at all; "
-"enable this option at your own risk. Support for these features may vary "
-"and they may be removed in the future."
-msgstr ""
-"The experimental features may be less stable or even not work at all; "
-"enable this option at your own risk. Support for these features may vary "
-"and they may be removed in the future."
 
 msgid "Save"
 msgstr "Save"
@@ -1265,8 +1250,11 @@ msgstr "SMTP server address"
 msgid "SMTP server port"
 msgstr "SMTP server port"
 
-msgid "Transport Security"
-msgstr "Transport Security"
+msgid "Security"
+msgstr "Security"
+
+msgid "Warning"
+msgstr "Warning"
 
 msgid "Require authentication"
 msgstr "Require authentication"
@@ -1590,8 +1578,8 @@ msgstr "The operation will reset the configuration and cannot be undone."
 msgid "Assign score points"
 msgstr "Assign score points"
 
-msgid "Please note that all the associated data will be permanently lost."
-msgstr "Please note that all the associated data will be permanently lost."
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Please note that all the associated data will be permanently deleted."
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "This is a demo platform, please do not use it for real submissions."
@@ -1863,9 +1851,6 @@ msgstr "Never"
 
 msgid "Revoked"
 msgstr "Revoked"
-
-msgid "-"
-msgstr "-"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Allow the whistleblower to send messages"
