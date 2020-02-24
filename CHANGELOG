@@ -1,3 +1,6 @@
+Changes in version 3.11.70 - 2020-02-24
+    Fix custodian functionalities in relation to custom identity template
+
 Changes in version 3.11.69 - 2020-02-11
     Fix qrcode visualization in forced two factor authentication mode
     Fix listing of identity access requests
