@@ -306,7 +306,7 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
         for attr in data['attrs'].get(field.id, {}):
             attrs[attr.name] = serialize_field_attr(attr, language)
     else:
-        for attr in data['attrs'].get(template_id, {}):
+        for attr in data['attrs'].get(field.template_id, {}):
             attrs[attr.name] = serialize_field_attr(attr, language)
 
     children = [serialize_field(session, tid, f, language) for f in data['fields'].get(f_to_serialize.id, [])]
