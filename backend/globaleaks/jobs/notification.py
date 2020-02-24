@@ -232,7 +232,13 @@ def delete_sent_mails(session, mail_ids):
 
 @transact
 def get_mails_from_the_pool(session):
-    session.query(models.Mail).filter(models.Mail.processing_attempts > 9).delete(synchronize_session=False)
+    """
+    Fetch the email to be sent.
+
+    Email are spooled every 5 seconds and mailing attepts last 5 days.
+    """
+    session.query(models.Mail).filter(models.Mail.processing_attempts > 86400).delete(synchronize_session=False)
+
     session.query(models.Mail).update({'processing_attempts': models.Mail.processing_attempts + 1})
 
     ret = []
