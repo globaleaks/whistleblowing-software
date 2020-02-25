@@ -128,9 +128,6 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
 
-    if user.role == 'admin':
-        db_refresh_memory_variables(session, [tid])
-
     return user_serialize_user(session, user, language)
 
 
