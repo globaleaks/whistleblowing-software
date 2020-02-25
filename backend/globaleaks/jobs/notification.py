@@ -166,7 +166,7 @@ class MailGenerator(object):
 
         data['submission_statuses'] = db_get_submission_statuses(session, tid, language)
 
-        if data['node']['mode'] != 'whistleblowing.it':
+        if data['node']['mode'] != 'default':
             data['notification'] = self.serialize_config(session, 'notification', tid, language)
         else:
             data['notification'] = self.serialize_config(session, 'notification', 1, language)
