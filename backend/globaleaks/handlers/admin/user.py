@@ -111,7 +111,7 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
             user.hash_alg = 'ARGON2'
             user.salt = GCE.generate_salt()
         elif user_session.ek:
-            enc_key = GCE.derive_key(request['password'].encode(), user.salt)
+            enc_key = GCE.derive_key(password.encode(), user.salt)
             crypto_escrow_prv_key = GCE.asymmetric_decrypt(user_session.cc, Base64Encoder.decode(user_session.ek))
 
             if tid == 1:
@@ -123,6 +123,7 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
 
         user.password = GCE.hash_password(password, user.salt)
         user.password_change_date = datetime_now()
+        user.password_change_needed = True
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
