@@ -109,16 +109,18 @@ AuthDesc = {
     'tid': int,
     'username': str,
     'password': str,
-    'authcode': str
-}
-
-TokenAuthDesc = {
-    'tid': int,
+    'authcode': str,
     'token': str
 }
 
 ReceiptAuthDesc = {
-    'receipt': str
+    'receipt': str,
+    'token': str
+}
+
+TokenAuthDesc = {
+    'tid': int,
+    'authtoken': str
 }
 
 TokenReqDesc = {}

@@ -15,8 +15,8 @@ angular.module("GLServices", ["ngResource"]).
     };
   }]).
   factory("Authentication",
-    ["$filter", "$http", "$location", "$window", "$routeParams", "$rootScope", "GLTranslate", "UserPreferences",
-    function($filter, $http, $location, $window, $routeParams, $rootScope, GLTranslate, UserPreferences) {
+    ["$filter", "$http", "$location", "$window", "$routeParams", "$rootScope", "glbcToken", "GLTranslate", "UserPreferences",
+    function($filter, $http, $location, $window, $routeParams, $rootScope, glbcToken, GLTranslate, UserPreferences) {
       function Session(){
         var self = this;
 
@@ -60,7 +60,7 @@ angular.module("GLServices", ["ngResource"]).
           };
         };
 
-        self.login = function(tid, username, password, authcode, token, cb) {
+        self.login = function(tid, username, password, authcode, authtoken, cb) {
           if (typeof authcode === "undefined") {
             authcode = "";
           }
@@ -99,21 +99,25 @@ angular.module("GLServices", ["ngResource"]).
             }
           };
 
-          if (username === "whistleblower") {
-            password = password.replace(/\D/g,"");
-            return $http.post("receiptauth", {"receipt": password}).
-            then(success_fn, function() {
-              self.loginInProgress = false;
-            });
-          } else if (token) {
-            return $http.post("tokenauth", {"tid": tid, "token": token}).
-            then(success_fn, function() {
-              self.loginInProgress = false;
-            });
+          if (authtoken) {
+            return $http.post("tokenauth", {"tid": tid, "authtoken": authtoken}).
+              then(success_fn, function() {
+                self.loginInProgress = false;
+              });
           } else {
-            return $http.post("authentication", {"tid": tid, "username": username, "password": password, "authcode": authcode}).
-            then(success_fn, function() {
-              self.loginInProgress = false;
+            return glbcToken.getToken().then(function(token) {
+              if (username === "whistleblower") {
+                password = password.replace(/\D/g,"");
+                return $http.post("receiptauth", {"receipt": password, "token": token.id}).
+                  then(success_fn, function() {
+                    self.loginInProgress = false;
+                  });
+              } else {
+              return $http.post("authentication", {"tid": tid, "username": username, "password": password, "authcode": authcode, "token": token.id}).
+                then(success_fn, function() {
+                  self.loginInProgress = false;
+                });
+              }
             });
           }
         };
@@ -232,8 +236,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope", "glbcToken", "Authentication", "TokenResource", "SubmissionResource",
-      function($q, GLResource, $filter, $location, $rootScope, glbcToken, Authentication, TokenResource, SubmissionResource) {
+  factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope", "glbcToken", "Authentication", "SubmissionResource",
+      function($q, GLResource, $filter, $location, $rootScope, glbcToken, Authentication, SubmissionResource) {
 
     return function(fn) {
       /**
@@ -315,7 +319,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           removed_files: []
         });
 
-        self._token = new TokenResource({"type": "submission"}).$save(function(token) {
+        glbcToken.getToken().then(function(token) {
           self._token = token;
           self._submission.token_id = self._token.id;
         });
@@ -343,14 +347,12 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           }
         });
 
-        return glbcToken.getToken().then(function(token) {
-          return self._submission.$update(function(result){
-            if (result) {
-              Authentication.submission = self._submission;
-              Authentication.context = self.context;
-              $rootScope.setPage("receiptpage");
-            }
-          });
+        return self._submission.$update(function(result){
+          if (result) {
+            Authentication.submission = self._submission;
+            Authentication.context = self.context;
+            $rootScope.setPage("receiptpage");
+          }
         });
       };
 

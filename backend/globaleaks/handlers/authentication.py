@@ -181,6 +181,8 @@ class AuthenticationHandler(BaseHandler):
         if tid == 0:
             tid = self.request.tid
 
+        self.state.tokens.use(request['token'])
+
         session = yield login(tid,
                               request['username'],
                               request['password'],
@@ -215,7 +217,7 @@ class TokenAuthHandler(BaseHandler):
         if tid == 0:
             tid = self.request.tid
 
-        session = Sessions.get(request['token'])
+        session = Sessions.get(request['tokenauth'])
         if session is None or session.tid != tid:
             Settings.failed_login_attempts += 1
             raise errors.InvalidAuthentication
@@ -247,6 +249,8 @@ class ReceiptAuthHandler(BaseHandler):
         yield login_delay()
 
         request = self.validate_message(self.request.content.read(), requests.ReceiptAuthDesc)
+
+        self.state.tokens.use(request['token'])
 
         connection_check(self.request.client_ip, self.request.tid,
                          'whistleblower', self.request.client_using_tor)
