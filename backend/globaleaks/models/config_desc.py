@@ -109,6 +109,7 @@ ConfigDescriptor = {
     'enable_disclaimer': Bool(default=False),
     'enable_receipt_hint': Bool(default=False),
     'enable_private_labels': Bool(default=False),
+    'require_proof_of_work_on_user_authentication': Bool(default=True),
 
     'enable_ricochet_panel': Bool(default=False),
     'ricochet_address': Unicode(default=''),
@@ -212,6 +213,7 @@ ConfigFilters = {
         'enable_disclaimer',
         'enable_receipt_hint',
         'enable_private_labels',
+        'require_proof_of_work_on_user_authentication',
         'enable_ricochet_panel',
         'ricochet_address',
         'enable_signup',
