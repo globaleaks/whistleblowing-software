@@ -98,6 +98,7 @@ class FieldOption_v_51(Model):
     trigger_receiver = Column(JSON, default=list, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
 
+
 class InternalTip_v_51(Model):
     __tablename__ = 'internaltip'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)

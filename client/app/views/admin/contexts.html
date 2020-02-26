@@ -31,43 +31,43 @@
     <form id="context-{{$index}}" name="editContext" data-ng-controller="AdminContextEditorCtrl" novalidate>
       <div class="configItem">
         <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
-          <span class="col-md-7 editorHeaderTitle">{{context.name}}</span>
+          <span class="col-md-7 editorHeaderTitle">
+            <span>{{context.name}}</span>
+            <span class="badge badge-secondary" data-ng-if="context.status === 'hidden'" data-translate>Hidden</span>
+            <span class="badge badge-secondary" data-ng-if="context.status === 'disabled'" data-translate>Disabled</span>
+          </span>
           <span class="col-md-5 clearfix">
-                <span class="float-right">
-                  <button data-ng-if="!$first" class="btn btn-sm btn-primary" data-ng-click="moveUp($event, $index)"
-                          uib-popover="{{'Move up' | translate}}" popover-placement="left">
-                    <i class="fas fa-chevron-up"></i>
-                  </button>
-                  <button data-ng-if="!$last" class="btn btn-sm btn-primary" data-ng-click="moveDown($event, $index)"
-                          uib-popover="{{'Move down' | translate}}" popover-placement="left">
-                    <i class="fas fa-chevron-down"></i>
-                  </button>
-                  <button
-                      class="btn btn-sm btn-secondary"
+            <span class="float-right">
+              <button data-ng-if="!$first" class="btn btn-sm btn-primary" data-ng-click="moveUp($event, $index)"
+                      uib-popover="{{'Move up' | translate}}" popover-placement="left">
+                <i class="fas fa-chevron-up"></i>
+              </button>
+              <button data-ng-if="!$last" class="btn btn-sm btn-primary" data-ng-click="moveDown($event, $index)"
+                      uib-popover="{{'Move down' | translate}}" popover-placement="left">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <button class="btn btn-sm btn-secondary"
                       data-ng-show="!editing"
                       data-ng-click="toggleEditing(); $event.stopPropagation();">
-                    <span data-translate>Edit</span>
-                  </button>
-                  <button
-                      class="btn btn-sm btn-success"
+                <span data-translate>Edit</span>
+              </button>
+              <button class="btn btn-sm btn-success"
                       data-ng-show="editing"
                       data-ng-disabled="editContext.$invalid"
                       data-ng-click="save_context(context)">
-                    <span data-translate>Save</span>
-                  </button>
-                  <button
-                      class="btn btn-sm btn-secondary"
+                <span data-translate>Save</span>
+              </button>
+              <button class="btn btn-sm btn-secondary"
                       data-ng-show="editing"
                       data-ng-click="toggleEditing(); $event.stopPropagation();">
-                    <span data-translate>Cancel</span>
-                  </button>
-                  <button
-                      class="btn btn-sm btn-danger"
+                <span data-translate>Cancel</span>
+              </button>
+              <button class="btn btn-sm btn-danger"
                       data-ng-click="deleteContext(); $event.stopPropagation();">
-                    <span data-translate>Delete</span>
-                  </button>
-                </span>
-              </span>
+                <span data-translate>Delete</span>
+              </button>
+            </span>
+          </span>
         </div>
         <div data-ng-if="editing">
           <hr/>
@@ -86,7 +86,7 @@
               </div>
               <div class="form-group">
                 <label data-translate>State</label>
-                <select class="form-control" data-ng-model="context.status" convert-to-number>
+                <select class="form-control" data-ng-model="context.status">
                   <option value="enabled" data-translate>Enabled</option>
                   <option value="hidden" data-translate>Hidden</option>
                   <option value="disabled" data-translate>Disabled</option>
@@ -340,8 +340,7 @@
                             </div>
                           </div>
                           <label data-translate>Assign the receipt only to reports reaching score:</label>
-                          <select class="form-control" data-ng-model="context.score_threshold_receipt"
-                                  convert-to-number>
+                          <select class="form-control" data-ng-model="context.score_threshold_receipt" convert-to-number>
                             <option value="0" data-translate>Low</option>
                             <option value="1" data-translate>Medium</option>
                             <option value="2" data-translate>High</option>

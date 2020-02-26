@@ -77,6 +77,7 @@
               <span data-ng-switch-when="custodian" data-translate>Custodian</span>
             </span>
           </span>
+          <span class="badge badge-secondary" data-ng-if="user.state === 'disabled'" data-translate>Disabled</span>
 	  <span class="badge badge-default" data-ng-if="resources.node.encryption && !user.encryption" uib-popover="{{'This user has not performed the first login yet.' | translate}}">
 	    <i class="fas fa-exclamation-circle"></i>
 	  </span>
