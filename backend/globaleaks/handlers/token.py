@@ -3,7 +3,6 @@
 # Handler implementing pre/post submission tokens for implementing rate limiting on whistleblower operations
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
-from globaleaks.utils.ip import check_ip
 
 
 class TokenCreate(BaseHandler):
@@ -24,13 +23,7 @@ class TokenCreate(BaseHandler):
 
         request = self.validate_message(self.request.content.read(), requests.TokenReqDesc)
 
-        if (request['type'] == 'submission' and (not self.state.accept_submissions or
-                                                 self.state.tenant_cache[self.request.tid]['disable_submissions'])) or \
-            (self.state.tenant_cache[self.request.tid]['ip_filter_whistleblower_enable'] and
-             not check_ip(self.state.tenant_cache[self.request.tid]['ip_filter_whistleblower'], self.request.client_ip)):
-            raise errors.SubmissionDisabled
-
-        token = self.state.tokens.new(self.request.tid, request['type'])
+        token = self.state.tokens.new(self.request.tid)
 
         if not self.request.client_using_tor and (self.request.client_proto == 'http' and
                                                   self.request.hostname not in ['127.0.0.1', 'localhost']):

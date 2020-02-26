@@ -1,6 +1,6 @@
 GLClient.controller("SubmissionCtrl",
-    ["$scope", "$filter", "$location", "$interval", "$anchorScroll", "tmhDynamicLocale", "Submission", "glbcProofOfWork", "fieldUtilities",
-      function ($scope, $filter, $location, $interval, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
+    ["$scope", "$filter", "$location", "$interval", "$anchorScroll", "tmhDynamicLocale", "Submission", "fieldUtilities",
+      function ($scope, $filter, $location, $interval, $anchorScroll, tmhDynamicLocale, Submission, fieldUtilities) {
   $scope.vars = {};
 
   $scope.fieldUtilities = fieldUtilities;
@@ -21,21 +21,6 @@ GLClient.controller("SubmissionCtrl",
 
   $scope.selectable_contexts = $filter("filter")($scope.public.contexts, {"status": 'enabled'});
   $scope.selectable_contexts = $filter("orderBy")($scope.selectable_contexts, $scope.contextsOrderPredicate);
-
-  var startCountdown = function() {
-    $scope.submission.wait = true;
-    $scope.submission.pow = false;
-
-    $scope.submission.countdown = 3; // aligned to backend submission_minimum_delay
-
-    $scope.stop = $interval(function() {
-      $scope.submission.countdown -= 1;
-      if ($scope.submission.countdown < 0) {
-        $scope.submission.wait = false;
-        $interval.cancel($scope.stop);
-      }
-    }, 1000);
-  };
 
   $scope.selectContext = function(context) {
     $scope.context = context;
@@ -199,20 +184,6 @@ GLClient.controller("SubmissionCtrl",
     $scope.field_id_map = fieldUtilities.build_field_id_map($scope.questionnaire);
 
     $scope.submission.create(context.id, function () {
-      startCountdown();
-
-      if ($scope.submission._token.question) {
-        glbcProofOfWork.proofOfWork($scope.submission._token.question).then(function(result) {
-          $scope.submission._token.answer = result;
-          $scope.submission._token.$update(function(token) {
-            $scope.submission._token = token;
-            $scope.submission.pow = true;
-          });
-        });
-      } else {
-        $scope.submission.pow = true;
-      }
-
       $scope.receiversOrderPredicate = $scope.submission.context.show_receivers_in_alphabetical_order ? "name" : null;
 
       // --------------------------------------------------------------------------

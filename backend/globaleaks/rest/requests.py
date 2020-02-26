@@ -121,9 +121,7 @@ ReceiptAuthDesc = {
     'receipt': str
 }
 
-TokenReqDesc = {
-    'type': token_type_regexp
-}
+TokenReqDesc = {}
 
 TokenAnswerDesc = {
     'answer': int

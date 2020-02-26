@@ -548,11 +548,13 @@ class TestGL(unittest.TestCase):
 
         return answers
 
-    def getToken(self, kind='submission'):
-        return self.state.tokens.new(1, kind)
+    def getToken(self):
+        token = self.state.tokens.new(1)
+        token.creation_date = datetime_now() - timedelta(seconds=2)
+        return token
 
-    def getSolvedToken(self, kind='submission'):
-        t = self.getToken(kind)
+    def getSolvedToken(self):
+        t = self.getToken()
         t.solved = True
         return t
 

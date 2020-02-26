@@ -16,7 +16,7 @@ angular.module("GLCrypto", [])
     }
   };
 })
-.factory("glbcProofOfWork", ["$q", "glbcUtil", function($q, glbcUtil) {
+.factory("glbcProofOfWork", ["$q", "glbcUtil", "TokenResource", function($q, glbcUtil, TokenResource) {
   // proofOfWork return the answer to the proof of work
   // { [challenge string] -> [ answer index] }
   var getWebCrypto = function() {
@@ -32,42 +32,55 @@ angular.module("GLCrypto", [])
   };
 
   return {
-    proofOfWork: function(str) {
+    proofOfWork: function() {
       var deferred = $q.defer();
 
-      var i = 0;
+      var token = new TokenResource().$save(function(token) {
+	var i = 0;
+        var work = function() {
+          var webCrypto = getWebCrypto();
+          var toHash = glbcUtil.str2Uint8Array(token.question + i);
+          var damnIE;
 
-      var work = function() {
-        var webCrypto = getWebCrypto();
-        var toHash = glbcUtil.str2Uint8Array(str + i);
-        var damnIE;
+          var xxx = function (hash) {
+            hash = new Uint8Array(hash);
+            if (hash[31] === 0) {
+              token.answer = i;
+              token.$update(function(token) {
+                deferred.resolve(token);
+              });
+            } else {
+              i += 1;
+              work();
+            }
+          };
 
-        var xxx = function (hash) {
-          hash = new Uint8Array(hash);
-          if (hash[31] === 0) {
-            deferred.resolve(i);
+          if (webCrypto) {
+            damnIE = webCrypto.digest({name: "SHA-256"}, toHash);
           } else {
-            i += 1;
-            work();
+            damnIE = $q.resolve(sha256(toHash));
+          }
+
+          if (typeof damnIE.then !== "undefined") {
+            damnIE.then(xxx);
+          } else {
+            damnIE.oncomplete = function(r) { xxx(r.target.result); };
           }
         };
 
-        if (webCrypto) {
-            damnIE = webCrypto.digest({name: "SHA-256"}, toHash);
-        } else {
-            damnIE = $q.resolve(sha256(toHash));
-        }
-
-        if (typeof damnIE.then !== "undefined") {
-          damnIE.then(xxx);
-        } else {
-          damnIE.oncomplete = function(r) { xxx(r.target.result); };
-        }
-      };
-
-      work();
+	work();
+      });
 
       return deferred.promise;
     }
   };
-}]);
+}])
+.factory("glbcToken", ["$timeout", "glbcProofOfWork", function($timeout, glbcProofOfWork) {
+  return {
+    getToken: function() {
+      return glbcProofOfWork.proofOfWork().then(function(token) {
+        return $timeout(function(){return token}, token.min_ttl * 1000);
+      });
+    }
+  }
+}])

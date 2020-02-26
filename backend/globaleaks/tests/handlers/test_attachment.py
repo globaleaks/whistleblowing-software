@@ -10,7 +10,7 @@ class TestSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):
     _handler = attachment.SubmissionAttachment
 
     def test_post_file_on_not_finalized_submission(self):
-        self.dummyToken = self.state.tokens.new(1, 'submission')
+        self.dummyToken = self.state.tokens.new(1)
         self.dummyToken.solved = True
 
         handler = self.request()
@@ -19,7 +19,7 @@ class TestSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post_file_and_verify_deletion_after_token_expiration(self):
-        self.dummyToken = self.state.tokens.new(1, 'submission')
+        self.dummyToken = self.state.tokens.new(1)
         self.dummyToken.solved = True
 
         for _ in range(3):

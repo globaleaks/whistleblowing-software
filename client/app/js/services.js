@@ -232,8 +232,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope", "Authentication", "TokenResource", "SubmissionResource",
-      function($q, GLResource, $filter, $location, $rootScope, Authentication, TokenResource, SubmissionResource) {
+  factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope", "glbcToken", "Authentication", "TokenResource", "SubmissionResource",
+      function($q, GLResource, $filter, $location, $rootScope, glbcToken, Authentication, TokenResource, SubmissionResource) {
 
     return function(fn) {
       /**
@@ -255,7 +255,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.isDisabled = function() {
         return self.selected_receivers_count === 0 ||
                self.wait ||
-               !self.pow ||
                self.done;
       };
 
@@ -319,11 +318,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         self._token = new TokenResource({"type": "submission"}).$save(function(token) {
           self._token = token;
           self._submission.token_id = self._token.id;
-
-          if (cb) {
-            cb();
-          }
         });
+
+	if (cb) {
+          cb();
+        }
       };
 
       /**
@@ -344,14 +343,15 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           }
         });
 
-        return self._submission.$update(function(result){
-          if (result) {
-            Authentication.submission = self._submission;
-            Authentication.context = self.context;
-            $rootScope.setPage("receiptpage");
-          }
+        return glbcToken.getToken().then(function(token) {
+          return self._submission.$update(function(result){
+            if (result) {
+              Authentication.submission = self._submission;
+              Authentication.context = self.context;
+              $rootScope.setPage("receiptpage");
+            }
+          });
         });
-
       };
 
       fn(self);

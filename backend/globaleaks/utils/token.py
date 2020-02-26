@@ -10,56 +10,29 @@ from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
 
 class Token(object):
     min_ttl = 1
-    max_ttl = 3600
+    max_ttl = 300
 
-    def __init__(self, tokenlist, tid, type='submission'):
+    def __init__(self, tokenlist, tid):
         self.tokenlist = tokenlist
         self.tid = tid
         self.id = generateRandomKey(42)
-        self.type = type
         self.creation_date = datetime_now()
-
         self.uploaded_files = []
-
         self.solved = False
         self.question = generateRandomKey(20)
 
-    def timedelta_check(self):
-        now = datetime_now()
-        start = self.creation_date + timedelta(seconds=self.min_ttl)
-        if now < start:
-            raise Exception("TokenFalure: Too early to use this token")
+    def update(self, answer):
+        if self.solved:
+            return True
 
-        end = self.creation_date + timedelta(seconds=self.max_ttl)
-        if now > end:
-            raise Exception("TokenFailure: Too late to use this token")
-
-    def validate(self, answer):
         resolved = "%s%d" % (self.question, answer)
         x = sha256(resolved.encode())
         self.solved = x.endswith(b'00')
 
-    def update(self, answer):
-        self.validate(answer)
-
-        if not self.solved:
-            return False
-
-        if self.type == 'submission' and self.tokenlist.state.tenant_cache[self.tid].encryption:
+        if self.solved and self.tokenlist.state.tenant_cache[self.tid].encryption:
             self.tip_key = GCE.generate_key()
 
-        return True
-
-    def use(self):
-        try:
-            self.timedelta_check()
-        except Exception:
-            # Unrecoverable failures so immediately delete the token.
-            self.tokenlist.delete(self.id)
-            raise
-
-        if not self.solved:
-            raise Exception("TokenFailure: Token is not solved")
+        return self.solved
 
     def associate_file(self, fileinfo):
         self.uploaded_files.append(fileinfo)
@@ -68,9 +41,9 @@ class Token(object):
         return {
             'id': self.id,
             'creation_date': datetime_to_ISO8601(self.creation_date),
-            'type': self.type,
             'question': self.question,
-            'solved': self.solved
+            'min_ttl': self.min_ttl,
+            'max_ttl': self.max_ttl
         }
 
 
@@ -95,6 +68,11 @@ class TokenList(TempDict):
             except Exception:
                 pass
 
+    def new(self, tid):
+        token = Token(self, tid)
+        self.set(token.id, token)
+        return token
+
     def get(self, key):
         ret = TempDict.get(self, key)
         if ret is None:
@@ -102,7 +80,19 @@ class TokenList(TempDict):
 
         return ret
 
-    def new(self, tid, type='submission'):
-        token = Token(self, tid, type)
-        self.set(token.id, token)
+    def use(self, key):
+        token = TokenList.pop(self, key)
+
+        if not token.solved:
+            raise Exception("TokenFailure: Token is not solved")
+
+        now = datetime_now()
+        start = token.creation_date + timedelta(seconds=token.min_ttl)
+        if now < start:
+            raise Exception("TokenFalure: Too early to use this token")
+
+        end = token.creation_date + timedelta(seconds=token.max_ttl)
+        if now > end:
+            raise Exception("TokenFailure: Too late to use this token")
+
         return token

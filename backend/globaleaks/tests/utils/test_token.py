@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
 
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.jobs import anomalies
 from globaleaks.tests import helpers
-from twisted.internet.defer import inlineCallbacks
 
 
 class TestToken(helpers.TestGL):
@@ -22,7 +23,7 @@ class TestToken(helpers.TestGL):
 
         token_collection = []
         for _ in range(20):
-            st = self.state.tokens.new(1, 'submission')
+            st = self.state.tokens.new(1)
             token_collection.append(st)
 
         for t in token_collection:
@@ -53,7 +54,7 @@ class TestToken(helpers.TestGL):
 
         self.assertFalse(token.update(0))
         # validate with right value: OK
-        self.assertRaises(Exception, token.use)
+        self.assertRaises(Exception, self.state.tokens.use, token.id)
 
     def test_proof_of_work_right_answer(self):
         token = self.getSolvedToken()
@@ -65,13 +66,16 @@ class TestToken(helpers.TestGL):
 
         # validate with right value: OK
         self.assertTrue(token.update(26))
-        token.use()
+        self.state.tokens.use(token.id)
+
+        # verify that token reuse is blocked
+        self.assertRaises(Exception, self.state.tokens.get, token.id)
 
     def test_tokens_garbage_collected(self):
         self.assertTrue(len(self.state.tokens) == 0)
 
         for _ in range(100):
-            self.state.tokens.new(1, 'submission')
+            self.state.tokens.new(1)
 
         self.assertTrue(len(self.state.tokens) == 100)
 

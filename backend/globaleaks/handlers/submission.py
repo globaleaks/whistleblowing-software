@@ -13,9 +13,11 @@ from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import sha256, Base64Encoder, GCE
+from globaleaks.utils.ip import check_ip
 from globaleaks.utils.log import log
 from globaleaks.utils.utility import get_expiration, \
     datetime_to_ISO8601
+
 
 
 def decrypt_tip(user_key, tip_prv_key, tip):
@@ -452,17 +454,17 @@ class SubmissionInstance(BaseHandler):
         """
         Finalize the submission
         """
+        if (not self.state.accept_submissions or
+            self.state.tenant_cache[self.request.tid]['disable_submissions']) or \
+           (self.state.tenant_cache[self.request.tid]['ip_filter_whistleblower_enable'] and
+            not check_ip(self.state.tenant_cache[self.request.tid]['ip_filter_whistleblower'], self.request.client_ip)):
+            raise errors.SubmissionDisabled
+
         request = self.validate_message(self.request.content.read(), requests.SubmissionDesc)
 
         request['mobile'] = self.request.client_mobile
 
-        token = self.state.tokens.pop(token_id, None)
-
-        if token is None:
-            raise errors.SessionExpired()
-
-        # The get and use method will raise if the token is invalid
-        token.use()
+        token = self.state.tokens.use(token_id)
 
         return create_submission(self.request.tid,
                                  request,
