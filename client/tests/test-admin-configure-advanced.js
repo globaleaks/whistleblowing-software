@@ -3,8 +3,7 @@ describe("admin configure advanced settings", function() {
     await browser.setLocation("admin/advanced");
     await element(by.cssContainingText("a", "Main configuration")).click();
 
-    // enable experimental features that by default are disabled
-    await element(by.model("resources.node.enable_experimental_features")).click();
+    // enable features that by default are disabled
     await element(by.model("resources.node.enable_custodian")).click();
     await element(by.model("resources.node.multisite")).click();
 

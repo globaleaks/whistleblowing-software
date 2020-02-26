@@ -22,10 +22,4 @@ describe("admin configure node", function() {
 
     await element.all(by.cssContainingText("a", "English")).get(0).click();
   });
-
-  it("should configure node advanced settings", async function() {
-    await browser.setLocation("admin/advanced");
-
-    await element(by.model("resources.node.enable_experimental_features")).click();
-  });
 });
