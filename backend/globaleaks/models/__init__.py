@@ -639,13 +639,13 @@ class _FieldOption(Model):
     hint1 = Column(JSON, default=dict, nullable=False)
     hint2 = Column(JSON, default=dict, nullable=False)
     score_points = Column(Integer, default=0, nullable=False)
-    score_type = Column(Integer, default=0, nullable=False)
+    score_type = Column(Enum(EnumFieldOptionScoreType), default='addition', nullable=False)
     block_submission = Column(Boolean, default=False, nullable=False)
     trigger_receiver = Column(JSON, default=list, nullable=False)
 
     unicode_keys = ['field_id']
     bool_keys = ['block_submission']
-    int_keys = ['order', 'score_type', 'score_points']
+    int_keys = ['order', 'score_points']
     json_keys = ['trigger_receiver']
     localized_keys = ['hint1', 'hint2', 'label']
 

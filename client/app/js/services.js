@@ -1327,11 +1327,9 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           if (["selectbox", "multichoice"].indexOf(field.type) > -1) {
             for(i=0; i<field.options.length; i++) {
               if (entry["value"] === field.options[i].id) {
-                if (field.options[i].score_type === 1) {
-                  // Addition
+                if (field.options[i].score_type === 'addition') {
                   scope.points_to_sum += field.options[i].score_points;
-                } else if (field.options[i].score_type === 2) {
-                  // Multiplication
+                } else if (field.options[i].score_type === 'multiplier') {
                   scope.points_to_mul *= field.options[i].score_points;
                 }
               }
@@ -1339,11 +1337,9 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           } else if (field.type === "checkbox") {
             for(i=0; i<field.options.length; i++) {
               if (entry[field.options[i].id]) {
-                if (field.options[i].score_type === 1) {
-                  // Addition
+                if (field.options[i].score_type === 'addition') {
                   scope.points_to_sum += field.options[i].score_points;
-                } else if (field.options[i].score_type === 2) {
-                  // Multiplication
+                } else if (field.options[i].score_type === 'multiplier') {
                   scope.points_to_mul *= field.options[i].score_points;
                 }
               }

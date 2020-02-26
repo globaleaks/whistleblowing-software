@@ -75,7 +75,7 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
         "hint2": "",
         "block_submission": false,
         "score_points": 0,
-        "score_type": 0,
+        "score_type": 'none',
 	"trigger_receiver": []
       };
 
