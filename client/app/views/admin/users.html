@@ -1,4 +1,8 @@
 <div class="adminConfigSection" data-ng-controller="AdminUsersCtrl">
+  <div class="alert alert-warning" data-ng-if="resources.node.encryption && !all_recipients_enabled">
+    <i class="fa fa-exclamation-circle"></i>
+    <span data-translate>One or more recipients have not performed the first login yet. This means they won't be receiving reports.</span>
+  </div>
   <div class="editorTitle">
     <span data-translate>Users</span>
     <button class="btn btn-sm btn-primary show-add-user-btn" data-ng-click="toggleAddUser()">
@@ -10,8 +14,7 @@
     <div data-ng-form="newUser" class="addUser col-md-6">
       <div class="form-group">
         <label data-translate>Role</label>
-        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}"
-              popover-placement="right">*</span>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
         <div>
           <select name="role" class="form-control" data-ng-model="new_user.role" required>
             <option value="admin" data-translate>Admin</option>
@@ -65,42 +68,44 @@
   <form id="user-{{$index}}" name="editUser" data-ng-controller="AdminUserEditorCtrl" novalidate>
     <div class="configItem">
       <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
-            <span class="col-md-7 editorHeaderTitle">
-              <span>{{user.name}}</span>
-              <span class="badge badge-primary">
-                <span data-ng-switch="user.role">
-                  <span data-ng-switch-when="admin" data-translate>Admin</span>
-                  <span data-ng-switch-when="receiver" data-translate>Recipient</span>
-                  <span data-ng-switch-when="custodian" data-translate>Custodian</span>
-                </span>
-              </span>
+        <span class="col-md-7 editorHeaderTitle">
+          <span>{{user.name}}</span>
+          <span class="badge badge-primary">
+            <span data-ng-switch="user.role">
+              <span data-ng-switch-when="admin" data-translate>Admin</span>
+              <span data-ng-switch-when="receiver" data-translate>Recipient</span>
+              <span data-ng-switch-when="custodian" data-translate>Custodian</span>
             </span>
+          </span>
+	  <span class="badge badge-default" data-ng-if="resources.node.encryption && !user.encryption" uib-popover="{{'This user has not performed the first login yet.' | translate}}">
+	    <i class="fas fa-exclamation-circle"></i>
+	  </span>
+        </span>
         <span class="col-md-5 clearfix">
-                <span class="float-right">
-                  <button class="btn btn-sm btn-secondary"
-                          data-ng-show="!editing"
-                          data-ng-click="toggleEditing(); $event.stopPropagation();">
-                    <span data-translate>Edit</span>
-                  </button>
-                  <button class="btn btn-sm btn-success"
-                          data-ng-show="editing"
-                          data-ng-disabled="editUser.$invalid"
-                          data-ng-click="saveUser()">
-                    <span data-translate>Save</span>
-                  </button>
-                  <button
-                      class="btn btn-sm btn-secondary"
-                      data-ng-show="editing"
-                      data-ng-click="toggleEditing(); $event.stopPropagation();">
-                    <span data-translate>Cancel</span>
-                  </button>
-                  <button class="btn btn-sm btn-danger"
-                          data-ng-if="Authentication.session.user_id !== user.id"
-                          data-ng-click="deleteUser(); $event.stopPropagation();">
-                    <span data-translate>Delete</span>
-                  </button>
-                </span>
-              </span>
+          <span class="float-right">
+            <button class="btn btn-sm btn-secondary"
+              data-ng-show="!editing"
+              data-ng-click="toggleEditing(); $event.stopPropagation();">
+              <span data-translate>Edit</span>
+            </button>
+            <button class="btn btn-sm btn-success"
+              data-ng-show="editing"
+              data-ng-disabled="editUser.$invalid"
+              data-ng-click="saveUser()">
+              <span data-translate>Save</span>
+            </button>
+            <button class="btn btn-sm btn-secondary"
+              data-ng-show="editing"
+              data-ng-click="toggleEditing(); $event.stopPropagation();">
+              <span data-translate>Cancel</span>
+            </button>
+            <button class="btn btn-sm btn-danger"
+              data-ng-if="Authentication.session.user_id !== user.id"
+              data-ng-click="deleteUser(); $event.stopPropagation();">
+              <span data-translate>Delete</span>
+            </button>
+          </span>
+        </span>
       </div>
       <div class="editor" data-ng-if="editing">
         <hr/>

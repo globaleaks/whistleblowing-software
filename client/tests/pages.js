@@ -40,8 +40,6 @@ exports.whistleblower = function() {
 
     await browser.gl.utils.waitUntilPresent(by.id("submissionForm"));
 
-    await browser.wait(pow, browser.gl.utils.browserTimeout());
-
     await element(by.id("step-receiver-selection")).element(by.id("receiver-0")).click();
     await element(by.id("step-receiver-selection")).element(by.id("receiver-1")).click();
     await element(by.id("NextStepButton")).click();

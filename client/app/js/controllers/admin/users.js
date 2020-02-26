@@ -12,6 +12,12 @@ GLClient.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
       });
     }
 
+    $scope.all_recipients_enabled = true;
+    for (var i=0; i<$scope.resources.users.length; i++) {
+      if ($scope.resources.users[i].role === "receiver" && !$scope.resources.users[i].encryption) {
+        $scope.all_recipients_enabled = false;
+      }
+    }
 }]).controller("AdminUserEditorCtrl", ["$scope", "$rootScope", "$http", "AdminUserResource",
   function($scope, $rootScope, $http, AdminUserResource) {
     $scope.deleteUser = function() {
