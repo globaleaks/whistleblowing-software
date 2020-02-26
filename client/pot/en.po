@@ -637,6 +637,16 @@ msgstr "Send activation link"
 msgid "Password reset"
 msgstr "Password reset"
 
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+
+msgid "This user has not performed the first login yet."
+msgstr "This user has not performed the first login yet."
+
 msgid "Select the context of your report:"
 msgstr "Select the context of your report:"
 
@@ -796,6 +806,9 @@ msgstr "Password"
 
 msgid "Require two factor authentication"
 msgstr "Require two factor authentication"
+
+msgid "Require proof of work on user authentication"
+msgstr "Require proof of work on user authentication"
 
 msgid "Password change interval"
 msgstr "Password change interval"
