@@ -101,6 +101,7 @@ exports.login_whistleblower = async function(receipt) {
   await browser.get("/#/");
   await element(by.model("formatted_receipt")).sendKeys(receipt);
   await element(by.id("ReceiptButton")).click();
+  await browser.gl.utils.waitUntilPresent(by.id("TipInfoBox"));
 };
 
 exports.login_admin = async function(username, password, url, firstlogin) {

@@ -207,16 +207,4 @@ describe("globaLeaks process", function() {
     await element(by.id("tip-action-postpone")).click();
     await element(by.id("modal-action-ok")).click();
   });
-
-  it("Recipient should be able to delete third submission from its tip page", async function() {
-    await browser.gl.utils.login_receiver();
-    await browser.setLocation("/receiver/tips");
-
-    var id = await element(by.id("tip-0")).evaluate("tip.id");
-
-    await browser.setLocation("/status/" + id);
-
-    await element(by.id("tip-action-delete")).click();
-    await element(by.id("modal-action-ok")).click();
-  });
 });
