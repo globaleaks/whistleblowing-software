@@ -106,8 +106,9 @@ def db_wizard(session, tid, request):
         receiver_desc['language'] = language
         receiver_desc['role'] = 'receiver'
         receiver_desc['pgp_key_remove'] = False
-        receiver_desc['send_account_activation_link'] = not request['skip_recipient_account_creation']
+        receiver_desc['send_account_activation_link'] = receiver_desc['password'] == ''
         receiver_user = db_create_user(session, tid, receiver_desc, language)
+
         if receiver_desc['password']:
             receiver_user.password = GCE.hash_password(receiver_desc['password'], receiver_user.salt)
             db_gen_user_keys(session, tid, receiver_user, receiver_desc['password'])
