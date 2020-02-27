@@ -116,7 +116,7 @@ def reset_pass(args):
 
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
-    c.execute(QUERY, (salt, hashed_password, "ARGON2", args.username, args.tid, b''))
+    c.execute(QUERY, (salt, hashed_password, "ARGON2", args.username, args.tid, ''))
 
     if c.rowcount != 1:
         print("Failed! The user '{}' does not exist or encryption key set".format(args.username))
