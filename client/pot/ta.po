@@ -1,13 +1,13 @@
 # 
 # Translators:
 # Bala Subramaniyan <balapandu222@hotmail.com>, 2018-2019
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2017
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2017,2020
 # git12a <git12@openmailbox.org>, 2015
 # Sivarajah Bagerathan <bagerathan@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-01-17 16:24+0000\n"
+"PO-Revision-Date: 2020-02-26 17:30+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,7 +92,7 @@ msgid "Recipient interface"
 msgstr "பெறுநரின் இடைமுகம்"
 
 msgid "Date"
-msgstr "உருவாக்கிய தேதி"
+msgstr "திகதி"
 
 msgid "Expiration date"
 msgstr "காலாவதி தேதி"
@@ -133,7 +133,7 @@ msgstr "கடன் அட்டை"
 msgid "YOUR NAME"
 msgstr "உங்கள் பெயர்"
 
-msgid "Label the submission"
+msgid "Label the report"
 msgstr "சமர்ப்பிப்புக்கு லேபிளிடுங்கள்"
 
 msgid "Postpone the expiration date"
@@ -151,9 +151,6 @@ msgstr "புதுப்பிப்பு பக்கம்"
 msgid "Context"
 msgstr "சூழல்"
 
-msgid "Submission date"
-msgstr "சமர்ப்பிக்கப்பட்ட திகதி"
-
 msgid "Private messages"
 msgstr "தனியார் செய்திகளை"
 
@@ -161,10 +158,10 @@ msgid "Preview"
 msgstr "முன்னோட்டம்"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "தகவல் தெரிவிப்பவர் ஏற்கனவே சமீபத்திய மேம்படுத்தல் படித்து விட்டார்"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "தகவல் தெரிவிப்பவர் இன்னும் சமீபத்திய மேம்படுத்தல் படிக்க முடியாது"
 
 msgid "Move up"
 msgstr "மேலே நகர்த்து"
@@ -190,15 +187,13 @@ msgstr "அனைத்தையும் சேமி"
 msgid "Access control"
 msgstr ""
 
-msgid ""
-"The connection used to send this submission has been secured with HTTPS "
-"ensuring confidentiality."
+msgid "The connection has been secured with HTTPS ensuring confidentiality."
 msgstr "இந்த சமர்ப்பிப்பு அனுப்ப பயன்படுத்தப்படுகிறது இணைப்பு, HTTPS இரகசியத்தன்மை உறுதி பெறப்பட்டுள்ளது."
 
 msgid ""
-"The connection used to send this submission has been secured with Tor "
-"ensuring confidentiality and anonymity."
-msgstr "இந்த சமர்ப்பிப்பை அனுப்ப பயன்படும் இணைப்பு, Tor என்பது இரகசியத்தன்மை மற்றும் தெரியாத தன்மையை உறுதிப்படுத்துகிறது."
+"The connection has been secured with Tor ensuring confidentiality and "
+"anonymity."
+msgstr ""
 
 msgid "vertical"
 msgstr "செங்குத்து"
@@ -211,9 +206,6 @@ msgstr "இலக்கம்"
 
 msgid "Email"
 msgstr "மின்னஞ்சல்"
-
-msgid "Date"
-msgstr "திகதி"
 
 msgid "Regular expression validator"
 msgstr "வழக்கமான வெளிப்பாடு வேலிடேட்டருக்கு"
@@ -257,11 +249,8 @@ msgstr "இணைப்புகள்"
 msgid "Change your password"
 msgstr "உங்கள் கடவுச்சொல்லை மாற்றுக"
 
-msgid "List of submissions"
-msgstr "சமர்ப்பிப்புகளை பட்டியல்"
-
-msgid "List of access requests to whistleblowers' identities"
-msgstr "இம்மாதிரி 'அடையாளங்களை அணுகல் கோரிக்கைகள் பட்டியல்"
+msgid "Access requests"
+msgstr ""
 
 msgid "User"
 msgstr "பயனர்"
@@ -402,7 +391,7 @@ msgstr "தூண்டல் கேள்வி"
 msgid "Triggered by score:"
 msgstr ""
 
-msgid "Message shown on top of the status page of the submission"
+msgid "Message shown on top of the status page of the report"
 msgstr "செய்தி சமர்ப்பிக்கும் நிலையை பக்கம் மேல் காண்பிக்கப்படும்"
 
 msgid "Copy and paste the PGP public key here"
@@ -492,11 +481,11 @@ msgid ""
 msgstr "இந்த விருப்ப உரை மேடையில் காட்டப்படாது. மூல உரை மாற்றப்பட்டது அல்லது அகற்றப்பட்டது."
 
 msgid ""
-"Unless the whistleblower checks the submission by this time, their access to"
-" it will expire."
+"Unless the whistleblower checks the report by this time, their access to it "
+"will expire."
 msgstr "அம்பலப்படுத்தியவர் இந்த நேரத்தில் சமர்ப்பிப்பதை சரிபார்க்காமல், அவற்றின் அணுகல் காலாவதியாகும்."
 
-msgid "The whistleblower can no longer access the submission"
+msgid "The whistleblower can no longer access the report"
 msgstr "அம்பலப்படுத்தியவர் இனி சமர்ப்பிப்பதை அணுகல் முடியாது"
 
 msgid "Warning!"
@@ -519,8 +508,8 @@ msgstr "தோர் உலாவி பதிவிறக்க"
 msgid "This is the list of the other supported browsers:"
 msgstr "இது மற்ற உலாவிகளின் பட்டியலாகும்:"
 
-msgid "System overview"
-msgstr "கணினி மேலோட்டம்"
+msgid "Audit log"
+msgstr ""
 
 msgid "Stats"
 msgstr "புள்ளிவிவரங்கள்"
@@ -528,8 +517,8 @@ msgstr "புள்ளிவிவரங்கள்"
 msgid "Activities"
 msgstr "நடவடிக்கைகள்"
 
-msgid "Submissions"
-msgstr "சமர்ப்பிப்புகள்"
+msgid "Reports"
+msgstr ""
 
 msgid "Users"
 msgstr "பயனர்கள்"
@@ -648,19 +637,27 @@ msgstr ""
 msgid "Password reset"
 msgstr ""
 
-msgid "Select the context of your submission:"
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr ""
+
+msgid "This user has not performed the first login yet."
+msgstr ""
+
+msgid "Select the context of your report:"
 msgstr "உங்கள் சமர்ப்பிப்பு சூழலில் தேர்வு:"
 
 msgid "Warning! You are not anonymous."
 msgstr "எச்சரிக்கை! நீங்கள் அநாமதேய இல்லை."
 
 msgid ""
-"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"Sending reports over HTTPS exposes the act of doing so, but not the "
 "content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"the report anonymous, which is strongly recommended.\\n\\nThis can be "
 "achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
-msgstr "நீங்கள் ஏதாவது சமர்ப்பிக்கிறீர்கள் என்ற உண்மையை மறைத்து, சமர்ப்பிப்பதை அநாமதேயமான, இது வலுவாக பரிந்துரைக்கப்படுகிறது. \\n\\n உலாவி இதைப் பயன்படுத்தி இன்டர்நெட் எக்ஸ்ப்ளோரர், பயர்பாக்ஸ், குரோம், ஒபேரா போன்ற பிற உலாவிகளில் காணப்படாத ஒரு டொமைன் உலாவியை வழங்குகின்றது."
+"in other browsers."
+msgstr ""
 
 msgid "Are you a whistleblower?"
 msgstr "நீங்கள் ஒரு இரகசிய இருக்கிறீர்களா?"
@@ -668,11 +665,11 @@ msgstr "நீங்கள் ஒரு இரகசிய இருக்கி
 msgid "Blow the whistle"
 msgstr "விசில் ஊதி"
 
-msgid "Your submission was successful."
+msgid "Your report was successful."
 msgstr "உங்கள் சமர்ப்பிப்பு வெற்றியடைந்தது."
 
-msgid "Submission status"
-msgstr "சமர்ப்பிக்கும் நிலை"
+msgid "Report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "தொடருவதற்கு முன், புதிய கடவுச்சொல்லை அமைக்கவும்."
@@ -710,21 +707,26 @@ msgstr "சமர்ப்பிப்புகளை முடக்கு"
 msgid "Enable encryption"
 msgstr "மறையாக்குதல் இயக்கு"
 
-msgid "Enable encryption's keys recovery"
+msgid "Enable administrators to change user passwords"
 msgstr ""
 
 msgid "Enable multisite feature"
 msgstr "பன்முனை அம்சத்தை இயக்கு"
 
-msgid "Allow recipients to delete submissions"
+msgid "Enable multi-site login"
+msgstr "பல தள உள்நுழைவை இயக்கவும்"
+
+msgid "Enable simplified login"
+msgstr "எளிய உள்நுழைவை இயக்கவும்"
+
+msgid "Allow recipients to delete reports"
 msgstr "பெற்றவர்கள் சமர்ப்பிப்புகளை நீக்க அனுமதிக்க"
 
-msgid "Allow recipients to postpone expiration date of the submission"
+msgid "Allow recipients to postpone expiration date of the report"
 msgstr "பெற்றவர்கள் சமர்ப்பிக்கும் காலாவதி தேதி ஒத்தி அனுமதி"
 
 msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific "
-"submissions"
+"Allow recipients to grant permissions to whistleblowers on specific reports"
 msgstr "பெற்றவர்கள் குறிப்பிட்ட சமர்ப்பிப்புகளை இம்மாதிரி செய்ய அனுமதிகளை வழங்க அனுமதி"
 
 msgid "Enable search engines indexing"
@@ -734,7 +736,7 @@ msgid "Description"
 msgstr "விபரம்"
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgstr "மற்ற வலைத்தளங்களில் ஃபிரேம்களை உள்ளே மேடையில் சேர்க்க அனுமதிக்க"
 
 msgid "Invalid input format."
 msgstr "தவறான உள்ளீட்டு வடிவமைப்பு."
@@ -754,29 +756,6 @@ msgstr "தனியுரிமை குழு முடக்கு"
 msgid "Enable the receipt hint"
 msgstr ""
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "அம்பலப்படுத்தியவர் அணுகல் காலாவதியாகும் வரை நாட்கள்"
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "பாதுகாப்பு காரணங்களுக்காக அம்பலப்படுத்தியவர் அணுகல் காலாவதிக்கு உட்பட்டது."
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "நீங்கள் என்ன செய்கிறீர்கள் என்பதை அறிந்தால் மட்டுமே இந்த அமைப்பை மாற்றவும்."
-
-msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Password change interval"
-msgstr "கடவுச்சொல் மாற்றம் இடைவெளி"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "பாதுகாப்பு காரணங்களுக்காக, வழக்கமான இடைவெளியில் கடவுச்சொல் மாற்றங்கள் தேவைப்படுகின்றன."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "இந்த அம்சத்தை முடக்க, மதிப்பு 0 ஆக அமைக்கவும்."
-
 msgid "Landing page"
 msgstr "இறங்கும் பக்கம்"
 
@@ -792,11 +771,64 @@ msgstr "அகரவரிசையில் சூழல்களில் க�
 msgid "Title of the receipt page"
 msgstr "ரசீது பக்கம் தலைப்பு"
 
-msgid "Title of the submission status page"
-msgstr "சமர்பித்தல் நிலை பக்கம் தலைப்பு"
+msgid "Title of the status page of the report"
+msgstr "செய்தி சமர்ப்பிக்கும் நிலையை பக்கம் மேல் காண்பிக்கப்படும்"
 
 msgid "Size limit for file attachments"
 msgstr "கோப்பு இணைப்புகளை அளவு எல்லை"
+
+msgid "Enable HSTS preload"
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication"
+msgstr ""
+
+msgid "Username"
+msgstr "பயனர்பெயர்"
+
+msgid "Password"
+msgstr "கடவுச்சொல்"
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Require proof of work on user authentication"
+msgstr ""
+
+msgid "Password change interval"
+msgstr "கடவுச்சொல் மாற்றம் இடைவெளி"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "பாதுகாப்பு காரணங்களுக்காக, வழக்கமான இடைவெளியில் கடவுச்சொல் மாற்றங்கள் தேவைப்படுகின்றன."
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "இந்த அம்சத்தை முடக்க, மதிப்பு 0 ஆக அமைக்கவும்."
+
+msgid "Amount of days till whistleblower access expires"
+msgstr "அம்பலப்படுத்தியவர் அணுகல் காலாவதியாகும் வரை நாட்கள்"
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr "பாதுகாப்பு காரணங்களுக்காக அம்பலப்படுத்தியவர் அணுகல் காலாவதிக்கு உட்பட்டது."
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr "நீங்கள் என்ன செய்கிறீர்கள் என்பதை அறிந்தால் மட்டுமே இந்த அமைப்பை மாற்றவும்."
+
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr "ஸ்கோரிங் அமைப்பை இயக்கு"
+
+msgid "Enable private labels"
+msgstr ""
+
+msgid "Logging level"
+msgstr "பதிவு நிலை"
+
+msgid "Log accesses of internal users"
+msgstr "உள் பயனர்களின் பதிவு அணுகல்"
 
 msgid "Notify administrators of software problems"
 msgstr "மென்பொருள் பிரச்சினைகள் நிர்வாகிகளுக்கு தெரிவிக்கவும்"
@@ -809,62 +841,11 @@ msgid ""
 "security of the platform."
 msgstr "இந்த அம்சத்தை செயல்படுத்துவதன் மூலம், மேடையின் வளர்ச்சி மற்றும் பாதுகாப்பிற்கு நீங்கள் பங்களிப்பீர்கள்."
 
-msgid "Enable HTTP Basic Authentication to limit platform access"
-msgstr "மேடையில் அணுகலை கட்டுப்படுத்தும் HTTP அடிப்படை அங்கீகரிப்பு இயக்கு"
-
-msgid "Username"
-msgstr "பயனர்பெயர்"
-
-msgid "Password"
-msgstr "கடவுச்சொல்"
-
-msgid "Enable multi-site login"
-msgstr "பல தள உள்நுழைவை இயக்கவும்"
-
-msgid "Enable simplified login"
-msgstr "எளிய உள்நுழைவை இயக்கவும்"
-
-msgid "Enable HSTS preload"
-msgstr ""
-
-msgid "Logging level"
-msgstr "பதிவு நிலை"
-
-msgid "Log accesses of internal users"
-msgstr "உள் பயனர்களின் பதிவு அணுகல்"
-
-msgid "Enable custodian user role"
-msgstr ""
-
-msgid "Enable scoring system"
-msgstr "ஸ்கோரிங் அமைப்பை இயக்கு"
-
-msgid "Enable private labels"
-msgstr ""
-
-msgid "Enable experimental features"
-msgstr "சோதனை அம்சங்களை இயக்கு"
-
-msgid "Warning"
-msgstr "எச்சரிக்கை"
-
-msgid ""
-"The experimental features may be less stable or even not work at all; enable"
-" this option at your own risk. Support for these features may vary and they "
-"may be removed in the future."
-msgstr "சோதனை அம்சங்கள் குறைவான நிலையான இருக்கலாம் அல்லது அனைத்து வேலை இல்லை; உங்கள் சொந்த ஆபத்து இந்த விருப்பத்தை செயல்படுத்த. இந்த அம்சங்கள் ஆதரவு மாறுபடலாம் அவர்கள் எதிர்காலத்தில் நீக்கப்படும் இருக்கலாம்."
-
 msgid "Save"
 msgstr "சேமி"
 
-msgid "Reset submissions"
+msgid "Reset reports"
 msgstr ""
-
-msgid "To"
-msgstr ""
-
-msgid "Add"
-msgstr "சேர்"
 
 msgid "Enable automatic backups"
 msgstr "தானியங்கு காப்புப் பிரதிகளை இயக்கு"
@@ -887,8 +868,44 @@ msgstr "சர்வர்\n"
 msgid "Port"
 msgstr "பெயர்த்துவை"
 
+msgid "Stats of the week:"
+msgstr "வாரம் விபரம்:"
+
+msgid "Free disk space"
+msgstr "இலவச வட்டு இடத்தை"
+
+msgid "Event ID"
+msgstr "நிகழ்வு ஐடி"
+
+msgid "Time"
+msgstr "நேரம்"
+
+msgid "Event"
+msgstr "நிகழ்வு"
+
+msgid "Response time"
+msgstr "பதில் நேரம்"
+
+msgid "Role"
+msgstr "பங்கு"
+
+msgid "Name"
+msgstr "பெயர்"
+
+msgid "Last access"
+msgstr "கடைசியாக அணுகியது"
+
+msgid "Alarm level"
+msgstr "அலார நிலை"
+
+msgid "Events"
+msgstr "நிகழ்வுகள்"
+
 msgid "Substatuses"
 msgstr "துணை நிலைகள்"
+
+msgid "Add"
+msgstr "சேர்"
 
 msgid "Label"
 msgstr "லேபிள்"
@@ -902,8 +919,8 @@ msgstr "தொகு"
 msgid "Cancel"
 msgstr "நிராகரி"
 
-msgid "Submission statuses"
-msgstr "சமர்ப்பிப்பு நிலைகள்"
+msgid "Report statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr "சின்னம்"
@@ -965,8 +982,8 @@ msgstr "தனிப்பயன் மொழிபெயர்ப்பு"
 msgid "Contexts"
 msgstr "சூழல்"
 
-msgid "Name"
-msgstr "பெயர்"
+msgid "State"
+msgstr "நிலை"
 
 msgid "Enabled"
 msgstr "இயக்கப்பட்டது"
@@ -986,9 +1003,6 @@ msgstr "கூடுதல் கேள்வித்தாள்"
 msgid "Recipients"
 msgstr "பெற்றவர்கள்"
 
-msgid "Submission expiration"
-msgstr "சமர்ப்பிப்பு காலாவதி"
-
 msgid "days"
 msgstr "நாட்களில்"
 
@@ -1004,16 +1018,13 @@ msgstr "இயல்பாக அனைத்து பெற்றவர்க�
 msgid "Maximum number of selectable recipients:"
 msgstr "தேர்ந்தெடுக்கும் பெற்றவர்கள் எண்ணிக்கை:"
 
-msgid "(0 = unlimited)"
-msgstr "(0 = வரம்பற்ற)"
-
 msgid "Show recipients in alphabetical order"
 msgstr "அகரவரிசையில் பெற்றவர்கள் காட்டு"
 
 msgid "Show small recipient cards on submission interface"
 msgstr "சமர்ப்பிப்பு இடைமுகத்தில் சிறிய பெறுநர் அட்டைகள் காட்டு"
 
-msgid "Show recipient details on the status page of the submission"
+msgid "Show recipient details on the status page of the report"
 msgstr "சமர்ப்பிக்கும் நிலையை பக்கம் பெறுநர் விவரங்களை காட்டு"
 
 msgid "Text shown on top of the interface for selecting recipients"
@@ -1031,7 +1042,7 @@ msgstr "தனியார் செய்திகளை இயக்கு"
 msgid "Allow whistleblowers to send messages"
 msgstr "இம்மாதிரி செய்திகளை அனுப்ப அனுமதிக்க"
 
-msgid "Let whistleblowers add attachments onto existing submissions"
+msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "விசில்ப்ளேவர்கள் ஏற்கனவே உள்ள சமர்ப்பிப்புகளில் இணைப்புகளை சேர்க்கட்டும்"
 
 msgid "Let recipients upload files to whistleblowers"
@@ -1058,7 +1069,7 @@ msgstr ""
 msgid "Low"
 msgstr ""
 
-msgid "Assign the receipt only to submissions reaching score:"
+msgid "Assign the receipt only to reports reaching score:"
 msgstr ""
 
 msgid "Software version:"
@@ -1067,53 +1078,8 @@ msgstr "மென்பொருள் பதிப்பு:"
 msgid "An update is available:"
 msgstr "புதுப்பிப்பு இருக்கிறது:"
 
-msgid "SMTP email address"
-msgstr "SMTP மின்னஞ்சல் முகவரியை"
-
-msgid "Invalid email address"
-msgstr "பிழையான மின்னஞ்சல் முகவரி"
-
-msgid "SMTP server address"
-msgstr "SMTP சர்வர் முகவரி"
-
-msgid "SMTP server port"
-msgstr "SMTP சர்வர் துறைமுக"
-
-msgid "Transport Security"
-msgstr "போக்குவரத்து பாதுகாப்பு"
-
-msgid "Require authentication"
-msgstr "அங்கீகரிப்பு தேவை"
-
-msgid "When the option is re-enabled the spooled emails will be sent out."
-msgstr "விருப்பத்தை மீண்டும் செயல்படுத்தும் போது spooled மின்னஞ்சல்களை அனுப்பி வைக்கப்படும்."
-
-msgid "Reset notification templates to default"
-msgstr "திருப்பித்தர முடியாது அறிவிப்பை வார்ப்புருக்கள் மீட்டமை"
-
-msgid "Number of hours before sending a submission expiration alert"
-msgstr "ஒரு சமர்ப்பிப்பு காலாவதி எச்சரிக்கை அனுப்பும் முன் மணி எண்ணிக்கை"
-
-msgid "Maximum emails per hour before triggering email suspension"
-msgstr "மின்னஞ்சல் இடைநீக்கம் தூண்டும் முன் ஒரு மணி நேரத்திற்கு அதிகபட்ச மின்னஞ்சல்களை"
-
-msgid "this configuration only applies to recipients"
-msgstr "இந்த கட்டமைப்பு மட்டுமே பெற்றவர்கள் பொருந்தும்"
-
-msgid "Test the configuration"
-msgstr "கட்டமைப்பு சோதனை"
-
-msgid "Reset SMTP configuration"
-msgstr ""
-
-msgid "Template"
-msgstr "டெம்ப்ளேட்"
-
 msgid "Restrict access to specific IP addresses"
 msgstr "குறிப்பிட்ட ஐபி முகவரிகளுக்கு அணுகல் கட்டுப்படுத்தவும்"
-
-msgid "Role"
-msgstr "பங்கு"
 
 msgid "Whitelisted IP addresses"
 msgstr "அனுமதிக்கப்பட்ட IP முகவரிகள்"
@@ -1155,9 +1121,6 @@ msgstr "நான் சேவை விதிமுறைகளை ஒப்ப
 msgid "Country code"
 msgstr "நாட்டின் குறியீடு"
 
-msgid "State"
-msgstr "நிலை"
-
 msgid "City"
 msgstr "சிட்டி"
 
@@ -1166,6 +1129,9 @@ msgstr "நிறுவனம்"
 
 msgid "Organizational unit"
 msgstr "நிறுவன அலகு"
+
+msgid "Invalid email address"
+msgstr "பிழையான மின்னஞ்சல் முகவரி"
 
 msgid "Generate"
 msgstr "உருவாக்கு"
@@ -1256,32 +1222,41 @@ msgstr "Tor இல்லாமல் மேடையில் அடையலா
 msgid "Roles enabled to use the platform without Tor"
 msgstr "டோர் இல்லாமல் மேடையைப் பயன்படுத்துவதற்கான பங்களிப்புகள் இயங்கின"
 
-msgid "Stats of the week:"
-msgstr "வாரம் விபரம்:"
+msgid "To"
+msgstr ""
 
-msgid "Free disk space"
-msgstr "இலவச வட்டு இடத்தை"
+msgid "SMTP email address"
+msgstr "SMTP மின்னஞ்சல் முகவரியை"
 
-msgid "Event ID"
-msgstr "நிகழ்வு ஐடி"
+msgid "SMTP server address"
+msgstr "SMTP சர்வர் முகவரி"
 
-msgid "Time"
-msgstr "நேரம்"
+msgid "SMTP server port"
+msgstr "SMTP சர்வர் துறைமுக"
 
-msgid "Event"
-msgstr "நிகழ்வு"
+msgid "Security"
+msgstr "பாதுகாப்பு"
 
-msgid "Response time"
-msgstr "பதில் நேரம்"
+msgid "Warning"
+msgstr "எச்சரிக்கை"
 
-msgid "Last access"
-msgstr "கடைசியாக அணுகியது"
+msgid "Require authentication"
+msgstr "அங்கீகரிப்பு தேவை"
 
-msgid "Alarm level"
-msgstr "அலார நிலை"
+msgid "Reset notification templates to default"
+msgstr "திருப்பித்தர முடியாது அறிவிப்பை வார்ப்புருக்கள் மீட்டமை"
 
-msgid "Events"
-msgstr "நிகழ்வுகள்"
+msgid "Number of hours before sending a report expiration alert"
+msgstr "ஒரு சமர்ப்பிப்பு காலாவதி எச்சரிக்கை அனுப்பும் முன் மணி எண்ணிக்கை"
+
+msgid "Test the configuration"
+msgstr "கட்டமைப்பு சோதனை"
+
+msgid "Reset SMTP configuration"
+msgstr ""
+
+msgid "Template"
+msgstr "டெம்ப்ளேட்"
 
 msgid "Question"
 msgstr "கேள்வி"
@@ -1342,6 +1317,9 @@ msgstr "பல பதில்களை ஏற்கவும்"
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "ஒரு கூடுதல் பதில் சேர்க்கும் பொத்தான் குறிப்பு"
+
+msgid "Encrypt"
+msgstr ""
 
 msgid "Template override"
 msgstr "டெம்ப்ளேட் மேலெழுதும்"
@@ -1484,7 +1462,7 @@ msgstr "PGP சாவியை நீக்கவும்"
 msgid "Set up encryption by providing a PGP public key"
 msgstr "ஒரு பிஜிபி பொது விசையை வழங்குவதன் மூலம் குறியாக்க அமைக்கவும்"
 
-msgid "Grant the user the capability of resetting users' passwords"
+msgid "Give this admin ability to change user passwords"
 msgstr ""
 
 msgid "Configuration"
@@ -1496,16 +1474,16 @@ msgstr "இயல்புநிலை"
 msgid "Forcefully selected"
 msgstr "கட்டாயப்படுத்தி தேர்வு"
 
-msgid "Allow the recipient to postpone the submission expiration date"
+msgid "Allow the recipient to postpone the report expiration date"
 msgstr "பெறுநர் சமர்ப்பிப்பு காலாவதி தேதி ஒத்தி அனுமதி"
 
-msgid "Allow the recipient to delete submissions"
-msgstr "பெறுநர் சமர்ப்பிப்புகளை நீக்க அனுமதிக்க"
+msgid "Allow the recipient to delete reports"
+msgstr "பெற்றவர்கள் சமர்ப்பிப்புகளை நீக்க அனுமதிக்க"
 
 msgid ""
 "Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "பெறுநர் குறிப்பிட்ட சமர்ப்பிப்புகளை இம்மாதிரி செய்ய அனுமதிகளை வழங்க அனுமதி"
+"reports"
+msgstr "பெற்றவர்கள் குறிப்பிட்ட சமர்ப்பிப்புகளை இம்மாதிரி செய்ய அனுமதிகளை வழங்க அனுமதி"
 
 msgid "User has administrative access to the following features:"
 msgstr "பின்வரும் அம்சங்களுக்கு நிர்வாகி அணுகல் உள்ளது:"
@@ -1514,6 +1492,9 @@ msgid "Request date"
 msgstr "கோரிக்கை தேதி"
 
 msgid "ID"
+msgstr ""
+
+msgid "Report date"
 msgstr ""
 
 msgid "Authorization"
@@ -1543,10 +1524,10 @@ msgstr ""
 msgid "Site:"
 msgstr "தள:"
 
-msgid "Have you already filed a submission? Enter your receipt."
-msgstr ""
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "நீங்கள் ஏற்கனவே ஒரு சமர்ப்பிப்பு தாக்கல் செய்துள்ளனர்? உங்கள் முக்கிய குறியீடு உள்ளிடவும்."
 
-msgid "The receipt is either invalid or the submission has expired."
+msgid "The receipt is either invalid or the report has expired."
 msgstr "ரசீது தவறானது அல்லது சமர்ப்பிப்பு காலாவதியானது."
 
 msgid "Username:"
@@ -1579,8 +1560,8 @@ msgstr "செயல்பாட்டை உள்ளமைவு மீட்�
 msgid "Assign score points"
 msgstr "ஸ்கோர் புள்ளிகள் ஒதுக்க"
 
-msgid "Please note that all the associated data will be permanently lost."
-msgstr "தொடர்புடைய எல்லா தரவு நிரந்தரமாக இழக்கப்படும் என்பதை நினைவில் கொள்க."
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
@@ -1600,13 +1581,15 @@ msgstr ""
 msgid "Close"
 msgstr "நெருக்கமான"
 
-msgid "Your encryption recovery key is:"
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr ""
+
+msgid "Your account recovery key is:"
 msgstr ""
 
 msgid ""
-"Please annotate and store this key in a safe place. It will be necessary if "
-"you lose your personal password to recover the access to your account with "
-"no data loss."
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
 msgstr ""
 
 msgid "Welcome!"
@@ -1635,8 +1618,8 @@ msgid ""
 "projects contact the social enterprise maintaining GlobaLeaks:"
 msgstr "தொழில்முறை ஆதரவு மற்றும் ஊழல் மற்றும் இணக்கம் திட்டங்கள் வளர்ச்சிக்கு Globeaks கையாளும் சமூக நிறுவனம் தொடர்பு:"
 
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr "Irc.oftc.net நெட்வொர்க்கில் எங்கள் ஐ.ஆர்.சி அரட்டை சேலையில் சேரவும்:"
+msgid "Join our chat:"
+msgstr ""
 
 msgid "Follow the project on:"
 msgstr "திட்டத்தை பின்பற்றவும்:"
@@ -1682,19 +1665,10 @@ msgstr "மின்னஞ்சல் முகவரி மாற்றுவ�
 msgid "Please check your inbox for further instructions."
 msgstr "கூடுதல் வழிமுறைகளுக்கு உங்கள் இன்பாக்ஸை சோதனையிடு."
 
-msgid "Encryption key"
-msgstr ""
-
-msgid "Hide"
-msgstr "மறை"
-
-msgid "Show"
-msgstr "காண்பி"
-
 msgid "Set up email encryption by providing a PGP public key"
 msgstr ""
 
-msgid "Get the encryption recovery key"
+msgid "Account recovery key"
 msgstr ""
 
 msgid "Current password"
@@ -1753,6 +1727,14 @@ msgid "To chat with us use the following Ricochet address:"
 msgstr ""
 
 msgid "Download Ricochet at:"
+msgstr ""
+
+msgid ""
+"By using the Tor network and creating an Onion Service, Ricochet is an "
+"instant messaging app that allows you to chat while protecting your privacy "
+"and staying anonymous by not revealing your location or IP address. You "
+"won't notice any difference from an insecure chat, except that you will be "
+"using a unique address instead of a phone number/email/username."
 msgstr ""
 
 msgid "The connection is not secure."
@@ -1814,11 +1796,8 @@ msgstr "தரவிறக்கு"
 msgid "No files have been uploaded!"
 msgstr "எந்த கோப்புகளை பதிவேற்றம் செய்யப்பட்டன!"
 
-msgid "Allow the whistleblower to add attachments to the submission"
+msgid "Allow the whistleblower to add attachments to the report"
 msgstr "தகவல் தெரிவிப்பவர் சமர்ப்பிப்பு இணைப்புகளை சேர்க்க அனுமதி"
-
-msgid "Submission"
-msgstr "சமர்ப்பிக்கும்"
 
 msgid "Access expiration"
 msgstr "அணுகல் காலாவதி"
@@ -1832,17 +1811,14 @@ msgstr "ஒருபோதும்"
 msgid "Revoked"
 msgstr "திரும்பப்பெறப்பட்டது"
 
-msgid "-"
-msgstr ""
-
 msgid "Allow the whistleblower to send messages"
 msgstr "தகவல் தெரிவிப்பவர் செய்திகளை அனுப்ப அனுமதிக்க"
 
-msgid "Are you sure that you want to delete the submission?"
-msgstr "நிச்சயமாக சமர்ப்பிப்பு நீக்க வேண்டுமா?"
+msgid "Are you sure that you want to delete the report?"
+msgstr "நிச்சயமாக பயனர் நீக்க வேண்டுமா?"
 
 msgid ""
-"Everything related to the submission stored on the platform will be deleted."
+"Everything related to the report stored on the platform will be deleted."
 msgstr "மேடையில் சேமிக்கப்பட்ட சமர்ப்பிப்பு தொடர்பான எல்லாமே நீக்கப்படும்."
 
 msgid ""
@@ -1850,8 +1826,8 @@ msgid ""
 " saved on your computer, must be deleted manually."
 msgstr "மேடையில் இருந்து சேகரிக்கப்பட்ட எல்லாவற்றையும் அறிந்து கொள்ளுங்கள், எ.கா. உங்கள் கணினியில் சேமித்த கோப்புகள், கைமுறையாக நீக்கப்பட வேண்டும்."
 
-msgid "Are you sure that you want to delete all the selected submissions?"
-msgstr "நிச்சயமாக எல்லா தேர்ந்தெடுக்கப்பட்ட சமர்ப்பிப்புகளை நீக்க வேண்டுமா?"
+msgid "Are you sure that you want to delete the selected reports?"
+msgstr "நிச்சயமாக பயனர் நீக்க வேண்டுமா?"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
@@ -1861,7 +1837,7 @@ msgstr "என்று பெற்றவர்கள் அதை அணுக
 msgid "Please write a motivation for the reply"
 msgstr "பதிலுக்கு ஒரு உள்நோக்கம் எழுத கொள்ளவும்"
 
-msgid "Are you sure that you want to postpone the submission expiration date?"
+msgid "Are you sure that you want to postpone the report expiration date?"
 msgstr "நிச்சயமாக சமர்ப்பிப்பு காலாவதி தேதி ஒத்தி வைக்க வேண்டுமா?"
 
 msgid "By confirming, you will postpone the expiration date to:"
@@ -1869,7 +1845,7 @@ msgstr "உறுதிப்படுத்துவதன் மூலம், 
 
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
-"submissions?"
+"reports?"
 msgstr "நிச்சயமாக எல்லா தேர்ந்தெடுக்கப்பட்ட சமர்ப்பிப்புகளை காலாவதி தேதி ஒத்தி வைக்க வேண்டுமா?"
 
 msgid "Questionnaire answers"
@@ -1881,8 +1857,8 @@ msgstr "படி"
 msgid "Recipient list"
 msgstr "பெறுநர் பட்டியலில்"
 
-msgid "Submission status:"
-msgstr "சமர்ப்பிக்கும் நிலை:"
+msgid "Status:"
+msgstr ""
 
 msgid "Attached files for the whistleblower"
 msgstr "விசில்ப்ளோயருக்கான இணைக்கப்பட்ட அம்பலப்படுத்தியவர்"
@@ -1893,13 +1869,10 @@ msgstr "கோப்பு பதிவேற்று:"
 msgid "Logout"
 msgstr "வெளியேறு"
 
-msgid "The key code is either invalid or the submission has expired."
-msgstr "முக்கிய குறியீடு தவறானது அல்லது சமர்ப்பிப்பு காலாவதியானது."
-
 msgid "Files attached by recipients"
 msgstr "பெறுநர்கள் இணைத்த கோப்புகள்"
 
-msgid "These files have been attached to your submission by the recipients."
+msgid "These files have been attached to your report by the recipients."
 msgstr "இந்த கோப்புகள் பெறுநர்களிடமிருந்து உங்கள் சமர்ப்பிப்பிற்கு இணைக்கப்பட்டுள்ளன."
 
 msgid "The provided recovery key is invalid."
@@ -1922,6 +1895,12 @@ msgstr ""
 
 msgid "Password reset requested."
 msgstr "கடவுச்சொல் மீட்டமைப்பு கோரப்பட்டது."
+
+msgid "Show"
+msgstr "காண்பி"
+
+msgid "Hide"
+msgstr "மறை"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1993,7 +1972,7 @@ msgstr "நன்றி!"
 msgid "We will try to get back to you as soon as possible."
 msgstr ""
 
-msgid "Remember your receipt for this submission."
+msgid "Remember your receipt for this report."
 msgstr "இந்த சமர்ப்பிப்புக்கான உங்கள் ரசீது நினைவில் கொள்ளுங்கள்."
 
 msgid ""
@@ -2001,7 +1980,7 @@ msgid ""
 "we sent you, and also to add extra info."
 msgstr "உள்நுழைவதற்கு 16 இலக்க ரசீது பயன்படுத்தவும். இது நாங்கள் உங்களுக்கு அனுப்பிய செய்திகளைப் பார்க்கவும், மேலும் கூடுதல் தகவல்களை சேர்க்கவும் அனுமதிக்கும்."
 
-msgid "View your submission"
+msgid "View your report"
 msgstr "உங்கள் சமர்ப்பிப்பு காண்க"
 
 msgid "Recipient selection"
@@ -2018,8 +1997,8 @@ msgid ""
 "invalid:"
 msgstr "இந்த படிப்பில் பின்வரும் கேள்விகளுக்கான பதில்கள் காணாமலோ அல்லது செல்லுபடியாகவோ இல்லை:"
 
-msgid "Submission errors"
-msgstr "சமர்ப்பிக்கும் பிழைகள்"
+msgid "Errors"
+msgstr ""
 
 msgid "You must select at least one recipient."
 msgstr "நீங்கள் குறைந்தது ஒரு பெறுநரை தேர்ந்தெடுக்க வேண்டும்."
@@ -2046,6 +2025,9 @@ msgstr "இந்த சுயவிவரங்களில் வெற்ற�
 msgid "Confirm password"
 msgstr "பாஸ்வேர்டை உறுதி"
 
+msgid "Please choose a different username."
+msgstr ""
+
 msgid "The user will receive an activation link via email."
 msgstr ""
 
@@ -2061,22 +2043,22 @@ msgstr "உரிம ஒப்பந்தத்தின் விதிகள�
 msgid "You have completed the platform wizard."
 msgstr "நீங்கள் மேடையில் வழிகாட்டி முடித்துவிட்டீர்கள்."
 
-msgid "Fill out your submission"
-msgstr "உங்கள் சமர்ப்பிப்பு நிரப்ப"
+msgid "Fill out your report"
+msgstr "உங்கள் சமர்ப்பிப்பு காண்க"
 
 msgid "Short title"
 msgstr "குறுகிய தலைப்பு"
 
-msgid "Describe your submission in a few words."
-msgstr "ஒரு சில வார்த்தைகளில் உங்கள் சமர்ப்பிப்பு விவரிக்கவும்."
+msgid "Describe your report in a few words."
+msgstr ""
 
 msgid "Full description"
 msgstr "முழு விவரம்"
 
-msgid "Describe your submission in detail."
-msgstr "உங்கள் சமர்ப்பிப்பு விரிவாக விவரிக்கவும்."
+msgid "Describe your report in detail."
+msgstr ""
 
-msgid "Attach files relevant to the submission."
+msgid "Attach files relevant to the report."
 msgstr "சமர்ப்பிப்புக்கு தொடர்புடைய கோப்புகளை இணைக்கவும்."
 
 msgid "Do you want to provide your identification information?"
@@ -2142,7 +2124,7 @@ msgstr "அன்பே {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr ""
+msgstr "உங்கள் கணக்கு கடவுச்சொல் மீட்டமைப்பு கோரியதால், இந்த மின்னஞ்சலைப் பெறுகிறீர்கள்."
 
 msgid "Username: {Username}"
 msgstr "பயனர்பெயர்: {Username}"
@@ -2201,8 +2183,8 @@ msgid "The activities with unusual stats are:"
 msgstr "அசாதாரண புள்ளிவிவரங்கள் நடவடிக்கைகள் உள்ளன:"
 
 msgid ""
-"The server cannot guarantee that a new submission can be stored, so "
-"submissions have been disabled."
+"The server cannot guarantee that a new report can be stored, so submissions "
+"have been disabled."
 msgstr "எனவே சமர்ப்பிப்புகளை முடக்கப்பட்டுள்ளன சர்வர், ஒரு புதிய சமர்ப்பிப்பு சேமிக்க முடியும் என்று உத்தரவாதம் அளிக்க முடியாது."
 
 msgid ""
@@ -2272,12 +2254,11 @@ msgstr "SMTP அஞ்சல் சேவையகத்துடன் சே�
 msgid "Test email"
 msgstr "சோதனை மின்னஞ்சல்"
 
-msgid ""
-"This is an email to notify you of a new comment on an existing submission."
+msgid "This is an email to notify you of a new comment on an existing report."
 msgstr "இது ஏற்கனவே உள்ள சமர்ப்பிப்பு ஒரு புதிய கருத்து தெரிவிக்க மின்னஞ்சல் உள்ளது."
 
-msgid "The submission can be accessed at:"
-msgstr ""
+msgid "The report can be accessed at:"
+msgstr "சமர்ப்பிப்பு அணுகலாம்:"
 
 msgid "New comment"
 msgstr "புதிய கருத்து"
@@ -2288,7 +2269,7 @@ msgid ""
 msgstr "உங்கள் மின்னஞ்சல் முகவரி {NewEmailAddress} க்கு மாற்ற வேண்டுமென உங்களுக்கு அறிவிக்கும் மின்னஞ்சல் இதுவாகும்."
 
 msgid "Click the following link to validate this change:"
-msgstr ""
+msgstr "இந்த மாற்றத்தை சரிபார்க்க பின்வரும் இணைப்பைக் கிளிக் செய்க:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2320,8 +2301,8 @@ msgid "Context: {ContextName}"
 msgstr "சூழல்: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of submission {TipNum}"
-" has attached new material."
+"This is an email to notify you that the whistleblower of report {TipNum} has"
+" attached new material."
 msgstr "இந்த சமர்ப்பிப்பு {TipNum} என்ற தகவல் தெரிவிப்பவர் புதிய பொருள் இணைத்துள்ளார் என்று அறிவிக்கிறோம் மின்னஞ்சல் உள்ளது."
 
 msgid "New attachment"
@@ -2358,7 +2339,7 @@ msgstr "தோல்வியடைந்த HTTPS சான்றிதழ் �
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
-" to the whistleblowing identity for the submission {TipNum}."
+" to the whistleblowing identity for the report {TipNum}."
 msgstr "சமர்ப்பிப்பு {TipNum} க்கு விஸ்டிபிலிங் அடையாளத்தை அணுகல் ஒரு பாதுகாவலர் உங்களுக்கு அங்கீகாரம் அளித்துள்ளதை உங்களுக்கு தெரிவிக்கும் மின்னஞ்சலாகும்."
 
 msgid "Access to whistleblower's identity authorized"
@@ -2366,34 +2347,33 @@ msgstr "தகவல் தெரிவிப்பவர் அடையாள�
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the submission {TipNum}."
-msgstr "இந்த ஒரு பாதுகாப்பாளர் நீங்கள் சமர்ப்பிப்பு {TipNum} க்கான whistleblowing அடையாள அணுக மறுத்தார் என்று நீங்கள் தெரிவிக்க மின்னஞ்சல் உள்ளது."
+" wistleblowing identity for the report {TipNum}."
+msgstr "சமர்ப்பிப்பு {TipNum} க்கு விஸ்டிபிலிங் அடையாளத்தை அணுகல் ஒரு பாதுகாவலர் உங்களுக்கு அங்கீகாரம் அளித்துள்ளதை உங்களுக்கு தெரிவிக்கும் மின்னஞ்சலாகும்."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "தகவல் தெரிவிப்பவர் அடையாளத்திற்கான அணுகல் மறுக்கப்பட்டது"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
-"whistleblower's identity for the submission {TipNum}"
+"whistleblower's identity for the report {TipNum}"
 msgstr "இந்த ஒரு பெறுநர் சமர்ப்பிப்பு {TipNum} க்கான தகவல் தெரிவிப்பவர் அடையாளத்திற்கான அணுக கோரிக்கை விடுத்துள்ளார் என்று அறிவிக்கிறோம் மின்னஞ்சல் உள்ளது"
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "கோரிக்கை அணுக முடியும்:"
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "விசில்போலரின் அம்பலப்படுத்தியவர் அணுகல் புதிய கோரிக்கை"
 
 msgid ""
-"This is an email to notify you that the whistleblower for the submission "
+"This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
 msgstr "இந்த சமர்ப்பிப்பு {TipNum} க்கான தகவல் தெரிவிப்பவர் தங்கள் அடையாளத்தை வழங்கப்படும் என்று நீங்கள் தெரிவிக்க மின்னஞ்சல் உள்ளது."
 
 msgid "The whistleblower has provided their identity"
 msgstr "தகவல் தெரிவிப்பவர் தங்கள் அடையாளத்தை வழங்கியுள்ளது"
 
-msgid ""
-"This is an email to notify you of a new message on an existing submission."
-msgstr "இது ஏற்கனவே உள்ள சமர்ப்பிப்பு ஒரு புதிய செய்தியை தெரிவிக்க மின்னஞ்சல் உள்ளது."
+msgid "This is an email to notify you of a new message on an existing report."
+msgstr "இது ஏற்கனவே உள்ள சமர்ப்பிப்பு ஒரு புதிய கருத்து தெரிவிக்க மின்னஞ்சல் உள்ளது."
 
 msgid "New message"
 msgstr "புதிய தகவல்"
@@ -2401,7 +2381,7 @@ msgstr "புதிய தகவல்"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr ""
+msgstr "உங்கள் கணக்கு கடவுச்சொல் மீட்டமைப்பு கோரியதால், இந்த மின்னஞ்சலைப் பெறுகிறீர்கள்."
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
@@ -2428,24 +2408,6 @@ msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
 msgstr "ஒரு செல்லுபடியாகும் PGP முக்கிய இல்லாமல், அமைப்பு உங்களுக்கு வழங்கப்படும் தரவை குறியாக்க முடியாது."
-
-msgid "It appears that {NodeName} is receiving a large number of requests."
-msgstr "அதிகமான கோரிக்கைகளை {NodeName} பெற்றுக்கொள்கிறது."
-
-msgid ""
-"To prevent sending you too many emails, the system has disabled email "
-"notifications until the load returns to normal. In the meantime, you can "
-"normally log onto the platform and manually check for new submissions."
-msgstr "நீங்கள் பல மின்னஞ்சல்களை அனுப்பும் தடுக்க, கணினி சாதாரண சுமை வருமானத்தை வரை மின்னஞ்சல் அறிவிப்புகளை முடக்கியுள்ளது. இதற்கிடையில், நீங்கள் சாதாரணமாக அரங்கத்திற்கு உள்நுழைந்து கைமுறையாக புதிய சமர்ப்பிப்புகளை பார்க்கலாம்."
-
-msgid ""
-"If you don’t mind and would rather receive such a large number of email "
-"notifications anyhow, please contact your technical support to have them "
-"modify this setting accordingly."
-msgstr "நீங்கள் ஒன்றும் நினைக்கவில்லை என்றால் மற்றும் மாறாக எப்படியாவது மின்னஞ்சல் அறிவிப்புகளை போன்ற ஒரு பெரிய எண் பெற வேண்டும், அதன்படி அவர்கள் இந்த அமைப்புகளை மாற்ற வேண்டும் உங்கள் தொழில்நுட்ப ஆதரவை தொடர்பு கொள்க."
-
-msgid "Notifications from {NodeName} have been temporarily suspended"
-msgstr "{NodeName} இன் அறிவிப்புகள் தற்காலிகமாக இடைநீக்கம் செய்யப்பட்டுள்ளன"
 
 msgid "Click the link to activate the platform:"
 msgstr "தளத்தை இயக்குவதற்கு இணைப்பைக் கிளிக் செய்க:"
@@ -2481,24 +2443,24 @@ msgstr "ஆரம்ப காலாவதி தேதி {EarliestExpirationDa
 msgid "Please remember to check them before they are deleted."
 msgstr "தயவுசெய்து அவற்றை நீக்க முன் அவற்றை சோதனையிடு."
 
-msgid "Some submissions will expire soon"
+msgid "Some reports will expire soon"
 msgstr "சில சமர்ப்பிப்புகள் விரைவில் காலாவதியாகும்"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their submission."
+"valuable recipient of their report."
 msgstr "ஒரு விசில்ப்ளவர் உங்களைத் அம்பலப்படுத்தியவர் மதிப்புமிக்க பெறுநராக உங்களை தேர்ந்தெடுத்திருப்பதாக உங்களுக்கு அறிவிக்கும் மின்னஞ்சலாகும்."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
 "contained therein. Please keep in mind that whistleblowers often expose "
 "themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this submission should be considered to be of "
-"high importance."
+"the material provided within this report should be considered to be of high "
+"importance."
 msgstr "இதில் உள்ள தகவல்கள் மற்றும் உள்ளடக்கத்திற்கு சிறப்பு கவனம் செலுத்தும்படி நீங்கள் கேட்கப்படுகிறீர்கள். பொதுமக்களின் வட்டிக்கு விசில்ப்ளேவர்கள் பெரும்பாலும் அதிகமான தனிப்பட்ட அபாயங்களை அம்பலப்படுத்துகிறார்கள் என்பதை நினைவில் கொள்ளுங்கள். எனவே இந்த சமர்ப்பிப்பு உள்ள வழங்கப்படும் பொருள் உயர் முக்கியத்துவம் கருதப்படுகிறது."
 
-msgid "New submission"
-msgstr "புதிய சமர்ப்பிப்பு"
+msgid "New report"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr "பங்கு: {Role}"

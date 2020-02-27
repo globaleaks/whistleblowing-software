@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-01-17 16:24+0000\n"
+"PO-Revision-Date: 2020-02-26 17:30+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,7 +92,7 @@ msgid "Recipient interface"
 msgstr "Mottaker-grensesnitt"
 
 msgid "Date"
-msgstr "Opprettelsesdato"
+msgstr "Dato"
 
 msgid "Expiration date"
 msgstr "Utløpsdato"
@@ -133,8 +133,8 @@ msgstr "KREDITTKORT"
 msgid "YOUR NAME"
 msgstr "DITT NAVN"
 
-msgid "Label the submission"
-msgstr "Fest en merkelapp ved innsendelsen"
+msgid "Label the report"
+msgstr ""
 
 msgid "Postpone the expiration date"
 msgstr "Utsett utløpsdato"
@@ -150,9 +150,6 @@ msgstr "Gjenoppfrisk side"
 
 msgid "Context"
 msgstr "Bindeleddsinformasjon"
-
-msgid "Submission date"
-msgstr "Innsendelsesdato"
 
 msgid "Private messages"
 msgstr "Privat korrespondanse"
@@ -190,15 +187,13 @@ msgstr "Lagre alle"
 msgid "Access control"
 msgstr "Tilgangskontroll"
 
-msgid ""
-"The connection used to send this submission has been secured with HTTPS "
-"ensuring confidentiality."
-msgstr "Tilkoblingen brukt til foresendelse av denne innsendelsen har blitt sikret med HTTPS for å forsikre konfidensialitet."
+msgid "The connection has been secured with HTTPS ensuring confidentiality."
+msgstr ""
 
 msgid ""
-"The connection used to send this submission has been secured with Tor "
-"ensuring confidentiality and anonymity."
-msgstr "Tilkoblingen brukt til foresendelse av denne innsendelsen har blitt sikret med Tor for å forsikre konfidensialitet og anonymitet."
+"The connection has been secured with Tor ensuring confidentiality and "
+"anonymity."
+msgstr ""
 
 msgid "vertical"
 msgstr "vertikal"
@@ -211,9 +206,6 @@ msgstr "Nummer"
 
 msgid "Email"
 msgstr "E-post"
-
-msgid "Date"
-msgstr "Dato"
 
 msgid "Regular expression validator"
 msgstr "Gyldighetssjekk for regulære uttrykk"
@@ -257,11 +249,8 @@ msgstr "Vedlegg"
 msgid "Change your password"
 msgstr "Endre passord"
 
-msgid "List of submissions"
-msgstr "Liste over innsendelser"
-
-msgid "List of access requests to whistleblowers' identities"
-msgstr "Liste over tilgangsforespørsler til fløyteblåseres sanne identitet"
+msgid "Access requests"
+msgstr ""
 
 msgid "User"
 msgstr "Bruker"
@@ -402,8 +391,8 @@ msgstr "Oppfølgingsspørsmål"
 msgid "Triggered by score:"
 msgstr ""
 
-msgid "Message shown on top of the status page of the submission"
-msgstr "Melding vist på toppen av statussiden for innsendelsen"
+msgid "Message shown on top of the status page of the report"
+msgstr ""
 
 msgid "Copy and paste the PGP public key here"
 msgstr "Kopier og lim inn den offentlige PGP-nøkkelen her"
@@ -492,12 +481,12 @@ msgid ""
 msgstr "Denne egendefinerte teksten blir ikke lenger vist på plattformen. Den orginale nøkkelen har enten blitt endret eller fjernet."
 
 msgid ""
-"Unless the whistleblower checks the submission by this time, their access to"
-" it will expire."
-msgstr "Hvis ikke fløyteblåseren sjekker innsendesen innen da, vil deres tilgang til den utløpe."
+"Unless the whistleblower checks the report by this time, their access to it "
+"will expire."
+msgstr ""
 
-msgid "The whistleblower can no longer access the submission"
-msgstr "Fløyteblåseren har mistet tilgang til innsendelsen"
+msgid "The whistleblower can no longer access the report"
+msgstr ""
 
 msgid "Warning!"
 msgstr "Advarsel!"
@@ -519,8 +508,8 @@ msgstr "Last ned Tor-nettleseren"
 msgid "This is the list of the other supported browsers:"
 msgstr "Dette er en liste over støttede nettlesere:"
 
-msgid "System overview"
-msgstr "Systemoversikt"
+msgid "Audit log"
+msgstr ""
 
 msgid "Stats"
 msgstr "Statistikk"
@@ -528,8 +517,8 @@ msgstr "Statistikk"
 msgid "Activities"
 msgstr "Aktivitet"
 
-msgid "Submissions"
-msgstr "Innsendelser"
+msgid "Reports"
+msgstr ""
 
 msgid "Users"
 msgstr "Brukere"
@@ -648,19 +637,27 @@ msgstr ""
 msgid "Password reset"
 msgstr ""
 
-msgid "Select the context of your submission:"
-msgstr "Velg bindeleddsinformasjonen tilhørende din innsendelse:"
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr ""
+
+msgid "This user has not performed the first login yet."
+msgstr ""
+
+msgid "Select the context of your report:"
+msgstr ""
 
 msgid "Warning! You are not anonymous."
 msgstr "Advarsel! Du er ikke anonym."
 
 msgid ""
-"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"Sending reports over HTTPS exposes the act of doing so, but not the "
 "content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"the report anonymous, which is strongly recommended.\\n\\nThis can be "
 "achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
-msgstr "Innsendelser over HTTPS avslører utførelsen derav, men ikke innholdet.\\n\\nNår du også skjuler at du sender inn noe, kalles dette anonym innsendelse, hvilket betyr at du nyter full beskyttelse.\\n\\nAnonyme innsendelser anbefales og kan kjøres gjennom Tor-nettleseren. En spesiell nettleser som anonymiserer din kommunikasjon med plattformen, ulikt Internet Explorer, Firefox, Chrome, Opera osv."
+"in other browsers."
+msgstr ""
 
 msgid "Are you a whistleblower?"
 msgstr "Er du en fløyteblåser/varsler?"
@@ -668,11 +665,11 @@ msgstr "Er du en fløyteblåser/varsler?"
 msgid "Blow the whistle"
 msgstr "Blås i fløyta"
 
-msgid "Your submission was successful."
-msgstr "Din innsendelse var vellykket."
+msgid "Your report was successful."
+msgstr ""
 
-msgid "Submission status"
-msgstr "Statusside for innsendelser"
+msgid "Report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr ""
@@ -710,22 +707,27 @@ msgstr "Skru av innsendelser"
 msgid "Enable encryption"
 msgstr ""
 
-msgid "Enable encryption's keys recovery"
+msgid "Enable administrators to change user passwords"
 msgstr ""
 
 msgid "Enable multisite feature"
 msgstr ""
 
-msgid "Allow recipients to delete submissions"
-msgstr "Tillat mottakere å slette innsendelser"
+msgid "Enable multi-site login"
+msgstr ""
 
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "Tillat mottakere å utsette utløpsdatoen for innsendelsen"
+msgid "Enable simplified login"
+msgstr ""
+
+msgid "Allow recipients to delete reports"
+msgstr ""
+
+msgid "Allow recipients to postpone expiration date of the report"
+msgstr ""
 
 msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "Tillat mottakere å forære rettigheter til fløyteblåsere på gitte innsendelser"
+"Allow recipients to grant permissions to whistleblowers on specific reports"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "Skru på søkemotor-indeksering"
@@ -754,29 +756,6 @@ msgstr "Skru av personvernspanelet"
 msgid "Enable the receipt hint"
 msgstr ""
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "Antall dager til fløyteblåser-tilgang utløper"
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "Av sikkerhetsgrunner er fløyteblåsertilgang noe som utløper."
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "Bare endre denne innstillingen hvis du vet hva du driver på med."
-
-msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Password change interval"
-msgstr ""
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr ""
-
-msgid "Set the value to 0 to disable this feature."
-msgstr ""
-
 msgid "Landing page"
 msgstr "Landingsside"
 
@@ -792,11 +771,64 @@ msgstr "Vis bindeleddsinformasjon i alfabetisk rekkefølge"
 msgid "Title of the receipt page"
 msgstr "Tittel for kvitteringsside"
 
-msgid "Title of the submission status page"
-msgstr "Tittel på statusside for innsendelser"
+msgid "Title of the status page of the report"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Størrelsesgrense for vedlegg"
+
+msgid "Enable HSTS preload"
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication"
+msgstr ""
+
+msgid "Username"
+msgstr "Brukernavn"
+
+msgid "Password"
+msgstr "Passord"
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Require proof of work on user authentication"
+msgstr ""
+
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
+msgid "Amount of days till whistleblower access expires"
+msgstr "Antall dager til fløyteblåser-tilgang utløper"
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr "Av sikkerhetsgrunner er fløyteblåsertilgang noe som utløper."
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr "Bare endre denne innstillingen hvis du vet hva du driver på med."
+
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
+msgid "Enable private labels"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
+msgstr ""
 
 msgid "Notify administrators of software problems"
 msgstr "Gi administratorer beskjed om programvareproblemer"
@@ -809,62 +841,11 @@ msgid ""
 "security of the platform."
 msgstr "Ved å skru på denne funksjonen, vil du bidra til utviklingen og sikkerheten av plattformen."
 
-msgid "Enable HTTP Basic Authentication to limit platform access"
-msgstr "Skru på vanlig HTTP-bekreftelse for å begrense plattform-tilgang"
-
-msgid "Username"
-msgstr "Brukernavn"
-
-msgid "Password"
-msgstr "Passord"
-
-msgid "Enable multi-site login"
-msgstr ""
-
-msgid "Enable simplified login"
-msgstr ""
-
-msgid "Enable HSTS preload"
-msgstr ""
-
-msgid "Logging level"
-msgstr ""
-
-msgid "Log accesses of internal users"
-msgstr ""
-
-msgid "Enable custodian user role"
-msgstr ""
-
-msgid "Enable scoring system"
-msgstr ""
-
-msgid "Enable private labels"
-msgstr ""
-
-msgid "Enable experimental features"
-msgstr "Skru på eksperimentelle funksjoner"
-
-msgid "Warning"
-msgstr "Advarsel"
-
-msgid ""
-"The experimental features may be less stable or even not work at all; enable"
-" this option at your own risk. Support for these features may vary and they "
-"may be removed in the future."
-msgstr "Eksperimentelle funksjoner kan være ustabile eller ikke fungere overhodet; bruk på egen risiko. Støtte for disse funksjonene varierer, og kan bli fjernet i fremtiden."
-
 msgid "Save"
 msgstr "Lagre"
 
-msgid "Reset submissions"
+msgid "Reset reports"
 msgstr ""
-
-msgid "To"
-msgstr "Til"
-
-msgid "Add"
-msgstr "Legg til"
 
 msgid "Enable automatic backups"
 msgstr ""
@@ -887,8 +868,44 @@ msgstr "Tjener"
 msgid "Port"
 msgstr "Port"
 
+msgid "Stats of the week:"
+msgstr "Ukas statistikk:"
+
+msgid "Free disk space"
+msgstr "Ledig diskplass"
+
+msgid "Event ID"
+msgstr "Hendelses-ID"
+
+msgid "Time"
+msgstr "Tid"
+
+msgid "Event"
+msgstr "Hendelse"
+
+msgid "Response time"
+msgstr "Svartid"
+
+msgid "Role"
+msgstr "Rolle"
+
+msgid "Name"
+msgstr "Navn"
+
+msgid "Last access"
+msgstr "Siste tilgang"
+
+msgid "Alarm level"
+msgstr "Alarm-nivå"
+
+msgid "Events"
+msgstr "Hendelser"
+
 msgid "Substatuses"
 msgstr ""
+
+msgid "Add"
+msgstr "Legg til"
 
 msgid "Label"
 msgstr "Merkelapp"
@@ -902,7 +919,7 @@ msgstr "Rediger"
 msgid "Cancel"
 msgstr "Avbryt"
 
-msgid "Submission statuses"
+msgid "Report statuses"
 msgstr ""
 
 msgid "Logo"
@@ -965,8 +982,8 @@ msgstr "Egendefinert oversettelse"
 msgid "Contexts"
 msgstr "Bindeleddsinformasjon"
 
-msgid "Name"
-msgstr "Navn"
+msgid "State"
+msgstr "Region"
 
 msgid "Enabled"
 msgstr "Påskrudd"
@@ -986,9 +1003,6 @@ msgstr ""
 msgid "Recipients"
 msgstr "Mottakere"
 
-msgid "Submission expiration"
-msgstr ""
-
 msgid "days"
 msgstr "dager"
 
@@ -1004,17 +1018,14 @@ msgstr "Velg alle mottakere som forvalg"
 msgid "Maximum number of selectable recipients:"
 msgstr "Maksimalt antall mottakere som kan velges:"
 
-msgid "(0 = unlimited)"
-msgstr "(0= ubegrenset)"
-
 msgid "Show recipients in alphabetical order"
 msgstr "Vis mottakere i alfabetisk rekkefølge"
 
 msgid "Show small recipient cards on submission interface"
 msgstr "Vis små mottakerkort på innsendelses-grensesnittet"
 
-msgid "Show recipient details on the status page of the submission"
-msgstr "Vis mottagerdetaljer på statussiden tilhørende innsendelsen"
+msgid "Show recipient details on the status page of the report"
+msgstr ""
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Tekst vist på toppen av grensesnittet for valg av mottakere"
@@ -1031,8 +1042,8 @@ msgstr "Skru på privat korrespondanse"
 msgid "Allow whistleblowers to send messages"
 msgstr "Tillat fløyteblåsere å sende meldinger"
 
-msgid "Let whistleblowers add attachments onto existing submissions"
-msgstr "Tillat fløyteblåsere mulighet for tillegg av vedlegg til eksisterende innsendelser"
+msgid "Let whistleblowers add attachments onto existing reports"
+msgstr ""
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Tillat mottakere å laste opp filer til fløyteblåsere"
@@ -1058,7 +1069,7 @@ msgstr ""
 msgid "Low"
 msgstr ""
 
-msgid "Assign the receipt only to submissions reaching score:"
+msgid "Assign the receipt only to reports reaching score:"
 msgstr ""
 
 msgid "Software version:"
@@ -1067,53 +1078,8 @@ msgstr "Programvareversjon:"
 msgid "An update is available:"
 msgstr "Oppgradering tilgjengelig:"
 
-msgid "SMTP email address"
-msgstr "SMTP for e-postadresse"
-
-msgid "Invalid email address"
-msgstr "Ugyldig e-post -adresse"
-
-msgid "SMTP server address"
-msgstr "SMTP tjener-adresse"
-
-msgid "SMTP server port"
-msgstr "SMTP tjener-port"
-
-msgid "Transport Security"
-msgstr "Transport-sikkerhet"
-
-msgid "Require authentication"
-msgstr ""
-
-msgid "When the option is re-enabled the spooled emails will be sent out."
-msgstr "Når dette valget blir påskrudd igjen vil e-postene som er lagt i kø bli utsendt."
-
-msgid "Reset notification templates to default"
-msgstr "Tilbakestill merknadssmaler til forvalg"
-
-msgid "Number of hours before sending a submission expiration alert"
-msgstr "Antall timer før utløpsvarsel for innsendelse vil bli sendt"
-
-msgid "Maximum emails per hour before triggering email suspension"
-msgstr "Maksimalt antall e-poster i timen før e-postsuspendering iverksettes"
-
-msgid "this configuration only applies to recipients"
-msgstr "dette oppsettet har bare med mottakere å gjøre"
-
-msgid "Test the configuration"
-msgstr "Test oppsettet"
-
-msgid "Reset SMTP configuration"
-msgstr ""
-
-msgid "Template"
-msgstr "Mal"
-
 msgid "Restrict access to specific IP addresses"
 msgstr ""
-
-msgid "Role"
-msgstr "Rolle"
 
 msgid "Whitelisted IP addresses"
 msgstr "Hvitlistede IP-adresser"
@@ -1155,9 +1121,6 @@ msgstr "Jeg samtykker til tjenestevilkårene"
 msgid "Country code"
 msgstr "Landskode"
 
-msgid "State"
-msgstr "Region"
-
 msgid "City"
 msgstr "Sted"
 
@@ -1166,6 +1129,9 @@ msgstr "Organisasjon"
 
 msgid "Organizational unit"
 msgstr "Organisatorisk enhet"
+
+msgid "Invalid email address"
+msgstr "Ugyldig e-post -adresse"
 
 msgid "Generate"
 msgstr "Generer"
@@ -1256,32 +1222,41 @@ msgstr "Tillat at plattformen nås uten Tor"
 msgid "Roles enabled to use the platform without Tor"
 msgstr ""
 
-msgid "Stats of the week:"
-msgstr "Ukas statistikk:"
+msgid "To"
+msgstr "Til"
 
-msgid "Free disk space"
-msgstr "Ledig diskplass"
+msgid "SMTP email address"
+msgstr "SMTP for e-postadresse"
 
-msgid "Event ID"
-msgstr "Hendelses-ID"
+msgid "SMTP server address"
+msgstr "SMTP tjener-adresse"
 
-msgid "Time"
-msgstr "Tid"
+msgid "SMTP server port"
+msgstr "SMTP tjener-port"
 
-msgid "Event"
-msgstr "Hendelse"
+msgid "Security"
+msgstr "Sikkerhet"
 
-msgid "Response time"
-msgstr "Svartid"
+msgid "Warning"
+msgstr "Advarsel"
 
-msgid "Last access"
-msgstr "Siste tilgang"
+msgid "Require authentication"
+msgstr ""
 
-msgid "Alarm level"
-msgstr "Alarm-nivå"
+msgid "Reset notification templates to default"
+msgstr "Tilbakestill merknadssmaler til forvalg"
 
-msgid "Events"
-msgstr "Hendelser"
+msgid "Number of hours before sending a report expiration alert"
+msgstr ""
+
+msgid "Test the configuration"
+msgstr "Test oppsettet"
+
+msgid "Reset SMTP configuration"
+msgstr ""
+
+msgid "Template"
+msgstr "Mal"
 
 msgid "Question"
 msgstr ""
@@ -1342,6 +1317,9 @@ msgstr "Godta flere svar"
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Hint vist på knappen for tillegg av et ekstra spørsmål"
+
+msgid "Encrypt"
+msgstr "Krypter"
 
 msgid "Template override"
 msgstr ""
@@ -1484,7 +1462,7 @@ msgstr "Fjern PGP-nøkkel"
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Sett opp kryptering ved å oppgi en offentlig PGP-nøkkel"
 
-msgid "Grant the user the capability of resetting users' passwords"
+msgid "Give this admin ability to change user passwords"
 msgstr ""
 
 msgid "Configuration"
@@ -1496,16 +1474,16 @@ msgstr "Forvalgt"
 msgid "Forcefully selected"
 msgstr "Påtvunget forvalg"
 
-msgid "Allow the recipient to postpone the submission expiration date"
-msgstr "Tillat mottakeren å utsette utløpsdatoen for ledetråd"
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr ""
 
-msgid "Allow the recipient to delete submissions"
-msgstr "Tillat mottaker å slette innsendelser"
+msgid "Allow the recipient to delete reports"
+msgstr ""
 
 msgid ""
 "Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "Tillat mottaker å forære rettigheter til fløyteblåsere på gitte innsendelser."
+"reports"
+msgstr ""
 
 msgid "User has administrative access to the following features:"
 msgstr ""
@@ -1515,6 +1493,9 @@ msgstr "Forespør dato"
 
 msgid "ID"
 msgstr "ID"
+
+msgid "Report date"
+msgstr ""
 
 msgid "Authorization"
 msgstr "Godkjenning"
@@ -1543,10 +1524,10 @@ msgstr ""
 msgid "Site:"
 msgstr ""
 
-msgid "Have you already filed a submission? Enter your receipt."
-msgstr "Oppgi kvittering for tidligere innsendelse her hvis den forefinnes."
+msgid "Have you already filed a report? Enter your receipt."
+msgstr ""
 
-msgid "The receipt is either invalid or the submission has expired."
+msgid "The receipt is either invalid or the report has expired."
 msgstr ""
 
 msgid "Username:"
@@ -1579,8 +1560,8 @@ msgstr "Operasjonen vil tilbakestille oppsettet og kan ikke angres."
 msgid "Assign score points"
 msgstr "Tildel poeng"
 
-msgid "Please note that all the associated data will be permanently lost."
-msgstr "Merk deg at all tilknyttet data vil gå tapt for godt."
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
@@ -1600,13 +1581,15 @@ msgstr ""
 msgid "Close"
 msgstr "Lukk"
 
-msgid "Your encryption recovery key is:"
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr ""
+
+msgid "Your account recovery key is:"
 msgstr ""
 
 msgid ""
-"Please annotate and store this key in a safe place. It will be necessary if "
-"you lose your personal password to recover the access to your account with "
-"no data loss."
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
 msgstr ""
 
 msgid "Welcome!"
@@ -1635,8 +1618,8 @@ msgid ""
 "projects contact the social enterprise maintaining GlobaLeaks:"
 msgstr "For profesjonell støtte og styrking av antikorrupsjonsarbeid og imøtekommelse av standarder, kontakt den sosiale bedriften som vedlikeholder GlobaLeaks:"
 
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr "Ta del i vår IRC-kanal på irc.oftc.net -nettverket:"
+msgid "Join our chat:"
+msgstr ""
 
 msgid "Follow the project on:"
 msgstr "Følg prosjektet på:"
@@ -1682,19 +1665,10 @@ msgstr "Bekreftelse av e-postendring underveis."
 msgid "Please check your inbox for further instructions."
 msgstr ""
 
-msgid "Encryption key"
-msgstr "Krypteringsnøkkel"
-
-msgid "Hide"
-msgstr "Skjul"
-
-msgid "Show"
-msgstr "Vis"
-
 msgid "Set up email encryption by providing a PGP public key"
 msgstr ""
 
-msgid "Get the encryption recovery key"
+msgid "Account recovery key"
 msgstr ""
 
 msgid "Current password"
@@ -1753,6 +1727,14 @@ msgid "To chat with us use the following Ricochet address:"
 msgstr ""
 
 msgid "Download Ricochet at:"
+msgstr ""
+
+msgid ""
+"By using the Tor network and creating an Onion Service, Ricochet is an "
+"instant messaging app that allows you to chat while protecting your privacy "
+"and staying anonymous by not revealing your location or IP address. You "
+"won't notice any difference from an insecure chat, except that you will be "
+"using a unique address instead of a phone number/email/username."
 msgstr ""
 
 msgid "The connection is not secure."
@@ -1814,11 +1796,8 @@ msgstr "last ned"
 msgid "No files have been uploaded!"
 msgstr "Ingen fil har blitt lastet opp!"
 
-msgid "Allow the whistleblower to add attachments to the submission"
-msgstr "Tillat fløyteblåseren å legge vedlegg til innsendelsen"
-
-msgid "Submission"
-msgstr "Innsending"
+msgid "Allow the whistleblower to add attachments to the report"
+msgstr ""
 
 msgid "Access expiration"
 msgstr "Tilgangsutløp"
@@ -1832,26 +1811,23 @@ msgstr "Aldri"
 msgid "Revoked"
 msgstr "Tilbakekalt"
 
-msgid "-"
-msgstr ""
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Tillat fløyteblåseren å sende meldinger"
 
-msgid "Are you sure that you want to delete the submission?"
-msgstr "Bekreft sletting av denne innsendelsen."
+msgid "Are you sure that you want to delete the report?"
+msgstr ""
 
 msgid ""
-"Everything related to the submission stored on the platform will be deleted."
-msgstr "Alt som har med innsendelsen lagret på plattformen vil bli slettet."
+"Everything related to the report stored on the platform will be deleted."
+msgstr ""
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
 " saved on your computer, must be deleted manually."
 msgstr "Merk deg at alt lagret andre steder enn på plattformen, eksempelvis filer du har lagret på din datamaskin, må slettes manuelt."
 
-msgid "Are you sure that you want to delete all the selected submissions?"
-msgstr "Bekreft sletting av valgte innsendelser."
+msgid "Are you sure that you want to delete the selected reports?"
+msgstr ""
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
@@ -1861,16 +1837,16 @@ msgstr "Ha i minnet at all tilhørende data vil bli ordentlig slettet og at alle
 msgid "Please write a motivation for the reply"
 msgstr "Skriv motivasjon for forespørsel"
 
-msgid "Are you sure that you want to postpone the submission expiration date?"
-msgstr "Er du sikker på at du vil utsette utløpsdatoen for ledetråden?"
+msgid "Are you sure that you want to postpone the report expiration date?"
+msgstr ""
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Ved å bekrefte vil du utsette utløpsdatoen til:"
 
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
-"submissions?"
-msgstr "Bekreft utsettelse av utløpsdato for valgte innsendelser."
+"reports?"
+msgstr ""
 
 msgid "Questionnaire answers"
 msgstr "Svar oppgitt for spørreskjema"
@@ -1881,7 +1857,7 @@ msgstr "Steg"
 msgid "Recipient list"
 msgstr "Mottaker-liste"
 
-msgid "Submission status:"
+msgid "Status:"
 msgstr ""
 
 msgid "Attached files for the whistleblower"
@@ -1893,14 +1869,11 @@ msgstr "Last opp en fil:"
 msgid "Logout"
 msgstr "Logg ut"
 
-msgid "The key code is either invalid or the submission has expired."
-msgstr "Nøkkelkoden er enten ugyldig eller så har innsendelsen utløpt."
-
 msgid "Files attached by recipients"
 msgstr "Filer vedlegt av mottakere"
 
-msgid "These files have been attached to your submission by the recipients."
-msgstr "Disse filene har blitt vedlagt din innsendelse av mottakerne."
+msgid "These files have been attached to your report by the recipients."
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr ""
@@ -1922,6 +1895,12 @@ msgstr ""
 
 msgid "Password reset requested."
 msgstr ""
+
+msgid "Show"
+msgstr "Vis"
+
+msgid "Hide"
+msgstr "Skjul"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1993,7 +1972,7 @@ msgstr "Takk!"
 msgid "We will try to get back to you as soon as possible."
 msgstr ""
 
-msgid "Remember your receipt for this submission."
+msgid "Remember your receipt for this report."
 msgstr ""
 
 msgid ""
@@ -2001,8 +1980,8 @@ msgid ""
 "we sent you, and also to add extra info."
 msgstr ""
 
-msgid "View your submission"
-msgstr "Se over din innsendelse"
+msgid "View your report"
+msgstr ""
 
 msgid "Recipient selection"
 msgstr "Valg av mottaker"
@@ -2018,8 +1997,8 @@ msgid ""
 "invalid:"
 msgstr "Disse spørsmålene har ugyldige eller manglende svar i dette steget."
 
-msgid "Submission errors"
-msgstr "Innsendelsesfeil"
+msgid "Errors"
+msgstr ""
 
 msgid "You must select at least one recipient."
 msgstr "Du må velge ihvertfall én mottaker."
@@ -2046,6 +2025,9 @@ msgstr "Disse profilene inneholder innstillinger brukt av vellykkede prosjekter 
 msgid "Confirm password"
 msgstr "Bekreft passord"
 
+msgid "Please choose a different username."
+msgstr ""
+
 msgid "The user will receive an activation link via email."
 msgstr ""
 
@@ -2061,23 +2043,23 @@ msgstr "Jeg godtar vilkårene i lisensen."
 msgid "You have completed the platform wizard."
 msgstr "Du har fullført plattformsveiviseren."
 
-msgid "Fill out your submission"
-msgstr "Fyll ut din innsendelse"
+msgid "Fill out your report"
+msgstr ""
 
 msgid "Short title"
 msgstr "Kort tittel"
 
-msgid "Describe your submission in a few words."
-msgstr "Kort beskrivelse av din innsendelse."
+msgid "Describe your report in a few words."
+msgstr ""
 
 msgid "Full description"
 msgstr "Full beskrivelse"
 
-msgid "Describe your submission in detail."
-msgstr "Beskriv din innsendelse i detalj."
+msgid "Describe your report in detail."
+msgstr ""
 
-msgid "Attach files relevant to the submission."
-msgstr "Legg ved relevante filer til innsendelsen."
+msgid "Attach files relevant to the report."
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Ønsker du å oppgi identifiserbar informasjon?"
@@ -2201,9 +2183,9 @@ msgid "The activities with unusual stats are:"
 msgstr "Hendelsesforløpet med uvanlige attributter er:"
 
 msgid ""
-"The server cannot guarantee that a new submission can be stored, so "
-"submissions have been disabled."
-msgstr "Tjeneren kan ikke garantere for at nye innsendelser kan lagres, derfor har innsendelser blitt avskrudd."
+"The server cannot guarantee that a new report can be stored, so submissions "
+"have been disabled."
+msgstr ""
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
@@ -2272,11 +2254,10 @@ msgstr "Mottak av denne e-posten indikerer at tjeneren kunne identitetsbekrefte 
 msgid "Test email"
 msgstr "E-posttest"
 
-msgid ""
-"This is an email to notify you of a new comment on an existing submission."
-msgstr "Denne e-postens hensikt er å gjøre deg oppmerksom på at det er en ny kommentar i en tidligere innsendelse."
+msgid "This is an email to notify you of a new comment on an existing report."
+msgstr ""
 
-msgid "The submission can be accessed at:"
+msgid "The report can be accessed at:"
 msgstr ""
 
 msgid "New comment"
@@ -2320,9 +2301,9 @@ msgid "Context: {ContextName}"
 msgstr "Bindeleddsinformasjon: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of submission {TipNum}"
-" has attached new material."
-msgstr "Denne e-postens hensikt er å varsle deg om at en fløyteblåser bak innsendelse {TipNum} har lagt ved nytt materiale."
+"This is an email to notify you that the whistleblower of report {TipNum} has"
+" attached new material."
+msgstr ""
 
 msgid "New attachment"
 msgstr "Nytt vedlegg"
@@ -2358,24 +2339,24 @@ msgstr ""
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
-" to the whistleblowing identity for the submission {TipNum}."
-msgstr "Dette er en e-post til opplysning om at tillitspersonen har godkjent deg tilgang til den sanne fløyteblåseridentiteten for innsendelsen {TipNum}"
+" to the whistleblowing identity for the report {TipNum}."
+msgstr ""
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "Tilgang til fløyteblåserens sanne identitet godkjent"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the submission {TipNum}."
-msgstr "Dette er en e-post til opplysning om at tillitspersonen har nektet deg tilgang til den sanne fløyteblåseridentiteten bak innsendelse {TipNum}"
+" wistleblowing identity for the report {TipNum}."
+msgstr ""
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Nektet tilgang til fløyteblåserens sanne identitet"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
-"whistleblower's identity for the submission {TipNum}"
-msgstr "Dette er en e-post til opplysning om at mottakeren har forespurt tilgang til den sanne fløyteblåseridentiteten bak innsendelse {TipNum}"
+"whistleblower's identity for the report {TipNum}"
+msgstr ""
 
 msgid "The request can be accessed at:"
 msgstr ""
@@ -2384,16 +2365,15 @@ msgid "New request of access to a whistleblower's identity"
 msgstr "Ny tilgangsforespørsel til en fløyteblåsers sanne identitet"
 
 msgid ""
-"This is an email to notify you that the whistleblower for the submission "
+"This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "Denne e-postens hensikt er å varsle deg om at fløyteblåseren bak innsendelse {TipNum} har oppgitt sin sanne identitet."
+msgstr ""
 
 msgid "The whistleblower has provided their identity"
 msgstr "Fløyteblåseren har bekjentgjort sin sanne identitet"
 
-msgid ""
-"This is an email to notify you of a new message on an existing submission."
-msgstr "Denne e-postens hensikt er å gjøre deg oppmerksom på at det er en ny melding i en tidligere innsendelse."
+msgid "This is an email to notify you of a new message on an existing report."
+msgstr ""
 
 msgid "New message"
 msgstr "Ny melding"
@@ -2429,24 +2409,6 @@ msgid ""
 "to you."
 msgstr "Uten en gyldig PGP-nøkkel vil ikke systemet kunne kryptere data ment for deg."
 
-msgid "It appears that {NodeName} is receiving a large number of requests."
-msgstr "Det later til at {NodeName} mottar et stort antall forespørsler."
-
-msgid ""
-"To prevent sending you too many emails, the system has disabled email "
-"notifications until the load returns to normal. In the meantime, you can "
-"normally log onto the platform and manually check for new submissions."
-msgstr "For å forhindre utsending av for mange e-poster har systemet skrudd av e-postmerknader til systemlasten igjen er på et normale. I mellomtiden kan du logge inn på plattformen og manuelt sjekke nye innsendelser."
-
-msgid ""
-"If you don’t mind and would rather receive such a large number of email "
-"notifications anyhow, please contact your technical support to have them "
-"modify this setting accordingly."
-msgstr "Hvis du ikke har noen formening og heller vil motta e-postmerknader lass-vis, ta kontakt med teknisk brukerstøtte og få dem til å endre denne innstillingen i henhold til dine ønsker."
-
-msgid "Notifications from {NodeName} have been temporarily suspended"
-msgstr "Merknader fra {NodeName} har blitt midlertidig suspendert"
-
 msgid "Click the link to activate the platform:"
 msgstr "Klikk på lenken for å aktivere plattformen:"
 
@@ -2481,24 +2443,24 @@ msgstr "Den tidligste utløpsdatoen er {EarliestExpirationDate}."
 msgid "Please remember to check them before they are deleted."
 msgstr "Husk å sjekke dem før de blir slettet."
 
-msgid "Some submissions will expire soon"
-msgstr "Noen innsendelser vil utløpe snart"
+msgid "Some reports will expire soon"
+msgstr ""
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their submission."
-msgstr "Denne e-posten har til hensikt å informere deg om at en fløyteblåser har valgt deg som verdig mottaker av deres innsendelse."
+"valuable recipient of their report."
+msgstr ""
 
 msgid ""
 "You are asked to pay special attention to the information and material "
 "contained therein. Please keep in mind that whistleblowers often expose "
 "themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this submission should be considered to be of "
-"high importance."
-msgstr "Du er bedt om å se spesielt nøye på informasjonen og innholdet i den. Ha i minnet et fløyteblåsere ofte løper stor personlig risiko i offentlighetens ærende. Derfor er det de skaffer til veie i form av denne innsendelsen å anse som materiale av stor betydning."
+"the material provided within this report should be considered to be of high "
+"importance."
+msgstr ""
 
-msgid "New submission"
-msgstr "Ny innsendelse"
+msgid "New report"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr ""

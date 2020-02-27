@@ -8,7 +8,7 @@
 # AO <ao@localizationlab.org>, 2016-2017
 # AO <ao@localizationlab.org>, 2016
 # AO <ao@localizationlab.org>, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2019
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2020
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -18,7 +18,7 @@
 # marco calamari <marcoc@marcoc.it>, 2013
 # Myriam Gineste <yleane.myriam@gmail.com>, 2014
 # Pierre <prjolivet@yahoo.fr>, 2015
-# Rima Sghaier <sghair.rahma@gmail.com>, 2016
+# Rima Sghaier, 2016
 # rike, 2014
 # rike, 2014
 # Towinet, 2013-2015
@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-01-17 16:24+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-02-26 18:24+0000\n"
+"Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -124,7 +124,7 @@ msgid "Recipient interface"
 msgstr "Interface du destinataire"
 
 msgid "Date"
-msgstr "Date de création"
+msgstr "Date"
 
 msgid "Expiration date"
 msgstr "Date d’expiration"
@@ -165,11 +165,11 @@ msgstr "CARTE DE CRÉDIT"
 msgid "YOUR NAME"
 msgstr "VOTRE NOM"
 
-msgid "Label the submission"
-msgstr "Étiqueter l’envoi"
+msgid "Label the report"
+msgstr "Étiqueter le signalement"
 
 msgid "Postpone the expiration date"
-msgstr "Repousser la date d’expiration"
+msgstr "Différer la date d’expiration"
 
 msgid "Select all"
 msgstr "Tout sélectionner"
@@ -182,9 +182,6 @@ msgstr "Rafraîchir la page"
 
 msgid "Context"
 msgstr "Contexte"
-
-msgid "Submission date"
-msgstr "Date d’envoi"
 
 msgid "Private messages"
 msgstr "Messages privés"
@@ -222,15 +219,13 @@ msgstr "Tout enregistrer"
 msgid "Access control"
 msgstr "Contrôle de l’accès"
 
-msgid ""
-"The connection used to send this submission has been secured with HTTPS "
-"ensuring confidentiality."
-msgstr "La connexion utilisée pour cet envoi a été sécurisée avec HTTPS afin de garantir la confidentialité de vos données."
+msgid "The connection has been secured with HTTPS ensuring confidentiality."
+msgstr "La connexion a été sécurisée avec HTTPS afin de garantir la confidentialité de vos données."
 
 msgid ""
-"The connection used to send this submission has been secured with Tor "
-"ensuring confidentiality and anonymity."
-msgstr "La connexion utilisée pour cet envoi a été sécurisée avec Tor afin de garantir la confidentialité de vos données et votre anonymat."
+"The connection has been secured with Tor ensuring confidentiality and "
+"anonymity."
+msgstr "La connexion utilisé a été sécurisée avec Tor afin de garantir la confidentialité de vos données et votre anonymat."
 
 msgid "vertical"
 msgstr "verticale"
@@ -243,9 +238,6 @@ msgstr "Nombre"
 
 msgid "Email"
 msgstr "Courriel"
-
-msgid "Date"
-msgstr "Date"
 
 msgid "Regular expression validator"
 msgstr "Valideur d’expression régulière"
@@ -289,11 +281,8 @@ msgstr "Fichiers joints"
 msgid "Change your password"
 msgstr "Changez votre mot de passe"
 
-msgid "List of submissions"
-msgstr "Liste d’envois"
-
-msgid "List of access requests to whistleblowers' identities"
-msgstr "Liste de demandes d’accès aux identités des lanceurs d’alerte"
+msgid "Access requests"
+msgstr "Demandes d’accès"
 
 msgid "User"
 msgstr "Utilisateur"
@@ -434,8 +423,8 @@ msgstr "Déclencher une question"
 msgid "Triggered by score:"
 msgstr "Déclenché par un pointage : "
 
-msgid "Message shown on top of the status page of the submission"
-msgstr "Message affiché en haut de la page d’état de l’envoi"
+msgid "Message shown on top of the status page of the report"
+msgstr "Message affiché en haut de la page d’état du signalement"
 
 msgid "Copy and paste the PGP public key here"
 msgstr "Copier et coller la clé publique PGP ici"
@@ -524,12 +513,12 @@ msgid ""
 msgstr "Ce texte personnalisé n’est plus affiché sur la plateforme. Le texte original a été modifié ou supprimé."
 
 msgid ""
-"Unless the whistleblower checks the submission by this time, their access to"
-" it will expire."
-msgstr "À moins que le lanceur d’alerte ne vérifie l’envoi avant cette échéance, son accès arrivera à expiration."
+"Unless the whistleblower checks the report by this time, their access to it "
+"will expire."
+msgstr "À moins que le lanceur d’alerte ne vérifie le signalement avant cette échéance, son accès arrivera à expiration."
 
-msgid "The whistleblower can no longer access the submission"
-msgstr "Le lanceur d’alerte ne peut plus accéder à l’envoi"
+msgid "The whistleblower can no longer access the report"
+msgstr "Le lanceur d’alerte ne peut plus accéder au signalement"
 
 msgid "Warning!"
 msgstr "Avertissement !"
@@ -551,8 +540,8 @@ msgstr "Télécharger le navigateur Tor"
 msgid "This is the list of the other supported browsers:"
 msgstr "Voici la liste des autres navigateurs pris en charge :"
 
-msgid "System overview"
-msgstr "Vue d’ensemble du système"
+msgid "Audit log"
+msgstr "Liste de contrôle"
 
 msgid "Stats"
 msgstr "Statistiques"
@@ -560,8 +549,8 @@ msgstr "Statistiques"
 msgid "Activities"
 msgstr "Activités"
 
-msgid "Submissions"
-msgstr "Envois"
+msgid "Reports"
+msgstr "Signalements"
 
 msgid "Users"
 msgstr "Utilisateurs"
@@ -680,19 +669,27 @@ msgstr "Envoyer un lien d’activation"
 msgid "Password reset"
 msgstr "Réinitialisation du mot de passe"
 
-msgid "Select the context of your submission:"
-msgstr "Choisir le contexte de votre envoi :"
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "Un ou plusieurs destinataires ne se sont pas encore connectés pour la première fois. C’est pourquoi ils ne recevront pas de rapports."
+
+msgid "This user has not performed the first login yet."
+msgstr "Cet utilisateur ne s’est pas encore connecté pour la première fois."
+
+msgid "Select the context of your report:"
+msgstr "Sélectionnez le contexte de votre signalement :"
 
 msgid "Warning! You are not anonymous."
 msgstr "Avertissement ! Vous n’êtes pas anonyme."
 
 msgid ""
-"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"Sending reports over HTTPS exposes the act of doing so, but not the "
 "content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"the report anonymous, which is strongly recommended.\\n\\nThis can be "
 "achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
-msgstr "Le fait même de transmettre des envois par HTTPS révèle les transmissions, mais pas leur contenu.\\n\\nSi vous cachez aussi le fait que vous envoyez quelque chose, nous avons alors un envoi anonyme, ce qui est fortement recommandé.\\n\\nLe navigateur Tor permet de le faire en fournissant une anonymisation que les autres navigateurs tels qu’Internet Explorer, Firefox, Chrome, Opera, etc. ne proposent pas."
+"in other browsers."
+msgstr "Le fait même de transmettre des signalements par HTTPS révèle les transmissions, mais pas leur contenu.\\n\\Par ailleurs, cacher le fait que vous envoyez quelque chose rend le signalement anonyme, ce qui est fortement recommandé.\\n\\nCela peut être fait grâce au Navigateur Tor, qui offre une anonymisation que les autres navigateurs ne proposent pas."
 
 msgid "Are you a whistleblower?"
 msgstr "Êtes-vous un lanceur d’alerte ?"
@@ -700,14 +697,14 @@ msgstr "Êtes-vous un lanceur d’alerte ?"
 msgid "Blow the whistle"
 msgstr "Lancer une alerte"
 
-msgid "Your submission was successful."
-msgstr "Votre envoi a bien été effectué."
+msgid "Your report was successful."
+msgstr "Votre signalement a bien été effectué."
 
-msgid "Submission status"
-msgstr "État de l’envoi"
+msgid "Report"
+msgstr "Signalement"
 
 msgid "Before proceeding, please set a new password."
-msgstr "Avant de continuer, veuillez définir un nouveau mot de passe."
+msgstr "Avant de poursuivre, veuillez définir un nouveau mot de passe."
 
 msgid "New password"
 msgstr "Nouveau mot de passe"
@@ -742,22 +739,27 @@ msgstr "Désactiver les envois"
 msgid "Enable encryption"
 msgstr "Activer le chiffrement"
 
-msgid "Enable encryption's keys recovery"
-msgstr "Permettre la récupération des clés de chiffrement"
+msgid "Enable administrators to change user passwords"
+msgstr "Permettre aux administrateurs de changer le mot de passe des utilisateurs"
 
 msgid "Enable multisite feature"
 msgstr "Activer la fonction multisite"
 
-msgid "Allow recipients to delete submissions"
-msgstr "Permettre aux destinataires de supprimer des envois"
+msgid "Enable multi-site login"
+msgstr "Activer la connexion multisite"
 
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "Autoriser les destinataires à repousser la date d’expiration des envois"
+msgid "Enable simplified login"
+msgstr "Activer la connexion simplifiée"
+
+msgid "Allow recipients to delete reports"
+msgstr "Permettre aux destinataires de supprimer des signalements"
+
+msgid "Allow recipients to postpone expiration date of the report"
+msgstr "Permettre aux destinataires de différer la date d’expiration du signalement"
 
 msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "Permettre aux destinataires de donner des permissions aux lanceurs d’alerte pour des envois spécifiques"
+"Allow recipients to grant permissions to whistleblowers on specific reports"
+msgstr "Permettre aux destinataires de donner aux lanceurs d’alerte des droits d’accès à des signalements précis"
 
 msgid "Enable search engines indexing"
 msgstr "Activer l’indexation par les moteurs de recherche"
@@ -786,29 +788,6 @@ msgstr "Désactiver le volet de confidentialité"
 msgid "Enable the receipt hint"
 msgstr "Désactiver l’indice de reçu"
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "Nombre de jours avant que l’accès du lanceur d’alerte ne soit expiré."
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "Pour des raisons de sécurité, l’accès du lanceur d’alerte peut expirer."
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "N’ajustez ce paramètre que si vous savez ce que vous faites"
-
-msgid "Require two factor authentication"
-msgstr "Exiger l’authentification à deux facteurs"
-
-msgid "Password change interval"
-msgstr "Intervalle de changement du mot de passe"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Pour des raisons de sécurité, il est exigé que le mot de passe soit changé à intervalles réguliers."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Définir la valeur à 0 pour désactiver cette fonction."
-
 msgid "Landing page"
 msgstr "Page de destination"
 
@@ -822,13 +801,66 @@ msgid "Show contexts in alphabetical order"
 msgstr "Montrer les contextes par ordre alphabétique"
 
 msgid "Title of the receipt page"
-msgstr "Titre de la page de réception"
+msgstr "Titre de la page du reçu"
 
-msgid "Title of the submission status page"
-msgstr "Titre de la page d’état des envois"
+msgid "Title of the status page of the report"
+msgstr "Titre de la page d’état du signalement"
 
 msgid "Size limit for file attachments"
 msgstr "Limite de taille des fichiers joints"
+
+msgid "Enable HSTS preload"
+msgstr "Activer le préchargement HSTS"
+
+msgid "Enable HTTP Basic Authentication"
+msgstr "Activer l’authentification HTTP de base"
+
+msgid "Username"
+msgstr "Nom d’utilisateur"
+
+msgid "Password"
+msgstr "Mot de passe"
+
+msgid "Require two factor authentication"
+msgstr "Exiger l’authentification à deux facteurs"
+
+msgid "Require proof of work on user authentication"
+msgstr "Exiger une preuve de travail pour l’authentification des utilisateurs"
+
+msgid "Password change interval"
+msgstr "Intervalle de changement du mot de passe"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Pour des raisons de sécurité, il est exigé que le mot de passe soit changé à intervalles réguliers."
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Définir la valeur à 0 pour désactiver cette fonction."
+
+msgid "Amount of days till whistleblower access expires"
+msgstr "Nombre de jours avant que l’accès du lanceur d’alerte ne soit expiré."
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr "Pour des raisons de sécurité, l’accès du lanceur d’alerte peut expirer."
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr "N’ajustez ce paramètre que si vous savez ce que vous faites"
+
+msgid "Enable custodian user role"
+msgstr "Activer le rôle de gardien"
+
+msgid "Enable scoring system"
+msgstr "Activer le système d’évaluation"
+
+msgid "Enable private labels"
+msgstr "Activer les étiquettes privées"
+
+msgid "Logging level"
+msgstr "Niveau de journalisation"
+
+msgid "Log accesses of internal users"
+msgstr "Journaliser les accès des utilisateurs internes"
 
 msgid "Notify administrators of software problems"
 msgstr "Signaler les problèmes logiciels aux administrateurs"
@@ -841,62 +873,11 @@ msgid ""
 "security of the platform."
 msgstr "En activant cette fonction, vous contribuerez au développement et la sécurité de la plateforme."
 
-msgid "Enable HTTP Basic Authentication to limit platform access"
-msgstr "Activer l’authentification HTTP de base afin de limiter l’accès à la plateforme"
-
-msgid "Username"
-msgstr "Nom d’utilisateur"
-
-msgid "Password"
-msgstr "Mot de passe"
-
-msgid "Enable multi-site login"
-msgstr "Activer la connexion multisite"
-
-msgid "Enable simplified login"
-msgstr "Activer la connexion simplifiée"
-
-msgid "Enable HSTS preload"
-msgstr "Activer le préchargement HSTS"
-
-msgid "Logging level"
-msgstr "Niveau de journalisation"
-
-msgid "Log accesses of internal users"
-msgstr "Journaliser les accès des utilisateurs internes"
-
-msgid "Enable custodian user role"
-msgstr "Activer le rôle de gardien"
-
-msgid "Enable scoring system"
-msgstr "Activer le système d’évaluation"
-
-msgid "Enable private labels"
-msgstr "Activer les étiquettes privées"
-
-msgid "Enable experimental features"
-msgstr "Activer les fonctions expérimentales"
-
-msgid "Warning"
-msgstr "Avertissement"
-
-msgid ""
-"The experimental features may be less stable or even not work at all; enable"
-" this option at your own risk. Support for these features may vary and they "
-"may be removed in the future."
-msgstr "Les fonctions expérimentales pourraient être moins stables ou même ne pas fonctionner du tout ; activez cette option à vos propres risques. La prise en charge de ces fonctions pourraient varier et elles pourraient même être supprimées ultérieurement."
-
 msgid "Save"
 msgstr "Enregistrer"
 
-msgid "Reset submissions"
-msgstr "Réinitialiser les envois"
-
-msgid "To"
-msgstr "À"
-
-msgid "Add"
-msgstr "Ajouter"
+msgid "Reset reports"
+msgstr "Réinitialiser les signalements"
 
 msgid "Enable automatic backups"
 msgstr "Activer les sauvegardes automatiques"
@@ -919,8 +900,44 @@ msgstr "Serveur"
 msgid "Port"
 msgstr "Port"
 
+msgid "Stats of the week:"
+msgstr "Statistiques hebdomadaires :"
+
+msgid "Free disk space"
+msgstr "Espace disque libre"
+
+msgid "Event ID"
+msgstr "ID de l’événement"
+
+msgid "Time"
+msgstr "Heure"
+
+msgid "Event"
+msgstr "Événement"
+
+msgid "Response time"
+msgstr "Temps de réponse"
+
+msgid "Role"
+msgstr "Rôle"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Last access"
+msgstr "Dernier accès"
+
+msgid "Alarm level"
+msgstr "Niveau d’alarme"
+
+msgid "Events"
+msgstr "Événements"
+
 msgid "Substatuses"
 msgstr "Sous-états"
+
+msgid "Add"
+msgstr "Ajouter"
 
 msgid "Label"
 msgstr "Étiquette"
@@ -934,8 +951,8 @@ msgstr "Modifier"
 msgid "Cancel"
 msgstr "Annuler"
 
-msgid "Submission statuses"
-msgstr "États des envois"
+msgid "Report statuses"
+msgstr "États des signalements"
 
 msgid "Logo"
 msgstr "Logo"
@@ -997,8 +1014,8 @@ msgstr "Traduction personnalisée"
 msgid "Contexts"
 msgstr "Contextes"
 
-msgid "Name"
-msgstr "Nom"
+msgid "State"
+msgstr "État"
 
 msgid "Enabled"
 msgstr "Activé"
@@ -1018,9 +1035,6 @@ msgstr "Questionnaire supplémentaire"
 msgid "Recipients"
 msgstr "Destinataires"
 
-msgid "Submission expiration"
-msgstr "Expiration de l’envoi"
-
 msgid "days"
 msgstr "jours"
 
@@ -1036,17 +1050,14 @@ msgstr "Par défaut, sélectionner tous les destinataires"
 msgid "Maximum number of selectable recipients:"
 msgstr "Nombre maximal de destinataires sélectionnables :"
 
-msgid "(0 = unlimited)"
-msgstr "(0 = illimité)"
-
 msgid "Show recipients in alphabetical order"
 msgstr "Montrer les destinataires par ordre alphabétique"
 
 msgid "Show small recipient cards on submission interface"
 msgstr "Montrer des petites cartes sur les destinataires dans l’interface d’envoi."
 
-msgid "Show recipient details on the status page of the submission"
-msgstr "Montrer les détails concernant les destinataires sur la page d’état de l’envoi"
+msgid "Show recipient details on the status page of the report"
+msgstr "Afficher les détails des destinataires sur la page d’état du signalement"
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Texte de sélection des destinataires, affiché en haut de l’interface"
@@ -1063,8 +1074,8 @@ msgstr "Activer les messages privés"
 msgid "Allow whistleblowers to send messages"
 msgstr "Permettre aux lanceurs d’alerte d’envoyer des messages"
 
-msgid "Let whistleblowers add attachments onto existing submissions"
-msgstr "Permettre aux lanceurs d’alerte d’ajouter des fichiers joints aux envois existants"
+msgid "Let whistleblowers add attachments onto existing reports"
+msgstr "Permettre aux lanceurs d’alerte d’ajouter des fichiers joints aux signalements existants"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Permettre aux destinataires de téléverser des fichiers pour les lanceurs d’alerte"
@@ -1085,13 +1096,13 @@ msgid "High"
 msgstr "Élevé"
 
 msgid "Customize the message shown in the receipt page"
-msgstr "Personnaliser le message qui apparaît sur la page de réception"
+msgstr "Personnaliser le message qui apparaît sur la page du reçu"
 
 msgid "Low"
 msgstr "Faible"
 
-msgid "Assign the receipt only to submissions reaching score:"
-msgstr "N’attribuer le reçu qu’aux envois qui atteignent ce pointage :"
+msgid "Assign the receipt only to reports reaching score:"
+msgstr "N’attribuer le reçu qu’aux signalements qui atteignent ce pointage :"
 
 msgid "Software version:"
 msgstr "Version du logiciel :"
@@ -1099,53 +1110,8 @@ msgstr "Version du logiciel :"
 msgid "An update is available:"
 msgstr "Une mise à jour est proposée :"
 
-msgid "SMTP email address"
-msgstr "Adresse courriel SMTP"
-
-msgid "Invalid email address"
-msgstr "L’adresse courriel est invalide"
-
-msgid "SMTP server address"
-msgstr "Adresse du serveur SMTP"
-
-msgid "SMTP server port"
-msgstr "Port du serveur SMTP"
-
-msgid "Transport Security"
-msgstr "Sécurité du transport"
-
-msgid "Require authentication"
-msgstr "Exiger une authentification"
-
-msgid "When the option is re-enabled the spooled emails will be sent out."
-msgstr "Les courriels en attente seront envoyés à la réactivation de cette option."
-
-msgid "Reset notification templates to default"
-msgstr "Réinitialiser les modèles de notification à leur valeur par défaut"
-
-msgid "Number of hours before sending a submission expiration alert"
-msgstr "Nombre d’heures avant d’envoyer l’alerte d’expiration d’un envoi"
-
-msgid "Maximum emails per hour before triggering email suspension"
-msgstr "Nombre maximal de courriels par heure avant de déclencher la suspension des courriels"
-
-msgid "this configuration only applies to recipients"
-msgstr "cette configuration ne s’applique qu’aux destinataires"
-
-msgid "Test the configuration"
-msgstr "Tester la configuration"
-
-msgid "Reset SMTP configuration"
-msgstr "Réinitialiser la configuration SMTP"
-
-msgid "Template"
-msgstr "Modèle"
-
 msgid "Restrict access to specific IP addresses"
 msgstr "Réserver l’accès à des adresses IP précises"
-
-msgid "Role"
-msgstr "Rôle"
 
 msgid "Whitelisted IP addresses"
 msgstr "Adresses IP sur liste blanche"
@@ -1187,9 +1153,6 @@ msgstr "J’accepte les conditions générales d’utilisation."
 msgid "Country code"
 msgstr "Indicatif de pays"
 
-msgid "State"
-msgstr "État"
-
 msgid "City"
 msgstr "Ville"
 
@@ -1198,6 +1161,9 @@ msgstr "Organisation"
 
 msgid "Organizational unit"
 msgstr "Unité organisationnelle"
+
+msgid "Invalid email address"
+msgstr "L’adresse courriel est invalide"
 
 msgid "Generate"
 msgstr "Générer"
@@ -1288,32 +1254,41 @@ msgstr "Permettre l’accès à la plateforme sans Tor"
 msgid "Roles enabled to use the platform without Tor"
 msgstr "Rôles pouvant utiliser la plateforme sans Tor"
 
-msgid "Stats of the week:"
-msgstr "Statistiques hebdomadaires :"
+msgid "To"
+msgstr "À"
 
-msgid "Free disk space"
-msgstr "Espace disque libre"
+msgid "SMTP email address"
+msgstr "Adresse courriel SMTP"
 
-msgid "Event ID"
-msgstr "ID de l’événement"
+msgid "SMTP server address"
+msgstr "Adresse du serveur SMTP"
 
-msgid "Time"
-msgstr "Heure"
+msgid "SMTP server port"
+msgstr "Port du serveur SMTP"
 
-msgid "Event"
-msgstr "Événement"
+msgid "Security"
+msgstr "Sécurité"
 
-msgid "Response time"
-msgstr "Temps de réponse"
+msgid "Warning"
+msgstr "Avertissement"
 
-msgid "Last access"
-msgstr "Dernier accès"
+msgid "Require authentication"
+msgstr "Exiger une authentification"
 
-msgid "Alarm level"
-msgstr "Niveau d’alarme"
+msgid "Reset notification templates to default"
+msgstr "Réinitialiser les modèles de notification à leur valeur par défaut"
 
-msgid "Events"
-msgstr "Événements"
+msgid "Number of hours before sending a report expiration alert"
+msgstr "Nombre d’heures avant d’envoyer l’alerte d’expiration d’un signalement"
+
+msgid "Test the configuration"
+msgstr "Tester la configuration"
+
+msgid "Reset SMTP configuration"
+msgstr "Réinitialiser la configuration SMTP"
+
+msgid "Template"
+msgstr "Modèle"
 
 msgid "Question"
 msgstr "Question"
@@ -1374,6 +1349,9 @@ msgstr "Accepter des réponses multiples"
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Indication d’ajout de réponse supplémentaire, apparaissant sur le bouton"
+
+msgid "Encrypt"
+msgstr "Chiffrer "
 
 msgid "Template override"
 msgstr "Remplacement du modèle"
@@ -1487,7 +1465,7 @@ msgid "Send reset link"
 msgstr "Envoyer un lien de réinitialisation"
 
 msgid "Set password"
-msgstr "Définir un mot de passe"
+msgstr "Définir le mot de passe"
 
 msgid "Disable two factor authentication"
 msgstr "Désactiver l’authentification à deux facteurs"
@@ -1516,8 +1494,8 @@ msgstr "Supprimer la clé PGP"
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Configurer le chiffrement en fournissant une clé publique PGP"
 
-msgid "Grant the user the capability of resetting users' passwords"
-msgstr "Accorder à l’utilisateur la possibilité de réinitialiser les mots de passe des utilisateurs"
+msgid "Give this admin ability to change user passwords"
+msgstr "Donner à cet administrateur la capacité de changer le mot de passe des utilisateurs"
 
 msgid "Configuration"
 msgstr "Configuration"
@@ -1528,16 +1506,16 @@ msgstr "Valeur par défaut"
 msgid "Forcefully selected"
 msgstr "Sélectionné de force"
 
-msgid "Allow the recipient to postpone the submission expiration date"
-msgstr "Autoriser les destinataires à repousser la date d’expiration des envois"
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Permettre au destinataire de différer la date d’expiration du signalement"
 
-msgid "Allow the recipient to delete submissions"
-msgstr "Permettre aux destinataires de supprimer des envois"
+msgid "Allow the recipient to delete reports"
+msgstr "Permettre au destinataire de supprimer des signalements"
 
 msgid ""
 "Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "Permettre au destinataire de donner des permissions aux lanceurs d’alerte pour des envois spécifiques"
+"reports"
+msgstr "Permettre au destinataire de donner aux lanceurs d’alerte des droits d’accès à des signalements précis"
 
 msgid "User has administrative access to the following features:"
 msgstr "L’utilisateur a un accès d’administration aux fonctions suivantes :"
@@ -1547,6 +1525,9 @@ msgstr "Date de la demande"
 
 msgid "ID"
 msgstr "ID"
+
+msgid "Report date"
+msgstr "Date du signalement"
 
 msgid "Authorization"
 msgstr "Autorisation"
@@ -1575,11 +1556,11 @@ msgstr "Le côté est invalide ou expiré"
 msgid "Site:"
 msgstr "Site :"
 
-msgid "Have you already filed a submission? Enter your receipt."
-msgstr "Avez-vous déjà déposé une alerte ? Saisissez votre code de réception."
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Avez-vous déjà rempli un signalement ? Saisissez votre reçu."
 
-msgid "The receipt is either invalid or the submission has expired."
-msgstr "Soit le reçu est invalide soit votre envoi a expiré."
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Soit le reçu est invalide soit le signalement est expiré."
 
 msgid "Username:"
 msgstr "Nom d’utilisateur :"
@@ -1603,7 +1584,7 @@ msgid "Add file"
 msgstr "Ajouter un fichier"
 
 msgid "Are you sure?"
-msgstr "Êtes-vous certain ?"
+msgstr "Confirmez-vous ?"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "L’opération réinitialisera la configuration et ne peut pas être annulée."
@@ -1611,8 +1592,8 @@ msgstr "L’opération réinitialisera la configuration et ne peut pas être ann
 msgid "Assign score points"
 msgstr "Attribuer un pointage"
 
-msgid "Please note that all the associated data will be permanently lost."
-msgstr "Veuillez prendre note que toutes les données associées seront irrémédiablement supprimées."
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Veuillez noter que toutes les données associées seront irrémédiablement supprimées."
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ceci est une plateforme de démonstration. Veuillez ne pas l’utiliser pour des envois réels."
@@ -1632,14 +1613,16 @@ msgstr "Activer l’authentification à deux facteurs"
 msgid "Close"
 msgstr "Fermer"
 
-msgid "Your encryption recovery key is:"
-msgstr "Votre clé de récupération de chiffrement est :"
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "Avant de poursuivre, veuillez lire attentivement la documentation sur :"
+
+msgid "Your account recovery key is:"
+msgstr "La clé de récupération de votre compte est :"
 
 msgid ""
-"Please annotate and store this key in a safe place. It will be necessary if "
-"you lose your personal password to recover the access to your account with "
-"no data loss."
-msgstr "Veuillez prendre cette clé par écrit et la garder en lieu sûr. Si vous perdiez votre mot de passe personnel, elle serait exigée afin d’accéder à votre compte sans perte de données."
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "Copiez-la et gardez-la en lieu sûr. Si vous perdiez votre mot de passe, vous en auriez besoin afin de recouvrer l’accès à votre compte, sans perte de données."
 
 msgid "Welcome!"
 msgstr "Bienvenue !"
@@ -1655,7 +1638,7 @@ msgstr "Si vous souhaitez obtenir du soutien technique, si avez des questions d�
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr "Si vous souhaitez participer au développement logiciel ou signaler un bogue, veuillez créer un billet de problème sur notre système de suivi :"
+msgstr "Si vous souhaitez participer au développement logiciel ou signaler un bogue, veuillez créer un ticket de problème sur notre système de suivi :"
 
 msgid ""
 "If your non-profit needs support for investigative journalism, activism or a"
@@ -1667,14 +1650,14 @@ msgid ""
 "projects contact the social enterprise maintaining GlobaLeaks:"
 msgstr "Pour un soutien professionnel et le développement de projets anticorruptions et de conformité, contactez l’entreprise sociale qui maintient GlobaLeaks :"
 
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr "Rejoignez notre canal de clavardage IRC sur le réseau irc.oftc.net :"
+msgid "Join our chat:"
+msgstr "Joignez-vous à notre conversation :"
 
 msgid "Follow the project on:"
 msgstr "Suivez le projet sur :"
 
 msgid "Hint: How to hide your receipt"
-msgstr "Astuce : Comment cacher votre reçu ?"
+msgstr "Astuce : Comment cacher votre reçu"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
@@ -1714,20 +1697,11 @@ msgstr "La validation du changement d’adresse courriel est en cours."
 msgid "Please check your inbox for further instructions."
 msgstr "Veuillez vérifier votre boîte de réception pour de plus amples instructions."
 
-msgid "Encryption key"
-msgstr "Clé de chiffrement"
-
-msgid "Hide"
-msgstr "Cacher"
-
-msgid "Show"
-msgstr "Afficher"
-
 msgid "Set up email encryption by providing a PGP public key"
 msgstr "Configurez le chiffrement des courriels en fournissant une clé publique PGP"
 
-msgid "Get the encryption recovery key"
-msgstr "Obtenez la clé de récupération de chiffrement"
+msgid "Account recovery key"
+msgstr "Clé de récupération du compte"
 
 msgid "Current password"
 msgstr "Mot de passe actuel"
@@ -1786,6 +1760,14 @@ msgstr "Pour clavarder avec nous, utilisez l’adresse Ricochet suivante :"
 
 msgid "Download Ricochet at:"
 msgstr "Téléchargez Ricochet sur :"
+
+msgid ""
+"By using the Tor network and creating an Onion Service, Ricochet is an "
+"instant messaging app that allows you to chat while protecting your privacy "
+"and staying anonymous by not revealing your location or IP address. You "
+"won't notice any difference from an insecure chat, except that you will be "
+"using a unique address instead of a phone number/email/username."
+msgstr "En utilisant le réseau Tor et en créant un service onion, Ricochet est une appli de messagerie instantanée qui vous permet de converser en tout anonymat et confidentialité, sans divulguer ni votre emplacement géographique ni votre adresse IP. Vous ne remarquerez aucune différence avec un dialogue en ligne non sécurisé, sauf que vous utiliserez une adresse unique au lieu d’un numéro de téléphone, d’une adresse courriel ou d’un nom d’utilisateur."
 
 msgid "The connection is not secure."
 msgstr "La connexion n’est pas sécurisée."
@@ -1846,11 +1828,8 @@ msgstr "télécharger"
 msgid "No files have been uploaded!"
 msgstr "Aucun fichier n’a été téléversé !"
 
-msgid "Allow the whistleblower to add attachments to the submission"
-msgstr "Permettre au lanceur d’alerte d’ajouter des fichiers joints à l’envoi"
-
-msgid "Submission"
-msgstr "Envoi"
+msgid "Allow the whistleblower to add attachments to the report"
+msgstr "Permettre au lanceur d’alerte d’ajouter des fichiers joints au signalement"
 
 msgid "Access expiration"
 msgstr "Expiration de l’accès"
@@ -1864,26 +1843,23 @@ msgstr "Jamais"
 msgid "Revoked"
 msgstr "Révoqué"
 
-msgid "-"
-msgstr "–"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Permettre au lanceur d’alerte d’envoyer des messages"
 
-msgid "Are you sure that you want to delete the submission?"
-msgstr "Voulez-vous vraiment supprimer l’envoi ?"
+msgid "Are you sure that you want to delete the report?"
+msgstr "Voulez-vous vraiment supprimer le signalement ?"
 
 msgid ""
-"Everything related to the submission stored on the platform will be deleted."
-msgstr "Toute information associée à l’envoi et stockée sur la plateforme sera supprimée."
+"Everything related to the report stored on the platform will be deleted."
+msgstr "Toute donnée connexe au signalement stockée sur la plateforme sera supprimée."
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
 " saved on your computer, must be deleted manually."
 msgstr "Veuillez noter que tout ce qui est stocké en dehors de la plateforme, p. ex. les fichiers que vous avez enregistrés sur votre ordinateur, doit être supprimé manuellement."
 
-msgid "Are you sure that you want to delete all the selected submissions?"
-msgstr "Voulez-vous vraiment supprimer tous les envois sélectionnés ?"
+msgid "Are you sure that you want to delete the selected reports?"
+msgstr "Voulez-vous vraiment supprimer les signalements sélectionnés ?"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
@@ -1893,16 +1869,16 @@ msgstr "Veuillez vous assurer que toutes les données connexes ont bien été su
 msgid "Please write a motivation for the reply"
 msgstr "Veuillez écrire le motif de la réponse"
 
-msgid "Are you sure that you want to postpone the submission expiration date?"
-msgstr "Voulez-vous vraiment repousser la date d’expiration de l’envoi ?"
+msgid "Are you sure that you want to postpone the report expiration date?"
+msgstr "Voulez-vous vraiment différer la date d’expiration du signalement ?"
 
 msgid "By confirming, you will postpone the expiration date to:"
-msgstr "En confirmant, vous repousserez la date d’expiration au :"
+msgstr "En confirmant, vous différerez la date d’expiration au :"
 
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
-"submissions?"
-msgstr "Voulez-vous vraiment repousser la date d’expiration de tous les envois ?"
+"reports?"
+msgstr "Voulez-vous vraiment différer la date d’expiration de tous les signalements sélectionnés ?"
 
 msgid "Questionnaire answers"
 msgstr "Réponses au questionnaire"
@@ -1913,8 +1889,8 @@ msgstr "Étape"
 msgid "Recipient list"
 msgstr "Liste des destinataires"
 
-msgid "Submission status:"
-msgstr "État de l’envoi :"
+msgid "Status:"
+msgstr "État :"
 
 msgid "Attached files for the whistleblower"
 msgstr "Pièces jointes pour le lanceur d’alerte"
@@ -1925,14 +1901,11 @@ msgstr "Téléverser un fichier :"
 msgid "Logout"
 msgstr "Déconnexion"
 
-msgid "The key code is either invalid or the submission has expired."
-msgstr "Le code-clé est invalide ou l’envoi a expiré."
-
 msgid "Files attached by recipients"
 msgstr "Pièces jointes par les destinataires"
 
-msgid "These files have been attached to your submission by the recipients."
-msgstr "Ces fichiers ont été joints à votre envoi par les destinataires."
+msgid "These files have been attached to your report by the recipients."
+msgstr "Ces fichiers ont été joints à votre signalement par les destinataires."
 
 msgid "The provided recovery key is invalid."
 msgstr "La clé de récupération fournie n’est pas valide."
@@ -1954,6 +1927,12 @@ msgstr "Saisissez votre clé de récupération de chiffrement pour achever la pr
 
 msgid "Password reset requested."
 msgstr "Une réinitialisation de mot de passe a été demandée."
+
+msgid "Show"
+msgstr "Afficher"
+
+msgid "Hide"
+msgstr "Cacher"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -2012,7 +1991,7 @@ msgid "The specified input is not valid."
 msgstr "L’entrée indiquée est invalide."
 
 msgid "Submissions disabled"
-msgstr "Envois désactivés"
+msgstr "Les envois sont désactivés"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
@@ -2025,16 +2004,16 @@ msgstr "Merci !"
 msgid "We will try to get back to you as soon as possible."
 msgstr "Nous essaierons de vous contacter dès que possible."
 
-msgid "Remember your receipt for this submission."
-msgstr "Souvenez-vous de votre reçu pour cet envoi."
+msgid "Remember your receipt for this report."
+msgstr "Souvenez-vous de votre reçu pour ce signalement."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
 msgstr "Utilisez le reçu à 16 chiffres pour vous connecter. Il vous permettra de lire les messages que nous vous avons envoyés, et aussi d’ajouter des renseignements complémentaires."
 
-msgid "View your submission"
-msgstr "Visualisez votre envoi"
+msgid "View your report"
+msgstr "Visualisez votre signalement"
 
 msgid "Recipient selection"
 msgstr "Sélection du destinataire"
@@ -2050,8 +2029,8 @@ msgid ""
 "invalid:"
 msgstr "Dans cette étape, les réponses aux questions suivantes sont soit manquantes, soit invalides :"
 
-msgid "Submission errors"
-msgstr "Erreurs d’envoi"
+msgid "Errors"
+msgstr "Erreurs"
 
 msgid "You must select at least one recipient."
 msgstr "Vous devez au moins choisir un destinataire."
@@ -2078,6 +2057,9 @@ msgstr "Ces profils contiennent les paramètres utilisés par des projets couron
 msgid "Confirm password"
 msgstr "Confirmer le mot de passe"
 
+msgid "Please choose a different username."
+msgstr "Veuillez choisir un nom d’utilisateur différent."
+
 msgid "The user will receive an activation link via email."
 msgstr "L’utilisateur recevra un lien d’activation par courriel."
 
@@ -2093,23 +2075,23 @@ msgstr "J’ai lu et accepte les conditions du contrat de licence."
 msgid "You have completed the platform wizard."
 msgstr "Vous avez terminé avec succès l’assistant de la plateforme."
 
-msgid "Fill out your submission"
-msgstr "Remplissez votre dossier"
+msgid "Fill out your report"
+msgstr "Remplissez votre signalement"
 
 msgid "Short title"
 msgstr "Titre abrégé"
 
-msgid "Describe your submission in a few words."
-msgstr "Décrivez votre envoi en quelques mots."
+msgid "Describe your report in a few words."
+msgstr "Décrivez votre signalement en quelques mots."
 
 msgid "Full description"
 msgstr "Description complète"
 
-msgid "Describe your submission in detail."
-msgstr "Décrivez votre envoi en détail."
+msgid "Describe your report in detail."
+msgstr "Décrivez votre signalement en détail."
 
-msgid "Attach files relevant to the submission."
-msgstr "Joignez les fichiers pertinents à votre envoi."
+msgid "Attach files relevant to the report."
+msgstr "Joignez des fichiers pertinents à votre signalement."
 
 msgid "Do you want to provide your identification information?"
 msgstr "Voulez-vous fournir vos renseignements d’identification ?"
@@ -2163,10 +2145,10 @@ msgid "Job title at the time of the reported fact"
 msgstr "Appellation d’emploi à l’époque du fait signalé"
 
 msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Responsabilité professionnelle (rôle) à l’époque du fait rapporté"
+msgstr "Responsabilité professionnelle (rôle) à l’époque du fait signalé"
 
 msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Unité organisationnelle et lieu d’emploi à l’époque du fait rapporté"
+msgstr "Unité organisationnelle et lieu d’emploi à l’époque du fait signalé"
 
 msgid "Dear {RecipientName},"
 msgstr "Cher, chère {RecipientName},"
@@ -2224,7 +2206,7 @@ msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr "Cela pourrait être le signe d’une attaque (par exemple quelqu’un inondant votre serveur de pseudo-informations) ou simplement d’un pic d’utilisation causé par la visibilité accrue de votre projet."
+msgstr "Cela pourrait être le signe d’une attaque (par exemple quelqu’un qui inonderait votre serveur de pseudo-informations) ou simplement d’un pic d’utilisation causé par la visibilité accrue de votre projet."
 
 msgid "Examine the issue to determine whether it is legitimate or not."
 msgstr "Examiner le problème afin de déterminer s’il est valide ou non."
@@ -2233,9 +2215,9 @@ msgid "The activities with unusual stats are:"
 msgstr "Voici les activités présentant des statistiques inhabituelles :"
 
 msgid ""
-"The server cannot guarantee that a new submission can be stored, so "
-"submissions have been disabled."
-msgstr "Le serveur ne peut pas garantir qu’un nouvel envoi sera enregistré, et par conséquent les envois ont été suspendus."
+"The server cannot guarantee that a new report can be stored, so submissions "
+"have been disabled."
+msgstr "Le serveur ne peut pas garantir qu’un nouveau signalement peut être enregistré. Par conséquent, les envois ont été désactivés."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
@@ -2250,7 +2232,7 @@ msgstr "La technologie GlobaLeaks inclut un composant de vérification de l’é
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr "Pour davantage d’informations, connectez-vous à l’interface d’administration et consultez les sections « Statistiques du système » et « Anomalies »."
+msgstr "Pour de plus amples renseignements, connectez-vous à l’interface d’administration et consultez les sections « Statistiques du système » et « Anomalies »."
 
 msgid "Anomaly detected in {NodeName}"
 msgstr "Une anomalie a été détectée sur {NodeName}"
@@ -2304,12 +2286,11 @@ msgstr "La réception de ce courriel indique que le serveur a réussi à s’aut
 msgid "Test email"
 msgstr "Courriel de test"
 
-msgid ""
-"This is an email to notify you of a new comment on an existing submission."
-msgstr "Le but de ce courriel est de vous signaler un nouveau commentaire à propos d’un envoi existant."
+msgid "This is an email to notify you of a new comment on an existing report."
+msgstr "Le but de ce courriel est de vous aviser d’un nouveau commentaire dans un signalement existant."
 
-msgid "The submission can be accessed at:"
-msgstr "L’envoi est accessible à :"
+msgid "The report can be accessed at:"
+msgstr "Le signalement est accessible à :"
 
 msgid "New comment"
 msgstr "Nouveau commentaire"
@@ -2352,9 +2333,9 @@ msgid "Context: {ContextName}"
 msgstr "Contexte : {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of submission {TipNum}"
-" has attached new material."
-msgstr "Le but de ce courriel est de vous signaler que le lanceur de l’alerte {TipNum} a ajouté de nouveaux documents."
+"This is an email to notify you that the whistleblower of report {TipNum} has"
+" attached new material."
+msgstr "Le but de ce courriel est de vous aviser que le créateur du signalement {TipNum} a ajouté de nouveaux documents."
 
 msgid "New attachment"
 msgstr "Nouveau fichier joint"
@@ -2390,24 +2371,24 @@ msgstr "Échec de renouvellement du certificat HTTPS"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
-" to the whistleblowing identity for the submission {TipNum}."
-msgstr "Le but de ce courriel est de vous signaler qu’un gardien vous a autorisé l’accès à l’identité du lanceur d’alerte pour l’envoi {TipNum}."
+" to the whistleblowing identity for the report {TipNum}."
+msgstr "Le but de ce courriel est de vous aviser qu’un gardien vous a autorisé l’accès à l’identité du créateur du signalement {TipNum}."
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "L’accès à l’identité du lanceur d’alerte est autorisé"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the submission {TipNum}."
-msgstr "Le but de ce courriel est de vous signaler qu’un gardien vous a refusé l’accès à l’identité du lanceur d’alerte pour l’envoi {TipNum}."
+" wistleblowing identity for the report {TipNum}."
+msgstr "Le but de ce courriel est de vous aviser qu’un gardien vous a refusé l’accès à l’identité du créateur du signalement {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "L’accès à l’identité du lanceur d’alerte est refusé"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
-"whistleblower's identity for the submission {TipNum}"
-msgstr "Le but de ce courriel est de vous signaler qu’un destinataire a demandé l’accès à l’identité du lanceur d’alerte pour l’envoi {TipNum}."
+"whistleblower's identity for the report {TipNum}"
+msgstr "Le but de ce courriel est de vous aviser qu’un destinataire a demandé l’accès à l’identité du créateur du signalement {TipNum}."
 
 msgid "The request can be accessed at:"
 msgstr "La demande est accessible à :"
@@ -2416,16 +2397,15 @@ msgid "New request of access to a whistleblower's identity"
 msgstr "Nouvelle demande d’accès à l’identité d’un lanceur d’alerte "
 
 msgid ""
-"This is an email to notify you that the whistleblower for the submission "
+"This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "Le but de ce courriel est de vous signaler que le lanceur d’alerte de l’envoi {TipNum} a fourni son identité."
+msgstr "Le but de ce courriel est de vous aviser que le créateur du signalement {TipNum} a fourni son identité."
 
 msgid "The whistleblower has provided their identity"
 msgstr "Le lanceur d’alerte a fourni son identité"
 
-msgid ""
-"This is an email to notify you of a new message on an existing submission."
-msgstr "Le but de ce courriel est de vous signaler un nouveau commentaire à propos d’un envoi existant."
+msgid "This is an email to notify you of a new message on an existing report."
+msgstr "Le but de ce courriel est de vous aviser d’un nouveau message concernant un signalement existant."
 
 msgid "New message"
 msgstr "Nouveau message"
@@ -2461,24 +2441,6 @@ msgid ""
 "to you."
 msgstr "Sans une clé PGP valide, le système ne pourra pas chiffrer les données que vous fournissez."
 
-msgid "It appears that {NodeName} is receiving a large number of requests."
-msgstr "Il semble que {NodeName} reçoit un grand nombre de requêtes."
-
-msgid ""
-"To prevent sending you too many emails, the system has disabled email "
-"notifications until the load returns to normal. In the meantime, you can "
-"normally log onto the platform and manually check for new submissions."
-msgstr "Afin d’éviter de vous envoyer trop de courriels, le système a désactivé les courriels de notification jusqu’à ce que la charge soit revenue à la normale. En attendant, vous pouvez vous connecter sur la plateforme comme à l’habitude et vérifier les nouveaux envois manuellement."
-
-msgid ""
-"If you don’t mind and would rather receive such a large number of email "
-"notifications anyhow, please contact your technical support to have them "
-"modify this setting accordingly."
-msgstr "S’il vous importe peu et que vous préférez quand même recevoir un si grand nombre de courriels de notification, veuillez contacter votre soutien technique pour leur demander de modifier ce paramètre en conséquence."
-
-msgid "Notifications from {NodeName} have been temporarily suspended"
-msgstr "Les notifications provenant de {NodeName} ont été suspendues temporairement"
-
 msgid "Click the link to activate the platform:"
 msgstr "Cliquez sur le lien pour activer la plateforme :"
 
@@ -2513,24 +2475,24 @@ msgstr "La prochaine date d’expiration est {EarliestExpirationDate}."
 msgid "Please remember to check them before they are deleted."
 msgstr "Souvenez-vous de les vérifier avant qu’elles ne soient supprimées"
 
-msgid "Some submissions will expire soon"
-msgstr "Des envois arriverons bientôt à expiration"
+msgid "Some reports will expire soon"
+msgstr "Certains signalements arriveront bientôt à expiration"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their submission."
-msgstr "Le but de ce courriel est de vous signaler qu’un lanceur d’alerte vous a sélectionné comme destinataire de choix de son envoi."
+"valuable recipient of their report."
+msgstr "Le but de ce courriel est de vous aviser qu’un lanceur d’alerte vous a sélectionné comme destinataire de choix de son signalement."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
 "contained therein. Please keep in mind that whistleblowers often expose "
 "themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this submission should be considered to be of "
-"high importance."
-msgstr "Il vous est demandé de prêter une attention particulière aux informations et aux documents ci-inclus. Veuillez vous souvenir que les lanceurs d’alerte prennent souvent des risques dans l’intérêt du public. Par conséquent, les documents qui ont été fournis avec cet envoi doivent être traités avec l’importance qu’ils méritent."
+"the material provided within this report should be considered to be of high "
+"importance."
+msgstr "Il vous est demandé de prêter une attention particulière aux renseignements et documents ci-inclus. Veuillez garder à l’esprit que les lanceurs d’alerte prennent souvent des risques personnels importants dans l’intérêt du public. Par conséquent, les documents qui ont été fournis avec ce signalement doivent être traités avec l’importance qu’ils méritent."
 
-msgid "New submission"
-msgstr "Nouvel envoi"
+msgid "New report"
+msgstr "Nouveau signalement"
 
 msgid "Role: {Role}"
 msgstr "Rôle : {Role}"

@@ -4,7 +4,7 @@
 # dr0t <t@virtualroad.org>, 2015
 # estrella1876lc <estrella1876lc@gmail.com>, 2014
 # Francisco Huerta <francisco.huerta@davinci-ti.es>, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018-2019
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018-2020
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # Joan Bitlloch <joanbit@gmail.com>, 2017
 # Josep Anton Rius <j.rius.cat@gmail.com>, 2016
@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-01-17 16:24+0000\n"
+"PO-Revision-Date: 2020-02-26 17:30+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -101,7 +101,7 @@ msgid "Recipient interface"
 msgstr "Interfície de destinatari"
 
 msgid "Date"
-msgstr "Data de creació"
+msgstr "Data"
 
 msgid "Expiration date"
 msgstr "Data de caducitat"
@@ -142,7 +142,7 @@ msgstr "TARGETA DE CRÈDIT"
 msgid "YOUR NAME"
 msgstr "EL SEU NOM"
 
-msgid "Label the submission"
+msgid "Label the report"
 msgstr "Etiqueta l'enviament"
 
 msgid "Postpone the expiration date"
@@ -159,9 +159,6 @@ msgstr "Actualitze la pàgina"
 
 msgid "Context"
 msgstr "Context"
-
-msgid "Submission date"
-msgstr "Data de lliurament"
 
 msgid "Private messages"
 msgstr "Missatges privats"
@@ -199,15 +196,13 @@ msgstr "Guarde-ho tot"
 msgid "Access control"
 msgstr "Control d'accés"
 
-msgid ""
-"The connection used to send this submission has been secured with HTTPS "
-"ensuring confidentiality."
-msgstr "La connexió emprada per a aquest lliurament ha sigut protegida amb HTTPS per garantir la seua confidencialitat."
+msgid "The connection has been secured with HTTPS ensuring confidentiality."
+msgstr "La connexió ha sigut protegida amb HTTPS per garantir la seua confidencialitat."
 
 msgid ""
-"The connection used to send this submission has been secured with Tor "
-"ensuring confidentiality and anonymity."
-msgstr "La connexió emprada per a aquest lliurament ha sigut protegida amb Tor per garantir la seua confidencialitat i l'anonimat."
+"The connection has been secured with Tor ensuring confidentiality and "
+"anonymity."
+msgstr "La connexió ha sigut protegida amb Tor per garantir la seua confidencialitat i l'anonimat."
 
 msgid "vertical"
 msgstr "Vertical"
@@ -220,9 +215,6 @@ msgstr "Número"
 
 msgid "Email"
 msgstr "Adreça electrònica"
-
-msgid "Date"
-msgstr "Data"
 
 msgid "Regular expression validator"
 msgstr "Validador d'expressió regular"
@@ -266,11 +258,8 @@ msgstr "Adjunts"
 msgid "Change your password"
 msgstr "Canvia la contrasenya"
 
-msgid "List of submissions"
-msgstr "Llista d'enviaments"
-
-msgid "List of access requests to whistleblowers' identities"
-msgstr "Llista de peticions d'accés a les identitats dels informadors"
+msgid "Access requests"
+msgstr ""
 
 msgid "User"
 msgstr "Usuari"
@@ -411,8 +400,8 @@ msgstr "Pregunta detonant"
 msgid "Triggered by score:"
 msgstr "Activat per puntuació"
 
-msgid "Message shown on top of the status page of the submission"
-msgstr "El missatge es mostra damunt de la pàgina de l'estatus del lliurament"
+msgid "Message shown on top of the status page of the report"
+msgstr ""
 
 msgid "Copy and paste the PGP public key here"
 msgstr "Copia i enganxa ací la clau pública PGP"
@@ -501,11 +490,11 @@ msgid ""
 msgstr "Aquest text per al client ja no es mostra a la plataforma. El text original o bé ha canviat o bé s'ha eliminat."
 
 msgid ""
-"Unless the whistleblower checks the submission by this time, their access to"
-" it will expire."
+"Unless the whistleblower checks the report by this time, their access to it "
+"will expire."
 msgstr "Tret que l'informador comprove l'enviament abans d'aquest temps, el seu accés expirarà."
 
-msgid "The whistleblower can no longer access the submission"
+msgid "The whistleblower can no longer access the report"
 msgstr "L'informador ja no pot accedir a la presentació"
 
 msgid "Warning!"
@@ -528,8 +517,8 @@ msgstr "Descarrega el navegador Tor"
 msgid "This is the list of the other supported browsers:"
 msgstr "Vista general del sistema"
 
-msgid "System overview"
-msgstr "Vista general del sistema"
+msgid "Audit log"
+msgstr ""
 
 msgid "Stats"
 msgstr "Estadístiques"
@@ -537,8 +526,8 @@ msgstr "Estadístiques"
 msgid "Activities"
 msgstr "Activitats"
 
-msgid "Submissions"
-msgstr "Enviaments"
+msgid "Reports"
+msgstr ""
 
 msgid "Users"
 msgstr "Usuaris"
@@ -657,19 +646,27 @@ msgstr ""
 msgid "Password reset"
 msgstr ""
 
-msgid "Select the context of your submission:"
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr ""
+
+msgid "This user has not performed the first login yet."
+msgstr ""
+
+msgid "Select the context of your report:"
 msgstr "Seleccione el context del seu enviament:"
 
 msgid "Warning! You are not anonymous."
 msgstr "Atenció! No esteu comunicant de manera anònima."
 
 msgid ""
-"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"Sending reports over HTTPS exposes the act of doing so, but not the "
 "content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"the report anonymous, which is strongly recommended.\\n\\nThis can be "
 "achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
-msgstr "Fer lliuraments mitjançant HTTPS pot exposar el fet de l'enviament, no el seu contingut.\\\n\\\nDe la mateixa manera, amagar el fet que esteu enviant alguna cosa fa que el lliurament  siga anònim, la qual cosa vos recomanem encaridament.\\\n\\\nAixò es pot aconseguir utilitzant Tor Browser, que ofereix un anonimat que no es troba a altres navegadors com puguen ser Internet Explorer, Chrome, Opera, etc."
+"in other browsers."
+msgstr "Fer lliuraments mitjançant HTTPS pot exposar el fet de l'enviament, no el seu contingut.\\n\\nDe la mateixa manera, amagar el fet que esteu enviant alguna cosa fa que el lliurament  siga anònim, la qual cosa vos recomanem encaridament.\\n\\nAixò es pot aconseguir utilitzant Tor Browser, que ofereix un anonimat que no es troba a altres navegadors."
 
 msgid "Are you a whistleblower?"
 msgstr "És vostè un informador?"
@@ -677,11 +674,11 @@ msgstr "És vostè un informador?"
 msgid "Blow the whistle"
 msgstr "Inici de la comunicació"
 
-msgid "Your submission was successful."
+msgid "Your report was successful."
 msgstr "El seu lliurament s'ha efectuat amb èxit."
 
-msgid "Submission status"
-msgstr "Estat de l'enviament"
+msgid "Report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Abans de continuar, per favor establixca una nova contrasenya."
@@ -719,21 +716,26 @@ msgstr "Deshabilita els enviaments"
 msgid "Enable encryption"
 msgstr "Habilitar xifrat"
 
-msgid "Enable encryption's keys recovery"
+msgid "Enable administrators to change user passwords"
 msgstr ""
 
 msgid "Enable multisite feature"
 msgstr "Activar la característica multi-lloc"
 
-msgid "Allow recipients to delete submissions"
+msgid "Enable multi-site login"
+msgstr "Permetre obrir sessió multi-lloc."
+
+msgid "Enable simplified login"
+msgstr "Activar inici de sessió simplificat"
+
+msgid "Allow recipients to delete reports"
 msgstr "Permet que els destinataris esborren els lliuraments"
 
-msgid "Allow recipients to postpone expiration date of the submission"
+msgid "Allow recipients to postpone expiration date of the report"
 msgstr "Permet que els destinataris posposen la caducitat del lliurament"
 
 msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific "
-"submissions"
+"Allow recipients to grant permissions to whistleblowers on specific reports"
 msgstr "Permet als destinataris concedir permisos als informadors sobre determinats enviaments"
 
 msgid "Enable search engines indexing"
@@ -763,29 +765,6 @@ msgstr "Deshabilita el distintiu de privacitat "
 msgid "Enable the receipt hint"
 msgstr ""
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "Quantitat de dies fins que l'accés dels informadors expira"
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "Per raons de seguretat l'accés del informador està subjecte a caducitat."
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "Ajustar aquesta configuració només si sap el que està fent."
-
-msgid "Require two factor authentication"
-msgstr "Requerir autenticació de doble factor"
-
-msgid "Password change interval"
-msgstr "Interval de canvi de contrasenya"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Per raons de seguretat, es requerix canviar la contrasenya a intervals regulars"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Fixe el valor a 0 per a desactivar esta funcionalitat"
-
 msgid "Landing page"
 msgstr "Pàgina d'aterratge"
 
@@ -801,11 +780,64 @@ msgstr "Mostra contextos en ordre alfabètic"
 msgid "Title of the receipt page"
 msgstr "Títol de la pàgina de la confirmació de la recepció"
 
-msgid "Title of the submission status page"
+msgid "Title of the status page of the report"
 msgstr "Títol de la pàgina d'estat del lliurament"
 
 msgid "Size limit for file attachments"
 msgstr "Límit de tamany per als arxius adjunts"
+
+msgid "Enable HSTS preload"
+msgstr "Habilitar la precàrrega HSTS "
+
+msgid "Enable HTTP Basic Authentication"
+msgstr "Activa l'autenticació bàsica d'HTTP."
+
+msgid "Username"
+msgstr "Nom d'usuari"
+
+msgid "Password"
+msgstr "Contrassenya"
+
+msgid "Require two factor authentication"
+msgstr "Requerir autenticació de doble factor"
+
+msgid "Require proof of work on user authentication"
+msgstr ""
+
+msgid "Password change interval"
+msgstr "Interval de canvi de contrasenya"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Per raons de seguretat, es requerix canviar la contrasenya a intervals regulars"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Fixe el valor a 0 per a desactivar esta funcionalitat"
+
+msgid "Amount of days till whistleblower access expires"
+msgstr "Quantitat de dies fins que l'accés dels informadors expira"
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr "Per raons de seguretat l'accés del informador està subjecte a caducitat."
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr "Ajustar aquesta configuració només si sap el que està fent."
+
+msgid "Enable custodian user role"
+msgstr "Activar el rol d'usuari Custodi"
+
+msgid "Enable scoring system"
+msgstr "Activar el sistema de puntuacions"
+
+msgid "Enable private labels"
+msgstr ""
+
+msgid "Logging level"
+msgstr "Nivell de log"
+
+msgid "Log accesses of internal users"
+msgstr "Enregistrar accessos d'usuaris interns"
 
 msgid "Notify administrators of software problems"
 msgstr "Notificar a los administradores de problemas del software"
@@ -818,62 +850,11 @@ msgid ""
 "security of the platform."
 msgstr "Activant aquesta funcionalitat estarà contribuïnt al desenvolupament i seguretat de la plataforma"
 
-msgid "Enable HTTP Basic Authentication to limit platform access"
-msgstr "Activa l'autenticació bàsica d'HTTP per limitar l'accés a la plataforma"
-
-msgid "Username"
-msgstr "Nom d'usuari"
-
-msgid "Password"
-msgstr "Contrassenya"
-
-msgid "Enable multi-site login"
-msgstr "Permetre obrir sessió multi-lloc."
-
-msgid "Enable simplified login"
-msgstr "Activar inici de sessió simplificat"
-
-msgid "Enable HSTS preload"
-msgstr "Habilitar la precàrrega HSTS "
-
-msgid "Logging level"
-msgstr "Nivell de log"
-
-msgid "Log accesses of internal users"
-msgstr "Enregistrar accessos d'usuaris interns"
-
-msgid "Enable custodian user role"
-msgstr "Activar el rol d'usuari Custodi"
-
-msgid "Enable scoring system"
-msgstr "Activar el sistema de puntuacions"
-
-msgid "Enable private labels"
-msgstr ""
-
-msgid "Enable experimental features"
-msgstr "Activa les funcionalitats experimentals"
-
-msgid "Warning"
-msgstr "Advertència"
-
-msgid ""
-"The experimental features may be less stable or even not work at all; enable"
-" this option at your own risk. Support for these features may vary and they "
-"may be removed in the future."
-msgstr "Les funcionalitats experimentals poden ser menys estables o fins i tot potser no funcionen; active aquesta opció sota la seua responsabilitat. El suport per a aquestes funcionalitats pot variar i es pot suprimir en un futur."
-
 msgid "Save"
 msgstr "Desa"
 
-msgid "Reset submissions"
-msgstr "Reinicialitzar enviaments"
-
-msgid "To"
-msgstr "A"
-
-msgid "Add"
-msgstr "Afegeixa"
+msgid "Reset reports"
+msgstr ""
 
 msgid "Enable automatic backups"
 msgstr "Activar còpies de seguretat automàtiques"
@@ -896,8 +877,44 @@ msgstr "Servidor"
 msgid "Port"
 msgstr "Port"
 
+msgid "Stats of the week:"
+msgstr "Estadístiques de la setmana"
+
+msgid "Free disk space"
+msgstr "Espai lliure del disc"
+
+msgid "Event ID"
+msgstr "Esdeveniment ID"
+
+msgid "Time"
+msgstr "Hora"
+
+msgid "Event"
+msgstr "Esdeveniment"
+
+msgid "Response time"
+msgstr "Temps de resposta"
+
+msgid "Role"
+msgstr "Tasca"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Last access"
+msgstr "últim accés"
+
+msgid "Alarm level"
+msgstr "Alarma"
+
+msgid "Events"
+msgstr "Esdeveniments"
+
 msgid "Substatuses"
 msgstr "Subestatus"
+
+msgid "Add"
+msgstr "Afegeixa"
 
 msgid "Label"
 msgstr "Etiqueta"
@@ -911,8 +928,8 @@ msgstr "Edita"
 msgid "Cancel"
 msgstr "Cancel·la"
 
-msgid "Submission statuses"
-msgstr "Estats dels enviaments"
+msgid "Report statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr "Logotip"
@@ -974,8 +991,8 @@ msgstr "Traducció personalitzada"
 msgid "Contexts"
 msgstr "Contextos"
 
-msgid "Name"
-msgstr "Nom"
+msgid "State"
+msgstr "Comunitat autònoma"
 
 msgid "Enabled"
 msgstr "Habilitat"
@@ -995,9 +1012,6 @@ msgstr "Qüestionari addicional"
 msgid "Recipients"
 msgstr "Destinataris"
 
-msgid "Submission expiration"
-msgstr "Expiració dels enviaments"
-
 msgid "days"
 msgstr "dies"
 
@@ -1013,16 +1027,13 @@ msgstr "Selecciona tots els destinataris per defecte"
 msgid "Maximum number of selectable recipients:"
 msgstr "Nombre màxim de destinataris que es poden seleccionar:"
 
-msgid "(0 = unlimited)"
-msgstr "(0 = il·limitat)"
-
 msgid "Show recipients in alphabetical order"
 msgstr "Mostra els destinataris en ordre alfabètic"
 
 msgid "Show small recipient cards on submission interface"
 msgstr "Mostra targetes de presentació dels destinataris en l'interfície d'enviament"
 
-msgid "Show recipient details on the status page of the submission"
+msgid "Show recipient details on the status page of the report"
 msgstr "Mostra la informació dels destinataris a la pàgina d'estat del lliurament"
 
 msgid "Text shown on top of the interface for selecting recipients"
@@ -1040,7 +1051,7 @@ msgstr "Habilita missatges privats"
 msgid "Allow whistleblowers to send messages"
 msgstr "Permet als informadors enviar missatges"
 
-msgid "Let whistleblowers add attachments onto existing submissions"
+msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Permet als informadors afegir arxius adjunts en un enviament anterior"
 
 msgid "Let recipients upload files to whistleblowers"
@@ -1067,7 +1078,7 @@ msgstr "Personalitzar el missatge que es mostra a la pàgina de recepció"
 msgid "Low"
 msgstr "Baix"
 
-msgid "Assign the receipt only to submissions reaching score:"
+msgid "Assign the receipt only to reports reaching score:"
 msgstr "Asignar el rebut només als enviament que tinguen una puntuació de:"
 
 msgid "Software version:"
@@ -1076,53 +1087,8 @@ msgstr "Versió del programari:"
 msgid "An update is available:"
 msgstr "Hi ha una actualització disponible:"
 
-msgid "SMTP email address"
-msgstr "Adreça electrònica SMTP"
-
-msgid "Invalid email address"
-msgstr "Adreça electrònica no vàlida"
-
-msgid "SMTP server address"
-msgstr "Adreça del servidor SMTP"
-
-msgid "SMTP server port"
-msgstr "Port del servidor SMTP"
-
-msgid "Transport Security"
-msgstr "Seguretat del transport"
-
-msgid "Require authentication"
-msgstr "Requerir autenticació"
-
-msgid "When the option is re-enabled the spooled emails will be sent out."
-msgstr "Els correus no enviats podran ser tranferits quan l'opció siga rehabilitada"
-
-msgid "Reset notification templates to default"
-msgstr "Restablix les plantilles de notificació per defecte"
-
-msgid "Number of hours before sending a submission expiration alert"
-msgstr "Nombre d'hores abans d'enviar l'alerta de caducitat d'un lliurament"
-
-msgid "Maximum emails per hour before triggering email suspension"
-msgstr "Nombre màxim de correus electrònics per hora abans de forçar la suspensió del correu electrònic"
-
-msgid "this configuration only applies to recipients"
-msgstr "Aquesta configuració només és aplicable als destinataris"
-
-msgid "Test the configuration"
-msgstr "Proveu la configuració"
-
-msgid "Reset SMTP configuration"
-msgstr "Reinicialitzar la configuració SMTP"
-
-msgid "Template"
-msgstr "Plantilla"
-
 msgid "Restrict access to specific IP addresses"
 msgstr "Restringir l'accés a les direccions IP específiques"
-
-msgid "Role"
-msgstr "Tasca"
 
 msgid "Whitelisted IP addresses"
 msgstr "Direccions IP en llista blanca"
@@ -1164,9 +1130,6 @@ msgstr "Estic d'acord amb les condicions d'ús"
 msgid "Country code"
 msgstr "Codi de país"
 
-msgid "State"
-msgstr "Comunitat autònoma"
-
 msgid "City"
 msgstr "Població"
 
@@ -1175,6 +1138,9 @@ msgstr "Organització"
 
 msgid "Organizational unit"
 msgstr "Unitat organitzativa"
+
+msgid "Invalid email address"
+msgstr "Adreça electrònica no vàlida"
 
 msgid "Generate"
 msgstr "Genera"
@@ -1265,32 +1231,41 @@ msgstr "Permetre que la plataforma siga accessible sense Tor"
 msgid "Roles enabled to use the platform without Tor"
 msgstr "Rols activats per a utilitzar la plataforma sense Tor"
 
-msgid "Stats of the week:"
-msgstr "Estadístiques de la setmana"
+msgid "To"
+msgstr "A"
 
-msgid "Free disk space"
-msgstr "Espai lliure del disc"
+msgid "SMTP email address"
+msgstr "Adreça electrònica SMTP"
 
-msgid "Event ID"
-msgstr "Esdeveniment ID"
+msgid "SMTP server address"
+msgstr "Adreça del servidor SMTP"
 
-msgid "Time"
-msgstr "Hora"
+msgid "SMTP server port"
+msgstr "Port del servidor SMTP"
 
-msgid "Event"
-msgstr "Esdeveniment"
+msgid "Security"
+msgstr ""
 
-msgid "Response time"
-msgstr "Temps de resposta"
+msgid "Warning"
+msgstr "Advertència"
 
-msgid "Last access"
-msgstr "últim accés"
+msgid "Require authentication"
+msgstr "Requerir autenticació"
 
-msgid "Alarm level"
-msgstr "Alarma"
+msgid "Reset notification templates to default"
+msgstr "Restablix les plantilles de notificació per defecte"
 
-msgid "Events"
-msgstr "Esdeveniments"
+msgid "Number of hours before sending a report expiration alert"
+msgstr "Nombre d'hores abans d'enviar l'alerta de caducitat d'un lliurament"
+
+msgid "Test the configuration"
+msgstr "Proveu la configuració"
+
+msgid "Reset SMTP configuration"
+msgstr "Reinicialitzar la configuració SMTP"
+
+msgid "Template"
+msgstr "Plantilla"
 
 msgid "Question"
 msgstr "Pregunta"
@@ -1351,6 +1326,9 @@ msgstr "Acceptar múltiples respostes"
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Indici que es mostra al botó per afegir una resposta més"
+
+msgid "Encrypt"
+msgstr ""
 
 msgid "Template override"
 msgstr "Sobreescriure plantilla"
@@ -1493,7 +1471,7 @@ msgstr "Elimina la clau PGP"
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Estableix l'encriptació oferint una clau pública PGP"
 
-msgid "Grant the user the capability of resetting users' passwords"
+msgid "Give this admin ability to change user passwords"
 msgstr ""
 
 msgid "Configuration"
@@ -1505,16 +1483,16 @@ msgstr "Predeterminat"
 msgid "Forcefully selected"
 msgstr "Obligatòriament seleccionats"
 
-msgid "Allow the recipient to postpone the submission expiration date"
+msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permet al destinatari pospondre la data d'expiració de l'enviament"
 
-msgid "Allow the recipient to delete submissions"
-msgstr "Permet al destinatari esborrar enviaments"
+msgid "Allow the recipient to delete reports"
+msgstr "Permet que els destinataris esborren els lliuraments"
 
 msgid ""
 "Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "Permet al destinatari concedir permisos als informadors sobre determinats enviaments"
+"reports"
+msgstr "Permet als destinataris concedir permisos als informadors sobre determinats enviaments"
 
 msgid "User has administrative access to the following features:"
 msgstr "L'usuari té accés administratiu a les funcions següents:"
@@ -1524,6 +1502,9 @@ msgstr "Data de sol·licitud"
 
 msgid "ID"
 msgstr "ID"
+
+msgid "Report date"
+msgstr ""
 
 msgid "Authorization"
 msgstr "Autorització"
@@ -1552,10 +1533,10 @@ msgstr "El codi es invàlid o ha caducat."
 msgid "Site:"
 msgstr "Lloc:"
 
-msgid "Have you already filed a submission? Enter your receipt."
+msgid "Have you already filed a report? Enter your receipt."
 msgstr "Ha fet ja un enviament? Introduïsca el seu rebut."
 
-msgid "The receipt is either invalid or the submission has expired."
+msgid "The receipt is either invalid or the report has expired."
 msgstr "El codi és invàlid o l'enviament ha expirat."
 
 msgid "Username:"
@@ -1588,8 +1569,8 @@ msgstr "L'operació restablirà la configuració i no es podrà desfer."
 msgid "Assign score points"
 msgstr "Assigna puntuació"
 
-msgid "Please note that all the associated data will be permanently lost."
-msgstr "Recordeu que totes les dades associades es perden definitivament."
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ésta es una plataforma de demostració, per favor no la utilitze per a enviaments reals."
@@ -1609,14 +1590,16 @@ msgstr "Habilitar l'autenticació de doble factor"
 msgid "Close"
 msgstr "Tancar"
 
-msgid "Your encryption recovery key is:"
-msgstr "La seua clau de recuperació de xifrat es: "
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr ""
+
+msgid "Your account recovery key is:"
+msgstr ""
 
 msgid ""
-"Please annotate and store this key in a safe place. It will be necessary if "
-"you lose your personal password to recover the access to your account with "
-"no data loss."
-msgstr "Per favor, anote i emmagatzeme esta clau a un lloc segur. Serà necessària si perd la seua contrasenya personal per a recuperar l'accés al seu compte sense perdua de dades."
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr ""
 
 msgid "Welcome!"
 msgstr "Benvingut!"
@@ -1644,8 +1627,8 @@ msgid ""
 "projects contact the social enterprise maintaining GlobaLeaks:"
 msgstr "Per obtenir suport professional i desenvolupament de projectes de lluita contra la corrupció, poseu-vos en contacte amb l'iniciativa social que manté GlobaLeaks:"
 
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr "Uneix-te al nostre canal de xat IRC a la xarxa  irc.oftc.net:"
+msgid "Join our chat:"
+msgstr ""
 
 msgid "Follow the project on:"
 msgstr "Seguiu el projecte a:"
@@ -1691,20 +1674,11 @@ msgstr "Validació del canvi de contrasenya en progrés."
 msgid "Please check your inbox for further instructions."
 msgstr "Per favor, comprove el seu correu per a més instruccions."
 
-msgid "Encryption key"
-msgstr "Clau de xifrat"
-
-msgid "Hide"
-msgstr "Ocultar"
-
-msgid "Show"
-msgstr "Mostrar"
-
 msgid "Set up email encryption by providing a PGP public key"
 msgstr "Configurar el xifrat del correu propocionant una clau pública PGP"
 
-msgid "Get the encryption recovery key"
-msgstr "Obtindre la clau de recuperación de xifrat"
+msgid "Account recovery key"
+msgstr ""
 
 msgid "Current password"
 msgstr " Contrasenya actual"
@@ -1763,6 +1737,14 @@ msgstr "Per a conversar amb nosaltres utilitze la següent adreça Ricochet:"
 
 msgid "Download Ricochet at:"
 msgstr "Descarregue Ricochet des de:"
+
+msgid ""
+"By using the Tor network and creating an Onion Service, Ricochet is an "
+"instant messaging app that allows you to chat while protecting your privacy "
+"and staying anonymous by not revealing your location or IP address. You "
+"won't notice any difference from an insecure chat, except that you will be "
+"using a unique address instead of a phone number/email/username."
+msgstr ""
 
 msgid "The connection is not secure."
 msgstr "La connexió no és segura"
@@ -1823,11 +1805,8 @@ msgstr "baixa"
 msgid "No files have been uploaded!"
 msgstr "No s'ha pujat cap arxiu!"
 
-msgid "Allow the whistleblower to add attachments to the submission"
+msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Permet als informadors afegir arxius adjunts a l'enviament"
-
-msgid "Submission"
-msgstr "Enviament"
 
 msgid "Access expiration"
 msgstr "Caducitat de l'accés"
@@ -1841,17 +1820,14 @@ msgstr "Mai"
 msgid "Revoked"
 msgstr "Revocat"
 
-msgid "-"
-msgstr "-"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Permet als informadors enviar missatges"
 
-msgid "Are you sure that you want to delete the submission?"
+msgid "Are you sure that you want to delete the report?"
 msgstr "Esteu segur que voleu esborrar el lliurament?"
 
 msgid ""
-"Everything related to the submission stored on the platform will be deleted."
+"Everything related to the report stored on the platform will be deleted."
 msgstr "S'eliminarà tot allò relacionat amb la presentació emmagatzemada a la plataforma."
 
 msgid ""
@@ -1859,8 +1835,8 @@ msgid ""
 " saved on your computer, must be deleted manually."
 msgstr "Recordeu que tot allò emmagatzemat fora de la plataforma, per exemple els arxius que ha guardat al seu ordinador, s'han d'eliminar manualment."
 
-msgid "Are you sure that you want to delete all the selected submissions?"
-msgstr "Esteu segur que voleu esborrar tots els lliuraments que heu seleccionat?"
+msgid "Are you sure that you want to delete the selected reports?"
+msgstr "Esteu segur que voleu esborrar el lliurament?"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
@@ -1870,7 +1846,7 @@ msgstr "Per favor, assegure's que totes les dades associades siguen esborrades a
 msgid "Please write a motivation for the reply"
 msgstr "Per favor, escriga una motivació per a la resposta"
 
-msgid "Are you sure that you want to postpone the submission expiration date?"
+msgid "Are you sure that you want to postpone the report expiration date?"
 msgstr "Està segur que vol posposar la data de caducitat del lliurament?"
 
 msgid "By confirming, you will postpone the expiration date to:"
@@ -1878,7 +1854,7 @@ msgstr "Si ho confirma, posposarà la data de caducitat fins a:"
 
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
-"submissions?"
+"reports?"
 msgstr "Està segur que vol posposar la data de caducitat de tots els lliuraments que ha seleccionat?"
 
 msgid "Questionnaire answers"
@@ -1890,8 +1866,8 @@ msgstr "Pas"
 msgid "Recipient list"
 msgstr "Llista del destinatari"
 
-msgid "Submission status:"
-msgstr "Estat de la comunicació:"
+msgid "Status:"
+msgstr ""
 
 msgid "Attached files for the whistleblower"
 msgstr "Els arxius adjunts per a l'informador"
@@ -1902,13 +1878,10 @@ msgstr "Pujar un fitxer:"
 msgid "Logout"
 msgstr "Tanca sessió"
 
-msgid "The key code is either invalid or the submission has expired."
-msgstr "El codi és invàlid o l'enviament ha expirat."
-
 msgid "Files attached by recipients"
 msgstr "Arxius adjuntats pels receptors"
 
-msgid "These files have been attached to your submission by the recipients."
+msgid "These files have been attached to your report by the recipients."
 msgstr "Aquests arxius s'han adjuntat al seu enviament pels receptors"
 
 msgid "The provided recovery key is invalid."
@@ -1931,6 +1904,12 @@ msgstr "Introduïsca la clau de recuperació de xifrat per a completar el proced
 
 msgid "Password reset requested."
 msgstr "Reinicialització de la contrasenya.sol.licitada."
+
+msgid "Show"
+msgstr "Mostrar"
+
+msgid "Hide"
+msgstr "Ocultar"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -2002,7 +1981,7 @@ msgstr "Gràcies!"
 msgid "We will try to get back to you as soon as possible."
 msgstr "Intentarem contactar amb vosté lo abans possible."
 
-msgid "Remember your receipt for this submission."
+msgid "Remember your receipt for this report."
 msgstr "Recorde el seu codi per a aquest enviament."
 
 msgid ""
@@ -2010,7 +1989,7 @@ msgid ""
 "we sent you, and also to add extra info."
 msgstr "Faça servir el codi de 16 dígits per a entrar a la plataforma. Li permetrà vore els missatges que li enviem o afegir informació addicional."
 
-msgid "View your submission"
+msgid "View your report"
 msgstr "Mire el seu enviament"
 
 msgid "Recipient selection"
@@ -2027,8 +2006,8 @@ msgid ""
 "invalid:"
 msgstr "En aquest pas, les respostes a les següents preguntes falten o són invàlides:"
 
-msgid "Submission errors"
-msgstr "Falta informació en els següents passos"
+msgid "Errors"
+msgstr ""
 
 msgid "You must select at least one recipient."
 msgstr "Ha de seleccionar, com a mínim, un destinatari."
@@ -2055,6 +2034,9 @@ msgstr "Aquests perfils contenen la configuració utilitzada per projectes exito
 msgid "Confirm password"
 msgstr "Confirme la contrassenya"
 
+msgid "Please choose a different username."
+msgstr ""
+
 msgid "The user will receive an activation link via email."
 msgstr ""
 
@@ -2070,22 +2052,22 @@ msgstr "He llegit i accepte els termes de l'Acord de llicència."
 msgid "You have completed the platform wizard."
 msgstr "Ha completat amb èxit l'assistent de la plataforma."
 
-msgid "Fill out your submission"
+msgid "Fill out your report"
 msgstr "Emplene les dades del seu enviament"
 
 msgid "Short title"
 msgstr "Títol curt"
 
-msgid "Describe your submission in a few words."
+msgid "Describe your report in a few words."
 msgstr "Descriga el seu enviament en poques paraules."
 
 msgid "Full description"
 msgstr "Descripció completa"
 
-msgid "Describe your submission in detail."
+msgid "Describe your report in detail."
 msgstr "Descriga els detalls del seu enviament."
 
-msgid "Attach files relevant to the submission."
+msgid "Attach files relevant to the report."
 msgstr "Adjunta arxius rellevants per a l'enviament."
 
 msgid "Do you want to provide your identification information?"
@@ -2210,9 +2192,9 @@ msgid "The activities with unusual stats are:"
 msgstr "Les activitats amb estadístiques inusuals són les següents:"
 
 msgid ""
-"The server cannot guarantee that a new submission can be stored, so "
-"submissions have been disabled."
-msgstr "El servidor no pot garantir que es puga desar una nova entrega, ja que s'han desactivat els lliuraments."
+"The server cannot guarantee that a new report can be stored, so submissions "
+"have been disabled."
+msgstr ""
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
@@ -2281,12 +2263,11 @@ msgstr "Si reps aquest missatge, significa que el servidor ha estat capaç d'aut
 msgid "Test email"
 msgstr "Correu electrònic de prova"
 
-msgid ""
-"This is an email to notify you of a new comment on an existing submission."
+msgid "This is an email to notify you of a new comment on an existing report."
 msgstr "Aquest és un correu electrònic per avisar-te d'un nou comentari d'un enviament anterior."
 
-msgid "The submission can be accessed at:"
-msgstr "L'enviament pot ser accedit a:"
+msgid "The report can be accessed at:"
+msgstr "La petició pot ser accedida a:"
 
 msgid "New comment"
 msgstr "Nou commentari"
@@ -2329,8 +2310,8 @@ msgid "Context: {ContextName}"
 msgstr "Context: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of submission {TipNum}"
-" has attached new material."
+"This is an email to notify you that the whistleblower of report {TipNum} has"
+" attached new material."
 msgstr "Amb aquest missatge de correu electrònic et volem notificar que l'informador del lliurament {TipNum} ha adjuntat material nou."
 
 msgid "New attachment"
@@ -2367,7 +2348,7 @@ msgstr "Renovació del certificat HTTPS fallida."
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
-" to the whistleblowing identity for the submission {TipNum}."
+" to the whistleblowing identity for the report {TipNum}."
 msgstr "Amb aquest missatge de correu electrònic li notifiquem que un responsable vos ha autoritzat a accedir a la identitat de l'informador del lliurament {TipNum}."
 
 msgid "Access to whistleblower's identity authorized"
@@ -2375,15 +2356,15 @@ msgstr "Accés autoritzat a la identitat de l'informador"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the submission {TipNum}."
-msgstr "Amb aquest missatge de correu electrònic li notifiquem que el responsable li ha denegat l'accés a la identitat de l'informador del lliurament {TipNum}."
+" wistleblowing identity for the report {TipNum}."
+msgstr "Amb aquest missatge de correu electrònic li notifiquem que un responsable vos ha autoritzat a accedir a la identitat de l'informador del lliurament {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Accés denegat a la identitat de l'informador"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
-"whistleblower's identity for the submission {TipNum}"
+"whistleblower's identity for the report {TipNum}"
 msgstr "Amb aquest missatge de correu electrònic li notifiquem que el destinatari ha demanat accedir a la identitat de l'informador del lliurament {TipNum}."
 
 msgid "The request can be accessed at:"
@@ -2393,16 +2374,15 @@ msgid "New request of access to a whistleblower's identity"
 msgstr "Nova petició d'accés a la identitat de l'informador"
 
 msgid ""
-"This is an email to notify you that the whistleblower for the submission "
+"This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
 msgstr "Amb aquest missatge de correu electrònic li notifiquem que l'informador del lliurament {TipNum} ha introduït la seua identitat."
 
 msgid "The whistleblower has provided their identity"
 msgstr "L'informador ha introduït la seua identitat"
 
-msgid ""
-"This is an email to notify you of a new message on an existing submission."
-msgstr "Amb aquest missatge de correu electrònic li notifiquem que hi ha un nou missatge en un lliurament existent."
+msgid "This is an email to notify you of a new message on an existing report."
+msgstr "Aquest és un correu electrònic per avisar-te d'un nou comentari d'un enviament anterior."
 
 msgid "New message"
 msgstr "Nou missatge"
@@ -2438,24 +2418,6 @@ msgid ""
 "to you."
 msgstr "Sense una clau PGP vàlida, el sistema no podrà encriptar les dades que se li han proporcionat."
 
-msgid "It appears that {NodeName} is receiving a large number of requests."
-msgstr "Sembla que {NodeName} està rebent un gran nombre de peticions."
-
-msgid ""
-"To prevent sending you too many emails, the system has disabled email "
-"notifications until the load returns to normal. In the meantime, you can "
-"normally log onto the platform and manually check for new submissions."
-msgstr "Per impedir que li envien massa correus electrònics, el sistema ha desactivat les notificacions del correu electrònic fins que la quantitat torne a ser normal. Mentrestant, pot entrar normalment a la plataforma i comprovar manualment els nous lliuraments."
-
-msgid ""
-"If you don’t mind and would rather receive such a large number of email "
-"notifications anyhow, please contact your technical support to have them "
-"modify this setting accordingly."
-msgstr "Si no l'importa i prefereix rebre totes aquestes notificacions de correu electrònic, per favor, pose's en contacte amb el suport tècnic per tal que modifiquen la configuració amb aquesta finalitat."
-
-msgid "Notifications from {NodeName} have been temporarily suspended"
-msgstr "Les notificacions de {NodeName} s'han suspès temporalment"
-
 msgid "Click the link to activate the platform:"
 msgstr "Seleccione l'enllaç per activar la plataforma"
 
@@ -2490,24 +2452,24 @@ msgstr "La data de venciment més propera és {EarliestExpirationDate}."
 msgid "Please remember to check them before they are deleted."
 msgstr "Per favor, reviseu-los abans de suprimir-los."
 
-msgid "Some submissions will expire soon"
+msgid "Some reports will expire soon"
 msgstr "Alguns enviaments caducaran prompte"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their submission."
+"valuable recipient of their report."
 msgstr "Aquest és un missatge de correu electrònic per notificar-li que un informador l'ha seleccionat com a destinatari  valuós per al seu lliurament."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
 "contained therein. Please keep in mind that whistleblowers often expose "
 "themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this submission should be considered to be of "
-"high importance."
+"the material provided within this report should be considered to be of high "
+"importance."
 msgstr "Se vos demana que pareu especial atenció a la informació i al material que conté. Tingueu en compte que els informadors sovint s'exposen a riscos personals elevats en interès del públic. Per tant, el material proporcionat dins d'aquesta aportació ha de ser considerat de gran importància."
 
-msgid "New submission"
-msgstr "Nou enviament"
+msgid "New report"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr "Rol: {Role}"

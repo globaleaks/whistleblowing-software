@@ -3,7 +3,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # benewfy <benewfy@gmail.com>, 2015
 # benewfy <benewfy@gmail.com>, 2015-2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2017-2018
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2017-2018,2020
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-01-17 16:24+0000\n"
+"PO-Revision-Date: 2020-02-26 17:30+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,7 +107,7 @@ msgid "Recipient interface"
 msgstr "Címzett felület"
 
 msgid "Date"
-msgstr "Létrehozás ideje"
+msgstr "Dátum"
 
 msgid "Expiration date"
 msgstr "Lejárat ideje"
@@ -148,7 +148,7 @@ msgstr "HITELKÁRTYA"
 msgid "YOUR NAME"
 msgstr "AZ ÖN NEVE"
 
-msgid "Label the submission"
+msgid "Label the report"
 msgstr "Címkézze a beküldést"
 
 msgid "Postpone the expiration date"
@@ -166,9 +166,6 @@ msgstr "Oldal frissítése"
 msgid "Context"
 msgstr "Kontextus"
 
-msgid "Submission date"
-msgstr "Beadási dátum"
-
 msgid "Private messages"
 msgstr "Személyes üzenetek"
 
@@ -176,7 +173,7 @@ msgid "Preview"
 msgstr "Előnézet"
 
 msgid "The whistleblower has already read the last update"
-msgstr "A közérdekű bejelentő elolvasta a legfrissebb üzeneteket."
+msgstr "A közérdekű bejelentő elolvasta a legfrissebb üzeneteket"
 
 msgid "The whistleblower has not read the last update yet"
 msgstr "A közérdekű bejelentő még nem olvasta a legfrissebb üzeneteket."
@@ -205,15 +202,13 @@ msgstr "Összes mentése"
 msgid "Access control"
 msgstr "Hozzáférés kezelése"
 
-msgid ""
-"The connection used to send this submission has been secured with HTTPS "
-"ensuring confidentiality."
-msgstr "A beküldésre használt kapcsolat HTTPS-sel van titkosítva."
+msgid "The connection has been secured with HTTPS ensuring confidentiality."
+msgstr ""
 
 msgid ""
-"The connection used to send this submission has been secured with Tor "
-"ensuring confidentiality and anonymity."
-msgstr "A beküldésre használt kapcsolat Tor-titkosítást használ."
+"The connection has been secured with Tor ensuring confidentiality and "
+"anonymity."
+msgstr ""
 
 msgid "vertical"
 msgstr "függőleges"
@@ -226,9 +221,6 @@ msgstr "Szám"
 
 msgid "Email"
 msgstr "Email"
-
-msgid "Date"
-msgstr "Dátum"
 
 msgid "Regular expression validator"
 msgstr "Szabályos kifejezés érvényesítő"
@@ -272,11 +264,8 @@ msgstr "Mellékletek"
 msgid "Change your password"
 msgstr "Változtassa meg a jelszavát"
 
-msgid "List of submissions"
-msgstr "Beadványok listája"
-
-msgid "List of access requests to whistleblowers' identities"
-msgstr "Hozzáférési kérelmek listája a közérdekű bejelentők személyazonosságához"
+msgid "Access requests"
+msgstr ""
 
 msgid "User"
 msgstr "Felhasználó"
@@ -397,7 +386,7 @@ msgstr "Gondnok értesítés sablonok"
 
 msgid ""
 "This interface allows configuring email templates used to notify custodians."
-msgstr " "
+msgstr " Ez a felület lehetővé teszi a kezelők értesítéséhez használt e-mail sablonok konfigurálását."
 
 msgid "Disable notifications to administrators"
 msgstr "Értesítések letiltása az adminisztrátoroknak"
@@ -415,9 +404,9 @@ msgid "Trigger question"
 msgstr "Trigger kérdés"
 
 msgid "Triggered by score:"
-msgstr ""
+msgstr "Trigger érték:"
 
-msgid "Message shown on top of the status page of the submission"
+msgid "Message shown on top of the status page of the report"
 msgstr "Üzenet, ami a beküldés állapota oldal tetején kerül megjelenítésre"
 
 msgid "Copy and paste the PGP public key here"
@@ -436,16 +425,16 @@ msgid "Strong"
 msgstr "Erős"
 
 msgid "Text shown on top of the interface for selecting contexts"
-msgstr "A kontextus választó előtt megjelenő szöveg"
+msgstr "A kontextusválasztó előtt megjelenő szöveg"
 
 msgid "Show small context cards on submission interface"
-msgstr ""
+msgstr "Mutass kontextusválasztó kártyákat a beküldő felületen"
 
 msgid "Type of context selector:"
-msgstr ""
+msgstr "Kontextusválasztó típusa:"
 
 msgid "Type to search…"
-msgstr ""
+msgstr "Keresés"
 
 msgid "Silence email notifications"
 msgstr "Email értesítések kikapcsolása"
@@ -496,7 +485,7 @@ msgid "Activate"
 msgstr "Aktiválás"
 
 msgid "Disactivate"
-msgstr ""
+msgstr "Deaktiválás"
 
 msgid "Search"
 msgstr "Keresés"
@@ -507,11 +496,11 @@ msgid ""
 msgstr "Ez a szöveg nem kerül többé megjelenítésre a platformon. Az eredeti szöveg megváltozott vagy eltávolításra került"
 
 msgid ""
-"Unless the whistleblower checks the submission by this time, their access to"
-" it will expire."
-msgstr ""
+"Unless the whistleblower checks the report by this time, their access to it "
+"will expire."
+msgstr "Ha a közérdekű bejelentő nem ellenőrzi a bejelentést eddig az ideig, a hozzáférés lejár."
 
-msgid "The whistleblower can no longer access the submission"
+msgid "The whistleblower can no longer access the report"
 msgstr "A közérdekű bejelentő már nem fér hozzá a bejelentéshez"
 
 msgid "Warning!"
@@ -534,8 +523,8 @@ msgstr "Tor-böngésző letöltése"
 msgid "This is the list of the other supported browsers:"
 msgstr "Ez a támogatott böngészők listája:"
 
-msgid "System overview"
-msgstr "Rendszer áttekintés"
+msgid "Audit log"
+msgstr ""
 
 msgid "Stats"
 msgstr "Statisztikák"
@@ -543,8 +532,8 @@ msgstr "Statisztikák"
 msgid "Activities"
 msgstr "Aktivitások"
 
-msgid "Submissions"
-msgstr "Beadványok"
+msgid "Reports"
+msgstr ""
 
 msgid "Users"
 msgstr "Felhasználók"
@@ -571,19 +560,19 @@ msgid "Accepted file types are:"
 msgstr "Elfogadott fájltípusok:"
 
 msgid "Scheduled jobs"
-msgstr ""
+msgstr "Időzített feladatok"
 
 msgid "Sites management"
 msgstr "Oldalak kezelése"
 
 msgid "Regenerate"
-msgstr ""
+msgstr "Újragenerálás"
 
 msgid "Display options alphabetically"
 msgstr "Lehetőségek mutatása ABC-sorrendben"
 
 msgid "Enable email notifications for:"
-msgstr ""
+msgstr "E-mail értesítések bekapcsolása:"
 
 msgid "Disable"
 msgstr "Bekapcsol"
@@ -592,7 +581,7 @@ msgid "Remove"
 msgstr "Eltávolít"
 
 msgid "Use as default"
-msgstr ""
+msgstr "Alapértelmezett"
 
 msgid "Create your whistleblowing platform"
 msgstr "Hozza létre a saját közérdekű bejelentő felületét"
@@ -607,10 +596,10 @@ msgid "Select"
 msgstr "Kiválaszt"
 
 msgid "Selected by default"
-msgstr ""
+msgstr "Alapbeállítás szerint kiválasztva"
 
 msgid "Unselected by default"
-msgstr ""
+msgstr "Alapbeállítás szerint nincs kiválasztva"
 
 msgid "Surname"
 msgstr "Vezetéknév"
@@ -652,29 +641,37 @@ msgid "Send a test email to your email address."
 msgstr "Küldjön teszt email az email címére."
 
 msgid "Block the submission"
-msgstr ""
+msgstr "Bejelentés tiltása."
 
 msgid "Skip the recipient account creation."
-msgstr ""
+msgstr "Címzett felhasználó létrehozás kihagyása."
 
 msgid "Send activation link"
-msgstr ""
+msgstr "Aktivációs link küldése"
 
 msgid "Password reset"
+msgstr "Jelszó visszaállítása"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
 msgstr ""
 
-msgid "Select the context of your submission:"
+msgid "This user has not performed the first login yet."
+msgstr ""
+
+msgid "Select the context of your report:"
 msgstr "Válassza ki a beküldés környezetét:"
 
 msgid "Warning! You are not anonymous."
 msgstr "Figyelem! Ön nem anonim."
 
 msgid ""
-"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"Sending reports over HTTPS exposes the act of doing so, but not the "
 "content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"the report anonymous, which is strongly recommended.\\n\\nThis can be "
 "achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+"in other browsers."
 msgstr ""
 
 msgid "Are you a whistleblower?"
@@ -683,11 +680,11 @@ msgstr "Szivárogtatni szeretne? Közérdekű bejelentést szeretne tenni?"
 msgid "Blow the whistle"
 msgstr "közérdekű bejelentést teszek"
 
-msgid "Your submission was successful."
+msgid "Your report was successful."
 msgstr "Beküldése sikeres volt."
 
-msgid "Submission status"
-msgstr "Beküldés állapota"
+msgid "Report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Továblépés előtt kérjük, állítson be új jelszót"
@@ -725,21 +722,26 @@ msgstr "Feltöltéstek letiltása"
 msgid "Enable encryption"
 msgstr "Titkosítás engedélyezése"
 
-msgid "Enable encryption's keys recovery"
-msgstr ""
+msgid "Enable administrators to change user passwords"
+msgstr "Engedélyezze, hogy az adminisztrátorok megváltoztathassák a felhasználói jelszavakat."
 
 msgid "Enable multisite feature"
 msgstr "Multisite engedélyezése"
 
-msgid "Allow recipients to delete submissions"
-msgstr "Engedély a címzetteknek, hogy töröljék a beküldést"
+msgid "Enable multi-site login"
+msgstr "Multi-site login engedélyezése"
 
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "Engedély a címzetteknek, hogy meghosszabbítsák a beküldés lejárati dátumát"
+msgid "Enable simplified login"
+msgstr "Egyszerűsített login engedélyezése"
+
+msgid "Allow recipients to delete reports"
+msgstr "Engedélyezés a címzetteknek, hogy töröljék a tippeket"
+
+msgid "Allow recipients to postpone expiration date of the report"
+msgstr "Engedélyezés a címzetteknek, hogy meghosszabbítsák a tippek lejárati idejét"
 
 msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific "
-"submissions"
+"Allow recipients to grant permissions to whistleblowers on specific reports"
 msgstr "Engedélyezés a címzetteknek, hogy jogosultságokat biztosítsanak a közérdekű bejelentőknek egyes különleges beadványoknál"
 
 msgid "Enable search engines indexing"
@@ -749,7 +751,7 @@ msgid "Description"
 msgstr "Leírás"
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgstr "A következő weboldalak számára engedélyezett a platform iframe-ként embeddelése"
 
 msgid "Invalid input format."
 msgstr "Érvénytelen formátum"
@@ -767,30 +769,7 @@ msgid "Disable the privacy panel"
 msgstr "Adatvédelmi panel letiltása"
 
 msgid "Enable the receipt hint"
-msgstr ""
-
-msgid "Amount of days till whistleblower access expires"
-msgstr "Napok, amíg az informátor hozzáférése lejár"
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "Biztonsági okokból az informátor hozzáférése lejár."
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "Csak akkor nyúljon ehhez a beállításhoz ha tudja mit csinál."
-
-msgid "Require two factor authentication"
-msgstr "2-faktoros autentikáció szükséges"
-
-msgid "Password change interval"
-msgstr "Jelszó módosítás időszak"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Biztonsági okokból a jelszót rendszeresen módosítani kell."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr ""
+msgstr "Nyugtázás engedélyezése"
 
 msgid "Landing page"
 msgstr "Nyitóoldal"
@@ -807,11 +786,64 @@ msgstr "A kategóriák megjelenítése betűrendben"
 msgid "Title of the receipt page"
 msgstr "Az jelentés oldal címe"
 
-msgid "Title of the submission status page"
-msgstr "A beadvány állapot oldal címe"
+msgid "Title of the status page of the report"
+msgstr "Üzenet, ami a beküldés állapota oldal tetején kerül megjelenítésre"
 
 msgid "Size limit for file attachments"
 msgstr "Mellékletek méretkorláta"
+
+msgid "Enable HSTS preload"
+msgstr "HSTS betöltés engedélyezése"
+
+msgid "Enable HTTP Basic Authentication"
+msgstr ""
+
+msgid "Username"
+msgstr "Felhasználónév"
+
+msgid "Password"
+msgstr "Jelszó"
+
+msgid "Require two factor authentication"
+msgstr "2-faktoros autentikáció szükséges"
+
+msgid "Require proof of work on user authentication"
+msgstr ""
+
+msgid "Password change interval"
+msgstr "Jelszó módosítás időszak"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Biztonsági okokból a jelszót rendszeresen módosítani kell."
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Állítsa az értéket 0-ra, hogy kikapcsolja ezt a funkciót."
+
+msgid "Amount of days till whistleblower access expires"
+msgstr "Napok, amíg az informátor hozzáférése lejár"
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr "Biztonsági okokból az informátor hozzáférése lejár."
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr "Csak akkor nyúljon ehhez a beállításhoz ha tudja mit csinál."
+
+msgid "Enable custodian user role"
+msgstr "Kezelő felhasználó típus engedélyezése"
+
+msgid "Enable scoring system"
+msgstr "Pontozási rendszer engedélyezése"
+
+msgid "Enable private labels"
+msgstr "Egyedi címkék engedélyezése"
+
+msgid "Logging level"
+msgstr "Log szint"
+
+msgid "Log accesses of internal users"
+msgstr "Belső felhasználók belépési logja"
 
 msgid "Notify administrators of software problems"
 msgstr "Adminisztrátorok értesítése a szoftver problémáiról"
@@ -822,67 +854,16 @@ msgstr "Fejlesztők értesítése a szoftver problémáiról"
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr ""
-
-msgid "Enable HTTP Basic Authentication to limit platform access"
-msgstr "HTTP Basic azonosítás a platformhoz történő hozzáféréshez"
-
-msgid "Username"
-msgstr "Felhasználónév"
-
-msgid "Password"
-msgstr "Jelszó"
-
-msgid "Enable multi-site login"
-msgstr ""
-
-msgid "Enable simplified login"
-msgstr ""
-
-msgid "Enable HSTS preload"
-msgstr "HSTS betöltés engedélyezése"
-
-msgid "Logging level"
-msgstr ""
-
-msgid "Log accesses of internal users"
-msgstr "Belső felhasználók belépési logja"
-
-msgid "Enable custodian user role"
-msgstr ""
-
-msgid "Enable scoring system"
-msgstr ""
-
-msgid "Enable private labels"
-msgstr ""
-
-msgid "Enable experimental features"
-msgstr "Kísérleti fejlesztések bekapcsolása"
-
-msgid "Warning"
-msgstr "Figyelem"
-
-msgid ""
-"The experimental features may be less stable or even not work at all; enable"
-" this option at your own risk. Support for these features may vary and they "
-"may be removed in the future."
-msgstr ""
+msgstr "A funkció engedélyezésével hozzájárul a platform fejlesztéséhez és biztonságához."
 
 msgid "Save"
 msgstr "Mentés"
 
-msgid "Reset submissions"
+msgid "Reset reports"
 msgstr ""
-
-msgid "To"
-msgstr ""
-
-msgid "Add"
-msgstr "Hozzáadás"
 
 msgid "Enable automatic backups"
-msgstr ""
+msgstr "Automatikus mentés engedélyezése"
 
 msgid "Daily"
 msgstr "Naponta"
@@ -902,8 +883,44 @@ msgstr "Szerver"
 msgid "Port"
 msgstr "Port"
 
+msgid "Stats of the week:"
+msgstr "A hét statisztikái"
+
+msgid "Free disk space"
+msgstr "Szabad lemezterület"
+
+msgid "Event ID"
+msgstr "Esemény ID"
+
+msgid "Time"
+msgstr "Idő"
+
+msgid "Event"
+msgstr "Esemény"
+
+msgid "Response time"
+msgstr "Válaszidő"
+
+msgid "Role"
+msgstr "Szerep"
+
+msgid "Name"
+msgstr "Név"
+
+msgid "Last access"
+msgstr "Legutóbbi hozzáférés"
+
+msgid "Alarm level"
+msgstr "Riasztási szint"
+
+msgid "Events"
+msgstr "Események"
+
 msgid "Substatuses"
-msgstr ""
+msgstr "Alstátuszok"
+
+msgid "Add"
+msgstr "Hozzáadás"
 
 msgid "Label"
 msgstr "Cím"
@@ -917,7 +934,7 @@ msgstr "Szerkesztés"
 msgid "Cancel"
 msgstr "Mégse"
 
-msgid "Submission statuses"
+msgid "Report statuses"
 msgstr ""
 
 msgid "Logo"
@@ -927,7 +944,7 @@ msgid "Project name"
 msgstr "Projekt név"
 
 msgid "Header title"
-msgstr ""
+msgstr "Fejléc szöveg"
 
 msgid "Homepage title"
 msgstr "Honlap cím"
@@ -942,7 +959,7 @@ msgid "Whistleblowing button"
 msgstr "Szivárogtatás gomb"
 
 msgid "Enable disclaimer"
-msgstr ""
+msgstr "Nyilatkozat engedélyezése"
 
 msgid "Title"
 msgstr "Cím"
@@ -980,8 +997,8 @@ msgstr "Egyéni fordítás"
 msgid "Contexts"
 msgstr "Kontextusok"
 
-msgid "Name"
-msgstr "Név"
+msgid "State"
+msgstr "Állam"
 
 msgid "Enabled"
 msgstr "Engedélyezve"
@@ -1001,14 +1018,11 @@ msgstr "További kérdőívek"
 msgid "Recipients"
 msgstr "Címzettek"
 
-msgid "Submission expiration"
-msgstr "Beküldés lejárata"
-
 msgid "days"
 msgstr "nap(ok)"
 
 msgid "Show the questionnaire navigation interface"
-msgstr ""
+msgstr "Mutasd a kérdőív felületet"
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "A szivárogtató kiválaszthatja a címzetteket"
@@ -1019,20 +1033,17 @@ msgstr "Az összes címzett kiválasztása alapértelmezetten"
 msgid "Maximum number of selectable recipients:"
 msgstr "Maximum kiválasztható címzettek száma:"
 
-msgid "(0 = unlimited)"
-msgstr "(0 = korlátlan)"
-
 msgid "Show recipients in alphabetical order"
 msgstr "A címzettek megjelenítése betűrendben"
 
 msgid "Show small recipient cards on submission interface"
 msgstr "Kis címzett kártyák mutatása a beadvány felületen"
 
-msgid "Show recipient details on the status page of the submission"
-msgstr ""
+msgid "Show recipient details on the status page of the report"
+msgstr "Üzenet, ami a beküldés állapota oldal tetején kerül megjelenítésre"
 
 msgid "Text shown on top of the interface for selecting recipients"
-msgstr ""
+msgstr "A kontextusválasztó előtt megjelenő szöveg"
 
 msgid "Enable comments"
 msgstr "Megjegyzések engedélyezése"
@@ -1046,7 +1057,7 @@ msgstr "Privát üzenetek engedélyezése"
 msgid "Allow whistleblowers to send messages"
 msgstr "A szivárogtatónak az üzenetek  írásának engedélyezése"
 
-msgid "Let whistleblowers add attachments onto existing submissions"
+msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Engedélyezi a szivárogtatóknak, hogy mellékleteket adjanak hozzá létező beadványokhoz"
 
 msgid "Let recipients upload files to whistleblowers"
@@ -1073,7 +1084,7 @@ msgstr ""
 msgid "Low"
 msgstr "Alacsony"
 
-msgid "Assign the receipt only to submissions reaching score:"
+msgid "Assign the receipt only to reports reaching score:"
 msgstr ""
 
 msgid "Software version:"
@@ -1082,53 +1093,8 @@ msgstr "Szoftver verzió:"
 msgid "An update is available:"
 msgstr "Frissítés elérhető:"
 
-msgid "SMTP email address"
-msgstr "SMTP email cím"
-
-msgid "Invalid email address"
-msgstr "Hibás emailcím"
-
-msgid "SMTP server address"
-msgstr "SMTP kiszolgáló címe"
-
-msgid "SMTP server port"
-msgstr "SMTP kiszolgáló port"
-
-msgid "Transport Security"
-msgstr "Átvitel biztonsága"
-
-msgid "Require authentication"
-msgstr "Jóváhagyást igényel"
-
-msgid "When the option is re-enabled the spooled emails will be sent out."
-msgstr "A küldésre váró emaileket a beállítás visszakapcsolása után újraküldjük."
-
-msgid "Reset notification templates to default"
-msgstr "Az értesítési sablonok alapértelmezettre állítása"
-
-msgid "Number of hours before sending a submission expiration alert"
-msgstr "Órák száma beadvány lejárati riasztás küldése előtte"
-
-msgid "Maximum emails per hour before triggering email suspension"
-msgstr "Maximum e-mailek óránként, mielőtt e-mail felfüggesztést vált ki "
-
-msgid "this configuration only applies to recipients"
-msgstr "ez a konfiguráció csak a címzettekre vonatkozik"
-
-msgid "Test the configuration"
-msgstr "Beállítások tesztelése"
-
-msgid "Reset SMTP configuration"
-msgstr ""
-
-msgid "Template"
-msgstr "Sablon"
-
 msgid "Restrict access to specific IP addresses"
 msgstr ""
-
-msgid "Role"
-msgstr "Szerep"
 
 msgid "Whitelisted IP addresses"
 msgstr ""
@@ -1143,7 +1109,7 @@ msgid "Whistleblower"
 msgstr "Szivárogtató"
 
 msgid "Each entry must be separated with a comma."
-msgstr ""
+msgstr "Minden egységet vesszővel kell elválasztani"
 
 msgid "Example:"
 msgstr "Példa:"
@@ -1170,9 +1136,6 @@ msgstr "Elfogadom a felhasználási feltételeket"
 msgid "Country code"
 msgstr "Ország előhívó száma"
 
-msgid "State"
-msgstr "Állam"
-
 msgid "City"
 msgstr "Város"
 
@@ -1180,10 +1143,13 @@ msgid "Organization"
 msgstr "Szervezet"
 
 msgid "Organizational unit"
-msgstr ""
+msgstr "Szervezeti egység"
+
+msgid "Invalid email address"
+msgstr "Hibás emailcím"
 
 msgid "Generate"
-msgstr ""
+msgstr "Generálás"
 
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
@@ -1196,7 +1162,7 @@ msgid ""
 msgstr ""
 
 msgid "Private Key"
-msgstr ""
+msgstr "Privát kulcs"
 
 msgid "Certificate Signing Request"
 msgstr ""
@@ -1208,13 +1174,13 @@ msgid "Valid until:"
 msgstr "Érvényességi idő:"
 
 msgid "Issuer:"
-msgstr ""
+msgstr "Kiálította:"
 
 msgid "Intermediate Certificates"
-msgstr ""
+msgstr "Köztes igazolások"
 
 msgid "Enable"
-msgstr ""
+msgstr "Engedélyez"
 
 msgid "Reset"
 msgstr "Visszaállítás"
@@ -1224,7 +1190,7 @@ msgid ""
 msgstr ""
 
 msgid "Automatic configuration"
-msgstr ""
+msgstr "Automatikus konfigurálás"
 
 msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
@@ -1238,7 +1204,7 @@ msgid ""
 msgstr ""
 
 msgid "Manual configuration"
-msgstr ""
+msgstr "Manuális  konfigurálás"
 
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
@@ -1271,32 +1237,41 @@ msgstr ""
 msgid "Roles enabled to use the platform without Tor"
 msgstr ""
 
-msgid "Stats of the week:"
-msgstr "A hét statisztikái"
+msgid "To"
+msgstr "Címzett"
 
-msgid "Free disk space"
-msgstr "Szabad lemezterület"
+msgid "SMTP email address"
+msgstr "SMTP email cím"
 
-msgid "Event ID"
-msgstr "Esemény ID"
+msgid "SMTP server address"
+msgstr "SMTP kiszolgáló címe"
 
-msgid "Time"
-msgstr "Idő"
+msgid "SMTP server port"
+msgstr "SMTP kiszolgáló port"
 
-msgid "Event"
-msgstr "Esemény"
+msgid "Security"
+msgstr ""
 
-msgid "Response time"
-msgstr "Válaszidő"
+msgid "Warning"
+msgstr "Figyelem"
 
-msgid "Last access"
-msgstr "Legutóbbi hozzáférés"
+msgid "Require authentication"
+msgstr "Jóváhagyást igényel"
 
-msgid "Alarm level"
-msgstr "Riasztási szint"
+msgid "Reset notification templates to default"
+msgstr "Az értesítési sablonok alapértelmezettre állítása"
 
-msgid "Events"
-msgstr "Események"
+msgid "Number of hours before sending a report expiration alert"
+msgstr "Órák száma beadvány lejárati riasztás küldése előtte"
+
+msgid "Test the configuration"
+msgstr "Beállítások tesztelése"
+
+msgid "Reset SMTP configuration"
+msgstr "SMTP beállítások visszaállítása"
+
+msgid "Template"
+msgstr "Sablon"
 
 msgid "Question"
 msgstr "kérdés"
@@ -1353,22 +1328,25 @@ msgid "Accept multiple file uploads"
 msgstr "Több fájlos feltöltések fogadása"
 
 msgid "Accept multiple answers"
-msgstr ""
+msgstr "Több válasz fogadása"
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Tipp mutatása a gombon egy további válasz hozzáadásáért"
 
-msgid "Template override"
+msgid "Encrypt"
 msgstr ""
+
+msgid "Template override"
+msgstr "Template felülírása"
 
 msgid "Phone number"
 msgstr "Telefonszám"
 
 msgid "Checkbox label"
-msgstr ""
+msgstr "Checkbox felirata"
 
 msgid "Add multimedia content"
-msgstr ""
+msgstr "Multimédia tartalom hozzáadása"
 
 msgid "Image"
 msgstr "kép"
@@ -1401,7 +1379,7 @@ msgid "Options"
 msgstr "Beállítások"
 
 msgid "Addition"
-msgstr ""
+msgstr "Továbbiak"
 
 msgid "Multiplier"
 msgstr ""
@@ -1422,16 +1400,16 @@ msgid "Steps"
 msgstr "lépések"
 
 msgid "Site settings"
-msgstr ""
+msgstr "Oldal beállítások"
 
 msgid "Case management"
-msgstr ""
+msgstr "Esetkezelés"
 
 msgid "Network settings"
-msgstr ""
+msgstr "Hálózati beállítások"
 
 msgid "Mode:"
-msgstr ""
+msgstr "Mód:"
 
 msgid "Root domain used for secondary sites"
 msgstr ""
@@ -1440,13 +1418,13 @@ msgid "Use the first site for administrative purposes only"
 msgstr ""
 
 msgid "Allow users to sign up"
-msgstr ""
+msgstr "Felhasználók feliratkozásának engedélyezése"
 
 msgid "Enable terms of service"
-msgstr ""
+msgstr "Felhasználási feltételek engedélyezése"
 
 msgid "Sites"
-msgstr ""
+msgstr "Weboldalak"
 
 msgid "Active"
 msgstr "Aktív"
@@ -1458,16 +1436,16 @@ msgid "Configure"
 msgstr "Beállítás"
 
 msgid "Subdomain"
-msgstr ""
+msgstr "Aldomain"
 
 msgid "Send an account activation link to the user."
-msgstr ""
+msgstr "Felhasználói aktivációs link küldése"
 
 msgid "Public name"
-msgstr ""
+msgstr "Nyilvános elnevezés"
 
 msgid "Send reset link"
-msgstr ""
+msgstr "Visszaállító link küldése"
 
 msgid "Set password"
 msgstr "Jelszó beállítása"
@@ -1499,7 +1477,7 @@ msgstr "PGP kulcs eltávolítása"
 msgid "Set up encryption by providing a PGP public key"
 msgstr ""
 
-msgid "Grant the user the capability of resetting users' passwords"
+msgid "Give this admin ability to change user passwords"
 msgstr ""
 
 msgid "Configuration"
@@ -1511,16 +1489,16 @@ msgstr "Alapértelmezett"
 msgid "Forcefully selected"
 msgstr "Erőteljesen kiválasztva"
 
-msgid "Allow the recipient to postpone the submission expiration date"
-msgstr ""
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "A címzett számára engedélyezi a füles lejárati dátumának hosszabítását"
 
-msgid "Allow the recipient to delete submissions"
-msgstr "A címzettek számára engedélyezi a beküldések törlését"
+msgid "Allow the recipient to delete reports"
+msgstr "Engedélyezés a címzetteknek, hogy töröljék a tippeket"
 
 msgid ""
 "Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "Engedélyezés a címzettnek, hogy jogosultságokat biztosítson a szivárogtatóknak különleges beadványoknál"
+"reports"
+msgstr "Engedélyezés a címzetteknek, hogy jogosultságokat biztosítsanak a közérdekű bejelentőknek egyes különleges beadványoknál"
 
 msgid "User has administrative access to the following features:"
 msgstr ""
@@ -1530,6 +1508,9 @@ msgstr "Kérés dátuma"
 
 msgid "ID"
 msgstr "Azonosító"
+
+msgid "Report date"
+msgstr ""
 
 msgid "Authorization"
 msgstr ""
@@ -1558,11 +1539,11 @@ msgstr "A kód érvénytelen vagy lejárt."
 msgid "Site:"
 msgstr ""
 
-msgid "Have you already filed a submission? Enter your receipt."
-msgstr ""
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Küldött már be valamit? Adja meg a kulcskódját."
 
-msgid "The receipt is either invalid or the submission has expired."
-msgstr ""
+msgid "The receipt is either invalid or the report has expired."
+msgstr "A kulcs kód vagy nem érvényes,vagy a beküldés lejárt."
 
 msgid "Username:"
 msgstr "Felhasználónév:"
@@ -1594,7 +1575,7 @@ msgstr ""
 msgid "Assign score points"
 msgstr ""
 
-msgid "Please note that all the associated data will be permanently lost."
+msgid "Please note that all the associated data will be permanently deleted."
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1615,13 +1596,15 @@ msgstr ""
 msgid "Close"
 msgstr "Bezár"
 
-msgid "Your encryption recovery key is:"
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr ""
+
+msgid "Your account recovery key is:"
 msgstr ""
 
 msgid ""
-"Please annotate and store this key in a safe place. It will be necessary if "
-"you lose your personal password to recover the access to your account with "
-"no data loss."
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
 msgstr ""
 
 msgid "Welcome!"
@@ -1650,14 +1633,14 @@ msgid ""
 "projects contact the social enterprise maintaining GlobaLeaks:"
 msgstr ""
 
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgid "Join our chat:"
 msgstr ""
 
 msgid "Follow the project on:"
 msgstr ""
 
 msgid "Hint: How to hide your receipt"
-msgstr ""
+msgstr "Tipp: hogyan rejtse el a kulcs kódot"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
@@ -1692,24 +1675,15 @@ msgid "Success!"
 msgstr "Sikerült!"
 
 msgid "Validation of email address change in progress."
-msgstr ""
+msgstr "Az e-mailcím változtatás ellenőrzése folyamatban"
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Encryption key"
-msgstr ""
-
-msgid "Hide"
-msgstr "Elrejt"
-
-msgid "Show"
-msgstr "Mutat"
+msgstr "Nézze meg a postaládáját a továbbiakért"
 
 msgid "Set up email encryption by providing a PGP public key"
 msgstr ""
 
-msgid "Get the encryption recovery key"
+msgid "Account recovery key"
 msgstr ""
 
 msgid "Current password"
@@ -1770,6 +1744,14 @@ msgstr "Chateléshez kérjük használka a következő Ricochet címet:"
 msgid "Download Ricochet at:"
 msgstr "Ricochet applikáció letöltése:"
 
+msgid ""
+"By using the Tor network and creating an Onion Service, Ricochet is an "
+"instant messaging app that allows you to chat while protecting your privacy "
+"and staying anonymous by not revealing your location or IP address. You "
+"won't notice any difference from an insecure chat, except that you will be "
+"using a unique address instead of a phone number/email/username."
+msgstr ""
+
 msgid "The connection is not secure."
 msgstr "A kapcsolat nem biztonságos."
 
@@ -1779,7 +1761,7 @@ msgid ""
 msgstr ""
 
 msgid "Use case"
-msgstr ""
+msgstr "Esetek"
 
 msgid "Anticorruption"
 msgstr "Korrupcióellenesség"
@@ -1829,11 +1811,8 @@ msgstr "letöltés"
 msgid "No files have been uploaded!"
 msgstr "Nem töltött fel fájlt!"
 
-msgid "Allow the whistleblower to add attachments to the submission"
+msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Engedélyezi a szivárogtatónak, hogy mellékleteket adjanak hozzá a beadványhoz"
-
-msgid "Submission"
-msgstr "Feltöltés"
 
 msgid "Access expiration"
 msgstr "Hozzáférés lejár"
@@ -1847,17 +1826,14 @@ msgstr "Soha"
 msgid "Revoked"
 msgstr "Visszahívott"
 
-msgid "-"
-msgstr "-"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "A szivárogtató küldhet üzeneteket"
 
-msgid "Are you sure that you want to delete the submission?"
+msgid "Are you sure that you want to delete the report?"
 msgstr "Biztos benne, hogy törölni szeretné a beadványt?"
 
 msgid ""
-"Everything related to the submission stored on the platform will be deleted."
+"Everything related to the report stored on the platform will be deleted."
 msgstr ""
 
 msgid ""
@@ -1865,8 +1841,8 @@ msgid ""
 " saved on your computer, must be deleted manually."
 msgstr ""
 
-msgid "Are you sure that you want to delete all the selected submissions?"
-msgstr "Biztos benne, hogy törölni szeretné az összes kiválasztott beadványt?"
+msgid "Are you sure that you want to delete the selected reports?"
+msgstr ""
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
@@ -1876,16 +1852,16 @@ msgstr "Kérem győződjön meg arról, hogy minden kapcsolódó adat megfelelő
 msgid "Please write a motivation for the reply"
 msgstr "Kérem írjon egy motivációt a válaszra"
 
-msgid "Are you sure that you want to postpone the submission expiration date?"
-msgstr "Biztosan meg akarja hosszabbítani a beadvány lejárati idejét?"
+msgid "Are you sure that you want to postpone the report expiration date?"
+msgstr ""
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Az elfogadással meghosszabbítja a lejárati dátumot erre:"
 
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
-"submissions?"
-msgstr "Biztosan meg akarja hosszabbítani az összes kijelölt beadvány lejárati idejét?"
+"reports?"
+msgstr ""
 
 msgid "Questionnaire answers"
 msgstr "Kérdőív válaszok"
@@ -1896,11 +1872,11 @@ msgstr "Lépés"
 msgid "Recipient list"
 msgstr "Címzett lista"
 
-msgid "Submission status:"
-msgstr "Beküldés állapota:"
+msgid "Status:"
+msgstr ""
 
 msgid "Attached files for the whistleblower"
-msgstr ""
+msgstr "Közérdekű bejelentő számára csatolt fájlok"
 
 msgid "Upload a file:"
 msgstr "Fájl feltöltése:"
@@ -1908,14 +1884,11 @@ msgstr "Fájl feltöltése:"
 msgid "Logout"
 msgstr "Kilépés"
 
-msgid "The key code is either invalid or the submission has expired."
-msgstr "A kulcs kód vagy nem érvényes,vagy a beküldés lejárt."
-
 msgid "Files attached by recipients"
 msgstr "Címzettek csatolt fájljai"
 
-msgid "These files have been attached to your submission by the recipients."
-msgstr "A címzettek az alábbi fájlokat csatolták a bejelentéshez."
+msgid "These files have been attached to your report by the recipients."
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "A megadott visszaállítási kulcs érvénytelen."
@@ -1937,6 +1910,12 @@ msgstr ""
 
 msgid "Password reset requested."
 msgstr "Új jelszó kérése megtörtént."
+
+msgid "Show"
+msgstr "Mutat"
+
+msgid "Hide"
+msgstr "Elrejt"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1980,7 +1959,7 @@ msgid "Other"
 msgstr "Egyéb"
 
 msgid "Complete"
-msgstr ""
+msgstr "Kész"
 
 msgid "Invalid phone number"
 msgstr "Érvénytelen telefonszám"
@@ -2008,7 +1987,7 @@ msgstr "Köszönjük!"
 msgid "We will try to get back to you as soon as possible."
 msgstr ""
 
-msgid "Remember your receipt for this submission."
+msgid "Remember your receipt for this report."
 msgstr ""
 
 msgid ""
@@ -2016,8 +1995,8 @@ msgid ""
 "we sent you, and also to add extra info."
 msgstr ""
 
-msgid "View your submission"
-msgstr "Beküldés áttekintése"
+msgid "View your report"
+msgstr ""
 
 msgid "Recipient selection"
 msgstr "Címzett kiválasztása"
@@ -2033,7 +2012,7 @@ msgid ""
 "invalid:"
 msgstr ""
 
-msgid "Submission errors"
+msgid "Errors"
 msgstr ""
 
 msgid "You must select at least one recipient."
@@ -2061,6 +2040,9 @@ msgstr ""
 msgid "Confirm password"
 msgstr "Jelszó megerősítése"
 
+msgid "Please choose a different username."
+msgstr ""
+
 msgid "The user will receive an activation link via email."
 msgstr "A felhasználó e-mailben kap egy aktiválási linket."
 
@@ -2076,23 +2058,23 @@ msgstr "Elolvastam és elfogadom a felhasználási feltételeket."
 msgid "You have completed the platform wizard."
 msgstr "Sikeresen befejezte a platform varázslót."
 
-msgid "Fill out your submission"
-msgstr "Töltse ki az űrlapot!"
+msgid "Fill out your report"
+msgstr ""
 
 msgid "Short title"
 msgstr "Rövid cím"
 
-msgid "Describe your submission in a few words."
-msgstr "Feltöltött anyag rövid leírása."
+msgid "Describe your report in a few words."
+msgstr ""
 
 msgid "Full description"
 msgstr "Hosszú leírás"
 
-msgid "Describe your submission in detail."
-msgstr "Feltöltött anyag részletes leírása."
+msgid "Describe your report in detail."
+msgstr ""
 
-msgid "Attach files relevant to the submission."
-msgstr "A beküldéshez kapcsolódó fájlok hozzáadása."
+msgid "Attach files relevant to the report."
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Meg szeretné adni az azonosítási információit?"
@@ -2216,9 +2198,9 @@ msgid "The activities with unusual stats are:"
 msgstr "A tevékenységek szokatlan statisztikával:"
 
 msgid ""
-"The server cannot guarantee that a new submission can be stored, so "
-"submissions have been disabled."
-msgstr "A szerver nem garantálja egy új benyújtás tárolását, így a benyújtások le vannak tiltva."
+"The server cannot guarantee that a new report can be stored, so submissions "
+"have been disabled."
+msgstr ""
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
@@ -2270,28 +2252,27 @@ msgid "Language: {Language}"
 msgstr "Nyelv: {Language}"
 
 msgid "Use case: {UseCase}"
-msgstr ""
+msgstr "Eset: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "Új közérdekű bejelentő weboldal regisztrációja"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr ""
+msgstr "Ez egy teszt e-mail, amelyet a platform adminisztrációs felületéről küldtek ki."
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
 "to and interact with the SMTP mail server."
-msgstr ""
+msgstr "Az e-mail sikeres kézbesítése azt jelzi, hogy a szerver képes volt hitelesíteni és kapcsolatba lépni az SMTP e-mail kiszolgálóval."
 
 msgid "Test email"
+msgstr "Teszt e-mail"
+
+msgid "This is an email to notify you of a new comment on an existing report."
 msgstr ""
 
-msgid ""
-"This is an email to notify you of a new comment on an existing submission."
-msgstr ""
-
-msgid "The submission can be accessed at:"
+msgid "The report can be accessed at:"
 msgstr ""
 
 msgid "New comment"
@@ -2300,7 +2281,7 @@ msgstr "Új hozzászólás"
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr ""
+msgstr "Ez egy értesítő e-mail. A rendszerben az e-mailcímét erre a rendszerre kérték megváltoztatni {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
 msgstr "Kattintson a következő linkre a módosítás jóváhagyásához:"
@@ -2335,8 +2316,8 @@ msgid "Context: {ContextName}"
 msgstr ""
 
 msgid ""
-"This is an email to notify you that the whistleblower of submission {TipNum}"
-" has attached new material."
+"This is an email to notify you that the whistleblower of report {TipNum} has"
+" attached new material."
 msgstr ""
 
 msgid "New attachment"
@@ -2359,37 +2340,37 @@ msgid "Log in to solve the issue."
 msgstr "Lépjen be a probléma megoldásához."
 
 msgid "Expiration alert for HTTPS certificate"
-msgstr ""
+msgstr "A HTTPS tanúsítvány hamarosan lejár"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr ""
+msgstr "A HTTPS tanúsítvány mai napra beállított automatikus megújítása sikertelen volt."
 
 msgid "The system will keep trying."
 msgstr "A rendszer újrapróbálkozik."
 
 msgid "Failed HTTPS certificate renewal"
-msgstr ""
+msgstr "A HTTPS tanúsítvány megújítása sikertelen volt."
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
-" to the whistleblowing identity for the submission {TipNum}."
+" to the whistleblowing identity for the report {TipNum}."
 msgstr ""
 
 msgid "Access to whistleblower's identity authorized"
-msgstr ""
+msgstr "A közérdekű bejelentő identitásához való hozzáférés engedélyezve"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the submission {TipNum}."
+" wistleblowing identity for the report {TipNum}."
 msgstr ""
 
 msgid "Access to whistleblower's identity denied"
-msgstr "A szivárogtató identitásához való hozzáférés megtagadva"
+msgstr "A közérdekű bejelentő identitásához való hozzáférés megtagadva"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
-"whistleblower's identity for the submission {TipNum}"
+"whistleblower's identity for the report {TipNum}"
 msgstr ""
 
 msgid "The request can be accessed at:"
@@ -2399,15 +2380,14 @@ msgid "New request of access to a whistleblower's identity"
 msgstr ""
 
 msgid ""
-"This is an email to notify you that the whistleblower for the submission "
+"This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
 msgstr ""
 
 msgid "The whistleblower has provided their identity"
 msgstr "A szivárogtató megadta a személyazonosságát."
 
-msgid ""
-"This is an email to notify you of a new message on an existing submission."
+msgid "This is an email to notify you of a new message on an existing report."
 msgstr ""
 
 msgid "New message"
@@ -2444,24 +2424,6 @@ msgid ""
 "to you."
 msgstr ""
 
-msgid "It appears that {NodeName} is receiving a large number of requests."
-msgstr "Úgy tűnik, hogy {NodeName} nagyszámú kérelmet kap."
-
-msgid ""
-"To prevent sending you too many emails, the system has disabled email "
-"notifications until the load returns to normal. In the meantime, you can "
-"normally log onto the platform and manually check for new submissions."
-msgstr "Megelőzésképpen, hogy túl sok emailt küldjünk Önnek, a rendszer letiltotta az e-mail értesítéseket, amíg a terhelés vissza nem tér normálisra. Addig is be tud jelentkezni a platformra a szokásos módon, és manuálisan ellenőrizheti az új beadványokat."
-
-msgid ""
-"If you don’t mind and would rather receive such a large number of email "
-"notifications anyhow, please contact your technical support to have them "
-"modify this setting accordingly."
-msgstr "Ha nem zavarja és inkább kap ilyen nagy számú email értesítést akárhogy, kérem vegye fel a kapcsolatot a technikai támogatásával, hogy ennek megfelelően módosítsák ezt a beállítást."
-
-msgid "Notifications from {NodeName} have been temporarily suspended"
-msgstr "Értesítések tőle: {NodeName} átmenetileg felfüggesztve"
-
 msgid "Click the link to activate the platform:"
 msgstr "Kattinton a linkre a platform aktiválásához:"
 
@@ -2496,24 +2458,24 @@ msgstr ""
 msgid "Please remember to check them before they are deleted."
 msgstr "Kérjük ellenőrizze őket, mielőtt törlődnek."
 
-msgid "Some submissions will expire soon"
-msgstr "Néhány beküldés nemsokára lejár"
+msgid "Some reports will expire soon"
+msgstr ""
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their submission."
+"valuable recipient of their report."
 msgstr ""
 
 msgid ""
 "You are asked to pay special attention to the information and material "
 "contained therein. Please keep in mind that whistleblowers often expose "
 "themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this submission should be considered to be of "
-"high importance."
+"the material provided within this report should be considered to be of high "
+"importance."
 msgstr ""
 
-msgid "New submission"
-msgstr "Új beadvány"
+msgid "New report"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr "Szerep: {Role}"

@@ -43,7 +43,7 @@
     "uk": "Ви бажаєте ідентифікувати себе?",
     "ur": "کیا آپ اپنی شناخت کی معلومات فراہم کرنا چاہتے ہیں؟",
     "vi": "Bạn muốn cung cấp thông tin nhận dạng của bạn?",
-    "zh_CN": "是否提供身份信息？",
+    "zh_CN": "你要提供自己的身份信息吗？",
     "zh_TW": "你要提供自己的身份資訊嗎？"
   },
   "description": {
@@ -313,7 +313,7 @@
         "uk": "Стать",
         "ur": "صنف",
         "vi": "Giới tính",
-        "zh_CN": "性别",
+        "zh_CN": "姓别",
         "zh_TW": "姓別"
       },
       "description": {
@@ -401,7 +401,7 @@
             "uk": "чол.",
             "ur": "مرد",
             "vi": "Nam giới",
-            "zh_CN": "男",
+            "zh_CN": "男性",
             "zh_TW": "男性"
           },
           "id": ""
@@ -505,7 +505,7 @@
             "uk": "Other gender identity",
             "ur": "Other gender identity",
             "vi": "Other gender identity",
-            "zh_CN": "Other gender identity",
+            "zh_CN": "其它性别认同",
             "zh_TW": "其它性別認同"
           },
           "id": ""
@@ -838,7 +838,7 @@
         "uk": "Країна проживання",
         "ur": "رہائش",
         "vi": "Nơi cư trú",
-        "zh_CN": "国籍",
+        "zh_CN": "住处",
         "zh_TW": "住處"
       },
       "description": {
@@ -1455,7 +1455,7 @@
         "en": "Current job responsibility (role)",
         "ar": "(المسؤولية في العمل) الدور",
         "az": "İş yerində vəzifələri (rolu)",
-        "bg": "Текущи изисквания (роля)",
+        "bg": "Настоящи професионални задължения",
         "bs": "Trenutni odgovornost posao (uloga)",
         "ca": "Professió actual (càrrec)",
         "ca@valencia": "Professió actual (càrrec)",
@@ -1686,7 +1686,7 @@
         "uk": "Посада на момент правопорушення про яке повідомляється",
         "ur": "رپورٹ کیا اس حقیقت کے وقت جاب عنوان",
         "vi": "Vị trí công việc tại thời điểm thực tế báo cáo",
-        "zh_CN": "报道事实时的职位名称",
+        "zh_CN": "报告实情时的工作职称",
         "zh_TW": "報告實情時的工作職稱"
       },
       "description": {
@@ -1745,7 +1745,7 @@
         "az": "Fakt haqda məlumat verən zaman vəzifənin məsuliyyəti (rolu)",
         "bg": "Професионални отговорности по времето на докладвания сигнал",
         "bs": "odgovornost Posao (uloga) u vremenu od prijavljenih činjenice",
-        "ca": "Càrrec laboral en el moment dels fets esmentats",
+        "ca": "Responsabilitat laboral (rol) en el moment dels fets esmentats",
         "ca@valencia": "Càrrec laboral en el moment dels fets esmentats",
         "cs": "Pracovní odpovědnost (role) v době oznamovaného jednání",
         "da": "Arbejdsopgave (rolle) på tidspunktet for de omstændigheder der rapporteres om",
@@ -1754,7 +1754,7 @@
         "es": "Cargo (responsabilidad) del empleo en el momento del hecho informado",
         "fa": "مسئولیت (نقش) شما زمانی‌که این گزارش را ارائه کردید",
         "fi": "Työtehtävä ilmoitushetkellä",
-        "fr": "Responsabilité professionnelle (rôle) à l’époque du fait rapporté",
+        "fr": "Responsabilité professionnelle (rôle) à l’époque du fait signalé",
         "gl": "Responsabilidade do traballo (role) no momento do feito reportado",
         "he": "אחריות משרה (תפקיד) בזמן העובדה המְדֻוָּחַת",
         "hr_HR": "Poslovna odgovornost (uloga) u doba prijavljene činjenice",
@@ -1782,7 +1782,7 @@
         "uk": "Відповідальності (роль) на момент правопорушення про яке повідомляється",
         "ur": "کام کی ذمہ داری (کردار) کی خبر کے مطابق یہ حقیقت کے وقت",
         "vi": "trách nhiệm công việc (vai trò) tại thời điểm báo cáo thực tế",
-        "zh_CN": "报道事实时的工作职责（角色）",
+        "zh_CN": "报告实情时的工作职责",
         "zh_TW": "報告實情時的工作職責"
       },
       "description": {
@@ -1850,7 +1850,7 @@
         "es": "Departamento y ubicación del empleo en el momento del hecho informado",
         "fa": "واحد سازمانی و محل کار وقتی این گزارش را ارائه کردید",
         "fi": "Organisaatioyksikkö ja työpaikan sijainti raportointihetkellä",
-        "fr": "Unité organisationnelle et lieu d’emploi à l’époque du fait rapporté",
+        "fr": "Unité organisationnelle et lieu d’emploi à l’époque du fait signalé",
         "gl": "Unidade organizativa e lugar de traballo no momento do feito reportado",
         "he": "יחידת ארגון עבודת מיקום בעת עובדת הדיווח",
         "hr_HR": "Organizacijska jedinica i lokacija posla u vrijeme prijavljene činjenice",
@@ -2070,7 +2070,7 @@
         "uk": "Електронна пошта",
         "ur": "ای میل پتہ",
         "vi": "Địa chỉ email",
-        "zh_CN": "Email地址",
+        "zh_CN": "电子信箱",
         "zh_TW": "電子信箱"
       },
       "description": {

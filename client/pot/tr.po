@@ -9,7 +9,7 @@
 # Erdoğan Şahin, 2016
 # Erdoğan Şahin, 2016-2017
 # Erdoğan Şahin, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # uskumru, 2013
@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-01-17 16:24+0000\n"
+"PO-Revision-Date: 2020-02-26 17:30+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,7 +111,7 @@ msgid "Recipient interface"
 msgstr "Alıcı arayüzü"
 
 msgid "Date"
-msgstr "Oluşturma tarihi"
+msgstr "Tarih"
 
 msgid "Expiration date"
 msgstr "Geçerlilik tarihi"
@@ -152,8 +152,8 @@ msgstr "KREDİ KARTI"
 msgid "YOUR NAME"
 msgstr "ADINIZ"
 
-msgid "Label the submission"
-msgstr "Gönderimi etiketle"
+msgid "Label the report"
+msgstr "Gönderimi eitketle"
 
 msgid "Postpone the expiration date"
 msgstr "Son geçerlilik tarihini ertele"
@@ -170,9 +170,6 @@ msgstr "Sayfayı yenile"
 msgid "Context"
 msgstr "Kategori"
 
-msgid "Submission date"
-msgstr "Gönderi Tarihi"
-
 msgid "Private messages"
 msgstr "Özel Mesajlar"
 
@@ -180,10 +177,10 @@ msgid "Preview"
 msgstr "Önizleme"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "İhbarcı son güncellemeyi okudu"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "İhbarcı henüz son güncellemeyi okumadı"
 
 msgid "Move up"
 msgstr "Yukarı taşı"
@@ -209,15 +206,13 @@ msgstr "Tümünü kaydet"
 msgid "Access control"
 msgstr ""
 
-msgid ""
-"The connection used to send this submission has been secured with HTTPS "
-"ensuring confidentiality."
-msgstr "Bu gönderimi sağlamak için kurulan bağlantı gizliliğinizi korumak için HTTPS ile şifrelenmiştir."
+msgid "The connection has been secured with HTTPS ensuring confidentiality."
+msgstr ""
 
 msgid ""
-"The connection used to send this submission has been secured with Tor "
-"ensuring confidentiality and anonymity."
-msgstr "Bu gönderimi sağlamak için kurulan bağlantı gizliliğinizi ve anonimliğinizi korumak için Tor ile şifrelenmiştir."
+"The connection has been secured with Tor ensuring confidentiality and "
+"anonymity."
+msgstr ""
 
 msgid "vertical"
 msgstr "dikey"
@@ -230,9 +225,6 @@ msgstr "Sayı"
 
 msgid "Email"
 msgstr "E-posta"
-
-msgid "Date"
-msgstr "Tarih"
 
 msgid "Regular expression validator"
 msgstr "Kurallı ifade onaylatıcısı"
@@ -276,11 +268,8 @@ msgstr "Ekler"
 msgid "Change your password"
 msgstr "Şifrenizi değiştirin"
 
-msgid "List of submissions"
-msgstr "Gönderim listesi"
-
-msgid "List of access requests to whistleblowers' identities"
-msgstr "İhbarcıların kimliklerine erişim talepleri listesi"
+msgid "Access requests"
+msgstr ""
 
 msgid "User"
 msgstr "Kullanıcı"
@@ -421,8 +410,8 @@ msgstr "Tetikleyici soru"
 msgid "Triggered by score:"
 msgstr ""
 
-msgid "Message shown on top of the status page of the submission"
-msgstr ""
+msgid "Message shown on top of the status page of the report"
+msgstr "Alıcıların ayrıntılarını başvurunun durumu sayfasında göster"
 
 msgid "Copy and paste the PGP public key here"
 msgstr "PGP ortak anahtarınızı kopyalayıp buraya yapıştırın"
@@ -511,11 +500,11 @@ msgid ""
 msgstr "Bu özel metin artık platformda görüntülenmiyor. Orijinal metin değiştirildi veya kaldırıldı."
 
 msgid ""
-"Unless the whistleblower checks the submission by this time, their access to"
-" it will expire."
+"Unless the whistleblower checks the report by this time, their access to it "
+"will expire."
 msgstr "İhbarcı, bu zamana kadar başvuruyu kontrol etmediği sürece, erişim hakkı sona erecektir."
 
-msgid "The whistleblower can no longer access the submission"
+msgid "The whistleblower can no longer access the report"
 msgstr "İhbarcı, artık gönderime erişim sağlayamaz."
 
 msgid "Warning!"
@@ -538,8 +527,8 @@ msgstr "Tor Browser İndir"
 msgid "This is the list of the other supported browsers:"
 msgstr "Bu, desteklenen diğer tarayıcıların listesidir:"
 
-msgid "System overview"
-msgstr "Sistem görünümü"
+msgid "Audit log"
+msgstr ""
 
 msgid "Stats"
 msgstr "İstatistikler"
@@ -547,8 +536,8 @@ msgstr "İstatistikler"
 msgid "Activities"
 msgstr "Etkinlikler"
 
-msgid "Submissions"
-msgstr "Gönderimler"
+msgid "Reports"
+msgstr "Raporlar"
 
 msgid "Users"
 msgstr "Kullanıcılar"
@@ -667,18 +656,26 @@ msgstr ""
 msgid "Password reset"
 msgstr ""
 
-msgid "Select the context of your submission:"
-msgstr "Gönderiminizin içeriğini seçin:"
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr ""
+
+msgid "This user has not performed the first login yet."
+msgstr ""
+
+msgid "Select the context of your report:"
+msgstr ""
 
 msgid "Warning! You are not anonymous."
 msgstr "Dikkat! Anonim değilsiniz."
 
 msgid ""
-"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"Sending reports over HTTPS exposes the act of doing so, but not the "
 "content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"the report anonymous, which is strongly recommended.\\n\\nThis can be "
 "achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+"in other browsers."
 msgstr ""
 
 msgid "Are you a whistleblower?"
@@ -687,17 +684,17 @@ msgstr "İhbarcı mısınız?"
 msgid "Blow the whistle"
 msgstr "İhbar et"
 
-msgid "Your submission was successful."
-msgstr "Gönderiminiz başarıyla tamamlandı."
+msgid "Your report was successful."
+msgstr ""
 
-msgid "Submission status"
-msgstr "Gönderme durumu"
+msgid "Report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr ""
 
 msgid "New password"
-msgstr ""
+msgstr "Yeni parola"
 
 msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
@@ -729,22 +726,27 @@ msgstr "Gönderimleri devre dışı bırak"
 msgid "Enable encryption"
 msgstr "Şifrelemeyi etkinleştir"
 
-msgid "Enable encryption's keys recovery"
+msgid "Enable administrators to change user passwords"
 msgstr ""
 
 msgid "Enable multisite feature"
 msgstr ""
 
-msgid "Allow recipients to delete submissions"
-msgstr "Alıcıların gönderimleri silmelerine izin ver"
+msgid "Enable multi-site login"
+msgstr ""
 
-msgid "Allow recipients to postpone expiration date of the submission"
-msgstr "Alıcıların gönderimlerin geçerlilik tarihini ertelemelerine izin ver"
+msgid "Enable simplified login"
+msgstr ""
+
+msgid "Allow recipients to delete reports"
+msgstr ""
+
+msgid "Allow recipients to postpone expiration date of the report"
+msgstr ""
 
 msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "Belirli gönderimlerde alıcıların ihbarcılara yetki vermesine izin verin"
+"Allow recipients to grant permissions to whistleblowers on specific reports"
+msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "Arama motoru dizinlemeyi etkinleştir"
@@ -773,29 +775,6 @@ msgstr "Gizlilik rozetini devre dışı bırak"
 msgid "Enable the receipt hint"
 msgstr ""
 
-msgid "Amount of days till whistleblower access expires"
-msgstr ""
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr ""
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr ""
-
-msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Password change interval"
-msgstr ""
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr ""
-
-msgid "Set the value to 0 to disable this feature."
-msgstr ""
-
 msgid "Landing page"
 msgstr "Karşılama sayfası"
 
@@ -811,11 +790,64 @@ msgstr "Kategorileri alfabetik sıralı göster"
 msgid "Title of the receipt page"
 msgstr "Alıcı sayfası başlığı"
 
-msgid "Title of the submission status page"
-msgstr "Gönderim durumu başlığı"
+msgid "Title of the status page of the report"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Dosya ekleri için boyut sınırı"
+
+msgid "Enable HSTS preload"
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication"
+msgstr ""
+
+msgid "Username"
+msgstr "Kullanıcı Adı"
+
+msgid "Password"
+msgstr "Parola"
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Require proof of work on user authentication"
+msgstr ""
+
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
+msgid "Amount of days till whistleblower access expires"
+msgstr ""
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr ""
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr ""
+
+msgid "Enable private labels"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
+msgstr ""
 
 msgid "Notify administrators of software problems"
 msgstr ""
@@ -828,62 +860,11 @@ msgid ""
 "security of the platform."
 msgstr ""
 
-msgid "Enable HTTP Basic Authentication to limit platform access"
-msgstr ""
-
-msgid "Username"
-msgstr "Kullanıcı Adı"
-
-msgid "Password"
-msgstr "Parola"
-
-msgid "Enable multi-site login"
-msgstr ""
-
-msgid "Enable simplified login"
-msgstr ""
-
-msgid "Enable HSTS preload"
-msgstr ""
-
-msgid "Logging level"
-msgstr ""
-
-msgid "Log accesses of internal users"
-msgstr ""
-
-msgid "Enable custodian user role"
-msgstr ""
-
-msgid "Enable scoring system"
-msgstr ""
-
-msgid "Enable private labels"
-msgstr ""
-
-msgid "Enable experimental features"
-msgstr "Deneysel özellikleri etkinleştir"
-
-msgid "Warning"
-msgstr "Uyarı"
-
-msgid ""
-"The experimental features may be less stable or even not work at all; enable"
-" this option at your own risk. Support for these features may vary and they "
-"may be removed in the future."
-msgstr "Deneysel özellikler daha az istikrarlı olabilir hatta hiç çalışmayabilir; bu seçeneği kendi adınıza risk alarak etkinleştirin. Bu özelliklere destek değişebilir ve gelecekte silinebilir."
-
 msgid "Save"
 msgstr "Kaydet"
 
-msgid "Reset submissions"
+msgid "Reset reports"
 msgstr ""
-
-msgid "To"
-msgstr "Alıcı"
-
-msgid "Add"
-msgstr "Ekle"
 
 msgid "Enable automatic backups"
 msgstr ""
@@ -906,8 +887,44 @@ msgstr "Sunucu"
 msgid "Port"
 msgstr "Kapı"
 
+msgid "Stats of the week:"
+msgstr "Haftanın istatistikleri:"
+
+msgid "Free disk space"
+msgstr "Boş disk alanı"
+
+msgid "Event ID"
+msgstr "Olay numarası"
+
+msgid "Time"
+msgstr "Zaman"
+
+msgid "Event"
+msgstr "Olay"
+
+msgid "Response time"
+msgstr "Yanıt süresi"
+
+msgid "Role"
+msgstr "Rol"
+
+msgid "Name"
+msgstr "Ad"
+
+msgid "Last access"
+msgstr "Son erişim"
+
+msgid "Alarm level"
+msgstr "Alarm seviyesi"
+
+msgid "Events"
+msgstr "Olaylar"
+
 msgid "Substatuses"
 msgstr ""
+
+msgid "Add"
+msgstr "Ekle"
 
 msgid "Label"
 msgstr "Etiket"
@@ -921,7 +938,7 @@ msgstr "Düzenle"
 msgid "Cancel"
 msgstr "İptal"
 
-msgid "Submission statuses"
+msgid "Report statuses"
 msgstr ""
 
 msgid "Logo"
@@ -984,8 +1001,8 @@ msgstr "Özel tercüme"
 msgid "Contexts"
 msgstr "Kategoriler"
 
-msgid "Name"
-msgstr "Ad"
+msgid "State"
+msgstr "Eyalet"
 
 msgid "Enabled"
 msgstr "Etkin"
@@ -1005,9 +1022,6 @@ msgstr ""
 msgid "Recipients"
 msgstr "Alıcılar"
 
-msgid "Submission expiration"
-msgstr ""
-
 msgid "days"
 msgstr "gün"
 
@@ -1023,17 +1037,14 @@ msgstr "Öntanımlı olarak tüm alıcıları seç"
 msgid "Maximum number of selectable recipients:"
 msgstr "Seçilebilir azami alıcı sayısı:"
 
-msgid "(0 = unlimited)"
-msgstr "(0 = sınırsız)"
-
 msgid "Show recipients in alphabetical order"
 msgstr "Alıcıları alfabetik sıralı göster"
 
 msgid "Show small recipient cards on submission interface"
 msgstr "Gönderim arayüzünde küçük alıcı kartlarını göster"
 
-msgid "Show recipient details on the status page of the submission"
-msgstr "Alıcıların ayrıntılarını başvurunun durumu sayfasında göster"
+msgid "Show recipient details on the status page of the report"
+msgstr ""
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr ""
@@ -1050,7 +1061,7 @@ msgstr "Özel mesajları etkinleştir"
 msgid "Allow whistleblowers to send messages"
 msgstr "İhbarcıların mesaj göndermesine izin verin"
 
-msgid "Let whistleblowers add attachments onto existing submissions"
+msgid "Let whistleblowers add attachments onto existing reports"
 msgstr ""
 
 msgid "Let recipients upload files to whistleblowers"
@@ -1077,7 +1088,7 @@ msgstr ""
 msgid "Low"
 msgstr "Düşük"
 
-msgid "Assign the receipt only to submissions reaching score:"
+msgid "Assign the receipt only to reports reaching score:"
 msgstr ""
 
 msgid "Software version:"
@@ -1086,53 +1097,8 @@ msgstr "Yazılım versiyonu"
 msgid "An update is available:"
 msgstr ""
 
-msgid "SMTP email address"
-msgstr "SMTP e-posta adresi"
-
-msgid "Invalid email address"
-msgstr "Geçersiz e-posta adresi"
-
-msgid "SMTP server address"
-msgstr "SMTP sunucu adresi"
-
-msgid "SMTP server port"
-msgstr "SMTP sunucu bağlantı noktası"
-
-msgid "Transport Security"
-msgstr "Aktarım Güvenliği"
-
-msgid "Require authentication"
-msgstr ""
-
-msgid "When the option is re-enabled the spooled emails will be sent out."
-msgstr "Seçenek yeniden etkinleştirildiğinde, bekletilen e-postalar gönderilecek."
-
-msgid "Reset notification templates to default"
-msgstr "Bildirim şablonlarını sıfırla"
-
-msgid "Number of hours before sending a submission expiration alert"
-msgstr "Gönderimin geçerliliğinin son erdiği uyarısı göndermeden önceki gerekli saat sayısı"
-
-msgid "Maximum emails per hour before triggering email suspension"
-msgstr "E-postayı durdurma tetiklemeden önce bir saatteki azami e-posta sayısı"
-
-msgid "this configuration only applies to recipients"
-msgstr "bu yapılandırma sadece alıcılarda geçerlidir"
-
-msgid "Test the configuration"
-msgstr ""
-
-msgid "Reset SMTP configuration"
-msgstr ""
-
-msgid "Template"
-msgstr "Şablon"
-
 msgid "Restrict access to specific IP addresses"
 msgstr ""
-
-msgid "Role"
-msgstr "Rol"
 
 msgid "Whitelisted IP addresses"
 msgstr ""
@@ -1174,9 +1140,6 @@ msgstr ""
 msgid "Country code"
 msgstr "Ülke kodu"
 
-msgid "State"
-msgstr "Eyalet"
-
 msgid "City"
 msgstr "Şehir"
 
@@ -1185,6 +1148,9 @@ msgstr "Organizasyon"
 
 msgid "Organizational unit"
 msgstr ""
+
+msgid "Invalid email address"
+msgstr "Geçersiz e-posta adresi"
 
 msgid "Generate"
 msgstr "Oluştur"
@@ -1275,32 +1241,41 @@ msgstr ""
 msgid "Roles enabled to use the platform without Tor"
 msgstr ""
 
-msgid "Stats of the week:"
-msgstr "Haftanın istatistikleri:"
+msgid "To"
+msgstr "Alıcı"
 
-msgid "Free disk space"
-msgstr "Boş disk alanı"
+msgid "SMTP email address"
+msgstr "SMTP e-posta adresi"
 
-msgid "Event ID"
-msgstr "Olay numarası"
+msgid "SMTP server address"
+msgstr "SMTP sunucu adresi"
 
-msgid "Time"
-msgstr "Zaman"
+msgid "SMTP server port"
+msgstr "SMTP sunucu bağlantı noktası"
 
-msgid "Event"
-msgstr "Olay"
+msgid "Security"
+msgstr "Güvenlik"
 
-msgid "Response time"
-msgstr "Yanıt süresi"
+msgid "Warning"
+msgstr "Uyarı"
 
-msgid "Last access"
-msgstr "Son erişim"
+msgid "Require authentication"
+msgstr ""
 
-msgid "Alarm level"
-msgstr "Alarm seviyesi"
+msgid "Reset notification templates to default"
+msgstr "Bildirim şablonlarını sıfırla"
 
-msgid "Events"
-msgstr "Olaylar"
+msgid "Number of hours before sending a report expiration alert"
+msgstr ""
+
+msgid "Test the configuration"
+msgstr ""
+
+msgid "Reset SMTP configuration"
+msgstr ""
+
+msgid "Template"
+msgstr "Şablon"
 
 msgid "Question"
 msgstr ""
@@ -1361,6 +1336,9 @@ msgstr ""
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Ek cevap vermek için tuşun üzerinde görüntülenecek ipucu"
+
+msgid "Encrypt"
+msgstr "Şifreleme"
 
 msgid "Template override"
 msgstr ""
@@ -1503,7 +1481,7 @@ msgstr "PGP anahtarını kaldır"
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Bir PGP açık anahtarı belirterek şifrelemeyi kurun"
 
-msgid "Grant the user the capability of resetting users' passwords"
+msgid "Give this admin ability to change user passwords"
 msgstr ""
 
 msgid "Configuration"
@@ -1515,16 +1493,16 @@ msgstr "Varsayılan"
 msgid "Forcefully selected"
 msgstr "Zorunlu seçilmiş"
 
-msgid "Allow the recipient to postpone the submission expiration date"
-msgstr "Alıcının, gönderinin geçerlilik tarihini ertelemesine izin ver"
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr ""
 
-msgid "Allow the recipient to delete submissions"
-msgstr "Alıcının, gönderileri silmesine izin ver"
+msgid "Allow the recipient to delete reports"
+msgstr ""
 
 msgid ""
 "Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "Belirli gönderimlerde alıcının ihbarcılara yetki vermesine izin verin"
+"reports"
+msgstr ""
 
 msgid "User has administrative access to the following features:"
 msgstr ""
@@ -1533,6 +1511,9 @@ msgid "Request date"
 msgstr "Talep tarihi"
 
 msgid "ID"
+msgstr ""
+
+msgid "Report date"
 msgstr ""
 
 msgid "Authorization"
@@ -1562,10 +1543,10 @@ msgstr ""
 msgid "Site:"
 msgstr ""
 
-msgid "Have you already filed a submission? Enter your receipt."
-msgstr "Zaten bir gönderi yaptınız mı? Makbuzunuzu girin."
+msgid "Have you already filed a report? Enter your receipt."
+msgstr ""
 
-msgid "The receipt is either invalid or the submission has expired."
+msgid "The receipt is either invalid or the report has expired."
 msgstr ""
 
 msgid "Username:"
@@ -1598,7 +1579,7 @@ msgstr ""
 msgid "Assign score points"
 msgstr "Puanları tahsis et"
 
-msgid "Please note that all the associated data will be permanently lost."
+msgid "Please note that all the associated data will be permanently deleted."
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1619,13 +1600,15 @@ msgstr ""
 msgid "Close"
 msgstr "Kapat"
 
-msgid "Your encryption recovery key is:"
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr ""
+
+msgid "Your account recovery key is:"
 msgstr ""
 
 msgid ""
-"Please annotate and store this key in a safe place. It will be necessary if "
-"you lose your personal password to recover the access to your account with "
-"no data loss."
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
 msgstr ""
 
 msgid "Welcome!"
@@ -1654,7 +1637,7 @@ msgid ""
 "projects contact the social enterprise maintaining GlobaLeaks:"
 msgstr ""
 
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgid "Join our chat:"
 msgstr ""
 
 msgid "Follow the project on:"
@@ -1701,23 +1684,14 @@ msgstr ""
 msgid "Please check your inbox for further instructions."
 msgstr ""
 
-msgid "Encryption key"
-msgstr ""
-
-msgid "Hide"
-msgstr "Gizle"
-
-msgid "Show"
-msgstr "Göster"
-
 msgid "Set up email encryption by providing a PGP public key"
 msgstr ""
 
-msgid "Get the encryption recovery key"
+msgid "Account recovery key"
 msgstr ""
 
 msgid "Current password"
-msgstr ""
+msgstr "Şimdiki parola"
 
 msgid "Old password confirmation required"
 msgstr "Eski parola doğrulaması gerekli"
@@ -1772,6 +1746,14 @@ msgid "To chat with us use the following Ricochet address:"
 msgstr ""
 
 msgid "Download Ricochet at:"
+msgstr ""
+
+msgid ""
+"By using the Tor network and creating an Onion Service, Ricochet is an "
+"instant messaging app that allows you to chat while protecting your privacy "
+"and staying anonymous by not revealing your location or IP address. You "
+"won't notice any difference from an insecure chat, except that you will be "
+"using a unique address instead of a phone number/email/username."
 msgstr ""
 
 msgid "The connection is not secure."
@@ -1833,11 +1815,8 @@ msgstr "karşıdan yükle"
 msgid "No files have been uploaded!"
 msgstr "Hiçbir dosya yüklenmedi!"
 
-msgid "Allow the whistleblower to add attachments to the submission"
-msgstr "İhbarcının gönderimlerine dosya eklemelerine izin verin"
-
-msgid "Submission"
-msgstr "Gönderim"
+msgid "Allow the whistleblower to add attachments to the report"
+msgstr ""
 
 msgid "Access expiration"
 msgstr ""
@@ -1851,17 +1830,14 @@ msgstr "Asla"
 msgid "Revoked"
 msgstr "İptal edildi"
 
-msgid "-"
-msgstr "-"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "İhbarcının mesaj göndermesine izin verin"
 
-msgid "Are you sure that you want to delete the submission?"
-msgstr "Bu gönderimi silmek istediğinize emin misiniz?"
+msgid "Are you sure that you want to delete the report?"
+msgstr ""
 
 msgid ""
-"Everything related to the submission stored on the platform will be deleted."
+"Everything related to the report stored on the platform will be deleted."
 msgstr ""
 
 msgid ""
@@ -1869,8 +1845,8 @@ msgid ""
 " saved on your computer, must be deleted manually."
 msgstr ""
 
-msgid "Are you sure that you want to delete all the selected submissions?"
-msgstr "Seçilen tüm gönderimleri silmek istediğinize emin misiniz?"
+msgid "Are you sure that you want to delete the selected reports?"
+msgstr ""
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
@@ -1880,16 +1856,16 @@ msgstr "Lütfen tüm ilişkili verinin düzgün şekilde silindiğinden ve hiçb
 msgid "Please write a motivation for the reply"
 msgstr "Lütfen bu yanıt için niyetinizi belirtin"
 
-msgid "Are you sure that you want to postpone the submission expiration date?"
-msgstr "Gönderimin geçerlilik tarihini ertelemek istediğinize emin misiniz?"
+msgid "Are you sure that you want to postpone the report expiration date?"
+msgstr ""
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Onaylayarak, gönderinin geçerlilik tarihini şu tarihe erteleyeceksiniz:"
 
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
-"submissions?"
-msgstr "Seçilen tüm gönderimlerin geçerlilik tarihlerini ertelemek istediğinize emin misiniz?"
+"reports?"
+msgstr ""
 
 msgid "Questionnaire answers"
 msgstr "Anket cevapları"
@@ -1900,8 +1876,8 @@ msgstr "Adım"
 msgid "Recipient list"
 msgstr "Alıcı listesi"
 
-msgid "Submission status:"
-msgstr ""
+msgid "Status:"
+msgstr "Durum"
 
 msgid "Attached files for the whistleblower"
 msgstr ""
@@ -1912,13 +1888,10 @@ msgstr "Bir dosya yükle:"
 msgid "Logout"
 msgstr "Çıkış yap"
 
-msgid "The key code is either invalid or the submission has expired."
-msgstr "Anahtar kod geçersiz veya gönderimin süresi dolmuş."
-
 msgid "Files attached by recipients"
 msgstr ""
 
-msgid "These files have been attached to your submission by the recipients."
+msgid "These files have been attached to your report by the recipients."
 msgstr ""
 
 msgid "The provided recovery key is invalid."
@@ -1941,6 +1914,12 @@ msgstr ""
 
 msgid "Password reset requested."
 msgstr ""
+
+msgid "Show"
+msgstr "Göster"
+
+msgid "Hide"
+msgstr "Gizle"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -2012,7 +1991,7 @@ msgstr "Teşekkürler!"
 msgid "We will try to get back to you as soon as possible."
 msgstr ""
 
-msgid "Remember your receipt for this submission."
+msgid "Remember your receipt for this report."
 msgstr ""
 
 msgid ""
@@ -2020,8 +1999,8 @@ msgid ""
 "we sent you, and also to add extra info."
 msgstr ""
 
-msgid "View your submission"
-msgstr "Gönderiminizi görüntüleyin"
+msgid "View your report"
+msgstr ""
 
 msgid "Recipient selection"
 msgstr "Alıcı seçimi"
@@ -2037,7 +2016,7 @@ msgid ""
 "invalid:"
 msgstr ""
 
-msgid "Submission errors"
+msgid "Errors"
 msgstr ""
 
 msgid "You must select at least one recipient."
@@ -2065,6 +2044,9 @@ msgstr ""
 msgid "Confirm password"
 msgstr "Parolayı onayla"
 
+msgid "Please choose a different username."
+msgstr ""
+
 msgid "The user will receive an activation link via email."
 msgstr ""
 
@@ -2080,23 +2062,23 @@ msgstr ""
 msgid "You have completed the platform wizard."
 msgstr "Platform sihirbazını tamamladınız."
 
-msgid "Fill out your submission"
-msgstr "Gönderiminizi doldurun"
+msgid "Fill out your report"
+msgstr ""
 
 msgid "Short title"
 msgstr "Kısa başlık"
 
-msgid "Describe your submission in a few words."
-msgstr "Gönderiminizi birkaç kelime ile tanımlayın"
+msgid "Describe your report in a few words."
+msgstr ""
 
 msgid "Full description"
 msgstr "Tam açıklama"
 
-msgid "Describe your submission in detail."
-msgstr "Gönderiminizi detaylı bir şekilde tanımlayınız"
+msgid "Describe your report in detail."
+msgstr ""
 
-msgid "Attach files relevant to the submission."
-msgstr "Gönderiminizle ilgili dosyaları ekleyin"
+msgid "Attach files relevant to the report."
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Kimlik bilgilerinizi girmek istiyor musunuz?"
@@ -2220,9 +2202,9 @@ msgid "The activities with unusual stats are:"
 msgstr "Alışılmadık istatistik içeren etkinlikler şunlar:"
 
 msgid ""
-"The server cannot guarantee that a new submission can be stored, so "
-"submissions have been disabled."
-msgstr "Sunucu, yeni gönderinin depolanabileceğini garanti edemeyeceğinden gönderiler devre dışı bırakıldı."
+"The server cannot guarantee that a new report can be stored, so submissions "
+"have been disabled."
+msgstr ""
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
@@ -2291,11 +2273,10 @@ msgstr ""
 msgid "Test email"
 msgstr "Test e-postası"
 
-msgid ""
-"This is an email to notify you of a new comment on an existing submission."
-msgstr "Bu email, mevcut bir başvuru hakkındaki yeni bir yorumdan sizi haberdar ediyor. "
+msgid "This is an email to notify you of a new comment on an existing report."
+msgstr ""
 
-msgid "The submission can be accessed at:"
+msgid "The report can be accessed at:"
 msgstr ""
 
 msgid "New comment"
@@ -2339,9 +2320,9 @@ msgid "Context: {ContextName}"
 msgstr "Kategori: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of submission {TipNum}"
-" has attached new material."
-msgstr "Bu e-posta, {TipNum} sayılı gönderime ihbarcının yeni dosya eklediğini bildirmek için gönderilmiştir."
+"This is an email to notify you that the whistleblower of report {TipNum} has"
+" attached new material."
+msgstr ""
 
 msgid "New attachment"
 msgstr "Yeni ek"
@@ -2377,7 +2358,7 @@ msgstr ""
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
-" to the whistleblowing identity for the submission {TipNum}."
+" to the whistleblowing identity for the report {TipNum}."
 msgstr ""
 
 msgid "Access to whistleblower's identity authorized"
@@ -2385,16 +2366,16 @@ msgstr "İhbarcının kimliğine erişime izin verildi"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the submission {TipNum}."
-msgstr "Bu e-posta, bir koruyucunun size {TipNum} sayılı gönderimin muhbirinin kimliğine erişim yetkisini reddettiğini bildirmek için gönderildi."
+" wistleblowing identity for the report {TipNum}."
+msgstr ""
 
 msgid "Access to whistleblower's identity denied"
 msgstr "İhbarcının kimliğine erişim yetkisi reddedildi"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
-"whistleblower's identity for the submission {TipNum}"
-msgstr "Bu e-posta, bir alıcının {TipNum} sayılı gönderimin ihbarcının kimliğine erişim yetkisi istediğini bildirmek için gönderildi."
+"whistleblower's identity for the report {TipNum}"
+msgstr ""
 
 msgid "The request can be accessed at:"
 msgstr ""
@@ -2403,16 +2384,15 @@ msgid "New request of access to a whistleblower's identity"
 msgstr "İhbarcının kimliğine yeni erişim talebi"
 
 msgid ""
-"This is an email to notify you that the whistleblower for the submission "
+"This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "Bu e-posta, {TipNum} sayılı gönderimin ihbarcının kimliğini açıkladığını bildirmek için gönderildi."
+msgstr ""
 
 msgid "The whistleblower has provided their identity"
 msgstr "İhbarcı kimliğini açıkladı"
 
-msgid ""
-"This is an email to notify you of a new message on an existing submission."
-msgstr "Bu e-posta, mevcut bir başvuru hakkında yeni bir mesajdan sizi haberdar ediyor. "
+msgid "This is an email to notify you of a new message on an existing report."
+msgstr ""
 
 msgid "New message"
 msgstr "Yeni mesaj"
@@ -2448,24 +2428,6 @@ msgid ""
 "to you."
 msgstr "Geçerli bir PGP anahtarı olmadan, sistem size sağlanan veriyi şifreleyemeyecektir."
 
-msgid "It appears that {NodeName} is receiving a large number of requests."
-msgstr "{NodeName} çok sayıda istek alıyor gibi görünüyor."
-
-msgid ""
-"To prevent sending you too many emails, the system has disabled email "
-"notifications until the load returns to normal. In the meantime, you can "
-"normally log onto the platform and manually check for new submissions."
-msgstr "Çok fazla e-posta almanızı engellemek için, doluluk durumu normale düşünceye kadar e-posta bildirimleri devre dışı bırakıldı. Bu sırada platforma normalde olduğu gibi oturum açabilir ve yeni gönderileri elle denetleyebilirsiniz."
-
-msgid ""
-"If you don’t mind and would rather receive such a large number of email "
-"notifications anyhow, please contact your technical support to have them "
-"modify this setting accordingly."
-msgstr "Yine de çok sayıda e-posta almak sizin için sorun olmayacaksa, bu ayarı ilgili şekilde değiştirmeleri için teknik desteğiniz ile iletişime geçin."
-
-msgid "Notifications from {NodeName} have been temporarily suspended"
-msgstr "{NodeName} sunucusundan bildirimler geçici olarak askıya alındı"
-
 msgid "Click the link to activate the platform:"
 msgstr ""
 
@@ -2500,24 +2462,24 @@ msgstr ""
 msgid "Please remember to check them before they are deleted."
 msgstr ""
 
-msgid "Some submissions will expire soon"
+msgid "Some reports will expire soon"
 msgstr ""
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their submission."
+"valuable recipient of their report."
 msgstr ""
 
 msgid ""
 "You are asked to pay special attention to the information and material "
 "contained therein. Please keep in mind that whistleblowers often expose "
 "themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this submission should be considered to be of "
-"high importance."
+"the material provided within this report should be considered to be of high "
+"importance."
 msgstr ""
 
-msgid "New submission"
-msgstr "Yeni gönderim"
+msgid "New report"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr ""
