@@ -960,9 +960,11 @@ class ReceiverFileDownload(BaseHandler):
 
         if tip_prv_key:
             tip_prv_key = GCE.asymmetric_decrypt(self.current_user.cc, tip_prv_key)
-            filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
+            fo = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
+            yield self.write_file_as_download_fo(rfile['name'], fo)
+        else:
+            yield self.write_file_as_download(rfile['name'], filelocation)
 
-        yield self.write_file_as_download_fo(rfile['name'], filelocation)
 
 
 class IdentityAccessRequestsCollection(BaseHandler):

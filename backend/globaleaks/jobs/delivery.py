@@ -151,9 +151,9 @@ def process_receiverfiles(state, files_maps):
                 rf['filename'] = encrypted_name
         else:
             for rcounter, rfileinfo in enumerate(receiverfiles_map['rfiles']):
-                with sf.open('rb') as encrypted_file:
-                    if rfileinfo['receiver']['pgp_key_public']:
-                        try:
+                try:
+                    with sf.open('rb') as encrypted_file:
+                        if rfileinfo['receiver']['pgp_key_public']:
                             pgp_name = "pgp_encrypted-%s" % generateRandomKey(16)
                             pgp_path = os.path.abspath(os.path.join(Settings.attachments_path, pgp_name))
                             encrypt_file_with_pgp(state,
@@ -163,14 +163,15 @@ def process_receiverfiles(state, files_maps):
                                                   pgp_path)
                             rfileinfo['filename'] = pgp_name
                             rfileinfo['status'] = 'encrypted'
-                        except Exception as excep:
-                            log.err("%d# Unable to complete PGP encrypt for %s on %s: %s. marking the file as unavailable.",
-                                    rcounter, rfileinfo['receiver']['name'], rfileinfo['filename'], excep)
-                            rfileinfo['status'] = 'unavailable'
-                    else:
-                        receiverfiles_map['plaintext_file_needed'] = True
-                        rfileinfo['filename'] = plaintext_name
-                        rfileinfo['status'] = 'reference'
+                        else:
+                            receiverfiles_map['plaintext_file_needed'] = True
+                            rfileinfo['filename'] = plaintext_name
+                            rfileinfo['status'] = 'reference'
+
+                except Exception as excep:
+                    log.err("%d# Unable to complete PGP encrypt for %s on %s: %s. marking the file as unavailable.",
+                            rcounter, rfileinfo['receiver']['name'], rfileinfo['filename'], excep)
+                    rfileinfo['status'] = 'unavailable'
 
         if receiverfiles_map['plaintext_file_needed']:
             write_plaintext_file(sf, plaintext_path)
