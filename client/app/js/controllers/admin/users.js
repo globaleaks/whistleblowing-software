@@ -69,7 +69,7 @@ GLClient.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
         "admin/config", {
           "operation": "reset_user_password",
           "args": {
-            "value": $scope.user.username
+            "value": $scope.user.id
           }
       }).then(function() {
         $rootScope.successes.push({message: "Success!"});
