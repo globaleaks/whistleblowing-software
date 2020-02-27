@@ -122,7 +122,7 @@ def signup(session, request, language):
 
 
 @transact
-def signup_activation(session, token, language):
+def signup_activation(session, token, hostname, language):
     """
     Transaction registering the activation of a platform registered via signup
 
@@ -171,7 +171,7 @@ def signup_activation(session, token, language):
         'enable_developers_exception_notification': True
     }
 
-    db_wizard(session, signup.tid, wizard)
+    db_wizard(session, signup.tid, hostname, wizard)
 
     template_vars = {
         'type': 'activation',
@@ -215,4 +215,4 @@ class SignupActivation(BaseHandler):
     refresh_connection_endpoints = True
 
     def get(self, token):
-        return signup_activation(token, self.request.language)
+        return signup_activation(token, self.request.hostname, self.request.language)

@@ -7,6 +7,8 @@ import copy
 
 from datetime import timedelta
 
+from twisted.internet.abstract import isIPAddress
+
 from globaleaks import __version__
 from globaleaks.rest import errors
 from globaleaks.utils.utility import datetime_to_pretty_str, \
@@ -165,7 +167,10 @@ class NodeKeyword(Keyword):
 
     def HTTPSSite(self):
         if self.data['node']['hostname']:
-            return 'https://' + self.data['node']['hostname']
+            if isIPAddress(self.data['node']['hostname']):
+                return 'http://' + self.data['node']['hostname']
+            else:
+                return 'https://' + self.data['node']['hostname']
 
         return '[UNDEFINED]'
 

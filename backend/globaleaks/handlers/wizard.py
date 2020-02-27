@@ -43,7 +43,7 @@ def db_gen_user_keys(session, tid, user, password):
     return crypto_prv_key
 
 
-def db_wizard(session, tid, request):
+def db_wizard(session, tid, hostname, request):
     """
     Transaction for the handling of wizard request
 
@@ -70,6 +70,7 @@ def db_wizard(session, tid, request):
     node.set_val('default_language', language)
     node.set_val('wizard_done', True)
     node.set_val('enable_developers_exception_notification', request['enable_developers_exception_notification'])
+    node.set_val('hostname', hostname)
 
     node_l10n = config.ConfigL10NFactory(session, tid)
     node_l10n.set_val('header_title_homepage', language, request['node_name'])
@@ -191,4 +192,4 @@ class Wizard(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.WizardDesc)
 
-        return tw(db_wizard, self.request.tid, request)
+        return tw(db_wizard, self.request.tid, self.request.hostname, request)
