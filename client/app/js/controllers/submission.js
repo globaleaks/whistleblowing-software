@@ -224,9 +224,16 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.replaceReceivers = function(receivers) {
-    $scope.submission.selected_receivers = {};
+    for(var key in $scope.submission.selected_receivers) {
+      if (receivers.indexOf(key) === -1) {
+        delete $scope.submission.selected_receivers[key];
+      }
+    }
+
     for(var i=0; i<receivers.length; i++) {
-      $scope.submission.selected_receivers[receivers[i]] = true;
+      if (receivers[i] in $scope.receivers_by_id) {
+        $scope.submission.selected_receivers[receivers[i]] = true;
+      }
     }
   };
 
@@ -252,7 +259,7 @@ GLClient.controller("SubmissionCtrl",
 
   $scope.evaluateDisclaimerModalOpening();
 
-  $scope.submission = new Submission(function(submission) {
+  new Submission(function(submission) {
     $scope.submission = submission;
 
     var context = null;

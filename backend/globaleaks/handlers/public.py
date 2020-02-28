@@ -411,6 +411,7 @@ def serialize_receiver(session, user, language, data=None):
         'username': user.username,
         'name': user.name,
         'state': user.state,
+        'encryption': user.crypto_pub_key != '',
         'recipient_configuration': user.recipient_configuration,
         'can_delete_submission': user.can_delete_submission,
         'can_postpone_expiration': user.can_postpone_expiration,
@@ -480,6 +481,9 @@ def db_get_receivers(session, tid, language):
 
     ret = []
     for receiver in receivers:
+        if State.tenant_cache[tid].encryption and receiver.crypto_pub_key == '':
+            continue
+
         x = serialize_receiver(session, receiver, language, data)
         if not State.tenant_cache[tid].simplified_login:
             x['username'] = ''

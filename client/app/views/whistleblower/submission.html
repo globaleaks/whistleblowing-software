@@ -45,10 +45,7 @@
         <span data-translate>Next</span>
         <i class="fas fa-arrow-circle-right"></i>
       </button>
-
-      <button id="SubmitButton" class="btn btn-success" data-ng-show="submission.context && !hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="submission.wait || submission.done" type="submit">
-        <i data-ng-show="submission.wait" id="SubmitIconWait" class="fas fa-clock"></i>
-        <i data-ng-hide="submission.wait" id="SubmitIconOK" class="fas fa-check-circle"></i>
+      <button id="SubmitButton" class="btn btn-success" data-ng-show="submission.context && !hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="submission.done" type="submit">
         <span data-translate>Submit</span>
       </button>
     </div>
