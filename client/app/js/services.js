@@ -258,7 +258,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
       self.isDisabled = function() {
         return self.selected_receivers_count === 0 ||
-               self.wait ||
                self.done;
       };
 
