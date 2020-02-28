@@ -76,12 +76,14 @@ class TokenList(TempDict):
     def get(self, key):
         ret = TempDict.get(self, key)
         if ret is None:
-            raise Exception('TokenFailure: Invalid token')
+            raise Exception("TokenFailure: Invalid token")
 
         return ret
 
     def use(self, key):
-        token = TokenList.pop(self, key)
+        token = TokenList.pop(self, key, None)
+        if token is None:
+            raise Exception("TokenFailure: Invalid token")
 
         if not token.solved:
             raise Exception("TokenFailure: Token is not solved")

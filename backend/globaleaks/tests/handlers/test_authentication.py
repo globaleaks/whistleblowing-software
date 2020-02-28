@@ -24,7 +24,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'tid': 1,
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1,
-            'authcode': ''
+            'authcode': '',
+            'token': self.getSolvedToken().id
         })
         response = yield handler.post()
         self.assertTrue('session_id' in response)
@@ -36,7 +37,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'tid': 1,
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1,
-            'authcode': ''
+            'authcode': '',
+            'token': self.getSolvedToken().id
         })
 
         response = yield handler.post()
@@ -54,7 +56,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'tid': 1,
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1,
-            'authcode': ''
+            'authcode': '',
+            'token': self.getSolvedToken().id
         })
         State.tenant_cache[1]['https_allowed']['admin'] = True
         response = yield handler.post()
@@ -67,7 +70,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'tid': 1,
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1,
-            'authcode': ''
+            'authcode': '',
+            'token': self.getSolvedToken().id
         })
         State.tenant_cache[1]['https_allowed']['admin'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
@@ -78,22 +82,24 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'tid': 1,
             'username': 'admin',
             'password': 'INVALIDPASSWORD',
-            'authcode': ''
+            'authcode': '',
+            'token': self.getSolvedToken().id
         })
 
         yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
     @inlineCallbacks
     def test_failed_login_counter(self):
-        handler = self.request({
-            'tid': 1,
-            'username': 'admin',
-            'password': 'INVALIDPASSWORD',
-            'authcode': ''
-        })
-
         failed_login = 5
         for _ in range(0, failed_login):
+            handler = self.request({
+                'tid': 1,
+                'username': 'admin',
+                'password': 'INVALIDPASSWORD',
+                'authcode': '',
+                'token': self.getSolvedToken().id
+            })
+
             yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
         self.assertEqual(Settings.failed_login_attempts, failed_login)
@@ -104,10 +110,20 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'tid': 1,
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1,
-            'authcode': ''
+            'authcode': '',
+            'token': self.getSolvedToken().id
         })
 
         r1 = yield handler.post()
+
+        handler = self.request({
+            'tid': 1,
+            'username': 'admin',
+            'password': helpers.VALID_PASSWORD1,
+            'authcode': '',
+            'token': self.getSolvedToken().id
+        })
+
         r2 = yield handler.post()
 
         self.assertTrue(Sessions.get(r1['session_id']) is None)
@@ -119,7 +135,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'tid': 1,
             'username': 'receiver1',
             'password': helpers.VALID_PASSWORD1,
-            'authcode': ''
+            'authcode': '',
+            'token': self.getSolvedToken().id
         })
 
         r1 = yield auth_handler.post()
@@ -131,6 +148,14 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         yield user_handler.get()
 
         # The second authentication invalidates the first session
+        auth_handler = self.request({
+            'tid': 1,
+            'username': 'receiver1',
+            'password': helpers.VALID_PASSWORD1,
+            'authcode': '',
+            'token': self.getSolvedToken().id
+        })
+
         r2 = yield auth_handler.post()
 
         user_handler = self.request({}, headers={'x-session': r1['session_id']},
@@ -153,7 +178,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'tid': 1,
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1,
-            'authcode': ''
+            'authcode': '',
+            'token': self.getSolvedToken().id
         }, client_addr=IPv4Address('TCP', '192.168.1.1', 12345))
         yield self.assertFailure(handler.post(), errors.AccessLocationInvalid)
 
@@ -165,7 +191,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'tid': 1,
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1,
-            'authcode': ''
+            'authcode': '',
+            'token': self.getSolvedToken().id
         }, client_addr=IPv4Address('TCP', '192.168.2.1', 12345))
         response = yield handler.post()
         self.assertTrue('session_id' in response)
@@ -178,7 +205,8 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_invalid_whistleblower_login(self):
         handler = self.request({
-            'receipt': 'INVALIDRECEIPT'
+            'receipt': 'INVALIDRECEIPT',
+            'token': self.getSolvedToken().id
         })
         yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
@@ -186,7 +214,8 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     def test_successful_whistleblower_login(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
-            'receipt': self.lastReceipt
+            'receipt': self.lastReceipt,
+            'token': self.getSolvedToken().id
         })
         handler.request.client_using_tor = True
         response = yield handler.post()
@@ -197,7 +226,8 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     def test_accept_whistleblower_login_in_https(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
-            'receipt': self.lastReceipt
+            'receipt': self.lastReceipt,
+            'token': self.getSolvedToken().id
         }, headers={'X-Tor2Web': 'whatever'})
         State.tenant_cache[1]['https_allowed']['whistleblower'] = True
         response = yield handler.post()
@@ -208,7 +238,8 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     def test_deny_whistleblower_login_in_https(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
-            'receipt': self.lastReceipt
+            'receipt': self.lastReceipt,
+            'token': self.getSolvedToken().id
         }, headers={'X-Tor2Web': 'whatever'})
         State.tenant_cache[1]['https_allowed']['whistleblower'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
@@ -220,9 +251,12 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         using that session id are rejected
         """
         yield self.perform_full_submission_actions()
+
         handler = self.request({
-            'receipt': self.lastReceipt
+            'receipt': self.lastReceipt,
+            'token': self.getSolvedToken().id
         })
+
         handler.request.client_using_tor = True
         response = yield handler.post()
         first_id = response['session_id']
@@ -230,6 +264,11 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         wbtip_handler = self.request(headers={'x-session': first_id},
                                      handler_cls=WBTipInstance)
         yield wbtip_handler.get()
+
+        handler = self.request({
+            'receipt': self.lastReceipt,
+            'token': self.getSolvedToken().id
+        })
 
         response = yield handler.post()
         second_id = response['session_id']
@@ -261,7 +300,7 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1,
             'authcode': '',
-            'token': ''
+            'token': self.getSolvedToken().id
         })
 
         response = yield handler.post()
@@ -280,12 +319,13 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_successful_whistleblower_logout(self):
-        yield self.perform_full_submission_actions()
-
         self._handler = authentication.ReceiptAuthHandler
 
+        yield self.perform_full_submission_actions()
+
         handler = self.request({
-            'receipt': self.lastReceipt
+            'receipt': self.lastReceipt,
+            'token': self.getSolvedToken().id
         })
 
         handler.request.client_using_tor = True
@@ -320,7 +360,7 @@ class TestTokenAuth(helpers.TestHandlerWithPopulatedDB):
     def test_successful_login(self):
         handler = self.request({
             'tid': 1,
-            'token': self.token
+            'authtoken': self.token
         })
         response = yield handler.post()
         self.assertTrue('session_id' in response)

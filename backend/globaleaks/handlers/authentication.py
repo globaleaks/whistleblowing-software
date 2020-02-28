@@ -217,7 +217,7 @@ class TokenAuthHandler(BaseHandler):
         if tid == 0:
             tid = self.request.tid
 
-        session = Sessions.get(request['tokenauth'])
+        session = Sessions.get(request['authtoken'])
         if session is None or session.tid != tid:
             Settings.failed_login_attempts += 1
             raise errors.InvalidAuthentication
