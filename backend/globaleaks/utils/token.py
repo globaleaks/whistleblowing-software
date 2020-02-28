@@ -10,7 +10,7 @@ from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
 
 class Token(object):
     min_ttl = 1
-    max_ttl = 300
+    max_ttl = 1800
 
     def __init__(self, tokenlist, tid):
         self.tokenlist = tokenlist
