@@ -240,7 +240,6 @@ AdminNodeDesc = {
     'frame_ancestors': domain_list_regexp,
     'disable_privacy_badge': bool,
     'enable_receipt_hint': bool,
-    'require_proof_of_work_on_user_authentication': bool,
     'enable_ricochet_panel': bool,
     'ricochet_address': str,
     'disable_submissions': bool,

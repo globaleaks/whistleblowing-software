@@ -181,8 +181,7 @@ class AuthenticationHandler(BaseHandler):
         if tid == 0:
             tid = self.request.tid
 
-        if State.tenant_cache[tid]['require_proof_of_work_on_user_authentication']:
-            self.state.tokens.use(request['token'])
+        self.state.tokens.use(request['token'])
 
         session = yield login(tid,
                               request['username'],
