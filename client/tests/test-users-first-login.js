@@ -11,7 +11,7 @@ describe("Recipient1 first login", function() {
     await element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars["user_password"]);
     await element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars["user_password"]);
     await element(by.css("[data-ng-click=\"save()\"]")).click();
-    await browser.gl.utils.waitForUrl("/receiver/home");
+    await browser.gl.utils.waitForUrl("/recipient/home");
   });
 
   it("should be able to login with the new password", async function() {
@@ -32,7 +32,7 @@ describe("Recipient2 first login", function() {
     await element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars["user_password"]);
     await element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars["user_password"]);
     await element(by.css("[data-ng-click=\"save()\"]")).click();
-    await browser.gl.utils.waitForUrl("/receiver/home");
+    await browser.gl.utils.waitForUrl("/recipient/home");
   });
 });
 

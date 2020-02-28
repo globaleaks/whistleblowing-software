@@ -178,7 +178,7 @@ var GLClient = angular.module("GLClient", [
         }
       }).
       when("/status/:tip_id", {
-        templateUrl: "views/receiver/tip.html",
+        templateUrl: "views/recipient/tip.html",
         controller: "TipCtrl",
         header_title: "",
         resolve: {
@@ -201,33 +201,33 @@ var GLClient = angular.module("GLClient", [
           access: requireAuth("*"),
         }
       }).
-      when("/receiver/home", {
-        templateUrl: "views/receiver/home.html",
+      when("/recipient/home", {
+        templateUrl: "views/recipient/home.html",
         header_title: "Home",
-        sidebar: "views/receiver/sidebar.html",
+        sidebar: "views/recipient/sidebar.html",
         resolve: {
           access: requireAuth("receiver"),
         }
       }).
-      when("/receiver/preferences", {
-        templateUrl: "views/receiver/preferences.html",
+      when("/recipient/preferences", {
+        templateUrl: "views/recipient/preferences.html",
         header_title: "User preferences",
-        sidebar: "views/receiver/sidebar.html",
+        sidebar: "views/recipient/sidebar.html",
         resolve: {
           access: requireAuth("receiver"),
         }
       }).
-      when("/receiver/content", {
-        templateUrl: "views/receiver/content.html",
+      when("/recipient/content", {
+        templateUrl: "views/recipient/content.html",
         controller: "AdminCtrl",
         header_title: "Site settings",
-        sidebar: "views/receiver/sidebar.html",
+        sidebar: "views/recipient/sidebar.html",
         resolve: {
           resources: fetchResources("acl", ["node"]),
         }
       }).
-      when("/receiver/tips", {
-        templateUrl: "views/receiver/tips.html",
+      when("/recipient/reports", {
+        templateUrl: "views/recipient/tips.html",
         controller: "ReceiverTipsCtrl",
         header_title: "Reports",
         resolve: {

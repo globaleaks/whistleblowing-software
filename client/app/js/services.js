@@ -42,21 +42,21 @@ angular.module("GLServices", ["ngResource"]).
 
           if (self.session.role !== "whistleblower") {
             if (self.session.role === "admin") {
-              self.session.homepage = "#/admin/home";
               self.session.auth_landing_page = "/admin/home";
             } else if (self.session.role === "custodian") {
-              self.session.homepage = "#/custodian/home";
               self.session.auth_landing_page = "/custodian/home";
             } else if (self.session.role === "receiver") {
-              self.session.homepage = "#/receiver/home";
-              self.session.auth_landing_page = "/receiver/home";
+              self.session.auth_landing_page = "/recipient/home";
             }
+
+            self.session.homepage = "#" + self.session.auth_landing_page;
 
             UserPreferences.get().$promise.then(initPreferences);
           }
 
           self.session.role_l10n = function() {
-            return $filter("translate")(self.session.role.charAt(0).toUpperCase() + self.session.role.substr(1));
+            var ret = self.session.role == 'receiver' ? 'recipient' : self.session.role;
+            return $filter("translate")(ret.charAt(0).toUpperCase() + ret.substr(1));
           };
         };
 
@@ -545,7 +545,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     };
 }]).
   factory("ReceiverTips", ["GLResource", function(GLResource) {
-    return new GLResource("receiver/tips");
+    return new GLResource("recipient/reports");
 }]).
   factory("IdentityAccessRequests", ["GLResource", function(GLResource) {
     return new GLResource("custodian/identityaccessrequests");

@@ -1,7 +1,7 @@
 <div id="ReceiverToolbar" class="row">
   <div class="col-md-12">
     <a id="link-tiplist"
-       href="#/receiver/tips"
+       href="#/recipient/reports"
        uib-popover="{{'Reports' | translate}}"
        popover-placement="top"
        class="btn btn-secondary">
@@ -78,7 +78,7 @@
     <div data-ng-include="'views/partials/tip_questionnaire_answers.html'"></div>
   </div>
   <div class="col-md-6">
-    <div data-ng-if="tip.enable_whistleblower_identity" data-ng-include="'views/receiver/whistleblower_identity.html'"></div>
+    <div data-ng-if="tip.enable_whistleblower_identity" data-ng-include="'views/recipient/whistleblower_identity.html'"></div>
   </div>
   <div class="col-md-6" data-ng-if="showWBFileUpload()">
     <div data-ng-include="'views/partials/tip_upload_wbfile.html'"></div>

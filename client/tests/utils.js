@@ -138,7 +138,7 @@ exports.login_receiver = async function(username, password, url, firstlogin) {
     url = "/actions/forcedpasswordchange";
   } else {
     url = url.split("#")[1];
-    url = url === "/login" ? "/receiver/home" : url;
+    url = url === "/login" ? "/recipient/home" : url;
   }
 
   await exports.waitForUrl(url);

@@ -4,7 +4,7 @@ exports.receiver = function() {
   };
 
   this.addPublicKey = async function(pgp_key_path) {
-    await browser.setLocation("/receiver/preferences");
+    await browser.setLocation("/recipient/preferences");
 
     if (browser.gl.utils.testFileUpload()) {
       await element(by.xpath("//input[@type='file']")).sendKeys(pgp_key_path);

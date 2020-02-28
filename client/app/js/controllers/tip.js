@@ -261,7 +261,7 @@ controller("TipOperationsCtrl",
     } else if ($scope.args.operation === "delete") {
       return $http({method: "DELETE", url: "rtip/" + args.tip.id, data:{}}).
         then(function() {
-          $location.url("/receiver/tips");
+          $location.url("/recipient/reports");
           $route.reload();
         });
     }

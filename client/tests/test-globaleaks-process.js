@@ -34,7 +34,7 @@ describe("globaLeaks process", function() {
     var label_2 = "fake!";
 
     await browser.gl.utils.login_receiver();
-    await browser.setLocation("/receiver/tips");
+    await browser.setLocation("/recipient/reports");
 
     var id = await element(by.id("tip-0")).evaluate("tip.id");
 
@@ -72,7 +72,7 @@ describe("globaLeaks process", function() {
 
   it("Recipient should be able to leave a comment to the whistleblower", async function() {
     await browser.gl.utils.login_receiver();
-    await browser.setLocation("/receiver/tips");
+    await browser.setLocation("/recipient/reports");
 
     var id = await element(by.id("tip-0")).evaluate("tip.id");
 
@@ -116,7 +116,7 @@ describe("globaLeaks process", function() {
 
   it("Recipient should be able to start a private discussion with the whistleblower", async function() {
     await browser.gl.utils.login_receiver();
-    await browser.setLocation("/receiver/tips");
+    await browser.setLocation("/recipient/reports");
 
     var id = await element(by.id("tip-0")).evaluate("tip.id");
 
@@ -150,7 +150,7 @@ describe("globaLeaks process", function() {
     }
 
     await browser.gl.utils.login_receiver();
-    await browser.setLocation("/receiver/tips");
+    await browser.setLocation("/recipient/reports");
 
     var id = await element(by.id("tip-0")).evaluate("tip.id");
     await browser.setLocation("/status/" + id);
@@ -170,7 +170,7 @@ describe("globaLeaks process", function() {
 
   it("Recipient should be able to disable and renable email notifications", async function() {
     await browser.gl.utils.login_receiver();
-    await browser.setLocation("/receiver/tips");
+    await browser.setLocation("/recipient/reports");
 
     var id = await element(by.id("tip-0")).evaluate("tip.id");
     await browser.setLocation("/status/" + id);
@@ -188,7 +188,7 @@ describe("globaLeaks process", function() {
 
   it("Recipient should be able to postpone all tips", async function() {
     await browser.gl.utils.login_receiver();
-    await browser.setLocation("/receiver/tips");
+    await browser.setLocation("/recipient/reports");
 
     // Postpone the expiration of all tips
     await element(by.id("tip-action-select-all")).click();
@@ -198,7 +198,7 @@ describe("globaLeaks process", function() {
 
   it("Recipient should be able to postpone last submission from its tip page", async function() {
     await browser.gl.utils.login_receiver();
-    await browser.setLocation("/receiver/tips");
+    await browser.setLocation("/recipient/reports");
 
     var id = await element(by.id("tip-0")).evaluate("tip.id");
 
