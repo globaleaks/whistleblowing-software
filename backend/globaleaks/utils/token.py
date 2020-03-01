@@ -3,6 +3,7 @@
 import os
 from datetime import timedelta
 
+from globaleaks.rest import errors
 from globaleaks.utils.crypto import sha256, generateRandomKey, GCE
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
@@ -74,25 +75,25 @@ class TokenList(TempDict):
     def get(self, key):
         ret = TempDict.get(self, key)
         if ret is None:
-            raise Exception("TokenFailure: Invalid token")
+            raise errors.InternalServerError("TokenFailure: Invalid token")
 
         return ret
 
     def use(self, key):
         token = TokenList.pop(self, key, None)
         if token is None:
-            raise Exception("TokenFailure: Invalid token")
+            raise errors.InternalServerError("TokenFailure: Invalid token")
 
         if not token.solved:
-            raise Exception("TokenFailure: Token is not solved")
+            raise errors.InternalServerError("TokenFailure: Token is not solved")
 
         now = datetime_now()
         start = token.creation_date + timedelta(seconds=token.min_ttl)
         if now < start:
-            raise Exception("TokenFalure: Too early to use this token")
+            raise errors.InternalServerError("TokenFalure: Too early to use this token")
 
         end = token.creation_date + timedelta(seconds=token.max_ttl)
         if now > end:
-            raise Exception("TokenFailure: Too late to use this token")
+            raise errors.InternalServerError("TokenFailure: Too late to use this token")
 
         return token
