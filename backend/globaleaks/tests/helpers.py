@@ -550,7 +550,13 @@ class TestGL(unittest.TestCase):
 
     def getToken(self):
         token = self.state.tokens.new(1)
+
+        self.state.tokens.pop(token.id)
+        token.id = "n97rvTAIXGWnzQIhJr5ocuW7b8Lqx5Q6mPuoS5aZA8"
+        self.state.tokens[token.id] = token
+
         token.creation_date = datetime_now() - timedelta(seconds=2)
+        token.answer = 681
         return token
 
     def getSolvedToken(self):

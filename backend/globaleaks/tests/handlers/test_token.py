@@ -34,12 +34,10 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
         self.pollute_events()
         yield anomalies.Anomalies().run()
 
-        token = self.state.tokens.new(1)
-        token.solved = False
-        token.question = '7GJ4Sl37AEnP10Zk9p7q'
+        token = self.getToken()
 
         request_payload = token.serialize()
-        request_payload['answer'] = 26
+        request_payload['answer'] = token.answer
 
         handler = self.request(request_payload)
 
@@ -54,9 +52,7 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
         self.pollute_events()
         yield anomalies.Anomalies().run()
 
-        token = self.state.tokens.new(1)
-        token.solved = False
-        token.question = '7GJ4Sl37AEnP10Zk9p7q'
+        token = self.getToken()
 
         request_payload = token.serialize()
         request_payload['answer'] = 0

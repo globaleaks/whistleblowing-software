@@ -45,27 +45,17 @@ class TestToken(helpers.TestGL):
                 self.assertFalse(os.path.exists(filepath))
 
     def test_proof_of_work_wrong_answer(self):
-        token = self.getSolvedToken()
-
-        # Note, this solution works with two '00' at the end, if the
-        # difficulty changes, also this dummy value has to.
-        token.solved = False
-        token.question = "7GJ4Sl37AEnP10Zk9p7q"
+        token = self.getToken()
 
         self.assertFalse(token.update(0))
         # validate with right value: OK
         self.assertRaises(Exception, self.state.tokens.use, token.id)
 
     def test_proof_of_work_right_answer(self):
-        token = self.getSolvedToken()
-
-        # Note, this solution works with two '00' at the end, if the
-        # difficulty changes, also this dummy value has to.
-        token.solved = False
-        token.question = "7GJ4Sl37AEnP10Zk9p7q"
+        token = self.getToken()
 
         # validate with right value: OK
-        self.assertTrue(token.update(26))
+        self.assertTrue(token.update(token.answer))
         self.state.tokens.use(token.id)
 
         # verify that token reuse is blocked
