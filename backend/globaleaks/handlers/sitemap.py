@@ -42,8 +42,7 @@ class SitemapHandler(BaseHandler):
 
                 for lang in sorted(State.tenant_cache[self.request.tid].languages_enabled):
                     if lang != State.tenant_cache[self.request.tid].default_language:
-                        hreflang = lang.lower()
-                        hreflang = l.replace('_', '-')
+                        hreflang = lang.lower().replace('_', '-')
                         data += "<xhtml:link rel='alternate' hreflang='" + hreflang + "' href='" + site + url + "?lang=" + lang + "' />\n"
 
                 data += "  </url>\n"
