@@ -29,9 +29,6 @@ class Token(object):
         if not self.solved:
             self.tokenlist.pop(self.id)
 
-        if self.solved and self.tokenlist.state.tenant_cache[self.tid].encryption:
-            self.tip_key = GCE.generate_key()
-
         return self.solved
 
     def associate_file(self, fileinfo):
