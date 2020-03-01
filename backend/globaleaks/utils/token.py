@@ -16,15 +16,12 @@ class Token(object):
         self.tokenlist = tokenlist
         self.tid = tid
         self.id = generateRandomKey(42)
+        self.question = generateRandomKey(20)
         self.creation_date = datetime_now()
         self.uploaded_files = []
         self.solved = False
-        self.question = generateRandomKey(20)
 
     def update(self, answer):
-        if self.solved:
-            return True
-
         resolved = "%s%d" % (self.question, answer)
         x = sha256(resolved.encode())
         self.solved = x.endswith(b'00')
