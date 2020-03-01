@@ -44,7 +44,7 @@ angular.module("GLCrypto", [])
 
           var xxx = function (hash) {
             hash = new Uint8Array(hash);
-            if (hash[31] === 0) {
+            if (hash[63] === 0) {
               token.answer = i;
               token.$update(function(token) {
                 deferred.resolve(token);
@@ -55,7 +55,7 @@ angular.module("GLCrypto", [])
             }
           };
 
-          damnIE = webCrypto.digest({name: "SHA-256"}, toHash);
+          damnIE = webCrypto.digest({name: "SHA-512"}, toHash);
 
           if (typeof damnIE.then !== "undefined") {
             damnIE.then(xxx);
