@@ -1,4 +1,4 @@
-/*global Uint8Array, sha256*/
+/*global Uint8Array */
 
 angular.module("GLCrypto", [])
 .factory("glbcUtil", function() {
@@ -55,11 +55,7 @@ angular.module("GLCrypto", [])
             }
           };
 
-          if (webCrypto) {
-            damnIE = webCrypto.digest({name: "SHA-256"}, toHash);
-          } else {
-            damnIE = $q.resolve(sha256(toHash));
-          }
+          damnIE = webCrypto.digest({name: "SHA-256"}, toHash);
 
           if (typeof damnIE.then !== "undefined") {
             damnIE.then(xxx);
