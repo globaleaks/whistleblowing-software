@@ -29,6 +29,9 @@ class Token(object):
         x = sha256(resolved.encode())
         self.solved = x.endswith(b'00')
 
+        if not self.solved:
+            self.tokenlist.pop(self.id)
+
         if self.solved and self.tokenlist.state.tenant_cache[self.tid].encryption:
             self.tip_key = GCE.generate_key()
 
