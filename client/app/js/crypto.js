@@ -39,7 +39,7 @@ angular.module("GLCrypto", [])
 	var i = 0;
         var work = function() {
           var webCrypto = getWebCrypto();
-          var toHash = glbcUtil.str2Uint8Array(token.question + i);
+          var toHash = glbcUtil.str2Uint8Array(token.id + i);
           var damnIE;
 
           var xxx = function (hash) {
