@@ -330,6 +330,7 @@ def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
     rtip, itip = session.query(models.ReceiverTip, models.InternalTip) \
                         .filter(models.ReceiverTip.id == rtip_id,
                                 models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                models.InternalTip.status != 'closed',
                                 models.InternalTip.tid == tid).one()
 
     itip.update_date = rtip.last_access = datetime_now()
@@ -544,6 +545,7 @@ def set_internaltip_variable(session, tid, user_id, rtip_id, key, value):
         raise errors.ForbiddenOperation
 
     setattr(itip, key, value)
+
 
 @transact
 def set_receivertip_variable(session, tid, user_id, rtip_id, key, value):

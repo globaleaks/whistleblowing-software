@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<div class="row" data-ng-if="tip.additional_questionnaire_id">
+<div class="row" data-ng-if="tip.status !== 'closed' && tip.additional_questionnaire_id">
   <div class="col-md-12">
     <div data-ng-include="'views/partials/tip_additional_questionnaire_invite.html'"></div>
   </div>

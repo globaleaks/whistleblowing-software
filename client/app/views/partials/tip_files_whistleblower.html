@@ -33,7 +33,7 @@
       <span data-translate>No files have been uploaded!</span>
     </div>
     <br />
-    <div>
+    <div data-ng-if="tip.status !== 'closed'">
       <div data-ng-include="'views/partials/rfile_upload_button.html'"></div>
       <br />
       <div class="row">

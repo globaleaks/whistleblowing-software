@@ -69,7 +69,8 @@ def create_comment(session, tid, wbtip_id, content):
     wbtip, itip = session.query(models.WhistleblowerTip, models.InternalTip)\
                          .filter(models.WhistleblowerTip.id == wbtip_id,
                                  models.InternalTip.id == models.WhistleblowerTip.id,
-                                 models.InternalTip.tid == tid).one_or_none()
+                                 models.InternalTip.tid == tid,
+                                 models.InternalTip.status != 'closed').one_or_none()
 
     if wbtip is None:
         raise errors.ModelNotFound(models.WhistleblowerTip)
@@ -109,6 +110,7 @@ def create_message(session, tid, wbtip_id, receiver_id, content):
                                           models.ReceiverTip.internaltip_id == wbtip_id,
                                           models.ReceiverTip.receiver_id == receiver_id,
                                           models.InternalTip.id == models.WhistleblowerTip.id,
+                                          models.InternalTip.status != 'closed',
                                           models.InternalTip.tid == tid).one_or_none()
 
     if wbtip is None:
@@ -135,7 +137,11 @@ def create_message(session, tid, wbtip_id, receiver_id, content):
 
 @transact
 def update_identity_information(session, tid, tip_id, identity_field_id, wbi, language):
-    itip = models.db_get(session, models.InternalTip, models.InternalTip.id == tip_id, models.InternalTip.tid == tid)
+    itip = models.db_get(session,
+                         models.InternalTip,
+                         models.InternalTip.id == tip_id,
+                         models.InternalTip.status != 'closed',
+                         models.InternalTip.tid == tid)
 
     if itip.crypto_tip_pub_key:
         wbi = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(wbi).encode())).decode()
@@ -151,6 +157,7 @@ def update_identity_information(session, tid, tip_id, identity_field_id, wbi, la
 def store_additional_questionnaire_answers(session, tid, tip_id, answers, language):
     itip = session.query(models.InternalTip) \
                   .filter(models.InternalTip.id == tip_id,
+                          models.InternalTip.status != 'closed',
                           models.InternalTip.tid == tid).one()
 
     if not itip.additional_questionnaire_id:

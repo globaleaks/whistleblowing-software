@@ -7,7 +7,7 @@
     </span>
   </div>
   <div class="card-body" data-ng-show="!collapsed">
-    <div data-ng-if="Authentication.session.role !== 'whistleblower' || tip.enable_two_way_messages" class="row">
+    <div data-ng-if="tip.status !== 'closed' && (Authentication.session.role !== 'whistleblower' || tip.enable_two_way_messages)" class="row">
       <div class="col-md-12 clearfix">
         <div class="form-inline">
           <span data-ng-if="Authentication.session.role === 'whistleblower'">
