@@ -151,7 +151,8 @@ GLClient.controller("SubmissionCtrl",
 
   $scope.areReceiversSelected = function() {
     for (var rec_id in $scope.submission.selected_receivers) {
-      if ($scope.submission.selected_receivers[rec_id]) {
+      /* Consider selected only recipients that are selected and that can be used for sending a submission */
+      if ($scope.submission.selected_receivers[rec_id] && (!$scope.public.node.encryption || $scope.receivers_by_id[rec_id].encryption)) {
         return true;
       }
     }

@@ -106,11 +106,8 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
     user.update(request)
 
     password = request['password']
-    if password:
-        if not user.crypto_pub_key:
-            user.hash_alg = 'ARGON2'
-            user.salt = GCE.generate_salt()
-        elif user_session.ek:
+    if password and (not user.crypto_pub_key or user_session.ek):
+        if user.crypto_pub_key and user_session.ek:
             enc_key = GCE.derive_key(password.encode(), user.salt)
             crypto_escrow_prv_key = GCE.asymmetric_decrypt(user_session.cc, Base64Encoder.decode(user_session.ek))
 
@@ -120,6 +117,10 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
                 user_cc = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(user.crypto_escrow_bkp2_key))
 
             user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_cc))
+
+        if user.hash_alg != 'ARGON2':
+            user.hash_alg = 'ARGON2'
+            user.salt = GCE.generate_salt()
 
         user.password = GCE.hash_password(password, user.salt)
         user.password_change_date = datetime_now()

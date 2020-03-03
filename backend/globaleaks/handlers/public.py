@@ -481,9 +481,6 @@ def db_get_receivers(session, tid, language):
 
     ret = []
     for receiver in receivers:
-        if State.tenant_cache[tid].encryption and receiver.crypto_pub_key == '':
-            continue
-
         x = serialize_receiver(session, receiver, language, data)
         if not State.tenant_cache[tid].simplified_login:
             x['username'] = ''

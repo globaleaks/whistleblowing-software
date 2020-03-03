@@ -18,6 +18,43 @@ from globaleaks.utils.crypto import Base32Encoder, Base64Encoder, GCE, generateR
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime_null
 
 
+def set_user_password(tid, user, password, cc):
+    # Regenerate the password hash only if different from the best choice on the platform
+    if user.hash_alg != 'ARGON2':
+        user.hash_alg = 'ARGON2'
+        user.salt = GCE.generate_salt()
+
+    password_hash = GCE.hash_password(password, user.salt)
+
+    # Check that the new password is different form the current password
+    if user.password == password_hash:
+        raise errors.PasswordReuseError
+
+    user.password = password_hash
+    user.password_change_date = datetime_now()
+
+    if not State.tenant_cache[tid].encryption and cc == '':
+        return None
+
+    enc_key = GCE.derive_key(password.encode(), user.salt)
+    if not cc:
+        # The first password change triggers the generation
+        # of the user encryption private key and its backup
+        cc, user.crypto_pub_key = GCE.generate_keypair()
+        user.crypto_bkp_key, user.crypto_rec_key = GCE.generate_recovery_key(cc)
+
+    user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, cc))
+
+    if State.tenant_cache[1].crypto_escrow_pub_key:
+        user.crypto_escrow_bkp1_key = Base64Encoder.encode(GCE.asymmetric_encrypt(State.tenant_cache[1].crypto_escrow_pub_key, cc))
+
+    if State.tenant_cache[tid].crypto_escrow_pub_key:
+        user.crypto_escrow_bkp2_key = Base64Encoder.encode(GCE.asymmetric_encrypt(State.tenant_cache[tid].crypto_escrow_pub_key, cc))
+
+    return cc
+
+
+
 def parse_pgp_options(user, request):
     """
     Used for parsing PGP key infos and fill related user configurations.
@@ -166,35 +203,7 @@ def db_user_update_user(session, tid, user_session, request):
                                       user.password):
                 raise errors.InvalidOldPassword
 
-        # Regenerate the password hash only if different from the best choice on the platform
-        if user.hash_alg != 'ARGON2':
-            user.hash_alg = 'ARGON2'
-            user.salt = GCE.generate_salt()
-
-        password_hash = GCE.hash_password(request['password'], user.salt)
-
-        # Check that the new password is different form the current password
-        if user.password == password_hash:
-            raise errors.PasswordReuseError
-
-        user.password = password_hash
-        user.password_change_date = datetime_now()
-
-        if State.tenant_cache[tid].encryption or user_session.cc:
-            enc_key = GCE.derive_key(request['password'].encode(), user.salt)
-            if not user_session.cc:
-                # Th First first password change triggers the generation
-                # of the user encryption private key and its backup
-                user_session.cc, user.crypto_pub_key = GCE.generate_keypair()
-                user.crypto_bkp_key, user.crypto_rec_key = GCE.generate_recovery_key(user_session.cc)
-
-            user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_session.cc))
-
-            if State.tenant_cache[1].crypto_escrow_pub_key:
-                user.crypto_escrow_bkp1_key = Base64Encoder.encode(GCE.asymmetric_encrypt(State.tenant_cache[1].crypto_escrow_pub_key, user_session.cc))
-
-            if State.tenant_cache[tid].crypto_escrow_pub_key:
-                user.crypto_escrow_bkp2_key = Base64Encoder.encode(GCE.asymmetric_encrypt(State.tenant_cache[tid].crypto_escrow_pub_key, user_session.cc))
+        user_session.cc = set_user_password(tid, user, request['password'], user_session.cc)
 
     # If the email address changed, send a validation email
     if request['mail_address'] != user.mail_address:
