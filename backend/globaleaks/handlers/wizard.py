@@ -55,10 +55,12 @@ def db_wizard(session, tid, hostname, request):
 
     node = config.ConfigFactory(session, tid)
 
-    if tid != 1:
-        root_tenant_node = config.ConfigFactory(session, 1)
+    if tid == 1:
+        root_tenant_node = node
+        encryption = True
     else:
         root_tenant_node = node
+        encryption = root_tenant_node.get_val('encryption')
 
     if node.get_val('wizard_done'):
         log.err("DANGER: Wizard already initialized!", tid=tid)
@@ -66,6 +68,7 @@ def db_wizard(session, tid, hostname, request):
 
     db_update_enabled_languages(session, tid, [language], language)
 
+    node.set_val('encryption', encryption)
     node.set_val('name', request['node_name'])
     node.set_val('default_language', language)
     node.set_val('wizard_done', True)
@@ -77,8 +80,9 @@ def db_wizard(session, tid, hostname, request):
 
     profiles.load_profile(session, tid, request['profile'])
 
-    crypto_escrow_prv_key, crypto_escrow_pub_key = GCE.generate_keypair()
-    node.set_val('crypto_escrow_pub_key', crypto_escrow_pub_key)
+    if encryption:
+        crypto_escrow_prv_key, crypto_escrow_pub_key = GCE.generate_keypair()
+        node.set_val('crypto_escrow_pub_key', crypto_escrow_pub_key)
 
     admin_desc = models.User().dict(language)
     admin_desc['username'] = request['admin_username']
@@ -92,10 +96,12 @@ def db_wizard(session, tid, hostname, request):
 
     admin_user = db_create_user(session, tid, admin_desc, language)
     admin_user.password = GCE.hash_password(request['admin_password'], admin_user.salt)
-    db_gen_user_keys(session, tid, admin_user, request['admin_password'])
-    admin_user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(admin_user.crypto_pub_key, crypto_escrow_prv_key))
     admin_user.password_change_needed = False
     admin_user.password_change_date = datetime_now()
+
+    if encryption:
+        db_gen_user_keys(session, tid, admin_user, request['admin_password'])
+        admin_user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(admin_user.crypto_pub_key, crypto_escrow_prv_key))
 
     receiver_user = None
     if not request['skip_recipient_account_creation']:
@@ -112,7 +118,9 @@ def db_wizard(session, tid, hostname, request):
 
         if receiver_desc['password']:
             receiver_user.password = GCE.hash_password(receiver_desc['password'], receiver_user.salt)
-            db_gen_user_keys(session, tid, receiver_user, receiver_desc['password'])
+
+            if encryption:
+                db_gen_user_keys(session, tid, receiver_user, receiver_desc['password'])
 
     context_desc = models.Context().dict(language)
     context_desc['name'] = 'Default'
@@ -151,16 +159,14 @@ def db_wizard(session, tid, hostname, request):
                         'enable_password_reset']:
             node.set_val(varname, root_tenant_node.get_val(varname))
 
+        # Set data retention policy to 18 months
+        context.tip_timetolive = 540
+
         context.questionnaire_id = root_tenant_node.get_val('default_questionnaire')
 
-    # Apply the general settings to apply on all mode != default
-    if mode in ['whistleblowing.it', 'eat']:
         if receiver_user is not None:
             # Enable the recipient user to configure platform general settings
             receiver_user.can_edit_general_settings = True
-
-        # Set data retention policy to 18 months
-        context.tip_timetolive = 540
 
         # Delete the admin user
         request['admin_password'] = ''
