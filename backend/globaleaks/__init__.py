@@ -30,6 +30,7 @@ LANGUAGES_SUPPORTED = [
     {'code': 'cs', 'name': 'Czech', 'native': '\u010ce\u0161tina'},
     {'code': 'da', 'name': 'Danish', 'native': 'Dansk'},
     {'code': 'de', 'name': 'German', 'native': 'Deutsch'},
+    {'code': 'dv', 'name': 'Divehi', 'native': '\u078b\u07a8\u0788\u07ac\u0780\u07a8'},
     {'code': 'el', 'name': 'Greek', 'native': '\u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac'},
     {'code': 'en', 'name': 'English', 'native': 'English'},
     {'code': 'es', 'name': 'Spanish', 'native': 'Espa\xf1ol'},

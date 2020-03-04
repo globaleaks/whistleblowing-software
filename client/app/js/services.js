@@ -1628,7 +1628,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
   // TODO updateTranslationServices should return a promise.
   function updateTranslationServices(lang) {
     // Set text direction for languages that read from right to left.
-    var useRightToLeft = ["ar", "fa", "he", "ur"].indexOf(lang) !== -1;
+    var useRightToLeft = ["ar", "dv", "fa", "he", "ur"].indexOf(lang) !== -1;
     document.getElementsByTagName("html")[0].setAttribute("dir", useRightToLeft ? "rtl" : "ltr");
     document.getElementsByTagName("body")[0].setAttribute("dir", useRightToLeft ? "rtl" : "ltr");
 
