@@ -211,7 +211,7 @@ var GLClient = angular.module("GLClient", [
       }).
       when("/recipient/preferences", {
         templateUrl: "views/recipient/preferences.html",
-        header_title: "User preferences",
+        header_title: "Preferences",
         sidebar: "views/recipient/sidebar.html",
         resolve: {
           access: requireAuth("receiver"),
@@ -364,7 +364,7 @@ var GLClient = angular.module("GLClient", [
       }).
       when("/custodian/preferences", {
         templateUrl: "views/custodian/preferences.html",
-        header_title: "User preferences",
+        header_title: "Preferences",
         sidebar: "views/custodian/sidebar.html",
         resolve: {
           access: requireAuth("custodian"),

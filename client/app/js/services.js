@@ -31,7 +31,7 @@ angular.module("GLServices", ["ngResource"]).
             "role": response.role,
             "password_change_needed": response.password_change_needed,
             "homepage": "",
-            "auth_landing_page": "",
+            "preferencespage": "",
             "two_factor": response.two_factor
           };
 
@@ -41,15 +41,10 @@ angular.module("GLServices", ["ngResource"]).
           }
 
           if (self.session.role !== "whistleblower") {
-            if (self.session.role === "admin") {
-              self.session.auth_landing_page = "/admin/home";
-            } else if (self.session.role === "custodian") {
-              self.session.auth_landing_page = "/custodian/home";
-            } else if (self.session.role === "receiver") {
-              self.session.auth_landing_page = "/recipient/home";
-            }
+	    var role = self.session.role === "receiver" ? "recipient" : self.session.role;
 
-            self.session.homepage = "#" + self.session.auth_landing_page;
+	    self.session.homepage = "/" + role + "/home";
+	    self.session.preferencespage = "/" + role + "/preferences";
 
             UserPreferences.get().$promise.then(initPreferences);
           }
@@ -88,7 +83,7 @@ angular.module("GLServices", ["ngResource"]).
               if (self.session.role === "whistleblower") {
                 $rootScope.setPage("tippage");
               } else {
-                $location.path(self.session.auth_landing_page);
+                $location.path(self.session.homepage);
               }
             }
 

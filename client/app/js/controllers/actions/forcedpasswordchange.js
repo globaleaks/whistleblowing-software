@@ -4,7 +4,7 @@ GLClient
     $scope.save = function () {
       return $scope.preferences.$update(function () {
         $scope.Authentication.session.password_change_needed = false;
-        $location.path($scope.Authentication.session.auth_landing_page);
+        $location.path($scope.Authentication.session.homepage);
       });
     };
 }]);

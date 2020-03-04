@@ -15,12 +15,12 @@
         <span class="text-separator">|</span>
       </span>
       <span id="HomeLinkBox" data-ng-if="Authentication.session.role !== 'whistleblower'">
-        <a id="HomepageLink" data-ng-href="{{Authentication.session.homepage}}" data-translate>Home</a>
+        <a id="HomepageLink" data-ng-href="#{{Authentication.session.homepage}}" data-translate>Home</a>
         <span class="text-separator">|</span>
       </span>
-      <span id="PreferencesLinkBox" data-ng-if="Authentication.session.role === 'admin'">
-         <a id="PreferencesLink" href="#/admin/preferences" data-translate>Preferences</a>
-         <span class="text-separator">|</span>
+      <span id="PreferencesLinkBox">
+        <a id="PreferencesLink" data-ng-href="#{{Authentication.session.preferencespage}}" data-translate>Preferences</a>
+        <span class="text-separator">|</span>
       </span>
       <span id="LogoutLinkBox">
         <a id="LogoutLink" href="" data-ng-click="Authentication.logout()" data-translate>Logout</a>
