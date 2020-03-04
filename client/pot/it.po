@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:42+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,24 +342,6 @@ msgstr "Autorizza l'accesso all'identità del whistleblower"
 msgid "Templates"
 msgstr "Modelli"
 
-msgid "in seconds"
-msgstr "in secondi"
-
-msgid "in hours"
-msgstr "in ore"
-
-msgid "in days"
-msgstr "in giorni"
-
-msgid "in characters"
-msgstr "in caratteri"
-
-msgid "in megabytes"
-msgstr "in megabytes"
-
-msgid "in percentage"
-msgstr "in percentuale"
-
 msgid "HTTPS settings"
 msgstr "Impostazioni HTTPS"
 
@@ -368,15 +350,6 @@ msgstr "Redirezioni URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "Soglia di rilevamento anomalie"
-
-msgid "High risk"
-msgstr "Alto rischio"
-
-msgid "Medium risk"
-msgstr "Medio rischio"
-
-msgid "Low risk"
-msgstr "Basso rischio"
 
 msgid "Available disk space"
 msgstr "Spazio disco disponibile"
@@ -450,9 +423,6 @@ msgstr "Inserisci un indirizzo email per l'amministratore"
 
 msgid "Enter a password for the administrator"
 msgstr "Inserisci una password per l'amministratore"
-
-msgid "Test configuration"
-msgstr "Prova configurazione"
 
 msgid "Failed logins"
 msgstr "Tentativi di accesso con fallimento"
@@ -663,6 +633,9 @@ msgstr "Uno o più riceventi non hanno effettuato il primo accesso. Questo signi
 msgid "This user has not performed the first login yet."
 msgstr "Questo utente non ha ancora effettuato il primo accesso."
 
+msgid "seconds"
+msgstr "secondi"
+
 msgid "Select the context of your report:"
 msgstr "Seleziona il contesto della tua segnalazione"
 
@@ -795,6 +768,9 @@ msgstr "Titolo della pagina di stato della segnalazione"
 msgid "Size limit for file attachments"
 msgstr "Dimensione limite dei file allegati"
 
+msgid "in megabytes"
+msgstr "in megabytes"
+
 msgid "Enable HSTS preload"
 msgstr "Abilita HSTS preload"
 
@@ -809,9 +785,6 @@ msgstr "Password"
 
 msgid "Require two factor authentication"
 msgstr "Richiedi autenticazione a due fattori"
-
-msgid "Require proof of work on user authentication"
-msgstr "Richiedi proof of work per l'autenticazione degli utenti"
 
 msgid "Password change interval"
 msgstr "Intervallo di cambio password"
@@ -864,6 +837,18 @@ msgstr "Salva"
 
 msgid "Reset reports"
 msgstr "Resetta le segnalazioni"
+
+msgid "Low"
+msgstr "Basso"
+
+msgid "High"
+msgstr "Alto"
+
+msgid "megabytes"
+msgstr "megabytes"
+
+msgid "percentage"
+msgstr "percentuale"
 
 msgid "Enable automatic backups"
 msgstr "Abilita backup automatici"
@@ -1000,17 +985,17 @@ msgstr "Traduzione personalizzata"
 msgid "Contexts"
 msgstr "Contesti"
 
-msgid "State"
-msgstr "Stato"
-
-msgid "Enabled"
-msgstr "Abilitato"
-
 msgid "Hidden"
 msgstr "Nascosto"
 
 msgid "Disabled"
 msgstr "Disabilitato"
+
+msgid "State"
+msgstr "Stato"
+
+msgid "Enabled"
+msgstr "Abilitato"
 
 msgid "Questionnaire"
 msgstr "Questionario"
@@ -1078,14 +1063,8 @@ msgstr "Valore"
 msgid "Medium"
 msgstr "Medio"
 
-msgid "High"
-msgstr "Alto"
-
 msgid "Customize the message shown in the receipt page"
 msgstr "Personalizza il messaggio mostrato nella pagina della ricevuta"
-
-msgid "Low"
-msgstr "Basso"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr "Assegna la ricevuta alle sole segnalazioni con punteggio:"
@@ -1582,7 +1561,7 @@ msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Si prega di notare che tutti i dati associati saranno cancellati definitivamente."
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Questa è una piattaforma dimostrativa, si prega di non usarla per verse segnalazioni."
+msgstr "Questa è una piattaforma dimostrativa, si prega di non usarla per vere segnalazioni."
 
 msgid "Attention!"
 msgstr "Attenzione!"
@@ -1725,9 +1704,6 @@ msgstr "Errore durante il caricamento dei file; controllare sotto per i dettagli
 
 msgid "Estimated upload time:"
 msgstr "Tempo stimato per il caricamento"
-
-msgid "seconds"
-msgstr "secondi"
 
 msgid "Size:"
 msgstr "Dimensione:"

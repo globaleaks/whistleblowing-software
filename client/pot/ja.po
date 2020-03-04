@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -326,24 +326,6 @@ msgstr "内部告発者の身元へのアクセスを承認"
 msgid "Templates"
 msgstr "テンプレート"
 
-msgid "in seconds"
-msgstr "秒で"
-
-msgid "in hours"
-msgstr "時間で"
-
-msgid "in days"
-msgstr "日で"
-
-msgid "in characters"
-msgstr "文字で"
-
-msgid "in megabytes"
-msgstr "メガバイトで"
-
-msgid "in percentage"
-msgstr "パーセントで"
-
 msgid "HTTPS settings"
 msgstr "HTTPS 設定"
 
@@ -352,15 +334,6 @@ msgstr "URL リダイレクト"
 
 msgid "Anomaly detection thresholds"
 msgstr "異変を検出する閾値"
-
-msgid "High risk"
-msgstr "高リスク"
-
-msgid "Medium risk"
-msgstr "中リスク"
-
-msgid "Low risk"
-msgstr "低リスク"
 
 msgid "Available disk space"
 msgstr "利用可能ディスク容量"
@@ -434,9 +407,6 @@ msgstr "管理者のメールアドレスを入力してください"
 
 msgid "Enter a password for the administrator"
 msgstr "管理者のパスワードを入力してください"
-
-msgid "Test configuration"
-msgstr "設定のテスト"
 
 msgid "Failed logins"
 msgstr "失敗したログイン"
@@ -647,6 +617,9 @@ msgstr ""
 msgid "This user has not performed the first login yet."
 msgstr ""
 
+msgid "seconds"
+msgstr "秒"
+
 msgid "Select the context of your report:"
 msgstr "報告のコンテキストを選択してください:"
 
@@ -779,6 +752,9 @@ msgstr "報告状況ページのタイトル"
 msgid "Size limit for file attachments"
 msgstr "添付ファイルの制限サイズ"
 
+msgid "in megabytes"
+msgstr "メガバイトで"
+
 msgid "Enable HSTS preload"
 msgstr "HSTS プリロードを有効にする"
 
@@ -793,9 +769,6 @@ msgstr "パスワード"
 
 msgid "Require two factor authentication"
 msgstr "2要素認証が必要です"
-
-msgid "Require proof of work on user authentication"
-msgstr ""
 
 msgid "Password change interval"
 msgstr "パスワード変更間隔"
@@ -848,6 +821,18 @@ msgstr "保存"
 
 msgid "Reset reports"
 msgstr "報告をリセット"
+
+msgid "Low"
+msgstr "低"
+
+msgid "High"
+msgstr "高い"
+
+msgid "megabytes"
+msgstr "メガバイトで"
+
+msgid "percentage"
+msgstr "パーセントで"
 
 msgid "Enable automatic backups"
 msgstr "自動バックアップを有効にする"
@@ -984,17 +969,17 @@ msgstr "カスタムの翻訳"
 msgid "Contexts"
 msgstr "コンテキスト"
 
-msgid "State"
-msgstr "都道府県州"
-
-msgid "Enabled"
-msgstr "有効"
-
 msgid "Hidden"
 msgstr "非表示"
 
 msgid "Disabled"
 msgstr "無効"
+
+msgid "State"
+msgstr "都道府県州"
+
+msgid "Enabled"
+msgstr "有効"
 
 msgid "Questionnaire"
 msgstr "アンケート"
@@ -1062,14 +1047,8 @@ msgstr "値"
 msgid "Medium"
 msgstr "ミディアム"
 
-msgid "High"
-msgstr "高い"
-
 msgid "Customize the message shown in the receipt page"
 msgstr "受領ページに表示されるメッセージをカスタマイズ"
-
-msgid "Low"
-msgstr "低"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr "スコアに達した報告のみ受信者を割り当てます:"
@@ -1709,9 +1688,6 @@ msgstr "ファイルのアップロード時にエラー。詳細は下記を確
 
 msgid "Estimated upload time:"
 msgstr "見積アップロード時間:"
-
-msgid "seconds"
-msgstr "秒"
 
 msgid "Size:"
 msgstr "サイズ："

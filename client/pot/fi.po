@@ -3,14 +3,14 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020
 # Jaakko Korhonen <jaakko.korhonen@gmail.com>, 2018
 # John Wild <ac@elephantleague.org>, 2015
-# Jorma Karvonen <karvonen.jorma@gmail.com>, 2015,2017
+# Jorma Karvonen <karvonen.jorma@gmail.com>, 2015,2017,2020
 # Juha Nurmi <juha.nurmi@ahmia.fi>, 2015
 # Panu Ahvenharju, 2018-2019
 # Sami Kuusisto <sami@6sto.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -191,12 +191,12 @@ msgid "Access control"
 msgstr "Käyttöoikeuksien hallinta"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr ""
+msgstr "Tämä yhteys on varmennettu HTTPS-yhteykäytännöllä luottamuksellisuuden varmistamiseksi."
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr ""
+msgstr "Tämä yhteys on varmennettu Tor-yhteydellä luottamuksellisuuden ja nimettömyyden varmistamiseksi."
 
 msgid "vertical"
 msgstr "pystysuora"
@@ -253,7 +253,7 @@ msgid "Change your password"
 msgstr "Vaihda salasanasi"
 
 msgid "Access requests"
-msgstr ""
+msgstr "Pääsypyynnöt"
 
 msgid "User"
 msgstr "Käyttäjä"
@@ -295,7 +295,7 @@ msgid "Request access to the whistleblower's identity"
 msgstr "Pyydä päästä käsiksi vihjeenantajan henkilöllisyyteen"
 
 msgid "Please write a motivation"
-msgstr "Ole hyvä ja kirjoita perustelu"
+msgstr "Kirjoita perustelu"
 
 msgid "Reply to the request"
 msgstr "Vastauksen tila"
@@ -327,41 +327,14 @@ msgstr "Salli pääsy vihjeenantajan henkilöllisyyteen"
 msgid "Templates"
 msgstr "Mallipohjat"
 
-msgid "in seconds"
-msgstr "sekunneissa"
-
-msgid "in hours"
-msgstr "tunneissa"
-
-msgid "in days"
-msgstr "päivissä"
-
-msgid "in characters"
-msgstr "merkeissä"
-
-msgid "in megabytes"
-msgstr "megatavuissa"
-
-msgid "in percentage"
-msgstr "prosenteissa"
-
 msgid "HTTPS settings"
-msgstr "HTTPS asetukset"
+msgstr "HTTPS-asetukset"
 
 msgid "URL redirects"
 msgstr "URL-uudelleenohjaukset"
 
 msgid "Anomaly detection thresholds"
 msgstr "Poikkeaman havainnointikynnys"
-
-msgid "High risk"
-msgstr "Korkea riski"
-
-msgid "Medium risk"
-msgstr "Normaali riski"
-
-msgid "Low risk"
-msgstr "Matala riski"
 
 msgid "Available disk space"
 msgstr "Levytilaa jäljellä"
@@ -392,16 +365,16 @@ msgid "Trigger question"
 msgstr "Aseta jatkokysymys"
 
 msgid "Triggered by score:"
-msgstr "Käytetään pistemäärän mukaan"
+msgstr "Käytetään pistemäärän mukaan:"
 
 msgid "Message shown on top of the status page of the report"
-msgstr ""
+msgstr "Viesti, joka näytetään ilmoituksen tilasivun yläreunassa"
 
 msgid "Copy and paste the PGP public key here"
 msgstr "Kopioi ja liitä julkinen PGP-avain tähän"
 
 msgid "Password strength:"
-msgstr "Salasanan vahvuus"
+msgstr "Salasanan vahvuus:"
 
 msgid "Weak"
 msgstr "Heikko"
@@ -435,9 +408,6 @@ msgstr "Kirjoita ylläpitäjän sähköpostiosoite"
 
 msgid "Enter a password for the administrator"
 msgstr "Kirjoita ylläpitäjän salasana"
-
-msgid "Test configuration"
-msgstr "Testaa järjestelmää"
 
 msgid "Failed logins"
 msgstr "Epäonnistuneita kirjautumisia"
@@ -486,10 +456,10 @@ msgstr "Tätä tekstiä ei enää näytetä palvelussa. Alkuperäinen teksti on 
 msgid ""
 "Unless the whistleblower checks the report by this time, their access to it "
 "will expire."
-msgstr ""
+msgstr "Ellei vihjeen lähettäjä tarkista ilmoitusta tähän aikaan mennessä, hänen pääsynsä siihen vanhenee."
 
 msgid "The whistleblower can no longer access the report"
-msgstr ""
+msgstr "Vihjeen lähettäjä ei enää pääse ilmoitukseen"
 
 msgid "Warning!"
 msgstr "Varoitus!"
@@ -512,7 +482,7 @@ msgid "This is the list of the other supported browsers:"
 msgstr "Muut tuetut selaimet:"
 
 msgid "Audit log"
-msgstr ""
+msgstr "Jäljitysketju"
 
 msgid "Stats"
 msgstr "Tilastot"
@@ -560,7 +530,7 @@ msgid "Display options alphabetically"
 msgstr "Näytä valinnat aakkosjärjestyksessä"
 
 msgid "Enable email notifications for:"
-msgstr "Ota sähköpostiilmoitukset käyttöön:"
+msgstr "Ota sähköposti-ilmoitukset käyttöön:"
 
 msgid "Disable"
 msgstr "Poista käytöstä"
@@ -626,27 +596,30 @@ msgid "Not running"
 msgstr "Ei käynnissä"
 
 msgid "Send a test email to your email address."
-msgstr "Lähetä testisähköposti omaan sähköpostiosoitteeseen"
+msgstr "Lähetä testisähköposti omaan sähköpostiosoitteeseen."
 
 msgid "Block the submission"
 msgstr "Estä vihjeen lähettäminen"
 
 msgid "Skip the recipient account creation."
-msgstr ""
+msgstr "Ohita vastaanottajatilin luominen."
 
 msgid "Send activation link"
-msgstr ""
+msgstr "Lähetä aktivointilinkki"
 
 msgid "Password reset"
-msgstr ""
+msgstr "Salasanan nollaus"
 
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr ""
+msgstr "Yksi tai useampi vastaanottajista ei ole vielä suorittanut ensimmäistä kirjautumistaan. Tämä tarkoittaa, että he eivät vastaanota ilmoituksia."
 
 msgid "This user has not performed the first login yet."
-msgstr ""
+msgstr "Tämä käyttäjä ei ole vielä suorittanut ensimmäistä kirjautumista."
+
+msgid "seconds"
+msgstr "sekuntia"
 
 msgid "Select the context of your report:"
 msgstr "Valitse vihjeen aihe:"
@@ -660,7 +633,7 @@ msgid ""
 "the report anonymous, which is strongly recommended.\\n\\nThis can be "
 "achieved with the use of the Tor Browser, providing anonymisation not found "
 "in other browsers."
-msgstr ""
+msgstr "Ilmoitusten lähettäminen HTTPS-yhteyskäytännöllä paljastaa ilmoituksen lähettämisen, mutta ei sen sisältöä.\\n\\nSen piilottaminen, että lähetät jotakin tekee ilmoituksen anonyymiksi, mitä suositellaan ponnekkaasti.\\n\\nTämä voidaan saada aikaan käyttämällä Tor-selainta, joka tarjoaa anonyymisyyden, jota ei löydy muista selaimista."
 
 msgid "Are you a whistleblower?"
 msgstr "Onko sinulla tietoa epäilyttävästä, laittomasta tai muuten hämärästä toiminnasta yrityksessäsi? Tuo asia julki ja lähetä meille vihje halutessasi täysin nimettömänä turvallisen verkkoyhteyden kautta."
@@ -672,7 +645,7 @@ msgid "Your report was successful."
 msgstr "Vihjeesi lähettäminen onnistui."
 
 msgid "Report"
-msgstr ""
+msgstr "Ilmoita"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Määritä uusi salasana ennen kuin jatkat."
@@ -684,7 +657,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Valitsemasi salasana on liian yksinkertainen. Salasanan täytyy olla vähintään 10 merkkiä pitkä ja sisältää vähintään yksi pieni ja iso kirjain sekä numero ja erikoismerkki."
+msgstr "Valitsemasi salasana on liian yksinkertainen. Salasanan täytyy olla vähintään 10 merkkiä pitkä ja sisältää vähintään yhden pienen ja ison kirjaimen sekä numeron ja erikoismerkin."
 
 msgid "The new password must be different from the current one."
 msgstr "Uusi salasana ei voi olla sama kuin parhaillaan käytössä oleva."
@@ -711,7 +684,7 @@ msgid "Enable encryption"
 msgstr "Käytä salausta"
 
 msgid "Enable administrators to change user passwords"
-msgstr ""
+msgstr "Salli ylläpidon vaihtaa salasanat"
 
 msgid "Enable multisite feature"
 msgstr "Ota käyttöön samanaikainen kirjautuminen useaan järjestelmään"
@@ -742,7 +715,7 @@ msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "Salli seuraavien sivustojen upottaa palvelu iframes-toteutuksena omille verkkosivuilleen"
 
 msgid "Invalid input format."
-msgstr "Syötteen muoto ei kelpaa"
+msgstr "Syötteen muoto ei kelpaa."
 
 msgid "Enable custom privacy panel"
 msgstr "Ota käyttöön oma yksityisyyskulkukortti"
@@ -780,11 +753,14 @@ msgstr "Vihjeen tila -sivun otsikko"
 msgid "Size limit for file attachments"
 msgstr "Liitetiedostojen kokorajoitus"
 
+msgid "in megabytes"
+msgstr "megatavuissa"
+
 msgid "Enable HSTS preload"
 msgstr "Ota HSTS-esilataus käyttöön"
 
 msgid "Enable HTTP Basic Authentication"
-msgstr ""
+msgstr "Ota käyttöön HTTP-perusvarmennus"
 
 msgid "Username"
 msgstr "Käyttäjätunnus"
@@ -794,9 +770,6 @@ msgstr "Salasana"
 
 msgid "Require two factor authentication"
 msgstr "Kaksivaiheinen tunnistus vaaditaan"
-
-msgid "Require proof of work on user authentication"
-msgstr ""
 
 msgid "Password change interval"
 msgstr "Salasanan vaihtoväli"
@@ -825,7 +798,7 @@ msgid "Enable scoring system"
 msgstr "Ota käyttöön pisteytysjärjestelmä"
 
 msgid "Enable private labels"
-msgstr ""
+msgstr "Ota käyttöön yksityiset otsakkeet"
 
 msgid "Logging level"
 msgstr "Kirjautumistaso"
@@ -848,7 +821,19 @@ msgid "Save"
 msgstr "Tallenna"
 
 msgid "Reset reports"
-msgstr ""
+msgstr "Nollaa ilmoitukset"
+
+msgid "Low"
+msgstr "Matala"
+
+msgid "High"
+msgstr "Korkea"
+
+msgid "megabytes"
+msgstr "megatavuissa"
+
+msgid "percentage"
+msgstr "prosenteissa"
 
 msgid "Enable automatic backups"
 msgstr "Ota käyttöön automaattiset varmuuskopiot"
@@ -923,7 +908,7 @@ msgid "Cancel"
 msgstr "Peru"
 
 msgid "Report statuses"
-msgstr ""
+msgstr "Ilmoita tilat"
 
 msgid "Logo"
 msgstr "Logo"
@@ -932,7 +917,7 @@ msgid "Project name"
 msgstr "Palvelun nimi"
 
 msgid "Header title"
-msgstr ""
+msgstr "Otsakeotsikko"
 
 msgid "Homepage title"
 msgstr "Otsikkoteksti"
@@ -965,7 +950,7 @@ msgid "Download"
 msgstr "Lataa"
 
 msgid "Language:"
-msgstr "Valitse kieli"
+msgstr "Valitse kieli:"
 
 msgid "Add custom text"
 msgstr "Valitse korvattava teksti"
@@ -985,17 +970,17 @@ msgstr "Oma käännös"
 msgid "Contexts"
 msgstr "Aiheet"
 
-msgid "State"
-msgstr "Valtio"
-
-msgid "Enabled"
-msgstr "Käytössä"
-
 msgid "Hidden"
 msgstr "Piilotettu"
 
 msgid "Disabled"
 msgstr "Otettu pois käytöstä"
+
+msgid "State"
+msgstr "Valtio"
+
+msgid "Enabled"
+msgstr "Käytössä"
 
 msgid "Questionnaire"
 msgstr "Vihjelomake"
@@ -1063,14 +1048,8 @@ msgstr "Arvo"
 msgid "Medium"
 msgstr "Keskitaso"
 
-msgid "High"
-msgstr "Korkea"
-
 msgid "Customize the message shown in the receipt page"
 msgstr "Muokkaa kuittisivulla näkyvää viestiä"
-
-msgid "Low"
-msgstr "Matala"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr "Liitä kuittaus vain lähetettyihin vihjeisiin, jotka saavuttavat pistemäärän:"
@@ -1097,7 +1076,7 @@ msgid "Whistleblower"
 msgstr "Vihjeenantaja"
 
 msgid "Each entry must be separated with a comma."
-msgstr "Käytä erotusmerkkinä pilkkua "
+msgstr "Käytä erotusmerkkinä pilkkua."
 
 msgid "Example:"
 msgstr "Esimerkiksi:"
@@ -1197,7 +1176,7 @@ msgstr "Manuaalinen asetusten määritys"
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr "Manuaaliasetusten avustettu asennustoiminto auttaa sinua asentamaan vaihtoehtoisen varmenneviranomaisen tarjoaman HTTPS-yhteyden. "
+msgstr "Manuaaliasetusten avustettu asennustoiminto auttaa sinua asentamaan vaihtoehtoisen varmenneviranomaisen tarjoaman HTTPS-yhteyden."
 
 msgid "Auto-renewal"
 msgstr "Automaattinen uusiminen"
@@ -1250,7 +1229,7 @@ msgid "Reset notification templates to default"
 msgstr "Palauta ilmoituspohjat alkuperäisiksi"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr ""
+msgstr "Tuntien lukumäärä ennen vanhenemishälytyksen lähettämistä"
 
 msgid "Test the configuration"
 msgstr "Suorita järjestelmätestaus"
@@ -1427,13 +1406,13 @@ msgid "Subdomain"
 msgstr "Alidomain"
 
 msgid "Send an account activation link to the user."
-msgstr ""
+msgstr "Lähetä tilin aktivointilinkki käyttäjälle."
 
 msgid "Public name"
 msgstr "Julkinen nimi"
 
 msgid "Send reset link"
-msgstr ""
+msgstr "Lähetä nollauslinkki"
 
 msgid "Set password"
 msgstr "Aseta salasana"
@@ -1466,7 +1445,7 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "Määritä salaus PGP-avaimella"
 
 msgid "Give this admin ability to change user passwords"
-msgstr ""
+msgstr "Anna tälle ylläpitäjälle kyky vaihtaa käyttäjäsalasanoja"
 
 msgid "Configuration"
 msgstr "Asetukset"
@@ -1498,7 +1477,7 @@ msgid "ID"
 msgstr "Tunniste"
 
 msgid "Report date"
-msgstr ""
+msgstr "Ilmoituspäivämäärä"
 
 msgid "Authorization"
 msgstr "Käyttölupa"
@@ -1522,7 +1501,7 @@ msgid "Authentication failed"
 msgstr "Tunnistautuminen epäonnistui"
 
 msgid "The code is either invalid or expired."
-msgstr "Koodi on virheellinen tai sen käyttöaika on umpeutunut"
+msgstr "Koodi on virheellinen tai sen käyttöaika on umpeutunut."
 
 msgid "Site:"
 msgstr "Palvelu:"
@@ -1531,7 +1510,7 @@ msgid "Have you already filed a report? Enter your receipt."
 msgstr "Oletko jo lähettänyt vihjeen? Kirjoita kuittauksesi."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "Kuitti on virheellinen tai lähetys on vanhentunut"
+msgstr "Kuitti on virheellinen tai lähetys on vanhentunut."
 
 msgid "Username:"
 msgstr "Käyttäjätunnus:"
@@ -1564,7 +1543,7 @@ msgid "Assign score points"
 msgstr "Käytä pisteytystä"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
+msgstr "Huomaa, että kaikki tiliin liittyvät tiedot poistetaan pysyvästi."
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Tämä on palvelun esittelyversio, eikä se sovellu oikeiden vihjeiden lähettämiseen."
@@ -1585,15 +1564,15 @@ msgid "Close"
 msgstr "Sulje"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr ""
+msgstr "Lue ennen jatkamista huolellisesti dokumentaatio osoitteessa "
 
 msgid "Your account recovery key is:"
-msgstr ""
+msgstr "Tilisi palautusavain on:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr ""
+msgstr "Tee kopio ja tallenna se turvalliseen paikkaan. Se on välttämätön, jos kadotat salasanasi ja haluat palauttaa pääsyn tilillesi ilman tietojen katoamista."
 
 msgid "Welcome!"
 msgstr "Tervetuloa!"
@@ -1609,7 +1588,7 @@ msgstr "Jos tarvitset teknistä tukea, sinulla on jokin palvelun käyttöön lii
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr "Jos haluat olla mukana ohjelmiston kehittämisessä tai ilmoittaa palvelun käyttöön liittyvästä virhetilanteesta, ole hyvä ja lähetä kuvaus parannusehdotuksesta tai virhetilanteesta kirjausjärjestelmäämme: "
+msgstr "Jos haluat olla mukana ohjelmiston kehittämisessä tai ilmoittaa palvelun käyttöön liittyvästä virhetilanteesta, lähetä kuvaus parannusehdotuksesta tai virhetilanteesta kirjausjärjestelmäämme: "
 
 msgid ""
 "If your non-profit needs support for investigative journalism, activism or a"
@@ -1622,7 +1601,7 @@ msgid ""
 msgstr "Jos tarvitset asiantuntijatukea kehittäessäsi projektia korruption tai muun laittoman toiminnan kitkemiseksi, ota yhteyttä yhteiskunnalliseen GlobaLeaks-ohjelmistoa ylläpitävään yritykseen:"
 
 msgid "Join our chat:"
-msgstr ""
+msgstr "Liity chat-kanavallemme:"
 
 msgid "Follow the project on:"
 msgstr "Seuraa projektia osoitteessa "
@@ -1657,7 +1636,7 @@ msgid "Resource can only be accessed via the Tor network"
 msgstr "Resurssiin on pääsy vain Tor-verkon sisällä"
 
 msgid "The upload request exceeds the size limit"
-msgstr "Pyyntö palvelimelle kopiontiin ylittää kokorajan"
+msgstr "Lähetyspyyntö palvelimelle ylittää kokorajan"
 
 msgid "Success!"
 msgstr "Onnistui!"
@@ -1672,7 +1651,7 @@ msgid "Set up email encryption by providing a PGP public key"
 msgstr "Määritä sähköpostin salaus julkisella PGP-avaimella"
 
 msgid "Account recovery key"
-msgstr ""
+msgstr "Tilin palautusavain"
 
 msgid "Current password"
 msgstr "Nykyinen salasana"
@@ -1688,7 +1667,7 @@ msgstr "Vaikuttaa siltä, että käytät palvelua ilman mitään erityisiä yksi
 msgid ""
 "You are strongly advised to visit this site using the desktop app called Tor"
 " Browser, that protects your identity."
-msgstr "Suositelemme vahvasti käyttämään turvallista ja yksityisyytesi suojaavaa Tor-selainta."
+msgstr "Suositelemme ponnekkaasti käyttämään turvallista ja yksityisyytesi suojaavaa Tor-selainta."
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Jatka sitten palvelun käyttöä kopioimalla ja liittämällä seuraava osoite asentamasi Tor-selaimen osoiteriville:"
@@ -1710,9 +1689,6 @@ msgstr "Tiedostoja lähettäessä tapahtui virhe. Katso tarkemmat tiedot alhaalt
 
 msgid "Estimated upload time:"
 msgstr "Arvioitu latausaika:"
-
-msgid "seconds"
-msgstr "sekuntia"
 
 msgid "Size:"
 msgstr "Koko:"
@@ -1738,7 +1714,7 @@ msgid ""
 "and staying anonymous by not revealing your location or IP address. You "
 "won't notice any difference from an insecure chat, except that you will be "
 "using a unique address instead of a phone number/email/username."
-msgstr ""
+msgstr "Käyttämällä Tor-verkkoa ja luomalla Onion Service-palvelun Ricochet on pikaviestisovellus, joka sallii sinun jutella samalla kun yksityisyytesi suojellaan ja anonyymisyytesi pysyy paljastamatta sijaintiasi tai IP-osoitettasi. Et huomaa mitään eroa turvattomaan juttelusovellukseen, paitsi että käytät uniikkia osoitettaa puhelinnumeron/sähköpostiosoitteen/käyttäjänimen sijasta."
 
 msgid "The connection is not secure."
 msgstr "Yhteys ei ole turvallinen."
@@ -1767,7 +1743,7 @@ msgid "Submit"
 msgstr "Lähetä"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "Vastaanottajat ovat pyytäneet sinua täyttämään täydentävän vihjelomakkeen"
+msgstr "Vastaanottajat ovat pyytäneet sinua täyttämään täydentävän vihjelomakkeen."
 
 msgid "Fill the additional questionnaire"
 msgstr "Täytä täydentävä vihjelomake"
@@ -1797,10 +1773,10 @@ msgid "download"
 msgstr "lataa"
 
 msgid "No files have been uploaded!"
-msgstr "Yhtään tiedostoa ei kopioitu palvelimelle!"
+msgstr "Yhtään tiedostoa ei ole lähetetty palvelimelle!"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Salli vihjeenantajan liittää vihjeeeen tiedostoja."
+msgstr "Salli vihjeenantajan liittää vihjeeseen tiedostoja."
 
 msgid "Access expiration"
 msgstr "Käyttöoikeuden vanhentuminen"
@@ -1838,7 +1814,7 @@ msgid ""
 msgstr "Huolehdi, että kaikki liittyvät tiedot on poistettu oikein eikä kenelläkään vastaanottajalla ole enää pääsyä niihin."
 
 msgid "Please write a motivation for the reply"
-msgstr "Ole hyvä ja kirjoita vastauksen perustelu"
+msgstr "Kirjoittaisitko vastauksen perustelun"
 
 msgid "Are you sure that you want to postpone the report expiration date?"
 msgstr "Oletko varma, että haluat myöhentää vihjeen vanhenemispäivää?"
@@ -1953,7 +1929,7 @@ msgid "Invalid phone number"
 msgstr "Puhelinnumero ei kelpaa"
 
 msgid "This field is mandatory."
-msgstr "Pakollinen kenttä"
+msgstr "Pakollinen kenttä."
 
 msgid "The answer is too short."
 msgstr "Vastaus on liian lyhyt."
@@ -2001,7 +1977,7 @@ msgid ""
 msgstr "Vastaukset tämän vaiheen kyseessä oleviin kysymyksiin joko puuttuvat tai eivät kelpaa:"
 
 msgid "Errors"
-msgstr ""
+msgstr "Virheet"
 
 msgid "You must select at least one recipient."
 msgstr "Sinun täytyy valita vähintään yksi vastaanottaja."
@@ -2018,7 +1994,7 @@ msgid ""
 msgstr "Tämän vaihe vaiheelta -opastuksen avulla voit ottaa vihjepalvelun käyttöösi haluamillasi asetuksilla."
 
 msgid "Please choose a configuration profile:"
-msgstr "Ole hyvä ja valitse palvelun kokoonpanon profiili:"
+msgstr "Valitse palvelun asetusprofiili:"
 
 msgid ""
 "These profiles contain settings used by successful projects in each "
@@ -2029,16 +2005,16 @@ msgid "Confirm password"
 msgstr "Vahvista salasana"
 
 msgid "Please choose a different username."
-msgstr ""
+msgstr "Valitse erilainen käyttäjänimi."
 
 msgid "The user will receive an activation link via email."
-msgstr ""
+msgstr "Käyttäjä vastaanottaa aktivointilinkin sähköpostin välityksellä."
 
 msgid "License Agreement"
 msgstr "Lisenssisopimus"
 
 msgid "Please review the license terms before proceeding."
-msgstr "Ole hyvä ja lue palvelun lisenssisopimuksen käyttöehdot ennen kuin jatkat."
+msgstr "Lue palvelun lisenssisopimuksen käyttöehdot ennen kuin jatkat."
 
 msgid "I have read and agree to the terms of the License Agreement."
 msgstr "Olen lukenut ja hyväksyn palvelun lisenssisopimuksen käyttöehdot."
@@ -2053,16 +2029,16 @@ msgid "Short title"
 msgstr "Vihjeen otsikko"
 
 msgid "Describe your report in a few words."
-msgstr "Kuvaile lähetyksesi muutamalla sanalla"
+msgstr "Kuvaile lähetyksesi muutamalla sanalla."
 
 msgid "Full description"
 msgstr "Vihjeen tarkempi kuvaus"
 
 msgid "Describe your report in detail."
-msgstr "Kuvaile lähetyksesi muutamalla sanalla"
+msgstr "Kuvaile lähetyksesi muutamalla sanalla."
 
 msgid "Attach files relevant to the report."
-msgstr "Liitä tiedostot siihen liittyvään lähetykseen"
+msgstr "Liitä tiedostot siihen liittyvään lähetykseen."
 
 msgid "Do you want to provide your identification information?"
 msgstr "Haluatko luovuttaa henkilötietosi?"
@@ -2127,32 +2103,32 @@ msgstr "Hyvä {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr ""
+msgstr "Vastaanotit tämän sähköpostiviestin, koska sinulle on luotu käyttäjätili järjestelmään: {Site}"
 
 msgid "Username: {Username}"
 msgstr "Käyttäjätunnus: {Username}"
 
 msgid "Activation link: {Url}"
-msgstr ""
+msgstr "Aktivointilinkki: {Url}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
+msgstr "Etene tilin aktivointiin napsauttamalla aktivointilinkkiä ja aseta käyttäjän salasana."
 
 msgid "This link will expire in 3 days."
-msgstr ""
+msgstr "Tämä linkki vanhenee 3:ssa päivässä."
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr ""
+msgstr "Onnistuneen aktivoinnin jälkeen kykenet kirjautumaan järjestelmään seuraavan linkin kautta: {LoginUrl}"
 
 msgid "Kind regards,"
 msgstr "Ystävällisin terveisin,"
 
 msgid "Account activation"
-msgstr ""
+msgstr "Tilin aktivointi"
 
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "Vihjepalvelusi on nyt käyttövalmis osoitteessa "
@@ -2171,7 +2147,7 @@ msgstr "Ohjeet palvelun käytön aloittamiseksi"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
-msgstr "Palvelun käyttöaste on ollut lähiaikoina korkeampi kuin tavallisesti."
+msgstr "Palvelun käyttöaste on ollut viime aikoina korkeampi kuin tavallisesti."
 
 msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
@@ -2193,7 +2169,7 @@ msgstr "Palvelin ei pysty varmistamaan uusien vihjeiden tallentamista, joten vih
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr "Ole hyvä ja harkitse pyytäväsi palvelun teknistä tukea kasvattamaan järjestelmän sallimaa levytilaa."
+msgstr "Harkitse pyyntöä palvelun tekniselle tuelle järjestelmän salliman levytilan kasvattamiseksi."
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
@@ -2203,7 +2179,7 @@ msgstr "GlobaLeaksin teknologia tarkkailee jatkuvasti järjestelmän tilaa ja va
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr "Lisätietoja löydät palvelun ylläpitäjän näkymästä välilehdiltä Tilastot ja Poikkeamat."
+msgstr "Lisätietoja löydät palvelun ylläpitäjän näkymästä välilehdiltä ”Tilastot” ja ”Poikkeamat”."
 
 msgid "Anomaly detected in {NodeName}"
 msgstr "Poikkema havaittu verkon solmukohdassa {NodeName}"
@@ -2261,7 +2237,7 @@ msgid "This is an email to notify you of a new comment on an existing report."
 msgstr "Palvelussa olevaan vihjeeseen on lisätty uusi kommentti."
 
 msgid "The report can be accessed at:"
-msgstr ""
+msgstr "Ilmoitus näkyy osoitteessa "
 
 msgid "New comment"
 msgstr "Uusi kommentti"
@@ -2272,7 +2248,7 @@ msgid ""
 msgstr "Pyyntö sähköpostiosoitteesi muuttamiseksi muotoon {NewEmailAddress} on tehty."
 
 msgid "Click the following link to validate this change:"
-msgstr "Ole hyvä ja klikkaa oheista linkkiä vahvistaaksesi tämän muutoksen:"
+msgstr "Napsauta oheista linkkiä vahvistaaksesi tämän muutoksen:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2384,7 +2360,7 @@ msgstr "Uusi viesti"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "Sait tämän sähköpostiviestin, koska käyttäjätilin '{Username}' salasana on pyydetty vaihtamaan uuteen."
+msgstr "Sait tämän sähköpostiviestin, koska käyttäjätilin ’{Username}’ salasana on pyydetty vaihtamaan uuteen."
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
@@ -2392,7 +2368,7 @@ msgid ""
 msgstr "Jos et ole tämän pyynnön tekijä, voit turvallisesti jättää tämän sähköpostiviestin huomiotta ja poistaa sen."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr "Voit vahvistaa pyyntösi oheista linkkiä klikkaamalla:"
+msgstr "Voit vahvistaa pyyntösi napsauttamalla oheista linkkiä:"
 
 msgid "Password reset instructions"
 msgstr "Ohjeet salanasan uusimiseksi"
@@ -2405,7 +2381,7 @@ msgstr "PGP-avaimesi on vanhentumassa tai jo vanhentunut."
 msgid ""
 "You should extend its validity and update the key present on the platform, "
 "or upload a new key."
-msgstr "Pidennä nykyisen palvelussa olevan avaimen voimassaoloaikaa tai lataa palveluun kokonaan uusi avain. "
+msgstr "Pidennä nykyisen palvelussa olevan avaimen voimassaoloaikaa tai lataa palveluun kokonaan uusi avain."
 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
@@ -2413,7 +2389,7 @@ msgid ""
 msgstr "Ilman kelvollista PGP-avainta järjestelmä ei pysty salaamaan vastaanottamiasi tietoja."
 
 msgid "Click the link to activate the platform:"
-msgstr "Klikkaa linkkiä aktivoidaksesi palvelun: "
+msgstr "Napsauta linkkiä aktivoidaksesi palvelun: "
 
 msgid "Activation"
 msgstr "Aktivointi"
@@ -2463,7 +2439,7 @@ msgid ""
 msgstr "Muista noudattaa erityistä varovaisuutta käsitellessäsi näitä tietoja, koska usein vihjeiden antajat altistavat itsensä suurelle henkilökohtaiselle riskille julkisen kiinnostuksen vuoksi. Tästä johtuen vihjettä materiaaleineen täytyy käsitellä erityisen huolellisesti."
 
 msgid "New report"
-msgstr ""
+msgstr "Uusi ilmoitus"
 
 msgid "Role: {Role}"
 msgstr "Rooli: {Role}"

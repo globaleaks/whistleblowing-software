@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -220,12 +220,12 @@ msgid "Access control"
 msgstr "Controle de acesso"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr ""
+msgstr "A conexão foi protegida com HTTPS, garantindo confidencialidade."
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr ""
+msgstr "A conexão foi protegida com o Tor, garantindo sigilo e anonimato."
 
 msgid "vertical"
 msgstr "vertical"
@@ -282,7 +282,7 @@ msgid "Change your password"
 msgstr "Modificar sua senha"
 
 msgid "Access requests"
-msgstr ""
+msgstr "Solicitações de acesso"
 
 msgid "User"
 msgstr "Usuário"
@@ -356,24 +356,6 @@ msgstr "Autorizar acesso à identidade do delator"
 msgid "Templates"
 msgstr "Modelos"
 
-msgid "in seconds"
-msgstr "em segundos"
-
-msgid "in hours"
-msgstr "em horas"
-
-msgid "in days"
-msgstr "em dias"
-
-msgid "in characters"
-msgstr "em caracteres"
-
-msgid "in megabytes"
-msgstr "em megabytes"
-
-msgid "in percentage"
-msgstr "em porcentagem"
-
 msgid "HTTPS settings"
 msgstr "Configurações HTTPS "
 
@@ -382,15 +364,6 @@ msgstr "Redirecionamentos de URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "Limites de detecção de anomalia  "
-
-msgid "High risk"
-msgstr "Risco alto"
-
-msgid "Medium risk"
-msgstr "Risco médio"
-
-msgid "Low risk"
-msgstr "Risco baixo"
 
 msgid "Available disk space"
 msgstr "Espaço disponível em disco"
@@ -464,9 +437,6 @@ msgstr "Inserir um endereço e-mail para quem administra "
 
 msgid "Enter a password for the administrator"
 msgstr "Inserir uma senha de administracao "
-
-msgid "Test configuration"
-msgstr "Testar configuracao "
 
 msgid "Failed logins"
 msgstr "Falha no acesso"
@@ -672,10 +642,13 @@ msgstr "Redefinição de senha"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr ""
+msgstr "Um ou mais destinatários ainda não realizaram o primeiro login. Isso significa que eles não receberão relatórios."
 
 msgid "This user has not performed the first login yet."
-msgstr ""
+msgstr "Este usuário ainda não realizou o primeiro login."
+
+msgid "seconds"
+msgstr "segundos"
 
 msgid "Select the context of your report:"
 msgstr "Selecionar o assunto do seu envio:"
@@ -701,7 +674,7 @@ msgid "Your report was successful."
 msgstr "Submissão feita com sucesso."
 
 msgid "Report"
-msgstr ""
+msgstr "Relatório"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Antes de continuar, defina uma nova senha."
@@ -809,6 +782,9 @@ msgstr "Mensagem exibida no início da página do status de envio"
 msgid "Size limit for file attachments"
 msgstr "Limite de tamanho para arquivos anexados"
 
+msgid "in megabytes"
+msgstr "em megabytes"
+
 msgid "Enable HSTS preload"
 msgstr "Ativar pré-carregamento do HSTS"
 
@@ -823,9 +799,6 @@ msgstr "Senha"
 
 msgid "Require two factor authentication"
 msgstr "Exigir autenticação de dois fatores"
-
-msgid "Require proof of work on user authentication"
-msgstr ""
 
 msgid "Password change interval"
 msgstr "Intervalo de alteração de senha"
@@ -877,7 +850,19 @@ msgid "Save"
 msgstr "Salvar"
 
 msgid "Reset reports"
-msgstr ""
+msgstr "Redefinir relatórios"
+
+msgid "Low"
+msgstr "Baixo"
+
+msgid "High"
+msgstr "Alto"
+
+msgid "megabytes"
+msgstr "megabytes"
+
+msgid "percentage"
+msgstr "porcentagem"
 
 msgid "Enable automatic backups"
 msgstr "Ativar backups automáticos"
@@ -952,7 +937,7 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 msgid "Report statuses"
-msgstr ""
+msgstr "Status do relatório"
 
 msgid "Logo"
 msgstr "Logotipo"
@@ -1014,17 +999,17 @@ msgstr "Tradução personalizada"
 msgid "Contexts"
 msgstr "Assuntos"
 
-msgid "State"
-msgstr "Estado"
-
-msgid "Enabled"
-msgstr "Habilitado"
-
 msgid "Hidden"
 msgstr "Oculto"
 
 msgid "Disabled"
 msgstr "Desabilitado"
+
+msgid "State"
+msgstr "Estado"
+
+msgid "Enabled"
+msgstr "Habilitado"
 
 msgid "Questionnaire"
 msgstr "Questionário"
@@ -1092,14 +1077,8 @@ msgstr "Valor"
 msgid "Medium"
 msgstr "Média "
 
-msgid "High"
-msgstr "Alto"
-
 msgid "Customize the message shown in the receipt page"
 msgstr "Personalize a mensagem mostrada na página de recibo"
-
-msgid "Low"
-msgstr "Baixo"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr "Atribuir o recibo somente aos envios que atingirem a pontuação:"
@@ -1527,7 +1506,7 @@ msgid "ID"
 msgstr "ID"
 
 msgid "Report date"
-msgstr ""
+msgstr "Data do relatório"
 
 msgid "Authorization"
 msgstr "Autorização"
@@ -1593,7 +1572,7 @@ msgid "Assign score points"
 msgstr "Atribuir pontos de pontuação"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
+msgstr "Observe que todos os dados associados serão excluídos permanentemente"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Esta é uma plataforma de demonstração, não a utilize para envios reais."
@@ -1651,7 +1630,7 @@ msgid ""
 msgstr "Para suporte profissional e desenvolvimento de projetos anti-corrupção e conformidade, entre em contato com a empresa social mantendo o GlobaLeaks:"
 
 msgid "Join our chat:"
-msgstr ""
+msgstr "Junte-se ao nosso chat:"
 
 msgid "Follow the project on:"
 msgstr "Siga o projeto em:"
@@ -1739,9 +1718,6 @@ msgstr "Erro ao carregar arquivos; conferir detalhes abaixo."
 
 msgid "Estimated upload time:"
 msgstr "Tempo estimado do upload:"
-
-msgid "seconds"
-msgstr "segundos"
 
 msgid "Size:"
 msgstr "Tamanho:"
@@ -2030,7 +2006,7 @@ msgid ""
 msgstr "Neste passo as respostas às seguintes perguntas ou estão ausentes ou inválidas:"
 
 msgid "Errors"
-msgstr ""
+msgstr "Erros"
 
 msgid "You must select at least one recipient."
 msgstr "Você deve selecionar pelo menos um destinatário."
@@ -2082,16 +2058,16 @@ msgid "Short title"
 msgstr "Título curto"
 
 msgid "Describe your report in a few words."
-msgstr ""
+msgstr "Descreva seu relatório em poucas palavras."
 
 msgid "Full description"
 msgstr "Descrição completa"
 
 msgid "Describe your report in detail."
-msgstr ""
+msgstr "Descreva seu relatório em detalhes."
 
 msgid "Attach files relevant to the report."
-msgstr ""
+msgstr "Anexe arquivos relevantes ao relatório."
 
 msgid "Do you want to provide your identification information?"
 msgstr "Você deseja fornecer informações sobre a sua identidade?"
@@ -2217,7 +2193,7 @@ msgstr "As atividades com estatísticas incomuns são:"
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr ""
+msgstr "O servidor não pode garantir que um novo relatório possa ser armazenado; portanto, os envios foram desativados."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
@@ -2287,10 +2263,10 @@ msgid "Test email"
 msgstr "E-mail de teste"
 
 msgid "This is an email to notify you of a new comment on an existing report."
-msgstr ""
+msgstr "Este é um email para notificá-lo sobre um novo comentário em um relatório existente."
 
 msgid "The report can be accessed at:"
-msgstr ""
+msgstr "O relatório pode ser acessado em:"
 
 msgid "New comment"
 msgstr "Novo comentário"
@@ -2335,7 +2311,7 @@ msgstr "Assunto: {ContextName}"
 msgid ""
 "This is an email to notify you that the whistleblower of report {TipNum} has"
 " attached new material."
-msgstr ""
+msgstr "Este é um email para notificá-lo de que o denunciante do relatório {TipNum} anexar um novo material."
 
 msgid "New attachment"
 msgstr "Novo anexo"
@@ -2372,7 +2348,7 @@ msgstr "Renovação de certificado HTTPS com falha"
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Este é um e-mail para notificá-lo de que um custodiante autorizou você a acessar a identidade de denúncia do relatório {TipNum}."
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "Acesso autorizado à identidade de um delator"
@@ -2380,7 +2356,7 @@ msgstr "Acesso autorizado à identidade de um delator"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " wistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Este é um e-mail para notificá-lo de que um custodiante negou o acesso à identidade de denúncia do relatório {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Acesso negado à identidade de um delator"
@@ -2388,7 +2364,7 @@ msgstr "Acesso negado à identidade de um delator"
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr ""
+msgstr "Este é um email para notificá-lo de que um destinatário solicitou acesso à identidade do denunciante para o relatório {TipNum}"
 
 msgid "The request can be accessed at:"
 msgstr "A solicitação pode ser acessada em:"
@@ -2399,13 +2375,13 @@ msgstr "Novo pedido de acesso à identidade de um delator"
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr ""
+msgstr "Este é um email para notificá-lo de que o denunciante do relatório {TipNum} forneceu sua identidade."
 
 msgid "The whistleblower has provided their identity"
 msgstr "O delator forneceu a sua identidade"
 
 msgid "This is an email to notify you of a new message on an existing report."
-msgstr ""
+msgstr "Este é um email para notificá-lo de uma nova mensagem em um relatório existente."
 
 msgid "New message"
 msgstr "Nova mensagem"
@@ -2476,12 +2452,12 @@ msgid "Please remember to check them before they are deleted."
 msgstr "Lembre-se verificá-los antes de excluir."
 
 msgid "Some reports will expire soon"
-msgstr ""
+msgstr "Alguns relatórios expiram em breve"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr ""
+msgstr "Este é um email para notificá-lo de que um denunciante o selecionou como um destinatário valioso do relatório."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2489,10 +2465,10 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr ""
+msgstr "Você é solicitado a prestar atenção especial às informações e materiais nela contidos. Lembre-se de que os denunciantes geralmente se expõem a altos riscos pessoais no interesse do público. Portanto, o material fornecido neste relatório deve ser considerado de alta importância."
 
 msgid "New report"
-msgstr ""
+msgstr "Novo relatório"
 
 msgid "Role: {Role}"
 msgstr "Função: {Role}"

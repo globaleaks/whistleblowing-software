@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -335,24 +335,6 @@ msgstr "Autoritza l'accés a la identitat de l'informador"
 msgid "Templates"
 msgstr "Plantilles"
 
-msgid "in seconds"
-msgstr "en segons"
-
-msgid "in hours"
-msgstr "en hores"
-
-msgid "in days"
-msgstr "en dies"
-
-msgid "in characters"
-msgstr "en caràcters"
-
-msgid "in megabytes"
-msgstr "en megabytes"
-
-msgid "in percentage"
-msgstr "en percentatge"
-
 msgid "HTTPS settings"
 msgstr "configuracions en HTTPS"
 
@@ -361,15 +343,6 @@ msgstr "Redireccions de URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "Llindars de detecció d'anomalies"
-
-msgid "High risk"
-msgstr "Risc alt"
-
-msgid "Medium risk"
-msgstr "Risc mitjà"
-
-msgid "Low risk"
-msgstr "Risc baix"
 
 msgid "Available disk space"
 msgstr "Espai del disc disponible"
@@ -443,9 +416,6 @@ msgstr "Introdueix l'adreça electrònica per a l'administrador"
 
 msgid "Enter a password for the administrator"
 msgstr "Introdueix la contrasenya per a l'administrador"
-
-msgid "Test configuration"
-msgstr "Configuració del test"
 
 msgid "Failed logins"
 msgstr "Inicis de sessió fallits"
@@ -651,10 +621,13 @@ msgstr "Restablir contrasenya"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr ""
+msgstr "Un o més destinataris encara no han realitzat el primer accés. Això vol dir que no rebran informes."
 
 msgid "This user has not performed the first login yet."
-msgstr ""
+msgstr "Aquest usuari encara no ha realitzat el primer accés."
+
+msgid "seconds"
+msgstr "segons"
 
 msgid "Select the context of your report:"
 msgstr "Selecciona el context del teu informe:"
@@ -788,6 +761,9 @@ msgstr "Títol de la pàgina d’estat de l’informe"
 msgid "Size limit for file attachments"
 msgstr "Límit de mida per als arxius adjunts"
 
+msgid "in megabytes"
+msgstr "en megabytes"
+
 msgid "Enable HSTS preload"
 msgstr "Activa la pre-càrrega HSTS"
 
@@ -802,9 +778,6 @@ msgstr "Contrasenya"
 
 msgid "Require two factor authentication"
 msgstr "Requereix autenticació de dues passes"
-
-msgid "Require proof of work on user authentication"
-msgstr ""
 
 msgid "Password change interval"
 msgstr "Periodicitat de canvi de contrasenya"
@@ -857,6 +830,18 @@ msgstr "Desa"
 
 msgid "Reset reports"
 msgstr "Restableix els informes"
+
+msgid "Low"
+msgstr "Baix"
+
+msgid "High"
+msgstr "Alt"
+
+msgid "megabytes"
+msgstr "megabytes"
+
+msgid "percentage"
+msgstr "percentatge"
 
 msgid "Enable automatic backups"
 msgstr "Activa les còpies de seguretat automàtiques "
@@ -993,17 +978,17 @@ msgstr "Traducció personalitzada"
 msgid "Contexts"
 msgstr "Contextos"
 
-msgid "State"
-msgstr "Comunitat autònoma"
-
-msgid "Enabled"
-msgstr "Habilitat"
-
 msgid "Hidden"
 msgstr "Ocult"
 
 msgid "Disabled"
 msgstr "Deshabilitat"
+
+msgid "State"
+msgstr "Estat"
+
+msgid "Enabled"
+msgstr "Habilitat"
 
 msgid "Questionnaire"
 msgstr "Qüestionari"
@@ -1071,14 +1056,8 @@ msgstr "Valor"
 msgid "Medium"
 msgstr "Mitjà"
 
-msgid "High"
-msgstr "Alt"
-
 msgid "Customize the message shown in the receipt page"
 msgstr "Personalitza el missatge mostrat a la pàgina de codi de rebut"
-
-msgid "Low"
-msgstr "Baix"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr "Assigna el codi de rebut només als informes que arriben a la puntuació:"
@@ -1718,9 +1697,6 @@ msgstr "Hi ha hagut un error mentre es carregaven els arxius; revisa'n els detal
 
 msgid "Estimated upload time:"
 msgstr "Temps estimat de càrrega:"
-
-msgid "seconds"
-msgstr "segons"
 
 msgid "Size:"
 msgstr "Mida:"

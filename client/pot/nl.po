@@ -43,8 +43,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-27 11:43+0000\n"
-"Last-Translator: tijs <tijs@tweakers.net>\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -360,24 +360,6 @@ msgstr "Verleen toegang tot de identiteit van de klokkenluider"
 msgid "Templates"
 msgstr "Sjablonen"
 
-msgid "in seconds"
-msgstr "in seconden"
-
-msgid "in hours"
-msgstr "in uren"
-
-msgid "in days"
-msgstr "in dagen"
-
-msgid "in characters"
-msgstr "in karakters"
-
-msgid "in megabytes"
-msgstr "in megabytes"
-
-msgid "in percentage"
-msgstr "percentage"
-
 msgid "HTTPS settings"
 msgstr "HTTPS-instellingen"
 
@@ -386,15 +368,6 @@ msgstr "URL-verwijzingen"
 
 msgid "Anomaly detection thresholds"
 msgstr "Drempels voor anomaliedetectie"
-
-msgid "High risk"
-msgstr "Hoog risico"
-
-msgid "Medium risk"
-msgstr "Gemiddeld risico"
-
-msgid "Low risk"
-msgstr "Laag risico"
 
 msgid "Available disk space"
 msgstr "Beschikbare schijfruimte"
@@ -468,9 +441,6 @@ msgstr "Vul een e-mailadres in voor de beheerder"
 
 msgid "Enter a password for the administrator"
 msgstr "Vul een wachtwoord in voor de beheerder"
-
-msgid "Test configuration"
-msgstr "Instelling testen"
 
 msgid "Failed logins"
 msgstr "Mislukte inlogpogingen"
@@ -681,6 +651,9 @@ msgstr "Een of meer ontvangers hebben nog nooit ingelogd. Dit betekent dat ze ge
 msgid "This user has not performed the first login yet."
 msgstr "Deze gebruiker heeft nog nooit ingelogd."
 
+msgid "seconds"
+msgstr "seconden"
+
 msgid "Select the context of your report:"
 msgstr "Selecteer de context van uw inzending:"
 
@@ -813,6 +786,9 @@ msgstr "Titel van de inzending status-pagina"
 msgid "Size limit for file attachments"
 msgstr "Maximale grootte voor bestandsbijlagen"
 
+msgid "in megabytes"
+msgstr "in megabytes"
+
 msgid "Enable HSTS preload"
 msgstr "HSTS-preload inschakelen"
 
@@ -827,9 +803,6 @@ msgstr "Wachtwoord"
 
 msgid "Require two factor authentication"
 msgstr "Vereis two-factor-authentication"
-
-msgid "Require proof of work on user authentication"
-msgstr ""
 
 msgid "Password change interval"
 msgstr "Wachtwoord-wijzigingsinterval"
@@ -882,6 +855,18 @@ msgstr "Bewaar"
 
 msgid "Reset reports"
 msgstr "Inzendingen resetten"
+
+msgid "Low"
+msgstr "Laag"
+
+msgid "High"
+msgstr "Hoog"
+
+msgid "megabytes"
+msgstr "megabytes"
+
+msgid "percentage"
+msgstr "percentage"
 
 msgid "Enable automatic backups"
 msgstr "Automatische back-ups inschakelen"
@@ -1018,17 +1003,17 @@ msgstr "Aangepaste vertaling"
 msgid "Contexts"
 msgstr "Categorieën"
 
-msgid "State"
-msgstr "Provincie"
-
-msgid "Enabled"
-msgstr "Ingeschakeld"
-
 msgid "Hidden"
 msgstr "Verborgen"
 
 msgid "Disabled"
 msgstr "Uitgeschakeld"
+
+msgid "State"
+msgstr "Provincie"
+
+msgid "Enabled"
+msgstr "Ingeschakeld"
 
 msgid "Questionnaire"
 msgstr "Vragenformulier"
@@ -1096,14 +1081,8 @@ msgstr "Waarde"
 msgid "Medium"
 msgstr "Medium"
 
-msgid "High"
-msgstr "Hoog"
-
 msgid "Customize the message shown in the receipt page"
 msgstr "Het bericht wat wordt getoond op de ontvangers pagina aanpassen"
-
-msgid "Low"
-msgstr "Laag"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr "Wijs de ontvangstbevestiging alleen toe aan indieningen welke een waardering bereiken van:"
@@ -1743,9 +1722,6 @@ msgstr "Fout tijdens uploaden van bestanden; check onderstaande details."
 
 msgid "Estimated upload time:"
 msgstr "Geschatte tijd voor uploaden:"
-
-msgid "seconds"
-msgstr "seconden"
 
 msgid "Size:"
 msgstr "Grootte:"

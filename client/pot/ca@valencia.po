@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -333,24 +333,6 @@ msgstr "Autoritza l'accés a la identitat de l'informador"
 msgid "Templates"
 msgstr "Plantilles"
 
-msgid "in seconds"
-msgstr "en segons"
-
-msgid "in hours"
-msgstr "en hores"
-
-msgid "in days"
-msgstr "en dies"
-
-msgid "in characters"
-msgstr "en caràcters"
-
-msgid "in megabytes"
-msgstr "en megabytes"
-
-msgid "in percentage"
-msgstr "en percentatge"
-
 msgid "HTTPS settings"
 msgstr "configuracions en HTTPS"
 
@@ -359,15 +341,6 @@ msgstr "URL de redirecció"
 
 msgid "Anomaly detection thresholds"
 msgstr "Llindars de detecció d'anomalies"
-
-msgid "High risk"
-msgstr "Risc alt"
-
-msgid "Medium risk"
-msgstr "Risc mitjà"
-
-msgid "Low risk"
-msgstr "Risc baix"
 
 msgid "Available disk space"
 msgstr "Espai del disc disponible"
@@ -401,7 +374,7 @@ msgid "Triggered by score:"
 msgstr "Activat per puntuació"
 
 msgid "Message shown on top of the status page of the report"
-msgstr ""
+msgstr "El missatge es mostra damunt de la pàgina de l'estatus del lliurament"
 
 msgid "Copy and paste the PGP public key here"
 msgstr "Copia i enganxa ací la clau pública PGP"
@@ -441,9 +414,6 @@ msgstr "Introdueix l'adreça electrònica per a l'administrador"
 
 msgid "Enter a password for the administrator"
 msgstr "Introdueix la contrasenya per a l'administrador"
-
-msgid "Test configuration"
-msgstr "Configuració del test"
 
 msgid "Failed logins"
 msgstr "Inicis de sessió fallits"
@@ -654,6 +624,9 @@ msgstr ""
 msgid "This user has not performed the first login yet."
 msgstr ""
 
+msgid "seconds"
+msgstr "segons"
+
 msgid "Select the context of your report:"
 msgstr "Seleccione el context del seu enviament:"
 
@@ -678,7 +651,7 @@ msgid "Your report was successful."
 msgstr "El seu lliurament s'ha efectuat amb èxit."
 
 msgid "Report"
-msgstr ""
+msgstr "Enviament"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Abans de continuar, per favor establixca una nova contrasenya."
@@ -786,6 +759,9 @@ msgstr "Títol de la pàgina d'estat del lliurament"
 msgid "Size limit for file attachments"
 msgstr "Límit de tamany per als arxius adjunts"
 
+msgid "in megabytes"
+msgstr "en megabytes"
+
 msgid "Enable HSTS preload"
 msgstr "Habilitar la precàrrega HSTS "
 
@@ -800,9 +776,6 @@ msgstr "Contrassenya"
 
 msgid "Require two factor authentication"
 msgstr "Requerir autenticació de doble factor"
-
-msgid "Require proof of work on user authentication"
-msgstr ""
 
 msgid "Password change interval"
 msgstr "Interval de canvi de contrasenya"
@@ -855,6 +828,18 @@ msgstr "Desa"
 
 msgid "Reset reports"
 msgstr ""
+
+msgid "Low"
+msgstr "Baix"
+
+msgid "High"
+msgstr "Alt"
+
+msgid "megabytes"
+msgstr "megabytes"
+
+msgid "percentage"
+msgstr "percentatge"
 
 msgid "Enable automatic backups"
 msgstr "Activar còpies de seguretat automàtiques"
@@ -991,17 +976,17 @@ msgstr "Traducció personalitzada"
 msgid "Contexts"
 msgstr "Contextos"
 
-msgid "State"
-msgstr "Comunitat autònoma"
-
-msgid "Enabled"
-msgstr "Habilitat"
-
 msgid "Hidden"
 msgstr "Ocult"
 
 msgid "Disabled"
 msgstr "Deshabilitat"
+
+msgid "State"
+msgstr "Comunitat autònoma"
+
+msgid "Enabled"
+msgstr "Habilitat"
 
 msgid "Questionnaire"
 msgstr "Qüestionari"
@@ -1069,14 +1054,8 @@ msgstr "Valor"
 msgid "Medium"
 msgstr "Mitjà"
 
-msgid "High"
-msgstr "Alt"
-
 msgid "Customize the message shown in the receipt page"
 msgstr "Personalitzar el missatge que es mostra a la pàgina de recepció"
-
-msgid "Low"
-msgstr "Baix"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr "Asignar el rebut només als enviament que tinguen una puntuació de:"
@@ -1716,9 +1695,6 @@ msgstr "Hi ha hagut un error mentre es carregaven els arxius; revisa els detalls
 
 msgid "Estimated upload time:"
 msgstr "Temps estimat de càrrega:"
-
-msgid "seconds"
-msgstr "segons"
 
 msgid "Size:"
 msgstr "Tamany:"

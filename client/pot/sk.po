@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -331,24 +331,6 @@ msgstr "Povoliť prístup k identite oznamovateľa"
 msgid "Templates"
 msgstr "Šablóny"
 
-msgid "in seconds"
-msgstr "v sekundách"
-
-msgid "in hours"
-msgstr "v hodinách"
-
-msgid "in days"
-msgstr "v dňoch"
-
-msgid "in characters"
-msgstr "v znakoch"
-
-msgid "in megabytes"
-msgstr "v megabajtoch"
-
-msgid "in percentage"
-msgstr "v percentách"
-
 msgid "HTTPS settings"
 msgstr "Nastavenie HTTPS"
 
@@ -357,15 +339,6 @@ msgstr "Presmerovanie URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "Prahové hodnoty detekcie anomálií"
-
-msgid "High risk"
-msgstr "Vysoké riziko"
-
-msgid "Medium risk"
-msgstr "Stredné riziko"
-
-msgid "Low risk"
-msgstr "Nízke riziko"
 
 msgid "Available disk space"
 msgstr "Voľné miesto na disku"
@@ -439,9 +412,6 @@ msgstr "Vložte emailovú adresu administrátora"
 
 msgid "Enter a password for the administrator"
 msgstr "Vložte heslo administrátora"
-
-msgid "Test configuration"
-msgstr "Otestovať konfiguráciu"
 
 msgid "Failed logins"
 msgstr "Neúspešné prihlásenia"
@@ -652,6 +622,9 @@ msgstr "Jeden alebo viacero príjemcov doteraz nevykonalo prvé prihlásenie. To
 msgid "This user has not performed the first login yet."
 msgstr "Tento používateľ zatiaľ nevykonal prvé prihlásenie."
 
+msgid "seconds"
+msgstr "sekúnd"
+
 msgid "Select the context of your report:"
 msgstr "Vyberte obsah správy:"
 
@@ -784,6 +757,9 @@ msgstr "Titulok stránky s odoslaním"
 msgid "Size limit for file attachments"
 msgstr "Limit veľkosti pre prílohy"
 
+msgid "in megabytes"
+msgstr "v megabajtoch"
+
 msgid "Enable HSTS preload"
 msgstr "Povoliť predbežné načítanie HSTS"
 
@@ -798,9 +774,6 @@ msgstr "Heslo"
 
 msgid "Require two factor authentication"
 msgstr "Vyžaduje dvojfaktorové overenie"
-
-msgid "Require proof of work on user authentication"
-msgstr ""
 
 msgid "Password change interval"
 msgstr "Interval zmeny hesla"
@@ -853,6 +826,18 @@ msgstr "Uložiť"
 
 msgid "Reset reports"
 msgstr "Resetujte podanie"
+
+msgid "Low"
+msgstr "Nízke"
+
+msgid "High"
+msgstr "Vysoká"
+
+msgid "megabytes"
+msgstr "megabajtoch"
+
+msgid "percentage"
+msgstr "percentách"
 
 msgid "Enable automatic backups"
 msgstr "Povoliť automatické zálohovanie"
@@ -989,17 +974,17 @@ msgstr "Vlastný preklad"
 msgid "Contexts"
 msgstr "Kontexty"
 
-msgid "State"
-msgstr "Štát"
-
-msgid "Enabled"
-msgstr "Zapnuté"
-
 msgid "Hidden"
 msgstr "Skrytý"
 
 msgid "Disabled"
 msgstr "Vypnuté"
+
+msgid "State"
+msgstr "Štát"
+
+msgid "Enabled"
+msgstr "Zapnuté"
 
 msgid "Questionnaire"
 msgstr "Dotazník"
@@ -1067,14 +1052,8 @@ msgstr "Hodnota"
 msgid "Medium"
 msgstr "Stredná"
 
-msgid "High"
-msgstr "Vysoká"
-
 msgid "Customize the message shown in the receipt page"
 msgstr "Uprav správu zobrazenú na stránke s potvrdením"
-
-msgid "Low"
-msgstr "Nízke"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr "Priraď potvrdenie len ku skóre dostupnosti podaní"
@@ -1715,9 +1694,6 @@ msgstr "Chyba pri nahrávaní súborov. Podrobnosti nájdete nižšie."
 msgid "Estimated upload time:"
 msgstr "Odhadovaný čas nahrávania:"
 
-msgid "seconds"
-msgstr "sekúnd"
-
 msgid "Size:"
 msgstr "Veľkosť:"
 
@@ -1971,7 +1947,7 @@ msgstr "Podania zakázané"
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr "K servery sa pripájate neanonymne, pričom tento konkrétny server podporuje iba anonymné podania"
+msgstr "K serveru sa pripájate neanonymne, pričom tento konkrétny server podporuje iba anonymné podania"
 
 msgid "Thank you!"
 msgstr "Ďakujeme Vám!"
@@ -2414,7 +2390,7 @@ msgstr "Mali by ste predĺžiť jeho platnosť a aktualizovať súčasný kľú�
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-msgstr "Bez poskytnutia platného PGP kľúča nebude systém schopný dáta s vami zdieľané zašifrovať."
+msgstr "Bez poskytnutia platného PGP kľúča nebude systém schopný zašifrovať s vami zdieľané dáta."
 
 msgid "Click the link to activate the platform:"
 msgstr "Pre dokončenie aktivácie platformy kliknite na odkaz:"

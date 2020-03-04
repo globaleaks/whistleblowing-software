@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -324,24 +324,6 @@ msgstr "Tillat tilgang til fløyteblåsers sanne identitet"
 msgid "Templates"
 msgstr "Maler"
 
-msgid "in seconds"
-msgstr "i sekunder"
-
-msgid "in hours"
-msgstr "i timer"
-
-msgid "in days"
-msgstr "i dager"
-
-msgid "in characters"
-msgstr "i tegn"
-
-msgid "in megabytes"
-msgstr "i megabyte"
-
-msgid "in percentage"
-msgstr "i prosent"
-
 msgid "HTTPS settings"
 msgstr "HTTPS-innstillinger"
 
@@ -350,15 +332,6 @@ msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Grenseverdi for rapportering av unormalheter"
-
-msgid "High risk"
-msgstr "Høy risiko"
-
-msgid "Medium risk"
-msgstr "Middels risiko"
-
-msgid "Low risk"
-msgstr "Lav risiko"
 
 msgid "Available disk space"
 msgstr "Tilgjengelig lagringsplass"
@@ -432,9 +405,6 @@ msgstr "Skriv inn en e-postadresse for administratoren"
 
 msgid "Enter a password for the administrator"
 msgstr "Skriv inn et passord for administratoren"
-
-msgid "Test configuration"
-msgstr "Test oppsettet"
 
 msgid "Failed logins"
 msgstr "Feilede innloggingsforsøk"
@@ -645,6 +615,9 @@ msgstr ""
 msgid "This user has not performed the first login yet."
 msgstr ""
 
+msgid "seconds"
+msgstr "sekunder"
+
 msgid "Select the context of your report:"
 msgstr ""
 
@@ -777,6 +750,9 @@ msgstr ""
 msgid "Size limit for file attachments"
 msgstr "Størrelsesgrense for vedlegg"
 
+msgid "in megabytes"
+msgstr "i megabyte"
+
 msgid "Enable HSTS preload"
 msgstr ""
 
@@ -790,9 +766,6 @@ msgid "Password"
 msgstr "Passord"
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Require proof of work on user authentication"
 msgstr ""
 
 msgid "Password change interval"
@@ -845,6 +818,18 @@ msgid "Save"
 msgstr "Lagre"
 
 msgid "Reset reports"
+msgstr ""
+
+msgid "Low"
+msgstr ""
+
+msgid "High"
+msgstr ""
+
+msgid "megabytes"
+msgstr ""
+
+msgid "percentage"
 msgstr ""
 
 msgid "Enable automatic backups"
@@ -982,17 +967,17 @@ msgstr "Egendefinert oversettelse"
 msgid "Contexts"
 msgstr "Bindeleddsinformasjon"
 
-msgid "State"
-msgstr "Region"
-
-msgid "Enabled"
-msgstr "Påskrudd"
-
 msgid "Hidden"
 msgstr ""
 
 msgid "Disabled"
 msgstr "Avskrudd"
+
+msgid "State"
+msgstr "Region"
+
+msgid "Enabled"
+msgstr "Påskrudd"
 
 msgid "Questionnaire"
 msgstr "Spørreskjema"
@@ -1060,13 +1045,7 @@ msgstr "Verdi"
 msgid "Medium"
 msgstr "Middels"
 
-msgid "High"
-msgstr ""
-
 msgid "Customize the message shown in the receipt page"
-msgstr ""
-
-msgid "Low"
 msgstr ""
 
 msgid "Assign the receipt only to reports reaching score:"
@@ -1707,9 +1686,6 @@ msgstr "Feil under opplasting av filer; se detaljer nedenfor."
 
 msgid "Estimated upload time:"
 msgstr "Forventet opplastingstid:"
-
-msgid "seconds"
-msgstr "sekunder"
 
 msgid "Size:"
 msgstr "Størrelse:"

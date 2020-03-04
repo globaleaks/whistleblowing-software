@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -327,24 +327,6 @@ msgstr "Dopusti pristup zviždačevom identitetu"
 msgid "Templates"
 msgstr "Predlošci"
 
-msgid "in seconds"
-msgstr "u sekundama"
-
-msgid "in hours"
-msgstr "u satima"
-
-msgid "in days"
-msgstr "u danima"
-
-msgid "in characters"
-msgstr "u znakovima"
-
-msgid "in megabytes"
-msgstr "u megabajtima"
-
-msgid "in percentage"
-msgstr "u postotcima"
-
 msgid "HTTPS settings"
 msgstr "HTTPS postavke"
 
@@ -353,15 +335,6 @@ msgstr "Poveznica na adresu sadržaja"
 
 msgid "Anomaly detection thresholds"
 msgstr "Pragovi detekcije anomalija"
-
-msgid "High risk"
-msgstr "Visok rizik"
-
-msgid "Medium risk"
-msgstr "Srednji rizik"
-
-msgid "Low risk"
-msgstr "Nizak rizik"
 
 msgid "Available disk space"
 msgstr "Dostupno diskovnog prostora"
@@ -435,9 +408,6 @@ msgstr "Unesite email adresu za administratora"
 
 msgid "Enter a password for the administrator"
 msgstr "Unesite lozinku za administratora"
-
-msgid "Test configuration"
-msgstr "Testiraj konfiguraciju"
 
 msgid "Failed logins"
 msgstr "Neuspjele prijave"
@@ -648,6 +618,9 @@ msgstr ""
 msgid "This user has not performed the first login yet."
 msgstr ""
 
+msgid "seconds"
+msgstr "sekundi"
+
 msgid "Select the context of your report:"
 msgstr ""
 
@@ -780,6 +753,9 @@ msgstr ""
 msgid "Size limit for file attachments"
 msgstr "Ograničenje veličine privitaka"
 
+msgid "in megabytes"
+msgstr "u megabajtima"
+
 msgid "Enable HSTS preload"
 msgstr "Omogući  HSTS pretragu"
 
@@ -794,9 +770,6 @@ msgstr "Lozinka"
 
 msgid "Require two factor authentication"
 msgstr "Zatraži dvostruku potvrdu"
-
-msgid "Require proof of work on user authentication"
-msgstr ""
 
 msgid "Password change interval"
 msgstr "Interval promjene lozinke"
@@ -848,6 +821,18 @@ msgid "Save"
 msgstr "Spremi"
 
 msgid "Reset reports"
+msgstr ""
+
+msgid "Low"
+msgstr "Niska"
+
+msgid "High"
+msgstr "Visoka"
+
+msgid "megabytes"
+msgstr ""
+
+msgid "percentage"
 msgstr ""
 
 msgid "Enable automatic backups"
@@ -985,17 +970,17 @@ msgstr "Prilagođeni prijevod"
 msgid "Contexts"
 msgstr "Konteksti"
 
-msgid "State"
-msgstr "Država"
-
-msgid "Enabled"
-msgstr "Omogućeno"
-
 msgid "Hidden"
 msgstr "skriveno"
 
 msgid "Disabled"
 msgstr "Onemogućeno"
+
+msgid "State"
+msgstr "Država"
+
+msgid "Enabled"
+msgstr "Omogućeno"
 
 msgid "Questionnaire"
 msgstr "Upitnik"
@@ -1063,14 +1048,8 @@ msgstr "vrijednost"
 msgid "Medium"
 msgstr "Srednje"
 
-msgid "High"
-msgstr "Visoka"
-
 msgid "Customize the message shown in the receipt page"
 msgstr "Prilagodi poruku prikazanu na primateljevoj stranici"
-
-msgid "Low"
-msgstr "Niska"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr ""
@@ -1710,9 +1689,6 @@ msgstr "Pogreška prilikom postavljanja datoteka; provjerite niže za detalje."
 
 msgid "Estimated upload time:"
 msgstr "Procjenjeno vrijeme postavljanja:"
-
-msgid "seconds"
-msgstr "sekundi"
 
 msgid "Size:"
 msgstr "Veličina:"

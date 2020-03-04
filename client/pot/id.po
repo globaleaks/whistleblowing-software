@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-27 04:39+0000\n"
-"Last-Translator: ical\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -340,24 +340,6 @@ msgstr "Izinkan akses ke identitas informan publik "
 msgid "Templates"
 msgstr "Format "
 
-msgid "in seconds"
-msgstr "dalam detik"
-
-msgid "in hours"
-msgstr "dalam jam"
-
-msgid "in days"
-msgstr "dalam hari"
-
-msgid "in characters"
-msgstr "dalam karakter"
-
-msgid "in megabytes"
-msgstr "dalam megabits"
-
-msgid "in percentage"
-msgstr "dalam persentase"
-
 msgid "HTTPS settings"
 msgstr "Pengaturan HTTPS"
 
@@ -366,15 +348,6 @@ msgstr "Pengalihan URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "Batas deteksi anomali "
-
-msgid "High risk"
-msgstr "Risiko tinggi"
-
-msgid "Medium risk"
-msgstr "Risiko menengah"
-
-msgid "Low risk"
-msgstr "Risiko rendah"
 
 msgid "Available disk space"
 msgstr "Ruang yang masih tersedia"
@@ -448,9 +421,6 @@ msgstr "Masukkan alamat surel untuk administrator"
 
 msgid "Enter a password for the administrator"
 msgstr "Masukkan kata sandi untuk administrator"
-
-msgid "Test configuration"
-msgstr "Tes konfigurasi"
 
 msgid "Failed logins"
 msgstr "Login gagal"
@@ -661,6 +631,9 @@ msgstr ""
 msgid "This user has not performed the first login yet."
 msgstr ""
 
+msgid "seconds"
+msgstr "detik"
+
 msgid "Select the context of your report:"
 msgstr ""
 
@@ -793,6 +766,9 @@ msgstr ""
 msgid "Size limit for file attachments"
 msgstr "Batasan ukuran untuk berkas lampiran "
 
+msgid "in megabytes"
+msgstr "dalam megabits"
+
 msgid "Enable HSTS preload"
 msgstr ""
 
@@ -806,9 +782,6 @@ msgid "Password"
 msgstr "Kata sandi"
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Require proof of work on user authentication"
 msgstr ""
 
 msgid "Password change interval"
@@ -861,6 +834,18 @@ msgid "Save"
 msgstr "Simpan"
 
 msgid "Reset reports"
+msgstr ""
+
+msgid "Low"
+msgstr "Bawah"
+
+msgid "High"
+msgstr "Tinggi"
+
+msgid "megabytes"
+msgstr ""
+
+msgid "percentage"
 msgstr ""
 
 msgid "Enable automatic backups"
@@ -998,17 +983,17 @@ msgstr "Terjemahan kustom"
 msgid "Contexts"
 msgstr "Konteks"
 
-msgid "State"
-msgstr "Negara bagian"
-
-msgid "Enabled"
-msgstr "aktifkan"
-
 msgid "Hidden"
 msgstr "Tersembunyi"
 
 msgid "Disabled"
 msgstr "Menonaktifkan"
+
+msgid "State"
+msgstr "Negara bagian"
+
+msgid "Enabled"
+msgstr "aktifkan"
 
 msgid "Questionnaire"
 msgstr "Kuesioner"
@@ -1076,14 +1061,8 @@ msgstr "Nilai"
 msgid "Medium"
 msgstr "Sedang"
 
-msgid "High"
-msgstr "Tinggi"
-
 msgid "Customize the message shown in the receipt page"
 msgstr ""
-
-msgid "Low"
-msgstr "Bawah"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr ""
@@ -1723,9 +1702,6 @@ msgstr "Gagal saat mengunggah berkas; cek di bawah untuk lebih detil"
 
 msgid "Estimated upload time:"
 msgstr "Perkiraan waktu mengunggah:"
-
-msgid "seconds"
-msgstr "detik"
 
 msgid "Size:"
 msgstr "Ukuran:"

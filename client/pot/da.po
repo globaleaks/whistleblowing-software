@@ -2,7 +2,7 @@
 # Translators:
 # Aesthese, 2016
 # Aesthese, 2016
-# Bo Elkjaer <bo_elkjaer@riseup.net>, 2018
+# Bo Elkjaer <bo_elkjaer@riseup.net>, 2018,2020
 # Bo Elkjaer <bo_elkjaer@riseup.net>, 2018
 # Casper Petersen <casper_petersen@hotmail.com>, 2020
 # Denis Smajlović <deni@deni.dk>, 2019-2020
@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-27 15:56+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -328,24 +328,6 @@ msgstr "Godkend adgang til whistleblowerens identitet"
 msgid "Templates"
 msgstr "Skabeloner"
 
-msgid "in seconds"
-msgstr "i sekunder"
-
-msgid "in hours"
-msgstr "i timer"
-
-msgid "in days"
-msgstr "i dage"
-
-msgid "in characters"
-msgstr "i karakterer"
-
-msgid "in megabytes"
-msgstr "i megabyte"
-
-msgid "in percentage"
-msgstr "i procent"
-
 msgid "HTTPS settings"
 msgstr "HTTPS-indstillinger"
 
@@ -354,15 +336,6 @@ msgstr "URL-omdirigeringer"
 
 msgid "Anomaly detection thresholds"
 msgstr "Grænseværdier for sporing af afvigelser"
-
-msgid "High risk"
-msgstr "Høj risiko"
-
-msgid "Medium risk"
-msgstr "Medium risiko"
-
-msgid "Low risk"
-msgstr "Lav risiko"
 
 msgid "Available disk space"
 msgstr "Tilgængelig diskplads"
@@ -393,7 +366,7 @@ msgid "Trigger question"
 msgstr "Trigger spørgsmål"
 
 msgid "Triggered by score:"
-msgstr ""
+msgstr "Udløst af score:"
 
 msgid "Message shown on top of the status page of the report"
 msgstr "Besked der vises i toppen af det indsendte materiales statusside"
@@ -436,9 +409,6 @@ msgstr "Tilføj mail adresse til administratoren"
 
 msgid "Enter a password for the administrator"
 msgstr "Skriv administrator password"
-
-msgid "Test configuration"
-msgstr "Test opsætningen"
 
 msgid "Failed logins"
 msgstr "Mislykkede loginforsøg"
@@ -513,7 +483,7 @@ msgid "This is the list of the other supported browsers:"
 msgstr "Dette er listen over andre understøttede browsere:"
 
 msgid "Audit log"
-msgstr ""
+msgstr "Revisionslog"
 
 msgid "Stats"
 msgstr "Statistik"
@@ -603,7 +573,7 @@ msgid "Closed"
 msgstr "Lukket"
 
 msgid "Placeholder"
-msgstr ""
+msgstr "Pladsholder"
 
 msgid "Print"
 msgstr "Print"
@@ -644,13 +614,16 @@ msgstr "Passwordgendannelse"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr ""
+msgstr "En eller flere modtagere har ikke logget ind for første gang endnu. Det betyder, at de ikke vil modtage indsendelser."
 
 msgid "This user has not performed the first login yet."
-msgstr ""
+msgstr "Denne bruger har ikke logget ind for første gang endnu."
+
+msgid "seconds"
+msgstr "sekunder"
 
 msgid "Select the context of your report:"
-msgstr ""
+msgstr "Vælg hvilken sammehæng din indsendelse indgår i."
 
 msgid "Warning! You are not anonymous."
 msgstr "Advarsel! Du er ikke anonym."
@@ -781,6 +754,9 @@ msgstr "Titel på siden med status for indleveringen"
 msgid "Size limit for file attachments"
 msgstr "Størrelsesgrænse for vedhæftede filer"
 
+msgid "in megabytes"
+msgstr "i megabyte"
+
 msgid "Enable HSTS preload"
 msgstr "Aktivér HTTPS preload"
 
@@ -796,15 +772,12 @@ msgstr "Password"
 msgid "Require two factor authentication"
 msgstr "Kræv 2-faktorgodkendelse"
 
-msgid "Require proof of work on user authentication"
-msgstr ""
-
 msgid "Password change interval"
 msgstr "Passwordskiftinterval"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr ""
+msgstr "Af sikkerhedsgrunde kræves det, at kodeord skiftes med jævne mellemrum."
 
 msgid "Set the value to 0 to disable this feature."
 msgstr "Sæt værdien til 0 for at deaktivere denne funktionalitet."
@@ -820,13 +793,13 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Du skal kun justere denne indstilling hvis du ved, hvad du gør."
 
 msgid "Enable custodian user role"
-msgstr ""
+msgstr "Aktiver kontoførende brugerrolle"
 
 msgid "Enable scoring system"
 msgstr "Aktivér score system"
 
 msgid "Enable private labels"
-msgstr ""
+msgstr "Aktiver private mærkater"
 
 msgid "Logging level"
 msgstr "Loggingniveau"
@@ -849,7 +822,19 @@ msgid "Save"
 msgstr "Gem"
 
 msgid "Reset reports"
-msgstr ""
+msgstr "Nulstil indsendelser"
+
+msgid "Low"
+msgstr "Lav"
+
+msgid "High"
+msgstr "Høj"
+
+msgid "megabytes"
+msgstr "megabyte"
+
+msgid "percentage"
+msgstr "procent"
 
 msgid "Enable automatic backups"
 msgstr "Slå automatiske backups til"
@@ -864,7 +849,7 @@ msgid "Montly"
 msgstr "Månedligt"
 
 msgid "Remote"
-msgstr ""
+msgstr "Fjern"
 
 msgid "Server"
 msgstr "Server"
@@ -924,7 +909,7 @@ msgid "Cancel"
 msgstr "Annullér"
 
 msgid "Report statuses"
-msgstr ""
+msgstr "Status for indsendelser"
 
 msgid "Logo"
 msgstr "Logo"
@@ -933,7 +918,7 @@ msgid "Project name"
 msgstr "Projektnavn"
 
 msgid "Header title"
-msgstr ""
+msgstr "Etikettitel"
 
 msgid "Homepage title"
 msgstr "Titel på hjemmesiden"
@@ -986,23 +971,23 @@ msgstr "Brugerdefineret oversættelse"
 msgid "Contexts"
 msgstr "Sammenhænge"
 
-msgid "State"
-msgstr "Kommune"
-
-msgid "Enabled"
-msgstr "Aktiveret"
-
 msgid "Hidden"
 msgstr "Skjult"
 
 msgid "Disabled"
 msgstr "Deaktiveret"
 
+msgid "State"
+msgstr "Kommune"
+
+msgid "Enabled"
+msgstr "Aktiveret"
+
 msgid "Questionnaire"
 msgstr "Spørgeskema"
 
 msgid "Additional questionnaire"
-msgstr ""
+msgstr "Ekstra spørgeskema"
 
 msgid "Recipients"
 msgstr "Modtagere"
@@ -1011,7 +996,7 @@ msgid "days"
 msgstr "dage"
 
 msgid "Show the questionnaire navigation interface"
-msgstr ""
+msgstr "Vis navigationsinterfacet til spørgeskemaet"
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "Tillad whistleblowere at vælge deres modtagere"
@@ -1053,10 +1038,10 @@ msgid "Let recipients upload files to whistleblowers"
 msgstr "Tillad at modtagere kan uploade filer til whistleblowere"
 
 msgid "Scoring system options"
-msgstr ""
+msgstr "Valgmuligheder for score system"
 
 msgid "Threshold"
-msgstr ""
+msgstr "Tærskel"
 
 msgid "Value"
 msgstr "Værdi"
@@ -1064,17 +1049,11 @@ msgstr "Værdi"
 msgid "Medium"
 msgstr "Medium"
 
-msgid "High"
-msgstr "Høj"
-
 msgid "Customize the message shown in the receipt page"
-msgstr ""
-
-msgid "Low"
-msgstr "Lav"
+msgstr "Tilpas den besked, der vises på kvitteringssiden"
 
 msgid "Assign the receipt only to reports reaching score:"
-msgstr ""
+msgstr "Tildel kun kvittering til rapporter der når scoren:"
 
 msgid "Software version:"
 msgstr "Software version:"
@@ -1083,7 +1062,7 @@ msgid "An update is available:"
 msgstr "Der er tilgængelige opdateringer:"
 
 msgid "Restrict access to specific IP addresses"
-msgstr ""
+msgstr "Begræns adgang til specifikke IP-numre"
 
 msgid "Whitelisted IP addresses"
 msgstr "Godkendte IP-adresser"
@@ -1098,7 +1077,7 @@ msgid "Whistleblower"
 msgstr "Whistleblower"
 
 msgid "Each entry must be separated with a comma."
-msgstr ""
+msgstr "Hver post skal adskilles med et komma."
 
 msgid "Example:"
 msgstr "Eksempel:"
@@ -1251,7 +1230,7 @@ msgid "Reset notification templates to default"
 msgstr "Nulstil underretnings-skabeloner til standard"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr ""
+msgstr "Antal timer før der skal sendes advarsel om at rapporten er ved at udløbe"
 
 msgid "Test the configuration"
 msgstr "Test indstillingen"
@@ -1284,10 +1263,10 @@ msgid "Terms of service"
 msgstr "Servicevillkår"
 
 msgid "Date range"
-msgstr ""
+msgstr "Datointerval"
 
 msgid "Map"
-msgstr ""
+msgstr "Kort"
 
 msgid "Group of questions"
 msgstr "Gruppe af spørgsmål"
@@ -1326,16 +1305,16 @@ msgid "Encrypt"
 msgstr "Krypter"
 
 msgid "Template override"
-msgstr ""
+msgstr "Tilsidesæt skabelon"
 
 msgid "Phone number"
 msgstr "Telefonnummer"
 
 msgid "Checkbox label"
-msgstr ""
+msgstr "Mærkat til afkrydsningsboks"
 
 msgid "Add multimedia content"
-msgstr ""
+msgstr "Tilføj multimedieindhold"
 
 msgid "Image"
 msgstr "Billede"
@@ -1350,16 +1329,16 @@ msgid "Subject answer visibility to custodian authorization"
 msgstr "Synlighed af svaret kræver godkendelse fra den tilsynsførende"
 
 msgid "Text shown upon negative answer"
-msgstr ""
+msgstr "Tekst der vises ved negativt svar"
 
 msgid "Prompt confirmation upon negative answer"
 msgstr "Anmod om bekræftelse ved negativt svar"
 
 msgid "Text shown upon confirmation"
-msgstr ""
+msgstr "Tekst der vises ved bekræftelse"
 
 msgid "Trigger conditions"
-msgstr ""
+msgstr "Udløsningsbetingelser"
 
 msgid "Sufficient"
 msgstr "Tilstrækkelig"
@@ -1371,7 +1350,7 @@ msgid "Addition"
 msgstr "Tilføjelse"
 
 msgid "Multiplier"
-msgstr ""
+msgstr "Multiplikator"
 
 msgid "Questions"
 msgstr "Spørgsmål"
@@ -1392,13 +1371,13 @@ msgid "Site settings"
 msgstr "Sideindstillinger"
 
 msgid "Case management"
-msgstr ""
+msgstr "Sagsadministration"
 
 msgid "Network settings"
 msgstr "Netværksindstillinger"
 
 msgid "Mode:"
-msgstr ""
+msgstr "Tilstand:"
 
 msgid "Root domain used for secondary sites"
 msgstr "Primært domænenavn der anvendes til underliggende sider"
@@ -1410,7 +1389,7 @@ msgid "Allow users to sign up"
 msgstr "Tillad brugere at tilmelde sig"
 
 msgid "Enable terms of service"
-msgstr ""
+msgstr "Aktiver servicebetingelserne"
 
 msgid "Sites"
 msgstr "Sider"
@@ -1547,7 +1526,7 @@ msgid "Now type your password, then click 'Log in':"
 msgstr "Skriv nu dit password og klik 'log ind':"
 
 msgid "Text shown after the user has selected the option."
-msgstr ""
+msgstr "Tekst der vises efter at brugeren har valgt denne mulighed."
 
 msgid "Confirm"
 msgstr "Bekræft"
@@ -1565,10 +1544,10 @@ msgid "Assign score points"
 msgstr "Tildel pointtal"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
+msgstr "Bemærk at alle tilknyttede data bliver slettet permanent."
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
+msgstr "Dette er en demonstrationsplatform. Undlad at bruge den til rigtige indsendelser."
 
 msgid "Attention!"
 msgstr "Bemærk!"
@@ -1594,7 +1573,7 @@ msgstr "Din kontogendannelsesnøgle er:"
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr ""
+msgstr "Lav en kopi og gem den et sikkert sted. Den vil være nødvendig for at gendanne adgangen til din konto uden datatab hvis du mister din adgangskode."
 
 msgid "Welcome!"
 msgstr "Velkommen!"
@@ -1634,7 +1613,7 @@ msgstr "Hint: Sådan gemmer du din kvittering"
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr ""
+msgstr "En nyttig måde at skjule din kvittering er at skrive den ned som nummeret på et kreditkort, dvs ved også at inkludere en udløbsdato."
 
 msgid "Error!"
 msgstr "Fejl!"
@@ -1712,9 +1691,6 @@ msgstr "Fejl ved upload af filer. Se nedenfor for detaljer."
 msgid "Estimated upload time:"
 msgstr "Anslået tid til upload:"
 
-msgid "seconds"
-msgstr "sekunder"
-
 msgid "Size:"
 msgstr "Størrelse:"
 
@@ -1739,7 +1715,7 @@ msgid ""
 "and staying anonymous by not revealing your location or IP address. You "
 "won't notice any difference from an insecure chat, except that you will be "
 "using a unique address instead of a phone number/email/username."
-msgstr ""
+msgstr "Ricochet er en instant messaging app, der giver dig mulighed for at beskytte dit privatliv og forblive anonym ved at sløre din placering og dit IP-nummer mens du chatter ved at bruge Tor-netværket og oprette en Onion-service. Du vil ikke mærke nogen forskel fra en usikker chat, bortset fra at du bruger en unik adresse i stedet for et telefonnummer / e-mail / brugernavn."
 
 msgid "The connection is not secure."
 msgstr "Forbindelsen er ikke sikker."
@@ -2054,7 +2030,7 @@ msgid "Short title"
 msgstr "Kort titel"
 
 msgid "Describe your report in a few words."
-msgstr "Beskriv din rapport på nogle få ord."
+msgstr "Beskriv i få ord din rapport."
 
 msgid "Full description"
 msgstr "Fuld beskrivelse"
@@ -2147,7 +2123,7 @@ msgstr "Dettte link vil udløbe om 3 dage."
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr ""
+msgstr "Efter vellykket aktivering kan du få adgang til systemet via følgende link: {LoginUrl}"
 
 msgid "Kind regards,"
 msgstr "Med venlig hilsen"

@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 18:24+0000\n"
-"Last-Translator: AO <ao@localizationlab.org>\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -178,7 +178,7 @@ msgid "Deselect all"
 msgstr "Tout dessélectionner"
 
 msgid "Refresh page"
-msgstr "Rafraîchir la page"
+msgstr "Actualiser la page"
 
 msgid "Context"
 msgstr "Contexte"
@@ -356,24 +356,6 @@ msgstr "Autoriser l’accès à l’identité du lanceur d’alerte"
 msgid "Templates"
 msgstr "Modèles"
 
-msgid "in seconds"
-msgstr "en secondes"
-
-msgid "in hours"
-msgstr "en heures"
-
-msgid "in days"
-msgstr "en jours"
-
-msgid "in characters"
-msgstr "en caractères"
-
-msgid "in megabytes"
-msgstr "en mégaoctets"
-
-msgid "in percentage"
-msgstr "en pourcentage"
-
 msgid "HTTPS settings"
 msgstr "Paramètres HTTPS"
 
@@ -382,15 +364,6 @@ msgstr "Redirections d’URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "Seuils de détection des anomalies"
-
-msgid "High risk"
-msgstr "Risque élevé"
-
-msgid "Medium risk"
-msgstr "Risque moyen"
-
-msgid "Low risk"
-msgstr "Risque faible"
 
 msgid "Available disk space"
 msgstr "Espace disque disponible"
@@ -427,7 +400,7 @@ msgid "Message shown on top of the status page of the report"
 msgstr "Message affiché en haut de la page d’état du signalement"
 
 msgid "Copy and paste the PGP public key here"
-msgstr "Copier et coller la clé publique PGP ici"
+msgstr "Copiez et collez la clé publique PGP ici"
 
 msgid "Password strength:"
 msgstr "Robustesse du mot de passe  :"
@@ -451,7 +424,7 @@ msgid "Type of context selector:"
 msgstr "Type de sélecteur de contexte :"
 
 msgid "Type to search…"
-msgstr "Taper pour chercher…"
+msgstr "Tapez pour chercher…"
 
 msgid "Silence email notifications"
 msgstr "Désactiver les courriel de notification"
@@ -464,9 +437,6 @@ msgstr "Saisir une adresse courriel pour l’administrateur"
 
 msgid "Enter a password for the administrator"
 msgstr "Saisir un mot de passe pour l’administrateur"
-
-msgid "Test configuration"
-msgstr "Tester la configuration"
 
 msgid "Failed logins"
 msgstr "Connexions échouées"
@@ -515,27 +485,27 @@ msgstr "Ce texte personnalisé n’est plus affiché sur la plateforme. Le texte
 msgid ""
 "Unless the whistleblower checks the report by this time, their access to it "
 "will expire."
-msgstr "À moins que le lanceur d’alerte ne vérifie le signalement avant cette échéance, son accès arrivera à expiration."
+msgstr "À moins que le lanceur d’alerte ne confirme le signalement avant cette échéance, son accès arrivera à expiration."
 
 msgid "The whistleblower can no longer access the report"
 msgstr "Le lanceur d’alerte ne peut plus accéder au signalement"
 
 msgid "Warning!"
-msgstr "Avertissement !"
+msgstr "Avertissement."
 
 msgid "You are running an unsupported and potentially vulnerable browser."
 msgstr "Vous utilisez un navigateur non pris en charge et potentiellement vulnérable. "
 
 msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "Il vous est fortement conseillé de télécharger et d’installer le navigateur Tor."
+msgstr "Il vous est fortement conseillé de télécharger et d’installer le Navigateur Tor."
 
 msgid ""
 "The Tor Browser includes various privacy and security enhancements not "
 "present in other browsers."
-msgstr "Le navigateur Tor inclut diverses améliorations concernant la protection des renseignements personnels et la sécurité que les autres navigateurs ne proposent pas."
+msgstr "Le Navigateur Tor comprend diverses améliorations relatives à la protection des renseignements personnels et la sécurité, que les autres navigateurs ne proposent pas."
 
 msgid "Download the Tor Browser"
-msgstr "Télécharger le navigateur Tor"
+msgstr "Télécharger le Navigateur Tor"
 
 msgid "This is the list of the other supported browsers:"
 msgstr "Voici la liste des autres navigateurs pris en charge :"
@@ -622,7 +592,7 @@ msgid "Surname"
 msgstr "Nom de famille"
 
 msgid "New"
-msgstr "Nouvel"
+msgstr "Nouveau"
 
 msgid "Opened"
 msgstr "Ouvert"
@@ -677,11 +647,14 @@ msgstr "Un ou plusieurs destinataires ne se sont pas encore connectés pour la p
 msgid "This user has not performed the first login yet."
 msgstr "Cet utilisateur ne s’est pas encore connecté pour la première fois."
 
+msgid "seconds"
+msgstr "secondes"
+
 msgid "Select the context of your report:"
 msgstr "Sélectionnez le contexte de votre signalement :"
 
 msgid "Warning! You are not anonymous."
-msgstr "Avertissement ! Vous n’êtes pas anonyme."
+msgstr "Avertissement. Vous n’êtes pas anonyme."
 
 msgid ""
 "Sending reports over HTTPS exposes the act of doing so, but not the "
@@ -728,7 +701,7 @@ msgid "The new password must differ from the previous."
 msgstr "Le nouveau mot de passe doit être différent du précédent."
 
 msgid "Proceed"
-msgstr "Continuer"
+msgstr "Poursuivre"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Avant de poursuivre, veuillez activer l’authentification à deux facteurs."
@@ -798,7 +771,7 @@ msgid "Title of the submission page"
 msgstr "Titre de la page d’envoi"
 
 msgid "Show contexts in alphabetical order"
-msgstr "Montrer les contextes par ordre alphabétique"
+msgstr "Afficher les contextes par ordre alphabétique"
 
 msgid "Title of the receipt page"
 msgstr "Titre de la page du reçu"
@@ -808,6 +781,9 @@ msgstr "Titre de la page d’état du signalement"
 
 msgid "Size limit for file attachments"
 msgstr "Limite de taille des fichiers joints"
+
+msgid "in megabytes"
+msgstr "en mégaoctets"
 
 msgid "Enable HSTS preload"
 msgstr "Activer le préchargement HSTS"
@@ -823,9 +799,6 @@ msgstr "Mot de passe"
 
 msgid "Require two factor authentication"
 msgstr "Exiger l’authentification à deux facteurs"
-
-msgid "Require proof of work on user authentication"
-msgstr "Exiger une preuve de travail pour l’authentification des utilisateurs"
 
 msgid "Password change interval"
 msgstr "Intervalle de changement du mot de passe"
@@ -878,6 +851,18 @@ msgstr "Enregistrer"
 
 msgid "Reset reports"
 msgstr "Réinitialiser les signalements"
+
+msgid "Low"
+msgstr "Faible"
+
+msgid "High"
+msgstr "Élevé"
+
+msgid "megabytes"
+msgstr "mégaoctets"
+
+msgid "percentage"
+msgstr "pourcentage"
 
 msgid "Enable automatic backups"
 msgstr "Activer les sauvegardes automatiques"
@@ -1014,17 +999,17 @@ msgstr "Traduction personnalisée"
 msgid "Contexts"
 msgstr "Contextes"
 
-msgid "State"
-msgstr "État"
-
-msgid "Enabled"
-msgstr "Activé"
-
 msgid "Hidden"
 msgstr "Caché"
 
 msgid "Disabled"
 msgstr "Désactivé"
+
+msgid "State"
+msgstr "État"
+
+msgid "Enabled"
+msgstr "Activé"
 
 msgid "Questionnaire"
 msgstr "Questionnaire"
@@ -1092,14 +1077,8 @@ msgstr "Valeur"
 msgid "Medium"
 msgstr "Moyen"
 
-msgid "High"
-msgstr "Élevé"
-
 msgid "Customize the message shown in the receipt page"
 msgstr "Personnaliser le message qui apparaît sur la page du reçu"
-
-msgid "Low"
-msgstr "Faible"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr "N’attribuer le reçu qu’aux signalements qui atteignent ce pointage :"
@@ -1240,10 +1219,10 @@ msgid ""
 msgstr "Permettre aux lanceurs d’alerte de se connecter par HTTPS assure la protection de leurs renseignements personnels, mais pas leur anonymat."
 
 msgid "Tor Onion Service"
-msgstr "Service oignon Tor"
+msgstr "Service onion de Tor"
 
 msgid "Tor Browser download link"
-msgstr "Lien de téléchargement du navigateur Tor Browser"
+msgstr "Lien de téléchargement du Navigateur  Tor"
 
 msgid "Anonymize outgoing connections"
 msgstr "Anonymiser les connexions sortantes"
@@ -1255,7 +1234,7 @@ msgid "Roles enabled to use the platform without Tor"
 msgstr "Rôles pouvant utiliser la plateforme sans Tor"
 
 msgid "To"
-msgstr "À"
+msgstr "Vers"
 
 msgid "SMTP email address"
 msgstr "Adresse courriel SMTP"
@@ -1423,7 +1402,7 @@ msgid "Case management"
 msgstr "Gestion des cas"
 
 msgid "Network settings"
-msgstr "Paramètres réseau"
+msgstr "Paramètres du réseau"
 
 msgid "Mode:"
 msgstr "Mode :"
@@ -1548,7 +1527,7 @@ msgid "Enter the two factor authentication code"
 msgstr "Saisissez le code d’authentification à deux facteurs"
 
 msgid "Authentication failed"
-msgstr "Échec lors de l’authentification"
+msgstr "Échec d’authentification"
 
 msgid "The code is either invalid or expired."
 msgstr "Le côté est invalide ou expiré"
@@ -1599,7 +1578,7 @@ msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ceci est une plateforme de démonstration. Veuillez ne pas l’utiliser pour des envois réels."
 
 msgid "Attention!"
-msgstr "Attention !"
+msgstr "Attention."
 
 msgid "Install an authenticator app on your phone"
 msgstr "Installez une appli d’authentification sur votre téléphone"
@@ -1625,10 +1604,10 @@ msgid ""
 msgstr "Copiez-la et gardez-la en lieu sûr. Si vous perdiez votre mot de passe, vous en auriez besoin afin de recouvrer l’accès à votre compte, sans perte de données."
 
 msgid "Welcome!"
-msgstr "Bienvenue !"
+msgstr "Bienvenue."
 
 msgid "For the user documentation, visit:"
-msgstr "Pour consulter la documentation utilisateur, visitez :"
+msgstr "Pour consulter la documentation d’utilisation, visitez :"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -1638,17 +1617,17 @@ msgstr "Si vous souhaitez obtenir du soutien technique, si avez des questions d�
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr "Si vous souhaitez participer au développement logiciel ou signaler un bogue, veuillez créer un ticket de problème sur notre système de suivi :"
+msgstr "Si vous souhaitez participer au développement du logiciel ou signaler un bogue, veuillez créer un ticket de problème dans notre système de suivi :"
 
 msgid ""
 "If your non-profit needs support for investigative journalism, activism or a"
 " human rights defense project:"
-msgstr "Si votre OSBL a besoin de soutien pour un projet de journalisme d’enquête, d’activisme ou de défense des droits de la personne :"
+msgstr "Si votre OSBL a besoin d’assistance pour un projet de journalisme d’enquête, d’activisme ou de défense des droits de la personne :"
 
 msgid ""
 "For professional support and development of anti corruption and compliance "
 "projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr "Pour un soutien professionnel et le développement de projets anticorruptions et de conformité, contactez l’entreprise sociale qui maintient GlobaLeaks :"
+msgstr "Pour une assistance professionnelle et le développement de projets anticorruptions et de conformité, contactez l’entreprise sociale qui maintient GlobaLeaks :"
 
 msgid "Join our chat:"
 msgstr "Joignez-vous à notre conversation :"
@@ -1665,7 +1644,7 @@ msgid ""
 msgstr "Une bonne manière de cacher votre reçu est de le noter comme un numéro de carte de crédit, c.-à-d. en ajoutant aussi une date d’expiration."
 
 msgid "Error!"
-msgstr "Erreur !"
+msgstr "Erreur."
 
 msgid "Internal server error"
 msgstr "Erreur interne du serveur"
@@ -1689,7 +1668,7 @@ msgid "The upload request exceeds the size limit"
 msgstr "La demande de téléversement dépasse la limite de taille"
 
 msgid "Success!"
-msgstr "Vous avez réussi !"
+msgstr "Vous avez réussi."
 
 msgid "Validation of email address change in progress."
 msgstr "La validation du changement d’adresse courriel est en cours."
@@ -1712,15 +1691,15 @@ msgstr "La confirmation de l’ancien mot de passe est exigée"
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
-msgstr "Vous parcourez apparemment ce site sans confidentialité ni sécurité supplémentaire !"
+msgstr "Vous parcourez apparemment ce site sans confidentialité ni sécurité supplémentaire."
 
 msgid ""
 "You are strongly advised to visit this site using the desktop app called Tor"
 " Browser, that protects your identity."
-msgstr "Il vous est fortement recommandé d’utiliser le navigateur Tor pour accéder à ce site afin de protéger votre identité."
+msgstr "Afin de protéger votre identité, il vous est fortement recommandé d’utiliser le Navigateur Tor pour accéder à ce site."
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Copier et coller ensuite l’adresse suivante dans le navigateur Tor :"
+msgstr "Copier et coller ensuite l’adresse suivante dans le Navigateur Tor :"
 
 msgid "Enter a name for the copy"
 msgstr "Saisir un nom pour la copie"
@@ -1732,16 +1711,13 @@ msgid "Uploading files…"
 msgstr "Téléversement des fichiers…"
 
 msgid "Upload completed successfully!"
-msgstr "Le téléversement s’est terminé avec succès !"
+msgstr "Le téléversement s’est terminé avec succès."
 
 msgid "Error while uploading files; check below for details."
 msgstr "Erreur de téléversement des fichiers ; voir les détails ci-dessous."
 
 msgid "Estimated upload time:"
 msgstr "Durée de téléversement estimée :"
-
-msgid "seconds"
-msgstr "secondes"
 
 msgid "Size:"
 msgstr "Taille :"
@@ -1778,7 +1754,7 @@ msgid ""
 msgstr "La plateforme n’est toujours pas configurée pour les connexions HTTPS  et ne devrait être utilisée qu’à des fins de test."
 
 msgid "Use case"
-msgstr "Cas d’utilisation"
+msgstr "Cas d’usage"
 
 msgid "Anticorruption"
 msgstr "Anticorruption"
@@ -1826,7 +1802,7 @@ msgid "download"
 msgstr "télécharger"
 
 msgid "No files have been uploaded!"
-msgstr "Aucun fichier n’a été téléversé !"
+msgstr "Aucun fichier n’a été téléversé."
 
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Permettre au lanceur d’alerte d’ajouter des fichiers joints au signalement"
@@ -1851,7 +1827,7 @@ msgstr "Voulez-vous vraiment supprimer le signalement ?"
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
-msgstr "Toute donnée connexe au signalement stockée sur la plateforme sera supprimée."
+msgstr "Toute donnée relative au signalement stockée sur la plateforme sera supprimée."
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
@@ -1951,7 +1927,7 @@ msgid "You have completed the platform activation."
 msgstr "L’activation de la plateforme est maintenant terminée."
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr "Votre plateforme de lancement d’alertes est presque prête !"
+msgstr "Votre plateforme de lancement d’alertes est presque prête."
 
 msgid "Check your inbox to activate it."
 msgstr "Vérifiez votre boîte de réception pour l’activer."
@@ -1967,7 +1943,7 @@ msgid "Domain"
 msgstr "Domaine"
 
 msgid "Confirmation"
-msgstr "Confirmation"
+msgstr "confirmation"
 
 msgid "Invalid confirmation"
 msgstr "La confirmation est invalide"
@@ -1999,7 +1975,7 @@ msgid ""
 msgstr "Vous êtes connecté à ce serveur sans anonymat, mais il ne prend en charge que les envois anonymes."
 
 msgid "Thank you!"
-msgstr "Merci !"
+msgstr "Merci."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Nous essaierons de vous contacter dès que possible."
@@ -2010,7 +1986,7 @@ msgstr "Souvenez-vous de votre reçu pour ce signalement."
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Utilisez le reçu à 16 chiffres pour vous connecter. Il vous permettra de lire les messages que nous vous avons envoyés, et aussi d’ajouter des renseignements complémentaires."
+msgstr "Utilisez le reçu à 16 chiffres pour vous connecter. Il vous permettra de lire les messages que nous vous avons envoyés et aussi d’ajouter des renseignements complémentaires."
 
 msgid "View your report"
 msgstr "Visualisez votre signalement"
@@ -2269,7 +2245,7 @@ msgid "Language: {Language}"
 msgstr "Langue : {Language}"
 
 msgid "Use case: {UseCase}"
-msgstr "Cas d’utilisation : {UseCase}"
+msgstr "Cas d’usage : {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "Un nouveau site de lancement d’alerte a été enregistré."

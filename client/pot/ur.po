@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -164,10 +164,10 @@ msgid "Preview"
 msgstr " مشاہدہ کریں"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "مخبر نے پہلے ہی تازہ ترین اپ ڈیٹ پڑھا ہے"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "مخبر نے ابھی تک تازہ ترین اپ ڈیٹ نہیں پڑھا ہے"
 
 msgid "Move up"
 msgstr "آگے ہو جاو"
@@ -330,24 +330,6 @@ msgstr "مخبر کی شناخت تک رسائی کی اجازت دیں"
 msgid "Templates"
 msgstr "سانچے"
 
-msgid "in seconds"
-msgstr "سیکنڈوں میں"
-
-msgid "in hours"
-msgstr "گھنٹوں میں"
-
-msgid "in days"
-msgstr "دنوں میں"
-
-msgid "in characters"
-msgstr "حروف میں"
-
-msgid "in megabytes"
-msgstr "میگا بائٹس میں"
-
-msgid "in percentage"
-msgstr "فی صد میں"
-
 msgid "HTTPS settings"
 msgstr "HTTPS ترتیبات"
 
@@ -356,15 +338,6 @@ msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "اسنگتی پتہ لگانے کی حد"
-
-msgid "High risk"
-msgstr "انتہائی خطرہ"
-
-msgid "Medium risk"
-msgstr "عمومی خطرہ"
-
-msgid "Low risk"
-msgstr "کم خطرہ"
 
 msgid "Available disk space"
 msgstr "ڈسک میں دستیاب جگہ"
@@ -439,9 +412,6 @@ msgstr ""
 msgid "Enter a password for the administrator"
 msgstr ""
 
-msgid "Test configuration"
-msgstr ""
-
 msgid "Failed logins"
 msgstr "ناکام لاگ اِن"
 
@@ -455,7 +425,7 @@ msgid "Completed submissions"
 msgstr "جمع کرنے کا عمل مکمل ہوا"
 
 msgid "Failed submissions"
-msgstr ""
+msgstr "حتمی گذارشات"
 
 msgid "Input validation"
 msgstr ""
@@ -651,6 +621,9 @@ msgstr ""
 msgid "This user has not performed the first login yet."
 msgstr ""
 
+msgid "seconds"
+msgstr "سیکنڈ"
+
 msgid "Select the context of your report:"
 msgstr "اپنی گزارش کا سیاق و سباق کا انتخاب کریں :"
 
@@ -783,6 +756,9 @@ msgstr "پیغام جمع کرانے کی حیثیت صفحے کے سب سے ا�
 msgid "Size limit for file attachments"
 msgstr "فائل اٹیچمنٹ کے سائز کی حد"
 
+msgid "in megabytes"
+msgstr "میگا بائٹس میں"
+
 msgid "Enable HSTS preload"
 msgstr ""
 
@@ -796,9 +772,6 @@ msgid "Password"
 msgstr "پاس ورڈ"
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Require proof of work on user authentication"
 msgstr ""
 
 msgid "Password change interval"
@@ -851,6 +824,18 @@ msgid "Save"
 msgstr "محفوظ"
 
 msgid "Reset reports"
+msgstr ""
+
+msgid "Low"
+msgstr ""
+
+msgid "High"
+msgstr ""
+
+msgid "megabytes"
+msgstr ""
+
+msgid "percentage"
 msgstr ""
 
 msgid "Enable automatic backups"
@@ -988,17 +973,17 @@ msgstr ""
 msgid "Contexts"
 msgstr "سیاق و سباق"
 
-msgid "State"
-msgstr "ریاست"
-
-msgid "Enabled"
-msgstr "فعال"
-
 msgid "Hidden"
 msgstr ""
 
 msgid "Disabled"
 msgstr "غیر فعال"
+
+msgid "State"
+msgstr "ریاست"
+
+msgid "Enabled"
+msgstr "فعال"
 
 msgid "Questionnaire"
 msgstr "سوالنامہ"
@@ -1066,13 +1051,7 @@ msgstr ""
 msgid "Medium"
 msgstr "میڈیم یا درمیانہ"
 
-msgid "High"
-msgstr ""
-
 msgid "Customize the message shown in the receipt page"
-msgstr ""
-
-msgid "Low"
 msgstr ""
 
 msgid "Assign the receipt only to reports reaching score:"
@@ -1713,9 +1692,6 @@ msgstr "خرابی فائلوں کو اپ لوڈ کرتے ہوئے؛ تفصیل�
 
 msgid "Estimated upload time:"
 msgstr "متوقع اپ لوڈ کے لئے وقت:"
-
-msgid "seconds"
-msgstr "سیکنڈ"
 
 msgid "Size:"
 msgstr ""

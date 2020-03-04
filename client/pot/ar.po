@@ -27,6 +27,7 @@
 # lamine Kacimi <k_lamine27@yahoo.fr>, 2015
 # lamine Kacimi <k_lamine27@yahoo.fr>, 2015
 # mohammad ali <ilir95palira@gmail.com>, 2017
+# Muhammad Elghdban <admin@netaawy.com>, 2020
 # nawaat <contact@nawaat.org>, 2014
 # ouss <oussjarrouse@gmail.com>, 2016
 # ouss <oussjarrouse@gmail.com>, 2016
@@ -41,7 +42,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -358,24 +359,6 @@ msgstr "السماح بالنفاذ الى هوية المبلغ"
 msgid "Templates"
 msgstr "النماذج"
 
-msgid "in seconds"
-msgstr "في ثواني"
-
-msgid "in hours"
-msgstr "في ساعات"
-
-msgid "in days"
-msgstr "في أيام"
-
-msgid "in characters"
-msgstr "بالحروف"
-
-msgid "in megabytes"
-msgstr "بالميغابايت"
-
-msgid "in percentage"
-msgstr "بالنسبة المئوية"
-
 msgid "HTTPS settings"
 msgstr "إعدادات HTTPS"
 
@@ -384,15 +367,6 @@ msgstr "إعادة توجيه URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "عتبات كشف الانحرافات"
-
-msgid "High risk"
-msgstr "خطورة عالية"
-
-msgid "Medium risk"
-msgstr "خطورة متوسّطة"
-
-msgid "Low risk"
-msgstr "خطورة منخفضة"
 
 msgid "Available disk space"
 msgstr "المساحة المتوفرة على القرص"
@@ -466,9 +440,6 @@ msgstr "ادخال عنوان البريد الإلكتروني للمشرف"
 
 msgid "Enter a password for the administrator"
 msgstr "ادخال كلمة المرور للمشرف"
-
-msgid "Test configuration"
-msgstr "اعدادات الاختبار"
 
 msgid "Failed logins"
 msgstr "محاولات الدخول الفاشلة"
@@ -674,10 +645,13 @@ msgstr "إعادة ضبط كلمة السر"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr ""
+msgstr "لم يقم واحد أو أكثر من المستلمين بتسجيل الدخول للمرة الأولى حتى الآن. هذا يعنى أنهم لن يتمكنوا من استلام بلاغات."
 
 msgid "This user has not performed the first login yet."
-msgstr ""
+msgstr "هذا المستخدم لم يقم بتسجيل الدخول للمرة الأولى حتى الآن."
+
+msgid "seconds"
+msgstr "ثواني"
 
 msgid "Select the context of your report:"
 msgstr "حدد سياق بلاغك:"
@@ -703,7 +677,7 @@ msgid "Your report was successful."
 msgstr "تمّ الابلاغ بنجاح."
 
 msgid "Report"
-msgstr ""
+msgstr "بلاغ"
 
 msgid "Before proceeding, please set a new password."
 msgstr "قبل المتابعة، يرجى تغيير كلمة المرور الخاصة بك."
@@ -788,7 +762,7 @@ msgid "Disable the privacy panel"
 msgstr "تعطيل شارة الخصوصية"
 
 msgid "Enable the receipt hint"
-msgstr "تمكين تلميح الإستلام"
+msgstr "تمكين إشارة الإستلام"
 
 msgid "Landing page"
 msgstr "صفحة الرسو "
@@ -811,6 +785,9 @@ msgstr "الرسالة ظاهرة أعلى صفحة حالة البلاغ"
 msgid "Size limit for file attachments"
 msgstr "الحد الأقصى لحجم الملفات المرفقة"
 
+msgid "in megabytes"
+msgstr "بالميغابايت"
+
 msgid "Enable HSTS preload"
 msgstr "تمكين التحميل المسبق HSTS"
 
@@ -825,9 +802,6 @@ msgstr "كلمة السرّ"
 
 msgid "Require two factor authentication"
 msgstr "يستلزم الاستيثاق ذو المعاملين"
-
-msgid "Require proof of work on user authentication"
-msgstr ""
 
 msgid "Password change interval"
 msgstr "فترة تغيير كلمة السر"
@@ -880,6 +854,18 @@ msgstr "حفظ"
 
 msgid "Reset reports"
 msgstr "اعادة تعيين التقارير"
+
+msgid "Low"
+msgstr "منخفض"
+
+msgid "High"
+msgstr "عالٍ"
+
+msgid "megabytes"
+msgstr "بالميغابايت"
+
+msgid "percentage"
+msgstr "بالنسبة المئوية"
 
 msgid "Enable automatic backups"
 msgstr "تمكين النسخ الإحتياطية التلقائية"
@@ -1016,17 +1002,17 @@ msgstr "الترجمة المخصصة"
 msgid "Contexts"
 msgstr "سياقات"
 
-msgid "State"
-msgstr "الدولة "
-
-msgid "Enabled"
-msgstr "مفعل"
-
 msgid "Hidden"
 msgstr "‮مخفي"
 
 msgid "Disabled"
 msgstr "غير مفعل"
+
+msgid "State"
+msgstr "الدولة "
+
+msgid "Enabled"
+msgstr "مفعل"
 
 msgid "Questionnaire"
 msgstr "استبيان"
@@ -1094,17 +1080,11 @@ msgstr "‮القيمة"
 msgid "Medium"
 msgstr "متوسط"
 
-msgid "High"
-msgstr "عالٍ"
-
 msgid "Customize the message shown in the receipt page"
 msgstr "تخصيص الرسالة الظاهرة في صفحة الإستلام"
 
-msgid "Low"
-msgstr "منخفض"
-
 msgid "Assign the receipt only to reports reaching score:"
-msgstr "تعيين ايصال الإستلام فقط للتقارير التى تحقق مجموع نقاط:"
+msgstr "تعيين الإستلام فقط للتقارير التى تحقق مجموع نقاط:"
 
 msgid "Software version:"
 msgstr "نسخة البرنامج:"
@@ -1559,10 +1539,10 @@ msgid "Site:"
 msgstr "الموقع:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "هل قدمت بالفعل تقديمها؟ أدخل استلام الخاص."
+msgstr "هل قدمت بلاغا سابقا؟ أدخل الاستلام الخاص بك."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "إمّا أنّ رمز المفتاح غير صالح أو أنّ صلاحيّة البلاغ انتهت."
+msgstr "إمّا أنّ الإستلام غير صالح أو أنّ صلاحيّة البلاغ انتهت."
 
 msgid "Username:"
 msgstr "اسم المستخدم :"
@@ -1659,12 +1639,12 @@ msgid "Follow the project on:"
 msgstr "تابع المشروع على:"
 
 msgid "Hint: How to hide your receipt"
-msgstr ""
+msgstr "إشارة: كيف تخفى إستلامك"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr ""
+msgstr "كتابة الإستلام وكأنه رقم كارت التأمين، أي كتابته مع تاريخ انتهاء الصلاحية، هى طريقة فعالة لاخفائه."
 
 msgid "Error!"
 msgstr "خطأ!"
@@ -1694,16 +1674,16 @@ msgid "Success!"
 msgstr "نجاح!"
 
 msgid "Validation of email address change in progress."
-msgstr ""
+msgstr "جارى التحقق من التغيير في عنوان البريد الإلكتروني."
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
+msgstr "الرجاء التحقق من بريدك الوارد للمزيد من التعليمات."
 
 msgid "Set up email encryption by providing a PGP public key"
-msgstr ""
+msgstr "إعداد تعمية البريد الإلكرتوني عن طريق توفير مفتاح PGP عام."
 
 msgid "Account recovery key"
-msgstr ""
+msgstr "مفتاح استرداد الحساب"
 
 msgid "Current password"
 msgstr "كلمة السر الحالية"
@@ -1725,10 +1705,10 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "ثمّ، انسخ والصق العنوان التالي في متصفّح Tor."
 
 msgid "Enter a name for the copy"
-msgstr ""
+msgstr "أدخل اسما من أجل النسخة"
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "اختر ملفا أو اسحبه هنا."
 
 msgid "Uploading files…"
 msgstr "جاري رفع الملفات..."
@@ -1742,26 +1722,23 @@ msgstr "حدث خطأ أثناء رفع الملفات؛ تحقق أدناه ل�
 msgid "Estimated upload time:"
 msgstr "وقت الرّفع التقديري:"
 
-msgid "seconds"
-msgstr "ثواني"
-
 msgid "Size:"
 msgstr "حجم:"
 
 msgid "Enable the Ricochet panel"
-msgstr ""
+msgstr "تمكين لوحة Ricochet"
 
 msgid "Address"
 msgstr "العنوان"
 
 msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
+msgstr "دردش معنا مع اخفاء هويتك باستخدام تطبيق Ricochet"
 
 msgid "To chat with us use the following Ricochet address:"
-msgstr ""
+msgstr "استخدم عنوان Ricochet التالى للدردشة معنا:"
 
 msgid "Download Ricochet at:"
-msgstr ""
+msgstr "حمّل Ricochet من:"
 
 msgid ""
 "By using the Tor network and creating an Onion Service, Ricochet is an "
@@ -1769,7 +1746,7 @@ msgid ""
 "and staying anonymous by not revealing your location or IP address. You "
 "won't notice any difference from an insecure chat, except that you will be "
 "using a unique address instead of a phone number/email/username."
-msgstr ""
+msgstr "Ricochet هو تطبيق تراسل فوري يستخدم شبكة تور وينشأ خدمة البصلة ويسمح لك بالدردشة بينما يحمي خصوصيتك ويخفى هويتك عن طريق عدم اظهار موقعك أو عنوان IP. لن تلاحظ فرقا عن أي دردشة غير آمنة، عدا أنك ستستخدم عنوانا فريدا بدلا من رقم الهاتف/البريد الإلكتروني/اسم المستخدم."
 
 msgid "The connection is not secure."
 msgstr "الاتصال غير آمن."
@@ -1798,10 +1775,10 @@ msgid "Submit"
 msgstr "تقديم"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr ""
+msgstr "طلب المستلمون منك إكمال استبيان إضافي."
 
 msgid "Fill the additional questionnaire"
-msgstr ""
+msgstr "قم بإكمال الاستبيان الإضافي,"
 
 msgid "Send"
 msgstr "إرسال"
@@ -1910,25 +1887,25 @@ msgid "These files have been attached to your report by the recipients."
 msgstr "قد تم إرفاق هذه الملفات إلى بلاغك من قبل المتلقّين."
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "مفتاح الاسترداد الذي تم توفيره غير صالح\n."
 
 msgid "The provided reset token is invalid or expired."
-msgstr ""
+msgstr "رمز إعادة التعيين الذي تم تقديمه غير صحيح أو منتهي."
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr ""
+msgstr "قم بكتابة إسم المستخدم أو عنوان البريد الإلكتروني الخاص بالحساب من أجل طلب إعادة تعيين كلمة المرور."
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "قم بكتابة عنوان البريد الإلكتروني من أجل طلب إعادة تعيين كلمة السر."
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr ""
+msgstr "قم بكتابة مفتاح الاستراداد المشفر الخاص بك من أجل إكمال عملية إعادة تعيين كلمة السر."
 
 msgid "Password reset requested."
-msgstr ""
+msgstr "تم طلب إعادة تعيين كلمة السر."
 
 msgid "Show"
 msgstr "عرض"
@@ -1944,7 +1921,7 @@ msgid "Date of the request"
 msgstr "تاريخ الطلب"
 
 msgid "Undeclared"
-msgstr ""
+msgstr "غير معلن."
 
 msgid "Congratulations!"
 msgstr "تهانينا!"
@@ -1956,11 +1933,11 @@ msgid "Your whistleblowing platform is almost ready!"
 msgstr "منصة التبليغ الخاصة بك على وشك أن تكون جاهزة!"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "قم بتفقد بريدك الإلكتروني من أجل التفعيل."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "إذا لم يتم التفعيل في خلال 24 ساعة، سيتم حذف هذه المنصة تلقائيًا."
 
 msgid "Sign up"
 msgstr "تسجيل"
@@ -1969,10 +1946,10 @@ msgid "Domain"
 msgstr "النطاق"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "تأكيد"
 
 msgid "Invalid confirmation"
-msgstr ""
+msgstr "تأكيد غير صالح"
 
 msgid "Other"
 msgstr "أخرى"
@@ -1981,7 +1958,7 @@ msgid "Complete"
 msgstr "اكتمل"
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "رقم هاتف غير صالح"
 
 msgid "This field is mandatory."
 msgstr "هذا الحقل إلزامي."
@@ -1990,7 +1967,7 @@ msgid "The answer is too short."
 msgstr "الاجابة قصيرة جدّا."
 
 msgid "The specified input is not valid."
-msgstr ""
+msgstr "المدخلات المحددة غير صالحة."
 
 msgid "Submissions disabled"
 msgstr "تم تعطيل البلاغات"
@@ -2004,15 +1981,15 @@ msgid "Thank you!"
 msgstr "شكرا!"
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "سوف نسعى للاتصال بك مجددًا في أقرب وقت ممكن."
 
 msgid "Remember your receipt for this report."
-msgstr "تذكّر رمز المفتاح الخاصّ بك لهذا البلاغ."
+msgstr "تذكّر الإستلام الخاص بك لهذا البلاغ."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr ""
+msgstr "استخدم الاستلام المكون من 16 رقم لتسجيل الدخول. سوف يسمح لك برؤية أي رسائل نرسلها إليك، و أيضا يُمكنك من إضافة المزيد من المعلومات."
 
 msgid "View your report"
 msgstr "مشاهدة بلاغك"
@@ -2024,7 +2001,7 @@ msgid "Recipients selected:"
 msgstr "المتلقّون المختارون :"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr ""
+msgstr "لقد وصلت إلى الحد الأقصى من عدد المستلمين الذين يمكن تحديدهم."
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -2032,7 +2009,7 @@ msgid ""
 msgstr " بهذه الخطوة , الإجابات على هذه الأسئلة مفقودة أو غير صالحة:"
 
 msgid "Errors"
-msgstr ""
+msgstr "أخطاء"
 
 msgid "You must select at least one recipient."
 msgstr "يجب تحديد مستلم واحد على الأقل."
@@ -2060,10 +2037,10 @@ msgid "Confirm password"
 msgstr "تأكيد كلمة المرور"
 
 msgid "Please choose a different username."
-msgstr ""
+msgstr "من فضلك قم باختيار إسم مستخدم آخر."
 
 msgid "The user will receive an activation link via email."
-msgstr ""
+msgstr "سوف يستقبل المستخدم رابط التفعيل عبر البريد الإلكتروني."
 
 msgid "License Agreement"
 msgstr "اتفاقية الترخيص"
@@ -2114,7 +2091,7 @@ msgid "Female"
 msgstr "أنثى"
 
 msgid "Other gender identity"
-msgstr ""
+msgstr "جنس آخر"
 
 msgid "Date of birth"
 msgstr "تاريخ الولادة"
@@ -2158,32 +2135,32 @@ msgstr "عزيزي {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr ""
+msgstr "انت تستقبل هذا البريد الإلكتروني لأنه تم إنشاء حساب مستخدم لك على النظام:  {موقع}"
 
 msgid "Username: {Username}"
 msgstr "اسم المستخدم: {Username}"
 
 msgid "Activation link: {Url}"
-msgstr ""
+msgstr "رابط تفعيل  {عنوان}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
+msgstr "من فضلك قم بالضغط على رابط التفعيل من أجل إكمال باقي خطوات تنشيط الحساب وإعداد كلمة السر."
 
 msgid "This link will expire in 3 days."
-msgstr ""
+msgstr "هذا الرابط سينتهي خلال 3 أيام."
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr ""
+msgstr "بعد التفعيل الناجح، سيكون بمقدورك الولوج إلى النظام من خلال الرابط التالي:  {عنوان الدخول}"
 
 msgid "Kind regards,"
 msgstr "أطيب التحيّات،"
 
 msgid "Account activation"
-msgstr ""
+msgstr "تفعيل الحساب"
 
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "يمكن الآن الوصول إلى منصة الإبلاغ على:"
@@ -2198,7 +2175,7 @@ msgid "The platform will be automatically deleted on:"
 msgstr "سيتم حذف المنصة تلقائيا في:"
 
 msgid "Access instructions"
-msgstr ""
+msgstr "تعليمات الدخول"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
@@ -2253,28 +2230,28 @@ msgid "PGP key expiration alert"
 msgstr "تنبيه انتهاء صلاحية مفتاح PGP"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "موقع جديد لكشف الفساد تم إنشائه."
 
 msgid "Registration data:"
-msgstr ""
+msgstr "بيانات التسجيل:"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "الموقع: {رابط}"
 
 msgid "Name: {Name}"
-msgstr ""
+msgstr "الاسم: {الاسم}"
 
 msgid "Email: {Email}"
-msgstr ""
+msgstr "البريد الإلكتروني: {البريد الإلكتروني}"
 
 msgid "Language: {Language}"
-msgstr ""
+msgstr "اللغة: {اللغة}"
 
 msgid "Use case: {UseCase}"
-msgstr ""
+msgstr "حالة الاستخدام: {حالة الاستخدام}"
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "موقع جديد لكشف الفساد تم تسجيله."
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2300,21 +2277,21 @@ msgstr "تعليق جديد"
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr ""
+msgstr "هذا بريد إلكتروني للتنبيه على أن هناك طلب تم تقديمه من أجل تغيير عنوان البريد الإلكتروني الحالي إلى {البريد الإلكتروني الجديد}."
 
 msgid "Click the following link to validate this change:"
-msgstr ""
+msgstr "قم بالضغط على الرابط التالي من أجل المصادقة على هذا التغيير."
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr ""
+msgstr "إذا لم تقم بطلب هذا التغيير، قم تغيير كلمة مرورك ثم قم بالاتصال بمسئول النظام."
 
 msgid "Email change request"
-msgstr ""
+msgstr "طلب تغيير البريد الإلكتروني."
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "بواسطة:  {Author}"
 
 msgid "Date: {EventTime}"
 msgstr "التاريخ: {EventTime}"
@@ -2329,7 +2306,7 @@ msgid "Label: {TipLabel}"
 msgstr "التسمية: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
+msgstr "الحالة:  {TipStatus}"
 
 msgid "Context: {ContextName}"
 msgstr "السياق: {ContextName}"
@@ -2363,13 +2340,13 @@ msgstr "ﺖﻨﺒﻴﻫ ﺎﻨﺘﻫﺍﺀ ﺹﻼﺤﻳﺓ ﺶﻫﺍﺩﺓ HTTPS
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr ""
+msgstr "عملية التجديد التلقائي المجدولة اليوم لشهادة HTTPS فشلت."
 
 msgid "The system will keep trying."
-msgstr ""
+msgstr "النظام سوف يستمر في المحاولة."
 
 msgid "Failed HTTPS certificate renewal"
-msgstr ""
+msgstr "عملية تجديد فاشلة لشهادة HTTPS."
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
@@ -2393,7 +2370,7 @@ msgid ""
 msgstr "هذا هو بريد الكتروني لإعلامك أن أحد المتلقين قد طلب الاذن للوصول إلى هوية مبلغ هذا البلاغ {TipNum}."
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "الطلب يمكن الوصول إلي على:"
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "طلب جديد للوصول إلى هوية المبلغ"
@@ -2415,15 +2392,15 @@ msgstr "رسالة جديدة"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr ""
+msgstr "أنت تتلقى هذا البريد الإلكتروني لأنه تم طلب إعادة تعيين كلمة السر الخاصة بهذا الحساب {إسم المستخدم}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr ""
+msgstr "إذا لم تقم بهذا الطلب، يمكنك بآمان تجاهل وحذف هذا البريد الإلكتروني."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr ""
+msgstr "يمكنك تأكيد طلب بالضغط على الرابط التالي:"
 
 msgid "Password reset instructions"
 msgstr "تعليمات لإعادة تعيين كلمة السر"
@@ -2494,10 +2471,10 @@ msgid ""
 msgstr "يرجى أن تولوا اهتماما خاصا بالمعلومات والمواد الواردة. و يرجى أن تضعوا في عين الاعتبار أن المبلغين غالبا ما يعرضون أنفسهم لمخاطر شخصية عالية من أجل المصلحة العامة. ولذلك ينبغي اعتبار المواد المقدمة في هذا البلاغ ذات أهمية عالية."
 
 msgid "New report"
-msgstr ""
+msgstr "تقرير جديد"
 
 msgid "Role: {Role}"
 msgstr "الدور: {Role}"
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "كلمة السركلمة السر: {Password}"

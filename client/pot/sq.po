@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -324,24 +324,6 @@ msgstr "Autorizojë qasje në identitetin e Whistleblower së"
 msgid "Templates"
 msgstr "templates"
 
-msgid "in seconds"
-msgstr "në sekonda"
-
-msgid "in hours"
-msgstr "në orë"
-
-msgid "in days"
-msgstr "në ditë"
-
-msgid "in characters"
-msgstr "në karaktere"
-
-msgid "in megabytes"
-msgstr "në MB"
-
-msgid "in percentage"
-msgstr "në përqindje"
-
 msgid "HTTPS settings"
 msgstr "settings HTTPS"
 
@@ -350,15 +332,6 @@ msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Anomali zbulimin pragjet"
-
-msgid "High risk"
-msgstr "Rreziku i lartë"
-
-msgid "Medium risk"
-msgstr "rreziku i mesëm"
-
-msgid "Low risk"
-msgstr "rrezik të ulët"
 
 msgid "Available disk space"
 msgstr "hapësirë ​​në dispozicion disk"
@@ -431,9 +404,6 @@ msgid "Enter an email address for the administrator"
 msgstr ""
 
 msgid "Enter a password for the administrator"
-msgstr ""
-
-msgid "Test configuration"
 msgstr ""
 
 msgid "Failed logins"
@@ -645,6 +615,9 @@ msgstr ""
 msgid "This user has not performed the first login yet."
 msgstr ""
 
+msgid "seconds"
+msgstr "sekonda "
+
 msgid "Select the context of your report:"
 msgstr ""
 
@@ -777,6 +750,9 @@ msgstr ""
 msgid "Size limit for file attachments"
 msgstr "Kufiri Size për fotografi të bashkëngjitni skedarë"
 
+msgid "in megabytes"
+msgstr "në MB"
+
 msgid "Enable HSTS preload"
 msgstr ""
 
@@ -790,9 +766,6 @@ msgid "Password"
 msgstr "Fjalëkalim"
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Require proof of work on user authentication"
 msgstr ""
 
 msgid "Password change interval"
@@ -845,6 +818,18 @@ msgid "Save"
 msgstr "Ruajeni"
 
 msgid "Reset reports"
+msgstr ""
+
+msgid "Low"
+msgstr ""
+
+msgid "High"
+msgstr "E lartë"
+
+msgid "megabytes"
+msgstr ""
+
+msgid "percentage"
 msgstr ""
 
 msgid "Enable automatic backups"
@@ -982,17 +967,17 @@ msgstr ""
 msgid "Contexts"
 msgstr "Kontekstet"
 
-msgid "State"
-msgstr "shtet"
-
-msgid "Enabled"
-msgstr "Mundësuar"
-
 msgid "Hidden"
 msgstr "Fshehur"
 
 msgid "Disabled"
 msgstr "Paaftësuar"
+
+msgid "State"
+msgstr "shtet"
+
+msgid "Enabled"
+msgstr "Mundësuar"
 
 msgid "Questionnaire"
 msgstr "pyetësor"
@@ -1060,13 +1045,7 @@ msgstr ""
 msgid "Medium"
 msgstr ""
 
-msgid "High"
-msgstr "E lartë"
-
 msgid "Customize the message shown in the receipt page"
-msgstr ""
-
-msgid "Low"
 msgstr ""
 
 msgid "Assign the receipt only to reports reaching score:"
@@ -1707,9 +1686,6 @@ msgstr "Gabim gjatë ngarkoni fotografi; shikoni më poshtë për detaje."
 
 msgid "Estimated upload time:"
 msgstr "Ora vlerësuar upload:"
-
-msgid "seconds"
-msgstr "sekonda "
 
 msgid "Size:"
 msgstr ""

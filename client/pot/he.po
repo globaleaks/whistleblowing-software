@@ -7,6 +7,7 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2019
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
+# ido vasserman <itaizand@gmail.com>, 2020
 # ION, 2018-2020
 # Jakub Jakubiak <jakub.jakubiak@gmail.com>, 2014
 # zxcsd <jenisjpl@gmail.com>, 2015
@@ -18,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -335,24 +336,6 @@ msgstr "תן הרשאת גישת הזהות של המתריע"
 msgid "Templates"
 msgstr "תבניות"
 
-msgid "in seconds"
-msgstr "בשניות"
-
-msgid "in hours"
-msgstr "בשעות"
-
-msgid "in days"
-msgstr "בימים"
-
-msgid "in characters"
-msgstr "בתווים"
-
-msgid "in megabytes"
-msgstr "במגה־בתים"
-
-msgid "in percentage"
-msgstr "באחוזים"
-
 msgid "HTTPS settings"
 msgstr "הגדרות HTTPS"
 
@@ -361,15 +344,6 @@ msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "ספי גילוי אנומליות"
-
-msgid "High risk"
-msgstr "סיכון גבוה"
-
-msgid "Medium risk"
-msgstr "סיכון בינוני"
-
-msgid "Low risk"
-msgstr "סיכון נמוך"
 
 msgid "Available disk space"
 msgstr "שטח דיסק זמין"
@@ -444,9 +418,6 @@ msgstr "הכנס כתובת דוא\"ל עבור המינהלן"
 msgid "Enter a password for the administrator"
 msgstr "הכנס סיסמה עבור המינהלן"
 
-msgid "Test configuration"
-msgstr "בחן תצורה"
-
 msgid "Failed logins"
 msgstr "התחברויות כושלות"
 
@@ -494,10 +465,10 @@ msgstr ""
 msgid ""
 "Unless the whistleblower checks the report by this time, their access to it "
 "will expire."
-msgstr ""
+msgstr "אלא אם חושף/ת השחיתות י/תבדוק הדוח עד אז, הגישה שלהם אליו תפוג"
 
 msgid "The whistleblower can no longer access the report"
-msgstr ""
+msgstr "חושף/ת השחיתויות כבר לא יכל/ה לגשת לדוח"
 
 msgid "Warning!"
 msgstr "אזהרה!"
@@ -506,7 +477,7 @@ msgid "You are running an unsupported and potentially vulnerable browser."
 msgstr ""
 
 msgid "You are strongly advised to download and install the Tor Browser."
-msgstr ""
+msgstr "מומלץ מאד להוריד ולהתקין את דפדפן tor"
 
 msgid ""
 "The Tor Browser includes various privacy and security enhancements not "
@@ -517,7 +488,7 @@ msgid "Download the Tor Browser"
 msgstr "הורד את דפדפן Tor"
 
 msgid "This is the list of the other supported browsers:"
-msgstr ""
+msgstr "זו רשימה של עוד דפדנים נתמכים"
 
 msgid "Audit log"
 msgstr ""
@@ -544,16 +515,16 @@ msgid "Error with file:"
 msgstr "שגיאה עם קובץ:"
 
 msgid "File size not accepted."
-msgstr ""
+msgstr "גודל הקובץ לא מתקבל"
 
 msgid "File type not accepted."
-msgstr ""
+msgstr "סוג הקובץ לא מתקבל"
 
 msgid "Maximum file size is:"
 msgstr "גודל מרבי של קובץ:"
 
 msgid "Accepted file types are:"
-msgstr ""
+msgstr "סוגי קבצים מקובלים הם:"
 
 msgid "Scheduled jobs"
 msgstr "עבודות מתוזמנות"
@@ -565,10 +536,10 @@ msgid "Regenerate"
 msgstr "חולל מחדש"
 
 msgid "Display options alphabetically"
-msgstr ""
+msgstr "הצג אפשרויות באופן אלפאביתי"
 
 msgid "Enable email notifications for:"
-msgstr ""
+msgstr "הצג התראות באימייל עבור:"
 
 msgid "Disable"
 msgstr "השבת"
@@ -580,7 +551,7 @@ msgid "Use as default"
 msgstr "השתמש כברירת מחדל"
 
 msgid "Create your whistleblowing platform"
-msgstr ""
+msgstr "צור/י את פלטפורמת חשיפת השחיתויות שלך"
 
 msgid "Collapse"
 msgstr "צמצם"
@@ -634,7 +605,7 @@ msgid "Not running"
 msgstr "לא רץ"
 
 msgid "Send a test email to your email address."
-msgstr ""
+msgstr "שלח/י מייל ניסיון לכתובת האימייל שלך"
 
 msgid "Block the submission"
 msgstr ""
@@ -654,7 +625,10 @@ msgid ""
 msgstr ""
 
 msgid "This user has not performed the first login yet."
-msgstr ""
+msgstr "המשתמש/ת עוד לא נרשמו "
+
+msgid "seconds"
+msgstr "שניות"
 
 msgid "Select the context of your report:"
 msgstr "בחר את ההקשר של הדוח שלך:"
@@ -680,10 +654,10 @@ msgid "Your report was successful."
 msgstr "הדוח שלך היה מוצלח."
 
 msgid "Report"
-msgstr ""
+msgstr "דוח"
 
 msgid "Before proceeding, please set a new password."
-msgstr ""
+msgstr "לפני שממשיכים, אנא קבע/י סיסמה חדשה"
 
 msgid "New password"
 msgstr "סיסמה חדשה"
@@ -695,7 +669,7 @@ msgid ""
 msgstr "הסיסמה הנבחרת חלשה מדי. סיסמה תקפה אמורה להיות באורך 10 תווים לפחות ולהכיל מגוון תווים כולל לפחות אות קטנה, אות גדולה, מספר ותו מיוחד."
 
 msgid "The new password must be different from the current one."
-msgstr ""
+msgstr "הסיסמה החדשה צריכה להיות שונה מהנוכחית"
 
 msgid "Type your new password again"
 msgstr "הקלד את הסיסמה החדשה שוב"
@@ -704,13 +678,13 @@ msgid "The two passwords do not match"
 msgstr "שתי הסיסמאות אינן תואמות"
 
 msgid "The new password must differ from the previous."
-msgstr ""
+msgstr "הסיסמה החדשה אמורה להיות שונה מהקודמת"
 
 msgid "Proceed"
 msgstr "המשך"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr ""
+msgstr "לפני שממשיכים, אנא תאפשר/י אימות דו-שלבי"
 
 msgid "Disable submissions"
 msgstr "השבת הגשות"
@@ -788,6 +762,9 @@ msgstr ""
 msgid "Size limit for file attachments"
 msgstr "גודל גבול עבור קבצים מצורפים"
 
+msgid "in megabytes"
+msgstr "במגה־בתים"
+
 msgid "Enable HSTS preload"
 msgstr "אפשר קדם־טעינה HSTS"
 
@@ -802,9 +779,6 @@ msgstr "סיסמה"
 
 msgid "Require two factor authentication"
 msgstr "דרוש אימות דו־שלבי"
-
-msgid "Require proof of work on user authentication"
-msgstr ""
 
 msgid "Password change interval"
 msgstr "מרווח שינוי סיסמה"
@@ -824,7 +798,7 @@ msgid ""
 msgstr "מטמעי אבטחה, גישת חושף השחיתויות כפופה אל תפוגה."
 
 msgid "Tweak this setting only if you know what you are doing."
-msgstr ""
+msgstr "שנה/י את ההגדרה הזו רק אם את/ה יודע/ת מה את/ה עושה"
 
 msgid "Enable custodian user role"
 msgstr ""
@@ -857,6 +831,18 @@ msgstr "שמור"
 
 msgid "Reset reports"
 msgstr "אפס דוחות"
+
+msgid "Low"
+msgstr "נמוכה"
+
+msgid "High"
+msgstr "גבוהה"
+
+msgid "megabytes"
+msgstr ""
+
+msgid "percentage"
+msgstr ""
 
 msgid "Enable automatic backups"
 msgstr "אפשר גיבויים אוטומטיים"
@@ -993,17 +979,17 @@ msgstr "תרגום מותאם אישית"
 msgid "Contexts"
 msgstr "הקשרים"
 
-msgid "State"
-msgstr "מחוז"
-
-msgid "Enabled"
-msgstr "מאופשר"
-
 msgid "Hidden"
 msgstr "מוסתר"
 
 msgid "Disabled"
 msgstr "מושבת"
+
+msgid "State"
+msgstr "מחוז"
+
+msgid "Enabled"
+msgstr "מאופשר"
 
 msgid "Questionnaire"
 msgstr "שְׁאֵלוֹן"
@@ -1071,14 +1057,8 @@ msgstr "ערך"
 msgid "Medium"
 msgstr "בינוני"
 
-msgid "High"
-msgstr "גבוהה"
-
 msgid "Customize the message shown in the receipt page"
 msgstr ""
-
-msgid "Low"
-msgstr "נמוכה"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr ""
@@ -1718,9 +1698,6 @@ msgstr "שגיאה בעת העלאת קבצים; לבדוק להלן."
 
 msgid "Estimated upload time:"
 msgstr "זמן העלאה משוער:"
-
-msgid "seconds"
-msgstr "שניות"
 
 msgid "Size:"
 msgstr "גודל:"

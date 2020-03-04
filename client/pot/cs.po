@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -332,24 +332,6 @@ msgstr "Povolit přístup k identitě oznamovatelů"
 msgid "Templates"
 msgstr "Šablony"
 
-msgid "in seconds"
-msgstr "v sekundách"
-
-msgid "in hours"
-msgstr "v hodinách"
-
-msgid "in days"
-msgstr "ve dnech"
-
-msgid "in characters"
-msgstr "znaků"
-
-msgid "in megabytes"
-msgstr "v megabajtech"
-
-msgid "in percentage"
-msgstr "v procentech"
-
 msgid "HTTPS settings"
 msgstr "Nastavení HTTPS"
 
@@ -358,15 +340,6 @@ msgstr "přesměrování URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "Prahové hodnoty detekce anomálií"
-
-msgid "High risk"
-msgstr "Vysoké riziko"
-
-msgid "Medium risk"
-msgstr "Střední riziko"
-
-msgid "Low risk"
-msgstr "Nízké riziko"
 
 msgid "Available disk space"
 msgstr "Volné místo na disku"
@@ -440,9 +413,6 @@ msgstr "Vložte emailovou adresu administrátora"
 
 msgid "Enter a password for the administrator"
 msgstr "Vložte heslo administrátora"
-
-msgid "Test configuration"
-msgstr "Otestovat konfiguraci"
 
 msgid "Failed logins"
 msgstr "Chybná přihlášení"
@@ -653,6 +623,9 @@ msgstr ""
 msgid "This user has not performed the first login yet."
 msgstr ""
 
+msgid "seconds"
+msgstr "sekund"
+
 msgid "Select the context of your report:"
 msgstr "Vyberte obsah Vašeho podání"
 
@@ -785,6 +758,9 @@ msgstr "Zpráva zobrazená na vrchu stránky o stavu podání"
 msgid "Size limit for file attachments"
 msgstr "Limit velikosti pro přílohy"
 
+msgid "in megabytes"
+msgstr "v megabajtech"
+
 msgid "Enable HSTS preload"
 msgstr "Povolit předběžné načítání HSTS"
 
@@ -799,9 +775,6 @@ msgstr "Heslo"
 
 msgid "Require two factor authentication"
 msgstr "Vyžaduje dvoufaktorové ověření"
-
-msgid "Require proof of work on user authentication"
-msgstr ""
 
 msgid "Password change interval"
 msgstr "Interval změny hesla"
@@ -854,6 +827,18 @@ msgstr "Uložit"
 
 msgid "Reset reports"
 msgstr "Resetujte podání"
+
+msgid "Low"
+msgstr "Nízký"
+
+msgid "High"
+msgstr "Vysoká"
+
+msgid "megabytes"
+msgstr "megabajtech"
+
+msgid "percentage"
+msgstr "procentech"
 
 msgid "Enable automatic backups"
 msgstr "Povolit automatické zálohování"
@@ -990,17 +975,17 @@ msgstr "Vlastní překlad"
 msgid "Contexts"
 msgstr "Kontexty"
 
-msgid "State"
-msgstr "Stát"
-
-msgid "Enabled"
-msgstr "Zapnuto"
-
 msgid "Hidden"
 msgstr "Skrytý"
 
 msgid "Disabled"
 msgstr "Vypnuto"
+
+msgid "State"
+msgstr "Stát"
+
+msgid "Enabled"
+msgstr "Zapnuto"
 
 msgid "Questionnaire"
 msgstr "Dotazník"
@@ -1068,14 +1053,8 @@ msgstr "Hodnota"
 msgid "Medium"
 msgstr "Střední"
 
-msgid "High"
-msgstr "Vysoká"
-
 msgid "Customize the message shown in the receipt page"
 msgstr "Upravte zprávu zobrazenou na stránce potvrzení příjmu"
-
-msgid "Low"
-msgstr "Nízký"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr "Přiřadit potvrzení pouze příspěvkům, které dosáhly skóre:"
@@ -1715,9 +1694,6 @@ msgstr "Chyba během nahrávání souboru. Čtěte dále pro více informací."
 
 msgid "Estimated upload time:"
 msgstr "Odhadovaná doba nahravání:"
-
-msgid "seconds"
-msgstr "sekund"
 
 msgid "Size:"
 msgstr "Velikost:"

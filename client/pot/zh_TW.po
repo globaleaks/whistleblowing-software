@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-27 14:31+0000\n"
-"Last-Translator: ff98sha\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -328,24 +328,6 @@ msgstr "授權讀取吹哨者的身份識別"
 msgid "Templates"
 msgstr "模版"
 
-msgid "in seconds"
-msgstr "秒"
-
-msgid "in hours"
-msgstr "時"
-
-msgid "in days"
-msgstr "天"
-
-msgid "in characters"
-msgstr "字元"
-
-msgid "in megabytes"
-msgstr "MB"
-
-msgid "in percentage"
-msgstr "百分比"
-
 msgid "HTTPS settings"
 msgstr "HTTPS 設定"
 
@@ -354,15 +336,6 @@ msgstr "URL 轉址"
 
 msgid "Anomaly detection thresholds"
 msgstr "異常偵測門檻"
-
-msgid "High risk"
-msgstr "高風險"
-
-msgid "Medium risk"
-msgstr "中度風險"
-
-msgid "Low risk"
-msgstr "低風險"
 
 msgid "Available disk space"
 msgstr "可用的硬碟空間"
@@ -436,9 +409,6 @@ msgstr "輸入管理者電子郵件"
 
 msgid "Enter a password for the administrator"
 msgstr "輸入管理者密碼"
-
-msgid "Test configuration"
-msgstr "測試設定"
 
 msgid "Failed logins"
 msgstr "登入失敗"
@@ -649,6 +619,9 @@ msgstr "有收件人尚未進行首次登錄。這意味著他們還未接受到
 msgid "This user has not performed the first login yet."
 msgstr "收件人尚未進行首次登錄。"
 
+msgid "seconds"
+msgstr "秒"
+
 msgid "Select the context of your report:"
 msgstr "選擇您報告合適的情況："
 
@@ -781,6 +754,9 @@ msgstr "報告狀況頁的標題"
 msgid "Size limit for file attachments"
 msgstr "附件檔案的大小限制"
 
+msgid "in megabytes"
+msgstr "MB"
+
 msgid "Enable HSTS preload"
 msgstr "開啟 HSTS 預載"
 
@@ -795,9 +771,6 @@ msgstr "密碼"
 
 msgid "Require two factor authentication"
 msgstr "要求雙因子驗證"
-
-msgid "Require proof of work on user authentication"
-msgstr "需要工作證明的用戶驗證"
 
 msgid "Password change interval"
 msgstr "密碼變更間隔"
@@ -850,6 +823,18 @@ msgstr "儲存"
 
 msgid "Reset reports"
 msgstr "重設報告"
+
+msgid "Low"
+msgstr "低"
+
+msgid "High"
+msgstr "高"
+
+msgid "megabytes"
+msgstr "MB"
+
+msgid "percentage"
+msgstr "百分比"
 
 msgid "Enable automatic backups"
 msgstr "啟用自動備份"
@@ -986,17 +971,17 @@ msgstr "自定翻譯"
 msgid "Contexts"
 msgstr "內文"
 
-msgid "State"
-msgstr "州/省"
-
-msgid "Enabled"
-msgstr "啟用"
-
 msgid "Hidden"
 msgstr "隱藏"
 
 msgid "Disabled"
 msgstr "關閉"
+
+msgid "State"
+msgstr "州/省"
+
+msgid "Enabled"
+msgstr "啟用"
 
 msgid "Questionnaire"
 msgstr "問卷"
@@ -1064,14 +1049,8 @@ msgstr "值"
 msgid "Medium"
 msgstr "媒體"
 
-msgid "High"
-msgstr "高"
-
 msgid "Customize the message shown in the receipt page"
 msgstr "自定出現在接收頁的訊息留言"
-
-msgid "Low"
-msgstr "低"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr "報告指定的收件人必須達到的評分："
@@ -1711,9 +1690,6 @@ msgstr "上傳檔案時出錯，請檢查以下資訊了解詳情"
 
 msgid "Estimated upload time:"
 msgstr "預估上傳時間:"
-
-msgid "seconds"
-msgstr "秒"
 
 msgid "Size:"
 msgstr "大小:"

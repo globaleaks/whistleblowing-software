@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -329,24 +329,6 @@ msgstr "Phép truy cập đến danh tính của người tố giác"
 msgid "Templates"
 msgstr "Templates"
 
-msgid "in seconds"
-msgstr "trong vài giây"
-
-msgid "in hours"
-msgstr "trong giờ"
-
-msgid "in days"
-msgstr "trong ngày"
-
-msgid "in characters"
-msgstr "trong ký tự"
-
-msgid "in megabytes"
-msgstr "bằng megabyte"
-
-msgid "in percentage"
-msgstr "tỷ lệ phần trăm"
-
 msgid "HTTPS settings"
 msgstr "cài đặt HTTPS"
 
@@ -355,15 +337,6 @@ msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Ngưỡng phát hiện bất thường"
-
-msgid "High risk"
-msgstr "Rủi ro cao"
-
-msgid "Medium risk"
-msgstr "rủi ro trung bình"
-
-msgid "Low risk"
-msgstr "Nguy cơ thấp"
 
 msgid "Available disk space"
 msgstr "không gian đĩa có sẵn"
@@ -436,9 +409,6 @@ msgid "Enter an email address for the administrator"
 msgstr ""
 
 msgid "Enter a password for the administrator"
-msgstr ""
-
-msgid "Test configuration"
 msgstr ""
 
 msgid "Failed logins"
@@ -650,6 +620,9 @@ msgstr ""
 msgid "This user has not performed the first login yet."
 msgstr ""
 
+msgid "seconds"
+msgstr "giây"
+
 msgid "Select the context of your report:"
 msgstr "Chọn ngữ cảnh của trình của bạn:"
 
@@ -782,6 +755,9 @@ msgstr "Tin nhắn hiển thị trên đầu trang trạng thái của các trì
 msgid "Size limit for file attachments"
 msgstr "Kích thước giới hạn cho tập tin đính kèm"
 
+msgid "in megabytes"
+msgstr "bằng megabyte"
+
 msgid "Enable HSTS preload"
 msgstr ""
 
@@ -795,9 +771,6 @@ msgid "Password"
 msgstr "Mật khẩu"
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Require proof of work on user authentication"
 msgstr ""
 
 msgid "Password change interval"
@@ -850,6 +823,18 @@ msgid "Save"
 msgstr "Lưu"
 
 msgid "Reset reports"
+msgstr ""
+
+msgid "Low"
+msgstr "Thấp"
+
+msgid "High"
+msgstr "Cao"
+
+msgid "megabytes"
+msgstr ""
+
+msgid "percentage"
 msgstr ""
 
 msgid "Enable automatic backups"
@@ -987,17 +972,17 @@ msgstr ""
 msgid "Contexts"
 msgstr "Nội dung"
 
-msgid "State"
-msgstr "Tiểu bang"
-
-msgid "Enabled"
-msgstr "Bật"
-
 msgid "Hidden"
 msgstr "Ẩn"
 
 msgid "Disabled"
 msgstr "Tàn tật"
+
+msgid "State"
+msgstr "Tiểu bang"
+
+msgid "Enabled"
+msgstr "Bật"
 
 msgid "Questionnaire"
 msgstr "Bảng câu hỏi"
@@ -1065,14 +1050,8 @@ msgstr "Giá trị"
 msgid "Medium"
 msgstr "Vừa phải"
 
-msgid "High"
-msgstr "Cao"
-
 msgid "Customize the message shown in the receipt page"
 msgstr ""
-
-msgid "Low"
-msgstr "Thấp"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr ""
@@ -1712,9 +1691,6 @@ msgstr "Lỗi trong khi tải lên các tập tin; kiểm tra dưới đây đ�
 
 msgid "Estimated upload time:"
 msgstr "thời gian tải lên dự kiến:"
-
-msgid "seconds"
-msgstr "giây"
 
 msgid "Size:"
 msgstr ""

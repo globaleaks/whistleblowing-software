@@ -3,7 +3,7 @@
 # Chi-Hsun Tsai, 2017
 # Chi-Hsun Tsai, 2017
 # ff98sha, 2020
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017-2018
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017-2018,2020
 # kwh(Kim Wan-Ho), 2013-2014
 # lin, 2014
 # 刘位, 2014
@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-27 14:32+0000\n"
-"Last-Translator: ff98sha\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -337,24 +337,6 @@ msgstr "授权读取告密人的身份识别"
 msgid "Templates"
 msgstr "模板"
 
-msgid "in seconds"
-msgstr "秒"
-
-msgid "in hours"
-msgstr "时"
-
-msgid "in days"
-msgstr "天"
-
-msgid "in characters"
-msgstr "字符"
-
-msgid "in megabytes"
-msgstr "MB"
-
-msgid "in percentage"
-msgstr "百分比"
-
 msgid "HTTPS settings"
 msgstr "HTTPS 设置"
 
@@ -363,15 +345,6 @@ msgstr "URL 转址"
 
 msgid "Anomaly detection thresholds"
 msgstr "异常侦测门槛"
-
-msgid "High risk"
-msgstr "高风险"
-
-msgid "Medium risk"
-msgstr "中度风险"
-
-msgid "Low risk"
-msgstr "低风险"
 
 msgid "Available disk space"
 msgstr "可用的硬盘空间"
@@ -445,9 +418,6 @@ msgstr "输入管理者电子邮件"
 
 msgid "Enter a password for the administrator"
 msgstr "输入管理者密码"
-
-msgid "Test configuration"
-msgstr "测试设置"
 
 msgid "Failed logins"
 msgstr "登录失败"
@@ -658,6 +628,9 @@ msgstr "有收件人尚未进行首次登录。这意味着他们还未接受到
 msgid "This user has not performed the first login yet."
 msgstr "收件人尚未进行首次登录。"
 
+msgid "seconds"
+msgstr "秒"
+
 msgid "Select the context of your report:"
 msgstr "选择您报告合适的情况："
 
@@ -790,6 +763,9 @@ msgstr "报告状况页的标题"
 msgid "Size limit for file attachments"
 msgstr "附件文件的大小限制"
 
+msgid "in megabytes"
+msgstr "MB"
+
 msgid "Enable HSTS preload"
 msgstr "开启 HSTS 预载"
 
@@ -804,9 +780,6 @@ msgstr "密码"
 
 msgid "Require two factor authentication"
 msgstr "要求双因子验证"
-
-msgid "Require proof of work on user authentication"
-msgstr "需要工作证明的用户验证"
 
 msgid "Password change interval"
 msgstr "密码变更间隔"
@@ -859,6 +832,18 @@ msgstr "保存"
 
 msgid "Reset reports"
 msgstr "重设报告"
+
+msgid "Low"
+msgstr "低"
+
+msgid "High"
+msgstr "高"
+
+msgid "megabytes"
+msgstr "MB"
+
+msgid "percentage"
+msgstr "百分比"
 
 msgid "Enable automatic backups"
 msgstr "启用自动备份"
@@ -995,17 +980,17 @@ msgstr "自定翻译"
 msgid "Contexts"
 msgstr "内文"
 
-msgid "State"
-msgstr "州"
-
-msgid "Enabled"
-msgstr "启用"
-
 msgid "Hidden"
 msgstr "隐藏"
 
 msgid "Disabled"
 msgstr "关闭"
+
+msgid "State"
+msgstr "州"
+
+msgid "Enabled"
+msgstr "启用"
 
 msgid "Questionnaire"
 msgstr "问卷"
@@ -1073,14 +1058,8 @@ msgstr "值"
 msgid "Medium"
 msgstr "媒体"
 
-msgid "High"
-msgstr "高"
-
 msgid "Customize the message shown in the receipt page"
 msgstr "自定出现在接收页的消息留言"
-
-msgid "Low"
-msgstr "低"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr "报告指定的收件人必须达到的评分："
@@ -1720,9 +1699,6 @@ msgstr "上传文件时出错，请检查以下信息了解详情"
 
 msgid "Estimated upload time:"
 msgstr "预计上传时间："
-
-msgid "seconds"
-msgstr "秒"
 
 msgid "Size:"
 msgstr "大小:"

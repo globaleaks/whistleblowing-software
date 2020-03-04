@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -326,24 +326,6 @@ msgstr "İnformasiya ötürənin kimliyinə girişinə izin ver"
 msgid "Templates"
 msgstr "Şablonlar"
 
-msgid "in seconds"
-msgstr "Saniyələr içində "
-
-msgid "in hours"
-msgstr "Saatlarla"
-
-msgid "in days"
-msgstr "Günlərlə"
-
-msgid "in characters"
-msgstr "Simvollarla"
-
-msgid "in megabytes"
-msgstr "Megabaytla"
-
-msgid "in percentage"
-msgstr "Faizlə"
-
 msgid "HTTPS settings"
 msgstr "HTTPS  tənzimləmələri "
 
@@ -352,15 +334,6 @@ msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Anomaliya aşkarlama hədləri "
-
-msgid "High risk"
-msgstr "Yüksək risk"
-
-msgid "Medium risk"
-msgstr "Orta risk "
-
-msgid "Low risk"
-msgstr "Aşağı risk"
 
 msgid "Available disk space"
 msgstr "İstifadə oluna bilən disk sahəsi "
@@ -434,9 +407,6 @@ msgstr "İnzibatçı üçün e-poçt ünvanını daxil edin"
 
 msgid "Enter a password for the administrator"
 msgstr "İnzibatçı üçün şifrənizi daxil edin"
-
-msgid "Test configuration"
-msgstr "Test quraşdırması"
 
 msgid "Failed logins"
 msgstr "Uğursuz daxil olmalar"
@@ -647,6 +617,9 @@ msgstr ""
 msgid "This user has not performed the first login yet."
 msgstr ""
 
+msgid "seconds"
+msgstr "saniyə"
+
 msgid "Select the context of your report:"
 msgstr ""
 
@@ -779,6 +752,9 @@ msgstr ""
 msgid "Size limit for file attachments"
 msgstr "Fayl əlavələri üçün ölçü həddi"
 
+msgid "in megabytes"
+msgstr "Megabaytla"
+
 msgid "Enable HSTS preload"
 msgstr ""
 
@@ -792,9 +768,6 @@ msgid "Password"
 msgstr "Şifrə"
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Require proof of work on user authentication"
 msgstr ""
 
 msgid "Password change interval"
@@ -847,6 +820,18 @@ msgid "Save"
 msgstr "Yadda saxla"
 
 msgid "Reset reports"
+msgstr ""
+
+msgid "Low"
+msgstr ""
+
+msgid "High"
+msgstr "Yuksək"
+
+msgid "megabytes"
+msgstr ""
+
+msgid "percentage"
 msgstr ""
 
 msgid "Enable automatic backups"
@@ -984,17 +969,17 @@ msgstr "Fərdi tərcümə"
 msgid "Contexts"
 msgstr "Kontekst"
 
-msgid "State"
-msgstr "Rayon"
-
-msgid "Enabled"
-msgstr "Aktivdir"
-
 msgid "Hidden"
 msgstr "Gizli"
 
 msgid "Disabled"
 msgstr "Sönlüdür"
+
+msgid "State"
+msgstr "Rayon"
+
+msgid "Enabled"
+msgstr "Aktivdir"
 
 msgid "Questionnaire"
 msgstr "Sorğu"
@@ -1062,13 +1047,7 @@ msgstr "Əmsal"
 msgid "Medium"
 msgstr ""
 
-msgid "High"
-msgstr "Yuksək"
-
 msgid "Customize the message shown in the receipt page"
-msgstr ""
-
-msgid "Low"
 msgstr ""
 
 msgid "Assign the receipt only to reports reaching score:"
@@ -1709,9 +1688,6 @@ msgstr "Fayl yükləyərkən səhvə yol verilib. Ətraflı məlumat üçün aş
 
 msgid "Estimated upload time:"
 msgstr "Təxmini yükləmə müddəti:"
-
-msgid "seconds"
-msgstr "saniyə"
 
 msgid "Size:"
 msgstr ""

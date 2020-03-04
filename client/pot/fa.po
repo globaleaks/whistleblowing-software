@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,24 +342,6 @@ msgstr "اجازه دسترسی به هویت افشاگر"
 msgid "Templates"
 msgstr "الگو"
 
-msgid "in seconds"
-msgstr "چند ثانیه"
-
-msgid "in hours"
-msgstr "چند ساعت"
-
-msgid "in days"
-msgstr "چند روز"
-
-msgid "in characters"
-msgstr "در کارکتارها"
-
-msgid "in megabytes"
-msgstr "در مگابایت"
-
-msgid "in percentage"
-msgstr "در درصد"
-
 msgid "HTTPS settings"
 msgstr "تنظیمات HTTPS"
 
@@ -368,15 +350,6 @@ msgstr "تغییر مسیر آدرس"
 
 msgid "Anomaly detection thresholds"
 msgstr "آستانه تشخیص ناهنجاری"
-
-msgid "High risk"
-msgstr "خطر زیاد"
-
-msgid "Medium risk"
-msgstr "خطر معمولی"
-
-msgid "Low risk"
-msgstr "کم خطر"
 
 msgid "Available disk space"
 msgstr "فضای قابل دسترس"
@@ -450,9 +423,6 @@ msgstr "آدرس ایمیل برای مدیر را وارد کنید"
 
 msgid "Enter a password for the administrator"
 msgstr "گذرواژه برای مدیر را وارد کنید"
-
-msgid "Test configuration"
-msgstr "تست پیکربندی"
 
 msgid "Failed logins"
 msgstr "ورود نا موفق"
@@ -663,6 +633,9 @@ msgstr ""
 msgid "This user has not performed the first login yet."
 msgstr ""
 
+msgid "seconds"
+msgstr "ثانیه"
+
 msgid "Select the context of your report:"
 msgstr ""
 
@@ -795,6 +768,9 @@ msgstr ""
 msgid "Size limit for file attachments"
 msgstr "محدودیت در حجم ضمیمه‌ها"
 
+msgid "in megabytes"
+msgstr "در مگابایت"
+
 msgid "Enable HSTS preload"
 msgstr "فعالسازی HSTS preload"
 
@@ -809,9 +785,6 @@ msgstr "گذرواژه"
 
 msgid "Require two factor authentication"
 msgstr "نیاز به احراز هویت دو عاملی"
-
-msgid "Require proof of work on user authentication"
-msgstr ""
 
 msgid "Password change interval"
 msgstr "بازه تغییر گذرواژه"
@@ -863,6 +836,18 @@ msgid "Save"
 msgstr "ذخیره"
 
 msgid "Reset reports"
+msgstr ""
+
+msgid "Low"
+msgstr "کم"
+
+msgid "High"
+msgstr "زیاد"
+
+msgid "megabytes"
+msgstr ""
+
+msgid "percentage"
 msgstr ""
 
 msgid "Enable automatic backups"
@@ -1000,17 +985,17 @@ msgstr "ترجمه سفارشی"
 msgid "Contexts"
 msgstr "متن‌ها"
 
-msgid "State"
-msgstr "ایالت"
-
-msgid "Enabled"
-msgstr "فعال شده"
-
 msgid "Hidden"
 msgstr "پنهان"
 
 msgid "Disabled"
 msgstr "غیر فعال شد"
+
+msgid "State"
+msgstr "ایالت"
+
+msgid "Enabled"
+msgstr "فعال شده"
 
 msgid "Questionnaire"
 msgstr "پرسش‌نامه"
@@ -1078,14 +1063,8 @@ msgstr "مقدار"
 msgid "Medium"
 msgstr "متوسط"
 
-msgid "High"
-msgstr "زیاد"
-
 msgid "Customize the message shown in the receipt page"
 msgstr "سفارشی کردن پیام نشان داده شده در صفحه رسید"
-
-msgid "Low"
-msgstr "کم"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr ""
@@ -1725,9 +1704,6 @@ msgstr "خطا در هنگام بارگذاری فایل ها؛ پایین را 
 
 msgid "Estimated upload time:"
 msgstr "زمان تخمین‌زده‌شده برای بارگذاری:"
-
-msgid "seconds"
-msgstr "ثانیه"
 
 msgid "Size:"
 msgstr "سایز:"

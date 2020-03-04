@@ -3,7 +3,7 @@
 # Annie Bridges <anniebridges90@gmail.com>, 2014
 # Bogdan Lytvynovskyi <bogdan.lytvynovskyi@gmail.com>, 2014
 # EugeneNemo <eugeye@gmail.com>, 2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020
 # jonny_nut, 2014
 # jonny_nut, 2014
 # kyrylkov <kyrylkov@gmail.com>, 2013,2015
@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,7 +149,7 @@ msgid "YOUR NAME"
 msgstr "ВАШЕ ІМ'Я"
 
 msgid "Label the report"
-msgstr ""
+msgstr "Позначте повідомлення"
 
 msgid "Postpone the expiration date"
 msgstr "Відтермінувати дату зачінчення терміну дії"
@@ -173,10 +173,10 @@ msgid "Preview"
 msgstr "Попередній перегляд"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "Викривач прочитав останні оновлення"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "Викривач ще не прочитав останні оновлення"
 
 msgid "Move up"
 msgstr "Вгору"
@@ -339,24 +339,6 @@ msgstr "Надати право доступу до інформації про 
 msgid "Templates"
 msgstr "Templates"
 
-msgid "in seconds"
-msgstr "у секундах"
-
-msgid "in hours"
-msgstr "у годинах"
-
-msgid "in days"
-msgstr "у днях"
-
-msgid "in characters"
-msgstr "у символів"
-
-msgid "in megabytes"
-msgstr "у мегабайтах"
-
-msgid "in percentage"
-msgstr "у відсотках"
-
 msgid "HTTPS settings"
 msgstr "налаштування HTTPS"
 
@@ -365,15 +347,6 @@ msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Anomaly detection thresholds"
-
-msgid "High risk"
-msgstr "Високий рівень ризику"
-
-msgid "Medium risk"
-msgstr "Середній рівень ризику"
-
-msgid "Low risk"
-msgstr "Низький рівень ризику"
 
 msgid "Available disk space"
 msgstr "Вільне місце на диску"
@@ -407,7 +380,7 @@ msgid "Triggered by score:"
 msgstr ""
 
 msgid "Message shown on top of the status page of the report"
-msgstr ""
+msgstr "Повідомлення, яке відображається на верхній частині сторінки статусу повідомлення"
 
 msgid "Copy and paste the PGP public key here"
 msgstr "Скопіюйте PGP ключ cюди"
@@ -447,9 +420,6 @@ msgstr "Enter an email address for the administrator"
 
 msgid "Enter a password for the administrator"
 msgstr "Enter a password for the administrator"
-
-msgid "Test configuration"
-msgstr "Test configuration"
 
 msgid "Failed logins"
 msgstr "Кількість невдалих спроб авторизації"
@@ -498,10 +468,10 @@ msgstr "Текст було видалено"
 msgid ""
 "Unless the whistleblower checks the report by this time, their access to it "
 "will expire."
-msgstr ""
+msgstr "Доступ до повідомлення буде закритий, якщо інформатора не відкриє повідомлення до обраного часу"
 
 msgid "The whistleblower can no longer access the report"
-msgstr ""
+msgstr "Викривач більше не має доступу до повідомлення"
 
 msgid "Warning!"
 msgstr "Увага!"
@@ -660,8 +630,11 @@ msgstr ""
 msgid "This user has not performed the first login yet."
 msgstr ""
 
+msgid "seconds"
+msgstr "секунди"
+
 msgid "Select the context of your report:"
-msgstr ""
+msgstr "Оберіть контекст Вашого повідомлення"
 
 msgid "Warning! You are not anonymous."
 msgstr "УВАГА! Ви не анонімні."
@@ -681,7 +654,7 @@ msgid "Blow the whistle"
 msgstr "Надати свідчення"
 
 msgid "Your report was successful."
-msgstr ""
+msgstr "Ваше відправлення було успішне."
 
 msgid "Report"
 msgstr ""
@@ -735,14 +708,14 @@ msgid "Enable simplified login"
 msgstr ""
 
 msgid "Allow recipients to delete reports"
-msgstr ""
+msgstr "Дозволити одержувачам видаляти матеріали"
 
 msgid "Allow recipients to postpone expiration date of the report"
-msgstr ""
+msgstr "Дозволити одержувачам відтерміновувати видалення матеріалів."
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr ""
+msgstr "Дозволити одержувачам обирати які типи повідомлень можуть надсилати інформатори "
 
 msgid "Enable search engines indexing"
 msgstr "Включити індексацію пошуковими системами"
@@ -792,6 +765,9 @@ msgstr ""
 msgid "Size limit for file attachments"
 msgstr "Обмеження розміру доданих файлів"
 
+msgid "in megabytes"
+msgstr "у мегабайтах"
+
 msgid "Enable HSTS preload"
 msgstr ""
 
@@ -805,9 +781,6 @@ msgid "Password"
 msgstr "Пароль"
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Require proof of work on user authentication"
 msgstr ""
 
 msgid "Password change interval"
@@ -860,6 +833,18 @@ msgid "Save"
 msgstr "Зберегти"
 
 msgid "Reset reports"
+msgstr ""
+
+msgid "Low"
+msgstr ""
+
+msgid "High"
+msgstr "Високий"
+
+msgid "megabytes"
+msgstr ""
+
+msgid "percentage"
 msgstr ""
 
 msgid "Enable automatic backups"
@@ -997,17 +982,17 @@ msgstr "Custom translation"
 msgid "Contexts"
 msgstr "Контексти"
 
-msgid "State"
-msgstr "Область"
-
-msgid "Enabled"
-msgstr "Увімкнений"
-
 msgid "Hidden"
 msgstr "Прихований"
 
 msgid "Disabled"
 msgstr "Вимкнено"
+
+msgid "State"
+msgstr "Область"
+
+msgid "Enabled"
+msgstr "Увімкнений"
 
 msgid "Questionnaire"
 msgstr "Анкета із переліком питань"
@@ -1040,7 +1025,7 @@ msgid "Show small recipient cards on submission interface"
 msgstr "Відображати логотипи одержувачів на сторінці подачі матеріалів."
 
 msgid "Show recipient details on the status page of the report"
-msgstr ""
+msgstr "Show recipient details on the status page of the submission"
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Text shown on top of the interface for selecting recipients"
@@ -1058,7 +1043,7 @@ msgid "Allow whistleblowers to send messages"
 msgstr "Дозволити викривачам надсилати повідомлення"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr ""
+msgstr "Дозволити викривачам додавати документи до існуючих повідомлень"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
@@ -1075,13 +1060,7 @@ msgstr "Значення"
 msgid "Medium"
 msgstr "Середній"
 
-msgid "High"
-msgstr "Високий"
-
 msgid "Customize the message shown in the receipt page"
-msgstr ""
-
-msgid "Low"
 msgstr ""
 
 msgid "Assign the receipt only to reports reaching score:"
@@ -1262,7 +1241,7 @@ msgid "Reset notification templates to default"
 msgstr "Reset notification templates to default"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr ""
+msgstr "Number of hours before sending a submission expiration alert"
 
 msgid "Test the configuration"
 msgstr "Test the configuration"
@@ -1490,15 +1469,15 @@ msgid "Forcefully selected"
 msgstr "Обрано за замовчуванням без права змін"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr ""
+msgstr "Дозволити одержувачам відтерміновувати видалення матеріалів."
 
 msgid "Allow the recipient to delete reports"
-msgstr ""
+msgstr "Дозволити одержувачам видаляти матеріали"
 
 msgid ""
 "Allow the recipient to grant permissions to whistleblowers on specific "
 "reports"
-msgstr ""
+msgstr "Дозволити одержувачам обирати які типи повідомлень можуть надсилати інформатори "
 
 msgid "User has administrative access to the following features:"
 msgstr ""
@@ -1540,10 +1519,10 @@ msgid "Site:"
 msgstr ""
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr ""
+msgstr "Ви вже надавали свідчення? Вкажіть отриманий номер-чек"
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr ""
+msgstr "ключ недійсний або термін дії матеріалів закінчився."
 
 msgid "Username:"
 msgstr "Ім'я користувача:"
@@ -1576,7 +1555,7 @@ msgid "Assign score points"
 msgstr "Призначати бали"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
+msgstr "Зверніть увагу, що всі пов'язані з ним дані будуть безповоротно втрачені."
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
@@ -1723,9 +1702,6 @@ msgstr "Помилка при завантаженні файлів; перев�
 msgid "Estimated upload time:"
 msgstr "Час завершення завантаження"
 
-msgid "seconds"
-msgstr "секунди"
-
 msgid "Size:"
 msgstr "Розмір:"
 
@@ -1812,7 +1788,7 @@ msgid "No files have been uploaded!"
 msgstr "Жодного файлу не було завантажено!"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr ""
+msgstr "Дозволити викривачам надсилати додатки"
 
 msgid "Access expiration"
 msgstr "Закінчення терміну доступу"
@@ -1834,7 +1810,7 @@ msgstr ""
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
-msgstr ""
+msgstr "Всі матеріали свідчення будуть видалені."
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
@@ -1842,7 +1818,7 @@ msgid ""
 msgstr "Увага. Всі файли, які Ви зберегли на комп'ютері і за межами платформи Хабардокс, потрібно незабути видалити вручну. "
 
 msgid "Are you sure that you want to delete the selected reports?"
-msgstr ""
+msgstr "Дійсно хочете видалити всі вибрані повідомлення?"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
@@ -1853,7 +1829,7 @@ msgid "Please write a motivation for the reply"
 msgstr "Будь ласка, напишіть мотивацію для відповіді"
 
 msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr ""
+msgstr "Дійсно хочете відтермінувати видалення матеріалу?"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Після підтвердження термін дії буде до:"
@@ -1861,7 +1837,7 @@ msgstr "Після підтвердження термін дії буде до:
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
 "reports?"
-msgstr ""
+msgstr "Дійсно хочете відтермінувати термін дії всіх вибраних повідомлень?"
 
 msgid "Questionnaire answers"
 msgstr "Відповіді на питання антети"
@@ -1888,7 +1864,7 @@ msgid "Files attached by recipients"
 msgstr "Файли прикріплені одержувачами"
 
 msgid "These files have been attached to your report by the recipients."
-msgstr ""
+msgstr "Ці файли були додані до вашого подання одержувачами."
 
 msgid "The provided recovery key is invalid."
 msgstr ""
@@ -1988,15 +1964,15 @@ msgid "We will try to get back to you as soon as possible."
 msgstr ""
 
 msgid "Remember your receipt for this report."
-msgstr ""
+msgstr "Збережіть ваш унікальний код цього матеріалу."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr ""
+msgstr "Використовуйте наданий 16-значний номер, щоб увійти в систему і переглянути повідомлення та коментарі, або щоб нададати додаткову інформацію."
 
 msgid "View your report"
-msgstr ""
+msgstr "Переглянути ваше відравлення"
 
 msgid "Recipient selection"
 msgstr "Вибір одержувача"
@@ -2065,16 +2041,16 @@ msgid "Short title"
 msgstr "Короткий заголовок"
 
 msgid "Describe your report in a few words."
-msgstr ""
+msgstr "Опишіть кількома словами надані вами матеріали."
 
 msgid "Full description"
 msgstr "Повний опис"
 
 msgid "Describe your report in detail."
-msgstr ""
+msgstr "Опишіть надані вами матеріали детальніше"
 
 msgid "Attach files relevant to the report."
-msgstr ""
+msgstr "Прикріпити файли, пов'язані з матеріалом."
 
 msgid "Do you want to provide your identification information?"
 msgstr "Ви бажаєте ідентифікувати себе?"
@@ -2270,10 +2246,10 @@ msgid "Test email"
 msgstr "Test email"
 
 msgid "This is an email to notify you of a new comment on an existing report."
-msgstr ""
+msgstr "Один з інформаторів залиший новий коментар до існуючого свідчення."
 
 msgid "The report can be accessed at:"
-msgstr ""
+msgstr "Повідомлення можна отримати:"
 
 msgid "New comment"
 msgstr "Новий Коментар"
@@ -2318,7 +2294,7 @@ msgstr "Назва тематики: {ContextName}"
 msgid ""
 "This is an email to notify you that the whistleblower of report {TipNum} has"
 " attached new material."
-msgstr ""
+msgstr "Повідомляємо що інформатор, який надав свідчення {TipNum} , додав новий файл. "
 
 msgid "New attachment"
 msgstr "Новий додаток"
@@ -2355,7 +2331,7 @@ msgstr ""
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Повідомляємо, що куратор задовольнив Ваш запит на доступ до даних про інформатора, який надіслав повідомлення {TipNum}"
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "Запит на інформацію про особу викривача було задоволено"
@@ -2363,7 +2339,7 @@ msgstr "Запит на інформацію про особу викривач�
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " wistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Повідомляємо, що куратор задовольнив Ваш запит на доступ до даних про інформатора, який надіслав повідомлення {TipNum}"
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Запит на інформацію про особу викривача було відхилено"
@@ -2371,10 +2347,10 @@ msgstr "Запит на інформацію про особу викривач�
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr ""
+msgstr "Повідомляємо, що одержувач надав запит на доступ до даних про інформатора, який повідомив свідчення {TipNum}"
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "Запит можна переглянути:"
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Новий запит на інформацію про особу викривача"
@@ -2382,13 +2358,13 @@ msgstr "Новий запит на інформацію про особу вик
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr ""
+msgstr "Повідомляємо, що викривач, який надав свідчення {TipNum} додав дані про власну особу."
 
 msgid "The whistleblower has provided their identity"
 msgstr "Викривач ідентифікував себе"
 
 msgid "This is an email to notify you of a new message on an existing report."
-msgstr ""
+msgstr "Один з інформаторів залиший новий коментар до існуючого свідчення."
 
 msgid "New message"
 msgstr "Нове Повідомлення"
@@ -2459,12 +2435,12 @@ msgid "Please remember to check them before they are deleted."
 msgstr "Будь ласка, не забудьте перевірити їх, перш ніж вони будуть видалені."
 
 msgid "Some reports will expire soon"
-msgstr ""
+msgstr "Спливає термін наданих Вам повідомлень"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr ""
+msgstr "Інформатор обрав Вас одержувачем матеріалу, що викриває корупційну діяльність."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2472,7 +2448,7 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr ""
+msgstr "Інформатор сподівається, що саме Ви звернете увагу на надані матеріали. Викривачі дуже ризикують. Інформація, яку вони надають, заслуговує особливої уваги!"
 
 msgid "New report"
 msgstr ""

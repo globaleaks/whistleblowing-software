@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -325,24 +325,6 @@ msgstr "Autoriza o acceso á identidade do denunciante"
 msgid "Templates"
 msgstr "Modelos"
 
-msgid "in seconds"
-msgstr "en segundos"
-
-msgid "in hours"
-msgstr "en horas"
-
-msgid "in days"
-msgstr "en días"
-
-msgid "in characters"
-msgstr "en caracteres"
-
-msgid "in megabytes"
-msgstr "en megabytes"
-
-msgid "in percentage"
-msgstr "en porcentaxe"
-
 msgid "HTTPS settings"
 msgstr "Configuración de HTTPS"
 
@@ -351,15 +333,6 @@ msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Portal de detección de anomalías"
-
-msgid "High risk"
-msgstr "Alto risco"
-
-msgid "Medium risk"
-msgstr "Risco medio"
-
-msgid "Low risk"
-msgstr "Risco baixo"
 
 msgid "Available disk space"
 msgstr "Espazo en disco dispoñible"
@@ -433,9 +406,6 @@ msgstr "Introduce un enderezo electrónico para o administrador"
 
 msgid "Enter a password for the administrator"
 msgstr "Introduce un contrasinal para o administrador"
-
-msgid "Test configuration"
-msgstr "Proba de configuración"
 
 msgid "Failed logins"
 msgstr "Erro ao iniciar sesión"
@@ -646,6 +616,9 @@ msgstr ""
 msgid "This user has not performed the first login yet."
 msgstr ""
 
+msgid "seconds"
+msgstr "segundos"
+
 msgid "Select the context of your report:"
 msgstr ""
 
@@ -778,6 +751,9 @@ msgstr ""
 msgid "Size limit for file attachments"
 msgstr "Límite de tamaño para ficheiros anexados"
 
+msgid "in megabytes"
+msgstr "en megabytes"
+
 msgid "Enable HSTS preload"
 msgstr ""
 
@@ -791,9 +767,6 @@ msgid "Password"
 msgstr "Contrasinal"
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Require proof of work on user authentication"
 msgstr ""
 
 msgid "Password change interval"
@@ -846,6 +819,18 @@ msgid "Save"
 msgstr "Gardar"
 
 msgid "Reset reports"
+msgstr ""
+
+msgid "Low"
+msgstr ""
+
+msgid "High"
+msgstr "Alto"
+
+msgid "megabytes"
+msgstr ""
+
+msgid "percentage"
 msgstr ""
 
 msgid "Enable automatic backups"
@@ -983,17 +968,17 @@ msgstr "Tradución personalizada"
 msgid "Contexts"
 msgstr "Contextos"
 
-msgid "State"
-msgstr "Estado"
-
-msgid "Enabled"
-msgstr "Activado"
-
 msgid "Hidden"
 msgstr "Oculto"
 
 msgid "Disabled"
 msgstr "Desactivado"
+
+msgid "State"
+msgstr "Estado"
+
+msgid "Enabled"
+msgstr "Activado"
 
 msgid "Questionnaire"
 msgstr "Cuestionario"
@@ -1061,13 +1046,7 @@ msgstr "Valor"
 msgid "Medium"
 msgstr "Medio"
 
-msgid "High"
-msgstr "Alto"
-
 msgid "Customize the message shown in the receipt page"
-msgstr ""
-
-msgid "Low"
 msgstr ""
 
 msgid "Assign the receipt only to reports reaching score:"
@@ -1708,9 +1687,6 @@ msgstr "Erro ao cargar ficheiros; consulte a continuación para obter máis deta
 
 msgid "Estimated upload time:"
 msgstr "Tempo estimado de carga:"
-
-msgid "seconds"
-msgstr "segundos"
 
 msgid "Size:"
 msgstr "Tamaño:"

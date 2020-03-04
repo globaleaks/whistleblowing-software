@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -324,24 +324,6 @@ msgstr "தகவல் தெரிவிப்பவர் அடையாள�
 msgid "Templates"
 msgstr "டெம்ப்ளேட்கள்"
 
-msgid "in seconds"
-msgstr "வினாடிகளில்"
-
-msgid "in hours"
-msgstr "மணி"
-
-msgid "in days"
-msgstr "நாட்கள்"
-
-msgid "in characters"
-msgstr "கதாபாத்திரங்கள்"
-
-msgid "in megabytes"
-msgstr "மெகாபைட்"
-
-msgid "in percentage"
-msgstr "சதவீதம் உள்ள"
-
 msgid "HTTPS settings"
 msgstr "HTTP அமைப்புகளை"
 
@@ -350,15 +332,6 @@ msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "ஒழுங்கின்மை கண்டறிதல் நிலையை"
-
-msgid "High risk"
-msgstr "அதிக ஆபத்து"
-
-msgid "Medium risk"
-msgstr "நடுத்தர ஆபத்து"
-
-msgid "Low risk"
-msgstr "குறைந்த ஆபத்து"
 
 msgid "Available disk space"
 msgstr "வட்டு இடம்"
@@ -432,9 +405,6 @@ msgstr "நிர்வாகிக்கு மின்னஞ்சல் ம�
 
 msgid "Enter a password for the administrator"
 msgstr "நிர்வாகிக்கு கடவுச்சொல்லை உள்ளிடவும்"
-
-msgid "Test configuration"
-msgstr "டெஸ்ட் கட்டமைப்பு"
 
 msgid "Failed logins"
 msgstr "தோல்வியடைந்தது உள் அனுமதிகள்"
@@ -645,6 +615,9 @@ msgstr ""
 msgid "This user has not performed the first login yet."
 msgstr ""
 
+msgid "seconds"
+msgstr "விநாடிகள்"
+
 msgid "Select the context of your report:"
 msgstr "உங்கள் சமர்ப்பிப்பு சூழலில் தேர்வு:"
 
@@ -777,6 +750,9 @@ msgstr "செய்தி சமர்ப்பிக்கும் நில�
 msgid "Size limit for file attachments"
 msgstr "கோப்பு இணைப்புகளை அளவு எல்லை"
 
+msgid "in megabytes"
+msgstr "மெகாபைட்"
+
 msgid "Enable HSTS preload"
 msgstr ""
 
@@ -790,9 +766,6 @@ msgid "Password"
 msgstr "கடவுச்சொல்"
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Require proof of work on user authentication"
 msgstr ""
 
 msgid "Password change interval"
@@ -845,6 +818,18 @@ msgid "Save"
 msgstr "சேமி"
 
 msgid "Reset reports"
+msgstr ""
+
+msgid "Low"
+msgstr ""
+
+msgid "High"
+msgstr "உயர்"
+
+msgid "megabytes"
+msgstr ""
+
+msgid "percentage"
 msgstr ""
 
 msgid "Enable automatic backups"
@@ -982,17 +967,17 @@ msgstr "தனிப்பயன் மொழிபெயர்ப்பு"
 msgid "Contexts"
 msgstr "சூழல்"
 
-msgid "State"
-msgstr "நிலை"
-
-msgid "Enabled"
-msgstr "இயக்கப்பட்டது"
-
 msgid "Hidden"
 msgstr "மறைக்கப்பட்ட"
 
 msgid "Disabled"
 msgstr "முடக்கப்பட்டது"
+
+msgid "State"
+msgstr "நிலை"
+
+msgid "Enabled"
+msgstr "இயக்கப்பட்டது"
 
 msgid "Questionnaire"
 msgstr "கேள்வித்தாள்"
@@ -1060,13 +1045,7 @@ msgstr "மதிப்பு"
 msgid "Medium"
 msgstr "நடுத்தர"
 
-msgid "High"
-msgstr "உயர்"
-
 msgid "Customize the message shown in the receipt page"
-msgstr ""
-
-msgid "Low"
 msgstr ""
 
 msgid "Assign the receipt only to reports reaching score:"
@@ -1707,9 +1686,6 @@ msgstr "கோப்புகளை பதிவேற்ற போது 
 
 msgid "Estimated upload time:"
 msgstr "கணக்கிடப்பட்ட பதிவேற்ற நேரம்:"
-
-msgid "seconds"
-msgstr "விநாடிகள்"
 
 msgid "Size:"
 msgstr "அளவு:"

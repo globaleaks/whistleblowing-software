@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -335,24 +335,6 @@ msgstr "Permite accesul la identitatea avertizorului de integritate."
 msgid "Templates"
 msgstr "Template-uri"
 
-msgid "in seconds"
-msgstr "în secunde"
-
-msgid "in hours"
-msgstr "în ore"
-
-msgid "in days"
-msgstr "în zile"
-
-msgid "in characters"
-msgstr "în caractere"
-
-msgid "in megabytes"
-msgstr "în megabiți"
-
-msgid "in percentage"
-msgstr "în procente"
-
 msgid "HTTPS settings"
 msgstr "Setările HTTPS"
 
@@ -361,15 +343,6 @@ msgstr "Redirecționări URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "Praguri de detectare a anomaliilor"
-
-msgid "High risk"
-msgstr "Risc ridicat"
-
-msgid "Medium risk"
-msgstr "Risc mediu"
-
-msgid "Low risk"
-msgstr "Risc scăzut"
 
 msgid "Available disk space"
 msgstr "Spațiu disponibil pe disc"
@@ -443,9 +416,6 @@ msgstr "Introdu o adresă de email pentru administrator"
 
 msgid "Enter a password for the administrator"
 msgstr "Introdu o parolă pentru administrator"
-
-msgid "Test configuration"
-msgstr "Testează configurația"
 
 msgid "Failed logins"
 msgstr "Autentificări eşuate"
@@ -656,6 +626,9 @@ msgstr ""
 msgid "This user has not performed the first login yet."
 msgstr ""
 
+msgid "seconds"
+msgstr "secunde"
+
 msgid "Select the context of your report:"
 msgstr "Selectează contextul sesizării tale:"
 
@@ -788,6 +761,9 @@ msgstr "Mesajul afișat în partea de sus a paginii ce conține statusul sesiză
 msgid "Size limit for file attachments"
 msgstr "Dimensiunea maximă a fișierelor atașate"
 
+msgid "in megabytes"
+msgstr "în megabiți"
+
 msgid "Enable HSTS preload"
 msgstr "Pornește previzualizarea HSTS"
 
@@ -802,9 +778,6 @@ msgstr "Parolă"
 
 msgid "Require two factor authentication"
 msgstr "Solicită autentificarea în doi pași"
-
-msgid "Require proof of work on user authentication"
-msgstr ""
 
 msgid "Password change interval"
 msgstr "Intervalul la care trebuie schimbată parola"
@@ -856,6 +829,18 @@ msgid "Save"
 msgstr "Salvează"
 
 msgid "Reset reports"
+msgstr ""
+
+msgid "Low"
+msgstr "Scăzut"
+
+msgid "High"
+msgstr "Înalt"
+
+msgid "megabytes"
+msgstr ""
+
+msgid "percentage"
 msgstr ""
 
 msgid "Enable automatic backups"
@@ -993,17 +978,17 @@ msgstr "Traducere personalizata"
 msgid "Contexts"
 msgstr "Contexte"
 
-msgid "State"
-msgstr "Stat"
-
-msgid "Enabled"
-msgstr "Activat"
-
 msgid "Hidden"
 msgstr "Ascuns"
 
 msgid "Disabled"
 msgstr "Dezactivat"
+
+msgid "State"
+msgstr "Stat"
+
+msgid "Enabled"
+msgstr "Activat"
 
 msgid "Questionnaire"
 msgstr "Chestionar"
@@ -1071,14 +1056,8 @@ msgstr "Valoare"
 msgid "Medium"
 msgstr "Mediu"
 
-msgid "High"
-msgstr "Înalt"
-
 msgid "Customize the message shown in the receipt page"
 msgstr "Personalizează mesajul afișat pe pagina de confirmare"
-
-msgid "Low"
-msgstr "Scăzut"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr "Alocă număr de înregistrare doar sesizărilor care ating scorul:"
@@ -1718,9 +1697,6 @@ msgstr "Eroare la încărcarea fișierelor; verifica mai jos pentru detalii."
 
 msgid "Estimated upload time:"
 msgstr "Timpul estimativ de încărcare:"
-
-msgid "seconds"
-msgstr "secunde"
 
 msgid "Size:"
 msgstr "Dimensiune"

@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-03-04 00:20+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -339,24 +339,6 @@ msgstr "Autorizar o acesso à identidade do informador"
 msgid "Templates"
 msgstr "Modelos"
 
-msgid "in seconds"
-msgstr "em segundos"
-
-msgid "in hours"
-msgstr "em horas"
-
-msgid "in days"
-msgstr "em dias"
-
-msgid "in characters"
-msgstr "em carateres"
-
-msgid "in megabytes"
-msgstr "em megabytes"
-
-msgid "in percentage"
-msgstr "em percentagem"
-
 msgid "HTTPS settings"
 msgstr "Configurações de HTTPS"
 
@@ -365,15 +347,6 @@ msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Limites de deteção de anomalias"
-
-msgid "High risk"
-msgstr "Risco elevado"
-
-msgid "Medium risk"
-msgstr "Risco médio"
-
-msgid "Low risk"
-msgstr "Risco baixo"
 
 msgid "Available disk space"
 msgstr "Espaço de disco disponível"
@@ -447,9 +420,6 @@ msgstr "Insira um endereço de e-mail para o administrador"
 
 msgid "Enter a password for the administrator"
 msgstr "Insira uma palavra-passe para o administrador"
-
-msgid "Test configuration"
-msgstr "Testar configuração"
 
 msgid "Failed logins"
 msgstr "Sessões falhadas"
@@ -660,6 +630,9 @@ msgstr ""
 msgid "This user has not performed the first login yet."
 msgstr ""
 
+msgid "seconds"
+msgstr "segundos"
+
 msgid "Select the context of your report:"
 msgstr ""
 
@@ -792,6 +765,9 @@ msgstr ""
 msgid "Size limit for file attachments"
 msgstr "Limite de tamanho para anexos de ficheiro"
 
+msgid "in megabytes"
+msgstr "em megabytes"
+
 msgid "Enable HSTS preload"
 msgstr ""
 
@@ -805,9 +781,6 @@ msgid "Password"
 msgstr "Palavra-passe"
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Require proof of work on user authentication"
 msgstr ""
 
 msgid "Password change interval"
@@ -860,6 +833,18 @@ msgid "Save"
 msgstr "Guardar"
 
 msgid "Reset reports"
+msgstr ""
+
+msgid "Low"
+msgstr ""
+
+msgid "High"
+msgstr ""
+
+msgid "megabytes"
+msgstr ""
+
+msgid "percentage"
 msgstr ""
 
 msgid "Enable automatic backups"
@@ -997,17 +982,17 @@ msgstr "Tradução personalizada"
 msgid "Contexts"
 msgstr "Contextos"
 
-msgid "State"
-msgstr "Distrito"
-
-msgid "Enabled"
-msgstr "Ativado"
-
 msgid "Hidden"
 msgstr "Ocultado"
 
 msgid "Disabled"
 msgstr "Desativada"
+
+msgid "State"
+msgstr "Distrito"
+
+msgid "Enabled"
+msgstr "Ativado"
 
 msgid "Questionnaire"
 msgstr "Questionário"
@@ -1075,13 +1060,7 @@ msgstr "Valor"
 msgid "Medium"
 msgstr "Médio"
 
-msgid "High"
-msgstr ""
-
 msgid "Customize the message shown in the receipt page"
-msgstr ""
-
-msgid "Low"
 msgstr ""
 
 msgid "Assign the receipt only to reports reaching score:"
@@ -1722,9 +1701,6 @@ msgstr "Erro durante o envio dos ficheiros; veja abaixo para mais detalhes."
 
 msgid "Estimated upload time:"
 msgstr "Duração estimada do envio:"
-
-msgid "seconds"
-msgstr "segundos"
 
 msgid "Size:"
 msgstr "Tamanho:"
