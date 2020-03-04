@@ -50,10 +50,11 @@ controller("AdminAdvancedCtrl", ["$scope", "$http", function($scope, $http) {
     if ($scope.resources.node.encryption) {
       $scope.Utils.openConfirmableModalDialog("views/partials/enable_encryption.html").then(
       function() {
-        return $scope.resources.node.encryption = true;
+        $scope.resources.node.encryption = true;
+        $scope.Utils.update($scope.resources.node, function() { $scope.Authentication.logout() });
       },
       function() {
-        return $scope.resources.node.encryption = false;
+        $scope.resources.node.encryption = false;
       });
     }
   };

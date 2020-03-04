@@ -78,6 +78,7 @@ def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
 
     return utils.sets.merge_dicts(config, misc_dict, l10n_dict)
 
+
 def db_update_node(session, tid, user_session, request, language):
     """
     Transaction to update the node configuration
