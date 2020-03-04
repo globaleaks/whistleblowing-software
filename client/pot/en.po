@@ -178,8 +178,8 @@ msgstr "Select all"
 msgid "Deselect all"
 msgstr "Deselect all"
 
-msgid "Refresh page"
-msgstr "Refresh page"
+msgid "Refresh"
+msgstr "Refresh"
 
 msgid "Context"
 msgstr "Context"
