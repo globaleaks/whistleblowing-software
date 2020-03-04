@@ -95,6 +95,10 @@ def db_update_node(session, tid, user_session, request, language):
     enable_escrow = not config.get_val('escrow') and request.get('escrow', False)
     disable_escrow = user_session.ek and config.get_val('escrow') and not request.get('escrow', False)
 
+    if config.get_val('encryption') and not request.get('encryption', False):
+      enable_escrow = False
+      disable_escrow = True
+
     config.update('node', request)
 
     if 'basic_auth' in request and request['basic_auth'] and request['basic_auth_username'] and request['basic_auth_password']:
