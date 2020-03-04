@@ -76,13 +76,20 @@ BUILDSRC="GLRelease"
 [ -d $BUILDSRC ] && rm -rf $BUILDSRC
 mkdir $BUILDSRC && cd $BUILDSRC
 
-git clone --depth=1 https://github.com/globaleaks/GlobaLeaks.git
-cd GlobaLeaks
-git fetch origin $TAG
-git checkout $TAG
-cd client
-npm install
-./node_modules/grunt/bin/grunt build
+if [ $LOCAL_ENV -eq 1 ]; then
+  cd ../client/
+  ./node_modules/grunt/bin/grunt build
+  cd ../GLRelease
+  git clone --branch="$TAG" --depth=1 file://$(pwd)/../../GlobaLeaks
+  cp -rf ../client/build GlobaLeaks/client/
+else
+  git clone --depth=1 https://github.com/globaleaks/GlobaLeaks.git
+  cd GlobaLeaks
+  git checkout $TAG
+  cd client
+  npm install
+  ./node_modules/grunt/bin/grunt build
+fi
 
 cd $ROOTDIR
 
