@@ -1,5 +1,10 @@
-Changes in version 3.11.71 - 2020-03-02
-    TODO
+Changes in version 4.0.0 - 2020-03-05
+    Enable encryption and key escrow mechanism by default for new setups
+    Make it possible to enable encryption and key escrow mechanism on
+    existing setups
+    Please refer to the official release announcement for important
+    information about the update:
+    - https://www.globaleaks.org/docs/en/globaleaks4-release-notes.pdf
 
 Changes in version 3.11.70 - 2020-02-24
     Fix custodian functionalities in relation to custom identity template
