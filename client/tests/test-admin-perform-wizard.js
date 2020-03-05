@@ -30,9 +30,9 @@ describe("globaLeaks setup wizard", function() {
 
     expect(await element(by.css(".congratulations")).isPresent()).toBe(true);
 
-    await browser.gl.utils.waitUntilPresent(by.cssContainingText("button", "Administration interface"));
+    await browser.gl.utils.waitUntilPresent(by.cssContainingText("button", "Proceed"));
 
-    await element(by.cssContainingText("button", "Administration interface")).click();
+    await element(by.cssContainingText("button", "Proceed")).click();
 
     await browser.gl.utils.waitForUrl("/admin/home");
   });
