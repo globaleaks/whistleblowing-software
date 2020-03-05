@@ -140,7 +140,7 @@
               <input data-ng-model="field.preview" type="checkbox">
               <label data-translate>Preview</label>
             </div>
-            <div class="form-group" data-ng-if="resources.node.encryption && field.type !== 'inputbox' && field.type !== 'textarea' && field.type !== 'fileupload'">
+            <div class="form-group" data-ng-if="resources.node.encryption">
               <input data-ng-model="field.encrypt" type="checkbox">
               <label data-translate>Encrypt</label>
             </div>

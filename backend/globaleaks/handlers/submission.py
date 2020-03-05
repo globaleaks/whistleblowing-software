@@ -137,7 +137,7 @@ def db_save_plaintext_answers(session, tid, internaltip_id, entries, skip_encryp
     ret = []
 
     for key, value in entries.items():
-        if key not in skip_encryption:
+        if key != 'value' and key not in skip_encryption:
             continue
 
         field_answer = models.FieldAnswer({
