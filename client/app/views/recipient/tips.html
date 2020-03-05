@@ -62,115 +62,113 @@
       <tr>
         <th></th>
         <th class="TipInfoID">
-            <span>
-              <i class="fas fa-barcode"></i>
-            </span>
+          <i class="fas fa-barcode"></i>
         </th>
         <th class="TipInfoContext" data-ng-if="public.contexts.length > 1">
-            <span data-ng-click="sortKey = 'context_name'; sortReverse = !sortReverse">
-              <span data-translate>Context</span>
-              <i class="fas fa-inbox"></i>
-              <span class="btn btn-sm" data-ng-show="sortKey == 'context_name'">
-                <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-                <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
-              </span>
+          <span data-ng-click="sortKey = 'context_name'; sortReverse = !sortReverse">
+            <span data-translate>Context</span>
+            <i class="fas fa-inbox"></i>
+            <span data-ng-show="sortKey == 'context_name'">
+              <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
+              <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
             </span>
+          </span>
         </th>
         <th class="TipInfoLabel">
-            <span data-ng-click="sortKey = 'label'; sortReverse = !sortReverse">
-              <i class="fas fa-tag"></i>
-              <span data-translate>Label</span>
-              <span class="btn btn-sm" data-ng-show="sortKey == 'label'">
-                <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-                <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
-              </span>
+          <span data-ng-click="sortKey = 'label'; sortReverse = !sortReverse">
+            <i class="fas fa-tag"></i>
+            <span data-translate>Label</span>
+            <span data-ng-show="sortKey == 'label'">
+              <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
+              <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
             </span>
+          </span>
         </th>
         <th class="TipInfoStatus">
-            <span data-ng-click="sortKey = 'creation_date'; sortReverse = !sortReverse">
-              <i class="fas fa-dot-circle"></i>
-              <span data-translate>Status</span>
-              <span class="btn btn-sm" data-ng-show="sortKey == 'submissionStatusStr'">
-                <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-                <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
-              </span>
+          <span data-ng-click="sortKey = 'creation_date'; sortReverse = !sortReverse">
+            <i class="fas fa-dot-circle"></i>
+            <span data-translate>Status</span>
+            <span data-ng-show="sortKey == 'submissionStatusStr'">
+              <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
+              <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
             </span>
+          </span>
         </th>
         <th class="TipInfoSubmissionDate">
-            <span data-ng-click="sortKey = 'creation_date'; sortReverse = !sortReverse">
-              <i class="fas fa-clock"></i>
-              <span data-translate>Report date</span>
-              <span class="btn btn-sm" data-ng-show="sortKey == 'creation_date'">
-                <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-                <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
-              </span>
+          <span data-ng-click="sortKey = 'creation_date'; sortReverse = !sortReverse">
+            <i class="fas fa-clock"></i>
+            <span data-translate>Report date</span>
+            <span data-ng-show="sortKey == 'creation_date'">
+              <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
+              <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
             </span>
+          </span>
         </th>
         <th class="TipInfoUpdateDate">
-            <span data-ng-click="sortKey = 'update_date'; sortReverse = !sortReverse">
-              <i class="fas fa-clock"></i>
-              <span data-translate>Last update</span>
-              <span class="btn btn-sm" data-ng-show="sortKey == 'update_date'">
-                <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-                <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
-              </span>
+          <span data-ng-click="sortKey = 'update_date'; sortReverse = !sortReverse">
+            <i class="fas fa-clock"></i>
+            <span data-translate>Last update</span>
+            <span data-ng-show="sortKey == 'update_date'">
+              <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
+              <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
             </span>
+          </span>
         </th>
         <th class="TipInfoExpirationDate">
-            <span data-ng-click="sortKey = 'expiration_date'; sortReverse = !sortReverse">
-              <i class="fas fa-hourglass"></i>
-              <span data-translate>Expiration date</span>
-              <span class="btn btn-sm" data-ng-show="sortKey == 'expiration_date'">
-                <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-                <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
-              </span>
+          <span data-ng-click="sortKey = 'expiration_date'; sortReverse = !sortReverse">
+            <i class="fas fa-hourglass"></i>
+            <span data-translate>Expiration date</span>
+            <span data-ng-show="sortKey == 'expiration_date'">
+              <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
+              <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
             </span>
+          </span>
         </th>
         <th class="TipInfoReadReceipt">
           <i class="fas fa-eye"></i>
         </th>
         <th class="TipInfoFilesCount">
-            <span data-ng-click="sortKey = 'file_count'; sortReverse = !sortReverse">
-              <i class="fas fa-file"></i>
-              <span class="btn btn-sm" data-ng-show="sortKey == 'file_count'">
-                <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-                <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
-              </span>
+          <span data-ng-click="sortKey = 'file_count'; sortReverse = !sortReverse">
+            <i class="fas fa-file"></i>
+            <span data-ng-show="sortKey == 'file_count'">
+              <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
+              <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
             </span>
+          </span>
         </th>
         <th class="TipInfoCommentsCount">
-            <span data-ng-click="sortKey = 'comment_count'; sortReverse = !sortReverse">
-              <i class="fas fa-comment"></i>
-              <span class="btn btn-sm" data-ng-show="sortKey == 'comment_count'">
-                <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-                <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
-              </span>
+          <span data-ng-click="sortKey = 'comment_count'; sortReverse = !sortReverse">
+            <i class="fas fa-comment"></i>
+            <span data-ng-show="sortKey == 'comment_count'">
+              <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
+              <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
             </span>
+          </span>
         </th>
         <th class="TipInfoMessagesCount">
-            <span data-ng-click="sortKey = 'message_count'; sortReverse = !sortReverse">
-              <i class="fas fa-envelope"></i>
-              <span class="btn btn-sm" data-ng-show="sortKey == 'message_count'">
-                <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-                <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
-              </span>
+          <span data-ng-click="sortKey = 'message_count'; sortReverse = !sortReverse">
+            <i class="fas fa-envelope"></i>
+            <span data-ng-show="sortKey == 'message_count'">
+              <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
+              <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
             </span>
+          </span>
         </th>
         <th class="TipInfoPreview">
-            <span>
-              <i class="fas fa-list-alt"></i>
-              <span data-translate>Preview</span>
-            </span>
+          <span>
+            <i class="fas fa-list-alt"></i>
+            <span data-translate>Preview</span>
+          </span>
         </th>
         <th class="TipInfoScore" data-ng-if="resources.node.enable_scoring_system">
-            <span data-ng-click="$parent.sortKey = 'total_score'; sortReverse = !sortReverse">
-              <i class="fas fa-flash"></i>
-              <span data-translate>Score</span>
-              <span class="btn btn-sm" data-ng-show="$parent.sortKey == 'total_score'">
-                <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-                <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
-              </span>
+          <span data-ng-click="$parent.sortKey = 'total_score'; sortReverse = !sortReverse">
+            <i class="fas fa-flash"></i>
+            <span data-translate>Score</span>
+            <span data-ng-show="$parent.sortKey == 'total_score'">
+              <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
+              <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
             </span>
+          </span>
         </th>
       </tr>
       </thead>
@@ -180,24 +178,24 @@
           data-ng-class="{'newTip': tip.new, 'selectedTip': isSelected(tip.id)}" class="tip-action-open"
           data-ng-click="Utils.go('/status/' + tip.id)">
         <td>
-            <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission">
-              <span class="btn btn-sm btn-secondary" data-ng-if="isSelected(tip.id)"
-                    data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
-                <i class="fas fa-check-square"></i>
-              </span>
-              <span class="btn btn-sm btn-secondary" data-ng-if="!isSelected(tip.id)"
-                    data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
-                <i class="far fa-square"></i>
-              </span>
+          <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission">
+            <span class="btn btn-sm btn-secondary" data-ng-if="isSelected(tip.id)"
+                  data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
+              <i class="fas fa-check-square"></i>
             </span>
+            <span class="btn btn-sm btn-secondary" data-ng-if="!isSelected(tip.id)"
+                  data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
+              <i class="far fa-square"></i>
+            </span>
+          </span>
           <span name="TipExport"
                 data-ng-click="exportTip(tip); $event.stopPropagation()"
                 uib-popover="{{'Export' | translate}}" popover-placement="top"
                 novalidate>
-              <button id="tip-action-export" class="btn btn-sm btn-secondary">
-                <i class="fas fa-save"></i>
-              </button>
-            </span>
+            <button id="tip-action-export" class="btn btn-sm btn-secondary">
+              <i class="fas fa-save"></i>
+            </button>
+          </span>
         </td>
         <td class="TipInfoID">{{tip.progressive}}</td>
         <td class="TipInfoContext" data-ng-if="public.contexts.length > 1">{{tip.context_name}}</td>
