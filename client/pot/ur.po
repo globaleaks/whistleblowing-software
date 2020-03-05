@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,9 +24,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "لاگ ان"
-
-msgid "Administration interface"
-msgstr "ایڈمنسٹریشن انٹرفیس"
 
 msgid "Main configuration"
 msgstr "بنیادی ترتیب"
@@ -58,9 +55,6 @@ msgstr "نیا سوالنامہ میں شامل کریں"
 msgid "Home"
 msgstr "ابتدائی صحفہ"
 
-msgid "Home page"
-msgstr "ابتدائی صحفہ"
-
 msgid "Changelog"
 msgstr "لاگ تبدیل کریں"
 
@@ -85,17 +79,11 @@ msgstr "بے ضابطگیاں"
 msgid "Preferences"
 msgstr "ترجیحات"
 
-msgid "User preferences"
-msgstr ""
-
 msgid "Notification settings"
 msgstr "اطلاع کی ترتیبات"
 
 msgid "file unavailable"
 msgstr "فائل دستیاب نہیں ہے"
-
-msgid "Recipient interface"
-msgstr "وصول کنندہ کا انٹرفیس"
 
 msgid "Date"
 msgstr "تاریخ"
@@ -130,9 +118,6 @@ msgstr "تفصیلات"
 msgid "Platform wizard"
 msgstr "پلیٹ فارم وزرڈ"
 
-msgid "Step-by-step setup"
-msgstr "مرحلہ وار سیٹ اپ"
-
 msgid "CREDIT CARD"
 msgstr "کرڈٹ کارڈ"
 
@@ -151,8 +136,8 @@ msgstr "تمام منتخب کریں"
 msgid "Deselect all"
 msgstr "تمام غیر منتخب کریں"
 
-msgid "Refresh page"
-msgstr "تازہ کریں صفحہ"
+msgid "Refresh"
+msgstr ""
 
 msgid "Context"
 msgstr "سیاق و سباق"
@@ -230,9 +215,6 @@ msgstr "دستیاب تاریخِ انتخاب"
 
 msgid "0 = auto"
 msgstr "0 = آٹو"
-
-msgid "-1 = unlimited"
-msgstr "-1 = لامحدود"
 
 msgid "True"
 msgstr "صحیح"
@@ -480,9 +462,6 @@ msgstr "پرائیویسی اور سیکیورٹی میں خاطر خواہ اض
 
 msgid "Download the Tor Browser"
 msgstr "ٹوربراؤزر ڈاؤن لوڈ کیجیے"
-
-msgid "This is the list of the other supported browsers:"
-msgstr ""
 
 msgid "Audit log"
 msgstr ""
@@ -827,16 +806,16 @@ msgid "Reset reports"
 msgstr ""
 
 msgid "Low"
-msgstr ""
+msgstr "کم"
 
 msgid "High"
-msgstr ""
+msgstr "اونچا"
 
 msgid "megabytes"
-msgstr ""
+msgstr "میگا بائٹ"
 
 msgid "percentage"
-msgstr ""
+msgstr "فیصد"
 
 msgid "Enable automatic backups"
 msgstr ""
@@ -1546,7 +1525,7 @@ msgid "Assign score points"
 msgstr "سکور پوائنٹس مقرر کریں"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
+msgstr "خیال رکھئے کہ تمام متعلقہ ڈیٹا مناسب طریقے سے خارج کر دیا جاتا ہے"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
@@ -1820,7 +1799,7 @@ msgid "Please write a motivation for the reply"
 msgstr "جواب کے لئے ایک حوصلہ افزائی لکھ کریں"
 
 msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr ""
+msgstr "کیا آپ واقعی تجویز کے وقت ختم ہونے کی تاریخ ملتوی کرنا چاہتے ہیں؟"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "کی تصدیق کر کے، آپ کا وقت ختم ہونے کی تاریخ ملتوی ہو گی:"
@@ -1960,7 +1939,7 @@ msgstr "اس داخلے کے لیے اپنا کلیدی کوڈ ذہن نشین �
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr ""
+msgstr "لاگ اِن کے لیے 16 ہندسوں پر مشتمل اپنا کلیدی کوڈ استعمال میں لاتے ہوئے وہ پیغامات دیکھیں جو ہم آپ کو بھیجیں گے اور اگر آپ کچھ اور سوچ رہے ہوں تو آپ کو انہیں بھی شامل کردینا چاہیے۔"
 
 msgid "View your report"
 msgstr "اپنی داخل کردہ گذارشات دیکھ لیں"
@@ -2003,9 +1982,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr ""
-
-msgid "Confirm password"
-msgstr "پاس ورڈ کی تصدیق کریں"
 
 msgid "Please choose a different username."
 msgstr ""

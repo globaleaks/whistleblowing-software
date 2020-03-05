@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,9 +30,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "התחבר"
-
-msgid "Administration interface"
-msgstr " ממשק מינהל"
 
 msgid "Main configuration"
 msgstr "תצורה ראשית"
@@ -64,9 +61,6 @@ msgstr "הוסף שאלון חדש"
 msgid "Home"
 msgstr "בית"
 
-msgid "Home page"
-msgstr "דף בית"
-
 msgid "Changelog"
 msgstr "יומן שינויים"
 
@@ -91,17 +85,11 @@ msgstr "אנומליות"
 msgid "Preferences"
 msgstr "העדפות"
 
-msgid "User preferences"
-msgstr "העדפות משתמש"
-
 msgid "Notification settings"
 msgstr "הגדרות התראה"
 
 msgid "file unavailable"
 msgstr "קובץ לא זמין"
-
-msgid "Recipient interface"
-msgstr "ממשק המקבל"
 
 msgid "Date"
 msgstr "תאריך"
@@ -136,9 +124,6 @@ msgstr "פרטים"
 msgid "Platform wizard"
 msgstr "אשף פלטפורמה"
 
-msgid "Step-by-step setup"
-msgstr "הגדרה צעד־אחר־צעד"
-
 msgid "CREDIT CARD"
 msgstr "כרטיס אשראי"
 
@@ -157,8 +142,8 @@ msgstr "בחר הכל"
 msgid "Deselect all"
 msgstr "בטל בחירת הכל"
 
-msgid "Refresh page"
-msgstr "רענן דף"
+msgid "Refresh"
+msgstr "רענן"
 
 msgid "Context"
 msgstr "הקשר"
@@ -236,9 +221,6 @@ msgstr "תאריך בר־בחירה המאוחר ביותר"
 
 msgid "0 = auto"
 msgstr "0 = אוטומטי"
-
-msgid "-1 = unlimited"
-msgstr "-1 = בלתי מוגבל"
 
 msgid "True"
 msgstr "אמת"
@@ -486,9 +468,6 @@ msgstr "דפדפן Tor כולל פרטיות שונות ושיפורי אבטח�
 
 msgid "Download the Tor Browser"
 msgstr "הורד את דפדפן Tor"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "זו רשימה של עוד דפדנים נתמכים"
 
 msgid "Audit log"
 msgstr ""
@@ -2009,9 +1988,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr ""
-
-msgid "Confirm password"
-msgstr "אשר סיסמה"
 
 msgid "Please choose a different username."
 msgstr ""

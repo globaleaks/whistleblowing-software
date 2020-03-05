@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,9 +22,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Log ind"
-
-msgid "Administration interface"
-msgstr "Administrationsinterface"
 
 msgid "Main configuration"
 msgstr "Primær konfiguration"
@@ -56,9 +53,6 @@ msgstr "Tilføj nyt spørgeskema"
 msgid "Home"
 msgstr "Hjem"
 
-msgid "Home page"
-msgstr "Hjemmeside"
-
 msgid "Changelog"
 msgstr "Ændringslog"
 
@@ -83,17 +77,11 @@ msgstr "Uregelmæssigheder"
 msgid "Preferences"
 msgstr "Indstillinger"
 
-msgid "User preferences"
-msgstr "Brugerindstillinger"
-
 msgid "Notification settings"
 msgstr "Notifikationsindstillinger"
 
 msgid "file unavailable"
 msgstr "fil utilgængelig"
-
-msgid "Recipient interface"
-msgstr "Modtagerinterface"
 
 msgid "Date"
 msgstr "Dato"
@@ -128,9 +116,6 @@ msgstr "Detaljer"
 msgid "Platform wizard"
 msgstr "Platformsguide"
 
-msgid "Step-by-step setup"
-msgstr "Trin-for-trin-opsætning"
-
 msgid "CREDIT CARD"
 msgstr "KREDITKORT"
 
@@ -149,8 +134,8 @@ msgstr "Vælg alle"
 msgid "Deselect all"
 msgstr "Fravælg alle"
 
-msgid "Refresh page"
-msgstr "Genindlæs side"
+msgid "Refresh"
+msgstr "Opdater"
 
 msgid "Context"
 msgstr "Kontekst"
@@ -228,9 +213,6 @@ msgstr "Senest valgbare dato"
 
 msgid "0 = auto"
 msgstr "0 = auto"
-
-msgid "-1 = unlimited"
-msgstr "-1 = ubegrænset"
 
 msgid "True"
 msgstr "Sandt"
@@ -478,9 +460,6 @@ msgstr "Tor browseren indeholder forskellige privatlivs- og sikkerhedsudvidelser
 
 msgid "Download the Tor Browser"
 msgstr "Download Tor browseren"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Dette er listen over andre understøttede browsere:"
 
 msgid "Audit log"
 msgstr "Revisionslog"
@@ -2001,9 +1980,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "Disse profiler indeholder indstillinger, der bruges af projekter, der er vellykkede på hver deres områder."
-
-msgid "Confirm password"
-msgstr "Bekræft password"
 
 msgid "Please choose a different username."
 msgstr "Vælg venligst et andet brugernavn."

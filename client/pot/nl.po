@@ -43,7 +43,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,9 +54,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Inloggen"
-
-msgid "Administration interface"
-msgstr "Admin dashboard"
 
 msgid "Main configuration"
 msgstr "Hoofdconfiguratie"
@@ -88,9 +85,6 @@ msgstr "Nieuwe vragenlijst toevoegen"
 msgid "Home"
 msgstr "Home"
 
-msgid "Home page"
-msgstr "Startpagina"
-
 msgid "Changelog"
 msgstr "Changelog"
 
@@ -115,17 +109,11 @@ msgstr "Afwijkingen"
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-msgid "User preferences"
-msgstr "Gebruikersvoorkeuren"
-
 msgid "Notification settings"
 msgstr "Notificatie-instellingen"
 
 msgid "file unavailable"
 msgstr "bestand niet beschikbaar"
-
-msgid "Recipient interface"
-msgstr "Ontvangers-dashboard"
 
 msgid "Date"
 msgstr "Datum"
@@ -160,9 +148,6 @@ msgstr "Details"
 msgid "Platform wizard"
 msgstr "Platformwizard"
 
-msgid "Step-by-step setup"
-msgstr "Stap-voor-stap-setup"
-
 msgid "CREDIT CARD"
 msgstr "KREDIETKAART"
 
@@ -181,8 +166,8 @@ msgstr "Alles selecteren"
 msgid "Deselect all"
 msgstr "Niets selecteren"
 
-msgid "Refresh page"
-msgstr "Pagina herladen"
+msgid "Refresh"
+msgstr "Vernieuwen"
 
 msgid "Context"
 msgstr "Context"
@@ -260,9 +245,6 @@ msgstr "Uiterste datum"
 
 msgid "0 = auto"
 msgstr "0 = automatisch"
-
-msgid "-1 = unlimited"
-msgstr "-1 = geen limiet"
 
 msgid "True"
 msgstr "Waar"
@@ -510,9 +492,6 @@ msgstr "De Tor-browser bevat diverse privacy- en veiligheidsverbeteringen die ni
 
 msgid "Download the Tor Browser"
 msgstr "De Tor-browser downloaden"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Dit is de lijst van overige ondersteunde browsers:"
 
 msgid "Audit log"
 msgstr "Audit logboek"
@@ -2033,9 +2012,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "Deze profielen bevatten instellingen die reeds succesvol zijn getest in elk betreffend veld."
-
-msgid "Confirm password"
-msgstr "Bevestig wachtwoord"
 
 msgid "Please choose a different username."
 msgstr "Kies een andere gebruikersnaam."

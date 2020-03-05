@@ -29,7 +29,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,9 +40,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Войти"
-
-msgid "Administration interface"
-msgstr "Панель администратора"
 
 msgid "Main configuration"
 msgstr "Основные настройки"
@@ -74,9 +71,6 @@ msgstr "Добавить новый опросник"
 msgid "Home"
 msgstr "Главная"
 
-msgid "Home page"
-msgstr "Домашняя страница"
-
 msgid "Changelog"
 msgstr "Журнал изменений"
 
@@ -101,17 +95,11 @@ msgstr "Аномалии"
 msgid "Preferences"
 msgstr "Настройки"
 
-msgid "User preferences"
-msgstr "Настройки пользователя"
-
 msgid "Notification settings"
 msgstr "Настройки уведомлений"
 
 msgid "file unavailable"
 msgstr "файл недоступен"
-
-msgid "Recipient interface"
-msgstr "Панель получателя"
 
 msgid "Date"
 msgstr "Дата"
@@ -146,9 +134,6 @@ msgstr "Подробности"
 msgid "Platform wizard"
 msgstr "Мастер платформы"
 
-msgid "Step-by-step setup"
-msgstr "Пошаговая настройка"
-
 msgid "CREDIT CARD"
 msgstr "КРЕДИТНАЯ КАРТА"
 
@@ -167,8 +152,8 @@ msgstr "Выбрать всё"
 msgid "Deselect all"
 msgstr "Отменить выбор"
 
-msgid "Refresh page"
-msgstr "Обновить страницу"
+msgid "Refresh"
+msgstr "Обновить"
 
 msgid "Context"
 msgstr "Контекст"
@@ -246,9 +231,6 @@ msgstr "Последняя дата выбора"
 
 msgid "0 = auto"
 msgstr "0 = автоматически"
-
-msgid "-1 = unlimited"
-msgstr "-1 = бесконечно"
 
 msgid "True"
 msgstr "Истина"
@@ -496,9 +478,6 @@ msgstr "В Tor Browser реализованы различные улучшен�
 
 msgid "Download the Tor Browser"
 msgstr "Скачать Tor Browser"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Список поддерживаемый браузеров:"
 
 msgid "Audit log"
 msgstr "Журнал аудита"
@@ -2019,9 +1998,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "В данных профилях содержатся програмные установки использованные успешными проектами в соответствующих областях."
-
-msgid "Confirm password"
-msgstr "Подтвердите пароль"
 
 msgid "Please choose a different username."
 msgstr ""

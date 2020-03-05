@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 08:46+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,9 +16,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "로그인"
-
-msgid "Administration interface"
-msgstr "관리 인터페이스"
 
 msgid "Main configuration"
 msgstr "홈페이지 구성"
@@ -50,9 +47,6 @@ msgstr "새로운 질문을 추가"
 msgid "Home"
 msgstr "홈"
 
-msgid "Home page"
-msgstr "홈페이지"
-
 msgid "Changelog"
 msgstr "업데이트 기록"
 
@@ -77,17 +71,11 @@ msgstr "이상"
 msgid "Preferences"
 msgstr "환경 설정"
 
-msgid "User preferences"
-msgstr ""
-
 msgid "Notification settings"
 msgstr "알림 설정"
 
 msgid "file unavailable"
 msgstr "사용할 수없는 파일"
-
-msgid "Recipient interface"
-msgstr "받는 사람 인터페이스"
 
 msgid "Date"
 msgstr "날짜"
@@ -122,9 +110,6 @@ msgstr "세부"
 msgid "Platform wizard"
 msgstr "플랫폼 마법사"
 
-msgid "Step-by-step setup"
-msgstr "단계별 설치"
-
 msgid "CREDIT CARD"
 msgstr "신용 카드"
 
@@ -143,8 +128,8 @@ msgstr "모든 선택"
 msgid "Deselect all"
 msgstr "모든 선택 해제"
 
-msgid "Refresh page"
-msgstr "새로 고침 페이지"
+msgid "Refresh"
+msgstr "새로고침"
 
 msgid "Context"
 msgstr "문맥"
@@ -222,9 +207,6 @@ msgstr "최신 선택할 수 날짜"
 
 msgid "0 = auto"
 msgstr "0 = 자동"
-
-msgid "-1 = unlimited"
-msgstr "-1 = 무제한"
 
 msgid "True"
 msgstr "참된"
@@ -472,9 +454,6 @@ msgstr "토르 브라우저는 다양한 개인 정보 보호 및 다른 브라�
 
 msgid "Download the Tor Browser"
 msgstr "토르 브라우저 다운로드"
-
-msgid "This is the list of the other supported browsers:"
-msgstr ""
 
 msgid "Audit log"
 msgstr ""
@@ -1995,9 +1974,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr ""
-
-msgid "Confirm password"
-msgstr "비밀번호 확인"
 
 msgid "Please choose a different username."
 msgstr ""

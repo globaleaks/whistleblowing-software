@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,9 +28,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Συνδεθείτε"
-
-msgid "Administration interface"
-msgstr "Διεπαφή διαχείρισης"
 
 msgid "Main configuration"
 msgstr "Κύριες ρυθμίσεις"
@@ -62,9 +59,6 @@ msgstr "Προσθήκη νέου ερωτηματολογίου"
 msgid "Home"
 msgstr "Αρχική"
 
-msgid "Home page"
-msgstr "Αρχική σελίδα"
-
 msgid "Changelog"
 msgstr "Αρχείο καταγραφής αλλαγών"
 
@@ -89,17 +83,11 @@ msgstr "Ανωμαλίες"
 msgid "Preferences"
 msgstr "Προτιμήσεις"
 
-msgid "User preferences"
-msgstr "Επιλογές χρήστη"
-
 msgid "Notification settings"
 msgstr "Ρυθμίσεις ειδοποιήσεων"
 
 msgid "file unavailable"
 msgstr "μη διαθέσιμο αρχείο"
-
-msgid "Recipient interface"
-msgstr "Διεπαφή παραλήπτη"
 
 msgid "Date"
 msgstr "Ημερομηνία"
@@ -134,9 +122,6 @@ msgstr "Λεπτομέρειες"
 msgid "Platform wizard"
 msgstr "Οδηγός πλατφόρμας"
 
-msgid "Step-by-step setup"
-msgstr "Εγκατάσταση βήμα-βήμα"
-
 msgid "CREDIT CARD"
 msgstr "ΠΙΣΤΩΤΙΚΗ ΚΑΡΤΑ"
 
@@ -155,8 +140,8 @@ msgstr "Επίλεξέ τα όλα"
 msgid "Deselect all"
 msgstr "Αποεπιλογή όλων"
 
-msgid "Refresh page"
-msgstr "Ανανέωση σελίδας"
+msgid "Refresh"
+msgstr "Ανανέωση"
 
 msgid "Context"
 msgstr "Θεματική ενότητα"
@@ -234,9 +219,6 @@ msgstr "Η πιο πρόσφατη επιλέξιμη ημερομηνία"
 
 msgid "0 = auto"
 msgstr "0 = auto"
-
-msgid "-1 = unlimited"
-msgstr "-1 = Απεριόριστο"
 
 msgid "True"
 msgstr "Αληθής"
@@ -484,9 +466,6 @@ msgstr "Ο περιηγητής Tor περιλαμβάνει διάφορες β
 
 msgid "Download the Tor Browser"
 msgstr "Κατεβάστε τον Περιηγητή Tor"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Αυτή είναι η λίστα των άλλων υποστηριζόμενων προγραμμάτων περιήγησης:"
 
 msgid "Audit log"
 msgstr "Ιστορικό καταγραφής"
@@ -2007,9 +1986,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "Αυτά τα προφίλ περιέχουν ρυθμίσεις που χρησιμοποιούνται από διαδεδομένους οργανισμούς στον εκάστοτε τομέα."
-
-msgid "Confirm password"
-msgstr "Επιβεβαιώστε τον κωδικό πρόσβασης"
 
 msgid "Please choose a different username."
 msgstr "Παρακαλώ επιλέξτε διαφορετικό όνομα χρήστη"

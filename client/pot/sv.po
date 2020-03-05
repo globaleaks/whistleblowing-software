@@ -1,10 +1,11 @@
 # 
 # Translators:
+# eckeman <eckeman@zoho.com>, 2020
 # ester.a <ester@virtualroad.org>, 2014
 # ester.a <ester@virtualroad.org>, 2014-2015
 # flipchan <fkalebo@gmail.com>, 2017
 # flipchan <fkalebo@gmail.com>, 2017
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017,2020
 # Henrik Mattsson-Mårn <h@reglage.net>, 2016-2017,2020
 # John Andersson <johnandersson86@hotmail.com>, 2015
 # Jonas Hedberg <jonas@hedberg2.se>, 2015
@@ -20,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,9 +32,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Logga in"
-
-msgid "Administration interface"
-msgstr "Administratörsgränssnitt"
 
 msgid "Main configuration"
 msgstr "Huvudinställningar"
@@ -65,9 +63,6 @@ msgstr "Lägg till ett frågeformulär"
 msgid "Home"
 msgstr "Hem"
 
-msgid "Home page"
-msgstr "Hemsida"
-
 msgid "Changelog"
 msgstr "Ändringslogg"
 
@@ -92,17 +87,11 @@ msgstr "Anomalier"
 msgid "Preferences"
 msgstr "Inställningar"
 
-msgid "User preferences"
-msgstr "Användarinställningar"
-
 msgid "Notification settings"
 msgstr "Aviseringsinställningar"
 
 msgid "file unavailable"
 msgstr "fil otillgänglig"
-
-msgid "Recipient interface"
-msgstr "Mottagargränssnitt"
 
 msgid "Date"
 msgstr "Datu"
@@ -137,9 +126,6 @@ msgstr "Detaljer"
 msgid "Platform wizard"
 msgstr "Platsforms guide"
 
-msgid "Step-by-step setup"
-msgstr "Steg-för-steg-installation"
-
 msgid "CREDIT CARD"
 msgstr "KREDITKORT"
 
@@ -147,7 +133,7 @@ msgid "YOUR NAME"
 msgstr "DITT NAMN"
 
 msgid "Label the report"
-msgstr ""
+msgstr "Ge rapporten en etikett"
 
 msgid "Postpone the expiration date"
 msgstr "Skjut up utgångs datumet"
@@ -158,8 +144,8 @@ msgstr "Markera alla"
 msgid "Deselect all"
 msgstr "Avmarkera alla"
 
-msgid "Refresh page"
-msgstr "Uppdatera sida"
+msgid "Refresh"
+msgstr "Uppdatera"
 
 msgid "Context"
 msgstr "Kontext"
@@ -171,10 +157,10 @@ msgid "Preview"
 msgstr "Förhandsgranska"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "Visselblåsaren har redan läst den senaste uppdateringen"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "Visselblåsaren har ännu inte läst den senaste uppdateringen"
 
 msgid "Move up"
 msgstr "Flytta upp"
@@ -198,15 +184,15 @@ msgid "Save all"
 msgstr "Spara allt"
 
 msgid "Access control"
-msgstr ""
+msgstr "Åtkomstkontroll"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr ""
+msgstr "Anslutningen har säkrats med HTTPS, som säkerställer sekretess."
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr ""
+msgstr "Anslutningen har säkrats med Tor, som säkerställer sekretess- och anonymitet."
 
 msgid "vertical"
 msgstr "vertikal"
@@ -238,9 +224,6 @@ msgstr "Senaste valda datum"
 msgid "0 = auto"
 msgstr "0 = automatisk"
 
-msgid "-1 = unlimited"
-msgstr "-1 = obegränsad"
-
 msgid "True"
 msgstr "Sant"
 
@@ -263,7 +246,7 @@ msgid "Change your password"
 msgstr "Ändra ditt lösenord"
 
 msgid "Access requests"
-msgstr ""
+msgstr "Åtkomstförfrågningar"
 
 msgid "User"
 msgstr "Användare"
@@ -344,7 +327,7 @@ msgid "URL redirects"
 msgstr "URL-omdirigeringar"
 
 msgid "Anomaly detection thresholds"
-msgstr ""
+msgstr "Tröskelvärden för undantagsidentifiering"
 
 msgid "Available disk space"
 msgstr "Ledigt diskutrymme"
@@ -353,38 +336,38 @@ msgid "Last update"
 msgstr "Senaste uppdatering"
 
 msgid "Custodian notification templates"
-msgstr ""
+msgstr "Mallar för föranmälan av innehavare"
 
 msgid ""
 "This interface allows configuring email templates used to notify custodians."
-msgstr ""
+msgstr "Detta gränssnitt gör det möjligt att konfigurera e-postmallar som används för att meddela innehavare."
 
 msgid "Disable notifications to administrators"
-msgstr ""
+msgstr "Inaktivera e-postmeddelanden för administratör"
 
 msgid "Disable notifications to custodians"
-msgstr ""
+msgstr "Inaktivera föranmälan till innehavare"
 
 msgid "Disable notifications to recipients"
-msgstr ""
+msgstr "Inaktivera mottagares e-postmeddelanden"
 
 msgid "Score"
 msgstr "Poäng"
 
 msgid "Trigger question"
-msgstr ""
+msgstr "Utlösarfråga"
 
 msgid "Triggered by score:"
-msgstr ""
+msgstr "Utlöses av poäng:"
 
 msgid "Message shown on top of the status page of the report"
-msgstr ""
+msgstr "Meddelande som visas överst på rapportsstatussidan"
 
 msgid "Copy and paste the PGP public key here"
 msgstr "Kopiera och klistra in din publika PGP-nyckel här"
 
 msgid "Password strength:"
-msgstr ""
+msgstr "Lösenordsstyrka:"
 
 msgid "Weak"
 msgstr "Svag"
@@ -396,10 +379,10 @@ msgid "Strong"
 msgstr "Stark"
 
 msgid "Text shown on top of the interface for selecting contexts"
-msgstr ""
+msgstr "Text som visas överst i gränssnittet för att välja sammanhang"
 
 msgid "Show small context cards on submission interface"
-msgstr ""
+msgstr "Visa små mottagarkort i uppgiftslämnarens gränssnitt"
 
 msgid "Type of context selector:"
 msgstr ""
@@ -487,9 +470,6 @@ msgstr "Tor Browser inkluderar olika säker- och integritets-förbättringar som
 
 msgid "Download the Tor Browser"
 msgstr "Ladda ner Tor Browser"
-
-msgid "This is the list of the other supported browsers:"
-msgstr ""
 
 msgid "Audit log"
 msgstr ""
@@ -706,14 +686,14 @@ msgid "Enable simplified login"
 msgstr "Aktivera förenklad inloggning"
 
 msgid "Allow recipients to delete reports"
-msgstr ""
+msgstr "Tillåt mottagare att radera tips"
 
 msgid "Allow recipients to postpone expiration date of the report"
-msgstr ""
+msgstr "Tillåt mottagare att förlänga utgångsdatumet för tipset"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr ""
+msgstr "Tillåt mottagare att förlänga utgångsdatumet för tipset"
 
 msgid "Enable search engines indexing"
 msgstr "Aktivera sökmotorindexering"
@@ -2011,9 +1991,6 @@ msgid ""
 "respective field."
 msgstr ""
 
-msgid "Confirm password"
-msgstr "Bekräfta lösenord"
-
 msgid "Please choose a different username."
 msgstr ""
 
@@ -2438,7 +2415,7 @@ msgstr ""
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr ""
+msgstr "Detta är ett e-postmeddelande som skickats för att meddela dig att en visselblåsare har valt dig som en värdefull mottagare av deras rapport."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2446,13 +2423,13 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr ""
+msgstr "Du uppmanas att ägna särskild uppmärksamhet åt den information och det material som finns däri. Kom ihåg att visselblåsare ofta utsätter sig för höga personliga risker i allmänhetens intresse. Det material som lämnas i denna rapport bör därför anses vara av stor betydelse."
 
 msgid "New report"
-msgstr ""
+msgstr "Ny rapport"
 
 msgid "Role: {Role}"
-msgstr ""
+msgstr "Roll: {Role}"
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "Lösenord: {Password}"

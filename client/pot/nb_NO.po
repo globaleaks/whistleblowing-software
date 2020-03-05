@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,9 +18,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Innlogging"
-
-msgid "Administration interface"
-msgstr "Administrasjons-grensesnitt"
 
 msgid "Main configuration"
 msgstr "Hovedoppsett"
@@ -52,9 +49,6 @@ msgstr "Legg til nytt spørreskjema"
 msgid "Home"
 msgstr "Hjem"
 
-msgid "Home page"
-msgstr "Hjemmeside"
-
 msgid "Changelog"
 msgstr "Endringslogg"
 
@@ -79,17 +73,11 @@ msgstr "Unormalheter"
 msgid "Preferences"
 msgstr "Innstillinger"
 
-msgid "User preferences"
-msgstr "Brukervalg"
-
 msgid "Notification settings"
 msgstr "Merknadsinnstillinger"
 
 msgid "file unavailable"
 msgstr "fil utilgjengelig"
-
-msgid "Recipient interface"
-msgstr "Mottaker-grensesnitt"
 
 msgid "Date"
 msgstr "Dato"
@@ -124,9 +112,6 @@ msgstr "Detaljer"
 msgid "Platform wizard"
 msgstr "Plattform-veileder"
 
-msgid "Step-by-step setup"
-msgstr "Stegvis oppsett"
-
 msgid "CREDIT CARD"
 msgstr "KREDITTKORT"
 
@@ -145,8 +130,8 @@ msgstr "Velg alle"
 msgid "Deselect all"
 msgstr "Fravelg alle"
 
-msgid "Refresh page"
-msgstr "Gjenoppfrisk side"
+msgid "Refresh"
+msgstr "Gjenoppfrisk"
 
 msgid "Context"
 msgstr "Bindeleddsinformasjon"
@@ -224,9 +209,6 @@ msgstr "Senest valgbare dato"
 
 msgid "0 = auto"
 msgstr "0 = auto"
-
-msgid "-1 = unlimited"
-msgstr "-1 = ubegrenset."
 
 msgid "True"
 msgstr "Sant"
@@ -474,9 +456,6 @@ msgstr "Tor-nettleseren inneholder forskjellige personvern og sikkerhetsforbedri
 
 msgid "Download the Tor Browser"
 msgstr "Last ned Tor-nettleseren"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Dette er en liste over støttede nettlesere:"
 
 msgid "Audit log"
 msgstr ""
@@ -1997,9 +1976,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "Disse profilene inneholder innstillinger brukt av vellykkede prosjekter i hvert respektive felt."
-
-msgid "Confirm password"
-msgstr "Bekreft passord"
 
 msgid "Please choose a different username."
 msgstr ""

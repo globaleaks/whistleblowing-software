@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,9 +31,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Midira"
-
-msgid "Administration interface"
-msgstr "Interface d’administration"
 
 msgid "Main configuration"
 msgstr "Configuration principale"
@@ -65,9 +62,6 @@ msgstr "Ajouter un nouveau questionnaire"
 msgid "Home"
 msgstr "Accueil"
 
-msgid "Home page"
-msgstr "Page d’accueil"
-
 msgid "Changelog"
 msgstr "Journal des changements"
 
@@ -92,17 +86,11 @@ msgstr "Anomalies"
 msgid "Preferences"
 msgstr "Préférences"
 
-msgid "User preferences"
-msgstr "Préférences de l’utilisateur"
-
 msgid "Notification settings"
 msgstr "Paramètres de notification"
 
 msgid "file unavailable"
 msgstr "fichier non disponible"
-
-msgid "Recipient interface"
-msgstr "Interface du destinataire"
 
 msgid "Date"
 msgstr "Date"
@@ -137,9 +125,6 @@ msgstr "Détails"
 msgid "Platform wizard"
 msgstr "Assistant de la plateforme"
 
-msgid "Step-by-step setup"
-msgstr "Configuration étape par étape"
-
 msgid "CREDIT CARD"
 msgstr "CARTE DE CRÉDIT"
 
@@ -158,8 +143,8 @@ msgstr "Tout sélectionner"
 msgid "Deselect all"
 msgstr "Tout dessélectionner"
 
-msgid "Refresh page"
-msgstr "Rafraîchir la page"
+msgid "Refresh"
+msgstr ""
 
 msgid "Context"
 msgstr "Contexte"
@@ -237,9 +222,6 @@ msgstr "Date la plus tardive possible"
 
 msgid "0 = auto"
 msgstr "0 = auto"
-
-msgid "-1 = unlimited"
-msgstr "-1 = illimité"
 
 msgid "True"
 msgstr "Vrai"
@@ -487,9 +469,6 @@ msgstr "Le navigateur Tor inclut diverses améliorations concernant la protectio
 
 msgid "Download the Tor Browser"
 msgstr "Télécharger le navigateur Tor"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Voici la liste des autres navigateurs pris en charge :"
 
 msgid "Audit log"
 msgstr ""
@@ -2010,9 +1989,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "Ces profils contiennent les paramètres utilisés par des projets couronnés de succès dans chacun de ces domaines."
-
-msgid "Confirm password"
-msgstr "Confirmer le mot de passe"
 
 msgid "Please choose a different username."
 msgstr ""

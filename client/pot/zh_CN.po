@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,9 +31,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "登录"
-
-msgid "Administration interface"
-msgstr "管理员界面"
 
 msgid "Main configuration"
 msgstr "主要配置"
@@ -65,9 +62,6 @@ msgstr "添加问卷题目"
 msgid "Home"
 msgstr "首页"
 
-msgid "Home page"
-msgstr "首页"
-
 msgid "Changelog"
 msgstr "变改"
 
@@ -92,17 +86,11 @@ msgstr "异常"
 msgid "Preferences"
 msgstr "偏好"
 
-msgid "User preferences"
-msgstr "用户偏好"
-
 msgid "Notification settings"
 msgstr "通知设置"
 
 msgid "file unavailable"
 msgstr "文件无法获得"
-
-msgid "Recipient interface"
-msgstr "接收者界面"
 
 msgid "Date"
 msgstr "日期"
@@ -137,9 +125,6 @@ msgstr "详细信息"
 msgid "Platform wizard"
 msgstr "平台设置精灵"
 
-msgid "Step-by-step setup"
-msgstr "一步一步的设置"
-
 msgid "CREDIT CARD"
 msgstr "信用卡"
 
@@ -158,8 +143,8 @@ msgstr "全部选择"
 msgid "Deselect all"
 msgstr "全部取消"
 
-msgid "Refresh page"
-msgstr "刷新页面"
+msgid "Refresh"
+msgstr "刷新"
 
 msgid "Context"
 msgstr "内文"
@@ -237,9 +222,6 @@ msgstr "最近可选的日期"
 
 msgid "0 = auto"
 msgstr "0 = 自动"
-
-msgid "-1 = unlimited"
-msgstr "-1 = 无限制"
 
 msgid "True"
 msgstr "True"
@@ -487,9 +469,6 @@ msgstr "Tor 浏覧器具有其它浏覧器未有的各式隐私与安全强化�
 
 msgid "Download the Tor Browser"
 msgstr "下载 Tor 浏览器"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "这是其它可支持的浏覧器清单"
 
 msgid "Audit log"
 msgstr "审核记录"
@@ -2010,9 +1989,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "这些简介包含各领域成功专案所用的设置"
-
-msgid "Confirm password"
-msgstr "确认密码"
 
 msgid "Please choose a different username."
 msgstr "请选择不同的用户名称。"

@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,9 +33,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Зайти"
-
-msgid "Administration interface"
-msgstr " Інтерфейс адміністратора"
 
 msgid "Main configuration"
 msgstr "Головні налаштування"
@@ -67,9 +64,6 @@ msgstr "Створити нову антеку"
 msgid "Home"
 msgstr "Домашня"
 
-msgid "Home page"
-msgstr "Домашня сторінка"
-
 msgid "Changelog"
 msgstr "Список змін"
 
@@ -94,17 +88,11 @@ msgstr "Аномальна активність "
 msgid "Preferences"
 msgstr "Налаштування"
 
-msgid "User preferences"
-msgstr "Налаштування користувача"
-
 msgid "Notification settings"
 msgstr "Налаштування оповіщень"
 
 msgid "file unavailable"
 msgstr "файл недоступний"
-
-msgid "Recipient interface"
-msgstr "Інтерфейс одержувача"
 
 msgid "Date"
 msgstr "Дата"
@@ -139,9 +127,6 @@ msgstr "Деталі"
 msgid "Platform wizard"
 msgstr "Майстер налаштувань платформи"
 
-msgid "Step-by-step setup"
-msgstr "Налаштування крок за кроком"
-
 msgid "CREDIT CARD"
 msgstr "Кредитна картка"
 
@@ -160,8 +145,8 @@ msgstr "Обрати все"
 msgid "Deselect all"
 msgstr "Зняти всі позначки"
 
-msgid "Refresh page"
-msgstr "Оновити сторінку"
+msgid "Refresh"
+msgstr "Оновити"
 
 msgid "Context"
 msgstr "Контекст"
@@ -239,9 +224,6 @@ msgstr "Остання обрана дата"
 
 msgid "0 = auto"
 msgstr "0 = auto"
-
-msgid "-1 = unlimited"
-msgstr "-1 = unlimited"
 
 msgid "True"
 msgstr "Вірно"
@@ -489,9 +471,6 @@ msgstr "Броузер Tor включає в себе різні поліпше�
 
 msgid "Download the Tor Browser"
 msgstr "Завантажте Tor броузер"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Це список інших підтримуваних браузерів:"
 
 msgid "Audit log"
 msgstr ""
@@ -2012,9 +1991,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr ""
-
-msgid "Confirm password"
-msgstr "Підтвердить пароль"
 
 msgid "Please choose a different username."
 msgstr ""

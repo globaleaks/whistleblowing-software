@@ -3,11 +3,11 @@
 # Bujar Tafili, 2015
 # Bujar Tafili, 2015
 # F Nilaj <activisti@protonmail.com>, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2019
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,9 +18,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Hyni"
-
-msgid "Administration interface"
-msgstr "Ndërfaqja e Administrimit"
 
 msgid "Main configuration"
 msgstr "Konfigurimi Tërësor"
@@ -52,9 +49,6 @@ msgstr "Shto pyetësorit të re"
 msgid "Home"
 msgstr "Kryefaqe"
 
-msgid "Home page"
-msgstr "Kryefaqe"
-
 msgid "Changelog"
 msgstr "Regjistri i ndryshimeve"
 
@@ -79,17 +73,11 @@ msgstr "Anomalitë"
 msgid "Preferences"
 msgstr "Parapëlqimet"
 
-msgid "User preferences"
-msgstr "Parapëlqime përdoruesi"
-
 msgid "Notification settings"
 msgstr "Konfigurimi i Njoftimit"
 
 msgid "file unavailable"
 msgstr "skedari s'është i disponueshëm"
-
-msgid "Recipient interface"
-msgstr "Ndërfaqja e Marrësit"
 
 msgid "Date"
 msgstr "Data"
@@ -124,9 +112,6 @@ msgstr "Hollësitë"
 msgid "Platform wizard"
 msgstr "Platforma wizard"
 
-msgid "Step-by-step setup"
-msgstr "Konfigurimi hap-pas-hapi"
-
 msgid "CREDIT CARD"
 msgstr "KARTË KREDITI "
 
@@ -145,8 +130,8 @@ msgstr "Selektoj të gjitha"
 msgid "Deselect all"
 msgstr "deselect të gjitha"
 
-msgid "Refresh page"
-msgstr "faqe refresh"
+msgid "Refresh"
+msgstr "Azhorno të dhënat"
 
 msgid "Context"
 msgstr "Kontekst"
@@ -158,7 +143,7 @@ msgid "Preview"
 msgstr "Përmbledhje"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "Whistleblower ka lexuar tashmë update e fundit"
 
 msgid "The whistleblower has not read the last update yet"
 msgstr ""
@@ -188,7 +173,7 @@ msgid "Access control"
 msgstr ""
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr ""
+msgstr "Lidhja është siguruar me HTTPS siguruar konfidencialitetin."
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
@@ -224,9 +209,6 @@ msgstr "Latest date selectable"
 
 msgid "0 = auto"
 msgstr "0 = auto"
-
-msgid "-1 = unlimited"
-msgstr "-1 = Pakufizuar"
 
 msgid "True"
 msgstr "i vërtetë"
@@ -475,9 +457,6 @@ msgstr "Shfletuesi Tor përfshin privatësi të ndryshme, si dhe përmirësime p
 msgid "Download the Tor Browser"
 msgstr "Shkarkoni Shfletuesin Tor"
 
-msgid "This is the list of the other supported browsers:"
-msgstr ""
-
 msgid "Audit log"
 msgstr ""
 
@@ -630,7 +609,7 @@ msgid ""
 "the report anonymous, which is strongly recommended.\\n\\nThis can be "
 "achieved with the use of the Tor Browser, providing anonymisation not found "
 "in other browsers."
-msgstr ""
+msgstr "Dërgimi i parashtresave mbi HTTPS ekspozon aktin e bërë kështu, por jo përmbajtjen. \\ N \\ nKur që të fshehin se ju jeni të paraqitur diçka, kjo quhet një parashtresë anonim, që do të thotë ju jeni të mbrojtur plotësisht. \\ N \\ nAnonymous parashtresat janë këshilluar me forcë , dhe mund të bëhet nëpërmjet Browser Tor që është një shfletues të veçantë që anonymises komunikimin tuaj me platformën."
 
 msgid "Are you a whistleblower?"
 msgstr "A jeni një Informator?"
@@ -639,7 +618,7 @@ msgid "Blow the whistle"
 msgstr "Fryjini bilbilit"
 
 msgid "Your report was successful."
-msgstr ""
+msgstr "Parashtrimi juaj ishte i suksesshëm."
 
 msgid "Report"
 msgstr ""
@@ -693,14 +672,14 @@ msgid "Enable simplified login"
 msgstr ""
 
 msgid "Allow recipients to delete reports"
-msgstr ""
+msgstr "Lejojnë përfituesit për të fshirë parashtresat"
 
 msgid "Allow recipients to postpone expiration date of the report"
-msgstr ""
+msgstr "Lejojini marrësit që ta shtyjnë datën e skadimit të këshillave"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr ""
+msgstr "Lejojnë përfituesit për të dhënë leje për informuesit në aplikimet specifike"
 
 msgid "Enable search engines indexing"
 msgstr "Mundësoni indeksimin e motorëve të kërkimit"
@@ -745,7 +724,7 @@ msgid "Title of the receipt page"
 msgstr "Titulli i faqes pranimit"
 
 msgid "Title of the status page of the report"
-msgstr ""
+msgstr "Titulli i faqes status dorëzimit"
 
 msgid "Size limit for file attachments"
 msgstr "Kufiri Size për fotografi të bashkëngjitni skedarë"
@@ -1010,7 +989,7 @@ msgid "Show small recipient cards on submission interface"
 msgstr "Shfaqni kartat e vogla të marrësit në ndërfaqen e paraqitjes"
 
 msgid "Show recipient details on the status page of the report"
-msgstr ""
+msgstr "Trego detajet e marrësit në faqen e statusit të dorëzimit"
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Tekst treguar në krye të ndërfaqes për zgjedhjen e marrësit"
@@ -1028,7 +1007,7 @@ msgid "Allow whistleblowers to send messages"
 msgstr "Lejo informatorët për të dërguar mesazhe"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr ""
+msgstr "Lejo informatorët për të shtuar të bashkëngjitni skedarë në aplikimet ekzistuese"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
@@ -1454,15 +1433,15 @@ msgid "Forcefully selected"
 msgstr "zgjedhur me forcë"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr ""
+msgstr "Lejo marrësi për të shtyrë datën e skadimit dorëzimit"
 
 msgid "Allow the recipient to delete reports"
-msgstr ""
+msgstr "Lejojnë përfituesit për të fshirë parashtresat"
 
 msgid ""
 "Allow the recipient to grant permissions to whistleblowers on specific "
 "reports"
-msgstr ""
+msgstr "Lejojnë përfituesit për të dhënë leje për informuesit në aplikimet specifike"
 
 msgid "User has administrative access to the following features:"
 msgstr ""
@@ -1504,7 +1483,7 @@ msgid "Site:"
 msgstr ""
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr ""
+msgstr "A e keni bërë tashmë një parashtrim? Futni kodin e çelësit tuaj."
 
 msgid "The receipt is either invalid or the report has expired."
 msgstr ""
@@ -1540,7 +1519,7 @@ msgid "Assign score points"
 msgstr "Cakto pike"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
+msgstr "Ju lutemi kujdesuni që të gjitha të dhënat shoqëruese të hiqen siç duhet."
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
@@ -1773,7 +1752,7 @@ msgid "No files have been uploaded!"
 msgstr "S'është ngarkuar asnjë skedar!"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr ""
+msgstr "Lejo whistleblower për të shtuar të bashkëngjitni skedarë dorëzimit"
 
 msgid "Access expiration"
 msgstr ""
@@ -1791,7 +1770,7 @@ msgid "Allow the whistleblower to send messages"
 msgstr "Lejo whistleblower për të dërguar mesazhe"
 
 msgid "Are you sure that you want to delete the report?"
-msgstr ""
+msgstr "Jeni i sigurt se doni ta hiqni këshillën?"
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
@@ -1803,7 +1782,7 @@ msgid ""
 msgstr ""
 
 msgid "Are you sure that you want to delete the selected reports?"
-msgstr ""
+msgstr "Jeni i sigurt se doni të fshini të gjitha parashtresat e zgjedhura?"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
@@ -1814,7 +1793,7 @@ msgid "Please write a motivation for the reply"
 msgstr "Ju lutem shkruani një motivim për përgjigjen"
 
 msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr ""
+msgstr "Jeni i sigurt se doni ta shtyni datën e skadimit të këshillës?"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Duke konfirmuar, ju do të shtyjë datën e skadimit për:"
@@ -1822,7 +1801,7 @@ msgstr "Duke konfirmuar, ju do të shtyjë datën e skadimit për:"
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
 "reports?"
-msgstr ""
+msgstr "Jeni i sigurt se doni të shtyjë datën e skadimit për të gjitha aplikimet e zgjedhura?"
 
 msgid "Questionnaire answers"
 msgstr "përgjigjet e pyetësorit"
@@ -1949,15 +1928,15 @@ msgid "We will try to get back to you as soon as possible."
 msgstr ""
 
 msgid "Remember your receipt for this report."
-msgstr ""
+msgstr "Kujtojeni kodin e çelësit tuaj për këtë parashtrim."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr ""
+msgstr "Përdorni kodin e çelësit me 16 shifra për të hyrë. Kjo do t'ju lejojë të shihni çdo mesazh që ju kemi dërguar dhe, madje, që të shtoni informacion shtesë."
 
 msgid "View your report"
-msgstr ""
+msgstr "Shiheni parashtrimin tuja"
 
 msgid "Recipient selection"
 msgstr "Përzgjedhja e marrësit"
@@ -1998,9 +1977,6 @@ msgid ""
 "respective field."
 msgstr ""
 
-msgid "Confirm password"
-msgstr "Konfirmoni fjalëkalimin"
-
 msgid "Please choose a different username."
 msgstr ""
 
@@ -2026,16 +2002,16 @@ msgid "Short title"
 msgstr "Titulli i shkurtër"
 
 msgid "Describe your report in a few words."
-msgstr ""
+msgstr "Përshkruajeni me pak fjalë parashtrimin tuaj"
 
 msgid "Full description"
 msgstr "Përshkrim i plotë"
 
 msgid "Describe your report in detail."
-msgstr ""
+msgstr ".Përshkruajeni me pak fjalë parashtrimin tuaj."
 
 msgid "Attach files relevant to the report."
-msgstr ""
+msgstr "Shtoni skedarët e rëndësishëm për parashtrimin."
 
 msgid "Do you want to provide your identification information?"
 msgstr "A doni për të siguruar të dhënat tuaja të identifikimit?"
@@ -2234,7 +2210,7 @@ msgid "This is an email to notify you of a new comment on an existing report."
 msgstr ""
 
 msgid "The report can be accessed at:"
-msgstr ""
+msgstr "Parashtrimi është i qasshëm:"
 
 msgid "New comment"
 msgstr "një koment të ri"
@@ -2279,7 +2255,7 @@ msgstr "Konteksti: {ContextName}"
 msgid ""
 "This is an email to notify you that the whistleblower of report {TipNum} has"
 " attached new material."
-msgstr ""
+msgstr "Kjo është një email që të ju njoftojmë se zbuluesi i dorëzimit {TipNum} ka bashkangjitur materiale të reja."
 
 msgid "New attachment"
 msgstr "lidhja e re"
@@ -2316,7 +2292,7 @@ msgstr ""
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Kjo është një e-mail për të njoftuar ju se një kujdestar ju ka autorizuar për të hyrë në identitetin wistleblowing për dorëzimin {TipNum}."
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "Qasja në identitetin e informatorëve të autorizuar"
@@ -2324,7 +2300,7 @@ msgstr "Qasja në identitetin e informatorëve të autorizuar"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " wistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Kjo është një e-mail për të njoftuar ju se një kujdestar ju ka autorizuar për të hyrë në identitetin wistleblowing për dorëzimin {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Qasja në identitetin Whistleblower mohoi"
@@ -2332,24 +2308,24 @@ msgstr "Qasja në identitetin Whistleblower mohoi"
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr ""
+msgstr "Kjo është një email që të ju njoftojmë se një marrës ka kërkuar qasje në identitetin e whistleblower s per paraqitjen {TipNum}"
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "Kërkesa mund të arrihen:"
 
 msgid "New request of access to a whistleblower's identity"
-msgstr ""
+msgstr "Kërkesa e re e aksesit të identitetit të informatorëve të"
 
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr ""
+msgstr "Kjo është një email që të ju njoftojmë se whistleblower për dorëzimin {TipNum} ka dhënë identitetin e tyre."
 
 msgid "The whistleblower has provided their identity"
 msgstr "Whistleblower ka dhënë identitetin e tyre"
 
 msgid "This is an email to notify you of a new message on an existing report."
-msgstr ""
+msgstr "Kjo është një e-mail për të njoftuar ju një mesazh të ri në një paraqitjen ekzistuese."
 
 msgid "New message"
 msgstr "mesazh i ri"
@@ -2425,7 +2401,7 @@ msgstr ""
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr ""
+msgstr "Kjo është një e-postë për t'ju njoftuar se një informator ju ka përzgjedhur si një marrës të vlefshëm, për parashtrimin e tij/saj të ri."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2433,7 +2409,7 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr ""
+msgstr "Ata do të dëshironin që ju të përkushtoheshit veçanërisht ndaj informacionit dhe materialit që përmbahet këtu. Ju lutemi mos harroni që, në të mirë të interesit publik, shpesh informatorët e ekspozojnë veten ndaj një rreziku të madh.Kësisoj, materiali që ata ofrojnë me këtë sugjerim konfidencial duhet të konsiderohet me rëndësi të madhe."
 
 msgid "New report"
 msgstr ""

@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 07:27+0000\n"
-"Last-Translator: Krassy Temelkova <temelkovakrasi@yahoo.co.uk>\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,9 +24,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Впиши се"
-
-msgid "Administration interface"
-msgstr "Администраторски интерфейс"
 
 msgid "Main configuration"
 msgstr "Основна конфигурация"
@@ -58,9 +55,6 @@ msgstr "Добавяне на нов въпросник"
 msgid "Home"
 msgstr "Начало"
 
-msgid "Home page"
-msgstr "Начална страница"
-
 msgid "Changelog"
 msgstr "Доклад на промените"
 
@@ -85,17 +79,11 @@ msgstr "Аномалии"
 msgid "Preferences"
 msgstr "Настройки"
 
-msgid "User preferences"
-msgstr "Потребителски настройки"
-
 msgid "Notification settings"
 msgstr "Настройки на известията"
 
 msgid "file unavailable"
 msgstr "Недостъпен файл"
-
-msgid "Recipient interface"
-msgstr "Интерфейс на получателя"
 
 msgid "Date"
 msgstr "Дата"
@@ -130,9 +118,6 @@ msgstr "Детайли"
 msgid "Platform wizard"
 msgstr "Съветник за платформата"
 
-msgid "Step-by-step setup"
-msgstr "Настройка стъпка по стъпка"
-
 msgid "CREDIT CARD"
 msgstr "КРЕДИТНА КАРТА"
 
@@ -151,8 +136,8 @@ msgstr "Избиране на всички"
 msgid "Deselect all"
 msgstr "Отмяна на избора на всички"
 
-msgid "Refresh page"
-msgstr "Презареждане на страницата"
+msgid "Refresh"
+msgstr "Опресни"
 
 msgid "Context"
 msgstr "Контекст"
@@ -230,9 +215,6 @@ msgstr "Последна избираема дата"
 
 msgid "0 = auto"
 msgstr "0 = автоматично"
-
-msgid "-1 = unlimited"
-msgstr "-1 = неограничено"
 
 msgid "True"
 msgstr "Вярно"
@@ -480,9 +462,6 @@ msgstr "Tor браузърът включва различни подобрен�
 
 msgid "Download the Tor Browser"
 msgstr "Изтегляне на Tor браузър"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Това е списък на други подържани браузъри:"
 
 msgid "Audit log"
 msgstr "Одиторски доклад"
@@ -2003,9 +1982,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "Тези профили съдържат настройки използвани от успешни проекти в съответните сфери на дейност."
-
-msgid "Confirm password"
-msgstr "Потвърдете паролата"
 
 msgid "Please choose a different username."
 msgstr "Моля, изберете друго потребителско име"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,9 +18,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "உள் நுழை"
-
-msgid "Administration interface"
-msgstr "நிர்வாகம் முகப்பை"
 
 msgid "Main configuration"
 msgstr "முக்கிய கட்டமைப்பு"
@@ -52,9 +49,6 @@ msgstr "புதிய கேள்வித்தாளை சேர்"
 msgid "Home"
 msgstr "முகப்பு"
 
-msgid "Home page"
-msgstr "முகப்பு பக்கம்"
-
 msgid "Changelog"
 msgstr "மாற்றம்குறிக்கும் கோப்பு"
 
@@ -79,17 +73,11 @@ msgstr "முரண்பாடுகள்"
 msgid "Preferences"
 msgstr "விருப்பத்தேர்வுகள்"
 
-msgid "User preferences"
-msgstr "பயனர் விருப்பத்தேர்வுகள்"
-
 msgid "Notification settings"
 msgstr "அறிவித்தல் அமைப்புகளை"
 
 msgid "file unavailable"
 msgstr "கோப்பு கிடைக்கவில்லை"
-
-msgid "Recipient interface"
-msgstr "பெறுநரின் இடைமுகம்"
 
 msgid "Date"
 msgstr "திகதி"
@@ -124,9 +112,6 @@ msgstr "விபரங்கள்"
 msgid "Platform wizard"
 msgstr "மேடை வழிகாட்டி"
 
-msgid "Step-by-step setup"
-msgstr "படி மூலம் படி அமைப்பு"
-
 msgid "CREDIT CARD"
 msgstr "கடன் அட்டை"
 
@@ -145,8 +130,8 @@ msgstr "அனைத்தையும் தெரிவுசெய்"
 msgid "Deselect all"
 msgstr "அனைத்து தெரிவுகளையும் நிராகரி"
 
-msgid "Refresh page"
-msgstr "புதுப்பிப்பு பக்கம்"
+msgid "Refresh"
+msgstr ""
 
 msgid "Context"
 msgstr "சூழல்"
@@ -224,9 +209,6 @@ msgstr "சமீபத்திய தேர்ந்தெடுக்கக�
 
 msgid "0 = auto"
 msgstr "0 = கார்"
-
-msgid "-1 = unlimited"
-msgstr "-1 = வரம்பற்ற"
 
 msgid "True"
 msgstr "உண்மை"
@@ -474,9 +456,6 @@ msgstr "தோர் உலாவி பல்வேறு தனியுர
 
 msgid "Download the Tor Browser"
 msgstr "தோர் உலாவி பதிவிறக்க"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "இது மற்ற உலாவிகளின் பட்டியலாகும்:"
 
 msgid "Audit log"
 msgstr ""
@@ -827,7 +806,7 @@ msgid "High"
 msgstr "உயர்"
 
 msgid "megabytes"
-msgstr ""
+msgstr "மெகாபைட்"
 
 msgid "percentage"
 msgstr ""
@@ -1997,9 +1976,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "இந்த சுயவிவரங்களில் வெற்றிகரமான திட்டங்களில் பயன்படுத்தப்படும் ஒவ்வொரு அமைப்புக்கும் அமைப்புகள் உள்ளன."
-
-msgid "Confirm password"
-msgstr "பாஸ்வேர்டை உறுதி"
 
 msgid "Please choose a different username."
 msgstr ""

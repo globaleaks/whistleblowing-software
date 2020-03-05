@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 10:42+0000\n"
+"PO-Revision-Date: 2020-03-05 14:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,9 +20,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "ލޮގް އިން"
-
-msgid "Administration interface"
-msgstr "އެޑްމިނިސްޓްރޭޝަން އިންޓަފޭސް"
 
 msgid "Main configuration"
 msgstr "މައި ކޮންފިގަރޭޝަން"
@@ -54,9 +51,6 @@ msgstr "އާ ސުވާލުކަރުދާހެއް ހެދުމަށް"
 msgid "Home"
 msgstr "ފުރަތަމަ ސަފްހާ"
 
-msgid "Home page"
-msgstr "ފުރަތަމަ ސަފްހާ"
-
 msgid "Changelog"
 msgstr "ގެނެވިފައިވާ ހުރިހާ ބަދަލެއް"
 
@@ -81,17 +75,11 @@ msgstr "އެނޮމަލީސް"
 msgid "Preferences"
 msgstr "ޕްރިފަރެންސާރސް"
 
-msgid "User preferences"
-msgstr "ބޭނުންކުރާ އެކައުންޓްގެ ޕްރިފަރެންސާރސް"
-
 msgid "Notification settings"
 msgstr "ނޮޓިފިކޭޝަން އިންހަމަ"
 
 msgid "file unavailable"
 msgstr "މި ފައިލް ހޯދިފައެއް ނުވާ. "
-
-msgid "Recipient interface"
-msgstr "ލިބޭފަރާތުގެ އިންޓަފޭސް"
 
 msgid "Date"
 msgstr "ތާރީޙް"
@@ -126,9 +114,6 @@ msgstr "އިތުރު މައުލޫއްމާތު"
 msgid "Platform wizard"
 msgstr "ޕްލެޓްފޯރމް ވިޒާރޑް"
 
-msgid "Step-by-step setup"
-msgstr "ސެޓަޕް ކުރާނެ ގޮތުގެ މައުލޫމާތު"
-
 msgid "CREDIT CARD"
 msgstr "ކްރެޑިޓް ކާޑް"
 
@@ -147,7 +132,7 @@ msgstr "އެއްކޮށް ހިޔާރުކުރުމަށް"
 msgid "Deselect all"
 msgstr "އެއްކޮށް ހިޔާރުކުރަން ބޭނުންފުޅު ނޫން ނަމަ"
 
-msgid "Refresh page"
+msgid "Refresh"
 msgstr "ރިފްރެސް ކުރުމަށް"
 
 msgid "Context"
@@ -226,9 +211,6 @@ msgstr "ހިޔާރުކުރެވޭނެ އެންމެ ފަހުގެ ތާރީޙް"
 
 msgid "0 = auto"
 msgstr "ް0= އޮޓޯ"
-
-msgid "-1 = unlimited"
-msgstr "-1=އަންލިމިޓެޑް"
 
 msgid "True"
 msgstr "ރަނގަޅު"
@@ -476,9 +458,6 @@ msgstr "ޓޯރ ބްރައުޒަރގައި އެހެން ބްރައުޒަރތަކ�
 
 msgid "Download the Tor Browser"
 msgstr "ޓޯރ ބްރައުޒަރ ޑައުންލޯޑްކުރުމަށް"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "ސަޕޯރޓް ކުރާ ބްރައުޒަރތަކުގެ ލިސްޓް: "
 
 msgid "Audit log"
 msgstr "އޮޑިޓް ލޮގް"
@@ -1999,9 +1978,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "މި ޕްރޮފައިލްގައިވާ އިންހަމައަކީ ކުރީގައިވެސް ކާމިޔާބުކަމާއި އެކު ބޭނުންކޮއްފައިވާ އިންހަމައެއް. "
-
-msgid "Confirm password"
-msgstr "މިހާރު ބޭނުންކުރާ ޕާސްވޯޑް"
 
 msgid "Please choose a different username."
 msgstr "އެހެން ޔޫސާ ނަމެއް ބޭނުންކުރައްވާ"

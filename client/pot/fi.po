@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,9 +21,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Kirjaudu"
-
-msgid "Administration interface"
-msgstr "Palvelun ylläpito"
 
 msgid "Main configuration"
 msgstr "Palvelun etusivu"
@@ -55,9 +52,6 @@ msgstr "Lisää uusi vihjelomake"
 msgid "Home"
 msgstr "Etusivu"
 
-msgid "Home page"
-msgstr "Etusivu"
-
 msgid "Changelog"
 msgstr "Muutosloki"
 
@@ -82,17 +76,11 @@ msgstr "Poikkeamat"
 msgid "Preferences"
 msgstr "Asetukset"
 
-msgid "User preferences"
-msgstr "Käyttäjän asetukset"
-
 msgid "Notification settings"
 msgstr "Ilmoitusasetukset"
 
 msgid "file unavailable"
 msgstr "tiedosto ei ole saatavilla"
-
-msgid "Recipient interface"
-msgstr "Vastaanottajan näkymä"
 
 msgid "Date"
 msgstr "Päivämäärä"
@@ -127,9 +115,6 @@ msgstr "Lisätiedot"
 msgid "Platform wizard"
 msgstr "Palvelun avustettu käyttöönotto"
 
-msgid "Step-by-step setup"
-msgstr "Vaihe-vaiheelta-asetukset"
-
 msgid "CREDIT CARD"
 msgstr "LUOTTOKORTTI"
 
@@ -148,8 +133,8 @@ msgstr "Valitse kaikki"
 msgid "Deselect all"
 msgstr "Poista kaikkien valinta"
 
-msgid "Refresh page"
-msgstr "Päivitä sivua"
+msgid "Refresh"
+msgstr "Päivitä"
 
 msgid "Context"
 msgstr "Aihe"
@@ -227,9 +212,6 @@ msgstr "Myöhäisin valittavissa oleva päivä"
 
 msgid "0 = auto"
 msgstr "0 = automaattinen"
-
-msgid "-1 = unlimited"
-msgstr "-1 = rajoittamaton"
 
 msgid "True"
 msgstr "Tosi"
@@ -477,9 +459,6 @@ msgstr "Tor-selain sisältää useita yksityisyys- ja turvallisuusominaisuuksia,
 
 msgid "Download the Tor Browser"
 msgstr "Lataa Tor-selain"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Muut tuetut selaimet:"
 
 msgid "Audit log"
 msgstr "Jäljitysketju"
@@ -2000,9 +1979,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "Näistä profiileista löydät kullekin aiheelle räätälöityjä ja onnistuneesti toimivia valmiita esimerkkiasetuksia."
-
-msgid "Confirm password"
-msgstr "Vahvista salasana"
 
 msgid "Please choose a different username."
 msgstr "Valitse erilainen käyttäjänimi."

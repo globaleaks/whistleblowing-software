@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,9 +25,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Prihlásiť sa"
-
-msgid "Administration interface"
-msgstr "Rozhranie administrátora"
 
 msgid "Main configuration"
 msgstr "Hlavná konfigurácia"
@@ -59,9 +56,6 @@ msgstr "Pridať nový dotazník"
 msgid "Home"
 msgstr "Domov"
 
-msgid "Home page"
-msgstr "Domovská stránka"
-
 msgid "Changelog"
 msgstr "Posledné zmeny"
 
@@ -86,17 +80,11 @@ msgstr "Anomálie"
 msgid "Preferences"
 msgstr "Predvoľby"
 
-msgid "User preferences"
-msgstr "Užívateľské predvoľby"
-
 msgid "Notification settings"
 msgstr "Nastavenie upozornení"
 
 msgid "file unavailable"
 msgstr "súbor nie je k dispozícii"
-
-msgid "Recipient interface"
-msgstr "Rozhranie príjemcu"
 
 msgid "Date"
 msgstr "Dátum"
@@ -131,9 +119,6 @@ msgstr "Detaily"
 msgid "Platform wizard"
 msgstr "Sprievodca platformou"
 
-msgid "Step-by-step setup"
-msgstr "Nastavenie krok za krokom"
-
 msgid "CREDIT CARD"
 msgstr "KREDITNÁ KARTA"
 
@@ -152,8 +137,8 @@ msgstr "Označiť všetko"
 msgid "Deselect all"
 msgstr "Neoznačiť nič"
 
-msgid "Refresh page"
-msgstr "Obnoviť stránku"
+msgid "Refresh"
+msgstr "Obnoviť"
 
 msgid "Context"
 msgstr "Kontext"
@@ -231,9 +216,6 @@ msgstr "Najneskorší možný dátum"
 
 msgid "0 = auto"
 msgstr "0 = automaticky"
-
-msgid "-1 = unlimited"
-msgstr "-1 = neobmedzene"
 
 msgid "True"
 msgstr "Pravda"
@@ -481,9 +463,6 @@ msgstr "Tor Browser obsahuje rôzne vylepšenia v oblasti ochrany osobných úda
 
 msgid "Download the Tor Browser"
 msgstr "Stiahnúť prehliadač Tor Browser"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Toto je zoznam ďalších podporovaných prehliadačov:"
 
 msgid "Audit log"
 msgstr "audit log"
@@ -2004,9 +1983,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "Tieto profily obsahujú nastavenia používané už vyskúšanými a úspešnými projektmi v rôznych oblastiach."
-
-msgid "Confirm password"
-msgstr "Potvrdiť heslo"
 
 msgid "Please choose a different username."
 msgstr "Zvoľte prosím iné užívateľské meno."

@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,9 +27,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Inicie la sessió"
-
-msgid "Administration interface"
-msgstr "Interfície d'administració"
 
 msgid "Main configuration"
 msgstr "Configuració principal"
@@ -61,9 +58,6 @@ msgstr "Afegisca un altre qüestionari"
 msgid "Home"
 msgstr "Inici"
 
-msgid "Home page"
-msgstr "Pàgina d'Inici"
-
 msgid "Changelog"
 msgstr "Registre de canvis"
 
@@ -88,17 +82,11 @@ msgstr "Anomalies"
 msgid "Preferences"
 msgstr "Preferències"
 
-msgid "User preferences"
-msgstr "Preferències d'Usuari"
-
 msgid "Notification settings"
 msgstr "Configuracions de notificació"
 
 msgid "file unavailable"
 msgstr "fitxer no disponible"
-
-msgid "Recipient interface"
-msgstr "Interfície de destinatari"
 
 msgid "Date"
 msgstr "Data"
@@ -133,9 +121,6 @@ msgstr "Detalls"
 msgid "Platform wizard"
 msgstr "Assistent de la plataforma informàtica"
 
-msgid "Step-by-step setup"
-msgstr "Configuració pas a pas"
-
 msgid "CREDIT CARD"
 msgstr "TARGETA DE CRÈDIT"
 
@@ -154,8 +139,8 @@ msgstr "Seleccione-ho tot"
 msgid "Deselect all"
 msgstr "Desseleccione-ho tot"
 
-msgid "Refresh page"
-msgstr "Actualitze la pàgina"
+msgid "Refresh"
+msgstr ""
 
 msgid "Context"
 msgstr "Context"
@@ -233,9 +218,6 @@ msgstr "Última data disponible"
 
 msgid "0 = auto"
 msgstr "0 = automàtic"
-
-msgid "-1 = unlimited"
-msgstr "-1 = sense límit"
 
 msgid "True"
 msgstr "Veritable"
@@ -483,9 +465,6 @@ msgstr "Tor Browser inclou diverses millores de privacitat i seguretat no presen
 
 msgid "Download the Tor Browser"
 msgstr "Descarrega el navegador Tor"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Vista general del sistema"
 
 msgid "Audit log"
 msgstr ""
@@ -2007,9 +1986,6 @@ msgid ""
 "respective field."
 msgstr "Aquests perfils contenen la configuració utilitzada per projectes exitosos en cada un dels tipus."
 
-msgid "Confirm password"
-msgstr "Confirme la contrassenya"
-
 msgid "Please choose a different username."
 msgstr ""
 
@@ -2170,7 +2146,7 @@ msgstr "Les activitats amb estadístiques inusuals són les següents:"
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr ""
+msgstr "El servidor no pot garantir que es puga desar una nova entrega, ja que s'han desactivat els lliuraments."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "

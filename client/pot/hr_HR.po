@@ -1,7 +1,7 @@
 # 
 # Translators:
 # Denis Smajlović <deni@deni.dk>, 2020
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2019
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2020
 # Igor <lyricaltumor@gmail.com>, 2015-2018
 # Igor <lyricaltumor@gmail.com>, 2015-2016
 # Sasa Lekovic <sasa.lekovic1@gmail.com>, 2019-2020
@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,9 +21,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Prijava"
-
-msgid "Administration interface"
-msgstr "Administratorsko sučelje"
 
 msgid "Main configuration"
 msgstr "Glavna konfiguracija"
@@ -55,9 +52,6 @@ msgstr "Dodaj novi upitnik"
 msgid "Home"
 msgstr "Početna stranica"
 
-msgid "Home page"
-msgstr "Početna stranica"
-
 msgid "Changelog"
 msgstr "Zapisi o promjenama"
 
@@ -82,17 +76,11 @@ msgstr "Anomalije"
 msgid "Preferences"
 msgstr "Postavke"
 
-msgid "User preferences"
-msgstr "Korisničke postavke"
-
 msgid "Notification settings"
 msgstr "Postavke obavijesti"
 
 msgid "file unavailable"
 msgstr "datoteka nije dostupna"
-
-msgid "Recipient interface"
-msgstr "Sučelje primatelja"
 
 msgid "Date"
 msgstr "Datum"
@@ -127,9 +115,6 @@ msgstr "Detalji"
 msgid "Platform wizard"
 msgstr "Čarobnjak za platformu"
 
-msgid "Step-by-step setup"
-msgstr "Postavljanje korak po korak"
-
 msgid "CREDIT CARD"
 msgstr "KREDITNA KARTICA"
 
@@ -137,7 +122,7 @@ msgid "YOUR NAME"
 msgstr "VAŠE IME"
 
 msgid "Label the report"
-msgstr ""
+msgstr "Postavite oznaku na predaju"
 
 msgid "Postpone the expiration date"
 msgstr "Odgodi datum isteka"
@@ -148,8 +133,8 @@ msgstr "Označi sve"
 msgid "Deselect all"
 msgstr "Odznači sve"
 
-msgid "Refresh page"
-msgstr "Osvježi stranicu"
+msgid "Refresh"
+msgstr "Osvježi"
 
 msgid "Context"
 msgstr "Kontekst"
@@ -227,9 +212,6 @@ msgstr "Najkasniji datum koji se može odabrati"
 
 msgid "0 = auto"
 msgstr "0 = automatski"
-
-msgid "-1 = unlimited"
-msgstr "-1 = neograničeno"
 
 msgid "True"
 msgstr "Istina"
@@ -368,7 +350,7 @@ msgid "Triggered by score:"
 msgstr "Pokrenuto rezultatom"
 
 msgid "Message shown on top of the status page of the report"
-msgstr ""
+msgstr "Poruka prikazana na vrhu stranice o statusu predaje"
 
 msgid "Copy and paste the PGP public key here"
 msgstr "Kopirajte i zalijepite PGP javni ključ ovdje"
@@ -456,10 +438,10 @@ msgstr "Ovaj prilagođeni tekst se više ne prikazuje na platformi. Originalni t
 msgid ""
 "Unless the whistleblower checks the report by this time, their access to it "
 "will expire."
-msgstr ""
+msgstr "Ako zviždač ne provjeri predaju do ovog vremna, njihov pristup prijavi će isteći."
 
 msgid "The whistleblower can no longer access the report"
-msgstr ""
+msgstr "Zviždač više ne može pristupiti predaji"
 
 msgid "Warning!"
 msgstr "Upozorenje!"
@@ -477,9 +459,6 @@ msgstr "Tor Preglednik uključuje razna poboljšanja privatnosti i sigurnosti ko
 
 msgid "Download the Tor Browser"
 msgstr "Preuzmi Tor Preglednik"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Ovo su ostali podržani preglednici:"
 
 msgid "Audit log"
 msgstr ""
@@ -622,7 +601,7 @@ msgid "seconds"
 msgstr "sekundi"
 
 msgid "Select the context of your report:"
-msgstr ""
+msgstr "Odaberite kontekst svoje predaje:"
 
 msgid "Warning! You are not anonymous."
 msgstr "Upozorenje! Niste anonimni."
@@ -633,7 +612,7 @@ msgid ""
 "the report anonymous, which is strongly recommended.\\n\\nThis can be "
 "achieved with the use of the Tor Browser, providing anonymisation not found "
 "in other browsers."
-msgstr ""
+msgstr "Slanje predaja preko HTTPS-a otkriva sam čin slanja, ali ne i sadržaj.\\n\\nSkrivanje činjenice da predajete nešto čini predaju anonimnom, što snažno preporučamo.\\n\\nOvo može biti postignuto kroz uporabu Tor Browser-a, koji pruža anonimizaciju koju nećete pronaću u drugim preglednicima."
 
 msgid "Are you a whistleblower?"
 msgstr "Jeste li zviždač?"
@@ -642,10 +621,10 @@ msgid "Blow the whistle"
 msgstr "Zviždi"
 
 msgid "Your report was successful."
-msgstr ""
+msgstr "Vaša prijava je uspjela."
 
 msgid "Report"
-msgstr ""
+msgstr " Predaja"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Prije nego nastavite, molim0 postavite novu lozinku."
@@ -696,14 +675,14 @@ msgid "Enable simplified login"
 msgstr "Omogući pojednostavljenu prijavu"
 
 msgid "Allow recipients to delete reports"
-msgstr ""
+msgstr "Dozvoli primateljima da brišu dojave"
 
 msgid "Allow recipients to postpone expiration date of the report"
-msgstr ""
+msgstr "Dozvoli primateljima da odgode datum isteka dojave"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr ""
+msgstr "Dozvoli primateljima da daju dopuštenja zviždačima na određenim predajama"
 
 msgid "Enable search engines indexing"
 msgstr "Omogući indeksiranje tražilica"
@@ -748,7 +727,7 @@ msgid "Title of the receipt page"
 msgstr "Naziv stranice za potvrde"
 
 msgid "Title of the status page of the report"
-msgstr ""
+msgstr "Poruka prikazana na vrhu stranice o statusu predaje"
 
 msgid "Size limit for file attachments"
 msgstr "Ograničenje veličine privitaka"
@@ -830,10 +809,10 @@ msgid "High"
 msgstr "Visoka"
 
 msgid "megabytes"
-msgstr ""
+msgstr "megabajti"
 
 msgid "percentage"
-msgstr ""
+msgstr "Postotak"
 
 msgid "Enable automatic backups"
 msgstr "Omogući automatske kopije"
@@ -1013,7 +992,7 @@ msgid "Show small recipient cards on submission interface"
 msgstr "Prikaži male kartice primatelja na sučelju predaje"
 
 msgid "Show recipient details on the status page of the report"
-msgstr ""
+msgstr "Prikaži detalje primatelja na stranici statusa o predaji"
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Tekst prikazan na vrhu sučelja za odabir primatelja"
@@ -1031,7 +1010,7 @@ msgid "Allow whistleblowers to send messages"
 msgstr "Dopusti zviždačima da šalju poruke"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr ""
+msgstr "Dopusti zviždačima da dodaju privitke na postojeće predaje"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Dopusti primateljima da postave datoteke za zviždače"
@@ -1052,7 +1031,7 @@ msgid "Customize the message shown in the receipt page"
 msgstr "Prilagodi poruku prikazanu na primateljevoj stranici"
 
 msgid "Assign the receipt only to reports reaching score:"
-msgstr ""
+msgstr "Zadaj potvrdu samo za prijave koje imaju dovolino bodova"
 
 msgid "Software version:"
 msgstr "Verzija software-a:"
@@ -1229,7 +1208,7 @@ msgid "Reset notification templates to default"
 msgstr "Ponovno postavi predloške obavijesti na zadane vrijednosti"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr ""
+msgstr "Broj sati prije nego se pošalje upozorenje o isteku predaje"
 
 msgid "Test the configuration"
 msgstr "Testiraj konfiguraciju"
@@ -1457,15 +1436,15 @@ msgid "Forcefully selected"
 msgstr "Prisilno odabrani"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr ""
+msgstr "Dopusti primatelju da odgodi datum isteka dojave"
 
 msgid "Allow the recipient to delete reports"
-msgstr ""
+msgstr "Dozvoli primateljima da brišu dojave"
 
 msgid ""
 "Allow the recipient to grant permissions to whistleblowers on specific "
 "reports"
-msgstr ""
+msgstr "Dozvoli primateljima da daju dopuštenja zviždačima na određenim predajama"
 
 msgid "User has administrative access to the following features:"
 msgstr "Korisnik ima administrativni pristup sljedećim značajkama:"
@@ -1507,10 +1486,10 @@ msgid "Site:"
 msgstr "Stranica:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr ""
+msgstr "Jeste li već poslali prijavu? Unesite potvrdu."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr ""
+msgstr "Potvrda je nepotpuna ili je rok prijave istekao"
 
 msgid "Username:"
 msgstr "Korisničko ime:"
@@ -1543,7 +1522,7 @@ msgid "Assign score points"
 msgstr "Dodjeli bodove rezultata"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
+msgstr "Imajte na umu da će svi povezani podatci biti trajno izgubljeni."
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ovo je probna platforma. molim vas da ju ne koristite za stvarne prijave."
@@ -1776,7 +1755,7 @@ msgid "No files have been uploaded!"
 msgstr "Nije postavljena nijedna datoteka!"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr ""
+msgstr "Dopusti zviždaču da doda privitke predaji"
 
 msgid "Access expiration"
 msgstr "Istek pristupa"
@@ -1794,7 +1773,7 @@ msgid "Allow the whistleblower to send messages"
 msgstr "Dopusti zviždaču da šalje poruke"
 
 msgid "Are you sure that you want to delete the report?"
-msgstr ""
+msgstr "Jeste li sigurni da želite izbrisati korisnika?"
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
@@ -1806,7 +1785,7 @@ msgid ""
 msgstr "Imajte na umu da sve pohranjeno van platforme, npr. datoteke koje ste pohranili na svom računalu, moraju biti obrisane ručno."
 
 msgid "Are you sure that you want to delete the selected reports?"
-msgstr ""
+msgstr "Jeste li sigurni da želite obrisati sve odabrane dojave?"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
@@ -1817,7 +1796,7 @@ msgid "Please write a motivation for the reply"
 msgstr "Molimo Vas da napišete motiv za odgovor"
 
 msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr ""
+msgstr "Jeste li sigurni da želite odgoditi datum isteka dojave?"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Potvrđivanjem odgađate datum isteka na:"
@@ -1825,7 +1804,7 @@ msgstr "Potvrđivanjem odgađate datum isteka na:"
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
 "reports?"
-msgstr ""
+msgstr "Jeste li sigurni da želite odgoditi datum isteka dojave za sve označene dojave?"
 
 msgid "Questionnaire answers"
 msgstr "Odgovori na upitnik"
@@ -1852,7 +1831,7 @@ msgid "Files attached by recipients"
 msgstr "Datoteke privijene od strane primatelja"
 
 msgid "These files have been attached to your report by the recipients."
-msgstr ""
+msgstr "Ove datoteke su privijene Vašoj predaji od strane primatelja."
 
 msgid "The provided recovery key is invalid."
 msgstr "Ponuđena oznaka za obnovu je nepotpuna"
@@ -1952,7 +1931,7 @@ msgid "We will try to get back to you as soon as possible."
 msgstr "Javit ćemo se u najbržem mogućem roku "
 
 msgid "Remember your receipt for this report."
-msgstr ""
+msgstr "Zapamtite potvrdu vaše prijave"
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
@@ -1960,7 +1939,7 @@ msgid ""
 msgstr "Koristite potvrdu od 16 znakova kako biste se ulogirali. To će vam omogućiti da vidite svaku poruku koja vam je poslana kao i da dodate nove informacije."
 
 msgid "View your report"
-msgstr ""
+msgstr "Pregledajte svoju prijavu"
 
 msgid "Recipient selection"
 msgstr "Odabir primatelja"
@@ -2001,9 +1980,6 @@ msgid ""
 "respective field."
 msgstr "Ovi profili sadržavaju postavke koje koriste uspješni projekti u relevantnom polju."
 
-msgid "Confirm password"
-msgstr "Potvrdi lozinku"
-
 msgid "Please choose a different username."
 msgstr "Molim lda izaberete drugačije korisničko ime."
 
@@ -2023,22 +1999,22 @@ msgid "You have completed the platform wizard."
 msgstr "Završili ste čarobnjak za platformu."
 
 msgid "Fill out your report"
-msgstr ""
+msgstr "Ispunite svoju predaju"
 
 msgid "Short title"
 msgstr "Kratki naslov"
 
 msgid "Describe your report in a few words."
-msgstr ""
+msgstr "Opišite svoju predaju u par riječi"
 
 msgid "Full description"
 msgstr "Puni opis"
 
 msgid "Describe your report in detail."
-msgstr ""
+msgstr "Opišite svoju predaju detaljno"
 
 msgid "Attach files relevant to the report."
-msgstr ""
+msgstr "Dodaj datoteke relevantne za prijavu"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Želite li pružiti informacije o Vašoj identifikaciji?"
@@ -2164,7 +2140,7 @@ msgstr "Aktivnosti s neobičnom statiskom su:"
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr ""
+msgstr "Poslužitelj ne može garantirati da će nove predaje biti pohranjene stoga su predaje onemogućene."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
@@ -2234,10 +2210,10 @@ msgid "Test email"
 msgstr "Testiraj email"
 
 msgid "This is an email to notify you of a new comment on an existing report."
-msgstr ""
+msgstr "Ovo je email kojim Vas se obavještava o novom komentaru na postojećoj predaji."
 
 msgid "The report can be accessed at:"
-msgstr ""
+msgstr "Prijavi se može pristupiti na:"
 
 msgid "New comment"
 msgstr "Novi komentar"
@@ -2282,7 +2258,7 @@ msgstr "Kontekst: {ContextName}"
 msgid ""
 "This is an email to notify you that the whistleblower of report {TipNum} has"
 " attached new material."
-msgstr ""
+msgstr "Ovaj email Vas obavještava da je zviždač predaje {TipNum} dodao novi materijal."
 
 msgid "New attachment"
 msgstr "Novi privitak"
@@ -2319,7 +2295,7 @@ msgstr "Obnova HTTPS certifikata nije uspjela"
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Ovo je email kojim Vas se obaviještava da Vas je skrbnik autorizirao za pristup zviždačkom identitetu za predaju {TipNum}."
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "Pristup zviždačevom identitetu autoriziran"
@@ -2327,7 +2303,7 @@ msgstr "Pristup zviždačevom identitetu autoriziran"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " wistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Ovo je email kojim Vas se obaviještava da Vas je skrbnik autorizirao za pristup zviždačkom identitetu za predaju {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Pristup zviždačevom identitetu odbijen"
@@ -2335,7 +2311,7 @@ msgstr "Pristup zviždačevom identitetu odbijen"
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr ""
+msgstr "Ovo je email kojim Vas se obavještava da je primatelj zatražio pristup zviždačevom identitetu za predaju {TipNum}"
 
 msgid "The request can be accessed at:"
 msgstr "Zahtjev je dostupan na:"
@@ -2346,13 +2322,13 @@ msgstr "Novi zahtjev za pristup zviždačevom identitetu"
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr ""
+msgstr "Ovaj email Vas obavještava da je zviždač predaje {TipNum} pružio svoj identitet."
 
 msgid "The whistleblower has provided their identity"
 msgstr "Zviždač je pružio svoj identitet."
 
 msgid "This is an email to notify you of a new message on an existing report."
-msgstr ""
+msgstr "Ovo je email kojim Vas se obavještava o novom komentaru na postojećoj predaji."
 
 msgid "New message"
 msgstr "Nova poruka"
@@ -2423,12 +2399,12 @@ msgid "Please remember to check them before they are deleted."
 msgstr "Ne zaboravite provjeriti ih prije brisanja."
 
 msgid "Some reports will expire soon"
-msgstr ""
+msgstr "Neke predaje će uskoro isteći"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr ""
+msgstr "Ovo je email kojim Vas se obaviještava da Vas je zviždač odabrao kao vrijednog primatelja svoje predaje."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2436,7 +2412,7 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr ""
+msgstr "Od Vas se traži da obratite posebnu pozornost na informacije i materijal sadržan unutra. Imajte na umu da se zviždači često izlažu visokom osobnom riziku u korist javnosti, stoga smatrajte materijal koji se nalazi unutar predaje materijalom od visoke važnosti."
 
 msgid "New report"
 msgstr ""

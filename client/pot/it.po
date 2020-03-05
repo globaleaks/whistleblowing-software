@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,9 +36,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Accedi"
-
-msgid "Administration interface"
-msgstr "Interfaccia di amministrazione"
 
 msgid "Main configuration"
 msgstr "Configurazione principale"
@@ -70,9 +67,6 @@ msgstr "Aggiungi nuovo questionario"
 msgid "Home"
 msgstr "Pagina iniziale"
 
-msgid "Home page"
-msgstr "Pagina iniziale"
-
 msgid "Changelog"
 msgstr "Changelog"
 
@@ -97,17 +91,11 @@ msgstr "Anomalie"
 msgid "Preferences"
 msgstr "Preferenze"
 
-msgid "User preferences"
-msgstr "Preferenze utente"
-
 msgid "Notification settings"
 msgstr "Configurazione delle notifiche"
 
 msgid "file unavailable"
 msgstr "file non disponibile"
-
-msgid "Recipient interface"
-msgstr "Interfaccia del ricevente"
 
 msgid "Date"
 msgstr "Data"
@@ -142,9 +130,6 @@ msgstr "Dettagli"
 msgid "Platform wizard"
 msgstr "Installazione della piattaforma"
 
-msgid "Step-by-step setup"
-msgstr "Procedura guidata"
-
 msgid "CREDIT CARD"
 msgstr "CARTA DI CREDITO"
 
@@ -163,8 +148,8 @@ msgstr "Seleziona tutto"
 msgid "Deselect all"
 msgstr "Deseleziona tutto"
 
-msgid "Refresh page"
-msgstr "Aggiorna pagina"
+msgid "Refresh"
+msgstr "Ricarica"
 
 msgid "Context"
 msgstr "Contesto"
@@ -242,9 +227,6 @@ msgstr "Ultima data selezionabile"
 
 msgid "0 = auto"
 msgstr "0 = automatico"
-
-msgid "-1 = unlimited"
-msgstr "-1 = illimitato"
 
 msgid "True"
 msgstr "Vero"
@@ -492,9 +474,6 @@ msgstr "Il Tor Browser include varie migliorie alla privacy a alla sicurezza non
 
 msgid "Download the Tor Browser"
 msgstr "Scarica il Tor Browser"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "La seguente è la lista degli altri browser supportati:"
 
 msgid "Audit log"
 msgstr "Audit log"
@@ -2015,9 +1994,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "Questi profili contengono impostazioni utilizzate da progetti di successo nel rispettivo scenario di utilizzo."
-
-msgid "Confirm password"
-msgstr "Conferma la password"
 
 msgid "Please choose a different username."
 msgstr "Si prega di scegliere un username differente."

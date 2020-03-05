@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,9 +20,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "ログイン"
-
-msgid "Administration interface"
-msgstr "管理者インターフェース"
 
 msgid "Main configuration"
 msgstr "主要な設定"
@@ -54,9 +51,6 @@ msgstr "新しいアンケートを追加"
 msgid "Home"
 msgstr "ホーム"
 
-msgid "Home page"
-msgstr "ホームページ"
-
 msgid "Changelog"
 msgstr "変更履歴"
 
@@ -81,17 +75,11 @@ msgstr "異変"
 msgid "Preferences"
 msgstr "設定"
 
-msgid "User preferences"
-msgstr "ユーザー設定"
-
 msgid "Notification settings"
 msgstr "通知設定"
 
 msgid "file unavailable"
 msgstr "利用不能なファイル"
-
-msgid "Recipient interface"
-msgstr "受信者インターフェース"
 
 msgid "Date"
 msgstr "日付"
@@ -126,9 +114,6 @@ msgstr "詳細"
 msgid "Platform wizard"
 msgstr "プラットフォーム ウィザード"
 
-msgid "Step-by-step setup"
-msgstr "ステップ・バイ・ステップで設定"
-
 msgid "CREDIT CARD"
 msgstr "クレジットカード"
 
@@ -147,8 +132,8 @@ msgstr "すべて選択"
 msgid "Deselect all"
 msgstr "すべて選択解除"
 
-msgid "Refresh page"
-msgstr "ページを更新する"
+msgid "Refresh"
+msgstr "更新"
 
 msgid "Context"
 msgstr "コンテキスト"
@@ -226,9 +211,6 @@ msgstr "選択可能な最も遅い日付"
 
 msgid "0 = auto"
 msgstr "0 = 自動"
-
-msgid "-1 = unlimited"
-msgstr "-1 = 無制限"
 
 msgid "True"
 msgstr "正"
@@ -477,9 +459,6 @@ msgstr "Tor Browserには、他のブラウザにはない様々なプライバ�
 msgid "Download the Tor Browser"
 msgstr "Tor Browser をダウンロード"
 
-msgid "This is the list of the other supported browsers:"
-msgstr "これは他のサポートされているブラウザーのリストです:"
-
 msgid "Audit log"
 msgstr "監査ログ"
 
@@ -612,10 +591,10 @@ msgstr "パスワードリセット"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr ""
+msgstr "1名以上の受信者はまだ一度もログインを実行していません。 つまり、彼らはレポートを受け取らない可能性があるということです。"
 
 msgid "This user has not performed the first login yet."
-msgstr ""
+msgstr "このユーザーはまだ一度もログインを実行していません。"
 
 msgid "seconds"
 msgstr "秒"
@@ -1999,9 +1978,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "これらのプロファイルには、それぞれのフィールドで成功したプロジェクトで使用された設定が含まれています。"
-
-msgid "Confirm password"
-msgstr "パスワードを確認"
 
 msgid "Please choose a different username."
 msgstr "別のユーザー名を選択してください。"

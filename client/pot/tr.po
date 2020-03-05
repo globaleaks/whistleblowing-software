@@ -27,7 +27,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,9 +38,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Giriş"
-
-msgid "Administration interface"
-msgstr "Yönetim arayüzü"
 
 msgid "Main configuration"
 msgstr "Ana yapılandırma"
@@ -72,9 +69,6 @@ msgstr "Yeni anket ekle"
 msgid "Home"
 msgstr "Başlangıç"
 
-msgid "Home page"
-msgstr "Ana sayfa"
-
 msgid "Changelog"
 msgstr "Değişim günlüğü"
 
@@ -99,17 +93,11 @@ msgstr "Anormallikler"
 msgid "Preferences"
 msgstr "Tercihler"
 
-msgid "User preferences"
-msgstr "Kullanıcı tercihleri"
-
 msgid "Notification settings"
 msgstr "Bildirim ayarları"
 
 msgid "file unavailable"
 msgstr "Dosya kullanılamıyor"
-
-msgid "Recipient interface"
-msgstr "Alıcı arayüzü"
 
 msgid "Date"
 msgstr "Tarih"
@@ -144,9 +132,6 @@ msgstr "Ayrıntılar"
 msgid "Platform wizard"
 msgstr "Platform sihirbazı"
 
-msgid "Step-by-step setup"
-msgstr "Adım adım kurulum"
-
 msgid "CREDIT CARD"
 msgstr "KREDİ KARTI"
 
@@ -165,8 +150,8 @@ msgstr "Tümünü seç"
 msgid "Deselect all"
 msgstr "Seçimleri kaldır"
 
-msgid "Refresh page"
-msgstr "Sayfayı yenile"
+msgid "Refresh"
+msgstr "Yenile"
 
 msgid "Context"
 msgstr "Kategori"
@@ -244,9 +229,6 @@ msgstr "Seçilebilen en geç tarih"
 
 msgid "0 = auto"
 msgstr "0 = otomatik"
-
-msgid "-1 = unlimited"
-msgstr "-1 = sınırsız"
 
 msgid "True"
 msgstr "Doğru"
@@ -494,9 +476,6 @@ msgstr "Tor Browser diğer web tarayıcılarında olmayan çeşitli gizlilik ve 
 
 msgid "Download the Tor Browser"
 msgstr "Tor Browser İndir"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Bu, desteklenen diğer tarayıcıların listesidir:"
 
 msgid "Audit log"
 msgstr "Denetim kaydı"
@@ -2017,9 +1996,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "Bu profiller, her bir ilgili sahadaki başarılı projelerin kullandığı ayarları içermektedir."
-
-msgid "Confirm password"
-msgstr "Parolayı onayla"
 
 msgid "Please choose a different username."
 msgstr "Lütfen farklı bir kullanıcı adı seçin."

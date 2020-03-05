@@ -36,7 +36,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,9 +47,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Iniciar sesión"
-
-msgid "Administration interface"
-msgstr "Interfaz de administración"
 
 msgid "Main configuration"
 msgstr "Configuración principal"
@@ -81,9 +78,6 @@ msgstr "Añadir nuevo cuestionario"
 msgid "Home"
 msgstr "Principal"
 
-msgid "Home page"
-msgstr "Página principal"
-
 msgid "Changelog"
 msgstr "Registro de cambios"
 
@@ -108,17 +102,11 @@ msgstr "Anomalías"
 msgid "Preferences"
 msgstr "Preferencias"
 
-msgid "User preferences"
-msgstr "Preferencias de usuario"
-
 msgid "Notification settings"
 msgstr "Configuración de notificaciones"
 
 msgid "file unavailable"
 msgstr "Archivo no disponible"
-
-msgid "Recipient interface"
-msgstr "Interfaz del destinatario"
 
 msgid "Date"
 msgstr "Fecha"
@@ -153,9 +141,6 @@ msgstr "Detalles"
 msgid "Platform wizard"
 msgstr "Asistente de la plataforma"
 
-msgid "Step-by-step setup"
-msgstr "Configuración paso a paso"
-
 msgid "CREDIT CARD"
 msgstr "TARJETA DE CRÉDITO"
 
@@ -174,8 +159,8 @@ msgstr "Seleccionar todo"
 msgid "Deselect all"
 msgstr "Deseleccionar todo"
 
-msgid "Refresh page"
-msgstr "Recargar página"
+msgid "Refresh"
+msgstr "Actualizar"
 
 msgid "Context"
 msgstr "Contexto"
@@ -253,9 +238,6 @@ msgstr "Fecha más tardía disponible"
 
 msgid "0 = auto"
 msgstr "0 = auto"
-
-msgid "-1 = unlimited"
-msgstr "-1 = ilimitado"
 
 msgid "True"
 msgstr "Verdadero"
@@ -503,9 +485,6 @@ msgstr "El Navegador Tor incluye varias mejoras de privacidad y seguridad que no
 
 msgid "Download the Tor Browser"
 msgstr "Descargar el Navegador Tor"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Esta es la lista de los demás navegadores soportados:"
 
 msgid "Audit log"
 msgstr "Registro de auditoría"
@@ -856,10 +835,10 @@ msgid "High"
 msgstr "Alto"
 
 msgid "megabytes"
-msgstr ""
+msgstr "megabytes"
 
 msgid "percentage"
-msgstr ""
+msgstr "porcentaje"
 
 msgid "Enable automatic backups"
 msgstr "Habilitar copias de respaldo automáticas"
@@ -2026,9 +2005,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "Estos perfiles contienen configuraciones usadas por proyectos exitosos en cada campo respectivo."
-
-msgid "Confirm password"
-msgstr "Confirma la contraseña"
 
 msgid "Please choose a different username."
 msgstr "Por favor escoge otro nombre de usuario."

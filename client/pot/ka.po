@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,9 +15,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "შესვლა"
-
-msgid "Administration interface"
-msgstr "ადმინისტრაციის ინტერფეისი"
 
 msgid "Main configuration"
 msgstr "მთავარი კონფიგურაციის"
@@ -49,9 +46,6 @@ msgstr "ახალი კითხვარი"
 msgid "Home"
 msgstr "Home"
 
-msgid "Home page"
-msgstr "საწყისი გვერდი"
-
 msgid "Changelog"
 msgstr "ცვლილებები"
 
@@ -76,17 +70,11 @@ msgstr "ანომალიების"
 msgid "Preferences"
 msgstr "პრიორიტეტები"
 
-msgid "User preferences"
-msgstr ""
-
 msgid "Notification settings"
 msgstr "შეტყობინების პარამეტრები"
 
 msgid "file unavailable"
 msgstr "წარადგინოს unavailable"
-
-msgid "Recipient interface"
-msgstr "მიმღების ინტერფეისი"
 
 msgid "Date"
 msgstr "თარიღი"
@@ -121,9 +109,6 @@ msgstr "დაწვრილებით"
 msgid "Platform wizard"
 msgstr "პლატფორმა ოსტატი"
 
-msgid "Step-by-step setup"
-msgstr "ნაბიჯ-ნაბიჯ setup"
-
 msgid "CREDIT CARD"
 msgstr "საკრედიტო ბარათი"
 
@@ -142,8 +127,8 @@ msgstr "მონიშნე ყველა"
 msgid "Deselect all"
 msgstr "გააუქმეთ ყველა მონიშვნა"
 
-msgid "Refresh page"
-msgstr "გვერდის განახლება"
+msgid "Refresh"
+msgstr ""
 
 msgid "Context"
 msgstr "კონტექსტი"
@@ -221,9 +206,6 @@ msgstr "Latest მითითებული თარიღი"
 
 msgid "0 = auto"
 msgstr "0 = განცხადება"
-
-msgid "-1 = unlimited"
-msgstr "-1 = შეუზღუდავი"
 
 msgid "True"
 msgstr "True"
@@ -471,9 +453,6 @@ msgstr "აღწერის Browser მოიცავს სხვადა�
 
 msgid "Download the Tor Browser"
 msgstr "ჩამოტვირთეთ Tor Browser"
-
-msgid "This is the list of the other supported browsers:"
-msgstr ""
 
 msgid "Audit log"
 msgstr ""
@@ -1994,9 +1973,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr ""
-
-msgid "Confirm password"
-msgstr "დაადასტურეთ პაროლი"
 
 msgid "Please choose a different username."
 msgstr ""

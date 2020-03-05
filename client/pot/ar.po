@@ -42,7 +42,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,9 +53,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "اتّصال"
-
-msgid "Administration interface"
-msgstr "واجهة الإدارة"
 
 msgid "Main configuration"
 msgstr "الترتيب الرئيسي"
@@ -87,9 +84,6 @@ msgstr "أضف استطلاعا جديدا"
 msgid "Home"
 msgstr "الصفحة الرئيسية"
 
-msgid "Home page"
-msgstr "الصفحة الرئيسية"
-
 msgid "Changelog"
 msgstr "سجلّ التغييرات "
 
@@ -114,17 +108,11 @@ msgstr "الحالات الشاذّة"
 msgid "Preferences"
 msgstr "التفضيلات"
 
-msgid "User preferences"
-msgstr "تفضيلات المستخدم"
-
 msgid "Notification settings"
 msgstr "إعدادات الإشعارات"
 
 msgid "file unavailable"
 msgstr "الملف غير متوفر"
-
-msgid "Recipient interface"
-msgstr " واجهة المتلقي"
 
 msgid "Date"
 msgstr "تاريخ "
@@ -159,9 +147,6 @@ msgstr "تفاصيل"
 msgid "Platform wizard"
 msgstr "معالج المنصة"
 
-msgid "Step-by-step setup"
-msgstr "الإعدادات خطوة بخطوة"
-
 msgid "CREDIT CARD"
 msgstr "بطاقة الائتمان"
 
@@ -180,8 +165,8 @@ msgstr "اختر الكل"
 msgid "Deselect all"
 msgstr "الغاء كل الاختيارات"
 
-msgid "Refresh page"
-msgstr "تحديث الصفحة"
+msgid "Refresh"
+msgstr "تحديث"
 
 msgid "Context"
 msgstr "السياق"
@@ -259,9 +244,6 @@ msgstr "آخر تاريخ للاختيار"
 
 msgid "0 = auto"
 msgstr "0= أوتوماتيكي"
-
-msgid "-1 = unlimited"
-msgstr "-1 = غير محدود"
 
 msgid "True"
 msgstr "صحيح"
@@ -509,9 +491,6 @@ msgstr "يشمل متصفح Tor  تعزيزات للخصوصيّة و تعزيز
 
 msgid "Download the Tor Browser"
 msgstr "تحميل متصفح Tor ."
-
-msgid "This is the list of the other supported browsers:"
-msgstr "هذه قائمة المتصفحات المدعومة الأخرى:"
 
 msgid "Audit log"
 msgstr "سجل التدقيق"
@@ -2032,9 +2011,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "تحتوي هذه الحسابات على إعدادات تستخدمها المشاريع الناجحة كلّ في مجالها."
-
-msgid "Confirm password"
-msgstr "تأكيد كلمة المرور"
 
 msgid "Please choose a different username."
 msgstr "من فضلك قم باختيار إسم مستخدم آخر."

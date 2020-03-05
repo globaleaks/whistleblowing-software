@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,9 +29,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Inicia sessió"
-
-msgid "Administration interface"
-msgstr "Interfície d'administració"
 
 msgid "Main configuration"
 msgstr "Configuració principal"
@@ -63,9 +60,6 @@ msgstr "Afegeix un altre qüestionari"
 msgid "Home"
 msgstr "Inici"
 
-msgid "Home page"
-msgstr "Pàgina d'Inici"
-
 msgid "Changelog"
 msgstr "Registre de canvis"
 
@@ -90,17 +84,11 @@ msgstr "Anomalies"
 msgid "Preferences"
 msgstr "Preferències"
 
-msgid "User preferences"
-msgstr "Paràmetres d'usuari"
-
 msgid "Notification settings"
 msgstr "Configuracions de notificació"
 
 msgid "file unavailable"
 msgstr "fitxer no disponible"
-
-msgid "Recipient interface"
-msgstr "Interfície de destinatari"
 
 msgid "Date"
 msgstr "Data"
@@ -135,9 +123,6 @@ msgstr "Detalls"
 msgid "Platform wizard"
 msgstr "Assistent de la plataforma informàtica"
 
-msgid "Step-by-step setup"
-msgstr "Configuració pas a pas"
-
 msgid "CREDIT CARD"
 msgstr "TARGETA DE CRÈDIT"
 
@@ -156,8 +141,8 @@ msgstr "Selecciona-ho tot"
 msgid "Deselect all"
 msgstr "Desselecciona-ho tot"
 
-msgid "Refresh page"
-msgstr "Actualitza la pàgina"
+msgid "Refresh"
+msgstr "Actualitza"
 
 msgid "Context"
 msgstr "Context"
@@ -235,9 +220,6 @@ msgstr "Última data disponible"
 
 msgid "0 = auto"
 msgstr "0 = automàtic"
-
-msgid "-1 = unlimited"
-msgstr "-1 = sense límit"
 
 msgid "True"
 msgstr "Veritable"
@@ -485,9 +467,6 @@ msgstr "El navegador \"Tor\" inclou diverses millores de privacitat no presents 
 
 msgid "Download the Tor Browser"
 msgstr "Descarrega el navegador \"Tor\""
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Vista general del sistema"
 
 msgid "Audit log"
 msgstr "Registre d’auditoria"
@@ -2008,9 +1987,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "Aquests perfils contenen la configuració utilitzada per projectes exitosos en cada un dels tipus."
-
-msgid "Confirm password"
-msgstr "Confirma la contrasenya"
 
 msgid "Please choose a different username."
 msgstr "Seleccioneu un nom d’usuari diferent."

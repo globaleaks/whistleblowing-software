@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,9 +33,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Bejelentkezés"
-
-msgid "Administration interface"
-msgstr "Adminisztrációs felület"
 
 msgid "Main configuration"
 msgstr "Fő konfiguráció"
@@ -67,9 +64,6 @@ msgstr "Új kérdőív hozzáadása"
 msgid "Home"
 msgstr "Kezdőlap"
 
-msgid "Home page"
-msgstr "Honlap"
-
 msgid "Changelog"
 msgstr "Change log"
 
@@ -94,17 +88,11 @@ msgstr "Rendellenességek"
 msgid "Preferences"
 msgstr "Preferenciák"
 
-msgid "User preferences"
-msgstr "Felhasználói preferenciák"
-
 msgid "Notification settings"
 msgstr "Értesítés beállítások"
 
 msgid "file unavailable"
 msgstr "fájl nem elérhető"
-
-msgid "Recipient interface"
-msgstr "Címzett felület"
 
 msgid "Date"
 msgstr "Dátum"
@@ -139,9 +127,6 @@ msgstr "Részletek"
 msgid "Platform wizard"
 msgstr "Platform varázsló"
 
-msgid "Step-by-step setup"
-msgstr "Beállítás lépésről lépésre"
-
 msgid "CREDIT CARD"
 msgstr "HITELKÁRTYA"
 
@@ -160,8 +145,8 @@ msgstr "Összes kijelölése"
 msgid "Deselect all"
 msgstr "Összes kijelölésének megszüntetése"
 
-msgid "Refresh page"
-msgstr "Oldal frissítése"
+msgid "Refresh"
+msgstr " \nFrissítés"
 
 msgid "Context"
 msgstr "Kontextus"
@@ -239,9 +224,6 @@ msgstr "Legkésőbbi kiválasztható dátum"
 
 msgid "0 = auto"
 msgstr "0 = auto"
-
-msgid "-1 = unlimited"
-msgstr "-1 = korlátlan"
 
 msgid "True"
 msgstr "Igaz"
@@ -489,9 +471,6 @@ msgstr "A Tor-böngésző néhány biztonsági és adatvédelmi bővítést tart
 
 msgid "Download the Tor Browser"
 msgstr "Tor-böngésző letöltése"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Ez a támogatott böngészők listája:"
 
 msgid "Audit log"
 msgstr "Audit log"
@@ -2012,9 +1991,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "Ezek a profilok olyan beállításokat tartalmaznak, amelyeket sikeres projektek használtak a saját területeiken."
-
-msgid "Confirm password"
-msgstr "Jelszó megerősítése"
 
 msgid "Please choose a different username."
 msgstr "Kérjük válasszon másik felhasználónevet."

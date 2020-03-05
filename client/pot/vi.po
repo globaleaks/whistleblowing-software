@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,9 +23,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Đăng nhập"
-
-msgid "Administration interface"
-msgstr "giao diện quản trị"
 
 msgid "Main configuration"
 msgstr "cấu hình chính"
@@ -57,9 +54,6 @@ msgstr "Thêm câu hỏi mới"
 msgid "Home"
 msgstr "Trở về"
 
-msgid "Home page"
-msgstr "Trang chủ"
-
 msgid "Changelog"
 msgstr "Ký sự thay đổi"
 
@@ -84,17 +78,11 @@ msgstr "dị thường"
 msgid "Preferences"
 msgstr "Tùy biến"
 
-msgid "User preferences"
-msgstr "Sở thích người dùng"
-
 msgid "Notification settings"
 msgstr "Thiết lập thông báo"
 
 msgid "file unavailable"
 msgstr "nộp không có sẵn"
-
-msgid "Recipient interface"
-msgstr "giao diện người nhận"
 
 msgid "Date"
 msgstr "Ngày"
@@ -129,9 +117,6 @@ msgstr "Chi tiết"
 msgid "Platform wizard"
 msgstr "Wizard nền tảng"
 
-msgid "Step-by-step setup"
-msgstr "Thiết lập từng bước"
-
 msgid "CREDIT CARD"
 msgstr "THẺ TÍN DỤNG"
 
@@ -150,8 +135,8 @@ msgstr "Chọn tất cả"
 msgid "Deselect all"
 msgstr "Bỏ chọn tất cả"
 
-msgid "Refresh page"
-msgstr "Làm mới trang"
+msgid "Refresh"
+msgstr "Cập nhật"
 
 msgid "Context"
 msgstr "Nội dung"
@@ -229,9 +214,6 @@ msgstr "ngày lựa chọn mới nhất"
 
 msgid "0 = auto"
 msgstr "0 = auto"
-
-msgid "-1 = unlimited"
-msgstr "-1 = Không giới hạn"
 
 msgid "True"
 msgstr "Đúng"
@@ -479,9 +461,6 @@ msgstr "Tor trình duyệt bao gồm các quyền riêng tư khác nhau và tăn
 
 msgid "Download the Tor Browser"
 msgstr "Tải về các trình duyệt Tor"
-
-msgid "This is the list of the other supported browsers:"
-msgstr ""
 
 msgid "Audit log"
 msgstr ""
@@ -2002,9 +1981,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr ""
-
-msgid "Confirm password"
-msgstr "Xác nhận mật khẩu"
 
 msgid "Please choose a different username."
 msgstr ""

@@ -3,13 +3,13 @@
 # Emin Mastizada <emin@linux.com>, 2015
 # Fardin Shikhiyev <shihiyev@gmail.com>, 2015
 # fiore <salimova.gulnar@gmail.com>, 2017
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018,2020
 # Nikafn <appone6@gmail.com>, 2016-2018
 # ulkar!(($-2017 <ulkernatiqqizis@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
+"PO-Revision-Date: 2020-03-05 08:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,9 +20,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Daxil ol"
-
-msgid "Administration interface"
-msgstr "İnzibatçı ekranı"
 
 msgid "Main configuration"
 msgstr "Əsas quraşdırma"
@@ -54,9 +51,6 @@ msgstr "Yeni sorğu əlavə et"
 msgid "Home"
 msgstr "Ana Səhifə "
 
-msgid "Home page"
-msgstr "Ana səhifə"
-
 msgid "Changelog"
 msgstr "Dəyişikliklər"
 
@@ -81,17 +75,11 @@ msgstr "Anomaliyalar"
 msgid "Preferences"
 msgstr "Nizamlamalar"
 
-msgid "User preferences"
-msgstr ""
-
 msgid "Notification settings"
 msgstr "Xəbərdarlıq quraşdırmaları"
 
 msgid "file unavailable"
 msgstr "fayl yoxdur"
-
-msgid "Recipient interface"
-msgstr "Alıcı paneli"
 
 msgid "Date"
 msgstr "Tarix"
@@ -126,9 +114,6 @@ msgstr "Detallar"
 msgid "Platform wizard"
 msgstr "Proqram quraşdırması"
 
-msgid "Step-by-step setup"
-msgstr "Addım-addım quraşdırma"
-
 msgid "CREDIT CARD"
 msgstr "KREDİT KARTI"
 
@@ -136,7 +121,7 @@ msgid "YOUR NAME"
 msgstr "ADINIZ"
 
 msgid "Label the report"
-msgstr ""
+msgstr "Təqdimatı yarlıqlayın"
 
 msgid "Postpone the expiration date"
 msgstr "Son istifadə tarixini dəyiş"
@@ -147,8 +132,8 @@ msgstr "Hamısını seç"
 msgid "Deselect all"
 msgstr "Hamısını seçmə"
 
-msgid "Refresh page"
-msgstr "Səhifəni yenilə"
+msgid "Refresh"
+msgstr "Yenilə"
 
 msgid "Context"
 msgstr "Kontekst"
@@ -160,10 +145,10 @@ msgid "Preview"
 msgstr "Görüntü"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "İnformasiya ötürən  son yenilənməni oxuyub"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "İnformasiya ötürən hələ yenilənməni oxumayıb"
 
 msgid "Move up"
 msgstr "Yuxarı get"
@@ -190,7 +175,7 @@ msgid "Access control"
 msgstr "Giriş kontrolu"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr ""
+msgstr "Bu təqdimatı göndərmək üçün nəzərdə tutulmuş əlaqə, HTTPS ilə məxfiliyi təmin etmək üçün qorunmuşdur."
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
@@ -226,9 +211,6 @@ msgstr "Ən gec seçmə tarixi"
 
 msgid "0 = auto"
 msgstr "0 = auto"
-
-msgid "-1 = unlimited"
-msgstr "-1 = limitsiz"
 
 msgid "True"
 msgstr "Düz"
@@ -367,7 +349,7 @@ msgid "Triggered by score:"
 msgstr ""
 
 msgid "Message shown on top of the status page of the report"
-msgstr ""
+msgstr "Təqdimatın status səhifəsinin yuxarısında göstərilən mesaj"
 
 msgid "Copy and paste the PGP public key here"
 msgstr "PGP açıq açarını bura kopyalayın və yapışdırın."
@@ -458,7 +440,7 @@ msgid ""
 msgstr ""
 
 msgid "The whistleblower can no longer access the report"
-msgstr ""
+msgstr "İnformasiya ötürən şəxs təsdiqetməyə daxil ola bilməz"
 
 msgid "Warning!"
 msgstr "Xəbərdarlıq!"
@@ -476,9 +458,6 @@ msgstr "Tor Brauzerə digər brauzerlərdə olmayan müxtəlif gizlilik və təh
 
 msgid "Download the Tor Browser"
 msgstr "Tor Brauzeri yükləyin"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Digər dəstəklənən brauzerlərin siyahısı bunlardır:"
 
 msgid "Audit log"
 msgstr ""
@@ -641,10 +620,10 @@ msgid "Blow the whistle"
 msgstr "Məlumatı ötür"
 
 msgid "Your report was successful."
-msgstr ""
+msgstr "Sizin təqdimatınız uğurlu oldu."
 
 msgid "Report"
-msgstr ""
+msgstr "Təqdim"
 
 msgid "Before proceeding, please set a new password."
 msgstr ""
@@ -698,11 +677,11 @@ msgid "Allow recipients to delete reports"
 msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the report"
-msgstr ""
+msgstr "Qəbul edicilərə təqdimatın bitmə tarixini təxirə salmasına icazə verin"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr ""
+msgstr "Qəbul edicilərə, informasiya ötürənlərin müəyyən təsdiqlərə çıxışı üçün icazə verin"
 
 msgid "Enable search engines indexing"
 msgstr "Axtarış motorlarının indeksləşməsini aktivləşdirin"
@@ -1030,7 +1009,7 @@ msgid "Allow whistleblowers to send messages"
 msgstr "İnformasiya ötürənlərə mesaj göndərməyə icazə"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr ""
+msgstr "İnformasiya ötürənlərin mövcud təqdimatlar üzərinə yeni əlavələr etməsinə icazə verin"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Qəbul edicilərə, informasiya ötürənlər üçün fayllar yükləməsinə icazə verin"
@@ -1228,7 +1207,7 @@ msgid "Reset notification templates to default"
 msgstr "Bildiriş şablonlarını əvvəlki vəziyyətinə qaytarın"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr ""
+msgstr "Təqdimata son xəbərdarlıq göndərilməmişdən öncəki saat sayı"
 
 msgid "Test the configuration"
 msgstr "Quraşdırmanı test edin"
@@ -1456,15 +1435,15 @@ msgid "Forcefully selected"
 msgstr "Zorla seçilmiş"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr ""
+msgstr "Qəbul ediciyə təqdimatın sona çatma tarixini təxirə salmasına icazə verin"
 
 msgid "Allow the recipient to delete reports"
-msgstr ""
+msgstr "Qəbul ediciyə təqdimatları silməsinə icazə verin"
 
 msgid ""
 "Allow the recipient to grant permissions to whistleblowers on specific "
 "reports"
-msgstr ""
+msgstr "Qəbul edicilərə, informasiya ötürənlərin müəyyən təsdiqlərə çıxışı üçün icazə verin"
 
 msgid "User has administrative access to the following features:"
 msgstr ""
@@ -1500,16 +1479,16 @@ msgid "Authentication failed"
 msgstr "Kimlik təsdiqləməsi uğursuzdur"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "Açar şifrə etibarsızdır və ya təqdimat müddəti başa çatıb."
 
 msgid "Site:"
 msgstr ""
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr ""
+msgstr "Artıq təqdim etmisiniz mı? Açar açar şifrəni daxil edin"
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr ""
+msgstr "Açar şifrə etibarsızdır və ya təqdimat müddəti başa çatıb."
 
 msgid "Username:"
 msgstr "İstifadəçi adı:"
@@ -1542,7 +1521,7 @@ msgid "Assign score points"
 msgstr "Hesab nöqtələrini təyin et"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
+msgstr "Xahiş edirik bütün əlaqəli məlumatların daimi olaraq silinəcəyini unutmayın."
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
@@ -1606,7 +1585,7 @@ msgid "Follow the project on:"
 msgstr "Layihəni izləyin:"
 
 msgid "Hint: How to hide your receipt"
-msgstr ""
+msgstr "İşarə: Açar şifrənizi necə gizlədə bilərsiniz?"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
@@ -1775,7 +1754,7 @@ msgid "No files have been uploaded!"
 msgstr "Fayl yüklənməyib!"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr ""
+msgstr "İnformasiya ötürənə təsdiqetməyə əlavələr etməsinə icazə verin"
 
 msgid "Access expiration"
 msgstr "Girişin sona çatması"
@@ -1793,11 +1772,11 @@ msgid "Allow the whistleblower to send messages"
 msgstr "İnformasiya ötürənin mesaj göndərməsinə icazə verin"
 
 msgid "Are you sure that you want to delete the report?"
-msgstr ""
+msgstr "İstifadəçini silmək istədiyinizdən əminsiniz mi?"
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
-msgstr ""
+msgstr "Platformada saxlanılan təqdimatla bağlı hər şey silinəcəkdir."
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
@@ -1805,7 +1784,7 @@ msgid ""
 msgstr "Platformada saxlanan hər şeyin məsələn: kompüterinizin saxlanan faylların, əl ilə silinməli olduğunu unutmayın."
 
 msgid "Are you sure that you want to delete the selected reports?"
-msgstr ""
+msgstr "Seçdiyiniz bütün təqdimatları silmək istədiyinizə əminsiniz mi?"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
@@ -1816,7 +1795,7 @@ msgid "Please write a motivation for the reply"
 msgstr "Xahiş edirik cavab üçün motivasiya yazın"
 
 msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr ""
+msgstr "Təqdimatın bitmə tarixini təxirə salmaq istədiyinizə əminsiniz mi?"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Təsdiqləməklə, son istifadə tarixini təxirə salacaqsınız:"
@@ -1824,7 +1803,7 @@ msgstr "Təsdiqləməklə, son istifadə tarixini təxirə salacaqsınız:"
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
 "reports?"
-msgstr ""
+msgstr "Bütün seçilmiş təqdimatların bitmə tarixini təxirə salmaq istədiyinizə əminsinizmi?"
 
 msgid "Questionnaire answers"
 msgstr "Sorğu cavabları"
@@ -1851,7 +1830,7 @@ msgid "Files attached by recipients"
 msgstr "Qəbul edicilər tərəfindən yüklənilmiş fayllar"
 
 msgid "These files have been attached to your report by the recipients."
-msgstr ""
+msgstr "Bu fayllar sizin təqdimata alıcılar tərəfindən əlavə edilib."
 
 msgid "The provided recovery key is invalid."
 msgstr ""
@@ -1948,18 +1927,18 @@ msgid "Thank you!"
 msgstr "Təşəkkürlər!"
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "Qısa zamanda Sizinlə əlaqə saxlamağa çalışacağıq"
 
 msgid "Remember your receipt for this report."
-msgstr ""
+msgstr "Bu təqdimat üçün açar şifrəni xatırlayın."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr ""
+msgstr "Daxil olmaq üçün 16 rəqəmli şifrədən istifadə edin. Bu, sizə göndərdiyimiz bütün mesajları görməyinizə eyni zamanda əlavə məlumat yükləməyinə şərait yaradacaq. "
 
 msgid "View your report"
-msgstr ""
+msgstr "Təqdimatını nəzərdən keçir"
 
 msgid "Recipient selection"
 msgstr "Alıcı seçimi"
@@ -2000,9 +1979,6 @@ msgid ""
 "respective field."
 msgstr "Bu profillər, əlaqəli sahələrdə uğurlu layihələrin istifadə etdikləri tənzimləmələri  özündə ehtiva edir. "
 
-msgid "Confirm password"
-msgstr "Şifrəni təsdiqləyin"
-
 msgid "Please choose a different username."
 msgstr ""
 
@@ -2022,22 +1998,22 @@ msgid "You have completed the platform wizard."
 msgstr "Platforma artıq hazırdır. "
 
 msgid "Fill out your report"
-msgstr ""
+msgstr "Təqdimatınızı doldurun"
 
 msgid "Short title"
 msgstr "Qısa ad"
 
 msgid "Describe your report in a few words."
-msgstr ""
+msgstr "Təqdimatınızı bir neçə sözlə təsvir edin."
 
 msgid "Full description"
 msgstr "Tam açıqlama"
 
 msgid "Describe your report in detail."
-msgstr ""
+msgstr "Təqdimatınızı təfərrüatı ilə təsvir edin."
 
 msgid "Attach files relevant to the report."
-msgstr ""
+msgstr "Təqdimat ilə əlaqəli faylları əlavə edin"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Kimlik məlumatınızı vermək istəyirsiniz mi?"
@@ -2233,10 +2209,10 @@ msgid "Test email"
 msgstr "Yoxlanış e-poçtu"
 
 msgid "This is an email to notify you of a new comment on an existing report."
-msgstr ""
+msgstr "Bu e-poçt, mövcud təqdimata dair yeni şərh almağınız barədə məlumat vermək üçün göndərilib. "
 
 msgid "The report can be accessed at:"
-msgstr ""
+msgstr "Təqdimat əldə edilə bilər:"
 
 msgid "New comment"
 msgstr "Yeni şərh"
@@ -2281,7 +2257,7 @@ msgstr "Məzmun: {ContextName}"
 msgid ""
 "This is an email to notify you that the whistleblower of report {TipNum} has"
 " attached new material."
-msgstr ""
+msgstr "Bu, informasiya ötürənin yeni material {TipNum}  əlavə etməsiylə bağlı göndərilən e-maildir. "
 
 msgid "New attachment"
 msgstr "Yeni əlavə"
@@ -2318,7 +2294,7 @@ msgstr ""
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Bu email sizə təqdimat üçün informasiya ötürənin kimliyinə girməyə icazə verdiyini bildirmək üçün \nmühafizəçi tərəfindən göndərilib {TipNum}."
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "İnformasiya ötürənin kimliyinə girişə icazə verildi"
@@ -2326,7 +2302,7 @@ msgstr "İnformasiya ötürənin kimliyinə girişə icazə verildi"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " wistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Bu email sizə təqdimat üçün informasiya ötürənin kimliyinə girməyə icazə verdiyini bildirmək üçün \nmühafizəçi tərəfindən göndərilib {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "İnformasiya ötürənin kimliyinə giriş rədd edildi"
@@ -2334,7 +2310,7 @@ msgstr "İnformasiya ötürənin kimliyinə giriş rədd edildi"
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr ""
+msgstr "Bu email təqdimat üçün qəbuledicinin informasiya ötürənin kimliyinə girişə icazə verilməsi tələbini bildirmək üçün göndərilib {TipNum}"
 
 msgid "The request can be accessed at:"
 msgstr ""
@@ -2345,13 +2321,13 @@ msgstr "İnformasiya ötürənin kimliyinə yeni giriş tələbi"
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr ""
+msgstr "Bu e-poçt, informasiya ötürənin təqdimat {TipNum} üçün öz kimliyi ilə məlumatları təmin etməsi ilə bağlı göndərilib."
 
 msgid "The whistleblower has provided their identity"
 msgstr "İnformasiya ötürən öz kimliyini göstərib. "
 
 msgid "This is an email to notify you of a new message on an existing report."
-msgstr ""
+msgstr "Bu e-poçt, mövcud təqdimata dair yeni şərh almağınız barədə məlumat vermək üçün göndərilib. "
 
 msgid "New message"
 msgstr "Yeni mesaj"
@@ -2422,12 +2398,12 @@ msgid "Please remember to check them before they are deleted."
 msgstr "Silinmədən öncə onları yoxlamağı unutmayın"
 
 msgid "Some reports will expire soon"
-msgstr ""
+msgstr "Bəzi təqdimatlar tezliklə başa çatacaq"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr ""
+msgstr "Bu e-poçt, informasiya ötürənin sizi təqdimatı üçün qiymətli qəbul edici olaraq seçdiyini bildirmək üçün göndərilib."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2435,7 +2411,7 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr ""
+msgstr "Buradakı məlumat və materiallara xüsusi diqqət yetirməyiniz xahiş olunur. Nəzərdə saxlayın ki, informasiya ötürənlər ictimai maraqlara görə yüksək şəxsi risklərə məruz qalırlar. Buna görə də təqdim edilən təqdimat materialları böyük əhəmiyyətə malikdirlər."
 
 msgid "New report"
 msgstr ""

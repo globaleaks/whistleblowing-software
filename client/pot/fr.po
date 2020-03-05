@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-04 00:20+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-03-05 13:43+0000\n"
+"Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -50,9 +50,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Connexion"
-
-msgid "Administration interface"
-msgstr "Interface d’administration"
 
 msgid "Main configuration"
 msgstr "Configuration principale"
@@ -84,9 +81,6 @@ msgstr "Ajouter un nouveau questionnaire"
 msgid "Home"
 msgstr "Accueil"
 
-msgid "Home page"
-msgstr "Page d’accueil"
-
 msgid "Changelog"
 msgstr "Journal des changements"
 
@@ -111,17 +105,11 @@ msgstr "Anomalies"
 msgid "Preferences"
 msgstr "Préférences"
 
-msgid "User preferences"
-msgstr "Préférences de l’utilisateur"
-
 msgid "Notification settings"
 msgstr "Paramètres de notification"
 
 msgid "file unavailable"
 msgstr "fichier non disponible"
-
-msgid "Recipient interface"
-msgstr "Interface du destinataire"
 
 msgid "Date"
 msgstr "Date"
@@ -156,9 +144,6 @@ msgstr "Détails"
 msgid "Platform wizard"
 msgstr "Assistant de la plateforme"
 
-msgid "Step-by-step setup"
-msgstr "Configuration étape par étape"
-
 msgid "CREDIT CARD"
 msgstr "CARTE DE CRÉDIT"
 
@@ -177,8 +162,8 @@ msgstr "Tout sélectionner"
 msgid "Deselect all"
 msgstr "Tout dessélectionner"
 
-msgid "Refresh page"
-msgstr "Actualiser la page"
+msgid "Refresh"
+msgstr "Actualiser"
 
 msgid "Context"
 msgstr "Contexte"
@@ -256,9 +241,6 @@ msgstr "Date la plus tardive possible"
 
 msgid "0 = auto"
 msgstr "0 = auto"
-
-msgid "-1 = unlimited"
-msgstr "-1 = illimité"
 
 msgid "True"
 msgstr "Vrai"
@@ -506,9 +488,6 @@ msgstr "Le Navigateur Tor comprend diverses améliorations relatives à la prot
 
 msgid "Download the Tor Browser"
 msgstr "Télécharger le Navigateur Tor"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Voici la liste des autres navigateurs pris en charge :"
 
 msgid "Audit log"
 msgstr "Liste de contrôle"
@@ -2029,9 +2008,6 @@ msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
 msgstr "Ces profils contiennent les paramètres utilisés par des projets couronnés de succès dans chacun de ces domaines."
-
-msgid "Confirm password"
-msgstr "Confirmer le mot de passe"
 
 msgid "Please choose a different username."
 msgstr "Veuillez choisir un nom d’utilisateur différent."
