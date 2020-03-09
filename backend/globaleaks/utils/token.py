@@ -4,7 +4,7 @@ import os
 from datetime import timedelta
 
 from globaleaks.rest import errors
-from globaleaks.utils.crypto import sha512, generateRandomKey, GCE
+from globaleaks.utils.crypto import sha256, generateRandomKey, GCE
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
 
@@ -23,7 +23,7 @@ class Token(object):
 
     def update(self, answer):
         resolved = "%s%d" % (self.id, answer)
-        x = sha512(resolved.encode())
+        x = sha256(resolved.encode())
         self.solved = x.endswith(b'00')
 
         if not self.solved:
