@@ -198,4 +198,9 @@ class Wizard(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.WizardDesc)
 
-        return tw(db_wizard, self.request.tid, self.request.hostname, request)
+        if self.request.hostname not in self.state.tenant_hostname_id_map:
+            hostname = self.request.hostname
+        else:
+            hostname = ''
+
+        return tw(db_wizard, self.request.tid, hostname, request)
