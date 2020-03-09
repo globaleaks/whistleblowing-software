@@ -1,3 +1,6 @@
+Changes in version 4.0.1 - 2020-03-09
+    Apply minor bugfixing
+
 Changes in version 4.0.0 - 2020-03-05
     Enable encryption and key escrow mechanism by default for new setups
     Make it possible to enable encryption and key escrow mechanism on
