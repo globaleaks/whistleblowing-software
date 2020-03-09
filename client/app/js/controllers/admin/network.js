@@ -209,6 +209,8 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
         modal_open.promise.then($scope.tls_config.$disable).then(refreshConfig);
         modal_open.resolve();
       }
+    } {
+      $scope.tls_config.$enable().then(refreshConfig);
     }
   };
 
