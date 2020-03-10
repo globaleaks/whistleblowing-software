@@ -18,10 +18,11 @@ class RobotstxtHandler(BaseHandler):
 
         if (self.request.tid != 1 and self.state.tenant_cache[self.request.tid].mode == 'demo') or \
            (not self.state.tenant_cache[self.request.tid].allow_indexing):
-            return "User-agent: *\nDisallow: /"
+            return "User-agent: *\nDisallow: *"
 
         data = "User-agent: *\n"
-        data += "Allow: /\n"
+        data += "Allow: /$\n"
+        data += "Disallow: *\n"
         data += "Sitemap: https://%s/sitemap.xml" % self.state.tenant_cache[self.request.tid].hostname
 
         return data
