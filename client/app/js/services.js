@@ -844,6 +844,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
             pt2 = $rootScope.public.node.header_title_receiptpage;
           } else if ($rootScope.page === "tippage") {
             pt2 = $rootScope.public.node.header_title_tippage;
+          } else if ($rootScope.page === "signuppage") {
+            pt2 = "Create your whistleblowing platform";
           }
         } else {
           pt2 = $rootScope.header_title;
@@ -868,7 +870,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         if (!$rootScope.public.node.wizard_done) {
           $location.path("/wizard");
         } else if (path === "/" && $rootScope.public.node.enable_signup) {
-          $location.path("/signup");
++      $rootScope.setPage('signuppage');
         } else if (["/signup", "activation"].indexOf(path === -1) && $rootScope.public.node.adminonly && !$rootScope.Authentication.session) {
           $location.path("/admin");
         } else if ($rootScope.Authentication.session) {

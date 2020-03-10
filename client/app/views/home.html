@@ -8,6 +8,9 @@
   <div data-ng-switch-when="tippage">
     <div data-ng-controller="TipCtrl" data-ng-include="'views/whistleblower/tip.html'"></div>
   </div>
+  <div data-ng-switch-when="signuppage">
+    <div data-ng-controller="SignupCtrl" data-ng-include="'views/signup/main.html'"></div>
+  </div>
   <div data-ng-switch-default>
     <div data-ng-controller="HomeCtrl" data-ng-include="'views/whistleblower/home.html'"></div>
   </div>
