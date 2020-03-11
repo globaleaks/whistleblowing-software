@@ -270,7 +270,8 @@ class APIResourceWrapper(Resource):
         request.hostname = request.getRequestHostname()
         request.port = request.getHost().port
 
-        if (request.hostname == b'localhost' or
+        if (not State.tenant_cache[1].wizard_done or
+            request.hostname == b'localhost' or
             isIPAddress(request.hostname) or
             isIPv6Address(request.hostname)):
             request.tid = 1
