@@ -304,11 +304,8 @@ class MigrationScript(MigrationBase):
         for old_obj in self.session_old.query(self.model_from['User']):
             new_obj = self.model_to['User']()
             for key in new_obj.__table__.columns._data.keys():
-                if key.startswith('crypto_') or key == 'readonly':
+                if key.startswith('crypto_') or key == 'readonly' or key == 'two_factor_secret':
                     continue
-                elif key == 'two_factor_secret':
-                    if old_obj.two_factor_secret:
-                        new_obj.two_factor_secret = Base32Encoder.encode(old_obj.two_factor_secret)
                 elif key == 'public_name':
                     if x:
                         new_obj.public_name = platform_name
