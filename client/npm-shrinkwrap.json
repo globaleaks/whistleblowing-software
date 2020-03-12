@@ -5748,9 +5748,9 @@
       }
     },
     "postcss-rtl": {
-      "version": "1.7.2",
-      "resolved": "https://registry.npmjs.org/postcss-rtl/-/postcss-rtl-1.7.2.tgz",
-      "integrity": "sha512-QX1u+gMJnxScBcU5rmJBHHHdWZwD6manK5FK3+bA2MGHP+6CHKHGP9rF4a3KI2+Mgs0Vd/IoLTdmfrSZEDUA+Q==",
+      "version": "1.7.3",
+      "resolved": "https://registry.npmjs.org/postcss-rtl/-/postcss-rtl-1.7.3.tgz",
+      "integrity": "sha512-PMwlrQSeZKChNJQGtWz9Xfk3rY1W7P5Jp4sFRXVufczQIH6vRhTNSc5gnEwKHaWrU8SMoZMi2VY7ihOmwVvW7g==",
       "dev": true,
       "requires": {
         "rtlcss": "2.5.0"

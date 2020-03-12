@@ -54,7 +54,7 @@
     "node-gettext": "2.0.0",
     "npm-check-updates": "4.0.4",
     "nyc": "15.0.0",
-    "postcss-rtl": "1.7.2",
+    "postcss-rtl": "1.7.3",
     "protractor": "6.0.0",
     "protractor-console-plugin": "0.1.1",
     "superagent": "5.2.2"
