@@ -1,3 +1,10 @@
+Changes in version 4.0.3 - 2020-03-12
+    Remove migration of two-factor-authentication secret from old setup
+    due to many incompatibilities preventing correct authentication.
+    Always serve the root tenant suring setup to enable reverse proxy configs.
+    Revise privacy aspects of robots indicization.
+    Update translations
+
 Changes in version 4.0.2 - 2020-03-09
     Revise fixes included in 4.0.1 in relation to authentication failures
 
