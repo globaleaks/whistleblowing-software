@@ -19,7 +19,7 @@ class TestRobotstxtHandlerHandler(helpers.TestHandler):
         response = yield handler.get()
 
         self.assertEqual(response, "User-agent: *\n"
-                                   "Disallow: /")
+                                   "Disallow: *")
 
     @inlineCallbacks
     def test_get_with_indexing_enabled(self):
@@ -31,5 +31,6 @@ class TestRobotstxtHandlerHandler(helpers.TestHandler):
         response = yield handler.get()
 
         self.assertEqual(response, "User-agent: *\n"
-                                   "Allow: /\n"
+                                   "Allow: /$\n"
+                                   "Disallow: *\n"
                                    "Sitemap: https://www.globaleaks.org/sitemap.xml")
