@@ -27,7 +27,7 @@
 # lamine Kacimi <k_lamine27@yahoo.fr>, 2015
 # lamine Kacimi <k_lamine27@yahoo.fr>, 2015
 # mohammad ali <ilir95palira@gmail.com>, 2017
-# Muhammad Elghdban <admin@netaawy.com>, 2020
+# Muhammad Elghdban <Mohamed.Elghdban@gmail.com>, 2020
 # nawaat <contact@nawaat.org>, 2014
 # ouss <oussjarrouse@gmail.com>, 2016
 # ouss <oussjarrouse@gmail.com>, 2016
@@ -42,7 +42,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-05 08:44+0000\n"
+"PO-Revision-Date: 2020-03-10 22:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -631,6 +631,9 @@ msgstr "هذا المستخدم لم يقم بتسجيل الدخول للمرة
 
 msgid "seconds"
 msgstr "ثواني"
+
+msgid "This domain name is not available."
+msgstr ""
 
 msgid "Select the context of your report:"
 msgstr "حدد سياق بلاغك:"

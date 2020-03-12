@@ -189,6 +189,7 @@
   "One or more recipients have not performed the first login yet. This means they won't be receiving reports.": "ތިޔަފަރާތުން/ފަރާތްތަކުން އަދި އަލަށްވެސް ލޮގް އިން ކޮއްފައެއް ނުވޭ. އަދި އެއްވެސް ރިޕޯޓެއް އެފަރާތްތަކަކަށް ވާސިލްއެއް ނުވާނެ. ",
   "This user has not performed the first login yet.": "ތިޔަފަރާތުން އަދި އަލަށްވެސް ލޮގް އިން ކޮއްފައެއް ނުވޭ. ",
   "seconds": "ސިކުންތު ",
+  "This domain name is not available.": "This domain name is not available.",
   "Select the context of your report:": "ތިޔަ ފަރާތުގެ ރިޕޯޓްގެ ކޮއްޓެކްސްޓެ ހިޔާރުކުރައްވާ",
   "Warning! You are not anonymous.": "ސަމާލަ! ރައްކާތެރިކަން ރަނގަޅެއްނޫން. ",
   "Sending reports over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the report anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers.": "އެޗް.ޓީ.ޓީ.ޕީ.އެސްގެ ތެރެއިން ފޮނުވާ މައޫލޫމާތަކީ ސިއްރުން ފޮނުވޭ މައުލޫމާތެއް ނަމަވެސް އެ ރިޕޯޓު ފޮނުވާކަން ސިއްރެއް ނުކުރެވެއެވެ. އެހެންނަމަވެސް ފޮނުވާ ރިޕޯޓަކީ ސިއްރުން ފޮނުވޭ އެއްޗަކަށް ހެދުމަކީ އެންމެ އެދެވޭގޮތެވެ. މިކަން ކުރެވޭނެ މަގަކީ ސިއްރުން މަޢުލޫމާތު ބަދަލުކުރުމަށް މަގުފަހިކޮށްދޭ ޓީ.އޯ.އާރު ބްރައުޒަރ ބޭނުންކޮށްގެންނެވެ.",

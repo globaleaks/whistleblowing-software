@@ -2,6 +2,7 @@
 # Translators:
 # Bartges90, 2015
 # dr0t <t@virtualroad.org>, 2015
+# Enrique Blat Puchades <enrique.blat@antifraucv.es>, 2020
 # estrella1876lc <estrella1876lc@gmail.com>, 2014
 # Francisco Huerta <francisco.huerta@davinci-ti.es>, 2016
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018-2020
@@ -16,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-05 08:44+0000\n"
+"PO-Revision-Date: 2020-03-12 17:14+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +27,7 @@ msgstr ""
 "mime-version: 1.0\n"
 
 msgid "Log in"
-msgstr "Inicie la sessió"
+msgstr "Iniciar sessió"
 
 msgid "Main configuration"
 msgstr "Configuració principal"
@@ -128,7 +129,7 @@ msgid "YOUR NAME"
 msgstr "EL SEU NOM"
 
 msgid "Label the report"
-msgstr "Etiqueta l'enviament"
+msgstr "Etiqueta l’informe"
 
 msgid "Postpone the expiration date"
 msgstr "Pospose la data de caducitat"
@@ -140,7 +141,7 @@ msgid "Deselect all"
 msgstr "Desseleccione-ho tot"
 
 msgid "Refresh"
-msgstr ""
+msgstr "Actualització"
 
 msgid "Context"
 msgstr "Context"
@@ -182,7 +183,7 @@ msgid "Access control"
 msgstr "Control d'accés"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "La connexió ha sigut protegida amb HTTPS per garantir la seua confidencialitat."
+msgstr "La connexió s'ha assegurat amb HTTPS per garantir la confidencialitat."
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
@@ -241,7 +242,7 @@ msgid "Change your password"
 msgstr "Canvia la contrasenya"
 
 msgid "Access requests"
-msgstr ""
+msgstr "Sol·licituds d’accés"
 
 msgid "User"
 msgstr "Usuari"
@@ -467,7 +468,7 @@ msgid "Download the Tor Browser"
 msgstr "Descarrega el navegador Tor"
 
 msgid "Audit log"
-msgstr ""
+msgstr "Registre d’auditoria"
 
 msgid "Stats"
 msgstr "Estadístiques"
@@ -476,7 +477,7 @@ msgid "Activities"
 msgstr "Activitats"
 
 msgid "Reports"
-msgstr ""
+msgstr "Informes"
 
 msgid "Users"
 msgstr "Usuaris"
@@ -584,27 +585,30 @@ msgid "Send a test email to your email address."
 msgstr "Enviar un missatge de prova a la seua direcció de correu"
 
 msgid "Block the submission"
-msgstr ""
+msgstr "Bloqueja l’enviament"
 
 msgid "Skip the recipient account creation."
-msgstr ""
+msgstr "Omet la creació del compte del destinatari."
 
 msgid "Send activation link"
-msgstr ""
+msgstr "Envia un enllaç d’activació"
 
 msgid "Password reset"
-msgstr ""
+msgstr "Reinicialització de contrasenya"
 
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr ""
+msgstr "Un o més destinataris encara no han realitzat el primer accés. Açó vol dir que no rebran informes."
 
 msgid "This user has not performed the first login yet."
-msgstr ""
+msgstr "Aquest usuari encara no ha realitzat el primera accés."
 
 msgid "seconds"
 msgstr "segons"
+
+msgid "This domain name is not available."
+msgstr ""
 
 msgid "Select the context of your report:"
 msgstr "Seleccione el context del seu enviament:"
@@ -669,7 +673,7 @@ msgid "Enable encryption"
 msgstr "Habilitar xifrat"
 
 msgid "Enable administrators to change user passwords"
-msgstr ""
+msgstr "Activa als administradors per canviar les contrasenyes d’usuari"
 
 msgid "Enable multisite feature"
 msgstr "Activar la característica multi-lloc"
@@ -715,7 +719,7 @@ msgid "Disable the privacy panel"
 msgstr "Deshabilita el distintiu de privacitat "
 
 msgid "Enable the receipt hint"
-msgstr ""
+msgstr "Activa el suggeriment de recepció"
 
 msgid "Landing page"
 msgstr "Pàgina d'aterratge"
@@ -783,7 +787,7 @@ msgid "Enable scoring system"
 msgstr "Activar el sistema de puntuacions"
 
 msgid "Enable private labels"
-msgstr ""
+msgstr "Activa etiquetes privades"
 
 msgid "Logging level"
 msgstr "Nivell de log"
@@ -806,7 +810,7 @@ msgid "Save"
 msgstr "Desa"
 
 msgid "Reset reports"
-msgstr ""
+msgstr "Restableix els informes"
 
 msgid "Low"
 msgstr "Baix"
@@ -893,7 +897,7 @@ msgid "Cancel"
 msgstr "Cancel·la"
 
 msgid "Report statuses"
-msgstr ""
+msgstr "Estat de l’informe"
 
 msgid "Logo"
 msgstr "Logotip"
@@ -902,7 +906,7 @@ msgid "Project name"
 msgstr "Nom de la iniciativa"
 
 msgid "Header title"
-msgstr ""
+msgstr "Títol d'encapçalament"
 
 msgid "Homepage title"
 msgstr "Títol de la pàgina d'inici"
@@ -1202,7 +1206,7 @@ msgid "SMTP server port"
 msgstr "Port del servidor SMTP"
 
 msgid "Security"
-msgstr ""
+msgstr "Seguretat"
 
 msgid "Warning"
 msgstr "Advertència"
@@ -1286,7 +1290,7 @@ msgid "Hint shown on the button for adding an additional answer"
 msgstr "Indici que es mostra al botó per afegir una resposta més"
 
 msgid "Encrypt"
-msgstr ""
+msgstr "Encripta"
 
 msgid "Template override"
 msgstr "Sobreescriure plantilla"
@@ -1391,16 +1395,16 @@ msgid "Subdomain"
 msgstr "Subdomini"
 
 msgid "Send an account activation link to the user."
-msgstr ""
+msgstr "Envia un enllaç d'activació del compte a l'usuari."
 
 msgid "Public name"
-msgstr ""
+msgstr "Nom públic"
 
 msgid "Send reset link"
-msgstr ""
+msgstr "Envia l'enllaç de restabliment"
 
 msgid "Set password"
-msgstr ""
+msgstr "Estableix la contrasenya"
 
 msgid "Disable two factor authentication"
 msgstr "Desactivar l'autenticació de doble factor"
@@ -1430,7 +1434,7 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "Estableix l'encriptació oferint una clau pública PGP"
 
 msgid "Give this admin ability to change user passwords"
-msgstr ""
+msgstr "Dóna-li a aquest administrador la possibilitat de canviar les contrasenyes d’usuari"
 
 msgid "Configuration"
 msgstr "Configuració"
@@ -1462,7 +1466,7 @@ msgid "ID"
 msgstr "ID"
 
 msgid "Report date"
-msgstr ""
+msgstr "Data de l’informe"
 
 msgid "Authorization"
 msgstr "Autorització"
@@ -1528,7 +1532,7 @@ msgid "Assign score points"
 msgstr "Assigna puntuació"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
+msgstr "Tingueu en compte que totes les dades associades se suprimiran definitivament."
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ésta es una plataforma de demostració, per favor no la utilitze per a enviaments reals."
@@ -1549,15 +1553,15 @@ msgid "Close"
 msgstr "Tancar"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr ""
+msgstr "Abans de continuar, llegiu atentament la documentació a:"
 
 msgid "Your account recovery key is:"
-msgstr ""
+msgstr "La vostra clau de recuperació del compte és:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr ""
+msgstr "Feu una còpia i guardeu-la en un lloc segur. Serà necessari si perdeu la contrasenya per recuperar l’accés al vostre compte sense pèrdues de dades."
 
 msgid "Welcome!"
 msgstr "Benvingut!"
@@ -1586,7 +1590,7 @@ msgid ""
 msgstr "Per obtenir suport professional i desenvolupament de projectes de lluita contra la corrupció, poseu-vos en contacte amb l'iniciativa social que manté GlobaLeaks:"
 
 msgid "Join our chat:"
-msgstr ""
+msgstr "Uneix-te al nostre xat:"
 
 msgid "Follow the project on:"
 msgstr "Seguiu el projecte a:"
@@ -1636,7 +1640,7 @@ msgid "Set up email encryption by providing a PGP public key"
 msgstr "Configurar el xifrat del correu propocionant una clau pública PGP"
 
 msgid "Account recovery key"
-msgstr ""
+msgstr "Clau de recuperació del compte"
 
 msgid "Current password"
 msgstr " Contrasenya actual"
@@ -1699,7 +1703,7 @@ msgid ""
 "and staying anonymous by not revealing your location or IP address. You "
 "won't notice any difference from an insecure chat, except that you will be "
 "using a unique address instead of a phone number/email/username."
-msgstr ""
+msgstr "Mitjançant l’ús de la xarxa Tor i la creació d’un Servei Onion, Ricochet és una aplicació de missatgeria instantània que permet xerrar mentre es protegeix la vostra privadesa i es manté anònim en no revelar la seva ubicació o adreça IP. No notareu cap diferència respecte a un xat insegur, tret que utilitzeu una adreça única en lloc d’un número de telèfon / correu electrònic / nom d’usuari."
 
 msgid "The connection is not secure."
 msgstr "La connexió no és segura"
@@ -1822,7 +1826,7 @@ msgid "Recipient list"
 msgstr "Llista del destinatari"
 
 msgid "Status:"
-msgstr ""
+msgstr "Estat:"
 
 msgid "Attached files for the whistleblower"
 msgstr "Els arxius adjunts per a l'informador"
@@ -1954,7 +1958,7 @@ msgid "Recipients selected:"
 msgstr "Destinataris seleccionats:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr ""
+msgstr "Heu arribat al número màxim de destinataris seleccionables."
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1962,7 +1966,7 @@ msgid ""
 msgstr "En aquest pas, les respostes a les següents preguntes falten o són invàlides:"
 
 msgid "Errors"
-msgstr ""
+msgstr "Errors"
 
 msgid "You must select at least one recipient."
 msgstr "Ha de seleccionar, com a mínim, un destinatari."
@@ -1987,10 +1991,10 @@ msgid ""
 msgstr "Aquests perfils contenen la configuració utilitzada per projectes exitosos en cada un dels tipus."
 
 msgid "Please choose a different username."
-msgstr ""
+msgstr "Seleccioneu un nom d’usuari diferent."
 
 msgid "The user will receive an activation link via email."
-msgstr ""
+msgstr "L’usuari rebrà un enllaç d’activació per correu electrònic."
 
 msgid "License Agreement"
 msgstr "Acord de llicència"
@@ -2085,32 +2089,32 @@ msgstr "Benvolgut/uda {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr ""
+msgstr "Esteu rebent aquest correu electrònic perquè se us ha creat un compte d'usuari al vostre sistema: {Lloc}"
 
 msgid "Username: {Username}"
 msgstr "Nom d'usuari: {Username}"
 
 msgid "Activation link: {Url}"
-msgstr ""
+msgstr "Enllaç d'activació: {URL}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
+msgstr "Feu clic a l'enllaç d'activació per continuar amb l'activació del compte i per definir la vostra contrasenya d'usuari."
 
 msgid "This link will expire in 3 days."
-msgstr ""
+msgstr "Aquest enllaç caducarà d’aquí a 3 dies."
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr ""
+msgstr "Després d'activar-lo correctament, podreu accedir al sistema mitjançant el següent enllaç: {URL d’accés}"
 
 msgid "Kind regards,"
 msgstr "Reba una salutació cordial,"
 
 msgid "Account activation"
-msgstr ""
+msgstr "Activació del compte"
 
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "La plataforma de denúncies és ara accessible a:"
@@ -2256,7 +2260,7 @@ msgid "Label: {TipLabel}"
 msgstr "Etiqueta: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
+msgstr "Estat: {TipStatus}"
 
 msgid "Context: {ContextName}"
 msgstr "Context: {ContextName}"
@@ -2421,7 +2425,7 @@ msgid ""
 msgstr "Se vos demana que pareu especial atenció a la informació i al material que conté. Tingueu en compte que els informadors sovint s'exposen a riscos personals elevats en interès del públic. Per tant, el material proporcionat dins d'aquesta aportació ha de ser considerat de gran importància."
 
 msgid "New report"
-msgstr ""
+msgstr "Nou informe"
 
 msgid "Role: {Role}"
 msgstr "Rol: {Role}"

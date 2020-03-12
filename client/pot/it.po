@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-05 08:44+0000\n"
+"PO-Revision-Date: 2020-03-12 17:14+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -614,6 +614,9 @@ msgstr "Questo utente non ha ancora effettuato il primo accesso."
 
 msgid "seconds"
 msgstr "secondi"
+
+msgid "This domain name is not available."
+msgstr "Questo nome di dominio non è disponibile."
 
 msgid "Select the context of your report:"
 msgstr "Seleziona il contesto della tua segnalazione"

@@ -189,6 +189,7 @@
   "One or more recipients have not performed the first login yet. This means they won't be receiving reports.": "Един или повече получатели не са извършили първоначалното си вписване. Това означава, че те няма да получават сигнали",
   "This user has not performed the first login yet.": "Този потребител не е завършил първоначалното си вписване.",
   "seconds": "секунди",
+  "This domain name is not available.": "This domain name is not available.",
   "Select the context of your report:": "Изберете контекста на подадения сигнал:",
   "Warning! You are not anonymous.": "Внимание! Не сте в анонимност",
   "Sending reports over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the report anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers.": "Изпращането на доклад през HTTPS показва действието, но не и съдържанието. Прикриването на факта, че се подава сигнал, го прави анонимен, което е силно препоръчително. Това може да бъде постигнато като се използва Tor браузърът, който гарантира анонимност, което не се предлага от други браузъри.",

@@ -189,6 +189,7 @@
   "One or more recipients have not performed the first login yet. This means they won't be receiving reports.": "有收件人尚未進行首次登錄。這意味著他們還未接受到報告。",
   "This user has not performed the first login yet.": "收件人尚未進行首次登錄。",
   "seconds": "秒",
+  "This domain name is not available.": "This domain name is not available.",
   "Select the context of your report:": "選擇您報告合適的情況：",
   "Warning! You are not anonymous.": "警示，你並非匿名狀態",
   "Sending reports over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the report anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers.": "透由 HTTPS 傳送報告會曝露此行為，但不會洩露報告內容。\n\n此外，它也隱瞞匿名提交某些東西的情況，以匿名化報告。\n\n可以透過 Tor  瀏覽器達成其它瀏覽器無法滿足的匿名功能。",

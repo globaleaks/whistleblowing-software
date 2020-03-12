@@ -189,6 +189,7 @@
   "One or more recipients have not performed the first login yet. This means they won't be receiving reports.": "One or more recipients have not performed the first login yet. This means they won't be receiving reports.",
   "This user has not performed the first login yet.": "This user has not performed the first login yet.",
   "seconds": "sekundi",
+  "This domain name is not available.": "This domain name is not available.",
   "Select the context of your report:": "Odaberite kontekst svoje predaje:",
   "Warning! You are not anonymous.": "Upozorenje! Niste anonimni.",
   "Sending reports over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the report anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers.": "Slanje predaja preko HTTPS-a otkriva sam čin slanja, ali ne i sadržaj.\n\nSkrivanje činjenice da predajete nešto čini predaju anonimnom, što snažno preporučamo.\n\nOvo može biti postignuto kroz uporabu Tor Browser-a, koji pruža anonimizaciju koju nećete pronaću u drugim preglednicima.",

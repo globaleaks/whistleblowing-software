@@ -189,6 +189,7 @@
   "One or more recipients have not performed the first login yet. This means they won't be receiving reports.": "Un o més destinataris encara no han realitzat el primer accés. Això vol dir que no rebran informes.",
   "This user has not performed the first login yet.": "Aquest usuari encara no ha realitzat el primer accés.",
   "seconds": "segons",
+  "This domain name is not available.": "This domain name is not available.",
   "Select the context of your report:": "Selecciona el context del teu informe:",
   "Warning! You are not anonymous.": "Atenció! No ets anònim.",
   "Sending reports over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the report anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers.": "Enviar un informe mitjançant HTTPS exposa el fet de l'enviament en si mateix, no el seu contingut.\n\nTambé cal amagar el fet que esteu entregant alguna cosa , aconseguint que l'enviament sigui anònim, cosa que és molt recomanable.\n\nAixò es pot aconseguir utilitzant el navegador \"Tor\", que ofereix un anonimat que no es troba en d'altres navegadors.",

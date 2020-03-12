@@ -189,6 +189,7 @@
   "One or more recipients have not performed the first login yet. This means they won't be receiving reports.": "One or more recipients have not performed the first login yet. This means they won't be receiving reports.",
   "This user has not performed the first login yet.": "This user has not performed the first login yet.",
   "seconds": "giây",
+  "This domain name is not available.": "This domain name is not available.",
   "Select the context of your report:": "Chọn ngữ cảnh của trình của bạn:",
   "Warning! You are not anonymous.": "Cảnh báo! Bạn không phải là vô danh.",
   "Sending reports over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the report anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers.": "Gửi bài nộp qua HTTPS cho thấy nhiều hành động làm như vậy, nhưng không phải là nội dung. \\ N \\ nKhi bạn cũng ẩn mà bạn đang gửi một cái gì đó, điều này được gọi là một trình vô danh, có nghĩa là bạn được bảo vệ đầy đủ. \\ N \\ nAnonymous đệ trình được đề nghị , và có thể được thực hiện thông qua các trình duyệt Tor là một trình duyệt đặc biệt mà anonymises giao tiếp của bạn với nền tảng giống như Internet Explorer, Firefox, Chrome, Opera, vv",

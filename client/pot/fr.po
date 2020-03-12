@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-05 13:43+0000\n"
+"PO-Revision-Date: 2020-03-11 14:33+0000\n"
 "Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -628,6 +628,9 @@ msgstr "Cet utilisateur ne s’est pas encore connecté pour la première fois."
 
 msgid "seconds"
 msgstr "secondes"
+
+msgid "This domain name is not available."
+msgstr "Ce nom de domaine n’est pas disponible."
 
 msgid "Select the context of your report:"
 msgstr "Sélectionnez le contexte de votre signalement :"

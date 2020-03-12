@@ -189,6 +189,7 @@
   "One or more recipients have not performed the first login yet. This means they won't be receiving reports.": "Ein oder mehrere Empfänger haben sich bisher noch nie eingeloggt. Das bedeutet, dass diese die Bericht nicht erhalten werden.",
   "This user has not performed the first login yet.": "Dieser Benutzer hat sich noch nie eingeloggt.",
   "seconds": "Sekunden",
+  "This domain name is not available.": "This domain name is not available.",
   "Select the context of your report:": "Den Kontext des Berichts auswählen",
   "Warning! You are not anonymous.": "Warnung! Sie sind nicht anonym.",
   "Sending reports over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the report anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers.": "Senden von Einreichungen über HTTPS enthüllt die Handlung, aber nicht den Inhalt.\n\nAuch das Verstecken der Tatsache, dass Sie etwas einreichen, macht die Einreichung anonym, was dringend empfohlen wird.\n\nDies kann durch die Verwendung des Tor-Browsers erreicht werden, der eine Anonymisierung bietet, die es in anderen Browsern.",

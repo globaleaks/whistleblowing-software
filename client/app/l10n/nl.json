@@ -189,6 +189,7 @@
   "One or more recipients have not performed the first login yet. This means they won't be receiving reports.": "Een of meer ontvangers hebben nog nooit ingelogd. Dit betekent dat ze geen rapport ontvangen.",
   "This user has not performed the first login yet.": "Deze gebruiker heeft nog nooit ingelogd.",
   "seconds": "seconden",
+  "This domain name is not available.": "This domain name is not available.",
   "Select the context of your report:": "Selecteer de context van uw inzending:",
   "Warning! You are not anonymous.": "Waarschuwing! Uw anonimiteit is niet gewaarborgd.",
   "Sending reports over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the report anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers.": "De actie van het versturen van inzendingen per HTTPS is zichtbaar, hoewel de inhoud niet zichtbaar is. Tevens raden wij u ten sterkste aan dat u maskeert dat u iets wilt inzenden. Dit kunt u doen met behulp van de Tor browser die, anders dan andere browsers, uw anonimiteit waarborgt.",
