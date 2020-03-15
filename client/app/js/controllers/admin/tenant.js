@@ -73,7 +73,7 @@ angular.module("GLClient")
   $scope.deleteTenant = function($event) {
     $event.stopPropagation();
     $scope.Utils.deleteDialog().then(function() {
-      return $scope.Utils.deleteResource(AdminTenantResource, $scope.resources.tenants, tenant);
+      return $scope.Utils.deleteResource(AdminTenantResource, $scope.resources.tenants, $scope.tenant);
     });
   };
 }]);
