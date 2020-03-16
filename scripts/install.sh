@@ -116,12 +116,6 @@ if which lsb_release >/dev/null; then
   REAL_DISTRO_CODENAME=$DISTRO_CODENAME
 fi
 
-# LinuxMint is based on Ubuntu, if we encounter Mint just allign the Ubuntu version is based upon
-if [ "$DISTRO" == "LinuxMint" ]; then
-  DISTRO="Ubuntu"
-  DISTRO_CODENAME=$(grep UBUNTU_CODENAME /etc/os-release | sed -e 's/UBUNTU_CODENAME=//')
-fi
-
 # Report last executed command and its status
 TMPDIR=$(mktemp -d)
 echo '' > $TMPDIR/last_command

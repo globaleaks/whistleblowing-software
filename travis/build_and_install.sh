@@ -8,13 +8,7 @@ cd /build/GlobaLeaks
 
 sudo apt-get -y update
 
-sudo apt-get -y install curl git debhelper devscripts dh-apparmor dh-python python
-
-if [ $distro = "bionic" ] || [ "$distro" = "buster" ]; then
-  sudo apt-get -y install python3-pip python3-setuptools python3-sphinx
-else
-  sudo apt-get -y install python-pip python-setuptools python-sphinx
-fi
+sudo apt-get -y install curl git debhelper devscripts dh-apparmor dh-python python3-dev python3-pip python3-setuptools python3-sphinx
 
 curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
 echo "deb https://deb.nodesource.com/node_10.x $distro main" | sudo tee /etc/apt/sources.list.d/nodesource.list

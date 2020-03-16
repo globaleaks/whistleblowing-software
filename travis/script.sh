@@ -2,10 +2,6 @@
 
 set -e
 
-if [ -z "$TESTS_REQUIREMENTS" ]; then
-  TESTS_REQUIREMENTS="bionic"
-fi
-
 if [ -z "$BUILD_DISTRO" ]; then
   BUILD_DISTRO="bionic"
 fi
@@ -46,7 +42,7 @@ sudo usermod -aG debian-tor $USER
 sudo iptables -t nat -A OUTPUT -o lo -p tcp --dport 9000 -j REDIRECT --to-port 8082
 npm install -g grunt grunt-cli
 
-if [ "$GLTEST" = "py2_test" ] || [ "$GLTEST" = "py3_test" ]; then
+if [ "$GLTEST" = "py3_test" ]; then
   setupChrome
 
   pip install coverage codacy-coverage
