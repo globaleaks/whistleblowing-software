@@ -2636,14 +2636,14 @@
       }
     },
     "gettext-parser": {
-      "version": "4.0.2",
-      "resolved": "https://registry.npmjs.org/gettext-parser/-/gettext-parser-4.0.2.tgz",
-      "integrity": "sha512-JPCBpGzm01te+nTenJwWqKDzixYPY4pInedixpcMl4GPEJeia/cH2TJCh32IggDrrLYrzqA8OitXZLpBdrx4Gg==",
+      "version": "4.0.3",
+      "resolved": "https://registry.npmjs.org/gettext-parser/-/gettext-parser-4.0.3.tgz",
+      "integrity": "sha512-FGzzgAtSJuhFZGKNlV8AGjuBic1MoJXL2hlfS55JlCeMgyvG5XbY/Zje/Cx78gnLh+oO8WMIHp6kh7/j3CLx9A==",
       "dev": true,
       "requires": {
         "content-type": "^1.0.4",
         "encoding": "^0.1.12",
-        "readable-stream": "^3.4.0",
+        "readable-stream": "^3.6.0",
         "safe-buffer": "^5.2.0"
       }
     },
