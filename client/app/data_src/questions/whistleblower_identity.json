@@ -203,6 +203,7 @@
         {
           "order":0,
           "trigger_field":"",
+	  "score_type":"none",
           "score_points":0,
           "label":{
             "en":"Male"
@@ -212,6 +213,7 @@
         {
           "order":1,
           "trigger_field":"",
+	  "score_type":"none",
           "score_points":0,
           "label":{
             "en":"Female"
@@ -221,6 +223,7 @@
         {
           "order":2,
           "trigger_field":"",
+	  "score_type":"none",
           "score_points":0,
           "label":{
             "en":"Other gender identity"
