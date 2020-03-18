@@ -1,3 +1,8 @@
+Changes in version 4.0.4 - 2020-04-18
+    Add mock frunctions: replace, add-before, add-after
+    Improve resiliency of notification job
+    Fix issues: #2790, #2791
+
 Changes in version 4.0.3 - 2020-03-12
     Remove migration of two-factor-authentication secret from old setup
     due to many incompatibilities preventing correct authentication.
