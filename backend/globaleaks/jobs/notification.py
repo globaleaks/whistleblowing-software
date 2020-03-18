@@ -166,7 +166,7 @@ class MailGenerator(object):
 
         data['submission_statuses'] = db_get_submission_statuses(session, tid, language)
 
-        if data['node']['mode'] != 'default':
+        if data['node']['mode'] == 'default':
             data['notification'] = self.serialize_config(session, 'notification', tid, language)
         else:
             data['notification'] = self.serialize_config(session, 'notification', 1, language)
@@ -216,13 +216,16 @@ class MailGenerator(object):
                     x.new = False
 
             for element in session.query(model).filter(model.new.is_(True)):
-                element.new = False
-
                 data = {
                     'type': trigger_template_map[trigger]
                 }
 
-                getattr(self, 'process_%s' % trigger)(session, element, data)
+                try:
+                    getattr(self, 'process_%s' % trigger)(session, element, data)
+                except Exception as e:
+                    log.err("Unhandled exception during mail generation: %s", str(e))
+                else:
+                    element.new = False
 
 
 @transact
