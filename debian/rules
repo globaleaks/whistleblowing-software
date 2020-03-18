@@ -3,22 +3,8 @@ export PYBUILD_NAME=globaleaks
 export PYBUILD_DISABLE=test
 export PYBUILD_INSTALL_ARGS=--no-compile
 
-DISTRIBUTION := $(shell head -n1  debian/changelog | cut -d ' ' -f3 | cut -d ';' -f1)
-
-ifeq ($(DISTRIBUTION),buster)
-        PYTHON_BIN := python3
-	PYTHON_VER := python3
-else ifeq ($(DISTRIBUTION),bionic)
-        PYTHON_BIN := python3
-        PYTHON_VER := python3
-else
-        PYTHON_BIN := python2
-	PYTHON_VER := python2
-endif
-
-
 %:
-	dh $@ --with $(PYTHON_VER) --buildsystem=pybuild --sourcedirectory=backend/
+	dh $@ --with python3 --buildsystem=pybuild --sourcedirectory=backend/
 
 override_dh_install:
 	dh_apparmor --profile-name=usr.bin.globaleaks
@@ -26,9 +12,6 @@ override_dh_install:
 
 override_dh_installman:
 	true
-
-override_dh_python2:
-	dh_python2 --no-guessing-deps --no-guessing-versions
 
 override_dh_python3:
 	dh_python3 --no-guessing-deps
