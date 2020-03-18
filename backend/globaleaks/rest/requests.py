@@ -334,7 +334,7 @@ AdminFieldOptionDesc = {
     'hint2': str,
     'block_submission': bool,
     'order': int,
-    'score_type': int,
+    'score_type': str,
     'score_points': int,
     'trigger_receiver': list
 }

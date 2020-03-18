@@ -8,9 +8,10 @@
   <span class="alert alert-default">
     <div>
       <span data-translate>Type</span>
-      <select class="form-control" data-ng-model="arg.score_type" convert-to-number>
-        <option value="1" data-translate>Addition</option>
-        <option value="2" data-translate>Multiplier</option>
+      <select class="form-control" data-ng-model="arg.score_type">
+        <option value="none" data-translate>None</option>
+        <option value="addition" data-translate>Addition</option>
+        <option value="multiplier" data-translate>Multiplier</option>
       </select>
     </div>
     <div data-ng-if="arg.score_type !== 0">

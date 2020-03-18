@@ -410,12 +410,12 @@
                       </span>
                       <span data-ng-if="resources.node.enable_scoring_system">
                         <button class="btn btn-sm" data-ng-class="option.score_type !== 'none' ? 'btn-warning' : 'btn-secondary'" data-ng-click="assignScorePointsDialog(option)" uib-popover="{{'Assign score points' | translate}}" popover-placement="left">
-                          <i class="fas fa-flash"></i>
+                          <i class="fas fa-bolt"></i>
                           <span data-ng-if="option.score_type !== 'none'">
                             <span> {{option.score_points}} </span>
-                            <span data-ng-switch="option.score_type">
+                            <span data-ng-switch="" on="option.score_type">
                               <span data-ng-switch-when="addition"> (<span data-translate>Addition</span>)</span>
-                              <span data-ng-switch-when="addition"> (<span data-translate>Multiplier</span>)</span>
+                              <span data-ng-switch-when="multiplier"> (<span data-translate>Multiplier</span>)</span>
                             </span>
                           </span>
                         </button>
