@@ -722,6 +722,10 @@ var GLClient = angular.module("GLClient", [
         Utils.set_title();
 
         $rootScope.started = true;
+
+        var observer = new MutationObserver(GLClient.mockEngine.run);
+
+        observer.observe(document.querySelector("body"), { attributes: false, childList: true, subtree: true });
       }).$promise;
     };
 
@@ -808,10 +812,6 @@ var GLClient = angular.module("GLClient", [
         }
       });
     };
-
-    var observer = new MutationObserver(GLClient.mockEngine.run);
-
-    observer.observe(document.querySelector("body"), { attributes: false, childList: true, subtree: true });
 
     $rootScope.init();
 }]).
