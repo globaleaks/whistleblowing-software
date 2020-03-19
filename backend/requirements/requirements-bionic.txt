@@ -15,7 +15,7 @@ pycparser==2.18
 pynacl==1.2
 pyotp==2.2.6
 python_debian==0.1.32
-python_gnupg==0.4.1
+python_gnupg==0.4.4
 requests==2.18.4
 scrypt==0.8.0
 service_identity==16.0.0
