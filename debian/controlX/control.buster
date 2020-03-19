@@ -26,7 +26,6 @@ Depends:
   gnupg,
   haveged,
   iptables,
-  lsb-base,
   python3:any,
   python3-acme,
   python3-debian,
