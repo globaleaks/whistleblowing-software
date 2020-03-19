@@ -31,14 +31,14 @@ exports.receiver = function() {
 exports.whistleblower = function() {
   this.performSubmission = async function(title, uploadFiles) {
     var pow = function() {
-      return element(by.id("submissionForm")).evaluate("submission").then(function(submission) {
+      return element(by.id("SubmissionForm")).evaluate("submission").then(function(submission) {
         return submission.pow === true;
       });
     };
 
     await browser.get("/#/submission");
 
-    await browser.gl.utils.waitUntilPresent(by.id("submissionForm"));
+    await browser.gl.utils.waitUntilPresent(by.id("SubmissionForm"));
 
     await element(by.id("step-receiver-selection")).element(by.id("receiver-0")).click();
     await element(by.id("step-receiver-selection")).element(by.id("receiver-1")).click();
