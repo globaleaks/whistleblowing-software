@@ -40,7 +40,7 @@ GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "
         $scope.erk = data.data.match(/.{1,4}/g).join("-");
         $uibModal.open({
           templateUrl: "views/partials/encryption_recovery_key.html",
-          controller: "ModalCtrl",
+          controller: "ConfirmableModalCtrl",
           size: "lg",
           scope: $scope,
           backdrop: "static",

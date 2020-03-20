@@ -88,7 +88,7 @@ controller("TipBulkOperationsCtrl", ["$scope", "$http", "$route", "$location", "
     $uibModalInstance.close();
   };
 
-  $scope.ok = function () {
+  $scope.confirm = function () {
      $uibModalInstance.close();
 
     if (["postpone", "delete"].indexOf(operation) === -1) {

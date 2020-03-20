@@ -146,15 +146,4 @@ controller("AdminGeneralSettingsCtrl", ["$scope", "$filter", "$http", "Files", "
   };
 
   $scope.update_files();
-}]).
-controller("reviewModalCtrl", ["$scope", "$uibModalInstance", "targetFunc",
-  function($scope, $uibModalInstance, targetFunc) {
-  $scope.cancel = $uibModalInstance.close;
-
-  $scope.ok = function() {
-    return targetFunc().then($uibModalInstance.close);
-  };
-}]).
-controller("disableInputModalCtrl", ["$scope", function($scope) {
-  $scope.$resolve.modal_open.resolve();
 }]);

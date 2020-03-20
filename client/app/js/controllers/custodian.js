@@ -28,7 +28,7 @@ controller("IdentityAccessReplyCtrl", ["$scope", "$http", "$route", "$uibModalIn
       $uibModalInstance.close();
     };
 
-    $scope.ok = function () {
+    $scope.confirm = function () {
       $uibModalInstance.close();
       return $http.put("custodian/identityaccessrequest/" + $scope.iar, {"reply": "denied", "reply_motivation": $scope.reply_motivation}).
         then(function(){

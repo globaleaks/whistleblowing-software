@@ -1,29 +1,23 @@
 GLClient.
-controller("ModalCtrl", ["$scope", "$uibModalInstance", function($scope, $uibModalInstance) {
-  $scope.close = function() {
-    $uibModalInstance.close(false);
-  };
-
-  $scope.ok = function() {
-    $uibModalInstance.close(true);
-  };
-}]).
-controller("ConfirmableDialogCtrl", ["$scope", "$uibModalInstance", "arg", function($scope, $uibModalInstance, arg) {
+controller("ConfirmableModalCtrl",
+           ["$scope", "$uibModalInstance", "arg", "confirmFun", "cancelFun", function($scope, $uibModalInstance, arg, confirmFun, cancelFun) {
   $scope.arg = arg;
+  $scope.confirmFun = confirmFun;
+  $scope.cancelFun = cancelFun;
 
-  $scope.ok = function (result) {
-    $uibModalInstance.close(result);
-  };
+  $scope.confirm = function(result) {
+    if ($scope.confirmFun) {
+      $scope.confirmFun(result);
+    }
 
-  $scope.cancel = function () {
-    $uibModalInstance.dismiss("cancel");
-  };
-}]);
+    return $uibModalInstance.close(result);
+  }
 
-GLClient.controller("DisclaimerModalCtrl", ["$scope", "$rootScope", "$uibModalInstance",
-                    function($scope, $rootScope, $uibModalInstance) {
-  $scope.ok = function () {
-    $uibModalInstance.close();
-    $rootScope.setPage("submissionpage");
-  };
+  $scope.cancel = function(result) {
+    if ($scope.cancelFun) {
+      $scope.cancelFun(result);
+    }
+
+    return $uibModalInstance.dismiss('cancel');
+  }
 }]);

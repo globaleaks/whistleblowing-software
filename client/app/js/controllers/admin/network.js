@@ -169,15 +169,13 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
   };
 
   $scope.deleteFile = function(resource) {
-    var targetFunc = function() {
-      return resource.$delete().then(refreshConfig);
-    };
-
     $uibModal.open({
       templateUrl: "views/partials/admin_review_action.html",
-      controller: "reviewModalCtrl",
+      controller: "ConfirmableModalCtrl",
       resolve: {
-        targetFunc: function() { return targetFunc; },
+        arg: undefined,
+        confirmFun: function() { return function() { return resource.$delete().then(refreshConfig);} },
+        cancelFun: undefined
       },
     });
   };
@@ -188,28 +186,22 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
   };
 
   $scope.toggleCfg = function() {
-    // A promise which resolves only after a modal has been displayed
-    var modal_open = $q.defer();
-
     if ($scope.tls_config.enabled) {
       if ($location.protocol() === "https") {
-        // The next request is about to disable https meaning the interface is
-        // about to be unreachable.
         $uibModal.open({
           templateUrl: "views/partials/disable_input.html",
-          controller: "disableInputModalCtrl",
+          controller: "ConfirmableModalCtrl",
           resolve: {
-            modal_open: function() { return modal_open; },
-          },
+            arg: undefined,
+            confirmFun: undefined,
+            cancelFun: undefined
+          }
         });
 
-        modal_open.promise.then($scope.tls_config.$disable);
-      } else {
-        // Just disable https and refresh the interface
-        modal_open.promise.then($scope.tls_config.$disable).then(refreshConfig);
-        modal_open.resolve();
       }
-    } {
+
+      $scope.tls_config.$disable().then(refreshConfig);
+    } else {
       $scope.tls_config.$enable().then(refreshConfig);
     }
   };
@@ -228,16 +220,14 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
   };
 
   $scope.resetCfg = function() {
-    var targetFunc = function() {
-      return $scope.tls_config.$delete().then(refreshConfig);
-    };
-
     $uibModal.open({
       templateUrl: "views/partials/admin_review_action.html",
-      controller: "reviewModalCtrl",
+      controller: "ConfirmableModalCtrl",
       resolve: {
-        targetFunc: function() { return targetFunc; },
-      },
+	arg: undefined,
+        confirmFun: function() { return function() { $scope.tls_config.$delete().then(refreshConfig); } },
+        cancelFun: undefined
+      }
     });
   };
 }]).

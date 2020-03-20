@@ -1048,12 +1048,13 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
         var modal = $uibModal.open({
           templateUrl: template,
-          controller: "ConfirmableDialogCtrl",
-          scope: scope,
+          controller: "ConfirmableModalCtrl",
           resolve: {
             arg: function () {
               return arg;
-            }
+            },
+            confirmFun: undefined,
+            cancelFun: undefined
           }
         });
 

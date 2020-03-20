@@ -127,7 +127,7 @@ controller("QuestionaireOperationsCtrl",
     $uibModalInstance.close();
   };
 
-  $scope.ok = function () {
+  $scope.confirm = function () {
     $uibModalInstance.close();
 
     if ($scope.operation === "duplicate") {

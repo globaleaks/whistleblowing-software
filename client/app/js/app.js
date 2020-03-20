@@ -573,7 +573,7 @@ var GLClient = angular.module("GLClient", [
 
     $rootScope.open_confidentiality_modal = function () {
       $uibModal.open({
-        controller: "ModalCtrl",
+        controller: "ConfirmableModalCtrl",
         templateUrl: "views/partials/security_awareness_confidentiality.html",
         size: "lg",
         scope: $rootScope
@@ -583,9 +583,13 @@ var GLClient = angular.module("GLClient", [
     $rootScope.open_disclaimer_modal = function () {
       $uibModal.open({
         templateUrl: "views/partials/disclaimer.html",
-        controller: "DisclaimerModalCtrl",
+        controller: "ConfirmableModalCtrl",
         size: "lg",
-        scope: $rootScope
+	resolve: {
+          arg: undefined,
+          confirmFun: function() { return function() {$rootScope.setPage('submissionpage') } },
+          cancelFun: undefined
+	}
       });
     };
 

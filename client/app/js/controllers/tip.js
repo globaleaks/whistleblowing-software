@@ -246,7 +246,7 @@ controller("TipOperationsCtrl",
     $uibModalInstance.close();
   };
 
-  $scope.ok = function () {
+  $scope.confirm = function () {
     $uibModalInstance.close();
 
     if ($scope.args.operation === "postpone_expiration") {
@@ -286,7 +286,7 @@ controller("WBTipFileDownloadCtrl", ["$scope", "$uibModalInstance", "WBTipDownlo
   $scope.ctx = "download";
   $scope.file = file;
   $scope.tip = tip;
-  $scope.ok = function() {
+  $scope.confirm = function() {
     $uibModalInstance.close();
     WBTipDownloadFile(file);
   };
@@ -304,7 +304,7 @@ controller("IdentityAccessRequestCtrl",
     $uibModalInstance.close();
   };
 
-  $scope.ok = function () {
+  $scope.confirm = function () {
     $uibModalInstance.close();
 
     return $http.post("rtip/" + tip.id + "/identityaccessrequests", {"request_motivation": $scope.request_motivation}).
