@@ -1,4 +1,4 @@
-<div data-ng-if="!connection.tor" data-ng-init="connection.privacy_badge_open = true" data-ng-mouseenter="connection.privacy_badge_open = true">
+<div data-ng-if="!connection.tor" data-ng-init="connection.privacy_badge_open = true">
   <div id="PrivacyBadge" class="clearfix">
     <div data-ng-if="!public.node.enable_custom_privacy_badge">
       <div id="PrivacyBadgeTextBox" class="float-left">
@@ -18,21 +18,15 @@
           </div>
         </div>
       </div>
-      <div id="PrivacyBoxCloseButton" class="float-right">
-        <div data-ng-click="connection.privacy_badge_open = false">
-          <i class="fas fa-times"></i>
-        </div>
-      </div>
     </div>
     <div data-ng-if="public.node.enable_custom_privacy_badge">
       <div id="PrivacyBoxTextBox" class="float-left">
         <span id="PrivacyBadgeCustomText" data-ng-show="connection.privacy_badge_open">{{public.node.custom_privacy_badge_text}}</span>
       </div>
-      <div id="PrivacyBoxCloseButton" class="float-right">
-        <div data-ng-click="connection.privacy_badge_open = false">
-          <i class="fas fa-times"></i>
-        </div>
-      </div>
+    </div>
+    <div id="PrivacyBoxCloseButton" class="float-right" data-ng-click="connection.privacy_badge_open = !connection.privacy_badge_open">
+      <i data-ng-if="connection.privacy_badge_open === false" class="fas fa-chevron-circle-down" uib-popover="{{'Expand' | translate}}" popover-placement="left"></i>
+      <i data-ng-if="connection.privacy_badge_open === true" class="fas fa-chevron-circle-up" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>
     </div>
   </div>
 </div>

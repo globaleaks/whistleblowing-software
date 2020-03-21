@@ -2,8 +2,8 @@
   <div class="card-header clearfix" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss(); $event.stopPropagation();">
     <span data-translate>Recipient list</span>
     <span class="float-right">
-      <i data-ng-if="!collapsed" class="fas fa-caret-square-up" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>
-      <i data-ng-if="collapsed" class="fas fa-caret-square-down" uib-popover="{{'Expand' | translate}}" popover-placement="left"></i>
+      <i data-ng-if="!collapsed" class="fas fa-chevron-up" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>
+      <i data-ng-if="collapsed" class="fas fa-chevron-down" uib-popover="{{'Expand' | translate}}" popover-placement="left"></i>
     </span>
   </div>
   <div class="card-body" data-ng-show="!collapsed">
