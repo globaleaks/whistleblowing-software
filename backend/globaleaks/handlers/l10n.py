@@ -34,7 +34,7 @@ def get_l10n(session, tid, lang):
     :return: A dictionary containing the custom texts configured for a specific language
     """
     if tid != 1:
-        config = ConfigFactory(session, 1)
+        config = ConfigFactory(session, tid)
 
         if config.get_val('mode') != 'default':
             tid = 1
