@@ -263,7 +263,7 @@ class BaseHandler(object):
         self.request.setHeader(b'X-Download-Options', b'noopen')
         self.request.setHeader(b'Content-Type', b'application/octet-stream')
         self.request.setHeader(b'Content-Disposition',
-                               'attachment; filename="%s"' % filename)
+                               b'attachment; filename="%s"' % filename)
 
         return serve_file(self.request, fp)
 
