@@ -8,7 +8,7 @@ from globaleaks.models import fill_localized_keys
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
-from globaleaks.utils.utility import read_json_file
+from globaleaks.utils.fs import read_json_file
 
 
 def fieldtree_ancestors(session, field_id):

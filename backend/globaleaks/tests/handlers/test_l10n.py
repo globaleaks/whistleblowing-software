@@ -16,7 +16,8 @@ class TestL10NHandler(helpers.TestHandler):
     @inlineCallbacks
     def test_get(self):
         handler = self.request()
-        yield self.assertFailure(handler.get(u'unexistent'), errors.ResourceNotFound)
+        response = yield handler.get(u'unexistent')
+        self.assertEqual(response, {})
 
         handler = self.request()
         response = yield handler.get(lang=u'en')

@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import io
+import json
 import os
 import random
 
@@ -75,10 +77,6 @@ def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
     :param trusted_absolute_prefix: A prefix of the sandbox
     :param untrusted_path:  The untrasted path
     """
-    if not os.path.isabs(trusted_absolute_prefix):
-        raise Exception("programming error: trusted_absolute_prefix is not an absolute path: %s" %
-                        trusted_absolute_prefix)
-
     untrusted_path = os.path.abspath(untrusted_path)
     trusted_absolute_prefix = os.path.abspath(trusted_absolute_prefix)
 
@@ -87,3 +85,25 @@ def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
                 trusted_absolute_prefix, untrusted_path)
 
         raise errors.DirectoryTraversalError
+
+
+def get_disk_space(path):
+    statvfs = os.statvfs(path)
+    free_bytes = statvfs.f_frsize * statvfs.f_bavail
+    total_bytes = statvfs.f_frsize * statvfs.f_blocks
+    return free_bytes, total_bytes
+
+
+def read_file(p):
+    try:
+        with io.open(p, 'r', encoding='utf-8') as f:
+            return f.read().rstrip("\n")
+    except:
+        return ""
+
+
+def read_json_file(p):
+    try:
+        return json.loads(read_file(p))
+    except:
+        return {}

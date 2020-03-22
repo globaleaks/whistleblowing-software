@@ -11,7 +11,7 @@ from globaleaks.models import Questionnaire
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
-from globaleaks.utils.utility import read_json_file
+from globaleaks.utils.fs import read_json_file
 
 
 class TestQuestionnairesCollection(helpers.TestCollectionHandler):

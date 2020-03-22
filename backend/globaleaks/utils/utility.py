@@ -32,22 +32,6 @@ def get_distribution_codename():
     return ""
 
 
-def get_disk_space(path):
-    statvfs = os.statvfs(path)
-    free_bytes = statvfs.f_frsize * statvfs.f_bavail
-    total_bytes = statvfs.f_frsize * statvfs.f_blocks
-    return free_bytes, total_bytes
-
-
-def read_file(p):
-    with io.open(p, 'r', encoding='utf-8') as f:
-        return f.read().rstrip("\n")
-
-
-def read_json_file(p):
-    return json.loads(read_file(p))
-
-
 def drop_privileges(user, uid, gid):
     if os.getgid() != gid:
         os.setgid(gid)

@@ -3,7 +3,7 @@ import os
 
 from globaleaks.models.config import ConfigFactory
 from globaleaks.settings import Settings
-from globaleaks.utils.utility import read_json_file
+from globaleaks.utils.fs import read_json_file
 
 
 def load_profile(session, tid, name):

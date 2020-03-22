@@ -896,7 +896,7 @@ class WBFileHandler(BaseHandler):
             tip_prv_key = GCE.asymmetric_decrypt(self.current_user.cc, tip_prv_key)
             filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
 
-        yield self.write_file_as_download(wbfile['name'], fo)
+        yield self.write_file_as_download(wbfile['name'], filelocation)
 
 
 class RTipWBFileHandler(WBFileHandler):
