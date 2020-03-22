@@ -241,7 +241,10 @@ class BaseHandler(object):
 
         return open(filepath, 'rb')
 
-    def write_file_fo(self, filename, fo):
+    def write_file(self, filename, fp):
+        if not isinstance(fp, file):
+          fp = self.open_file(fp)
+
         if filename.endswith('.gz'):
             self.request.setHeader(b'Content-encoding', b'gzip')
             filename = filename[:-3]
@@ -250,23 +253,18 @@ class BaseHandler(object):
         if mime_type:
             self.request.setHeader(b'Content-Type', mime_type)
 
-        return serve_file(self.request, fo)
+        return serve_file(self.request, fp)
 
-    def write_file(self, filename, filepath):
-        fo = self.open_file(filepath)
-        return self.write_file_fo(filename, fo)
+    def write_file_as_download(self, filename, fp):
+        if not isinstance(fp, file):
+          fp = self.open_file(fp)
 
-    def write_file_as_download_fo(self, filename, fo):
         self.request.setHeader(b'X-Download-Options', b'noopen')
         self.request.setHeader(b'Content-Type', b'application/octet-stream')
         self.request.setHeader(b'Content-Disposition',
                                'attachment; filename="%s"' % filename)
 
-        return serve_file(self.request, fo)
-
-    def write_file_as_download(self, filename, filepath):
-        fo = self.open_file(filepath)
-        return self.write_file_as_download_fo(filename, fo)
+        return serve_file(self.request, fp)
 
     def get_current_user(self):
         api_session = self.get_api_session()
