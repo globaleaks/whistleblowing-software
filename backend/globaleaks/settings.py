@@ -2,8 +2,10 @@
 # settings: Define Settings, main class handling GlobaLeeaks runtime settings
 # ******
 import getpass
+import grp
 import os
 import platform
+import pwd
 import re
 import sys
 
@@ -104,14 +106,8 @@ class SettingsClass(object, metaclass=Singleton):
         self.user = getpass.getuser()
         self.group = getpass.getuser()
 
-        # Initialize to None since Windows doesn't have a direct 1:1 concept
-        # of uid/gid.
-        self.uid = None
-        self.gid = None
-
-        if platform.system() != 'Windows':
-            self.uid = os.getuid()
-            self.gid = os.getgid()
+        self.uid = os.getuid()
+        self.gid = os.getgid()
 
         self.devel_mode = False
         self.disable_swap = False
@@ -203,21 +199,17 @@ class SettingsClass(object, metaclass=Singleton):
 
         self.socks_port = self.cmdline_options.socks_port
 
-        if platform.system() != 'Windows':
-            if (self.cmdline_options.user and self.cmdline_options.group is None) or \
-               (self.cmdline_options.group and self.cmdline_options.user is None):
-                self.print_msg("Error: missing user or group option")
-                sys.exit(1)
+        if (self.cmdline_options.user and self.cmdline_options.group is None) or \
+            (self.cmdline_options.group and self.cmdline_options.user is None):
+            self.print_msg("Error: missing user or group option")
+            sys.exit(1)
 
-            if self.cmdline_options.user and self.cmdline_options.group:
-                import grp
-                import pwd
+        if self.cmdline_options.user and self.cmdline_options.group:
+            self.user = self.cmdline_options.user
+            self.group = self.cmdline_options.group
 
-                self.user = self.cmdline_options.user
-                self.group = self.cmdline_options.group
-
-                self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
-                self.gid = grp.getgrnam(self.cmdline_options.group).gr_gid
+            self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
+            self.gid = grp.getgrnam(self.cmdline_options.group).gr_gid
 
         if self.cmdline_options.devel_mode:
             self.set_devel_mode()
