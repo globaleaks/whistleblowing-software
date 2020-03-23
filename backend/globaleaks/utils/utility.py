@@ -32,15 +32,6 @@ def get_distribution_codename():
     return ""
 
 
-def drop_privileges(user, uid, gid):
-    if os.getgid() != gid:
-        os.setgid(gid)
-        os.initgroups(user, gid)
-
-    if os.getuid() != uid:
-        os.setuid(uid)
-
-
 def fix_file_permissions(path, uid, gid, dchmod, fchmod):
     """
     Recursively fix file permissions on a given path

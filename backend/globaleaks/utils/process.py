@@ -34,6 +34,15 @@ def set_pdeathsig(sig):
         os.kill(os.getpid(), sig)
 
 
+def drop_privileges(user, uid, gid):
+    if os.getgid() != gid:
+        os.setgid(gid)
+        os.initgroups(user, gid)
+
+    if os.getuid() != uid:
+        os.setuid(uid)
+
+
 def disable_swap():
     """
     Disable the usage of SWAP

@@ -18,9 +18,9 @@ from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.log import log, openLogFile, logFormatter, LogObserver
-from globaleaks.utils.process import disable_swap, set_proc_title
+from globaleaks.utils.process import disable_swap, drop_privileges, set_proc_title
 from globaleaks.utils.sock import listen_tcp_on_sock, listen_tls_on_sock, reserve_port_for_ip
-from globaleaks.utils.utility import fix_file_permissions, drop_privileges
+from globaleaks.utils.utility import fix_file_permissions
 
 
 def fail_startup(excep):
