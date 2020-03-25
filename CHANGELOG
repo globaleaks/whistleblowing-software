@@ -1,4 +1,8 @@
-Changes in version 4.0.4 - 2020-04-18
+Changes in version 4.0.5 - 2020-03-25
+    Apply minor UI bugfixing
+    Update translations
+
+Changes in version 4.0.4 - 2020-03-18
     Add mock frunctions: replace, add-before, add-after
     Improve resiliency of notification job
     Fix issues: #2790, #2791
