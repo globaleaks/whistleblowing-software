@@ -30,11 +30,11 @@
                 <i class="fas fa-check"></i>
               </span>
               <span data-ng-if="lang_code !== resources.node.default_language" class="non-default-language"
-                uib-popover="{{'Use as default' | translate}}"
+                uib-tooltip="{{'Use as default' | translate}}"
                 data-ng-click="resources.node.default_language = lang_code">
                 <i class="fas fa-check"></i>
               </span>
-              <span data-ng-if="lang_code !== resources.node.default_language" data-ng-click="removeLang($index, lang_code)" uib-popover="{{'Remove' | translate}}" class="remove-lang-btn">
+              <span data-ng-if="lang_code !== resources.node.default_language" data-ng-click="removeLang($index, lang_code)" uib-tooltip="{{'Remove' | translate}}" class="remove-lang-btn">
                 <i class="fas fa-times"></i>
               </span>
               <i data-ng-if="lang_code === resources.node.default_language" class="fas fa-times disabled-icon"></i>

@@ -29,16 +29,16 @@
               </span>
             </span>
             <span data-ng-if="field.preview" class="badge badge-default">
-              <span uib-popover="{{'Preview' | translate}}" popover-placement="top"><i class="fas fa-list-alt"></i></span>
+              <span uib-tooltip="{{'Preview' | translate}}"><i class="fas fa-list-alt"></i></span>
             </span>
             <span data-ng-if="field.multi_entry" class="badge badge-default">
               <span data-ng-switch="" on="field.type">
-                <span data-ng-switch-when="fileupload" uib-popover="{{'Accept multiple file uploads' | translate}}" popover-placement="top"><i class="fas fa-option-horizontal"></i></span>
-                <span data-ng-switch-default uib-popover="{{'Accept multiple answers for the field' | translate}}" popover-placement="top"><i class="fas fa-option-horizontal"></i></span>
+                <span data-ng-switch-when="fileupload" uib-tooltip="{{'Accept multiple file uploads' | translate}}"><i class="fas fa-option-horizontal"></i></span>
+                <span data-ng-switch-default uib-tooltip="{{'Accept multiple answers for the field' | translate}}"><i class="fas fa-option-horizontal"></i></span>
               </span>
             </span>
             <span data-ng-if="field.required" class="badge badge-danger">
-              <span uib-popover="{{'Required' | translate}}" popover-placement="top"><i class="fas fa-asterisk"></i></span>
+              <span uib-tooltip="{{'Required' | translate}}"><i class="fas fa-asterisk"></i></span>
             </span>
           </span>
           <span class="col-md-6 clearfix" data-ng-if="field.editable">
@@ -61,21 +61,20 @@
               </button>
               <button class="btn btn-sm btn-danger"
                 data-ng-if="field.editable"
-                data-ng-click="delField(field); $event.stopPropagation();"
-                popover-placement="right">
+		data-ng-click="delField(field); $event.stopPropagation();">
                 <span data-translate>Delete</span>
               </button>
               <span data-ng-if="field.step_id !== '' || field.fieldgroup_id !== ''">
-                <button class="btn btn-sm btn-primary" data-ng-click="moveLeftAndSave(field); $event.stopPropagation();" uib-popover="{{'Move left' | translate}}" popover-placement="left">
+                <button class="btn btn-sm btn-primary" data-ng-click="moveLeftAndSave(field); $event.stopPropagation();" uib-tooltip="{{'Move left' | translate}}">
                   <i class="fas fa-chevron-left"></i>
                 </button>
-                <button class="btn btn-sm btn-primary" data-ng-click="moveRightAndSave(field); $event.stopPropagation();" uib-popover="{{'Move right' | translate}}" popover-placement="left">
+                <button class="btn btn-sm btn-primary" data-ng-click="moveRightAndSave(field); $event.stopPropagation();" uib-tooltip="{{'Move right' | translate}}">
                   <i class="fas fa-chevron-right"></i>
                 </button>
-                <button class="btn btn-sm btn-primary" data-ng-click="moveUpAndSave(field); $event.stopPropagation();" uib-popover="{{'Move up' | translate}}" popover-placement="left">
+                <button class="btn btn-sm btn-primary" data-ng-click="moveUpAndSave(field); $event.stopPropagation();" uib-tooltip="{{'Move up' | translate}}">
                   <i class="fas fa-chevron-up"></i>
                 </button>
-                <button class="btn btn-sm btn-primary" data-ng-click="moveDownAndSave(field); $event.stopPropagation();" uib-popover="{{'Move down' | translate}}" popover-placement="left">
+                <button class="btn btn-sm btn-primary" data-ng-click="moveDownAndSave(field); $event.stopPropagation();" uib-tooltip="{{'Move down' | translate}}">
                   <i class="fas fa-chevron-down"></i>
                 </button>
               </span>
@@ -387,29 +386,29 @@
                       <button class="btn btn-sm btn-danger" data-ng-click="delOption(option)">
                         <i class="fas fa-times"></i>
                       </button>
-                      <button data-ng-disabled="$first" class="btn btn-sm btn-primary" data-ng-click="moveOptionUp($index);" uib-popover="{{'Move up' | translate}}" popover-placement="left">
+                      <button data-ng-disabled="$first" class="btn btn-sm btn-primary" data-ng-click="moveOptionUp($index);" uib-tooltip="{{'Move up' | translate}}">
                         <i class="fas fa-chevron-up"></i>
                       </button>
-                      <button data-ng-disabled="$last" class="btn btn-sm btn-primary" data-ng-click="moveOptionDown($index);" uib-popover="{{'Move down' | translate}}" popover-placement="left">
+                      <button data-ng-disabled="$last" class="btn btn-sm btn-primary" data-ng-click="moveOptionDown($index);" uib-tooltip="{{'Move down' | translate}}">
                         <i class="fas fa-chevron-down"></i>
                       </button>
                       <span>
-                        <button class="btn btn-sm" data-ng-class="option.hint1 || option.hint2 ? 'btn-warning' : 'btn-secondary'" data-ng-click="addOptionHintDialog(option)" uib-popover="{{'Hint' | translate}}" popover-placement="left">
+                        <button class="btn btn-sm" data-ng-class="option.hint1 || option.hint2 ? 'btn-warning' : 'btn-secondary'" data-ng-click="addOptionHintDialog(option)" uib-tooltip="{{'Hint' | translate}}">
                           <i class="fas fa-question-circle"></i>
                         </button>
                       </span>
                       <span>
-                        <button class="btn btn-sm" data-ng-class="option.block_submission ? 'btn-danger' : 'btn-secondary'" data-ng-click="flipBlockSubmission(option)" uib-popover="{{'Block the submission' | translate}}" popover-placement="left">
+                        <button class="btn btn-sm" data-ng-class="option.block_submission ? 'btn-danger' : 'btn-secondary'" data-ng-click="flipBlockSubmission(option)" uib-tooltip="{{'Block the submission' | translate}}">
                           <i class="fas fa-ban"></i>
                         </button>
                       </span>
                       <span>
-                        <button class="btn btn-sm" data-ng-class="option.trigger_receiver.length ? 'btn-primary' : 'btn-secondary'" data-ng-click="triggerReceiverDialog(option)" uib-popover="{{'Recipients' | translate}}" popover-placement="left">
+                        <button class="btn btn-sm" data-ng-class="option.trigger_receiver.length ? 'btn-primary' : 'btn-secondary'" data-ng-click="triggerReceiverDialog(option)" uib-tooltip="{{'Recipients' | translate}}">
                           <i class="fas fa-user"></i>
                         </button>
                       </span>
                       <span data-ng-if="resources.node.enable_scoring_system">
-                        <button class="btn btn-sm" data-ng-class="option.score_type !== 'none' ? 'btn-warning' : 'btn-secondary'" data-ng-click="assignScorePointsDialog(option)" uib-popover="{{'Assign score points' | translate}}" popover-placement="left">
+                        <button class="btn btn-sm" data-ng-class="option.score_type !== 'none' ? 'btn-warning' : 'btn-secondary'" data-ng-click="assignScorePointsDialog(option)" uib-tooltip="{{'Assign score points' | translate}}">
                           <i class="fas fa-bolt"></i>
                           <span data-ng-if="option.score_type !== 'none'">
                             <span> {{option.score_points}} </span>

@@ -2,12 +2,12 @@
   <div data-ng-repeat="field in row | orderBy:'x'" data-ng-init="fieldCol=$index" data-ng-if="field.enabled"  data-ng-class="fieldUtilities.getClass(field, row.length)">
     <div data-ng-controller="SubmissionFieldCtrl" id="{{fieldId}}" class="question">
       <div class="question-label">
-        <label data-content="field.hint" uib-popover="{{field.hint}}" popover-placement="right">
+        <label data-content="field.hint" uib-tooltip="{{field.hint}}">
           <span data-ng-if="field.label" class="fieldLabel">{{field.label}}</span>
           <span data-ng-if="field.hint">
             <i class="fas fa-question-circle"></i>
           </span>
-          <span data-ng-if="field.required" class="text-danger sup" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+          <span data-ng-if="field.required" class="text-danger sup" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
         </label>
       </div>
       <div class="question-body">

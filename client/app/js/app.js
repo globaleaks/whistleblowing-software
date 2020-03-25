@@ -504,7 +504,7 @@ var GLClient = angular.module("GLClient", [
     $uibModalProvider.options.focus = true;
 }]).
   config(["$uibTooltipProvider", function($uibTooltipProvider) {
-    $uibTooltipProvider.options({appendToBody: true, trigger: "mouseenter"});
+    $uibTooltipProvider.options({placement: "auto", appendToBody: true, trigger: "mouseenter"});
 }]).
   config(["tmhDynamicLocaleProvider", function(tmhDynamicLocaleProvider) {
     var map = {

@@ -46,10 +46,10 @@
             </span>
             <span class="col-md-5 clearfix">
               <span class="float-right">
-                <button data-ng-show="!$first" class="actionButton btn btn-sm btn-primary" data-ng-click="moveUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
+                <button data-ng-show="!$first" class="actionButton btn btn-sm btn-primary" data-ng-click="moveUp($event, $index)" uib-tooltip="{{'Move up' | translate}}">
                   <i class="fas fa-chevron-up"></i>
                 </button>
-                <button data-ng-show="!$last" class="actionButton btn btn-sm btn-primary" data-ng-click="moveDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
+                <button data-ng-show="!$last" class="actionButton btn btn-sm btn-primary" data-ng-click="moveDown($event, $index)" uib-tooltip="{{'Move down' | translate}}">
                   <i class="fas fa-chevron-down"></i>
                 </button>
                 <button
@@ -73,8 +73,6 @@
                 <button
                   class="btn btn-sm btn-danger"
                   data-ng-click="delStep(step); $event.stopPropagation();"
-                  uib-popover="{{Delete | translate}}"
-                  popover-placement="right">
                   <span data-translate>Delete</span>
                 </button>
               </span>

@@ -8,8 +8,7 @@
     <div class="col-md-12 form-group">
       <label>
         <span data-translate>Domain</span>
-        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}"
-              popover-placement="right">*</span>
+        <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       </label>
       <div class="input-group ltr">
         <input name="subdomain" class="form-control" data-ng-model="signup.subdomain" type="text"
@@ -22,13 +21,13 @@
   <div class="row">
     <div class="col-md-6 form-group">
       <label data-translate>Name</label>
-      <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="name" class="form-control" data-ng-model="signup.name" type="text"
              data-ng-attr-placeholder="{{'Name' | translate}}" required>
     </div>
     <div class="col-md-6 form-group">
       <label data-translate>Surname</label>
-      <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="surname" class="form-control" data-ng-model="signup.surname" type="text"
              data-ng-attr-placeholder="{{'Surname' | translate}}" required>
     </div>
@@ -37,7 +36,7 @@
     <div class="col-md-6 form-group">
       <label>
         <span data-translate>Email address</span>
-        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       </label>
       <input name="mail_address" class="form-control" data-ng-model="signup.email"
              data-ng-attr-placeholder="{{'Email address' | translate}}" data-ng-pattern="email_regexp" type="email"
@@ -50,7 +49,7 @@
     <div class="col-md-6 form-group">
       <label>
         <span data-translate>Email address</span> <span>(</span><span data-translate>Confirmation</span><span>)</span>
-        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       </label>
       <input name="email" class="form-control" data-ng-model="confirmation_email"
              data-ng-attr-placeholder="{{'Email address' | translate}}" data-disable-ccp type="email"
@@ -64,8 +63,7 @@
   <div class="row">
     <div class="col-md-6 form-group">
       <label data-translate>Use case</label>
-      <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}"
-            popover-placement="right">*</span>
+      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <div>
         <select name="use_case" class="custom-select" data-ng-model="signup.use_case" required>
           <option value="" selected="selected"></option>
@@ -79,8 +77,7 @@
     </div>
     <div class="col-md-6 form-group" data-ng-if="signup.use_case == 'other'">
       <label data-translate>Other</label>
-      <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}"
-            popover-placement="right">*</span>
+      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="use_case_other" class="form-control" data-ng-model="signup.use_case_other" type="text"
              data-ng-attr-placeholder="{{'Other' | translate}}" required>
     </div>

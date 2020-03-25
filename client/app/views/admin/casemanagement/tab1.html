@@ -11,7 +11,7 @@
       <div class="form-group">
         <label>
           <span data-translate>Label</span>
-          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+          <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
         </label>
         <div data-ng-class="{'is-invalid': newSubmissionStatus.submissions_status.$error.required}">
           <input name="name" class="form-control" data-ng-model="new_submissions_status.label" type="text" required />
@@ -34,10 +34,10 @@
             <span class="col-md-7 editorHeaderTitle">{{submissions_status.label | translate}}</span>
             <span class="col-md-5 clearfix">
               <span class="float-right">
-                <button data-ng-if="!$first" class="btn btn-sm btn-primary" data-ng-click="moveUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
+                <button data-ng-if="!$first" class="btn btn-sm btn-primary" data-ng-click="moveUp($event, $index)" uib-tooltip="{{'Move up' | translate}}">
                   <i class="fas fa-chevron-up"></i>
                 </button>
-                <button data-ng-if="!$last" class="btn btn-sm btn-primary" data-ng-click="moveDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
+                <button data-ng-if="!$last" class="btn btn-sm btn-primary" data-ng-click="moveDown($event, $index)" uib-tooltip="{{'Move down' | translate}}">
                   <i class="fas fa-chevron-down"></i>
                 </button>
                 <button class="btn btn-sm btn-secondary" data-ng-show="isEditable() && !editing" data-ng-click="toggleEditing(); $event.stopPropagation();">

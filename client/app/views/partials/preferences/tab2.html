@@ -2,7 +2,7 @@
   <div class="form-group" data-ng-if='!Authentication.session.password_change_needed'>
     <label>
       <span data-translate>Current password</span>
-      <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
     </label>
     <input class="form-control" name="oldpassword" data-ng-model="preferences.old_password" type="password" autocomplete="off" data-ng-class="{'is-invalid': freferences.password && passwordChangeForm.oldpassword.$error.required}" required />
     <p class="text-danger" data-ng-show="preferences.password && passwordChangeForm.oldpassword.$error.required">
@@ -13,7 +13,7 @@
   <div class="form-group">
     <label>
       <span data-translate>New password</span>
-      <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
     </label>
     <input class="form-control" name="password" data-ng-model="preferences.password" type="password" autocomplete="off" data-password-strength-validator data-ng-class="{'is-invalid': preferences.password && passwordChangeForm.password.$error.passwordStrengthValidator}" required />
     <password-meter data-ng-show="passwordStrengthScore" value="passwordStrengthScore"></password-meter>
@@ -28,7 +28,7 @@
   <div class="form-group">
     <label>
       <span data-translate>Type your new password again</span>
-      <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
     </label>
     <input class="form-control" name="checkpassword" data-ng-model="preferences.check_password" type="password" autocomplete="off" data-ng-class="{'is-invalid': preferences.password && !passwordChangeForm.password.$error && (passwordChangeForm.checkpassword.$error.required || preferences.password !== preferences.check_password)}" required/>
     <p class="text-danger" data-ng-show="preferences.password && !passwordChangeForm.password.$error.passwordStrengthValidator && (preferences.password !== preferences.check_password)">

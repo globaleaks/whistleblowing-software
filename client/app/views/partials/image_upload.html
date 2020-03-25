@@ -7,10 +7,10 @@
   <div class="imageUpload">
     <label class="changePictureButton text-primary"
 	   for="imageFile"
-	   uib-popover="{{'Edit' | translate}}"
+	   uib-tooltip="{{'Edit' | translate}}"
 	   data-ng-show="!imageUploadModel[imageUploadModelAttr] && imageUploadObj.flow.files.length == 0"><input type="file" class="custom-file-input" id="imageFile" flow-btn><i class="fas fa-edit"></i></label>
     <span class="deletePictureButton text-danger"
-	    uib-popover="{{'Delete' | translate}}"
+	    uib-tooltip="{{'Delete' | translate}}"
             data-ng-show="imageUploadModel[imageUploadModelAttr] || imageUploadObj.flow.files.length > 0"
             data-ng-click="deletePicture(); $event.stopPropagation();">
       <i class="fas fa-times"></i>

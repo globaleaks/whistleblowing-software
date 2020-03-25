@@ -20,7 +20,7 @@
       <ol class="selectionList">
         <li data-ng-repeat="user in arg.trigger_receiver">
           <span class="action-btns">
-            <span data-ng-click="arg.trigger_receiver.splice($index, 1)" uib-popover="{{'Remove' | translate}}">
+            <span data-ng-click="arg.trigger_receiver.splice($index, 1)" uib-tooltip="{{'Remove' | translate}}">
               <i class="fas fa-times"></i>
             </span>
           </span>

@@ -19,7 +19,7 @@
         <div class="row form-group">
           <label class="col-md-4">
             <span data-translate>Project name</span>
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+            <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
           </label>
           <div class="col-md-8">
             <input name="node_name" class="form-control" data-ng-model="wizard.node_name" data-ng-attr-placeholder="{{'Project name' | translate}}" type="text" required>
@@ -68,7 +68,7 @@
         <div class="row form-group">
           <label class="col-md-4">
             <span data-translate>Username</span>
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+            <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
           </label>
           <div class="col-md-8">
             <input name="admin_name" class="form-control" data-ng-model="wizard.admin_username" type="text" data-ng-attr-placeholder="{{'Username' | translate}}" required>
@@ -77,7 +77,7 @@
         <div class="row form-group">
           <label class="col-md-4">
             <span data-translate>Name</span>
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+            <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
           </label>
           <div class="col-md-8">
             <input name="admin_name" class="form-control" data-ng-model="wizard.admin_name" type="text" data-ng-attr-placeholder="{{'Name' | translate}}" required>
@@ -86,7 +86,7 @@
         <div class="row form-group">
           <label class="col-md-4">
             <span data-translate>Email address</span>
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+            <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
           </label>
           <div class="col-md-8">
             <input name="admin_email" class="form-control" data-ng-model="wizard.admin_mail_address" data-ng-attr-placeholder="{{'Email address' | translate}}" data-ng-pattern="email_regexp" type="text" data-ng-class="{'is-invalid': validated4 && (wizardFormStep4.admin_email.$error.required || wizardFormStep4.admin_email.$error.pattern)}" required>
@@ -98,7 +98,7 @@
         <div class="row form-group">
           <label class="col-md-4">
             <span data-translate>Password</span>
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+            <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
           </label>
           <div class="col-md-8">
             <input name="password" class="form-control" data-ng-model="wizard.admin_password" type="password" data-ng-attr-placeholder="{{'Password' | translate}}" autocomplete="off" data-password-strength-validator data-ng-class="{'is-invalid': validated4 && (wizardFormStep4.password.$error.required || (wizardFormStep4.password.$error.passwordStrength))}" required />
@@ -111,7 +111,7 @@
         <div class="row form-group">
           <label class="col-md-4">
             <span data-translate>Password</span> (<span data-translate>Confirm</span>)
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+            <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
           </label>
           <div class="col-md-8">
             <input name="checkpassword" class="form-control" data-ng-model="admin_check_password" type="password" data-ng-attr-placeholder="{{'Password' | translate}}" autocomplete="off" data-ng-class="{'is-invalid': validated4 && (!wizardFormStep4.password.$error.passwordStrengthValidator && wizard.admin_password && (wizard.admin_password !== admin_check_password))}" required />
@@ -139,7 +139,7 @@
           <div class="row form-group">
             <label class="col-md-4">
               <span data-translate>Username</span>
-              <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+              <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
             </label>
             <div class="col-md-8">
               <input name="admin_name" class="form-control" data-ng-model="wizard.receiver_username" type="text" data-ng-attr-placeholder="{{'Username' | translate}}"  data-ng-class="{'is-invalid': wizard.receiver_username === wizard.admin_username}" required>
@@ -151,7 +151,7 @@
           <div class="row form-group">
             <label class="col-md-4">
               <span data-translate>Name</span>
-              <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+              <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
             </label>
             <div class="col-md-8">
               <input name="receiver_name" class="form-control" data-ng-model="wizard.receiver_name" type="text" data-ng-attr-placeholder="{{'Name' | translate}}" data-ng-disabled="wizard.skip_recipient_account_creation" required>
@@ -160,7 +160,7 @@
           <div class="row form-group">
             <label class="col-md-4">
               <span data-translate>Email address</span>
-              <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+              <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
             </label>
             <div class="col-md-8">
               <input name="receiver_email" class="form-control" data-ng-model="wizard.receiver_mail_address" data-ng-pattern="email_regexp" type="text" data-ng-attr-placeholder="{{'Email address' | translate}}" data-ng-class="{'is-invalid': validated5 && wizardFormStep5.receiver_email.$error.required || wizardFormStep5.receiver_email.$error.pattern}" data-ng-disabled="wizard.skip_recipient_account_creation" required>

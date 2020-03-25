@@ -11,8 +11,7 @@
       <div class="form-group">
         <label>
           <span data-translate>Name</span>
-          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}"
-                popover-placement="right">*</span>
+          <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
         </label>
         <div data-ng-class="{'is-invalid': newContext.name.$error.required}">
           <input name="name" class="form-control" data-ng-model="new_context.name" type="text" required/>
@@ -39,11 +38,11 @@
           <span class="col-md-5 clearfix">
             <span class="float-right">
               <button data-ng-if="!$first" class="btn btn-sm btn-primary" data-ng-click="moveUp($event, $index)"
-                      uib-popover="{{'Move up' | translate}}" popover-placement="left">
+                      uib-tooltip="{{'Move up' | translate}}">
                 <i class="fas fa-chevron-up"></i>
               </button>
               <button data-ng-if="!$last" class="btn btn-sm btn-primary" data-ng-click="moveDown($event, $index)"
-                      uib-popover="{{'Move down' | translate}}" popover-placement="left">
+                      uib-tooltip="{{'Move down' | translate}}">
                 <i class="fas fa-chevron-down"></i>
               </button>
               <button class="btn btn-sm btn-secondary"
@@ -136,16 +135,16 @@
                         <span data-ng-controller="AdminContextReceiverSelectorCtrl">
                           <span class="action-btns">
                             <span data-ng-if="!$first" data-ng-click="moveUp($index)"
-                                  uib-popover="{{'Move up' | translate}}">
+                                  uib-tooltip="{{'Move up' | translate}}">
                               <i class="fas fa-chevron-up"></i>
                             </span>
                             <i data-ng-if="$first || $last" class="fas fa-none"></i>
                             <span data-ng-if="!$last" data-ng-click="moveDown($index)"
-                                  uib-popover="{{'Move down' | translate}}">
+                                  uib-tooltip="{{'Move down' | translate}}">
                               <i class="fas fa-chevron-down"></i>
                             </span>
                             <span data-ng-click="context.receivers.splice($index, 1)"
-                                  uib-popover="{{'Remove' | translate}}">
+                                  uib-tooltip="{{'Remove' | translate}}">
                               <i class="fas fa-times"></i>
                             </span>
                           </span>

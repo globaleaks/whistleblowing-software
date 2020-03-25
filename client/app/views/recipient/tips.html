@@ -5,8 +5,7 @@
         <span id="tip-action-select-all"
               data-ng-if="selected_tips.length !== tips.length"
               data-ng-click="select_all()"
-              uib-popover="{{'Select all' | translate}}"
-              popover-placement="top"
+              uib-tooltip="{{'Select all' | translate}}"
               class="btn btn-secondary">
           <i class="far fa-square"></i>
         </span>
@@ -14,8 +13,7 @@
         <span id="tip-action-select-all"
               data-ng-if="selected_tips.length === tips.length"
               data-ng-click="deselect_all()"
-              uib-popover="{{'Deselect all' | translate}}"
-              popover-placement="top"
+              uib-tooltip="{{'Deselect all' | translate}}"
               class="btn btn-secondary">
           <i class="fas fa-check-square"></i>
         </span>
@@ -23,8 +21,7 @@
         <span id="tip-action-postpone-selected"
               data-ng-if="selected_tips.length && preferences.can_postpone_expiration"
               data-ng-click="tip_postpone_all()"
-              uib-popover="{{'Postpone the expiration date' | translate}}"
-              popover-placement="top"
+              uib-tooltip="{{'Postpone the expiration date' | translate}}"
               class="btn btn-secondary">
           <i class="fas fa-clock"></i>
         </span>
@@ -32,8 +29,7 @@
         <span id="tip-action-delete-selected"
               data-ng-if="selected_tips.length && preferences.can_delete_submission"
               data-ng-click="tip_delete_all()"
-              uib-popover="{{'Delete' | translate}}"
-              popover-placement="top"
+              uib-tooltip="{{'Delete' | translate}}"
               class="btn btn-secondary">
           <span class="fas fa-trash"></span>
         </span>
@@ -41,8 +37,7 @@
 
       <span id="tip-action-reload"
             data-ng-click="reload()"
-            uib-popover="{{'Refresh' | translate}}"
-            popover-placement="top"
+            uib-tooltip="{{'Refresh' | translate}}"
             class="btn btn-secondary">
         <span class="fas fa-sync"></span>
       </span>
@@ -190,7 +185,7 @@
           </span>
           <span name="TipExport"
                 data-ng-click="exportTip(tip); $event.stopPropagation()"
-                uib-popover="{{'Export' | translate}}" popover-placement="top"
+                uib-tooltip="{{'Export' | translate}}"
                 novalidate>
             <button id="tip-action-export" class="btn btn-sm btn-secondary">
               <i class="fas fa-save"></i>
@@ -210,9 +205,9 @@
         </td>
         <td class="TipInfoLastAccess">
           <i data-ng-if="tip.wb_last_access >= tip.update_date" class="fas fa-check"
-             uib-popover="{{'The whistleblower has already read the latest update' | translate }} ({{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
+             uib-tooltip="{{'The whistleblower has already read the latest update' | translate }} ({{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
           <i data-ng-if="tip.wb_last_access < tip.update_date" class="fas fa-times"
-             uib-popover="{{'The whistleblower has not read the latest update yet' | translate }}"></i>
+             uib-tooltip="{{'The whistleblower has not read the latest update yet' | translate }}"></i>
         </td>
         <td class="TipInfoFilesCount">{{tip.file_count}}</td>
         <td class="TipInfoCommentCount">{{tip.comment_count}}</td>

@@ -15,7 +15,7 @@
         <div class="form-group">
           <label>
             <span data-translate>Name</span>
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+            <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
           </label>
         <div>
           <input name="name" class="form-control" data-ng-model="new_questionnaire.name" type="text" data-ng-class="{'is-invalid': newQuestionnaire.name.$error.required}" required />
