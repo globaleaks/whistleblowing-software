@@ -758,20 +758,6 @@ var GLClient = angular.module("GLClient", [
       if ($rootScope.public) {
         Utils.route_check();
       }
-
-      var path = $location.path();
-      var embedded = "/embedded/";
-
-      if (path.substr(0, embedded.length) === embedded) {
-        $rootScope.embedded = true;
-        var search = $location.search();
-        if (Object.keys(search).length === 0) {
-          $location.path(path.replace("/embedded/", "/"));
-          $location.search("embedded=true");
-        } else {
-          $location.url($location.url().replace("/embedded/", "/") + "&embedded=true");
-        }
-      }
     });
 
     $rootScope.$on("$routeChangeSuccess", function (event, current) {
