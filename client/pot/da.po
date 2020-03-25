@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-10 22:24+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-03-16 11:21+0000\n"
+"Last-Translator: Casper Petersen <casper_petersen@hotmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -602,7 +602,7 @@ msgid "seconds"
 msgstr "sekunder"
 
 msgid "This domain name is not available."
-msgstr ""
+msgstr "Domænenavnet er ikke tilgængeligt."
 
 msgid "Select the context of your report:"
 msgstr "Vælg hvilken sammehæng din indsendelse indgår i."
@@ -960,7 +960,7 @@ msgid "Disabled"
 msgstr "Deaktiveret"
 
 msgid "State"
-msgstr "Kommune"
+msgstr "Status"
 
 msgid "Enabled"
 msgstr "Aktiveret"

@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-10 22:24+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-03-24 15:33+0000\n"
+"Last-Translator: Joan Bitlloch <joanbit@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -550,7 +550,7 @@ msgid "Surname"
 msgstr "Cognom"
 
 msgid "New"
-msgstr "Nova"
+msgstr "Nou"
 
 msgid "Opened"
 msgstr "Obert"
@@ -609,7 +609,7 @@ msgid "seconds"
 msgstr "segons"
 
 msgid "This domain name is not available."
-msgstr ""
+msgstr "Aquest nom de domini no està disponible."
 
 msgid "Select the context of your report:"
 msgstr "Selecciona el context del teu informe:"
@@ -2342,7 +2342,7 @@ msgid "This is an email to notify you of a new message on an existing report."
 msgstr "Aquest és un correu electrònic per avisar-te d'un nou comentari en un informe existent."
 
 msgid "New message"
-msgstr "Nous missatge"
+msgstr "Nou missatge"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "

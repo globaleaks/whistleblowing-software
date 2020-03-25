@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-10 22:24+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-03-16 12:16+0000\n"
+"Last-Translator: vargaviktor <viktor.varga@gmail.com>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -146,7 +146,7 @@ msgid "Deselect all"
 msgstr "Összes kijelölésének megszüntetése"
 
 msgid "Refresh"
-msgstr " \nFrissítés"
+msgstr "Frissítés"
 
 msgid "Context"
 msgstr "Kontextus"
@@ -613,7 +613,7 @@ msgid "seconds"
 msgstr "másodpercet"
 
 msgid "This domain name is not available."
-msgstr ""
+msgstr "Ez a domain nem elérhető."
 
 msgid "Select the context of your report:"
 msgstr "Válassza ki a beküldés környezetét:"
@@ -824,10 +824,10 @@ msgid "High"
 msgstr "Magas"
 
 msgid "megabytes"
-msgstr "megabájtokban"
+msgstr "megabájt"
 
 msgid "percentage"
-msgstr "százalékban"
+msgstr "százalék"
 
 msgid "Enable automatic backups"
 msgstr "Automatikus mentés engedélyezése"
