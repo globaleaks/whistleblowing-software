@@ -173,7 +173,7 @@
             },
             "max_len": {
               "type": "int",
-              "value": "-1"
+              "value": "200"
             },
             "input_validation": {
               "type": "unicode",
@@ -305,7 +305,7 @@
             },
             "max_len": {
               "type": "int",
-              "value": "-1"
+              "value": "2000"
             }
           },
           "options": [],

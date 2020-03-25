@@ -41,7 +41,7 @@
             },
             "max_len": {
               "type": "int",
-              "value": "-1"
+              "value": "100"
             },
             "input_validation": {
               "type": "unicode",
@@ -85,7 +85,7 @@
             },
             "max_len": {
               "type": "int",
-              "value": "-1"
+              "value": "2000"
             }
           },
           "options": [],
