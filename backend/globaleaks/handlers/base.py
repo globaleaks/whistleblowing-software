@@ -243,7 +243,7 @@ class BaseHandler(object):
         return open(filepath, 'rb')
 
     def write_file(self, filename, fp):
-        if not isinstance(fp, io.IOBase):
+        if isinstance(fp, str):
           fp = self.open_file(fp)
 
         if filename.endswith('.gz'):
@@ -257,13 +257,13 @@ class BaseHandler(object):
         return serve_file(self.request, fp)
 
     def write_file_as_download(self, filename, fp):
-        if not isinstance(fp, io.IOBase):
+        if isinstance(fp, str):
           fp = self.open_file(fp)
 
         self.request.setHeader(b'X-Download-Options', b'noopen')
         self.request.setHeader(b'Content-Type', b'application/octet-stream')
         self.request.setHeader(b'Content-Disposition',
-                               b'attachment; filename="%s"' % filename)
+                               'attachment; filename="%s"' % filename)
 
         return serve_file(self.request, fp)
 
