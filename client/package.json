@@ -11,7 +11,7 @@
   "dependencies": {
     "@flowjs/flow.js": "2.14.0",
     "@flowjs/ng-flow": "2.7.8",
-    "@fortawesome/fontawesome-free": "5.12.1",
+    "@fortawesome/fontawesome-free": "5.13.0",
     "angular": "1.7.9",
     "angular-aria": "1.7.9",
     "angular-dynamic-locale": "0.1.37",
@@ -52,7 +52,7 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "5.0.0",
     "node-gettext": "2.0.0",
-    "npm-check-updates": "4.0.4",
+    "npm-check-updates": "4.0.5",
     "nyc": "15.0.0",
     "postcss-rtl": "1.7.3",
     "protractor": "6.0.0",
