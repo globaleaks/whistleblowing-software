@@ -520,8 +520,8 @@ var GLClient = angular.module("GLClient", [
     // Trick to move the flowFactoryProvider config inside run block.
     _flowFactoryProvider = flowFactoryProvider;
 }]).
-  run(["$rootScope", "$http", "$route", "$routeParams", "$location",  "$filter", "$translate", "$uibModal", "$templateCache", "Authentication", "PublicResource", "Utils", "AdminUtils", "fieldUtilities", "GLTranslate", "Access",
-      function($rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $templateCache, Authentication, PublicResource, Utils, AdminUtils, fieldUtilities, GLTranslate, Access) {
+  run(["$rootScope", "$http", "$route", "$routeParams", "$window", "$location",  "$filter", "$translate", "$uibModal", "$templateCache", "Authentication", "PublicResource", "Utils", "AdminUtils", "fieldUtilities", "GLTranslate", "Access",
+      function($rootScope, $http, $route, $routeParams, $window, $location, $filter, $translate, $uibModal, $templateCache, Authentication, PublicResource, Utils, AdminUtils, fieldUtilities, GLTranslate, Access) {
     var script;
 
     $rootScope.started = false;
@@ -748,6 +748,14 @@ var GLClient = angular.module("GLClient", [
       }
     });
 
+    $rootScope.$on("$locationChangeStart", function() {
+      var lang = $location.search().lang;
+      if(lang && lang != GLTranslate.state.language) {
+	$window.location.href = $location.absUrl();
+	$window.location.reload();
+      }
+    });
+
     $rootScope.$on("$routeChangeStart", function() {
       if ($rootScope.public) {
         Utils.route_check();
@@ -760,6 +768,7 @@ var GLClient = angular.module("GLClient", [
         $rootScope.errors = [];
         $rootScope.header_title = current.$$route.header_title;
         $rootScope.sidebar = current.$$route.sidebar;
+
 
         if ($rootScope.public) {
           Utils.set_title();
