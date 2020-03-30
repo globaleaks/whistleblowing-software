@@ -955,8 +955,8 @@ class _SecureFileDelete(Model):
     filepath = Column(UnicodeText, nullable=False)
 
 
-class _Signup(Model):
-    __tablename__ = 'signup'
+class _Subscriber(Model):
+    __tablename__ = 'subscriber'
 
     id = Column(Integer, primary_key=True)
     tid = Column(Integer, nullable=False)
@@ -993,10 +993,11 @@ class _Signup(Model):
                     'organization_location4',
                     'organization_number_employees', 'organization_number_users',
                     'hear_channel',
-                    'client_ip_address', 'client_user_agent',
-                    'activation_token']
+                    'client_ip_address', 'client_user_agent']
 
     bool_keys = ['tos1', 'tos2']
+
+    optional_references = ['activation_token']
 
     @declared_attr
     def __table_args__(self):
@@ -1416,7 +1417,7 @@ class Redirect(_Redirect, Base):
     pass
 
 
-class Signup(_Signup, Base):
+class Subscriber(_Subscriber, Base):
     pass
 
 

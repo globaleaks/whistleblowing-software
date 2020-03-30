@@ -283,9 +283,9 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
-    def migrate_Signup(self):
-        for old_obj in self.session_old.query(self.model_from['Signup']):
-            new_obj = self.model_to['Signup']()
+    def migrate_Subscriber(self):
+        for old_obj in self.session_old.query(self.model_from['Subscriber']):
+            new_obj = self.model_to['Subscriber']()
             for key in new_obj.__table__.columns._data.keys():
                 if key == 'activation_token' and old_obj.activation_token == '':
                     new_obj.activation_token = None
