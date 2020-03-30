@@ -10,7 +10,7 @@ from globaleaks.tests import helpers
 
 @transact
 def get_signup_token(session):
-    return session.query(models.Signup.activation_token).first()[0]
+    return session.query(models.Subscriber.activation_token).first()[0]
 
 
 class TestSignup(helpers.TestHandler):

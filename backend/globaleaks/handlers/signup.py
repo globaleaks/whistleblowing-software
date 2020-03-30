@@ -72,10 +72,10 @@ def signup(session, request, language):
     # Delete the tenants created for the same subdomain that have still not been activated
     # Ticket reference: https://github.com/globaleaks/GlobaLeaks/issues/2640
     subquery = session.query(models.Tenant.id) \
-                      .filter(models.Signup.subdomain == request['subdomain'],
-                              not_(models.Signup.activation_token.is_(None)),
-                              models.Tenant.id == models.Signup.tid,
-                              models.Tenant.subdomain == models.Signup.subdomain) \
+                      .filter(models.Subscriber.subdomain == request['subdomain'],
+                              not_(models.Subscriber.activation_token.is_(None)),
+                              models.Tenant.id == models.Subscriber.tid,
+                              models.Tenant.subdomain == models.Subscriber.subdomain) \
                       .subquery()
 
     session.query(models.Tenant).filter(models.Tenant.id.in_(subquery)).delete(synchronize_session=False)
@@ -83,7 +83,7 @@ def signup(session, request, language):
     tenant_id = db_preallocate_tenant(session, {'label': request['subdomain'],
                                                 'subdomain': request['subdomain']}).id
 
-    signup = models.Signup(request)
+    signup = models.Subscriber(request)
 
     signup.tid = tenant_id
 
@@ -137,9 +137,9 @@ def signup_activation(session, token, hostname, language):
     if not config.get_val('enable_signup'):
         raise errors.ForbiddenOperation
 
-    ret = session.query(models.Signup, models.Tenant) \
-                 .filter(models.Signup.activation_token == token,
-                         models.Tenant.id == models.Signup.tid).one_or_none()
+    ret = session.query(models.Subscriber, models.Tenant) \
+                 .filter(models.Subscriber.activation_token == token,
+                         models.Tenant.id == models.Subscriber.tid).one_or_none()
 
     if ret is None:
         return {}

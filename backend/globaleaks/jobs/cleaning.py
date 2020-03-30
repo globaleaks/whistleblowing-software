@@ -101,8 +101,8 @@ class Cleaning(DailyJob):
         session.query(models.ArchivedSchema).filter(not_(models.ArchivedSchema.hash.in_(subquery))).delete(synchronize_session=False)
 
         # delete the tenants created via signup that has not been completed in 24h
-        subquery = session.query(models.Tenant.id).filter(models.Signup.activation_token != '',
-                                                          models.Signup.tid == models.Tenant.id,
+        subquery = session.query(models.Tenant.id).filter(models.Subscriber.activation_token != '',
+                                                          models.Subscriber.tid == models.Tenant.id,
                                                           models.Tenant.creation_date < datetime_now() - timedelta(days=1)) \
                                                   .subquery()
         session.query(models.Tenant).filter(models.Tenant.id.in_(subquery)).delete(synchronize_session=False)
