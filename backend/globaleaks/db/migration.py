@@ -99,6 +99,7 @@ migration_mapping = OrderedDict([
     ('Stats', [-1, -1, -1, -1, -1, models._Stats, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Step', [Step_v_38, 0, 0, 0, 0, Step_v_44, 0, 0, 0, 0, 0, Step_v_51, 0, 0, 0, 0, 0, 0, models._Step, 0]),
     ('Subscriber', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Subscriber_v_52, 0, 0, 0, 0, 0, 0, 0, 0, models._Subscriber, 0]),
+    ('SubscribedDocument', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._SubscribedDocument]),
     ('Tenant', [-1, -1, -1, -1, -1, models._Tenant, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('User', [User_v_38, 0, 0, 0, 0, User_v_40, 0, User_v_42, 0, User_v_44, 0, User_v_45, User_v_49, 0, 0, 0, User_v_50, User_v_51, models._User, 0]),
     ('UserImg', [-1, -1, -1, -1, -1, models._UserImg, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
