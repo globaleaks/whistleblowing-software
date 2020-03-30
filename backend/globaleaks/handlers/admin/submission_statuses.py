@@ -54,7 +54,7 @@ def serialize_submission_status(session, status, language):
     return get_localized_values(submission_status, status, status.localized_keys, language)
 
 
-def db_initialize_submission_statuses(session, tid):
+def db_initialize_tenant_submission_statuses(session, tid):
     """
     Transaction for initializing the submission statuses of a tenant
 

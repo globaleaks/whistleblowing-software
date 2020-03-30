@@ -6,7 +6,7 @@ from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.admin import file
-from globaleaks.handlers.admin.submission_statuses import db_initialize_submission_statuses
+from globaleaks.handlers.admin.submission_statuses import db_initialize_tenant_submission_statuses
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import db_set_config_variable
 from globaleaks.orm import transact
@@ -41,7 +41,7 @@ def serialize_tenant(session, tenant, signup=None):
     return ret
 
 
-def db_preallocate(session, desc):
+def db_preallocate_tenant(session, desc):
     t = models.db_forge_obj(session, models.Tenant, desc)
 
     # required to generate the tenant id
@@ -50,7 +50,7 @@ def db_preallocate(session, desc):
     return t
 
 
-def db_initialize(session, tenant, mode):
+def db_initialize_tenant(session, tenant, mode):
     tenant.active = True
 
     appdata = load_appdata()
@@ -59,7 +59,7 @@ def db_initialize(session, tenant, mode):
 
     models.config.add_new_lang(session, tenant.id, 'en', appdata)
 
-    db_initialize_submission_statuses(session, tenant.id)
+    db_initialize_tenant_submission_statuses(session, tenant.id)
 
     if mode == 'default':
         file_descs = [
@@ -74,9 +74,9 @@ def db_initialize(session, tenant, mode):
 
 
 def db_create(session, desc):
-    t = db_preallocate(session, desc)
+    t = db_preallocate_tenant(session, desc)
 
-    db_initialize(session, t, desc['mode'])
+    db_initialize_tenant(session, t, desc['mode'])
 
     db_refresh_memory_variables(session, [t.id])
 
@@ -110,7 +110,7 @@ def update(session, id, request):
 
     # A tenant created via signup but not activated may require initialization
     if not session.query(models.Config).filter(models.Config.tid == id).count():
-        db_initialize(session, tenant, request['mode'])
+        db_initialize_tenant(session, tenant, request['mode'])
     else:
         db_set_config_variable(session, id, 'mode', request['mode'])
 
