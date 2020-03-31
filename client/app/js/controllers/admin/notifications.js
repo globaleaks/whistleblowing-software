@@ -3,6 +3,8 @@ controller("AdminMailCtrl", ["$scope", "$http", "AdminNotificationResource",
   function($scope, $http, AdminNotificationResource) {
 
   $scope.text_templates = [
+    "account_activation_mail_template",
+    "account_activation_mail_title",
     "activation_mail_template",
     "activation_mail_title",
     "admin_anomaly_activities",
