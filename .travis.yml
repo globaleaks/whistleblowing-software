@@ -35,7 +35,7 @@ matrix:
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-1' BROWSER='firefox 73'
+    - env: GLTEST='end2end-1' BROWSER='firefox 74'
       dist: bionic
       python: "3.6"
       addons:
@@ -59,13 +59,13 @@ matrix:
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-5' BROWSER='android 8'
+    - env: GLTEST='end2end-5' BROWSER='android 10'
       dist: bionic
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-6' BROWSER='iOS 12.4'
+    - env: GLTEST='end2end-6' BROWSER='iOS 13.2'
       dist: bionic
       python: "3.6"
       addons:
@@ -74,12 +74,12 @@ matrix:
   allow_failures:
     - env: GLTEST='docker'
     - env: GLTEST='end2end-0' BROWSER='chrome 80'
-    - env: GLTEST='end2end-1' BROWSER='firefox 73'
+    - env: GLTEST='end2end-1' BROWSER='firefox 74'
     - env: GLTEST='end2end-2' BROWSER='safari 12'
     - env: GLTEST='end2end-3' BROWSER='edge 80'
     - env: GLTEST='end2end-4' BROWSER='ie 11'
-    - env: GLTEST='end2end-5' BROWSER='android 8'
-    - env: GLTEST='end2end-6' BROWSER='iOS 12.4'
+    - env: GLTEST='end2end-5' BROWSER='android 10'
+    - env: GLTEST='end2end-6' BROWSER='iOS 13.2'
 before_install:
   - nvm install stable
   - nvm use stable
