@@ -291,7 +291,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
     def dump_questionnaire_answers(self, questionnaire, answers):
         output = ''
 
-        questionnaire = sorted(questionnaire, key=lambda k: k['order'])
+        questionnaire = sorted(questionnaire, key=lambda k: k.get('order', 0))
 
         for step in questionnaire:
             output += step['label'] + '\n'
