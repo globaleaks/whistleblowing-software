@@ -14,7 +14,7 @@
         "ca": "Ompliu el vostre informe",
         "ca@valencia": "Emplene les dades del seu enviament",
         "cs": "Vyplňte Vaše podání",
-        "da": "Udfyld din rapport",
+        "da": "Udfyld din indberetning",
         "de": "Füllen Sie Ihre Einreichung aus",
         "dv": "ރިޕޯޓްގެ މަޢުލޫމާތު ފުރިހަމަކުރައްވާ",
         "el": "Συμπληρώστε την αναφορά σας",
@@ -116,7 +116,7 @@
             "ca": "Descriu el teu informe en poques paraules.",
             "ca@valencia": "Descriga el seu enviament en poques paraules.",
             "cs": "Popište své podání několika slovy.",
-            "da": "Beskriv i få ord din rapport.",
+            "da": "Beskriv i få ord din indberetning.",
             "de": "Beschreiben Sie Ihre Einreichung in ein paar Worten.",
             "dv": "ިރިޕޯޓާއި ގުޅޭ ކުރު މަޢުލޫމާތުކޮޅެއް ލިޔުއްވާ",
             "el": "Περιγράψτε την αναφορά σας με λίγα λόγια.",
@@ -173,7 +173,7 @@
             },
             "max_len": {
               "type": "int",
-              "value": "200"
+              "value": "100"
             },
             "input_validation": {
               "type": "unicode",
@@ -248,7 +248,7 @@
             "ca": "Descriu els detalls del teu informe.",
             "ca@valencia": "Descriga els detalls del seu enviament.",
             "cs": "Podrobně popište své podání.",
-            "da": "Beskriv din rapport detaljeret.",
+            "da": "Beskriv din indberetning detaljeret.",
             "de": "Beschreiben Sie Ihre Einreichung im Detail.",
             "dv": "ރިޕޯޓާއި ގުޅޭ މަޢުލޫމާތުދެއްވާ",
             "el": "Περιγράψτε λεπτομερώς την αναφορά σας.",
@@ -372,7 +372,7 @@
             "ca": "Adjunta arxius rellevants a l'informe.",
             "ca@valencia": "Adjunta arxius rellevants per a l'enviament.",
             "cs": "Připojte soubory relevantní k Vašemu podání.",
-            "da": "Vedhæft filer som er relevante for rapporten.",
+            "da": "Vedhæft filer som er relevante for indberetningen.",
             "de": "Hängen Sie Dateien an, die für die Einreichung relevant sind.",
             "dv": "މި ރިޕޯޓާއި ގުޅުންހުރި ފައިލްތަތް އެޓޭޗް ކުރައްވާ.",
             "el": "Επισυνάψτε αρχεία σχετικά με την αναφορά.",

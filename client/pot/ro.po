@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-21 08:41+0000\n"
+"PO-Revision-Date: 2020-03-27 15:16+0000\n"
 "Last-Translator: Cristina Lupu <cristina@cji.ro>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -154,7 +154,7 @@ msgid "Preview"
 msgstr "Previzualizare"
 
 msgid "The whistleblower has already read the last update"
-msgstr "Avertizorul de integritate a citit deja ultimul update.  "
+msgstr "Avertizorul de integritate a citit deja ultima actualizare."
 
 msgid "The whistleblower has not read the last update yet"
 msgstr "Avertizorul de integritate nu a citit încă ultimul update. "
@@ -565,10 +565,10 @@ msgid "Print"
 msgstr "Tipărește"
 
 msgid "Previous"
-msgstr "Anteriorul"
+msgstr "Înapoi"
 
 msgid "Next"
-msgstr "Următorul"
+msgstr "Mai departe"
 
 msgid "First"
 msgstr "Primul"

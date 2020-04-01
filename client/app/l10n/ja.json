@@ -189,7 +189,7 @@
   "One or more recipients have not performed the first login yet. This means they won't be receiving reports.": "1名以上の受信者はまだ一度もログインを実行していません。 つまり、彼らはレポートを受け取らない可能性があるということです。",
   "This user has not performed the first login yet.": "このユーザーはまだ一度もログインを実行していません。",
   "seconds": "秒",
-  "This domain name is not available.": "This domain name is not available.",
+  "This domain name is not available.": "このドメイン名は利用できません。",
   "Select the context of your report:": "報告のコンテキストを選択してください:",
   "Warning! You are not anonymous.": "警告! あなたは匿名ではありません。",
   "Sending reports over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the report anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers.": "HTTPS経由で報告を送信すると、内容ではありませんが、報告したという行為が暴露されます。\n\nあなたが匿名で何かを報告したという事実も隠すことを強くお勧めします。\n\nこれは、他のブラウザにはない匿名を提供するTorブラウザを使用することで達成できます。",

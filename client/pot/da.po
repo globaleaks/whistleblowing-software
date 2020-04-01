@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-16 11:21+0000\n"
+"PO-Revision-Date: 2020-03-27 14:45+0000\n"
 "Last-Translator: Casper Petersen <casper_petersen@hotmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,7 +123,7 @@ msgid "YOUR NAME"
 msgstr "DIT NAVN"
 
 msgid "Label the report"
-msgstr "Navngiv rapporten"
+msgstr "Navngiv indberetningen"
 
 msgid "Postpone the expiration date"
 msgstr "Udsæt udløbsdatoen"
@@ -357,7 +357,7 @@ msgid "Copy and paste the PGP public key here"
 msgstr "Kopier og indsæt den offentlige PGP-nøgle her"
 
 msgid "Password strength:"
-msgstr "Password-styrke"
+msgstr "Adgangskode-styrke"
 
 msgid "Weak"
 msgstr "Svag"
@@ -381,16 +381,16 @@ msgid "Type to search…"
 msgstr "Skriv for at søge..."
 
 msgid "Silence email notifications"
-msgstr "Slå mail-notifikation fra"
+msgstr "Slå e-mail-notifikation fra"
 
 msgid "Turn on email notifications"
-msgstr "Slå mail-notifikation til"
+msgstr "Slå e-mail-notifikation til"
 
 msgid "Enter an email address for the administrator"
-msgstr "Tilføj mail adresse til administratoren"
+msgstr "Tilføj e-mail adresse til administratoren"
 
 msgid "Enter a password for the administrator"
-msgstr "Skriv administrator password"
+msgstr "Skriv administrator adgangskode"
 
 msgid "Failed logins"
 msgstr "Mislykkede loginforsøg"
@@ -411,7 +411,7 @@ msgid "Input validation"
 msgstr "Validering af input"
 
 msgid "Email address"
-msgstr "Mail-adresse"
+msgstr "E-mail-adresse"
 
 msgid "Custom"
 msgstr "Brugerdefineret"
@@ -471,7 +471,7 @@ msgid "Activities"
 msgstr "Aktiviteter"
 
 msgid "Reports"
-msgstr "Rapporter"
+msgstr "Indberetninger"
 
 msgid "Users"
 msgstr "Brugere"
@@ -510,7 +510,7 @@ msgid "Display options alphabetically"
 msgstr "Alfabetisk visning af muligheder"
 
 msgid "Enable email notifications for:"
-msgstr "Aktiver mail-notifikationer for:"
+msgstr "Aktivér e-mail-notifikationer for:"
 
 msgid "Disable"
 msgstr "Deaktivere"
@@ -576,7 +576,7 @@ msgid "Not running"
 msgstr "Kører ikke"
 
 msgid "Send a test email to your email address."
-msgstr "Send en testbesked til din emailadresse."
+msgstr "Send en testbesked til din e-mail-adresse."
 
 msgid "Block the submission"
 msgstr "Blokér indsendelsen"
@@ -588,7 +588,7 @@ msgid "Send activation link"
 msgstr "Send aktiveringslink"
 
 msgid "Password reset"
-msgstr "Passwordgendannelse"
+msgstr "Adgangskodegendannelse"
 
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
@@ -628,10 +628,10 @@ msgid "Your report was successful."
 msgstr "Din indsendelse er gennemført."
 
 msgid "Report"
-msgstr "Rapport"
+msgstr "Indberetning"
 
 msgid "Before proceeding, please set a new password."
-msgstr "Før du fortsætter bedes du indstille nyt password."
+msgstr "Før du fortsætter bedes du indstille en ny adgangskode."
 
 msgid "New password"
 msgstr "Ny adgangskode"
@@ -643,13 +643,13 @@ msgid ""
 msgstr "Den valgte adgangskode er for svag. En gyldig adgangskode bør være mindst 10 tegn lang og som minimum indeholde ét småt bogstav, ét stort bogstav, ét tal og ét specialtegn."
 
 msgid "The new password must be different from the current one."
-msgstr "Det nye password skal være forskelligt fra det nuværende."
+msgstr "Den nye adgangskode skal være forskellig fra den nuværende."
 
 msgid "Type your new password again"
-msgstr "Skriv dit nye password igen"
+msgstr "Skriv din nye adgangskode igen"
 
 msgid "The two passwords do not match"
-msgstr "De to password matcher ikke"
+msgstr "De to adgangskoder stemmer ikke overens"
 
 msgid "The new password must differ from the previous."
 msgstr "Den nye adgangskode skal være forskellige fra den gamle."
@@ -658,7 +658,7 @@ msgid "Proceed"
 msgstr "Fortsæt"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Aktivér venligst 2-faktorgodkendelse inden du fortsætter."
+msgstr "Aktivér venligst to-faktor-godkendelse inden du fortsætter."
 
 msgid "Disable submissions"
 msgstr "Deaktiver indsendelser"
@@ -667,7 +667,7 @@ msgid "Enable encryption"
 msgstr "Aktivér kryptering"
 
 msgid "Enable administrators to change user passwords"
-msgstr "Tillad administratorer at ændre brugerpasswords"
+msgstr "Tillad administratorer at ændre brugeradgangskoder"
 
 msgid "Enable multisite feature"
 msgstr "Aktivér fler-side funktion"
@@ -679,17 +679,17 @@ msgid "Enable simplified login"
 msgstr "Aktivér simplificeret login"
 
 msgid "Allow recipients to delete reports"
-msgstr "Tillad modtagere at slette rapporter"
+msgstr "Tillad modtagere at slette indberetninger"
 
 msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Tillad modtagere at udsætte udløbsdatoen på rapporten"
+msgstr "Tillad modtagere at udsætte udløbsdatoen på indberetningen"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific reports"
 msgstr "Lad modtagere give whistleblowere tilladelser på specifikke indsendelser"
 
 msgid "Enable search engines indexing"
-msgstr "Aktiver søgemaskiners indeksering"
+msgstr "Aktivér søgemaskiners indeksering"
 
 msgid "Description"
 msgstr "Beskrivelse"
@@ -701,7 +701,7 @@ msgid "Invalid input format."
 msgstr "Ugyldigt inputformat"
 
 msgid "Enable custom privacy panel"
-msgstr "Aktiver brugertilpasset privatlivspanel"
+msgstr "Aktivér brugertilpasset privatlivspanel"
 
 msgid "Custom privacy panel"
 msgstr "Brugertilpasset privatlivspanel"
@@ -749,17 +749,17 @@ msgid "Username"
 msgstr "Brugernavn"
 
 msgid "Password"
-msgstr "Password"
+msgstr "Adgangskode"
 
 msgid "Require two factor authentication"
-msgstr "Kræv 2-faktorgodkendelse"
+msgstr "Kræv to-faktor-godkendelse"
 
 msgid "Password change interval"
 msgstr "Passwordskiftinterval"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr "Af sikkerhedsgrunde kræves det, at kodeord skiftes med jævne mellemrum."
+msgstr "Af sikkerhedsmæssige årsager kræves det, at adgangskoden skiftes med jævne mellemrum."
 
 msgid "Set the value to 0 to disable this feature."
 msgstr "Sæt værdien til 0 for at deaktivere denne funktionalitet."
@@ -775,13 +775,13 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Du skal kun justere denne indstilling hvis du ved, hvad du gør."
 
 msgid "Enable custodian user role"
-msgstr "Aktiver kontoførende brugerrolle"
+msgstr "Aktivér kontoførende brugerrolle"
 
 msgid "Enable scoring system"
 msgstr "Aktivér score system"
 
 msgid "Enable private labels"
-msgstr "Aktiver private mærkater"
+msgstr "Aktivér private mærkater"
 
 msgid "Logging level"
 msgstr "Loggingniveau"
@@ -798,7 +798,7 @@ msgstr "Underret udviklere om softwareproblemer"
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr "Ved at slå denne egenskab til vil du bidrage til udvikling og sikkerhed af platformen."
+msgstr "Ved at slå denne egenskab til, vil du bidrage til udvikling og sikkerhed af platformen."
 
 msgid "Save"
 msgstr "Gem"
@@ -819,7 +819,7 @@ msgid "percentage"
 msgstr "procent"
 
 msgid "Enable automatic backups"
-msgstr "Slå automatiske backups til"
+msgstr "Aktivér automatisk backup"
 
 msgid "Daily"
 msgstr "Dagligt"
@@ -915,7 +915,7 @@ msgid "Whistleblowing button"
 msgstr "Whistleblower-knap"
 
 msgid "Enable disclaimer"
-msgstr "Aktiver ansvarsfraskrivelse"
+msgstr "Aktivér ansvarsfraskrivelse"
 
 msgid "Title"
 msgstr "Titel"
@@ -1002,13 +1002,13 @@ msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Tekst der vises øverst på det interface hvor modtagere vælges"
 
 msgid "Enable comments"
-msgstr "Aktiver kommentarer"
+msgstr "Aktivér kommentarer"
 
 msgid "Allow whistleblowers to write comments"
 msgstr "Tillad whistleblowere at skrive kommentarer"
 
 msgid "Enable private messages"
-msgstr "Aktiver private meddelelser"
+msgstr "Aktivér private meddelelser"
 
 msgid "Allow whistleblowers to send messages"
 msgstr "Tillad whistleblowere at sende beskeder"
@@ -1035,7 +1035,7 @@ msgid "Customize the message shown in the receipt page"
 msgstr "Tilpas den besked, der vises på kvitteringssiden"
 
 msgid "Assign the receipt only to reports reaching score:"
-msgstr "Tildel kun kvittering til rapporter der når scoren:"
+msgstr "Tildel kun nøglekode til indberetninger der når scoren:"
 
 msgid "Software version:"
 msgstr "Software version:"
@@ -1096,7 +1096,7 @@ msgid "Organizational unit"
 msgstr "Organisationsenhed"
 
 msgid "Invalid email address"
-msgstr "Ugyldig mailadresse"
+msgstr "Ugyldig e-mail-adresse"
 
 msgid "Generate"
 msgstr "Generer"
@@ -1130,7 +1130,7 @@ msgid "Intermediate Certificates"
 msgstr "Midlertidige certifikater"
 
 msgid "Enable"
-msgstr "Aktiver"
+msgstr "Aktivér"
 
 msgid "Reset"
 msgstr "Nulstil"
@@ -1191,7 +1191,7 @@ msgid "To"
 msgstr "Til"
 
 msgid "SMTP email address"
-msgstr "SMTP mailadresse"
+msgstr "SMTP e-mail-adresse"
 
 msgid "SMTP server address"
 msgstr "SMTP server adresse"
@@ -1212,7 +1212,7 @@ msgid "Reset notification templates to default"
 msgstr "Nulstil underretnings-skabeloner til standard"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "Antal timer før der skal sendes advarsel om at rapporten er ved at udløbe"
+msgstr "Antal timer før der skal sendes advarsel om at indberetningen er ved at udløbe"
 
 msgid "Test the configuration"
 msgstr "Test indstillingen"
@@ -1371,7 +1371,7 @@ msgid "Allow users to sign up"
 msgstr "Tillad brugere at tilmelde sig"
 
 msgid "Enable terms of service"
-msgstr "Aktiver servicebetingelserne"
+msgstr "Aktivér servicebetingelserne"
 
 msgid "Sites"
 msgstr "Sider"
@@ -1398,22 +1398,22 @@ msgid "Send reset link"
 msgstr "Send gendannelseslink"
 
 msgid "Set password"
-msgstr "Sæt password"
+msgstr "Sæt adgangskode"
 
 msgid "Disable two factor authentication"
 msgstr "Deaktivér to-faktor-autentificering"
 
 msgid "Force password change"
-msgstr "Gennemtving skift af password"
+msgstr "Gennemtving skift af adgangskode"
 
 msgid "The user will be forced to change its password on next login."
-msgstr "Brugeren bliver tvunget til at skifte password ved næste login."
+msgstr "Brugeren bliver tvunget til at skifte adgangskode ved næste login."
 
 msgid "Language"
 msgstr "Sprog"
 
 msgid "Enable email notifications"
-msgstr "Aktivér e-mailnotifikationer"
+msgstr "Aktivér e-mail-notifikationer"
 
 msgid "Details of the PGP key:"
 msgstr "Detaljerede oplysninger om PGP-nøglen:"
@@ -1428,7 +1428,7 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "Opsæt kryptering ved at indsende en offentlig PGP nøgle"
 
 msgid "Give this admin ability to change user passwords"
-msgstr "Giv denne administrator mulighed for at ændre brugerpasswords"
+msgstr "Giv denne administrator mulighed for at ændre brugeradgangskode"
 
 msgid "Configuration"
 msgstr "Konfiguration"
@@ -1440,10 +1440,10 @@ msgid "Forcefully selected"
 msgstr "Tvunget valgt"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Tillad modtageren at udsætte udløbsdatoen på rapporten"
+msgstr "Tillad modtageren at udsætte udløbsdatoen på indberetningen"
 
 msgid "Allow the recipient to delete reports"
-msgstr "Tillad modtageren at slette rapporter"
+msgstr "Tillad modtageren at slette indberetninger"
 
 msgid ""
 "Allow the recipient to grant permissions to whistleblowers on specific "
@@ -1460,7 +1460,7 @@ msgid "ID"
 msgstr "ID"
 
 msgid "Report date"
-msgstr "Rapportdato"
+msgstr "Indberetningsdato"
 
 msgid "Authorization"
 msgstr "Autorisation"
@@ -1472,10 +1472,10 @@ msgid "The validation link is either incorrect or has expired."
 msgstr "Bekræftelseslinket er ugyldig eller udløbet."
 
 msgid "Your new email address has been validated."
-msgstr "Din nye mailadresse er blevet valideret."
+msgstr "Din nye e-mail-adresse er blevet valideret."
 
 msgid "Forgot password?"
-msgstr "Glemt password?"
+msgstr "Glemt adgangskode?"
 
 msgid "Enter the two factor authentication code"
 msgstr "Indtast to-faktor-autentificeringskoden"
@@ -1490,22 +1490,22 @@ msgid "Site:"
 msgstr "Side:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Har du allerede indsendt en rapport? Indtast din kvittering."
+msgstr "Har du allerede indsendt en indberetning? Indtast din nøglekode."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "Kvitteringen er enten forkert eller rapporten er udløbet."
+msgstr "Nøglekoden er enten forkert eller indsendelsen er udløbet."
 
 msgid "Username:"
 msgstr "Brugernavn:"
 
 msgid "Password:"
-msgstr "Kodeord:"
+msgstr "Adgangskode:"
 
 msgid "Please select your account:"
 msgstr "Vælg venligst din konto:"
 
 msgid "Now type your password, then click 'Log in':"
-msgstr "Skriv nu dit password og klik 'log ind':"
+msgstr "Skriv nu din adgangskode og klik 'Log ind':"
 
 msgid "Text shown after the user has selected the option."
 msgstr "Tekst der vises efter at brugeren har valgt denne mulighed."
@@ -1541,7 +1541,7 @@ msgid "Scan the QR code with the app"
 msgstr "Scan QR-koden med din mobile enhed."
 
 msgid "Enable two factor authentication"
-msgstr "Aktivér to-faktor godkendelse"
+msgstr "Aktivér to-faktor-godkendelse"
 
 msgid "Close"
 msgstr "Luk"
@@ -1595,7 +1595,7 @@ msgstr "Hint: Sådan gemmer du din kvittering"
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "En nyttig måde at skjule din kvittering er at skrive den ned som nummeret på et kreditkort, dvs ved også at inkludere en udløbsdato."
+msgstr "En nyttig måde at skjule din nøglekode er at skrive den ned som nummeret på et kreditkort, dvs. ved også at inkludere en udløbsdato."
 
 msgid "Error!"
 msgstr "Fejl!"
@@ -1613,7 +1613,7 @@ msgid "Forbidden operation"
 msgstr "Ulovlig handling"
 
 msgid "The specified old password is not valid"
-msgstr "Det angivne gamle password er ikke korrekt"
+msgstr "Den angivne gamle adgangskode er ikke korrekt"
 
 msgid "Resource can only be accessed via the Tor network"
 msgstr "Denne ressource kan kun tilgås via Tor netværket"
@@ -1625,10 +1625,10 @@ msgid "Success!"
 msgstr "Succes!"
 
 msgid "Validation of email address change in progress."
-msgstr "Godkendelse af skift af mail adresse i gang."
+msgstr "Godkendelse af skift af e-mail-adresse i gang."
 
 msgid "Please check your inbox for further instructions."
-msgstr "Tjek venligst din indboks for yderligere instruktioner."
+msgstr "Tjek venligst din indbakke for yderligere instruktioner."
 
 msgid "Set up email encryption by providing a PGP public key"
 msgstr "Opsæt e-mailkryptering ved at tilføje en offentlig PGP-nøgle"
@@ -1640,7 +1640,7 @@ msgid "Current password"
 msgstr "Nuværende password"
 
 msgid "Old password confirmation required"
-msgstr "Der kræves bekræftelse af gammelt password"
+msgstr "Der kræves bekræftelse af gammel adgangskode"
 
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
@@ -1846,17 +1846,17 @@ msgstr "Den indtastede nulstillingskode er ugyldig eller udløbet."
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr "Indtast din kontos brugernavn eller din mailadresse for at nulstille dit password."
+msgstr "Indtast din kontos brugernavn eller din e-mail-adresse for at nulstille din adgangskode."
 
 msgid "Enter your email address to request a password reset."
-msgstr "Indtast din emailadresse for at nulstille dit password."
+msgstr "Indtast din e-mail-adresse for at nulstille din adgangskode."
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr "Indtast din krypteringsnøgle for at færdiggøre passwordgendannelsesproceduren"
+msgstr "Indtast din krypteringsnøgle for at færdiggøre adgangskodegendannelsesproceduren"
 
 msgid "Password reset requested."
-msgstr "Der er anmodet om nulstilling af password."
+msgstr "Der er anmodet om nulstilling af adgangskode."
 
 msgid "Show"
 msgstr "Vis"
@@ -1940,10 +1940,10 @@ msgstr "Husk din nøglekode for denne indsendelse."
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Brug 16-tals koden til at logge ind. Du får mulighed for at se alle beskeder der er sendt til dig og du får mulighed for at tilføje yderligere oplysninger."
+msgstr "Brug 16-tals nøglekoden til at logge ind. Du får mulighed for at se alle beskeder der er sendt til dig og du får mulighed for at tilføje yderligere oplysninger."
 
 msgid "View your report"
-msgstr "Se din rapport"
+msgstr "Se din indberetning"
 
 msgid "Recipient selection"
 msgstr "Vælg modtagere"
@@ -2003,22 +2003,22 @@ msgid "You have completed the platform wizard."
 msgstr "Du har gennemført platformguiden."
 
 msgid "Fill out your report"
-msgstr "Udfyld din rapport"
+msgstr "Udfyld din indberetning"
 
 msgid "Short title"
 msgstr "Kort titel"
 
 msgid "Describe your report in a few words."
-msgstr "Beskriv i få ord din rapport."
+msgstr "Beskriv i få ord din indberetning."
 
 msgid "Full description"
 msgstr "Fuld beskrivelse"
 
 msgid "Describe your report in detail."
-msgstr "Beskriv din rapport detaljeret."
+msgstr "Beskriv din indberetning detaljeret."
 
 msgid "Attach files relevant to the report."
-msgstr "Vedhæft filer som er relevante for rapporten."
+msgstr "Vedhæft filer som er relevante for indberetningen."
 
 msgid "Do you want to provide your identification information?"
 msgstr "Ønsker du at give oplysninger om din identitet?"
@@ -2094,7 +2094,7 @@ msgstr "Aktiveringslink: {Url}"
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr "Tryk venligst på aktiveringslinket for at fortsætte med kontoaktiveringen og sætte et password."
+msgstr "Tryk venligst på aktiveringslinket for at fortsætte med kontoaktiveringen og sætte en adgangskode."
 
 msgid "This link will expire in 3 days."
 msgstr "Dettte link vil udløbe om 3 dage."
@@ -2144,7 +2144,7 @@ msgstr "Aktiviteterne med usædvanlig statistik er:"
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr "Serveren kan ikke garantere at en ny rapport kan opbevares, hvorfor indsendelser er blevet deaktiveret."
+msgstr "Serveren kan ikke garantere at en ny indberetning kan opbevares, hvorfor indsendelser er blevet deaktiveret."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
@@ -2167,7 +2167,7 @@ msgstr "Afvigelse sporet i {NodeName}"
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "Dette er en mail for at underrette dig om, at de følgende brugeres PGP-nøgler er ved at udløbe eller allerede er udløbet:"
+msgstr "Dette er en e-mail for at underrette dig om, at de følgende brugeres PGP-nøgler er ved at udløbe eller allerede er udløbet:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
@@ -2190,7 +2190,7 @@ msgid "Name: {Name}"
 msgstr "Navn: {Name}"
 
 msgid "Email: {Email}"
-msgstr "Mail: {Email}"
+msgstr "E-mail: {Email}"
 
 msgid "Language: {Language}"
 msgstr "Sprog: {Language}"
@@ -2203,21 +2203,21 @@ msgstr "Nyt whistleblowing-site registreret"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr "Dette er en testmail sendt fra platformens administrations-interface."
+msgstr "Dette er en test-e-mail sendt fra platformens administrations-interface."
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
 "to and interact with the SMTP mail server."
-msgstr "At du har modtaget denne mail viser, at serveren var i stand til at autentificere hos og interagere med SMTP-mailserveren."
+msgstr "At du har modtaget denne e-mail viser, at serveren var i stand til at autentificere hos og interagere med SMTP-e-mail-serveren."
 
 msgid "Test email"
-msgstr "Testmail"
+msgstr "Test-e-mail"
 
 msgid "This is an email to notify you of a new comment on an existing report."
-msgstr "Dette er en e-mail for at notificere dig om en ny kommentar på en eksisterende rapport."
+msgstr "Dette er en e-mail for at notificere dig om en ny kommentar på en eksisterende indberetning."
 
 msgid "The report can be accessed at:"
-msgstr "Rapporten kan tilgås på:"
+msgstr "Indberetningen kan tilgås på:"
 
 msgid "New comment"
 msgstr "Ny kommentar"
@@ -2225,7 +2225,7 @@ msgstr "Ny kommentar"
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr "Dette er en mail for at underrette dig om, at der er modtaget en anmodning om at skifte din mailadresse til {NewEmailAddress}."
+msgstr "Dette er en e-mail for at underrette dig om, at der er modtaget en anmodning om at skifte din e-mail-adresse til {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
 msgstr "Tryk på det følgende link for at validere denne ændring:"
@@ -2233,10 +2233,10 @@ msgstr "Tryk på det følgende link for at validere denne ændring:"
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr "Hvis du ikke anmodede om denne ændring, så skift dit password og kontakt din systemadministrator."
+msgstr "Hvis du ikke anmodede om denne ændring, så skift din adgangskode og kontakt din systemadministrator."
 
 msgid "Email change request"
-msgstr "Forespørgsel om ændring af mail"
+msgstr "Forespørgsel om ændring af e-mail"
 
 msgid "From: {Author}"
 msgstr "Fra: {Author}"
@@ -2262,7 +2262,7 @@ msgstr "Sammenhæng:  {ContextName}"
 msgid ""
 "This is an email to notify you that the whistleblower of report {TipNum} has"
 " attached new material."
-msgstr "Dette er en mail for at underrette dig om at whistlebloweren bag indsendelsen {TipNum}  har vedhæftet nyt materiale."
+msgstr "Dette er en e-mail for at underrette dig om at whistlebloweren bag indsendelsen {TipNum}  har vedhæftet nyt materiale."
 
 msgid "New attachment"
 msgstr "Ny tilføjelse"
@@ -2299,7 +2299,7 @@ msgstr "HTTPS-certifikatfornyelse fejlede."
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "Dette er en mail for at underrette dig om, at en tilsynsførende har autoriseret dig til at få adgang til whistleblowerens identitet i forbindelse med indsendelsen {TipNum}."
+msgstr "Dette er en e-mail for at underrette dig om, at en tilsynsførende har autoriseret dig til at få adgang til whistleblowerens identitet i forbindelse med indsendelsen {TipNum}."
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "Adgang til whistleblowers identitet godkendes"
@@ -2307,7 +2307,7 @@ msgstr "Adgang til whistleblowers identitet godkendes"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " wistleblowing identity for the report {TipNum}."
-msgstr "Dette er en mail for at underrette dig om, at en tilsynsførende har autoriseret dig til at få adgang til whistleblowerens identitet i forbindelse med indsendelsen {TipNum}."
+msgstr "Dette er en e-mail for at underrette dig om, at en tilsynsførende har autoriseret dig til at få adgang til whistleblowerens identitet i forbindelse med indsendelsen {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Adgang til whistleblowers identitet afvist"
@@ -2315,7 +2315,7 @@ msgstr "Adgang til whistleblowers identitet afvist"
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "Dette er en mail for at underrette dig om at en modtager har anmodet om adgang til whistleblowerens identitet vedrørende indsendelsen {TipNum}"
+msgstr "Dette er en e-mail for at underrette dig om at en modtager har anmodet om adgang til whistleblowerens identitet vedrørende indsendelsen {TipNum}"
 
 msgid "The request can be accessed at:"
 msgstr "Anmodningen kan tilgås på:"
@@ -2326,13 +2326,13 @@ msgstr "Ny forespørgsel om adgang til whistleblowerens identitet"
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "Dette er en mail for at underrette dig om, at whistleblower for indsendelsen {TipNum} har angivet sin identitet."
+msgstr "Dette er en e-mail for at underrette dig om, at whistleblower for indsendelsen {TipNum} har angivet sin identitet."
 
 msgid "The whistleblower has provided their identity"
 msgstr "Whistlebloweren har oplyst sin identitet"
 
 msgid "This is an email to notify you of a new message on an existing report."
-msgstr "Dette er en e-mail for at notificere dig om en ny kommentar på en eksisterende rapport."
+msgstr "Dette er en e-mail for at notificere dig om en ny kommentar på en eksisterende indberetning."
 
 msgid "New message"
 msgstr "Ny meddelelse"
@@ -2340,23 +2340,23 @@ msgstr "Ny meddelelse"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "Du modtager denne e-mail fordi en brugerkonto er blevet opretttet til dig på systemet: {Site}"
+msgstr "Du modtager denne e-mail fordi en gendannelse af adgangskoden er blevet forespurgt for følgende brugerkonto: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr "Hvis du ikke foretog denne anmodning kan du blot ignorere og slette denne mail."
+msgstr "Hvis du ikke foretog denne anmodning kan du blot ignorere og slette denne e-mail."
 
 msgid "You can confirm your request by clicking the following link:"
 msgstr "Du kan bekræfte din anmodning ved at klikke på følgende link:"
 
 msgid "Password reset instructions"
-msgstr "Vejledning til nulstilling af password"
+msgstr "Vejledning til nulstilling af adgangskode"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr "Dette er en mail for at informere dig om, at din PGP nøgle er ved at udløbe eller allerede er udløbet."
+msgstr "Dette er en e-mail for at informere dig om, at din PGP nøgle er ved at udløbe eller allerede er udløbet."
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
@@ -2408,7 +2408,7 @@ msgstr "Der er indsendelser, der snart udløber"
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "Dette er en mail for at orientere dig om, at en whistleblower har valgt dig som modtager af sin indsendelse."
+msgstr "Dette er en e-mail for at orientere dig om, at en whistleblower har valgt dig som modtager af sin indsendelse."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2419,7 +2419,7 @@ msgid ""
 msgstr "Du skal være særligt opmærksom på oplysninger og materiale, der er indeholdt heri. Vær opmærksom på, at whistleblowere ofte udsætter sig selv for store personlige risici i offentlighedens interesse. Derfor skal det indleverede materiale håndteres som særligt følsomt."
 
 msgid "New report"
-msgstr "Ny rapport"
+msgstr "Ny indberetning"
 
 msgid "Role: {Role}"
 msgstr "Rolle: {Role}"
