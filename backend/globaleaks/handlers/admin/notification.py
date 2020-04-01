@@ -25,7 +25,6 @@ def db_get_notification(session, tid, language):
 
     additional_dict = {
         'reset_templates': False,
-        'exception_email_pgp_key_remove': False,
         'smtp_password': '',
         'templates': ConfigL10NFilters['notification']
     }

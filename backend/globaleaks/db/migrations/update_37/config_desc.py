@@ -37,10 +37,7 @@ GLConfig_v_37 = {
 
         'tip_expiration_threshold': Int(default=72),  # Hours
 
-        'exception_email_address': Unicode(default='globaleaks-stackexception@lists.globaleaks.org'),
-        'exception_email_pgp_key_fingerprint': Unicode(default=''),
-        'exception_email_pgp_key_public': Unicode(default=''),
-        'exception_email_pgp_key_expiration': Unicode(default=iso_strf_time(datetime_null())),
+        'exception_email_address': Unicode(default='globaleaks-stackexception@lists.globaleaks.org')
     },
     'node': {
         'name': Unicode(default=''),
