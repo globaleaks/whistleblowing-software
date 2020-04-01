@@ -57,12 +57,10 @@ class OnionService(Service):
     print_startup_error = True
     tor_conn = None
     hs_map = {}
-    startup_semaphore = {}
 
     def reset(self):
         self.tor_con = None
         self.hs_map.clear()
-        self.startup_semaphore.clear()
 
     def stop(self):
         super(OnionService, self).stop()
@@ -90,10 +88,6 @@ class OnionService(Service):
 
         hs_loc = ('80 localhost:8083')
         if not hostname and not key:
-            if tid in self.startup_semaphore:
-                log.debug('Still waiting for hidden service to start', tid=tid)
-                return self.startup_semaphore[tid]
-
             log.info('Creating new onion service', tid=tid)
 
             if self.onion_service_version == 3:
@@ -122,17 +116,7 @@ class OnionService(Service):
 
                 yield refresh_memory_variables(tid_list)
 
-                del self.startup_semaphore[tid]
-
-        def init_errback(failure):
-            if tid in self.startup_semaphore:
-                del self.startup_semaphore[tid]
-
-            raise failure.value
-
-        self.startup_semaphore[tid] = ephs.add_to_tor(self.tor_conn.protocol)
-
-        return self.startup_semaphore[tid].addCallbacks(init_callback, init_errback)  # pylint: disable=no-member
+        return ephs.add_to_tor(self.tor_conn.protocol).addCallbacks(init_callback)  # pylint: disable=no-member
 
     @defer.inlineCallbacks
     def remove_unwanted_hidden_services(self):
