@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
+from globaleaks.models.config_desc import ConfigL10NFilters
 from globaleaks.orm import transact, tw
 from globaleaks.rest import requests
 from globaleaks.state import State
@@ -24,13 +23,14 @@ def db_get_notification(session, tid, language):
 
     conf_l10n_dict = ConfigL10NFactory(session, tid).serialize('notification', language)
 
-    cmd_flags = {
+    additional_dict = {
         'reset_templates': False,
         'exception_email_pgp_key_remove': False,
         'smtp_password': '',
+        'templates': ConfigL10NFilters['notification']
     }
 
-    return merge_dicts(config_dict, cmd_flags, conf_l10n_dict)
+    return merge_dicts(config_dict, conf_l10n_dict, additional_dict)
 
 
 @transact
