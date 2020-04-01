@@ -1,3 +1,11 @@
+html[dir="rtl"] input[type=email],
+html[dir="ltr"] input[type=email],
+html[dir="rtl"] #creditCard,
+html[dir="ltr"] #creditCard,
+html[dir="rtl"] #KeyCodeBox,
+html[dir="ltr"] #KeyCodeBox {
+  direction: ltr;
+}
 html[dir='rtl'] .fa-arrow-right:before {
   content: "\f060"; }
 

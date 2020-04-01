@@ -30,14 +30,6 @@ html, body {
   font-size: 1.25rem;
 }
 
-.ltr {
-  direction: ltr;
-}
-
-.rtl {
-  direction: rtl;
-}
-
 a, a:hover, a:active, a:focus {
   outline: 0;
 }
@@ -402,10 +394,6 @@ input[type="file"] {
   width: auto;
 }
 
-[dir] label {
-  margin: 0;
-}
-
 .custom-file-label::after {
   opacity: 0;
 }
@@ -416,15 +404,6 @@ input[type="file"] {
 
 #creditCard {
   width: 20rem;
-}
-
-html[dir="rtl"] input[type=email],
-html[dir="ltr"] input[type=email],
-html[dir="rtl"] #creditCard,
-html[dir="ltr"] #creditCard,
-html[dir="rtl"] #KeyCodeBox,
-html[dir="ltr"] #KeyCodeBox {
-  direction: ltr;
 }
 
 .nav-link.active .fa-chevron-right {
