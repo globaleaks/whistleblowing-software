@@ -1,5 +1,9 @@
+Changes in version 4.0.8 - 2020-04-02
+    Revise fix on connection check admin and recipient roles
+
 Changes in version 4.0.7 - 2020-04-02
     Fix opening of 2FA and encryption recovery key modals
+    Fix connection check admin and recipient roles
 
 Changes in version 4.0.6 - 2020-04-01
     Apply minor UI bugfixing
