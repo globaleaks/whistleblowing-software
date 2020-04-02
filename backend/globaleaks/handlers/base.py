@@ -20,6 +20,7 @@ from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.crypto import sha512
+from globaleaks.utils.ip import check_ip
 from globaleaks.utils.log import log
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.utility import datetime_now, deferred_sleep

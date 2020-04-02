@@ -151,7 +151,6 @@ class AuthenticationHandler(BaseHandler):
     """
     check_roles = 'none'
     uniform_answer_time = True
-    print('b')
 
     @inlineCallbacks
     def post(self):
@@ -204,7 +203,7 @@ class TokenAuthHandler(BaseHandler):
             Settings.failed_login_attempts += 1
             raise errors.InvalidAuthentication
 
-        connection_check(tid, self.request.client_ip,
+        connection_check(self.request.tid, self.request.client_ip,
                          session.user_role, self.request.client_using_tor)
 
         session = Sessions.regenerate(session.id)
@@ -234,7 +233,7 @@ class ReceiptAuthHandler(BaseHandler):
 
         self.state.tokens.use(request['token'])
 
-        connection_check(tid, self.request.client_ip,
+        connection_check(self.request.tid, self.request.client_ip,
                          'whistleblower', self.request.client_using_tor)
 
         session = yield login_whistleblower(self.request.tid, request['receipt'])
