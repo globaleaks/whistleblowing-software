@@ -24,10 +24,10 @@ Welcome to GlobaLeaks's Documentation!
         user/index
 
 .. toctree::
-        :name: encryption
+        :name: security
         :maxdepth: 4
 
-        encryption/index
+        security/index
 
 .. toctree::
         :name: sourcecode
