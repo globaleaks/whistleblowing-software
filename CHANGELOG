@@ -1,3 +1,6 @@
+Changes in version 4.0.7 - 2020-04-02
+    Fix opening of 2FA and encryption recovery key modals
+
 Changes in version 4.0.6 - 2020-04-01
     Apply minor UI bugfixing
     Update translations
