@@ -117,7 +117,7 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label data-translate>Creation date: {{tenant.creation_date | date:'dd-MM-yyyy'}}</label>
+                  <label><span data-translate>Creation date:</span> {{tenant.creation_date | date:'dd-MM-yyyy'}}</label>
                 </div>
                 <div class="form-group" data-ng-if="tenant.signup" data-ng-include="'views/partials/signup.html'"></div>
               </div>

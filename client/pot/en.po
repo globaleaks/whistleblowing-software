@@ -1403,8 +1403,8 @@ msgstr "Configure"
 msgid "Subdomain"
 msgstr "Subdomain"
 
-msgid "Creation date: {{tenant.creation_date | date:'dd-MM-yyyy'}}"
-msgstr "Creation date: {{tenant.creation_date | date:'dd-MM-yyyy'}}"
+msgid "Creation date:"
+msgstr "Creation date:"
 
 msgid "Send an account activation link to the user."
 msgstr "Send an account activation link to the user."
