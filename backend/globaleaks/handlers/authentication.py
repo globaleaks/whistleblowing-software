@@ -4,7 +4,7 @@
 import pyotp
 from random import SystemRandom
 from twisted.internet.defer import inlineCallbacks, returnValue
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import connection_check, BaseHandler
 from globaleaks.models import InternalTip, User, WhistleblowerTip
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -12,7 +12,6 @@ from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.crypto import Base64Encoder, GCE
-from globaleaks.utils.ip import check_ip
 from globaleaks.utils.log import log
 from globaleaks.utils.utility import datetime_now, deferred_sleep
 
@@ -42,24 +41,6 @@ def login_delay():
         max_sleep = n if n < 42 else 42
 
         return deferred_sleep(SystemRandom().randint(min_sleep, max_sleep))
-
-
-def connection_check(client_ip, tid, role, client_using_tor):
-    """
-    Accept or refuse a connection in relation to the platform settings
-
-    :param client_ip: A client IP
-    :param tid: A tenant ID
-    :param role: A user role
-    :param client_using_tor: A boolean for signaling Tor use
-    """
-    ip_filter = State.tenant_cache[tid]['ip_filter'].get(role)
-    if ip_filter and not check_ip(client_ip, ip_filter):
-        raise errors.AccessLocationInvalid
-
-    https_allowed = State.tenant_cache[tid]['https_allowed'].get(role)
-    if not https_allowed and not client_using_tor:
-        raise errors.TorNetworkRequired
 
 
 @transact
@@ -140,7 +121,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
         Settings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
 
-    connection_check(client_ip, tid, user.role, client_using_tor)
+    connection_check(tid, client_ip, user.role, client_using_tor)
 
     crypto_prv_key = ''
     if user.crypto_prv_key:
@@ -170,6 +151,7 @@ class AuthenticationHandler(BaseHandler):
     """
     check_roles = 'none'
     uniform_answer_time = True
+    print('b')
 
     @inlineCallbacks
     def post(self):
@@ -222,7 +204,7 @@ class TokenAuthHandler(BaseHandler):
             Settings.failed_login_attempts += 1
             raise errors.InvalidAuthentication
 
-        connection_check(self.request.client_ip, tid,
+        connection_check(tid, self.request.client_ip,
                          session.user_role, self.request.client_using_tor)
 
         session = Sessions.regenerate(session.id)
@@ -252,7 +234,7 @@ class ReceiptAuthHandler(BaseHandler):
 
         self.state.tokens.use(request['token'])
 
-        connection_check(self.request.client_ip, self.request.tid,
+        connection_check(tid, self.request.client_ip,
                          'whistleblower', self.request.client_using_tor)
 
         session = yield login_whistleblower(self.request.tid, request['receipt'])

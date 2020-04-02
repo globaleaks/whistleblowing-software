@@ -18,9 +18,6 @@ class TokenCreate(BaseHandler):
         submission will require some actions to be performed before the
         submission can be concluded (e.g. hashcash and captchas).
         """
-        if not self.request.client_using_tor and not self.state.tenant_cache[self.request.tid]['https_whistleblower']:
-            raise errors.TorNetworkRequired
-
         request = self.validate_message(self.request.content.read(), requests.TokenReqDesc)
 
         token = self.state.tokens.new(self.request.tid)

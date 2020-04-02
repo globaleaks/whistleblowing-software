@@ -7,13 +7,12 @@ import json
 
 from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import connection_check, BaseHandler
 from globaleaks.models import get_localized_values
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import sha256, Base64Encoder, GCE
-from globaleaks.utils.ip import check_ip
 from globaleaks.utils.log import log
 from globaleaks.utils.utility import get_expiration, \
     datetime_to_ISO8601
@@ -454,10 +453,10 @@ class SubmissionInstance(BaseHandler):
         """
         Finalize the submission
         """
-        if (not self.state.accept_submissions or
-            self.state.tenant_cache[self.request.tid]['disable_submissions']) or \
-           (self.state.tenant_cache[self.request.tid]['ip_filter_whistleblower_enable'] and
-            not check_ip(self.state.tenant_cache[self.request.tid]['ip_filter_whistleblower'], self.request.client_ip)):
+
+        connection_check(self.request.tid, self.request.client_ip, 'whistleblower', self.request.client_using_tor)
+
+        if (not self.state.accept_submissions or self.state.tenant_cache[self.request.tid]['disable_submissions']):
             raise errors.SubmissionDisabled
 
         request = self.validate_message(self.request.content.read(), requests.SubmissionDesc)

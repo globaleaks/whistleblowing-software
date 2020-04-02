@@ -18,6 +18,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.utils.crypto import sha512
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.utils.crypto import sha512
 from globaleaks.utils.log import log
 from globaleaks.utils.securetempfile import SecureTemporaryFile
@@ -41,6 +42,25 @@ def serve_file(request, fo):
     filesender.addBoth(on_finish)
 
     return filesender
+
+
+
+def connection_check(tid, client_ip, role, client_using_tor):
+    """
+    Accept or refuse a connection in relation to the platform settings
+
+    :param tid: Atenant ID
+    :param client_ip: A client IP
+    :param role: A user role
+    :param client_using_tor: A boolean for signaling Tor use
+    """
+    ip_filter = State.tenant_cache[tid]['ip_filter'].get(role)
+    if ip_filter and not check_ip(client_ip, ip_filter):
+        raise errors.AccessLocationInvalid
+
+    https_allowed = State.tenant_cache[tid]['https_allowed'].get(role)
+    if not https_allowed and not client_using_tor:
+        raise errors.TorNetworkRequired
 
 
 class BaseHandler(object):
