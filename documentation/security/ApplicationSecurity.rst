@@ -54,7 +54,6 @@ The table below summarizes the authentication methods for each user role.
 
 .. csv-table::
    :header: "User type", "Authentication method"
-   :widths: 20, 20
 
    "Administrator", "Username and password"
    "Recipient", "Username and password"
@@ -165,7 +164,7 @@ XSRF Prevention
 ---------------
 Cookies are not used intentionally to minimize any possible XSRF attack.
 
-Input Validation (backend)
+Input Validation (Backend)
 --------------------------
 The system adopts a whitelist based input validation approach. Each client request is checked against a set of regular expressions and only requests matching the expression are then processed.
 

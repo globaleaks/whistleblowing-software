@@ -1,13 +1,12 @@
 ============
-Threat Model
+Threat model
 ============
 GlobaLeaks is an Open Whistleblowing Framework that can be used in many different usage scenarios that may require very different approaches to obtain both security and flexibility.
-Whistleblowing policies and procedures within a corporation for compliance purposes are reasonably different from the ones of a Media Agency or the ones for Hacktivism initiatives.
+Whistleblowing policies and procedures within a corporation for compliance purposes are reasonably different from the ones of a Media outlet or the ones for Hacktivism initiatives.
 Given the flexibility of uses of GlobaLeaks, the threat model considers different usage scenarios as threats can vary.
 
-Actors Matrix
+Actors matrix
 =============
-
 As a first step we define the actors, that are the users that interact with a GlobaLeaks platform.
 
 .. csv-table::
@@ -19,7 +18,7 @@ As a first step we define the actors, that are the users that interact with a Gl
 
 It’s highly relevant to apply each of the security measures always in relationship to the actors using GlobaLeaks, while always considering the security and usability tradeoff.
 
-Anonymity Matrix
+Anonymity matrix
 ================
 The anonymity of different actors must be differentiated and requires to be classified depending on the context of use represented by the following definitions:
 
@@ -41,34 +40,34 @@ Different use of GlobaLeaks require to consider the requirements for different a
 The Anonymity level is reported on the user interface with the aim to make the user aware of it.
 The Administrator can configure the Anonymity level required for each actor.
 
-Communication Security Matrix
+Communication security matrix
 =============================
 The security of communication in respect to third parties transmission's monitoring may have different requirements depending on its context of use.
 
 .. csv-table::
-   "High Security", "The communication is encrypted end-to-end with the GlobaLeaks platform and no third party is in a condition to eavesdrop the communication."
-   "Medium Security", "The communication is encrypted end-to-end with the GlobaLeaks platform. A third party able to manipulate HTTPS security (e.g., Govt re-issuing TLS cert) is in a condition to eavesdrop the communication. If HTTPS security is guaranteed, Monitoring  actor’s communication’s line or the GlobaLeaks platform communication’s line is not possible."
-   "No Security", "The communication is not encrypted at all. Monitoring the communication’s line of the actor or of the GlobaLeaks platform is possible."
+   "High security", "The communication is encrypted end-to-end with the GlobaLeaks platform and no third party is in a condition to eavesdrop the communication."
+   "Medium security", "The communication is encrypted end-to-end with the GlobaLeaks platform. A third party able to manipulate HTTPS security (e.g., Govt re-issuing TLS cert) is in a condition to eavesdrop the communication. If HTTPS security is guaranteed, Monitoring  actor’s communication’s line or the GlobaLeaks platform communication’s line is not possible."
+   "No security", "The communication is not encrypted at all. Monitoring the communication’s line of the actor or of the GlobaLeaks platform is possible."
 
 The following matrix applies the previous definition related to different architectural implementations of GlobaLeaks software:
 
 .. csv-table::
-   :header: "Communication Security Matrix", "Tor", "HTTPS"
+   :header: "Communication security matrix", "Tor", "HTTPS"
 
-   "Security Level", "High Security", "Medium Security"
+   "Security Level", "High security", "Medium security"
 
-Identity Disclosure Matrix
+Identity disclosure matrix
 ==========================
 Regardless from the anonymity matrix, various actors may be in a condition to decide to, or get mandated to disclose or not disclose their identity.
 
 .. csv-table::
 
    "Undisclosed", "The actor identity is not disclosed and its disclosure is not likely."
-   "Partially Disclosed (pseudonym)", The actor operate under a pseudonym while interacting with the platform."
-   "Optionally Disclosed", "The actor’s identity is by default not disclosed, but he is given the chance to disclose it on a voluntary basis (e.g., in some workflow an anonymous tip-off may receive a follow-up, while a formal report with identity disclosed must receive a follow-up)"
+   "Partially disclosed (pseudonym)", The actor operate under a pseudonym while interacting with the platform."
+   "Optionally disclosed", "The actor’s identity is by default not disclosed, but he is given the chance to disclose it on a voluntary basis (e.g., in some workflow an anonymous tip-off may receive a follow-up, while a formal report with identity disclosed must receive a follow-up)"
    "Disclosed", "The actor who decided to, or get mandated to, disclose its identity to other actors."
 
-Identity Disclosure is a highly relevant topic, because even in an Anonymous High Security environment the Identity Disclosure may be an Option for specific whistleblowing initiatives workflows.
+Identity disclosure is a highly relevant topic, because even in an Anonymous High security environment the Identity disclosure may be an Option for specific whistleblowing initiatives workflows.
 
 If an actor starts dealing with an Anonymity set “Anonymous” and with an “Undisclosed Identity” he can always decide, at a later stage, to disclose their identity. The opposite is not possible.
 This is one of the key elements to provide actors’ protection around GlobaLeaks.
@@ -78,51 +77,54 @@ The voluntary identity disclosure may be required in certain whisteblowing proce
 * Formal reports MUST receive a follow-up and in that case cannot be anonymous.
 
 The “MAY” vs. “MUST” respect to the actions of recipients is a fundamental element of guarantee for many whistleblowing initiatives (e.g., a corporate or institutional whistleblowing platform, should not follow a MUST approach for Anonymous submission, considering them just tip-off and not formal reports). 
-Usage Scenarios Matrix
+Usage Scenarios matrix
 In this section you will find a set of examples that show how different anonymity level of different actors can be mixed together depending on the context of use.
 
 .. csv-table::
 
-   "Media Outlet", "A Media Outlet, whose identity is disclosed, decides starting a Whistleblowing initiative. The media’s recipients are disclosed to Whistleblowers, so that they can trust a specific journalist rather than the media itself. Full anonymity must be assured to whistleblowers and their identity cannot be disclosed in connection with anonymous submissions. The whistleblower MAY choose to willingly disclose identity (journalist had in their goals to protect source in some countries)"
-   "Corporate Compliance", "A Corporation needs to implement transparency, or anti-bribery law compliance, by promoting its initiatives to employees, consultants and providers. The recipients are partially disclosed because they are represented by different divisions of the “Internal Audit” business unit of the company. The Whistleblower is guaranteed full anonymity, but he can optionally disclose their identity (tip off vs formal report)."
-   "Government Tax Whistleblowing", "A Government Authority (central or local) with its own public identity wants to promote Tax Whistleblowing with Rewards procedures for Whistleblowers (e.g., IRS). The recipients are not known because they are an internal division not exposing their names to the Whistleblower in advance. The Whistleblower MUST disclose their identity in order to be eligible for rewards."
-   "Human Rights Activism Initiative", "A Human Rights Group start a Whistleblowing initiative to spot human rights violations in a dangerous place. The organization requires anonymity to avoid retaliations and takedowns, and operates under a Pseudonym. The Recipients MUST not be disclosed to the Whistleblowers, but a Partial Disclosure by pseudonym can be acceptable in order to give proper trust to “Who the whistleblower is submitting to” . The Whistleblower MUST be guaranteed anonymity and their identity cannot be disclosed."
-   "Citizen Media Initiative", "A Citizen media initiative with it’s own public identity wants to collect tips on a specific topic (political, environmental malpractice, corruption, etc) in a medium-low risk operational context. The recipients must be disclosed but using a Pseudonym in order to avoid giving them too much responsibility, while accepting a Confidential relationship with no anonymity. The Whistleblower, if the topic is not life-threatening, can be allowed to submit also in a Confidential way to lower the entrance barrier."
+   "Media outlet", "A Media outlet, whose identity is disclosed, decides starting a Whistleblowing initiative. The media’s recipients are disclosed to Whistleblowers, so that they can trust a specific journalist rather than the media itself. Full anonymity must be assured to whistleblowers and their identity cannot be disclosed in connection with anonymous submissions. The whistleblower MAY choose to willingly disclose identity (journalist had in their goals to protect source in some countries)"
+   "Corporate compliance", "A Corporation needs to implement transparency, or anti-bribery law compliance, by promoting its initiatives to employees, consultants and providers. The recipients are partially disclosed because they are represented by different divisions of the “Internal Audit” business unit of the company. The Whistleblower is guaranteed full anonymity, but he can optionally disclose their identity (tip off vs formal report)."
+   "Government tax whistleblowing", "A Government Authority (central or local) with its own public identity wants to promote Tax Whistleblowing with Rewards procedures for Whistleblowers (e.g., IRS). The recipients are not known because they are an internal division not exposing their names to the Whistleblower in advance. The Whistleblower MUST disclose their identity in order to be eligible for rewards."
+   "uman Rights Activism Initiative", "A Human Rights Group start a Whistleblowing initiative to spot human rights violations in a dangerous place. The organization requires anonymity to avoid retaliations and takedowns, and operates under a Pseudonym. The Recipients MUST not be disclosed to the Whistleblowers, but a Partial Disclosure by pseudonym can be acceptable in order to give proper trust to “Who the whistleblower is submitting to” . The Whistleblower MUST be guaranteed anonymity and their identity cannot be disclosed."
+   "Citizen media initiative", "A Citizen media initiative with it’s own public identity wants to collect tips on a specific topic (political, environmental malpractice, corruption, etc) in a medium-low risk operational context. The recipients must be disclosed but using a Pseudonym in order to avoid giving them too much responsibility, while accepting a Confidential relationship with no anonymity. The Whistleblower, if the topic is not life-threatening, can be allowed to submit also in a Confidential way to lower the entrance barrier."
    "Public Agency Iniziative", "A local public agency wants to setup a Street Hole Reporting service with it’s own public identity. The recipient can be disclosed to facilitate the CRM (Citizen relationship management) and Whistleblower identity protection is not required."
 
-GlobaLeaks Security Matrix
+GlobaLeaks security matrix
 ==========================
 Below we show how different usage scenarios can require different set of anonymity level, communication security requirements and identity disclosures for different actors.
 
 Globaleaks, through its user interface, will enable each actor with appropriate security awareness information, and will enforce specific requirements to specific actors by the application of clear configuration guidelines.
 
 .. csv-table::
-   :header: "Scenario", "Actor", "Anonymity level", "Identity Disclosure", "Communication Security"
+   :header: "Scenario", "Actor", "Anonymity level", "Identity disclosure", "Communication security"
 
-   "Media Outlet", "Whistleblower", "Anonymous", "Undisclosed", "High Security"
-   "", "Recipient", "No Anonymity", "Disclosed", "Medium Security"
-   "", "Admin", No Anonymity", "Disclosed", "Medium Security"
+   "Media outlet", "Whistleblower", "Anonymous", "Undisclosed", "High security"
+   "", "Recipient", "No anonymity", "Disclosed", "Medium security"
+   "", "Admin", No anonymity", "Disclosed", "Medium security"
    "", "", "", "", ""
-   "Corporate Compliance", "Whistleblower", Anonymous", "Optionally Disclosed", "High Security"
-    "", "Recipient", "No Anonymity", "Partially Disclosed", "Medium Security"
-    "", "Admin", "No Anonymity", "Disclosed", "Medium Security",
+   "Corporate compliance", "Whistleblower", Anonymous", "Optionally disclosed", "High security"
+    "", "Recipient", "No anonymity", "Partially disclosed", "Medium security"
+    "", "Admin", "No anonymity", "Disclosed", "Medium security"
    "", "", "", "", ""
-   "Government Tax Whistleblowing", "Whistleblower", "No Anonymity", "Disclosed", "Medium Security"
-   "", "Recipient", "No Anonymity", "Undisclosed", "Medium Security"
-   "", "Admin", "No Anonymity", "Disclosed", "Medium Security"
-   "Human Rights Activism initiative", "Whistleblower", "Anonymous", "Undisclosed", "High Security"
-   "", "Recipient", "Anonymous", "Partially Disclosed", "High Security"
-   "", "Admin", "Anonymous", "Partially Disclosed", "High Security"
-   "Citizen Media Initiative", "Whistleblower", "Confidential", "Optionally Disclosed", "Medium Security"
-   "", "Recipient", "Confidential", "Confidential", "Medium Security"
-   "", "Admin", "No Anonymity", "Disclosed", "Medium Security"
-   "Public agency initiative", "Whistleblower", "No Anonymity", "Optionally Disclosed", "No Security"
-   "", "Recipient", "No Anonymity", "Undisclosed", "Medium Security"
-   "", "Admin", "No Anonymity", "Disclosed", "Medium Security"
+   Government tax whistleblowing", "Whistleblower", "No anonymity", "Disclosed", "Medium security"
+   "", "Recipient", "No anonymity", "Undisclosed", "Medium security"
+   "", "Admin", "No anonymity", "Disclosed", "Medium security"
+   "", "", "", "", ""
+   "Human Rights Activism initiative", "Whistleblower", "Anonymous", "Undisclosed", "High security"
+   "", "Recipient", "Anonymous", "Partially disclosed", "High security"
+   "", "Admin", "Anonymous", "Partially disclosed", "High security"
+   "", "", "", "", ""
+   "Citizen media initiative", "Whistleblower", "Confidential", "Optionally disclosed", "Medium security"
+   "", "Recipient", "Confidential", "Confidential", "Medium security"
+   "", "Admin", "No anonymity", "Disclosed", "Medium security"
+   "", "", "", "", ""
+   "Public agency initiative", "Whistleblower", "No anonymity", "Optionally disclosed", "No security"
+   "", "Recipient", "No anonymity", "Undisclosed", "Medium security"
+   "", "Admin", "No anonymity", "Disclosed", "Medium security"
 
 The previous schema gives only some examples of GlobaLeaks’s flexibility; but different anonymity, identity and security measures apply to other usage scenarios and actors.
 
-Data Security Matrix
+Data security matrix
 ====================
 This section highlights the data that is handled by GlobaLeaks software and how different protection schemes are applied to GlobaLeaks handled data.
 
@@ -145,18 +147,17 @@ Below a matrix showing different security measures applied on data.
    "Questionnaire answers", "Encrypted on the database with per-user / per/submissions keys", "N/A", "Keyword blacklisting", "Antispam, Anti XSS"
    "Report attachments", "Encrypted on the filesystem with per-user / per/submissions keys", "Optional", "Extension blocking, Antivirus", "N/A"
    "Platform configuration", "Encrypted database with admin password", "N/A", "N/A", "N/A"
-   "Software Files", "N/A", "N/A", "N/A", "N/A"
+   Software files", "N/A", "N/A", "N/A", "N/A"
    "Email notifications", "Encrypted with PGP when recipients keys are available", "N/A", "Antispam to prevent flooding", "N/A"
 
-Data Retention Policy
+Data retention policy
 =====================
-
 If a GlobaLeaks platform retains a report for a long time, the platform’s potential value increases and this can attract attackers. 
 A report does not need to be preserved permanently in the platform, therefore every report has an expiration date. 
 The time to live of a report is configurable (default: 15 days)
 When the expiration date is reached, the report (Files, supplied descriptions, comments) are removed.
 
-Exceptions in the Data Retention Policy
+Exceptions in the Data retention policy
 
 1. If a Recipient has the right privilege (assigned by the Admin), he can extend the expiration date when needed. (E.G: The report with 15 day of live, extended on the day 5th, would expire on the 20th)
 
@@ -166,18 +167,18 @@ Exceptions in the Data Retention Policy
    b. the Recipient has enabled Encrypted Notification
    c. the Admininistrator has enabled non default options to include Submission Fields in the encrypted notification emails,
 
-In this situations sensitive information could outside GlobaLeaks system and need to be managed by Recipient Operational Security.
+In this situations sensitive information could outside GlobaLeaks system and need to be managed by Recipient Operational security.
 
-Application Security
+Application security
 ====================
 This section highlights most of the security measures against application related threats.
-Web Application Security
-The web application does follow all the OWASP REST Security Cheat Sheet related to:
+Web Application security
+The web application does follow all the OWASP REST security Cheat Sheet related to:
 
 * Authentication
 * Authorization
-* Input Validation
-* Output Encoding
+* Input validation
+* Output encoding
 * Secure Logging
 * Server Resiliency
 
@@ -185,7 +186,7 @@ The server may be subject to a Denial of Service attack (DOS) by flooding it wit
 The server mitigate such threats with a design that clearly separate synchronous (Request to REST) operations from asynchronous operations (Handling of data, encryption of data, manipulation of data, sending notifications). 
 That way the server will never do I/O or CPU intensive operations as a direct actions coming from an HTTP request.
 
-Client Application Security
+Client Application security
 ---------------------------
 The client application is a Javascript application that communicate with the server through a REST API.
 The Client application only handles structured, sanitized data to avoid any kind of code injection from server.
@@ -195,21 +196,21 @@ Other threats to privacy and anonymity
 ======================================
 In this section are highlighted several threats and protections related to GlobaLeaks that require further explanation.
 
-Proxy Detection
+Proxy detection
 ---------------
 GlobaLeaks does provide a proxy detection feature to advise the actors whenever they are behind a proxy and so are leaving traces of their browsing activity.
-This is then reported as a security awareness measure in Privacy Badge.
+This is then reported as a security awareness measure in Privacy badge.
 
 Time Correlation
 ----------------
 To prevent direct timing correlations attack between a Whistleblower submission and a Recipient notification, GlobaLeaks introduces a configurable variable time delay between those two events.
 
-Browser History and Cache
+Browser history and cache
 -------------------------
 GlobaLeaks tries to avoid, by using properly crafted HTTP headers, to leak information into actor’s browser history and cache.
 This privacy feature cannot guarantee the user to be safe against a forensics analysis of their browser cache and/or history but is provided as additional safety measure.
 
-Metadata Cleanup
+Metadata cleanup
 ----------------
 The cleanup of metadata of submitted files is a particular topic that attempts to protect an “unaware” whistleblower from leaking information in a document that may pose their anonymity at risk.
 However we do not think that automatic metadata cleanup can be always useful nor that it provides 100% security to whistleblower.
@@ -221,13 +222,13 @@ Security awareness is highly relevant for all the actors of GlobaLeaks because m
 
 GlobaLeaks at every stage and actions of actors with the platform does provide security awareness tips and information to better understand the context of the actor itself.
 
-Privacy Badge
+Privacy badge
 -------------
-One major security awareness measure is given by the Privacy Badge that does inform the user with an always present badge at the top of the page, with coloured bullets (green, yellow, red) about the user status about:
+One major security awareness measure is given by the Privacy badge that does inform the user with an always present badge at the top of the page, with coloured bullets (green, yellow, red) about the user status about:
 
 * Anonymity: Anonymity level 
 * Crypto: Communication security level
-* Security: Security level (information retrieved from their browser update and plugin status)
+* security: security level (information retrieved from their browser update and plugin status)
 
 That way the user will always know if he is in the best condition (3 green bullet) or if something is yellow or red.
 The actor, by clicking on the privacy badge, get detailed information on their status and how to improve it, contextualized for which actor he is.
@@ -257,7 +258,7 @@ Data stored outside GlobaLeaks
 GlobaLeaks does not provide any kind of security for data that are stored outside the GlobaLeaks system. 
 The duty of protection for such kind of data is exclusively of the actor.
 
-Advanced Traffic Analysis
+Advanced traffic analysis
 -------------------------
 An attacker monitoring HTTPS traffic with no ability to decrypt it, is able to identify the role of the intercepted users, because Whistleblower, Recipient and Administrator interfaces generate different network traffic patterns. 
 GlobaLeaks does not provide protection against this threat. It’s suggested to use Tor pluggable transports or other methods providing this kind of features.
