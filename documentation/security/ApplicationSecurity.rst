@@ -1,5 +1,5 @@
 ====================
-Application Security
+Application security
 ====================
 The GlobaLeaks software conforms to industry standard best practices for application security by following OWASP Security Guidelines.
 
@@ -48,7 +48,7 @@ This section describes the authentication possibilities implemented by the syste
 
 Due to the fact that the Backend may be deployed to be accessible via a Tor Onion Service and via HTTPS, the authentication endpoints for each user role may vary depending on the configuration.
 
-Authentication Matrix
+Authentication matrix
 ---------------------
 The table below summarizes the authentication methods for each user role.
 
@@ -61,7 +61,7 @@ The table below summarizes the authentication methods for each user role.
    "M2M", "API token"
 
 
-Authentication Methods
+Authentication methods
 ----------------------
 Supported authentication methods are described as follows.
 Password
@@ -79,15 +79,15 @@ A system integrated with GlobaLeaks could perform authenticated admin operations
 
 This feature is optional and disabled by default.
 
-Password Security
+Password security
 =================
 The following password security measures implemented by the system.
 
-Password Exchange Confidentiality
----------------------------------
+Authentication security
+-----------------------
 The confidentiality of the transmission of authentication secrets is protected by either Tor Onion Services v3 or TLS version 1.2+
 
-Password Storage
+Password storage
 ----------------
 Password are never stored in plaintext but the system maintain at rest only an hash. This apply to every authentication secret included whistleblower receipts.
 
@@ -97,7 +97,7 @@ Passwords are hashed using Argon2: https://en.wikipedia.org/wiki/Argon2
 
 The hash involves a per-user salt for each user and a per-system salt for each whistleblower.
 
-Password Strength
+Password strength
 -----------------
 The system enforces the usage of complex password by implementing a custom algorithm necessary for ensuring a reasonable entropy of each authentication secret.
 
@@ -105,33 +105,33 @@ Password are scored in three levels: strong, acceptable, unusable.
 A strong password should be formed by capital letters, lowercase letters, numbers and a symbols, be at least 12 characters long and include a variety of at least 10 different inputs.
 An acceptable password should be formed by at least 3 different inputs over capital letters, lowercase letters, numbers and a symbols, be at least 10 characters and include a variety of at least 7 different inputs.
 
-Two Factor Authentication
--------------------------
+Two factor authentication (2FA)
+-------------------------------
 Users are enabled to enroll for Two Factor Authentication via their own preferences.
 The system implements Two Factor Authentication (2FA) based on TOTP as for `RFC 6238 <https://tools.ietf.org/rfc/rfc6238.txt>`_
 
-Password Change on First Login
+Password change on first login
 ------------------------------
 The system enforces users to change their own password at their first login.
 Administrators could as well enforce password change for users at their next login.
 
-Periodic Password Change
+Periodic password change
 ------------------------
 The system enforces users to change their own password every 3 months.
 This period is configurable by administrators.
 
-Proof of work on Login
+Proof of work on login
 ----------------------
 The  system implements a proof of work on every login.
 Each client should request a token, solve the proof of work and wait a timeout for the token to become valid.
 This feature is intended to slow down possible attacks requiring more resources to users in terms of time, computation and memory.
 
-Slowdown on Failed Login Attempts
+Slowdown on failed login attempts
 ---------------------------------
 The system identifies multiple failed login attempts and implement a slowdown procedure where an authenticating client should wait up to 42 seconds to complete an authentication.
 This feature is intended to slow down possible attacks requiring more resources to users in terms of time, computation and memory.
 
-Password Recovery
+Password recovery
 -----------------
 In case of password loss users could request a password reset via the web login interface ckicking on a “Forgot password?” button.
 When this button is clicked, users are invited to enter their username or an email. If the provided username or the email correspond to an existing user, the system will provide a reset link to the configured email.
@@ -147,11 +147,11 @@ The main source of entropy for the platform is /dev/urandom.
 
 In order to increase the entropy available on the system the system integrates the usage of the haveged daemon:  http://www.issihosts.com/haveged/
 
-Web Application Security
+Web application security
 ========================
 This section describes the Web Application Security functionalities implemented by following the `OWASP REST Security Cheat Sheet <https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html>`_.
 
-Session Management
+Session management
 ------------------
 The session implemenetation follows the `OWASP Session Management Cheat Sheet <https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html>`_ security guidelines.
 
@@ -160,17 +160,17 @@ The Session ID is 256bits long secret generated randomly by the backend.
 Each session expire accordingly to a timeout of 5 minutes.
 Session IDs are exchanged by the client with the backend by means of an header (X-Session) and do expire as soon that users close their browser or the tab running GlobaLeaks. Users could explicitly log out via a logout button or implicitly by closing the browser.
 
-XSRF Prevention
+XSRF prevention
 ---------------
 Cookies are not used intentionally to minimize any possible XSRF attack.
 
-Input Validation (Backend)
+Input validation (backend)
 --------------------------
 The system adopts a whitelist based input validation approach. Each client request is checked against a set of regular expressions and only requests matching the expression are then processed.
 
 As well a set of rules are applied to each request type to limit possible attacks. For example any request is limited to a payload of 1MB.
 
-Input Validation (Client)
+Input validation (client)
 -------------------------
 The client implement strict validation of the rendered content by using the angular component: http://docs.angularjs.org/api/ngSanitize.$sanitize
 
@@ -258,7 +258,7 @@ Cookies
 -------
 To prevent any potential abuse GlobaLeaks does not make use of any type of cookie.
 
-Form Autocomplete OFF (Client)
+Form autocomplete OFF (client)
 ------------------------------
 Form implemented by the platform make use of the HTML5 form attribute in order to instruct the browser to do not keep caching of the user data in order to predict and autocomplete forms on subsequent submissions.
 
@@ -277,9 +277,9 @@ This choice consider to limit possible browser fingerprinting attacks.
 
 Reference: https://panopticlick.eff.org/static/browser-uniqueness.pdf
 
-Data Encryption
+Data encryption
 ===============
-The data, files, messages and metadata exchanged between whistleblowers and recipients is encrypted using the GlobaLeaks Encryption Protocol.
+The data, files, messages and metadata exchanged between whistleblowers and recipients is encrypted using the GlobaLeaks :doc:`EncryptionProtocol`.
 In addition to this GlobaLeaks implements many other encryption components and the following is the set of the main libraries and their main usage:
 
 * `Python-NaCL <https://github.com/pyca/pynacl>`_: is used for implementing data encryption

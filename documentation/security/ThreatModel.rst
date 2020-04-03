@@ -186,7 +186,7 @@ The server may be subject to a Denial of Service attack (DOS) by flooding it wit
 The server mitigate such threats with a design that clearly separate synchronous (Request to REST) operations from asynchronous operations (Handling of data, encryption of data, manipulation of data, sending notifications). 
 That way the server will never do I/O or CPU intensive operations as a direct actions coming from an HTTP request.
 
-Client Application security
+Client application security
 ---------------------------
 The client application is a Javascript application that communicate with the server through a REST API.
 The Client application only handles structured, sanitized data to avoid any kind of code injection from server.
@@ -201,7 +201,7 @@ Proxy detection
 GlobaLeaks does provide a proxy detection feature to advise the actors whenever they are behind a proxy and so are leaving traces of their browsing activity.
 This is then reported as a security awareness measure in Privacy badge.
 
-Time Correlation
+Time correlation
 ----------------
 To prevent direct timing correlations attack between a Whistleblower submission and a Recipient notification, GlobaLeaks introduces a configurable variable time delay between those two events.
 
@@ -216,7 +216,7 @@ The cleanup of metadata of submitted files is a particular topic that attempts t
 However we do not think that automatic metadata cleanup can be always useful nor that it provides 100% security to whistleblower.
 For that reason metadata cleanup is an optional feature at choice of Whistleblower and/or Administrator.
 
-Security Awareness
+Security awareness
 ------------------
 Security awareness is highly relevant for all the actors of GlobaLeaks because most of the security problems may arise from improper use of the software or improper actions.
 
@@ -228,7 +228,7 @@ One major security awareness measure is given by the Privacy badge that does inf
 
 * Anonymity: Anonymity level 
 * Crypto: Communication security level
-* security: security level (information retrieved from their browser update and plugin status)
+* Security: security level (information retrieved from their browser update and plugin status)
 
 That way the user will always know if he is in the best condition (3 green bullet) or if something is yellow or red.
 The actor, by clicking on the privacy badge, get detailed information on their status and how to improve it, contextualized for which actor he is.
