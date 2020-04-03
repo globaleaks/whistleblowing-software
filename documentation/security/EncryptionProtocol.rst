@@ -1,5 +1,5 @@
 ===================
-Encryption Protocol
+Encryption protocol
 ===================
 GlobaLeaks implements an encryption protocol designed to implement a trade off between security and usability necessary to enable easy access and anonymous reporting by whistleblowers that is requirement for the most common whistleblowing scenarios.
 

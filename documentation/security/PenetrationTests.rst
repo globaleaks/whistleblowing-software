@@ -1,5 +1,5 @@
 =================
-Penetration Tests
+Penetration tests
 =================
 The GlobaLeaks Project is periodically subject to independent security audit and penetration tests in order to verify and improve the security of the system.
 
