@@ -5,6 +5,8 @@ GlobaLeaks implements an encryption protocol designed to implement a trade off b
 
 The protocol is intended as well to provide reasonable security from attackers seizing the backend and attempting bruteforce decryption.
 
+Encryption is implemented for each submission protecting questionnaire's answers, comments, attachments and involved metadata. The keys involved in the encryption are per-user and per-submission and only users to which the data was destinated could access the data. This mechanism guarantees that only the user could access the data. Users that would forget their password would lose access to data that won’t be accessible anymore. To handle with this condition the system implements as well `Key recovery`_ and `Key Escrow`_ mechanisms.
+
 Encryption's workflow
 #####################
 * Users chooses a personal secure password at first login.
