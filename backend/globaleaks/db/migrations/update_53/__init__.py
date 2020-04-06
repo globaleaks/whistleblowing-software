@@ -46,7 +46,8 @@ class MigrationScript(MigrationBase):
             for key in new_obj.__table__.columns._data.keys():
                 if key == 'activation_token' and old_obj.activation_token == '':
                     new_obj.activation_token = None
-                else:
+
+                if key in old_obj.__table__.columns._data.keys():
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
