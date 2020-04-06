@@ -126,12 +126,22 @@ class TestAdminResetSubmissions(helpers.TestHandlerWithPopulatedDB):
         yield self.test_model_count(models.SecureFileDelete, 4)
 
 
-class TestAdminTestMail(helpers.TestHandlerWithPopulatedDB):
+class TestAdminOperations(helpers.TestHandlerWithPopulatedDB):
     _handler = AdminOperationHandler
 
-    def test_put(self):
+    def test_admin_test_mail(self):
         data_request = {
             'operation': 'test_mail',
+            'args': {}
+        }
+
+        handler = self.request(data_request, role='admin')
+
+        return handler.put()
+
+    def test_admin_test_reset_templates(self):
+        data_request = {
+            'operation': 'reset_templates',
             'args': {}
         }
 

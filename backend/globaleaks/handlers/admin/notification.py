@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from globaleaks.db import db_refresh_memory_variables
-from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.models.config_desc import ConfigL10NFilters
@@ -24,7 +23,6 @@ def db_get_notification(session, tid, language):
     conf_l10n_dict = ConfigL10NFactory(session, tid).serialize('notification', language)
 
     additional_dict = {
-        'reset_templates': False,
         'smtp_password': '',
         'templates': ConfigL10NFilters['notification']
     }
@@ -42,9 +40,6 @@ def update_notification(session, tid, request, language):
 
     config_l10n = ConfigL10NFactory(session, tid)
     config_l10n.update('notification', request, language)
-
-    if request.pop('reset_templates'):
-        config_l10n.reset('notification', load_appdata())
 
     db_refresh_memory_variables(session, [tid])
 

@@ -22,6 +22,17 @@ controller("AdminMailCtrl", ["$scope", "$http", "AdminNotificationResource",
     return $http({method: "PUT", url: "admin/config", data: req});
   };
 
+  $scope.resetTemplates = function() {
+    $scope.Utils.deleteDialog().then(function() {
+      var req = {
+        "operation": "reset_templates",
+        "args": {}
+      };
+
+      return $http({method: "PUT", url: "admin/config", data: req});
+    });
+  };
+
   $scope.resetSMTPConfiguration = function() {
     $scope.resources.notification.smtp_server = "mail.globaleaks.org";
     $scope.resources.notification.smtp_port = 9267;

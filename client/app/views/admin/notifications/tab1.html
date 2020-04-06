@@ -66,25 +66,24 @@
     </div>
 
     <div class="form-group">
-      <input data-ng-model="resources.notification.reset_templates" type="checkbox">
-      <label data-translate>Reset notification templates to default</label>
-    </div>
-
-    <div class="form-group">
       <label data-translate>Number of hours before sending a report expiration alert</label>
       <input class="form-control" data-ng-model="resources.notification.tip_expiration_threshold" type="number" />
     </div>
 
     <div class="form-group">
       <button uib-tooltip="{{'Send a test email to your email address.' | translate}}"
-              data-ng-click="updateThenTestMail();"
+              data-ng-click="updateThenTestMail()"
               class="btn btn-primary">
         <i class="fas fa-envelope"></i>
         <span data-translate>Test the configuration</span>
       </button>
-      <button data-ng-click="resetSMTPConfiguration();"
-              class="btn btn-danger">
+      <button data-ng-click="resetSMTPConfiguration()"
+              class="btn btn-primary">
         <span data-translate>Reset SMTP configuration</span>
+      </button>
+      <button data-ng-click="resetTemplates()"
+              class="btn btn-primary">
+        <span data-translate>Reset notification templates to default</span>
       </button>
     </div>
 

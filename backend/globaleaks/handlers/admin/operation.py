@@ -2,6 +2,7 @@
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.db import db_refresh_memory_variables
+from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.operation import OperationHandler
@@ -9,7 +10,7 @@ from globaleaks.handlers.password_reset import generate_password_reset_token_by_
 from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import db_get_user, disable_2fa, get_user
 from globaleaks.models import Config, InternalTip
-from globaleaks.models.config import db_set_config_variable
+from globaleaks.models.config import db_set_config_variable, ConfigL10NFactory
 from globaleaks.orm import transact, tw
 from globaleaks.rest import errors
 from globaleaks.services.onion import set_onion_service_info, get_onion_service_info
@@ -82,6 +83,12 @@ def toggle_escrow(session, tid, user_session, user_id):
         user.crypto_escrow_prv_key = ''
 
 
+@transact
+def reset_templates(session, tid):
+    config_l10n = ConfigL10NFactory(session, tid)
+    config_l10n.reset('notification', load_appdata())
+
+
 class AdminOperationHandler(OperationHandler):
     """
     This interface exposes the enable to configure and verify the platform hostname
@@ -140,6 +147,9 @@ class AdminOperationHandler(OperationHandler):
     def toggle_escrow(self, req_args, *args, **kwargs):
         return toggle_escrow(self.request.tid, self.current_user, req_args['value'])
 
+    def reset_templates(self, req_args):
+        return reset_templates(self.request.tid)
+
     def operation_descriptors(self):
         return {
             'disable_2fa': (AdminOperationHandler.disable_2fa, {'value': str}),
@@ -148,5 +158,6 @@ class AdminOperationHandler(OperationHandler):
             'reset_user_password': (AdminOperationHandler.reset_user_password, {'value': str}),
             'set_hostname': (AdminOperationHandler.set_hostname, {'value': str}),
             'test_mail': (AdminOperationHandler.test_mail, {}),
-            'toggle_escrow': (AdminOperationHandler.toggle_escrow, {'value': str})
+            'toggle_escrow': (AdminOperationHandler.toggle_escrow, {'value': str}),
+            'reset_templates': (AdminOperationHandler.reset_templates, {})
         }
