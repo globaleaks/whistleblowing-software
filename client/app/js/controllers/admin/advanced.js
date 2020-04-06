@@ -1,5 +1,5 @@
 GLClient.
-controller("AdminAdvancedCtrl", ["$scope", "$http", function($scope, $http) {
+controller("AdminAdvancedCtrl", ["$scope", function($scope) {
   $scope.tabs = [
     {
       title:"Main configuration",
@@ -23,12 +23,7 @@ controller("AdminAdvancedCtrl", ["$scope", "$http", function($scope, $http) {
 
   $scope.resetSubmissions = function() {
     $scope.Utils.deleteDialog().then(function() {
-      var req = {
-        "operation": "reset_submissions",
-        "args": {}
-      };
-
-      return $http({method: "PUT", url: "admin/config", data: req});
+      return $scope.Utils.applyConfig("reset_submissions");
     });
   };
 

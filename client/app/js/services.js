@@ -796,7 +796,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       tenant.mode = "default";
       tenant.subdomain = "";
       return tenant;
-    },
+    }
   };
 }]).
   factory("UserPreferences", ["GLResource", function(GLResource) {
@@ -1149,7 +1149,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         $window.print();
       },
 
-      applyConfig: function(cmd, value) {
+      applyConfig: function(cmd, value, refresh) {
         var req = {
           "operation": cmd,
           "args": {
@@ -1157,7 +1157,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           }
         };
 
-        return $http({method: "PUT", url: "admin/config", data: req}).then(function() { $rootScope.reload(); });
+        return $http({method: "PUT", url: "admin/config", data: req}).then(function() { if (refresh) { $rootScope.reload(); }});
       },
 
       removeFile: function (submission, list, file) {

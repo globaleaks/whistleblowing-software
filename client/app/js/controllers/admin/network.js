@@ -1,5 +1,5 @@
 GLClient.
-controller("AdminNetworkCtrl", ["$scope", "$http", function($scope, $http) {
+controller("AdminNetworkCtrl", ["$scope", function($scope) {
   $scope.tabs = [
     {
       title: "HTTPS",
@@ -22,14 +22,7 @@ controller("AdminNetworkCtrl", ["$scope", "$http", function($scope, $http) {
   $scope.hostname = $scope.resources.node.hostname;
 
   $scope.resetOnionPrivateKey = function() {
-    var req = {
-      "operation": "reset_onion_private_key",
-      "args": {}
-    };
-
-    return $http({method: "PUT", url: "admin/config", data: req}).then(function(response) {
-      $scope.resources.node.onionservice = response.data.onionservice;
-    });
+    return $scope.Utils.applyConfig("reset_onion_private_key", {}, true);
   };
 
   $scope.new_redirect = {};

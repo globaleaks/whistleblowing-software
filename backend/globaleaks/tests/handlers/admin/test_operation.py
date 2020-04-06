@@ -11,6 +11,7 @@ from globaleaks.tests import helpers
 from twisted.internet import defer, reactor
 
 
+
 class TestHostnameConfig(helpers.TestHandler):
     _handler = AdminOperationHandler
 
@@ -129,22 +130,22 @@ class TestAdminResetSubmissions(helpers.TestHandlerWithPopulatedDB):
 class TestAdminOperations(helpers.TestHandlerWithPopulatedDB):
     _handler = AdminOperationHandler
 
-    def test_admin_test_mail(self):
+    def _test_operation_handler(self, operation):
         data_request = {
-            'operation': 'test_mail',
+            'operation': operation,
             'args': {}
         }
 
         handler = self.request(data_request, role='admin')
 
         return handler.put()
+
+
+    def test_admin_test_mail(self):
+        return self._test_operation_handler('test_mail')
+
+    def test_admin_test_smtp_settings(self):
+        return self._test_operation_handler('reset_smtp_settings')
 
     def test_admin_test_reset_templates(self):
-        data_request = {
-            'operation': 'reset_templates',
-            'args': {}
-        }
-
-        handler = self.request(data_request, role='admin')
-
-        return handler.put()
+        return self._test_operation_handler('reset_templates')

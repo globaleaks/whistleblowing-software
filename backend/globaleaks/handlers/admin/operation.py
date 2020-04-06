@@ -10,7 +10,7 @@ from globaleaks.handlers.password_reset import generate_password_reset_token_by_
 from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import db_get_user, disable_2fa, get_user
 from globaleaks.models import Config, InternalTip
-from globaleaks.models.config import db_set_config_variable, ConfigL10NFactory
+from globaleaks.models.config import db_set_config_variable, ConfigFactory, ConfigL10NFactory
 from globaleaks.orm import transact, tw
 from globaleaks.rest import errors
 from globaleaks.services.onion import set_onion_service_info, get_onion_service_info
@@ -84,6 +84,18 @@ def toggle_escrow(session, tid, user_session, user_id):
 
 
 @transact
+def reset_smtp_settings(session, tid):
+    config = ConfigFactory(session, tid)
+    config.set_val('smtp_server', 'mail.globaleaks.org')
+    config.set_val('smtp_port', 9267)
+    config.set_val('smtp_username', 'globaleaks')
+    config.set_val('smtp_password', 'globaleaks')
+    config.set_val('smtp_source_email', 'notification@mail.globaleaks.org')
+    config.set_val('smtp_security', 'TLS')
+    config.set_val('smtp_authentication', True)
+
+
+@transact
 def reset_templates(session, tid):
     config_l10n = ConfigL10NFactory(session, tid)
     config_l10n.reset('notification', load_appdata())
@@ -95,6 +107,9 @@ class AdminOperationHandler(OperationHandler):
     """
     check_roles = 'admin'
     invalidate_cache = True
+
+    def reset_smtp_settings(self, req_args, *args, **kwargs):
+        return reset_smtp_settings(self.request.tid)
 
     def disable_2fa(self, req_args, *args, **kwargs):
         return disable_2fa(self.request.tid, req_args['value'])
@@ -154,6 +169,7 @@ class AdminOperationHandler(OperationHandler):
         return {
             'disable_2fa': (AdminOperationHandler.disable_2fa, {'value': str}),
             'reset_onion_private_key': (AdminOperationHandler.reset_onion_private_key, {}),
+            'reset_smtp_settings': (AdminOperationHandler.reset_smtp_settings, {}),
             'reset_submissions': (AdminOperationHandler.reset_submissions, {}),
             'reset_user_password': (AdminOperationHandler.reset_user_password, {'value': str}),
             'set_hostname': (AdminOperationHandler.set_hostname, {'value': str}),
