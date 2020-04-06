@@ -602,6 +602,15 @@ msgstr "seconds"
 msgid "This domain name is not available."
 msgstr "This domain name is not available."
 
+msgid "Do not expose users' names"
+msgstr "Do not expose users' names"
+
+msgid "Vat number"
+msgstr "Vat number"
+
+msgid "Tax code"
+msgstr "Tax code"
+
 msgid "Select the context of your report:"
 msgstr "Select the context of your report:"
 
