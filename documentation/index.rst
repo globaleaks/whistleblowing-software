@@ -18,16 +18,16 @@ Welcome to GlobaLeaks's Documentation!
         setup/index
 
 .. toctree::
-        :name: user
-        :maxdepth: 4
-
-        user/index
-
-.. toctree::
         :name: security
         :maxdepth: 4
 
         security/index
+
+.. toctree::
+        :name: user
+        :maxdepth: 4
+
+        user/index
 
 .. toctree::
         :name: developer
