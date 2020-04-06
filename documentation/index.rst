@@ -30,7 +30,7 @@ Welcome to GlobaLeaks's Documentation!
         security/index
 
 .. toctree::
-        :name: sourcecode
+        :name: developer
         :maxdepth: 4
 
-        sourcecode/index
+        developer/index

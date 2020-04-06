@@ -295,7 +295,7 @@ It tries to limit the possibility of automating any operation by requiring human
 It is written to limit the possibility of triggering CPU intensive routines by an external user (e.g. by implementing limits on queries and jobs execution time)
 It implements monitoring of each activity trying to implement detection of attacks and implement proactively security measures to prevent DoS (e.g. implementing slowdown on fast-operations)
 
-Network Sandboxing
+Network sandboxing
 ==================
 GlobaLeaks integrates iptables by default and implements by a strict firewall rule that only allow inbound and outbound connections from 127.0.0.1 (where Tor is running with Tor Hidden Service).
 
@@ -303,7 +303,7 @@ As well it automatically applies network sandboxing to all outbound communicatio
 
 The configuration of the network sandboxing is defined inside the init script of the application: https://github.com/globaleaks/GlobaLeaks/blob/master/debian/globaleaks.init
 
-Application Sandboxing
+Application sandboxing
 ======================
 GlobaLeaks integrates AppArmor by default and implements a strict sandboxing profile enabling the application to access only the strictly required files.
 As well the application does run under a dedicated user and group "globaleaks" with reduced privileges.
