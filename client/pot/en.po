@@ -605,8 +605,8 @@ msgstr "This domain name is not available."
 msgid "Do not expose users' names"
 msgstr "Do not expose users' names"
 
-msgid "Vat number"
-msgstr "Vat number"
+msgid "VAT number"
+msgstr "VAT number"
 
 msgid "Tax code"
 msgstr "Tax code"
