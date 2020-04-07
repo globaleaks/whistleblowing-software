@@ -1,6 +1,5 @@
 /* override table width restrictions */
 @media screen and (min-width: 767px) {
-
    .wy-nav-content {
         max-width: 100% !important;
     }

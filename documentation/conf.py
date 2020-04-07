@@ -303,5 +303,9 @@ autoapi_modules = {
   'globaleaks': {'output': 'globaleaks'}
 }
 
+html_theme_options = {
+  'style_nav_header_background': '#3877BC',
+}
+
 def setup(app):
    app.add_stylesheet("custom.css")
