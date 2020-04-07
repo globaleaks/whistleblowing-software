@@ -1,5 +1,7 @@
 Changes in version 4.0.8 - 2020-04-02
-    Revise fix on connection check admin and recipient roles
+    Fix issue #2800
+    Add updated documentation abouth threat model and encryption
+    Update translation
 
 Changes in version 4.0.7 - 2020-04-02
     Fix opening of 2FA and encryption recovery key modals
