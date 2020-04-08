@@ -11,6 +11,7 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020
 # João Paulo Macedo Batalha <joao.batalha@transparencia.pt>, 2015
 # Manuela Silva <inactive+h_manuela_rodsilva@transifex.com>, 2015-2016
+# Manuela Silva <manuelarodsilva@gmail.com>, 2020
 # Manuela Silva <manuelarodsilva@gmail.com>, 2014-2018
 # Mónica Marques <coelho_monica75@hotmail.com>, 2017
 # Manuela Silva <manuelarodsilva@gmail.com>, 2019
@@ -22,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-10 22:24+0000\n"
+"PO-Revision-Date: 2020-04-06 13:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -362,7 +363,7 @@ msgid "Triggered by score:"
 msgstr ""
 
 msgid "Message shown on top of the status page of the report"
-msgstr "Mensagem mostrada no topo da página de estado da submissão"
+msgstr "Mensagem mostrada no topo da página do estado da submissão"
 
 msgid "Copy and paste the PGP public key here"
 msgstr "Copie e cole a chave pública PGP aqui:"
@@ -482,7 +483,7 @@ msgid "Activities"
 msgstr "Atividades"
 
 msgid "Reports"
-msgstr "Relatórios"
+msgstr "Submissões"
 
 msgid "Users"
 msgstr "Utilizadores"
@@ -604,7 +605,7 @@ msgstr ""
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr ""
+msgstr "Um ou mais destinatários ainda não realizaram o primeiro início de sessão. Isto significa que eles não receberão as submissões."
 
 msgid "This user has not performed the first login yet."
 msgstr ""
@@ -613,6 +614,15 @@ msgid "seconds"
 msgstr "segundos"
 
 msgid "This domain name is not available."
+msgstr ""
+
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "VAT number"
+msgstr ""
+
+msgid "Tax code"
 msgstr ""
 
 msgid "Select the context of your report:"
@@ -636,7 +646,7 @@ msgid "Blow the whistle"
 msgstr "Denuncie"
 
 msgid "Your report was successful."
-msgstr ""
+msgstr "A sua submissão foi bem sucedida."
 
 msgid "Report"
 msgstr "Submissão"
@@ -690,14 +700,14 @@ msgid "Enable simplified login"
 msgstr ""
 
 msgid "Allow recipients to delete reports"
-msgstr "Permitir que os recetores apaguem as denúncias"
+msgstr "Permitir que os destinatários eliminem as submissões"
 
 msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Permitir que os recetores adiem a data de validade das denúncias"
+msgstr "Permitir que os destinatários adiem a data de expiração da submissão"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Permitir que os destinatários concedam permissões aos informadores nas submissões específicas"
+msgstr "Permitir que os destinatários concedam permissões aos informadores em submissões específicas"
 
 msgid "Enable search engines indexing"
 msgstr "Ativar a indexação dos motores de pesquisa"
@@ -815,7 +825,7 @@ msgid "Save"
 msgstr "Guardar"
 
 msgid "Reset reports"
-msgstr ""
+msgstr "Reiniciar submissões"
 
 msgid "Low"
 msgstr ""
@@ -1175,14 +1185,6 @@ msgstr "O assistente de configuração manual irá guiá-lo através da configur
 msgid "Auto-renewal"
 msgstr "Renovação automática"
 
-msgid "Danger"
-msgstr "Perigo"
-
-msgid ""
-"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
-"not their anonymity."
-msgstr "Permitir que os denunciantes se liguem por HTTPS preserva a privacidade dos mesmos, mas não o seu anonimato."
-
 msgid "Tor Onion Service"
 msgstr "Tor Onion - Serviço"
 
@@ -1398,6 +1400,9 @@ msgstr "Configurar"
 
 msgid "Subdomain"
 msgstr ""
+
+msgid "Creation date:"
+msgstr "Data de criação:"
 
 msgid "Send an account activation link to the user."
 msgstr ""

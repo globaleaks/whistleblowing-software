@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-28 01:38+0000\n"
-"Last-Translator: C. E.\n"
+"PO-Revision-Date: 2020-04-06 13:51+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -632,6 +632,15 @@ msgstr "segundos"
 msgid "This domain name is not available."
 msgstr "Este nome de domínio não está disponível."
 
+msgid "Do not expose users' names"
+msgstr "Não exponha nomes' de usuários"
+
+msgid "VAT number"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Selecionar o assunto do seu envio:"
 
@@ -1192,14 +1201,6 @@ msgstr "O assistente de configuração manual lhe auxiliará por meio da inicial
 msgid "Auto-renewal"
 msgstr "Renovação automática"
 
-msgid "Danger"
-msgstr "Perigo"
-
-msgid ""
-"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
-"not their anonymity."
-msgstr "Permite delatores a conectarem com HTTPS preservando sua privacidade mas não a sua anonimidade."
-
 msgid "Tor Onion Service"
 msgstr "Serviço Onion do Tor"
 
@@ -1415,6 +1416,9 @@ msgstr "Configurar"
 
 msgid "Subdomain"
 msgstr "Subdomínio"
+
+msgid "Creation date:"
+msgstr "Data de criação:"
 
 msgid "Send an account activation link to the user."
 msgstr "Envie um link de ativação da conta para o usuário."

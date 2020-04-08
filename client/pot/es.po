@@ -36,7 +36,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-10 22:24+0000\n"
+"PO-Revision-Date: 2020-04-06 13:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -496,7 +496,7 @@ msgid "Activities"
 msgstr "Actividades"
 
 msgid "Reports"
-msgstr "Informes"
+msgstr "Reportes"
 
 msgid "Users"
 msgstr "Usuarios"
@@ -627,6 +627,15 @@ msgid "seconds"
 msgstr "segundos"
 
 msgid "This domain name is not available."
+msgstr ""
+
+msgid "Do not expose users' names"
+msgstr "No mostrar los nombres de usuario"
+
+msgid "VAT number"
+msgstr ""
+
+msgid "Tax code"
 msgstr ""
 
 msgid "Select the context of your report:"
@@ -1021,7 +1030,7 @@ msgid "Show small recipient cards on submission interface"
 msgstr "Mostrar pequeñas tarjetas de presentación del destinatarios en la interfaz de entregas"
 
 msgid "Show recipient details on the status page of the report"
-msgstr "Mostrar detalles del destinatarios en la página de estado de la entrega"
+msgstr "Mostrar detalles del destinatario en la página de estado de la entrega"
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Texto mostrado sobre la interfaz para seleccionar destinatarios"
@@ -1189,14 +1198,6 @@ msgstr "El asistente de configuración manual le guiará a través del estableci
 msgid "Auto-renewal"
 msgstr "Auto-renovación"
 
-msgid "Danger"
-msgstr "Peligro"
-
-msgid ""
-"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
-"not their anonymity."
-msgstr "Permitir que los alertadores se conecten sobre HTTPS preserva su privacidad pero no su anonimato."
-
 msgid "Tor Onion Service"
 msgstr "Servicio Tor Onion"
 
@@ -1237,7 +1238,7 @@ msgid "Reset notification templates to default"
 msgstr "Restablecer plantillas de notificación predeterminadas"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "Número de horas antes de enviar una alerta de caducidad de la entrega"
+msgstr "Numero de horas antes de enviar una alerta de caducidad de la entrega"
 
 msgid "Test the configuration"
 msgstr "Prueba la configuración"
@@ -1413,6 +1414,9 @@ msgstr "Configurar"
 msgid "Subdomain"
 msgstr "Subdominio"
 
+msgid "Creation date:"
+msgstr "Fecha de creación:"
+
 msgid "Send an account activation link to the user."
 msgstr "Enviar enlace de activación de la cuenta al usuario."
 
@@ -1515,7 +1519,7 @@ msgid "Site:"
 msgstr "Sitio:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "¿Ha rellenado ya un envío? Introduzca su destinatario."
+msgstr "¿Ya has compartido información? Introduce tu código."
 
 msgid "The receipt is either invalid or the report has expired."
 msgstr "El código es inválido o bien el reporte ha expirado"
@@ -1551,7 +1555,7 @@ msgid "Assign score points"
 msgstr "Asignar puntos a la puntuación"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Por favor dese cuenta de que todos los datos asociados serán eliminados definitivament."
+msgstr "Por favor entiende que todos los datos asociados serán eliminados definitivamente."
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Este es un buzón de demostración, por favor no lo uses para reportes reales. "
@@ -1722,7 +1726,7 @@ msgid ""
 "and staying anonymous by not revealing your location or IP address. You "
 "won't notice any difference from an insecure chat, except that you will be "
 "using a unique address instead of a phone number/email/username."
-msgstr "Al usar la red Tor y crear un Servicio Cebolla, Ricochet es una aplicación de mensajería instantánea que te permite comunicarte, mientras protege tu privacidad y anonimato al no revelar tu ubicación ni dirección IP. No notarás ninguna diferencia respecto a un chat inseguro, excepto que usarás una dirección única en vez de un número de teléfono/correo electrónico/nombre de usuario."
+msgstr "Al usar la red Tor y crear un Servicio Cebolla, Ricochet es una aplicación de mensajería instantánea que te permite comunicarte, mientras protege tu privacidad y anonimato al no revelar tu ubicación ni dirección IP. No notarás ninguna diferencia respecto a un chat no-seguro, excepto que usarás una dirección única en vez de un número de teléfono/correo electrónico/nombre de usuario."
 
 msgid "The connection is not secure."
 msgstr "La conexión no es segura."
@@ -1802,7 +1806,7 @@ msgid "Allow the whistleblower to send messages"
 msgstr "Permitir al alertador enviar mensajes"
 
 msgid "Are you sure that you want to delete the report?"
-msgstr "¿Está seguro de quiere eliminar globalmente el reporte?"
+msgstr "¿Está seguro de quiere eliminar el reporte?"
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
@@ -1960,7 +1964,7 @@ msgid "We will try to get back to you as soon as possible."
 msgstr "Intentaremos responderte tan pronto como sea posible."
 
 msgid "Remember your receipt for this report."
-msgstr "Recuerda tu recibo para este reporte."
+msgstr "Recuerda tu código para este reporte."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "

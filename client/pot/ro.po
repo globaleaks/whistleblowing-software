@@ -10,6 +10,7 @@
 # Inpresentia I., 2016
 # Inpresentia I., 2016
 # Matei Imola <imolam11@gmail.com>, 2016
+# Mihaela Pop <mihaela.pop@cji.ro>, 2020
 # Mihai Onosie, 2014
 # Paul <paul@occrp.org>, 2015
 # Tarța Vasile-Florin <florin13t@gmail.com>, 2016-2017
@@ -18,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-27 15:16+0000\n"
-"Last-Translator: Cristina Lupu <cristina@cji.ro>\n"
+"PO-Revision-Date: 2020-04-06 13:51+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -611,6 +612,15 @@ msgstr "secunde"
 msgid "This domain name is not available."
 msgstr "Numele de domeniu nu este disponibil."
 
+msgid "Do not expose users' names"
+msgstr "Nu devoala numele utilizatorilor"
+
+msgid "VAT number"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Selectează contextul sesizării tale:"
 
@@ -1171,14 +1181,6 @@ msgstr "Asistentul pentru configurare manuală vă va ghida de-a lungul procesul
 msgid "Auto-renewal"
 msgstr "Reînnoire automată"
 
-msgid "Danger"
-msgstr "Pericol"
-
-msgid ""
-"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
-"not their anonymity."
-msgstr "Permitându-le avertizorilor de integritate să folosească conexiunea HTTPS le protejezi datele personale, dar nu și anonimitatea."
-
 msgid "Tor Onion Service"
 msgstr "Serviciul Tor"
 
@@ -1394,6 +1396,9 @@ msgstr "Configurează"
 
 msgid "Subdomain"
 msgstr "Sub-domeniu"
+
+msgid "Creation date:"
+msgstr "Data creării:"
 
 msgid "Send an account activation link to the user."
 msgstr "Trimite un link pentru activarea contului către utilizator."

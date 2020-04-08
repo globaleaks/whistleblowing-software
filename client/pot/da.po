@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-27 14:45+0000\n"
-"Last-Translator: Casper Petersen <casper_petersen@hotmail.com>\n"
+"PO-Revision-Date: 2020-04-06 13:51+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -604,6 +604,15 @@ msgstr "sekunder"
 msgid "This domain name is not available."
 msgstr "Domænenavnet er ikke tilgængeligt."
 
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "VAT number"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Vælg hvilken sammehæng din indsendelse indgår i."
 
@@ -1164,14 +1173,6 @@ msgstr "Den manuelle konfigurationsguide fører dig gennem opsætningen af HTTPS
 msgid "Auto-renewal"
 msgstr "Automatisk fornyelse"
 
-msgid "Danger"
-msgstr "Fare"
-
-msgid ""
-"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
-"not their anonymity."
-msgstr "Tillader du whistleblowere at få adgang til systemet via HTTPS sikrer du deres privatliv, men ikke deres anonymitet."
-
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
 
@@ -1387,6 +1388,9 @@ msgstr "Konfigurer"
 
 msgid "Subdomain"
 msgstr "Subdomæne"
+
+msgid "Creation date:"
+msgstr "Oprettelsesdato:"
 
 msgid "Send an account activation link to the user."
 msgstr "Send et kontoaktiveringslink til brugeren."

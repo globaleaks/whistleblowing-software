@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-13 14:54+0000\n"
-"Last-Translator: bact' <arthit@gmail.com>\n"
+"PO-Revision-Date: 2020-04-06 13:51+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -604,6 +604,15 @@ msgstr "วินาที"
 msgid "This domain name is not available."
 msgstr "ชื่อโดเมนนี้ใช้ไม่ได้"
 
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "VAT number"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "เลือกบริบทของรายงานของคุณ:"
 
@@ -1164,14 +1173,6 @@ msgstr "ตัวช่วยการติดตั้งด้วยตัว
 msgid "Auto-renewal"
 msgstr "ต่ออายุอัตโนมัติ"
 
-msgid "Danger"
-msgstr "อันตราย"
-
-msgid ""
-"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
-"not their anonymity."
-msgstr "การอนุญาตให้ผู้แจ้งเบาะแสเชื่อมต่อด้วย HTTPS จะรักษาความเป็นส่วนตัวของพวกเขา แต่ไม่ได้ช่วยพวกเขาจากการถูกตามตัวได้"
-
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
 
@@ -1387,6 +1388,9 @@ msgstr "ปรับแต่งค่า"
 
 msgid "Subdomain"
 msgstr "โดเมนย่อย"
+
+msgid "Creation date:"
+msgstr "วันที่สร้าง คือ"
 
 msgid "Send an account activation link to the user."
 msgstr "ส่งลิงก์ยืนยันเปิดใช้บัญชีไปให้ผู้ใช้"

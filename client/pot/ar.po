@@ -42,7 +42,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-10 22:24+0000\n"
+"PO-Revision-Date: 2020-04-06 13:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -635,6 +635,15 @@ msgstr "ثواني"
 msgid "This domain name is not available."
 msgstr ""
 
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "VAT number"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "حدد سياق بلاغك:"
 
@@ -1195,14 +1204,6 @@ msgstr "سيوجّهك معالج التهيئة اليدوي خلال تمكي�
 msgid "Auto-renewal"
 msgstr "تجديد تلقائي"
 
-msgid "Danger"
-msgstr "خطر"
-
-msgid ""
-"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
-"not their anonymity."
-msgstr "السماح للمبلّغين بالاتصال عبر HTTPS يحافظ على خصوصيتهم ولكن لا يضمن حجب هويّاتهم."
-
 msgid "Tor Onion Service"
 msgstr "خدمة Tor onion"
 
@@ -1418,6 +1419,9 @@ msgstr "اضبط"
 
 msgid "Subdomain"
 msgstr "النطاق الفرعي"
+
+msgid "Creation date:"
+msgstr "تاريخ الإنشاء:"
 
 msgid "Send an account activation link to the user."
 msgstr "إرسال رابط تفعيل الحساب للمستخدم."

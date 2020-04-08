@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-03-10 22:24+0000\n"
+"PO-Revision-Date: 2020-04-06 13:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -604,6 +604,15 @@ msgstr "秒"
 msgid "This domain name is not available."
 msgstr ""
 
+msgid "Do not expose users' names"
+msgstr ""
+
+msgid "VAT number"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "選擇您報告合適的情況："
 
@@ -1164,14 +1173,6 @@ msgstr "手動設定精靈會指引你從另一套憑證授權單位來完成 HT
 msgid "Auto-renewal"
 msgstr "自動更新"
 
-msgid "Danger"
-msgstr "危險"
-
-msgid ""
-"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
-"not their anonymity."
-msgstr "可讓吹哨揭弊者透過連接 HTTPS 來保護其隱私但這無法保持匿名。"
-
 msgid "Tor Onion Service"
 msgstr "Tor 洋瞛服務 "
 
@@ -1387,6 +1388,9 @@ msgstr "設定"
 
 msgid "Subdomain"
 msgstr "子網域"
+
+msgid "Creation date:"
+msgstr "建立日期:"
 
 msgid "Send an account activation link to the user."
 msgstr "傳送激活連結給該位用戶。"
