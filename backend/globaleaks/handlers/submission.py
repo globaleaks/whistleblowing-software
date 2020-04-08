@@ -30,7 +30,7 @@ def decrypt_tip(user_key, tip_prv_key, tip):
             tip['data'][k] = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(tip['data'][k].encode())).decode())
 
             if k == 'whistleblower_identity':
-                ret['data']['whistleblower_identity_provided'] = True
+                tip['data']['whistleblower_identity_provided'] = True
 
                 if isinstance(tip['data'][k], list):
                    # Fix for issue: https://github.com/globaleaks/GlobaLeaks/issues/2612
