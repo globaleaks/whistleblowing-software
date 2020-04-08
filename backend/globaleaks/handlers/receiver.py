@@ -61,6 +61,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
 
         data = {
             'id': rtip.id,
+            'itip_id': itip.id,
             'creation_date': datetime_to_ISO8601(itip.creation_date),
             'last_access': datetime_to_ISO8601(rtip.last_access),
             'wb_last_access': datetime_to_ISO8601(itip.wb_last_access),
@@ -114,9 +115,9 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
         internalfiles_by_itip[itip_id] = count
 
     for elem in rtip_summary_list:
-        elem['file_count'] = internalfiles_by_itip.get(itip.id, 0)
-        elem['comment_count'] = comments_by_itip.get(itip.id, 0)
-        elem['message_count'] = messages_by_rtip.get(rtip.id, 0)
+        elem['file_count'] = internalfiles_by_itip.get(elem['itip_id'], 0)
+        elem['comment_count'] = comments_by_itip.get(elem['itip_id'], 0)
+        elem['message_count'] = messages_by_rtip.get(elem['id'], 0)
 
     return rtip_summary_list
 
