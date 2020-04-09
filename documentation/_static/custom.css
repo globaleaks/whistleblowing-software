@@ -1,4 +1,11 @@
-/* override table width restrictions */
+html, body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+a, a:hover, a:visited {
+  color: #3877BC;
+}
+
 @media screen and (min-width: 767px) {
    .wy-nav-content {
         max-width: 100% !important;

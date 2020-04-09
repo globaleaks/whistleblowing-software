@@ -212,9 +212,9 @@ htmlhelp_basename = 'globaleaks'
 # -- Options for LaTeX output ---------------------------------------------
 
 latex_elements = {
-  'sphinxsetup': 'TitleColor={rgb}{0.56,0.119,0.188}, \
-                  InnerLinkColor={rgb}{0.56,0.119,0.188}, \
-                  OuterLinkColor={rgb}{0.56,0.119,0.188}',
+  'sphinxsetup': 'TitleColor={HTML}{3877BC}, \
+                  InnerLinkColor={HTML}{3877BC}, \
+                  OuterLinkColor={HTML}{3877BC}',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
