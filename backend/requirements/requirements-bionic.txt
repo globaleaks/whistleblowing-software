@@ -16,7 +16,6 @@ python_debian==0.1.32
 python_gnupg==0.4.1
 requests==2.18.4
 service_identity==16.0.0
-six==1.11.0
 sqlalchemy==1.1.11
 twisted==17.9.0
 txtorcon==0.19.3
