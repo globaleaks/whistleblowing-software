@@ -11,7 +11,7 @@ env:
 matrix:
   fast_finish: true
   include:
-    - env: GLTEST='py3_test' DISTRIBUTION='buster' CODACY=true
+    - env: GLTEST='test' DISTRIBUTION='buster' CODACY=true
       dist: bionic
       python: "3.6"
       addons:

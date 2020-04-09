@@ -41,7 +41,7 @@ sudo usermod -aG debian-tor $USER
 sudo iptables -t nat -A OUTPUT -o lo -p tcp --dport 9000 -j REDIRECT --to-port 8082
 npm install -g grunt grunt-cli
 
-if [ "$GLTEST" = "py3_test" ]; then
+if [ "$GLTEST" = "test" ]; then
   setupChrome
 
   pip install coverage codacy-coverage
