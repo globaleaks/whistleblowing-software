@@ -271,7 +271,7 @@ Fonts
 The Client intentionally does not use any custom font not already included in the main operating systems and just use the following standard configuration:
 ::
 
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-family: Helvetica, Arial, sans-serif
 
 This choice consider to limit possible browser fingerprinting attacks.
 
