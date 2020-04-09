@@ -1,5 +1,15 @@
-Changes in version 4.0.8 - 2020-04-02
+Changes in version 4.0.10 - 2020-04-08
+    Fix issues: #2800, #2810, #2812
+    Fix counters on reports lists showing always counters of last report
+    Update translations
+
+Changes in version 4.0.9 - 2020-04-07
+    Revise fix on connection check admin and recipient roles
     Fix issue #2800
+    Add updated documentation abouth threat model and encryption
+    Update translation
+
+Changes in version 4.0.8 - 2020-04-02
     Add updated documentation abouth threat model and encryption
     Update translation
 
