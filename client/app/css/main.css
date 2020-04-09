@@ -8,6 +8,7 @@ html, body {
   background-color: #FFF;
   height: 100%;
   min-height: 400px;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 [dir] .container-fluid {
