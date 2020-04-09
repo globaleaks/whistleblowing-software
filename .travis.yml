@@ -11,17 +11,17 @@ env:
 matrix:
   fast_finish: true
   include:
-    - env: GLTEST='py3_test' TESTS_REQUIREMENTS='buster' CODACY=true
+    - env: GLTEST='py3_test' DISTRIBUTION='buster' CODACY=true
       dist: bionic
       python: "3.6"
       addons:
         chrome: stable
 
-    - env: GLTEST='build_and_install' BUILD_DISTRO='buster'
+    - env: GLTEST='build_and_install' DISTRIBUTION='buster'
       dist: bionic
       python: "3.6"
 
-    - env: GLTEST='build_and_install' BUILD_DISTRO='bionic'
+    - env: GLTEST='build_and_install' DISTRIBUTION='bionic'
       dist: bionc
       python: "3.6"
 

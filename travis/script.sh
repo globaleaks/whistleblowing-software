@@ -2,8 +2,8 @@
 
 set -e
 
-if [ -z "$BUILD_DISTRO" ]; then
-  BUILD_DISTRO="bionic"
+if [ -z "$DISTRIBUTION" ]; then
+  DISTRIBUTION=$(lsb_release -cs)
 fi
 
 TRAVIS_USR="travis-$(git rev-parse --short HEAD)"
@@ -27,8 +27,7 @@ setupClientDependencies() {
 
 setupBackendDependencies() {
   cd $TRAVIS_BUILD_DIR/backend  # to install backend dependencies
-  rm -rf requirements.txt
-  pip3 install -r requirements/requirements-bionic.txt
+  pip3 install -r requirements/requirements-$DISTRIBUTION.txt
 }
 
 setupDependencies() {
@@ -91,17 +90,17 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo cp -R $TRAVIS_BUILD_DIR/ "$chroot/build"
   export LC_ALL=en_US.utf8
 
-  if [ $BUILD_DISTRO = "bionic" ]; then
+  if [ $DISTRIBUTION = "bionic" ]; then
     sudo debootstrap --arch=amd64 bionic "$chroot" http://archive.ubuntu.com/ubuntu/
     sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu bionic main universe" > /tmp/globaleaks_chroot/etc/apt/sources.list'
     sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main universe" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
-  elif [ $BUILD_DISTRO = "buster" ]; then
+  elif [ $DISTRIBUTION = "buster" ]; then
     sudo debootstrap --arch=amd64 buster "$chroot" http://deb.debian.org/debian/
     sudo su -c 'echo "deb http://deb.debian.org/debian buster main contrib" > /tmp/globaleaks_chroot/etc/apt/sources.list'
     sudo su -c 'echo "deb http://deb.debian.org/debian buster main contrib" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
   fi
 
-  if [ $BUILD_DISTRO = "bionic" ]; then
+  if [ $DISTRIBUTION = "bionic" ]; then
     sudo mount --rbind /dev/pts "$chroot/dev/pts"
   fi
 
