@@ -409,3 +409,7 @@ input[type="file"] {
 .nav-link.active .fa-chevron-right {
   color: #000;
 }
+
+[dir] label {
+  margin: 0;
+}
