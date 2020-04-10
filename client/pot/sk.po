@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-06 13:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-04-09 11:35+0000\n"
+"Last-Translator: Lenka Ježková <lenka.jezkova@oziveni.cz>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -605,16 +605,16 @@ msgid "seconds"
 msgstr "sekúnd"
 
 msgid "This domain name is not available."
-msgstr ""
+msgstr "Tento názov domény nie je k dispozícii."
 
 msgid "Do not expose users' names"
-msgstr "Neuvádzajte mená užívateľov."
+msgstr "Neodhaľte mená užívateľov. "
 
 msgid "VAT number"
-msgstr ""
+msgstr "IČ DPH"
 
 msgid "Tax code"
-msgstr ""
+msgstr "DIČ"
 
 msgid "Select the context of your report:"
 msgstr "Vyberte obsah správy:"
@@ -825,10 +825,10 @@ msgid "High"
 msgstr "Vysoká"
 
 msgid "megabytes"
-msgstr "megabajtoch"
+msgstr "MB"
 
 msgid "percentage"
-msgstr "percentách"
+msgstr "percenta"
 
 msgid "Enable automatic backups"
 msgstr "Povoliť automatické zálohovanie"
@@ -1393,7 +1393,7 @@ msgid "Subdomain"
 msgstr "Podstránky"
 
 msgid "Creation date:"
-msgstr ""
+msgstr "Dátum vytvorenia:"
 
 msgid "Send an account activation link to the user."
 msgstr "Poslať užívateľovi odkaz k aktivácii účtu."

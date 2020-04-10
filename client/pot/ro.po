@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-06 13:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-04-10 13:42+0000\n"
+"Last-Translator: Mihaela Pop <mihaela.pop@cji.ro>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -380,7 +380,7 @@ msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Textul afișat în partea de sus a interfeței pentru selectarea contextelor"
 
 msgid "Show small context cards on submission interface"
-msgstr "Afișați mici carduri cu contextul pe interfața pentru depunere"
+msgstr "Afișați mici carduri cu contextul pe interfața de înregistrare a sesizării"
 
 msgid "Type of context selector:"
 msgstr "Tipul selectorului de context:"
@@ -616,10 +616,10 @@ msgid "Do not expose users' names"
 msgstr "Nu devoala numele utilizatorilor"
 
 msgid "VAT number"
-msgstr ""
+msgstr "TVA"
 
 msgid "Tax code"
-msgstr ""
+msgstr "Cod fiscal"
 
 msgid "Select the context of your report:"
 msgstr "Selectează contextul sesizării tale:"

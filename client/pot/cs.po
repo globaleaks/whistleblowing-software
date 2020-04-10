@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-06 13:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-04-09 11:34+0000\n"
+"Last-Translator: Lenka Ježková <lenka.jezkova@oziveni.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -139,7 +139,7 @@ msgid "Deselect all"
 msgstr "Odznačit vše"
 
 msgid "Refresh"
-msgstr "Aktualizace"
+msgstr "Obnovit"
 
 msgid "Context"
 msgstr "Kontext"
@@ -597,25 +597,25 @@ msgstr "Resetovat heslo"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr ""
+msgstr "Jeden nebo více příjemců dosud neprovedli první přihlášení. To znamená, že nebudou dostávat zprávy."
 
 msgid "This user has not performed the first login yet."
-msgstr ""
+msgstr "Tento uživatel dosud neprovedl první přihlášení."
 
 msgid "seconds"
 msgstr "sekund"
 
 msgid "This domain name is not available."
-msgstr ""
+msgstr "Tento název domény není k dispozici."
 
 msgid "Do not expose users' names"
-msgstr "Neuvádějte jména uživatelů."
+msgstr "Neodhalte jména uživatelů."
 
 msgid "VAT number"
-msgstr ""
+msgstr "DIČ"
 
 msgid "Tax code"
-msgstr ""
+msgstr "DIČ"
 
 msgid "Select the context of your report:"
 msgstr "Vyberte obsah Vašeho podání"
@@ -826,10 +826,10 @@ msgid "High"
 msgstr "Vysoká"
 
 msgid "megabytes"
-msgstr "megabajtech"
+msgstr "MB"
 
 msgid "percentage"
-msgstr "procentech"
+msgstr "procenta"
 
 msgid "Enable automatic backups"
 msgstr "Povolit automatické zálohování"
@@ -1394,7 +1394,7 @@ msgid "Subdomain"
 msgstr "Podstránky"
 
 msgid "Creation date:"
-msgstr ""
+msgstr "Datum vytvoření:"
 
 msgid "Send an account activation link to the user."
 msgstr "Poslat uživateli odkaz k aktivaci účtu."

@@ -15,7 +15,7 @@
 # Imron Fauzi <imronfauzi@gmail.com>, 2015
 # Marcel Oomens <mail@marceloomens.com>, 2018
 # Margaret Megan <megan_marg@yahoo.com>, 2017
-# Muhamad Miguel Adrian Pasha <m.miguel.ap@gmail.com>, 2018
+# M. Miguel Adrian Pasha <m.miguel.ap@gmail.com>, 2018
 # Muhammad Yusuf <myusuffin@gmail.com>, 2018
 # nirel dede <nireldede2710@gmail.com>, 2018
 # Oenang Dewi <oenangdewi@gmail.com>, 2018
