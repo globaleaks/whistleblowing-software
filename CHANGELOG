@@ -1,3 +1,7 @@
+Changes in version 4.0.12 - 2020-04-10
+    Fix issue #2814
+    Update translations
+
 Changes in version 4.0.10 - 2020-04-08
     Fix issues: #2800, #2810, #2812
     Fix counters on reports lists showing always counters of last report
