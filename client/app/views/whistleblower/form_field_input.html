@@ -6,18 +6,17 @@
     <div data-ng-switch-default data-ng-switch="field.type">
       <div data-ng-switch-when="textarea" data-ng-model-options="{'debounce':250}">
         <textarea id="{{fieldEntry}}"
-                  data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : 4096"
                   name="input-{{entryIndex}}"
                   class="form-control inputelem"
                   data-ng-model="entry['value']"
                   data-ng-minlength="field.attrs.min_len.value"
-                  maxlength="{{maxlength}}"
+                  maxlength="{{field.attrs.max_len.value}}"
                   aria-label="{{field.label}}"
                   data-ng-required="entry.required_status"
                   data-ng-attr-placeholder="{{field.placeholder}}"
                   dynamic-textarea></textarea>
         <div class="clearfix">
-          <div data-ng-if="entry['value'].length && maxlength >= 0 && (maxlength - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{maxlength}}</div>
+          <div data-ng-if="entry['value'].length && field.attrs.max_len.value > 0 && (field.attrs.max_len.value - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{field.attrs.max_len.value}}</div>
         </div>
         <div data-ng-if="displayErrors()" class="text-danger">
           <span data-ng-if="f['input-' + entryIndex].$error.required" data-translate>This field is mandatory.</span>
@@ -55,7 +54,6 @@
                  name="input-{{entryIndex}}"
                  class="form-control inputelem"
                  type="text"
-                 maxlength="4096"
                  readonly="readonly"
                  aria-label="{{field.label}}"
                  data-ng-model="entry['value']"
@@ -76,7 +74,6 @@
                    name="input-{{entryIndex}}"
                    class="form-control inputelem"
                    type="text"
-                   maxlength="4096"
                    readonly="readonly"
                    aria-label="{{field.label}}"
                    data-ng-model="daterange.start"
@@ -97,7 +94,6 @@
                    name="input-{{entryIndex}}"
                    class="form-control inputelem"
                    type="text"
-                   maxlength="4096"
                    readonly="readonly"
                    aria-label="{{field.label}}"
                    data-ng-model="daterange.end"
@@ -167,18 +163,17 @@
         <input id="{{fieldEntry}}"
                name="input-{{entryIndex}}"
                class="form-control inputelem"
-               data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : 4096"
                data-ng-model="entry['value']"
                data-ng-minlength="field.attrs.min_len.value"
                data-ng-pattern="validator.value"
-               maxlength="{{maxlength}}"
+               maxlength="{{field.attrs.max_len.value}}"
                data-ng-required="entry.required_status"
                data-ng-attr-placeholder="{{field.placeholder}}"
                aria-label="{{field.label}}"
                type="text" />
         <div class="clearfix">
           <div data-ng-if="f['input-' + entryIndex].$error.pattern" class="text-danger" data-translate>The specified input is not valid.</div>
-	  <div data-ng-if="entry['value'].length && maxlength >= 0 && (maxlength - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{maxlength}}</div>
+	  <div data-ng-if="entry['value'].length && field.attrs.max_len.value > 0 && (field.attrs.max_length.value - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{field.attrs.max_length.value}}</div>
           <div data-ng-if="entry.required_status && displayErrors()" class="float-left text-danger">
           </div>
           <span data-ng-if="f['input-' + entryIndex].$error.required && displayErrors()" class="text-danger" data-translate>This field is mandatory.</span>
