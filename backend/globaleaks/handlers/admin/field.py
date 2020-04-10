@@ -283,14 +283,15 @@ def db_update_field(session, tid, field_id, request, language):
 
     fill_localized_keys(request, models.Field.localized_keys, language)
 
-    db_update_fieldattrs(session, field.id, request['attrs'], language)
+    if field.instance != 'reference' or field.template_id == 'whistleblower_identity':
+        db_update_fieldattrs(session, field.id, request['attrs'], language)
 
     db_reset_option_triggers(session, 'field', field.id)
 
     for trigger in request.get('triggered_by_options', []):
         db_create_option_trigger(session, trigger['option'], 'field', field.id, trigger.get('sufficient', True))
 
-    if request['instance'] != 'reference':
+    if field.instance != 'reference':
         db_update_fieldoptions(session, field.id, request['options'], language)
 
         # full update
