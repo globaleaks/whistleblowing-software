@@ -409,7 +409,7 @@ def serialize_receiver(session, user, language, data=None):
     ret_dict = {
         'id': user.id,
         'username': user.username,
-        'name': user.name,
+        'name': user.public_name,
         'state': user.state,
         'encryption': user.crypto_pub_key != '',
         'recipient_configuration': user.recipient_configuration,
@@ -482,7 +482,6 @@ def db_get_receivers(session, tid, language):
     ret = []
     for receiver in receivers:
         x = serialize_receiver(session, receiver, language, data)
-        x['name'] = x['public_name']
         if not State.tenant_cache[tid].simplified_login:
             x['username'] = ''
         ret.append(x)
