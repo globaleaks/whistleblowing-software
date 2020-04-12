@@ -482,6 +482,7 @@ def db_get_receivers(session, tid, language):
     ret = []
     for receiver in receivers:
         x = serialize_receiver(session, receiver, language, data)
+        x['name'] = x['public_name']
         if not State.tenant_cache[tid].simplified_login:
             x['username'] = ''
         ret.append(x)
