@@ -141,16 +141,12 @@ def serialize_comment(session, comment):
     :param comment: A model to be serialized
     :return: A serialized description of the model specified
     """
-    author = 'Recipient'
+    author = 'Whistleblower'
 
-    if comment.type == 'whistleblower':
-        author = 'Whistleblower'
-    elif comment.author_id is not None:
-        _author = session.query(models.User) \
-                         .filter(models.User.id == comment.author_id).one_or_none()
-
-        if _author is not None:
-            author = _author.public_name
+    if comment.type == 'receiver':
+        author = session.query(models.User.public_name) \
+                         .filter(models.User.id == comment.author_id).one()[0]
+        print(author)
 
     return {
         'id': comment.id,
@@ -174,14 +170,9 @@ def serialize_message(session, message):
                                        models.ReceiverTip.id == models.Message.receivertip_id,
                                        models.Message.id == message.id).one()
 
-    if message.type == 'whistleblower':
-        author = 'Whistleblower'
-    else:
-        author = receiver_involved.public_name
-
     return {
         'id': message.id,
-        'author': author,
+        'author': 'Whistleblower' if message.type == 'whistleblower' else receiver_involved.public_name,
         'type': message.type,
         'creation_date': datetime_to_ISO8601(message.creation_date),
         'content': message.content,
