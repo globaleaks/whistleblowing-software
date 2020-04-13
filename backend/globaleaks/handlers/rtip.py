@@ -146,7 +146,6 @@ def serialize_comment(session, comment):
     if comment.type == 'receiver':
         author = session.query(models.User.public_name) \
                          .filter(models.User.id == comment.author_id).one()[0]
-        print(author)
 
     return {
         'id': comment.id,

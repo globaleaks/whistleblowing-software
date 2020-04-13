@@ -181,10 +181,8 @@ def db_archive_questionnaire_schema(session, questionnaire):
 
     aqs = models.ArchivedSchema()
     aqs.hash = hash
-
     aqs.schema = questionnaire
     aqs.preview = [f for s in questionnaire for f in s['children'] if f['preview']]
-
     session.add(aqs)
 
     return hash
@@ -245,7 +243,6 @@ def serialize_usertip(session, usertip, itip, language):
     ret = serialize_itip(session, itip, language)
     ret['id'] = usertip.id
     ret['internaltip_id'] = itip.id
-
     ret['data'] = {}
 
     for itd in session.query(models.InternalTipData).filter(models.InternalTipData.internaltip_id == itip.id):
@@ -263,7 +260,6 @@ def db_create_receivertip(session, receiver, internaltip, can_access_whistleblow
     receivertip.receiver_id = receiver.id
     receivertip.can_access_whistleblower_identity = can_access_whistleblower_identity
     receivertip.crypto_tip_prv_key = Base64Encoder.encode(enc_key)
-
     session.add(receivertip)
 
 
