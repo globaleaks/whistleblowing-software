@@ -586,9 +586,9 @@ var GLClient = angular.module("GLClient", [
         controller: "ConfirmableModalCtrl",
         size: "lg",
 	resolve: {
-          arg: undefined,
+          arg: null,
           confirmFun: function() { return function() {$rootScope.setPage('submissionpage') } },
-          cancelFun: undefined
+          cancelFun: null
 	}
       });
     };

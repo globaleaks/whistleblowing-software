@@ -593,7 +593,7 @@ service("UpdateService", [function() {
       }
     },
     update_needed: false,
-    latest_version: undefined,
+    latest_version: null,
   };
 }]).
   factory("AdminNodeResource", ["GLResource", "UpdateService", function(GLResource, UpdateService) {
@@ -1054,8 +1054,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
             arg: function () {
               return arg;
             },
-            confirmFun: undefined,
-            cancelFun: undefined
+            confirmFun: null,
+            cancelFun: null
           }
         });
 
@@ -1544,11 +1544,11 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
   // facts are (un)defined in order of importance to the factory.
   var facts = {
-    userChoice: undefined,
-    urlParam: undefined,
-    userPreference: undefined,
-    browserSniff: undefined,
-    nodeDefault: undefined
+    userChoice: null,
+    urlParam: null,
+    userPreference: null,
+    browserSniff: null,
+    nodeDefault: null
   };
 
   // This is a value set by the public.node.
@@ -1661,10 +1661,11 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
   }
 
   function isSelectable(language) {
-    if (!angular.isDefined(language)) {
+    if (language === null) {
         return false;
     }
-    if (enabledLanguages.length > 0) {
+
+    if (enabledLanguages.length) {
         return enabledLanguages.indexOf(language) !== -1;
     }
 

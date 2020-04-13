@@ -46,9 +46,9 @@ GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "
           backdrop: "static",
           keyboard: false,
           resolve: {
-            arg: undefined,
-            confirmFun: undefined,
-            cancelFun: undefined
+            arg: null,
+            confirmFun: null,
+            cancelFun: null
           }
         });
       });

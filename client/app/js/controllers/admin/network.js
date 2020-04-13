@@ -166,9 +166,9 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
       templateUrl: "views/partials/admin_review_action.html",
       controller: "ConfirmableModalCtrl",
       resolve: {
-        arg: undefined,
+        arg: null,
         confirmFun: function() { return function() { return resource.$delete().then(refreshConfig);} },
-        cancelFun: undefined
+        cancelFun: null
       },
     });
   };
@@ -185,9 +185,9 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
           templateUrl: "views/partials/disable_input.html",
           controller: "ConfirmableModalCtrl",
           resolve: {
-            arg: undefined,
-            confirmFun: undefined,
-            cancelFun: undefined
+            arg: null,
+            confirmFun: null,
+            cancelFun: null
           }
         });
 
@@ -217,9 +217,9 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
       templateUrl: "views/partials/admin_review_action.html",
       controller: "ConfirmableModalCtrl",
       resolve: {
-	arg: undefined,
+	arg: null,
         confirmFun: function() { return function() { $scope.tls_config.$delete().then(refreshConfig); } },
-        cancelFun: undefined
+        cancelFun: null
       }
     });
   };
