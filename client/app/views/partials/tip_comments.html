@@ -27,7 +27,7 @@
         </span>
       </div>
     </div>
-    <div id="SubmissionComments" data-ng-if="tip.comments.length > 0" data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true| limitTo:itemsPerPage:((currentCommentsPage - 1) * itemsPerPage)">
+    <div id="SubmissionComments" data-ng-if="tip.comments.length" data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true| limitTo:itemsPerPage:((currentCommentsPage - 1) * itemsPerPage)">
       <div id="comment-{{$index}}" data-ng-switch="comment.type" class="mt-2">
         <div data-ng-switch-when="whistleblower" class="alert alert-primary">
           <div class="row">

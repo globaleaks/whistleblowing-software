@@ -33,7 +33,7 @@ angular.module("GLDirectives", []).
           ngModel.$setValidity("receiptvalidator", false);
           viewValue = viewValue.replace(/\D/g, "");
 
-          while (viewValue.length > 0) {
+          while (viewValue.length) {
             result += viewValue.substring(0, 4);
             if(viewValue.length >= 4) {
               if (result.length < 19) {
@@ -67,7 +67,7 @@ angular.module("GLDirectives", []).
           ngModel.$setValidity("recoverykeyvalidator", false);
           viewValue = viewValue.replace(/[^[a-zA-Z0-9]/g, "").toUpperCase();
 
-          while (viewValue.length > 0) {
+          while (viewValue.length) {
             result += viewValue.substring(0, 4);
             if(viewValue.length >= 4) {
               if (result.length < 64) {
@@ -267,7 +267,7 @@ directive("fileInput", function() {
     },
     link: function (scope, iElement) {
       iElement.find("input").on("change", function (event) {
-        if(event.target.files && event.target.files.length > 0) {
+        if(event.target.files && event.target.files.length) {
           scope.$apply(function(){
             scope.fileInput({file: event.target.files[0]});
           });

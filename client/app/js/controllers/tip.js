@@ -99,7 +99,7 @@ GLClient.controller("TipCtrl",
         $scope.Utils.evalSubmissionStatus($scope.tip, $scope.submission_statuses);
 
         $scope.showWBFileWidget = function() {
-          return $scope.tip.context.enable_rc_to_wb_files && (tip.wbfiles.length > 0);
+          return $scope.tip.context.enable_rc_to_wb_files && (tip.wbfiles.length);
         };
 
         $scope.downloadWBFile = function(file) {

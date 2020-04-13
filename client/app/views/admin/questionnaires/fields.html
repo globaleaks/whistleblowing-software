@@ -6,7 +6,7 @@
         <div class="row">
           <span class="col-md-6">
             <span>{{field.label}}</span>
-            <span class="fieldIndex badge badge-secondary" data-ng-if="field.step_id !== '' || field.fieldgroup_id !== ''">
+            <span class="fieldIndex badge badge-secondary" data-ng-if="field.step_id || field.fieldgroup_id">
               <span data-translate>Row</span><span>: {{field.y}}</span>
               <span data-translate>Column</span><span>: {{field.x}}</span>
               <span data-translate>Width</span><span>: {{field.width}}</span>
@@ -64,7 +64,7 @@
 		data-ng-click="delField(field); $event.stopPropagation();">
                 <span data-translate>Delete</span>
               </button>
-              <span data-ng-if="field.step_id !== '' || field.fieldgroup_id !== ''">
+              <span data-ng-if="field.step_id || field.fieldgroup_id">
                 <button class="btn btn-sm btn-primary" data-ng-click="moveLeftAndSave(field); $event.stopPropagation();" uib-tooltip="{{'Move left' | translate}}">
                   <i class="fas fa-chevron-left"></i>
                 </button>
@@ -150,7 +150,7 @@
                </label>
               <input class="form-control" data-ng-model="field.width" type="number" min="0" max="12">
             </div>
-            <div class="form-group" data-ng-if="field.template_id !== ''">
+            <div class="form-group" data-ng-if="field.template_id">
               <label data-translate>Template override</label>
               <input name="template_override_id" class="form-control" data-ng-model="field.template_override_id" type="text">
             </div>
@@ -249,7 +249,7 @@
                        show-button-bar="false"
                        data-ng-click="open_min_date = !open_min_date">
                     <label data-translate>Earliest selectable date</label>:
-                    <span data-ng-show="field.attrs.min_date.value !== ''">
+                    <span data-ng-show="field.attrs.min_date.value">
                       <span>{{field.attrs.min_date.value | date:'dd-MM-yyyy'}}</span>
                       <button class="btn btn-sm btn-danger"
                               data-ng-click="field.attrs.min_date.value = ''; $event.stopPropagation();">
@@ -266,7 +266,7 @@
                        show-button-bar="false"
                        data-ng-click="open_max_date = !open_max_date">
                     <label data-translate>Latest selectable date</label>:
-                    <span data-ng-show="field.attrs.max_date.value !== ''">
+                    <span data-ng-show="field.attrs.max_date.value">
                       <span>{{field.attrs.max_date.value | date:'dd-MM-yyyy'}}</span>
                       <button class="btn btn-sm btn-danger"
                               data-ng-click="field.attrs.max_date.value = ''; $event.stopPropagation();">
@@ -435,7 +435,7 @@
                   <i class="fas fa-plus"></i>
                   <span data-translate>Add new question</span>
                 </button>
-                <button class="btn btn-sm btn-primary show-add-question-from-template-btn" data-ng-click="toggleAddQuestionFromTemplate()" data-ng-if="field.instance === 'instance' && resources.fieldtemplates.length > 0">
+                <button class="btn btn-sm btn-primary show-add-question-from-template-btn" data-ng-click="toggleAddQuestionFromTemplate()" data-ng-if="field.instance === 'instance' && resources.fieldtemplates.length">
                   <i class="fas fa-plus"></i>
                   <span data-translate>Add question from template</span>
                 </button>

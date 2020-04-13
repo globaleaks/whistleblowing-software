@@ -11,13 +11,13 @@
 	   data-ng-show="!imageUploadModel[imageUploadModelAttr] && imageUploadObj.flow.files.length == 0"><input type="file" class="custom-file-input" id="imageFile" flow-btn><i class="fas fa-edit"></i></label>
     <span class="deletePictureButton text-danger"
 	    uib-tooltip="{{'Delete' | translate}}"
-            data-ng-show="imageUploadModel[imageUploadModelAttr] || imageUploadObj.flow.files.length > 0"
+            data-ng-show="imageUploadModel[imageUploadModelAttr] || imageUploadObj.flow.files.length"
             data-ng-click="deletePicture(); $event.stopPropagation();">
       <i class="fas fa-times"></i>
     </span>
     <div class="imageUploadThumbnail">
       <img data-ng-if="imageUploadObj.flow.files.length == 0" data-ng-src="{{Utils.imgDataUri(imageUploadModel[imageUploadModelAttr])}}" class="imageUploadThumbnailContent" />
-      <img data-ng-if="imageUploadObj.flow.files.length > 0" flow-img="imageUploadObj.flow.files[imageUploadObj.flow.files.length - 1]" class="imageUploadThumbnailContent" />
+      <img data-ng-if="imageUploadObj.flow.files.length" flow-img="imageUploadObj.flow.files[imageUploadObj.flow.files.length - 1]" class="imageUploadThumbnailContent" />
     </div>
   </div>
   <div errors-upload></div>

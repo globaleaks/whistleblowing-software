@@ -50,7 +50,7 @@ angular.module("GLServices", ["ngResource"]).
           }
 
           self.session.role_l10n = function() {
-            var ret = self.session.role == 'receiver' ? 'recipient' : self.session.role;
+            var ret = self.session.role === 'receiver' ? 'recipient' : self.session.role;
             return $filter("translate")(ret.charAt(0).toUpperCase() + ret.substr(1));
           };
         };
@@ -413,7 +413,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         tip.additional_questionnaire = $rootScope.questionnaires_by_id[tip.context.additional_questionnaire_id];
 
         tip.iars = $filter("orderBy")(tip.iars, "request_date");
-        tip.last_iar = tip.iars.length > 0 ? tip.iars[tip.iars.length - 1] : null;
+        tip.last_iar = tip.iars.length ? tip.iars[tip.iars.length - 1] : null;
 
         tip.newComment = function(content) {
           var c = new RTipCommentResource(tipID);
@@ -1035,7 +1035,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
       isUploading: function(uploads) {
         for (var key in uploads) {
-          if (uploads[key].files.length > 0 && uploads[key].progress() !== 1) {
+          if (uploads[key].files.length && uploads[key].progress() !== 1) {
             return true;
           }
         }
@@ -1617,7 +1617,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     }
 
     // Check if lang is in the list of enabled langs if we have enabledLangs
-    if (enabledLanguages.length > 0) {
+    if (enabledLanguages.length) {
       return enabledLanguages.indexOf(inp) > -1;
     }
 

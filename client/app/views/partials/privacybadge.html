@@ -12,7 +12,7 @@
             <div data-translate>You are strongly advised to visit this site using the desktop app called Tor Browser, that protects your identity.</div>
           </div>
       <div id="PrivacyBadgeDownloadLink"><a href="{{public.node.tb_download_link}}" target="_blank" rel="noreferrer noopener" class="btn btn-sm btn-secondary"><i class="fas fa-download"></i> <span data-translate>Download the Tor Browser</span></a></div>
-          <div data-ng-show="public.node.onionservice != ''">
+          <div data-ng-show="public.node.onionservice">
             <span data-translate>Then, copy and paste the following address into the Tor Browser:</span>
             <span>{{public.node.onionservice}}</span>
           </div>

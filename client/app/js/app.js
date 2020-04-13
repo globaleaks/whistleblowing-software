@@ -750,7 +750,7 @@ var GLClient = angular.module("GLClient", [
 
     $rootScope.$on("$locationChangeStart", function() {
       var lang = $location.search().lang;
-      if(lang && lang != GLTranslate.state.language) {
+      if(lang && lang !== GLTranslate.state.language) {
 	$window.location.href = $location.absUrl();
 	$window.location.reload();
       }
