@@ -7,15 +7,15 @@
     </span>
   </div>
   <div class="card-body" data-ng-show="!collapsed">
-    <span data-ng-repeat="receiver in tip.receivers | orderBy:'name'">
+    <span data-ng-repeat="receiver_id in tip.receivers">
       <span id="receiver-{{$index}}">
-        <span class="badge badge-primary" data-ng-show="receiver.last_access > tip.update_date" uib-tooltip="{{'The recipient has already read the latest update' | translate}}">
+        <span class="badge badge-primary" data-ng-show="receivers_by_id[receiver_id].last_access > tip.update_date" uib-tooltip="{{'The recipient has already read the latest update' | translate}}">
           <i class="fas fa-check"></i>
-          <span>{{receiver.name}}</span>
+          <span>{{receivers_by_id[receiver_id].name}}</span>
         </span>
-        <span class="badge badge-warning" data-ng-show="receiver.last_access <= tip.update_date" uib-tooltip="{{'The recipient has not read the latest update yet' | translate}}">
+        <span class="badge badge-warning" data-ng-show="receivers_by_id[receiver_id].last_access <= tip.update_date" uib-tooltip="{{'The recipient has not read the latest update yet' | translate}}">
           <i class="far fa-square"></i>
-          <span>{{receiver.name}}</span>
+          <span>{{receivers_by_id[receiver_id].name}}</span>
         </span>
       </span>
     </span>

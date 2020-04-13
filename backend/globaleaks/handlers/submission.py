@@ -14,8 +14,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import sha256, Base64Encoder, GCE
 from globaleaks.utils.log import log
-from globaleaks.utils.utility import get_expiration, \
-    datetime_to_ISO8601
+from globaleaks.utils.utility import get_expiration, datetime_to_ISO8601
 
 
 
@@ -51,29 +50,19 @@ def decrypt_tip(user_key, tip_prv_key, tip):
 
 
 def db_set_internaltip_answers(session, itip_id, questionnaire_hash, answers):
-    ita = session.query(models.InternalTipAnswers) \
-                 .filter(models.InternalTipAnswers.internaltip_id == itip_id, models.InternalTipAnswers.questionnaire_hash == questionnaire_hash).one_or_none()
-
-    if ita is None:
-        ita = models.InternalTipAnswers()
-
+    ita = models.InternalTipAnswers()
     ita.internaltip_id = itip_id
     ita.questionnaire_hash = questionnaire_hash
     ita.answers = answers
-    session.add(ita)
+    session.merge(ita)
 
 
 def db_set_internaltip_data(session, itip_id, key, value):
-    itd = session.query(models.InternalTipData) \
-                 .filter(models.InternalTipData.internaltip_id == itip_id, models.InternalTipData.key == key).one_or_none()
-
-    if itd is None:
-        itd = models.InternalTipData()
-
+    itd = models.InternalTipData()
     itd.internaltip_id = itip_id
     itd.key = key
     itd.value = value
-    session.add(itd)
+    session.merge(itd)
 
 
 def db_assign_submission_progressive(session, tid):
@@ -204,12 +193,9 @@ def db_archive_questionnaire_schema(session, questionnaire):
 def db_get_itip_receiver_list(session, itip):
     ret = []
 
-    for rtip, user in session.query(models.ReceiverTip, models.User).filter(models.ReceiverTip.internaltip_id == itip.id,
-                                                                            models.User.id == models.ReceiverTip.receiver_id):
+    for rtip in session.query(models.ReceiverTip).filter(models.ReceiverTip.internaltip_id == itip.id):
         ret.append({
             "id": rtip.receiver_id,
-            "name": user.name,
-            "pgp_key_public": user.pgp_key_public,
             "last_access": datetime_to_ISO8601(rtip.last_access),
             "access_counter": rtip.access_counter,
         })
@@ -286,8 +272,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
     context, questionnaire = session.query(models.Context, models.Questionnaire) \
                                     .filter(models.Context.id == request['context_id'],
-                                            models.Questionnaire.id == models.Context.questionnaire_id,
-                                            models.Questionnaire.tid.in_(set([1, tid]))).one_or_none()
+                                            models.Questionnaire.id == models.Context.questionnaire_id).one_or_none()
 
     if not context:
         raise errors.ModelNotFound(models.Context)
@@ -350,6 +335,8 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     if crypto_is_available:
         crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
 
+    receipt = ''
+
     # Evaluate if the whistleblower tip should be generated
     if ((not State.tenant_cache[tid].enable_scoring_system) or
         (context.score_threshold_receipt == 0) or
@@ -373,8 +360,6 @@ def db_create_submission(session, tid, request, token, client_using_tor):
             wbtip.crypto_tip_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(wb_pub_key, crypto_tip_prv_key))
 
         session.add(wbtip)
-    else:
-        receipt = ''
 
     # Apply special handling to the whistleblower identity question
     if itip.enable_whistleblower_identity and request['identity_provided'] and answers[whistleblower_identity.id]:
