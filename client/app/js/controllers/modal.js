@@ -18,6 +18,6 @@ controller("ConfirmableModalCtrl",
       $scope.cancelFun(result);
     }
 
-    return $uibModalInstance.dismiss('cancel');
+    return $uibModalInstance.dismiss("cancel");
   }
 }]);

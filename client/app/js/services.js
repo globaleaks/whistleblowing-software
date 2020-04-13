@@ -50,7 +50,7 @@ angular.module("GLServices", ["ngResource"]).
           }
 
           self.session.role_l10n = function() {
-            var ret = self.session.role === 'receiver' ? 'recipient' : self.session.role;
+            var ret = self.session.role === "receiver" ? "recipient" : self.session.role;
             return $filter("translate")(ret.charAt(0).toUpperCase() + ret.substr(1));
           };
         };
@@ -870,7 +870,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         if (!$rootScope.public.node.wizard_done) {
           $location.path("/wizard");
         } else if (path === "/" && $rootScope.public.node.enable_signup) {
-+      $rootScope.setPage('signuppage');
++      $rootScope.setPage("signuppage");
         } else if (["/signup", "activation"].indexOf(path === -1) && $rootScope.public.node.adminonly && !$rootScope.Authentication.session) {
           $location.path("/admin");
         } else if ($rootScope.Authentication.session) {
@@ -1325,9 +1325,9 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           if (["selectbox", "multichoice"].indexOf(field.type) > -1) {
             for(i=0; i<field.options.length; i++) {
               if (entry["value"] === field.options[i].id) {
-                if (field.options[i].score_type === 'addition') {
+                if (field.options[i].score_type === "addition") {
                   scope.points_to_sum += field.options[i].score_points;
-                } else if (field.options[i].score_type === 'multiplier') {
+                } else if (field.options[i].score_type === "multiplier") {
                   scope.points_to_mul *= field.options[i].score_points;
                 }
               }
@@ -1335,9 +1335,9 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           } else if (field.type === "checkbox") {
             for(i=0; i<field.options.length; i++) {
               if (entry[field.options[i].id]) {
-                if (field.options[i].score_type === 'addition') {
+                if (field.options[i].score_type === "addition") {
                   scope.points_to_sum += field.options[i].score_points;
-                } else if (field.options[i].score_type === 'multiplier') {
+                } else if (field.options[i].score_type === "multiplier") {
                   scope.points_to_mul *= field.options[i].score_points;
                 }
               }

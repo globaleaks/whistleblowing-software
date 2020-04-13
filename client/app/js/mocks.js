@@ -12,7 +12,7 @@ GLClient.mockEngine = (function() {
         }
       }
 
-      if (mock.type === 'replace') {
+      if (mock.type === "replace") {
         if (mock.value && e.innerHTML !== mock.value) {
           e.innerHTML = mock.value;
         }
@@ -27,9 +27,9 @@ GLClient.mockEngine = (function() {
           custom_elem.classList.add("Mock");
           custom_elem.innerHTML = mock.value;
 
-          if (mock.type === 'add-before') {
+          if (mock.type === "add-before") {
             e.insertBefore(custom_elem, e.childNodes[0]);
-          } else if (mock.type === 'add-after') {
+          } else if (mock.type === "add-after") {
             e.appendChild(custom_elem);
           }
         }
@@ -66,10 +66,10 @@ GLClient.mockEngine = (function() {
     }
 
     if (type === undefined) {
-      type = 'replace';
+      type = "replace";
     }
 
-    mocks[path][selector].push({'path': path, 'selector': selector, 'mock': mock, 'value': '', 'type': type});
+    mocks[path][selector].push({"path": path, "selector": selector, "mock": mock, "value": "", "type": type});
 
     run();
   };

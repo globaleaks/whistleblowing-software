@@ -30,7 +30,7 @@ var GLClient = angular.module("GLClient", [
 }]).
   config(["$provide", function($provide) {
     $provide.decorator("$templateRequest", ["$delegate", function($delegate) {
-      // This decorator is required in order to inject the 'true' for setting ignoreRequestError
+      // This decorator is required in order to inject the "true" for setting ignoreRequestError
       // in relation to https://docs.angularjs.org/error/$compile/tpload
       var fn = $delegate;
 
@@ -587,7 +587,7 @@ var GLClient = angular.module("GLClient", [
         size: "lg",
 	resolve: {
           arg: null,
-          confirmFun: function() { return function() {$rootScope.setPage('submissionpage') } },
+          confirmFun: function() { return function() {$rootScope.setPage("submissionpage") } },
           cancelFun: null
 	}
       });
