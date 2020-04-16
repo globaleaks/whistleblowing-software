@@ -173,7 +173,7 @@
                type="text" />
         <div class="clearfix">
           <div data-ng-if="f['input-' + entryIndex].$error.pattern" class="text-danger" data-translate>The specified input is not valid.</div>
-	  <div data-ng-if="entry['value'].length && field.attrs.max_len.value > 0 && (field.attrs.max_length.value - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{field.attrs.max_length.value}}</div>
+	  <div data-ng-if="entry['value'].length && field.attrs.max_len.value > 0 && (field.attrs.max_len.value - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{field.attrs.max_len.value}}</div>
           <div data-ng-if="entry.required_status && displayErrors()" class="float-left text-danger">
           </div>
           <span data-ng-if="f['input-' + entryIndex].$error.required && displayErrors()" class="text-danger" data-translate>This field is mandatory.</span>
