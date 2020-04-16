@@ -143,7 +143,7 @@ def db_wizard(session, tid, hostname, request):
 
     mode = node.get_val('mode')
 
-    if mode != 'default':
+    if mode not in ['default', 'demo']:
         node.set_val('hostname', tenant.subdomain + '.' + root_tenant_node.get_val('rootdomain'))
 
         for varname in ['reachable_via_web',
@@ -159,30 +159,26 @@ def db_wizard(session, tid, hostname, request):
                         'enable_password_reset']:
             node.set_val(varname, root_tenant_node.get_val(varname))
 
-        # Set data retention policy to 18 months
-        context.tip_timetolive = 540
-
         context.questionnaire_id = root_tenant_node.get_val('default_questionnaire')
 
-        if receiver_user is not None:
-            # Enable the recipient user to configure platform general settings
-            receiver_user.can_edit_general_settings = True
+        # Set data retention policy to 18 months
+        context.tip_timetolive = 540
 
         # Delete the admin user
         request['admin_password'] = ''
         session.delete(admin_user)
 
+        if receiver_user is not None:
+            # Enable the recipient user to configure platform general settings
+            receiver_user.can_edit_general_settings = True
+
+            # Set the recipient name equal to the node name
+            receiver_user.name = receiver_user.public_name = request['node_name']
+
     # Apply the specific fixes related to whistleblowing.it projects
     if mode == 'whistleblowing.it':
         node.set_val('simplified_login', True)
         node.set_val('tor', False)
-
-        # Enable recipients to load files to the whistleblower
-        context.enable_rc_to_wb_files = True
-
-        if receiver_user is not None:
-            # Set the recipient name equal to the node name
-            receiver_user.name = request['node_name']
 
     db_refresh_memory_variables(session, [tid])
 
