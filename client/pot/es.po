@@ -36,8 +36,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-09 07:07+0000\n"
-"Last-Translator: Eduardo Estrada\n"
+"PO-Revision-Date: 2020-04-16 20:14+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -628,9 +628,6 @@ msgstr "segundos"
 
 msgid "This domain name is not available."
 msgstr "Este nombre de dominio no está disponible."
-
-msgid "Do not expose users' names"
-msgstr "No mostrar los nombres de usuario"
 
 msgid "VAT number"
 msgstr "Número de IVA (VAT)"
@@ -1234,9 +1231,6 @@ msgstr "Advertencia"
 msgid "Require authentication"
 msgstr "Requiere autentificación"
 
-msgid "Reset notification templates to default"
-msgstr "Restablecer plantillas de notificación predeterminadas"
-
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Numero de horas antes de enviar una alerta de caducidad de la entrega"
 
@@ -1245,6 +1239,9 @@ msgstr "Prueba la configuración"
 
 msgid "Reset SMTP configuration"
 msgstr "Restablece la configuración SMTP "
+
+msgid "Reset notification templates to default"
+msgstr "Restablecer plantillas de notificación predeterminadas"
 
 msgid "Template"
 msgstr "Plantilla"

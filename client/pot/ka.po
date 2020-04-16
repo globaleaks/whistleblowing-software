@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-06 13:51+0000\n"
+"PO-Revision-Date: 2020-04-16 20:14+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -595,9 +595,6 @@ msgid "seconds"
 msgstr "წამში"
 
 msgid "This domain name is not available."
-msgstr ""
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "VAT number"
@@ -1202,9 +1199,6 @@ msgstr "გაფრთხილება"
 msgid "Require authentication"
 msgstr ""
 
-msgid "Reset notification templates to default"
-msgstr "აღდგენა შეტყობინება თარგები ნაგულისხმევია"
-
 msgid "Number of hours before sending a report expiration alert"
 msgstr "პუნქტების საათით ადრე გაგზავნის წარდგენის ვადის გასვლის alert"
 
@@ -1213,6 +1207,9 @@ msgstr ""
 
 msgid "Reset SMTP configuration"
 msgstr ""
+
+msgid "Reset notification templates to default"
+msgstr "აღდგენა შეტყობინება თარგები ნაგულისხმევია"
 
 msgid "Template"
 msgstr "თარგი"

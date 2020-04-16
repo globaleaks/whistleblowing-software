@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-07 12:49+0000\n"
-"Last-Translator: T. E. Kalayci <tekrei@gmail.com>\n"
+"PO-Revision-Date: 2020-04-16 20:14+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -619,9 +619,6 @@ msgstr "saniye"
 
 msgid "This domain name is not available."
 msgstr "Bu alan adı mevcut değil."
-
-msgid "Do not expose users' names"
-msgstr "Kullanıcı isimlerini teşhir etme"
 
 msgid "VAT number"
 msgstr "VAT numarası"
@@ -1225,9 +1222,6 @@ msgstr "Uyarı"
 msgid "Require authentication"
 msgstr "Kimlik doğrulama gerektir"
 
-msgid "Reset notification templates to default"
-msgstr "Bildirim şablonlarını sıfırla"
-
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Rapor zaman aşımı uyarısı göndermeden önce gerekli saat sayısı "
 
@@ -1236,6 +1230,9 @@ msgstr "Yapılandırmayı sına"
 
 msgid "Reset SMTP configuration"
 msgstr "SMTP yapılandırmasını sıfırla"
+
+msgid "Reset notification templates to default"
+msgstr "Bildirim şablonlarını sıfırla"
 
 msgid "Template"
 msgstr "Şablon"

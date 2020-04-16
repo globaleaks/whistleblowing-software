@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-06 13:51+0000\n"
+"PO-Revision-Date: 2020-04-16 20:14+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -600,9 +600,6 @@ msgid "seconds"
 msgstr "ސިކުންތު "
 
 msgid "This domain name is not available."
-msgstr ""
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "VAT number"
@@ -1207,9 +1204,6 @@ msgstr "އިންޒާރު"
 msgid "Require authentication"
 msgstr "ހުއްދަ އޮތްތޯ ބެލުމަށްޓަކައި"
 
-msgid "Reset notification templates to default"
-msgstr "ނޮޓިފިކޭޝަންގެ ނަމޫނާތައް ޑިޕޯލްޓް ނަމޫނާއަށް ބަދަލުކުރެއްވުމަށް"
-
 msgid "Number of hours before sending a report expiration alert"
 msgstr "ރިޕޯޓުގެ ދުވަސްހަމަވާ ތާރީޙްގެ އެލާރޓް ފޮނުވާނީ ކިތައް ގަޑިއިރު ކުރިންތޯ ހިޔާރުކުރުމަށް"
 
@@ -1218,6 +1212,9 @@ msgstr "ކޮންފިގަރޭޝަން ޓެސްޓު ކުރެއްވުމަށް"
 
 msgid "Reset SMTP configuration"
 msgstr "އެސް.އެމް.ޓީ.ޕީ ކޮންފިގަރޭޝަން ރިސެޓް ކުރެއްވުމަށް"
+
+msgid "Reset notification templates to default"
+msgstr "ނޮޓިފިކޭޝަންގެ ނަމޫނާތައް ޑިޕޯލްޓް ނަމޫނާއަށް ބަދަލުކުރެއްވުމަށް"
 
 msgid "Template"
 msgstr "ނަމޫނާ"

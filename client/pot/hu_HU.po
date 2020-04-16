@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-06 13:51+0000\n"
+"PO-Revision-Date: 2020-04-16 20:14+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -614,9 +614,6 @@ msgstr "másodpercet"
 
 msgid "This domain name is not available."
 msgstr "Ez a domain nem elérhető."
-
-msgid "Do not expose users' names"
-msgstr ""
 
 msgid "VAT number"
 msgstr ""
@@ -1220,9 +1217,6 @@ msgstr "Figyelem"
 msgid "Require authentication"
 msgstr "Jóváhagyást igényel"
 
-msgid "Reset notification templates to default"
-msgstr "Az értesítési sablonok alapértelmezettre állítása"
-
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Órák száma beadvány lejárati riasztás küldése előtte"
 
@@ -1231,6 +1225,9 @@ msgstr "Beállítások tesztelése"
 
 msgid "Reset SMTP configuration"
 msgstr "SMTP beállítások visszaállítása"
+
+msgid "Reset notification templates to default"
+msgstr "Az értesítési sablonok alapértelmezettre állítása"
 
 msgid "Template"
 msgstr "Sablon"

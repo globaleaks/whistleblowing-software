@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-06 13:51+0000\n"
+"PO-Revision-Date: 2020-04-16 20:14+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -598,9 +598,6 @@ msgid "seconds"
 msgstr "விநாடிகள்"
 
 msgid "This domain name is not available."
-msgstr ""
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "VAT number"
@@ -1205,9 +1202,6 @@ msgstr "எச்சரிக்கை"
 msgid "Require authentication"
 msgstr "அங்கீகரிப்பு தேவை"
 
-msgid "Reset notification templates to default"
-msgstr "திருப்பித்தர முடியாது அறிவிப்பை வார்ப்புருக்கள் மீட்டமை"
-
 msgid "Number of hours before sending a report expiration alert"
 msgstr "ஒரு சமர்ப்பிப்பு காலாவதி எச்சரிக்கை அனுப்பும் முன் மணி எண்ணிக்கை"
 
@@ -1216,6 +1210,9 @@ msgstr "கட்டமைப்பு சோதனை"
 
 msgid "Reset SMTP configuration"
 msgstr ""
+
+msgid "Reset notification templates to default"
+msgstr "திருப்பித்தர முடியாது அறிவிப்பை வார்ப்புருக்கள் மீட்டமை"
 
 msgid "Template"
 msgstr "டெம்ப்ளேட்"

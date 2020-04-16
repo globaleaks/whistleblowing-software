@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-06 13:51+0000\n"
+"PO-Revision-Date: 2020-04-16 20:14+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -618,9 +618,6 @@ msgstr "ثانیه"
 
 msgid "This domain name is not available."
 msgstr "این نام دامنه در دسترس نیست."
-
-msgid "Do not expose users' names"
-msgstr "نام‌های کاربران را افشا نکنید"
 
 msgid "VAT number"
 msgstr ""
@@ -1224,9 +1221,6 @@ msgstr "هشدار"
 msgid "Require authentication"
 msgstr "خواستن احراز هویت"
 
-msgid "Reset notification templates to default"
-msgstr "تنظیم مجدد قاابل های نوتیفیکیشن به پیشفرض"
-
 msgid "Number of hours before sending a report expiration alert"
 msgstr "تعداد ساعات قبل از ارسال یک هشدار انقضا گزارش "
 
@@ -1235,6 +1229,9 @@ msgstr "آزمایش پیکربندی"
 
 msgid "Reset SMTP configuration"
 msgstr "تنظیم مجدد تنظیمات SMTP"
+
+msgid "Reset notification templates to default"
+msgstr "تنظیم مجدد قاابل های نوتیفیکیشن به پیشفرض"
 
 msgid "Template"
 msgstr "قالب"

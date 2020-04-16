@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-06 13:51+0000\n"
+"PO-Revision-Date: 2020-04-16 20:14+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -603,9 +603,6 @@ msgid "seconds"
 msgstr "giây"
 
 msgid "This domain name is not available."
-msgstr ""
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "VAT number"
@@ -1210,9 +1207,6 @@ msgstr "Cảnh báo"
 msgid "Require authentication"
 msgstr ""
 
-msgid "Reset notification templates to default"
-msgstr "Thiết lập lại các mẫu thông báo mặc định"
-
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Số giờ trước khi gửi một cảnh báo hết hạn nộp hồ sơ"
 
@@ -1221,6 +1215,9 @@ msgstr ""
 
 msgid "Reset SMTP configuration"
 msgstr ""
+
+msgid "Reset notification templates to default"
+msgstr "Thiết lập lại các mẫu thông báo mặc định"
 
 msgid "Template"
 msgstr "Bản mẫu"

@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-09 11:35+0000\n"
-"Last-Translator: Lenka Ježková <lenka.jezkova@oziveni.cz>\n"
+"PO-Revision-Date: 2020-04-16 20:14+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -606,9 +606,6 @@ msgstr "sekúnd"
 
 msgid "This domain name is not available."
 msgstr "Tento názov domény nie je k dispozícii."
-
-msgid "Do not expose users' names"
-msgstr "Neodhaľte mená užívateľov. "
 
 msgid "VAT number"
 msgstr "IČ DPH"
@@ -1212,9 +1209,6 @@ msgstr "Varovanie"
 msgid "Require authentication"
 msgstr "Vyžadovať overenie"
 
-msgid "Reset notification templates to default"
-msgstr "Obnoviť šablóny notifikácií na prednastavené hodnoty"
-
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Počet hodín pred odoslaním upozornenia na exspiráciu"
 
@@ -1223,6 +1217,9 @@ msgstr "Testovať konfiguráciu"
 
 msgid "Reset SMTP configuration"
 msgstr "Resetujte SMTP konfiguráciu"
+
+msgid "Reset notification templates to default"
+msgstr "Obnoviť šablóny notifikácií na prednastavené hodnoty"
 
 msgid "Template"
 msgstr "Šablóna"

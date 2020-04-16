@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-06 13:51+0000\n"
+"PO-Revision-Date: 2020-04-16 20:14+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -603,9 +603,6 @@ msgstr "วินาที"
 
 msgid "This domain name is not available."
 msgstr "ชื่อโดเมนนี้ใช้ไม่ได้"
-
-msgid "Do not expose users' names"
-msgstr ""
 
 msgid "VAT number"
 msgstr ""
@@ -1209,9 +1206,6 @@ msgstr "คำเตือน"
 msgid "Require authentication"
 msgstr "ต้องใช้การยืนยันตัวตน"
 
-msgid "Reset notification templates to default"
-msgstr "ล้างแม่แบบการแจ้งเตือนเป็นค่าปริยาย"
-
 msgid "Number of hours before sending a report expiration alert"
 msgstr "จำนวนชั่วโมงก่อนจะส่งแจ้งเตือนถึงการหมดอายุของรายงาน"
 
@@ -1220,6 +1214,9 @@ msgstr "ทดสอบการปรับค่า"
 
 msgid "Reset SMTP configuration"
 msgstr "ล้างการปรับค่า SMTP"
+
+msgid "Reset notification templates to default"
+msgstr "ล้างแม่แบบการแจ้งเตือนเป็นค่าปริยาย"
 
 msgid "Template"
 msgstr "แม่แบบ"

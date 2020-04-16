@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-06 13:51+0000\n"
+"PO-Revision-Date: 2020-04-16 20:14+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -602,9 +602,6 @@ msgid "seconds"
 msgstr "秒"
 
 msgid "This domain name is not available."
-msgstr ""
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "VAT number"
@@ -1209,9 +1206,6 @@ msgstr "警示"
 msgid "Require authentication"
 msgstr "請求驗證"
 
-msgid "Reset notification templates to default"
-msgstr "重定通知模版為預設狀態"
-
 msgid "Number of hours before sending a report expiration alert"
 msgstr "傳送報告到期警示的小時數"
 
@@ -1220,6 +1214,9 @@ msgstr "測試設定"
 
 msgid "Reset SMTP configuration"
 msgstr "重置 SMTP 設定"
+
+msgid "Reset notification templates to default"
+msgstr "重定通知模版為預設狀態"
 
 msgid "Template"
 msgstr "模版"

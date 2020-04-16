@@ -9,7 +9,7 @@
 # Henrik Mattsson-Mårn <h@reglage.net>, 2016-2017,2020
 # John Andersson <johnandersson86@hotmail.com>, 2015
 # Jonas Hedberg <jonas@hedberg2.se>, 2015
-# Jonatan Nyberg, 2018
+# Jonatan, 2018
 # Kristoffer Grundström <hamnisdude@gmail.com>, 2014
 # Kristoffer Grundström <hamnisdude@gmail.com>, 2014
 # Linus Malmgren <linus@malmgren.nu>, 2015
@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-06 13:51+0000\n"
+"PO-Revision-Date: 2020-04-16 20:14+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -612,9 +612,6 @@ msgid "seconds"
 msgstr "sekunder"
 
 msgid "This domain name is not available."
-msgstr ""
-
-msgid "Do not expose users' names"
 msgstr ""
 
 msgid "VAT number"
@@ -1219,9 +1216,6 @@ msgstr "Varning"
 msgid "Require authentication"
 msgstr ""
 
-msgid "Reset notification templates to default"
-msgstr ""
-
 msgid "Number of hours before sending a report expiration alert"
 msgstr ""
 
@@ -1229,6 +1223,9 @@ msgid "Test the configuration"
 msgstr ""
 
 msgid "Reset SMTP configuration"
+msgstr ""
+
+msgid "Reset notification templates to default"
 msgstr ""
 
 msgid "Template"
