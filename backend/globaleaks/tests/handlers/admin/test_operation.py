@@ -69,8 +69,6 @@ class TestAdminPasswordReset(helpers.TestHandlerWithPopulatedDB):
 
     @defer.inlineCallbacks
     def test_put(self):
-        State.tenant_cache[1]['enable_password_reset'] = False
-
         data_request = {
             'operation': 'reset_user_password',
             'args': {

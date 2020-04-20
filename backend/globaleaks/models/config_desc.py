@@ -168,8 +168,6 @@ ConfigDescriptor = {
     'backup_remote_username': Unicode(default=''),
     'backup_remote_password': Unicode(default=''),
 
-    'enable_password_reset': Bool(default=True),
-
     'log_level': Unicode(default='ERROR'),
     'log_accesses_of_internal_users': Bool(default=False),
 
@@ -263,7 +261,6 @@ ConfigFilters = {
         'ip_filter_receiver_enable',
         'ip_filter_whistleblower',
         'ip_filter_whistleblower_enable',
-        'enable_password_reset',
         'log_level',
         'log_accesses_of_internal_users',
         'two_factor',

@@ -155,8 +155,7 @@ def db_wizard(session, tid, hostname, request):
                         'anonymize_outgoing_connections',
                         'frame_ancestors',
                         'password_change_period',
-                        'default_questionnaire',
-                        'enable_password_reset']:
+                        'default_questionnaire']:
             node.set_val(varname, root_tenant_node.get_val(varname))
 
         context.questionnaire_id = root_tenant_node.get_val('default_questionnaire')
