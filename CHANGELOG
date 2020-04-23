@@ -1,3 +1,8 @@
+Changes in version 4.0.16 - 2020-04-23
+    Fix issue #2826
+    Bump npm dependencies to latest version
+    Update translations:
+
 Changes in version 4.0.15 - 2020-04-16
     Apply minor bugfixing
 
