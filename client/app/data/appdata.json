@@ -44,7 +44,7 @@
       "tr": "Sayın {RecipientName},\n\nBu e-postayı, şu sistemde sizin için bir kullanıcı hesabı oluşturulduğu için aldınız: {Site}\n\nKullanıcı adı: {Username}\nEtkinleştirme bağlantısı: {Url}\n\nLütfen hesap etkinleştirmesine devam etmek ve parolanızı oluşturmak için etkinleştirme bağlantısına tıklayın.\nBu bağlantı üç gün içerisinde geçersiz olacaktır.\n\nBaşarılı bir etkinleştirmeden sonra sisteme şu bağlantı aracılığıyla erişebileceksiniz: {LoginUrl}\n\nKullanıcı belgeleri için ziyaret edin:\n{DocumentationUrl}\n\nSaygılarımızla,\n{NodeName}",
       "uk": "Шановний {RecipientName},\n\nYou're receiving this email because a user account has been created for you on the system: {Site}\n\nUsername: {Username}\nActivation link: {Url}\n\nPlease click on the activation link to proceed with the account activation and to set your user password.\nThis link will expire in 3 days.\n\nAfter successful activation you will be able to access the system via the following link: {LoginUrl}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nЗ повагою,\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\nYou're receiving this email because a user account has been created for you on the system: {Site}\n\nUsername: {Username}\nActivation link: {Url}\n\nPlease click on the activation link to proceed with the account activation and to set your user password.\nThis link will expire in 3 days.\n\nAfter successful activation you will be able to access the system via the following link: {LoginUrl}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nبہت نوازش، مخلص\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\nYou're receiving this email because a user account has been created for you on the system: {Site}\n\nUsername: {Username}\nActivation link: {Url}\n\nPlease click on the activation link to proceed with the account activation and to set your user password.\nThis link will expire in 3 days.\n\nAfter successful activation you will be able to access the system via the following link: {LoginUrl}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nTrân trọng,\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\nBạn đang nhận được email này vì tài khoản người dùng đã được tạo cho bạn trên hệ thống: {Site}\n\nTên người dùng: {Username}\nLiên kết kích hoạt: {URL}\n\nVui lòng nhấp vào liên kết kích hoạt để tiến hành kích hoạt tài khoản và đặt mật khẩu của bạn.\nLiên kết này sẽ hết hạn trong 3 ngày tới\n\nSau khi kích hoạt thành công, bạn có thể truy cập hệ thống thông qua liên kết sau: {LoginUrl}\n\nĐối với tài liệu người dùng, hãy truy cập:\n{DocumentationUrl}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n由于您在本站创建新帐号，故系统自动发送此邮件: {Site}\n\n用户名: {Username}\n激活链接: {Url}\n\n请点击帐号激活链接以完成密码设置。\n此结连有效期限为 3 天。\n\n成功激活后，即可以透过以下网址登录系统: {LoginUrl}\n\n用户文档请到：\n{DocumentationUrl}\n\n亲切的问候，\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n由於您在本站創建新帳號，故系統自動發送此郵件: {Site}\n\n用戶名: {Username}\n激活連結: {Url}\n\n請點擊帳號激活連結以完成密碼設定。\n此結連有效期限為 3 天。\n\n成功激活後，即可以透過以下網址登入系統: {LoginUrl}\n\n使用者文檔請到：\n{DocumentationUrl}\n\nKind regards,\n{NodeName}"
     },
@@ -91,7 +91,7 @@
       "tr": "Hesap etkinleştirme",
       "uk": "Account activation",
       "ur": "Account activation",
-      "vi": "Account activation",
+      "vi": "Kích hoạt tài khoản",
       "zh_CN": "帐号激活",
       "zh_TW": "帳號激活"
     },
@@ -138,7 +138,7 @@
       "tr": "Sayın {RecipientName},\n\nİhbar platformunuz şu şekilde erişilebilir durumda:\n{Url}\n\nGiriş yapmak için:\n{LoginUrl}\n\nKullanıcıların kimlikleri:\n{AdminCredentials}\n{RecipientCredentials}\n\nKullanıcı belgeleri için ziyaret edin:\n{DocumentationUrl}\n\nPlatform otomatik olarak şu tarihte silinecektir:\n{ExpirationDate}\n\nSaygılarımızla,\n\n{NodeName}",
       "uk": "Шановний {RecipientName},\n\nYour whistleblowing platform is now accessible at:\n{Url}\n\nЩоб увійти, відвідайте:\n{LoginUrl}\n\nUsers' credentials:\n{AdminCredentials}\n{RecipientCredentials}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nЗ повагою,\n\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\nYour whistleblowing platform is now accessible at:\n{Url}\n\nTo log in, visit:\n{LoginUrl}\n\nUsers' credentials:\n{AdminCredentials}\n{RecipientCredentials}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nبہت نوازش، مخلص\n\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\nYour whistleblowing platform is now accessible at:\n{Url}\n\nTo log in, visit:\n{LoginUrl}\n\nUsers' credentials:\n{AdminCredentials}\n{RecipientCredentials}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nTrân trọng,\n\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\nNền tảng hệ thống cung cấp thông tin nội bộ của bạn hiện có thể truy cập tại:\n{Url}\n\nĐể đăng nhập, hãy truy cập:\n{LoginUrl}\n\nThông tin đăng nhập của người dùng:\n{AdminCredentials}\n{RecipientCredentials}\n\nĐối với tài liệu người dùng, hãy truy cập:\n{DocumentationUrl}\n\nNền tảng sẽ được xóa tự động vào:\n{ExpirationDate}\n\nTrân trọng,\n\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n吹哨揭密平台已启用:\n{Url}\n\n欲登录请到:\n{LoginUrl}\n\n用户的证书:\n{AdminCredentials}\n{RecipientCredentials}\n\n用户文档请到：\n{DocumentationUrl}\n\n平台会自动进行删除:\n{ExpirationDate}\n\n亲切的问候，\n\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n吹哨揭密平台已啟用:\n{Url}\n\n欲登入請到:\n{LoginUrl}\n\n用戶的證書:\n{AdminCredentials}\n{RecipientCredentials}\n\n使用者文檔請到：\n{DocumentationUrl}\n\n平台會自動進行刪除:\n{ExpirationDate}\n\nKind regards,\n\n{NodeName}"
     },
@@ -185,7 +185,7 @@
       "tr": "Erişim yönergesi",
       "uk": "Access instructions",
       "ur": "Access instructions",
-      "vi": "Access instructions",
+      "vi": "Hướng dẫn truy cập",
       "zh_CN": "取用的指示",
       "zh_TW": "取用的指示"
     },
@@ -232,7 +232,7 @@
       "tr": "Son zamanlarda tespit edilen etkinliklerin sayısı normalden yüksek gibi görünüyor.\n\nBu, bir sistem saldırısının (örneğin, biri sunucunuzu sahte bilgilerle dolduruyor) veya projenizin tanınırlığının artması sebebiyle kullanımda oluşan ani yükselişin göstergesi olabilir.\n\nKonuyu, meşru olup olmadığını belirlemek için inceleyin.\n\nAlışılmadık istatistik içeren etkinlikler şunlar:\n{ActivityDump}",
       "uk": "The number of activities recently detected appears to be higher than usual.\n\nThis could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.\n\nExamine the issue to determine whether it is legitimate or not.\n\nАктивність з незвичайною статистикою:\n{ActivityDump}",
       "ur": "سرگرمیوں حال ہی پتہ چلنے کی تعداد معمول سے زیادہ ہو جائے کرنے کے لئے ظاہر.\n\nیہ یا صرف ایک کے استعمال کی بڑھتی ہوئی وارداتوں کی وجہ سے اپنے منصوبے کی ایک بڑھتی ہوئی نمائش کرنے کے لئے ایک حملے (کسی بوگس معلومات کے ساتھ آپ کے سرور سیلاب مثال کے طور پر) کی ایک علامت ہو سکتی ہے.\n\nExamine the issue to determine whether it is legitimate or not.\n\nغیر معمولی اعدادوشمار کے ساتھ سرگرمیوں ہیں:\n{ActivityDump}",
-      "vi": "Số lượng các hoạt động gần đây phát hiện dường như là cao hơn bình thường.\n\nĐây có thể là một dấu hiệu của một cuộc tấn công (ví dụ, một người nào đó tràn ngập máy chủ của bạn với thông tin không có thật) hoặc chỉ một cành sử dụng do một tầm nhìn tăng của dự án của bạn.\n\nExamine the issue to determine whether it is legitimate or not.\n\nCác hoạt động với chỉ số bình thường là:\n{ActivityDump}",
+      "vi": "Số lượng các hoạt động gần đây phát hiện dường như là cao hơn bình thường.\n\nĐây có thể là một dấu hiệu của một cuộc tấn công (ví dụ, một người nào đó tràn ngập máy chủ của bạn với thông tin không có thật) hoặc chỉ một cành sử dụng do một tầm nhìn tăng của dự án của bạn.\n\nKiểm tra vấn đề để xác định xem nó có hợp pháp hay không.\n\nCác hoạt động với chỉ số bình thường là:\n{ActivityDump}",
       "zh_CN": "侦测到最近的活动数量似乎高于正常\n\n这可能是遭到攻击的征兆(例如某人试图以伪造的信息来淹没你的网站)或是由于专案能见度大增致使用流量提高\n\n查验此问题以决定其是否合理。\n\n不寻常的活动统计如下：\n{ActivityDump}",
       "zh_TW": "偵測到最近的活動數量似乎高於正常\n\n這可能是遭到攻擊的徵兆(例如某人試圖以偽造的資訊來淹沒你的網站)或是由於專案能見度大增致使用流量提高\n\n查驗此問題以決定其是否合理。\n\n非正常活動的統計為：\n{ActivityDump}"
     },
@@ -326,7 +326,7 @@
       "tr": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nLütfen sunucu üzerinde daha fazla disk alanı oluşturulması için teknik desteğinize danışın.",
       "uk": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nPlease consider asking your technical support to create more disk space on the server.",
       "ur": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nPlease consider asking your technical support to create more disk space on the server.",
-      "vi": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nPlease consider asking your technical support to create more disk space on the server.",
+      "vi": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nVui lòng xem xét yêu cầu hỗ trợ kỹ thuật của bạn để tạo thêm dung lượng đĩa trên máy chủ.",
       "zh_CN": "{FreeMemory} of {TotalMemory} available diskspace used.\n\n请考虑求助技术支持以在服务器上创建更多硬盘空间",
       "zh_TW": "{FreeMemory} of {TotalMemory} available diskspace used.\n\n請考慮求助技術支援以在伺服器上建立更多硬碟空間"
     },
@@ -373,7 +373,7 @@
       "tr": "Sayın {RecipientName},\n\nGlobaLeaks teknolojisi, dikkat etmeniz gereken bir durum olduğunda sizi uyaracak sunucu durum denetim bileşenlerini içerir.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nDaha fazla bilgi için Yönetici olarak giriş yaptıktan sonra \"Sistem İstatistikleri\" ve \"Anormallikler\" bölümüne gidin.\n\nSaygılarımızla,\n{NodeName}",
       "uk": "Шановний {RecipientName},\n\nGlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nFor more information, log in to the Administration interface and look at the \"System Stats\" and \"Anomalies\" sections.\n\nЗ повагою,\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\nGlobaLeaks ٹیکنالوجی ایک سرور کی حیثیت کی جانچ پڑتال جزو جس صورت میں کسی چیز آپ کی توجہ کی ضرورت ہوتی ہے اگر آپ کو آگاہ کرے گا بھی شامل ہے.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nFor more information, log in to the Administration interface and look at the \"System Stats\" and \"Anomalies\" sections.\n\nبہت نوازش، مخلص\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\ncông nghệ GlobaLeaks bao gồm một thành phần kiểm tra tình trạng server đó sẽ cảnh báo bạn trong trường hợp đòi hỏi sự chú ý của bạn.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nFor more information, log in to the Administration interface and look at the \"System Stats\" and \"Anomalies\" sections.\n\nTrân trọng,\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\ncông nghệ GlobaLeaks bao gồm một thành phần kiểm tra tình trạng server đó sẽ cảnh báo bạn trong trường hợp đòi hỏi sự chú ý của bạn.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nĐể biết thêm thông tin, đăng nhập vào giao diện Quản trị và xem phần \"Thống kê hệ thống\" và phần \"Bất thường\".\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\nGlobaLeaks 的技术包括了服务器状态检查要件，它会在必时警告你提高注意\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\n取得更多信息，请登录管理者接口来查看“系统统计”与“异常”部份\n\n亲切的问候，\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\nGlobaLeaks 的技術包括了伺服器狀態檢查要件，它會在必時警告你提高注意\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\n取得更多資訊，請登入管理者介面來查看“系統統計”與“異常”部份\n\nKind regards,\n{NodeName}"
     },
@@ -561,7 +561,7 @@
       "tr": "Sayın {RecipientName},\n\nYeni bir ihbar sitesi kaydedildi.\n\nKayıt verisi:\nSite: {Url}\nİsim: {Name}\nE-posta: {Email}\nDil: {Language}\nKullanım durumu: {UseCase}\n\nPlatform otomatik olarak şu tarihte silinecektir:\n{ExpirationDate}\n\nSaygılarımızla,\n\n{NodeName}",
       "uk": "Шановний {RecipientName},\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {Url}\nName: {Name}\nEmail: {Email}\nLanguage: {Language}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nЗ повагою,\n\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {Url}\nName: {Name}\nEmail: {Email}\nLanguage: {Language}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nبہت نوازش، مخلص\n\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {Url}\nName: {Name}\nEmail: {Email}\nLanguage: {Language}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nTrân trọng,\n\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\nMột trang web tố giác mới đã được đăng ký.\n\nDữ liệu đăng ký:\nTrang web: {URL}\nTên: {Name}\nEmail: {Email}\nNgôn ngữ: {Language}\nTrường hợp sử dụng: {Usecase}\n\nNền tảng sẽ được xóa tự động vào:\n{ExpirationDate}\n\nTrân trọng,\n\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n新建的吹哨网站已完成注册\n\n注册数据:\n网站: {Url}\n名称: {Name}\nEmail: {Email}\n语言: {Language}\n使用案例: {UseCase}\n\n平台会自动进行删除:\n{ExpirationDate}\n\n亲切的问候，\n\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n新建的吹哨網站已完成註冊\n\n註冊資料:\n網站: {Url}\n名稱: {Name}\nEmail: {Email}\n語言: {Language}\n使用案例: {UseCase}\n\n平台會自動進行刪除:\n{ExpirationDate}\n\nKind regards,\n\n{NodeName}"
     },
@@ -608,7 +608,7 @@
       "tr": "Yeni ihbar sitesi kayıtlandı.",
       "uk": "New whistleblowing site registered",
       "ur": "New whistleblowing site registered",
-      "vi": "New whistleblowing site registered",
+      "vi": "Trang web tố giác mới đăng kí",
       "zh_CN": "有新的吹哨揭密网站加入",
       "zh_TW": "有新的吹哨揭密網站加入"
     },
@@ -655,7 +655,7 @@
       "tr": "Sayın {RecipientName},\n\nBu platformun yönetici arayüzünden gönderilen bir deneme e-postasıdır.\n\nBu e-postanın alımı, sunucunun SMTP posta sunucusuyla etkileşim kurabildiği ve kimlik doğrulayabildiği anlamına geliyor.\n\nSaygılarımızla,\n{NodeName}",
       "uk": "Шановний {RecipientName},\n\nThis is a test email sent out from the platform's administrative interface.\n\nReception of this email indicates that the server was able to authenticate to and interact with the SMTP mail server.\n\nЗ повагою,\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\nThis is a test email sent out from the platform's administrative interface.\n\nReception of this email indicates that the server was able to authenticate to and interact with the SMTP mail server.\n\nبہت نوازش، مخلص\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\nThis is a test email sent out from the platform's administrative interface.\n\nReception of this email indicates that the server was able to authenticate to and interact with the SMTP mail server.\n\nTrân trọng,\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\nĐây là một email thử nghiệm được gửi từ giao diện quản trị của nền tảng.\n\nViệc nhận được email này cho thấy rằng máy chủ có thể xác thực và tương tác với máy chủ thư SMTP.\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n这是由管理者接口所送出的测试电子邮件\n\n这封电子邮件的接收显示服务器可以和 SMTP 邮件服务器之间进行授权和交互\n\n亲切的问候，\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n這是由管理者介面所送出的測試電子郵件\n\n這封電子郵件的接收顯示伺服器可以和 SMTP 郵件伺服器之間進行授權和互動\n\nKind regards,\n{NodeName}"
     },
@@ -702,7 +702,7 @@
       "tr": "Test e-postası",
       "uk": "Test email",
       "ur": "آزمائشی ای میل",
-      "vi": "Test email",
+      "vi": "Email thử nghiệm:",
       "zh_CN": "测试邮件",
       "zh_TW": "測試郵件"
     },
@@ -843,7 +843,7 @@
       "tr": "Sayın {RecipientName},\n\nBu e-posta size e-postanızı {NewEmailAddress} olarak değiştirme isteğinde bulunulduğunu bildirmek için gönderildi.\n\nBu değişikliği doğrulamak için şu bağlantıya tıklayın:\n{Url}\n\nBu değişikliği siz istemediyseniz, parolanızı değiştirin ve sistem yöneticinize bu durumu bildirin.\n\nSaygılarımızla,\n{NodeName}",
       "uk": "Шановний {RecipientName},\n\nЦей лист повідомляє вас про те, що було внесено запит на зміну вашої електронної адреси на адресу {NewEmailAddress}.\n\nClick the following link to validate this change:\n{Url}\n\nЯкщо ви не надсилали запит на цю зміну, змініть пароль і зверніться до системного адміністратора.\n\nЗ повагою,\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\nThis is an email to notify you that a request has been made to change your email address to {NewEmailAddress}.\n\nClick the following link to validate this change:\n{Url}\n\nIf you didn't request this change, change your password and contact your system administrator.\n\nبہت نوازش، مخلص\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\nThis is an email to notify you that a request has been made to change your email address to {NewEmailAddress}.\n\nClick the following link to validate this change:\n{Url}\n\nIf you didn't request this change, change your password and contact your system administrator.\n\nTrân trọng,\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\nĐây là một email để thông báo cho bạn rằng một yêu cầu đã được thực hiện việc thay đổi địa chỉ email của bạn thành {NewEmailAddress}\n\nNhấp vào liên kết sau để xác thực thay đổi này:\n{Url}\n\nNếu bạn không yêu cầu thay đổi này, hãy thay đổi mật khẩu và liên hệ với quản trị viên hệ thống của bạn.\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n本邮件通知你，有人请求将你的电邮地址变更为 {NewEmailAddress}.\n\n点击以下链接以验证此变动：\n{Url}\n\n如果你并未作此请求，请尽快更新密码并连络通知系统管理者。\n\n亲切的问候，\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n本郵件通知你，有人請求將你的電郵地址變更為 {NewEmailAddress}.\n\n點擊以下連結以驗證此變動：\n{Url}\n\n如果你並未作此請求，請儘快更新密碼並連絡通知系統管理者。\n\nKind regards,\n{NodeName}"
     },
@@ -890,7 +890,7 @@
       "tr": "E-posta değişiklik isteği",
       "uk": "Запит на зміну електронної пошти",
       "ur": "Email change request",
-      "vi": "Email change request",
+      "vi": "Yêu cầu thay đổi email",
       "zh_CN": "电邮变更请求",
       "zh_TW": "電郵變更請求"
     },
@@ -937,7 +937,7 @@
       "tr": "Gönderen: {Author}\nTarih: {EventTime}\n\n{Content}",
       "uk": "From: {Author}\nДата: {EventTime}\n\n{Content}",
       "ur": "From: {Author}\nتاریخ اشاعت: {EventTime}\n\n{Content}",
-      "vi": "From: {Author}\nNgày: {EventTime}\n\n{Content}",
+      "vi": "Từ: {Author}\nNgày: {EventTime}\n\n{Content}",
       "zh_CN": "来自: {Author}\n日期: {EventTime}\n\n{Content}",
       "zh_TW": "來自: {Author}\n日期: {EventTime}\n\n{Content}"
     },
@@ -1031,7 +1031,7 @@
       "tr": "ID: {TipNum}\nTarih: {SubmissionDate}\nEtiket: {TipLabel}\nDurum: {TipStatus}\nKategori: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "uk": "ID: {TipNum}\nДата: {SubmissionDate}\nПозначка: {TipLabel}\nStatus: {TipStatus}\nНазва тематики: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "ur": "ID: {TipNum}\nتاریخ اشاعت: {SubmissionDate}\nلیبل: {TipLabel}\nStatus: {TipStatus}\nسیاق و سباق: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
-      "vi": "ID: {TipNum}\nNgày: {SubmissionDate}\nNhãn: {TipLabel}\nStatus: {TipStatus}\nBối cảnh: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
+      "vi": "ID: {TipNum}\nNgày: {SubmissionDate}\nNhãn: {TipLabel}\nTrạng thái: {TipStatus}\nBối cảnh: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "zh_CN": "ID: {TipNum}\n日期: {SubmissionDate}\n标志: {TipLabel}\n状态: {TipStatus}\n内文: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "zh_TW": "ID: {TipNum}\n日期: {SubmissionDate}\n標誌: {TipLabel}\n狀態: {TipStatus}\n內文: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}"
     },
@@ -1172,7 +1172,7 @@
       "tr": "Sayın {RecipientName},\n\nPlatformda yüklenen HTTPS sertifikasının süresi dolmuş veya dolmak üzeredir.\n\nGeçerlilik Tarihi: {ExpirationDate}\n\nGeçerli bir sertifika olmadan, platforma güvenli bir şekilde sadece Tor aracılığıyla erişilebilir.\n\nSorunu çözmek için girin yapın.\n\n{Url}\n\nSaygılarımızla,\n{NodeName}",
       "uk": "Шановний {RecipientName},\n\nThe HTTPS certificate loaded on the platform is about to, or has already expired.\n\nДата закінчення терміну дії: {ExpirationDate}\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\nLog in to solve the issue.\n\n{Url}\n\nЗ повагою,\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\nThe HTTPS certificate loaded on the platform is about to, or has already expired.\n\nختم ہونے کی تاریخ: {ExpirationDate}\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\nLog in to solve the issue.\n\n{Url}\n\nبہت نوازش، مخلص\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\nThe HTTPS certificate loaded on the platform is about to, or has already expired.\n\nNgày hết hạn: {ExpirationDate}\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\nLog in to solve the issue.\n\n{Url}\n\nTrân trọng,\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\nChứng chỉ HTTPS được tải lên trên nền tảng sắp hoặc đã hết hạn\n\nNgày hết hạn: {ExpirationDate}\n\nNếu không có chứng chỉ hợp lệ, nền tảng sẽ chỉ có thể truy cập theo cách an toàn thông qua Tor\n\nĐăng nhập để giải quyết sự cố.\n\n{Url}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\nHTTPS 凭证将要加载到平台中, 或是已经完成逾期\n\n到期日: {ExpirationDate}\n\n无有效的凭证，这个平台只能透过 Tor 的安全方式来接取使用。\n\n登录来解决此问题\n\n{Url}\n\n亲切的问候，\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\nHTTPS 憑證將要載入到平台中, 或是已經完成逾期\n\n到期日: {ExpirationDate}\n\n無有效的憑證，這個平台只能透過 Tor 的安全方式來接取使用。\n\n登入來解決此門㫻\n\n{Url}\n\nKind regards,\n{NodeName}"
     },
@@ -1219,7 +1219,7 @@
       "tr": "HTTPS sertifikası için zaman aşımı uyarısı",
       "uk": "Expiration alert for HTTPS certificate",
       "ur": "Expiration alert for HTTPS certificate",
-      "vi": "Expiration alert for HTTPS certificate",
+      "vi": "Thông báo hết hạn cho chứng chỉ HTTPS",
       "zh_CN": "HTTPS 证书过期警告",
       "zh_TW": "HTTPS 證書啻"
     },
@@ -1266,7 +1266,7 @@
       "tr": "Sayın {RecipientName},\n\nBugün için planlanan otomatik HTTPS sertifika yenilemesi başarısız oldu. \n\nSistem denemeye devam edecektir.\n\nGeçerlilik Tarihi: {ExpirationDate}\n\nGeçerli bir sertifika olmadan, platforma güvenli bir şekilde sadece Tor aracılığıyla erişilebilir.\n\n{Url}\n\nSaygılarımızla,\n{NodeName}",
       "uk": "Шановний {RecipientName},\n\nThe automatic HTTPS certificate renewal scheduled for today just failed.\n\nThe system will keep trying.\n\nДата закінчення терміну дії: {ExpirationDate}\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\n{Url}\n\nЗ повагою,\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\nThe automatic HTTPS certificate renewal scheduled for today just failed.\n\nThe system will keep trying.\n\nختم ہونے کی تاریخ: {ExpirationDate}\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\n{Url}\n\nبہت نوازش، مخلص\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\nThe automatic HTTPS certificate renewal scheduled for today just failed.\n\nThe system will keep trying.\n\nNgày hết hạn: {ExpirationDate}\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\n{Url}\n\nTrân trọng,\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\nViệc gia hạn chứng chỉ HTTPS tự động được lên kế hoạch cho ngày hôm nay vừa thất bại.\n\nHệ thống sẽ tiếp tục cố gắng.\n\nNgày hết hạn: {ExpirationDate}\n\nNếu không có chứng chỉ hợp lệ, nền tảng sẽ chỉ có thể truy cập theo cách an toàn thông qua Tor\n\n{Url}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n今天 HTTPS 证书自动更新刚刚失败了。\n\n系统会继续尝试\n\n到期日: {ExpirationDate}\n\n无有效的凭证，这个平台只能透过 Tor 的安全方式来接取使用。\n\n{Url}\n\n亲切的问候，\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n今天 HTTPS 證書自動更新剛剛失敗了。\n\n系統會繼續嘗試\n\n到期日: {ExpirationDate}\n\n無有效的憑證，這個平台只能透過 Tor 的安全方式來接取使用。\n\n{Url}\n\nKind regards,\n{NodeName}"
     },
@@ -1313,7 +1313,7 @@
       "tr": "Başarısız HTTPS sertifika yenilemesi",
       "uk": "Failed HTTPS certificate renewal",
       "ur": "Failed HTTPS certificate renewal",
-      "vi": "Failed HTTPS certificate renewal",
+      "vi": "Gia hạn chứng chỉ HTTPS không thành công",
       "zh_CN": "HTTPS 证书更新失败",
       "zh_TW": "HTTPS 證書更新失敗"
     },
@@ -1548,7 +1548,7 @@
       "tr": "Sayın {RecipientName},\n\nBu e-posta size, bir alıcının, {TipNum} raporunun ihbarcı kimliğine erişme isteğini bildirmek içindir.\n\nİsteğe şuradan erişilebilir:\n{Url}\n\nSaygılarımızla,\n{NodeName}",
       "uk": "Шановний {RecipientName},\n\nПовідомляємо, що одержувач надав запит на доступ до даних про інформатора, який повідомив свідчення {TipNum}\n\nЗапит можна переглянути:\n{Url}\n\nЗ повагою,\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\nیہ ایک وصول کنندہ جمع کرانے {TipNum} کے لئے مخبر کی شناخت تک رسائی کی درخواست ہے کہ آپ کو مطلع کرنے کے لئے ایک ای میل ہے\n\nThe request can be accessed at:\n{Url}\n\nبہت نوازش، مخلص\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\nĐây là một email thông báo cho bạn rằng một người nhận đã yêu cầu truy cập đến danh tính của người tố giác cho việc nộp {TipNum}\n\nThe request can be accessed at:\n{Url}\n\nTrân trọng,\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\nĐây là một email thông báo cho bạn rằng một người nhận đã yêu cầu truy cập đến danh tính của người tố giác cho việc nộp {TipNum}\n\nYêu cầu có thể được truy cập tại:\n{Url}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n此邮件通知您，某位收件人请求可读取报告 {TipNum} 揭密者的身份。\n\n此请求可在此读取：\n{Url}\n\n亲切的问候，\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n此郵件通知您，某位收件者請求可讀取報告 {TipNum} 揭密者的身份。\n\n此請求可在此讀取：\n{Url}\n\nKind regards,\n{NodeName}"
     },
@@ -1595,7 +1595,7 @@
       "tr": "İhbarcının kimliğine yeni erişim talebi",
       "uk": "Новий запит на інформацію про особу викривача",
       "ur": "New request of access to a whistleblower's identity",
-      "vi": "New request of access to a whistleblower's identity",
+      "vi": "Yêu cầu mới về quyền truy cập vào danh tính của người tố giác",
       "zh_CN": "读取告密人身份识别的新要求",
       "zh_TW": "讀取吹哨者身份識別的新要求"
     },
@@ -1830,7 +1830,7 @@
       "tr": "Sayın {RecipientName},\n\nBu e-postayı, şu hesap için bir parola sıfırlama isteği oluşturulduğu için aldınız: {Username}\n\nEğer bu isteği siz yapmadıysanız, bu e-postayı güvenli bir şekilde görmezden gelip silebilirsiniz.\n\nŞu bağlantıya tıklayarak bu isteği onaylayabilirsiniz:\n{Url}\n\nBu bağlantı üç gün içerisinde geçersiz olacaktır.\n\nSaygılarımızla,\n{NodeName}",
       "uk": "Шановний {RecipientName},\n\nYou're receiving this email because a password reset has been requested for the account: {Username}\n\nЯкщо ви не надсилали такий запит, ви можете безпечно проігнорувати та видалити це повідомлення.\n\nYou can confirm your request by clicking the following link:\n{Url}\n\nThis link will expire in 3 days.\n\nЗ повагою,\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\nYou're receiving this email because a password reset has been requested for the account: {Username}\n\nIf you didn't make this request, you may safely ignore and delete this email.\n\nYou can confirm your request by clicking the following link:\n{Url}\n\nThis link will expire in 3 days.\n\nبہت نوازش، مخلص\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\nYou're receiving this email because a password reset has been requested for the account: {Username}\n\nIf you didn't make this request, you may safely ignore and delete this email.\n\nYou can confirm your request by clicking the following link:\n{Url}\n\nThis link will expire in 3 days.\n\nTrân trọng,\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\nBạn đang nhận được email này vì có yêu cầu đặt lại mật khẩu cho tài khoản: {Username}\n\nNếu bạn không thực hiện yêu cầu này, bạn có thể bỏ qua và xóa email này một cách an toàn.\n\nBạn có thể xác nhận yêu cầu của mình bằng cách nhấp vào liên kết sau:\n{Url}\n\nLiên kết này sẽ hết hạn trong 3 ngày tới\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n应帐号: {Username} 之密码请求，我们寄给您这封电子邮件。\n\n若您没有提出请求，请忽略和删除本邮件。\n\n点击下方链接来确认请求：\n{Url}\n\n此结连有效期限为 3 天。\n\n亲切的问候，\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n應帳號: {Username} 之密碼請求，我們寄給您這封電子郵件。\n\n若您沒有提出請求，請忽略和刪除本郵件。\n\n點擊下方連結來確認請求：\n{Url}\n\n此結連有效期限為 3 天。\n\nKind regards,\n{NodeName}"
     },
@@ -1877,7 +1877,7 @@
       "tr": "Parola sıfırlama yönergesi",
       "uk": "Інструкції щодо відновлення паролю",
       "ur": "Password reset instructions",
-      "vi": "Password reset instructions",
+      "vi": "Hướng dẫn cài đặt lại mật khẩu",
       "zh_CN": "密码重设指示",
       "zh_TW": "密碼重設指示"
     },
@@ -2018,7 +2018,7 @@
       "tr": "Sayın {RecipientName},\n\nİhbar platformunuz neredeyse hazır!\n\nPlatformu etkinleştirmek için şu bağlantıya tıklayın: \n{ActivationUrl}\n\nSaygılarımızla,\n\n{NodeName}",
       "uk": "Шановний {RecipientName},\n\nYour whistleblowing platform is almost ready!\n\nClick the link to activate the platform:\n{ActivationUrl}\n\nЗ повагою,\n\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\nYour whistleblowing platform is almost ready!\n\nClick the link to activate the platform:\n{ActivationUrl}\n\nبہت نوازش، مخلص\n\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\nYour whistleblowing platform is almost ready!\n\nClick the link to activate the platform:\n{ActivationUrl}\n\nTrân trọng,\n\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\nNền tảng tố giác của bạn gần như đã sẵn sàng!\n\nNhấp vào liên kết để kích hoạt nền tảng:\n{ActivationUrl}\n\nTrân trọng,\n\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n吹哨揭密平台已接近完成！\n\n点击此链接以激活平台：\n{ActivationUrl}\n\n亲切的问候，\n\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n吹哨揭密平台已接近完成！\n\n點擊此連結以激活平台：\n{ActivationUrl}\n\nKind regards,\n\n{NodeName}"
     },
@@ -2065,7 +2065,7 @@
       "tr": "Etkinleştirme",
       "uk": "Activation",
       "ur": "Activation",
-      "vi": "Activation",
+      "vi": "Kích hoạt",
       "zh_CN": "激活",
       "zh_TW": "激活"
     },
@@ -2112,7 +2112,7 @@
       "tr": "Sayın {RecipientName},\n\nBir yazılım güncellemesi mevcut.\nPlatformu güncel tutmak iyi bir güvenlik uygulamasıdır.\n\nKurulu sürüm: {InstalledVersion}\nSon sürüm: {LatestVersion}\n\nYeni sürümdeki yeni özellikler ve hata düzeltmelerini öğrenmek için şu adresteki değişim günlüğüne bakabilirsiniz: {ChangeLogUrl}\nYazılım güncellemelerine ilişkin yönergeler için, lütfen şu adresteki belgelere bakınız: {UpdateGuideUrl}\n\nSaygılarımızla,\n{NodeName}",
       "uk": "Шановний {RecipientName},\n\nA software update is available.\nIt is good security practice to keep the platform up to date.\n\nInstalled version: {InstalledVersion}\nLatest version: {LatestVersion}\n\nTo learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}\nFor instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}\n\nЗ повагою,\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\nA software update is available.\nIt is good security practice to keep the platform up to date.\n\nInstalled version: {InstalledVersion}\nLatest version: {LatestVersion}\n\nTo learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}\nFor instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}\n\nبہت نوازش، مخلص\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\nCập nhật phần mềm.\nIt is good security practice to keep the platform up to date.\n\nInstalled version: {InstalledVersion}\nPhiên bản cuối cùng: {LatestVersion}\n\nTo learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}\nFor instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}\n\nTrân trọng,\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\nCập nhật phần mềm.\nĐó là thực hành bảo mật tốt để giữ cho nền tảng được cập nhật\n\nPhiên bản đã cài đặt: {InstalledVersion}\nPhiên bản cuối cùng: {LatestVersion}\n\nĐể tìm hiểu về các tính năng mới và cách sửa lỗi trong phiên bản mới, hãy tham khảo nhật ký thay đổi tại: {ChangeLogUrl}\nĐể biết hướng dẫn về cập nhật phần mềm, vui lòng tham khảo tài liệu tại: {UpdateGuideUrl}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n有软件更新可用\n为安全起见,请维持平台版本为更新状态\n\n已安装的版本: {InstalledVersion}\n最新版本: {LatestVersion}\n\n了解新版本的功能与修复的问题,请咨询此处的变动记录: {ChangeLogUrl}\n关于软件更新的指示, 请参考此处的文档: {UpdateGuideUrl}\n\n亲切的问候，\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n有軟體更新可用\n為安全起見,請維持平台版本為更新狀態\n\n已安裝的版本: {InstalledVersion}\n最新版本: {LatestVersion}\n\n了解新版本的功能與修復的問題,請諮詢此處的變動記錄: {ChangeLogUrl}\n關於軟體更新的指示, 請參考此處的文件: {UpdateGuideUrl}\n\nKind regards,\n{NodeName}"
     },
@@ -2206,7 +2206,7 @@
       "tr": "Sayın {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nEn erken süre dolum tarihi {EarliestExpirationDate}.\n\nLütfen silinmeden önce onları incelemeyi unutmayın.\n\n{Url}\n\nSaygılarımızla,\n{NodeName}",
       "uk": "Шановний {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nПерша дата закінчення терміну дії {EarliestExpirationDate}.\n\nБудь ласка, не забудьте перевірити їх, перш ніж вони будуть видалені.\n\n{Url}\n\nЗ повагою,\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nThe earliest expiration date is {EarliestExpirationDate}.\n\nPlease remember to check them before they are deleted.\n\n{Url}\n\nبہت نوازش، مخلص\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nThe earliest expiration date is {EarliestExpirationDate}.\n\nPlease remember to check them before they are deleted.\n\n{Url}\n\nTrân trọng,\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nNgày hết hạn sớm nhất là {EarliestExpirationDate}.\n\nHãy nhớ kiểm tra chúng trước khi chúng bị xóa.\n\n{Url}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\n最早的截止日期是 {EarliestExpirationDate}.\n\n请记得在删除前再检查一下。\n\n{Url}\n\n亲切的问候，\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\n最早的截止日期是 {EarliestExpirationDate}.\n\n請記得在刪除前再檢查一下。\n\n{Url}\n\nKind regards,\n{NodeName}"
     },
@@ -2253,7 +2253,7 @@
       "tr": "Bazı raporların süresi yakında dolacaktır.",
       "uk": "Спливає термін наданих Вам повідомлень",
       "ur": "Some reports will expire soon",
-      "vi": "Some reports will expire soon",
+      "vi": "Một số báo cáo sẽ hết hạn sớm",
       "zh_CN": "部份报告即将到期失效",
       "zh_TW": "部份報告即將到期失效"
     },
@@ -2300,7 +2300,7 @@
       "tr": "Sayın {RecipientName},\n\nBu e-posta, bir ihbarcının raporlarının değerli alıcısı olarak sizi seçtiğini bildirmek içindir.\n\nBurada bulunan bilgi ve malzemeye özel bir önem vermeniz bekleniyor. Lütfen ihbarcıların kamu yararı için kendilerini yüksek kişisel risk altına soktuğunu unutmayın. Bu nedenle, bu raporda sağlanan malzeme, yüksek önemde değerlendirilmelidir.\n\nRapora şuradan erişebilirsiniz: \n{Url}\n\nSaygılarımızla,\n{NodeName}",
       "uk": "Шановний {RecipientName},\n\nІнформатор обрав Вас одержувачем матеріалу, що викриває корупційну діяльність.\n\nІнформатор сподівається, що саме Ви звернете увагу на надані матеріали. Викривачі дуже ризикують. Інформація, яку вони надають, заслуговує особливої уваги!\n\nПовідомлення можна отримати:\n{Url}\n\nЗ повагою,\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\n آپ کو مطلع کرنے کے لئے یہ ایک ای میل نوٹیفکیشن ہے کہ ایک مخبر یا وسل بلوئر  نے گزارش کے ایک بیش قیمت  وصول کنندہ کے طور پر آپ کو منتخب کیا ہے.\n\nوہ پسند کریں گے کہ آپ اس میں موجود معلومات اور مواد پر خصوصی توجہ دیجئے .اس بات کو ذہن میں رکھیں کہ whistleblowers اکثر عوامی مفاد کے لئے اعلی ذاتی خطرات میں ڈالتے ہوئے خود کو ظاہر کرتے ہیں۔اس وجہ سے انکے اس مخبری کے ساتھ فراہم کردہ مواد کو اعلی اہمیت کا حامل سمجھا جانا چاہئے.\n\nتجویز تک یہاں رسائی حاصل کر سکتے ہیں:\n{Url}\n\nبہت نوازش، مخلص\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\nĐây là một email thông báo cho bạn rằng một tố giác đã chọn bạn là một người nhận có giá trị cho / trình của mình.\n\nHọ muốn bạn phải đặc biệt chú ý đến các thông tin và tài liệu chứa trong đó. Hãy ghi nhớ rằng người tố cáo thường mắc vào những rủi ro cá nhân cao vì lợi ích công cộng. Do đó các tài liệu mà họ cung cấp với điều này tip-off nên được coi là có tầm quan trọng cao.\n\nYêu cầu có thể được truy cập:\n{Url}\n\nTrân trọng,\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\nĐây là một email thông báo cho bạn rằng một tố giác đã chọn bạn là một người nhận có giá trị cho / trình của mình.\n\nBạn được yêu cầu đặc biệt chú ý đến thông tin và tài liệu có trong đó. Xin lưu ý rằng những người tố giác thường phơi bày những rủi ro cá nhân cao vì lợi ích của công chúng. Do đó, tài liệu được cung cấp trong báo cáo này nên được coi là rất quan trọng.\n\nYêu cầu có thể được truy cập:\n{Url}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n此封邮件通知您，揭密者已挑选您作为其报告的收件对象。\n\n请特别留意此处的信息和材料，谨记揭密者为了公益往往自身曝露在高度风险下。因此报告里提交的材料应被好好重视。\n\n此报告可在此查看：\n{Url}\n\n亲切的问候，\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n此封郵件通知您，揭密者已挑選您作為其報告的收件對象。\n\n請特別留意此處的資訊和材料，謹記揭密者為了公益往往自身曝露在高度風險下。因此報告裏提交的材料應被好好重視。\n\n此報告可在此查看：\n{Url}\n\nKind regards,\n{NodeName}"
     },
@@ -2347,7 +2347,7 @@
       "tr": "Yeni rapor",
       "uk": "New report",
       "ur": "New report",
-      "vi": "New report",
+      "vi": "Báo cáo mới",
       "zh_CN": "新报告",
       "zh_TW": "新報告"
     },
@@ -2394,7 +2394,7 @@
       "tr": "Rol: {Role}\nKullanıcı adı: {Username}\nParola: {Password}",
       "uk": "Role: {Role}\nUsername: {Username}\nPassword: {Password}",
       "ur": "Role: {Role}\nUsername: {Username}\nPassword: {Password}",
-      "vi": "Role: {Role}\nUsername: {Username}\nPassword: {Password}",
+      "vi": "Vai trò: {Role}\nTên người dùng: {Username}\nMật khẩu: {Password}",
       "zh_CN": "角色: {Role}\n用户名: {Username}\n密码: {Password}",
       "zh_TW": "角色: {Role}\n用戶名: {Username}\n密碼: {Password}"
     }
@@ -2772,7 +2772,7 @@
       "tr": "Rapor",
       "uk": "Report",
       "ur": "Report",
-      "vi": "Report",
+      "vi": "Báo cáo",
       "zh_CN": "报告",
       "zh_TW": "報告"
     }
