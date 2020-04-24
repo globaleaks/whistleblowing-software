@@ -2,7 +2,7 @@
 # Translators:
 # Denis Smajlović <deni@deni.dk>, 2020
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2020
-# Igor <lyricaltumor@gmail.com>, 2015-2018
+# Igor <lyricaltumor@gmail.com>, 2015-2018,2020
 # Igor <lyricaltumor@gmail.com>, 2015-2016
 # Sasa Lekovic <sasa.lekovic1@gmail.com>, 2019-2020
 # Igor <lyricaltumor@gmail.com>, 2015
@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-16 20:14+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-04-24 13:52+0000\n"
+"Last-Translator: Igor <lyricaltumor@gmail.com>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -101,7 +101,7 @@ msgid "Messages"
 msgstr "Poruke"
 
 msgid "Select this recipient."
-msgstr "Označi ovog primatelja."
+msgstr "Odaberi ovog primatelja."
 
 msgid "Unselect this recipient."
 msgstr "Odznači ovog primatelja."
@@ -116,19 +116,19 @@ msgid "Platform wizard"
 msgstr "Čarobnjak za platformu"
 
 msgid "CREDIT CARD"
-msgstr "KREDITNA KARTICA"
+msgstr "Kreditna kartica"
 
 msgid "YOUR NAME"
-msgstr "VAŠE IME"
+msgstr "Vaše ime"
 
 msgid "Label the report"
-msgstr "Postavite oznaku na predaju"
+msgstr "Postavi oznaku na prijavu"
 
 msgid "Postpone the expiration date"
 msgstr "Odgodi datum isteka"
 
 msgid "Select all"
-msgstr "Označi sve"
+msgstr "Odaberi sve"
 
 msgid "Deselect all"
 msgstr "Odznači sve"
@@ -146,10 +146,10 @@ msgid "Preview"
 msgstr "Pretpregled"
 
 msgid "The whistleblower has already read the last update"
-msgstr "\"Zviždač\" je pročitao posljednju verziju"
+msgstr "Zviždač je pročitao posljednju verziju"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr "\"Zviždač\" još nije pročitao posljednju verziju"
+msgstr "Zviždač još nije pročitao posljednju verziju"
 
 msgid "Move up"
 msgstr "Pomakni gore"
@@ -176,12 +176,12 @@ msgid "Access control"
 msgstr "Kontrola pristupa"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr ""
+msgstr "Veza je osigurana HTTPS-om čime se osigurava povjerljivost."
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr ""
+msgstr "Veza je osigurana Tor-om čime se osigurava povjerljivost i anonimnost."
 
 msgid "vertical"
 msgstr "vertikalno"
@@ -235,7 +235,7 @@ msgid "Change your password"
 msgstr "Promijenite svoju lozinku"
 
 msgid "Access requests"
-msgstr ""
+msgstr "Zahtjevi za pristup"
 
 msgid "User"
 msgstr "Korisnik"
@@ -256,7 +256,7 @@ msgid "Request status"
 msgstr "Status zahtjeva"
 
 msgid "Custodian"
-msgstr "Staratelj"
+msgstr "Skrbnik"
 
 msgid "Custodian of the identities"
 msgstr "Skrbnik identiteta"
@@ -289,7 +289,7 @@ msgid "Denied"
 msgstr "Odbijeno"
 
 msgid "Waiting for authorization"
-msgstr "Čekam autorizaciju"
+msgstr "Čeka se autorizacija"
 
 msgid "New request"
 msgstr "Novi zahtjev"
@@ -304,7 +304,7 @@ msgid "Deny access to the whistleblower's identity"
 msgstr "Odbij pristup identitetu zviždača"
 
 msgid "Authorize access to the whistleblower's identity"
-msgstr "Dopusti pristup zviždačevom identitetu"
+msgstr "Dopusti pristup identitetu zviždača"
 
 msgid "Templates"
 msgstr "Predlošci"
@@ -313,7 +313,7 @@ msgid "HTTPS settings"
 msgstr "HTTPS postavke"
 
 msgid "URL redirects"
-msgstr "Poveznica na adresu sadržaja"
+msgstr "Preusmjeravanja adresa (URL-ova)"
 
 msgid "Anomaly detection thresholds"
 msgstr "Pragovi detekcije anomalija"
@@ -329,7 +329,7 @@ msgstr "Predlošci obavijesti skrbnika"
 
 msgid ""
 "This interface allows configuring email templates used to notify custodians."
-msgstr "Ovo sučelje omogućava konfiguriranje email predložaka korištenih za dojavu skrbnicima."
+msgstr "Ovo sučelje omogućava konfiguriranje email predložaka korištenih za obavještavanje skrbnika."
 
 msgid "Disable notifications to administrators"
 msgstr "Onemogući obavijesti prema administratorima"
@@ -347,10 +347,10 @@ msgid "Trigger question"
 msgstr "Pitanje pokretanja"
 
 msgid "Triggered by score:"
-msgstr "Pokrenuto rezultatom"
+msgstr "Pokrenuto rezultatom:"
 
 msgid "Message shown on top of the status page of the report"
-msgstr "Poruka prikazana na vrhu stranice o statusu predaje"
+msgstr "Poruka prikazana na vrhu stranice o statusu prijave"
 
 msgid "Copy and paste the PGP public key here"
 msgstr "Kopirajte i zalijepite PGP javni ključ ovdje"
@@ -380,7 +380,7 @@ msgid "Type to search…"
 msgstr "Upišite za pretraživanje..."
 
 msgid "Silence email notifications"
-msgstr "Obavijesti tihim email-om"
+msgstr "Utišaj obavijesti emailom"
 
 msgid "Turn on email notifications"
 msgstr "Uključi email obavijesti"
@@ -438,10 +438,10 @@ msgstr "Ovaj prilagođeni tekst se više ne prikazuje na platformi. Originalni t
 msgid ""
 "Unless the whistleblower checks the report by this time, their access to it "
 "will expire."
-msgstr "Ako zviždač ne provjeri predaju do ovog vremna, njihov pristup prijavi će isteći."
+msgstr "Ako zviždač ne provjeri prijavu do ovog vremna, njihov pristup prijavi će isteći."
 
 msgid "The whistleblower can no longer access the report"
-msgstr "Zviždač više ne može pristupiti predaji"
+msgstr "Zviždač više ne može pristupiti prijavi"
 
 msgid "Warning!"
 msgstr "Upozorenje!"
@@ -461,7 +461,7 @@ msgid "Download the Tor Browser"
 msgstr "Preuzmi Tor Preglednik"
 
 msgid "Audit log"
-msgstr ""
+msgstr "Zapisi o reviziji"
 
 msgid "Stats"
 msgstr "Statistika"
@@ -470,7 +470,7 @@ msgid "Activities"
 msgstr "Aktivnosti"
 
 msgid "Reports"
-msgstr ""
+msgstr "Prijave"
 
 msgid "Users"
 msgstr "Korisnici"
@@ -581,36 +581,36 @@ msgid "Block the submission"
 msgstr "blokiraj podnošenje"
 
 msgid "Skip the recipient account creation."
-msgstr ""
+msgstr "Preskoči stvaranje računa primatleja."
 
 msgid "Send activation link"
-msgstr ""
+msgstr "Pošalji aktivacijski link"
 
 msgid "Password reset"
-msgstr ""
+msgstr "Ponovno postavljanje lozinke"
 
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr ""
+msgstr "Jedan ili više primatelja još nije odradio prvu prijavu. To znači da neće primati prijave."
 
 msgid "This user has not performed the first login yet."
-msgstr ""
+msgstr "Ovaj korisnik još nije odradio prvu prijavu."
 
 msgid "seconds"
 msgstr "sekundi"
 
 msgid "This domain name is not available."
-msgstr ""
+msgstr "Ovo ime domene nije dostupno."
 
 msgid "VAT number"
-msgstr ""
+msgstr "PDV broj"
 
 msgid "Tax code"
-msgstr ""
+msgstr "Porezni kod"
 
 msgid "Select the context of your report:"
-msgstr "Odaberite kontekst svoje predaje:"
+msgstr "Odaberite kontekst svoje prijave:"
 
 msgid "Warning! You are not anonymous."
 msgstr "Upozorenje! Niste anonimni."
@@ -621,7 +621,7 @@ msgid ""
 "the report anonymous, which is strongly recommended.\\n\\nThis can be "
 "achieved with the use of the Tor Browser, providing anonymisation not found "
 "in other browsers."
-msgstr "Slanje predaja preko HTTPS-a otkriva sam čin slanja, ali ne i sadržaj.\\n\\nSkrivanje činjenice da predajete nešto čini predaju anonimnom, što snažno preporučamo.\\n\\nOvo može biti postignuto kroz uporabu Tor Browser-a, koji pruža anonimizaciju koju nećete pronaću u drugim preglednicima."
+msgstr "Slanje predaja preko HTTPS-a otkriva sam čin slanja, ali ne i sadržaj.\\n\\nSkrivanje činjenice da predajete nešto čini prijavu anonimnom, što snažno preporučamo.\\n\\nOvo može biti postignuto uporabom Tor Browser-a, koji pruža anonimizaciju koju nećete pronaću u drugim preglednicima."
 
 msgid "Are you a whistleblower?"
 msgstr "Jeste li zviždač?"
@@ -672,7 +672,7 @@ msgid "Enable encryption"
 msgstr "Omogući enkripciju"
 
 msgid "Enable administrators to change user passwords"
-msgstr ""
+msgstr "Omogući administratorima da promjene korisničke lozinke"
 
 msgid "Enable multisite feature"
 msgstr "Omogući prikazivanje na više web stranica"
@@ -748,7 +748,7 @@ msgid "Enable HSTS preload"
 msgstr "Omogući  HSTS pretragu"
 
 msgid "Enable HTTP Basic Authentication"
-msgstr ""
+msgstr "Omogući osnovnu HTTP autentikaciju"
 
 msgid "Username"
 msgstr "Korisničko ime"
@@ -809,7 +809,7 @@ msgid "Save"
 msgstr "Spremi"
 
 msgid "Reset reports"
-msgstr ""
+msgstr "Ponovno postavi izvješća"
 
 msgid "Low"
 msgstr "Niska"
@@ -896,7 +896,7 @@ msgid "Cancel"
 msgstr "Otkaži"
 
 msgid "Report statuses"
-msgstr ""
+msgstr "Prijavi statuse"
 
 msgid "Logo"
 msgstr "Logo"
@@ -1386,19 +1386,19 @@ msgid "Subdomain"
 msgstr "Poddomena"
 
 msgid "Creation date:"
-msgstr ""
+msgstr "Datum stvaranja:"
 
 msgid "Send an account activation link to the user."
-msgstr ""
+msgstr "Pošalji poveznicu za aktivaciju računa korisniku."
 
 msgid "Public name"
-msgstr ""
+msgstr "Javno ime"
 
 msgid "Send reset link"
-msgstr ""
+msgstr "Pošalji poveznicu za ponovno postavljanje"
 
 msgid "Set password"
-msgstr ""
+msgstr "Postavi lozinku"
 
 msgid "Disable two factor authentication"
 msgstr "Onesposobi dvostrukupotvrdu"
@@ -1428,7 +1428,7 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "Postavite enkripciju pružanjem PGP javnog ključa"
 
 msgid "Give this admin ability to change user passwords"
-msgstr ""
+msgstr "Daj ovom administratoru mogućnost promjene korisničkih lozinki"
 
 msgid "Configuration"
 msgstr "Konfiguracija"
@@ -1460,7 +1460,7 @@ msgid "ID"
 msgstr "osobni doklument"
 
 msgid "Report date"
-msgstr ""
+msgstr "Datum izvješća"
 
 msgid "Authorization"
 msgstr "Autorizacija"
@@ -1584,7 +1584,7 @@ msgid ""
 msgstr "Za profesionalnu podršku i razvoj anti korupcijskih projekata kontaktirajte društvo koje održava GlobaLeaks:"
 
 msgid "Join our chat:"
-msgstr ""
+msgstr "Pridružite se našem razgovoru:"
 
 msgid "Follow the project on:"
 msgstr "Pratite projekt na:"
@@ -1697,7 +1697,7 @@ msgid ""
 "and staying anonymous by not revealing your location or IP address. You "
 "won't notice any difference from an insecure chat, except that you will be "
 "using a unique address instead of a phone number/email/username."
-msgstr ""
+msgstr "Ricochet, aplikacija za razmjenu poruka koja Vam omogućuje razgovore dok štiti Vašu privatnost, koristi Tor mrežu i kreira Onion usluge kako bi održavala Vašu anonimnost neotkrivanjem Vaše lokacije ili IP adrese. Nećete primjetiti neku razliku između nesigurnog razgovora, osim što će te koristiti unikatnu adresu umjesto telefonskog broja/email-a/korisničkog imena."
 
 msgid "The connection is not secure."
 msgstr "Veza nije sigurna."
@@ -1781,7 +1781,7 @@ msgstr "Jeste li sigurni da želite izbrisati korisnika?"
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
-msgstr ""
+msgstr "Sve pohranjeno na platformi što se odnosi na izvješće će biti obrisano."
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
@@ -1960,7 +1960,7 @@ msgid ""
 msgstr "U ovom koraku odgovori na sljedeća pitanja su ili pogrešni ili nedostaju:"
 
 msgid "Errors"
-msgstr ""
+msgstr "Pogreške"
 
 msgid "You must select at least one recipient."
 msgstr "Morate odabrati bar jednog primatelja."
@@ -2108,7 +2108,7 @@ msgid "Kind regards,"
 msgstr "S poštovanjem,"
 
 msgid "Account activation"
-msgstr ""
+msgstr "Aktivacija računa"
 
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "Vaša zvičdačka platforma je sad dostupna na:"
@@ -2419,7 +2419,7 @@ msgid ""
 msgstr "Od Vas se traži da obratite posebnu pozornost na informacije i materijal sadržan unutra. Imajte na umu da se zviždači često izlažu visokom osobnom riziku u korist javnosti, stoga smatrajte materijal koji se nalazi unutar predaje materijalom od visoke važnosti."
 
 msgid "New report"
-msgstr ""
+msgstr "Novo izvješće"
 
 msgid "Role: {Role}"
 msgstr "Uloga: {Role}"

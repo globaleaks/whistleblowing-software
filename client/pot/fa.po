@@ -18,7 +18,7 @@
 # Morpheus, 2013
 # Morpheus, 2013
 # Peyman A <pymnpe@gmail.com>, 2018
-# Reza Ghasemi, 2019
+# Reza Ghasemi, 2019-2020
 # signal89, 2014
 # signal89, 2014
 # b0b47d46632b78a09a40de799fda9a65, 2019
@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-16 20:14+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-04-23 15:03+0000\n"
+"Last-Translator: Reza Ghasemi\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -620,10 +620,10 @@ msgid "This domain name is not available."
 msgstr "این نام دامنه در دسترس نیست."
 
 msgid "VAT number"
-msgstr ""
+msgstr "شماره VAT"
 
 msgid "Tax code"
-msgstr ""
+msgstr "شماره مالیات"
 
 msgid "Select the context of your report:"
 msgstr "زمینه گزارش خود را انتخاب کنید:"

@@ -1318,7 +1318,7 @@
             "tr": "Eyalet",
             "uk": "Область",
             "ur": "ریاست",
-            "vi": "Tiểu bang",
+            "vi": "Tình trạng",
             "zh_CN": "州",
             "zh_TW": "州/省"
           },
@@ -1514,7 +1514,7 @@
         "tr": "Şu andaki sorumluluğu (rolü)",
         "uk": "Робочі обов'язки (роль)",
         "ur": "موجودہ کام کی ذمہ داری (کردار)",
-        "vi": "Hiện trách nhiệm công việc (vai trò)",
+        "vi": "Vai trò công việc hiện tại",
         "zh_CN": "当前工作职责（角色）",
         "zh_TW": "目前工作的責任"
       },
@@ -1611,7 +1611,7 @@
         "tr": "Şu andaki kurumu ve işyeri",
         "uk": "Місцерозташування офісу",
         "ur": "موجودہ تنظیمی یونٹ اور کام کے جگہ",
-        "vi": "đơn vị tổ chức hiện tại và vị trí công việc",
+        "vi": "Tổ chức đang làm việc và địa điểm công việc",
         "zh_CN": "当前的组织单位和工作地点",
         "zh_TW": "目前的組織單位與工作地點"
       },
@@ -1708,7 +1708,7 @@
         "tr": "Hakkında bilgi verilen olay sırasındaki iş unvanı",
         "uk": "Посада на момент правопорушення про яке повідомляється",
         "ur": "رپورٹ کیا اس حقیقت کے وقت جاب عنوان",
-        "vi": "Vị trí công việc tại thời điểm thực tế báo cáo",
+        "vi": "Chức danh công việc tại thời điểm báo cáo",
         "zh_CN": "报告实情时的工作职称",
         "zh_TW": "報告實情時的工作職稱"
       },
@@ -1805,7 +1805,7 @@
         "tr": "Hakkında bilgi verilen olay sırasındaki sorumluluğu (rolü)",
         "uk": "Відповідальності (роль) на момент правопорушення про яке повідомляється",
         "ur": "کام کی ذمہ داری (کردار) کی خبر کے مطابق یہ حقیقت کے وقت",
-        "vi": "trách nhiệm công việc (vai trò) tại thời điểm báo cáo thực tế",
+        "vi": "Vị trí công việc tại thời điểm báo cáo",
         "zh_CN": "报告实情时的工作职责",
         "zh_TW": "報告實情時的工作職責"
       },
@@ -1902,7 +1902,7 @@
         "tr": "Hakkında bilgi verilen olay sırasındaki kurumu ve iş yeri",
         "uk": "Місцерозташування офісу на момент правопорушення про яке повідомляється",
         "ur": "رپورٹ کیا حقیقت یہ ہے کے وقت میں تنظیم یونٹ اور کام کے محل وقوع",
-        "vi": "đơn vị tổ chức và vị trí công việc tại thời điểm thực tế báo cáo",
+        "vi": "Tổ chức đang làm việc và vị trí công việc tại thời điểm báo cáo",
         "zh_CN": "报道事实的组织单位和工作地点",
         "zh_TW": "報告實情時的工作組織單位與工作地點"
       },
