@@ -5,7 +5,7 @@
   </div>
   <br /><br />
   <div data-ng-if="field.attrs.prompt_confirmation_upon_negative_answer.value">
-    <div data-ng-if="submission._submission.identity_provided === false && vars.confirmation_upon_negative_answer === undefined" class="alert alert-warning">
+    <div data-ng-if="submission._submission.identity_provided === false && vars.confirmation_upon_negative_answer === null" class="alert alert-warning">
       <div>{{field.attrs.text_shown_upon_negative_answer.value}}</div>
       <div data-ng-if="field.attrs.prompt_confirmation_upon_negative_answer">
         <label class="form-check-inline"><input class="inputelem" type="radio" name="whistleblower_identity_radio_2" data-ng-value="true" data-ng-model="vars.confirmation_upon_negative_answer" data-ng-change="submission._submission.identity_provided = false" /><span data-translate>Yes</span></label>
