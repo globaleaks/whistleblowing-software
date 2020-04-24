@@ -94,6 +94,10 @@ elif [ "$GLTEST" = "build_and_install" ]; then
     sudo debootstrap --arch=amd64 bionic "$chroot" http://archive.ubuntu.com/ubuntu/
     sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu bionic main universe" > /tmp/globaleaks_chroot/etc/apt/sources.list'
     sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main universe" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
+  elif [ $DISTRIBUTION = "focal" ]; then
+    sudo debootstrap --arch=amd64 focal "$chroot" http://archive.ubuntu.com/ubuntu/
+    sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu focal main universe" > /tmp/globaleaks_chroot/etc/apt/sources.list'
+    sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu focal-updates main universe" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
   elif [ $DISTRIBUTION = "buster" ]; then
     sudo debootstrap --arch=amd64 buster "$chroot" http://deb.debian.org/debian/
     sudo su -c 'echo "deb http://deb.debian.org/debian buster main contrib" > /tmp/globaleaks_chroot/etc/apt/sources.list'
