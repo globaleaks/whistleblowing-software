@@ -4,7 +4,8 @@ GLClient.mockEngine = (function() {
   var applyMock = function (mock) {
     var e = document.querySelector(mock.selector);
     if (e) {
-      if (!mock.value) {
+      if (!mock.value || mock.language !== GLClient.language) {
+        mock.language = GLClient.language;
         if (typeof mock.mock === "function") {
           mock.value = mock.mock(e);
         } else {
