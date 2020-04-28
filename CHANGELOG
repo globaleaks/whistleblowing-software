@@ -1,3 +1,7 @@
+Changes in version 4.0.18 - 2020-04-28
+    Add support for latest Ubuntu LTS (20.04: Focal)
+    Update translations
+
 Changes in version 4.0.17 - 2020-04-24
     Fix issues: #2822, #2829
     Update translations
