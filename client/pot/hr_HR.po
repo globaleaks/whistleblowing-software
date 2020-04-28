@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-24 13:52+0000\n"
+"PO-Revision-Date: 2020-04-24 15:36+0000\n"
 "Last-Translator: Igor <lyricaltumor@gmail.com>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -447,18 +447,18 @@ msgid "Warning!"
 msgstr "Upozorenje!"
 
 msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "Koristite nepodržan i potencijalno ranjiv preglednik"
+msgstr "Koristite nepodržan i potencijalno ranjiv preglednik."
 
 msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "Preporučamo Vam da preuzmete i instalirate Tor Browser."
+msgstr "Preporučamo Vam da preuzmete i instalirate Tor preglednik."
 
 msgid ""
 "The Tor Browser includes various privacy and security enhancements not "
 "present in other browsers."
-msgstr "Tor Preglednik uključuje razna poboljšanja privatnosti i sigurnosti koja nisu dostupna u ostalim preglednicima."
+msgstr "Tor preglednik uključuje razna poboljšanja privatnosti i sigurnosti koja nisu dostupna u ostalim preglednicima."
 
 msgid "Download the Tor Browser"
-msgstr "Preuzmi Tor Preglednik"
+msgstr "Preuzmi Tor preglednik"
 
 msgid "Audit log"
 msgstr "Zapisi o reviziji"
@@ -551,13 +551,13 @@ msgid "Closed"
 msgstr "Zatvoreno"
 
 msgid "Placeholder"
-msgstr "onaj tko zauzima mjesto"
+msgstr "Držač mjesta"
 
 msgid "Print"
-msgstr "tisak"
+msgstr "Ispis"
 
 msgid "Previous"
-msgstr "prethodni"
+msgstr "Prethodno"
 
 msgid "Next"
 msgstr "Sljedeće"
@@ -578,13 +578,13 @@ msgid "Send a test email to your email address."
 msgstr "Pošaljite testni email na svoju email adresu."
 
 msgid "Block the submission"
-msgstr "blokiraj podnošenje"
+msgstr "Blokiraj predaju"
 
 msgid "Skip the recipient account creation."
-msgstr "Preskoči stvaranje računa primatleja."
+msgstr "Preskoči stvaranje računa primatelja."
 
 msgid "Send activation link"
-msgstr "Pošalji aktivacijski link"
+msgstr "Pošalji aktivacijsku poveznicu"
 
 msgid "Password reset"
 msgstr "Ponovno postavljanje lozinke"
@@ -621,7 +621,7 @@ msgid ""
 "the report anonymous, which is strongly recommended.\\n\\nThis can be "
 "achieved with the use of the Tor Browser, providing anonymisation not found "
 "in other browsers."
-msgstr "Slanje predaja preko HTTPS-a otkriva sam čin slanja, ali ne i sadržaj.\\n\\nSkrivanje činjenice da predajete nešto čini prijavu anonimnom, što snažno preporučamo.\\n\\nOvo može biti postignuto uporabom Tor Browser-a, koji pruža anonimizaciju koju nećete pronaću u drugim preglednicima."
+msgstr "Slanje prijava preko HTTPS-a otkriva sam čin slanja, ali ne i sadržaj.\\n\\nSkrivanje činjenice da predajete nešto čini prijavu anonimnom, što snažno preporučamo.\\n\\nOvo može biti postignuto uporabom Tor preglednika, koji pruža anonimizaciju koju nećete pronaću u drugim preglednicima."
 
 msgid "Are you a whistleblower?"
 msgstr "Jeste li zviždač?"
@@ -633,10 +633,10 @@ msgid "Your report was successful."
 msgstr "Vaša prijava je uspjela."
 
 msgid "Report"
-msgstr " Predaja"
+msgstr "Prijava"
 
 msgid "Before proceeding, please set a new password."
-msgstr "Prije nego nastavite, molim0 postavite novu lozinku."
+msgstr "Prije nego nastavite, molimo postavite novu lozinku."
 
 msgid "New password"
 msgstr "Nova lozinka"
@@ -645,7 +645,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Izabrana oznaka je preslaba. Ispravna oznaka mora imati bar 10 znakova uključujući bar jednu donju crtu, bar jedno veliko slovo, bar jedan broj i jedan poseban znak."
+msgstr "Odabrana lozinka je preslaba. Ispravna lozinka mora imati bar 10 znakova, uključujući bar jedno malo slovo, veliko slovo, broj i poseban znak."
 
 msgid "The new password must be different from the current one."
 msgstr "Nova lozinka mora biti različita od trenutne."
@@ -657,13 +657,13 @@ msgid "The two passwords do not match"
 msgstr "Dvije lozinke se ne podudaraju"
 
 msgid "The new password must differ from the previous."
-msgstr "Nova oznaka mora biti različita od prethodne."
+msgstr "Nova lozinka mora biti različita od prethodne."
 
 msgid "Proceed"
 msgstr "Nastavi"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Molimo da prije nastavaka omogućite dvije potvrde."
+msgstr "Prije nastavka, molimo omogućite dvofaktorsku autentikaciju."
 
 msgid "Disable submissions"
 msgstr "Onemogući predaje"
@@ -675,7 +675,7 @@ msgid "Enable administrators to change user passwords"
 msgstr "Omogući administratorima da promjene korisničke lozinke"
 
 msgid "Enable multisite feature"
-msgstr "Omogući prikazivanje na više web stranica"
+msgstr "Omogući multisite značajku"
 
 msgid "Enable multi-site login"
 msgstr "Omogući prijavu na više stranica"
@@ -684,14 +684,14 @@ msgid "Enable simplified login"
 msgstr "Omogući pojednostavljenu prijavu"
 
 msgid "Allow recipients to delete reports"
-msgstr "Dozvoli primateljima da brišu dojave"
+msgstr "Dozvoli primateljima da brišu prijave"
 
 msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Dozvoli primateljima da odgode datum isteka dojave"
+msgstr "Dozvoli primateljima da odgode datum isteka prijave"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Dozvoli primateljima da daju dopuštenja zviždačima na određenim predajama"
+msgstr "Dozvoli primateljima da daju dopuštenja zviždačima na određenim prijavama"
 
 msgid "Enable search engines indexing"
 msgstr "Omogući indeksiranje tražilica"
@@ -700,7 +700,7 @@ msgid "Description"
 msgstr "Opis"
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Omogući da se na sljedećim web stranicama uključi ova platforma"
+msgstr "Omogući sljedećim web stranicama da ugrade platformu unutar iframe-ova"
 
 msgid "Invalid input format."
 msgstr "Pogrešan format unosa."
@@ -718,7 +718,7 @@ msgid "Disable the privacy panel"
 msgstr "Onemogući ploču privatnosti"
 
 msgid "Enable the receipt hint"
-msgstr "Omogući potvrdu savjeta"
+msgstr "Omogući savjet za potvrdu"
 
 msgid "Landing page"
 msgstr "Stranica slijetanja"
@@ -736,7 +736,7 @@ msgid "Title of the receipt page"
 msgstr "Naziv stranice za potvrde"
 
 msgid "Title of the status page of the report"
-msgstr "Poruka prikazana na vrhu stranice o statusu predaje"
+msgstr "Poruka prikazana na vrhu stranice o statusu prijave"
 
 msgid "Size limit for file attachments"
 msgstr "Ograničenje veličine privitaka"
@@ -745,7 +745,7 @@ msgid "in megabytes"
 msgstr "u megabajtima"
 
 msgid "Enable HSTS preload"
-msgstr "Omogući  HSTS pretragu"
+msgstr "Omogući  HSTS predučitavanje"
 
 msgid "Enable HTTP Basic Authentication"
 msgstr "Omogući osnovnu HTTP autentikaciju"
@@ -757,7 +757,7 @@ msgid "Password"
 msgstr "Lozinka"
 
 msgid "Require two factor authentication"
-msgstr "Zatraži dvostruku potvrdu"
+msgstr "Zahtjevaj dvofaktorsku autentikaciju"
 
 msgid "Password change interval"
 msgstr "Interval promjene lozinke"
@@ -780,7 +780,7 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Podešavajte ovu postavku samo ako znate što radite."
 
 msgid "Enable custodian user role"
-msgstr "Omogući ulogu korisnika - staratelja"
+msgstr "Omogući ulogu skrbnika"
 
 msgid "Enable scoring system"
 msgstr "Omogući bodovanje"
@@ -809,7 +809,7 @@ msgid "Save"
 msgstr "Spremi"
 
 msgid "Reset reports"
-msgstr "Ponovno postavi izvješća"
+msgstr "Ponovno postavi prijave"
 
 msgid "Low"
 msgstr "Niska"
@@ -818,13 +818,13 @@ msgid "High"
 msgstr "Visoka"
 
 msgid "megabytes"
-msgstr "megabajti"
+msgstr "megabajta"
 
 msgid "percentage"
-msgstr "Postotak"
+msgstr "postotak"
 
 msgid "Enable automatic backups"
-msgstr "Omogući automatske kopije"
+msgstr "Omogući automatske sigurnosne kopije"
 
 msgid "Daily"
 msgstr "Dnevno"
@@ -836,7 +836,7 @@ msgid "Montly"
 msgstr "Mjesečno"
 
 msgid "Remote"
-msgstr "daljinski"
+msgstr "Udaljeno"
 
 msgid "Server"
 msgstr "Poslužitelj"
@@ -896,7 +896,7 @@ msgid "Cancel"
 msgstr "Otkaži"
 
 msgid "Report statuses"
-msgstr "Prijavi statuse"
+msgstr "Statusi prijava"
 
 msgid "Logo"
 msgstr "Logo"
@@ -959,7 +959,7 @@ msgid "Contexts"
 msgstr "Konteksti"
 
 msgid "Hidden"
-msgstr "skriveno"
+msgstr "Skriveno"
 
 msgid "Disabled"
 msgstr "Onemogućeno"
@@ -983,7 +983,7 @@ msgid "days"
 msgstr "dana"
 
 msgid "Show the questionnaire navigation interface"
-msgstr "Prikaži sučelje za upravljanje pitanjima"
+msgstr "Prikaži sučelje za navigaciju kroz upitnike"
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "Dozvoli zviždačima da odaberu druge primatelje"
@@ -1001,7 +1001,7 @@ msgid "Show small recipient cards on submission interface"
 msgstr "Prikaži male kartice primatelja na sučelju predaje"
 
 msgid "Show recipient details on the status page of the report"
-msgstr "Prikaži detalje primatelja na stranici statusa o predaji"
+msgstr "Prikaži detalje primatelja na stranici statusa o prijavi"
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Tekst prikazan na vrhu sučelja za odabir primatelja"
@@ -1019,7 +1019,7 @@ msgid "Allow whistleblowers to send messages"
 msgstr "Dopusti zviždačima da šalju poruke"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Dopusti zviždačima da dodaju privitke na postojeće predaje"
+msgstr "Dopusti zviždačima da dodaju privitke na postojeće prijave"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Dopusti primateljima da postave datoteke za zviždače"
@@ -1028,19 +1028,19 @@ msgid "Scoring system options"
 msgstr "Mogućnosti sustava bodovanja"
 
 msgid "Threshold"
-msgstr "Najviša dopuštena razina"
+msgstr "Prag"
 
 msgid "Value"
-msgstr "vrijednost"
+msgstr "Vrijednost"
 
 msgid "Medium"
 msgstr "Srednje"
 
 msgid "Customize the message shown in the receipt page"
-msgstr "Prilagodi poruku prikazanu na primateljevoj stranici"
+msgstr "Prilagodi poruku prikazanu na stranici potvrde"
 
 msgid "Assign the receipt only to reports reaching score:"
-msgstr "Zadaj potvrdu samo za prijave koje imaju dovolino bodova"
+msgstr "Dodaj potvrdu samo prijavama koje imaju rezultat:"
 
 msgid "Software version:"
 msgstr "Verzija software-a:"
@@ -1049,7 +1049,7 @@ msgid "An update is available:"
 msgstr "Ažuriranje je dostupno:"
 
 msgid "Restrict access to specific IP addresses"
-msgstr "Zabrani pristup određenim IP adresama"
+msgstr "Ograniči pristup na određene IP adrese"
 
 msgid "Whitelisted IP addresses"
 msgstr "Dopuštene IP adrese"
@@ -1173,7 +1173,7 @@ msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
 
 msgid "Tor Browser download link"
-msgstr "Link za preuzimanje Tor Browsera"
+msgstr "Poveznica za preuzimanje Tor preglednika"
 
 msgid "Anonymize outgoing connections"
 msgstr "Anonimiziraj izlazne veze"
@@ -1182,10 +1182,10 @@ msgid "Let the platform be reachable without Tor"
 msgstr "Dopustite da platforma bude dostupna bez Tor-a"
 
 msgid "Roles enabled to use the platform without Tor"
-msgstr "Uloge koje mogu koristiti platformu bez TORa"
+msgstr "Uloge koje mogu koristiti platformu bez Tor-a"
 
 msgid "To"
-msgstr "ka"
+msgstr "Za"
 
 msgid "SMTP email address"
 msgstr "SMTP email adresa"
@@ -1206,13 +1206,13 @@ msgid "Require authentication"
 msgstr "Zahtjevaj autentikaciju"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "Broj sati prije nego se pošalje upozorenje o isteku predaje"
+msgstr "Broj sati prije nego se pošalje upozorenje o isteku prijave"
 
 msgid "Test the configuration"
 msgstr "Testiraj konfiguraciju"
 
 msgid "Reset SMTP configuration"
-msgstr "Ponovi SMTP konfiguraciju"
+msgstr "Ponovno postavi SMTP konfiguraciju"
 
 msgid "Reset notification templates to default"
 msgstr "Ponovno postavi predloške obavijesti na zadane vrijednosti"
@@ -1221,7 +1221,7 @@ msgid "Template"
 msgstr "Obrazac"
 
 msgid "Question"
-msgstr "pitanje"
+msgstr "Pitanje"
 
 msgid "Type"
 msgstr "Tip"
@@ -1242,10 +1242,10 @@ msgid "Terms of service"
 msgstr "Uvjeti korištenja"
 
 msgid "Date range"
-msgstr "Datumsko trajanje"
+msgstr "Raspon datuma"
 
 msgid "Map"
-msgstr "karta"
+msgstr "Karta"
 
 msgid "Group of questions"
 msgstr "Grupa pitanja"
@@ -1260,7 +1260,7 @@ msgid "Width"
 msgstr "Širina"
 
 msgid "Multiple choice input"
-msgstr "Višestruki izbor unosa"
+msgstr "Unos višestrukih izbora"
 
 msgid "Question group"
 msgstr "Grupa pitanja"
@@ -1284,7 +1284,7 @@ msgid "Encrypt"
 msgstr "Enkriptiraj"
 
 msgid "Template override"
-msgstr "Pretjerani predložak"
+msgstr "Prisilna zamjena predloška"
 
 msgid "Phone number"
 msgstr "Telefonski broj"
@@ -1293,16 +1293,16 @@ msgid "Checkbox label"
 msgstr "Etiketa kućice za označivanje"
 
 msgid "Add multimedia content"
-msgstr "Dodaj multimedijski sadržaj"
+msgstr "Dodaj multimedijalni sadržaj"
 
 msgid "Image"
-msgstr "slika"
+msgstr "Slika"
 
 msgid "Audio"
-msgstr "audio"
+msgstr "Audio"
 
 msgid "Video"
-msgstr "video"
+msgstr "Video"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Vidljivost odgovora korisnika na autorizaciju od strane skrbnika"
@@ -1317,10 +1317,10 @@ msgid "Text shown upon confirmation"
 msgstr "Tekst prikazan za potvrdu"
 
 msgid "Trigger conditions"
-msgstr "Uvjeti za \"okidač\""
+msgstr "Uvjeti za pokretanje"
 
 msgid "Sufficient"
-msgstr "dovoljan"
+msgstr "Dovoljno"
 
 msgid "Options"
 msgstr "Opcije"
@@ -1401,7 +1401,7 @@ msgid "Set password"
 msgstr "Postavi lozinku"
 
 msgid "Disable two factor authentication"
-msgstr "Onesposobi dvostrukupotvrdu"
+msgstr "Onesposobi dvofaktorsku autentikaciju"
 
 msgid "Force password change"
 msgstr "Prisili promjenu lozinke"
@@ -1413,7 +1413,7 @@ msgid "Language"
 msgstr "Jezik"
 
 msgid "Enable email notifications"
-msgstr "Osposobi obavijest elektroničkom poštom"
+msgstr "Omogući email obavijesti"
 
 msgid "Details of the PGP key:"
 msgstr "Detalji PGP ključa:"
@@ -1440,15 +1440,15 @@ msgid "Forcefully selected"
 msgstr "Prisilno odabrani"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Dopusti primatelju da odgodi datum isteka dojave"
+msgstr "Dopusti primatelju da odgodi datum isteka prijave"
 
 msgid "Allow the recipient to delete reports"
-msgstr "Dozvoli primateljima da brišu dojave"
+msgstr "Dozvoli primateljima da brišu prijave"
 
 msgid ""
 "Allow the recipient to grant permissions to whistleblowers on specific "
 "reports"
-msgstr "Dozvoli primateljima da daju dopuštenja zviždačima na određenim predajama"
+msgstr "Dozvoli primateljima da daju dopuštenja zviždačima na određenim prijavama"
 
 msgid "User has administrative access to the following features:"
 msgstr "Korisnik ima administrativni pristup sljedećim značajkama:"
@@ -1457,10 +1457,10 @@ msgid "Request date"
 msgstr "Datum zahtjeva"
 
 msgid "ID"
-msgstr "osobni doklument"
+msgstr "ID"
 
 msgid "Report date"
-msgstr "Datum izvješća"
+msgstr "Datum prijave"
 
 msgid "Authorization"
 msgstr "Autorizacija"
@@ -1469,22 +1469,22 @@ msgid "Identities"
 msgstr "Identiteti"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr "Link za ovjeru je neispravan ili je istekao."
+msgstr "Poveznica za provjeru je neispravna ili je istekla."
 
 msgid "Your new email address has been validated."
 msgstr "Vaša nova email adresa je ovjerena."
 
 msgid "Forgot password?"
-msgstr "Zaboravili lozinku?"
+msgstr "Zaboravili ste lozinku?"
 
 msgid "Enter the two factor authentication code"
-msgstr "Unesi oznaku za dvostruku potvrdu"
+msgstr "Unesite dvofaktorski kod"
 
 msgid "Authentication failed"
 msgstr "Neuspjela autentikacija"
 
 msgid "The code is either invalid or expired."
-msgstr "Oznaka je netočna ili joj je istekla vrijednost"
+msgstr "Kod je ili netočan ili je istekao."
 
 msgid "Site:"
 msgstr "Stranica:"
@@ -1493,7 +1493,7 @@ msgid "Have you already filed a report? Enter your receipt."
 msgstr "Jeste li već poslali prijavu? Unesite potvrdu."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "Potvrda je nepotpuna ili je rok prijave istekao"
+msgstr "Potvrda je nepotpuna ili je rok prijave istekao."
 
 msgid "Username:"
 msgstr "Korisničko ime:"
@@ -1508,7 +1508,7 @@ msgid "Now type your password, then click 'Log in':"
 msgstr "Sad unesite lozinku, zatim stisnite 'Prijava':"
 
 msgid "Text shown after the user has selected the option."
-msgstr "Tekst prikazan nakon što je korisnik izabrao opciju"
+msgstr "Tekst prikazan nakon što korisnik odabere opciju."
 
 msgid "Confirm"
 msgstr "Potvrdi ekstenziju"
@@ -1526,28 +1526,28 @@ msgid "Assign score points"
 msgstr "Dodjeli bodove rezultata"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Imajte na umu da će svi povezani podatci biti trajno izgubljeni."
+msgstr "Imajte na umu da će svi povezani podatci biti trajno obrisani."
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Ovo je probna platforma. molim vas da ju ne koristite za stvarne prijave."
+msgstr "Ovo je probna platforma, molimo Vas da ju ne koristite za stvarne predaje."
 
 msgid "Attention!"
 msgstr "Pozor!"
 
 msgid "Install an authenticator app on your phone"
-msgstr "Postavite aplikaciju za provjeru vjerodostojnosti na svoj mobitel"
+msgstr "Instalirajte autentikacijsku aplikaciju na svoj telefon"
 
 msgid "Scan the QR code with the app"
-msgstr "Skenirajte QR oznaku aplikacijom"
+msgstr "Skenirajte QR kod aplikacijom"
 
 msgid "Enable two factor authentication"
-msgstr "Omogućite dvostruku potvrdu"
+msgstr "Omogućite dvofaktorsku autentikaciju"
 
 msgid "Close"
 msgstr "Zatvori"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr "Prije nego što nastavite molimo da pažljivo pročitate dokumente na:"
+msgstr "Prije nego što nastavite molimo Vas da pažljivo pročitate dokumentaciju na:"
 
 msgid "Your account recovery key is:"
 msgstr "Ključ za oporavak vašeg računa je:"
@@ -1590,12 +1590,12 @@ msgid "Follow the project on:"
 msgstr "Pratite projekt na:"
 
 msgid "Hint: How to hide your receipt"
-msgstr "Savjet: kako da sakrijete svoju potvrdu"
+msgstr "Savjet: Kako da sakrijete svoju potvrdu"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "Nakorisniji način sakrivanja vaše potvrde je zapisati ju kao broj kreditne kartice uključujući datum isteka važenja"
+msgstr "Efikasan način sakrivanja potvrde je da ju zapišete kao broj kreditne kartice, dodajući izmišljeni datum isteka."
 
 msgid "Error!"
 msgstr "Pogreška!"
@@ -1613,7 +1613,7 @@ msgid "Forbidden operation"
 msgstr "Zabranjena radnja"
 
 msgid "The specified old password is not valid"
-msgstr "navedena strara lozinka nije valjana"
+msgstr "Navedena strara lozinka nije valjana"
 
 msgid "Resource can only be accessed via the Tor network"
 msgstr "Resursu se može pristupiti samo preko Tor mreže"
@@ -1631,10 +1631,10 @@ msgid "Please check your inbox for further instructions."
 msgstr "Molimo pogledajte svoj sandučić ulazne pošte za daljnje instrukcije."
 
 msgid "Set up email encryption by providing a PGP public key"
-msgstr "Uspostavi enkripciju elektroničke pošte korištenjem PGP javne oznake"
+msgstr "Postavite enkripciju email-a pružanjem PGP javnog ključa"
 
 msgid "Account recovery key"
-msgstr "Ključ za povratak računa"
+msgstr "Ključ za oporavak računa"
 
 msgid "Current password"
 msgstr "Trenutna lozinka"
@@ -1650,16 +1650,16 @@ msgstr "Čini se da pregledavate ovu stranicu bez dodatne privatnosti i sigurnos
 msgid ""
 "You are strongly advised to visit this site using the desktop app called Tor"
 " Browser, that protects your identity."
-msgstr "Snažno Vam savjetujemo da posjetite ovu stranicu koristeći Tor Preglednik, aplikaciju koja štiti Vaš identitet."
+msgstr "Savjetujemo Vam da posjetite ovu stranicu koristeći Tor preglednik, aplikaciju koja štiti Vaš identitet."
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Zatim kopirajte i zalijepite sljedeću adresu u instalirani Tor Preglednik:"
+msgstr "Zatim kopirajte sljedeću adresu u Tor preglednik:"
 
 msgid "Enter a name for the copy"
 msgstr "Unesite ime za kopiju"
 
 msgid "Select a file or drag it here."
-msgstr "Izaberi datoteku i prenesi ju ovdje"
+msgstr "Izaberite datoteku ili ju dovucite ovdje."
 
 msgid "Uploading files…"
 msgstr "Postavljanje datoteka..."
@@ -1677,19 +1677,19 @@ msgid "Size:"
 msgstr "Veličina:"
 
 msgid "Enable the Ricochet panel"
-msgstr "Osposobi Ricochet panel"
+msgstr "Omogući Ricochet ploču"
 
 msgid "Address"
 msgstr "Adresa"
 
 msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Razgovaraj s nama anonimno koristeći Ricochet aplikaciju"
+msgstr "Razgovarajte s nama anonimno koristeći Ricochet aplikaciju"
 
 msgid "To chat with us use the following Ricochet address:"
-msgstr "Da biste razgovarali s nama  koristite slijedeću Ricochet adresu:"
+msgstr "Da biste razgovarali s nama koristite slijedeću Ricochet adresu:"
 
 msgid "Download Ricochet at:"
-msgstr "Skinite Ricochet ovdje:"
+msgstr "Preuzmite Ricochet ovdje:"
 
 msgid ""
 "By using the Tor network and creating an Onion Service, Ricochet is an "
@@ -1697,7 +1697,7 @@ msgid ""
 "and staying anonymous by not revealing your location or IP address. You "
 "won't notice any difference from an insecure chat, except that you will be "
 "using a unique address instead of a phone number/email/username."
-msgstr "Ricochet, aplikacija za razmjenu poruka koja Vam omogućuje razgovore dok štiti Vašu privatnost, koristi Tor mrežu i kreira Onion usluge kako bi održavala Vašu anonimnost neotkrivanjem Vaše lokacije ili IP adrese. Nećete primjetiti neku razliku između nesigurnog razgovora, osim što će te koristiti unikatnu adresu umjesto telefonskog broja/email-a/korisničkog imena."
+msgstr "Ricochet, aplikacija za razmjenu poruka koja Vam omogućuje razgovore dok štiti Vašu privatnost, koristi Tor mrežu i kreira Onion usluge kako bi neotkrivanjem Vaše lokacije ili IP adrese održavala Vašu anonimnost. Nećete primjetiti neku razliku između nesigurnog razgovora, osim što će te koristiti unikatnu adresu umjesto telefonskog broja/email-a/korisničkog imena."
 
 msgid "The connection is not secure."
 msgstr "Veza nije sigurna."
@@ -1726,7 +1726,7 @@ msgid "Submit"
 msgstr "Predaj"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "Primatelji traže da popunite dodatni upitnik"
+msgstr "Primatelji traže da popunite dodatni upitnik."
 
 msgid "Fill the additional questionnaire"
 msgstr "Ispunite dodatni upitnik"
@@ -1741,7 +1741,7 @@ msgid "From:"
 msgstr "Od:"
 
 msgid "To:"
-msgstr "Ka:"
+msgstr "Za:"
 
 msgid "Filename"
 msgstr "Naziv datoteke"
@@ -1759,7 +1759,7 @@ msgid "No files have been uploaded!"
 msgstr "Nije postavljena nijedna datoteka!"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Dopusti zviždaču da doda privitke predaji"
+msgstr "Dopusti zviždaču da doda privitke prijavi"
 
 msgid "Access expiration"
 msgstr "Istek pristupa"
@@ -1777,11 +1777,11 @@ msgid "Allow the whistleblower to send messages"
 msgstr "Dopusti zviždaču da šalje poruke"
 
 msgid "Are you sure that you want to delete the report?"
-msgstr "Jeste li sigurni da želite izbrisati korisnika?"
+msgstr "Jeste li sigurni da želite obrisati prijavu?"
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
-msgstr "Sve pohranjeno na platformi što se odnosi na izvješće će biti obrisano."
+msgstr "Sve pohranjeno na platformi što se odnosi na prijave će biti obrisano."
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
@@ -1789,7 +1789,7 @@ msgid ""
 msgstr "Imajte na umu da sve pohranjeno van platforme, npr. datoteke koje ste pohranili na svom računalu, moraju biti obrisane ručno."
 
 msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Jeste li sigurni da želite obrisati sve odabrane dojave?"
+msgstr "Jeste li sigurni da želite obrisati odabrane prijave?"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
@@ -1800,7 +1800,7 @@ msgid "Please write a motivation for the reply"
 msgstr "Molimo Vas da napišete motiv za odgovor"
 
 msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Jeste li sigurni da želite odgoditi datum isteka dojave?"
+msgstr "Jeste li sigurni da želite odgoditi datum isteka prijave?"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Potvrđivanjem odgađate datum isteka na:"
@@ -1808,7 +1808,7 @@ msgstr "Potvrđivanjem odgađate datum isteka na:"
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
 "reports?"
-msgstr "Jeste li sigurni da želite odgoditi datum isteka dojave za sve označene dojave?"
+msgstr "Jeste li sigurni da želite odgoditi datum isteka dojave za sve odabrane prijave?"
 
 msgid "Questionnaire answers"
 msgstr "Odgovori na upitnik"
@@ -1835,10 +1835,10 @@ msgid "Files attached by recipients"
 msgstr "Datoteke privijene od strane primatelja"
 
 msgid "These files have been attached to your report by the recipients."
-msgstr "Ove datoteke su privijene Vašoj predaji od strane primatelja."
+msgstr "Ove datoteke su privijene Vašoj prijavi od strane primatelja."
 
 msgid "The provided recovery key is invalid."
-msgstr "Ponuđena oznaka za obnovu je nepotpuna"
+msgstr "Priloženi ključ za oporavak je nevažeći."
 
 msgid "The provided reset token is invalid or expired."
 msgstr "Predstavljeni token za ponovno postavljanje je neispravan ili je istekao."
@@ -1846,20 +1846,20 @@ msgstr "Predstavljeni token za ponovno postavljanje je neispravan ili je istekao
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr "Unesite korisničko ime svog računa ili svoju email adresu kako bi zahtjevali ponovno postavljanje lozinke."
+msgstr "Unesite korisničko ime svog računa ili svoju email adresu kako bi zatražili ponovno postavljanje lozinke."
 
 msgid "Enter your email address to request a password reset."
-msgstr "Upišite svoju adresu elektroničke pošte da bi zahtijevali obnovu passworda"
+msgstr "Unesite svoju email adresu kako bi zatražili ponovno postavljanje lozinke."
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr "Upišite svoj ključ za obnovu enkripcije da biste dovršili obnovu passworda"
+msgstr "Upišite svoj enkripcijski ključ za oporavak kako bi dovršili proceduru ponovnog postavljanja lozinke"
 
 msgid "Password reset requested."
 msgstr "Ponovno postavljanje lozinke zahtjevano."
 
 msgid "Show"
-msgstr "pokaži"
+msgstr "Pokaži"
 
 msgid "Hide"
 msgstr "Sakrij"
@@ -1884,11 +1884,11 @@ msgid "Your whistleblowing platform is almost ready!"
 msgstr "Vaša zviždačka platforma je skoro spremna!"
 
 msgid "Check your inbox to activate it."
-msgstr "Provjerite svoj inbox kako biste ga aktivirali"
+msgstr "Provjerite svoj inbox kako biste dovršili aktivaciju."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr "Ukoliko platformu ne aktivirate unutar 24 sata bit će automatski uništena"
+msgstr "Ukoliko platformu ne aktivirate unutar 24 sata, bit će automatski obrisana."
 
 msgid "Sign up"
 msgstr "Prijavite se"
@@ -1897,10 +1897,10 @@ msgid "Domain"
 msgstr "Domena"
 
 msgid "Confirmation"
-msgstr "potvrda"
+msgstr "Potvrda"
 
 msgid "Invalid confirmation"
-msgstr "Nepotpuna potvrda"
+msgstr "Neispravna potvrda"
 
 msgid "Other"
 msgstr "Ostalo"
@@ -1918,7 +1918,7 @@ msgid "The answer is too short."
 msgstr "Odgovor je prekratak."
 
 msgid "The specified input is not valid."
-msgstr "Naznačeni unos ne vrijedi "
+msgstr "Naznačeni unos nije ispravan."
 
 msgid "Submissions disabled"
 msgstr "Predaje onemogućene"
@@ -1932,15 +1932,15 @@ msgid "Thank you!"
 msgstr "Hvala Vam!"
 
 msgid "We will try to get back to you as soon as possible."
-msgstr "Javit ćemo se u najbržem mogućem roku "
+msgstr "Javit ćemo se u najkraćem mogućem roku."
 
 msgid "Remember your receipt for this report."
-msgstr "Zapamtite potvrdu vaše prijave"
+msgstr "Zapamtite svoju potvrdu prijave."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Koristite potvrdu od 16 znakova kako biste se ulogirali. To će vam omogućiti da vidite svaku poruku koja vam je poslana kao i da dodate nove informacije."
+msgstr "Koristite potvrdu od 16 znakova kako biste se prijavili. Prijava će Vam omogućiti da vidite svaku poruku koja Vam je poslana, kao i dodavanje novih informacija."
 
 msgid "View your report"
 msgstr "Pregledajte svoju prijavu"
@@ -1952,7 +1952,7 @@ msgid "Recipients selected:"
 msgstr "Označeni primatelji:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr "Primili ste maksimalan broj potvrda koje možete izabrati."
+msgstr "Dosegnuli ste maksimalni broj primatelja koje se može odabrati."
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1960,7 +1960,7 @@ msgid ""
 msgstr "U ovom koraku odgovori na sljedeća pitanja su ili pogrešni ili nedostaju:"
 
 msgid "Errors"
-msgstr "Pogreške"
+msgstr "Greške"
 
 msgid "You must select at least one recipient."
 msgstr "Morate odabrati bar jednog primatelja."
@@ -1985,10 +1985,10 @@ msgid ""
 msgstr "Ovi profili sadržavaju postavke koje koriste uspješni projekti u relevantnom polju."
 
 msgid "Please choose a different username."
-msgstr "Molim lda izaberete drugačije korisničko ime."
+msgstr "Molimo da odaberete drugo korisničko ime."
 
 msgid "The user will receive an activation link via email."
-msgstr "Korisnik će primiti aktivacijsku poveznicu posredtvom elektronske pošte."
+msgstr "Korisnik će primiti aktivacijsku poveznicu elektronskom poštom."
 
 msgid "License Agreement"
 msgstr "Dogovor o licenci"
@@ -2003,22 +2003,22 @@ msgid "You have completed the platform wizard."
 msgstr "Završili ste čarobnjak za platformu."
 
 msgid "Fill out your report"
-msgstr "Ispunite svoju predaju"
+msgstr "Ispunite svoju prijavu"
 
 msgid "Short title"
 msgstr "Kratki naslov"
 
 msgid "Describe your report in a few words."
-msgstr "Opišite svoju predaju u par riječi"
+msgstr "Opišite svoju prijavu u par riječi."
 
 msgid "Full description"
 msgstr "Puni opis"
 
 msgid "Describe your report in detail."
-msgstr "Opišite svoju predaju detaljno"
+msgstr "Opišite svoju predaju detaljno."
 
 msgid "Attach files relevant to the report."
-msgstr "Dodaj datoteke relevantne za prijavu"
+msgstr "Dodaj datoteke relevantne za prijavu."
 
 msgid "Do you want to provide your identification information?"
 msgstr "Želite li pružiti informacije o Vašoj identifikaciji?"
@@ -2083,26 +2083,26 @@ msgstr "Dragi/a {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "Dobili ste ovaj mejl jer je kreiran korisnički račun za vas u sistemu:"
+msgstr "Dobili ste ovaj email jer je za Vas kreiran korisnički račun na sustavu: {Site}"
 
 msgid "Username: {Username}"
 msgstr "Korisničko ime: {Username}"
 
 msgid "Activation link: {Url}"
-msgstr "Aktivacijska poveznica:"
+msgstr "Aktivacijska poveznica: {Url}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr "Molimo vas da kliknete na aktivacijsku poveznicu kako biste nastavili sa aktivacijom računa te da postavite svoju korisničku lozinku."
+msgstr "Molimo Vas da kliknete na aktivacijsku poveznicu kako biste nastavili sa aktivacijom računa i postavljanjem lozinke."
 
 msgid "This link will expire in 3 days."
-msgstr "Poveznica će isteći za tri dana."
+msgstr "Ova poveznica će isteći za 3 dana."
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr "Nakon uspješne aktivacije bit ćete u mogućnosti pristupiti sustavu pomoću sljedeće poveznice:"
+msgstr "Nakon uspješne aktivacije bit ćete u mogućnosti pristupiti sustavu putem sljedeće poveznice: {LoginUrl}"
 
 msgid "Kind regards,"
 msgstr "S poštovanjem,"
@@ -2144,7 +2144,7 @@ msgstr "Aktivnosti s neobičnom statiskom su:"
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr "Poslužitelj ne može garantirati da će nove predaje biti pohranjene stoga su predaje onemogućene."
+msgstr "Poslužitelj ne može garantirati da će nove prijave biti pohranjene, stoga su predaje onemogućene."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
@@ -2184,7 +2184,7 @@ msgid "Registration data:"
 msgstr "Registracijski podaci:"
 
 msgid "Site: {Url}"
-msgstr "Web stranica: (URL)"
+msgstr "Stranica: {Url}"
 
 msgid "Name: {Name}"
 msgstr "Ime: {Name}"
@@ -2214,7 +2214,7 @@ msgid "Test email"
 msgstr "Testiraj email"
 
 msgid "This is an email to notify you of a new comment on an existing report."
-msgstr "Ovo je email kojim Vas se obavještava o novom komentaru na postojećoj predaji."
+msgstr "Ovo je email kojim Vas se obavještava o novom komentaru na postojećoj prijavi."
 
 msgid "The report can be accessed at:"
 msgstr "Prijavi se može pristupiti na:"
@@ -2262,7 +2262,7 @@ msgstr "Kontekst: {ContextName}"
 msgid ""
 "This is an email to notify you that the whistleblower of report {TipNum} has"
 " attached new material."
-msgstr "Ovaj email Vas obavještava da je zviždač predaje {TipNum} dodao novi materijal."
+msgstr "Ovaj email Vas obavještava da je zviždač prijave {TipNum} dodao novi materijal."
 
 msgid "New attachment"
 msgstr "Novi privitak"
@@ -2299,7 +2299,7 @@ msgstr "Obnova HTTPS certifikata nije uspjela"
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "Ovo je email kojim Vas se obaviještava da Vas je skrbnik autorizirao za pristup zviždačkom identitetu za predaju {TipNum}."
+msgstr "Ovo je email kojim Vas se obaviještava da Vas je skrbnik autorizirao za pristup identitetu zviždača za prijavu {TipNum}."
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "Pristup zviždačevom identitetu autoriziran"
@@ -2307,7 +2307,7 @@ msgstr "Pristup zviždačevom identitetu autoriziran"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " wistleblowing identity for the report {TipNum}."
-msgstr "Ovo je email kojim Vas se obaviještava da Vas je skrbnik autorizirao za pristup zviždačkom identitetu za predaju {TipNum}."
+msgstr "Ovo je email kojim Vas se obaviještava da Vas je skrbnik autorizirao za pristup identitetu zviždača za prijavu {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Pristup zviždačevom identitetu odbijen"
@@ -2315,10 +2315,10 @@ msgstr "Pristup zviždačevom identitetu odbijen"
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "Ovo je email kojim Vas se obavještava da je primatelj zatražio pristup zviždačevom identitetu za predaju {TipNum}"
+msgstr "Ovo je email kojim Vas se obavještava da je primatelj zatražio pristup identitetu zviždača za prijavu {TipNum}"
 
 msgid "The request can be accessed at:"
-msgstr "Zahtjev je dostupan na:"
+msgstr "Zahtjevu se može pristupiti na:"
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Novi zahtjev za pristup zviždačevom identitetu"
@@ -2326,13 +2326,13 @@ msgstr "Novi zahtjev za pristup zviždačevom identitetu"
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "Ovaj email Vas obavještava da je zviždač predaje {TipNum} pružio svoj identitet."
+msgstr "Ovo je email kojim Vas se obavještava da je zviždač prijave {TipNum} pružio svoj identitet."
 
 msgid "The whistleblower has provided their identity"
 msgstr "Zviždač je pružio svoj identitet."
 
 msgid "This is an email to notify you of a new message on an existing report."
-msgstr "Ovo je email kojim Vas se obavještava o novom komentaru na postojećoj predaji."
+msgstr "Ovo je email kojim Vas se obavještava o novom komentaru na postojećoj prijavi."
 
 msgid "New message"
 msgstr "Nova poruka"
@@ -2340,7 +2340,7 @@ msgstr "Nova poruka"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "Primili ste ovaj mejl jer je za vaš račun zatraženw obnova passworda: (Korisničko ime)"
+msgstr "Primili ste ovaj email jer je za Vaš račun {Username} zatraženo ponovno postavljanje lozinke"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
@@ -2348,7 +2348,7 @@ msgid ""
 msgstr "Ako niste zatražili tu promjenu, možete sigurno zanemariti i obrisati ovaj email."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr "Možete potvrditi svoj zahtjev klikanjem na slijedeću poveznicu:"
+msgstr "Možete potvrditi svoj zahtjev klikom na slijedeću poveznicu:"
 
 msgid "Password reset instructions"
 msgstr "Upute za ponovno postavljanje lozinke"
@@ -2403,12 +2403,12 @@ msgid "Please remember to check them before they are deleted."
 msgstr "Ne zaboravite provjeriti ih prije brisanja."
 
 msgid "Some reports will expire soon"
-msgstr "Neke predaje će uskoro isteći"
+msgstr "Neke prijave će uskoro isteći"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "Ovo je email kojim Vas se obaviještava da Vas je zviždač odabrao kao vrijednog primatelja svoje predaje."
+msgstr "Ovo je email kojim Vas se obaviještava da Vas je zviždač odabrao kao vrijednog primatelja svoje prijave."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2416,10 +2416,10 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr "Od Vas se traži da obratite posebnu pozornost na informacije i materijal sadržan unutra. Imajte na umu da se zviždači često izlažu visokom osobnom riziku u korist javnosti, stoga smatrajte materijal koji se nalazi unutar predaje materijalom od visoke važnosti."
+msgstr "Od Vas se traži da obratite posebnu pozornost na informacije i materijal sadržan unutra. Imajte na umu da se zviždači često izlažu visokom osobnom riziku u korist javnosti, stoga smatrajte materijal koji se nalazi unutar prijave materijalom od visoke važnosti."
 
 msgid "New report"
-msgstr "Novo izvješće"
+msgstr "Nova prijava"
 
 msgid "Role: {Role}"
 msgstr "Uloga: {Role}"

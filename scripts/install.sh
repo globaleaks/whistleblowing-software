@@ -219,7 +219,7 @@ echo " + required TCP sockets open"
 # Depending on the intention of the user to proceed anyhow installing on
 # a not supported distro we using the experimental package if it exists
 # or Bionic as fallback.
-if echo "$DISTRO_CODENAME" | grep -vqE "^(buster|bionic)$"; then
+if echo "$DISTRO_CODENAME" | grep -vqE "^(buster|focal|bionic)$"; then
   # In case of unsupported platforms we fallback on Bionic
   echo "No packages available for the current distribution; the install script will use the Bionic repository."
   echo "In case of a failure refer to the wiki for manual setup possibilities."

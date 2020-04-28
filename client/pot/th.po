@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-16 20:14+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-04-27 00:49+0000\n"
+"Last-Translator: bact' <arthit@gmail.com>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -605,10 +605,10 @@ msgid "This domain name is not available."
 msgstr "ชื่อโดเมนนี้ใช้ไม่ได้"
 
 msgid "VAT number"
-msgstr ""
+msgstr "หมายเลข VAT"
 
 msgid "Tax code"
-msgstr ""
+msgstr "เลขประจำตัวผู้เสียภาษี"
 
 msgid "Select the context of your report:"
 msgstr "เลือกบริบทของรายงานของคุณ:"

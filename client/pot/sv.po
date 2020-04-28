@@ -9,7 +9,7 @@
 # Henrik Mattsson-Mårn <h@reglage.net>, 2016-2017,2020
 # John Andersson <johnandersson86@hotmail.com>, 2015
 # Jonas Hedberg <jonas@hedberg2.se>, 2015
-# Jonatan, 2018
+# Jonatan Nyberg <jonatan.nyberg.karl@gmail.com>, 2018
 # Kristoffer Grundström <hamnisdude@gmail.com>, 2014
 # Kristoffer Grundström <hamnisdude@gmail.com>, 2014
 # Linus Malmgren <linus@malmgren.nu>, 2015
