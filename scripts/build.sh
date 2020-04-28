@@ -2,7 +2,7 @@
 
 set -e
 
-TARGETS="buster focal, bionic"
+TARGETS="buster focal bionic"
 DISTRIBUTION="buster"
 TAG="master"
 LOCAL_ENV=0
