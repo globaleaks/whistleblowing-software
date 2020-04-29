@@ -594,8 +594,9 @@ def db_create_identityaccessrequest_notifications(session, tid, itip, rtip, iar)
     :param rtip: A rtip ID of the rtip involved in the request
     :param iar: A identity access request model
     """
-    users = session.query(models.User).filter(models.User.role == 'custodian', models.User.notification.is_(True))
-    for user in users:
+    for user in session.query(models.User).filter(models.User.role == 'custodian',
+                                                  models.User.tid == tid,
+                                                  models.User.notification.is_(True)):
         context = session.query(models.Context).filter(models.Context.id == itip.context_id, models.Context.tid == tid).one()
 
         data = {
