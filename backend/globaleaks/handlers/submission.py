@@ -47,19 +47,33 @@ def decrypt_tip(user_key, tip_prv_key, tip):
 
 
 def db_set_internaltip_answers(session, itip_id, questionnaire_hash, answers):
+    x = session.query(models.InternalTipAnswers) \
+               .filter(models.InternalTipAnswers.internaltip_id == itip_id,
+                       models.InternalTipAnswers.questionnaire_hash == questionnaire_hash).one_or_none()
+
+    if x is not None:
+        return
+
     ita = models.InternalTipAnswers()
     ita.internaltip_id = itip_id
     ita.questionnaire_hash = questionnaire_hash
     ita.answers = answers
-    session.merge(ita)
+    session.add(ita)
 
 
 def db_set_internaltip_data(session, itip_id, key, value):
+    x = session.query(models.InternalTipData) \
+               .filter(models.InternalTipData.internaltip_id == itip_id,
+                       models.InternalTipData.key == key).one_or_none()
+
+    if x is not None:
+        return
+
     itd = models.InternalTipData()
     itd.internaltip_id = itip_id
     itd.key = key
     itd.value = value
-    session.merge(itd)
+    session.add(itd)
 
 
 def db_assign_submission_progressive(session, tid):
