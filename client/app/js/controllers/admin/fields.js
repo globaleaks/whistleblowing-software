@@ -201,11 +201,7 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
 ]).
 controller("AdminFieldTemplatesCtrl", ["$scope", "AdminFieldTemplateResource",
   function($scope, AdminFieldTemplateResource) {
-    $scope.fieldResource = AdminFieldTemplateResource;
-
-    $scope.resources.fieldtemplates.$promise.then(function(fields) {
-      $scope.fields = fields;
-    });
+    $scope.parsedFields = $scope.fieldUtilities.parseFields($scope.resources.fieldtemplates, {});
   }
 ]).
 controller("AdminFieldTemplatesAddCtrl", ["$scope",
