@@ -1,6 +1,6 @@
 Dear {RecipientName},
 
-This is an email to notify you that a custodian has denied you access to the wistleblowing identity for the report {TipNum}.
+This is an email to notify you that a custodian has denied you access to the whistleblowing identity for the report {TipNum}.
 
 The report can be accessed at:
 {Url}
