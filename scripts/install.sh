@@ -185,21 +185,7 @@ fi
 # align apt-get cache to up-to-date state on configured repositories
 DO "apt-get -y update"
 
-# fix curl requirement
-if which curl >/dev/null; then
-  echo " + curl requirement met"
-else
-  echo " - curl requirement not met. Installing curl"
-  DO "apt-get -y install curl"
-fi
-
-# fix netstat requirement
-if which netstat >/dev/null; then
-  echo " + netstat requirement met"
-else
-  echo " - netstat requirement not met. Installing net-tools"
-  DO "apt-get -y install net-tools"
-fi
+DO "apt-get -y install curl gnupg net-tools software-properties-common"
 
 function is_tcp_sock_free_check {
   ! netstat -tlpn 2>/dev/null | grep -F $1 -q
@@ -233,9 +219,6 @@ TMPFILE=$TMPDIR/globaleaks_key
 echo "$GLOBALEAKS_PGP_KEY" > $TMPFILE
 DO "apt-key add $TMPFILE"
 DO "rm $TMPFILE"
-
-echo "Installing software-properties-common"
-DO "apt-get -y install software-properties-common"
 
 # try adding universe repo only on Ubuntu
 if echo "$DISTRO" | grep -qE "^(Ubuntu)$"; then
