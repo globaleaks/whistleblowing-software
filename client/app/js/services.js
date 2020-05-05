@@ -1324,6 +1324,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         },
 
         calculateScore: function(scope, field, entry) {
+          var self = this;
           var total_score, i;
 
           if (["selectbox", "multichoice"].indexOf(field.type) > -1) {
@@ -1346,6 +1347,14 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
                 }
               }
             }
+          } else if (field.type === "fieldgroup") {
+            angular.forEach(field.children, function(field) {
+              angular.forEach(entry[field.id], function(entry) {
+                self.calculateScore(scope, field, entry);
+              });
+            });
+
+            return;
           }
 
           total_score = scope.points_to_sum * scope.points_to_mul;
