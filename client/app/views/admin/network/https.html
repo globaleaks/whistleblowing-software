@@ -9,7 +9,7 @@
              data-ng-pattern="hostname_regexp"
 	     data-ng-class="{'is-invalid': adminNetForm.hostname.$error.pattern}" />
       <span class="input-group-append">
-        <button class="btn btn-success" data-ng-click="Utils.applyConfig('set_hostname', hostname)" data-ng-disabled="hostname === resources.node.hostname" data-translate>Save</button>
+        <button class="btn btn-success" data-ng-click="Utils.applyConfig('set_hostname', hostname, true)" data-ng-disabled="hostname === resources.node.hostname" data-translate>Save</button>
       </span>
     </p>
     <p class="text-danger" data-ng-show="adminNetForm.hostname.$error.pattern">

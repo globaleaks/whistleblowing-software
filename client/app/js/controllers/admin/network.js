@@ -39,8 +39,8 @@ controller("AdminNetworkCtrl", ["$scope", function($scope) {
     });
   };
 }]).
-controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibModal", "FileSaver", "AdminTLSConfigResource", "AdminTLSCfgFileResource", "AdminAcmeResource",
-  function($q, $location, $http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource) {
+controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$scope", "$uibModal", "FileSaver", "AdminTLSConfigResource", "AdminTLSCfgFileResource", "AdminAcmeResource",
+  function($q, $http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource) {
   $scope.state = 0;
   $scope.menuState = "setup";
   $scope.showHostnameSetter = false;
@@ -180,22 +180,9 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
 
   $scope.toggleCfg = function() {
     if ($scope.tls_config.enabled) {
-      if ($location.protocol() === "https") {
-        $uibModal.open({
-          templateUrl: "views/partials/disable_input.html",
-          controller: "ConfirmableModalCtrl",
-          resolve: {
-            arg: null,
-            confirmFun: null,
-            cancelFun: null
-          }
-        });
-
-      }
-
       $scope.tls_config.$disable().then(refreshConfig);
     } else {
-      $scope.tls_config.$enable().then(refreshConfig);
+      $scope.tls_config.$enable().then($scope.reload);
     }
   };
 
