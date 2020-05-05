@@ -155,7 +155,7 @@
             <span data-translate>Preview</span>
           </span>
         </th>
-        <th class="TipInfoScore" data-ng-if="resources.node.enable_scoring_system">
+        <th class="TipInfoScore" data-ng-if="public.node.enable_scoring_system">
           <span data-ng-click="$parent.sortKey = 'total_score'; sortReverse = !sortReverse">
             <i class="fas fa-flash"></i>
             <span data-translate>Score</span>
@@ -216,7 +216,7 @@
           <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true"
                data-ng-include="'views/partials/tip_field.html'"></div>
         </td>
-        <td class="TipInfoScore" data-ng-if="resources.node.enable_scoring_system" data-ng-switch="tip.score">
+        <td class="TipInfoScore" data-ng-if="public.node.enable_scoring_system" data-ng-switch="tip.score">
           <span data-ng-switch-when="0">-</span>
           <span class="badge badge-success" data-ng-switch-when="1" data-translate>Low</span>
           <span class="badge badge-warning" data-ng-switch-when="2" data-translate>Medium</span>
