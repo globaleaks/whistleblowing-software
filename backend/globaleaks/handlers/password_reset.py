@@ -55,9 +55,9 @@ def generate_password_reset_token_by_user_id(session, tid, user_id):
     :param user_id:
     :return:
     """
-    user = db_get_user(session, tid, user_id)
-
-    db_generate_password_reset_token(session, user)
+    user = session.query(models.User).filter(models.User.tid == tid, models.User.id == user_id).one_or_none()
+    if user is not None:
+        db_generate_password_reset_token(session, user)
 
     return {'redirect': '/login/passwordreset/requested'}
 
