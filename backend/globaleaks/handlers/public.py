@@ -499,13 +499,19 @@ def get_public_resources(session, tid, language):
     :param language: The language to be used for serialization
     :return: The public API descriptor
     """
-    return {
+    ret = {
         'node': db_serialize_node(session, tid, language),
         'contexts': db_get_contexts(session, tid, language),
         'questionnaires': db_get_questionnaires(session, tid, language),
         'receivers': db_get_receivers(session, tid, language),
         'submission_statuses': db_get_submission_statuses(session, tid, language)
     }
+
+    if ret['node']['do_not_expose_users_names']:
+        for receiver in ret['receivers']:
+            receiver['name'] = ret['node']['name']
+
+    return ret
 
 
 class PublicResource(BaseHandler):

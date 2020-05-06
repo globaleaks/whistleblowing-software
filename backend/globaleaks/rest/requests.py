@@ -242,6 +242,7 @@ AdminNodeDesc = {
     'enable_receipt_hint': bool,
     'enable_ricochet_panel': bool,
     'ricochet_address': str,
+    'do_not_expose_users_names': bool,
     'disable_submissions': bool,
     'multisite_login': bool,
     'simplified_login': bool,
