@@ -430,6 +430,9 @@ class APIResourceWrapper(Resource):
                 request.setHeader(b'Strict-Transport-Security',
                                   b'max-age=31536000; includeSubDomains')
 
+        if State.tenant_cache[request.tid].onionservice:
+            request.setHeader(b'Onion-Location', b'http://' + State.tenant_cache[request.tid].onionservice.encode())
+
         if Settings.enable_csp:
             csp = "default-src 'none';" \
                   "script-src 'self';" \
