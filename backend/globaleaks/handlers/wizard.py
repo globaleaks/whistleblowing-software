@@ -143,9 +143,10 @@ def db_wizard(session, tid, hostname, request):
 
     mode = node.get_val('mode')
 
-    if mode not in ['default', 'demo']:
+    if mode != 'default':
         node.set_val('hostname', tenant.subdomain + '.' + root_tenant_node.get_val('rootdomain'))
 
+    if mode in ['whistleblowing.it', 'eat']:
         for varname in ['reachable_via_web',
                         'enable_receipt_hint',
                         'disable_privacy_badge',
