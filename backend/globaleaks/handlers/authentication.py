@@ -56,10 +56,9 @@ def login_whistleblower(session, tid, receipt):
     x = None
 
     algorithms = [x[0] for x in session.query(WhistleblowerTip.hash_alg).filter(WhistleblowerTip.tid == tid).distinct()]
+
     if algorithms:
-        hashes = []
-        for alg in algorithms:
-            hashes.append(GCE.hash_password(receipt, State.tenant_cache[tid].receipt_salt, alg))
+        hashes = [GCE.hash_password(receipt, State.tenant_cache[tid].receipt_salt, alg) for alg in algorithms]
 
         x = session.query(WhistleblowerTip, InternalTip) \
                    .filter(WhistleblowerTip.receipt_hash.in_(hashes),
@@ -101,10 +100,9 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
     """
     user = None
 
-    users = session.query(User).filter(User.username == username,
-                                       User.state != 'disabled',
-                                       User.tid == tid).distinct()
-    for u in users:
+    for u in session.query(User).filter(User.username == username,
+                                        User.state != 'disabled',
+                                        User.tid == tid):
         if GCE.check_password(u.hash_alg, password, u.salt, u.password):
             user = u
             break
