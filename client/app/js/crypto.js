@@ -35,7 +35,7 @@ angular.module("GLCrypto", [])
     proofOfWork: function() {
       var deferred = $q.defer();
 
-      var token = new TokenResource().$save(function(token) {
+      new TokenResource().$save(function(token) {
 	var i = 0;
         var work = function() {
           var webCrypto = getWebCrypto();
@@ -82,5 +82,5 @@ angular.module("GLCrypto", [])
         return $timeout(function(){return token}, token.min_ttl * 1000);
       });
     }
-  }
-}])
+  };
+}]);

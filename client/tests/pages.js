@@ -30,12 +30,6 @@ exports.receiver = function() {
 
 exports.whistleblower = function() {
   this.performSubmission = async function(title, uploadFiles) {
-    var pow = function() {
-      return element(by.id("SubmissionForm")).evaluate("submission").then(function(submission) {
-        return submission.pow === true;
-      });
-    };
-
     await browser.get("/#/submission");
 
     await browser.gl.utils.waitUntilPresent(by.id("SubmissionForm"));

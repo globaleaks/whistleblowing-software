@@ -41,10 +41,10 @@ angular.module("GLServices", ["ngResource"]).
           }
 
           if (self.session.role !== "whistleblower") {
-	    var role = self.session.role === "receiver" ? "recipient" : self.session.role;
+            var role = self.session.role === "receiver" ? "recipient" : self.session.role;
 
-	    self.session.homepage = "/" + role + "/home";
-	    self.session.preferencespage = "/" + role + "/preferences";
+            self.session.homepage = "/" + role + "/home";
+            self.session.preferencespage = "/" + role + "/preferences";
 
             UserPreferences.get().$promise.then(initPreferences);
           }
@@ -836,7 +836,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
             pt2 = "";
 
 	if (!pt1 && !$rootScope.public.node.name) {
-          pt1 = 'GlobaLeaks';
+          pt1 = "GlobaLeaks";
         }
 
         if ($location.path() === "/") {

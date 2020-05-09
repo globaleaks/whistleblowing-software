@@ -40,7 +40,7 @@ GLClient.mockEngine = (function() {
 
   var run = function() {
     var current_path = document.location.pathname + document.location.hash;
-    var path, i;
+    var path, selector, i;
 
     for (path in mocks) {
       if (path === "*" || path === current_path) {
@@ -48,9 +48,9 @@ GLClient.mockEngine = (function() {
           for (i in mocks[path][selector]) {
             try {
               applyMock(mocks[path][selector][i]);
-	    } catch(e) {
+            } catch(e) {
               continue;
-	    }
+            }
           }
         }
       }

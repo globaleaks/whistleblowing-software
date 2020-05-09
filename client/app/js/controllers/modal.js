@@ -11,7 +11,7 @@ controller("ConfirmableModalCtrl",
     }
 
     return $uibModalInstance.close(result);
-  }
+  };
 
   $scope.cancel = function(result) {
     if ($scope.cancelFun) {
@@ -19,5 +19,5 @@ controller("ConfirmableModalCtrl",
     }
 
     return $uibModalInstance.dismiss("cancel");
-  }
+  };
 }]);

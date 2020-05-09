@@ -167,7 +167,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$scope", "$uibModal", "FileS
       controller: "ConfirmableModalCtrl",
       resolve: {
         arg: null,
-        confirmFun: function() { return function() { return resource.$delete().then(refreshConfig);} },
+        confirmFun: function() { return function() { return resource.$delete().then(refreshConfig); }; },
         cancelFun: null
       },
     });
@@ -205,7 +205,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$scope", "$uibModal", "FileS
       controller: "ConfirmableModalCtrl",
       resolve: {
 	arg: null,
-        confirmFun: function() { return function() { $scope.tls_config.$delete().then(refreshConfig); } },
+        confirmFun: function() { return function() { $scope.tls_config.$delete().then(refreshConfig); }; },
         cancelFun: null
       }
     });

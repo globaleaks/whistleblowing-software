@@ -587,7 +587,7 @@ var GLClient = angular.module("GLClient", [
         size: "lg",
 	resolve: {
           arg: null,
-          confirmFun: function() { return function() {$rootScope.setPage("submissionpage") } },
+          confirmFun: function() { return function() {$rootScope.setPage("submissionpage"); }; },
           cancelFun: null
 	}
       });
