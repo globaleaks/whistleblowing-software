@@ -76,7 +76,7 @@ def db_wizard(session, tid, hostname, request):
     node.set_val('hostname', hostname)
 
     node_l10n = config.ConfigL10NFactory(session, tid)
-    node_l10n.set_val('header_title_homepage', language, request['node_name'])
+    node_l10n.set_val('header_title_prefix', language, request['node_name'])
 
     profiles.load_profile(session, tid, request['profile'])
 
