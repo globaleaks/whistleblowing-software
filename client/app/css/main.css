@@ -20,8 +20,8 @@ html, body {
   flex: 1 0 auto;
 }
 
-#ContentBox, #NoScript, #FooterBox, #DemoBadge {
-  padding: 2rem;
+#HeaderBox, #ContentBox, #NoScript, #FooterBox, #DemoBadge, #PrivacyBadge {
+  padding: 1rem;
 }
 
 #FooterBox {
@@ -47,7 +47,6 @@ table {
 #HeaderBox {
   color: #FFF;
   background-color: #428bca;
-  padding: 1rem;
 }
 
 #HeaderBox:after {
@@ -62,22 +61,17 @@ table {
   min-width: 20rem;
   z-index: 10;
   top: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-#LogoBox, #TitleBox, #UserBox {
-  z-index: 10;
-  padding: 1rem;
+  padding: 0 1rem;
 }
 
 #LogoBox {
-  width: 16rem;
+  margin-right: 1rem;
 }
 
 #TitleBox {
   font-size: 2rem;
   font-weight: bold;
+  padding-right: 1rem;
   white-space: pre-wrap;
 }
 
@@ -106,6 +100,7 @@ table {
 
 #LogoBox img {
   max-height: 12rem;
+  max-width: 16rem;
 }
 
 .receipt {
@@ -116,7 +111,6 @@ table {
   background-color: #222;
   color: #FFF;
   font-size: 1rem;
-  padding: 1rem;
 }
 
 .title1, .title2, .title3 {
@@ -203,8 +197,7 @@ table {
 
 .wizard-block {
   position: relative;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
 }
 
 .wizard-block .title {

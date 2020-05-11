@@ -6,14 +6,14 @@ html[dir="rtl"] #KeyCodeBox,
 html[dir="ltr"] #KeyCodeBox {
   direction: ltr;
 }
-html[dir='rtl'] .fa-arrow-right:before {
+html[dir="rtl"] .fa-arrow-right:before {
   content: "\f060"; }
 
-html[dir='rtl'] .fa-arrow-left:before {
+html[dir="rtl"] .fa-arrow-left:before {
   content: "\f061"; }
 
-html[dir='rtl'] .fa-arrow-circle-right:before {
+html[dir="rtl"] .fa-arrow-circle-right:before {
   content: "\f0a8"; }
 
-html[dir='rtl'] .fa-arrow-circle-left:before {
+html[dir="rtl"] .fa-arrow-circle-left:before {
   content: "\f0a9"; }
