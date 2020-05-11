@@ -29,7 +29,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-16 20:14+0000\n"
+"PO-Revision-Date: 2020-05-05 16:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1094,10 +1094,6 @@ msgstr "Имя хоста"
 msgid "Input should be similar to:"
 msgstr "Ввод должен быть похож на:"
 
-msgid ""
-"The platform does not seem to be reachable with the configured hostname."
-msgstr "Повидимому, платформа не доступна на указанном имени хоста."
-
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
 msgstr "Использование Let's Encrypt требует согласия с их условиями обслуживания."
 
@@ -1549,9 +1545,6 @@ msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
-
-msgid "Attention!"
-msgstr "Внимание!"
 
 msgid "Install an authenticator app on your phone"
 msgstr ""

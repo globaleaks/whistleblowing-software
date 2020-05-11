@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-27 00:49+0000\n"
+"PO-Revision-Date: 2020-05-05 16:49+0000\n"
 "Last-Translator: bact' <arthit@gmail.com>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1076,10 +1076,6 @@ msgstr "ชื่อโฮสต์"
 msgid "Input should be similar to:"
 msgstr "ข้อมูลควรมีลักษณะแบบเดียวกับ:"
 
-msgid ""
-"The platform does not seem to be reachable with the configured hostname."
-msgstr "เหมือนจะไม่สามารถเข้าถึงแพลตฟอร์มได้จากชื่อโฮสต์ที่ตั้งค่าไว้"
-
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
 msgstr "การใช้ Let's Encrypt นั้นจำเป็นต้องตกลงยอมรับเงื่อนไขการให้บริการของพวกเขา"
 
@@ -1531,9 +1527,6 @@ msgstr "กรุณาดูแลว่าข้อมูลที่เกี
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "นี่เป็นแพลตฟอร์มทดลอง กรุณาอย่าใช้มันเพื่อส่งรายงานจริงๆ"
-
-msgid "Attention!"
-msgstr "สนใจด้วย!"
 
 msgid "Install an authenticator app on your phone"
 msgstr "ติดตั้งแอปยืนยันตัวตนบนโทรศัพท์ของคุณ"

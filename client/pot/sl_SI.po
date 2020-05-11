@@ -2,13 +2,13 @@
 # Translators:
 # Aleš <ales.petan@digital.si>, 2016
 # Delo <prevajalci.delo@delo.si>, 2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017,2020
 # Matija <matija@srebrni-galeb.si>, 2015
 # Štefan Baebler <stefan.baebler@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-02-26 17:30+0000\n"
+"PO-Revision-Date: 2020-05-05 16:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,9 +19,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Prijava"
-
-msgid "Administration interface"
-msgstr "Vmesnik za upravljanje"
 
 msgid "Main configuration"
 msgstr "Glavne nastavitve"
@@ -53,9 +50,6 @@ msgstr "Dodaj vprašalnik"
 msgid "Home"
 msgstr "Domov"
 
-msgid "Home page"
-msgstr "Domača stran"
-
 msgid "Changelog"
 msgstr "Zapis sprememb"
 
@@ -80,17 +74,11 @@ msgstr "Anomalije"
 msgid "Preferences"
 msgstr "Možnosti"
 
-msgid "User preferences"
-msgstr "Uporabniške nastavitve"
-
 msgid "Notification settings"
 msgstr "Nastavitve obvestila"
 
 msgid "file unavailable"
 msgstr "nedostopna datoteka"
-
-msgid "Recipient interface"
-msgstr "Prejemnikov vmesnik"
 
 msgid "Date"
 msgstr "Datum"
@@ -125,9 +113,6 @@ msgstr "Podrobnosti"
 msgid "Platform wizard"
 msgstr "Čarovnik platforme"
 
-msgid "Step-by-step setup"
-msgstr "Vodena namestitev po korakih"
-
 msgid "CREDIT CARD"
 msgstr "KREDITNA KARTICA"
 
@@ -135,7 +120,7 @@ msgid "YOUR NAME"
 msgstr "VAŠE IME"
 
 msgid "Label the report"
-msgstr ""
+msgstr "Označi prispevek"
 
 msgid "Postpone the expiration date"
 msgstr "Preloži rok trajanja"
@@ -146,8 +131,8 @@ msgstr "Označi vse"
 msgid "Deselect all"
 msgstr "Odznači vse"
 
-msgid "Refresh page"
-msgstr "Osveži stran"
+msgid "Refresh"
+msgstr "Osveži"
 
 msgid "Context"
 msgstr "Kontekst"
@@ -159,10 +144,10 @@ msgid "Preview"
 msgstr "Predogled"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "Žvižgač je že prebral zadnjo posodobitev"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "Žvižgač še ni prebral zadnje posodobitve"
 
 msgid "Move up"
 msgstr "Premakni gor"
@@ -225,9 +210,6 @@ msgstr "Zadnji možen datum"
 
 msgid "0 = auto"
 msgstr "0 = samodejno"
-
-msgid "-1 = unlimited"
-msgstr "-1 = neomejeno"
 
 msgid "True"
 msgstr "Velja"
@@ -325,24 +307,6 @@ msgstr "Odobri dostop do identitete žvižgača"
 msgid "Templates"
 msgstr "Predloge"
 
-msgid "in seconds"
-msgstr "v sekundah"
-
-msgid "in hours"
-msgstr "v urah"
-
-msgid "in days"
-msgstr "v dneh"
-
-msgid "in characters"
-msgstr "v znakih"
-
-msgid "in megabytes"
-msgstr "v megabajtih"
-
-msgid "in percentage"
-msgstr "v procentih"
-
 msgid "HTTPS settings"
 msgstr "HTTPS nastavitve"
 
@@ -351,15 +315,6 @@ msgstr ""
 
 msgid "Anomaly detection thresholds"
 msgstr "Meja zaznave anomalij"
-
-msgid "High risk"
-msgstr "Visoko tveganje"
-
-msgid "Medium risk"
-msgstr "Srednje tveganje"
-
-msgid "Low risk"
-msgstr "Nizko tveganje"
 
 msgid "Available disk space"
 msgstr "Razpoložljiv prostor na disku"
@@ -434,9 +389,6 @@ msgstr "Vpiši elektronski naslov administratorja"
 msgid "Enter a password for the administrator"
 msgstr "Vpiši geslo administratorja"
 
-msgid "Test configuration"
-msgstr "Preveri nastavitve"
-
 msgid "Failed logins"
 msgstr "Neuspele prijave"
 
@@ -487,7 +439,7 @@ msgid ""
 msgstr ""
 
 msgid "The whistleblower can no longer access the report"
-msgstr ""
+msgstr "Žvižgač ne more več dostopati do prispevka"
 
 msgid "Warning!"
 msgstr "Opozorilo!"
@@ -505,9 +457,6 @@ msgstr "Tor Browser vsebuje številne dodatke ter izboljšave, ki ga naredijo va
 
 msgid "Download the Tor Browser"
 msgstr "Prenesite Tor Browser"
-
-msgid "This is the list of the other supported browsers:"
-msgstr "Tukaj je seznam ostalih podprtih brskalnikov:"
 
 msgid "Audit log"
 msgstr ""
@@ -561,7 +510,7 @@ msgid "Enable email notifications for:"
 msgstr ""
 
 msgid "Disable"
-msgstr ""
+msgstr "Onemogoči"
 
 msgid "Remove"
 msgstr "Remove"
@@ -646,8 +595,20 @@ msgstr ""
 msgid "This user has not performed the first login yet."
 msgstr ""
 
-msgid "Select the context of your report:"
+msgid "seconds"
+msgstr "sekund"
+
+msgid "This domain name is not available."
 msgstr ""
+
+msgid "VAT number"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
+msgid "Select the context of your report:"
+msgstr "Izberite tematiko vašega prispevka:"
 
 msgid "Warning! You are not anonymous."
 msgstr "Opozorilo! Vaša identiteta ni skrita."
@@ -667,7 +628,7 @@ msgid "Blow the whistle"
 msgstr "Zažvižgajte na piščalko"
 
 msgid "Your report was successful."
-msgstr ""
+msgstr "Vaša naznanitev je uspela."
 
 msgid "Report"
 msgstr ""
@@ -724,11 +685,11 @@ msgid "Allow recipients to delete reports"
 msgstr ""
 
 msgid "Allow recipients to postpone expiration date of the report"
-msgstr ""
+msgstr "Dovoli prejemnikom prestavitev roka veljavnosti"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr ""
+msgstr "Omogoči prejemnikom odobritev dostopa žvižgačem do izbranih prispevkov"
 
 msgid "Enable search engines indexing"
 msgstr "Omogoči indeksiranje iskalnikom"
@@ -773,10 +734,13 @@ msgid "Title of the receipt page"
 msgstr "Naslov strani prejemnika"
 
 msgid "Title of the status page of the report"
-msgstr ""
+msgstr "Naslov strani statusa prispevka"
 
 msgid "Size limit for file attachments"
 msgstr "Omejitev velikosti datotek v prilogah"
+
+msgid "in megabytes"
+msgstr "v megabajtih"
 
 msgid "Enable HSTS preload"
 msgstr ""
@@ -791,9 +755,6 @@ msgid "Password"
 msgstr "Geslo"
 
 msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Require proof of work on user authentication"
 msgstr ""
 
 msgid "Password change interval"
@@ -846,6 +807,18 @@ msgid "Save"
 msgstr "Shrani"
 
 msgid "Reset reports"
+msgstr ""
+
+msgid "Low"
+msgstr ""
+
+msgid "High"
+msgstr "Visok"
+
+msgid "megabytes"
+msgstr ""
+
+msgid "percentage"
 msgstr ""
 
 msgid "Enable automatic backups"
@@ -983,17 +956,17 @@ msgstr "Prilagojen prevod"
 msgid "Contexts"
 msgstr "Konteksti"
 
-msgid "State"
-msgstr "Država"
-
-msgid "Enabled"
-msgstr "Omogočeno"
-
 msgid "Hidden"
 msgstr ""
 
 msgid "Disabled"
 msgstr "Onemogočeno"
+
+msgid "State"
+msgstr "Država"
+
+msgid "Enabled"
+msgstr "Omogočeno"
 
 msgid "Questionnaire"
 msgstr "Vprašalniki"
@@ -1044,7 +1017,7 @@ msgid "Allow whistleblowers to send messages"
 msgstr "Dovoli žvižgačem pošiljanje sporočil"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr ""
+msgstr "Dovoli žvižgačem dodajanje prilog k obstoječim prispevkom"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
@@ -1061,13 +1034,7 @@ msgstr ""
 msgid "Medium"
 msgstr ""
 
-msgid "High"
-msgstr "Visok"
-
 msgid "Customize the message shown in the receipt page"
-msgstr ""
-
-msgid "Low"
 msgstr ""
 
 msgid "Assign the receipt only to reports reaching score:"
@@ -1104,10 +1071,6 @@ msgid "Hostname"
 msgstr ""
 
 msgid "Input should be similar to:"
-msgstr ""
-
-msgid ""
-"The platform does not seem to be reachable with the configured hostname."
 msgstr ""
 
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
@@ -1200,14 +1163,6 @@ msgstr ""
 msgid "Auto-renewal"
 msgstr ""
 
-msgid "Danger"
-msgstr "Nevarnost"
-
-msgid ""
-"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
-"not their anonymity."
-msgstr ""
-
 msgid "Tor Onion Service"
 msgstr ""
 
@@ -1244,17 +1199,17 @@ msgstr "Opozorilo"
 msgid "Require authentication"
 msgstr ""
 
-msgid "Reset notification templates to default"
-msgstr "Ponastavi obvestilne predloge na privzeto obliko"
-
 msgid "Number of hours before sending a report expiration alert"
-msgstr ""
+msgstr "Število ur pred pošiljanjem obvestila o poteku prispevka"
 
 msgid "Test the configuration"
 msgstr "Preizkus nastavitev"
 
 msgid "Reset SMTP configuration"
 msgstr ""
+
+msgid "Reset notification templates to default"
+msgstr "Ponastavi obvestilne predloge na privzeto obliko"
 
 msgid "Template"
 msgstr "Predloga"
@@ -1424,6 +1379,9 @@ msgstr "Oblikovanje"
 msgid "Subdomain"
 msgstr ""
 
+msgid "Creation date:"
+msgstr ""
+
 msgid "Send an account activation link to the user."
 msgstr ""
 
@@ -1476,15 +1434,15 @@ msgid "Forcefully selected"
 msgstr ""
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr ""
+msgstr "Dovoli prejemnikom prestavitev roka veljavnosti"
 
 msgid "Allow the recipient to delete reports"
-msgstr ""
+msgstr "Dovoli prejemniku, da zbriše naznanitve"
 
 msgid ""
 "Allow the recipient to grant permissions to whistleblowers on specific "
 "reports"
-msgstr ""
+msgstr "Omogoči prejemnikom odobritev dostopa žvižgačem do izbranih prispevkov"
 
 msgid "User has administrative access to the following features:"
 msgstr ""
@@ -1526,10 +1484,10 @@ msgid "Site:"
 msgstr ""
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr ""
+msgstr "Ali ste že oddali naznanitev? Vnesite vašo šifro ključa."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr ""
+msgstr "Šifra ključa je neveljavna ali pa je naznanitvi potekla časovna omejitev."
 
 msgid "Username:"
 msgstr "Uporabniško ime:"
@@ -1565,9 +1523,6 @@ msgid "Please note that all the associated data will be permanently deleted."
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
-
-msgid "Attention!"
 msgstr ""
 
 msgid "Install an authenticator app on your phone"
@@ -1626,7 +1581,7 @@ msgid "Follow the project on:"
 msgstr ""
 
 msgid "Hint: How to hide your receipt"
-msgstr ""
+msgstr "Namig, kako skriti vašo šifro ključa"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
@@ -1708,9 +1663,6 @@ msgstr "Napaka v prenosu datotek; preveri podrobnosti spodaj."
 
 msgid "Estimated upload time:"
 msgstr "Predviden čas prenosa:"
-
-msgid "seconds"
-msgstr "sekund"
 
 msgid "Size:"
 msgstr ""
@@ -1798,7 +1750,7 @@ msgid "No files have been uploaded!"
 msgstr "Ni poslanih datotek!"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr ""
+msgstr "Dovoli žvižgačem dodajanje prilog k prispevkom"
 
 msgid "Access expiration"
 msgstr "Potek dostopa"
@@ -1816,11 +1768,11 @@ msgid "Allow the whistleblower to send messages"
 msgstr "Dovoli žvižgaču pošiljanje sporočil"
 
 msgid "Are you sure that you want to delete the report?"
-msgstr ""
+msgstr "Ali ste prepričani, da želite zbrisati naznanitev globalno?"
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
-msgstr ""
+msgstr "Vsi s prispevkom povezani podatki bodo izbrisani."
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
@@ -1828,7 +1780,7 @@ msgid ""
 msgstr "Vse podatke, ki so hranjeni izven platforme, na primer priloge prenešene na vaš računalnik, je potrebno izbrisati ročno. "
 
 msgid "Are you sure that you want to delete the selected reports?"
-msgstr ""
+msgstr "Ali ste prepričani, de želite izbrisati izbrane prispevke?"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
@@ -1839,7 +1791,7 @@ msgid "Please write a motivation for the reply"
 msgstr ""
 
 msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr ""
+msgstr "Dovoli prejemnikom prestavitev roka veljavnosti"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "S potrditvijo, prelagate rok veljavnosti do:"
@@ -1957,7 +1909,7 @@ msgid "The answer is too short."
 msgstr ""
 
 msgid "The specified input is not valid."
-msgstr ""
+msgstr "Vnos ni veljaven."
 
 msgid "Submissions disabled"
 msgstr "Prispevki so onemogočeni"
@@ -1974,7 +1926,7 @@ msgid "We will try to get back to you as soon as possible."
 msgstr ""
 
 msgid "Remember your receipt for this report."
-msgstr ""
+msgstr "Zapomnite si kodo tega prispevka."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
@@ -1982,7 +1934,7 @@ msgid ""
 msgstr ""
 
 msgid "View your report"
-msgstr ""
+msgstr "Oglejte  si svojo naznanitev"
 
 msgid "Recipient selection"
 msgstr "Izbira prejemnika"
@@ -2023,9 +1975,6 @@ msgid ""
 "respective field."
 msgstr ""
 
-msgid "Confirm password"
-msgstr "Potrdite geslo"
-
 msgid "Please choose a different username."
 msgstr ""
 
@@ -2045,19 +1994,19 @@ msgid "You have completed the platform wizard."
 msgstr ""
 
 msgid "Fill out your report"
-msgstr ""
+msgstr "Izpolnite vašo naznanitev"
 
 msgid "Short title"
 msgstr "Skrajšan naslov"
 
 msgid "Describe your report in a few words."
-msgstr ""
+msgstr "V nekaj besedah opišite vaš prispevek"
 
 msgid "Full description"
 msgstr "Poln opis"
 
 msgid "Describe your report in detail."
-msgstr ""
+msgstr "Podrobno opišite vaš prispevek"
 
 msgid "Attach files relevant to the report."
 msgstr ""
@@ -2256,10 +2205,10 @@ msgid "Test email"
 msgstr "Testna elektronska pošta"
 
 msgid "This is an email to notify you of a new comment on an existing report."
-msgstr ""
+msgstr "To elektronsko sporočilo vas obvešča o novem komentarju na obstoječem prispevku."
 
 msgid "The report can be accessed at:"
-msgstr ""
+msgstr "Posodobljene informacije so na voljo:"
 
 msgid "New comment"
 msgstr "Nov komentar"
@@ -2360,10 +2309,10 @@ msgid ""
 msgstr ""
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "Zahtevek je na voljo:"
 
 msgid "New request of access to a whistleblower's identity"
-msgstr ""
+msgstr "Nov zahtevek za dostop do identitete žvižgača"
 
 msgid ""
 "This is an email to notify you that the whistleblower for the report "

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-16 20:14+0000\n"
+"PO-Revision-Date: 2020-05-05 16:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1069,10 +1069,6 @@ msgstr ""
 msgid "Input should be similar to:"
 msgstr ""
 
-msgid ""
-"The platform does not seem to be reachable with the configured hostname."
-msgstr ""
-
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
 msgstr ""
 
@@ -1523,9 +1519,6 @@ msgid "Please note that all the associated data will be permanently deleted."
 msgstr "გთხოვთ იზრუნოს, რომ ყველა დაკავშირებული მონაცემები სწორად იშლება."
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
-
-msgid "Attention!"
 msgstr ""
 
 msgid "Install an authenticator app on your phone"

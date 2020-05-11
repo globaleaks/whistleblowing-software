@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-16 20:14+0000\n"
+"PO-Revision-Date: 2020-05-05 16:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1072,10 +1072,6 @@ msgstr "Vertsnavn"
 msgid "Input should be similar to:"
 msgstr "Inndata bør ligne:"
 
-msgid ""
-"The platform does not seem to be reachable with the configured hostname."
-msgstr "Plattformen ser ikke ut til å kunne nås med det oppsatte vertsnavnet."
-
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
 msgstr "Bruk av Let's Encrypt krever at du samtykker til deres tjenestevilkår."
 
@@ -1527,9 +1523,6 @@ msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
-
-msgid "Attention!"
-msgstr "Oppmerksomhet!"
 
 msgid "Install an authenticator app on your phone"
 msgstr ""

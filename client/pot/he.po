@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-16 20:14+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-05-06 13:43+0000\n"
+"Last-Translator: ION\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -41,7 +41,7 @@ msgid "Languages"
 msgstr "שפות"
 
 msgid "Text customization"
-msgstr "התאמה אישית של מלל"
+msgstr "התאמה אישית של טקסט"
 
 msgid "Advanced settings"
 msgstr "הגדרות מתקדמות"
@@ -202,7 +202,7 @@ msgid "Number"
 msgstr "מספר"
 
 msgid "Email"
-msgstr "דוא\"ל"
+msgstr "דוא״ל"
 
 msgid "Regular expression validator"
 msgstr "מאמת ביטוי רגולרי"
@@ -389,13 +389,13 @@ msgid "Type to search…"
 msgstr "הקלד כדי לחפש..."
 
 msgid "Silence email notifications"
-msgstr "השקט התראות דוא\"ל"
+msgstr "השקט התראות דוא״ל"
 
 msgid "Turn on email notifications"
-msgstr "הפעל התראות דוא\"ל"
+msgstr "הפעל התראות דוא״ל"
 
 msgid "Enter an email address for the administrator"
-msgstr "הכנס כתובת דוא\"ל עבור המינהלן"
+msgstr "הכנס כתובת דוא״ל עבור המינהלן"
 
 msgid "Enter a password for the administrator"
 msgstr "הכנס סיסמה עבור המינהלן"
@@ -419,7 +419,7 @@ msgid "Input validation"
 msgstr ""
 
 msgid "Email address"
-msgstr "כתובת דוא\"ל"
+msgstr "כתובת דוא״ל"
 
 msgid "Custom"
 msgstr "מותאם אישית"
@@ -542,10 +542,10 @@ msgid "Select"
 msgstr "בחר"
 
 msgid "Selected by default"
-msgstr "נבחר ע\"י ברירת מחדל"
+msgstr "נבחר ע״י ברירת מחדל"
 
 msgid "Unselected by default"
-msgstr "לא נבחר ע\"י ברירת מחדל"
+msgstr "לא נבחר ע״י ברירת מחדל"
 
 msgid "Surname"
 msgstr "שם משפחה"
@@ -721,7 +721,7 @@ msgid "Custom privacy panel"
 msgstr "לוח פרטיות מותאם אישית"
 
 msgid "Text shown when the whistleblower is not using Tor"
-msgstr "הצג מלל זה כאשר מתריע לא משתמש בתור"
+msgstr "הצג טקסט זה כאשר חושף שחיתות לא משתמש ב־Tor"
 
 msgid "Disable the privacy panel"
 msgstr "בטל תג הפרטיות"
@@ -739,7 +739,7 @@ msgid "Title of the submission page"
 msgstr "כותרת דף ההגשה"
 
 msgid "Show contexts in alphabetical order"
-msgstr "בהקשרים הצג לפי סדר אלפביתי"
+msgstr "הראה הקשרים בסדר אלפאביתי"
 
 msgid "Title of the receipt page"
 msgstr "כותרת של דף הקבלה"
@@ -1084,10 +1084,6 @@ msgstr "שם מארח"
 msgid "Input should be similar to:"
 msgstr ""
 
-msgid ""
-"The platform does not seem to be reachable with the configured hostname."
-msgstr ""
-
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
 msgstr ""
 
@@ -1110,7 +1106,7 @@ msgid "Organizational unit"
 msgstr "יחידת ארגון"
 
 msgid "Invalid email address"
-msgstr "כתובת דוא\"ל לא חוקית"
+msgstr "כתובת דוא״ל בלתי תקפה"
 
 msgid "Generate"
 msgstr "חולל"
@@ -1129,10 +1125,10 @@ msgid "Private Key"
 msgstr "מפתח פרטי"
 
 msgid "Certificate Signing Request"
-msgstr ""
+msgstr "בקשת החתמת תעודה"
 
 msgid "Certificate"
-msgstr ""
+msgstr "תעודה"
 
 msgid "Valid until:"
 msgstr "תקף עד:"
@@ -1141,7 +1137,7 @@ msgid "Issuer:"
 msgstr "מנפיק:"
 
 msgid "Intermediate Certificates"
-msgstr ""
+msgstr "תעודות ביניים"
 
 msgid "Enable"
 msgstr "אפשר"
@@ -1197,7 +1193,7 @@ msgid "To"
 msgstr "אל"
 
 msgid "SMTP email address"
-msgstr "כתובת הדוא\"ל SMTP"
+msgstr "כתובת דוא״ל SMTP"
 
 msgid "SMTP server address"
 msgstr "כתובת שרת SMTP"
@@ -1395,7 +1391,7 @@ msgid "Subdomain"
 msgstr "תת‏־תחום"
 
 msgid "Creation date:"
-msgstr ""
+msgstr "תאריך יצירה:"
 
 msgid "Send an account activation link to the user."
 msgstr "שלח קישור שיפעול חשבון אל המשתמש."
@@ -1539,9 +1535,6 @@ msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
-
-msgid "Attention!"
-msgstr "תשומת לב!"
 
 msgid "Install an authenticator app on your phone"
 msgstr "התקן יישום אימות בטלפון שלך"
@@ -2199,7 +2192,7 @@ msgid "Name: {Name}"
 msgstr "שם: {Name}"
 
 msgid "Email: {Email}"
-msgstr "דוא\"ל: {Email}"
+msgstr "דוא״ל: {Email}"
 
 msgid "Language: {Language}"
 msgstr "שפה: {Language}"
@@ -2220,7 +2213,7 @@ msgid ""
 msgstr ""
 
 msgid "Test email"
-msgstr "בחן דוא\"ל"
+msgstr "בחן דוא״ל"
 
 msgid "This is an email to notify you of a new comment on an existing report."
 msgstr ""
@@ -2245,7 +2238,7 @@ msgid ""
 msgstr ""
 
 msgid "Email change request"
-msgstr "בקשת שינוי דוא\"ל"
+msgstr "בקשת שינוי דוא״ל"
 
 msgid "From: {Author}"
 msgstr "מאת: {Author}"

@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-16 20:14+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-05-05 16:49+0000\n"
+"Last-Translator: Chi-Hsun Tsai\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1076,10 +1076,6 @@ msgstr "主機名稱"
 msgid "Input should be similar to:"
 msgstr "輪入應相這樣："
 
-msgid ""
-"The platform does not seem to be reachable with the configured hostname."
-msgstr "這個平台似乎因未設定主機名稱而無法找到"
-
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
 msgstr "使用Let's Encrypt需要先同意他們的服務條款"
 
@@ -1531,9 +1527,6 @@ msgstr "請注意所有相關的資料將會永久消失。"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "這是示範平台，請勿利用它作掲密提交。"
-
-msgid "Attention!"
-msgstr "注𨐌"
 
 msgid "Install an authenticator app on your phone"
 msgstr "在手機上安裝驗證應用程式"

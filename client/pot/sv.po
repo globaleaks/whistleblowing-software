@@ -10,8 +10,8 @@
 # John Andersson <johnandersson86@hotmail.com>, 2015
 # Jonas Hedberg <jonas@hedberg2.se>, 2015
 # Jonatan Nyberg <jonatan.nyberg.karl@gmail.com>, 2018
-# Kristoffer Grundström <hamnisdude@gmail.com>, 2014
-# Kristoffer Grundström <hamnisdude@gmail.com>, 2014
+# Kristoffer Grundström <lovaren@gmail.com>, 2014
+# Kristoffer Grundström <lovaren@gmail.com>, 2014
 # Linus Malmgren <linus@malmgren.nu>, 2015
 # martinedstrom <martin@martinedstrom.com>, 2014
 # martinedstrom <martin@martinedstrom.com>, 2014
@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-16 20:14+0000\n"
+"PO-Revision-Date: 2020-05-05 16:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -829,10 +829,10 @@ msgid "High"
 msgstr "Hög"
 
 msgid "megabytes"
-msgstr ""
+msgstr "megabytes"
 
 msgid "percentage"
-msgstr ""
+msgstr "procent"
 
 msgid "Enable automatic backups"
 msgstr ""
@@ -880,7 +880,7 @@ msgid "Name"
 msgstr "Namn"
 
 msgid "Last access"
-msgstr ""
+msgstr "Senaste åtkomst"
 
 msgid "Alarm level"
 msgstr "Larmnivå"
@@ -1084,10 +1084,6 @@ msgid "Hostname"
 msgstr "Värdnamn"
 
 msgid "Input should be similar to:"
-msgstr ""
-
-msgid ""
-"The platform does not seem to be reachable with the configured hostname."
 msgstr ""
 
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
@@ -1451,15 +1447,15 @@ msgid "Forcefully selected"
 msgstr "Kraftfull vald"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr ""
+msgstr "Tillåt mottagare att förlänga utgångsdatumet för tipset"
 
 msgid "Allow the recipient to delete reports"
-msgstr ""
+msgstr "Tillåt mottagaren att ta bort tips"
 
 msgid ""
 "Allow the recipient to grant permissions to whistleblowers on specific "
 "reports"
-msgstr ""
+msgstr "Tillåt mottagare att förlänga utgångsdatumet för tipset"
 
 msgid "User has administrative access to the following features:"
 msgstr ""
@@ -1495,16 +1491,16 @@ msgid "Authentication failed"
 msgstr "Ingen behörighet"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "Koden är antingen fel eller så har tipset upphört."
 
 msgid "Site:"
 msgstr ""
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr ""
+msgstr "Har du redan lämnat ett tips? Ange din kod."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr ""
+msgstr "Koden är antingen fel eller så har tipset upphört."
 
 msgid "Username:"
 msgstr "Användarnamn:"
@@ -1537,12 +1533,9 @@ msgid "Assign score points"
 msgstr ""
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
+msgstr "Var god och säkerställ att alla associerade filer tas bort ordentligt."
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
-
-msgid "Attention!"
 msgstr ""
 
 msgid "Install an authenticator app on your phone"
@@ -1601,7 +1594,7 @@ msgid "Follow the project on:"
 msgstr ""
 
 msgid "Hint: How to hide your receipt"
-msgstr ""
+msgstr "Ledtråd: Hur du döljer din kod"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
@@ -1800,7 +1793,7 @@ msgid ""
 msgstr ""
 
 msgid "Are you sure that you want to delete the selected reports?"
-msgstr ""
+msgstr "Är du säker på att du vill radera alla valda tips?"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
@@ -1814,7 +1807,7 @@ msgid "Are you sure that you want to postpone the report expiration date?"
 msgstr ""
 
 msgid "By confirming, you will postpone the expiration date to:"
-msgstr ""
+msgstr "Genom att klicka på förlängning så kommer du att förlänga tipsets utgångsdatum till:"
 
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
@@ -2014,13 +2007,13 @@ msgid "You have completed the platform wizard."
 msgstr ""
 
 msgid "Fill out your report"
-msgstr ""
+msgstr "Fyll i ditt tips"
 
 msgid "Short title"
 msgstr "Kort titel"
 
 msgid "Describe your report in a few words."
-msgstr ""
+msgstr "Beskriv ditt tips med några få ord"
 
 msgid "Full description"
 msgstr "Hela beskrivningen"
@@ -2029,7 +2022,7 @@ msgid "Describe your report in detail."
 msgstr ""
 
 msgid "Attach files relevant to the report."
-msgstr ""
+msgstr "Bifoga relevanta filer till tipset"
 
 msgid "Do you want to provide your identification information?"
 msgstr ""

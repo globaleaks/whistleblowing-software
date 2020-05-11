@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-16 20:14+0000\n"
+"PO-Revision-Date: 2020-05-05 16:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1079,10 +1079,6 @@ msgstr "Hostiteľské meno"
 msgid "Input should be similar to:"
 msgstr "Vstup by mal byť podobný:"
 
-msgid ""
-"The platform does not seem to be reachable with the configured hostname."
-msgstr "Zdá sa, že platforma nie je dostupná s nakonfigurovaným názvom hostiteľa."
-
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
 msgstr "Použitie funkcie Let's Encrypt  si vyžaduje súhlas s ich zmluvnými podmienkami."
 
@@ -1534,9 +1530,6 @@ msgstr "Upozorňujeme, že všetky súvisiace údaje budú natrvalo odstránené
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Toto je demo platforma, nepoužívajte ju prosím pre skutočné podanie."
-
-msgid "Attention!"
-msgstr "Pozor!"
 
 msgid "Install an authenticator app on your phone"
 msgstr "Nainštalujte si do telefónu overovaciu aplikáciu"

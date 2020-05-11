@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-24 07:56+0000\n"
-"Last-Translator: Trang Bui <trangbui257@gmail.com>\n"
+"PO-Revision-Date: 2020-05-05 16:49+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1079,10 +1079,6 @@ msgstr "Tên máy chủ"
 msgid "Input should be similar to:"
 msgstr "Đầu vào phải tương tự như:"
 
-msgid ""
-"The platform does not seem to be reachable with the configured hostname."
-msgstr "Nền tảng này dường như không thể thực hiện được với tên máy đã được cấu hình"
-
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
 msgstr "Sử dụng Let's Encrypt yêu cầu bạn đồng ý với Điều khoản dịch vụ "
 
@@ -1534,9 +1530,6 @@ msgstr "Xin lưu ý rằng tất cả các dữ liệu liên quan sẽ bị xóa
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Đây là một nền tảng thử nghiệm, vui lòng không sử dụng để gửi tin thật."
-
-msgid "Attention!"
-msgstr "Chú ý!"
 
 msgid "Install an authenticator app on your phone"
 msgstr "Cài đặt ứng dụng xác thực trên điện thoại của bạn"

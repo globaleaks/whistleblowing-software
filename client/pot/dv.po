@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-16 20:14+0000\n"
+"PO-Revision-Date: 2020-05-05 16:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1074,10 +1074,6 @@ msgstr "ނެޓްވޯކަށް ވަންނަން ބޭނުންކުރާ ވަޞީލަ�
 msgid "Input should be similar to:"
 msgstr "އިންޕުޓް އެއްގޮތް ވާންޖެހެނީ"
 
-msgid ""
-"The platform does not seem to be reachable with the configured hostname."
-msgstr "ބޭނުންކުރެވިފައިވާ ހޮސްޓްނޭމްއާއެކު ޕްލެޓްފޯމަށް ވާސިލެއްނުވެވޭ"
-
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
 msgstr "'ލެޓްސް އެންކްރިޕްޓް' ޙިދުމަތް ބޭނުންކުރުމަށް ޚިދުމަތުގެ އިޤްރާާރުގައިވާ ކަންކަމަށް ރުހި ޤަބޫލުވާންޖެހޭ. "
 
@@ -1529,9 +1525,6 @@ msgstr "މިކަމާޢި ގުޅޭ ހުރިހާ މަޢުލޫމާތެއް ޑިލީ
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "މީ މިސާލު ޕްލެޓްފޯމްއެއް، މި ޕްލެޓްފޯމް ބޭނުންކޮއްގެން އަސްލު ރިޕޯޓު ހުށައެއްނޭޅޭނެ. "
-
-msgid "Attention!"
-msgstr "ސަމާލުކަމަށް!"
 
 msgid "Install an authenticator app on your phone"
 msgstr "ހުއްދަކަށަވަރުކުރާ އެޕްލިކޭޝަނެއް ފޯނަށް އިންސްޓޯލްކުރައްވާ"

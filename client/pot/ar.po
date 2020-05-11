@@ -42,7 +42,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-16 20:14+0000\n"
+"PO-Revision-Date: 2020-05-05 16:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1107,10 +1107,6 @@ msgstr "اسم المضيف"
 msgid "Input should be similar to:"
 msgstr "يجب أن يكون المدخل مشابها ل:"
 
-msgid ""
-"The platform does not seem to be reachable with the configured hostname."
-msgstr "لا يبدو أنه يمكن الوصول الى المنصة باستخدام اسم المضيف الذي تمت تهيئته."
-
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
 msgstr "يتطلب استخدام Let's Encrypt الموافقة على بنود الخدمة الخاصة بهم."
 
@@ -1562,9 +1558,6 @@ msgstr "يرجى ملاحظة أنه سيتم حذف كل البيانات ال�
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "هذه منصة تجريبية، يرجى عدم استخدامها في أي بلاغ حقيقي."
-
-msgid "Attention!"
-msgstr "انتباه!"
 
 msgid "Install an authenticator app on your phone"
 msgstr "تثبيت تطبيق استيثاقي على هاتفك"

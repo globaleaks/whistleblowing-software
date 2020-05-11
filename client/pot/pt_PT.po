@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-16 20:14+0000\n"
+"PO-Revision-Date: 2020-05-05 16:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1088,10 +1088,6 @@ msgstr "Nome de Hospedeiro"
 msgid "Input should be similar to:"
 msgstr "A inserção deverá ser similar a:"
 
-msgid ""
-"The platform does not seem to be reachable with the configured hostname."
-msgstr "A plataforma não parece estar acessível com o nome do hospedeiro configurado."
-
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
 msgstr "A utilização de \"Vamos Encriptar\" exige a concordância com os 'Termos do Serviço'."
 
@@ -1543,9 +1539,6 @@ msgstr "Por favor, note que todos os dados associados serão perdidos para sempr
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
-
-msgid "Attention!"
-msgstr "Atenção!"
 
 msgid "Install an authenticator app on your phone"
 msgstr ""

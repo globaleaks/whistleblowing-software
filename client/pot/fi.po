@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-04-16 20:14+0000\n"
+"PO-Revision-Date: 2020-05-05 16:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1075,10 +1075,6 @@ msgstr "Tietokoneen nimi"
 msgid "Input should be similar to:"
 msgstr "Tekstikentän sallittu muoto: "
 
-msgid ""
-"The platform does not seem to be reachable with the configured hostname."
-msgstr "Palvelu ei vaikuta olevan tavoitettavissa asetuksissa määritellyn tietokoneen nimen (hostname) perusteella."
-
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
 msgstr "Let's Encrypt -palvelua käytettäessä täytyy hyväksyä heidän käyttöehdot."
 
@@ -1530,9 +1526,6 @@ msgstr "Huomaa, että kaikki tiliin liittyvät tiedot poistetaan pysyvästi."
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Tämä on palvelun esittelyversio, eikä se sovellu oikeiden vihjeiden lähettämiseen."
-
-msgid "Attention!"
-msgstr "Huomio!"
 
 msgid "Install an authenticator app on your phone"
 msgstr "Asenna kirjautumissovellus puhelimeesi"
