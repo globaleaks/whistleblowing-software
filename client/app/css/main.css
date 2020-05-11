@@ -400,7 +400,12 @@ input[type="file"] {
   width: 20rem;
 }
 
-.nav-link.active .fa-chevron-right {
+.sidebar-link {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.sidebar-link.active .fa-chevron-right {
   color: #000;
 }
 
