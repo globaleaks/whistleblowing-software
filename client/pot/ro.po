@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-05 16:49+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-05-11 19:31+0000\n"
+"Last-Translator: Cristina Lupu <cristina@cji.ro>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,7 +32,7 @@ msgid "Log in"
 msgstr "Autentificare"
 
 msgid "Main configuration"
-msgstr "Configurație principală"
+msgstr "Configurare de bază"
 
 msgid "Theme customization"
 msgstr "Personalizare temă "
@@ -86,10 +86,10 @@ msgid "Preferences"
 msgstr "Preferințe"
 
 msgid "Notification settings"
-msgstr "Setări alerte"
+msgstr "Setări de notificare"
 
 msgid "file unavailable"
-msgstr "document indisponibil"
+msgstr "fișier indisponibil"
 
 msgid "Date"
 msgstr "Dată"
@@ -122,7 +122,7 @@ msgid "Details"
 msgstr "Detalii"
 
 msgid "Platform wizard"
-msgstr "Ajutor pentru instalarea platformei"
+msgstr "Configurator platformă"
 
 msgid "CREDIT CARD"
 msgstr "CARD DE CREDIT"
@@ -161,10 +161,10 @@ msgid "The whistleblower has not read the last update yet"
 msgstr "Avertizorul de integritate nu a citit încă ultima actualizare. "
 
 msgid "Move up"
-msgstr "Urcă"
+msgstr "Mută în sus"
 
 msgid "Move down"
-msgstr "Coboară"
+msgstr "Mută în jos"
 
 msgid "Move left"
 msgstr "Mută ​​la stânga"
@@ -205,7 +205,7 @@ msgid "Email"
 msgstr "Email"
 
 msgid "Regular expression validator"
-msgstr "Verificare expresii comune"
+msgstr "Verificare expresie regulată"
 
 msgid "Minimum number of input characters"
 msgstr "Numărul minim de caractere"
@@ -319,7 +319,7 @@ msgid "Templates"
 msgstr "Template-uri"
 
 msgid "HTTPS settings"
-msgstr "Setările HTTPS"
+msgstr "Setări HTTPS"
 
 msgid "URL redirects"
 msgstr "Redirecționări URL"
@@ -380,7 +380,7 @@ msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Text afișat în partea de sus a interfeței pentru selectarea contextelor"
 
 msgid "Show small context cards on submission interface"
-msgstr "Afișați mici carduri cu contextul pe interfața de înregistrare a sesizării"
+msgstr "Afișați mici carduri cu contextul în interfața de înregistrare a sesizării"
 
 msgid "Type of context selector:"
 msgstr "Tipul selectorului de context:"
@@ -428,7 +428,7 @@ msgid "None"
 msgstr "Nici unul"
 
 msgid "Regular expression"
-msgstr "Expresie uzuală"
+msgstr "Expresie regulată"
 
 msgid "Activate"
 msgstr "Activează"
@@ -470,7 +470,7 @@ msgid "Download the Tor Browser"
 msgstr "Descarcă browser-ul Tor."
 
 msgid "Audit log"
-msgstr "Audit log"
+msgstr "Log de audit"
 
 msgid "Stats"
 msgstr "Statistici"
@@ -533,7 +533,7 @@ msgid "Create your whistleblowing platform"
 msgstr "Crează propria platformă destinată avertizării de integritate."
 
 msgid "Collapse"
-msgstr "Micșorează"
+msgstr "Restrânge"
 
 msgid "Expand"
 msgstr "Extinde"
@@ -569,7 +569,7 @@ msgid "Previous"
 msgstr "Înapoi"
 
 msgid "Next"
-msgstr "Mai departe"
+msgstr "Înainte"
 
 msgid "First"
 msgstr "Primul"
@@ -590,7 +590,7 @@ msgid "Block the submission"
 msgstr "Blochează sesizarea"
 
 msgid "Skip the recipient account creation."
-msgstr "Sări peste crearea contului pentru destinatar."
+msgstr "Sari peste crearea contului pentru destinatar."
 
 msgid "Send activation link"
 msgstr "Trimite link-ul pentru activare."
@@ -730,7 +730,7 @@ msgid "Enable the receipt hint"
 msgstr "Activează indiciul pentru codul de înregistrare"
 
 msgid "Landing page"
-msgstr "Pagina de destinație"
+msgstr "Pagina de start"
 
 msgid "Default questionnaire"
 msgstr "Chestionar standard"
@@ -751,7 +751,7 @@ msgid "Size limit for file attachments"
 msgstr "Dimensiunea maximă a fișierelor atașate"
 
 msgid "in megabytes"
-msgstr "în megabiți"
+msgstr "în megabytes"
 
 msgid "Enable HSTS preload"
 msgstr "Pornește previzualizarea HSTS"
@@ -789,25 +789,25 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Modifică această setare doar dacă ști ce faci."
 
 msgid "Enable custodian user role"
-msgstr "Pornește rolul de custode al utilizatorului"
+msgstr "Activează rolul de custode al utilizatorului"
 
 msgid "Enable scoring system"
-msgstr "Pornește sistemul de scoring"
+msgstr "Activează sistemul de evaluare"
 
 msgid "Enable private labels"
 msgstr "Activează etichetele private"
 
 msgid "Logging level"
-msgstr "Nivel acces "
+msgstr "Nivel logare "
 
 msgid "Log accesses of internal users"
-msgstr "Niveluri de acces pentru utilizatorii interni"
+msgstr "Logare acces utilizatori interni"
 
 msgid "Notify administrators of software problems"
 msgstr "Notifică administratorii privind problemele de software"
 
 msgid "Notify developers of software problems"
-msgstr "Notifică developerii privind problemele de software"
+msgstr "Notifică programatorii privind problemele de software"
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
@@ -827,7 +827,7 @@ msgid "High"
 msgstr "Ridicat"
 
 msgid "megabytes"
-msgstr "megabiți"
+msgstr "megabytes"
 
 msgid "percentage"
 msgstr "procentaj"
@@ -860,13 +860,13 @@ msgid "Free disk space"
 msgstr "Spațiu liber pe disc"
 
 msgid "Event ID"
-msgstr "ID-ul sesiunii"
+msgstr "ID-ul evenimentului"
 
 msgid "Time"
 msgstr "Timp"
 
 msgid "Event"
-msgstr "Sesiune"
+msgstr "Eveniment"
 
 msgid "Response time"
 msgstr "Timp de răspuns"
@@ -884,7 +884,7 @@ msgid "Alarm level"
 msgstr "Nivelul de alarmă"
 
 msgid "Events"
-msgstr "Sesiuni"
+msgstr "Evenimente"
 
 msgid "Substatuses"
 msgstr "Sub-statusuri"
@@ -938,7 +938,7 @@ msgid "Text"
 msgstr "Text"
 
 msgid "Footer"
-msgstr "Footer"
+msgstr "Subsol"
 
 msgid "Upload"
 msgstr "Încărcă"
@@ -947,7 +947,7 @@ msgid "Download"
 msgstr "Descărcă"
 
 msgid "Language:"
-msgstr "Limbă"
+msgstr "Limbă:"
 
 msgid "Add custom text"
 msgstr "Adaugă text personalizat"
@@ -962,7 +962,7 @@ msgid "Original translation"
 msgstr "Traducerea originală"
 
 msgid "Custom translation"
-msgstr "Traducere personalizata"
+msgstr "Traducere personalizată"
 
 msgid "Contexts"
 msgstr "Contexte"
@@ -1034,7 +1034,7 @@ msgid "Let recipients upload files to whistleblowers"
 msgstr "Permite destinatarilor să trimită fișiere către avertizori"
 
 msgid "Scoring system options"
-msgstr "Opțiunile sistemului de scoring"
+msgstr "Opțiunile sistemului de evaluare"
 
 msgid "Threshold"
 msgstr "Limită"
@@ -1079,7 +1079,7 @@ msgid "Example:"
 msgstr "Exemplu:"
 
 msgid "Hostname"
-msgstr "Nume host "
+msgstr "Nume server "
 
 msgid "Input should be similar to:"
 msgstr "Inputul trebuie să fie similar cu:"
@@ -1232,16 +1232,16 @@ msgid "Type"
 msgstr "Tip"
 
 msgid "Single-line text input"
-msgstr "Introducerea textului cu o singură linie"
+msgstr "Input text cu o singură linie"
 
 msgid "Multi-line text input"
-msgstr "Introducerea textului multi-line"
+msgstr "Input text multi-line"
 
 msgid "Selection box"
 msgstr "Caseta de selecție"
 
 msgid "Checkbox"
-msgstr "Căsuță de verificare"
+msgstr "Casetă de bifat"
 
 msgid "Terms of service"
 msgstr "Termeni și condiții"
@@ -1289,13 +1289,13 @@ msgid "Encrypt"
 msgstr "Criptează"
 
 msgid "Template override"
-msgstr ""
+msgstr "Suprascriere template "
 
 msgid "Phone number"
 msgstr "Număr de telefon"
 
 msgid "Checkbox label"
-msgstr "Etichetă pentru caseta de verificare"
+msgstr "Etichetă casetă de bifat"
 
 msgid "Add multimedia content"
 msgstr "Adăugă conținut multimedia"
@@ -1310,13 +1310,13 @@ msgid "Video"
 msgstr "Video"
 
 msgid "Subject answer visibility to custodian authorization"
-msgstr ""
+msgstr "Permite vizualizarea răspunsului după autorizarea custodelui"
 
 msgid "Text shown upon negative answer"
 msgstr "Text afișat atunci când răspunsul este negativ"
 
 msgid "Prompt confirmation upon negative answer"
-msgstr "Confirmare promptă atunci când răspunsul este negativ"
+msgstr "Cere confirmare atunci când răspunsul este negativ"
 
 msgid "Text shown upon confirmation"
 msgstr "Text afișat în momentul confirmării"
@@ -1358,7 +1358,7 @@ msgid "Case management"
 msgstr "Managementul cazurilor"
 
 msgid "Network settings"
-msgstr "Setările rețelei"
+msgstr "Setări de rețea"
 
 msgid "Mode:"
 msgstr "Mod:"
@@ -1418,7 +1418,7 @@ msgid "Language"
 msgstr "Limba"
 
 msgid "Enable email notifications"
-msgstr "Pornește notificările prin email"
+msgstr "Activează notificările prin email"
 
 msgid "Details of the PGP key:"
 msgstr "Detalii ale cheii PGP:"
@@ -1528,7 +1528,7 @@ msgid "The operation will reset the configuration and cannot be undone."
 msgstr "Operațiunea va reseta configurarea și nu poate fi anulată."
 
 msgid "Assign score points"
-msgstr "Atribuie puncte pentru scoring"
+msgstr "Atribuie puncte pentru evaluare"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Atenție, toate datele asociate vor fi șterse definitiv. "
@@ -1583,7 +1583,7 @@ msgstr "Dacă organizația ta non-profit are nevoie de ajutor pentru a susține 
 msgid ""
 "For professional support and development of anti corruption and compliance "
 "projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr "Pentru sprijin profesional și dezvoltarea de programe de anticorupție și conformitate, contactează întreprinderea socială ce gestionează Globaleaks:"
+msgstr "Pentru sprijin profesional și dezvoltarea de programe de anticorupție și conformitate, contactează întreprinderea socială ce gestionează GlobaLeaks:"
 
 msgid "Join our chat:"
 msgstr "Participă la discuția noastră:"
@@ -1592,12 +1592,12 @@ msgid "Follow the project on:"
 msgstr "Urmărește proiectul pe: "
 
 msgid "Hint: How to hide your receipt"
-msgstr "Sfat: Cum să ascunzi numărul înregistrării"
+msgstr "Sfat: Cum să ascunzi numărul sesizării"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "Un mod bun de a ascunde numărul înregistrării este să îl notezi pe o bucată de hârtie precum un număr de card (să includă și o dată de expirare)."
+msgstr "Un mod bun de a ascunde numărul sesizării este să îl notezi pe o bucată de hârtie precum un număr de card (să includă și o dată de expirare)."
 
 msgid "Error!"
 msgstr "Eroare!"
@@ -1621,7 +1621,7 @@ msgid "Resource can only be accessed via the Tor network"
 msgstr "Resursa poate fi accesată numai prin intermediul rețelei Tor"
 
 msgid "The upload request exceeds the size limit"
-msgstr "Solicitarea de încărcare depășește dimensiunea maximă acceptabilă"
+msgstr "Atașamentul depășește dimensiunea maximă acceptată"
 
 msgid "Success!"
 msgstr "Succes!"
@@ -1636,7 +1636,7 @@ msgid "Set up email encryption by providing a PGP public key"
 msgstr "Configurează criptarea email-ului prin furnizarea unei chei publice PGP"
 
 msgid "Account recovery key"
-msgstr "Cheia pentru recuperarea contului este: "
+msgstr "Cheia pentru recuperarea contului"
 
 msgid "Current password"
 msgstr "Parolă curentă"
@@ -1658,7 +1658,7 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Apoi, copiază și inserează următoarea adresă în browser-ul Tor:"
 
 msgid "Enter a name for the copy"
-msgstr "Introdu un nume pentru duplicat"
+msgstr "Introdu un nume pentru copie"
 
 msgid "Select a file or drag it here."
 msgstr "Selectează un fișier sau trage-l aici."
@@ -1676,7 +1676,7 @@ msgid "Estimated upload time:"
 msgstr "Timpul estimat pentru încărcare:"
 
 msgid "Size:"
-msgstr "Dimensiune"
+msgstr "Dimensiune:"
 
 msgid "Enable the Ricochet panel"
 msgstr "Activează panoul de control pentru Ricochet"
@@ -1710,7 +1710,7 @@ msgid ""
 msgstr "Platforma nu este configurată pentru conexiuni HTTPS și, de aceea, trebuie folosită doar pentru teste."
 
 msgid "Use case"
-msgstr "Folosește acest caz"
+msgstr "Exemplu de utilizare"
 
 msgid "Anticorruption"
 msgstr "Anticorupție"
@@ -1725,7 +1725,7 @@ msgid "Civic activism"
 msgstr "Activism civic"
 
 msgid "Submit"
-msgstr "Depune"
+msgstr "Trimite"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Destinatarii ți-au solicitat să completezi un chestionar suplimentar."
@@ -1746,7 +1746,7 @@ msgid "To:"
 msgstr "Pentru:"
 
 msgid "Filename"
-msgstr "Numele fișierului"
+msgstr "Nume fișier"
 
 msgid "Upload date"
 msgstr "Data încărcării"
@@ -1788,7 +1788,7 @@ msgstr "Tot ceea ce este stocat pe platformă și asociat cu sesizarea va fi șt
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
 " saved on your computer, must be deleted manually."
-msgstr "Nu uita ca tot ceea ce nu este stocat pe platforma, spre exemplu fisierele salvate pe computerul tau, trebuie sters manual."
+msgstr "Nu uita că tot ceea ce nu este stocat pe platformă, spre exemplu fișierele salvate pe computerul tău, trebuie șters manual."
 
 msgid "Are you sure that you want to delete the selected reports?"
 msgstr "Ești sigur(ă) că vrei să ștergi sesizările selectate?"
@@ -1931,7 +1931,7 @@ msgid ""
 msgstr "Te conectezi la server fără anonimat iar acest server permite doar sesizări anonimizate."
 
 msgid "Thank you!"
-msgstr "Mulțumesc!"
+msgstr "Mulțumim!"
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Vom încerca să te contactăm cât de curând posibil."
@@ -1993,7 +1993,7 @@ msgid "The user will receive an activation link via email."
 msgstr "Utilizatorul va primi prin email un link pentru activare."
 
 msgid "License Agreement"
-msgstr "Licență"
+msgstr "Termeni și Condiții Licență"
 
 msgid "Please review the license terms before proceeding."
 msgstr "Te rugăm să citești și să accepți termenii și condițiile licenței înainte de a continua."
@@ -2198,7 +2198,7 @@ msgid "Language: {Language}"
 msgstr "Limbă: {Language}"
 
 msgid "Use case: {UseCase}"
-msgstr "Folosiți cazul: {UseCase}"
+msgstr "Scop: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "Noua platformă pentru avertizorii de integritate înregistrată"
@@ -2238,7 +2238,7 @@ msgid ""
 msgstr "Dacă nu ai solicitat această modificare,  schimbă parola și contactează administratorul de sistem."
 
 msgid "Email change request"
-msgstr "Solicitare pentru modificarea emailului"
+msgstr "Solicitare pentru schimbarea emailului"
 
 msgid "From: {Author}"
 msgstr "De la: {Author}"
@@ -2247,7 +2247,7 @@ msgid "Date: {EventTime}"
 msgstr "Dată: {EventTime}"
 
 msgid "From: Whistleblower"
-msgstr "De la: Whistleblower"
+msgstr "De la: Avertizor de intergritate"
 
 msgid "Date: {SubmissionDate}"
 msgstr "Dată: {SubmissionDate}"
