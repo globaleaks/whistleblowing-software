@@ -116,7 +116,6 @@ table {
 .title1, .title2, .title3 {
   margin-top: 1rem;
   margin-bottom: 1em;
-  line-height: 1.25rem;
 }
 
 .title1 {
@@ -332,7 +331,6 @@ input[type="file"] {
   color: transparent;
   width: 0.1px;
   height: 0.1px;
-  line-height: normal;
   z-index: 0;
 }
 
@@ -356,7 +354,6 @@ input[type="file"] {
   overflow: auto;
   white-space: pre-wrap;
   word-wrap: break-word;
-  line-height: 1.1;
 }
 
 .nav, .pagination, .carousel, .card-title a {
@@ -376,8 +373,7 @@ input[type="file"] {
 .drag-drop {
   padding: 15px;
   border: 2px #f1f1f1 dashed;
-  border-radius: 5px;
-  line-height: 34px;
+  line-height: 2rem;
 }
 
 .drag-over {
