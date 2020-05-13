@@ -196,21 +196,23 @@
   </div>
   <div data-ng-show="step == 6" data-ng-form="wizardFormStep6" data-ng-class="{'was-validated': validated6}" class="clearfix">
     <div class="row wizard-block">
-      <div class="form-group">
-        <div>
-          <div class="title1" data-translate>License Agreement</div>
-          <div class="" data-translate>Please review the license terms before proceeding.</div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <div>
+            <div class="title1" data-translate>License Agreement</div>
+            <div class="" data-translate>Please review the license terms before proceeding.</div>
+          </div>
+          <pre id='wizardLicense' class="license" data-ng-include="'license.txt'"></pre>
+          <div class="form-check">
+            <input name="tosAccept" class="tos-agreement-input form-check-input inputelem" type="checkbox" data-ng-model="tosAccept" required>
+            <span class="tos-agreement-label form-check-label" data-translate>I have read and agree to the terms of the License Agreement.</span>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input inputelem" data-ng-model="wizard.enable_developers_exception_notification" type="checkbox">
+            <span data-translate>Notify developers of software problems</span>
+          </div>
+          <div data-translate>By enabling this feature, you will contribute to the development and security of the platform.</div>
         </div>
-        <pre id='wizardLicense' class="license" data-ng-include="'license.txt'"></pre>
-        <div class="form-check">
-          <input name="tosAccept" class="tos-agreement-input form-check-input inputelem" type="checkbox" data-ng-model="tosAccept" required>
-          <span class="tos-agreement-label form-check-label" data-translate>I have read and agree to the terms of the License Agreement.</span>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input inputelem" data-ng-model="wizard.enable_developers_exception_notification" type="checkbox">
-          <span data-translate>Notify developers of software problems</span>
-        </div>
-        <div data-translate>By enabling this feature, you will contribute to the development and security of the platform.</div>
       </div>
     </div>
     <div class="pager float-right">

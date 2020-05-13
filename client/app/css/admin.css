@@ -3,13 +3,10 @@
 }
 
 .configItem {
-  background-color: #FCFCFC;
-  box-shadow: 2px 1px 5px #888888;
-  border: 1px solid #CCC;
-  border-radius: 3px;
+  background-color: #F5F7FA;
+  border: 1px solid #C8D1E0;
   padding: 1rem;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
+  margin: 1rem auto;
 }
 
 #StepAddBox, #StepsEditBox, #FieldsEditBox, #ContextAdvancedSettingsBox, #SubstateEditBox {
@@ -23,12 +20,12 @@
 
 .field {
   position: relative;
-  border: 1px solid rgb(204, 204, 204);
+  border: 1px solid #C8D1E0;
   margin-bottom: 20px;
 }
 
 .editorHeader {
-  background-color: rgb(252, 252, 252);
+  background-color: #F5F7FA;
 }
 
 .editorHeaderTitle {
@@ -54,7 +51,7 @@
   background-color: #fff;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  border: 1px solid #cccccc;
+  border: 1px solid #C8D1E0;
 }
 
 .selectionContextItem .checkbox {

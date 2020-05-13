@@ -1,4 +1,4 @@
-<div class="col-md-9" data-ng-controller="TenantCtrl">
+<div data-ng-controller="TenantCtrl">
    <uib-tabset>
     <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}">
       <form name="tenantsForm" class="tab-content" data-ng-include="tab.template" novalidate></form>

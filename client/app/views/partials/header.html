@@ -1,10 +1,8 @@
 <div id="HeaderBox">
   <div class="row clearfix">
     <div class="col-md-7 float-left">
-      <div id="LogoBox" class="float-left" data-ng-if="public.node.logo">
-        <img data-ng-click="setHomepage()" class="img-fluid" alt="project logo" data-ng-src="{{Utils.imgDataUri(public.node.logo)}}" />
-      </div>
-      <div id="TitleBox" class="float-left">{{pt}}</div>
+      <img id="LogoBox" data-ng-click="setHomepage()" class="img-fluid" alt="project logo" data-ng-src="{{Utils.imgDataUri(public.node.logo)}}" />
+      <span id="TitleBox">{{pt}}</span>
     </div>
     <div class="col-md-5 float-right">
       <span id="UserBox" class="float-right" data-ng-include="'views/partials/user.html'"></span>

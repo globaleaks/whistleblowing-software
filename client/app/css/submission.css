@@ -8,7 +8,7 @@
 .stepDescription,
 .fieldDescription
 {
-  color: #333;
+  color: #333840;
   white-space: pre-wrap;
 }
 
@@ -27,8 +27,8 @@
 .contextCard, .receiverCard {
   margin-bottom: 1rem;
   padding: 1rem;
-  background-color: white;
-  border: 1px solid #DDD;
+  background-color: #FFF;
+  border: 1px solid #AFBACC;
   border-radius: 4px;
   word-wrap: break-word;
 }
@@ -91,7 +91,7 @@
 }
 
 #MaxSelectableReceiverBox {
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
 
 .code {
@@ -100,15 +100,15 @@
 }
 
 #KeyCodeBox {
-  background-color: #EEE;
+  background-color: #f5f7fa;
   margin: 1rem auto;
-  padding: 0.5rem;
+  padding: 1rem;
   width: 80%;
   text-align: center;
   font-family: monospace;
   font-size: 1.2rem;
   font-weight: bold;
-  border-radius: 1rem;
+  border-radius: 3px;
 }
 
 #SubmissionButtons button {
@@ -117,7 +117,7 @@
 }
 
 #SubmissionErrors {
-  margin-top: 20px;
+  margin-top: 1rem;
 }
 
 #FileUploadsHeader {
@@ -135,10 +135,10 @@
 }
 
 .err-link {
-  padding: 2px 0.4em;
-  background-color: #f9f2f4;
-  border-radius: 4px;
-  color: #c7254e;
+  padding: 0.2rem 0.4rem;
+  background-color: #faf0f0;
+  border-radius: 3px;
+  color: #DE1B1B;
 }
 
 .question-label {
@@ -154,7 +154,7 @@
 }
 
 .mapoutline {
-  fill: #ddd;
+  fill: #333840;
   stroke: #000;
   stroke-width: 1.5px;
 }

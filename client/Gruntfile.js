@@ -159,6 +159,168 @@ module.exports = function(grunt) {
               replacement: function () {
                 return "src:url('" + fileToDataURI("tmp/lib/webfonts/fa-solid-900.woff") + "') format('woff');";
               }
+            },
+            {
+              pattern: /(0056b3|007bff|17a2b8)/ig,
+              replacement: function () {
+                return "3777BC";
+              }
+            },
+            {
+              pattern: /0069d9/ig,
+              replacement: function () {
+                return "3C88CB";
+              }
+            },
+            {
+              pattern: /005cbf/ig,
+              replacement: function () {
+                return "5EA9E9";
+              }
+            },
+            {
+              pattern: /0062cc/ig,
+              replacement: function () {
+                return "8FCBF8";
+              }
+            },
+            {
+              pattern: /6c757d/ig,
+              replacement: function () {
+                return "58606E";
+              }
+            },
+            {
+              pattern: /5a6268/ig,
+              replacement: function () {
+                return "707A8A";
+              }
+            },
+            {
+              pattern: /4e555b/ig,
+              replacement: function () {
+                return "8E99AB";
+              }
+            },
+            {
+              pattern: /(545b62)/ig,
+              replacement: function () {
+                return "AFBACC";
+              }
+            },
+            {
+              pattern: /(28a745|20c997)/ig,
+              replacement: function () {
+                return "2A854E";
+              }
+            },
+            {
+              pattern: /218838/ig,
+              replacement: function () {
+                return "3BA164";
+              }
+            },
+            {
+              pattern: /1e7e34/ig,
+              replacement: function () {
+                return "57C282";
+              }
+            },
+            {
+              pattern: /1c7430/ig,
+              replacement: function () {
+                return "7DDBA3";
+              }
+            },
+            {
+              pattern: /ffc107/ig,
+              replacement: function () {
+                return "FED644";
+              }
+            },
+            {
+              pattern: /e0a800/ig,
+              replacement: function () {
+                return "FFE383";
+              }
+            },
+            {
+              pattern: /d39e00/ig,
+              replacement: function () {
+                return "FFF3CA";
+              }
+            },
+            {
+              pattern: /c69500/ig,
+              replacement: function () {
+                return "FFFCF1";
+              }
+            },
+            {
+              pattern: /dc3545/ig,
+              replacement: function () {
+                return "DE1B1B";
+              }
+            },
+            {
+              pattern: /c82333/ig,
+              replacement: function () {
+                return "F55353";
+              }
+            },
+            {
+              pattern: /b21f2d/ig,
+              replacement: function () {
+                return "FA8E8E";
+              }
+            },
+            {
+              pattern: /bd2130/ig,
+              replacement: function () {
+                return "FAB6B6";
+              }
+            },
+            {
+              pattern: /6610f2/ig,
+              replacement: function () {
+                return "a7a7fa";
+              }
+            },
+            {
+              pattern: /6f42c1/ig,
+              replacement: function () {
+                return "c79bf2";
+              }
+            },
+            {
+              pattern: /e83e8c/ig,
+              replacement: function () {
+                return "f78bb8";
+              }
+            },
+            {
+              pattern: /fd7e14/ig,
+              replacement: function () {
+                return "e89c3f";
+              }
+            },
+            {
+              pattern: /(e9ecef|f8f9fa)/ig,
+              replacement: function () {
+                return "f5f7fa";
+              }
+            },
+            {
+              pattern: /(212529|343a40)/ig,
+              replacement: function () {
+                return "333840";
+              }
+            },
+            {
+              pattern: /(CED4DA|DEE2E6)/ig,
+              replacement: function () {
+                return "C8D1E0";
+              }
             }
           ]
         }

@@ -1,10 +1,13 @@
 * {
   word-wrap: break-word;
   word-break: break-word;
+  box-shadow: none;
+  --font-family-sans-serif: Helvetica, Arial, sans-serif;
+  --font-family-monospace: "Courier New", monospace;
 }
 
 html, body {
-  color: #222;
+  color: #333840;
   background-color: #FFF;
   height: 100%;
   min-height: 400px;
@@ -21,18 +24,24 @@ html, body {
 }
 
 #HeaderBox, #ContentBox, #NoScript, #FooterBox, #DemoBadge, #PrivacyBadge {
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
 #FooterBox {
-  border-top: 1px solid #E5E5E5;
-  background-color: #F5F5F5;
+  background-color: #f5f7fa;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 a, a:hover, a:active, a:focus {
+  color: #3777BC;
   outline: 0;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #5EA9E9;
 }
 
 input, textarea, select {
@@ -46,7 +55,7 @@ table {
 
 #HeaderBox {
   color: #FFF;
-  background-color: #428bca;
+  background-color: #3777BC;
 }
 
 #HeaderBox:after {
@@ -66,13 +75,16 @@ table {
 
 #LogoBox {
   margin-right: 1rem;
+  vertical-align: middle;
 }
 
 #TitleBox {
   font-size: 2rem;
+  line-height: 1;
   font-weight: bold;
   padding-right: 1rem;
   white-space: pre-wrap;
+  vertical-align: middle;
 }
 
 #LanguagePickerBox, #LoginStatusBox, #LoginFormBox {
@@ -84,11 +96,11 @@ table {
 }
 
 .language-link-selected {
-  color: #000;
+  color: #333840;
 }
 
 #LoginStatusBox, #LoginFormBox {
-  color: #000;
+  color: #333840;
   padding: 1rem;
   background-color: #FFF;
   border-radius: 5px;
@@ -108,14 +120,8 @@ table {
 }
 
 #PrivacyBadge {
-  background-color: #222;
+  background-color: #000;
   color: #FFF;
-  font-size: 1rem;
-}
-
-.title1, .title2, .title3 {
-  margin-top: 1rem;
-  margin-bottom: 1em;
 }
 
 .title1 {
@@ -143,7 +149,7 @@ table {
   position: relative;
   width: 10rem;
   height: 10rem;
-  border: 1px solid #DDD;
+  border: 2px dashed #AFBACC;
   z-index: 0;
   text-align: center;
 }
@@ -151,7 +157,8 @@ table {
 #wizardLicense {
   max-height: 20rem;
   overflow-y: scroll;
-  border: 1px solid #CCC;
+  background-color: #f5f7fa;
+  border: 1px solid #AFBACC;
   padding: 1rem;
 }
 
@@ -196,19 +203,18 @@ table {
 
 .wizard-block {
   position: relative;
-  margin: 2rem 0;
+  margin-bottom: 2rem;
 }
 
 .wizard-block .title {
   position: relative;
   font-size: 1.2rem;
-  color: #000;
   margin-bottom: 1rem;
 }
 
 .wizard-help-hint {
-  border-left: 3px solid #8a6d3b;
-  background-color: #fcf8e3;
+  border-left: 2px solid #AFBACC;
+  background-color: #FFFCF1;
   padding: 1.25rem;
 }
 
@@ -216,13 +222,12 @@ table {
   display: inline-block;
 }
 
-.LoginErrorBox {
+.LoginErrorBox, .LoginErrorBoxHomepage {
   margin: 0.2rem;
 }
 
 .LoginErrorBoxHomepage {
   text-align: center;
-  margin: 0.2rem;
 }
 
 #WhistleblowerLoginForm .input-group {
@@ -238,8 +243,7 @@ table {
 }
 
 .nested {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 0, 1rem;
 }
 
 .imgPreview {
@@ -260,20 +264,18 @@ table {
   width: 10rem;
   text-align: center;
   line-height: 10rem;
-  border: 1px solid #CCC;
+  border: 1px solid #AFBACC;
 }
 
 .fileUploadIconSmall {
   position: absolute;
   font-size: 10rem;
-  color: #000;
   top: 0;
   right: 0;
 }
 
 .fileUploadIcon {
   font-size: 2rem;
-  color: #000;
 }
 
 .fileUploadProgress {
@@ -313,7 +315,7 @@ table {
 .disabled-interface {
   pointer-events: none;
   user-select: none;
-  background-color: #eee;
+  background-color: #333840;
   opacity: 0.60;
   filter: alpha(opacity=0.60);
 }
@@ -347,9 +349,9 @@ input[type="file"] {
 .tos-text {
   display: block;
   padding: 10px;
-  background-color: #f5f5f5;
+  background-color: #f5f7fa;
   color: #333;
-  border: 1px solid #ccc;
+  border: 1px solid #AFBACC;
   max-height: 15rem;
   overflow: auto;
   white-space: pre-wrap;
@@ -371,13 +373,12 @@ input[type="file"] {
 }
 
 .drag-drop {
-  padding: 15px;
-  border: 2px #f1f1f1 dashed;
-  line-height: 2rem;
+  padding: 2em;
+  border: 1px #AFBACC dashed;
 }
 
 .drag-over {
-  border-color: #007bff;
+  border-style: solid;
 }
 
 .custom-file {
@@ -402,7 +403,7 @@ input[type="file"] {
 }
 
 .sidebar-link.active .fa-chevron-right {
-  color: #000;
+  color: #333840;
 }
 
 [dir] label {

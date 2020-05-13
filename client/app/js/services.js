@@ -836,7 +836,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
             pt2 = "";
 
 	if (!pt1 && !$rootScope.public.node.name) {
-          pt1 = "GlobaLeaks";
+          pt1 = "GLOBALEAKS";
         }
 
         if ($location.path() === "/") {
