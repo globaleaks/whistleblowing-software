@@ -217,7 +217,7 @@ def update_context(session, tid, context_id, request, language):
 
 
 @transact
-def order_elements(session, tid, req_args, *args, **kwargs):
+def order_elements(session, tid, ids, *args, **kwargs):
     """
     Transaction for reodering context elements
 
@@ -228,7 +228,6 @@ def order_elements(session, tid, req_args, *args, **kwargs):
     ctxs = session.query(models.Context).filter(models.Context.tid == tid)
 
     id_dict = {ctx.id: ctx for ctx in ctxs}
-    ids = req_args['ids']
 
     if len(ids) != len(id_dict) or set(ids) != set(id_dict):
         raise errors.InputValidationError('list does not contain all context ids')
@@ -257,9 +256,12 @@ class ContextsCollection(OperationHandler):
 
         return create_context(self.request.tid, request, self.request.language)
 
+    def order_elements(self, req_args, *args, **kwargs):
+        return order_elements(self.request.tid, req_args['ids'])
+
     def operation_descriptors(self):
         return {
-            'order_elements': (order_elements, {'ids': [str]}),
+            'order_elements': (ContextsCollection.order_elements, {'ids': [str]}),
         }
 
 
