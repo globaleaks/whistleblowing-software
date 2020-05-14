@@ -2,6 +2,8 @@
 
 echo -e "Running the GlobaLeaks installation...\nIn case of failure please report encountered issues to the ticketing system at: https://github.com/globaleaks/GlobaLeaks/issues\n"
 
+export DEBIAN_FRONTEND=noninteractive
+
 # User Permission Check
 if [ ! $(id -u) = 0 ]; then
   echo "Error: GlobaLeaks install script must be run by root"
@@ -170,20 +172,19 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^buster$" ; then
   prompt_for_continuation
 fi
 
-if [ ! -f /etc/timezone ]; then
-  export DEBIAN_FRONTEND=noninteractive
-  apt-get install -y tzdata
-  echo "Etc/UTC" > /etc/timezone
-  dpkg-reconfigure -f noninteractive tzdata
-  unset DEBIAN_FRONTEND
-fi
-
 if [ -f /etc/init.d/globaleaks ]; then
   DO "/etc/init.d/globaleaks stop"
 fi
 
 # align apt-get cache to up-to-date state on configured repositories
 DO "apt-get -y update"
+
+if [ ! -f /etc/timezone ]; then
+  echo "Etc/UTC" > /etc/timezone
+fi
+
+apt-get install -y tzdata
+dpkg-reconfigure -f noninteractive tzdata
 
 DO "apt-get -y install curl gnupg net-tools software-properties-common"
 
