@@ -16,15 +16,16 @@
 # Marcel Oomens <mail@marceloomens.com>, 2018
 # Margaret Megan <megan_marg@yahoo.com>, 2017
 # M. Miguel Adrian Pasha <m.miguel.ap@gmail.com>, 2018
-# Muhammad Yusuf <myusuffin@gmail.com>, 2018
+# M Yusuf Fin <myusuffin@gmail.com>, 2018
+# M Yusuf Fin <myusuffin@gmail.com>, 2020
 # nirel dede <nireldede2710@gmail.com>, 2018
 # Oenang Dewi <oenangdewi@gmail.com>, 2018
 # Ratna Ariyanti <ratna.ariyanti@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-05 16:49+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-05-14 07:26+0000\n"
+"Last-Translator: M Yusuf Fin <myusuffin@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -474,7 +475,7 @@ msgid "Download the Tor Browser"
 msgstr "Unduh Peramban Tor"
 
 msgid "Audit log"
-msgstr ""
+msgstr "Log pemeriksaan"
 
 msgid "Stats"
 msgstr "Stats"
@@ -643,10 +644,10 @@ msgid "Blow the whistle"
 msgstr "Kirim dokumen"
 
 msgid "Your report was successful."
-msgstr ""
+msgstr "Laporan Anda telah berhasil"
 
 msgid "Report"
-msgstr ""
+msgstr "Laporan"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Sebelum melanjutkan, mohon atur kata sandi baru."
@@ -676,7 +677,7 @@ msgid "Proceed"
 msgstr "Lanjutkan"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr ""
+msgstr "Sebelum memproses, silahkan gunakan verifikasi 2 langkah"
 
 msgid "Disable submissions"
 msgstr "Menonaktifkan kiriman"
@@ -685,7 +686,7 @@ msgid "Enable encryption"
 msgstr "Aktifkan enkripsi"
 
 msgid "Enable administrators to change user passwords"
-msgstr ""
+msgstr "Izinkan administrator untuk mengubah sandi pengguna"
 
 msgid "Enable multisite feature"
 msgstr "Aktifkan fitur multi situs"
@@ -697,7 +698,7 @@ msgid "Enable simplified login"
 msgstr "Mengaktifkan metode masuk yang mudah"
 
 msgid "Allow recipients to delete reports"
-msgstr ""
+msgstr "Izinkan penerima untuk menghapus laporan"
 
 msgid "Allow recipients to postpone expiration date of the report"
 msgstr "Penerima dapat mengubah tanggal kedaluwarsa pengiriman "
@@ -846,7 +847,7 @@ msgid "Weekly"
 msgstr "Mingguan"
 
 msgid "Montly"
-msgstr ""
+msgstr "Bulanan"
 
 msgid "Remote"
 msgstr "Remote "
@@ -909,7 +910,7 @@ msgid "Cancel"
 msgstr "Batal"
 
 msgid "Report statuses"
-msgstr ""
+msgstr "Status laporan"
 
 msgid "Logo"
 msgstr "Logo"
@@ -918,7 +919,7 @@ msgid "Project name"
 msgstr "Judul Proyek"
 
 msgid "Header title"
-msgstr ""
+msgstr "Judul tajuk"
 
 msgid "Homepage title"
 msgstr "Judul laman utama"
