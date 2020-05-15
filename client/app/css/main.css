@@ -31,7 +31,10 @@ html, body {
   background-color: #f5f7fa;
   text-align: center;
   font-size: 1rem;
-  font-weight: bold;
+}
+
+#FooterBox a, #FooterBox a:hover, #Footerbox a:active, #FooterBox a:focus {
+  color: #2161A6;
 }
 
 a, a:hover, a:active, a:focus {
@@ -402,7 +405,7 @@ input[type="file"] {
   margin-bottom: 1rem;
 }
 
-.sidebar-link.active .fa-chevron-right {
+a.sidebar-link.active, a.sidebar-link.active:hover, a.sidebar-link.active:active, a.sidebar-link.active:focus {
   color: #333840;
 }
 

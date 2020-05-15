@@ -774,6 +774,8 @@ var GLClient = angular.module("GLClient", [
           Utils.set_title();
         }
       }
+
+      $rootScope.location_path = $location.path();
     });
 
     $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
