@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-05 16:49+0000\n"
+"PO-Revision-Date: 2020-05-15 21:32+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -740,6 +740,9 @@ msgstr "رسید صفحہ کے عنوان"
 
 msgid "Title of the status page of the report"
 msgstr "پیغام جمع کرانے کی حیثیت صفحے کے سب سے اوپر پر دکھایا گیا"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "فائل اٹیچمنٹ کے سائز کی حد"
@@ -2302,8 +2305,8 @@ msgstr "مخبر کی شناخت تک رسائی کی اجازت"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the report {TipNum}."
-msgstr "اس سے آپ کو مطلع کرنے کے لئے ایک ای میل ایک متولی آپ {TipNum} جمع کرانے کے لئے wistleblowing شناخت تک رسائی کی تردید کی ہے."
+" whistleblowing identity for the report {TipNum}."
+msgstr ""
 
 msgid "Access to whistleblower's identity denied"
 msgstr "مخبر کی شناخت تک رسائی کی تردید"

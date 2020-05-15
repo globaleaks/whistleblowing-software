@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-05 16:49+0000\n"
-"Last-Translator: Igor <lyricaltumor@gmail.com>\n"
+"PO-Revision-Date: 2020-05-15 21:32+0000\n"
+"Last-Translator: Sasa Lekovic <sasa.lekovic1@gmail.com>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -737,6 +737,9 @@ msgstr "Naziv stranice za potvrde"
 
 msgid "Title of the status page of the report"
 msgstr "Poruka prikazana na vrhu stranice o statusu prijave"
+
+msgid "Do not expose users' names"
+msgstr "Ne pokazuj imena korisnika"
 
 msgid "Size limit for file attachments"
 msgstr "Ograničenje veličine privitaka"
@@ -2299,8 +2302,8 @@ msgstr "Pristup zviždačevom identitetu autoriziran"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the report {TipNum}."
-msgstr "Ovo je email kojim Vas se obaviještava da Vas je skrbnik autorizirao za pristup identitetu zviždača za prijavu {TipNum}."
+" whistleblowing identity for the report {TipNum}."
+msgstr ""
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Pristup zviždačevom identitetu odbijen"

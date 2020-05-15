@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-05 17:46+0000\n"
+"PO-Revision-Date: 2020-05-15 21:32+0000\n"
 "Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -766,6 +766,9 @@ msgstr "Titre de la page du reçu"
 
 msgid "Title of the status page of the report"
 msgstr "Titre de la page d’état du signalement"
+
+msgid "Do not expose users' names"
+msgstr "Ne pas exposer les noms des utilisateurs"
 
 msgid "Size limit for file attachments"
 msgstr "Limite de taille des fichiers joints"
@@ -2328,8 +2331,8 @@ msgstr "L’accès à l’identité du lanceur d’alerte est autorisé"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the report {TipNum}."
-msgstr "Le but de ce courriel est de vous aviser qu’un gardien vous a refusé l’accès à l’identité du créateur du signalement {TipNum}."
+" whistleblowing identity for the report {TipNum}."
+msgstr "Le but de ce courriel est de vous aviser qu’un gardien vous a refusé l’accès à l’identité du lanceur d’alerte du signalement {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "L’accès à l’identité du lanceur d’alerte est refusé"

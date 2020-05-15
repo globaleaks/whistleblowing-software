@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-05 16:49+0000\n"
-"Last-Translator: Krassy Temelkova <temelkovakrasi@yahoo.co.uk>\n"
+"PO-Revision-Date: 2020-05-15 21:37+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -740,6 +740,9 @@ msgstr "Заглавие на страницата за получаване"
 
 msgid "Title of the status page of the report"
 msgstr "Съобщение, показвано най-горе на страницата за статус на подадения сигнал"
+
+msgid "Do not expose users' names"
+msgstr "Не разкривайте потребителските имена"
 
 msgid "Size limit for file attachments"
 msgstr "Ограничение на размера на прикачените файлове"
@@ -2302,8 +2305,8 @@ msgstr "Достъпът до самоличността на подателя �
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the report {TipNum}."
-msgstr "Този имейл Ви уведомява, че пазителят на данни Ви е отказал достъпа до самоличността на подателя на сигнал {TipNum}."
+" whistleblowing identity for the report {TipNum}."
+msgstr "Този имейл Ви уведомява, че пазителят на данни Ви е разрешил достъпа до самоличността на подателя на сигнал {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Достъпът до самоличността на подателя на сигнал е отказан"

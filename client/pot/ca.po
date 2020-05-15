@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-05 16:49+0000\n"
-"Last-Translator: Joan Bitlloch <joanbit@gmail.com>\n"
+"PO-Revision-Date: 2020-05-15 21:37+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -745,6 +745,9 @@ msgstr "Títol de la pàgina del codi de rebut"
 
 msgid "Title of the status page of the report"
 msgstr "Títol de la pàgina d’estat de l’informe"
+
+msgid "Do not expose users' names"
+msgstr "No mostrar els noms d'usuari"
 
 msgid "Size limit for file attachments"
 msgstr "Límit de mida per als arxius adjunts"
@@ -2307,7 +2310,7 @@ msgstr "Accés autoritzat a la identitat de l'informador"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the report {TipNum}."
+" whistleblowing identity for the report {TipNum}."
 msgstr "Amb aquest missatge de correu electrònic et volem notificar que el guardià t'ha denegat l'accés a la identitat de l'informador de l'informe {TipNum}."
 
 msgid "Access to whistleblower's identity denied"

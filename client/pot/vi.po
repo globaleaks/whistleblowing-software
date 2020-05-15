@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-05 16:49+0000\n"
+"PO-Revision-Date: 2020-05-15 21:41+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -741,6 +741,9 @@ msgstr "Tiêu đề của trang biên nhận"
 
 msgid "Title of the status page of the report"
 msgstr "Tin nhắn hiển thị trên đầu trang trạng thái của các báo cáo."
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Kích thước giới hạn cho tập tin đính kèm"
@@ -2303,7 +2306,7 @@ msgstr "Truy cập vào danh tính người tố giác được ủy quyền"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the report {TipNum}."
+" whistleblowing identity for the report {TipNum}."
 msgstr "Đây là một email thông báo cho bạn rằng một người giám hộ đã ủy quyền cho bạn để truy cập vào các tính wistleblowing cho việc nộp {TipNum}."
 
 msgid "Access to whistleblower's identity denied"

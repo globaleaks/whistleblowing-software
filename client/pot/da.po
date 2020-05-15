@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-06 12:48+0000\n"
-"Last-Translator: Casper Petersen <casper_petersen@hotmail.com>\n"
+"PO-Revision-Date: 2020-05-15 21:35+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -738,6 +738,9 @@ msgstr "Titel på kvitteringssiden"
 
 msgid "Title of the status page of the report"
 msgstr "Titel på siden med status for indleveringen"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Størrelsesgrænse for vedhæftede filer"
@@ -2300,7 +2303,7 @@ msgstr "Adgang til whistleblowers identitet godkendes"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the report {TipNum}."
+" whistleblowing identity for the report {TipNum}."
 msgstr "Dette er en e-mail for at underrette dig om, at en tilsynsførende har autoriseret dig til at få adgang til whistleblowerens identitet i forbindelse med indsendelsen {TipNum}."
 
 msgid "Access to whistleblower's identity denied"

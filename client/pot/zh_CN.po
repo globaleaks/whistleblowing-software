@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-05 16:49+0000\n"
-"Last-Translator: ff98sha\n"
+"PO-Revision-Date: 2020-05-15 21:38+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -747,6 +747,9 @@ msgstr "收件页标题"
 
 msgid "Title of the status page of the report"
 msgstr "报告状况页的标题"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "附件文件的大小限制"
@@ -2309,7 +2312,7 @@ msgstr "读取告密人的身份识别已被许可"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the report {TipNum}."
+" whistleblowing identity for the report {TipNum}."
 msgstr "此邮件提醒您保管人否决了您读取报告 {TipNum} 揭密者身分之请求。"
 
 msgid "Access to whistleblower's identity denied"

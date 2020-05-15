@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-14 07:26+0000\n"
-"Last-Translator: M Yusuf Fin <myusuffin@gmail.com>\n"
+"PO-Revision-Date: 2020-05-15 21:32+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -751,6 +751,9 @@ msgstr "Judul halaman tanda terima "
 
 msgid "Title of the status page of the report"
 msgstr "Pesan tampil di bagian atas halaman status dari laporan"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Batasan ukuran untuk berkas lampiran "
@@ -2313,7 +2316,7 @@ msgstr "Akses ke identitas informan publik telah diizinkan."
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the report {TipNum}."
+" whistleblowing identity for the report {TipNum}."
 msgstr ""
 
 msgid "Access to whistleblower's identity denied"

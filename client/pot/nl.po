@@ -43,8 +43,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-05 16:49+0000\n"
-"Last-Translator: Paco Mens <mens@freepressunlimited.org>\n"
+"PO-Revision-Date: 2020-05-15 21:35+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -770,6 +770,9 @@ msgstr "Titel van de ontvanger-pagina"
 
 msgid "Title of the status page of the report"
 msgstr "Titel van de inzending status-pagina"
+
+msgid "Do not expose users' names"
+msgstr "Gebruikersnamen niet prijsgeven"
 
 msgid "Size limit for file attachments"
 msgstr "Maximale grootte voor bestandsbijlagen"
@@ -2332,7 +2335,7 @@ msgstr "Toegang tot de identiteit van de klokkenluider is goedgekeurd"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the report {TipNum}."
+" whistleblowing identity for the report {TipNum}."
 msgstr "Dit is een e-mail om je erop te wijzen dat een toezichthouder je geen toegang verleent om de identiteit van de klokkenluider voor deze inzending te openen {TipNum}."
 
 msgid "Access to whistleblower's identity denied"

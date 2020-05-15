@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-05 16:49+0000\n"
+"PO-Revision-Date: 2020-05-15 21:32+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -732,6 +732,9 @@ msgstr "영수증 페이지의 제목"
 
 msgid "Title of the status page of the report"
 msgstr "메시지 제출의 상태 페이지의 상단에 표시"
+
+msgid "Do not expose users' names"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "첨부 파일에 대한 크기 제한"
@@ -2294,7 +2297,7 @@ msgstr "내부 고발자의 신원에 대한 액세스 권한을"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the report {TipNum}."
+" whistleblowing identity for the report {TipNum}."
 msgstr ""
 
 msgid "Access to whistleblower's identity denied"

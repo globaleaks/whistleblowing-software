@@ -36,7 +36,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-05 16:49+0000\n"
+"PO-Revision-Date: 2020-05-15 21:37+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -763,6 +763,9 @@ msgstr "Título de la página de recibo"
 
 msgid "Title of the status page of the report"
 msgstr "Título de la página de estado de la entrega"
+
+msgid "Do not expose users' names"
+msgstr "No mostrar los nombres de usuario"
 
 msgid "Size limit for file attachments"
 msgstr "Límite de tamaño para ficheros adjuntos"
@@ -2325,7 +2328,7 @@ msgstr "Acceso a la identidad del alertador autorizada"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the report {TipNum}."
+" whistleblowing identity for the report {TipNum}."
 msgstr "Este es un correo para notificarte de que un custodio te ha autorizado a acceder a la identidad del alertador para el reporte {TipNum}."
 
 msgid "Access to whistleblower's identity denied"

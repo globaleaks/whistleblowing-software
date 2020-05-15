@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-05 16:49+0000\n"
+"PO-Revision-Date: 2020-05-15 21:37+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -741,6 +741,9 @@ msgstr "Titulok stránky s potvrdením"
 
 msgid "Title of the status page of the report"
 msgstr "Titulok stránky s odoslaním"
+
+msgid "Do not expose users' names"
+msgstr "Neodhaľte mená užívateľov. "
 
 msgid "Size limit for file attachments"
 msgstr "Limit veľkosti pre prílohy"
@@ -2303,7 +2306,7 @@ msgstr "Prístup k identite oznamovateľa bol schválený"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the report {TipNum}."
+" whistleblowing identity for the report {TipNum}."
 msgstr "Toto je emailové upozornenie, že správca zamietol prístup k identite oznamovateľa podania {TipNum}."
 
 msgid "Access to whistleblower's identity denied"

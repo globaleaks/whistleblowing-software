@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-05 16:49+0000\n"
+"PO-Revision-Date: 2020-05-15 21:36+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -737,6 +737,9 @@ msgstr "Kuittisivun otsikko"
 
 msgid "Title of the status page of the report"
 msgstr "Vihjeen tila -sivun otsikko"
+
+msgid "Do not expose users' names"
+msgstr "Älä paljasta käyttäjien nimiä"
 
 msgid "Size limit for file attachments"
 msgstr "Liitetiedostojen kokorajoitus"
@@ -2299,7 +2302,7 @@ msgstr "Pääsy vihjeen antajan henkilötietoihin vahvistettu"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the report {TipNum}."
+" whistleblowing identity for the report {TipNum}."
 msgstr "Valvoja on sallinut sinulle pääsyn vihjeen antajan henkilötietoihin liittyen vihjeeseen numero {TipNum}. "
 
 msgid "Access to whistleblower's identity denied"

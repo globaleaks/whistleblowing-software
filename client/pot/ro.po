@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-11 19:31+0000\n"
-"Last-Translator: Cristina Lupu <cristina@cji.ro>\n"
+"PO-Revision-Date: 2020-05-15 21:42+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -746,6 +746,9 @@ msgstr "Titlul paginii de primire"
 
 msgid "Title of the status page of the report"
 msgstr "Titlul paginii ce conține statusul sesizării"
+
+msgid "Do not expose users' names"
+msgstr "Nu devoala numele utilizatorilor"
 
 msgid "Size limit for file attachments"
 msgstr "Dimensiunea maximă a fișierelor atașate"
@@ -2308,7 +2311,7 @@ msgstr "Accesul la identitatea avertizorului a fost autorizat."
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
-" wistleblowing identity for the report {TipNum}."
+" whistleblowing identity for the report {TipNum}."
 msgstr "Acesta este un e-mail pentru a te anunța că un custode ți-a refuzat accesul la identitatea avertizorului sesizării {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
