@@ -35,7 +35,7 @@ describe("Admin configure custom CSS", function() {
     await browser.get("/");
     await browser.wait(EC.invisibilityOf($("#LogoBox")));
 
-    await browser.get("/#/login?embed=true");
+    await browser.get("/#/login?embedded=true");
     await browser.wait(EC.invisibilityOf($("#login-button")));
 
     await browser.gl.utils.login_admin();
