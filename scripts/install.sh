@@ -167,7 +167,7 @@ last_command "check_distro"
 
 if echo "$DISTRO_CODENAME" | grep -vqE "^buster$" ; then
   echo "WARNING: GlobaLeaks is actively developed and tested specifically for Debian 10 (Buster)"
-  echo "WARNING: The software lifecycle of the platform includes full support for all Debian and Ubuntu LTS versions starting from Debian 10 Ubuntu 20.04"
+  echo "WARNING: The software lifecycle of the platform includes full support for all Debian and Ubuntu LTS versions starting from Debian 10 and Ubuntu 20.04"
 
   prompt_for_continuation
 fi
