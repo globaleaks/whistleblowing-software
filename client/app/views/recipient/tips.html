@@ -170,7 +170,7 @@
       <tbody id="tipListTableBody">
       <tr id="tip-{{$index}}"
           data-ng-repeat="tip in filteredTips | orderBy:sortKey:sortReverse | limitTo:itemsPerPage:((currentPage - 1) * itemsPerPage)"
-          data-ng-class="{'newTip': tip.new, 'selectedTip': isSelected(tip.id)}" class="tip-action-open"
+          data-ng-class="{'font-weight-bold': tip.new, 'selectedTip': isSelected(tip.id)}" class="tip-action-open"
           data-ng-click="Utils.go('/status/' + tip.id)">
         <td>
           <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission">

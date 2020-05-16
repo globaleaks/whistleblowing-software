@@ -153,14 +153,6 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$scope", "$uibModal", "FileS
     aRes.$update().then(refreshConfig);
   };
 
-  $scope.statusClass = function(fileSum) {
-    if (angular.isDefined(fileSum) && fileSum.set) {
-      return {"text-success": true};
-    } else {
-      return {};
-    }
-  };
-
   $scope.deleteFile = function(resource) {
     $uibModal.open({
       templateUrl: "views/partials/admin_review_action.html",

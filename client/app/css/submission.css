@@ -96,7 +96,7 @@
 
 .code {
   color: 000;
-  background: #eee;
+  background: #EBEFF5;
 }
 
 #KeyCodeBox {
@@ -122,8 +122,7 @@
 
 #FileUploadsHeader {
   font-size: 1.2rem;
-  margin-top: 1.2rem;
-  margin-bottom: 1.2rem;
+  margin: 1.2rem 0;;
 }
 
 .cc-text-1 {
@@ -139,10 +138,6 @@
   background-color: #faf0f0;
   border-radius: 3px;
   color: #DE1B1B;
-}
-
-.question-label {
-  font-weight: bold;
 }
 
 .question-body {

@@ -1,10 +1,6 @@
-.newTip {
-  font-weight: bold;
-}
-
 .selectedTip,
 .table-striped > tbody > tr.selectedTip:nth-child(odd) > td {
-  background-color: #FFFFCC;
+  background-color: #FFF3CA;
 }
 
 .tip-action-open {
@@ -16,16 +12,7 @@
 }
 
 .TipLabel {
-  color: #428bca;
-}
-
-#StatusPageMessage {
-  margin: 1rem;
-  color: #8a6d3b;
-  background-color: #fcf8e3;
-  border: 1px solid #faebcc;
-  font-weight: bold;
-  text-align: center;
+  color: #3777BC;
 }
 
 #SearchFilter {
