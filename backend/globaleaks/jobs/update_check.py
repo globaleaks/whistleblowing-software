@@ -28,7 +28,7 @@ def evaluate_update_notification(session, state, latest_version):
 
         priv_fact.set_val('latest_version', latest_version)
 
-        if parse_version(__version__) == parse_version(latest_version):
+        if parse_version(__version__) != parse_version(stored_latest):
             return
 
         for user_desc in db_get_users(session, 1, 'admin'):
