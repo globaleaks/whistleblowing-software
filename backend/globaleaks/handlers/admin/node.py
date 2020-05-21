@@ -132,7 +132,7 @@ def db_update_node(session, tid, user_session, request, language):
     if enable_escrow:
         crypto_escrow_prv_key, State.tenant_cache[tid].crypto_escrow_pub_key = GCE.generate_keypair()
         user = models.db_get(session, models.User, models.User.id == user_session.user_id)
-        user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(user_session.cc, crypto_escrow_prv_key))
+        user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_escrow_prv_key))
 
     if disable_escrow:
         if tid == 1:
