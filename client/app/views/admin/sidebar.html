@@ -38,7 +38,7 @@
   <span data-translate>Network settings</span>
 </a>
 
-<a class="sidebar-link" href="#/admin/sites" data-ng-class="{'active': location_path === '/admin/sites'}">
+<a class="sidebar-link" href="#/admin/sites" data-ng-class="{'active': location_path === '/admin/sites'}" data-ng-if="resources.node.root_tenant && resources.node.multisite">
   <i class="fas fa-chevron-right"></i>
   <span data-translate>Sites management</span>
 </a>
