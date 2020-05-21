@@ -9,7 +9,7 @@
 
     <div class="form-group">
       <label>
-        <input data-ng-model="resources.node.encryption" type="checkbox" data-ng-change="toggleEncryption()" />
+        <input data-ng-model="resources.node.encryption" type="checkbox" data-ng-change="toggleEncryption()" data-ng-disabled="public.node.encryption" />
         <span data-translate>Enable encryption</span>
       </label>
     </div>
