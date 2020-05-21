@@ -37,11 +37,17 @@
           </span>
           <span class="col-md-5 clearfix">
             <span class="float-right">
-              <button data-ng-if="!$first" class="btn btn-sm btn-primary" data-ng-click="moveUp($event, $index)"
+              <button data-ng-if="!$first"
+		      class="btn btn-sm btn-primary"
+		      data-ng-click="moveUp($event, $index)"
+		      data-ng-if="resources.node.show_contexts_in_alphabetical_order"
                       uib-tooltip="{{'Move up' | translate}}">
                 <i class="fas fa-chevron-up"></i>
               </button>
-              <button data-ng-if="!$last" class="btn btn-sm btn-primary" data-ng-click="moveDown($event, $index)"
+              <button data-ng-if="!$last"
+		      class="btn btn-sm btn-primary"
+		      data-ng-click="moveDown($event, $index)"
+		      data-ng-if="resources.node.show_contexts_in_alphabetical_order"
                       uib-tooltip="{{'Move down' | translate}}">
                 <i class="fas fa-chevron-down"></i>
               </button>
@@ -134,14 +140,16 @@
                   <li data-ng-repeat="receiver in context.receivers">
                         <span data-ng-controller="AdminContextReceiverSelectorCtrl">
                           <span class="action-btns">
-                            <span data-ng-if="!$first" data-ng-click="moveUp($index)"
-                                  uib-tooltip="{{'Move up' | translate}}">
-                              <i class="fas fa-chevron-up"></i>
-                            </span>
-                            <i data-ng-if="$first || $last" class="fas fa-none"></i>
-                            <span data-ng-if="!$last" data-ng-click="moveDown($index)"
-                                  uib-tooltip="{{'Move down' | translate}}">
-                              <i class="fas fa-chevron-down"></i>
+			    <span data-ng-if="!context.show_receivers_in_alphabetical_order">
+                              <span data-ng-if="!$first" data-ng-click="moveUp($index)"
+                                    uib-tooltip="{{'Move up' | translate}}">
+                                <i class="fas fa-chevron-up"></i>
+                              </span>
+                              <i data-ng-if="$first || $last" class="fas fa-none"></i>
+                              <span data-ng-if="!$last" data-ng-click="moveDown($index)"
+                                    uib-tooltip="{{'Move down' | translate}}">
+                                <i class="fas fa-chevron-down"></i>
+                              </span>
                             </span>
                             <span data-ng-click="context.receivers.splice($index, 1)"
                                   uib-tooltip="{{'Remove' | translate}}">
