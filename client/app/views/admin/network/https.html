@@ -5,11 +5,11 @@
       <input name="hostname"
              class="form-control"
              type="text"
-             data-ng-model="hostname"
+             data-ng-model="resources.node.hostname"
              data-ng-pattern="hostname_regexp"
-	     data-ng-class="{'is-invalid': adminNetForm.hostname.$error.pattern}" />
+	     data-ng-class="{'is-invalid': adminNetForm.hostname.$error.pattern}"/>
       <span class="input-group-append">
-        <button class="btn btn-success" data-ng-click="Utils.applyConfig('set_hostname', hostname, true)" data-ng-disabled="hostname === resources.node.hostname" data-translate>Save</button>
+        <button class="btn btn-success" data-ng-click="Utils.applyConfig('set_hostname', resources.node.hostname, true)" data-ng-disabled="adminNetForm.$pristine" data-translate>Save</button>
       </span>
     </p>
     <p class="text-danger" data-ng-show="adminNetForm.hostname.$error.pattern">

@@ -19,8 +19,6 @@ controller("AdminNetworkCtrl", ["$scope", function($scope) {
     }
   ];
 
-  $scope.hostname = $scope.resources.node.hostname;
-
   $scope.resetOnionPrivateKey = function() {
     return $scope.Utils.applyConfig("reset_onion_private_key", {}, true);
   };
@@ -89,11 +87,9 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$scope", "$uibModal", "FileS
 
   tlsConfigResource.get({}).$promise.then($scope.parseTLSConfig);
 
-  function refreshConfig() {
+  $scope.refreshConfig = function() {
     return tlsConfigResource.get().$promise.then($scope.parseTLSConfig);
   }
-
-  $scope.refreshCfg = refreshConfig;
 
   $scope.file_resources = {
     priv_key: new cfgFileResource({name: "priv_key"}),
@@ -116,14 +112,14 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$scope", "$uibModal", "FileS
   };
 
   $scope.gen_priv_key = function() {
-    return $scope.file_resources.priv_key.$update().then(refreshConfig);
+    return $scope.file_resources.priv_key.$update().then($scope.refreshConfig);
   };
 
   $scope.postFile = function(file, resource) {
     $scope.Utils.readFileAsText(file).then(function(str) {
       resource.content = str;
       return resource.$save();
-    }).then(refreshConfig);
+    }).then($scope.refreshConfig);
   };
 
   $scope.downloadFile = function(resource) {
@@ -150,7 +146,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$scope", "$uibModal", "FileS
 
   $scope.completeAcme = function() {
     var aRes = new adminAcmeResource({});
-    aRes.$update().then(refreshConfig);
+    aRes.$update().then($scope.refreshConfig);
   };
 
   $scope.deleteFile = function(resource) {
@@ -159,7 +155,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$scope", "$uibModal", "FileS
       controller: "ConfirmableModalCtrl",
       resolve: {
         arg: null,
-        confirmFun: function() { return function() { return resource.$delete().then(refreshConfig); }; },
+        confirmFun: function() { return function() { return resource.$delete().then($scope.refreshConfig); }; },
         cancelFun: null
       },
     });
@@ -172,9 +168,11 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$scope", "$uibModal", "FileS
 
   $scope.toggleCfg = function() {
     if ($scope.tls_config.enabled) {
-      $scope.tls_config.$disable().then(refreshConfig);
+      $scope.tls_config.$disable().then($scope.refreshConfig);
     } else {
-      $scope.tls_config.$enable().then($scope.reload);
+      $scope.tls_config.$enable().then(function() {
+        $window.location.href = 'https://' + $scope.resources.node.hostname;
+      });
     }
   };
 
@@ -183,7 +181,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$scope", "$uibModal", "FileS
     $scope.file_resources["csr"].content = $scope.csr_cfg;
     $scope.file_resources["csr"].$save().then(function() {
       $scope.csr_state.open = false;
-      return refreshConfig();
+      return $scope.refreshConfig();
     });
   };
 
@@ -197,7 +195,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$scope", "$uibModal", "FileS
       controller: "ConfirmableModalCtrl",
       resolve: {
 	arg: null,
-        confirmFun: function() { return function() { $scope.tls_config.$delete().then(refreshConfig); }; },
+        confirmFun: function() { return function() { $scope.tls_config.$delete().then($scope.refreshConfig); }; },
         cancelFun: null
       }
     });
