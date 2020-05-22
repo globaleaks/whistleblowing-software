@@ -37,14 +37,11 @@ controller("AdminNetworkCtrl", ["$scope", function($scope) {
     });
   };
 }]).
-controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$scope", "$uibModal", "FileSaver", "AdminTLSConfigResource", "AdminTLSCfgFileResource", "AdminAcmeResource",
-  function($q, $http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource) {
+controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibModal", "FileSaver", "AdminTLSConfigResource", "AdminTLSCfgFileResource", "AdminAcmeResource",
+  function($q, $http, $window, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource) {
   $scope.state = 0;
   $scope.menuState = "setup";
-  $scope.showHostnameSetter = false;
   $scope.choseManCfg = false;
-  $scope.saveClicked = false;
-  $scope.skipVerify = $scope.resources.node.hostname !== "";
 
   $scope.setMenu = function(state) {
     $scope.menuState = state;
@@ -183,10 +180,6 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$scope", "$uibModal", "FileS
       $scope.csr_state.open = false;
       return $scope.refreshConfig();
     });
-  };
-
-  $scope.toggleShowHostname = function() {
-    $scope.showHostnameSetter = !$scope.showHostnameSetter;
   };
 
   $scope.resetCfg = function() {
