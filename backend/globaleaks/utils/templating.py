@@ -609,7 +609,7 @@ class PlatformSignupKeyword(NodeKeyword):
             'password': self.data['password_admin']
         }
 
-        return Templating().format_template(self.data['notification']['user_credentials'], data) + '\n\n'
+        return Templating().format_template(self.data['notification']['user_credentials'], data)
 
     def RecipientCredentials(self):
         if not self.data['password_recipient']:
@@ -622,7 +622,7 @@ class PlatformSignupKeyword(NodeKeyword):
             'password': self.data['password_recipient']
         }
 
-        return '\n\n' + Templating().format_template(self.data['notification']['user_credentials'], data)
+        return Templating().format_template(self.data['notification']['user_credentials'], data)
 
 
 class AdminPlatformSignupKeyword(PlatformSignupKeyword):
