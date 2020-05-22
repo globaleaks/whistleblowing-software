@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
 
-from twisted.internet.defer import inlineCallbacks, returnValue
-
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.user import can_edit_general_settings_or_raise
 from globaleaks.orm import transact
 
 
@@ -38,23 +35,14 @@ def update(session, tid, lang, request):
 
 
 class AdminL10NHandler(BaseHandler):
-    check_roles = 'user'
+    check_roles = 'admin'
     invalidate_cache = True
 
-    @inlineCallbacks
     def get(self, lang):
-        yield can_edit_general_settings_or_raise(self)
-        result = yield get(self.request.tid, lang)
-        returnValue(result)
+        return get(self.request.tid, lang)
 
-    @inlineCallbacks
     def put(self, lang):
-        yield can_edit_general_settings_or_raise(self)
-        result = yield update(self.request.tid, lang, json.loads(self.request.content.read()))
-        returnValue(result)
+        return update(self.request.tid, lang, json.loads(self.request.content.read()))
 
-    @inlineCallbacks
     def delete(self, lang):
-        yield can_edit_general_settings_or_raise(self)
-        result = yield models.delete(models.CustomTexts, models.CustomTexts.tid == self.request.tid, models.CustomTexts.lang == lang)
-        returnValue(result)
+        return models.delete(models.CustomTexts, models.CustomTexts.tid == self.request.tid, models.CustomTexts.lang == lang)
