@@ -50,7 +50,7 @@
                     <input data-ng-model="resources.node.https_admin" type="checkbox">
                   </td>
                 </tr>
-                <tr>
+                <tr data-ng-if="resources.node.enable_custodian">
                   <td data-translate>Custodian</td>
                   <td>
                     <input data-ng-model="resources.node.https_custodian" type="checkbox">

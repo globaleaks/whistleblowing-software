@@ -57,7 +57,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" data-ng-if="resources.node.enable_custodian">
       <input data-ng-model="resources.notification.disable_custodian_notification_emails" type="checkbox">
       <label data-translate>Disable notifications to custodians</label>
       <div data-ng-show="resources.notification.disable_custodian_notification_emails">

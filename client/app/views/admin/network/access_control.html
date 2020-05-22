@@ -18,7 +18,7 @@
                 <td><input data-ng-model="resources.node.ip_filter_admin_enable" type="checkbox"></td>
                 <td><input data-ng-if="resources.node.ip_filter_admin_enable" class="form-control" name="ip_filter_list" data-ng-model="resources.node.ip_filter_admin" type="text" autocomplete="off" /></td>
               </tr>
-              <tr>
+              <tr data-ng-if="resources.node.enable_custodian">
                 <td data-translate>Custodian</td>
                 <td><input data-ng-model="resources.node.ip_filter_custodian_enable" type="checkbox"></td>
                 <td><input data-ng-if="resources.node.ip_filter_custodian_enable" class="form-control" name="ip_filter_list" data-ng-model="resources.node.ip_filter_custodian" type="text" autocomplete="off" /></td>
