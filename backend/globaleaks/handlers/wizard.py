@@ -53,13 +53,13 @@ def db_wizard(session, tid, hostname, request):
     """
     language = request['node_language']
 
-    node = config.ConfigFactory(session, tid)
+    root_tenant_node = config.ConfigFactory(session, 1)
 
     if tid == 1:
-        root_tenant_node = node
+        node = root_tenant_node
         encryption = True
     else:
-        root_tenant_node = node
+        node = config.ConfigFactor(session, tid)
         encryption = root_tenant_node.get_val('encryption')
 
     if node.get_val('wizard_done'):
