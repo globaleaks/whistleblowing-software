@@ -258,7 +258,7 @@ GLClient.controller("SubmissionCtrl",
     return false;
   };
 
-  $scope.evaluateDisclaimerModalOpening();
+  $scope.blowTheWhistle();
 
   new Submission(function(submission) {
     $scope.submission = submission;

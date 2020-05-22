@@ -607,15 +607,12 @@ var GLClient = angular.module("GLClient", [
       return false;
     };
 
-    $rootScope.evaluateDisclaimerModalOpening = function () {
-      if ($rootScope.public.node.enable_disclaimer &&
-          !$rootScope.disclaimer_modal_opened) {
-        $rootScope.disclaimer_modal_opened = true;
+    $rootScope.blowTheWhistle = function () {
+      if ($rootScope.public.node.enable_disclaimer) {
         $rootScope.open_disclaimer_modal();
-        return true;
+      } else {
+        $rootScope.setPage('submissionpage');
       }
-
-      return false;
     };
 
     $rootScope.init = function () {
