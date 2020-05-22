@@ -738,8 +738,6 @@
   "Activation": "Aktivointi",
   "A software update is available.": "Ohjelmistopäivitys saatavilla.",
   "It is good security practice to keep the platform up to date.": "Järjestelmän ajan tasalla pitäminen parantaa palvelun tietoturvaa.",
-  "Installed version: {InstalledVersion}": "Asennettu versio: {InstalledVersion}",
-  "Latest version: {LatestVersion}": "Uusin versio: {LatestVersion}",
   "To learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}": "Lisätietoa uuden ohjelmistoversion uusista ominaisuuksista ja korjatuista virheistä löydät palvelun muutoshistoriasta osoitteesta {ChangeLogUrl}",
   "For instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}": "Ohjelmistopäivityksen ohjeet löytyvät osoitteesta {UpdateGuideUrl}",
   "The earliest expiration date is {EarliestExpirationDate}.": "Aikaisin mahdollinen vanhentumispäivämäärä on {EarliestExpirationDate}.",

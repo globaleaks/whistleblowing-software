@@ -738,8 +738,6 @@
   "Activation": "Activación",
   "A software update is available.": "Una actualización del software esta disponible",
   "It is good security practice to keep the platform up to date.": "Es una buena práctica de seguridad mantener al día la plataforma.",
-  "Installed version: {InstalledVersion}": "Versión instalada: {InstalledVersion}",
-  "Latest version: {LatestVersion}": "Versión más reciente: {LatestVersion}",
   "To learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}": "Para conocer las nuevas características y correcciones de fallos de la nueva versión, consulta el registro del cambios en: {ChangeLogUrl}",
   "For instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}": "Para instrucciones sobre actualizaciones del software, por favor, acude a la documentación en: {UpdateGuideUrl}",
   "The earliest expiration date is {EarliestExpirationDate}.": "La fecha de caducidad más próxima es {EarliestExpirationDate}.",

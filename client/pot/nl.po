@@ -43,7 +43,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-15 21:35+0000\n"
+"PO-Revision-Date: 2020-05-17 11:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2408,12 +2408,6 @@ msgstr "Er is een nieuwe versie van deze software beschikbaar"
 
 msgid "It is good security practice to keep the platform up to date."
 msgstr "Het is goed gebruik om het platform regelmatig bij te werken naar de laatste versie, om de veiligheid hoog te houden."
-
-msgid "Installed version: {InstalledVersion}"
-msgstr "Geïnstalleerde versie: {InstalledVersion}"
-
-msgid "Latest version: {LatestVersion}"
-msgstr "Meest recente versie: {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "

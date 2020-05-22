@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-15 21:32+0000\n"
+"PO-Revision-Date: 2020-05-19 13:01+0000\n"
 "Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2404,12 +2404,6 @@ msgstr "Une mise à jour logicielle est proposée."
 
 msgid "It is good security practice to keep the platform up to date."
 msgstr "Garder la plateforme à jour constitue une bonne pratique de sécurité."
-
-msgid "Installed version: {InstalledVersion}"
-msgstr "Version installée : {InstalledVersion}"
-
-msgid "Latest version: {LatestVersion}"
-msgstr "Dernière version : {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "

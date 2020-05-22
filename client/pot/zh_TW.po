@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-15 21:38+0000\n"
+"PO-Revision-Date: 2020-05-17 11:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2376,12 +2376,6 @@ msgstr "有軟體更新可用"
 
 msgid "It is good security practice to keep the platform up to date."
 msgstr "為安全起見,請維持平台版本為更新狀態"
-
-msgid "Installed version: {InstalledVersion}"
-msgstr "已安裝的版本: {InstalledVersion}"
-
-msgid "Latest version: {LatestVersion}"
-msgstr "最新版本: {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "

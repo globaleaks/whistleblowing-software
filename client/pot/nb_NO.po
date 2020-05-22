@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-15 21:32+0000\n"
+"PO-Revision-Date: 2020-05-17 11:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2372,12 +2372,6 @@ msgstr "En programvareoppgradering er tilgjengelig."
 
 msgid "It is good security practice to keep the platform up to date."
 msgstr "Det er god sikkerhetspraksis å holde plattformen oppdatert."
-
-msgid "Installed version: {InstalledVersion}"
-msgstr "Installert versjon: {InstalledVersion}"
-
-msgid "Latest version: {LatestVersion}"
-msgstr "Siste versjon: {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "

@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-15 21:32+0000\n"
+"PO-Revision-Date: 2020-05-17 11:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2389,12 +2389,6 @@ msgstr "Pembaruan Perangkat Lunak tersedia"
 
 msgid "It is good security practice to keep the platform up to date."
 msgstr "Merupakan latihan kemanan yang baik untuk tetap memperbarui platform"
-
-msgid "Installed version: {InstalledVersion}"
-msgstr "Versi terpasang: {InstalledVersion}"
-
-msgid "Latest version: {LatestVersion}"
-msgstr "versi terbaru: {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "

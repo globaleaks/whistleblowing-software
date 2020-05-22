@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-15 21:32+0000\n"
+"PO-Revision-Date: 2020-05-17 11:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2377,12 +2377,6 @@ msgid "A software update is available."
 msgstr ""
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr ""
-
-msgid "Installed version: {InstalledVersion}"
-msgstr ""
-
-msgid "Latest version: {LatestVersion}"
 msgstr ""
 
 msgid ""

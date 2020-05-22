@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-15 21:35+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-05-21 19:54+0000\n"
+"Last-Translator: Lenka Ježková <lenka.jezkova@oziveni.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2308,7 +2308,7 @@ msgstr "Přístup k identitě oznamovatele schválen"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "Toto je e-mailové upozornění, že správce Vám povolil přístup k identitě oznamovatele podání {TipNum}."
+msgstr "Toto je e-mailové upozornění, že správce Vám zamítl přístup k identitě oznamovatele podání {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Přístup k identitě oznamovatele zamítnut"
@@ -2380,12 +2380,6 @@ msgstr "Je k dispozici aktualizace softwaru."
 
 msgid "It is good security practice to keep the platform up to date."
 msgstr "Doporučeným bezpečnostním postupem je udržovat platformu aktualizovanou na poslední dostupnou verzi."
-
-msgid "Installed version: {InstalledVersion}"
-msgstr "Instalovaná verze: {InstalledVersion}"
-
-msgid "Latest version: {LatestVersion}"
-msgstr "Poslední verze: {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "

@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-15 21:32+0000\n"
+"PO-Revision-Date: 2020-05-17 11:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2385,12 +2385,6 @@ msgstr "Une mise à jour logicielle est proposée."
 
 msgid "It is good security practice to keep the platform up to date."
 msgstr "Garder la plateforme à jour constitue une bonne pratique de sécurité."
-
-msgid "Installed version: {InstalledVersion}"
-msgstr "Version installée : {InstalledVersion}"
-
-msgid "Latest version: {LatestVersion}"
-msgstr "Dernière version : {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "

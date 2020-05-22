@@ -738,8 +738,6 @@
   "Activation": "செயல்படுத்தல்",
   "A software update is available.": "ஒரு மென்பொருள் புதுப்பிப்பு இருக்கிறது.",
   "It is good security practice to keep the platform up to date.": "இன்றுவரை தளத்தை வைத்திருக்க இது நல்ல பாதுகாப்பு நடைமுறை.",
-  "Installed version: {InstalledVersion}": "நிறுவப்பட்ட பதிப்பு: {InstalledVersion}",
-  "Latest version: {LatestVersion}": "சமீபத்திய பதிப்பு: {LatestVersion}",
   "To learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}": "புதிய பதிப்பில் பற்றி அம்சங்களைப் பற்றியும், பிழை திருத்தங்கள் பற்றியும் அறிந்து கொள்வதற்கு, மாற்றத்தின் பதிவை இங்கே பாருங்கள்: {ChangeLogUrl}",
   "For instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}": "மென்பொருள் புதுப்பிப்புகளுக்கான வழிமுறைகளுக்கு, தயவுசெய்து பின்வருவனவற்றின் ஆவணத்தை பார்க்கவும்: {UpdateGuideUrl}",
   "The earliest expiration date is {EarliestExpirationDate}.": "ஆரம்ப காலாவதி தேதி {EarliestExpirationDate}.",

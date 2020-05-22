@@ -738,8 +738,6 @@
   "Activation": "Activation",
   "A software update is available.": "Proqram yenilənməsi mövcuddur",
   "It is good security practice to keep the platform up to date.": "Platformanı son versiyada saxlamaq yaxşı təhlükəsizlik təcrübəsidir.",
-  "Installed version: {InstalledVersion}": "Quraşdırılmış versiya: {InstalledVersion}",
-  "Latest version: {LatestVersion}": "Ən son versiya: {LatestVersion}",
   "To learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}": "Yeni versiyada yeni xüsusiyyətləri və problem həllərini öyrənmək üçün dəyişiklik tarixinə müraciət edin: {ChangeLogUrl}",
   "For instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}": "Proqam yeniləmələrinə dair təlimatlar üçün sənədlərə keç: {UpdateGuideUrl}",
   "The earliest expiration date is {EarliestExpirationDate}.": "Ən son istifadə tarixi {EarliestExpirationDate}",

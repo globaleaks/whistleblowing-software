@@ -738,8 +738,6 @@
   "Activation": "Activatie",
   "A software update is available.": "Er is een nieuwe versie van deze software beschikbaar",
   "It is good security practice to keep the platform up to date.": "Het is goed gebruik om het platform regelmatig bij te werken naar de laatste versie, om de veiligheid hoog te houden.",
-  "Installed version: {InstalledVersion}": "Geïnstalleerde versie: {InstalledVersion}",
-  "Latest version: {LatestVersion}": "Meest recente versie: {LatestVersion}",
   "To learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}": "Om te leren over nieuwe functies en foutoplossingen in de nieuwe versie, raadpleeg het verandersingslog op: {ChangeLogUrl}",
   "For instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}": "Voor instructies bij nieuwe software versies, kun je de documentatie naslaan op: {UpdateGuideUrl}",
   "The earliest expiration date is {EarliestExpirationDate}.": "De vroegste vervaldatum is {EarliestExpirationDate}.",

@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-15 21:32+0000\n"
-"Last-Translator: b0b47d46632b78a09a40de799fda9a65\n"
+"PO-Revision-Date: 2020-05-23 11:22+0000\n"
+"Last-Translator: Vox\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2319,7 +2319,7 @@ msgstr "اجازه دسترسی به هویت افشاگر داده شد"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "این ایمیل برای مطلع ساختن شما از این است که یک متولی مانع دسترسی شما به هویت سوت‌زنی برای گزارش {TipNum} شده است."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "دسترسی به هویت افشاگر داده نشد."
@@ -2391,12 +2391,6 @@ msgstr "بروز رسانی نرم افزار موجود می باشد."
 
 msgid "It is good security practice to keep the platform up to date."
 msgstr "از نظر امنیتی کار خوبی می باشد تا پلتفورم را به روز نگه دارید."
-
-msgid "Installed version: {InstalledVersion}"
-msgstr "نسخه نصب شده: {InstalledVersion}"
-
-msgid "Latest version: {LatestVersion}"
-msgstr "آخرین نسخه: {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "

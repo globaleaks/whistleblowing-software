@@ -738,8 +738,6 @@
   "Activation": "Aktivasi",
   "A software update is available.": "Pembaruan Perangkat Lunak tersedia",
   "It is good security practice to keep the platform up to date.": "Merupakan latihan kemanan yang baik untuk tetap memperbarui platform",
-  "Installed version: {InstalledVersion}": "Versi terpasang: {InstalledVersion}",
-  "Latest version: {LatestVersion}": "versi terbaru: {LatestVersion}",
   "To learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}": "Untuk mempelajari perihal fitur baru dan perbaikan bug di versi baru, konsultasikan dengan mengubah catatan di: {ChangeLogUrl}",
   "For instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}": "Untuk instruksi tentang pembaruan perangkat lunak, silakan lihat dokumentasi di: {UpdateGuideUrl}",
   "The earliest expiration date is {EarliestExpirationDate}.": "Tanggal kedaluwarsa paling awal adalah {EarliestExpirationDate}.",

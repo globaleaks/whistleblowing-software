@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-15 21:32+0000\n"
-"Last-Translator: Sasa Lekovic <sasa.lekovic1@gmail.com>\n"
+"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2375,12 +2375,6 @@ msgstr "Ažuriranje software-a je dostupno."
 
 msgid "It is good security practice to keep the platform up to date."
 msgstr "Dobra je sigurnosna praksa održavati paltformu ažuriranom."
-
-msgid "Installed version: {InstalledVersion}"
-msgstr "Instalirana verzija: {InstalledVersion}"
-
-msgid "Latest version: {LatestVersion}"
-msgstr "Najnovija verzija: {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "

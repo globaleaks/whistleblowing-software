@@ -738,8 +738,6 @@
   "Activation": "激活",
   "A software update is available.": "有软件更新可用",
   "It is good security practice to keep the platform up to date.": "为安全起见,请维持平台版本为更新状态",
-  "Installed version: {InstalledVersion}": "已安装的版本: {InstalledVersion}",
-  "Latest version: {LatestVersion}": "最新版本: {LatestVersion}",
   "To learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}": "了解新版本的功能与修复的问题,请咨询此处的变动记录: {ChangeLogUrl}",
   "For instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}": "关于软件更新的指示, 请参考此处的文档: {UpdateGuideUrl}",
   "The earliest expiration date is {EarliestExpirationDate}.": "最早的截止日期是 {EarliestExpirationDate}.",

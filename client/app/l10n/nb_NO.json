@@ -738,8 +738,6 @@
   "Activation": "Aktivering",
   "A software update is available.": "En programvareoppgradering er tilgjengelig.",
   "It is good security practice to keep the platform up to date.": "Det er god sikkerhetspraksis å holde plattformen oppdatert.",
-  "Installed version: {InstalledVersion}": "Installert versjon: {InstalledVersion}",
-  "Latest version: {LatestVersion}": "Siste versjon: {LatestVersion}",
   "To learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}": "For å lære mer om nye funksjoner og feilrettinger i den nye versjonen, henvend dem til endringsloggen på: {ChangeLogUrl}",
   "For instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}": "For instruks om programvareoppdateringer, henvend dem til dokumentasjonen på: {UpdateGuideUrl}",
   "The earliest expiration date is {EarliestExpirationDate}.": "Den tidligste utløpsdatoen er {EarliestExpirationDate}.",

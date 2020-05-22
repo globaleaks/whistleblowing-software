@@ -738,8 +738,6 @@
   "Activation": "Aktivacija",
   "A software update is available.": "Ažuriranje software-a je dostupno.",
   "It is good security practice to keep the platform up to date.": "Dobra je sigurnosna praksa održavati paltformu ažuriranom.",
-  "Installed version: {InstalledVersion}": "Instalirana verzija: {InstalledVersion}",
-  "Latest version: {LatestVersion}": "Najnovija verzija: {LatestVersion}",
   "To learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}": "Kako bi naučili više o novim značajkama i ispravljenim greškama u novoj verziji, pogledajte zapis o promjenama na: {ChangeLogUrl}",
   "For instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}": "Za upute o software-skim ažuriranjima, molimo pogledajte dokumentaciju na: {UpdateGuideUrl}",
   "The earliest expiration date is {EarliestExpirationDate}.": "Najraniji datum isteka je {EarliestExpirationDate}.",

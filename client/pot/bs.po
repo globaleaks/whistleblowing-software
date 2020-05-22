@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-15 21:32+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-05-17 20:23+0000\n"
+"Last-Translator: Vojtech Kotek <kotek.vojtech@gmail.com>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -179,7 +179,7 @@ msgstr "Povjerljivost povezivanja je osigurana HTTPS-om"
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr "Povjerljivost i anonimnost povezivanja osigurana je putem Tor web pretraživača"
+msgstr "Povjerljivost i anonimnost povezivanja osigurana je putem Tor web preglednika."
 
 msgid "vertical"
 msgstr "vertikalno"
@@ -1041,7 +1041,7 @@ msgid "Customize the message shown in the receipt page"
 msgstr "Promijenite poruku prikazanu na prijemnoj stranici "
 
 msgid "Assign the receipt only to reports reaching score:"
-msgstr "Izdajte potvrdu samo prijavama koje su dosegle minimum bodova"
+msgstr "Izdajte kod samo prijavama koje su dosegle minimum bodova"
 
 msgid "Software version:"
 msgstr "Verzija softvera:"
@@ -1487,7 +1487,7 @@ msgid "Site:"
 msgstr "Sajt:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Da li ste već podnijeli prijavu? Unesite svoj potvrdu."
+msgstr "Da li ste već podnijeli prijavu? Unesite svoj kod."
 
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Ova potvrda je neispravna ili je istekla."
@@ -1584,7 +1584,7 @@ msgid "Follow the project on:"
 msgstr "Pratite projekt na:"
 
 msgid "Hint: How to hide your receipt"
-msgstr "Savjet: Kako da sakrijete svoju potvrdu"
+msgstr "Savjet: Kako da sakrijete svoj kod"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
@@ -1934,7 +1934,7 @@ msgstr "Zapamtite potvrde za ovu prijavu."
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Koristite 16-cifrenu potvrdu da biste se prijavili. Tako ćete moći vidjeti poruke koje smo vam poslali i po potrebi dodati još informacija. "
+msgstr "Koristite 16-cifreni kod da biste se prijavili. Tako ćete moći vidjeti poruke koje smo vam poslali i po potrebi dodati još informacija. "
 
 msgid "View your report"
 msgstr "Pogledajte svoju prijavu"
@@ -2373,12 +2373,6 @@ msgstr "Dostupno je ažuriranje softvera."
 
 msgid "It is good security practice to keep the platform up to date."
 msgstr "Dobra je sigurnosna praksa da platformu održavate ažuriranom."
-
-msgid "Installed version: {InstalledVersion}"
-msgstr "Instalirana verzija: {InstalledVersion}"
-
-msgid "Latest version: {LatestVersion}"
-msgstr "Posljednja verzija: {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "

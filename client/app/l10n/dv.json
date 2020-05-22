@@ -738,8 +738,6 @@
   "Activation": "އެކްޓިވޭޓްކުރުން ",
   "A software update is available.": "ސޮފްޓްވެއަރގެ ފަހުގެ އަޕްޑޭޓެއް އެބައޮތް",
   "It is good security practice to keep the platform up to date.": "ޕްލެޓްފޯމު އަދާހަމަކޮށްފައި ބެހެއްޓުމަކީ ރައްކާތެރިކަމުގެ ގޮތުން ބަލާއިރު ރަނގަޅު އާދައެކެވެ.",
-  "Installed version: {InstalledVersion}": "އަޅާފައިވާ ވާޝަން {InstalledVersion}",
-  "Latest version: {LatestVersion}": "ފަހުގެ ވާރޝަން {LatestVersion}",
   "To learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}": "އާ ވަރޝަންގައި ހިމެނޭ ބަގް ފިކްސްތަކާއި އާ ފީޗަރތަކުގެ މަޢުލޫމާތު ހޯދުމަށް ޗޭންޖްލޮގް ހިޔާރުކުރައްވާ {ChangeLogUrl}",
   "For instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}": "ސޮފްޓްވެއަރ އަޕްޑޭޓްސްގެ މައުލޫއްމާތު ހޯއްދެވުމަށް ޑޮކިއުމެންޓޭޝަން ބައްލަވާ: {UpdateGuideUrl}",
   "The earliest expiration date is {EarliestExpirationDate}.": "އެންމެ ކުރު މުއްދަތެއްގައި ދުވަސްހަމަވާނެ ތާރީޙަކީ {EarliestExpirationDate}",

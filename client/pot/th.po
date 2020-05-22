@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-15 21:42+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-05-18 10:46+0000\n"
+"Last-Translator: bact' <arthit@gmail.com>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -740,7 +740,7 @@ msgid "Title of the status page of the report"
 msgstr "ชื่อของหน้าสถานะการส่ง"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr "อย่าเปิดเผยชื่อของผู้ใช้"
 
 msgid "Size limit for file attachments"
 msgstr "กำหนดข้อจำกัดขนาดของแฟ้มแนบ"
@@ -2376,12 +2376,6 @@ msgstr "มีการปรับปรุงซอฟต์แวร์พร
 
 msgid "It is good security practice to keep the platform up to date."
 msgstr "มันเป็นวิธีปฏิบัติด้านความปลอดภัยที่ดีที่จะปรับปรุงแพลตฟอร์มให้ทันสมัยอยู่เสมอ"
-
-msgid "Installed version: {InstalledVersion}"
-msgstr "รุ่นที่ติดตั้งอยู่: {InstalledVersion}"
-
-msgid "Latest version: {LatestVersion}"
-msgstr "รุ่นล่าสุด: {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "

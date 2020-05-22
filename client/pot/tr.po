@@ -27,7 +27,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-15 21:41+0000\n"
+"PO-Revision-Date: 2020-05-17 11:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2392,12 +2392,6 @@ msgstr "Bir yazılım güncellemesi mevcut."
 
 msgid "It is good security practice to keep the platform up to date."
 msgstr "Platformu güncel tutmak iyi bir güvenlik uygulamasıdır."
-
-msgid "Installed version: {InstalledVersion}"
-msgstr "Kurulu sürüm: {InstalledVersion}"
-
-msgid "Latest version: {LatestVersion}"
-msgstr "Son sürüm: {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "

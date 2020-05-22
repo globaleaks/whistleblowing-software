@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-15 21:35+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-05-19 17:40+0000\n"
+"Last-Translator: Casper Petersen <casper_petersen@hotmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -442,7 +442,7 @@ msgid ""
 msgstr "Hvis ikke whistlebloweren kontrollerer indsendelsen inden dette tidspunkt vil vedkommendes adgang til materialet udløbe."
 
 msgid "The whistleblower can no longer access the report"
-msgstr "Whistlebloweren har ikke længere adgang til det indleverede materiale."
+msgstr "Whistlebloweren har ikke længere adgang til det indberettede materiale."
 
 msgid "Warning!"
 msgstr "Advarsel!"
@@ -605,10 +605,10 @@ msgid "This domain name is not available."
 msgstr "Domænenavnet er ikke tilgængeligt."
 
 msgid "VAT number"
-msgstr ""
+msgstr "CVR-nummer"
 
 msgid "Tax code"
-msgstr ""
+msgstr "Skattekode"
 
 msgid "Select the context of your report:"
 msgstr "Vælg hvilken sammehæng din indsendelse indgår i."
@@ -740,7 +740,7 @@ msgid "Title of the status page of the report"
 msgstr "Titel på siden med status for indleveringen"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr "Vis ikke brugeres navne"
 
 msgid "Size limit for file attachments"
 msgstr "Størrelsesgrænse for vedhæftede filer"
@@ -873,7 +873,7 @@ msgid "Name"
 msgstr "Navn"
 
 msgid "Last access"
-msgstr "Seneste tilgang"
+msgstr "Seneste login"
 
 msgid "Alarm level"
 msgstr "Alarmniveau"
@@ -2376,12 +2376,6 @@ msgstr "Der er en software-opdatering tilgængelig"
 
 msgid "It is good security practice to keep the platform up to date."
 msgstr "Det er god sikkerhedspraksis at holde platformen opdateret."
-
-msgid "Installed version: {InstalledVersion}"
-msgstr "Installeret version: {InstalledVersion}"
-
-msgid "Latest version: {LatestVersion}"
-msgstr "Nyeste version: {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "

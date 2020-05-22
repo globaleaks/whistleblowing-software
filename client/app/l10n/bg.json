@@ -738,8 +738,6 @@
   "Activation": "Активация",
   "A software update is available.": "Има ново обновление на софтуера.",
   "It is good security practice to keep the platform up to date.": "От гледна точка на сигурността е добре платформата да бъде своевременно обновявана.",
-  "Installed version: {InstalledVersion}": "Инсталирана версия: {InstalledVersion}",
-  "Latest version: {LatestVersion}": "Най-нова версия: {LatestVersion}",
   "To learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}": "За да научите повече за нови функции и коригирани бъгове в новата версия, проверете доклада за промени на: {ChangeLogUrl}",
   "For instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}": "За инструкции, свързани със софтуерни обновления, моля, вижте информацията на:\n{UpdateGuideUrl}",
   "The earliest expiration date is {EarliestExpirationDate}.": "Най-ранната дата на изтичане е {EarliestExpirationDate}.",

@@ -738,8 +738,6 @@
   "Activation": "تفعيل",
   "A software update is available.": "التحديث متوفّر:",
   "It is good security practice to keep the platform up to date.": "انّها ممارسة أمنية جيدة الحفاظ على المنصة محيّنة.",
-  "Installed version: {InstalledVersion}": "الإصدار المثبت: {InstalledVersion}",
-  "Latest version: {LatestVersion}": "أحدث إصدار: {LatestVersion}",
   "To learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}": "لمتابعة الخاصيّات الجديدة واصلاح الخللات في الاصدار الجديد  انظر في سجلّ التغييرات في : {ChangeLogUrl}",
   "For instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}": "لتعليمات حول تحديثات البرنامج , الرجاء مراجعة التوثيق في : {UpdateGuideUrl}",
   "The earliest expiration date is {EarliestExpirationDate}.": "أقرب تاريخ لانتهاء الصلاحية {EarliestExpirationDate}.",
