@@ -59,7 +59,7 @@ def db_wizard(session, tid, hostname, request):
         node = root_tenant_node
         encryption = True
     else:
-        node = config.ConfigFactor(session, tid)
+        node = config.ConfigFactory(session, tid)
         encryption = root_tenant_node.get_val('encryption')
 
     if node.get_val('wizard_done'):
