@@ -1,27 +1,22 @@
 # -*- coding: utf-8 -*-
 from collections import OrderedDict
 
-from twisted.internet import reactor as _reactor
-
-
-# needed in order to allow UT override
-reactor = _reactor
-
+from twisted.internet import reactor
 
 class TempDict(OrderedDict):
     expireCallback = None
+    reactor = reactor
 
     def __init__(self, timeout=None):
         self.timeout = timeout
         OrderedDict.__init__(self)
 
     def get_timeout(self):
-        """The override of this method allows dynamic limits imlementations"""
         return self.timeout
 
     def set(self, key, item):
         timeout = self.get_timeout()
-        item.expireCall = reactor.callLater(timeout, self._expire, key)
+        item.expireCall = self.reactor.callLater(timeout, self._expire, key)
         self[key] = item
 
     def get(self, key):
@@ -46,7 +41,6 @@ class TempDict(OrderedDict):
             return
 
         if self.expireCallback is not None:
-            # pylint: disable=not-callable
-            self.expireCallback(self[key])
+            self.expireCallback(self[key])  #pylint: disable=now-callable
 
         del self[key]

@@ -384,9 +384,7 @@ class TestGL(unittest.TestCase):
         self.test_reactor = task.Clock()
 
         jobs.job.reactor = self.test_reactor
-        tempdict.reactor = self.test_reactor
-        token.TokenList.reactor = self.test_reactor
-        Sessions.reactor = self.test_reactor
+        tempdict.TempDict.reactor = self.test_reactor
 
         self.state = State
 
