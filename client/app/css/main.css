@@ -2,8 +2,6 @@
   word-wrap: break-word;
   word-break: break-word;
   box-shadow: none;
-  --font-family-sans-serif: Helvetica, Arial, sans-serif;
-  --font-family-monospace: "Courier New", monospace;
 }
 
 html, body {
