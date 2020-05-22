@@ -1,3 +1,9 @@
+[dir="rtl"] #LogoBox {
+  margin: 0 0 0 2rem;
+  vertical-align: middle;
+}
+
+
 html[dir="rtl"] input[type=email],
 html[dir="ltr"] input[type=email],
 html[dir="rtl"] #creditCard,
