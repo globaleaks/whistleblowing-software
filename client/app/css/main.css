@@ -80,6 +80,7 @@ table {
 }
 
 #TitleBox {
+  display: inline-flex;
   font-size: 2rem;
   line-height: 1;
   font-weight: bold;
