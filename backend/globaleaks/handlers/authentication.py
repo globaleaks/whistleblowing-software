@@ -278,6 +278,7 @@ class TenantAuthSwitchHandler(BaseHandler):
                                False,
                                self.current_user.two_factor,
                                self.current_user.cc,
-                               self.current_user.ek)
+                               self.current_user.ek,
+                               True)
 
         return {'redirect': '/t/%d/#/login?token=%s' % (tid, session.id)}

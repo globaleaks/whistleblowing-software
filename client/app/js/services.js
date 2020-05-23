@@ -30,9 +30,10 @@ angular.module("GLServices", ["ngResource"]).
             "user_id": response.user_id,
             "role": response.role,
             "password_change_needed": response.password_change_needed,
+            "two_factor": response.two_factor,
+            "management_session": response.management_session,
             "homepage": "",
-            "preferencespage": "",
-            "two_factor": response.two_factor
+            "preferencespage": ""
           };
 
           function initPreferences(prefs) {

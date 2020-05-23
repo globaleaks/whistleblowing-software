@@ -6,7 +6,7 @@ from globaleaks.utils.tempdict import TempDict
 
 
 class Session(object):
-    def __init__(self, tid, user_id, user_tid, user_role, pcn, two_factor, cc, ek):
+    def __init__(self, tid, user_id, user_tid, user_role, pcn, two_factor, cc, ek, ms=True):
         self.id = generateRandomKey(42)
         self.tid = tid
         self.user_id = user_id
@@ -16,6 +16,7 @@ class Session(object):
         self.two_factor = two_factor
         self.cc = cc
         self.ek = ek
+        self.ms = ms
         self.expireCall = None
 
     def getTime(self):
@@ -30,7 +31,8 @@ class Session(object):
             'user_tid': self.user_tid,
             'session_expiration': self.getTime(),
             'password_change_needed': self.pcn,
-            'two_factor': self.two_factor
+            'two_factor': self.two_factor,
+            'management_session': self.ms
         }
 
 
@@ -42,9 +44,9 @@ class SessionsFactory(TempDict):
             if v.tid == tid and v.user_id == user_id:
                 del self[k]
 
-    def new(self, tid, user_id, user_tid, user_role, pcn, two_factor, cc, ek):
+    def new(self, tid, user_id, user_tid, user_role, pcn, two_factor, cc, ek, ms=False):
         self.revoke(tid, user_id)
-        session = Session(tid, user_id, user_tid, user_role, pcn, two_factor, cc, ek)
+        session = Session(tid, user_id, user_tid, user_role, pcn, two_factor, cc, ek, ms)
         self.set(session.id, session)
         return session
 
