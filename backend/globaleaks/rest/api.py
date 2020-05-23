@@ -269,6 +269,7 @@ class APIResourceWrapper(Resource):
         request.headers = request.getAllHeaders()
         request.hostname = request.getRequestHostname()
         request.port = request.getHost().port
+        request.bypass_basic_auth = False
 
         if (not State.tenant_cache[1].wizard_done or
             request.hostname == b'localhost' or
@@ -286,6 +287,7 @@ class APIResourceWrapper(Resource):
                 tid = int(groups[0])
                 if tid in State.tenant_cache:
                     request.tid, request.path = tid, groups[1]
+                    request.bypass_basic_auth = True
 
         request.client_ip = request.getClientIP()
         request.client_proto = b'https' if request.port in [443, 8443] else b'http'
