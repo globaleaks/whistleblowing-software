@@ -4,7 +4,7 @@ GlobaLeaks - The Open-Source Whistleblowing Software
 """
 import operator
 
-__author__ = 'Random GlobaLeaks Developers'
+__author__ = 'GlobaLeaks'
 __email__ = 'info@globaleaks.org'
 __copyright__ = '2011-2020 - Hermes Center for Transparency and Digital Human Rights - GlobaLeaks Project'
 __version__ = '4.0.20'
