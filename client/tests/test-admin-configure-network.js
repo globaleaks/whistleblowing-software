@@ -16,9 +16,9 @@ describe("admin configure https", function() {
 
     await element(by.cssContainingText("a", "HTTPS")).click();
 
-    await element(by.model("hostname")).clear();
-    await element(by.model("hostname")).sendKeys("antani.gov");
-    await element(by.model("hostname")).click();
+    await element(by.model("resources.node.hostname")).clear();
+    await element(by.model("resources.node.hostname")).sendKeys("antani.gov");
+    await element(by.model("resources.node.hostname")).click();
 
     await element.all(by.cssContainingText("button", "Save")).get(0).click();
 
