@@ -263,12 +263,12 @@
       <label data-translate>Log accesses of internal users</label>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" data-ng-if="resources.node.root_tenant">
       <input data-ng-model="resources.node.enable_admin_exception_notification" type="checkbox">
       <label data-translate>Notify administrators of software problems</label>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" data-ng-if="resources.node.root_tenant">
       <input data-ng-model="resources.node.enable_developers_exception_notification" type="checkbox">
       <label data-translate>Notify developers of software problems</label>
       <div data-translate>By enabling this feature, you will contribute to the development and security of the platform.</div>
