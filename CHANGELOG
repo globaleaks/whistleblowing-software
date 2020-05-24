@@ -1,5 +1,8 @@
+Changes in version 4.0.23 - 2020-05-24
+    Postpone integration of basic auth bypass for multitenancy management
+
 Changes in version 4.0.22 - 2020-05-24
-    Aplly minor UI fixes in relation to mobile responsiveness
+    Apply minor UI fixes in relation to mobile responsiveness
 
 Changes in version 4.0.21 - 2020-05-23
     Fix issues: #2043, #2852
