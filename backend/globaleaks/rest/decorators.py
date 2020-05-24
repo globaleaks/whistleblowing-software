@@ -10,8 +10,7 @@ from globaleaks.state import State
 
 def decorator_authentication(f, roles):
     def wrapper(self, *args, **kwargs):
-        if not self.bypass_basic_auth and \
-           self.state.tenant_cache[self.request.tid].basic_auth and \
+        if self.state.tenant_cache[self.request.tid].basic_auth and \
            not self.bypass_basic_auth:
             self.basic_auth()
 
