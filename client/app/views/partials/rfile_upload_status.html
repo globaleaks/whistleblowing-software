@@ -18,7 +18,7 @@
     <div data-ng-repeat="file in uploads[fileinput].files" data-ng-hide="hideUploadWhenFinished === true && file.isComplete() && !file.error" data-ng-class="{'col-md-12': uploads[fileinput].files.length === 1, 'col-md-6': uploads[fileinput].files.length > 1}">
       <div class="fileUploadBox mb-5">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-2">
             <div class="filePreview">
               <div class="imgPreview">
                 <img alt="preview picture" flow-img="file" data-ng-if="Utils.showFilePreview(file.file.type)" />
@@ -46,8 +46,8 @@
               </div>
             </div>
           </div>
-          <div class="offset-md-1 col-md-7">
-            <div class=" pl-2 pr-2">
+          <div class="col-md-10">
+            <div class="pl-2 pr-2">
               <div>
                 <label class="fileName">{{file.name}}</label>
               </div>

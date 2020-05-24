@@ -247,6 +247,10 @@ table {
   padding: 0, 1rem;
 }
 
+.filePreview {
+  height: 12rem;
+}
+
 .imgPreview {
   height: 10rem;
   width: 10rem;
