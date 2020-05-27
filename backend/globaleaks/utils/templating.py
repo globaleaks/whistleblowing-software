@@ -236,7 +236,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
                 for option in field['options']:
                     if k == option.get('id', '') and v is True:
                         output += indent(indent_n) + option['label'] + '\n'
-        elif field_type in ['selectbox']:
+        elif field_type in ['multichoice', 'selectbox']:
             for option in field['options']:
                 if entry.get('value', '') == option['id']:
                     output += indent(indent_n) + option['label'] + '\n'
