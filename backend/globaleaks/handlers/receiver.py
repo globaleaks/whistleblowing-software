@@ -46,7 +46,11 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
                                           models.InternalTip.id == models.ReceiverTip.internaltip_id,
                                           models.InternalTipAnswers.internaltip_id == models.InternalTip.id,
                                           models.ArchivedSchema.hash == models.InternalTipAnswers.questionnaire_hash,
-                                          models.InternalTip.tid == tid):
+                                          models.InternalTip.tid == tid) \
+                                  .order_by(models.InternalTip.progressive.desc(), models.InternalTipAnswers.creation_date.asc()):
+        if rtip.id in rtip_ids:
+            continue
+
         rtip_ids.append(rtip.id)
         itip_ids.append(itip.id)
 
