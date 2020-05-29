@@ -1,3 +1,7 @@
+Changes in version 4.0.25 - 2020-05-29
+    Fix issues: #2857, #2859
+    Update translations
+
 Changes in version 4.0.24 - 2020-05-25
     Fix interfaces for enabling languages
     Apply minor UI fixes in relation to mobile responsiveness
