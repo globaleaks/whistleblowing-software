@@ -4,7 +4,7 @@
 # Chi-Hsun Tsai, 2017
 # ff98sha, 2020
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017-2018,2020
-# kwh(Kim Wan-Ho), 2013-2014
+# 91ca17e215222af3ff24b8eeb76640c7_f9deb57, 2013-2014
 # lin, 2014
 # 刘位, 2014
 # Meng San, 2017

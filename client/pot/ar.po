@@ -7,9 +7,9 @@
 # Amin Jobran, 2017
 # Amin Jobran, 2017
 # Arabic Editorial Team <arabic-ed@amnesty.org>, 2015
-# asallam <inactive+asallam@transifex.com>, 2014
-# asallam <inactive+asallam@transifex.com>, 2014
-# asallam <inactive+asallam@transifex.com>, 2014
+# 246d1139de69599774b6470f9985ef39_d892e0d <60b88f371afdc474c95db754c714c9ed_161423>, 2014
+# 246d1139de69599774b6470f9985ef39_d892e0d <60b88f371afdc474c95db754c714c9ed_161423>, 2014
+# 246d1139de69599774b6470f9985ef39_d892e0d <60b88f371afdc474c95db754c714c9ed_161423>, 2014
 # Ashraf Damra <dr.d.ashraf@gmail.com>, 2015
 # nawaat <contact@nawaat.org>, 2014
 # Dragana Kaurin <dragana.kaurin@localizationlab.org>, 2014
@@ -18,7 +18,7 @@
 # ِAbu <elsahookie@gmail.com>, 2013
 # a96921fef9a72b1bcbac1fc92cca715a, 2015
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020
-# zendegi <inactive+zendegi@transifex.com>, 2013
+# b665ec457f7dbc468840c2b55b7422d3_ad81431 <382f1c68613d5cfe601c75d66e8ff0dd_51600>, 2013
 # harmony, 2013
 # harmony, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2014
@@ -37,8 +37,8 @@
 # Rima Sghaier, 2015-2018
 # Rima Sghaier, 2020
 # Rima Sghaier, 2019
-# zendegi <inactive+zendegi@transifex.com>, 2013
-# zendegi <inactive+zendegi@transifex.com>, 2013
+# b665ec457f7dbc468840c2b55b7422d3_ad81431 <382f1c68613d5cfe601c75d66e8ff0dd_51600>, 2013
+# b665ec457f7dbc468840c2b55b7422d3_ad81431 <382f1c68613d5cfe601c75d66e8ff0dd_51600>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"

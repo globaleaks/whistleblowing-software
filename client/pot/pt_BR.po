@@ -4,7 +4,7 @@
 # 0ed9961fdd2c469a85d0f0ef7ce7865b, 2014-2015
 # 0ed9961fdd2c469a85d0f0ef7ce7865b, 2014
 # alfalb_mansil, 2014
-# alfalb_mansil, 2014
+# fc2d9c36d73e741383fbbf46a4aac49f_013445b, 2014
 # Communia <ameaneantie@riseup.net>, 2016
 # C. E., 2020
 # C. E., 2019
@@ -28,7 +28,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # Hieroph4nt <hieroph4nt@riseup.net>, 2013
 # Hieroph4nt <hieroph4nt@riseup.net>, 2013
-# alfalb_mansil, 2014
+# fc2d9c36d73e741383fbbf46a4aac49f_013445b, 2014
 # Mauro Hemerly Gazzani <mauro.hemerly@gmail.com>, 2017
 # Danton Medrado, 2013
 # onlurking <diogo2fex@gmail.com>, 2015

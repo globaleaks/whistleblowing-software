@@ -12,9 +12,9 @@
 # LinuxChata, 2014
 # Muhammad Ishaq <ishaq@kahaf.com>, 2014
 # Muhammad Ishfaq Khan <ishfaqkhanniazi@gmail.com>, 2014
-# muhozhrun <inactive+muhozhrun@transifex.com>, 2014
-# muhozhrun <inactive+muhozhrun@transifex.com>, 2014
-# muhozhrun <inactive+muhozhrun@transifex.com>, 2014
+# a6c63d26ffa7dd0fcc8488aeda5e13cc_e98f1c4 <9c0e475b052551345b6783cce6a22315_95966>, 2014
+# a6c63d26ffa7dd0fcc8488aeda5e13cc_e98f1c4 <9c0e475b052551345b6783cce6a22315_95966>, 2014
+# a6c63d26ffa7dd0fcc8488aeda5e13cc_e98f1c4 <9c0e475b052551345b6783cce6a22315_95966>, 2014
 # SG, 2014
 # SG, 2014
 # ukr, 2014-2018

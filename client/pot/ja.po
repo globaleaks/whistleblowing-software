@@ -5,7 +5,7 @@
 # Naofumi <naofum@gmail.com>, 2015-2020
 # Naofumi <naofum@gmail.com>, 2015
 # Suguru Hirahara, 2013
-# Suguru Hirahara, 2013
+# 432cfded806ff6b7fe5774185a19126f_b5bc177, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"

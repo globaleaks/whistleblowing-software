@@ -2,14 +2,14 @@
 # Translators:
 # Anatoli F. Peña Castillo <djanatoli@gmail.com>, 2016-2017
 # Anatoli F. Peña Castillo <djanatoli@gmail.com>, 2020
-# Antonio de la Piedra <inactive+entactogenic@transifex.com>, 2013
-# Antonio de la Piedra <inactive+entactogenic@transifex.com>, 2013
+# 4b8fe8aa5774ddeb3c4c7817cd28f50e_d751ab4 <55c3bb72c999b01f254463d72e197fd7_99140>, 2013
+# 4b8fe8aa5774ddeb3c4c7817cd28f50e_d751ab4 <55c3bb72c999b01f254463d72e197fd7_99140>, 2013
 # B. K., 2015
 # B. K., 2015
 # cacu <cacu@espora.org>, 2015
 # cacu <cacu@espora.org>, 2015,2017
 # Eduardo Estrada, 2020
-# Antonio de la Piedra <inactive+entactogenic@transifex.com>, 2013
+# 4b8fe8aa5774ddeb3c4c7817cd28f50e_d751ab4 <55c3bb72c999b01f254463d72e197fd7_99140>, 2013
 # Federico Scrinzi <fox91@anche.no>, 2013
 # Francisco Huerta <francisco.huerta@davinci-ti.es>, 2016
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2020

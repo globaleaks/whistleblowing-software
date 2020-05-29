@@ -3,7 +3,7 @@
 # Anne Mügge <info@numijneigenwebsite.nl>, 2016-2017
 # Barend <b.vanrijn@me.com>, 2015
 # tempuser1234 <c1160321@trbvm.com>, 2014
-# Denis Paciorkowski <inactive+denispaciorkowski@transifex.com>, 2015
+# 8523c193f9fc387ee9b7297da8db6363_acb8666 <7a74a1c67fd165f2a476b24d6beb7d58_282697>, 2015
 # Douwe <douwe@greenhost.nl>, 2013
 # Douwe <douwe@greenhost.nl>, 2013
 # dragnadh, 2016-2017

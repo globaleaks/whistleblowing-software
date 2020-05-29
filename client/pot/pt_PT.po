@@ -1,23 +1,23 @@
 # 
 # Translators:
 # alfalb.as, 2015
-# alfalb.as, 2015
+# e8f1a29f7bd45d2490d729ad149fc504_6eadd8e, 2015
 # alfalb_mansil, 2014
-# alfalb_mansil, 2014
+# fc2d9c36d73e741383fbbf46a4aac49f_013445b, 2014
 # Drew Melim <nokostya.translation@gmail.com>, 2014
 # Drew Melim <nokostya.translation@gmail.com>, 2014
-# alfalb.as, 2015
+# e8f1a29f7bd45d2490d729ad149fc504_6eadd8e, 2015
 # Drew Melim <nokostya.translation@gmail.com>, 2014,2018
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020
 # João Paulo Macedo Batalha <joao.batalha@transparencia.pt>, 2015
-# Manuela Silva <inactive+h_manuela_rodsilva@transifex.com>, 2015-2016
+# 425fe09b3064b9f906f637fff94056ae_a00ea56 <0fa3588fa89906bfcb3a354600956e0e_308047>, 2015-2016
 # Manuela Silva <manuelarodsilva@gmail.com>, 2020
 # Manuela Silva <manuelarodsilva@gmail.com>, 2014-2018
 # Mónica Marques <coelho_monica75@hotmail.com>, 2017
 # Manuela Silva <manuelarodsilva@gmail.com>, 2019
 # Drew Melim <nokostya.translation@gmail.com>, 2014-2015
-# Nuno Duarte <inactive+nuno.passiano@transifex.com>, 2015
-# Nuno Duarte <inactive+nuno.passiano@transifex.com>, 2015
+# 25dcf36596cc573910517485ce7471d2_e63d9c6 <02fb85a8c2ff1359b9784c1b22793096_365094>, 2015
+# 25dcf36596cc573910517485ce7471d2_e63d9c6 <02fb85a8c2ff1359b9784c1b22793096_365094>, 2015
 # Nuno Miguel Macedo Batalha <nmmbat@gmail.com>, 2015
 # Yvette Agostini <mnemosyne@logioshermes.org>, 2017
 msgid ""
