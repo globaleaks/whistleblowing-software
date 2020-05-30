@@ -280,12 +280,14 @@ class APIResourceWrapper(Resource):
 
         if request.tid == 1:
             match = re.match(b'^/t/([0-9]+)(/.*)', request.path)
+        else:
+            match = re.match(b'^/t/(1)(/.*)', request.path)
 
-            if match is not None:
-                groups = match.groups()
-                tid = int(groups[0])
-                if tid in State.tenant_cache:
-                    request.tid, request.path = tid, groups[1]
+        if match is not None:
+            groups = match.groups()
+            tid = int(groups[0])
+            if tid in State.tenant_cache:
+                request.tid, request.path = tid, groups[1]
 
         request.client_ip = request.getClientIP()
         request.client_proto = b'https' if request.port in [443, 8443] else b'http'
