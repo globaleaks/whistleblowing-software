@@ -1,0 +1,18 @@
+<div id="WhistleblowerLoginBox">
+  <label id="WhistleblowerLoginQuestion" for="receipt" data-translate>Have you already filed a report? Enter your receipt.</label>
+  <form id="WhistleblowerLoginForm" class="form-inline" autocomplete="off" novalidate>
+    <div class="form-group d-block mx-auto">
+      <div class="input-group">
+        <input class="form-control receiptinput" type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" size="19" data-ng-model="formatted_receipt" name="receipt" receiptvalidator>
+        <span class="input-group-append">
+          <button id="ReceiptButton"
+                  data-ng-click="Authentication.login(0, 'whistleblower', formatted_receipt)" class="btn btn-primary"
+                  data-ng-disabled="formatted_receipt.length !== 19 || Authentication.loginInProgress || WhistleblowerLoginForm.receipt.$error.receiptvalidator" type="submit">
+            <span data-translate>Log in</span>
+          </button>
+        </span>
+      </div>
+    </div>
+  </form>
+  <div class="LoginErrorBoxHomepage text-danger" data-ng-show="errors[0].code == 9" data-translate>The receipt is either invalid or the report has expired.</div>
+</div>

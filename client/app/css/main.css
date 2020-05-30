@@ -88,7 +88,7 @@ table {
   vertical-align: middle;
 }
 
-#LanguagePickerBox, #LoginStatusBox, #LoginFormBox {
+#LanguagePickerBox, #LoginStatusBox, #HeaderBox #WhistleblowerReceiptBox {
   display: flex;
 }
 
@@ -100,15 +100,11 @@ table {
   color: #333840;
 }
 
-#LoginStatusBox, #LoginFormBox {
+#LoginStatusBox, #WhistleblowerLoginBox {
   color: #333840;
   padding: 1rem;
   background-color: #FFF;
   border-radius: 5px;
-}
-
-#LoginFormBox {
-  text-align: center;
 }
 
 #LogoBox img {
@@ -227,7 +223,7 @@ table {
   margin: 0.2rem;
 }
 
-.LoginErrorBoxHomepage {
+.WhistleblowerSubmitBox, #WhistleblowerLoginBox {
   text-align: center;
 }
 
