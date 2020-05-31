@@ -88,23 +88,6 @@ class Cleaning(DailyJob):
                 'body': body
             }))
 
-    def db_expire_old_passwords(self, session, tid):
-        """
-        Expires passwords if past the last change date
-        """
-        # if the expiration threshold is 0, ignore it
-        if self.state.tenant_cache[tid].password_change_period == 0:
-            return
-
-        threshold = datetime_now() - timedelta(days=self.state.tenant_cache[tid].password_change_period)
-
-        subquery = session.query(models.User.id) \
-                          .filter(models.User.password_change_date < threshold,
-                                  models.User.tid == tid) \
-                          .subquery()
-
-        session.query(models.User).filter(models.User.id.in_(subquery)).update({'password_change_needed': True}, synchronize_session=False)
-
     @transact
     def clean(self, session):
         # delete stats older than 1 year
@@ -154,7 +137,6 @@ class Cleaning(DailyJob):
     def per_tenant_clean(self, session, tid):
         self.db_clean_expired_wbtips(session, tid)
         self.db_check_for_expiring_submissions(session, tid)
-        self.db_expire_old_passwords(session, tid)
 
     @inlineCallbacks
     def operation(self):

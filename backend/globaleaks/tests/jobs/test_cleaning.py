@@ -77,15 +77,6 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
         self.db_test_model_count(session, models.Mail, 2 + self.population_of_recipients)
         self.db_test_model_count(session, models.SecureFileDelete, 0)
 
-    @transact
-    def check5(self, session):
-        # Ensure admin PW ready for reset
-        pw_reset_count = session.query(models.User) \
-                                .filter(models.User.password_change_needed.is_(True),
-                                        models.User.tid == 1) \
-                                .count()
-        self.assertEqual(pw_reset_count, 4)
-
     @inlineCallbacks
     def test_job(self):
         # verify that the system starts clean
@@ -123,9 +114,3 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
 
         # verify cascade deletion when tips expire
         yield self.check4()
-
-        # Make sure password resets actually happen
-        State.tenant_cache[1]['password_change_period'] = 90
-        yield self.set_passwords_ready_to_expire(1)
-        yield cleaning.Cleaning().run()
-        yield self.check5()

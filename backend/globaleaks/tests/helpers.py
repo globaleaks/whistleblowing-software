@@ -824,15 +824,6 @@ class TestGLWithPopulatedDB(TestGL):
     def set_contexts_timetolive(self, session, ttl):
         session.query(models.Context).update({'tip_timetolive': ttl})
 
-    @transact
-    def set_passwords_ready_to_expire(self, session, tid):
-        session.query(models.User) \
-            .filter(models.User.tid == tid) \
-            .update({
-                'password_change_date': datetime_null(),
-                'password_change_needed': False,
-            })
-
 
 class TestHandler(TestGLWithPopulatedDB):
     """

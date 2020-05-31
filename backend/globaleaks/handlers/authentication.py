@@ -2,6 +2,7 @@
 #
 # Handlers dealing with platform authentication
 import pyotp
+from datetime import timedelta
 from random import SystemRandom
 from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks.handlers.base import connection_check, BaseHandler
@@ -127,6 +128,11 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
         crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(user.crypto_prv_key))
     elif State.tenant_cache[tid].encryption:
         # Force the password change on which the user key will be created
+        user.password_change_needed = True
+
+    # Require password change if password change threshold is exceeded
+    if State.tenant_cache[tid].password_change_period > 0 and \
+       user.password_change_date < datetime_now() - timedelta(days=State.tenant_cache[tid].password_change_period):
         user.password_change_needed = True
 
     if user.two_factor_enable:
