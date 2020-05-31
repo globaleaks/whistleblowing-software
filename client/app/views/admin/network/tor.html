@@ -29,12 +29,11 @@
           </div>
 
           <div class="form-group">
-            <input data-ng-if="resources.node.https_possible" data-ng-model="resources.node.reachable_via_web" type="checkbox">
-            <input data-ng-if="!resources.node.https_possible" type="checkbox" disabled>
+            <input data-ng-disabled="!resources.node.https_possible" data-ng-model="resources.node.reachable_via_web" type="checkbox">
             <label data-translate>Let the platform be reachable without Tor</label>
           </div>
 
-          <div data-ng-show="resources.node.https_possible && resources.node.reachable_via_web">
+          <div data-ng-show="resources.node.reachable_via_web">
             <div class="form-group">
               <label data-translate>Roles enabled to use the platform without Tor</label>
             </div>
