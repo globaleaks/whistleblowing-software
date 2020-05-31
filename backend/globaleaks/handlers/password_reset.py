@@ -26,6 +26,7 @@ def db_generate_password_reset_token(session, user):
     """
     user.reset_password_token = generateRandomKey(32)
     user.reset_password_date = datetime_now()
+    user.password_change_needed = True
 
     if user.last_login > datetime_null():
         template = 'password_reset_validation'
@@ -124,10 +125,13 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
     # Token is used, void it out
     user.reset_password_token = None
     user.reset_password_date = now
-    user.password_change_needed = True
 
-    session = Sessions.new(user.tid, user.id, user.tid, user.role,
-                           user.password_change_needed, user.two_factor_enable, prv_key, user.crypto_escrow_prv_key)
+    session = Sessions.new(user.tid, user.id,
+                           user.tid, user.role,
+                           user.password_change_needed,
+                           user.two_factor_enable,
+                           prv_key,
+                           user.crypto_escrow_prv_key)
 
     return {'status': 'success', 'token': session.id}
 
