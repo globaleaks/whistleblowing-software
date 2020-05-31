@@ -67,6 +67,7 @@ def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
         'languages_enabled': models.EnabledLanguage.list(session, tid),
         'root_tenant': tid == 1,
         'https_possible': tid == 1 or State.tenant_cache[1].reachable_via_web,
+        'encryption_possible': tid == 1 or State.tenant_cache[1].encryption
     }
 
     if tid != 1:
