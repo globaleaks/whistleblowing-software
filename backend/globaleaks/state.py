@@ -196,8 +196,8 @@ class StateClass(ObjectDict, metaclass=Singleton):
                         self.settings.socks_host,
                         self.settings.socks_port)
 
-    def schedule_exception_email(self, exception_text, *args):
-        if not hasattr(self.tenant_cache[1], 'notification'):
+    def schedule_exception_email(self, tid, exception_text, *args):
+        if not hasattr(self.tenant_cache[tid], 'notification'):
             log.err("Error: Cannot send mail exception before complete initialization.")
             return
 
@@ -221,13 +221,13 @@ class StateClass(ObjectDict, metaclass=Singleton):
         mail_subject = "GlobaLeaks Exception"
         delivery_list = self.tenant_cache[1].notification.exception_delivery_list
 
-        mail_body = "Platform: %s\nHost: %s (%s)\nVersion: %s\n\n%s" % (self.tenant_cache[1].name,
-                                                                        self.tenant_cache[1].hostname,
-                                                                        self.tenant_cache[1].onionservice,
-                                                                        __version__,
-                                                                        exception_text)
-
         for mail_address, pgp_key_public in delivery_list:
+            mail_body = "Platform: %s\nHost: %s (%s)\nVersion: %s\n\n%s" % (self.tenant_cache[tid].name,
+                                                                            self.tenant_cache[tid].hostname,
+                                                                            self.tenant_cache[tid].onionservice,
+                                                                            __version__,
+                                                                            exception_text)
+
             # Opportunisticly encrypt the mail body. NOTE that mails will go out
             # unencrypted if one address in the list does not have a public key set.
             if pgp_key_public:
@@ -294,7 +294,7 @@ def mail_exception_handler(etype, value, tback):
     log.err("Unhandled exception raised:")
     log.err(mail_body)
 
-    State.schedule_exception_email(mail_body)
+    State.schedule_exception_email(1, mail_body)
 
 
 def extract_exception_traceback_and_schedule_email(e):

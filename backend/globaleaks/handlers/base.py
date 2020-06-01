@@ -379,7 +379,7 @@ class BaseHandler(object):
             err_tup = ("Handler [%s] exceeded execution threshold (of %d secs) with an execution time of %.2f seconds",
                        self.name, self.handler_exec_time_threshold, self.request.execution_time.seconds)
             log.err(tid=self.request.tid, *err_tup)
-            self.state.schedule_exception_email(*err_tup)
+            self.state.schedule_exception_email(self.request.tid, *err_tup)
 
         track_handler(self)
 

@@ -163,4 +163,4 @@ class JobsMonitor(LoopingJob):
                 log.err(error)
 
         if error_msg:
-            self.state.schedule_exception_email(error_msg)
+            self.state.schedule_exception_email(1, error_msg)

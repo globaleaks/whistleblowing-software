@@ -24,5 +24,5 @@ class ExceptionHandler(BaseHandler):
         exception_email += "Error Message: %s\n\n" % request['errorMessage']
         exception_email += "Stacktrace:\n"
         exception_email += json.dumps(request['stackTrace'], indent=2)
-        self.state.schedule_exception_email(exception_email)
+        self.state.schedule_exception_email(self.request.tid, exception_email)
         log.debug("Received client exception and passed error to exception mail handler")
