@@ -599,12 +599,15 @@ var GLClient = angular.module("GLClient", [
       return false;
     };
 
-    $rootScope.blowTheWhistle = function () {
-      if ($rootScope.public.node.enable_disclaimer) {
+    $rootScope.evaluateDisclaimerModalOpening = function () {
+      if ($rootScope.public.node.enable_disclaimer &&
+          !$rootScope.disclaimer_modal_opened) {
+        $rootScope.disclaimer_modal_opened = true;
         $rootScope.open_disclaimer_modal();
-      } else {
-        $rootScope.setPage('submissionpage');
+        return true;
       }
+
+      return false;
     };
 
     $rootScope.init = function () {
