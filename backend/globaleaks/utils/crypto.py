@@ -62,15 +62,15 @@ def sha512(data):
     return _sha(hashes.SHA512(), data)
 
 
+def generateRandomKey():
+    """
+    Return a random secret of 256bits
+    """
+    return sha256(nacl_random(32)).decode()
+
+
 def generate2FA():
     return ''.join(random.SystemRandom().choice(string.digits) for _ in range(8))
-
-
-def generateRandomKey(N):
-    """
-    Return a random key of N characters in a-zA-Z0-9
-    """
-    return ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(N))
 
 
 def _hash_scrypt(password, salt):
@@ -235,7 +235,7 @@ class _GCE(object):
     @staticmethod
     def generate_key():
         """
-        Generate a 128 bit key
+        Generate a 256 bit key
         """
         return nacl_random(32)
 

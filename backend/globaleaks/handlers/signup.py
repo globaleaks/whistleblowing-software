@@ -66,7 +66,7 @@ def signup(session, request, language):
     if not config.get_val('enable_signup'):
         raise errors.ForbiddenOperation
 
-    request['activation_token'] = generateRandomKey(32)
+    request['activation_token'] = generateRandomKey()
     request['language'] = language
 
     # Delete the tenants created for the same subdomain that have still not been activated

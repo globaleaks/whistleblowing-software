@@ -7,7 +7,7 @@ from globaleaks.utils.tempdict import TempDict
 
 class Session(object):
     def __init__(self, tid, user_id, user_tid, user_role, pcn, two_factor, cc, ek, ms=True):
-        self.id = generateRandomKey(42)
+        self.id = generateRandomKey()
         self.tid = tid
         self.user_id = user_id
         self.user_tid = user_tid
@@ -52,7 +52,7 @@ class SessionsFactory(TempDict):
 
     def regenerate(self, session_id):
         session = self.pop(session_id)
-        session.id = generateRandomKey(42)
+        session.id = generateRandomKey
         self.set(session.id, session)
         return session
 

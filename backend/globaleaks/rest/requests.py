@@ -35,7 +35,7 @@ short_text_regexp = r'^.{1,255}$'
 domain_list_regexp = r'^((([a-z0-9\.]+,)*[a-z0-9\.]+)|)$'
 languages_list_regexp = r'^([a-zA-Z-]+)?(,\s*[a-zA-Z-]+)*$'
 
-token_regexp = r'([a-zA-Z0-9]{42})'
+token_regexp = r'([a-z0-9]{64})'
 token_type_regexp = r'^submission$'
 
 field_instance_regexp = (r'^('

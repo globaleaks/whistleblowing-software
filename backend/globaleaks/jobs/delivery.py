@@ -154,7 +154,7 @@ def process_receiverfiles(state, files_maps):
                 try:
                     with sf.open('rb') as encrypted_file:
                         if rfileinfo['receiver']['pgp_key_public']:
-                            pgp_name = "pgp_encrypted-%s" % generateRandomKey(16)
+                            pgp_name = "pgp_encrypted-%s" % generateRandomKey()
                             pgp_path = os.path.abspath(os.path.join(Settings.attachments_path, pgp_name))
                             encrypt_file_with_pgp(state,
                                                   encrypted_file,

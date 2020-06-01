@@ -209,7 +209,7 @@ def db_user_update_user(session, tid, user_session, request):
     if request['mail_address'] != user.mail_address:
         user.change_email_address = request['mail_address']
         user.change_email_date = datetime_now()
-        user.change_email_token = generateRandomKey(32)
+        user.change_email_token = generateRandomKey()
 
         user_desc = user_serialize_user(session, user, user.language)
 

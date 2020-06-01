@@ -24,7 +24,7 @@ def db_generate_password_reset_token(session, user):
     :param session: An ORM session
     :param user: The user for which issuing a password reset token
     """
-    user.reset_password_token = generateRandomKey(32)
+    user.reset_password_token = generateRandomKey()
     user.reset_password_date = datetime_now()
     user.password_change_needed = True
 

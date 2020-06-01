@@ -17,7 +17,7 @@ class SecureTemporaryFile(object):
         Create the AES Key to encrypt the uploaded file and initialize the cipher
         """
         self.key = os.urandom(32)
-        self.key_id = generateRandomKey(16)
+        self.key_id = generateRandomKey()
         self.key_counter_nonce = os.urandom(16)
         self.cipher = Cipher(algorithms.AES(self.key), modes.CTR(self.key_counter_nonce), backend=crypto_backend)
         self.filepath = os.path.join(filesdir, "%s.aes" % self.key_id)

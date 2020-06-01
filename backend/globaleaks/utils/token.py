@@ -16,7 +16,7 @@ class Token(object):
     def __init__(self, tokenlist, tid):
         self.tokenlist = tokenlist
         self.tid = tid
-        self.id = generateRandomKey(42)
+        self.id = generateRandomKey()
         self.creation_date = datetime_now()
         self.uploaded_files = []
         self.solved = False
