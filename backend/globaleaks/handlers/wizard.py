@@ -54,13 +54,13 @@ def db_wizard(session, tid, hostname, request):
     language = request['node_language']
 
     root_tenant_node = config.ConfigFactory(session, 1)
+    encryption = root_tenant_node.get_val('encryption')
+    escrow = root_tenant_node.get_val('escrow')
 
     if tid == 1:
         node = root_tenant_node
-        encryption = True
     else:
         node = config.ConfigFactory(session, tid)
-        encryption = root_tenant_node.get_val('encryption')
 
     if node.get_val('wizard_done'):
         log.err("DANGER: Wizard already initialized!", tid=tid)
@@ -69,6 +69,8 @@ def db_wizard(session, tid, hostname, request):
     db_update_enabled_languages(session, tid, [language], language)
 
     node.set_val('encryption', encryption)
+    node.set_val('escrow', escrow)
+
     node.set_val('name', request['node_name'])
     node.set_val('default_language', language)
     node.set_val('wizard_done', True)
