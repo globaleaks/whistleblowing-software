@@ -288,10 +288,6 @@ class BaseHandler(object):
         return serve_file(self.request, fp)
 
     def get_current_user(self):
-        api_session = self.get_api_session()
-        if api_session is not None:
-            return api_session
-
         # Check for the session header
         session_id = self.request.headers.get(b'x-session')
         if session_id is None:
@@ -314,24 +310,6 @@ class BaseHandler(object):
             self._current_user = self.get_current_user()
 
         return self._current_user
-
-    def get_api_session(self):
-        token = ''
-        if b'api-token' in self.request.args:
-            token = bytes(self.request.args[b'api-token'][0])
-        elif b'x-api-token' in self.request.headers:
-            token = bytes(self.request.headers[b'x-api-token'])
-
-        # Assert the input is okay and the api_token state is acceptable
-        if self.request.tid != 1 or \
-           self.state.api_token_session is None or \
-           not self.state.tenant_cache[self.request.tid].admin_api_token_digest:
-            return
-
-        stored_token_hash = self.state.tenant_cache[self.request.tid].admin_api_token_digest.encode()
-
-        if constant_time.bytes_eq(sha512(token), stored_token_hash):
-            return self.state.api_token_session
 
     def process_file_upload(self):
         if b'flowFilename' not in self.request.args:

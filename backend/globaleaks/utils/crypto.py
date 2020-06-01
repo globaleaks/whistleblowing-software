@@ -62,15 +62,6 @@ def sha512(data):
     return _sha(hashes.SHA512(), data)
 
 
-def generateApiToken():
-    """
-    Generate an API token
-    :return: An API token to be used for authentication
-    """
-    token = generateRandomKey(32)
-    return token, sha512(token.encode())
-
-
 def generate2FA():
     return ''.join(random.SystemRandom().choice(string.digits) for _ in range(8))
 
