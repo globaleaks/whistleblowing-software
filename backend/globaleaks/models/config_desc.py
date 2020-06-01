@@ -132,7 +132,6 @@ ConfigDescriptor = {
 
     'landing_page': Unicode(default='homepage'),
 
-    'show_small_context_cards': Bool(default=False),
     'show_contexts_in_alphabetical_order': Bool(default=True),
 
     'password_change_period': Int(default=90),  # Days
@@ -228,7 +227,6 @@ ConfigFilters = {
         'simplified_login',
         'enable_custom_privacy_badge',
         'landing_page',
-        'show_small_context_cards',
         'show_contexts_in_alphabetical_order',
         'password_change_period',
         'wbtip_timetolive',

@@ -99,7 +99,6 @@ class ConfigL10N_v_38(Model):
 class Context_v_38(Model):
     __tablename__ = 'context'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    show_small_receiver_cards = Column(Boolean, default=False)
     show_context = Column(Boolean, default=True)
     show_recipients_details = Column(Boolean, default=False)
     allow_recipients_selection = Column(Boolean, default=False)

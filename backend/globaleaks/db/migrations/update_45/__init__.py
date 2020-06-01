@@ -11,7 +11,6 @@ class Context_v_44(Model):
     __tablename__ = 'context'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     tid = Column(Integer, default=1, nullable=False)
-    show_small_receiver_cards = Column(Boolean, default=False, nullable=False)
     show_context = Column(Boolean, default=True, nullable=False)
     show_recipients_details = Column(Boolean, default=False, nullable=False)
     allow_recipients_selection = Column(Boolean, default=False, nullable=False)

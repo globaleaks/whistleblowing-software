@@ -85,7 +85,6 @@ GLConfig_v_37 = {
 
         'landing_page': Unicode(default='homepage'),
 
-        'show_small_context_cards': Bool(default=False),
         'show_contexts_in_alphabetical_order': Bool(default=False),
 
         'wbtip_timetolive': Int(default=90),  # Days
