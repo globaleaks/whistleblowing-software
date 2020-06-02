@@ -155,7 +155,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
         for f in os.listdir(self.settings.attachments_path):
             path = os.path.join(self.settings.attachments_path, f)
             try:
-                result = self.settings.AES_file_regexp_comp.match(f)
+                result = re.compile(self.settings.AES_file_regexp).match(f)
                 if result is not None:
                     if not os.path.isfile("%s%s" % (keypath, result.group(1))):
                         log.debug("Removing old encrypted file (lost key): %s", path)
