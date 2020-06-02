@@ -18,7 +18,7 @@
         <a id="HomepageLink" data-ng-href="#{{Authentication.session.homepage}}" data-translate>Home</a>
         <span class="text-separator">|</span>
       </span>
-      <span id="PreferencesLinkBox" data-ng-if="!Authentication.session.management_session">
+      <span id="PreferencesLinkBox" data-ng-if="Authentication.session.role != 'whistleblower' && !Authentication.session.management_session">
         <a id="PreferencesLink" data-ng-href="#{{Authentication.session.preferencespage}}" data-translate>Preferences</a>
         <span class="text-separator">|</span>
       </span>
