@@ -13,6 +13,8 @@ from globaleaks.orm import transact, tw
 
 
 appfiles = {
+    'favicon': 'image/x-icon',
+    'logo': 'image/png',
     'css': 'text/css',
     'script': 'application/javascript'
 }

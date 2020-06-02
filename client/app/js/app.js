@@ -639,19 +639,6 @@ var GLClient = angular.module("GLClient", [
           }
         }
 
-        if ($rootScope.public.node.favicon) {
-          elem = document.getElementById("load-favicon");
-          if (elem === null) {
-            elem = document.createElement("link");
-            elem.setAttribute("id", "load-favicon");
-            elem.setAttribute("rel", "shortcut icon");
-            elem.setAttribute("href", "data:image/png;base64," + $rootScope.public.node.favicon);
-            document.getElementsByTagName("head")[0].appendChild(elem);
-          } else {
-            elem.setAttribute("href", "data:image/png;base64," + $rootScope.public.node.favicon);
-          }
-        }
-
         $rootScope.contexts_by_id = $rootScope.Utils.array_to_map(result.contexts);
         $rootScope.receivers_by_id = $rootScope.Utils.array_to_map(result.receivers);
         $rootScope.questionnaires_by_id = $rootScope.Utils.array_to_map(result.questionnaires);

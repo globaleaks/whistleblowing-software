@@ -194,7 +194,8 @@ directive("imageUpload", function () {
     scope: {
       imageUploadModel: "=",
       imageUploadModelAttr: "@",
-      imageUploadUrl: "@"
+      imageUploadUrl: "@",
+      imageSrcUrl: "@"
     },
     templateUrl: "views/partials/image_upload.html",
     controller: "ImageUploadCtrl"
