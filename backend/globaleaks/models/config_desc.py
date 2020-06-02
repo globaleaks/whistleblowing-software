@@ -317,6 +317,7 @@ ConfigFilters['public_node'] = list(set(ConfigFilters['admin_node']) - set([
     'basic_auth',
     'basic_auth_username',
     'basic_auth_password',
+    'crypto_escrow_pub_key',
     'timezone',
     'ip_filter_admin',
     'ip_filter_admin_enable',
