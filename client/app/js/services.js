@@ -541,7 +541,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     };
 }]).
   factory("ReceiverTips", ["GLResource", function(GLResource) {
-    return new GLResource("recipient/reports");
+    return new GLResource("rtips");
 }]).
   factory("IdentityAccessRequests", ["GLResource", function(GLResource) {
     return new GLResource("custodian/identityaccessrequests");

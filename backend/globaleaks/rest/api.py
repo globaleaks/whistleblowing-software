@@ -86,12 +86,14 @@ api_spec = [
     (r'/submission/' + requests.token_regexp + r'/file', attachment.SubmissionAttachment),
 
     # Receiver Tip Handlers
+    (r'/rtips', receiver.TipsCollection),
     (r'/rtip/' + uuid_regexp, rtip.RTipInstance),
     (r'/rtip/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
     (r'/rtip/' + uuid_regexp + r'/messages', rtip.ReceiverMsgCollection),
     (r'/rtip/' + uuid_regexp + r'/identityaccessrequests', rtip.IdentityAccessRequestsCollection),
     (r'/rtip/' + uuid_regexp + r'/export', export.ExportHandler),
     (r'/rtip/' + uuid_regexp + r'/wbfile', rtip.WhistleblowerFileHandler),
+    (r'/rtip/operations', receiver.TipsOperations),
     (r'/rtip/rfile/' + uuid_regexp, rtip.ReceiverFileDownload),
     (r'/rtip/wbfile/' + uuid_regexp, rtip.RTipWBFileHandler),
 
@@ -103,10 +105,6 @@ api_spec = [
     (r'/wbtip/wbfile/' + uuid_regexp, wbtip.WBTipWBFileHandler),
     (r'/wbtip/' + uuid_regexp + r'/provideidentityinformation', wbtip.WBTipIdentityHandler),
     (r'/wbtip/' + uuid_regexp + r'/update', wbtip.WBTipAdditionalQuestionnaire),
-
-    # Receiver Handlers
-    (r'/recipient/reports', receiver.TipsCollection),
-    (r'/rtip/operations', receiver.TipsOperations),
 
     (r'/custodian/identityaccessrequests', custodian.IdentityAccessRequestsCollection),
     (r'/custodian/identityaccessrequest/' + uuid_regexp, custodian.IdentityAccessRequestInstance),
