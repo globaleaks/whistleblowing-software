@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1004,9 +1004,6 @@ msgstr "Maximálny počet voliteľných príjemcov"
 msgid "Show recipients in alphabetical order"
 msgstr "Zobraziť príjemcov v abecednom poradí"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Zobraziť kartičky na odosielanom rozhraní"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Zobraziť detaily o príjemcoch na stránke o stave podania"
 
@@ -1492,12 +1489,6 @@ msgstr "Kód je neplatný alebo vypršal."
 msgid "Site:"
 msgstr "Stránka:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Už ste vyplnili podanie? Zadajte svoj prístupový kód."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Príjemca je buď neplatný, alebo uplynula platnosť podania."
-
 msgid "Username:"
 msgstr "Používateľské meno:"
 
@@ -1657,6 +1648,12 @@ msgstr "Potom skopírujte a vložte nasledujúcu adresu do prehliadača Tor:"
 
 msgid "Enter a name for the copy"
 msgstr "Zadajte názov kópie"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Už ste vyplnili podanie? Zadajte svoj prístupový kód."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Príjemca je buď neplatný, alebo uplynula platnosť podania."
 
 msgid "Select a file or drag it here."
 msgstr "Vyberte súbor alebo ho sem pretiahnite."

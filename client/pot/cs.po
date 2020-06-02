@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-21 19:54+0000\n"
-"Last-Translator: Lenka Ježková <lenka.jezkova@oziveni.cz>\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1005,9 +1005,6 @@ msgstr "Maximální počet zvolitelných příjemců"
 msgid "Show recipients in alphabetical order"
 msgstr "Ukázat příjemce v abecedním pořadí"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Ukázat kartičku v odesílacím rozhraní"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Zobrazit detaily o příjemcích na stránce o stavu podání"
 
@@ -1493,12 +1490,6 @@ msgstr "Kód je neplatný nebo vypršel."
 msgid "Site:"
 msgstr "Stránka:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Už jste podal podání? Zadejte své potvrzení."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Příjemce je buď neplatný nebo platnost podání vypršela."
-
 msgid "Username:"
 msgstr "Uživatelské jméno:"
 
@@ -1658,6 +1649,12 @@ msgstr "Pak zkopírujte a vložte následující adresy do Tor prohlížeče:"
 
 msgid "Enter a name for the copy"
 msgstr "Zadejte název kopie"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Už jste podal podání? Zadejte své potvrzení."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Příjemce je buď neplatný nebo platnost podání vypršela."
 
 msgid "Select a file or drag it here."
 msgstr "Vyberte soubor nebo jej sem přetáhněte."

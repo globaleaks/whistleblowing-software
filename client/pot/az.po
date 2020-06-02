@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -999,9 +999,6 @@ msgstr "Seçilən qəbul edicilərin maksimum sayı:"
 msgid "Show recipients in alphabetical order"
 msgstr "Qəbul ediciləri əlifba sırası ilə göstərin"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Təqdimat interfeysində kiçik alıcı kartlarını göstərin"
-
 msgid "Show recipient details on the status page of the report"
 msgstr ""
 
@@ -1487,12 +1484,6 @@ msgstr "Açar şifrə etibarsızdır və ya təqdimat müddəti başa çatıb."
 msgid "Site:"
 msgstr ""
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Artıq təqdim etmisiniz mı? Açar açar şifrəni daxil edin"
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Açar şifrə etibarsızdır və ya təqdimat müddəti başa çatıb."
-
 msgid "Username:"
 msgstr "İstifadəçi adı:"
 
@@ -1652,6 +1643,12 @@ msgstr "Daha sonra Tor Brauzerə aşağıdakı ünvanı kopyalayıb yapışdır�
 
 msgid "Enter a name for the copy"
 msgstr ""
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Artıq təqdim etmisiniz mı? Açar açar şifrəni daxil edin"
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Açar şifrə etibarsızdır və ya təqdimat müddəti başa çatıb."
 
 msgid "Select a file or drag it here."
 msgstr ""

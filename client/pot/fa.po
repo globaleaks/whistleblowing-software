@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-23 11:22+0000\n"
-"Last-Translator: Vox\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1016,9 +1016,6 @@ msgstr "حداکثر تعداد دریافت کننده های قابل انتخ
 msgid "Show recipients in alphabetical order"
 msgstr "نشان دادن گیرندگان به صورت الفبایی"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "نمایش کارت های کوچک گیرنده روی رابط گزارش"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "نمایش جزییات گیرنده روی صفحه وضعیت گزارش"
 
@@ -1504,12 +1501,6 @@ msgstr "کد یا نامعتبر است یا انقضا یافته است."
 msgid "Site:"
 msgstr "سایت:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "آیا گزارش خود را داده اید؟ رسید خود را وارد کنید."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "رسید یا نامعتبر می باشد یا گزارش انقضا یافته است."
-
 msgid "Username:"
 msgstr "نام کاربری:"
 
@@ -1669,6 +1660,12 @@ msgstr "سپس این آدرس را در مرورگر درج کنید:"
 
 msgid "Enter a name for the copy"
 msgstr "وارد کردن یک نام برای کپی"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "آیا گزارش خود را داده اید؟ رسید خود را وارد کنید."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "رسید یا نامعتبر می باشد یا گزارش انقضا یافته است."
 
 msgid "Select a file or drag it here."
 msgstr "فایل را انتخاب کرده و یا به اینجا بکشید."

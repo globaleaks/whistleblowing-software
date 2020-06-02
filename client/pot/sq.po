@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -997,9 +997,6 @@ msgstr "Numri maksimal i marrësve të përzgjedhshëm:"
 msgid "Show recipients in alphabetical order"
 msgstr "Shfaqini marrësit të renditur alfabetikisht"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Shfaqni kartat e vogla të marrësit në ndërfaqen e paraqitjes"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Trego detajet e marrësit në faqen e statusit të dorëzimit"
 
@@ -1485,12 +1482,6 @@ msgstr ""
 msgid "Site:"
 msgstr ""
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "A e keni bërë tashmë një parashtrim? Futni kodin e çelësit tuaj."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr ""
-
 msgid "Username:"
 msgstr "Emri i përdoruesit:"
 
@@ -1649,6 +1640,12 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Më pas, kopjojeni dhe ngjiteni tek Shfletuesi Tor adresën në vijim:"
 
 msgid "Enter a name for the copy"
+msgstr ""
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "A e keni bërë tashmë një parashtrim? Futni kodin e çelësit tuaj."
+
+msgid "The receipt is either invalid or the report has expired."
 msgstr ""
 
 msgid "Select a file or drag it here."

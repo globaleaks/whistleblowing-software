@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1003,9 +1003,6 @@ msgstr "انتخاب وصول کنندگان کی زیادہ سے زیادہ ت�
 msgid "Show recipients in alphabetical order"
 msgstr "الفبائی ترتیب میں وصول کنندگان دکھائیں"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "عرضدادشتوں کے انٹرفیس پر چھوٹے وصول کنندہ کارڈ دکھائیں"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "جمع کرانے کی حیثیت کے صفحے پر وصول کنندہ کی تفصیلات دکھائیں"
 
@@ -1491,12 +1488,6 @@ msgstr ""
 msgid "Site:"
 msgstr ""
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "کیا آپ  پہلے ہی گزارش جمع کرا چکے ہیں ؟ اپنی رسید جمع کرائیے "
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "کلیدی کوڈ یا تو قابلِ قبول نہیں یا داخل کردہ گذارشات غیر مؤثر ہوچکی ہیں۔"
-
 msgid "Username:"
 msgstr "صارف کا نام"
 
@@ -1656,6 +1647,12 @@ msgstr "اس کے بعد، ٹور براؤزر انسٹال کرنے کے لیے
 
 msgid "Enter a name for the copy"
 msgstr ""
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "کیا آپ  پہلے ہی گزارش جمع کرا چکے ہیں ؟ اپنی رسید جمع کرائیے "
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "کلیدی کوڈ یا تو قابلِ قبول نہیں یا داخل کردہ گذارشات غیر مؤثر ہوچکی ہیں۔"
 
 msgid "Select a file or drag it here."
 msgstr ""

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -998,9 +998,6 @@ msgstr "Maksimalno število prejemnikov:"
 msgid "Show recipients in alphabetical order"
 msgstr "Pokaži prejemnike po abecednem redu"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Prikaži majhne kartice prejemnikov v vmesniku za naznanitve"
-
 msgid "Show recipient details on the status page of the report"
 msgstr ""
 
@@ -1486,12 +1483,6 @@ msgstr ""
 msgid "Site:"
 msgstr ""
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Ali ste že oddali naznanitev? Vnesite vašo šifro ključa."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Šifra ključa je neveljavna ali pa je naznanitvi potekla časovna omejitev."
-
 msgid "Username:"
 msgstr "Uporabniško ime:"
 
@@ -1651,6 +1642,12 @@ msgstr "Potem kopirajte sledeč naslov in ga prilepite v Tor Browser: "
 
 msgid "Enter a name for the copy"
 msgstr ""
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Ali ste že oddali naznanitev? Vnesite vašo šifro ključa."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Šifra ključa je neveljavna ali pa je naznanitvi potekla časovna omejitev."
 
 msgid "Select a file or drag it here."
 msgstr ""

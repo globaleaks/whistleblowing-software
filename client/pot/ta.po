@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -997,9 +997,6 @@ msgstr "தேர்ந்தெடுக்கும் பெற்றவர�
 msgid "Show recipients in alphabetical order"
 msgstr "அகரவரிசையில் பெற்றவர்கள் காட்டு"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "சமர்ப்பிப்பு இடைமுகத்தில் சிறிய பெறுநர் அட்டைகள் காட்டு"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "சமர்ப்பிக்கும் நிலையை பக்கம் பெறுநர் விவரங்களை காட்டு"
 
@@ -1485,12 +1482,6 @@ msgstr ""
 msgid "Site:"
 msgstr "தள:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "நீங்கள் ஏற்கனவே ஒரு சமர்ப்பிப்பு தாக்கல் செய்துள்ளனர்? உங்கள் முக்கிய குறியீடு உள்ளிடவும்."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "ரசீது தவறானது அல்லது சமர்ப்பிப்பு காலாவதியானது."
-
 msgid "Username:"
 msgstr "பயனர்பெயர்:"
 
@@ -1650,6 +1641,12 @@ msgstr "பின்னர், நகல் மற்றும் தோர�
 
 msgid "Enter a name for the copy"
 msgstr "நகலுக்கு ஒரு பெயரை உள்ளிடவும்"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "நீங்கள் ஏற்கனவே ஒரு சமர்ப்பிப்பு தாக்கல் செய்துள்ளனர்? உங்கள் முக்கிய குறியீடு உள்ளிடவும்."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "ரசீது தவறானது அல்லது சமர்ப்பிப்பு காலாவதியானது."
 
 msgid "Select a file or drag it here."
 msgstr ""

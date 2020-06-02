@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -999,9 +999,6 @@ msgstr "選択可能な受信者の最大数:"
 msgid "Show recipients in alphabetical order"
 msgstr "受信者をアルファベット順に表示"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "提出インターフェースに小さな受信者カードを表示"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "報告の状況ページで受信者の詳細を表示する"
 
@@ -1487,12 +1484,6 @@ msgstr "コードが正しくないか、有効期限切れです。"
 msgid "Site:"
 msgstr "サイト:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "すでに報告を行っていますか？あなたの受領番号を入力してください。"
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "受領番号が無効であるか、報告が有効期限切れです。"
-
 msgid "Username:"
 msgstr "ユーザー名:"
 
@@ -1652,6 +1643,12 @@ msgstr "その上で、以下のアドレスをインストールされたTor Br
 
 msgid "Enter a name for the copy"
 msgstr "コピーの名前を入力してください"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "すでに報告を行っていますか？あなたの受領番号を入力してください。"
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "受領番号が無効であるか、報告が有効期限切れです。"
 
 msgid "Select a file or drag it here."
 msgstr "ファイルを選択するか、ここにドラッグしてください。"

@@ -40,7 +40,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: English (http://www.transifex.com/otf/globaleaks/language/en/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1030,9 +1030,6 @@ msgstr "Maximum number of selectable recipients:"
 msgid "Show recipients in alphabetical order"
 msgstr "Show recipients in alphabetical order"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Show small recipient cards on submission interface"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Show recipient details on the status page of the report"
 
@@ -1518,12 +1515,6 @@ msgstr "The code is either invalid or expired."
 msgid "Site:"
 msgstr "Site:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Have you already filed a report? Enter your receipt."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "The receipt is either invalid or the report has expired."
-
 msgid "Username:"
 msgstr "Username:"
 
@@ -1683,6 +1674,12 @@ msgstr "Then, copy and paste the following address into the Tor Browser:"
 
 msgid "Enter a name for the copy"
 msgstr "Enter a name for the copy"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Have you already filed a report? Enter your receipt."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "The receipt is either invalid or the report has expired."
 
 msgid "Select a file or drag it here."
 msgstr "Select a file or drag it here."

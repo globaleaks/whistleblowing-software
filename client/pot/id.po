@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1014,9 +1014,6 @@ msgstr "Jumlah tertinggi penerima yang dapat dipilih:"
 msgid "Show recipients in alphabetical order"
 msgstr "Tunjukkan penerima-penerima berdasarkan susunan abjad"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Tunjukkan profil penerima pada laman antarmuka pengiriman"
-
 msgid "Show recipient details on the status page of the report"
 msgstr ""
 
@@ -1502,12 +1499,6 @@ msgstr "Kode tidak sah atau kedaluwarsa."
 msgid "Site:"
 msgstr "Situs:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr ""
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr ""
-
 msgid "Username:"
 msgstr "Nama Pengguna:"
 
@@ -1667,6 +1658,12 @@ msgstr "Lalu, salin dan tempel alamat yang bersangkutan ke dalam Peramban Tor:"
 
 msgid "Enter a name for the copy"
 msgstr "Masukan nama untuk salinan"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr ""
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr ""
 
 msgid "Select a file or drag it here."
 msgstr ""

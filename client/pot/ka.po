@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -994,9 +994,6 @@ msgstr "მაქსიმალური რაოდენობა მით�
 msgid "Show recipients in alphabetical order"
 msgstr "Show მიმღები ანბანის მიხედვით"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "აჩვენეთ პატარა მიმღები ბარათები წარდგენის ინტერფეისი"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "აჩვენეთ მიმღები დეტალები მდგომარეობა გვერდზე წარდგენის"
 
@@ -1482,12 +1479,6 @@ msgstr ""
 msgid "Site:"
 msgstr ""
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "თქვენ უკვე შეიტანა წარდგენის? შეიყვანეთ თქვენი გასაღები კოდი."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "გასაღები კოდი ან არასწორი ან წარდგენის ვადა გაუვიდა."
-
 msgid "Username:"
 msgstr "მომხმარებლის სახელი:"
 
@@ -1647,6 +1638,12 @@ msgstr "ამის შემდეგ, დააკოპირეთ და �
 
 msgid "Enter a name for the copy"
 msgstr ""
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "თქვენ უკვე შეიტანა წარდგენის? შეიყვანეთ თქვენი გასაღები კოდი."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "გასაღები კოდი ან არასწორი ან წარდგენის ვადა გაუვიდა."
 
 msgid "Select a file or drag it here."
 msgstr ""

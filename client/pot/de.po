@@ -47,7 +47,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1037,9 +1037,6 @@ msgstr "Maximale Anzahl auswählbarer Empfänger: "
 msgid "Show recipients in alphabetical order"
 msgstr "Empfänger in alphabetischer Reihenfolge anzeigen"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Kleine Empfänger-Karten auf dem Einreichungsbildschirm anzeigen"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Zeigen Sie Empfängerdaten auf der Statusseite der Vorlage"
 
@@ -1525,12 +1522,6 @@ msgstr "Der Code ist entweder ungültig oder abgelaufen."
 msgid "Site:"
 msgstr "Seite:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Haben Sie bereits eine Einreichung durchgeführt? Geben Sie Ihre Empfangsbestätigung an."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Der Schlüsselcode ist entweder ungültig oder die Einreichung ist abgelaufen."
-
 msgid "Username:"
 msgstr "Benutzername:"
 
@@ -1690,6 +1681,12 @@ msgstr "Anschließend kopieren Sie die folgende Adresse und fügen Sie sie in de
 
 msgid "Enter a name for the copy"
 msgstr "Geben Sie einen Namen für die Kopie ein"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Haben Sie bereits eine Einreichung durchgeführt? Geben Sie Ihre Empfangsbestätigung an."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Der Schlüsselcode ist entweder ungültig oder die Einreichung ist abgelaufen."
 
 msgid "Select a file or drag it here."
 msgstr "Eine Datei auswählen oder Sie hierher ziehen."

@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1000,9 +1000,6 @@ msgstr "Maksimalan broj primatelja koji se mogu odabrati:"
 msgid "Show recipients in alphabetical order"
 msgstr "Prikaži primatelje u abecednom slijedu"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Prikaži male kartice primatelja na sučelju predaje"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Prikaži detalje primatelja na stranici statusa o prijavi"
 
@@ -1488,12 +1485,6 @@ msgstr "Kod je ili netočan ili je istekao."
 msgid "Site:"
 msgstr "Stranica:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Jeste li već poslali prijavu? Unesite potvrdu."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Potvrda je nepotpuna ili je rok prijave istekao."
-
 msgid "Username:"
 msgstr "Korisničko ime:"
 
@@ -1653,6 +1644,12 @@ msgstr "Zatim kopirajte sljedeću adresu u Tor preglednik:"
 
 msgid "Enter a name for the copy"
 msgstr "Unesite ime za kopiju"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Jeste li već poslali prijavu? Unesite potvrdu."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Potvrda je nepotpuna ili je rok prijave istekao."
 
 msgid "Select a file or drag it here."
 msgstr "Izaberite datoteku ili ju dovucite ovdje."

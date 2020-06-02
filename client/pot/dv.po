@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -999,9 +999,6 @@ msgstr "އެންމެގިނަވެގެން އިޚްތިޔާރު ކުރެވޭނެ �
 msgid "Show recipients in alphabetical order"
 msgstr "ލިބިލައްވާ ފަރާތްތަށް އޭ.ބީ.ސީ އަކުރުގެ އޯޑަރަށް ބަހާލަން"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "ޚިދުމަތަށް އެދޭ މީހާގެ ކުޑަކާޑެއް ޚިދުމަތަށް އެދޭ އިންޓަރފޭސްއިން ދެއްކުމަށް"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "ރިޕޯޓުގެ ސްޓޭޓަސް ސަފްޙާގެ ރިޕޯޓް ލިބޭ ފަރާތްތަކުގެ މައުލޫއްމާތު ފެންނަން ހުންނަގޮތް ހަދަން"
 
@@ -1487,12 +1484,6 @@ msgstr "ޖެއްސެވި ކޯޑް ނުރަނގަޅު ނުވަތަ އެކްސްޕ
 msgid "Site:"
 msgstr "ސައިޓް"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "ރިޕޯޓް ފައިލް ކޮއްފާވާނަމަ ރަޝީދު ނަންބަރ ޖައްސަވާ"
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "ޖެއްސެވި ރަޝީދުގެ ކޯޑް ނުރަނގަޅު ނުވަތަ އެކްސްޕަޔަރ ވެފައި"
-
 msgid "Username:"
 msgstr "ބޭނުންކުރާ މީހާގެ ނަން"
 
@@ -1652,6 +1643,12 @@ msgstr "ޓޯރ ބްރައުޒަރ އަށް މި އެޑްރެސް ކޮޕީ ކުރ
 
 msgid "Enter a name for the copy"
 msgstr "ކޮޕީއަށް ނަމެއް ހިޔާރުކުރައްވާ"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "ރިޕޯޓް ފައިލް ކޮއްފާވާނަމަ ރަޝީދު ނަންބަރ ޖައްސަވާ"
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "ޖެއްސެވި ރަޝީދުގެ ކޯޑް ނުރަނގަޅު ނުވަތަ އެކްސްޕަޔަރ ވެފައި"
 
 msgid "Select a file or drag it here."
 msgstr "ފައިލް އެއް ހިޔާރުކުރައްވާ. ނުވަތަ ދަމާގެނެސް މިތަނަށް ވައްޓާލައްވާ "

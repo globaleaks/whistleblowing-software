@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1015,9 +1015,6 @@ msgstr "Numero massimo di riceventi selezionabili"
 msgid "Show recipients in alphabetical order"
 msgstr "Mostra i riceventi in ordine alfabetico"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Mostra schede dei riceventi in formato ridotto."
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Mostra i dettagli dei destinatari sulla pagina di stato della segnalazione"
 
@@ -1503,12 +1500,6 @@ msgstr "Il codice è invalido o scaduto."
 msgid "Site:"
 msgstr "Sito:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Hai già effettuato una segnalazione? Inserisci la tua ricevuta."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "La ricevuta inserita non è valida o la segnalazione è scaduta."
-
 msgid "Username:"
 msgstr "Nome Utente:"
 
@@ -1668,6 +1659,12 @@ msgstr "Poi, una volta installato, copia ed incolla il seguente indirizzo all'in
 
 msgid "Enter a name for the copy"
 msgstr "Inserisci un nome per la copia"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Hai già effettuato una segnalazione? Inserisci la tua ricevuta."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "La ricevuta inserita non è valida o la segnalazione è scaduta."
 
 msgid "Select a file or drag it here."
 msgstr "Seleziona un file o trascinalo quì"

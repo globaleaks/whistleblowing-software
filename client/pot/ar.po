@@ -42,7 +42,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1032,9 +1032,6 @@ msgstr "الحد الأقصى لعدد المتلقين الذي يمكن اخت
 msgid "Show recipients in alphabetical order"
 msgstr "إظهار المتلقين بترتيب ابجدي"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "اظهار بطاقات استقبال صغيرة على واجهة الابلاغ"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "عرض تفاصيل المتلقي على صفحة حالة البلاغ"
 
@@ -1520,12 +1517,6 @@ msgstr "إما أن الرمز غير صحيح أو انتهت صلاحيته."
 msgid "Site:"
 msgstr "الموقع:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "هل قدمت بلاغا سابقا؟ أدخل الاستلام الخاص بك."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "إمّا أنّ الإستلام غير صالح أو أنّ صلاحيّة البلاغ انتهت."
-
 msgid "Username:"
 msgstr "اسم المستخدم :"
 
@@ -1685,6 +1676,12 @@ msgstr "ثمّ، انسخ والصق العنوان التالي في متصفّ
 
 msgid "Enter a name for the copy"
 msgstr "أدخل اسما من أجل النسخة"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "هل قدمت بلاغا سابقا؟ أدخل الاستلام الخاص بك."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "إمّا أنّ الإستلام غير صالح أو أنّ صلاحيّة البلاغ انتهت."
 
 msgid "Select a file or drag it here."
 msgstr "اختر ملفا أو اسحبه هنا."

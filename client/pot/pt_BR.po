@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1029,9 +1029,6 @@ msgstr "Número máximo de Destinatários selecionáveis:"
 msgid "Show recipients in alphabetical order"
 msgstr "Mostrar destinatários em ordem alfabética"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Mostrar pequenos cartões ao destinatário na interface de submissão"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Mostrar detalhes do destinatário na página de status da submissão"
 
@@ -1517,12 +1514,6 @@ msgstr "O código é inválido ou expirou."
 msgid "Site:"
 msgstr "Site:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Você já preencheu um formulário? Digite seu recibo."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "O recibo é inválido ou o envio expirou."
-
 msgid "Username:"
 msgstr "Nome do Usuário:"
 
@@ -1682,6 +1673,12 @@ msgstr "Em seguida, copie e cole o seguinte endereço no Tor Browser instalado:"
 
 msgid "Enter a name for the copy"
 msgstr "Digite um nome para a cópia"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Você já preencheu um formulário? Digite seu recibo."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "O recibo é inválido ou o envio expirou."
 
 msgid "Select a file or drag it here."
 msgstr "Selecione um arquivo ou arraste-o aqui."

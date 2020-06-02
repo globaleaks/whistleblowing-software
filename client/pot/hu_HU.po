@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1012,9 +1012,6 @@ msgstr "Maximum kiválasztható címzettek száma:"
 msgid "Show recipients in alphabetical order"
 msgstr "A címzettek megjelenítése betűrendben"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Kis címzett kártyák mutatása a beadvány felületen"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Üzenet, ami a beküldés állapota oldal tetején kerül megjelenítésre"
 
@@ -1500,12 +1497,6 @@ msgstr "A kód érvénytelen vagy lejárt."
 msgid "Site:"
 msgstr "Oldal:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Küldött már be valamit? Adja meg a kulcskódját."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "A kulcs kód vagy nem érvényes,vagy a beküldés lejárt."
-
 msgid "Username:"
 msgstr "Felhasználónév:"
 
@@ -1665,6 +1656,12 @@ msgstr "Utána másolja át a következő címet a telepített Tor Böngészőbe
 
 msgid "Enter a name for the copy"
 msgstr "Adja meg a másolat nevét"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Küldött már be valamit? Adja meg a kulcskódját."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "A kulcs kód vagy nem érvényes,vagy a beküldés lejárt."
 
 msgid "Select a file or drag it here."
 msgstr "Válasszon ki egy fájlt a számítógépéről vagy húzza ide"

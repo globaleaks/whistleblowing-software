@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-19 17:40+0000\n"
-"Last-Translator: Casper Petersen <casper_petersen@hotmail.com>\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1001,9 +1001,6 @@ msgstr "Maksimalt antal modtagere der kan vælges:"
 msgid "Show recipients in alphabetical order"
 msgstr "Vis modtagere i alfabetisk rækkefølge"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Vis små kort med modtagere på indleveringssiden"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Vis modtagerdetaljer på statussiden for indleveringen"
 
@@ -1489,12 +1486,6 @@ msgstr "Denne kode er enten forkert eller udløbet."
 msgid "Site:"
 msgstr "Side:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Har du allerede indsendt en indberetning? Indtast din nøglekode."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Nøglekoden er enten forkert eller indsendelsen er udløbet."
-
 msgid "Username:"
 msgstr "Brugernavn:"
 
@@ -1654,6 +1645,12 @@ msgstr "Kopier og indsæt følgende adresse i din Tor browser: "
 
 msgid "Enter a name for the copy"
 msgstr "Indtast et navn på kopien"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Har du allerede indsendt en indberetning? Indtast din nøglekode."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Nøglekoden er enten forkert eller indsendelsen er udløbet."
 
 msgid "Select a file or drag it here."
 msgstr "Vælg en fil eller flyt den hertil."

@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1013,9 +1013,6 @@ msgstr "Número máximo de destinatários selecionáveis:"
 msgid "Show recipients in alphabetical order"
 msgstr "Mostrar destinatários por ordem alfabética"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Mostrar cartões de destinatário pequenos na interface de submissão"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Mostrar os detalhes do destinatário na página de estado da submissão"
 
@@ -1501,12 +1498,6 @@ msgstr "O código é inválido ou a submissão expirou."
 msgid "Site:"
 msgstr ""
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Já enviou preencheu uma submissão? Insira o código chave."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "O código chave é inválido ou a submissão expirou."
-
 msgid "Username:"
 msgstr "Nome do utilizador:"
 
@@ -1666,6 +1657,12 @@ msgstr "Depois, copie e cole o seguinte endereço para o Tor Browser:"
 
 msgid "Enter a name for the copy"
 msgstr "Insira um nome para a cópia"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Já enviou preencheu uma submissão? Insira o código chave."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "O código chave é inválido ou a submissão expirou."
 
 msgid "Select a file or drag it here."
 msgstr ""

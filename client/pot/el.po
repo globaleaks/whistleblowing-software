@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1007,9 +1007,6 @@ msgstr "Μέγιστος αριθμός επιλέξιμων παραληπτώ�
 msgid "Show recipients in alphabetical order"
 msgstr "Εμφάνιση παραληπτών σε αλφαβητική σειρά"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Προβολή μικρογραφιών καρτών παραληπτών στην διεπαφή υποβολής"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Εμφάνιση λεπτομερειών παραλήπτη στη σελίδα κατάστασης της αναφοράς"
 
@@ -1495,12 +1492,6 @@ msgstr "Ο κωδικός είναι άκυρος ή έχει λήξει"
 msgid "Site:"
 msgstr "Ιστοσελίδα:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Έχετε ήδη καταχωρήσει την αναφορά σας; Εισάγετε το αποδεικτικό."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Το αποδεικτό είναι άκυρο ή η καταχωρημένη αναφορά έχει λήξει."
-
 msgid "Username:"
 msgstr "Όνομα χρήστη:"
 
@@ -1660,6 +1651,12 @@ msgstr "Στη συνέχεια, αντιγράψτε και επικολλήσ�
 
 msgid "Enter a name for the copy"
 msgstr "Εισαγωγή ονόματος για το αντίγραφο"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Έχετε ήδη καταχωρήσει την αναφορά σας; Εισάγετε το αποδεικτικό."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Το αποδεικτό είναι άκυρο ή η καταχωρημένη αναφορά έχει λήξει."
 
 msgid "Select a file or drag it here."
 msgstr "Επιλέξτε αρχείο ή σύρετέ το εδώ."

@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1001,9 +1001,6 @@ msgstr "最多可選收件者的數目"
 msgid "Show recipients in alphabetical order"
 msgstr "以字母次序顯示收件者"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "在揭密提交介面下顯示小型收件者名卡"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "在報告的狀況頁顯示收件者的詳細情況"
 
@@ -1489,12 +1486,6 @@ msgstr "該代碼無效或已逾期"
 msgid "Site:"
 msgstr "網站:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "是否已提交報告？請輸入其收件人。"
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "該名收件人無效或是報告已過期失效。"
-
 msgid "Username:"
 msgstr "使用者名稱："
 
@@ -1654,6 +1645,12 @@ msgstr "然後在 TOR 瀏覧器上複制貼上以下的網址"
 
 msgid "Enter a name for the copy"
 msgstr "為此複本輸入名稱"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "是否已提交報告？請輸入其收件人。"
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "該名收件人無效或是報告已過期失效。"
 
 msgid "Select a file or drag it here."
 msgstr "選取檔案或是將之拖曳到此處"

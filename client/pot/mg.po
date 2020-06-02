@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1010,9 +1010,6 @@ msgstr "Nombre maximal de destinataires sélectionnables :"
 msgid "Show recipients in alphabetical order"
 msgstr "Montrer les destinataires par ordre alphabétique"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Montrer des petites cartes sur les destinataires dans l’interface d’envoi."
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Montrer les détails concernant les destinataires sur la page d’état de l’envoi"
 
@@ -1498,12 +1495,6 @@ msgstr "Le côté est invalide ou expiré"
 msgid "Site:"
 msgstr "Site :"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Raha efa nametraka fitarainana ianao dia ampidiro eto ambany avy hatrany ny teny miafina tarehimarika miisa 16 azonao."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Soit le reçu est invalide soit votre envoi a expiré."
-
 msgid "Username:"
 msgstr "Nom d’utilisateur :"
 
@@ -1663,6 +1654,12 @@ msgstr "Copier et coller ensuite l’adresse suivante dans le navigateur Tor :"
 
 msgid "Enter a name for the copy"
 msgstr "Saisir un nom pour la copie"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Raha efa nametraka fitarainana ianao dia ampidiro eto ambany avy hatrany ny teny miafina tarehimarika miisa 16 azonao."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Soit le reçu est invalide soit votre envoi a expiré."
 
 msgid "Select a file or drag it here."
 msgstr ""

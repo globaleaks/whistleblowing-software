@@ -27,7 +27,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1017,9 +1017,6 @@ msgstr "Seçilebilir azami alıcı sayısı:"
 msgid "Show recipients in alphabetical order"
 msgstr "Alıcıları alfabetik sıralı göster"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Gönderim arayüzünde küçük alıcı kartlarını göster"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Rapor durum sayfasında alıcı ayrıntılarını görüntüle"
 
@@ -1505,12 +1502,6 @@ msgstr "Kod geçersiz veya süresi dolmuş."
 msgid "Site:"
 msgstr "Site:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Zaten bir rapor sundunuz mu? Alındı bilgisini girin."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Alındı bilgisi geçersiz veya raporun süresi doldu."
-
 msgid "Username:"
 msgstr "Kullanıcı Adı:"
 
@@ -1670,6 +1661,12 @@ msgstr "Sonra, şu adresi kopyalayıp Tor Browser'a yapıştırın:"
 
 msgid "Enter a name for the copy"
 msgstr "Kopya için bir isim girin"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Zaten bir rapor sundunuz mu? Alındı bilgisini girin."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Alındı bilgisi geçersiz veya raporun süresi doldu."
 
 msgid "Select a file or drag it here."
 msgstr "Bir dosya seçin veya buraya taşıyın."

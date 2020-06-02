@@ -29,7 +29,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1019,9 +1019,6 @@ msgstr "Максимальное число получателей"
 msgid "Show recipients in alphabetical order"
 msgstr "Сортировать получателей в алфавитном порядке"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Показать значки получателей при выборе материалов"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Показать данные получателя на странице состояния подачи материалов"
 
@@ -1507,12 +1504,6 @@ msgstr "Ключ доступа либо недействительный, ли�
 msgid "Site:"
 msgstr ""
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr ""
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Ключ доступа либо недействительный, либо подача материала устарела."
-
 msgid "Username:"
 msgstr "Имя пользователя"
 
@@ -1672,6 +1663,12 @@ msgstr "Затем скопируйте и вставьте следующий �
 
 msgid "Enter a name for the copy"
 msgstr ""
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr ""
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Ключ доступа либо недействительный, либо подача материала устарела."
 
 msgid "Select a file or drag it here."
 msgstr ""

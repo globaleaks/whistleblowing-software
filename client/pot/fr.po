@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-19 13:01+0000\n"
-"Last-Translator: AO <ao@localizationlab.org>\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1029,9 +1029,6 @@ msgstr "Nombre maximal de destinataires sélectionnables :"
 msgid "Show recipients in alphabetical order"
 msgstr "Montrer les destinataires par ordre alphabétique"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Montrer des petites cartes sur les destinataires dans l’interface d’envoi."
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Afficher les détails des destinataires sur la page d’état du signalement"
 
@@ -1517,12 +1514,6 @@ msgstr "Le côté est invalide ou expiré"
 msgid "Site:"
 msgstr "Site :"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Avez-vous déjà rempli un signalement ? Saisissez votre reçu."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Soit le reçu est invalide soit le signalement est expiré."
-
 msgid "Username:"
 msgstr "Nom d’utilisateur :"
 
@@ -1682,6 +1673,12 @@ msgstr "Copier et coller ensuite l’adresse suivante dans le Navigateur Tor :
 
 msgid "Enter a name for the copy"
 msgstr "Saisir un nom pour la copie"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Avez-vous déjà rempli un signalement ? Saisissez votre reçu."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Soit le reçu est invalide soit le signalement est expiré."
 
 msgid "Select a file or drag it here."
 msgstr "Sélectionnez un fichier ou glissez-le ici."

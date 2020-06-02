@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -995,9 +995,6 @@ msgstr "선택받는 사람의 최대 수 :"
 msgid "Show recipients in alphabetical order"
 msgstr "알파벳 순서로 표시받는 사람"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "제출 인터페이스에 작은받는 카드보기"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "제출의 상태 페이지에받는 사람의 정보를보기"
 
@@ -1483,12 +1480,6 @@ msgstr "키 코드가 잘못되었거나 제출이 만료되었습니다."
 msgid "Site:"
 msgstr ""
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "당신은 이미 제출을 제기 한 적이 있습니까? 키 코드를 입력합니다."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "키 코드가 잘못되었거나 제출이 만료되었습니다."
-
 msgid "Username:"
 msgstr "사용자명:"
 
@@ -1648,6 +1639,12 @@ msgstr "그런 다음, 복사 토르 브라우저에 다음 주소를 붙여 넣
 
 msgid "Enter a name for the copy"
 msgstr ""
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "당신은 이미 제출을 제기 한 적이 있습니까? 키 코드를 입력합니다."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "키 코드가 잘못되었거나 제출이 만료되었습니다."
 
 msgid "Select a file or drag it here."
 msgstr ""

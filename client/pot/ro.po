@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-27 09:57+0000\n"
-"Last-Translator: Cristina Lupu <cristina@cji.ro>\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -530,7 +530,7 @@ msgid "Use as default"
 msgstr "Folosește ca setare standard"
 
 msgid "Create your whistleblowing platform"
-msgstr "Crează propria platformă destinată avertizării de integritate."
+msgstr "Creează propria platformă destinată avertizării de integritate."
 
 msgid "Collapse"
 msgstr "Restrânge"
@@ -878,7 +878,7 @@ msgid "Role"
 msgstr "Rol"
 
 msgid "Name"
-msgstr "Nume"
+msgstr "Prenume"
 
 msgid "Last access"
 msgstr "Ultima accesare"
@@ -1008,9 +1008,6 @@ msgstr "Numărul maxim de destinatari ce pot fi selectați:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Afișează destinatarii în ordine alfabetică"
-
-msgid "Show small recipient cards on submission interface"
-msgstr "Afișează mici carduri despre destinatari pe interfața pentru înregistrarea sesizării"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Afișează detaliile destinatarului pe pagina care prezintă statusul sesizării"
@@ -1497,12 +1494,6 @@ msgstr "Codul este fie invalid, fie a expirat."
 msgid "Site:"
 msgstr "Website:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Ai trimis deja o sesizare? Introdu codul înregristrării."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Acest cod este fie invalid, fie sesizarea a expirat."
-
 msgid "Username:"
 msgstr "Utilizator:"
 
@@ -1663,6 +1654,12 @@ msgstr "Apoi, copiază și inserează următoarea adresă în browser-ul Tor:"
 msgid "Enter a name for the copy"
 msgstr "Introdu un nume pentru copie"
 
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Ai trimis deja o sesizare? Introdu codul înregristrării."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Acest cod este fie invalid, fie sesizarea a expirat."
+
 msgid "Select a file or drag it here."
 msgstr "Selectează un fișier sau trage-l aici."
 
@@ -1761,7 +1758,7 @@ msgid "download"
 msgstr "descarcă"
 
 msgid "No files have been uploaded!"
-msgstr "Niciun fișier nu a fost încarcat!"
+msgstr "Niciun fișier nu a fost încărcat!"
 
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Permite avertizorului să adauge atașamente sesizării"
@@ -1911,7 +1908,7 @@ msgid "Other"
 msgstr "Altul"
 
 msgid "Complete"
-msgstr "Complet"
+msgstr "Creează cont"
 
 msgid "Invalid phone number"
 msgstr "Număr de telefon invalid"
@@ -1945,7 +1942,7 @@ msgstr "Ține minte numărul codului de înregistrare pentru această sesizare."
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Folosește numărul de înregistrare din 16 cifre pentru a te autentifica. Îți va permite să vezi ce mesaje ai primit, precum și să adăugai informații suplimentare."
+msgstr "Folosește numărul de înregistrare din 16 cifre pentru a te autentifica. Îți va permite să vezi ce mesaje ai primit, precum și să adaugi informații suplimentare."
 
 msgid "View your report"
 msgstr "Vizualizează sesizarea"

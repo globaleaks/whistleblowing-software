@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1009,9 +1009,6 @@ msgstr "Maksymalna liczna dostępnych odbiorców:"
 msgid "Show recipients in alphabetical order"
 msgstr "Pokaż odbiorców w porządku alfabetycznym"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Pokaż mniejsze karty odbiorców na stronie zgłoszeń"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Pokaż szczegóły odbiorców na stronie statusu zgłoszenia"
 
@@ -1497,12 +1494,6 @@ msgstr "Kod jest nieprawidłowy lub wygasł."
 msgid "Site:"
 msgstr "Strona:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Zgłoszenie jest kompletne? Wprowadź swój klucz."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Odbiór jest nieprawidłowy lub raport wygasł."
-
 msgid "Username:"
 msgstr "Nazwa Użytkownika:"
 
@@ -1662,6 +1653,12 @@ msgstr "Potem skopiuj i wklej ten adres do Tor Browser:"
 
 msgid "Enter a name for the copy"
 msgstr "Wpisz nazwę kopii"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Zgłoszenie jest kompletne? Wprowadź swój klucz."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Odbiór jest nieprawidłowy lub raport wygasł."
 
 msgid "Select a file or drag it here."
 msgstr "Wybierz lub przeciągnij plik."

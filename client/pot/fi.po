@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1000,9 +1000,6 @@ msgstr "Valittavien vastaanottajien maksimimäärä:"
 msgid "Show recipients in alphabetical order"
 msgstr "Näytä vastaanottajat aakkosjärjestyksessä"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Näytä vastaanottajat pieninä kortteina vihjeenkirjoitusnäkymässä"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Näytä vastaanottajan tiedot Vihjeen tila -sivulla"
 
@@ -1488,12 +1485,6 @@ msgstr "Koodi on virheellinen tai sen käyttöaika on umpeutunut."
 msgid "Site:"
 msgstr "Palvelu:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Oletko jo lähettänyt vihjeen? Kirjoita kuittauksesi."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Kuitti on virheellinen tai lähetys on vanhentunut."
-
 msgid "Username:"
 msgstr "Käyttäjätunnus:"
 
@@ -1653,6 +1644,12 @@ msgstr "Jatka sitten palvelun käyttöä kopioimalla ja liittämällä seuraava 
 
 msgid "Enter a name for the copy"
 msgstr "Kirjoita kopiolle nimi"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Oletko jo lähettänyt vihjeen? Kirjoita kuittauksesi."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Kuitti on virheellinen tai lähetys on vanhentunut."
 
 msgid "Select a file or drag it here."
 msgstr "Valitse tiedosto tai raahaa se tähän."

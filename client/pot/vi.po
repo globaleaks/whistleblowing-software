@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1004,9 +1004,6 @@ msgstr "Số lượng người nhận lựa chọn:"
 msgid "Show recipients in alphabetical order"
 msgstr "Hiện người nhận trong thứ tự chữ cái"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Hiển thị thẻ nhỏ của người nhận trên giao diện gửi"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Hiển thị chi tiết người nhận trên trang trạng thái của trình"
 
@@ -1492,12 +1489,6 @@ msgstr "Mã này không hợp lệ hoặc đã hết hạn"
 msgid "Site:"
 msgstr "Trang web:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Bạn đã nộp một báo cáo? Nhập mã khóa của bạn."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Biên lai không hợp lệ hoặc báo cáo đã hết hạn."
-
 msgid "Username:"
 msgstr "Tên người dùng:"
 
@@ -1657,6 +1648,12 @@ msgstr "Sau đó, sao chép và dán địa chỉ sau vào trình duyệt Tor:"
 
 msgid "Enter a name for the copy"
 msgstr "Nhập tên cho bản sao"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Bạn đã nộp một báo cáo? Nhập mã khóa của bạn."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Biên lai không hợp lệ hoặc báo cáo đã hết hạn."
 
 msgid "Select a file or drag it here."
 msgstr "Chọn tập tin hoặc kéo thả vào đây"

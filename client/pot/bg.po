@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1003,9 +1003,6 @@ msgstr "Максимален брой избираеми получатели:"
 msgid "Show recipients in alphabetical order"
 msgstr "Показване на получателите по азбучен ред"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Показване на малки визитки на получателите в интерфейса за подаване на сигнал"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Показване информация за получателите на статус страницата на сигнала"
 
@@ -1491,12 +1488,6 @@ msgstr "Кодът е невалиден или изтекъл."
 msgid "Site:"
 msgstr "Сайт:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Вече подали ли сте сигнал? Въведете вашия код"
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Този код е невалиден или подаденият сигнал е изтекъл."
-
 msgid "Username:"
 msgstr "Потребител:"
 
@@ -1656,6 +1647,12 @@ msgstr "След това копирайте следния адрес в Tor б
 
 msgid "Enter a name for the copy"
 msgstr "Въведете име на копието"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Вече подали ли сте сигнал? Въведете вашия код"
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Този код е невалиден или подаденият сигнал е изтекъл."
 
 msgid "Select a file or drag it here."
 msgstr "Изберете файл или го поставете тук"

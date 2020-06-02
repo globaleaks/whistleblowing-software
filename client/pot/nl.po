@@ -43,7 +43,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1033,9 +1033,6 @@ msgstr "Maximaal aantal selecteerbare ontvangers:"
 msgid "Show recipients in alphabetical order"
 msgstr "Toon ontvangers in alfabetische volgorde"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Laat een kleine ontvanger kaart zien op de indiening interface"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Toon details van de ontvanger op de status-pagina van de inzending"
 
@@ -1521,12 +1518,6 @@ msgstr "De code is ofwel ongeldig of verlopen."
 msgid "Site:"
 msgstr "Weblocatie:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Hebt u al een inzending ingediend? Voer uw ontvangstbewijs in."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "De ontvangstbevestiging is of ongeldig ofwel verlopen."
-
 msgid "Username:"
 msgstr "Gebruikersnaam:"
 
@@ -1686,6 +1677,12 @@ msgstr "Kopieer en plak vervolgens het volgende adres in de Tor-browser:"
 
 msgid "Enter a name for the copy"
 msgstr "Voer een naam in voor de kopie"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Hebt u al een inzending ingediend? Voer uw ontvangstbewijs in."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "De ontvangstbevestiging is of ongeldig ofwel verlopen."
 
 msgid "Select a file or drag it here."
 msgstr "Selecteer een bestand of sleep het hierheen."

@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-05-17 11:49+0000\n"
+"PO-Revision-Date: 2020-06-02 06:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1007,9 +1007,6 @@ msgstr "Nombre màxim de destinataris que es poden seleccionar:"
 msgid "Show recipients in alphabetical order"
 msgstr "Mostra els destinataris en ordre alfabètic"
 
-msgid "Show small recipient cards on submission interface"
-msgstr "Mostra targetes de presentació dels destinataris en l'interfície d'enviament"
-
 msgid "Show recipient details on the status page of the report"
 msgstr "Mostra la informació dels destinataris a la pàgina d'estat del lliurament"
 
@@ -1495,12 +1492,6 @@ msgstr "El codi es invàlid o ha caducat."
 msgid "Site:"
 msgstr "Lloc:"
 
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Ha fet ja un enviament? Introduïsca el seu rebut."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "El codi és invàlid o l'enviament ha expirat."
-
 msgid "Username:"
 msgstr "Nom d'usuari:"
 
@@ -1660,6 +1651,12 @@ msgstr "Després, còpie i enganxe l'adreça següent al Tor Browser instal·lat
 
 msgid "Enter a name for the copy"
 msgstr "Introduïsca un nom per a la còpia"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Ha fet ja un enviament? Introduïsca el seu rebut."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "El codi és invàlid o l'enviament ha expirat."
 
 msgid "Select a file or drag it here."
 msgstr "Seleccionar un arxiu o arrastrar-lo ací."
