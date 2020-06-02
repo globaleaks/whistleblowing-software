@@ -280,15 +280,14 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         self.selected_receivers = {};
         self.receivers = [];
 
-        angular.forEach($rootScope.public.receivers, function(receiver) {
-          if (self.context.receivers.indexOf(receiver.id) !== -1) {
-            self.receivers.push(receiver);
+        angular.forEach(self.context.receivers, function(receiver) {
+          var r = $rootScope.receivers_by_id[receiver];
+          self.receivers.push(r);
 
-            if (receiver.recipient_configuration === "default") {
-              self.selected_receivers[receiver.id] = self.context.select_all_receivers;
-            } else if (receiver.recipient_configuration === "forcefully_selected") {
-              self.selected_receivers[receiver.id] = true;
-            }
+          if (r.recipient_configuration === "default") {
+            self.selected_receivers[r.id] = self.context.select_all_receivers;
+          } else if (r.recipient_configuration === "forcefully_selected") {
+            self.selected_receivers[r.id] = true;
           }
         });
 
