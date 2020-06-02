@@ -33,12 +33,6 @@
   word-wrap: break-word;
 }
 
-.contextImg {
-  width: auto;
-  height: auto;
-  max-height: 10em;
-}
-
 .contextCardTitle, .receiverCardTitle {
   margin-bottom: 1rem;
 }
