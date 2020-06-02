@@ -9,10 +9,6 @@ from globaleaks.orm import transact, tw
 from globaleaks.rest.errors import InputValidationError, InvalidAuthentication
 from globaleaks.tests import helpers
 
-# special guest:
-stuff = u"³²¼½¬¼³²"
-
-
 @transact
 def set_receiver_acl_flag_true(session, rcvr_id):
     rcvr = session.query(models.User).filter_by(id=rcvr_id).first()
@@ -62,10 +58,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_update_node(self):
-        self.dummyNode['hostname'] = 'blogleaks.blogspot.com'
-
-        for attrname in ConfigL10NFilters['node']:
-            self.dummyNode[attrname] = stuff
+        self.dummyNode['multisite'] = True
 
         handler = self.request(self.dummyNode, role='admin')
         response = yield handler.put()
@@ -73,33 +66,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue(isinstance(response, dict))
         self.assertTrue(response['version'], __version__)
 
-        for response_key in response.keys():
-            # some keys are added by GLB, and can't be compared
-            if response_key in ['creation_date',
-                                'acme',
-                                'https_enabled',
-                                'languages_supported',
-                                'version', 'version_db',
-                                'latest_version',
-                                'configured', 'wizard_done',
-                                'receipt_salt', 'languages_enabled',
-                                'root_tenant', 'https_possible',
-                                'hostname', 'onionservice',
-                                'tor',
-                                'encryption',
-                                'crypto_escrow_pub_key',
-                                '2fa',
-                                'multisite',
-                                'backup',
-                                'backup_remote',
-                                'backup_remote_server',
-                                'backup_remote_port',
-                                'backup_remote_username',
-                                'backup_remote_password']:
-                continue
-
-            self.assertEqual(response[response_key],
-                             self.dummyNode[response_key])
+        self.assertEqual(response['multisite'], True)
 
     @inlineCallbacks
     def test_put_update_node_invalid_lang(self):
