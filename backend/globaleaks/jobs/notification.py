@@ -158,7 +158,7 @@ class MailGenerator(object):
         language = data['user']['language']
 
         # Do not spool emails if the receiver has opted out of ntfns for this tip.
-        if not data['tip']['enable_notifications']:
+        if not data['user']['notification'] or not data['tip']['enable_notifications']:
             log.debug("Discarding emails for %s due to receiver's preference.", user_id)
             return
 
