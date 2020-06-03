@@ -144,19 +144,18 @@ def sync_initialize_snimap(session):
 
 def db_set_cache_exception_delivery_list(session, tenant_cache):
     """
-    Constructs and sets a list of (email_addr, public_key) pairs that will receive
-    errors from the platform. If the email_addr is empty, drop the tuple from the list.
+    Constructs and sets a list of (email_addr, public_key) pairs
+    that will receive errors from the platform.
     """
-    lst = []
+    tenant_cache.notification.exception_delivery_list = []
 
     if not Settings.devel_mode and tenant_cache.enable_developers_exception_notification:
-        lst.append(('globaleaks-stackexception@lists.globaleaks.org', ''))
+        tenant_cache.notification.exception_delivery_list.append(('globaleaks-stackexception@lists.globaleaks.org', ''))
 
     if tenant_cache.enable_admin_exception_notification:
-        results = session.query(models.User.mail_address, models.User.pgp_key_public).filter(models.User.role == 'admin')
-        lst.extend([(mail, pub_key) for mail, pub_key in results])
-
-    tenant_cache.notification.exception_delivery_list = [x for x in lst if x[0] != '']
+        results = session.query(models.User.mail_address, models.User.pgp_key_public) \
+                         .filter(models.User.tid == 1, models.User.state == 'enabled', models.User.role == 'admin')
+        tenant_cache.notification.exception_delivery_list.extend([(mail, pub_key) for mail, pub_key in results])
 
 
 def db_refresh_tenant_cache(session, tid_list):
