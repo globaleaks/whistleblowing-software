@@ -52,7 +52,7 @@ class SessionsFactory(TempDict):
 
     def regenerate(self, session_id):
         session = self.pop(session_id)
-        session.id = generateRandomKey
+        session.id = generateRandomKey()
         self.set(session.id, session)
         return session
 
