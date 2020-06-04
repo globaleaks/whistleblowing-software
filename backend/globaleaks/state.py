@@ -238,7 +238,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
             # avoid waiting for the notification to send and instead rely on threads to handle it
             tw(db_schedule_email, 1, mail_address, mail_subject, mail_body)
 
-    def refresh_connection_handpoints(self):
+    def refresh_connection_endpoints(self):
         # Remove selected onion services and add missing services
         if self.onion_service_job is not None:
             def f(*args):

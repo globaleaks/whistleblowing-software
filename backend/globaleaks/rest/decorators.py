@@ -66,12 +66,12 @@ def decorator_cache_invalidate(f):
     return wrapper
 
 
-def decorator_refresh_connection_handpoints(f):
+def decorator_refresh_connection_endpoints(f):
     def wrapper(self, *args, **kwargs):
         d = defer.maybeDeferred(f, self, *args, **kwargs)
 
         def callback(data):
-            self.state.refresh_connection_handpoints()
+            self.state.refresh_connection_endpoints()
             return data
 
         return d.addCallback(callback)
@@ -94,8 +94,8 @@ def decorate_method(h, method):
             if h.invalidate_cache:
                 f = decorator_cache_invalidate(f)
 
-            if h.refresh_connection_handpoints:
-                f = decorator_refresh_connection_handpoints(f)
+            if h.refresh_connection_endpoints:
+                f = decorator_refresh_connection_endpoints(f)
 
     f = decorator_authentication(f, value)
 

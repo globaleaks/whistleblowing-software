@@ -5,7 +5,8 @@ import os
 from pkg_resources import parse_version
 
 from txtorcon import build_local_tor_connection
-from twisted.internet import reactor, defer
+from twisted.internet import reactor
+from twisted.internet.defer import Deferred, inlineCallbacks
 
 from globaleaks import models
 from globaleaks.db import refresh_memory_variables
@@ -72,14 +73,14 @@ class OnionService(Service):
         self.tor_conn = None
         return tor_conn.protocol.quit()
 
-    @defer.inlineCallbacks
+    @inlineCallbacks
     def add_all_hidden_services(self):
         if self.tor_conn is None:
             return
 
         hostname_key_list = yield list_onion_service_info()
         for tid, hostname, key in hostname_key_list:
-            if hostname not in self.hs_map:
+            if hostname is '' or hostname not in self.hs_map:
                 yield self.add_hidden_service(tid, hostname, key)
 
     def add_hidden_service(self, tid, hostname, key):
@@ -88,7 +89,7 @@ class OnionService(Service):
 
         hs_loc = ('80 localhost:8083')
         if not hostname and not key:
-            log.info('Creating new onion service', tid=tid)
+            log.err('Creating new onion service', tid=tid)
 
             if self.onion_service_version == 3:
                 ephs = EphemeralHiddenService(hs_loc, 'NEW:ED25519-V3')
@@ -99,9 +100,9 @@ class OnionService(Service):
             ephs = EphemeralHiddenService(hs_loc, key)
             self.hs_map[hostname] = ephs
 
-        @defer.inlineCallbacks
+        @inlineCallbacks
         def init_callback(ret):
-            log.info('Initialization of hidden-service %s completed.', ephs.hostname, tid=tid)
+            log.err('Initialization of hidden-service %s completed.', ephs.hostname, tid=tid)
             if not hostname and not key:
                 if tid in State.tenant_cache:
                     self.hs_map[ephs.hostname] = ephs
@@ -118,7 +119,7 @@ class OnionService(Service):
 
         return ephs.add_to_tor(self.tor_conn.protocol).addCallbacks(init_callback)  # pylint: disable=no-member
 
-    @defer.inlineCallbacks
+    @inlineCallbacks
     def remove_unwanted_hidden_services(self):
         # Collect the list of all hidden services listed by tor then remove all of them
         # that are not present in the tenant cache ensuring that OnionService.hs_map is
@@ -136,10 +137,10 @@ class OnionService(Service):
                 log.info('Removing onion address %s', ephs.hostname)
                 yield ephs.remove_from_tor(self.tor_conn.protocol)
 
-    @defer.inlineCallbacks
+    @inlineCallbacks
     def get_all_hidden_services(self):
         if self.tor_conn is None:
-            defer.returnValue([])
+            returnValue([])
 
         ret = yield self.tor_conn.protocol.get_info('onions/current')
         if ret == '':
@@ -148,16 +149,16 @@ class OnionService(Service):
             x = ret.get('onions/current', '').strip().split('\n')
             running_services = [r+'.onion' for r in x]
 
-        defer.returnValue(running_services)
+        returnValue(running_services)
 
     def operation(self):
-        restart_deferred = defer.Deferred()
+        restart_deferred = Deferred()
 
         control_socket = '/var/run/tor/control'
 
         self.reset()
 
-        @defer.inlineCallbacks
+        @inlineCallbacks
         def startup_callback(tor_conn):
             self.print_startup_error = True
             self.tor_conn = tor_conn
