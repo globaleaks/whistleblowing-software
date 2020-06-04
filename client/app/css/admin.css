@@ -1,5 +1,5 @@
 .adminConfigSection {
-  margin-bottom: 25px;
+  margin-bottom: 1rem;
 }
 
 .configItem {
@@ -10,7 +10,7 @@
 }
 
 #StepAddBox, #StepsEditBox, #FieldsEditBox, #ContextAdvancedSettingsBox, #SubstateEditBox {
-  margin-top: 30px;
+  margin-top: 1rem
 }
 
 .addField, .addFieldFromTemplate {
@@ -21,26 +21,15 @@
 .field {
   position: relative;
   border: 1px solid #C8D1E0;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
 
 .editorHeader {
   background-color: #F5F7FA;
 }
 
-.editorHeaderTitle {
-  letter-spacing: -1px;
-  line-height: 1;
-  display: block;
-}
-
-.editorHeaderTitle {
-  font-size: 20px;
-  font-weight: bold;
-}
-
 .editorTitle {
-  font-size: 18px;
+  font-size: 1.2rem;
 }
 
 .fieldOption {
@@ -54,18 +43,7 @@
   border: 1px solid #C8D1E0;
 }
 
-.selectionContextItem .checkbox {
-  display: inline;
-  top: 0;
-  position: absolute;
-  left: -40px;
-}
-
-text.axis-workweek {
-  fill: #000;
-}
-
-text.axis-worktime {
+text.axis-workweek, text.axis-worktime {
   fill: #000;
 }
 
@@ -88,12 +66,10 @@ text.axis-worktime {
   max-height: 8rem;
 }
 
-[dir="ltr"] .imageUpload .changePictureButton,
-[dir="ltr"] .imageUpload .deletePictureButton {
+[dir="ltr"] .imageUpload .changePictureButton {
   left: 1rem;
 }
 
-[dir="rtl"] .imageUpload .changePictureButton,
-[dir="rtl"] .imageUpload .deletePictureButton {
+[dir="rtl"] .imageUpload .changePictureButton {
   right: 1rem;
 }

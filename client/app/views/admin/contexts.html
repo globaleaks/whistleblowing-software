@@ -30,7 +30,7 @@
     <form id="context-{{$index}}" name="editContext" data-ng-controller="AdminContextEditorCtrl" novalidate>
       <div class="configItem">
         <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
-          <span class="col-md-7 editorHeaderTitle">
+          <span class="col-md-7">
             <span>{{context.name}}</span>
             <span class="badge badge-secondary" data-ng-if="context.status === 'hidden'" data-translate>Hidden</span>
             <span class="badge badge-secondary" data-ng-if="context.status === 'disabled'" data-translate>Disabled</span>

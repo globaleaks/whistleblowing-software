@@ -75,8 +75,11 @@ table {
 }
 
 #LogoBox {
-  margin-right: 2rem;
   vertical-align: middle;
+}
+
+[dir="ltr"] #LogoBox {
+  margin-right: 1rem;
 }
 
 #TitleBox {
@@ -90,14 +93,6 @@ table {
 
 #LanguagePickerBox, #LoginStatusBox, #HeaderBox #WhistleblowerReceiptBox {
   display: flex;
-}
-
-.language-link {
-  color: #FFF;
-}
-
-.language-link-selected {
-  color: #333840;
 }
 
 #LoginStatusBox, #WhistleblowerLoginBox {
@@ -142,6 +137,14 @@ table {
   white-space: pre-wrap;
 }
 
+#wizardLicense {
+  max-height: 20rem;
+  overflow-y: scroll;
+  background-color: #f5f7fa;
+  border: 1px solid #AFBACC;
+  padding: 1rem;
+}
+
 .imageUpload {
   position: relative;
   width: 10rem;
@@ -151,51 +154,23 @@ table {
   text-align: center;
 }
 
-#wizardLicense {
-  max-height: 20rem;
-  overflow-y: scroll;
-  background-color: #f5f7fa;
-  border: 1px solid #AFBACC;
-  padding: 1rem;
-}
-
-.imageUpload .changePictureButton,
-.imageUpload .deletePictureButton {
+.imageUpload .changePictureButton {
   position: absolute;
   bottom: 1rem;
   text-align: center;
   z-index: 10;
 }
 
-.imageUploadThumbnail {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.imageThumbnail, .imageUploadThumbnail, .contextCardFrame, .receiverCardFrame {
-  height: 10rem;
-  margin-bottom: 1rem;
-}
-
-.contextListContent {
-  height: 5rem;
-}
-
-.contextListContent div, .contextListContent span,
-.contextFrame div, .contextFrame span,
-.receiverFrame div, .receiverFrame span {
-  padding: 0.5rem;
-}
-
-.imageUploadThumbnailContent, .contextImg, .receiverImg {
-  background-color: #FFF;
+.contextImg, .receiverImg, .imageUploadThumbnail img {
   max-width: 100%;
   max-height: 100%;
-  height: 8rem;
   vertical-align: middle;
   text-align: center;
   z-index: 1;
+}
+
+.contextImg, .receiverImg, .imageThumbnail, .imageUploadThumbnail {
+  height: 10rem;
 }
 
 .wizard-block {
