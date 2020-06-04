@@ -1,3 +1,12 @@
+Changes in version 4.0.27 - 2020-06-04
+    Fix immediate generation of onion services for secondary tenants
+    Send exception notifications only to administrators of the root tenant
+    Remove redundant borders to whistleblowers' login interface
+    Disable user email notifications if they are disabled at user level
+    Fix password reset feature broken in 4.0.26
+    Fix custom order visualization of recipients
+    Uniform context and recipient selection interfaces
+
 Changes in version 4.0.26 - 2020-06-02
     Uniform all random secrets to 256bit length
     Change default password change interval from 90 days to 1 year
