@@ -1,3 +1,8 @@
+Changes in version 4.0.28 - 2020-06-05
+    Bump to angular version 1.8.0
+    Uniform UI to new brand guidelines
+    Update translations
+
 Changes in version 4.0.27 - 2020-06-04
     Fix immediate generation of onion services for secondary tenants
     Send exception notifications only to administrators of the root tenant
