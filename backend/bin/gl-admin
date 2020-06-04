@@ -119,18 +119,18 @@ def reset_pass(args):
     c.execute(QUERY, (salt, hashed_password, "ARGON2", args.username, args.tid, ''))
 
     if c.rowcount != 1:
-        print("Failed! The user '{}' does not exist or encryption key set".format(args.username))
+        print("Failed! The user '{}' does not exist or encryption key is set".format(args.username))
         sys.exit(1)
 
     conn.commit()
     conn.close()
 
-    print(("=================================\n"
-           "||  Password reset completed   ||\n"
-           "=================================\n"
+    print(("=========================================\n"
+           "||      Password reset completed       ||\n"
+           "=========================================\n"
            "     Username: {}\n"
            "     Password: {}\n"
-           "=================================\n"
+           "=========================================\n"
          ).format(args.username, args.password))
 
 
@@ -228,7 +228,7 @@ add_db_path_arg(pw_p)
 pw_p.add_argument("--tid", help="the tenant id", default='1', type=int)
 pw_p.add_argument("username", help="the username used to login into GL")
 pw_p.add_argument("password", nargs="?", help="if not set a random password is generated",
-                  default=generateRandomKey())
+                  default=generateRandomKey()[0:16])
 pw_p.set_defaults(func=reset_pass)
 
 rv_p = subp.add_parser("getvar", help="get database config variable")
