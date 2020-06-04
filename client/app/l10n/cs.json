@@ -352,7 +352,6 @@
   "Organizational unit": "Organizační jednotka",
   "Invalid email address": "Neplatná emailová adresa",
   "Generate": "Generovat",
-  "This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.": "Rozhraní může vygenerovat soukromý klíč a žádost o podepsání certifikátu. Žádost o podepsání certifikátu může být poskytnuta certifikační autoritě pro získání certifikátu. Po ověření vaší žádosti a vlastnictví názvu hostitele vám certifikační autorita vystaví certifikát a poskytne soubor s podřízenými certifikáty. Na dokončení nastavení HTTPS vložte certifikát a soubor obsahující podřízené certifikáty.",
   "Private Key": "Privátní klíč",
   "Certificate Signing Request": "Požadavek na podpis certifikátu",
   "Certificate": "Certifikát",

@@ -352,7 +352,6 @@
   "Organizational unit": "Unitat organitzativa",
   "Invalid email address": "Adreça electrònica no vàlida",
   "Generate": "Genera",
-  "This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.": "Aquesta interfície pot generar una Clau Privada (PK) i una Sol·licitud de Signatura de Certificat (CSR). La CSR es pot proporcionar a una autoritat de certificació (CA) per recuperar un certificat. Després d'haver validat la vostra sol·licitud i la vostra propietat del domini web, l'autoritat de certificació vos lliurarà un certificat i vos proporcionarà un fitxer que conté els certificats intermedis. Carregueu el certificat i el fitxer que conté els certificats intermedis per completar la configuració de HTTPS.",
   "Private Key": "Clau privada",
   "Certificate Signing Request": "Sol·licitud de signatura de certificat CSR",
   "Certificate": "Certificat",

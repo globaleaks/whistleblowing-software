@@ -352,7 +352,6 @@
   "Organizational unit": "Отдел в организацията",
   "Invalid email address": "Невалиден имейл адрес",
   "Generate": "Генериране",
-  "This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.": "Интерфейсът може да генерира личен ключ и заявка за сертификат. Заявката за сертификат може да бъде предоставена на сертифициращ орган за получаването на сертификат. След като провери заявката и собствеността на домейна, сертифициращият орган ще издаде сертификат и ще Ви предостави файл, съдържащ междинни сертификати. Заредете сертификата и файла, съдържащ междинните сертификати, за да завършите настройването на HTTPS.",
   "Private Key": "Личен код",
   "Certificate Signing Request": "Заявка за сертификат",
   "Certificate": "Сертификат",

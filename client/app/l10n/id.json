@@ -352,7 +352,6 @@
   "Organizational unit": "Unit Organisasi",
   "Invalid email address": "Alamat surel tidak sah",
   "Generate": "Membuat",
-  "This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.": "Antarmuka ini dapat membuat Kunci Pribadi dan sebuah Permintaan Penandatanganan Sertifikat. Permintaan Penandatanganan Sertifikat dapat diberikan kepada Otoritas Sertifikat untuk mengambil sebuah Sertifikat. Setelah mendapatkan validasi permintaan Anda dan kepemilikan dari nama host, Otoritas Sertifikat akan menerbitkan Sertifikat Anda dan memberikan berka yang berisi Sertifikat Menengah. Muatlah Sertifikat dan berkas yang berisi Sertifikat Menengah untuk menyelesaikan pengaturan HTTPS.",
   "Private Key": "Kunci Pribadi ",
   "Certificate Signing Request": "Permintaan Penandatanganan Sertifikat",
   "Certificate": "Sertifikat",

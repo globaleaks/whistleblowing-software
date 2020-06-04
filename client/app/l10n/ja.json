@@ -352,7 +352,6 @@
   "Organizational unit": "組織の単位",
   "Invalid email address": "無効なメールアドレスです",
   "Generate": "生成",
-  "This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.": "インタフェースは秘密鍵と証明書署名要求を生成することができます。 証明書署名要求を認証機関に提供して、証明書を取得することができます。 あなたの要求とホスト名の所有権を確認した後、認証機関はあなたに証明書を発行し、中間証明書を含むファイルを提供します。 証明書と中間証明書を含むファイルをロードしてHTTPSの設定を完了します。",
   "Private Key": "秘密鍵",
   "Certificate Signing Request": "証明書署名要求",
   "Certificate": "証明書",

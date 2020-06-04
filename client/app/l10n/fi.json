@@ -352,7 +352,6 @@
   "Organizational unit": "Organisaatioyksikkö",
   "Invalid email address": "Virheellinen sähköpostiosoite",
   "Generate": "Generoi",
-  "This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.": "Tässä näkymässä voit luoda yksityisen salausavaimesi (private key) ja lähettää varmenteen allekirjoituspyynnön (CSR) varmenneviranomaisen käsiteltäväksi. Kun allekirjoituspyyntösi ja verkkopalvelusi (hostname) omistajuus on vahvistettu, saat varmenneviranomaiselta tiedoston, joka sisältää keskitason varmenteen (IC). Lataa varmenne sekä keskitason varmenteet sisältävä tiedosto palveluun viimeistelläksesi HTTPS-asetusten määritykset.",
   "Private Key": "Yksityinen avain",
   "Certificate Signing Request": "Varmenteen allekirjoituspyyntö (CSR)",
   "Certificate": "Varmenne",

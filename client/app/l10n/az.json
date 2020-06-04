@@ -352,7 +352,6 @@
   "Organizational unit": "Təşkilat şöbəsi",
   "Invalid email address": "Yanlış email adresi",
   "Generate": "Yaratmaq",
-  "This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.": "Bu interfeys Məxfi Açar və Sertifikat İmzalama İstəyini yarada bilər.  Sertifikat almaq üçün Sertifikat İmzalama İstəyi Sertifikat Mərkəzinə təqdim edilə bilər. Tələbiniz və hostname ünvanınız yoxlandıqdan sonra Sertifikat Mərkəzi sizə Sertifikat və Orta Sertifikatların yer aldığı faylı təqdim edəcək. HTTPS quraşdırılmasını tamamlamaq üçün Sertifikatı və Orta Sertifikatların yer aldığı faylı yükləyin.",
   "Private Key": "Məxfi açar",
   "Certificate Signing Request": "Sertifikat İmzalama İstəyi",
   "Certificate": "Sertifikat",

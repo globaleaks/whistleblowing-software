@@ -352,7 +352,6 @@
   "Organizational unit": "Unité organisationnelle",
   "Invalid email address": "L’adresse courriel est invalide",
   "Generate": "Générer",
-  "This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.": "Cette interface peut générer une clé privée et une demande de signature de certificat. La demande de signature de certificat peut être transmise à une autorité de certification pour récupérer un certificat. Après avoir validé votre demande et confirmé que vous êtes le propriétaire du nom d’hôte, l’autorité de certification vous délivrera un certificat et vous fournira un fichier contenant les certificats intermédiaires. Chargez le certificat et le fichier contenant les certificats intermédiaires pour terminer le paramétrage de HTTPS.",
   "Private Key": "Clé privée",
   "Certificate Signing Request": "Demande de signature de certificat",
   "Certificate": "Certificat",

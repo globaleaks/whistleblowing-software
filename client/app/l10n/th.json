@@ -352,7 +352,6 @@
   "Organizational unit": "หน่วยภายในหน่วยงาน",
   "Invalid email address": "ที่อยู่อีเมลไม่ถูกต้อง",
   "Generate": "สร้าง",
-  "This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.": "หน้าจอนี้สามารถสร้างกุญแจส่วนตัวและคำขอให้เซ็นใบรับรอง คำขอให้เซ็นใบรับรองดังกล่าวสามารถถูกส่งให้กับ Certificate Authority เพื่อรับใบรับรอง หลังจากที่ได้ตรวจสอบความถูกต้องของคำร้องของคุณและความเป็นเจ้าของของคุณในชื่อโฮสต์ ทาง Certificate Authority จะออกใบรับรองให้กับคุณ และมอบแฟ้มที่มีใบรับรองกลางทาง (Intermediate Certificate) ใส่ใบรับรองและแฟ้มที่มีใบรับรองกลางทางเพื่อติดตั้ง HTTPS ให้สมบูรณ์",
   "Private Key": "กุญแจส่วนตัว",
   "Certificate Signing Request": "ขอขอให้เซ็นชื่อใบรับรอง",
   "Certificate": "ใบรับรอง",

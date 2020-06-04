@@ -5,6 +5,7 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
+# iram hassan <iramhassan136@gmail.com>, 2020
 # Muhammad Ishaq <ishaq@kahaf.com>, 2014
 # Muhammad Ishfaq Khan <ishfaqkhanniazi@gmail.com>, 2014
 # SG, 2014-2015
@@ -13,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-02 06:09+0000\n"
+"PO-Revision-Date: 2020-06-04 21:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,10 +33,10 @@ msgid "Theme customization"
 msgstr "ٹیمپلیٹ کی تخصیص کاری"
 
 msgid "Languages"
-msgstr ""
+msgstr "Languages"
 
 msgid "Text customization"
-msgstr ""
+msgstr "متن کی تخصیص"
 
 msgid "Advanced settings"
 msgstr "اعلٰی ترتیبات"
@@ -59,7 +60,7 @@ msgid "Changelog"
 msgstr "لاگ تبدیل کریں"
 
 msgid "License"
-msgstr ""
+msgstr "اختیار دینا"
 
 msgid "Notification templates"
 msgstr "نوٹیفکیشن کے سانچوں"
@@ -125,7 +126,7 @@ msgid "YOUR NAME"
 msgstr "آپ کا نام؟"
 
 msgid "Label the report"
-msgstr ""
+msgstr "رپورٹ لیبل کریں"
 
 msgid "Postpone the expiration date"
 msgstr "آخری اپ ڈیٹ کی تاریخ ملتوی"
@@ -137,7 +138,7 @@ msgid "Deselect all"
 msgstr "تمام غیر منتخب کریں"
 
 msgid "Refresh"
-msgstr ""
+msgstr "تازہ کرنا"
 
 msgid "Context"
 msgstr "سیاق و سباق"
@@ -176,15 +177,15 @@ msgid "Save all"
 msgstr "سب محفوظ کریں"
 
 msgid "Access control"
-msgstr ""
+msgstr "رسائی کااختیار"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr ""
+msgstr "رازداری کے لیے یہ رابطہ HTTPS کےساتھ محفوظ کر لیا گیا ہے"
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr ""
+msgstr "رازداری ا ورگمنامی کے لیے یہ رابطہTorکےساتھ محفوظ کر لیا گیا ہے"
 
 msgid "vertical"
 msgstr "عمودی"
@@ -1103,16 +1104,6 @@ msgid "Invalid email address"
 msgstr "ناجائز ای میل پتہ"
 
 msgid "Generate"
-msgstr ""
-
-msgid ""
-"This interface can generate a Private Key and a Certificate Signing Request."
-" The Certificate Signing Request can be provided to a Certificate Authority "
-"to retrieve a Certificate. After having validated your request and your "
-"ownership of the hostname, the Certificate Authority will issue you a "
-"Certificate and provide a file containing Intermediate Certificates. Load "
-"the Certificate and the file containing the Intermediate Certificates to "
-"complete the HTTPS setup."
 msgstr ""
 
 msgid "Private Key"

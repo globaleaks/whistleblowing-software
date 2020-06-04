@@ -352,7 +352,6 @@
   "Organizational unit": "Unidade organizacional",
   "Invalid email address": "Endereço de email inválido",
   "Generate": "Gerar",
-  "This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.": "A interface pode gerar uma Chave Privada e uma Solicitação de Assinatura do Certificado. A Solicitação de Assinatura do Certificado pode ser atendida por uma Autoridade Certificadora para recuperar um Certificado. Após ter validada a sua solicitação e sua propriedade do servidor, a Autoridade Certificadora lhe emitirá um Certificado e fornecerá um arquivo com os Certificados Intermediários. Carregar o Certificado e o arquivo contendo os Certificados Intermediários completará o passo de configuração da conexão HTTPS.",
   "Private Key": "Chave privada",
   "Certificate Signing Request": "Solicitação de Assinatura de Certificado",
   "Certificate": "Certificado",

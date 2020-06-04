@@ -352,7 +352,6 @@
   "Organizational unit": "Organisatorisk enhet",
   "Invalid email address": "Ugyldig e-post -adresse",
   "Generate": "Generer",
-  "This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.": "Grensesnittet kan opprette en privat nøkkel og en sertifikatsigneringsforespørsel. Sertifikatsigneringsforespørselen kan gis til en sertifikatsmyndighet for å motta et sertifikat. Etter å ha bekreftet din forespørsel og ditt eierskap av vertsnavnet, vil sertifikatmyndigheten utstede deg et sertifikat og gi deg ei fil som inneholder midlertidige sertifikater. Last sertifikatet og filen inneholdende det midlertidige sertifkatet for å fullføre HTTPS-oppsettet.",
   "Private Key": "Privat nøkkel",
   "Certificate Signing Request": "Forespørsel om sertifikatsignering",
   "Certificate": "Sertifikat",

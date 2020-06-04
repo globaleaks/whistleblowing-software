@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-02 06:09+0000\n"
+"PO-Revision-Date: 2020-06-04 21:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1108,16 +1108,6 @@ msgstr "Άκυρη διεύθυνση ηλεκτρονικού ταχυδρομ�
 
 msgid "Generate"
 msgstr "Δημιουργία"
-
-msgid ""
-"This interface can generate a Private Key and a Certificate Signing Request."
-" The Certificate Signing Request can be provided to a Certificate Authority "
-"to retrieve a Certificate. After having validated your request and your "
-"ownership of the hostname, the Certificate Authority will issue you a "
-"Certificate and provide a file containing Intermediate Certificates. Load "
-"the Certificate and the file containing the Intermediate Certificates to "
-"complete the HTTPS setup."
-msgstr "Η διεπαφή μπορεί να δημιουργήσει ένα Ιδιωτικό Κλειδί και ένα Αίτημα Υπογραφής Πιστοποιητικού. Αυτό το Αίτημα Υπογραφής Πιστοποιητικού μπορεί να δοθεί στην Αρχή Πιστοποίησης για να παραληφθεί ένα Πιστοποιητικό. Μετά την επικύρωση του αιτήματός σας και της ιδιοκτησίας του hostname, η Αρχή Πιστοποίησης θα σας εκδώσει ένα Πιστοποιητικό και θα σας παρέχει ένα αρχείο που περιέχει τα Ενδιάμεσα Πιστοποιητικά. Ανεβάστε το Πιστοποιητικό και το αρχείο που περιέχει τα Ενδιάμεσα Πιστοποιητικά για να ολοκληρώσετε την παραμετροποίηση HTTPS."
 
 msgid "Private Key"
 msgstr "Ιδιωτικό Κλειδί"

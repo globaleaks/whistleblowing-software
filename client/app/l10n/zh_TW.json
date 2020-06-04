@@ -352,7 +352,6 @@
   "Organizational unit": "組織的單位",
   "Invalid email address": "無效的電子信箱",
   "Generate": "產生",
-  "This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.": "憑證簽章請求可以提供給憑證授權單位來取得憑證。當你的請求與主機名稱的所有權得到認證後，憑證授權單位會發給你一個含有中介憑證的檔案。載入這個憑證和中介證明檔案以完成HTTPS的設定。",
   "Private Key": "私密金鑰",
   "Certificate Signing Request": "憑證簽署要求",
   "Certificate": "憑證",

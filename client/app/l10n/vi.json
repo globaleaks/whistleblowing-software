@@ -352,7 +352,6 @@
   "Organizational unit": "Đơn vị tổ chức",
   "Invalid email address": "Địa chỉ email không hợp lệ",
   "Generate": "Tạo",
-  "This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.": "Giao diện này có thể tạo Khóa riêng tư và Đơn yêu cầu chứng chỉ. Yêu cầu chứng chỉ có thể được cung cấp cho cơ quan cấp chứng chỉ để lấy chứng chỉ. Sau khi xác thực yêu cầu và quyền sở hữu tên máy chủ của bạn, cơ quan cấp chứng chỉ sẽ cấp cho bạn Giấy chứng nhận và cung cấp một tệp chứa Chứng chỉ trung cấp. Tải Chứng chỉ và tệp chứa Chứng chỉ trung cấp để hoàn tất thiết lập HTTPS",
   "Private Key": "Khóa riêng tư",
   "Certificate Signing Request": "Đơn yêu cầu chứng chỉ",
   "Certificate": "Chứng chỉ",

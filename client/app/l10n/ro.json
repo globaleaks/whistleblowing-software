@@ -352,7 +352,6 @@
   "Organizational unit": "Departament",
   "Invalid email address": "Adresă de e-mail invalidă ",
   "Generate": "Generează",
-  "This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.": "Această interfață poate genera o Cheie Privată și o Solicitare de acces certificată. Solicitarea de acces certificată poate fi dată unei Autorități de Certificare pentru a obține un Certificat. După ce vi s-a validat solicitarea și a fost verificată proprietatea asupra serverului, Autoritatea de Certificare vă va pune la dispoziție un Certificat și vă va oferi un fișier cu Certificate intermediare. Încărcați Certificatul și fișierul ce conține Certificatele intermediare pentru a finaliza conxiunea HTTPS.",
   "Private Key": "Cheie privată",
   "Certificate Signing Request": "Solicitare de acces certificat",
   "Certificate": "Certificat",
