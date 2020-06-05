@@ -1,7 +1,16 @@
+dist: bionic
 language: python
+python:
+  - "3.6"
 sudo: required
 services:
   - docker
+addons:
+  hosts:
+    - lh
+  sauce_connect:
+    tunnel_domains: lh
+  chrome: stable
 env:
   global:
   - secure: EVObCafLubboW7PQ69OhLI9qSMWDUYuL8EvXCX2MsBzlgX1W6cc62IJbKV87EHOnu/2KgHXYNVYN4rmydVbOU+nMHwtryf8+utNcyuDp40kKoNjWhWue++AheXgAjUt1lON4/kiZ5gxEupQeEXDPvP/5LrUuDUEQRwJa6pbivD8=
@@ -12,65 +21,16 @@ matrix:
   fast_finish: true
   include:
     - env: GLTEST='test' DISTRIBUTION='buster' CODACY=true
-      dist: bionic
-      python: "3.6"
-      addons:
-        chrome: stable
-
     - env: GLTEST='build_and_install' DISTRIBUTION='buster'
-      dist: bionic
-      python: "3.6"
-
     - env: GLTEST='build_and_install' DISTRIBUTION='focal'
-      dist: bionc
-      python: "3.6"
-
     - env: GLTEST='docker'
-      dist: bionic
-      python: "3.6"
-
     - env: GLTEST='end2end-0' BROWSER='chrome 80'
-      dist: bionic
-      python: "3.6"
-      addons:
-        sauce_connect: true
-
     - env: GLTEST='end2end-1' BROWSER='firefox 74'
-      dist: bionic
-      python: "3.6"
-      addons:
-        sauce_connect: true
-
     - env: GLTEST='end2end-2' BROWSER='safari 12'
-      dist: bionic
-      python: "3.6"
-      addons:
-        sauce_connect: true
-
     - env: GLTEST='end2end-3' BROWSER='edge 80'
-      dist: bionic
-      python: "3.6"
-      addons:
-        sauce_connect: true
-
     - env: GLTEST='end2end-4' BROWSER='ie 11'
-      dist: bionic
-      python: "3.6"
-      addons:
-        sauce_connect: true
-
     - env: GLTEST='end2end-5' BROWSER='android 10'
-      dist: bionic
-      python: "3.6"
-      addons:
-        sauce_connect: true
-
     - env: GLTEST='end2end-6' BROWSER='iOS 13.2'
-      dist: bionic
-      python: "3.6"
-      addons:
-        sauce_connect: true
-
   allow_failures:
     - env: GLTEST='docker'
     - env: GLTEST='end2end-0' BROWSER='chrome 80'
