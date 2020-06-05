@@ -55,11 +55,11 @@
 
     <a class="skip-link d-none" href="#ContentBox"></a>
 
-    <div id="PageOverlay" data-ng-hide="!showLoadingPanel">
+    <div id="PageOverlay" class="ng-cloak" data-ng-hide="!showLoadingPanel">
       <div id="Loader"></div>
     </div>
 
-    <div id="PageContent" data-ng-if="started" data-ng-class="Utils.classExtension()">
+    <div id="PageContent" class="ng-cloak" data-ng-if="started" data-ng-class="Utils.classExtension()">
       <div data-ng-if="!public.node.root_tenant && public.node.mode === 'demo'" data-ng-include="'views/partials/demo.html'"></div>
       <div data-ng-if="Utils.showPrivacyBadge()" data-ng-include="'views/partials/privacybadge.html'"></div>
       <div data-ng-if="!embedded" data-ng-include="'views/partials/header.html'"></div>
@@ -72,7 +72,7 @@
       </div>
     </div>
 
-    <footer id="FooterBox" data-ng-if="started && !embedded" data-ng-include="'views/partials/footer.html'"></footer>
+    <footer id="FooterBox" class="ng-cloak" data-ng-if="started && !embedded" data-ng-include="'views/partials/footer.html'"></footer>
 
     <!-- build:js js/scripts.js -->
     <script src="lib/js/qrcode.js"></script>
