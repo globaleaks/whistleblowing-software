@@ -1,3 +1,6 @@
+Changer in version 4.0.30 - 2020-06-06
+    Apply minor UI fixes
+
 Changes in version 4.0.29 - 2020-06-05
     Fix sidebar of recipients showing site settings link
     Revise implementation of Location headers redirecting to the homepage
