@@ -20,7 +20,7 @@ angular.module("GLCrypto", [])
   // proofOfWork return the answer to the proof of work
   // { [challenge string] -> [ answer index] }
   var getWebCrypto = function() {
-    if (typeof window === "undefined") {
+    if (typeof window === "undefined" || !window.isSecureContext) {
       return;
     }
 

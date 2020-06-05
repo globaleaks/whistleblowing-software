@@ -20,15 +20,7 @@ class TokenCreate(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.TokenReqDesc)
 
-        token = self.state.tokens.new(self.request.tid)
-
-        if not self.request.client_using_tor and (self.request.client_proto == 'http' and
-                                                  self.request.hostname not in ['127.0.0.1', 'localhost']):
-            # Due to https://github.com/globaleaks/GlobaLeaks/issues/2088 the proof of work if currently
-            # implemented only over Tor and HTTPS that are the production conditions.
-            token.solved = True
-
-        return token.serialize()
+        return self.state.tokens.new(self.request.tid).serialize()
 
 
 class TokenInstance(BaseHandler):
