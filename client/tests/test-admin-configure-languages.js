@@ -12,17 +12,17 @@ describe("admin configure languages", function() {
 
     await element(by.cssContainingText("a", "Languages")).click();
 
-    await element.all(by.cssContainingText("a", "Deutsch")).get(0).click();
+    element(by.model("GLTranslate.state.language")).element(by.xpath(".//*[text()='Deutsch']")).click();
 
     expect(await browser.isElementPresent(element(by.cssContainingText("a", "Site settings")))).toBe(false);
     expect(await browser.isElementPresent(element(by.cssContainingText("a", "Seiteneinstellungen")))).toBe(true);
 
-    await element.all(by.cssContainingText("a", "Italiano")).get(0).click();
+    element(by.model("GLTranslate.state.language")).element(by.xpath(".//*[text()='Italiano']")).click();
 
     expect(await browser.isElementPresent(element(by.cssContainingText("a", "Seiteneinstellungen")))).toBe(false);
     expect(await browser.isElementPresent(element(by.cssContainingText("a", "Impostazioni sito")))).toBe(true);
 
-    await element.all(by.cssContainingText("a", "English")).get(0).click();
+    element(by.model("GLTranslate.state.language")).element(by.xpath(".//*[text()='English']")).click();
 
     expect(await browser.isElementPresent(element(by.cssContainingText("a", "Impostazioni sito")))).toBe(false);
     expect(await browser.isElementPresent(element(by.cssContainingText("a", "Site settings")))).toBe(true);
