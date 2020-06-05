@@ -1,19 +1,3 @@
-.ext-public #LogoBox {
-  display: None;
-}
-
-.ext-auth #FooterBox {
-  display: None;
-}
-
-.ext-embed #WhistleblowerLoginPrompt {
-  display: None;
-}
-
-.ext-login label {
-  text-transform: uppercase;
-}
-
-.ext-embedded #login-button {
-  display: None;
+#HeaderBox {
+  background-color: #FFF;
 }
