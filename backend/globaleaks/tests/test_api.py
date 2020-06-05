@@ -125,5 +125,5 @@ class TestAPI(TestGL):
         self.api.render(request)
         self.assertFalse(request.client_using_tor)
         self.assertEqual(request.responseCode, 302)
-        self.assertEqual(request.responseHeaders.getRawHeaders('location')[0], 'https://www.globaleaks.org/public')
+        self.assertEqual(request.responseHeaders.getRawHeaders('location')[0], 'https://www.globaleaks.org/')
         State.tenant_cache[1].https_enabled = False

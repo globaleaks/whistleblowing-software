@@ -225,10 +225,10 @@ class APIResourceWrapper(Resource):
         return False
 
     def redirect_https(self, request):
-        request.redirect(b'https://' + State.tenant_cache[request.tid].hostname.encode() + request.path)
+        request.redirect(b'https://' + State.tenant_cache[request.tid].hostname.encode() + b'/')
 
     def redirect_tor(self, request):
-        request.redirect(b'http://' + State.tenant_cache[request.tid].onionnames[0] + request.path)
+        request.redirect(b'http://' + State.tenant_cache[request.tid].onionnames[0] + b'/')
 
     def handle_exception(self, e, request):
         """
@@ -429,7 +429,7 @@ class APIResourceWrapper(Resource):
                                   b'max-age=31536000; includeSubDomains')
 
         if State.tenant_cache[request.tid].onionservice:
-            request.setHeader(b'Onion-Location', b'http://' + State.tenant_cache[request.tid].onionservice.encode())
+            request.setHeader(b'Onion-Location', b'http://' + State.tenant_cache[request.tid].onionservice.encode() + b'/')
 
         if Settings.enable_csp:
             csp = "default-src 'none';" \
