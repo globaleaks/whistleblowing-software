@@ -12,6 +12,8 @@ exports.vars = {
     "Attachment",
     "Terms of service",
     "Date",
+    "Date range",
+    "Map",
     "Group of questions"
   ]
 };
@@ -180,22 +182,6 @@ exports.clickFirstDisplayed = async function(selector) {
   await displayedElems.first().click();
 };
 
-// Utility Functions for handling File operations
-
 exports.makeTestFilePath = function(name) {
   return path.resolve(path.join(browser.params.testDir, "files", name));
-};
-
-exports.makeSavedFilePath = function(name) {
-  return path.resolve(path.join(browser.params.tmpDir, name));
-};
-
-exports.checksum = function(input) {
-  return crypto.createHash("sha1").update(input, "utf8").digest("hex");
-};
-
-exports.testFileEquality = function(a_path, b_path) {
-  var a_hash = exports.checksum(fs.readFileSync(a_path));
-  var b_hash = exports.checksum(fs.readFileSync(b_path));
-  expect(a_hash).toEqual(b_hash);
 };

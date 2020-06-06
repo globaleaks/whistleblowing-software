@@ -109,8 +109,6 @@ describe("globaLeaks process", function() {
     await element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload1);
     await element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2);
 
-    // TODO: test file addition
-
     await browser.gl.utils.logout();
   });
 

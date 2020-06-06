@@ -18,7 +18,5 @@ describe("admin configure, add, and delete tenants", function() {
   it("should del existing tenants", async function() {
     await element.all((by.cssContainingText("button", "Delete"))).last().click();
     await element(by.id("modal-action-ok")).click();
-
-    // TODO check that the tenant is actually gone
   });
 });

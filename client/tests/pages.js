@@ -47,13 +47,10 @@ exports.whistleblower = function() {
       await element(by.id("step-0")).element(by.id("step-0-field-2-0")).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2);
     }
 
-    var submit_button = element(by.id("SubmitButton"));
-    var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
-    await browser.wait(isClickable);
-    await submit_button.click();
+    await browser.gl.utils.waitUntilClickable(by.id("SubmitButton"));
+    await element(by.id("SubmitButton")).click();
 
     await browser.gl.utils.waitUntilPresent(by.id("KeyCode"));
-
     return await element(by.id("KeyCode")).getText();
   };
 

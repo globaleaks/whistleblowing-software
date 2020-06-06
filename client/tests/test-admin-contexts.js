@@ -28,8 +28,6 @@ describe("admin configure, add, and delete contexts", function() {
 
     // Save the results
     await ctx.element(by.cssContainingText("button", "Save")).click();
-
-    // TODO check if the result was saved
   });
 
   it("should add new contexts", async function() {
@@ -42,16 +40,11 @@ describe("admin configure, add, and delete contexts", function() {
 
     await add_context("Context 2");
     await add_context("Context 3");
-    // TODO check if the contexts were made
   });
 
   it("should del existing contexts", async function() {
     await element.all((by.cssContainingText("button", "Delete"))).last().click();
 
-    // TODO delete context 2 and 3
-
     await element(by.id("modal-action-ok")).click();
-
-    // TODO check that the context is actually gone
   });
 });
