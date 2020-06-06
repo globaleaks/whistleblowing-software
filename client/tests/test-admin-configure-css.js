@@ -4,8 +4,6 @@ describe("Admin configure custom CSS", function() {
       return;
     }
 
-    var EC = protractor.ExpectedConditions;
-
     await browser.setLocation("admin/content");
 
     await browser.gl.utils.waitUntilPresent(by.cssContainingText("a", "Theme customization"));

@@ -79,7 +79,7 @@ angular.module("GLCrypto", [])
   return {
     getToken: function() {
       return glbcProofOfWork.proofOfWork().then(function(token) {
-        return $timeout(function(){return token}, token.min_ttl * 1000);
+        return $timeout(function(){return token;}, token.min_ttl * 1000);
       });
     }
   };

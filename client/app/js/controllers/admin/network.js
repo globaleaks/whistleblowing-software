@@ -86,7 +86,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
 
   $scope.refreshConfig = function() {
     return tlsConfigResource.get().$promise.then($scope.parseTLSConfig);
-  }
+  };
 
   $scope.file_resources = {
     priv_key: new cfgFileResource({name: "priv_key"}),
@@ -168,7 +168,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
       $scope.tls_config.$disable().then($scope.refreshConfig);
     } else {
       $scope.tls_config.$enable().then(function() {
-        $window.location.href = 'https://' + $scope.resources.node.hostname;
+        $window.location.href = "https://" + $scope.resources.node.hostname;
       });
     }
   };
