@@ -202,16 +202,15 @@ table {
   text-align: center;
 }
 
-#WhistleblowerLoginForm .input-group {
-  width: 18rem;
-}
-
-.receiptinput, .recoverykeyinput {
+#WhistleblowerLoginForm input {
+  width: 16rem;
   text-align: center;
+
 }
 
 .recoverykeyinput {
   width: 64rem;
+  text-align: center;
 }
 
 .nested {
