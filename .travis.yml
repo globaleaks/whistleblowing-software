@@ -26,20 +26,16 @@ matrix:
     - env: GLTEST='docker'
     - env: GLTEST='end2end-0' BROWSER='chrome 80'
     - env: GLTEST='end2end-1' BROWSER='firefox 74'
-    - env: GLTEST='end2end-2' BROWSER='safari 12'
-    - env: GLTEST='end2end-3' BROWSER='edge 80'
-    - env: GLTEST='end2end-4' BROWSER='ie 11'
-    - env: GLTEST='end2end-5' BROWSER='android 10'
-    - env: GLTEST='end2end-6' BROWSER='iOS 13.2'
+    - env: GLTEST='end2end-2' BROWSER='edge 80'
+    - env: GLTEST='end2end-3' BROWSER='ie 11'
+    - env: GLTEST='end2end-4' BROWSER='android 10'
   allow_failures:
     - env: GLTEST='docker'
     - env: GLTEST='end2end-0' BROWSER='chrome 80'
     - env: GLTEST='end2end-1' BROWSER='firefox 74'
-    - env: GLTEST='end2end-2' BROWSER='safari 12'
-    - env: GLTEST='end2end-3' BROWSER='edge 80'
-    - env: GLTEST='end2end-4' BROWSER='ie 11'
-    - env: GLTEST='end2end-5' BROWSER='android 10'
-    - env: GLTEST='end2end-6' BROWSER='iOS 13.2'
+    - env: GLTEST='end2end-2' BROWSER='edge 80'
+    - env: GLTEST='end2end-3' BROWSER='ie 11'
+    - env: GLTEST='end2end-4' BROWSER='android 10'
 before_install:
   - nvm install stable
   - nvm use stable
