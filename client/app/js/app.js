@@ -735,11 +735,7 @@ var GLClient = angular.module("GLClient", [
       }
     });
 
-    $rootScope.$on("$routeChangeStart", function() {
-      if ($rootScope.public) {
-        Utils.route_check();
-      }
-    });
+    $rootScope.$on("$routeChangeStart", Utils.route_check);
 
     $rootScope.$on("$routeChangeSuccess", function (event, current) {
       if (current.$$route) {
@@ -747,11 +743,7 @@ var GLClient = angular.module("GLClient", [
         $rootScope.errors = [];
         $rootScope.header_title = current.$$route.header_title;
         $rootScope.sidebar = current.$$route.sidebar;
-
-
-        if ($rootScope.public) {
-          Utils.set_title();
-        }
+	Utils.set_title();
       }
 
       $rootScope.location_path = $location.path();

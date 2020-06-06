@@ -11,7 +11,7 @@
             <div data-translate>It appears that you are browsing this site without any extra privacy and security!</div>
             <div data-translate>You are strongly advised to visit this site using the desktop app called Tor Browser, that protects your identity.</div>
           </div>
-      <div id="PrivacyBadgeDownloadLink"><a href="{{public.node.tb_download_link}}" target="_blank" rel="noreferrer noopener" class="btn btn-sm btn-secondary"><i class="fas fa-download"></i> <span data-translate>Download the Tor Browser</span></a></div>
+          <div id="PrivacyBadgeDownloadLink"><a href="{{public.node.tb_download_link}}" target="_blank" rel="noreferrer noopener" class="btn btn-sm btn-secondary"><i class="fas fa-download"></i> <span data-translate>Download the Tor Browser</span></a></div>
           <div data-ng-if="public.node.onionservice">
 		  <span data-translate>Then, copy and paste the following address into the Tor Browser:</span> <a target="_blank" rel="noreferrer noopener" href="http://{{public.node.onionservice}}/">{{public.node.onionservice}}</a>
           </div>
@@ -24,8 +24,8 @@
       </div>
     </div>
     <div id="PrivacyBoxCloseButton" class="float-right" data-ng-click="connection.privacy_badge_open = !connection.privacy_badge_open">
-      <i data-ng-if="connection.privacy_badge_open === false" class="fas fa-chevron-circle-down"></i>
-      <i data-ng-if="connection.privacy_badge_open === true" class="fas fa-chevron-circle-up"></i>
+      <i data-ng-if="!connection.privacy_badge_open" class="fas fa-chevron-circle-down"></i>
+      <i data-ng-if="connection.privacy_badge_open" class="fas fa-chevron-circle-up"></i>
     </div>
   </div>
 </div>

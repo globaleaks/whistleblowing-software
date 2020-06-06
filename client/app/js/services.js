@@ -831,6 +831,10 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       },
 
       set_title: function() {
+        if (!$rootScope.public) {
+          return;
+	}
+
         var pt1 = $rootScope.public.node.header_title_prefix,
             pt2 = "";
 
@@ -869,11 +873,18 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
       route_check: function() {
         var path = $location.path();
+        if (path !== "/") {
+          $rootScope.page = "";
+        }
+
+	if (!$rootScope.public) {
+          return;
+        }
 
         if (!$rootScope.public.node.wizard_done) {
           $location.path("/wizard");
         } else if (path === "/" && $rootScope.public.node.enable_signup) {
-+      $rootScope.setPage("signuppage");
+          $rootScope.setPage("signuppage");
         } else if (["/signup", "activation"].indexOf(path === -1) && $rootScope.public.node.adminonly && !$rootScope.Authentication.session) {
           $location.path("/admin");
         } else if ($rootScope.Authentication.session) {
@@ -950,11 +961,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       },
 
       isWhistleblowerPage: function() {
-        var path = $location.path();
-        return (path === "/" ||
-                path === "/submission" ||
-                path === "/receipt" ||
-                path === "/status");
+        return ['homepage', 'submissionpage', 'receiptpage', 'tippage'].indexOf($rootScope.page) !== -1;
       },
 
       classExtension: function() {
