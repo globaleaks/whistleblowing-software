@@ -72,8 +72,6 @@ if [ "$GLTEST" = "test" ]; then
     ./node_modules/nyc/bin/nyc.js report --reporter=lcov
     cat coverage/lcov.info | codacy-coverage -c $TRAVIS_COMMIT # Javascript
   fi
-elif [ "$GLTEST" = "docker" ]; then
-  cd $TRAVIS_BUILD_DIR/docker && ./build.sh
 elif [ "$GLTEST" = "build_and_install" ]; then
   function atexit {
     if [[ ! $? -eq 0 && -f /var/globaleaks/log/globaleaks.log ]]; then
