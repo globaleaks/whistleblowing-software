@@ -9,7 +9,7 @@
     "url": "git@github.com:globaleaks/GlobaLeaks.git"
   },
   "dependencies": {
-    "@flowjs/flow.js": "2.14.0",
+    "@flowjs/flow.js": "2.14.1",
     "@flowjs/ng-flow": "2.7.8",
     "@fortawesome/fontawesome-free": "5.13.0",
     "angular": "1.8.0",
@@ -36,7 +36,7 @@
     "ui-select": "0.19.8"
   },
   "devDependencies": {
-    "eslint": "7.1.0",
+    "eslint": "7.2.0",
     "gettext-parser": "4.0.3",
     "grunt": "1.1.0",
     "grunt-angular-templates": "1.2.0",
