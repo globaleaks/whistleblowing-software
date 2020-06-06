@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-04 21:01+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-05 08:32+0000\n"
+"Last-Translator: iram hassan <iramhassan136@gmail.com>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -239,7 +239,7 @@ msgid "Change your password"
 msgstr "اپنا پاس ورڈ تبدیل کریں"
 
 msgid "Access requests"
-msgstr ""
+msgstr "رسائی کی درخاست"
 
 msgid "User"
 msgstr "صارف"
@@ -317,7 +317,7 @@ msgid "HTTPS settings"
 msgstr "HTTPS ترتیبات"
 
 msgid "URL redirects"
-msgstr ""
+msgstr "URL ری ڈ ائیرکٹس"
 
 msgid "Anomaly detection thresholds"
 msgstr "اسنگتی پتہ لگانے کی حد"
@@ -351,7 +351,7 @@ msgid "Trigger question"
 msgstr "ٹریگر سوال"
 
 msgid "Triggered by score:"
-msgstr ""
+msgstr "سکور سے متحرک"
 
 msgid "Message shown on top of the status page of the report"
 msgstr "پیغام جمع کرانے کی حیثیت صفحے کے سب سے اوپر پر دکھایا گیا"
@@ -375,25 +375,25 @@ msgid "Text shown on top of the interface for selecting contexts"
 msgstr "متن سیاق و سباق کے انتخاب کے سامنے دکھایا گیا"
 
 msgid "Show small context cards on submission interface"
-msgstr ""
+msgstr "درخواست انٹرفیس پرچھوٹے سیاق وسباق دکھائیں"
 
 msgid "Type of context selector:"
 msgstr "سیاق و سباق کی قسم کا انتخاب"
 
 msgid "Type to search…"
-msgstr ""
+msgstr "تلاش کرنے ٹا ئپ کریں"
 
 msgid "Silence email notifications"
-msgstr ""
+msgstr "خاموش ای میل کی اطلاعات"
 
 msgid "Turn on email notifications"
-msgstr ""
+msgstr "ای میل کی اطلا عات کو آن کریں"
 
 msgid "Enter an email address for the administrator"
-msgstr ""
+msgstr "ایڈمنسٹریٹرکے لیے ایک ای میل ایڈرس درج کریں"
 
 msgid "Enter a password for the administrator"
-msgstr ""
+msgstr "ایڈمنسٹریٹرکے لیے  ایک پاس ورڈ درج کریں"
 
 msgid "Failed logins"
 msgstr "ناکام لاگ اِن"
@@ -411,7 +411,7 @@ msgid "Failed submissions"
 msgstr "حتمی گذارشات"
 
 msgid "Input validation"
-msgstr ""
+msgstr "ان پٹ کی توثیق"
 
 msgid "Email address"
 msgstr "ای میل پتہ"
@@ -420,16 +420,16 @@ msgid "Custom"
 msgstr "مخصوص"
 
 msgid "None"
-msgstr ""
+msgstr "کوئی نہیں"
 
 msgid "Regular expression"
-msgstr ""
+msgstr "با قاعدہ اظہار"
 
 msgid "Activate"
 msgstr "فعال کیجیے"
 
 msgid "Disactivate"
-msgstr ""
+msgstr "غیرفعال"
 
 msgid "Search"
 msgstr "ڈھونڈیں"
@@ -437,7 +437,7 @@ msgstr "ڈھونڈیں"
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr ""
+msgstr "پلیٹ فارم پرحسب ضرورت اب متن ظاہر نہیں ہوتا-اصل متن یا تو بدل گیا ہے یااسے ہٹادیا گیا ہے"
 
 msgid ""
 "Unless the whistleblower checks the report by this time, their access to it "
@@ -465,7 +465,7 @@ msgid "Download the Tor Browser"
 msgstr "ٹوربراؤزر ڈاؤن لوڈ کیجیے"
 
 msgid "Audit log"
-msgstr ""
+msgstr "ڈاؤن لوڈذ کی تعداد"
 
 msgid "Stats"
 msgstr "stats(سٹیٹس)"
@@ -522,81 +522,81 @@ msgid "Remove"
 msgstr "مٹائیں"
 
 msgid "Use as default"
-msgstr ""
+msgstr "بطور ڈی فالٹ استعمال کریں"
 
 msgid "Create your whistleblowing platform"
-msgstr ""
+msgstr "اپناخبررساں پلیٹ فارم تشکیل دیں"
 
 msgid "Collapse"
-msgstr ""
+msgstr "بکھرجانا"
 
 msgid "Expand"
-msgstr ""
+msgstr "کھولنا"
 
 msgid "Select"
-msgstr ""
+msgstr "منتخب کرنا"
 
 msgid "Selected by default"
-msgstr ""
+msgstr "بطور ڈی فالٹ منتخب کیاگیا"
 
 msgid "Unselected by default"
-msgstr ""
+msgstr "بطور ڈی فالٹ غیر منتخب کیاگیا"
 
 msgid "Surname"
-msgstr ""
+msgstr "خاندانی نام"
 
 msgid "New"
-msgstr ""
+msgstr "نیا"
 
 msgid "Opened"
-msgstr ""
+msgstr "کھلا ہوا"
 
 msgid "Closed"
 msgstr "بند ہوگیا "
 
 msgid "Placeholder"
-msgstr ""
+msgstr "جگہ رکھنے والا"
 
 msgid "Print"
-msgstr ""
+msgstr "پرنٹ کریں"
 
 msgid "Previous"
-msgstr ""
+msgstr "پچھلا"
 
 msgid "Next"
 msgstr "اگلا"
 
 msgid "First"
-msgstr ""
+msgstr "پہلا"
 
 msgid "Last"
-msgstr ""
+msgstr "آخری"
 
 msgid "Running"
-msgstr ""
+msgstr "چل رہا ہے"
 
 msgid "Not running"
-msgstr ""
+msgstr "نہیں چل رہا"
 
 msgid "Send a test email to your email address."
-msgstr ""
+msgstr "اپنے ای میل ایڈریس کو ٹیسٹ ای میل بھیجیں"
 
 msgid "Block the submission"
-msgstr ""
+msgstr "جمع کرانے کومسدود کریں"
 
 msgid "Skip the recipient account creation."
-msgstr ""
+msgstr "وصول کنندہ  اکائونٹ کی تخلیق کو چھوڑدیں"
 
 msgid "Send activation link"
-msgstr ""
+msgstr "ایکٹیویشن لنک بھجیں"
 
 msgid "Password reset"
-msgstr ""
+msgstr "پاس ورڈ دوبارہ ترتیب دیں"
 
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr ""
+msgstr "ایک یااس سے زیادہ وصول کنندگان نے ابھی تک پہلا لاگ ان انجام نہیں دیا-اس کامطلب ہے کہ وہ رپورٹس وصول نہیں کریں گے-"
 
 msgid "This user has not performed the first login yet."
 msgstr ""
