@@ -299,11 +299,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         });
 
         glbcToken.getToken().then(function(token) {
-          self._token = token;
-          self._submission.token_id = self._token.id;
+          self.token = token;
+          self._submission.token_id = token.id;
         });
 
-	if (cb) {
+        if (cb) {
           cb();
         }
       };
