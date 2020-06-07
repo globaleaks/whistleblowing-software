@@ -31,7 +31,7 @@ GLClient.controller("SubmissionCtrl",
       return true;
     }
 
-    return $scope.submission.selected_receivers_count < $scope.submission.context.maximum_selectable_receivers;
+    return $scope.submission.countReceiversSelected() < $scope.submission.context.maximum_selectable_receivers;
   };
 
   $scope.switch_selection = function (receiver) {
@@ -39,11 +39,11 @@ GLClient.controller("SubmissionCtrl",
       return;
     }
 
-    if ($scope.submission.selected_receivers[receiver.id] || $scope.selectable()) {
-      $scope.submission.selected_receivers[receiver.id] = !$scope.submission.selected_receivers[receiver.id];
+    if ($scope.submission.selected_receivers[receiver.id]) {
+      delete $scope.submission.selected_receivers[receiver.id];
+    else if ($scope.selectable()) {
+      $scope.submission.selected_receivers[receiver.id] = true;
     }
-
-    $scope.submission.count_selected_receivers();
   };
 
   $scope.getCurrentStepIndex = function() {
@@ -225,15 +225,11 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.replaceReceivers = function(receivers) {
-    for(var key in $scope.submission.selected_receivers) {
-      if (receivers.indexOf(key) === -1) {
-        delete $scope.submission.selected_receivers[key];
-      }
-    }
-
     for(var i=0; i<receivers.length; i++) {
       if (receivers[i] in $scope.receivers_by_id) {
         $scope.submission.selected_receivers[receivers[i]] = true;
+      } else {
+	delete $scope.submission.selected_receivers[key];
       }
     }
   };

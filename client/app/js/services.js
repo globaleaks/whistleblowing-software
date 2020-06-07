@@ -252,23 +252,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.selected_receivers = {};
       self.done = false;
 
-      self.isDisabled = function() {
-        return self.selected_receivers_count === 0 ||
-               self.done;
-      };
-
-      self.count_selected_receivers = function () {
-        var count = 0;
-
-        angular.forEach(self.selected_receivers, function (selected) {
-          if (selected) {
-            count += 1;
-          }
-        });
-
-        self.selected_receivers_count = count;
-      };
-
       self.setContextReceivers = function(context_id) {
         self.context = $rootScope.contexts_by_id[context_id];
 
@@ -290,8 +273,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             self.selected_receivers[r.id] = true;
           }
         });
+      };
 
-	self.count_selected_receivers();
+      self.countSelectedReceivers = function() {
+        return Objects.keys(self.selected_receivers).length;
       };
 
       /**
