@@ -1,7 +1,14 @@
 <div data-ng-controller="CustodianIdentityAccessRequestsCtrl">
   <div class="row">
     <div class="col-md-12 clearfix">
-      <span class="float-left">
+        <span class="float-left">
+        <a id="link-tiplist"
+           href="#/custodian/home"
+           uib-tooltip="{{'Home' | translate}}"
+           class="btn btn-secondary">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+
         <span id="link-reload"
               data-ng-click="reload()"
               uib-tooltip="{{'Refresh' | translate}}"
