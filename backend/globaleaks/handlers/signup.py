@@ -14,7 +14,7 @@ from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
-from globaleaks.utils.crypto import generateRandomKey
+from globaleaks.utils.crypto import generateRandomKey, generateRandomPassword
 from globaleaks.utils.utility import datetime_to_ISO8601
 
 
@@ -150,8 +150,8 @@ def signup_activation(session, token, hostname, language):
 
     db_initialize_tenant(session, tenant, mode)
 
-    password_admin = generateRandomKey()
-    password_receiver = generateRandomKey()
+    password_admin = generateRandomPassword(12)
+    password_receiver = generateRandomPassword(12)
 
     node_name = signup.organization_name if signup.organization_name else signup.subdomain
 

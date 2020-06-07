@@ -4,7 +4,7 @@ import os
 
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
-from globaleaks.utils.crypto import Base64Encoder, GCE
+from globaleaks.utils.crypto import Base64Encoder, GCE, generateRandomPassword
 
 password = b'password'
 message = b'message'
