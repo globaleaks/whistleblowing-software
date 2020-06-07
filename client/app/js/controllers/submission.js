@@ -41,17 +41,9 @@ GLClient.controller("SubmissionCtrl",
 
     if ($scope.submission.selected_receivers[receiver.id]) {
       delete $scope.submission.selected_receivers[receiver.id];
-    else if ($scope.selectable()) {
+    } else if ($scope.selectable()) {
       $scope.submission.selected_receivers[receiver.id] = true;
     }
-  };
-
-  $scope.getCurrentStepIndex = function() {
-    return $scope.navigation;
-  };
-
-  $scope.getCurrentStep = function() {
-    return $scope.questionnaire.steps[$scope.navigation];
   };
 
   $scope.goToStep = function(index) {
@@ -299,14 +291,6 @@ controller("AdditionalQuestionnaireCtrl",
 
   $scope.singleStepForm = function() {
     return $scope.firstStepIndex() === $scope.lastStepIndex();
-  };
-
-  $scope.getCurrentStepIndex = function() {
-    return $scope.navigation;
-  };
-
-  $scope.getCurrentStep = function() {
-    return $scope.questionnaire.steps[$scope.navigation];
   };
 
   $scope.goToStep = function(index) {
