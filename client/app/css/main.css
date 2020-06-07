@@ -32,7 +32,7 @@ html, body {
 }
 
 #FooterBox a, #FooterBox a:hover, #Footerbox a:active, #FooterBox a:focus {
-  color: #2161A6;
+  font-weight: bold;
 }
 
 a, a:hover, a:active, a:focus {
