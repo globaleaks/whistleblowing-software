@@ -166,7 +166,7 @@ GLClient.controller("SubmissionCtrl",
       return;
     }
 
-    return "submission/" + $scope.submission._token.id + "/file";
+    return "submission/" + $scope.submission.token.id + "/file";
   };
 
   $scope.prepareSubmission = function(context) {
