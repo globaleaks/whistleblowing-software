@@ -21,8 +21,4 @@ if [ ! -z "$(ls -A /var/globaleaks 2>/dev/null)" ]; then
             --lastuid=999 \
             globaleaks
   fi
-
-  if [ -x "$(command -v gl-admin)" ]; then
-    gl-admin backup
-  fi
 fi
