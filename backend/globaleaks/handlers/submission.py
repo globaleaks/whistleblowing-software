@@ -390,6 +390,9 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     db_set_internaltip_answers(session, itip.id, questionnaire_hash, answers)
 
     for uploaded_file in token.uploaded_files:
+        if not itip.enable_attachments:
+            break
+
         if uploaded_file['id'] in request['removed_files']:
             continue
 

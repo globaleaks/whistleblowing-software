@@ -69,8 +69,9 @@ def create_comment(session, tid, wbtip_id, content):
     wbtip, itip = session.query(models.WhistleblowerTip, models.InternalTip)\
                          .filter(models.WhistleblowerTip.id == wbtip_id,
                                  models.InternalTip.id == models.WhistleblowerTip.id,
-                                 models.InternalTip.tid == tid,
-                                 models.InternalTip.status != 'closed').one_or_none()
+                                 models.InternalTip.enable_two_way_comments.is_(True),
+                                 models.InternalTip.status != 'closed',
+                                 models.InternalTip.tid == tid).one_or_none()
 
     if wbtip is None:
         raise errors.ModelNotFound(models.WhistleblowerTip)
@@ -110,6 +111,7 @@ def create_message(session, tid, wbtip_id, receiver_id, content):
                                           models.ReceiverTip.internaltip_id == wbtip_id,
                                           models.ReceiverTip.receiver_id == receiver_id,
                                           models.InternalTip.id == models.WhistleblowerTip.id,
+                                          models.InternalTip.enable_two_way_messages.is_(True),
                                           models.InternalTip.status != 'closed',
                                           models.InternalTip.tid == tid).one_or_none()
 
