@@ -197,7 +197,9 @@
                       data-ng-options="item.code as item.name for item in languages_enabled_selector"></select>
             </div>
             <div class="form-group">
-              <input data-ng-model="user.notification" type="checkbox">
+              <input data-ng-model="user.notification" type="checkbox" data-ng-if="(user.role === 'admin' && resources.node.disable_admin_notification) ||
+                                                                                   (user.role === 'receiver' && resources.node.disable_receiver_notification) ||
+                                                                                   (user.role === 'custodian' && resources.node.disable_custodian_notification)">
               <label data-translate>Enable email notifications</label>
             </div>
           </div>

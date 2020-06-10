@@ -64,7 +64,9 @@
   </div>
 
   <div id="EnableNotifications" class="form-group">
-    <input data-ng-model="preferences.notification" type="checkbox">
+    <input data-ng-model="preferences.notification" type="checkbox" data-ng-if="(Authentication.session.role === 'admin' && public.node.disable_admin_notification) ||
+                                                                                (Authentication.session.role === 'receiver' && public.node.disable_receiver_notification) ||
+                                                                                (Authentication.session.role === 'custodian' && public.node.disable_custodian_notification)">
     <label data-translate>Enable email notifications</label>
   </div>
 
