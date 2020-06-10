@@ -13,29 +13,6 @@ html, body {
   min-height: 20rem;
 }
 
-[dir] .container-fluid {
-  padding: 0;
-  overflow-x: hidden;
-}
-
-#PageContent {
-  flex: 1 0 auto;
-}
-
-#HeaderBox, #ContentBox, #NoScript, #FooterBox, #DemoBadge, #PrivacyBadge {
-  padding: 1.5rem;
-}
-
-#FooterBox {
-  background-color: #f5f7fa;
-  text-align: center;
-  font-size: 1rem;
-}
-
-#FooterBox a, #FooterBox a:hover, #Footerbox a:active, #FooterBox a:focus {
-  font-weight: bold;
-}
-
 a, a:hover, a:active, a:focus {
   color: #3777BC;
   outline: 0;
@@ -46,13 +23,22 @@ a:hover {
   color: #5EA9E9;
 }
 
-input, textarea, select {
-  padding-bottom: 0.5rem;
-}
-
 table {
   table-layout: fixed;
   word-wrap: break-word;
+}
+
+[dir] .container-fluid {
+  padding: 0;
+  overflow-x: hidden;
+}
+
+#PageContent {
+  flex: 1 0 auto;
+}
+
+#HeaderBox, #ContentBox, #NoScript, #FooterBox, #DemoBadge, #PrivacyBadge {
+  padding: 1.25rem;
 }
 
 #HeaderBox {
@@ -66,21 +52,17 @@ table {
   display: block;
 }
 
-#MessagesConsoleBox {
-  position: fixed;
-  width: 20%;
-  min-width: 20rem;
-  z-index: 10;
-  top: 1rem;
-  padding: 0 1rem;
-}
-
 #LogoBox {
   vertical-align: middle;
 }
 
 [dir="ltr"] #LogoBox {
   margin-right: 1rem;
+}
+
+#LogoBox img {
+  max-height: 14rem;
+  max-width: 22rem;
 }
 
 #TitleBox {
@@ -103,9 +85,23 @@ table {
   border-radius: 5px;
 }
 
-#LogoBox img {
-  max-height: 14rem;
-  max-width: 22rem;
+#FooterBox {
+  background-color: #f5f7fa;
+  text-align: center;
+  font-size: 1rem;
+}
+
+#FooterBox a, #FooterBox a:hover, #Footerbox a:active, #FooterBox a:focus {
+  font-weight: bold;
+}
+
+#MessagesConsoleBox {
+  position: fixed;
+  width: 20%;
+  min-width: 20rem;
+  z-index: 10;
+  top: 1rem;
+  padding: 0 1rem;
 }
 
 .receipt {
@@ -174,21 +170,18 @@ table {
   height: 10rem;
 }
 
-.wizard-block {
-  position: relative;
-  margin-bottom: 2rem;
+.wizard-block, .wizard-block .title {
+  margin-bottom: 1rem;
 }
 
 .wizard-block .title {
-  position: relative;
   font-size: 1.2rem;
-  margin-bottom: 1rem;
 }
 
 .wizard-help-hint {
   border-left: 2px solid #AFBACC;
   background-color: #FFFCF1;
-  padding: 1.25rem;
+  padding: 1rem;
 }
 
 .LoginErrorBox, .LoginErrorBoxHomepage {
