@@ -135,13 +135,15 @@ def new_tls_server_context():
 
     ctx.set_options(SSL.OP_NO_SSLv2 |
                     SSL.OP_NO_SSLv3 |
+                    SSL.OP_CIPHER_SERVER_PREFERENCE |
+                    SSL.OP_PRIORITIZE_CHACHA |
                     SSL.OP_SINGLE_ECDH_USE |
                     SSL.OP_NO_COMPRESSION |
-                    SSL.OP_PRIORITIZE_CHACHA |
-                    SSL.OP_CIPHER_SERVER_PREFERENCE)
+                    SSL.OP_NO_TICKET |
+                    SSL.OP_NO_RENEGOTIATION)
 
     ctx.set_mode(SSL.MODE_RELEASE_BUFFERS)
-    ctx.set_session_cache_mode(SSL.SESS_CACHE_SERVER)
+    ctx.set_session_cache_mode(SSL.SESS_CACHE_OFF)
 
     ctx.set_cipher_list(TLS_CIPHER_LIST)
 
