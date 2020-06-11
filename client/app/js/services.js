@@ -835,7 +835,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           } else if ($rootScope.page === "receiptpage") {
             pt2 = $rootScope.public.node.header_title_receiptpage;
           } else if ($rootScope.page === "tippage") {
-            pt2 = $rootScope.public.node.header_title_tippage;
+            pt2 = "Report";
           } else if ($rootScope.page === "signuppage") {
             pt2 = "Create your whistleblowing platform";
           }

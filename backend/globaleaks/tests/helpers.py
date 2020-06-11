@@ -1120,8 +1120,6 @@ class MockDict:
             'header_title_prefix': '',
             'header_title_homepage': '',
             'header_title_submissionpage': '',
-            'header_title_receiptpage': '',
-            'header_title_tippage': '',
             'landing_page': 'homepage',
             'context_selector_type': 'list',
             'contexts_clarification': '',

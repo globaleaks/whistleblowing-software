@@ -86,13 +86,13 @@
       </div>
       <div class="form-group">
         <input data-ng-model="preferences.pgp_key_remove" type="checkbox">
-        <label data-translate>Remove the PGP key</label>
+        <label data-translate>Remove</label>
       </div>
     </div>
     <div data-ng-hide="preferences.pgp_key_fingerprint">
       <div class="position-relative">
         <label data-translate>Set up email encryption by providing a PGP public key</label>
-        <textarea data-pgp-pubkey-validator="canBeEmpty" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="preferences.pgp_key_public" data-ng-class="{'is-invalid': pgpkeyForm.$invalid}"></textarea>
+        <textarea data-pgp-pubkey-validator="canBeEmpty" class="form-control" data-ng-model="preferences.pgp_key_public" data-ng-class="{'is-invalid': pgpkeyForm.$invalid}"></textarea>
         <label file-input="loadPublicKeyFile(file)" file-input-label="Select" class="btn btn-sm btn-secondary textarea-btn"></label>
       </div>
     </div>

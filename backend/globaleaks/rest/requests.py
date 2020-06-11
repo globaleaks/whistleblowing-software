@@ -263,8 +263,6 @@ AdminNodeDesc = {
     'header_title_prefix': str,
     'header_title_homepage': str,
     'header_title_submissionpage': str,
-    'header_title_receiptpage': str,
-    'header_title_tippage': str,
     'landing_page': landing_page_regexp,
     'context_selector_type': context_selector_type_regexp,
     'contexts_clarification': str,

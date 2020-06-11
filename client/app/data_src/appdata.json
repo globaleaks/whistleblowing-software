@@ -18,12 +18,6 @@
     },
     "header_title_submissionpage": {
       "en": "Blow the whistle"
-    },
-    "header_title_receiptpage": {
-      "en": "Your report was successful."
-    },
-    "header_title_tippage": {
-      "en": "Report"
     }
   },
   "templates" : {}
