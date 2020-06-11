@@ -318,38 +318,39 @@ directive("convertToNumber", function() {
 directive("passwordStrengthValidator", function() {
   function link(scope, elem, attrs, ngModel) {
     ngModel.$validators.passwordStrengthValidator = function(pwd) {
-      var check, i;
-      var variation = 0;
-      var letters = {};
-      var score = 0;
+      var types = {
+        lower: /[a-z]/.test(pwd),
+        upper: /[A-Z]/.test(pwd),
+        symbols: /\W/.test(pwd),
+        digits: /\d/.test(pwd)
+      };
+
+      var i,
+          variation1 = 0,
+          variation2 = 0,
+          letters = {},
+          score = 0;
 
       if (pwd) {
-        /* Score character variation */
-        var variations = {
-          lower: /[a-z]/.test(pwd),
-          upper: /[A-Z]/.test(pwd),
-          symbols: /\W/.test(pwd),
-          digits: /\d/.test(pwd)
-        };
-
-        for (check in variations) {
-          variation += variations[check] ? 1 : 0;
+        /* Score symbols variation */
+        for (i in types) {
+          variation1 += types[i] ? 1 : 0;
         }
 
-        /* Score only unique letters */
+        /* Score unique symbols */
         for (i = 0; i < pwd.length; i++) {
           if (!letters[pwd[i]]) {
             letters[pwd[i]] = 1;
-            score += 1;
+            variation2 += 1;
           }
         }
 
-        if (score > 10 && pwd.length >= 12 && variation === 4) {
-          score = 3;
-        } else if (score > 7 && pwd.length >= 10 && variation >= 3) {
+        if (variation1 !== 4 || variation2 < 8 || pwd.length < 10) {
+          score = 1;
+        } else if (variation1 !== 4 || variation2 < 10 || pwd.length < 12) {
           score = 2;
         } else {
-          score = 1;
+          score = 3;
         }
       }
 
