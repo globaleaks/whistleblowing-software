@@ -1,5 +1,5 @@
 .ui-select-toggle.btn {
-  border: 1px solid #ced4da;
+  border: 1px solid #3777BC;
 }
 
 .ui-select-choices.dropdown-menu {
@@ -7,7 +7,7 @@
 }
 
 .ui-select-match-text {
-  max-height: 24px;
+  max-height: 1rem;
 }
 
 .ui-select-match.btn-default-focus {
@@ -17,5 +17,5 @@
 }
 
 .ui-select-match.btn-default-focus > .ui-select-toggle {
-  border-color: #80bdff;
+  border-color: #5EA9E9;
 }

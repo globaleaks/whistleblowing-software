@@ -38,7 +38,7 @@ table {
 }
 
 #HeaderBox, #ContentBox, #NoScript, #FooterBox, #DemoBadge, #PrivacyBadge {
-  padding: 1.25rem;
+  padding: 1rem;
 }
 
 #HeaderBox {
@@ -57,7 +57,11 @@ table {
 }
 
 [dir="ltr"] #LogoBox {
-  margin-right: 1rem;
+  margin: 0 1rem 0 0;
+}
+
+[dir="rtl"] #LogoBox {
+  margin: 0 0 0 1rem;
 }
 
 #LogoBox img {
@@ -252,7 +256,7 @@ table {
 }
 
 #Toolbar {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .modal-title {
@@ -296,6 +300,14 @@ textarea.form-control {
 .textarea-btn {
   position: absolute;
   top: 2rem;
+}
+
+[dir="rtl"] .textarea-btn {
+  left: 1rem;
+}
+
+[dir="ltr"] .textarea-btn {
+  right: 1rem;
 }
 
 input[type="file"] {
@@ -358,23 +370,331 @@ input[type="file"] {
   opacity: 0;
 }
 
-.textarea-btn {
-  right: 1rem;
-}
-
 #creditCard {
   width: 20rem;
 }
 
-.sidebar-link {
+#Sidebar a {
   display: block;
   margin-bottom: 1rem;
 }
 
-.sidebar-link.active a, .sidebar-link.active a:active, .sidebar-link.active a:hover, .sidebar-link.active a:focus {
+#Sidebar.active a, #Sidebar.active a:active, #Sidebar.active a:hover, #Sidebar.active a:focus {
   color: #333840;
 }
 
 [dir] label {
   margin: 0;
 }
+
+#HomePageBox {
+  text-align: center;
+  font-size: 1rem;
+  margin: 0 auto;
+}
+
+#NodePresentation {
+  font-size: 1.2rem;
+}
+
+#NodePresentation,
+#WhistleblowerSubmitBox {
+  margin-bottom: 2rem;
+}
+
+#NodePresentation,
+#WhistleblowingQuestion,
+#WhistleblowerLoginPrompt {
+  white-space: pre-wrap;
+}
+
+#WhistleblowerSubmitBox, #WhistleblowerReceiptBox {
+  font-size: 1.2rem;
+}
+
+#DonationPanel {
+  margin-top: 2rem;
+}
+#contextClarification {
+  font-size: 1.2rem;
+}
+
+#contextClarification,
+.contextCardDescription,
+.receiverDescription,
+.stepDescription,
+.fieldDescription
+{
+  color: #333840;
+  white-space: pre-wrap;
+}
+
+.fieldDescription {
+  font-size: 1rem;
+}
+
+.contextCards, .receiverCards {
+  position: relative;
+}
+
+.contextCard {
+  cursor: pointer;
+}
+
+.contextCard, .receiverCard {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #FFF;
+  border: 1px solid #AFBACC;
+  border-radius: 4px;
+  word-wrap: break-word;
+}
+
+.contextCardTitle, .receiverCardTitle {
+  margin-bottom: 1rem;
+}
+
+.contextCard:hover, .receiverCard.selected {
+  background-color: #428bca;
+  color: #FFF;
+}
+
+.receiverCard.disabled {
+  background-color: #f2dede;
+}
+
+#selectedContext {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.fieldAnswerEntry {
+  margin-top: 1rem;
+}
+
+.fieldAnswerEntryFirst {
+  margin-top: 0px;
+}
+
+.fieldAnswerEntryLast {
+  margin-bottom: 1rem;
+}
+
+.fieldAnswerEntryLabel:after {
+  content:'';
+  display:block;
+  clear: both;
+}
+
+.submissionFieldInput {
+  padding-left: 1rem;
+}
+
+#StepTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+}
+
+.fileName {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+#MaxSelectableReceiverBox {
+  margin-bottom: 1rem;
+}
+
+.code {
+  color: 000;
+  background: #EBEFF5;
+}
+
+#KeyCodeBox {
+  background-color: #f5f7fa;
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 80%;
+  text-align: center;
+  font-family: monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+#SubmissionButtons button {
+  margin-left: 0px;
+  margin-right: 1rem;
+}
+
+#SubmissionErrors {
+  margin-top: 1rem;
+}
+
+#FileUploadsHeader {
+  font-size: 1.2rem;
+  margin: 1.2rem 0;;
+}
+
+.cc-text-1 {
+  font-size: 2rem;
+}
+
+.cc-text-2 {
+  font-size: 1.2rem;
+}
+
+.err-link {
+  padding: 0.2rem 0.4rem;
+  background-color: #faf0f0;
+  border-radius: 3px;
+  color: #DE1B1B;
+}
+
+.question-body {
+  padding-bottom: 1rem;
+}
+
+.question .question {
+  padding: 0 0 0 1rem;
+}
+
+.mapoutline {
+  fill: #333840;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  font: 1rem;
+  background: #fff;
+  border: 0px;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.fileButtons {
+  position: absolute;
+  top: 0;
+  z-index: 666;
+  height: 10rem;
+  width: 10rem;
+  padding: 1rem;
+}
+
+.fileButtons {
+  text-align: right;
+}
+.adminConfigSection {
+  margin-bottom: 1rem;
+}
+
+.configItem {
+  background-color: #F5F7FA;
+  border: 1px solid #C8D1E0;
+  padding: 1rem;
+  margin: 1rem auto;
+}
+
+#StepAddBox, #StepsEditBox, #FieldsEditBox, #ContextAdvancedSettingsBox, #SubstateEditBox {
+  margin-top: 1rem
+}
+
+.addField, .addFieldFromTemplate {
+  clear: both;
+  margin-bottom: 1rem;
+}
+
+.field {
+  position: relative;
+  border: 1px solid #C8D1E0;
+  margin-bottom: 1rem;
+}
+
+.editorHeader {
+  background-color: #F5F7FA;
+}
+
+.editorTitle {
+  font-size: 1.2rem;
+}
+
+.fieldOption {
+  margin-bottom: 1rem;
+}
+
+.selectionList {
+  background-color: #fff;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border: 1px solid #C8D1E0;
+}
+
+text.axis-workweek, text.axis-worktime {
+  fill: #000;
+}
+
+.license, .changelogmsg {
+  white-space: pre-line;
+  width: 87ch;
+}
+
+.non-default-language, .disabled-icon {
+  opacity: 0.2;
+}
+
+.non-default-language:hover {
+  opacity: 1;
+}
+
+.selectionList {
+  list-style-type: none;
+  overflow: auto;
+  max-height: 8rem;
+}
+
+[dir="ltr"] .imageUpload .changePictureButton {
+  left: 1rem;
+}
+
+[dir="rtl"] .imageUpload .changePictureButton {
+  right: 1rem;
+}
+.selectedTip,
+.table-striped > tbody > tr.selectedTip:nth-child(odd) > td {
+  background-color: #FFF3CA;
+}
+
+.tip-action-open {
+  cursor: pointer;
+}
+
+.fieldAnswer {
+  margin-bottom: 1rem;
+}
+
+.TipLabel {
+  color: #3777BC;
+}
+
+#SearchFilter {
+  margin: 0 0.4rem;
+}
+
+html[dir="rtl"] input[type=email],
+html[dir="ltr"] input[type=email],
+html[dir="rtl"] #creditCard,
+html[dir="ltr"] #creditCard,
+html[dir="rtl"] #KeyCodeBox,
+html[dir="ltr"] #KeyCodeBox {
+  direction: ltr;
+}
+
+html[dir="rtl"] .fa-arrow-right:before { content: "\f060"; }
+html[dir="rtl"] .fa-arrow-left:before { content: "\f061"; }
+html[dir="rtl"] .fa-arrow-circle-right:before { content: "\f0a8"; }
+html[dir="rtl"] .fa-arrow-circle-left:before { content: "\f0a9"; }
+html[dir="rtl"] .fa-chevron-right:before{content:"\f053"}
+html[dir="rtl"] .fa-chevron-left:before{content:"\f054"}
