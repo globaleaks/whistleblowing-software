@@ -379,7 +379,7 @@ input[type="file"] {
   margin-bottom: 1rem;
 }
 
-#Sidebar.active a, #Sidebar.active a:active, #Sidebar.active a:hover, #Sidebar.active a:focus {
+#Sidebar a.active, #Sidebar a:active.active, #Sidebar a:hover.active, #Sidebar a:focus.active {
   color: #333840;
 }
 
