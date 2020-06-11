@@ -692,9 +692,7 @@ html[dir="ltr"] #KeyCodeBox {
   direction: ltr;
 }
 
-html[dir="rtl"] .fa-arrow-right:before { content: "\f060"; }
-html[dir="rtl"] .fa-arrow-left:before { content: "\f061"; }
-html[dir="rtl"] .fa-arrow-circle-right:before { content: "\f0a8"; }
-html[dir="rtl"] .fa-arrow-circle-left:before { content: "\f0a9"; }
-html[dir="rtl"] .fa-chevron-right:before{content:"\f053"}
-html[dir="rtl"] .fa-chevron-left:before{content:"\f054"}
+[dir="rtl"] .fa, [dir="rtl"] .fas {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
