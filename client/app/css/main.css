@@ -28,6 +28,30 @@ table {
   word-wrap: break-word;
 }
 
+[dir] .h1, [dir] h1 {
+  font-size: 1.6rem;
+}
+
+[dir] .h2, [dir] h2 {
+  font-size: 1.5rem;
+}
+
+[dir] .h3, [dir] h3 {
+  font-size: 1.4rem;
+}
+
+[dir] .h4, [dir] h4 {
+  font-size: 1.3rem;
+}
+
+[dir] .h5, [dir] h5 {
+  font-size: 1.2rem;
+}
+
+[dir] .h6, [dir] h6 {
+  font-size: 1.1rem;
+}
+
 [dir] .container-fluid {
   padding: 0;
   overflow-x: hidden;
@@ -108,6 +132,10 @@ table {
   padding: 0 1rem;
 }
 
+.Title {
+  font-size: 1.2rem;
+}
+
 .receipt {
   text-align: center;
 }
@@ -115,19 +143,6 @@ table {
 #PrivacyBadge {
   background-color: #000;
   color: #FFF;
-}
-
-.title1 {
-  font-size: 1.3rem;
-  font-weight: bold;
-}
-
-.title2 {
-  font-size: 1.2rem;
-}
-
-.title3 {
-  font-size: 1.1rem;
 }
 
 .tab-content {
@@ -203,7 +218,6 @@ table {
 #WhistleblowerLoginForm input {
   width: 14rem;
   text-align: center;
-
 }
 
 .recoverykeyinput {
@@ -211,8 +225,12 @@ table {
   text-align: center;
 }
 
-.nested {
-  padding: 0, 1rem;
+[dir='ltr'] .nested {
+  padding-left: 1rem;
+}
+
+[dir='rtl'] .nested {
+  padding-right: 1rem;
 }
 
 .filePreview {
@@ -252,7 +270,7 @@ table {
 }
 
 .fileUploadProgress {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 
 #Toolbar {
@@ -379,7 +397,7 @@ input[type="file"] {
   margin-bottom: 1rem;
 }
 
-#Sidebar a.active, #Sidebar a:active.active, #Sidebar a:hover.active, #Sidebar a:focus.active {
+a.active, a:active.active, a:hover.active, a:focus.active {
   color: #333840;
 }
 
@@ -415,6 +433,7 @@ input[type="file"] {
 #DonationPanel {
   margin-top: 2rem;
 }
+
 #contextClarification {
   font-size: 1.2rem;
 }
@@ -446,7 +465,7 @@ input[type="file"] {
   padding: 1rem;
   background-color: #FFF;
   border: 1px solid #AFBACC;
-  border-radius: 4px;
+  border-radius: 5px;
   word-wrap: break-word;
 }
 
@@ -511,20 +530,22 @@ input[type="file"] {
 }
 
 #KeyCodeBox {
-  background-color: #f5f7fa;
+  background-color: #F5F7fA;
   margin: 1rem auto;
   padding: 1rem;
   width: 80%;
   text-align: center;
   font-family: monospace;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
-#SubmissionButtons button {
-  margin-left: 0px;
+[dir="ltr"] #SubmissionButtons button {
+  margin: 0 1rem 0 0;
   margin-right: 1rem;
+}
+
+[dir="rtl"] #SubmissionButtons button {
+  margin: 0 0 0 1rem;
 }
 
 #SubmissionErrors {
@@ -534,14 +555,6 @@ input[type="file"] {
 #FileUploadsHeader {
   font-size: 1.2rem;
   margin: 1.2rem 0;;
-}
-
-.cc-text-1 {
-  font-size: 2rem;
-}
-
-.cc-text-2 {
-  font-size: 1.2rem;
 }
 
 .err-link {
@@ -617,10 +630,6 @@ div.tooltip {
   background-color: #F5F7FA;
 }
 
-.editorTitle {
-  font-size: 1.2rem;
-}
-
 .fieldOption {
   margin-bottom: 1rem;
 }
@@ -662,6 +671,7 @@ text.axis-workweek, text.axis-worktime {
 [dir="rtl"] .imageUpload .changePictureButton {
   right: 1rem;
 }
+
 .selectedTip,
 .table-striped > tbody > tr.selectedTip:nth-child(odd) > td {
   background-color: #FFF3CA;
