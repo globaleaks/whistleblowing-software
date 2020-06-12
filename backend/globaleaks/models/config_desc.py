@@ -128,8 +128,6 @@ ConfigDescriptor = {
 
     'enable_custom_privacy_badge': Bool(default=False),
 
-    'landing_page': Unicode(default='homepage'),
-
     'show_contexts_in_alphabetical_order': Bool(default=True),
 
     'password_change_period': Int(default=365),  # Days
@@ -223,7 +221,6 @@ ConfigFilters = {
         'multisite_login',
         'simplified_login',
         'enable_custom_privacy_badge',
-        'landing_page',
         'show_contexts_in_alphabetical_order',
         'password_change_period',
         'wbtip_timetolive',

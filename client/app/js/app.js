@@ -474,7 +474,6 @@ var GLClient = angular.module("GLClient", [
       }).
       when("/", {
         templateUrl: "views/home.html",
-        controller: "MainCtrl",
         header_title: ""
       }).
       otherwise({
