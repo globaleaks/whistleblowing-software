@@ -1,21 +1,17 @@
 <table id="AnomaliesHistoryTable" class="table table-condensed table-striped">
   <thead>
     <tr>
-      <th></th>
-      <th data-ng-repeat="t in [1,2,3,4,5,6,7,8,9,10]">
-        <div class="text-weight-bold">#{{t}}</div>
-      </th>
+      <th data-translate>Date</th>
+      <th data-translate>Alarm level</th>
+      <th data-translate>Events</th>
     </tr>
   </thead>
   <tbody>
-    <tr data-ng-repeat="job in resources.jobs | orderBy:'name'">
-      <td class="text-weight-bold">{{job.name}}</td>
-      <td data-ng-repeat="t in [0,1,2,3,4,5,6,7,8,9]">
-        <div data-ng-if="job.timings[t]">
-          <div>{{(job.timings[t][1] - job.timings[t][0]) / 1000}}s</div>
-          <div>{{job.timings[t][0] | date:'HH:mm:ss'}}</div>
-          <div>{{job.timings[t][0] | date:'dd-MM-yyyy'}}</div>
-        </div>
+    <tr data-ng-repeat="anomaly in resources.anomalies">
+      <td>{{anomaly.date | date:'dd-MM-yyyy HH:mm'}}</td>
+      <td>{{anomaly.alarm}}</td>
+      <td data-ng-repeat="event in anomaly.events">
+        <div>{{event.type | anomalyToString | translate}}: {{event.count}}</div>
       </td>
     </tr>
   </tbody>

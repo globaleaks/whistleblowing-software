@@ -4,7 +4,7 @@
 import base64
 import json
 
-from sqlalchemy.sql.expression import func, distinct
+from sqlalchemy.sql.expression import distinct, func
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
@@ -36,7 +36,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
 
     messages_by_rtip = {}
     comments_by_itip = {}
-    internalfiles_by_itip = {}
+    files_by_itip = {}
 
     # Fetch rtip, internaltip and associated questionnaire schema
     for rtip, itip, aqs in session.query(models.ReceiverTip,
@@ -111,10 +111,10 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
                                  .filter(models.InternalFile.internaltip_id == models.InternalTip.id,
                                          models.InternalTip.id.in_(itip_ids)) \
                                  .group_by(models.InternalTip.id):
-        internalfiles_by_itip[itip_id] = count
+        files_by_itip[itip_id] = count
 
     for elem in rtip_summary_list:
-        elem['file_count'] = internalfiles_by_itip.get(elem['itip_id'], 0)
+        elem['file_count'] = files_by_itip.get(elem['itip_id'], 0)
         elem['comment_count'] = comments_by_itip.get(elem['itip_id'], 0)
         elem['message_count'] = messages_by_rtip.get(elem['id'], 0)
 

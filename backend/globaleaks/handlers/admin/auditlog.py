@@ -1,10 +1,10 @@
 # -*- coding: utf-8
 import operator
 from datetime import timedelta
+from sqlalchemy.sql.expression import distinct, func
 
-from globaleaks.event import events_monitored
+from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import Stats, Anomalies
 from globaleaks.orm import transact
 from globaleaks.state import State
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, \
@@ -53,9 +53,9 @@ def get_stats(session, tid, week_delta):
     lower_bound = iso_to_gregorian(looked_year, looked_week, 1)
     upper_bound = iso_to_gregorian(looked_year, looked_week + 1, 1)
 
-    hourlyentries = session.query(Stats).filter(Stats.tid == tid,
-                                                Stats.start >= lower_bound,
-                                                Stats.start <= upper_bound)
+    hourlyentries = session.query(models.Stats).filter(models.Stats.tid == tid,
+                                                       models.Stats.start >= lower_bound,
+                                                       models.Stats.start <= upper_bound)
 
     week_entries = 0
     week_map = [[dict() for i in range(24)] for j in range(7)]
@@ -121,7 +121,9 @@ def get_anomaly_history(session, tid, limit):
     :return: The list of detected anomalies
     """
     ret = []
-    for anomaly in session.query(Anomalies).filter(Anomalies.tid == tid).order_by(Anomalies.date.desc())[:limit]:
+    for anomaly in session.query(models.Anomalies) \
+                          .filter(models.Anomalies.tid == tid) \
+                          .order_by(models.Anomalies.date.desc())[:limit]:
         entry = dict({
             'date': datetime_to_ISO8601(anomaly.date),
             'alarm': anomaly.alarm,
@@ -139,11 +141,52 @@ def get_anomaly_history(session, tid, limit):
     return ret
 
 
+@transact
+def get_tips(session, tid):
+    """
+    """
+    tips = []
+
+    comments_by_itip = {}
+    files_by_itip = {}
+
+    # Fetch comments count
+    for itip_id, count in session.query(models.InternalTip.id,
+                                        func.count(distinct(models.Comment.id))) \
+                                 .filter(models.Comment.internaltip_id == models.InternalTip.id) \
+                                 .group_by(models.InternalTip.id):
+        comments_by_itip[itip_id] = count
+
+    # Fetch attachment count
+    for itip_id, count in session.query(models.InternalTip.id,
+                                        func.count(distinct(models.InternalFile.id))) \
+                                 .filter(models.InternalFile.internaltip_id == models.InternalTip.id) \
+                                 .group_by(models.InternalTip.id):
+        files_by_itip[itip_id] = count
+
+    for itip in session.query(models.InternalTip):
+        tips.append({
+            'id': itip.id,
+            'creation_date': datetime_to_ISO8601(itip.creation_date),
+            'last_update': datetime_to_ISO8601(itip.update_date),
+            'expiration_date': datetime_to_ISO8601(itip.expiration_date),
+            'context_id': itip.context_id,
+            'status': itip.status,
+            'substatus': itip.substatus,
+            'tor': not itip.https,
+            'comments': comments_by_itip.get(itip.id, 0),
+            'files': files_by_itip.get(itip.id, 0),
+            'wb_last_access': datetime_to_ISO8601(itip.wb_last_access)
+        })
+
+    return tips
+
+
 class AnomalyCollection(BaseHandler):
     check_roles = 'admin'
 
     def get(self):
-        return get_anomaly_history(self.request.tid, limit=20)
+        return get_anomaly_history(self.request.tid, limit=100)
 
 
 class StatsCollection(BaseHandler):
@@ -156,6 +199,17 @@ class StatsCollection(BaseHandler):
         return get_stats(self.request.tid, week_delta)
 
 
+class TipsCollection(BaseHandler):
+    """
+    This Handler returns the list of the tips
+    """
+    check_roles = 'admin'
+
+    def get(self):
+        return get_tips(self.request.tid)
+
+
+
 class RecentEventsCollection(BaseHandler):
     """
     This handler is refreshed constantly by an admin page
@@ -163,25 +217,12 @@ class RecentEventsCollection(BaseHandler):
     """
     check_roles = 'admin'
 
-    def get_summary(self, templist):
-        eventmap = dict()
-        for event in events_monitored:
-            eventmap.setdefault(event['name'], 0)
-
-        for e in templist:
-            eventmap[e['event']] += 1
-
-        return eventmap
-
-    def get(self, kind):
+    def get(self):
         templist = [e.serialize() for e in State.tenant_state[self.request.tid].EventQ]
 
         templist.sort(key=operator.itemgetter('creation_date'))
 
-        if kind == 'details':
-            return templist
-
-        return self.get_summary(templist)
+        return templist
 
 
 class JobsTiming(BaseHandler):

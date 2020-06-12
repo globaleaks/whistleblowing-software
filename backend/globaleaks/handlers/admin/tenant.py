@@ -92,7 +92,7 @@ def create(session, desc, *args, **kwargs):
 
 def db_get_tenant_list(session):
     return [serialize_tenant(session, r[0], r[1]) for r in session.query(models.Tenant, models.Signup)
-                                                                  .outerjoin(models.Signup, models.Tenant.id == models.Signup.tid)]
+                                                                  .outerjoin(models.Signup, models.Signup.tid == models.Tenant.id)]
 
 
 @transact

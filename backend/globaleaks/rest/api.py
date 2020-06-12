@@ -44,7 +44,7 @@ from globaleaks.handlers.admin import notification as admin_notification
 from globaleaks.handlers.admin import operation as admin_operation
 from globaleaks.handlers.admin import questionnaire as admin_questionnaire
 from globaleaks.handlers.admin import redirect as admin_redirect
-from globaleaks.handlers.admin import statistics as admin_statistics
+from globaleaks.handlers.admin import auditlog as admin_auditlog
 from globaleaks.handlers.admin import step as admin_step
 from globaleaks.handlers.admin import tenant as admin_tenant
 from globaleaks.handlers.admin import user as admin_user
@@ -135,10 +135,11 @@ api_spec = [
     (r'/admin/fieldtemplates/' + key_regexp, admin_field.FieldTemplateInstance),
     (r'/admin/redirects', admin_redirect.RedirectCollection),
     (r'/admin/redirects/' + uuid_regexp, admin_redirect.RedirectInstance),
-    (r'/admin/stats/(\d+)', admin_statistics.StatsCollection),
-    (r'/admin/activities/(summary|details)', admin_statistics.RecentEventsCollection),
-    (r'/admin/anomalies', admin_statistics.AnomalyCollection),
-    (r'/admin/jobs', admin_statistics.JobsTiming),
+    (r'/admin/auditlog/activities', admin_auditlog.RecentEventsCollection),
+    (r'/admin/auditlog/anomalies', admin_auditlog.AnomalyCollection),
+    (r'/admin/auditlog/stats/(\d+)', admin_auditlog.StatsCollection),
+    (r'/admin/auditlog/tips', admin_auditlog.TipsCollection),
+    (r'/admin/auditlog/jobs', admin_auditlog.JobsTiming),
     (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
     (r'/admin/files/(logo|favicon|css|script)', admin_file.FileInstance),
     (r'/admin/config', admin_operation.AdminOperationHandler),

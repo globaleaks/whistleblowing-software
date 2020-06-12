@@ -2,14 +2,14 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import anomaly
-from globaleaks.handlers.admin import statistics
+from globaleaks.handlers.admin import auditlog
 from globaleaks.jobs.anomalies import Anomalies
 from globaleaks.jobs.statistics import Statistics
 from globaleaks.tests import helpers
 
 
 class TestStatsCollection(helpers.TestHandler):
-    _handler = statistics.StatsCollection
+    _handler = auditlog.StatsCollection
 
     @inlineCallbacks
     def test_get(self):
@@ -32,7 +32,7 @@ class TestStatsCollection(helpers.TestHandler):
 
 
 class TestAnomalyCollection(helpers.TestHandler):
-    _handler = statistics.AnomalyCollection
+    _handler = auditlog.AnomalyCollection
 
     @inlineCallbacks
     def test_get(self):
@@ -50,7 +50,7 @@ class TestAnomalyCollection(helpers.TestHandler):
 
 
 class TestRecentEventsCollection(helpers.TestHandler):
-    _handler = statistics.RecentEventsCollection
+    _handler = auditlog.RecentEventsCollection
 
     @inlineCallbacks
     def test_get(self):
@@ -67,15 +67,9 @@ class TestRecentEventsCollection(helpers.TestHandler):
             for elem in response:
                 self.assertTrue(k in elem)
 
-        response = yield handler.get('summary')
-        self.assertTrue(isinstance(response, dict))
-
-        for k in anomaly.ANOMALY_MAP:
-            self.assertTrue(k in response)
-
 
 class TestJobsTiming(helpers.TestHandler):
-    _handler = statistics.JobsTiming
+    _handler = auditlog.JobsTiming
 
     @inlineCallbacks
     def test_get(self):

@@ -14,12 +14,16 @@ controller("AdminAuditLogCtrl", ["$scope", function($scope){
       template:"views/admin/auditlog/tab3.html"
     },
     {
-      title:"Anomalies",
+      title:"Reports",
       template:"views/admin/auditlog/tab4.html"
     },
     {
-      title:"Scheduled jobs",
+      title:"Anomalies",
       template:"views/admin/auditlog/tab5.html"
+    },
+    {
+      title:"Scheduled jobs",
+      template:"views/admin/auditlog/tab6.html"
     }
   ];
 }]).

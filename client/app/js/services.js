@@ -563,9 +563,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 factory("AdminSubmissionSubStatusResource", ["GLResource", function(GLResource) {
   return new GLResource("admin/submission_statuses/:submissionstatus_id/substatuses/:id", {id: "@id", submissionstatus_id: "@submissionstatus_id"});
 }]).
-factory("AdminUserTenantAssociationResource", ["GLResource", function(GLResource) {
-  return new GLResource("admin/users/:user_id/tenant_associations/:tenant_id", {user_id: "@user_id", tenant_id: "@tenant_id"});
-}]).
 factory("Sites", ["GLResource", function(GLResource) {
     return new GLResource("sites");
 }]).
@@ -786,17 +783,20 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
   factory("UserPreferences", ["GLResource", function(GLResource) {
     return new GLResource("preferences", {}, {"update": {method: "PUT"}});
 }]).
-  factory("JobsAuditLog", ["GLResource", function(GLResource) {
-    return new GLResource("admin/jobs");
-}]).
-  factory("StatsCollection", ["GLResource", function(GLResource) {
-    return new GLResource("admin/stats/:week_delta", {week_delta: "@week_delta"}, {});
+  factory("ActivitiesCollection", ["GLResource", function(GLResource) {
+    return new GLResource("admin/auditlog/activities");
 }]).
   factory("AnomaliesCollection", ["GLResource", function(GLResource) {
-    return new GLResource("admin/anomalies");
+    return new GLResource("admin/auditlog/anomalies");
 }]).
-  factory("ActivitiesCollection", ["GLResource", function(GLResource) {
-    return new GLResource("admin/activities/details");
+  factory("TipsCollection", ["GLResource", function(GLResource) {
+    return new GLResource("admin/auditlog/tips");
+}]).
+  factory("StatsCollection", ["GLResource", function(GLResource) {
+    return new GLResource("admin/auditlog/stats/:week_delta", {week_delta: "@week_delta"}, {});
+}]).
+  factory("JobsAuditLog", ["GLResource", function(GLResource) {
+    return new GLResource("admin/auditlog/jobs");
 }]).
   factory("Files", ["GLResource", function(GLResource) {
     return new GLResource("admin/files");

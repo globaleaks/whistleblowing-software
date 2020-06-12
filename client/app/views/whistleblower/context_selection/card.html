@@ -1,6 +1,15 @@
-<div data-ng-repeat="context in selectable_contexts | orderBy:contextsOrderPredicate" id="context-{{$index}}" class="col-md-6" data-ng-click="selectContext(context)">
-  <div class="contextCard row">
-    <div class="col-md-2" data-ng-if="context.picture"><img class="contextImg" alt="context picture" data-ng-src="{{Utils.imgDataUri(context.picture)}}" /></div>
-    <div data-ng-class="{'col-md-12': !context.picture, 'col-md-10': context.picture}"><div class="contextName">{{context.name}}</div><br /><div data-ng-if="context.description" class="contextListDescription">{{context.description}}</div></div>
+<div class="row">
+  <div data-ng-repeat="context in selectable_contexts | orderBy:contextsOrderPredicate" id="context-{{$index}}" class="col-md-3 col-sm-6" data-ng-click="selectContext(context)">
+    <div class="contextCard">
+      <div class="row">
+        <div class="col-md-12 contextName">{{context.name}}</div>
+      </div>
+      <div class="row" data-ng-if="context.picture">
+        <div class="col-md-8"><img class="contextImg" alt="context picture" data-ng-src="{{Utils.imgDataUri(context.picture)}}" /></div>
+      </div>
+      <div class="row" data-ng-if="context.description">
+        <div class="col-md-12 contextListDescription">{{context.description}}</div>
+      </div>
+    </div>
   </div>
 </div>
