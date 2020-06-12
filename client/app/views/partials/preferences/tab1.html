@@ -49,7 +49,7 @@
     <input class="form-control" name="name" data-ng-model="preferences.mail_address" type="text" required />
     <div class="text-danger" data-ng-show="editingEmail.name.$error.required" data-translate>This field is mandatory</div>
   </div>
-  <div data-ng-if="preferences.description"><label data-translate>Description</label> {{preferences.description }}</div>
+  <div data-ng-if="preferences.description"><label data-translate>Description</label> {{preferences.description}}</div>
 
   <div id="Contexts" data-ng-if="Authentication.session.role === 'receiver' && public.contexts.length > 1">
     <label><span data-translate>Contexts</span></label>
