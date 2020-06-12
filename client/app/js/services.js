@@ -1114,7 +1114,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         $rootScope.errors.push(error);
       },
 
-      evalSubmissionStatus: function(tip, submission_statuses) {
+      getSubmissionStatusText: function(tip, submission_statuses) {
+        var text;
         for (var i = 0; i < submission_statuses.length; i++) {
           if (submission_statuses[i].id === tip.status) {
             tip.submissionStatusObj = submission_statuses[i];
@@ -1130,10 +1131,12 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           }
         }
 
-        tip.submissionStatusStr = $filter("translate")(tip.submissionStatusObj.label);
+        text = $filter("translate")(tip.submissionStatusObj.label);
         if (tip.submissionSubStatusObj) {
-          tip.submissionStatusStr += "(" + $filter("translate")(tip.submissionSubStatusObj.label) + ")";
+          text += "(" + $filter("translate")(tip.submissionSubStatusObj.label) + ")";
         }
+
+        return text;
       },
 
       openUrl: function(url) {
