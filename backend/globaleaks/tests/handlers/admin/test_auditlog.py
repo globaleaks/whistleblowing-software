@@ -60,7 +60,7 @@ class TestRecentEventsCollection(helpers.TestHandler):
 
         handler = self.request({}, role='admin')
 
-        response = yield handler.get('details')
+        response = yield handler.get()
         self.assertTrue(isinstance(response, list))
 
         for k in ['id', 'duration', 'event', 'creation_date']:
