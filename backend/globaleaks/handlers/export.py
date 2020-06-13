@@ -103,7 +103,7 @@ class ExportHandler(BaseHandler):
             tip_export['tip'] = yield deferToThread(decrypt_tip, self.current_user.cc, tip_export['crypto_tip_prv_key'], tip_export['tip'])
 
             for file_dict in tip_export['tip']['rfiles'] + tip_export['tip']['wbfiles']:
-                if file_dict.get('forged'):
+                if file_dict.get('status', '') == 'encrypted' or file_dict.get('forged'):
                     continue
 
                 tip_prv_key = GCE.asymmetric_decrypt(self.current_user.cc, tip_export['crypto_tip_prv_key'])
@@ -112,6 +112,8 @@ class ExportHandler(BaseHandler):
 
         for file_dict in tip_export['tip']['rfiles']:
             file_dict['name'] = 'files/' + file_dict['name']
+            if file_dict.get('status', '') == 'pgp':
+                file_dict['name'] += '.pgp'
 
         for file_dict in tip_export['tip']['wbfiles']:
             file_dict['name'] = 'files_attached_from_recipients/' + file_dict['name']

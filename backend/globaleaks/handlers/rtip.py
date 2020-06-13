@@ -97,8 +97,7 @@ def receiver_serialize_rfile(session, rfile):
         'internalfile_id': ifile.id,
         'status': rfile.status,
         'href': "/rtip/" + rfile.receivertip_id + "/download/" + rfile.id,
-        # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
-        'name': ("%s.pgp" % ifile.name) if rfile.status == 'encrypted' else ifile.name,
+        'name': ifile.name,
         'filename': rfile.filename,
         'type': ifile.content_type,
         'creation_date': datetime_to_ISO8601(ifile.creation_date),
@@ -953,7 +952,7 @@ class ReceiverFileDownload(BaseHandler):
         filelocation = os.path.join(Settings.attachments_path, rfile['filename'])
         directory_traversal_check(Settings.attachments_path, filelocation)
 
-        if tip_prv_key:
+        if rfile['status'] != 'pgp' and tip_prv_key:
             tip_prv_key = GCE.asymmetric_decrypt(self.current_user.cc, tip_prv_key)
             filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
 

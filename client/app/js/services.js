@@ -357,7 +357,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         url: "rtip/rfile/" + file.id,
         responseType: "blob",
       }).then(function (response) {
-        FileSaver.saveAs(response.data, file.name);
+        FileSaver.saveAs(response.data, file.status == 'pgp' ? file.name + '.pgp' : file.name);
       });
     };
 }]).

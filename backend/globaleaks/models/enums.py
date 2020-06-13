@@ -56,6 +56,5 @@ class EnumMessageType(_Enum):
 class EnumFileStatus(_Enum):
     processing = 0
     reference = 1
-    encrypted = 2
+    pgp = 2
     unavailable = 3
-    nokey = 4
