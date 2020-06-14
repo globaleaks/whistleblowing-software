@@ -340,7 +340,21 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     crypto_is_available = State.tenant_cache[tid].encryption
 
     if crypto_is_available:
-        crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
+        """
+        Handle the condition in which all the following situations are met:
+        - Encryption is enabled
+        - All the recipients have not performed first access and so encryption could not be applied
+
+        This the typical situation that is typically verified when:
+        - The system is initially setup
+        - The system is live and recipients are subject to urgent turnover
+
+        In this special situation the system accepts and deliver submissions withou applying encryption.
+        """
+        if session.query(models.User).filter(models.User.id.in_(request['receivers']), models.User.crypto_pub_key == '').count() == len(request['receivers']):
+            crypto_is_available = False
+        else:
+            crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
 
     receipt = ''
 
