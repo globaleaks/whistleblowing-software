@@ -16,7 +16,6 @@ from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils import letsencrypt, tls
 from globaleaks.utils.log import log
-from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date
 
 
 def load_tls_dict(session, tid):
@@ -185,12 +184,12 @@ class CertFileRes(FileResource):
             return {'name': 'cert', 'set': False}
 
         x509 = crypto.load_certificate(crypto.FILETYPE_PEM, c)
-        expr_date = format_cert_expr_date(x509.get_notAfter())
+        expr_date = letsencrypt.convert_asn1_date(x509.get_notAfter())
 
         return {
             'name': 'cert',
             'issuer': tls.parse_issuer_name(x509),
-            'expiration_date': datetime_to_ISO8601(expr_date),
+            'expiration_date': expr_date,
             'set': True,
         }
 
@@ -230,12 +229,12 @@ class ChainFileRes(FileResource):
             return {'name': 'chain', 'set': False}
 
         x509 = crypto.load_certificate(crypto.FILETYPE_PEM, c)
-        expr_date = format_cert_expr_date(x509.get_notAfter())
+        expr_date = letsencrypt.convert_asn1_date(x509.get_notAfter())
 
         return {
             'name': 'chain',
             'issuer': tls.parse_issuer_name(x509),
-            'expiration_date': datetime_to_ISO8601(expr_date),
+            'expiration_date': expr_date,
             'set': True,
         }
 

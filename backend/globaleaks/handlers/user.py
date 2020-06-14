@@ -15,7 +15,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.crypto import Base32Encoder, Base64Encoder, GCE, generateRandomKey
-from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime_null
+from globaleaks.utils.utility import datetime_now, datetime_null
 
 
 def set_user_password(tid, user, password, cc):
@@ -103,7 +103,7 @@ def user_serialize_user(session, user, language):
         'salt': '',
         'role': user.role,
         'state': user.state,
-        'last_login': datetime_to_ISO8601(user.last_login),
+        'last_login': user.last_login,
         'name': user.name,
         'description': user.description,
         'public_name': user.public_name,
@@ -111,10 +111,10 @@ def user_serialize_user(session, user, language):
         'change_email_address': user.change_email_address,
         'language': user.language,
         'password_change_needed': user.password_change_needed,
-        'password_change_date': datetime_to_ISO8601(user.password_change_date),
+        'password_change_date': user.password_change_date,
         'pgp_key_fingerprint': user.pgp_key_fingerprint,
         'pgp_key_public': user.pgp_key_public,
-        'pgp_key_expiration': datetime_to_ISO8601(user.pgp_key_expiration),
+        'pgp_key_expiration': user.pgp_key_expiration,
         'pgp_key_remove': False,
         'picture': picture,
         'can_edit_general_settings': user.can_edit_general_settings,

@@ -14,8 +14,8 @@ from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import sha256, Base64Encoder, GCE
 from globaleaks.utils.log import log
-from globaleaks.utils.utility import get_expiration, datetime_to_ISO8601
-
+from globaleaks.utils.json import JSONEncoder
+from globaleaks.utils.utility import get_expiration
 
 
 def decrypt_tip(user_key, tip_prv_key, tip):
@@ -205,7 +205,7 @@ def db_get_itip_receiver_list(session, itip):
     for rtip in session.query(models.ReceiverTip).filter(models.ReceiverTip.internaltip_id == itip.id):
         ret.append({
             "id": rtip.receiver_id,
-            "last_access": datetime_to_ISO8601(rtip.last_access),
+            "last_access": rtip.last_access,
             "access_counter": rtip.access_counter,
         })
 
@@ -228,9 +228,9 @@ def serialize_itip(session, internaltip, language):
 
     return {
         'id': internaltip.id,
-        'creation_date': datetime_to_ISO8601(internaltip.creation_date),
-        'update_date': datetime_to_ISO8601(internaltip.update_date),
-        'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
+        'creation_date': internaltip.creation_date,
+        'update_date': internaltip.update_date,
+        'expiration_date': internaltip.expiration_date,
         'progressive': internaltip.progressive,
         'context_id': internaltip.context_id,
         'additional_questionnaire_id': internaltip.additional_questionnaire_id,
@@ -242,7 +242,7 @@ def serialize_itip(session, internaltip, language):
         'enable_two_way_messages': internaltip.enable_two_way_messages,
         'enable_attachments': internaltip.enable_attachments,
         'enable_whistleblower_identity': internaltip.enable_whistleblower_identity,
-        'wb_last_access': datetime_to_ISO8601(internaltip.wb_last_access),
+        'wb_last_access': internaltip.wb_last_access,
         'wb_access_revoked': wb_access_revoked,
         'score': internaltip.total_score,
         'status': internaltip.status,
@@ -382,8 +382,8 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     db_save_plaintext_answers(session, tid, itip.id, answers)
 
     if crypto_is_available:
-        preview = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(preview).encode())).decode()
-        answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers).encode())).decode()
+        preview = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(preview, cls=JSONEncoder).encode())).decode()
+        answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers, cls=JSONEncoder).encode())).decode()
 
     itip.preview = preview
 

@@ -6,7 +6,7 @@ from datetime import timedelta
 from globaleaks.rest import errors
 from globaleaks.utils.crypto import sha256, generateRandomKey, GCE
 from globaleaks.utils.tempdict import TempDict
-from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_now
 
 
 class Token(object):
@@ -37,7 +37,7 @@ class Token(object):
     def serialize(self):
         return {
             'id': self.id,
-            'creation_date': datetime_to_ISO8601(self.creation_date),
+            'creation_date': self.creation_date,
             'min_ttl': self.min_ttl,
             'max_ttl': self.max_ttl
         }

@@ -8,7 +8,7 @@ from globaleaks.handlers.public import serialize_questionnaire
 from globaleaks.models import fill_localized_keys
 from globaleaks.orm import transact, tw
 from globaleaks.rest import requests
-from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, uuid4
+from globaleaks.utils.utility import datetime_now, uuid4
 
 
 def db_get_questionnaires(session, tid, language):
@@ -221,7 +221,7 @@ class QuestionnaireInstance(BaseHandler):
         Export questionnaire JSON
         """
         q = yield tw(db_get_questionnaire, self.request.tid, questionnaire_id, None)
-        q['export_date'] = datetime_to_ISO8601(datetime_now())
+        q['export_date'] = datetime_now()
         q['export_version'] = QUESTIONNAIRE_EXPORT_VERSION
         returnValue(q)
 

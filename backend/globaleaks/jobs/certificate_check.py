@@ -12,7 +12,6 @@ from globaleaks.jobs.job import DailyJob
 from globaleaks.orm import transact
 from globaleaks.utils import letsencrypt
 from globaleaks.utils.log import log
-from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 class CertificateCheck(DailyJob):
@@ -49,7 +48,6 @@ class CertificateCheck(DailyJob):
 
         cert = load_certificate(FILETYPE_PEM, priv_fact.get_val('https_cert'))
         expiration_date = letsencrypt.convert_asn1_date(cert.get_notAfter())
-        expiration_date_iso = datetime_to_ISO8601(expiration_date)
 
         # Acme renewal checks
         if priv_fact.get_val('acme') and datetime.now() > expiration_date - timedelta(days=self.acme_try_renewal):
@@ -60,7 +58,7 @@ class CertificateCheck(DailyJob):
 
                 # Send an email to the admin cause this requires user intervention
                 if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
-                    self.certificate_mail_creation(session, 'https_certificate_renewal_failure', tid, expiration_date_iso)
+                    self.certificate_mail_creation(session, 'https_certificate_renewal_failure', tid, expiration_date)
 
             tls_config = load_tls_dict(session, tid)
 
@@ -71,7 +69,7 @@ class CertificateCheck(DailyJob):
         elif datetime.now() > expiration_date - timedelta(days=self.notify_expr_within):
             log.info('The HTTPS Certificate is expiring on %s', expiration_date, tid=tid)
             if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
-                self.certificate_mail_creation(session, 'https_certificate_expiration', tid, expiration_date_iso)
+                self.certificate_mail_creation(session, 'https_certificate_expiration', tid, expiration_date)
 
     def operation(self):
         return self.check_tenants_for_cert_expiration()

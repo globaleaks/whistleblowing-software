@@ -26,7 +26,7 @@ from globaleaks.utils.crypto import GCE
 from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.log import log
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import get_expiration, datetime_now, datetime_never, datetime_to_ISO8601
+from globaleaks.utils.utility import get_expiration, datetime_now, datetime_never
 
 
 def db_update_submission_status(session, user_id, itip, status_id, substatus_id):
@@ -100,7 +100,7 @@ def receiver_serialize_rfile(session, rfile):
         'name': ifile.name,
         'filename': rfile.filename,
         'type': ifile.content_type,
-        'creation_date': datetime_to_ISO8601(ifile.creation_date),
+        'creation_date': ifile.creation_date,
         'size': ifile.size,
         'downloads': rfile.downloads,
         'path': os.path.join(Settings.attachments_path, rfile.filename)
@@ -120,7 +120,7 @@ def receiver_serialize_wbfile(session, wbfile):
 
     return {
         'id': wbfile.id,
-        'creation_date': datetime_to_ISO8601(wbfile.creation_date),
+        'creation_date': wbfile.creation_date,
         'name': wbfile.name,
         'filename': wbfile.filename,
         'description': wbfile.description,
@@ -150,7 +150,7 @@ def serialize_comment(session, comment):
         'id': comment.id,
         'author': author,
         'type': comment.type,
-        'creation_date': datetime_to_ISO8601(comment.creation_date),
+        'creation_date': comment.creation_date,
         'content': comment.content
     }
 
@@ -172,7 +172,7 @@ def serialize_message(session, message):
         'id': message.id,
         'author': 'Whistleblower' if message.type == 'whistleblower' else receiver_involved.public_name,
         'type': message.type,
-        'creation_date': datetime_to_ISO8601(message.creation_date),
+        'creation_date': message.creation_date,
         'content': message.content,
         'receiver_involved': receiver_involved.id
     }

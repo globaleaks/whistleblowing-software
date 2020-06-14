@@ -5,7 +5,7 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests
-from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
+from globaleaks.utils.utility import datetime_now
 
 
 def serialize_identityaccessrequest(session, identityaccessrequest):
@@ -20,15 +20,15 @@ def serialize_identityaccessrequest(session, identityaccessrequest):
     return {
         'id': identityaccessrequest.id,
         'receivertip_id': identityaccessrequest.receivertip_id,
-        'request_date': datetime_to_ISO8601(identityaccessrequest.request_date),
+        'request_date': identityaccessrequest.request_date,
         'request_user_name': user.name,
         'request_motivation': identityaccessrequest.request_motivation,
-        'reply_date': datetime_to_ISO8601(identityaccessrequest.reply_date),
+        'reply_date': identityaccessrequest.reply_date,
         'reply_user_name': reply_user.id if reply_user is not None else '',
         'reply': identityaccessrequest.reply,
         'reply_motivation': identityaccessrequest.reply_motivation,
         'submission_progressive': itip.progressive,
-        'submission_date': datetime_to_ISO8601(itip.creation_date)
+        'submission_date': itip.creation_date
     }
 
 

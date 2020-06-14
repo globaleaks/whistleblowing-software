@@ -18,7 +18,7 @@ from globaleaks.jobs.job import DailyJob
 from globaleaks.orm import transact
 from globaleaks.utils.fs import overwrite_and_remove
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601, is_expired
+from globaleaks.utils.utility import datetime_now, is_expired
 
 
 __all__ = ['Cleaning']
@@ -76,7 +76,7 @@ class Cleaning(DailyJob):
                 'notification': db_get_notification(session, tid, user.language),
                 'user': user_desc,
                 'expiring_submission_count': expiring_submission_count,
-                'earliest_expiration_date': datetime_to_ISO8601(earliest_expiration_date)
+                'earliest_expiration_date': earliest_expiration_date
             }
 
             subject, body = Templating().get_mail_subject_and_body(data)

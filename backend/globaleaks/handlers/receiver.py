@@ -14,7 +14,6 @@ from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE
-from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 @transact
@@ -64,11 +63,11 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
         data = {
             'id': rtip.id,
             'itip_id': itip.id,
-            'creation_date': datetime_to_ISO8601(itip.creation_date),
-            'last_access': datetime_to_ISO8601(rtip.last_access),
-            'wb_last_access': datetime_to_ISO8601(itip.wb_last_access),
-            'update_date': datetime_to_ISO8601(itip.update_date),
-            'expiration_date': datetime_to_ISO8601(itip.expiration_date),
+            'creation_date': itip.creation_date,
+            'last_access': rtip.last_access,
+            'wb_last_access': itip.wb_last_access,
+            'update_date': itip.update_date,
+            'expiration_date': itip.expiration_date,
             'progressive': itip.progressive,
             'new': rtip.access_counter == 0 or rtip.last_access < itip.update_date,
             'context_id': itip.context_id,

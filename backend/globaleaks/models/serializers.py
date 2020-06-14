@@ -1,6 +1,5 @@
 # -*- coding: utf-8
 from globaleaks import models
-from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 def serialize_ifile(session, ifile):
@@ -13,7 +12,7 @@ def serialize_ifile(session, ifile):
     """
     return {
         'id': ifile.id,
-        'creation_date': datetime_to_ISO8601(ifile.creation_date),
+        'creation_date': ifile.creation_date,
         'name': ifile.name,
         'size': ifile.size,
         'type': ifile.content_type
@@ -34,7 +33,7 @@ def serialize_rfile(session, rfile):
 
     return {
         'id': rfile.id,
-        'creation_date': datetime_to_ISO8601(ifile.creation_date),
+        'creation_date': ifile.creation_date,
         'name': ("%s.pgp" % ifile.name) if rfile.status == 'encrypted' else ifile.name,
         'size': ifile.size,
         'type': ifile.content_type,
@@ -57,7 +56,7 @@ def serialize_wbfile(session, wbfile):
 
     return {
         'id': wbfile.id,
-        'creation_date': datetime_to_ISO8601(wbfile.creation_date),
+        'creation_date': wbfile.creation_date,
         'name': wbfile.name,
         'size': wbfile.size,
         'type': wbfile.content_type,

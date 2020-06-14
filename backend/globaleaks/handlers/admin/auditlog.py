@@ -7,8 +7,7 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.state import State
-from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, \
-    iso_to_gregorian
+from globaleaks.utils.utility import datetime_now, iso_to_gregorian
 
 
 def weekmap_to_heatmap(week_map):
@@ -105,7 +104,7 @@ def get_stats(session, tid, week_delta):
 
     return {
         'complete': week_entries == (7 * 24),
-        'week': datetime_to_ISO8601(target_week),
+        'week': target_week,
         'heatmap': weekmap_to_heatmap(week_map)
     }
 
@@ -125,7 +124,7 @@ def get_anomaly_history(session, tid, limit):
                           .filter(models.Anomalies.tid == tid) \
                           .order_by(models.Anomalies.date.desc())[:limit]:
         entry = dict({
-            'date': datetime_to_ISO8601(anomaly.date),
+            'date': anomaly.date,
             'alarm': anomaly.alarm,
             'events': [],
         })
@@ -167,16 +166,16 @@ def get_tips(session, tid):
     for itip in session.query(models.InternalTip):
         tips.append({
             'id': itip.id,
-            'creation_date': datetime_to_ISO8601(itip.creation_date),
-            'last_update': datetime_to_ISO8601(itip.update_date),
-            'expiration_date': datetime_to_ISO8601(itip.expiration_date),
+            'creation_date': itip.creation_date,
+            'last_update': itip.update_date,
+            'expiration_date': itip.expiration_date,
             'context_id': itip.context_id,
             'status': itip.status,
             'substatus': itip.substatus,
             'tor': not itip.https,
             'comments': comments_by_itip.get(itip.id, 0),
             'files': files_by_itip.get(itip.id, 0),
-            'wb_last_access': datetime_to_ISO8601(itip.wb_last_access)
+            'wb_last_access': itip.wb_last_access
         })
 
     return tips

@@ -12,7 +12,7 @@ from twisted.internet.abstract import isIPAddress
 from globaleaks import __version__
 from globaleaks.rest import errors
 from globaleaks.utils.utility import datetime_to_pretty_str, \
-    ISO8601_to_datetime, ISO8601_to_pretty_str, ISO8601_to_day_str, \
+    datetime_to_day_str, \
     bytes_to_pretty_str
 
 node_keywords = [
@@ -243,7 +243,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
         elif field_type == 'date':
             date = entry.get('value')
             if date is not None:
-                output += indent(indent_n) + ISO8601_to_pretty_str(entry.get('value')) + '\n'
+                output += indent(indent_n) + datetime_to_pretty_str(entry.get('value')) + '\n'
         elif field_type == 'tos':
             answer = '☑' if entry.get('value', '') is True else '☐'
             output += indent(indent_n) + answer + '\n'
@@ -343,7 +343,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
         return ret
 
     def EventTime(self):
-        return ISO8601_to_pretty_str(self.data['tip']['creation_date'])
+        return datetime_to_pretty_str(self.data['tip']['creation_date'])
 
     def SubmissionDate(self):
         return self.EventTime()
@@ -374,14 +374,14 @@ class CommentKeyword(TipKeyword):
     data_keys = TipKeyword.data_keys + ['comment']
 
     def EventTime(self):
-        return ISO8601_to_pretty_str(self.data['comment']['creation_date'])
+        return datetime_to_pretty_str(self.data['comment']['creation_date'])
 
 
 class MessageKeyword(TipKeyword):
     data_keys = TipKeyword.data_keys + ['message']
 
     def EventTime(self):
-        return ISO8601_to_pretty_str(self.data['message']['creation_date'])
+        return datetime_to_pretty_str(self.data['message']['creation_date'])
 
 
 class FileKeyword(TipKeyword):
@@ -392,7 +392,7 @@ class FileKeyword(TipKeyword):
         return self.data['file']['name']
 
     def EventTime(self):
-        return ISO8601_to_pretty_str(self.data['file']['creation_date'])
+        return datetime_to_pretty_str(self.data['file']['creation_date'])
 
     def FileSize(self):
         return str(self.data['file']['size'])
@@ -409,7 +409,7 @@ class ExportMessageKeyword(TipKeyword):
         return self.data['message']['content']
 
     def EventTime(self):
-        return ISO8601_to_pretty_str(self.data['message']['creation_date'])
+        return datetime_to_pretty_str(self.data['message']['creation_date'])
 
 
 class ExpirationSummaryKeyword(UserNodeKeyword):
@@ -420,7 +420,7 @@ class ExpirationSummaryKeyword(UserNodeKeyword):
         return str(self.data['expiring_submission_count'])
 
     def EarliestExpirationDate(self):
-        return ISO8601_to_pretty_str(self.data['earliest_expiration_date'])
+        return datetime_to_pretty_str(self.data['earliest_expiration_date'])
 
     def UrlPath(self):
         return '/#/receiver/tips'
@@ -438,7 +438,7 @@ class AdminPGPAlertKeyword(UserNodeKeyword):
 
             ret += '\t%s, %s (%s)\n' % (r['name'],
                                         key,
-                                        ISO8601_to_day_str(r['pgp_key_expiration']))
+                                        datetime_to_day_str(r['pgp_key_expiration']))
         return ret
 
 
@@ -449,7 +449,7 @@ class PGPAlertKeyword(UserNodeKeyword):
         fingerprint = self.data['user']['pgp_key_fingerprint']
         key = fingerprint[:7] if fingerprint is not None else ''
 
-        return '\t0x%s (%s)' % (key, ISO8601_to_day_str(self.data['user']['pgp_key_expiration']))
+        return '\t0x%s (%s)' % (key, datetime_to_day_str(self.data['user']['pgp_key_expiration']))
 
 
 class AnomalyKeyword(UserNodeKeyword):
@@ -498,7 +498,7 @@ class CertificateExprKeyword(UserNodeKeyword):
     data_keys = UserNodeKeyword.data_keys + ['expiration_date']
 
     def ExpirationDate(self):
-        return ISO8601_to_pretty_str(self.data['expiration_date'])
+        return datetime_to_pretty_str(self.data['expiration_date'])
 
     def UrlPath(self):
         return '/#/admin/network'
@@ -571,7 +571,7 @@ class PlatformSignupKeyword(NodeKeyword):
         return self.Site() + '/#/login'
 
     def ExpirationDate(self):
-        date = ISO8601_to_datetime(self.data['signup']['registration_date']) + timedelta(days=30)
+        date = self.data['signup']['registration_date'] + timedelta(days=30)
         return datetime_to_pretty_str(date)
 
     def Name(self):

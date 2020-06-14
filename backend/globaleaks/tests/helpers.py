@@ -40,6 +40,7 @@ from globaleaks.handlers.wizard import db_wizard
 from globaleaks.handlers.submission import create_submission
 from globaleaks.models.config import db_set_config_variable
 from globaleaks.rest import decorators
+from globaleaks.rest.api import JSONEncoder
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
@@ -47,8 +48,7 @@ from globaleaks.utils import process, tempdict, token, utility
 from globaleaks.utils.crypto import GCE, Base32Encoder, Base64Encoder
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.securetempfile import SecureTemporaryFile
-from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
-    sum_dicts
+from globaleaks.utils.utility import datetime_null, datetime_now, sum_dicts
 from globaleaks.utils.log import log
 
 GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'] = 1
@@ -360,7 +360,7 @@ def forge_request(uri=b'https://www.globaleaks.org/',
         def read(self):
             ret = body
             if isinstance(ret, dict):
-                ret = json.dumps(ret)
+                ret = json.dumps(ret, cls=JSONEncoder)
 
             if isinstance(ret, str):
                 ret = ret.encode()
@@ -519,7 +519,7 @@ class TestGL(unittest.TestCase):
         elif field_type == 'selectbox':
             value = {'value': field['options'][0]['id']}
         elif field_type == 'date':
-            value = {'value': datetime_to_ISO8601(datetime_now())}
+            value = {'value': datetime_now()}
         elif field_type == 'tos':
             value = {'value': 'True'}
         elif field_type == 'fieldgroup':

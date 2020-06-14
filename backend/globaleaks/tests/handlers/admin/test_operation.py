@@ -122,7 +122,7 @@ class TestAdminResetSubmissions(helpers.TestHandlerWithPopulatedDB):
         yield self.test_model_count(models.Comment, 0)
         yield self.test_model_count(models.Message, 0)
         yield self.test_model_count(models.Mail, 2)
-        yield self.test_model_count(models.SecureFileDelete, 4)
+        yield self.test_model_count(models.SecureFileDelete, 8)
 
 
 class TestAdminOperations(helpers.TestHandlerWithPopulatedDB):

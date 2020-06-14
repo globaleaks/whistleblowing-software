@@ -17,7 +17,7 @@ from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.utils.crypto import GCE
 from globaleaks.utils.log import log
-from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_now
 
 
 def db_get_rfile_list(session, itip_id):

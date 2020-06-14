@@ -1,7 +1,7 @@
 # -*- coding: utf-8
 
 from globaleaks.state import State
-from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_now
 
 
 def failure_status_check(http_code):
@@ -80,7 +80,7 @@ class Event(object):
     def serialize(self):
         return {
             'event': self.event_type,
-            'creation_date': datetime_to_ISO8601(self.creation_date)[:-8],
+            'creation_date': self.creation_date,
             'duration': self.request_time
         }
 

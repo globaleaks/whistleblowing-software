@@ -133,15 +133,6 @@ def datetime_to_ISO8601(date):
     return date.isoformat() + "Z"  # Z means that the date is in UTC
 
 
-def ISO8601_to_datetime(isodate):
-    """
-    Convert an ISO8601 date into a datetime
-    """
-    isodate = isodate[:19]  # we srip the eventual Z at the end
-
-    return datetime.strptime(isodate, "%Y-%m-%dT%H:%M:%S")
-
-
 def datetime_to_pretty_str(date):
     """
     Print a datetime in pretty formatted str format
@@ -149,67 +140,16 @@ def datetime_to_pretty_str(date):
     return date.strftime("%A %d %B %Y %H:%M (UTC)")
 
 
-def ISO8601_to_day_str(isodate, tz=0):
+def datetime_to_day_str(date, tz=0):
     """
     Print a ISO8601 in DD/MM/YYYY formatted str
     """
-    date = datetime(year=int(isodate[0:4]),
-                    month=int(isodate[5:7]),
-                    day=int(isodate[8:10]),
-                    hour=int(isodate[11:13]),
-                    minute=int(isodate[14:16]),
-                    second=int(isodate[17:19]))
-
     if tz != 0:
         tz_i, tz_d = divmod(tz, 1)
         tz_d, _ = divmod(tz_d * 100, 1)
         date += timedelta(hours=tz_i, minutes=tz_d)
 
     return date.strftime("%d/%m/%Y")
-
-
-def ISO8601_to_pretty_str(isodate, tz=0):
-    """
-    Convert a ISO8601 in pretty formatted str format
-    """
-    if isodate is None:
-        isodate = datetime_null().isoformat()
-
-    date = datetime(year=int(isodate[0:4]),
-                    month=int(isodate[5:7]),
-                    day=int(isodate[8:10]),
-                    hour=int(isodate[11:13]),
-                    minute=int(isodate[14:16]),
-                    second=int(isodate[17:19]))
-
-    if tz != 0:
-        tz_i, tz_d = divmod(tz, 1)
-        tz_d, _ = divmod(tz_d * 100, 1)
-        date += timedelta(hours=tz_i, minutes=tz_d)
-        return date.strftime("%A %d %B %Y %H:%M")
-
-    return datetime_to_pretty_str(date)
-
-
-def asn1_datestr_to_datetime(s):
-    """
-    Returns a datetime for the passed asn1 formatted string
-    """
-    if isinstance(s, bytes):
-        s = s.decode()
-
-    return datetime.strptime(s[:14], "%Y%m%d%H%M%S")
-
-
-def format_cert_expr_date(s):
-    """
-    Takes a asn1 formatted date string and tries to create an expiration date
-    out of it. If that does not work, the returned expiration date is never.
-    """
-    try:
-        return asn1_datestr_to_datetime(s)
-    except:
-        return datetime_never()
 
 
 def iso_year_start(iso_year):

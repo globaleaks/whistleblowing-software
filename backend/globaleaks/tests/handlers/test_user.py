@@ -8,6 +8,7 @@ from globaleaks.orm import tw
 from globaleaks.rest import errors
 from globaleaks.state import State
 from globaleaks.tests import helpers
+from globaleaks.utils.utility import datetime_null
 
 
 class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
@@ -54,7 +55,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(response['pgp_key_public'],
                          helpers.PGPKEYS['VALID_PGP_KEY1_PUB'])
 
-        self.assertEqual(response['pgp_key_expiration'], '1970-01-01T00:00:00Z')
+        self.assertEqual(response['pgp_key_expiration'], datetime_null())
 
         # perform and test key update
         response['pgp_key_public'] = helpers.PGPKEYS['VALID_PGP_KEY2_PUB']
@@ -75,7 +76,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
 
         self.assertEqual(response['pgp_key_fingerprint'], '')
         self.assertEqual(response['pgp_key_public'], '')
-        self.assertEqual(response['pgp_key_expiration'], '1970-01-01T00:00:00Z')
+        self.assertEqual(response['pgp_key_expiration'], datetime_null())
 
     @inlineCallbacks
     def test_load_malformed_key(self):

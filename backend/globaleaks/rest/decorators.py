@@ -6,6 +6,7 @@ from twisted.internet import defer
 from globaleaks.rest import errors
 from globaleaks.rest.cache import Cache
 from globaleaks.state import State
+from globaleaks.utils.json import JSONEncoder
 
 
 def decorator_authentication(f, roles):
@@ -36,7 +37,7 @@ def decorator_cache_get(f):
             def callback(data):
                 if isinstance(data, (dict, list)):
                     self.request.setHeader(b'content-type', b'application/json')
-                    data = json.dumps(data)
+                    data = json.dumps(data, cls=JSONEncoder)
 
                 self.request.setHeader(b'Content-encoding', b'gzip')
 

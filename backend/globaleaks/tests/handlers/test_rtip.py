@@ -7,7 +7,7 @@ from globaleaks.jobs.delivery import Delivery
 from globaleaks.rest import errors
 from globaleaks.state import State
 from globaleaks.tests import helpers
-from globaleaks.utils.utility import datetime_now, ISO8601_to_datetime
+from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null
 
 
 class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
@@ -35,7 +35,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         rtip_descs = yield self.get_rtips()
 
         for rtip_desc in rtip_descs:
-            self.assertTrue(rtip_desc['expiration_date'] == '1970-01-01T00:00:00Z')
+            self.assertTrue(rtip_desc['expiration_date'] == datetime_null())
             operation = {
               'operation': 'postpone_expiration',
               'args': {}
@@ -47,7 +47,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
         rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
-            self.assertTrue(ISO8601_to_datetime(rtip_desc['expiration_date']) >= now)
+            self.assertTrue(rtip_desc['expiration_date'] >= now)
 
     @inlineCallbacks
     def test_put_postpone_never(self):
@@ -58,7 +58,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         rtip_descs = yield self.get_rtips()
 
         for rtip_desc in rtip_descs:
-            self.assertTrue(rtip_desc['expiration_date'] == '1970-01-01T00:00:00Z')
+            self.assertTrue(rtip_desc['expiration_date'] == datetime_null())
             operation = {
               'operation': 'postpone_expiration',
               'args': {}
@@ -70,7 +70,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
         rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
-            self.assertTrue(rtip_desc['expiration_date'] == '3000-01-01T00:00:00Z')
+            self.assertTrue(rtip_desc['expiration_date'] == datetime_never())
 
     @inlineCallbacks
     def switch_enabler(self, key):

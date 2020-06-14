@@ -14,7 +14,6 @@ from globaleaks.rest import requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.log import log
-from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 def serialize_tenant(session, tenant, signup=None):
@@ -28,7 +27,7 @@ def serialize_tenant(session, tenant, signup=None):
         'hostname': '',
         'onionservice': '',
         'mode': '',
-        'creation_date': datetime_to_ISO8601(tenant.creation_date)
+        'creation_date': tenant.creation_date
     }
 
     if tenant.id in State.tenant_cache:

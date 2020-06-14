@@ -3,7 +3,6 @@
 #   ***
 #
 #   This file defines the URI mapping for the GlobaLeaks API and its factory
-
 import json
 import re
 
@@ -52,6 +51,8 @@ from globaleaks.handlers.admin import submission_statuses as admin_submission_st
 from globaleaks.rest import decorators, requests, errors
 from globaleaks.settings import Settings
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
+from globaleaks.utils.json import JSONEncoder
+from globaleaks.utils.utility import datetime_to_ISO8601
 
 tid_regexp = r'([0-9]+)'
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
@@ -404,7 +405,7 @@ class APIResourceWrapper(Resource):
             if not request_finished[0]:
                 if ret is not None:
                     if isinstance(ret, (dict, list)):
-                        ret = json.dumps(ret, separators=(',', ':'))
+                        ret = json.dumps(ret, cls=JSONEncoder, separators=(',', ':'))
                         request.setHeader(b'content-type', b'application/json')
 
                     if isinstance(ret, str):

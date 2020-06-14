@@ -10,7 +10,7 @@ from globaleaks.models.enums import *
 from globaleaks.models.properties import *
 from globaleaks.orm import transact
 from globaleaks.rest import errors
-from globaleaks.utils.utility import datetime_now, datetime_never, datetime_null, datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_now, datetime_never, datetime_null
 
 
 def db_forge_obj(session, mock_class, mock_fields):
@@ -228,7 +228,7 @@ class Model(object):
                         ret[k] = value
 
                 elif k in self.date_keys:
-                    ret[k] = datetime_to_ISO8601(value)
+                    ret[k] = value
             else:
                 if self.__table__.columns[k].default and not callable(self.__table__.columns[k].default.arg):
                     ret[k] = self.__table__.columns[k].default.arg

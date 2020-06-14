@@ -15,7 +15,6 @@ from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
 from globaleaks.utils.crypto import generateRandomKey, generateRandomPassword
-from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 def serialize_signup(signup):
@@ -34,7 +33,7 @@ def serialize_signup(signup):
         'subdomain': signup.subdomain,
         'language': signup.language,
         'activation_token': signup.activation_token,
-        'registration_date': datetime_to_ISO8601(signup.registration_date),
+        'registration_date': signup.registration_date,
         'use_case': signup.use_case,
         'use_case_other': signup.use_case_other,
         'organization_name': signup.organization_name,
