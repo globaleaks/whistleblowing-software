@@ -49,6 +49,22 @@ class TestAnomalyCollection(helpers.TestHandler):
         self.assertEqual(len(response), 1)
 
 
+class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
+    _handler = auditlog.TipsCollection
+
+    @inlineCallbacks
+    def test_get(self):
+        yield self.perform_full_submission_actions()
+
+        handler = self.request({}, role='admin')
+        response = yield handler.get()
+
+        # be sure that ReportsHistory is populated
+        self.assertTrue(isinstance(response, list))
+        self.assertEqual(len(response), 2)
+
+
+
 class TestRecentEventsCollection(helpers.TestHandler):
     _handler = auditlog.RecentEventsCollection
 

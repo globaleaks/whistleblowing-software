@@ -7,13 +7,14 @@
       <th data-translate>Context</th>
       <th data-translate>State</th>
       <th data-translate>Connection</th>
-      <th data-translate>Files</th>
       <th data-translate>Comments</th>
+      <th data-translate>Messages</th>
+      <th data-translate>Files</th>
       <th data-translate>Whistleblower's last access</th>
     </tr>
   </thead>
   <tbody>
-    <tr data-ng-repeat="tip in resources.tips">
+    <tr data-ng-repeat="tip in resources.tips | orderBy: 'last_update':true">
       <td>{{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
       <td>{{tip.last_update | date:'dd-MM-yyyy HH:mm'}}</td>
       <td>{{tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</td>
@@ -21,6 +22,7 @@
       <td>{{Utils.getSubmissionStatusText(tip, submission_statuses)}}</td>
       <td>{{tip.tor ? 'Tor' : 'HTTPS'}}</td>
       <td>{{tip.comments}}</td>
+      <td>{{tip.messages}}</td>
       <td>{{tip.files}}</td>
       <td>{{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}}</td>
     </tr>
