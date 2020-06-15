@@ -62,7 +62,7 @@ describe("admin add, configure, and delete users", function() {
     await descriptBox.sendKeys(words);
 
     await editUsrForm.all(by.cssContainingText("span", "Set password")).first().click();
-    await element(by.model("user.password")).sendKeys("globaleaks123!");
+    await element(by.model("user.password")).sendKeys("Globaleaks123!");
 
     // Click Save and check the fields
     await editUsrForm.element(by.cssContainingText("button", "Save")).click();
@@ -81,7 +81,7 @@ describe("admin add, configure, and delete users", function() {
     await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
 
     await editUsrForm.all(by.cssContainingText("span", "Set password")).first().click();
-    await element(by.model("user.password")).sendKeys("globaleaks123!");
+    await element(by.model("user.password")).sendKeys("Globaleaks123!");
 
     // Click Save and check the fields
     await editUsrForm.element(by.cssContainingText("button", "Save")).click();
@@ -97,7 +97,7 @@ describe("admin add, configure, and delete users", function() {
     await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
 
     await editUsrForm.all(by.cssContainingText("span", "Set password")).first().click();
-    await element(by.model("user.password")).sendKeys("globaleaks123!");
+    await element(by.model("user.password")).sendKeys("Globaleaks123!");
 
     // Click Save and check the fields
     await editUsrForm.element(by.cssContainingText("button", "Save")).click();
@@ -113,7 +113,7 @@ describe("admin add, configure, and delete users", function() {
     await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
 
     await editUsrForm.all(by.cssContainingText("span", "Set password")).first().click();
-    await element(by.model("user.password")).sendKeys("globaleaks123!");
+    await element(by.model("user.password")).sendKeys("Globaleaks123!");
 
     // Click Save and check the fields
     await editUsrForm.element(by.cssContainingText("button", "Save")).click();
