@@ -5226,6 +5226,11 @@
       "integrity": "sha512-SrQrok4CATudVzBS7coSz26QRSmlK9TzzoFbeKfcPBUFPjcQM9Rqvr/DlJkOrwI/0KcgvMub1n1g5Jt9EgRn4A==",
       "dev": true
     },
+    "ng-csv": {
+      "version": "0.3.6",
+      "resolved": "https://registry.npmjs.org/ng-csv/-/ng-csv-0.3.6.tgz",
+      "integrity": "sha1-qJzwLkw/oqWyTVwZmERD3afyddg="
+    },
     "nice-try": {
       "version": "1.0.5",
       "resolved": "https://registry.npmjs.org/nice-try/-/nice-try-1.0.5.tgz",

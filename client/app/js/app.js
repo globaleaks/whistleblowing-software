@@ -12,6 +12,7 @@ var GLClient = angular.module("GLClient", [
     "flow",
     "monospaced.qrcode",
     "pascalprecht.translate",
+    "ngCsv",
     "ngSanitize",
     "ngFileSaver",
     "GLCrypto",
