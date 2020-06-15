@@ -26,6 +26,8 @@ controller("AdminAuditLogCtrl", ["$scope", function($scope){
       template:"views/admin/auditlog/tab6.html"
     }
   ];
+
+  $scope.resources_export = angular.copy($scope.resources);
 }]).
 controller("StatisticsCtrl", ["$scope", "$filter", "StatsCollection",
   function($scope, $filter, StatsCollection) {

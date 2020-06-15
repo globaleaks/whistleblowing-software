@@ -429,18 +429,14 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
         tip.updateLabel = function(label) {
           return tip.operation("update_label", {"value": label}).then(function () {
-            tip["label"] = label;
+            $rootScope.reload();
           });
         };
 
         tip.updateSubmissionStatus = function() {
-          var status = tip.submissionStatusObj.id;
-          var substatus = tip.submissionSubStatusObj ? tip.submissionSubStatusObj.id : "";
-          return tip.operation("update_status", {"status": status,
-                                                 "substatus": substatus}).then(function () {
-            tip.status = status;
-            tip.substatus = substatus;
-          });
+          return tip.operation("update_status", {"status": tip.status, "substatus": tip.substatus ? tip.substatus : ''}).then(function () {
+            $rootScope.reload();
+          });;
         };
 
         tip.localChange = function() {
@@ -1112,26 +1108,21 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         $rootScope.errors.push(error);
       },
 
-      getSubmissionStatusText: function(tip, submission_statuses) {
+      getSubmissionStatusText: function(status, substatus, submission_statuses) {
         var text;
         for (var i = 0; i < submission_statuses.length; i++) {
-          if (submission_statuses[i].id === tip.status) {
-            tip.submissionStatusObj = submission_statuses[i];
+          if (submission_statuses[i].id === status) {
+            text = $filter("translate")(submission_statuses[i].label);
 
             var substatuses = submission_statuses[i].substatuses;
             for (var j = 0; j < substatuses.length; j++) {
-              if (substatuses[j].id === tip.substatus) {
-                tip.submissionSubStatusObj = substatuses[j];
+              if (substatuses[j].id === substatus) {
+                text += "(" + $filter("translate")(substatuses[j].label) + ")";
                 break;
               }
             }
             break;
           }
-        }
-
-        text = $filter("translate")(tip.submissionStatusObj.label);
-        if (tip.submissionSubStatusObj) {
-          text += "(" + $filter("translate")(tip.submissionSubStatusObj.label) + ")";
         }
 
         return text;

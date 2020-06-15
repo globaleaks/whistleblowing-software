@@ -1,6 +1,7 @@
 <table id="userList" class="table table-condensed table-striped">
   <thead>
     <tr>
+      <th class="col-md-3" data-translate>ID</th>
       <th class="col-md-3" data-translate>Username</th>
       <th class="col-md-3" data-translate>Role</th>
       <th class="col-md-3" data-translate>Name</th>
@@ -9,10 +10,12 @@
   </thead>
   <tbody id="userListBody">
     <tr data-ng-repeat="user in resources.users">
-      <td class="col-md-3">{{user.username}}</td>
-      <td class="col-md-3">{{user.role}}</td>
+      <td class="col-md-2">{{user.id}}</td>
+      <td class="col-md-2">{{user.username}}</td>
+      <td class="col-md-2">{{user.role}}</td>
       <td class="col-md-3">{{user.name}}</td>
       <td class="col-md-3">{{user.last_login | date:'dd-MM-yyyy HH:mm'}}</td>
     </tr>
   </tbody>
 </table>
+<button class="btn btn-sm btn-link" type="button" ng-csv="resources_export.users" csv-label='true' filename="users.csv"><i class="fa fa-download"></i> <span data-translate>Export</span></button>

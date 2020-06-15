@@ -96,7 +96,7 @@ GLClient.controller("TipCtrl",
         $scope.ctx = "wbtip";
         $scope.preprocessTipAnswers(tip);
 
-        $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip, $scope.submission_statuses);
+        $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
 
         $scope.showWBFileWidget = function() {
           return $scope.tip.context.enable_rc_to_wb_files && (tip.wbfiles.length);
@@ -136,7 +136,7 @@ GLClient.controller("TipCtrl",
 
         $scope.showEditLabelInput = $scope.tip.label === "";
 
-        $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip, $scope.submission_statuses);
+        $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
 
         $scope.showWBFileUpload = function() {
           return $scope.tip.context.enable_rc_to_wb_files;
@@ -155,7 +155,7 @@ GLClient.controller("TipCtrl",
 
     $scope.updateSubmissionStatus = function() {
       $scope.tip.updateSubmissionStatus().then(function() {
-        $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip, $scope.submission_statuses);
+        $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
       });
     };
 

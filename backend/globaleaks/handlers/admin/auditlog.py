@@ -142,8 +142,6 @@ def get_anomaly_history(session, tid, limit):
 
 @transact
 def get_tips(session, tid):
-    """
-    """
     tips = []
 
     comments_by_itip = {}
@@ -153,7 +151,8 @@ def get_tips(session, tid):
     # Fetch comments count
     for itip_id, count in session.query(models.InternalTip.id,
                                         func.count(distinct(models.Comment.id))) \
-                                 .filter(models.Comment.internaltip_id == models.InternalTip.id) \
+                                 .filter(models.Comment.internaltip_id == models.InternalTip.id,
+                                         models.InternalTip.tid == tid) \
                                  .group_by(models.InternalTip.id):
         comments_by_itip[itip_id] = count
 
@@ -161,14 +160,16 @@ def get_tips(session, tid):
     for itip_id, count in session.query(models.InternalTip.id,
                                         func.count(distinct(models.Message.id))) \
                                  .filter(models.Message.receivertip_id == models.ReceiverTip.id,
-                                         models.ReceiverTip.internaltip_id == models.InternalTip.id) \
+                                         models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                         models.InternalTip.tid == tid) \
                                  .group_by(models.InternalTip.id):
         messages_by_itip[itip_id] = count
 
     # Fetch files count
     for itip_id, count in session.query(models.InternalTip.id,
                                         func.count(distinct(models.InternalFile.id))) \
-                                 .filter(models.InternalFile.internaltip_id == models.InternalTip.id) \
+                                 .filter(models.InternalFile.internaltip_id == models.InternalTip.id,
+                                         models.InternalTip.id == tid) \
                                  .group_by(models.InternalTip.id):
         files_by_itip[itip_id] = count
 

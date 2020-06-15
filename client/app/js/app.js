@@ -645,6 +645,7 @@ var GLClient = angular.module("GLClient", [
         $rootScope.questionnaires_by_id = $rootScope.Utils.array_to_map(result.questionnaires);
 
         $rootScope.submission_statuses = result.submission_statuses;
+        $rootScope.submission_statuses_by_id = $rootScope.Utils.array_to_map(result.submission_statuses);
 
         angular.forEach($rootScope.questionnaires_by_id, function(element, key) {
           $rootScope.fieldUtilities.parseQuestionnaire($rootScope.questionnaires_by_id[key], {});
