@@ -67,18 +67,6 @@ controller("AdminContextEditorCtrl", ["$scope", "$rootScope", "$http", "AdminCon
     $scope.showSelect = true;
   };
 
-  $scope.toggle = function(receiver) {
-    var idx = $scope.context.receivers.indexOf(receiver.id);
-    if (idx === -1) {
-      $scope.context.receivers.push(receiver.id);
-    } else {
-      $scope.context.receivers.splice(idx, 1);
-    }
-
-    $scope.editContext.$dirty = true;
-    $scope.editContext.$pristine = false;
-  };
-
   $scope.moveReceiver = function(rec) {
     $scope.context.receivers.push(rec.id);
     $scope.showSelect = false;

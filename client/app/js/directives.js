@@ -277,12 +277,6 @@ directive("fileInput", function() {
     },
   };
 }).
-directive("releaseMsg", function() {
-  return {
-    restrict: "A",
-    templateUrl: "views/admin/home/releasemsg.html",
-  };
-}).
 directive("isolateClick", function() {
   return {
     link: function(scope, elem) {

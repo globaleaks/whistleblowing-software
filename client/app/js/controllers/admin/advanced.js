@@ -27,20 +27,6 @@ controller("AdminAdvancedCtrl", ["$scope", function($scope) {
     });
   };
 
-  $scope.new_redirect = {};
-
-  $scope.add_redirect = function() {
-    var redirect = new $scope.AdminUtils.new_redirect();
-
-    redirect.path1 = $scope.new_redirect.path1;
-    redirect.path2 = $scope.new_redirect.path2;
-
-    redirect.$save(function(new_redirect){
-      $scope.resources.redirects.push(new_redirect);
-      $scope.new_redirect = {};
-    });
-  };
-
   $scope.toggleEncryption = function() {
     if ($scope.resources.node.encryption) {
       $scope.Utils.openConfirmableModalDialog("views/partials/enable_encryption.html").then(
