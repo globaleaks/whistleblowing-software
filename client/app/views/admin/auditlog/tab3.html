@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody id="userListBody">
-    <tr data-ng-repeat="user in resources.users">
+    <tr data-ng-repeat="user in auditLog.users.elems">
       <td class="col-md-2">{{user.id}}</td>
       <td class="col-md-2">{{user.username}}</td>
       <td class="col-md-2">{{user.role}}</td>
@@ -18,4 +18,18 @@
     </tr>
   </tbody>
 </table>
-<button class="btn btn-sm btn-link" type="button" ng-csv="resources_export.users" csv-label='true' filename="users.csv"><i class="fa fa-download"></i> <span data-translate>Export</span></button>
+<div class="text-center" data-ng-show="auditLog.users.elems.length > itemsPerPage | limitTo:itemsPerPage:((auditLog.users.currentPage - 1) * itemsPerPage)"">
+  <ul uib-pagination
+      total-items="auditLog.users.elems.length"
+      first-text="<< {{'First' | translate}}"
+      last-text="{{'Last' | translate}} >>"
+      previous-text="< {{'Previous' | translate}}"
+      next-text="{{'Next' | translate}} >"
+      items-per-page="itemsPerPage"
+      data-ng-model="auditLog.users.currentPage"
+      max-size="10"
+      class="pagination-sm"
+      boundary-links="true"
+      force-ellipses="true"></ul>
+</div>
+<button class="btn btn-sm btn-link" type="button" ng-csv="resources.users" csv-label='true' filename="users.csv"><i class="fa fa-download"></i> <span data-translate>Export</span></button>

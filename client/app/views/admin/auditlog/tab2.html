@@ -24,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr data-ng-repeat="activity in resources.activities | orderBy:sortKey:sortReverse">
+    <tr data-ng-repeat="activity in auditLog.activities.elems | orderBy:sortKey:sortReverse  | limitTo:itemsPerPage:((auditLog.activities.currentPage - 1) * itemsPerPage)">
       <td>{{activity.id}}</td>
       <td>{{activity.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
       <td>{{activity.event}}</td>
@@ -32,4 +32,18 @@
     </tr>
   </tbody>
 </table>
-<button class="btn btn-sm btn-link" type="button" ng-csv="resources_export.activities" csv-label='true' filename="activities.csv"><i class="fa fa-download"></i> <span data-translate>Export</span></button>
+<div class="text-center" data-ng-show="auditLog.activities.elems.length > itemsPerPage">
+  <ul uib-pagination
+      total-items="auditLog.activities.elems.length"
+      first-text="<< {{'First' | translate}}"
+      last-text="{{'Last' | translate}} >>"
+      previous-text="< {{'Previous' | translate}}"
+      next-text="{{'Next' | translate}} >"
+      items-per-page="itemsPerPage"
+      data-ng-model="auditLog.activities.currentPage"
+      max-size="10"
+      class="pagination-sm"
+      boundary-links="true"
+      force-ellipses="true"></ul>
+</div>
+<button class="btn btn-sm btn-link" type="button" ng-csv="resources.activities" csv-label='true' filename="activities.csv"><i class="fa fa-download"></i> <span data-translate>Export</span></button>

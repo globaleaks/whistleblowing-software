@@ -27,7 +27,18 @@ controller("AdminAuditLogCtrl", ["$scope", function($scope){
     }
   ];
 
-  $scope.resources_export = angular.copy($scope.resources);
+  $scope.itemsPerPage = 20;
+
+  $scope.resourcesNames = ["activities", "anomalies", "tips", "users"];
+
+  $scope.auditLog = {};
+
+  for (var i=0; i< $scope.resourcesNames.length; i++) {
+    $scope.auditLog[$scope.resourcesNames[i]] = {
+      currentPage: 1,
+      elems: angular.copy($scope.resources[$scope.resourcesNames[i]])
+    };
+  }
 }]).
 controller("StatisticsCtrl", ["$scope", "$filter", "StatsCollection",
   function($scope, $filter, StatsCollection) {

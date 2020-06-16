@@ -15,7 +15,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr data-ng-repeat="tip in resources.tips | orderBy:'last_update':true">
+    <tr data-ng-repeat="tip in auditLog.tips.elems | orderBy:'last_update':true | limitTo:itemsPerPage:((auditLog.tips.currentPage - 1) * itemsPerPage)">
       <td>{{tip.id}}</td>
       <td>{{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
       <td>{{tip.last_update | date:'dd-MM-yyyy HH:mm'}}</td>
@@ -30,4 +30,18 @@
     </tr>
   </tbody>
 </table>
-<button class="btn btn-sm btn-link" type="button" ng-csv="resources_export.tips" csv-label='true' filename="reports.csv"><i class="fa fa-download"></i> <span data-translate>Export</span></button>
+<div class="text-center" data-ng-show="auditLog.tips.elems.length > itemsPerPage">
+  <ul uib-pagination
+      total-items="auditLog.tips.elems.length"
+      first-text="<< {{'First' | translate}}"
+      last-text="{{'Last' | translate}} >>"
+      previous-text="< {{'Previous' | translate}}"
+      next-text="{{'Next' | translate}} >"
+      items-per-page="itemsPerPage"
+      data-ng-model="auditLog.tips.currentPage"
+      max-size="10"
+      class="pagination-sm"
+      boundary-links="true"
+      force-ellipses="true"></ul>
+</div>
+<button class="btn btn-sm btn-link" type="button" ng-csv="resources.tips" csv-label='true' filename="reports.csv"><i class="fa fa-download"></i> <span data-translate>Export</span></button>
