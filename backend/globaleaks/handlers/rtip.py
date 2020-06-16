@@ -952,7 +952,7 @@ class ReceiverFileDownload(BaseHandler):
         filelocation = os.path.join(Settings.attachments_path, rfile['filename'])
         directory_traversal_check(Settings.attachments_path, filelocation)
 
-        if rfile['status'] != 'pgp' and tip_prv_key:
+        if rfile['status'] != 'encrypted' and tip_prv_key:
             tip_prv_key = GCE.asymmetric_decrypt(self.current_user.cc, tip_prv_key)
             filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
 
