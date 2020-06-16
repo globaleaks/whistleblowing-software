@@ -88,7 +88,7 @@ table {
   margin: 0 0 0 1rem;
 }
 
-#LogoBox img, .contextImg, .receiverImg, {
+#LogoBox img, .contextImg, .receiverImg {
   height: 10rem;
   max-width: 20rem;
 }
