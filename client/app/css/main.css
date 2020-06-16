@@ -526,12 +526,13 @@ a.active, a:active.active, a:hover.active, a:focus.active {
 }
 
 #KeyCodeBox {
-  background-color: #F5F7fA;
+  background-color: #F5F7FA;
   margin: 1rem auto;
   padding: 1rem;
   width: 80%;
   text-align: center;
   font-family: monospace;
+  font-weight: bold;
   border-radius: 5px;
 }
 
