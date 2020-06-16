@@ -3,10 +3,11 @@
      flow-name="imageUploadObj.flow"
      flow-init="{target: imageUploadUrl}"
      flow-files-submitted="$flow.upload()"
-     extend-flow-valid-types="['png']">
+     extend-flow-valid-types="['png']"
+     flow-btn>
   <label class="changePictureButton text-primary"
          for="imageFile"
-         uib-tooltip="{{'Edit' | translate}}"><input type="file" class="custom-file-input" id="imageFile" flow-btn><i class="fas fa-edit"></i></label>
+         uib-tooltip="{{'Edit' | translate}}"><i class="fas fa-edit"></i></label>
   <div class="imageUploadThumbnail">
     <img data-ng-if="imageSrcUrl && !imageUploadObj.flow.files.length" src="/s/logo" />
     <img data-ng-if="imageUploadModel && !imageUploadObj.flow.files.length" data-ng-src="{{Utils.imgDataUri(imageUploadModel[imageUploadModelAttr])}}" />

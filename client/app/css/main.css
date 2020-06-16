@@ -88,10 +88,11 @@ table {
   margin: 0 0 0 1rem;
 }
 
-#LogoBox img {
-  max-height: 10rem;
+#LogoBox img, .contextImg, .receiverImg, {
+  height: 10rem;
   max-width: 20rem;
 }
+
 
 #TitleBox {
   display: inline-flex;
@@ -161,13 +162,17 @@ table {
   padding: 1rem;
 }
 
+.contextName, .recipientName {
+  font-weight: bold;
+}
+
 .imageUpload {
   position: relative;
-  width: 10rem;
-  height: 10rem;
-  border: 2px dashed #AFBACC;
+  border: 0.2rem dashed #AFBACC;
   z-index: 0;
   text-align: center;
+  width: 10.4rem;
+  height: 10.4rem;
 }
 
 .imageUpload .changePictureButton {
@@ -177,20 +182,15 @@ table {
   z-index: 10;
 }
 
-.contextName, .recipientName {
-  font-weight: bold;
+.imageThumbnail, .imageUploadThumbnail, .imageUploadThumbnail img {
+  height: 10rem;
+  width: 10rem;
 }
 
-.contextImg, .receiverImg, .imageUploadThumbnail img {
-  max-width: 100%;
-  max-height: 100%;
+.imageUploadThumbnail img {
   vertical-align: middle;
   text-align: center;
   z-index: 1;
-}
-
-.imageThumbnail, .imageUploadThumbnail {
-  height: 10rem;
 }
 
 .wizard-help-hint {
