@@ -42,6 +42,7 @@ describe("verify navigation of admin sections", function() {
     await element.all(by.cssContainingText("a", "Stats")).first().click();
     await element.all(by.cssContainingText("a", "Activities")).first().click();
     await element.all(by.cssContainingText("a", "Users")).get(1).click();
+    await element.all(by.cssContainingText("a", "Reports")).first().click();
     await element.all(by.cssContainingText("a", "Anomalies")).first().click();
     await element.all(by.cssContainingText("a", "Scheduled jobs")).first().click();
   });
