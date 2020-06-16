@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -361,9 +361,6 @@ msgstr "Uruchamiane przez wynik:"
 msgid "Message shown on top of the status page of the report"
 msgstr "Tekst wyświetlany na górze strony z odbiorcami"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Skopiuj i wklej tu klucz publiczny PGP"
-
 msgid "Password strength:"
 msgstr "Jakość hasła"
 
@@ -638,12 +635,6 @@ msgstr "Jesteś sygnalistą?"
 msgid "Blow the whistle"
 msgstr "Sygnalizuj nieprawidłowości"
 
-msgid "Your report was successful."
-msgstr "Dostaliśmy twoje zgłoszenie"
-
-msgid "Report"
-msgstr "Wysłanie"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Przed przejściem dalej proszę ustawić nowe hasło."
 
@@ -729,23 +720,11 @@ msgstr "Wyłącz panel prywatności"
 msgid "Enable the receipt hint"
 msgstr "Włącz podpowiadanie zgłoszeń"
 
-msgid "Landing page"
-msgstr "Strona domowa"
-
 msgid "Default questionnaire"
 msgstr "Domyślna ankieta"
 
-msgid "Title of the submission page"
-msgstr "Tytuł strony ze zgłoszeniem"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Sortuj konteksty alfabetycznie"
-
-msgid "Title of the receipt page"
-msgstr "Tytuł strony z potwierdzeniem zgłoszenia"
-
-msgid "Title of the status page of the report"
-msgstr "Tekst wyświetlany na górze strony z odbiorcami"
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -883,6 +862,18 @@ msgstr "Imię"
 msgid "Last access"
 msgstr "Ostatnia wizyta"
 
+msgid "ID"
+msgstr "ID"
+
+msgid "State"
+msgstr "województwo"
+
+msgid "Connection"
+msgstr "Połączenie"
+
+msgid "Whistleblower's last access"
+msgstr "WB Ostatnio Zalogowany"
+
 msgid "Alarm level"
 msgstr "Poziom alarmowy"
 
@@ -931,6 +922,9 @@ msgstr "Pytanie wyłapujące potencjalnych sygnalistów"
 msgid "Whistleblowing button"
 msgstr "Przycisk sygnalizuj"
 
+msgid "Title of the submission page"
+msgstr "Tytuł strony ze zgłoszeniem"
+
 msgid "Enable disclaimer"
 msgstr "Włącz klauzulę zrzeczenia się odpowiedzialności"
 
@@ -975,9 +969,6 @@ msgstr "Ukryty"
 
 msgid "Disabled"
 msgstr "Wyłączone"
-
-msgid "State"
-msgstr "województwo"
 
 msgid "Enabled"
 msgstr "Włączone"
@@ -1416,9 +1407,6 @@ msgstr "Szczegóły klucza PGP:"
 msgid "Fingerprint"
 msgstr "Fingerprint"
 
-msgid "Remove the PGP key"
-msgstr "Usuń klucz PGP"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Ustaw szyfrowanie poprzez wrzucenie klucza PGP"
 
@@ -1451,9 +1439,6 @@ msgstr "Użytkownik ma dostęp administracyjny do poniższych funkcji:"
 msgid "Request date"
 msgstr "Data żądania"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Report date"
 msgstr "Data zgłoszenia"
 
@@ -1483,12 +1468,6 @@ msgstr "Kod jest nieprawidłowy lub wygasł."
 
 msgid "Site:"
 msgstr "Strona:"
-
-msgid "Username:"
-msgstr "Nazwa Użytkownika:"
-
-msgid "Password:"
-msgstr "Hasło:"
 
 msgid "Please select your account:"
 msgstr "Wybierz swoje konto:"
@@ -1605,9 +1584,6 @@ msgstr "Weryfikacja zmiany adresu email w toku."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Sprawdź skrzynkę odbiorczą dla dalszych instrukcji."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "Ustaw szyfrowanie maili dostarczając klucz PGP"
 
 msgid "Account recovery key"
 msgstr "Klucz odzyskiwania konta"
@@ -1743,11 +1719,11 @@ msgstr "Żadne pliki nie zostały przesłane!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Sygnaliści mogą dodawać załączniki"
 
+msgid "Report"
+msgstr "Wysłanie"
+
 msgid "Access expiration"
 msgstr "Wygaśnięcie dostępu"
-
-msgid "Connection"
-msgstr "Połączenie"
 
 msgid "Never"
 msgstr "Nigdy"
@@ -1912,6 +1888,9 @@ msgstr "Łączysz się z węzłem nieanonimowo, ten węzeł zezwala wyłącznie 
 
 msgid "Thank you!"
 msgstr "Dziękuję!"
+
+msgid "Your report was successful."
+msgstr "Dostaliśmy twoje zgłoszenie"
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Spróbujemy się skontaktować z tobą tak szybko, jak to możliwe."

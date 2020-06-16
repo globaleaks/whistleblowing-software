@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -368,9 +368,6 @@ msgstr "راه اندازی شده با امتیاز:"
 msgid "Message shown on top of the status page of the report"
 msgstr "پیام در بالای صفحه وضعیت‌ِ گزارش دیده شود"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "کلید عمومی PGP را این جا درج کن"
-
 msgid "Password strength:"
 msgstr "قدرت رمز عبور:"
 
@@ -645,12 +642,6 @@ msgstr "آیا یک افشاگر می باشید؟"
 msgid "Blow the whistle"
 msgstr "در سوت بدمید"
 
-msgid "Your report was successful."
-msgstr "گزارش شما با موفقیت انجام شد."
-
-msgid "Report"
-msgstr "گزارش"
-
 msgid "Before proceeding, please set a new password."
 msgstr "قبل از ادامه  لطفا یک گذرواژه جدید تنظیم کنید."
 
@@ -736,23 +727,11 @@ msgstr "غیر فعال کردن پنل پوشیدگی"
 msgid "Enable the receipt hint"
 msgstr "فعال سازی راهنما رسید"
 
-msgid "Landing page"
-msgstr "صفحه هدف"
-
 msgid "Default questionnaire"
 msgstr "پرسش نامه پیش فرض"
 
-msgid "Title of the submission page"
-msgstr "عنوان صفحه گزارش"
-
 msgid "Show contexts in alphabetical order"
 msgstr "متن‌ها را به ترتیب الفبا مرتب کن"
-
-msgid "Title of the receipt page"
-msgstr "عنوان صفحه اعلام وصول"
-
-msgid "Title of the status page of the report"
-msgstr "پیام در بالای صفحه وضعیت‌ِ گزارش دیده شود"
 
 msgid "Do not expose users' names"
 msgstr "نام‌های کاربران را افشا نکنید"
@@ -890,6 +869,18 @@ msgstr "نام"
 msgid "Last access"
 msgstr "آخرین دسترسی"
 
+msgid "ID"
+msgstr "مشخصات "
+
+msgid "State"
+msgstr "ایالت"
+
+msgid "Connection"
+msgstr "ارتباط"
+
+msgid "Whistleblower's last access"
+msgstr ""
+
 msgid "Alarm level"
 msgstr "سطح هشدار"
 
@@ -938,6 +929,9 @@ msgstr "پرسش افشاگری"
 msgid "Whistleblowing button"
 msgstr "دکمه افشاگری"
 
+msgid "Title of the submission page"
+msgstr "عنوان صفحه گزارش"
+
 msgid "Enable disclaimer"
 msgstr "فعال سازی سلب مسئولیت"
 
@@ -982,9 +976,6 @@ msgstr "پنهان"
 
 msgid "Disabled"
 msgstr "غیر فعال شد"
-
-msgid "State"
-msgstr "ایالت"
 
 msgid "Enabled"
 msgstr "فعال شده"
@@ -1423,9 +1414,6 @@ msgstr "جزییات کلید PGP:"
 msgid "Fingerprint"
 msgstr "اثر انگشت"
 
-msgid "Remove the PGP key"
-msgstr "کلید پی جی پی را حذف کن"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "برپاسازی رمزگذاری با تامین کلید عمومی PGP"
 
@@ -1458,9 +1446,6 @@ msgstr "کاربر دارای دسترسی مدیریتی به ویژگی های
 msgid "Request date"
 msgstr "تاریخ درخواست"
 
-msgid "ID"
-msgstr "مشخصات "
-
 msgid "Report date"
 msgstr "تاریخ گزارش"
 
@@ -1490,12 +1475,6 @@ msgstr "کد یا نامعتبر است یا انقضا یافته است."
 
 msgid "Site:"
 msgstr "سایت:"
-
-msgid "Username:"
-msgstr "نام کاربری:"
-
-msgid "Password:"
-msgstr "كلمه عبور"
 
 msgid "Please select your account:"
 msgstr "حساب خود را انتخاب کنید:"
@@ -1612,9 +1591,6 @@ msgstr "اعتبار سنجی تغییر آدرس ایمیل در حال انج�
 
 msgid "Please check your inbox for further instructions."
 msgstr "لطفا دریافتی خود را برای دستور العمل های بیشتر چک کنید."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "با ارائه کلید عمومی PGP، رمزگذاری ایمیل را راه‌اندازی کنید"
 
 msgid "Account recovery key"
 msgstr "کلید بازنشانی حساب"
@@ -1750,11 +1726,11 @@ msgstr "فایلی آپلود نشده!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "به افشاگر اجازه اضافه کردن ضمیمه به این گزارش داده شود"
 
+msgid "Report"
+msgstr "گزارش"
+
 msgid "Access expiration"
 msgstr "انقضا دسترسی"
-
-msgid "Connection"
-msgstr "ارتباط"
 
 msgid "Never"
 msgstr "هرگز"
@@ -1919,6 +1895,9 @@ msgstr "شما بدون ناشناسی به گره متصل شده اید و ا�
 
 msgid "Thank you!"
 msgstr "متشکریم!"
+
+msgid "Your report was successful."
+msgstr "گزارش شما با موفقیت انجام شد."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "ما در اسرع وقت با شما تماس خواهیم گرفت."

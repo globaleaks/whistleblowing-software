@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -349,9 +349,6 @@ msgstr ""
 msgid "Message shown on top of the status page of the report"
 msgstr ""
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Kopier og lim inn den offentlige PGP-nøkkelen her"
-
 msgid "Password strength:"
 msgstr "Passordstyrke:"
 
@@ -626,12 +623,6 @@ msgstr "Er du en fløyteblåser/varsler?"
 msgid "Blow the whistle"
 msgstr "Blås i fløyta"
 
-msgid "Your report was successful."
-msgstr ""
-
-msgid "Report"
-msgstr ""
-
 msgid "Before proceeding, please set a new password."
 msgstr ""
 
@@ -717,23 +708,11 @@ msgstr "Skru av personvernspanelet"
 msgid "Enable the receipt hint"
 msgstr ""
 
-msgid "Landing page"
-msgstr "Landingsside"
-
 msgid "Default questionnaire"
 msgstr ""
 
-msgid "Title of the submission page"
-msgstr "Tittel for innsendelsesside"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Vis bindeleddsinformasjon i alfabetisk rekkefølge"
-
-msgid "Title of the receipt page"
-msgstr "Tittel for kvitteringsside"
-
-msgid "Title of the status page of the report"
-msgstr ""
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -871,6 +850,18 @@ msgstr "Navn"
 msgid "Last access"
 msgstr "Siste tilgang"
 
+msgid "ID"
+msgstr "ID"
+
+msgid "State"
+msgstr "Region"
+
+msgid "Connection"
+msgstr "Tilkobling"
+
+msgid "Whistleblower's last access"
+msgstr ""
+
 msgid "Alarm level"
 msgstr "Alarm-nivå"
 
@@ -919,6 +910,9 @@ msgstr "Oppfordring til fløyteblåser"
 msgid "Whistleblowing button"
 msgstr "Fløyteblåsnings-knapp"
 
+msgid "Title of the submission page"
+msgstr "Tittel for innsendelsesside"
+
 msgid "Enable disclaimer"
 msgstr "Slå på ansvarsfraskrivelse"
 
@@ -963,9 +957,6 @@ msgstr ""
 
 msgid "Disabled"
 msgstr "Avskrudd"
-
-msgid "State"
-msgstr "Region"
 
 msgid "Enabled"
 msgstr "Påskrudd"
@@ -1404,9 +1395,6 @@ msgstr "Detaljer for PGP-nøkkel:"
 msgid "Fingerprint"
 msgstr "Fingeravtrykk"
 
-msgid "Remove the PGP key"
-msgstr "Fjern PGP-nøkkel"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Sett opp kryptering ved å oppgi en offentlig PGP-nøkkel"
 
@@ -1439,9 +1427,6 @@ msgstr ""
 msgid "Request date"
 msgstr "Forespør dato"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Report date"
 msgstr ""
 
@@ -1471,12 +1456,6 @@ msgstr ""
 
 msgid "Site:"
 msgstr ""
-
-msgid "Username:"
-msgstr "Brukernavn:"
-
-msgid "Password:"
-msgstr "Passord:"
 
 msgid "Please select your account:"
 msgstr "Velg din konto:"
@@ -1592,9 +1571,6 @@ msgid "Validation of email address change in progress."
 msgstr "Bekreftelse av e-postendring underveis."
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Set up email encryption by providing a PGP public key"
 msgstr ""
 
 msgid "Account recovery key"
@@ -1731,11 +1707,11 @@ msgstr "Ingen fil har blitt lastet opp!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr ""
 
+msgid "Report"
+msgstr ""
+
 msgid "Access expiration"
 msgstr "Tilgangsutløp"
-
-msgid "Connection"
-msgstr "Tilkobling"
 
 msgid "Never"
 msgstr "Aldri"
@@ -1900,6 +1876,9 @@ msgstr "Din tilknytning til tjeneren er ikke anonym, denne tjeneren støtter bar
 
 msgid "Thank you!"
 msgstr "Takk!"
+
+msgid "Your report was successful."
+msgstr ""
 
 msgid "We will try to get back to you as soon as possible."
 msgstr ""

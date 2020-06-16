@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -362,9 +362,6 @@ msgstr "按评分开启触发"
 msgid "Message shown on top of the status page of the report"
 msgstr "显示在报告状况页面的最上层消息"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "复制和粘贴PGP公告密钥到这里"
-
 msgid "Password strength:"
 msgstr "密码强度"
 
@@ -639,12 +636,6 @@ msgstr "你是吹哨揭密者吗?"
 msgid "Blow the whistle"
 msgstr "吹哨揭弊"
 
-msgid "Your report was successful."
-msgstr "您的报告已成功。"
-
-msgid "Report"
-msgstr "报告"
-
 msgid "Before proceeding, please set a new password."
 msgstr "继续之前，请设一个新密码。"
 
@@ -730,23 +721,11 @@ msgstr "取消隐私皮肤"
 msgid "Enable the receipt hint"
 msgstr "启动收件人提示"
 
-msgid "Landing page"
-msgstr "登录页面"
-
 msgid "Default questionnaire"
 msgstr "缺省的问卷"
 
-msgid "Title of the submission page"
-msgstr "提交页面的标题"
-
 msgid "Show contexts in alphabetical order"
 msgstr "文本内容以字母排序"
-
-msgid "Title of the receipt page"
-msgstr "收件页标题"
-
-msgid "Title of the status page of the report"
-msgstr "报告状况页的标题"
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -884,6 +863,18 @@ msgstr "名字"
 msgid "Last access"
 msgstr "最近读取"
 
+msgid "ID"
+msgstr "识别"
+
+msgid "State"
+msgstr "州"
+
+msgid "Connection"
+msgstr "连接"
+
+msgid "Whistleblower's last access"
+msgstr "桌面上次访问"
+
 msgid "Alarm level"
 msgstr "警告层级"
 
@@ -932,6 +923,9 @@ msgstr "收集给潜在告密人的问题"
 msgid "Whistleblowing button"
 msgstr "吹哨揭密者的按键"
 
+msgid "Title of the submission page"
+msgstr "提交页面的标题"
+
 msgid "Enable disclaimer"
 msgstr "开启免责声明编辑功能"
 
@@ -976,9 +970,6 @@ msgstr "隐藏"
 
 msgid "Disabled"
 msgstr "关闭"
-
-msgid "State"
-msgstr "州"
 
 msgid "Enabled"
 msgstr "启用"
@@ -1417,9 +1408,6 @@ msgstr "PGP 密钥的详细信息："
 msgid "Fingerprint"
 msgstr "数字指纹　"
 
-msgid "Remove the PGP key"
-msgstr "移除 PGP 密钥文件"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "提供PGP公钥来设置加密"
 
@@ -1452,9 +1440,6 @@ msgstr "管理级的用户可以有以下权限功能："
 msgid "Request date"
 msgstr "请求日期"
 
-msgid "ID"
-msgstr "识别"
-
 msgid "Report date"
 msgstr "报告日期"
 
@@ -1484,12 +1469,6 @@ msgstr "该代码无效或已逾期"
 
 msgid "Site:"
 msgstr "网站:"
-
-msgid "Username:"
-msgstr "用户名："
-
-msgid "Password:"
-msgstr "密码："
 
 msgid "Please select your account:"
 msgstr "请选择您的账号："
@@ -1606,9 +1585,6 @@ msgstr "正在查验电邮地址变更"
 
 msgid "Please check your inbox for further instructions."
 msgstr "请检查您的信箱取得进一步指示。"
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "用  PGP 公钥来设置电子邮件加密"
 
 msgid "Account recovery key"
 msgstr "帐号恢复密钥"
@@ -1744,11 +1720,11 @@ msgstr "无文件被上传"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "揭密者可对此报告附加数据文件"
 
+msgid "Report"
+msgstr "报告"
+
 msgid "Access expiration"
 msgstr "访问权限到期"
-
-msgid "Connection"
-msgstr "连接"
 
 msgid "Never"
 msgstr "绝不要"
@@ -1913,6 +1889,9 @@ msgstr "你正链接到正常运行的服务器上，它仅支持匿名的揭密
 
 msgid "Thank you!"
 msgstr "谢谢您！"
+
+msgid "Your report was successful."
+msgstr "您的报告已成功。"
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "我们会尽快回复。"

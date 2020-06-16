@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -352,9 +352,6 @@ msgstr "Pokrenuto rezultatom:"
 msgid "Message shown on top of the status page of the report"
 msgstr "Poruka prikazana na vrhu stranice o statusu prijave"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Kopirajte i zalijepite PGP javni ključ ovdje"
-
 msgid "Password strength:"
 msgstr "Snaga lozinke:"
 
@@ -629,12 +626,6 @@ msgstr "Jeste li zviždač?"
 msgid "Blow the whistle"
 msgstr "Zviždi"
 
-msgid "Your report was successful."
-msgstr "Vaša prijava je uspjela."
-
-msgid "Report"
-msgstr "Prijava"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Prije nego nastavite, molimo postavite novu lozinku."
 
@@ -720,23 +711,11 @@ msgstr "Onemogući ploču privatnosti"
 msgid "Enable the receipt hint"
 msgstr "Omogući savjet za potvrdu"
 
-msgid "Landing page"
-msgstr "Stranica slijetanja"
-
 msgid "Default questionnaire"
 msgstr "Zadani upitnik"
 
-msgid "Title of the submission page"
-msgstr "Naziv stranice za predaje"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Prikaži kontekste u abecednom slijedu"
-
-msgid "Title of the receipt page"
-msgstr "Naziv stranice za potvrde"
-
-msgid "Title of the status page of the report"
-msgstr "Poruka prikazana na vrhu stranice o statusu prijave"
 
 msgid "Do not expose users' names"
 msgstr "Ne pokazuj imena korisnika"
@@ -874,6 +853,18 @@ msgstr "Ime"
 msgid "Last access"
 msgstr "Posljednji pristup"
 
+msgid "ID"
+msgstr "ID"
+
+msgid "State"
+msgstr "Država"
+
+msgid "Connection"
+msgstr "Veza"
+
+msgid "Whistleblower's last access"
+msgstr "WB posljednji pristup"
+
 msgid "Alarm level"
 msgstr "Razina upozorenja"
 
@@ -922,6 +913,9 @@ msgstr "Pitanje za prikupljanje mogućih zviždača"
 msgid "Whistleblowing button"
 msgstr "Gumb zviždanja"
 
+msgid "Title of the submission page"
+msgstr "Naziv stranice za predaje"
+
 msgid "Enable disclaimer"
 msgstr "Omogući izjavu o odricanju"
 
@@ -966,9 +960,6 @@ msgstr "Skriveno"
 
 msgid "Disabled"
 msgstr "Onemogućeno"
-
-msgid "State"
-msgstr "Država"
 
 msgid "Enabled"
 msgstr "Omogućeno"
@@ -1407,9 +1398,6 @@ msgstr "Detalji PGP ključa:"
 msgid "Fingerprint"
 msgstr "Otisak prsta"
 
-msgid "Remove the PGP key"
-msgstr "Ukloni PGP ključ"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Postavite enkripciju pružanjem PGP javnog ključa"
 
@@ -1442,9 +1430,6 @@ msgstr "Korisnik ima administrativni pristup sljedećim značajkama:"
 msgid "Request date"
 msgstr "Datum zahtjeva"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Report date"
 msgstr "Datum prijave"
 
@@ -1474,12 +1459,6 @@ msgstr "Kod je ili netočan ili je istekao."
 
 msgid "Site:"
 msgstr "Stranica:"
-
-msgid "Username:"
-msgstr "Korisničko ime:"
-
-msgid "Password:"
-msgstr "Lozinka:"
 
 msgid "Please select your account:"
 msgstr "Molimo odaberite svoj račun:"
@@ -1596,9 +1575,6 @@ msgstr "Ovjera email adrese u tijeku."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Molimo pogledajte svoj sandučić ulazne pošte za daljnje instrukcije."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "Postavite enkripciju email-a pružanjem PGP javnog ključa"
 
 msgid "Account recovery key"
 msgstr "Ključ za oporavak računa"
@@ -1734,11 +1710,11 @@ msgstr "Nije postavljena nijedna datoteka!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Dopusti zviždaču da doda privitke prijavi"
 
+msgid "Report"
+msgstr "Prijava"
+
 msgid "Access expiration"
 msgstr "Istek pristupa"
-
-msgid "Connection"
-msgstr "Veza"
 
 msgid "Never"
 msgstr "Nikad"
@@ -1903,6 +1879,9 @@ msgstr "Povezujete se s poslužiteljem bez anonimnosti, a ovaj poslužitelj podr
 
 msgid "Thank you!"
 msgstr "Hvala Vam!"
+
+msgid "Your report was successful."
+msgstr "Vaša prijava je uspjela."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Javit ćemo se u najkraćem mogućem roku."

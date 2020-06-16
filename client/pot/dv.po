@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -351,9 +351,6 @@ msgstr "ސްކޯއިން ޓްރިގަރވާ: "
 msgid "Message shown on top of the status page of the report"
 msgstr "ސްޓޭޓަސް ސަފްޙާގެ އެންމެ މަތިން ފެންނަ މެސެޖް. "
 
-msgid "Copy and paste the PGP public key here"
-msgstr "ޕީ.ޖީ.ޕީ ޕަބްލިކް ކީ މިތާ ޖައްސަވާ"
-
 msgid "Password strength:"
 msgstr "ޕާސްވޯޑްގެ ރައްކާތެރިކަން:"
 
@@ -628,12 +625,6 @@ msgstr "ތިޔަ ފަރާތަކީ ވިސިލްބްލޯވަރއެއްތޯ؟ "
 msgid "Blow the whistle"
 msgstr "ވިސިލްބްލޯކުރަން"
 
-msgid "Your report was successful."
-msgstr "ރިޕޯޓު ކުރެވިއްޖެ. "
-
-msgid "Report"
-msgstr "ރިޕޯޓު"
-
 msgid "Before proceeding, please set a new password."
 msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން އާ ޕާސްވޯޑްއެއް ހިޔާރުކުރައްވާ"
 
@@ -719,23 +710,11 @@ msgstr "ކަސްޓަމް ޕްރައިވަސީ ޗެނަލް އޮފް ކުރުމަ
 msgid "Enable the receipt hint"
 msgstr "ރަޝީދުގެ ހިންޓް އޮން ކުރުމަށް"
 
-msgid "Landing page"
-msgstr "ފަށާ ސަފްހާ"
-
 msgid "Default questionnaire"
 msgstr "އާންމު ސުވާލުކަރުދާސް"
 
-msgid "Title of the submission page"
-msgstr "ސަބްމިޝަން ސަފްޙާގެ ލަގަބު"
-
 msgid "Show contexts in alphabetical order"
 msgstr "ކޮންޓެކްސްޓް އޭ.ބީ.ސީ އަކުރުގެ އޯޑަރަށް ބަހާލަން"
-
-msgid "Title of the receipt page"
-msgstr "ރަޝީދުގެ ސަފްޙާގެ ލަގަބު"
-
-msgid "Title of the status page of the report"
-msgstr "ރިޕޯޓުގެ ސްޓޭޓަސް ސަފްޙާގެ އެންމެ މަތިން ފެންނަ ލަގަބު"
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -873,6 +852,18 @@ msgstr "ނަން"
 msgid "Last access"
 msgstr "ހުށައެޅުމުގެ ކުރިން އެންމެ ފަހު އެކްސެސް"
 
+msgid "ID"
+msgstr "އައިޑީ"
+
+msgid "State"
+msgstr "ރަށް/އަވަށް"
+
+msgid "Connection"
+msgstr "ކަނެކްޝަން"
+
+msgid "Whistleblower's last access"
+msgstr ""
+
 msgid "Alarm level"
 msgstr "އެލާރމް ލެވަލް"
 
@@ -921,6 +912,9 @@ msgstr "ވިސިލްބްލޯވަރއެއްކަން ކަށަވަރުކުރަން 
 msgid "Whistleblowing button"
 msgstr "ވިސްލްބްލޯކުރުމަށް ފިއްތަވާ"
 
+msgid "Title of the submission page"
+msgstr "ސަބްމިޝަން ސަފްޙާގެ ލަގަބު"
+
 msgid "Enable disclaimer"
 msgstr "ވަކި ހާއްސަ މެސެޖެއް ދެއްވަން ހިޔާރުކުރެއްވުމަށް"
 
@@ -965,9 +959,6 @@ msgstr "ފޮރުވާފައި"
 
 msgid "Disabled"
 msgstr "ހުއްޓުވާލުން"
-
-msgid "State"
-msgstr "ރަށް/އަވަށް"
 
 msgid "Enabled"
 msgstr "ހިންގުވާލުން"
@@ -1406,9 +1397,6 @@ msgstr "ޕީ.ޖީ.ޕީ ކީގެ ތަފްސީލް:"
 msgid "Fingerprint"
 msgstr "އިނގިލީގެ ނިޝާން"
 
-msgid "Remove the PGP key"
-msgstr "ޕީ.ޖީ.ޕީ ކީ ރިމޫވް ކުރެއްވުމަށް"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "ޕީ.ޖީ.ޕީ ޕަބްލިކް ކީ ބޭނުންކޮއްގެން އެންކްރިޕްޓްކުރަން"
 
@@ -1441,9 +1429,6 @@ msgstr "މި ފީޗަރ ތަކަށް ޔޫސަރ އަށް  ވަނީ އެޑްމި�
 msgid "Request date"
 msgstr "ތާރީޚު ހޯއްދެވުމަށް އެދިލެއްވުމަށް"
 
-msgid "ID"
-msgstr "އައިޑީ"
-
 msgid "Report date"
 msgstr "ރިޕޯޓުގެ ތާރީޚް"
 
@@ -1473,12 +1458,6 @@ msgstr "ޖެއްސެވި ކޯޑް ނުރަނގަޅު ނުވަތަ އެކްސްޕ
 
 msgid "Site:"
 msgstr "ސައިޓް"
-
-msgid "Username:"
-msgstr "ބޭނުންކުރާ މީހާގެ ނަން"
-
-msgid "Password:"
-msgstr "ޕާސްވޯޑް:"
 
 msgid "Please select your account:"
 msgstr "ތިބާގެ އެކައުންޓް އިޚްތިޔާރުކުރައްވާ"
@@ -1595,9 +1574,6 @@ msgstr "އީމެއިލް އެޑްރެސް ބަދަލުކުރުމުގެ މަސަ�
 
 msgid "Please check your inbox for further instructions."
 msgstr "ކުރިޔަށް ގެންދާނެގޮތް ހޯއްދެވުމަށް އިންބޮކްސް ބައްލަވާ. "
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "އީމެއިލް އެންކްރިޕްޝަން ސެޓްއަޕް ކުރުމަށް ޕީ.ޖީ.ޕީ ޕަބްލިކް ކީ އެއް ބޭނުންވޭ. "
 
 msgid "Account recovery key"
 msgstr "އެކައުންޓް އަލުންހޯއްދަވަން ބޭނުންވާނެ ކީ"
@@ -1733,11 +1709,11 @@ msgstr "އެއްވެސް ފައިލްއެއް އަޕްލޯޑް ވެފަކާއެ�
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "ރިޕޯޓުގައި އާ ފައިލްތަށް ހިމެނުމުގެ ޙުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް. "
 
+msgid "Report"
+msgstr "ރިޕޯޓު"
+
 msgid "Access expiration"
 msgstr "ދެވަސްހަމަވާ މުއްދަތު ބެއްލެވުމަށް"
-
-msgid "Connection"
-msgstr "ކަނެކްޝަން"
 
 msgid "Never"
 msgstr "ނުވާނެ"
@@ -1902,6 +1878,9 @@ msgstr "ސާވަރއަށް ތިޔަފަރާތުން ތި ކަނެކްޓްވަނ�
 
 msgid "Thank you!"
 msgstr "ޝުކުރިއްޔާ! "
+
+msgid "Your report was successful."
+msgstr "ރިޕޯޓު ކުރެވިއްޖެ. "
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "ވީހާވެސް އަވަހަކަށް ޖަވާބު އަރުވާނަން. "

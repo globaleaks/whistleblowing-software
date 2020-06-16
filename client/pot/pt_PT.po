@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -365,9 +365,6 @@ msgstr ""
 msgid "Message shown on top of the status page of the report"
 msgstr "Mensagem mostrada no topo da página do estado da submissão"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Copie e cole a chave pública PGP aqui:"
-
 msgid "Password strength:"
 msgstr "Eficácia da palavra-passe:"
 
@@ -642,12 +639,6 @@ msgstr "É um informador?"
 msgid "Blow the whistle"
 msgstr "Denuncie"
 
-msgid "Your report was successful."
-msgstr "A sua submissão foi bem sucedida."
-
-msgid "Report"
-msgstr "Submissão"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Antes de continuar, por favor, defina uma nova palavra-passe."
 
@@ -733,23 +724,11 @@ msgstr "Desativar o painel de privacidade"
 msgid "Enable the receipt hint"
 msgstr ""
 
-msgid "Landing page"
-msgstr "Página de destino"
-
 msgid "Default questionnaire"
 msgstr ""
 
-msgid "Title of the submission page"
-msgstr "Título da página de submissão"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Mostrar contextos por ordem alfabética"
-
-msgid "Title of the receipt page"
-msgstr "Título da página de recibos"
-
-msgid "Title of the status page of the report"
-msgstr "Título da página do estado da submissão"
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -887,6 +866,18 @@ msgstr "Nome"
 msgid "Last access"
 msgstr "Último acesso"
 
+msgid "ID"
+msgstr "Id."
+
+msgid "State"
+msgstr "Distrito"
+
+msgid "Connection"
+msgstr "Ligação"
+
+msgid "Whistleblower's last access"
+msgstr ""
+
 msgid "Alarm level"
 msgstr "Nível de alarme"
 
@@ -935,6 +926,9 @@ msgstr "Pergunta para atrair possíveis informadores"
 msgid "Whistleblowing button"
 msgstr "Botão de Denúncia"
 
+msgid "Title of the submission page"
+msgstr "Título da página de submissão"
+
 msgid "Enable disclaimer"
 msgstr " Ativar limitação de responsabilidade"
 
@@ -979,9 +973,6 @@ msgstr "Ocultado"
 
 msgid "Disabled"
 msgstr "Desativada"
-
-msgid "State"
-msgstr "Distrito"
 
 msgid "Enabled"
 msgstr "Ativado"
@@ -1420,9 +1411,6 @@ msgstr "Detalhes da chave PGP:"
 msgid "Fingerprint"
 msgstr "Assinatura Digital"
 
-msgid "Remove the PGP key"
-msgstr "Remover o Código PGP"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Configure a encriptação, indicando a chave pública PGP"
 
@@ -1455,9 +1443,6 @@ msgstr " O utilizador tem acesso administrativo para as seguintes funcionalidade
 msgid "Request date"
 msgstr "Data do Pedido"
 
-msgid "ID"
-msgstr "Id."
-
 msgid "Report date"
 msgstr ""
 
@@ -1487,12 +1472,6 @@ msgstr "O código é inválido ou a submissão expirou."
 
 msgid "Site:"
 msgstr ""
-
-msgid "Username:"
-msgstr "Nome do utilizador:"
-
-msgid "Password:"
-msgstr "Palavra-passe:"
 
 msgid "Please select your account:"
 msgstr "Selecione a sua conta:"
@@ -1608,9 +1587,6 @@ msgid "Validation of email address change in progress."
 msgstr "Validação da alteração do endereço de e-mail em progresso."
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Set up email encryption by providing a PGP public key"
 msgstr ""
 
 msgid "Account recovery key"
@@ -1747,11 +1723,11 @@ msgstr "Não foram carregados ficheiros!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Permitir que o informador adicione anexos à submissão"
 
+msgid "Report"
+msgstr "Submissão"
+
 msgid "Access expiration"
 msgstr "Expiração de acesso"
-
-msgid "Connection"
-msgstr "Ligação"
 
 msgid "Never"
 msgstr "Nunca"
@@ -1916,6 +1892,9 @@ msgstr "Está a ligar-se ao servidor sem anonimato, mas o servidor admite apenas
 
 msgid "Thank you!"
 msgstr "Obrigado!"
+
+msgid "Your report was successful."
+msgstr "A sua submissão foi bem sucedida."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr ""

@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -366,9 +366,6 @@ msgstr ""
 msgid "Message shown on top of the status page of the report"
 msgstr "Pesan tampil di bagian atas halaman status dari laporan"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Salin dan tempel kunci publik PGP di sini"
-
 msgid "Password strength:"
 msgstr "Kekuatan kata sandi:"
 
@@ -643,12 +640,6 @@ msgstr "Apakah Anda informan publik?"
 msgid "Blow the whistle"
 msgstr "Kirim dokumen"
 
-msgid "Your report was successful."
-msgstr "Laporan Anda telah berhasil"
-
-msgid "Report"
-msgstr "Laporan"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Sebelum melanjutkan, mohon atur kata sandi baru."
 
@@ -734,23 +725,11 @@ msgstr "Menonaktifkan panel privasi"
 msgid "Enable the receipt hint"
 msgstr ""
 
-msgid "Landing page"
-msgstr "Laman arahan"
-
 msgid "Default questionnaire"
 msgstr "Kuesioner bawaan "
 
-msgid "Title of the submission page"
-msgstr "Judul halaman pengiriman "
-
 msgid "Show contexts in alphabetical order"
 msgstr "Memperlihatkan konteks dalam urutan abjad "
-
-msgid "Title of the receipt page"
-msgstr "Judul halaman tanda terima "
-
-msgid "Title of the status page of the report"
-msgstr "Pesan tampil di bagian atas halaman status dari laporan"
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -888,6 +867,18 @@ msgstr "Nama"
 msgid "Last access"
 msgstr "Akses terakhir"
 
+msgid "ID"
+msgstr ""
+
+msgid "State"
+msgstr "Negara bagian"
+
+msgid "Connection"
+msgstr "Koneksi"
+
+msgid "Whistleblower's last access"
+msgstr ""
+
 msgid "Alarm level"
 msgstr "Tingkat peringatan"
 
@@ -936,6 +927,9 @@ msgstr "Pertanyaan untuk mengumpulkan kemungkinan informan publik"
 msgid "Whistleblowing button"
 msgstr "Tombol pelaporan"
 
+msgid "Title of the submission page"
+msgstr "Judul halaman pengiriman "
+
 msgid "Enable disclaimer"
 msgstr "Mengaktifkan sanggahan"
 
@@ -980,9 +974,6 @@ msgstr "Tersembunyi"
 
 msgid "Disabled"
 msgstr "Menonaktifkan"
-
-msgid "State"
-msgstr "Negara bagian"
 
 msgid "Enabled"
 msgstr "aktifkan"
@@ -1421,9 +1412,6 @@ msgstr "Detil dari kunci PGP:"
 msgid "Fingerprint"
 msgstr "Sidik jari"
 
-msgid "Remove the PGP key"
-msgstr "Menghapus kunci PGP "
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Memasang enkripsi dengan menyediakan kunci publik PGP"
 
@@ -1456,9 +1444,6 @@ msgstr "Pengguna mempunyai akses administratif untuk beberapa fitur berikut:"
 msgid "Request date"
 msgstr "Permintaan tanggal"
 
-msgid "ID"
-msgstr ""
-
 msgid "Report date"
 msgstr ""
 
@@ -1488,12 +1473,6 @@ msgstr "Kode tidak sah atau kedaluwarsa."
 
 msgid "Site:"
 msgstr "Situs:"
-
-msgid "Username:"
-msgstr "Nama Pengguna:"
-
-msgid "Password:"
-msgstr "Sandi:"
 
 msgid "Please select your account:"
 msgstr "Tolong pilih akun Anda"
@@ -1610,9 +1589,6 @@ msgstr "Validasi perubahan alamat surel sedang berlangsung."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Mohon cek kotak masuk anda untuk langkah lebih lanjut."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr ""
 
 msgid "Account recovery key"
 msgstr ""
@@ -1748,11 +1724,11 @@ msgstr "Tidak ada berkas yang diunggah!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr ""
 
+msgid "Report"
+msgstr "Laporan"
+
 msgid "Access expiration"
 msgstr "Masa berakhir akses"
-
-msgid "Connection"
-msgstr "Koneksi"
 
 msgid "Never"
 msgstr "Tidak pernah"
@@ -1917,6 +1893,9 @@ msgstr "Anda sudah terhubung dengan peladen tanpa anonimitas dan peladen ini han
 
 msgid "Thank you!"
 msgstr "Terima kasih!"
+
+msgid "Your report was successful."
+msgstr "Laporan Anda telah berhasil"
 
 msgid "We will try to get back to you as soon as possible."
 msgstr ""

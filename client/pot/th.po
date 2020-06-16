@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -353,9 +353,6 @@ msgstr "ถูกเรียกทำงานด้วยคะแนน:"
 msgid "Message shown on top of the status page of the report"
 msgstr "ข้อความแสดงบนหัวของหน้าสถานะของรายงาน"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "คัดลอกและวางกุญแจสาธารณะ PGP ที่นี่"
-
 msgid "Password strength:"
 msgstr "ความแข็งแรงของรหัสผ่าน:"
 
@@ -630,12 +627,6 @@ msgstr "คุณเป็นผู้แจ้งเบาะแสหรือ
 msgid "Blow the whistle"
 msgstr "แจ้งเบาะแส"
 
-msgid "Your report was successful."
-msgstr "การรายงานของคุณสำเร็จแล้ว"
-
-msgid "Report"
-msgstr "รายงาน"
-
 msgid "Before proceeding, please set a new password."
 msgstr "ก่อนจะไปต่อ กรุณาตั้งรหัสผ่านใหม่"
 
@@ -721,23 +712,11 @@ msgstr "ปิดการใช้งานแผงความเป็นส
 msgid "Enable the receipt hint"
 msgstr "เปิดใช้คำแนะนำเรื่องใบรับ"
 
-msgid "Landing page"
-msgstr "หน้าจอดหน้าแรก"
-
 msgid "Default questionnaire"
 msgstr "แบบสอบถามมาตรฐาน"
 
-msgid "Title of the submission page"
-msgstr "ชื่อของหน้าส่งรายงาน"
-
 msgid "Show contexts in alphabetical order"
 msgstr "แสดงบริบทตามลำดับอักษร"
-
-msgid "Title of the receipt page"
-msgstr "หัวเรื่องของหน้าใบรับ"
-
-msgid "Title of the status page of the report"
-msgstr "ชื่อของหน้าสถานะการส่ง"
 
 msgid "Do not expose users' names"
 msgstr "อย่าเปิดเผยชื่อของผู้ใช้"
@@ -875,6 +854,18 @@ msgstr "ชื่อ"
 msgid "Last access"
 msgstr "เข้าถึงล่าสุด"
 
+msgid "ID"
+msgstr "รหัสประจำ"
+
+msgid "State"
+msgstr "สถานะ"
+
+msgid "Connection"
+msgstr "การเชื่อมต่อ"
+
+msgid "Whistleblower's last access"
+msgstr "ยินดีเข้ามาครั้งล่าสุด"
+
 msgid "Alarm level"
 msgstr "ระดับการเตือนภัย"
 
@@ -923,6 +914,9 @@ msgstr "คำถามที่จะจูงใจผู้ที่อาจ
 msgid "Whistleblowing button"
 msgstr "ปุ่มแจ้งเบาะแส"
 
+msgid "Title of the submission page"
+msgstr "ชื่อของหน้าส่งรายงาน"
+
 msgid "Enable disclaimer"
 msgstr "เปิดใช้งานคำปฏิเสธความรับผิดชอบ"
 
@@ -967,9 +961,6 @@ msgstr "ถูกซ่อนอยู่"
 
 msgid "Disabled"
 msgstr "ถูกปิดใช้งาน"
-
-msgid "State"
-msgstr "สถานะ"
 
 msgid "Enabled"
 msgstr "เปิดใช้งาน"
@@ -1408,9 +1399,6 @@ msgstr "รายละเอียดของกุญแจ PGP:"
 msgid "Fingerprint"
 msgstr "ลายนิ้วมือ"
 
-msgid "Remove the PGP key"
-msgstr "ลบกุญแจ PGP"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "ตั้งค่าให้เข้ารหัสลับ ด้วยการให้กุญสาธารณะ PGP"
 
@@ -1443,9 +1431,6 @@ msgstr "ผู้ใช้มีสิทธิการเข้าถึงร
 msgid "Request date"
 msgstr "วันที่ร้องขอ"
 
-msgid "ID"
-msgstr "รหัสประจำ"
-
 msgid "Report date"
 msgstr "วันที่รายงาน"
 
@@ -1475,12 +1460,6 @@ msgstr "รหัสดังกล่าวไม่ถูกต้องหร
 
 msgid "Site:"
 msgstr "ไซต์:"
-
-msgid "Username:"
-msgstr "ชื่อผู้ใช้:"
-
-msgid "Password:"
-msgstr "รหัสผ่าน:"
 
 msgid "Please select your account:"
 msgstr "กรุณาเลือกบัญชีของคุณ:"
@@ -1597,9 +1576,6 @@ msgstr "กำลังดำเนินการตรวจความถู
 
 msgid "Please check your inbox for further instructions."
 msgstr "กรุณาดูกล่องเมลเข้าของคุณสำหรับขั้นตอนต่อไป"
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "ตั้งค่าให้เข้ารหัสลับอีเมล ด้วยการให้กุญแจสาธารณะ PGP"
 
 msgid "Account recovery key"
 msgstr "กุญแจกู้คืนบัญชี"
@@ -1735,11 +1711,11 @@ msgstr "ไม่มีแฟ้มที่ได้รับการอัป
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "อนุญาตให้ผู้แจ้งเบาะแสแนบแฟ้มในรายงาน"
 
+msgid "Report"
+msgstr "รายงาน"
+
 msgid "Access expiration"
 msgstr "การเข้าถึงหมดอายุ"
-
-msgid "Connection"
-msgstr "การเชื่อมต่อ"
 
 msgid "Never"
 msgstr "ไม่เคยเลย"
@@ -1904,6 +1880,9 @@ msgstr "คุณกำลังเชื่อมต่อไปยังเซ
 
 msgid "Thank you!"
 msgstr "ขอบคุณ!"
+
+msgid "Your report was successful."
+msgstr "การรายงานของคุณสำเร็จแล้ว"
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "เราจะติดต่อกลับไปหาคุณเร็วที่สุดเท่าที่จะเป็นไปได้"

@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -355,9 +355,6 @@ msgstr "Задействан от резултата"
 msgid "Message shown on top of the status page of the report"
 msgstr "Съобщение, показвано най-горе на страницата за статус на подадения сигнал"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Копирайте и поставете PGP публичен ключ тук"
-
 msgid "Password strength:"
 msgstr "Сила на паролата:"
 
@@ -632,12 +629,6 @@ msgstr "Вие подател на сигнал ли сте"
 msgid "Blow the whistle"
 msgstr "Подаване на сигнал"
 
-msgid "Your report was successful."
-msgstr "Подаването на сигнала е успешно."
-
-msgid "Report"
-msgstr "Сигнал"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Преди да продължите, моля задайте нова парола."
 
@@ -723,23 +714,11 @@ msgstr "Деактивирай панела за поверителност"
 msgid "Enable the receipt hint"
 msgstr "Разреши указания за получената информация"
 
-msgid "Landing page"
-msgstr "Начална страница"
-
 msgid "Default questionnaire"
 msgstr "Въпросник по подразбиране"
 
-msgid "Title of the submission page"
-msgstr "Заглавие на страницата за подаване на сигнал"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Показване на контекста по азбучен ред"
-
-msgid "Title of the receipt page"
-msgstr "Заглавие на страницата за получаване"
-
-msgid "Title of the status page of the report"
-msgstr "Съобщение, показвано най-горе на страницата за статус на подадения сигнал"
 
 msgid "Do not expose users' names"
 msgstr "Не разкривайте потребителските имена"
@@ -877,6 +856,18 @@ msgstr "Име"
 msgid "Last access"
 msgstr "Последен достъп"
 
+msgid "ID"
+msgstr "ID"
+
+msgid "State"
+msgstr "Област"
+
+msgid "Connection"
+msgstr "Връзка"
+
+msgid "Whistleblower's last access"
+msgstr "Последно влизане на източника"
+
 msgid "Alarm level"
 msgstr "Ниво на тревогата"
 
@@ -925,6 +916,9 @@ msgstr "Въпрос за привличане на бъдещи подател�
 msgid "Whistleblowing button"
 msgstr "Бутон за подаване на сигнал"
 
+msgid "Title of the submission page"
+msgstr "Заглавие на страницата за подаване на сигнал"
+
 msgid "Enable disclaimer"
 msgstr "Активиране на текст за предупреждение"
 
@@ -969,9 +963,6 @@ msgstr "Скрит"
 
 msgid "Disabled"
 msgstr "Деактивирано"
-
-msgid "State"
-msgstr "Област"
 
 msgid "Enabled"
 msgstr "Активиран"
@@ -1410,9 +1401,6 @@ msgstr "Информация за PGP ключа:"
 msgid "Fingerprint"
 msgstr "Отпечатък"
 
-msgid "Remove the PGP key"
-msgstr "Премахване на PGP ключ"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Заложете криптиране като зададете PGP публичен ключ"
 
@@ -1445,9 +1433,6 @@ msgstr "Потребителят има административен дост�
 msgid "Request date"
 msgstr "Дата на заявката"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Report date"
 msgstr "Дата на сигнала"
 
@@ -1477,12 +1462,6 @@ msgstr "Кодът е невалиден или изтекъл."
 
 msgid "Site:"
 msgstr "Сайт:"
-
-msgid "Username:"
-msgstr "Потребител:"
-
-msgid "Password:"
-msgstr "Парола:"
 
 msgid "Please select your account:"
 msgstr "Моля изберете профила си:"
@@ -1599,9 +1578,6 @@ msgstr "Тече валидация за промяна на имейл адре
 
 msgid "Please check your inbox for further instructions."
 msgstr "Моля, проверете входящата си кутия за допълнителни инструкции."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "Създайте електронна поща с криптиране, предоставяйки PGP публичен код"
 
 msgid "Account recovery key"
 msgstr "Код за възстановяване на акаунт"
@@ -1737,11 +1713,11 @@ msgstr "Не сте качили файл!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Разрешаване на подателя на сигнал да прикачва файлове към сигнала"
 
+msgid "Report"
+msgstr "Сигнал"
+
 msgid "Access expiration"
 msgstr "Изтичане на достъпа"
-
-msgid "Connection"
-msgstr "Връзка"
 
 msgid "Never"
 msgstr "Никога"
@@ -1906,6 +1882,9 @@ msgstr "Свързвате се със сървър по неанонимен н
 
 msgid "Thank you!"
 msgstr "Блгагодарим Ви!"
+
+msgid "Your report was successful."
+msgstr "Подаването на сигнала е успешно."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Ще се опитаме да се свържем обратно с вас възможно най-скоро"

@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -364,9 +364,6 @@ msgstr ""
 msgid "Message shown on top of the status page of the report"
 msgstr "Повідомлення, яке відображається на верхній частині сторінки статусу повідомлення"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Скопіюйте PGP ключ cюди"
-
 msgid "Password strength:"
 msgstr "Надійність паролю:"
 
@@ -641,12 +638,6 @@ msgstr "Ви інформатор?"
 msgid "Blow the whistle"
 msgstr "Надати свідчення"
 
-msgid "Your report was successful."
-msgstr "Ваше відправлення було успішне."
-
-msgid "Report"
-msgstr ""
-
 msgid "Before proceeding, please set a new password."
 msgstr "Перш ніж продовжити, будь ласка, встановіть новий пароль."
 
@@ -732,23 +723,11 @@ msgstr "Відключити значок конфіденційності"
 msgid "Enable the receipt hint"
 msgstr ""
 
-msgid "Landing page"
-msgstr "Цільова сторінка"
-
 msgid "Default questionnaire"
 msgstr ""
 
-msgid "Title of the submission page"
-msgstr "Заголовок сторінки подачі свідчень"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Упорядкувати тематичні розділи за алфавітом"
-
-msgid "Title of the receipt page"
-msgstr "Заголовок сторінки вхідних повідомолень"
-
-msgid "Title of the status page of the report"
-msgstr ""
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -886,6 +865,18 @@ msgstr "Назва"
 msgid "Last access"
 msgstr "Останній вхід"
 
+msgid "ID"
+msgstr "ІД"
+
+msgid "State"
+msgstr "Область"
+
+msgid "Connection"
+msgstr "З'єднання"
+
+msgid "Whistleblower's last access"
+msgstr ""
+
 msgid "Alarm level"
 msgstr "Поріг сигналу небезпеки"
 
@@ -934,6 +925,9 @@ msgstr "Запитання до Інформатора"
 msgid "Whistleblowing button"
 msgstr "Кнопка надання інформації"
 
+msgid "Title of the submission page"
+msgstr "Заголовок сторінки подачі свідчень"
+
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -978,9 +972,6 @@ msgstr "Прихований"
 
 msgid "Disabled"
 msgstr "Вимкнено"
-
-msgid "State"
-msgstr "Область"
 
 msgid "Enabled"
 msgstr "Увімкнений"
@@ -1419,9 +1410,6 @@ msgstr "Деталі ключа PGP:"
 msgid "Fingerprint"
 msgstr "Цифрові відбитки"
 
-msgid "Remove the PGP key"
-msgstr "Видалити PGP ключ"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Налаштуйте шифрування надвши відкритий ключ PGP"
 
@@ -1454,9 +1442,6 @@ msgstr ""
 msgid "Request date"
 msgstr "Дата запиту"
 
-msgid "ID"
-msgstr "ІД"
-
 msgid "Report date"
 msgstr ""
 
@@ -1486,12 +1471,6 @@ msgstr ""
 
 msgid "Site:"
 msgstr ""
-
-msgid "Username:"
-msgstr "Ім'я користувача:"
-
-msgid "Password:"
-msgstr "Пароль:"
 
 msgid "Please select your account:"
 msgstr "Будь ласка, оберіть ваш обліковий запис:"
@@ -1607,9 +1586,6 @@ msgid "Validation of email address change in progress."
 msgstr "Перевірка зміни адреси електронної пошти в процесі."
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Set up email encryption by providing a PGP public key"
 msgstr ""
 
 msgid "Account recovery key"
@@ -1746,11 +1722,11 @@ msgstr "Жодного файлу не було завантажено!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Дозволити викривачам надсилати додатки"
 
+msgid "Report"
+msgstr ""
+
 msgid "Access expiration"
 msgstr "Закінчення терміну доступу"
-
-msgid "Connection"
-msgstr "З'єднання"
 
 msgid "Never"
 msgstr "Ніколи"
@@ -1915,6 +1891,9 @@ msgstr "Ви підключаєтеся до вузла без анонімно�
 
 msgid "Thank you!"
 msgstr "Дякуємо!"
+
+msgid "Your report was successful."
+msgstr "Ваше відправлення було успішне."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr ""

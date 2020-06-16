@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -364,9 +364,6 @@ msgstr "Trigger érték:"
 msgid "Message shown on top of the status page of the report"
 msgstr "Üzenet, ami a beküldés állapota oldal tetején kerül megjelenítésre"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Másolja be ide a PGP-kulcsot:"
-
 msgid "Password strength:"
 msgstr "Jelszó erősség:"
 
@@ -641,12 +638,6 @@ msgstr "Szivárogtatni szeretne? Közérdekű bejelentést szeretne tenni?"
 msgid "Blow the whistle"
 msgstr "közérdekű bejelentést teszek"
 
-msgid "Your report was successful."
-msgstr "Beküldése sikeres volt."
-
-msgid "Report"
-msgstr "Jelentés"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Továblépés előtt kérjük, állítson be új jelszót"
 
@@ -732,23 +723,11 @@ msgstr "Adatvédelmi panel letiltása"
 msgid "Enable the receipt hint"
 msgstr "Nyugtázás engedélyezése"
 
-msgid "Landing page"
-msgstr "Nyitóoldal"
-
 msgid "Default questionnaire"
 msgstr "Alap kérdőív"
 
-msgid "Title of the submission page"
-msgstr "A beadvány oldal címe"
-
 msgid "Show contexts in alphabetical order"
 msgstr "A kategóriák megjelenítése betűrendben"
-
-msgid "Title of the receipt page"
-msgstr "Az jelentés oldal címe"
-
-msgid "Title of the status page of the report"
-msgstr "Üzenet, ami a beküldés állapota oldal tetején kerül megjelenítésre"
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -886,6 +865,18 @@ msgstr "Név"
 msgid "Last access"
 msgstr "Legutóbbi hozzáférés"
 
+msgid "ID"
+msgstr "Azonosító"
+
+msgid "State"
+msgstr "Állam"
+
+msgid "Connection"
+msgstr "Kapcsolat"
+
+msgid "Whistleblower's last access"
+msgstr "WB utolsó belépés időpontja"
+
 msgid "Alarm level"
 msgstr "Riasztási szint"
 
@@ -934,6 +925,9 @@ msgstr "Kiszivárogtatás kérdés"
 msgid "Whistleblowing button"
 msgstr "Szivárogtatás gomb"
 
+msgid "Title of the submission page"
+msgstr "A beadvány oldal címe"
+
 msgid "Enable disclaimer"
 msgstr "Nyilatkozat engedélyezése"
 
@@ -978,9 +972,6 @@ msgstr "Rejtett"
 
 msgid "Disabled"
 msgstr "Leiltva"
-
-msgid "State"
-msgstr "Állam"
 
 msgid "Enabled"
 msgstr "Engedélyezve"
@@ -1419,9 +1410,6 @@ msgstr "A PGP kulcs részletei:"
 msgid "Fingerprint"
 msgstr "Ujjlenyomat:"
 
-msgid "Remove the PGP key"
-msgstr "PGP kulcs eltávolítása"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Titkosítás beállítása egy PGP publikus kulcsra"
 
@@ -1454,9 +1442,6 @@ msgstr "A felhasználónak adminisztratív jogai vannak a következő funkciókr
 msgid "Request date"
 msgstr "Kérés dátuma"
 
-msgid "ID"
-msgstr "Azonosító"
-
 msgid "Report date"
 msgstr "Jelentés dátum"
 
@@ -1486,12 +1471,6 @@ msgstr "A kód érvénytelen vagy lejárt."
 
 msgid "Site:"
 msgstr "Oldal:"
-
-msgid "Username:"
-msgstr "Felhasználónév:"
-
-msgid "Password:"
-msgstr "Jelszó:"
 
 msgid "Please select your account:"
 msgstr "Kérjük válassza ki fiókját:"
@@ -1608,9 +1587,6 @@ msgstr "Az e-mailcím változtatás ellenőrzése folyamatban"
 
 msgid "Please check your inbox for further instructions."
 msgstr "Nézze meg a postaládáját a továbbiakért"
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "Email fiók titkosítás beállítása a egy PGP publikus kulcs megadásával"
 
 msgid "Account recovery key"
 msgstr "Fiók visszaállító kulcs"
@@ -1746,11 +1722,11 @@ msgstr "Nem töltött fel fájlt!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Engedélyezi a szivárogtatónak, hogy mellékleteket adjanak hozzá a beadványhoz"
 
+msgid "Report"
+msgstr "Jelentés"
+
 msgid "Access expiration"
 msgstr "Hozzáférés lejár"
-
-msgid "Connection"
-msgstr "Kapcsolat"
 
 msgid "Never"
 msgstr "Soha"
@@ -1915,6 +1891,9 @@ msgstr "A kiszolgálóhoz anonim módon csatlakozik, ez a kiszolgáló csak név
 
 msgid "Thank you!"
 msgstr "Köszönjük!"
+
+msgid "Your report was successful."
+msgstr "Beküldése sikeres volt."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Kapcsolatba lépünk Önnel, amint lehetséges."

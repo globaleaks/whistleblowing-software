@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -356,9 +356,6 @@ msgstr "سکور سے متحرک"
 msgid "Message shown on top of the status page of the report"
 msgstr "پیغام جمع کرانے کی حیثیت صفحے کے سب سے اوپر پر دکھایا گیا"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "عوامی PGP  کی کاپی کریں اور یہاں پیسٹ کریں"
-
 msgid "Password strength:"
 msgstr "پاس ورڈ کی مظبوطی"
 
@@ -633,12 +630,6 @@ msgstr "کیا آپ ایک whistleblower ہیں؟"
 msgid "Blow the whistle"
 msgstr "سیٹی بجائیے"
 
-msgid "Your report was successful."
-msgstr "آپ کی جمع کردہ گذارشارت کامیاب رہیں"
-
-msgid "Report"
-msgstr ""
-
 msgid "Before proceeding, please set a new password."
 msgstr ""
 
@@ -724,23 +715,11 @@ msgstr " پرائیویسی حصے کو غیر فعال کریں"
 msgid "Enable the receipt hint"
 msgstr ""
 
-msgid "Landing page"
-msgstr "صحفہِ آمد"
-
 msgid "Default questionnaire"
 msgstr ""
 
-msgid "Title of the submission page"
-msgstr "جمع کرانے کے صفحے کے عنوان"
-
 msgid "Show contexts in alphabetical order"
 msgstr "الفبائی ترتیب میں سیاق و سباق دکھائیں"
-
-msgid "Title of the receipt page"
-msgstr "رسید صفحہ کے عنوان"
-
-msgid "Title of the status page of the report"
-msgstr "پیغام جمع کرانے کی حیثیت صفحے کے سب سے اوپر پر دکھایا گیا"
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -878,6 +857,18 @@ msgstr "نام"
 msgid "Last access"
 msgstr "آخری رسائی"
 
+msgid "ID"
+msgstr ""
+
+msgid "State"
+msgstr "ریاست"
+
+msgid "Connection"
+msgstr "کنکشن"
+
+msgid "Whistleblower's last access"
+msgstr ""
+
 msgid "Alarm level"
 msgstr "الارم کی سطح"
 
@@ -926,6 +917,9 @@ msgstr "مخبر سوال "
 msgid "Whistleblowing button"
 msgstr "مخبری بٹن"
 
+msgid "Title of the submission page"
+msgstr "جمع کرانے کے صفحے کے عنوان"
+
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -970,9 +964,6 @@ msgstr ""
 
 msgid "Disabled"
 msgstr "غیر فعال"
-
-msgid "State"
-msgstr "ریاست"
 
 msgid "Enabled"
 msgstr "فعال"
@@ -1411,9 +1402,6 @@ msgstr "PGP چابی کی تفصیلات:"
 msgid "Fingerprint"
 msgstr ""
 
-msgid "Remove the PGP key"
-msgstr "پی جی پی  چابی کلید مٹادیں"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "ایک PGP عوامی کلید فراہم کی طرف سے خفیہ کاری سیٹ اپ کریں"
 
@@ -1446,9 +1434,6 @@ msgstr ""
 msgid "Request date"
 msgstr "تاریخ کی گذارش"
 
-msgid "ID"
-msgstr ""
-
 msgid "Report date"
 msgstr ""
 
@@ -1478,12 +1463,6 @@ msgstr ""
 
 msgid "Site:"
 msgstr ""
-
-msgid "Username:"
-msgstr "صارف کا نام"
-
-msgid "Password:"
-msgstr "پاس ورڈ "
 
 msgid "Please select your account:"
 msgstr "براہ مہربانی اپنا اکاؤنٹ منتخب کیجیے:"
@@ -1599,9 +1578,6 @@ msgid "Validation of email address change in progress."
 msgstr ""
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Set up email encryption by providing a PGP public key"
 msgstr ""
 
 msgid "Account recovery key"
@@ -1738,11 +1714,11 @@ msgstr "کوئی فائل اپ لوڈ نہیں کی گئی ہے!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "مخبر کو اٹیچمنٹ شامل کرنے کی اجازت دیں"
 
-msgid "Access expiration"
+msgid "Report"
 msgstr ""
 
-msgid "Connection"
-msgstr "کنکشن"
+msgid "Access expiration"
+msgstr ""
 
 msgid "Never"
 msgstr "کبھی نہیں"
@@ -1907,6 +1883,9 @@ msgstr "آپ اپنا نام ظاہر نہ کئے بغیر نوڈ سے منسل�
 
 msgid "Thank you!"
 msgstr "شکریہ"
+
+msgid "Your report was successful."
+msgstr "آپ کی جمع کردہ گذارشارت کامیاب رہیں"
 
 msgid "We will try to get back to you as soon as possible."
 msgstr ""

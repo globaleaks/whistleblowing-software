@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -356,9 +356,6 @@ msgstr "Spustené na základe skóre:"
 msgid "Message shown on top of the status page of the report"
 msgstr "Správa zobrazená v hornej časti stránky o stave podania"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Sem skopírujte a vložte verejný PGP kľúč"
-
 msgid "Password strength:"
 msgstr "Sila hesla:"
 
@@ -633,12 +630,6 @@ msgstr "Ste oznamovateľ?"
 msgid "Blow the whistle"
 msgstr "Odoslať oznámenie"
 
-msgid "Your report was successful."
-msgstr "Vaše podanie prebehlo úspešne."
-
-msgid "Report"
-msgstr "Podanie"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Než budete pokračovať, nastavte prosím nové heslo."
 
@@ -724,23 +715,11 @@ msgstr "Zakázať osobitý panel"
 msgid "Enable the receipt hint"
 msgstr "Povoliť možnosť pre príjem"
 
-msgid "Landing page"
-msgstr "Vstupná stránka"
-
 msgid "Default questionnaire"
 msgstr "Prednastavený dotazník"
 
-msgid "Title of the submission page"
-msgstr "Titulok stránky s odoslaním"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Ukázať kontexty v abecednom poradí"
-
-msgid "Title of the receipt page"
-msgstr "Titulok stránky s potvrdením"
-
-msgid "Title of the status page of the report"
-msgstr "Titulok stránky s odoslaním"
 
 msgid "Do not expose users' names"
 msgstr "Neodhaľte mená užívateľov. "
@@ -878,6 +857,18 @@ msgstr "Meno"
 msgid "Last access"
 msgstr "Posledný prístup"
 
+msgid "ID"
+msgstr "ID"
+
+msgid "State"
+msgstr "Štát"
+
+msgid "Connection"
+msgstr "Spojenie"
+
+msgid "Whistleblower's last access"
+msgstr "WB posledný prístup"
+
 msgid "Alarm level"
 msgstr "Úroveň varovania"
 
@@ -926,6 +917,9 @@ msgstr "Otázky pre získavanie možných oznamovateľov"
 msgid "Whistleblowing button"
 msgstr "Tlačidlo oznamovateľa"
 
+msgid "Title of the submission page"
+msgstr "Titulok stránky s odoslaním"
+
 msgid "Enable disclaimer"
 msgstr "Povoliť odmietnutie zodpovednosti"
 
@@ -970,9 +964,6 @@ msgstr "Skrytý"
 
 msgid "Disabled"
 msgstr "Vypnuté"
-
-msgid "State"
-msgstr "Štát"
 
 msgid "Enabled"
 msgstr "Zapnuté"
@@ -1411,9 +1402,6 @@ msgstr "Detaily PGP kľúča:"
 msgid "Fingerprint"
 msgstr "Odtlačok prsta"
 
-msgid "Remove the PGP key"
-msgstr "Odstrániť PGP kľúč"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Nastavte šifrovanie pomocou verejného kľúča PGP."
 
@@ -1446,9 +1434,6 @@ msgstr "Používateľ má prístup k správe týchto funkcií:"
 msgid "Request date"
 msgstr "Dátum žiadosti"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Report date"
 msgstr "Dátum podania"
 
@@ -1478,12 +1463,6 @@ msgstr "Kód je neplatný alebo vypršal."
 
 msgid "Site:"
 msgstr "Stránka:"
-
-msgid "Username:"
-msgstr "Používateľské meno:"
-
-msgid "Password:"
-msgstr "Heslo:"
 
 msgid "Please select your account:"
 msgstr "Vyberte, prosím, svoj účet:"
@@ -1600,9 +1579,6 @@ msgstr "Prebieha overovanie zmeny emailovej adresy."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Pre ďalší postup skontrolujte, prosím, doručenú poštu."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "Nastavte šifrovanie e-mailov zadaním verejného kľúča PGP"
 
 msgid "Account recovery key"
 msgstr "Kľúč na obnovenie účtu"
@@ -1738,11 +1714,11 @@ msgstr "Nebol nahraný žiadny súbor!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Povoliť oznamovateľovi pripojiť prílohy k podaniu"
 
+msgid "Report"
+msgstr "Podanie"
+
 msgid "Access expiration"
 msgstr "Exspirácia prístupu"
-
-msgid "Connection"
-msgstr "Spojenie"
 
 msgid "Never"
 msgstr "Nikdy"
@@ -1907,6 +1883,9 @@ msgstr "K serveru sa pripájate neanonymne, pričom tento konkrétny server podp
 
 msgid "Thank you!"
 msgstr "Ďakujeme Vám!"
+
+msgid "Your report was successful."
+msgstr "Vaše podanie prebehlo úspešne."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Ozveme sa Vám hneď, ako to bude možné."
@@ -2284,7 +2263,7 @@ msgstr "Prístup k identite oznamovateľa bol schválený"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "Toto je emailové upozornenie, že správca zamietol prístup k identite oznamovateľa podania {TipNum}."
+msgstr "Toto je emailové upozornenie, že správca zamietol Váš prístup k identite oznamovateľa podania {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Prístup k identifikácii oznamovateľa bol zamietnutý"

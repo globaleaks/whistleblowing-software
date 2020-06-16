@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -352,9 +352,6 @@ msgstr "Käytetään pistemäärän mukaan:"
 msgid "Message shown on top of the status page of the report"
 msgstr "Viesti, joka näytetään ilmoituksen tilasivun yläreunassa"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Kopioi ja liitä julkinen PGP-avain tähän"
-
 msgid "Password strength:"
 msgstr "Salasanan vahvuus:"
 
@@ -629,12 +626,6 @@ msgstr "Onko sinulla tietoa epäilyttävästä, laittomasta tai muuten hämärä
 msgid "Blow the whistle"
 msgstr "Lähetä vihje"
 
-msgid "Your report was successful."
-msgstr "Vihjeesi lähettäminen onnistui."
-
-msgid "Report"
-msgstr "Ilmoita"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Määritä uusi salasana ennen kuin jatkat."
 
@@ -720,23 +711,11 @@ msgstr "Ota pois käytöstä yksityisyyskulkukortti"
 msgid "Enable the receipt hint"
 msgstr "Ota kuittivinkki käyttöön"
 
-msgid "Landing page"
-msgstr "Aloitussivu"
-
 msgid "Default questionnaire"
 msgstr "Oletuslomake"
 
-msgid "Title of the submission page"
-msgstr "Vihjeen lähetys -sivun otsikko"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Näytä aiheet aakkosjärjestyksessä"
-
-msgid "Title of the receipt page"
-msgstr "Kuittisivun otsikko"
-
-msgid "Title of the status page of the report"
-msgstr "Vihjeen tila -sivun otsikko"
 
 msgid "Do not expose users' names"
 msgstr "Älä paljasta käyttäjien nimiä"
@@ -874,6 +853,18 @@ msgstr "Käyttäjänimi"
 msgid "Last access"
 msgstr "Viimeksi luettu"
 
+msgid "ID"
+msgstr "Tunniste"
+
+msgid "State"
+msgstr "Valtio"
+
+msgid "Connection"
+msgstr "Yhteys"
+
+msgid "Whistleblower's last access"
+msgstr "WB viimeksi kutsuttu"
+
 msgid "Alarm level"
 msgstr "Hälytystaso"
 
@@ -922,6 +913,9 @@ msgstr "Vihjeenantajalle esitettävä kysymys palvelun etusivulla"
 msgid "Whistleblowing button"
 msgstr "Aloituspainikkeen teksti"
 
+msgid "Title of the submission page"
+msgstr "Vihjeen lähetys -sivun otsikko"
+
 msgid "Enable disclaimer"
 msgstr "Ota käyttöön vastuuvapauslauseke"
 
@@ -966,9 +960,6 @@ msgstr "Piilotettu"
 
 msgid "Disabled"
 msgstr "Otettu pois käytöstä"
-
-msgid "State"
-msgstr "Valtio"
 
 msgid "Enabled"
 msgstr "Käytössä"
@@ -1407,9 +1398,6 @@ msgstr "PGP-avaimen tiedot:"
 msgid "Fingerprint"
 msgstr "Sormenjälkitunniste"
 
-msgid "Remove the PGP key"
-msgstr "Poista PGP-avain"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Määritä salaus PGP-avaimella"
 
@@ -1442,9 +1430,6 @@ msgstr "Käyttäjällä on ylläpito-oikeudet seuraaviin toimintoihin:"
 msgid "Request date"
 msgstr "Pyynnön päivämäärä"
 
-msgid "ID"
-msgstr "Tunniste"
-
 msgid "Report date"
 msgstr "Ilmoituspäivämäärä"
 
@@ -1474,12 +1459,6 @@ msgstr "Koodi on virheellinen tai sen käyttöaika on umpeutunut."
 
 msgid "Site:"
 msgstr "Palvelu:"
-
-msgid "Username:"
-msgstr "Käyttäjätunnus:"
-
-msgid "Password:"
-msgstr "Salasana:"
 
 msgid "Please select your account:"
 msgstr "Valitse tilisi:"
@@ -1596,9 +1575,6 @@ msgstr "Sähköpostiosoitteen vaihtamisen vahvistaminen käynnissä."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Lisäohjeita löydät sähköpostistasi."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "Määritä sähköpostin salaus julkisella PGP-avaimella"
 
 msgid "Account recovery key"
 msgstr "Tilin palautusavain"
@@ -1734,11 +1710,11 @@ msgstr "Yhtään tiedostoa ei ole lähetetty palvelimelle!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Salli vihjeenantajan liittää vihjeeseen tiedostoja."
 
+msgid "Report"
+msgstr "Ilmoita"
+
 msgid "Access expiration"
 msgstr "Käyttöoikeuden vanhentuminen"
-
-msgid "Connection"
-msgstr "Yhteys"
 
 msgid "Never"
 msgstr "Ei koskaan"
@@ -1903,6 +1879,9 @@ msgstr "Olet yhdistänyt palvelimen ilman anonymiteettiä ja tämä solmu tukee 
 
 msgid "Thank you!"
 msgstr "Kiitos!"
+
+msgid "Your report was successful."
+msgstr "Vihjeesi lähettäminen onnistui."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Vastaamme niin pian kuin mahdollista."

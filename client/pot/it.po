@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -367,9 +367,6 @@ msgstr "Abilitata dal punteggio:"
 msgid "Message shown on top of the status page of the report"
 msgstr "Messaggio mostrato in testa alla pagina di stato della segnalazione"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Copia ed incolla qui la chiave pubblica PGP."
-
 msgid "Password strength:"
 msgstr "Sicurezza password:"
 
@@ -644,12 +641,6 @@ msgstr "Sei un whistleblower?"
 msgid "Blow the whistle"
 msgstr "Invia una segnalazione"
 
-msgid "Your report was successful."
-msgstr "La tua segnalazione è andata a buon fine."
-
-msgid "Report"
-msgstr "Segnalazioni"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Prima di procedere, sei pregato di impostare una nuova password."
 
@@ -735,23 +726,11 @@ msgstr "Disabilita il privacy panel"
 msgid "Enable the receipt hint"
 msgstr "Abilita il suggerimento circa la ricevuta"
 
-msgid "Landing page"
-msgstr "Pagina iniziale"
-
 msgid "Default questionnaire"
 msgstr "Questionario predefinito"
 
-msgid "Title of the submission page"
-msgstr "TItolo della pagina di segnalazione"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Mostra i contesti in ordine alfabetico"
-
-msgid "Title of the receipt page"
-msgstr "Titolo della pagina di ricevuta"
-
-msgid "Title of the status page of the report"
-msgstr "Titolo della pagina di stato della segnalazione"
 
 msgid "Do not expose users' names"
 msgstr "Non esporre i nomi degli utenti"
@@ -889,6 +868,18 @@ msgstr "Nome"
 msgid "Last access"
 msgstr "Ultimo accesso"
 
+msgid "ID"
+msgstr "ID"
+
+msgid "State"
+msgstr "Stato"
+
+msgid "Connection"
+msgstr "Connessione"
+
+msgid "Whistleblower's last access"
+msgstr "Ultimo accesso del WB"
+
 msgid "Alarm level"
 msgstr "Livello di allarme"
 
@@ -937,6 +928,9 @@ msgstr "Domanda di sollecitazione alla segnalazione"
 msgid "Whistleblowing button"
 msgstr "Bottone di sollecitazione alla segnalazione"
 
+msgid "Title of the submission page"
+msgstr "TItolo della pagina di segnalazione"
+
 msgid "Enable disclaimer"
 msgstr "Abilita disclaimer"
 
@@ -981,9 +975,6 @@ msgstr "Nascosto"
 
 msgid "Disabled"
 msgstr "Disabilitato"
-
-msgid "State"
-msgstr "Stato"
 
 msgid "Enabled"
 msgstr "Abilitato"
@@ -1422,9 +1413,6 @@ msgstr "Dettagli della chiave PGP:"
 msgid "Fingerprint"
 msgstr "Fingerprint"
 
-msgid "Remove the PGP key"
-msgstr "Rimuovi la chiave PGP."
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Attiva la crittografia caricando una chiave pubblica PGP"
 
@@ -1457,9 +1445,6 @@ msgstr "L'utente ha accesso amministrativo alle seguenti funzionalità:"
 msgid "Request date"
 msgstr "Data della richiesta"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Report date"
 msgstr "Data della segnalazione"
 
@@ -1489,12 +1474,6 @@ msgstr "Il codice è invalido o scaduto."
 
 msgid "Site:"
 msgstr "Sito:"
-
-msgid "Username:"
-msgstr "Nome Utente:"
-
-msgid "Password:"
-msgstr "Password:"
 
 msgid "Please select your account:"
 msgstr "Come prima cosa seleziona il tuo utente:"
@@ -1611,9 +1590,6 @@ msgstr "Validazione del cambio di email in corso."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Controlla la tua casella di posta in arrivo per informazioni aggiuntive."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "Abilita la cifratura delle email fornendo una chiave PGP pubblica."
 
 msgid "Account recovery key"
 msgstr "Chiave di recupero account"
@@ -1749,11 +1725,11 @@ msgstr "Non è stato allegato nessun file!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Permetti al segnalante di aggiungere allegati alla segnalazione"
 
+msgid "Report"
+msgstr "Segnalazioni"
+
 msgid "Access expiration"
 msgstr "Scadenza accesso"
-
-msgid "Connection"
-msgstr "Connessione"
 
 msgid "Never"
 msgstr "Mai"
@@ -1918,6 +1894,9 @@ msgstr "Ti stai connettendo a questo nodo in maniera non anonima,  ed esso suppo
 
 msgid "Thank you!"
 msgstr "Grazie!"
+
+msgid "Your report was successful."
+msgstr "La tua segnalazione è andata a buon fine."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Cercheremo di risponderti quanto prima."

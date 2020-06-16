@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -353,9 +353,6 @@ msgstr "Udløst af score:"
 msgid "Message shown on top of the status page of the report"
 msgstr "Besked der vises i toppen af det indsendte materiales statusside"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Kopier og indsæt den offentlige PGP-nøgle her"
-
 msgid "Password strength:"
 msgstr "Adgangskode-styrke"
 
@@ -630,12 +627,6 @@ msgstr "Er du whistleblower?"
 msgid "Blow the whistle"
 msgstr "Blæs i fløjten"
 
-msgid "Your report was successful."
-msgstr "Din indsendelse er gennemført."
-
-msgid "Report"
-msgstr "Indberetning"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Før du fortsætter bedes du indstille en ny adgangskode."
 
@@ -721,23 +712,11 @@ msgstr "Deaktiver privatlivspanelet"
 msgid "Enable the receipt hint"
 msgstr "Aktivér kvitteringshintet"
 
-msgid "Landing page"
-msgstr "Destinationsside"
-
 msgid "Default questionnaire"
 msgstr "Standard spørgeskema"
 
-msgid "Title of the submission page"
-msgstr "Titel på indleveringssiden"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Vis sammenhænge i alfabetisk rækkefølge"
-
-msgid "Title of the receipt page"
-msgstr "Titel på kvitteringssiden"
-
-msgid "Title of the status page of the report"
-msgstr "Titel på siden med status for indleveringen"
 
 msgid "Do not expose users' names"
 msgstr "Vis ikke brugeres navne"
@@ -875,6 +854,18 @@ msgstr "Navn"
 msgid "Last access"
 msgstr "Seneste login"
 
+msgid "ID"
+msgstr "ID"
+
+msgid "State"
+msgstr "Status"
+
+msgid "Connection"
+msgstr "Forbindelse"
+
+msgid "Whistleblower's last access"
+msgstr ""
+
 msgid "Alarm level"
 msgstr "Alarmniveau"
 
@@ -923,6 +914,9 @@ msgstr "Spørgsmål der skal bruges til at anmode om nye whistleblowere"
 msgid "Whistleblowing button"
 msgstr "Whistleblower-knap"
 
+msgid "Title of the submission page"
+msgstr "Titel på indleveringssiden"
+
 msgid "Enable disclaimer"
 msgstr "Aktivér ansvarsfraskrivelse"
 
@@ -967,9 +961,6 @@ msgstr "Skjult"
 
 msgid "Disabled"
 msgstr "Deaktiveret"
-
-msgid "State"
-msgstr "Status"
 
 msgid "Enabled"
 msgstr "Aktiveret"
@@ -1408,9 +1399,6 @@ msgstr "Detaljerede oplysninger om PGP-nøglen:"
 msgid "Fingerprint"
 msgstr "Fingeraftryk"
 
-msgid "Remove the PGP key"
-msgstr "Fjern PGP nøglen"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Opsæt kryptering ved at indsende en offentlig PGP nøgle"
 
@@ -1443,9 +1431,6 @@ msgstr "Bruger har administratoradgang til følgende funktionaliteter:"
 msgid "Request date"
 msgstr "Anmod om dato"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Report date"
 msgstr "Indberetningsdato"
 
@@ -1475,12 +1460,6 @@ msgstr "Denne kode er enten forkert eller udløbet."
 
 msgid "Site:"
 msgstr "Side:"
-
-msgid "Username:"
-msgstr "Brugernavn:"
-
-msgid "Password:"
-msgstr "Adgangskode:"
 
 msgid "Please select your account:"
 msgstr "Vælg venligst din konto:"
@@ -1597,9 +1576,6 @@ msgstr "Godkendelse af skift af e-mail-adresse i gang."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Tjek venligst din indbakke for yderligere instruktioner."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "Opsæt e-mailkryptering ved at tilføje en offentlig PGP-nøgle"
 
 msgid "Account recovery key"
 msgstr "Kontogendannelsesnøgle"
@@ -1735,11 +1711,11 @@ msgstr "Ingen filer er blevet uploadet!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Tillad whistlebloweren at tilføje vedhæftelser til indsendelsen"
 
+msgid "Report"
+msgstr "Indberetning"
+
 msgid "Access expiration"
 msgstr "Udløbsdato for adgang"
-
-msgid "Connection"
-msgstr "Forbindelse"
 
 msgid "Never"
 msgstr "Aldrig"
@@ -1904,6 +1880,9 @@ msgstr "Du forbinder til serveren uden anonymitet og denne server tillader kun a
 
 msgid "Thank you!"
 msgstr "Tak!"
+
+msgid "Your report was successful."
+msgstr "Din indsendelse er gennemført."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Vi vil forsøge at vende tilbage så snart som muligt."

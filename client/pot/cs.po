@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -357,9 +357,6 @@ msgstr "Spuštěno skórem"
 msgid "Message shown on top of the status page of the report"
 msgstr "Zpráva zobrazená na vrchu stránky o stavu podání"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Zkopírujte a vložte Váš PGP klíč zde"
-
 msgid "Password strength:"
 msgstr "Síla hesla:"
 
@@ -634,12 +631,6 @@ msgstr "Jste oznamovatel?"
 msgid "Blow the whistle"
 msgstr "Odeslat oznámení"
 
-msgid "Your report was successful."
-msgstr "Vaše podání proběhlo úspěšně."
-
-msgid "Report"
-msgstr "Podání"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Než budete pokračovat, nastavte prosím nové heslo."
 
@@ -725,23 +716,11 @@ msgstr "Zakázat panel o ochraně osobních údajů."
 msgid "Enable the receipt hint"
 msgstr "Povolit možnost pro příjem "
 
-msgid "Landing page"
-msgstr "Vstupní stránka"
-
 msgid "Default questionnaire"
 msgstr "Výchozí dotazník"
 
-msgid "Title of the submission page"
-msgstr "Titulek stránky s odesláním"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Ukázat kontexty v abecedním pořadí"
-
-msgid "Title of the receipt page"
-msgstr "Titulek stránky s potvrzením"
-
-msgid "Title of the status page of the report"
-msgstr "Zpráva zobrazená na vrchu stránky o stavu podání"
 
 msgid "Do not expose users' names"
 msgstr "Neodhalte jména uživatelů."
@@ -879,6 +858,18 @@ msgstr "Jméno"
 msgid "Last access"
 msgstr "Poslední přístup"
 
+msgid "ID"
+msgstr "ID"
+
+msgid "State"
+msgstr "Stát"
+
+msgid "Connection"
+msgstr "Připojení"
+
+msgid "Whistleblower's last access"
+msgstr "Poslední přístup"
+
 msgid "Alarm level"
 msgstr "Úroveň varování"
 
@@ -927,6 +918,9 @@ msgstr "Otázky pro získávání možných oznamovatelů"
 msgid "Whistleblowing button"
 msgstr "Tlačítko zapískání oznamovatele."
 
+msgid "Title of the submission page"
+msgstr "Titulek stránky s odesláním"
+
 msgid "Enable disclaimer"
 msgstr "Povolit odmítnutí odpovědnosti"
 
@@ -971,9 +965,6 @@ msgstr "Skrytý"
 
 msgid "Disabled"
 msgstr "Vypnuto"
-
-msgid "State"
-msgstr "Stát"
 
 msgid "Enabled"
 msgstr "Zapnuto"
@@ -1412,9 +1403,6 @@ msgstr "Detaily PGP klíče:"
 msgid "Fingerprint"
 msgstr "Otisk klíče"
 
-msgid "Remove the PGP key"
-msgstr "Odstranení klíče PGP"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Nastavte šifrování poskytnutím veřejné části PGP klíče."
 
@@ -1447,9 +1435,6 @@ msgstr "Uživatel má přístup ke správě následujících funkcí:"
 msgid "Request date"
 msgstr "Datum požadavku"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Report date"
 msgstr "Datum podání"
 
@@ -1479,12 +1464,6 @@ msgstr "Kód je neplatný nebo vypršel."
 
 msgid "Site:"
 msgstr "Stránka:"
-
-msgid "Username:"
-msgstr "Uživatelské jméno:"
-
-msgid "Password:"
-msgstr "Heslo:"
 
 msgid "Please select your account:"
 msgstr "Vyberte, prosím, váš účet"
@@ -1601,9 +1580,6 @@ msgstr "Ověření změny e-mailové adresy probíhá."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Prosím, zkontrolujte doručenou poštu pro další postup."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "Nastavte šifrování e-mailů zadáním veřejného klíče PGP"
 
 msgid "Account recovery key"
 msgstr "Klíč pro obnovení účtu"
@@ -1739,11 +1715,11 @@ msgstr "Nebyl nahrán žádný soubor!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Povolit oznamovateli přidat přílohy k podáním"
 
+msgid "Report"
+msgstr "Podání"
+
 msgid "Access expiration"
 msgstr "Expirace přístupu"
-
-msgid "Connection"
-msgstr "Připojení"
 
 msgid "Never"
 msgstr "Nikdy"
@@ -1908,6 +1884,9 @@ msgstr "Připojujete se k serveru neanonymně. Tento server podporuje pouze anon
 
 msgid "Thank you!"
 msgstr "Děkujeme Vám!"
+
+msgid "Your report was successful."
+msgstr "Vaše podání proběhlo úspěšně."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Pokusíme se vrátit se k Vám co nejdříve."

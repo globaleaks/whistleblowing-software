@@ -47,7 +47,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -389,9 +389,6 @@ msgstr "Ausgelöst durch Punkte:"
 msgid "Message shown on top of the status page of the report"
 msgstr "Nachricht gezeigt oben auf der Statusseite der Vorlage"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Kopieren und fügen Sie hier den öffentlichen PGP-Schlüssel ein"
-
 msgid "Password strength:"
 msgstr "Passwortstärke:"
 
@@ -666,12 +663,6 @@ msgstr "Sind Sie ein Hinweisgeber?"
 msgid "Blow the whistle"
 msgstr "Hinweise geben"
 
-msgid "Your report was successful."
-msgstr "Ihr Bericht war erfolgreich."
-
-msgid "Report"
-msgstr "Bericht"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Bitte zuerst ein neues Passwort setzen."
 
@@ -757,23 +748,11 @@ msgstr "Datenschutzpanel deaktivieren"
 msgid "Enable the receipt hint"
 msgstr "Den Empfangsbestätigungshinweis aktivieren"
 
-msgid "Landing page"
-msgstr "Einstiegsseite"
-
 msgid "Default questionnaire"
 msgstr "Standardfragebogen"
 
-msgid "Title of the submission page"
-msgstr "Titel der Einreichungsseite"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Kontexte in alphabetischer Reihenfolge anzeigen"
-
-msgid "Title of the receipt page"
-msgstr "Titel der Belegseite"
-
-msgid "Title of the status page of the report"
-msgstr "Nachricht gezeigt oben auf der Statusseite der Vorlage"
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -911,6 +890,18 @@ msgstr "Name"
 msgid "Last access"
 msgstr "Letzter Zugriff"
 
+msgid "ID"
+msgstr "ID"
+
+msgid "State"
+msgstr "Bundesland"
+
+msgid "Connection"
+msgstr "Verbindung"
+
+msgid "Whistleblower's last access"
+msgstr "Letzer Zugriff des Hinweisgebers"
+
 msgid "Alarm level"
 msgstr "Alarmstufe"
 
@@ -959,6 +950,9 @@ msgstr "Hinweisgeberfrage"
 msgid "Whistleblowing button"
 msgstr "Schaltfläche Hinweisgeben"
 
+msgid "Title of the submission page"
+msgstr "Titel der Einreichungsseite"
+
 msgid "Enable disclaimer"
 msgstr "Haftungsausschluss aktivieren"
 
@@ -1003,9 +997,6 @@ msgstr "Versteckt"
 
 msgid "Disabled"
 msgstr "Deaktiviert"
-
-msgid "State"
-msgstr "Bundesland"
 
 msgid "Enabled"
 msgstr "Aktiviert"
@@ -1444,9 +1435,6 @@ msgstr "Details des PGP-Schlüssels:"
 msgid "Fingerprint"
 msgstr "Fingerabdruck"
 
-msgid "Remove the PGP key"
-msgstr "PGP-Schlüssel entfernen"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Richten Sie die Verschlüsselung durch einen öffentlichen PGP-Schlüssel Bereitstellung"
 
@@ -1479,9 +1467,6 @@ msgstr "Der Benutzer hat administrativen Zugang zu folgenden Funktionen:"
 msgid "Request date"
 msgstr "Anfragedatum"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Report date"
 msgstr "Berichtsdatum"
 
@@ -1511,12 +1496,6 @@ msgstr "Der Code ist entweder ungültig oder abgelaufen."
 
 msgid "Site:"
 msgstr "Seite:"
-
-msgid "Username:"
-msgstr "Benutzername:"
-
-msgid "Password:"
-msgstr "&Passwort:"
 
 msgid "Please select your account:"
 msgstr "Bitte wählen Sie Ihr Konto aus:"
@@ -1633,9 +1612,6 @@ msgstr "Validerung der E-Mailadressänderung in Bearbeitung."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Weiter Instruktionen finden Sie in Ihrem Posteingang."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "E-Mailverschlüsselung durch Bereitstellung des öffentlichen PGP-Schlüssels einrichten"
 
 msgid "Account recovery key"
 msgstr "Kontowiederherstellungsschlüssel"
@@ -1771,11 +1747,11 @@ msgstr "Es wurden keine Dateien hochgeladen!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Dem Hinweisgeber das Hinzufügen von Anhängen zur Einreichung erlauben"
 
+msgid "Report"
+msgstr "Bericht"
+
 msgid "Access expiration"
 msgstr "Zugriffsablaufdatum"
-
-msgid "Connection"
-msgstr "Verbindung"
 
 msgid "Never"
 msgstr "Niemals"
@@ -1940,6 +1916,9 @@ msgstr "Sie versuchen, eine nicht anonyme Verbindung zu diesem server herzustell
 
 msgid "Thank you!"
 msgstr "Vielen Dank!"
+
+msgid "Your report was successful."
+msgstr "Ihr Bericht war erfolgreich."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Wir versuchen Ihnen so schnell wie möglich zu antworten."

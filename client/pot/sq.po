@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -349,9 +349,6 @@ msgstr ""
 msgid "Message shown on top of the status page of the report"
 msgstr ""
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Kopjojeni dhe ngjiteni çelësin PGP këtu"
-
 msgid "Password strength:"
 msgstr "Fortësia e fjalëkalimit:"
 
@@ -626,12 +623,6 @@ msgstr "A jeni një Informator?"
 msgid "Blow the whistle"
 msgstr "Fryjini bilbilit"
 
-msgid "Your report was successful."
-msgstr "Parashtrimi juaj ishte i suksesshëm."
-
-msgid "Report"
-msgstr ""
-
 msgid "Before proceeding, please set a new password."
 msgstr ""
 
@@ -717,23 +708,11 @@ msgstr "Paaftësoni panelin e privatësisë së përshtatur"
 msgid "Enable the receipt hint"
 msgstr ""
 
-msgid "Landing page"
-msgstr "Faqja e Destinimit"
-
 msgid "Default questionnaire"
 msgstr ""
 
-msgid "Title of the submission page"
-msgstr "Titulli i faqes dorëzimit"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Shfaqeni kontekstin të renditur alfabetikisht"
-
-msgid "Title of the receipt page"
-msgstr "Titulli i faqes pranimit"
-
-msgid "Title of the status page of the report"
-msgstr "Titulli i faqes status dorëzimit"
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -871,6 +850,18 @@ msgstr "Emri"
 msgid "Last access"
 msgstr "Qasja e fundit"
 
+msgid "ID"
+msgstr "ID"
+
+msgid "State"
+msgstr "shtet"
+
+msgid "Connection"
+msgstr "lidhje"
+
+msgid "Whistleblower's last access"
+msgstr ""
+
 msgid "Alarm level"
 msgstr "niveli i alarmit"
 
@@ -919,6 +910,9 @@ msgstr "Pyetje për të kërkuar informatorë të mundshëm"
 msgid "Whistleblowing button"
 msgstr "Butoni i Informimit"
 
+msgid "Title of the submission page"
+msgstr "Titulli i faqes dorëzimit"
+
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -963,9 +957,6 @@ msgstr "Fshehur"
 
 msgid "Disabled"
 msgstr "Paaftësuar"
-
-msgid "State"
-msgstr "shtet"
 
 msgid "Enabled"
 msgstr "Mundësuar"
@@ -1404,9 +1395,6 @@ msgstr "Detajet e kyç PGP:"
 msgid "Fingerprint"
 msgstr "Gjurma"
 
-msgid "Remove the PGP key"
-msgstr "Lëvizeni çelësin PGP "
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Ngritur encryption, duke siguruar një çelës publik PGP"
 
@@ -1439,9 +1427,6 @@ msgstr ""
 msgid "Request date"
 msgstr "date kërkesa"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Report date"
 msgstr ""
 
@@ -1471,12 +1456,6 @@ msgstr ""
 
 msgid "Site:"
 msgstr ""
-
-msgid "Username:"
-msgstr "Emri i përdoruesit:"
-
-msgid "Password:"
-msgstr "Fjalëkalim:"
 
 msgid "Please select your account:"
 msgstr "Ju lutemi përzgjidhni llogarinë tuaj:"
@@ -1592,9 +1571,6 @@ msgid "Validation of email address change in progress."
 msgstr ""
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Set up email encryption by providing a PGP public key"
 msgstr ""
 
 msgid "Account recovery key"
@@ -1731,11 +1707,11 @@ msgstr "S'është ngarkuar asnjë skedar!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Lejo whistleblower për të shtuar të bashkëngjitni skedarë dorëzimit"
 
-msgid "Access expiration"
+msgid "Report"
 msgstr ""
 
-msgid "Connection"
-msgstr "lidhje"
+msgid "Access expiration"
+msgstr ""
 
 msgid "Never"
 msgstr "Kurrë"
@@ -1900,6 +1876,9 @@ msgstr "Ju po lidheni me shërbyesin pa qenë anonim, ndërkohë që ky shërbye
 
 msgid "Thank you!"
 msgstr "Ju faleminderit!"
+
+msgid "Your report was successful."
+msgstr "Parashtrimi juaj ishte i suksesshëm."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr ""

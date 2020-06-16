@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -349,9 +349,6 @@ msgstr ""
 msgid "Message shown on top of the status page of the report"
 msgstr "செய்தி சமர்ப்பிக்கும் நிலையை பக்கம் மேல் காண்பிக்கப்படும்"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "நகலெடுத்து இங்கே பிஜிபி பொது விசையை ஒட்டவும்"
-
 msgid "Password strength:"
 msgstr "கடவுச்சொல் வலிமை:"
 
@@ -626,12 +623,6 @@ msgstr "நீங்கள் ஒரு இரகசிய இருக்கி
 msgid "Blow the whistle"
 msgstr "விசில் ஊதி"
 
-msgid "Your report was successful."
-msgstr "உங்கள் சமர்ப்பிப்பு வெற்றியடைந்தது."
-
-msgid "Report"
-msgstr ""
-
 msgid "Before proceeding, please set a new password."
 msgstr "தொடருவதற்கு முன், புதிய கடவுச்சொல்லை அமைக்கவும்."
 
@@ -717,23 +708,11 @@ msgstr "தனியுரிமை குழு முடக்கு"
 msgid "Enable the receipt hint"
 msgstr ""
 
-msgid "Landing page"
-msgstr "இறங்கும் பக்கம்"
-
 msgid "Default questionnaire"
 msgstr "இயல்புநிலை கேள்வித்தாள்"
 
-msgid "Title of the submission page"
-msgstr "சமர்ப்பிப்பு பக்கம் தலைப்பு"
-
 msgid "Show contexts in alphabetical order"
 msgstr "அகரவரிசையில் சூழல்களில் காட்டு"
-
-msgid "Title of the receipt page"
-msgstr "ரசீது பக்கம் தலைப்பு"
-
-msgid "Title of the status page of the report"
-msgstr "செய்தி சமர்ப்பிக்கும் நிலையை பக்கம் மேல் காண்பிக்கப்படும்"
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -871,6 +850,18 @@ msgstr "பெயர்"
 msgid "Last access"
 msgstr "கடைசியாக அணுகியது"
 
+msgid "ID"
+msgstr ""
+
+msgid "State"
+msgstr "நிலை"
+
+msgid "Connection"
+msgstr "இணைப்பு"
+
+msgid "Whistleblower's last access"
+msgstr ""
+
 msgid "Alarm level"
 msgstr "அலார நிலை"
 
@@ -919,6 +910,9 @@ msgstr "கேள்வி சாத்தியம் இம்மாதிர�
 msgid "Whistleblowing button"
 msgstr "whistleblowing பொத்தானை"
 
+msgid "Title of the submission page"
+msgstr "சமர்ப்பிப்பு பக்கம் தலைப்பு"
+
 msgid "Enable disclaimer"
 msgstr "மறுதலிப்பை இயக்கு"
 
@@ -963,9 +957,6 @@ msgstr "மறைக்கப்பட்ட"
 
 msgid "Disabled"
 msgstr "முடக்கப்பட்டது"
-
-msgid "State"
-msgstr "நிலை"
 
 msgid "Enabled"
 msgstr "இயக்கப்பட்டது"
@@ -1404,9 +1395,6 @@ msgstr "பிஜிபி முக்கிய விவரம்:"
 msgid "Fingerprint"
 msgstr "கைரேகை"
 
-msgid "Remove the PGP key"
-msgstr "PGP சாவியை நீக்கவும்"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "ஒரு பிஜிபி பொது விசையை வழங்குவதன் மூலம் குறியாக்க அமைக்கவும்"
 
@@ -1439,9 +1427,6 @@ msgstr "பின்வரும் அம்சங்களுக்கு ந�
 msgid "Request date"
 msgstr "கோரிக்கை தேதி"
 
-msgid "ID"
-msgstr ""
-
 msgid "Report date"
 msgstr ""
 
@@ -1471,12 +1456,6 @@ msgstr ""
 
 msgid "Site:"
 msgstr "தள:"
-
-msgid "Username:"
-msgstr "பயனர்பெயர்:"
-
-msgid "Password:"
-msgstr "கடவுச்சொல்:"
 
 msgid "Please select your account:"
 msgstr "உங்கள் கணக்கு தேர்ந்தெடுக்கவும்:"
@@ -1593,9 +1572,6 @@ msgstr "மின்னஞ்சல் முகவரி மாற்றுவ�
 
 msgid "Please check your inbox for further instructions."
 msgstr "கூடுதல் வழிமுறைகளுக்கு உங்கள் இன்பாக்ஸை சோதனையிடு."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr ""
 
 msgid "Account recovery key"
 msgstr ""
@@ -1731,11 +1707,11 @@ msgstr "எந்த கோப்புகளை பதிவேற்றம�
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "தகவல் தெரிவிப்பவர் சமர்ப்பிப்பு இணைப்புகளை சேர்க்க அனுமதி"
 
+msgid "Report"
+msgstr ""
+
 msgid "Access expiration"
 msgstr "அணுகல் காலாவதி"
-
-msgid "Connection"
-msgstr "இணைப்பு"
 
 msgid "Never"
 msgstr "ஒருபோதும்"
@@ -1900,6 +1876,9 @@ msgstr "நீங்கள் தெரியாத இல்லாமல் ச
 
 msgid "Thank you!"
 msgstr "நன்றி!"
+
+msgid "Your report was successful."
+msgstr "உங்கள் சமர்ப்பிப்பு வெற்றியடைந்தது."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr ""

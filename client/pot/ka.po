@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -346,9 +346,6 @@ msgstr ""
 msgid "Message shown on top of the status page of the report"
 msgstr "შეტყობინება ნაჩვენები თავზე სტატუსი გვერდი წარდგინების"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "დააკოპირეთ და ჩასვით PGP საჯარო გასაღები აქ"
-
 msgid "Password strength:"
 msgstr "პაროლის სირთულე:"
 
@@ -623,12 +620,6 @@ msgstr "ხართ თუ მამხილებლის?"
 msgid "Blow the whistle"
 msgstr "აფეთქება ისთვის"
 
-msgid "Your report was successful."
-msgstr "შენი წარდგენა წარმატებული იყო."
-
-msgid "Report"
-msgstr "წარდგენა"
-
 msgid "Before proceeding, please set a new password."
 msgstr "გაგრძელებამდე, გთხოვთ შეცვალოთ თქვენი პაროლი."
 
@@ -714,23 +705,11 @@ msgstr "შეზღუდული შესაძლებლობები�
 msgid "Enable the receipt hint"
 msgstr ""
 
-msgid "Landing page"
-msgstr "სადესანტო გვერდი"
-
 msgid "Default questionnaire"
 msgstr ""
 
-msgid "Title of the submission page"
-msgstr "დასახელება წარდგენის გვერდი"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Show კონტექსტში ანბანის მიხედვით"
-
-msgid "Title of the receipt page"
-msgstr "დასახელება მიღებიდან გვერდი"
-
-msgid "Title of the status page of the report"
-msgstr "დასახელება წარდგენის სტატუსი გვერდი"
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -868,6 +847,18 @@ msgstr "სახელი"
 msgid "Last access"
 msgstr "ბოლო შესვლა"
 
+msgid "ID"
+msgstr ""
+
+msgid "State"
+msgstr "სახელმწიფო"
+
+msgid "Connection"
+msgstr "კავშირი"
+
+msgid "Whistleblower's last access"
+msgstr ""
+
 msgid "Alarm level"
 msgstr "განგაშის დონე"
 
@@ -916,6 +907,9 @@ msgstr "კითხვა შუამდგომლობას შესა�
 msgid "Whistleblowing button"
 msgstr "მხილება ღილაკს"
 
+msgid "Title of the submission page"
+msgstr "დასახელება წარდგენის გვერდი"
+
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -960,9 +954,6 @@ msgstr "ფარული"
 
 msgid "Disabled"
 msgstr "შეზღუდული შესაძლებლობების მქონე"
-
-msgid "State"
-msgstr "სახელმწიფო"
 
 msgid "Enabled"
 msgstr "ჩართულია"
@@ -1401,9 +1392,6 @@ msgstr "დეტალები PGP გასაღები:"
 msgid "Fingerprint"
 msgstr ""
 
-msgid "Remove the PGP key"
-msgstr "ამოღება PGP გასაღები"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "შეიქმნა დაშიფვრის უზრუნველყოფს PGP საჯარო გასაღები"
 
@@ -1436,9 +1424,6 @@ msgstr ""
 msgid "Request date"
 msgstr "მოთხოვნა თარიღი"
 
-msgid "ID"
-msgstr ""
-
 msgid "Report date"
 msgstr ""
 
@@ -1468,12 +1453,6 @@ msgstr ""
 
 msgid "Site:"
 msgstr ""
-
-msgid "Username:"
-msgstr "მომხმარებლის სახელი:"
-
-msgid "Password:"
-msgstr "პაროლი:"
 
 msgid "Please select your account:"
 msgstr "გთხოვთ, აირჩიოთ თქვენი ანგარიში:"
@@ -1589,9 +1568,6 @@ msgid "Validation of email address change in progress."
 msgstr ""
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Set up email encryption by providing a PGP public key"
 msgstr ""
 
 msgid "Account recovery key"
@@ -1728,11 +1704,11 @@ msgstr "არარის ფაილი აიტვირთა!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "ნება მამხილებელთა დამატება attachments წარდგენის"
 
+msgid "Report"
+msgstr "წარდგენა"
+
 msgid "Access expiration"
 msgstr ""
-
-msgid "Connection"
-msgstr "კავშირი"
 
 msgid "Never"
 msgstr "არასდროს"
@@ -1897,6 +1873,9 @@ msgstr "თქვენ დამაკავშირებელი სერ�
 
 msgid "Thank you!"
 msgstr "მადლობა!"
+
+msgid "Your report was successful."
+msgstr "შენი წარდგენა წარმატებული იყო."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr ""

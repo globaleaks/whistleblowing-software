@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -381,9 +381,6 @@ msgstr "Desencadeada pela pontuação:"
 msgid "Message shown on top of the status page of the report"
 msgstr "Mensagem exibida no início da página do status de envio"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Copie e cole a chave pública PGP aqui "
-
 msgid "Password strength:"
 msgstr "Segurança da senha:"
 
@@ -658,12 +655,6 @@ msgstr "Você é um denunciante?"
 msgid "Blow the whistle"
 msgstr "Denuncie"
 
-msgid "Your report was successful."
-msgstr "Submissão feita com sucesso."
-
-msgid "Report"
-msgstr "Relatório"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Antes de continuar, defina uma nova senha."
 
@@ -749,23 +740,11 @@ msgstr "Desativar o painel de privacidade"
 msgid "Enable the receipt hint"
 msgstr "Ativar a dica de recebimento"
 
-msgid "Landing page"
-msgstr "Página de Destino"
-
 msgid "Default questionnaire"
 msgstr "Questionário padrão"
 
-msgid "Title of the submission page"
-msgstr "Título da página de submissão"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Mostrar assuntos em ordem alfabética"
-
-msgid "Title of the receipt page"
-msgstr "Título da página do recibo"
-
-msgid "Title of the status page of the report"
-msgstr "Mensagem exibida no início da página do status de envio"
 
 msgid "Do not expose users' names"
 msgstr "Não exponha nomes' de usuários"
@@ -903,6 +882,18 @@ msgstr "Nome"
 msgid "Last access"
 msgstr "Último acesso"
 
+msgid "ID"
+msgstr "ID"
+
+msgid "State"
+msgstr "Estado"
+
+msgid "Connection"
+msgstr "Conexão"
+
+msgid "Whistleblower's last access"
+msgstr "WB Último Acesso"
+
 msgid "Alarm level"
 msgstr "Nível de alarme"
 
@@ -951,6 +942,9 @@ msgstr "Pergunta para solicitar possíveis denunciantes"
 msgid "Whistleblowing button"
 msgstr "Botão de Denúncia"
 
+msgid "Title of the submission page"
+msgstr "Título da página de submissão"
+
 msgid "Enable disclaimer"
 msgstr "Ativar aviso legal"
 
@@ -995,9 +989,6 @@ msgstr "Oculto"
 
 msgid "Disabled"
 msgstr "Desabilitado"
-
-msgid "State"
-msgstr "Estado"
 
 msgid "Enabled"
 msgstr "Habilitado"
@@ -1436,9 +1427,6 @@ msgstr "Detalhes da chave PGP:"
 msgid "Fingerprint"
 msgstr "Impressão digital"
 
-msgid "Remove the PGP key"
-msgstr "Remover a chave PGP"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Definir criptografia pelo fornecimento de uma chave pública PGP"
 
@@ -1471,9 +1459,6 @@ msgstr "O usuário tem acesso administrativo aos seguintes recursos:"
 msgid "Request date"
 msgstr "Data da solicitação"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Report date"
 msgstr "Data do relatório"
 
@@ -1503,12 +1488,6 @@ msgstr "O código é inválido ou expirou."
 
 msgid "Site:"
 msgstr "Site:"
-
-msgid "Username:"
-msgstr "Nome do Usuário:"
-
-msgid "Password:"
-msgstr "Senha:"
 
 msgid "Please select your account:"
 msgstr "Por favor, selecione sua conta:"
@@ -1625,9 +1604,6 @@ msgstr "Validation of email address change in progress."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Por favor, verifique sua caixa de entrada para mais instruções."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "Configure a criptografia de email fornecendo uma chave pública PGP"
 
 msgid "Account recovery key"
 msgstr "Chave de recuperação da conta"
@@ -1763,11 +1739,11 @@ msgstr "Nenhum arquivo foi enviado!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Permitir o delator adicionar anexos a submissão"
 
+msgid "Report"
+msgstr "Relatório"
+
 msgid "Access expiration"
 msgstr "Acesso expirado"
-
-msgid "Connection"
-msgstr "Conexão"
 
 msgid "Never"
 msgstr "Jamais"
@@ -1932,6 +1908,9 @@ msgstr "Você está se conectando a este dispositivo publicamente e este disposi
 
 msgid "Thank you!"
 msgstr "Obrigado!"
+
+msgid "Your report was successful."
+msgstr "Submissão feita com sucesso."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Nós tentaremos entrar em contato com você o mais breve possível."

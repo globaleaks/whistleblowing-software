@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -350,9 +350,6 @@ msgstr ""
 msgid "Message shown on top of the status page of the report"
 msgstr ""
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Copia e pega a chave pública PGP aquí"
-
 msgid "Password strength:"
 msgstr "Seguridade da contrasinal:"
 
@@ -627,12 +624,6 @@ msgstr "É vostede un denunciante? "
 msgid "Blow the whistle"
 msgstr "Denuncia"
 
-msgid "Your report was successful."
-msgstr ""
-
-msgid "Report"
-msgstr ""
-
 msgid "Before proceeding, please set a new password."
 msgstr "Antes de continuar, estableza un novo contrasinal."
 
@@ -718,23 +709,11 @@ msgstr "Desactivar o panel de privacidade"
 msgid "Enable the receipt hint"
 msgstr ""
 
-msgid "Landing page"
-msgstr "Páxina de destino"
-
 msgid "Default questionnaire"
 msgstr "Cuestionario predeterminado"
 
-msgid "Title of the submission page"
-msgstr "Título da páxina de envío"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Mostrar contextos por orde alfabética"
-
-msgid "Title of the receipt page"
-msgstr "Título da páxina de recepción"
-
-msgid "Title of the status page of the report"
-msgstr ""
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -872,6 +851,18 @@ msgstr "Nome"
 msgid "Last access"
 msgstr "Último acceso"
 
+msgid "ID"
+msgstr ""
+
+msgid "State"
+msgstr "Estado"
+
+msgid "Connection"
+msgstr "Conexión"
+
+msgid "Whistleblower's last access"
+msgstr ""
+
 msgid "Alarm level"
 msgstr "Nivel de alarma"
 
@@ -920,6 +911,9 @@ msgstr "Pregunta para solicitar posibles denuncias"
 msgid "Whistleblowing button"
 msgstr "Botón de denuncia"
 
+msgid "Title of the submission page"
+msgstr "Título da páxina de envío"
+
 msgid "Enable disclaimer"
 msgstr "Habilitar exención de responsabilidade"
 
@@ -964,9 +958,6 @@ msgstr "Oculto"
 
 msgid "Disabled"
 msgstr "Desactivado"
-
-msgid "State"
-msgstr "Estado"
 
 msgid "Enabled"
 msgstr "Activado"
@@ -1405,9 +1396,6 @@ msgstr "Detalles da clave PGP:"
 msgid "Fingerprint"
 msgstr "Impresión dixital"
 
-msgid "Remove the PGP key"
-msgstr "Elimine a chave PGP"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Configure o cifrado proporcionando unha clave pública PGP"
 
@@ -1440,9 +1428,6 @@ msgstr "O usuario ten acceso administrativo ás seguintes características:"
 msgid "Request date"
 msgstr "Data de solicitude"
 
-msgid "ID"
-msgstr ""
-
 msgid "Report date"
 msgstr ""
 
@@ -1472,12 +1457,6 @@ msgstr "O código non é válido ou caducou."
 
 msgid "Site:"
 msgstr "Sitio:"
-
-msgid "Username:"
-msgstr "Nome de usuario:"
-
-msgid "Password:"
-msgstr "Contrasinal:"
 
 msgid "Please select your account:"
 msgstr "Selecciona a túa conta:"
@@ -1594,9 +1573,6 @@ msgstr "Validación da modificación do enderezo de correo electrónico en progr
 
 msgid "Please check your inbox for further instructions."
 msgstr "Comproba a túa caixa de entrada para obter máis instrucións."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr ""
 
 msgid "Account recovery key"
 msgstr ""
@@ -1732,11 +1708,11 @@ msgstr "Non se cargaron ficheiros!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr ""
 
+msgid "Report"
+msgstr ""
+
 msgid "Access expiration"
 msgstr "Caducidade do acceso"
-
-msgid "Connection"
-msgstr "Conexión"
 
 msgid "Never"
 msgstr "Nunca"
@@ -1901,6 +1877,9 @@ msgstr "Estás conectado ao servidor sen anonimato e este servidor admite\nsó e
 
 msgid "Thank you!"
 msgstr "Grazas!"
+
+msgid "Your report was successful."
+msgstr ""
 
 msgid "We will try to get back to you as soon as possible."
 msgstr ""

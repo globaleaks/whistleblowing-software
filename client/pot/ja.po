@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -351,9 +351,6 @@ msgstr "スコアでトリガーされました:"
 msgid "Message shown on top of the status page of the report"
 msgstr "報告の状況ページの上部に表示されるメッセージ"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "PGP公開鍵をここにコピーアンドペーストしてください"
-
 msgid "Password strength:"
 msgstr "パスワードの強さ:"
 
@@ -628,12 +625,6 @@ msgstr "あなたは内部告発者ですか?"
 msgid "Blow the whistle"
 msgstr "内部告発を行う"
 
-msgid "Your report was successful."
-msgstr "あなたの報告は成功しました。"
-
-msgid "Report"
-msgstr "報告"
-
 msgid "Before proceeding, please set a new password."
 msgstr "次に進む前に、新しいパスワードを設定してください。"
 
@@ -719,23 +710,11 @@ msgstr "プライバシー・バッジを無効にする"
 msgid "Enable the receipt hint"
 msgstr "受領番号のヒントを有効にする"
 
-msgid "Landing page"
-msgstr "到達ページ"
-
 msgid "Default questionnaire"
 msgstr "デフォルトのアンケート"
 
-msgid "Title of the submission page"
-msgstr "提出ページのタイトル"
-
 msgid "Show contexts in alphabetical order"
 msgstr "コンテキストをアルファベット順に表示"
-
-msgid "Title of the receipt page"
-msgstr "受領ページのタイトル"
-
-msgid "Title of the status page of the report"
-msgstr "報告状況ページのタイトル"
 
 msgid "Do not expose users' names"
 msgstr "ユーザーの名前を公開しない"
@@ -873,6 +852,18 @@ msgstr "名前"
 msgid "Last access"
 msgstr "最終アクセス"
 
+msgid "ID"
+msgstr "ID"
+
+msgid "State"
+msgstr "都道府県州"
+
+msgid "Connection"
+msgstr "接続"
+
+msgid "Whistleblower's last access"
+msgstr "WBの最終アクセス"
+
 msgid "Alarm level"
 msgstr "警告レベル"
 
@@ -921,6 +912,9 @@ msgstr "内部告発の質問"
 msgid "Whistleblowing button"
 msgstr "内部告発ボタン"
 
+msgid "Title of the submission page"
+msgstr "提出ページのタイトル"
+
 msgid "Enable disclaimer"
 msgstr "免責事項を有効にする"
 
@@ -965,9 +959,6 @@ msgstr "非表示"
 
 msgid "Disabled"
 msgstr "無効"
-
-msgid "State"
-msgstr "都道府県州"
 
 msgid "Enabled"
 msgstr "有効"
@@ -1406,9 +1397,6 @@ msgstr "PGP鍵の詳細:"
 msgid "Fingerprint"
 msgstr "フィンガープリント"
 
-msgid "Remove the PGP key"
-msgstr "PGP鍵を削除"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "PGP公開鍵を提供して暗号化を設定"
 
@@ -1441,9 +1429,6 @@ msgstr "ユーザーは、次の機能への管理アクセス権があります
 msgid "Request date"
 msgstr "リクエスト日"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Report date"
 msgstr "報告日"
 
@@ -1473,12 +1458,6 @@ msgstr "コードが正しくないか、有効期限切れです。"
 
 msgid "Site:"
 msgstr "サイト:"
-
-msgid "Username:"
-msgstr "ユーザー名:"
-
-msgid "Password:"
-msgstr "パスワード："
 
 msgid "Please select your account:"
 msgstr "あなたのアカウントを選択してください:"
@@ -1595,9 +1574,6 @@ msgstr "メールアドレス変更の検証を処理しています。"
 
 msgid "Please check your inbox for further instructions."
 msgstr "詳しい手順については、受信トレイを確認してください。"
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "PGP公開鍵を入力して、メールの暗号化を設定します"
 
 msgid "Account recovery key"
 msgstr "アカウント回復鍵"
@@ -1733,11 +1709,11 @@ msgstr "アップロードされたファイルはありません!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "その内部告発者が、報告に添付ファイルを追加することを許可する"
 
+msgid "Report"
+msgstr "報告"
+
 msgid "Access expiration"
 msgstr "アクセスの有効期限"
-
-msgid "Connection"
-msgstr "接続"
 
 msgid "Never"
 msgstr "しない"
@@ -1902,6 +1878,9 @@ msgstr "あなたは匿名性が無いままサーバーに接続しています
 
 msgid "Thank you!"
 msgstr "ありがとうございます!"
+
+msgid "Your report was successful."
+msgstr "あなたの報告は成功しました。"
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "できるだけ早くあなたが戻ってこられますように。"

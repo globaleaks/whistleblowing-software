@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -361,9 +361,6 @@ msgstr ""
 msgid "Message shown on top of the status page of the report"
 msgstr ""
 
-msgid "Copy and paste the PGP public key here"
-msgstr "העתק והדבק את המפתח PGP הציבורי כאן"
-
 msgid "Password strength:"
 msgstr "חוזק סיסמה:"
 
@@ -638,12 +635,6 @@ msgstr "האם אתה חושף שחיתות?"
 msgid "Blow the whistle"
 msgstr "חשוף מושחת"
 
-msgid "Your report was successful."
-msgstr "הדוח שלך היה מוצלח."
-
-msgid "Report"
-msgstr "דוח"
-
 msgid "Before proceeding, please set a new password."
 msgstr "לפני שממשיכים, אנא קבע/י סיסמה חדשה"
 
@@ -729,23 +720,11 @@ msgstr "בטל תג הפרטיות"
 msgid "Enable the receipt hint"
 msgstr ""
 
-msgid "Landing page"
-msgstr "דף נחיתה"
-
 msgid "Default questionnaire"
 msgstr ""
 
-msgid "Title of the submission page"
-msgstr "כותרת דף ההגשה"
-
 msgid "Show contexts in alphabetical order"
 msgstr "הראה הקשרים בסדר אלפאביתי"
-
-msgid "Title of the receipt page"
-msgstr "כותרת של דף הקבלה"
-
-msgid "Title of the status page of the report"
-msgstr ""
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -883,6 +862,18 @@ msgstr "שם"
 msgid "Last access"
 msgstr "גישה אחרונה"
 
+msgid "ID"
+msgstr "מזהה"
+
+msgid "State"
+msgstr "מחוז"
+
+msgid "Connection"
+msgstr "חיבור"
+
+msgid "Whistleblower's last access"
+msgstr ""
+
 msgid "Alarm level"
 msgstr "רמה אזעקה"
 
@@ -931,6 +922,9 @@ msgstr "שאלות על הלשנה"
 msgid "Whistleblowing button"
 msgstr "כפתור חשיפת שחיתות"
 
+msgid "Title of the submission page"
+msgstr "כותרת דף ההגשה"
+
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -975,9 +969,6 @@ msgstr "מוסתר"
 
 msgid "Disabled"
 msgstr "מושבת"
-
-msgid "State"
-msgstr "מחוז"
 
 msgid "Enabled"
 msgstr "מאופשר"
@@ -1416,9 +1407,6 @@ msgstr "פרטים של מפתח PGP:"
 msgid "Fingerprint"
 msgstr "טביעת אצבע"
 
-msgid "Remove the PGP key"
-msgstr "הסר את מפתח PGP"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "הגדרת הצפנה על ידי מתן מפתח ציבורי PGP"
 
@@ -1451,9 +1439,6 @@ msgstr ""
 msgid "Request date"
 msgstr "תאריך בקשה"
 
-msgid "ID"
-msgstr "מזהה"
-
 msgid "Report date"
 msgstr "תאריך דוח"
 
@@ -1483,12 +1468,6 @@ msgstr ""
 
 msgid "Site:"
 msgstr "אתר:"
-
-msgid "Username:"
-msgstr "שם משתמש:"
-
-msgid "Password:"
-msgstr "סיסמה:"
 
 msgid "Please select your account:"
 msgstr "אנא בחר את חשבונך"
@@ -1604,9 +1583,6 @@ msgid "Validation of email address change in progress."
 msgstr ""
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Set up email encryption by providing a PGP public key"
 msgstr ""
 
 msgid "Account recovery key"
@@ -1743,11 +1719,11 @@ msgstr "לא הועלו קבצים!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr ""
 
+msgid "Report"
+msgstr "דוח"
+
 msgid "Access expiration"
 msgstr "תפוגת גישה"
-
-msgid "Connection"
-msgstr "חיבור"
 
 msgid "Never"
 msgstr "לעולם לא"
@@ -1912,6 +1888,9 @@ msgstr "התחברת לצומת ללא אנונימיות והצומת הזה ת
 
 msgid "Thank you!"
 msgstr "תודה לך!"
+
+msgid "Your report was successful."
+msgstr "הדוח שלך היה מוצלח."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr ""

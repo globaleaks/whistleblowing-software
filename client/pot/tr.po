@@ -27,7 +27,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -369,9 +369,6 @@ msgstr "Skorla tetikle:"
 msgid "Message shown on top of the status page of the report"
 msgstr "Alıcıların ayrıntılarını raporun durum sayfasında göster"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "PGP açık anahtarınızı kopyalayıp buraya yapıştırın"
-
 msgid "Password strength:"
 msgstr "Parola kuvveti:"
 
@@ -646,12 +643,6 @@ msgstr "İhbarcı mısınız?"
 msgid "Blow the whistle"
 msgstr "İhbar et"
 
-msgid "Your report was successful."
-msgstr "Raporunuz başarıyla tamamlandı."
-
-msgid "Report"
-msgstr "Rapor"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Devam etmeden önce, lütfen yeni bir parola ayarlayın."
 
@@ -737,23 +728,11 @@ msgstr "Gizlilik rozetini devre dışı bırak"
 msgid "Enable the receipt hint"
 msgstr "Alındı ipucunu etkinleştir"
 
-msgid "Landing page"
-msgstr "Karşılama sayfası"
-
 msgid "Default questionnaire"
 msgstr "Varsayılan anket"
 
-msgid "Title of the submission page"
-msgstr "Gönderim sayfası başlığı"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Kategorileri alfabetik sıralı göster"
-
-msgid "Title of the receipt page"
-msgstr "Alıcı sayfası başlığı"
-
-msgid "Title of the status page of the report"
-msgstr "Rapor durum sayfasının başlığı"
 
 msgid "Do not expose users' names"
 msgstr "Kullanıcı isimlerini teşhir etme"
@@ -891,6 +870,18 @@ msgstr "Ad"
 msgid "Last access"
 msgstr "Son erişim"
 
+msgid "ID"
+msgstr "ID"
+
+msgid "State"
+msgstr "Eyalet"
+
+msgid "Connection"
+msgstr "Bağlantı"
+
+msgid "Whistleblower's last access"
+msgstr ""
+
 msgid "Alarm level"
 msgstr "Alarm seviyesi"
 
@@ -939,6 +930,9 @@ msgstr "Daha fazla bilgi alabilmek için muhtemel ihbarcıları sorgulayın."
 msgid "Whistleblowing button"
 msgstr "İhbar Butonu"
 
+msgid "Title of the submission page"
+msgstr "Gönderim sayfası başlığı"
+
 msgid "Enable disclaimer"
 msgstr "Feragati etkinleştir"
 
@@ -983,9 +977,6 @@ msgstr "Gizli"
 
 msgid "Disabled"
 msgstr "Devre Dışı"
-
-msgid "State"
-msgstr "Eyalet"
 
 msgid "Enabled"
 msgstr "Etkin"
@@ -1424,9 +1415,6 @@ msgstr "PGP anahtarı detayları:"
 msgid "Fingerprint"
 msgstr "Parmak izi"
 
-msgid "Remove the PGP key"
-msgstr "PGP anahtarını kaldır"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Bir PGP açık anahtarı belirterek şifrelemeyi kurun"
 
@@ -1459,9 +1447,6 @@ msgstr "Kullanıcının aşağıdaki özelliklere yönetimsel erişimi var:"
 msgid "Request date"
 msgstr "Talep tarihi"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Report date"
 msgstr "Rapor tarihi"
 
@@ -1491,12 +1476,6 @@ msgstr "Kod geçersiz veya süresi dolmuş."
 
 msgid "Site:"
 msgstr "Site:"
-
-msgid "Username:"
-msgstr "Kullanıcı Adı:"
-
-msgid "Password:"
-msgstr "Parola:"
 
 msgid "Please select your account:"
 msgstr "Lütfen hesabınızı seçin:"
@@ -1613,9 +1592,6 @@ msgstr "E-posta adresi değişikliği doğrulaması devam ediyor. "
 
 msgid "Please check your inbox for further instructions."
 msgstr "Daha fazla yönerge için lütfen gelen kutunuzu kontrol edin."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "Bir PGP açık anahtarı belirterek e-posta şifrelemeyi kurun"
 
 msgid "Account recovery key"
 msgstr "Hesap kurtarma anahtarı"
@@ -1751,11 +1727,11 @@ msgstr "Hiçbir dosya yüklenmedi!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "İhbarcının rapora eklentiler eklemesine izin ver"
 
+msgid "Report"
+msgstr "Rapor"
+
 msgid "Access expiration"
 msgstr "Erişim zaman aşımı"
-
-msgid "Connection"
-msgstr "Bağlantı"
 
 msgid "Never"
 msgstr "Asla"
@@ -1920,6 +1896,9 @@ msgstr "Sisteme anonim olmadan bağlanıyorsunuz ve bu sistem sadece anonim gön
 
 msgid "Thank you!"
 msgstr "Teşekkürler!"
+
+msgid "Your report was successful."
+msgstr "Raporunuz başarıyla tamamlandı."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "En yakın zamanda size geri dönmeye çalışacağız."

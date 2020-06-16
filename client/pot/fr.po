@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -381,9 +381,6 @@ msgstr "Déclenché par un pointage : "
 msgid "Message shown on top of the status page of the report"
 msgstr "Message affiché en haut de la page d’état du signalement"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Copiez et collez la clé publique PGP ici"
-
 msgid "Password strength:"
 msgstr "Robustesse du mot de passe  :"
 
@@ -658,12 +655,6 @@ msgstr "Êtes-vous un lanceur d’alerte ?"
 msgid "Blow the whistle"
 msgstr "Lancer une alerte"
 
-msgid "Your report was successful."
-msgstr "Votre signalement a bien été effectué."
-
-msgid "Report"
-msgstr "Signalement"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Avant de poursuivre, veuillez définir un nouveau mot de passe."
 
@@ -749,23 +740,11 @@ msgstr "Désactiver le volet de confidentialité"
 msgid "Enable the receipt hint"
 msgstr "Désactiver l’indice de reçu"
 
-msgid "Landing page"
-msgstr "Page de destination"
-
 msgid "Default questionnaire"
 msgstr "Questionnaire par défaut"
 
-msgid "Title of the submission page"
-msgstr "Titre de la page d’envoi"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Afficher les contextes par ordre alphabétique"
-
-msgid "Title of the receipt page"
-msgstr "Titre de la page du reçu"
-
-msgid "Title of the status page of the report"
-msgstr "Titre de la page d’état du signalement"
 
 msgid "Do not expose users' names"
 msgstr "Ne pas exposer les noms des utilisateurs"
@@ -903,6 +882,18 @@ msgstr "Nom"
 msgid "Last access"
 msgstr "Dernier accès"
 
+msgid "ID"
+msgstr "ID"
+
+msgid "State"
+msgstr "État"
+
+msgid "Connection"
+msgstr "Connexion"
+
+msgid "Whistleblower's last access"
+msgstr "Dernière connexion du lanceur d'alerte"
+
 msgid "Alarm level"
 msgstr "Niveau d’alarme"
 
@@ -951,6 +942,9 @@ msgstr "Question pour attirer les lanceurs d’alerte potentiels"
 msgid "Whistleblowing button"
 msgstr "Bouton de dénonciation"
 
+msgid "Title of the submission page"
+msgstr "Titre de la page d’envoi"
+
 msgid "Enable disclaimer"
 msgstr "Activer un avis"
 
@@ -995,9 +989,6 @@ msgstr "Caché"
 
 msgid "Disabled"
 msgstr "Désactivé"
-
-msgid "State"
-msgstr "État"
 
 msgid "Enabled"
 msgstr "Activé"
@@ -1436,9 +1427,6 @@ msgstr "Détails de la clé PGP :"
 msgid "Fingerprint"
 msgstr "Empreinte"
 
-msgid "Remove the PGP key"
-msgstr "Supprimer la clé PGP"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Configurer le chiffrement en fournissant une clé publique PGP"
 
@@ -1471,9 +1459,6 @@ msgstr "L’utilisateur a un accès d’administration aux fonctions suivantes 
 msgid "Request date"
 msgstr "Date de la demande"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Report date"
 msgstr "Date du signalement"
 
@@ -1503,12 +1488,6 @@ msgstr "Le côté est invalide ou expiré"
 
 msgid "Site:"
 msgstr "Site :"
-
-msgid "Username:"
-msgstr "Nom d’utilisateur :"
-
-msgid "Password:"
-msgstr "Mot de passe :"
 
 msgid "Please select your account:"
 msgstr "Veuillez sélectionner votre compte :"
@@ -1625,9 +1604,6 @@ msgstr "La validation du changement d’adresse courriel est en cours."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Veuillez vérifier votre boîte de réception pour de plus amples instructions."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "Configurez le chiffrement des courriels en fournissant une clé publique PGP"
 
 msgid "Account recovery key"
 msgstr "Clé de récupération du compte"
@@ -1763,11 +1739,11 @@ msgstr "Aucun fichier n’a été téléversé."
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Permettre au lanceur d’alerte d’ajouter des fichiers joints au signalement"
 
+msgid "Report"
+msgstr "Signalement"
+
 msgid "Access expiration"
 msgstr "Expiration de l’accès"
-
-msgid "Connection"
-msgstr "Connexion"
 
 msgid "Never"
 msgstr "Jamais"
@@ -1932,6 +1908,9 @@ msgstr "Vous êtes connecté à ce serveur sans anonymat, mais il ne prend en ch
 
 msgid "Thank you!"
 msgstr "Merci."
+
+msgid "Your report was successful."
+msgstr "Votre signalement a bien été effectué."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Nous essaierons de vous contacter dès que possible."

@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -351,9 +351,6 @@ msgstr ""
 msgid "Message shown on top of the status page of the report"
 msgstr "Təqdimatın status səhifəsinin yuxarısında göstərilən mesaj"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "PGP açıq açarını bura kopyalayın və yapışdırın."
-
 msgid "Password strength:"
 msgstr "Şifrənin gücü:"
 
@@ -628,12 +625,6 @@ msgstr "Siz informasiya ötürənsiniz?"
 msgid "Blow the whistle"
 msgstr "Məlumatı ötür"
 
-msgid "Your report was successful."
-msgstr "Sizin təqdimatınız uğurlu oldu."
-
-msgid "Report"
-msgstr "Təqdim"
-
 msgid "Before proceeding, please set a new password."
 msgstr ""
 
@@ -719,23 +710,11 @@ msgstr "Məxfilik panelini ləğv et"
 msgid "Enable the receipt hint"
 msgstr ""
 
-msgid "Landing page"
-msgstr "Daxil olma səhifəsi"
-
 msgid "Default questionnaire"
 msgstr ""
 
-msgid "Title of the submission page"
-msgstr "Təqdimat səhifəsinin adı"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Konteksti əlifba ardıcıllığı ilə göstər"
-
-msgid "Title of the receipt page"
-msgstr "Qəbz səhifəsinin adı"
-
-msgid "Title of the status page of the report"
-msgstr ""
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -873,6 +852,18 @@ msgstr "Ad"
 msgid "Last access"
 msgstr "Sonuncu giriş "
 
+msgid "ID"
+msgstr "İD"
+
+msgid "State"
+msgstr "Rayon"
+
+msgid "Connection"
+msgstr "Bağlantı"
+
+msgid "Whistleblower's last access"
+msgstr ""
+
 msgid "Alarm level"
 msgstr "Siqnal səviyyəsi"
 
@@ -921,6 +912,9 @@ msgstr "Mümkün olan informasiya ötürənlərə sual vermək"
 msgid "Whistleblowing button"
 msgstr "İnformasiya ötürmə düyməsi "
 
+msgid "Title of the submission page"
+msgstr "Təqdimat səhifəsinin adı"
+
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -965,9 +959,6 @@ msgstr "Gizli"
 
 msgid "Disabled"
 msgstr "Sönlüdür"
-
-msgid "State"
-msgstr "Rayon"
 
 msgid "Enabled"
 msgstr "Aktivdir"
@@ -1406,9 +1397,6 @@ msgstr "PGP açarının detalları"
 msgid "Fingerprint"
 msgstr "Barmaq izi"
 
-msgid "Remove the PGP key"
-msgstr "PGP açarını sil"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Bir PGP ictimai açarı istifadə edərək şifrələmə yaradın"
 
@@ -1441,9 +1429,6 @@ msgstr ""
 msgid "Request date"
 msgstr "Tələb olunan tarix"
 
-msgid "ID"
-msgstr "İD"
-
 msgid "Report date"
 msgstr ""
 
@@ -1473,12 +1458,6 @@ msgstr "Açar şifrə etibarsızdır və ya təqdimat müddəti başa çatıb."
 
 msgid "Site:"
 msgstr ""
-
-msgid "Username:"
-msgstr "İstifadəçi adı:"
-
-msgid "Password:"
-msgstr "Şifrə:"
 
 msgid "Please select your account:"
 msgstr "Xahiş edirik  hesabınızı seçəsiniz. "
@@ -1594,9 +1573,6 @@ msgid "Validation of email address change in progress."
 msgstr ""
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Set up email encryption by providing a PGP public key"
 msgstr ""
 
 msgid "Account recovery key"
@@ -1733,11 +1709,11 @@ msgstr "Fayl yüklənməyib!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "İnformasiya ötürənə təsdiqetməyə əlavələr etməsinə icazə verin"
 
+msgid "Report"
+msgstr "Təqdim"
+
 msgid "Access expiration"
 msgstr "Girişin sona çatması"
-
-msgid "Connection"
-msgstr "Bağlantı"
 
 msgid "Never"
 msgstr "Heç vaxt"
@@ -1902,6 +1878,9 @@ msgstr "Siz serverə məxfiliyiniz qorunmadan qoşulursunuz və bu server yalnı
 
 msgid "Thank you!"
 msgstr "Təşəkkürlər!"
+
+msgid "Your report was successful."
+msgstr "Sizin təqdimatınız uğurlu oldu."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Qısa zamanda Sizinlə əlaqə saxlamağa çalışacağıq"

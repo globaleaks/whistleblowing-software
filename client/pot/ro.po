@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -361,9 +361,6 @@ msgstr "Condiționat de scor"
 msgid "Message shown on top of the status page of the report"
 msgstr "Mesajul afișat în partea de sus a paginii ce conține statusul sesizării"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Copiază și introdu aici cheia publică PGP"
-
 msgid "Password strength:"
 msgstr "Nivelul de siguranță al parolei:"
 
@@ -638,12 +635,6 @@ msgstr "Ești avertizor de integritate?"
 msgid "Blow the whistle"
 msgstr "Trimite o avertizare"
 
-msgid "Your report was successful."
-msgstr "Ai trimis sesizarea cu succes."
-
-msgid "Report"
-msgstr "Sesizare"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Înainte de a începe, te rugăm să îți setezi o nouă parolă."
 
@@ -729,23 +720,11 @@ msgstr "Dezactivează panoul cu setări de confidențialitate"
 msgid "Enable the receipt hint"
 msgstr "Activează indiciul pentru codul de înregistrare"
 
-msgid "Landing page"
-msgstr "Pagina de start"
-
 msgid "Default questionnaire"
 msgstr "Chestionar standard"
 
-msgid "Title of the submission page"
-msgstr "Titlul paginii pentru sesizări"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Afișează contextele în ordine alfabetică"
-
-msgid "Title of the receipt page"
-msgstr "Titlul paginii de primire"
-
-msgid "Title of the status page of the report"
-msgstr "Titlul paginii ce conține statusul sesizării"
 
 msgid "Do not expose users' names"
 msgstr "Nu devoala numele utilizatorilor"
@@ -883,6 +862,18 @@ msgstr "Prenume"
 msgid "Last access"
 msgstr "Ultima accesare"
 
+msgid "ID"
+msgstr "ID"
+
+msgid "State"
+msgstr "Status"
+
+msgid "Connection"
+msgstr "Conexiune"
+
+msgid "Whistleblower's last access"
+msgstr "WB Ultima accesare"
+
 msgid "Alarm level"
 msgstr "Nivelul de alarmă"
 
@@ -931,6 +922,9 @@ msgstr "Întrebarea prin care soliciți posibile avertizări"
 msgid "Whistleblowing button"
 msgstr "Butonul pentru avertizarea de integritate"
 
+msgid "Title of the submission page"
+msgstr "Titlul paginii pentru sesizări"
+
 msgid "Enable disclaimer"
 msgstr "Activează disclaimerul"
 
@@ -975,9 +969,6 @@ msgstr "Ascuns"
 
 msgid "Disabled"
 msgstr "Dezactivat"
-
-msgid "State"
-msgstr "Status"
 
 msgid "Enabled"
 msgstr "Activat"
@@ -1416,9 +1407,6 @@ msgstr "Detalii ale cheii PGP:"
 msgid "Fingerprint"
 msgstr "Amprentă"
 
-msgid "Remove the PGP key"
-msgstr "Îndepărtează cheia PGP"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Configurează criptarea furnizând o cheie PGP publică"
 
@@ -1451,9 +1439,6 @@ msgstr "Utilizatorul are acces de administrator pentru următoarele setări:"
 msgid "Request date"
 msgstr "Data solicitării"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Report date"
 msgstr "Data sesizării"
 
@@ -1483,12 +1468,6 @@ msgstr "Codul este fie invalid, fie a expirat."
 
 msgid "Site:"
 msgstr "Website:"
-
-msgid "Username:"
-msgstr "Utilizator:"
-
-msgid "Password:"
-msgstr "Parola:"
 
 msgid "Please select your account:"
 msgstr "Te rugăm să îți selectezi contul:"
@@ -1605,9 +1584,6 @@ msgstr "Validarea schimbării emailului este în desfășurare."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Te rugăm să îți verifici email-ul pentru instrucțiuni suplimentare."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "Configurează criptarea email-ului prin furnizarea unei chei publice PGP"
 
 msgid "Account recovery key"
 msgstr "Cheia pentru recuperarea contului"
@@ -1743,11 +1719,11 @@ msgstr "Niciun fișier nu a fost încărcat!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Permite avertizorului să adauge atașamente sesizării"
 
+msgid "Report"
+msgstr "Sesizare"
+
 msgid "Access expiration"
 msgstr "Expirarea accesului"
-
-msgid "Connection"
-msgstr "Conexiune"
 
 msgid "Never"
 msgstr "Niciodată"
@@ -1912,6 +1888,9 @@ msgstr "Te conectezi la server fără anonimat iar acest server permite doar ses
 
 msgid "Thank you!"
 msgstr "Mulțumim!"
+
+msgid "Your report was successful."
+msgstr "Ai trimis sesizarea cu succes."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Vom încerca să te contactăm cât de curând posibil."

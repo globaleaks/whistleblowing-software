@@ -43,7 +43,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -385,9 +385,6 @@ msgstr "Geïnitieerd door waardering:"
 msgid "Message shown on top of the status page of the report"
 msgstr "Melding die getoond wordt bovenaan de statuspagina van de inzending"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Kopieer en plak hier de publieke PGP-sleutel"
-
 msgid "Password strength:"
 msgstr "Wachtwoord sterkte:"
 
@@ -662,12 +659,6 @@ msgstr "Bent u een klokkenluider?"
 msgid "Blow the whistle"
 msgstr "Luid de klok"
 
-msgid "Your report was successful."
-msgstr "Je inzending was succesvol."
-
-msgid "Report"
-msgstr "Inzending"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Voor je verdergaat, stel alsjeblieft een nieuw wachtwoord in."
 
@@ -753,23 +744,11 @@ msgstr "Privacy-paneel uitschakelen"
 msgid "Enable the receipt hint"
 msgstr "Ontvangerhint inschakelen"
 
-msgid "Landing page"
-msgstr "Landingspagina"
-
 msgid "Default questionnaire"
 msgstr "Standaard vragenformulier"
 
-msgid "Title of the submission page"
-msgstr "Titel van de inzending-pagina"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Toon contexten in alfabetische volgorde"
-
-msgid "Title of the receipt page"
-msgstr "Titel van de ontvanger-pagina"
-
-msgid "Title of the status page of the report"
-msgstr "Titel van de inzending status-pagina"
 
 msgid "Do not expose users' names"
 msgstr "Gebruikersnamen niet prijsgeven"
@@ -907,6 +886,18 @@ msgstr "Naam"
 msgid "Last access"
 msgstr "Laatste toegang"
 
+msgid "ID"
+msgstr "ID"
+
+msgid "State"
+msgstr "Provincie"
+
+msgid "Connection"
+msgstr "Verbinding"
+
+msgid "Whistleblower's last access"
+msgstr "Laatste toegang klokkenluider."
+
 msgid "Alarm level"
 msgstr "Alarmniveau"
 
@@ -955,6 +946,9 @@ msgstr "Vraag om potentiële klokkenluiders aan te spreken"
 msgid "Whistleblowing button"
 msgstr "Klokkenluid-knop"
 
+msgid "Title of the submission page"
+msgstr "Titel van de inzending-pagina"
+
 msgid "Enable disclaimer"
 msgstr "Disclaimer inschakelen"
 
@@ -999,9 +993,6 @@ msgstr "Verborgen"
 
 msgid "Disabled"
 msgstr "Uitgeschakeld"
-
-msgid "State"
-msgstr "Provincie"
 
 msgid "Enabled"
 msgstr "Ingeschakeld"
@@ -1440,9 +1431,6 @@ msgstr "Details van de PGP-sleutel:"
 msgid "Fingerprint"
 msgstr "Vingerafdruk"
 
-msgid "Remove the PGP key"
-msgstr "Verwijder de PGP-sleutel"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Versleuteling instellen met een PGP-publieke sleutel"
 
@@ -1475,9 +1463,6 @@ msgstr "Gebruiker heeft administratortoegang tot de volgende functies:"
 msgid "Request date"
 msgstr "Aanvraagdatum"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Report date"
 msgstr "Datum van de inzending"
 
@@ -1507,12 +1492,6 @@ msgstr "De code is ofwel ongeldig of verlopen."
 
 msgid "Site:"
 msgstr "Weblocatie:"
-
-msgid "Username:"
-msgstr "Gebruikersnaam:"
-
-msgid "Password:"
-msgstr "Wachtwoord:"
 
 msgid "Please select your account:"
 msgstr "Selecteer je account:"
@@ -1629,9 +1608,6 @@ msgstr "Validatie van e-mail adres verandering wordt uitgevoerd."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Kijk in je e-mail postvak-in voor verdere instructies."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "Versleuteling instellen met een PGP-publieke sleutel"
 
 msgid "Account recovery key"
 msgstr "Herstelcode voor je account"
@@ -1767,11 +1743,11 @@ msgstr "Er is geen bestand geüpload!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "De klokkenluider toestaan bestanden toe te voegen aan een rapport"
 
+msgid "Report"
+msgstr "Inzending"
+
 msgid "Access expiration"
 msgstr "Toegang vervaltijd"
-
-msgid "Connection"
-msgstr "Verbinding"
 
 msgid "Never"
 msgstr "Nooit"
@@ -1936,6 +1912,9 @@ msgstr "U bent een niet-anonieme verbinding tot stand aan het brengen en deze we
 
 msgid "Thank you!"
 msgstr "Bedankt!"
+
+msgid "Your report was successful."
+msgstr "Je inzending was succesvol."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "We zullen ons best doen zo snel als mogelijk op je te reageren."

@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -356,9 +356,6 @@ msgstr "Được kích hoạt bởi điểm số"
 msgid "Message shown on top of the status page of the report"
 msgstr "Tin nhắn hiển thị trên đầu trang trạng thái của báo cáo"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Sao chép và dán PGP khóa công khai ở đây"
-
 msgid "Password strength:"
 msgstr "Mật khẩu mạnh:"
 
@@ -633,12 +630,6 @@ msgstr "Bạn có phải là người tố giác?"
 msgid "Blow the whistle"
 msgstr "Tố giác"
 
-msgid "Your report was successful."
-msgstr "Báo cáo của bạn đã thành công."
-
-msgid "Report"
-msgstr "Báo cáo"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Trước khi tiếp tục, hãy cài mật khẩu mới"
 
@@ -724,23 +715,11 @@ msgstr "Vô hiệu hóa bảng điều khiển riêng tư"
 msgid "Enable the receipt hint"
 msgstr "Cho phép nhận gợi ý"
 
-msgid "Landing page"
-msgstr "Trang đích"
-
 msgid "Default questionnaire"
 msgstr "Bảng câu hỏi mặc định"
 
-msgid "Title of the submission page"
-msgstr "Tiêu đề của trang nộp "
-
 msgid "Show contexts in alphabetical order"
 msgstr "Hiện bối cảnh theo thứ tự ABC"
-
-msgid "Title of the receipt page"
-msgstr "Tiêu đề của trang biên nhận"
-
-msgid "Title of the status page of the report"
-msgstr "Tin nhắn hiển thị trên đầu trang trạng thái của các báo cáo."
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -878,6 +857,18 @@ msgstr "Tên"
 msgid "Last access"
 msgstr "Lần truy cập cuối"
 
+msgid "ID"
+msgstr "Số"
+
+msgid "State"
+msgstr "Tình trạng"
+
+msgid "Connection"
+msgstr "liên quan"
+
+msgid "Whistleblower's last access"
+msgstr "Lần truy cập WB cuối cùng"
+
 msgid "Alarm level"
 msgstr "mức báo động"
 
@@ -926,6 +917,9 @@ msgstr "Câu hỏi để thu hút những người có thể tố giác "
 msgid "Whistleblowing button"
 msgstr "Nút tố giác"
 
+msgid "Title of the submission page"
+msgstr "Tiêu đề của trang nộp "
+
 msgid "Enable disclaimer"
 msgstr "Cho phép từ chối trách nhiệm"
 
@@ -970,9 +964,6 @@ msgstr "Ẩn"
 
 msgid "Disabled"
 msgstr "Tàn tật"
-
-msgid "State"
-msgstr "Tình trạng"
 
 msgid "Enabled"
 msgstr "Bật"
@@ -1411,9 +1402,6 @@ msgstr "Thông tin chi tiết của khóa PGP:"
 msgid "Fingerprint"
 msgstr "Dấu vân tay"
 
-msgid "Remove the PGP key"
-msgstr "Xóa bỏ khóa PGP"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Thiết lập mã hóa bằng cách cung cấp một khóa công khai PGP"
 
@@ -1446,9 +1434,6 @@ msgstr "Người dùng có quyền truy cập quản trị các tính năng sau"
 msgid "Request date"
 msgstr "Ngày yêu cầu"
 
-msgid "ID"
-msgstr "Số"
-
 msgid "Report date"
 msgstr "Ngày báo cáo"
 
@@ -1478,12 +1463,6 @@ msgstr "Mã này không hợp lệ hoặc đã hết hạn"
 
 msgid "Site:"
 msgstr "Trang web:"
-
-msgid "Username:"
-msgstr "Tên người dùng:"
-
-msgid "Password:"
-msgstr "Mật mã:"
 
 msgid "Please select your account:"
 msgstr "Vui lòng chọn tài khoản của bạn:"
@@ -1600,9 +1579,6 @@ msgstr "Xác nhận thay đổi địa chỉ email trong quá trình."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Vui lòng kiểm tra hộp thư đến của bạn để được hướng dẫn thêm"
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "Thiết lập mã hóa email bằng cách cung cấp khóa công khai PGP"
 
 msgid "Account recovery key"
 msgstr "Mã khôi phục tài khoản"
@@ -1738,11 +1714,11 @@ msgstr "Vẫn chưa có tập tin nào được tải lên!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Cho phép người tố giác thêm tệp đính kèm vào báo cáo"
 
+msgid "Report"
+msgstr "Báo cáo"
+
 msgid "Access expiration"
 msgstr "Hết hạn truy cập"
-
-msgid "Connection"
-msgstr "liên quan"
 
 msgid "Never"
 msgstr "Không bao giờ"
@@ -1907,6 +1883,9 @@ msgstr "Bạn đang kết nối với máy chủ mà không ẩn danh và máy c
 
 msgid "Thank you!"
 msgstr "Cảm ơn bạn!"
+
+msgid "Your report was successful."
+msgstr "Báo cáo của bạn đã thành công."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Chúng tôi sẽ cố gắng liên lạc lại với bạn sớm nhất có thể."

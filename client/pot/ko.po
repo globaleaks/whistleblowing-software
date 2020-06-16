@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -347,9 +347,6 @@ msgstr ""
 msgid "Message shown on top of the status page of the report"
 msgstr "메시지 제출의 상태 페이지의 상단에 표시"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "복사하여 여기에 PGP 공개 키를 붙여"
-
 msgid "Password strength:"
 msgstr "비밀번호 강도:"
 
@@ -624,12 +621,6 @@ msgstr "당신은 고발자입니까?"
 msgid "Blow the whistle"
 msgstr "휘파람을 불어"
 
-msgid "Your report was successful."
-msgstr "제출 성공했습니다."
-
-msgid "Report"
-msgstr ""
-
 msgid "Before proceeding, please set a new password."
 msgstr ""
 
@@ -715,23 +706,11 @@ msgstr "개인 정보 보호 패널을 사용하지 않도록 설정"
 msgid "Enable the receipt hint"
 msgstr "키 코드 힌트를 사용하지 않도록 설정"
 
-msgid "Landing page"
-msgstr "방문 페이지"
-
 msgid "Default questionnaire"
 msgstr ""
 
-msgid "Title of the submission page"
-msgstr "제출 페이지의 제목"
-
 msgid "Show contexts in alphabetical order"
 msgstr "알파벳 순서로 표시 컨텍스트"
-
-msgid "Title of the receipt page"
-msgstr "영수증 페이지의 제목"
-
-msgid "Title of the status page of the report"
-msgstr "메시지 제출의 상태 페이지의 상단에 표시"
 
 msgid "Do not expose users' names"
 msgstr ""
@@ -869,6 +848,18 @@ msgstr "이름"
 msgid "Last access"
 msgstr ""
 
+msgid "ID"
+msgstr ""
+
+msgid "State"
+msgstr "상태"
+
+msgid "Connection"
+msgstr "연결"
+
+msgid "Whistleblower's last access"
+msgstr ""
+
 msgid "Alarm level"
 msgstr "경보 수준"
 
@@ -917,6 +908,9 @@ msgstr "질문이 가능 고발자를 요청합니다"
 msgid "Whistleblowing button"
 msgstr "고발 버튼"
 
+msgid "Title of the submission page"
+msgstr "제출 페이지의 제목"
+
 msgid "Enable disclaimer"
 msgstr ""
 
@@ -961,9 +955,6 @@ msgstr "숨김"
 
 msgid "Disabled"
 msgstr "장애인"
-
-msgid "State"
-msgstr "상태"
 
 msgid "Enabled"
 msgstr "사용"
@@ -1402,9 +1393,6 @@ msgstr "PGP 키의 세부 사항 :"
 msgid "Fingerprint"
 msgstr "지문"
 
-msgid "Remove the PGP key"
-msgstr "PGP 키를 제거"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "PGP 공개 키를 제공하여 암호화를 설정"
 
@@ -1437,9 +1425,6 @@ msgstr ""
 msgid "Request date"
 msgstr "요청 날짜"
 
-msgid "ID"
-msgstr ""
-
 msgid "Report date"
 msgstr ""
 
@@ -1469,12 +1454,6 @@ msgstr "키 코드가 잘못되었거나 제출이 만료되었습니다."
 
 msgid "Site:"
 msgstr ""
-
-msgid "Username:"
-msgstr "사용자명:"
-
-msgid "Password:"
-msgstr "비밀번호:"
 
 msgid "Please select your account:"
 msgstr "계정을 선택하십시오 :"
@@ -1590,9 +1569,6 @@ msgid "Validation of email address change in progress."
 msgstr ""
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Set up email encryption by providing a PGP public key"
 msgstr ""
 
 msgid "Account recovery key"
@@ -1729,11 +1705,11 @@ msgstr "어떤 파일이 업로드되지 않았습니다!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr ""
 
-msgid "Access expiration"
+msgid "Report"
 msgstr ""
 
-msgid "Connection"
-msgstr "연결"
+msgid "Access expiration"
+msgstr ""
 
 msgid "Never"
 msgstr "만료없음"
@@ -1898,6 +1874,9 @@ msgstr "당신은 익명없이 서버에 연결하는이 서버는 익명 제출
 
 msgid "Thank you!"
 msgstr "고맙습니다!"
+
+msgid "Your report was successful."
+msgstr "제출 성공했습니다."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr ""

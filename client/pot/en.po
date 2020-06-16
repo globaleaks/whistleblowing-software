@@ -40,7 +40,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: English (http://www.transifex.com/otf/globaleaks/language/en/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -382,9 +382,6 @@ msgstr "Triggered by score:"
 msgid "Message shown on top of the status page of the report"
 msgstr "Message shown on top of the status page of the report"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Copy and paste the PGP public key here"
-
 msgid "Password strength:"
 msgstr "Password strength:"
 
@@ -659,12 +656,6 @@ msgstr "Are you a whistleblower?"
 msgid "Blow the whistle"
 msgstr "Blow the whistle"
 
-msgid "Your report was successful."
-msgstr "Your report was successful."
-
-msgid "Report"
-msgstr "Report"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Before proceeding, please set a new password."
 
@@ -750,23 +741,11 @@ msgstr "Disable the privacy panel"
 msgid "Enable the receipt hint"
 msgstr "Enable the receipt hint"
 
-msgid "Landing page"
-msgstr "Landing page"
-
 msgid "Default questionnaire"
 msgstr "Default questionnaire"
 
-msgid "Title of the submission page"
-msgstr "Title of the submission page"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Show contexts in alphabetical order"
-
-msgid "Title of the receipt page"
-msgstr "Title of the receipt page"
-
-msgid "Title of the status page of the report"
-msgstr "Title of the status page of the report"
 
 msgid "Do not expose users' names"
 msgstr "Do not expose users' names"
@@ -904,6 +883,18 @@ msgstr "Name"
 msgid "Last access"
 msgstr "Last access"
 
+msgid "ID"
+msgstr "ID"
+
+msgid "State"
+msgstr "State"
+
+msgid "Connection"
+msgstr "Connection"
+
+msgid "Whistleblower's last access"
+msgstr "Whistleblower's last access"
+
 msgid "Alarm level"
 msgstr "Alarm level"
 
@@ -952,6 +943,9 @@ msgstr "Question to solicit possible whistleblowers"
 msgid "Whistleblowing button"
 msgstr "Whistleblowing button"
 
+msgid "Title of the submission page"
+msgstr "Title of the submission page"
+
 msgid "Enable disclaimer"
 msgstr "Enable disclaimer"
 
@@ -996,9 +990,6 @@ msgstr "Hidden"
 
 msgid "Disabled"
 msgstr "Disabled"
-
-msgid "State"
-msgstr "State"
 
 msgid "Enabled"
 msgstr "Enabled"
@@ -1437,9 +1428,6 @@ msgstr "Details of the PGP key:"
 msgid "Fingerprint"
 msgstr "Fingerprint"
 
-msgid "Remove the PGP key"
-msgstr "Remove the PGP key"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Set up encryption by providing a PGP public key"
 
@@ -1472,9 +1460,6 @@ msgstr "User has administrative access to the following features:"
 msgid "Request date"
 msgstr "Request date"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Report date"
 msgstr "Report date"
 
@@ -1504,12 +1489,6 @@ msgstr "The code is either invalid or expired."
 
 msgid "Site:"
 msgstr "Site:"
-
-msgid "Username:"
-msgstr "Username:"
-
-msgid "Password:"
-msgstr "Password:"
 
 msgid "Please select your account:"
 msgstr "Please select your account:"
@@ -1626,9 +1605,6 @@ msgstr "Validation of email address change in progress."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Please check your inbox for further instructions."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "Set up email encryption by providing a PGP public key"
 
 msgid "Account recovery key"
 msgstr "Account recovery key"
@@ -1764,11 +1740,11 @@ msgstr "No files have been uploaded!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Allow the whistleblower to add attachments to the report"
 
+msgid "Report"
+msgstr "Report"
+
 msgid "Access expiration"
 msgstr "Access expiration"
-
-msgid "Connection"
-msgstr "Connection"
 
 msgid "Never"
 msgstr "Never"
@@ -1933,6 +1909,9 @@ msgstr "You are connecting to the server without anonymity and this server suppo
 
 msgid "Thank you!"
 msgstr "Thank you!"
+
+msgid "Your report was successful."
+msgstr "Your report was successful."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "We will try to get back to you as soon as possible."

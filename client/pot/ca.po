@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-07 14:22+0000\n"
+"PO-Revision-Date: 2020-06-14 16:46+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -360,9 +360,6 @@ msgstr "Es desencadena a partir d'una puntuació superior a:"
 msgid "Message shown on top of the status page of the report"
 msgstr "Missatge mostrat a sobre de la pàgina de l'estat de l'informe:"
 
-msgid "Copy and paste the PGP public key here"
-msgstr "Copia i enganxa aquí la clau pública PGP"
-
 msgid "Password strength:"
 msgstr "Nivell de seguretat de la contrasenya"
 
@@ -637,12 +634,6 @@ msgstr "Ets un informador?"
 msgid "Blow the whistle"
 msgstr "Inici de la comunicació"
 
-msgid "Your report was successful."
-msgstr "El teu informe s'ha efectuat amb èxit."
-
-msgid "Report"
-msgstr "Informe"
-
 msgid "Before proceeding, please set a new password."
 msgstr "Abans de continuar, estableixi una nova contrasenya."
 
@@ -728,23 +719,11 @@ msgstr "Deshabilita el distintiu de privacitat "
 msgid "Enable the receipt hint"
 msgstr "Activa el suggeriment de codi de rebut"
 
-msgid "Landing page"
-msgstr "Pàgina d'aterratge"
-
 msgid "Default questionnaire"
 msgstr "Qüestionari per defecte"
 
-msgid "Title of the submission page"
-msgstr "Títol de la pàgina d'enviament"
-
 msgid "Show contexts in alphabetical order"
 msgstr "Mostra contextos en ordre alfabètic"
-
-msgid "Title of the receipt page"
-msgstr "Títol de la pàgina del codi de rebut"
-
-msgid "Title of the status page of the report"
-msgstr "Títol de la pàgina d’estat de l’informe"
 
 msgid "Do not expose users' names"
 msgstr "No mostrar els noms d'usuari"
@@ -882,6 +861,18 @@ msgstr "Nom"
 msgid "Last access"
 msgstr "últim accés"
 
+msgid "ID"
+msgstr "Id."
+
+msgid "State"
+msgstr "Estat"
+
+msgid "Connection"
+msgstr "Connexió"
+
+msgid "Whistleblower's last access"
+msgstr "Últim accés de l'Informant"
+
 msgid "Alarm level"
 msgstr "Alarma"
 
@@ -930,6 +921,9 @@ msgstr "Pregunta per sol·licitar possibles informadors"
 msgid "Whistleblowing button"
 msgstr "Botó de l'informador"
 
+msgid "Title of the submission page"
+msgstr "Títol de la pàgina d'enviament"
+
 msgid "Enable disclaimer"
 msgstr "Activar l'avís legal"
 
@@ -974,9 +968,6 @@ msgstr "Ocult"
 
 msgid "Disabled"
 msgstr "Deshabilitat"
-
-msgid "State"
-msgstr "Estat"
 
 msgid "Enabled"
 msgstr "Habilitat"
@@ -1415,9 +1406,6 @@ msgstr "Detalls de la clau PGP:"
 msgid "Fingerprint"
 msgstr "empremta de validació de clau"
 
-msgid "Remove the PGP key"
-msgstr "Elimina la clau PGP"
-
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Estableix l'encriptació oferint una clau pública PGP"
 
@@ -1450,9 +1438,6 @@ msgstr "L'usuari té accés administratiu a les següents funcions:"
 msgid "Request date"
 msgstr "Data de sol·licitud"
 
-msgid "ID"
-msgstr "Id."
-
 msgid "Report date"
 msgstr "Data de l’informe"
 
@@ -1482,12 +1467,6 @@ msgstr "El codi és invàlid o l'enviament ha expirat."
 
 msgid "Site:"
 msgstr "Lloc web:"
-
-msgid "Username:"
-msgstr "Nom d'usuari:"
-
-msgid "Password:"
-msgstr "Contrasenya:"
 
 msgid "Please select your account:"
 msgstr "Si us plau, selecciona el teu compte:"
@@ -1604,9 +1583,6 @@ msgstr "Validació del canvi d'adreça electrònica en progrés."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Comproveu el vostre correu electrònic per obtenir més instruccions."
-
-msgid "Set up email encryption by providing a PGP public key"
-msgstr "Configura el xifrat de correu electrònic proporcionant una clau pública PGP"
 
 msgid "Account recovery key"
 msgstr "Clau de recuperació del compte"
@@ -1742,11 +1718,11 @@ msgstr "No s'ha pujat cap arxiu!"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Permet als informadors afegir arxius adjunts a l'informe"
 
+msgid "Report"
+msgstr "Informe"
+
 msgid "Access expiration"
 msgstr "Caducitat de l'accés"
-
-msgid "Connection"
-msgstr "Connexió"
 
 msgid "Never"
 msgstr "mai"
@@ -1911,6 +1887,9 @@ msgstr "S'està connectant al servidor de manera no anònima, i aquest servidor 
 
 msgid "Thank you!"
 msgstr "Gràcies!"
+
+msgid "Your report was successful."
+msgstr "El teu informe s'ha efectuat amb èxit."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Intentarem donar resposta més aviat possible."
