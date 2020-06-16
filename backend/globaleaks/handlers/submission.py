@@ -465,7 +465,7 @@ class SubmissionInstance(BaseHandler):
 
         connection_check(self.request.tid, self.request.client_ip, 'whistleblower', self.request.client_using_tor)
 
-        if (not self.state.accept_submissions or self.state.tenant_cache[self.request.tid]['disable_submissions']):
+        if not self.state.accept_submissions or self.state.tenant_cache[self.request.tid]['disable_submissions']:
             raise errors.SubmissionDisabled
 
         request = self.validate_message(self.request.content.read(), requests.SubmissionDesc)

@@ -223,7 +223,7 @@ def order_elements(session, tid, ids, *args, **kwargs):
 
     :param session:  An ORM session
     :param tid: The tenant ID
-    :param req_args: The request arguments
+    :param ids: The ids of the contexts to be reordered
     """
     ctxs = session.query(models.Context).filter(models.Context.tid == tid)
 

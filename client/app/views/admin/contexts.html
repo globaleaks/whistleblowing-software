@@ -37,18 +37,16 @@
           </span>
           <span class="col-md-5 clearfix">
             <span class="float-right">
-              <button data-ng-if="!$first"
+              <button data-ng-if="!$first && resources.node.show_contexts_in_alphabetical_order"
 		      class="btn btn-sm btn-primary"
 		      data-ng-click="moveUp($event, $index)"
-		      data-ng-if="resources.node.show_contexts_in_alphabetical_order"
-                      uib-tooltip="{{'Move up' | translate}}">
+              uib-tooltip="{{'Move up' | translate}}">
                 <i class="fas fa-chevron-up"></i>
               </button>
-              <button data-ng-if="!$last"
+              <button data-ng-if="!$last && resources.node.show_contexts_in_alphabetical_order"
 		      class="btn btn-sm btn-primary"
 		      data-ng-click="moveDown($event, $index)"
-		      data-ng-if="resources.node.show_contexts_in_alphabetical_order"
-                      uib-tooltip="{{'Move down' | translate}}">
+              uib-tooltip="{{'Move down' | translate}}">
                 <i class="fas fa-chevron-down"></i>
               </button>
               <button class="btn btn-sm btn-secondary"

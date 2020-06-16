@@ -862,7 +862,7 @@ class WBFileHandler(BaseHandler):
         pass
 
     @transact
-    def download_wbfile(self, session, tid, user_id, file_id):
+    def download_wbfile(self, session, tid, file_id):
         x = session.query(models.WhistleblowerFile, models.WhistleblowerTip) \
                    .filter(models.WhistleblowerFile.id == file_id,
                            models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
@@ -879,7 +879,7 @@ class WBFileHandler(BaseHandler):
 
     @inlineCallbacks
     def get(self, wbfile_id):
-        wbfile, tip_prv_key = yield self.download_wbfile(self.request.tid, self.current_user.id, wbfile_id)
+        wbfile, tip_prv_key = yield self.download_wbfile(self.request.tid, wbfile_id)
 
         filelocation = os.path.join(Settings.attachments_path, wbfile['filename'])
 

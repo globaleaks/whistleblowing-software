@@ -31,63 +31,61 @@
     </div>
     <div data-ng-repeat="questionnaire in resources.questionnaires | orderBy: 'name'">
       <form id="questionnaire-{{$index}}" class="configItem" name="editQuestionnaire" data-ng-controller="AdminQuestionnaireEditorCtrl" novalidate>
-        <div>
-          <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
-            <span class="col-md-7">{{questionnaire.name}}</span>
-            <span class="col-md-5 clearfix">
-              <span class="float-right">
-                <button
-                  class="btn btn-sm btn-secondary"
-                  data-ng-show="questionnaire.editable && !editing"
-                  data-ng-click="toggleEditing(); $event.stopPropagation();">
-                  <span data-translate>Edit</span>
-                </button>
-                <button
-                  class="btn btn-sm btn-success"
-                  data-ng-show="editing"
-                  data-ng-click="save_questionnaire(questionnaire)">
-                  <span data-translate>Save</span>
-                </button>
-                <button
-                 class="btn btn-sm btn-secondary"
-                  data-ng-show="editing"
-                  data-ng-click="toggleEditing(); $event.stopPropagation();">
-                  <span data-translate>Cancel</span>
-                </button>
-                <button class="downloadButton btn btn-sm btn-secondary"
-                  data-ng-click="exportQuestionnaire(questionnaire); $event.stopPropagation()">
-                  <i class="fas fa-file-export"></i>
-                  <span data-translate>Export</span>
-                </button>
-                <button
-                  class="btn btn-sm btn-secondary"
-                  data-ng-click="duplicate_questionnaire(questionnaire)">
-                  <i class="fas fa-duplicate"></i>
-                  <span data-translate>Duplicate</span>
-                </button>
-                <button
-                  class="btn btn-sm btn-danger"
-                  data-ng-show="questionnaire.editable"
-                  data-ng-click="delete_questionnaire(questionnaire); $event.stopPropagation();">
-                  <span data-translate>Delete</span>
-                </button>
-              </div>
+        <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
+          <span class="col-md-7">{{questionnaire.name}}</span>
+          <span class="col-md-5 clearfix">
+            <span class="float-right">
+              <button
+                class="btn btn-sm btn-secondary"
+                data-ng-show="questionnaire.editable && !editing"
+                data-ng-click="toggleEditing(); $event.stopPropagation();">
+                <span data-translate>Edit</span>
+              </button>
+              <button
+                class="btn btn-sm btn-success"
+                data-ng-show="editing"
+                data-ng-click="save_questionnaire(questionnaire)">
+                <span data-translate>Save</span>
+              </button>
+              <button
+               class="btn btn-sm btn-secondary"
+                data-ng-show="editing"
+                data-ng-click="toggleEditing(); $event.stopPropagation();">
+                <span data-translate>Cancel</span>
+              </button>
+              <button class="downloadButton btn btn-sm btn-secondary"
+                data-ng-click="exportQuestionnaire(questionnaire); $event.stopPropagation()">
+                <i class="fas fa-file-export"></i>
+                <span data-translate>Export</span>
+              </button>
+              <button
+                class="btn btn-sm btn-secondary"
+                data-ng-click="duplicate_questionnaire(questionnaire)">
+                <i class="fas fa-duplicate"></i>
+                <span data-translate>Duplicate</span>
+              </button>
+              <button
+                class="btn btn-sm btn-danger"
+                data-ng-show="questionnaire.editable"
+                data-ng-click="delete_questionnaire(questionnaire); $event.stopPropagation();">
+                <span data-translate>Delete</span>
+              </button>
             </span>
-          </div>
-          <div data-ng-if="editing">
-            <hr />
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label data-translate>Name</label>
-                  <input name="name" class="form-control" data-ng-model="questionnaire.name" type="text" required>
-                  <div class="text-danger" data-ng-show="editQuestionnaire.name.$error.required">
-                    <span data-translate>This field is mandatory</span>
-                  </div>
+          </span>
+        </div>
+        <div data-ng-if="editing">
+          <hr />
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label data-translate>Name</label>
+                <input name="name" class="form-control" data-ng-model="questionnaire.name" type="text" required>
+                <div class="text-danger" data-ng-show="editQuestionnaire.name.$error.required">
+                  <span data-translate>This field is mandatory</span>
                 </div>
               </div>
-              <div class="col-md-12" data-ng-include="'views/admin/questionnaires/steps.html'"></div>
             </div>
+            <div class="col-md-12" data-ng-include="'views/admin/questionnaires/steps.html'"></div>
           </div>
         </div>
       </form>

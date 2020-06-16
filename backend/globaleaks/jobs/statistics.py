@@ -22,7 +22,7 @@ def get_statistics(state):
 
 
 @transact
-def save_statistics(session, start, end, stats):
+def save_statistics(session, start, stats):
     for tid in stats:
         if not stats[tid]:
             # avoid to save empty stats
@@ -50,7 +50,7 @@ class Statistics(HourlyJob):
         current_time = datetime_now()
         statistic_summary = get_statistics(self.state)
         if statistic_summary:
-            yield save_statistics(self.state.stats_collection_start_time, current_time, statistic_summary)
+            yield save_statistics(self.state.stats_collection_start_time, statistic_summary)
             log.debug("Stored statistics %s collected from %s to %s",
                       statistic_summary,
                       self.state.stats_collection_start_time,

@@ -532,7 +532,7 @@ class TestGL(unittest.TestCase):
         answers[field['id']] = [value]
 
     @transact
-    def fill_random_answers(self, session, questionnaire_id, value=None):
+    def fill_random_answers(self, session, questionnaire_id):
         """
         return randomly populated questionnaire
         """
