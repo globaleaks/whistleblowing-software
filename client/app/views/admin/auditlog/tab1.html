@@ -11,17 +11,13 @@
   <div id="chart"></div>
 
   <div id="StatsInfoTable" data-ng-if="blob">
-    <div class="col-md-3">
+    <div class="col-md-6">
       <div>
-        <label data-translate>Started submissions</label>
-        {{blob.summary.started_submissions}}
-      </div>
-      <div>
-        <label data-translate>Completed submissions</label>
-        {{blob.summary.completed_submissions}}
+        <label data-translate>Reports</label>
+        {{blob.summary.reports}}
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-6">
       <div>
         <label data-translate>Failed logins</label>
         {{blob.summary.failed_logins}}
@@ -29,18 +25,6 @@
       <div>
         <label data-translate>Successful logins</label>
         {{blob.summary.successful_logins}}
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div>
-        <label data-translate>Files</label>
-        {{blob.summary.files}}
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div>
-        <label data-translate>Free disk space</label>
-        {{blob.free_disk_space | byteFmt:2 }}
       </div>
     </div>
   </div>

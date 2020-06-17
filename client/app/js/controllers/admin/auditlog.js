@@ -64,7 +64,6 @@ controller("StatisticsCtrl", ["$scope", "$filter", "StatsCollection",
           "summary": {
               "login_failure": 28
           },
-          "free_disk_space": 5627
           "valid": 0
       },
       valid is a status flag:
@@ -76,26 +75,12 @@ controller("StatisticsCtrl", ["$scope", "$filter", "StatsCollection",
           if (d.valid === 0) {
             d.summary.failed_logins = + d.summary.failed_logins ? d.summary.failed_logins : 0;
             d.summary.successful_logins = +d.summary.successful_logins ? d.summary.successful_logins : 0;
-            d.summary.started_submissions = +d.summary.started_submissions ? d.summary.started_submissions : 0;
-            d.summary.completed_submissions = +d.summary.completed_submissions ? d.summary.completed_submissions : 0;
-            d.summary.uploaded_files =  +d.summary.uploaded_files ?  d.summary.uploaded_files : 0;
-            d.summary.appended_files = +d.summary.appended_files ? d.summary.appended_files : 0;
-            d.summary.wb_comments = +d.summary.wb_comments ? d.summary.wb_comments : 0;
-            d.summary.wb_messages = +d.summary.wb_messages ? d.summary.wb_messages : 0;
-            d.summary.receiver_comments = +d.summary.receiver_comments ? d.summary.receiver_comments : 0;
-            d.summary.receiver_messages = +d.summary.receiver_messages ? d.summary.receiver_messages : 0;
+            d.summary.submissions = +d.summary.submissions ? d.summary.submissions : 0;
 
             d.value = 0;
             d.value += d.summary.failed_logins;
             d.value += d.summary.successful_logins;
-            d.value += d.summary.started_submissions;
-            d.value += d.summary.completed_submissions;
-            d.value += d.summary.uploaded_files;
-            d.value += d.summary.appended_files;
-            d.value += d.summary.wb_comments;
-            d.value += d.summary.wb_messages;
-            d.value += d.summary.receiver_comments;
-            d.value += d.summary.receiver_messages;
+            d.value += d.summary.submissions;
           }
       });
 

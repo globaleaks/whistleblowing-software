@@ -4,60 +4,37 @@ from globaleaks.state import State
 from globaleaks.utils.utility import datetime_now
 
 
-def failure_status_check(http_code):
-    return http_code >= 400
+def successful_login_check(handler):
+    return handler.request.uri == b'/authentication' and \
+           handler.request.method == b'POST' and \
+           handler.request.code == 201
 
 
-def success_status_check(HTTP_code):
-    return HTTP_code == 200
+def failed_login_check(handler):
+    return handler.request.uri == b'/authentication' and \
+           handler.request.method == b'POST' and \
+           handler.request.code == 401
 
 
-def created_status_check(http_code):
-    return http_code == 201
-
-
-def updated_status_check(http_code):
-    return http_code == 202
-
-
-def login_check(uri):
-    return uri == b'/authentication'
-
-
-def submission_check(uri):
-    return uri.startswith(b'/submission') and (len(uri) == 11 or len(uri) == 54)
+def completed_submission_check(handler):
+    return handler.request.uri.startswith(b'/submission') and \
+           len(handler.request.uri) == 76 and \
+           handler.request.method == b'PUT' and \
+           handler.request.code == 202
 
 
 events_monitored = [
     {
         'name': 'failed_logins',
-        'handler_check': login_check,
-        'method': 'POST',
-        'status_check': failure_status_check,
+        'handler_check': failed_login_check
     },
     {
         'name': 'successful_logins',
-        'handler_check': login_check,
-        'method': 'POST',
-        'status_check': success_status_check
-    },
-    {
-        'name': 'started_submissions',
-        'handler_check': submission_check,
-        'method': 'POST',
-        'status_check': created_status_check
+        'handler_check': successful_login_check
     },
     {
         'name': 'completed_submissions',
-        'handler_check': submission_check,
-        'method': 'PUT',
-        'status_check': updated_status_check
-    },
-    {
-        'name': 'failed_submissions',
-        'handler_check': submission_check,
-        'method': 'PUT',
-        'status_check': failure_status_check
+        'handler_check': completed_submission_check
     }
 ]
 
@@ -89,9 +66,7 @@ def track_handler(handler):
     tid = handler.request.tid
 
     for event in events_monitored:
-        if event['handler_check'](handler.request.uri) and \
-           event['method'] == handler.request.method and \
-           event['status_check'](handler.request.code):
+        if event['handler_check'](handler):
             e = Event(event, handler.request.execution_time)
             State.tenant_state[tid].RecentEventQ.append(e)
             State.tenant_state[tid].EventQ.append(e)

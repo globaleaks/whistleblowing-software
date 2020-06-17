@@ -386,9 +386,9 @@ class APIResourceWrapper(Resource):
 
         @defer.inlineCallbacks
         def concludeHandlerFailure(err):
-            yield self.handler.execution_check()
-
             self.handle_exception(err, request)
+
+            yield self.handler.execution_check()
 
             if not request_finished[0]:
                 request.finish()

@@ -98,7 +98,6 @@ def get_stats(session, tid, week_delta):
                     'hour': hour,
                     'day': day,
                     'summary': {},
-                    'free_disk_space': 0,
                     'valid': marker
                 }
 
