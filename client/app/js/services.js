@@ -955,11 +955,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         return $rootScope.public.node.wizard_done && angular.isDefined($rootScope.Authentication.session);
       },
 
-      showPrivacyBadge: function() {
-        return (!$rootScope.public.node.disable_privacy_badge &&
-                this.isWhistleblowerPage());
-      },
-
       showFilePreview: function(content_type) {
         var content_types = [
           "image/gif",
