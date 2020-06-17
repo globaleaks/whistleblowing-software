@@ -228,7 +228,7 @@ add_db_path_arg(pw_p)
 pw_p.add_argument("--tid", help="the tenant id", default='1', type=int)
 pw_p.add_argument("username", help="the username used to login into GL")
 pw_p.add_argument("password", nargs="?", help="if not set a random password is generated",
-                  default=generateRandomPassword(12))
+                  default=generateRandomPassword(16))
 pw_p.set_defaults(func=reset_pass)
 
 rv_p = subp.add_parser("getvar", help="get database config variable")

@@ -151,8 +151,8 @@ def signup_activation(session, token, hostname, language):
 
     db_initialize_tenant(session, tenant, mode)
 
-    password_admin = generateRandomPassword(12)
-    password_receiver = generateRandomPassword(12)
+    password_admin = generateRandomPassword(16)
+    password_receiver = generateRandomPassword(16)
 
     node_name = signup.organization_name if signup.organization_name else signup.subdomain
 
