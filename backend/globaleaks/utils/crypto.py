@@ -73,7 +73,7 @@ def generateRandomPassword(N):
     """
     Return a random password
     """
-    return ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(N))
+    return ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(N))
 
 
 def generate2FA():
