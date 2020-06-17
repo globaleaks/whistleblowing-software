@@ -639,8 +639,9 @@ text.axis-workweek, text.axis-worktime {
   display: block;
   padding: 1rem;
   font-family: monospace;
+  font-size: 0.8rem;
   color: #333840;
-  background-color: #f5f7fa;
+  background-color: #F5F7FA;
   border: 1px solid #AFBACC;
   max-height: 20rem;
   max-width: 80rem;
