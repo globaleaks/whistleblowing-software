@@ -5,13 +5,13 @@
 # John Wild <ac@elephantleague.org>, 2015
 # Jorma Karvonen <karvonen.jorma@gmail.com>, 2015,2017,2020
 # Juha Nurmi <juha.nurmi@ahmia.fi>, 2015
-# Panu Ahvenharju, 2018-2019
+# Panu Ahvenharju, 2018-2020
 # Sami Kuusisto <sami@6sto.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-17 07:20+0000\n"
+"Last-Translator: Panu Ahvenharju\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -598,10 +598,10 @@ msgid "seconds"
 msgstr "sekuntia"
 
 msgid "This domain name is not available."
-msgstr ""
+msgstr "Verkkotunnus ei ole vapaana."
 
 msgid "VAT number"
-msgstr ""
+msgstr "Arvonlisäveronumero"
 
 msgid "Tax code"
 msgstr ""
@@ -800,10 +800,10 @@ msgid "High"
 msgstr "Korkea"
 
 msgid "megabytes"
-msgstr "megatavuissa"
+msgstr "megatavua"
 
 msgid "percentage"
-msgstr "prosenteissa"
+msgstr "prosenttia"
 
 msgid "Enable automatic backups"
 msgstr "Ota käyttöön automaattiset varmuuskopiot"
@@ -863,7 +863,7 @@ msgid "Connection"
 msgstr "Yhteys"
 
 msgid "Whistleblower's last access"
-msgstr "WB viimeksi kutsuttu"
+msgstr "Ilmiantajan viimeisin kirjautumisajankohta"
 
 msgid "Alarm level"
 msgstr "Hälytystaso"
@@ -2259,7 +2259,7 @@ msgstr "Pääsy vihjeen antajan henkilötietoihin vahvistettu"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "Valvoja on sallinut sinulle pääsyn vihjeen antajan henkilötietoihin liittyen vihjeeseen numero {TipNum}. "
+msgstr "Valvoja ei sallinut pääsyäsi vihjeen antajan henkilötietoihin, jotka liittyvät vihjeeseen numero {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Pääsy vihjeen antajan henkilötietoihin ei sallittu"
