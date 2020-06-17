@@ -1,3 +1,12 @@
+Changes in version 4.0.33 - 2020-06-10
+    Improve UI in relation to #2862
+    Always re-generate salt when changing password
+    Revise TLS configuration preferring security over
+    Update npm dependencies to latest version
+    Prioritize PGP encryption for files when available
+    Enable to download the audit log resources as CSV
+    Update translations
+
 Changes in version 4.0.32 - 2020-06-08
     Fix alphabetic display of receipients
 
