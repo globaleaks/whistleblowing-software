@@ -20,16 +20,19 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12 form-group">
-            <textarea class="form-control changelog" data-ng-model="resources.manifest.changelog" rows="20"
-                      disabled></textarea>
+          <div class="col-md-12">
+            <div class="tos-text">{{resources.manifest.changelog}}</div>
           </div>
         </div>
       </div>
     </uib-tab>
     <uib-tab data-index="2" heading="{{ 'License' | translate }}">
       <div class="tab-content">
-        <div data-ng-include="'views/admin/home/license.html'"></div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="tos-text">{{resources.manifest.license}}</div>
+          </div>
+	</div>
       </div>
     </uib-tab>
   </uib-tabset>

@@ -346,18 +346,6 @@ input[type="file"] {
   font-size: smaller;
 }
 
-.tos-text {
-  display: block;
-  padding: 10px;
-  background-color: #f5f7fa;
-  color: #333840;
-  border: 1px solid #AFBACC;
-  max-height: 15rem;
-  overflow: auto;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
 .nav, .pagination, .carousel, .card-title a {
   cursor: pointer;
 }
@@ -647,9 +635,18 @@ text.axis-workweek, text.axis-worktime {
   fill: #000;
 }
 
-.license, .changelogmsg {
-  white-space: pre-line;
-  width: 87ch;
+.tos-text {
+  display: block;
+  padding: 1rem;
+  font-family: monospace;
+  color: #333840;
+  background-color: #f5f7fa;
+  border: 1px solid #AFBACC;
+  max-height: 20rem;
+  max-width: 80rem;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .non-default-language, .disabled-icon {

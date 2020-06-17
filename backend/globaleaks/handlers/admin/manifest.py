@@ -12,7 +12,7 @@ class ManifestHandler(BaseHandler):
         Get the applicatin manifest
         """
         return {
-            'changelog': read_file('/usr/share/globaleaks/LICENSE'),
-            'license': read_file('/usr/share/globaleaks/CHANGELOG'),
+            'changelog': read_file('/usr/share/globaleaks/CHANGELOG'),
+            'license': read_file('/usr/share/globaleaks/LICENSE'),
             'version': __version__
         }
