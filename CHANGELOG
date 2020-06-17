@@ -1,3 +1,8 @@
+Changes in version 4.0.35 - 2020-06-17
+    Apply minor style fixes
+    Fix packaging version bump
+    Update translations
+
 Changes in version 4.0.33 - 2020-06-10
     Improve UI in relation to #2862
     Always re-generate salt when changing password
