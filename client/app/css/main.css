@@ -325,10 +325,10 @@ textarea.form-control {
 }
 
 input[type="file"] {
-  color: transparent;
-  width: 0.1px;
-  height: 0.1px;
-  z-index: 0;
+  position: absolute;
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
 }
 
 .fa-none:before {

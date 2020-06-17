@@ -33,7 +33,7 @@ browser.getCapabilities().then(function(capabilities) {
       return false;
     }
 
-    return (["chrome", "firefox", "internet explorer", "microsoftedge"].indexOf(browserName) !== -1);
+    return (["chrome", "firefox", "microsoftedge"].indexOf(browserName) !== -1);
   };
 
   exports.testFileDownload = function() {
