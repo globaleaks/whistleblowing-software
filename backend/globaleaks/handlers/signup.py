@@ -88,6 +88,8 @@ def signup(session, request, language):
 
     session.add(signup)
 
+    session.flush()
+
     # We need to send two emails
     #
     # The first one is sent to the platform owner with the activation email.
