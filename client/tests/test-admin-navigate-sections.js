@@ -25,7 +25,7 @@ describe("verify navigation of admin sections", function() {
     await element.all(by.cssContainingText("a", "Notification templates")).first().click();
 
     await element.all(by.cssContainingText("a", "Network settings")).first().click();
-    await element.all(by.cssContainingText("a", "Tor")).first().click();
+    await element.all(by.cssContainingText("a", "Tor")).get(1).click();
     await element.all(by.cssContainingText("a", "HTTPS")).first().click();
     await element.all(by.cssContainingText("a", "Access control")).first().click();
     await element.all(by.cssContainingText("a", "URL redirects")).first().click();
