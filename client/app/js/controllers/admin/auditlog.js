@@ -51,7 +51,7 @@ controller("StatisticsCtrl", ["$scope", "$filter", "StatsCollection",
       gridSize = Math.floor(width / 24),
       legendElementWidth = gridSize*2,
       buckets = 9,
-      colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"],
+      colors = ["#E8F4FB","#BBE1FB","#8FCBF8","#5EA9E9","#3C88CB","#3777BC","#2161A6","#0C4C91","#103253"],
       days = ["1", "2", "3", "4", "5", "6", "7"],
       times = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"];
 
