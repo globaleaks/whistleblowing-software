@@ -434,9 +434,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         };
 
         tip.updateSubmissionStatus = function() {
-          return tip.operation("update_status", {"status": tip.status, "substatus": tip.substatus ? tip.substatus : ''}).then(function () {
+          return tip.operation("update_status", {"status": tip.status, "substatus": tip.substatus ? tip.substatus : ""}).then(function () {
             $rootScope.reload();
-          });;
+          });
         };
 
         tip.localChange = function() {
@@ -940,7 +940,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       },
 
       isWhistleblowerPage: function() {
-        return ['homepage', 'submissionpage', 'receiptpage', 'tippage'].indexOf($rootScope.page) !== -1;
+        return ["homepage", "submissionpage", "receiptpage", "tippage"].indexOf($rootScope.page) !== -1;
       },
 
       classExtension: function() {

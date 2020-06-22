@@ -49,11 +49,11 @@ exports.whistleblower = function() {
 
     await browser.gl.utils.waitUntilClickable(by.id("SubmitButton"));
 
-    await element(by.id('SubmitButton')).click();
+    await element(by.id("SubmitButton")).click();
 
-    await element(by.id('SubmitButton')).isPresent().then(function(present) {
+    await element(by.id("SubmitButton")).isPresent().then(function(present) {
       if (present) {
-        return element(by.id('SubmitButton')).click();
+        return element(by.id("SubmitButton")).click();
       }
     });
 
