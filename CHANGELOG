@@ -1,3 +1,8 @@
+Changes in version 4.0.37 - 2020-06-22
+    Fix selected recipients count function
+    Fix regexp based form validation
+    Update translations
+
 Changes in version 4.0.36 - 2020-06-18
     Retest and fix admin heatmap broken since initial release 4
     Fix file upload buttons with 2-click defect
