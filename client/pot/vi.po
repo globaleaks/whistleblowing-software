@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -833,9 +833,6 @@ msgstr "Cổng"
 msgid "Stats of the week:"
 msgstr "Thống kê của tuần:"
 
-msgid "Free disk space"
-msgstr "Không gian đĩa trống"
-
 msgid "Event ID"
 msgstr "tổ chức sự kiện ID"
 
@@ -848,6 +845,9 @@ msgstr "Biến cố"
 msgid "Response time"
 msgstr "Thời gian đáp ứng"
 
+msgid "ID"
+msgstr "Số"
+
 msgid "Role"
 msgstr "Vai trò"
 
@@ -856,9 +856,6 @@ msgstr "Tên"
 
 msgid "Last access"
 msgstr "Lần truy cập cuối"
-
-msgid "ID"
-msgstr "Số"
 
 msgid "State"
 msgstr "Tình trạng"
@@ -1872,6 +1869,15 @@ msgstr "Câu trả lời quá ngắn."
 
 msgid "The specified input is not valid."
 msgstr "Đầu vào được chỉ định là không hợp lệ."
+
+msgid "The specified input is not valid:"
+msgstr ""
+
+msgid "please enter a valid email address."
+msgstr ""
+
+msgid "please enter numbers only."
+msgstr ""
 
 msgid "Submissions disabled"
 msgstr "Đệ trình bị vô hiệu hóa"

@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"Last-Translator: Lenka Ježková <lenka.jezkova@oziveni.cz>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -833,9 +833,6 @@ msgstr "Port"
 msgid "Stats of the week:"
 msgstr "Štatistiky týždňa: "
 
-msgid "Free disk space"
-msgstr "Voľný priestor na disku"
-
 msgid "Event ID"
 msgstr "ID udalosti"
 
@@ -848,6 +845,9 @@ msgstr "Udalosť"
 msgid "Response time"
 msgstr "Doba odozvy"
 
+msgid "ID"
+msgstr "ID"
+
 msgid "Role"
 msgstr "Role"
 
@@ -856,9 +856,6 @@ msgstr "Meno"
 
 msgid "Last access"
 msgstr "Posledný prístup"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "State"
 msgstr "Štát"
@@ -1872,6 +1869,15 @@ msgstr "Odpoveď je príliš krátka."
 
 msgid "The specified input is not valid."
 msgstr "Zadaný vstup nie je platný."
+
+msgid "The specified input is not valid:"
+msgstr "Zadaný vstup nie je platný:"
+
+msgid "please enter a valid email address."
+msgstr "Prosím zadajte platnú emailovú adresu."
+
+msgid "please enter numbers only."
+msgstr "Zadajte, prosím, iba čísla."
 
 msgid "Submissions disabled"
 msgstr "Podania zakázané"

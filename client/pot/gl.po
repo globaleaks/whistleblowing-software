@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"Last-Translator: Oscar Guardiola <Oscar.Guardiola@davinci-ti.es>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -827,9 +827,6 @@ msgstr "Porto"
 msgid "Stats of the week:"
 msgstr "Estatísticas da semana:"
 
-msgid "Free disk space"
-msgstr "Espazo de disco libre"
-
 msgid "Event ID"
 msgstr "Id. De evento"
 
@@ -842,6 +839,9 @@ msgstr "Evento"
 msgid "Response time"
 msgstr "Tempo de resposta"
 
+msgid "ID"
+msgstr ""
+
 msgid "Role"
 msgstr "Rol"
 
@@ -850,9 +850,6 @@ msgstr "Nome"
 
 msgid "Last access"
 msgstr "Último acceso"
-
-msgid "ID"
-msgstr ""
 
 msgid "State"
 msgstr "Estado"
@@ -1866,6 +1863,15 @@ msgstr "A resposta é moi curta."
 
 msgid "The specified input is not valid."
 msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr "A entrada especificada non é válida:"
+
+msgid "please enter a valid email address."
+msgstr "introduce un enderezo electrónico válido."
+
+msgid "please enter numbers only."
+msgstr "Por favor, introduce só números.  "
 
 msgid "Submissions disabled"
 msgstr "Envíos desactivados"

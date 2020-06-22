@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-17 07:20+0000\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
 "Last-Translator: Panu Ahvenharju\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -829,9 +829,6 @@ msgstr "Portti"
 msgid "Stats of the week:"
 msgstr "Viikkotilasto:"
 
-msgid "Free disk space"
-msgstr "Vapaa levytila"
-
 msgid "Event ID"
 msgstr "Tapahtumatunniste"
 
@@ -844,6 +841,9 @@ msgstr "Tapahtuma"
 msgid "Response time"
 msgstr "Vastausaika"
 
+msgid "ID"
+msgstr "Tunniste"
+
 msgid "Role"
 msgstr "Rooli"
 
@@ -852,9 +852,6 @@ msgstr "Käyttäjänimi"
 
 msgid "Last access"
 msgstr "Viimeksi luettu"
-
-msgid "ID"
-msgstr "Tunniste"
 
 msgid "State"
 msgstr "Valtio"
@@ -1868,6 +1865,15 @@ msgstr "Vastaus on liian lyhyt."
 
 msgid "The specified input is not valid."
 msgstr "Määritelty syöte ei kelpaa."
+
+msgid "The specified input is not valid:"
+msgstr "Määritelty syöte ei kelpaa:"
+
+msgid "please enter a valid email address."
+msgstr "ole hyvä ja syötä kelvollinen sähköpostiosoite"
+
+msgid "please enter numbers only."
+msgstr "ole hyvä ja syötä vain numeroita."
 
 msgid "Submissions disabled"
 msgstr "Ilmoitusten tekeminen ei mahdollista"

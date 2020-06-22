@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"Last-Translator: Elektra M. <safiragon@yahoo.gr>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -836,9 +836,6 @@ msgstr "Θύρα"
 msgid "Stats of the week:"
 msgstr "Στατιστικά της εβδομάδας:"
 
-msgid "Free disk space"
-msgstr "Ελεύθερος χώρος στο δίσκο"
-
 msgid "Event ID"
 msgstr "ID συμβάντος"
 
@@ -851,6 +848,9 @@ msgstr "Συμβάν"
 msgid "Response time"
 msgstr "Χρόνος απόκρισης"
 
+msgid "ID"
+msgstr "Ταυτότητα"
+
 msgid "Role"
 msgstr "Ρόλος"
 
@@ -859,9 +859,6 @@ msgstr "Όνομα"
 
 msgid "Last access"
 msgstr "Τελευταία πρόσβαση"
-
-msgid "ID"
-msgstr "Ταυτότητα"
 
 msgid "State"
 msgstr "Κατάσταση"
@@ -1875,6 +1872,15 @@ msgstr "Η απάντηση είναι πολύ σύντομη."
 
 msgid "The specified input is not valid."
 msgstr "Τα καθορισμένα δεδομένα εισόδου δεν είναι έγκυρα."
+
+msgid "The specified input is not valid:"
+msgstr "Τα καθορισμένα δεδομένα εισόδου δεν είναι έγκυρα:"
+
+msgid "please enter a valid email address."
+msgstr "Παρακαλούμε εισάγετε μια έγκυρη διεύθυνση ηλεκτρονικού ταχυδρομείου."
+
+msgid "please enter numbers only."
+msgstr "παρακαλούμε εισάγετε μόνο αριθμούς."
 
 msgid "Submissions disabled"
 msgstr "Οι καταχωρίσεις είναι απενεργοποιημένες"

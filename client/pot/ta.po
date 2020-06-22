@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"Last-Translator: Bala Subramaniyan <balapandu222@hotmail.com>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -826,9 +826,6 @@ msgstr "பெயர்த்துவை"
 msgid "Stats of the week:"
 msgstr "வாரம் விபரம்:"
 
-msgid "Free disk space"
-msgstr "இலவச வட்டு இடத்தை"
-
 msgid "Event ID"
 msgstr "நிகழ்வு ஐடி"
 
@@ -841,6 +838,9 @@ msgstr "நிகழ்வு"
 msgid "Response time"
 msgstr "பதில் நேரம்"
 
+msgid "ID"
+msgstr ""
+
 msgid "Role"
 msgstr "பங்கு"
 
@@ -849,9 +849,6 @@ msgstr "பெயர்"
 
 msgid "Last access"
 msgstr "கடைசியாக அணுகியது"
-
-msgid "ID"
-msgstr ""
 
 msgid "State"
 msgstr "நிலை"
@@ -1865,6 +1862,15 @@ msgstr "பதில் மிகவும் குறுகியதாக உ
 
 msgid "The specified input is not valid."
 msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr "குறிப்பிட்ட உள்ளீடு செல்லுபடியாகாது:"
+
+msgid "please enter a valid email address."
+msgstr "சரியான மின்னஞ்சல் முகவரி உள்ளிடவும்."
+
+msgid "please enter numbers only."
+msgstr "எண்களை மட்டும் உள்ளிடவும்."
 
 msgid "Submissions disabled"
 msgstr "சமர்ப்பிப்புகளை முடக்கப்பட்டுள்ளது"

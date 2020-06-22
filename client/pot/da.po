@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"Last-Translator: Bo Elkjaer <bo_elkjaer@riseup.net>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -830,9 +830,6 @@ msgstr "Port"
 msgid "Stats of the week:"
 msgstr "Ugens statistik"
 
-msgid "Free disk space"
-msgstr "Ledig diskplads"
-
 msgid "Event ID"
 msgstr "Event ID"
 
@@ -845,6 +842,9 @@ msgstr "Event"
 msgid "Response time"
 msgstr "Svartid"
 
+msgid "ID"
+msgstr "ID"
+
 msgid "Role"
 msgstr "Rolle"
 
@@ -853,9 +853,6 @@ msgstr "Navn"
 
 msgid "Last access"
 msgstr "Seneste login"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "State"
 msgstr "Status"
@@ -1869,6 +1866,15 @@ msgstr "Svaret er for kort."
 
 msgid "The specified input is not valid."
 msgstr "Det indtastede er ikke gyldigt."
+
+msgid "The specified input is not valid:"
+msgstr "Det angivne input er ikke gyldigt:"
+
+msgid "please enter a valid email address."
+msgstr "Skriv venligst en gyldig mailadresse."
+
+msgid "please enter numbers only."
+msgstr "Skriv venligst kun tal."
 
 msgid "Submissions disabled"
 msgstr "Indsendelser er slået fra"

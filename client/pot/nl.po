@@ -43,8 +43,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"Last-Translator: Nathan Follens\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -862,9 +862,6 @@ msgstr "Poort"
 msgid "Stats of the week:"
 msgstr "Weekstatistieken:"
 
-msgid "Free disk space"
-msgstr "Vrije schijfruimte"
-
 msgid "Event ID"
 msgstr "Gebeurtenis-ID"
 
@@ -877,6 +874,9 @@ msgstr "Gebeurtenis"
 msgid "Response time"
 msgstr "Responstijd"
 
+msgid "ID"
+msgstr "ID"
+
 msgid "Role"
 msgstr "Rol"
 
@@ -885,9 +885,6 @@ msgstr "Naam"
 
 msgid "Last access"
 msgstr "Laatste toegang"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "State"
 msgstr "Provincie"
@@ -1901,6 +1898,15 @@ msgstr "Antwoord is te kort."
 
 msgid "The specified input is not valid."
 msgstr "Deze invoer is niet geldig."
+
+msgid "The specified input is not valid:"
+msgstr "Deze invoer is niet geldig:"
+
+msgid "please enter a valid email address."
+msgstr "vul een geldig e-mailadres in."
+
+msgid "please enter numbers only."
+msgstr "vul enkel getallen in."
 
 msgid "Submissions disabled"
 msgstr "Inzendingen  uitgeschakeld"

@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"Last-Translator: Cadas Propopuli Azzam Baribin <cadas.propopuli@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -843,9 +843,6 @@ msgstr "Port"
 msgid "Stats of the week:"
 msgstr "Statistik minggu ini:"
 
-msgid "Free disk space"
-msgstr "Ruang penyimpanan yang masih tersedia"
-
 msgid "Event ID"
 msgstr "ID Peristiwa"
 
@@ -858,6 +855,9 @@ msgstr "Peristiwa"
 msgid "Response time"
 msgstr "Waktu respon"
 
+msgid "ID"
+msgstr ""
+
 msgid "Role"
 msgstr "Peran"
 
@@ -866,9 +866,6 @@ msgstr "Nama"
 
 msgid "Last access"
 msgstr "Akses terakhir"
-
-msgid "ID"
-msgstr ""
 
 msgid "State"
 msgstr "Negara bagian"
@@ -1882,6 +1879,15 @@ msgstr "Jawaban terlalu singkat"
 
 msgid "The specified input is not valid."
 msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr "Masukan yang ditentukan tidak valid"
+
+msgid "please enter a valid email address."
+msgstr "Masukkan alamat surel yang valid"
+
+msgid "please enter numbers only."
+msgstr "Mohon hanya masukkan nomor"
 
 msgid "Submissions disabled"
 msgstr "Pengiriman dinonaktifkan "

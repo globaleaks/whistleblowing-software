@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"Last-Translator: Aleš <ales.petan@digital.si>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -827,9 +827,6 @@ msgstr "Vrata"
 msgid "Stats of the week:"
 msgstr "Statistika tedna:"
 
-msgid "Free disk space"
-msgstr "Prostor na disku"
-
 msgid "Event ID"
 msgstr "ID dogodka"
 
@@ -842,6 +839,9 @@ msgstr "Dogodek"
 msgid "Response time"
 msgstr "Odzivni čas"
 
+msgid "ID"
+msgstr ""
+
 msgid "Role"
 msgstr "Vloga"
 
@@ -850,9 +850,6 @@ msgstr "Ime"
 
 msgid "Last access"
 msgstr "Zadnji dostop"
-
-msgid "ID"
-msgstr ""
 
 msgid "State"
 msgstr "Država"
@@ -1866,6 +1863,15 @@ msgstr ""
 
 msgid "The specified input is not valid."
 msgstr "Vnos ni veljaven."
+
+msgid "The specified input is not valid:"
+msgstr "Vnos ni veljaven:"
+
+msgid "please enter a valid email address."
+msgstr "vpišite veljaven naslov elektronske pošte."
+
+msgid "please enter numbers only."
+msgstr "vpisujte samo številke."
 
 msgid "Submissions disabled"
 msgstr "Prispevki so onemogočeni"

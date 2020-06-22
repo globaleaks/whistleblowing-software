@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"Last-Translator: Vicente Andreu <vicente.andreu@antifraucv.es>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -836,9 +836,6 @@ msgstr "Port"
 msgid "Stats of the week:"
 msgstr "Estadístiques de la setmana"
 
-msgid "Free disk space"
-msgstr "Espai lliure del disc"
-
 msgid "Event ID"
 msgstr "Esdeveniment ID"
 
@@ -851,6 +848,9 @@ msgstr "Esdeveniment"
 msgid "Response time"
 msgstr "Temps de resposta"
 
+msgid "ID"
+msgstr "ID"
+
 msgid "Role"
 msgstr "Tasca"
 
@@ -859,9 +859,6 @@ msgstr "Nom"
 
 msgid "Last access"
 msgstr "últim accés"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "State"
 msgstr "Comunitat autònoma"
@@ -1875,6 +1872,15 @@ msgstr "La resposta és massa curta."
 
 msgid "The specified input is not valid."
 msgstr "La informació que ha introduït no és vàlida."
+
+msgid "The specified input is not valid:"
+msgstr "La informació que ha introduït no és vàlida:"
+
+msgid "please enter a valid email address."
+msgstr "Per favor, introduisca una adreça electrònica correcta."
+
+msgid "please enter numbers only."
+msgstr "Per favor, introduisca només números."
 
 msgid "Submissions disabled"
 msgstr "Enviaments deshabilitats"

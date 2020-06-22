@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"Last-Translator: Inpresentia I.\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -838,9 +838,6 @@ msgstr "Port"
 msgid "Stats of the week:"
 msgstr "Statisticile săptămânii:"
 
-msgid "Free disk space"
-msgstr "Spațiu liber pe disc"
-
 msgid "Event ID"
 msgstr "ID-ul evenimentului"
 
@@ -853,6 +850,9 @@ msgstr "Eveniment"
 msgid "Response time"
 msgstr "Timp de răspuns"
 
+msgid "ID"
+msgstr "ID"
+
 msgid "Role"
 msgstr "Rol"
 
@@ -861,9 +861,6 @@ msgstr "Prenume"
 
 msgid "Last access"
 msgstr "Ultima accesare"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "State"
 msgstr "Status"
@@ -1877,6 +1874,15 @@ msgstr "Răspunsul este prea scurt."
 
 msgid "The specified input is not valid."
 msgstr "Datele introduse specificate nu sunt valide."
+
+msgid "The specified input is not valid:"
+msgstr "Intrarea specificata nu este valabila:"
+
+msgid "please enter a valid email address."
+msgstr "Te rog introdu o adresa de email valida."
+
+msgid "please enter numbers only."
+msgstr "Te rog introdu numai numere."
 
 msgid "Submissions disabled"
 msgstr "Sesizări dezactivate"

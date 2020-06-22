@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -827,9 +827,6 @@ msgstr "Port"
 msgid "Stats of the week:"
 msgstr "Sedmična statistika:"
 
-msgid "Free disk space"
-msgstr "Slobodan prostor na disku"
-
 msgid "Event ID"
 msgstr "ID događaja"
 
@@ -842,6 +839,9 @@ msgstr "Događaj"
 msgid "Response time"
 msgstr "Vrijeme odgovora"
 
+msgid "ID"
+msgstr "ID"
+
 msgid "Role"
 msgstr "Uloga"
 
@@ -850,9 +850,6 @@ msgstr "Ime"
 
 msgid "Last access"
 msgstr "Posljednji pristup"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "State"
 msgstr "Stanje"
@@ -1866,6 +1863,15 @@ msgstr "Odgovor je prekratak."
 
 msgid "The specified input is not valid."
 msgstr "Navedeni unos nije važeći."
+
+msgid "The specified input is not valid:"
+msgstr ""
+
+msgid "please enter a valid email address."
+msgstr ""
+
+msgid "please enter numbers only."
+msgstr ""
 
 msgid "Submissions disabled"
 msgstr "Podnesci onemogućeni"

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -828,9 +828,6 @@ msgstr "ポート"
 msgid "Stats of the week:"
 msgstr "週の統計:"
 
-msgid "Free disk space"
-msgstr "ディスク空き容量"
-
 msgid "Event ID"
 msgstr "イベントID"
 
@@ -843,6 +840,9 @@ msgstr "イベント"
 msgid "Response time"
 msgstr "レスポンス時間"
 
+msgid "ID"
+msgstr "ID"
+
 msgid "Role"
 msgstr "役割"
 
@@ -851,9 +851,6 @@ msgstr "名前"
 
 msgid "Last access"
 msgstr "最終アクセス"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "State"
 msgstr "都道府県州"
@@ -1867,6 +1864,15 @@ msgstr "回答が短すぎます"
 
 msgid "The specified input is not valid."
 msgstr "指定された入力は正しくありません."
+
+msgid "The specified input is not valid:"
+msgstr "指定された入力は正しくありません:"
+
+msgid "please enter a valid email address."
+msgstr "正しいメールアドレスを入力してください。"
+
+msgid "please enter numbers only."
+msgstr "数字のみで入力してください。"
 
 msgid "Submissions disabled"
 msgstr "提出は無効です"

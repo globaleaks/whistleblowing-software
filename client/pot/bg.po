@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"Last-Translator: Ivo\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -832,9 +832,6 @@ msgstr "Порт"
 msgid "Stats of the week:"
 msgstr "Статистика за седмицата:"
 
-msgid "Free disk space"
-msgstr "Свободно дисково пространство"
-
 msgid "Event ID"
 msgstr "ID на събитие"
 
@@ -847,6 +844,9 @@ msgstr "Събитие"
 msgid "Response time"
 msgstr "Време за отговор"
 
+msgid "ID"
+msgstr "ID"
+
 msgid "Role"
 msgstr "Роля"
 
@@ -855,9 +855,6 @@ msgstr "Име"
 
 msgid "Last access"
 msgstr "Последен достъп"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "State"
 msgstr "Област"
@@ -1871,6 +1868,15 @@ msgstr "Отговорът е твърде кратък."
 
 msgid "The specified input is not valid."
 msgstr "Въведеният текст е невалиден"
+
+msgid "The specified input is not valid:"
+msgstr "Зададената информация не е валидна:"
+
+msgid "please enter a valid email address."
+msgstr "моля, въведете валиден имейл"
+
+msgid "please enter numbers only."
+msgstr "моля, въвдете само цифри."
 
 msgid "Submissions disabled"
 msgstr "Подаването на сигнали е спряно"

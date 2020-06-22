@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"Last-Translator: Erdoğan Şahin\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -846,9 +846,6 @@ msgstr "Kapı"
 msgid "Stats of the week:"
 msgstr "Haftanın istatistikleri:"
 
-msgid "Free disk space"
-msgstr "Boş disk alanı"
-
 msgid "Event ID"
 msgstr "Olay numarası"
 
@@ -861,6 +858,9 @@ msgstr "Olay"
 msgid "Response time"
 msgstr "Yanıt süresi"
 
+msgid "ID"
+msgstr "ID"
+
 msgid "Role"
 msgstr "Rol"
 
@@ -869,9 +869,6 @@ msgstr "Ad"
 
 msgid "Last access"
 msgstr "Son erişim"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "State"
 msgstr "Eyalet"
@@ -1885,6 +1882,15 @@ msgstr "Yanıt çok kısa."
 
 msgid "The specified input is not valid."
 msgstr "Belirtilen girdi geçerli değil."
+
+msgid "The specified input is not valid:"
+msgstr "Belirtilen girdi geçerli değil:"
+
+msgid "please enter a valid email address."
+msgstr "lütfen geçerli bir e-posta adresi girin."
+
+msgid "please enter numbers only."
+msgstr "Lütfen yalnızca sayı girin."
 
 msgid "Submissions disabled"
 msgstr "Gönderimler devre dışı bırakıldı"

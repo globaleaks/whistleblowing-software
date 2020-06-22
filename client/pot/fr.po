@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-17 16:21+0000\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
 "Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -858,9 +858,6 @@ msgstr "Port"
 msgid "Stats of the week:"
 msgstr "Statistiques hebdomadaires :"
 
-msgid "Free disk space"
-msgstr "Espace disque libre"
-
 msgid "Event ID"
 msgstr "ID de l’événement"
 
@@ -873,6 +870,9 @@ msgstr "Événement"
 msgid "Response time"
 msgstr "Temps de réponse"
 
+msgid "ID"
+msgstr "ID"
+
 msgid "Role"
 msgstr "Rôle"
 
@@ -881,9 +881,6 @@ msgstr "Nom"
 
 msgid "Last access"
 msgstr "Dernier accès"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "State"
 msgstr "État"
@@ -1897,6 +1894,15 @@ msgstr "La réponse est trop courte"
 
 msgid "The specified input is not valid."
 msgstr "L’entrée indiquée est invalide."
+
+msgid "The specified input is not valid:"
+msgstr "L’entrée spécifiée n’est pas valide :"
+
+msgid "please enter a valid email address."
+msgstr "veuillez saisir une adresse courriel valide."
+
+msgid "please enter numbers only."
+msgstr "veuillez ne saisir que des chiffres."
 
 msgid "Submissions disabled"
 msgstr "Les envois sont désactivés"

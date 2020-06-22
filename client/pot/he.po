@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -838,9 +838,6 @@ msgstr "פתחה"
 msgid "Stats of the week:"
 msgstr "סטטיסטיקות השבוע"
 
-msgid "Free disk space"
-msgstr "שטח דיסק פנוי"
-
 msgid "Event ID"
 msgstr "מספר זיהוי אירוע"
 
@@ -853,6 +850,9 @@ msgstr "אירוע"
 msgid "Response time"
 msgstr "זמן תגובה"
 
+msgid "ID"
+msgstr "מזהה"
+
 msgid "Role"
 msgstr "תפקיד"
 
@@ -861,9 +861,6 @@ msgstr "שם"
 
 msgid "Last access"
 msgstr "גישה אחרונה"
-
-msgid "ID"
-msgstr "מזהה"
 
 msgid "State"
 msgstr "מחוז"
@@ -1877,6 +1874,15 @@ msgstr "התשובה קצרה מדי."
 
 msgid "The specified input is not valid."
 msgstr "הקלט המצוין אינו תקף."
+
+msgid "The specified input is not valid:"
+msgstr ""
+
+msgid "please enter a valid email address."
+msgstr ""
+
+msgid "please enter numbers only."
+msgstr ""
 
 msgid "Submissions disabled"
 msgstr ""

@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -830,9 +830,6 @@ msgstr "พอร์ต"
 msgid "Stats of the week:"
 msgstr "สถิติของสัปดาห์:"
 
-msgid "Free disk space"
-msgstr "พื้นที่ว่างในดิสก์"
-
 msgid "Event ID"
 msgstr "รหัสเหตุการณ์"
 
@@ -845,6 +842,9 @@ msgstr "เหตุการณ์"
 msgid "Response time"
 msgstr "เวลาตอบสนอง"
 
+msgid "ID"
+msgstr "รหัสประจำ"
+
 msgid "Role"
 msgstr "บทบาท"
 
@@ -853,9 +853,6 @@ msgstr "ชื่อ"
 
 msgid "Last access"
 msgstr "เข้าถึงล่าสุด"
-
-msgid "ID"
-msgstr "รหัสประจำ"
 
 msgid "State"
 msgstr "สถานะ"
@@ -1869,6 +1866,15 @@ msgstr "คำตอบสั้นเกินไป"
 
 msgid "The specified input is not valid."
 msgstr "ข้อมูลเข้าที่ระบุไม่ตรงกับรูปแบบที่ถูกต้อง"
+
+msgid "The specified input is not valid:"
+msgstr ""
+
+msgid "please enter a valid email address."
+msgstr ""
+
+msgid "please enter numbers only."
+msgstr ""
 
 msgid "Submissions disabled"
 msgstr "การส่งถูกปิดใช้งาน"

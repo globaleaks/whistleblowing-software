@@ -29,8 +29,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"Last-Translator: Dina Solveig Jalkanen\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -848,9 +848,6 @@ msgstr "Порт"
 msgid "Stats of the week:"
 msgstr "Статистика за неделю:"
 
-msgid "Free disk space"
-msgstr "Свободное место на диске"
-
 msgid "Event ID"
 msgstr "Идентификатор события"
 
@@ -863,6 +860,9 @@ msgstr "Событие"
 msgid "Response time"
 msgstr "Время ответа"
 
+msgid "ID"
+msgstr "ID"
+
 msgid "Role"
 msgstr "Роль"
 
@@ -871,9 +871,6 @@ msgstr "Имя"
 
 msgid "Last access"
 msgstr "Последний доступ"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "State"
 msgstr "Область"
@@ -1887,6 +1884,15 @@ msgstr "Ответ очень короткий."
 
 msgid "The specified input is not valid."
 msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr "Следующие данные не действительны:"
+
+msgid "please enter a valid email address."
+msgstr "пожалуйста введите действительный адрес вашей электронной почты"
+
+msgid "please enter numbers only."
+msgstr "пожалуйста введите только цифры."
 
 msgid "Submissions disabled"
 msgstr "Подача материала недоступна"

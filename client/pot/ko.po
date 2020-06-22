@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -824,9 +824,6 @@ msgstr "포트"
 msgid "Stats of the week:"
 msgstr "일주일의 통계 :"
 
-msgid "Free disk space"
-msgstr "디스크 여유 공간"
-
 msgid "Event ID"
 msgstr "이벤트 ID"
 
@@ -839,6 +836,9 @@ msgstr "행사"
 msgid "Response time"
 msgstr "응답 시간"
 
+msgid "ID"
+msgstr ""
+
 msgid "Role"
 msgstr "역할"
 
@@ -846,9 +846,6 @@ msgid "Name"
 msgstr "이름"
 
 msgid "Last access"
-msgstr ""
-
-msgid "ID"
 msgstr ""
 
 msgid "State"
@@ -1862,6 +1859,15 @@ msgid "The answer is too short."
 msgstr ""
 
 msgid "The specified input is not valid."
+msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr ""
+
+msgid "please enter a valid email address."
+msgstr ""
+
+msgid "please enter numbers only."
 msgstr ""
 
 msgid "Submissions disabled"

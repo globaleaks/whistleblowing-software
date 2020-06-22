@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"Last-Translator: Chi-Hsun Tsai\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -830,9 +830,6 @@ msgstr "埠"
 msgid "Stats of the week:"
 msgstr "一週統計:"
 
-msgid "Free disk space"
-msgstr "硬碟空間"
-
 msgid "Event ID"
 msgstr "事件ID"
 
@@ -845,6 +842,9 @@ msgstr "事件"
 msgid "Response time"
 msgstr "回應時間"
 
+msgid "ID"
+msgstr "識別"
+
 msgid "Role"
 msgstr "角色"
 
@@ -853,9 +853,6 @@ msgstr "名字"
 
 msgid "Last access"
 msgstr "最近讀取"
-
-msgid "ID"
-msgstr "識別"
 
 msgid "State"
 msgstr "州/省"
@@ -1869,6 +1866,15 @@ msgstr "這個答案太過簡短"
 
 msgid "The specified input is not valid."
 msgstr "指定的輸入無效。"
+
+msgid "The specified input is not valid:"
+msgstr "這個特定的輸入無效："
+
+msgid "please enter a valid email address."
+msgstr "請輪入一個有效的電子郵件"
+
+msgid "please enter numbers only."
+msgstr "請只輸入數字"
 
 msgid "Submissions disabled"
 msgstr "提交功能取消"

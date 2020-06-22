@@ -42,8 +42,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"Last-Translator: Rima Sghaier\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -861,9 +861,6 @@ msgstr "منفذ"
 msgid "Stats of the week:"
 msgstr "احصائيّات الأسبوع"
 
-msgid "Free disk space"
-msgstr "مساحة قرص فارغة"
-
 msgid "Event ID"
 msgstr "معرف الحدث"
 
@@ -876,6 +873,9 @@ msgstr "الحدث"
 msgid "Response time"
 msgstr "زمن الاستجابة"
 
+msgid "ID"
+msgstr "المُعرِّف"
+
 msgid "Role"
 msgstr "دور"
 
@@ -884,9 +884,6 @@ msgstr "اسم"
 
 msgid "Last access"
 msgstr "آخر دخول"
-
-msgid "ID"
-msgstr "المُعرِّف"
 
 msgid "State"
 msgstr "الدولة "
@@ -1900,6 +1897,15 @@ msgstr "الاجابة قصيرة جدّا."
 
 msgid "The specified input is not valid."
 msgstr "المدخلات المحددة غير صالحة."
+
+msgid "The specified input is not valid:"
+msgstr "الإدخال المحدد غير صالح:"
+
+msgid "please enter a valid email address."
+msgstr "الرجاء إدخال بريد الكتروني صحيح."
+
+msgid "please enter numbers only."
+msgstr "الرجاء ادخال أرقام فقط."
 
 msgid "Submissions disabled"
 msgstr "تم تعطيل البلاغات"
