@@ -276,7 +276,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       };
 
       self.countSelectedReceivers = function() {
-        return Objects.keys(self.selected_receivers).length;
+        return Object.keys(self.selected_receivers).length;
       };
 
       /**
