@@ -1909,6 +1909,15 @@ msgstr "The answer is too short."
 msgid "The specified input is not valid."
 msgstr "The specified input is not valid."
 
+msgid "The specified input is not valid:"
+msgstr "The specified input is not valid:"
+
+msgid "please enter a valid email address."
+msgstr "please enter a valid email address."
+
+msgid "please enter numbers only."
+msgstr "please enter numbers only."
+
 msgid "Submissions disabled"
 msgstr "Submissions disabled"
 
