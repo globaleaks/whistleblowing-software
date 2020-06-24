@@ -1,5 +1,5 @@
 <div id="HomePageBox">
-  <div id="NodePresentation" data-ng-if="public.node.presentation">{{public.node.presentation}}</div>
+  <div id="NodePresentation" data-ng-if="public.node.presentation" data-markdown-to-html="public.node.presentation"></div>
 
   <div id="WhistleblowerBox" class="d-block mx-auto">
     <div id="WhistleblowerSubmitBoxButtonDisabled" data-ng-show="public.node.disable_submissions || (!public.node.https_whistleblower && !connection.tor)">
@@ -13,7 +13,7 @@
     </div>
     <div data-ng-show="!public.node.disable_submissions && (public.node.https_whistleblower || connection.tor)">
       <div id="WhistleblowerSubmitBox">
-        <div id="WhistleblowingQuestion" data-ng-if="public.node.whistleblowing_question">{{public.node.whistleblowing_question}}</div>
+        <div id="WhistleblowingQuestion" data-ng-if="public.node.whistleblowing_question" data-markdown-to-html="public.node.whistleblowing_question"></div>
         <div id="WhistleblowingButton">
           <button data-ng-click="evaluateDisclaimerModalOpening() || setPage('submissionpage')" class="btn btn-primary">{{public.node.whistleblowing_button}}</button>
         </div>
