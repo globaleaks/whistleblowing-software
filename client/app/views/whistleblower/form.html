@@ -11,7 +11,7 @@
         </label>
       </div>
       <div class="question-body">
-        <div data-ng-if="field.description" class="fieldDescription">{{field.description}}</div>
+        <div data-ng-if="field.description" class="fieldDescription" data-markdown-to-html="field.description"></div>
         <div class="form-group">
           <div data-ng-include="'views/whistleblower/form_field_inputs.html'"></div>
         </div>

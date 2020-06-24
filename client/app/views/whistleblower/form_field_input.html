@@ -112,7 +112,7 @@
         </span>
       </div>
       <div data-ng-switch-when="tos">
-        <div class="form-group tos-text" data-ng-click="entry['value'] = !entry['value']">{{field.attrs.text.value}}</div>
+        <div class="form-group tos-text" data-markdown-to-html="field.attrs.text.value"></div>
         <div data-ng-if="field.attrs.attachment.value">
           <a href="{{field.attrs.attachment_url.value}}" rel="noreferrer noopener" download>{{field.attrs.attachment_text.value}}</a>
         </div>
