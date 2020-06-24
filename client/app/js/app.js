@@ -15,6 +15,7 @@ var GLClient = angular.module("GLClient", [
     "ngCsv",
     "ngSanitize",
     "ngFileSaver",
+    "ng-showdown",
     "GLCrypto",
     "GLDirectives",
     "GLFilters",
