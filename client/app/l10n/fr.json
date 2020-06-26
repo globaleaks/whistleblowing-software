@@ -593,7 +593,7 @@
   "This field is mandatory.": "Ce champ est obligatoire.",
   "The answer is too short.": "La réponse est trop courte",
   "The specified input is not valid.": "L’entrée indiquée est invalide.",
-  "The specified input is not valid:": "L’entrée spécifiée n’est pas valide :",
+  "The specified input is not valid:": "L’entrée indiquée n’est pas valide :",
   "please enter a valid email address.": "veuillez saisir une adresse courriel valide.",
   "please enter numbers only.": "veuillez ne saisir que des chiffres.",
   "Submissions disabled": "Les envois sont désactivés",

@@ -14,14 +14,15 @@
 # Ping Yan, 2015
 # Qiaoyi Fang <selinaf1917@yahoo.com>, 2018
 # QinWeijie <qinweijie@live.com>, 2014
+# Runzhe Liang <18051080098@163.com>, 2020
 # Scott Lai <sonyfaye@gmail.com>, 2018,2020
 # YFdyh000 <yfdyh000@gmail.com>, 2015
 # 刘位, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-22 19:31+0000\n"
-"Last-Translator: Meng San\n"
+"PO-Revision-Date: 2020-06-25 03:39+0000\n"
+"Last-Translator: Runzhe Liang <18051080098@163.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -608,10 +609,10 @@ msgid "seconds"
 msgstr "秒"
 
 msgid "This domain name is not available."
-msgstr ""
+msgstr "此域名不可用。"
 
 msgid "VAT number"
-msgstr ""
+msgstr "VAT数字"
 
 msgid "Tax code"
 msgstr ""
@@ -728,7 +729,7 @@ msgid "Show contexts in alphabetical order"
 msgstr "文本内容以字母排序"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr " 不要暴露用户名"
 
 msgid "Size limit for file attachments"
 msgstr "附件文件的大小限制"

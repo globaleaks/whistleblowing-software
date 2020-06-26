@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"PO-Revision-Date: 2020-06-26 21:24+0000\n"
 "Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1896,7 +1896,7 @@ msgid "The specified input is not valid."
 msgstr "L’entrée indiquée est invalide."
 
 msgid "The specified input is not valid:"
-msgstr "L’entrée spécifiée n’est pas valide :"
+msgstr "L’entrée indiquée n’est pas valide :"
 
 msgid "please enter a valid email address."
 msgstr "veuillez saisir une adresse courriel valide."
