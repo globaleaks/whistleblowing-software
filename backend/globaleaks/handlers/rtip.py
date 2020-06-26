@@ -140,18 +140,12 @@ def serialize_comment(session, comment):
     :param comment: A model to be serialized
     :return: A serialized description of the model specified
     """
-    author = 'Whistleblower'
-
-    if comment.type == 'receiver':
-        author = session.query(models.User.public_name) \
-                         .filter(models.User.id == comment.author_id).one()[0]
-
     return {
         'id': comment.id,
-        'author': author,
         'type': comment.type,
         'creation_date': comment.creation_date,
-        'content': comment.content
+        'content': comment.content,
+        'author': comment.author_id
     }
 
 
@@ -163,18 +157,16 @@ def serialize_message(session, message):
     :param message: A model to be serialized
     :return: A serialized description of the model specified
     """
-    receiver_involved = session.query(models.User) \
-                               .filter(models.User.id == models.ReceiverTip.receiver_id,
-                                       models.ReceiverTip.id == models.Message.receivertip_id,
-                                       models.Message.id == message.id).one()
+    receiver_involved_id = session.query(models.ReceiverTip.receiver_id) \
+                                  .filter(models.ReceiverTip.id == models.Message.receivertip_id,
+                                          models.Message.id == message.id).one()
 
     return {
         'id': message.id,
-        'author': 'Whistleblower' if message.type == 'whistleblower' else receiver_involved.public_name,
         'type': message.type,
         'creation_date': message.creation_date,
         'content': message.content,
-        'receiver_involved': receiver_involved.id
+        'receiver_involved_id': receiver_involved_id
     }
 
 

@@ -403,7 +403,7 @@ class ExportMessageKeyword(TipKeyword):
     data_keys = TipKeyword.data_keys + ['message']
 
     def Author(self):
-        return self.data['message']['author']
+        return self.data['user']['name'] if self.data['message']['type'] == 'receiver' else 'Whistleblower'
 
     def Content(self):
         return self.data['message']['content']
