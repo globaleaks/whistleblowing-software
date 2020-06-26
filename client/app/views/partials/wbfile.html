@@ -24,7 +24,7 @@
     <p class="file-info-row">
       <span class="px-1">
         <span class="text-muted" data-translate>From</span>:&nbsp;
-        <span>{{wbfile.author | wbfileCreator: tip.receivers }}</span>
+        <span>{{receivers_by_id[wbfile.author].public_name}}</span>
       </span>
       <span class="px-1">
         <span class="text-muted" data-translate>Date</span>:&nbsp;

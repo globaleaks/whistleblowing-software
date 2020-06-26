@@ -44,3 +44,4 @@ filter("split", function() {
     return input.split(splitChar)[splitIndex];
   };
 });
+
