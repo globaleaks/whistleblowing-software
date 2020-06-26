@@ -172,7 +172,7 @@ def get_tips(session, tid):
                                  .group_by(models.InternalTip.id):
         files_by_itip[itip_id] = count
 
-    for itip in session.query(models.InternalTip):
+    for itip in session.query(models.InternalTip).filter(models.InternalTip.tid == tid):
         tips.append({
             'id': itip.id,
             'creation_date': itip.creation_date,
