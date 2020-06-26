@@ -60,7 +60,8 @@ def file_delivery_planning(session):
             receiverfiles_maps[ifile.id]['rfiles'].append({
                 'id': receiverfile.id,
                 'status': receiverfile.status,
-                'filename': ifile.filename,
+                'filename': '',
+                'status': 'reference',
                 'size': ifile.size,
                 'receiver': {
                     'name': user.name,
@@ -142,30 +143,31 @@ def process_receiverfiles(state, files_maps):
         plaintext_path = os.path.abspath(os.path.join(Settings.attachments_path, plaintext_name))
         encrypted_path = os.path.abspath(os.path.join(Settings.attachments_path, encrypted_name))
 
-        if key:
-            receiverfiles_map['filename'] = encrypted_name
-            for rf in receiverfiles_map['rfiles']:
-                rf['filename'] = encrypted_name
+        receiverfiles_map['filename'] = encrypted_name if key else plaintext_name
 
         sf = state.get_tmp_file_by_name(filename)
 
         for rcounter, rf in enumerate(receiverfiles_map['rfiles']):
+            if key:
+                rf['filename'] = encrypted_name
+            else:
+                rf['filename'] = plaintext_path
+
             try:
                 with sf.open('rb') as encrypted_file:
-                    if rf['receiver']['pgp_key_public']:
-                        pgp_name = "%s.pgp" % generateRandomKey()
-                        pgp_path = os.path.abspath(os.path.join(Settings.attachments_path, pgp_name))
-                        encrypt_file_with_pgp(state,
-                                              encrypted_file,
-                                              rf['receiver']['pgp_key_public'],
-                                              rf['receiver']['pgp_key_fingerprint'],
-                                              pgp_path)
-                        rf['filename'] = pgp_name
-                        rf['status'] = 'encrypted'
-                    else:
+                    if not rf['receiver']['pgp_key_public']:
                         receiverfiles_map['pgp_encrypted_for_everybody'] = False
-                        rf['filename'] = plaintext_name
-                        rf['status'] = 'reference'
+                        continue
+
+                    pgp_name = "%s.pgp" % generateRandomKey()
+                    pgp_path = os.path.abspath(os.path.join(Settings.attachments_path, pgp_name))
+                    encrypt_file_with_pgp(state,
+                                          encrypted_file,
+                                          rf['receiver']['pgp_key_public'],
+                                          rf['receiver']['pgp_key_fingerprint'],
+                                          pgp_path)
+                    rf['filename'] = pgp_name
+                    rf['status'] = 'encrypted'
 
             except Exception as excep:
                 log.err("%d# Unable to complete PGP encrypt for %s on %s: %s. marking the file as unavailable.",
