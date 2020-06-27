@@ -4,15 +4,15 @@ describe("Admin configure custom CSS", function() {
       return;
     }
 
+    var customCSSFile = browser.gl.utils.makeTestFilePath("custom_css.css");
+
     await browser.setLocation("admin/content");
 
     await browser.gl.utils.waitUntilPresent(by.cssContainingText("a", "Theme customization"));
 
     await element(by.cssContainingText("a", "Theme customization")).click();
 
-    var customCSSFile = browser.gl.utils.makeTestFilePath("custom_css.css");
-
-    await element(by.css("div.uploadfile.file-css")).element(by.css("input")).sendKeys(customCSSFile);
+    await element(by.css("div.uploadfile.file-css input")).sendKeys(customCSSFile);
 
     await browser.gl.utils.waitUntilPresent(by.cssContainingText("label", "Project name"));
   });
