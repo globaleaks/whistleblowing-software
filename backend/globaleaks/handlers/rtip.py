@@ -78,20 +78,6 @@ def receiver_serialize_rfile(session, rfile):
     ifile = session.query(models.InternalFile) \
                    .filter(models.InternalFile.id == rfile.internalfile_id).one_or_none()
 
-    if ifile is None or rfile.status == 'unavailable':
-        return {
-            'id': '',
-            'internalfile_id': '',
-            'status': 'unavailable',
-            'href': "",
-            'name': 'unavailable',
-            'filename': '',
-            'content_type': '',
-            'creation_date': '',
-            'size': 0,
-            'downloads': 0
-        }
-
     return {
         'id': rfile.id,
         'internalfile_id': ifile.id,
@@ -262,7 +248,8 @@ def db_receiver_get_rfile_list(session, rtip_id):
     :return: A list of serializations of the retrieved models
     """
     rfiles = session.query(models.ReceiverFile) \
-                    .filter(models.ReceiverFile.receivertip_id == rtip_id)
+                    .filter(models.ReceiverFile.receivertip_id == rtip_id,
+                            models.ReceiverFile.status != 'unavailable')
 
     return [receiver_serialize_rfile(session, rfile) for rfile in rfiles]
 

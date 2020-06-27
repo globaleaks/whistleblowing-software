@@ -112,7 +112,7 @@ class ExportHandler(BaseHandler):
 
         for file_dict in tip_export['tip']['rfiles']:
             file_dict['name'] = 'files/' + file_dict['name']
-            if file_dict.get('status', '') == 'pgp':
+            if file_dict.get('status', '') == 'encrypted':
                 file_dict['name'] += '.pgp'
 
         for file_dict in tip_export['tip']['wbfiles']:
