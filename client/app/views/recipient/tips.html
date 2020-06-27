@@ -212,7 +212,7 @@
           <i data-ng-if="tip.wb_last_access >= tip.update_date" class="fas fa-check"
              uib-tooltip="{{'The whistleblower has already read the latest update' | translate }} ({{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
           <i data-ng-if="tip.wb_last_access < tip.update_date" class="fas fa-times"
-             uib-tooltip="{{'The whistleblower has not read the latest update yet' | translate }}"></i>
+             uib-tooltip="{{'The whistleblower has not read the last update yet' | translate }}"></i>
         </td>
         <td class="TipInfoFilesCount">{{tip.file_count}}</td>
         <td class="TipInfoCommentCount">{{tip.comment_count}}</td>
