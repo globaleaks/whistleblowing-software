@@ -1,3 +1,13 @@
+Changes in version 4.0.38 - 2020-06-28
+    Fix regression on encrypted file uploads paths introduced in 4.0.33
+    Fix visualization of file uploads by recipients
+    Fix audit log filter in relation to multitenancy
+    Change comments serialization API serializing ids in place of author names
+    Add Showdown markdown to homepage texts, footer,
+    and questions description ToS questionstext (#1101, #2206)
+    Update npm dependencies to latest version
+    Update translations
+
 Changes in version 4.0.37 - 2020-06-22
     Fix selected recipients count function
     Fix regexp based form validation
