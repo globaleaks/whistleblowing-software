@@ -17,11 +17,9 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_null, is_expired
 
 ANOMALY_MAP = {
-    'started_submissions': 100,
     'completed_submissions': 20,
-    'failed_submissions': 5,
     'failed_logins': 5,
-    'successful_logins': 20,
+    'successful_logins': 20
 }
 
 
@@ -186,18 +184,20 @@ class Alarm(object):
         old_accept_submissions = State.accept_submissions
 
         for c in get_disk_anomaly_conditions(self.measured_freespace, self.measured_totalspace):
-            if c['condition']:
-                disk_space = c['alarm_level']
+            if not c['condition']:
+                continue
 
-                info_msg = c['info_msg']()
+            disk_space = c['alarm_level']
 
-                if disk_space == 2:
-                    disk_message = "[FATAL] Disk anomaly, submissions disabled: %s" % info_msg
-                else:  # == 1
-                    disk_message = "[WARNING]: Disk anomaly: %s" % info_msg
+            info_msg = c['info_msg']()
 
-                accept_submissions = c['accept_submissions']
-                break
+            if disk_space == 2:
+                disk_message = "[FATAL] Disk anomaly, submissions disabled: %s" % info_msg
+            else:  # == 1
+                disk_message = "[WARNING]: Disk anomaly: %s" % info_msg
+
+            accept_submissions = c['accept_submissions']
+            break
 
         # This check is temporarily, want to be verified that the switch can be
         # logged as part of the Anomalies via this function

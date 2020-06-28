@@ -26,14 +26,9 @@ filter("expirationDate", function() {
 filter("anomalyToString", function() {
   return function (anomaly) {
     var anomalies = {
-      "started_submissions": "Started submissions",
       "completed_submissions": "Completed submissions",
-      "failed_submissions": "Failed submissions",
       "failed_logins": "Failed logins",
-      "successful_logins": "Successful logins",
-      "files": "Files",
-      "comments": "Comments",
-      "messages": "Messages"
+      "successful_logins": "Successful logins"
     };
 
     return anomalies[anomaly];

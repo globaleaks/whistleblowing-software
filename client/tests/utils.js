@@ -1,6 +1,5 @@
 var fs = require("fs");
 var path = require("path");
-var crypto = require("crypto");
 
 exports.vars = {
   "user_password": "ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#",

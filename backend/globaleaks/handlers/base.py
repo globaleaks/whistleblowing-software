@@ -50,7 +50,7 @@ def connection_check(tid, client_ip, role, client_using_tor):
     """
     Accept or refuse a connection in relation to the platform settings
 
-    :param tid: Atenant ID
+    :param tid: A tenant ID
     :param client_ip: A client IP
     :param role: A user role
     :param client_using_tor: A boolean for signaling Tor use
