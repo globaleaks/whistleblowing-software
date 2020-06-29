@@ -58,7 +58,7 @@ angular.module("GLClient")
 
   $scope.configureTenant = function($event, tid) {
     $event.stopPropagation();
-    return $http.get("/tenantauthswitch/" + tid).then(function(x){
+    return $http.get("api/tenantauthswitch/" + tid).then(function(x){
       return $window.open(x.data.redirect);
     });
   };

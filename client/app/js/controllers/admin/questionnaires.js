@@ -36,7 +36,7 @@ GLClient.controller("AdminQuestionnaireCtrl",
     $scope.Utils.readFileAsText(file).then(function(txt) {
       return $http({
         method: "POST",
-        url: "admin/questionnaires?multilang=1",
+        url: "api/admin/questionnaires?multilang=1",
         data: txt,
       });
     }).then(function() {
@@ -96,7 +96,7 @@ controller("AdminQuestionnaireEditorCtrl", ["$scope", "$uibModal", "$http", "Fil
   $scope.exportQuestionnaire = function(obj) {
     $http({
       method: "GET",
-      url: "admin/questionnaires/" + obj.id,
+      url: "api/admin/questionnaires/" + obj.id,
       responseType: "blob",
     }).then(function (response) {
       FileSaver.saveAs(response.data, obj.name + ".json");
@@ -132,7 +132,7 @@ controller("QuestionaireOperationsCtrl",
 
     if ($scope.operation === "duplicate") {
       $http.post(
-        "admin/questionnaires/duplicate",
+        "api/admin/questionnaires/duplicate",
         {
           questionnaire_id: $scope.questionnaire.id,
           new_name: $scope.duplicate_questionnaire.name

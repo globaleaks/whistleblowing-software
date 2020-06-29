@@ -86,7 +86,7 @@ GLClient.controller("TipCtrl",
     };
 
     if ($scope.Authentication.session.role === "whistleblower") {
-      $scope.fileupload_url = "wbtip/rfile";
+      $scope.fileupload_url = "api/wbtip/rfile";
 
       $scope.tip = new WBTip(function(tip) {
         $scope.tip = tip;
@@ -111,7 +111,7 @@ GLClient.controller("TipCtrl",
         $scope.submission._submission = tip;
 
         $scope.provideIdentityInformation = function(identity_field_id, identity_field_answers) {
-          return $http.post("wbtip/" + $scope.tip.id + "/provideidentityinformation",
+          return $http.post("api/wbtip/" + $scope.tip.id + "/provideidentityinformation",
                             {"identity_field_id": identity_field_id, "identity_field_answers": identity_field_answers}).
               then(function(){
                 $route.reload();
@@ -255,11 +255,11 @@ controller("TipOperationsCtrl",
         "args": {}
       };
 
-      return $http({method: "PUT", url: "rtip/" + args.tip.id, data: req}).then(function () {
+      return $http({method: "PUT", url: "api/rtip/" + args.tip.id, data: req}).then(function () {
         $route.reload();
       });
     } else if ($scope.args.operation === "delete") {
-      return $http({method: "DELETE", url: "rtip/" + args.tip.id, data:{}}).
+      return $http({method: "DELETE", url: "api/rtip/" + args.tip.id, data:{}}).
         then(function() {
           $location.url("/recipient/reports");
           $route.reload();
@@ -307,7 +307,7 @@ controller("IdentityAccessRequestCtrl",
   $scope.confirm = function () {
     $uibModalInstance.close();
 
-    return $http.post("rtip/" + tip.id + "/identityaccessrequests", {"request_motivation": $scope.request_motivation}).
+    return $http.post("api/rtip/" + tip.id + "/identityaccessrequests", {"request_motivation": $scope.request_motivation}).
         then(function(){
           $route.reload();
         });

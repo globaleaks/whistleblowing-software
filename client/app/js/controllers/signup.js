@@ -51,7 +51,7 @@
 
     completed = true;
 
-    $http.post("signup", $scope.signup).then(function() {
+    $http.post("api/signup", $scope.signup).then(function() {
       $scope.step += 1;
     });
   };
@@ -61,6 +61,6 @@ controller("SignupActivationCtrl", ["$scope", "$location", "$http",
   var token = $location.search().token;
 
   if (token) {
-    $http.get("signup/" + token);
+    $http.get("api/signup/" + token);
   }
 }]);

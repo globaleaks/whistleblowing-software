@@ -2,7 +2,7 @@ GLClient.controller("EnableTwoFactorAuthCtrl", ["$scope", "$http", "$location",
   function($scope, $http, $location) {
     $scope.vars = {};
 
-    $http({method: "PUT", url: "user/operations", data:{
+    $http({method: "PUT", url: "api/user/operations", data:{
       "operation": "enable_2fa_step1",
       "args": {}
     }}).then(function(data){
@@ -13,7 +13,7 @@ GLClient.controller("EnableTwoFactorAuthCtrl", ["$scope", "$http", "$location",
     $scope.enable2FA = function() {
       return $http({
         method: "PUT",
-        url: "user/operations",
+        url: "api/user/operations",
         data: {
           "operation": "enable_2fa_step2",
           "args": {

@@ -477,7 +477,7 @@ module.exports = function(grunt) {
     grunt.file.copy("tmp/globaleaks-embedded.css", "build/globaleaks-embedded.css");
     grunt.file.copy("tmp/globaleaks-embedded.js", "build/globaleaks-embedded.js");
 
-    dirs = ["data", "l10n", "lib/js/locale/"];
+    dirs = ["data", "lib/js/locale/"];
 
     for (x in dirs) {
       var copy_fun = function(absdir, rootdir, subdir, filename) {
@@ -807,7 +807,7 @@ module.exports = function(grunt) {
 
         output = JSON.stringify(translations, null, 2);
 
-        fs.writeFileSync("app/l10n/" + lang_code + ".json", output);
+        fs.writeFileSync("app/data/l10n/" + lang_code + ".json", output);
       }
 
       done();

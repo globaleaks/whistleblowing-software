@@ -68,7 +68,7 @@ GLClient.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
 
     $scope.resetUserPassword = function() {
       $http.put(
-        "admin/config", {
+        "api/admin/config", {
           "operation": "reset_user_password",
           "args": {
             "value": $scope.user.id
@@ -80,7 +80,7 @@ GLClient.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
 
     $scope.disable2FA = function() {
       $http.put(
-        "admin/config", {
+        "api/admin/config", {
           "operation": "disable_2fa",
           "args": {
             "value": $scope.user.id

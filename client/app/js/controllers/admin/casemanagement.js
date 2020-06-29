@@ -83,7 +83,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
 
       $http({
         method: "PUT",
-        url: "admin/submission_statuses",
+        url: "api/admin/submission_statuses",
         data: {
           "operation": "order_elements",
           "args": reordered_ids,
@@ -105,7 +105,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
       };
 
       $http.post(
-        "admin/submission_statuses",
+        "api/admin/submission_statuses",
         new_submissions_status
       ).then(function (result) {
         $scope.resources.submission_statuses.push(result.data);
@@ -151,7 +151,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
 
       $http({
         method: "PUT",
-        url: "/admin/submission_statuses/" + $scope.submissions_status.id + "/substatuses",
+        url: "api/admin/submission_statuses/" + $scope.submissions_status.id + "/substatuses",
         data: {
           "operation": "order_elements",
           "args":  {"ids" : $scope.submissions_status.substatuses.map(function(c) { return c.id; })}
@@ -173,7 +173,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
       };
 
       $http.post(
-        "admin/submission_statuses/" + $scope.submissions_status.id + "/substatuses",
+        "api/admin/submission_statuses/" + $scope.submissions_status.id + "/substatuses",
         new_submissions_substatuses
       ).then(function (result) {
         $scope.submissions_status.substatuses.push(result.data);
@@ -211,7 +211,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
       };
 
       $http.post(
-        "admin/submission_statuses/" + $scope.submissions_status.id + "/substatuses",
+        "api/admin/submission_statuses/" + $scope.submissions_status.id + "/substatuses",
         new_submissions_substatuses
       ).then(function (result) {
         $scope.submissions_status.substatuses.push(result.data);

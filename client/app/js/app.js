@@ -86,7 +86,7 @@ var GLClient = angular.module("GLClient", [
               agent: navigator.userAgent
             });
 
-            $injector.get("$http").post("exception", scrub(errorData));
+            $injector.get("$http").post("api/exception", scrub(errorData));
           });
       };
     }]);
@@ -813,7 +813,7 @@ var GLClient = angular.module("GLClient", [
              }],
              agent: navigator.userAgent
            });
-          $http.post("exception", errorData);
+          $http.post("api/exception", errorData);
        }
 
        if (response.data !== null) {

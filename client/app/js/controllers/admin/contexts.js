@@ -49,7 +49,7 @@ controller("AdminContextEditorCtrl", ["$scope", "$rootScope", "$http", "AdminCon
 
     $http({
       method: "PUT",
-      url: "/admin/contexts",
+      url: "api/admin/contexts",
       data: {
         "operation": "order_elements",
         "args": {"ids": $scope.resources.contexts.map(function(c) { return c.id; })},

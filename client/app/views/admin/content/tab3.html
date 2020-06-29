@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12">
     <div class="form-group">
-      <div flow-init="{target: 'admin/files/custom'}"
+      <div flow-init="{target: 'api/admin/files/custom'}"
                 flow-files-submitted="$flow.upload()"
                 flow-file-success="reload()"
                 extend-flow-valid-size="public.node.maximum_filesize*1024*1024">
@@ -26,7 +26,7 @@
                   <i class="fas fa-download"></i>
                   <span data-translate>Download</span>
                 </a>
-                <button class="btn btn-sm btn-danger" data-ng-click="delete_file('admin/files/' + file.id)" data-single-click>
+                <button class="btn btn-sm btn-danger" data-ng-click="delete_file('api/admin/files/' + file.id)" data-single-click>
                   <i class="fas fa-trash"></i>
                   <span data-translate>Delete</span>
                 </button>

@@ -122,7 +122,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
   $scope.downloadFile = function(resource) {
      $http({
         method: "GET",
-        url: "admin/config/tls/files/" + resource.name,
+        url: "api/admin/config/tls/files/" + resource.name,
         responseType: "blob",
      }).then(function (response) {
         FileSaver.saveAs(response.data, resource.name + ".pem");

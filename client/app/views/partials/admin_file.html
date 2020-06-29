@@ -1,6 +1,6 @@
 <label>{{admin_file.title}}</label>
 <div class="card.card-body uploadfile file-{{admin_file.varname}}"
-     flow-init="{target: 'admin/files/' + admin_file.varname}"
+     flow-init="{target: 'api/admin/files/' + admin_file.varname}"
      flow-files-submitted="$flow.upload()"
      flow-file-success="reload()"
      flow-file-single
@@ -20,7 +20,7 @@
       <i class="fas fa-download"></i>
       <span data-translate>Download</span>
     </a>
-    <button class="btn btn-sm btn-danger" data-ng-click="delete_file('admin/files/' + admin_file.varname)">
+    <button class="btn btn-sm btn-danger" data-ng-click="delete_file('api/admin/files/' + admin_file.varname)">
       <i class="fas fa-trash"></i>
       <span data-translate>Delete</span>
     </button>

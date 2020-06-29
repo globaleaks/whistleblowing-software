@@ -173,13 +173,14 @@ describe("globaLeaks process", function() {
     var id = await element(by.id("tip-0")).evaluate("tip.id");
     await browser.setLocation("/status/" + id);
     await browser.gl.utils.waitUntilPresent(by.id("tip-action-silence"));
-
     var silence = element(by.id("tip-action-silence"));
     await silence.click();
+
     var notif = element(by.id("tip-action-notify"));
     var enabled = await notif.evaluate("tip.enable_notifications");
     expect(enabled).toEqual(false);
     await notif.click();
+
     enabled = await silence.evaluate("tip.enable_notifications");
     expect(enabled).toEqual(true);
   });

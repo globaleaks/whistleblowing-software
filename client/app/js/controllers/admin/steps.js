@@ -101,7 +101,7 @@ controller("AdminStepEditorCtrl", ["$scope", "$rootScope", "$http", "AdminStepRe
 
       $http({
         method: "PUT",
-        url: "/admin/steps",
+        url: "api/admin/steps",
         data: {
           "operation": "order_elements",
           "args": {

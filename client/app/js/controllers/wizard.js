@@ -19,7 +19,7 @@ GLClient.controller("WizardCtrl", ["$scope", "$location", "$route", "$http", "Au
 
     completed = true;
 
-    $http.post("wizard", $scope.wizard).then(function() {
+    $http.post("api/wizard", $scope.wizard).then(function() {
       $scope.step += 1;
     });
   };

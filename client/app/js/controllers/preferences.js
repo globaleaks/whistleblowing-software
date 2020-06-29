@@ -33,7 +33,7 @@ GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "
     };
 
     $scope.getEncryptionRecoveryKey = function() {
-      return $http({method: "PUT", url: "user/operations", data:{
+      return $http({method: "PUT", url: "api/user/operations", data:{
         "operation": "get_recovery_key",
         "args": {}
       }}).then(function(data){
@@ -58,7 +58,7 @@ GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "
       if ($scope.preferences.two_factor_enable) {
         $scope.preferences.two_factor_enable = false;
 
-        return $http({method: "PUT", url: "user/operations", data:{
+        return $http({method: "PUT", url: "api/user/operations", data:{
           "operation": "enable_2fa_step1",
           "args": {}
         }}).then(function(data){
@@ -66,7 +66,7 @@ GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "
           $scope.qrcode_string = "otpauth://totp/GlobaLeaks?secret=" + $scope.two_factor_secret;
 
           $scope.Utils.openConfirmableModalDialog("views/partials/enable_2fa_modal.html", {}, $scope).then(function (result) {
-            return $http({method: "PUT", url: "user/operations", data:{
+            return $http({method: "PUT", url: "api/user/operations", data:{
               "operation": "enable_2fa_step2",
               "args": {
                 "value": result
@@ -77,7 +77,7 @@ GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "
           });
         });
       } else {
-        return $http({method: "PUT", url: "user/operations", data:{
+        return $http({method: "PUT", url: "api/user/operations", data:{
           "operation": "disable_2fa",
           "args": {}
         }}).then(function() {
