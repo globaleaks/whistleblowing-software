@@ -14,7 +14,7 @@ from globaleaks.db import get_db_file
 from globaleaks.orm import make_db_uri, get_engine
 from globaleaks.rest.requests import AdminNotificationDesc, AdminNodeDesc
 from globaleaks.settings import Settings
-from globaleaks.utils.crypto import GCE, generateRandomPassword
+from globaleaks.utils.crypto import GCE, generateApiToken, generateRandomPassword
 
 
 def check_file(f):
@@ -197,6 +197,25 @@ def set_var(args, silent=False):
         raise e
 
 
+def enable_api_token(args):
+    """
+    creates an api token along with its corresponding hash digest.
+
+    :rtype: A `tuple` containing (digest `str`, token `str`)
+    """
+    args.varname = 'admin_api_token_digest'
+    token, args.value = generateApiToken()
+
+    set_var(args, silent=True)
+    print('The API token is: {}'.format(token))
+
+def disable_api_token(args):
+    args.varname = 'admin_api_token_digest'
+    args.value = ''
+
+    set_var(args, silent=True)
+    print('The API token was deleted')
+
 def add_db_path_arg(parser):
     parser.add_argument("--dbpath",
                         help="the path to the globaleaks db directory",
@@ -243,6 +262,16 @@ sv_p.add_argument("--tid", help="the tenant id", default='1', type=int)
 sv_p.add_argument("varname", help="the name of the config var", type=str)
 sv_p.add_argument("value", help="value which must be of the correct type Bool(0|1), Int(0-9^9), String(everything else)")
 sv_p.set_defaults(func=set_var)
+
+et_p = subp.add_parser("enable-api-token", help="enable the API token")
+add_db_path_arg(et_p)
+et_p.add_argument("--tid", help="the tenant id", default='1', type=int)
+et_p.set_defaults(func=enable_api_token)
+
+dt_p = subp.add_parser("disable-api-token", help="disable the API token")
+add_db_path_arg(dt_p)
+dt_p.add_argument("--tid", help="the tenant id", default='1', type=int)
+dt_p.set_defaults(func=disable_api_token)
 
 if __name__ == '__main__':
     args = parser.parse_args()

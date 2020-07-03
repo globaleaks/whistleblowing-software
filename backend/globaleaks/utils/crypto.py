@@ -53,20 +53,20 @@ def sha256(data):
     return _sha(hashes.SHA256(), data)
 
 
-def sha512(data):
-    """
-    Perform the sha512 of the passed thata
-    :param data: A data to be hashed
-    :return: A hash value
-    """
-    return _sha(hashes.SHA512(), data)
-
-
 def generateRandomKey():
     """
     Return a random secret of 256bits
     """
     return sha256(nacl_random(32)).decode()
+
+
+def generateApiToken():
+    """
+    Generate an API token
+    :return: An API token to be used for authentication
+    """
+    token = generateRandomKey()
+    return token, sha256(token.encode()).decode()
 
 
 def generateRandomPassword(N):

@@ -6,7 +6,7 @@ from globaleaks.utils.tempdict import TempDict
 
 
 class Session(object):
-    def __init__(self, tid, user_id, user_tid, user_role, pcn, two_factor, cc, ek, ms=True):
+    def __init__(self, tid, user_id, user_tid, user_role, pcn, two_factor, cc, ek, ms=False):
         self.id = generateRandomKey()
         self.tid = tid
         self.user_id = user_id

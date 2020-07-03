@@ -52,6 +52,8 @@ ConfigDescriptor = {
     'https_chain': Unicode(),
     'https_preload': Bool(default=False),
 
+    'admin_api_token_digest': Unicode(),
+
     'smtp_server': Unicode(default='mail.globaleaks.org'),
     'smtp_port': Int(default=9267),
     'smtp_username': Unicode(default='globaleaks'),
@@ -180,6 +182,7 @@ ConfigFilters = {
     'node': [
         'id',
         'name',
+        'admin_api_token_digest',
         'basic_auth',
         'basic_auth_username',
         'basic_auth_password',
@@ -247,6 +250,7 @@ ConfigFilters = {
         'https_cert',
         'https_chain',
         'https_preload',
+        'admin_api_token_digest',
         'ip_filter_admin',
         'ip_filter_admin_enable',
         'ip_filter_custodian',
@@ -298,7 +302,8 @@ ConfigFilters['admin_node'] = list(set(ConfigFilters['node']) - set([
     'https_priv_gen',
     'https_csr',
     'https_cert',
-    'https_chain'
+    'https_chain',
+    'admin_api_token_digest'
 ]))
 
 

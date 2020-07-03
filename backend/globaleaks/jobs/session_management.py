@@ -13,7 +13,5 @@ class SessionManagement(LoopingJob):
         """
         This scheduler is responsible for:
             - Reset of failed login attempts counters
-            - Refresh of the api_token's suspension
         """
         self.state.settings.failed_login_attempts = 0
-        self.state.api_token_session_suspended = False
