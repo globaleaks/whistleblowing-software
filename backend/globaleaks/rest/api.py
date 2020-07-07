@@ -481,7 +481,8 @@ class APIResourceWrapper(Resource):
         else:
             request.setHeader(b'X-Check-Tor', b'False')
 
-        request.setHeader(b'Content-Language', request.language)
+        if request.language:
+            request.setHeader(b'Content-Language', request.language)
 
     def parse_accept_language_header(self, request):
         if b'accept-language' in request.headers:
