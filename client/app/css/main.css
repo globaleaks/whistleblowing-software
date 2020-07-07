@@ -563,7 +563,7 @@ a.active, a:active.active, a:hover.active, a:focus.active {
 }
 
 .mapoutline {
-  fill: #333840;
+  fill: #f5f7fa;
   stroke: #000;
   stroke-width: 1.5px;
 }

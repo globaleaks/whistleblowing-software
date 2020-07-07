@@ -476,7 +476,7 @@ controller("SubmissionFormFieldCtrl", ["$scope", "$http", function($scope, $http
         $scope.clicked = null;
 
         for(var i=0; i<$scope.field.attrs.topojson.paths.length; i++) {
-          d3.select($scope.field.attrs.topojson.paths[i]).attr("r", 5.5).style("fill", "#DDD");
+          d3.select($scope.field.attrs.topojson.paths[i]).attr("r", 5.5).style("fill", "#F5F7FA");
         }
       };
 
@@ -539,7 +539,7 @@ controller("SubmissionFormFieldCtrl", ["$scope", "$http", function($scope, $http
                     .style("opacity", 0);
 
              if ($scope.clicked !== this) {
-               d3.select(this).attr("r", 5.5).style("fill", "#DDD");
+               d3.select(this).attr("r", 5.5).style("fill", "#F5F7FA");
              }
 
              $scope.$apply();
@@ -547,13 +547,13 @@ controller("SubmissionFormFieldCtrl", ["$scope", "$http", function($scope, $http
            .on("click", function(d) {
              if ($scope.answers[$scope.field.id][0]["value"] !== d.id) {
                if ($scope.clicked !== null) {
-                 d3.select($scope.clicked).attr("r", 5.5).style("fill", "#DDD");
+                 d3.select($scope.clicked).attr("r", 5.5).style("fill", "#F5F7FA");
                }
                $scope.clicked = this;
                d3.select(this).attr("r", 10).style("fill", "red");
                $scope.answers[$scope.field.id][0]["value"] = d.id;
              } else {
-               d3.select(this).attr("r", 5.5).style("fill", "#DDD");
+               d3.select(this).attr("r", 5.5).style("fill", "#F5F7FA");
                $scope.answers[$scope.field.id][0]["value"] = "";
              }
              $scope.$apply();
