@@ -63,10 +63,10 @@
     <select class="form-control" data-ng-model="preferences.language" data-ng-options="item.code as item.native for item in languages_enabled_selector"></select>
   </div>
 
-  <div id="EnableNotifications" class="form-group">
-    <input data-ng-model="preferences.notification" type="checkbox" data-ng-if="(Authentication.session.role === 'admin' && public.node.disable_admin_notification) ||
-                                                                                (Authentication.session.role === 'receiver' && public.node.disable_receiver_notification) ||
-                                                                                (Authentication.session.role === 'custodian' && public.node.disable_custodian_notification)">
+  <div id="EnableNotifications" class="form-group" data-ng-if="(Authentication.session.role === 'admin' && !public.node.disable_admin_notification) ||
+                                                               (Authentication.session.role === 'receiver' && !public.node.disable_receiver_notification) ||
+                                                               (Authentication.session.role === 'custodian' && !public.node.disable_custodian_notification)">
+    <input data-ng-model="preferences.notification" type="checkbox">
     <label data-translate>Enable email notifications</label>
   </div>
 
