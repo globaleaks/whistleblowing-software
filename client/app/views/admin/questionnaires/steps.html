@@ -94,8 +94,8 @@
                 </div>
               </div>
             </div>
-            <div class="row" data-ng-if="resources.node.enable_scoring_system">
-              <div class="form-group col-md-12">
+            <div class="row">
+              <div class="form-group col-md-12" data-ng-if="resources.node.enable_scoring_system">
                 <label data-translate>Triggered by score:</label>
                 <select class="form-control" data-ng-model="step.triggered_by_score" convert-to-number>
                   <option value="0" data-translate>Low</option>
