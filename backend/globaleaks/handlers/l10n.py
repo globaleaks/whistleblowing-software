@@ -19,7 +19,7 @@ def langfile_path(lang):
     :param lang: Language
     :return: A file path of the json file containing the specified language
     """
-    return os.path.abspath(os.path.join(Settings.client_path, 'l10n', '%s.json' % lang))
+    return os.path.abspath(os.path.join(Settings.client_path, 'data', 'l10n', '%s.json' % lang))
 
 
 @transact
