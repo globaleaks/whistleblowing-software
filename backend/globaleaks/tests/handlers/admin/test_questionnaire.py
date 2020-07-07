@@ -41,6 +41,17 @@ class TestQuestionnairesCollection(helpers.TestCollectionHandler):
 
             yield self.assertFailure(handler.post(), err)
 
+    @inlineCallbacks
+    def test_post_valid_json(self):
+        self.test_data_dir = os.path.join(helpers.DATA_DIR, 'questionnaires')
+
+        new_q = read_json_file(os.path.join(self.test_data_dir, 'valid.json'))
+
+        handler = self.request(new_q, role='admin')
+        handler.request.language = None
+
+        yield handler.post()
+
 
 class TestQuestionnaireInstance(helpers.TestInstanceHandler):
     _handler = questionnaire.QuestionnaireInstance
