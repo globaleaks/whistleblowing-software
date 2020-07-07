@@ -24,7 +24,7 @@ def db_create_step(session, tid, request, language):
     step = models.db_forge_obj(session, models.Step, request)
 
     for trigger in request.get('triggered_by_options', []):
-        db_create_option_trigger(session, tid, trigger['option'], 'step', step.id, trigger.get('sufficient', True))
+        db_create_option_trigger(session, trigger['option'], 'step', step.id, trigger.get('sufficient', True))
 
     for c in request['children']:
         c['tid'] = tid
@@ -59,7 +59,7 @@ def db_update_step(session, tid, step_id, request, language):
     db_reset_option_triggers(session, 'step', step.id)
 
     for trigger in request.get('triggered_by_options', []):
-        db_create_option_trigger(session, tid, trigger['option'], 'step', step.id, trigger.get('sufficient', True))
+        db_create_option_trigger(session, trigger['option'], 'step', step.id, trigger.get('sufficient', True))
 
     return serialize_step(session, tid, step, language)
 
