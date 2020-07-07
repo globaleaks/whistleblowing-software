@@ -13,7 +13,7 @@
           <div class="col-md-12" data-ng-if="showLangSelect">
             <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='enableLanguage($item);'>
               <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
-                <span data-ng-bind="$select.selected.native"></span>
+                <span data-ng-bind="$select.selected.name"></span>
               </ui-select-match>
               <ui-select-choices data-repeat="language in resources.node.languages_supported | filter:langNotEnabledFilter | filter: {name: $select.search}">
                 <span data-ng-bind-html="language.name | highlight: $select.search"></span>
