@@ -1,3 +1,6 @@
+Changes in version 4.0.40 - 2020-07-08
+    Fix regression in logo upload introduced in 4.0.39
+
 Changes in version 4.0.39 - 2020-07-08
     Fix import of questionnaires in relation to step triggers
     Add unit tests for import of complex questionnaires
