@@ -36,7 +36,7 @@ Legal Features
 - GDPR compliant subscriber module for new users of SAAS services
 - No logs of IP addresses
 - Integratable with existing enterprise case management platform
-- Free Software OSI Approved `AGPL 3.0 License <https://github.com/globaleaks/GlobaLeaks/blob/master/LICENSE>`_
+- Free Software OSI Approved `AGPL 3.0 License <https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE>`_
 
 Security Features
 =================

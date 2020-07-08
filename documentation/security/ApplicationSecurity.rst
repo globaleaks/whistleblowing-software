@@ -301,14 +301,14 @@ GlobaLeaks integrates iptables by default and implements by a strict firewall ru
 
 As well it automatically applies network sandboxing to all outbound communications that get automatically "torrified" (sent through Tor), being outbound TCP connections or DNS-query for name resolution.
 
-The configuration of the network sandboxing is defined inside the init script of the application: https://github.com/globaleaks/GlobaLeaks/blob/master/debian/globaleaks.init
+The configuration of the network sandboxing is defined inside the init script of the application: https://github.com/globaleaks/GlobaLeaks/blob/main/debian/globaleaks.init
 
 Application sandboxing
 ======================
 GlobaLeaks integrates AppArmor by default and implements a strict sandboxing profile enabling the application to access only the strictly required files.
 As well the application does run under a dedicated user and group "globaleaks" with reduced privileges.
 
-The configuration of the network sandboxing is defined inside the init script of the application: https://github.com/globaleaks/GlobaLeaks/blob/master/debian/apparmor/usr.bin.globaleaks
+The configuration of the network sandboxing is defined inside the init script of the application: https://github.com/globaleaks/GlobaLeaks/blob/main/debian/apparmor/usr.bin.globaleaks
 
 Other measures
 ==============

@@ -7,7 +7,7 @@
 ## Build
 | Branch | Status | Quality | Coverage | Browser Tests
 | :---: | :---: | :---: | :---: | :---: |
-| [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=master)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4e072e7e5287478fa56468f3719d94ef?branch=master)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/4e072e7e5287478fa56468f3719d94ef?branch=master)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=master&labels=none)](https://saucelabs.com/u/globaleaks)
+| [main](https://github.com/globaleaks/GlobaLeaks/tree/main) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=main)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4e072e7e5287478fa56468f3719d94ef?branch=main)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/4e072e7e5287478fa56468f3719d94ef?branch=main)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=main&labels=none)](https://saucelabs.com/u/globaleaks)
 | [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=devel)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4e072e7e5287478fa56468f3719d94ef?branch=devel)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/4e072e7e5287478fa56468f3719d94ef?branch=devel)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=devel&labels=none)](https://saucelabs.com/u/globaleaks)
 
 ## Documentation
@@ -42,6 +42,6 @@ To support the GlobaLeaks project you can help us with donations that will goes 
 [Help us by sending us a small donation!](https://www.globaleaks.org/donate)
 
 ## License
-This software is released under the AGPLv3 license. See [LICENSE file](https://github.com/globaleaks/GlobaLeaks/blob/master/LICENSE) for more information on Additional Terms as per [7(b)](https://github.com/globaleaks/GlobaLeaks/blob/master/LICENSE#L684) and [7(c)](https://github.com/globaleaks/GlobaLeaks/blob/master/LICENSE#L713).
+This software is released under the AGPLv3 license. See [LICENSE file](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE) for more information on Additional Terms as per [7(b)](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE#L684) and [7(c)](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE#L713).
 
 Copyright (c) 2011-2020 - [Hermes Center for Transparency and Digital Human Rights](https://www.hermescenter.org)

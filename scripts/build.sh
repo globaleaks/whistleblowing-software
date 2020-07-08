@@ -4,7 +4,7 @@ set -e
 
 TARGETS="buster focal bionic"
 DISTRIBUTION="buster"
-TAG="master"
+TAG="main"
 LOCAL_ENV=0
 NOSIGN=0
 PUSH=0
