@@ -31,7 +31,6 @@ If you need professional support, please use this form: [https://www.globaleaks.
 
 Other resources:
 * Follow us on [Twitter](https://twitter.com/globaleaks)
-* Follow us on [Facebook](https://www.facebook.com/globaleaks)
 * Have a look at Project Statistics on [OpenHub](https://www.openhub.net/p/globaleaks)
 * [ITA] [Applicazione in Riuso](https://developers.italia.it/it/software/globaleaks-globaleaks-f22648.html) secondo [Linee Guida Acquisizione e Riuso](https://docs.italia.it/italia/developers-italia/lg-acquisizione-e-riuso-software-per-pa-docs/it/stabile/) del Codice Amministrazione Digitale Art 69. comma 2
 * [ITA] [Regole di Riuso](https://globaleaks.org/it/anticorruzione/regole-di-riuso-a-cui-devono-attenersi-le-pubbliche-amministrazioni-che-modificano-il-software-di-whistleblowing-globaleaks/) a cui devono attenersi le Pubbliche Amministrazioni che modificano il software di Whistleblowing GlobaLeaks
