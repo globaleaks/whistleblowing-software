@@ -23,6 +23,9 @@ class CertificateCheck(DailyJob):
 
     def certificate_mail_creation(self, session, mail_type, tid, expiration_date):
         for user_desc in db_get_users(session, tid, 'admin'):
+            if not user_desc['notification']:
+                continue
+
             lang = user_desc['language']
 
             template_vars = {
