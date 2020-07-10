@@ -221,7 +221,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'GlobaLeaks.tex', u'GlobaLeaks Documentation', '', 'manual'),
+    (master_doc, 'GlobaLeaks.tex', u'Documentation', '', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
