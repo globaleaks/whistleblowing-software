@@ -64,7 +64,6 @@ def db_initialize_tenant(session, tenant, mode):
 
     if mode == 'default':
         file_descs = [
-            ('logo', 'data/logo.png'),
             ('favicon', 'data/favicon.ico')
         ]
 

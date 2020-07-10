@@ -80,6 +80,11 @@ table {
   vertical-align: middle;
 }
 
+.default-logo {
+  height: 3rem;
+  width: 3rem;
+}
+
 [dir="ltr"] #LogoBox {
   margin: 0 1rem 0 0;
 }

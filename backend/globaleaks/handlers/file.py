@@ -64,6 +64,10 @@ class FileHandler(BaseHandler):
                 x = yield tw(db_get_file, 1, name)
 
             self.request.setHeader(b'Content-Type', appfiles[name])
+
+            if not x and name == 'logo':
+                x = b'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+
             x = base64.b64decode(x)
             returnValue(x)
         else:

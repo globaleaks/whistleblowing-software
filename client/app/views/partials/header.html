@@ -1,7 +1,7 @@
 <div id="HeaderBox">
   <div class="row clearfix">
     <div class="col-md-8 float-left">
-      <span id="LogoBox" data-ng-click="setHomepage()"><img class="img-fluid" alt="project logo" src="s/logo" /></span><span id="TitleBox">{{pt}}</span>
+      <span id="LogoBox" data-ng-click="setHomepage()"><img data-ng-if="!public.node.logo" class="default-logo" alt="globaleaks logo" src="data/logo.png" /><img data-ng-if="public.node.logo" class="img-fluid'" alt="project logo" src="s/logo" /></span><span id="TitleBox">{{pt}}</span>
     </div>
     <div class="col-md-4 float-right">
       <span id="UserBox" class="float-right" data-ng-include="'views/partials/user.html'"></span>

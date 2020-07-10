@@ -164,7 +164,7 @@ def db_serialize_node(session, tid, language):
     ret_dict['languages_enabled'] = models.EnabledLanguage.list(session, tid) if node_dict['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES)
     ret_dict['languages_supported'] = LANGUAGES_SUPPORTED
 
-    records = session.query(models.File.id, models.File.data).filter(models.File.tid == tid, models.File.id.in_(['css', 'script']))
+    records = session.query(models.File.id, models.File.data).filter(models.File.tid == tid, models.File.id.in_(['css', 'logo', 'script']))
     for x in records:
         ret_dict[x[0]] = True
 
@@ -187,7 +187,7 @@ def db_serialize_node(session, tid, language):
             ret_dict['disclaimer_title'] = root_tenant_l10n.get_val('disclaimer_title', language)
             ret_dict['disclaimer_text'] = root_tenant_l10n.get_val('disclaimer_text', language)
 
-            records = session.query(models.File.id, models.File.data).filter(models.File.tid == 1, models.File.id.in_(['css', 'script']))
+            records = session.query(models.File.id, models.File.data).filter(models.File.tid == 1, models.File.id.in_(['css', 'logo', 'script']))
             for x in records:
                 if not ret_dict.get(x[0]):
                     ret_dict[x[0]] = True
