@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/client/app/data/logo.png" width="200">
+  <img src="/logo.png" width="400">
 </p>
 
 [GlobaLeaks](https://www.globaleaks.org/) is open-source / free software intended to enable secure and anonymous whistleblowing initiatives developed by the [Hermes Center for Transparency and Digital Human Rights](https://www.hermescenter.org/).
