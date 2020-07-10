@@ -134,7 +134,7 @@ html_theme = 'sphinx_rtd_theme'
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-html_logo = '../client/app/data/logo.png'
+html_logo = 'logo-html.png'
 
 # The name of an image file (relative to this directory) to use as a favicon of
 # the docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -226,7 +226,7 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = '../client/app/data/logo.png'
+latex_logo = 'logo-latex.png'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
