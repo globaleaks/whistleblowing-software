@@ -117,7 +117,7 @@ By default the software implements a Default Questionnaire with a single Step an
 
 The system with its basic configuration completed with the initial Platform wizard is also already configured with this Default Questionnaire pre-associated to the Default Context.
 
-Depending on your project needs you could create specific questionnaire for each of your different submissions' contexts.
+Depending on your project needs you could create specific questionnaire for each of your different reports' contexts.
 
 .. image:: imgs/questionnaires.png
 
@@ -168,7 +168,7 @@ Each of the software question types make it possible to configure the following 
 
   Required: Set this field if you want this question to be mandatory
 
-  Preview: Set this field if you want the answers to this question to appear in the preview section of the submission list 
+  Preview: Set this field if you want the answers to this question to appear in the preview section of the  list 
 
 Question properties by question type
 .....................................
@@ -197,7 +197,7 @@ A whistleblowing channel is typically defined by the following main characterist
     Name: the name of the channel
     Image: an image to identify the channel
     Description: a description of the channel
-    Recipients: the set of recipients that will receive submissions sent to this channel
+    Recipients: the set of recipients that will receive reports sent to this channel
     Questionnaire: the questionnaire that will be proposed to whistlelowers selecting this channel
     Submission expiration: the data retention policy for the channel
 
@@ -210,17 +210,17 @@ Depending on your project needs here you could create additional Contexts and co
 Submissions expiration
 ......................
 The software enables to configure a data retention policy for each channel.
-This is a fundamental property of the whistleblowing channel that makes it possible to configure automatic secure deletion of submissions after a certain period of time.
-This setting should be configured in relation to the risk of the channel in order to limit unndeded exposure of the submissions received therein.
+This is a fundamental property of the whistleblowing channel that makes it possible to configure automatic secure deletion of reports after a certain period of time.
+This setting should be configured in relation to the risk of the channel in order to limit unndeded exposure of the reportss received therein.
 
-By default a context is configured with a submission expiration of 30 days.
+By default a context is configured with a report expiration of 30 days.
 
 Case management
 ---------------
 This section is intended to host all the main case management feature that will be offered by the software.
-Currently it hosts the possibility to define submissions statuses and substatuses intended to be used by Recipients while working on the submissions.
+Currently it hosts the possibility to define reports statuses and substatuses intended to be used by Recipients while working on the reports.
 
-By default the system includes the following submission statuses:
+By default the system includes the following report statuses:
 
    1. New
 
@@ -230,7 +230,7 @@ By default the system includes the following submission statuses:
 
 Within this section you may add additional Statuses between the State Open and Closed and you can furtherly define Substatuses for the Closed status (e.g. Archived / Spam)
 
-.. image:: imgs/submission_statuses.png
+.. image:: imgs/report_statuses.png
 
 Notification settings
 ---------------------
@@ -294,7 +294,7 @@ IP Access Control
 .................
 Here you can configure IP based Access Control.
 
-.. image:: imgs/ip_access_control.png
+.. image:: imgs/access_control.png
 
 Suggested configurations are:
 
@@ -308,12 +308,22 @@ TODO
 
 .. image:: imgs/advanced_settings.png
 
-.. image:: imgs/url_shortener.png
+.. image:: imgs/url_redirects.png
 
 .. image:: imgs/anomaly_thresholds.png
 
-System overview
+Audit log
 ---------------
 TODO
 
-.. image:: imgs/system_overview.png
+.. image:: imgs/audit_log1.png
+
+.. image:: imgs/audit_log2.png
+
+.. image:: imgs/audit_log3.png
+
+.. image:: imgs/audit_log4.png
+
+.. image:: imgs/audit_log5.png
+
+.. image:: imgs/audit_log6.png
