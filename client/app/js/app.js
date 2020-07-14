@@ -175,7 +175,7 @@ var GLClient = angular.module("GLClient", [
       when("/status/:tip_id", {
         templateUrl: "views/recipient/tip.html",
         controller: "TipCtrl",
-        header_title: "",
+        header_title: "Report",
         resolve: {
           access: requireAuth("receiver"),
         }
