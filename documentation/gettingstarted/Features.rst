@@ -48,7 +48,7 @@ Security Features
 - Conform to industry standards and best practices for application security by following `OWASP Security Guidelines <https://owasp.org/>`_
 - Two-Factor authentication (2FA) support compliant to standard `TOTP RFC 6238 <https://tools.ietf.org/html/rfc6238>`_
 - Integrated network sandboxing with iptables
-- Integrated application sandboxing with `AppArmor <http://wiki.apparmor.net/>`
+- Integrated application sandboxing with `AppArmor <http://wiki.apparmor.net/>`_
 - Complete protection against automated submissions (spam prevention)
 - Subject to continuous peer-review and periodic security audits
 - PGP support for encrypted email notifications

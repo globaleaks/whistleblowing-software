@@ -4,7 +4,7 @@ Troubleshooting
 
 Issues and bug reporting
 ------------------------
-If you encounter any issue and you are not able to to run GlobaLeaks h
+If you encounter any issue and you are not able to to run GlobaLeaks:
 
 - Be sure to strictly follow the Installation Guide for installation
 - Be sure to satisfy the Technical Requirements for hardware and operating system version.
@@ -27,7 +27,7 @@ Depending on your setup. There are a few things that are usually the first thing
 
   curl -vvv localhost:8082
 
-- Is the service listening on external interfaces? Is Tor2Web service listening on 443?
+- Is the service listening on external interfaces?
 
 ::
 
