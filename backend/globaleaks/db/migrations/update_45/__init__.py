@@ -254,6 +254,18 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
+    def migrate_WhistleblowerTip(self):
+        for old_obj in self.session_old.query(self.model_from['WhistleblowerTip']):
+            print(old_obj)
+            new_obj = self.model_to['WhistleblowerTip']()
+            for key in new_obj.__table__.columns._data.keys():
+                if key == 'hash_alg':
+                    new_obj.hash_alg = 'SCRYPT'
+                elif key in old_obj.__table__.columns._data.keys():
+                    setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
+
     def epilogue(self):
         if self.session_new.query(self.model_from['Tenant']).count() > 1:
             self.session_new.add(self.model_to['Config']({'tid': 1, 'var_name': 'multisite', 'value': True}))
