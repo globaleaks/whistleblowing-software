@@ -3,6 +3,7 @@ releaseDate: '2020-07-08'
 publiccodeYmlVersion: '0.2'
 url: 'https://github.com/globaleaks/GlobaLeaks'
 landingURL: 'https://github.com/globaleaks/GlobaLeaks'
+logo: img/logo-horizontal-color.png
 softwareVersion: 4.0.40
 softwareType: standalone/web
 developmentStatus: stable
@@ -153,4 +154,3 @@ description:
       - "HTTP/2 support"
       - "Provisioning API"
     screenshots:
-      - client/app/data/logo.png
