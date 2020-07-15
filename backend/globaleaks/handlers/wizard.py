@@ -147,6 +147,7 @@ def db_wizard(session, tid, hostname, request):
 
     if mode != 'default':
         node.set_val('hostname', tenant.subdomain + '.' + root_tenant_node.get_val('rootdomain'))
+        node.set_val('tor', False)
 
     if mode in ['whistleblowing.it', 'eat']:
         for varname in ['reachable_via_web',
@@ -180,7 +181,6 @@ def db_wizard(session, tid, hostname, request):
     # Apply the specific fixes related to whistleblowing.it projects
     if mode == 'whistleblowing.it':
         node.set_val('simplified_login', True)
-        node.set_val('tor', False)
 
     db_refresh_memory_variables(session, [tid])
 
