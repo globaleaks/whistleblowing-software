@@ -2,7 +2,7 @@
   <img src="/logo.png" width="400">
 </p>
 
-[GlobaLeaks](https://www.globaleaks.org/) is open-source / free software intended to enable secure and anonymous whistleblowing initiatives developed by the [Hermes Center for Transparency and Digital Human Rights](https://www.hermescenter.org/).
+[GlobaLeaks](https://www.globaleaks.org/) is open-source / free software intended to enable secure and anonymous whistleblowing initiatives
 
 ## Build
 | Branch | Status | Quality | Coverage | Browser Tests
@@ -11,9 +11,9 @@
 | [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=devel)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4e072e7e5287478fa56468f3719d94ef?branch=devel)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/4e072e7e5287478fa56468f3719d94ef?branch=devel)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=devel&labels=none)](https://saucelabs.com/u/globaleaks)
 
 ## Documentation
-For the user manual refer to the [GlobaLeaks's User Manual](https://docs.globaleaks.org/).
+For the user manual refer to the [User Manual](https://docs.globaleaks.org/).
 
-For the developer documentation refer to the [GlobaLeaks's Developer Documentation](https://github.com/globaleaks/GlobaLeaks/wiki).
+For the developer documentation refer to the [Developer Documentation](https://github.com/globaleaks/GlobaLeaks/wiki).
 
 ## Community and professional support
 If you need technical support, have general questions, or have new ideas for GlobaLeaks, please post your message on the [community support forum](https://forum.globaleaks.org/).
@@ -25,13 +25,9 @@ Join our [Slack](https://slack.globaleaks.org) to get in touch with the developm
 
 If you want to contribute to software development or report a bug, please open an issue on [GitHub](https://github.com/globaleaks/GlobaLeaks/issues/).
 
-If your non-profit needs support for investigative journalism, activism or a human rights defense project, contact the [Hermes Center](mailto:projects@hermescenter.org).
-
-If you need professional support, please use this form: [https://www.globaleaks.org/contact/](https://www.globaleaks.org/contact/ )
-
 Other resources:
 * Follow us on [Twitter](https://twitter.com/globaleaks)
-* Have a look at Project Statistics on [OpenHub](https://www.openhub.net/p/globaleaks)
+* Have a look at [Project Statistics](https://www.openhub.net/p/globaleaks) on OpenHub
 * [ITA] [Applicazione in Riuso](https://developers.italia.it/it/software/globaleaks-globaleaks-f22648.html) secondo [Linee Guida Acquisizione e Riuso](https://docs.italia.it/italia/developers-italia/lg-acquisizione-e-riuso-software-per-pa-docs/it/stabile/) del Codice Amministrazione Digitale Art 69. comma 2
 * [ITA] [Regole di Riuso](https://globaleaks.org/it/anticorruzione/regole-di-riuso-a-cui-devono-attenersi-le-pubbliche-amministrazioni-che-modificano-il-software-di-whistleblowing-globaleaks/) a cui devono attenersi le Pubbliche Amministrazioni che modificano il software di Whistleblowing GlobaLeaks
 
