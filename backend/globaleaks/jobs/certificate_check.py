@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
 
+from twisted.internet.defer import inlineCallbacks
+
 from OpenSSL.crypto import load_certificate, FILETYPE_PEM
+
 
 from globaleaks import models
 from globaleaks.handlers.admin.https import db_acme_cert_request, load_tls_dict
@@ -12,6 +15,7 @@ from globaleaks.jobs.job import DailyJob
 from globaleaks.orm import transact
 from globaleaks.utils import letsencrypt
 from globaleaks.utils.log import log
+from globaleaks.utils.utility import deferred_sleep
 
 
 class CertificateCheck(DailyJob):
@@ -39,10 +43,6 @@ class CertificateCheck(DailyJob):
             self.state.format_and_send_mail(session, tid, user_desc, template_vars)
 
     @transact
-    def check_tenants_for_cert_expiration(self, session):
-        for tenant in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True)):
-            self.cert_expiration_checks(session, tenant[0])
-
     def cert_expiration_checks(self, session, tid):
         priv_fact = models.config.ConfigFactory(session, tid)
 
@@ -74,5 +74,8 @@ class CertificateCheck(DailyJob):
             if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
                 self.certificate_mail_creation(session, 'https_certificate_expiration', tid, expiration_date)
 
+    @inlineCallbacks
     def operation(self):
-        return self.check_tenants_for_cert_expiration()
+        for tid in self.state.tenant_state:
+            yield self.cert_expiration_checks(tid)
+            yield deferred_sleep(60)
