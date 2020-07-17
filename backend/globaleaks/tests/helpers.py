@@ -24,7 +24,6 @@ from twisted.web.test.requesthelper import DummyRequest
 
 from . import TEST_DIR
 
-
 from globaleaks import db, models, orm, event, jobs, __version__, DATABASE_VERSION
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, tw
@@ -44,7 +43,7 @@ from globaleaks.rest.api import JSONEncoder
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
-from globaleaks.utils import process, tempdict, token, utility
+from globaleaks.utils import process, tempdict, token
 from globaleaks.utils.crypto import GCE, Base32Encoder, Base64Encoder
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.securetempfile import SecureTemporaryFile
@@ -96,13 +95,6 @@ kp = os.path.join(DATA_DIR, 'gpg')
 for filename in os.listdir(kp):
     with open(os.path.join(kp, filename)) as pgp_file:
         PGPKEYS[filename] = pgp_file.read()
-
-
-def deferred_sleep_mock(seconds):
-    return
-
-
-utility.deferred_sleep = deferred_sleep_mock
 
 
 class UTlog:
