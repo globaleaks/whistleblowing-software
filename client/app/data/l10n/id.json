@@ -331,7 +331,7 @@
   "Software version:": "Versi perangkat lunak: ",
   "An update is available:": "Pembaruan tersedia:",
   "Restrict access to specific IP addresses": "Batasi akses ke alamat IP tertentu",
-  "Whitelisted IP addresses": "Alamat-alamat IP yang di daftarputihkan ",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "Admin",
   "Recipient": "Penerima",
   "Whistleblower": "Informan publik",

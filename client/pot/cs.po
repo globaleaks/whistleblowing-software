@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-22 19:31+0000\n"
-"Last-Translator: Mr Higgins\n"
+"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -865,7 +865,7 @@ msgid "Connection"
 msgstr "Připojení"
 
 msgid "Whistleblower's last access"
-msgstr "Poslední přístup"
+msgstr "Poslední přístup oznamovatele"
 
 msgid "Alarm level"
 msgstr "Úroveň varování"
@@ -1044,8 +1044,8 @@ msgstr "Je dostupná aktualizace:"
 msgid "Restrict access to specific IP addresses"
 msgstr "Omezit přístup k určitým IP adresám"
 
-msgid "Whitelisted IP addresses"
-msgstr "Povolené IP adresy"
+msgid "Allowed IP addresses"
+msgstr ""
 
 msgid "Admin"
 msgstr "Admin"
@@ -1872,13 +1872,13 @@ msgid "The specified input is not valid."
 msgstr "Zadaný vstup není platný."
 
 msgid "The specified input is not valid:"
-msgstr "Zadaný vstup není validní:"
+msgstr "Zadaný vstup je neplatný:"
 
 msgid "please enter a valid email address."
 msgstr "Prosím vložte platnou emailovou adresu."
 
 msgid "please enter numbers only."
-msgstr "Vkládejte prosím, pouze čísla."
+msgstr "Vkládejte prosím pouze čísla."
 
 msgid "Submissions disabled"
 msgstr "Podání zakázána"

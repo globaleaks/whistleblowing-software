@@ -331,7 +331,7 @@
   "Software version:": "Software version:",
   "An update is available:": "Der er tilgængelige opdateringer:",
   "Restrict access to specific IP addresses": "Begræns adgang til specifikke IP-numre",
-  "Whitelisted IP addresses": "Godkendte IP-adresser",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "Admin",
   "Recipient": "Modtager",
   "Whistleblower": "Whistleblower",

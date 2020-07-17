@@ -331,7 +331,7 @@
   "Software version:": "รุ่นซอฟต์แวร์:",
   "An update is available:": "การปรับรุ่นพร้อมแล้ว:",
   "Restrict access to specific IP addresses": "อนุญาตให้เข้าถึงได้เฉพาะจากที่อยู่ไอพีที่เจาะจง",
-  "Whitelisted IP addresses": "ที่อยู่ไอพีในบัญชีขาว",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "ผู้ดูแลระบบ",
   "Recipient": "ผู้รับ",
   "Whistleblower": "ผู้แจ้งเบาะแส",

@@ -331,7 +331,7 @@
   "Software version:": "Versiune software:",
   "An update is available:": "O nouă versiune este disponibilă",
   "Restrict access to specific IP addresses": "Resticționează accesul anumitor adrese IP",
-  "Whitelisted IP addresses": "Adrese IP verificate",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "Admin",
   "Recipient": "Destinatar",
   "Whistleblower": "Avertizor de integritate",

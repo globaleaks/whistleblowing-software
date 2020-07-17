@@ -331,7 +331,7 @@
   "Software version:": "Έκδοση λογισμικού:",
   "An update is available:": "Υπάρχει μια διαθέσιμη ενημέρωση:",
   "Restrict access to specific IP addresses": "Περιορισμός πρόσβασης σε συγκεκριμένες διευθύνσεις IP",
-  "Whitelisted IP addresses": "Εγκεκριμένες διευθύνσεις IP",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "Διαχειριστής",
   "Recipient": "Παραλήπτης",
   "Whistleblower": "Πρόσωπο που υποβάλλει αναφορά",

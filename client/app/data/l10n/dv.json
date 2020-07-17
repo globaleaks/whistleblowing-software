@@ -331,7 +331,7 @@
   "Software version:": "ސޮޕްޓްވެއަރގެ ވާރޝަން",
   "An update is available:": "އަދާހަމަކުރުމެއް ތައްޔާރުވެފައި",
   "Restrict access to specific IP addresses": "ވަކި އައިޕީ އެޑްރެސްތަަަކަކަށް އެކަނި ވަނުމަށް ހުއްދުކުރުން",
-  "Whitelisted IP addresses": "ބަލައިގަންނަ އައިޕީ އެޑްރެސްތައް",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "އެޑްމިން",
   "Recipient": "ލިބޭފަރާތް",
   "Whistleblower": "ވިސިލްބްލޯވަރ",

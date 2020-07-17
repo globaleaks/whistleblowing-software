@@ -331,7 +331,7 @@
   "Software version:": "Versión del software:",
   "An update is available:": "Hay una actualización disponible:",
   "Restrict access to specific IP addresses": "Restringir el acceso a direcciones IP específicas",
-  "Whitelisted IP addresses": "Direcciones IP en la lista blanca",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "Administrador",
   "Recipient": "Destinatario",
   "Whistleblower": "Alertador",

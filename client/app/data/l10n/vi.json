@@ -331,7 +331,7 @@
   "Software version:": "Phiên bản phần mềm:",
   "An update is available:": "Bản cập nhật đã có sẵn",
   "Restrict access to specific IP addresses": "Hạn chế quyền truy cập vào các địa chỉ IP cụ thể",
-  "Whitelisted IP addresses": "Địa chỉ IP đã được cho phép",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "quản trị viên",
   "Recipient": "Người nhận",
   "Whistleblower": "Người tố giác",

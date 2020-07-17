@@ -331,7 +331,7 @@
   "Software version:": "ソフトウェア バージョン:",
   "An update is available:": "アップデートが利用できます。",
   "Restrict access to specific IP addresses": "特定のIPアドレスにアクセスを制限する",
-  "Whitelisted IP addresses": "ホワイトリストIPアドレス",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "管理者",
   "Recipient": "受信者",
   "Whistleblower": "内部告発者",

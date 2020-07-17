@@ -331,7 +331,7 @@
   "Software version:": "Версия программного обеспечения:",
   "An update is available:": "Доступно обновление:",
   "Restrict access to specific IP addresses": "Ограничение доступа к определенным IP-адресам",
-  "Whitelisted IP addresses": "IP-адреса, внесенные в белый список",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "Администратор",
   "Recipient": "Получатель",
   "Whistleblower": "Информатор",

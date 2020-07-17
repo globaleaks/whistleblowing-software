@@ -1,586 +1,582 @@
 # 
 # Translators:
-# Emin Mastizada <emin@linux.com>, 2015
-# Fardin Shikhiyev <shihiyev@gmail.com>, 2015
-# fiore <salimova.gulnar@gmail.com>, 2017
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018,2020
-# Nikafn <appone6@gmail.com>, 2016-2018
-# ulkar!(($-2017 <ulkernatiqqizis@gmail.com>, 2017
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020
+# Marija Grinevičiūtė <marijagrineviciute@outlook.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2020-07-16 20:30+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
-"Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
+"Language-Team: Lithuanian (http://www.transifex.com/otf/globaleaks/language/lt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: az\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: lt\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 "mime-version: 1.0\n"
 
 msgid "Log in"
-msgstr "Daxil ol"
+msgstr "Prisijungti"
 
 msgid "Main configuration"
-msgstr "Əsas quraşdırma"
+msgstr "Pagrindinė konfigūracija"
 
 msgid "Theme customization"
-msgstr "Üzlük quraşdırması"
+msgstr "Temos tinkinimas"
 
 msgid "Languages"
-msgstr "Dillər"
+msgstr "Kalbos"
 
 msgid "Text customization"
-msgstr "Yazı quraşdırması"
+msgstr "Teksto tinkinimas"
 
 msgid "Advanced settings"
-msgstr "Təkmilləşdirilmiş tənzimləmələr"
+msgstr "Išplėstiniai nustatymai"
 
 msgid "Questionnaire configuration"
-msgstr "Sorğu quraşdırması"
+msgstr "Klausimyno konfigūracija"
 
 msgid "Question templates"
-msgstr "Sual formatı"
+msgstr "Klausimų šablonai"
 
 msgid "Questionnaires"
-msgstr "Sorğular"
+msgstr "Klausimynai"
 
 msgid "Add new questionnaire"
-msgstr "Yeni sorğu əlavə et"
+msgstr "Pridėti naują klausimyną"
 
 msgid "Home"
-msgstr "Ana Səhifə "
+msgstr "Pradžia"
 
 msgid "Changelog"
-msgstr "Dəyişikliklər"
+msgstr "Keitimų žurnalas"
 
 msgid "License"
-msgstr "Lisenziya"
+msgstr "Licencija"
 
 msgid "Notification templates"
-msgstr "Xəbərdarlıq üzlüyü"
+msgstr "Pranešimo šablonai"
 
 msgid "Missing data"
-msgstr "Çatışmayan məlumat"
+msgstr "Trūksta duomenų"
 
 msgid "no stats available for this hour."
-msgstr "bu saat üçün statistika yoxdur"
+msgstr "nėra šiai valandai prieinamo statistikos."
 
 msgid "Delete"
-msgstr "Sil"
+msgstr "Ištrinti"
 
 msgid "Anomalies"
-msgstr "Anomaliyalar"
+msgstr "Anomalijos"
 
 msgid "Preferences"
-msgstr "Nizamlamalar"
+msgstr "Nuostatos"
 
 msgid "Notification settings"
-msgstr "Xəbərdarlıq quraşdırmaları"
+msgstr "Pranešimo nustatymai"
 
 msgid "file unavailable"
-msgstr "fayl yoxdur"
+msgstr "failas neprieinamas"
 
 msgid "Date"
-msgstr "Tarix"
+msgstr "Data"
 
 msgid "Expiration date"
-msgstr "Bitmə tarixi"
+msgstr "Galioja iki"
 
 msgid "Last Access"
-msgstr "Son giriş"
+msgstr "Paskutinis prisijungimas"
 
 msgid "Files"
-msgstr "Fayllar"
+msgstr "Failai"
 
 msgid "Comments"
-msgstr "Şərhlər"
+msgstr "Komentarai"
 
 msgid "Messages"
-msgstr "İsmarışlar"
+msgstr "Laiškai"
 
 msgid "Select this recipient."
-msgstr "Bu alıcını seç."
+msgstr "Pasirinkti šį gavėją."
 
 msgid "Unselect this recipient."
-msgstr "Bu alıcını seçmə."
+msgstr "Panaikinti šio gavėjo žymėjimą."
 
 msgid "This recipient cannot be deselected."
-msgstr "Bu alıcı seçilməyə bilməz."
+msgstr "Negalima panaikinti šio gavėjo žymėjimo."
 
 msgid "Details"
-msgstr "Detallar"
+msgstr "Išsamiau"
 
 msgid "Platform wizard"
-msgstr "Proqram quraşdırması"
+msgstr "Platformos vediklis"
 
 msgid "CREDIT CARD"
-msgstr "KREDİT KARTI"
+msgstr "KREDITO KORTELĖ"
 
 msgid "YOUR NAME"
-msgstr "ADINIZ"
+msgstr "JŪSŲ VARDAS"
 
 msgid "Label the report"
-msgstr "Təqdimatı yarlıqlayın"
+msgstr "Ženklinti ataskaitą"
 
 msgid "Postpone the expiration date"
-msgstr "Son istifadə tarixini dəyiş"
+msgstr "Atidėti galiojimo pabaigos datą"
 
 msgid "Select all"
-msgstr "Hamısını seç"
+msgstr "Žymėti viską"
 
 msgid "Deselect all"
-msgstr "Hamısını seçmə"
+msgstr "Nuimti žymėjimą nuo visų"
 
 msgid "Refresh"
-msgstr "Yenilə"
+msgstr "Įkelti iš naujo"
 
 msgid "Context"
-msgstr "Kontekst"
+msgstr "Kontekstas"
 
 msgid "Private messages"
-msgstr "Şəxsi ismarışlar"
+msgstr "Privačios žinutės"
 
 msgid "Preview"
-msgstr "Görüntü"
+msgstr "Peržiūra"
 
 msgid "The whistleblower has already read the last update"
-msgstr "İnformasiya ötürən  son yenilənməni oxuyub"
+msgstr "Informatorius jau perskaitė paskutinį atnaujinimą"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr "İnformasiya ötürən hələ yenilənməni oxumayıb"
+msgstr "Informatorius dar neperskaitė paskutinio atnaujinimo"
 
 msgid "Move up"
-msgstr "Yuxarı get"
+msgstr "Perkelti viršun"
 
 msgid "Move down"
-msgstr "Aşağı get"
+msgstr "Perkelti žemyn"
 
 msgid "Move left"
-msgstr "Sola get"
+msgstr "Perkelti kairėn"
 
 msgid "Move right"
-msgstr "Sağa get"
+msgstr "Perkelti dešinėn"
 
 msgid "Import"
-msgstr "İdxal"
+msgstr "Importuoti"
 
 msgid "Export"
-msgstr "İxrac"
+msgstr "Eksportuoti"
 
 msgid "Save all"
-msgstr "Hamısını saxla"
+msgstr "Išsaugoti viską"
 
 msgid "Access control"
-msgstr "Giriş kontrolu"
+msgstr "Prieigos kontrolė"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Bu təqdimatı göndərmək üçün nəzərdə tutulmuş əlaqə, HTTPS ilə məxfiliyi təmin etmək üçün qorunmuşdur."
+msgstr "Prisijungimas apsaugotas naudojant HTTPS užtikrinant konfidencialumą."
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr ""
+msgstr "Prisijungimas apsaugotas naudojant Tor užtikrinant konfidencialumą ir anonimiškumą."
 
 msgid "vertical"
-msgstr "şaquli"
+msgstr "vertikalus"
 
 msgid "horizontal"
-msgstr "üfüqi"
+msgstr "horizontalus"
 
 msgid "Number"
-msgstr "Say"
+msgstr "Skaičius"
 
 msgid "Email"
-msgstr "Email"
+msgstr "El. paštas"
 
 msgid "Regular expression validator"
-msgstr "Daimi ifadə düzəldiçisi"
+msgstr "Įprastosios išraiškos tvirtintojas"
 
 msgid "Minimum number of input characters"
-msgstr "Giriş simvollarının minimum sayı"
+msgstr "Mažiausias įvesties ženklų skaičius"
 
 msgid "Maximum number of input characters"
-msgstr "Giriş simvollarının maksimum sayı"
+msgstr "Didžiausias įvesties ženklų skaičius"
 
 msgid "Earliest selectable date"
-msgstr "Ən erkən seçmə tarixi"
+msgstr "Anksčiausia pasirinktina data"
 
 msgid "Latest selectable date"
-msgstr "Ən gec seçmə tarixi"
+msgstr "Vėliausia pasirinktina data"
 
 msgid "0 = auto"
 msgstr "0 = auto"
 
 msgid "True"
-msgstr "Düz"
+msgstr "Teisinga"
 
 msgid "False"
-msgstr "Səhv"
+msgstr "Klaidinga"
 
 msgid "Yes"
-msgstr "Bəli"
+msgstr "Taip"
 
 msgid "No"
-msgstr "Xeyr"
+msgstr "Ne"
 
 msgid "Attachment"
-msgstr "Qoşma"
+msgstr "Priedas"
 
 msgid "Attachments"
-msgstr "Qoşmalar"
+msgstr "Priedai"
 
 msgid "Change your password"
-msgstr "Şifrənizi dəyişin"
+msgstr "Pakeiskite slaptažodį"
 
 msgid "Access requests"
-msgstr ""
+msgstr "Prieigos užklausos"
 
 msgid "User"
-msgstr "İstifadəçi"
+msgstr "Naudotojas"
 
 msgid "Motivation"
-msgstr "Motivasiya"
+msgstr "Motyvacija"
 
 msgid "Status"
-msgstr "Status"
+msgstr "Būsena"
 
 msgid "Request motivation"
-msgstr "Motivasiya tələbi"
+msgstr "Užklausti motyvacijos"
 
 msgid "Reply motivation"
-msgstr "Motivasiyaya cavab"
-
-msgid "Request status"
-msgstr "Tələbin vəziyyəti"
-
-msgid "Custodian"
-msgstr "Mühafizəçi"
-
-msgid "Custodian of the identities"
-msgstr "Kimliklərin mühafizəçisi"
-
-msgid "Identity"
-msgstr "Kimlik"
-
-msgid "Available"
-msgstr "Mövcuddur"
-
-msgid "Not available"
-msgstr "Mövcud deyil"
-
-msgid "Access requested"
-msgstr "Daxil olma tələbi"
-
-msgid "Request access to the whistleblower's identity"
-msgstr "İnformasiya ötürənin kimliyinə daxil olma tələbi"
-
-msgid "Please write a motivation"
-msgstr "Motivasiya yazmağınızı xahiş edirik"
-
-msgid "Reply to the request"
-msgstr "Tələblərə cavab verin"
-
-msgid "Authorized"
-msgstr "Təsdiq edildi"
-
-msgid "Denied"
-msgstr "Rədd edildi"
-
-msgid "Waiting for authorization"
-msgstr "İcazə gözlənilir"
-
-msgid "New request"
-msgstr "Yeni tələb"
-
-msgid "Authorize"
-msgstr "İcazə etmək"
-
-msgid "Deny"
-msgstr "Rədd etmək"
-
-msgid "Deny access to the whistleblower's identity"
-msgstr "İnformasiya ötürənin kimliyinə girişi rədd et"
-
-msgid "Authorize access to the whistleblower's identity"
-msgstr "İnformasiya ötürənin kimliyinə girişinə izin ver"
-
-msgid "Templates"
-msgstr "Şablonlar"
-
-msgid "HTTPS settings"
-msgstr "HTTPS  tənzimləmələri "
-
-msgid "URL redirects"
 msgstr ""
 
+msgid "Request status"
+msgstr ""
+
+msgid "Custodian"
+msgstr "Prižiūrėtojas"
+
+msgid "Custodian of the identities"
+msgstr "Tapatybių prižiūrėtojas"
+
+msgid "Identity"
+msgstr "Tapatybė"
+
+msgid "Available"
+msgstr "Prieinama"
+
+msgid "Not available"
+msgstr "Neprieinama"
+
+msgid "Access requested"
+msgstr "Užklausta prieigos"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "Užklausti prieigos prie informatoriaus tapatybės"
+
+msgid "Please write a motivation"
+msgstr ""
+
+msgid "Reply to the request"
+msgstr "Atsakyti į užklausą"
+
+msgid "Authorized"
+msgstr "Įgaliota"
+
+msgid "Denied"
+msgstr "Atmesta"
+
+msgid "Waiting for authorization"
+msgstr "Laukiama įgaliojimo"
+
+msgid "New request"
+msgstr "Nauja užklausa"
+
+msgid "Authorize"
+msgstr "Įgalioti"
+
+msgid "Deny"
+msgstr "Atmesti"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "Atmesti prieigos užklausą prie informatoriaus tapatybės"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr ""
+
+msgid "Templates"
+msgstr "Šablonai"
+
+msgid "HTTPS settings"
+msgstr "HTTPS nustatymai"
+
+msgid "URL redirects"
+msgstr "URL peradresavimai"
+
 msgid "Anomaly detection thresholds"
-msgstr "Anomaliya aşkarlama hədləri "
+msgstr "Anomalijų aptikimo slenksčiai"
 
 msgid "Available disk space"
-msgstr "İstifadə oluna bilən disk sahəsi "
+msgstr "Galima vieta diske"
 
 msgid "Last update"
-msgstr "Son yeniləmə"
+msgstr "Paskutinis atnaujinimas"
 
 msgid "Custodian notification templates"
-msgstr "Mühafizəçi bildiriş şablonları"
+msgstr "Prižiūrėtojo pranešimų šablonai"
 
 msgid ""
 "This interface allows configuring email templates used to notify custodians."
-msgstr "Bu ekran, mühafizəçilərə xəbərdarlıq etmək üçün istifadə edilən e-poçt şablonlarını quraşdırmağa imkan verir"
+msgstr "Šioje sąsajoje galima konfigūruoti el. laiškų šablonus, naudojamus informuoti prižiūrėtojus."
 
 msgid "Disable notifications to administrators"
-msgstr "İdarəçilərə bildirişləri sıradan çıxart"
+msgstr "Išjungti pranešimus administratoriams"
 
 msgid "Disable notifications to custodians"
-msgstr "Mühafizəçiyə bildirişləri sıradan çıxart"
+msgstr "Išjungti pranešimus prižiūrėtojams"
 
 msgid "Disable notifications to recipients"
-msgstr "Qəbul edicilərə bildirişləri sıradan çıxart"
+msgstr "Išjungti pranešimus gavėjams"
 
 msgid "Score"
-msgstr "Hesab"
+msgstr "Įvertis"
 
 msgid "Trigger question"
-msgstr "Tətikləyici sual"
+msgstr ""
 
 msgid "Triggered by score:"
 msgstr ""
 
 msgid "Message shown on top of the status page of the report"
-msgstr "Təqdimatın status səhifəsinin yuxarısında göstərilən mesaj"
+msgstr "Žinutė rodoma ataskaitos būsenos puslapio viršuje"
 
 msgid "Password strength:"
-msgstr "Şifrənin gücü:"
+msgstr "Slaptažodžio stiprumas:"
 
 msgid "Weak"
-msgstr "Zəif"
+msgstr "Silpnas"
 
 msgid "Acceptable"
-msgstr "Münasib"
+msgstr "Priimtinas"
 
 msgid "Strong"
-msgstr "Güclü"
+msgstr "Stiprus"
 
 msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Kontekstləri seçmək üçün ekranın üstündə göstərilən mətn"
+msgstr "Tekstas rodomas sąsajos viršuje pasirenkant kontekstus"
 
 msgid "Show small context cards on submission interface"
-msgstr "Göndərmə ekranı üzərində kiçik kontekstli kartları göstərin "
+msgstr "Rodyti mažas konteksto korteles pateikimo sąsajoje"
 
 msgid "Type of context selector:"
-msgstr "Kontekst seçicisinin növü:"
+msgstr "Konteksto tipo rinkiklis:"
 
 msgid "Type to search…"
-msgstr "Axtarış üçün yazın...."
+msgstr "Rašykite norėdami ieškoti..."
 
 msgid "Silence email notifications"
-msgstr "E-poçt bildirişlərini susdurun"
+msgstr "Nutildyti el. pašto pranešimus"
 
 msgid "Turn on email notifications"
-msgstr "E-poçt bildirişlərini aktivləşdirin"
+msgstr "Įjungti el. pašto pranešimus"
 
 msgid "Enter an email address for the administrator"
-msgstr "İnzibatçı üçün e-poçt ünvanını daxil edin"
+msgstr "Įveskite el. pašto adresą administratoriui"
 
 msgid "Enter a password for the administrator"
-msgstr "İnzibatçı üçün şifrənizi daxil edin"
+msgstr "Įveskite slaptažodį administratoriui"
 
 msgid "Failed logins"
-msgstr "Uğursuz daxil olmalar"
+msgstr "Nepavykę prisijungimai"
 
 msgid "Successful logins"
-msgstr "Uğurlu daxil olmalar"
+msgstr "Sėkmingi prisijungimai"
 
 msgid "Started submissions"
-msgstr "Təqdimata başlanıldı"
+msgstr "Pradėti pateikimai"
 
 msgid "Completed submissions"
-msgstr "Təqdimat tamamlandı"
+msgstr "Užbaigti pateikimai"
 
 msgid "Failed submissions"
-msgstr "Uğursuz təqdimat"
+msgstr "Nepavykę pateikimai"
 
 msgid "Input validation"
-msgstr "Daxilolma yoxlanışı"
+msgstr "Įvesties patvirtinimas"
 
 msgid "Email address"
-msgstr "E-mail ünvanı"
+msgstr "El. pašto adresas"
 
 msgid "Custom"
-msgstr "Fərdi"
+msgstr "Tinkintas"
 
 msgid "None"
-msgstr "Heç biri"
+msgstr "Joks"
 
 msgid "Regular expression"
-msgstr "Daimi ifadə"
+msgstr "Įprastoji išraiška"
 
 msgid "Activate"
-msgstr "Aktivləşdir"
+msgstr "Aktyvuoti"
 
 msgid "Disactivate"
-msgstr ""
+msgstr "Deaktyvuoti"
 
 msgid "Search"
-msgstr "Axtarış"
+msgstr "Ieškoti"
 
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr "Bu fərdi mətn artıq platformada görünmür. Orijinal mətn dəyişdirildi və ya silindi."
+msgstr "Šis tinkintas tekstas platformoje neberodomas. Originalus tekstas buvo arba pakeistas, arba pašalintas."
 
 msgid ""
 "Unless the whistleblower checks the report by this time, their access to it "
 "will expire."
-msgstr ""
+msgstr "Jei informatorius patikrins ataskaitą iki šio laiko, jo prieiga prie jos nebegalios."
 
 msgid "The whistleblower can no longer access the report"
-msgstr "İnformasiya ötürən şəxs təsdiqetməyə daxil ola bilməz"
+msgstr "Informatorius nebeturi prieigos prie ataskaitos"
 
 msgid "Warning!"
-msgstr "Xəbərdarlıq!"
+msgstr "Įspėjimas!"
 
 msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "Dəstəklənməyən və potensial qorunması olmayan brauzerdən istifadə edirsiniz."
+msgstr "Naudojate nepalaikomą ir potencialiai pažeidžiamą naršyklę."
 
 msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "Tor Brauzerini yükləyib quraşdırmağınız şiddətlə məsləhət görülür."
+msgstr "Primygtinai rekomenduojame atsisiųsti ir įdiegti Tor naršyklę."
 
 msgid ""
 "The Tor Browser includes various privacy and security enhancements not "
 "present in other browsers."
-msgstr "Tor Brauzerə digər brauzerlərdə olmayan müxtəlif gizlilik və təhlükəsizlik təkmilləşdirmələri daxildir."
+msgstr "Tor naršyklėje yra įvairių privatumo ir saugumo pagerinimų, kurių nėra kitose naršyklėse."
 
 msgid "Download the Tor Browser"
-msgstr "Tor Brauzeri yükləyin"
+msgstr "Atsisiųsti Tor naršyklę"
 
 msgid "Audit log"
-msgstr ""
+msgstr "Audituoti žurnalą"
 
 msgid "Stats"
-msgstr "Statistikalar"
+msgstr "Statistika"
 
 msgid "Activities"
-msgstr "Fəaliyyətlər"
+msgstr "Veiklos"
 
 msgid "Reports"
-msgstr "Məruzələr"
+msgstr "Pranešimai"
 
 msgid "Users"
-msgstr "İstifadəçilər"
+msgstr "Naudotojai"
 
 msgid "From"
-msgstr "Etibarən"
+msgstr "Nuo"
 
 msgid "Number of downloads"
-msgstr "Yüklənmə sayı"
+msgstr "Atsisiuntimų skaičius"
 
 msgid "Error with file:"
-msgstr "Fayl xətası:"
+msgstr "Failo klaida:"
 
 msgid "File size not accepted."
-msgstr "Faylın ölçüsü qəbul edilmir: "
+msgstr "Nepriimtinas failo dydis."
 
 msgid "File type not accepted."
-msgstr "Fayl növü qəbul edilmir:"
+msgstr "Nepriimtinas failo tipas."
 
 msgid "Maximum file size is:"
-msgstr "Maksimum faylın ölçüsü:"
+msgstr "Didžiausias failo dydis yra:"
 
 msgid "Accepted file types are:"
-msgstr "Qəbul edilən fayl növləri:"
+msgstr "Priimtini failo tipai yra:"
 
 msgid "Scheduled jobs"
-msgstr "Planlaşdırılan işlər"
+msgstr "Suplanuoti darbai"
 
 msgid "Sites management"
-msgstr "Saytların idarə edilməsi"
+msgstr "Puslapių valdymas"
 
 msgid "Regenerate"
-msgstr "Yenidən yaradın"
+msgstr "Atkurti"
 
 msgid "Display options alphabetically"
-msgstr "Seçimləri əlifba sırası ilə göstər"
+msgstr "Rodyti parinktis abėcėlės tvarka"
 
 msgid "Enable email notifications for:"
-msgstr "Email bildirişlərini aktivləşdirin: "
+msgstr "Įjungti el. pašto pranešimus:"
 
 msgid "Disable"
-msgstr "Söndür"
+msgstr "Išjungti"
 
 msgid "Remove"
-msgstr "Sil"
+msgstr "Šalinti"
 
 msgid "Use as default"
-msgstr "Standart kimi istifadə et"
+msgstr "Naudoti kaip numatytąjį"
 
 msgid "Create your whistleblowing platform"
-msgstr ""
+msgstr "Sukurkite savo informavimo platformą"
 
 msgid "Collapse"
-msgstr ""
+msgstr "Suskleisti"
 
 msgid "Expand"
-msgstr ""
+msgstr "Išskleisti"
 
 msgid "Select"
-msgstr ""
+msgstr "Žymėti"
 
 msgid "Selected by default"
-msgstr ""
+msgstr "Pažymėta pagal numatytąją nuostatą"
 
 msgid "Unselected by default"
-msgstr ""
+msgstr "Panaikinti žymėjimą pagal numatytąją nuostatą"
 
 msgid "Surname"
-msgstr ""
+msgstr "Pavardė"
 
 msgid "New"
-msgstr "Yeni"
+msgstr "Naujas"
 
 msgid "Opened"
-msgstr ""
+msgstr "Atidaryta"
 
 msgid "Closed"
-msgstr ""
+msgstr "Uždarytas"
 
 msgid "Placeholder"
-msgstr ""
+msgstr "Žymena"
 
 msgid "Print"
-msgstr "Çap et"
+msgstr "Spausdinti"
 
 msgid "Previous"
-msgstr "Əvvəlki"
+msgstr "Ankstesnis"
 
 msgid "Next"
-msgstr "Növbəti"
+msgstr "Kitas"
 
 msgid "First"
-msgstr "İlk"
+msgstr "Pirmas"
 
 msgid "Last"
-msgstr "Sonuncu"
+msgstr "Paskutinis"
 
 msgid "Running"
-msgstr "İşləyir"
+msgstr "Vykdoma"
 
 msgid "Not running"
-msgstr "İşləmir"
+msgstr "Nevykdoma"
 
 msgid "Send a test email to your email address."
-msgstr "E-mail ünvanınıza test maili göndərin"
+msgstr "Išsiųsti bandomąjį el. laišką jūsų el. pašto adresu."
 
 msgid "Block the submission"
 msgstr ""
 
 msgid "Skip the recipient account creation."
-msgstr ""
+msgstr "Praleisti gavėjo paskyros kūrimą."
 
 msgid "Send activation link"
-msgstr ""
+msgstr "Siųsti aktyvacijos nuorodą"
 
 msgid "Password reset"
 msgstr ""
@@ -594,22 +590,22 @@ msgid "This user has not performed the first login yet."
 msgstr ""
 
 msgid "seconds"
-msgstr "saniyə"
+msgstr "sekundės"
 
 msgid "This domain name is not available."
-msgstr ""
+msgstr "Šis domeno pavadinimas neprieinamas."
 
 msgid "VAT number"
-msgstr ""
+msgstr "PVM kodas"
 
 msgid "Tax code"
-msgstr ""
+msgstr "Mokesčių kodas"
 
 msgid "Select the context of your report:"
-msgstr ""
+msgstr "Pasirinkite ataskaitos kontekstą:"
 
 msgid "Warning! You are not anonymous."
-msgstr "Xəbərdarlıq! Siz anonim deyilsiniz."
+msgstr "Įspėjimas! Jūsų duomenys nėra anonimiški."
 
 msgid ""
 "Sending reports over HTTPS exposes the act of doing so, but not the "
@@ -620,110 +616,110 @@ msgid ""
 msgstr ""
 
 msgid "Are you a whistleblower?"
-msgstr "Siz informasiya ötürənsiniz?"
+msgstr "Ar esate informatorius?"
 
 msgid "Blow the whistle"
-msgstr "Məlumatı ötür"
+msgstr "Informuokite"
 
 msgid "Before proceeding, please set a new password."
-msgstr ""
+msgstr "Prieš pradėdami sukurkite naują slaptažodį."
 
 msgid "New password"
-msgstr "Yeni şifrə"
+msgstr "Naujas slaptažodis"
 
 msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr ""
+msgstr "Pasirinktas slaptažodis per silpnas. Tinkamas slaptažodis turėtų būti bent iš 10 skirtingų simbolių: bent vienas simbolis mažąja raide, didžiąja raide, skaičius ir specialus simbolis."
 
 msgid "The new password must be different from the current one."
-msgstr "Yeni şifrə cari şifrədən fəqrli olmalıdır."
+msgstr "Naujas slaptažodis privalo skirtis nuo dabartinio."
 
 msgid "Type your new password again"
-msgstr "Yeni şifrənizi təzədən daxil edin"
+msgstr "Įveskite naują slaptažodį dar kartą"
 
 msgid "The two passwords do not match"
-msgstr "Şifrələr bir-biri ilə uymur"
+msgstr "Įvesti slaptažodžiai nesutampa"
 
 msgid "The new password must differ from the previous."
-msgstr ""
+msgstr "Naujas slaptažodis privalo skirtis nuo ankstesnio."
 
 msgid "Proceed"
-msgstr "Davam edin"
+msgstr "Tęsti"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr ""
+msgstr "Prieš tęsdami įgalinkite dviejų veiksnių tapatybės nustatymo būdą."
 
 msgid "Disable submissions"
-msgstr "Təqdimatları sıradan çıxart"
+msgstr ""
 
 msgid "Enable encryption"
-msgstr ""
+msgstr "Įgalinti šifravimą"
 
 msgid "Enable administrators to change user passwords"
-msgstr ""
+msgstr "Leisti administratoriams keisti naudotojų slaptažodžius"
 
 msgid "Enable multisite feature"
-msgstr ""
+msgstr "Įgalinti daugiavietę funkciją"
 
 msgid "Enable multi-site login"
-msgstr ""
+msgstr "Įgalinti daugiavietį prisijungimą"
 
 msgid "Enable simplified login"
-msgstr ""
+msgstr "Įgalinti supaprastintą prisijungimą"
 
 msgid "Allow recipients to delete reports"
-msgstr ""
+msgstr "Leisti gavėjams panaikinti ataskaitas"
 
 msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Qəbul edicilərə təqdimatın bitmə tarixini təxirə salmasına icazə verin"
+msgstr "Leisti gavėjams atidėti ataskaitos galiojimo pabaigos datą"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Qəbul edicilərə, informasiya ötürənlərin müəyyən təsdiqlərə çıxışı üçün icazə verin"
+msgstr "Leisti gavėjams suteikti leidimus informatoriams tam tikrose ataskaitose"
 
 msgid "Enable search engines indexing"
-msgstr "Axtarış motorlarının indeksləşməsini aktivləşdirin"
+msgstr "Įgalinti paieškos variklių indeksavimą"
 
 msgid "Description"
-msgstr "Açıqlama"
+msgstr "Aprašas"
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr ""
 
 msgid "Invalid input format."
-msgstr "Yanlış giriş formatı."
+msgstr "Neteisingas įvesties formatas."
 
 msgid "Enable custom privacy panel"
-msgstr "Fərdi gizlilik panelini aktiv edin"
+msgstr "Įgalinti tinkintą privatumo skydelį"
 
 msgid "Custom privacy panel"
-msgstr "Fərdi gizlilik paneli"
+msgstr "Tinkintas privatumo skydelis"
 
 msgid "Text shown when the whistleblower is not using Tor"
-msgstr "İnformasiya ötürən  Tordan istifadə etmədikdə göstərilən mətn"
+msgstr "Tekstas rodomas, kai informatorius naudoja ne Tor"
 
 msgid "Disable the privacy panel"
-msgstr "Məxfilik panelini ləğv et"
+msgstr "Išjungti privatumo skydelį"
 
 msgid "Enable the receipt hint"
 msgstr ""
 
 msgid "Default questionnaire"
-msgstr ""
+msgstr "Numatytasis klausimynas"
 
 msgid "Show contexts in alphabetical order"
-msgstr "Konteksti əlifba ardıcıllığı ilə göstər"
+msgstr "Rodyti kontekstus abėcėlės tvarka"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr "Neatskleisti naudotojų vardų"
 
 msgid "Size limit for file attachments"
-msgstr "Fayl əlavələri üçün ölçü həddi"
+msgstr "Pridedamų failų dydžio limitas"
 
 msgid "in megabytes"
-msgstr "Megabaytla"
+msgstr "megabaitais"
 
 msgid "Enable HSTS preload"
 msgstr ""
@@ -732,33 +728,33 @@ msgid "Enable HTTP Basic Authentication"
 msgstr ""
 
 msgid "Username"
-msgstr "İstifadəçi adı"
+msgstr "Naudotojo vardas"
 
 msgid "Password"
-msgstr "Şifrə"
+msgstr "Slaptažodis"
 
 msgid "Require two factor authentication"
-msgstr ""
+msgstr "Reikalauti dviejų veiksnių tapatybės nustatymo"
 
 msgid "Password change interval"
-msgstr ""
+msgstr "Slaptažodžio keitimo intervalas"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr ""
+msgstr "Būtina reguliariai keisti slaptažodį dėl saugumo sumetimų."
 
 msgid "Set the value to 0 to disable this feature."
-msgstr ""
+msgstr "Nustatyti „0“ vertę, kad būtų išjungta ši funkcija."
 
 msgid "Amount of days till whistleblower access expires"
-msgstr "İnformasiya ötürənin girşinin etibarlı olacağı günlərin sayı"
+msgstr ""
 
 msgid ""
 "For security reasons the whistleblower access is subject to expiration."
-msgstr "Təhlükəsizlik səbəblərinə görə informasiya ötürənin mövzuya giriş müddəti başa çatır"
+msgstr ""
 
 msgid "Tweak this setting only if you know what you are doing."
-msgstr "Bu tənzimləməni, nə etdiyinizi bildiyiniz halda istifadə edin. "
+msgstr ""
 
 msgid "Enable custodian user role"
 msgstr ""
@@ -767,7 +763,7 @@ msgid "Enable scoring system"
 msgstr ""
 
 msgid "Enable private labels"
-msgstr ""
+msgstr "Įgalinti privačias etiketes"
 
 msgid "Logging level"
 msgstr ""
@@ -776,10 +772,10 @@ msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Notify administrators of software problems"
-msgstr ""
+msgstr "Pranešti administratoriams apie programinės įrangos problemas"
 
 msgid "Notify developers of software problems"
-msgstr "Proqram problemləri ilə bağlı yaradıcıları xəbərdar etmək"
+msgstr "Pranešti kūrėjams apie programinės įrangos problemas"
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
@@ -787,229 +783,229 @@ msgid ""
 msgstr ""
 
 msgid "Save"
-msgstr "Yadda saxla"
+msgstr "Įrašyti"
 
 msgid "Reset reports"
 msgstr ""
 
 msgid "Low"
-msgstr ""
+msgstr "Žema"
 
 msgid "High"
-msgstr "Yuksək"
+msgstr "Aukštas"
 
 msgid "megabytes"
-msgstr ""
+msgstr "megabaitai"
 
 msgid "percentage"
-msgstr ""
+msgstr "procentai"
 
 msgid "Enable automatic backups"
-msgstr ""
+msgstr "Įgalinti automatinį atsarginės kopijos kūrimą"
 
 msgid "Daily"
-msgstr ""
+msgstr "Kasdien"
 
 msgid "Weekly"
-msgstr ""
+msgstr "Kas savaitę"
 
 msgid "Montly"
-msgstr ""
+msgstr "Kas mėnesį"
 
 msgid "Remote"
-msgstr ""
+msgstr "Nuotolinis"
 
 msgid "Server"
-msgstr ""
+msgstr "Serveris"
 
 msgid "Port"
-msgstr "Port"
+msgstr "Prievadas"
 
 msgid "Stats of the week:"
-msgstr "Həftənin statistikaları:"
+msgstr "Savaitės statistika:"
 
 msgid "Event ID"
-msgstr "Hadisə kimliyi"
+msgstr "Įvykio ID"
 
 msgid "Time"
-msgstr "Vaxt"
+msgstr "Laikas"
 
 msgid "Event"
-msgstr "Tədbir"
+msgstr "Įvykis"
 
 msgid "Response time"
-msgstr "Cavab vermə vaxtı"
+msgstr "Atsakymo laikas"
 
 msgid "ID"
-msgstr "İD"
+msgstr "ID"
 
 msgid "Role"
-msgstr "Rol"
+msgstr "Vaidmuo"
 
 msgid "Name"
-msgstr "Ad"
+msgstr "Vardas"
 
 msgid "Last access"
-msgstr "Sonuncu giriş "
+msgstr "Paskutinis prisijungimas"
 
 msgid "State"
-msgstr "Rayon"
+msgstr "Būsena"
 
 msgid "Connection"
-msgstr "Bağlantı"
+msgstr "Ryšys"
 
 msgid "Whistleblower's last access"
-msgstr ""
+msgstr "Paskutinis informatoriaus prisijungimas"
 
 msgid "Alarm level"
-msgstr "Siqnal səviyyəsi"
+msgstr "Pavojaus signalo lygis"
 
 msgid "Events"
-msgstr "Tədbirlər"
+msgstr "Įvykiai"
 
 msgid "Substatuses"
-msgstr ""
+msgstr "Šalutiniai statusai"
 
 msgid "Add"
-msgstr "Əlavə et"
+msgstr "Pridėti"
 
 msgid "Label"
-msgstr "Başlıq"
+msgstr "Etiketė"
 
 msgid "This field is mandatory"
-msgstr "Məcburi sahədir"
+msgstr "Šis laukas privalomas"
 
 msgid "Edit"
-msgstr "Düzəlt"
+msgstr "Keisti"
 
 msgid "Cancel"
-msgstr "Ləğv et"
+msgstr "Atsisakyt"
 
 msgid "Report statuses"
-msgstr ""
+msgstr "Ataskaitos statusai"
 
 msgid "Logo"
-msgstr "Loqo"
+msgstr "Logotipas"
 
 msgid "Project name"
-msgstr "Proyekt adı"
+msgstr "Projekto pavadinimas"
 
 msgid "Header title"
-msgstr ""
+msgstr "Antraštės pavadinimas"
 
 msgid "Homepage title"
-msgstr "Ana səhifənin adı"
+msgstr "Pradžios puslapio pavadinimas"
 
 msgid "Presentation"
-msgstr "Təqdimat"
+msgstr ""
 
 msgid "Question to solicit possible whistleblowers"
-msgstr "Mümkün olan informasiya ötürənlərə sual vermək"
+msgstr ""
 
 msgid "Whistleblowing button"
-msgstr "İnformasiya ötürmə düyməsi "
+msgstr ""
 
 msgid "Title of the submission page"
-msgstr "Təqdimat səhifəsinin adı"
+msgstr ""
 
 msgid "Enable disclaimer"
 msgstr ""
 
 msgid "Title"
-msgstr "Başlıq"
+msgstr "Antraštė"
 
 msgid "Text"
-msgstr "Mətn"
+msgstr "Tekstas"
 
 msgid "Footer"
-msgstr "Aşağı lövhə"
+msgstr "Poraštė"
 
 msgid "Upload"
-msgstr "Yüklə"
+msgstr "Įkelti"
 
 msgid "Download"
-msgstr "Endir"
+msgstr "Atsisiųsti"
 
 msgid "Language:"
-msgstr "Dil:"
+msgstr "Kalba:"
 
 msgid "Add custom text"
-msgstr "Fərdi mətn əlavə edin"
+msgstr "Įvesti pasirinktinį tekstą"
 
 msgid "Custom text"
-msgstr "Fərdi mətn"
+msgstr "Pasirinktinis tekstas"
 
 msgid "Original text"
-msgstr "Orijinal mətn"
+msgstr "Originalus tekstas"
 
 msgid "Original translation"
-msgstr "Orijinal tərcümə"
+msgstr "Originalus vertimas"
 
 msgid "Custom translation"
-msgstr "Fərdi tərcümə"
+msgstr "Pasirinktinis vertimas"
 
 msgid "Contexts"
-msgstr "Kontekst"
+msgstr "Kontekstai"
 
 msgid "Hidden"
-msgstr "Gizli"
+msgstr "Paslėpta"
 
 msgid "Disabled"
-msgstr "Sönlüdür"
+msgstr "Išjungta"
 
 msgid "Enabled"
-msgstr "Aktivdir"
+msgstr "Įgalinta"
 
 msgid "Questionnaire"
-msgstr "Sorğu"
+msgstr "Klausimynas"
 
 msgid "Additional questionnaire"
-msgstr ""
+msgstr "Papildomas klausimynas"
 
 msgid "Recipients"
-msgstr "Qəbul edicilər"
+msgstr "Gavėjai"
 
 msgid "days"
-msgstr ""
+msgstr "dienos"
 
 msgid "Show the questionnaire navigation interface"
-msgstr ""
+msgstr "Rodyti klausimyno navigacijos sąsają"
 
 msgid "Allow whistleblowers to select their recipients"
-msgstr "İnformasiya ötürənlərə öz qəbul edicilərini seçmələrinə icazə verin"
+msgstr "Leisti informatoriams pasirinkti gavėjus"
 
 msgid "Select all recipients by default"
-msgstr "Bütün qəbul ediciləri standart olaraq seçin"
+msgstr "Pasirinkti visus gavėjus pagal numatytąją nuostatą"
 
 msgid "Maximum number of selectable recipients:"
-msgstr "Seçilən qəbul edicilərin maksimum sayı:"
+msgstr "Didžiausias pasirinktinų gavėjų skaičius:"
 
 msgid "Show recipients in alphabetical order"
-msgstr "Qəbul ediciləri əlifba sırası ilə göstərin"
+msgstr "Rodyti gavėjus abėcėlės tvarka"
 
 msgid "Show recipient details on the status page of the report"
-msgstr ""
+msgstr "Rodyti gavėjo informaciją ataskaitos statuso puslapyje"
 
 msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Qəbul ediciləri seçmək üçün ekran üzərində göstərilən mətn"
+msgstr "Tekstas rodomas sąsajos viršuje pasirenkant gavėjus"
 
 msgid "Enable comments"
-msgstr "Şərhləri aktiv edin"
+msgstr "Įgalinti komentarus"
 
 msgid "Allow whistleblowers to write comments"
-msgstr "İnformasiya ötürənlərin şəhr yazmasına icazə"
+msgstr "Leisti informatoriams rašyti komentarus"
 
 msgid "Enable private messages"
-msgstr "Şəxsi mesajları aktiv edin"
+msgstr "Įgalinti privačias žinutes"
 
 msgid "Allow whistleblowers to send messages"
-msgstr "İnformasiya ötürənlərə mesaj göndərməyə icazə"
+msgstr "Leisti informatoriams siųsti žinutes"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "İnformasiya ötürənlərin mövcud təqdimatlar üzərinə yeni əlavələr etməsinə icazə verin"
+msgstr "Leisti informatoriams prisegti priedus prie esamų ataskaitų"
 
 msgid "Let recipients upload files to whistleblowers"
-msgstr "Qəbul edicilərə, informasiya ötürənlər üçün fayllar yükləməsinə icazə verin"
+msgstr "Leisti gavėjams išsiųsti failus, skirtus informatoriams"
 
 msgid "Scoring system options"
 msgstr ""
@@ -1018,10 +1014,10 @@ msgid "Threshold"
 msgstr ""
 
 msgid "Value"
-msgstr "Əmsal"
+msgstr "Reikšmė"
 
 msgid "Medium"
-msgstr ""
+msgstr "Vidutinis"
 
 msgid "Customize the message shown in the receipt page"
 msgstr ""
@@ -1030,237 +1026,237 @@ msgid "Assign the receipt only to reports reaching score:"
 msgstr ""
 
 msgid "Software version:"
-msgstr "Proqram versiyası:"
+msgstr "Programinės įrangos versija:"
 
 msgid "An update is available:"
-msgstr "Yenilənmə mümkündür"
+msgstr "Prieinamas atnaujinimas:"
 
 msgid "Restrict access to specific IP addresses"
-msgstr ""
+msgstr "Apriboti prieigą tam tikriems IP adresams"
 
 msgid "Allowed IP addresses"
 msgstr ""
 
 msgid "Admin"
-msgstr "İnzibatçı"
+msgstr "Administratorius"
 
 msgid "Recipient"
-msgstr "Qəbul edən"
+msgstr "Gavėjas"
 
 msgid "Whistleblower"
-msgstr "İnformasiya ötürən"
+msgstr "Informatorius"
 
 msgid "Each entry must be separated with a comma."
-msgstr ""
+msgstr "Kiekvieną įrašą būtina atskirti kableliu."
 
 msgid "Example:"
-msgstr "Məsələn:"
+msgstr "Pavyzdys:"
 
 msgid "Hostname"
-msgstr "Domen adı"
+msgstr ""
 
 msgid "Input should be similar to:"
-msgstr "Giriş aşağıdakına bənzər olmalıdır:"
+msgstr ""
 
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "Şifrələnmədən istifadə etmək Xidmət Şərtləri ilə razılaşdırılmanı tələb edir."
+msgstr ""
 
 msgid "Read the Terms of Service"
-msgstr "Xidmət şərtlərini oxuyun"
+msgstr "Skaityti paslaugų sąlygas"
 
 msgid "I agree to the Terms of Service."
-msgstr "Xidmət şərtləri ilə razıyam."
+msgstr "Sutinku su paslaugų sąlygomis"
 
 msgid "Country code"
-msgstr "Ölkə kodu:"
+msgstr "Šalies kodas"
 
 msgid "City"
-msgstr "Şəhər"
+msgstr "Miestas"
 
 msgid "Organization"
-msgstr "Təşkilat"
+msgstr "Organizacija"
 
 msgid "Organizational unit"
-msgstr "Təşkilat şöbəsi"
+msgstr "Organizacijos vienetas"
 
 msgid "Invalid email address"
-msgstr "Yanlış email adresi"
+msgstr "Neteisingas el. pašto adresas"
 
 msgid "Generate"
-msgstr "Yaratmaq"
+msgstr "Generuoti"
 
 msgid "Private Key"
-msgstr "Məxfi açar"
+msgstr "Privatusis raktas"
 
 msgid "Certificate Signing Request"
-msgstr "Sertifikat İmzalama İstəyi"
+msgstr ""
 
 msgid "Certificate"
-msgstr "Sertifikat"
+msgstr ""
 
 msgid "Valid until:"
-msgstr "Bu vaxta qədər etibarlıdır: "
+msgstr "Galioja iki:"
 
 msgid "Issuer:"
-msgstr "Təchizatçı"
+msgstr "Išdavė:"
 
 msgid "Intermediate Certificates"
-msgstr "Orta Sertifikatlar"
+msgstr ""
 
 msgid "Enable"
-msgstr "İşə salmaq"
+msgstr "Įjungti"
 
 msgid "Reset"
-msgstr "Sıfırla"
+msgstr "Atstatyti"
 
 msgid ""
 "The platform supports the configuration of HTTPS through this interface."
-msgstr "Platforma bu ekran vasitəsilə HTTPS quraşdırmanı dəstəkləyir."
+msgstr ""
 
 msgid "Automatic configuration"
-msgstr "Avtomatik konfiqurasiya"
+msgstr "Automatinė konfigūracija"
 
 msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr "Avtomatik HTTPS quraşdırmadan istifadə etməklə \"Let's Encrypt Certificate Authority\"-dən sertifikatları tələb, təmin və yeniləməklə bağlı bütün proses idarə olunacaq."
+msgstr ""
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a corresponding DNS record referencing that address."
-msgstr "Platform ümumi IP ünvanı vasitəsilə əlçatan olmalı və seçilmiş hostname həmin ünvana istinadən müvafiq DNS qeydinə malik olmalıdır."
+msgstr ""
 
 msgid "Manual configuration"
-msgstr "Manual konfiqurasiya"
+msgstr "Rankinė konfigūracija"
 
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr "Manual quraşdırma sehirbazı, alternativ Sertifikat Səlahiyyətindən istifadə edərək HTTPS quraşdırma zamanı sizə kömək edəcəkdir."
+msgstr ""
 
 msgid "Auto-renewal"
-msgstr "Avto yeniləmə"
+msgstr "Automatinis atnaujinimas"
 
 msgid "Tor Onion Service"
-msgstr "Tor Onion mərkəzi"
+msgstr "Tor Onion paslauga"
 
 msgid "Tor Browser download link"
-msgstr "Tor Brauzerinin yüklənmə linki "
+msgstr "Tor naršyklės atsisiuntimo nuoroda"
 
 msgid "Anonymize outgoing connections"
-msgstr "Çıxış əlaqələrini anonimləşdir"
+msgstr ""
 
 msgid "Let the platform be reachable without Tor"
-msgstr "Tor olmadan platforma əlçatan olsun"
+msgstr ""
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr ""
 
 msgid "To"
-msgstr "Qədər"
+msgstr "Kam"
 
 msgid "SMTP email address"
-msgstr "SMTP elektron poçt ünvanı"
+msgstr ""
 
 msgid "SMTP server address"
-msgstr "SMTP server ünvanı"
+msgstr ""
 
 msgid "SMTP server port"
-msgstr "SMTP server portu"
+msgstr ""
 
 msgid "Security"
-msgstr "Təhlükəsizlik"
+msgstr "Saugumas"
 
 msgid "Warning"
-msgstr "Xəbərdarlıq"
+msgstr "Įspėjimas"
 
 msgid "Require authentication"
 msgstr ""
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "Təqdimata son xəbərdarlıq göndərilməmişdən öncəki saat sayı"
+msgstr ""
 
 msgid "Test the configuration"
-msgstr "Quraşdırmanı test edin"
+msgstr ""
 
 msgid "Reset SMTP configuration"
 msgstr ""
 
 msgid "Reset notification templates to default"
-msgstr "Bildiriş şablonlarını əvvəlki vəziyyətinə qaytarın"
-
-msgid "Template"
-msgstr "Şablon"
-
-msgid "Question"
 msgstr ""
 
+msgid "Template"
+msgstr "Šablonas"
+
+msgid "Question"
+msgstr "Klausimas"
+
 msgid "Type"
-msgstr "Tip"
+msgstr "Tipas"
 
 msgid "Single-line text input"
-msgstr "Tək sətirli mətn girişi"
+msgstr "Vienos eilutės teksto įvestis"
 
 msgid "Multi-line text input"
-msgstr "Çoxsətirli mətn girişi"
+msgstr "Keleto eilučių teksto įvestis"
 
 msgid "Selection box"
-msgstr "Seçim qutusu"
+msgstr "Pasirinkimo laukas"
 
 msgid "Checkbox"
-msgstr "Yoxlama qutusu"
+msgstr "Žymėjimo laukas"
 
 msgid "Terms of service"
-msgstr "Xidmət şərtləri"
+msgstr "Paslaugų sąlygos"
 
 msgid "Date range"
 msgstr ""
 
 msgid "Map"
-msgstr ""
+msgstr "Žemėlapis"
 
 msgid "Group of questions"
-msgstr "Suallar qrupu"
+msgstr "Klausimų grupė"
 
 msgid "Row"
-msgstr "Sıra"
+msgstr "Eilutė"
 
 msgid "Column"
-msgstr "Qrafa"
+msgstr "Stulpelis"
 
 msgid "Width"
-msgstr "En"
+msgstr "Plotis"
 
 msgid "Multiple choice input"
-msgstr "Təkrar daxil olma seçimi"
+msgstr ""
 
 msgid "Question group"
-msgstr "Sual qrupu"
+msgstr "Klausimo grupė"
 
 msgid "Hint"
-msgstr "Kömək"
+msgstr "Užuomina"
 
 msgid "Required"
-msgstr "Tələb edilir"
+msgstr "Būtina"
 
 msgid "Accept multiple file uploads"
-msgstr "Birdən çox fayl yükləməsini qəbul et"
+msgstr ""
 
 msgid "Accept multiple answers"
 msgstr ""
 
 msgid "Hint shown on the button for adding an additional answer"
-msgstr "Əlavə cavab üçün düymə üzərində göstərilən işarə"
+msgstr ""
 
 msgid "Encrypt"
-msgstr "Şifrələ"
+msgstr "Šifruoti"
 
 msgid "Template override"
 msgstr ""
 
 msgid "Phone number"
-msgstr "Telefon nömrə"
+msgstr "Telefono numeris"
 
 msgid "Checkbox label"
 msgstr ""
@@ -1269,22 +1265,22 @@ msgid "Add multimedia content"
 msgstr ""
 
 msgid "Image"
-msgstr ""
+msgstr "Paveikslas"
 
 msgid "Audio"
-msgstr ""
+msgstr "Garso įrašas"
 
 msgid "Video"
-msgstr ""
+msgstr "Vaizdo įrašas"
 
 msgid "Subject answer visibility to custodian authorization"
-msgstr "Mövzu mühafizəçiyə cavab olaraq görünür"
-
-msgid "Text shown upon negative answer"
 msgstr ""
 
+msgid "Text shown upon negative answer"
+msgstr "Tekstas rodomas gavus neigiamą atsakymą"
+
 msgid "Prompt confirmation upon negative answer"
-msgstr "Mənfi cavab üzərindən tez təsdiqlənmə"
+msgstr ""
 
 msgid "Text shown upon confirmation"
 msgstr ""
@@ -1293,147 +1289,147 @@ msgid "Trigger conditions"
 msgstr ""
 
 msgid "Sufficient"
-msgstr ""
+msgstr "Pakankama"
 
 msgid "Options"
-msgstr "Seçimlər"
+msgstr "Parinktys"
 
 msgid "Addition"
-msgstr ""
+msgstr "Papildymas"
 
 msgid "Multiplier"
 msgstr ""
 
 msgid "Questions"
-msgstr "Suallar"
+msgstr "Klausimai"
 
 msgid "Add new question"
-msgstr "Yeni sual əlavə et"
+msgstr "Pridėti naują klausimą"
 
 msgid "Add question from template"
-msgstr "Şablondan sual əlavə et"
+msgstr "Pridėti klausimą iš šablono"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Dublikatas"
 
 msgid "Steps"
-msgstr "Mərhələlər"
+msgstr "Žingsniai"
 
 msgid "Site settings"
-msgstr ""
+msgstr "Svetainės nustatymai"
 
 msgid "Case management"
-msgstr ""
+msgstr "Atvejo valdymas"
 
 msgid "Network settings"
-msgstr "Şəbəkə tənzimləmələri"
+msgstr "Tinklo nustatymai"
 
 msgid "Mode:"
-msgstr ""
+msgstr "Režimas"
 
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Use the first site for administrative purposes only"
-msgstr ""
+msgstr "Naudoti pirmąją svetainę tik administraciniais tikslais"
 
 msgid "Allow users to sign up"
-msgstr ""
+msgstr "Leisti naudotojams registruotis"
 
 msgid "Enable terms of service"
-msgstr ""
+msgstr "Įgalinti paslaugų sąlygas"
 
 msgid "Sites"
-msgstr "Saytlar"
+msgstr "Svetainės"
 
 msgid "Active"
-msgstr "Aktiv"
+msgstr "Aktyvi"
 
 msgid "Inactive"
-msgstr "Fəaliyyətsiz"
+msgstr "Neaktyvus"
 
 msgid "Configure"
-msgstr "Quraşdır"
+msgstr "Konfigūruoti"
 
 msgid "Subdomain"
-msgstr "Alt-domeyn"
+msgstr "Subdomenas"
 
 msgid "Creation date:"
-msgstr "Yaradılma tarixi:"
+msgstr "Sukūrimo data:"
 
 msgid "Send an account activation link to the user."
-msgstr ""
+msgstr "Siųsti paskyros aktyvacijos nuorodą naudotojui."
 
 msgid "Public name"
-msgstr "İctimai ad"
+msgstr "Viešas pavadinimas"
 
 msgid "Send reset link"
 msgstr ""
 
 msgid "Set password"
-msgstr "Şifrənin quraşdırılması"
+msgstr "Nustatyti slaptažodį"
 
 msgid "Disable two factor authentication"
-msgstr ""
+msgstr "Išjungti dviejų veiksnių tapatybės nustatymą"
 
 msgid "Force password change"
-msgstr "Şifrəni dəyişdir"
+msgstr ""
 
 msgid "The user will be forced to change its password on next login."
-msgstr "İstifadəçi növbəti giriş zamanı şifrəsini dəyişməyə məcbur ediləcək."
+msgstr ""
 
 msgid "Language"
-msgstr "Dil"
+msgstr "Kalba"
 
 msgid "Enable email notifications"
 msgstr ""
 
 msgid "Details of the PGP key:"
-msgstr "PGP açarının detalları"
+msgstr ""
 
 msgid "Fingerprint"
-msgstr "Barmaq izi"
+msgstr "Kontrolinis kodas"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr "Bir PGP ictimai açarı istifadə edərək şifrələmə yaradın"
+msgstr ""
 
 msgid "Give this admin ability to change user passwords"
 msgstr ""
 
 msgid "Configuration"
-msgstr "Konfiqurasiya"
+msgstr "Konfigūracija"
 
 msgid "Default"
-msgstr "Önseçili"
+msgstr "Numatytasis"
 
 msgid "Forcefully selected"
-msgstr "Zorla seçilmiş"
+msgstr ""
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Qəbul ediciyə təqdimatın sona çatma tarixini təxirə salmasına icazə verin"
+msgstr ""
 
 msgid "Allow the recipient to delete reports"
-msgstr "Qəbul ediciyə təqdimatları silməsinə icazə verin"
+msgstr ""
 
 msgid ""
 "Allow the recipient to grant permissions to whistleblowers on specific "
 "reports"
-msgstr "Qəbul edicilərə, informasiya ötürənlərin müəyyən təsdiqlərə çıxışı üçün icazə verin"
+msgstr ""
 
 msgid "User has administrative access to the following features:"
 msgstr ""
 
 msgid "Request date"
-msgstr "Tələb olunan tarix"
+msgstr ""
 
 msgid "Report date"
 msgstr ""
 
 msgid "Authorization"
-msgstr "Səlahiyyətvermə"
+msgstr ""
 
 msgid "Identities"
-msgstr "Kimliklər"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
@@ -1442,46 +1438,46 @@ msgid "Your new email address has been validated."
 msgstr ""
 
 msgid "Forgot password?"
-msgstr ""
+msgstr "Pamiršote slaptažodį?"
 
 msgid "Enter the two factor authentication code"
 msgstr ""
 
 msgid "Authentication failed"
-msgstr "Kimlik təsdiqləməsi uğursuzdur"
-
-msgid "The code is either invalid or expired."
-msgstr "Açar şifrə etibarsızdır və ya təqdimat müddəti başa çatıb."
-
-msgid "Site:"
 msgstr ""
 
+msgid "The code is either invalid or expired."
+msgstr ""
+
+msgid "Site:"
+msgstr "Svetainė:"
+
 msgid "Please select your account:"
-msgstr "Xahiş edirik  hesabınızı seçəsiniz. "
+msgstr "Pasirinkite savo paskyrą:"
 
 msgid "Now type your password, then click 'Log in':"
-msgstr "Şifrənizi daxil edin, daha sonra \"Giriş\" düyməsinə basın"
+msgstr ""
 
 msgid "Text shown after the user has selected the option."
 msgstr ""
 
 msgid "Confirm"
-msgstr "Təsdiqlə"
+msgstr "Patvirtinti"
 
 msgid "Add file"
-msgstr "Fayl əlavə et"
+msgstr "Pridėti failą"
 
 msgid "Are you sure?"
-msgstr "Əminsiniz mi?"
+msgstr ""
 
 msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Əməliyyat, quraşdırılmanı sıfırlayır və geri qaytara bilmir."
+msgstr ""
 
 msgid "Assign score points"
-msgstr "Hesab nöqtələrini təyin et"
+msgstr ""
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Xahiş edirik bütün əlaqəli məlumatların daimi olaraq silinəcəyini unutmayın."
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
@@ -1496,7 +1492,7 @@ msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
-msgstr "Bağla"
+msgstr "Užverti"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr ""
@@ -1510,7 +1506,7 @@ msgid ""
 msgstr ""
 
 msgid "Welcome!"
-msgstr ""
+msgstr "Sveiki!"
 
 msgid "For the user documentation, visit:"
 msgstr ""
@@ -1518,21 +1514,21 @@ msgstr ""
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
 " the software:"
-msgstr "Texniki dəstəyə ehtiyacınız, ümumi suallarınız və ya proqram üçün yeni ideyalarınız varsa: "
+msgstr ""
 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr "Əgər proqram təminatına və ya problemlərin çatdırılmasına öz töhvənizi vermək istəyirsinizsə, bilet sistemində bir məsələ qaldırın: "
+msgstr ""
 
 msgid "Join our chat:"
 msgstr ""
 
 msgid "Follow the project on:"
-msgstr "Layihəni izləyin:"
+msgstr ""
 
 msgid "Hint: How to hide your receipt"
-msgstr "İşarə: Açar şifrənizi necə gizlədə bilərsiniz?"
+msgstr ""
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
@@ -1540,7 +1536,7 @@ msgid ""
 msgstr ""
 
 msgid "Error!"
-msgstr "Səhv!"
+msgstr "Klaida!"
 
 msgid "Internal server error"
 msgstr ""
@@ -1555,16 +1551,16 @@ msgid "Forbidden operation"
 msgstr ""
 
 msgid "The specified old password is not valid"
-msgstr "Göstərilən köhnə parol etibarlı deyil"
+msgstr ""
 
 msgid "Resource can only be accessed via the Tor network"
-msgstr "Mənbəyə giriş yalnız Tor şəbəkəsi vasitəsilə mümkündür"
+msgstr ""
 
 msgid "The upload request exceeds the size limit"
-msgstr "Yükləmə tələbi ölçü həddini aşır"
+msgstr ""
 
 msgid "Success!"
-msgstr "Uğurlu!"
+msgstr "Pavyko!"
 
 msgid "Validation of email address change in progress."
 msgstr ""
@@ -1576,56 +1572,56 @@ msgid "Account recovery key"
 msgstr ""
 
 msgid "Current password"
-msgstr "Hazırkı şifrə"
+msgstr "Dabartinis slaptažodis"
 
 msgid "Old password confirmation required"
-msgstr "Köhnə şifrənin təsdiqi tələb edilir"
+msgstr ""
 
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
-msgstr "Bu onu göstərir ki, siz, saytı heç bir gizlilik və təhlükəsizlik qorunmadan  nəzərdən keçirirsiniz. "
+msgstr ""
 
 msgid ""
 "You are strongly advised to visit this site using the desktop app called Tor"
 " Browser, that protects your identity."
-msgstr "Tor Browser adlı kimliyinizi qoruyan masa üstü tətbiqini istifadə edərək, bu sayta qoşulmağınız məsləhət görülür."
+msgstr ""
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Daha sonra Tor Brauzerə aşağıdakı ünvanı kopyalayıb yapışdırın:"
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr ""
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Artıq təqdim etmisiniz mı? Açar açar şifrəni daxil edin"
+msgstr ""
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "Açar şifrə etibarsızdır və ya təqdimat müddəti başa çatıb."
+msgstr ""
 
 msgid "Select a file or drag it here."
 msgstr ""
 
 msgid "Uploading files…"
-msgstr "Fayllar yüklənir..."
+msgstr ""
 
 msgid "Upload completed successfully!"
-msgstr "Yükləmə uğurla başa çatdı!"
+msgstr ""
 
 msgid "Error while uploading files; check below for details."
-msgstr "Fayl yükləyərkən səhvə yol verilib. Ətraflı məlumat üçün aşağı baxın."
+msgstr ""
 
 msgid "Estimated upload time:"
-msgstr "Təxmini yükləmə müddəti:"
+msgstr ""
 
 msgid "Size:"
-msgstr ""
+msgstr "Dydis:"
 
 msgid "Enable the Ricochet panel"
 msgstr ""
 
 msgid "Address"
-msgstr "Ünvan"
+msgstr "Adresas"
 
 msgid "Chat with us anonymously using the Ricochet application"
 msgstr ""
@@ -1645,12 +1641,12 @@ msgid ""
 msgstr ""
 
 msgid "The connection is not secure."
-msgstr "Bağlantı təhlükəlidir."
+msgstr ""
 
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
-msgstr "Platforma hələ HTTPS əlaqələri üçün quraşdırılmayıb və yalnız test məqsədləri üçün istifadə olunmalıdır."
+msgstr ""
 
 msgid "Use case"
 msgstr ""
@@ -1668,7 +1664,7 @@ msgid "Civic activism"
 msgstr ""
 
 msgid "Submit"
-msgstr "Göndər"
+msgstr "Pateikti"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr ""
@@ -1677,110 +1673,110 @@ msgid "Fill the additional questionnaire"
 msgstr ""
 
 msgid "Send"
-msgstr "Göndər"
+msgstr "Siųsti"
 
 msgid "Allow the whistleblower to write comments"
-msgstr "İnformasiya ötürənlərin şərh yazmasına icazə verin"
+msgstr ""
 
 msgid "From:"
-msgstr "Etibarən:"
+msgstr "Nuo:"
 
 msgid "To:"
-msgstr "Qədər:"
+msgstr "Kam:"
 
 msgid "Filename"
-msgstr "Fayl adı"
+msgstr "Failo pavadinimas"
 
 msgid "Upload date"
-msgstr "Yüklənmə tarixi"
+msgstr "Įkėlimo data"
 
 msgid "File size"
-msgstr "Faylın ölçüsü"
+msgstr "Failo dydis"
 
 msgid "download"
-msgstr "endir"
+msgstr "atsisiųsti"
 
 msgid "No files have been uploaded!"
-msgstr "Fayl yüklənməyib!"
+msgstr "Neįkelti jokie failai!"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr "İnformasiya ötürənə təsdiqetməyə əlavələr etməsinə icazə verin"
+msgstr ""
 
 msgid "Report"
-msgstr "Təqdim"
+msgstr "Ataskaita"
 
 msgid "Access expiration"
-msgstr "Girişin sona çatması"
+msgstr ""
 
 msgid "Never"
-msgstr "Heç vaxt"
+msgstr "Niekada"
 
 msgid "Revoked"
-msgstr "Ləğv edildi"
+msgstr "Panaikintas"
 
 msgid "Allow the whistleblower to send messages"
-msgstr "İnformasiya ötürənin mesaj göndərməsinə icazə verin"
+msgstr ""
 
 msgid "Are you sure that you want to delete the report?"
-msgstr "İstifadəçini silmək istədiyinizdən əminsiniz mi?"
+msgstr ""
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
-msgstr "Platformada saxlanılan təqdimatla bağlı hər şey silinəcəkdir."
+msgstr ""
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
 " saved on your computer, must be deleted manually."
-msgstr "Platformada saxlanan hər şeyin məsələn: kompüterinizin saxlanan faylların, əl ilə silinməli olduğunu unutmayın."
+msgstr ""
 
 msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Seçdiyiniz bütün təqdimatları silmək istədiyinizə əminsiniz mi?"
+msgstr ""
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
 "recipients won't be able to further access to it."
-msgstr "Xahiş edirik qəbul edicilərin gələcəkdə daxil ola bilməyəcəkləri bütün müvafiq məlumatların silindiyindən əmin olasınız. "
+msgstr ""
 
 msgid "Please write a motivation for the reply"
-msgstr "Xahiş edirik cavab üçün motivasiya yazın"
+msgstr ""
 
 msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Təqdimatın bitmə tarixini təxirə salmaq istədiyinizə əminsiniz mi?"
+msgstr ""
 
 msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Təsdiqləməklə, son istifadə tarixini təxirə salacaqsınız:"
+msgstr ""
 
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
 "reports?"
-msgstr "Bütün seçilmiş təqdimatların bitmə tarixini təxirə salmaq istədiyinizə əminsinizmi?"
+msgstr ""
 
 msgid "Questionnaire answers"
-msgstr "Sorğu cavabları"
+msgstr ""
 
 msgid "Step"
-msgstr "Addım"
+msgstr ""
 
 msgid "Recipient list"
-msgstr "Qəbul edici siyahısı"
+msgstr ""
 
 msgid "Status:"
-msgstr "Status:"
+msgstr ""
 
 msgid "Attached files for the whistleblower"
-msgstr "İnformasiya ötürən üçün əlavə edilmiş fayllar"
+msgstr ""
 
 msgid "Upload a file:"
-msgstr "Yeni fayl yüklə:"
+msgstr ""
 
 msgid "Logout"
-msgstr "Çıxış"
+msgstr "Atsijungti"
 
 msgid "Files attached by recipients"
-msgstr "Qəbul edicilər tərəfindən yüklənilmiş fayllar"
+msgstr ""
 
 msgid "These files have been attached to your report by the recipients."
-msgstr "Bu fayllar sizin təqdimata alıcılar tərəfindən əlavə edilib."
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr ""
@@ -1804,23 +1800,23 @@ msgid "Password reset requested."
 msgstr ""
 
 msgid "Show"
-msgstr "Göstər"
+msgstr "Rodyti"
 
 msgid "Hide"
-msgstr "Gizlətmək"
+msgstr "Slėpti"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr "Mühafizəçidən informasiya ötürənin kimliyinə giriş tələb olunur."
+msgstr ""
 
 msgid "Date of the request"
-msgstr "Tələb olunan tarix"
+msgstr ""
 
 msgid "Undeclared"
 msgstr ""
 
 msgid "Congratulations!"
-msgstr "Təbriklər!"
+msgstr "Sveikiname!"
 
 msgid "You have completed the platform activation."
 msgstr ""
@@ -1836,10 +1832,10 @@ msgid ""
 msgstr ""
 
 msgid "Sign up"
-msgstr "Qeydiyyat"
+msgstr "Registruotis"
 
 msgid "Domain"
-msgstr ""
+msgstr "Sritis"
 
 msgid "Confirmation"
 msgstr ""
@@ -1848,65 +1844,65 @@ msgid "Invalid confirmation"
 msgstr ""
 
 msgid "Other"
-msgstr "Digər"
+msgstr "Kiti"
 
 msgid "Complete"
-msgstr "Tamamla"
+msgstr ""
 
 msgid "Invalid phone number"
 msgstr ""
 
 msgid "This field is mandatory."
-msgstr "Məcburi sahədir."
+msgstr ""
 
 msgid "The answer is too short."
-msgstr "Cavab çox qısadır."
+msgstr ""
 
 msgid "The specified input is not valid."
 msgstr ""
 
 msgid "The specified input is not valid:"
-msgstr "Göstərilən giriş düzgün deyil:"
+msgstr ""
 
 msgid "please enter a valid email address."
-msgstr "Etibarlı  e-mail ünvanı daxil edin."
+msgstr ""
 
 msgid "please enter numbers only."
-msgstr "xahiş edirik, yalnız rəqəmləri qeyd edin"
+msgstr ""
 
 msgid "Submissions disabled"
-msgstr "Təqdimatlar aradan qaldırıldı"
+msgstr ""
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr "Siz serverə məxfiliyiniz qorunmadan qoşulursunuz və bu server yalnız anonim təqdimatları dəstəkləyir"
+msgstr ""
 
 msgid "Thank you!"
-msgstr "Təşəkkürlər!"
+msgstr "Ačiū!"
 
 msgid "Your report was successful."
-msgstr "Sizin təqdimatınız uğurlu oldu."
+msgstr ""
 
 msgid "We will try to get back to you as soon as possible."
-msgstr "Qısa zamanda Sizinlə əlaqə saxlamağa çalışacağıq"
+msgstr ""
 
 msgid "Remember your receipt for this report."
-msgstr "Bu təqdimat üçün açar şifrəni xatırlayın."
+msgstr ""
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Daxil olmaq üçün 16 rəqəmli şifrədən istifadə edin. Bu, sizə göndərdiyimiz bütün mesajları görməyinizə eyni zamanda əlavə məlumat yükləməyinə şərait yaradacaq. "
+msgstr ""
 
 msgid "View your report"
-msgstr "Təqdimatını nəzərdən keçir"
+msgstr ""
 
 msgid "Recipient selection"
-msgstr "Alıcı seçimi"
+msgstr ""
 
 msgid "Recipients selected:"
-msgstr "Seçilmiş alıcılar:"
+msgstr ""
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr ""
@@ -1914,19 +1910,19 @@ msgstr ""
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr "Bu addımda aşağıdakı suallara verilən cavablar ya buraxılmış, ya da etibarsızdır:"
+msgstr ""
 
 msgid "Errors"
 msgstr ""
 
 msgid "You must select at least one recipient."
-msgstr "Ən azı bir qəbul edici seçməlisiniz."
+msgstr ""
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr "Yükənən faylın (lar) bitməsini gözləyirəm."
+msgstr ""
 
 msgid "The following steps have errors:"
-msgstr "Aşağıdakı addımlarda səhvlər var:"
+msgstr ""
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1934,12 +1930,12 @@ msgid ""
 msgstr ""
 
 msgid "Please choose a configuration profile:"
-msgstr "Xahiş edirik quraşdırma profili seçəsiniz:"
+msgstr ""
 
 msgid ""
 "These profiles contain settings used by successful projects in each "
 "respective field."
-msgstr "Bu profillər, əlaqəli sahələrdə uğurlu layihələrin istifadə etdikləri tənzimləmələri  özündə ehtiva edir. "
+msgstr ""
 
 msgid "Please choose a different username."
 msgstr ""
@@ -1948,94 +1944,94 @@ msgid "The user will receive an activation link via email."
 msgstr ""
 
 msgid "License Agreement"
-msgstr "Lisenziya müqaviləsi"
+msgstr ""
 
 msgid "Please review the license terms before proceeding."
-msgstr "Davam etməmişdən əvvəl lisenziya şərtlərini nəzərdən keçirin."
+msgstr ""
 
 msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Lisenziyanın şərtlərini oxudum və razıyam."
+msgstr ""
 
 msgid "You have completed the platform wizard."
-msgstr "Platforma artıq hazırdır. "
+msgstr ""
 
 msgid "Fill out your report"
-msgstr "Təqdimatınızı doldurun"
+msgstr ""
 
 msgid "Short title"
-msgstr "Qısa ad"
+msgstr ""
 
 msgid "Describe your report in a few words."
-msgstr "Təqdimatınızı bir neçə sözlə təsvir edin."
+msgstr ""
 
 msgid "Full description"
-msgstr "Tam açıqlama"
+msgstr ""
 
 msgid "Describe your report in detail."
-msgstr "Təqdimatınızı təfərrüatı ilə təsvir edin."
+msgstr ""
 
 msgid "Attach files relevant to the report."
-msgstr "Təqdimat ilə əlaqəli faylları əlavə edin"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
-msgstr "Kimlik məlumatınızı vermək istəyirsiniz mi?"
+msgstr ""
 
 msgid "First name"
-msgstr "Ad"
+msgstr "Vardas"
 
 msgid "Last name"
-msgstr "Soyad"
+msgstr "Pavardė"
 
 msgid "Gender"
-msgstr "Cins"
+msgstr ""
 
 msgid "Male"
-msgstr "Kişi"
+msgstr ""
 
 msgid "Female"
-msgstr "Qadın"
+msgstr ""
 
 msgid "Other gender identity"
 msgstr ""
 
 msgid "Date of birth"
-msgstr "Doğum yeri"
+msgstr ""
 
 msgid "Place of birth"
-msgstr "Doğum yeri"
+msgstr ""
 
 msgid "Social security number"
-msgstr "Sosial sığorta nömrəsi"
+msgstr ""
 
 msgid "Residence"
-msgstr "Ev"
+msgstr ""
 
 msgid "Zip code / Postal code"
-msgstr "Poçt indeksi"
+msgstr ""
 
 msgid "Province"
-msgstr "Bölgə"
+msgstr ""
 
 msgid "Current job title"
-msgstr "Hazırkı işi"
+msgstr ""
 
 msgid "Current job responsibility (role)"
-msgstr "İş yerində vəzifələri (rolu)"
+msgstr ""
 
 msgid "Current organization unit and job location"
-msgstr "İş yeri və ünvanı"
+msgstr ""
 
 msgid "Job title at the time of the reported fact"
-msgstr "Fakt haqda məlumat verən zaman vəzifənin adı"
+msgstr ""
 
 msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Fakt haqda məlumat verən zaman vəzifənin məsuliyyəti (rolu)"
+msgstr ""
 
 msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Fakt haqda məlumat verən zaman təşkilatın forması və iş yeri"
+msgstr ""
 
 msgid "Dear {RecipientName},"
-msgstr "Əziz {RecipientName}, "
+msgstr ""
 
 msgid ""
 "You're receiving this email because a user account has been created for you "
@@ -2062,7 +2058,7 @@ msgid ""
 msgstr ""
 
 msgid "Kind regards,"
-msgstr "Xoş arzularla,"
+msgstr ""
 
 msgid "Account activation"
 msgstr ""
@@ -2084,19 +2080,19 @@ msgstr ""
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
-msgstr "Son zamanlarda aşkarlanan fəaliyyətlərin sayı normaldan daha yüksəkdir."
+msgstr ""
 
 msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr "Bu, hücum (məsələn, kimsə serverinizi saxta məlumatlarla doldurur) yaxud layihənizə baxış  səbəbiylə istifadənin kəskin artımının əlaməti ola bilər."
+msgstr ""
 
 msgid "Examine the issue to determine whether it is legitimate or not."
 msgstr ""
 
 msgid "The activities with unusual stats are:"
-msgstr "Qeyri-adi statistikası olan fəaliyyətlər:"
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
@@ -2106,33 +2102,33 @@ msgstr ""
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr "Serverdəki disk həcminin artırılması üçün texniki yardıma müraciəti nəzərdən keçirin. "
+msgstr ""
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
 " alert you in case something requires your attention."
-msgstr "GlobaLeaks texnologiyasının serverin statusunu yoxlayan hissəsi diqqət tələb edən məsələ olanda sizi xəbərdarlıq edəcək."
+msgstr ""
 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr "Daha ətraflı məlumat üçün İdarəetmə ekranına daxil olun və \"Sistem Statistikaları\" və ya \"Anomaliyalar\" bölmələrinə baxın. "
+msgstr ""
 
 msgid "Anomaly detected in {NodeName}"
-msgstr "{NodeName} -da aşkarlanan paradoksallıq"
+msgstr ""
 
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "Bu e-mail, aşağıdaki istifadəçilər üçün PGP açarının müddətinin sona çatacağı və ya artıq başa çatdığını bildirmək üçün göndərilib."
+msgstr ""
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr "Mümkün PGP açarı olmadan sistem şifrəli bildirişlər göndərə bilməyəcək. "
+msgstr ""
 
 msgid "PGP key expiration alert"
-msgstr "PGP əsas həyəcan siqnalı"
+msgstr ""
 
 msgid "A new whistleblowing site has been registered."
 msgstr ""
@@ -2160,24 +2156,24 @@ msgstr ""
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr "Bu, platformanın idarəetmə ekranından  göndərilən  yoxlama e-poçtudur. "
+msgstr ""
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
 "to and interact with the SMTP mail server."
-msgstr "Bu emailin alınması serverin SMTP poçt xidməti ilə əlaqə qurduğunu və təsdiqlədiyini göstərir. "
+msgstr ""
 
 msgid "Test email"
-msgstr "Yoxlanış e-poçtu"
+msgstr ""
 
 msgid "This is an email to notify you of a new comment on an existing report."
-msgstr "Bu e-poçt, mövcud təqdimata dair yeni şərh almağınız barədə məlumat vermək üçün göndərilib. "
+msgstr ""
 
 msgid "The report can be accessed at:"
-msgstr "Təqdimat əldə edilə bilər:"
+msgstr ""
 
 msgid "New comment"
-msgstr "Yeni şərh"
+msgstr ""
 
 msgid ""
 "This is an email to notify you that a request has been made to change your "
@@ -2199,49 +2195,49 @@ msgid "From: {Author}"
 msgstr ""
 
 msgid "Date: {EventTime}"
-msgstr "Tarix: {EventTime}"
+msgstr ""
 
 msgid "From: Whistleblower"
-msgstr "dan: İnformasiya ötürən"
+msgstr ""
 
 msgid "Date: {SubmissionDate}"
-msgstr "Tarix: {SubmissionDate}"
+msgstr ""
 
 msgid "Label: {TipLabel}"
-msgstr "Yarlıq: {TipLabel}"
+msgstr ""
 
 msgid "Status: {TipStatus}"
 msgstr ""
 
 msgid "Context: {ContextName}"
-msgstr "Məzmun: {ContextName}"
+msgstr ""
 
 msgid ""
 "This is an email to notify you that the whistleblower of report {TipNum} has"
 " attached new material."
-msgstr "Bu, informasiya ötürənin yeni material {TipNum}  əlavə etməsiylə bağlı göndərilən e-maildir. "
+msgstr ""
 
 msgid "New attachment"
-msgstr "Yeni əlavə"
+msgstr ""
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr "Platformaya yüklənmiş HTTPS seritifikat müddəti sona çatır və ya artıq başa çatıb."
+msgstr ""
 
 msgid "Expiration date: {ExpirationDate}"
-msgstr "Bitmə tarixi: {ExpirationDate}"
+msgstr ""
 
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr "Mümkün sertifikat olmadığı halda , platforma ancaq Tor vasitəsi ilə təhlükəsiz şəkildə əldə edilə bilər. "
+msgstr ""
 
 msgid "Log in to solve the issue."
-msgstr "Məsələni həll etmək üçün daxil olun."
+msgstr ""
 
 msgid "Expiration alert for HTTPS certificate"
-msgstr "HTTPS sertifikatı üçün bitmə xəbərdarlığı"
+msgstr ""
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
@@ -2256,10 +2252,10 @@ msgstr ""
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "Bu email sizə təqdimat üçün informasiya ötürənin kimliyinə girməyə icazə verdiyini bildirmək üçün \nmühafizəçi tərəfindən göndərilib {TipNum}."
+msgstr ""
 
 msgid "Access to whistleblower's identity authorized"
-msgstr "İnformasiya ötürənin kimliyinə girişə icazə verildi"
+msgstr ""
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
@@ -2267,32 +2263,32 @@ msgid ""
 msgstr ""
 
 msgid "Access to whistleblower's identity denied"
-msgstr "İnformasiya ötürənin kimliyinə giriş rədd edildi"
+msgstr ""
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "Bu email təqdimat üçün qəbuledicinin informasiya ötürənin kimliyinə girişə icazə verilməsi tələbini bildirmək üçün göndərilib {TipNum}"
+msgstr ""
 
 msgid "The request can be accessed at:"
 msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
-msgstr "İnformasiya ötürənin kimliyinə yeni giriş tələbi"
+msgstr ""
 
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "Bu e-poçt, informasiya ötürənin təqdimat {TipNum} üçün öz kimliyi ilə məlumatları təmin etməsi ilə bağlı göndərilib."
+msgstr ""
 
 msgid "The whistleblower has provided their identity"
-msgstr "İnformasiya ötürən öz kimliyini göstərib. "
+msgstr ""
 
 msgid "This is an email to notify you of a new message on an existing report."
-msgstr "Bu e-poçt, mövcud təqdimata dair yeni şərh almağınız barədə məlumat vermək üçün göndərilib. "
+msgstr ""
 
 msgid "New message"
-msgstr "Yeni mesaj"
+msgstr "Nauja žinutė"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2313,17 +2309,17 @@ msgstr ""
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr "Bu e-poçt, PGP açarın sona çatacağını və ya artıq başa çatdığını bildirmək üçün göndərilib. "
+msgstr ""
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
 "or upload a new key."
-msgstr "Siz, platformada mövcud açarın etibarlılığını uzatmalı və yeniləməli, və ya yenisini yükləməlisiniz. "
+msgstr ""
 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-msgstr "Etibarlı PGP açarı olmadan sistem sizə verilən məlumatları şifrələməyəcək. "
+msgstr ""
 
 msgid "Click the link to activate the platform:"
 msgstr ""
@@ -2332,34 +2328,34 @@ msgid "Activation"
 msgstr ""
 
 msgid "A software update is available."
-msgstr "Proqram yenilənməsi mövcuddur"
+msgstr ""
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr "Platformanı son versiyada saxlamaq yaxşı təhlükəsizlik təcrübəsidir."
+msgstr ""
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
 "change log at: {ChangeLogUrl}"
-msgstr "Yeni versiyada yeni xüsusiyyətləri və problem həllərini öyrənmək üçün dəyişiklik tarixinə müraciət edin: {ChangeLogUrl}"
+msgstr ""
 
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
 "{UpdateGuideUrl}"
-msgstr "Proqam yeniləmələrinə dair təlimatlar üçün sənədlərə keç: {UpdateGuideUrl}"
+msgstr ""
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
-msgstr "Ən son istifadə tarixi {EarliestExpirationDate}"
+msgstr ""
 
 msgid "Please remember to check them before they are deleted."
-msgstr "Silinmədən öncə onları yoxlamağı unutmayın"
+msgstr ""
 
 msgid "Some reports will expire soon"
-msgstr "Bəzi təqdimatlar tezliklə başa çatacaq"
+msgstr ""
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "Bu e-poçt, informasiya ötürənin sizi təqdimatı üçün qiymətli qəbul edici olaraq seçdiyini bildirmək üçün göndərilib."
+msgstr ""
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2367,7 +2363,7 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr "Buradakı məlumat və materiallara xüsusi diqqət yetirməyiniz xahiş olunur. Nəzərdə saxlayın ki, informasiya ötürənlər ictimai maraqlara görə yüksək şəxsi risklərə məruz qalırlar. Buna görə də təqdim edilən təqdimat materialları böyük əhəmiyyətə malikdirlər."
+msgstr ""
 
 msgid "New report"
 msgstr ""
@@ -2376,4 +2372,4 @@ msgid "Role: {Role}"
 msgstr ""
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "Slaptažodis: {Password}"

@@ -331,7 +331,7 @@
   "Software version:": "軟體版本:",
   "An update is available:": "軟體有更新版",
   "Restrict access to specific IP addresses": "限特定 IP 地址之讀取",
-  "Whitelisted IP addresses": "IP 地址白名單",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "管理者",
   "Recipient": "收件者",
   "Whistleblower": "吹哨揭密者",

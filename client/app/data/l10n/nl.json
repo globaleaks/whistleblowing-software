@@ -331,7 +331,7 @@
   "Software version:": "Softwareversie:",
   "An update is available:": "Een update is beschikbaar:",
   "Restrict access to specific IP addresses": "Beperk toegang voor specifieke IP-adressen",
-  "Whitelisted IP addresses": "IP-adressen op de witte lijst gezet",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "Admin",
   "Recipient": "Ontvanger",
   "Whistleblower": "Klokkenluider",

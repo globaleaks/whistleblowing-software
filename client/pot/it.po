@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"PO-Revision-Date: 2020-07-16 20:30+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1054,8 +1054,8 @@ msgstr "È disponibile un aggiornamento:"
 msgid "Restrict access to specific IP addresses"
 msgstr "Restringi l'accesso a specifici indirizzi IP"
 
-msgid "Whitelisted IP addresses"
-msgstr "Indirizzi IP in whitelist"
+msgid "Allowed IP addresses"
+msgstr "Indirizzi IP autorizzati"
 
 msgid "Admin"
 msgstr "Amministratore"
@@ -1723,7 +1723,7 @@ msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Permetti al segnalante di aggiungere allegati alla segnalazione"
 
 msgid "Report"
-msgstr "Segnalazioni"
+msgstr "Segnalazione"
 
 msgid "Access expiration"
 msgstr "Scadenza accesso"

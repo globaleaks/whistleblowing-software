@@ -331,7 +331,7 @@
   "Software version:": "Szoftver verzió:",
   "An update is available:": "Frissítés elérhető:",
   "Restrict access to specific IP addresses": "Hozzáférés korlátozása bizonyos IP címekre",
-  "Whitelisted IP addresses": "Fehér listás IP címek",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "Admin",
   "Recipient": "Címzett",
   "Whistleblower": "Szivárogtató",

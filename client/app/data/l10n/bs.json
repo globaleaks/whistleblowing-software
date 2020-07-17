@@ -331,7 +331,7 @@
   "Software version:": "Verzija softvera:",
   "An update is available:": "Ažuriranje je dostupno",
   "Restrict access to specific IP addresses": "Ograničite pristup određenim IP adresama",
-  "Whitelisted IP addresses": "Skinite zabranu pristupa IP adresama",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "Admin",
   "Recipient": "Primalac",
   "Whistleblower": "Zviždač",

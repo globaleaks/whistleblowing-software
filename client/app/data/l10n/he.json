@@ -331,7 +331,7 @@
   "Software version:": "גרסת תוכנה:",
   "An update is available:": "עדכון זמין:",
   "Restrict access to specific IP addresses": "Restrict access to specific IP addresses",
-  "Whitelisted IP addresses": "Whitelisted IP addresses",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "מינהלן",
   "Recipient": "מקבל",
   "Whistleblower": "חושף שחיתות",

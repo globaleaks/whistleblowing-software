@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-22 19:31+0000\n"
+"PO-Revision-Date: 2020-07-16 20:30+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1036,7 +1036,7 @@ msgstr ""
 msgid "Restrict access to specific IP addresses"
 msgstr ""
 
-msgid "Whitelisted IP addresses"
+msgid "Allowed IP addresses"
 msgstr ""
 
 msgid "Admin"

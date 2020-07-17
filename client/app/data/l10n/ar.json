@@ -331,7 +331,7 @@
   "Software version:": "نسخة البرنامج:",
   "An update is available:": "هنالك تحديث متوفّر:",
   "Restrict access to specific IP addresses": "احصر الدخول على عناوين IP محددة",
-  "Whitelisted IP addresses": "عناوين IP المسموح بها",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "مشرف",
   "Recipient": "المتلقّي",
   "Whistleblower": "مبلّغ",

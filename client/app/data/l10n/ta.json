@@ -331,7 +331,7 @@
   "Software version:": "மென்பொருள் பதிப்பு:",
   "An update is available:": "புதுப்பிப்பு இருக்கிறது:",
   "Restrict access to specific IP addresses": "குறிப்பிட்ட ஐபி முகவரிகளுக்கு அணுகல் கட்டுப்படுத்தவும்",
-  "Whitelisted IP addresses": "அனுமதிக்கப்பட்ட IP முகவரிகள்",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "நிர்வாகம்",
   "Recipient": "பெறுநரின்",
   "Whistleblower": "விசில் ப்ளோயர்",

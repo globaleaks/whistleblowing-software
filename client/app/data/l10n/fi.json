@@ -331,7 +331,7 @@
   "Software version:": "Käytössä oleva ohjelmistoversio:",
   "An update is available:": "Uusi ohjelmistoversio saatavilla:",
   "Restrict access to specific IP addresses": "Estä pääsy tietyistä IP-osoitteista",
-  "Whitelisted IP addresses": "Sallitut IP-osoitteet",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "Ylläpitäjä",
   "Recipient": "Vastaanottaja",
   "Whistleblower": "Vihjeenantaja",

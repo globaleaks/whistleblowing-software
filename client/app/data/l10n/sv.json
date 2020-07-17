@@ -331,7 +331,7 @@
   "Software version:": "Mjukvaruversion:",
   "An update is available:": "An update is available:",
   "Restrict access to specific IP addresses": "Restrict access to specific IP addresses",
-  "Whitelisted IP addresses": "Vitlistade IP-adresser",
+  "Allowed IP addresses": "Allowed IP addresses",
   "Admin": "Admin",
   "Recipient": "Mottagare",
   "Whistleblower": "Uppgiftslämnare",
