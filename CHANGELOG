@@ -1,3 +1,11 @@
+Changes in version 4.0.41 - 2020-07-18
+    Do not send certificate expiry notice to users with disabled notifications
+    Revise style of feature that enable to block submissions based on answers
+    Update npm dependencies to latest version
+    Improve lets'encrypt cert renewal for multisite platforms adding 60s delay
+    Add latvian translation
+    Update translations
+
 Changes in version 4.0.40 - 2020-07-08
     Fix regression in logo upload introduced in 4.0.39
 

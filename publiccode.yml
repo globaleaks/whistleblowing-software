@@ -1,10 +1,10 @@
 name: GlobaLeaks
-releaseDate: '2020-07-08'
+releaseDate: '2020-07-18'
 publiccodeYmlVersion: '0.2'
 url: 'https://github.com/globaleaks/GlobaLeaks'
 landingURL: 'https://github.com/globaleaks/GlobaLeaks'
 logo: img/logo-horizontal-color.png
-softwareVersion: 4.0.40
+softwareVersion: 4.0.41
 softwareType: standalone/web
 developmentStatus: stable
 platforms:
@@ -25,7 +25,7 @@ legal:
   mainCopyrightOwner: >-
     Hermes Center for Transparency and Digital Humand Rights,
     Whistleblowing Solutions I.S. S.r.l.
-  authorsFile: 'https://github.com/globaleaks/GlobaLeaks/blob/master/AUTHORS'
+  authorsFile: 'https://github.com/globaleaks/GlobaLeaks/blob/main/AUTHORS'
   repoOwner: GlobaLeaks
 localisation:
   localisationReady: true
