@@ -117,7 +117,7 @@ class TestAPI(TestGL):
         request = forge_request(uri=b'http://127.0.0.1:8083/', client_addr=IPv4Address('TCP', '127.0.0.1', 12345))
         self.api.render(request)
         self.assertTrue(request.client_using_tor)
-        self.assertEqual(request.responseCode, 200)
+        self.assertEqual(request.responseCode, 302)
 
         # Remote HTTP connection not coming from Tor should be redirected to HTTPS
         State.tenant_cache[1].https_enabled = True

@@ -222,7 +222,7 @@ class APIResourceWrapper(Resource):
     def should_redirect_tor(self, request):
         if len(State.tenant_cache[request.tid].onionnames) and \
            request.client_using_tor and \
-           request.hostname not in [b'127.0.0.1'] + State.tenant_cache[request.tid].onionnames:
+           request.hostname not in State.tenant_cache[request.tid].onionnames:
             return True
 
         return False
