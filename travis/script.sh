@@ -59,7 +59,7 @@ if [ "$GLTEST" = "test" ]; then
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR -k9 -D
   sleep 3
 
-  ./node_modules/protractor/bin/webdriver-manager update --versions.chrome 83.0.4103.39
+  ./node_modules/protractor/bin/webdriver-manager update --versions.chrome 83.0.4103.116
 
   ./node_modules/protractor/bin/protractor tests/protractor-coverage.config.js
 
