@@ -297,7 +297,7 @@ It implements monitoring of each activity trying to implement detection of attac
 
 Network sandboxing
 ==================
-GlobaLeaks integrates iptables by default and implements by a strict firewall rule that only allow inbound and outbound connections from 127.0.0.1 (where Tor is running with Tor Hidden Service).
+GlobaLeaks integrates iptables by default and implements by a strict firewall rule that only allow inbound and outbound connections from 127.0.0.1 (where Tor is running with Tor Onion Service).
 
 As well it automatically applies network sandboxing to all outbound communications that get automatically "torrified" (sent through Tor), being outbound TCP connections or DNS-query for name resolution.
 

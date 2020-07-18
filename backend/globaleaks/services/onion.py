@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Implements configuration of Tor hidden service
+# Implements configuration of Tor onion services
 import os
 
 from pkg_resources import parse_version
@@ -74,16 +74,16 @@ class OnionService(Service):
         return tor_conn.protocol.quit()
 
     @inlineCallbacks
-    def add_all_hidden_services(self):
+    def add_all_onion_services(self):
         if self.tor_conn is None:
             return
 
         hostname_key_list = yield list_onion_service_info()
         for tid, hostname, key in hostname_key_list:
             if hostname is '' or hostname not in self.hs_map:
-                yield self.add_hidden_service(tid, hostname, key)
+                yield self.add_onion_service(tid, hostname, key)
 
-    def add_hidden_service(self, tid, hostname, key):
+    def add_onion_service(self, tid, hostname, key):
         if self.tor_conn is None:
             return
 
@@ -102,7 +102,7 @@ class OnionService(Service):
 
         @inlineCallbacks
         def init_callback(ret):
-            log.err('Initialization of hidden-service %s completed.', ephs.hostname, tid=tid)
+            log.err('Initialization of onion-service %s completed.', ephs.hostname, tid=tid)
             if not hostname and not key:
                 if tid in State.tenant_cache:
                     self.hs_map[ephs.hostname] = ephs
@@ -120,11 +120,11 @@ class OnionService(Service):
         return ephs.add_to_tor(self.tor_conn.protocol).addCallbacks(init_callback)  # pylint: disable=no-member
 
     @inlineCallbacks
-    def remove_unwanted_hidden_services(self):
-        # Collect the list of all hidden services listed by tor then remove all of them
+    def remove_unwanted_onion_services(self):
+        # Collect the list of all onion services listed by tor then remove all of them
         # that are not present in the tenant cache ensuring that OnionService.hs_map is
         # kept up to date.
-        running_services = yield self.get_all_hidden_services()
+        running_services = yield self.get_all_onion_services()
 
         tenant_services = {State.tenant_cache[tid].onionservice for tid in State.tenant_cache}
 
@@ -138,7 +138,7 @@ class OnionService(Service):
                 yield ephs.remove_from_tor(self.tor_conn.protocol)
 
     @inlineCallbacks
-    def get_all_hidden_services(self):
+    def get_all_onion_services(self):
         if self.tor_conn is None:
             returnValue([])
 
@@ -174,7 +174,7 @@ class OnionService(Service):
             except:
                 pass
 
-            yield self.add_all_hidden_services()
+            yield self.add_all_onion_services()
 
         def startup_errback(err):
             if self.print_startup_error:

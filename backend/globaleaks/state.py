@@ -242,9 +242,9 @@ class StateClass(ObjectDict, metaclass=Singleton):
         # Remove selected onion services and add missing services
         if self.onion_service_job is not None:
             def f(*args):
-                return self.onion_service_job.add_all_hidden_services()
+                return self.onion_service_job.add_all_onion_services()
 
-            self.onion_service_job.remove_unwanted_hidden_services().addBoth(f)  # pylint: disable=no-member
+            self.onion_service_job.remove_unwanted_onion_services().addBoth(f)  # pylint: disable=no-member
 
     def format_and_send_mail(self, session, tid, user_desc, template_vars):
         subject, body = Templating().get_mail_subject_and_body(template_vars)
