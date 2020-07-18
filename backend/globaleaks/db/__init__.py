@@ -259,7 +259,8 @@ def db_refresh_memory_variables(session, to_refresh=None):
 
         if tenant.subdomain != '':
             if rootdomain != '':
-                onionnames.append('{}.{}'.format(tenant.subdomain, rootdomain).encode())
+                hostnames.append('{}.{}'.format(tenant.subdomain, rootdomain).encode())
+
             if root_onionservice != '':
                 onionnames.append('{}.{}'.format(tenant.subdomain, root_onionservice).encode())
 
