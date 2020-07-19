@@ -330,7 +330,7 @@ class APIResourceWrapper(Resource):
             if not request.hostname.startswith(b'www.'):
                 tentative_hostname = b'www.' + request.hostname
             else:
-                tentative_hostname = request.hostname[4:-1]
+                tentative_hostname = request.hostname[4:]
 
             if tentative_hostname in State.tenant_hostname_id_map:
                 request.tid = State.tenant_hostname_id_map[tentative_hostname]
