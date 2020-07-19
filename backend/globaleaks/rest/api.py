@@ -326,9 +326,24 @@ class APIResourceWrapper(Resource):
         self.preprocess(request)
 
         if request.tid is None:
-            request.tid = 1
+            # Tentative domain correction in relation to presence / absence of 'www.' prefix
+            if not request.hostname.startswith(b'www.'):
+                tentative_hostname = b'www.' + request.hostname
+            else:
+                tentative_hostname = request.hostname[4:-1]
+
+            if tentative_hostname in State.tenant_hostname_id_map:
+                request.tid = State.tenant_hostname_id_map[tentative_hostname]
+                if State.tenant_cache[request.tid].https_enabled:
+                    request.redirect(b'https://' + tentative_hostname + b'/')
+                else:
+                    request.redirect(b'http://' + tentative_hostname + b'/')
+            else:
+                # Fallback on root tenant with error 400
+                request.tid = 1
+                request.setResponseCode(400)
+
             self.set_headers(request)
-            request.setResponseCode(400)
             return b''
 
         self.set_headers(request)
