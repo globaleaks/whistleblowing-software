@@ -1,5 +1,6 @@
 # 
 # Translators:
+# Akseli Pihlajamaa <akselijuhanipihlajamaa@gmail.com>, 2020
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020
 # Jaakko Korhonen <jaakko.korhonen@gmail.com>, 2018
 # John Wild <ac@elephantleague.org>, 2015
@@ -10,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-07-19 14:09+0000\n"
+"Last-Translator: Akseli Pihlajamaa <akselijuhanipihlajamaa@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -604,7 +605,7 @@ msgid "VAT number"
 msgstr "Arvonlisäveronumero"
 
 msgid "Tax code"
-msgstr ""
+msgstr "Veronumero"
 
 msgid "Select the context of your report:"
 msgstr "Valitse vihjeen aihe:"
@@ -1040,7 +1041,7 @@ msgid "Restrict access to specific IP addresses"
 msgstr "Estä pääsy tietyistä IP-osoitteista"
 
 msgid "Allowed IP addresses"
-msgstr ""
+msgstr "Sallitut IP-osoitteet"
 
 msgid "Admin"
 msgstr "Ylläpitäjä"
