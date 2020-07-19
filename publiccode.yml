@@ -4,7 +4,7 @@ publiccodeYmlVersion: '0.2'
 url: 'https://github.com/globaleaks/GlobaLeaks'
 landingURL: 'https://github.com/globaleaks/GlobaLeaks'
 logo: img/logo-horizontal-color.png
-softwareVersion: 4.0.42
+softwareVersion: 4.0.43
 softwareType: standalone/web
 developmentStatus: stable
 platforms:
