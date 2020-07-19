@@ -1,3 +1,8 @@
+Changes in version 4.0.42 - 2020-07-19
+    Fix HTTPS redirects in relation to letsencrypt and renewal
+    Implementative tentative domain correction in relation to presence
+    or absence of 'www.' domain prefix
+
 Changes in version 4.0.41 - 2020-07-18
     Do not send certificate expiry notice to users with disabled notifications
     Revise style of feature that enable to block submissions based on answers
