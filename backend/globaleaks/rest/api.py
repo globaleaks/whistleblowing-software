@@ -214,7 +214,8 @@ class APIResourceWrapper(Resource):
     def should_redirect_https(self, request):
         if State.tenant_cache[request.tid].https_enabled and \
            request.client_proto == b'http' and \
-           request.client_ip not in Settings.local_hosts:
+           request.client_ip not in Settings.local_hosts and \
+           b'acme-challenge' not in request.path:
             return True
 
         return False

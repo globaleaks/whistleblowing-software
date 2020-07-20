@@ -23,7 +23,6 @@ class CertificateCheck(DailyJob):
 
     notify_expr_within = 15
     acme_try_renewal = 15
-    should_restart_https = False
 
     def certificate_mail_creation(self, session, mail_type, tid, expiration_date):
         for user_desc in db_get_users(session, tid, 'admin'):
