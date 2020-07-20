@@ -1,3 +1,6 @@
+Changes in version 4.0.44 - 2020-07-20
+    Revise fix for HTTPS redirects in relation to letsencrypt and renewal
+
 Changes in version 4.0.43 - 2020-07-10
     Revise tenatative domain correction introduced in 4.0.42
     Bump npm dependencies to latest versions
