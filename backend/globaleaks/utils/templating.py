@@ -423,7 +423,7 @@ class ExpirationSummaryKeyword(UserNodeKeyword):
         return datetime_to_pretty_str(self.data['earliest_expiration_date'])
 
     def UrlPath(self):
-        return '/#/receiver/tips'
+        return '/#/recipient/reports'
 
 
 class AdminPGPAlertKeyword(UserNodeKeyword):
