@@ -3,7 +3,7 @@ releaseDate: '2020-07-21'
 publiccodeYmlVersion: '0.2'
 url: 'https://github.com/globaleaks/GlobaLeaks'
 landingURL: 'https://github.com/globaleaks/GlobaLeaks'
-logo: img/logo-horizontal-color.png
+logo: assets/globaleaks-logo-color.png
 softwareVersion: 4.0.45
 softwareType: standalone/web
 developmentStatus: stable
@@ -35,7 +35,6 @@ localisation:
     - bg
     - bs
     - ca
-    - ca@valencia
     - cs
     - da
     - de
