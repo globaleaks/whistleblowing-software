@@ -26,7 +26,7 @@ User features
 Legal Features
 ==============
 - Ready-made questionnaires for compliance law
-- Bidirectional anonymous communication with the ability for whistleblower to disclose identity at a later stage
+- Bidirectional anonymous communication (comments/messages)
 - Customizable case management workflow (statuses/sub-statuses)
 - Whistleblower identity conditional reporting workflow
 - Manage conflict of interest in the reporting workflow
@@ -45,7 +45,7 @@ Security Features
 - Built-in HTTPS support with `TLS 1.3 <https://tools.ietf.org/html/rfc8446>`_ standard (`SSLabs A+ <https://www.ssllabs.com/ssltest/analyze.html?d=try.globaleaks.org>`_ rating)
 - Automatic free digital certificate enrollment (`Let’s Encrypt <https://letsencrypt.org/>`_)
 - Multiple penetration tests with full public reports
-- Conform to industry standards and best practices for application security by following `OWASP Security Guidelines <https://owasp.org/>`_
+- Conform to industry standards and best practices for application security (`OWASP <https://owasp.org/>`_)
 - Two-Factor authentication (2FA) support compliant to standard `TOTP RFC 6238 <https://tools.ietf.org/html/rfc6238>`_
 - Integrated network sandboxing with iptables
 - Integrated application sandboxing with `AppArmor <http://wiki.apparmor.net/>`_
