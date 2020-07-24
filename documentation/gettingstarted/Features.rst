@@ -6,9 +6,8 @@ User features
 =============
 - Multi-user system with customizable user roles (whistleblower, recipient, administrator)
 - Entirely manageable from a web administration interface
-- Support for `more than 40 languages <https://www.transifex.com/otf/globaleaks>`_ with Right-to-Left (RTL)
+- Support for `more than 40 languages <https://www.transifex.com/otf/globaleaks>`_ with support for Right-to-Left (RTL)
 - Support for customization of advanced questionnaires
-- Receive reports from whistleblower through structured multi-step questionnaire
 - Let whistleblowers decide if and when to confidentially declare their identity
 - Exchange multimedia files with whistleblower
 - Chat with Whistleblower to discuss the report
@@ -33,7 +32,7 @@ Legal Features
 - Custodian functionality to authorize access to whistleblower identity
 - GDPR privacy by design
 - GDPR configurable data retention policies
-- GDPR compliant subscriber module for new users of SAAS services
+- GDPR compliant subscriber module for new users of SaaS services
 - No logs of IP addresses
 - Integratable with existing enterprise case management platform
 - Free Software OSI Approved `AGPL 3.0 License <https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE>`_
@@ -56,7 +55,7 @@ Security Features
 
 Technical Features
 ==================
-- Multi-site support enabling to run multiple virtual site on the same server installation
+- Multi-site support enabling to run multiple virtual site on the same setup
 - Responsive UX made with `Boostrap <https://getbootstrap.com/>`_ CSS Framework
 - Built-in Accessibility Support with `WAI-ARIA <https://www.w3.org/WAI/standards-guidelines/aria/>`_ compliance
 - Automated Software Quality Measurement and Continuous Integration Testing
@@ -70,6 +69,7 @@ Technical Features
 - Deb Packaging with repository for update/upgrades
 - Fully self-contained application (no web or application servers needed)
 - Integrate collaborative translation/localization (`Transifex <https://www.transifex.com/otf/globaleaks>`_)
-- debEasy integration of the platform with existing websites and intranets
+- Easy integration of the platform with existing websites and intranets
 - `HTTP/2 <https://tools.ietf.org/html/rfc7540>`_ support
+- Rest API
 - Provisioning API
