@@ -2,8 +2,8 @@ name: GlobaLeaks
 releaseDate: '2020-07-21'
 publiccodeYmlVersion: '0.2'
 url: 'https://github.com/globaleaks/GlobaLeaks'
-landingURL: 'https://github.com/globaleaks/GlobaLeaks'
-logo: assets/globaleaks-logo-color.png
+landingURL: 'https://www.globaleaks.org/'
+logo: assets/globaleaks-logo-color.svg
 softwareVersion: 4.0.47
 softwareType: standalone/web
 developmentStatus: stable
@@ -77,20 +77,20 @@ localisation:
     - zh_TW
 it:
   conforme:
-    misureMinimeSicurezza: true
     gdpr: true
+    lineeGuidaDesign: true
+    misureMinimeSicurezza: true
+    modelloInteroperabilita: true
 description:
   en:
-    genericName: whistleblowing platform
+    genericName: whistleblowing software
     shortDescription: 'Open-Source Whistleblowing Software '
-    documentation: 'https://docs.globaleaks.org'
+    documentation: 'https://docs.globaleaks.org/'
     longDescription: >-
       [GlobaLeaks](https://www.globaleaks.org/) is
       open-source / free software intended to enable secure and anonymous
       whistleblowing initiatives developed by the [Hermes Center for
       Transparency and Digital Human Rights](https://www.hermescenter.org/).
-      Thanks to GlobaLeaks even non-technical people are be able to setup their own anonymous whistleblowing initiative. Designed to be user-friendly the software is customizable up to your needs and protects the whistleblower's privacy and submissions by default.
-      GlobaLeaks targets many use cases and therefore it has been designed as a framework. Designed with flexibility in mind, GlobaLeaks is nowadays adopted worldwide by more than 1000 projects. Our vast range of adopters include independent media, activists, public agencies, corporations and more.
       
     features:
       - "Multi-user system with customizable user roles (whistleblower, recipient, administrator)"
@@ -100,7 +100,7 @@ description:
       - "Receive reports from whistleblower through structured multi-step questionnaire"
       - "Let whistleblowers decide if and when to confidentially declare their identity"
       - "Exchange multimedia files with whistleblower"
-      - "Chat with Whistleblower to discuss the report"
+      - "Chat with whistleblower to discuss the report"
       - "Unique 16-digit receipt for the whistleblower to log back in anonymously"
       - "Simple recipient interface for receiving and analyzing reports"
       - "Support to the categorization of the reports with labels"
@@ -119,7 +119,7 @@ description:
       - "Custodian functionality to authorize access to whistleblower identity"
       - "GDPR privacy by design"
       - "GDPR configurable data retention policies"
-      - "GDPR compliant subscriber module for new users of SAAS services"
+      - "GDPR compliant subscriber module for new users of SaaS services"
       - "No logs of IP addresses"
       - "Integratable with existing enterprise case management platform"
       - "Free Software OSI Approved AGPL 3.0 License"
@@ -136,7 +136,7 @@ description:
       - "Subject to continuous peer-review and periodic security audits"
       - "PGP support for encrypted email notifications"
       - "Does not leave traces on browser cache"
-      - "Multi-site support enabling to run multiple virtual site on the same server installation"
+      - "Multi-site support enabling to run multiple virtual site on the same setup"
       - "Responsive UX made with Boostrap CSS Framework"
       - "Built-in Accessibility Support with WAI-ARIA compliance"
       - "Automated Software Quality Measurement and Continuous Integration Testing"
@@ -145,14 +145,92 @@ description:
       - "Embedded Database - SQLite (optional support for other Databases)"
       - "Automatic setup of Tor Onion Services Version 3"
       - "Integrated backup support"
-      - "Support for self-service signup for whistleblowing SAAS service setup"
+      - "Support for self-service signup for whistleblowing SaaS service setup"
       - "Support for Linux operating system (Debian/Ubuntu)"
       - "Deb Packaging with repository for update/upgrades"
       - "Fully self-contained application (no web or application servers needed)"
       - "Integrate collaborative translation/localization (Transifex)"
-      - "debEasy integration of the platform with existing websites and intranets"
+      - "Easy integration of the platform with existing websites and intranets"
       - "HTTP/2 support"
+-     - "REST API"
       - "Provisioning API"
+    screenshots:
+      - screenshots/it/1.png
+      - screenshots/it/2.png
+      - screenshots/it/3.png
+      - screenshots/it/4.png
+      - screenshots/it/5.png
+      - screenshots/it/6.png
+  it:
+    genericName: software di whistleblowing
+    shortDescription: 'Open-Source Whistleblowing Software '
+    documentation: 'https://docs.globaleaks.org/'
+    longDescription: >-
+      [GlobaLeaks](https://www.globaleaks.org/) è
+      un software open-source gratuito creato per permettere la realizzazione di progetti di
+      whistleblowing anonimo e sicuro sviluppato dall'[Hermes Center for
+      Transparency and Digital Human Rights](https://www.hermescenter.org/).
+    features:
+      - "Sistema multiutente con ruoli utente personalizzabili (segnalante, ricevente, amministratore)"
+      - "Interamente gestibile da un'interfaccia di amministrazione web"
+      - "Supporto per oltre 40 lingue ed RTL"
+      - "Supporto per la configurazione di questionari personalizzati avanzati"
+      - "Ricevi segnalazioni da un segnalante tramite un questionario strutturato in più passaggi"
+      - "Possibilità per i segnalanti di decidere se e quando dichiarare la propria identità"
+      - "Possibilità di scambio dile con il segnalante"
+      - "Chat per discutere la segnalazione con il whistleblower"
+      - "Ricevuta unica di 16 cifre per il whistleblower per accedere di nuovo in modo anonimo"
+      - "Semplice interfaccia del ricevente per la ricezione e l'analisi delle segnalazioni"
+      - "Supporto alla categorizzazione delle segnalazioni con etichette"
+      - "Supporto alla ricerca delle segnalazioni da parte dell'utente"
+      - "Supporto per l'assegnazione e la creazione di stati di gestione dei casi"
+      - "Aspetto personalizzabile (logo, colore, stili, carattere, testo)"
+      - "Definisci più canali / contesti di segnalazione (ad es. Per argomento, per dipartimento)"
+      - "Gestisci più siti di segnalazione da un'unica dashboard"
+      - "Statistiche del sistema di segnalazione"
+      - "Questionari predefiniti compatibili con le normative vigenti"
+      - "Comunicazione anonima bidirezionale (commenti / messaggi)"
+      - "Flusso di lavoro personalizzabile per la gestione dei casi (stati / stati secondari)"
+      - "Flusso di lavoro di segnalazione condizionale dell'identità di Whistleblower"
+      - "Gestione dei conflitti di interesse nel flusso di lavoro delle segnalazioni"
+      - "Funzionalità di Custode per autorizzare l'accesso all'identità degli segnalanti"
+      - "Privacy GDPR by design"
+      - "Criteri di conservazione dei dati configurabili in relazionea GDPR"
+      - "Modulo di registrazione conforme al GDPR per i nuovi utenti dei servizi SaaS"
+      - "Nessun registro di indirizzi IP"
+      - "Integrabile con la piattaforma esistente di gestione dei casi aziendali"
+      - "Licenza AGPL 3.0 per software libero approvata OSI"
+      - "Crittografia completa dei dati degli segnalanti e comunicazione dei riceventi"
+      - "Supporto dell'anonimato digitale con integrazione Tor"
+      - "Supporto HTTPS integrato con standard TLS 1.3 (classificazione SSLabs A +)"
+      - "Registrazione automatica gratuita di certificati digitali (Let's Encrypt)"
+      - "Con molteplici penetration test disponibili e pubblicamente pubblicati"
+      - "Conforme agli standard e alle migliori pratiche per la sicurezza delle applicazioni (OWASP)"
+      - "Supporto per l'autenticazione a due fattori (2FA) conforme allo standard TOTP RFC 6238"
+      - "Sandboxing di rete integrato con iptables"
+      - "Sandboxing integrato dell'applicazione con AppArmor"
+      - "Protezione completa contro invii automatici (prevenzione dello spam)"
+      - "Soggetto a continue verifiche ed audit periodici"
+      - "Supporto PGP per notifiche e-mail crittografate"
+      - "Non lascia tracce nella cache del browser"
+      - "Supporto multi-sito per eseguire più siti virtuali sulla stessa installazione"
+      - "Responsive UX realizzato con Boostrap CSS Framework"
+      - "Supporto integrato per l'accessibilità con conformità WAI-ARIA"
+      - "Misurazione automatizzata della qualità del software e test di integrazione continua"
+      - "Piano di supporto a lungo termine (LTS)"
+      - "Costruito con tecnologie framework leggere (AngularJS e Python Twisted)"
+      - "Database incorporato - SQLite (supporto opzionale per altri database)"
+      - "Installazione automatica di Tor Onion Services Versione 3"
+      - "Supporto di backup integrato"
+      - "Supporto al signup self-service per la configurazione del servizio SaaS"
+      - "Supporto per sistema operativo Linux (Debian / Ubuntu)"
+      - "Deb Packaging con repository per aggiornamento / upgrade"
+      - "Applicazione completamente autoncontenuta (non sono necessari server Web o applicativi)"
+      - "Integrazione della traduzione / localizzazione collaborativa (Transifex)"
+      - "Facile integrazione della piattaforma con siti Web e intranet esistenti"
+      - "Supporto HTTP/2"
+      - "REST API"
+      - "API di provisioning"
     screenshots:
       - screenshots/it/1.png
       - screenshots/it/2.png
