@@ -19,4 +19,4 @@ service_identity==16.0.0
 sqlalchemy==1.1.11
 twisted==17.9.0
 txtorcon==0.19.3
-zope.interface==4.3.2
+zope.interface==4.7.1
