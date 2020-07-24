@@ -639,7 +639,7 @@ class EmailValidationKeyword(UserNodeKeyword):
         return self.data['new_email_address']
 
     def UrlPath(self):
-        return '/email/validation/' + self.data['validation_token']
+        return '/api/email/validation/' + self.data['validation_token']
 
 
 class PasswordResetValidation(UserNodeKeyword):
