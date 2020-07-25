@@ -2,10 +2,6 @@
 
 set -e
 
-if [ -z "$DISTRIBUTION" ]; then
-  DISTRIBUTION=$(lsb_release -cs)
-fi
-
 TRAVIS_USR="travis-$(git rev-parse --short HEAD)"
 
 setupChrome() {
@@ -27,7 +23,7 @@ setupClientDependencies() {
 
 setupBackendDependencies() {
   cd $TRAVIS_BUILD_DIR/backend  # to install backend dependencies
-  pip3 install -r requirements/requirements-$DISTRIBUTION.txt
+  pip3 install -r requirements/requirements-$(lsb_release -cs).txt
 }
 
 setupDependencies() {
