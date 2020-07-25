@@ -30,6 +30,9 @@ var GLClient = angular.module("GLClient", [
   config(["$locationProvider", function($locationProvider) {
     $locationProvider.hashPrefix("");
 }]).
+  config(["$showdownProvider", function($showdownProvider) {
+    $showdownProvider.setOption("openLinksInNewWindow", true);
+}]).
   config(["$provide", function($provide) {
     $provide.decorator("$templateRequest", ["$delegate", function($delegate) {
       // This decorator is required in order to inject the "true" for setting ignoreRequestError
