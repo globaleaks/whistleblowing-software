@@ -64,7 +64,7 @@ Technical Features
 - Embedded Database - SQLite (optional support for other Databases)
 - Automatic setup of `Tor Onion Services Version 3 <https://www.torproject.org/>`_
 - Integrated backup support
-- Support for self-service signup for whistleblowing SAAS service setup
+- Support for self-service signup for whistleblowing SaaS service setup
 - Support for Linux operating system (`Debian <https://www.debian.org/>`_/`Ubuntu <https://ubuntu.com/>`_)
 - Deb Packaging with repository for update/upgrades
 - Fully self-contained application (no web or application servers needed)
