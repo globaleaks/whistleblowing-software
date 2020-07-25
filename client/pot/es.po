@@ -1,7 +1,7 @@
 # 
 # Translators:
-# Anatoli F. Peña Castillo <djanatoli@gmail.com>, 2016-2017
-# Anatoli F. Peña Castillo <djanatoli@gmail.com>, 2020
+# Anatoli Pena <djanatoli@gmail.com>, 2016-2017
+# Anatoli Pena <djanatoli@gmail.com>, 2020
 # 4b8fe8aa5774ddeb3c4c7817cd28f50e_d751ab4 <55c3bb72c999b01f254463d72e197fd7_99140>, 2013
 # 4b8fe8aa5774ddeb3c4c7817cd28f50e_d751ab4 <55c3bb72c999b01f254463d72e197fd7_99140>, 2013
 # B. K., 2015

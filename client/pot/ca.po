@@ -10,6 +10,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # Joan Bitlloch <joanbit@gmail.com>, 2017-2020
+# jmontane, 2020
 # Josep Anton Rius <j.rius.cat@gmail.com>, 2016
 # Maddish Falzoni <maddish@xnet-x.net>, 2016
 # Nick Skelsey, 2016
@@ -18,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-07-22 21:42+0000\n"
+"Last-Translator: jmontane\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1048,7 +1049,7 @@ msgid "Restrict access to specific IP addresses"
 msgstr "Restringeix l'accés a adreces IP específiques"
 
 msgid "Allowed IP addresses"
-msgstr ""
+msgstr "Adreces IP autoritzades"
 
 msgid "Admin"
 msgstr "Administrador"
