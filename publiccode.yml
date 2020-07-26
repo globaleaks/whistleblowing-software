@@ -91,6 +91,14 @@ description:
       open-source / free software intended to enable secure and anonymous
       whistleblowing initiatives developed by the [Hermes Center for
       Transparency and Digital Human Rights](https://www.hermescenter.org/).
+      Thanks to GlobaLeaks even non-technical people are be able to setup their
+      own anonymous whistleblowing project. Designed to be user-friendly the
+      software is customizable up to own needs and protects the whistleblower's
+      privacy and submissions. GlobaLeaks targets many use cases and therefore
+      it has been designed as a framework. Designed with flexibility in mind,
+      GlobaLeaks is nowadays adopted worldwide by more than 2000 projects.
+      The vast range of adopters includes independent media, activists, public
+      agencies, corporations and more.
       
     features:
       - "Multi-user system with customizable user roles (whistleblower, recipient, administrator)"
@@ -152,7 +160,7 @@ description:
       - "Integrate collaborative translation/localization (Transifex)"
       - "Easy integration of the platform with existing websites and intranets"
       - "HTTP/2 support"
--     - "REST API"
+      - "REST API"
       - "Provisioning API"
     screenshots:
       - screenshots/it/1.png
@@ -170,6 +178,13 @@ description:
       un software open-source gratuito creato per permettere la realizzazione di progetti di
       whistleblowing anonimo e sicuro sviluppato dall'[Hermes Center for
       Transparency and Digital Human Rights](https://www.hermescenter.org/).
+      Grazie a GlobaLeaks anche le persone non tecniche sono in grado di avviare il proprio
+      progetto di whistleblowing anonimo. Progettato per essere intuitivo, il software è
+      personalizzabile in base alle proprie esigenze e protegge la privacy e le comunicazioni
+      dei segnalanti. GlobaLeaks si rivolge a molti casi d'uso e quindi è stato progettato
+      come un framework. Progettato pensando alla flessibilità, GlobaLeaks è oggi adottato
+      in tutto il mondo da oltre 2000 progetti. La nostra vasta gamma di utenti comprende
+      media indipendenti, attivisti, agenzie pubbliche, società e altro.
     features:
       - "Sistema multiutente con ruoli utente personalizzabili (segnalante, ricevente, amministratore)"
       - "Interamente gestibile da un'interfaccia di amministrazione web"
