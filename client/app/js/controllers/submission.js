@@ -31,7 +31,7 @@ GLClient.controller("SubmissionCtrl",
       return true;
     }
 
-    return $scope.submission.countReceiversSelected() < $scope.submission.context.maximum_selectable_receivers;
+    return Object.keys($scope.submission.selected_receivers).length < $scope.submission.context.maximum_selectable_receivers;
   };
 
   $scope.switch_selection = function (receiver) {
