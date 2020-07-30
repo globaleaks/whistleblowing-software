@@ -126,18 +126,19 @@ def db_serialize_archived_preview_schema(preview_schema, language):
     return preview
 
 
-def db_save_plaintext_answers(session, tid, internaltip_id, entries, skip_encryption=None):
-    if skip_encryption is None:
-        skip_encryption = {x[0]: True for x in session.query(models.Field.id).filter(models.Field.encrypt.is_(False))}
+def db_save_plaintext_answers(session, tid, internaltip_id, entries, encryption, skip_encryption_fields=None):
+    if skip_encryption_fields is None:
+        skip_encryption_fields = {x[0]: True for x in session.query(models.Field.id).filter(models.Field.encrypt.is_(False))}
 
-    if not skip_encryption:
+    if encryption and not skip_encryption_fields:
         return
 
     ret = []
 
     for key, value in entries.items():
-        if key != 'value' and key not in skip_encryption:
-            continue
+        if encryption:
+            if key != 'value' and key not in skip_encryption_fields:
+                continue
 
         field_answer = models.FieldAnswer({
             'tid': tid,
@@ -162,7 +163,7 @@ def db_save_plaintext_answers(session, tid, internaltip_id, entries, skip_encryp
                 session.add(group)
                 session.flush()
 
-                group_elems = db_save_plaintext_answers(session, tid, internaltip_id, elem, skip_encryption)
+                group_elems = db_save_plaintext_answers(session, tid, internaltip_id, elem, encryption, skip_encryption_fields)
                 for group_elem in group_elems:
                     group_elem.fieldanswergroup_id = group.id
 
@@ -393,7 +394,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
         db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi)
 
-    db_save_plaintext_answers(session, tid, itip.id, answers)
+    db_save_plaintext_answers(session, tid, itip.id, answers, crypto_is_available)
 
     if crypto_is_available:
         preview = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(preview, cls=JSONEncoder).encode())).decode()
