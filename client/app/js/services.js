@@ -1178,7 +1178,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
         getValidator: function(field) {
           var validators = {
-            "custom": field.attrs.regexp ? field.attrs.regexp : "",
+            "custom": field.attrs.regexp ? field.attrs.regexp.value : "",
             "none": "",
             "email": CONSTANTS.email_regexp,
             "number": CONSTANTS.number_regexp,
