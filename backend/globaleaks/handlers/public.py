@@ -338,7 +338,7 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
         'children': children
     }
 
-    return get_localized_values(ret_dict, field, field.localized_keys, language)
+    return get_localized_values(ret_dict, f_to_serialize, f_to_serialize.localized_keys, language)
 
 
 def serialize_step(session, tid, step, language, serialize_templates=True):
