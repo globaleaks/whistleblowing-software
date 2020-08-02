@@ -156,7 +156,7 @@ def perform_data_update(db_file):
                 appdata = load_appdata()
                 config.update_defaults(session, tid, appdata)
 
-            db_update_defaults(session)
+            db_load_defaults(session)
 
             cfg.set_val('version', __version__)
             cfg.set_val('latest_version', __version__)
