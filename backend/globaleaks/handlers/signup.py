@@ -3,10 +3,11 @@
 # Handlers implementing platform signup
 from sqlalchemy import not_
 from globaleaks import models
+from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.admin.tenant import db_preallocate_tenant as db_preallocate_tenant,\
-    db_initialize_tenant, db_refresh_memory_variables
+from globaleaks.handlers.admin.tenant import db_preallocate_tenant, \
+    db_initialize_tenant
 from globaleaks.handlers.admin.user import db_get_users
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.wizard import db_wizard

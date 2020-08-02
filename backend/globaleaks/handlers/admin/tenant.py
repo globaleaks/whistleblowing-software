@@ -3,11 +3,10 @@ import base64
 import os
 
 from globaleaks import models
-from globaleaks.db import db_refresh_memory_variables
-from globaleaks.db.appdata import load_appdata
+from globaleaks.db.appdata import load_appdata, db_load_defaults
 from globaleaks.handlers.admin import file
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.config import db_set_config_variable
+from globaleaks.models.config import db_set_config_variable, ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.settings import Settings
@@ -18,22 +17,18 @@ from globaleaks.utils.log import log
 def serialize_tenant(session, tenant, signup=None):
     from globaleaks.handlers.signup import serialize_signup
 
+    node = ConfigFactory(session, tenant.id)
+
     ret = {
         'id': tenant.id,
         'label': tenant.label,
         'active': tenant.active,
         'subdomain': tenant.subdomain,
-        'hostname': '',
-        'onionservice': '',
-        'mode': '',
+        'hostname': node.get_val('hostname'),
+        'onionservice': node.get_val('onionservice'),
+        'mode': node.get_val('mode'),
         'creation_date': tenant.creation_date
     }
-
-    if tenant.id in State.tenant_cache:
-        tc = State.tenant_cache[tenant.id]
-        ret['hostname'] = tc.hostname
-        ret['onionservice'] = tc.onionservice
-        ret['mode'] = tc.mode
 
     if signup is not None:
         ret['signup'] = serialize_signup(signup)
@@ -72,6 +67,8 @@ def db_initialize_tenant(session, tenant, mode):
 
     appdata = load_appdata()
 
+    db_load_defaults(session)
+
     models.config.initialize_config(session, tenant.id, mode)
 
     models.config.add_new_lang(session, tenant.id, 'en', appdata)
@@ -93,8 +90,6 @@ def db_create(session, desc):
     t = db_preallocate_tenant(session, desc)
 
     db_initialize_tenant(session, t, desc['mode'])
-
-    db_refresh_memory_variables(session, [t.id])
 
     return t
 
@@ -130,16 +125,12 @@ def update(session, id, request):
     else:
         db_set_config_variable(session, id, 'mode', request['mode'])
 
-    db_refresh_memory_variables(session, [id])
-
     return serialize_tenant(session, tenant)
 
 
 @transact
 def delete(session, id):
     models.db_delete(session, models.Tenant, models.Tenant.id == id)
-
-    db_refresh_memory_variables(session, [id])
 
 
 class TenantCollection(BaseHandler):
@@ -169,6 +160,7 @@ class TenantInstance(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
     root_tenant_only = True
+    invalidate_cache = True
     refresh_connection_endpoints = True
 
     def get(self, tenant_id):

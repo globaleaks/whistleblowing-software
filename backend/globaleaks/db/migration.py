@@ -9,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 
 from globaleaks import __version__, models, \
     DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, LANGUAGES_SUPPORTED_CODES
-from globaleaks.db.appdata import db_update_defaults, load_appdata
+from globaleaks.db.appdata import load_appdata, db_load_defaults
 
 from globaleaks.db.migrations.update_35 import Context_v_34, InternalTip_v_34, \
     WhistleblowerTip_v_34

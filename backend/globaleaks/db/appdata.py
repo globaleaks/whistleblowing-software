@@ -1,5 +1,4 @@
 # -*- coding: utf-8
-
 import os
 from sqlalchemy import not_
 
@@ -63,6 +62,16 @@ def db_load_default_fields(session):
         db_create_field(session, 1, question, None)
 
 
+def db_load_defaults(session):
+    """
+    Transaction for updating application defaults
+
+    :param session: An ORM session
+    """
+    db_load_default_questionnaires(session)
+    db_load_default_fields(session)
+
+
 def db_fix_fields_attrs(session):
     """
     Ensures that the current store and the field_attrs.json file correspond.
@@ -97,13 +106,3 @@ def db_fix_fields_attrs(session):
         type = field.type if field.template_id is None else field.template_id
         attrs = field_attrs.get(type, {})
         db_update_fieldattrs(session, field.id, attrs, None)
-
-
-def db_update_defaults(session):
-    """
-    Transaction for updating application defaults
-
-    :param session: An ORM session
-    """
-    db_load_default_questionnaires(session)
-    db_load_default_fields(session)
