@@ -54,23 +54,6 @@ def serialize_submission_status(session, status, language):
     return get_localized_values(submission_status, status, status.localized_keys, language)
 
 
-def db_initialize_tenant_submission_statuses(session, tid):
-    """
-    Transaction for initializing the submission statuses of a tenant
-
-    :param session: An ORM session
-    :param tid: A tenant ID
-    """
-    for s in [{'id': 'new', 'label': {'en': 'New'}},
-              {'id': 'opened', 'label': {'en': 'Opened'}},
-              {'id': 'closed', 'label': {'en': 'Closed'}}]:
-        state = models.SubmissionStatus()
-        state.id = s['id']
-        state.tid = tid
-        state.label = s['label']
-        session.add(state)
-
-
 def db_get_submission_statuses(session, tid, language):
     """
     Transaction for fetching the submission statuses associated to a tenant

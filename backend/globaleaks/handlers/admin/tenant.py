@@ -6,7 +6,6 @@ from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.admin import file
-from globaleaks.handlers.admin.submission_statuses import db_initialize_tenant_submission_statuses
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import db_set_config_variable
 from globaleaks.orm import transact
@@ -40,6 +39,23 @@ def serialize_tenant(session, tenant, signup=None):
         ret['signup'] = serialize_signup(signup)
 
     return ret
+
+
+def db_initialize_tenant_submission_statuses(session, tid):
+    """
+    Transaction for initializing the submission statuses of a tenant
+
+    :param session: An ORM session
+    :param tid: A tenant ID
+    """
+    for s in [{'id': 'new', 'label': {'en': 'New'}},
+              {'id': 'opened', 'label': {'en': 'Opened'}},
+              {'id': 'closed', 'label': {'en': 'Closed'}}]:
+        state = models.SubmissionStatus()
+        state.id = s['id']
+        state.tid = tid
+        state.label = s['label']
+        session.add(state)
 
 
 def db_preallocate_tenant(session, desc):
