@@ -225,7 +225,7 @@ class MailGenerator(object):
                     getattr(self, 'process_%s' % trigger)(session, element, data)
                 except Exception as e:
                     log.err("Unhandled exception during mail generation: %s", e)
-                else:
+                finally:
                     element.new = False
 
 
