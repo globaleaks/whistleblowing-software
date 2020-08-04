@@ -32,12 +32,12 @@
 # Tommy Vega, 2015
 # Federico Scrinzi <fox91@anche.no>, 2013
 # Yvette Agostini <mnemosyne@logioshermes.org>, 2019
-# Zuhualime Akoochimoya, 2019
+# Zuhualime Akoochimoya, 2019-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-08-02 12:05+0000\n"
+"Last-Translator: Zuhualime Akoochimoya\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1066,7 +1066,7 @@ msgid "Restrict access to specific IP addresses"
 msgstr "Restringir el acceso a direcciones IP específicas"
 
 msgid "Allowed IP addresses"
-msgstr ""
+msgstr "Direcciones IP permitidas"
 
 msgid "Admin"
 msgstr "Administrador"

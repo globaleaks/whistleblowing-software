@@ -7,7 +7,7 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2019
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
-# ido vasserman <itaizand@gmail.com>, 2020
+# itaizand, 2020
 # ION, 2018-2020
 # Jakub Jakubiak <jakub.jakubiak@gmail.com>, 2014
 # zxcsd <jenisjpl@gmail.com>, 2015
