@@ -256,7 +256,6 @@ class MigrationScript(MigrationBase):
 
     def migrate_WhistleblowerTip(self):
         for old_obj in self.session_old.query(self.model_from['WhistleblowerTip']):
-            print(old_obj)
             new_obj = self.model_to['WhistleblowerTip']()
             for key in new_obj.__table__.columns._data.keys():
                 if key == 'hash_alg':
