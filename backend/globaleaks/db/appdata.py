@@ -74,15 +74,13 @@ def db_load_defaults(session):
 
 def db_fix_fields_attrs(session):
     """
-    Ensures that the current store and the field_attrs.json file correspond.
-    The content of the field_attrs dict is used to add and remove all of the
-    excepted forms of field_attrs for FieldAttrs in the db.
+    Ensures that questions loaded into the database have the same structure of field_attrs.json
 
     :param session: An ORM session
     """
     field_attrs = read_json_file(Settings.field_attrs_file)
 
-    std_lst = ['inputbox', 'textarea', 'checkbox', 'tos', 'date']
+    std_lst = ['inputbox', 'textarea', 'checkbox', 'selectbox', 'fieldgroup', 'tos', 'date', 'daterange', 'map']
 
     for field_type, attrs_dict in field_attrs.items():
         attrs_to_keep_for_type = attrs_dict.keys()
@@ -98,8 +96,9 @@ def db_fix_fields_attrs(session):
                       models.FieldAttr.field_id == models.Field.id, \
                       models.Field.template_id == field_type
 
-        for res in session.query(models.FieldAttr).filter(*_filter):
-            session.delete(res)
+        subquery = session.query(models.FieldAttr.id).filter(*_filter).subquery()
+
+        session.query(models.FieldAttr).filter(models.FieldAttr.id.in_(subquery)).delete(synchronize_session=False)
 
     # Add keys to the db that have been added to field_attrs
     for field in session.query(models.Field):
