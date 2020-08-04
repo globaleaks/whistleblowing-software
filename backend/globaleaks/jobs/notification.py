@@ -189,32 +189,32 @@ class MailGenerator(object):
 
     @transact
     def generate(self, session):
+        silent_tids = []
+        for tid, cache_item in self.state.tenant_cache.items():
+            if cache_item.notification.disable_receiver_notification_emails:
+                silent_tids.append(tid)
+
+        if silent_tids:
+            for x in session.query(models.ReceiverTip).filter(models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                              models.InternalTip.tid.in_(silent_tids)):
+                x.new = False
+
+            for x in session.query(models.Comment).filter(models.Comment.internaltip_id == models.InternalTip.id,
+                                                          models.InternalTip.tid.in_(silent_tids)):
+                x.new = False
+
+            for x in session.query(models.Message).filter(models.Message.receivertip_id == models.ReceiverTip.id,
+                                                          models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                          models.InternalTip.tid.in_(silent_tids)):
+                x.new = False
+
+            for x in session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
+                                                               models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                               models.InternalTip.tid.in_(silent_tids)):
+                x.new = False
+
         for trigger in ['ReceiverTip', 'Comment', 'Message', 'ReceiverFile']:
             model = trigger_model_map[trigger]
-
-            silent_tids = []
-            for tid, cache_item in self.state.tenant_cache.items():
-                if cache_item.notification.disable_receiver_notification_emails:
-                    silent_tids.append(tid)
-
-            if silent_tids:
-                for x in session.query(models.ReceiverTip).filter(models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                                                  models.InternalTip.tid.in_(silent_tids)):
-                    x.new = False
-
-                for x in session.query(models.Comment).filter(models.Comment.internaltip_id == models.InternalTip.id,
-                                                              models.InternalTip.tid.in_(silent_tids)):
-                    x.new = False
-
-                for x in session.query(models.Message).filter(models.Message.receivertip_id == models.ReceiverTip.id,
-                                                              models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                                              models.InternalTip.tid.in_(silent_tids)):
-                    x.new = False
-
-                for x in session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
-                                                                   models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                                                   models.InternalTip.tid.in_(silent_tids)):
-                    x.new = False
 
             for element in session.query(model).filter(model.new.is_(True)):
                 data = {
