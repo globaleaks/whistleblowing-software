@@ -16,6 +16,7 @@ from globaleaks.orm import transact
 from globaleaks.utils.log import log
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.templating import Templating
+from globaleaks.utils.utility import deferred_sleep
 
 
 trigger_template_map = {
@@ -229,11 +230,6 @@ class MailGenerator(object):
 
 
 @transact
-def delete_sent_mails(session, mail_ids):
-    session.query(models.Mail).filter(models.Mail.id.in_(mail_ids)).delete(synchronize_session=False)
-
-
-@transact
 def get_mails_from_the_pool(session):
     """
     Fetch the email to be sent.
@@ -261,27 +257,19 @@ def get_mails_from_the_pool(session):
 class Notification(LoopingJob):
     interval = 5
     monitor_interval = 3 * 60
-    mails_to_delete = []
-
-    @defer.inlineCallbacks
-    def sendmail(self, mail):
-        success = yield self.state.sendmail(mail['tid'], mail['address'], mail['subject'], mail['body'])
-        if success:
-            self.mails_to_delete.append(mail['id'])
 
     @defer.inlineCallbacks
     def spool_emails(self):
         mails = yield get_mails_from_the_pool()
         for mail in mails:
-            yield self.sendmail(mail)
+            sent = yield self.state.sendmail(mail['tid'], mail['address'], mail['subject'], mail['body'])
+            if sent:
+                yield models.delete(models.Mail, models.Mail.id == mail['id'])
 
-        if self.mails_to_delete:
-            yield delete_sent_mails(self.mails_to_delete)
+            yield deferred_sleep(1)
 
     @defer.inlineCallbacks
     def operation(self):
-        del self.mails_to_delete[:]
-
         yield MailGenerator(self.state).generate()
 
         yield self.spool_emails()
