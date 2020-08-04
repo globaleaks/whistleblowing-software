@@ -1,3 +1,12 @@
+Changes in version 4.0.50 - 2020-08-04
+    Add 1 second delay between mailung attempts
+    Fix issue #2882
+    Fix regression on issue #2720
+    When encryption is not enabled preserve statistic data
+    Fix visualization of admin interface for disabling user notifications
+    Update npm dependencies to latest versions
+    Update translations
+
 Changes in version 4.0.49 - 2020-07-27
     Fix exception error on recipients selection
     Fix visualization of icons in questions messaging
