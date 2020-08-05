@@ -8,7 +8,7 @@ describe("Admin upload custom file", function() {
 
     await element(by.cssContainingText("ul li a", "Files")).click();
 
-    var customFile = browser.gl.utils.makeTestFilePath("nyancat.pdf");
+    var customFile = browser.gl.utils.makeTestFilePath("antani.txt");
 
     await element(by.css("span.file-custom")).element(by.css("input")).sendKeys(customFile);
 

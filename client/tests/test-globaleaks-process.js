@@ -1,6 +1,6 @@
 var path = require("path");
 
-var fileToUpload1 = browser.gl.utils.makeTestFilePath("antani.txt");
+var fileToUpload1 = browser.gl.utils.makeTestFilePath("20mb.dat");
 var fileToUpload2 = browser.gl.utils.makeTestFilePath("unknown.filetype");
 
 describe("globaLeaks process", function() {
