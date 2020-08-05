@@ -99,11 +99,10 @@ def encrypt_file_with_pgp(state, fd, key, fingerprint, dest_path):
 def write_plaintext_file(sf, dest_path):
     try:
         with sf.open('rb') as encrypted_file, open(dest_path, "a+b") as plaintext_file:
-            while True:
-                chunk = encrypted_file.read(abstract.FileDescriptor.bufferSize)
-                if not chunk:
-                    break
+            chunk = encrypted_file.read(abstract.FileDescriptor.bufferSize)
+            while chunk:
                 plaintext_file.write(chunk)
+                chunk = encrypted_file.read(abstract.FileDescriptor.bufferSize)
 
     except Exception as excep:
         log.err("Unable to create plaintext file %s: %s", dest_path, excep)
@@ -114,15 +113,11 @@ def write_encrypted_file(key, sf, dest_path):
         with sf.open('rb') as encrypted_file, \
              GCE.streaming_encryption_open('ENCRYPT', key, dest_path) as seo:
             chunk = encrypted_file.read(abstract.FileDescriptor.bufferSize)
-            while True:
-                x = encrypted_file.read(abstract.FileDescriptor.bufferSize)
-                if not x:
-                    seo.encrypt_chunk(chunk, 1)
-                    break
-
+            while chunk:
                 seo.encrypt_chunk(chunk, 0)
+                chunk = encrypted_file.read(abstract.FileDescriptor.bufferSize)
 
-                chunk = x
+            seo.encrypt_chunk(b'', 1)
     except Exception as excep:
         log.err("Unable to create plaintext file %s: %s", dest_path, excep)
 
@@ -192,46 +187,30 @@ def process_whistleblowerfiles(state, files_maps):
         key = whistleblowerfiles_map['crypto_tip_pub_key']
         filename = whistleblowerfiles_map['filename']
         filecode = filename.split('.')[0]
-        plaintext_name = "%s.plain" % filecode
-        encrypted_name = "%s.encrypted" % filecode
-        plaintext_path = os.path.abspath(os.path.join(Settings.attachments_path, plaintext_name))
-        encrypted_path = os.path.abspath(os.path.join(Settings.attachments_path, encrypted_name))
 
         sf = state.get_tmp_file_by_name(filename)
 
         if key:
-            whistleblowerfiles_map['filename'] = encrypted_name
-            write_encrypted_file(key, sf, encrypted_path)
+            whistleblowerfiles_map['filename'] = "%s.encrypted" % filecode
+            write_encrypted_file(key, sf, os.path.abspath(os.path.join(Settings.attachments_path, whistleblowerfiles_map['filename'])))
         else:
-            whistleblowerfiles_map['filename'] = plaintext_name
-            write_plaintext_file(sf, plaintext_path)
+            whistleblowerfiles_map['filename'] = "%s.plain" % filecode
+            write_plaintext_file(sf, os.path.abspath(os.path.join(Settings.attachments_path, whistleblowerfiles_map['filename'])))
 
 
 @transact
 def update_receiverfiles(session, files_maps):
     for id, receiverfiles_map in files_maps.items():
-        ifile = session.query(models.InternalFile).filter(models.InternalFile.id == id).one_or_none()
-        if ifile is None:
-            continue
-
-        ifile.new = False
-        ifile.filename = receiverfiles_map['filename']
+        ifile = session.query(models.InternalFile).filter(models.InternalFile.id == id).update({'new': False, 'filename': receiverfiles_map['filename']})
 
         for rf in receiverfiles_map['rfiles']:
-            rfile = session.query(models.ReceiverFile).filter(models.ReceiverFile.id == rf['id']).one_or_none()
-            if rfile is not None:
-                rfile.status = rf['status']
-                rfile.filename = rf['filename']
+            session.query(models.ReceiverFile).filter(models.ReceiverFile.id == rf['id']).update({'status': rf['status'], 'filename': rf['filename']})
 
 
 @transact
 def update_whistleblowerfiles(session, files_maps):
     for id, whistleblowerfiles_map in files_maps.items():
-        wbfile = session.query(models.WhistleblowerFile).filter(models.WhistleblowerFile.id == id).one_or_none()
-        if wbfile is not None:
-            wbfile.new = False
-            wbfile.filename = whistleblowerfiles_map['filename']
-
+        session.query(models.WhistleblowerFile).filter(models.WhistleblowerFile.id == id).update({'new': False, 'filename': whistleblowerfiles_map['filename']})
 
 class Delivery(LoopingJob):
     interval = 5
