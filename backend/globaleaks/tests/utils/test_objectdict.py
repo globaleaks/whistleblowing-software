@@ -7,7 +7,7 @@ class TestUtility(unittest.TestCase):
 
     def test_object_dict(self):
         od = ObjectDict()
-        self.assertRaises(AttributeError, getattr, od, 'something')
+        self.assertEqual(od.foo, None)
         od['foo'] = 'bar'
         self.assertEqual(od['foo'], 'bar')
         self.assertEqual(od.foo, 'bar')

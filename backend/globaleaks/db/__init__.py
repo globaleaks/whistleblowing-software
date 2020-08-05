@@ -247,10 +247,10 @@ def db_refresh_memory_variables(session, to_refresh=None):
         hostnames = []
         onionnames = []
 
-        if State.tenant_cache[tid].hostname != '':
+        if State.tenant_cache[tid].hostname:
             hostnames.append(State.tenant_cache[tid].hostname.encode())
 
-        if State.tenant_cache[tid].onionservice != '':
+        if State.tenant_cache[tid].onionservice:
             onionnames.append(State.tenant_cache[tid].onionservice.encode())
         elif root_onionservice:
             State.tenant_cache[tid].onionservice = tenant.subdomain + '.' + root_onionservice

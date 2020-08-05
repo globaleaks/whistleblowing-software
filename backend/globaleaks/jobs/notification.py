@@ -191,7 +191,7 @@ class MailGenerator(object):
     def generate(self, session):
         silent_tids = []
         for tid, cache_item in self.state.tenant_cache.items():
-            if cache_item.notification.disable_receiver_notification_emails:
+            if cache_item.notification and cache_item.notification.disable_receiver_notification_emails:
                 silent_tids.append(tid)
 
         if silent_tids:
