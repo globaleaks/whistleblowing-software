@@ -167,10 +167,10 @@ class TorNetworkRequired(GLException):
 
 class FileTooBig(GLException):
     """
-    Raised by GLHTTPConnection, when the uploaded file is bigger than acceptable
+    Raised when the uploaded file is bigger than acceptable
     """
     error_code = 13
-    status_code = 400  # Bad Request
+    status_code = 413  # Bad Request
 
     def __init__(self, size_limit):
         self.reason = ("Provided file upload overcomes size limits (%d Mb)" %
