@@ -38,6 +38,9 @@ ConfigDescriptor = {
     'version_db': Int(default=DATABASE_VERSION),
     'latest_version': Unicode(default=str(__version__)),
 
+    'active': Bool(default=True),
+    'subdomain': Unicode(default=''),
+
     'acme': Bool(default=False),
     'acme_accnt_key': Unicode(),
 
@@ -231,6 +234,8 @@ ConfigFilters = {
         'version',
         'version_db',
         'latest_version',
+        'active',
+        'subdomain',
         'acme',
         'acme_accnt_key',
         'tor',
@@ -280,6 +285,15 @@ ConfigFilters = {
         'disable_custodian_notification_emails',
         'disable_receiver_notification_emails',
         'tip_expiration_threshold'
+    ],
+    'tenant': [
+        'active',
+        'creation_date',
+        'hostname',
+        'mode',
+        'name',
+        'onionservice',
+        'subdomain'
     ]
 }
 

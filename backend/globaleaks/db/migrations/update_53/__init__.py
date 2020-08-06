@@ -1,7 +1,10 @@
 # -*- coding: UTF-8
+from datetime import datetime
+
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models import Model
+from globaleaks.models.config import ConfigFactory
 from globaleaks.models.enums import EnumFieldAttrType
+from globaleaks.models import Model
 from globaleaks.models.properties import *
 from globaleaks.utils.crypto import Base32Encoder
 from globaleaks.utils.utility import datetime_now, datetime_never, datetime_null
@@ -39,7 +42,35 @@ class Subscriber_v_52(Model):
     tos2 = Column(UnicodeText, default='', nullable=False)
 
 
+class Tenant_v_52(Model):
+    __tablename__ = 'tenant'
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    label = Column(UnicodeText, default='', nullable=False)
+    active = Column(Boolean, default=False, nullable=False)
+    creation_date = Column(DateTime, default=datetime_now, nullable=False)
+    subdomain = Column(UnicodeText, default='', nullable=False)
+
+
 class MigrationScript(MigrationBase):
+    def migrate_Tenant(self):
+        for old_obj in self.session_old.query(self.model_from['Tenant']):
+            self.entries_count['Config'] += 2
+            node = ConfigFactory(self.session_new, old_obj.id)
+
+            new_obj = self.model_to['Tenant']()
+            for key in new_obj.__table__.columns._data.keys():
+                setattr(new_obj, key, getattr(old_obj, key))
+
+            for key in ['active', 'subdomain']:
+                x = self.model_to['Config']()
+                x.tid = old_obj.id
+                x.var_name = key
+                x.value = getattr(old_obj, key)
+                self.session_new.add(x)
+
+            self.session_new.add(new_obj)
+
     def migrate_Subscriber(self):
         for old_obj in self.session_old.query(self.model_from['Subscriber']):
             new_obj = self.model_to['Subscriber']()

@@ -6,8 +6,7 @@ from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.admin.tenant import db_preallocate_tenant, \
-    db_initialize_tenant
+from globaleaks.handlers.admin.tenant import db_create as db_create_tenant
 from globaleaks.handlers.admin.user import db_get_users
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.wizard import db_wizard
@@ -74,18 +73,18 @@ def signup(session, request, language):
     subquery = session.query(models.Tenant.id) \
                       .filter(models.Subscriber.subdomain == request['subdomain'],
                               not_(models.Subscriber.activation_token.is_(None)),
-                              models.Tenant.id == models.Subscriber.tid,
-                              models.Tenant.subdomain == models.Subscriber.subdomain) \
+                              models.Tenant.id == models.Subscriber.tid) \
                       .subquery()
 
     session.query(models.Tenant).filter(models.Tenant.id.in_(subquery)).delete(synchronize_session=False)
 
-    tenant_id = db_preallocate_tenant(session, {'label': request['subdomain'],
-                                                'subdomain': request['subdomain']}).id
+    tenant = db_create_tenant(session, {'label': request['subdomain'],
+                                        'subdomain': request['subdomain'],
+                                        'mode': config.get_val('mode')})
 
     signup = models.Subscriber(request)
 
-    signup.tid = tenant_id
+    signup.tid = tenant.id
 
     session.add(signup)
 
@@ -147,10 +146,6 @@ def signup_activation(session, token, hostname, language):
     signup, tenant = ret[0], ret[1]
 
     signup.activation_token = None
-
-    mode = config.get_val('mode')
-
-    db_initialize_tenant(session, tenant, mode)
 
     password_admin = generateRandomPassword(16)
     password_receiver = generateRandomPassword(16)

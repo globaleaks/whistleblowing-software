@@ -141,12 +141,11 @@ def db_wizard(session, tid, hostname, request):
     # Secondary tenants initialization starts here
 
     tenant = models.db_get(session, models.Tenant, models.Tenant.id == tid)
-    tenant.label = request['node_name']
 
     mode = node.get_val('mode')
 
     if mode != 'default':
-        node.set_val('hostname', tenant.subdomain + '.' + root_tenant_node.get_val('rootdomain'))
+        node.set_val('hostname', node.get_val('subdomain') + '.' + root_tenant_node.get_val('rootdomain'))
         node.set_val('tor', False)
 
     if mode in ['whistleblowing.it', 'eat']:
