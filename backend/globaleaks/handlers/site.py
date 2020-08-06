@@ -2,11 +2,12 @@
 # Implementation of the Tenant handlers
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.state import State
 
 
-def serialize_site(session, tenant):
+def serialize_site(session, tid):
     """
     Transaction serializing the tenant descriptor
 
@@ -14,25 +15,22 @@ def serialize_site(session, tenant):
     :param tenant:  The tenant model
     :return: A serialization of the provided model
     """
-    ret = {
-        'id': tenant.id,
-        'label': tenant.label,
-        'active': tenant.active,
-        'subdomain': tenant.subdomain,
-        'hostname': '',
-        'onionservice': ''
-    }
+    ret = ConfigFactory(session, tid).serialize('tenant')
 
-    if tenant.id in State.tenant_cache:
-        tc = State.tenant_cache[tenant.id]
+    ret['id'] = tid
 
-        if tc.mode == 'default':
-            ret['hostname'] = tc.hostname
-            ret['onionservice'] = tc.onionservice
-        elif tenant.id in State.tenant_cache:
-            rt = State.tenant_cache[1]
-            ret['hostname'] = tenant.subdomain + '.' + rt.rootdomain
-            ret['onionservice'] = tenant.subdomain + '.' + rt.onionservice
+    if ret['mode'] != 'default':
+        root_tenant = ConfigFactory(session, 1).serialize('tenant')
+        if ret['subdomain'] and root_tenant.domain:
+            ret['hostname'] = ret['subdomain'] + '.' + root_tenant.domain
+        else:
+            ret['hostname'] = ''
+
+
+        if ret['subdomain'] and root_tenant.onionservice:
+            ret['onionservice'] = ret['subdomain'] + '.' + root_tenant.onionservice
+        else:
+            ret['onionservice'] = ''
 
     return ret
 
@@ -45,7 +43,7 @@ def get_site_list(session):
     :param session: A ORM session
     :return: The list of active tenants
     """
-    return [serialize_site(session, t) for t in session.query(models.Tenant).filter(models.Tenant.active.is_(True))]
+    return [serialize_site(session, tid[0]) for tid in session.query(models.Config.tid).filter(models.Config.var_name == 'active', models.Config.value == True)]
 
 
 class SiteCollection(BaseHandler):

@@ -46,11 +46,7 @@ def set_onion_service_info(session, tid, hostname, key):
 
 @transact
 def list_onion_service_info(session):
-    return [db_get_onion_service_info(session, x[0])
-        for x in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True),
-                                                        models.Tenant.id == models.Config.tid,
-                                                        models.Config.var_name == 'tor',
-                                                        models.Config.value.is_(True))]
+    return [db_get_onion_service_info(session, tid) for tid in State.tenant_cache if State.tenant_cache[tid].tor]
 
 
 class OnionService(Service):

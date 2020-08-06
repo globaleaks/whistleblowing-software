@@ -4,11 +4,11 @@ describe("admin configure, add, and delete tenants", function() {
 
     await element.all(by.cssContainingText("a", "Sites")).get(1).click();
 
-    var add_tenant = async function(tenant_label) {
+    var add_tenant = async function(name) {
       await element(by.css(".show-add-tenant-btn")).click();
-      await element(by.model("newTenant.label")).sendKeys(tenant_label);
+      await element(by.model("newTenant.name")).sendKeys(name);
       await element(by.id("add-btn")).click();
-      await browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='" + tenant_label + "']"));
+      await browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='" + name + "']"));
     };
 
     await add_tenant("Tenant 2");

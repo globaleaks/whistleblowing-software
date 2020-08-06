@@ -90,7 +90,7 @@ DateType = r'(.*)'
 ContentType = r'(.*)'
 
 AdminTenantDesc = {
-    'label': str,
+    'name': str,
     'mode': str,
     'active': bool,
     'subdomain': subdomain_regexp_or_empty

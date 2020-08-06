@@ -2,6 +2,8 @@
 import base64
 import os
 
+from datetime import datetime
+
 from globaleaks import models
 from globaleaks.db.appdata import load_appdata, db_load_defaults
 from globaleaks.handlers.admin import file
@@ -12,25 +14,18 @@ from globaleaks.rest import requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.log import log
+from globaleaks.utils.utility import datetime_to_ISO8601
 
 
-def serialize_tenant(session, tenant, signup=None):
-    from globaleaks.handlers.signup import serialize_signup
+def serialize_tenant(session, tenant):
+    ret = ConfigFactory(session, tenant.id).serialize('tenant')
 
-    node = ConfigFactory(session, tenant.id)
+    ret['id'] = tenant.id
+    ret['creation_date'] = datetime.fromtimestamp(ret['creation_date']).isoformat()
 
-    ret = {
-        'id': tenant.id,
-        'label': tenant.label,
-        'active': tenant.active,
-        'subdomain': tenant.subdomain,
-        'hostname': node.get_val('hostname'),
-        'onionservice': node.get_val('onionservice'),
-        'mode': node.get_val('mode'),
-        'creation_date': tenant.creation_date
-    }
-
+    signup = session.query(models.Subscriber).filter(models.Subscriber.tid == tenant.id).one_or_none()
     if signup is not None:
+        from globaleaks.handlers.signup import serialize_signup
         ret['signup'] = serialize_signup(signup)
 
     return ret
@@ -53,29 +48,28 @@ def db_initialize_tenant_submission_statuses(session, tid):
         session.add(state)
 
 
-def db_preallocate_tenant(session, desc):
-    t = models.db_forge_obj(session, models.Tenant, desc)
+def db_create(session, desc):
+    t = models.Tenant()
+
+    session.add(t)
 
     # required to generate the tenant id
     session.flush()
-
-    return t
-
-
-def db_initialize_tenant(session, tenant, mode):
-    tenant.active = True
 
     appdata = load_appdata()
 
     db_load_defaults(session)
 
-    models.config.initialize_config(session, tenant.id, mode)
+    models.config.initialize_config(session, t.id, desc['mode'])
 
-    models.config.add_new_lang(session, tenant.id, 'en', appdata)
+    for var in ['mode', 'name', 'subdomain']:
+        db_set_config_variable(session, t.id, var, desc[var])
 
-    db_initialize_tenant_submission_statuses(session, tenant.id)
+    models.config.add_new_lang(session, t.id, 'en', appdata)
 
-    if mode == 'default':
+    db_initialize_tenant_submission_statuses(session, t.id)
+
+    if desc['mode'] == 'default':
         file_descs = [
             ('favicon', 'data/favicon.ico')
         ]
@@ -83,13 +77,7 @@ def db_initialize_tenant(session, tenant, mode):
         for file_desc in file_descs:
             with open(os.path.join(Settings.client_path, file_desc[1]), 'rb') as f:
                 data = base64.b64encode(f.read()).decode()
-                file.db_add_file(session, tenant.id, file_desc[0], '', data)
-
-
-def db_create(session, desc):
-    t = db_preallocate_tenant(session, desc)
-
-    db_initialize_tenant(session, t, desc['mode'])
+                file.db_add_file(session, t.id, file_desc[0], '', data)
 
     return t
 
@@ -100,8 +88,7 @@ def create(session, desc, *args, **kwargs):
 
 
 def db_get_tenant_list(session):
-    return [serialize_tenant(session, r[0], r[1]) for r in session.query(models.Tenant, models.Subscriber)
-                                                                  .outerjoin(models.Subscriber, models.Tenant.id == models.Subscriber.tid)]
+    return [serialize_tenant(session, t) for t in session.query(models.Tenant)]
 
 
 @transact
@@ -110,27 +97,21 @@ def get_tenant_list(session):
 
 
 @transact
-def get(session, id):
-    return serialize_tenant(session, models.db_get(session, models.Tenant, models.Tenant.id == id))
+def get(session, tid):
+    return serialize_tenant(session, models.db_get(session, models.Tenant, models.Tenant.id == tid))
 
 
 @transact
-def update(session, id, request):
-    tenant = models.db_get(session, models.Tenant, models.Tenant.id == id)
-    tenant.update(request)
+def update(session, tid, request):
+    for var in ['mode', 'name', 'subdomain']:
+        db_set_config_variable(session, tid, var, request[var])
 
-    # A tenant created via signup but not activated may require initialization
-    if not session.query(models.Config).filter(models.Config.tid == id).count():
-        db_initialize_tenant(session, tenant, request['mode'])
-    else:
-        db_set_config_variable(session, id, 'mode', request['mode'])
-
-    return serialize_tenant(session, tenant)
+    return serialize_tenant(session, models.db_get(session, models.Tenant, models.Tenant.id == tid))
 
 
 @transact
-def delete(session, id):
-    models.db_delete(session, models.Tenant, models.Tenant.id == id)
+def delete(session, tid):
+    models.db_delete(session, models.Tenant, models.Tenant.id == tid)
 
 
 class TenantCollection(BaseHandler):

@@ -1148,13 +1148,6 @@ class _Tenant(Model):
     __tablename__ = 'tenant'
 
     id = Column(Integer, primary_key=True, nullable=False)
-    label = Column(UnicodeText, default='', nullable=False)
-    active = Column(Boolean, default=False, nullable=False)
-    creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    subdomain = Column(UnicodeText, default='', nullable=False)
-
-    unicode_keys = ['label', 'subdomain']
-    bool_keys = ['active']
 
 
 class _User(Model):

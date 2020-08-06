@@ -60,7 +60,7 @@ def init_db(session):
     Transaction for initializing the application database
     :param session: An ORM session
     """
-    tenant.db_create(session, {'mode': 'default', 'label': 'root'})
+    tenant.db_create(session, {'mode': 'default', 'name': 'GlobaLeaks', 'subdomain': ''})
 
 
 def update_db():
@@ -197,75 +197,64 @@ def db_refresh_tenant_cache(session, tid_list):
 
 
 def db_refresh_memory_variables(session, to_refresh=None):
-    tenant_map = {tenant.id: tenant for tenant in session.query(models.Tenant).filter(models.Tenant.active.is_(True))}
+    active_tids = set([tid[0] for tid in session.query(models.Config.tid).filter(models.Config.var_name == 'active', models.Config.value == True)])
 
-    existing_tids = set(tenant_map.keys())
     cached_tids = set(State.tenant_state.keys())
 
-    to_remove = cached_tids - existing_tids
-    to_add = existing_tids - cached_tids
-
-    for tid in to_remove:
+    # Remove tenants that have been disabled
+    for tid in cached_tids - active_tids:
         if tid in State.tenant_state:
             del State.tenant_state[tid]
 
         if tid in State.tenant_cache:
             del State.tenant_cache[tid]
 
-    for tid in to_add:
+    # Add tenants that have been enabled
+    for tid in active_tids - cached_tids:
         State.tenant_state[tid] = TenantState(State)
         State.tenant_cache[tid] = ObjectDict()
 
-    if to_refresh is None:
-        to_refresh = tenant_map.keys()
+    if to_refresh is None or 1 in to_refresh:
+        to_refresh = active_tids
     else:
-        to_refresh = [tid for tid in to_refresh if tid in tenant_map]
+        to_refresh = [tid for tid in to_refresh if tid in active_tids]
 
-    if to_refresh:
-        db_refresh_tenant_cache(session, to_refresh)
+    if not len(to_refresh):
+        return
 
-    if 1 in to_refresh:
-        to_refresh = State.tenant_cache.keys()
-        db_set_cache_exception_delivery_list(session, State.tenant_cache[1])
+    db_refresh_tenant_cache(session, to_refresh)
 
-        if State.tenant_cache[1].admin_api_token_digest:
-            State.api_token_session = Session(1, 0, 1, 'admin', False, False, '', '')
-
-        log.setloglevel(State.tenant_cache[1].log_level)
-
-    rootdomain = State.tenant_cache[1].rootdomain
-    root_onionservice = State.tenant_cache[1].onionservice
+    root_tenant = State.tenant_cache[1]
 
     for tid in to_refresh:
-        if tid not in tenant_map:
-            continue
+        tenant = State.tenant_cache[tid]
 
-        tenant = tenant_map[tid]
-        if not tenant.active and tid != 1:
-            continue
+        tenant.hostnames = []
+        tenant.onionnames = []
 
-        hostnames = []
-        onionnames = []
+        if tid == 1:
+            log.setloglevel(tenant.log_level)
+            db_set_cache_exception_delivery_list(session, tenant)
 
-        if State.tenant_cache[tid].hostname:
-            hostnames.append(State.tenant_cache[tid].hostname.encode())
+            if tenant.admin_api_token_digest:
+                State.api_token_session = Session(1, 0, 1, 'admin', False, False, '', '')
 
-        if State.tenant_cache[tid].onionservice:
-            onionnames.append(State.tenant_cache[tid].onionservice.encode())
-        elif root_onionservice:
-            State.tenant_cache[tid].onionservice = tenant.subdomain + '.' + root_onionservice
+        if tenant.hostname:
+            tenant.hostnames.append(tenant.hostname.encode())
 
-        if tenant.subdomain != '':
-            if rootdomain != '':
-                hostnames.append('{}.{}'.format(tenant.subdomain, rootdomain).encode())
+        if tenant.onionservice:
+            tenant.onionnames.append(tenant.onionservice.encode())
+        elif root_tenant.onionservice:
+            tenant.onionservice = tenant.subdomain + '.' + root_tenant.onionservice
 
-            if root_onionservice != '':
-                onionnames.append('{}.{}'.format(tenant.subdomain, root_onionservice).encode())
+        if tenant.subdomain:
+            if root_tenant.rootdomain:
+                tenant.hostnames.append('{}.{}'.format(tenant.subdomain, root_tenant.rootdomain).encode())
 
-        State.tenant_cache[tid].hostnames = hostnames
-        State.tenant_cache[tid].onionnames = onionnames
+            if root_tenant.onionservice:
+                tenant.onionnames.append('{}.{}'.format(tenant.subdomain, root_tenant.onionservice).encode())
 
-        State.tenant_hostname_id_map.update({h: tid for h in hostnames + onionnames})
+        State.tenant_hostname_id_map.update({h: tid for h in tenant.hostnames + tenant.onionnames})
 
 
 @transact

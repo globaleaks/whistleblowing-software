@@ -12,6 +12,7 @@ def get_dummy_tenant_desc():
     return {
         'label': 'tenant-xxx',
         'active': True,
+        'name': 'GlobaLeaks',
         'mode': 'default',
         'subdomain': 'subdomain',
     }
