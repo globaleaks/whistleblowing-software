@@ -85,7 +85,7 @@ class TestAPI(TestGL):
             ('Expires', '-1'),
             ('Pragma', 'no-cache'),
             ('Referrer-Policy', 'no-referrer'),
-            ('Server', 'Globaleaks'),
+            ('Server', 'GlobaLeaks'),
             ('X-Content-Type-Options', 'nosniff'),
             ('X-Check-Tor', 'False'),
             ('X-Frame-Options', 'deny'),

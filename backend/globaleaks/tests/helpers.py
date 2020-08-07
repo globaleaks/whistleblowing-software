@@ -314,8 +314,8 @@ def forge_request(uri=b'https://www.globaleaks.org/',
     request.code = 200
     request.client_ip = b'127.0.0.1'
 
-    def isSecure(self):
-        return True
+    def isSecure():
+        return False
 
     request.isSecure = isSecure
     request.client_using_tor = False
