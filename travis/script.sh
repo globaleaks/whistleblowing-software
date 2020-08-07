@@ -4,14 +4,6 @@ set -e
 
 TRAVIS_USR="travis-$(git rev-parse --short HEAD)"
 
-setupChrome() {
-  export CHROME_BIN=/usr/bin/google-chrome
-  export DISPLAY=:99.0
-  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  sudo dpkg -i google-chrome*.deb
-  /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16
-}
-
 setupClientDependencies() {
   cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
   npm install
@@ -38,8 +30,6 @@ sudo iptables -t nat -A OUTPUT -o lo -p tcp --dport 9000 -j REDIRECT --to-port 8
 npm install -g grunt grunt-cli
 
 if [ "$GLTEST" = "test" ]; then
-  setupChrome
-
   pip install coverage codacy-coverage
   npm install -g istanbul codacy-coverage
 
@@ -55,7 +45,7 @@ if [ "$GLTEST" = "test" ]; then
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR -k9 -D
   sleep 3
 
-  ./node_modules/protractor/bin/webdriver-manager update --versions.chrome 83.0.4103.116
+  ./node_modules/protractor/bin/webdriver-manager update
 
   ./node_modules/protractor/bin/protractor tests/protractor-coverage.config.js
 
