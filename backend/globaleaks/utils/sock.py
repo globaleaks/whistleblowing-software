@@ -2,6 +2,7 @@
 
 import socket
 
+from twisted.internet.abstract import isIPv6Address
 from twisted.protocols import tls
 
 
@@ -17,7 +18,11 @@ def listen_tls_on_sock(reactor, fd, contextFactory, factory):
 
 
 def open_socket_listen(ip, port):
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    if isIPv6Address(ip):
+        s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+    else:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     s.setblocking(False)
     s.bind((ip, port))

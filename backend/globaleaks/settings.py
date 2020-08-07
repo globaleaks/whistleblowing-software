@@ -50,7 +50,7 @@ class SettingsClass(object, metaclass=Singleton):
         # daemonize the process
         self.nodaemon = False
 
-        self.bind_address = '0.0.0.0'
+        self.bind_address = '::'
         self.bind_remote_ports = [80, 443]
         self.bind_local_ports = [8082, 8083]
 
