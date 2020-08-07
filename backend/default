@@ -1,26 +1,23 @@
 # USERNAME = [user_name]
-#   permits to configure the user privileges of the globaleaks process
+# permits to configure the user privileges of the globaleaks process
 USERNAME=globaleaks
 
 # GROUP = [group_name]
-#   permits to configure the group privileges of the globaleaks process
+# permits to configure the group privileges of the globaleaks process
 GROUP=globaleaks
 
 # APPARMOR_SANDBOXING = [0/1]
-#   permits to enable apparmor sandboxing
+# permits to enable apparmor sandboxing
 APPARMOR_SANDBOXING=1
 
 # NETWORK_SANDBOXING = [0/1]
-#   permits to enable network sandboxing
+# permits to enable network sandboxing
 NETWORK_SANDBOXING=1
 
-# API_PREFIX = [prefix]
-API_PREFIX=
-
 # LISTENING_IP = [ip]
-#   permits to configure an ip on which the platform will listen
+# permits to configure an ip on which the platform will listen
 LISTENING_IP=::
 
 # WORKING_DIR
-#   must be configured with the daemon working directory
+# must be configured with the daemon working directory
 WORKING_DIR=/var/globaleaks/

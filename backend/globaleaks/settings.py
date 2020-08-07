@@ -19,19 +19,10 @@ from globaleaks.utils.singleton import Singleton
 this_directory = os.path.dirname(__file__)
 
 possible_client_paths = [
-    '/var/globaleaks/client',
     '/usr/share/globaleaks/client/',
     os.path.abspath(os.path.join(this_directory, '../../client/build/')),
     os.path.abspath(os.path.join(this_directory, '../../client/app/'))
 ]
-
-
-external_counted_events = {
-    'new_submission': 0,
-    'finalized_submission': 0,
-    'anon_requests': 0,
-    'file_uploaded': 0,
-}
 
 
 class SettingsClass(object, metaclass=Singleton):
@@ -81,10 +72,6 @@ class SettingsClass(object, metaclass=Singleton):
         # statistical, referred to latest period
         # and resetted by session_management sched
         self.failed_login_attempts = 0
-
-        # static file rules
-        self.staticfile_regexp = r'(.*)'
-        self.staticfile_overwrite = False
 
         self.local_hosts = ['127.0.0.1', 'localhost']
 
