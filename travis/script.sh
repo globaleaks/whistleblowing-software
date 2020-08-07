@@ -4,6 +4,16 @@ set -e
 
 TRAVIS_USR="travis-$(git rev-parse --short HEAD)"
 
+LOGFILE="$TRAVIS_BUILD_DIR/backend/workingdir/log/globaleaks.log"
+
+function atexit {
+  if [[ ! $? -eq 0 && -f $LOGFILE ]]; then
+    cat $LOGFILE
+  fi
+}
+
+trap atexit EXIT
+
 setupClientDependencies() {
   cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
   npm install
@@ -59,13 +69,7 @@ if [ "$GLTEST" = "test" ]; then
     cat coverage/lcov.info | codacy-coverage -c $TRAVIS_COMMIT # Javascript
   fi
 elif [ "$GLTEST" = "build_and_install" ]; then
-  function atexit {
-    if [[ ! $? -eq 0 && -f /var/globaleaks/log/globaleaks.log ]]; then
-      cat /var/globaleaks/log/globaleaks.log
-    fi
-  }
-
-  trap atexit EXIT
+  LOGFILE="/var/globaleaks/log/globaleaks.log"
 
   sudo apt-get install -y debootstrap
 
@@ -100,6 +104,8 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo chroot "$chroot" chown builduser -R /build
   sudo chroot "$chroot" su - builduser /bin/bash -c '/build/GlobaLeaks/travis/build_and_install.sh'
 elif [[ $GLTEST =~ ^end2end-.* ]]; then
+  LOGFILE="$TRAVIS_BUILD_DIR/backend/workingdir/log/globaleaks.log"
+
   echo "Running Browsertesting on Saucelabs"
 
   declare -a capabilities=(
