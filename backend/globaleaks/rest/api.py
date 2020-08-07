@@ -436,7 +436,7 @@ class APIResourceWrapper(Resource):
         return NOT_DONE_YET
 
     def set_headers(self, request):
-        request.setHeader(b'Server', b'Globaleaks')
+        request.setHeader(b'Server', b'GlobaLeaks')
 
         if request.isSecure():
             if State.tenant_cache[request.tid].https_preload:
