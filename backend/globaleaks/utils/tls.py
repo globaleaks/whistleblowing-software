@@ -29,9 +29,7 @@ TLS_CIPHER_LIST = b'TLS13-AES-256-GCM-SHA384:' \
                   b'ECDHE-ECDSA-AES128-GCM-SHA256:' \
                   b'ECDHE-RSA-AES128-GCM-SHA256:' \
                   b'ECDHE-ECDSA-CHACHA20-POLY1305:' \
-                  b'ECDHE-RSA-CHACHA20-POLY1305:' \
-                  b'ECDHE-ECDSA-AES256-SHA384:' \
-                  b'ECDHE-RSA-AES256-SHA384'
+                  b'ECDHE-RSA-CHACHA20-POLY1305'
 
 
 trustRoot = ssl.platformTrust()
