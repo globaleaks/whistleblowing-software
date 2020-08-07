@@ -197,12 +197,6 @@ network_sandboxing_stop()
 {
     log_action_begin_msg "Disabling GlobaLeaks Network Sandboxing"
 
-    iptables -L | grep ${USERNAME} >/dev/null 2>&1
-    if [ "$?" -ne "0" ]; then
-        log_action_end_msg 0 "already disabled."
-        return
-    fi
-
     # remove all rules with the comment: "globaleaks-network-sandboxing"
     iptables-save | grep -v "globaleaks-network-sandboxing" | iptables-restore
 
