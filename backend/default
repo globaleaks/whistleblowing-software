@@ -19,7 +19,7 @@ API_PREFIX=
 
 # LISTENING_IP = [ip]
 #   permits to configure an ip on which the platform will listen
-LISTENING_IP=0.0.0.0
+LISTENING_IP=::
 
 # WORKING_DIR
 #   must be configured with the daemon working directory

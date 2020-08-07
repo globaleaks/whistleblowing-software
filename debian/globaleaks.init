@@ -172,6 +172,8 @@ network_sandboxing_start()
         for PORT in "${PORTS[@]}"; do
             iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 127.0.0.1 --dport $PORT -s 127.0.0.1 -j ACCEPT
             iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -j DROP
+            ip6tables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d ::1 --dport $PORT -s ::1 -j ACCEPT
+            ip6tables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d :: --dport $PORT -j DROP
         done
 
         # INBOUND REMOTE
@@ -179,6 +181,8 @@ network_sandboxing_start()
         for PORT in "${PORTS[@]}"; do
             iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -s 127.0.0.1 -j ACCEPT
             iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -j DROP
+            ip6tables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d :: --dport $PORT -s ::1 -j ACCEPT
+            ip6tables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d :: --dport $PORT -j DROP
         done
 
         # OUTBOUND
@@ -188,6 +192,11 @@ network_sandboxing_start()
         iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 --dport 9050 -j ACCEPT
         iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j LOG --log-prefix "GLOBALEAKS-OUTPUT:DROP: "
         iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
+        ip6tables -m comment --comment "globaleaks-network-sandboxing" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -d ::1 -j ACCEPT
+        ip6tables -m comment --comment "globaleaks-network-sandboxing" -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports 9050
+        ip6tables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d ::1 --dport 9050 -j ACCEPT
+        ip6tables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j LOG --log-prefix "GLOBALEAKS-OUTPUT:DROP: "
+        ip6tables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
 
         log_action_end_msg 0
     fi
@@ -199,6 +208,7 @@ network_sandboxing_stop()
 
     # remove all rules with the comment: "globaleaks-network-sandboxing"
     iptables-save | grep -v "globaleaks-network-sandboxing" | iptables-restore
+    ip6tables-save | grep -v "globaleaks-network-sandboxing" | ip6tables-restore
 
     log_action_end_msg 0
 }
