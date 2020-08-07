@@ -213,7 +213,7 @@ class APIResourceWrapper(Resource):
 
     def should_redirect_https(self, request):
         if State.tenant_cache[request.tid].https_enabled and \
-           request.client_proto == b'http' and \
+           not request.isSecure() and \
            request.client_ip not in Settings.local_hosts and \
            b'acme-challenge' not in request.path:
             return True
@@ -252,7 +252,7 @@ class APIResourceWrapper(Resource):
             e = e.value
         else:
             e.tid = request.tid
-            e.url = request.client_proto + b'://' + request.hostname + request.path
+            e.url = request.hostname + request.path
             extract_exception_traceback_and_schedule_email(e)
             e = errors.InternalServerError('Unexpected')
 
@@ -292,7 +292,6 @@ class APIResourceWrapper(Resource):
                 request.tid, request.path = tid, groups[1]
 
         request.client_ip = request.getClientIP()
-        request.client_proto = b'https' if request.port in [443, 8443] else b'http'
 
         request.client_using_tor = request.client_ip in State.tor_exit_set or \
                                    request.port == 8083
@@ -439,7 +438,7 @@ class APIResourceWrapper(Resource):
     def set_headers(self, request):
         request.setHeader(b'Server', b'Globaleaks')
 
-        if request.client_proto == b'https':
+        if request.isSecure():
             if State.tenant_cache[request.tid].https_preload:
                 request.setHeader(b'Strict-Transport-Security',
                                   b'max-age=31536000; includeSubDomains; preload')

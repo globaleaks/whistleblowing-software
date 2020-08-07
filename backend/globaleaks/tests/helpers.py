@@ -313,7 +313,11 @@ def forge_request(uri=b'https://www.globaleaks.org/',
 
     request.code = 200
     request.client_ip = b'127.0.0.1'
-    request.client_proto = b'https'
+
+    def isSecure(self):
+        return True
+
+    request.isSecure = isSecure
     request.client_using_tor = False
 
     def getResponseBody():
