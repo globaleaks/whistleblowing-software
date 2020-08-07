@@ -8,10 +8,14 @@ from twisted.web._http2 import H2Connection
 
 from zope.interface import implementer
 
+def null_function(*args, **kw):
+    pass
+
 def mock_Request_gotLength(self, length):
     self.content = StringIO()
 
 Request.gotLength = mock_Request_gotLength
+Request.parseCookies = null_function
 
 @implementer(ILogObserver)
 class NullObserver(object):
@@ -19,11 +23,7 @@ class NullObserver(object):
         pass
 
 
-# Mocks applied to every twisted version
-def mock_log(*args, **kw):
-    pass
-
-log.msg = log.info = log.err = mock_log
+log.msg = log.info = log.err = null_function
 
 null_logger = Logger(observer=NullObserver())
 Request._log = null_logger
