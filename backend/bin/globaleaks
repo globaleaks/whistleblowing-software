@@ -24,86 +24,91 @@ if get_distribution_codename() != 'buster':
 # this import seems unused but it is required in order to load the mocks
 import globaleaks.mocks.twisted_mocks  # pylint: disable=W0611
 
+# pylint: enable=no-name-in-module
+from optparse import OptionParser
+
 from twisted.python import usage
 
 from twisted.scripts._twistd_unix import ServerOptions
 from twisted.scripts._twistd_unix import UnixApplicationRunner as TwistedApplicationRunner
 
-from globaleaks import DATABASE_VERSION
+from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.settings import Settings
 from globaleaks.state import State, mail_exception_handler
 
-Settings.parser.add_option("-n", "--nodaemon", action='store_true',
+parser = OptionParser()
+
+parser.add_option("-n", "--nodaemon", action='store_true',
     help="don't daemonize",
     dest="nodaemon", default=False)
 
-Settings.parser.add_option("-i", "--ip", type="string",
+parser.add_option("-i", "--ip", type="string",
     help="IP address used for listening [default: %default]",
     dest="ip", default=Settings.bind_address)
 
-Settings.parser.add_option("-s", "--socks-host", type="string",
+parser.add_option("-s", "--socks-host", type="string",
     help="set Socks host to use for Tor [default: %default]",
     dest="socks_host", default=Settings.socks_host)
 
-Settings.parser.add_option("-r", "--socks-port", type="int",
+parser.add_option("-r", "--socks-port", type="int",
     help="set Socks port to use for Tor [default: %default]",
     dest="socks_port", default=Settings.socks_port)
 
-Settings.parser.add_option("-u", "--user", type="string",
+parser.add_option("-u", "--user", type="string",
     help="set the user to run as [default: current_user]",
     dest="user", default=None)
 
-Settings.parser.add_option("-g", "--group", type="string",
+parser.add_option("-g", "--group", type="string",
     help="set the group to run as [default: current_user]",
     dest="group", default=None)
 
-Settings.parser.add_option("-w", "--working-path", type="string",
+parser.add_option("-w", "--working-path", type="string",
     help="set the backend working directory",
     dest="working_path", default=None)
 
-Settings.parser.add_option("-k", "--kill", type="int",
+parser.add_option("-k", "--kill", type="int",
     help="signal to send to the current globaleaks process (if exists)",
     dest="kill", default=0)
 
-Settings.parser.add_option("-C", "--client-path", type='string',
+parser.add_option("-C", "--client-path", type='string',
     help="specify client path",
     dest="client_path", default=None)
 
-Settings.parser.add_option("-D", "--disable-csp", action='store_true',
+parser.add_option("-D", "--disable-csp", action='store_true',
     help="disable content security policy ]",
     dest="disable_csp", default=False)
 
-Settings.parser.add_option("-P", "--disable-swap", action='store_true',
+parser.add_option("-P", "--disable-swap", action='store_true',
     help="disable process swap [default: False]",
     dest="disable_swap", default=False)
 
-Settings.parser.add_option("-z", "--devel-mode", action='store_true',
+parser.add_option("-z", "--devel-mode", action='store_true',
     help="set development mode [default: False]",
     dest="devel_mode", default=False)
 
-Settings.parser.add_option("-o", "--orm-debug", action='store_true',
+parser.add_option("-o", "--orm-debug", action='store_true',
     help="enable ORM debugging [default: False]",
     dest="orm_debug", default=False)
 
-Settings.parser.add_option("-v", "--version", action='store_true',
+parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software")
 
 
 # here the options are parsed, because sys.argv array is whack below
-(Settings.cmdline_options, args) = Settings.parser.parse_args()
+(options, args) = parser.parse_args()
 
-if Settings.cmdline_options.version:
-    print("GlobaLeaks version:", Settings.version_string)
+if options.version:
+    print("GlobaLeaks version:", __version__)
     print("Database version:", DATABASE_VERSION)
     sys.exit(0)
 
-Settings.load_cmdline_options()
+Settings.load_cmdline_options(options)
 
-if Settings.cmdline_options.kill:
+if options.kill:
     try:
         with open(Settings.pidfile_path, "r") as fd:
             target_pid = int(fd.read())
-        os.kill(target_pid, Settings.cmdline_options.kill)
+        os.kill(target_pid, options.kill)
         os.remove(Settings.pidfile_path)
     except Exception as excep:
         print("Unable kill PID found in %s: kill option ignored (%s)" % (Settings.pidfile_path, excep))

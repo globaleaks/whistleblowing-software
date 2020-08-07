@@ -9,10 +9,6 @@ import pwd
 import re
 import sys
 
-# pylint: enable=no-name-in-module
-from optparse import OptionParser
-
-from globaleaks import __version__
 from globaleaks.orm import make_db_uri, set_db_uri, enable_orm_debug
 from globaleaks.utils.singleton import Singleton
 
@@ -27,14 +23,6 @@ possible_client_paths = [
 
 class SettingsClass(object, metaclass=Singleton):
     def __init__(self):
-        # command line parsing utils
-        self.parser = OptionParser()
-        self.cmdline_options = None
-
-        # version
-        self.version_string = __version__
-
-        # testing
         # This variable is to be able to hook/bypass code when unit-tests are run
         self.testing = False
 
@@ -166,47 +154,47 @@ class SettingsClass(object, metaclass=Singleton):
         self.pid_path = os.path.join(self.src_path, 'workingdir')
         self.working_path = os.path.join(self.src_path, 'workingdir')
 
-    def load_cmdline_options(self):
-        self.nodaemon = self.cmdline_options.nodaemon
+    def load_cmdline_options(self, options):
+        self.nodaemon = options.nodaemon
 
-        if self.cmdline_options.disable_swap:
+        if options.disable_swap:
             self.disable_swap = True
 
-        if self.cmdline_options.disable_csp:
+        if options.disable_csp:
             self.enable_csp = False
 
-        self.bind_address = self.cmdline_options.ip
+        self.bind_address = options.ip
 
-        self.socks_host = self.cmdline_options.socks_host
+        self.socks_host = options.socks_host
 
-        if not self.validate_port(self.cmdline_options.socks_port):
+        if not self.validate_port(options.socks_port):
             sys.exit(1)
 
-        self.socks_port = self.cmdline_options.socks_port
+        self.socks_port = options.socks_port
 
-        if (self.cmdline_options.user and self.cmdline_options.group is None) or \
-            (self.cmdline_options.group and self.cmdline_options.user is None):
+        if (options.user and options.group is None) or \
+            (options.group and options.user is None):
             self.print_msg("Error: missing user or group option")
             sys.exit(1)
 
-        if self.cmdline_options.user and self.cmdline_options.group:
-            self.user = self.cmdline_options.user
-            self.group = self.cmdline_options.group
+        if options.user and options.group:
+            self.user = options.user
+            self.group = options.group
 
-            self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
-            self.gid = grp.getgrnam(self.cmdline_options.group).gr_gid
+            self.uid = pwd.getpwnam(options.user).pw_uid
+            self.gid = grp.getgrnam(options.group).gr_gid
 
-        if self.cmdline_options.devel_mode:
+        if options.devel_mode:
             self.set_devel_mode()
 
-        if self.cmdline_options.orm_debug:
+        if options.orm_debug:
             enable_orm_debug()
 
-        if self.cmdline_options.working_path:
-            self.working_path = self.cmdline_options.working_path
+        if options.working_path:
+            self.working_path = options.working_path
 
-        if self.cmdline_options.client_path:
-            self.client_path = os.path.abspath(os.path.join(self.src_path, self.cmdline_options.client_path))
+        if options.client_path:
+            self.client_path = os.path.abspath(os.path.join(self.src_path, options.client_path))
 
         self.eval_paths()
 
