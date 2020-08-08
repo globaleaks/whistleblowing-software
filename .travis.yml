@@ -21,15 +21,15 @@ matrix:
     - env: GLTEST='test' DISTRIBUTION='buster' CODACY=true
     - env: GLTEST='build_and_install' DISTRIBUTION='buster'
     - env: GLTEST='build_and_install' DISTRIBUTION='focal'
-    - env: GLTEST='end2end-0' BROWSER='chrome 80'
-    - env: GLTEST='end2end-1' BROWSER='firefox 74'
-    - env: GLTEST='end2end-2' BROWSER='edge 80'
+    - env: GLTEST='end2end-0' BROWSER='chrome latest'
+    - env: GLTEST='end2end-1' BROWSER='firefox latest'
+    - env: GLTEST='end2end-2' BROWSER='edge latest'
     - env: GLTEST='end2end-3' BROWSER='ie 11'
     - env: GLTEST='end2end-4' BROWSER='android 10'
   allow_failures:
-    - env: GLTEST='end2end-0' BROWSER='chrome 80'
-    - env: GLTEST='end2end-1' BROWSER='firefox 74'
-    - env: GLTEST='end2end-2' BROWSER='edge 80'
+    - env: GLTEST='end2end-0' BROWSER='chrome latest'
+    - env: GLTEST='end2end-1' BROWSER='firefox latest'
+    - env: GLTEST='end2end-2' BROWSER='edge latest'
     - env: GLTEST='end2end-3' BROWSER='ie 11'
     - env: GLTEST='end2end-4' BROWSER='android 10'
 before_install:
