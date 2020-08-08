@@ -457,6 +457,7 @@ class APIResourceWrapper(Resource):
                   "img-src 'self' data:;" \
                   "font-src 'self' data:;" \
                   "media-src 'self';" \
+                  "form-action 'self';" \
                   "navigate-to 'self' https://*;" \
                   "block-all-mixed-content;"
 
