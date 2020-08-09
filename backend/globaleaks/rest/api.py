@@ -458,7 +458,6 @@ class APIResourceWrapper(Resource):
                   "font-src 'self' data:;" \
                   "media-src 'self';" \
                   "form-action 'self';" \
-                  "navigate-to 'self' https://*;" \
                   "block-all-mixed-content;"
 
             if State.tenant_cache[request.tid].frame_ancestors:
