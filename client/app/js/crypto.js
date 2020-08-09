@@ -1,4 +1,4 @@
-/*global Uint8Array, sha256*/
+/*global sha256*/
 
 angular.module("GLCrypto", [])
 .factory("glbcUtil", function() {
