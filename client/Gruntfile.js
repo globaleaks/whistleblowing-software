@@ -85,6 +85,24 @@ module.exports = function(grunt) {
       build: {
         files: [{ dest: "tmp/", cwd: "app/", src: ["**"], expand: true }]
       },
+      package: {
+        files: [
+          {
+            dest: "build/",
+            cwd: "./tmp/",
+            src: [
+              "index.html",
+              "license.txt",
+              "css/styles.css",
+              "js/scripts.js",
+              "data/**",
+              "lib/js/locale/**"
+            ],
+            expand: true,
+            flatten: false
+          }
+        ]
+      },
       coverage: {
         files: [{
           dest: "build/",
@@ -450,45 +468,6 @@ module.exports = function(grunt) {
   };
 
   var notranslate_strings = readNoTranslateStrings();
-
-  grunt.registerTask("cleanupWorkingDirectory", function() {
-    var x;
-    var dirs;
-
-    var rm_rf = function(dir) {
-      var s = fs.statSync(dir);
-
-      if (!s.isDirectory()) {return fs.unlinkSync(dir);}
-
-      fs.readdirSync(dir).forEach(function(f) {
-        rm_rf(path.join(dir || "", f || ""));
-      });
-
-      fs.rmdirSync(dir);
-    };
-
-    grunt.file.mkdir("build/");
-
-    grunt.file.copy("tmp/index.html", "build/index.html");
-    grunt.file.copy("tmp/license.txt", "build/license.txt");
-    grunt.file.copy("tmp/css/styles.css", "build/css/styles.css");
-    grunt.file.copy("tmp/js/scripts.js", "build/js/scripts.js");
-
-    grunt.file.copy("tmp/globaleaks-embedded.css", "build/globaleaks-embedded.css");
-    grunt.file.copy("tmp/globaleaks-embedded.js", "build/globaleaks-embedded.js");
-
-    dirs = ["data", "lib/js/locale/"];
-
-    for (x in dirs) {
-      var copy_fun = function(absdir, rootdir, subdir, filename) {
-        grunt.file.copy(absdir, path.join("build/" + dirs[x], subdir || "", filename || ""));
-      };
-
-      grunt.file.recurse("tmp/" + dirs[x], copy_fun);
-    }
-
-    rm_rf("tmp");
-  });
 
   function str_escape (val) {
     if (typeof(val) !== "string") {
@@ -1035,7 +1014,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask("build",
-    ["clean", "copy:sources", "copy:build", "includeExternalFiles", "ngtemplates", "postcss", "useminPrepare", "concat", "usemin", "string-replace", "cleanupWorkingDirectory", "cssmin", "uglify", "compress"]);
+    ["clean", "copy:sources", "copy:build", "includeExternalFiles", "ngtemplates", "postcss", "useminPrepare", "concat", "usemin", "string-replace", "copy:package", "cssmin", "uglify", "compress"]);
 
   grunt.registerTask("instrument-client", [
     "clean",
