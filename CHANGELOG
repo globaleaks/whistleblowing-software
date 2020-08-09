@@ -1,3 +1,7 @@
+Changes in version 4.0.51 - 2020-08-09
+    Do not show multitenancy menu if multisite feature is disabled
+    Add support for IPv6
+
 Changes in version 4.0.50 - 2020-08-04
     Add 1 second delay between mailung attempts
     Fix issue #2882
