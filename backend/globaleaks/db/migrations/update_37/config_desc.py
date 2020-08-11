@@ -14,7 +14,6 @@ GLConfig_v_37 = {
         'version_db': Int(default=DATABASE_VERSION),
 
         'https_priv_key': Unicode(),
-        'https_priv_gen': Bool(default=False),
         'https_csr': Unicode(),
         'https_cert': Unicode(),
         'https_chain': Unicode(),
