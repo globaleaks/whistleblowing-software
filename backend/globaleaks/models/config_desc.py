@@ -46,7 +46,6 @@ ConfigDescriptor = {
 
     'https_enabled': Bool(default=False),
     'https_priv_key': Unicode(),
-    'https_priv_gen': Bool(default=False),
     'https_csr': Unicode(),
     'https_cert': Unicode(),
     'https_chain': Unicode(),
@@ -238,7 +237,6 @@ ConfigFilters = {
         'tor_onion_key',
         'https_enabled',
         'https_priv_key',
-        'https_priv_gen',
         'https_csr',
         'https_cert',
         'https_chain',
@@ -292,7 +290,6 @@ ConfigFilters['admin_node'] = list(set(ConfigFilters['node']) - set([
     'acme_accnt_key',
     'tor_onion_key',
     'https_priv_key',
-    'https_priv_gen',
     'https_csr',
     'https_cert',
     'https_chain',

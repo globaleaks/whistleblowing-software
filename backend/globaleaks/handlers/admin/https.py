@@ -110,16 +110,13 @@ class PrivKeyFileRes(FileResource):
         ok, _ = pkv.validate(db_cfg)
         if ok:
             config.set_val('https_priv_key', raw_key)
-            config.set_val('https_priv_gen', False)
 
         return ok
 
     @staticmethod
     @transact
     def save_tls_key(session, tid, prv_key):
-        config = ConfigFactory(session, tid)
-        config.set_val('https_priv_key', prv_key)
-        config.set_val('https_priv_gen', True)
+        ConfigFactory(session, tid).set_val('https_priv_key', prv_key)
 
     @classmethod
     @inlineCallbacks
@@ -135,15 +132,13 @@ class PrivKeyFileRes(FileResource):
     def delete_file(session, tid):
         config = ConfigFactory(session, tid)
         config.set_val('https_priv_key', '')
-        config.set_val('https_priv_gen', False)
 
     @staticmethod
     def db_serialize(session, tid):
         config = ConfigFactory(session, tid)
 
         return {
-            'set': config.get_val('https_priv_key') != '',
-            'gen': config.get_val('https_priv_gen')
+            'set': config.get_val('https_priv_key') != ''
         }
 
 
@@ -181,7 +176,10 @@ class CertFileRes(FileResource):
     def db_serialize(session, tid):
         c = ConfigFactory(session, tid).get_val('https_cert')
         if len(c) == 0:
-            return {'name': 'cert', 'set': False}
+            return {
+                'name': 'cert',
+                'set': False
+            }
 
         x509 = crypto.load_certificate(crypto.FILETYPE_PEM, c)
         expr_date = letsencrypt.convert_asn1_date(x509.get_notAfter())
@@ -226,7 +224,10 @@ class ChainFileRes(FileResource):
     def db_serialize(session, tid):
         c = ConfigFactory(session, tid).get_val('https_chain')
         if len(c) == 0:
-            return {'name': 'chain', 'set': False}
+            return {
+                'name': 'chain',
+                'set': False
+            }
 
         x509 = crypto.load_certificate(crypto.FILETYPE_PEM, c)
         expr_date = letsencrypt.convert_asn1_date(x509.get_notAfter())
@@ -235,7 +236,7 @@ class ChainFileRes(FileResource):
             'name': 'chain',
             'issuer': tls.parse_issuer_name(x509),
             'expiration_date': expr_date,
-            'set': True,
+            'set': True
         }
 
 
@@ -260,7 +261,10 @@ class CsrFileRes(FileResource):
     @staticmethod
     def db_serialize(session, tid):
         csr = ConfigFactory(session, tid).get_val('https_csr')
-        return {'name': 'csr', 'set': len(csr) != 0}
+        return {
+            'name': 'csr',
+            'set': len(csr) != 0
+        }
 
 
 class FileHandler(BaseHandler):
@@ -346,7 +350,6 @@ def disable_https(session, tid):
 def reset_https_config(session, tid):
     config = ConfigFactory(session, tid)
     config.set_val('https_enabled', False)
-    config.set_val('https_priv_gen', False)
     config.set_val('https_priv_key', '')
     config.set_val('https_cert', '')
     config.set_val('https_chain', '')
@@ -363,20 +366,14 @@ class ConfigHandler(BaseHandler):
     def get(self):
         return serialize_https_config_summary(self.request.tid)
 
-    @inlineCallbacks
     def post(self):
-        yield try_to_enable_https(self.request.tid)
+        return try_to_enable_https(self.request.tid)
 
-    @inlineCallbacks
     def put(self):
-        """
-        Disables HTTPS config and shutdown subprocesses.
-        """
-        yield disable_https(self.request.tid)
+        return disable_https(self.request.tid)
 
-    @inlineCallbacks
     def delete(self):
-        yield reset_https_config(self.request.tid)
+        return reset_https_config(self.request.tid)
 
 
 class CSRFileHandler(FileHandler):
@@ -436,31 +433,6 @@ class AcmeAccntKeyRes:
         return db_create_acme_key(session, tid)
 
 
-@transact
-def can_perform_acme_run(session, tid):
-    config = ConfigFactory(session, tid)
-    acme = config.get_val('acme')
-    no_cert_set = config.get_val('https_cert') == ''
-    return acme and no_cert_set
-
-
-@transact
-def is_acme_configured(session, tid):
-    config = ConfigFactory(session, tid)
-    acme = config.get_val('acme')
-    cert_set = config.get_val('https_cert') != ''
-    return acme and cert_set
-
-
-@transact
-def can_perform_acme_renewal(session, tid):
-    priv_fact = ConfigFactory(session, tid)
-    a = is_acme_configured(session, tid)
-    b = priv_fact.get_val('https_enabled')
-    c = priv_fact.get_val('https_cert')
-    return a and b and c
-
-
 def db_acme_cert_request(session, tid):
     priv_fact = ConfigFactory(session, tid)
     hostname = State.tenant_cache[tid].hostname
@@ -496,18 +468,11 @@ class AcmeHandler(BaseHandler):
     @inlineCallbacks
     def post(self):
         accnt_key = yield AcmeAccntKeyRes.create_file(self.request.tid)
-
         tos_url = letsencrypt.get_boulder_tos(Settings.acme_directory_url, accnt_key)
-
         returnValue({'terms_of_service': tos_url})
 
-    @inlineCallbacks
     def put(self):
-        is_ready = yield can_perform_acme_run(self.request.tid)
-        if not is_ready:
-            raise errors.ForbiddenOperation()
-
-        yield tw(db_acme_cert_request, self.request.tid)
+        return tw(db_acme_cert_request, self.request.tid)
 
 
 class AcmeChallengeHandler(BaseHandler):
