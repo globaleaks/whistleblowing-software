@@ -236,7 +236,7 @@ AdminNodeDesc = {
     'can_delete_submission': bool,
     'can_grant_permissions': bool,
     'allow_indexing': bool,
-    'frame_ancestors': domain_list_regexp,
+    'cors_origins': str,
     'disable_privacy_badge': bool,
     'enable_receipt_hint': bool,
     'enable_ricochet_panel': bool,

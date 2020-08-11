@@ -441,6 +441,15 @@ class APIResourceWrapper(Resource):
     def set_headers(self, request):
         request.setHeader(b'Server', b'GlobaLeaks')
 
+        cors = False
+        origin = request.headers.get(b'origin', b'').decode()
+        if origin and \
+          State.tenant_cache[request.tid].cors_origins and \
+          origin in State.tenant_cache[request.tid].cors_origins.split(','):
+            cors = True
+            request.setHeader(b'Access-Control-Allow-Origin', origin)
+            request.setHeader(b'Access-Control-Allow-Headers', b'*')
+
         if request.isSecure():
             if State.tenant_cache[request.tid].https_preload:
                 request.setHeader(b'Strict-Transport-Security',
@@ -462,11 +471,6 @@ class APIResourceWrapper(Resource):
                   "media-src 'self';" \
                   "form-action 'self';" \
                   "block-all-mixed-content;"
-
-            if State.tenant_cache[request.tid].frame_ancestors:
-                csp += "frame-ancestors " + State.tenant_cache[request.tid].frame_ancestors + ";"
-            else:
-                csp += "frame-ancestors 'none';"
 
             request.setHeader(b'Content-Security-Policy', csp)
             request.setHeader(b'X-Frame-Options', b'deny')
