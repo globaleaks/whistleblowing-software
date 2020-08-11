@@ -157,7 +157,7 @@ def db_wizard(session, tid, hostname, request):
                         'can_delete_submission',
                         'can_postpone_expiration',
                         'anonymize_outgoing_connections',
-                        'frame_ancestors',
+                        'cors_origins',
                         'password_change_period',
                         'default_questionnaire']:
             node.set_val(varname, root_tenant_node.get_val(varname))

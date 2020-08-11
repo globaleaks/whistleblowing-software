@@ -190,7 +190,7 @@ def db_refresh_tenant_cache(session, tid_list):
 
         if State.tenant_cache[tid].mode == 'whistleblowing.it':
             State.tenant_cache[tid]['https_preload'] = State.tenant_cache[1]['https_preload']
-            State.tenant_cache[tid]['frame_ancestors'] = State.tenant_cache[1]['frame_ancestors']
+            State.tenant_cache[tid]['cors_origins'] = State.tenant_cache[1]['cors_origins']
 
     for redirect in session.query(models.Redirect).filter(models.Redirect.tid.in_(tid_list)):
         State.tenant_cache[tid]['redirects'][redirect.path1] = redirect.path2
