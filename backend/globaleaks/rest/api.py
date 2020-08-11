@@ -489,8 +489,7 @@ class APIResourceWrapper(Resource):
         request.setHeader(b'X-XSS-Protection', b'1; mode=block')
 
         # Disable caching
-        request.setHeader(b'Cache-control', b'no-cache, no-store, must-revalidate')
-        request.setHeader(b'Pragma', b'no-cache')
+        request.setHeader(b'Cache-control', b'no-store')
         request.setHeader(b'Expires', b'-1')
 
         # Avoid information leakage via referrer
