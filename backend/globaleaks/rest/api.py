@@ -450,7 +450,7 @@ class APIResourceWrapper(Resource):
             request.setHeader(b'Access-Control-Allow-Origin', origin)
             request.setHeader(b'Access-Control-Allow-Headers', b'*')
 
-        if request.isSecure():
+        if request.isSecure() and not cors:
             if State.tenant_cache[request.tid].https_preload:
                 request.setHeader(b'Strict-Transport-Security',
                                   b'max-age=31536000; includeSubDomains; preload')
