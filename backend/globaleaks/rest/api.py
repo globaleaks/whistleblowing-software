@@ -183,7 +183,14 @@ api_spec = [
 class APIResourceWrapper(Resource):
     _registry = None
     isLeaf = True
-    method_map = {'head': 200, 'get': 200, 'post': 201, 'put': 202, 'delete': 200}
+    method_map = {
+      'delete': 200,
+      'head': 200,
+      'get': 200,
+      'options': 200,
+      'post': 201,
+      'put': 202
+    }
 
     def __init__(self):
         Resource.__init__(self)
@@ -205,7 +212,8 @@ class APIResourceWrapper(Resource):
 
             if not hasattr(handler, '_decorated'):
                 handler._decorated = True
-                for m in ['head', 'get', 'put', 'post', 'delete']:
+                for m in ['delete', 'head', 'get', 'put', 'post']:
+                    # options method is intentionally not considered here
                     if hasattr(handler, m):
                         decorators.decorate_method(handler, m)
 
@@ -382,6 +390,9 @@ class APIResourceWrapper(Resource):
 
         if method == 'head':
             method = 'get'
+        elif method == 'options':
+            request.setResponseCode(200)
+            return b''
 
         if method not in self.method_map.keys() or not hasattr(handler, method):
             self.handle_exception(errors.MethodNotImplemented(), request)
@@ -449,6 +460,7 @@ class APIResourceWrapper(Resource):
             cors = True
             request.setHeader(b'Access-Control-Allow-Origin', origin)
             request.setHeader(b'Access-Control-Allow-Headers', b'*')
+            request.setHeader(b'Access-Control-Allow-Methods', b'*')
 
         if request.isSecure() and not cors:
             if State.tenant_cache[request.tid].https_preload:
