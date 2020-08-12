@@ -482,7 +482,8 @@ class APIResourceWrapper(Resource):
                   "font-src 'self' data:;" \
                   "media-src 'self';" \
                   "form-action 'self';" \
-                  "block-all-mixed-content;"
+                  "frame-ancestors 'none';" \
+                  "block-all-mixed-content"
 
             request.setHeader(b'Content-Security-Policy', csp)
             request.setHeader(b'X-Frame-Options', b'deny')
