@@ -58,9 +58,7 @@ var GLClient = angular.module("GLClient", [
       var emailEmpt = "~~~~~~@~~~~~~";
 
       function scrub(s) {
-      var cleaner = s.replace(uuid4RE, uuid4Empt);
-        cleaner = s.replace(emailRE, emailEmpt);
-        return cleaner;
+        return s.replace(uuid4RE, uuid4Empt).replace(emailRE, emailEmpt);
       }
 
       return function(exception, cause) {
@@ -164,7 +162,7 @@ var GLClient = angular.module("GLClient", [
         controller: "SubmissionCtrl",
         header_title: "",
         resolve: {
-          access: noAuth(),
+          access: noAuth()
         }
       }).
       when("/activation", {
@@ -172,7 +170,7 @@ var GLClient = angular.module("GLClient", [
         controller: "SignupActivationCtrl",
         header_title: "Create your whistleblowing platform",
         resolve: {
-          access: allKinds(),
+          access: allKinds()
         }
       }).
       when("/status/:tip_id", {
@@ -180,7 +178,7 @@ var GLClient = angular.module("GLClient", [
         controller: "TipCtrl",
         header_title: "Report",
         resolve: {
-          access: requireAuth("receiver"),
+          access: requireAuth("receiver")
         }
       }).
       when("/actions/forcedpasswordchange", {
@@ -188,7 +186,7 @@ var GLClient = angular.module("GLClient", [
         controller: "ForcedPasswordChangeCtrl",
         header_title: "Change your password",
         resolve: {
-          access: requireAuth("*"),
+          access: requireAuth("*")
         }
       }).
       when("/actions/forcedtwofactor", {
@@ -196,7 +194,7 @@ var GLClient = angular.module("GLClient", [
         controller: "EnableTwoFactorAuthCtrl",
         header_title: "Enable two factor authentication",
         resolve: {
-          access: requireAuth("*"),
+          access: requireAuth("*")
         }
       }).
       when("/recipient/home", {
@@ -204,7 +202,7 @@ var GLClient = angular.module("GLClient", [
         header_title: "Home",
         sidebar: "views/recipient/sidebar.html",
         resolve: {
-          access: requireAuth("receiver"),
+          access: requireAuth("receiver")
         }
       }).
       when("/recipient/preferences", {
@@ -212,7 +210,7 @@ var GLClient = angular.module("GLClient", [
         header_title: "Preferences",
         sidebar: "views/recipient/sidebar.html",
         resolve: {
-          access: requireAuth("receiver"),
+          access: requireAuth("receiver")
         }
       }).
       when("/recipient/content", {
@@ -229,7 +227,7 @@ var GLClient = angular.module("GLClient", [
         controller: "ReceiverTipsCtrl",
         header_title: "Reports",
         resolve: {
-          access: requireAuth("receiver"),
+          access: requireAuth("receiver")
         }
       }).
       when("/admin/home", {
@@ -239,7 +237,7 @@ var GLClient = angular.module("GLClient", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
            access: requireAuth("admin"),
-          resources: fetchResources("acl", ["manifest", "node"]),
+           resources: fetchResources("acl", ["manifest", "node"])
         }
       }).
       when("/admin/preferences", {
@@ -249,7 +247,7 @@ var GLClient = angular.module("GLClient", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["node"]),
+          resources: fetchResources("admin", ["node"])
         }
       }).
       when("/admin/content", {
@@ -259,7 +257,7 @@ var GLClient = angular.module("GLClient", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("acl", ["node"]),
+          resources: fetchResources("acl", ["node"])
         }
       }).
       when("/admin/contexts", {
@@ -269,7 +267,7 @@ var GLClient = angular.module("GLClient", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["contexts", "node", "questionnaires", "users"]),
+          resources: fetchResources("admin", ["contexts", "node", "questionnaires", "users"])
         }
       }).
       when("/admin/questionnaires", {
@@ -279,7 +277,7 @@ var GLClient = angular.module("GLClient", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["fieldtemplates", "field_attrs", "node", "questionnaires", "users"]),
+          resources: fetchResources("admin", ["fieldtemplates", "field_attrs", "node", "questionnaires", "users"])
         }
       }).
       when("/admin/users", {
@@ -289,7 +287,7 @@ var GLClient = angular.module("GLClient", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["node", "users"]),
+          resources: fetchResources("admin", ["node", "users"])
         }
       }).
       when("/admin/notifications", {
@@ -299,7 +297,7 @@ var GLClient = angular.module("GLClient", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["node", "notification"]),
+          resources: fetchResources("admin", ["node", "notification"])
         }
       }).
       when("/admin/network", {
@@ -309,7 +307,7 @@ var GLClient = angular.module("GLClient", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["node", "redirects"]),
+          resources: fetchResources("admin", ["node", "redirects"])
         }
       }).
       when("/admin/advanced", {
@@ -319,7 +317,7 @@ var GLClient = angular.module("GLClient", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["node", "questionnaires"]),
+          resources: fetchResources("admin", ["node", "questionnaires"])
         }
       }).
       when("/admin/auditlog", {
@@ -329,7 +327,7 @@ var GLClient = angular.module("GLClient", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["node", "activities", "anomalies", "jobs", "tips", "users"]),
+          resources: fetchResources("admin", ["node", "activities", "anomalies", "jobs", "tips", "users"])
         }
       }).
       when("/admin/sites", {
@@ -339,7 +337,7 @@ var GLClient = angular.module("GLClient", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["node", "tenants"]),
+          resources: fetchResources("admin", ["node", "tenants"])
         }
       }).
       when("/admin/casemanagement", {
@@ -349,7 +347,7 @@ var GLClient = angular.module("GLClient", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["node", "submission_statuses"]),
+          resources: fetchResources("admin", ["node", "submission_statuses"])
         }
       }).
       when("/custodian/home", {
@@ -357,7 +355,7 @@ var GLClient = angular.module("GLClient", [
         header_title: "Home",
         sidebar: "views/custodian/sidebar.html",
         resolve: {
-          access: requireAuth("custodian"),
+          access: requireAuth("custodian")
         }
       }).
       when("/custodian/preferences", {
@@ -365,7 +363,7 @@ var GLClient = angular.module("GLClient", [
         header_title: "Preferences",
         sidebar: "views/custodian/sidebar.html",
         resolve: {
-          access: requireAuth("custodian"),
+          access: requireAuth("custodian")
         }
       }).
       when("/custodian/content", {
@@ -375,14 +373,14 @@ var GLClient = angular.module("GLClient", [
         sidebar: "views/custodian/sidebar.html",
         resolve: {
           access: requireAuth("custodian"),
-          resources: fetchResources("acl", ["node"]),
+          resources: fetchResources("acl", ["node"])
         }
       }).
       when("/custodian/identityaccessrequests", {
         templateUrl: "views/custodian/identity_access_requests.html",
         header_title: "Access requests",
         resolve: {
-          access: requireAuth("custodian"),
+          access: requireAuth("custodian")
         }
       }).
       when("/login", {
@@ -390,7 +388,7 @@ var GLClient = angular.module("GLClient", [
         controller: "LoginCtrl",
         header_title: "Log in",
         resolve: {
-          access: noAuth(),
+          access: noAuth()
         }
       }).
       when("/admin", {
@@ -398,7 +396,7 @@ var GLClient = angular.module("GLClient", [
         controller: "LoginCtrl",
         header_title: "Log in",
         resolve: {
-          access: noAuth(),
+          access: noAuth()
         }
       }).
       when("/multisitelogin", {
@@ -406,7 +404,7 @@ var GLClient = angular.module("GLClient", [
         controller: "LoginCtrl",
         header_title: "Log in",
         resolve: {
-          access: noAuth(),
+          access: noAuth()
         }
       }).
       when("/login/passwordreset", {
@@ -467,7 +465,7 @@ var GLClient = angular.module("GLClient", [
         controller: "EmailValidationCtrl",
         header_title: "",
         resolve: {
-          access: noAuth(),
+          access: noAuth()
         }
       }).
       when("/email/validation/failure", {
@@ -475,7 +473,7 @@ var GLClient = angular.module("GLClient", [
         controller: "EmailValidationCtrl",
         header_title: "",
         resolve: {
-          access: noAuth(),
+          access: noAuth()
         }
       }).
       when("/", {
@@ -584,7 +582,7 @@ var GLClient = angular.module("GLClient", [
         size: "lg",
 	resolve: {
           arg: null,
-          confirmFun: function() { return function() {$rootScope.setPage("submissionpage"); }; },
+          confirmFun: function() { return function() { $rootScope.setPage("submissionpage"); }; },
           cancelFun: null
 	}
       });
@@ -595,7 +593,6 @@ var GLClient = angular.module("GLClient", [
           !$rootScope.connection.https &&
           !$rootScope.confidentiality_warning_opened &&
           ["localhost", "127.0.0.1"].indexOf($location.host()) === -1) {
-
         $rootScope.confidentiality_warning_opened = true;
         $rootScope.open_confidentiality_modal();
         return true;
