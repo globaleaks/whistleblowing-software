@@ -473,29 +473,28 @@ class APIResourceWrapper(Resource):
             if State.tenant_cache[request.tid].onionservice:
                 request.setHeader(b'Onion-Location', b'http://' + State.tenant_cache[request.tid].onionservice.encode() + request.path)
 
-        if Settings.enable_csp:
-            csp = "default-src 'none';" \
-                  "script-src 'self';" \
-                  "connect-src 'self';" \
-                  "style-src 'self';" \
-                  "img-src 'self' data:;" \
-                  "font-src 'self' data:;" \
-                  "media-src 'self';" \
-                  "form-action 'self';" \
-                  "frame-ancestors 'none';" \
-                  "block-all-mixed-content"
+        if not State.settings.disable_csp:
+            request.setHeader(b'Content-Security-Policy', "default-src 'none';" \
+                                                          "script-src 'self';" \
+                                                          "connect-src 'self';" \
+                                                          "style-src 'self';" \
+                                                          "img-src 'self' data:;" \
+                                                          "font-src 'self' data:;" \
+                                                          "media-src 'self';" \
+                                                          "form-action 'self';" \
+                                                          "frame-ancestors 'none';" \
+                                                          "block-all-mixed-content")
 
-            request.setHeader(b'Content-Security-Policy', csp)
-            request.setHeader(b'X-Frame-Options', b'deny')
+        # Disable features that could be used to deanonymize the user
+        request.setHeader(b'Feature-Policy', b"camera 'none';"
+                                             b"display-capture 'none';"
+                                             b"document-domain 'none';"
+                                             b"fullscreen 'none';"
+                                             b"geolocation 'none';"
+                                             b"microphone 'none';"
+                                             b"speaker 'none';")
 
-            # Disable features that could be used to deanonymize the user
-            request.setHeader(b'Feature-Policy', b"camera 'none';"
-                                                 b"display-capture 'none';"
-                                                 b"document-domain 'none';"
-                                                 b"fullscreen 'none';"
-                                                 b"geolocation 'none';"
-                                                 b"microphone 'none';"
-                                                 b"speaker 'none';")
+        request.setHeader(b'X-Frame-Options', b'deny')
 
         # Reduce possibility for XSS attacks.
         request.setHeader(b'X-Content-Type-Options', b'nosniff')
