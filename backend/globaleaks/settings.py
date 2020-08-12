@@ -86,7 +86,7 @@ class SettingsClass(object, metaclass=Singleton):
 
         self.devel_mode = False
         self.disable_swap = False
-        self.enable_csp = True
+        self.disable_csp = False
 
         # Number of failed login enough to generate an alarm
         self.failed_login_alarm = 5
@@ -156,12 +156,8 @@ class SettingsClass(object, metaclass=Singleton):
 
     def load_cmdline_options(self, options):
         self.nodaemon = options.nodaemon
-
-        if options.disable_swap:
-            self.disable_swap = True
-
-        if options.disable_csp:
-            self.enable_csp = False
+        self.disable_swap = options.disable_swap
+        self.disable_csp = options.disable_csp
 
         self.bind_address = options.ip
 
