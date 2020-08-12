@@ -73,6 +73,7 @@ class TestAPI(TestGL):
             (b'DELETE', 501),
             (b'GET', 200),
             (b'HEAD', 200),
+            (b'OPTIONS', 200),
             (b'POST', 501),
             (b'PUT', 501),
             (b'XXX', 501)
