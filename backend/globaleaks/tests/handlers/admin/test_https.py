@@ -57,18 +57,11 @@ class TestFileHandler(helpers.TestHandler):
 
         response = yield self.get_and_check(n, True)
 
-        was_generated = response['files']['priv_key']['gen']
-        self.assertFalse(was_generated)
-
-        handler = self.request(role='admin')
-        yield self.assertFailure(handler.get(n), errors.MethodNotImplemented)
-
         # Test key generation
         yield handler.put(n)
 
         response = yield self.get_and_check(n, True)
-
-        was_generated = response['files']['priv_key']['gen']
+        was_generated = response['files']['priv_key']['set']
         self.assertTrue(was_generated)
 
         # Try delete actions
