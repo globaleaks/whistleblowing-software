@@ -157,13 +157,6 @@ describe("globaLeaks process", function() {
 
     var t = await element.all(by.css(".TipInfoID")).first().getText();
     expect(t).toEqual(jasmine.any(String));
-
-    if (!browser.gl.utils.verifyFileDownload()) {
-      return;
-    }
-
-    var fullpath = path.resolve(path.join(browser.params.tmpDir, t));
-    await browser.gl.utils.waitForFile(fullpath + ".zip");
   });
 
   it("Recipient should be able to disable and renable email notifications", async function() {

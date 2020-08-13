@@ -47,10 +47,6 @@ browser.getCapabilities().then(function(capabilities) {
     return ((["chrome"].indexOf(browserName) !== -1) && platformName === "linux");
   };
 
-  exports.verifyFileDownload = function() {
-    return browser.params.verifyFileDownload;
-  };
-
   exports.browserTimeout = function() {
     return 30000;
   };
