@@ -42,14 +42,6 @@ class SettingsClass(object, metaclass=Singleton):
         self.pid_path = '/var/run/globaleaks'
         self.working_path = '/var/globaleaks'
 
-        # TODO(bug-fix-italian-style) why is this set to the 2nd entry in the possible
-        # client paths...? please fix.
-        self.client_path = '/usr/share/globaleaks/client'
-        for path in possible_client_paths:
-            if os.path.exists(path):
-                self.client_path = path
-                break
-
         self.authentication_lifetime = 3600
 
         self.accept_submissions = True
@@ -112,8 +104,6 @@ class SettingsClass(object, metaclass=Singleton):
 
         self.enable_api_cache = True
 
-        self.eval_paths()
-
     def eval_paths(self):
         self.pidfile_path = os.path.join(self.pid_path, 'globaleaks.pid')
         self.files_path = os.path.abspath(os.path.join(self.working_path, 'files'))
@@ -130,10 +120,16 @@ class SettingsClass(object, metaclass=Singleton):
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
         self.accesslogfile = os.path.abspath(os.path.join(self.log_path, "access.log"))
 
-        # If we see that there is a custom build of GLClient, use that one.
-        custom_client_path = '/var/globaleaks/client'
-        if os.path.exists(custom_client_path):
-            self.client_path = custom_client_path
+        # Client path detection
+        possible_client_paths.insert(0, os.path.join(self.working_path, 'client'))
+        for path in possible_client_paths:
+            if os.path.isfile(os.path.join(path, 'index.html')):
+                self.client_path = path
+                break
+
+        if not self.client_path:
+            print("Unable to find a directory to load the client from")
+            sys.exit(1)
 
         self.appdata_file = os.path.join(self.client_path, 'data/appdata.json')
         self.questionnaires_path = os.path.join(self.client_path, 'data/questionnaires')
@@ -186,22 +182,6 @@ class SettingsClass(object, metaclass=Singleton):
 
         if options.working_path:
             self.working_path = options.working_path
-
-        if options.client_path:
-            self.client_path = os.path.abspath(os.path.join(self.src_path, options.client_path))
-
-        self.eval_paths()
-
-        if self.nodaemon:
-            print("Going in background; log available at %s" % Settings.logfile)
-
-        # special evaluation of client directory:
-        indexfile = os.path.join(self.client_path, 'index.html')
-        if os.path.isfile(indexfile):
-            self.print_msg("Serving the client from directory: %s" % self.client_path)
-        else:
-            self.print_msg("Unable to find a directory to load the client from")
-            sys.exit(1)
 
     def validate_port(self, inquiry_port):
         if inquiry_port <= 0 or inquiry_port > 65535:
