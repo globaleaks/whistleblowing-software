@@ -12,10 +12,10 @@ class StaticFileHandler(BaseHandler):
     check_roles = 'none'
     handler_exec_time_threshold = 30
 
-    def __init__(self, state, request, path):
+    def __init__(self, state, request):
         BaseHandler.__init__(self, state, request)
 
-        self.root = "%s%s" % (os.path.abspath(path), "/")
+        self.root = "%s%s" % (os.path.abspath(state.settings.client_path), "/")
 
     def get(self, filename):
         if not filename:

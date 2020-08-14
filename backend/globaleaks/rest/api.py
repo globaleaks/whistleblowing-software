@@ -49,7 +49,6 @@ from globaleaks.handlers.admin import tenant as admin_tenant
 from globaleaks.handlers.admin import user as admin_user
 from globaleaks.handlers.admin import submission_statuses as admin_submission_statuses
 from globaleaks.rest import decorators, requests, errors
-from globaleaks.settings import Settings
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
 from globaleaks.utils.json import JSONEncoder
 from globaleaks.utils.utility import datetime_to_ISO8601
@@ -176,7 +175,7 @@ api_spec = [
     (r'^(/admin|/login|/submission)$', redirect.SpecialRedirectHandler),
 
     # This handler attempts to route all non routed get requests
-    (r'/([a-zA-Z0-9_\-\/\.\@]*)', staticfile.StaticFileHandler, {'path': Settings.client_path})
+    (r'/([a-zA-Z0-9_\-\/\.\@]*)', staticfile.StaticFileHandler)
 ]
 
 
@@ -222,7 +221,7 @@ class APIResourceWrapper(Resource):
     def should_redirect_https(self, request):
         if State.tenant_cache[request.tid].https_enabled and \
            not request.isSecure() and \
-           request.client_ip not in Settings.local_hosts and \
+           request.client_ip not in State.settings.local_hosts and \
            b'acme-challenge' not in request.path:
             return True
 
