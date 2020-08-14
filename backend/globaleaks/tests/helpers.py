@@ -75,16 +75,16 @@ GCE_orig_generate_key = GCE.generate_key
 GCE_orig_generate_keypair = GCE.generate_keypair
 
 
-def GCE_mock_generate_key():
+def mock_GCE_generate_key():
     return KEY
 
 
-def GCE_mock_generate_keypair():
+def mock_GCE_generate_keypair():
     return USER_PRV_KEY, USER_PUB_KEY
 
 
-setattr(GCE, 'generate_key', GCE_mock_generate_key)
-setattr(GCE, 'generate_keypair', GCE_mock_generate_keypair)
+setattr(GCE, 'generate_key', mock_GCE_generate_key)
+setattr(GCE, 'generate_keypair', mock_GCE_generate_keypair)
 # END MOCKS NECESSARY FOR DETERMINISTIC ENCRYPTION
 ################################################################################
 
