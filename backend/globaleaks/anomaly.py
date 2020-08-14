@@ -213,8 +213,7 @@ class Alarm(object):
         self.alarm_levels['disk_space'] = disk_space
         self.alarm_levels['disk_message'] = disk_message
 
-        # if not on testing change accept_submission to the new value
-        State.accept_submissions = accept_submissions if not self.state.settings.testing else True
+        State.accept_submissions = accept_submissions
 
         if old_accept_submissions != State.accept_submissions:
             log.info("Switching disk space availability from: %s to %s",

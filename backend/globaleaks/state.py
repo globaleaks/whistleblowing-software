@@ -173,8 +173,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
         self.stats_collection_start_time = datetime_now()
 
     def sendmail(self, tid, to_address, subject, body):
-        if self.settings.testing:
-            # during unit testing do not try to send the mail
+        if self.settings.disable_notifications:
             return defer.succeed(True)
 
         if self.tenant_cache[tid].mode != 'default':
