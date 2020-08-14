@@ -135,8 +135,8 @@ class FakeThreadPool(object):
 
 
 def init_state():
-    Settings.testing = True
     Settings.set_devel_mode()
+    Settings.disable_notifications = True
     Settings.logging = None
     Settings.failed_login_attempts = 0
     Settings.working_path = os.path.abspath('./working_path')

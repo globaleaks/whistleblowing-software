@@ -23,9 +23,6 @@ possible_client_paths = [
 
 class SettingsClass(object, metaclass=Singleton):
     def __init__(self):
-        # This variable is to be able to hook/bypass code when unit-tests are run
-        self.testing = False
-
         # daemonize the process
         self.nodaemon = False
 
@@ -75,6 +72,7 @@ class SettingsClass(object, metaclass=Singleton):
         self.key_bits = 4096
         self.csr_sign_bits = 512
 
+        self.disable_notifications = False
         self.notification_limit = 30
         self.jobs_operation_limit = 20
 
