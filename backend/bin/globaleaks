@@ -115,8 +115,6 @@ if options.kill:
 
 State.init_environment()
 
-# Mimetypes initialization
-
 args = ['-y', Settings.backend_script]
 if Settings.nodaemon:
     args += ['-n']
