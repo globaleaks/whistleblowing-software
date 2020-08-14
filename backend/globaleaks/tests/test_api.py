@@ -89,7 +89,6 @@ class TestAPI(TestGL):
                                         'form-action \'self\';' \
                                         'frame-ancestors \'none\';' \
                                         'block-all-mixed-content'),
-            ('Expires', '-1'),
             ('Referrer-Policy', 'no-referrer'),
             ('Server', 'GlobaLeaks'),
             ('X-Content-Type-Options', 'nosniff'),

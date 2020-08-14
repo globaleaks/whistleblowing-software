@@ -501,7 +501,6 @@ class APIResourceWrapper(Resource):
 
         # Disable caching
         request.setHeader(b'Cache-control', b'no-store')
-        request.setHeader(b'Expires', b'-1')
 
         # Avoid information leakage via referrer
         request.setHeader(b'Referrer-Policy', b'no-referrer')
