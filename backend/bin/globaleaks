@@ -70,10 +70,6 @@ parser.add_option("-k", "--kill", type="int",
     help="signal to send to the current globaleaks process (if exists)",
     dest="kill", default=0)
 
-parser.add_option("-C", "--client-path", type='string',
-    help="specify client path",
-    dest="client_path", default=None)
-
 parser.add_option("-D", "--disable-csp", action='store_true',
     help="disable content security policy ]",
     dest="disable_csp", default=False)
@@ -103,6 +99,7 @@ if options.version:
     sys.exit(0)
 
 Settings.load_cmdline_options(options)
+State.init_environment()
 
 if options.kill:
     try:
@@ -117,6 +114,7 @@ State.init_environment()
 
 args = ['-y', Settings.backend_script]
 if Settings.nodaemon:
+    print("Going in background; log available at %s" % Settings.logfile)
     args += ['-n']
 
 args +=['--pidfile', Settings.pidfile_path]

@@ -83,7 +83,6 @@ class StateClass(ObjectDict, metaclass=Singleton):
         self.settings.eval_paths()
         self.create_directories()
         self.cleaning_dead_files()
-
         self.tokens = TokenList(self, self.settings.tmp_path)
 
     def set_orm_tp(self, orm_tp):
