@@ -519,38 +519,26 @@ class APIResourceWrapper(Resource):
         if request.language:
             request.setHeader(b'Content-Language', request.language)
 
-    def parse_accept_language_header(self, request):
-        if b'accept-language' in request.headers:
-            languages = request.headers[b'accept-language'].decode().split(",")
-            locales = []
-            for language in languages:
-                parts = language.strip().split(";")
-                if len(parts) > 1 and parts[1].startswith("q="):
-                    try:
-                        score = float(parts[1][2:])
-                    except (ValueError, TypeError):
-                        score = 0.0
-                else:
-                    score = 1.0
-                locales.append((parts[0], score))
-
-            if locales:
-                locales.sort(key=lambda pair: pair[1], reverse=True)
-                return [l[0] for l in locales]
-
-        return State.tenant_cache[request.tid].default_language
-
     def detect_language(self, request):
         if request.tid is None:
             return 'en'
 
-        language = 'en'
-        for l in self.parse_accept_language_header(request):
-            if l in State.tenant_cache[request.tid].languages_enabled:
-                language = l
-                break
+        locales = []
+        for language in request.headers.get(b'accept-language', b'').decode().split(","):
+            parts = language.strip().split(";")
+            if len(parts) > 1 and parts[1].startswith("q="):
+                try:
+                    score = float(parts[1][2:])
+                except (ValueError, TypeError):
+                    score = 0
+            else:
+                score = 1.0
 
-        if language not in State.tenant_cache[request.tid].languages_enabled:
-            language = State.tenant_cache[request.tid].default_language
+            if parts[0] in State.tenant_cache[request.tid].languages_enabled:
+                locales.append((parts[0], score))
 
-        return language
+        if locales:
+            locales.sort(key=lambda pair: pair[1], reverse=True)
+            return locales[0][0]
+
+        return State.tenant_cache[request.tid].default_language
