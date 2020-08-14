@@ -544,16 +544,13 @@ class APIResourceWrapper(Resource):
         if request.tid is None:
             return 'en'
 
-        language = request.headers.get(b'gl-language')
-        if language is None:
-            for l in self.parse_accept_language_header(request):
-                if l in State.tenant_cache[request.tid].languages_enabled:
-                    language = l
-                    break
-        else:
-            language = language.decode()
+        language = 'en'
+        for l in self.parse_accept_language_header(request):
+            if l in State.tenant_cache[request.tid].languages_enabled:
+                language = l
+                break
 
-        if language is None or language not in State.tenant_cache[request.tid].languages_enabled:
+        if language not in State.tenant_cache[request.tid].languages_enabled:
             language = State.tenant_cache[request.tid].default_language
 
         return language

@@ -45,7 +45,7 @@ class TestAPI(TestGL):
         self.assertEqual(self.api.detect_language(request), 'en')
 
     def test_get_with_gl_language_header(self):
-        request = forge_request(headers={'GL-Language': 'it'})
+        request = forge_request(headers={'Accept-Language': 'it'})
         self.assertEqual(self.api.detect_language(request), 'it')
 
     def test_get_with_accept_language_header(self):
@@ -53,18 +53,15 @@ class TestAPI(TestGL):
         self.assertEqual(self.api.detect_language(request), 'ar')
 
     def test_get_with_gl_language_header_and_accept_language_header_1(self):
-        request = forge_request(headers={'GL-Language': 'en',
-                                         'Accept-Language': 'en-US,en;q=0.8,it;q=0.6'})
+        request = forge_request(headers={'Accept-Language': 'en-US,en;q=0.8,it;q=0.6'})
         self.assertEqual(self.api.detect_language(request), 'en')
 
     def test_get_with_gl_language_header_and_accept_language_header_2(self):
-        request = forge_request(headers={'GL-Language': 'antani',
-                                         'Accept-Language': 'en-US,en;it;q=0.6'})
+        request = forge_request(headers={'Accept-Language': 'en-US,en;it;q=0.6'})
         self.assertEqual(self.api.detect_language(request), 'en')
 
     def test_get_with_gl_language_header_and_accept_language_header_3(self):
-        request = forge_request(headers={'GL-Language': 'antani',
-                                         'Accept-Language': 'antani1,antani2;q=0.8,antani3;q=0.6'})
+        request = forge_request(headers={'Accept-Language': 'antani1,antani2;q=0.8,antani3;q=0.6'})
         self.assertEqual(self.api.detect_language(request), 'en')
 
     def test_status_codes_assigned(self):
