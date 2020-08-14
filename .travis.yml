@@ -1,7 +1,5 @@
 dist: bionic
 language: python
-python:
-  - "3.7"
 sudo: required
 addons:
   hosts:
@@ -18,7 +16,7 @@ env:
 matrix:
   fast_finish: true
   include:
-    - env: GLTEST='test' DISTRIBUTION='buster' CODACY=true
+    - env: GLTEST='test' CODACY=true
     - env: GLTEST='build_and_install' DISTRIBUTION='buster'
     - env: GLTEST='build_and_install' DISTRIBUTION='focal'
     - env: GLTEST='end2end-0' BROWSER='chrome latest'
