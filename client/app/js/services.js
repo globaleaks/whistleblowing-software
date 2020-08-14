@@ -172,7 +172,7 @@ angular.module("GLServices", ["ngResource"]).
             h["X-Session"] = self.session.id;
           }
 
-          h["GL-Language"] = GLTranslate.state.language;
+          h["Accept-Language"] = GLTranslate.state.language;
 
           return h;
         };
