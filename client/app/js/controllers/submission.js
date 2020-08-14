@@ -245,7 +245,7 @@ GLClient.controller("SubmissionCtrl",
 
   $scope.evaluateDisclaimerModalOpening();
 
-  $scope.submission = new Submission(function(submission) {
+  $scope.submission = new Submission(function() {
     var context = null;
 
     if ($scope.context_id) {
