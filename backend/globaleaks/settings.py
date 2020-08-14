@@ -170,7 +170,7 @@ class SettingsClass(object, metaclass=Singleton):
 
         if (options.user and options.group is None) or \
             (options.group and options.user is None):
-            self.print_msg("Error: missing user or group option")
+            print("Error: missing user or group option")
             sys.exit(1)
 
         if options.user and options.group:
@@ -195,7 +195,7 @@ class SettingsClass(object, metaclass=Singleton):
         self.eval_paths()
 
         if self.nodaemon:
-            self.print_msg("Going in background; log available at %s" % Settings.logfile)
+            print("Going in background; log available at %s" % Settings.logfile)
 
         # special evaluation of client directory:
         indexfile = os.path.join(self.client_path, 'index.html')
@@ -207,14 +207,10 @@ class SettingsClass(object, metaclass=Singleton):
 
     def validate_port(self, inquiry_port):
         if inquiry_port <= 0 or inquiry_port > 65535:
-            self.print_msg("Invalid port number ( > than 65535 can't work! )")
+            print("Invalid port number ( > than 65535 can't work! )")
             return False
 
         return True
-
-    def print_msg(self, *args):
-        if not self.testing:
-            print(*args)
 
 
 # Settings is a singleton class exported once
