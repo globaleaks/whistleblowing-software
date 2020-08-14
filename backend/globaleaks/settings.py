@@ -1,6 +1,4 @@
 # -*- coding: utf-8
-# settings: Define Settings, main class handling GlobaLeeaks runtime settings
-# ******
 import getpass
 import grp
 import os
@@ -140,11 +138,8 @@ class SettingsClass(object, metaclass=Singleton):
 
     def set_devel_mode(self):
         self.devel_mode = True
-
         self.key_bits = 1024
-
         self.acme_directory_url = 'https://acme-staging-v02.api.letsencrypt.org/directory'
-
         self.pid_path = os.path.join(self.src_path, 'workingdir')
         self.working_path = os.path.join(self.src_path, 'workingdir')
 
@@ -152,26 +147,16 @@ class SettingsClass(object, metaclass=Singleton):
         self.nodaemon = options.nodaemon
         self.disable_swap = options.disable_swap
         self.disable_csp = options.disable_csp
-
         self.bind_address = options.ip
-
         self.socks_host = options.socks_host
-
-        if not self.validate_port(options.socks_port):
-            sys.exit(1)
-
         self.socks_port = options.socks_port
 
-        if (options.user and options.group is None) or \
-            (options.group and options.user is None):
-            print("Error: missing user or group option")
-            sys.exit(1)
-
-        if options.user and options.group:
+        if options.user:
             self.user = options.user
-            self.group = options.group
-
             self.uid = pwd.getpwnam(options.user).pw_uid
+
+        if options.group:
+            self.group = options.group
             self.gid = grp.getgrnam(options.group).gr_gid
 
         if options.devel_mode:
@@ -182,13 +167,6 @@ class SettingsClass(object, metaclass=Singleton):
 
         if options.working_path:
             self.working_path = options.working_path
-
-    def validate_port(self, inquiry_port):
-        if inquiry_port <= 0 or inquiry_port > 65535:
-            print("Invalid port number ( > than 65535 can't work! )")
-            return False
-
-        return True
 
 
 # Settings is a singleton class exported once
