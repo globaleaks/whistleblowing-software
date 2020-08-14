@@ -517,11 +517,9 @@ var GLClient = angular.module("GLClient", [
 }]).
   run(["$rootScope", "$http", "$route", "$routeParams", "$window", "$location",  "$filter", "$translate", "$uibModal", "$templateCache", "Authentication", "PublicResource", "Utils", "AdminUtils", "fieldUtilities", "GLTranslate", "Access",
       function($rootScope, $http, $route, $routeParams, $window, $location, $filter, $translate, $uibModal, $templateCache, Authentication, PublicResource, Utils, AdminUtils, fieldUtilities, GLTranslate, Access) {
-    var script;
-
     $rootScope.started = false;
 
-    script = document.createElement("link");
+    var script = document.createElement("link");
     script.setAttribute("rel", "stylesheet");
     script.setAttribute("type", "text/css");
     script.setAttribute("href", "css/styles.css");
