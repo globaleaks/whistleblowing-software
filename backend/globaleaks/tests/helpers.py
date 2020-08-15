@@ -1105,7 +1105,6 @@ class MockDict:
             'header_title_prefix': '',
             'header_title_homepage': '',
             'header_title_submissionpage': '',
-            'context_selector_type': 'list',
             'contexts_clarification': '',
             'show_contexts_in_alphabetical_order': False,
             'threshold_free_disk_megabytes_high': 200,
