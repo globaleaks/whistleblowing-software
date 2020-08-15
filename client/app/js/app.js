@@ -660,20 +660,8 @@ var GLClient = angular.module("GLClient", [
 
         $rootScope.connection = {
           "https": $location.protocol() === "https",
-          "tor": false
+          "tor": getResponseHeaders()["X-Check-Tor"] === "true" || $location.host().match(/\.onion$/)
         };
-
-        // Tor detection and enforcing of usage of HS if users are using Tor
-        if ($location.host().match(/\.onion$/)) {
-          // A better check on this situation would be
-          // to fetch https://check.torproject.org/api/ip
-          $rootScope.connection.tor = true;
-        } else if ($rootScope.connection.https) {
-          var headers = getResponseHeaders();
-          if (headers["X-Check-Tor"] !== undefined && headers["X-Check-Tor"] === "true") {
-            $rootScope.connection.tor = true;
-          }
-        }
 
         Utils.route_check();
 
