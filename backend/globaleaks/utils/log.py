@@ -136,7 +136,7 @@ class Logger(object):
     def setloglevel(self, loglevel):
         self.loglevel = self._verbosity_dict[loglevel]
 
-    def _print_logline(self, prefix, msg, *args, **kwargs):
+    def print(self, prefix, msg, *args, **kwargs):
         msg = (msg % args) if args else msg
 
         msg = log_remove_escapes(msg)
@@ -148,15 +148,15 @@ class Logger(object):
 
     def debug(self, msg, *args, **kwargs):
         if self.loglevel and self.loglevel <= logging.DEBUG:
-            self._print_logline('D', msg, *args, **kwargs)
+            self.print('D', msg, *args, **kwargs)
 
     def info(self, msg, *args, **kwargs):
         if self.loglevel and self.loglevel <= logging.INFO:
-            self._print_logline('I', msg, *args, **kwargs)
+            self.print('I', msg, *args, **kwargs)
 
     def err(self, msg, *args, **kwargs):
         if self.loglevel:
-            self._print_logline('E', msg, *args, **kwargs)
+            self.print('E', msg, *args, **kwargs)
 
     def exception(self, error):
         """
