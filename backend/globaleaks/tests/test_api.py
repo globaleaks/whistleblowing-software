@@ -89,6 +89,13 @@ class TestAPI(TestGL):
                                         'form-action \'self\';' \
                                         'frame-ancestors \'none\';' \
                                         'block-all-mixed-content'),
+            ('Feature-Policy', 'camera \'none\';' \
+                               'display-capture \'none\';' \
+                               'document-domain \'none\';' \
+                               'fullscreen \'none\';' \
+                               'geolocation \'none\';' \
+                               'microphone \'none\';' \
+                               'speaker \'none\''),
             ('Referrer-Policy', 'no-referrer'),
             ('Server', 'GlobaLeaks'),
             ('X-Content-Type-Options', 'nosniff'),
