@@ -92,8 +92,6 @@ GLConfig_v_37 = {
 
         'threshold_free_disk_percentage_high': Int(default=3),
         'threshold_free_disk_percentage_medium': Int(default=5),
-        'threshold_free_disk_percentage_low': Int(default=10),
-
-        'context_selector_type': Unicode(default='list'),
+        'threshold_free_disk_percentage_low': Int(default=10)
     },
 }

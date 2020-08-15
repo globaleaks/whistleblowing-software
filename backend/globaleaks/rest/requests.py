@@ -28,7 +28,6 @@ subdomain_regexp = r'^[0-9a-z]+$'
 subdomain_regexp_or_empty = r'^[0-9a-z]+$|^$'
 https_url_regexp = r'^https://([0-9a-z\-]+)\.(.*)$'
 https_url_regexp_or_empty = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
-context_selector_type_regexp = r'^(list|cards|search)$'
 tip_operation_regexp = r'^(postpone|set)$'
 short_text_regexp = r'^.{1,255}$'
 domain_list_regexp = r'^((([a-z0-9\.]+,)*[a-z0-9\.]+)|)$'
@@ -262,7 +261,6 @@ AdminNodeDesc = {
     'header_title_prefix': str,
     'header_title_homepage': str,
     'header_title_submissionpage': str,
-    'context_selector_type': context_selector_type_regexp,
     'contexts_clarification': str,
     'show_contexts_in_alphabetical_order': bool,
     'threshold_free_disk_megabytes_high': int,

@@ -143,8 +143,6 @@ ConfigDescriptor = {
     'threshold_free_disk_percentage_high': Int(default=3),
     'threshold_free_disk_percentage_low': Int(default=10),
 
-    'context_selector_type': Unicode(default='list'),
-
     'reachable_via_web': Bool(default=True),
     'anonymize_outgoing_connections': Bool(default=False),
 
@@ -233,7 +231,6 @@ ConfigFilters = {
         'threshold_free_disk_megabytes_low',
         'threshold_free_disk_percentage_high',
         'threshold_free_disk_percentage_low',
-        'context_selector_type',
         'reachable_via_web',
         'anonymize_outgoing_connections',
         'creation_date',

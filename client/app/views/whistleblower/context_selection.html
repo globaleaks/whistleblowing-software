@@ -1,8 +1,18 @@
 <div class="contextClarification mb-2 row" data-ng-if="public.node.contexts_clarification">
   <div class="col-md-12">{{public.node.contexts_clarification}}</div>
 </div>
-<div id="SubmissionStepContext" class="row" data-ng-switch="public.node.context_selector_type">
-  <div class="col-md-12" data-ng-switch-when="cards"><div data-ng-include="'views/whistleblower/context_selection/card.html'"></div></div>
-  <div class="col-md-12" data-ng-switch-when="list"><div data-ng-include="'views/whistleblower/context_selection/list.html'"></div></div>
-  <div class="col-md-12" data-ng-switch-when="search"><div data-ng-include="'views/whistleblower/context_selection/search.html'"></div></div>
+<div id="SubmissionStepContext" class="row">
+  <div data-ng-repeat="context in selectable_contexts | orderBy:contextsOrderPredicate" id="context-{{$index}}" class="col-md-3 col-sm-6" data-ng-click="selectContext(context)">
+    <div class="contextCard">
+      <div class="row">
+        <div class="col-md-12 contextName">{{context.name}}</div>
+      </div>
+      <div class="row" data-ng-if="context.picture">
+        <div class="col-md-4"><img class="contextImg" alt="context picture" data-ng-src="{{Utils.imgDataUri(context.picture)}}" /></div>
+      </div>
+      <div class="row" data-ng-if="context.description">
+        <div class="col-md-12 contextListDescription">{{context.description}}</div>
+      </div>
+    </div>
+  </div>
 </div>
