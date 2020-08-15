@@ -697,7 +697,7 @@ var GLClient = angular.module("GLClient", [
         if ($rootScope.public.node.enable_experimental_features) {
           $rootScope.isFieldTriggered = fieldUtilities.isFieldTriggered;
         } else {
-          $rootScope.isFieldTriggered = $rootScope.dumb_function;
+          $rootScope.isFieldTriggered = $rootScope.null_function;
         }
 
         $rootScope.evaluateConfidentialityModalOpening();
