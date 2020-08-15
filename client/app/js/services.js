@@ -68,11 +68,7 @@ angular.module("GLServices", ["ngResource"]).
             self.loginInProgress = false;
 
             if ("redirect" in response.data) {
-              if ($rootScope.embedded && $rootScope.public.node.allows_iframes_inclusion) {
-                $window.parent.postMessage({"cmd": "redirect", "data": response.data["redirect"]}, "*");
-              } else {
-                $window.location.replace(response.data["redirect"]);
-              }
+              $window.location.replace(response.data["redirect"]);
             }
 
             self.set_session(response);
@@ -911,14 +907,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         return decodeURIComponent(atob(str).split("").map(function(c) {
           return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
         }).join(""));
-      },
-
-      iframeCheck: function() {
-        try {
-          return window.self !== window.top;
-        } catch (e) {
-          return true;
-        }
       },
 
       update: function (model, cb, errcb) {
