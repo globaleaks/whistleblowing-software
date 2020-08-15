@@ -1,18 +1,18 @@
 <div class="https-file-res">
-  <div class="card card-default priv-key mb-1">
+  <div class="card card-default key mb-1">
     <div class="card-body clearfix">
       <span data-translate>Private Key</span>
       <span>(PEM)</span>
       <span class="float-right">
-        <span class="file-upload" data-ng-if="!tls_config.files.priv_key.set">
-          <label id="keyUpload" file-input="postFile(file, file_resources.priv_key)" file-input-label="Upload" class="file-upload btn btn-sm btn-primary"></label>
+        <span class="file-upload" data-ng-if="!tls_config.files.key.set">
+          <label id="keyUpload" file-input="postFile(file, file_resources.key)" file-input-label="Upload" class="file-upload btn btn-sm btn-primary"></label>
         </span>
-        <button id="pkGen" class="btn btn-sm btn-success" data-ng-if="!tls_config.files.priv_key.set" data-ng-click="gen_priv_key()">
+        <button id="pkGen" class="btn btn-sm btn-success" data-ng-if="!tls_config.files.key.set" data-ng-click="gen_key()">
             <i class="fas fa-cog"></i>
           <span data-translate>Generate</span>
         </button>
-        <span data-ng-if="tls_config.files.priv_key.set">
-          <button id="deleteKey" class="btn btn-sm btn-danger" data-ng-click="deleteFile(file_resources.priv_key)">
+        <span data-ng-if="tls_config.files.key.set">
+          <button id="deleteKey" class="btn btn-sm btn-danger" data-ng-click="deleteFile(file_resources.key)">
             <i class="fas fa-times"></i>
             <span data-translate>Delete</span>
           </button>
@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div data-ng-if="tls_config.files.priv_key.set && !tls_config.acme" class="card card-default csr mb-1">
+  <div data-ng-if="tls_config.files.key.set && !tls_config.acme" class="card card-default csr mb-1">
     <div class="card-body clearfix">
       <span data-translate>Certificate Signing Request</span>
       <span>(PEM)</span>

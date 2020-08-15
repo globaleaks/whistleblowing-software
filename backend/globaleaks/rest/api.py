@@ -145,7 +145,7 @@ api_spec = [
     (r'/api/admin/config', admin_operation.AdminOperationHandler),
     (r'/api/admin/config/tls', https.ConfigHandler),
     (r'/api/admin/config/tls/files/(csr)', https.CSRFileHandler),
-    (r'/api/admin/config/tls/files/(cert|chain|priv_key)', https.FileHandler),
+    (r'/api/admin/config/tls/files/(cert|chain|key)', https.FileHandler),
     (r'/api/admin/files$', admin_file.FileCollection),
     (r'/api/admin/files/(.+)', admin_file.FileInstance),
     (r'/api/admin/tenants', admin_tenant.TenantCollection),

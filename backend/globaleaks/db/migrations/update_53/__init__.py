@@ -82,3 +82,8 @@ class MigrationScript(MigrationBase):
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
+
+    def epilogue(self):
+        for t in self.session_new.query(self.model_to['Tenant']):
+            m = self.model_to['Config']
+            self.session_new.query(m).filter(m.tid == t.id, m.var_name == 'https_key').update({'var_name': 'https_key'})

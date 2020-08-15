@@ -16,7 +16,7 @@ def get_valid_setup():
     test_data_dir = os.path.join(helpers.DATA_DIR, 'https')
 
     valid_setup_files = {
-        'key': 'priv_key.pem',
+        'key': 'key.pem',
         'cert': 'cert.pem',
         'chain': 'chains/comodo.pem'
     }
@@ -34,7 +34,7 @@ def commit_valid_config(session):
     cfg = get_valid_setup()
 
     priv_fact = ConfigFactory(session, 1)
-    priv_fact.set_val(u'https_priv_key', cfg['key'])
+    priv_fact.set_val(u'https_key', cfg['key'])
     priv_fact.set_val(u'https_cert', cfg['cert'])
     priv_fact.set_val(u'https_chain', cfg['chain'])
     priv_fact.set_val(u'https_enabled', True)
@@ -90,7 +90,7 @@ class TestObjectValidators(TestCase):
         pkv = tls.PrivKeyValidator()
 
         good_keys = [
-            'priv_key.pem'
+            'key.pem'
         ]
 
         for fname in good_keys:
