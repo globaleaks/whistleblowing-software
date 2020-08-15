@@ -891,6 +891,18 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         return true;
       },
 
+      getCardSize: function(num) {
+        if (num < 2) {
+          return "col-md-12";
+        } else if (num === 2) {
+          return "col-md-6";
+        } else if (num === 3) {
+          return "col-md-4";
+        } else {
+          return "col-md-3 col-sm-6";
+        }
+      },
+
       b64DecodeUnicode: function(str) {
         // https://github.com/globaleaks/GlobaLeaks/issues/2079
         // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
@@ -1168,12 +1180,12 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       };
 
       return {
-         getClass: function(field, row_length) {
-            if (field.width !== 0) {
-              return "col-md-" + field.width;
-            }
+        getClass: function(field, row_length) {
+          if (field.width !== 0) {
+            return "col-md-" + field.width;
+          }
 
-            return "col-md-" + ((row_length > 12) ? 1 : (12 / row_length));
+          return "col-md-" + ((row_length > 12) ? 1 : (12 / row_length));
         },
 
         getValidator: function(field) {
