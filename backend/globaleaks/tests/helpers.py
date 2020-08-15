@@ -722,7 +722,7 @@ class TestGLWithPopulatedDB(TestGL):
 
         for i in range(1, self.population_of_tenants):
             name = 'tenant-' + str(i+1)
-            t = yield create_tenant({'mode': 'default', 'label': name, 'active': True, 'subdomain': name})
+            t = yield create_tenant({'mode': 'default', 'name': name, 'active': True, 'subdomain': name})
             yield tw(db_wizard, t['id'], '127.0.0.1', self.dummyWizard)
             yield self.set_hostnames(i+1)
 

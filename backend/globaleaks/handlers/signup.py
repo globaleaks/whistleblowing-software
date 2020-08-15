@@ -78,7 +78,7 @@ def signup(session, request, language):
 
     session.query(models.Tenant).filter(models.Tenant.id.in_(subquery)).delete(synchronize_session=False)
 
-    tenant = db_create_tenant(session, {'label': request['subdomain'],
+    tenant = db_create_tenant(session, {'name': request['subdomain'],
                                         'subdomain': request['subdomain'],
                                         'mode': config.get_val('mode')})
 
