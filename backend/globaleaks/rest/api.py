@@ -275,6 +275,7 @@ class APIResourceWrapper(Resource):
         request.write(response.encode())
 
     def preprocess(self, request):
+        request.cors = False
         request.headers = request.getAllHeaders()
         request.hostname = request.getRequestHostname()
         request.port = request.getHost().port
@@ -451,16 +452,24 @@ class APIResourceWrapper(Resource):
     def set_headers(self, request):
         request.setHeader(b'Server', b'GlobaLeaks')
 
-        cors = False
+        # CORS is enabled on user specified origins in order to make it
+        # possible to embed the whistleblowing platform within federated
+        # sites and try to implement history-free navigation of the platform.
         origin = request.headers.get(b'origin', b'').decode()
         if origin and \
           State.tenant_cache[request.tid].cors_origins and \
           origin in State.tenant_cache[request.tid].cors_origins.split(','):
-            cors = True
+            request.cors = True
             request.setHeader(b'Access-Control-Allow-Origin', origin)
             request.setHeader(b'Access-Control-Allow-Headers', b'*')
             request.setHeader(b'Access-Control-Allow-Methods', b'*')
 
+        # Still with the aim of reducing forensic traces of the access
+        # to the  whistleblowing platform, when it is accessed via a CORS
+        # request from within a federated news site GlobaLeaks does not
+        # include the HSTS header.
+        # This choice is intended to avoid to leave traces in the HSTS
+        # cache of the browwser.
         if request.isSecure() and not cors:
             if State.tenant_cache[request.tid].https_preload:
                 request.setHeader(b'Strict-Transport-Security',
@@ -472,6 +481,10 @@ class APIResourceWrapper(Resource):
             if State.tenant_cache[request.tid].onionservice:
                 request.setHeader(b'Onion-Location', b'http://' + State.tenant_cache[request.tid].onionservice.encode() + request.path)
 
+        # The possibility of disabling the Content-Security-Policy is
+        # necessary for two main reasons:
+        # - In order to evaluate code coverage with istanbuljs/nyc
+        # - In order to be able to manually retest if it is correctly implemented
         if not State.settings.disable_csp:
             request.setHeader(b'Content-Security-Policy', "default-src 'none';" \
                                                           "script-src 'self';" \
@@ -491,7 +504,7 @@ class APIResourceWrapper(Resource):
                                              b"fullscreen 'none';"
                                              b"geolocation 'none';"
                                              b"microphone 'none';"
-                                             b"speaker 'none';")
+                                             b"speaker 'none'")
 
         # Prevent sites to includes the platform within an iframe
         request.setHeader(b'X-Frame-Options', b'deny')
@@ -510,6 +523,8 @@ class APIResourceWrapper(Resource):
         request.setHeader(b'Cache-control', b'no-store')
 
         # Avoid information leakage via referrer
+        # This header instruct the browser to never inject the Referrer header in any
+        # of the requests perfoemred by xhr and via click on user links
         request.setHeader(b'Referrer-Policy', b'no-referrer')
 
         # to avoid Robots spidering, indexing, caching
