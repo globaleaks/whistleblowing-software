@@ -75,6 +75,10 @@ GCE_orig_generate_key = GCE.generate_key
 GCE_orig_generate_keypair = GCE.generate_keypair
 
 
+def mock_nullfunction(*args, **kwargs):
+    return
+
+
 def mock_GCE_generate_key():
     return KEY
 
@@ -97,22 +101,7 @@ for filename in os.listdir(kp):
         PGPKEYS[filename] = pgp_file.read()
 
 
-class UTlog:
-    @staticmethod
-    def mlog(flag):
-        def log(msg, *args, **kwargs):
-            msg = (msg % args) if len(args) else msg
-
-            with open('./test.log', 'a') as f:
-                f.write('[{}] {}\n'.format(flag, msg))
-
-        return log
-
-
-log.err = UTlog.mlog('E')
-log.debug = UTlog.mlog('D')
-log.info = UTlog.mlog('I')
-
+log.print = mock_nullfunction
 
 token.Token.min_ttl = 0
 
