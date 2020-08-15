@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from globaleaks import DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.db.appdata import load_appdata
+from globaleaks.utils.log import log
 
 
 class MigrationBase(object):
@@ -72,7 +73,7 @@ class MigrationBase(object):
         if self.entries_count[model_name] <= 0 or self.skip_model_migration.get(model_name, False):
             return
 
-        print(' * %s [#%d]' % (model_name, self.entries_count[model_name]))
+        log.info(' * %s [#%d]' % (model_name, self.entries_count[model_name]))
 
         specific_migration_function = getattr(self, 'migrate_%s' % model_name, None)
         if specific_migration_function is None:
