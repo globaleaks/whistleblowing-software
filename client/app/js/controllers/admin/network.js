@@ -54,7 +54,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
     var choice = "setup";
 
     if (!tlsConfig.acme) {
-      if (tlsConfig.files.priv_key.set) {
+      if (tlsConfig.files.key.set) {
         t = 1;
       }
 
@@ -65,7 +65,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
       if (tlsConfig.files.chain.set) {
         t = 3;
       }
-    } else if (tlsConfig.files.priv_key.set &&
+    } else if (tlsConfig.files.key.set &&
                tlsConfig.files.cert.set &&
                tlsConfig.files.chain.set) {
       t = 3;
@@ -89,7 +89,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
   };
 
   $scope.file_resources = {
-    priv_key: new cfgFileResource({name: "priv_key"}),
+    key: new cfgFileResource({name: "key"}),
     cert:     new cfgFileResource({name: "cert"}),
     chain:    new cfgFileResource({name: "chain"}),
     csr:      new cfgFileResource({name: "csr"}),
@@ -108,8 +108,8 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
     open: false,
   };
 
-  $scope.gen_priv_key = function() {
-    return $scope.file_resources.priv_key.$update().then($scope.refreshConfig);
+  $scope.gen_key = function() {
+    return $scope.file_resources.key.$update().then($scope.refreshConfig);
   };
 
   $scope.postFile = function(file, resource) {
@@ -131,7 +131,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
 
   $scope.initAcme = function() {
     var aRes = new adminAcmeResource();
-    $scope.file_resources.priv_key.$update()
+    $scope.file_resources.key.$update()
     .then(function() {
         return aRes.$save();
     })

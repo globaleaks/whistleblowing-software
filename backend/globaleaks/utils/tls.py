@@ -179,9 +179,9 @@ def new_tls_client_context():
 
 
 class TLSServerContextFactory(ssl.ContextFactory):
-    def __init__(self, priv_key, certificate, intermediate):
+    def __init__(self, key, certificate, intermediate):
         """
-        :param priv_key: String representation of the private key
+        :param key: String representation of the private key
         :param certificate: String representation of the certificate
         :param intermediate: String representation of the intermediate file
         :param dh: String representation of the DH parameters
@@ -195,8 +195,8 @@ class TLSServerContextFactory(ssl.ContextFactory):
             x509 = load_certificate(FILETYPE_PEM, intermediate)
             self.ctx.add_extra_chain_cert(x509)
 
-        priv_key = load_privatekey(FILETYPE_PEM, priv_key)
-        self.ctx.use_privatekey(priv_key)
+        key = load_privatekey(FILETYPE_PEM, key)
+        self.ctx.use_privatekey(key)
 
         # If SSL_CTX_set_ecdh_auto is available then set it so the ECDH curve
         # will be auto-selected. This function was added in 1.0.2 and made a

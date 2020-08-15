@@ -435,7 +435,7 @@ AdminContextDesc = {
 }
 
 AdminTLSCertFilesConfigDesc = {
-    'priv_key': str,
+    'key': str,
     'chain': str,
     'cert': str,
 }

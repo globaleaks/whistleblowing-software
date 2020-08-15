@@ -30,7 +30,7 @@ def load_tls_dict(session, tid):
 
     return {
         'tid': tid,
-        'ssl_key': node.get_val('https_priv_key'),
+        'ssl_key': node.get_val('https_key'),
         'ssl_cert': node.get_val('https_cert'),
         'ssl_intermediate': node.get_val('https_chain'),
         'https_enabled': node.get_val('https_enabled'),
@@ -109,14 +109,14 @@ class PrivKeyFileRes(FileResource):
         pkv = cls.validator()
         ok, _ = pkv.validate(db_cfg)
         if ok:
-            config.set_val('https_priv_key', raw_key)
+            config.set_val('https_key', raw_key)
 
         return ok
 
     @staticmethod
     @transact
     def save_tls_key(session, tid, prv_key):
-        ConfigFactory(session, tid).set_val('https_priv_key', prv_key)
+        ConfigFactory(session, tid).set_val('https_key', prv_key)
 
     @classmethod
     @inlineCallbacks
@@ -131,14 +131,14 @@ class PrivKeyFileRes(FileResource):
     @transact
     def delete_file(session, tid):
         config = ConfigFactory(session, tid)
-        config.set_val('https_priv_key', '')
+        config.set_val('https_key', '')
 
     @staticmethod
     def db_serialize(session, tid):
         config = ConfigFactory(session, tid)
 
         return {
-            'set': config.get_val('https_priv_key') != ''
+            'set': config.get_val('https_key') != ''
         }
 
 
@@ -271,7 +271,7 @@ class FileHandler(BaseHandler):
     check_roles = 'admin'
 
     mapped_file_resources = {
-        'priv_key': PrivKeyFileRes,
+        'key': PrivKeyFileRes,
         'cert': CertFileRes,
         'chain': ChainFileRes,
         'csr': CsrFileRes,
@@ -350,7 +350,7 @@ def disable_https(session, tid):
 def reset_https_config(session, tid):
     config = ConfigFactory(session, tid)
     config.set_val('https_enabled', False)
-    config.set_val('https_priv_key', '')
+    config.set_val('https_key', '')
     config.set_val('https_cert', '')
     config.set_val('https_chain', '')
     config.set_val('https_csr', '')
@@ -448,11 +448,11 @@ def db_acme_cert_request(session, tid):
                                                    password=None,
                                                    backend=default_backend())
 
-    priv_key = priv_fact.get_val('https_priv_key')
+    key = priv_fact.get_val('https_key')
 
     cert_str, chain_str = letsencrypt.request_new_certificate(hostname,
                                                               accnt_key,
-                                                              priv_key,
+                                                              key,
                                                               State.tenant_state[tid].acme_tmp_chall_dict,
                                                               Settings.acme_directory_url)
 

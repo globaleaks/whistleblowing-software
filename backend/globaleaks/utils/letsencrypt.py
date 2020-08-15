@@ -66,7 +66,7 @@ def get_boulder_tos(directory_url, accnt_key):
     return create_v2_client(directory_url, accnt_key).directory.meta.terms_of_service
 
 
-def request_new_certificate(hostname, accnt_key, priv_key, tmp_chall_dict, directory_url):
+def request_new_certificate(hostname, accnt_key, key, tmp_chall_dict, directory_url):
     """Runs the entire process of ACME registration and certificate request"""
 
     client = create_v2_client(directory_url, accnt_key)
@@ -83,7 +83,7 @@ def request_new_certificate(hostname, accnt_key, priv_key, tmp_chall_dict, direc
         existing_reg = client.query_registration(existing_reg)
         client.update_registration(existing_reg)
 
-    csr = crypto_util.make_csr(priv_key, [hostname], False)
+    csr = crypto_util.make_csr(key, [hostname], False)
     order = client.new_order(csr)
 
     log.info('Created a new order for the issuance of a certificate for %s', hostname)

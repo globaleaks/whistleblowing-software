@@ -39,19 +39,19 @@ class TestFileHandler(helpers.TestHandler):
         returnValue(response)
 
     @inlineCallbacks
-    def test_priv_key_file(self):
-        n = 'priv_key'
+    def test_key_file(self):
+        n = 'key'
 
         yield self.get_and_check(n, False)
 
         # Try to upload an invalid key
         bad_key = 'donk donk donk donk donk donk'
-        handler = self.request({'name': 'priv_key', 'content': bad_key}, role='admin')
+        handler = self.request({'name': 'key', 'content': bad_key}, role='admin')
         yield self.assertFailure(handler.post(n), errors.InputValidationError)
 
         # Upload a valid key
         good_key = self.valid_setup['key']
-        handler = self.request({'name': 'priv_key', 'content': good_key}, role='admin')
+        handler = self.request({'name': 'key', 'content': good_key}, role='admin')
 
         yield handler.post(n)
 
@@ -61,7 +61,7 @@ class TestFileHandler(helpers.TestHandler):
         yield handler.put(n)
 
         response = yield self.get_and_check(n, True)
-        was_generated = response['files']['priv_key']['set']
+        was_generated = response['files']['key']['set']
         self.assertTrue(was_generated)
 
         # Try delete actions

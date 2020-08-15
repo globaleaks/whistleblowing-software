@@ -1,12 +1,12 @@
 describe("admin configure https", function() {
   var files = {
-    priv_key: browser.gl.utils.makeTestFilePath("../../../backend/globaleaks/tests/data/https/valid/priv_key.pem"),
+    key: browser.gl.utils.makeTestFilePath("../../../backend/globaleaks/tests/data/https/valid/key.pem"),
     cert: browser.gl.utils.makeTestFilePath("../../../backend/globaleaks/tests/data/https/valid/cert.pem"),
     chain: browser.gl.utils.makeTestFilePath("../../../backend/globaleaks/tests/data/https/valid/chains/comodo.pem"),
   };
 
   it("should interact with all ui elements", async function() {
-    var pk_panel = element(by.css("div.card.priv-key"));
+    var k_panel = element(by.css("div.card.key"));
     var csr_panel = element(by.css("div.card.csr"));
     var cert_panel = element(by.css("div.card.cert"));
     var chain_panel = element(by.css("div.card.chain"));
@@ -25,7 +25,7 @@ describe("admin configure https", function() {
     await element(by.id("HTTPSManualMode")).click();
 
     // Generate key
-    await pk_panel.element(by.cssContainingText("button", "Generate")).click();
+    await k_panel.element(by.cssContainingText("button", "Generate")).click();
 
     // Generate csr
     await browser.gl.utils.waitUntilClickable(by.id("csrGen"));
@@ -65,7 +65,7 @@ describe("admin configure https", function() {
 
     if (browser.gl.utils.testFileUpload()) {
       // Upload key
-      await element(by.css("div.card.priv-key input[type=\"file\"]")).sendKeys(files.priv_key);
+      await element(by.css("div.card.key input[type=\"file\"]")).sendKeys(files.key);
 
       // Upload cert
       await element(by.css("div.card.cert input[type=\"file\"]")).sendKeys(files.cert);
@@ -88,7 +88,7 @@ describe("admin configure https", function() {
       await browser.gl.utils.waitUntilPresent(modal_action);
       await element(modal_action).click();
 
-      await pk_panel.element(by.id("deleteKey")).click();
+      await k_panel.element(by.id("deleteKey")).click();
       await browser.gl.utils.waitUntilPresent(modal_action);
       await element(modal_action).click();
     }
