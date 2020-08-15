@@ -313,8 +313,8 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def epilogue(self):
-        for t in self.session_new.query(self.model_from['Tenant']):
-            m = self.model_from['Config']
+        for t in self.session_new.query(self.model_to['Tenant']):
+            m = self.model_to['Config']
             a = self.session_new.query(m.value).filter(m.tid == t.id, m.var_name == 'ip_filter_authenticated_enable').one_or_none()
             b = self.session_new.query(m.value).filter(m.tid == t.id, m.var_name == 'ip_filter_authenticated').one_or_none()
 
