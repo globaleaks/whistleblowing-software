@@ -888,7 +888,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         return key;
       },
 
-      dumb_function: function() {
+      null_function: function() {
         return true;
       },
 
