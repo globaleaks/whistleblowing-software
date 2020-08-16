@@ -38,7 +38,6 @@ class Questionnaire_v_37(models.Model):
     key = Column(UnicodeText, default='')
     name = Column(UnicodeText, default='')
     show_steps_navigation_bar = Column(Boolean, default=False)
-    steps_navigation_requires_completion = Column(Boolean, default=False)
     enable_whistleblower_identity = Column(Boolean, default=False)
 
 
