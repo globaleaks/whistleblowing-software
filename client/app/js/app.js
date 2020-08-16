@@ -317,7 +317,7 @@ var GLClient = angular.module("GLClient", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["node", "questionnaires"])
+          resources: fetchResources("admin", ["node", "questionnaires", "users"])
         }
       }).
       when("/admin/auditlog", {
