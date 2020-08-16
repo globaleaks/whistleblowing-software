@@ -161,7 +161,6 @@ class Field_v_38(Model):
     template_id = Column(UnicodeText(36))
     type = Column(UnicodeText, default='inputbox')
     instance = Column(UnicodeText, default='instance')
-    editable = Column(Boolean, default=True)
 
 
 class FieldAttr_v_38(Model):
@@ -350,7 +349,6 @@ class Questionnaire_v_38(Model):
     show_steps_navigation_bar = Column(Boolean, default=False)
     steps_navigation_requires_completion = Column(Boolean, default=False)
     enable_whistleblower_identity = Column(Boolean, default=False)
-    editable = Column(Boolean, default=True)
 
 
 class SecureFileDelete_v_38(Model):

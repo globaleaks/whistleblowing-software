@@ -340,9 +340,6 @@ def delete_field(session, tid, field_id):
     """
     field = models.db_get(session, models.Field, models.Field.tid == tid, models.Field.id == field_id)
 
-    if not field.editable:
-        raise errors.ForbiddenOperation
-
     if field.instance == 'template' and session.query(models.Field).filter(models.Field.tid == tid, models.Field.template_id == field.id).count():
         raise errors.InputValidationError("Cannot remove the field template as it is used by one or more questionnaires")
 

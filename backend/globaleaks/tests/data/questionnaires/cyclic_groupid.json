@@ -1,5 +1,4 @@
 {
-  "editable": true,
   "export_date": "2017-08-28T13:51:13.518706Z",
   "export_version": "0.0.1",
   "id": "b170589b-30d6-4ec1-ae52-18659b2a606b",
@@ -16,7 +15,6 @@
                                    "description": {
                                      "en": ""
                                    },
-                                   "editable": true,
                                    "fieldgroup_id": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
                                    "hint": {
                                      "en": ""
@@ -48,7 +46,6 @@
                      "description": {
                        "en": ""
                      },
-                     "editable": true,
                      "fieldgroup_id": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
                      "hint": {
                        "en": ""
@@ -80,7 +77,6 @@
           "description": {
             "en": ""
           },
-          "editable": true,
           "fieldgroup_id": "",
           "hint": {
             "en": ""

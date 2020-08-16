@@ -69,7 +69,6 @@ class Field_v_51(Model):
     fieldgroup_id = Column(UnicodeText(36))
     type = Column(UnicodeText, default='inputbox', nullable=False)
     instance = Column(UnicodeText, default='instance', nullable=False)
-    editable = Column(Boolean, default=True, nullable=False)
     template_id = Column(UnicodeText(36))
     template_override_id = Column(UnicodeText(36), nullable=True)
 

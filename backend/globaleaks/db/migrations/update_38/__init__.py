@@ -30,7 +30,6 @@ class Field_v_37(models.Model):
     template_id = Column(UnicodeText(36))
     type = Column(UnicodeText, default='inputbox')
     instance = Column(UnicodeText, default='instance')
-    editable = Column(Boolean, default=True)
 
 
 class Questionnaire_v_37(models.Model):
@@ -41,7 +40,6 @@ class Questionnaire_v_37(models.Model):
     show_steps_navigation_bar = Column(Boolean, default=False)
     steps_navigation_requires_completion = Column(Boolean, default=False)
     enable_whistleblower_identity = Column(Boolean, default=False)
-    editable = Column(Boolean, default=True)
 
 
 def replace_templates_variables(value):

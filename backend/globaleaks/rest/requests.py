@@ -345,7 +345,6 @@ AdminFieldAttrDescRaw = get_multilang_request_format(AdminFieldAttrDesc, models.
 AdminFieldDesc = {
     'id': key_regexp_or_empty,
     'instance': field_instance_regexp,
-    'editable': bool,
     'template_id': key_regexp_or_empty,
     'template_override_id': key_regexp_or_empty,
     'step_id': uuid_regexp_or_empty,
