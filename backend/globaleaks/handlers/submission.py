@@ -13,7 +13,6 @@ from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import sha256, Base64Encoder, GCE
-from globaleaks.utils.log import log
 from globaleaks.utils.json import JSONEncoder
 from globaleaks.utils.utility import get_expiration
 

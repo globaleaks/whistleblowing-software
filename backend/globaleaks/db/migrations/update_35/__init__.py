@@ -75,7 +75,6 @@ class MigrationScript(MigrationBase):
                         new_obj.tip_timetolive = -1
                     else:
                         new_obj.tip_timetolive = old_obj.tip_timetolive
-                    continue
 
                 elif key == 'enable_rc_to_wb_files':
                     new_obj.enable_rc_to_wb_files = False

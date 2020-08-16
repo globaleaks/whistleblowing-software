@@ -5,7 +5,6 @@ from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.models.config_desc import ConfigL10NFilters
 from globaleaks.orm import transact, tw
 from globaleaks.rest import requests
-from globaleaks.state import State
 from globaleaks.utils.sets import merge_dicts
 
 

@@ -68,6 +68,6 @@ def SigQUIT(SIG, FRM):
         if reactor.running:
             reactor.stop()
         else:
-            sys.exit(0)
+            sys.exit(1)
     except:
         pass

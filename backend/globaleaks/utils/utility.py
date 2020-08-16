@@ -4,10 +4,7 @@
 #
 # Utility Functions
 import glob
-import io
-import json
 import os
-import platform
 import re
 import uuid
 
@@ -15,8 +12,6 @@ from datetime import datetime, timedelta
 
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred
-
-from globaleaks.utils.log import log
 
 
 def get_distribution_codename():

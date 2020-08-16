@@ -41,14 +41,6 @@ class Context_v_51(Model):
     status = Column(Integer, default=2, nullable=False)
 
 
-class CustomTexts_v_51(Model):
-    __tablename__ = 'customtexts'
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    tid = Column(Integer, default=1, nullable=False)
-    lang = Column(UnicodeText(5), primary_key=True)
-    texts = Column(JSON, default=dict, nullable=False)
-
-
 class Field_v_51(Model):
     __tablename__ = 'field'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
@@ -252,11 +244,11 @@ class MigrationScript(MigrationBase):
 
                 if key == 'status':
                     if value == 0:
-                       value = 'disabled'
+                        value = 'disabled'
                     elif value == 1:
-                       value = 'enabled'
+                        value = 'enabled'
                     else:
-                       value = 'hidden'
+                        value = 'hidden'
 
                 if key == 'tip_timetolive' and value < 0:
                     value = 0
@@ -304,7 +296,8 @@ class MigrationScript(MigrationBase):
             for key in new_obj.__table__.columns._data.keys():
                 if key.startswith('crypto_') or key == 'readonly' or key == 'two_factor_secret':
                     continue
-                elif key == 'public_name':
+
+                if key == 'public_name':
                     if x:
                         new_obj.public_name = platform_name
                     else:

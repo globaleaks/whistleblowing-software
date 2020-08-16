@@ -9,8 +9,6 @@ def parse_csv_ip_ranges_to_ip_networks(ip_str):
     :return: the list of parsed IPs
     """
     try:
-        ip_str = ip_str
-
         ip_network_list = []
 
         for ip_network_str in ip_str.split(','):

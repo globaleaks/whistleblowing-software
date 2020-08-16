@@ -5,7 +5,7 @@ import os
 import random
 
 from globaleaks.rest import errors
-from globaleaks.utils.utility import log
+from globaleaks.utils.log import log
 
 
 def overwrite_and_remove(absolutefpath, iterations_number=1):

@@ -231,7 +231,6 @@ class MigrationScript(MigrationBase):
             for key in new_obj.__table__.columns._data.keys():
                 if key == 'status':
                     new_obj.status = 1 if old_obj.show_context else 2
-                    continue
                 elif hasattr(old_obj, key):
                     setattr(new_obj, key, getattr(old_obj, key))
 
@@ -301,13 +300,11 @@ class MigrationScript(MigrationBase):
                 if key in ['can_delete_submission', 'can_grant_permissions', 'can_postpone_expiration']:
                     if receiver is not None:
                         setattr(new_obj, key, getattr(receiver, key))
-                    continue
                 elif key == 'recipient_configuration':
                     if receiver is not None:
                         setattr(new_obj, key, receiver.configuration)
-                    continue
-
-                setattr(new_obj, key, getattr(old_obj, key))
+                else:
+                    setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
 

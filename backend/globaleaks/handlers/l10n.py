@@ -7,7 +7,6 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
-from globaleaks.rest import errors
 from globaleaks.settings import Settings
 from globaleaks.utils.fs import directory_traversal_check, read_json_file
 

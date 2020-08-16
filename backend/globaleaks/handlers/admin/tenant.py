@@ -12,9 +12,7 @@ from globaleaks.models.config import db_set_config_variable, ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.settings import Settings
-from globaleaks.state import State
 from globaleaks.utils.log import log
-from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 def serialize_tenant(session, tenant):
