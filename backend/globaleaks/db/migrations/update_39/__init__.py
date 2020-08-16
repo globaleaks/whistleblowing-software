@@ -347,7 +347,6 @@ class Questionnaire_v_38(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     name = Column(UnicodeText)
     show_steps_navigation_bar = Column(Boolean, default=False)
-    steps_navigation_requires_completion = Column(Boolean, default=False)
     enable_whistleblower_identity = Column(Boolean, default=False)
 
 
