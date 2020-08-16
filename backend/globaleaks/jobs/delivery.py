@@ -59,7 +59,6 @@ def file_delivery_planning(session):
 
             receiverfiles_maps[ifile.id]['rfiles'].append({
                 'id': receiverfile.id,
-                'status': receiverfile.status,
                 'filename': '',
                 'status': 'reference',
                 'size': ifile.size,

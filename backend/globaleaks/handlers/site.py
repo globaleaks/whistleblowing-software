@@ -4,7 +4,6 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
-from globaleaks.state import State
 
 
 def serialize_site(session, tid):

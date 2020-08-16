@@ -4,7 +4,6 @@ import grp
 import os
 import platform
 import pwd
-import re
 import sys
 
 from globaleaks.orm import make_db_uri, set_db_uri, enable_orm_debug

@@ -4,7 +4,7 @@ import os
 from datetime import timedelta
 
 from globaleaks.rest import errors
-from globaleaks.utils.crypto import sha256, generateRandomKey, GCE
+from globaleaks.utils.crypto import sha256, generateRandomKey
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_now
 

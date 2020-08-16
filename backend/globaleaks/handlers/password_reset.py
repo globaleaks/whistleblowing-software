@@ -8,7 +8,7 @@ from globaleaks import models
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.user import db_get_user, user_serialize_user
+from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.sessions import Sessions

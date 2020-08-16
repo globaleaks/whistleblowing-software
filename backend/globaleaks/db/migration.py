@@ -2,6 +2,7 @@
 import importlib
 import os
 import shutil
+import sys
 from collections import OrderedDict
 
 from sqlalchemy.ext.declarative import declarative_base
@@ -45,7 +46,7 @@ from globaleaks.db.migrations.update_50 import SubmissionStatus_v_49, \
 from globaleaks.db.migrations.update_51 import Field_v_50, InternalFile_v_50, \
     User_v_50
 from globaleaks.db.migrations.update_52 import Context_v_51, \
-    CustomTexts_v_51, Field_v_51, FieldAttr_v_51, FieldOption_v_51, \
+    Field_v_51, FieldAttr_v_51, FieldOption_v_51, \
     InternalTip_v_51, InternalTipData_v_51, \
     Message_v_51, ReceiverFile_v_51, Step_v_51, \
     ReceiverContext_v_51, \
@@ -182,7 +183,7 @@ def perform_migration(version):
 
     if version < FIRST_DATABASE_VERSION_SUPPORTED:
         log.info("Migrations from DB version lower than %d are no longer supported!" % FIRST_DATABASE_VERSION_SUPPORTED)
-        quit()
+        sys.exit(1)
 
     tmpdir = os.path.abspath(os.path.join(Settings.tmp_path, 'tmp'))
     if version < 41:

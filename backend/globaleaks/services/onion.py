@@ -8,7 +8,6 @@ from txtorcon import build_local_tor_connection
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred, inlineCallbacks, returnValue
 
-from globaleaks import models
 from globaleaks.db import refresh_memory_variables
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact

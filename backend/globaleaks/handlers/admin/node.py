@@ -15,7 +15,7 @@ from globaleaks.utils.ip import parse_csv_ip_ranges_to_ip_networks
 from globaleaks.utils.log import log
 
 
-def db_update_enabled_languages(session, tid, languages_enabled, default_language):
+def db_update_enabled_languages(session, tid, languages, default_language):
     """
     Transaction for updating the enabled languages for a tenant
 
@@ -25,16 +25,15 @@ def db_update_enabled_languages(session, tid, languages_enabled, default_languag
     :param default_language: The language to be set as default
     """
     cur_enabled_langs = models.EnabledLanguage.list(session, tid)
-    new_enabled_langs = [y for y in languages_enabled]
 
-    if len(new_enabled_langs) < 1:
+    if len(languages) < 1:
         raise errors.InputValidationError("No languages enabled!")
 
-    if default_language not in new_enabled_langs:
+    if default_language not in languages:
         raise errors.InputValidationError("Invalid lang code for chosen default_language")
 
     appdata = None
-    for lang_code in new_enabled_langs:
+    for lang_code in languages:
         if lang_code not in LANGUAGES_SUPPORTED_CODES:
             raise errors.InputValidationError("Invalid lang code: %s" % lang_code)
 
@@ -44,7 +43,7 @@ def db_update_enabled_languages(session, tid, languages_enabled, default_languag
             log.debug("Adding a new lang %s" % lang_code)
             models.config.add_new_lang(session, tid, lang_code, appdata)
 
-    to_remove = list(set(cur_enabled_langs) - set(new_enabled_langs))
+    to_remove = list(set(cur_enabled_langs) - set(languages))
     if to_remove:
         session.query(models.User).filter(models.User.tid == tid, models.User.language.in_(to_remove)).update({'language': default_language}, synchronize_session=False)
         session.query(models.EnabledLanguage).filter(models.EnabledLanguage.tid == tid, models.EnabledLanguage.name.in_(to_remove)).delete(synchronize_session=False)

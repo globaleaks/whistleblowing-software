@@ -1,6 +1,5 @@
 # -*- coding: utf-8
 from globaleaks import models
-from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.password_reset import db_generate_password_reset_token
 from globaleaks.handlers.user import db_get_user, \
