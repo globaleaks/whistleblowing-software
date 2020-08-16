@@ -52,7 +52,6 @@ class Field_v_44(Model):
     step_id = Column(UnicodeText(36))
     type = Column(UnicodeText, default='inputbox', nullable=False)
     instance = Column(UnicodeText, default='instance', nullable=False)
-    editable = Column(Boolean, default=True, nullable=False)
 
 
 class InternalTip_v_44(Model):

@@ -541,7 +541,6 @@ class _Field(Model):
     fieldgroup_id = Column(UnicodeText(36))
     type = Column(UnicodeText, default='inputbox', nullable=False)
     instance = Column(Enum(EnumFieldInstance), default='instance', nullable=False)
-    editable = Column(Boolean, default=True, nullable=False)
     template_id = Column(UnicodeText(36))
     template_override_id = Column(UnicodeText(36), nullable=True)
 
@@ -557,7 +556,7 @@ class _Field(Model):
     unicode_keys = ['type', 'instance', 'key']
     int_keys = ['x', 'y', 'width', 'triggered_by_score']
     localized_keys = ['label', 'description', 'hint', 'multi_entry_hint', 'placeholder']
-    bool_keys = ['editable', 'multi_entry', 'preview', 'required', 'encrypt']
+    bool_keys = ['multi_entry', 'preview', 'required', 'encrypt']
     optional_references = ['template_id', 'step_id', 'fieldgroup_id', 'template_override_id']
 
 
@@ -872,10 +871,8 @@ class _Questionnaire(Model):
     tid = Column(Integer, default=1, nullable=False)
     name = Column(UnicodeText, default='', nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
-    editable = Column(Boolean, default=True, nullable=False)
 
     unicode_keys = ['key', 'name']
-    bool_keys = ['editable']
     list_keys = ['steps']
 
     @declared_attr

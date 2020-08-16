@@ -175,7 +175,6 @@ def get_dummy_field():
     return {
         'id': '',
         'instance': 'template',
-        'editable': True,
         'template_id': '',
         'template_override_id': '',
         'step_id': '',

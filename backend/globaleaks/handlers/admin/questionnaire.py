@@ -105,7 +105,6 @@ def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
     # We need to change the primary key references and so this can be reimported
     # as a new questionnaire
     q['id'] = uuid4()
-    q['editable'] = True
 
     # Each step has a UUID that needs to be replaced
 
@@ -115,7 +114,6 @@ def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
         field['id'] = new_child_id
 
         # Tweak the fiel in order to make a raw copy
-        field['editable'] = True
         field['instance'] = 'instance'
         field['template_id'] = field['template_override_id'] = ''
 

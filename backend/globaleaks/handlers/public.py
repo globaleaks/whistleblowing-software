@@ -15,8 +15,8 @@ from globaleaks.orm import transact
 from globaleaks.state import State
 from globaleaks.utils.sets import merge_dicts
 
-
-special_fields = ['whistleblower_identity']
+default_questionnaires = ['default']
+default_questions = ['whistleblower_identity']
 
 
 trigger_map = {
@@ -305,7 +305,7 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
         f_to_serialize = session.query(models.Field).filter(models.Field.id == field.template_id).one_or_none()
 
     attrs = {}
-    if field.template_id is None or field.template_id in special_fields:
+    if field.template_id is None or field.template_id in default_questions:
         for attr in data['attrs'].get(field.id, {}):
             attrs[attr.name] = serialize_field_attr(attr, language)
     else:
@@ -318,7 +318,7 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
     ret_dict = {
         'id': field.id,
         'instance': field.instance,
-        'editable': field.editable and field.tid == tid,
+        'editable': field.id not in default_questions and field.tid == tid,
         'type': f_to_serialize.type,
         'template_id': field.template_id if field.template_id else '',
         'template_override_id': field.template_override_id if field.template_override_id else '',
@@ -388,7 +388,7 @@ def serialize_questionnaire(session, tid, questionnaire, language, serialize_tem
 
     ret_dict = {
         'id': questionnaire.id,
-        'editable': questionnaire.editable and questionnaire.tid == tid,
+        'editable': questionnaire.id not in default_questionnaires and questionnaire.tid == tid,
         'name': questionnaire.name,
         'steps': [serialize_step(session, tid, s, language, serialize_templates=serialize_templates) for s in steps]
     }

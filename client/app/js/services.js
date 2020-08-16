@@ -654,7 +654,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       questionnaire.key = "";
       questionnaire.name = "";
       questionnaire.steps = [];
-      questionnaire.editable = true;
       return questionnaire;
     },
 
@@ -676,7 +675,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       field.id = "";
       field.key = "";
       field.instance = "instance";
-      field.editable = true;
       field.descriptor_id = "";
       field.label = "";
       field.type = "inputbox";
@@ -708,7 +706,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       field.id = "";
       field.key = "";
       field.instance = "template";
-      field.editable = true;
       field.label = "";
       field.type = "inputbox";
       field.description = "";
@@ -1457,10 +1454,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
             parsedFields.fields = [];
             parsedFields.fields_by_id = {};
             parsedFields.options_by_id = {};
-          }
-
-          if (!field.editable) {
-            return parsedFields;
           }
 
           if (["checkbox", "selectbox", "multichoice"].indexOf(field.type) > -1) {
