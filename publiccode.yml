@@ -47,8 +47,8 @@ localisation:
     - fr
     - gl
     - he
-    - hr_HR
-    - hu_HU
+    - hr-HR
+    - hu-HU
     - id
     - it
     - ja
@@ -56,15 +56,15 @@ localisation:
     - ka
     - ko
     - mg
-    - nb_NO
+    - nb-NO
     - nl
     - pl
-    - pt_BR
-    - pt_PT
+    - pt-BR
+    - pt-PT
     - ro
     - ru
     - sk
-    - sl_SI
+    - sl-SI
     - sq
     - sv
     - ta
@@ -73,8 +73,8 @@ localisation:
     - uk
     - ur
     - vi
-    - zh_CN
-    - zh_TW
+    - zh-CN
+    - zh-TW
 it:
   conforme:
     gdpr: true
