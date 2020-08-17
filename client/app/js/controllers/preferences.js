@@ -1,4 +1,4 @@
-GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "$uibModal", "$http", "CONSTANTS",
+GL.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "$uibModal", "$http", "CONSTANTS",
   function($scope, $rootScope, $q, $http, $uibModal, CONSTANTS) {
     $scope.tabs = [
       {
@@ -104,7 +104,7 @@ GLClient.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "
     };
 }]);
 
-GLClient.controller("EmailValidationCtrl", [
+GL.controller("EmailValidationCtrl", [
   function() {
 
 }]);

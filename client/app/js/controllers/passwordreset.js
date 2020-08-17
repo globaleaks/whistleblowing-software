@@ -1,4 +1,4 @@
-GLClient.controller("PasswordResetCtrl", ["$scope", "$location", "$http",
+GL.controller("PasswordResetCtrl", ["$scope", "$location", "$http",
   function($scope, $location, $http) {
 
   $scope.request = {

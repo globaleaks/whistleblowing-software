@@ -1,4 +1,4 @@
-GLClient.factory("uploadUtils", ["$filter", function($filter) {
+GL.factory("uploadUtils", ["$filter", function($filter) {
   // Utils shared across file upload controllers and directives
 
   function endsWith(subjectString, searchString) {

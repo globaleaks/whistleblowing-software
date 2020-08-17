@@ -1,8 +1,8 @@
-/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^GLClient|\$locale$" }] */
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^GL|\$locale$" }] */
 
 var _flowFactoryProvider;
 
-var GLClient = angular.module("GLClient", [
+var GL = angular.module("GL", [
     "angular.filter",
     "ngAria",
     "ngRoute",
@@ -689,7 +689,7 @@ var GLClient = angular.module("GLClient", [
 
         $rootScope.started = true;
 
-        var observer = new MutationObserver(GLClient.mockEngine.run);
+        var observer = new MutationObserver(GL.mockEngine.run);
 
         observer.observe(document.querySelector("body"), { attributes: false, childList: true, subtree: true });
       }).$promise;

@@ -1,4 +1,4 @@
-GLClient
+GL
 .controller("ForcedPasswordChangeCtrl", ["$scope", "$location",
   function($scope, $location) {
     $scope.save = function () {

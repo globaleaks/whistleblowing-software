@@ -1,4 +1,4 @@
-GLClient.
+GL.
 controller("ConfirmableModalCtrl",
            ["$scope", "$uibModalInstance", "arg", "confirmFun", "cancelFun", function($scope, $uibModalInstance, arg, confirmFun, cancelFun) {
   $scope.arg = arg;

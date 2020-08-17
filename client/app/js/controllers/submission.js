@@ -1,4 +1,4 @@
-GLClient.controller("SubmissionCtrl",
+GL.controller("SubmissionCtrl",
     ["$scope", "$filter", "$location", "$interval", "$anchorScroll", "tmhDynamicLocale", "Submission", "fieldUtilities",
       function ($scope, $filter, $location, $interval, $anchorScroll, tmhDynamicLocale, Submission, fieldUtilities) {
   $scope.vars = {};

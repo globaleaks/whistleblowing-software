@@ -1,11 +1,11 @@
-GLClient.mockEngine = (function() {
+GL.mockEngine = (function() {
   var mocks = {};
 
   var applyMock = function (mock) {
     var e = document.querySelector(mock.selector);
     if (e) {
-      if (!mock.value || mock.language !== GLClient.language) {
-        mock.language = GLClient.language;
+      if (!mock.value || mock.language !== GL.language) {
+        mock.language = GL.language;
         if (typeof mock.mock === "function") {
           mock.value = mock.mock(e);
         } else {

@@ -1,4 +1,4 @@
-GLClient.
+GL.
 controller("AdminMailCtrl", ["$scope", "AdminNotificationResource",
   function($scope, AdminNotificationResource) {
 

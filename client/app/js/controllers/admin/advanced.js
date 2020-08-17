@@ -1,4 +1,4 @@
-GLClient.
+GL.
 controller("AdminAdvancedCtrl", ["$scope", function($scope) {
   $scope.tabs = [
     {

@@ -1,4 +1,4 @@
-GLClient.controller("TipCtrl",
+GL.controller("TipCtrl",
   ["$scope", "$location", "$filter", "$route", "$routeParams", "$uibModal", "$http", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadRFile", "WBTipDownloadFile", "fieldUtilities",
   function($scope, $location, $filter, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities) {
     $scope.fieldUtilities = fieldUtilities;

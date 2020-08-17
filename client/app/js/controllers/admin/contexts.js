@@ -1,4 +1,4 @@
-GLClient.controller("AdminContextsCtrl",
+GL.controller("AdminContextsCtrl",
   ["$scope", "AdminContextResource",
   function($scope, AdminContextResource) {
   $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.resources.users);
