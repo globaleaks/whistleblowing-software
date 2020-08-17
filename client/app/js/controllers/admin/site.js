@@ -1,4 +1,4 @@
-GLClient.
+GL.
 controller("AdminCtrl",
     ["$scope", "$route", "$filter", "AdminNodeResource", "UpdateService", "CONSTANTS",
     function($scope, $route, $filter, AdminNodeResource, UpdateService, CONSTANTS) {

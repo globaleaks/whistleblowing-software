@@ -1,4 +1,4 @@
-GLClient.controller("AdminStepAddCtrl", ["$scope",
+GL.controller("AdminStepAddCtrl", ["$scope",
   function($scope) {
     $scope.new_step = {};
 

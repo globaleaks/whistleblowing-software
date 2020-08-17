@@ -1,4 +1,4 @@
-GLClient.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
+GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
   function($scope, AdminTenantResource) {
     $scope.showAddUser = false;
     $scope.toggleAddUser = function() {

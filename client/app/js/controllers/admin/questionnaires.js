@@ -1,4 +1,4 @@
-GLClient.controller("AdminQuestionnaireCtrl",
+GL.controller("AdminQuestionnaireCtrl",
   ["$scope", "$http", "$route", "AdminQuestionnaireResource",
   function($scope, $http, $route, AdminQuestionnaireResource){
   $scope.tabs = [

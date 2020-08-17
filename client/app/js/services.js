@@ -1677,7 +1677,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     state.language = bestLanguage(facts);
     if (state.language) {
       updateTranslationServices(state.language);
-      GLClient.language = state.language;
+      GL.language = state.language;
     }
   }
 

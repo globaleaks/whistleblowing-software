@@ -1,4 +1,4 @@
-GLClient.controller("LoginCtrl", ["$scope", "$location", "$filter", "Sites",
+GL.controller("LoginCtrl", ["$scope", "$location", "$filter", "Sites",
 function($scope, $location, $filter, Sites) {
   $scope.loginData = {
     loginUsername: "",

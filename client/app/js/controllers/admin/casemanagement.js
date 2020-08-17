@@ -1,4 +1,4 @@
-GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
+GL.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
   $scope.tabs = [
     {
       title:"Report statuses",

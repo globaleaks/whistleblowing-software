@@ -1,4 +1,4 @@
-angular.module("GLClient")
+angular.module("GL")
 .controller("TenantCtrl", ["$scope", function($scope) {
   $scope.tabs = [
     {

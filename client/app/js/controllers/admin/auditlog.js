@@ -1,4 +1,4 @@
-GLClient.
+GL.
 controller("AdminAuditLogCtrl", ["$scope", function($scope){
   $scope.tabs = [
     {

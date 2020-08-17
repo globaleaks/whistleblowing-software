@@ -1,4 +1,4 @@
-GLClient.controller("EnableTwoFactorAuthCtrl", ["$scope", "$http", "$location",
+GL.controller("EnableTwoFactorAuthCtrl", ["$scope", "$http", "$location",
   function($scope, $http, $location) {
     $scope.vars = {};
 

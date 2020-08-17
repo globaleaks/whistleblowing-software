@@ -1,4 +1,4 @@
-GLClient.controller("AdminFieldEditorCtrl", ["$scope",
+GL.controller("AdminFieldEditorCtrl", ["$scope",
   function($scope) {
     $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.resources.users);
 
