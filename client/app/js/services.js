@@ -263,9 +263,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           var r = $rootScope.receivers_by_id[receiver];
           self.receivers.push(r);
 
-          if (r.recipient_configuration === "default") {
-            self.selected_receivers[r.id] = self.context.select_all_receivers;
-          } else if (r.recipient_configuration === "forcefully_selected") {
+          if ((r.recipient_configuration === "default" && self.context.select_all_receivers) ||
+              (r.recipient_configuration === "forcefully_selected")) {
             self.selected_receivers[r.id] = true;
           }
         });
