@@ -176,58 +176,56 @@ angular.module("GLServices", ["ngResource"]).
 
       return new Session();
 }]).
-factory("Access", ["$q", "Authentication", function ($q, Authentication) {
-  var Access = {
-    OK: 200,
+  factory("Access", ["$q", "Authentication", function ($q, Authentication) {
+    var Access = {
+      OK: 200,
 
-    FORBIDDEN: 403,
+      FORBIDDEN: 403,
 
-    isUnauth: function () {
-      if (typeof Authentication.session === "undefined") {
-        return $q.resolve(Access.OK);
-      } else {
-        return $q.reject(Access.FORBIDDEN);
+      isUnauth: function () {
+        if (typeof Authentication.session === "undefined") {
+          return $q.resolve(Access.OK);
+        } else {
+          return $q.reject(Access.FORBIDDEN);
+        }
+      },
+
+      isAuthenticated: function (role) {
+        // acl is a special auth level meaning that access is conditional on
+        // backend flags and the only way to know for sure if a given op will
+        // work is to test
+
+        if (Authentication.session && (role === "*" || role === "acl" || Authentication.session.role === role)) {
+          return $q.resolve(Access.OK);
+        } else {
+          return $q.reject(Access.FORBIDDEN);
+        }
       }
-    },
+    };
 
-    isAuthenticated: function (role) {
-      // acl is a special auth level meaning that access is conditional on
-      // backend flags and the only way to know for sure if a given op will
-      // work is to test
-
-      if (Authentication.session && (role === "*" || role === "acl" || Authentication.session.role === role)) {
-        return $q.resolve(Access.OK);
-      } else {
-        return $q.reject(Access.FORBIDDEN);
-      }
-    }
-  };
-
-  return Access;
-}]).
+    return Access;
+  }]).
   factory("PublicResource", ["GLResource", function(GLResource) {
     return new GLResource("api/public");
-}]).
+  }]).
   factory("TokenResource", ["GLResource", function(GLResource) {
     return new GLResource("api/token/:id", {id: "@id"});
-}]).
+  }]).
   factory("SubmissionResource", ["GLResource", function(GLResource) {
     return new GLResource("api/submission/:id", {id: "@token_id"});
-}]).
+  }]).
   factory("FieldAttrs", ["$resource", function($resource) {
     return $resource("data/field_attrs.json");
-}]).
+  }]).
   factory("DATA_COUNTRIES_ITALY_REGIONS", ["$resource", function($resource) {
     return $resource("data/countries/it/regioni.json");
-}]).
+  }]).
   factory("DATA_COUNTRIES_ITALY_PROVINCES", ["$resource", function($resource) {
     return $resource("data/countries/it/province.json");
-}]).
+  }]).
   factory("DATA_COUNTRIES_ITALY_CITIES", ["$resource", function($resource) {
     return $resource("data/countries/it/comuni.json");
-}]).
-  // In here we have all the functions that have to do with performing
-  // submission requests to the backend
+  }]).
   factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope", "glbcToken", "Authentication", "SubmissionResource",
       function($q, GLResource, $filter, $location, $rootScope, glbcToken, Authentication, SubmissionResource) {
 
@@ -332,19 +330,19 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
       fn(self);
     };
-}]).
+  }]).
   factory("RTipResource", ["GLResource", function(GLResource) {
     return new GLResource("api/rtip/:id", {id: "@id"});
-}]).
+  }]).
   factory("RTipCommentResource", ["GLResource", function(GLResource) {
     return new GLResource("api/rtip/:id/comments", {id: "@id"});
-}]).
+  }]).
   factory("RTipMessageResource", ["GLResource", function(GLResource) {
     return new GLResource("api/rtip/:id/messages", {id: "@id"});
-}]).
+  }]).
   factory("RTipIdentityAccessRequestResource", ["GLResource", function(GLResource) {
     return new GLResource("api/rtip/:id/identityaccessrequests", {id: "@id"});
-}]).
+  }]).
   factory("RTipDownloadRFile", ["$http", "FileSaver", function($http, FileSaver) {
     return function(file) {
       return $http({
@@ -355,10 +353,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         FileSaver.saveAs(response.data, file.status === "encrypted" ? file.name + ".pgp" : file.name);
       });
     };
-}]).
+  }]).
   factory("RTipWBFileResource", ["GLResource", function(GLResource) {
     return new GLResource("api/rtip/wbfile/:id", {id: "@id"});
-}]).
+  }]).
   factory("RTipDownloadWBFile", ["$http", "FileSaver", function($http, FileSaver) {
     return function(file) {
       return $http({
@@ -369,7 +367,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         FileSaver.saveAs(response.data, file.name);
       });
     };
-}]).
+  }]).
   factory("RTipExport", ["$http", "$filter", "FileSaver", function($http, $filter, FileSaver) {
     return function(tip) {
       $http({
@@ -381,7 +379,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         FileSaver.saveAs(response.data, filename);
       });
     };
-}]).
+  }]).
   factory("RTip", ["$rootScope", "$http", "$filter", "RTipResource", "RTipMessageResource", "RTipCommentResource",
           function($rootScope, $http, $filter, RTipResource, RTipMessageResource, RTipCommentResource) {
     return function(tipID, fn) {
@@ -443,16 +441,16 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         }
       });
     };
-}]).
+  }]).
   factory("WBTipResource", ["GLResource", function(GLResource) {
     return new GLResource("api/wbtip");
-}]).
+  }]).
   factory("WBTipCommentResource", ["GLResource", function(GLResource) {
     return new GLResource("api/wbtip/comments");
-}]).
+  }]).
   factory("WBTipMessageResource", ["GLResource", function(GLResource) {
     return new GLResource("api/wbtip/messages/:id", {id: "@id"});
-}]).
+  }]).
   factory("WBTipDownloadFile", ["$http", "FileSaver", function($http, FileSaver) {
     return function(file) {
       return $http({
@@ -463,7 +461,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         FileSaver.saveAs(response.data, file.name);
       });
     };
-}]).
+  }]).
   factory("WBTip", ["$rootScope", "$filter", "WBTipResource", "WBTipCommentResource", "WBTipMessageResource",
       function($rootScope, $filter, WBTipResource, WBTipCommentResource, WBTipMessageResource) {
     return function(fn) {
@@ -514,61 +512,61 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         }
       });
     };
-}]).
+  }]).
   factory("ReceiverTips", ["GLResource", function(GLResource) {
     return new GLResource("api/rtips");
-}]).
+  }]).
   factory("IdentityAccessRequests", ["GLResource", function(GLResource) {
     return new GLResource("api/custodian/identityaccessrequests");
-}]).
+  }]).
   factory("ManifestResource", ["$resource", function($resource) {
     return new $resource("api/admin/manifest");
-}]).
+  }]).
   factory("AdminContextResource", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/contexts/:id", {id: "@id"});
-}]).
+  }]).
   factory("AdminQuestionnaireResource", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/questionnaires/:id", {id: "@id"});
-}]).
+  }]).
   factory("AdminStepResource", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/steps/:id", {id: "@id"});
-}]).
+  }]).
   factory("AdminFieldResource", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/fields/:id",{id: "@id"});
-}]).
+  }]).
   factory("AdminFieldTemplateResource", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/fieldtemplates/:id", {id: "@id"});
-}]).
+  }]).
   factory("AdminRedirectResource", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/redirects/:id", {id: "@id"});
-}]).
+  }]).
   factory("AdminTenantResource", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/tenants/:id", {id: "@id"});
-}]).
+  }]).
   factory("AdminUserResource", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/users/:id", {id: "@id"});
-}]).
+  }]).
   factory("AdminSubmissionStatusResource", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/submission_statuses/:id", {id: "@id"});
-}]).
-factory("AdminSubmissionSubStatusResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/admin/submission_statuses/:submissionstatus_id/substatuses/:id", {id: "@id", submissionstatus_id: "@submissionstatus_id"});
-}]).
-factory("Sites", ["GLResource", function(GLResource) {
+  }]).
+  factory("AdminSubmissionSubStatusResource", ["GLResource", function(GLResource) {
+    return new GLResource("api/admin/submission_statuses/:submissionstatus_id/substatuses/:id", {id: "@id", submissionstatus_id: "@submissionstatus_id"});
+  }]).
+  factory("Sites", ["GLResource", function(GLResource) {
     return new GLResource("api/sites");
-}]).
-service("UpdateService", [function() {
-  return {
-    new_data: function(installed_version, latest_version) {
-      this.latest_version = latest_version;
-      if (this.latest_version !== installed_version) {
-        this.update_needed = true;
-      }
-    },
-    update_needed: false,
-    latest_version: null,
-  };
-}]).
+  }]).
+  service("UpdateService", [function() {
+    return {
+      new_data: function(installed_version, latest_version) {
+        this.latest_version = latest_version;
+        if (this.latest_version !== installed_version) {
+          this.update_needed = true;
+        }
+      },
+      update_needed: false,
+      latest_version: null
+    };
+  }]).
   factory("AdminNodeResource", ["GLResource", "UpdateService", function(GLResource, UpdateService) {
     return new GLResource("api/admin/node", {}, {
       get: {
@@ -577,223 +575,223 @@ service("UpdateService", [function() {
           response: function(response) {
             UpdateService.new_data(response.resource.version, response.resource.latest_version);
             return response.resource;
-          },
-        },
-      },
-  });
-}]).
+          }
+        }
+      }
+    });
+  }]).
   factory("AdminNotificationResource", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/notification");
-}]).
+  }]).
   factory("AdminL10NResource", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/l10n/:lang", {lang: "@lang"});
-}]).
-factory("AdminTLSConfigResource", ["GLResource", function(GLResource) {
+  }]).
+  factory("AdminTLSConfigResource", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/config/tls", {}, {
-        "enable":  { method: "POST", params: {}},
-        "disable": { method: "PUT", params: {}},
+      "enable":  { method: "POST", params: {}},
+      "disable": { method: "PUT", params: {}},
     });
-}]).
-factory("AdminTLSCertFileResource", ["GLResource", function(GLResource) {
+  }]).
+  factory("AdminTLSCertFileResource", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/config/tls/files");
-}]).
-factory("AdminAcmeResource", ["GLResource", function(GLResource) {
+  }]).
+  factory("AdminAcmeResource", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/config/acme/run");
-}]).
-factory("AdminTLSCfgFileResource", ["GLResource", function(GLResource) {
+  }]).
+  factory("AdminTLSCfgFileResource", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/config/tls/files/:name", {name: "@name"});
-}]).
-factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNotificationResource", "AdminRedirectResource", "AdminTenantResource",
-    function(AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNotificationResource, AdminRedirectResource, AdminTenantResource) {
-  return {
-    new_context: function() {
-      var context = new AdminContextResource();
-      context.id = "";
-      context.status = "hidden";
-      context.name = "";
-      context.description = "";
-      context.languages = "",
-      context.order = 0;
-      context.tip_timetolive = 90;
-      context.show_recipients_details = false;
-      context.allow_recipients_selection = false;
-      context.show_receivers_in_alphabetical_order = true;
-      context.show_steps_navigation_interface = true;
-      context.select_all_receivers = true;
-      context.maximum_selectable_receivers = 0;
-      context.enable_comments = true;
-      context.enable_messages = false;
-      context.enable_two_way_comments = true;
-      context.enable_two_way_messages = true;
-      context.enable_attachments = true;
-      context.enable_rc_to_wb_files = false;
-      context.recipients_clarification = "";
-      context.status_page_message = "";
-      context.questionnaire_id = "";
-      context.additional_questionnaire_id = "";
-      context.score_threshold_medium = 0;
-      context.score_threshold_high = 0;
-      context.score_receipt_text_custom = false;
-      context.score_receipt_text_l = "";
-      context.score_receipt_text_m = "";
-      context.score_receipt_text_h = "";
-      context.score_threshold_receipt = 0;
-      context.receivers = [];
-      return context;
-    },
+  }]).
+  factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNotificationResource", "AdminRedirectResource", "AdminTenantResource",
+      function(AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNotificationResource, AdminRedirectResource, AdminTenantResource) {
+    return {
+      new_context: function() {
+        var context = new AdminContextResource();
+        context.id = "";
+        context.status = "hidden";
+        context.name = "";
+        context.description = "";
+        context.languages = "",
+        context.order = 0;
+        context.tip_timetolive = 90;
+        context.show_recipients_details = false;
+        context.allow_recipients_selection = false;
+        context.show_receivers_in_alphabetical_order = true;  
+        context.show_steps_navigation_interface = true;
+        context.select_all_receivers = true;
+        context.maximum_selectable_receivers = 0;
+        context.enable_comments = true;
+        context.enable_messages = false;
+        context.enable_two_way_comments = true;
+        context.enable_two_way_messages = true;
+        context.enable_attachments = true;
+        context.enable_rc_to_wb_files = false;
+        context.recipients_clarification = "";
+        context.status_page_message = "";
+        context.questionnaire_id = "";
+        context.additional_questionnaire_id = "";
+        context.score_threshold_medium = 0;
+        context.score_threshold_high = 0;
+        context.score_receipt_text_custom = false;
+        context.score_receipt_text_l = "";
+        context.score_receipt_text_m = "";
+        context.score_receipt_text_h = "";
+        context.score_threshold_receipt = 0;
+        context.receivers = [];
+        return context;
+      },
 
-    new_questionnaire: function() {
-      var questionnaire = new AdminQuestionnaireResource();
-      questionnaire.id = "";
-      questionnaire.key = "";
-      questionnaire.name = "";
-      questionnaire.steps = [];
-      return questionnaire;
-    },
+      new_questionnaire: function() {
+        var questionnaire = new AdminQuestionnaireResource();
+        questionnaire.id = "";
+        questionnaire.key = "";
+        questionnaire.name = "";
+        questionnaire.steps = [];
+        return questionnaire;
+      },
 
-    new_step: function(questionnaire_id) {
-      var step = new AdminStepResource();
-      step.id = "";
-      step.label = "";
-      step.description = "";
-      step.order = 0;
-      step.children = [];
-      step.questionnaire_id = questionnaire_id;
-      step.triggered_by_score = 0;
-      step.triggered_by_options = [];
-      return step;
-    },
+      new_step: function(questionnaire_id) {
+        var step = new AdminStepResource();
+        step.id = "";
+        step.label = "";
+        step.description = "";
+        step.order = 0;
+        step.children = [];
+        step.questionnaire_id = questionnaire_id;
+        step.triggered_by_score = 0;
+        step.triggered_by_options = [];
+        return step;
+      },
 
-    new_field: function(step_id, fieldgroup_id) {
-      var field = new AdminFieldResource();
-      field.id = "";
-      field.key = "";
-      field.instance = "instance";
-      field.descriptor_id = "";
-      field.label = "";
-      field.type = "inputbox";
-      field.description = "";
-      field.hint = "";
-      field.placeholder = "";
-      field.multi_entry = false;
-      field.multi_entry_hint = "";
-      field.required = false;
-      field.preview = false;
-      field.encrypt = true;
-      field.attrs = {};
-      field.options = [];
-      field.x = 0;
-      field.y = 0;
-      field.width = 0;
-      field.children = [];
-      field.fieldgroup_id = fieldgroup_id;
-      field.step_id = step_id;
-      field.template_id = "";
-      field.template_override_id = "";
-      field.triggered_by_score = 0;
-      field.triggered_by_options = [];
-      return field;
-    },
+      new_field: function(step_id, fieldgroup_id) {
+        var field = new AdminFieldResource();
+        field.id = "";
+        field.key = "";
+        field.instance = "instance";
+        field.descriptor_id = "";
+        field.label = "";
+        field.type = "inputbox";
+        field.description = "";
+        field.hint = "";
+        field.placeholder = "";
+        field.multi_entry = false;
+        field.multi_entry_hint = "";
+        field.required = false;
+        field.preview = false;
+        field.encrypt = true;
+        field.attrs = {};
+        field.options = [];
+        field.x = 0;
+        field.y = 0;
+        field.width = 0;
+        field.children = [];
+        field.fieldgroup_id = fieldgroup_id;
+        field.step_id = step_id;
+        field.template_id = "";
+        field.template_override_id = "";
+        field.triggered_by_score = 0;
+        field.triggered_by_options = [];
+        return field;
+      },
 
-    new_field_template: function (fieldgroup_id) {
-      var field = new AdminFieldTemplateResource();
-      field.id = "";
-      field.key = "";
-      field.instance = "template";
-      field.label = "";
-      field.type = "inputbox";
-      field.description = "";
-      field.placeholder = "";
-      field.hint = "";
-      field.multi_entry = false;
-      field.multi_entry_hint = "";
-      field.required = false;
-      field.preview = false;
-      field.encrypt = false;
-      field.attrs = {};
-      field.options = [];
-      field.x = 0;
-      field.y = 0;
-      field.width = 0;
-      field.children = [];
-      field.fieldgroup_id = fieldgroup_id;
-      field.step_id = "";
-      field.template_id = "";
-      field.template_override_id = "";
-      field.triggered_by_score = 0;
-      field.triggered_by_options = [];
-      return field;
-    },
+      new_field_template: function (fieldgroup_id) {
+        var field = new AdminFieldTemplateResource();
+        field.id = "";
+        field.key = "";
+        field.instance = "template";
+        field.label = "";
+        field.type = "inputbox";
+        field.description = "";
+        field.placeholder = "";
+        field.hint = "";
+        field.multi_entry = false;
+        field.multi_entry_hint = "";
+        field.required = false;
+        field.preview = false;
+        field.encrypt = false;
+        field.attrs = {};
+        field.options = [];
+        field.x = 0;
+        field.y = 0;
+        field.width = 0;
+        field.children = [];
+        field.fieldgroup_id = fieldgroup_id;
+        field.step_id = "";
+        field.template_id = "";
+        field.template_override_id = "";
+        field.triggered_by_score = 0;
+        field.triggered_by_options = [];
+        return field;
+      },
 
-    new_user: function () {
-      var user = new AdminUserResource();
-      user.id = "";
-      user.username = "";
-      user.role = "receiver";
-      user.state = "enable";
-      user.password = "";
-      user.old_password = "";
-      user.password_change_needed = true;
-      user.state = "enabled";
-      user.name = "";
-      user.description = "";
-      user.public_name = "";
-      user.mail_address = "";
-      user.pgp_key_fingerprint = "";
-      user.pgp_key_remove = false;
-      user.pgp_key_public = "";
-      user.pgp_key_expiration = "";
-      user.language = "en";
-      user.notification = true;
-      user.recipient_configuration = "default";
-      user.can_edit_general_settings = false;
-      user.can_delete_submission = false;
-      user.can_postpone_expiration = false;
-      user.can_grant_permissions = false;
-      user.send_account_activation_link = true;
-      return user;
-    },
+      new_user: function () {
+        var user = new AdminUserResource();
+        user.id = "";
+        user.username = "";
+        user.role = "receiver";
+        user.state = "enable";
+        user.password = "";
+        user.old_password = "";
+        user.password_change_needed = true;
+        user.state = "enabled";
+        user.name = "";
+        user.description = "";
+        user.public_name = "";
+        user.mail_address = "";
+        user.pgp_key_fingerprint = "";
+        user.pgp_key_remove = false;
+        user.pgp_key_public = "";
+        user.pgp_key_expiration = "";
+        user.language = "en";
+        user.notification = true;
+        user.recipient_configuration = "default";
+        user.can_edit_general_settings = false;
+        user.can_delete_submission = false;
+        user.can_postpone_expiration = false;
+        user.can_grant_permissions = false;
+        user.send_account_activation_link = true;
+        return user;
+      },
 
-    new_redirect: function () {
-      return new AdminRedirectResource();
-    },
+      new_redirect: function () {
+        return new AdminRedirectResource();
+      },
 
-    new_tenant: function() {
-      var tenant = new AdminTenantResource();
-      tenant.active = true;
-      tenant.name = "";
-      tenant.mode = "default";
-      tenant.subdomain = "";
-      return tenant;
-    }
-  };
-}]).
+      new_tenant: function() {
+        var tenant = new AdminTenantResource();
+        tenant.active = true;
+        tenant.name = "";
+        tenant.mode = "default";
+        tenant.subdomain = "";
+        return tenant;
+      }
+    };
+  }]).
   factory("UserPreferences", ["GLResource", function(GLResource) {
     return new GLResource("api/preferences", {}, {"update": {method: "PUT"}});
-}]).
+  }]).
   factory("ActivitiesCollection", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/auditlog/activities");
-}]).
+  }]).
   factory("AnomaliesCollection", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/auditlog/anomalies");
-}]).
+  }]).
   factory("TipsCollection", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/auditlog/tips");
-}]).
+  }]).
   factory("StatsCollection", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/auditlog/stats/:week_delta", {week_delta: "@week_delta"}, {});
-}]).
+  }]).
   factory("JobsAuditLog", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/auditlog/jobs");
-}]).
+  }]).
   factory("Files", ["GLResource", function(GLResource) {
     return new GLResource("api/admin/files");
-}]).
+  }]).
   factory("DefaultL10NResource", ["GLResource", function(GLResource) {
     return new GLResource("/data/l10n/:lang.json", {lang: "@lang"});
-}]).
+  }]).
   factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModal", "$window", "Authentication",
-  function($rootScope, $http, $q, $location, $filter, $uibModal, $window, Authentication) {
+      function($rootScope, $http, $q, $location, $filter, $uibModal, $window, Authentication) {
     return {
       array_to_map: function(array) {
         var ret = {};
@@ -1142,7 +1140,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         }
       }
     };
-}]).
+  }]).
   factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $http, CONSTANTS) {
       var flatten_field = function(id_map, field) {
         if (field.children.length === 0) {
@@ -1502,7 +1500,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           return topojson.feature(data, data.objects[Object.keys(data.objects)[0]]);
         }
       };
-}]).
+  }]).
   constant("CONSTANTS", {
      /* The email regexp restricts email addresses to less than 400 chars. See #1215 */
      "email_regexp": /^([\w+-.]){0,100}[\w]{1,100}@([\w+-.]){0,100}[\w]{1,100}$/,
@@ -1512,190 +1510,190 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
      "https_regexp": /^https:\/\/([a-z0-9-]+)\.(.*)$|^$/,
      "uuid_regexp": /^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$/,
      "domain_list_regexp": /^((([a-z0-9.]+,)*[a-z0-9.]+)|)$/
-}).
+  }).
   factory("GLTranslate", ["$translate", "$location","tmhDynamicLocale",
-  function($translate, $location, tmhDynamicLocale) {
+      function($translate, $location, tmhDynamicLocale) {
 
-  // facts are (un)defined in order of importance to the factory.
-  var facts = {
-    userChoice: null,
-    urlParam: null,
-    userPreference: null,
-    browserSniff: null,
-    nodeDefault: null
-  };
+    // facts are (un)defined in order of importance to the factory.
+    var facts = {
+      userChoice: null,
+      urlParam: null,
+      userPreference: null,
+      browserSniff: null,
+      nodeDefault: null
+    };
 
-  // This is a value set by the public.node.
-  var enabledLanguages = [];
+    // This is a value set by the public.node.
+    var enabledLanguages = [];
 
-  // Country codes with multiple languages or an '_XX' extension
-  var problemLangs = {
-    "zh": ["CN", "TW"],
-    "pt": ["BR", "PT"],
-    "nb": "NO",
-    "hr": "HR",
-    "hu": "HU",
-  };
+    // Country codes with multiple languages or an '_XX' extension
+    var problemLangs = {
+      "zh": ["CN", "TW"],
+      "pt": ["BR", "PT"],
+      "nb": "NO",
+      "hr": "HR",
+      "hu": "HU",
+    };
 
-  var state = {
-    language: null
-  };
+    var state = {
+      language: null
+    };
 
-  initializeStartLanguage();
+    initializeStartLanguage();
 
-  function initializeStartLanguage() {
-    var queryLang = $location.search().lang;
-    if (angular.isDefined(queryLang) && validLang(queryLang)) {
-      facts.urlParam = queryLang;
-    }
-
-    var s = normalizeLang(window.navigator.language);
-    if (validLang(s)) {
-      facts.browserSniff = s;
-    }
-
-    determineLanguage();
-  }
-
-  // normalizeLang attempts to map input language strings to the transifex format.
-  function normalizeLang(s) {
-    if (typeof s !== "string") {
-      return "";
-    }
-
-    if (s.length !== 2 && s.length !== 5) {
-      // The string is not in a format we are expecting so just return it.
-      return s;
-    }
-
-    // The string is probably a valid ISO 639-1 language.
-    var iso_lang = s.slice(0,2).toLowerCase();
-
-    if (problemLangs.hasOwnProperty(iso_lang)) {
-
-      var t = problemLangs[iso_lang];
-      if (t instanceof Array) {
-        // We do not know which extension to use, so just use the most popular one.
-        return iso_lang + "_" + t[0];
+    function initializeStartLanguage() {
+      var queryLang = $location.search().lang;
+      if (angular.isDefined(queryLang) && validLang(queryLang)) {
+        facts.urlParam = queryLang;
       }
-      return iso_lang + "_" + t;
 
-    } else {
-      return iso_lang;
-    }
-  }
+      var s = normalizeLang(window.navigator.language);
+      if (validLang(s)) {
+        facts.browserSniff = s;
+      }
 
-  function validLang(inp) {
-    if (typeof inp !== "string") {
-      return false;
-    }
-
-    // Check if lang is in the list of enabled langs if we have enabledLangs
-    if (enabledLanguages.length) {
-      return enabledLanguages.indexOf(inp) > -1;
-    }
-
-    return true;
-  }
-
-  // TODO updateTranslationServices should return a promise.
-  function updateTranslationServices(lang) {
-    // Set text direction for languages that read from right to left.
-    var useRightToLeft = ["ar", "dv", "fa", "he", "ur"].indexOf(lang) !== -1;
-    document.getElementsByTagName("html")[0].setAttribute("dir", useRightToLeft ? "rtl" : "ltr");
-
-    // Update the $translate module to use the new language.
-    $translate.use(lang).then(function() {
-      // TODO reload the new translations returned by public.node.
-    });
-
-    // For languages that are of the form 'zh_TW', handle the mapping of 'lang'
-    // to angular-i18n locale name as best we can. For example: 'zh_TW' becomes 'zh-tw'
-    var t = lang;
-    if (lang.length === 5) {
-      // Angular-i18n's format is typically 'zh-tw'
-      t = lang.replace("_", "-").toLowerCase();
-    }
-
-    tmhDynamicLocale.set(t);
-  }
-
-
-  // setLang either uses the current state.language or the passed value
-  // to set the language for the entire application.
-  function setLang(choice) {
-    if (angular.isUndefined(choice)) {
-      choice = state.language;
-    }
-
-    if (validLang(choice)) {
-      facts.userChoice = choice;
       determineLanguage();
     }
-  }
 
-  function isSelectable(language) {
-    if (language === null) {
+    // normalizeLang attempts to map input language strings to the transifex format.
+    function normalizeLang(s) {
+      if (typeof s !== "string") {
+        return "";
+      }
+
+      if (s.length !== 2 && s.length !== 5) {
+        // The string is not in a format we are expecting so just return it.
+        return s;
+      }
+
+      // The string is probably a valid ISO 639-1 language.
+      var iso_lang = s.slice(0,2).toLowerCase();
+
+      if (problemLangs.hasOwnProperty(iso_lang)) {
+
+        var t = problemLangs[iso_lang];
+        if (t instanceof Array) {
+          // We do not know which extension to use, so just use the most popular one.
+          return iso_lang + "_" + t[0];
+        }
+        return iso_lang + "_" + t;
+
+      } else {
+        return iso_lang;
+      }
+    }
+
+    function validLang(inp) {
+      if (typeof inp !== "string") {
         return false;
+      }
+
+      // Check if lang is in the list of enabled langs if we have enabledLangs
+      if (enabledLanguages.length) {
+        return enabledLanguages.indexOf(inp) > -1;
+      }
+
+      return true;
     }
 
-    if (enabledLanguages.length) {
+    // TODO updateTranslationServices should return a promise.
+    function updateTranslationServices(lang) {
+      // Set text direction for languages that read from right to left.
+      var useRightToLeft = ["ar", "dv", "fa", "he", "ur"].indexOf(lang) !== -1;
+      document.getElementsByTagName("html")[0].setAttribute("dir", useRightToLeft ? "rtl" : "ltr");
+  
+      // Update the $translate module to use the new language.
+      $translate.use(lang).then(function() {
+        // TODO reload the new translations returned by public.node.
+      });
+
+      // For languages that are of the form 'zh_TW', handle the mapping of 'lang'
+      // to angular-i18n locale name as best we can. For example: 'zh_TW' becomes 'zh-tw'
+      var t = lang;
+      if (lang.length === 5) {
+        // Angular-i18n's format is typically 'zh-tw'
+        t = lang.replace("_", "-").toLowerCase();
+      }
+
+      tmhDynamicLocale.set(t);
+    }
+
+
+    // setLang either uses the current state.language or the passed value
+    // to set the language for the entire application.
+    function setLang(choice) {
+      if (angular.isUndefined(choice)) {
+        choice = state.language;
+      }
+
+      if (validLang(choice)) {
+        facts.userChoice = choice;
+        determineLanguage();
+      }
+    }
+
+    function isSelectable(language) {
+      if (language === null) {
+          return false;
+      }
+
+      if (enabledLanguages.length) {
         return enabledLanguages.indexOf(language) !== -1;
+      }
+
+      return true;
     }
 
-    return true;
-  }
+    // bestLanguage returns the best language for the application to use given
+    // all of the state the GLTranslate service has collected in facts. It picks
+    // the language in the order that the properties of the 'facts' object is
+    // defined.
+    // { object -> string }
+    function bestLanguage(facts) {
+      var lang = null;
+      if (isSelectable(facts.userChoice)) {
+        lang = facts.userChoice;
+      } else if (isSelectable(facts.urlParam)) {
+        lang = facts.urlParam;
+      } else if (isSelectable(facts.userPreference)) {
+        lang = facts.userPreference;
+      } else if (isSelectable(facts.browserSniff)) {
+        lang = facts.browserSniff;
+      } else if (isSelectable(facts.nodeDefault)) {
+        lang = facts.nodeDefault;
+      }
 
-  // bestLanguage returns the best language for the application to use given
-  // all of the state the GLTranslate service has collected in facts. It picks
-  // the language in the order that the properties of the 'facts' object is
-  // defined.
-  // { object -> string }
-  function bestLanguage(facts) {
-    var lang = null;
-    if (isSelectable(facts.userChoice)) {
-      lang = facts.userChoice;
-    } else if (isSelectable(facts.urlParam)) {
-      lang = facts.urlParam;
-    } else if (isSelectable(facts.userPreference)) {
-      lang = facts.userPreference;
-    } else if (isSelectable(facts.browserSniff)) {
-      lang = facts.browserSniff;
-    } else if (isSelectable(facts.nodeDefault)) {
-      lang = facts.nodeDefault;
+      return lang;
     }
 
-    return lang;
-  }
-
-  // determineLanguage contains all of the scope creeping ugliness of the
-  // factory. It finds the best language to use, changes the language
-  // pointer, and notifies the dependent services of the change.
-  function determineLanguage() {
-    state.language = bestLanguage(facts);
-    if (state.language) {
-      updateTranslationServices(state.language);
-      GL.language = state.language;
+    // determineLanguage contains all of the scope creeping ugliness of the
+    // factory. It finds the best language to use, changes the language
+    // pointer, and notifies the dependent services of the change.
+    function determineLanguage() {
+      state.language = bestLanguage(facts);
+      if (state.language) {
+        updateTranslationServices(state.language);
+        GL.language = state.language;
+      }
     }
-  }
 
-  return {
-    // Use state object to preserve the reference to language across scopes.
-    state: state,
+    return {
+      // Use state object to preserve the reference to language across scopes.
+      state: state,
 
-    setLang: setLang,
+      setLang: setLang,
 
-    addNodeFacts: function(defaultLang, languages_enabled) {
-      facts.nodeDefault = defaultLang;
+      addNodeFacts: function(defaultLang, languages_enabled) {
+        facts.nodeDefault = defaultLang;
 
-      enabledLanguages = languages_enabled;
+        enabledLanguages = languages_enabled;
 
-      determineLanguage();
-    },
+        determineLanguage();
+      },
 
-    addUserPreference: function(lang) {
-      facts.userPreference = lang;
-      determineLanguage();
-    },
-  };
-}]);
+      addUserPreference: function(lang) {
+        facts.userPreference = lang;
+        determineLanguage();
+      },
+    };
+  }]);
