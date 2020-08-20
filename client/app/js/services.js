@@ -66,7 +66,7 @@ angular.module("GLServices", ["ngResource"]).
           };
         };
 
-        self.login = function(tid, username, password, authcode, authtoken, cb) {
+        self.login = function(tid, username, password, authcode, authtoken) {
           if (typeof authcode === "undefined") {
             authcode = "";
           }
@@ -95,10 +95,6 @@ angular.module("GLServices", ["ngResource"]).
             }
 
             $location.search("");
-
-            if (cb){
-              return cb();
-            }
           };
 
           return glbcToken.getToken().then(function(token) {
