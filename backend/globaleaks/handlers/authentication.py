@@ -198,6 +198,8 @@ class TokenAuthHandler(BaseHandler):
 
         request = self.validate_message(self.request.content.read(), requests.TokenAuthDesc)
 
+        self.state.tokens.use(request['token'])
+
         session = Sessions.get(request['authtoken'])
         if session is None or session.tid != self.request.tid:
             Settings.failed_login_attempts += 1

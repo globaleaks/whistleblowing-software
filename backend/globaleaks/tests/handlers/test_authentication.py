@@ -359,7 +359,8 @@ class TestTokenAuth(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_successful_login(self):
         handler = self.request({
-            'authtoken': self.token
+            'authtoken': self.token,
+            'token': self.getSolvedToken().id
         })
         response = yield handler.post()
         self.assertTrue('session_id' in response)

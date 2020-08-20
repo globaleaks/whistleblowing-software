@@ -101,13 +101,13 @@ angular.module("GLServices", ["ngResource"]).
             }
           };
 
-          if (authtoken) {
-            return $http.post("api/tokenauth", {"authtoken": authtoken}).
-              then(success_fn, function() {
-                self.loginInProgress = false;
-              });
-          } else {
-            return glbcToken.getToken().then(function(token) {
+          return glbcToken.getToken().then(function(token) {
+            if (authtoken) {
+              return $http.post("api/tokenauth", {"authtoken": authtoken, "token": token.id}}).
+                then(success_fn, function() {
+                  self.loginInProgress = false;
+                });
+            } else {
               if (username === "whistleblower") {
                 password = password.replace(/\D/g,"");
                 return $http.post("api/receiptauth", {"receipt": password, "token": token.id}).
@@ -120,8 +120,8 @@ angular.module("GLServices", ["ngResource"]).
                   self.loginInProgress = false;
                 });
               }
-            });
-          }
+            }
+          });
         };
 
         self.receipt = "";
