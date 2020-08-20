@@ -115,11 +115,6 @@ email_validation_keywords = [
     '{NewEmailAddress}'
 ]
 
-password_reset_validation_keywords = [
-    '{RecipientName}',
-    '{Username}'
-]
-
 identity_access_request_keywords = [
     '{RecipientName}',
     '{TipNum}',
@@ -210,6 +205,9 @@ class UserKeyword(Keyword):
     def RecipientName(self):
         return self.data['user']['name']
 
+    def Username(self):
+        return '%s' % self.data['user']['username']
+
 
 class UserNodeKeyword(NodeKeyword, UserKeyword):
     keyword_list = NodeKeyword.keyword_list + UserKeyword.keyword_list
@@ -229,7 +227,6 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
     data_keys = UserNodeKeyword.data_keys + ContextKeyword.data_keys + ['tip']
 
     def dump_field_entry(self, output, field, entry, indent_n):
-
         field_type = field['type']
 
         if field_type == 'checkbox':
@@ -649,14 +646,18 @@ class EmailValidationKeyword(UserNodeKeyword):
         return '/api/email/validation/' + self.data['validation_token']
 
 
-class PasswordResetValidation(UserNodeKeyword):
-    keyword_list = NodeKeyword.keyword_list + password_reset_validation_keywords
+class AccountActivationKeyword(UserNodeKeyword):
+    keyword_list = UserNodeKeyword.keyword_list
+
+    def UrlPath(self):
+        return '/#/activation' + '?token=' + self.data['reset_token']
+
+
+class PasswordResetValidationKeyword(UserNodeKeyword):
+    keyword_list = UserNodeKeyword.keyword_list
 
     data_keys = NodeKeyword.data_keys + \
         ['reset_token']
-
-    def Username(self):
-        return '%s' % self.data['user']['username']
 
     def UrlPath(self):
         if self.data['user']['encryption']:
@@ -665,11 +666,6 @@ class PasswordResetValidation(UserNodeKeyword):
             url = '/#/password/reset'
 
         return url + '?token=' + self.data['reset_token']
-
-
-class AccountActivation(PasswordResetValidation):
-    def UrlPath(self):
-        return '/#/activation' + '?token=' + self.data['reset_token']
 
 
 class IdentityAccessRequestKeyword(UserNodeKeyword):
@@ -711,8 +707,8 @@ supported_template_types = {
     'signup': PlatformSignupKeyword,
     'activation': PlatformSignupKeyword,
     'email_validation': EmailValidationKeyword,
-    'password_reset_validation': PasswordResetValidation,
-    'account_activation': PasswordResetValidation,
+    'account_activation': AccountActivationKeyword,
+    'password_reset_validation': UserNodeKeyword,
     'user_credentials': UserCredentials,
     'identity_access_request': IdentityAccessRequestKeyword,
     '2fa': TwoFactorAuthKeyword
