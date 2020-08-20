@@ -1268,18 +1268,6 @@ class _WhistleblowerFile(Model):
         return (ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
-class _WhistleblowerIdentity(Model):
-    __tablename__ = 'whistlebloweridentity'
-
-    id = Column(UnicodeText(36), primary_key=True)
-    creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    identity = Column(UnicodeText, default='', nullable=False)
-
-    @declared_attr
-    def __table_args__(self):
-        return (ForeignKeyConstraint(['id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
-
-
 class _WhistleblowerTip(Model):
     __tablename__ = 'whistleblowertip'
 
