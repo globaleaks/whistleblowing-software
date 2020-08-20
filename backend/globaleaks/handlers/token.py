@@ -18,8 +18,6 @@ class TokenCreate(BaseHandler):
         submission will require some actions to be performed before the
         submission can be concluded (e.g. hashcash and captchas).
         """
-        request = self.validate_message(self.request.content.read(), requests.TokenReqDesc)
-
         return self.state.tokens.new(self.request.tid).serialize()
 
 
