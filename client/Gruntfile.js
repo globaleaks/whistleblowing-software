@@ -1002,10 +1002,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask("includeExternalFiles", function() {
-    fs.writeFileSync("tmp/LICENSE", grunt.file.read("../LICENSE"));
-  });
-
   // Run this task to push translations on transifex
   grunt.registerTask("pushTranslationsSource", ["confirm", "☠☠☠pushTranslationsSource☠☠☠"]);
 
@@ -1014,7 +1010,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask("build",
-    ["clean", "copy:sources", "copy:build", "includeExternalFiles", "ngtemplates", "postcss", "useminPrepare", "concat", "usemin", "string-replace", "copy:package", "cssmin", "uglify", "compress"]);
+    ["clean", "copy:sources", "copy:build", "ngtemplates", "postcss", "useminPrepare", "concat", "usemin", "string-replace", "copy:package", "cssmin", "uglify", "compress"]);
 
   grunt.registerTask("instrument-client", [
     "clean",
