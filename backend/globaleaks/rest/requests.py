@@ -120,8 +120,6 @@ TokenAuthDesc = {
     'authtoken': str
 }
 
-TokenReqDesc = {}
-
 TokenAnswerDesc = {
     'answer': int
 }
