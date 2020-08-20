@@ -117,7 +117,6 @@ ReceiptAuthDesc = {
 }
 
 TokenAuthDesc = {
-    'tid': int,
     'authtoken': str
 }
 
