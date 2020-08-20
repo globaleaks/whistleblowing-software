@@ -103,7 +103,7 @@ angular.module("GLServices", ["ngResource"]).
 
           return glbcToken.getToken().then(function(token) {
             if (authtoken) {
-              return $http.post("api/tokenauth", {"authtoken": authtoken, "token": token.id}}).
+              return $http.post("api/tokenauth", {"authtoken": authtoken, "token": token.id}).
                 then(success_fn, function() {
                   self.loginInProgress = false;
                 });
@@ -149,7 +149,7 @@ angular.module("GLServices", ["ngResource"]).
             };
           }
 
-          $http.delete("api/session").then(cb, cb);
+          return $http.delete("api/session").then(cb, cb);
         };
 
         self.loginRedirect = function(isLogout) {
