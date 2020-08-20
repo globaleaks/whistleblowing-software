@@ -1155,6 +1155,7 @@ class _User(Model):
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     tid = Column(Integer, default=1, nullable=False)
+    rid = Column(UnicodeText(36), nullable=True)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     username = Column(UnicodeText, default='', nullable=False)
     salt = Column(UnicodeText(24), default='', nullable=False)
@@ -1218,9 +1219,12 @@ class _User(Model):
 
     date_keys = ['creation_date', 'last_login', 'password_change_date', 'pgp_key_expiration']
 
+    optional_references = ['rid']
+
     @declared_attr
     def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['rid'], ['user.id']),
                 UniqueConstraint('tid', 'username'),
                 CheckConstraint(self.role.in_(EnumUserRole.keys())),
                 CheckConstraint(self.state.in_(EnumUserState.keys())),
