@@ -117,7 +117,8 @@ ReceiptAuthDesc = {
 }
 
 TokenAuthDesc = {
-    'authtoken': str
+    'authtoken': str,
+    'token': str
 }
 
 TokenAnswerDesc = {
