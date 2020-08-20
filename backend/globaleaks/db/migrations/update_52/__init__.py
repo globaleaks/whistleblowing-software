@@ -3,7 +3,6 @@ from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import Model
 from globaleaks.models.enums import EnumFieldAttrType
 from globaleaks.models.properties import *
-from globaleaks.utils.crypto import Base32Encoder
 from globaleaks.utils.utility import datetime_now, datetime_never, datetime_null
 
 
