@@ -102,7 +102,7 @@ angular.module("GLServices", ["ngResource"]).
           };
 
           if (authtoken) {
-            return $http.post("api/tokenauth", {"tid": tid, "authtoken": authtoken}).
+            return $http.post("api/tokenauth", {"authtoken": authtoken}).
               then(success_fn, function() {
                 self.loginInProgress = false;
               });

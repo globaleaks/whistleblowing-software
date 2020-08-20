@@ -198,12 +198,8 @@ class TokenAuthHandler(BaseHandler):
 
         request = self.validate_message(self.request.content.read(), requests.TokenAuthDesc)
 
-        tid = int(request['tid'])
-        if tid == 0:
-            tid = self.request.tid
-
         session = Sessions.get(request['authtoken'])
-        if session is None or session.tid != tid:
+        if session is None or session.tid != self.request.tid:
             Settings.failed_login_attempts += 1
             raise errors.InvalidAuthentication
 
@@ -213,11 +209,6 @@ class TokenAuthHandler(BaseHandler):
         session = Sessions.regenerate(session.id)
 
         log.debug("Login: Success (%s)" % session.user_role)
-
-        if tid != self.request.tid:
-            returnValue({
-                'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, session.id)
-            })
 
         returnValue(session.serialize())
 
