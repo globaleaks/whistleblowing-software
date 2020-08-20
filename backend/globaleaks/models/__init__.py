@@ -161,7 +161,7 @@ class Model(object):
         if 'id' in values and values['id']:
             setattr(self, 'id', values['id'])
 
-        if 'tid' in values and values['tid'] != '':
+        if 'tid' in values and values['tid']:
             setattr(self, 'tid', values['tid'])
 
         for k in getattr(self, 'unicode_keys'):
