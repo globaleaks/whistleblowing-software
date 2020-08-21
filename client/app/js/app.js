@@ -785,15 +785,15 @@ var GL = angular.module("GL", [
 
        if (response.status === 405) {
          var errorData = angular.toJson({
-             errorUrl: $location.path(),
-             errorMessage: response.statusText,
-             stackTrace: [{
-               "url": response.config.url,
-               "method": response.config.method
-             }],
-             agent: navigator.userAgent
-           });
-          $http.post("api/exception", errorData);
+           errorUrl: $location.path(),
+           errorMessage: response.statusText,
+           stackTrace: [{
+             "url": response.config.url,
+             "method": response.config.method
+           }],
+           agent: navigator.userAgent
+         });
+         $http.post("api/exception", errorData);
        }
 
        if (response.data !== null) {
