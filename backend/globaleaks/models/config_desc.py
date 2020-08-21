@@ -404,6 +404,7 @@ ConfigL10NFilters = {
         'activation_mail_title',
         'account_activation_mail_template',
         'account_activation_mail_title',
+        'account_recovery_key_instructions',
         'admin_anomaly_activities',
         'admin_anomaly_disk_high',
         'admin_anomaly_disk_low',
