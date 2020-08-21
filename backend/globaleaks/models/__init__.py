@@ -36,7 +36,7 @@ def db_get(session, model, filter):
 
 
 def db_delete(session, model, filter):
-    return query_filter(session, model, filter).delete(synchronize_session=False)
+    query_filter(session, model, filter).delete(synchronize_session=False)
 
 
 class LocalizationEngine(object):
