@@ -3,7 +3,6 @@ GL.controller("TipCtrl",
   function($scope, $location, $filter, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities) {
     $scope.fieldUtilities = fieldUtilities;
     $scope.tip_id = $routeParams.tip_id;
-    $scope.target_file = "#";
 
     $scope.itemsPerPage = 5;
     $scope.currentCommentsPage = 1;
