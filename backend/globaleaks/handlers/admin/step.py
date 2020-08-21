@@ -45,9 +45,11 @@ def db_update_step(session, tid, step_id, request, language):
     :param language: the language of the step definition dict
     :return: a serialization of the object
     """
-    step = models.db_get(session, models.Step, models.Step.id == step_id,
-                         models.Questionnaire.id == models.Step.questionnaire_id,
-                         models.Questionnaire.tid == tid)
+    step = models.db_get(session,
+                         models.Step,
+                         (models.Step.id == step_id,
+                          models.Questionnaire.id == models.Step.questionnaire_id,
+                          models.Questionnaire.tid == tid))
 
     fill_localized_keys(request, models.Step.localized_keys, language)
 

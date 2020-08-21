@@ -283,8 +283,8 @@ class SubmissionStatusInstance(BaseHandler):
 
     def delete(self, status_id):
         return models.delete(models.SubmissionStatus,
-                             models.SubmissionStatus.tid == self.request.tid,
-                             models.SubmissionStatus.id == status_id)
+                             (models.SubmissionStatus.tid == self.request.tid,
+                              models.SubmissionStatus.id == status_id))
 
 
 class SubmissionSubStatusCollection(OperationHandler):
@@ -330,6 +330,6 @@ class SubmissionSubStatusInstance(BaseHandler):
 
     def delete(self, status_id, substatus_id):
         return models.delete(models.SubmissionSubStatus,
-                            models.SubmissionSubStatus.tid == self.request.tid,
-                            models.SubmissionSubStatus.id == substatus_id,
-                            models.SubmissionSubStatus.submissionstatus_id == status_id)
+                             (models.SubmissionSubStatus.tid == self.request.tid,
+                              models.SubmissionSubStatus.id == substatus_id,
+                              models.SubmissionSubStatus.submissionstatus_id == status_id))

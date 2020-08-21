@@ -152,8 +152,8 @@ def db_get_user(session, tid, user_id):
     """
     return models.db_get(session,
                          models.User,
-                         models.User.id == user_id,
-                         models.User.tid == tid)
+                         (models.User.id == user_id,
+                          models.User.tid == tid))
 
 
 @transact

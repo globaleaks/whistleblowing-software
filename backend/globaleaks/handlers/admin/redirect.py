@@ -85,6 +85,6 @@ class RedirectInstance(BaseHandler):
         """
         Delete the specified redirect.
         """
-        yield models.delete(models.Redirect, models.Redirect.tid == self.request.tid, models.Redirect.id == redirect_id)
+        yield models.delete(models.Redirect, (models.Redirect.tid == self.request.tid, models.Redirect.id == redirect_id))
 
         yield update_redirects_state(self.request.tid)

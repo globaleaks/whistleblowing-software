@@ -25,12 +25,19 @@ def forge_obj(session, mock_class, mock_fields):
     return db_forge_obj(session, mock_class, mock_fields)
 
 
-def db_get(session, model, *args, **kwargs):
+def parse_args(model, filter):
     if isinstance(model, collections.Iterable):
-        ret = session.query(*model).filter(*args, **kwargs).one_or_none()
-    else:
-        ret = session.query(model).filter(*args, **kwargs).one_or_none()
+        model = *model
 
+    if isinstance(filter, collections.Iterable):
+        filter = *filter
+
+    return model, filter
+
+
+def db_get(session, model, filter):
+    model, filter = parse_args(model, filter)
+    ret = session.query(*model).filter(*args, **kwargs).one_or_none()
     if ret is None:
         raise errors.ModelNotFound(model)
 
@@ -38,15 +45,13 @@ def db_get(session, model, *args, **kwargs):
 
 
 @transact
-def get(session, model, *args, **kwargs):
+def get(session, model, filter):
     return db_get(session, model, *args, **kwargs)
 
 
-def db_delete(session, model, *args, **kwargs):
-    if isinstance(model, collections.Iterable):
-        session.query(*model).filter(*args, **kwargs).delete(synchronize_session=False)
-    else:
-        session.query(model).filter(*args, **kwargs).delete(synchronize_session=False)
+def db_delete(session, model, filter):
+    model, filter = parse_args(model, filter)
+    session.query(model).filter(filter).delete(synchronize_session=False)
 
 
 @transact

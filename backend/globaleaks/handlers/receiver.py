@@ -131,8 +131,7 @@ def perform_tips_operation(session, tid, receiver_id, operation, rtips_ids):
     :param operation: An operation command (postpone/delete)
     :param rtips_ids: The set of submissions on which performing the specified operation
     """
-    receiver = models.db_get(session, models.User,
-                             models.User.id == receiver_id)
+    receiver = models.db_get(session, models.User, models.User.id == receiver_id)
 
     can_postpone_expiration = State.tenant_cache[tid].can_postpone_expiration or receiver.can_postpone_expiration
     can_delete_submission = State.tenant_cache[tid].can_delete_submission or receiver.can_delete_submission
