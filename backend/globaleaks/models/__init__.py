@@ -1199,6 +1199,8 @@ class _User(Model):
     pgp_key_expiration = Column(DateTime, default=datetime_null, nullable=False)
     # END of PGP key fields
 
+    clicked_recovery_key = Column(Boolean, default=False, nullable=False)
+
     unicode_keys = ['username', 'role', 'state',
                     'language', 'mail_address',
                     'name', 'public_name',
@@ -1215,7 +1217,8 @@ class _User(Model):
                  'can_postpone_expiration',
                  'can_grant_permissions',
                  'two_factor_enable',
-                 'readonly']
+                 'readonly',
+                 'clicked_recovery_key']
 
     date_keys = ['creation_date', 'last_login', 'password_change_date', 'pgp_key_expiration']
 

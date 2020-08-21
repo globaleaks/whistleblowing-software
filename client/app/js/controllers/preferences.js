@@ -37,6 +37,7 @@ GL.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "$uibMo
         "operation": "get_recovery_key",
         "args": {}
       }}).then(function(data){
+	$scope.preferences.clicked_recovery_key = true;
         $scope.erk = data.data.match(/.{1,4}/g).join("-");
         $uibModal.open({
           templateUrl: "views/partials/encryption_recovery_key.html",
