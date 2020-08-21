@@ -13,13 +13,10 @@ var GL = angular.module("GL", [
     "monospaced.qrcode",
     "pascalprecht.translate",
     "ngCsv",
+    "ngResource",
     "ngSanitize",
     "ngFileSaver",
-    "ng-showdown",
-    "GLCrypto",
-    "GLDirectives",
-    "GLFilters",
-    "GLServices"
+    "ng-showdown"
 ]).
   config(["$compileProvider", function($compileProvider) {
     $compileProvider.debugInfoEnabled(false);

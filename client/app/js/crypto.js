@@ -1,7 +1,6 @@
 /*global sha256*/
 
-angular.module("GLCrypto", [])
-.factory("glbcUtil", function() {
+GL.factory("glbcUtil", function() {
   return {
     /**
      * @param {String} str
