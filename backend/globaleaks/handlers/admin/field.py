@@ -50,7 +50,7 @@ def db_reset_option_triggers(session, type, object_id):
     :param object_id: The object on which reset the triggers
     """
     m = trigger_map[type]
-    session.query(m).filter(m.object_id == object_id).delete(synchronize_session=False)
+    models.db_delete(session, m, m.object_id == object_id)
 
 
 def db_update_fieldoption(session, field_id, fieldoption_id, option_dict, language, idx):
@@ -102,7 +102,9 @@ def db_update_fieldoptions(session, field_id, options, language):
                               not_(models.FieldOption.id.in_(options_ids))) \
                       .subquery()
 
-    session.query(models.FieldOption).filter(models.FieldOption.id.in_(subquery)).delete(synchronize_session=False)
+    models.db_delete(session,
+                     models.FieldOption,
+                     models.FieldOption.id.in_(subquery))
 
 
 def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
@@ -151,7 +153,9 @@ def db_update_fieldattrs(session, field_id, field_attrs, language):
                               not_(models.FieldAttr.id.in_(attrs_ids))) \
                       .subquery()
 
-    session.query(models.FieldAttr).filter(models.FieldAttr.id.in_(subquery)).delete(synchronize_session=False)
+    models.db_delete(session,
+                     models.FieldAttr,
+                     models.FieldAttr.id.in_(subquery))
 
 
 def check_field_association(session, tid, request):
