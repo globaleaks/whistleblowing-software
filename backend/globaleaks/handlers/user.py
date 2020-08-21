@@ -54,7 +54,6 @@ def set_user_password(tid, user, password, cc):
     return cc
 
 
-
 def parse_pgp_options(user, request):
     """
     Used for parsing PGP key infos and fill related user configurations.
@@ -127,8 +126,9 @@ def user_serialize_user(session, user, language):
         'can_postpone_expiration': user.can_postpone_expiration,
         'can_delete_submission': user.can_delete_submission,
         'can_grant_permissions': user.can_grant_permissions,
-        'contexts': contexts,
-        'send_account_activation_link': False
+        'clicked_recovery_key': user.clicked_recovery_key,
+        'send_account_activation_link': False,
+        'contexts': contexts
     }
 
     if user.tid in State.tenant_cache:
@@ -300,6 +300,8 @@ def get_recovery_key(session, tid, user_id, user_cc):
 
     if not user.crypto_rec_key:
         return ''
+
+    user.clicked_recovery_key = True
 
     return Base32Encoder.encode(GCE.asymmetric_decrypt(user_cc, Base64Encoder.decode(user.crypto_rec_key.encode()))).replace(b'=', b'')
 
