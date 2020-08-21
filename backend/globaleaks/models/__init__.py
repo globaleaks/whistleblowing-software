@@ -8,7 +8,6 @@ import copy
 from globaleaks.models import config_desc
 from globaleaks.models.enums import *
 from globaleaks.models.properties import *
-from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils.utility import datetime_now, datetime_never, datetime_null
 
@@ -18,11 +17,6 @@ def db_forge_obj(session, mock_class, mock_fields):
     session.add(obj)
     session.flush()
     return obj
-
-
-@transact
-def forge_obj(session, mock_class, mock_fields):
-    return db_forge_obj(session, mock_class, mock_fields)
 
 
 def parse_args(model, filter):
@@ -44,26 +38,16 @@ def db_get(session, model, filter):
     return ret
 
 
-@transact
-def get(session, model, filter):
-    return db_get(session, model, *args, **kwargs)
-
-
 def db_delete(session, model, filter):
     model, filter = parse_args(model, filter)
     session.query(model).filter(filter).delete(synchronize_session=False)
 
-
-@transact
-def delete(session, model, *args, **kwargs):
-    db_delete(session, model, *args, **kwargs)
 
 
 class LocalizationEngine(object):
     """
     This Class can manage all the localized strings inside one ORM object
     """
-
     def __init__(self, keys):
         self._localized_strings = {}
         self._localized_keys = keys
