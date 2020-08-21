@@ -277,12 +277,10 @@ def db_create_receivertip(session, receiver, internaltip, can_access_whistleblow
 def db_create_submission(session, tid, request, token, client_using_tor):
     answers = request['answers']
 
-    context, questionnaire = session.query(models.Context, models.Questionnaire) \
-                                    .filter(models.Context.id == request['context_id'],
-                                            models.Questionnaire.id == models.Context.questionnaire_id).one_or_none()
-
-    if not context:
-        raise errors.ModelNotFound(models.Context)
+    context, questionnaire = models.db_get(session,
+                                           (models.Context, models.Questionnaire),
+                                           (models.Context.id == request['context_id'],
+                                            models.Questionnaire.id == models.Context.questionnaire_id))
 
     if not request['receivers']:
         raise errors.InputValidationError("The submission should involve at least one recipient")

@@ -87,18 +87,6 @@ class ResourceNotFound(GLException):
     status_code = 404  # Not Found
 
 
-class ModelNotFound(ResourceNotFound):
-    """
-    Error class for a generic model
-    """
-    error_code = 7
-    status_code = 404
-
-    def __init__(self, model):
-        ResourceNotFound.__init__(self)
-        self.reason = "Model of type {} has not been found".format(model)
-
-
 class ForbiddenOperation(GLException):
     """
     A user has tried one operation not permitted by their privileges

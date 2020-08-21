@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from sqlalchemy.orm.exc import NoResultFound
+
 from globaleaks.handlers import file
 from globaleaks.handlers.admin import file as admin_file
 from globaleaks.rest import errors
@@ -12,7 +14,7 @@ class TestFileInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_post(self):
         handler = self.request()
-        yield self.assertFailure(handler.get(u'upload.raw'), errors.ModelNotFound)
+        yield self.assertFailure(handler.get(u'upload.raw'), NoResultFound)
 
         self._handler = admin_file.FileInstance
         handler = self.request({}, role='admin')

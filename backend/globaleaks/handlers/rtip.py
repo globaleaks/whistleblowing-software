@@ -228,16 +228,12 @@ def db_access_wbfile(session, tid, user_id, wbfile_id):
                                               models.ReceiverTip.receiver_id == user_id,
                                               models.InternalTip.tid == tid)]
 
-    wbfile = session.query(models.WhistleblowerFile) \
-                    .filter(models.WhistleblowerFile.id == wbfile_id,
-                            models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                            models.ReceiverTip.internaltip_id.in_(itips_ids),
-                            models.InternalTip.tid == tid).one()
-
-    if not wbfile:
-        raise errors.ModelNotFound(models.WhistleblowerFile)
-
-    return wbfile
+    return models.db_get(session,
+                         models.WhistleblowerFile,
+                         (models.WhistleblowerFile.id == wbfile_id,
+                          models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                          models.ReceiverTip.internaltip_id.in_(itips_ids),
+                          models.InternalTip.tid == tid))
 
 
 def db_receiver_get_rfile_list(session, rtip_id):
@@ -846,15 +842,14 @@ class WBFileHandler(BaseHandler):
 
     @transact
     def download_wbfile(self, session, tid, file_id):
-        x = session.query(models.WhistleblowerFile, models.WhistleblowerTip) \
-                   .filter(models.WhistleblowerFile.id == file_id,
-                           models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                           models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id).one_or_none()
+        wbfile, wbtip = models.db_get(session,
+                                      (models.WhistleblowerFile, models.WhistleblowerTip),
+                                      (models.WhistleblowerFile.id == file_id,
+                                       models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                                       models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id))
 
-        if x is None or not self.user_can_access(session, tid, x[0]):
-            raise errors.ModelNotFound(models.WhistleblowerFile)
-
-        wbfile, wbtip = x[0], x[1]
+        if not self.user_can_access(session, tid, wbfile):
+            raise errors.ResourceNotFound()
 
         self.access_wbfile(session, wbfile)
 
@@ -910,15 +905,13 @@ class ReceiverFileDownload(BaseHandler):
 
     @transact
     def download_rfile(self, session, tid, user_id, file_id):
-        rfile, rtip = session.query(models.ReceiverFile, models.ReceiverTip) \
-                             .filter(models.ReceiverFile.id == file_id,
+        rfile, rtip = models.db_get(session,
+                                    (models.ReceiverFile, models.ReceiverTip),
+                                    (models.ReceiverFile.id == file_id,
                                      models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
                                      models.ReceiverTip.receiver_id == user_id,
                                      models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                     models.InternalTip.tid == tid).one()
-
-        if not rfile:
-            raise errors.ModelNotFound(models.ReceiverFile)
+                                     models.InternalTip.tid == tid))
 
         log.debug("Download of file %s by receiver %s (%d)" %
                   (rfile.internalfile_id, rtip.receiver_id, rfile.downloads))
