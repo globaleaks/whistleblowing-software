@@ -74,11 +74,7 @@ GL.controller("TipCtrl",
     };
 
     $scope.hasMultipleEntries = function(field_answer) {
-      if (typeof field_answer !== "undefined") {
-        return field_answer.length > 1;
-      }
-
-      return false;
+      return (typeof field_answer !== "undefined") && field_answer.length > 1;
     };
 
     $scope.filterFields = function(field) {
