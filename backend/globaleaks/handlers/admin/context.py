@@ -4,7 +4,7 @@ from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.models import fill_localized_keys, get_localized_values
-from globaleaks.orm import transact
+from globaleaks.orm import transact, tw
 from globaleaks.rest import requests, errors
 
 
@@ -288,6 +288,7 @@ class ContextInstance(BaseHandler):
         """
         Delete the specified context.
         """
-        return models.delete(models.Context,
-                             (models.Context.tid == self.request.tid,
-                              models.Context.id == context_id))
+        return tw(models.db_delete,
+                  models.Context,
+                  (models.Context.tid == self.request.tid,
+                   models.Context.id == context_id))

@@ -47,7 +47,7 @@ def get_file_id(session, tid, name):
     :param name: A file name
     :return: A result model
     """
-    return models.db_get(session, models.File.id, (models.File.tid == tid, models.File.name == name))[0].id
+    return models.db_get(session, models.File.id, (models.File.tid == tid, models.File.name == name))[0]
 
 
 class FileHandler(BaseHandler):

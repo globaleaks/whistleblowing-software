@@ -33,7 +33,7 @@ def db_load_default_questionnaires(session):
         qids.append(questionnaires[-1]['id'])
 
     models.db_delete(session, models.Questionnaire, models.Questionnaire.id.in_(qids))
-    models.db_delete(session, models.Step,.models.Step.questionnaire_id.in_(qids))
+    models.db_delete(session, models.Step, models.Step.questionnaire_id.in_(qids))
 
     for questionnaire in questionnaires:
         db_create_questionnaire(session, 1, questionnaire, None)

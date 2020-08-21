@@ -4,7 +4,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.serializers import serialize_redirect
-from globaleaks.orm import transact
+from globaleaks.orm import transact, tw
 from globaleaks.rest import requests
 from globaleaks.state import State
 
@@ -85,6 +85,8 @@ class RedirectInstance(BaseHandler):
         """
         Delete the specified redirect.
         """
-        yield models.delete(models.Redirect, (models.Redirect.tid == self.request.tid, models.Redirect.id == redirect_id))
+        yield tw(models.db_delete,
+                 models.Redirect,
+                 (models.Redirect.tid == self.request.tid, models.Redirect.id == redirect_id))
 
         yield update_redirects_state(self.request.tid)
