@@ -125,6 +125,11 @@ two_factor_auth_keywords = [
 ]
 
 
+account_activation_keywords = [
+    '{AccountRecoveryKeyInstructions}'
+]
+
+
 def indent(n=1):
     return '  ' * n
 
@@ -647,10 +652,18 @@ class EmailValidationKeyword(UserNodeKeyword):
 
 
 class AccountActivationKeyword(UserNodeKeyword):
-    keyword_list = UserNodeKeyword.keyword_list
+    keyword_list = UserNodeKeyword.keyword_list + account_activation_keywords
 
     def UrlPath(self):
         return '/#/activation' + '?token=' + self.data['reset_token']
+
+    def AccountRecoveryKeyInstructions(self):
+        if not self.data['node']['encryption']:
+            return ''
+
+        data = {'type': 'null'}
+
+        return Templating().format_template(self.data['notification']['account_recovery_key_instructions'], data) + "\n"
 
 
 class PasswordResetValidationKeyword(UserNodeKeyword):
@@ -688,6 +701,7 @@ class TwoFactorAuthKeyword(NodeKeyword):
 
 
 supported_template_types = {
+    'null': Keyword,
     'tip': TipKeyword,
     'comment': CommentKeyword,
     'message': MessageKeyword,
@@ -723,7 +737,7 @@ class Templating(object):
 
             for kw in keyword_converter.keyword_list:
                 if raw_template.count(kw):
-                    # if %SomeKeyword% matches, call keyword_converter.SomeKeyword function
+                    # if {SomeKeyword} matches, call keyword_converter.SomeKeyword function
                     variable_content = getattr(keyword_converter, kw[1:-1])()
                     raw_template = raw_template.replace(kw, variable_content)
 
