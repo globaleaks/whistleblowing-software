@@ -284,7 +284,7 @@ angular.module("GLServices", ["ngResource"]).
        * Create a new submission based on the currently selected context.
        *
        * */
-      self.create = function(context_id, cb) {
+      self.create = function(context_id) {
         self.setContextReceivers(context_id);
 
         self._submission = new SubmissionResource({
@@ -301,10 +301,6 @@ angular.module("GLServices", ["ngResource"]).
           self.token = token;
           self._submission.token_id = token.id;
         });
-
-        if (cb) {
-          cb();
-        }
       };
 
       /**

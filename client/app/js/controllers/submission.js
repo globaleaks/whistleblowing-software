@@ -169,22 +169,16 @@ GL.controller("SubmissionCtrl",
     $scope.questionnaire = context.questionnaire;
     $scope.field_id_map = fieldUtilities.build_field_id_map($scope.questionnaire);
 
-    $scope.submission.create(context.id, function () {
-      $scope.receiversOrderPredicate = $scope.submission.context.show_receivers_in_alphabetical_order ? "name" : null;
+    $scope.submission.create(context.id);
 
-      // --------------------------------------------------------------------------
-      // fix steps numbering adding receiver selection step if neeeded
-      $scope.receiver_selection_step = false;
-      $scope.receiver_selection_step_index = -1;
+    $scope.receiversOrderPredicate = $scope.submission.context.show_receivers_in_alphabetical_order ? "name" : null;
+    $scope.show_steps_navigation_bar = $scope.context.allow_recipients_selection || $scope.questionnaire.steps.length > 1;
+
+    if ($scope.context.allow_recipients_selection) {
+      $scope.navigation = -1;
+    } else {
       $scope.navigation = 0;
-
-      if ($scope.submission.context.allow_recipients_selection) {
-        $scope.receiver_selection_step = true;
-        $scope.navigation = -1;
-      }
-
-      $scope.show_steps_navigation_bar = $scope.receiver_selection_step || $scope.questionnaire.steps.length > 1;
-    });
+    }
   };
 
   $scope.completeSubmission = function() {
