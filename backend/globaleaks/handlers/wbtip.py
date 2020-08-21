@@ -39,8 +39,8 @@ def db_get_wbfile_list(session, itip_id):
 def db_get_wbtip(session, itip_id, language):
     wbtip, itip = models.db_get(session,
                                 (models.WhistleblowerTip, models.InternalTip),
-                                models.WhistleblowerTip.id == models.InternalTip.id,
-                                models.InternalTip.id == itip_id)
+                                (models.WhistleblowerTip.id == models.InternalTip.id,
+                                 models.InternalTip.id == itip_id))
 
     itip.wb_access_counter += 1
     itip.wb_last_access = datetime_now()
@@ -141,9 +141,9 @@ def create_message(session, tid, wbtip_id, receiver_id, content):
 def update_identity_information(session, tid, tip_id, identity_field_id, wbi, language):
     itip = models.db_get(session,
                          models.InternalTip,
-                         models.InternalTip.id == tip_id,
-                         models.InternalTip.status != 'closed',
-                         models.InternalTip.tid == tid)
+                         (models.InternalTip.id == tip_id,
+                          models.InternalTip.status != 'closed',
+                          models.InternalTip.tid == tid))
 
     if itip.crypto_tip_pub_key:
         wbi = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(wbi).encode())).decode()

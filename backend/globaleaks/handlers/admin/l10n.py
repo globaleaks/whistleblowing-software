@@ -45,4 +45,4 @@ class AdminL10NHandler(BaseHandler):
         return update(self.request.tid, lang, json.loads(self.request.content.read()))
 
     def delete(self, lang):
-        return models.delete(models.CustomTexts, models.CustomTexts.tid == self.request.tid, models.CustomTexts.lang == lang)
+        return models.delete(models.CustomTexts, (models.CustomTexts.tid == self.request.tid, models.CustomTexts.lang == lang))

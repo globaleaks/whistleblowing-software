@@ -210,7 +210,10 @@ def update_context(session, tid, context_id, request, language):
     :param language: The request language
     :return: A serialized descriptor of the context
     """
-    context = models.db_get(session, models.Context, models.Context.tid == tid, models.Context.id == context_id)
+    context = models.db_get(session,
+                            models.Context,
+                            (models.Context.tid == tid,
+                             models.Context.id == context_id))
     context = db_update_context(session, tid, context, request, language)
 
     return admin_serialize_context(session, context, language)
@@ -286,5 +289,5 @@ class ContextInstance(BaseHandler):
         Delete the specified context.
         """
         return models.delete(models.Context,
-                             models.Context.tid == self.request.tid,
-                             models.Context.id == context_id)
+                             (models.Context.tid == self.request.tid,
+                              models.Context.id == context_id))

@@ -105,7 +105,7 @@ class FileInstance(BaseHandler):
         if os.path.exists(path):
             os.remove(path)
 
-        result = yield models.delete(models.File, models.File.tid == self.request.tid, models.File.id == id)
+        result = yield models.delete(models.File, (models.File.tid == self.request.tid, models.File.id == id))
         returnValue(result)
 
 

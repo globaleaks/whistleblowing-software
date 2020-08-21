@@ -28,8 +28,8 @@ def db_get_questionnaires(session, tid, language):
 def db_get_questionnaire(session, tid, questionnaire_id, language, serialize_templates=True):
     questionnaire = models.db_get(session,
                                   models.Questionnaire,
-                                  models.Questionnaire.tid.in_(set([1, tid])),
-                                  models.Questionnaire.id == questionnaire_id)
+                                  (models.Questionnaire.tid.in_(set([1, tid])),
+                                   models.Questionnaire.id == questionnaire_id))
 
     return serialize_questionnaire(session, tid, questionnaire, language, serialize_templates=serialize_templates)
 
@@ -79,7 +79,10 @@ def db_update_questionnaire(session, tid, questionnaire_id, request, language):
     :param language: The language of the request
     :return: A serialized descriptor of the questionnaire
     """
-    questionnaire = models.db_get(session, models.Questionnaire, models.Questionnaire.tid == tid, models.Questionnaire.id == questionnaire_id)
+    questionnaire = models.db_get(session,
+                                  models.Questionnaire,
+                                  (models.Questionnaire.tid == tid,
+                                   models.Questionnaire.id == questionnaire_id))
 
     fill_localized_keys(request, models.Questionnaire.localized_keys, language)
 
@@ -211,7 +214,7 @@ class QuestionnaireInstance(BaseHandler):
         """
         Delete the specified questionnaire.
         """
-        return models.delete(models.Questionnaire, models.Questionnaire.tid == self.request.tid, models.Questionnaire.id == questionnaire_id)
+        return models.delete(models.Questionnaire, (models.Questionnaire.tid == self.request.tid, models.Questionnaire.id == questionnaire_id))
 
     @inlineCallbacks
     def get(self, questionnaire_id):

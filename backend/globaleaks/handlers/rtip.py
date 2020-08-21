@@ -101,7 +101,8 @@ def receiver_serialize_wbfile(session, wbfile):
     :param wbfile: A model to be serialized
     :return: A serialized description of the model specified
     """
-    rtip = models.db_get(session, models.ReceiverTip,
+    rtip = models.db_get(session,
+                         models.ReceiverTip,
                          models.ReceiverTip.id == wbfile.receivertip_id)
 
     return {
@@ -206,10 +207,10 @@ def db_access_rtip(session, tid, user_id, rtip_id):
     """
     return models.db_get(session,
                          (models.ReceiverTip, models.InternalTip),
-                         models.ReceiverTip.id == rtip_id,
-                         models.ReceiverTip.receiver_id == user_id,
-                         models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                         models.InternalTip.tid == tid)
+                         (models.ReceiverTip.id == rtip_id,
+                          models.ReceiverTip.receiver_id == user_id,
+                          models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                          models.InternalTip.tid == tid))
 
 
 def db_access_wbfile(session, tid, user_id, wbfile_id):
@@ -462,7 +463,8 @@ def delete_rtip(session, tid, user_id, rtip_id):
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    receiver = models.db_get(session, models.User,
+    receiver = models.db_get(session,
+                             models.User,
                              models.User.id == rtip.receiver_id)
 
     if not (State.tenant_cache[tid].can_delete_submission or
@@ -484,7 +486,8 @@ def postpone_expiration(session, tid, user_id, rtip_id):
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    receiver = models.db_get(session, models.User,
+    receiver = models.db_get(session,
+                             models.User,
                              models.User.id == rtip.receiver_id)
 
     if not (State.tenant_cache[tid].can_postpone_expiration or
@@ -508,7 +511,8 @@ def set_internaltip_variable(session, tid, user_id, rtip_id, key, value):
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    receiver = models.db_get(session, models.User,
+    receiver = models.db_get(session,
+                             models.User,
                              models.User.id == rtip.receiver_id)
 
     if not (State.tenant_cache[tid].can_grant_permissions or
