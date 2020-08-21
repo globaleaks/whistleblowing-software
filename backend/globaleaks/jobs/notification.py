@@ -12,7 +12,7 @@ from globaleaks.handlers.admin.submission_statuses import db_get_submission_stat
 from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serialize_comment
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import LoopingJob
-from globaleaks.orm import transact
+from globaleaks.orm import transact, tw
 from globaleaks.utils.log import log
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.templating import Templating
@@ -264,7 +264,7 @@ class Notification(LoopingJob):
         for mail in mails:
             sent = yield self.state.sendmail(mail['tid'], mail['address'], mail['subject'], mail['body'])
             if sent:
-                yield models.delete(models.Mail, models.Mail.id == mail['id'])
+                yield tw(models.db_delete, models.Mail, models.Mail.id == mail['id'])
 
             yield deferred_sleep(1)
 

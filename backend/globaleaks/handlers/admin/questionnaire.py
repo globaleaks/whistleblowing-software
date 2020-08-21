@@ -208,13 +208,20 @@ class QuestionnaireInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminQuestionnaireDesc)
 
-        return tw(db_update_questionnaire, self.request.tid, questionnaire_id, request, self.request.language)
+        return tw(db_update_questionnaire,
+                  self.request.tid,
+                  questionnaire_id,
+                  request,
+                  self.request.language)
 
     def delete(self, questionnaire_id):
         """
         Delete the specified questionnaire.
         """
-        return models.delete(models.Questionnaire, (models.Questionnaire.tid == self.request.tid, models.Questionnaire.id == questionnaire_id))
+        return tw(models.db_delete,
+                  models.Questionnaire,
+                  (models.Questionnaire.tid == self.request.tid,
+                   models.Questionnaire.id == questionnaire_id))
 
     @inlineCallbacks
     def get(self, questionnaire_id):

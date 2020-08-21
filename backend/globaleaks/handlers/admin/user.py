@@ -193,6 +193,7 @@ class UserInstance(BaseHandler):
         """
         Delete the specified user.
         """
-        return models.delete(models.User,
-                             (models.User.tid == self.request.tid,
-                              models.User.id == user_id))
+        return tw(models.db_delete,
+                  models.User,
+                  (models.User.tid == self.request.tid,
+                   models.User.id == user_id))
