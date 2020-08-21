@@ -46,7 +46,7 @@ def db_update_enabled_languages(session, tid, languages, default_language):
     to_remove = list(set(cur_enabled_langs) - set(languages))
     if to_remove:
         session.query(models.User).filter(models.User.tid == tid, models.User.language.in_(to_remove)).update({'language': default_language}, synchronize_session=False)
-        session.query(models.EnabledLanguage).filter(models.EnabledLanguage.tid == tid, models.EnabledLanguage.name.in_(to_remove)).delete(synchronize_session=False)
+        models.db_delete(session, models.EnabledLanguage, (models.EnabledLanguage.tid == tid, models.EnabledLanguage.name.in_(to_remove)))
 
 
 def db_admin_serialize_node(session, tid, language, config_node='admin_node'):

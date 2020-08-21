@@ -32,8 +32,8 @@ def db_load_default_questionnaires(session):
         questionnaires.append(read_json_file(qfile))
         qids.append(questionnaires[-1]['id'])
 
-    session.query(models.Questionnaire).filter(models.Questionnaire.id.in_(qids)).delete(synchronize_session=False)
-    session.query(models.Step).filter(models.Step.questionnaire_id.in_(qids)).delete(synchronize_session=False)
+    models.db_delete(session, models.Questionnaire, models.Questionnaire.id.in_(qids))
+    models.db_delete(session, models.Step,.models.Step.questionnaire_id.in_(qids))
 
     for questionnaire in questionnaires:
         db_create_questionnaire(session, 1, questionnaire, None)
@@ -53,10 +53,10 @@ def db_load_default_fields(session):
         questions.append(read_json_file(ffile))
         qids.append(questions[-1]['id'])
 
-    session.query(models.Field).filter(models.Field.id.in_(qids)).delete(synchronize_session=False)
-    session.query(models.Field).filter(models.Field.fieldgroup_id.in_(qids)).delete(synchronize_session=False)
-    session.query(models.FieldAttr).filter(models.FieldAttr.field_id.in_(qids)).delete(synchronize_session=False)
-    session.query(models.FieldOption).filter(models.FieldOption.field_id.in_(qids)).delete(synchronize_session=False)
+    models.db_delete(session, models.Field, models.Field.id.in_(qids))
+    models.db_delete(session, models.Field, models.Field.fieldgroup_id.in_(qids))
+    models.db_delete(session, models.FieldAttr, models.FieldAttr.field_id.in_(qids))
+    models.db_delete(session, models.FieldOption, models.FieldOption.field_id.in_(qids))
 
     for question in questions:
         db_create_field(session, 1, question, None)
@@ -98,7 +98,7 @@ def db_fix_fields_attrs(session):
 
         subquery = session.query(models.FieldAttr.id).filter(*_filter).subquery()
 
-        session.query(models.FieldAttr).filter(models.FieldAttr.id.in_(subquery)).delete(synchronize_session=False)
+        models.db_delete(models.FieldAttr, models.FieldAttr.id.in_(subquery))
 
     # Add keys to the db that have been added to field_attrs
     for field in session.query(models.Field):

@@ -76,7 +76,7 @@ def signup(session, request, language):
                               models.Tenant.id == models.Subscriber.tid) \
                       .subquery()
 
-    session.query(models.Tenant).filter(models.Tenant.id.in_(subquery)).delete(synchronize_session=False)
+    models.db_delete(session, models.Tenant, models.Tenant.id.in_(subquery))
 
     tenant = db_create_tenant(session, {'name': request['subdomain'],
                                         'subdomain': request['subdomain'],

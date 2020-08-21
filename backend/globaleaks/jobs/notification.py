@@ -236,7 +236,7 @@ def get_mails_from_the_pool(session):
 
     Email are spooled every 5 seconds and mailing attepts last 5 days.
     """
-    session.query(models.Mail).filter(models.Mail.processing_attempts > 86400).delete(synchronize_session=False)
+    models.db_delete(session, models.Mail, models.Mail.processing_attempts > 86400)
 
     session.query(models.Mail).update({'processing_attempts': models.Mail.processing_attempts + 1})
 
