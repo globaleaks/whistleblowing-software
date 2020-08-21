@@ -6,6 +6,8 @@
 import json
 import re
 
+from sqlalchemy.orm.exc import NoResultFound
+
 from twisted.internet import defer
 from twisted.internet.abstract import isIPAddress, isIPv6Address
 from twisted.web.resource import Resource
@@ -252,7 +254,9 @@ class APIResourceWrapper(Resource):
                   or a normal `Exception`
         :param request: A `twisted.web.Request`
         """
-        if isinstance(e, errors.GLException):
+        if isinstance(e, NoResultFound):
+            e = errors.ResourceNotFound()
+        elif isinstance(e, errors.GLException):
             pass
         elif isinstance(e.value, errors.GLException):
             e = e.value

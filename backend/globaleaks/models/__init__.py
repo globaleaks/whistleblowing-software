@@ -19,29 +19,24 @@ def db_forge_obj(session, mock_class, mock_fields):
     return obj
 
 
-def parse_args(model, filter):
+def query_filter(session, model, filter):
     if isinstance(model, collections.Iterable):
-        model = *model
+        q = session.query(*model)
+    else:
+        q = session.query(model)
 
     if isinstance(filter, collections.Iterable):
-        filter = *filter
-
-    return model, filter
+        return q.filter(*filter)
+    else:
+        return q.filter(filter)
 
 
 def db_get(session, model, filter):
-    model, filter = parse_args(model, filter)
-    ret = session.query(*model).filter(*args, **kwargs).one_or_none()
-    if ret is None:
-        raise errors.ModelNotFound(model)
-
-    return ret
+    return query_filter(session, model, filter).one()
 
 
 def db_delete(session, model, filter):
-    model, filter = parse_args(model, filter)
-    session.query(model).filter(filter).delete(synchronize_session=False)
-
+    return query_filter(session, model, filter).delete(synchronize_session=False)
 
 
 class LocalizationEngine(object):

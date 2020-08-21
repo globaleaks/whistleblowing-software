@@ -66,15 +66,13 @@ def serialize_wbtip(session, wbtip, itip, language):
 
 @transact
 def create_comment(session, tid, wbtip_id, content):
-    wbtip, itip = session.query(models.WhistleblowerTip, models.InternalTip)\
-                         .filter(models.WhistleblowerTip.id == wbtip_id,
+    wbtip, itip = models.db_get(session,
+                                (models.WhistleblowerTip, models.InternalTip),
+                                (models.WhistleblowerTip.id == wbtip_id,
                                  models.InternalTip.id == models.WhistleblowerTip.id,
                                  models.InternalTip.enable_two_way_comments.is_(True),
                                  models.InternalTip.status != 'closed',
-                                 models.InternalTip.tid == tid).one_or_none()
-
-    if wbtip is None:
-        raise errors.ModelNotFound(models.WhistleblowerTip)
+                                 models.InternalTip.tid == tid))
 
     itip.update_date = itip.wb_last_access = datetime_now()
 
@@ -106,17 +104,15 @@ def db_get_itip_message_list(session, wbtip_id):
 
 @transact
 def create_message(session, tid, wbtip_id, receiver_id, content):
-    wbtip, itip, rtip_id = session.query(models.WhistleblowerTip, models.InternalTip, models.ReceiverTip.id) \
-                                  .filter(models.WhistleblowerTip.id == wbtip_id,
+    wbtip, itip, rtip_id = models.db_get(session,
+                                         (models.WhistleblowerTip, models.InternalTip, models.ReceiverTip.id),
+                                         (models.WhistleblowerTip.id == wbtip_id,
                                           models.ReceiverTip.internaltip_id == wbtip_id,
                                           models.ReceiverTip.receiver_id == receiver_id,
                                           models.InternalTip.id == models.WhistleblowerTip.id,
                                           models.InternalTip.enable_two_way_messages.is_(True),
                                           models.InternalTip.status != 'closed',
-                                          models.InternalTip.tid == tid).one_or_none()
-
-    if wbtip is None:
-        raise errors.ModelNotFound(models.WhistleblowerTip)
+                                          models.InternalTip.tid == tid))
 
     itip.update_date = itip.wb_last_access = datetime_now()
 
