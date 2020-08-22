@@ -5,106 +5,12 @@ from globaleaks import models
 from globaleaks.rest import errors
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
+from globaleaks.handlers.public import db_get_submission_status, \
+    db_get_submission_statuses, serialize_submission_status, \
+    serialize_submission_substatus
 from globaleaks.models import fill_localized_keys, get_localized_values
 from globaleaks.orm import db_del, transact, tw
 from globaleaks.rest import requests
-
-
-def serialize_submission_substatus(substatus, language):
-    """
-    Transaction to serialize a submission substatus
-
-    :param substatus: The status to be serialized
-    :param language: The language to be used in the serialization
-    :return: The serialized descriptor of the specified status
-    """
-    submission_substatus = {
-        'id': substatus.id,
-        'submissionstatus_id': substatus.submissionstatus_id,
-        'order': substatus.order
-    }
-
-    return get_localized_values(submission_substatus, substatus, substatus.localized_keys, language)
-
-
-def serialize_submission_status(session, status, language):
-    """
-    Transaction to serialize a submission status
-
-    :param session: An ORM session
-    :param status: The status to be serialized
-    :param language: The language to be used in the serialization
-    :return: The serialized descriptor of the specified status
-    """
-    submission_status = {
-        'id': status.id,
-        'order': status.order,
-        'substatuses': []
-    }
-
-    # See if we have any substatuses we need to serialize
-    substatuses = session.query(models.SubmissionSubStatus) \
-                         .filter(models.SubmissionSubStatus.tid == status.tid,
-                                 models.SubmissionSubStatus.submissionstatus_id == status.id) \
-                         .order_by(models.SubmissionSubStatus.order)
-
-    for substatus in substatuses:
-        submission_status['substatuses'].append(serialize_submission_substatus(substatus, language))
-
-    return get_localized_values(submission_status, status, status.localized_keys, language)
-
-
-def db_get_submission_statuses(session, tid, language):
-    """
-    Transaction for fetching the submission statuses associated to a tenant
-
-    :param session: An ORM session
-    :param tid: A tenant ID
-    :param language: The language to be used in the serialization
-    :return: The list of descriptors for the submission statuses defined on the specified tenant
-    """
-    system_statuses = {}
-    submission_statuses = []
-    user_submission_statuses = []
-
-    statuses = session.query(models.SubmissionStatus) \
-                      .filter(models.SubmissionStatus.tid == tid) \
-                      .order_by(models.SubmissionStatus.order)
-
-    for status in statuses:
-        status_dict = serialize_submission_status(session, status, language)
-        if status.id in ['new', 'opened', 'closed']:
-            system_statuses[status.id] = status_dict
-        else:
-            user_submission_statuses.append(status_dict)
-
-    # Build the final array in the correct order
-    submission_statuses.append(system_statuses['new'])
-    submission_statuses.append(system_statuses['opened'])
-    submission_statuses += user_submission_statuses
-    submission_statuses.append(system_statuses['closed'])
-
-    return submission_statuses
-
-
-def db_get_submission_status(session, tid, status_id, language):
-    """
-    Transaction for fetching the submission status given its ID
-
-    :param session: An ORM session
-    :param tid: A tenant ID
-    :param status_id: The ID of the submission status to be retriven
-    :param language: The language to be used in the serialization
-    :return: The serialized descriptor of the indicated submission status
-    """
-    status = session.query(models.SubmissionStatus) \
-                   .filter(models.SubmissionStatus.tid == tid,
-                           models.SubmissionStatus.id == status_id).one_or_none()
-
-    if status is None:
-        raise errors.ResourceNotFound
-
-    return serialize_submission_status(session, status, language)
 
 
 def db_update_status_model_from_request(model_obj, request, language):

@@ -7,7 +7,6 @@ from sqlalchemy import or_
 
 from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.admin.submission_statuses import db_get_submission_statuses
 from globaleaks.models import get_localized_values
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.models.enums import EnumContextStatus
@@ -26,6 +25,104 @@ trigger_map = {
 
 def db_get_languages(session, tid):
     return [x[0] for x in db_query(session, models.EnabledLanguage.name, models.EnabledLanguage.tid == tid)]
+
+
+def serialize_submission_substatus(substatus, language):
+    """
+    Transaction to serialize a submission substatus
+
+    :param substatus: The status to be serialized
+    :param language: The language to be used in the serialization
+    :return: The serialized descriptor of the specified status
+    """
+    submission_substatus = {
+        'id': substatus.id,
+        'submissionstatus_id': substatus.submissionstatus_id,
+        'order': substatus.order
+    }
+
+    return get_localized_values(submission_substatus, substatus, substatus.localized_keys, language)
+
+
+def serialize_submission_status(session, status, language):
+    """
+    Transaction to serialize a submission status
+
+    :param session: An ORM session
+    :param status: The status to be serialized
+    :param language: The language to be used in the serialization
+    :return: The serialized descriptor of the specified status
+    """
+    submission_status = {
+        'id': status.id,
+        'order': status.order,
+        'substatuses': []
+    }
+
+    # See if we have any substatuses we need to serialize
+    substatuses = session.query(models.SubmissionSubStatus) \
+                         .filter(models.SubmissionSubStatus.tid == status.tid,
+                                 models.SubmissionSubStatus.submissionstatus_id == status.id) \
+                         .order_by(models.SubmissionSubStatus.order)
+
+    for substatus in substatuses:
+        submission_status['substatuses'].append(serialize_submission_substatus(substatus, language))
+
+    return get_localized_values(submission_status, status, status.localized_keys, language)
+
+
+def db_get_submission_statuses(session, tid, language):
+    """
+    Transaction for fetching the submission statuses associated to a tenant
+
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param language: The language to be used in the serialization
+    :return: The list of descriptors for the submission statuses defined on the specified tenant
+    """
+    system_statuses = {}
+    submission_statuses = []
+    user_submission_statuses = []
+
+    statuses = session.query(models.SubmissionStatus) \
+                      .filter(models.SubmissionStatus.tid == tid) \
+                      .order_by(models.SubmissionStatus.order)
+
+    for status in statuses:
+        status_dict = serialize_submission_status(session, status, language)
+        if status.id in ['new', 'opened', 'closed']:
+            system_statuses[status.id] = status_dict
+        else:
+            user_submission_statuses.append(status_dict)
+
+    # Build the final array in the correct order
+    submission_statuses.append(system_statuses['new'])
+    submission_statuses.append(system_statuses['opened'])
+    submission_statuses += user_submission_statuses
+    submission_statuses.append(system_statuses['closed'])
+
+    return submission_statuses
+
+
+def db_get_submission_status(session, tid, status_id, language):
+    """
+    Transaction for fetching the submission status given its ID
+
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param status_id: The ID of the submission status to be retriven
+    :param language: The language to be used in the serialization
+    :return: The serialized descriptor of the indicated submission status
+    """
+    status = session.query(models.SubmissionStatus) \
+                   .filter(models.SubmissionStatus.tid == tid,
+                           models.SubmissionStatus.id == status_id).one_or_none()
+
+    if status is None:
+        raise errors.ResourceNotFound
+
+    return serialize_submission_status(session, status, language)
+
 
 
 def db_get_triggers_by_type(session, type, object_id):
