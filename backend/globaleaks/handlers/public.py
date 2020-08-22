@@ -24,6 +24,9 @@ trigger_map = {
     'step': models.FieldOptionTriggerStep
 }
 
+def db_get_languages(session, tid):
+    return [x[0] for x in models.db_query(session, models.EnabledLanguage.name, models.EnabledLanguage.tid == tid)]
+
 
 def db_get_triggers_by_type(session, type, object_id):
     """
@@ -155,13 +158,14 @@ def db_serialize_node(session, tid, language):
     :param language: The language to be used during serialization
     :return: The serialization of the public node configuration
     """
+    languages = db_get_languages(session, tid)
     node_dict = ConfigFactory(session, tid).serialize('public_node')
     l10n_dict = ConfigL10NFactory(session, tid,).serialize('node', language)
 
     ret_dict = merge_dicts(node_dict, l10n_dict)
 
     ret_dict['root_tenant'] = tid == 1
-    ret_dict['languages_enabled'] = models.EnabledLanguage.list(session, tid) if node_dict['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES)
+    ret_dict['languages_enabled'] = languages if node_dict['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES)
     ret_dict['languages_supported'] = LANGUAGES_SUPPORTED
 
     records = session.query(models.File.id, models.File.data).filter(models.File.tid == tid, models.File.id.in_(['css', 'logo', 'script']))
@@ -174,7 +178,7 @@ def db_serialize_node(session, tid, language):
         for varname in ['version', 'version_db', 'latest_version']:
             ret_dict[varname] = root_tenant_node.get_val(varname)
 
-        if language not in models.EnabledLanguage.list(session, tid):
+        if language not in languages:
             language = root_tenant_node.get_val('default_language')
 
         root_tenant_l10n = ConfigL10NFactory(session, 1)
