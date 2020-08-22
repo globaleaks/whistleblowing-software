@@ -10,7 +10,7 @@ class MigrationScript(MigrationBase):
         config = self.model_to['Config']
 
         def add_raw_config(session, group, name, customized, value):
-            c = config(migrate=True)
+            c = config()
             c.var_group = group
             c.var_name = name
             c.customized = customized

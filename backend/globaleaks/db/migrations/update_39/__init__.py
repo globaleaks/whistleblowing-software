@@ -3,9 +3,7 @@ import os
 import shutil
 
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.db.migrations.update_37.config_desc import GLConfig_v_37
 from globaleaks.models import *
-from globaleaks.models import config_desc
 from globaleaks.models.properties import *
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_now
@@ -44,39 +42,6 @@ class Config_v_38(Model):
     value = Column(JSON)
     customized = Column(Boolean, default=False)
 
-    def __init__(self, group=None, name=None, value=None, migrate=False):
-        if migrate:
-            return
-
-        self.var_group = group
-        self.var_name = name
-
-        self.set_v(value)
-
-    @staticmethod
-    def find_descriptor(config_desc_root, var_group, var_name):
-        d = config_desc_root.get(var_group, {}).get(var_name, None)
-        if d is None:
-            raise ValueError('%s.%s descriptor cannot be None' % (var_group, var_name))
-
-        return d
-
-    def set_v(self, val):
-        desc = self.find_descriptor(GLConfig_v_37, self.var_group, self.var_name)
-
-        if val is None:
-            val = desc._type()
-
-        if not isinstance(val, desc._type):
-            raise ValueError("Cannot assign %s with %s" % (self, type(val)))
-
-        if self.value is None:
-            self.value = {'v': val}
-
-        elif self.value['v'] != val:
-            self.customized = True
-            self.value = {'v': val}
-
 
 class ConfigL10N_v_38(Model):
     __tablename__ = 'config_l10n'
@@ -85,15 +50,6 @@ class ConfigL10N_v_38(Model):
     var_name = Column(UnicodeText, primary_key=True)
     value = Column(UnicodeText)
     customized = Column(Boolean, default=False)
-
-    def __init__(self, lang_code=None, group=None, var_name=None, value='', migrate=False):
-        if migrate:
-            return
-
-        self.lang = lang_code
-        self.var_group = group
-        self.var_name = var_name
-        self.value = value
 
 
 class Context_v_38(Model):
@@ -131,11 +87,9 @@ class EnabledLanguage_v_38(Model):
     __tablename__ = 'enabledlanguage'
     name = Column(UnicodeText, primary_key=True)
 
-    def __init__(self, name=None, migrate=False):
-        if migrate:
-            return
-
-        self.name = name
+    def __init__(self, name=None):
+        if name is not None:
+            self.name = name
 
     @classmethod
     def list(cls, session):
@@ -410,7 +364,7 @@ class MigrationScript(MigrationBase):
 
     def migrate_Config(self):
         for old_obj in self.session_old.query(self.model_from['Config']):
-            new_obj = self.model_to['Config'](migrate=True)
+            new_obj = self.model_to['Config']()
             for key in new_obj.__table__.columns._data.keys():
                 if key == 'tid':
                     new_obj.tid = 1

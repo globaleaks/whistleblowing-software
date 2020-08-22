@@ -117,7 +117,7 @@ class MigrationScript(MigrationBase):
                                        .order_by(self.model_from['InternalTip'].creation_date)
             for old_obj in old_objs:
                 i += 1
-                new_obj = self.model_to['InternalTip'](migrate=True)
+                new_obj = self.model_to['InternalTip']()
                 for key in new_obj.__table__.columns._data.keys():
                     if key in ['encrypted', 'wb_prv_key', 'wb_pub_key', 'wb_tip_key', 'enc_data']:
                         pass
@@ -130,7 +130,7 @@ class MigrationScript(MigrationBase):
 
     def migrate_InternalFile(self):
         for old_obj in self.session_old.query(self.model_from['InternalFile']):
-            new_obj = self.model_to['InternalFile'](migrate=True)
+            new_obj = self.model_to['InternalFile']()
             for key in new_obj.__table__.columns._data.keys():
                 if key == 'filename':
                     new_obj.filename = os.path.basename(old_obj.file_path)
@@ -141,7 +141,7 @@ class MigrationScript(MigrationBase):
 
     def migrate_ReceiverFile(self):
         for old_obj in self.session_old.query(self.model_from['ReceiverFile']):
-            new_obj = self.model_to['ReceiverFile'](migrate=True)
+            new_obj = self.model_to['ReceiverFile']()
             for key in new_obj.__table__.columns._data.keys():
                 if key == 'filename':
                     new_obj.filename = os.path.basename(old_obj.file_path)
@@ -152,7 +152,7 @@ class MigrationScript(MigrationBase):
 
     def migrate_WhistleblowerFile(self):
         for old_obj in self.session_old.query(self.model_from['WhistleblowerFile']):
-            new_obj = self.model_to['WhistleblowerFile'](migrate=True)
+            new_obj = self.model_to['WhistleblowerFile']()
             for key in new_obj.__table__.columns._data.keys():
                 if key == 'filename':
                     new_obj.filename = os.path.basename(old_obj.file_path)
@@ -164,5 +164,9 @@ class MigrationScript(MigrationBase):
     def epilogue(self):
         for tenant in self.session_old.query(self.model_from['Tenant']):
             count = self.session_old.query(self.model_from['InternalTip']).filter(self.model_from['InternalTip'].tid == tenant.id).count()
-            self.session_new.add(self.model_to['Config']({'tid': tenant.id, 'var_name': 'counter_submissions', 'value': count}))
+            obj = self.model_to['Config']()
+            obj.tid = tenant.id
+            obj.var_name = 'counter_submissions'
+            obj.value = count
+            self.session_new.add(obj)
             self.entries_count['Config'] += 1

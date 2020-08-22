@@ -82,14 +82,11 @@ class InternalTip_v_44(Model):
 
 class Receiver_v_44(Model):
     __tablename__ = 'receiver'
-
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-
     configuration = Column(UnicodeText, default='default', nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
     can_postpone_expiration = Column(Boolean, default=False, nullable=False)
     can_grant_permissions = Column(Boolean, default=False, nullable=False)
-
     tip_notification = Column(Boolean, default=True, nullable=False)
 
 
@@ -266,7 +263,11 @@ class MigrationScript(MigrationBase):
 
     def epilogue(self):
         if self.session_new.query(self.model_from['Tenant']).count() > 1:
-            self.session_new.add(self.model_to['Config']({'tid': 1, 'var_name': 'multisite', 'value': True}))
+            obj = self.model_to['Config']()
+            obj.tid = 1
+            obj.var_name = 'multisite'
+            obj.value = True
+            self.session_new.add(obj)
             self.entries_count['Config'] += 1
 
         ids = [id[0] for id in self.session_old.query(self.model_from['Field'].id)

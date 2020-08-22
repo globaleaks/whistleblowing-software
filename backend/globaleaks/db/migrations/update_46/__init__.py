@@ -1,7 +1,7 @@
 # -*- coding: UTF-8
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.submission import db_assign_submission_progressive
-from globaleaks.models import config_desc, Model
+from globaleaks.models import Model
 from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null
 
@@ -12,25 +12,6 @@ class Config_v_45(Model):
     var_name = Column(UnicodeText(64), primary_key=True, nullable=False)
     value = Column(JSON, nullable=False)
     customized = Column(Boolean, default=False, nullable=False)
-
-    def __init__(self, values=None, migrate=False):
-        if values is None or migrate:
-            return
-
-        self.tid = values['tid']
-        self.var_name = values['var_name']
-        self.set_v(values['value'])
-
-    def set_v(self, val):
-        desc = config_desc.ConfigDescriptor[self.var_name]
-        if val is None:
-            val = desc._type()
-
-        if self.value != val:
-            self.value = val
-
-            if self.value is not None:
-                self.customized = True
 
 
 class ConfigL10N_v_45(Model):

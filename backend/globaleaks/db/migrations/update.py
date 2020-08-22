@@ -56,7 +56,7 @@ class MigrationBase(object):
 
     def generic_migration_function(self, model_name):
         for old_obj in self.session_old.query(self.model_from[model_name]):
-            new_obj = self.model_to[model_name](migrate=True)
+            new_obj = self.model_to[model_name]()
 
             for key in [c.key for c in self.model_to[model_name].__table__.columns]:
                 old_key = key
