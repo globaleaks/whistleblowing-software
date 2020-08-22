@@ -87,10 +87,10 @@ def toggle_escrow(session, tid, user_session, user_id):
 def reset_smtp_settings(session, tid):
     config = ConfigFactory(session, tid)
     config.set_val('smtp_server', 'mail.globaleaks.org')
-    config.set_val('smtp_port', 9267)
+    config.set_val('smtp_port', 587)
     config.set_val('smtp_username', 'globaleaks')
     config.set_val('smtp_password', 'globaleaks')
-    config.set_val('smtp_source_email', 'notification@mail.globaleaks.org')
+    config.set_val('smtp_source_email', 'notifications@globaleaks.org')
     config.set_val('smtp_security', 'TLS')
     config.set_val('smtp_authentication', True)
 
