@@ -486,10 +486,6 @@ class _EnabledLanguage(Model):
     def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
-    @classmethod
-    def list(cls, session, tid):
-        return [x[0] for x in session.query(EnabledLanguage.name).filter(EnabledLanguage.tid == tid)]
-
 
 class _Field(Model):
     __tablename__ = 'field'

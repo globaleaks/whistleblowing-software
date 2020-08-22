@@ -5,6 +5,7 @@ from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPO
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.public import db_get_languages
 from globaleaks.handlers.user import can_edit_general_settings_or_raise
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.orm import tw
@@ -24,7 +25,7 @@ def db_update_enabled_languages(session, tid, languages, default_language):
     :param languages_enabled: The list of enabled languages
     :param default_language: The language to be set as default
     """
-    cur_enabled_langs = models.EnabledLanguage.list(session, tid)
+    cur_enabled_langs = db_get_languages(session, tid)
 
     if len(languages) < 1:
         raise errors.InputValidationError("No languages enabled!")
@@ -63,7 +64,7 @@ def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
 
     misc_dict = {
         'languages_supported': LANGUAGES_SUPPORTED,
-        'languages_enabled': models.EnabledLanguage.list(session, tid),
+        'languages_enabled': db_get_languages(session, tid),
         'root_tenant': tid == 1,
         'https_possible': tid == 1 or State.tenant_cache[1].reachable_via_web,
         'encryption_possible': tid == 1 or State.tenant_cache[1].encryption
@@ -122,7 +123,7 @@ def db_update_node(session, tid, user_session, request, language):
                                     request['languages_enabled'],
                                     request['default_language'])
 
-    if language in models.EnabledLanguage.list(session, tid):
+    if language in db_get_languages(session, tid):
         ConfigL10NFactory(session, tid).update('node', request, language)
 
     if enable_escrow:

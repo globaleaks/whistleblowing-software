@@ -3,7 +3,7 @@ from sqlalchemy import not_
 import time
 
 from globaleaks import __version__
-from globaleaks.models import Config, ConfigL10N, EnabledLanguage
+from globaleaks.models import db_query, Config, ConfigL10N, EnabledLanguage
 from globaleaks.models.properties import *
 from globaleaks.models.config_desc import ConfigDescriptor, ConfigFilters, ConfigL10NFilters
 from globaleaks.utils.utility import datetime_null
@@ -110,7 +110,7 @@ class ConfigL10NFactory(object):
         cfg.set_v(value)
 
     def reset(self, group, data):
-        langs = EnabledLanguage.list(self.session, self.tid)
+        langs = [x[0] for x in db_query(self.session, EnabledLanguage.name, EnabledLanguage.tid == self.tid)]
         self.update_defaults(group, langs, data, reset=True)
 
 
@@ -157,7 +157,7 @@ def add_new_lang(session, tid, lang, appdata_dict):
 def update_defaults(session, tid, appdata):
     ConfigFactory(session, tid).update_defaults()
 
-    langs = EnabledLanguage.list(session, tid)
+    langs = [x[0] for x in db_query(session, EnabledLanguage.name, EnabledLanguage.tid == tid)]
 
     session.query(ConfigL10N).filter(ConfigL10N.tid == tid,
                                      not_(ConfigL10N.var_name.in_(list(set(ConfigL10NFilters['node']).union(ConfigL10NFilters['notification']))))).delete(synchronize_session=False)
