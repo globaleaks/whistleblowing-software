@@ -5,7 +5,7 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_field, trigger_map
 from globaleaks.models import fill_localized_keys
-from globaleaks.orm import transact
+from globaleaks.orm import db_add, db_get, db_del, transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.utils.fs import read_json_file
@@ -50,7 +50,7 @@ def db_reset_option_triggers(session, type, object_id):
     :param object_id: The object on which reset the triggers
     """
     m = trigger_map[type]
-    models.db_delete(session, m, m.object_id == object_id)
+    db_del(session, m, m.object_id == object_id)
 
 
 def db_update_fieldoption(session, field_id, fieldoption_id, option_dict, language, idx):
@@ -74,7 +74,7 @@ def db_update_fieldoption(session, field_id, fieldoption_id, option_dict, langua
         o = session.query(models.FieldOption).filter(models.FieldOption.id == fieldoption_id).one_or_none()
 
     if o is None:
-        o = models.db_add(session, models.FieldOption, option_dict)
+        o = db_add(session, models.FieldOption, option_dict)
     else:
         o.update(option_dict)
 
@@ -102,9 +102,9 @@ def db_update_fieldoptions(session, field_id, options, language):
                               not_(models.FieldOption.id.in_(options_ids))) \
                       .subquery()
 
-    models.db_delete(session,
-                     models.FieldOption,
-                     models.FieldOption.id.in_(subquery))
+    db_del(session,
+           models.FieldOption,
+           models.FieldOption.id.in_(subquery))
 
 
 def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
@@ -127,7 +127,7 @@ def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
     o = session.query(models.FieldAttr).filter(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name).one_or_none()
     if o is None:
         attr_dict['id'] = ''
-        o = models.db_add(session, models.FieldAttr, attr_dict)
+        o = db_add(session, models.FieldAttr, attr_dict)
     else:
         o.update(attr_dict)
 
@@ -153,9 +153,9 @@ def db_update_fieldattrs(session, field_id, field_attrs, language):
                               not_(models.FieldAttr.id.in_(attrs_ids))) \
                       .subquery()
 
-    models.db_delete(session,
-                     models.FieldAttr,
-                     models.FieldAttr.id.in_(subquery))
+    db_del(session,
+           models.FieldAttr,
+           models.FieldAttr.id.in_(subquery))
 
 
 def check_field_association(session, tid, request):
@@ -218,7 +218,7 @@ def db_create_field(session, tid, request, language):
             if field is not None:
                 raise errors.InputValidationError("Whistleblower identity field already present")
 
-        field = models.db_add(session, models.Field, request)
+        field = db_add(session, models.Field, request)
 
         template = session.query(models.Field).filter(models.Field.id == request['template_id']).one()
 
@@ -235,7 +235,7 @@ def db_create_field(session, tid, request, language):
         db_update_fieldattrs(session, field.id, attrs, None)
 
     else:
-        field = models.db_add(session, models.Field, request)
+        field = db_add(session, models.Field, request)
         attrs = request.get('attrs')
         options = request.get('options')
 
@@ -281,10 +281,10 @@ def db_update_field(session, tid, field_id, request, language):
     :param language: The language of the request
     :return: The updated field
     """
-    field = models.db_get(session,
-                          models.Field,
-                          (models.Field.tid == tid,
-                           models.Field.id == field_id))
+    field = db_get(session,
+                   models.Field,
+                   (models.Field.tid == tid,
+                    models.Field.id == field_id))
 
     check_field_association(session, tid, request)
 
@@ -345,10 +345,10 @@ def delete_field(session, tid, field_id):
     :param tid: The tenant ID
     :param field_id: The id of the field to be deleted
     """
-    field = models.db_get(session,
-                          models.Field,
-                          (models.Field.tid == tid,
-                           models.Field.id == field_id))
+    field = db_get(session,
+                   models.Field,
+                   (models.Field.tid == tid,
+                    models.Field.id == field_id))
 
     if field.instance == 'template' and session.query(models.Field).filter(models.Field.tid == tid, models.Field.template_id == field.id).count():
         raise errors.InputValidationError("Cannot remove the field template as it is used by one or more questionnaires")

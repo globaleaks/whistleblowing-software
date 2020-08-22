@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks import models
 from globaleaks.handlers.admin.file import db_get_file
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.orm import transact, tw
+from globaleaks.orm import db_get, transact, tw
 
 
 appfiles = {
@@ -47,7 +47,7 @@ def get_file_id(session, tid, name):
     :param name: A file name
     :return: A result model
     """
-    return models.db_get(session, models.File.id, (models.File.tid == tid, models.File.name == name))[0]
+    return db_get(session, models.File.id, (models.File.tid == tid, models.File.name == name))[0]
 
 
 class FileHandler(BaseHandler):

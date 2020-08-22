@@ -9,7 +9,7 @@ from globaleaks.db.appdata import load_appdata, db_load_defaults
 from globaleaks.handlers.admin import file
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import db_set_config_variable, ConfigFactory
-from globaleaks.orm import transact
+from globaleaks.orm import db_del, db_get, transact, tw
 from globaleaks.rest import requests
 from globaleaks.settings import Settings
 from globaleaks.utils.log import log
@@ -96,7 +96,7 @@ def get_tenant_list(session):
 
 @transact
 def get(session, tid):
-    return serialize_tenant(session, models.db_get(session, models.Tenant, models.Tenant.id == tid))
+    return serialize_tenant(session, db_get(session, models.Tenant, models.Tenant.id == tid))
 
 
 @transact
@@ -104,12 +104,7 @@ def update(session, tid, request):
     for var in ['mode', 'name', 'subdomain']:
         db_set_config_variable(session, tid, var, request[var])
 
-    return serialize_tenant(session, models.db_get(session, models.Tenant, models.Tenant.id == tid))
-
-
-@transact
-def delete(session, tid):
-    models.db_delete(session, models.Tenant, models.Tenant.id == tid)
+    return serialize_tenant(session, db_get(session, models.Tenant, models.Tenant.id == tid))
 
 
 class TenantCollection(BaseHandler):
@@ -166,4 +161,4 @@ class TenantInstance(BaseHandler):
 
         log.info('Removing tenant with id: %d', tenant_id, tid=self.request.tid)
 
-        return delete(tenant_id)
+        return tw(db_del, models.Tenant, models.Tenant.id == tenant_id)

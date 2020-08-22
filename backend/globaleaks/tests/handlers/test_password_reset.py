@@ -6,7 +6,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.handlers import password_reset
 from globaleaks.handlers.admin.user import db_get_users
-from globaleaks.orm import transact, tw
+from globaleaks.orm import db_get, transact, tw
 from globaleaks.state import State
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_now
@@ -14,7 +14,7 @@ from globaleaks.utils.utility import datetime_now
 
 @transact
 def set_reset_token(session, user_id, validation_token):
-    user = models.db_get(session, models.User, models.User.id == user_id)
+    user = db_get(session, models.User, models.User.id == user_id)
     user.change_email_date = datetime_now()
     user.reset_password_token = validation_token
     user.reset_password_date = datetime_now()

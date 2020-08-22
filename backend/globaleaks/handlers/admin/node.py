@@ -8,7 +8,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import db_get_languages
 from globaleaks.handlers.user import can_edit_general_settings_or_raise
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
-from globaleaks.orm import tw
+from globaleaks.orm import db_del, db_get, tw
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import Base64Encoder, GCE
@@ -47,7 +47,7 @@ def db_update_enabled_languages(session, tid, languages, default_language):
     to_remove = list(set(cur_enabled_langs) - set(languages))
     if to_remove:
         session.query(models.User).filter(models.User.tid == tid, models.User.language.in_(to_remove)).update({'language': default_language}, synchronize_session=False)
-        models.db_delete(session, models.EnabledLanguage, (models.EnabledLanguage.tid == tid, models.EnabledLanguage.name.in_(to_remove)))
+        db_del(session, models.EnabledLanguage, (models.EnabledLanguage.tid == tid, models.EnabledLanguage.name.in_(to_remove)))
 
 
 def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
@@ -119,7 +119,7 @@ def db_update_node(session, tid, user_session, request, language):
 
     if enable_escrow:
         crypto_escrow_prv_key, State.tenant_cache[tid].crypto_escrow_pub_key = GCE.generate_keypair()
-        user = models.db_get(session, models.User, models.User.id == user_session.user_id)
+        user = db_get(session, models.User, models.User.id == user_session.user_id)
         user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_escrow_prv_key))
 
     if disable_escrow:

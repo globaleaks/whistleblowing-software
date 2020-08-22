@@ -10,7 +10,7 @@ from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.models import get_localized_values
-from globaleaks.orm import transact
+from globaleaks.orm import db_get, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.pgp import PGPContext
@@ -150,10 +150,10 @@ def db_get_user(session, tid, user_id):
     :param user_id: A id of the user to retrieve
     :return: A retrieved model
     """
-    return models.db_get(session,
-                         models.User,
-                         (models.User.id == user_id,
-                          models.User.tid == tid))
+    return db_get(session,
+                  models.User,
+                  (models.User.id == user_id,
+                   models.User.tid == tid))
 
 
 @transact
@@ -185,7 +185,7 @@ def db_user_update_user(session, tid, user_session, request):
     from globaleaks.handlers.admin.notification import db_get_notification
     from globaleaks.handlers.admin.node import db_admin_serialize_node
 
-    user = models.db_get(session,
+    user = db_get(session,
                          models.User,
                          models.User.id == user_session.user_id)
 

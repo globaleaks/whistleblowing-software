@@ -6,7 +6,7 @@ from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_questionnaire
 from globaleaks.models import fill_localized_keys
-from globaleaks.orm import transact, tw
+from globaleaks.orm import db_add, db_del, db_get, transact, tw
 from globaleaks.rest import requests
 from globaleaks.utils.utility import datetime_now, uuid4
 
@@ -26,10 +26,10 @@ def db_get_questionnaires(session, tid, language):
 
 
 def db_get_questionnaire(session, tid, questionnaire_id, language, serialize_templates=True):
-    questionnaire = models.db_get(session,
-                                  models.Questionnaire,
-                                  (models.Questionnaire.tid.in_(set([1, tid])),
-                                   models.Questionnaire.id == questionnaire_id))
+    questionnaire = db_get(session,
+                           models.Questionnaire,
+                           (models.Questionnaire.tid.in_(set([1, tid])),
+                            models.Questionnaire.id == questionnaire_id))
 
     return serialize_questionnaire(session, tid, questionnaire, language, serialize_templates=serialize_templates)
 
@@ -39,7 +39,7 @@ def db_create_questionnaire(session, tid, questionnaire_dict, language):
                         models.Questionnaire.localized_keys, language)
 
     questionnaire_dict['tid'] = tid
-    q = models.db_add(session, models.Questionnaire, questionnaire_dict)
+    q = db_add(session, models.Questionnaire, questionnaire_dict)
 
     for step in questionnaire_dict.get('steps', []):
         step['questionnaire_id'] = q.id
@@ -79,10 +79,10 @@ def db_update_questionnaire(session, tid, questionnaire_id, request, language):
     :param language: The language of the request
     :return: A serialized descriptor of the questionnaire
     """
-    questionnaire = models.db_get(session,
-                                  models.Questionnaire,
-                                  (models.Questionnaire.tid == tid,
-                                   models.Questionnaire.id == questionnaire_id))
+    questionnaire = db_get(session,
+                           models.Questionnaire,
+                           (models.Questionnaire.tid == tid,
+                            models.Questionnaire.id == questionnaire_id))
 
     fill_localized_keys(request, models.Questionnaire.localized_keys, language)
 
@@ -218,7 +218,7 @@ class QuestionnaireInstance(BaseHandler):
         """
         Delete the specified questionnaire.
         """
-        return tw(models.db_delete,
+        return tw(db_del,
                   models.Questionnaire,
                   (models.Questionnaire.tid == self.request.tid,
                    models.Questionnaire.id == questionnaire_id))

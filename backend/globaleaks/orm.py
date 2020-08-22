@@ -1,4 +1,5 @@
 # -*- coding: utf-8
+import collections
 import random
 import time
 import warnings
@@ -67,6 +68,33 @@ def set_thread_pool(thread_pool):
 
 def get_thread_pool():
     return _THREAD_POOL
+
+
+def db_add(session, model_class, model_fields):
+    obj = model_class(model_fields)
+    session.add(obj)
+    session.flush()
+    return obj
+
+
+def db_query(session, selector, filter):
+    if isinstance(selector, collections.Iterable):
+        q = session.query(*selector)
+    else:
+        q = session.query(selector)
+
+    if isinstance(filter, collections.Iterable):
+        return q.filter(*filter)
+    else:
+        return q.filter(filter)
+
+
+def db_get(session, selector, filter):
+    return db_query(session, selector, filter).one()
+
+
+def db_del(session, selector, filter):
+    db_query(session, selector, filter).delete(synchronize_session=False)
 
 
 class transact(object):
