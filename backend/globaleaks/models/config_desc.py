@@ -55,10 +55,10 @@ ConfigDescriptor = {
     'admin_api_token_digest': Unicode(),
 
     'smtp_server': Unicode(default='mail.globaleaks.org'),
-    'smtp_port': Int(default=9267),
+    'smtp_port': Int(default=587),
     'smtp_username': Unicode(default='globaleaks'),
     'smtp_password': Unicode(default='globaleaks'),
-    'smtp_source_email': Unicode(default='notification@mail.globaleaks.org'),
+    'smtp_source_email': Unicode(default='notifications@globaleaks.org'),
     'smtp_security': Unicode(default='TLS'),
     'smtp_authentication': Bool(default=True),
 
