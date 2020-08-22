@@ -170,7 +170,7 @@ def db_refresh_tenant_cache(session, tid_list):
             tenant_cache.setdefault('notification', ObjectDict())
             tenant_cache['notification'][cfg.var_name] = cfg.value
 
-    for tid, lang in models.EnabledLanguage.tid_list(session, tid_list):
+    for tid, lang in session.query(models.EnabledLanguage.tid, models.EnabledLanguage.name):
         State.tenant_cache[tid].setdefault('languages_enabled', []).append(lang)
 
     for tid in tid_list:

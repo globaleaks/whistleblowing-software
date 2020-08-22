@@ -490,10 +490,6 @@ class _EnabledLanguage(Model):
     def list(cls, session, tid):
         return [x[0] for x in session.query(EnabledLanguage.name).filter(EnabledLanguage.tid == tid)]
 
-    @classmethod
-    def tid_list(cls, session, tid_list):
-        return [(lang.tid, lang.name) for lang in session.query(EnabledLanguage).filter(EnabledLanguage.tid.in_(tid_list))]
-
 
 class _Field(Model):
     __tablename__ = 'field'
