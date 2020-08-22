@@ -12,7 +12,7 @@
         "angular": true,
         "console": true,
         "d3": true,
-        "GLClient": true,
+        "GL": true,
         "importScripts": true,
         "onmessage": true,
         "saveAs": true,
