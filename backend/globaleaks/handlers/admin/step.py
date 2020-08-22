@@ -21,7 +21,7 @@ def db_create_step(session, tid, request, language):
     """
     fill_localized_keys(request, models.Step.localized_keys, language)
 
-    step = models.db_forge_obj(session, models.Step, request)
+    step = models.db_add(session, models.Step, request)
 
     for trigger in request.get('triggered_by_options', []):
         db_create_option_trigger(session, trigger['option'], 'step', step.id, trigger.get('sufficient', True))

@@ -74,7 +74,7 @@ def db_update_fieldoption(session, field_id, fieldoption_id, option_dict, langua
         o = session.query(models.FieldOption).filter(models.FieldOption.id == fieldoption_id).one_or_none()
 
     if o is None:
-        o = models.db_forge_obj(session, models.FieldOption, option_dict)
+        o = models.db_add(session, models.FieldOption, option_dict)
     else:
         o.update(option_dict)
 
@@ -127,7 +127,7 @@ def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
     o = session.query(models.FieldAttr).filter(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name).one_or_none()
     if o is None:
         attr_dict['id'] = ''
-        o = models.db_forge_obj(session, models.FieldAttr, attr_dict)
+        o = models.db_add(session, models.FieldAttr, attr_dict)
     else:
         o.update(attr_dict)
 
@@ -218,7 +218,7 @@ def db_create_field(session, tid, request, language):
             if field is not None:
                 raise errors.InputValidationError("Whistleblower identity field already present")
 
-        field = models.db_forge_obj(session, models.Field, request)
+        field = models.db_add(session, models.Field, request)
 
         template = session.query(models.Field).filter(models.Field.id == request['template_id']).one()
 
@@ -235,7 +235,7 @@ def db_create_field(session, tid, request, language):
         db_update_fieldattrs(session, field.id, attrs, None)
 
     else:
-        field = models.db_forge_obj(session, models.Field, request)
+        field = models.db_add(session, models.Field, request)
         attrs = request.get('attrs')
         options = request.get('options')
 

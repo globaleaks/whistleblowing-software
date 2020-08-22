@@ -39,7 +39,7 @@ def db_create_questionnaire(session, tid, questionnaire_dict, language):
                         models.Questionnaire.localized_keys, language)
 
     questionnaire_dict['tid'] = tid
-    q = models.db_forge_obj(session, models.Questionnaire, questionnaire_dict)
+    q = models.db_add(session, models.Questionnaire, questionnaire_dict)
 
     for step in questionnaire_dict.get('steps', []):
         step['questionnaire_id'] = q.id

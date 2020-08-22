@@ -153,7 +153,7 @@ def db_create_context(session, tid, request, language):
     if not request['questionnaire_id']:
         raise errors.InputValidationError()
 
-    context = models.db_forge_obj(session, models.Context, request)
+    context = models.db_add(session, models.Context, request)
 
     db_associate_context_receivers(session, context, request['receivers'])
 
