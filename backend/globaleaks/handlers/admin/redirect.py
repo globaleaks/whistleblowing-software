@@ -47,7 +47,7 @@ def create(session, tid, request):
     :return: The descriptor of the registered redirect
     """
     request['tid'] = tid
-    redirect = models.db_forge_obj(session, models.Redirect, request)
+    redirect = models.db_add(session, models.Redirect, request)
     return serialize_redirect(redirect)
 
 
