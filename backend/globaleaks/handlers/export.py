@@ -10,8 +10,8 @@ from globaleaks import models
 from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.admin.submission_statuses import db_get_submission_statuses
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.public import db_get_submission_statuses
 from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip
 from globaleaks.handlers.submission import decrypt_tip
 from globaleaks.handlers.user import user_serialize_user
