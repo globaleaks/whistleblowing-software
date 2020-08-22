@@ -5,7 +5,7 @@ from sqlalchemy import not_
 from globaleaks import models
 from globaleaks.handlers.admin.field import db_create_field, db_update_fieldattrs
 from globaleaks.handlers.admin.questionnaire import db_create_questionnaire
-from globaleaks.orm import db_add, db_del
+from globaleaks.orm import db_del
 from globaleaks.settings import Settings
 from globaleaks.utils.fs import read_json_file
 

@@ -41,6 +41,6 @@ class TempDict(OrderedDict):
             return
 
         if self.expireCallback is not None:
-            self.expireCallback(self[key])  #pylint: disable=now-callable
+            self.expireCallback(self[key])  #pylint: disable=not-callable
 
         del self[key]
