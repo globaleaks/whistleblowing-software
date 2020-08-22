@@ -8,7 +8,7 @@ from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.public import db_get_submission_status, \
     db_get_submission_statuses, serialize_submission_status, \
     serialize_submission_substatus
-from globaleaks.models import fill_localized_keys, get_localized_values
+from globaleaks.models import fill_localized_keys
 from globaleaks.orm import db_del, transact, tw
 from globaleaks.rest import requests
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
-from globaleaks.handlers import admin, public rtip, user
+from globaleaks.handlers import admin, public, rtip, user
 from globaleaks.jobs.delivery import Delivery
 from globaleaks.orm import tw
 from globaleaks.tests import helpers

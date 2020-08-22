@@ -14,7 +14,7 @@ from globaleaks.handlers.submission import serialize_usertip, \
     db_set_internaltip_answers, db_get_questionnaire, db_archive_questionnaire_schema, db_set_internaltip_data
 from globaleaks.models import serializers
 from globaleaks.orm import db_get, transact
-from globaleaks.rest import errors, requests
+from globaleaks.rest import requests
 from globaleaks.utils.crypto import GCE
 from globaleaks.utils.log import log
 from globaleaks.utils.utility import datetime_now

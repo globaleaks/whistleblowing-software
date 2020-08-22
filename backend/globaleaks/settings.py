@@ -2,7 +2,6 @@
 import getpass
 import grp
 import os
-import platform
 import pwd
 import sys
 

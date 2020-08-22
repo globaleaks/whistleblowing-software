@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import base64
 import collections
-import io
 import json
 import mimetypes
 import os
@@ -263,7 +262,7 @@ class BaseHandler(object):
 
     def write_file(self, filename, fp):
         if isinstance(fp, str):
-          fp = self.open_file(fp)
+            fp = self.open_file(fp)
 
         if filename.endswith('.gz'):
             self.request.setHeader(b'Content-encoding', b'gzip')
