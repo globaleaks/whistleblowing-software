@@ -13,7 +13,7 @@ from globaleaks.handlers.submission import serialize_usertip, \
     db_save_plaintext_answers, decrypt_tip, \
     db_set_internaltip_answers, db_get_questionnaire, db_archive_questionnaire_schema, db_set_internaltip_data
 from globaleaks.models import serializers
-from globaleaks.orm import transact
+from globaleaks.orm import db_get, transact
 from globaleaks.rest import errors, requests
 from globaleaks.utils.crypto import GCE
 from globaleaks.utils.log import log
@@ -37,10 +37,10 @@ def db_get_wbfile_list(session, itip_id):
 
 
 def db_get_wbtip(session, itip_id, language):
-    wbtip, itip = models.db_get(session,
-                                (models.WhistleblowerTip, models.InternalTip),
-                                (models.WhistleblowerTip.id == models.InternalTip.id,
-                                 models.InternalTip.id == itip_id))
+    wbtip, itip = db_get(session,
+                         (models.WhistleblowerTip, models.InternalTip),
+                         (models.WhistleblowerTip.id == models.InternalTip.id,
+                          models.InternalTip.id == itip_id))
 
     itip.wb_access_counter += 1
     itip.wb_last_access = datetime_now()
@@ -66,13 +66,13 @@ def serialize_wbtip(session, wbtip, itip, language):
 
 @transact
 def create_comment(session, tid, wbtip_id, content):
-    wbtip, itip = models.db_get(session,
-                                (models.WhistleblowerTip, models.InternalTip),
-                                (models.WhistleblowerTip.id == wbtip_id,
-                                 models.InternalTip.id == models.WhistleblowerTip.id,
-                                 models.InternalTip.enable_two_way_comments.is_(True),
-                                 models.InternalTip.status != 'closed',
-                                 models.InternalTip.tid == tid))
+    wbtip, itip = db_get(session,
+                         (models.WhistleblowerTip, models.InternalTip),
+                         (models.WhistleblowerTip.id == wbtip_id,
+                          models.InternalTip.id == models.WhistleblowerTip.id,
+                          models.InternalTip.enable_two_way_comments.is_(True),
+                          models.InternalTip.status != 'closed',
+                          models.InternalTip.tid == tid))
 
     itip.update_date = itip.wb_last_access = datetime_now()
 
@@ -104,15 +104,15 @@ def db_get_itip_message_list(session, wbtip_id):
 
 @transact
 def create_message(session, tid, wbtip_id, receiver_id, content):
-    wbtip, itip, rtip_id = models.db_get(session,
-                                         (models.WhistleblowerTip, models.InternalTip, models.ReceiverTip.id),
-                                         (models.WhistleblowerTip.id == wbtip_id,
-                                          models.ReceiverTip.internaltip_id == wbtip_id,
-                                          models.ReceiverTip.receiver_id == receiver_id,
-                                          models.InternalTip.id == models.WhistleblowerTip.id,
-                                          models.InternalTip.enable_two_way_messages.is_(True),
-                                          models.InternalTip.status != 'closed',
-                                          models.InternalTip.tid == tid))
+    wbtip, itip, rtip_id = db_get(session,
+                                  (models.WhistleblowerTip, models.InternalTip, models.ReceiverTip.id),
+                                  (models.WhistleblowerTip.id == wbtip_id,
+                                   models.ReceiverTip.internaltip_id == wbtip_id,
+                                   models.ReceiverTip.receiver_id == receiver_id,
+                                   models.InternalTip.id == models.WhistleblowerTip.id,
+                                   models.InternalTip.enable_two_way_messages.is_(True),
+                                   models.InternalTip.status != 'closed',
+                                   models.InternalTip.tid == tid))
 
     itip.update_date = itip.wb_last_access = datetime_now()
 
@@ -135,11 +135,11 @@ def create_message(session, tid, wbtip_id, receiver_id, content):
 
 @transact
 def update_identity_information(session, tid, tip_id, identity_field_id, wbi, language):
-    itip = models.db_get(session,
-                         models.InternalTip,
-                         (models.InternalTip.id == tip_id,
-                          models.InternalTip.status != 'closed',
-                          models.InternalTip.tid == tid))
+    itip = db_get(session,
+                  models.InternalTip,
+                  (models.InternalTip.id == tip_id,
+                   models.InternalTip.status != 'closed',
+                   models.InternalTip.tid == tid))
 
     if itip.crypto_tip_pub_key:
         wbi = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(wbi).encode())).decode()

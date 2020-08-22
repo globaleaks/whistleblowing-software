@@ -7,7 +7,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import can_edit_general_settings_or_raise
-from globaleaks.orm import transact, tw
+from globaleaks.orm import db_del, transact, tw
 from globaleaks.rest import errors
 from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.utility import uuid4
@@ -105,7 +105,7 @@ class FileInstance(BaseHandler):
         if os.path.exists(path):
             os.remove(path)
 
-        result = yield tw(models.db_delete, models.File, (models.File.tid == self.request.tid, models.File.id == id))
+        result = yield tw(db_del, models.File, (models.File.tid == self.request.tid, models.File.id == id))
         returnValue(result)
 
 

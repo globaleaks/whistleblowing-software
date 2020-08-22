@@ -11,7 +11,7 @@ from globaleaks.handlers.admin.submission_statuses import db_get_submission_stat
 from globaleaks.models import get_localized_values
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.models.enums import EnumContextStatus
-from globaleaks.orm import transact
+from globaleaks.orm import db_query, transact
 from globaleaks.state import State
 from globaleaks.utils.sets import merge_dicts
 
@@ -25,7 +25,7 @@ trigger_map = {
 }
 
 def db_get_languages(session, tid):
-    return [x[0] for x in models.db_query(session, models.EnabledLanguage.name, models.EnabledLanguage.tid == tid)]
+    return [x[0] for x in db_query(session, models.EnabledLanguage.name, models.EnabledLanguage.tid == tid)]
 
 
 def db_get_triggers_by_type(session, type, object_id):

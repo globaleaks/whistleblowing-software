@@ -11,7 +11,7 @@ from globaleaks.handlers.admin.user import db_get_users
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.wizard import db_wizard
 from globaleaks.models.config import ConfigFactory
-from globaleaks.orm import transact
+from globaleaks.orm import db_del, transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
 from globaleaks.utils.crypto import generateRandomKey, generateRandomPassword
@@ -76,7 +76,7 @@ def signup(session, request, language):
                               models.Tenant.id == models.Subscriber.tid) \
                       .subquery()
 
-    models.db_delete(session, models.Tenant, models.Tenant.id.in_(subquery))
+    db_del(session, models.Tenant, models.Tenant.id.in_(subquery))
 
     tenant = db_create_tenant(session, {'name': request['subdomain'],
                                         'subdomain': request['subdomain'],

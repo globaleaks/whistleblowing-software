@@ -18,7 +18,7 @@ from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.submission import serialize_usertip, decrypt_tip
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers
-from globaleaks.orm import transact
+from globaleaks.orm import db_get, transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
@@ -101,9 +101,9 @@ def receiver_serialize_wbfile(session, wbfile):
     :param wbfile: A model to be serialized
     :return: A serialized description of the model specified
     """
-    rtip = models.db_get(session,
-                         models.ReceiverTip,
-                         models.ReceiverTip.id == wbfile.receivertip_id)
+    rtip = db_get(session,
+                  models.ReceiverTip,
+                  models.ReceiverTip.id == wbfile.receivertip_id)
 
     return {
         'id': wbfile.id,
@@ -205,7 +205,7 @@ def db_access_rtip(session, tid, user_id, rtip_id):
     :param rtip_id: the requested rtip ID
     :return: A model requested
     """
-    return models.db_get(session,
+    return db_get(session,
                          (models.ReceiverTip, models.InternalTip),
                          (models.ReceiverTip.id == rtip_id,
                           models.ReceiverTip.receiver_id == user_id,
@@ -228,12 +228,12 @@ def db_access_wbfile(session, tid, user_id, wbfile_id):
                                               models.ReceiverTip.receiver_id == user_id,
                                               models.InternalTip.tid == tid)]
 
-    return models.db_get(session,
-                         models.WhistleblowerFile,
-                         (models.WhistleblowerFile.id == wbfile_id,
-                          models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                          models.ReceiverTip.internaltip_id.in_(itips_ids),
-                          models.InternalTip.tid == tid))
+    return db_get(session,
+                  models.WhistleblowerFile,
+                  (models.WhistleblowerFile.id == wbfile_id,
+                   models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                   models.ReceiverTip.internaltip_id.in_(itips_ids),
+                   models.InternalTip.tid == tid))
 
 
 def db_receiver_get_rfile_list(session, rtip_id):
@@ -459,9 +459,9 @@ def delete_rtip(session, tid, user_id, rtip_id):
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    receiver = models.db_get(session,
-                             models.User,
-                             models.User.id == rtip.receiver_id)
+    receiver = db_get(session,
+                      models.User,
+                      models.User.id == rtip.receiver_id)
 
     if not (State.tenant_cache[tid].can_delete_submission or
             receiver.can_delete_submission):
@@ -482,9 +482,9 @@ def postpone_expiration(session, tid, user_id, rtip_id):
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    receiver = models.db_get(session,
-                             models.User,
-                             models.User.id == rtip.receiver_id)
+    receiver = db_get(session,
+                      models.User,
+                      models.User.id == rtip.receiver_id)
 
     if not (State.tenant_cache[tid].can_postpone_expiration or
             receiver.can_postpone_expiration):
@@ -507,9 +507,9 @@ def set_internaltip_variable(session, tid, user_id, rtip_id, key, value):
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    receiver = models.db_get(session,
-                             models.User,
-                             models.User.id == rtip.receiver_id)
+    receiver = db_get(session,
+                      models.User,
+                      models.User.id == rtip.receiver_id)
 
     if not (State.tenant_cache[tid].can_grant_permissions or
             receiver.can_grant_permissions):
@@ -842,11 +842,11 @@ class WBFileHandler(BaseHandler):
 
     @transact
     def download_wbfile(self, session, tid, file_id):
-        wbfile, wbtip = models.db_get(session,
-                                      (models.WhistleblowerFile, models.WhistleblowerTip),
-                                      (models.WhistleblowerFile.id == file_id,
-                                       models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                       models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id))
+        wbfile, wbtip = db_get(session,
+                               (models.WhistleblowerFile, models.WhistleblowerTip),
+                               (models.WhistleblowerFile.id == file_id,
+                                models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                                models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id))
 
         if not self.user_can_access(session, tid, wbfile):
             raise errors.ResourceNotFound()
@@ -905,13 +905,13 @@ class ReceiverFileDownload(BaseHandler):
 
     @transact
     def download_rfile(self, session, tid, user_id, file_id):
-        rfile, rtip = models.db_get(session,
-                                    (models.ReceiverFile, models.ReceiverTip),
-                                    (models.ReceiverFile.id == file_id,
-                                     models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
-                                     models.ReceiverTip.receiver_id == user_id,
-                                     models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                     models.InternalTip.tid == tid))
+        rfile, rtip = db_get(session,
+                             (models.ReceiverFile, models.ReceiverTip),
+                             (models.ReceiverFile.id == file_id,
+                              models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
+                              models.ReceiverTip.receiver_id == user_id,
+                              models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                              models.InternalTip.tid == tid))
 
         log.debug("Download of file %s by receiver %s (%d)" %
                   (rfile.internalfile_id, rtip.receiver_id, rfile.downloads))

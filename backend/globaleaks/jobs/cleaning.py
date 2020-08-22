@@ -15,7 +15,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import DailyJob
-from globaleaks.orm import transact
+from globaleaks.orm import db_del, transact
 from globaleaks.utils.fs import overwrite_and_remove
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, is_expired
@@ -49,7 +49,7 @@ class Cleaning(DailyJob):
                                   models.InternalTip.wb_last_access < threshold) \
                           .subquery()
 
-        models.db_delete(session, models.WhistleblowerTip, models.WhistleblowerTip.id.in_(subquery))
+        db_del(session, models.WhistleblowerTip, models.WhistleblowerTip.id.in_(subquery))
 
     def db_check_for_expiring_submissions(self, session, tid):
         threshold = datetime_now() + timedelta(hours=self.state.tenant_cache[tid].notification.tip_expiration_threshold)
@@ -91,14 +91,14 @@ class Cleaning(DailyJob):
     @transact
     def clean(self, session):
         # delete stats older than 1 year
-        models.db_delete(session, models.Stats, models.Stats.start < datetime_now() - timedelta(365))
+        db_del(session, models.Stats, models.Stats.start < datetime_now() - timedelta(365))
 
         # delete anomalies older than 1 year
-        models.db_delete(session, models.Anomalies, models.Anomalies.date < datetime_now() - timedelta(365))
+        db_del(session, models.Anomalies, models.Anomalies.date < datetime_now() - timedelta(365))
 
         # delete archived schemas not used by any existing submission
         subquery = session.query(models.InternalTipAnswers.questionnaire_hash).subquery()
-        models.db_delete(session, models.ArchivedSchema, not_(models.ArchivedSchema.hash.in_(subquery)))
+        db_del(session, models.ArchivedSchema, not_(models.ArchivedSchema.hash.in_(subquery)))
 
         # delete the tenants created via signup that has not been completed in 24h
         subquery = session.query(models.Tenant.id).filter(models.Subscriber.activation_token != '',
@@ -107,7 +107,7 @@ class Cleaning(DailyJob):
                                                           models.Config.var_name == 'creation_date',
                                                           models.Config.value < datetime.timestamp(datetime_now() - timedelta(days=1))) \
                                                   .subquery()
-        models.db_delete(session, models.Tenant, models.Tenant.id.in_(subquery))
+        db_del(session, models.Tenant, models.Tenant.id.in_(subquery))
 
     @transact
     def get_files_to_secure_delete(self, session):
@@ -115,7 +115,7 @@ class Cleaning(DailyJob):
 
     @transact
     def commit_files_deletion(self, session, filepaths):
-        models.db_delete(session, models.SecureFileDelete, models.SecureFileDelete.filepath.in_(filepaths))
+        db_del(session, models.SecureFileDelete, models.SecureFileDelete.filepath.in_(filepaths))
 
     @inlineCallbacks
     def perform_secure_deletion_of_files(self):

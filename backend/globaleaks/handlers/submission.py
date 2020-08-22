@@ -9,7 +9,7 @@ from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
 from globaleaks.handlers.base import connection_check, BaseHandler
 from globaleaks.models import get_localized_values
-from globaleaks.orm import transact
+from globaleaks.orm import db_get, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import sha256, Base64Encoder, GCE
@@ -277,10 +277,10 @@ def db_create_receivertip(session, receiver, internaltip, can_access_whistleblow
 def db_create_submission(session, tid, request, token, client_using_tor):
     answers = request['answers']
 
-    context, questionnaire = models.db_get(session,
-                                           (models.Context, models.Questionnaire),
-                                           (models.Context.id == request['context_id'],
-                                            models.Questionnaire.id == models.Context.questionnaire_id))
+    context, questionnaire = db_get(session,
+                                    (models.Context, models.Questionnaire),
+                                    (models.Context.id == request['context_id'],
+                                     models.Questionnaire.id == models.Context.questionnaire_id))
 
     if not request['receivers']:
         raise errors.InputValidationError("The submission should involve at least one recipient")

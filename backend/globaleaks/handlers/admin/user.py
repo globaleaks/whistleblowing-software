@@ -7,7 +7,7 @@ from globaleaks.handlers.user import db_get_user, \
                                      user_serialize_user
 
 from globaleaks.models import fill_localized_keys
-from globaleaks.orm import transact, tw
+from globaleaks.orm import db_del, transact, tw
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE, Base64Encoder
@@ -193,7 +193,7 @@ class UserInstance(BaseHandler):
         """
         Delete the specified user.
         """
-        return tw(models.db_delete,
+        return tw(db_del,
                   models.User,
                   (models.User.tid == self.request.tid,
                    models.User.id == user_id))

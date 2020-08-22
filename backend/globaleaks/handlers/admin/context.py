@@ -4,7 +4,7 @@ from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.models import fill_localized_keys, get_localized_values
-from globaleaks.orm import transact, tw
+from globaleaks.orm import db_add, db_del, db_get, transact, tw
 from globaleaks.rest import requests, errors
 
 
@@ -83,7 +83,7 @@ def db_associate_context_receivers(session, context, receiver_ids):
     :param context: The context on which associate the specified receivers
     :param receiver_ids: A list of receivers ids to be associated to the context
     """
-    models.db_delete(session, models.ReceiverContext, models.ReceiverContext.context_id == context.id)
+    db_del(session, models.ReceiverContext, models.ReceiverContext.context_id == context.id)
 
     if not receiver_ids:
         return
@@ -153,7 +153,7 @@ def db_create_context(session, tid, request, language):
     if not request['questionnaire_id']:
         raise errors.InputValidationError()
 
-    context = models.db_add(session, models.Context, request)
+    context = db_add(session, models.Context, request)
 
     db_associate_context_receivers(session, context, request['receivers'])
 
@@ -210,10 +210,10 @@ def update_context(session, tid, context_id, request, language):
     :param language: The request language
     :return: A serialized descriptor of the context
     """
-    context = models.db_get(session,
-                            models.Context,
-                            (models.Context.tid == tid,
-                             models.Context.id == context_id))
+    context = db_get(session,
+                     models.Context,
+                     (models.Context.tid == tid,
+                      models.Context.id == context_id))
     context = db_update_context(session, tid, context, request, language)
 
     return admin_serialize_context(session, context, language)
@@ -288,7 +288,7 @@ class ContextInstance(BaseHandler):
         """
         Delete the specified context.
         """
-        return tw(models.db_delete,
+        return tw(db_del,
                   models.Context,
                   (models.Context.tid == self.request.tid,
                    models.Context.id == context_id))

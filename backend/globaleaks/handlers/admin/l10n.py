@@ -3,7 +3,7 @@ import json
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.orm import transact, tw
+from globaleaks.orm import db_del, transact, tw
 
 
 @transact
@@ -45,6 +45,6 @@ class AdminL10NHandler(BaseHandler):
         return update(self.request.tid, lang, json.loads(self.request.content.read()))
 
     def delete(self, lang):
-        return tw(models.db_delete,
+        return tw(db_del,
                   models.CustomTexts,
                   (models.CustomTexts.tid == self.request.tid, models.CustomTexts.lang == lang))

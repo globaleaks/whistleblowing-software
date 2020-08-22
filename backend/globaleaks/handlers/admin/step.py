@@ -5,7 +5,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.public import serialize_step
 from globaleaks.models import fill_localized_keys
-from globaleaks.orm import transact, tw
+from globaleaks.orm import db_add, db_del, db_get, transact, tw
 from globaleaks.rest import requests, errors
 
 
@@ -21,7 +21,7 @@ def db_create_step(session, tid, request, language):
     """
     fill_localized_keys(request, models.Step.localized_keys, language)
 
-    step = models.db_add(session, models.Step, request)
+    step = db_add(session, models.Step, request)
 
     for trigger in request.get('triggered_by_options', []):
         db_create_option_trigger(session, trigger['option'], 'step', step.id, trigger.get('sufficient', True))
@@ -45,7 +45,7 @@ def db_update_step(session, tid, step_id, request, language):
     :param language: the language of the step definition dict
     :return: a serialization of the object
     """
-    step = models.db_get(session,
+    step = db_get(session,
                          models.Step,
                          (models.Step.id == step_id,
                           models.Questionnaire.id == models.Step.questionnaire_id,
@@ -69,8 +69,10 @@ def db_update_step(session, tid, step_id, request, language):
 def db_delete_step(session, tid, step_id):
     subquery = session.query(models.Questionnaire.id).filter(models.Questionnaire.tid == tid).subquery()
 
-    models.db_delete(session, models.Step, (models.Step.id == step_id,
-                                            models.Step.questionnaire_id.in_(subquery)))
+    db_del(session,
+           models.Step,
+           (models.Step.id == step_id,
+            models.Step.questionnaire_id.in_(subquery)))
 
 
 @transact

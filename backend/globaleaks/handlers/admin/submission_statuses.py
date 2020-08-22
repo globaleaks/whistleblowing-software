@@ -6,7 +6,7 @@ from globaleaks.rest import errors
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.models import fill_localized_keys, get_localized_values
-from globaleaks.orm import transact, tw
+from globaleaks.orm import db_del, transact, tw
 from globaleaks.rest import requests
 
 
@@ -282,7 +282,7 @@ class SubmissionStatusInstance(BaseHandler):
         return tw(db_update_submission_status, self.request.tid, status_id, request, self.request.language)
 
     def delete(self, status_id):
-        return tw(models.db_delete,
+        return tw(db_del,
                   models.SubmissionStatus,
                   (models.SubmissionStatus.tid == self.request.tid,
                    models.SubmissionStatus.id == status_id))
@@ -330,7 +330,7 @@ class SubmissionSubStatusInstance(BaseHandler):
                   self.request.language)
 
     def delete(self, status_id, substatus_id):
-        return tw(models.db_delete,
+        return tw(db_del,
                   models.SubmissionSubStatus,
                   (models.SubmissionSubStatus.tid == self.request.tid,
                    models.SubmissionSubStatus.id == substatus_id,
