@@ -130,7 +130,7 @@ class Model(object):
     optional_references = []
     list_keys = []
 
-    def __init__(self, values=None, migrate=False):
+    def __init__(self, values=None):
         self.update(values)
 
         self.properties = self.__table__.columns._data.keys()
@@ -290,14 +290,11 @@ class _Config(Model):
     def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
-    def __init__(self, values=None, migrate=False):
+    def __init__(self, values=None):
         """
-        :param value:    This input is passed directly into set_v
-        :param migrate:  Added to comply with models.Model constructor which is
-                         used to copy every field returned by the ORM from the db
-                         from an old_obj to a new one.
+        :param values:   This input is passed directly into set_v
         """
-        if values is None or migrate:
+        if values is None:
             return
 
         self.tid = values['tid']
@@ -335,8 +332,8 @@ class _ConfigL10N(Model):
     def __table_args__(self):
         return (ForeignKeyConstraint(['tid', 'lang'], ['enabledlanguage.tid', 'enabledlanguage.name'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
-    def __init__(self, values=None, migrate=False):
-        if values is None or migrate:
+    def __init__(self, values=None):
+        if values is None:
             return
 
         self.tid = values['tid']
@@ -483,12 +480,11 @@ class _EnabledLanguage(Model):
     tid = Column(Integer, primary_key=True, default=1, nullable=False)
     name = Column(UnicodeText(12), primary_key=True, nullable=False)
 
-    def __init__(self, tid=1, name=None, migrate=False):
-        if migrate:
-            return
+    unicode_keys = ['name']
 
-        self.tid = tid
-        self.name = name
+    @declared_attr
+    def __table_args__(self):
+        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
     @classmethod
     def list(cls, session, tid):
@@ -497,10 +493,6 @@ class _EnabledLanguage(Model):
     @classmethod
     def tid_list(cls, session, tid_list):
         return [(lang.tid, lang.name) for lang in session.query(EnabledLanguage).filter(EnabledLanguage.tid.in_(tid_list))]
-
-    @declared_attr
-    def __table_args__(self):
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
 class _Field(Model):

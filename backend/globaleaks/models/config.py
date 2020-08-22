@@ -145,7 +145,10 @@ def initialize_config(session, tid, mode):
 
 
 def add_new_lang(session, tid, lang, appdata_dict):
-    session.add(EnabledLanguage(tid, lang))
+    l = EnabledLanguage()
+    l.tid = tid
+    l.name = lang
+    session.add(l)
 
     ConfigL10NFactory(session, tid).initialize(ConfigL10NFilters['node'], lang, appdata_dict['node'])
     ConfigL10NFactory(session, tid).initialize(ConfigL10NFilters['notification'], lang, appdata_dict['templates'])
