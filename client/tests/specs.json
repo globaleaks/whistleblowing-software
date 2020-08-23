@@ -19,5 +19,6 @@
   "test-admin-contexts.js",
   "test-admin-questionnaires.js",
   "test-globaleaks-process.js",
+  "test-signup.js",
   "test-admin-navigate-sections.js"
 ]
