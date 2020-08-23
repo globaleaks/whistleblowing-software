@@ -203,7 +203,8 @@ var GL = angular.module("GL", [
         }
       }).
       when("/recipient/preferences", {
-        templateUrl: "views/recipient/preferences.html",
+        templateUrl: "views/partials/preferences.html",
+        controller: "PreferencesCtrl",
         header_title: "Preferences",
         sidebar: "views/recipient/sidebar.html",
         resolve: {
@@ -238,8 +239,8 @@ var GL = angular.module("GL", [
         }
       }).
       when("/admin/preferences", {
-        templateUrl: "views/admin/preferences.html",
-        controller: "AdminCtrl",
+        templateUrl: "views/partials/preferences.html",
+        controller: "PreferencesCtrl",
         header_title: "Preferences",
         sidebar: "views/admin/sidebar.html",
         resolve: {
@@ -356,7 +357,8 @@ var GL = angular.module("GL", [
         }
       }).
       when("/custodian/preferences", {
-        templateUrl: "views/custodian/preferences.html",
+        templateUrl: "views/partials/preferences.html",
+	controller: "PreferencesCtrl",
         header_title: "Preferences",
         sidebar: "views/custodian/sidebar.html",
         resolve: {
