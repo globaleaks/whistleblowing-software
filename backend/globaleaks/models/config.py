@@ -37,13 +37,19 @@ class ConfigFactory(object):
                 v.set_v(data[k])
 
     def get_cfg(self, var_name):
-        return self.session.query(Config).filter(Config.tid == self.tid, Config.var_name == var_name).one()
+        return self.session.query(Config).filter(Config.tid == self.tid, Config.var_name == var_name).one_or_none()
 
     def get_val(self, var_name):
-        return self.get_cfg(var_name).value
+        v = self.get_cfg(var_name)
+        if v is None:
+            return get_default(ConfigDescriptor[var_name].default)
+
+        return v.value
 
     def set_val(self, var_name, value):
-        self.get_cfg(var_name).set_v(value)
+        v = self.get_cfg(var_name)
+        if v:
+            v.set_v(value)
 
     def serialize(self, group):
         return {k: v.value for k, v in self.get_all(group).items()}
@@ -99,15 +105,16 @@ class ConfigL10NFactory(object):
             ConfigL10NFactory.initialize(self, list(set(ConfigL10NFilters[group]) - set(old_keys)), lang, data)
 
     def get_val(self, var_name, lang):
-        cfg = self.session.query(ConfigL10N.value).filter(ConfigL10N.tid == self.tid, ConfigL10N.lang == lang, ConfigL10N.var_name == var_name).one_or_none()
-        if cfg is None:
+        v = self.session.query(ConfigL10N.value).filter(ConfigL10N.tid == self.tid, ConfigL10N.lang == lang, ConfigL10N.var_name == var_name).one_or_none()
+        if v is None:
             return ''
 
-        return cfg.value
+        return v.value
 
     def set_val(self, var_name, lang, value):
-        cfg = self.session.query(ConfigL10N).filter(ConfigL10N.tid == self.tid, ConfigL10N.lang == lang, ConfigL10N.var_name == var_name).one()
-        cfg.set_v(value)
+        v = self.session.query(ConfigL10N).filter(ConfigL10N.tid == self.tid, ConfigL10N.lang == lang, ConfigL10N.var_name == var_name).one_or_none()
+        if v:
+            v.set_v(value)
 
     def reset(self, group, data):
         langs = [x[0] for x in self.session.query(EnabledLanguage.name).filter(EnabledLanguage.tid == self.tid)]
