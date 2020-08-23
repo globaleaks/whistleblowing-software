@@ -87,14 +87,6 @@ class EnabledLanguage_v_38(Model):
     __tablename__ = 'enabledlanguage'
     name = Column(UnicodeText, primary_key=True)
 
-    def __init__(self, name=None):
-        if name is not None:
-            self.name = name
-
-    @classmethod
-    def list(cls, session):
-        return [name[0] for name in session.query(cls.name)]
-
 
 class Field_v_38(Model):
     __tablename__ = 'field'
@@ -362,6 +354,24 @@ class MigrationScript(MigrationBase):
         'ShortURL': True
     }
 
+    def _migrate_File(self, XXX):
+        for old_obj in self.session_old.query(self.model_from[XXX]):
+            new_obj = self.model_to[XXX]()
+
+            for key in new_obj.__table__.columns._data.keys():
+                if key == 'tid':
+                    new_obj.tid = 1
+                elif key == 'file_path':
+                    new_obj.file_path = old_obj.file_path.replace('files/submission', 'attachments')
+                    try:
+                        shutil.move(old_obj.file_path, new_obj.file_path)
+                    except Exception:
+                        pass
+                else:
+                    setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
+
     def migrate_Config(self):
         for old_obj in self.session_old.query(self.model_from['Config']):
             new_obj = self.model_to['Config']()
@@ -448,32 +458,14 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
-    def migrate_File_XXX(self, XXX):
-        for old_obj in self.session_old.query(self.model_from[XXX]):
-            new_obj = self.model_to[XXX]()
-
-            for key in new_obj.__table__.columns._data.keys():
-                if key == 'tid':
-                    new_obj.tid = 1
-                elif key == 'file_path':
-                    new_obj.file_path = old_obj.file_path.replace('files/submission', 'attachments')
-                    try:
-                        shutil.move(old_obj.file_path, new_obj.file_path)
-                    except Exception:
-                        pass
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)
-
     def migrate_InternalFile(self):
-        return self.migrate_File_XXX('InternalFile')
+        return self._migrate_File('InternalFile')
 
     def migrate_ReceiverFile(self):
-        return self.migrate_File_XXX('ReceiverFile')
+        return self._migrate_File('ReceiverFile')
 
     def migrate_WhistleblowerFile(self):
-        return self.migrate_File_XXX('WhistleblowerFile')
+        return self._migrate_File('WhistleblowerFile')
 
     def epilogue(self):
         self.session_new.add(self.model_to['Tenant']({'label': '', 'active': True}))

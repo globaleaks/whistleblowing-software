@@ -30,8 +30,5 @@ class MigrationScript(MigrationBase):
         self.session_new.query(config).filter(config.var_group == 'node', config.var_name == 'hidden_service').delete(synchronize_session=False)
 
         add_raw_config(self.session_new, 'node', 'onionservice', domain != '', domain)
-
         add_raw_config(self.session_new, 'node', 'reachable_via_web', False, False)
         self.entries_count['Config'] += 1
-
-        self.session_new.commit()

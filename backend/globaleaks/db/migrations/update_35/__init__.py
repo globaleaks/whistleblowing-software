@@ -63,18 +63,8 @@ class MigrationScript(MigrationBase):
         for old_obj in self.session_old.query(self.model_from['Context']):
             new_obj = self.model_to['Context']()
             for key in new_obj.__table__.columns._data.keys():
-                if key == 'tip_timetolive':
-                    tip_ttl = 5 * 365
-                    if old_obj.tip_timetolive > tip_ttl:
-                        print('[WARNING] Found an expiration date longer than 5 years! Configuring tips to never expire.')
-                        # If data retention was larger than 5 years the intended goal was
-                        # probably to keep the submission around forever.
-                        new_obj.tip_timetolive = -1
-                    elif old_obj.tip_timetolive < -1:
-                        print('[WARNING] Found a negative tip expiration! Configuring tips to never expire.')
-                        new_obj.tip_timetolive = -1
-                    else:
-                        new_obj.tip_timetolive = old_obj.tip_timetolive
+                if key == 'tip_timetolive' and old_obj.tip_timetolive < -1:
+                    new_obj.tip_timetolive = -1
 
                 elif key == 'enable_rc_to_wb_files':
                     new_obj.enable_rc_to_wb_files = False
@@ -91,11 +81,8 @@ class MigrationScript(MigrationBase):
         for old_obj in self.session_old.query(self.model_from['User']):
             new_obj = self.model_to['User']()
             for key in new_obj.__table__.columns._data.keys():
-                if key in ['pgp_key_public', 'pgp_key_fingerprint'] and getattr(old_obj, key) is None:
-                    setattr(new_obj, key, '')
-
-                elif key in ['pgp_key_expiration'] and getattr(old_obj, key) is None:
-                    setattr(new_obj, key, datetime_null())
+                if key in ['pgp_key_public', 'pgp_key_fingerprint', 'pgp_key_expiration'] and getattr(old_obj, key) is None:
+                    pass
 
                 elif key == 'language' and getattr(old_obj, key) not in enabled_languages:
                     # fix users that have configured a language that has never been there
@@ -123,5 +110,3 @@ class MigrationScript(MigrationBase):
             c.value['v'] = 90
         elif int(c.value['v']) > 365 * 2:
             c.value['v'] = 365 * 2
-
-        self.session_new.commit()

@@ -273,17 +273,6 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
-    def migrate_Subscriber(self):
-        for old_obj in self.session_old.query(self.model_from['Subscriber']):
-            new_obj = self.model_to['Subscriber']()
-            for key in new_obj.__table__.columns._data.keys():
-                if key == 'activation_token' and old_obj.activation_token == '':
-                    new_obj.activation_token = None
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)
-
     def migrate_User(self):
         x = self.session_old.query(self.model_from['Config'].value).filter(self.model_from['Config'].tid == 1, self.model_from['Config'].var_name == 'do_not_expose_users_names').one_or_none()
         x = x[0] if x is not None else False
@@ -297,10 +286,7 @@ class MigrationScript(MigrationBase):
                     continue
 
                 if key == 'public_name':
-                    if x:
-                        new_obj.public_name = platform_name
-                    else:
-                        new_obj.public_name = old_obj.name
+                    new_obj.public_name = platform_name if x else old_obj.name
 
                 elif key =='password':
                     password = getattr(old_obj, key)
