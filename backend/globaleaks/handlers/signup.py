@@ -38,6 +38,8 @@ def serialize_signup(signup):
         'use_case_other': signup.use_case_other,
         'organization_name': signup.organization_name,
         'organization_type': signup.organization_type,
+        'organization.tax_code': signup.organization_tax_code,
+        'organization_vat_code': signup.organization_vat_code,
         'organization_location1': signup.organization_location1,
         'organization_location2': signup.organization_location2,
         'organization_location3': signup.organization_location3,

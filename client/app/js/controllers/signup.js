@@ -1,5 +1,5 @@
-    GL.controller("SignupCtrl", ["$scope", "$location", "$route", "$http", "Authentication", "CONSTANTS", "DATA_COUNTRIES_ITALY_REGIONS", "DATA_COUNTRIES_ITALY_PROVINCES", "DATA_COUNTRIES_ITALY_CITIES",
-                    function($scope, $location, $route, $http, Authentication, CONSTANTS, DATA_COUNTRIES_ITALY_REGIONS, DATA_COUNTRIES_ITALY_PROVINCES, DATA_COUNTRIES_ITALY_CITIES) {
+GL.controller("SignupCtrl", ["$scope", "$location", "$route", "$http", "Authentication", "CONSTANTS", "DATA_COUNTRIES_ITALY_REGIONS", "DATA_COUNTRIES_ITALY_PROVINCES", "DATA_COUNTRIES_ITALY_CITIES",
+              function($scope, $location, $route, $http, Authentication, CONSTANTS, DATA_COUNTRIES_ITALY_REGIONS, DATA_COUNTRIES_ITALY_PROVINCES, DATA_COUNTRIES_ITALY_CITIES) {
   if ($scope.public.node.mode === "whistleblowing.it") {
     $scope.data_countries_italy_regions = DATA_COUNTRIES_ITALY_REGIONS.query();
     $scope.data_countries_italy_provinces = DATA_COUNTRIES_ITALY_PROVINCES.query();
@@ -23,6 +23,8 @@
     "use_case_other": "",
     "organization_name": "",
     "organization_type": "",
+    "organization_tax_code": "",
+    "organization_vat_code": "",
     "organization_location1": "",
     "organization_location2": "",
     "organization_location3": "",

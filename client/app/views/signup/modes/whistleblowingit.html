@@ -159,6 +159,20 @@
     </div>
   </div>
   <div class="row">
+    <div class="col-md-6 form-group">
+      <label>Codice fiscale</label>
+      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <input name="tax_code" class="form-control" data-ng-model="signup.organization_tax_code" type="text"
+             data-ng-attr-placeholder="Codice fiscale" data-ng-required="!signup.organization_tax_code && !signup.organization_vat_code">
+    </div>
+    <div class="col-md-6 form-group">
+      <label>Partita IVA</label>
+      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <input name="vat_code" class="form-control" data-ng-model="signup.organization_vat_code" type="text"
+             data-ng-attr-placeholder="Partita IVA" data-ng-required="!signup.organization_tax_code && !signup.organization_vat_code">
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-12 form-group">
       <label>
         <span>Questo sarà il sito di segnalazione del tuo ente:</span>

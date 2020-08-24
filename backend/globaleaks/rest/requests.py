@@ -609,6 +609,8 @@ SignupDesc = {
     'use_case_other': str,
     'organization_name': str,
     'organization_type': str,
+    'organization_tax_code': str,
+    'organization_vat_code': str,
     'organization_location1': str,
     'organization_location2': str,
     'organization_location3': str,

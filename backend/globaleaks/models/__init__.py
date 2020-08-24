@@ -904,12 +904,12 @@ class _Subscriber(Model):
     role = Column(UnicodeText, default='', nullable=False)
     phone = Column(UnicodeText, default='', nullable=False)
     email = Column(UnicodeText, nullable=False)
-    tax_code = Column(UnicodeText, default='', nullable=False)
-    vat_number = Column(UnicodeText, default='', nullable=False)
     use_case = Column(UnicodeText, default='', nullable=False)
     use_case_other = Column(UnicodeText, default='', nullable=False)
     organization_name = Column(UnicodeText, default='', nullable=False)
     organization_type = Column(UnicodeText, default='', nullable=False)
+    organization_tax_code = Column(UnicodeText, default='', nullable=False)
+    organization_vat_code = Column(UnicodeText, default='', nullable=False)
     organization_location1 = Column(UnicodeText, default='', nullable=False)
     organization_location2 = Column(UnicodeText, default='', nullable=False)
     organization_location3 = Column(UnicodeText, default='', nullable=False)
@@ -926,9 +926,11 @@ class _Subscriber(Model):
     tos2 = Column(UnicodeText, default='', nullable=False)
 
     unicode_keys = ['subdomain', 'language', 'name', 'surname', 'role', 'phone', 'email',
-                    'tax_code', 'vat_number',
+                    'tax_code', 'vat_code',
                     'use_case', 'use_case_other',
-                    'organization_name', 'organization_type', 'organization_site',
+                    'organization_name', 'organization_type',
+                    'organization_tax_code', 'organization_vat_code',
+                    'organization_site',
                     'organization_location1', 'organization_location2', 'organization_location3',
                     'organization_location4',
                     'organization_number_employees', 'organization_number_users',
