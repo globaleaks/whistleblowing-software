@@ -9,7 +9,7 @@ Please click on the activation link to proceed with the account activation and t
 This link will expire in 3 days.
 
 After successful activation you will be able to access the system via the following link: {LoginUrl}
-{{AccountRecoveryKeyInstructions}}
+{AccountRecoveryKeyInstructions}
 
 For the user documentation, visit:
 {DocumentationUrl}
