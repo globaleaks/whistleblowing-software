@@ -1821,6 +1821,17 @@ msgstr "Upload a file:"
 msgid "Logout"
 msgstr "Logout"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+
 msgid "Files attached by recipients"
 msgstr "Files attached by recipients"
 
@@ -1988,13 +1999,6 @@ msgstr ""
 msgid "Please choose a configuration profile:"
 msgstr "Please choose a configuration profile:"
 
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-
 msgid "Please choose a different username."
 msgstr "Please choose a different username."
 
@@ -2121,25 +2125,11 @@ msgstr ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
 
-msgid "{{AccountRecoveryKey}}"
-msgstr "{{AccountRecoveryKey}}"
-
 msgid "Kind regards,"
 msgstr "Kind regards,"
 
 msgid "Account activation"
 msgstr "Account activation"
-
-msgid ""
-"Please consider to access the \"Preferences\" section in order to retrieve "
-"your \"Account Recovery Key\" and store it safely. This key will be "
-"necessary to recover your access to the platform and to your data in case "
-"you forget your password."
-msgstr ""
-"Please consider to access the \"Preferences\" section in order to retrieve "
-"your \"Account Recovery Key\" and store it safely. This key will be "
-"necessary to recover your access to the platform and to your data in case "
-"you forget your password."
 
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "Your whistleblowing platform is now accessible at:"
