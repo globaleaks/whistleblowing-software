@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -604,6 +604,9 @@ msgstr "PDV broj"
 msgid "Tax code"
 msgstr "Porezni broj"
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Odaberite kontekst vaše prijave"
 
@@ -687,12 +690,6 @@ msgstr "Omogućite indeksiranje od strane internet pretraživača"
 
 msgid "Description"
 msgstr "Opis"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Omogućite da slijedeći sajtovi ugrade ovu platformu u svoj iframe"
-
-msgid "Invalid input format."
-msgstr "Neispravan format unosa."
 
 msgid "Enable custom privacy panel"
 msgstr "Omogućite prilagođeni panel privatnosti"
@@ -1057,6 +1054,9 @@ msgstr "Primjer:"
 
 msgid "Hostname"
 msgstr "Hostname"
+
+msgid "Invalid input format."
+msgstr "Neispravan format unosa."
 
 msgid "Input should be similar to:"
 msgstr "Unos treba biti sličan"
@@ -1775,6 +1775,13 @@ msgstr "Uploadajte datoteku:"
 msgid "Logout"
 msgstr "Odjava"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Datoteke koje je priložio primalac"
 
@@ -1934,11 +1941,6 @@ msgstr "Slijedeća procedura će vas provesti korak po korak kroz kreiranje plat
 
 msgid "Please choose a configuration profile:"
 msgstr "Molimo odaberite profil za konfiguraciju:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Ovi profili imaju postavke kakve koriste uspješni projekti u svakom navedenom polju."
 
 msgid "Please choose a different username."
 msgstr "Molimo odaberite drugačije korisničko ime."

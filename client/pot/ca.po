@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-22 21:42+0000\n"
-"Last-Translator: jmontane\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -615,6 +615,9 @@ msgstr "núm VAT"
 msgid "Tax code"
 msgstr "codi tributari"
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Selecciona el context del teu informe:"
 
@@ -698,12 +701,6 @@ msgstr "Habilita els motors de cerca d'indexació"
 
 msgid "Description"
 msgstr "Descripció"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Permet que altres webs incloguin la plataforma a l'interior d'Iframes"
-
-msgid "Invalid input format."
-msgstr "Format d'entrada no vàlid"
 
 msgid "Enable custom privacy panel"
 msgstr "Habilita distintiu personalitzat de privacitat"
@@ -1068,6 +1065,9 @@ msgstr "Exemple:"
 
 msgid "Hostname"
 msgstr "Domini"
+
+msgid "Invalid input format."
+msgstr "Format d'entrada no vàlid"
 
 msgid "Input should be similar to:"
 msgstr "L'entrada hauria de ser similar a:"
@@ -1786,6 +1786,13 @@ msgstr "Pujar un fitxer:"
 msgid "Logout"
 msgstr "Tanca sessió"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Fitxers adjuntats per part dels destinataris"
 
@@ -1945,11 +1952,6 @@ msgstr "El següent procediment pas a pas us guiarà per a la creació de la vos
 
 msgid "Please choose a configuration profile:"
 msgstr "Seleccioneu un perfil de configuració:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Aquests perfils contenen la configuració utilitzada per projectes exitosos en cada un dels tipus."
 
 msgid "Please choose a different username."
 msgstr "Seleccioneu un nom d’usuari diferent."

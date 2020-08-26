@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -604,6 +604,9 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr ""
 
@@ -687,12 +690,6 @@ msgstr "Activar a indexación dos motores de busca"
 
 msgid "Description"
 msgstr "Descrición"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Invalid input format."
-msgstr "Formato de entrada non válido."
 
 msgid "Enable custom privacy panel"
 msgstr "Habilita o panel de privacidade personalizado"
@@ -1057,6 +1054,9 @@ msgstr "Exemplo:"
 
 msgid "Hostname"
 msgstr "Nome do servidor"
+
+msgid "Invalid input format."
+msgstr "Formato de entrada non válido."
 
 msgid "Input should be similar to:"
 msgstr "A entrada debe ser similar a:"
@@ -1775,6 +1775,13 @@ msgstr "Carga un ficheiro:"
 msgid "Logout"
 msgstr "Saír"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Arquivos adxuntos por destinatarios"
 
@@ -1934,11 +1941,6 @@ msgstr "O seguinte procedemento paso a paso o guiará a través da creación da 
 
 msgid "Please choose a configuration profile:"
 msgstr "Escolle un perfil de configuración:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Estes perfís conteñen axustes utilizados por proxectos exitosos en cada un dos campos respectivos."
 
 msgid "Please choose a different username."
 msgstr ""

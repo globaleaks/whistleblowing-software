@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-05 08:32+0000\n"
-"Last-Translator: T. E. Kalayci <tekrei@gmail.com>\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -623,6 +623,9 @@ msgstr "VAT numarası"
 msgid "Tax code"
 msgstr "Vergi kodu"
 
+msgid "Administrators authorized to change user passwords"
+msgstr "Kullanıcı parolalarını değiştirme yetkisi olan yöneticiler"
+
 msgid "Select the context of your report:"
 msgstr "Raporunuzun içeriğini seçin:"
 
@@ -706,12 +709,6 @@ msgstr "Arama motoru dizinlemeyi etkinleştir"
 
 msgid "Description"
 msgstr "Açıklama"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Aşağıdaki websitelerinin platformu iframe içinde eklemelerine izin ver"
-
-msgid "Invalid input format."
-msgstr "Geçersiz giriş biçimi."
 
 msgid "Enable custom privacy panel"
 msgstr "Özel gizlilik panelini etkinleştir"
@@ -1076,6 +1073,9 @@ msgstr "Örnek:"
 
 msgid "Hostname"
 msgstr "Makine adı"
+
+msgid "Invalid input format."
+msgstr "Geçersiz giriş biçimi."
 
 msgid "Input should be similar to:"
 msgstr "Giriş şuna benzemelidir:"
@@ -1794,6 +1794,13 @@ msgstr "Bir dosya yükle:"
 msgid "Logout"
 msgstr "Çıkış yap"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Alıcılar tarafından eklenmiş dosyalar"
 
@@ -1953,11 +1960,6 @@ msgstr "Aşağıdaki adım adım yönerge ihbar platformunuzu oluştururken size
 
 msgid "Please choose a configuration profile:"
 msgstr "Lütfen bir yapılandırma profili seçin:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Bu profiller, her bir ilgili sahadaki başarılı projelerin kullandığı ayarları içermektedir."
 
 msgid "Please choose a different username."
 msgstr "Lütfen farklı bir kullanıcı adı seçin."

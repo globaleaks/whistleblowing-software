@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -622,6 +622,9 @@ msgstr "شماره VAT"
 msgid "Tax code"
 msgstr "شماره مالیات"
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "زمینه گزارش خود را انتخاب کنید:"
 
@@ -705,12 +708,6 @@ msgstr "فعال کردن ایندکس سازی موتورهای جستجو"
 
 msgid "Description"
 msgstr "توضیح"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "به وبسایت‌های زیر اجازه دهید تا پلتفرم را در iframe جاسازی کنند"
-
-msgid "Invalid input format."
-msgstr "فرمت ورودی نامعتبر است"
 
 msgid "Enable custom privacy panel"
 msgstr "فعال سازی پنل پوشیدگی اختصاصی"
@@ -1075,6 +1072,9 @@ msgstr "نمونه:"
 
 msgid "Hostname"
 msgstr "نام سرور"
+
+msgid "Invalid input format."
+msgstr "فرمت ورودی نامعتبر است"
 
 msgid "Input should be similar to:"
 msgstr "ورودی باید مشابه به این ها باشد:"
@@ -1793,6 +1793,13 @@ msgstr "بارگذاری یک فایل:"
 msgid "Logout"
 msgstr "خروج"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "فایل های ضمیمه شده توسط گیرندگان"
 
@@ -1952,11 +1959,6 @@ msgstr "رویه قدم به قدم آمده به شما کمک خواهد کر�
 
 msgid "Please choose a configuration profile:"
 msgstr "لطفا یک پروفایل پیکربندی انتخاب کنید:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "این پروفایل ها شامل تنظیمات استفاده شده در پروژه های موفق در فیلد خود می باشند."
 
 msgid "Please choose a different username."
 msgstr "لطفا نام کاربری متفاوتی را انتخاب کنید."

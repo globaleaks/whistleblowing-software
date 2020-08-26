@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -613,6 +613,9 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Επιλέξτε τη θεματική ενότητα της αναφοράς σας:"
 
@@ -696,12 +699,6 @@ msgstr "Ενεργοποιήστε τον πίνακα περιεχομένων 
 
 msgid "Description"
 msgstr "Περιγραφή"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Στους κάτωθι ιστοχώρους επιτρέπεται να ενσωματώνουν την πλατφόρμα εντός iframes"
-
-msgid "Invalid input format."
-msgstr "Μη έγκυρη μορφή δεδομένων εισόδου."
 
 msgid "Enable custom privacy panel"
 msgstr "Ενεργοποιήστε το διακριτικό ιδιωτικότητας κατά προτίμηση"
@@ -1066,6 +1063,9 @@ msgstr "Παράδειγμα:"
 
 msgid "Hostname"
 msgstr "Όνομα κεντρικού υπολογιστή"
+
+msgid "Invalid input format."
+msgstr "Μη έγκυρη μορφή δεδομένων εισόδου."
 
 msgid "Input should be similar to:"
 msgstr "Τα δεδομένα εισόδου θα πρέπει να έχουν την μορφή:"
@@ -1784,6 +1784,13 @@ msgstr "Ανεβάστε ένα αρχείο:"
 msgid "Logout"
 msgstr "Αποσύνδεση"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Συνημμένα αρχεία από τους παραλήπτες"
 
@@ -1943,11 +1950,6 @@ msgstr "Η ακόλουθη διαδικασία θα σας οδηγήσει β
 
 msgid "Please choose a configuration profile:"
 msgstr "Παρακαλώ επιλέξτε ένα προφίλ παραμετροποίησης:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Αυτά τα προφίλ περιέχουν ρυθμίσεις που χρησιμοποιούνται από διαδεδομένους οργανισμούς στον εκάστοτε τομέα."
 
 msgid "Please choose a different username."
 msgstr "Παρακαλώ επιλέξτε διαφορετικό όνομα χρήστη"

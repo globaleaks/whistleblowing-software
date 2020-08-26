@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-19 20:31+0000\n"
-"Last-Translator: Sarfaraz Ahmed\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -610,6 +610,9 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "اپنی گزارش کا سیاق و سباق کا انتخاب کریں :"
 
@@ -693,12 +696,6 @@ msgstr "سرچ انجن اشاریہ سازی فعال کیجیے"
 
 msgid "Description"
 msgstr "وضاحت"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Invalid input format."
-msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "روایتی پرائیویسی کے امیتازات فعال کریں"
@@ -1063,6 +1060,9 @@ msgstr "مثال:"
 
 msgid "Hostname"
 msgstr "ھوسٹ کا نام"
+
+msgid "Invalid input format."
+msgstr ""
 
 msgid "Input should be similar to:"
 msgstr ""
@@ -1781,6 +1781,13 @@ msgstr ""
 msgid "Logout"
 msgstr "لاگ آئوٹ"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr ""
 
@@ -1939,11 +1946,6 @@ msgid ""
 msgstr ""
 
 msgid "Please choose a configuration profile:"
-msgstr ""
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
 msgstr ""
 
 msgid "Please choose a different username."

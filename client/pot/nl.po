@@ -43,7 +43,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -639,6 +639,9 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Selecteer de context van uw inzending:"
 
@@ -722,12 +725,6 @@ msgstr "Zoekmachine-indexering inschakelen"
 
 msgid "Description"
 msgstr "Omschrijving"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Sta de volgende websites toe om het platform weer te geven door middel van iframes"
-
-msgid "Invalid input format."
-msgstr "Ongeldig invoerformaat."
 
 msgid "Enable custom privacy panel"
 msgstr "Gepersonaliseerd privacy-paneel inschakelen"
@@ -1092,6 +1089,9 @@ msgstr "Voorbeeld:"
 
 msgid "Hostname"
 msgstr "Hostnaam"
+
+msgid "Invalid input format."
+msgstr "Ongeldig invoerformaat."
 
 msgid "Input should be similar to:"
 msgstr "Invoer moet lijken op:"
@@ -1810,6 +1810,13 @@ msgstr "Upload een bestand:"
 msgid "Logout"
 msgstr "Log uit"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Bestanden die door ontvangers zijn toegevoegd"
 
@@ -1969,11 +1976,6 @@ msgstr "De volgende stap voor stap procedure helpt je bij het opzetten van je kl
 
 msgid "Please choose a configuration profile:"
 msgstr "Kies een configuratie-profiel:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Deze profielen bevatten instellingen die reeds succesvol zijn getest in elk betreffend veld."
 
 msgid "Please choose a different username."
 msgstr "Kies een andere gebruikersnaam."

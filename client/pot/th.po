@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -607,6 +607,9 @@ msgstr "หมายเลข VAT"
 msgid "Tax code"
 msgstr "เลขประจำตัวผู้เสียภาษี"
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "เลือกบริบทของรายงานของคุณ:"
 
@@ -690,12 +693,6 @@ msgstr "เปิดใช้การสร้างดัชนีเครื
 
 msgid "Description"
 msgstr "คำอธิบาย"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "อนุญาตให้เว็บไซต์ดังต่อไปนี้ฝังแพลตฟอร์มเข้าไปใน iframe ได้"
-
-msgid "Invalid input format."
-msgstr "รูปแบบข้อมูลไม่ถูกต้อง"
 
 msgid "Enable custom privacy panel"
 msgstr "เปิดใช้งานแผงความเป็นส่วนตัวที่กำหนดเอง"
@@ -1060,6 +1057,9 @@ msgstr "ตัวอย่าง:"
 
 msgid "Hostname"
 msgstr "ชื่อโฮสต์"
+
+msgid "Invalid input format."
+msgstr "รูปแบบข้อมูลไม่ถูกต้อง"
 
 msgid "Input should be similar to:"
 msgstr "ข้อมูลควรมีลักษณะแบบเดียวกับ:"
@@ -1778,6 +1778,13 @@ msgstr "อัปโหลดแฟ้ม:"
 msgid "Logout"
 msgstr "ลงชื่อออก"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "แฟ้มที่แนบมาโดยผู้รับ"
 
@@ -1937,11 +1944,6 @@ msgstr "กระบวนการทีละขั้นตอนดังต
 
 msgid "Please choose a configuration profile:"
 msgstr "กรุณาเลือกโปรไฟล์การปรับแต่ง:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "โปรไฟล์เหล่านี้มีการตั้งค่าที่ใช้โดยโครงการที่ประสบความสำเร็จในแต่ละสาขา"
 
 msgid "Please choose a different username."
 msgstr "กรุณาเลือกชื่อผู้ใช้อื่น:"

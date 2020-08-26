@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-04 15:34+0000\n"
+"PO-Revision-Date: 2020-08-26 09:37+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -621,6 +621,9 @@ msgstr "Partita IVA"
 msgid "Tax code"
 msgstr "Codice fiscale"
 
+msgid "Administrators authorized to change user passwords"
+msgstr "Amministratori autorizzati a cambiare le password degli utenti"
+
 msgid "Select the context of your report:"
 msgstr "Seleziona il contesto della tua segnalazione"
 
@@ -704,12 +707,6 @@ msgstr "Abilita l'indicizzazione da parte dei motori di ricerca"
 
 msgid "Description"
 msgstr "Descrizione"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Permetti ai seguenti siti di includetr la piattaforma attraverso iframes"
-
-msgid "Invalid input format."
-msgstr "Formato non valido."
 
 msgid "Enable custom privacy panel"
 msgstr "Abilita privacy panel personalizzato"
@@ -1074,6 +1071,9 @@ msgstr "Esempio:"
 
 msgid "Hostname"
 msgstr "Hostname"
+
+msgid "Invalid input format."
+msgstr "Formato non valido."
 
 msgid "Input should be similar to:"
 msgstr "Il formato corretto è simile ha:"
@@ -1792,6 +1792,13 @@ msgstr "Carica un file:"
 msgid "Logout"
 msgstr "Esci"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr "Consigliamo di accedere alla sezione \"Preferenze\" al fine di recuperare la tua \"Account Recovery Key\" e farne una copia di sicurezza. Questa chiave sarà necessaria per ripristinare il tuo accesso alla piattaforma e ai tuoi dati nel caso tu dimenticassi la tua password."
+
 msgid "Files attached by recipients"
 msgstr "File allegati dai riceventi"
 
@@ -1951,11 +1958,6 @@ msgstr "Completa la seguente procedura guidata per creare la tua piattaforma di 
 
 msgid "Please choose a configuration profile:"
 msgstr "Scegli un profilo di configurazione:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Questi profili contengono impostazioni utilizzate da progetti di successo nel rispettivo scenario di utilizzo."
 
 msgid "Please choose a different username."
 msgstr "Si prega di scegliere un username differente."

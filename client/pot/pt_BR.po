@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-21 21:24+0000\n"
-"Last-Translator: C. E.\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -635,6 +635,9 @@ msgstr "Número do VAT"
 msgid "Tax code"
 msgstr "Código Fiscal"
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Selecionar o assunto do seu envio:"
 
@@ -718,12 +721,6 @@ msgstr "Habilitar indexação aos motores de busca"
 
 msgid "Description"
 msgstr "Descrição"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Permitir que os sites a seguir incorporem a plataforma dentro de iframes"
-
-msgid "Invalid input format."
-msgstr "Inválido formato de entrada."
 
 msgid "Enable custom privacy panel"
 msgstr "Habilitar painel personalizado de privacidade"
@@ -1088,6 +1085,9 @@ msgstr "Exemplo:"
 
 msgid "Hostname"
 msgstr "Servidor"
+
+msgid "Invalid input format."
+msgstr "Inválido formato de entrada."
 
 msgid "Input should be similar to:"
 msgstr "Entrada deveria ser semelhante a:"
@@ -1806,6 +1806,13 @@ msgstr "Inserir um arquivo:"
 msgid "Logout"
 msgstr "Sair"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Arquivos anexados por destinatários"
 
@@ -1965,11 +1972,6 @@ msgstr "O seguinte procedimento passo a passo orientará você ao criar sua plat
 
 msgid "Please choose a configuration profile:"
 msgstr "Por favor, escolha um perfil de configuração:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Esses perfis contêm configurações usadas por projetos bem-sucedidos em cada campo respectivo."
 
 msgid "Please choose a different username."
 msgstr "Por favor, escolha um nome de usuário diferente."

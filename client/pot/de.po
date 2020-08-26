@@ -47,7 +47,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -643,6 +643,9 @@ msgstr "USt-IdNr."
 msgid "Tax code"
 msgstr "Steuerkennziffer"
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Den Kontext des Berichts auswählen"
 
@@ -727,12 +730,6 @@ msgstr "Suchmaschinenindizierung aktivieren"
 msgid "Description"
 msgstr "Beschreibung"
 
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Diesen Websiten erlauben, die Plattform in Inline-Frames einzubinden."
-
-msgid "Invalid input format."
-msgstr "Ungültiges Eingabeformat."
-
 msgid "Enable custom privacy panel"
 msgstr "Benutzerdefiniertes Datenschutzpanel aktivieren"
 
@@ -755,7 +752,7 @@ msgid "Show contexts in alphabetical order"
 msgstr "Kontexte in alphabetischer Reihenfolge anzeigen"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr "Die Namen der Benutzer nicht preisgeben"
 
 msgid "Size limit for file attachments"
 msgstr "Größenbegrenzung für Dateianhänge"
@@ -1077,7 +1074,7 @@ msgid "Restrict access to specific IP addresses"
 msgstr "Zugriff auf bestimmte IP-Adressen beschränken"
 
 msgid "Allowed IP addresses"
-msgstr ""
+msgstr "Erlaubte IP-Adressen"
 
 msgid "Admin"
 msgstr "Admin"
@@ -1096,6 +1093,9 @@ msgstr "Beispiel:"
 
 msgid "Hostname"
 msgstr "Hostname"
+
+msgid "Invalid input format."
+msgstr "Ungültiges Eingabeformat."
 
 msgid "Input should be similar to:"
 msgstr "Eingabe sollte ähnlich sein wie:"
@@ -1814,6 +1814,13 @@ msgstr "Hochladen einer Datei:"
 msgid "Logout"
 msgstr "Abmelden"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Dateien, die von Empfängern hinzugefügt wurden"
 
@@ -1973,11 +1980,6 @@ msgstr "Der folgende Schritt-für-Schritt-Assistent wird Sie durch die Konfigura
 
 msgid "Please choose a configuration profile:"
 msgstr "Bitte wählen Sie ein Konfigurationsprofil aus:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Diese Profile enthalten Einstellungen, die von erfolgreichen Projekten in den jeweiligen Bereichen verwendet werden."
 
 msgid "Please choose a different username."
 msgstr "Bitte wählen Sie einen anderen Benutzernamen."

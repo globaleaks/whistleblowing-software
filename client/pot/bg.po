@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -609,6 +609,9 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Изберете контекста на подадения сигнал:"
 
@@ -692,12 +695,6 @@ msgstr "Активиране на индексирането на инструм
 
 msgid "Description"
 msgstr "Описание"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Разрешете на следните сайтове да прикачат платформата във вътрешния фрейм"
-
-msgid "Invalid input format."
-msgstr "Невалиден формат на данните."
 
 msgid "Enable custom privacy panel"
 msgstr "Активиране на потребителски панел за поверителност"
@@ -1062,6 +1059,9 @@ msgstr "Пример:"
 
 msgid "Hostname"
 msgstr "Име на хост"
+
+msgid "Invalid input format."
+msgstr "Невалиден формат на данните."
 
 msgid "Input should be similar to:"
 msgstr "Информацията трябва да бъде подобна на:"
@@ -1780,6 +1780,13 @@ msgstr "Качване на нов файл:"
 msgid "Logout"
 msgstr "Отписване"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Файлове, прикачени от получателите"
 
@@ -1939,11 +1946,6 @@ msgstr "Следващите стъпки ще Ви помогнат да съз
 
 msgid "Please choose a configuration profile:"
 msgstr "Моля, изберете конфигурационен профил:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Тези профили съдържат настройки използвани от успешни проекти в съответните сфери на дейност."
 
 msgid "Please choose a different username."
 msgstr "Моля, изберете друго потребителско име"

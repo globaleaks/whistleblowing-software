@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -604,6 +604,9 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Izberite tematiko vašega prispevka:"
 
@@ -687,12 +690,6 @@ msgstr "Omogoči indeksiranje iskalnikom"
 
 msgid "Description"
 msgstr "Opis"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Invalid input format."
-msgstr ""
 
 msgid "Enable custom privacy panel"
 msgstr "Omogoči prilagojen pult o zasebnosti"
@@ -1056,6 +1053,9 @@ msgid "Example:"
 msgstr "Primer:"
 
 msgid "Hostname"
+msgstr ""
+
+msgid "Invalid input format."
 msgstr ""
 
 msgid "Input should be similar to:"
@@ -1775,6 +1775,13 @@ msgstr ""
 msgid "Logout"
 msgstr "Odjavi"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr ""
 
@@ -1933,11 +1940,6 @@ msgid ""
 msgstr ""
 
 msgid "Please choose a configuration profile:"
-msgstr ""
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
 msgstr ""
 
 msgid "Please choose a different username."

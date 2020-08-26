@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -615,6 +615,9 @@ msgstr "TVA"
 msgid "Tax code"
 msgstr "Cod fiscal"
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Selectează contextul sesizării tale:"
 
@@ -698,12 +701,6 @@ msgstr "Activează indexarea pentru motoarele de căutare"
 
 msgid "Description"
 msgstr "Descriere"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Permite următoarelor website-uri să insereze platforma în frame-urile lor"
-
-msgid "Invalid input format."
-msgstr "Datele introduse au format invalid"
 
 msgid "Enable custom privacy panel"
 msgstr "Activează panoul pentru personalizarea setărilor privind confidențialitatea"
@@ -1068,6 +1065,9 @@ msgstr "Exemplu:"
 
 msgid "Hostname"
 msgstr "Nume server "
+
+msgid "Invalid input format."
+msgstr "Datele introduse au format invalid"
 
 msgid "Input should be similar to:"
 msgstr "Inputul trebuie să fie similar cu:"
@@ -1786,6 +1786,13 @@ msgstr "Încarcă un fișier:"
 msgid "Logout"
 msgstr "Deconectare"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Fișiere atașate de către destinatari"
 
@@ -1945,11 +1952,6 @@ msgstr "Aceste instrucțiuni te vor ghida pas cu pas în procesul de creare a pl
 
 msgid "Please choose a configuration profile:"
 msgstr "Te rugăm să alegi un profil pentru configurare:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Aceste profile conțin setări folosite în proiecte de succes din domeniul lor de activitate"
 
 msgid "Please choose a different username."
 msgstr "Te rugăm să folosești un nume de utilizator diferit."

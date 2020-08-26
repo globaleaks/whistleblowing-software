@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -617,6 +617,9 @@ msgstr "VAT数字"
 msgid "Tax code"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "选择您报告合适的情况："
 
@@ -700,12 +703,6 @@ msgstr "启用搜索引擎索引"
 
 msgid "Description"
 msgstr "描述"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "允许下列网站的内嵌 iframes 功能"
-
-msgid "Invalid input format."
-msgstr "无效的输入格式"
 
 msgid "Enable custom privacy panel"
 msgstr "启用自定义隐私面板"
@@ -1070,6 +1067,9 @@ msgstr "例子："
 
 msgid "Hostname"
 msgstr "主机名称"
+
+msgid "Invalid input format."
+msgstr "无效的输入格式"
 
 msgid "Input should be similar to:"
 msgstr "轮入应相这样："
@@ -1788,6 +1788,13 @@ msgstr "上传文件 :"
 msgid "Logout"
 msgstr "注销"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "收件人所附加的文件"
 
@@ -1947,11 +1954,6 @@ msgstr "下方的步骤指引将协助按步完成吹哨平台建置"
 
 msgid "Please choose a configuration profile:"
 msgstr "请选择一个设置个人身份页面"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "这些简介包含各领域成功专案所用的设置"
 
 msgid "Please choose a different username."
 msgstr "请选择不同的用户名称。"

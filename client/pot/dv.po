@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -605,6 +605,9 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "ތިޔަ ފަރާތުގެ ރިޕޯޓްގެ ކޮއްޓެކްސްޓެ ހިޔާރުކުރައްވާ"
 
@@ -688,12 +691,6 @@ msgstr "ސަރޗް އިންޖިންތަކުގައި އިންޑެކްސް ކުރ�
 
 msgid "Description"
 msgstr "ތަފްސީލު"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "ތިރީގައިވާ ވެބްސައިޓްތަކުން އައިފްރޭމްސް ތެރޭގައި ޕްލެޓްފޯމް އެމްބެޑްކުރުމުގެ ހުއްދަދޭން"
-
-msgid "Invalid input format."
-msgstr "އިންޕުޓް ފޯމެޓް ރަނގަޅެއްނޫން"
 
 msgid "Enable custom privacy panel"
 msgstr "ކަސްޓަމް ޕްރައިވަސީ ޗެނަލް އޮން ކުރުމަށް"
@@ -1058,6 +1055,9 @@ msgstr "މިސާލު"
 
 msgid "Hostname"
 msgstr "ނެޓްވޯކަށް ވަންނަން ބޭނުންކުރާ ވަޞީލަތުގެ ނަން"
+
+msgid "Invalid input format."
+msgstr "އިންޕުޓް ފޯމެޓް ރަނގަޅެއްނޫން"
 
 msgid "Input should be similar to:"
 msgstr "އިންޕުޓް އެއްގޮތް ވާންޖެހެނީ"
@@ -1776,6 +1776,13 @@ msgstr "ފައިލް އަޕްލޯޑް ކުރުމަށް: "
 msgid "Logout"
 msgstr "ލޮގްއައުޓް"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "ލިބިފައިވާ ފަރާތްކުން ހިމެނުއްވާފައިވާ ފައިލްތައް"
 
@@ -1935,11 +1942,6 @@ msgstr "ވިސްލް-ބްލޯ ކުރުމަށް ޚާއްޞަ ޕްލެޓްފޯމެ
 
 msgid "Please choose a configuration profile:"
 msgstr "ކޮންފިގަރޭޝަން ޕްރޮފައިލްއެއް ހިޔާރުކުރައްވާ: "
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "މި ޕްރޮފައިލްގައިވާ އިންހަމައަކީ ކުރީގައިވެސް ކާމިޔާބުކަމާއި އެކު ބޭނުންކޮއްފައިވާ އިންހަމައެއް. "
 
 msgid "Please choose a different username."
 msgstr "އެހެން ޔޫސާ ނަމެއް ބޭނުންކުރައްވާ"

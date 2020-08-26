@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -601,6 +601,9 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "제출의 컨텍스트를 선택합니다 :"
 
@@ -684,12 +687,6 @@ msgstr "검색 엔진의 색인을 사용하도록 설정"
 
 msgid "Description"
 msgstr "기술"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "다른 웹 사이트가 iframe 내부의 플랫폼을 포함 할 수 있도록 허용"
-
-msgid "Invalid input format."
-msgstr "잘못된 입력 형식"
 
 msgid "Enable custom privacy panel"
 msgstr "사용자의 개인 정보 보호 패널 사용"
@@ -1054,6 +1051,9 @@ msgstr "예:"
 
 msgid "Hostname"
 msgstr "호스트 이름"
+
+msgid "Invalid input format."
+msgstr "잘못된 입력 형식"
 
 msgid "Input should be similar to:"
 msgstr ""
@@ -1772,6 +1772,13 @@ msgstr ""
 msgid "Logout"
 msgstr "로그 아웃"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr ""
 
@@ -1930,11 +1937,6 @@ msgid ""
 msgstr ""
 
 msgid "Please choose a configuration profile:"
-msgstr ""
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
 msgstr ""
 
 msgid "Please choose a different username."
