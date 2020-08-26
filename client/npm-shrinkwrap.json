@@ -3314,9 +3314,9 @@
       "dev": true
     },
     "grunt": {
-      "version": "1.2.1",
-      "resolved": "https://registry.npmjs.org/grunt/-/grunt-1.2.1.tgz",
-      "integrity": "sha512-zgJjn9N56tScvRt/y0+1QA+zDBnKTrkpyeSBqQPLcZvbqTD/oyGMrdZQXmm6I3828s+FmPvxc3Xv+lgKFtudOw==",
+      "version": "1.3.0",
+      "resolved": "https://registry.npmjs.org/grunt/-/grunt-1.3.0.tgz",
+      "integrity": "sha512-6ILlMXv11/4cxuhSMfSU+SfvbxrPuqZrAtLN64+tZpQ3DAKfSQPQHRbTjSbdtxfyQhGZPtN0bDZJ/LdCM5WXXA==",
       "dev": true,
       "requires": {
         "dateformat": "~3.0.3",
@@ -3326,8 +3326,8 @@
         "glob": "~7.1.6",
         "grunt-cli": "~1.3.2",
         "grunt-known-options": "~1.1.0",
-        "grunt-legacy-log": "~2.0.0",
-        "grunt-legacy-util": "~1.1.1",
+        "grunt-legacy-log": "~3.0.0",
+        "grunt-legacy-util": "~2.0.0",
         "iconv-lite": "~0.4.13",
         "js-yaml": "~3.14.0",
         "minimatch": "~3.0.4",
@@ -3633,55 +3633,48 @@
       "dev": true
     },
     "grunt-legacy-log": {
-      "version": "2.0.0",
-      "resolved": "https://registry.npmjs.org/grunt-legacy-log/-/grunt-legacy-log-2.0.0.tgz",
-      "integrity": "sha512-1m3+5QvDYfR1ltr8hjiaiNjddxGdQWcH0rw1iKKiQnF0+xtgTazirSTGu68RchPyh1OBng1bBUjLmX8q9NpoCw==",
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/grunt-legacy-log/-/grunt-legacy-log-3.0.0.tgz",
+      "integrity": "sha512-GHZQzZmhyq0u3hr7aHW4qUH0xDzwp2YXldLPZTCjlOeGscAOWWPftZG3XioW8MasGp+OBRIu39LFx14SLjXRcA==",
       "dev": true,
       "requires": {
         "colors": "~1.1.2",
-        "grunt-legacy-log-utils": "~2.0.0",
+        "grunt-legacy-log-utils": "~2.1.0",
         "hooker": "~0.2.3",
-        "lodash": "~4.17.5"
+        "lodash": "~4.17.19"
       }
     },
     "grunt-legacy-log-utils": {
-      "version": "2.0.1",
-      "resolved": "https://registry.npmjs.org/grunt-legacy-log-utils/-/grunt-legacy-log-utils-2.0.1.tgz",
-      "integrity": "sha512-o7uHyO/J+i2tXG8r2bZNlVk20vlIFJ9IEYyHMCQGfWYru8Jv3wTqKZzvV30YW9rWEjq0eP3cflQ1qWojIe9VFA==",
+      "version": "2.1.0",
+      "resolved": "https://registry.npmjs.org/grunt-legacy-log-utils/-/grunt-legacy-log-utils-2.1.0.tgz",
+      "integrity": "sha512-lwquaPXJtKQk0rUM1IQAop5noEpwFqOXasVoedLeNzaibf/OPWjKYvvdqnEHNmU+0T0CaReAXIbGo747ZD+Aaw==",
       "dev": true,
       "requires": {
-        "chalk": "~2.4.1",
-        "lodash": "~4.17.10"
-      },
-      "dependencies": {
-        "chalk": {
-          "version": "2.4.2",
-          "resolved": "https://registry.npmjs.org/chalk/-/chalk-2.4.2.tgz",
-          "integrity": "sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==",
-          "dev": true,
-          "requires": {
-            "ansi-styles": "^3.2.1",
-            "escape-string-regexp": "^1.0.5",
-            "supports-color": "^5.3.0"
-          }
-        }
+        "chalk": "~4.1.0",
+        "lodash": "~4.17.19"
       }
     },
     "grunt-legacy-util": {
-      "version": "1.1.1",
-      "resolved": "https://registry.npmjs.org/grunt-legacy-util/-/grunt-legacy-util-1.1.1.tgz",
-      "integrity": "sha512-9zyA29w/fBe6BIfjGENndwoe1Uy31BIXxTH3s8mga0Z5Bz2Sp4UCjkeyv2tI449ymkx3x26B+46FV4fXEddl5A==",
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/grunt-legacy-util/-/grunt-legacy-util-2.0.0.tgz",
+      "integrity": "sha512-ZEmYFB44bblwPE2oz3q3ygfF6hseQja9tx8I3UZIwbUik32FMWewA+d1qSFicMFB+8dNXDkh35HcDCWlpRsGlA==",
       "dev": true,
       "requires": {
         "async": "~1.5.2",
         "exit": "~0.1.1",
         "getobject": "~0.1.0",
         "hooker": "~0.2.3",
-        "lodash": "~4.17.10",
-        "underscore.string": "~3.3.4",
+        "lodash": "~4.17.20",
+        "underscore.string": "~3.3.5",
         "which": "~1.3.0"
       },
       "dependencies": {
+        "lodash": {
+          "version": "4.17.20",
+          "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.20.tgz",
+          "integrity": "sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==",
+          "dev": true
+        },
         "which": {
           "version": "1.3.1",
           "resolved": "https://registry.npmjs.org/which/-/which-1.3.1.tgz",
