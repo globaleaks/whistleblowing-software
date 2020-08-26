@@ -435,6 +435,8 @@ class TestGL(unittest.TestCase):
             'use_case_other': '',
             'organization_name': '',
             'organization_type': '',
+            'organization_tax_code': '',
+            'organization_vat_code': '',
             'organization_location1': '',
             'organization_location2': '',
             'organization_location3': '',
