@@ -425,15 +425,15 @@ class TestGL(unittest.TestCase):
         }
 
         self.dummySignup = {
-            'name': 'Raffaele',
-            'surname': 'Cantone',
+            'name': 'Responsabile',
+            'surname': 'Anticorruzione',
             'role': '',
-            'email': 'raffaele.cantone@anticorruzione.it',
+            'email': 'rpct@anticorruzione.it',
             'phone': '',
-            'subdomain': 'ringobongo',
+            'subdomain': 'anac',
             'use_case': 'anticorruption',
             'use_case_other': '',
-            'organization_name': '',
+            'organization_name': 'Autorità Nazionale Anticorruzione',
             'organization_type': '',
             'organization_tax_code': '',
             'organization_vat_code': '',
