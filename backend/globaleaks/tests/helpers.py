@@ -6,16 +6,14 @@ import base64
 import json
 import os
 import shutil
-import signal
 
 from datetime import timedelta
 
 from urllib.parse import urlsplit  # pylint: disable=import-error
 
-from twisted.internet import defer, task
 from twisted.internet.address import IPv4Address
-from twisted.internet.defer import inlineCallbacks, Deferred
-from twisted.internet.protocol import ProcessProtocol
+from twisted.internet.defer import inlineCallbacks, returnValue, Deferred
+from twisted.internet.task import Clock
 from twisted.python.failure import Failure
 from twisted.trial import unittest
 from twisted.web.server import Request
@@ -438,15 +436,9 @@ class MockDict:
             'tos2': True
         }
 
-files_count = 0
-
-
 def get_dummy_file(filename=None, content=None):
-    global files_count
-    files_count += 1
-
     if filename is None:
-        filename = ''.join(chr(x) for x in range(0x400, 0x40A)).join('-%d' % files_count)
+        filename = ''.join(chr(x) for x in range(0x400, 0x40A))
 
     content_type = 'application/octet'
 
@@ -572,7 +564,7 @@ class TestGL(unittest.TestCase):
 
     @inlineCallbacks
     def setUp(self):
-        self.test_reactor = task.Clock()
+        self.test_reactor = Clock()
 
         jobs.job.reactor = self.test_reactor
         tempdict.TempDict.reactor = self.test_reactor
@@ -728,7 +720,7 @@ class TestGL(unittest.TestCase):
         context = yield get_context(1, context_id, 'en')
         answers = yield self.fill_random_answers(context['questionnaire_id'])
 
-        defer.returnValue({
+        returnValue({
             'context_id': context_id,
             'receivers': context['receivers'],
             'removed_files': [],
@@ -1145,17 +1137,3 @@ class TestInstanceHandler(TestHandler):
 class TestHandlerWithPopulatedDB(TestHandler):
     def setUp(self):
         return TestGLWithPopulatedDB.setUp(self)
-
-
-class SimpleServerPP(ProcessProtocol):
-    def __init__(self):
-        self.welcome_msg = False
-        self.start_defer = Deferred()
-        process.set_pdeathsig(signal.SIGTERM)
-
-    def outReceived(self, data):
-        # When the HTTPServer is ready it will produce a msg which we can hook
-        # the start_defer callback to.
-        if not self.welcome_msg:
-            self.start_defer.callback(None)
-            self.welcome_msg = True
