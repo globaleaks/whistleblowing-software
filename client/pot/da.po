@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -607,6 +607,9 @@ msgstr "CVR-nummer"
 msgid "Tax code"
 msgstr "Skattekode"
 
+msgid "Administrators authorized to change user passwords"
+msgstr "Tillad administratorer at ændre brugeradgangskoder"
+
 msgid "Select the context of your report:"
 msgstr "Vælg hvilken sammehæng din indsendelse indgår i."
 
@@ -690,12 +693,6 @@ msgstr "Aktivér søgemaskiners indeksering"
 
 msgid "Description"
 msgstr "Beskrivelse"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Tillad følgende hjemmesider at embedde platformen i iframes"
-
-msgid "Invalid input format."
-msgstr "Ugyldigt inputformat"
 
 msgid "Enable custom privacy panel"
 msgstr "Aktivér brugertilpasset privatlivspanel"
@@ -861,7 +858,7 @@ msgid "Connection"
 msgstr "Forbindelse"
 
 msgid "Whistleblower's last access"
-msgstr ""
+msgstr "Whistleblowerens seneste adgang"
 
 msgid "Alarm level"
 msgstr "Alarmniveau"
@@ -1041,7 +1038,7 @@ msgid "Restrict access to specific IP addresses"
 msgstr "Begræns adgang til specifikke IP-numre"
 
 msgid "Allowed IP addresses"
-msgstr ""
+msgstr "Tilladte IP-adresser"
 
 msgid "Admin"
 msgstr "Admin"
@@ -1060,6 +1057,9 @@ msgstr "Eksempel:"
 
 msgid "Hostname"
 msgstr "Hostnavn"
+
+msgid "Invalid input format."
+msgstr "Ugyldigt inputformat"
 
 msgid "Input should be similar to:"
 msgstr "Input skal svare til:"
@@ -1778,6 +1778,13 @@ msgstr "Upload en fil:"
 msgid "Logout"
 msgstr "Log ud"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Filer der er vedhæftet af modtagere"
 
@@ -1937,11 +1944,6 @@ msgstr "De følgende trin-for-trin-procedurer guider dig igennem opsætningen af
 
 msgid "Please choose a configuration profile:"
 msgstr "Vælg venligst en konfigurations-profil:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Disse profiler indeholder indstillinger, der bruges af projekter, der er vellykkede på hver deres områder."
 
 msgid "Please choose a different username."
 msgstr "Vælg venligst et andet brugernavn."

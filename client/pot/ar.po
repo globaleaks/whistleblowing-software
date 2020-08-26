@@ -42,7 +42,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -638,6 +638,9 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "حدد سياق بلاغك:"
 
@@ -721,12 +724,6 @@ msgstr "تفعيل فهرسة محركات البحث"
 
 msgid "Description"
 msgstr "وصف"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "السماح لهذه المواقع لتضمين المنصة داخل النوافذ المدمجة"
-
-msgid "Invalid input format."
-msgstr "صيغة الإدخال غير صالحة."
 
 msgid "Enable custom privacy panel"
 msgstr "تمكين شريط الخصوصيّة المخصّص"
@@ -1091,6 +1088,9 @@ msgstr "مثال"
 
 msgid "Hostname"
 msgstr "اسم المضيف"
+
+msgid "Invalid input format."
+msgstr "صيغة الإدخال غير صالحة."
 
 msgid "Input should be similar to:"
 msgstr "يجب أن يكون المدخل مشابها ل:"
@@ -1809,6 +1809,13 @@ msgstr "رفع ملف:"
 msgid "Logout"
 msgstr "تسجيل الخروج"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "الملفات المرفقة من قبل المتلقّين"
 
@@ -1968,11 +1975,6 @@ msgstr "سوف ترشدك هذه العملية التدريجية من إنشا
 
 msgid "Please choose a configuration profile:"
 msgstr "الرجاء إختيار حساب التهيئة :"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "تحتوي هذه الحسابات على إعدادات تستخدمها المشاريع الناجحة كلّ في مجالها."
 
 msgid "Please choose a different username."
 msgstr "من فضلك قم باختيار إسم مستخدم آخر."

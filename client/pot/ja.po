@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -605,6 +605,9 @@ msgstr "法人番号/マイナンバー"
 msgid "Tax code"
 msgstr "納税番号"
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "報告のコンテキストを選択してください:"
 
@@ -688,12 +691,6 @@ msgstr "検索エンジンのインデックス化を有効にする"
 
 msgid "Description"
 msgstr "説明"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "次のWebサイトがインラインフレーム内にプラットフォームを埋め込むことを許可する"
-
-msgid "Invalid input format."
-msgstr "不正な入力形式。"
 
 msgid "Enable custom privacy panel"
 msgstr "カスタムのプライバシー・バッジを有効にする"
@@ -1039,7 +1036,7 @@ msgid "Restrict access to specific IP addresses"
 msgstr "特定のIPアドレスにアクセスを制限する"
 
 msgid "Allowed IP addresses"
-msgstr ""
+msgstr "許可される IP アドレス"
 
 msgid "Admin"
 msgstr "管理者"
@@ -1058,6 +1055,9 @@ msgstr "例:"
 
 msgid "Hostname"
 msgstr "ホスト名"
+
+msgid "Invalid input format."
+msgstr "不正な入力形式。"
 
 msgid "Input should be similar to:"
 msgstr "入力は次のようになります:"
@@ -1776,6 +1776,13 @@ msgstr "ファイルをアップロード："
 msgid "Logout"
 msgstr "ログアウト"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "受信者が添付したファイル"
 
@@ -1935,11 +1942,6 @@ msgstr "次のステップバイステップの手順で、内部告発プラッ
 
 msgid "Please choose a configuration profile:"
 msgstr "設定プロファイルを選択してください:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "これらのプロファイルには、それぞれのフィールドで成功したプロジェクトで使用された設定が含まれています。"
 
 msgid "Please choose a different username."
 msgstr "別のユーザー名を選択してください。"

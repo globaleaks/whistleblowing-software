@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -618,6 +618,9 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Válassza ki a beküldés környezetét:"
 
@@ -701,12 +704,6 @@ msgstr "Keresőmotorok indexelésének engedélyezése"
 
 msgid "Description"
 msgstr "Leírás"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "A következő weboldalak számára engedélyezett a platform iframe-ként embeddelése"
-
-msgid "Invalid input format."
-msgstr "Érvénytelen formátum"
 
 msgid "Enable custom privacy panel"
 msgstr "Egyedi adatvédelmi panel engedélyezése"
@@ -1071,6 +1068,9 @@ msgstr "Példa:"
 
 msgid "Hostname"
 msgstr "Kiszolgálónév"
+
+msgid "Invalid input format."
+msgstr "Érvénytelen formátum"
 
 msgid "Input should be similar to:"
 msgstr "A megadandó adat hasonlóan kell kinézzen:"
@@ -1789,6 +1789,13 @@ msgstr "Fájl feltöltése:"
 msgid "Logout"
 msgstr "Kilépés"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Címzettek csatolt fájljai"
 
@@ -1948,11 +1955,6 @@ msgstr "A következő lépésről lépésre szóló útmutató segít létrehozn
 
 msgid "Please choose a configuration profile:"
 msgstr "Kérjük válasszon konfigurációs profilt:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Ezek a profilok olyan beállításokat tartalmaznak, amelyeket sikeres projektek használtak a saját területeiken."
 
 msgid "Please choose a different username."
 msgstr "Kérjük válasszon másik felhasználónevet."

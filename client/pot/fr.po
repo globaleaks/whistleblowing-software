@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-17 11:10+0000\n"
+"PO-Revision-Date: 2020-08-25 17:18+0000\n"
 "Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -635,6 +635,9 @@ msgstr "Numéro de TVA"
 msgid "Tax code"
 msgstr "Code fiscal"
 
+msgid "Administrators authorized to change user passwords"
+msgstr "Les administrateurs autorisés à changer les mots de passe des utilisateurs"
+
 msgid "Select the context of your report:"
 msgstr "Sélectionnez le contexte de votre signalement :"
 
@@ -718,12 +721,6 @@ msgstr "Activer l’indexation par les moteurs de recherche"
 
 msgid "Description"
 msgstr "Description"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Permettre aux sites Web suivants d’intégrer la plateforme à l’intérieur de cadres « iframes »"
-
-msgid "Invalid input format."
-msgstr "Le format de saisie est invalide."
 
 msgid "Enable custom privacy panel"
 msgstr "Activer le volet de confidentialité personnalisée"
@@ -1089,6 +1086,9 @@ msgstr "Exemple :"
 msgid "Hostname"
 msgstr "Nom d’hôte"
 
+msgid "Invalid input format."
+msgstr "Le format de saisie est invalide."
+
 msgid "Input should be similar to:"
 msgstr "L’entrée devrait être similaire à :"
 
@@ -1428,7 +1428,7 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "Configurer le chiffrement en fournissant une clé publique PGP"
 
 msgid "Give this admin ability to change user passwords"
-msgstr "Donner à cet administrateur la capacité de changer le mot de passe des utilisateurs"
+msgstr "Permettre à cet administrateur de changer le mot de passe des utilisateurs"
 
 msgid "Configuration"
 msgstr "Configuration"
@@ -1806,6 +1806,13 @@ msgstr "Téléverser un fichier :"
 msgid "Logout"
 msgstr "Déconnexion"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr "Nous recommandons que vous accédiez à la section « Préférences » afin de récupérer votre « Clé de récupération du compte » et de la garder à l’abri. Cette clé sera nécessaire afin de récupérer votre accès à la plateforme et à vos données si vous oubliez votre mot de passe."
+
 msgid "Files attached by recipients"
 msgstr "Pièces jointes par les destinataires"
 
@@ -1965,11 +1972,6 @@ msgstr "La procédure étape par étape suivante vous guidera dans la création 
 
 msgid "Please choose a configuration profile:"
 msgstr "Veuillez choisir un profil de configuration :"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Ces profils contiennent les paramètres utilisés par des projets couronnés de succès dans chacun de ces domaines."
 
 msgid "Please choose a different username."
 msgstr "Veuillez choisir un nom d’utilisateur différent."

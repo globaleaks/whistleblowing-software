@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -615,6 +615,9 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Wybierz kontekst swojego zgłoszenia:"
 
@@ -698,12 +701,6 @@ msgstr "Włącz indeksowanie przez wyszukiwarki internetowe"
 
 msgid "Description"
 msgstr "Opis"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Pozwól następującym stronom wyświetlać tę platformę w ramkach iframe"
-
-msgid "Invalid input format."
-msgstr "Nieprawidłowy format"
 
 msgid "Enable custom privacy panel"
 msgstr "Włącz własne ustawienia prywatności"
@@ -1068,6 +1065,9 @@ msgstr "Przykład:"
 
 msgid "Hostname"
 msgstr "Nazwa hosta"
+
+msgid "Invalid input format."
+msgstr "Nieprawidłowy format"
 
 msgid "Input should be similar to:"
 msgstr "Wpis powinien być podobny do:"
@@ -1786,6 +1786,13 @@ msgstr "Wyślij plik"
 msgid "Logout"
 msgstr "Wyloguj"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Pliki załączone przez odbiorców"
 
@@ -1945,11 +1952,6 @@ msgstr "Poniższy przewodnik przeprowadzi Cię krok po kroku przez proces tworze
 
 msgid "Please choose a configuration profile:"
 msgstr "Wybierz profil konfiguracji:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Te profile zawierają ustawienia wykorzystywane w udanych projektach w każdym z obszarów."
 
 msgid "Please choose a different username."
 msgstr "Wybierz inną nazwę użytkownika"

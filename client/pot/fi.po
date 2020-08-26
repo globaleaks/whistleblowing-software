@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-19 14:09+0000\n"
-"Last-Translator: Akseli Pihlajamaa <akselijuhanipihlajamaa@gmail.com>\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -607,6 +607,9 @@ msgstr "Arvonlisäveronumero"
 msgid "Tax code"
 msgstr "Veronumero"
 
+msgid "Administrators authorized to change user passwords"
+msgstr "Ylläpitäjät, joilla on käyttöoikeudet vaihtaa käyttäjien salasanoja"
+
 msgid "Select the context of your report:"
 msgstr "Valitse vihjeen aihe:"
 
@@ -690,12 +693,6 @@ msgstr "Ota käyttöön hakukoneiden indeksointi"
 
 msgid "Description"
 msgstr "Kuvaus"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Salli seuraavien sivustojen upottaa palvelu iframes-toteutuksena omille verkkosivuilleen"
-
-msgid "Invalid input format."
-msgstr "Syötteen muoto ei kelpaa."
 
 msgid "Enable custom privacy panel"
 msgstr "Ota käyttöön oma yksityisyyskulkukortti"
@@ -1060,6 +1057,9 @@ msgstr "Esimerkiksi:"
 
 msgid "Hostname"
 msgstr "Tietokoneen nimi"
+
+msgid "Invalid input format."
+msgstr "Syötteen muoto ei kelpaa."
 
 msgid "Input should be similar to:"
 msgstr "Tekstikentän sallittu muoto: "
@@ -1778,6 +1778,13 @@ msgstr "Lähetä tiedosto:"
 msgid "Logout"
 msgstr "Kirjaudu ulos"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Vastaanottajien lisäämät tiedostot"
 
@@ -1937,11 +1944,6 @@ msgstr "Tämän vaihe vaiheelta -opastuksen avulla voit ottaa vihjepalvelun käy
 
 msgid "Please choose a configuration profile:"
 msgstr "Valitse palvelun asetusprofiili:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Näistä profiileista löydät kullekin aiheelle räätälöityjä ja onnistuneesti toimivia valmiita esimerkkiasetuksia."
 
 msgid "Please choose a different username."
 msgstr "Valitse erilainen käyttäjänimi."

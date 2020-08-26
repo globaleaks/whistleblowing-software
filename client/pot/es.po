@@ -36,8 +36,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-02 12:05+0000\n"
-"Last-Translator: Zuhualime Akoochimoya\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -632,6 +632,9 @@ msgstr "Número de IVA (VAT)"
 msgid "Tax code"
 msgstr "Código de impuestos"
 
+msgid "Administrators authorized to change user passwords"
+msgstr "Administradores autorizados a cambiar las contraseñas de usuario"
+
 msgid "Select the context of your report:"
 msgstr "Selecciona el contexto de tu reporte: "
 
@@ -715,12 +718,6 @@ msgstr "Habilitar indexación por los motores de búsqueda"
 
 msgid "Description"
 msgstr "Descripción"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Permitir a las siguientes webs integrar la plataforma dentro de iframes"
-
-msgid "Invalid input format."
-msgstr "Formato de entrada no válido"
 
 msgid "Enable custom privacy panel"
 msgstr "Habilitar panel de privacidad personalizado"
@@ -1085,6 +1082,9 @@ msgstr "Ejemplo:"
 
 msgid "Hostname"
 msgstr "Nombre del servidor "
+
+msgid "Invalid input format."
+msgstr "Formato de entrada no válido"
 
 msgid "Input should be similar to:"
 msgstr "La entrada debe ser similar a:"
@@ -1803,6 +1803,13 @@ msgstr "Subir un archivo:"
 msgid "Logout"
 msgstr "Cerrar sesión"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Archivos adjuntados por los destinatarios"
 
@@ -1962,11 +1969,6 @@ msgstr "El siguiente procedimiento paso por paso te guiará a través de la crea
 
 msgid "Please choose a configuration profile:"
 msgstr "Por favor, escoge un perfil de configuración:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Estos perfiles contienen configuraciones usadas por proyectos exitosos en cada campo respectivo."
 
 msgid "Please choose a different username."
 msgstr "Por favor escoge otro nombre de usuario."

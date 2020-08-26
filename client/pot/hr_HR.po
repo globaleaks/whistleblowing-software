@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-29 09:08+0000\n"
-"Last-Translator: Igor <lyricaltumor@gmail.com>\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -606,6 +606,9 @@ msgstr "PDV broj"
 msgid "Tax code"
 msgstr "Porezni kod"
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Odaberite kontekst svoje prijave:"
 
@@ -689,12 +692,6 @@ msgstr "Omogući indeksiranje tražilica"
 
 msgid "Description"
 msgstr "Opis"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Omogući sljedećim web stranicama da ugrade platformu unutar iframe-ova"
-
-msgid "Invalid input format."
-msgstr "Pogrešan format unosa."
 
 msgid "Enable custom privacy panel"
 msgstr "Omogući prilagođenu ploču privatnosti"
@@ -1059,6 +1056,9 @@ msgstr "Primjer:"
 
 msgid "Hostname"
 msgstr "Hostname"
+
+msgid "Invalid input format."
+msgstr "Pogrešan format unosa."
 
 msgid "Input should be similar to:"
 msgstr "Unos bi trebao biti sličan:"
@@ -1777,6 +1777,13 @@ msgstr "Postavite datoteku:"
 msgid "Logout"
 msgstr "Odjava"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Datoteke privijene od strane primatelja"
 
@@ -1936,11 +1943,6 @@ msgstr "Sljedeća procedura će Vas voditi korak po korak kroz stvaranje Vaše z
 
 msgid "Please choose a configuration profile:"
 msgstr "Odaberite konfiguracijsku datoteku:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Ovi profili sadržavaju postavke koje koriste uspješni projekti u relevantnom polju."
 
 msgid "Please choose a different username."
 msgstr "Molimo da odaberete drugo korisničko ime."

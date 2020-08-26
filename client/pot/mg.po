@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -616,6 +616,9 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Choisir le contexte de votre envoi :"
 
@@ -699,12 +702,6 @@ msgstr "Activer l’indexation par les moteurs de recherche"
 
 msgid "Description"
 msgstr "Description"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Invalid input format."
-msgstr "Le format de saisie est invalide."
 
 msgid "Enable custom privacy panel"
 msgstr "Activer le volet de confidentialité personnalisée"
@@ -1069,6 +1066,9 @@ msgstr "Exemple :"
 
 msgid "Hostname"
 msgstr "Nom d’hôte"
+
+msgid "Invalid input format."
+msgstr "Le format de saisie est invalide."
 
 msgid "Input should be similar to:"
 msgstr "L’entrée devrait être similaire à :"
@@ -1787,6 +1787,13 @@ msgstr "Téléverser un fichier :"
 msgid "Logout"
 msgstr "Déconnexion"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Pièces jointes par les destinataires"
 
@@ -1946,11 +1953,6 @@ msgstr "La procédure étape par étape suivante vous guidera dans la création 
 
 msgid "Please choose a configuration profile:"
 msgstr "Veuillez choisir un profil de configuration :"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Ces profils contiennent les paramètres utilisés par des projets couronnés de succès dans chacun de ces domaines."
 
 msgid "Please choose a different username."
 msgstr ""

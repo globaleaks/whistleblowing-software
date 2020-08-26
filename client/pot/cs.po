@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -611,6 +611,9 @@ msgstr "DIČ"
 msgid "Tax code"
 msgstr "DIČ"
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Vyberte obsah Vašeho podání"
 
@@ -694,12 +697,6 @@ msgstr "Povolit vyhledávačům indexování."
 
 msgid "Description"
 msgstr "Popis"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Povolte následujícím stránkám vložit platformu do prvků iframe"
-
-msgid "Invalid input format."
-msgstr "Neplatný vstupní formát."
 
 msgid "Enable custom privacy panel"
 msgstr "Povolit vlastní panel soukromí"
@@ -1064,6 +1061,9 @@ msgstr "Příklad:"
 
 msgid "Hostname"
 msgstr "Hostitelské jméno"
+
+msgid "Invalid input format."
+msgstr "Neplatný vstupní formát."
 
 msgid "Input should be similar to:"
 msgstr "Vstup by měl být podobný:"
@@ -1782,6 +1782,13 @@ msgstr "Nahrání souboru:"
 msgid "Logout"
 msgstr "Odhlášení"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Přílohy od příjemců"
 
@@ -1941,11 +1948,6 @@ msgstr "Následující popis jednotlivých kroků vás provede vytvořením vaš
 
 msgid "Please choose a configuration profile:"
 msgstr "Prosím zvolte profil konfigurace:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Tyto profily obsahují nastavení používaná již vyzkoušenými a úspěšnými projekty v různých oblastech."
 
 msgid "Please choose a different username."
 msgstr "Zvolte prosím jiné uživatelské jméno."

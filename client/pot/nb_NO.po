@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -603,6 +603,9 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr ""
 
@@ -686,12 +689,6 @@ msgstr "Skru på søkemotor-indeksering"
 
 msgid "Description"
 msgstr "Beskrivelse"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Invalid input format."
-msgstr "Ugyldig inndata-format"
 
 msgid "Enable custom privacy panel"
 msgstr "Skru på egentilpasset personvernspanel"
@@ -1056,6 +1053,9 @@ msgstr "Eksempel:"
 
 msgid "Hostname"
 msgstr "Vertsnavn"
+
+msgid "Invalid input format."
+msgstr "Ugyldig inndata-format"
 
 msgid "Input should be similar to:"
 msgstr "Inndata bør ligne:"
@@ -1774,6 +1774,13 @@ msgstr "Last opp en fil:"
 msgid "Logout"
 msgstr "Logg ut"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Filer vedlegt av mottakere"
 
@@ -1933,11 +1940,6 @@ msgstr "Denne stegvise prosedyren vil geleide deg gjennom opprettelse av din fl�
 
 msgid "Please choose a configuration profile:"
 msgstr "Velg en oppsettsprofil:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Disse profilene inneholder innstillinger brukt av vellykkede prosjekter i hvert respektive felt."
 
 msgid "Please choose a different username."
 msgstr ""

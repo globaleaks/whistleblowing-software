@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -620,6 +620,9 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr ""
 
@@ -703,12 +706,6 @@ msgstr "Aktifkan pencatatan mesin pencari"
 
 msgid "Description"
 msgstr "Deskripsi"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Invalid input format."
-msgstr "Format masukan tidak valid."
 
 msgid "Enable custom privacy panel"
 msgstr "Aktifkan panel privasi kustom"
@@ -1073,6 +1070,9 @@ msgstr "Contoh:"
 
 msgid "Hostname"
 msgstr "Nama host"
+
+msgid "Invalid input format."
+msgstr "Format masukan tidak valid."
 
 msgid "Input should be similar to:"
 msgstr "Masukan seharusnya mirip dengan:"
@@ -1791,6 +1791,13 @@ msgstr "Mengunggah berkas: "
 msgid "Logout"
 msgstr "Keluar"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Berkas yang telah ditaut oleh penerima "
 
@@ -1950,11 +1957,6 @@ msgstr "Prosedur berurutan berikut akan memandu pembuatan platform informan publ
 
 msgid "Please choose a configuration profile:"
 msgstr "Mohon pilih setelan profil:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Profil berikut berisi pengaturan yang digunakan oleh proyek-proyek yang telah berhasil pada bidangnya."
 
 msgid "Please choose a different username."
 msgstr ""

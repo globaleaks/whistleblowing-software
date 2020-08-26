@@ -29,7 +29,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -625,6 +625,9 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Выберите контекст для ваших материалов:"
 
@@ -708,12 +711,6 @@ msgstr "Включить индексирование поисковых сис�
 
 msgid "Description"
 msgstr "Описание"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Разрешить следующим веб-сайтам встраивать платформу в iframes"
-
-msgid "Invalid input format."
-msgstr "Недопустимый формат ввода."
 
 msgid "Enable custom privacy panel"
 msgstr "Включить пользовательскую панель приватности"
@@ -1078,6 +1075,9 @@ msgstr "Пример:"
 
 msgid "Hostname"
 msgstr "Имя хоста"
+
+msgid "Invalid input format."
+msgstr "Недопустимый формат ввода."
 
 msgid "Input should be similar to:"
 msgstr "Ввод должен быть похож на:"
@@ -1796,6 +1796,13 @@ msgstr "Выгрузить файл:"
 msgid "Logout"
 msgstr "Выход"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Файлы приложенные получателями"
 
@@ -1955,11 +1962,6 @@ msgstr ""
 
 msgid "Please choose a configuration profile:"
 msgstr "Пожалуйста, выберите профиль конфигурации:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "В данных профилях содержатся програмные установки использованные успешными проектами в соответствующих областях."
 
 msgid "Please choose a different username."
 msgstr ""

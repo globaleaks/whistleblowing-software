@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-07-16 20:30+0000\n"
+"PO-Revision-Date: 2020-08-25 14:22+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -610,6 +610,9 @@ msgstr "Số VAT"
 msgid "Tax code"
 msgstr "Mã số thuế"
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "Chọn ngữ cảnh cho báo cáo của bạn:"
 
@@ -693,12 +696,6 @@ msgstr "Bật công cụ tìm kiếm lập chỉ mục"
 
 msgid "Description"
 msgstr "Mô tả"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Cho phép các trang web sau nhúng nền tảng vào trong iframes"
-
-msgid "Invalid input format."
-msgstr "Định dạng đầu vào không hợp lệ"
 
 msgid "Enable custom privacy panel"
 msgstr "Kích hoạt tính năng bảng điều khiển riêng tư tùy chỉnh"
@@ -1063,6 +1060,9 @@ msgstr "Thí dụ:"
 
 msgid "Hostname"
 msgstr "Tên máy chủ"
+
+msgid "Invalid input format."
+msgstr "Định dạng đầu vào không hợp lệ"
 
 msgid "Input should be similar to:"
 msgstr "Đầu vào phải tương tự như:"
@@ -1781,6 +1781,13 @@ msgstr "Tải lên tập tin:"
 msgid "Logout"
 msgstr "Đăng xuất"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr "Tập tin được đính kèm bởi người nhận"
 
@@ -1940,11 +1947,6 @@ msgstr "Quy trình từng bước sau đây sẽ hướng dẫn bạn cách tạ
 
 msgid "Please choose a configuration profile:"
 msgstr "Vui lòng chọn một cấu hình cấu hình:"
-
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr "Các cấu hình này chứa các cài đặt được sử dụng bởi các dự án thành công trong từng lĩnh vực tương ứng."
 
 msgid "Please choose a different username."
 msgstr "Xin hãy chọn tên người dùng khác."
