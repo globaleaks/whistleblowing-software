@@ -800,7 +800,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       var pt1 = $rootScope.public.node.header_title_prefix,
           pt2 = $rootScope.public.node.header_title_homepage;
 
-      if (!pt1 && !$rootScope.public.node.name) {
+      if (!$rootScope.public.node.name && !pt1) {
         pt1 = "GLOBALEAKS";
       }
 
