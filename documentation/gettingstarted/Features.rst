@@ -7,14 +7,13 @@ User features
 - Multi-user system with customizable user roles (whistleblower, recipient, administrator)
 - Entirely manageable from a web administration interface
 - Support for `more than 40 languages <https://www.transifex.com/otf/globaleaks>`_ with support for Right-to-Left (RTL)
-- Support for customization of advanced questionnaires
 - Let whistleblowers decide if and when to confidentially declare their identity
 - Exchange multimedia files with whistleblower
 - Chat with Whistleblower to discuss the report
 - Unique 16-digit receipt for the whistleblower to log back in anonymously
 - Simple recipient interface for receiving and analyzing reports
-- Support to the categorization of the reports with labels
-- Support to the user search of reports
+- Support for the categorization of the reports with labels
+- Support for the user search of reports
 - Support for assigning and creating case management statuses
 - Customizable look and feel (logo, colour, styles, font, text)
 - Define multiple reporting channels/contexts (e.g. per-topic, per-department)
@@ -45,13 +44,13 @@ Security Features
 - Automatic free digital certificate enrollment (`Let’s Encrypt <https://letsencrypt.org/>`_)
 - Multiple penetration tests with full public reports
 - Conform to industry standards and best practices for application security (`OWASP <https://owasp.org/>`_)
-- Two-Factor authentication (2FA) support compliant to standard `TOTP RFC 6238 <https://tools.ietf.org/html/rfc6238>`_
+- Two-Factor authentication (2FA) support compliant with standard `TOTP RFC 6238 <https://tools.ietf.org/html/rfc6238>`_
 - Integrated network sandboxing with iptables
 - Integrated application sandboxing with `AppArmor <http://wiki.apparmor.net/>`_
 - Complete protection against automated submissions (spam prevention)
 - Subject to continuous peer-review and periodic security audits
 - PGP support for encrypted email notifications
-- Does not leave traces on browser cache
+- Does not leave traces in browser cache
 
 Technical Features
 ==================
@@ -61,14 +60,14 @@ Technical Features
 - Automated Software Quality Measurement and Continuous Integration Testing
 - Long-Term Support plan (LTS)
 - Built with lightweight framework technologies (`AngularJS <https://angularjs.org/>`_ and `Python Twisted <https://twistedmatrix.com/trac/>`_)
-- Embedded Database - SQLite (optional support for other Databases)
+- Embedded database - SQLite (optional support for other databases)
 - Automatic setup of `Tor Onion Services Version 3 <https://www.torproject.org/>`_
 - Integrated backup support
 - Support for self-service signup for whistleblowing SaaS service setup
 - Support for Linux operating system (`Debian <https://www.debian.org/>`_/`Ubuntu <https://ubuntu.com/>`_)
 - Deb Packaging with repository for update/upgrades
 - Fully self-contained application (no web or application servers needed)
-- Integrate collaborative translation/localization (`Transifex <https://www.transifex.com/otf/globaleaks>`_)
+- Integrated collaborative translation/localization (`Transifex <https://www.transifex.com/otf/globaleaks>`_)
 - Easy integration of the platform with existing websites and intranets
 - `HTTP/2 <https://tools.ietf.org/html/rfc7540>`_ support
 - Rest API
