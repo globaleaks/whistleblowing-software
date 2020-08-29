@@ -2966,6 +2966,11 @@
       "integrity": "sha512-r5wGx7YeOwNWNlCA0wQ86zKyDLMQr+/RB8xy74M4hTphfmjlijTSSXGuH8rnvKZnfT9i+75zmd8jcKdMR4O6jA==",
       "dev": true
     },
+    "fontsource-metropolis": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/fontsource-metropolis/-/fontsource-metropolis-3.0.1.tgz",
+      "integrity": "sha512-Cmog2eixbXddQgRXgf138p6ywlIo6kOzjbz+FvTXrnl5cSwTeiIO8bjqkTJe969ckKjOEZSf0WhgQdf4/DPLfw=="
+    },
     "for-in": {
       "version": "1.0.2",
       "resolved": "https://registry.npmjs.org/for-in/-/for-in-1.0.2.tgz",

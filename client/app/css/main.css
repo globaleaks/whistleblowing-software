@@ -4,11 +4,27 @@
   box-shadow: none;
 }
 
+@font-face {
+  font-family: 'Metropolis';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../lib/webfonts/metropolis-all-400-normal.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  font-style: bold;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../lib/webfonts/metropolis-all-700-normal.woff') format('woff');
+}
+
 html, body {
-  font-size: 16px;
-  font-family: Helvetica, Arial, sans-serif;
-  color: #333840;
   background-color: #FFF;
+  color: #333840;
+  font-family: 'Metropolis', Helvetica, Arial, sans-serif;
+  font-size: 16px;
   height: 100%;
   min-height: 20rem;
 }

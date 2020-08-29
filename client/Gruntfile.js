@@ -79,6 +79,7 @@ module.exports = function(grunt) {
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-tpls.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ui-select/dist/select.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/locale", cwd: ".", src: ["node_modules/angular-i18n/angular-locale*"], expand: true, flatten: true },
+          { dest: "app/lib/webfonts", cwd: ".", src: ["node_modules/fontsource-metropolis/files/*"], expand: true, flatten: true },
           { dest: "app/lib/webfonts", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/webfonts/*"], expand: true, flatten: true }
         ]
       },
@@ -169,6 +170,18 @@ module.exports = function(grunt) {
         },
         options: {
           replacements: [
+            {
+              pattern: "src: url('../lib/webfonts/metropolis-all-400-normal.woff') format('woff');",
+              replacement: function () {
+                return "src:url('" + fileToDataURI("tmp/lib/webfonts/metropolis-all-400-normal.woff") + "') format('woff');";
+              }
+            },
+            {
+              pattern: "src: url('../lib/webfonts/metropolis-all-700-normal.woff') format('woff');",
+              replacement: function () {
+                return "src:url('" + fileToDataURI("tmp/lib/webfonts/metropolis-all-700-normal.woff") + "') format('woff');";
+              }
+            },
             {
               pattern: "src:url(../webfonts/fa-regular-400.eot);src:url(../webfonts/fa-regular-400.eot?#iefix) format(\"embedded-opentype\"),url(../webfonts/fa-regular-400.woff2) format(\"woff2\"),url(../webfonts/fa-regular-400.woff) format(\"woff\"),url(../webfonts/fa-regular-400.ttf) format(\"truetype\"),url(../webfonts/fa-regular-400.svg#fontawesome) format(\"svg\")",
               replacement: function () {
