@@ -119,7 +119,6 @@ table {
   max-width: 20rem;
 }
 
-
 #TitleBox {
   display: inline-flex;
   font-size: 2rem;
@@ -552,7 +551,6 @@ a.active, a:active.active, a:hover.active, a:focus.active {
 
 [dir="ltr"] #SubmissionButtons button {
   margin: 0 1rem 0 0;
-  margin-right: 1rem;
 }
 
 [dir="rtl"] #SubmissionButtons button {
