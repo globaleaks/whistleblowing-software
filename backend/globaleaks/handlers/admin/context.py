@@ -150,9 +150,6 @@ def db_create_context(session, tid, request, language):
     """
     request = fill_context_request(tid, request, language)
 
-    if not request['questionnaire_id']:
-        raise errors.InputValidationError()
-
     context = db_add(session, models.Context, request)
 
     db_associate_context_receivers(session, context, request['receivers'])
@@ -188,9 +185,6 @@ def db_update_context(session, tid, context, request, language):
     :return: The updated context
     """
     request = fill_context_request(tid, request, language)
-
-    if not request['questionnaire_id']:
-        raise errors.InputValidationError()
 
     context.update(request)
 
