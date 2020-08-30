@@ -96,6 +96,10 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
 
     user = db_get_user(session, tid, user_id)
 
+    if tid != 1:
+        # Prevent administrators of secondary tenants to change user reference
+        request['rid'] = user.rid
+
     if user.username != request['username']:
         check = session.query(models.User).filter(models.User.username == request['username'],
                                                   models.User.tid == tid).one_or_none()
