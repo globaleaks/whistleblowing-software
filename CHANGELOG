@@ -1,3 +1,6 @@
+Changes in version 4.0.52 - 2020-08-30
+    Revise IPv6 support in relation to IP filtering and logging
+
 Changes in version 4.0.51 - 2020-08-09
     Do not show multitenancy menu if multisite feature is disabled
     Add support for IPv6
