@@ -1,6 +1,7 @@
 # -*- coding: utf-8
 from io import BytesIO as StringIO
 
+from twisted.internet import address
 from twisted.logger import ILogObserver, Logger
 from twisted.python import log
 from twisted.web.http import HTTPChannel, Request
@@ -8,14 +9,26 @@ from twisted.web._http2 import H2Connection
 
 from zope.interface import implementer
 
+
 def null_function(*args, **kw):
     pass
+
+
+def mock_Request_getClientIP(self):
+    if isinstance(self.client, (address.IPv4Address, address.IPv6Address)):
+        return self.client.host
+    else:
+        return None
+
 
 def mock_Request_gotLength(self, length):
     self.content = StringIO()
 
+
+Request.getClientIP = mock_Request_getClientIP
 Request.gotLength = mock_Request_gotLength
 Request.parseCookies = null_function
+
 
 @implementer(ILogObserver)
 class NullObserver(object):
@@ -24,6 +37,7 @@ class NullObserver(object):
 
 
 log.msg = log.info = log.err = null_function
+
 
 null_logger = Logger(observer=NullObserver())
 Request._log = null_logger
