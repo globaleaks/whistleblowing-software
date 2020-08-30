@@ -7,7 +7,7 @@ from twisted.protocols import tls
 
 
 def listen_tcp_on_sock(reactor, fd, factory):
-    return reactor.adoptStreamPort(fd, socket.AF_INET, factory)
+    return reactor.adoptStreamPort(fd, socket.AF_INET6, factory)
 
 
 def listen_tls_on_sock(reactor, fd, contextFactory, factory):
