@@ -28,22 +28,13 @@ def db_create_user(session, tid, request, language):
 
     fill_localized_keys(request, models.User.localized_keys, language)
 
-    user = models.User({
-        'tid': tid,
-        'username': request['username'],
-        'role': request['role'],
-        'state': 'enabled',
-        'name': request['name'],
-        'description': request['description'],
-        'public_name': request['public_name'] if request['public_name'] else request['name'],
-        'language': language,
-        'password_change_needed': request['password_change_needed'],
-        'mail_address': request['mail_address'],
-        'can_edit_general_settings': request['can_edit_general_settings']
-    })
+    if not request['public_name']:
+        request['public_name'] = request['name']
+
+    user = models.User(request)
 
     if not request['username']:
-        user.username = user.id = uuid4()
+        user.username = user.id
 
     user.salt = GCE.generate_salt()
 
