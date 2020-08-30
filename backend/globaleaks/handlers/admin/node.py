@@ -30,8 +30,8 @@ def db_update_enabled_languages(session, tid, languages, default_language):
     if len(languages) < 1:
         raise errors.InputValidationError("No languages enabled!")
 
-    if default_language not in languages:
-        raise errors.InputValidationError("Invalid lang code for chosen default_language")
+    # get sure that the default language is included in the enabled languages
+    languages = set(languages + [default_language])
 
     appdata = None
     for lang_code in languages:
