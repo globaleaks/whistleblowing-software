@@ -28,12 +28,6 @@ def db_create_user(session, tid, request, language):
 
     fill_localized_keys(request, models.User.localized_keys, language)
 
-    if request['username']:
-        user = session.query(models.User).filter(models.User.username == request['username'],
-                                                 models.User.tid == tid).one_or_none()
-        if user is not None:
-            raise errors.InputValidationError('Username already in use')
-
     user = models.User({
         'tid': tid,
         'username': request['username'],
@@ -99,12 +93,6 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
     if tid != 1:
         # Prevent administrators of secondary tenants to change user reference
         request['rid'] = user.rid
-
-    if user.username != request['username']:
-        check = session.query(models.User).filter(models.User.username == request['username'],
-                                                  models.User.tid == tid).one_or_none()
-        if check is not None:
-            raise errors.InputValidationError('Username already in use')
 
     user.update(request)
 
