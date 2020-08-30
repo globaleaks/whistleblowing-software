@@ -186,8 +186,8 @@ def db_user_update_user(session, tid, user_session, request):
     from globaleaks.handlers.admin.node import db_admin_serialize_node
 
     user = db_get(session,
-                         models.User,
-                         models.User.id == user_session.user_id)
+                  models.User,
+                  models.User.id == user_session.user_id)
 
     user.language = request.get('language', State.tenant_cache[tid].default_language)
     user.name = request['name']
