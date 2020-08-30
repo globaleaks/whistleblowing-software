@@ -292,12 +292,11 @@ class APIResourceWrapper(Resource):
                 request.tid, request.path = tid, groups[1]
 
         request.client_ip = request.getClientIP()
+        if isinstance(request.client_ip, bytes):
+            request.client_ip = request.client_ip.decode()
 
         request.client_using_tor = request.client_ip in State.tor_exit_set or \
                                    request.port == 8083
-
-        if isinstance(request.client_ip, bytes):
-            request.client_ip = request.client_ip.decode()
 
         if 'x-tor2web' in request.headers:
             request.client_using_tor = False
