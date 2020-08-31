@@ -22,7 +22,7 @@
   src: url('./fonts/metropolis-all-700-normal.woff') format('woff');
 }
 
-html, body {
+* {
   font-family: 'Metropolis', Helvetica, Arial, sans-serif;
   color: #333840;
 }
