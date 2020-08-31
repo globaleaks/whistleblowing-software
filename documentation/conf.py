@@ -53,7 +53,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'GlobaLeaks'
+project = u'GLOBALEAKS'
 copyright = u'Copyright (c) 2011-2020 - Hermes Center for Transparency and Digital Human Rights'
 author = u'Hermes Center for Transparency and Digital Human Rights'
 
@@ -265,7 +265,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc, 'GlobaLeaks', u'GlobaLeaks Documentation',
-     author, 'GlobaLeaks', 'GlobaLeaks is open-source / free software intended to enable secure and anonymous whistleblowing',
+     author, 'GlobaLeaks', ' GlobaLeaks is free, open souce software enabling anyone to easily set up and maintain a secure whistleblowing platform',
      'Miscellaneous'),
 ]
 

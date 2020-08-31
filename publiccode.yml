@@ -87,10 +87,9 @@ description:
     shortDescription: 'Open-Source Whistleblowing Software '
     documentation: 'https://docs.globaleaks.org/'
     longDescription: >-
-      [GlobaLeaks](https://www.globaleaks.org/) is
-      open-source / free software intended to enable secure and anonymous
-      whistleblowing initiatives developed by the [Hermes Center for
-      Transparency and Digital Human Rights](https://www.hermescenter.org/).
+      [GlobaLeaks](https://www.globaleaks.org/) is free, open souce software
+      enabling anyone to easily set up and maintain a secure whistleblowing
+      platform.
       Thanks to GlobaLeaks even non-technical people are be able to setup their
       own anonymous whistleblowing project. Designed to be user-friendly the
       software is customizable up to own needs and protects the whistleblower's
@@ -104,15 +103,14 @@ description:
       - "Multi-user system with customizable user roles (whistleblower, recipient, administrator)"
       - "Entirely manageable from a web administration interface"
       - "Support for more than 40 languages with Right-to-Left (RTL)"
-      - "Support for customization of advanced questionnaires"
       - "Receive reports from whistleblower through structured multi-step questionnaire"
       - "Let whistleblowers decide if and when to confidentially declare their identity"
       - "Exchange multimedia files with whistleblower"
       - "Chat with whistleblower to discuss the report"
       - "Unique 16-digit receipt for the whistleblower to log back in anonymously"
       - "Simple recipient interface for receiving and analyzing reports"
-      - "Support to the categorization of the reports with labels"
-      - "Support to the user search of reports"
+      - "Support for the categorization of the reports with labels"
+      - "Support for the user search of reports"
       - "Support for assigning and creating case management statuses"
       - "Customizable look and feel (logo, colour, styles, font, text)"
       - "Define multiple reporting channels/contexts (e.g. per-topic, per-department)"
@@ -174,10 +172,8 @@ description:
     shortDescription: 'Open-Source Whistleblowing Software '
     documentation: 'https://docs.globaleaks.org/'
     longDescription: >-
-      [GlobaLeaks](https://www.globaleaks.org/) è
-      un software open-source gratuito creato per permettere la realizzazione di progetti di
-      whistleblowing anonimo e sicuro sviluppato dall'[Hermes Center for
-      Transparency and Digital Human Rights](https://www.hermescenter.org/).
+      [GlobaLeaks](https://www.globaleaks.org/) è software libero e open source
+      che permette a tutti di creare e mantenere una piattaforma di whistleblowing sicura.
       Grazie a GlobaLeaks anche le persone non tecniche sono in grado di avviare il proprio
       progetto di whistleblowing anonimo. Progettato per essere intuitivo, il software è
       personalizzabile in base alle proprie esigenze e protegge la privacy e le comunicazioni
@@ -189,7 +185,6 @@ description:
       - "Sistema multiutente con ruoli utente personalizzabili (segnalante, ricevente, amministratore)"
       - "Interamente gestibile da un'interfaccia di amministrazione web"
       - "Supporto per oltre 40 lingue ed RTL"
-      - "Supporto per la configurazione di questionari personalizzati avanzati"
       - "Ricevi segnalazioni da un segnalante tramite un questionario strutturato in più passaggi"
       - "Possibilità per i segnalanti di decidere se e quando dichiarare la propria identità"
       - "Possibilità di scambio dile con il segnalante"

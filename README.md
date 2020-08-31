@@ -2,7 +2,7 @@
   <img src="/assets/globaleaks-logo-color.png" width="400">
 </p>
 
-[GlobaLeaks](https://www.globaleaks.org/) is open-source / free software intended to enable secure and anonymous whistleblowing initiatives
+[GlobaLeaks](https://www.globaleaks.org/) is free, open souce software enabling anyone to easily set up and maintain a secure whistleblowing platform.
 
 ## Build
 | Branch | Status | Quality | Coverage | Browser Tests
