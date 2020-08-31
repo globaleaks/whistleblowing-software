@@ -1,3 +1,6 @@
+Changes in version 4.0.53 - 2020-08-31
+    Fix functionality for re-generating Onion addresses
+
 Changes in version 4.0.52 - 2020-08-30
     Revise IPv6 support in relation to IP filtering and logging
 
