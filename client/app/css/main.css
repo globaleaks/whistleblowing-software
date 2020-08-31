@@ -1,9 +1,3 @@
-* {
-  word-wrap: break-word;
-  word-break: break-word;
-  box-shadow: none;
-}
-
 @font-face {
   font-family: 'Metropolis';
   font-style: normal;
@@ -18,6 +12,12 @@
   font-weight: 700;
   font-display: swap;
   src: url('../lib/webfonts/metropolis-all-700-normal.woff') format('woff');
+}
+
+* {
+  word-wrap: break-word;
+  word-break: break-word;
+  box-shadow: none;
 }
 
 html, body {
