@@ -1,18 +1,63 @@
+@font-face {
+  font-family: 'Metropolis';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/metropolis-all-400-normal.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/metropolis-all-400-italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  font-style: bold;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./fonts/metropolis-all-700-normal.woff') format('woff');
+}
+
 html, body {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Metropolis', Helvetica, Arial, sans-serif;
+  color: #333840;
+}
+
+a {
+  color: #3877BC;
+  font-weight: bold;
+}
+
+/* Sidebar header (and topbar for mobile) */
+.wy-side-nav-search, .wy-nav-top {
+  background: #3777bc;
+}
+
+/* Sidebar */
+.wy-nav-side {
+  color: #FFF;
+  background: #103253;
+}
+
+.wy-menu-vertical a {
+  color: #FFF;
 }
 
 @media screen and (min-width: 767px) {
-   .wy-nav-content {
-        max-width: 100% !important;
-    }
+  .wy-nav-content {
+    max-width: 100% !important;
+}
 
-    .wy-table-responsive table td, .wy-table-responsive table th {
-        white-space: normal !important;;
-    }
+  .wy-table-responsive table td, .wy-table-responsive table th {
+    white-space: normal !important;
+  }
 
-    .wy-table-responsive {
-        overflow: visible !important;
-        max-width: 100%;
-    }
+  .wy-table-responsive {
+    overflow: visible !important;
+    max-width: 100%;
+  }
 }
