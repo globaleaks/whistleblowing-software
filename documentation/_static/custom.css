@@ -34,13 +34,16 @@ a {
 
 /* Sidebar header (and topbar for mobile) */
 .wy-side-nav-search, .wy-nav-top {
-  background: #3777bc;
+  background: #3777BC;
 }
 
 /* Sidebar */
 .wy-nav-side {
-  color: #FFF;
   background: #103253;
+}
+
+.wy-menu .caption-text {
+  color: #5ea9e9;
 }
 
 .wy-menu-vertical a {

@@ -1,27 +1,27 @@
 ==============
-For recipients
+For Recipients
 ==============
 
-Access the list of the existing submissions
+Access the List of the Existing Submissions
 -------------------------------------------
 TODO
 
-Access a submission
+Access a Submission
 -------------------
 TODO
 
-Label a submission
+Label a Submission
 ------------------
 TODO
 
-Change the state of a submission
+Change the State of a Submission
 --------------------------------
 TODO
 
-Exchange comments with the whistleblower
+Exchange Comments with the Whistleblower
 ----------------------------------------
 TODO
 
-Export a submission
+Export a Submission
 -------------------
 TODO

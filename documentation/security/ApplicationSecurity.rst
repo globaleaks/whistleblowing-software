@@ -1,5 +1,5 @@
 ====================
-Application security
+Application Security
 ====================
 The GlobaLeaks software conforms to industry standard best practices for application security by following OWASP Security Guidelines.
 
@@ -7,7 +7,7 @@ GlobaLeaks is made up of two main software components: a Backend and a Client.
 The Backend is a python backend that runs on a physical backend and exposes a REST API which the Client interacts with.
 The Client is a client side web application that interacts with Backend only through XHR.
 
-Key concepts
+Key Concepts
 ============
 This section explains the key security concepts when a Whistleblower submits a Report to a number of Recipients through GlobaLeaks.
 
@@ -27,13 +27,13 @@ After a configurable amount of time a Report expires and is deleted and securely
 
 As well after a configurable amount of time since the last access to the Report, the Whistleblower loses the possibility to access its own report.
 
-Whistleblower interactions with the platform
+Whistleblower Wnteractions with the Platform
 --------------------------------------------
 A Whistleblower can access the platform, read and fill the submission questionnaire filing a report and eventually attaching evidence of the fact reported.
 
 Every time a Whistleblower performs a new Submission on a GlobaLeaks platform a Report is created and the Whistleblower is given a randomly generated receipt. This Receipt is an authentication secret composed by 16 digits (e.g: 5454 0115 3135 3982) that acting as an anonymous authentication password lets Whistleblowers access their own Reports.
 
-Recipient interactions with the platform
+Recipient Interactions with the Platform
 ----------------------------------------
 Any time a Report is submitted by a Whistleblower, Recipients are notified via email and they could then access the report by clicking on a link and inserting their own personal password.
 Alternatively the user can access the platform via the Login interface and then access the lists of existing Reports.
@@ -48,7 +48,7 @@ This section describes the authentication possibilities implemented by the syste
 
 Due to the fact that the Backend may be deployed to be accessible via a Tor Onion Service and via HTTPS, the authentication endpoints for each user role may vary depending on the configuration.
 
-Authentication matrix
+Authentication Matrix
 ---------------------
 The table below summarizes the authentication methods for each user role.
 
@@ -61,7 +61,7 @@ The table below summarizes the authentication methods for each user role.
    "M2M", "API token"
 
 
-Authentication methods
+Authentication Methods
 ----------------------
 Supported authentication methods are described as follows.
 Password
@@ -79,15 +79,15 @@ A system integrated with GlobaLeaks could perform authenticated admin operations
 
 This feature is optional and disabled by default.
 
-Password security
+Password Security
 =================
 The following password security measures implemented by the system.
 
-Authentication security
+Authentication Security
 -----------------------
 The confidentiality of the transmission of authentication secrets is protected by either Tor Onion Services v3 or TLS version 1.2+
 
-Password storage
+Password Storage
 ----------------
 Password are never stored in plaintext but the system maintain at rest only an hash. This apply to every authentication secret included whistleblower receipts.
 
@@ -97,7 +97,7 @@ Passwords are hashed using Argon2: https://en.wikipedia.org/wiki/Argon2
 
 The hash involves a per-user salt for each user and a per-system salt for each whistleblower.
 
-Password strength
+Password Strength
 -----------------
 The system enforces the usage of complex password by implementing a custom algorithm necessary for ensuring a reasonable entropy of each authentication secret.
 
@@ -105,33 +105,33 @@ Password are scored in three levels: strong, acceptable, unusable.
 A strong password should be formed by capital letters, lowercase letters, numbers and a symbols, be at least 12 characters long and include a variety of at least 10 different inputs.
 An acceptable password should be formed by at least 3 different inputs over capital letters, lowercase letters, numbers and a symbols, be at least 10 characters and include a variety of at least 7 different inputs.
 
-Two factor authentication (2FA)
+Two Factor Authentication (2FA)
 -------------------------------
 Users are enabled to enroll for Two Factor Authentication via their own preferences.
 The system implements Two Factor Authentication (2FA) based on TOTP as for `RFC 6238 <https://tools.ietf.org/rfc/rfc6238.txt>`_
 
-Password change on first login
+Password Change on First Login
 ------------------------------
 The system enforces users to change their own password at their first login.
 Administrators could as well enforce password change for users at their next login.
 
-Periodic password change
+Periodic Password Change
 ------------------------
 The system enforces users to change their own password every 3 months.
 This period is configurable by administrators.
 
-Proof of work on login
+Proof of Work on Login
 ----------------------
 The  system implements a proof of work on every login.
 Each client should request a token, solve the proof of work and wait a timeout for the token to become valid.
 This feature is intended to slow down possible attacks requiring more resources to users in terms of time, computation and memory.
 
-Slowdown on failed login attempts
+Slowdown on Failed Login Attempts
 ---------------------------------
 The system identifies multiple failed login attempts and implement a slowdown procedure where an authenticating client should wait up to 42 seconds to complete an authentication.
 This feature is intended to slow down possible attacks requiring more resources to users in terms of time, computation and memory.
 
-Password recovery
+Password Recovery
 -----------------
 In case of password loss users could request a password reset via the web login interface ckicking on a “Forgot password?” button.
 When this button is clicked, users are invited to enter their username or an email. If the provided username or the email correspond to an existing user, the system will provide a reset link to the configured email.
@@ -141,13 +141,13 @@ In case encryption is enabled on the system, a user clicking on the reset link w
 
 In case 2FA is enabled on the system, a user clicking on the reset link would have first to insert an authentication code taken from the authentication API.
 
-Entropy sources
+Entropy Sources
 ---------------
 The main source of entropy for the platform is /dev/urandom.
 
 In order to increase the entropy available on the system the system integrates the usage of the haveged daemon:  http://www.issihosts.com/haveged/
 
-Web application security
+Web Application Security
 ========================
 This section describes the Web Application Security functionalities implemented by following the `OWASP REST Security Cheat Sheet <https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html>`_.
 
@@ -160,17 +160,17 @@ The Session ID is 256bits long secret generated randomly by the backend.
 Each session expire accordingly to a timeout of 5 minutes.
 Session IDs are exchanged by the client with the backend by means of an header (X-Session) and do expire as soon that users close their browser or the tab running GlobaLeaks. Users could explicitly log out via a logout button or implicitly by closing the browser.
 
-XSRF prevention
+XSRF Prevention
 ---------------
 Cookies are not used intentionally to minimize any possible XSRF attack.
 
-Input validation (backend)
+Input Validation (backend)
 --------------------------
 The system adopts a whitelist based input validation approach. Each client request is checked against a set of regular expressions and only requests matching the expression are then processed.
 
 As well a set of rules are applied to each request type to limit possible attacks. For example any request is limited to a payload of 1MB.
 
-Input validation (client)
+Input Validation (client)
 -------------------------
 The client implement strict validation of the rendered content by using the angular component: http://docs.angularjs.org/api/ngSanitize.$sanitize
 
@@ -240,7 +240,7 @@ The Globaleaks backend by default sends the following headers to instruct client
   Pragma: no-cache
   Expires: -1
 
-Anchor tags and external URLs
+Anchor Tags and External URLs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 In order to guarantee user privacy has been given to the various ways a user may leave the application passing to a different external website leaking information about his operations. Keep the number of clickable external anchor tags to a minimum. The content generated by whistleblowers, recipients, and translators is strictly escaped to prevent the insertion of malicious links.
 
@@ -258,7 +258,7 @@ Cookies
 -------
 To prevent any potential abuse GlobaLeaks does not make use of any type of cookie.
 
-Form autocomplete OFF (client)
+Form Autocomplete OFF (client)
 ------------------------------
 Form implemented by the platform make use of the HTML5 form attribute in order to instruct the browser to do not keep caching of the user data in order to predict and autocomplete forms on subsequent submissions.
 
@@ -266,18 +266,7 @@ The implementation involve setting autocomplete=”false” on the relevant form
 
 https://www.w3.org/TR/html5/forms.html=autofilling-form-controls:-the-autocomplete-attribute
 
-Fonts
------
-The Client intentionally does not use any custom font not already included in the main operating systems and just use the following standard configuration:
-::
-
-  font-family: Helvetica, Arial, sans-serif
-
-This choice consider to limit possible browser fingerprinting attacks.
-
-Reference: https://panopticlick.eff.org/static/browser-uniqueness.pdf
-
-Data encryption
+Data Encryption
 ===============
 The data, files, messages and metadata exchanged between whistleblowers and recipients is encrypted using the GlobaLeaks :doc:`EncryptionProtocol`.
 In addition to this GlobaLeaks implements many other encryption components and the following is the set of the main libraries and their main usage:
@@ -287,7 +276,7 @@ In addition to this GlobaLeaks implements many other encryption components and t
 * `Python-Cryptography <https://cryptography.io>`_: is used for implementing authentication
 * `Python-GnuPG <http://pythonhosted.org/python-gnupg/index.html>`_: is used for encrypting email notifications
 
-DoS resiliency approach
+DoS Resiliency Approach
 =======================
 To avoid applicative and database denial of service, GlobaLeaks apply the following measures:
 
@@ -295,7 +284,7 @@ It tries to limit the possibility of automating any operation by requiring human
 It is written to limit the possibility of triggering CPU intensive routines by an external user (e.g. by implementing limits on queries and jobs execution time)
 It implements monitoring of each activity trying to implement detection of attacks and implement proactively security measures to prevent DoS (e.g. implementing slowdown on fast-operations)
 
-Network sandboxing
+Network Sandboxing
 ==================
 GlobaLeaks integrates iptables by default and implements by a strict firewall rule that only allow inbound and outbound connections from 127.0.0.1 (where Tor is running with Tor Onion Service).
 
@@ -303,20 +292,20 @@ As well it automatically applies network sandboxing to all outbound communicatio
 
 The configuration of the network sandboxing is defined inside the init script of the application: https://github.com/globaleaks/GlobaLeaks/blob/main/debian/globaleaks.init
 
-Application sandboxing
+Application Sandboxing
 ======================
 GlobaLeaks integrates AppArmor by default and implements a strict sandboxing profile enabling the application to access only the strictly required files.
 As well the application does run under a dedicated user and group "globaleaks" with reduced privileges.
 
 The configuration of the network sandboxing is defined inside the init script of the application: https://github.com/globaleaks/GlobaLeaks/blob/main/debian/apparmor/usr.bin.globaleaks
 
-Other measures
+Other Measures
 ==============
-Encryption of temporary files
+Encryption of Temporary Files
 -----------------------------
 Files being uploaded and temporarily stored on the disk during the upload process are encrypted with a temporary, symmetric AES-key in order to avoid writing any part of an unencrypted file's data chunk to disk. The encryption is done in "streaming" by using AES 128bit in CTR mode. The key files are stored in memory and are unique for each file being uploaded.
 
-Secure file delete
+Secure File Delete
 ------------------
 Every file deleted by the application if overwritten before releasing the file space on the disk.
 
@@ -325,11 +314,11 @@ A first overwrite writes 0 on the whole file;
 A second overwrite writes 1 on the whole file;
 A third overwrite writes random bytes on the whole file.
 
-Secure deletion of database entries
+Secure Deletion of Database Entries
 -----------------------------------
 The platform enables the sqlite capability for secure deletion that automatically makes the database overwrite the data upon each delete query.
 
-Exception logging and redaction
+Exception Logging and Redaction
 -------------------------------
 In order to quickly diagnose potential problems in the software when exceptions in clients are generated, they are automatically reported to the backend. The backend backend temporarily caches these exceptions and sends them to the backend administrator via email.
 

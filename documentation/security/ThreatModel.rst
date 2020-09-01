@@ -1,11 +1,11 @@
 ============
-Threat model
+Threat Model
 ============
 GlobaLeaks is an Open Whistleblowing Framework that can be used in many different usage scenarios that may require very different approaches to obtain both security and flexibility.
 Whistleblowing policies and procedures within a corporation for compliance purposes are reasonably different from the ones of a Media outlet or the ones for Hacktivism initiatives.
 Given the flexibility of uses of GlobaLeaks, the threat model considers different usage scenarios as threats can vary.
 
-Actors matrix
+Actors Matrix
 =============
 As a first step we define the actors, that are the users that interact with a GlobaLeaks platform.
 
@@ -18,7 +18,7 @@ As a first step we define the actors, that are the users that interact with a Gl
 
 It’s highly relevant to apply each of the security measures always in relationship to the actors using GlobaLeaks, while always considering the security and usability tradeoff.
 
-Anonymity matrix
+Anonymity Matrix
 ================
 The anonymity of different actors must be differentiated and requires to be classified depending on the context of use represented by the following definitions:
 
@@ -38,7 +38,7 @@ The following matrix relates the previous definition to different architectural 
 
 Different use of GlobaLeaks require to consider the requirements for different actors in the anonymity matrix. The Anonymity level is reported on the user interface with the aim to make the user aware of it. The Administrator can configure the Anonymity level required for each actor.
 
-Communication security matrix
+Communication Security Matrix
 =============================
 The security of communication in respect to third parties transmission's monitoring may have different requirements depending on its context of use.
 
@@ -54,7 +54,7 @@ The following matrix applies the previous definition related to different archit
 
    "Security Level", "High security", "Medium security"
 
-Identity disclosure matrix
+Identity Disclosure Matrix
 ==========================
 Regardless from the anonymity matrix, various actors may be in a condition to decide to, or get mandated to disclose or not disclose their identity.
 
@@ -87,7 +87,7 @@ In this section you will find a set of examples that show how different anonymit
    "Citizen media initiative", "A Citizen media initiative with it’s own public identity wants to collect tips on a specific topic (political, environmental malpractice, corruption, etc) in a medium-low risk operational context. The recipients must be disclosed but using a Pseudonym in order to avoid giving them too much responsibility, while accepting a Confidential relationship with no anonymity. The Whistleblower, if the topic is not life-threatening, can be allowed to submit also in a Confidential way to lower the entrance barrier."
    "Public Agency Iniziative", "A local public agency wants to setup a Street Hole Reporting service with it’s own public identity. The recipient can be disclosed to facilitate the CRM (Citizen relationship management) and Whistleblower identity protection is not required."
 
-GlobaLeaks security matrix
+GlobaLeaks Security Matrix
 ==========================
 Below we show how different usage scenarios can require different set of anonymity level, communication security requirements and identity disclosures for different actors.
 
@@ -122,7 +122,7 @@ Globaleaks, through its user interface, will enable each actor with appropriate 
 
 The previous schema gives only some examples of GlobaLeaks’s flexibility; but different anonymity, identity and security measures apply to other usage scenarios and actors.
 
-Data security matrix
+Data Security Matrix
 ====================
 This section highlights the data that is handled by GlobaLeaks software and how different protection schemes are applied to GlobaLeaks handled data.
 
@@ -148,11 +148,11 @@ Below a matrix showing different security measures applied on data.
    Software files", "N/A", "N/A", "N/A", "N/A"
    "Email notifications", "Encrypted with PGP when recipients keys are available", "N/A", "Antispam to prevent flooding", "N/A"
 
-Threats to privacy and anonymity
+Threats to Privacy and Pnonymity
 ================================
 In this section are highlighted several threats that require specific explanation.
 
-Browser history and cache
+Browser History and Cache
 -------------------------
 GlobaLeaks tries to avoid, by using properly crafted HTTP headers, to leak information into actor’s browser history and cache. This privacy feature cannot guarantee the user to be safe against a forensics analysis of their browser cache and/or history but is provided as additional safety measure.
 
@@ -160,24 +160,24 @@ Metadata
 --------
 Every file can contain metadata related to the author or the whistleblower. The cleanup of metadata of submitted files is a particular topic that attempts to protect an “unaware” whistleblower from leaking information in a document that may pose their anonymity at risk. In the context of GlobaLeaks no automatic metadata cleanup is implemented because metadata is considered fundamental in the evidence preservation. For that reason metadata cleanup is an optional feature at choice of Whistleblower and/or Recipient.
 
-Environmental factors
+Environmental Factors
 ---------------------
 GlobaLeaks does not protect against environmental factors related to one actors physical location and/or their social relationships. For example if users have a video bug installed in their house to monitor all their activity Globaleaks cannot protect them. As well if whistleblowers, supposed to be anonymous, tells their story to friends or coworkers, GlobaLeaks cannot protect them.
 
-Incorrect data retention policies
+Incorrect Data Retention Policies
 ---------------------------------
 GlobaLeaks implements by default a strict data retention policy of 90 days to enable users to operate on the report for a limited time necessary for the invertigations.
 If the platform is configured to retain every report for a long time and Recipients do not delete manually the unnecessary reports, the value of the platform data for an attacker increases and so the risk.
 
-Human negligence 
+Human Negligence
 ----------------
 While we do provide the Administrator the ability to fine tune their security related configurations and continuously inform the actors about their security related context at every step of interactions, GlobaLeaks cannot protect against any major security threats coming from human negligence. For example a Whistleblower submitting data for which is clear to third party (carrying on ex-post possible investigation to identify him) that he is the only and unique owner of that data, cannot be protected by GlobaLeaks.
 
-Data stored outside GlobaLeaks
+Data Stored Outside GlobaLeaks
 ------------------------------
 GlobaLeaks does not provide any kind of security for data that are stored outside the GlobaLeaks system. 
 The duty of protection for such kind of data is exclusively of the actor.
 
-Advanced traffic analysis
+Advanced Traffic Analysis
 -------------------------
 An attacker monitoring HTTPS traffic with no ability to decrypt it, is able to identify the role of the intercepted users, because Whistleblower, Recipient and Administrator interfaces generate different network traffic patterns. GlobaLeaks does not provide protection against this threat. It’s suggested to use Tor pluggable transports or other methods providing additional set of protections against this kind of attack.

@@ -1,5 +1,5 @@
 ==================
-Installation guide
+Installation Guide
 ==================
 The following is intended to guide you through the installation of GlobaLeaks.
 

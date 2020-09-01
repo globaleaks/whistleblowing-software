@@ -1,7 +1,7 @@
-===============================
-User interface
-===============================
-This section ffers you a summary of the user interface offered to Admin users.
+==============
+User Interface
+==============
+This section offers you a summary of the user interface offered to Admin users.
 
 Anytime you log in as administrator via the Login page the application takes you to your personal administrative Homepage; This page includes some documentation about GlobaLeaks that is intended to clarify you all the up-to-date documentation in matter of software security, best practices and community support.
 
@@ -29,7 +29,7 @@ A menu on the right offers you links to the different administative sections:
 
    9. System overview
 
-Site settings
+Site Settings
 -------------
 This is the section that offers you all the main customization possibilities necessary for implementing a basic and functional whistleblowing site.
 
@@ -45,13 +45,13 @@ This section is furtherly divided in:
 
    5. Text customization
 
-Main configuration
+Main Configuration
 ..................
 In this section is configurable the logo and all the texts of the main user interfaces.
 
 .. image:: imgs/site_settings.png
 
-Theme customization
+Theme Customization
 ...................
 In this section could be loaded CSS and Javascript files necessary to customize the interface.
 
@@ -72,7 +72,7 @@ In this section you could enable all the languages required by your project and 
 
 .. image:: imgs/languages.png
 
-Text customization
+Text Customization
 ..................
 Here could be confiured overrides for any of the texts of the platform and of their translation.
 
@@ -130,7 +130,7 @@ Steps
 The software enables to organise questionnaire in one or multiple steps.
 For example the default qeustionnaire is organized with a single step including all the questions.
 
-Questions types
+Questions Types
 ...............
 The software enables you to create questions of the following types:
 
@@ -156,7 +156,7 @@ The software enables you to create questions of the following types:
 
    11. Question group
 
-General question properties
+General Question Properties
 ...........................
 Each of the software question types make it possible to configure the following properties:
 
@@ -170,21 +170,21 @@ Each of the software question types make it possible to configure the following 
 
   Preview: Set this field if you want the answers to this question to appear in the preview section of the  list 
 
-Question properties by question type
-.....................................
-Single and Multi line text input
+Question Properties by Question Type
+....................................
+Single and Multi Line Text Input
 ++++++++++++++++++++++++++++++++
 TODO
 
-Selection box, Multiple choice input, Checkbox
+Selection Box, Multiple Choice Input, Checkbox
 ++++++++++++++++++++++++++++++++++++++++++++++
 TODO
 
-Question groups
+Question Groups
 ...............
 TODO
 
-Conditional questions
+Conditional Questions
 .....................
 TODO
 
@@ -207,7 +207,7 @@ Depending on your project needs here you could create additional Contexts and co
 
 .. image:: imgs/contexts.png
 
-Submissions expiration
+Submissions Expiration
 ......................
 The software enables to configure a data retention policy for each channel.
 This is a fundamental property of the whistleblowing channel that makes it possible to configure automatic secure deletion of reports after a certain period of time.
@@ -215,7 +215,7 @@ This setting should be configured in relation to the risk of the channel in orde
 
 By default a context is configured with a report expiration of 30 days.
 
-Case management
+Case Management
 ---------------
 This section is intended to host all the main case management feature that will be offered by the software.
 Currently it hosts the possibility to define reports statuses and substatuses intended to be used by Recipients while working on the reports.
@@ -232,7 +232,7 @@ Within this section you may add additional Statuses between the State Open and C
 
 .. image:: imgs/report_statuses.png
 
-Notification settings
+Notification Settings
 ---------------------
 This is the section where are configured all the aspects related to the mail notifications sent by the software.
 
@@ -250,7 +250,7 @@ Here are configured the techinical details about SMTP.
 
 .. image:: imgs/notification_settings.png
 
-Notification templates
+Notification Templates
 ......................
 In this section are configured the notification templates.
 
@@ -259,7 +259,7 @@ Depending on your project needs you may override the default text with your cust
 
 .. image:: imgs/notification_templates.png
 
-Network settings
+Network Settings
 ----------------
 In this section are configured the newtork settings.
 
@@ -285,7 +285,7 @@ In particular here are configured:
 To ease the deployment and the maintainance and reduce the costs of your project, consider using the software includes support for the Let'sEncrypt HTTPS certificates.
 
 Tor
-.....
+...
 Here you can configure all the aspects related to the access of the platform via the Tor Protocol.
 
 .. image:: imgs/tor.png
@@ -302,7 +302,7 @@ Suggested configurations are:
 
    2. Restrict Recipients access to their intranet.
 
-Advanced settings
+Advanced Settings
 -----------------
 TODO
 
@@ -312,7 +312,7 @@ TODO
 
 .. image:: imgs/anomaly_thresholds.png
 
-Audit log
+Audit Log
 ---------------
 TODO
 

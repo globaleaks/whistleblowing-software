@@ -1,6 +1,6 @@
-=======================
-Backup and restore
-=======================
+==================
+Backup and Restore
+==================
 The following bash script could be used in order to perform a backup manually:
 
 .. code::
