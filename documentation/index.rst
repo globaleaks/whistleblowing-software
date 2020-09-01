@@ -6,31 +6,44 @@ Welcome to GlobaLeaks's Documentation!
 .. note:: This documentation is thank to the support of the GlobaLeaks Community. Join us and contribute with your additions and suggestion. In any of the page you find a link that enables you to provide suggestions and corrections. We remind you that in case of any software issue or bug you may always report on the `GlobaLeaks Ticketing System <https://github.com/globaleaks/GlobaLeaks/issues>`_.
 
 .. toctree::
+        :caption: Getting Started
         :name: gettingstarted
         :maxdepth: 4
 
-        gettingstarted/index
+        gettingstarted/Glossary
+        gettingstarted/Features
+        gettingstarted/Requirements
 
 .. toctree::
+        :caption: Setup
         :name: setup
         :maxdepth: 4
 
-        setup/index
+	setup/InstallationGuide
+	setup/PlatformWizard
 
 .. toctree::
+        :caption: Security
         :name: security
         :maxdepth: 4
 
-        security/index
+        security/ThreatModel.rst
+        security/ApplicationSecurity.rst
+        security/EncryptionProtocol.rst
+        security/PenetrationTests.rst
 
 .. toctree::
+        :caption: User Documentation
         :name: user
         :maxdepth: 4
 
-        user/index
+        user/Common.rst
+        user/Admin.rst
+        user/Recipient.rst
 
 .. toctree::
+        :caption: Developer Documentation
         :name: developer
-        :maxdepth: 4
+        :maxdepth: 1
 
-        developer/index
+        developer/index.rst

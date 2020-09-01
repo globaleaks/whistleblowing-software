@@ -1,8 +1,8 @@
 =====================
-Common configurations
+Common Configurations
 =====================
-Configure the logo
--------------------------
+Configure the Logo
+------------------
 
 The first thing you want to give to your whistleblowing site is a branding identity; this could be done by loading a logo in section Site settings / Main configuration.
 
@@ -10,8 +10,8 @@ The first thing you want to give to your whistleblowing site is a branding ident
 
 Scroll down along the page to reach the "Save" button, click on it and have your logo and favicon applied.
 
-Enable languages
----------------------------
+Enable Languages
+----------------
 
 You may want your GlobaLeaks installation served on more than one language
 
@@ -21,7 +21,7 @@ Note that in the same interface you can mark the default application language.
 
 .. image:: imgs/languages.png
 
-Configure notification settings
+Configure Notification Settings
 -------------------------------
 GlobaLeaks sends out notifications of different events to different receivers and to admins. In order to have this working, you have to select  "Notification Settings" in the "Administration Interface - General Settings" page and set up email account and related server parameters.
 
@@ -49,22 +49,22 @@ Once configured all the parameters for notifications, it is possible to test the
 
 If all is working as expected, click on the "Save" button to keep the configured parameters.
 
-Configure recipients
+Configure Recipients
 --------------------
 The Recipient is the person that will receive and process the data that whistleblowers input in the platform.
 You can have one or multiple Recipients per Context, and also have one Recipient that can access to multiple Contexts. The platform is very flexible on this and allows you to define in very detail your whistleblowing system and procedure.
 
-Configure questionnaires
+Configure Questionnaires
 ------------------------
 TODO
 
-Configure contexts
+Configure Contexts
 ------------------
 TODO
 
-Customize the graphic layout
---------------------------
-Example 1: custom background
+Customize the Graphic Layout
+----------------------------
+Example 1: Custom Background
 ............................
 This CSS example shows how to customize the Background Color of the application.
 
@@ -75,9 +75,8 @@ This CSS example shows how to customize the Background Color of the application.
       background-color: red;
    }
 
-Example 2: custom font
+Example 2: Custom Font
 ......................
-
 This CSS example shows how to customize the font of the application.
 
 .. code-block:: css

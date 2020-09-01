@@ -2,7 +2,7 @@
 Troubleshooting
 ===============
 
-Issues and bug reporting
+Issues and Bug Reporting
 ------------------------
 If you encounter any issue and you are not able to to run GlobaLeaks:
 
@@ -11,7 +11,7 @@ If you encounter any issue and you are not able to to run GlobaLeaks:
 - Search on the support forum to check if a user has already encountered your issue: https://forum.globaleaks.org
 - Report the issue on the official software ticking system: https://github.com/globaleaks/GlobaLeaks/issues
 
-Useful debugging commands
+Useful Debugging Commands
 -------------------------
 Depending on your setup. There are a few things that are usually the first things to check to see if GlobaLeaks is working.
 
@@ -40,7 +40,7 @@ Depending on your setup. There are a few things that are usually the first thing
   less /var/globleaks/logs/globaleaks.log
 
 
-Log files
+Log Files
 ---------
 There are a few useful logs and corresponding log files when GlobaLeaks is installed.
 

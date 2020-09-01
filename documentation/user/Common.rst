@@ -1,20 +1,20 @@
-=============
-For all users
-=============
+===================
+Common to All Users
+===================
 
 Login
 -----
 TODO
 
-Access the user preferences
+Access the User Preferences
 ---------------------------
 TODO
 
-Change your password
+Change Your Password
 --------------------
 TODO
 
-Reset your password
+Reset Your Password
 -------------------
 TODO
 

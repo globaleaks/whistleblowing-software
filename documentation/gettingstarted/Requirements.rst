@@ -4,7 +4,7 @@ Requirements
 
 Make sure you understand and satisfy each of the following technical requirements.
 
-Hardware requirements
+Hardware Requirements
 ---------------------
 **Requirements**:
 
@@ -13,7 +13,7 @@ Hardware requirements
 - STORAGE: 20GB Allocate more based on data retention policy and (expected) traffic.
 - I/O: 10Mbit/s (shared)
 
-Software requirements
+Software Requirements
 ---------------------
 GlobaLeaks is designed to run on GNU/Linux and  developed and tested specifically for Debian 10 (Buster)
 

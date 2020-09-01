@@ -1,10 +1,10 @@
 =============
-Upgrade guide
+Upgrade Guide
 =============
 
-Regular update
+Regular Update
 --------------
-To safely upgrade a GlobaLeaks installation please proceed with a backup of your setup by following the :doc:`Backup and restore </admin/BackupAndRestore>` guide.
+To safely upgrade a GlobaLeaks installation please proceed with a backup of your setup by following the :doc:`Backup and restore </user/admin/BackupAndRestore>` guide.
 
 This is necessary so that if something goes wrong and you need to rollback, you will be able to just uninstall the current package, then install the same version of globaleaks that was previously installed and working.
 
@@ -14,7 +14,7 @@ In order to update GlobaLeaks perform the following commands:
 
    apt-get update && apt-get install globaleaks
 
-Upgrade of the distribution version
+Upgrade of the Distribution Version
 -----------------------------------
 For security and stability reasons it is recommended to not perform a distribution upgrade.
 

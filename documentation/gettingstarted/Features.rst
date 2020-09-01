@@ -2,7 +2,7 @@
 Features
 ========
 
-User features
+User Features
 =============
 - Multi-user system with customizable user roles (whistleblower, recipient, administrator)
 - Entirely manageable from a web administration interface
