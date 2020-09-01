@@ -2,8 +2,6 @@
 import base64
 import os
 
-from datetime import datetime
-
 from globaleaks import models
 from globaleaks.db.appdata import load_appdata, db_load_defaults
 from globaleaks.handlers.admin import file
@@ -16,10 +14,13 @@ from globaleaks.utils.log import log
 
 
 def serialize_tenant(session, tenant):
-    ret = ConfigFactory(session, tenant.id).serialize('tenant')
+    ret = {
+      'id': tenant.id,
+      'creation_date': tenant.creation_date,
+      'active': tenant.active
+    }
 
-    ret['id'] = tenant.id
-    ret['creation_date'] = datetime.fromtimestamp(ret['creation_date']).isoformat()
+    ret.update(ConfigFactory(session, tenant.id).serialize('tenant'))
 
     signup = session.query(models.Subscriber).filter(models.Subscriber.tid == tenant.id).one_or_none()
     if signup is not None:
@@ -101,10 +102,14 @@ def get(session, tid):
 
 @transact
 def update(session, tid, request):
+    tenant = db_get(session, models.Tenant, models.Tenant.id == tid)
+
+    tenant.active = request['active']
+
     for var in ['mode', 'name', 'subdomain']:
         db_set_config_variable(session, tid, var, request[var])
 
-    return serialize_tenant(session, db_get(session, models.Tenant, models.Tenant.id == tid))
+    return serialize_tenant(session, tenant)
 
 
 class TenantCollection(BaseHandler):

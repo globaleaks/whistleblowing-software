@@ -197,7 +197,7 @@ def db_refresh_tenant_cache(session, tid_list):
 
 
 def db_refresh_memory_variables(session, to_refresh=None):
-    active_tids = set([tid[0] for tid in session.query(models.Config.tid).filter(models.Config.var_name == 'active', models.Config.value == True)])
+    active_tids = set([tid[0] for tid in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True))])
 
     cached_tids = set(State.tenant_state.keys())
 

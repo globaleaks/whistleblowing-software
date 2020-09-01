@@ -104,8 +104,7 @@ class Cleaning(DailyJob):
         subquery = session.query(models.Tenant.id).filter(models.Subscriber.activation_token != '',
                                                           models.Subscriber.tid == models.Tenant.id,
                                                           models.Tenant.id == models.Config.tid,
-                                                          models.Config.var_name == 'creation_date',
-                                                          models.Config.value < datetime.timestamp(datetime_now() - timedelta(days=1))) \
+                                                          models.Tenant.creation_date < datetime.timestamp(datetime_now() - timedelta(days=1))) \
                                                   .subquery()
         db_del(session, models.Tenant, models.Tenant.id.in_(subquery))
 

@@ -31,14 +31,12 @@ class Bool(Item):
 
 ConfigDescriptor = {
     'id': Unicode(default=uuid4),
-    'creation_date': Int(default=0),
     'receipt_salt': Unicode(default=GCE.generate_salt),
 
     'version': Unicode(default=str(__version__)),
     'version_db': Int(default=DATABASE_VERSION),
     'latest_version': Unicode(default=str(__version__)),
 
-    'active': Bool(default=True),
     'subdomain': Unicode(default=''),
 
     'acme': Bool(default=False),
@@ -233,12 +231,10 @@ ConfigFilters = {
         'threshold_free_disk_percentage_low',
         'reachable_via_web',
         'anonymize_outgoing_connections',
-        'creation_date',
         'receipt_salt',
         'version',
         'version_db',
         'latest_version',
-        'active',
         'subdomain',
         'acme',
         'acme_accnt_key',
@@ -291,8 +287,6 @@ ConfigFilters = {
         'tip_expiration_threshold'
     ],
     'tenant': [
-        'active',
-        'creation_date',
         'hostname',
         'mode',
         'name',
