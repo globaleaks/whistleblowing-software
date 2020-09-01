@@ -136,8 +136,6 @@ def initialize_config(session, tid, mode):
     for name, desc in ConfigDescriptor.items():
         variables[name] = get_default(desc.default)
 
-    variables['creation_date'] = int(time.time())
-
     if tid != 1:
         # Initialization valid for secondary tenants
         variables['mode'] = mode

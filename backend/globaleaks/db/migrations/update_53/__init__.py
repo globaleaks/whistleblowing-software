@@ -100,14 +100,14 @@ class User_v_52(Model):
 class MigrationScript(MigrationBase):
     def migrate_Tenant(self):
         for old_obj in self.session_old.query(self.model_from['Tenant']):
-            self.entries_count['Config'] += 2
+            self.entries_count['Config'] += 1
             node = ConfigFactory(self.session_new, old_obj.id)
 
             new_obj = self.model_to['Tenant']()
             for key in new_obj.__table__.columns._data.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
-            for key in ['active', 'subdomain']:
+            for key in ['subdomain']:
                 x = self.model_to['Config']()
                 x.tid = old_obj.id
                 x.var_name = key

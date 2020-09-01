@@ -42,7 +42,7 @@ def get_site_list(session):
     :param session: A ORM session
     :return: The list of active tenants
     """
-    return [serialize_site(session, tid[0]) for tid in session.query(models.Config.tid).filter(models.Config.var_name == 'active', models.Config.value == True)]
+    return [serialize_site(session, tid[0]) for tid in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True))]
 
 
 class SiteCollection(BaseHandler):
