@@ -9,7 +9,7 @@ class ManifestHandler(BaseHandler):
 
     def get(self):
         """
-        Get the applicatin manifest
+        Get the application manifest
         """
         return {
             'changelog': read_file('/usr/share/globaleaks/CHANGELOG'),
