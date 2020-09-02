@@ -137,7 +137,6 @@ class TenantCollection(BaseHandler):
 
 class TenantInstance(BaseHandler):
     check_roles = 'admin'
-    invalidate_cache = True
     root_tenant_only = True
     invalidate_cache = True
     refresh_connection_endpoints = True
