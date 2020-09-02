@@ -845,7 +845,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
         $location.path("/wizard");
       } else if (path === "/" && $rootScope.public.node.enable_signup) {
         $rootScope.setPage("signuppage");
-      } else if (["activation"].indexOf(path === -1) && $rootScope.public.node.adminonly && !$rootScope.Authentication.session) {
+      } else if ((["/", "/submission"].indexOf(path) !== -1) && $rootScope.public.node.adminonly) {
         $location.path("/admin");
       } else if ($rootScope.Authentication.session) {
         if ($rootScope.Authentication.session.password_change_needed) {
