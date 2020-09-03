@@ -11,11 +11,14 @@
 | [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=devel)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4e072e7e5287478fa56468f3719d94ef?branch=devel)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/4e072e7e5287478fa56468f3719d94ef?branch=devel)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=devel&labels=none)](https://saucelabs.com/u/globaleaks)
 
 ## Documentation
-For the user manual refer to the [User Manual](https://docs.globaleaks.org/).
+GlobaLeaks's documentation is built and hosted by [Read the Docs](https://readthedocs.org) at https://docs.globaleaks.org.
+| Branch | Documentation Build
+| :---: | :---:  |
+| [main](https://github.com/globaleaks/GlobaLeaks/tree/main) | [![Build Status](https://readthedocs.org/projects/globaleaks/badge/?version=main&style=flat)](https://docs.globaleaks.org/en/main/)
+| [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://readthedocs.org/projects/globaleaks/badge/?version=devel&style=flat)](https://docs.globaleaks.org/en/devel/)
 
-For the developer documentation refer to the [Developer Documentation](https://github.com/globaleaks/GlobaLeaks/wiki).
 
-## Community and professional support
+## Community Support
 If you need technical support, have general questions, or have new ideas for GlobaLeaks, please post your message on the [community support forum](https://forum.globaleaks.org/).
 
 Join our [Slack](https://slack.globaleaks.org) to get in touch with the development team and the GlobaLeaks community:
@@ -39,4 +42,4 @@ To support the GlobaLeaks project you can help us with donations that will goes 
 ## License
 This software is released under the AGPLv3 license. See [LICENSE file](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE) for more information on Additional Terms as per [7(b)](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE#L684) and [7(c)](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE#L713).
 
-Copyright (c) 2011-2020 - [Hermes Center for Transparency and Digital Human Rights](https://www.hermescenter.org)
+Copyright (c) 2011-2020 - [GlobaLeaks](https://www.globaleaks.org)
