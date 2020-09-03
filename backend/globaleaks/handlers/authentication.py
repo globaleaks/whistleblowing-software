@@ -108,13 +108,6 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
             user = u
             break
 
-        # Fix for issue: https://github.com/globaleaks/GlobaLeaks/issues/2563
-        if State.tenant_cache[1].creation_date < 1551740400:
-            u_password = 'b\'' + u.password + '\''
-            if GCE.check_password(u.hash_alg, password, u.salt, u_password):
-                user = u
-                break
-
     if user is None:
         log.debug("Login: Invalid credentials")
         Settings.failed_login_attempts += 1
