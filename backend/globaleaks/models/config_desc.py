@@ -155,16 +155,6 @@ ConfigDescriptor = {
 
     'two_factor': Bool(default=False),
 
-    'backup': Bool(default=False),
-    'backup_d': Int(default=3),
-    'backup_w': Int(default=3),
-    'backup_m': Int(default=3),
-    'backup_remote': Bool(default=False),
-    'backup_remote_server': Unicode(default=''),
-    'backup_remote_port': Int(default=22),
-    'backup_remote_username': Unicode(default=''),
-    'backup_remote_password': Unicode(default=''),
-
     'log_level': Unicode(default='ERROR'),
     'log_accesses_of_internal_users': Bool(default=False),
 
@@ -262,16 +252,7 @@ ConfigFilters = {
         'escrow',
         'crypto_escrow_pub_key',
         'multisite',
-        'adminonly',
-        'backup',
-        'backup_d',
-        'backup_m',
-        'backup_w',
-        'backup_remote',
-        'backup_remote_server',
-        'backup_remote_port',
-        'backup_remote_username',
-        'backup_remote_password'
+        'adminonly'
     ],
     'notification': [
         'smtp_server',
@@ -336,16 +317,7 @@ ConfigFilters['public_node'] = list(set(ConfigFilters['admin_node']) - set([
     'threshold_free_disk_percentage_high',
     'threshold_free_disk_percentage_low',
     'anonymize_outgoing_connections',
-    'counter_submissions',
-    'backup',
-    'backup_d',
-    'backup_w',
-    'backup_m',
-    'backup_remote',
-    'backup_remote_server',
-    'backup_remote_port',
-    'backup_remote_username',
-    'backup_remote_password'
+    'counter_submissions'
 ]))
 
 

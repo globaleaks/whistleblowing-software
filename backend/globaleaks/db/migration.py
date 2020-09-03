@@ -65,7 +65,6 @@ migration_mapping = OrderedDict([
     ('Anomalies', [Anomalies_v_38, 0, 0, 0, 0, models._Anomalies, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('ArchivedSchema', [ArchivedSchema_v_38, 0, 0, 0, 0, models._ArchivedSchema, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('AuditLog', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._AuditLog, 0]),
-    ('Backup', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Backup, 0, 0, 0, 0, 0, 0, 0]),
     ('Comment', [Comment_v_38, 0, 0, 0, 0, models._Comment, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Config', [Config_v_38, 0, 0, 0, 0, Config_v_45, 0, 0, 0, 0, 0, 0, models._Config, 0, 0, 0, 0, 0, 0, 0]),
     ('ConfigL10N', [ConfigL10N_v_38, 0, 0, 0, 0, ConfigL10N_v_45, 0, 0, 0, 0, 0, 0, models._ConfigL10N, 0, 0, 0, 0, 0, 0, 0]),

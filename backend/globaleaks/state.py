@@ -126,8 +126,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
                         self.settings.files_path,
                         self.settings.attachments_path,
                         self.settings.tmp_path,
-                        self.settings.log_path,
-                        self.settings.backup_path]:
+                        self.settings.log_path]:
             self.create_directory(dirpath)
 
     def cleaning_dead_files(self):

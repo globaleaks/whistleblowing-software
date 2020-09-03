@@ -12,13 +12,6 @@ controller("AdminAdvancedCtrl", ["$scope", function($scope) {
       title:"Anomaly detection thresholds",
       template:"views/admin/advanced/tab2.html"
     });
-
-    /*
-    $scope.tabs.push({
-      title: "Backups",
-      template: "views/admin/advanced/tab3.html"
-    });
-    */
   }
 
   $scope.resetSubmissions = function() {
