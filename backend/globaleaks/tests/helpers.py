@@ -101,8 +101,6 @@ for filename in os.listdir(kp):
 
 log.print = mock_nullfunction
 
-token.Token.min_ttl = 0
-
 
 class FakeThreadPool(object):
     """

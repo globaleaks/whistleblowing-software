@@ -14,8 +14,8 @@ GL.factory("GLResource", ["$resource", function($resource) {
   };
 }]).
 factory("Authentication",
-  ["$filter", "$http", "$location", "$window", "$routeParams", "$rootScope", "glbcToken", "GLTranslate", "UserPreferences",
-  function($filter, $http, $location, $window, $routeParams, $rootScope, glbcToken, GLTranslate, UserPreferences) {
+  ["$filter", "$http", "$location", "$window", "$routeParams", "$rootScope", "GLTranslate", "UserPreferences", "TokenResource",
+  function($filter, $http, $location, $window, $routeParams, $rootScope, GLTranslate, UserPreferences, TokenResource) {
     function Session(){
       var self = this;
 
@@ -86,7 +86,7 @@ factory("Authentication",
           $location.search("");
         };
 
-        return glbcToken.getToken().then(function(token) {
+        return new TokenResource().$get().then(function(token) {
           if (authtoken) {
             return $http.post("api/tokenauth", {"authtoken": authtoken, "token": token.id}).
               then(success_fn, function() {
@@ -203,8 +203,23 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 factory("PublicResource", ["GLResource", function(GLResource) {
   return new GLResource("api/public");
 }]).
-factory("TokenResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/token/:id", {id: "@id"});
+factory("TokenResource", ["GLResource", "glbcProofOfWork", function(GLResource, glbcProofOfWork) {
+  return new GLResource("api/token/:id", {id: "@id"}, {
+    get: {
+      method: "post",
+      interceptor: {
+        response: function(response) {
+          var token = response.resource;
+          return glbcProofOfWork.proofOfWork(token.id).then(function(result) {
+            token.answer = result;
+            return token.$update().then(function(token) {
+              return token;
+	    });
+          });
+        }
+      }
+    }
+  });
 }]).
 factory("SubmissionResource", ["GLResource", function(GLResource) {
   return new GLResource("api/submission/:id", {id: "@token_id"});
@@ -221,8 +236,8 @@ factory("DATA_COUNTRIES_ITALY_PROVINCES", ["$resource", function($resource) {
 factory("DATA_COUNTRIES_ITALY_CITIES", ["$resource", function($resource) {
   return $resource("data/countries/it/comuni.json");
 }]).
-factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope", "glbcToken", "Authentication", "SubmissionResource",
-    function($q, GLResource, $filter, $location, $rootScope, glbcToken, Authentication, SubmissionResource) {
+factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope", "Authentication", "SubmissionResource", "TokenResource",
+    function($q, GLResource, $filter, $location, $rootScope, Authentication, SubmissionResource, TokenResource) {
 
   return function(fn) {
     /**
@@ -297,7 +312,7 @@ factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope",
       });
 >>>>>>> Revise packaging of the client modules
 
-      glbcToken.getToken().then(function(token) {
+      new TokenResource().$get().then(function(token) {
         self.token = token;
         self._submission.token_id = token.id;
       });

@@ -10,8 +10,7 @@ from globaleaks.utils.utility import datetime_now
 
 
 class Token(object):
-    min_ttl = 1
-    max_ttl = 1800
+    ttl = 1800
 
     def __init__(self, tokenlist, tid):
         self.tokenlist = tokenlist
@@ -38,8 +37,7 @@ class Token(object):
         return {
             'id': self.id,
             'creation_date': self.creation_date,
-            'min_ttl': self.min_ttl,
-            'max_ttl': self.max_ttl
+            'ttl': self.ttl
         }
 
 
@@ -53,7 +51,7 @@ class TokenList(TempDict):
         self.file_path = file_path
 
     def get_timeout(self):
-        return Token.max_ttl
+        return Token.ttl
 
     def expireCallback(self, item):
         for f in item.uploaded_files:
@@ -84,13 +82,8 @@ class TokenList(TempDict):
         if not token.solved:
             raise errors.InternalServerError("TokenFailure: Token is not solved")
 
-        now = datetime_now()
-        start = token.creation_date + timedelta(seconds=token.min_ttl)
-        if now < start:
-            raise errors.InternalServerError("TokenFalure: Too early to use this token")
-
-        end = token.creation_date + timedelta(seconds=token.max_ttl)
-        if now > end:
-            raise errors.InternalServerError("TokenFailure: Too late to use this token")
+        end = token.creation_date + timedelta(seconds=token.ttl)
+        if datetime_now() > end:
+            raise errors.InternalServerError("TokenFailure: Token is expired")
 
         return token
