@@ -287,13 +287,6 @@ class MigrationScript(MigrationBase):
 
                 if key == 'public_name':
                     new_obj.public_name = platform_name if x else old_obj.name
-
-                elif key =='password':
-                    password = getattr(old_obj, key)
-                    if password[0] == 'b' and password[1] == '\'' and password[len(password) - 1] == '\'':
-                        password = password[2: -1]
-
-                    setattr(new_obj, key, password)
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
