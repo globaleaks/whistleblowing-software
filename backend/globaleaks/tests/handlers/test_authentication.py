@@ -102,7 +102,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
             yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
-        self.assertEqual(Settings.failed_login_attempts, failed_login)
+        self.assertEqual(Settings.failed_login_attempts[1], failed_login)
 
     @inlineCallbacks
     def test_single_session_per_user(self):

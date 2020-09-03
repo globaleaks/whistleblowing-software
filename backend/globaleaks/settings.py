@@ -44,7 +44,7 @@ class SettingsClass(object, metaclass=Singleton):
 
         # statistical, referred to latest period
         # and resetted by session_management sched
-        self.failed_login_attempts = 0
+        self.failed_login_attempts = {}
 
         self.local_hosts = ['127.0.0.1', 'localhost']
 

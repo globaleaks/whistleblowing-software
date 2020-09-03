@@ -14,4 +14,4 @@ class SessionManagement(LoopingJob):
         This scheduler is responsible for:
             - Reset of failed login attempts counters
         """
-        self.state.settings.failed_login_attempts = 0
+        self.state.settings.failed_login_attempts.clear()
