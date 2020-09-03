@@ -286,16 +286,7 @@ AdminNodeDesc = {
     'encryption': bool,
     'escrow': bool,
     'multisite': bool,
-    'adminonly': bool,
-    'backup': bool,
-    'backup_d': int,
-    'backup_w': int,
-    'backup_m': int,
-    'backup_remote': bool,
-    'backup_remote_server': str,
-    'backup_remote_port': int,
-    'backup_remote_username': str,
-    'backup_remote_password': str
+    'adminonly': bool
 }
 
 AdminNotificationDesc = merge_dicts({

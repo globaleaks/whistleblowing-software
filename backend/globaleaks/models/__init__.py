@@ -221,17 +221,6 @@ class _ArchivedSchema(Model):
     unicode_keys = ['hash']
 
 
-class _Backup(Model):
-    __tablename__ = 'backup'
-
-    id = Column(Integer, primary_key=True)
-    creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    filename = Column(UnicodeText, unique=True, nullable=False)
-    local = Column(Boolean, default=False, nullable=False)
-    remote = Column(Boolean, default=False, nullable=False)
-    delete = Column(Boolean, default=False, nullable=False)
-
-
 class _Comment(Model):
     """
     This table handle the comment collection, has an InternalTip referenced
@@ -1248,10 +1237,6 @@ class ArchivedSchema(_ArchivedSchema, Base):
 
 
 class AuditLog(_AuditLog, Base):
-    pass
-
-
-class Backup(_Backup, Base):
     pass
 
 
