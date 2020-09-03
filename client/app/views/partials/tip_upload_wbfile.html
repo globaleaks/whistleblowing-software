@@ -12,25 +12,24 @@
       <div id="wbfile-{{$index}}" data-wbfile data-ctx="'rtip'"></div>
     </div>
     <div data-translate>Upload a file:</div>
-    <span class="form" data-ng-controller="WBFileUploadCtrl"
-        flow-init="{target: 'rtip/' + tip_id + '/wbfile'}"
+    <div class="form" data-ng-controller="WBFileUploadCtrl"
+        flow-init="{target: 'api/rtip/' + tip_id + '/wbfile'}"
         flow-files-submitted="beginUpload($files, $event, $flow)"
         flow-file-success="reload()"
-        flow-single-file
         extend-flow-valid-size="public.node.maximum_filesize*1024*1024">
       <span class="input-group">
         <span class="input-group-prepend"><span class="input-group-text" data-translate>Description</span></span>
         <input type="text" class="form-control" data-ng-model="file_upload_description" />
         <span class="input-group-append" data-ng-disabled="!file_upload_description" >
-          <div class="custom-file" flow-btn>
-            <input id="customFile" class="custom-file-input" type="file" flow-btn />
+          <div class="custom-file">
+            <input id="customFile" class="custom-file-input" type="file" flow-btn flow-single-file />
             <label class="btn btn-primary" for="customFile">
               <i class="fas fa-upload"></i>
               <span data-translate>Upload</span>
             </label>
           </div>
         </span>
-      </span>
+      </div>
       <div errors-upload></div>
     </span>
   </div>
