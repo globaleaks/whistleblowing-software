@@ -1,3 +1,6 @@
+Changes in version 4.0.54 - 2020-09-03
+    Fix recipient feature to load files to whistleblowers
+
 Changes in version 4.0.53 - 2020-08-31
     Fix functionality for re-generating Onion addresses
 
