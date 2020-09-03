@@ -35,13 +35,14 @@ def login_delay():
     """
     failed_attempts = Settings.failed_login_attempts
 
-    if failed_attempts >= 5:
-        n = failed_attempts * failed_attempts
+    if failed_attempts < 5:
+        return
 
-        min_sleep = failed_attempts if failed_attempts < 42 else 42
-        max_sleep = n if n < 42 else 42
+    n = failed_attempts * failed_attempts
+    min_sleep = failed_attempts if failed_attempts < 42 else 42
+    max_sleep = n if n < 42 else 42
 
-        return deferred_sleep(SystemRandom().randint(min_sleep, max_sleep))
+    return deferred_sleep(SystemRandom().randint(min_sleep, max_sleep))
 
 
 @transact
