@@ -17,7 +17,12 @@ from globaleaks.utils.log import log
 from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 
-def login_delay():
+def login_error(tid):
+    Settings.failed_login_attempts[tid] = Settings.failed_login_attempts.get(tid, 0) + 1
+    raise errors.InvalidAuthentication
+
+
+def login_delay(tid):
     """
     The function in case of failed_login_attempts introduces
     an exponential increasing delay between 0 and 42 seconds
@@ -33,7 +38,7 @@ def login_delay():
     | x > 42          | 42             |
      ----------------------------------
     """
-    failed_attempts = Settings.failed_login_attempts
+    failed_attempts = Settings.failed_login_attempts.get(tid, 0)
 
     if failed_attempts < 5:
         return
@@ -70,8 +75,7 @@ def login_whistleblower(session, tid, receipt):
 
     if x is None:
         log.debug("Whistleblower login: Invalid receipt")
-        Settings.failed_login_attempts += 1
-        raise errors.InvalidAuthentication
+        login_error(tid)
 
     wbtip = x[0]
     itip = x[1]
@@ -111,8 +115,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
 
     if user is None:
         log.debug("Login: Invalid credentials")
-        Settings.failed_login_attempts += 1
-        raise errors.InvalidAuthentication
+        login_error(tid)
 
     connection_check(tid, client_ip, user.role, client_using_tor)
 
@@ -152,13 +155,13 @@ class AuthenticationHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self):
-        yield login_delay()
-
         request = self.validate_message(self.request.content.read(), requests.AuthDesc)
 
         tid = int(request['tid'])
         if tid == 0:
             tid = self.request.tid
+
+        yield login_delay(tid)
 
         self.state.tokens.use(request['token'])
 
@@ -188,16 +191,15 @@ class TokenAuthHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self):
-        yield login_delay()
-
         request = self.validate_message(self.request.content.read(), requests.TokenAuthDesc)
+
+        yield login_delay(self.request.tid)
 
         self.state.tokens.use(request['token'])
 
         session = Sessions.get(request['authtoken'])
         if session is None or session.tid != self.request.tid:
-            Settings.failed_login_attempts += 1
-            raise errors.InvalidAuthentication
+            login_error(self.request.tid)
 
         connection_check(self.request.tid, self.request.client_ip,
                          session.user_role, self.request.client_using_tor)
@@ -218,9 +220,9 @@ class ReceiptAuthHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self):
-        yield login_delay()
-
         request = self.validate_message(self.request.content.read(), requests.ReceiptAuthDesc)
+
+        yield login_delay(self.request.tid)
 
         self.state.tokens.use(request['token'])
 
