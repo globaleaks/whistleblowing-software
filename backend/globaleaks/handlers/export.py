@@ -103,7 +103,7 @@ class ExportHandler(BaseHandler):
             tip_export['tip'] = yield deferToThread(decrypt_tip, self.current_user.cc, tip_export['crypto_tip_prv_key'], tip_export['tip'])
 
             for file_dict in tip_export['tip']['rfiles'] + tip_export['tip']['wbfiles']:
-                if file_dict.get('status', '') == 'encrypted' or file_dict.get('forged'):
+                if file_dict.get('status', '') == 'encrypted':
                     continue
 
                 tip_prv_key = GCE.asymmetric_decrypt(self.current_user.cc, tip_export['crypto_tip_prv_key'])
@@ -127,7 +127,7 @@ class ExportHandler(BaseHandler):
         export_template = Templating().format_template(tip_export['notification']['export_template'], tip_export).encode()
         export_template = msdos_encode(export_template.decode()).encode()
 
-        files.append({'fo': BytesIO(export_template), 'name': 'data.txt', 'forged': True})
+        files.append({'fo': BytesIO(export_template), 'name': 'data.txt'})
 
         self.request.setHeader(b'X-Download-Options', b'noopen')
         self.request.setHeader(b'Content-Type', b'application/octet-stream')
