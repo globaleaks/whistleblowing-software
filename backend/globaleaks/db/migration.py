@@ -22,7 +22,7 @@ from globaleaks.db.migrations.update_39 import \
     FieldOption_v_38, File_v_38, IdentityAccessRequest_v_38, \
     InternalFile_v_38, InternalTip_v_38, Mail_v_38, Message_v_38, \
     Questionnaire_v_38, Receiver_v_38, ReceiverContext_v_38, \
-    ReceiverFile_v_38, ReceiverTip_v_38, SecureFileDelete_v_38, \
+    ReceiverFile_v_38, ReceiverTip_v_38, \
     Step_v_38, User_v_38, WhistleblowerFile_v_38, WhistleblowerTip_v_38
 from globaleaks.db.migrations.update_41 import InternalFile_v_40, \
     InternalTip_v_40, ReceiverFile_v_40, ReceiverTip_v_40, \
@@ -93,7 +93,6 @@ migration_mapping = OrderedDict([
     ('ReceiverFile', [ReceiverFile_v_38, 0, 0, 0, 0, ReceiverFile_v_40, 0, ReceiverFile_v_44, 0, 0, 0, ReceiverFile_v_51, 0, 0, 0, 0, 0, 0, models._ReceiverFile, 0]),
     ('ReceiverTip', [ReceiverTip_v_38, 0, 0, 0, 0, ReceiverTip_v_40, 0, ReceiverTip_v_44, 0, 0, 0, models._ReceiverTip, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Redirect', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Redirect, 0, 0, 0, 0]),
-    ('SecureFileDelete', [SecureFileDelete_v_38, 0, 0, 0, 0, models._SecureFileDelete, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('SubmissionStatus', [-1, -1, -1, -1, -1, -1, -1, -1, SubmissionStatus_v_46, 0, 0, 0, 0, SubmissionStatus_v_49, 0, 0, SubmissionStatus_v_51, 0, models._SubmissionStatus, 0]),
     ('SubmissionSubStatus', [-1, -1, -1, -1, -1, -1, -1, -1, SubmissionSubStatus_v_46, 0, 0, 0, 0, SubmissionSubStatus_v_49, 0, 0, SubmissionSubStatus_v_51, 0, models._SubmissionSubStatus, 0]),
     ('SubmissionStatusChange', [-1, -1, -1, -1, -1, -1, -1, -1, models._SubmissionStatusChange, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),

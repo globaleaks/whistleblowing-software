@@ -13,12 +13,11 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
-from globaleaks.handlers.file import db_mark_file_for_secure_deletion
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.submission import serialize_usertip, decrypt_tip
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers
-from globaleaks.orm import db_get, transact
+from globaleaks.orm import db_get, db_del, transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
@@ -206,11 +205,11 @@ def db_access_rtip(session, tid, user_id, rtip_id):
     :return: A model requested
     """
     return db_get(session,
-                         (models.ReceiverTip, models.InternalTip),
-                         (models.ReceiverTip.id == rtip_id,
-                          models.ReceiverTip.receiver_id == user_id,
-                          models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                          models.InternalTip.tid == tid))
+                  (models.ReceiverTip, models.InternalTip),
+                  (models.ReceiverTip.id == rtip_id,
+                   models.ReceiverTip.receiver_id == user_id,
+                   models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                   models.InternalTip.tid == tid))
 
 
 def db_access_wbfile(session, tid, user_id, wbfile_id):
@@ -379,36 +378,6 @@ def get_rtip(session, tid, user_id, rtip_id, language):
     return db_get_rtip(session, tid, user_id, rtip_id, language)
 
 
-def db_delete_itips_files(session, itips_ids):
-    """
-    Transaction for deleting the files attached to the specified submissions
-
-    :param session: An ORM session
-    :param itips_ids: A list of submissions ID
-    """
-    ifiles_ids = set()
-    files_names = set()
-
-    if itips_ids:
-        for ifile_id, ifile_filename in session.query(models.InternalFile.id, models.InternalFile.filename) \
-                                               .filter(models.InternalFile.internaltip_id.in_(itips_ids)):
-            ifiles_ids.add(ifile_id)
-            files_names.add(ifile_filename)
-
-        for wbfile_filename in session.query(models.WhistleblowerFile.filename) \
-                                      .filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                              models.ReceiverTip.internaltip_id.in_(itips_ids)):
-            files_names.add(wbfile_filename[0])
-
-    if ifiles_ids:
-        for rfile_filename in session.query(models.ReceiverFile.filename) \
-                                     .filter(models.ReceiverFile.internalfile_id.in_(ifiles_ids)):
-            files_names.add(rfile_filename[0])
-
-    for filename in files_names:
-        db_mark_file_for_secure_deletion(session, Settings.attachments_path, filename)
-
-
 def db_delete_itips(session, itips_ids):
     """
     Transaction for deleting a list of submissions
@@ -416,10 +385,7 @@ def db_delete_itips(session, itips_ids):
     :param session: An ORM session
     :param itips_ids: A list of submissions ID
     """
-    db_delete_itips_files(session, itips_ids)
-
-    session.query(models.InternalTip) \
-           .filter(models.InternalTip.id.in_(itips_ids)).delete(synchronize_session=False)
+    db_del(session, models.InternalTip, models.InternalTip.id.in_(itips_ids))
 
 
 def db_delete_itip(session, itip_id):
@@ -429,7 +395,7 @@ def db_delete_itip(session, itip_id):
     :param session: An ORM session
     :param itip_id: A submission ID
     """
-    db_delete_itips(session, [itip_id])
+    db_del(session, models.InternalTip, models.InternalTip.id == itip_id)
 
 
 def db_postpone_expiration(session, itip):
@@ -719,7 +685,6 @@ def delete_wbfile(session, tid, user_id, file_id):
     :param file_id: The file ID of the wbfile to be deleted
     """
     wbfile = db_access_wbfile(session, tid, user_id, file_id)
-    db_mark_file_for_secure_deletion(session, Settings.attachments_path, wbfile.filename)
     session.delete(wbfile)
 
 

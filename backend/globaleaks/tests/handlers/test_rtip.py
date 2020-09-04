@@ -184,8 +184,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
         self.assertEqual(len(rtip_descs), self.population_of_submissions * self.population_of_recipients - self.population_of_recipients)
 
-        yield self.test_model_count(models.SecureFileDelete, self.population_of_attachments * self.population_of_recipients)
-
     @inlineCallbacks
     def test_delete_unexistent_tip_by_existent_and_logged_receiver(self):
         rtip_descs = yield self.get_rtips()
