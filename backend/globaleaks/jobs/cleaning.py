@@ -108,24 +108,8 @@ class Cleaning(DailyJob):
                                                   .subquery()
         db_del(session, models.Tenant, models.Tenant.id.in_(subquery))
 
-    @transact
-    def get_files_to_secure_delete(self, session):
-        return [x[0] for x in session.query(models.SecureFileDelete.filepath)]
-
-    @transact
-    def commit_files_deletion(self, session, filepaths):
-        db_del(session, models.SecureFileDelete, models.SecureFileDelete.filepath.in_(filepaths))
-
     @inlineCallbacks
     def perform_secure_deletion_of_files(self):
-        # Delete files that are marked for secure deletion
-        files_to_delete = yield self.get_files_to_secure_delete()
-        for file_to_delete in files_to_delete:
-            overwrite_and_remove(file_to_delete)
-
-        if files_to_delete:
-            yield self.commit_files_deletion(files_to_delete)
-
         # Delete the outdated AES files older than 1 day
         files_to_remove = [f for f in os.listdir(self.state.settings.tmp_path) if fnmatch.fnmatch(f, '*.aes')]
         for f in files_to_remove:

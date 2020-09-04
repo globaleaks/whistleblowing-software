@@ -875,12 +875,6 @@ class _ReceiverTip(Model):
                 ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
 
-class _SecureFileDelete(Model):
-    __tablename__ = 'securefiledelete'
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    filepath = Column(UnicodeText, nullable=False)
-
-
 class _Subscriber(Model):
     __tablename__ = 'subscriber'
 
@@ -1341,10 +1335,6 @@ class ReceiverFile(_ReceiverFile, Base):
 
 
 class ReceiverTip(_ReceiverTip, Base):
-    pass
-
-
-class SecureFileDelete(_SecureFileDelete, Base):
     pass
 
 

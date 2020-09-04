@@ -936,8 +936,6 @@ class TestGLWithPopulatedDB(TestGL):
 
         yield self.perform_post_submission_actions()
 
-        yield self.test_model_count(models.SecureFileDelete, 0)
-
     @inlineCallbacks
     def perform_minimal_submission(self):
         token = self.perform_submission_start()

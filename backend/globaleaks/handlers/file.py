@@ -20,23 +20,6 @@ appfiles = {
 }
 
 
-def db_mark_file_for_secure_deletion(session, directory, filename):
-    """
-    Transaction for marking a file for secure deletion
-
-    :param session: An ORM session
-    :param directory: A path of the directory containing the file
-    :param filename: A file name
-    """
-    path = os.path.join(directory, filename)
-    if not os.path.exists(path):
-        return
-
-    secure_file_delete = models.SecureFileDelete()
-    secure_file_delete.filepath = path
-    session.add(secure_file_delete)
-
-
 @transact
 def get_file_id(session, tid, name):
     """
