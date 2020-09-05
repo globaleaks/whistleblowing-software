@@ -15,7 +15,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import DailyJob
-from globaleaks.orm import db_del, transact
+from globaleaks.orm import db_del, db_query, transact
 from globaleaks.utils.fs import overwrite_and_remove
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, is_expired
@@ -108,11 +108,26 @@ class Cleaning(DailyJob):
                                                   .subquery()
         db_del(session, models.Tenant, models.Tenant.id.in_(subquery))
 
-    @inlineCallbacks
-    def perform_secure_deletion_of_files(self):
-        # Delete the outdated AES files older than 1 day
-        files_to_remove = [f for f in os.listdir(self.state.settings.tmp_path) if fnmatch.fnmatch(f, '*.aes')]
-        for f in files_to_remove:
+    @transact
+    def get_attachments_list(self, session):
+        return [x[0] for x in db_query(session, models.InternalFile.filename)] + \
+               [x[0] for x in db_query(session, models.ReceiverFile.filename)] + \
+               [x[0] for x in db_query(session, models.WhistleblowerFile.filename)]
+
+    def perform_secure_deletion_of_attachments(self, valid_files):
+        # Delete the attachment files associated to deleted tips
+        for f in os.listdir(self.state.settings.attachments_path):
+            if f in valid_files:
+                continue
+
+            path = os.path.join(self.state.settings.attachments_path, f)
+            timestamp = datetime.fromtimestamp(os.path.getmtime(path))
+            if is_expired(timestamp, days=1):
+                overwrite_and_remove(path)
+
+    def perform_secure_deletion_of_temporary_files(self):
+        # Delete the outdated temp files if older than 1 day
+        for f in os.listdir(self.state.settings.tmp_path):
             path = os.path.join(self.state.settings.tmp_path, f)
             timestamp = datetime.fromtimestamp(os.path.getmtime(path))
             if is_expired(timestamp, days=1):
@@ -132,4 +147,8 @@ class Cleaning(DailyJob):
 
         yield self.clean()
 
-        yield self.perform_secure_deletion_of_files()
+        valid_files = yield self.get_attachments_list()
+
+        self.perform_secure_deletion_of_attachments(valid_files)
+
+        self.perform_secure_deletion_of_temporary_files()
