@@ -14,8 +14,8 @@ from globaleaks.tests import helpers
 class TestCleaning(helpers.TestGLWithPopulatedDB):
     @transact
     def check0(self, session):
-        self.assertTrue(os.listdir(Settings.attachments_path) == [])
-        self.assertTrue(os.listdir(Settings.tmp_path) == [])
+        self.assertEqual(len(os.listdir(Settings.attachments_path)), 0)
+        self.assertEqual(len(os.listdir(Settings.tmp_path)), 0)
 
         self.db_test_model_count(session, models.InternalTip, 0)
         self.db_test_model_count(session, models.ReceiverTip, 0)
@@ -27,43 +27,43 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
 
     @transact
     def check1(self, session):
-        self.assertTrue(os.listdir(Settings.attachments_path) != [])
+        self.assertEqual(len(os.listdir(Settings.attachments_path)), self.population_of_submissions * self.population_of_attachments)
 
         self.db_test_model_count(session, models.InternalTip, self.population_of_submissions)
         self.db_test_model_count(session, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
-        self.db_test_model_count(session, models.InternalFile, self.population_of_attachments * self.population_of_submissions)
-        self.db_test_model_count(session, models.ReceiverFile, self.population_of_attachments * self.population_of_submissions * self.population_of_recipients)
+        self.db_test_model_count(session, models.InternalFile, self.population_of_submissions * self.population_of_attachments)
+        self.db_test_model_count(session, models.ReceiverFile, self.population_of_submissions * self.population_of_attachments * self.population_of_recipients)
         self.db_test_model_count(session, models.Comment, self.population_of_submissions * (self.population_of_recipients + 1))
         self.db_test_model_count(session, models.Message, self.population_of_submissions * (self.population_of_recipients + 2))
         self.db_test_model_count(session, models.Mail, 2)
 
     @transact
     def check2(self, session):
-        self.assertTrue(os.listdir(Settings.attachments_path) != [])
+        self.assertEqual(len(os.listdir(Settings.attachments_path)), self.population_of_submissions * self.population_of_attachments)
 
         self.db_test_model_count(session, models.InternalTip, self.population_of_submissions)
         self.db_test_model_count(session, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
-        self.db_test_model_count(session, models.InternalFile, self.population_of_attachments * self.population_of_submissions)
-        self.db_test_model_count(session, models.ReceiverFile, self.population_of_attachments * self.population_of_submissions * self.population_of_recipients)
+        self.db_test_model_count(session, models.InternalFile, self.population_of_submissions * self.population_of_attachments)
+        self.db_test_model_count(session, models.ReceiverFile, self.population_of_submissions * self.population_of_attachments * self.population_of_recipients)
         self.db_test_model_count(session, models.Comment, self.population_of_submissions * (self.population_of_recipients + 1))
         self.db_test_model_count(session, models.Message, self.population_of_submissions * (self.population_of_recipients + 2))
         self.db_test_model_count(session, models.Mail, 2)
 
     @transact
     def check3(self, session):
-        self.assertTrue(os.listdir(Settings.attachments_path) != [])
+        self.assertEqual(len(os.listdir(Settings.attachments_path)), self.population_of_submissions * self.population_of_attachments)
 
         self.db_test_model_count(session, models.InternalTip, self.population_of_submissions)
         self.db_test_model_count(session, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
-        self.db_test_model_count(session, models.InternalFile, self.population_of_attachments * self.population_of_submissions)
-        self.db_test_model_count(session, models.ReceiverFile, self.population_of_attachments * self.population_of_submissions * self.population_of_recipients)
+        self.db_test_model_count(session, models.InternalFile, self.population_of_submissions * self.population_of_attachments)
+        self.db_test_model_count(session, models.ReceiverFile, self.population_of_submissions * self.population_of_attachments * self.population_of_recipients)
         self.db_test_model_count(session, models.Comment, self.population_of_submissions * (self.population_of_recipients + 1))
         self.db_test_model_count(session, models.Message, self.population_of_submissions * (self.population_of_recipients + 2))
         self.db_test_model_count(session, models.Mail, 2 + self.population_of_recipients)
 
     @transact
     def check4(self, session):
-        self.assertTrue(os.listdir(Settings.attachments_path) == [])
+        self.assertEqual(len(os.listdir(Settings.attachments_path)), 0)
 
         self.db_test_model_count(session, models.InternalTip, 0)
         self.db_test_model_count(session, models.ReceiverTip, 0)
@@ -84,6 +84,11 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
 
         # verify tip creation
         yield self.check1()
+
+        # mark files as uploaded on timestamp 0
+        for f in os.listdir(Settings.attachments_path):
+            path = os.path.join(Settings.attachments_path, f)
+            os.utime(path,(0, 0))
 
         yield cleaning.Cleaning().run()
 
