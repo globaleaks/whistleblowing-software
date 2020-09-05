@@ -22,7 +22,7 @@
         </label>
       </div>
       <div class="form-group">
-        <label data-translate>Administrators authorized to change user passwords</label>
+        <label data-translate>Administrators authorized to change user passwords:</label>
         <ol class="selectionList">
           <li data-ng-repeat="user in resources.users | filter: {escrow: true}">
             <span>{{user.name}}</span>
