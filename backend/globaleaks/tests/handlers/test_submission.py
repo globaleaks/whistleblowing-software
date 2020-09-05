@@ -131,7 +131,7 @@ class TestSubmissionEncryptedScenarioOneKeyExpired(TestSubmissionEncryptedScenar
     files_created = 6
 
     counters_check = {
-        'encrypted': 3,
+        'encrypted': 6,
         'reference': 0
     }
 
