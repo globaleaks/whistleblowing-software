@@ -77,11 +77,14 @@ def db_add(session, model_class, model_fields):
     return obj
 
 
-def db_query(session, selector, filter):
+def db_query(session, selector, filter=None):
     if isinstance(selector, collections.Iterable):
         q = session.query(*selector)
     else:
         q = session.query(selector)
+
+    if filter is None:
+        return q
 
     if isinstance(filter, collections.Iterable):
         return q.filter(*filter)
@@ -89,11 +92,11 @@ def db_query(session, selector, filter):
         return q.filter(filter)
 
 
-def db_get(session, selector, filter):
+def db_get(session, selector, filter=None):
     return db_query(session, selector, filter).one()
 
 
-def db_del(session, selector, filter):
+def db_del(session, selector, filter=None):
     db_query(session, selector, filter).delete(synchronize_session=False)
 
 
