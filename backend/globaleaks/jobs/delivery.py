@@ -16,7 +16,7 @@ __all__ = ['Delivery']
 
 
 @transact
-def file_delivery_planning(session):
+def file_delivery(session):
     """
     This function roll over the InternalFile uploaded, extract a path, id and
     receivers associated, one entry for each combination. representing the
@@ -25,18 +25,24 @@ def file_delivery_planning(session):
     receiverfiles_maps = {}
     whistleblowerfiles_maps = {}
 
-    for ifile, itip in session.query(models.InternalFile, models.InternalTip)\
+    for ifile, itip in session.query(models.InternalFile, models.InternalTip) \
                               .filter(models.InternalFile.new.is_(True),
                                       models.InternalTip.id == models.InternalFile.internaltip_id):
         ifile.new = False
+        src = ifile.filename
+        filecode = src.split('.')[0]
+
+        if itip.crypto_tip_pub_key:
+            itip.filename = "%s.encrypted" % filecode
+        else:
+            itip.filename = "%s.plain" % filecode
+
         for rtip, user in session.query(models.ReceiverTip, models.User) \
                                  .filter(models.ReceiverTip.internaltip_id == ifile.internaltip_id,
                                          models.User.id == models.ReceiverTip.receiver_id):
             receiverfile = models.ReceiverFile()
             receiverfile.internalfile_id = ifile.id
             receiverfile.receivertip_id = rtip.id
-            receiverfile.filename = ifile.filename
-            receiverfile.status = 'processing'
 
             # https://github.com/globaleaks/GlobaLeaks/issues/444
             # avoid to mark the receiverfile as new if it is part of a submission
@@ -45,40 +51,45 @@ def file_delivery_planning(session):
 
             session.add(receiverfile)
 
-            session.flush()
-
             if ifile.id not in receiverfiles_maps:
                 receiverfiles_maps[ifile.id] = {
-                    'tid': user.tid,
-                    'crypto_tip_pub_key': itip.crypto_tip_pub_key,
-                    'id': ifile.id,
-                    'filename': ifile.filename,
+                    'src': src,
+                    'key': itip.crypto_tip_pub_key,
                     'pgp_encrypted_for_everybody': True,
-                    'rfiles': [],
+                    'rfiles': []
                 }
 
+            if user.pgp_key_public:
+                receiverfile.filename = "%s.pgp" % filecode
+                receiverfile.status = 'encrypted'
+            else:
+                receiverfiles_maps[ifile.id]['pgp_encrypted_for_everybody'] = False
+                receiverfile.filename = itip.filename
+                receiverfile.status = 'reference'
+
             receiverfiles_maps[ifile.id]['rfiles'].append({
-                'id': receiverfile.id,
-                'filename': '',
-                'status': 'reference',
-                'size': ifile.size,
-                'receiver': {
-                    'name': user.name,
-                    'pgp_key_public': user.pgp_key_public,
-                    'pgp_key_fingerprint': user.pgp_key_fingerprint,
-                },
+                'dst': os.path.abspath(os.path.join(Settings.attachments_path, receiverfile.filename)),
+                'pgp_key_public': user.pgp_key_public,
+                'pgp_key_fingerprint': user.pgp_key_fingerprint
             })
 
     for wbfile, itip in session.query(models.WhistleblowerFile, models.InternalTip)\
                                .filter(models.WhistleblowerFile.new.is_(True),
                                        models.ReceiverTip.id == models.WhistleblowerFile.receivertip_id,
                                        models.InternalTip.id == models.ReceiverTip.internaltip_id):
-
         wbfile.new = False
+        src = wbfile.filename
+        filecode = src.split('.')[0]
+
+        if itip.crypto_tip_pub_key:
+            wbfile.filename = "%s.encrypted" % filecode
+        else:
+            wbfile.filename = "%s.plain" % filecode
+
         whistleblowerfiles_maps[wbfile.id] = {
-            'crypto_tip_pub_key': itip.crypto_tip_pub_key,
-            'id': wbfile.id,
-            'filename': wbfile.filename,
+            'key': itip.crypto_tip_pub_key,
+            'src': src,
+            'dst': os.path.abspath(os.path.join(Settings.attachments_path, wbfile.filename)),
         }
 
     return receiverfiles_maps, whistleblowerfiles_maps
@@ -128,51 +139,29 @@ def process_receiverfiles(state, files_maps):
     :param state: A reference to the application state
     :param files_maps: descriptos of whistleblower files to be processed
     """
-    for _, receiverfiles_map in files_maps.items():
-        key = receiverfiles_map['crypto_tip_pub_key']
-        filename = receiverfiles_map['filename']
-        filecode = filename.split('.')[0]
-        plaintext_name = "%s.plain" % filecode
-        encrypted_name = "%s.encrypted" % filecode
-        plaintext_path = os.path.abspath(os.path.join(Settings.attachments_path, plaintext_name))
-        encrypted_path = os.path.abspath(os.path.join(Settings.attachments_path, encrypted_name))
+    for a, m in files_maps.items():
+        sf = state.get_tmp_file_by_name(m['src'])
 
-        receiverfiles_map['filename'] = encrypted_name if key else plaintext_name
-
-        sf = state.get_tmp_file_by_name(filename)
-
-        for rcounter, rf in enumerate(receiverfiles_map['rfiles']):
-            if key:
-                rf['filename'] = encrypted_name
-            else:
-                rf['filename'] = plaintext_path
-
+        for rcounter, rf in enumerate(m['rfiles']):
             try:
-                with sf.open('rb') as encrypted_file:
-                    if not rf['receiver']['pgp_key_public']:
-                        receiverfiles_map['pgp_encrypted_for_everybody'] = False
-                        continue
+                if rf['pgp_key_public']:
+                    with sf.open('rb') as encrypted_file:
+                        encrypt_file_with_pgp(state,
+                                              encrypted_file,
+                                              rf['pgp_key_public'],
+                                              rf['pgp_key_fingerprint'],
+                                              rf['dst'])
 
-                    pgp_name = "%s.pgp" % generateRandomKey()
-                    pgp_path = os.path.abspath(os.path.join(Settings.attachments_path, pgp_name))
-                    encrypt_file_with_pgp(state,
-                                          encrypted_file,
-                                          rf['receiver']['pgp_key_public'],
-                                          rf['receiver']['pgp_key_fingerprint'],
-                                          pgp_path)
-                    rf['filename'] = pgp_name
-                    rf['status'] = 'encrypted'
-
-            except Exception as excep:
-                log.err("%d# Unable to complete PGP encrypt for %s on %s: %s. marking the file as unavailable.",
-                        rcounter, rf['receiver']['name'], rf['filename'], excep)
-                rf['status'] = 'unavailable'
-
-        if not receiverfiles_map['pgp_encrypted_for_everybody']:
-            if key:
-                write_encrypted_file(key, sf, encrypted_path)
-            else:
-                write_plaintext_file(sf, plaintext_path)
+            except:
+                pass
+        try:
+            if not m['pgp_encrypted_for_everybody']:
+                if m['key']:
+                    write_encrypted_file(m['key'], sf, rf['dst'])
+                else:
+                    write_plaintext_file(sf, rf['dst'])
+        except:
+            pass
 
 
 def process_whistleblowerfiles(state, files_maps):
@@ -182,34 +171,17 @@ def process_whistleblowerfiles(state, files_maps):
     :param state: A reference to the application state
     :param files_maps: descriptos of whistleblower files to be processed
     """
-    for _, whistleblowerfiles_map in files_maps.items():
-        key = whistleblowerfiles_map['crypto_tip_pub_key']
-        filename = whistleblowerfiles_map['filename']
-        filecode = filename.split('.')[0]
+    for _, m in files_maps.items():
+        try:
+            sf = state.get_tmp_file_by_name(m['src'])
 
-        sf = state.get_tmp_file_by_name(filename)
+            if m['key']:
+                write_encrypted_file(m['key'], sf, m['dst'])
+            else:
+                write_plaintext_file(sf, m['dst'])
+        except:
+            pass
 
-        if key:
-            whistleblowerfiles_map['filename'] = "%s.encrypted" % filecode
-            write_encrypted_file(key, sf, os.path.abspath(os.path.join(Settings.attachments_path, whistleblowerfiles_map['filename'])))
-        else:
-            whistleblowerfiles_map['filename'] = "%s.plain" % filecode
-            write_plaintext_file(sf, os.path.abspath(os.path.join(Settings.attachments_path, whistleblowerfiles_map['filename'])))
-
-
-@transact
-def update_receiverfiles(session, files_maps):
-    for id, receiverfiles_map in files_maps.items():
-        ifile = session.query(models.InternalFile).filter(models.InternalFile.id == id).update({'new': False, 'filename': receiverfiles_map['filename']})
-
-        for rf in receiverfiles_map['rfiles']:
-            session.query(models.ReceiverFile).filter(models.ReceiverFile.id == rf['id']).update({'status': rf['status'], 'filename': rf['filename']})
-
-
-@transact
-def update_whistleblowerfiles(session, files_maps):
-    for id, whistleblowerfiles_map in files_maps.items():
-        session.query(models.WhistleblowerFile).filter(models.WhistleblowerFile.id == id).update({'new': False, 'filename': whistleblowerfiles_map['filename']})
 
 class Delivery(LoopingJob):
     interval = 5
@@ -220,11 +192,7 @@ class Delivery(LoopingJob):
         """
         This function creates receiver files
         """
-        receiverfiles_maps, whistleblowerfiles_maps = yield file_delivery_planning()
-        if receiverfiles_maps:
-            process_receiverfiles(self.state, receiverfiles_maps)
-            yield update_receiverfiles(receiverfiles_maps)
+        receiverfiles_maps, whistleblowerfiles_maps = yield file_delivery()
 
-        if whistleblowerfiles_maps:
-            process_whistleblowerfiles(self.state, whistleblowerfiles_maps)
-            yield update_whistleblowerfiles(whistleblowerfiles_maps)
+        process_receiverfiles(self.state, receiverfiles_maps)
+        process_whistleblowerfiles(self.state, whistleblowerfiles_maps)
