@@ -37,7 +37,7 @@ class FileHandler(BaseHandler):
     """
     Handler that provide public access to configuration files
     """
-    check_roles = 'none'
+    check_roles = 'any'
 
     @inlineCallbacks
     def get(self, name):

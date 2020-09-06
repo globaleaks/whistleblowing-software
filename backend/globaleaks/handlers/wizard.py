@@ -188,7 +188,7 @@ class Wizard(BaseHandler):
     """
     Setup Wizard handler
     """
-    check_roles = 'none'
+    check_roles = 'any'
     invalidate_cache = True
 
     def post(self):

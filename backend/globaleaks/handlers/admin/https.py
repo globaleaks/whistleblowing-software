@@ -476,7 +476,7 @@ class AcmeHandler(BaseHandler):
 
 
 class AcmeChallengeHandler(BaseHandler):
-    check_roles = 'none'
+    check_roles = 'any'
     bypass_basic_auth = True
 
     def get(self, token):

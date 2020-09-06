@@ -9,7 +9,7 @@ class TokenCreate(BaseHandler):
     """
     This class implement the handler for requesting a token.
     """
-    check_roles = 'none'
+    check_roles = 'any'
 
     def post(self):
         """
@@ -25,7 +25,7 @@ class TokenInstance(BaseHandler):
     """
     This class implements the handler for updating a token (e.g.: solving a captcha)
     """
-    check_roles = 'none'
+    check_roles = 'any'
 
     def put(self, token_id):
         request = self.validate_message(self.request.content.read(), requests.TokenAnswerDesc)

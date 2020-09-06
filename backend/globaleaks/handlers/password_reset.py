@@ -138,7 +138,7 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
 
 class PasswordResetHandler(BaseHandler):
     """Handler that implements password reset API"""
-    check_roles = 'none'
+    check_roles = 'any'
 
     def post(self):
         request = self.validate_message(self.request.content.read(),

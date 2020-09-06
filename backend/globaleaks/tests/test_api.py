@@ -30,10 +30,10 @@ class TestAPI(TestGL):
                 check_roles = {check_roles}
 
             self.assertTrue(len(check_roles) >= 1)
-            self.assertTrue('none' not in check_roles or len(check_roles) == 1)
+            self.assertTrue('any' not in check_roles or len(check_roles) == 1)
 
-            rest = list(filter(lambda a: a not in ['user',
-                                                   'none',
+            rest = list(filter(lambda a: a not in ['any',
+                                                   'user',
                                                    'whistleblower',
                                                    'admin',
                                                    'receiver',
