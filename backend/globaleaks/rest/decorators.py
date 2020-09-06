@@ -11,7 +11,7 @@ from globaleaks.utils.json import JSONEncoder
 
 def decorator_authentication(f, roles):
     def wrapper(self, *args, **kwargs):
-        if (('none' in roles) or
+        if (('any' in roles) or
             ((self.current_user and self.current_user.tid == self.request.tid) and
              (('user' in roles and
                self.current_user.user_role in ['admin', 'receiver', 'custodian']) or

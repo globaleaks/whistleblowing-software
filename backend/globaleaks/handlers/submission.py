@@ -454,7 +454,7 @@ class SubmissionInstance(BaseHandler):
     """
     The interface that creates, populates and finishes a submission.
     """
-    check_roles = 'none'
+    check_roles = 'any'
 
     def put(self, token_id):
         """

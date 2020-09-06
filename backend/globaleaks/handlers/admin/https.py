@@ -476,7 +476,7 @@ class AcmeHandler(BaseHandler):
 
 
 class AcmeChallengeHandler(BaseHandler):
-    check_roles = 'none'
+    check_roles = 'any'
 
     def get(self, token):
         tmp_chall_dict = State.tenant_state[self.request.tid].acme_tmp_chall_dict

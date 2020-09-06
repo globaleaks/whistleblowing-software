@@ -10,7 +10,7 @@ class SitemapHandler(BaseHandler):
     """
     Handler responsible of serving the sitemap.xml resource
     """
-    check_roles = 'none'
+    check_roles = 'any'
 
     def get(self):
         """

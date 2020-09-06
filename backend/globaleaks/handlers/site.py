@@ -49,7 +49,7 @@ class SiteCollection(BaseHandler):
     """
     Handler responsible of publishing the list of available tenants
     """
-    check_roles = 'none'
+    check_roles = 'any'
     root_tenant_only = True
 
     def get(self):

@@ -55,7 +55,7 @@ class SubmissionAttachment(BaseHandler):
     """
     Whistleblower interface to upload a new file for a non-finalized submission
     """
-    check_roles = 'none'
+    check_roles = 'any'
     upload_handler = True
 
     def post(self, token_id):

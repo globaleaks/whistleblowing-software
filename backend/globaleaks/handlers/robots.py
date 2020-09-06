@@ -8,7 +8,7 @@ class RobotstxtHandler(BaseHandler):
     """
     Handler that implements the Robot.txt api
     """
-    check_roles = 'none'
+    check_roles = 'any'
 
     def get(self):
         """

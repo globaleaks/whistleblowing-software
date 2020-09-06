@@ -9,7 +9,7 @@ FUTURE = 100
 
 
 class BaseHandlerMock(BaseHandler):
-    check_roles = 'none'
+    check_roles = 'any'
 
     def get(self):
         return

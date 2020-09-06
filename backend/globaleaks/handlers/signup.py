@@ -190,7 +190,7 @@ class Signup(BaseHandler):
     """
     Signup handler responsible of registration
     """
-    check_roles = 'none'
+    check_roles = 'any'
     invalidate_cache = False
     root_tenant_only = True
 
@@ -208,7 +208,7 @@ class SignupActivation(BaseHandler):
     """
     Signup handler responsible of activation
     """
-    check_roles = 'none'
+    check_roles = 'any'
     invalidate_cache = False
     root_tenant_only = True
     refresh_connection_endpoints = True

@@ -51,7 +51,7 @@ def get_l10n(session, tid, lang):
 
 
 class L10NHandler(BaseHandler):
-    check_roles = 'none'
+    check_roles = 'any'
     cache_resource = True
 
     def get(self, lang):
