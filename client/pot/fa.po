@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -684,6 +684,9 @@ msgstr "فعال سازی رمزگذاری"
 msgid "Enable administrators to change user passwords"
 msgstr "اجازه به سرپرست‌ها برای تغییر رمزعبور کاربران"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "فعال سازی ویژگی چند سایت"
 
@@ -817,27 +820,6 @@ msgstr "مگابایت"
 
 msgid "percentage"
 msgstr "درصد"
-
-msgid "Enable automatic backups"
-msgstr "فعال کردن پشتیبان های خودکار"
-
-msgid "Daily"
-msgstr "روزانه"
-
-msgid "Weekly"
-msgstr "هفتگی"
-
-msgid "Montly"
-msgstr "ماهیانه"
-
-msgid "Remote"
-msgstr "ریموت"
-
-msgid "Server"
-msgstr "سرور"
-
-msgid "Port"
-msgstr "پورت"
 
 msgid "Stats of the week:"
 msgstr "آمارهای هفته:"
@@ -1345,9 +1327,6 @@ msgstr "مدیریت مورد"
 msgid "Network settings"
 msgstr "تنظیمات شبکه"
 
-msgid "Mode:"
-msgstr "حالت:"
-
 msgid "Root domain used for secondary sites"
 msgstr "دامنه ریشه استفاده شده برای سایت های ثانویه"
 
@@ -1362,6 +1341,9 @@ msgstr "فعال سازی شرایط استفاده از خدمات"
 
 msgid "Sites"
 msgstr "سایت ها "
+
+msgid "Mode:"
+msgstr "حالت:"
 
 msgid "Active"
 msgstr "فعال"
@@ -1966,14 +1948,8 @@ msgstr "لطفا نام کاربری متفاوتی را انتخاب کنید."
 msgid "The user will receive an activation link via email."
 msgstr "این کاربر لینک فعال‌سازی را از طریق ایمیل دریافت خواهد کرد."
 
-msgid "License Agreement"
-msgstr "توافق گواهینامه"
-
-msgid "Please review the license terms before proceeding."
-msgstr "لطفا شرایط گواهینامه را پیش از ادامه بخوانید."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "من شرایط موافقت نامه گواهینامه را خوانده ام و با آن موافقم."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "شما ویزارد پلتفورم را کامل کرده اید."

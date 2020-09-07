@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -666,6 +666,9 @@ msgstr "Omogoči šifriranje"
 msgid "Enable administrators to change user passwords"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr ""
 
@@ -799,27 +802,6 @@ msgstr ""
 
 msgid "percentage"
 msgstr ""
-
-msgid "Enable automatic backups"
-msgstr ""
-
-msgid "Daily"
-msgstr ""
-
-msgid "Weekly"
-msgstr ""
-
-msgid "Montly"
-msgstr ""
-
-msgid "Remote"
-msgstr ""
-
-msgid "Server"
-msgstr "Strežnik"
-
-msgid "Port"
-msgstr "Vrata"
 
 msgid "Stats of the week:"
 msgstr "Statistika tedna:"
@@ -1327,9 +1309,6 @@ msgstr ""
 msgid "Network settings"
 msgstr ""
 
-msgid "Mode:"
-msgstr ""
-
 msgid "Root domain used for secondary sites"
 msgstr ""
 
@@ -1343,6 +1322,9 @@ msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
+msgstr ""
+
+msgid "Mode:"
 msgstr ""
 
 msgid "Active"
@@ -1948,14 +1930,8 @@ msgstr ""
 msgid "The user will receive an activation link via email."
 msgstr ""
 
-msgid "License Agreement"
-msgstr "Licenčna pogodba"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Prosimo, da pred nadaljevanjem pregledate pogoje licenčne pogodbe."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Prebral sem licenčne pogoje uporabe in se strinjam z njimi."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr ""

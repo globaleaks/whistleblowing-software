@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 17:18+0000\n"
-"Last-Translator: AO <ao@localizationlab.org>\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -697,6 +697,9 @@ msgstr "Activer le chiffrement"
 msgid "Enable administrators to change user passwords"
 msgstr "Permettre aux administrateurs de changer le mot de passe des utilisateurs"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Activer la fonction multisite"
 
@@ -830,27 +833,6 @@ msgstr "mégaoctets"
 
 msgid "percentage"
 msgstr "pourcentage"
-
-msgid "Enable automatic backups"
-msgstr "Activer les sauvegardes automatiques"
-
-msgid "Daily"
-msgstr "Quotidiennes"
-
-msgid "Weekly"
-msgstr "Hebdomadaires"
-
-msgid "Montly"
-msgstr "Mensuelles"
-
-msgid "Remote"
-msgstr "Distantes"
-
-msgid "Server"
-msgstr "Serveur"
-
-msgid "Port"
-msgstr "Port"
 
 msgid "Stats of the week:"
 msgstr "Statistiques hebdomadaires :"
@@ -1358,9 +1340,6 @@ msgstr "Gestion des cas"
 msgid "Network settings"
 msgstr "Paramètres du réseau"
 
-msgid "Mode:"
-msgstr "Mode :"
-
 msgid "Root domain used for secondary sites"
 msgstr "Domaine racine utilisé pour les sites secondaires"
 
@@ -1375,6 +1354,9 @@ msgstr "Activer les conditions générales d’utilisation"
 
 msgid "Sites"
 msgstr "Sites"
+
+msgid "Mode:"
+msgstr "Mode :"
 
 msgid "Active"
 msgstr "Actif"
@@ -1979,14 +1961,8 @@ msgstr "Veuillez choisir un nom d’utilisateur différent."
 msgid "The user will receive an activation link via email."
 msgstr "L’utilisateur recevra un lien d’activation par courriel."
 
-msgid "License Agreement"
-msgstr "Contrat de licence"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Veuillez examiner les conditions de la licence avant de poursuivre."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "J’ai lu et accepte les conditions du contrat de licence."
+msgid "I have read and agree to the terms of the license."
+msgstr "J’ai lu et accepte les conditions de la licence."
 
 msgid "You have completed the platform wizard."
 msgstr "Vous avez terminé avec succès l’assistant de la plateforme."

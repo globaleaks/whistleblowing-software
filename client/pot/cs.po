@@ -10,12 +10,12 @@
 # trendspotter <j.podhorecky@volny.cz>, 2018-2019
 # Lenka Ježková <lenka.jezkova@oziveni.cz>, 2019-2020
 # Miroslav Kučera <mkucera66@seznam.cz>, 2013-2017
-# Mr Higgins, 2016-2018
+# Mr Higgins, 2016-2018,2020
 # Pavla Holcova <p.holcova@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -612,7 +612,7 @@ msgid "Tax code"
 msgstr "DIČ"
 
 msgid "Administrators authorized to change user passwords"
-msgstr ""
+msgstr "Administrátoři oprávnění změnit uživatelské heslo"
 
 msgid "Select the context of your report:"
 msgstr "Vyberte obsah Vašeho podání"
@@ -672,6 +672,9 @@ msgstr "Povolit šifrování"
 
 msgid "Enable administrators to change user passwords"
 msgstr "Umožněte správcům měnit hesla uživatelů"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
 
 msgid "Enable multisite feature"
 msgstr "Povolit funkci multisite "
@@ -806,27 +809,6 @@ msgstr "MB"
 
 msgid "percentage"
 msgstr "procenta"
-
-msgid "Enable automatic backups"
-msgstr "Povolit automatické zálohování"
-
-msgid "Daily"
-msgstr "Denně"
-
-msgid "Weekly"
-msgstr "Týdně"
-
-msgid "Montly"
-msgstr "Měsíčně"
-
-msgid "Remote"
-msgstr "Vzdálený"
-
-msgid "Server"
-msgstr "Server"
-
-msgid "Port"
-msgstr "Port"
 
 msgid "Stats of the week:"
 msgstr "Statistika týdne:"
@@ -1042,7 +1024,7 @@ msgid "Restrict access to specific IP addresses"
 msgstr "Omezit přístup k určitým IP adresám"
 
 msgid "Allowed IP addresses"
-msgstr ""
+msgstr "Povolené IP adresy"
 
 msgid "Admin"
 msgstr "Admin"
@@ -1334,9 +1316,6 @@ msgstr "Správa podání"
 msgid "Network settings"
 msgstr "Nastavení sítě"
 
-msgid "Mode:"
-msgstr "Režim"
-
 msgid "Root domain used for secondary sites"
 msgstr "Kořenová doména pro sekundární stránky"
 
@@ -1351,6 +1330,9 @@ msgstr "Aktivovat smluvní podmínky"
 
 msgid "Sites"
 msgstr "Stránky"
+
+msgid "Mode:"
+msgstr "Režim"
 
 msgid "Active"
 msgstr "Aktivní"
@@ -1404,7 +1386,7 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "Nastavte šifrování poskytnutím veřejné části PGP klíče."
 
 msgid "Give this admin ability to change user passwords"
-msgstr "Umožněte administrátorovi měnit hesla uživatele"
+msgstr "Umožněte tomuto administrátorovi měnit uživatelská hesla "
 
 msgid "Configuration"
 msgstr "Konfigurace"
@@ -1787,7 +1769,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "Doporučujeme jít do sekce „Předvolby“, abyste získali „Klíč pro obnovení účtu“ a bezpečně jej uložili. Tento klíč bude nezbytný pro obnovení přístupu k platformě a k vašim údajům v případě, že své heslo zapomenete."
 
 msgid "Files attached by recipients"
 msgstr "Přílohy od příjemců"
@@ -1955,14 +1937,8 @@ msgstr "Zvolte prosím jiné uživatelské jméno."
 msgid "The user will receive an activation link via email."
 msgstr "Uživatel obdrží e-mail s odkazem k aktivaci."
 
-msgid "License Agreement"
-msgstr "Licenční informace"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Než budete pokračovat, věnujte, prosím, pozornost přečtení licencních podmínek."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Prečetl jsem si licenční podmínky a souhlasím s nimi."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Právě jste dokončili průvodce základním nastavením."

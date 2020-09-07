@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -667,6 +667,9 @@ msgstr "އެންކްރިޕްޝަން އޮން ކުރަން"
 msgid "Enable administrators to change user passwords"
 msgstr "ބޭނުންކުރާ ފަރާތްތަކުގެ ޕާސްވޯޑް ބަދަލުކުރަން އެޑްމިނިސްޓްރޭޓަރސް އެނޭބަލް ކުރައްވާ. "
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "މަލްޓިސައިޓް ފީޗާ އޮންކުރަން"
 
@@ -800,27 +803,6 @@ msgstr "މެގަބައިޓް"
 
 msgid "percentage"
 msgstr "ޕަސެންޓު"
-
-msgid "Enable automatic backups"
-msgstr "ައޮޓޯކޮށް ބެކަޕް ނެގޭގޮތް ހެދުމަށް"
-
-msgid "Daily"
-msgstr "ކޮންމެ ދުވަހަކު"
-
-msgid "Weekly"
-msgstr "ކޮންމެ ހަފްތާއަކު"
-
-msgid "Montly"
-msgstr "ކޮންމެ މަހަކު"
-
-msgid "Remote"
-msgstr "ރިމޯޓް"
-
-msgid "Server"
-msgstr "ސަރވާ"
-
-msgid "Port"
-msgstr "ޕޯޓް"
 
 msgid "Stats of the week:"
 msgstr "ހަފްތާގެ ފާހަގަ ކޮއްލެވޭ ތަފާސް ހިސާބު: "
@@ -1328,9 +1310,6 @@ msgstr "މައްސަލަ ބެލެހެއްޓުން"
 msgid "Network settings"
 msgstr "ނެޓްވާރކްގެ އިންހަމަ"
 
-msgid "Mode:"
-msgstr "ބާވަތް"
-
 msgid "Root domain used for secondary sites"
 msgstr "ސެކަންޑަރީ ސައިޓްތަކުގައި ރޫޓް ޑޮމެއިން ބޭނުންކުރުން"
 
@@ -1345,6 +1324,9 @@ msgstr "ޚިދުމަތުގެ އިޤްރާރު އޮން ކުރަން"
 
 msgid "Sites"
 msgstr "ސައިޓުތައް"
+
+msgid "Mode:"
+msgstr "ބާވަތް"
 
 msgid "Active"
 msgstr "އެކްޓިވް"
@@ -1949,14 +1931,8 @@ msgstr "އެހެން ޔޫސާ ނަމެއް ބޭނުންކުރައްވާ"
 msgid "The user will receive an activation link via email."
 msgstr "އީމެއިލްއިން އެކްޓިވޭޝަން ލިންކް އެއް ފަނުވައިފައިވާނެ. "
 
-msgid "License Agreement"
-msgstr "ލައިސަންސްގެ އެއްބަސްވުން"
-
-msgid "Please review the license terms before proceeding."
-msgstr "އިތުރަށް ކުރިޔަށްދިއުމުގެ ކުރިން ލައިސަންސްއާ ބެހޭ މާއްދާތައް މުޠާލިއާ ކުރައްވާ"
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "މި ލައިސަންސް އެގްރީމެންޓްގައިވާ ކަންތައްތައް ކިޔައި ޤަބޫލުކޮށްފިން"
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "ޕްލެޓްފޯމް ވިޒާޑް މިހާރު ތިވަނީ ފުރިހަމަ ކުރެވިފައި"

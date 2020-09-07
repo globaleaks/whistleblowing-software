@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -680,6 +680,9 @@ msgstr "Titkosítás engedélyezése"
 msgid "Enable administrators to change user passwords"
 msgstr "Engedélyezze, hogy az adminisztrátorok megváltoztathassák a felhasználói jelszavakat."
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Multisite engedélyezése"
 
@@ -813,27 +816,6 @@ msgstr "megabájt"
 
 msgid "percentage"
 msgstr "százalék"
-
-msgid "Enable automatic backups"
-msgstr "Automatikus mentés engedélyezése"
-
-msgid "Daily"
-msgstr "Naponta"
-
-msgid "Weekly"
-msgstr "Hetente"
-
-msgid "Montly"
-msgstr "Havonta"
-
-msgid "Remote"
-msgstr "Távoli hozzáférés"
-
-msgid "Server"
-msgstr "Szerver"
-
-msgid "Port"
-msgstr "Port"
 
 msgid "Stats of the week:"
 msgstr "A hét statisztikái"
@@ -1341,9 +1323,6 @@ msgstr "Esetkezelés"
 msgid "Network settings"
 msgstr "Hálózati beállítások"
 
-msgid "Mode:"
-msgstr "Mód:"
-
 msgid "Root domain used for secondary sites"
 msgstr "Gyökér domain használt a másodlagos oldalakhoz"
 
@@ -1358,6 +1337,9 @@ msgstr "Felhasználási feltételek engedélyezése"
 
 msgid "Sites"
 msgstr "Weboldalak"
+
+msgid "Mode:"
+msgstr "Mód:"
 
 msgid "Active"
 msgstr "Aktív"
@@ -1962,14 +1944,8 @@ msgstr "Kérjük válasszon másik felhasználónevet."
 msgid "The user will receive an activation link via email."
 msgstr "A felhasználó e-mailben kap egy aktiválási linket."
 
-msgid "License Agreement"
-msgstr "Felhasználási feltételek"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Kérjük, továbblépés előtt olvassa el a felhasználási feltételeket."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Elolvastam és elfogadom a felhasználási feltételeket."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Sikeresen befejezte a platform varázslót."

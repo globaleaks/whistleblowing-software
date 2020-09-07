@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -669,6 +669,9 @@ msgstr "เปิดใช้การเข้ารหัสลับ"
 msgid "Enable administrators to change user passwords"
 msgstr "เปิดให้ผู้ดูแลระบบเปลี่ยนรหัสผ่านของผู้ใช้ได้"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "เปิดใช้งานการรองรับหลายเว็บไซต์"
 
@@ -802,27 +805,6 @@ msgstr "เมกะไบต์"
 
 msgid "percentage"
 msgstr "ร้อยละ"
-
-msgid "Enable automatic backups"
-msgstr "เปิดใช้การสำรองข้อมูลอัตโนมัติ"
-
-msgid "Daily"
-msgstr "ทุกวัน"
-
-msgid "Weekly"
-msgstr "ทุกสัปดาห์"
-
-msgid "Montly"
-msgstr "ทุกเดือน"
-
-msgid "Remote"
-msgstr "ทางไกล"
-
-msgid "Server"
-msgstr "เซิร์ฟเวอร์"
-
-msgid "Port"
-msgstr "พอร์ต"
 
 msgid "Stats of the week:"
 msgstr "สถิติของสัปดาห์:"
@@ -1330,9 +1312,6 @@ msgstr "การจัดการเรื่อง"
 msgid "Network settings"
 msgstr "การตั้งค่าเครือข่าย"
 
-msgid "Mode:"
-msgstr "โหมด:"
-
 msgid "Root domain used for secondary sites"
 msgstr "รูตโดเมนถูกใช้สำหรับไซต์ชั้นสอง"
 
@@ -1347,6 +1326,9 @@ msgstr "เปิดใช้ข้อตกลงในการให้บร
 
 msgid "Sites"
 msgstr "ไซต์"
+
+msgid "Mode:"
+msgstr "โหมด:"
 
 msgid "Active"
 msgstr "ทำงานอยู่"
@@ -1951,14 +1933,8 @@ msgstr "กรุณาเลือกชื่อผู้ใช้อื่น
 msgid "The user will receive an activation link via email."
 msgstr "ผู้ใช้จะได้รับลิงก์ยืนยันเปิดใช้งานทางอีเมล"
 
-msgid "License Agreement"
-msgstr "ข้อตกลงสัญญาอนุญาต"
-
-msgid "Please review the license terms before proceeding."
-msgstr "กรุณาอ่านเงื่อนไขในสัญญาอนุญาตอย่างละเอียดก่อนจะไปต่อ"
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "ฉันได้อ่านและยอมรับเงื่อนไขในข้อตกลงสัญญาอนุญาต"
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "คุณได้ทำตามคำแนะนำการติดตั้งแพลตฟอร์มทั้งหมดแล้ว"

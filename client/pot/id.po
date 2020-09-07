@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -682,6 +682,9 @@ msgstr "Aktifkan enkripsi"
 msgid "Enable administrators to change user passwords"
 msgstr "Izinkan administrator untuk mengubah sandi pengguna"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Aktifkan fitur multi situs"
 
@@ -815,27 +818,6 @@ msgstr ""
 
 msgid "percentage"
 msgstr "persentase"
-
-msgid "Enable automatic backups"
-msgstr "Aktifkan backup otomatis"
-
-msgid "Daily"
-msgstr "Harian"
-
-msgid "Weekly"
-msgstr "Mingguan"
-
-msgid "Montly"
-msgstr "Bulanan"
-
-msgid "Remote"
-msgstr "Remote "
-
-msgid "Server"
-msgstr "Server"
-
-msgid "Port"
-msgstr "Port"
 
 msgid "Stats of the week:"
 msgstr "Statistik minggu ini:"
@@ -1343,9 +1325,6 @@ msgstr "Penanganan kasus"
 msgid "Network settings"
 msgstr "Pengaturan jaringan"
 
-msgid "Mode:"
-msgstr "Mode:"
-
 msgid "Root domain used for secondary sites"
 msgstr "Domain awal yang digunakan untuk situs kedua"
 
@@ -1360,6 +1339,9 @@ msgstr "Mengaktifkan persyaratan layanan"
 
 msgid "Sites"
 msgstr "Situs"
+
+msgid "Mode:"
+msgstr "Mode:"
 
 msgid "Active"
 msgstr "Aktif"
@@ -1964,14 +1946,8 @@ msgstr ""
 msgid "The user will receive an activation link via email."
 msgstr ""
 
-msgid "License Agreement"
-msgstr "Persetujuan lisensi"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Mohon meninjau ulang persyaratan lisensi sebelum melanjutkan."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Saya telah membaca dan menyetujui terhadap seluruh pernyataan di dalam perjanjian lisensi."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Anda telah melengkapi petunjuk platform."

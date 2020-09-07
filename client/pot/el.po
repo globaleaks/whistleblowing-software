@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -675,6 +675,9 @@ msgstr "Ενεργοποίηση κρυπτογράφησης"
 msgid "Enable administrators to change user passwords"
 msgstr "Επιτρέψτε στους διαχειριστές να αλλάζουν τους κωδικούς χρηστών"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Ενεργοποίηση της λειτουργίας πολλαπλών ιστοχώρων"
 
@@ -808,27 +811,6 @@ msgstr "megabyte"
 
 msgid "percentage"
 msgstr "ποσοστό"
-
-msgid "Enable automatic backups"
-msgstr "Επιτρέψτε την αυτοματοποιημένη λήψη αντίγραφων ασφαλείας"
-
-msgid "Daily"
-msgstr "Καθημερινά"
-
-msgid "Weekly"
-msgstr "Εβδομαδιαία"
-
-msgid "Montly"
-msgstr "μηνιαία "
-
-msgid "Remote"
-msgstr "Απομακρυσμένο"
-
-msgid "Server"
-msgstr "Διακομιστής"
-
-msgid "Port"
-msgstr "Θύρα"
 
 msgid "Stats of the week:"
 msgstr "Στατιστικά της εβδομάδας:"
@@ -1336,9 +1318,6 @@ msgstr "Διαχείριση υπόθεσης"
 msgid "Network settings"
 msgstr "Ρυθμίσεις δικτύου"
 
-msgid "Mode:"
-msgstr "Κατάσταση:"
-
 msgid "Root domain used for secondary sites"
 msgstr "Κεντρικό domain που χρησιμοποιείται για δευτερεύουσες ιστοσελίδες"
 
@@ -1353,6 +1332,9 @@ msgstr "Ενεργοποίηση όρων χρήσης"
 
 msgid "Sites"
 msgstr "Ιστοσελίδες"
+
+msgid "Mode:"
+msgstr "Κατάσταση:"
 
 msgid "Active"
 msgstr "Ενεργό"
@@ -1957,14 +1939,8 @@ msgstr "Παρακαλώ επιλέξτε διαφορετικό όνομα χρ
 msgid "The user will receive an activation link via email."
 msgstr "Ο χρήστης θα παραλάβει ένα λογαριασμό ενεργοποίησης μέσω ηλεκτρονικού ταχυδρομείου."
 
-msgid "License Agreement"
-msgstr "Όροι χρήσης"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Παρακαλώ διαβάστε προσεκτικά τους όρους χρήσης πριν συνεχίσετε."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Έχω διαβάσει και συμφωνώ με τους Όρους χρήσης."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Έχετε ολοκληρώσει τον οδηγό της πλατφόρμας."

@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -611,7 +611,7 @@ msgid "Tax code"
 msgstr "DIČ"
 
 msgid "Administrators authorized to change user passwords"
-msgstr ""
+msgstr "Administrátori oprávnení meniť používateľské heslá"
 
 msgid "Select the context of your report:"
 msgstr "Vyberte obsah správy:"
@@ -671,6 +671,9 @@ msgstr "Povoliť šifrovanie"
 
 msgid "Enable administrators to change user passwords"
 msgstr "Umožnite správcom meniť heslá užívateľov"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
 
 msgid "Enable multisite feature"
 msgstr "Povoliť funkciu multisite"
@@ -805,27 +808,6 @@ msgstr "MB"
 
 msgid "percentage"
 msgstr "percenta"
-
-msgid "Enable automatic backups"
-msgstr "Povoliť automatické zálohovanie"
-
-msgid "Daily"
-msgstr "Denne"
-
-msgid "Weekly"
-msgstr "Týždenne"
-
-msgid "Montly"
-msgstr "Mesačne"
-
-msgid "Remote"
-msgstr "Vzdialený"
-
-msgid "Server"
-msgstr "Server"
-
-msgid "Port"
-msgstr "Port"
 
 msgid "Stats of the week:"
 msgstr "Štatistiky týždňa: "
@@ -1041,7 +1023,7 @@ msgid "Restrict access to specific IP addresses"
 msgstr "Obmedziť prístup k určitým IP adresám"
 
 msgid "Allowed IP addresses"
-msgstr ""
+msgstr "Povolené IP adresy."
 
 msgid "Admin"
 msgstr "Administrátor"
@@ -1333,9 +1315,6 @@ msgstr "Správa podaní"
 msgid "Network settings"
 msgstr "Nastavenie siete"
 
-msgid "Mode:"
-msgstr "Režim:"
-
 msgid "Root domain used for secondary sites"
 msgstr "Koreňová doména pre sekundárne stránky"
 
@@ -1350,6 +1329,9 @@ msgstr "Povoliť zmluvné podmienky"
 
 msgid "Sites"
 msgstr "Stránky"
+
+msgid "Mode:"
+msgstr "Režim:"
 
 msgid "Active"
 msgstr "Aktívny"
@@ -1403,7 +1385,7 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "Nastavte šifrovanie pomocou verejného kľúča PGP."
 
 msgid "Give this admin ability to change user passwords"
-msgstr "Umožnite administrátorovi meniť heslo používateľa"
+msgstr "Umožnite administrátorovi meniť používateľské heslá."
 
 msgid "Configuration"
 msgstr "Konfigurácia"
@@ -1786,7 +1768,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "Odporúčame ísť do sekcie \"Preferencie\", aby ste získali \"Kľúč na obnovenie účtu\" a bezpečne ho uložili. Tento kľúč bude nevyhnutný pre obnovenie prístupu k platforme a k vašim údajom v prípade, že svoje heslo zabudnete."
 
 msgid "Files attached by recipients"
 msgstr "Prílohy od príjemcov"
@@ -1954,14 +1936,8 @@ msgstr "Zvoľte prosím iné užívateľské meno."
 msgid "The user will receive an activation link via email."
 msgstr "Používateľ dostane e-mail s odkazom na aktiváciu."
 
-msgid "License Agreement"
-msgstr "Licenčná zmluva"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Skôr než budete pokračovať, prečítajte si, prosím,  licenčné podmienky."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Prečítal(-a) som si podmienky licenčnej zmluvy a súhlasím s nimi."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Práve ste dokončili sprievodcu základným nastavením."

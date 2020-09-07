@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -669,6 +669,9 @@ msgstr "啟用加密功能"
 msgid "Enable administrators to change user passwords"
 msgstr "讓管理者可以變更用戶密碼"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "啟用多個網站功能"
 
@@ -802,27 +805,6 @@ msgstr "MB"
 
 msgid "percentage"
 msgstr "百分比"
-
-msgid "Enable automatic backups"
-msgstr "啟用自動備份"
-
-msgid "Daily"
-msgstr "每日"
-
-msgid "Weekly"
-msgstr "每週"
-
-msgid "Montly"
-msgstr "每月"
-
-msgid "Remote"
-msgstr "遠端"
-
-msgid "Server"
-msgstr "伺服器"
-
-msgid "Port"
-msgstr "埠"
 
 msgid "Stats of the week:"
 msgstr "一週統計:"
@@ -1330,9 +1312,6 @@ msgstr "案件管理"
 msgid "Network settings"
 msgstr "網路設定"
 
-msgid "Mode:"
-msgstr "模式："
-
 msgid "Root domain used for secondary sites"
 msgstr "二級網站使用的根域名"
 
@@ -1347,6 +1326,9 @@ msgstr "開啟服務條款"
 
 msgid "Sites"
 msgstr "網站"
+
+msgid "Mode:"
+msgstr "模式："
 
 msgid "Active"
 msgstr "活躍中的"
@@ -1951,14 +1933,8 @@ msgstr "請選擇不同的用戶名稱。"
 msgid "The user will receive an activation link via email."
 msgstr "使用者將會收到帳號激活郵件。"
 
-msgid "License Agreement"
-msgstr "用戶條款"
-
-msgid "Please review the license terms before proceeding."
-msgstr "進行下一步之前請先檢閱用戶條款"
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "已讀畢且同意用戶條款的規定"
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "平台設置精靈已完成"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -665,6 +665,9 @@ msgstr ""
 msgid "Enable administrators to change user passwords"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr ""
 
@@ -798,27 +801,6 @@ msgstr ""
 
 msgid "percentage"
 msgstr ""
-
-msgid "Enable automatic backups"
-msgstr ""
-
-msgid "Daily"
-msgstr ""
-
-msgid "Weekly"
-msgstr ""
-
-msgid "Montly"
-msgstr ""
-
-msgid "Remote"
-msgstr "Remote"
-
-msgid "Server"
-msgstr "Tjener"
-
-msgid "Port"
-msgstr "Port"
 
 msgid "Stats of the week:"
 msgstr "Ukas statistikk:"
@@ -1326,9 +1308,6 @@ msgstr ""
 msgid "Network settings"
 msgstr "Nettverksinnstillinger"
 
-msgid "Mode:"
-msgstr ""
-
 msgid "Root domain used for secondary sites"
 msgstr "Rotdomene brukt for sekundære sider"
 
@@ -1343,6 +1322,9 @@ msgstr ""
 
 msgid "Sites"
 msgstr "Sider"
+
+msgid "Mode:"
+msgstr ""
 
 msgid "Active"
 msgstr "Aktiv"
@@ -1947,14 +1929,8 @@ msgstr ""
 msgid "The user will receive an activation link via email."
 msgstr ""
 
-msgid "License Agreement"
-msgstr "Lisens-samtykke"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Gjennomse lisensvilkårene før du går videre."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Jeg godtar vilkårene i lisensen."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Du har fullført plattformsveiviseren."

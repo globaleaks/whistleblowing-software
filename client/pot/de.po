@@ -47,7 +47,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -705,6 +705,9 @@ msgstr "Verschlüsselung aktivieren"
 msgid "Enable administrators to change user passwords"
 msgstr "Administratoren das Ändern von Benutzerpasswörtern erlauben"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Die Multisite-Funktion aktivieren"
 
@@ -838,27 +841,6 @@ msgstr "Megabyte"
 
 msgid "percentage"
 msgstr "prozent"
-
-msgid "Enable automatic backups"
-msgstr "Automatische Sicherungen aktivieren"
-
-msgid "Daily"
-msgstr "Täglich"
-
-msgid "Weekly"
-msgstr "Wöchentlich"
-
-msgid "Montly"
-msgstr "Monatlich"
-
-msgid "Remote"
-msgstr "Remote"
-
-msgid "Server"
-msgstr "Server"
-
-msgid "Port"
-msgstr "Port"
 
 msgid "Stats of the week:"
 msgstr "Statistiken der Woche:"
@@ -1366,9 +1348,6 @@ msgstr "Fall-Verwaltung"
 msgid "Network settings"
 msgstr "Netzwerkeinstellungen"
 
-msgid "Mode:"
-msgstr "Modus:"
-
 msgid "Root domain used for secondary sites"
 msgstr "Wurzeldomain für weitere Seiten genutzt"
 
@@ -1383,6 +1362,9 @@ msgstr "Nutzungsbedingungen aktivieren"
 
 msgid "Sites"
 msgstr "Seiten"
+
+msgid "Mode:"
+msgstr "Modus:"
 
 msgid "Active"
 msgstr "Aktiv"
@@ -1987,14 +1969,8 @@ msgstr "Bitte wählen Sie einen anderen Benutzernamen."
 msgid "The user will receive an activation link via email."
 msgstr "Der Benutzer wird einen Aktivierungslink per E-Mail erhalten."
 
-msgid "License Agreement"
-msgstr "Lizenzvereinbarung"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Bitte lesen Sie die Lizenzbedingungen, bevor Sie fortfahren."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Ich habe die Lizenzvereinbarung gelesen und akzeptiere sie."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Sie haben den Plattform Assisten erfolgreich abgeschlossen."

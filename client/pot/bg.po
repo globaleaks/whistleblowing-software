@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -671,6 +671,9 @@ msgstr "Активиране на криптиране"
 msgid "Enable administrators to change user passwords"
 msgstr "Разрешаване на администраторите да променят потребителските пароли"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Активиране на мулти-сайтова функционалност"
 
@@ -804,27 +807,6 @@ msgstr "мегабайти"
 
 msgid "percentage"
 msgstr "проценти"
-
-msgid "Enable automatic backups"
-msgstr "Активиране на автоматично архивиране"
-
-msgid "Daily"
-msgstr "Дневно"
-
-msgid "Weekly"
-msgstr "Седмично"
-
-msgid "Montly"
-msgstr "Месечно"
-
-msgid "Remote"
-msgstr "От разстояние"
-
-msgid "Server"
-msgstr "Сървър"
-
-msgid "Port"
-msgstr "Порт"
 
 msgid "Stats of the week:"
 msgstr "Статистика за седмицата:"
@@ -1332,9 +1314,6 @@ msgstr "Управление на случаите"
 msgid "Network settings"
 msgstr "Мрежови настройки"
 
-msgid "Mode:"
-msgstr "Режим:"
-
 msgid "Root domain used for secondary sites"
 msgstr "Домейн, използван за други сайтове"
 
@@ -1349,6 +1328,9 @@ msgstr "Активиране на общи услови за ползване"
 
 msgid "Sites"
 msgstr "Страници"
+
+msgid "Mode:"
+msgstr "Режим:"
 
 msgid "Active"
 msgstr "Активен"
@@ -1953,14 +1935,8 @@ msgstr "Моля, изберете друго потребителско име"
 msgid "The user will receive an activation link via email."
 msgstr "Потребителят ще получи линк за активация по имейл"
 
-msgid "License Agreement"
-msgstr "Лицензионно споразумение"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Моля, прегледайте условията по лиценза, преди да продължите."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Прочел съм и приемам условията"
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Успешно завършихте наръчника за платформата"

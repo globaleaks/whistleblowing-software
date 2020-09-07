@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -677,6 +677,9 @@ msgstr "Activa el xifratge"
 msgid "Enable administrators to change user passwords"
 msgstr "Habiliteu als administradors per canviar les contrasenyes d’usuari"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Activa la funció multi lloc"
 
@@ -810,27 +813,6 @@ msgstr "megabytes"
 
 msgid "percentage"
 msgstr "percentatge"
-
-msgid "Enable automatic backups"
-msgstr "Activa les còpies de seguretat automàtiques "
-
-msgid "Daily"
-msgstr "Diàriament"
-
-msgid "Weekly"
-msgstr "Setmanalment"
-
-msgid "Montly"
-msgstr "Mensualment"
-
-msgid "Remote"
-msgstr "Remot"
-
-msgid "Server"
-msgstr "Servidor"
-
-msgid "Port"
-msgstr "Port"
 
 msgid "Stats of the week:"
 msgstr "Estadístiques de la setmana"
@@ -1338,9 +1320,6 @@ msgstr "Gestió de casos"
 msgid "Network settings"
 msgstr "Configuració de xarxa"
 
-msgid "Mode:"
-msgstr "Mode:"
-
 msgid "Root domain used for secondary sites"
 msgstr "Domini arrel utilitzat per a llocs secundaris"
 
@@ -1355,6 +1334,9 @@ msgstr "Activa els termes del servei"
 
 msgid "Sites"
 msgstr "Llocs web"
+
+msgid "Mode:"
+msgstr "Mode:"
 
 msgid "Active"
 msgstr "Activa"
@@ -1959,14 +1941,8 @@ msgstr "Seleccioneu un nom d’usuari diferent."
 msgid "The user will receive an activation link via email."
 msgstr "L’usuari rebrà un enllaç d’activació per correu electrònic."
 
-msgid "License Agreement"
-msgstr "Acord de llicència"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Reviseu els termes de la llicència abans de continuar."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "He llegit i accepto els termes de l'Acord de llicència."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Has completat amb èxit l'assistent de la plataforma."

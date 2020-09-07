@@ -29,7 +29,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -687,6 +687,9 @@ msgstr "Включить шифрование"
 msgid "Enable administrators to change user passwords"
 msgstr "Разрешить администраторам изменять пароли пользователей"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Включить настройку мульти-сайтов"
 
@@ -820,27 +823,6 @@ msgstr ""
 
 msgid "percentage"
 msgstr ""
-
-msgid "Enable automatic backups"
-msgstr "Включить автоматическое резервное копирование"
-
-msgid "Daily"
-msgstr "Ежедневно"
-
-msgid "Weekly"
-msgstr "Еженедельно"
-
-msgid "Montly"
-msgstr "Ежемесячно"
-
-msgid "Remote"
-msgstr "Удаленные"
-
-msgid "Server"
-msgstr "Сервер"
-
-msgid "Port"
-msgstr "Порт"
 
 msgid "Stats of the week:"
 msgstr "Статистика за неделю:"
@@ -1348,9 +1330,6 @@ msgstr ""
 msgid "Network settings"
 msgstr "Настройки сети"
 
-msgid "Mode:"
-msgstr "Режим:"
-
 msgid "Root domain used for secondary sites"
 msgstr ""
 
@@ -1365,6 +1344,9 @@ msgstr ""
 
 msgid "Sites"
 msgstr "Сайты"
+
+msgid "Mode:"
+msgstr "Режим:"
 
 msgid "Active"
 msgstr "Активно"
@@ -1969,14 +1951,8 @@ msgstr ""
 msgid "The user will receive an activation link via email."
 msgstr ""
 
-msgid "License Agreement"
-msgstr "Лицензионноe Соглашениe."
-
-msgid "Please review the license terms before proceeding."
-msgstr "Прежде чем продолжить, пожалуйста, ознакомьтесь с условиями лицензии."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Я прочитала и согласна с условиями Лицензионного Соглашения."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Вы завершили работу с мастером настройки платформы."

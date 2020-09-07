@@ -27,7 +27,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -685,6 +685,9 @@ msgstr "Şifrelemeyi etkinleştir"
 msgid "Enable administrators to change user passwords"
 msgstr "Yöneticilerin parola değiştirebilmesini etkinleştirin."
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Çoklu site özelliğini etkinleştir"
 
@@ -818,27 +821,6 @@ msgstr "megabyte"
 
 msgid "percentage"
 msgstr "yüzde"
-
-msgid "Enable automatic backups"
-msgstr "Otomatik yedeklemeleri etkinleştir"
-
-msgid "Daily"
-msgstr "Günlük"
-
-msgid "Weekly"
-msgstr "Haftalık"
-
-msgid "Montly"
-msgstr "Aylık"
-
-msgid "Remote"
-msgstr "Uzak"
-
-msgid "Server"
-msgstr "Sunucu"
-
-msgid "Port"
-msgstr "Kapı"
 
 msgid "Stats of the week:"
 msgstr "Haftanın istatistikleri:"
@@ -1346,9 +1328,6 @@ msgstr "Durum yönetimi"
 msgid "Network settings"
 msgstr "Ağ Ayarları"
 
-msgid "Mode:"
-msgstr "Kip:"
-
 msgid "Root domain used for secondary sites"
 msgstr "İkincil siteler tarafından kullanılan kök alan"
 
@@ -1363,6 +1342,9 @@ msgstr "Hizmet kullanım şartlarını etkinleştir"
 
 msgid "Sites"
 msgstr "Siteler"
+
+msgid "Mode:"
+msgstr "Kip:"
 
 msgid "Active"
 msgstr "Etkin"
@@ -1967,14 +1949,8 @@ msgstr "Lütfen farklı bir kullanıcı adı seçin."
 msgid "The user will receive an activation link via email."
 msgstr "Kullanıcı, etkinleştirme bağlantısını e-posta ile alacaktır."
 
-msgid "License Agreement"
-msgstr "Lisans Sözleşmesi"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Devam etmeden önce lütfen lisans koşullarını gözden geçirin."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Lisans Sözleşmesinin koşullarını okudum ve kabul ediyorum."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Platform sihirbazını tamamladınız."
