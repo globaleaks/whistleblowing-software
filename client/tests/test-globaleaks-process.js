@@ -1,8 +1,5 @@
 var path = require("path");
 
-var fileToUpload1 = browser.gl.utils.makeTestFilePath("20mb.dat");
-var fileToUpload2 = browser.gl.utils.makeTestFilePath("unknown.filetype");
-
 describe("globaLeaks process", function() {
   var tip_text = "topsecret";
   var receipts = [];
@@ -106,10 +103,8 @@ describe("globaLeaks process", function() {
 
     await browser.gl.utils.login_whistleblower(receipts[0]);
 
-    await element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload1);
-    await browser.gl.utils.waitUntilPresent(by.cssContainingText("span", "Upload completed successfully!"));
-
-    await element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2);
+    var fileToUpload = browser.gl.utils.makeTestFilePath("antani.txt");
+    await element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload);
     await browser.gl.utils.waitUntilPresent(by.cssContainingText("span", "Upload completed successfully!"));
 
     await browser.gl.utils.logout();
