@@ -107,7 +107,10 @@ describe("globaLeaks process", function() {
     await browser.gl.utils.login_whistleblower(receipts[0]);
 
     await element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload1);
+    await browser.gl.utils.waitUntilPresent(by.cssContainingText("div", "Upload completed successfully!"));
+
     await element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2);
+    await browser.gl.utils.waitUntilPresent(by.cssContainingText("div", "Upload completed successfully!"));
 
     await browser.gl.utils.logout();
   });
