@@ -1,13 +1,11 @@
 <div class="uploadingBox" data-ng-if="uploads[fileinput].files.length" flow-init>
-  <div id="FileUploadsHeader">
-    <div data-ng-switch="Utils.getUploadStatus(uploads[fileinput])">
-      <div data-ng-switch-when="uploading" data-translate>Uploading files…</div>
-      <div data-ng-switch-when="finished" data-translate>Upload completed successfully!</div>
-      <div data-ng-switch-when="error" data-translate>Error while uploading files; check below for details.</div>
-    </div>
+  <div id="FileUploadsHeader" data-ng-switch="Utils.getUploadStatus(uploads[fileinput])">
+    <span data-ng-switch-when="uploading" data-translate>Uploading files…</span>
+    <span data-ng-switch-when="finished" data-translate>Upload completed successfully!</span>
+    <span data-ng-switch-when="error" data-translate>Error while uploading files; check below for details.</span>
   </div>
   <div id="FileUpoloadsInfo">
-    <div data-ng-show="uploads[fileinput].progress() != 1">
+    <div data-ng-show="uploads[fileinput].progress() !== 1">
 	    <span data-translate>Estimated upload time:</span> <span>{{uploads[fileinput].timeRemaining()}} </span><span data-translate>seconds</span>
       <div class="progress progress-striped" data-ng-class="active">
         <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" data-ng-style="{width: (uploads[fileinput].progress() * 100) + '%'}"></div>
