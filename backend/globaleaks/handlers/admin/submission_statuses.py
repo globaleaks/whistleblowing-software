@@ -151,9 +151,6 @@ def order_substatus_elements(session, handler, req_args, *args, **kwargs):
     id_dict = {substatus.id: substatus for substatus in substatuses}
     ids = req_args['ids']
 
-    if len(ids) != len(id_dict) or set(ids) != set(id_dict):
-        raise errors.InputValidationError('list does not contain all context ids')
-
     for i, substatus_id in enumerate(ids):
         id_dict[substatus_id].order = i
 

@@ -226,9 +226,6 @@ def order_elements(session, tid, ids, *args, **kwargs):
 
     id_dict = {ctx.id: ctx for ctx in ctxs}
 
-    if len(ids) != len(id_dict) or set(ids) != set(id_dict):
-        raise errors.InputValidationError('list does not contain all context ids')
-
     for i, ctx_id in enumerate(ids):
         id_dict[ctx_id].order = i
 
