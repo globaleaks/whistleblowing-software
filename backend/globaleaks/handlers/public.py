@@ -485,7 +485,7 @@ def serialize_questionnaire(session, tid, questionnaire, language, serialize_tem
     """
     steps = session.query(models.Step).filter(models.Step.questionnaire_id == questionnaire.id,
                                               models.Questionnaire.id == questionnaire.id) \
-                                       .order_by(models.Step.order)
+                                      .order_by(models.Step.order)
 
     ret_dict = {
         'id': questionnaire.id,
@@ -554,18 +554,12 @@ def db_get_contexts(session, tid, language):
     :param language: The language to be used for the serialization
     :return: A list of contexts descriptors
     """
-    ret = []
-
     contexts = session.query(models.Context).filter(models.Context.status != EnumContextStatus.disabled.value,
                                                     models.Context.tid == tid)
 
     data = db_prepare_contexts_serialization(session, contexts)
 
-    for context in contexts:
-        if not context.languages or language.lower() in [x.strip().lower() for x in context.languages.split(',')]:
-            ret.append(serialize_context(session, context, language, data))
-
-    return ret
+    return [serialize_context(session, context, language, data) for context in contexts]
 
 
 def db_get_receivers(session, tid, language):
@@ -583,14 +577,7 @@ def db_get_receivers(session, tid, language):
 
     data = db_prepare_receivers_serialization(session, receivers)
 
-    ret = []
-    for receiver in receivers:
-        x = serialize_receiver(session, receiver, language, data)
-        if not State.tenant_cache[tid].simplified_login:
-            x['username'] = ''
-        ret.append(x)
-
-    return ret
+    return [serialize_receiver(session, receiver, language, data) for receiver in receivers]
 
 
 @transact
@@ -605,15 +592,24 @@ def get_public_resources(session, tid, language):
     """
     ret = {
         'node': db_serialize_node(session, tid, language),
-        'contexts': db_get_contexts(session, tid, language),
         'questionnaires': db_get_questionnaires(session, tid, language),
-        'receivers': db_get_receivers(session, tid, language),
-        'submission_statuses': db_get_submission_statuses(session, tid, language)
+        'submission_statuses': db_get_submission_statuses(session, tid, language),
+        'contexts': [],
+        'receivers': []
     }
 
-    if ret['node']['do_not_expose_users_names']:
-        for receiver in ret['receivers']:
+    for receiver in db_get_receivers(session, tid, language):
+        if not State.tenant_cache[tid].simplified_login:
+            receiver['username'] = ''
+
+        if ret['node']['do_not_expose_users_names']:
             receiver['name'] = ret['node']['name']
+
+        ret['receivers'].append(receiver)
+
+    for context in db_get_contexts(session, tid, language):
+        if not context['languages'] or language.lower() in [x.strip().lower() for x in context['languages'].split(',')]:
+            ret['contexts'].append(context)
 
     return ret
 
