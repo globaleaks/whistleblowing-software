@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -665,6 +665,9 @@ msgstr "மறையாக்குதல் இயக்கு"
 msgid "Enable administrators to change user passwords"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "பன்முனை அம்சத்தை இயக்கு"
 
@@ -798,27 +801,6 @@ msgstr "மெகாபைட்"
 
 msgid "percentage"
 msgstr ""
-
-msgid "Enable automatic backups"
-msgstr "தானியங்கு காப்புப் பிரதிகளை இயக்கு"
-
-msgid "Daily"
-msgstr "டெய்லி"
-
-msgid "Weekly"
-msgstr "வீக்லி"
-
-msgid "Montly"
-msgstr "மாதந்திர"
-
-msgid "Remote"
-msgstr "ரிமோட்"
-
-msgid "Server"
-msgstr "சர்வர்\n"
-
-msgid "Port"
-msgstr "பெயர்த்துவை"
 
 msgid "Stats of the week:"
 msgstr "வாரம் விபரம்:"
@@ -1326,9 +1308,6 @@ msgstr "வழக்கு மேலாண்மை"
 msgid "Network settings"
 msgstr "நெட்வொர்க் அமைப்புகள்"
 
-msgid "Mode:"
-msgstr "முறை:"
-
 msgid "Root domain used for secondary sites"
 msgstr "இரண்டாம் தளங்களுக்கு ரூட் டொமைன் பயன்படுத்தப்படுகிறது"
 
@@ -1343,6 +1322,9 @@ msgstr "சேவை விதிமுறைகளை இயக்கு"
 
 msgid "Sites"
 msgstr "தளங்கள்"
+
+msgid "Mode:"
+msgstr "முறை:"
 
 msgid "Active"
 msgstr "செயலில்"
@@ -1947,14 +1929,8 @@ msgstr ""
 msgid "The user will receive an activation link via email."
 msgstr ""
 
-msgid "License Agreement"
-msgstr "உரிம ஒப்பந்தத்தின்"
-
-msgid "Please review the license terms before proceeding."
-msgstr "தொடர்வதற்கு முன் உரிம விதிகளை மதிப்பாய்வு செய்யவும்."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "உரிம ஒப்பந்தத்தின் விதிகளை நான் படித்து ஒப்புக்கொள்கிறேன்."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "நீங்கள் மேடையில் வழிகாட்டி முடித்துவிட்டீர்கள்."

@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -669,6 +669,9 @@ msgstr "Käytä salausta"
 msgid "Enable administrators to change user passwords"
 msgstr "Salli ylläpidon vaihtaa salasanat"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Ota käyttöön samanaikainen kirjautuminen useaan järjestelmään"
 
@@ -802,27 +805,6 @@ msgstr "megatavua"
 
 msgid "percentage"
 msgstr "prosenttia"
-
-msgid "Enable automatic backups"
-msgstr "Ota käyttöön automaattiset varmuuskopiot"
-
-msgid "Daily"
-msgstr "Päivittäin"
-
-msgid "Weekly"
-msgstr "Viikoittain"
-
-msgid "Montly"
-msgstr "Kuukausittain"
-
-msgid "Remote"
-msgstr "Etä"
-
-msgid "Server"
-msgstr "Palvelin"
-
-msgid "Port"
-msgstr "Portti"
 
 msgid "Stats of the week:"
 msgstr "Viikkotilasto:"
@@ -1330,9 +1312,6 @@ msgstr "Asiainhallinta"
 msgid "Network settings"
 msgstr "Verkkoasetukset"
 
-msgid "Mode:"
-msgstr "Tila:"
-
 msgid "Root domain used for secondary sites"
 msgstr "Käytetään pääverkkotunnusta toissijaisille palveluille"
 
@@ -1347,6 +1326,9 @@ msgstr "Ota käyttöön palvelun käyttöehdot"
 
 msgid "Sites"
 msgstr "Palvelut"
+
+msgid "Mode:"
+msgstr "Tila:"
 
 msgid "Active"
 msgstr "Aktiivinen"
@@ -1951,14 +1933,8 @@ msgstr "Valitse erilainen käyttäjänimi."
 msgid "The user will receive an activation link via email."
 msgstr "Käyttäjä vastaanottaa aktivointilinkin sähköpostin välityksellä."
 
-msgid "License Agreement"
-msgstr "Lisenssisopimus"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Lue palvelun lisenssisopimuksen käyttöehdot ennen kuin jatkat."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Olen lukenut ja hyväksyn palvelun lisenssisopimuksen käyttöehdot."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Palvelun avustettu käyttöönotto valmis."

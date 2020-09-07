@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -669,6 +669,9 @@ msgstr "Aktivér kryptering"
 msgid "Enable administrators to change user passwords"
 msgstr "Tillad administratorer at ændre brugeradgangskoder"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Aktivér fler-side funktion"
 
@@ -802,27 +805,6 @@ msgstr "megabyte"
 
 msgid "percentage"
 msgstr "procent"
-
-msgid "Enable automatic backups"
-msgstr "Aktivér automatisk backup"
-
-msgid "Daily"
-msgstr "Dagligt"
-
-msgid "Weekly"
-msgstr "Ugentligt"
-
-msgid "Montly"
-msgstr "Månedligt"
-
-msgid "Remote"
-msgstr "Fjern"
-
-msgid "Server"
-msgstr "Server"
-
-msgid "Port"
-msgstr "Port"
 
 msgid "Stats of the week:"
 msgstr "Ugens statistik"
@@ -1330,9 +1312,6 @@ msgstr "Sagsadministration"
 msgid "Network settings"
 msgstr "Netværksindstillinger"
 
-msgid "Mode:"
-msgstr "Tilstand:"
-
 msgid "Root domain used for secondary sites"
 msgstr "Primært domænenavn der anvendes til underliggende sider"
 
@@ -1347,6 +1326,9 @@ msgstr "Aktivér servicebetingelserne"
 
 msgid "Sites"
 msgstr "Sider"
+
+msgid "Mode:"
+msgstr "Tilstand:"
 
 msgid "Active"
 msgstr "Aktiv"
@@ -1951,14 +1933,8 @@ msgstr "Vælg venligst et andet brugernavn."
 msgid "The user will receive an activation link via email."
 msgstr "Brugeren vil modtage et aktiveringslink på e-mail."
 
-msgid "License Agreement"
-msgstr "Licensaftale"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Gennemgå venligst licensbetingelserne før du fortsætter."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Jeg har læst og accepterer betingelserne i licensaftalen."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Du har gennemført platformguiden."

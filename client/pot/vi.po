@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -672,6 +672,9 @@ msgstr "Cho phép mã hóa"
 msgid "Enable administrators to change user passwords"
 msgstr "Cho phép các quản trị viên thay đổi mật khẩu người dùng"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Cho phép tính năng đa trang web"
 
@@ -805,27 +808,6 @@ msgstr "megabytes"
 
 msgid "percentage"
 msgstr "phần trăm"
-
-msgid "Enable automatic backups"
-msgstr "Cho phép sao lưu tự động"
-
-msgid "Daily"
-msgstr "Hàng ngày"
-
-msgid "Weekly"
-msgstr "Hàng tuần"
-
-msgid "Montly"
-msgstr "Hàng tháng"
-
-msgid "Remote"
-msgstr "Từ xa"
-
-msgid "Server"
-msgstr "Máy chủ"
-
-msgid "Port"
-msgstr "Cổng"
 
 msgid "Stats of the week:"
 msgstr "Thống kê của tuần:"
@@ -1333,9 +1315,6 @@ msgstr "Quản lý hồ sơ"
 msgid "Network settings"
 msgstr "Cài đặt mạng"
 
-msgid "Mode:"
-msgstr "Trạng thái:"
-
 msgid "Root domain used for secondary sites"
 msgstr "Tên miền gốc được sử dụng cho các trang web thứ cấp"
 
@@ -1350,6 +1329,9 @@ msgstr "Cho phép điều khoản dịch vụ"
 
 msgid "Sites"
 msgstr "Các trang web"
+
+msgid "Mode:"
+msgstr "Trạng thái:"
 
 msgid "Active"
 msgstr "Hoạt động"
@@ -1954,14 +1936,8 @@ msgstr "Xin hãy chọn tên người dùng khác."
 msgid "The user will receive an activation link via email."
 msgstr "Người dùng sẽ nhận được một liên kết kích hoạt qua email."
 
-msgid "License Agreement"
-msgstr "Hợp đồng sử dụng giấy phép"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Vui lòng xem lại các điều khoản giấy phép trước khi tiến hành."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Tôi đã đọc và đồng ý với các điều khoản của thỏa thuận cấp phép."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Bạn đã hoàn thành trình hướng dẫn nền tảng."

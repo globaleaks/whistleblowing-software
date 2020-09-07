@@ -43,7 +43,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -701,6 +701,9 @@ msgstr "Encryptie inschakelen"
 msgid "Enable administrators to change user passwords"
 msgstr "Stel administrators in staat om wachtwoorden van gebruikers te veranderen"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Functie voor meerdere-weblocaties inschakelen"
 
@@ -834,27 +837,6 @@ msgstr "megabytes"
 
 msgid "percentage"
 msgstr "percentage"
-
-msgid "Enable automatic backups"
-msgstr "Automatische back-ups inschakelen"
-
-msgid "Daily"
-msgstr "Dagelijks"
-
-msgid "Weekly"
-msgstr "Wekelijks"
-
-msgid "Montly"
-msgstr "Maandelijks"
-
-msgid "Remote"
-msgstr "Extern"
-
-msgid "Server"
-msgstr "Server"
-
-msgid "Port"
-msgstr "Poort"
 
 msgid "Stats of the week:"
 msgstr "Weekstatistieken:"
@@ -1362,9 +1344,6 @@ msgstr "Casus management"
 msgid "Network settings"
 msgstr "Netwerkinstellingen"
 
-msgid "Mode:"
-msgstr "Modus:"
-
 msgid "Root domain used for secondary sites"
 msgstr "Hoofddomein welke wordt gebruikt voor secondaire weblocaties"
 
@@ -1379,6 +1358,9 @@ msgstr "Gebruiksvoorwaarden inschakelen"
 
 msgid "Sites"
 msgstr "Weblocaties"
+
+msgid "Mode:"
+msgstr "Modus:"
 
 msgid "Active"
 msgstr "Actief"
@@ -1983,14 +1965,8 @@ msgstr "Kies een andere gebruikersnaam."
 msgid "The user will receive an activation link via email."
 msgstr "De gebruiker zal een activatiecode ontvangen via e-mail."
 
-msgid "License Agreement"
-msgstr "Licentie-overeenkomst"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Lees de licentie-voorwaarden alvorens verder te gaan."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Ik heb de voorwaarden van de licentie-overeenkomst gelezen en ga ermee akkoord."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Je hebt de wizard geheel doorlopen."

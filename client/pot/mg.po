@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -678,6 +678,9 @@ msgstr "Activer le chiffrement"
 msgid "Enable administrators to change user passwords"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Activer la fonction multisite"
 
@@ -811,27 +814,6 @@ msgstr ""
 
 msgid "percentage"
 msgstr ""
-
-msgid "Enable automatic backups"
-msgstr "Activer les sauvegardes automatiques"
-
-msgid "Daily"
-msgstr "Quotidiennes"
-
-msgid "Weekly"
-msgstr "Hebdomadaires"
-
-msgid "Montly"
-msgstr "Mensuelles"
-
-msgid "Remote"
-msgstr "Distantes"
-
-msgid "Server"
-msgstr "Serveur"
-
-msgid "Port"
-msgstr "Port"
 
 msgid "Stats of the week:"
 msgstr "Statistiques hebdomadaires :"
@@ -1339,9 +1321,6 @@ msgstr "Gestion des cas"
 msgid "Network settings"
 msgstr "Paramètres réseau"
 
-msgid "Mode:"
-msgstr "Mode :"
-
 msgid "Root domain used for secondary sites"
 msgstr "Domaine racine utilisé pour les sites secondaires"
 
@@ -1356,6 +1335,9 @@ msgstr "Activer les conditions générales d’utilisation"
 
 msgid "Sites"
 msgstr "Sites"
+
+msgid "Mode:"
+msgstr "Mode :"
 
 msgid "Active"
 msgstr "Actif"
@@ -1960,14 +1942,8 @@ msgstr ""
 msgid "The user will receive an activation link via email."
 msgstr ""
 
-msgid "License Agreement"
-msgstr "Contrat de licence"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Veuillez examiner les conditions de la licence avant de poursuivre."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "J’ai lu et accepte les conditions du contrat de licence."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Vous avez terminé avec succès l’assistant de la plateforme."

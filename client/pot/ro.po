@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -677,6 +677,9 @@ msgstr "Activează criptarea"
 msgid "Enable administrators to change user passwords"
 msgstr "Permite administratorilor să schimbe parolele utilizatorilor"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Activează funcționalitatea multi-site"
 
@@ -810,27 +813,6 @@ msgstr "megabytes"
 
 msgid "percentage"
 msgstr "procentaj"
-
-msgid "Enable automatic backups"
-msgstr "Activează backup-uri automate"
-
-msgid "Daily"
-msgstr "Zilnic"
-
-msgid "Weekly"
-msgstr "Săptămânal"
-
-msgid "Montly"
-msgstr "Lunar"
-
-msgid "Remote"
-msgstr "La distanță"
-
-msgid "Server"
-msgstr "Server"
-
-msgid "Port"
-msgstr "Port"
 
 msgid "Stats of the week:"
 msgstr "Statisticile săptămânii:"
@@ -1338,9 +1320,6 @@ msgstr "Managementul cazurilor"
 msgid "Network settings"
 msgstr "Setări de rețea"
 
-msgid "Mode:"
-msgstr "Mod:"
-
 msgid "Root domain used for secondary sites"
 msgstr "Domeniu pricipal utilizat pentru website-urile secundare"
 
@@ -1355,6 +1334,9 @@ msgstr "Activează termenii de utilizare"
 
 msgid "Sites"
 msgstr "Website-uri"
+
+msgid "Mode:"
+msgstr "Mod:"
 
 msgid "Active"
 msgstr "Activ"
@@ -1959,14 +1941,8 @@ msgstr "Te rugăm să folosești un nume de utilizator diferit."
 msgid "The user will receive an activation link via email."
 msgstr "Utilizatorul va primi prin email un link pentru activare."
 
-msgid "License Agreement"
-msgstr "Termeni și Condiții Licență"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Te rugăm să citești și să accepți termenii și condițiile licenței înainte de a continua."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Am citit și sunt de acord cu termenii și condițiile de folosire a licenței."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Ai finalizat cu succes."

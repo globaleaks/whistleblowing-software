@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -636,7 +636,7 @@ msgid "Tax code"
 msgstr "Código Fiscal"
 
 msgid "Administrators authorized to change user passwords"
-msgstr ""
+msgstr "Administradores autorizados a mudar as senhas dos usuários"
 
 msgid "Select the context of your report:"
 msgstr "Selecionar o assunto do seu envio:"
@@ -696,6 +696,9 @@ msgstr "Ativar criptografia"
 
 msgid "Enable administrators to change user passwords"
 msgstr "Permitir que administradores alterem senhas de usuários"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
 
 msgid "Enable multisite feature"
 msgstr "Ativar recurso multisite"
@@ -830,27 +833,6 @@ msgstr "megabytes"
 
 msgid "percentage"
 msgstr "porcentagem"
-
-msgid "Enable automatic backups"
-msgstr "Ativar backups automáticos"
-
-msgid "Daily"
-msgstr "Diariamente"
-
-msgid "Weekly"
-msgstr "Semanal"
-
-msgid "Montly"
-msgstr "Mensal"
-
-msgid "Remote"
-msgstr "Remoto"
-
-msgid "Server"
-msgstr "Servidor"
-
-msgid "Port"
-msgstr "Porta"
 
 msgid "Stats of the week:"
 msgstr "Estatísticas da semana:"
@@ -1358,9 +1340,6 @@ msgstr "Gestão de caso"
 msgid "Network settings"
 msgstr "Configurações de rede"
 
-msgid "Mode:"
-msgstr "Modo:"
-
 msgid "Root domain used for secondary sites"
 msgstr "Domínio raiz usado para sites secundários"
 
@@ -1375,6 +1354,9 @@ msgstr "Ativar termos de serviço"
 
 msgid "Sites"
 msgstr "Sites"
+
+msgid "Mode:"
+msgstr "Modo:"
 
 msgid "Active"
 msgstr "Ativado"
@@ -1811,7 +1793,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "Recomendamos que você acesse a seção \"Preferências\" a fim de recuperar sua \"Chave de Recuperação de Conta\" e armazená-la com segurança. Esta chave será necessária para recuperar seu acesso à plataforma e aos seus dados, caso você esqueça sua senha."
 
 msgid "Files attached by recipients"
 msgstr "Arquivos anexados por destinatários"
@@ -1979,14 +1961,8 @@ msgstr "Por favor, escolha um nome de usuário diferente."
 msgid "The user will receive an activation link via email."
 msgstr "O usuário receberá um link de ativação por email."
 
-msgid "License Agreement"
-msgstr "Contrato de licença"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Por favor, revise os termos da licença antes de continuar."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Li e aceito os termos do contrato de licença."
+msgid "I have read and agree to the terms of the license."
+msgstr "Eu li e concordo com os termos da licença."
 
 msgid "You have completed the platform wizard."
 msgstr "Você concluiu o assistente de plataforma."

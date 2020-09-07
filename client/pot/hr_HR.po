@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -668,6 +668,9 @@ msgstr "Omogući enkripciju"
 msgid "Enable administrators to change user passwords"
 msgstr "Omogući administratorima da promjene korisničke lozinke"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Omogući multisite značajku"
 
@@ -801,27 +804,6 @@ msgstr "megabajta"
 
 msgid "percentage"
 msgstr "postotak"
-
-msgid "Enable automatic backups"
-msgstr "Omogući automatske sigurnosne kopije"
-
-msgid "Daily"
-msgstr "Dnevno"
-
-msgid "Weekly"
-msgstr "Tjedno"
-
-msgid "Montly"
-msgstr "Mjesečno"
-
-msgid "Remote"
-msgstr "Udaljeno"
-
-msgid "Server"
-msgstr "Poslužitelj"
-
-msgid "Port"
-msgstr "Port"
 
 msgid "Stats of the week:"
 msgstr "Statistike tjedna:"
@@ -1329,9 +1311,6 @@ msgstr "Upravljanje slučajima"
 msgid "Network settings"
 msgstr "Mrežne postavke"
 
-msgid "Mode:"
-msgstr "Način rada:"
-
 msgid "Root domain used for secondary sites"
 msgstr "Korijenska domena korištena za sekundarne stranice"
 
@@ -1346,6 +1325,9 @@ msgstr "Omogući uvjete pružanja usluge"
 
 msgid "Sites"
 msgstr "Stranice"
+
+msgid "Mode:"
+msgstr "Način rada:"
 
 msgid "Active"
 msgstr "Aktivno"
@@ -1950,14 +1932,8 @@ msgstr "Molimo da odaberete drugo korisničko ime."
 msgid "The user will receive an activation link via email."
 msgstr "Korisnik će primiti aktivacijsku poveznicu elektronskom poštom."
 
-msgid "License Agreement"
-msgstr "Dogovor o licenci"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Molimo pregledajte uvjete licence prije nego nastavite."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Pročitao/la sam uvjete Dogovora o licenci i slažem se s njima."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Završili ste čarobnjak za platformu."

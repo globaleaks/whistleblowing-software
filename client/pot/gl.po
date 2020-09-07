@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -666,6 +666,9 @@ msgstr "Activar cifrado"
 msgid "Enable administrators to change user passwords"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Habilitar características de multisite"
 
@@ -799,27 +802,6 @@ msgstr ""
 
 msgid "percentage"
 msgstr ""
-
-msgid "Enable automatic backups"
-msgstr "Activar copias de seguridade automáticas"
-
-msgid "Daily"
-msgstr "Diario"
-
-msgid "Weekly"
-msgstr "Semanalmente"
-
-msgid "Montly"
-msgstr "Mensualmente"
-
-msgid "Remote"
-msgstr "Remoto"
-
-msgid "Server"
-msgstr "Servidor"
-
-msgid "Port"
-msgstr "Porto"
 
 msgid "Stats of the week:"
 msgstr "Estatísticas da semana:"
@@ -1327,9 +1309,6 @@ msgstr "Xestión de casos"
 msgid "Network settings"
 msgstr "Configuración de rede"
 
-msgid "Mode:"
-msgstr "Modo:"
-
 msgid "Root domain used for secondary sites"
 msgstr "Dominio raíz usado para sitios secundarios"
 
@@ -1344,6 +1323,9 @@ msgstr "Habilitar os termos do servizo"
 
 msgid "Sites"
 msgstr "Sitios"
+
+msgid "Mode:"
+msgstr "Modo:"
 
 msgid "Active"
 msgstr "Activo"
@@ -1948,14 +1930,8 @@ msgstr ""
 msgid "The user will receive an activation link via email."
 msgstr ""
 
-msgid "License Agreement"
-msgstr "Acordo de licenza"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Revisa os termos da licenza antes de continuar."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Lin e acepto os termos do Acordo de licenza."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Completou o asistente de plataforma."

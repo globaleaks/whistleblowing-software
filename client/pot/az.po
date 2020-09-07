@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -667,6 +667,9 @@ msgstr ""
 msgid "Enable administrators to change user passwords"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr ""
 
@@ -800,27 +803,6 @@ msgstr ""
 
 msgid "percentage"
 msgstr ""
-
-msgid "Enable automatic backups"
-msgstr ""
-
-msgid "Daily"
-msgstr ""
-
-msgid "Weekly"
-msgstr ""
-
-msgid "Montly"
-msgstr ""
-
-msgid "Remote"
-msgstr ""
-
-msgid "Server"
-msgstr ""
-
-msgid "Port"
-msgstr "Port"
 
 msgid "Stats of the week:"
 msgstr "Həftənin statistikaları:"
@@ -1328,9 +1310,6 @@ msgstr ""
 msgid "Network settings"
 msgstr "Şəbəkə tənzimləmələri"
 
-msgid "Mode:"
-msgstr ""
-
 msgid "Root domain used for secondary sites"
 msgstr ""
 
@@ -1345,6 +1324,9 @@ msgstr ""
 
 msgid "Sites"
 msgstr "Saytlar"
+
+msgid "Mode:"
+msgstr ""
 
 msgid "Active"
 msgstr "Aktiv"
@@ -1949,14 +1931,8 @@ msgstr ""
 msgid "The user will receive an activation link via email."
 msgstr ""
 
-msgid "License Agreement"
-msgstr "Lisenziya müqaviləsi"
-
-msgid "Please review the license terms before proceeding."
-msgstr "Davam etməmişdən əvvəl lisenziya şərtlərini nəzərdən keçirin."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "Lisenziyanın şərtlərini oxudum və razıyam."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Platforma artıq hazırdır. "

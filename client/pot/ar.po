@@ -42,7 +42,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -700,6 +700,9 @@ msgstr "تمكين التعمية"
 msgid "Enable administrators to change user passwords"
 msgstr "تمكين المدراء من تغيير كلمات سر المستخدمين"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "تمكين خاصية تعدد المواقع"
 
@@ -833,27 +836,6 @@ msgstr "بالميغابايت"
 
 msgid "percentage"
 msgstr "بالنسبة المئوية"
-
-msgid "Enable automatic backups"
-msgstr "تمكين النسخ الإحتياطية التلقائية"
-
-msgid "Daily"
-msgstr "يوميا"
-
-msgid "Weekly"
-msgstr "أسبوعيا"
-
-msgid "Montly"
-msgstr "شهريا"
-
-msgid "Remote"
-msgstr "عن بعد"
-
-msgid "Server"
-msgstr "الخادم"
-
-msgid "Port"
-msgstr "منفذ"
 
 msgid "Stats of the week:"
 msgstr "احصائيّات الأسبوع"
@@ -1361,9 +1343,6 @@ msgstr "إدارة حالة"
 msgid "Network settings"
 msgstr "اعدادات الشبكة"
 
-msgid "Mode:"
-msgstr "الوضع:"
-
 msgid "Root domain used for secondary sites"
 msgstr "النطاق الرئيسي المستخدم في المواقع الثانوية"
 
@@ -1378,6 +1357,9 @@ msgstr "تمكين شروط الخدمة"
 
 msgid "Sites"
 msgstr "المواقع"
+
+msgid "Mode:"
+msgstr "الوضع:"
 
 msgid "Active"
 msgstr "نشيط"
@@ -1982,14 +1964,8 @@ msgstr "من فضلك قم باختيار إسم مستخدم آخر."
 msgid "The user will receive an activation link via email."
 msgstr "سوف يستقبل المستخدم رابط التفعيل عبر البريد الإلكتروني."
 
-msgid "License Agreement"
-msgstr "اتفاقية الترخيص"
-
-msgid "Please review the license terms before proceeding."
-msgstr "يرجى مراجعة بنود الترخيص قبل المتابعة."
-
-msgid "I have read and agree to the terms of the License Agreement."
-msgstr "لقد قرأت بنود اتفاقية الترخيص وأوافق عليها."
+msgid "I have read and agree to the terms of the license."
+msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "لقد اتممتم معالج المنصّة بنجاح."

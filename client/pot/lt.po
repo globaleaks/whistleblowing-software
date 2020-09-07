@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-08-25 14:22+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-06 09:46+0000\n"
+"Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/otf/globaleaks/language/lt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -663,6 +663,9 @@ msgstr "Įgalinti šifravimą"
 msgid "Enable administrators to change user passwords"
 msgstr "Leisti administratoriams keisti naudotojų slaptažodžius"
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr "Įgalinti daugiavietę funkciją"
 
@@ -796,27 +799,6 @@ msgstr "megabaitai"
 
 msgid "percentage"
 msgstr "procentai"
-
-msgid "Enable automatic backups"
-msgstr "Įgalinti automatinį atsarginės kopijos kūrimą"
-
-msgid "Daily"
-msgstr "Kasdien"
-
-msgid "Weekly"
-msgstr "Kas savaitę"
-
-msgid "Montly"
-msgstr "Kas mėnesį"
-
-msgid "Remote"
-msgstr "Nuotolinis"
-
-msgid "Server"
-msgstr "Serveris"
-
-msgid "Port"
-msgstr "Prievadas"
 
 msgid "Stats of the week:"
 msgstr "Savaitės statistika:"
@@ -1324,9 +1306,6 @@ msgstr "Atvejo valdymas"
 msgid "Network settings"
 msgstr "Tinklo nustatymai"
 
-msgid "Mode:"
-msgstr "Režimas"
-
 msgid "Root domain used for secondary sites"
 msgstr ""
 
@@ -1341,6 +1320,9 @@ msgstr "Įgalinti paslaugų sąlygas"
 
 msgid "Sites"
 msgstr "Svetainės"
+
+msgid "Mode:"
+msgstr "Režimas"
 
 msgid "Active"
 msgstr "Aktyvi"
@@ -1761,7 +1743,7 @@ msgid "Recipient list"
 msgstr ""
 
 msgid "Status:"
-msgstr ""
+msgstr "Būsena:"
 
 msgid "Attached files for the whistleblower"
 msgstr ""
@@ -1945,13 +1927,7 @@ msgstr ""
 msgid "The user will receive an activation link via email."
 msgstr ""
 
-msgid "License Agreement"
-msgstr ""
-
-msgid "Please review the license terms before proceeding."
-msgstr ""
-
-msgid "I have read and agree to the terms of the License Agreement."
+msgid "I have read and agree to the terms of the license."
 msgstr ""
 
 msgid "You have completed the platform wizard."

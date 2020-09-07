@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-06-14 16:46+0000\n"
+"PO-Revision-Date: 2020-09-05 09:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -600,6 +600,9 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords"
+msgstr ""
+
 msgid "Select the context of your report:"
 msgstr "აირჩიეთ კონტექსტში თქვენი წარმოდგენის:"
 
@@ -659,6 +662,9 @@ msgstr ""
 msgid "Enable administrators to change user passwords"
 msgstr ""
 
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
 msgid "Enable multisite feature"
 msgstr ""
 
@@ -683,12 +689,6 @@ msgstr "ჩართვა საძიებო სისტემებში 
 
 msgid "Description"
 msgstr "აღწერა"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
-
-msgid "Invalid input format."
-msgstr "არასწორი შეყვანის ფორმატი"
 
 msgid "Enable custom privacy panel"
 msgstr "მორგებული კონფიდენციალურობის პანელი"
@@ -799,32 +799,8 @@ msgstr ""
 msgid "percentage"
 msgstr ""
 
-msgid "Enable automatic backups"
-msgstr ""
-
-msgid "Daily"
-msgstr ""
-
-msgid "Weekly"
-msgstr ""
-
-msgid "Montly"
-msgstr ""
-
-msgid "Remote"
-msgstr ""
-
-msgid "Server"
-msgstr ""
-
-msgid "Port"
-msgstr "პორტი"
-
 msgid "Stats of the week:"
 msgstr "სტატისტიკა კვირაში:"
-
-msgid "Free disk space"
-msgstr "თავისუფალი ადგილი მყარ დისკზე"
 
 msgid "Event ID"
 msgstr "თარიღის ID"
@@ -838,6 +814,9 @@ msgstr "ღონისძიებები"
 msgid "Response time"
 msgstr "რეაგირების დრო"
 
+msgid "ID"
+msgstr ""
+
 msgid "Role"
 msgstr "როლი"
 
@@ -846,9 +825,6 @@ msgstr "სახელი"
 
 msgid "Last access"
 msgstr "ბოლო შესვლა"
-
-msgid "ID"
-msgstr ""
 
 msgid "State"
 msgstr "სახელმწიფო"
@@ -1036,7 +1012,7 @@ msgstr ""
 msgid "Restrict access to specific IP addresses"
 msgstr ""
 
-msgid "Whitelisted IP addresses"
+msgid "Allowed IP addresses"
 msgstr ""
 
 msgid "Admin"
@@ -1056,6 +1032,9 @@ msgstr "მაგალითად:"
 
 msgid "Hostname"
 msgstr ""
+
+msgid "Invalid input format."
+msgstr "არასწორი შეყვანის ფორმატი"
 
 msgid "Input should be similar to:"
 msgstr ""
@@ -1326,9 +1305,6 @@ msgstr ""
 msgid "Network settings"
 msgstr ""
 
-msgid "Mode:"
-msgstr ""
-
 msgid "Root domain used for secondary sites"
 msgstr ""
 
@@ -1342,6 +1318,9 @@ msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
+msgstr ""
+
+msgid "Mode:"
 msgstr ""
 
 msgid "Active"
@@ -1774,6 +1753,13 @@ msgstr ""
 msgid "Logout"
 msgstr "გამოსვლა"
 
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr ""
+
 msgid "Files attached by recipients"
 msgstr ""
 
@@ -1863,6 +1849,15 @@ msgstr ""
 msgid "The specified input is not valid."
 msgstr ""
 
+msgid "The specified input is not valid:"
+msgstr ""
+
+msgid "please enter a valid email address."
+msgstr ""
+
+msgid "please enter numbers only."
+msgstr ""
+
 msgid "Submissions disabled"
 msgstr ""
 
@@ -1925,24 +1920,13 @@ msgstr ""
 msgid "Please choose a configuration profile:"
 msgstr ""
 
-msgid ""
-"These profiles contain settings used by successful projects in each "
-"respective field."
-msgstr ""
-
 msgid "Please choose a different username."
 msgstr ""
 
 msgid "The user will receive an activation link via email."
 msgstr ""
 
-msgid "License Agreement"
-msgstr ""
-
-msgid "Please review the license terms before proceeding."
-msgstr ""
-
-msgid "I have read and agree to the terms of the License Agreement."
+msgid "I have read and agree to the terms of the license."
 msgstr ""
 
 msgid "You have completed the platform wizard."
