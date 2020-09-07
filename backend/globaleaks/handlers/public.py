@@ -10,7 +10,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import get_localized_values
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.models.enums import EnumContextStatus
-from globaleaks.orm import db_query, transact
+from globaleaks.orm import db_get, db_query, transact
 from globaleaks.state import State
 from globaleaks.utils.sets import merge_dicts
 
@@ -114,12 +114,10 @@ def db_get_submission_status(session, tid, status_id, language):
     :param language: The language to be used in the serialization
     :return: The serialized descriptor of the indicated submission status
     """
-    status = session.query(models.SubmissionStatus) \
-                   .filter(models.SubmissionStatus.tid == tid,
-                           models.SubmissionStatus.id == status_id).one_or_none()
-
-    if status is None:
-        raise errors.ResourceNotFound
+    status = db_get(session,
+                    models.SubmissionStatus,
+                    (models.SubmissionStatus.tid == tid,
+                     models.SubmissionStatus.id == status_id))
 
     return serialize_submission_status(session, status, language)
 
