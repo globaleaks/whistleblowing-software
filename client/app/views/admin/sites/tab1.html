@@ -19,6 +19,12 @@
           <span data-translate>Allow users to sign up</span>
         </label>
       </div>
+      <div class="form-group" data-ng-if="resources.node.multisite">
+        <label>
+          <input data-ng-model="resources.node.multisite_login" type="checkbox" />
+          <span data-translate>Enable multi-site login</span>
+        </label>
+      </div>
       <div data-ng-if="resources.node.enable_signup">
         <div class="form-group">
           <label>
