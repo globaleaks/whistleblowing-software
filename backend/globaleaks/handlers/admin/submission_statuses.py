@@ -9,7 +9,7 @@ from globaleaks.handlers.public import db_get_submission_status, \
     db_get_submission_statuses, serialize_submission_status, \
     serialize_submission_substatus
 from globaleaks.models import fill_localized_keys
-from globaleaks.orm import db_del, transact, tw
+from globaleaks.orm import db_del, db_get, transact, tw
 from globaleaks.rest import requests
 
 
@@ -56,12 +56,10 @@ def db_update_submission_status(session, tid, status_id, request, language):
     :param language: The language of the request
     :return: The serialized descriptor of the updated object
     """
-    status = session.query(models.SubmissionStatus) \
-                   .filter(models.SubmissionStatus.tid == tid,
-                           models.SubmissionStatus.id == status_id).one_or_none()
-
-    if status is None:
-        raise errors.ResourceNotFound
+    status = db_get(session,
+                    models.SubmissionStatus,
+                    (models.SubmissionStatus.tid == tid,
+                     models.SubmissionStatus.id == status_id))
 
     db_update_status_model_from_request(status, request, language)
 
@@ -90,14 +88,12 @@ def db_update_submission_substatus(session, tid, status_id, substatus_id, reques
     :param language: The language of the request
     :return: The serialized descriptor of the updated object
     """
-    substatus = session.query(models.SubmissionSubStatus) \
-                      .filter(models.SubmissionStatus.id == status_id,
-                              models.SubmissionStatus.tid == tid,
-                              models.SubmissionSubStatus.submissionstatus_id == status_id,
-                              models.SubmissionSubStatus.id == substatus_id).one()
-
-    if substatus is None:
-        raise errors.ResourceNotFound
+    substatus = db_get(session,
+                       models.SubmissionSubStatus,
+                       (models.SubmissionStatus.id == status_id,
+                        models.SubmissionStatus.tid == tid,
+                        models.SubmissionSubStatus.submissionstatus_id == status_id,
+                        models.SubmissionSubStatus.id == substatus_id))
 
     db_update_substatus_model_from_request(substatus, request, language)
 
