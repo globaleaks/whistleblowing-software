@@ -938,7 +938,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
     },
 
     isWhistleblowerPage: function() {
-      return ["homepage", "submissionpage", "receiptpage", "tippage"].indexOf($rootScope.page) !== -1;
+      return ["/", "/submission"].indexOf($location.path()) !== -1;
     },
 
     classExtension: function() {

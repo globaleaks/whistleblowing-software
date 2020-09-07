@@ -52,7 +52,7 @@
 
     <div id="PageContent" class="ng-cloak" data-ng-if="started" data-ng-class="Utils.classExtension()">
       <div data-ng-if="!public.node.root_tenant && public.node.mode === 'demo'" data-ng-include="'views/partials/demo.html'"></div>
-      <div data-ng-if="!public.node.disable_privacy_badge" data-ng-include="'views/partials/privacybadge.html'"></div>
+      <div data-ng-if="Utils.isWhistleblowerPage() && !public.node.disable_privacy_badge" data-ng-include="'views/partials/privacybadge.html'"></div>
       <div data-ng-if="!embedded" data-ng-include="'views/partials/header.html'"></div>
       <div id="MessagesConsoleBox" data-ng-include="'views/partials/messageconsole.html'"></div>
       <div id="ContentBox">
