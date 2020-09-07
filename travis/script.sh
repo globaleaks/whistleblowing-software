@@ -5,10 +5,15 @@ set -e
 TRAVIS_USR="travis-$(git rev-parse --short HEAD)"
 
 LOGFILE="$TRAVIS_BUILD_DIR/backend/workingdir/log/globaleaks.log"
+ACCESSLOG="$TRAVIS_BUILD_DIR/backend/workingdir/log/access.log"
 
 function atexit {
-  if [[ ! $? -eq 0 && -f $LOGFILE ]]; then
+  if [[ -f $LOGFILE ]]; then
     cat $LOGFILE
+  fi
+
+  if [[ -f $ACCESSLOG ]]; then
+    cat $ACCESSLOG
   fi
 }
 
@@ -70,6 +75,7 @@ if [ "$GLTEST" = "test" ]; then
   fi
 elif [ "$GLTEST" = "build_and_install" ]; then
   LOGFILE="/var/globaleaks/log/globaleaks.log"
+  ACCESSLOG="/var/globaleaks/log/accesslog.log"
 
   sudo apt-get install -y debootstrap
 
@@ -104,8 +110,6 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo chroot "$chroot" chown builduser -R /build
   sudo chroot "$chroot" su - builduser /bin/bash -c '/build/GlobaLeaks/travis/build_and_install.sh'
 elif [[ $GLTEST =~ ^end2end-.* ]]; then
-  LOGFILE="$TRAVIS_BUILD_DIR/backend/workingdir/log/globaleaks.log"
-
   echo "Running Browsertesting on Saucelabs"
 
   declare -a capabilities=(
