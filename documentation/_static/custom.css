@@ -22,14 +22,21 @@
   src: url('./fonts/metropolis-all-700-normal.woff') format('woff');
 }
 
-* {
+*,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+legend,
+.rst-content .toctree-wrapper p.caption {
   font-family: 'Metropolis', Helvetica, Arial, sans-serif;
   color: #333840;
 }
 
 a {
   color: #3877BC;
-  font-weight: bold;
 }
 
 /* Sidebar header (and topbar for mobile) */
