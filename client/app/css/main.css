@@ -97,8 +97,8 @@ table {
 }
 
 .default-logo {
-  height: 3rem;
-  width: 3rem;
+  height: 2.4rem;
+  width: 2.4rem;
 }
 
 [dir="ltr"] #LogoBox {
@@ -121,7 +121,7 @@ table {
 
 #TitleBox {
   display: inline-flex;
-  font-size: 2rem;
+  font-size: 1.6rem;
   line-height: 1;
   font-weight: bold;
   white-space: pre-wrap;
@@ -435,7 +435,8 @@ a.active, a:active.active, a:hover.active, a:focus.active {
   white-space: pre-wrap;
 }
 
-#WhistleblowerSubmitBox, #WhistleblowerReceiptBox {
+#WhistleblowerSubmitBox,
+#WhistleblowerLoginBox {
   font-size: 1.2rem;
 }
 
