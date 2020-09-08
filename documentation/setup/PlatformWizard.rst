@@ -3,7 +3,7 @@ Platform Wizard
 ===============
 After installing of GlobaLeaks you can proceed with the platform wizard.
 
-Open a browser at port 80 or port 8082 on your local or remote IP respectively.
+Open a browser at port 80 or port 8082 on your remote or local IP respectively.
 
 Choose the Primary Language for Your Site
 -----------------------------------------
