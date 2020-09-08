@@ -51,6 +51,10 @@ a {
   color: #FFF;
 }
 
+.wy-nav-content img {
+  border: 1px solid #333840;
+}
+
 @media screen and (min-width: 767px) {
   .wy-nav-content {
     max-width: 100% !important;
