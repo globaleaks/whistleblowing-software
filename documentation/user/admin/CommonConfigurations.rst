@@ -6,7 +6,7 @@ Configure the Logo
 
 The first thing you want to give to your whistleblowing site is a branding identity; this could be done by loading a logo in section Site settings / Main configuration.
 
-.. image:: imgs/site_settings.png
+.. image:: ../../images/admin/site_settings_logo_detail.png
 
 Scroll down along the page to reach the "Save" button, click on it and have your logo and favicon applied.
 
@@ -19,7 +19,7 @@ To do so, in the section "Site settings / Languages" select the languages you wo
 
 Note that in the same interface you can mark the default application language.
 
-.. image:: imgs/languages.png
+.. image:: ../../images/admin/site_settings_languages_detail.png
 
 Configure Notification Settings
 -------------------------------
@@ -27,7 +27,7 @@ GlobaLeaks sends out notifications of different events to different receivers an
 
 We suggest you to setup an email account dedicated to sending out notifications from your initiative.
 
-.. image:: imgs/notification_settings.png
+.. image:: ../../images/admin/notification_settings_detail.png
 
 Enter the followings:
 
@@ -83,7 +83,7 @@ This CSS example shows how to customize the font of the application.
 
    @font-face {
      font-family: 'Antani';
-     src: url('static/antani.ttf') format('truetype');
+     src: url('s/antani.ttf') format('truetype');
      font-weight: normal;
      font-style: normal;
    }

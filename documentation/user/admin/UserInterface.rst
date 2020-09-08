@@ -7,7 +7,7 @@ Anytime you log in as administrator via the Login page the application takes you
 
 From this Home page you may access all the common user facilities already described in the general User Documentation.
 
-.. image:: imgs/home.png
+.. image:: ../../images/admin/home.png
 
 A menu on the right offers you links to the different administative sections:
 
@@ -49,19 +49,19 @@ Main Configuration
 ..................
 In this section is configurable the logo and all the texts of the main user interfaces.
 
-.. image:: imgs/site_settings.png
+.. image:: ../../images/admin/site-settings-main-configuration.png
 
 Theme Customization
 ...................
 In this section could be loaded CSS and Javascript files necessary to customize the interface.
 
-.. image:: imgs/theme_customization.png
+.. image:: ../../images/admin/site-settings-theme-customization.png
 
 Files
 .....
 In this section could be loaded any file that need to be served via the platform to whistleblowers (e.g. a policy in PDF) or that are required by your CSS and Javascript customization.
 
-.. image:: imgs/files.png
+.. image:: ../../images/admin/site-settings-files.png
 
 Languages
 .........
@@ -70,13 +70,13 @@ In this section you could enable all the languages required by your project and 
 .. note::
    Thanks to the `Localization Lab <https://www.localizationlab.org/>`_ and our great voluneer comminity, the software is already available and continously made available in a lot of languages. This aspect of internationalization is crucial in many projects. In case you are starting a project and the required languages are not available we strongly invite you to register on our `web translation platform <https://www.transifex.com/otf/globaleaks/>`_ offered by `Transifex <https://www.transifex.com/otf/globaleaks/>`_ and support yourself the translation. Internationalization and Localization is in fact are crucial for the success of a whistleblowing project. Thank you!
 
-.. image:: imgs/languages.png
+.. image:: ../../images/admin/site-settings-languages.png
 
 Text Customization
 ..................
 Here could be confiured overrides for any of the texts of the platform and of their translation.
 
-.. image:: imgs/text_customization.png
+.. image:: ../../images/admin/site-settings-text-customization.png
 
 Users
 -----
@@ -85,7 +85,7 @@ The system with the basic configuration completed with the initial Platform wiza
 
 Depending on your project needs here you could create users with different roles and manage their respective privileges.
 
-.. image:: imgs/users.png
+.. image:: ../../images/admin/users.png
 
 User Roles
 ..........
@@ -119,11 +119,11 @@ The system with its basic configuration completed with the initial Platform wiza
 
 Depending on your project needs you could create specific questionnaire for each of your different reports' contexts.
 
-.. image:: imgs/questionnaires.png
+.. image:: ../../images/admin/questionnaires.png
 
 Depending on your project needs you may evaluate defining some questions once as Question Templates and reuse the same question in multiple questionnaires.
 
-.. image:: imgs/question_templates.png
+.. image:: ../../images/admin/question-templates.png
 
 Steps
 .....
@@ -205,7 +205,7 @@ The system with the basic configuration completed with the initial platform wiza
 
 Depending on your project needs here you could create additional Contexts and configure their respective recipients and properties.
 
-.. image:: imgs/contexts.png
+.. image:: ../../images/admin/contexts.png
 
 Submissions Expiration
 ......................
@@ -230,7 +230,7 @@ By default the system includes the following report statuses:
 
 Within this section you may add additional Statuses between the State Open and Closed and you can furtherly define Substatuses for the Closed status (e.g. Archived / Spam)
 
-.. image:: imgs/report_statuses.png
+.. image:: ../../images/admin/report_statuses.png
 
 Notification Settings
 ---------------------
@@ -248,7 +248,7 @@ Here are configured the techinical details about SMTP.
 .. note::
    By default Globaleaks comes with a working configuration that is based on systems offered by the GlobaLeaks developers to the community of users and testers; even though this configuration is designed by their owners with special care in relation to security and privacy you are invited to consider using alternative systems for your production enviroment.
 
-.. image:: imgs/notification_settings.png
+.. image:: ../../images/admin/notification_settings.png
 
 Notification Templates
 ......................
@@ -257,7 +257,7 @@ In this section are configured the notification templates.
 By default globaleaks includes text and translations for each of the templates that are provided to be fully functional and studied with particular care in relation to security and privacy.
 Depending on your project needs you may override the default text with your customized texts.
 
-.. image:: imgs/notification_templates.png
+.. image:: ../../images/admin/notification_templates.png
 
 Network Settings
 ----------------
@@ -274,7 +274,7 @@ HTTPS
 .....
 Here you can configure all the aspects related to the access of the platform via the HTTPS Protocol.
 
-.. image:: imgs/https.png
+.. image:: ../../images/admin/https.png
 
 In particular here are configured:
 
@@ -288,13 +288,13 @@ Tor
 ...
 Here you can configure all the aspects related to the access of the platform via the Tor Protocol.
 
-.. image:: imgs/tor.png
+.. image:: ../../images/admin/tor.png
 
 IP Access Control
 .................
 Here you can configure IP based Access Control.
 
-.. image:: imgs/access_control.png
+.. image:: ../../images/admin/access_control.png
 
 Suggested configurations are:
 
@@ -302,28 +302,34 @@ Suggested configurations are:
 
    2. Restrict Recipients access to their intranet.
 
+Url Redirects
+..................
+Here you can configure URL Redirects.
+
+.. image:: ../../images/admin/url_redirects.png
+
 Advanced Settings
 -----------------
 TODO
 
-.. image:: imgs/advanced_settings.png
+.. image:: ../../images/admin/advanced_settings.png
 
-.. image:: imgs/url_redirects.png
-
-.. image:: imgs/anomaly_thresholds.png
+.. image:: ../../images/admin/anomaly_thresholds.png
 
 Audit Log
 ---------------
 TODO
 
-.. image:: imgs/audit_log1.png
+.. image:: ../../images/admin/audit_log.png
 
-.. image:: imgs/audit_log2.png
+.. image:: ../../images/admin/audit_log_stats.png
 
-.. image:: imgs/audit_log3.png
+.. image:: ../../images/admin/audit_log_activities.png
 
-.. image:: imgs/audit_log4.png
+.. image:: ../../images/admin/audit_log_users.png
 
-.. image:: imgs/audit_log5.png
+.. image:: ../../images/admin/audit_log_reports.png
 
-.. image:: imgs/audit_log6.png
+.. image:: ../../images/admin/admin/audit_log_anomalies.png
+
+.. image:: ../../images/admin/admin/audit_log_scheduled_jobs.png
