@@ -94,6 +94,25 @@ exports.waitForFile = function (filename, timeout) {
   }, t);
 };
 
+exports.takeScreenshot = async function(filename, locator) {
+  if (!locator) {
+    locator = browser;
+  }
+
+  await browser.driver.manage().window().setSize(1280, 768);
+
+  var height = await element(by.css('body')).getAttribute('scrollHeight');
+  await browser.driver.manage().window().setSize(1280, parseInt(height));
+
+  await browser.waitForAngular();
+
+  await locator.takeScreenshot().then(function (png) {
+    var stream = fs.createWriteStream('../documentation/images/' + filename);
+    stream.write(new Buffer(png, 'base64'));
+    stream.end();
+  });
+}
+
 exports.login_whistleblower = async function(receipt) {
   await browser.get("/#/");
   await element(by.model("formatted_receipt")).sendKeys(receipt);
