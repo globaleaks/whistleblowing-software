@@ -55,4 +55,19 @@ describe("admin configure languages", function() {
 
     await element.all(by.cssContainingText("button", "Save")).get(1).click();
   });
+
+  it("should configure italian texts", async function() {
+    await browser.setLocation("admin/content");
+
+    // Switch to Italian
+    await element(by.model("GLTranslate.state.language")).element(by.xpath(".//*[text()='Italiano']")).click();
+    await element(by.model("resources.node.header_title_homepage")).clear();
+    await element(by.model("resources.node.header_title_homepage")).sendKeys("TEXT1_IT");
+    await element(by.model("resources.node.presentation")).clear();
+    await element(by.model("resources.node.presentation")).sendKeys("TEXT2_IT");
+    await element.all(by.cssContainingText("button", "Salva")).get(0).click();
+
+    // Switch back to English
+    await element(by.model("GLTranslate.state.language")).element(by.xpath(".//*[text()='English']")).click();
+  });
 });
