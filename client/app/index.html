@@ -58,7 +58,7 @@
       <div id="ContentBox">
 	<div class="row">
           <div data-ng-if="sidebar" id="Sidebar" class="col-md-2 flex-column" data-ng-include="sidebar"></div>
-          <div data-ng-class="{'col-md-10': sidebar, 'col-md-12': !sidebar}" data-ng-view=""></div>
+          <div id="Content" data-ng-class="{'col-md-10': sidebar, 'col-md-12': !sidebar}" data-ng-view=""></div>
         </div>
       </div>
     </div>
