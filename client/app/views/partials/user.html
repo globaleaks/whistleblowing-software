@@ -1,8 +1,8 @@
-<div data-ng-hide="Authentication.session.password_change_needed" class="mb-2">
-  <div id="LanguagePickerBox" data-ng-if="public.node.languages_enabled.length > 1" class="mb-2 clearfix">
+<div data-ng-hide="Authentication.session.password_change_needed">
+  <div id="LanguagePickerBox" data-ng-if="public.node.languages_enabled.length > 1" data-ng-class="{'mb-2': Utils.showUserStatusBox()}" class="clearfix">
     <select class="float-right form-control" data-ng-model="GLTranslate.state.language" data-ng-options="item.code as item.native for item in languages_enabled_selector | orderBy:'native'"></select>
   </div>
-  <div id="LoginStatusBox" class="clearfix" data-ng-if="Utils.showUserStatusBox()">
+  <div id="LoginStatusBox" data-ng-if="Utils.showUserStatusBox()" class="clearfix">
     <div class="float-right">
       <span id="UsernameBox" data-ng-if="Authentication.session.role !== 'whistleblower'">
         <label>{{preferences.name}}</label>
