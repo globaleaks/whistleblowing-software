@@ -9,7 +9,6 @@
   "test-admin-assign-key-escrow.js",
   "test-admin-tenants.js",
   "test-admin-configure-languages.js",
-  "test-admin-configure-node.js",
   "test-admin-configure-css.js",
   "test-admin-custom-file.js",
   "test-internationalization.js",

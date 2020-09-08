@@ -50,12 +50,9 @@ describe("admin add, configure, and delete users", function() {
     var user = { name: "Recipient1" };
     var path = "//form[contains(.,\"" + user.name + "\")]";
 
-    // Find Recipient2, click edit, flip some toggles, and save.
     var editUsrForm = element(by.xpath(path));
-
     await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
 
-    // Add a description
     var descriptBox = editUsrForm.element(by.model("user.description"));
     var words = "Description of recipient 1";
     await descriptBox.clear();
@@ -64,7 +61,6 @@ describe("admin add, configure, and delete users", function() {
     await editUsrForm.all(by.cssContainingText("span", "Set password")).first().click();
     await element(by.model("user.password")).sendKeys("Globaleaks123!");
 
-    // Click Save and check the fields
     await editUsrForm.element(by.cssContainingText("button", "Save")).click();
     await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
 
@@ -75,15 +71,12 @@ describe("admin add, configure, and delete users", function() {
     var user = { name: "Recipient2" };
     var path = "//form[contains(.,\"" + user.name + "\")]";
 
-    // Find Recipient2, click edit, flip some toggles, and save.
     var editUsrForm = element(by.xpath(path));
-
     await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
 
     await editUsrForm.all(by.cssContainingText("span", "Set password")).first().click();
     await element(by.model("user.password")).sendKeys("Globaleaks123!");
 
-    // Click Save and check the fields
     await editUsrForm.element(by.cssContainingText("button", "Save")).click();
   });
 
@@ -91,15 +84,12 @@ describe("admin add, configure, and delete users", function() {
     var user = { name: "Custodian1" };
     var path = "//form[contains(.,\"" + user.name + "\")]";
 
-    // Find Recipient2, click edit, flip some toggles, and save.
     var editUsrForm = element(by.xpath(path));
-
     await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
 
     await editUsrForm.all(by.cssContainingText("span", "Set password")).first().click();
     await element(by.model("user.password")).sendKeys("Globaleaks123!");
 
-    // Click Save and check the fields
     await editUsrForm.element(by.cssContainingText("button", "Save")).click();
   });
 
@@ -107,15 +97,12 @@ describe("admin add, configure, and delete users", function() {
     var user = { name: "Admin2" };
     var path = "//form[contains(.,\"" + user.name + "\")]";
 
-    // Find Recipient2, click edit, flip some toggles, and save.
     var editUsrForm = element(by.xpath(path));
-
     await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
 
     await editUsrForm.all(by.cssContainingText("span", "Set password")).first().click();
     await element(by.model("user.password")).sendKeys("Globaleaks123!");
 
-    // Click Save and check the fields
     await editUsrForm.element(by.cssContainingText("button", "Save")).click();
   });
 

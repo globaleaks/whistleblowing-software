@@ -17,7 +17,7 @@ describe("admin configure https", function() {
     await element(by.cssContainingText("a", "HTTPS")).click();
 
     await element(by.model("resources.node.hostname")).clear();
-    await element(by.model("resources.node.hostname")).sendKeys("antani.gov");
+    await element(by.model("resources.node.hostname")).sendKeys("www.globaleaks.org");
     await element(by.model("resources.node.hostname")).click();
 
     await element.all(by.cssContainingText("button", "Save")).get(0).click();
@@ -32,11 +32,11 @@ describe("admin configure https", function() {
     await element(by.id("csrGen")).click();
 
     await csr_panel.element(by.model("csr_cfg.country")).sendKeys("IT");
-    await csr_panel.element(by.model("csr_cfg.province")).sendKeys("Liguria");
-    await csr_panel.element(by.model("csr_cfg.city")).sendKeys("Genova");
-    await csr_panel.element(by.model("csr_cfg.company")).sendKeys("Internet Widgets LTD");
-    await csr_panel.element(by.model("csr_cfg.department")).sendKeys("Suite reviews");
-    await csr_panel.element(by.model("csr_cfg.email")).sendKeys("nocontact@certs.may.hurt");
+    await csr_panel.element(by.model("csr_cfg.province")).sendKeys("Milano");
+    await csr_panel.element(by.model("csr_cfg.city")).sendKeys("Lombardia");
+    await csr_panel.element(by.model("csr_cfg.company")).sendKeys("GlobaLeaks");
+    await csr_panel.element(by.model("csr_cfg.department")).sendKeys("IT SEC");
+    await csr_panel.element(by.model("csr_cfg.email")).sendKeys("admin@globaleaks.org");
 
     await browser.gl.utils.waitUntilClickable(by.id("csrSubmit"));
     await element(by.id("csrSubmit")).click();

@@ -34,9 +34,6 @@ exports.whistleblower = function() {
 
     await browser.gl.utils.waitUntilPresent(by.id("SubmissionForm"));
 
-    await element(by.id("step-receiver-selection")).element(by.id("receiver-0")).click();
-    await element(by.id("step-receiver-selection")).element(by.id("receiver-1")).click();
-    await element(by.id("NextStepButton")).click();
     await element(by.id("step-0")).element(by.id("step-0-field-0-0-input-0")).sendKeys(title);
     await element(by.id("step-0")).element(by.id("step-0-field-1-0-input-0")).sendKeys("x y z");
 
@@ -58,6 +55,7 @@ exports.whistleblower = function() {
     });
 
     await browser.gl.utils.waitUntilPresent(by.id("KeyCode"));
+
     return await element(by.id("KeyCode")).getText();
   };
 

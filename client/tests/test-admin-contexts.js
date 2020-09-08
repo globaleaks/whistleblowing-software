@@ -17,12 +17,6 @@ describe("admin configure, add, and delete contexts", function() {
 
     await ctx.element(by.cssContainingText("button", "Advanced settings")).click();
 
-    await ctx.element(by.model("context.allow_recipients_selection")).click();
-
-    await browser.gl.utils.waitUntilPresent(by.model("context.select_all_receivers"));
-
-    await ctx.element(by.model("context.select_all_receivers")).click();
-
     await ctx.element(by.model("context.enable_messages")).click();
     await ctx.element(by.model("context.enable_rc_to_wb_files")).click();
 
