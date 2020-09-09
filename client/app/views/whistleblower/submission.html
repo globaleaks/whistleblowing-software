@@ -8,7 +8,7 @@
   </div>
   <form id="SubmissionForm" name="vars.submissionForm" autocomplete="off" novalidate data-ng-class="{'was-validated': displayErrors()}">
     <div class="tabbable tabs-below">
-      <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" data-ng-if="submission.context.show_steps_navigation_interface && submission.context.questionnaire.steps.length > 1">
+      <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" data-ng-if="submission.context.show_steps_navigation_interface && (submission.context.allow_recipients_selection || submission.context.questionnaire.steps.length > 1)">
         <li data-ng-if="receiver_selection_step" class="nav-item">
           <a id="receiver-selection-link" data-ng-class="{active: navigation === receiver_selection_step_index}" class="nav-link StepTitle" data-ng-click="goToStep(receiver_selection_step_index)">
 	    <span class="stepIndex">1 - </span><span data-translate>Recipient selection</span>
