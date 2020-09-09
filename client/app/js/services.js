@@ -265,6 +265,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
         angular.forEach(self.context.receivers, function(receiver) {
           var r = $rootScope.receivers_by_id[receiver];
+
+          if (r === undefined) {
+            return;
+          }
+
           self.receivers.push(r);
 
           if (r.recipient_configuration === "default") {
