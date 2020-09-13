@@ -88,7 +88,7 @@ In this section you will find examples that show how different anonymity levels 
    "Corporate compliance", "A Corporation needs to implement transparency, or anti-bribery law compliance, by promoting its initiatives to employees, consultants and providers. The recipients are partially disclosed because they are represented by different divisions of the “Internal Audit” business unit of the company. The Whistleblower is guaranteed full anonymity, but they can optionally disclose their identity (tip off vs formal report)."
    "Government tax whistleblowing", "A Government Authority (central or local) with its own public identity wants to promote Tax Whistleblowing with Rewards procedures for Whistleblowers (e.g. IRS). The recipients are not known because they are an internal division not exposing their names to the Whistleblower in advance. The Whistleblower MUST disclose their identity in order to be eligible for rewards."
    "Human Rights Activism Initiative", "A Human Rights Group starts a Whistleblowing initiative to spot human rights violations in a dangerous place. The organization requires anonymity to avoid retaliations and takedowns, and operates under a Pseudonym. The Recipients MUST not be disclosed to the Whistleblowers, but a Partial Disclosure by pseudonym can be acceptable in order to give proper trust to “Who the whistleblower is submitting to” . The Whistleblower MUST be guaranteed anonymity and their identity cannot be disclosed."
-   "Citizen media initiative", "A Citizen media initiative with it’s own public identity wants to collect tips on a specific topic (political, environmental malpractice, corruption, etc) in a medium-low risk operational context. The recipients must be disclosed but using a Pseudonym in order to avoid giving them too much responsibility, while accepting a Confidential relationship with no anonymity. The Whistleblower, if the topic is not life-threatening, can be allowed to submit also in a Confidential way to lower the entrance barrier."
+   "Citizen media initiative", "A Citizen media initiative with it’s own public identity wants to collect tips on a specific topic (political, environmental malpractice, corruption, etc) in a medium-low risk operational context. The recipients could be public or use Pseudonym in order to avoid complete exposure. The Whistleblower, if the topic is not life-threatening, can be allowed to submit also in a Confidential way to lower the entrance barrier."
    "Public Agency Iniziative", "A local public agency wants to setup a Street Hole Reporting service with it’s own public identity. The recipient can be disclosed to facilitate the CRM (Citizen relationship management) and Whistleblower identity protection is not required."
 
 GlobaLeaks Security Matrix
@@ -136,7 +136,7 @@ The following data are the one involved within GlobaLeaks:
    :header: "Data", "Description"
 
    "Questionnaire answers", "The data associated with a submission such as the filled forms and selectors provided by the Whistleblower."
-   "Submission attachments", "The files associated with a submission that may need to be handled with special care due to per recipient’s encryption and optional metadata cleanup."
+   "Submission attachments", "The files associated with a submission."
    "Platform configuration", "The data for the configuration and customization of the platform."
    "Software files", "All the files that the software requires to work, including configuration defaults."
    "Email notifications", "Data sent to notify recipients of a new report via email"
