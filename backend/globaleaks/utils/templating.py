@@ -33,7 +33,8 @@ context_keywords = [
 ]
 
 user_keywords = [
-    '{RecipientName}'
+    '{RecipientName}',
+    '{Username}'
 ]
 
 tip_keywords = [
@@ -669,8 +670,7 @@ class AccountActivationKeyword(UserNodeKeyword):
 class PasswordResetValidationKeyword(UserNodeKeyword):
     keyword_list = UserNodeKeyword.keyword_list
 
-    data_keys = NodeKeyword.data_keys + \
-        ['reset_token']
+    data_keys = UserNodeKeyword.data_keys + ['reset_token']
 
     def UrlPath(self):
         if self.data['user']['encryption']:
@@ -722,7 +722,7 @@ supported_template_types = {
     'activation': PlatformSignupKeyword,
     'email_validation': EmailValidationKeyword,
     'account_activation': AccountActivationKeyword,
-    'password_reset_validation': UserNodeKeyword,
+    'password_reset_validation': PasswordResetValidationKeyword,
     'user_credentials': UserCredentials,
     'identity_access_request': IdentityAccessRequestKeyword,
     '2fa': TwoFactorAuthKeyword
