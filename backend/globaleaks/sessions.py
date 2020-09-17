@@ -47,13 +47,13 @@ class SessionsFactory(TempDict):
     def new(self, tid, user_id, user_tid, user_role, pcn, two_factor, cc, ek, ms=False):
         self.revoke(tid, user_id)
         session = Session(tid, user_id, user_tid, user_role, pcn, two_factor, cc, ek, ms)
-        self.set(session.id, session)
+        self[session.id] = session
         return session
 
     def regenerate(self, session_id):
         session = self.pop(session_id)
         session.id = generateRandomKey()
-        self.set(session.id, session)
+        self[session.id] = session
         return session
 
 

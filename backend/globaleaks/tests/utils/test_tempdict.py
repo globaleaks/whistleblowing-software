@@ -24,7 +24,7 @@ class TestTempDict(helpers.TestGL):
         xxx.expireCallback = expireCallback
 
         for x in range(1, timeout + 1):
-            xxx.set(x, TestObject(x))
+            xxx[x] = TestObject(x)
             self.assertEqual(len(xxx), x)
             self.test_reactor.advance(1)
 

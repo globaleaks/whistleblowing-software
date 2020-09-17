@@ -26,7 +26,7 @@ class TestSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):
             handler = self.request()
             yield handler.post(self.dummyToken.id)
 
-        self.state.tokens.reactor.pump([1] * (self.state.tokens.get_timeout() - 1))
+        self.state.tokens.reactor.pump([1] * (self.state.tokens.timeout - 1))
 
         for f in self.dummyToken.uploaded_files:
             path = os.path.abspath(os.path.join(self.state.settings.tmp_path, f['filename']))

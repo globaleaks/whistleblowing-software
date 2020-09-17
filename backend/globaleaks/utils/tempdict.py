@@ -1,46 +1,39 @@
 # -*- coding: utf-8 -*-
-from collections import OrderedDict
-
 from twisted.internet import reactor
 
-class TempDict(OrderedDict):
+class TempDict(dict):
     expireCallback = None
     reactor = reactor
 
-    def __init__(self, timeout=None):
+    def __init__(self, timeout=300):
         self.timeout = timeout
-        OrderedDict.__init__(self)
+        dict.__init__(self)
 
-    def get_timeout(self):
-        return self.timeout
+    def __getitem__(self, key):
+        value = dict.__getitem__(self, key)
 
-    def set(self, key, item):
-        timeout = self.get_timeout()
-        item.expireCall = self.reactor.callLater(timeout, self._expire, key)
-        self[key] = item
+        if value and value.expireCall is not None:
+            try:
+                value.expireCall.reset(self.timeout)
+            except:
+                pass
 
-    def get(self, key):
-        if key not in self:
-            return
+        return value
 
-        if self[key].expireCall is not None:
-            self[key].expireCall.reset(self.get_timeout())
+    def __setitem__(self, key, value):
+        value.expireCall = self.reactor.callLater(self.timeout, self.__delitem__, key)
+        return dict.__setitem__(self, key, value)
 
-        return self[key]
+    def __delitem__(self, key):
+        value = dict.__getitem__(self, key)
 
-    def delete(self, key):
-        if key not in self:
-            return
+        if value:
+            try:
+                value.expireCall.cancel()  # pylint: disable=no-member
+            except:
+                pass
 
-        item = self.pop(key)
-        item.expireCall.cancel()  # pylint: disable=no-member
-        self._expire(key)
+            if self.expireCallback is not None:
+                self.expireCallback(value)
 
-    def _expire(self, key):
-        if key not in self:
-            return
-
-        if self.expireCallback is not None:
-            self.expireCallback(self[key])  #pylint: disable=not-callable
-
-        del self[key]
+        return dict.__delitem__(self, key)

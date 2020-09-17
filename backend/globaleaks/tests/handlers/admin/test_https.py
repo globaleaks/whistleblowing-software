@@ -188,7 +188,7 @@ class TestAcmeChallengeHandler(helpers.TestHandler):
         v = '{}.5vh2ZRCJGmNUKEEBn-SN6esbMnSl1w8ZT0LDUwexTAM'.format(tok)
         ct = ChallTok(v)
 
-        State.tenant_state[1].acme_tmp_chall_dict.set(tok, ct)
+        State.tenant_state[1].acme_tmp_chall_dict[tok] = ct
 
         handler = self.request()
         resp = yield handler.get(tok)

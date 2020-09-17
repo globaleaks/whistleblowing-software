@@ -93,7 +93,7 @@ def request_new_certificate(hostname, accnt_key, key, tmp_chall_dict, directory_
     _, chall_tok = challb.response_and_validation(client.net.key)
     v = challb.chall.encode("token")
     log.info('Exposing challenge on %s', v)
-    tmp_chall_dict.set(v, ChallTok(chall_tok))
+    tmp_chall_dict[v] = ChallTok(chall_tok)
 
     cr = client.answer_challenge(challb, challb.response(client.net.key))
     log.debug('Acme CA responded to challenge request with: %s', cr)

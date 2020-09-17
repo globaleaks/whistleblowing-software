@@ -22,7 +22,7 @@ class TwoFactorTokensFactory(TempDict):
     def new(self, user_id):
         token = TwoFactorToken(user_id)
         self.revoke(user_id)
-        self.set(token.id, token)
+        self[token.id] = token
         return token
 
 

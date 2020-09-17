@@ -42,16 +42,14 @@ class Token(object):
 
 
 class TokenList(TempDict):
-    def __init__(self, state, file_path, *args, **kwds):
+    def __init__(self, state, file_path):
+        self.timeout = Token.ttl
         self.state = state
         self.file_path = file_path
-        TempDict.__init__(self, *args, **kwds)
+        TempDict.__init__(self, self.timeout)
 
     def set_file_path(self, file_path):
         self.file_path = file_path
-
-    def get_timeout(self):
-        return Token.ttl
 
     def expireCallback(self, item):
         for f in item.uploaded_files:
@@ -64,7 +62,7 @@ class TokenList(TempDict):
 
     def new(self, tid):
         token = Token(self, tid)
-        self.set(token.id, token)
+        self[token.id] = token
         return token
 
     def get(self, key):

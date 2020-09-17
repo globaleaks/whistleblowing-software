@@ -36,7 +36,7 @@ class TestToken(helpers.TestGL):
                 self.assertTrue(os.path.exists(filepath))
                 file_list.append(filepath)
 
-        self.test_reactor.advance(self.state.tokens.get_timeout() + 1)
+        self.test_reactor.advance(self.state.tokens.timeout + 1)
 
         for t in token_collection:
             self.assertRaises(Exception, self.state.tokens.get, t.id)
@@ -69,6 +69,6 @@ class TestToken(helpers.TestGL):
 
         self.assertTrue(len(self.state.tokens) == 100)
 
-        self.test_reactor.advance(self.state.tokens.get_timeout()+1)
+        self.test_reactor.advance(self.state.tokens.timeout + 1)
 
         self.assertTrue(len(self.state.tokens) == 0)

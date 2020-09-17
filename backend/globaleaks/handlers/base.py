@@ -322,7 +322,7 @@ class BaseHandler(object):
             raise errors.FileTooBig(self.state.tenant_cache[self.request.tid].maximum_filesize)
 
         if file_id not in self.state.TempUploadFiles:
-            self.state.TempUploadFiles.set(file_id, SecureTemporaryFile(Settings.tmp_path))
+            self.state.TempUploadFiles[file_id] = SecureTemporaryFile(Settings.tmp_path)
 
         f = self.state.TempUploadFiles[file_id]
         with f.open('w') as f:
