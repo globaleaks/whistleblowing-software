@@ -74,7 +74,9 @@ class StateClass(ObjectDict, metaclass=Singleton):
         self.tenant_hostname_id_map = {}
 
         self.set_orm_tp(ThreadPool(4, 16))
-        self.TempUploadFiles = TempDict(timeout=3600)
+
+        self.TempKeys = TempDict(3600 * 72)
+        self.TempUploadFiles = TempDict(3600)
 
         self.shutdown = False
 

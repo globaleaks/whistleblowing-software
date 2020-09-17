@@ -111,9 +111,14 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
     # If encryption is enabled require the recovery key
     if user.crypto_prv_key:
         try:
-            recovery_key = recovery_key.replace('-', '').upper() + '===='
-            recovery_key = Base32Encoder.decode(recovery_key.encode())
-            prv_key = GCE.symmetric_decrypt(recovery_key, Base64Encoder.decode(user.crypto_bkp_key))
+            x = State.TempKeys.pop(user.id, None)
+            if x:
+                enc_key = GCE.derive_key(reset_token.encode(), user.salt)
+                prv_key = GCE.symmetric_decrypt(enc_key, Base64Encoder.decode(x))
+            else:
+                recovery_key = recovery_key.replace('-', '').upper() + '===='
+                recovery_key = Base32Encoder.decode(recovery_key.encode())
+                prv_key = GCE.symmetric_decrypt(recovery_key, Base64Encoder.decode(user.crypto_bkp_key))
         except:
             return {'status': 'require_recovery_key'}
 

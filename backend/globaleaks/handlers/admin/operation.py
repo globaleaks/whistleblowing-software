@@ -6,14 +6,15 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.operation import OperationHandler
-from globaleaks.handlers.password_reset import generate_password_reset_token_by_user_id
+from globaleaks.handlers.password_reset import db_generate_password_reset_token
 from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import db_get_user, disable_2fa, get_user
-from globaleaks.models import Config, InternalTip
+from globaleaks.models import Config, InternalTip, User
 from globaleaks.models.config import db_set_config_variable, ConfigFactory, ConfigL10NFactory
 from globaleaks.orm import transact, tw
 from globaleaks.rest import errors
 from globaleaks.services.onion import set_onion_service_info, get_onion_service_info
+from globaleaks.state import State
 from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.templating import Templating
 
@@ -101,6 +102,19 @@ def reset_templates(session, tid):
     config_l10n.reset('notification', load_appdata())
 
 
+@transact
+def generate_password_reset_token(session, tid, user_session, user_id):
+    user = session.query(User).filter(User.tid == tid, User.id == user_id).one_or_none()
+    if user is not None:
+        db_generate_password_reset_token(session, user)
+
+        if user_session.ek and user.crypto_pub_key:
+            crypto_escrow_prv_key = GCE.asymmetric_decrypt(user_session.cc, Base64Encoder.decode(user_session.ek))
+            user_cc = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(user.crypto_escrow_bkp1_key))
+            enc_key = GCE.derive_key(user.reset_password_token.encode(), user.salt)
+            State.TempKeys[user_id] = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_cc))
+
+
 class AdminOperationHandler(OperationHandler):
     """
     This interface exposes the enable to configure and verify the platform hostname
@@ -115,8 +129,9 @@ class AdminOperationHandler(OperationHandler):
         return disable_2fa(self.request.tid, req_args['value'])
 
     def reset_user_password(self, req_args, *args, **kwargs):
-        return generate_password_reset_token_by_user_id(self.request.tid,
-                                                        req_args['value'])
+        return generate_password_reset_token(self.request.tid,
+                                             self.request.current_user,
+                                             req_args['value'])
 
     @inlineCallbacks
     def reset_onion_private_key(self, req_args, *args, **kargs):
