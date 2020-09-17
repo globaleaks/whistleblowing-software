@@ -50,7 +50,7 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
     def test_put(self):
         yield set_reset_token(
             self.user['id'],
-            u"correct_reset_token"
+            u"valid_reset_token"
         )
 
         # Wrong token
@@ -59,16 +59,16 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(ret['status'], 'invalid_reset_token_provided')
 
         # Missing recovery key
-        handler = self.request({'reset_token': 'correct_reset_token', 'recovery_key': '', 'auth_code': ''})
+        handler = self.request({'reset_token': 'valid_reset_token', 'recovery_key': '', 'auth_code': ''})
         ret = yield handler.put()
         self.assertEqual(ret['status'], 'require_recovery_key')
 
         # Wrong recovery key
-        handler = self.request({'reset_token': 'correct_reset_token', 'recovery_key': 'wrong_recovery_key', 'auth_code': ''})
+        handler = self.request({'reset_token': 'valid_reset_token', 'recovery_key': 'wrong_recovery_key', 'auth_code': ''})
         ret = yield handler.put()
         self.assertEqual(ret['status'], 'require_recovery_key')
 
         # Success
-        handler = self.request({'reset_token': 'correct_reset_token', 'recovery_key': helpers.USER_REC_KEY_PLAIN, 'auth_code': ''})
+        handler = self.request({'reset_token': 'valid_reset_token', 'recovery_key': helpers.USER_REC_KEY_PLAIN, 'auth_code': ''})
         ret = yield handler.put()
         self.assertEqual(ret['status'], 'success')
