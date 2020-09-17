@@ -71,7 +71,7 @@ ConfigDescriptor = {
     'enable_admin_exception_notification': Bool(default=False),
     'enable_developers_exception_notification': Bool(default=True),
 
-    'name': Unicode(default=''),
+    'name': Unicode(default='GLOBALEAKS'),
 
     'basic_auth': Bool(default=False),
     'basic_auth_username': Unicode(default=''),

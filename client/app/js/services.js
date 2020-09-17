@@ -824,10 +824,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         var pt1 = $rootScope.public.node.header_title_prefix,
             pt2 = $rootScope.public.node.header_title_homepage;
 
-	if (!pt1 && !$rootScope.public.node.name) {
-          pt1 = "GLOBALEAKS";
-        }
-
         if ($location.path() === "/") {
           if ($rootScope.page === "submissionpage") {
             pt2 = $rootScope.public.node.header_title_submissionpage;
