@@ -95,7 +95,7 @@ GlobaLeaks Security Matrix
 ==========================
 Below we show how different usage scenarios can require different anonymity levels, communication security requirements and identity disclosures for different actors.
 
-Globaleaks, through its user interface, will enable each actor with appropriate security awareness information, and will enforce specific requirements to specific actors by the application of clear configuration guidelines.
+GlobaLeaks, through its user interface, will enable each actor with appropriate security awareness information, and will enforce specific requirements to specific actors by the application of clear configuration guidelines.
 
 .. csv-table::
    :header: "Scenario", "Actor", "Anonymity level", "Identity disclosure", "Communication security"
@@ -166,7 +166,7 @@ Every file can contain metadata related to the author or the whistleblower. The 
 
 Environmental Factors
 ---------------------
-GlobaLeaks does not protect against environmental factors related to actors' physical locations and/or their social relationships. For example if a user has a video bug installed in their house to monitor all their activity, Globaleaks cannot protect them. Likewise, if a whistleblower, who is supposed to be anonymous, tells their story to friends or coworkers, GlobaLeaks cannot protect them.
+GlobaLeaks does not protect against environmental factors related to actors' physical locations and/or their social relationships. For example if a user has a video bug installed in their house to monitor all their activity, GlobaLeaks cannot protect them. Likewise, if a whistleblower, who is supposed to be anonymous, tells their story to friends or coworkers, GlobaLeaks cannot protect them.
 
 Incorrect Data Retention Policies
 ---------------------------------

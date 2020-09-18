@@ -246,7 +246,7 @@ Main configuration
 Here are configured the techinical details about SMTP.
 
 .. note::
-   By default Globaleaks comes with a working configuration that is based on systems offered by the GlobaLeaks developers to the community of users and testers; even though this configuration is designed by their owners with special care in relation to security and privacy you are invited to consider using alternative systems for your production enviroment.
+   By default GlobaLeaks comes with a working configuration that is based on systems offered by the GlobaLeaks developers to the community of users and testers; even though this configuration is designed by their owners with special care in relation to security and privacy you are invited to consider using alternative systems for your production enviroment.
 
 .. image:: ../../images/admin/notification_settings.png
 

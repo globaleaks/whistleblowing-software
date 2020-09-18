@@ -118,7 +118,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
 
     def create_directories(self):
         """
-        Execute some consistency checks on command provided Globaleaks paths
+        Execute some consistency checks on command provided GlobaLeaks paths
 
         if one of working_path or static path is created we copy
         here the static files (default logs, and in the future pot files for localization)

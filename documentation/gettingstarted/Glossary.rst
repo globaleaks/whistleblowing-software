@@ -7,7 +7,7 @@ This is a list of jargon that is used inside of the GlobaLeaks software. Here we
         The user that has setup and is maintaining the Platform.
 
    Context
-        A topic covered by a Globaleaks based project (ex. Corruption).
+        A topic covered by a GlobaLeaks based project (ex. Corruption).
 
    GlobaLeaks
 	Our project, a FLOSS, security focused and flexible whistleblowing framework.
