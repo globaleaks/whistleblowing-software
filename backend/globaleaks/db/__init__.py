@@ -244,7 +244,11 @@ def db_refresh_memory_variables(session, to_refresh=None):
 
         if tenant.onionservice:
             tenant.onionnames.append(tenant.onionservice.encode())
-        elif root_tenant.onionservice:
+
+        if tenant.old_onionservice:
+            tenant.onionnames.append(tenant.old_onionservice.encode())
+
+        if not tenant.onionservice and root_tenant.onionservice:
             tenant.onionservice = tenant.subdomain + '.' + root_tenant.onionservice
 
         if tenant.subdomain:

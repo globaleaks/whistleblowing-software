@@ -74,7 +74,9 @@ ConfigDescriptor = {
     'name': Unicode(default='GLOBALEAKS'),
 
     'hostname': Unicode(default=''),
+
     'onionservice': Unicode(default=''),
+
     'rootdomain': Unicode(default=''),
 
     'tb_download_link': Unicode(default='https://www.torproject.org/download/download-easy.html'),
@@ -159,7 +161,10 @@ ConfigDescriptor = {
     'crypto_escrow_pub_key': Unicode(default=''),
 
     'multisite': Bool(default=False),
-    'adminonly': Bool(default=False)
+    'adminonly': Bool(default=False),
+
+    'old_onionservice': Unicode(default=''),
+    'old_tor_onion_key': Unicode()
 }
 
 ConfigFilters = {
@@ -245,7 +250,9 @@ ConfigFilters = {
         'escrow',
         'crypto_escrow_pub_key',
         'multisite',
-        'adminonly'
+        'adminonly',
+        'old_onionservice',
+        'old_tor_onion_key',
     ],
     'notification': [
         'smtp_server',
@@ -275,6 +282,7 @@ ConfigFilters['admin_node'] = list(set(ConfigFilters['node']) - set([
     'receipt_salt',
     'acme_accnt_key',
     'tor_onion_key',
+    'old_tor_onion_key'
     'https_key',
     'https_csr',
     'https_cert',

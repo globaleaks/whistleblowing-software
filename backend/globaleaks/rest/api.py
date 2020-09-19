@@ -229,9 +229,9 @@ class APIResourceWrapper(Resource):
         return False
 
     def should_redirect_tor(self, request):
-        if len(State.tenant_cache[request.tid].onionnames) and \
-           request.client_using_tor and \
-           request.hostname not in State.tenant_cache[request.tid].onionnames:
+        if request.client_using_tor and \
+           State.tenant_cache[request.tid].onionnames and \
+           request.hostname != State.tenant_cache[request.tid].onionnames[0]:
             return True
 
         return False

@@ -141,3 +141,14 @@ class MigrationScript(MigrationBase):
                                    .filter(m.var_name == 'smtp_port',
                                            m.value == 9267):
             db_reset_smtp_settings(self.session_new, tid[0])
+
+        for c in self.session_new.query(m).filter(m.var_name == 'onionservice'):
+            if len(c.value) != 22:
+                continue
+
+            c.var_name = 'old_onionservice'
+
+            self.session_new.query(m) \
+                            .filter(m.tid == c.tid,
+                                    m.var_name == 'tor_onion_key') \
+                            .update({'var_name': 'old_tor_onion_key'})

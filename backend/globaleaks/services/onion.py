@@ -25,10 +25,14 @@ __all__ = ['OnionService']
 
 def db_get_onion_service_info(session, tid):
     node = ConfigFactory(session, tid)
+
     hostname = node.get_val('onionservice')
     key = node.get_val('tor_onion_key')
 
-    return tid, hostname, key
+    old_hostname = node.get_val('old_onionservice')
+    old_key = node.get_val('old_tor_onion_key')
+
+    return tid, hostname, key, old_hostname, old_key
 
 
 @transact
@@ -74,9 +78,12 @@ class OnionService(Service):
             return
 
         hostname_key_list = yield list_onion_service_info()
-        for tid, hostname, key in hostname_key_list:
+        for tid, hostname, key, old_hostname, old_key in hostname_key_list:
             if hostname is '' or hostname not in self.hs_map:
                 yield self.add_onion_service(tid, hostname, key)
+
+            if old_hostname and old_hostname not in self.hs_map:
+                yield self.add_onion_service(tid, old_hostname, old_key)
 
     def add_onion_service(self, tid, hostname, key):
         if self.tor_conn is None:
