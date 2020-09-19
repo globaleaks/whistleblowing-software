@@ -1,9 +1,7 @@
-=====================
 Common Configurations
 =====================
 Configure the Logo
 ------------------
-
 The first thing you want to give to your whistleblowing site is a branding identity; this could be done by loading a logo in section Site settings / Main configuration.
 
 .. image:: ../../images/admin/site_settings_logo_detail.png
@@ -12,7 +10,6 @@ Scroll down along the page to reach the "Save" button, click on it and have your
 
 Enable Languages
 ----------------
-
 You may want your GlobaLeaks installation served on more than one language
 
 To do so, in the section "Site settings / Languages" select the languages you would like and add them.

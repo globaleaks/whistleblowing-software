@@ -1,4 +1,3 @@
-==============
 User Interface
 ==============
 This section offers you a summary of the user interface offered to Admin users.
@@ -303,7 +302,7 @@ Suggested configurations are:
    2. Restrict Recipients access to their intranet.
 
 Url Redirects
-..................
+.............
 Here you can configure URL Redirects.
 
 .. image:: ../../images/admin/url_redirects.png
@@ -317,7 +316,7 @@ TODO
 .. image:: ../../images/admin/anomaly_thresholds.png
 
 Audit Log
----------------
+---------
 TODO
 
 .. image:: ../../images/admin/audit_log.png

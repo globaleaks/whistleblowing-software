@@ -1,4 +1,3 @@
-==================
 Installation Guide
 ==================
 The following is intended to guide you through the installation of GlobaLeaks.
@@ -12,7 +11,9 @@ Before starting the installation, make sure that your system satisfy the :doc:`R
 
 **Install GlobaLeaks**
 
-In order to install GlobaLeaks Copy & Paste the following commands in your terminal::
+In order to install GlobaLeaks Copy & Paste the following commands in your terminal:
+
+.. code:: sh
 
   wget https://deb.globaleaks.org/install-globaleaks.sh
   chmod +x install-globaleaks.sh

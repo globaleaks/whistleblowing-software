@@ -1,7 +1,5 @@
-=============
 Upgrade Guide
 =============
-
 Regular Update
 --------------
 To safely upgrade a GlobaLeaks installation please proceed with a backup of your setup by following the :doc:`Backup and restore </user/admin/BackupAndRestore>` guide.

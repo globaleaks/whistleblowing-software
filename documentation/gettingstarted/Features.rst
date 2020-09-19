@@ -1,9 +1,8 @@
-========
 Features
 ========
 
 User Features
-=============
+-------------
 - Multi-user system with customizable user roles (whistleblower, recipient, administrator)
 - Entirely manageable from a web administration interface
 - Support for `more than 40 languages <https://www.transifex.com/otf/globaleaks>`_ with support for Right-to-Left (RTL)
@@ -22,7 +21,7 @@ User Features
 - Whistleblowing system statistics
 
 Legal Features
-==============
+--------------
 - Ready-made questionnaires for compliance law
 - Bidirectional anonymous communication (comments/messages)
 - Customizable case management workflow (statuses/sub-statuses)
@@ -37,7 +36,7 @@ Legal Features
 - Free Software OSI Approved `AGPL 3.0 License <https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE>`_
 
 Security Features
-=================
+-----------------
 - Full data encryption of whistleblower reports and recipient communication
 - Digital anonymity support with `Tor <https://www.torproject.org/>`_ integration
 - Built-in HTTPS support with `TLS 1.3 <https://tools.ietf.org/html/rfc8446>`_ standard (`SSLabs A+ <https://www.ssllabs.com/ssltest/analyze.html?d=try.globaleaks.org>`_ rating)
@@ -53,7 +52,7 @@ Security Features
 - Does not leave traces in browser cache
 
 Technical Features
-==================
+------------------
 - Multi-site support enabling to run multiple virtual site on the same setup
 - Responsive UX made with `Boostrap <https://getbootstrap.com/>`_ CSS Framework
 - Built-in Accessibility Support with `WAI-ARIA <https://www.w3.org/WAI/standards-guidelines/aria/>`_ compliance

@@ -1,7 +1,6 @@
 ===============
 Troubleshooting
 ===============
-
 Issues and Bug Reporting
 ------------------------
 If you encounter any issue and you are not able to to run GlobaLeaks:
@@ -58,4 +57,4 @@ The verbosity is configurable via the web interface of the software inside Advan
 
 ::
 
-  /var/log/tor/log Iptables: /var/log/syslog AppArmor: /var/log/kern.log
+  /var/log/tor/log iptables: /var/log/syslog AppArmor: /var/log/kern.log

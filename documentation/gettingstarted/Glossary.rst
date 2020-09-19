@@ -1,5 +1,5 @@
 Glossary
-=====================
+========
 This is a list of jargon that is used inside of the GlobaLeaks software. Here we define it in a way to be unambiguous and uniform across all of their references.
 
 .. glossary::
