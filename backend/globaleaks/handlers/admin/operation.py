@@ -84,8 +84,7 @@ def toggle_escrow(session, tid, user_session, user_id):
         user.crypto_escrow_prv_key = ''
 
 
-@transact
-def reset_smtp_settings(session, tid):
+def db_reset_smtp_settings(session, tid):
     config = ConfigFactory(session, tid)
     config.set_val('smtp_server', 'mail.globaleaks.org')
     config.set_val('smtp_port', 587)
@@ -94,6 +93,11 @@ def reset_smtp_settings(session, tid):
     config.set_val('smtp_source_email', 'notifications@globaleaks.org')
     config.set_val('smtp_security', 'TLS')
     config.set_val('smtp_authentication', True)
+
+
+@transact
+def reset_smtp_settings(session, tid):
+    return db_reset_smtp_settings(session, tid)
 
 
 @transact

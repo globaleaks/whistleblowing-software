@@ -2,8 +2,9 @@
 from datetime import datetime
 
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models.config import ConfigFactory
+from globaleaks.handlers.admin.operation import db_reset_smtp_settings
 from globaleaks.models import Model
+from globaleaks.models.config import ConfigFactory
 from globaleaks.models.enums import *
 from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_now, datetime_never, datetime_null
@@ -130,6 +131,13 @@ class MigrationScript(MigrationBase):
 
 
     def epilogue(self):
-        self.session_new.query(self.model_to['Config']) \
-                        .filter(self.model_to['Config'].var_name == 'https_priv_key') \
+        m = self.model_to['Config']
+
+        self.session_new.query(m) \
+                        .filter(m.var_name == 'https_priv_key') \
                         .update({'var_name': 'https_key'})
+
+        for tid in self.session_new.query(m.tid) \
+                                   .filter(m.var_name == 'smtp_port',
+                                           m.value == 9267):
+            db_reset_smtp_settings(self.session_new, tid[0])
