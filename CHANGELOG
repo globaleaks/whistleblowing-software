@@ -1,3 +1,6 @@
+Changes in version 4.0.55 - 2020-09-21
+    Fix issue #2892
+
 Changes in version 4.0.54 - 2020-09-03
     Fix recipient feature to load files to whistleblowers
 
