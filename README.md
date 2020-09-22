@@ -15,6 +15,7 @@ Web Security Scoring:
 | :---: | :---: |
 | [Mozilla HTTP Observatory](https://observatory.mozilla.org/) | ![Status](https://img.shields.io/mozilla-observatory/grade/try.globaleaks.org?publish)
 | [Security Headers](https://securityheaders.com/) | ![Status](https://img.shields.io/security-headers?url=https%3A%2F%2Ftry.globaleaks.org)
+| [SSLLabs](https://www.ssllabs.com/ssltest/) | [![Status](https://img.shields.io/static/v1?label=SSLLabs&message=A%2B&color=%3CCOLOR%3E)](https://www.ssllabs.com/ssltest/analyze.html?d=try.globaleaks.org&latest)
 
 Infrastracture status: [uptime.globaleaks.org/](https://uptime.globaleaks.org)
 
