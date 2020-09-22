@@ -883,9 +883,6 @@ msgstr "Name"
 msgid "Last access"
 msgstr "Last access"
 
-msgid "State"
-msgstr "State"
-
 msgid "Connection"
 msgstr "Connection"
 
