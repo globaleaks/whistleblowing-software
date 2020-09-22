@@ -4,11 +4,15 @@
 
 [GlobaLeaks](https://www.globaleaks.org/) is free, open souce software enabling anyone to easily set up and maintain a secure whistleblowing platform.
 
-## Build
+## Continous Integration and Testing
 | Branch | Status | Quality | Coverage | Browser Tests
 | :---: | :---: | :---: | :---: | :---: |
 | [main](https://github.com/globaleaks/GlobaLeaks/tree/main) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=main)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4e072e7e5287478fa56468f3719d94ef?branch=main)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/4e072e7e5287478fa56468f3719d94ef?branch=main)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=main&labels=none)](https://saucelabs.com/u/globaleaks)
 | [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=devel)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4e072e7e5287478fa56468f3719d94ef?branch=devel)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/4e072e7e5287478fa56468f3719d94ef?branch=devel)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=devel&labels=none)](https://saucelabs.com/u/globaleaks)
+
+Infrastracture status: [uptime.globaleaks.org/](https://uptime.globaleaks.org)
+
+The uptime of our infrastructure is continously monitored thanks to the support of [UptimeRobot.com](https://uptimerobot.com/)
 
 ## Documentation
 GlobaLeaks's documentation is built and hosted by [Read the Docs](https://readthedocs.org) at https://docs.globaleaks.org.
@@ -16,7 +20,6 @@ GlobaLeaks's documentation is built and hosted by [Read the Docs](https://readth
 | :---: | :---:  |
 | [main](https://github.com/globaleaks/GlobaLeaks/tree/main) | [![Build Status](https://readthedocs.org/projects/globaleaks/badge/?version=main&style=flat)](https://docs.globaleaks.org/en/main/)
 | [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://readthedocs.org/projects/globaleaks/badge/?version=devel&style=flat)](https://docs.globaleaks.org/en/devel/)
-
 
 ## Community Support
 If you need technical support, have general questions, or have new ideas for GlobaLeaks, please post your message on the [community support forum](https://forum.globaleaks.org/).
