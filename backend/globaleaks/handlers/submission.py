@@ -275,27 +275,40 @@ def db_create_receivertip(session, receiver, internaltip, can_access_whistleblow
 
 
 def db_create_submission(session, tid, request, token, client_using_tor):
-    answers = request['answers']
+    tenant = db_get(session, models.Tenant, models.Tenant.id == tid)
 
     context, questionnaire = db_get(session,
                                     (models.Context, models.Questionnaire),
                                     (models.Context.id == request['context_id'],
                                      models.Questionnaire.id == models.Context.questionnaire_id))
 
+    receivers = request['receivers']
+    answers = request['answers']
+    steps = db_get_questionnaire(session, tid, questionnaire.id, None)['steps']
+    questionnaire_hash = db_archive_questionnaire_schema(session, steps)
+    preview = extract_answers_preview(steps, answers)
+
+    crypto_is_available = State.tenant_cache[tid].encryption
+
+    crypto_tip_pub_key = ''
+    if crypto_is_available:
+        crypto_tip_prv_key, crypto_tip_pub_key = GCE.generate_keypair()
+        receivers = [r[0] for r in session.query(models.User.id) \
+                                          .filter(models.User.id.in_(receivers),
+                                                  models.User.crypto_pub_key != '')]
+
+
     if not request['receivers']:
-        raise errors.InputValidationError("The submission should involve at least one recipient")
+        raise errors.InputValidationError("Unable to deliver the submission to at least one recipient")
 
     if context.maximum_selectable_receivers > 0 and \
         len(request['receivers']) > context.maximum_selectable_receivers:
         raise errors.InputValidationError("The number of recipients selected exceed the configured limit")
 
-    steps = db_get_questionnaire(session, tid, questionnaire.id, None)['steps']
-    questionnaire_hash = db_archive_questionnaire_schema(session, steps)
-    preview = extract_answers_preview(steps, answers)
-
     itip = models.InternalTip()
     itip.tid = tid
     itip.status = 'new'
+    itip.crypto_tip_pub_key = crypto_tip_pub_key
 
     itip.progressive = db_assign_submission_progressive(session, tid)
 
@@ -335,34 +348,15 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     session.add(itip)
     session.flush()
 
-    crypto_is_available = State.tenant_cache[tid].encryption
-
-    if crypto_is_available:
-        """
-        Handle the condition in which all the following situations are met:
-        - Encryption is enabled
-        - All the recipients have not performed first access and so encryption could not be applied
-
-        This the typical situation that is typically verified when:
-        - The system is initially setup
-        - The system is live and recipients are subject to urgent turnover
-
-        In this special situation the system accepts and deliver submissions withou applying encryption.
-        """
-        if session.query(models.User).filter(models.User.id.in_(request['receivers']), models.User.crypto_pub_key == '').count() == len(request['receivers']):
-            crypto_is_available = False
-        else:
-            crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
-
-    receipt = ''
-
     # Evaluate if the whistleblower tip should be generated
     if ((not State.tenant_cache[tid].enable_scoring_system) or
         (context.score_threshold_receipt == 0) or
         (context.score_threshold_receipt == 1 and itip.total_score >= 2) or
         (context.score_threshold_receipt == 2 and itip.total_score == 3)):
+
         receipt = GCE.generate_receipt()
         receipt_salt = State.tenant_cache[tid].receipt_salt
+
         wbtip = models.WhistleblowerTip()
         wbtip.id = itip.id
         wbtip.tid = tid
@@ -379,6 +373,9 @@ def db_create_submission(session, tid, request, token, client_using_tor):
             wbtip.crypto_tip_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(wb_pub_key, crypto_tip_prv_key))
 
         session.add(wbtip)
+    else:
+        receipt = ''
+
 
     # Apply special handling to the whistleblower identity question
     if itip.enable_whistleblower_identity and request['identity_provided'] and answers[whistleblower_identity.id]:
@@ -422,22 +419,15 @@ def db_create_submission(session, tid, request, token, client_using_tor):
         new_file.submission = uploaded_file['submission']
         session.add(new_file)
 
-    tip_count = 0
-
     for user in session.query(models.User).filter(models.User.id.in_(request['receivers'])):
         _tip_key = b''
         if crypto_is_available:
-            if user.crypto_pub_key:
-                _tip_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_tip_prv_key)
-            else:
+            if not user.crypto_pub_key:
                 continue
 
+            _tip_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_tip_prv_key)
+
         db_create_receivertip(session, user, itip, can_access_whistleblower_identity, _tip_key)
-
-        tip_count += 1
-
-    if not tip_count:
-        raise errors.InputValidationError("Unable to deliver the submission to at least one recipient")
 
     return {
         'receipt': receipt,
