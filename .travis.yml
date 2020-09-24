@@ -3,7 +3,7 @@ language: python
 sudo: required
 addons:
   hosts:
-    - lh
+  - lh
   sauce_connect:
     tunnel_domains: lh
   chrome: stable
@@ -16,26 +16,26 @@ env:
 matrix:
   fast_finish: true
   include:
-    - env: GLTEST='test' CODACY=true
-    - env: GLTEST='build_and_install' DISTRIBUTION='buster'
-    - env: GLTEST='build_and_install' DISTRIBUTION='focal'
-    - env: GLTEST='end2end-0' BROWSER='chrome latest'
-    - env: GLTEST='end2end-1' BROWSER='firefox latest'
-    - env: GLTEST='end2end-2' BROWSER='edge latest'
-    - env: GLTEST='end2end-3' BROWSER='ie 11'
-    - env: GLTEST='end2end-4' BROWSER='android 10'
+  - env: GLTEST='test' CODACY=true
+  - env: GLTEST='build_and_install' DISTRIBUTION='buster'
+  - env: GLTEST='build_and_install' DISTRIBUTION='focal'
+  - env: GLTEST='end2end-0' BROWSER='chrome latest'
+  - env: GLTEST='end2end-1' BROWSER='firefox latest'
+  - env: GLTEST='end2end-2' BROWSER='edge latest'
+  - env: GLTEST='end2end-3' BROWSER='ie 11'
+  - env: GLTEST='end2end-4' BROWSER='android 10'
   allow_failures:
-    - env: GLTEST='end2end-0' BROWSER='chrome latest'
-    - env: GLTEST='end2end-1' BROWSER='firefox latest'
-    - env: GLTEST='end2end-2' BROWSER='edge latest'
-    - env: GLTEST='end2end-3' BROWSER='ie 11'
-    - env: GLTEST='end2end-4' BROWSER='android 10'
+  - env: GLTEST='end2end-0' BROWSER='chrome latest'
+  - env: GLTEST='end2end-1' BROWSER='firefox latest'
+  - env: GLTEST='end2end-2' BROWSER='edge latest'
+  - env: GLTEST='end2end-3' BROWSER='ie 11'
+  - env: GLTEST='end2end-4' BROWSER='android 10'
 before_install:
-  - nvm install stable
-  - nvm use stable
+- nvm install stable
+- nvm use stable
 install: true
 script:
-  - $TRAVIS_BUILD_DIR/travis/script.sh
+- "$TRAVIS_BUILD_DIR/travis/script.sh"
 notifications:
   slack:
     secure: KhvVUD69Pq/0ZuQyug+NfH8LXLwFNlBQmhgAx6woYtnpGwq5KqMl4lpNeb1dKptUlJen+iAQRwO6nqAzWL92eO9qSCSLZDvKS0qDtMUAI9ax1cJ/G8K/Ee6vILU6id37VtwHFD4cJQPxZOZoDXoNcO6PRGVJDFt6JTGsOroexCI=
