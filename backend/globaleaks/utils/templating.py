@@ -5,7 +5,7 @@
 import collections
 import copy
 
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 from twisted.internet.abstract import isIPAddress
 
@@ -13,7 +13,8 @@ from globaleaks import __version__
 from globaleaks.rest import errors
 from globaleaks.utils.utility import datetime_to_pretty_str, \
     datetime_to_day_str, \
-    bytes_to_pretty_str
+    bytes_to_pretty_str, \
+    ISO8601_to_pretty_str
 
 node_keywords = [
     '{NodeName}',
@@ -243,7 +244,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
         elif field_type == 'date':
             date = entry.get('value')
             if date is not None:
-                output += indent(indent_n) + datetime_to_pretty_str(entry.get('value')) + '\n'
+                output += indent(indent_n) + ISO8601_to_pretty_str(date) + '\n'
         elif field_type == 'tos':
             answer = '☑' if entry.get('value', '') is True else '☐'
             output += indent(indent_n) + answer + '\n'
