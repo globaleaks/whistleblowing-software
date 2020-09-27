@@ -31,7 +31,7 @@ Algorithms
 
 Users’ Credentials
 ------------------
-The system used two different tyype of credentials depending on the user role:
+The system used two different type of credentials depending on the user role:
 
 .. csv-table::
    :header: "Credentials type", "User role"

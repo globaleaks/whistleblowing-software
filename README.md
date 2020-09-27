@@ -17,12 +17,12 @@ Web Security Scoring:
 | [Security Headers](https://securityheaders.com/) | ![Status](https://img.shields.io/security-headers?url=https%3A%2F%2Ftry.globaleaks.org)
 | [SSLLabs](https://www.ssllabs.com/ssltest/) | [![Status](https://img.shields.io/static/v1?label=SSLLabs&message=A%2B&color=%3CCOLOR%3E)](https://www.ssllabs.com/ssltest/analyze.html?d=try.globaleaks.org&latest)
 
-Infrastracture status: [uptime.globaleaks.org/](https://uptime.globaleaks.org)
+Infrastracture status: [uptime.globaleaks.org](https://uptime.globaleaks.org)
 
-The uptime of our infrastructure is continously monitored thanks to the support of [UptimeRobot.com](https://uptimerobot.com/)
+The uptime of our infrastructure is continously monitored thanks to the support of [UptimeRobot.com](https://uptimerobot.com/).
 
 ## Documentation
-GlobaLeaks's documentation is built and hosted by [Read the Docs](https://readthedocs.org) at https://docs.globaleaks.org.
+GlobaLeaks's documentation is built and hosted by [Read the Docs](https://readthedocs.org) and accessible at [docs.globaleaks.org](https://docs.globaleaks.org).
 | Branch | Documentation Build
 | :---: | :---:  |
 | [main](https://github.com/globaleaks/GlobaLeaks/tree/main) | [![Build Status](https://readthedocs.org/projects/globaleaks/badge/?version=main&style=flat)](https://docs.globaleaks.org/en/main/)
