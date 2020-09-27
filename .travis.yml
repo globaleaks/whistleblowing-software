@@ -38,3 +38,6 @@ before_install:
 install: true
 script:
   - $TRAVIS_BUILD_DIR/travis/script.sh
+notifications:
+  slack:
+    secure: KhvVUD69Pq/0ZuQyug+NfH8LXLwFNlBQmhgAx6woYtnpGwq5KqMl4lpNeb1dKptUlJen+iAQRwO6nqAzWL92eO9qSCSLZDvKS0qDtMUAI9ax1cJ/G8K/Ee6vILU6id37VtwHFD4cJQPxZOZoDXoNcO6PRGVJDFt6JTGsOroexCI=
