@@ -1,3 +1,7 @@
+Changes in version 4.0.57 - 2020-09-27
+    Fix serialization for questions of type date (#2896)
+    Implement serialization for questions of type date range
+
 Changes in version 4.0.56 - 2020-09-25
     Fix additional question answers functionality
 
