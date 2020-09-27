@@ -245,6 +245,12 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
             date = entry.get('value')
             if date is not None:
                 output += indent(indent_n) + ISO8601_to_pretty_str(date) + '\n'
+        elif field_type == 'daterange':
+            daterange = entry.get('value')
+            if daterange is not None:
+                daterange = daterange.split(':')
+                output += indent(indent_n) + datetime_to_pretty_str(datetime.fromtimestamp(int(daterange[0])/1000)) + '\n'
+                output += indent(indent_n) + datetime_to_pretty_str(datetime.fromtimestamp(int(daterange[1])/1000)) + '\n'
         elif field_type == 'tos':
             answer = '☑' if entry.get('value', '') is True else '☐'
             output += indent(indent_n) + answer + '\n'
