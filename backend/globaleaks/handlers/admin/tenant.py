@@ -17,18 +17,22 @@ from globaleaks.utils.log import log
 def serialize_tenant(session, tenant, signup=None):
     from globaleaks.handlers.signup import serialize_signup
 
-    node = ConfigFactory(session, tenant.id)
-
     ret = {
         'id': tenant.id,
         'label': tenant.label,
         'active': tenant.active,
         'subdomain': tenant.subdomain,
-        'hostname': node.get_val('hostname'),
-        'onionservice': node.get_val('onionservice'),
-        'mode': node.get_val('mode'),
+        'hostname': '',
+        'onionservice': '',
+        'mode': '',
         'creation_date': tenant.creation_date
     }
+
+    if tenant.id in State.tenant_cache:
+        tc = State.tenant_cache[tenant.id]
+        ret['hostname'] = tc.hostname
+        ret['onionservice'] = tc.onionservice
+        ret['mode'] = tc.mode
 
     if signup is not None:
         ret['signup'] = serialize_signup(signup)
