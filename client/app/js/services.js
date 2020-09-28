@@ -282,16 +282,6 @@ factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope",
       return Object.keys(self.selected_receivers).length;
     };
 
-<<<<<<< HEAD
-        angular.forEach(self.context.receivers, function(receiver) {
-          var r = $rootScope.receivers_by_id[receiver];
-
-          if (r === undefined) {
-            return;
-          }
-
-          self.receivers.push(r);
-=======
     /**
      * @name Submission.create
      * @description
@@ -310,7 +300,6 @@ factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope",
         total_score: 0,
         removed_files: []
       });
->>>>>>> Revise packaging of the client modules
 
       new TokenResource().$get().then(function(token) {
         self.token = token;
