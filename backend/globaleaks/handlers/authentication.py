@@ -282,7 +282,7 @@ class TenantAuthSwitchHandler(BaseHandler):
                                self.current_user.user_tid,
                                self.current_user.user_role,
                                False,
-                               self.current_user.two_factor,
+                               True,
                                self.current_user.cc,
                                self.current_user.ek,
                                True)
