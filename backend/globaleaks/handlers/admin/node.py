@@ -98,15 +98,6 @@ def db_update_node(session, tid, user_session, request, language):
 
     config.update('node', request)
 
-    if 'basic_auth' in request and request['basic_auth'] and request['basic_auth_username'] and request['basic_auth_password']:
-        config.set_val('basic_auth', True)
-        config.set_val('basic_auth_username', request['basic_auth_username'])
-        config.set_val('basic_auth_password', request['basic_auth_password'])
-    else:
-        config.set_val('basic_auth', False)
-        config.set_val('basic_auth_username', '')
-        config.set_val('basic_auth_password', '')
-
     if request['enable_ricochet_panel'] and not request['ricochet_address']:
         request['enable_ricochet_panel'] = False
 

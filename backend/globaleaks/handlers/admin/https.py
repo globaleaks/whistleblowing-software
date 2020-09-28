@@ -512,7 +512,6 @@ class AcmeHandler(BaseHandler):
 
 class AcmeChallengeHandler(BaseHandler):
     check_roles = 'none'
-    bypass_basic_auth = True
 
     def get(self, token):
         tmp_chall_dict = State.tenant_state[self.request.tid].acme_tmp_chall_dict

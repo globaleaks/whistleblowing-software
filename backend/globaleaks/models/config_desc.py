@@ -73,10 +73,6 @@ ConfigDescriptor = {
 
     'name': Unicode(default='GLOBALEAKS'),
 
-    'basic_auth': Bool(default=False),
-    'basic_auth_username': Unicode(default=''),
-    'basic_auth_password': Unicode(default=''),
-
     'hostname': Unicode(default=''),
     'onionservice': Unicode(default=''),
     'rootdomain': Unicode(default=''),
@@ -183,9 +179,6 @@ ConfigFilters = {
         'id',
         'name',
         'admin_api_token_digest',
-        'basic_auth',
-        'basic_auth_username',
-        'basic_auth_password',
         'hostname',
         'onionservice',
         'rootdomain',
@@ -316,9 +309,6 @@ ConfigFilters['public_node'] = list(set(ConfigFilters['admin_node']) - set([
     'id',
     'version',
     'version_db',
-    'basic_auth',
-    'basic_auth_username',
-    'basic_auth_password',
     'crypto_escrow_pub_key',
     'timezone',
     'ip_filter_admin',

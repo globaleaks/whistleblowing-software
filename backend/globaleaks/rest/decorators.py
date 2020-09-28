@@ -11,10 +11,6 @@ from globaleaks.utils.json import JSONEncoder
 
 def decorator_authentication(f, roles):
     def wrapper(self, *args, **kwargs):
-        if self.state.tenant_cache[self.request.tid].basic_auth and \
-           not self.bypass_basic_auth:
-            self.basic_auth()
-
         if (('none' in roles) or
             ((self.current_user and self.current_user.tid == self.request.tid) and
              (('user' in roles and

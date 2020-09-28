@@ -69,7 +69,6 @@ class BaseHandler(object):
     uniform_answer_time = False
     cache_resource = False
     invalidate_cache = False
-    bypass_basic_auth = False
     root_tenant_only = False
     upload_handler = False
     uploaded_file = None
@@ -80,26 +79,6 @@ class BaseHandler(object):
         self.state = state
         self.request = request
         self.request.start_time = datetime.now()
-
-    def basic_auth(self):
-        msg = None
-        if b"authorization" in self.request.headers:
-            try:
-                auth_type, data = self.request.headers[b"authorization"].split()
-                usr, pwd = base64.b64decode(data).decode().split(":", 1)
-                if auth_type != b"Basic" or \
-                        usr != self.state.tenant_cache[self.request.tid].basic_auth_username or \
-                        pwd != self.state.tenant_cache[self.request.tid].basic_auth_password:
-                    msg = "Authentication failed"
-            except AssertionError:
-                msg = "Authentication failed"
-        else:
-            msg = "Authentication required"
-
-        if msg is not None:
-            self.request.setHeader(b'WWW-Authenticate',
-                                   b'Basic realm="globaleaks"')
-            raise errors.HTTPAuthenticationRequired()
 
     @staticmethod
     def validate_python_type(value, python_type):
