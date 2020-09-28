@@ -1,3 +1,12 @@
+Changes in version 4.0.58 - 2020-09-28
+    Fix issue #2899
+    Fix possibility to reset password for platforms that are admin-only
+    Remove HTTP Basic Authentication feature; this feature was
+    been developed in order to be used in pre-production but many users
+    seems to continue to abuse of its presence to create private
+    whistleblowing portals not really accessible to the end users;
+    from this the decision to remove completely the feature from the software.
+
 Changes in version 4.0.57 - 2020-09-27
     Fix serialization for questions of type date (#2896)
     Implement serialization for questions of type date range
