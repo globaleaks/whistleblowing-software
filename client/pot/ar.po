@@ -42,8 +42,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Rima Sghaier\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -706,9 +706,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "تمكين خاصية تعدد المواقع"
 
-msgid "Enable multi-site login"
-msgstr "تمكين تسجيل الدخول لمواقع متعددة"
-
 msgid "Enable simplified login"
 msgstr "تمكين تسجيل دخول مبسط"
 
@@ -760,15 +757,6 @@ msgstr "بالميغابايت"
 
 msgid "Enable HSTS preload"
 msgstr "تمكين التحميل المسبق HSTS"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "تمكين الاستيثاق الأساسي HTTP"
-
-msgid "Username"
-msgstr "اسم المستخدم"
-
-msgid "Password"
-msgstr "كلمة السرّ"
 
 msgid "Require two factor authentication"
 msgstr "يستلزم الاستيثاق ذو المعاملين"
@@ -855,6 +843,9 @@ msgstr "زمن الاستجابة"
 msgid "ID"
 msgstr "المُعرِّف"
 
+msgid "Username"
+msgstr "اسم المستخدم"
+
 msgid "Role"
 msgstr "دور"
 
@@ -863,9 +854,6 @@ msgstr "اسم"
 
 msgid "Last access"
 msgstr "آخر دخول"
-
-msgid "State"
-msgstr "الدولة "
 
 msgid "Connection"
 msgstr "اتصال"
@@ -1193,6 +1181,9 @@ msgstr "تنبيه"
 msgid "Require authentication"
 msgstr "يستلزم الإستيثاق"
 
+msgid "Password"
+msgstr "كلمة السرّ"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "عدد الساعات قبل إرسال تنبيه بانقضاء مدة البلاغ"
 
@@ -1351,6 +1342,9 @@ msgstr "استخدم الموقع الأول من أجل الأغراض الإد
 
 msgid "Allow users to sign up"
 msgstr "السماح للمستخدمين بالاشتراك"
+
+msgid "Enable multi-site login"
+msgstr "تمكين تسجيل الدخول لمواقع متعددة"
 
 msgid "Enable terms of service"
 msgstr "تمكين شروط الخدمة"
@@ -1973,14 +1967,8 @@ msgstr "لقد اتممتم معالج المنصّة بنجاح."
 msgid "Fill out your report"
 msgstr "املأ تقريرك"
 
-msgid "Short title"
-msgstr "عنوان قصير"
-
 msgid "Describe your report in a few words."
 msgstr "الرجاء كتابة نبذة عن البلاغ."
-
-msgid "Full description"
-msgstr "وصف كامل"
 
 msgid "Describe your report in detail."
 msgstr "الرجاء وصف البلاغ بالتفصيل."
@@ -2063,9 +2051,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "من فضلك قم بالضغط على رابط التفعيل من أجل إكمال باقي خطوات تنشيط الحساب وإعداد كلمة السر."
-
-msgid "This link will expire in 3 days."
-msgstr "هذا الرابط سينتهي خلال 3 أيام."
 
 msgid ""
 "After successful activation you will be able to access the system via the "

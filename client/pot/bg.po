@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Ivo\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -677,9 +677,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Активиране на мулти-сайтова функционалност"
 
-msgid "Enable multi-site login"
-msgstr "Активиране на мулти-сайтово вписване"
-
 msgid "Enable simplified login"
 msgstr "Активиране на опростено вписване"
 
@@ -731,15 +728,6 @@ msgstr "в мегабайти"
 
 msgid "Enable HSTS preload"
 msgstr "Разрешете HSTS предварително зареждане"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "Включване на HTTP Basic Authentication"
-
-msgid "Username"
-msgstr "Потребителско име"
-
-msgid "Password"
-msgstr "Парола"
 
 msgid "Require two factor authentication"
 msgstr "Изисквайте двуфакторна идентификация"
@@ -826,6 +814,9 @@ msgstr "Време за отговор"
 msgid "ID"
 msgstr "ID"
 
+msgid "Username"
+msgstr "Потребителско име"
+
 msgid "Role"
 msgstr "Роля"
 
@@ -834,9 +825,6 @@ msgstr "Име"
 
 msgid "Last access"
 msgstr "Последен достъп"
-
-msgid "State"
-msgstr "Област"
 
 msgid "Connection"
 msgstr "Връзка"
@@ -1164,6 +1152,9 @@ msgstr "Предупреждение"
 msgid "Require authentication"
 msgstr "Изисквай идентификация"
 
+msgid "Password"
+msgstr "Парола"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Брой часове до изпращане на предупреждение, че подаденият сигнал изтича."
 
@@ -1322,6 +1313,9 @@ msgstr "Използвайте първия сайт само за админи�
 
 msgid "Allow users to sign up"
 msgstr "Разрешава на потребителите да се регистрират"
+
+msgid "Enable multi-site login"
+msgstr "Активиране на мулти-сайтово вписване"
 
 msgid "Enable terms of service"
 msgstr "Активиране на общи услови за ползване"
@@ -1944,14 +1938,8 @@ msgstr "Успешно завършихте наръчника за платфо
 msgid "Fill out your report"
 msgstr "Преглед на сигнала"
 
-msgid "Short title"
-msgstr "Кратко заглавие"
-
 msgid "Describe your report in a few words."
 msgstr "Опишете подадения сигнал с няколко думи."
-
-msgid "Full description"
-msgstr "Пълно описание"
 
 msgid "Describe your report in detail."
 msgstr "Опишете подадения сигнал в детайли."
@@ -2034,9 +2022,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "Моля натиснете върху активиращия линк, за да продължите с активацията на акаунта и създаването на потребителска парола"
-
-msgid "This link will expire in 3 days."
-msgstr "Линкът изтича след три дни"
 
 msgid ""
 "After successful activation you will be able to access the system via the "

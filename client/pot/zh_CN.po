@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: ff98sha\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -685,9 +685,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "启用多个网站功能"
 
-msgid "Enable multi-site login"
-msgstr "开启多站台登录"
-
 msgid "Enable simplified login"
 msgstr "开启简易登录"
 
@@ -739,15 +736,6 @@ msgstr "MB"
 
 msgid "Enable HSTS preload"
 msgstr "开启 HSTS 预载"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "启用 HTTP 基础核实"
-
-msgid "Username"
-msgstr "用户名"
-
-msgid "Password"
-msgstr "密码"
 
 msgid "Require two factor authentication"
 msgstr "要求双因子验证"
@@ -834,6 +822,9 @@ msgstr "回应时间"
 msgid "ID"
 msgstr "识别"
 
+msgid "Username"
+msgstr "用户名"
+
 msgid "Role"
 msgstr "角色"
 
@@ -842,9 +833,6 @@ msgstr "名字"
 
 msgid "Last access"
 msgstr "最近读取"
-
-msgid "State"
-msgstr "州"
 
 msgid "Connection"
 msgstr "连接"
@@ -1172,6 +1160,9 @@ msgstr "警示"
 msgid "Require authentication"
 msgstr "请求验证"
 
+msgid "Password"
+msgstr "密码"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "发送报告到期警示的小时数"
 
@@ -1330,6 +1321,9 @@ msgstr "仅为管理目的才使用第一个网站"
 
 msgid "Allow users to sign up"
 msgstr "可接受新用户注册"
+
+msgid "Enable multi-site login"
+msgstr "开启多站台登录"
 
 msgid "Enable terms of service"
 msgstr "开启服务条款"
@@ -1952,14 +1946,8 @@ msgstr "平台设置精灵已完成"
 msgid "Fill out your report"
 msgstr "填写报告内容"
 
-msgid "Short title"
-msgstr "短标题"
-
 msgid "Describe your report in a few words."
 msgstr "请稍简述此报告"
-
-msgid "Full description"
-msgstr "完整描述"
 
 msgid "Describe your report in detail."
 msgstr "请详述此报告"
@@ -2042,9 +2030,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "请点击帐号激活链接以完成密码设置。"
-
-msgid "This link will expire in 3 days."
-msgstr "此结连有效期限为 3 天。"
 
 msgid ""
 "After successful activation you will be able to access the system via the "

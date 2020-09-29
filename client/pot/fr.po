@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -618,7 +618,7 @@ msgstr "Réinitialisation du mot de passe"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "Un ou plusieurs destinataires ne se sont pas encore connectés pour la première fois. C’est pourquoi ils ne recevront pas de rapports."
+msgstr "Un ou plusieurs destinataires ne se sont pas encore connectés pour la première fois. Cela signifie qu’ils ne recevront pas de signalements."
 
 msgid "This user has not performed the first login yet."
 msgstr "Cet utilisateur ne s’est pas encore connecté pour la première fois."
@@ -698,13 +698,10 @@ msgid "Enable administrators to change user passwords"
 msgstr "Permettre aux administrateurs de changer le mot de passe des utilisateurs"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
+msgstr "Administrateurs autorisés à changer les mots de passe des utilisateurs :"
 
 msgid "Enable multisite feature"
 msgstr "Activer la fonction multisite"
-
-msgid "Enable multi-site login"
-msgstr "Activer la connexion multisite"
 
 msgid "Enable simplified login"
 msgstr "Activer la connexion simplifiée"
@@ -757,15 +754,6 @@ msgstr "en mégaoctets"
 
 msgid "Enable HSTS preload"
 msgstr "Activer le préchargement HSTS"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "Activer l’authentification HTTP de base"
-
-msgid "Username"
-msgstr "Nom d’utilisateur"
-
-msgid "Password"
-msgstr "Mot de passe"
 
 msgid "Require two factor authentication"
 msgstr "Exiger l’authentification à deux facteurs"
@@ -852,6 +840,9 @@ msgstr "Temps de réponse"
 msgid "ID"
 msgstr "ID"
 
+msgid "Username"
+msgstr "Nom d’utilisateur"
+
 msgid "Role"
 msgstr "Rôle"
 
@@ -860,9 +851,6 @@ msgstr "Nom"
 
 msgid "Last access"
 msgstr "Dernier accès"
-
-msgid "State"
-msgstr "État"
 
 msgid "Connection"
 msgstr "Connexion"
@@ -1190,6 +1178,9 @@ msgstr "Avertissement"
 msgid "Require authentication"
 msgstr "Exiger une authentification"
 
+msgid "Password"
+msgstr "Mot de passe"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Nombre d’heures avant d’envoyer l’alerte d’expiration d’un signalement"
 
@@ -1348,6 +1339,9 @@ msgstr "N’utiliser le premier site qu’à des fins d’administration"
 
 msgid "Allow users to sign up"
 msgstr "Permettre aux utilisateurs de s’inscrire"
+
+msgid "Enable multi-site login"
+msgstr "Activer la connexion multisite"
 
 msgid "Enable terms of service"
 msgstr "Activer les conditions générales d’utilisation"
@@ -1734,7 +1728,7 @@ msgid "Allow the whistleblower to send messages"
 msgstr "Permettre au lanceur d’alerte d’envoyer des messages"
 
 msgid "Are you sure that you want to delete the report?"
-msgstr "Voulez-vous vraiment supprimer le signalement ?"
+msgstr "Souhaitez-vous vraiment supprimer le signalement ?"
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
@@ -1746,7 +1740,7 @@ msgid ""
 msgstr "Veuillez noter que tout ce qui est stocké en dehors de la plateforme, p. ex. les fichiers que vous avez enregistrés sur votre ordinateur, doit être supprimé manuellement."
 
 msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Voulez-vous vraiment supprimer les signalements sélectionnés ?"
+msgstr "Souhaitez-vous vraiment supprimer les signalements sélectionnés ?"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
@@ -1757,7 +1751,7 @@ msgid "Please write a motivation for the reply"
 msgstr "Veuillez écrire le motif de la réponse"
 
 msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Voulez-vous vraiment différer la date d’expiration du signalement ?"
+msgstr "Souhaitez-vous vraiment différer la date d’expiration du signalement ?"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "En confirmant, vous différerez la date d’expiration au :"
@@ -1765,7 +1759,7 @@ msgstr "En confirmant, vous différerez la date d’expiration au :"
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
 "reports?"
-msgstr "Voulez-vous vraiment différer la date d’expiration de tous les signalements sélectionnés ?"
+msgstr "Souhaitez-vous vraiment différer la date d’expiration de tous les signalements sélectionnés ?"
 
 msgid "Questionnaire answers"
 msgstr "Réponses au questionnaire"
@@ -1970,14 +1964,8 @@ msgstr "Vous avez terminé avec succès l’assistant de la plateforme."
 msgid "Fill out your report"
 msgstr "Remplissez votre signalement"
 
-msgid "Short title"
-msgstr "Titre abrégé"
-
 msgid "Describe your report in a few words."
 msgstr "Décrivez votre signalement en quelques mots."
-
-msgid "Full description"
-msgstr "Description complète"
 
 msgid "Describe your report in detail."
 msgstr "Décrivez votre signalement en détail."
@@ -1986,7 +1974,7 @@ msgid "Attach files relevant to the report."
 msgstr "Joignez des fichiers pertinents à votre signalement."
 
 msgid "Do you want to provide your identification information?"
-msgstr "Voulez-vous fournir vos renseignements d’identification ?"
+msgstr "Souhaitez-vous fournir vos renseignements d’identification ?"
 
 msgid "First name"
 msgstr "Prénom"
@@ -2060,9 +2048,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "Veuillez cliquer sur le lien d’activation afin de poursuivre l’activation du compte et définir votre mot de passe d’utilisateur."
-
-msgid "This link will expire in 3 days."
-msgstr "Ce lien arrivera à expiration dans trois jours."
 
 msgid ""
 "After successful activation you will be able to access the system via the "

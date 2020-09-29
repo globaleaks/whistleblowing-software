@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Rafał Drewnowski <drewnos@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -683,9 +683,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Włącz fukcję „multusite”"
 
-msgid "Enable multi-site login"
-msgstr "Włącz logowanie „multisite”"
-
 msgid "Enable simplified login"
 msgstr "Włącz logowanie uproszczon"
 
@@ -737,15 +734,6 @@ msgstr "MB"
 
 msgid "Enable HSTS preload"
 msgstr "Włącz HSTS preloading"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "Włącz autoryzację HTTP Basic Auth"
-
-msgid "Username"
-msgstr "Nazwa użytkownika"
-
-msgid "Password"
-msgstr "Hasło"
 
 msgid "Require two factor authentication"
 msgstr "Wymagaj uwierzytelnienia dwuskładnikowego"
@@ -832,6 +820,9 @@ msgstr "Czas odpowiedzi"
 msgid "ID"
 msgstr "ID"
 
+msgid "Username"
+msgstr "Nazwa użytkownika"
+
 msgid "Role"
 msgstr "Rola"
 
@@ -840,9 +831,6 @@ msgstr "Imię"
 
 msgid "Last access"
 msgstr "Ostatnia wizyta"
-
-msgid "State"
-msgstr "województwo"
 
 msgid "Connection"
 msgstr "Połączenie"
@@ -1170,6 +1158,9 @@ msgstr "Ostrzeżenie"
 msgid "Require authentication"
 msgstr "Wymaga uwierzytelnienia"
 
+msgid "Password"
+msgstr "Hasło"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Liczba godzin przed wysłaniem alertu o wygasaniu raportu"
 
@@ -1328,6 +1319,9 @@ msgstr "Użyj pierwszej strony tylko do celów administracyjnych"
 
 msgid "Allow users to sign up"
 msgstr "Zezwalaj użytkownikom na rejestrację"
+
+msgid "Enable multi-site login"
+msgstr "Włącz logowanie „multisite”"
 
 msgid "Enable terms of service"
 msgstr "Włącz warunki świadczenia usług"
@@ -1950,14 +1944,8 @@ msgstr "Skończyłeś(aś) kroki kreatora platformy."
 msgid "Fill out your report"
 msgstr "Wypełnij raport"
 
-msgid "Short title"
-msgstr "Krótki tytuł"
-
 msgid "Describe your report in a few words."
 msgstr "Opisz swój raport w kilku słowach."
-
-msgid "Full description"
-msgstr "Pełen opis"
 
 msgid "Describe your report in detail."
 msgstr "Opisz szczegółowo swój raport."
@@ -2040,9 +2028,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "Aby kontynuować aktywację konta i ustawić hasło użytkownika, kliknij poniższy odnośnik."
-
-msgid "This link will expire in 3 days."
-msgstr "Ten odnośnik wygaśnie w ciągu 3 dni."
 
 msgid ""
 "After successful activation you will be able to access the system via the "

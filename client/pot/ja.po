@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Masayuki Hatta <mhatta@mhatta.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -673,9 +673,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "マルチサイト機能を有効にする"
 
-msgid "Enable multi-site login"
-msgstr "マルチサイトログインを有効にする"
-
 msgid "Enable simplified login"
 msgstr "簡易ログインを有効にする"
 
@@ -727,15 +724,6 @@ msgstr "メガバイトで"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS プリロードを有効にする"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "HTTP 基本認証を有効にする"
-
-msgid "Username"
-msgstr "ユーザー名"
-
-msgid "Password"
-msgstr "パスワード"
 
 msgid "Require two factor authentication"
 msgstr "2要素認証が必要です"
@@ -822,6 +810,9 @@ msgstr "レスポンス時間"
 msgid "ID"
 msgstr "ID"
 
+msgid "Username"
+msgstr "ユーザー名"
+
 msgid "Role"
 msgstr "役割"
 
@@ -830,9 +821,6 @@ msgstr "名前"
 
 msgid "Last access"
 msgstr "最終アクセス"
-
-msgid "State"
-msgstr "都道府県州"
 
 msgid "Connection"
 msgstr "接続"
@@ -1160,6 +1148,9 @@ msgstr "警告"
 msgid "Require authentication"
 msgstr "認証が必要"
 
+msgid "Password"
+msgstr "パスワード"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "報告期限アラートが送信されるまでの時間"
 
@@ -1318,6 +1309,9 @@ msgstr "管理目的に最初のサイトのみ使用する"
 
 msgid "Allow users to sign up"
 msgstr "ユーザーによるサインアップを許可"
+
+msgid "Enable multi-site login"
+msgstr "マルチサイトログインを有効にする"
 
 msgid "Enable terms of service"
 msgstr "利用規約を有効にする"
@@ -1940,14 +1934,8 @@ msgstr "プラットフォーム ウィザードを完了しました。"
 msgid "Fill out your report"
 msgstr "報告を入力してください"
 
-msgid "Short title"
-msgstr "短いタイトル"
-
 msgid "Describe your report in a few words."
 msgstr "短く報告を説明してください。"
-
-msgid "Full description"
-msgstr "詳細な説明"
 
 msgid "Describe your report in detail."
 msgstr "詳細に報告を説明してください。"
@@ -2030,9 +2018,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "アクティベーションリンクをクリックして、アカウントのアクティベーションを続行し、ユーザーパスワードを設定してください。"
-
-msgid "This link will expire in 3 days."
-msgstr "このリンクは3日で期限切れになります。"
 
 msgid ""
 "After successful activation you will be able to access the system via the "

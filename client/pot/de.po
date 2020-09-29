@@ -47,7 +47,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -350,7 +350,7 @@ msgid "HTTPS settings"
 msgstr "HTTPS-Einstellungen"
 
 msgid "URL redirects"
-msgstr "URL Weiterleitungen"
+msgstr "URL-Weiterleitungen"
 
 msgid "Anomaly detection thresholds"
 msgstr "Anomalieerkennungsschwellenwert"
@@ -378,7 +378,7 @@ msgid "Disable notifications to recipients"
 msgstr "Benachrichtigungen an Empfänger deaktivieren"
 
 msgid "Score"
-msgstr "Ergebnis"
+msgstr "Bewertung"
 
 msgid "Trigger question"
 msgstr "Trigger-Frage"
@@ -561,7 +561,7 @@ msgid "Collapse"
 msgstr "Einklappen"
 
 msgid "Expand"
-msgstr "Aufklappen"
+msgstr "Ausklappen"
 
 msgid "Select"
 msgstr "Auswählen"
@@ -711,9 +711,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Die Multisite-Funktion aktivieren"
 
-msgid "Enable multi-site login"
-msgstr "Mutli-Site-Anmeldung aktivieren"
-
 msgid "Enable simplified login"
 msgstr "Vereinfachte Anmeldung aktivieren"
 
@@ -765,15 +762,6 @@ msgstr "in Megabyte"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS-Vorladen aktivieren"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "HTTP-Basisauthentifizierung aktivieren"
-
-msgid "Username"
-msgstr "Benutzername"
-
-msgid "Password"
-msgstr "Passwort"
 
 msgid "Require two factor authentication"
 msgstr "Zwei-Faktor-Authentifizierung verlangen"
@@ -860,6 +848,9 @@ msgstr "Reaktionszeit"
 msgid "ID"
 msgstr "ID"
 
+msgid "Username"
+msgstr "Benutzername"
+
 msgid "Role"
 msgstr "Rolle"
 
@@ -868,9 +859,6 @@ msgstr "Name"
 
 msgid "Last access"
 msgstr "Letzter Zugriff"
-
-msgid "State"
-msgstr "Bundesland"
 
 msgid "Connection"
 msgstr "Verbindung"
@@ -1198,6 +1186,9 @@ msgstr "Warnung"
 msgid "Require authentication"
 msgstr "Erfordert Bestätigung"
 
+msgid "Password"
+msgstr "Passwort"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Anzahl an Stunden bevor ein Einreichungsablaufalarm gesendet wird"
 
@@ -1356,6 +1347,9 @@ msgstr "Die erste Seite nur für administrative Zwecke nutzen"
 
 msgid "Allow users to sign up"
 msgstr "Benutzerregistrierung erlauben"
+
+msgid "Enable multi-site login"
+msgstr "Mutli-Site-Anmeldung aktivieren"
 
 msgid "Enable terms of service"
 msgstr "Nutzungsbedingungen aktivieren"
@@ -1978,14 +1972,8 @@ msgstr "Sie haben den Plattform Assisten erfolgreich abgeschlossen."
 msgid "Fill out your report"
 msgstr "Füllen Sie Ihre Einreichung aus"
 
-msgid "Short title"
-msgstr "Kurztitel"
-
 msgid "Describe your report in a few words."
 msgstr "Beschreiben Sie Ihre Einreichung in ein paar Worten."
-
-msgid "Full description"
-msgstr "Ausführliche Beschreibung"
 
 msgid "Describe your report in detail."
 msgstr "Beschreiben Sie Ihre Einreichung im Detail."
@@ -2012,7 +2000,7 @@ msgid "Female"
 msgstr "Weiblich"
 
 msgid "Other gender identity"
-msgstr "Andere Genderidentität"
+msgstr "Andere Geschlechtsidentität"
 
 msgid "Date of birth"
 msgstr "Geburtsdatum"
@@ -2069,9 +2057,6 @@ msgid ""
 "and to set your user password."
 msgstr "Bitte klicken Sie auf den Aktivierungslink um mit der Kontoerstellung fortzufahren und Ihr Passwort zu setzen."
 
-msgid "This link will expire in 3 days."
-msgstr "Dieser Link wird in 3 Tagen ablaufen."
-
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
@@ -2090,7 +2075,7 @@ msgid "To log in, visit:"
 msgstr "Um sich einzuloggen, besuchen Sie:"
 
 msgid "Users' credentials:"
-msgstr "Benutzerdaten:"
+msgstr "Benutzerzugangsdaten:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "Die Plattform wird automatisch gelöscht am:"
@@ -2209,7 +2194,7 @@ msgid ""
 msgstr "Falls Sie diese Änderung nicht angefordert haben, ändern Sie Ihr Passwort und kontaktieren Sie bitte Ihren Systemadministrator."
 
 msgid "Email change request"
-msgstr "E-Mailänderungsantrag"
+msgstr "E-Mail-Anderungsantrag"
 
 msgid "From: {Author}"
 msgstr "Von: {Author}"

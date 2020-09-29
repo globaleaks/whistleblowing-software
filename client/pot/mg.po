@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: ANDRIAMALALA <luceidos22@gmail.com>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -684,9 +684,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Activer la fonction multisite"
 
-msgid "Enable multi-site login"
-msgstr "Activer la connexion multisite"
-
 msgid "Enable simplified login"
 msgstr "Activer la connexion simplifiée"
 
@@ -738,15 +735,6 @@ msgstr "en mégaoctets"
 
 msgid "Enable HSTS preload"
 msgstr ""
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "Activer l’authentification HTTP de base"
-
-msgid "Username"
-msgstr "Nom d’utilisateur"
-
-msgid "Password"
-msgstr "Mot de passe"
 
 msgid "Require two factor authentication"
 msgstr ""
@@ -833,6 +821,9 @@ msgstr "Temps de réponse"
 msgid "ID"
 msgstr ""
 
+msgid "Username"
+msgstr "Nom d’utilisateur"
+
 msgid "Role"
 msgstr "Rôle"
 
@@ -841,9 +832,6 @@ msgstr "Nom"
 
 msgid "Last access"
 msgstr "Dernier accès"
-
-msgid "State"
-msgstr "État"
 
 msgid "Connection"
 msgstr "Fidirana"
@@ -1171,6 +1159,9 @@ msgstr "Avertissement"
 msgid "Require authentication"
 msgstr "Exiger une authentification"
 
+msgid "Password"
+msgstr "Mot de passe"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Nombre d’heures avant d’envoyer l’alerte d’expiration d’un envoi"
 
@@ -1329,6 +1320,9 @@ msgstr "N’utiliser le premier site qu’à des fins d’administration"
 
 msgid "Allow users to sign up"
 msgstr "Permettre aux utilisateurs de s’inscrire"
+
+msgid "Enable multi-site login"
+msgstr "Activer la connexion multisite"
 
 msgid "Enable terms of service"
 msgstr "Activer les conditions générales d’utilisation"
@@ -1951,14 +1945,8 @@ msgstr "Vous avez terminé avec succès l’assistant de la plateforme."
 msgid "Fill out your report"
 msgstr "Remplissez votre dossier"
 
-msgid "Short title"
-msgstr "Titre abrégé"
-
 msgid "Describe your report in a few words."
 msgstr ""
-
-msgid "Full description"
-msgstr "Description complète"
 
 msgid "Describe your report in detail."
 msgstr "Décrivez votre envoi en détail."
@@ -2040,9 +2028,6 @@ msgstr ""
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
-
-msgid "This link will expire in 3 days."
 msgstr ""
 
 msgid ""

@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Bo Elkjaer <bo_elkjaer@riseup.net>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -670,13 +670,10 @@ msgid "Enable administrators to change user passwords"
 msgstr "Tillad administratorer at ændre brugeradgangskoder"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
+msgstr "Tillad administratorer at ændre brugeradgangskoder"
 
 msgid "Enable multisite feature"
 msgstr "Aktivér fler-side funktion"
-
-msgid "Enable multi-site login"
-msgstr "Akivér multi-sitelogin"
 
 msgid "Enable simplified login"
 msgstr "Aktivér simplificeret login"
@@ -729,15 +726,6 @@ msgstr "i megabyte"
 
 msgid "Enable HSTS preload"
 msgstr "Aktivér HTTPS preload"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "Aktivér HTTP Basic Authentication"
-
-msgid "Username"
-msgstr "Brugernavn"
-
-msgid "Password"
-msgstr "Adgangskode"
 
 msgid "Require two factor authentication"
 msgstr "Kræv to-faktor-godkendelse"
@@ -824,6 +812,9 @@ msgstr "Svartid"
 msgid "ID"
 msgstr "ID"
 
+msgid "Username"
+msgstr "Brugernavn"
+
 msgid "Role"
 msgstr "Rolle"
 
@@ -832,9 +823,6 @@ msgstr "Navn"
 
 msgid "Last access"
 msgstr "Seneste login"
-
-msgid "State"
-msgstr "Status"
 
 msgid "Connection"
 msgstr "Forbindelse"
@@ -1162,6 +1150,9 @@ msgstr "Advarsel"
 msgid "Require authentication"
 msgstr "Kræv autentificering"
 
+msgid "Password"
+msgstr "Adgangskode"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Antal timer før der skal sendes advarsel om at indberetningen er ved at udløbe"
 
@@ -1320,6 +1311,9 @@ msgstr "Brug kun den første side til administrative formål"
 
 msgid "Allow users to sign up"
 msgstr "Tillad brugere at tilmelde sig"
+
+msgid "Enable multi-site login"
+msgstr "Akivér multi-sitelogin"
 
 msgid "Enable terms of service"
 msgstr "Aktivér servicebetingelserne"
@@ -1765,7 +1759,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "Vi anbefaler, at du går til menuen \"Indstillinger\" for at finde din \"kontogendannelsesnøgle\", og at du gemmer denne et sikkert sted. Kontogendannelsesnøglen er nødvendig for at få adgang til portalen og dine data, i tilfælde af, at du glemmer din adgangskode. "
 
 msgid "Files attached by recipients"
 msgstr "Filer der er vedhæftet af modtagere"
@@ -1934,7 +1928,7 @@ msgid "The user will receive an activation link via email."
 msgstr "Brugeren vil modtage et aktiveringslink på e-mail."
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "Jeg har læst og accepterer licensbetingelserne."
 
 msgid "You have completed the platform wizard."
 msgstr "Du har gennemført platformguiden."
@@ -1942,14 +1936,8 @@ msgstr "Du har gennemført platformguiden."
 msgid "Fill out your report"
 msgstr "Udfyld din indberetning"
 
-msgid "Short title"
-msgstr "Kort titel"
-
 msgid "Describe your report in a few words."
 msgstr "Beskriv i få ord din indberetning."
-
-msgid "Full description"
-msgstr "Fuld beskrivelse"
 
 msgid "Describe your report in detail."
 msgstr "Beskriv din indberetning detaljeret."
@@ -2032,9 +2020,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "Tryk venligst på aktiveringslinket for at fortsætte med kontoaktiveringen og sætte en adgangskode."
-
-msgid "This link will expire in 3 days."
-msgstr "Dettte link vil udløbe om 3 dage."
 
 msgid ""
 "After successful activation you will be able to access the system via the "

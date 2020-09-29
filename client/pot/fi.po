@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Panu Ahvenharju\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -675,9 +675,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Ota käyttöön samanaikainen kirjautuminen useaan järjestelmään"
 
-msgid "Enable multi-site login"
-msgstr "Salli samanaikainen kirjautuminen useaan järjestelmään"
-
 msgid "Enable simplified login"
 msgstr "Ota käyttöön helpotettu kirjautuminen"
 
@@ -729,15 +726,6 @@ msgstr "megatavuissa"
 
 msgid "Enable HSTS preload"
 msgstr "Ota HSTS-esilataus käyttöön"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "Ota käyttöön HTTP-perusvarmennus"
-
-msgid "Username"
-msgstr "Käyttäjätunnus"
-
-msgid "Password"
-msgstr "Salasana"
 
 msgid "Require two factor authentication"
 msgstr "Kaksivaiheinen tunnistus vaaditaan"
@@ -824,6 +812,9 @@ msgstr "Vastausaika"
 msgid "ID"
 msgstr "Tunniste"
 
+msgid "Username"
+msgstr "Käyttäjätunnus"
+
 msgid "Role"
 msgstr "Rooli"
 
@@ -832,9 +823,6 @@ msgstr "Käyttäjänimi"
 
 msgid "Last access"
 msgstr "Viimeksi luettu"
-
-msgid "State"
-msgstr "Valtio"
 
 msgid "Connection"
 msgstr "Yhteys"
@@ -1162,6 +1150,9 @@ msgstr "Varoitus"
 msgid "Require authentication"
 msgstr "Edellytä tunnistautumista"
 
+msgid "Password"
+msgstr "Salasana"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Tuntien lukumäärä ennen vanhenemishälytyksen lähettämistä"
 
@@ -1320,6 +1311,9 @@ msgstr "Käytä ensimmäistä sivustoa vain ylläpidollisiin tarkoituksiin"
 
 msgid "Allow users to sign up"
 msgstr "Salli käyttäjien rekisteröityä palveluun"
+
+msgid "Enable multi-site login"
+msgstr "Salli samanaikainen kirjautuminen useaan järjestelmään"
 
 msgid "Enable terms of service"
 msgstr "Ota käyttöön palvelun käyttöehdot"
@@ -1942,14 +1936,8 @@ msgstr "Palvelun avustettu käyttöönotto valmis."
 msgid "Fill out your report"
 msgstr "Täytä lähetyslomake"
 
-msgid "Short title"
-msgstr "Vihjeen otsikko"
-
 msgid "Describe your report in a few words."
 msgstr "Kuvaile lähetyksesi muutamalla sanalla."
-
-msgid "Full description"
-msgstr "Vihjeen tarkempi kuvaus"
 
 msgid "Describe your report in detail."
 msgstr "Kuvaile lähetyksesi muutamalla sanalla."
@@ -2032,9 +2020,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "Etene tilin aktivointiin napsauttamalla aktivointilinkkiä ja aseta käyttäjän salasana."
-
-msgid "This link will expire in 3 days."
-msgstr "Tämä linkki vanhenee 3:ssa päivässä."
 
 msgid ""
 "After successful activation you will be able to access the system via the "

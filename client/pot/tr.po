@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: On the Line Turkiye <onthelineturkiye@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -691,9 +691,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Çoklu site özelliğini etkinleştir"
 
-msgid "Enable multi-site login"
-msgstr "Çoklu site kullanıcı girişini etkinleştir"
-
 msgid "Enable simplified login"
 msgstr "Kolaylaştırılmış kullanıcı girişini etkinleştir"
 
@@ -745,15 +742,6 @@ msgstr "megabyte"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS önyüklemeyi etkinleştir"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "HTTP Basit Doğrulamayı Etkinleştir"
-
-msgid "Username"
-msgstr "Kullanıcı Adı"
-
-msgid "Password"
-msgstr "Parola"
 
 msgid "Require two factor authentication"
 msgstr "İki aşamalı doğrulamayı zorunlu kıl"
@@ -840,6 +828,9 @@ msgstr "Yanıt süresi"
 msgid "ID"
 msgstr "ID"
 
+msgid "Username"
+msgstr "Kullanıcı Adı"
+
 msgid "Role"
 msgstr "Rol"
 
@@ -848,9 +839,6 @@ msgstr "Ad"
 
 msgid "Last access"
 msgstr "Son erişim"
-
-msgid "State"
-msgstr "Eyalet"
 
 msgid "Connection"
 msgstr "Bağlantı"
@@ -1178,6 +1166,9 @@ msgstr "Uyarı"
 msgid "Require authentication"
 msgstr "Kimlik doğrulama gerektir"
 
+msgid "Password"
+msgstr "Parola"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Rapor zaman aşımı uyarısı göndermeden önce gerekli saat sayısı "
 
@@ -1336,6 +1327,9 @@ msgstr "İlk siteyi sadece yönetsel amaçlar için kullan"
 
 msgid "Allow users to sign up"
 msgstr "Kullanıcıların kayıt olmasına izin ver"
+
+msgid "Enable multi-site login"
+msgstr "Çoklu site kullanıcı girişini etkinleştir"
 
 msgid "Enable terms of service"
 msgstr "Hizmet kullanım şartlarını etkinleştir"
@@ -1958,14 +1952,8 @@ msgstr "Platform sihirbazını tamamladınız."
 msgid "Fill out your report"
 msgstr "Raporunuzu doldurun."
 
-msgid "Short title"
-msgstr "Kısa başlık"
-
 msgid "Describe your report in a few words."
 msgstr "Raporunuzu bir kaç kelimeyle tanımlayın."
-
-msgid "Full description"
-msgstr "Tam açıklama"
 
 msgid "Describe your report in detail."
 msgstr "Raporunuzu ayrıntılı olarak tanımlayın."
@@ -2048,9 +2036,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "Lütfen hesap etkinleştirmesine devam etmek ve parolanızı oluşturmak için etkinleştirme bağlantısına tıklayın."
-
-msgid "This link will expire in 3 days."
-msgstr "Bu bağlantı üç gün içerisinde geçersiz olacaktır."
 
 msgid ""
 "After successful activation you will be able to access the system via the "

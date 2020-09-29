@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Ali\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -690,9 +690,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "فعال سازی ویژگی چند سایت"
 
-msgid "Enable multi-site login"
-msgstr "فعال سازی ورود چند سایت"
-
 msgid "Enable simplified login"
 msgstr "فعال سازی ورود ساده شده"
 
@@ -744,15 +741,6 @@ msgstr "در مگابایت"
 
 msgid "Enable HSTS preload"
 msgstr "فعالسازی HSTS preload"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "فعال‌سازی احراز هویت HTTP پایه"
-
-msgid "Username"
-msgstr "نام کاربری"
-
-msgid "Password"
-msgstr "گذرواژه"
 
 msgid "Require two factor authentication"
 msgstr "نیاز به احراز هویت دو عاملی"
@@ -839,6 +827,9 @@ msgstr "زمان پاسخ دهی"
 msgid "ID"
 msgstr "مشخصات "
 
+msgid "Username"
+msgstr "نام کاربری"
+
 msgid "Role"
 msgstr "نقش"
 
@@ -847,9 +838,6 @@ msgstr "نام"
 
 msgid "Last access"
 msgstr "آخرین دسترسی"
-
-msgid "State"
-msgstr "ایالت"
 
 msgid "Connection"
 msgstr "ارتباط"
@@ -1177,6 +1165,9 @@ msgstr "هشدار"
 msgid "Require authentication"
 msgstr "خواستن احراز هویت"
 
+msgid "Password"
+msgstr "گذرواژه"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "تعداد ساعات قبل از ارسال یک هشدار انقضا گزارش "
 
@@ -1335,6 +1326,9 @@ msgstr "استفاده از سایت اول فقط برای اهداف مدیر�
 
 msgid "Allow users to sign up"
 msgstr "اجازه به کاربران برای ثبت نام"
+
+msgid "Enable multi-site login"
+msgstr "فعال سازی ورود چند سایت"
 
 msgid "Enable terms of service"
 msgstr "فعال سازی شرایط استفاده از خدمات"
@@ -1957,14 +1951,8 @@ msgstr "شما ویزارد پلتفورم را کامل کرده اید."
 msgid "Fill out your report"
 msgstr "پر کردن گزارش خود"
 
-msgid "Short title"
-msgstr "عنوان مختصر"
-
 msgid "Describe your report in a few words."
 msgstr "گزارش خود را در چند کلمه توضیح دهید."
-
-msgid "Full description"
-msgstr "توضیح کامل"
 
 msgid "Describe your report in detail."
 msgstr "گزارش خود را به صورت کامل تشریح کنید."
@@ -2047,9 +2035,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "لطفا برای فعال‌سازی حساب خود روی لینک کلیک کرده و رمزعبور خود را انتخاب کنید."
-
-msgid "This link will expire in 3 days."
-msgstr "این لینک پس از ۳ روز منقضی خواهد شد."
 
 msgid ""
 "After successful activation you will be able to access the system via the "

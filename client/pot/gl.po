@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Pilar Fernández Pazos <pfernandez@ccontasgalicia.es>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -672,9 +672,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Habilitar características de multisite"
 
-msgid "Enable multi-site login"
-msgstr "Habilitar a entrada de varios sitios"
-
 msgid "Enable simplified login"
 msgstr "Activar o inicio de sesión simplificado"
 
@@ -726,15 +723,6 @@ msgstr "en megabytes"
 
 msgid "Enable HSTS preload"
 msgstr ""
-
-msgid "Enable HTTP Basic Authentication"
-msgstr ""
-
-msgid "Username"
-msgstr "Nome de usuario"
-
-msgid "Password"
-msgstr "Contrasinal"
 
 msgid "Require two factor authentication"
 msgstr ""
@@ -821,6 +809,9 @@ msgstr "Tempo de resposta"
 msgid "ID"
 msgstr ""
 
+msgid "Username"
+msgstr "Nome de usuario"
+
 msgid "Role"
 msgstr "Rol"
 
@@ -829,9 +820,6 @@ msgstr "Nome"
 
 msgid "Last access"
 msgstr "Último acceso"
-
-msgid "State"
-msgstr "Estado"
 
 msgid "Connection"
 msgstr "Conexión"
@@ -1159,6 +1147,9 @@ msgstr "Aviso"
 msgid "Require authentication"
 msgstr "Requirir autenticación"
 
+msgid "Password"
+msgstr "Contrasinal"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr ""
 
@@ -1317,6 +1308,9 @@ msgstr ""
 
 msgid "Allow users to sign up"
 msgstr "Permitir aos usuarios rexistrarse"
+
+msgid "Enable multi-site login"
+msgstr "Habilitar a entrada de varios sitios"
 
 msgid "Enable terms of service"
 msgstr "Habilitar os termos do servizo"
@@ -1939,14 +1933,8 @@ msgstr "Completou o asistente de plataforma."
 msgid "Fill out your report"
 msgstr ""
 
-msgid "Short title"
-msgstr "Título curto"
-
 msgid "Describe your report in a few words."
 msgstr ""
-
-msgid "Full description"
-msgstr "Descrición completa"
 
 msgid "Describe your report in detail."
 msgstr ""
@@ -2028,9 +2016,6 @@ msgstr ""
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
-
-msgid "This link will expire in 3 days."
 msgstr ""
 
 msgid ""

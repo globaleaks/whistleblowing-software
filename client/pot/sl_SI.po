@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Matija <matija@srebrni-galeb.si>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -672,9 +672,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr ""
 
-msgid "Enable multi-site login"
-msgstr ""
-
 msgid "Enable simplified login"
 msgstr ""
 
@@ -726,15 +723,6 @@ msgstr "v megabajtih"
 
 msgid "Enable HSTS preload"
 msgstr ""
-
-msgid "Enable HTTP Basic Authentication"
-msgstr ""
-
-msgid "Username"
-msgstr "Uporabniško ime"
-
-msgid "Password"
-msgstr "Geslo"
 
 msgid "Require two factor authentication"
 msgstr ""
@@ -821,6 +809,9 @@ msgstr "Odzivni čas"
 msgid "ID"
 msgstr ""
 
+msgid "Username"
+msgstr "Uporabniško ime"
+
 msgid "Role"
 msgstr "Vloga"
 
@@ -829,9 +820,6 @@ msgstr "Ime"
 
 msgid "Last access"
 msgstr "Zadnji dostop"
-
-msgid "State"
-msgstr "Država"
 
 msgid "Connection"
 msgstr "Povezava"
@@ -1159,6 +1147,9 @@ msgstr "Opozorilo"
 msgid "Require authentication"
 msgstr ""
 
+msgid "Password"
+msgstr "Geslo"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Število ur pred pošiljanjem obvestila o poteku prispevka"
 
@@ -1316,6 +1307,9 @@ msgid "Use the first site for administrative purposes only"
 msgstr ""
 
 msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable terms of service"
@@ -1939,14 +1933,8 @@ msgstr ""
 msgid "Fill out your report"
 msgstr "Izpolnite vašo naznanitev"
 
-msgid "Short title"
-msgstr "Skrajšan naslov"
-
 msgid "Describe your report in a few words."
 msgstr "V nekaj besedah opišite vaš prispevek"
-
-msgid "Full description"
-msgstr "Poln opis"
 
 msgid "Describe your report in detail."
 msgstr "Podrobno opišite vaš prispevek"
@@ -2028,9 +2016,6 @@ msgstr ""
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
-
-msgid "This link will expire in 3 days."
 msgstr ""
 
 msgid ""

@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: ION\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -683,9 +683,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr ""
 
-msgid "Enable multi-site login"
-msgstr ""
-
 msgid "Enable simplified login"
 msgstr ""
 
@@ -737,15 +734,6 @@ msgstr "במגה־בתים"
 
 msgid "Enable HSTS preload"
 msgstr "אפשר קדם־טעינה HSTS"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "אפשר אימות יסודי HTTP"
-
-msgid "Username"
-msgstr "שם משתמש"
-
-msgid "Password"
-msgstr "סיסמה"
 
 msgid "Require two factor authentication"
 msgstr "דרוש אימות דו־שלבי"
@@ -832,6 +820,9 @@ msgstr "זמן תגובה"
 msgid "ID"
 msgstr "מזהה"
 
+msgid "Username"
+msgstr "שם משתמש"
+
 msgid "Role"
 msgstr "תפקיד"
 
@@ -840,9 +831,6 @@ msgstr "שם"
 
 msgid "Last access"
 msgstr "גישה אחרונה"
-
-msgid "State"
-msgstr "מחוז"
 
 msgid "Connection"
 msgstr "חיבור"
@@ -1170,6 +1158,9 @@ msgstr "אזהרה"
 msgid "Require authentication"
 msgstr "דרוש אימות"
 
+msgid "Password"
+msgstr "סיסמה"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr ""
 
@@ -1328,6 +1319,9 @@ msgstr ""
 
 msgid "Allow users to sign up"
 msgstr "התר למשתמשים להירשם"
+
+msgid "Enable multi-site login"
+msgstr ""
 
 msgid "Enable terms of service"
 msgstr "אפשר תנאיי שירות"
@@ -1950,14 +1944,8 @@ msgstr "אתה בהצלחה סיימת את אשף הפלטפורמה."
 msgid "Fill out your report"
 msgstr ""
 
-msgid "Short title"
-msgstr "כותרת קצרה"
-
 msgid "Describe your report in a few words."
 msgstr ""
-
-msgid "Full description"
-msgstr "תיאור מלא"
 
 msgid "Describe your report in detail."
 msgstr ""
@@ -2039,9 +2027,6 @@ msgstr ""
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
-
-msgid "This link will expire in 3 days."
 msgstr ""
 
 msgid ""

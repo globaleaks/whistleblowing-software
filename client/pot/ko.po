@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -669,9 +669,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr ""
 
-msgid "Enable multi-site login"
-msgstr ""
-
 msgid "Enable simplified login"
 msgstr ""
 
@@ -723,15 +720,6 @@ msgstr "메가 바이트"
 
 msgid "Enable HSTS preload"
 msgstr ""
-
-msgid "Enable HTTP Basic Authentication"
-msgstr ""
-
-msgid "Username"
-msgstr "사용자 이름"
-
-msgid "Password"
-msgstr "암호"
 
 msgid "Require two factor authentication"
 msgstr ""
@@ -818,6 +806,9 @@ msgstr "응답 시간"
 msgid "ID"
 msgstr ""
 
+msgid "Username"
+msgstr "사용자 이름"
+
 msgid "Role"
 msgstr "역할"
 
@@ -826,9 +817,6 @@ msgstr "이름"
 
 msgid "Last access"
 msgstr ""
-
-msgid "State"
-msgstr "상태"
 
 msgid "Connection"
 msgstr "연결"
@@ -1156,6 +1144,9 @@ msgstr "경고"
 msgid "Require authentication"
 msgstr ""
 
+msgid "Password"
+msgstr "암호"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "제출 만료 경고를 보내기 전에 시간의 수"
 
@@ -1313,6 +1304,9 @@ msgid "Use the first site for administrative purposes only"
 msgstr ""
 
 msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable terms of service"
@@ -1936,14 +1930,8 @@ msgstr "당신은 성공적으로 플랫폼 마법사를 완료했습니다."
 msgid "Fill out your report"
 msgstr "제출을 작성"
 
-msgid "Short title"
-msgstr "짧은 제목"
-
 msgid "Describe your report in a few words."
 msgstr "몇 마디로 제출을 설명"
-
-msgid "Full description"
-msgstr "전체 설명"
 
 msgid "Describe your report in detail."
 msgstr ""
@@ -2025,9 +2013,6 @@ msgstr ""
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
-
-msgid "This link will expire in 3 days."
 msgstr ""
 
 msgid ""

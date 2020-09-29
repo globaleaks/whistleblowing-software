@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Lenka Ježková <lenka.jezkova@oziveni.cz>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -678,9 +678,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Povoliť funkciu multisite"
 
-msgid "Enable multi-site login"
-msgstr "Povoliť prihlásenie na viacero stránok"
-
 msgid "Enable simplified login"
 msgstr "Povoliť zjednodušené prihlásenie"
 
@@ -732,15 +729,6 @@ msgstr "v megabajtoch"
 
 msgid "Enable HSTS preload"
 msgstr "Povoliť predbežné načítanie HSTS"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "Povoliť základné overenie protokolom HTTP"
-
-msgid "Username"
-msgstr "Používateľské meno"
-
-msgid "Password"
-msgstr "Heslo"
 
 msgid "Require two factor authentication"
 msgstr "Vyžaduje dvojfaktorové overenie"
@@ -827,6 +815,9 @@ msgstr "Doba odozvy"
 msgid "ID"
 msgstr "ID"
 
+msgid "Username"
+msgstr "Používateľské meno"
+
 msgid "Role"
 msgstr "Role"
 
@@ -835,9 +826,6 @@ msgstr "Meno"
 
 msgid "Last access"
 msgstr "Posledný prístup"
-
-msgid "State"
-msgstr "Štát"
 
 msgid "Connection"
 msgstr "Spojenie"
@@ -1165,6 +1153,9 @@ msgstr "Varovanie"
 msgid "Require authentication"
 msgstr "Vyžadovať overenie"
 
+msgid "Password"
+msgstr "Heslo"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Počet hodín pred odoslaním upozornenia na exspiráciu"
 
@@ -1323,6 +1314,9 @@ msgstr "Prvú stranu použite len pre účely administrácie."
 
 msgid "Allow users to sign up"
 msgstr "Povoliť používateľom registráciu"
+
+msgid "Enable multi-site login"
+msgstr "Povoliť prihlásenie na viacero stránok"
 
 msgid "Enable terms of service"
 msgstr "Povoliť zmluvné podmienky"
@@ -1945,14 +1939,8 @@ msgstr "Práve ste dokončili sprievodcu základným nastavením."
 msgid "Fill out your report"
 msgstr "Vyplňte Vaše podanie"
 
-msgid "Short title"
-msgstr "Krátky popis"
-
 msgid "Describe your report in a few words."
 msgstr "Opíšte svoje podanie niekoľkými slovami."
-
-msgid "Full description"
-msgstr "Úplný popis"
 
 msgid "Describe your report in detail."
 msgstr "Opíšte svoje podanie podrobne."
@@ -2035,9 +2023,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "Kliknite na aktivačný odkaz, aby ste pokračovali k aktivácii účtu a nastavili svoje užívateľské heslo."
-
-msgid "This link will expire in 3 days."
-msgstr "Platnosť tohto odkazu vyprší za 3 dni."
 
 msgid ""
 "After successful activation you will be able to access the system via the "

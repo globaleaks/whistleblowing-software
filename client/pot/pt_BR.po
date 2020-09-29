@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Danton Medrado\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -698,13 +698,10 @@ msgid "Enable administrators to change user passwords"
 msgstr "Permitir que administradores alterem senhas de usuários"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
+msgstr "Administradores autorizados a mudar as senhas dos usuários:"
 
 msgid "Enable multisite feature"
 msgstr "Ativar recurso multisite"
-
-msgid "Enable multi-site login"
-msgstr "Ativar o login em vários sites"
 
 msgid "Enable simplified login"
 msgstr "Ativar login simplificado"
@@ -757,15 +754,6 @@ msgstr "em megabytes"
 
 msgid "Enable HSTS preload"
 msgstr "Ativar pré-carregamento do HSTS"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "Desabilitar autenticação HTTP"
-
-msgid "Username"
-msgstr "Usuário"
-
-msgid "Password"
-msgstr "Senha"
 
 msgid "Require two factor authentication"
 msgstr "Exigir autenticação de dois fatores"
@@ -852,6 +840,9 @@ msgstr "Tempo de resposta"
 msgid "ID"
 msgstr "ID"
 
+msgid "Username"
+msgstr "Usuário"
+
 msgid "Role"
 msgstr "Cargo/Função"
 
@@ -860,9 +851,6 @@ msgstr "Nome"
 
 msgid "Last access"
 msgstr "Último acesso"
-
-msgid "State"
-msgstr "Estado"
 
 msgid "Connection"
 msgstr "Conexão"
@@ -1190,6 +1178,9 @@ msgstr "Alerta"
 msgid "Require authentication"
 msgstr "Requer autenticação"
 
+msgid "Password"
+msgstr "Senha"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Número de horas antes alertar sobre a expiração do envio"
 
@@ -1348,6 +1339,9 @@ msgstr "Use o primeiro site somente para fins administrativos"
 
 msgid "Allow users to sign up"
 msgstr "Permitir que os usuários se inscrevam"
+
+msgid "Enable multi-site login"
+msgstr "Ativar o login em vários sites"
 
 msgid "Enable terms of service"
 msgstr "Ativar termos de serviço"
@@ -1970,14 +1964,8 @@ msgstr "Você concluiu o assistente de plataforma."
 msgid "Fill out your report"
 msgstr "Preencha sua submissão"
 
-msgid "Short title"
-msgstr "Título curto"
-
 msgid "Describe your report in a few words."
 msgstr "Descreva seu relatório em poucas palavras."
-
-msgid "Full description"
-msgstr "Descrição completa"
 
 msgid "Describe your report in detail."
 msgstr "Descreva seu relatório em detalhes."
@@ -2060,9 +2048,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "Clique no link de ativação para prosseguir com a ativação da conta e definir sua senha de usuário."
-
-msgid "This link will expire in 3 days."
-msgstr "Este link expirará em três dias."
 
 msgid ""
 "After successful activation you will be able to access the system via the "

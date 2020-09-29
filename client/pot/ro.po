@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Cristina Lupu <cristina@cji.ro>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -683,9 +683,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Activează funcționalitatea multi-site"
 
-msgid "Enable multi-site login"
-msgstr "Activează autentificarea multi-site"
-
 msgid "Enable simplified login"
 msgstr "Activează autentificarea simplificată"
 
@@ -737,15 +734,6 @@ msgstr "în megabytes"
 
 msgid "Enable HSTS preload"
 msgstr "Pornește previzualizarea HSTS"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "Permite autentificarea de bază HTTP"
-
-msgid "Username"
-msgstr "Utilizator"
-
-msgid "Password"
-msgstr "Parolă"
 
 msgid "Require two factor authentication"
 msgstr "Solicită autentificarea în doi pași"
@@ -832,6 +820,9 @@ msgstr "Timp de răspuns"
 msgid "ID"
 msgstr "ID"
 
+msgid "Username"
+msgstr "Utilizator"
+
 msgid "Role"
 msgstr "Rol"
 
@@ -840,9 +831,6 @@ msgstr "Prenume"
 
 msgid "Last access"
 msgstr "Ultima accesare"
-
-msgid "State"
-msgstr "Status"
 
 msgid "Connection"
 msgstr "Conexiune"
@@ -1170,6 +1158,9 @@ msgstr "Avertizare"
 msgid "Require authentication"
 msgstr "Solicită autentificarea"
 
+msgid "Password"
+msgstr "Parolă"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Numărul de ore înainte de a trimite o alertă de expirare a sesizării"
 
@@ -1328,6 +1319,9 @@ msgstr "Folosește primul website doar pentru scopuri administrative"
 
 msgid "Allow users to sign up"
 msgstr "Permite utilizatorilor să se înscrie"
+
+msgid "Enable multi-site login"
+msgstr "Activează autentificarea multi-site"
 
 msgid "Enable terms of service"
 msgstr "Activează termenii de utilizare"
@@ -1950,14 +1944,8 @@ msgstr "Ai finalizat cu succes."
 msgid "Fill out your report"
 msgstr "Completează sesizarea"
 
-msgid "Short title"
-msgstr "Titlu scurt"
-
 msgid "Describe your report in a few words."
 msgstr "Descrie sesizarea în câteva cuvinte."
-
-msgid "Full description"
-msgstr "Descriere completă"
 
 msgid "Describe your report in detail."
 msgstr "Descrie sesizarea în detaliu."
@@ -2040,9 +2028,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "Accesează link-ul pentru a activa contul și pentru a seta parola de utilizator."
-
-msgid "This link will expire in 3 days."
-msgstr "Acest link va expira în 3 zile."
 
 msgid ""
 "After successful activation you will be able to access the system via the "

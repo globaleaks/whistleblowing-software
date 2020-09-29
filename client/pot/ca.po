@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Joan Bitlloch <joanbit@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -683,9 +683,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Activa la funció multi lloc"
 
-msgid "Enable multi-site login"
-msgstr "Permet l'inici de sessió simultani a diversos llocs"
-
 msgid "Enable simplified login"
 msgstr "Permet l'inici de sessió simplificat"
 
@@ -737,15 +734,6 @@ msgstr "en megabytes"
 
 msgid "Enable HSTS preload"
 msgstr "Activa la pre-càrrega HSTS"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "Activa l'autenticació bàsica d'HTTP"
-
-msgid "Username"
-msgstr "Nom d'usuari"
-
-msgid "Password"
-msgstr "Contrasenya"
 
 msgid "Require two factor authentication"
 msgstr "Requereix autenticació de dues passes"
@@ -832,6 +820,9 @@ msgstr "Temps de resposta"
 msgid "ID"
 msgstr "Id."
 
+msgid "Username"
+msgstr "Nom d'usuari"
+
 msgid "Role"
 msgstr "Rol"
 
@@ -840,9 +831,6 @@ msgstr "Nom"
 
 msgid "Last access"
 msgstr "últim accés"
-
-msgid "State"
-msgstr "Estat"
 
 msgid "Connection"
 msgstr "Connexió"
@@ -1170,6 +1158,9 @@ msgstr "Alerta"
 msgid "Require authentication"
 msgstr "Requereix autenticació"
 
+msgid "Password"
+msgstr "Contrasenya"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Nombre d’hores abans d’enviar una alerta de caducitat de l’informe"
 
@@ -1328,6 +1319,9 @@ msgstr "Utilitzeu el primer web només per a fins administratius"
 
 msgid "Allow users to sign up"
 msgstr "Permetre als usuaris registrar-se"
+
+msgid "Enable multi-site login"
+msgstr "Permet l'inici de sessió simultani a diversos llocs"
 
 msgid "Enable terms of service"
 msgstr "Activa els termes del servei"
@@ -1950,14 +1944,8 @@ msgstr "Has completat amb èxit l'assistent de la plataforma."
 msgid "Fill out your report"
 msgstr "Ompliu el vostre informe"
 
-msgid "Short title"
-msgstr "Títol curt"
-
 msgid "Describe your report in a few words."
 msgstr "Descriu el teu informe en poques paraules."
-
-msgid "Full description"
-msgstr "Descripció completa"
 
 msgid "Describe your report in detail."
 msgstr "Descriu els detalls del teu informe."
@@ -2040,9 +2028,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "Feu clic a l'enllaç d'activació per continuar amb l'activació del compte i per definir la vostra contrasenya d'usuari."
-
-msgid "This link will expire in 3 days."
-msgstr "Aquest enllaç caducarà d’aquí a 3 dies."
 
 msgid ""
 "After successful activation you will be able to access the system via the "

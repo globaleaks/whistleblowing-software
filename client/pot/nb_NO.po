@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -671,9 +671,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr ""
 
-msgid "Enable multi-site login"
-msgstr ""
-
 msgid "Enable simplified login"
 msgstr ""
 
@@ -725,15 +722,6 @@ msgstr "i megabyte"
 
 msgid "Enable HSTS preload"
 msgstr ""
-
-msgid "Enable HTTP Basic Authentication"
-msgstr ""
-
-msgid "Username"
-msgstr "Brukernavn"
-
-msgid "Password"
-msgstr "Passord"
 
 msgid "Require two factor authentication"
 msgstr ""
@@ -820,6 +808,9 @@ msgstr "Svartid"
 msgid "ID"
 msgstr "ID"
 
+msgid "Username"
+msgstr "Brukernavn"
+
 msgid "Role"
 msgstr "Rolle"
 
@@ -828,9 +819,6 @@ msgstr "Navn"
 
 msgid "Last access"
 msgstr "Siste tilgang"
-
-msgid "State"
-msgstr "Region"
 
 msgid "Connection"
 msgstr "Tilkobling"
@@ -1158,6 +1146,9 @@ msgstr "Advarsel"
 msgid "Require authentication"
 msgstr ""
 
+msgid "Password"
+msgstr "Passord"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr ""
 
@@ -1316,6 +1307,9 @@ msgstr ""
 
 msgid "Allow users to sign up"
 msgstr "Tillat brukere å registrere seg"
+
+msgid "Enable multi-site login"
+msgstr ""
 
 msgid "Enable terms of service"
 msgstr ""
@@ -1938,14 +1932,8 @@ msgstr "Du har fullført plattformsveiviseren."
 msgid "Fill out your report"
 msgstr ""
 
-msgid "Short title"
-msgstr "Kort tittel"
-
 msgid "Describe your report in a few words."
 msgstr ""
-
-msgid "Full description"
-msgstr "Full beskrivelse"
 
 msgid "Describe your report in detail."
 msgstr ""
@@ -2027,9 +2015,6 @@ msgstr ""
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
-
-msgid "This link will expire in 3 days."
 msgstr ""
 
 msgid ""

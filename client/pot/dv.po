@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Ruba Ali <rubaa.ali@gmail.com>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -673,9 +673,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "މަލްޓިސައިޓް ފީޗާ އޮންކުރަން"
 
-msgid "Enable multi-site login"
-msgstr "މަލްޓިސައިޓް ލޮގް އިން އޮންކުރަން"
-
 msgid "Enable simplified login"
 msgstr "ސިންޕްލިފައިޑް ލޮގް އިން އޮން ކުރަން"
 
@@ -727,15 +724,6 @@ msgstr "މެގަބައިޓްއިން"
 
 msgid "Enable HSTS preload"
 msgstr "އެޗް.އެސް.ޓީ.އެސް ޕްރިލޯޑް ހިޔާރުކުރެއްވުމަށް"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "އެޗް.ޓީ.ޓީ.ޕީ ބޭސިކް އޮތެންޓިކޭޝަން ހިޔާރުކުރެއްވުމަށް"
-
-msgid "Username"
-msgstr "އެކައުންޓަށް ބޭނުންކުރާ ނަން"
-
-msgid "Password"
-msgstr "ޕާސްވޯޑް"
 
 msgid "Require two factor authentication"
 msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން ޓޫ-ފެކްޓާ އޯތެންޓިކޭޝަން ހިޔާރުކުރަންޖެހޭނެ"
@@ -822,6 +810,9 @@ msgstr "ޖަވާބުލިބެން ނަގާ ވަގުތު"
 msgid "ID"
 msgstr "އައިޑީ"
 
+msgid "Username"
+msgstr "އެކައުންޓަށް ބޭނުންކުރާ ނަން"
+
 msgid "Role"
 msgstr "ރޯލް"
 
@@ -830,9 +821,6 @@ msgstr "ނަން"
 
 msgid "Last access"
 msgstr "ހުށައެޅުމުގެ ކުރިން އެންމެ ފަހު އެކްސެސް"
-
-msgid "State"
-msgstr "ރަށް/އަވަށް"
 
 msgid "Connection"
 msgstr "ކަނެކްޝަން"
@@ -1160,6 +1148,9 @@ msgstr "އިންޒާރު"
 msgid "Require authentication"
 msgstr "ހުއްދަ އޮތްތޯ ބެލުމަށްޓަކައި"
 
+msgid "Password"
+msgstr "ޕާސްވޯޑް"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "ރިޕޯޓުގެ ދުވަސްހަމަވާ ތާރީޙްގެ އެލާރޓް ފޮނުވާނީ ކިތައް ގަޑިއިރު ކުރިންތޯ ހިޔާރުކުރުމަށް"
 
@@ -1318,6 +1309,9 @@ msgstr "ފުރަތަމަ ސައިޓް ބޭނުންކުރައްވާނީ އިދާ�
 
 msgid "Allow users to sign up"
 msgstr "އިތުރު މީހުން ސައިން އަޕް ކުރުމުގެ ހުއްދަ ދިނުމަށް"
+
+msgid "Enable multi-site login"
+msgstr "މަލްޓިސައިޓް ލޮގް އިން އޮންކުރަން"
 
 msgid "Enable terms of service"
 msgstr "ޚިދުމަތުގެ އިޤްރާރު އޮން ކުރަން"
@@ -1940,14 +1934,8 @@ msgstr "ޕްލެޓްފޯމް ވިޒާޑް މިހާރު ތިވަނީ ފުރިހަ
 msgid "Fill out your report"
 msgstr "ރިޕޯޓްގެ މަޢުލޫމާތު ފުރިހަމަކުރައްވާ"
 
-msgid "Short title"
-msgstr "ކުރު ލަގަބު"
-
 msgid "Describe your report in a few words."
 msgstr "ިރިޕޯޓާއި ގުޅޭ ކުރު މަޢުލޫމާތުކޮޅެއް ލިޔުއްވާ"
-
-msgid "Full description"
-msgstr "ިރިޕޯޓާއި ގުޅޭ ހުރިހާ މަޢުލޫމާތެއް"
 
 msgid "Describe your report in detail."
 msgstr "ރިޕޯޓާއި ގުޅޭ މަޢުލޫމާތުދެއްވާ"
@@ -2030,9 +2018,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "އެކައުންޓް އެކްޓިވޭޓް ކުރުމަށްޓަކައި ލިބިފައިވާ ލިންކްއަށް އޮބާލައްވާފައި ހިޔާކުރައްވާ ޕާސްވޯޑްއެއް ޖައްސަވާ. "
-
-msgid "This link will expire in 3 days."
-msgstr "މި ލިންކުގެ މުއްދަތު 3 ދުވަހުގެ ތެރޭގައި ހަމަވާނެ"
 
 msgid ""
 "After successful activation you will be able to access the system via the "

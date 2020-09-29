@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: bact' <arthit@gmail.com>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -675,9 +675,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "เปิดใช้งานการรองรับหลายเว็บไซต์"
 
-msgid "Enable multi-site login"
-msgstr "เปิดใช้งานการลงชื่อเข้าใช้แบบหลายเว็บไซต์"
-
 msgid "Enable simplified login"
 msgstr "เปิดใช้งานการลงชื่อเข้าใช้แบบเรียบง่าย"
 
@@ -729,15 +726,6 @@ msgstr "เมกะไบต์"
 
 msgid "Enable HSTS preload"
 msgstr "เปิดใช้งาน HSTS preload"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "เปิดใช้งาน HTTP Basic Authentication"
-
-msgid "Username"
-msgstr "ชื่อผู้ใช้"
-
-msgid "Password"
-msgstr "รหัสผ่าน"
 
 msgid "Require two factor authentication"
 msgstr "ต้องใช้การยืนยันตัวตนสองชั้น"
@@ -824,6 +812,9 @@ msgstr "เวลาตอบสนอง"
 msgid "ID"
 msgstr "รหัสประจำ"
 
+msgid "Username"
+msgstr "ชื่อผู้ใช้"
+
 msgid "Role"
 msgstr "บทบาท"
 
@@ -832,9 +823,6 @@ msgstr "ชื่อ"
 
 msgid "Last access"
 msgstr "เข้าถึงล่าสุด"
-
-msgid "State"
-msgstr "สถานะ"
 
 msgid "Connection"
 msgstr "การเชื่อมต่อ"
@@ -1162,6 +1150,9 @@ msgstr "คำเตือน"
 msgid "Require authentication"
 msgstr "ต้องใช้การยืนยันตัวตน"
 
+msgid "Password"
+msgstr "รหัสผ่าน"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "จำนวนชั่วโมงก่อนจะส่งแจ้งเตือนถึงการหมดอายุของรายงาน"
 
@@ -1320,6 +1311,9 @@ msgstr "ใช้งานเว็บไซต์แรกเพื่อจุ
 
 msgid "Allow users to sign up"
 msgstr "อนุญาตให้ผู้ใช้สมัครเข้าระบบ"
+
+msgid "Enable multi-site login"
+msgstr "เปิดใช้งานการลงชื่อเข้าใช้แบบหลายเว็บไซต์"
 
 msgid "Enable terms of service"
 msgstr "เปิดใช้ข้อตกลงในการให้บริการ"
@@ -1942,14 +1936,8 @@ msgstr "คุณได้ทำตามคำแนะนำการติด
 msgid "Fill out your report"
 msgstr "กรอกรายงานของคุณ"
 
-msgid "Short title"
-msgstr "ชื่ออย่างสั้น"
-
 msgid "Describe your report in a few words."
 msgstr "อธิบายรายงานของคุณในไม่กี่คำ"
-
-msgid "Full description"
-msgstr "คำอธิบายแบบเต็ม"
 
 msgid "Describe your report in detail."
 msgstr "อธิบายรายงานของคุณในรายละเอียด"
@@ -2032,9 +2020,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "กรุณาคลิกที่ลิงก์ยืนยืนเปิดใช้งาน เพื่อยืนยันการเปิดใช้งานบัญชี และตั้งรหัสผ่านของคุณ"
-
-msgid "This link will expire in 3 days."
-msgstr "ลิงก์นี้จะหมดอายุใน 3 วัน"
 
 msgid ""
 "After successful activation you will be able to access the system via the "

@@ -43,8 +43,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Infinity\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -611,7 +611,7 @@ msgid "Block the submission"
 msgstr "Blokkeer de inzending"
 
 msgid "Skip the recipient account creation."
-msgstr "Sla het aanmaken van een account voor de ontvanger over"
+msgstr "Sla het aanmaken van een account voor de ontvanger over."
 
 msgid "Send activation link"
 msgstr "Verstuur activatielink"
@@ -631,16 +631,16 @@ msgid "seconds"
 msgstr "seconden"
 
 msgid "This domain name is not available."
-msgstr ""
+msgstr "Deze domeinnaam is niet beschikbaar."
 
 msgid "VAT number"
-msgstr ""
+msgstr "BTW-nummer"
 
 msgid "Tax code"
-msgstr ""
+msgstr "BTW-code / Belastingwetgeving"
 
 msgid "Administrators authorized to change user passwords"
-msgstr ""
+msgstr "Beheerders die gemachtigd zijn om gebruikerswachtwoorden te wijzigen"
 
 msgid "Select the context of your report:"
 msgstr "Selecteer de context van uw inzending:"
@@ -702,13 +702,10 @@ msgid "Enable administrators to change user passwords"
 msgstr "Stel administrators in staat om wachtwoorden van gebruikers te veranderen"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
+msgstr "Beheerders die gemachtigd zijn om gebruikerswachtwoorden te wijzigen:"
 
 msgid "Enable multisite feature"
 msgstr "Functie voor meerdere-weblocaties inschakelen"
-
-msgid "Enable multi-site login"
-msgstr "Meerdere-weblocatielogin inschakelen"
 
 msgid "Enable simplified login"
 msgstr "Vereenvoudigdelogin inschakelen"
@@ -761,15 +758,6 @@ msgstr "in megabytes"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS-preload inschakelen"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "Schakel HTTP Basic Authentication in"
-
-msgid "Username"
-msgstr "Gebruikersnaam"
-
-msgid "Password"
-msgstr "Wachtwoord"
 
 msgid "Require two factor authentication"
 msgstr "Vereis two-factor-authentication"
@@ -856,6 +844,9 @@ msgstr "Responstijd"
 msgid "ID"
 msgstr "ID"
 
+msgid "Username"
+msgstr "Gebruikersnaam"
+
 msgid "Role"
 msgstr "Rol"
 
@@ -864,9 +855,6 @@ msgstr "Naam"
 
 msgid "Last access"
 msgstr "Laatste toegang"
-
-msgid "State"
-msgstr "Provincie"
 
 msgid "Connection"
 msgstr "Verbinding"
@@ -1052,7 +1040,7 @@ msgid "Restrict access to specific IP addresses"
 msgstr "Beperk toegang voor specifieke IP-adressen"
 
 msgid "Allowed IP addresses"
-msgstr ""
+msgstr "Toegestane IP-adressen"
 
 msgid "Admin"
 msgstr "Admin"
@@ -1193,6 +1181,9 @@ msgstr "Waarschuwing"
 
 msgid "Require authentication"
 msgstr "Vereis authenticatie"
+
+msgid "Password"
+msgstr "Wachtwoord"
 
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Aantal uren voordat de melding verstuurd wordt dat een inzending verloopt"
@@ -1352,6 +1343,9 @@ msgstr "Gebruik de eerste weblocatie uitsluitend voor administratieve doeleinden
 
 msgid "Allow users to sign up"
 msgstr "Gebruikers toestaan zich in te schijven"
+
+msgid "Enable multi-site login"
+msgstr "Meerdere-weblocatielogin inschakelen"
 
 msgid "Enable terms of service"
 msgstr "Gebruiksvoorwaarden inschakelen"
@@ -1797,7 +1791,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "We raden u aan de sectie \"Voorkeuren\" te openen om uw \"Accountherstel-sleutel\" op te halen en deze veilig op te slaan. Deze sleutel is nodig om uw toegang tot het platform en uw gegevens te herstellen in het geval u uw wachtwoord vergeet."
 
 msgid "Files attached by recipients"
 msgstr "Bestanden die door ontvangers zijn toegevoegd"
@@ -1966,7 +1960,7 @@ msgid "The user will receive an activation link via email."
 msgstr "De gebruiker zal een activatiecode ontvangen via e-mail."
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "Ik heb de voorwaarden van de licentie gelezen en ga hiermee akkoord."
 
 msgid "You have completed the platform wizard."
 msgstr "Je hebt de wizard geheel doorlopen."
@@ -1974,14 +1968,8 @@ msgstr "Je hebt de wizard geheel doorlopen."
 msgid "Fill out your report"
 msgstr "Invullen van de inzending"
 
-msgid "Short title"
-msgstr "Korte titel"
-
 msgid "Describe your report in a few words."
 msgstr "Beschrijf je inzending in een paar woorden."
-
-msgid "Full description"
-msgstr "Volledige omschrijving"
 
 msgid "Describe your report in detail."
 msgstr "Geef een gedetailleerde beschrijving van je inzending."
@@ -2065,9 +2053,6 @@ msgid ""
 "and to set your user password."
 msgstr "Klik op de activatielink om verder te gaan met het activeren van je account en om een wachtwoord in te stellen"
 
-msgid "This link will expire in 3 days."
-msgstr "Deze link is 3 dagen geldig. "
-
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
@@ -2086,7 +2071,7 @@ msgid "To log in, visit:"
 msgstr "Om in te loggen, bezoek:"
 
 msgid "Users' credentials:"
-msgstr "Geloofsbrieven bij deze gebruiker:"
+msgstr "Gebruikersgegevens:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "Het platvorm wordt automatisch gewist op:"

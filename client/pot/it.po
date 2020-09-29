@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 11:34+0000\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -689,9 +689,6 @@ msgstr "Amministratori autorizzati a cambiare le password degli utenti:"
 msgid "Enable multisite feature"
 msgstr "Abilita la funzionalità multisito"
 
-msgid "Enable multi-site login"
-msgstr "Abilita login multi-sito"
-
 msgid "Enable simplified login"
 msgstr "Abilita login semplificato"
 
@@ -743,15 +740,6 @@ msgstr "in megabytes"
 
 msgid "Enable HSTS preload"
 msgstr "Abilita HSTS preload"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "Abilita HTTP Basic Authentication"
-
-msgid "Username"
-msgstr "Nome utente"
-
-msgid "Password"
-msgstr "Password"
 
 msgid "Require two factor authentication"
 msgstr "Richiedi autenticazione a due fattori"
@@ -838,6 +826,9 @@ msgstr "Tempo di risposta"
 msgid "ID"
 msgstr "ID"
 
+msgid "Username"
+msgstr "Nome utente"
+
 msgid "Role"
 msgstr "Ruolo"
 
@@ -846,9 +837,6 @@ msgstr "Nome"
 
 msgid "Last access"
 msgstr "Ultimo accesso"
-
-msgid "State"
-msgstr "Stato"
 
 msgid "Connection"
 msgstr "Connessione"
@@ -1176,6 +1164,9 @@ msgstr "Attenzione"
 msgid "Require authentication"
 msgstr "Richiedi autenticazione"
 
+msgid "Password"
+msgstr "Password"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Numero di ore prima di inviare un avviso di scadenza della segnalazione"
 
@@ -1334,6 +1325,9 @@ msgstr "Usa il primo sito solo per finalità amministrative"
 
 msgid "Allow users to sign up"
 msgstr "Permetti agli utenti di registrarsi"
+
+msgid "Enable multi-site login"
+msgstr "Abilita login multi-sito"
 
 msgid "Enable terms of service"
 msgstr "Abilita i termini di servizio"
@@ -1956,14 +1950,8 @@ msgstr "La procedura guidata di installazione è stata completata con successo."
 msgid "Fill out your report"
 msgstr "Compila la tua segnalazione"
 
-msgid "Short title"
-msgstr "Breve titolo"
-
 msgid "Describe your report in a few words."
 msgstr "Descrivi la tua segnalazione con poche parole."
-
-msgid "Full description"
-msgstr "Descrizione dettagliata"
 
 msgid "Describe your report in detail."
 msgstr "Descrivi la tua segnalazione in dettaglio."
@@ -2046,9 +2034,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "Si prega di cliccare sul link di attivazione per procedere all'attivazione dell'account e ad impostare la tua password personale."
-
-msgid "This link will expire in 3 days."
-msgstr "Il link scadrà in 3 giorni."
 
 msgid ""
 "After successful activation you will be able to access the system via the "

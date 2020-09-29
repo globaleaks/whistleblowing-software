@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Anh Phan <vietnamesel10n@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -678,9 +678,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Cho phép tính năng đa trang web"
 
-msgid "Enable multi-site login"
-msgstr "Cho phép đăng nhập nhiều trang"
-
 msgid "Enable simplified login"
 msgstr "Cho phép đơn giản hóa đăng nhập"
 
@@ -732,15 +729,6 @@ msgstr "bằng megabyte"
 
 msgid "Enable HSTS preload"
 msgstr "Kích hoạt tải trước HSTS"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "Bật HTTP Basic Authentication"
-
-msgid "Username"
-msgstr "Người dùng"
-
-msgid "Password"
-msgstr "Mật khẩu"
 
 msgid "Require two factor authentication"
 msgstr "Yêu cầu xác thực 2 yếu tố"
@@ -827,6 +815,9 @@ msgstr "Thời gian đáp ứng"
 msgid "ID"
 msgstr "Số"
 
+msgid "Username"
+msgstr "Người dùng"
+
 msgid "Role"
 msgstr "Vai trò"
 
@@ -835,9 +826,6 @@ msgstr "Tên"
 
 msgid "Last access"
 msgstr "Lần truy cập cuối"
-
-msgid "State"
-msgstr "Tình trạng"
 
 msgid "Connection"
 msgstr "liên quan"
@@ -1165,6 +1153,9 @@ msgstr "Cảnh báo"
 msgid "Require authentication"
 msgstr "Yêu cầu xác thực"
 
+msgid "Password"
+msgstr "Mật khẩu"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Số giờ trước khi gửi một cảnh báo hết hạn nộp hồ sơ"
 
@@ -1323,6 +1314,9 @@ msgstr "Chỉ sử dụng trang web đầu tiên cho mục đích quản trị"
 
 msgid "Allow users to sign up"
 msgstr "Cho phép người dùng đăng kí"
+
+msgid "Enable multi-site login"
+msgstr "Cho phép đăng nhập nhiều trang"
 
 msgid "Enable terms of service"
 msgstr "Cho phép điều khoản dịch vụ"
@@ -1945,14 +1939,8 @@ msgstr "Bạn đã hoàn thành trình hướng dẫn nền tảng."
 msgid "Fill out your report"
 msgstr "Điền vào phần đệ trình của bạn"
 
-msgid "Short title"
-msgstr "Tiêu đề ngắn"
-
 msgid "Describe your report in a few words."
 msgstr "Mô tả trình của bạn với một vài từ"
-
-msgid "Full description"
-msgstr "Mô tả đầy đủ"
 
 msgid "Describe your report in detail."
 msgstr "Mô tả báo cáo của bạn một cách chi tiết."
@@ -2035,9 +2023,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "Vui lòng nhấp vào liên kết kích hoạt để tiến hành kích hoạt tài khoản và đặt mật khẩu của bạn."
-
-msgid "This link will expire in 3 days."
-msgstr "Liên kết này sẽ hết hạn trong 3 ngày tới"
 
 msgid ""
 "After successful activation you will be able to access the system via the "

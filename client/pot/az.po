@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: ulkar!(($-2017 <ulkernatiqqizis@gmail.com>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -673,9 +673,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr ""
 
-msgid "Enable multi-site login"
-msgstr ""
-
 msgid "Enable simplified login"
 msgstr ""
 
@@ -727,15 +724,6 @@ msgstr "Megabaytla"
 
 msgid "Enable HSTS preload"
 msgstr ""
-
-msgid "Enable HTTP Basic Authentication"
-msgstr ""
-
-msgid "Username"
-msgstr "İstifadəçi adı"
-
-msgid "Password"
-msgstr "Şifrə"
 
 msgid "Require two factor authentication"
 msgstr ""
@@ -822,6 +810,9 @@ msgstr "Cavab vermə vaxtı"
 msgid "ID"
 msgstr "İD"
 
+msgid "Username"
+msgstr "İstifadəçi adı"
+
 msgid "Role"
 msgstr "Rol"
 
@@ -830,9 +821,6 @@ msgstr "Ad"
 
 msgid "Last access"
 msgstr "Sonuncu giriş "
-
-msgid "State"
-msgstr "Rayon"
 
 msgid "Connection"
 msgstr "Bağlantı"
@@ -1160,6 +1148,9 @@ msgstr "Xəbərdarlıq"
 msgid "Require authentication"
 msgstr ""
 
+msgid "Password"
+msgstr "Şifrə"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Təqdimata son xəbərdarlıq göndərilməmişdən öncəki saat sayı"
 
@@ -1317,6 +1308,9 @@ msgid "Use the first site for administrative purposes only"
 msgstr ""
 
 msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable terms of service"
@@ -1940,14 +1934,8 @@ msgstr "Platforma artıq hazırdır. "
 msgid "Fill out your report"
 msgstr "Təqdimatınızı doldurun"
 
-msgid "Short title"
-msgstr "Qısa ad"
-
 msgid "Describe your report in a few words."
 msgstr "Təqdimatınızı bir neçə sözlə təsvir edin."
-
-msgid "Full description"
-msgstr "Tam açıqlama"
 
 msgid "Describe your report in detail."
 msgstr "Təqdimatınızı təfərrüatı ilə təsvir edin."
@@ -2029,9 +2017,6 @@ msgstr ""
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
-
-msgid "This link will expire in 3 days."
 msgstr ""
 
 msgid ""

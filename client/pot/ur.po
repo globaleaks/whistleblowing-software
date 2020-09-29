@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Furhan Hussain <furhan@bytesforall.pk>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -678,9 +678,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr ""
 
-msgid "Enable multi-site login"
-msgstr ""
-
 msgid "Enable simplified login"
 msgstr ""
 
@@ -732,15 +729,6 @@ msgstr "میگا بائٹس میں"
 
 msgid "Enable HSTS preload"
 msgstr ""
-
-msgid "Enable HTTP Basic Authentication"
-msgstr ""
-
-msgid "Username"
-msgstr "صارف کا نام"
-
-msgid "Password"
-msgstr "پاس ورڈ"
 
 msgid "Require two factor authentication"
 msgstr ""
@@ -827,6 +815,9 @@ msgstr "ردِ عمل کا وقت"
 msgid "ID"
 msgstr ""
 
+msgid "Username"
+msgstr "صارف کا نام"
+
 msgid "Role"
 msgstr "کردار"
 
@@ -835,9 +826,6 @@ msgstr "نام"
 
 msgid "Last access"
 msgstr "آخری رسائی"
-
-msgid "State"
-msgstr "ریاست"
 
 msgid "Connection"
 msgstr "کنکشن"
@@ -1165,6 +1153,9 @@ msgstr "انتباہ"
 msgid "Require authentication"
 msgstr ""
 
+msgid "Password"
+msgstr "پاس ورڈ"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "ایک جمع کرانے کا وقت ختم ہونے الرٹ بھیجنے سے پہلے کے گھنٹوں کی تعداد"
 
@@ -1322,6 +1313,9 @@ msgid "Use the first site for administrative purposes only"
 msgstr ""
 
 msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable terms of service"
@@ -1945,14 +1939,8 @@ msgstr ""
 msgid "Fill out your report"
 msgstr "اپنی گزارش پر کریں"
 
-msgid "Short title"
-msgstr "مختصرعنوان"
-
 msgid "Describe your report in a few words."
 msgstr "چند الفاظ کے ساتھ آپ کی عرضی کو بیان کیجئے"
-
-msgid "Full description"
-msgstr "مکمل وضاحت"
 
 msgid "Describe your report in detail."
 msgstr ""
@@ -2034,9 +2022,6 @@ msgstr ""
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
-
-msgid "This link will expire in 3 days."
 msgstr ""
 
 msgid ""

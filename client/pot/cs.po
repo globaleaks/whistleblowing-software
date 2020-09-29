@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Mr Higgins\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -679,9 +679,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Povolit funkci multisite "
 
-msgid "Enable multi-site login"
-msgstr "Povolit přihlášení na více stránek"
-
 msgid "Enable simplified login"
 msgstr "Povolit zjednodušené přihlášení"
 
@@ -733,15 +730,6 @@ msgstr "v megabajtech"
 
 msgid "Enable HSTS preload"
 msgstr "Povolit předběžné načítání HSTS"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "Povolit základní ověření HTTP"
-
-msgid "Username"
-msgstr "Uživatelské jméno"
-
-msgid "Password"
-msgstr "Heslo"
 
 msgid "Require two factor authentication"
 msgstr "Vyžaduje dvoufaktorové ověření"
@@ -828,6 +816,9 @@ msgstr "Čas odpovědi"
 msgid "ID"
 msgstr "ID"
 
+msgid "Username"
+msgstr "Uživatelské jméno"
+
 msgid "Role"
 msgstr "Role"
 
@@ -836,9 +827,6 @@ msgstr "Jméno"
 
 msgid "Last access"
 msgstr "Poslední přístup"
-
-msgid "State"
-msgstr "Stát"
 
 msgid "Connection"
 msgstr "Připojení"
@@ -1166,6 +1154,9 @@ msgstr "Varování"
 msgid "Require authentication"
 msgstr "Vyžadovat ověření"
 
+msgid "Password"
+msgstr "Heslo"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Počet hodin před odesláním upozornění na expiraci"
 
@@ -1324,6 +1315,9 @@ msgstr "První stránku použijte pouze pro administrativní účely"
 
 msgid "Allow users to sign up"
 msgstr "Povolit uživatelům registraci"
+
+msgid "Enable multi-site login"
+msgstr "Povolit přihlášení na více stránek"
 
 msgid "Enable terms of service"
 msgstr "Aktivovat smluvní podmínky"
@@ -1946,14 +1940,8 @@ msgstr "Právě jste dokončili průvodce základním nastavením."
 msgid "Fill out your report"
 msgstr "Vyplňte Vaše podání"
 
-msgid "Short title"
-msgstr "Krátký popis"
-
 msgid "Describe your report in a few words."
 msgstr "Popište své podání několika slovy."
-
-msgid "Full description"
-msgstr "Úplný popis"
 
 msgid "Describe your report in detail."
 msgstr "Podrobně popište své podání."
@@ -2036,9 +2024,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "Klikněte na aktivační odkaz, abyste pokračovali k aktivaci účtu a nastavili své uživatelské heslo."
-
-msgid "This link will expire in 3 days."
-msgstr "Platnost tohoto odkazu vyprší za 3 dny."
 
 msgid ""
 "After successful activation you will be able to access the system via the "

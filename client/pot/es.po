@@ -36,7 +36,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -695,13 +695,10 @@ msgid "Enable administrators to change user passwords"
 msgstr "Permitir a los administradores cambiar las contraseñas de usuario"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
+msgstr "Administradores autorizados a cambiar las contraseñas de usuario:"
 
 msgid "Enable multisite feature"
 msgstr "Activar las funcionalidades multi-sitio"
-
-msgid "Enable multi-site login"
-msgstr "Activar el inicio de sesión multi-sitio"
 
 msgid "Enable simplified login"
 msgstr "Activar el inicio de sesión simplificado"
@@ -754,15 +751,6 @@ msgstr "en megabytes"
 
 msgid "Enable HSTS preload"
 msgstr "Permitir una precarga HSTS"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "Habilitar autentificación HTTP básica"
-
-msgid "Username"
-msgstr "Nombre de usuario"
-
-msgid "Password"
-msgstr "Contraseña"
 
 msgid "Require two factor authentication"
 msgstr "Requerir autenticación de doble factor"
@@ -849,6 +837,9 @@ msgstr "Tiempo de respuesta"
 msgid "ID"
 msgstr "Identificación"
 
+msgid "Username"
+msgstr "Nombre de usuario"
+
 msgid "Role"
 msgstr "Rol"
 
@@ -857,9 +848,6 @@ msgstr "Nombre"
 
 msgid "Last access"
 msgstr "Último acceso"
-
-msgid "State"
-msgstr "Estado"
 
 msgid "Connection"
 msgstr "Conexión"
@@ -1187,6 +1175,9 @@ msgstr "Advertencia"
 msgid "Require authentication"
 msgstr "Requiere autentificación"
 
+msgid "Password"
+msgstr "Contraseña"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Numero de horas antes de enviar una alerta de caducidad de la entrega"
 
@@ -1345,6 +1336,9 @@ msgstr "Utilizar la primera ubicación sólo para propósitos administrativos"
 
 msgid "Allow users to sign up"
 msgstr "Permitir registrarse a los usuarios"
+
+msgid "Enable multi-site login"
+msgstr "Activar el inicio de sesión multi-sitio"
 
 msgid "Enable terms of service"
 msgstr "Activar términos del servicio"
@@ -1790,7 +1784,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "Recomendamos que accedas a la sección “Preferencias” con el fin de descargar tu “Clave de Recuperación de Cuenta” y almacenarla en forma segura. Esta clave será necesaria para recuperar tu acceso a la plataforma y tus datos, en caso que olvides tu contraseña."
 
 msgid "Files attached by recipients"
 msgstr "Archivos adjuntados por los destinatarios"
@@ -1959,7 +1953,7 @@ msgid "The user will receive an activation link via email."
 msgstr "El usuario recibirá un enlace de activación vía correo electrónico."
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "He leído y estoy de acuerdo con los términos de la licencia."
 
 msgid "You have completed the platform wizard."
 msgstr "Has completado con éxito el asistente de la plataforma."
@@ -1967,14 +1961,8 @@ msgstr "Has completado con éxito el asistente de la plataforma."
 msgid "Fill out your report"
 msgstr "Completa los datos de la entrega"
 
-msgid "Short title"
-msgstr "Título corto"
-
 msgid "Describe your report in a few words."
 msgstr "Describe tu reporte en unas pocas palabras."
-
-msgid "Full description"
-msgstr "Descripción completa"
 
 msgid "Describe your report in detail."
 msgstr "Describe tu reporte en detalle."
@@ -2057,9 +2045,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "Por favor haz clic en el enlace para continuar con la activación de la cuenta y establecer tu contraseña."
-
-msgid "This link will expire in 3 days."
-msgstr "Este enlace expirará en 3 días."
 
 msgid ""
 "After successful activation you will be able to access the system via the "

@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: b33a4006134bb6ee62b30fc0fac5cec6\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -686,9 +686,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr ""
 
-msgid "Enable multi-site login"
-msgstr ""
-
 msgid "Enable simplified login"
 msgstr ""
 
@@ -740,15 +737,6 @@ msgstr "у мегабайтах"
 
 msgid "Enable HSTS preload"
 msgstr ""
-
-msgid "Enable HTTP Basic Authentication"
-msgstr ""
-
-msgid "Username"
-msgstr "Ім'я користувача"
-
-msgid "Password"
-msgstr "Пароль"
 
 msgid "Require two factor authentication"
 msgstr ""
@@ -835,6 +823,9 @@ msgstr "Час відповіді"
 msgid "ID"
 msgstr "ІД"
 
+msgid "Username"
+msgstr "Ім'я користувача"
+
 msgid "Role"
 msgstr "Роль"
 
@@ -843,9 +834,6 @@ msgstr "Назва"
 
 msgid "Last access"
 msgstr "Останній вхід"
-
-msgid "State"
-msgstr "Область"
 
 msgid "Connection"
 msgstr "З'єднання"
@@ -1173,6 +1161,9 @@ msgstr "Увага!"
 msgid "Require authentication"
 msgstr ""
 
+msgid "Password"
+msgstr "Пароль"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Number of hours before sending a submission expiration alert"
 
@@ -1330,6 +1321,9 @@ msgid "Use the first site for administrative purposes only"
 msgstr ""
 
 msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable terms of service"
@@ -1953,14 +1947,8 @@ msgstr "Ви закінчили налаштування платформи."
 msgid "Fill out your report"
 msgstr ""
 
-msgid "Short title"
-msgstr "Короткий заголовок"
-
 msgid "Describe your report in a few words."
 msgstr "Опишіть кількома словами надані вами матеріали."
-
-msgid "Full description"
-msgstr "Повний опис"
 
 msgid "Describe your report in detail."
 msgstr "Опишіть надані вами матеріали детальніше"
@@ -2042,9 +2030,6 @@ msgstr ""
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
-
-msgid "This link will expire in 3 days."
 msgstr ""
 
 msgid ""

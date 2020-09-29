@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-05 09:53+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"Last-Translator: Igor <lyricaltumor@gmail.com>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -674,9 +674,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Omogući multisite značajku"
 
-msgid "Enable multi-site login"
-msgstr "Omogući prijavu na više stranica"
-
 msgid "Enable simplified login"
 msgstr "Omogući pojednostavljenu prijavu"
 
@@ -728,15 +725,6 @@ msgstr "u megabajtima"
 
 msgid "Enable HSTS preload"
 msgstr "Omogući  HSTS predučitavanje"
-
-msgid "Enable HTTP Basic Authentication"
-msgstr "Omogući osnovnu HTTP autentikaciju"
-
-msgid "Username"
-msgstr "Korisničko ime"
-
-msgid "Password"
-msgstr "Lozinka"
 
 msgid "Require two factor authentication"
 msgstr "Zahtjevaj dvofaktorsku autentikaciju"
@@ -823,6 +811,9 @@ msgstr "Vrijeme odgovora"
 msgid "ID"
 msgstr "ID"
 
+msgid "Username"
+msgstr "Korisničko ime"
+
 msgid "Role"
 msgstr "Uloga"
 
@@ -831,9 +822,6 @@ msgstr "Ime"
 
 msgid "Last access"
 msgstr "Posljednji pristup"
-
-msgid "State"
-msgstr "Država"
 
 msgid "Connection"
 msgstr "Veza"
@@ -1161,6 +1149,9 @@ msgstr "Upozorenje"
 msgid "Require authentication"
 msgstr "Zahtjevaj autentikaciju"
 
+msgid "Password"
+msgstr "Lozinka"
+
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Broj sati prije nego se pošalje upozorenje o isteku prijave"
 
@@ -1319,6 +1310,9 @@ msgstr "Koristi prvu stranicu samo za administrativne svrhe"
 
 msgid "Allow users to sign up"
 msgstr "Dopusti korisnicima da se prijave"
+
+msgid "Enable multi-site login"
+msgstr "Omogući prijavu na više stranica"
 
 msgid "Enable terms of service"
 msgstr "Omogući uvjete pružanja usluge"
@@ -1941,14 +1935,8 @@ msgstr "Završili ste čarobnjak za platformu."
 msgid "Fill out your report"
 msgstr "Ispunite svoju prijavu"
 
-msgid "Short title"
-msgstr "Kratki naslov"
-
 msgid "Describe your report in a few words."
 msgstr "Opišite svoju prijavu u par riječi."
-
-msgid "Full description"
-msgstr "Puni opis"
 
 msgid "Describe your report in detail."
 msgstr "Opišite svoju predaju detaljno."
@@ -2031,9 +2019,6 @@ msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
 msgstr "Molimo Vas da kliknete na aktivacijsku poveznicu kako biste nastavili sa aktivacijom računa i postavljanjem lozinke."
-
-msgid "This link will expire in 3 days."
-msgstr "Ova poveznica će isteći za 3 dana."
 
 msgid ""
 "After successful activation you will be able to access the system via the "
