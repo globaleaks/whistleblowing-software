@@ -39,6 +39,11 @@ a:hover {
   color: #5EA9E9;
 }
 
+[dir] p {
+  margin: 0;
+  padding: 0;
+}
+
 table {
   table-layout: fixed;
   word-wrap: break-word;
