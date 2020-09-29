@@ -738,15 +738,6 @@ msgstr "in megabytes"
 msgid "Enable HSTS preload"
 msgstr "Enable HSTS preload"
 
-msgid "Enable HTTP Basic Authentication"
-msgstr "Enable HTTP Basic Authentication"
-
-msgid "Username"
-msgstr "Username"
-
-msgid "Password"
-msgstr "Password"
-
 msgid "Require two factor authentication"
 msgstr "Require two factor authentication"
 
@@ -831,6 +822,9 @@ msgstr "Response time"
 
 msgid "ID"
 msgstr "ID"
+
+msgid "Username"
+msgstr "Username"
 
 msgid "Role"
 msgstr "Role"
@@ -1172,6 +1166,9 @@ msgstr "Warning"
 
 msgid "Require authentication"
 msgstr "Require authentication"
+
+msgid "Password"
+msgstr "Password"
 
 msgid "Number of hours before sending a report expiration alert"
 msgstr "Number of hours before sending a report expiration alert"
@@ -1993,14 +1990,8 @@ msgstr "You have completed the platform wizard."
 msgid "Fill out your report"
 msgstr "Fill out your report"
 
-msgid "Short title"
-msgstr "Short title"
-
 msgid "Describe your report in a few words."
 msgstr "Describe your report in a few words."
-
-msgid "Full description"
-msgstr "Full description"
 
 msgid "Describe your report in detail."
 msgstr "Describe your report in detail."
