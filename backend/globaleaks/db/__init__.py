@@ -60,7 +60,7 @@ def init_db(session):
     Transaction for initializing the application database
     :param session: An ORM session
     """
-    tenant.db_create(session, {'mode': 'default', 'name': '', 'subdomain': ''})
+    tenant.db_create(session, {'mode': 'default', 'name': 'GLOBALEAKS', 'subdomain': ''})
 
 
 def update_db():
