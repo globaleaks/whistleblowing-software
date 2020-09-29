@@ -82,10 +82,6 @@ def db_wizard(session, tid, hostname, request):
 
     profiles.load_profile(session, tid, request['profile'])
 
-    if encryption:
-        crypto_escrow_prv_key, crypto_escrow_pub_key = GCE.generate_keypair()
-        node.set_val('crypto_escrow_pub_key', crypto_escrow_pub_key)
-
     admin_desc = models.User().dict(language)
     admin_desc['username'] = request['admin_username']
     admin_desc['name'] = request['admin_name']
@@ -103,7 +99,10 @@ def db_wizard(session, tid, hostname, request):
 
     if encryption:
         db_gen_user_keys(session, tid, admin_user, request['admin_password'])
-        admin_user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(admin_user.crypto_pub_key, crypto_escrow_prv_key))
+        if request['admin_escrow']:
+            crypto_escrow_prv_key, crypto_escrow_pub_key = GCE.generate_keypair()
+            node.set_val('crypto_escrow_pub_key', crypto_escrow_pub_key)
+            admin_user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(admin_user.crypto_pub_key, crypto_escrow_prv_key))
 
     receiver_user = None
     if not request['skip_recipient_account_creation']:

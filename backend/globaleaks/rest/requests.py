@@ -580,6 +580,7 @@ WizardDesc = {
     'admin_name': str,
     'admin_password': str,
     'admin_mail_address': str,
+    'admin_escrow': bool,
     'receiver_username': str,
     'receiver_name': str,
     'receiver_password': str,

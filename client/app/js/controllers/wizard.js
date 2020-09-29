@@ -54,6 +54,7 @@ GL.controller("WizardCtrl", ["$scope", "$location", "$route", "$http", "Authenti
     "admin_name": "",
     "admin_mail_address": "",
     "admin_password": "",
+    "admin_escrow": false,
     "receiver_username": "",
     "receiver_name": "",
     "receiver_mail_address": "",

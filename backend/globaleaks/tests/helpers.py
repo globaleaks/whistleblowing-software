@@ -393,6 +393,7 @@ class MockDict:
             'admin_name': 'Giovanni Pellerano',
             'admin_password': 'P4ssword',
             'admin_mail_address': 'evilaliv3@globaleaks.org',
+            'admin_escrow': True,
             'receiver_username': 'receipient',
             'receiver_name': 'Fabio Pietrosanti',
             'receiver_password': '',
