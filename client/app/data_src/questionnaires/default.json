@@ -14,7 +14,7 @@
       "children": [
         {
           "label": {
-            "en": "Short title"
+            "en": "Title"
           },
           "type": "inputbox",
           "preview": true,
@@ -58,7 +58,7 @@
         },
         {
           "label": {
-            "en": "Full description"
+            "en": "Description"
           },
           "type": "textarea",
           "preview": false,
