@@ -812,7 +812,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
         return;
       }
 
-      var pt1 = $rootScope.public.node.header_title_prefix,
+      var pt1 = $rootScope.public.node.name,
           pt2 = $rootScope.public.node.header_title_homepage;
 
       if ($location.path() === "/") {

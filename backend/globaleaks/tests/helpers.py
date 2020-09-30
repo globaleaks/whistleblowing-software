@@ -350,7 +350,6 @@ class MockDict:
             'signup_tos2_checkbox_label': '',
             'enable_custom_privacy_badge': False,
             'custom_privacy_badge_text': '',
-            'header_title_prefix': '',
             'header_title_homepage': '',
             'header_title_submissionpage': '',
             'contexts_clarification': '',
