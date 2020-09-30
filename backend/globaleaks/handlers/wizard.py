@@ -51,6 +51,8 @@ def db_wizard(session, tid, hostname, request):
     :param tid: A tenant ID
     :param request: A user request
     """
+    date = datetime_now()
+
     language = request['node_language']
 
     root_tenant_node = config.ConfigFactory(session, 1)
@@ -95,7 +97,7 @@ def db_wizard(session, tid, hostname, request):
     admin_user = db_create_user(session, tid, admin_desc, language)
     admin_user.password = GCE.hash_password(request['admin_password'], admin_user.salt)
     admin_user.password_change_needed = False
-    admin_user.password_change_date = datetime_now()
+    admin_user.password_change_date = date
 
     if encryption:
         db_gen_user_keys(session, tid, admin_user, request['admin_password'])
@@ -114,14 +116,14 @@ def db_wizard(session, tid, hostname, request):
         receiver_desc['language'] = language
         receiver_desc['role'] = 'receiver'
         receiver_desc['pgp_key_remove'] = False
-        receiver_desc['send_account_activation_link'] = receiver_desc['password'] == ''
+        receiver_desc['send_account_activation_link'] = False
         receiver_user = db_create_user(session, tid, receiver_desc, language)
+        receiver_user.password = GCE.hash_password(receiver_desc['password'], receiver_user.salt)
+        receiver_user.password_change_needed = False
+        receiver_user.password_change_date = date
 
-        if receiver_desc['password']:
-            receiver_user.password = GCE.hash_password(receiver_desc['password'], receiver_user.salt)
-
-            if encryption:
-                db_gen_user_keys(session, tid, receiver_user, receiver_desc['password'])
+        if encryption:
+             db_gen_user_keys(session, tid, receiver_user, receiver_desc['password'])
 
     context_desc = models.Context().dict(language)
     context_desc['name'] = 'Default'

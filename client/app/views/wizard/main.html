@@ -173,6 +173,29 @@
               </div>
             </div>
           </div>
+          <div class="row form-group">
+            <label class="col-md-4">
+              <span data-translate>Password</span>
+              <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+            </label>
+            <div class="col-md-8">
+              <input name="password" class="form-control" data-ng-model="wizard.receiver_password" type="password" data-ng-attr-placeholder="{{'Password' | translate}}" autocomplete="off" data-password-strength-validator data-ng-class="{'is-invalid': validated5 && (wizardFormStep5.password.$error.required || (wizardFormStep5.password.$error.passwordStrength))}" required />
+              <password-meter data-ng-show="passwordStrengthScore" value="passwordStrengthScore"></password-meter>
+              <div class="text-danger" data-ng-show="!wizardFormStep5.password.$error.required && wizardFormStep5.password.$error.passwordStrengthValidator">
+                <p data-translate>The chosen password is too weak. A valid password should be at least 10 characters long and contain a variety of characters including at least a lowercase character, a capital character, a number and a special character.</p>
+              </div>
+            </div>
+          </div>
+          <div class="row form-group">
+            <label class="col-md-4">
+              <span data-translate>Password</span> (<span data-translate>Confirm</span>)
+              <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+            </label>
+            <div class="col-md-8">
+              <input name="checkpassword" class="form-control" data-ng-model="recipient_check_password" type="password" data-ng-attr-placeholder="{{'Password' | translate}}" autocomplete="off" data-ng-class="{'is-invalid': validated4 && (!wizardFormStep5.password.$error.passwordStrengthValidator && wizard.receiver_password && (wizard.receiver_password !== recipient_check_password))}" required />
+              <div class="text-danger" data-ng-show="validated4  && (!wizardFormStep5.password.$error.passwordStrengthValidator && wizard.receiver_password && (wizard.receiver_password !== recipient_check_password))" data-translate>The two passwords do not match</div>
+            </div>
+          </div>
         </div>
         <div class="row form-group">
           <div class="col-md-12">
@@ -182,9 +205,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-6" data-ng-if="!wizard.skip_recipient_account_creation">
-        <div class="wizard-help-hint" data-translate>The user will receive an activation link via email.</div>
       </div>
     </div>
     <div class="pager float-right">
