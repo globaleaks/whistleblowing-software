@@ -39,12 +39,6 @@ a {
   color: #3877BC;
 }
 
-/* Sidebar header (and topbar for mobile) */
-.wy-side-nav-search, .wy-nav-top {
-  background: #3777BC;
-}
-
-/* Sidebar */
 .wy-nav-side {
   background: #103253;
 }

@@ -148,7 +148,7 @@ Below a matrix showing different security measures applied on data.
    Software files", "N/A", "N/A", "N/A", "N/A"
    "Email notifications", "Encrypted with PGP when recipients keys are available", "N/A", "Antispam to prevent flooding", "N/A"
 
-Threats to Privacy and Pnonymity
+Threats to Privacy and Anonymity
 ================================
 In this section are highlighted several threats that require specific explanation.
 

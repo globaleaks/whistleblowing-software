@@ -27,7 +27,7 @@ After a configurable amount of time a Report expires and is deleted and securely
 
 As well after a configurable amount of time since the last access to the Report, the Whistleblower loses the possibility to access its own report.
 
-Whistleblower Wnteractions with the Platform
+Whistleblower Interactions with the Platform
 --------------------------------------------
 A Whistleblower can access the platform, read and fill the submission questionnaire filing a report and eventually attaching evidence of the fact reported.
 

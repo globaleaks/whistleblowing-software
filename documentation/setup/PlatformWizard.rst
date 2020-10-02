@@ -26,11 +26,9 @@ Keep in mind to choose a strong password in order to protect this sensitive acco
 
 .. image:: imgs/wizard3.png
 
-Configure the Account for the First Recipient of Your Whisleblowing Site
+Configure the Account for the First Recipient of Reports
 ------------------------------------------------------------------------
-In the forth section of the wizard configure the account details of the first recipient for the submissions to your project.
-
-Note that the recipient's password is set to a pre-defined value "password".
+In the forth section of the wizard configure the account details of the first recipient for the reports sent to your project.
 
 .. image:: imgs/wizard4.png
 
