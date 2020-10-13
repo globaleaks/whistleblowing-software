@@ -35,8 +35,8 @@ angular.module("GL")
     });
   };
 }])
-.controller("TenantEditorCtrl", ["$scope", "$rootScope", "$http", "$window", "AdminTenantResource",
-  function($scope, $rootScope, $http, $window, AdminTenantResource) {
+.controller("TenantEditorCtrl", ["$scope", "$http", "$window", "AdminTenantResource",
+  function($scope, $http, $window, AdminTenantResource) {
   $scope.toggleEditing = function($event) {
     $event.stopPropagation();
     $scope.editing = !$scope.editing;
@@ -65,9 +65,7 @@ angular.module("GL")
 
   $scope.saveTenant = function() {
     $scope.tenant.subdomain = angular.isDefined($scope.tenant.subdomain) ? $scope.tenant.subdomain : "";
-    $scope.tenant.$update().then(function() {
-      $rootScope.successes.push({});
-    });
+    return $scope.tenant.$update();
   };
 
   $scope.deleteTenant = function($event) {

@@ -14,8 +14,8 @@ GL.controller("AdminStepAddCtrl", ["$scope",
     };
   }
 ]).
-controller("AdminStepEditorCtrl", ["$scope", "$rootScope", "$http", "AdminStepResource", "AdminFieldResource",
-  function($scope, $rootScope, $http, AdminStepResource, AdminFieldResource) {
+controller("AdminStepEditorCtrl", ["$scope", "$http", "AdminStepResource", "AdminFieldResource",
+  function($scope, $http, AdminStepResource, AdminFieldResource) {
     $scope.editing = false;
     $scope.new_field = {};
 
@@ -99,7 +99,7 @@ controller("AdminStepEditorCtrl", ["$scope", "$rootScope", "$http", "AdminStepRe
       $scope.questionnaire.steps[target] = b;
       $scope.questionnaire.steps[index] = a;
 
-      $http({
+      return $http({
         method: "PUT",
         url: "api/admin/steps",
         data: {
@@ -109,8 +109,6 @@ controller("AdminStepEditorCtrl", ["$scope", "$rootScope", "$http", "AdminStepRe
             "questionnaire_id": $scope.questionnaire.id,
            },
         },
-      }).then(function() {
-        $rootScope.successes.push({});
       });
     }
 

@@ -28,8 +28,8 @@ GL.controller("AdminContextsCtrl",
     $scope.save_context(elem);
   };
 }]).
-controller("AdminContextEditorCtrl", ["$scope", "$rootScope", "$http", "AdminContextResource",
-  function($scope, $rootScope, $http, AdminContextResource) {
+controller("AdminContextEditorCtrl", ["$scope", "AdminContextResource",
+  function($scope, AdminContextResource) {
   $scope.editing = false;
 
   $scope.toggleEditing = function () {
@@ -47,15 +47,13 @@ controller("AdminContextEditorCtrl", ["$scope", "$rootScope", "$http", "AdminCon
     $scope.resources.contexts[index] = $scope.resources.contexts[target];
     $scope.resources.contexts[target] = $scope.context;
 
-    $http({
+    return $http({
       method: "PUT",
       url: "api/admin/contexts",
       data: {
         "operation": "order_elements",
         "args": {"ids": $scope.resources.contexts.map(function(c) { return c.id; })},
       },
-    }).then(function() {
-      $rootScope.successes.push({});
     });
   }
 

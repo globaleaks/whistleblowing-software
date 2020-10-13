@@ -1,5 +1,5 @@
-GL.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "$uibModal", "$http", "CONSTANTS",
-  function($scope, $rootScope, $q, $http, $uibModal, CONSTANTS) {
+GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$uibModal", "$http", "CONSTANTS",
+  function($scope, $q, $http, $uibModal, CONSTANTS) {
     $scope.tabs = [
       {
         title: "Preferences",
@@ -92,8 +92,7 @@ GL.controller("PreferencesCtrl", ["$scope", "$rootScope", "$q", "$http", "$uibMo
         $scope.preferences.pgp_key_public = "";
       }
 
-      $scope.preferences.$update(function() {
-        $rootScope.successes.push({message: "Updated your preferences!"});
+      return $scope.preferences.$update(function() {
         $scope.reload();
       });
     };

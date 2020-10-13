@@ -20,8 +20,8 @@ GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
         }
       }
     }, true);
-}]).controller("AdminUserEditorCtrl", ["$scope", "$rootScope", "$http", "AdminUserResource",
-  function($scope, $rootScope, $http, AdminUserResource) {
+}]).controller("AdminUserEditorCtrl", ["$scope", "$http", "AdminUserResource",
+  function($scope, $http, AdminUserResource) {
     $scope.deleteUser = function() {
       $scope.Utils.deleteDialog().then(function() {
         return $scope.Utils.deleteResource(AdminUserResource, $scope.resources.users, $scope.user);
@@ -49,9 +49,7 @@ GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
         user.pgp_key_remove = false;
       }
 
-      user.$update(function(){
-        $rootScope.successes.push({message: "Success!"});
-      });
+      return user.$update();
     };
 
     $scope.updateUserImgUrl = function() {
@@ -67,14 +65,12 @@ GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
     };
 
     $scope.resetUserPassword = function() {
-      $http.put(
+      return $http.put(
         "api/admin/config", {
           "operation": "reset_user_password",
           "args": {
             "value": $scope.user.id
           }
-      }).then(function() {
-        $rootScope.successes.push({message: "Success!"});
       });
     };
 
@@ -87,7 +83,6 @@ GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
           }
       }).then(function() {
 	$scope.user.two_factor_enable = false;
-        $rootScope.successes.push({message: "Success!"});
       });
     };
 }]).

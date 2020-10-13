@@ -531,7 +531,6 @@ var GL = angular.module("GL", [
     $rootScope.AdminUtils = AdminUtils;
 
     $rootScope.showLoadingPanel = false;
-    $rootScope.successes = [];
     $rootScope.errors = [];
     $rootScope.embedded = $location.search().embedded === "true";
 
@@ -721,8 +720,7 @@ var GL = angular.module("GL", [
 
     $rootScope.$on("$routeChangeSuccess", function (event, current) {
       if (current.$$route) {
-        $rootScope.successes = [];
-        $rootScope.errors = [];
+        $rootScope.errors.length = 0;
         $rootScope.header_title = current.$$route.header_title;
         $rootScope.sidebar = current.$$route.sidebar;
 	Utils.set_title();
@@ -750,8 +748,7 @@ var GL = angular.module("GL", [
     };
 
     $rootScope.reload = function(new_path) {
-      $rootScope.successes = [];
-      $rootScope.errors = [];
+      $rootScope.errors.length = 0;
       $rootScope.init().then(function() {
         $route.reload();
 

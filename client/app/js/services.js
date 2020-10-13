@@ -899,13 +899,10 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       var success = {};
       model.$update(
         function() {
-          $rootScope.successes.push(success);
           if (typeof cb !== "undefined") { cb(); }
         },
         function() {
-          if (typeof errcb !== "undefined") {
-            errcb();
-          }
+          if (typeof errcb !== "undefined") { errcb(); }
         }
       );
     },
