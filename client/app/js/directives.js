@@ -120,7 +120,7 @@ directive("passwordMeter", function() {
           scope.type = "warning";
           scope.text = "Acceptable";
         } else {
-          scope.type = "success";
+          scope.type = "primary";
           scope.text = "Strong";
         }
       });
