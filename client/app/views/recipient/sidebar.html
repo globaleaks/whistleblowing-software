@@ -1,14 +1,3 @@
-<a href="#/recipient/home" data-ng-class="{'active': location_path === '/recipient/home'}">
-  <i class="fas fa-chevron-right"></i>
-  <span data-translate>Home</span>
-</a>
-
-<a href="#/recipient/reports" data-ng-class="{'active': location_path === '/recipient/reports'}">
-  <i class="fas fa-chevron-right"></i>
-  <span data-translate>Reports</span>
-</a>
-
-<a href="#/recipient/content" data-ng-class="{'active': location_path === '/recipient/content'}" data-ng-if="preferences.can_edit_general_settings">
-  <i class="fas fa-chevron-right"></i>
-  <span data-translate>Site settings</span>
-</a>
+<a href="#/recipient/home" data-ng-class="{'active': location_path === '/recipient/home'}" data-translate>Home</a>
+<a href="#/recipient/reports" data-ng-class="{'active': location_path === '/recipient/reports'}" data-translate>Reports</a>
+<a href="#/recipient/content" data-ng-class="{'active': location_path === '/recipient/content'}" data-ng-if="preferences.can_edit_general_settings" data-translate>Site settings</a>

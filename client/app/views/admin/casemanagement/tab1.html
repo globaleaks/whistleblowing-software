@@ -43,7 +43,7 @@
                 <button class="btn btn-sm btn-secondary" data-ng-show="isEditable() && !editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
                   <span data-translate>Edit</span>
                 </button>
-                <button class="btn btn-sm btn-success" data-ng-show="editing" data-ng-disabled="editSubmissionStatus.$invalid" data-ng-click="save_submissions_status(submissions_status); toggleEditing();">
+                <button class="btn btn-sm btn-primary" data-ng-show="editing" data-ng-disabled="editSubmissionStatus.$invalid" data-ng-click="save_submissions_status(submissions_status); toggleEditing();">
                   <span data-translate>Save</span>
                 </button>
                 <button class="btn btn-sm btn-secondary" data-ng-show="editing" data-ng-click="toggleEditing(); $event.stopPropagation();">

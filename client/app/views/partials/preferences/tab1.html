@@ -100,12 +100,10 @@
 
   <br />
 
-  <span data-ng-if="preferences.encryption" class="btn btn-primary" data-ng-click="getEncryptionRecoveryKey()" data-translate>Account recovery key</span>
-
-  <br /> <br />
-
-  <button type="submit" class="btn btn-success" data-ng-click="save()" data-ng-disabled="preferencesForm.$invalid || pgpkeyForm.$invalid">
+  <button type="submit" class="btn btn-primary" data-ng-click="save()" data-ng-disabled="preferencesForm.$invalid || pgpkeyForm.$invalid">
     <i class="fas fa-check"></i>
     <span data-translate>Save</span>
   </button>
+
+  <button data-ng-if="preferences.encryption" class="btn btn-warning" data-ng-click="getEncryptionRecoveryKey()" data-translate>Account recovery key</button>
 </form>

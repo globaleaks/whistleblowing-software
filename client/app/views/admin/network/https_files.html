@@ -7,7 +7,7 @@
         <span class="file-upload" data-ng-if="!tls_config.files.key.set">
           <label id="keyUpload" file-input="postFile(file, file_resources.key)" file-input-label="Upload" class="file-upload btn btn-sm btn-primary"></label>
         </span>
-        <button id="pkGen" class="btn btn-sm btn-success" data-ng-if="!tls_config.files.key.set" data-ng-click="gen_key()">
+        <button id="pkGen" class="btn btn-sm btn-primary" data-ng-if="!tls_config.files.key.set" data-ng-click="gen_key()">
             <i class="fas fa-cog"></i>
           <span data-translate>Generate</span>
         </button>
@@ -27,7 +27,7 @@
       <span>(PEM)</span>
       <span data-ng-if="!tls_config.files.csr.set">
         <span class="float-right">
-          <button id="csrGen" class="btn btn-sm btn-success" data-ng-hide="csr_state.open" data-ng-click="csr_state.open = true">
+          <button id="csrGen" class="btn btn-sm btn-primary" data-ng-hide="csr_state.open" data-ng-click="csr_state.open = true">
             <i class="fas fa-cog"></i>
             <span data-translate>Generate</span>
           </button>
@@ -105,6 +105,6 @@
     </div>
   </div>
 
-  <button class="btn btn-success" data-ng-if="state > 1" data-ng-click="toggleCfg()" data-translate>Enable</button>
+  <button class="btn btn-primary" data-ng-if="state > 1" data-ng-click="toggleCfg()" data-translate>Enable</button>
   <button class="btn btn-danger" data-ng-click="resetCfg()" data-translate>Reset</button>
 </div>

@@ -32,27 +32,43 @@ h6,
 legend,
 .rst-content .toctree-wrapper p.caption {
   font-family: 'Metropolis', Helvetica, Arial, sans-serif;
-  color: #333840;
+  color: #1D1F2A;
 }
 
-a {
-  color: #3877BC;
+a, a:hover, a:active, a:visited, a:focus {
+  color: #204F82;
+}
+
+.wy-side-nav-search a,
+.wy-side-nav-search a:hover,
+.wy-side-nav-search a:active,
+.wy-side-nav-search a:visited,
+.wy-side-nav-search a:focus {
+  color: #FFF;
 }
 
 .wy-nav-side {
-  background: #103253;
+  background-color: #103253;
+}
+
+.wy-nav-top {
+  background-color: #3777BC;
 }
 
 .wy-menu .caption-text {
-  color: #5ea9e9;
+  color: #5794D5;
 }
 
 .wy-menu-vertical a {
   color: #FFF;
 }
 
+vertical li.current > a {
+  color: #1D1F2A;
+}
+
 .wy-nav-content img {
-  border: 1px solid #333840;
+  border: 1px solid #103253;
 }
 
 @media screen and (min-width: 767px) {

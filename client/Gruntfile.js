@@ -195,27 +195,33 @@ module.exports = function(grunt) {
               }
             },
             {
-              pattern: /(0056b3|007bff|17a2b8)/ig,
+              pattern: /(0056b3|007bff|17a2b8|28a745|34ce57)/ig,
               replacement: function () {
-                return "3777BC";
+                return "3877BC";
+              }
+            },
+            {
+              pattern: /40,167,69/ig,
+              replacement: function () {
+                return "56,119,188";
               }
             },
             {
               pattern: /0069d9/ig,
               replacement: function () {
-                return "3C88CB";
+                return "5797D5";
               }
             },
             {
               pattern: /005cbf/ig,
               replacement: function () {
-                return "5EA9E9";
+                return "79B0E6";
               }
             },
             {
               pattern: /0062cc/ig,
               replacement: function () {
-                return "8FCBF8";
+                return "9FC9F1";
               }
             },
             {
@@ -275,19 +281,19 @@ module.exports = function(grunt) {
             {
               pattern: /e0a800/ig,
               replacement: function () {
-                return "FFE383";
+                return "FAEBB6";
               }
             },
             {
               pattern: /d39e00/ig,
               replacement: function () {
-                return "FFF3CA";
+                return "FAF2D4";
               }
             },
             {
               pattern: /c69500/ig,
               replacement: function () {
-                return "FFFCF1";
+                return "FAF8F0";
               }
             },
             {
@@ -315,45 +321,45 @@ module.exports = function(grunt) {
               }
             },
             {
-              pattern: /6610f2/ig,
-              replacement: function () {
-                return "a7a7fa";
-              }
-            },
-            {
-              pattern: /6f42c1/ig,
-              replacement: function () {
-                return "c79bf2";
-              }
-            },
-            {
-              pattern: /e83e8c/ig,
-              replacement: function () {
-                return "f78bb8";
-              }
-            },
-            {
-              pattern: /fd7e14/ig,
-              replacement: function () {
-                return "e89c3f";
-              }
-            },
-            {
               pattern: /(e9ecef|f8f9fa)/ig,
               replacement: function () {
-                return "f5f7fa";
+                return "F5F7FA";
               }
             },
             {
               pattern: /(212529|343a40)/ig,
               replacement: function () {
-                return "333840";
+                return "1D1F24";
               }
             },
             {
-              pattern: /(CED4DA|DEE2E6)/ig,
+              pattern: /(#CED4DA|#DEE2E6|rgba\(0,0,0,.125\))/ig,
+              replacement: function () {
+                return "#C8D1E0";
+              }
+            },
+            {
+              pattern: /fff3cd/ig,
+              replacement: function () {
+                return "FFFCF1";
+              }
+            },
+            {
+              pattern: /(b8daff|d6d8db|c3e6cb|f5c6cb|ffeeba)/ig,
               replacement: function () {
                 return "C8D1E0";
+              }
+            },
+            {
+              pattern: /155724|#383d41|721c24|856404/ig,
+              replacement: function () {
+                return "1D1F24";
+              }
+            },
+            {
+              pattern: /(rgba\(0,0,0,\.03\)|rgba\(0,0,0,\.05\))/ig,
+              replacement: function () {
+                return "#F5F7FA";
               }
             }
           ]

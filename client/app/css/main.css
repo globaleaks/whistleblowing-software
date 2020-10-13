@@ -15,14 +15,16 @@
 }
 
 * {
-  word-wrap: break-word;
   word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  font-weight: normal;
   box-shadow: none;
 }
 
 html, body {
   background-color: #FFF;
-  color: #333840;
+  color: #1D1F2A;
   font-family: 'Metropolis', Helvetica, Arial, sans-serif;
   font-size: 16px;
   height: 100%;
@@ -30,23 +32,27 @@ html, body {
 }
 
 a, a:hover, a:active, a:focus {
-  color: #3777BC;
+  color: #205282;
   outline: 0;
   text-decoration: none;
 }
 
-a:hover {
-  color: #5EA9E9;
+a:hover, a.darklink,  a:active.darklink, a:focus.darklink {
+  color: #5797D5;
+}
+
+a:hover.darklink {
+  color: #79B0E6;
+}
+
+#Sidebar a.active, #Sidebar a:active.active, #Sidebar a:hover.active, #Sidebar a:focus.active {
+  border-bottom: 1px solid #C8D1E0;
+  width: max-content;
 }
 
 [dir] p {
   margin: 0;
   padding: 0;
-}
-
-table {
-  table-layout: fixed;
-  word-wrap: break-word;
 }
 
 [dir] .h1, [dir] h1 {
@@ -78,6 +84,14 @@ table {
   overflow-x: hidden;
 }
 
+[dir] .nav-tabs .nav-item.show .nav-link, [dir] .nav-tabs .nav-link.active {
+  color: #103253;
+}
+
+[dir] .table thead th {
+  border-top: 0;
+}
+
 #PageContent {
   flex: 1 0 auto;
 }
@@ -107,11 +121,11 @@ table {
 }
 
 [dir="ltr"] #LogoBox {
-  margin: 0 1rem 0 0;
+  margin: 0 0.5rem 0 0;
 }
 
 [dir="rtl"] #LogoBox {
-  margin: 0 0 0 1rem;
+  margin: 0 0 0 0.5rem;
 }
 
 #LogoBox img {
@@ -137,9 +151,14 @@ table {
   width: auto;
 }
 
+#LoginStatusBox, #LanguagePickerBox .form-control {
+  height: 2.2rem;
+  line-height: 2.2rem;
+  padding: 0 0.5rem;
+}
+
 #LoginStatusBox, #WhistleblowerLoginBox {
-  color: #333840;
-  padding: 1rem;
+  color: #1D1F2A;
   background-color: #FFF;
   border-radius: 5px;
 }
@@ -172,7 +191,7 @@ table {
 }
 
 #PrivacyBadge {
-  background-color: #000;
+  background-color: #1D1F24;
   color: #FFF;
 }
 
@@ -188,7 +207,7 @@ table {
   max-height: 20rem;
   overflow-y: scroll;
   background-color: #f5f7fa;
-  border: 1px solid #AFBACC;
+  border: 1px solid #c8d1e0;
   padding: 1rem;
 }
 
@@ -198,11 +217,12 @@ table {
 
 .imageUpload {
   position: relative;
-  border: 0.2rem dashed #AFBACC;
+  border: 2px dashed #c8d1e0;
   z-index: 0;
   text-align: center;
-  width: 10.4rem;
   height: 10.4rem;
+  width: 10.4rem;
+  min-height: 10.4rem;
 }
 
 .imageUpload .changePictureButton {
@@ -221,12 +241,6 @@ table {
   vertical-align: middle;
   text-align: center;
   z-index: 1;
-}
-
-.wizard-help-hint {
-  border-left: 2px solid #AFBACC;
-  background-color: #FFFCF1;
-  padding: 1rem;
 }
 
 .LoginErrorBox, .LoginErrorBoxHomepage {
@@ -281,7 +295,7 @@ table {
   width: 10rem;
   text-align: center;
   line-height: 10rem;
-  border: 1px solid #AFBACC;
+  border: 1px solid #c8d1e0;
 }
 
 .fileUploadIconSmall {
@@ -332,7 +346,7 @@ table {
 .disabled-interface {
   pointer-events: none;
   user-select: none;
-  background-color: #333840;
+  background-color: #1D1F2A;
   opacity: 0.60;
   filter: alpha(opacity=0.60);
 }
@@ -387,7 +401,11 @@ input[type="file"] {
 
 .drag-drop {
   padding: 2em;
-  border: 1px #AFBACC dashed;
+  border: 2px dashed #c8d1e0;
+}
+
+.drag-drop:hover {
+  background-color: #F5F7FA;
 }
 
 .drag-over {
@@ -409,10 +427,6 @@ input[type="file"] {
 #Sidebar a {
   display: block;
   margin-bottom: 1rem;
-}
-
-a.active, a:active.active, a:hover.active, a:focus.active {
-  color: #333840;
 }
 
 [dir] label {
@@ -459,7 +473,7 @@ a.active, a:active.active, a:hover.active, a:focus.active {
 .stepDescription,
 .fieldDescription
 {
-  color: #333840;
+  color: #1D1F2A;
   white-space: pre-wrap;
 }
 
@@ -479,7 +493,7 @@ a.active, a:active.active, a:hover.active, a:focus.active {
   margin-bottom: 1rem;
   padding: 1rem;
   background-color: #FFF;
-  border: 1px solid #AFBACC;
+  border: 1px solid #c8d1e0;
   border-radius: 5px;
   word-wrap: break-word;
 }
@@ -489,7 +503,7 @@ a.active, a:active.active, a:hover.active, a:focus.active {
 }
 
 .contextCard:hover, .receiverCard.selected {
-  background-color: #428bca;
+  background-color: #5797D5;
   color: #FFF;
 }
 
@@ -540,8 +554,8 @@ a.active, a:active.active, a:hover.active, a:focus.active {
 }
 
 .code {
-  color: 000;
-  background: #EBEFF5;
+  color: #1D1F24;
+  background: #F5F7FA;
 }
 
 #KeyCodeBox {
@@ -569,14 +583,7 @@ a.active, a:active.active, a:hover.active, a:focus.active {
 
 #FileUploadsHeader {
   font-size: 1.2rem;
-  margin: 1.2rem 0;;
-}
-
-.err-link {
-  padding: 0.2rem 0.4rem;
-  background-color: #faf0f0;
-  border-radius: 3px;
-  color: #DE1B1B;
+  margin: 1.2rem 0;
 }
 
 .question-body {
@@ -589,7 +596,7 @@ a.active, a:active.active, a:hover.active, a:focus.active {
 
 .mapoutline {
   fill: #f5f7fa;
-  stroke: #000;
+  stroke: #121F24;
   stroke-width: 1.5px;
 }
 
@@ -621,7 +628,7 @@ div.tooltip {
 
 .configItem {
   background-color: #F5F7FA;
-  border: 1px solid #C8D1E0;
+  border: 1px solid #c8d1e0;
   padding: 1rem;
   margin: 1rem auto;
 }
@@ -637,7 +644,7 @@ div.tooltip {
 
 .field {
   position: relative;
-  border: 1px solid #C8D1E0;
+  border: 1px solid #c8d1e0;
   margin-bottom: 1rem;
 }
 
@@ -657,7 +664,7 @@ div.tooltip {
 }
 
 text.axis-workweek, text.axis-worktime {
-  fill: #000;
+  fill: #1D1F24;
 }
 
 .tos-text {
@@ -665,9 +672,9 @@ text.axis-workweek, text.axis-worktime {
   padding: 1rem;
   font-family: monospace;
   font-size: 0.8rem;
-  color: #333840;
+  color: #1D1F2A;
   background-color: #F5F7FA;
-  border: 1px solid #AFBACC;
+  border: 1px solid #c8d1e0;
   max-height: 20rem;
   max-width: 80rem;
   overflow: auto;

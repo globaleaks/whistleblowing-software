@@ -1,26 +1,23 @@
-<div id="SubmissionErrors" class="card card.bg-danger.text-white mb-2">
-  <div class="card-header" data-translate>Errors</div>
-  <div class="card-body text-danger">
-    <div data-ng-if="!hasPreviousStep()">
-      <div data-ng-if="!areReceiversSelected()">
-        <p data-translate>You must select at least one recipient.</p>
-      </div>
+<div id="SubmissionErrors" class="alert alert-warning mb-2">
+  <div data-ng-if="!hasPreviousStep()">
+    <div data-ng-if="!areReceiversSelected()">
+      <p data-translate>You must select at least one recipient.</p>
     </div>
-    <div data-ng-if="!hasNextStep()">
-      <div data-ng-if="Utils.isUploading(uploads)">
-        <span data-translate>Waiting for the file(s) to finish uploading.</span>&nbsp;
-        <i class="fas fa-sync gly-spin"></i>
-      </div>
-      <div data-ng-if="submission.context.show_steps_navigation_interface && !singleStepForm() && (!areReceiversSelected() || vars.submissionForm.$invalid)">
-        <p data-translate>The following steps have errors:</p>
-        <ul>
-          <li data-ng-if="!areReceiversSelected()" class="err-link" data-ng-click="goToStep(-1)" data-translate>Recipient selection</li>
-        </ul>
-        <ul data-ng-if="vars.submissionForm.$invalid" data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'order'">
-          <li data-ng-if="displayStepErrors($index)" class="err-link" data-ng-click="goToStep($index)">{{step.label}}</li>
-        </ul>
-      </div>
-    </div>
-    <div data-ng-include="'views/whistleblower/step_error.html'"></div>
   </div>
+  <div data-ng-if="!hasNextStep()">
+    <div data-ng-if="Utils.isUploading(uploads)">
+      <span data-translate>Waiting for the file(s) to finish uploading.</span>&nbsp;
+      <i class="fas fa-sync gly-spin"></i>
+    </div>
+    <div data-ng-if="submission.context.show_steps_navigation_interface && !singleStepForm() && (!areReceiversSelected() || vars.submissionForm.$invalid)">
+      <p data-translate>The following steps have errors:</p>
+      <ul>
+        <li data-ng-if="!areReceiversSelected()" data-ng-click="goToStep(-1)" data-translate>Recipient selection</li>
+      </ul>
+      <ul data-ng-if="vars.submissionForm.$invalid" data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'order'">
+        <li data-ng-if="displayStepErrors($index)" class="err-link" data-ng-click="goToStep($index)">{{step.label}}</li>
+      </ul>
+    </div>
+  </div>
+  <div data-ng-include="'views/whistleblower/step_error.html'"></div>
 </div>
