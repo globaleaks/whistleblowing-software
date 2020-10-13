@@ -48,19 +48,19 @@ Main Configuration
 ..................
 In this section is configurable the logo and all the texts of the main user interfaces.
 
-.. image:: ../../images/admin/site-settings-main-configuration.png
+.. image:: ../../images/admin/site_settings_main_configuration.png
 
 Theme Customization
 ...................
 In this section could be loaded CSS and Javascript files necessary to customize the interface.
 
-.. image:: ../../images/admin/site-settings-theme-customization.png
+.. image:: ../../images/admin/site_settings_theme_customization.png
 
 Files
 .....
 In this section could be loaded any file that need to be served via the platform to whistleblowers (e.g. a policy in PDF) or that are required by your CSS and Javascript customization.
 
-.. image:: ../../images/admin/site-settings-files.png
+.. image:: ../../images/admin/site_settings_files.png
 
 Languages
 .........
@@ -69,13 +69,13 @@ In this section you could enable all the languages required by your project and 
 .. note::
    Thanks to the `Localization Lab <https://www.localizationlab.org/>`_ and our great voluneer comminity, the software is already available and continously made available in a lot of languages. This aspect of internationalization is crucial in many projects. In case you are starting a project and the required languages are not available we strongly invite you to register on our `web translation platform <https://www.transifex.com/otf/globaleaks/>`_ offered by `Transifex <https://www.transifex.com/otf/globaleaks/>`_ and support yourself the translation. Internationalization and Localization is in fact are crucial for the success of a whistleblowing project. Thank you!
 
-.. image:: ../../images/admin/site-settings-languages.png
+.. image:: ../../images/admin/site_settings_languages.png
 
 Text Customization
 ..................
 Here could be confiured overrides for any of the texts of the platform and of their translation.
 
-.. image:: ../../images/admin/site-settings-text-customization.png
+.. image:: ../../images/admin/site_settings_text_customization.png
 
 Users
 -----
@@ -122,7 +122,7 @@ Depending on your project needs you could create specific questionnaire for each
 
 Depending on your project needs you may evaluate defining some questions once as Question Templates and reuse the same question in multiple questionnaires.
 
-.. image:: ../../images/admin/question-templates.png
+.. image:: ../../images/admin/question_templates.png
 
 Steps
 .....
