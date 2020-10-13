@@ -21,8 +21,14 @@ from globaleaks.utils.utility import deferred_sleep
 class CertificateCheck(DailyJob):
     interval = 24 * 3600
 
-    notify_expr_within = 15
-    acme_try_renewal = 15
+    # Notify about failing HTTPS renewal starting from a week before
+    # expiration. This setting is choosen as the half of the
+    # letsencrypt renewal threshold. This particular choice is intended
+    # to limit the number of email sent enabling up 7 days of failing
+    # retries without sending emails.
+
+    notify_expr_within = 7
+    acme_try_renewal = 14
 
     def certificate_mail_creation(self, session, mail_type, tid, expiration_date):
         for user_desc in db_get_users(session, tid, 'admin'):
@@ -43,6 +49,8 @@ class CertificateCheck(DailyJob):
 
     @transact
     def cert_expiration_checks(self, session, tid):
+        now = datetime.now()
+
         priv_fact = models.config.ConfigFactory(session, tid)
 
         if not priv_fact.get_val('https_enabled'):
@@ -52,14 +60,15 @@ class CertificateCheck(DailyJob):
         expiration_date = letsencrypt.convert_asn1_date(cert.get_notAfter())
 
         # Acme renewal checks
-        if priv_fact.get_val('acme') and datetime.now() > expiration_date - timedelta(days=self.acme_try_renewal):
+        if priv_fact.get_val('acme') and now > expiration_date - timedelta(days=self.acme_try_renewal):
             try:
                 db_acme_cert_request(session, tid)
             except Exception as exc:
                 log.err('Automatic HTTPS renewal failed: %s', exc, tid=tid)
 
                 # Send an email to the admin cause this requires user intervention
-                if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
+                if now > expiration_date - timedelta(days=self.notify_expr_within) and \
+                   not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
                     self.certificate_mail_creation(session, 'https_certificate_renewal_failure', tid, expiration_date)
 
             tls_config = load_tls_dict(session, tid)
@@ -68,7 +77,7 @@ class CertificateCheck(DailyJob):
             self.state.snimap.load(tid, tls_config)
 
         # Regular certificates expiration checks
-        elif datetime.now() > expiration_date - timedelta(days=self.notify_expr_within):
+        elif now > expiration_date - timedelta(days=self.notify_expr_within):
             log.info('The HTTPS Certificate is expiring on %s', expiration_date, tid=tid)
             if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
                 self.certificate_mail_creation(session, 'https_certificate_expiration', tid, expiration_date)
