@@ -15,11 +15,13 @@ describe("verify navigation of admin sections", function() {
     await browser.gl.utils.takeScreenshot('admin/site_settings_logo_detail.png', element(by.id('Content')));
     await element.all(by.cssContainingText("a", "Theme customization")).first().click();
     await browser.gl.utils.takeScreenshot('admin/site_settings_theme_customization.png');
+    await element.all(by.cssContainingText("a", "Files")).first().click();
+    await browser.gl.utils.takeScreenshot('admin/site_settings_files.png');
     await element.all(by.cssContainingText("a", "Languages")).first().click();
     await browser.gl.utils.takeScreenshot('admin/site_settings_languages.png');
     await browser.gl.utils.takeScreenshot('admin/site_settings_languages_detail.png', element(by.id('Content')));
     await element.all(by.cssContainingText("a", "Text customization")).first().click();
-    await browser.gl.utils.takeScreenshot('admin/site_settings_texts_customization.png');
+    await browser.gl.utils.takeScreenshot('admin/site_settings_text_customization.png');
 
     await element.all(by.cssContainingText("a", "Users")).first().click();
     await browser.gl.utils.takeScreenshot('admin/users.png');
@@ -66,8 +68,6 @@ describe("verify navigation of admin sections", function() {
     await browser.gl.utils.takeScreenshot('admin/anomaly_thresholds.png');
 
     await element.all(by.cssContainingText("a", "Audit log")).first().click();
-    await browser.gl.utils.takeScreenshot('admin/audit_log.png');
-    await element.all(by.cssContainingText("a", "Stats")).first().click();
     await browser.gl.utils.takeScreenshot('admin/audit_log_stats.png');
     await element.all(by.cssContainingText("a", "Activities")).first().click();
     await browser.gl.utils.takeScreenshot('admin/audit_log_activities.png');

@@ -319,8 +319,6 @@ Audit Log
 ---------
 TODO
 
-.. image:: ../../images/admin/audit_log.png
-
 .. image:: ../../images/admin/audit_log_stats.png
 
 .. image:: ../../images/admin/audit_log_activities.png
@@ -329,6 +327,6 @@ TODO
 
 .. image:: ../../images/admin/audit_log_reports.png
 
-.. image:: ../../images/admin/admin/audit_log_anomalies.png
+.. image:: ../../images/admin/audit_log_anomalies.png
 
-.. image:: ../../images/admin/admin/audit_log_scheduled_jobs.png
+.. image:: ../../images/admin/audit_log_scheduled_jobs.png
