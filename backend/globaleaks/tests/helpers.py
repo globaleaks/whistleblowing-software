@@ -370,8 +370,6 @@ class MockDict:
             'ip_filter_custodian_enable': False,
             'ip_filter_receiver': '',
             'ip_filter_receiver_enable': False,
-            'ip_filter_whistleblower': '',
-            'ip_filter_whistleblower_enable': False,
             'counter_submissions': 0,
             'log_level': 'DEBUG',
             'log_accesses_of_internal_users': False,

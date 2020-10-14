@@ -105,9 +105,6 @@ def db_update_node(session, tid, user_session, request, language):
     if 'ip_filter_admin' in request and request['ip_filter_admin_enable'] and request['ip_filter_admin']:
         parse_csv_ip_ranges_to_ip_networks(request['ip_filter_admin'])
 
-    if 'ip_filter_whistleblower_enable' in request and request['ip_filter_whistleblower_enable'] and request['ip_filter_whistleblower']:
-        parse_csv_ip_ranges_to_ip_networks(request['ip_filter_whistleblower'])
-
     if 'languages_enabled' in request and 'default_language' in request:
         db_update_enabled_languages(session,
                                     tid,

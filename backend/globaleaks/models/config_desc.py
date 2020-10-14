@@ -148,8 +148,6 @@ ConfigDescriptor = {
     'ip_filter_custodian_enable': Bool(default=False),
     'ip_filter_receiver': Unicode(default=''),
     'ip_filter_receiver_enable': Bool(default=False),
-    'ip_filter_whistleblower': Unicode(default=''),
-    'ip_filter_whistleblower_enable': Bool(default=False),
 
     'two_factor': Bool(default=False),
 
@@ -241,8 +239,6 @@ ConfigFilters = {
         'ip_filter_custodian_enable',
         'ip_filter_receiver',
         'ip_filter_receiver_enable',
-        'ip_filter_whistleblower',
-        'ip_filter_whistleblower_enable',
         'log_level',
         'log_accesses_of_internal_users',
         'two_factor',
@@ -308,8 +304,6 @@ ConfigFilters['public_node'] = list(set(ConfigFilters['admin_node']) - set([
     'ip_filter_custodian_enable',
     'ip_filter_receiver',
     'ip_filter_receiver_enable',
-    'ip_filter_whistleblower',
-    'ip_filter_whistleblower_enable',
     'threshold_free_disk_megabytes_high',
     'threshold_free_disk_megabytes_low',
     'threshold_free_disk_percentage_high',

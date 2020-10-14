@@ -276,8 +276,6 @@ AdminNodeDesc = {
     'ip_filter_custodian': str,
     'ip_filter_receiver_enable': bool,
     'ip_filter_receiver': str,
-    'ip_filter_whistleblower_enable': bool,
-    'ip_filter_whistleblower': str,
     'log_level': str,
     'enable_private_labels': bool,
     'log_accesses_of_internal_users': bool,
