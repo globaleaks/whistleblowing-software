@@ -96,9 +96,8 @@
 
     <div class="form-group" data-ng-if="!resources.node.disable_privacy_badge && resources.node.enable_custom_privacy_badge">
       <label data-translate>Custom privacy panel</label>
-      <label>(<span data-translate>Text shown when the whistleblower is not using Tor</span>)</label>
       <div>
-        <input class="form-control" data-ng-model="resources.node.custom_privacy_badge_text" type="text" />
+        <textarea class="form-control" data-ng-model="resources.node.custom_privacy_badge_text" type="text" />
       </div>
     </div>
 
