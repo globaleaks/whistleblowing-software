@@ -212,9 +212,9 @@ htmlhelp_basename = 'globaleaks'
 # -- Options for LaTeX output ---------------------------------------------
 
 latex_elements = {
-  'sphinxsetup': 'TitleColor={HTML}{377ABC}, \
-                  InnerLinkColor={HTML}{377ABC}, \
-                  OuterLinkColor={HTML}{377ABC}',
+  'sphinxsetup': 'TitleColor={HTML}{3777BC}, \
+                  InnerLinkColor={HTML}{3777BC}, \
+                  OuterLinkColor={HTML}{3777BC}',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
@@ -295,7 +295,7 @@ autoapi_modules = {
 }
 
 html_theme_options = {
-  'style_nav_header_background': '#377ABC',
+  'style_nav_header_background': '#3777BC',
 }
 
 def setup(app):
