@@ -1,44 +1,13 @@
 GL.factory("uploadUtils", ["$filter", function($filter) {
   // Utils shared across file upload controllers and directives
 
-  function endsWith(subjectString, searchString) {
-    // endsWith polyfill adapted for use with IE from:
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith
-    var position = subjectString.length - searchString.length;
-    if (position < 0 ) { return false; }
-    var lastIndex = subjectString.lastIndexOf(searchString, position);
-    return lastIndex !== -1 && lastIndex === position;
-  }
-
   return {
-    "validFilename": function(filename, types) {
-      for (var i = 0; i < types.length; i++) {
-        var s = filename.toLowerCase();
-        if (endsWith(s, types[i])) {
-            return true;
-        }
-      }
-      return false;
-    },
-
     "translateInvalidSizeErr": function(filename, maxSize) {
       var strs = ["File size not accepted.", "Maximum file size is:"];
       angular.forEach(strs, function(s, i) {
         strs[i] = $filter("translate")(s);
       });
       return strs[0] + " " + filename + " - " + strs[1] + " " + strs[2] + " " + $filter("byteFmt")(maxSize, 2);
-    },
-
-    "translateInvalidTypeErr": function(filename, validTypes) {
-      var uppercaseTypes = [];
-      for (var i=0; i<validTypes.length; i++) {
-        uppercaseTypes.push(validTypes[i].toUpperCase());
-      }
-      var strs = ["Error with file:", "File type not accepted.", "Accepted file types are:"];
-      angular.forEach(strs, function(s, i) {
-        strs[i] = $filter("translate")(s);
-      });
-      return strs[0] + " " + filename + " - " + strs[1] + " " + strs[2] + " " + uppercaseTypes;
     },
   };
 }]).
@@ -65,26 +34,15 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
     $flow.upload();
   };
 }]).
-controller("ImageUploadCtrl", ["$scope", "$rootScope", "$http", "uploadUtils", "Utils", function($scope, $rootScope, $http, uploadUtils, Utils) {
-  $scope.Utils = Utils;
+controller("ImageUploadCtrl", ["$scope", "uploadUtils", function($scope, uploadUtils) {
   $scope.imageUploadObj = {};
 
   $scope.$on("flow::fileAdded", function (event, $flow, flowFile) {
     $scope.file_error_msgs = [];
-    var validSize = $rootScope.public.node.maximum_filesize * 1024 * 1024;
+    var validSize = $scope.public.node.maximum_filesize * 1024 * 1024;
     if (flowFile.size > validSize) {
       var errMsg = uploadUtils.translateInvalidSizeErr(flowFile.name, validSize);
       $scope.file_error_msgs.push(errMsg);
     }
   });
-
-  $scope.deletePicture = function() {
-    $http({
-      method: "DELETE",
-      url: $scope.imageUploadUrl,
-    }).then(function() {
-      $scope.imageUploadModel[$scope.imageUploadModelAttr] = "";
-      $scope.imageUploadObj.flow.files = [];
-    });
-  };
 }]);
