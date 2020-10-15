@@ -22,7 +22,7 @@ GL.factory("uploadUtils", ["$filter", function($filter) {
     },
 
     "translateInvalidSizeErr": function(filename, maxSize) {
-      var strs = ["Error with file:", "File size not accepted.", "Maximum file size is:"];
+      var strs = ["File size not accepted.", "Maximum file size is:"];
       angular.forEach(strs, function(s, i) {
         strs[i] = $filter("translate")(s);
       });
