@@ -1,3 +1,4 @@
+====================
 Application Security
 ====================
 The GlobaLeaks software conforms to industry standard best practices for application security by following OWASP Security Guidelines.
