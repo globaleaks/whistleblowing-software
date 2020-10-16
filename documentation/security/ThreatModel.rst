@@ -1,9 +1,7 @@
-============
+f============
 Threat Model
 ============
-GlobaLeaks is an Open Whistleblowing Framework that can be used in many different usage scenarios that may require very different approaches to obtain both security and flexibility.
-Whistleblowing policies and procedures within a corporation for compliance purposes are reasonably different from the ones of a Media outlet or the ones for Hacktivism initiatives.
-Given the flexibility of uses of GlobaLeaks, the threat model considers different usage scenarios, as threats can vary.
+GlobaLeaks is an Open Whistleblowing Framework that can be used in many different usage scenarios that may require very different approaches to obtain both security and flexibility. Whistleblowing policies and procedures within a corporation for compliance purposes are reasonably different from the ones of a Media outlet or the ones for Hacktivism initiatives. Given the flexibility of uses of GlobaLeaks, the threat model considers different usage scenarios, as threats can vary.
 
 Actors Matrix
 =============
@@ -77,9 +75,8 @@ Voluntary identity disclosure may be required in certain whisteblowing procedure
 
 The “MAY” vs. “MUST” is with respect to the actions of recipients and is a fundamental element of the guarantee provided to whistleblowers in many initiatives (e.g., a corporate or institutional whistleblowing platform should not follow a MUST approach for Anonymous submission follow-up, considering such submissions just tip offs and not formal reports). 
 
-Usage Scenarios matrix
+Usage Scenarios Matrix
 ======================
-
 In this section you will find examples that show how different anonymity levels of different actors can be mixed together depending on the context of use.
 
 .. csv-table::
@@ -152,17 +149,25 @@ Below a matrix showing different security measures applied on data.
    "Software files", "N/A", "N/A", "N/A", "N/A"
    "Email notifications", "Encrypted with PGP when recipients keys are available", "N/A", "Antispam to prevent flooding", "N/A"
 
-Threats to Privacy and Anonymity
-================================
+Threats to Confidentiality and Anonymity
+========================================
 In this section we highlight several threats that require specific explanation.
 
 Browser History and Cache
 -------------------------
-GlobaLeaks tries to avoid, by using properly crafted HTTP headers, leaking information into any actor’s browser history or cache. This privacy feature cannot guarantee the safety of the user against a forensics analysis of their browser cache and/or history, but it is provided as an additional safety measure.
+GlobaLeaks tries to avoid, by using properly crafted HTTP headers and other triks, leaking information into any actor’s browser history or cache. This privacy feature cannot guarantee the safety of the user against a forensics analysis of their browser cache and/or history, but it is provided as an additional safety measure.
 
 Metadata
 --------
-Every file can contain metadata related to the author or the whistleblower. The cleanup of metadata of submitted files is a particular topic that attempts to protect an “unaware” whistleblower from leaking information in a document that may put their anonymity at risk. In the context of GlobaLeaks, by default no automatic metadata cleanup is implemented because metadata is considered fundamental in the evidence preservation. For that reason metadata cleanup is an optional feature choosable by the Whistleblower and/or Recipient.
+Every file can contain metadata related to the author or the whistleblower. The cleanup of metadata of submitted files is a particular topic that attempts to protect an “unaware” whistleblower from leaking information in a document that may put their anonymity at risk. In the context of GlobaLeaks, by default no automatic metadata cleanup is implemented because metadata is considered fundamental in the evidence preservation. For that reason metadata cleanup is an optional operation that coulld be suggested to Whistleblowers or operated by Recipients when sharing the document with other persons. A valuable software resource for this aim is the [Metadata Anonymization Toolkit](https://0xacab.org/jvoisin/mat2)
+
+Malware and Trojans
+-------------------
+GlobaLeaks could not prevent an attacker to use the platform maliciously trying to target recipients users with malware and trojans in general. Considering this and in order to be less vulnerable to risks of data exfiltration perpretrated with trojans, Recipients should always implement proper operation security by possibly using a laptop dedicated to reports visualization and possibly open file attachments on computers disconnected from the network and other sensible information. Wherever possible they should use operation with specialized secure operation systems like [Tails](https://tails.boum.org/) and at least run an up-to-date Anti-Virus software.
+
+Data Stored Outside the Platform
+--------------------------------
+GlobaLeaks does not provide any kind of security for data that is stored outside the GlobaLeaks system. Is responsibility of Recipients to protect the data they download from the platform on their personal computer or that they share with other persons with external usb drives. The operatin system used or the pen drive adoptet should offer encryption and guarantee that in case of device loss or stealing no one could access the data therein contained.
 
 Environmental Factors
 ---------------------
@@ -170,17 +175,11 @@ GlobaLeaks does not protect against environmental factors related to actors' phy
 
 Incorrect Data Retention Policies
 ---------------------------------
-GlobaLeaks implements by default a strict data retention policy of 90 days to enable users to operate on the report for a limited time necessary for the investigations.
-If the platform is configured to retain every report for a long time and Recipients do not manually delete the unnecessary reports, the value of the platform data for an attacker increases and so too does the risk.
+GlobaLeaks implements by default a strict data retention policy of 90 days to enable users to operate on the report for a limited time necessary for the investigations. If the platform is configured to retain every report for a long time and Recipients do not manually delete the unnecessary reports, the value of the platform data for an attacker increases and so too does the risk.
 
 Human Negligence
 ----------------
 While we do provide the Administrator the ability to fine tune their security related configurations, and while we do continuously inform the actors about their security related context at every step of interactions, GlobaLeaks cannot protect against any major security threats coming from human negligence. For example, if a Whistleblower submits data that a third party (carrying on an ex-post facto investigation) can use to identify them as the unique owner or recent viewer of that data, then the Whistleblower cannot be protected by GlobaLeaks.
-
-Data Stored Outside GlobaLeaks
-------------------------------
-GlobaLeaks does not provide any kind of security for data that is stored outside the GlobaLeaks system. 
-The duty of protection for such data is exclusively the actor's.
 
 Advanced Traffic Analysis
 -------------------------
