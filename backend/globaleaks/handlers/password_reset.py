@@ -150,7 +150,7 @@ class PasswordResetHandler(BaseHandler):
                                         requests.PasswordReset1Desc)
 
         return generate_password_reset_token_by_username_or_mail(self.request.tid,
-                                                                 request['username_or_email'])
+                                                                 request['username'])
 
     def put(self):
         request = self.validate_message(self.request.content.read(),

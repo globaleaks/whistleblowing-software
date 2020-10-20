@@ -620,7 +620,7 @@ ExceptionDesc = {
 }
 
 PasswordReset1Desc = {
-    'username_or_email': str
+    'username': str
 }
 
 PasswordReset2Desc = {

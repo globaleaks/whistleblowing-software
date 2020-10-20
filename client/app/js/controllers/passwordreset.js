@@ -2,7 +2,7 @@ GL.controller("PasswordResetCtrl", ["$scope", "$location", "$http",
   function($scope, $location, $http) {
 
   $scope.request = {
-    "username_or_email": ""
+    "username": ""
   };
 
   $scope.submit = function() {

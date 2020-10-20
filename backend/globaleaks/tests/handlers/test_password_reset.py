@@ -36,7 +36,7 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_post(self):
         data_request = {
-            'username_or_email': self.user['username']
+            'username': self.user['username']
         }
 
         handler = self.request(data_request)
