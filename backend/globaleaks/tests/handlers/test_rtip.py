@@ -123,15 +123,12 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             self.assertEqual(response[key], True)
 
     def test_put_enable_two_way_comments(self):
-        State.tenant_cache[1].can_grant_permissions = True
         return self.switch_enabler('enable_two_way_comments')
 
     def test_put_enable_two_way_messages(self):
-        State.tenant_cache[1].can_grant_permissions = True
         return self.switch_enabler('enable_two_way_messages')
 
     def test_put_enable_attachments(self):
-        State.tenant_cache[1].can_grant_permissions = True
         return self.switch_enabler('enable_attachments')
 
     @inlineCallbacks

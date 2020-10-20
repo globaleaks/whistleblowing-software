@@ -255,7 +255,6 @@ class MockDict:
             'recipient_configuration': 'default',
             'can_delete_submission': False,
             'can_postpone_expiration': False,
-            'can_grant_permissions': False,
             'contexts': []
         }
 
@@ -320,7 +319,6 @@ class MockDict:
             'https_preload': True,
             'can_postpone_expiration': False,
             'can_delete_submission': False,
-            'can_grant_permissions': False,
             'allow_indexing': False,
             'cors_origins': '',
             'disable_submissions': False,

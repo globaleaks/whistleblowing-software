@@ -86,7 +86,6 @@ class Receiver_v_44(Model):
     configuration = Column(UnicodeText, default='default', nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
     can_postpone_expiration = Column(Boolean, default=False, nullable=False)
-    can_grant_permissions = Column(Boolean, default=False, nullable=False)
     tip_notification = Column(Boolean, default=True, nullable=False)
 
 

@@ -225,7 +225,6 @@ class Receiver_v_38(Model):
     configuration = Column(UnicodeText, default='default')
     can_delete_submission = Column(Boolean, default=False)
     can_postpone_expiration = Column(Boolean, default=False)
-    can_grant_permissions = Column(Boolean, default=False)
     tip_notification = Column(Boolean, default=True)
     presentation_order = Column(Integer, default=0)
 

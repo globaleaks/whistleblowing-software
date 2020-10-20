@@ -128,7 +128,6 @@ class Receiver_v_45(Model):
     configuration = Column(UnicodeText, default='default', nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
     can_postpone_expiration = Column(Boolean, default=False, nullable=False)
-    can_grant_permissions = Column(Boolean, default=False, nullable=False)
 
 
 class User_v_45(Model):
@@ -249,7 +248,7 @@ class MigrationScript(MigrationBase):
             receiver = self.session_old.query(self.model_from['Receiver']).filter(self.model_from['Receiver'].id == old_obj.id).one_or_none()
             new_obj = self.model_to['User']()
             for key in new_obj.__table__.columns._data.keys():
-                if key in ['can_delete_submission', 'can_grant_permissions', 'can_postpone_expiration']:
+                if key in ['can_delete_submission', 'can_postpone_expiration']:
                     if receiver is not None:
                         setattr(new_obj, key, getattr(receiver, key))
                 elif key == 'recipient_configuration':

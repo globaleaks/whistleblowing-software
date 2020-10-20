@@ -753,7 +753,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       user.can_edit_general_settings = false;
       user.can_delete_submission = false;
       user.can_postpone_expiration = false;
-      user.can_grant_permissions = false;
       user.send_account_activation_link = true;
       return user;
     },

@@ -154,7 +154,6 @@ AdminUserDesc = {
     'can_edit_general_settings': bool,
     'can_delete_submission': bool,
     'can_postpone_expiration': bool,
-    'can_grant_permissions': bool,
     'recipient_configuration': str,
     'send_account_activation_link': bool
 }
@@ -231,7 +230,6 @@ AdminNodeDesc = {
     'https_preload': bool,
     'can_postpone_expiration': bool,
     'can_delete_submission': bool,
-    'can_grant_permissions': bool,
     'allow_indexing': bool,
     'cors_origins': str,
     'disable_privacy_badge': bool,
@@ -463,7 +461,6 @@ NodeDesc = {
     'https_receiver': bool,
     'can_postpone_expiration': bool,
     'can_delete_submission': bool,
-    'can_grant_permissions': bool,
     'allow_indexing': bool,
     'disable_privacy_badge': bool,
     'enable_receipt_hint': bool,
@@ -522,8 +519,7 @@ ReceiverDesc = {
     'id': uuid_regexp,
     'state': user_state_regexp,
     'can_delete_submission': bool,
-    'can_postpone_expiration': bool,
-    'can_grant_permissions': bool
+    'can_postpone_expiration': bool
 }
 
 ReceiverCollectionDesc = [ReceiverDesc]

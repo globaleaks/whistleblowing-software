@@ -1116,7 +1116,6 @@ class _User(Model):
     recipient_configuration = Column(Enum(EnumRecipientConfiguration), default='default', nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
     can_postpone_expiration = Column(Boolean, default=False, nullable=False)
-    can_grant_permissions = Column(Boolean, default=False, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
     readonly = Column(Boolean, default=False, nullable=False)
     two_factor_enable = Column(Boolean, default=False, nullable=False)
@@ -1144,7 +1143,6 @@ class _User(Model):
                  'can_edit_general_settings',
                  'can_delete_submission',
                  'can_postpone_expiration',
-                 'can_grant_permissions',
                  'two_factor_enable',
                  'readonly',
                  'clicked_recovery_key']

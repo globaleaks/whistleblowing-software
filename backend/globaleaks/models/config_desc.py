@@ -96,7 +96,6 @@ ConfigDescriptor = {
 
     'can_postpone_expiration': Bool(default=True),
     'can_delete_submission': Bool(default=True),
-    'can_grant_permissions': Bool(default=False),
 
     'allow_indexing': Bool(default=True),
 
@@ -185,7 +184,6 @@ ConfigFilters = {
         'cors_origins',
         'can_postpone_expiration',
         'can_delete_submission',
-        'can_grant_permissions',
         'allow_indexing',
         'wizard_done',
         'disable_submissions',

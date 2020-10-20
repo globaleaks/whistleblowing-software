@@ -472,15 +472,6 @@ def set_internaltip_variable(session, tid, user_id, rtip_id, key, value):
     :param value: A value to be assigned to the property
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
-
-    receiver = db_get(session,
-                      models.User,
-                      models.User.id == rtip.receiver_id)
-
-    if not (State.tenant_cache[tid].can_grant_permissions or
-            receiver.can_grant_permissions):
-        raise errors.ForbiddenOperation
-
     setattr(itip, key, value)
 
 

@@ -125,7 +125,6 @@ def user_serialize_user(session, user, language):
         'recipient_configuration': user.recipient_configuration,
         'can_postpone_expiration': user.can_postpone_expiration,
         'can_delete_submission': user.can_delete_submission,
-        'can_grant_permissions': user.can_grant_permissions,
         'clicked_recovery_key': user.clicked_recovery_key,
         'send_account_activation_link': False,
         'contexts': contexts
@@ -134,8 +133,7 @@ def user_serialize_user(session, user, language):
     if user.tid in State.tenant_cache:
         ret_dict.update({
             'can_postpone_expiration': State.tenant_cache[user.tid].can_postpone_expiration or user.can_postpone_expiration,
-            'can_delete_submission': State.tenant_cache[user.tid].can_delete_submission or user.can_delete_submission,
-            'can_grant_permissions': State.tenant_cache[user.tid].can_grant_permissions or user.can_grant_permissions
+            'can_delete_submission': State.tenant_cache[user.tid].can_delete_submission or user.can_delete_submission
         })
 
     return get_localized_values(ret_dict, user, user.localized_keys, language)

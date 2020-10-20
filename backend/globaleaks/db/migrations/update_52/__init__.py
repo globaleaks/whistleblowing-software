@@ -210,7 +210,6 @@ class User_v_51(Model):
     recipient_configuration = Column(UnicodeText, default='default', nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
     can_postpone_expiration = Column(Boolean, default=False, nullable=False)
-    can_grant_permissions = Column(Boolean, default=False, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
     two_factor_enable = Column(Boolean, default=False, nullable=False)
     two_factor_secret = Column(LargeBinary(64), default=b'', nullable=False)
