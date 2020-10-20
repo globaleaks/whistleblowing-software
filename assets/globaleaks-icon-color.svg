@@ -46,7 +46,7 @@
      id="namedview28"
      showgrid="false"
      inkscape:zoom="1.026842"
-     inkscape:cx="465.18389"
+     inkscape:cx="194.4509"
      inkscape:cy="200.00115"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -56,9 +56,22 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0" />
+  <rect
+     style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.75159967;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     id="rect825"
+     width="400"
+     height="400"
+     x="0"
+     y="0.00099182129"
+     ry="0.97409046"
+     inkscape:export-xdpi="120"
+     inkscape:export-ydpi="120" />
   <g
+     style="fill:none"
      id="g1087"
-     transform="scale(5.0000062)">
+     transform="matrix(5.0000062,0,0,4.9999813,2.1407318e-6,9.8982409e-4)"
+     inkscape:export-xdpi="120"
+     inkscape:export-ydpi="120">
     <path
        inkscape:export-ydpi="38.399857"
        inkscape:export-xdpi="38.399857"
