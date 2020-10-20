@@ -164,6 +164,12 @@ GL.controller("TipCtrl",
       $scope.tip.newMessageContent = "";
     };
 
+    $scope.tip_toggle_star = function() {
+      return $scope.tip.operation("set", {"key": "important", "value": !$scope.tip.important}).then(function() {
+        $scope.tip.important = !$scope.tip.important;
+      });
+    };
+
     $scope.tip_notify = function(enable) {
       return $scope.tip.operation("set", {"key": "enable_notifications", "value": enable}).then(function() {
         $scope.tip.enable_notifications = enable;

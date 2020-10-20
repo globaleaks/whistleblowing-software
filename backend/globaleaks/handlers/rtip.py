@@ -178,6 +178,7 @@ def serialize_rtip(session, rtip, itip, language):
 
     ret['id'] = rtip.id
     ret['receiver_id'] = user_id
+    ret['important'] = itip.important
 
     if State.tenant_cache[itip.tid].enable_private_labels:
         ret['label'] = rtip.label
@@ -698,7 +699,7 @@ class RTipInstance(OperationHandler):
         return {
           'postpone_expiration': (RTipInstance.postpone_expiration, None),
           'set': (RTipInstance.set_tip_val,
-                  {'key': '^(enable_two_way_comments|enable_two_way_messages|enable_attachments|enable_notifications)$',
+                  {'key': '^(important|enable_two_way_comments|enable_two_way_messages|enable_attachments|enable_notifications)$',
                    'value': bool}),
           'update_label': (RTipInstance.update_label, {'value': str}),
           'update_status': (RTipInstance.update_submission_status, {'status': str,

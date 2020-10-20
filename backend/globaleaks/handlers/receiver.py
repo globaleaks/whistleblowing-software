@@ -76,6 +76,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
             'preview_schema': db_serialize_archived_preview_schema(aqs.preview, language),
             'preview': preview,
             'score': itip.total_score,
+            'important': itip.important,
             'label': rtip.label,
             'status': itip.status,
             'substatus': itip.substatus

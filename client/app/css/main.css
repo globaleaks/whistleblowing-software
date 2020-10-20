@@ -45,6 +45,14 @@ a:hover.darklink {
   color: #79B0E6;
 }
 
+.visible-on-over {
+  opacity: 0.2;
+}
+
+.visible-on-over:hover {
+  opacity: 1;
+}
+
 #Sidebar a.active, #Sidebar a:active.active, #Sidebar a:hover.active, #Sidebar a:focus.active {
   border-bottom: 1px solid #C8D1E0;
   width: max-content;
@@ -706,7 +714,7 @@ text.axis-workweek, text.axis-worktime {
 
 .selectedTip,
 .table-striped > tbody > tr.selectedTip:nth-child(odd) > td {
-  background-color: #FFF3CA;
+  background-color: #fffcf1;
 }
 
 .tip-action-open {
@@ -718,7 +726,7 @@ text.axis-workweek, text.axis-worktime {
 }
 
 .TipLabel {
-  color: #3777BC;
+  color: #377ABC;
 }
 
 #SearchFilter {

@@ -32,6 +32,16 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$route", "$lo
     });
   };
 
+
+  $scope.toggle_star = function(tip) {
+    tip.important = !tip.important;
+
+    return $http({method: "PUT",
+                  url: "api/rtip/" + tip.id,
+                  data: {"operation": 'set',
+                         "args": {"key": "important", "value": tip.important}}});
+  };
+
   $scope.deselect_all = function () {
     $scope.selected_tips = [];
   };

@@ -4,7 +4,7 @@
       <a id="link-home"
          href="#/recipient/home"
          uib-tooltip="{{'Home' | translate}}"
-         class="btn btn-secondary">
+         class="btn btn-outline-secondary">
         <i class="fas fa-arrow-left"></i>
       </a>
 
@@ -13,7 +13,7 @@
               data-ng-if="selected_tips.length !== tips.length"
               data-ng-click="select_all()"
               uib-tooltip="{{'Select all' | translate}}"
-              class="btn btn-secondary">
+              class="btn btn-outline-secondary">
           <i class="far fa-square"></i>
         </span>
 
@@ -21,7 +21,7 @@
               data-ng-if="selected_tips.length === tips.length"
               data-ng-click="deselect_all()"
               uib-tooltip="{{'Deselect all' | translate}}"
-              class="btn btn-secondary">
+              class="btn btn-outline-secondary">
           <i class="fas fa-check-square"></i>
         </span>
 
@@ -29,7 +29,7 @@
               data-ng-if="selected_tips.length && preferences.can_postpone_expiration"
               data-ng-click="tip_postpone_all()"
               uib-tooltip="{{'Postpone the expiration date' | translate}}"
-              class="btn btn-secondary">
+              class="btn btn-outline-secondary">
           <i class="fas fa-clock"></i>
         </span>
 
@@ -37,7 +37,7 @@
               data-ng-if="selected_tips.length && preferences.can_delete_submission"
               data-ng-click="tip_delete_all()"
               uib-tooltip="{{'Delete' | translate}}"
-              class="btn btn-secondary">
+              class="btn btn-outline-secondary">
           <i class="fas fa-trash"></i>
         </span>
       </span>
@@ -45,7 +45,7 @@
       <span id="tip-action-reload"
             data-ng-click="reload()"
             uib-tooltip="{{'Refresh' | translate}}"
-            class="btn btn-secondary">
+            class="btn btn-outline-secondary">
         <i class="fas fa-sync"></i>
       </span>
 
@@ -63,7 +63,20 @@
       <thead>
       <tr>
         <th></th>
-        <th class="TipInfoID" data-translate>ID</th>
+        <th data-ng-click="sortKey = 'important'; sortReverse = !sortReverse" uib-tooltip="{{'Mark as important' | translate }}">
+          <i class="fas fa-star" ></i>
+          <span data-ng-show="sortKey == 'important'">
+            <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
+            <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
+          </span>
+        </th>
+        <th class="TipInfoID" data-ng-click="sortKey = 'id'; sortReverse = !sortReverse">
+          <i class="fas fa-barcode"></i>
+          <span data-ng-show="sortKey == 'id'">
+            <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
+            <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
+          </span>
+        </th>
         <th class="TipInfoContext" data-ng-if="public.contexts.length > 1">
           <span data-ng-click="sortKey = 'context_name'; sortReverse = !sortReverse">
             <span data-translate>Context</span>
@@ -127,33 +140,6 @@
         <th class="TipInfoReadReceipt">
           <i class="fas fa-eye"></i>
         </th>
-        <th class="TipInfoFilesCount">
-          <span data-ng-click="sortKey = 'file_count'; sortReverse = !sortReverse">
-            <i class="fas fa-file"></i>
-            <span data-ng-show="sortKey == 'file_count'">
-              <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-              <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
-            </span>
-          </span>
-        </th>
-        <th class="TipInfoCommentsCount">
-          <span data-ng-click="sortKey = 'comment_count'; sortReverse = !sortReverse">
-            <i class="fas fa-comment"></i>
-            <span data-ng-show="sortKey == 'comment_count'">
-              <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-              <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
-            </span>
-          </span>
-        </th>
-        <th class="TipInfoMessagesCount">
-          <span data-ng-click="sortKey = 'message_count'; sortReverse = !sortReverse">
-            <i class="fas fa-envelope"></i>
-            <span data-ng-show="sortKey == 'message_count'">
-              <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-              <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
-            </span>
-          </span>
-        </th>
         <th class="TipInfoPreview">
           <span>
             <i class="fas fa-list-alt"></i>
@@ -179,11 +165,11 @@
           data-ng-click="Utils.go('/status/' + tip.id)">
         <td>
           <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission">
-            <span class="btn btn-sm btn-secondary" data-ng-if="isSelected(tip.id)"
+            <span class="btn btn-sm btn-outline-secondary" data-ng-if="isSelected(tip.id)"
                   data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
               <i class="fas fa-check-square"></i>
             </span>
-            <span class="btn btn-sm btn-secondary" data-ng-if="!isSelected(tip.id)"
+            <span class="btn btn-sm btn-outline-secondary" data-ng-if="!isSelected(tip.id)"
                   data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
               <i class="far fa-square"></i>
             </span>
@@ -192,10 +178,13 @@
                 data-ng-click="exportTip(tip); $event.stopPropagation()"
                 uib-tooltip="{{'Export' | translate}}"
                 novalidate>
-            <button id="tip-action-export" class="btn btn-sm btn-secondary">
+            <button id="tip-action-export" class="btn btn-sm btn-outline-secondary">
               <i class="fas fa-save"></i>
             </button>
           </span>
+        </td>
+        <td uib-tooltip="{{'Mark as important' | translate }}">
+          <i class="fas fa-star text-warning" data-ng-click="toggle_star(tip); $event.stopPropagation();" data-ng-class="{'visible-on-over': !tip.important}"></i>
         </td>
         <td class="TipInfoID">{{tip.progressive}}</td>
         <td class="TipInfoContext" data-ng-if="public.contexts.length > 1">{{tip.context_name}}</td>
@@ -214,16 +203,18 @@
           <i data-ng-if="tip.wb_last_access < tip.update_date" class="fas fa-times"
              uib-tooltip="{{'The whistleblower has not read the last update yet' | translate }}"></i>
         </td>
-        <td class="TipInfoFilesCount">{{tip.file_count}}</td>
-        <td class="TipInfoCommentCount">{{tip.comment_count}}</td>
-        <td class="TipInfoMessageCount">{{tip.message_count}}</td>
         <td class="TipInfoPreview">
-          <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true"
-               data-ng-include="'views/partials/tip_field.html'"></div>
+          <div data-ng-if="tip.file_count || tip.comment_count || tip.message_count">
+            <span data-ng-if="tip.file_count" uib-tooltip="{{'Files' | translate}}"><i class="fas fa-file text-secondary"></i>: {{tip.file_count}}</span>
+            <span data-ng-if="tip.comment_count" uib-tooltip="{{'Comments' | translate}}"><i class="fas fa-comment text-secondary"></i>: {{tip.comment_count}}</span>
+            <span data-ng-if="tip.message_count" uib-tooltip="{{'Messages' | translate}}"><i class="fas fa-messages text-secondary"></i>: {{tip.message_count}}</span>
+          </div>
+          <!-- <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true"
+		  data-ng-include="'views/partials/tip_field.html'"></div>-->
         </td>
         <td class="TipInfoScore" data-ng-if="public.node.enable_scoring_system" data-ng-switch="tip.score">
           <span data-ng-switch-when="0">-</span>
-          <span class="badge badge-primary" data-ng-switch-when="1" data-translate>Low</span>
+          <span class="badge badge-secondary" data-ng-switch-when="1" data-translate>Low</span>
           <span class="badge badge-warning" data-ng-switch-when="2" data-translate>Medium</span>
           <span class="badge badge-danger" data-ng-switch-when="3" data-translate>High</span>
         </td>

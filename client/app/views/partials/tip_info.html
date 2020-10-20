@@ -1,37 +1,31 @@
 <div id="TipInfoBox" class="card card-default">
-  <div class="card-header">
+  <div class="card-header" data-ng-if="Authentication.session.role == 'receiver'">
     <div class="row">
-      <span class="col-md-6">
-        <span data-translate>Report</span><span data-ng-if="Authentication.session.role == 'receiver'">:</span>
-        <span data-ng-if="Authentication.session.role == 'receiver'">
-          <span data-ng-if="!showEditLabelInput" class="TipLabel" data-ng-click="editLabel();"
-                uib-tooltip="{{'Label the report' | translate}}">
-            <span id="Label">{{tip.label}}</span>
-            <i class="fas fa-tag"></i>
-          </span>
-
-          <span data-ng-if="showEditLabelInput" class="form-inline">
-            <div id="AssignLabelInput"  class="input-group">
+      <div class="col-md-12">
+        <div class="float-left">
+            <span class="input-group">
               <input id="assignLabelInput" type="text" class="form-control" data-ng-attr-placeholder="{{'Label' | translate}}" data-ng-model="tip.label" />
-              <span class="input-group-append" uib-tooltip="{{'Assign a label to the report' | translate}}">
-                <button id="assignLabelButton" class="btn btn-primary" data-ng-click="updateLabel(tip.label);">
+              <span class="input-group-append" uib-tooltip="{{'Label to the report' | translate}}">
+                <button id="assignLabelButton" class="btn btn-primary" data-ng-click="updateLabel(tip.label)">
                   <i class="fas fa-tag"></i>
                 </button>
               </span>
-            </div>
+            </span>
           </span>
-        </span>
-      </span>
-      <span class="col-md-6" data-ng-if="Authentication.session.role == 'receiver'">
-        <span data-ng-include="'views/partials/tip_submission_status.html'"></span>
-      </span>
+        </div>
+        <div class="float-right" data-ng-if="Authentication.session.role == 'receiver'">
+          <span data-ng-include="'views/partials/tip_submission_status.html'"></span>
+        </div>
+      </div>
     </div>
   </div>
   <div class="card-body">
     <table class="table table-borderless table-striped">
       <thead>
       <tr>
-        <th class="TipInfoID" data-ng-if="Authentication.session.role == 'receiver'" data-translate>ID</th>
+        <th class="TipInfoID" data-ng-if="Authentication.session.role == 'receiver'">
+          <i class="fas fa-barcode"></i>
+        </th>
         <th class="TipInfoContext" data-ng-if="public.contexts.length > 1">
           <i class="fas fa-inbox"></i>
           <span data-translate>Context</span>
