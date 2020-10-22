@@ -2,6 +2,7 @@
   "test-init.js",
   "test-admin-perform-wizard.js",
   "test-authentication-redirects.js",
+  "test-user-password-reset.js",
   "test-admin-first-login.js",
   "test-admin-configure-advanced.js",
   "test-admin-configure-users.js",
