@@ -15,7 +15,7 @@
 }
 
 * {
-  word-break: break-word;
+  word-break: normal;
   word-wrap: break-word;
   overflow-wrap: break-word;
   font-weight: normal;
