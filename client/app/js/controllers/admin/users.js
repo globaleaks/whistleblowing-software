@@ -52,12 +52,6 @@ GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
       return user.$update();
     };
 
-    $scope.updateUserImgUrl = function() {
-      $scope.userImgUrl = "/admin/users/" + $scope.user.id + "/img#" + $scope.Utils.randomFluff();
-    };
-
-    $scope.updateUserImgUrl();
-
     $scope.loadPublicKeyFile = function(file) {
       $scope.Utils.readFileAsText(file).then(function(txt) {
         $scope.user.pgp_key_public = txt;

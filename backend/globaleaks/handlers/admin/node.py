@@ -62,12 +62,15 @@ def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
     """
     config = ConfigFactory(session, tid).serialize(config_node)
 
+    logo = session.query(models.File.data).filter(models.File.tid == tid, models.File.id == 'logo').one_or_none()
+
     misc_dict = {
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': db_get_languages(session, tid),
         'root_tenant': tid == 1,
         'https_possible': tid == 1 or State.tenant_cache[1].reachable_via_web,
-        'encryption_possible': tid == 1 or State.tenant_cache[1].encryption
+        'encryption_possible': tid == 1 or State.tenant_cache[1].encryption,
+        'logo': logo if logo else ''
     }
 
     if tid != 1:

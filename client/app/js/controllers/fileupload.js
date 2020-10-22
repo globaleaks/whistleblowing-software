@@ -34,15 +34,28 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
     $flow.upload();
   };
 }]).
-controller("ImageUploadCtrl", ["$scope", "uploadUtils", function($scope, uploadUtils) {
-  $scope.imageUploadObj = {};
+controller("ImageUploadCtrl", ["$http", "$scope", "$rootScope", "uploadUtils", "Utils", function($http, $scope, $rootScope, uploadUtils, Utils) {
+  $scope.Utils = Utils;bj = {};
+  $scope.i
 
   $scope.$on("flow::fileAdded", function (event, $flow, flowFile) {
     $scope.file_error_msgs = [];
-    var validSize = $scope.public.node.maximum_filesize * 1024 * 1024;
+    var validSize = $rootScope.public.node.maximum_filesize * 1024 * 1024;
     if (flowFile.size > validSize) {
       var errMsg = uploadUtils.translateInvalidSizeErr(flowFile.name, validSize);
       $scope.file_error_msgs.push(errMsg);
     }
   });
+
+  $scope.deletePicture = function() {
+    $http({
+      method: "DELETE",
+      url: $scope.imageUploadUrl,
+    }).then(function() {
+      if ($scope.imageUploadModel) {
+        $scope.imageUploadModel[$scope.imageUploadModelAttr] = "";
+      }
+      $scope.imageUploadObj.flow.files = [];
+    });
+  };
 }]);

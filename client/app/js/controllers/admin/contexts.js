@@ -74,12 +74,6 @@ controller("AdminContextEditorCtrl", ["$scope", "AdminContextResource",
     return $scope.context.receivers.indexOf(item.id) === -1;
   };
 
-  $scope.updateContextImgUrl = function() {
-    $scope.contextImgUrl = "/admin/contexts/" + $scope.context.id + "/img#" + $scope.Utils.randomFluff();
-  };
-
-  $scope.updateContextImgUrl();
-
   $scope.deleteContext = function() {
     $scope.Utils.deleteDialog().then(function() {
       return $scope.Utils.deleteResource(AdminContextResource, $scope.resources.contexts, $scope.context);

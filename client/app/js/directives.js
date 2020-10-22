@@ -148,25 +148,6 @@ directive("errorsUpload", function() {
     templateUrl: "views/partials/upload_error_msgs.html",
   };
 }).
-directive("extendFlowValidTypes", ["uploadUtils", function(uploadUtils) {
-  return {
-    restrict: "A",
-    scope: true,
-    link: function(scope, iElment, iAttrs) {
-      var validTypes = scope.$eval(iAttrs.extendFlowValidTypes);
-      scope.$on("flow::fileAdded", function(event, _, flowFile) {
-        if (!uploadUtils.validFilename(flowFile.name, validTypes)) {
-          if (typeof scope.file_error_msgs === "undefined") {
-            scope.file_error_msgs = [];
-          }
-          var errMsg = uploadUtils.translateInvalidTypeErr(flowFile.name, validTypes);
-          scope.file_error_msgs.push(errMsg);
-          event.preventDefault();
-        }
-      });
-    },
-  };
-}]).
 directive("extendFlowValidSize", ["uploadUtils", function(uploadUtils) {
   return {
     restrict: "A",

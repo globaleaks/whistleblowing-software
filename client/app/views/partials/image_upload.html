@@ -3,13 +3,16 @@
      flow-name="imageUploadObj.flow"
      flow-init="{target: imageUploadUrl}"
      flow-files-submitted="$flow.upload()"
-     extend-flow-valid-types="['png']"
-     flow-btn>
+     extend-flow-valid-types="['png']">
   <label class="changePictureButton text-primary"
          for="imageFile"
-         uib-tooltip="{{'Edit' | translate}}"><i class="fas fa-edit"></i></label>
+         data-ng-if="!imageUploadModel[imageUploadModelAttr] && !imageUploadObj.flow.files.length"
+         uib-tooltip="{{'Edit' | translate}}" flow-btn><i class="fas fa-edit"></i></label>
+  <label class="changePictureButton text-danger"
+         data-ng-click="deletePicture()"
+         data-ng-if="!imageSrcUrl && (imageUploadModel[imageUploadModelAttr] || imageUploadObj.flow.files.length)"
+         uib-tooltip="{{'Delete' | translate}}"><i class="fas fa-times"></i></label>
   <div class="imageUploadThumbnail">
-    <img data-ng-if="imageSrcUrl && !imageUploadObj.flow.files.length" data-ng-src="{{imageSrcUrl}}" />
     <img data-ng-if="imageUploadModel && !imageUploadObj.flow.files.length" data-ng-src="{{Utils.imgDataUri(imageUploadModel[imageUploadModelAttr])}}" />
     <img data-ng-if="imageUploadObj.flow.files.length" flow-img="imageUploadObj.flow.files[imageUploadObj.flow.files.length - 1]" />
   </div>
