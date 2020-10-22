@@ -152,7 +152,6 @@ def db_wizard(session, tid, hostname, request):
         for varname in ['reachable_via_web',
                         'enable_receipt_hint',
                         'disable_privacy_badge',
-                        'simplified_login',
                         'can_delete_submission',
                         'can_postpone_expiration',
                         'anonymize_outgoing_connections',

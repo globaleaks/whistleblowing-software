@@ -333,7 +333,6 @@ class MockDict:
             'default_questionnaire': 'default',
             'admin_language': 'en',
             'multisite_login': False,
-            'simplified_login': False,
             'enable_scoring_system': False,
             'enable_custodian': False,
             'enable_signup': True,
