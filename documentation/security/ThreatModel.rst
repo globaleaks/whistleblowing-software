@@ -1,4 +1,4 @@
-f============
+============
 Threat Model
 ============
 GlobaLeaks is an Open Whistleblowing Framework that can be used in many different usage scenarios that may require very different approaches to obtain both security and flexibility. Whistleblowing policies and procedures within a corporation for compliance purposes are reasonably different from the ones of a Media outlet or the ones for Hacktivism initiatives. Given the flexibility of uses of GlobaLeaks, the threat model considers different usage scenarios, as threats can vary.
