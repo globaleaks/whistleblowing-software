@@ -926,14 +926,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       return ["/", "/submission"].indexOf($location.path()) !== -1;
     },
 
-    classExtension: function() {
-      return {
-        "ext-public": this.isWhistleblowerPage(),
-        "ext-authenticated": Authentication.hasUserRole(),
-        "ext-embedded": $rootScope.embedded,
-      };
-    },
-
     showUserStatusBox: function() {
       return $rootScope.public.node.wizard_done && angular.isDefined($rootScope.Authentication.session) && !$rootScope.Authentication.session.password_change_needed;
     },
