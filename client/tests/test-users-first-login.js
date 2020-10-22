@@ -18,6 +18,18 @@ describe("Recipient1 first login", function() {
     await browser.gl.utils.login_receiver();
   });
 
+  it("should be retrieve the account recovery key", async function() {
+    await element(by.cssContainingText("a", "Preferences")).click();
+    await browser.gl.utils.waitForUrl("/recipient/preferences");
+    await browser.gl.utils.takeScreenshot('user/preferences.png');
+    await element(by.cssContainingText("button", "Account recovery key")).click();
+    await browser.gl.utils.takeScreenshot('user/recoverykey.png');
+    await element(by.cssContainingText("button", "Close")).click();
+    await element(by.model("preferences.two_factor_enable")).click();
+    await browser.gl.utils.takeScreenshot('user/2fa.png');
+    await element(by.cssContainingText("button", "Close")).click();
+  });
+
   it("should be able to load his/her public PGP key", async function() {
     await receiver.addPublicKey(pgp_key_path);
   });
