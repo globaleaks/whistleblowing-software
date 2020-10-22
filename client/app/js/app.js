@@ -532,7 +532,6 @@ var GL = angular.module("GL", [
 
     $rootScope.showLoadingPanel = false;
     $rootScope.errors = [];
-    $rootScope.embedded = $location.search().embedded === "true";
 
     _flowFactoryProvider.defaults = {
         chunkSize: 1000 * 1024,
