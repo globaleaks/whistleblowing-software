@@ -2,22 +2,26 @@
 Common to All Users
 ===================
 
-Login
------
-TODO
-
 Access the User Preferences
 ---------------------------
-TODO
+.. image:: ../images/user/preferences.png
 
 Change Your Password
 --------------------
-TODO
+.. image:: ../images/user/login.png
 
 Reset Your Password
 -------------------
-TODO
+.. image:: ../images/user/login.png
+
+.. image:: ../images/user/password_reset_1.png
+
+.. image:: ../images/user/password_reset_2.png
 
 Enable Two-Factor-Authentication (2FA)
 --------------------------------------
-TODO
+.. image:: ../images/user/2fa.png
+
+Access and Save Your Account Recovery Key
+-----------------------------------------
+.. image:: ../images/user/recoverykey.png
