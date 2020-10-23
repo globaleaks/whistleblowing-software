@@ -230,7 +230,6 @@ ConfigFilters = {
         'https_cert',
         'https_chain',
         'https_preload',
-        'admin_api_token_digest',
         'ip_filter_admin',
         'ip_filter_admin_enable',
         'ip_filter_custodian',
@@ -280,8 +279,7 @@ ConfigFilters['admin_node'] = list(set(ConfigFilters['node']) - set([
     'https_key',
     'https_csr',
     'https_cert',
-    'https_chain',
-    'admin_api_token_digest'
+    'https_chain'
 ]))
 
 

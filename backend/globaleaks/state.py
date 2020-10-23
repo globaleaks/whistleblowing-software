@@ -61,8 +61,6 @@ class StateClass(ObjectDict, metaclass=Singleton):
         self.services = []
         self.onion_service_job = None
 
-        self.api_token_session = None
-
         self.exceptions = {}
         self.exceptions_email_count = 0
         self.stats_collection_start_time = datetime_now()
