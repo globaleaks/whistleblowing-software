@@ -7,10 +7,6 @@
     </span>
   </div>
   <div class="card-body" data-ng-show="!collapsed">
-    <div class="alert alert-info">
-      <i class="fas fa-info-sign"></i>
-      <span data-translate>These files have been attached to your report by the recipients.</span>
-    </div>
     <div data-ng-repeat="wbfile in tip.wbfiles | orderBy: 'creation_date'">
       <div id="wbfile-{{$index}}" data-wbfile></div>
     </div>
