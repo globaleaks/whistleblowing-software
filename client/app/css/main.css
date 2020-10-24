@@ -15,7 +15,7 @@
 }
 
 * {
-  word-break: normal;
+  word-break: break-word;
   word-wrap: break-word;
   overflow-wrap: break-word;
   font-weight: normal;
@@ -184,6 +184,7 @@ a:hover.darklink {
   height: 2.2rem;
   line-height: 2.2rem;
   padding: 0 0.5rem;
+  width: max-content;
 }
 
 #LoginStatusBox, #WhistleblowerLoginBox {

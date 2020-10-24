@@ -1,20 +1,20 @@
 <table id="userList" class="table table-condensed table-striped">
   <thead>
     <tr>
-      <th class="col-md-3" data-translate>ID</th>
-      <th class="col-md-3" data-translate>Username</th>
-      <th class="col-md-3" data-translate>Role</th>
-      <th class="col-md-3" data-translate>Name</th>
-      <th class="col-md-3" data-translate>Last access</th>
+      <th data-translate>ID</th>
+      <th data-translate>Username</th>
+      <th data-translate>Role</th>
+      <th data-translate>Name</th>
+      <th data-translate>Last access</th>
     </tr>
   </thead>
   <tbody id="userListBody">
     <tr data-ng-repeat="user in auditLog.users.elems">
-      <td class="col-md-2">{{user.id}}</td>
-      <td class="col-md-2">{{user.username}}</td>
-      <td class="col-md-2">{{user.role}}</td>
-      <td class="col-md-3">{{user.name}}</td>
-      <td class="col-md-3">{{user.last_login | date:'dd-MM-yyyy HH:mm'}}</td>
+      <td>{{user.id}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.role}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.last_login | date:'dd-MM-yyyy HH:mm'}}</td>
     </tr>
   </tbody>
 </table>
