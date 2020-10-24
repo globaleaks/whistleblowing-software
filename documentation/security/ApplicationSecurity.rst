@@ -1,11 +1,12 @@
 ====================
 Application Security
 ====================
-The GlobaLeaks software conforms to industry standard best practices for application security by following OWASP Security Guidelines.
+The GlobaLeaks software conforms to industry standard best practices for application security by following `OWASP Security Guidelines <https://www.owasp.org>`_.
 
-GlobaLeaks is made up of two main software components: a Backend and a Client.
-The Backend is a python backend that runs on a physical backend and exposes a REST API which the Client interacts with.
-The Client is a client side web application that interacts with Backend only through XHR.
+GlobaLeaks is made up of two main software components: a Backend and a Client
+
+* The Backend is a python backend that runs on a physical backend and exposes a REST API which the Client interacts with.
+* The Client is a client side web application that interacts with Backend only through XHR.
 
 Key Concepts
 ============
@@ -58,7 +59,6 @@ The table below summarizes the authentication methods for each user role.
    "Administrator", "Username and password"
    "Recipient", "Username and password"
    "Whistleblower", "Receipt"
-   "M2M", "API token"
 
 
 Authentication Methods
@@ -74,10 +74,6 @@ Whistleblowers access their Reports by using a Receipt, which is a randomly gene
 The reason of this format of 16 digits is that it resembles a standard phone number, making it easier for the whistleblower to conceal the receipt of their submission and give them plausible deniability on what is the significance of such digits.
 
 As for a password based authentication, the Backend does not store a cleartext version of the Receipt but just an hash subject to a salt.
-API token
-A system integrated with GlobaLeaks could perform authenticated admin operations with an API token that is implemented as a random secret of 32 symbols in the space 0-9a-zA-Z.
-
-This feature is optional and disabled by default.
 
 Password Security
 =================
@@ -93,7 +89,7 @@ Password are never stored in plaintext but the system maintain at rest only an h
 
 The platform stores Users’ passwords hashed with a random 128 bit salt, unique for each user.
 
-Passwords are hashed using Argon2: https://en.wikipedia.org/wiki/Argon2
+Passwords are hashed using `Argon2 <https://en.wikipedia.org/wiki/Argon2>`_, a key derivation function that was selected as the winner of the ``Password Hashing Competition`` in July 2015.
 
 The hash involves a per-user salt for each user and a per-system salt for each whistleblower.
 
@@ -117,14 +113,12 @@ Administrators could as well enforce password change for users at their next log
 
 Periodic Password Change
 ------------------------
-The system enforces users to change their own password every 3 months.
+By default the system enforces users to change their own password at least every year.
 This period is configurable by administrators.
 
-Proof of Work on Login
-----------------------
-The  system implements a proof of work on every login.
-Each client should request a token, solve the proof of work and wait a timeout for the token to become valid.
-This feature is intended to slow down possible attacks requiring more resources to users in terms of time, computation and memory.
+Proof of Work on Login and Submissions
+--------------------------------------
+The  system implements an automatic proof of work on every login that requires every client to request a token, solve a computational probelm before being able to perform a login or file a submission.
 
 Slowdown on Failed Login Attempts
 ---------------------------------
@@ -137,7 +131,7 @@ In case of password loss users could request a password reset via the web login 
 When this button is clicked, users are invited to enter their username or an email. If the provided username or the email correspond to an existing user, the system will provide a reset link to the configured email.
 By clicking the link received by email the user is then invited to configure a new email different from the previous.
 
-In case encryption is enabled on the system, a user clicking on the reset link would have first to insert the encryption-recovery-key and only in case of correct insertion the user will be enabled to set a new password.
+In case encryption is enabled on the system, a user clicking on the reset link would have first to insert their ``Account Recovery Key`` and only in case of correct insertion the user will be enabled to set a new password.
 
 In case 2FA is enabled on the system, a user clicking on the reset link would have first to insert an authentication code taken from the authentication API.
 
@@ -145,7 +139,7 @@ Entropy Sources
 ---------------
 The main source of entropy for the platform is /dev/urandom.
 
-In order to increase the entropy available on the system the system integrates the usage of the haveged daemon:  http://www.issihosts.com/haveged/
+In order to increase the entropy available on the system the system integrates the usage of the `Haveged <http://www.issihosts.com/haveged/>`_ daemon.
 
 Web Application Security
 ========================
@@ -172,7 +166,7 @@ As well a set of rules are applied to each request type to limit possible attack
 
 Input Validation (client)
 -------------------------
-The client implement strict validation of the rendered content by using the angular component: http://docs.angularjs.org/api/ngSanitize.$sanitize
+The client implement strict validation of the rendered content by using the angular component `ngSanitize.$sanitize <http://docs.angularjs.org/api/ngSanitize.$sanitize>`_
 
 Security related HTTP headers
 -----------------------------
@@ -227,7 +221,19 @@ In addition in order to explicitly instruct browsers to enable XSS protections t
 
 Crawlers Policy
 ^^^^^^^^^^^^^^^
-In order to instruct crawlers to not index or cache platform data, the Backend injects the following HTTP header:
+For security reasons the backend instructs crawlers to avoid any caching and indexing of the application and uses the ``Robot.txt`` file to enable crawling only of the home page; indexing of the home page is in fact considered best practice in order to be able to widespread the information about the existance of the platform and ease access to possible whistleblowers.
+
+The following is the ``Robots.txt`` configuration:
+::
+
+  User-agent: *
+  Allow: /$
+  Disallow: *
+
+
+For high sensitive projects where the platform is inteded to remain ``hidden`` and commuicated to possible whistleblowers directly the platform could be as well configured to disable indexing completely.
+
+The following is the ``HTTP Header`` injected in this case:
 ::
 
   X-Robots-Tag: noindex
@@ -239,15 +245,14 @@ The Tor browser strives to remove as much identifiable information from requests
 Cache-control and other cache related headers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The backend by default sends the following headers to instruct client’s browsers to not store resources in their cache.
-As by RFC Cache-control: no-store is the main directive instructing to not store any entry to be used for caching; this settings make it not necessary to use any other headers like Pragma and Expires.
-This behaviour is described in section "3. Storing Responses in Caches"
+As by section ``3. Storing Responses in Caches`` of `RFC 7234 <https://tools.ietf.org/html/rfc7234>`_ the platform uses the ``Cache-control`` HTTP header with the configuration ``no-store`` not instruct clients to store any entry to be used for caching; this settings make it not necessary to use any other headers like ``Pragma`` and ``Expires``.
 ::
 
   Cache-control: no-store
 
 Anchor Tags and External URLs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-In addition to the protecton offered by the header "Referrer-Policy: no-referrer" that prevents to pass the referrer while visiting the application sets the rel attribute nooopener to each of the external links. This protects from exectution of malicious content within the context of the application.
+In addition to the protecton offered by the header ``Referrer-Policy: no-referrer`` that prevents to pass the referrer while visiting the application sets the rel attribute nooopener to each of the external links. This protects from exectution of malicious content within the context of the application.
 ::
 
   <a href="url" rel="noopener">link title</a>
@@ -255,15 +260,13 @@ In addition to the protecton offered by the header "Referrer-Policy: no-referrer
 Cookies
 -------
 To prevent any potential abuse GlobaLeaks does not make use of any type of cookie.
-Parsing of cookies is as well completely disabled
+Parsing of cookies is as well completely disabled to limit possible parsing attack surfaces.
 
 Form Autocomplete OFF (client)
 ------------------------------
 Form implemented by the platform make use of the HTML5 form attribute in order to instruct the browser to do not keep caching of the user data in order to predict and autocomplete forms on subsequent submissions.
 
-The implementation involve setting autocomplete=”false” on the relevant forms or attributes.
-
-https://www.w3.org/TR/html5/forms.html=autofilling-form-controls:-the-autocomplete-attribute
+This is achieved by setting `autocomplete=”false” <https://www.w3.org/TR/html5/forms.html=autofilling-form-controls:-the-autocomplete-attribute>`_ on the relevant forms or attributes.
 
 Data Encryption
 ===============
@@ -289,33 +292,34 @@ GlobaLeaks integrates iptables by default and implements by a strict firewall ru
 
 As well it automatically applies network sandboxing to all outbound communications that get automatically "torrified" (sent through Tor), being outbound TCP connections or DNS-query for name resolution.
 
-The configuration of the network sandboxing is defined inside the init script of the application: https://github.com/globaleaks/GlobaLeaks/blob/main/debian/globaleaks.init
-
 Application Sandboxing
 ======================
 GlobaLeaks integrates AppArmor by default and implements a strict sandboxing profile enabling the application to access only the strictly required files.
 As well the application does run under a dedicated user and group "globaleaks" with reduced privileges.
 
-The configuration of the network sandboxing is defined inside the init script of the application: https://github.com/globaleaks/GlobaLeaks/blob/main/debian/apparmor/usr.bin.globaleaks
-
 Other Measures
 ==============
 Encryption of Temporary Files
 -----------------------------
-Files being uploaded and temporarily stored on the disk during the upload process are encrypted with a temporary, symmetric AES-key in order to avoid writing any part of an unencrypted file's data chunk to disk. The encryption is done in "streaming" by using AES 128bit in CTR mode. The key files are stored in memory and are unique for each file being uploaded.
+Files being uploaded and temporarily stored on the disk during the upload process are encrypted with a temporary, symmetric AES-key in order to avoid writing any part of an unencrypted file's data chunk to disk. The encryption is done in "streaming" by using ``AES 128bit`` in ``CTR mode``. The key files are stored in memory and are unique for each file being uploaded.
 
 Secure File Delete
 ------------------
 Every file deleted by the application if overwritten before releasing the file space on the disk.
 
 The overwrite routine is performed by a periodic scheduler and acts as following:
-A first overwrite writes 0 on the whole file;
-A second overwrite writes 1 on the whole file;
-A third overwrite writes random bytes on the whole file.
+
+* A first overwrite writes 0 on the whole file;
+* A second overwrite writes 1 on the whole file;
+* A third overwrite writes random bytes on the whole file.
 
 Secure Deletion of Database Entries
 -----------------------------------
-The platform enables the sqlite capability for secure deletion that automatically makes the database overwrite the data upon each delete query.
+The platform enables the SQLite capability for secure deletion that automatically makes the database overwrite the data upon each delete query:
+::
+
+PRAGMA secure_delete = ON
+PRAGMA auto_vacuum = FULL
 
 Exception Logging and Redaction
 -------------------------------
@@ -326,7 +330,6 @@ In order to prevent inadvertent information leaks the logs are run through filte
 UUIDv4 Randomness
 -----------------
 Resources in the system like submissions and files are identified by a UUIDv4 in order to not be guessable by an external user and limit possible attacks.
-The generation of UUIDv4 generation is enforced through the use of os.urandom.
 
 TLS for SMTP Notification
 -------------------------
