@@ -197,7 +197,7 @@ module.exports = function(grunt) {
             {
               pattern: /(0056b3|007bff|17a2b8|28a745|34ce57)/ig,
               replacement: function () {
-                return "3877BC";
+                return "377ABC";
               }
             },
             {

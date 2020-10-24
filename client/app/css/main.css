@@ -45,6 +45,16 @@ a:hover.darklink {
   color: #79B0E6;
 }
 
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+
 .visible-on-over {
   opacity: 0.2;
 }
@@ -56,6 +66,17 @@ a:hover.darklink {
 #Sidebar a.active, #Sidebar a:active.active, #Sidebar a:hover.active, #Sidebar a:focus.active {
   border-bottom: 1px solid #C8D1E0;
   width: max-content;
+}
+
+#SubmissionForm input {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+}
+
+[dir] .form-control.is-valid, [dir] .was-validated .form-control:valid {
+  border-color: #C8D1E0;
 }
 
 [dir] p {
@@ -225,7 +246,7 @@ a:hover.darklink {
 
 .imageUpload {
   position: relative;
-  border: 2px dashed #c8d1e0;
+  border: 1px dashed #c8d1e0;
   z-index: 0;
   text-align: center;
   height: 10.4rem;
@@ -409,7 +430,7 @@ input[type="file"] {
 
 .drag-drop {
   padding: 2em;
-  border: 2px dashed #c8d1e0;
+  border: 1px dashed #c8d1e0;
 }
 
 .drag-drop:hover {
@@ -575,6 +596,33 @@ input[type="file"] {
   font-family: monospace;
   font-weight: bold;
   border-radius: 5px;
+}
+
+.stepIndex {
+  display: inline-block;
+  color: #c8d1e0;
+  width: 1.6rem;
+  height: 1.6rem;
+  padding: 0.3rem 0;
+  border: 1px solid #c8d1e0;
+  border-radius: 1rem;
+  font-size: .60rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+[dir="ltr"] .stepIndex {
+  margin-right: 0.5rem;
+}
+
+[dir="rtl"] .stepIndex {
+  margin-left: 0.5rem;
+}
+
+.stepIndexSelected {
+  color: #fff;
+  background-color: #377ABC;
+  border-color: #377ABC;
 }
 
 [dir="ltr"] #SubmissionButtons button {
