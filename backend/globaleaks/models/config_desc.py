@@ -316,7 +316,6 @@ ConfigFilters['general_settings'] = [
     'header_title_homepage',
     'header_title_submissionpage',
     'presentation',
-    'description',
     'whistleblowing_question',
     'whistleblowing_button',
     'footer',
@@ -332,7 +331,6 @@ ConfigFilters['general_settings'] = [
 
 ConfigL10NFilters = {
     'node': [
-        'description',
         'presentation',
         'footer',
         'disclaimer_title',

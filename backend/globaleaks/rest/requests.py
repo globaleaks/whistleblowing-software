@@ -207,7 +207,6 @@ WhisleblowerIdentityAnswers = {
 
 AdminNodeDesc = {
     'name': str,
-    'description': str,
     'presentation': str,
     'footer': str,
     'enable_disclaimer': bool,
@@ -441,7 +440,6 @@ AdminRedirectDesc = {
 
 NodeDesc = {
     'name': str,
-    'description': str,
     'presentation': str,
     'footer': str,
     'enable_disclaimer': bool,
