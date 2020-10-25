@@ -2,26 +2,19 @@
 For Recipients
 ==============
 
-Access the List of the Existing Submissions
+Access the List of the Existing Reports
 -------------------------------------------
-TODO
+The lists of the existing reports can be accessed via the link ``Reports`` on the sidebar of the Recipient's Homepage.
+
+.. image:: ../images/recipient/home.png
+
+.. image:: ../images/recipient/reports.png
 
 Access a Submission
 -------------------
-TODO
+A submission can be accessed in two ways:
 
-Label a Submission
-------------------
-TODO
+* By clicking on it like on a mailbox system from the ``Reports`` page
+* By clicking on the link received on a mail notification and entering own credentials
 
-Change the State of a Submission
---------------------------------
-TODO
-
-Exchange Comments with the Whistleblower
-----------------------------------------
-TODO
-
-Export a Submission
--------------------
-TODO
+.. image:: ../images/recipient/report.png

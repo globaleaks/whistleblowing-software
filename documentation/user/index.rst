@@ -7,3 +7,4 @@ User Documentation
         Common.rst
         Admin.rst
         Recipient.rst
+        Whistleblower.rst
