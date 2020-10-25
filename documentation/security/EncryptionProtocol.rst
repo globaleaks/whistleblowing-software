@@ -8,7 +8,7 @@ Encryption is implemented for each submission protecting questionnaire's answers
 
 Encryption's Workflow
 #####################
-* Users chooses a personal secure password at first login.
+* Users chooses a personal secure password at first login;
 * The system creates a personal user keypair and stores it asymmetrically encrypted with a secret derived from the personal user password;
 * The whistleblower files a report;
 * The system assigns personal access credentials to the whistleblower;
@@ -36,7 +36,7 @@ The system used two different type of credentials depending on the user role:
    :header: "Credentials type", "User role"
 
    "Passwords", "For authenticated users identified by a username"
-   "16-digits random receipts", "for anonymous Whistleblowers"
+   "16-digits random receipts", "For anonymous Whistleblowers"
 
 Assumptions:
 
