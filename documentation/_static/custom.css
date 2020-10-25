@@ -22,7 +22,10 @@
   src: url('./fonts/metropolis-all-700-normal.woff') format('woff');
 }
 
-*,
+* {
+  font-family: 'Metropolis', Helvetica, Arial, sans-serif;
+}
+
 h1,
 h2,
 h3,
@@ -31,12 +34,19 @@ h5,
 h6,
 legend,
 .rst-content .toctree-wrapper p.caption {
-  font-family: 'Metropolis', Helvetica, Arial, sans-serif;
   color: #1D1F2A;
 }
 
 a, a:hover, a:active, a:visited, a:focus {
   color: #204F82;
+}
+
+.highlight {
+  background-color: #fffcf1;
+}
+
+.rst-content tt.literal, .rst-content tt.literal, .rst-content code.literal {
+  color: #377ABC;
 }
 
 .wy-side-nav-search a,
