@@ -2,9 +2,9 @@ var receiver = new browser.gl.pages.receiver();
 var path = require("path");
 var pgp_key_path = path.resolve("../backend/globaleaks/tests/data/gpg/VALID_PGP_KEY1_PUB");
 
-describe("Recipient1 first login", function() {
+describe("Recipient first login", function() {
   it("should redirect to /firstlogin upon successful authentication", async function() {
-    await browser.gl.utils.login_receiver("Recipient1", "Globaleaks123!", "/#/login", true);
+    await browser.gl.utils.login_receiver("Recipient", "Globaleaks123!", "/#/login", true);
   });
 
   it("should be able to change password from the default one", async function() {
@@ -54,9 +54,9 @@ describe("Recipient2 first login", function() {
   });
 });
 
-describe("Custodian1 first login", function() {
+describe("Custodian first login", function() {
   it("should redirect to /firstlogin upon successful authentication", async function() {
-    await browser.gl.utils.login_custodian("Custodian1", "Globaleaks123!", "/#/login", true);
+    await browser.gl.utils.login_custodian("Custodian", "Globaleaks123!", "/#/login", true);
   });
 
   it("should be able to change password from the default one", async function() {

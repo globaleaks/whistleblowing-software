@@ -1,7 +1,6 @@
 var path = require("path");
 
 describe("globaLeaks process", function() {
-  var tip_text = "topsecret";
   var receipts = [];
   var comment = "comment";
   var comment_reply = "comment reply";
@@ -10,7 +9,7 @@ describe("globaLeaks process", function() {
 
   var perform_submission = async function() {
     var wb = new browser.gl.pages.whistleblower();
-    var receipt = await wb.performSubmission(tip_text, true);
+    var receipt = await wb.performSubmission(true);
     receipts.unshift(receipt);
   };
 
@@ -26,10 +25,7 @@ describe("globaLeaks process", function() {
     await perform_submission();
   });
 
-  it("Recipient should be able to access and label the last submission", async function() {
-    var label_1 = "interesting!";
-    var label_2 = "fake!";
-
+  it("Recipient should be able to access, label and mark as important the last submission", async function() {
     await browser.gl.utils.login_receiver();
     await browser.setLocation("/recipient/reports");
 
@@ -37,20 +33,12 @@ describe("globaLeaks process", function() {
 
     await browser.setLocation("/status/" + id);
 
-    // Configure label_1
-    expect(await element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
-    await element(by.model("tip.label")).sendKeys(label_1);
+    expect(await element(by.xpath("//*[contains(text(),'title')]")).getText()).toEqual('title');
+
+    await element(by.model("tip.label")).sendKeys("Important");
     await element(by.id("assignLabelButton")).click();
 
-    // Check presence of label_1
-    expect(await element(by.id("assignLabelButton")).isPresent()).toBe(false);
-    expect(await element(by.id("Label")).getText()).toEqual(label_1);
-
-    // Configure label_2
-    await element(by.id("Label")).click();
-    await element(by.model("tip.label")).clear();
-    await element(by.model("tip.label")).sendKeys(label_2);
-    await element(by.id("assignLabelButton")).click();
+    await element(by.id("tip-action-star")).click();
   });
 
   it("Recipient should be able to see files and download them", async function() {
@@ -112,6 +100,9 @@ describe("globaLeaks process", function() {
 
   it("Recipient should be able to start a private discussion with the whistleblower", async function() {
     await browser.gl.utils.login_receiver();
+
+    await browser.gl.utils.takeScreenshot('recipient/home.png');
+
     await browser.setLocation("/recipient/reports");
 
     var id = await element(by.id("tip-0")).evaluate("tip.id");
@@ -122,6 +113,8 @@ describe("globaLeaks process", function() {
 
     var m = await element(by.id("message-0")).element(by.css(".preformatted")).getText();
     expect(m).toContain(message);
+
+    await browser.gl.utils.takeScreenshot('recipient/report.png');
 
     await browser.gl.utils.logout("/login");
   });
@@ -138,6 +131,8 @@ describe("globaLeaks process", function() {
 
     var message2 = await element(by.id("message-0")).element(by.css(".preformatted")).getText();
     expect(message2).toContain(message_reply);
+
+    await browser.gl.utils.takeScreenshot('whistleblower/report.png');
   });
 
   it("Recipient should be able to export the submission", async function() {
@@ -179,22 +174,11 @@ describe("globaLeaks process", function() {
   it("Recipient should be able to postpone all tips", async function() {
     await browser.gl.utils.login_receiver();
     await browser.setLocation("/recipient/reports");
+    await browser.gl.utils.takeScreenshot('recipient/reports.png');
 
     // Postpone the expiration of all tips
     await element(by.id("tip-action-select-all")).click();
     await element(by.id("tip-action-postpone-selected")).click();
-    await element(by.id("modal-action-ok")).click();
-  });
-
-  it("Recipient should be able to postpone last submission from its tip page", async function() {
-    await browser.gl.utils.login_receiver();
-    await browser.setLocation("/recipient/reports");
-
-    var id = await element(by.id("tip-0")).evaluate("tip.id");
-
-    await browser.setLocation("/status/" + id);
-
-    await element(by.id("tip-action-postpone")).click();
     await element(by.id("modal-action-ok")).click();
   });
 });

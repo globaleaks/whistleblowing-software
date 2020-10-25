@@ -116,6 +116,7 @@ exports.takeScreenshot = async function(filename, locator) {
 exports.login_whistleblower = async function(receipt) {
   await browser.get("/#/");
   await element(by.model("formatted_receipt")).sendKeys(receipt);
+  await browser.gl.utils.takeScreenshot('whistleblower/access.png');
   await element(by.id("ReceiptButton")).click();
   await browser.gl.utils.waitUntilPresent(by.id("TipInfoBox"));
 };
@@ -141,7 +142,7 @@ exports.login_admin = async function(username, password, url, firstlogin) {
 };
 
 exports.login_receiver = async function(username, password, url, firstlogin) {
-  username = username === undefined ? "Recipient1" : username;
+  username = username === undefined ? "Recipient" : username;
   password = password === undefined ? exports.vars["user_password"] : password;
   url = url === undefined ? "/#/login" : url;
 
@@ -161,7 +162,7 @@ exports.login_receiver = async function(username, password, url, firstlogin) {
 };
 
 exports.login_custodian = async function(username, password, url, firstlogin) {
-  username = username === undefined ? "Custodian1" : username;
+  username = username === undefined ? "Custodian" : username;
   password = password === undefined ? exports.vars["user_password"] : password;
   url = url === undefined ? "/#/login" : url;
 
