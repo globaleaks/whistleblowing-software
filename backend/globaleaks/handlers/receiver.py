@@ -69,7 +69,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
             'update_date': itip.update_date,
             'expiration_date': itip.expiration_date,
             'progressive': itip.progressive,
-            'new': rtip.access_counter == 0 or rtip.last_access < itip.update_date,
+            'updated': rtip.access_counter == 0 or rtip.last_access < itip.update_date,
             'context_id': itip.context_id,
             'access_counter': rtip.access_counter,
             'https': itip.https,

@@ -41,8 +41,8 @@
         <div class="configItem">
           <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
             <span class="col-md-7">
-              <span class="stepIndex badge badge-secondary">{{$index + 1}}</span>
-              <span class="stepLabel">{{step.label}}</span>
+              <span class="badge badge-primary">{{$index + 1}}</span>
+              <span>{{step.label}}</span>
             </span>
             <span class="col-md-5 clearfix">
               <span class="float-right">
@@ -157,12 +157,12 @@
                   </label>
                 </span>
               </div>
-              <div class="row adminConfigSection" data-ng-if="showAddQuestion">
+              <div class="row configSection" data-ng-if="showAddQuestion">
                 <div class="col-md-6">
                   <div data-ng-include="'views/admin/questionnaires/add_field.html'"></div>
                 </div>
               </div>
-              <div class="row adminConfigSection" data-ng-if="showAddQuestionFromTemplate">
+              <div class="row configSection" data-ng-if="showAddQuestionFromTemplate">
                 <div class="col-md-6">
                   <div data-ng-include="'views/admin/questionnaires/add_field_from_template.html'"></div>
                 </div>

@@ -13,9 +13,7 @@
     <div data-ng-show="!public.node.disable_submissions && (public.node.https_whistleblower || connection.tor)">
       <div id="WhistleblowerSubmitBox">
         <div id="WhistleblowingQuestion" data-ng-if="public.node.whistleblowing_question" data-markdown-to-html="public.node.whistleblowing_question"></div>
-        <div id="WhistleblowingButton">
-          <button data-ng-click="evaluateDisclaimerModalOpening() || setPage('submissionpage')" class="btn btn-primary">{{public.node.whistleblowing_button}}</button>
-        </div>
+        <button id="WhistleblowingButton" data-ng-click="evaluateDisclaimerModalOpening() || setPage('submissionpage')" class="btn btn-primary">{{public.node.whistleblowing_button}}</button>
       </div>
       <div id="WhistleblowerLoginBox" data-ng-include="'views/partials/receipt.html'"></div>
     </div>

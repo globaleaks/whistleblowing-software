@@ -1,4 +1,4 @@
-<div data-ng-controller="AdminSubmissionStatusCtrl" class="adminConfigSection">
+<div data-ng-controller="AdminSubmissionStatusCtrl" class="configSection">
   <div class="Title">
     <span data-translate>Report statuses</span>
     <button class="btn btn-sm btn-primary show-add-user-btn" data-ng-click="toggleAddStatus()">
@@ -6,7 +6,7 @@
       <span data-translate>Add</span>
     </button>
   </div>
-  <div class="adminConfigSection row" data-ng-controller="AdminSubmissionStatusAddCtrl" data-ng-if="showAddStatus">
+  <div class="configSection row" data-ng-controller="AdminSubmissionStatusAddCtrl" data-ng-if="showAddStatus">
     <div data-ng-form="newSubmissionStatus" class="addSubmissionStatus col-md-6">
       <div class="form-group">
         <label>
