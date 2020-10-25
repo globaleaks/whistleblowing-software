@@ -161,12 +161,15 @@ description:
       - "REST API"
       - "Provisioning API"
     screenshots:
-      - screenshots/it/1.png
-      - screenshots/it/2.png
-      - screenshots/it/3.png
-      - screenshots/it/4.png
-      - screenshots/it/5.png
-      - screenshots/it/6.png
+      - documentation/images/whistleblower/home.png
+      - documentation/images/whistleblower/submission.png
+      - documentation/images/whistleblower/receipt.png
+      - documentation/images/whistleblower/access.png
+      - documentation/images/whistleblower/report.png
+      - documentation/images/user/login.png
+      - documentation/images/recipient/reports.png
+      - documentation/images/recipient/report.png
+
   it:
     genericName: software di whistleblowing
     shortDescription: 'Open-Source Whistleblowing Software '
@@ -242,9 +245,11 @@ description:
       - "REST API"
       - "API di provisioning"
     screenshots:
-      - screenshots/it/1.png
-      - screenshots/it/2.png
-      - screenshots/it/3.png
-      - screenshots/it/4.png
-      - screenshots/it/5.png
-      - screenshots/it/6.png
+      - documentation/images/whistleblower/home.png
+      - documentation/images/whistleblower/submission.png
+      - documentation/images/whistleblower/receipt.png
+      - documentation/images/whistleblower/access.png
+      - documentation/images/whistleblower/report.png
+      - documentation/images/user/login.png
+      - documentation/images/recipient/reports.png
+      - documentation/images/recipient/report.png
