@@ -104,7 +104,7 @@ An acceptable password should be formed by at least 3 different inputs over capi
 Two Factor Authentication (2FA)
 -------------------------------
 Users are enabled to enroll for Two Factor Authentication via their own preferences.
-The system implements Two Factor Authentication (2FA) based on TOTP as for `RFC 6238 <https://tools.ietf.org/rfc/rfc6238.txt>`_
+The system implements Two Factor Authentication (2FA) based on TOTP as for `RFC 6238 <https://tools.ietf.org/rfc/rfc6238.txt>`_.
 
 Password Change on First Login
 ------------------------------
@@ -174,7 +174,6 @@ Strict-Transport-Security
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 The system implements strict transport security by default.
 ::
-
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 
 The preload feature is left optional to users and following the best practices is left disabled as default.
@@ -183,19 +182,18 @@ Content-Security-Policy
 ^^^^^^^^^^^^^^^^^^^^^^^
 The backend implements the following Content Security Policy (CSP):
 ::
-
   Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; media-src 'self'; form-action 'self'; frame-ancestors 'none'; block-all-mixed-content
 
 Feature-Policy
 ^^^^^^^^^^^^^^
 The backend implements the following Feature-Policy header to limit the possible de-anonimization of the user by disabling dangerous browser features:
 ::
-
   Feature-Policy: camera 'none'; display-capture 'none'; document-domain 'none'; fullscreen 'none'; geolocation 'none'; microphone 'none; speaker 'none'
 
 X-Frame-Options
 ^^^^^^^^^^^^^^^
 The backend configure the X-Frame-Options header to prevent inclusion by means of Iframes in any site:
+::
   X-Frame-Options', b'deny'
 
 Referrer-Policy
@@ -225,7 +223,6 @@ For security reasons the backend instructs crawlers to avoid any caching and ind
 
 The following is the ``Robots.txt`` configuration:
 ::
-
   User-agent: *
   Allow: /$
   Disallow: *
@@ -235,7 +232,6 @@ For high sensitive projects where the platform is inteded to remain ``hidden`` a
 
 The following is the ``HTTP Header`` injected in this case:
 ::
-
   X-Robots-Tag: noindex
 
 Web Browser Privacy
@@ -247,14 +243,12 @@ Cache-control and other cache related headers
 The backend by default sends the following headers to instruct client’s browsers to not store resources in their cache.
 As by section ``3. Storing Responses in Caches`` of `RFC 7234 <https://tools.ietf.org/html/rfc7234>`_ the platform uses the ``Cache-control`` HTTP header with the configuration ``no-store`` not instruct clients to store any entry to be used for caching; this settings make it not necessary to use any other headers like ``Pragma`` and ``Expires``.
 ::
-
   Cache-control: no-store
 
 Anchor Tags and External URLs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 In addition to the protecton offered by the header ``Referrer-Policy: no-referrer`` that prevents to pass the referrer while visiting the application sets the rel attribute nooopener to each of the external links. This protects from exectution of malicious content within the context of the application.
 ::
-
   <a href="url" rel="noopener">link title</a>
 
 Cookies
@@ -317,9 +311,8 @@ Secure Deletion of Database Entries
 -----------------------------------
 The platform enables the SQLite capability for secure deletion that automatically makes the database overwrite the data upon each delete query:
 ::
-
-PRAGMA secure_delete = ON
-PRAGMA auto_vacuum = FULL
+  PRAGMA secure_delete = ON
+  PRAGMA auto_vacuum = FULL
 
 Exception Logging and Redaction
 -------------------------------
