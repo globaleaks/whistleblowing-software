@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/assets/globaleaks-logo-color.png" width="400">
+  <img src="/brand/assets/globaleaks-logo-color.png" width="400">
 </p>
 
 [GlobaLeaks](https://www.globaleaks.org/) is free, open souce software enabling anyone to easily set up and maintain a secure whistleblowing platform.
