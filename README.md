@@ -32,11 +32,15 @@ GlobaLeaks's documentation is built and hosted by [Read the Docs](https://readth
 If you need technical support, have general questions, or have new ideas for GlobaLeaks, please post your message on the [community support forum](https://forum.globaleaks.org/).
 
 Join our [Slack](https://slack.globaleaks.org) to get in touch with the development team and the GlobaLeaks community:
-* #globaleaks-dev to participate in development discussions
-* #gl-support-eng for the community support channel in English
-* #gl-support-ita for the community support channel in Italian
+* #development to participate in development discussions
+* #support-eng for the community support channel in English
+* #support-ita for the community support channel in Italian
 
 If you want to contribute to software development or report a bug, please open an issue on [GitHub](https://github.com/globaleaks/GlobaLeaks/issues/).
+
+## Brand Guidelines and Brand Assets
+Within the GlobaLeaks project we researched a nice and smooth brand style, using accessible colors and trying to communicate our values through the brand.
+If you are planning some press releases, a conference, or promoting GlobaLeaks please keep at reference our official [Brand Guidelines](https://github.com/globaleaks/GlobaLeaks/blob/main/brand/globaleaks-brand-guidelines.pdf) and use our [Brand Assets](https://github.com/globaleaks/GlobaLeaks/blob/main/brand/assets/).
 
 Other resources:
 * Follow us on [Twitter](https://twitter.com/globaleaks)
