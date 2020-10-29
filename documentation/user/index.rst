@@ -1,10 +1,10 @@
 User Documentation
 ==================
 .. toctree::
-        :name: user
-        :maxdepth: 4
+  :name: user
+  :maxdepth: 4
 
-        Common.rst
-        Admin.rst
-        Recipient.rst
-        Whistleblower.rst
+  Common.rst
+  Admin.rst
+  Recipient.rst
+  Whistleblower.rst

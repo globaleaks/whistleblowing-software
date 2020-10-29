@@ -2,9 +2,9 @@ Getting Started
 ===============
 
 .. toctree::
-        :name: gettingstarted
-        :maxdepth: 4
+  :name: gettingstarted
+  :maxdepth: 4
 
-        Glossary
-        Features
-        Requirements
+   Glossary
+   Features
+   Requirements
