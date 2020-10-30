@@ -98,7 +98,7 @@ Cookies are not used intentionally to minimize XSRF attacks and any possible att
 
 HTTP Headers
 ------------
-The system implements a large set of HTTP headers specifically configured to improve the software security and achieves `score A <https://securityheaders.com/?q=https%3A%2F%2Ftry.globaleaks.org&followRedirects=on>`_ by `Security Headers <https://securityheaders.com/>`_ and `score A <https://observatory.mozilla.org/analyze/try.globaleaks.org>`_ by `Mozilla Observatory <https://observatory.mozilla.org/>`_.
+The system implements a large set of HTTP headers specifically configured to improve the software security and achieves `score A+ <https://securityheaders.com/?q=https%3A%2F%2Ftry.globaleaks.org&followRedirects=on>`_ by `Security Headers <https://securityheaders.com/>`_ and `score A+ <https://observatory.mozilla.org/analyze/try.globaleaks.org>`_ by `Mozilla Observatory <https://observatory.mozilla.org/>`_.
 
 Strict-Transport-Security
 +++++++++++++++++++++++++
@@ -114,11 +114,11 @@ The backend implements the following Content Security Policy (CSP):
 ::
   Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; media-src 'self'; form-action 'self'; frame-ancestors 'none'; block-all-mixed-content
 
-Feature-Policy
+Permissions-Policy
 ++++++++++++++
-The backend implements the following Feature-Policy header to limit the possible de-anonimization of the user by disabling dangerous browser features:
+The backend implements the following Permissions-Policy header configuration to limit the possible de-anonimization of the user by disabling dangerous browser features:
 ::
-  Feature-Policy: camera 'none'; display-capture 'none'; document-domain 'none'; fullscreen 'none'; geolocation 'none'; microphone 'none; speaker 'none'
+  Permissions-Policy: camera=('none') display-capture=('none') document-domain=('none') fullscreen=('none') geolocation=('none') microphone=('none') speaker=('none')
 
 X-Frame-Options
 +++++++++++++++
