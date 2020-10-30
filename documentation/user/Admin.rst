@@ -1,6 +1,6 @@
-===================
+==================
 For Administrators
-===================
+==================
 
 .. toctree::
   admin/UserInterface

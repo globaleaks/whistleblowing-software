@@ -19,11 +19,11 @@ The confidentiality of the authentication is protected by either Tor Onion Servi
 This section describes the authentication methods   implemented by the system.
 
 Password
-^^^^^^^^
+--------
 By accessing the GlobaLeaks login interface, Administrators and Recipients need to insert their respective username and password. If the password submitted is valid, the system grants access to the functionality available to that user.
 
 Receipt
-^^^^^^^
+-------
 Whistleblowers access their Reports by using a Receipt, which is a randomly generated 16 digits sequence created by the Backend when the Report is first submitted. The reason of this format of 16 digits is that it resembles a standard phone number, making it easier for the whistleblower to conceal the receipt of their submission and give them plausible deniability on what is the significance of such digits.
 
 Password Security
@@ -101,7 +101,7 @@ HTTP Headers
 The system implements a large set of HTTP headers specifically configured to improve the software security and achieves `score A <https://securityheaders.com/?q=https%3A%2F%2Ftry.globaleaks.org&followRedirects=on>`_ by `Security Headers <https://securityheaders.com/>`_ and `score A <https://observatory.mozilla.org/analyze/try.globaleaks.org>`_ by `Mozilla Observatory <https://observatory.mozilla.org/>`_.
 
 Strict-Transport-Security
-^^^^^^^^^^^^^^^^^^^^^^^^^
++++++++++++++++++++++++++
 The system implements strict transport security by default.
 ::
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
@@ -109,49 +109,56 @@ The system implements strict transport security by default.
 The preload feature is left optional to users and following the best practices is left disabled as default.
 
 Content-Security-Policy
-^^^^^^^^^^^^^^^^^^^^^^^
++++++++++++++++++++++++
 The backend implements the following Content Security Policy (CSP):
 ::
   Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; media-src 'self'; form-action 'self'; frame-ancestors 'none'; block-all-mixed-content
 
 Feature-Policy
-^^^^^^^^^^^^^^
+++++++++++++++
 The backend implements the following Feature-Policy header to limit the possible de-anonimization of the user by disabling dangerous browser features:
 ::
   Feature-Policy: camera 'none'; display-capture 'none'; document-domain 'none'; fullscreen 'none'; geolocation 'none'; microphone 'none; speaker 'none'
 
 X-Frame-Options
-^^^^^^^^^^^^^^^
++++++++++++++++
 The backend configure the X-Frame-Options header to prevent inclusion by means of Iframes in any site:
 ::
   X-Frame-Options', b'deny'
 
 Referrer-Policy
-^^^^^^^^^^^^^^^
++++++++++++++++
 Web-browsers usually attach referrers in their http headers as they browse links. The platform enforce a referrer policy to avoid this behaviour.
 ::
 
   Referrer-Policy: no-referrer
 
 X-Content-Type-Options
-^^^^^^^^^^^^^^^^^^^^^^
+++++++++++++++++++++++
 When setting up Content-Type for the specific output, we avoid the automatic mime detection logic of the browser by setting up the following header:
 ::
 
   X-Content-Type-Options: nosniff
 
 X-XSS-Protection
-^^^^^^^^^^^^^^^^
+++++++++++++++++
 In addition in order to explicitly instruct browsers to enable XSS protections the Backend inject the following header:
 ::
 
   X-XSS-Protection: 1; mode=block
 
-Crawlers Policy
-^^^^^^^^^^^^^^^
-For security reasons the backend instructs crawlers to avoid any caching and indexing of the application and uses the ``Robot.txt`` file to enable crawling only of the home page; indexing of the home page is in fact considered best practice in order to be able to widespread the information about the existance of the platform and ease access to possible whistleblowers.
+Cache-Control
++++++++++++++++++++++++++++++++++++++++++++++
+The backend by default sends the following headers to instruct client’s browsers to not store resources in their cache.
+As by section ``3. Storing Responses in Caches`` of `RFC 7234 <https://tools.ietf.org/html/rfc7234>`_ the platform uses the ``Cache-control`` HTTP header with the configuration ``no-store`` not instruct clients to store any entry to be used for caching; this settings make it not necessary to use any other headers like ``Pragma`` and ``Expires``.
+::
+  Cache-Control: no-store
 
-The following is the ``Robots.txt`` configuration:
+Crawlers Policy
+------------
+For security reasons the backend instructs crawlers to avoid any caching and indexing of the application and uses the ``Robots.txt`` file to enable crawling only of the home page; indexing of the home page is in fact considered best practice in order to be able to widespread the information about the existance of the platform and ease access to possible whistleblowers.
+
+The configuration implemented is the folloiwng
 ::
   User-agent: *
   Allow: /$
@@ -163,31 +170,24 @@ The following is the ``HTTP Header`` injected in this case:
 ::
   X-Robots-Tag: noindex
 
-Cache-control and other cache related headers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The backend by default sends the following headers to instruct client’s browsers to not store resources in their cache.
-As by section ``3. Storing Responses in Caches`` of `RFC 7234 <https://tools.ietf.org/html/rfc7234>`_ the platform uses the ``Cache-control`` HTTP header with the configuration ``no-store`` not instruct clients to store any entry to be used for caching; this settings make it not necessary to use any other headers like ``Pragma`` and ``Expires``.
-::
-  Cache-control: no-store
-
 Anchor Tags and External URLs
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------
 In addition to the protecton offered by the header ``Referrer-Policy: no-referrer`` that prevents to pass the referrer while visiting the application sets the rel attribute nooopener to each of the external links. This protects from exectution of malicious content within the context of the application.
 ::
   <a href="url" rel="noopener">link title</a>
 
 Input Validation (Server)
-^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------
 The system adopts a whitelist based input validation approach. Each client request is checked against a set of regular expressions and only requests matching the expression are then processed.
 
 As well a set of rules are applied to each request type to limit possible attacks. For example any request is limited to a payload of 1MB.
 
 Input Validation (Client)
-^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------
 The client implement strict validation of the rendered content by using the angular component `ngSanitize.$sanitize <http://docs.angularjs.org/api/ngSanitize.$sanitize>`_
 
 Form Autocomplete OFF
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 Form implemented by the platform make use of the HTML5 form attribute in order to instruct the browser to do not keep caching of the user data in order to predict and autocomplete forms on subsequent submissions.
 
 This is achieved by setting `autocomplete=”false” <https://www.w3.org/TR/html5/forms.html=autofilling-form-controls:-the-autocomplete-attribute>`_ on the relevant forms or attributes.
@@ -218,9 +218,9 @@ In particular only following cyphertexts are enabled:
 
 Network Sandboxing
 ------------------
-The GlobaLeaks backend integrates ``iptables`` by default and implements by a strict firewall rule that only allow inbound and outbound connections from 127.0.0.1 (where Tor is running with Tor Onion Service).
+The GlobaLeaks backend integrates ``iptables`` by default and implements strict firewall rules that only allow inbound and outbound connections from 127.0.0.1 (where Tor is running with Tor Onion Service).
 
-As well it automatically applies network sandboxing to all outbound communications that get automatically "torrified" (sent through Tor), being outbound TCP connections or DNS-query for name resolution.
+As well it automatically applies network sandboxing to all outbound communications that get automatically ```torrified``` (sent through Tor), being outbound TCP connections or DNS-query for name resolution.
 
 Data Encryption
 ===============
@@ -247,7 +247,6 @@ To avoid applicative and database denial of service, GlobaLeaks apply the follow
 
 Other Measures
 ==============
-
 Encryption of Temporary Files
 -----------------------------
 Files being uploaded and temporarily stored on the disk during the upload process are encrypted with a temporary, symmetric AES-key in order to avoid writing any part of an unencrypted file's data chunk to disk. The encryption is done in "streaming" by using ``AES 128bit`` in ``CTR mode``. The key files are stored in memory and are unique for each file being uploaded.
