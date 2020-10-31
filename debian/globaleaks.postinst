@@ -2,10 +2,6 @@
 # This is the post installation script for globaleaks
 set -e
 
-if which pycompile >/dev/null 2>&1; then
-  pycompile -p globaleaks
-fi
-
 DISTRO="unknown"
 DISTRO_CODENAME="unknown"
 if which lsb_release >/dev/null; then
@@ -31,6 +27,10 @@ if ! id -u globaleaks >/dev/null 2>&1; then
 fi
 
 usermod -a -G debian-tor globaleaks
+
+if which pycompile >/dev/null 2>&1; then
+  pycompile -p globaleaks
+fi
 
 # Create globaleaks service directories with proper permissios
 gl-fix-permissions
