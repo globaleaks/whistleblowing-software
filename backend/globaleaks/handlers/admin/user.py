@@ -81,10 +81,6 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
 
     user = db_get_user(session, tid, user_id)
 
-    if tid != 1:
-        # Prevent administrators of secondary tenants to change user reference
-        request['rid'] = user.rid
-
     user.update(request)
 
     password = request['password']
