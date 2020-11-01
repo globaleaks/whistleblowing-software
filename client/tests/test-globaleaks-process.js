@@ -46,7 +46,7 @@ describe("globaLeaks process", function() {
       return;
     }
 
-    expect(await element.all(by.cssContainingText("button", "download")).count()).toEqual(2);
+    expect(await element.all(by.cssContainingText("button", "Download")).count()).toEqual(2);
 
     if (!browser.gl.utils.testFileDownload()) {
       return;
