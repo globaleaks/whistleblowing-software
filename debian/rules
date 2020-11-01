@@ -4,6 +4,8 @@ export PYBUILD_DISABLE=test
 export PYBUILD_INSTALL_ARGS=--no-compile
 
 %:
+	cd client && npm install -d
+	cd client && ./node_modules/grunt/bin/grunt build
 	dh $@ --with python3 --buildsystem=pybuild --sourcedirectory=backend/
 
 override_dh_install:

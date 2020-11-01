@@ -86,9 +86,6 @@ else
   git clone --depth=1 https://github.com/globaleaks/GlobaLeaks.git
   cd GlobaLeaks
   git checkout $TAG
-  cd client
-  npm install
-  ./node_modules/grunt/bin/grunt build
 fi
 
 cd $ROOTDIR
