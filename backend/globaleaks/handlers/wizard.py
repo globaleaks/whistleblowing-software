@@ -57,7 +57,7 @@ def db_wizard(session, tid, hostname, request):
 
     root_tenant_node = config.ConfigFactory(session, 1)
     encryption = root_tenant_node.get_val('encryption')
-    escrow = root_tenant_node.get_val('escrow')
+    escrow = request['admin_escrow']
 
     if tid == 1:
         node = root_tenant_node
@@ -99,13 +99,13 @@ def db_wizard(session, tid, hostname, request):
     admin_user.password_change_date = date
 
     if encryption:
-        if request['admin_escrow']:
+        if escrow:
             crypto_escrow_prv_key, crypto_escrow_pub_key = GCE.generate_keypair()
             node.set_val('crypto_escrow_pub_key', crypto_escrow_pub_key)
 
         db_gen_user_keys(session, tid, admin_user, request['admin_password'])
 
-        if request['admin_escrow']:
+        if escrow:
             admin_user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(admin_user.crypto_pub_key, crypto_escrow_prv_key))
 
     receiver_user = None

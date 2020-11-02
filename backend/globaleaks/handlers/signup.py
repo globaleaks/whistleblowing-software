@@ -161,6 +161,7 @@ def signup_activation(session, token, hostname, language):
         'admin_name': signup.name + ' ' + signup.surname,
         'admin_password': password_admin,
         'admin_mail_address': signup.email,
+        'admin_escrow': config.get_val('escrow'),
         'receiver_username': 'recipient',
         'receiver_name': signup.name + ' ' + signup.surname,
         'receiver_password': password_receiver,
