@@ -25,7 +25,7 @@ class TestUpdateCheck(helpers.TestGLWithPopulatedDB):
         State.tenant_cache[1].anonymize_outgoing_connections = False
 
         yield tw(config.db_set_config_variable, 1, 'latest_version', __version__)
-        yield self.test_model_count(models.Mail, 2)
+        yield self.test_model_count(models.Mail, 0)
 
         def fetch_packages_file_mock(self):
             return succeed(packages)
@@ -36,4 +36,4 @@ class TestUpdateCheck(helpers.TestGLWithPopulatedDB):
 
         latest_version = yield tw(config.db_get_config_variable, 1, 'latest_version')
         self.assertEqual(latest_version, '6.6.6')
-        yield self.test_model_count(models.Mail, 3)
+        yield self.test_model_count(models.Mail, 1)

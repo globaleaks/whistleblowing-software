@@ -15,7 +15,7 @@ class TestNotification(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_notification(self):
-        yield self.test_model_count(models.Mail, 2)
+        yield self.test_model_count(models.Mail, 0)
 
         yield Delivery().run()
 

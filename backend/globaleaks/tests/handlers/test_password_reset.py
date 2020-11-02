@@ -44,7 +44,7 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
         yield handler.post()
 
         # Check that an mail has been created
-        yield self.test_model_count(models.Mail, 3)
+        yield self.test_model_count(models.Mail, 1)
 
     @inlineCallbacks
     def test_put(self):

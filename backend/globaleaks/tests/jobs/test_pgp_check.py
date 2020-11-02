@@ -10,11 +10,11 @@ class TestPGPCheckWithNoKeys(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_pgp_checkule(self):
-        yield self.test_model_count(models.Mail, 2)
+        yield self.test_model_count(models.Mail, 0)
 
         yield pgp_check.PGPCheck().run()
 
-        yield self.test_model_count(models.Mail, 2)
+        yield self.test_model_count(models.Mail, 0)
 
 
 class TestPGPCheckWithValidKeys(helpers.TestGLWithPopulatedDB):
@@ -22,11 +22,11 @@ class TestPGPCheckWithValidKeys(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_pgp_checkule(self):
-        yield self.test_model_count(models.Mail, 2)
+        yield self.test_model_count(models.Mail, 0)
 
         yield pgp_check.PGPCheck().run()
 
-        yield self.test_model_count(models.Mail, 2)
+        yield self.test_model_count(models.Mail, 0)
 
 
 class TestPGPCheckWithExpiredKey(helpers.TestGLWithPopulatedDB):
@@ -34,8 +34,8 @@ class TestPGPCheckWithExpiredKey(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_pgp_checkule(self):
-        yield self.test_model_count(models.Mail, 2)
+        yield self.test_model_count(models.Mail, 0)
 
         yield pgp_check.PGPCheck().run()
 
-        yield self.test_model_count(models.Mail, 4)
+        yield self.test_model_count(models.Mail, 2)

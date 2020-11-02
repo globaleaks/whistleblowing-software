@@ -389,7 +389,7 @@ class MockDict:
             'admin_escrow': True,
             'receiver_username': 'receipient',
             'receiver_name': 'Fabio Pietrosanti',
-            'receiver_password': '',
+            'receiver_password': 'P4ssword',
             'receiver_mail_address': 'naif@globaleaks.org',
             'profile': 'default',
             'skip_recipient_account_creation': False,
