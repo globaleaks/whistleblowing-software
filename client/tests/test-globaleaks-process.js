@@ -52,7 +52,7 @@ describe("globaLeaks process", function() {
       return;
     }
 
-    await element.all(by.cssContainingText("button", "download")).get(0).click();
+    await element.all(by.cssContainingText("button", "Download")).get(0).click();
   });
 
   it("Recipient should be able to leave a comment to the whistleblower", async function() {
