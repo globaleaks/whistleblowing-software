@@ -265,7 +265,8 @@ ConfigFilters = {
         'mode',
         'name',
         'onionservice',
-        'subdomain'
+        'subdomain',
+        'rootdomain'
     ]
 }
 

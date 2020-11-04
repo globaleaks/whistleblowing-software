@@ -20,14 +20,14 @@ def serialize_site(session, tid):
 
     if ret['mode'] != 'default':
         root_tenant = ConfigFactory(session, 1).serialize('tenant')
-        if ret['subdomain'] and root_tenant.domain:
-            ret['hostname'] = ret['subdomain'] + '.' + root_tenant.domain
+        if ret['subdomain'] and root_tenant['rootdomain']:
+            ret['hostname'] = ret['subdomain'] + '.' + root_tenant['rootdomain']
         else:
             ret['hostname'] = ''
 
 
-        if ret['subdomain'] and root_tenant.onionservice:
-            ret['onionservice'] = ret['subdomain'] + '.' + root_tenant.onionservice
+        if ret['subdomain'] and root_tenant['onionservice']:
+            ret['onionservice'] = ret['subdomain'] + '.' + root_tenant['onionservice']
         else:
             ret['onionservice'] = ''
 
