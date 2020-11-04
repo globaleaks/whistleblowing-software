@@ -209,7 +209,9 @@
               <span data-ng-if="tip.comment_count" uib-tooltip="{{'Comments' | translate}}"><i class="fas fa-comment text-secondary"></i>: {{tip.comment_count}}</span>
               <span data-ng-if="tip.message_count" uib-tooltip="{{'Messages' | translate}}"><i class="fas fa-envelope text-secondary"></i>: {{tip.message_count}}</span>
             </div>
-            <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true" data-ng-include="'views/partials/tip_field.html'"></div>
+            <div class="preview">
+              <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true" data-ng-include="'views/partials/tip_field.html'"></div>
+            </div>
           </td>
           <td class="TipInfoScore" data-ng-if="public.node.enable_scoring_system" data-ng-switch="tip.score">
             <span data-ng-switch-when="0">-</span>

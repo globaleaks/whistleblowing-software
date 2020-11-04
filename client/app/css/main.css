@@ -284,11 +284,11 @@ a:hover.darklink {
 }
 
 [dir='ltr'] .nested {
-  padding-left: 1rem;
+  padding-left: 0.5rem;
 }
 
 [dir='rtl'] .nested {
-  padding-right: 1rem;
+  padding-right: 0.5em;
 }
 
 .filePreview {
@@ -744,4 +744,11 @@ html[dir="ltr"] #KeyCodeBox {
 [dir="rtl"] .fa, [dir="rtl"] .fas {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
+}
+
+.preview {
+  display: block;
+  max-height: 10rem;
+  max-width: 20rem;
+  overflow: scroll;
 }
