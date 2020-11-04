@@ -96,6 +96,7 @@ def user_serialize_user(session, user, language):
                                      .filter(models.ReceiverContext.receiver_id == user.id)]
     ret_dict = {
         'id': user.id,
+        'creation_date': user.creation_date,
         'username': user.username,
         'password': '',
         'old_password': '',

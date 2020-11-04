@@ -5,6 +5,8 @@
       <th data-translate>Username</th>
       <th data-translate>Role</th>
       <th data-translate>Name</th>
+      <th>2FA</th>
+      <th data-translate>Creation date</th>
       <th data-translate>Last access</th>
     </tr>
   </thead>
@@ -14,6 +16,8 @@
       <td>{{user.username}}</td>
       <td>{{user.role}}</td>
       <td>{{user.name}}</td>
+      <td><i class="fa" data-ng-class="{'fa-check': user.two_factor_enable, 'fa-times': !user.two_factor_enable}"></i></td>
+      <td>{{user.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
       <td>{{user.last_login | date:'dd-MM-yyyy HH:mm'}}</td>
     </tr>
   </tbody>
