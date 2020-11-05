@@ -1,9 +1,0 @@
-Dear {RecipientName},
-
-This is an email to notify you of a new message on an existing report.
-
-The report can be accessed at:
-{Url}
-
-Kind regards,
-{NodeName}

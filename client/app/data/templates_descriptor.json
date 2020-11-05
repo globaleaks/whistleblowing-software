@@ -23,22 +23,6 @@
     "{ChangeLogUrl}",
     "{UpdateGuideUrl}"
   ],
-  "message_mail_template": [
-    "{NodeName}",
-    "{HiddenService}",
-    "{PublicSite}",
-    "{RecipientName}",
-    "{ContextName}",
-    "{TipID}",
-    "{TipNum}",
-    "{TipLabel}",
-    "{EventTime}",
-    "{SubmissionDate}",
-    "{QuestionnaireAnswers}",
-    "{Comments}",
-    "{Messages}",
-    "{Url}"
-  ],
   "admin_anomaly_mail_template": [
     "{NodeName}",
     "{HiddenService}",
@@ -51,22 +35,6 @@
     "{NodeName}",
     "{FreeMemory}",
     "{TotalMemory}"
-  ],
-  "message_mail_title": [
-    "{NodeName}",
-    "{HiddenService}",
-    "{PublicSite}",
-    "{RecipientName}",
-    "{ContextName}",
-    "{TipID}",
-    "{TipNum}",
-    "{TipLabel}",
-    "{EventTime}",
-    "{SubmissionDate}",
-    "{QuestionnaireAnswers}",
-    "{Comments}",
-    "{Messages}",
-    "{Url}"
   ],
   "export_message_recipient": [
     "{NodeName}",
@@ -103,43 +71,11 @@
     "{Url}",
     "{Content}"
   ],
-  "comment_mail_template": [
-    "{NodeName}",
-    "{HiddenService}",
-    "{PublicSite}",
-    "{RecipientName}",
-    "{ContextName}",
-    "{TipID}",
-    "{TipNum}",
-    "{TipLabel}",
-    "{EventTime}",
-    "{SubmissionDate}",
-    "{QuestionnaireAnswers}",
-    "{Comments}",
-    "{Messages}",
-    "{Url}"
-  ],
   "admin_test_mail_template": [
     "{NodeName}",
     "{HiddenService}",
     "{PublicSite}",
     "{RecipientName}"
-  ],
-  "comment_mail_title": [
-    "{NodeName}",
-    "{HiddenService}",
-    "{PublicSite}",
-    "{RecipientName}",
-    "{ContextName}",
-    "{TipID}",
-    "{TipNum}",
-    "{TipLabel}",
-    "{EventTime}",
-    "{SubmissionDate}",
-    "{QuestionnaireAnswers}",
-    "{Comments}",
-    "{Messages}",
-    "{Url}"
   ],
   "tip_expiration_summary_mail_title": [
     "{NodeName}",
@@ -149,24 +85,6 @@
     "{ExpiringSubmissionCount}",
     "{EarliestExpirationDate}",
     "{Url}"
-  ],
-  "file_mail_title": [
-    "{NodeName}",
-    "{HiddenService}",
-    "{PublicSite}",
-    "{RecipientName}",
-    "{ContextName}",
-    "{TipID}",
-    "{TipNum}",
-    "{TipLabel}",
-    "{EventTime}",
-    "{SubmissionDate}",
-    "{QuestionnaireAnswers}",
-    "{Comments}",
-    "{Messages}",
-    "{Url}",
-    "{FileName}",
-    "{FileSize}"
   ],
   "export_template": [
     "{NodeName}",
@@ -185,7 +103,23 @@
     "{Messages}",
     "{Url}"
   ],
-  "file_mail_template": [
+  "tip_mail_template": [
+    "{NodeName}",
+    "{HiddenService}",
+    "{PublicSite}",
+    "{RecipientName}",
+    "{ContextName}",
+    "{TipID}",
+    "{TipNum}",
+    "{TipLabel}",
+    "{EventTime}",
+    "{SubmissionDate}",
+    "{QuestionnaireAnswers}",
+    "{Comments}",
+    "{Messages}",
+    "{Url}"
+  ],
+  "tip_update_mail_template": [
     "{NodeName}",
     "{HiddenService}",
     "{PublicSite}",
@@ -203,7 +137,17 @@
     "{FileName}",
     "{FileSize}"
   ],
-  "tip_mail_template": [
+  "software_update_available_mail_template": [
+    "{NodeName}",
+    "{HiddenService}",
+    "{PublicSite}",
+    "{RecipientName}",
+    "{InstalledVersion}",
+    "{LatestVersion}",
+    "{ChangeLogUrl}",
+    "{UpdateGuideUrl}"
+  ],
+  "tip_mail_title": [
     "{NodeName}",
     "{HiddenService}",
     "{PublicSite}",
@@ -219,17 +163,7 @@
     "{Messages}",
     "{Url}"
   ],
-  "software_update_available_mail_template": [
-    "{NodeName}",
-    "{HiddenService}",
-    "{PublicSite}",
-    "{RecipientName}",
-    "{InstalledVersion}",
-    "{LatestVersion}",
-    "{ChangeLogUrl}",
-    "{UpdateGuideUrl}"
-  ],
-  "tip_mail_title": [
+  "tip_update_mail_title": [
     "{NodeName}",
     "{HiddenService}",
     "{PublicSite}",

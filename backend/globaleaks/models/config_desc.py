@@ -367,15 +367,11 @@ ConfigL10NFilters = {
         'admin_signup_alert_mail_title',
         'admin_test_mail_template',
         'admin_test_mail_title',
-        'comment_mail_template',
-        'comment_mail_title',
         'email_validation_mail_template',
         'email_validation_mail_title',
         'export_message_recipient',
         'export_message_whistleblower',
         'export_template',
-        'file_mail_template',
-        'file_mail_title',
         'https_certificate_expiration_mail_template',
         'https_certificate_expiration_mail_title',
         'https_certificate_renewal_failure_mail_template',
@@ -388,8 +384,6 @@ ConfigL10NFilters = {
         'identity_access_request_mail_title',
         'identity_provided_mail_template',
         'identity_provided_mail_title',
-        'message_mail_template',
-        'message_mail_title',
         'password_reset_validation_mail_template',
         'password_reset_validation_mail_title',
         'pgp_alert_mail_template',
@@ -404,6 +398,8 @@ ConfigL10NFilters = {
         'tip_expiration_summary_mail_title',
         'tip_mail_template',
         'tip_mail_title',
+        'tip_update_mail_template',
+        'tip_update_mail_title',
         'user_credentials'
     ]
 }

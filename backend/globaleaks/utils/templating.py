@@ -380,34 +380,6 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
         return ret + '\n'
 
 
-class CommentKeyword(TipKeyword):
-    data_keys = TipKeyword.data_keys + ['comment']
-
-    def EventTime(self):
-        return datetime_to_pretty_str(self.data['comment']['creation_date'])
-
-
-class MessageKeyword(TipKeyword):
-    data_keys = TipKeyword.data_keys + ['message']
-
-    def EventTime(self):
-        return datetime_to_pretty_str(self.data['message']['creation_date'])
-
-
-class FileKeyword(TipKeyword):
-    keyword_list = TipKeyword.keyword_list + file_keywords
-    data_keys = TipKeyword.data_keys + ['file']
-
-    def FileName(self):
-        return self.data['file']['name']
-
-    def EventTime(self):
-        return datetime_to_pretty_str(self.data['file']['creation_date'])
-
-    def FileSize(self):
-        return str(self.data['file']['size'])
-
-
 class ExportMessageKeyword(TipKeyword):
     keyword_list = TipKeyword.keyword_list + export_message_keywords
     data_keys = TipKeyword.data_keys + ['message']
@@ -698,9 +670,7 @@ class TwoFactorAuthKeyword(NodeKeyword):
 supported_template_types = {
     'null': Keyword,
     'tip': TipKeyword,
-    'comment': CommentKeyword,
-    'message': MessageKeyword,
-    'file': FileKeyword,
+    'tip_update': TipKeyword,
     'tip_expiration_summary': ExpirationSummaryKeyword,
     'pgp_alert': PGPAlertKeyword,
     'admin_pgp_alert': AdminPGPAlertKeyword,
@@ -765,10 +735,12 @@ class Templating(object):
         else:
             raise NotImplementedError('This data_type (%s) is not supported' % ['data.type'])
 
-        if data['type'] in ['tip', 'comment', 'file', 'message']:
-            prefix = '{TipNum} '
+        if data['type'] in ['tip', 'tip_update']:
             if data['tip']['label']:
-                prefix += '[{TipLabel}] '
+                prefix += '{TipNum} ({TipLabel}) - '
+            else:
+                prefix = '{TipNum} - '
+
 
             subject_template = prefix + subject_template
 

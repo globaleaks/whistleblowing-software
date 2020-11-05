@@ -20,18 +20,18 @@ from globaleaks.utils.utility import deferred_sleep
 
 
 trigger_template_map = {
-    'ReceiverTip': 'tip',
-    'Message': 'message',
-    'Comment': 'comment',
-    'ReceiverFile': 'file'
+    'Comment': 'tip_update',
+    'Message': 'tip_update',
+    'ReceiverFile': 'tip_update',
+    'ReceiverTip': 'tip'
 }
 
 
 trigger_model_map = {
-    'ReceiverTip': models.ReceiverTip,
-    'Message': models.Message,
     'Comment': models.Comment,
-    'ReceiverFile': models.ReceiverFile
+    'Message': models.Message,
+    'ReceiverFile': models.ReceiverFile,
+    'ReceiverTip': models.ReceiverTip
 }
 
 
@@ -113,7 +113,6 @@ class MailGenerator(object):
         data['user'] = self.serialize_obj(session, 'user', user, tid, user.language)
         data['tip'] = self.serialize_obj(session, 'tip', rtip, tid, user.language)
         data['context'] = self.serialize_obj(session, 'context', context, tid, user.language)
-        data['message'] = self.serialize_obj(session, 'message', message, tid, user.language)
 
         self.process_mail_creation(session, tid, data)
 
@@ -131,7 +130,6 @@ class MailGenerator(object):
             umsg['user'] = self.serialize_obj(session, 'user', user, tid, user.language)
             umsg['tip'] = self.serialize_obj(session, 'tip', rtip, tid, user.language)
             umsg['context'] = self.serialize_obj(session, 'context', context, tid, user.language)
-            umsg['comment'] = self.serialize_obj(session, 'comment', comment, tid, user.language)
 
             self.process_mail_creation(session, tid, umsg)
 
@@ -150,7 +148,6 @@ class MailGenerator(object):
         data['tip'] = self.serialize_obj(session, 'tip', rtip, tid, user.language)
         data['user'] = self.serialize_obj(session, 'user', user, tid, user.language)
         data['context'] = self.serialize_obj(session, 'context', context, tid, user.language)
-        data['file'] = self.serialize_obj(session, 'file', ifile, tid, user.language)
 
         self.process_mail_creation(session, tid, data)
 
