@@ -765,7 +765,6 @@ class _Mail(Model):
     address = Column(UnicodeText, nullable=False)
     subject = Column(UnicodeText, nullable=False)
     body = Column(UnicodeText, nullable=False)
-    processing_attempts = Column(Integer, default=0, nullable=False)
 
     unicode_keys = ['address', 'subject', 'body']
 

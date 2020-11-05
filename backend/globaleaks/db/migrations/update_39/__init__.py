@@ -171,7 +171,6 @@ class InternalFile_v_38(Model):
     size = Column(Integer)
     new = Column(Integer, default=True)
     submission = Column(Integer, default=False)
-    processing_attempts = Column(Integer, default=0)
 
 
 class InternalTip_v_38(Model):
@@ -203,7 +202,6 @@ class Mail_v_38(Model):
     address = Column(UnicodeText)
     subject = Column(UnicodeText)
     body = Column(UnicodeText)
-    processing_attempts = Column(Integer, default=0)
 
 
 class ReceiverTip_v_38(Model):

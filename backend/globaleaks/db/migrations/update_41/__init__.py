@@ -18,7 +18,6 @@ class InternalFile_v_40(Model):
     size = Column(Integer, nullable=False)
     new = Column(Integer, default=True, nullable=False)
     submission = Column(Integer, default=False, nullable=False)
-    processing_attempts = Column(Integer, default=0, nullable=False)
 
 
 class InternalTip_v_40(Model):
