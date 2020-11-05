@@ -232,17 +232,11 @@ class MailGenerator(object):
 @transact
 def get_mails_from_the_pool(session):
     """
-    Fetch the email to be sent.
-
-    Email are spooled every 5 seconds and mailing attepts last 5 days.
+    Fetch up to 10 email from the pool of email to be sent
     """
-    db_del(session, models.Mail, models.Mail.processing_attempts > 86400)
-
-    session.query(models.Mail).update({'processing_attempts': models.Mail.processing_attempts + 1})
-
     ret = []
 
-    for mail in session.query(models.Mail).order_by(models.Mail.creation_date):
+    for mail in session.query(models.Mail).order_by(models.Mail.creation_date).limit(10):
         ret.append({
             'id': mail.id,
             'address': mail.address,
@@ -255,18 +249,19 @@ def get_mails_from_the_pool(session):
 
 
 class Notification(LoopingJob):
-    interval = 5
+    interval = 10
     monitor_interval = 3 * 60
 
     @defer.inlineCallbacks
     def spool_emails(self):
+        delay = 1
         mails = yield get_mails_from_the_pool()
         for mail in mails:
             sent = yield self.state.sendmail(mail['tid'], mail['address'], mail['subject'], mail['body'])
             if sent:
                 yield tw(db_del, models.Mail, models.Mail.id == mail['id'])
-
-            yield deferred_sleep(1)
+                delay = delay + 1 if delay < 10 else 10
+            yield deferred_sleep(delay)
 
     @defer.inlineCallbacks
     def operation(self):

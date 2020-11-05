@@ -90,13 +90,16 @@ class Cleaning(DailyJob):
 
     @transact
     def clean(self, session):
+        # delete emails older than two weeks
+        db_del(session, models.Mail, models.Mail.creation_date < datetime_now() - timedelta(7))
+
         # delete stats older than 1 year
         db_del(session, models.Stats, models.Stats.start < datetime_now() - timedelta(365))
 
         # delete anomalies older than 1 year
         db_del(session, models.Anomalies, models.Anomalies.date < datetime_now() - timedelta(365))
 
-        # delete archived schemas not used by any existing submission
+        # delete archived questionnaire schemas not used by any existing submission
         subquery = session.query(models.InternalTipAnswers.questionnaire_hash).subquery()
         db_del(session, models.ArchivedSchema, not_(models.ArchivedSchema.hash.in_(subquery)))
 
