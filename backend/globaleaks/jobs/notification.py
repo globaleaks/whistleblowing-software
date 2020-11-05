@@ -2,6 +2,9 @@
 # Implement the notification of new submissions
 import copy
 
+from datetime import timedelta
+
+from sqlalchemy import and_, or_
 from twisted.internet import defer
 
 from globaleaks import models
@@ -16,7 +19,7 @@ from globaleaks.orm import db_del, transact, tw
 from globaleaks.utils.log import log
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import deferred_sleep
+from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 
 trigger_template_map = {
@@ -151,12 +154,20 @@ class MailGenerator(object):
 
         self.process_mail_creation(session, tid, data)
 
+    def process_UnreadTips(self, session, user, data):
+        tid = user.tid
+
+        data['user'] = self.serialize_obj(session, 'user', user, tid, user.language)
+
+        self.process_mail_creation(session, tid, data)
+
+
     def process_mail_creation(self, session, tid, data):
         user_id = data['user']['id']
         language = data['user']['language']
 
         # Do not spool emails if the receiver has disabled notifications
-        if not data['user']['notification'] or not data['tip']['enable_notifications']:
+        if not data['user']['notification'] or ('tip' in data and not data['tip']['enable_notifications']):
             log.debug("Discarding emails for %s due to receiver's preference.", user_id)
             return
 
@@ -186,7 +197,11 @@ class MailGenerator(object):
 
     @transact
     def generate(self, session):
+        now = datetime_now()
         silent_tids = []
+
+        reminder_time = self.state.tenant_cache[1].unread_reminder_time if 1 in self.state.tenant_cache else 7
+
         for tid, cache_item in self.state.tenant_cache.items():
             if cache_item.notification and cache_item.notification.disable_receiver_notification_emails:
                 silent_tids.append(tid)
@@ -214,9 +229,7 @@ class MailGenerator(object):
             model = trigger_model_map[trigger]
 
             for element in session.query(model).filter(model.new.is_(True)):
-                data = {
-                    'type': trigger_template_map[trigger]
-                }
+                data = {'type': trigger_template_map[trigger]}
 
                 try:
                     getattr(self, 'process_%s' % trigger)(session, element, data)
@@ -224,6 +237,19 @@ class MailGenerator(object):
                     log.err("Unhandled exception during mail generation: %s", e)
                 finally:
                     element.new = False
+
+        for user in session.query(models.User).filter(and_(models.User.reminder_date < now - timedelta(days=reminder_time),
+                                                           or_(and_(models.User.id == models.ReceiverTip.receiver_id,
+                                                                    models.ReceiverTip.access_counter == 0,
+                                                                    models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                                    models.InternalTip.creation_date < now - timedelta(days=reminder_time))),
+                                                               and_(models.User.id == models.ReceiverTip.receiver_id,
+                                                                    models.ReceiverTip.last_access < models.InternalTip.update_date,
+                                                                    models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                                    models.InternalTip.update_date < now - timedelta(days=reminder_time)))).distinct():
+            data = {'type': 'unread_tips'}
+            self.process_UnreadTips(session, user, data)
+            user.reminder_date = now
 
 
 @transact

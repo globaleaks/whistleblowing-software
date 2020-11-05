@@ -672,6 +672,7 @@ supported_template_types = {
     'tip': TipKeyword,
     'tip_update': TipKeyword,
     'tip_expiration_summary': ExpirationSummaryKeyword,
+    'unread_tips': UserNodeKeyword,
     'pgp_alert': PGPAlertKeyword,
     'admin_pgp_alert': AdminPGPAlertKeyword,
     'receiver_notification_limit_reached': UserNodeKeyword,
@@ -740,7 +741,6 @@ class Templating(object):
                 prefix += '{TipNum} ({TipLabel}) - '
             else:
                 prefix = '{TipNum} - '
-
 
             subject_template = prefix + subject_template
 

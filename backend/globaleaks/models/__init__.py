@@ -1119,6 +1119,7 @@ class _User(Model):
     readonly = Column(Boolean, default=False, nullable=False)
     two_factor_enable = Column(Boolean, default=False, nullable=False)
     two_factor_secret = Column(UnicodeText(16), default='', nullable=False)
+    reminder_date = Column(DateTime, default=datetime_null, nullable=False)
 
     # BEGIN of PGP key fields
     pgp_key_fingerprint = Column(UnicodeText, default='', nullable=False)
@@ -1146,7 +1147,7 @@ class _User(Model):
                  'readonly',
                  'clicked_recovery_key']
 
-    date_keys = ['creation_date', 'last_login', 'password_change_date', 'pgp_key_expiration']
+    date_keys = ['creation_date', 'reminder_date', 'last_login', 'password_change_date', 'pgp_key_expiration']
 
     @declared_attr
     def __table_args__(self):

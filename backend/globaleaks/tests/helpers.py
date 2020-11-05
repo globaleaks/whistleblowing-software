@@ -356,6 +356,7 @@ class MockDict:
             'threshold_free_disk_percentage_low': 10,
             'password_change_period': 90,
             'wbtip_timetolive': 90,
+            'unread_reminder_time': 1,
             'reachable_via_web': False,
             'anonymize_outgoing_connections': False,
             'enable_admin_exception_notification': True,

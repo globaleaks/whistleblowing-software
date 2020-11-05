@@ -262,6 +262,7 @@ AdminNodeDesc = {
     'threshold_free_disk_percentage_low': int,
     'password_change_period': int,
     'wbtip_timetolive': int,
+    'unread_reminder_time': int,
     'reachable_via_web': bool,
     'anonymize_outgoing_connections': bool,
     'enable_admin_exception_notification': bool,

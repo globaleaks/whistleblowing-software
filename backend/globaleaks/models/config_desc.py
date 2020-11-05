@@ -131,6 +131,7 @@ ConfigDescriptor = {
 
     'password_change_period': Int(default=365),  # Days
     'wbtip_timetolive': Int(default=365),  # Days
+    'unread_reminder_time': Int(default=7),  # Days
 
     'threshold_free_disk_megabytes_high': Int(default=200),
     'threshold_free_disk_megabytes_low': Int(default=1000),
@@ -209,6 +210,7 @@ ConfigFilters = {
         'show_contexts_in_alphabetical_order',
         'password_change_period',
         'wbtip_timetolive',
+        'unread_reminder_time',
         'threshold_free_disk_megabytes_high',
         'threshold_free_disk_megabytes_low',
         'threshold_free_disk_percentage_high',
@@ -400,6 +402,8 @@ ConfigL10NFilters = {
         'tip_mail_title',
         'tip_update_mail_template',
         'tip_update_mail_title',
+        'unread_tips_mail_template',
+        'unread_tips_mail_title',
         'user_credentials'
     ]
 }
