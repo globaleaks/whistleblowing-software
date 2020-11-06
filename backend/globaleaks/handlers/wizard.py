@@ -152,13 +152,9 @@ def db_wizard(session, tid, hostname, request):
         node.set_val('tor', False)
 
     if mode in ['whistleblowing.it', 'eat']:
-        for varname in ['reachable_via_web',
-                        'enable_receipt_hint',
-                        'disable_privacy_badge',
-                        'can_delete_submission',
+        for varname in ['can_delete_submission',
                         'can_postpone_expiration',
                         'anonymize_outgoing_connections',
-                        'cors_origins',
                         'password_change_period',
                         'default_questionnaire']:
             node.set_val(varname, root_tenant_node.get_val(varname))
