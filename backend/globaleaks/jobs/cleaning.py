@@ -15,7 +15,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import DailyJob
-from globaleaks.orm import db_del, db_query, transact
+from globaleaks.orm import db_del, db_query, transact, tw
 from globaleaks.utils.fs import overwrite_and_remove
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, is_expired
@@ -27,8 +27,7 @@ __all__ = ['Cleaning']
 class Cleaning(DailyJob):
     monitor_interval = 5 * 60
 
-    @transact
-    def clean_expired_itips(self, session):
+    def db_clean_expired_itips(self, session):
         """
         This function, checks all the InternalTips and their expiration date.
         if expired InternalTips are found, it removes that along with
@@ -38,15 +37,14 @@ class Cleaning(DailyJob):
         if itips_ids:
             db_delete_itips(session, itips_ids)
 
-    def db_clean_expired_wbtips(self, session, tid):
+    def db_clean_expired_wbtips(self, session):
         """
         This function checks all the InternalTips and deletes the receipt if the delete threshold is exceeded
         """
-        threshold = datetime_now() - timedelta(days=self.state.tenant_cache[tid].wbtip_timetolive)
+        threshold = datetime_now() - timedelta(days=self.state.tenant_cache[1].wbtip_timetolive)
 
         subquery = session.query(models.InternalTip.id) \
-                          .filter(models.InternalTip.tid == tid,
-                                  models.InternalTip.wb_last_access < threshold) \
+                          .filter(models.InternalTip.wb_last_access < threshold) \
                           .subquery()
 
         db_del(session, models.WhistleblowerTip, models.WhistleblowerTip.id.in_(subquery))
@@ -90,6 +88,9 @@ class Cleaning(DailyJob):
 
     @transact
     def clean(self, session):
+        self.db_clean_expired_itips(session)
+        self.db_clean_expired_wbtips(session)
+
         # delete emails older than two weeks
         db_del(session, models.Mail, models.Mail.creation_date < datetime_now() - timedelta(7))
 
@@ -136,19 +137,12 @@ class Cleaning(DailyJob):
             if is_expired(timestamp, days=1):
                 overwrite_and_remove(path)
 
-    @transact
-    def per_tenant_clean(self, session, tid):
-        self.db_clean_expired_wbtips(session, tid)
-        self.db_check_for_expiring_submissions(session, tid)
-
     @inlineCallbacks
     def operation(self):
-        yield self.clean_expired_itips()
+        yield self.clean()
 
         for tid in self.state.tenant_state:
-            yield self.per_tenant_clean(tid)
-
-        yield self.clean()
+            yield tw(self.db_check_for_expiring_submissions, tid)
 
         valid_files = yield self.get_attachments_list()
 
