@@ -76,15 +76,15 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
             'preview_schema': db_serialize_archived_preview_schema(aqs.preview, language),
             'preview': preview,
             'score': itip.total_score,
-            'important': itip.important,
-            'label': rtip.label,
             'status': itip.status,
             'substatus': itip.substatus
         }
 
         if State.tenant_cache[tid].enable_private_annotations:
+            data['important'] = rtip.important
             data['label'] = rtip.label
         else:
+            data['important'] = itip.important
             data['label'] = itip.label
 
         rtip_summary_list.append(data)

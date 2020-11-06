@@ -165,7 +165,7 @@ GL.controller("TipCtrl",
     };
 
     $scope.tip_toggle_star = function() {
-      return $scope.tip.operation("set", {"key": "important", "value": !$scope.tip.important}).then(function() {
+      return $scope.tip.operation("update_important", {"value": !$scope.tip.important}).then(function() {
         $scope.tip.important = !$scope.tip.important;
       });
     };

@@ -178,11 +178,12 @@ def serialize_rtip(session, rtip, itip, language):
 
     ret['id'] = rtip.id
     ret['receiver_id'] = user_id
-    ret['important'] = itip.important
 
     if State.tenant_cache[itip.tid].enable_private_annotations:
+        ret['important'] = rtip.important
         ret['label'] = rtip.label
     else:
+        ret['important'] = itip.important
         ret['label'] = itip.label
 
     ret['comments'] = db_get_itip_comment_list(session, itip.id)
@@ -511,6 +512,25 @@ def update_label(session, tid, user_id, rtip_id, value):
         setattr(itip, 'label', value)
 
 
+@transact
+def update_important(session, tid, user_id, rtip_id, value):
+    """
+    Transaction for setting the important flag of a submission
+
+    :param session: An ORM session
+    :param tid: A tenant ID of the user performing the operation
+    :param user_id: A user ID of the user performing the operation
+    :param rtip_id: A rtip ID of the submission object of the operation
+    :param value: A value to be assigned to important flag
+    """
+    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+
+    if State.tenant_cache[tid].enable_private_annotations:
+        setattr(rtip, 'important', value)
+    else:
+        setattr(itip, 'important', value)
+
+
 def db_get_itip_comment_list(session, itip_id):
     """
     Transaction for retrieving the list of comments associated to a submission
@@ -699,9 +719,10 @@ class RTipInstance(OperationHandler):
         return {
           'postpone_expiration': (RTipInstance.postpone_expiration, None),
           'set': (RTipInstance.set_tip_val,
-                  {'key': '^(important|enable_two_way_comments|enable_two_way_messages|enable_attachments|enable_notifications)$',
+                  {'key': '^(enable_two_way_comments|enable_two_way_messages|enable_attachments|enable_notifications)$',
                    'value': bool}),
           'update_label': (RTipInstance.update_label, {'value': str}),
+          'update_important': (RTipInstance.update_label, {'value': bool}),
           'update_status': (RTipInstance.update_submission_status, {'status': str,
                                                                     'substatus': str})
         }

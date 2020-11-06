@@ -38,8 +38,8 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$route", "$lo
 
     return $http({method: "PUT",
                   url: "api/rtip/" + tip.id,
-                  data: {"operation": 'set',
-                         "args": {"key": "important", "value": tip.important}}});
+                  data: {"operation": 'update_important',
+                         "args": {"value": tip.important}}});
   };
 
   $scope.deselect_all = function () {
