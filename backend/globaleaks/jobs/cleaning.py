@@ -37,18 +37,6 @@ class Cleaning(DailyJob):
         if itips_ids:
             db_delete_itips(session, itips_ids)
 
-    def db_clean_expired_wbtips(self, session):
-        """
-        This function checks all the InternalTips and deletes the receipt if the delete threshold is exceeded
-        """
-        threshold = datetime_now() - timedelta(days=self.state.tenant_cache[1].wbtip_timetolive)
-
-        subquery = session.query(models.InternalTip.id) \
-                          .filter(models.InternalTip.wb_last_access < threshold) \
-                          .subquery()
-
-        db_del(session, models.WhistleblowerTip, models.WhistleblowerTip.id.in_(subquery))
-
     def db_check_for_expiring_submissions(self, session, tid):
         threshold = datetime_now() + timedelta(hours=self.state.tenant_cache[tid].notification.tip_expiration_threshold)
 
@@ -89,7 +77,6 @@ class Cleaning(DailyJob):
     @transact
     def clean(self, session):
         self.db_clean_expired_itips(session)
-        self.db_clean_expired_wbtips(session)
 
         # delete emails older than two weeks
         db_del(session, models.Mail, models.Mail.creation_date < datetime_now() - timedelta(7))

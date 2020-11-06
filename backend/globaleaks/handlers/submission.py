@@ -224,8 +224,6 @@ def serialize_itip(session, internaltip, language):
             'answers': ita.answers
         })
 
-    wb_access_revoked = session.query(models.WhistleblowerTip).filter(models.WhistleblowerTip.id == internaltip.id).count() == 0
-
     return {
         'id': internaltip.id,
         'creation_date': internaltip.creation_date,
@@ -243,7 +241,6 @@ def serialize_itip(session, internaltip, language):
         'enable_attachments': internaltip.enable_attachments,
         'enable_whistleblower_identity': internaltip.enable_whistleblower_identity,
         'wb_last_access': internaltip.wb_last_access,
-        'wb_access_revoked': wb_access_revoked,
         'score': internaltip.total_score,
         'status': internaltip.status,
         'substatus': internaltip.substatus

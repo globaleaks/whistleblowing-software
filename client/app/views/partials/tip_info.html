@@ -42,10 +42,6 @@
           <i class="fas fa-hourglass"></i>
           <span data-translate>Expiration date</span>
         </th>
-        <th class="TipInfoAccessExpiration" data-ng-if="Authentication.session.role === 'receiver'">
-          <i class="fas fa-hourglass"></i>
-          <span data-translate>Access expiration</span>
-        </th>
         <th class="TipInfoReadReceipt" data-ng-if="Authentication.session.role === 'receiver'">
           <i class="fas fa-eye"></i>
         </th>
@@ -72,13 +68,6 @@
         <td class="TipInfoExpirationDate">
           <span data-ng-if="!Utils.isNever(tip.expiration_date)">{{tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
           <span data-ng-if="Utils.isNever(tip.expiration_date)" data-translate>Never</span>
-        </td>
-        <td class="TipInfoAccessExpiration" data-ng-if="Authentication.session.role === 'receiver'">
-            <span data-ng-if="!tip.wb_access_revoked"
-                  uib-tooltip="{{'Unless the whistleblower checks the report by this time, their access to it will expire.' | translate}}">{{tip.wb_last_access | expirationDate:public.node.wbtip_timetolive | date:'dd-MM-yyyy HH:mm'}}</span>
-          <span data-ng-if="tip.wb_access_revoked"
-                class="badge badge-warning"
-                uib-tooltip="{{'The whistleblower can no longer access the report' | translate}}" data-translate>Revoked</span>
         </td>
         <td class="TipInfoLastAccess" data-ng-if="Authentication.session.role == 'receiver'">
           <i data-ng-if="tip.wb_last_access >= tip.update_date" class="fas fa-check"

@@ -130,7 +130,6 @@ ConfigDescriptor = {
     'show_contexts_in_alphabetical_order': Bool(default=True),
 
     'password_change_period': Int(default=365),  # Days
-    'wbtip_timetolive': Int(default=365),  # Days
     'unread_reminder_time': Int(default=7),  # Days
 
     'threshold_free_disk_megabytes_high': Int(default=200),
@@ -209,7 +208,6 @@ ConfigFilters = {
         'enable_custom_privacy_badge',
         'show_contexts_in_alphabetical_order',
         'password_change_period',
-        'wbtip_timetolive',
         'unread_reminder_time',
         'threshold_free_disk_megabytes_high',
         'threshold_free_disk_megabytes_low',

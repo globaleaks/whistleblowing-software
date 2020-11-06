@@ -103,10 +103,3 @@ class MigrationScript(MigrationBase):
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
-
-    def epilogue(self):
-        c = self.session_new.query(self.model_to['Config']).filter(self.model_to['Config'].var_name == 'wbtip_timetolive').one()
-        if int(c.value['v']) < 5:
-            c.value['v'] = 90
-        elif int(c.value['v']) > 365 * 2:
-            c.value['v'] = 365 * 2
