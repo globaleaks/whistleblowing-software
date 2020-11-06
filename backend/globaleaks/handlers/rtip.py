@@ -180,7 +180,7 @@ def serialize_rtip(session, rtip, itip, language):
     ret['receiver_id'] = user_id
     ret['important'] = itip.important
 
-    if State.tenant_cache[itip.tid].enable_private_labels:
+    if State.tenant_cache[itip.tid].enable_private_annotations:
         ret['label'] = rtip.label
     else:
         ret['label'] = itip.label
@@ -505,7 +505,7 @@ def update_label(session, tid, user_id, rtip_id, value):
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    if State.tenant_cache[tid].enable_private_labels:
+    if State.tenant_cache[tid].enable_private_annotations:
         setattr(rtip, 'label', value)
     else:
         setattr(itip, 'label', value)

@@ -273,7 +273,7 @@ AdminNodeDesc = {
     'ip_filter_receiver_enable': bool,
     'ip_filter_receiver': str,
     'log_level': str,
-    'enable_private_labels': bool,
+    'enable_private_annotations': bool,
     'log_accesses_of_internal_users': bool,
     'two_factor': bool,
     'encryption': bool,

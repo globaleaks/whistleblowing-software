@@ -305,4 +305,4 @@ class MigrationScript(MigrationBase):
             self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': 'escrow', 'value': False}))
 
             # Preserve existing configuration for existing sites
-            self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': 'enable_private_labels', 'value': True}))
+            self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': 'enable_private_annotations', 'value': True}))

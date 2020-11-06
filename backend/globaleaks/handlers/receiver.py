@@ -82,7 +82,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
             'substatus': itip.substatus
         }
 
-        if State.tenant_cache[tid].enable_private_labels:
+        if State.tenant_cache[tid].enable_private_annotations:
             data['label'] = rtip.label
         else:
             data['label'] = itip.label

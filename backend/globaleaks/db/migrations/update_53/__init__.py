@@ -175,6 +175,12 @@ class MigrationScript(MigrationBase):
     def epilogue(self):
         m = self.model_to['Config']
 
+        m = self.model_to['Config']
+
+        self.session_new.query(m) \
+                        .filter(m.var_name == 'private_labels') \
+                        .update({'var_name': 'private_annotations'})
+
         self.session_new.query(m) \
                         .filter(m.var_name == 'https_priv_key') \
                         .update({'var_name': 'https_key'})
