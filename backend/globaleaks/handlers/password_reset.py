@@ -122,7 +122,7 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
             return {'status': 'require_recovery_key'}
 
     elif user.two_factor_enable:
-        two_factor_secret = user.two_factor_secret.decode()
+        two_factor_secret = user.two_factor_secret
         if not pyotp.TOTP(two_factor_secret).verify(auth_code, valid_window=1):
             return {'status': 'require_two_factor_authentication'}
 
