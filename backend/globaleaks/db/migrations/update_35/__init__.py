@@ -63,12 +63,8 @@ class MigrationScript(MigrationBase):
         for old_obj in self.session_old.query(self.model_from['Context']):
             new_obj = self.model_to['Context']()
             for key in new_obj.__table__.columns._data.keys():
-                if key == 'tip_timetolive' and old_obj.tip_timetolive < -1:
-                    new_obj.tip_timetolive = -1
-
-                elif key == 'enable_rc_to_wb_files':
+                if key == 'enable_rc_to_wb_files':
                     new_obj.enable_rc_to_wb_files = False
-
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 

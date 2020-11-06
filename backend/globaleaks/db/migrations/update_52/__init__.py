@@ -248,9 +248,6 @@ class MigrationScript(MigrationBase):
                     else:
                         value = 'hidden'
 
-                if key == 'tip_timetolive' and value < 0:
-                    value = 0
-
                 setattr(new_obj, key, value)
 
             self.session_new.add(new_obj)

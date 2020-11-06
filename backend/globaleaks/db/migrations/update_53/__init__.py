@@ -125,6 +125,22 @@ class User_v_52(Model):
 
 
 class MigrationScript(MigrationBase):
+    def migrate_Context(self):
+        for old_obj in self.session_old.query(self.model_from['Context']):
+            new_obj = self.model_to['Context']()
+            for key in new_obj.__table__.columns._data.keys():
+                if key not in old_obj.__table__.columns._data.keys():
+                    continue
+
+                value = getattr(old_obj, key)
+
+                if key == 'tip_timetolive' and value < 0:
+                    value = 0
+
+                setattr(new_obj, key, value)
+
+            self.session_new.add(new_obj)
+
     def migrate_Tenant(self):
         for old_obj in self.session_old.query(self.model_from['Tenant']):
             self.entries_count['Config'] += 1
