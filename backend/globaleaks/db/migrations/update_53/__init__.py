@@ -37,6 +37,20 @@ class InternalTip_v_52(Model):
     crypto_tip_pub_key = Column(UnicodeText(56), default='', nullable=False)
 
 
+class ReceiverTip_v_52(Model):
+    __tablename__ = 'receivertip'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    internaltip_id = Column(UnicodeText(36), nullable=False)
+    receiver_id = Column(UnicodeText(36), nullable=False)
+    last_access = Column(DateTime, default=datetime_null, nullable=False)
+    access_counter = Column(Integer, default=0, nullable=False)
+    label = Column(UnicodeText, default='', nullable=False)
+    can_access_whistleblower_identity = Column(Boolean, default=False, nullable=True)
+    new = Column(Boolean, default=True, nullable=False)
+    enable_notifications = Column(Boolean, default=True, nullable=False)
+    crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
+
+
 class Subscriber_v_52(Model):
     __tablename__ = 'signup'
 

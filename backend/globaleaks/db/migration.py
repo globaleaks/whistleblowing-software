@@ -52,7 +52,8 @@ from globaleaks.db.migrations.update_52 import Context_v_51, \
     ReceiverContext_v_51, \
     SubmissionStatus_v_51, SubmissionSubStatus_v_51, User_v_51
 from globaleaks.db.migrations.update_53 import InternalTip_v_52, \
-    Subscriber_v_52, Tenant_v_52, User_v_52
+    ReceiverTip_v_52, Subscriber_v_52, \
+    Tenant_v_52, User_v_52
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
@@ -91,7 +92,7 @@ migration_mapping = OrderedDict([
     ('Receiver', [Receiver_v_38, 0, 0, 0, 0, Receiver_v_44, 0, 0, 0, 0, 0, Receiver_v_45, -1, -1, -1, -1, -1, -1, -1, -1]),
     ('ReceiverContext', [ReceiverContext_v_38, 0, 0, 0, 0, ReceiverContext_v_51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._ReceiverContext, 0]),
     ('ReceiverFile', [ReceiverFile_v_38, 0, 0, 0, 0, ReceiverFile_v_40, 0, ReceiverFile_v_44, 0, 0, 0, ReceiverFile_v_51, 0, 0, 0, 0, 0, 0, models._ReceiverFile, 0]),
-    ('ReceiverTip', [ReceiverTip_v_38, 0, 0, 0, 0, ReceiverTip_v_40, 0, ReceiverTip_v_44, 0, 0, 0, models._ReceiverTip, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('ReceiverTip', [ReceiverTip_v_38, 0, 0, 0, 0, ReceiverTip_v_40, 0, ReceiverTip_v_44, 0, 0, 0, ReceiverTip_v_52, 0, 0, 0, 0, 0, 0, 0, models._ReceiverTip]),
     ('Redirect', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Redirect, 0, 0, 0, 0]),
     ('SubmissionStatus', [-1, -1, -1, -1, -1, -1, -1, -1, SubmissionStatus_v_46, 0, 0, 0, 0, SubmissionStatus_v_49, 0, 0, SubmissionStatus_v_51, 0, models._SubmissionStatus, 0]),
     ('SubmissionSubStatus', [-1, -1, -1, -1, -1, -1, -1, -1, SubmissionSubStatus_v_46, 0, 0, 0, 0, SubmissionSubStatus_v_49, 0, 0, SubmissionSubStatus_v_51, 0, models._SubmissionSubStatus, 0]),
