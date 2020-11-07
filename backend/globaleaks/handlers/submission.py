@@ -298,8 +298,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     if not request['receivers']:
         raise errors.InputValidationError("Unable to deliver the submission to at least one recipient")
 
-    if context.maximum_selectable_receivers > 0 and \
-        len(request['receivers']) > context.maximum_selectable_receivers:
+    if 0 < context.maximum_selectable_receivers < len(request['receivers']):
         raise errors.InputValidationError("The number of recipients selected exceed the configured limit")
 
     itip = models.InternalTip()

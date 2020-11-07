@@ -17,7 +17,7 @@
         flow-files-submitted="beginUpload($files, $event, $flow)"
         flow-file-success="reload()"
         extend-flow-valid-size="public.node.maximum_filesize*1024*1024">
-      <span class="input-group">
+      <div class="input-group">
         <span class="input-group-prepend"><span class="input-group-text" data-translate>Description</span></span>
         <input type="text" class="form-control" data-ng-model="file_upload_description" />
         <span class="input-group-append" data-ng-disabled="!file_upload_description" >
@@ -31,6 +31,6 @@
         </span>
       </div>
       <div errors-upload></div>
-    </span>
+    </div>
   </div>
 </div>
