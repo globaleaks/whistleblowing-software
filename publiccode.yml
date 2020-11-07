@@ -3,12 +3,12 @@ releaseDate: '2020-09-28'
 publiccodeYmlVersion: '0.2'
 url: 'https://github.com/globaleaks/GlobaLeaks'
 landingURL: 'https://www.globaleaks.org/'
-logo: assets/globaleaks-logo-color.svg
+logo: brand/assets/globaleaks-icon-color.svg
 softwareVersion: 4.0.58
 softwareType: standalone/web
 developmentStatus: stable
 platforms:
-  - linux
+  - web
 categories:
   - data-collection
   - it-security
@@ -24,7 +24,6 @@ legal:
   license: AGPL-3.0
   mainCopyrightOwner: >-
     Hermes Center for Transparency and Digital Humand Rights,
-    Whistleblowing Solutions I.S. S.r.l.
   authorsFile: 'https://github.com/globaleaks/GlobaLeaks/blob/main/AUTHORS'
   repoOwner: GlobaLeaks
 localisation:
