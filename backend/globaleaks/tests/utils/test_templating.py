@@ -31,15 +31,21 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
         data['tip'], _ = yield rtip.get_rtip(1, self.dummyReceiver_1['id'], tip_id, 'en')
 
         data['comments'] = data['tip']['comments']
-        data['comment'] = data['comments'][0]
-
         data['messages'] = data['tip']['messages']
-        data['message'] = data['messages'][0]
-
-        files = yield rtip.receiver_get_rfile_list(data['tip']['id'])
-        data['file'] = files[0]
+        data['files'] = yield rtip.receiver_get_rfile_list(data['tip']['id'])
 
         for key in ['tip', 'comment', 'message', 'file']:
-            data['type'] = key
-            template = ''.join(supported_template_types[key].keyword_list)
+            if key == 'tip':
+                data['type']= 'tip'
+            else:
+                data['type'] = 'tip_update'
+
+            if key == 'comment':
+              data['update'] = data['comments'][0]
+            elif key == 'message':
+              data['update'] = data['messages'][0]
+            elif key == 'file':
+              data['update'] = data['files'][0]
+
+            template = ''.join(supported_template_types[data['type']].keyword_list)
             Templating().format_template(template, data)

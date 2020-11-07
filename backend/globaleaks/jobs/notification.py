@@ -259,7 +259,7 @@ def get_mails_from_the_pool(session):
     """
     ret = []
 
-    for mail in session.query(models.Mail).order_by(models.Mail.creation_date).limit(10):
+    for mail in session.query(models.Mail).order_by(models.Mail.creation_date):
         ret.append({
             'id': mail.id,
             'address': mail.address,
@@ -283,6 +283,7 @@ class Notification(LoopingJob):
             sent = yield self.state.sendmail(mail['tid'], mail['address'], mail['subject'], mail['body'])
             if sent:
                 yield tw(db_del, models.Mail, models.Mail.id == mail['id'])
+            else:
                 delay = delay + 1 if delay < 10 else 10
             yield deferred_sleep(delay)
 
