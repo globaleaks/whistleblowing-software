@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: Bujar Tafili\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -57,12 +57,6 @@ msgstr "Lisencat"
 
 msgid "Notification templates"
 msgstr "Njoftimi templates"
-
-msgid "Missing data"
-msgstr "Të dhënat që mungojnë"
-
-msgid "no stats available for this hour."
-msgstr "Nuk ka statistika në dispozicion për këtë orë."
 
 msgid "Delete"
 msgstr "Hiqeni"
@@ -367,9 +361,6 @@ msgstr "Tekst treguar në krye të ndërfaqes për zgjedhjen kontekstet"
 msgid "Show small context cards on submission interface"
 msgstr "Tregojnë kartat e vogla kontekst në ndërfaqen e dorëzimit"
 
-msgid "Type of context selector:"
-msgstr "Lloji i përzgjedhës kontekstit:"
-
 msgid "Type to search…"
 msgstr ""
 
@@ -377,12 +368,6 @@ msgid "Silence email notifications"
 msgstr ""
 
 msgid "Turn on email notifications"
-msgstr ""
-
-msgid "Enter an email address for the administrator"
-msgstr ""
-
-msgid "Enter a password for the administrator"
 msgstr ""
 
 msgid "Failed logins"
@@ -429,31 +414,6 @@ msgid ""
 "has either changed or been removed."
 msgstr ""
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr ""
-
-msgid "The whistleblower can no longer access the report"
-msgstr ""
-
-msgid "Warning!"
-msgstr "Kujdes!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr ""
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr ""
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "Shfletuesi Tor përfshin privatësi të ndryshme, si dhe përmirësime privatësie që s'janë të pranishme në shfletues të tjerë."
-
-msgid "Download the Tor Browser"
-msgstr "Shkarkoni Shfletuesin Tor"
-
 msgid "Audit log"
 msgstr ""
 
@@ -475,19 +435,10 @@ msgstr "Nga "
 msgid "Number of downloads"
 msgstr ""
 
-msgid "Error with file:"
-msgstr ""
-
 msgid "File size not accepted."
 msgstr ""
 
-msgid "File type not accepted."
-msgstr ""
-
 msgid "Maximum file size is:"
-msgstr ""
-
-msgid "Accepted file types are:"
 msgstr ""
 
 msgid "Scheduled jobs"
@@ -525,12 +476,6 @@ msgstr "Zgjeroje"
 
 msgid "Select"
 msgstr "Përzgjidhni"
-
-msgid "Selected by default"
-msgstr ""
-
-msgid "Unselected by default"
-msgstr ""
 
 msgid "Surname"
 msgstr ""
@@ -603,9 +548,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Administrators authorized to change user passwords"
-msgstr ""
-
 msgid "Select the context of your report:"
 msgstr ""
 
@@ -671,9 +613,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr ""
 
-msgid "Enable simplified login"
-msgstr ""
-
 msgid "Allow recipients to delete reports"
 msgstr "Lejojnë përfituesit për të fshirë parashtresat"
 
@@ -687,17 +626,11 @@ msgstr "Lejojnë përfituesit për të dhënë leje për informuesit në aplikim
 msgid "Enable search engines indexing"
 msgstr "Mundësoni indeksimin e motorëve të kërkimit"
 
-msgid "Description"
-msgstr "Përshkrim"
-
 msgid "Enable custom privacy panel"
 msgstr "Aftësoni panelin e privatësisë së përshtatur"
 
 msgid "Custom privacy panel"
 msgstr "Custom panel privacy"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "Teksti që shfaqet kur informatori s'është duke e përdorur Tor-in"
 
 msgid "Disable the privacy panel"
 msgstr "Paaftësoni panelin e privatësisë së përshtatur"
@@ -736,14 +669,7 @@ msgstr ""
 msgid "Set the value to 0 to disable this feature."
 msgstr ""
 
-msgid "Amount of days till whistleblower access expires"
-msgstr ""
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr ""
-
-msgid "Tweak this setting only if you know what you are doing."
+msgid "Number of days till notifying users unread reports"
 msgstr ""
 
 msgid "Enable custodian user role"
@@ -752,7 +678,7 @@ msgstr ""
 msgid "Enable scoring system"
 msgstr ""
 
-msgid "Enable private labels"
+msgid "Enable private annotations"
 msgstr ""
 
 msgid "Logging level"
@@ -817,6 +743,9 @@ msgstr "rol"
 msgid "Name"
 msgstr "Emri"
 
+msgid "Creation date"
+msgstr "Data e Krijimit"
+
 msgid "Last access"
 msgstr "Qasja e fundit"
 
@@ -858,9 +787,6 @@ msgstr ""
 
 msgid "Project name"
 msgstr "Emri i projektit"
-
-msgid "Header title"
-msgstr ""
 
 msgid "Homepage title"
 msgstr "Titulli i Kryefaqes "
@@ -924,6 +850,9 @@ msgstr "Paaftësuar"
 
 msgid "Enabled"
 msgstr "Mundësuar"
+
+msgid "Description"
+msgstr "Përshkrim"
 
 msgid "Questionnaire"
 msgstr "pyetësor"
@@ -1011,9 +940,6 @@ msgstr "Administratore"
 
 msgid "Recipient"
 msgstr "Marrës"
-
-msgid "Whistleblower"
-msgstr "Informator"
 
 msgid "Each entry must be separated with a comma."
 msgstr ""
@@ -1124,6 +1050,9 @@ msgstr ""
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr ""
+
+msgid "Whistleblower"
+msgstr "Informator"
 
 msgid "To"
 msgstr "Për"
@@ -1299,25 +1228,25 @@ msgstr ""
 msgid "Network settings"
 msgstr ""
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Use the first site for administrative purposes only"
 msgstr ""
 
-msgid "Allow users to sign up"
+msgid "Enable multi-site login"
 msgstr ""
 
-msgid "Enable multi-site login"
+msgid "Allow users to sign up"
 msgstr ""
 
 msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
-msgstr ""
-
-msgid "Mode:"
 msgstr ""
 
 msgid "Active"
@@ -1389,11 +1318,6 @@ msgstr "Lejo marrësi për të shtyrë datën e skadimit dorëzimit"
 msgid "Allow the recipient to delete reports"
 msgstr "Lejojnë përfituesit për të fshirë parashtresat"
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr "Lejojnë përfituesit për të dhënë leje për informuesit në aplikimet specifike"
-
 msgid "User has administrative access to the following features:"
 msgstr ""
 
@@ -1441,9 +1365,6 @@ msgstr ""
 
 msgid "Confirm"
 msgstr "Konfirmoni Zgjatjen"
-
-msgid "Add file"
-msgstr "Shtoni skedar"
 
 msgid "Are you sure?"
 msgstr "A je i sigurt?"
@@ -1537,9 +1458,6 @@ msgstr "Burimi mund të qaset vetëm përmes rrjetit Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Kërkesa për ngarkim e kalon kufirin e përmasës"
 
-msgid "Success!"
-msgstr "Sukses!"
-
 msgid "Validation of email address change in progress."
 msgstr ""
 
@@ -1561,9 +1479,12 @@ msgid ""
 msgstr "Duket sikur ju po e shfletoni këtë faqe pa privatësi apo siguri të shtuar!"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "Ju këshillojmë fuqishëm që ta vizitoni këtë webfaqe duke përdorur aplikacionin për desktop të quajtur Shfletuesi Tor, që mbron identitetin tuaj."
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "Shkarkoni Shfletuesin Tor"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Më pas, kopjojeni dhe ngjiteni tek Shfletuesi Tor adresën në vijim:"
@@ -1671,26 +1592,11 @@ msgstr "Data e Ngarkimit"
 msgid "File size"
 msgstr "Përmasat e Skedarit"
 
-msgid "download"
-msgstr "shkarkoni"
-
-msgid "No files have been uploaded!"
-msgstr "S'është ngarkuar asnjë skedar!"
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Lejo whistleblower për të shtuar të bashkëngjitni skedarë dorëzimit"
 
-msgid "Report"
-msgstr ""
-
-msgid "Access expiration"
-msgstr ""
-
 msgid "Never"
 msgstr "Kurrë"
-
-msgid "Revoked"
-msgstr "I shfuqizuar"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Lejo whistleblower për të dërguar mesazhe"
@@ -1741,7 +1647,7 @@ msgstr "Lista marrësi"
 msgid "Status:"
 msgstr "Gjëndja"
 
-msgid "Attached files for the whistleblower"
+msgid "Files attached by recipients"
 msgstr ""
 
 msgid "Upload a file:"
@@ -1755,12 +1661,6 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
-
-msgid "Files attached by recipients"
-msgstr ""
-
-msgid "These files have been attached to your report by the recipients."
 msgstr ""
 
 msgid "The provided recovery key is invalid."
@@ -1806,6 +1706,9 @@ msgstr "Urime!"
 msgid "You have completed the platform activation."
 msgstr ""
 
+msgid "Success!"
+msgstr "Sukses!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
@@ -1837,10 +1740,7 @@ msgstr "E plotësuar"
 msgid "Invalid phone number"
 msgstr ""
 
-msgid "This field is mandatory."
-msgstr ""
-
-msgid "The answer is too short."
+msgid "The answer is too short"
 msgstr ""
 
 msgid "The specified input is not valid."
@@ -1897,9 +1797,6 @@ msgid ""
 "invalid:"
 msgstr ""
 
-msgid "Errors"
-msgstr ""
-
 msgid "You must select at least one recipient."
 msgstr ""
 
@@ -1917,10 +1814,17 @@ msgstr ""
 msgid "Please choose a configuration profile:"
 msgstr ""
 
-msgid "Please choose a different username."
+msgid "Make it possible for this admin to reset user passwords."
 msgstr ""
 
-msgid "The user will receive an activation link via email."
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
+msgid "Please choose a different username."
 msgstr ""
 
 msgid "I have read and agree to the terms of the license."
@@ -2131,15 +2035,6 @@ msgstr ""
 msgid "Test email"
 msgstr ""
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr ""
-
-msgid "The report can be accessed at:"
-msgstr "Parashtrimi është i qasshëm:"
-
-msgid "New comment"
-msgstr "një koment të ri"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2178,14 +2073,6 @@ msgid "Context: {ContextName}"
 msgstr "Konteksti: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr "Kjo është një email që të ju njoftojmë se zbuluesi i dorëzimit {TipNum} ka bashkangjitur materiale të reja."
-
-msgid "New attachment"
-msgstr "lidhja e re"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr ""
@@ -2219,6 +2106,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr "Kjo është një e-mail për të njoftuar ju se një kujdestar ju ka autorizuar për të hyrë në identitetin wistleblowing për dorëzimin {TipNum}."
 
+msgid "The report can be accessed at:"
+msgstr "Parashtrimi është i qasshëm:"
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "Qasja në identitetin e informatorëve të autorizuar"
 
@@ -2248,12 +2138,6 @@ msgstr "Kjo është një email që të ju njoftojmë se whistleblower për dorë
 
 msgid "The whistleblower has provided their identity"
 msgstr "Whistleblower ka dhënë identitetin e tyre"
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr "Kjo është një e-mail për të njoftuar ju një mesazh të ri në një paraqitjen ekzistuese."
-
-msgid "New message"
-msgstr "mesazh i ri"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2331,6 +2215,18 @@ msgid ""
 msgstr "Ata do të dëshironin që ju të përkushtoheshit veçanërisht ndaj informacionit dhe materialit që përmbahet këtu. Ju lutemi mos harroni që, në të mirë të interesit publik, shpesh informatorët e ekspozojnë veten ndaj një rreziku të madh.Kësisoj, materiali që ata ofrojnë me këtë sugjerim konfidencial duhet të konsiderohet me rëndësi të madhe."
 
 msgid "New report"
+msgstr ""
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
 msgstr ""
 
 msgid "Role: {Role}"

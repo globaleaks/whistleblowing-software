@@ -43,8 +43,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: Infinity\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -93,12 +93,6 @@ msgstr "Licentie"
 
 msgid "Notification templates"
 msgstr "Bericht templates"
-
-msgid "Missing data"
-msgstr "Ontbrekende gegevens"
-
-msgid "no stats available for this hour."
-msgstr "geen statistieken beschikbaar voor dit uur."
 
 msgid "Delete"
 msgstr "Verwijderen"
@@ -403,9 +397,6 @@ msgstr "Tekst die getoond wordt boven de interface om context te selecteren"
 msgid "Show small context cards on submission interface"
 msgstr "Toon kleine contextkaartjes op het inzending-interface"
 
-msgid "Type of context selector:"
-msgstr "Contextkeuze-type:"
-
 msgid "Type to search…"
 msgstr "Zoekbegrip ingeven..."
 
@@ -414,12 +405,6 @@ msgstr "E-mailmeldingen uitschakelen"
 
 msgid "Turn on email notifications"
 msgstr "E-mailmeldingen inschakelen"
-
-msgid "Enter an email address for the administrator"
-msgstr "Vul een e-mailadres in voor de beheerder"
-
-msgid "Enter a password for the administrator"
-msgstr "Vul een wachtwoord in voor de beheerder"
 
 msgid "Failed logins"
 msgstr "Mislukte inlogpogingen"
@@ -465,31 +450,6 @@ msgid ""
 "has either changed or been removed."
 msgstr "Deze aangepaste text is niet meer zichtbaar op het platform. De originele text is gewijzigd of verwijderd."
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr "Als de klokkenluider de inzending niet voor deze datum controleert, dan vervalt zijn of haar toegangsrecht."
-
-msgid "The whistleblower can no longer access the report"
-msgstr "De klokkenluider kan geen toegang meer krijgen tot de inzending"
-
-msgid "Warning!"
-msgstr "Waarschuwing!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "Je gebruikt een niet-ondersteunde en potentieel gevaarlijke browser."
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "Wij adviseren je ten zeerste om de Tor Browser te downloaden en de installeren."
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "De Tor-browser bevat diverse privacy- en veiligheidsverbeteringen die niet aanwezig zijn in andere browsers."
-
-msgid "Download the Tor Browser"
-msgstr "De Tor-browser downloaden"
-
 msgid "Audit log"
 msgstr "Audit logboek"
 
@@ -511,20 +471,11 @@ msgstr "Afzender"
 msgid "Number of downloads"
 msgstr "Aantal keer gedownload"
 
-msgid "Error with file:"
-msgstr "Fout met bestand:"
-
 msgid "File size not accepted."
 msgstr "Bestandsgrootte wordt niet geacepteerd."
 
-msgid "File type not accepted."
-msgstr "Bestandstype wordt niet ondersteund."
-
 msgid "Maximum file size is:"
 msgstr "Maximale bestandsgrootte:"
-
-msgid "Accepted file types are:"
-msgstr "Ondersteunde bestandssoorten zijn:"
 
 msgid "Scheduled jobs"
 msgstr "Geplande werkzaamheden"
@@ -561,12 +512,6 @@ msgstr "Uitklappen"
 
 msgid "Select"
 msgstr "Selecteren"
-
-msgid "Selected by default"
-msgstr "Wordt standaard geselecteerd"
-
-msgid "Unselected by default"
-msgstr "Wordt standaard niet geselecteerd"
 
 msgid "Surname"
 msgstr "Achternaam"
@@ -639,9 +584,6 @@ msgstr "BTW-nummer"
 msgid "Tax code"
 msgstr "BTW-code / Belastingwetgeving"
 
-msgid "Administrators authorized to change user passwords"
-msgstr "Beheerders die gemachtigd zijn om gebruikerswachtwoorden te wijzigen"
-
 msgid "Select the context of your report:"
 msgstr "Selecteer de context van uw inzending:"
 
@@ -707,9 +649,6 @@ msgstr "Beheerders die gemachtigd zijn om gebruikerswachtwoorden te wijzigen:"
 msgid "Enable multisite feature"
 msgstr "Functie voor meerdere-weblocaties inschakelen"
 
-msgid "Enable simplified login"
-msgstr "Vereenvoudigdelogin inschakelen"
-
 msgid "Allow recipients to delete reports"
 msgstr "Sta ontvangers toe tips te verwijderen"
 
@@ -723,17 +662,11 @@ msgstr "Ontvangers toestaan om klokkenluiders per tip rechten toe te wijzen"
 msgid "Enable search engines indexing"
 msgstr "Zoekmachine-indexering inschakelen"
 
-msgid "Description"
-msgstr "Omschrijving"
-
 msgid "Enable custom privacy panel"
 msgstr "Gepersonaliseerd privacy-paneel inschakelen"
 
 msgid "Custom privacy panel"
 msgstr "Gepersonaliseerd privacy-paneel"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "Tekst die wordt getoond wanneer de klokkenluider geen Tor gebruikt"
 
 msgid "Disable the privacy panel"
 msgstr "Privacy-paneel uitschakelen"
@@ -772,15 +705,8 @@ msgstr "Wachtwoorden moeten geregeld worden veranderd om veiligheidsredenen."
 msgid "Set the value to 0 to disable this feature."
 msgstr "Stel de waarde in op 0 om deze functie uit te schakelen"
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "Het aantal dagen totdat de klokkenluider zijn toegang verloopt"
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "Omwille van de veiligheid verloopt het toegangsrecht van de klokkenluider na verloop van tijd."
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "Stel deze instellingen alleen bij als u weet wat u doet."
+msgid "Number of days till notifying users unread reports"
+msgstr ""
 
 msgid "Enable custodian user role"
 msgstr "Activeer de custodian gebruikersrol"
@@ -788,8 +714,8 @@ msgstr "Activeer de custodian gebruikersrol"
 msgid "Enable scoring system"
 msgstr "Waarderingssysteem inschakelen"
 
-msgid "Enable private labels"
-msgstr "Privé-labels inschakelen"
+msgid "Enable private annotations"
+msgstr ""
 
 msgid "Logging level"
 msgstr "Niveau van loggen"
@@ -853,6 +779,9 @@ msgstr "Rol"
 msgid "Name"
 msgstr "Naam"
 
+msgid "Creation date"
+msgstr "Datum van aanmaken"
+
 msgid "Last access"
 msgstr "Laatste toegang"
 
@@ -894,9 +823,6 @@ msgstr "Logo"
 
 msgid "Project name"
 msgstr "Naam van initiatief"
-
-msgid "Header title"
-msgstr "Titel"
 
 msgid "Homepage title"
 msgstr "Titel van hoofdpagina"
@@ -960,6 +886,9 @@ msgstr "Uitgeschakeld"
 
 msgid "Enabled"
 msgstr "Ingeschakeld"
+
+msgid "Description"
+msgstr "Omschrijving"
 
 msgid "Questionnaire"
 msgstr "Vragenformulier"
@@ -1047,9 +976,6 @@ msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Ontvanger"
-
-msgid "Whistleblower"
-msgstr "Klokkenluider"
 
 msgid "Each entry must be separated with a comma."
 msgstr "Elke invoer moet worden gescheiden door middel van een komma."
@@ -1160,6 +1086,9 @@ msgstr "Het platform is bereikbaar zonder Tor"
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr "Rollen ingeschakeld om het platform te gebruiken zonder TOR"
+
+msgid "Whistleblower"
+msgstr "Klokkenluider"
 
 msgid "To"
 msgstr "Aan"
@@ -1335,26 +1264,26 @@ msgstr "Casus management"
 msgid "Network settings"
 msgstr "Netwerkinstellingen"
 
+msgid "Mode:"
+msgstr "Modus:"
+
 msgid "Root domain used for secondary sites"
 msgstr "Hoofddomein welke wordt gebruikt voor secondaire weblocaties"
 
 msgid "Use the first site for administrative purposes only"
 msgstr "Gebruik de eerste weblocatie uitsluitend voor administratieve doeleinden"
 
-msgid "Allow users to sign up"
-msgstr "Gebruikers toestaan zich in te schijven"
-
 msgid "Enable multi-site login"
 msgstr "Meerdere-weblocatielogin inschakelen"
+
+msgid "Allow users to sign up"
+msgstr "Gebruikers toestaan zich in te schijven"
 
 msgid "Enable terms of service"
 msgstr "Gebruiksvoorwaarden inschakelen"
 
 msgid "Sites"
 msgstr "Weblocaties"
-
-msgid "Mode:"
-msgstr "Modus:"
 
 msgid "Active"
 msgstr "Actief"
@@ -1425,11 +1354,6 @@ msgstr "De ontvanger mag de einddatum van de inzending uitstellen"
 msgid "Allow the recipient to delete reports"
 msgstr "Sta ontvangers toe tips te verwijderen"
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr "Ontvangers toestaan om klokkenluiders per tip rechten toe te wijzen"
-
 msgid "User has administrative access to the following features:"
 msgstr "Gebruiker heeft administratortoegang tot de volgende functies:"
 
@@ -1477,9 +1401,6 @@ msgstr "Tekst welke wordt getoond nadat de gebruiker de optie heeft gekozen"
 
 msgid "Confirm"
 msgstr "Bevestig extentie"
-
-msgid "Add file"
-msgstr "Bestand toevoegen"
 
 msgid "Are you sure?"
 msgstr "Weet je het zeker?"
@@ -1573,9 +1494,6 @@ msgstr "Bron is alleen toegankelijk binnen het Tor-netwerk"
 msgid "The upload request exceeds the size limit"
 msgstr "De uploadaanvraag overstijgt de MB limiet"
 
-msgid "Success!"
-msgstr " Succes!"
-
 msgid "Validation of email address change in progress."
 msgstr "Validatie van e-mail adres verandering wordt uitgevoerd."
 
@@ -1597,9 +1515,12 @@ msgid ""
 msgstr "Het ziet er naar uit dat je deze weblocatie bezoekt zonder extra privacy en beveiliging!"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "U wordt sterk aangeraden om deze weblocatie met de desktop-app genaamd Tor-browser te bezoeken, welke uw identiteit beschermt."
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "De Tor-browser downloaden"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Kopieer en plak vervolgens het volgende adres in de Tor-browser:"
@@ -1707,26 +1628,11 @@ msgstr "Upload datum"
 msgid "File size"
 msgstr "Bestandsgrootte"
 
-msgid "download"
-msgstr "download"
-
-msgid "No files have been uploaded!"
-msgstr "Er is geen bestand geüpload!"
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "De klokkenluider toestaan bestanden toe te voegen aan een rapport"
 
-msgid "Report"
-msgstr "Inzending"
-
-msgid "Access expiration"
-msgstr "Toegang vervaltijd"
-
 msgid "Never"
 msgstr "Nooit"
-
-msgid "Revoked"
-msgstr "Herroepen"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "De klokkenluider toestaan berichten te versturen"
@@ -1777,8 +1683,8 @@ msgstr "Lijst ontvangers"
 msgid "Status:"
 msgstr "Status:"
 
-msgid "Attached files for the whistleblower"
-msgstr "Bijlage voor de klokkenluider"
+msgid "Files attached by recipients"
+msgstr "Bestanden die door ontvangers zijn toegevoegd"
 
 msgid "Upload a file:"
 msgstr "Upload een bestand:"
@@ -1792,12 +1698,6 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "We raden u aan de sectie \"Voorkeuren\" te openen om uw \"Accountherstel-sleutel\" op te halen en deze veilig op te slaan. Deze sleutel is nodig om uw toegang tot het platform en uw gegevens te herstellen in het geval u uw wachtwoord vergeet."
-
-msgid "Files attached by recipients"
-msgstr "Bestanden die door ontvangers zijn toegevoegd"
-
-msgid "These files have been attached to your report by the recipients."
-msgstr "Deze bestanden zijn door de ontvangers als bijlage toegevoegd aan jouw inzending."
 
 msgid "The provided recovery key is invalid."
 msgstr "De ingediende herstelcode is ongeldig."
@@ -1842,6 +1742,9 @@ msgstr "Gefeliciteerd!"
 msgid "You have completed the platform activation."
 msgstr "Je hebt de activatie van het platform afgerond."
 
+msgid "Success!"
+msgstr " Succes!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Je klokkenluiders-platvorm is bijna klaar!"
 
@@ -1873,11 +1776,8 @@ msgstr "Volledig"
 msgid "Invalid phone number"
 msgstr "Ongeldig telefoonnummer"
 
-msgid "This field is mandatory."
-msgstr "Dit veld is verplicht"
-
-msgid "The answer is too short."
-msgstr "Antwoord is te kort."
+msgid "The answer is too short"
+msgstr ""
 
 msgid "The specified input is not valid."
 msgstr "Deze invoer is niet geldig."
@@ -1933,9 +1833,6 @@ msgid ""
 "invalid:"
 msgstr "In deze stap ontbreken antwoorden of zijn ongeldig op de volgende vragen:"
 
-msgid "Errors"
-msgstr "Foutmeldingen"
-
 msgid "You must select at least one recipient."
 msgstr "Je moet ten minste één ontvanger selecteren."
 
@@ -1953,11 +1850,18 @@ msgstr "De volgende stap voor stap procedure helpt je bij het opzetten van je kl
 msgid "Please choose a configuration profile:"
 msgstr "Kies een configuratie-profiel:"
 
+msgid "Make it possible for this admin to reset user passwords."
+msgstr ""
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
 msgid "Please choose a different username."
 msgstr "Kies een andere gebruikersnaam."
-
-msgid "The user will receive an activation link via email."
-msgstr "De gebruiker zal een activatiecode ontvangen via e-mail."
 
 msgid "I have read and agree to the terms of the license."
 msgstr "Ik heb de voorwaarden van de licentie gelezen en ga hiermee akkoord."
@@ -2167,15 +2071,6 @@ msgstr "Ontvangst van dit mailtje geeft aan dat de server de authenticatie kon u
 msgid "Test email"
 msgstr "Testmail"
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr "Dit is een e-mail om je te wijzen op een nieuwe opmerking bij je bestaande inzending."
-
-msgid "The report can be accessed at:"
-msgstr "Hier krijg je toegang tot de inzending:"
-
-msgid "New comment"
-msgstr "Nieuw commentaar"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2214,14 +2109,6 @@ msgid "Context: {ContextName}"
 msgstr "Context: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr "Dit is een e-mail om je erop te wijzen dat de klokkenluider van inzending {TipNum} een bijlage heeft toegevoegd met nieuw materiaal."
-
-msgid "New attachment"
-msgstr "Nieuwe bijlage"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr "Het HTTPS certificaat welke op jouw platvorm is geladen is verlopen of zal binnenkort verlopen."
@@ -2255,6 +2142,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr "Dit is een mailtje om je erop te wijzen dat een toezichthouder je gemachtigd heeft om de identiteit van de klokkenluider te openen betreffende de inzending {TipNum}."
 
+msgid "The report can be accessed at:"
+msgstr "Hier krijg je toegang tot de inzending:"
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "Toegang tot de identiteit van de klokkenluider is goedgekeurd"
 
@@ -2284,12 +2174,6 @@ msgstr "Dit is een e-mail om je te informeren dat de klokkenluider van de inzend
 
 msgid "The whistleblower has provided their identity"
 msgstr "De klokkenluider heeft zich geïdentificeerd."
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr "Dit is een e-mail om je te wijzen op een nieuw commentaar op een bestaande inzending."
-
-msgid "New message"
-msgstr "Nieuw bericht"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2368,6 +2252,18 @@ msgstr "Je wordt verzocht om extra aandacht te bieden aan de informatie en mater
 
 msgid "New report"
 msgstr "Nieuwe inzending"
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr "Rol: {Role}"

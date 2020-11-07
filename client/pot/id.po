@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: Fransisca Susanti <susanti@jaring.id>\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -74,12 +74,6 @@ msgstr "Lisensi"
 
 msgid "Notification templates"
 msgstr "Format pemberitahuan"
-
-msgid "Missing data"
-msgstr "Data hilang"
-
-msgid "no stats available for this hour."
-msgstr "Statistik tidak tersedia saat ini."
 
 msgid "Delete"
 msgstr "Hapus"
@@ -384,9 +378,6 @@ msgstr "Teks  tampil di atas antarmuka untuk memilih konteks "
 msgid "Show small context cards on submission interface"
 msgstr "Tampilkan kartu konteks kecil pada antarmuka pengiriman "
 
-msgid "Type of context selector:"
-msgstr "Tipe pemilih konteks"
-
 msgid "Type to search…"
 msgstr "Ketik untuk mencari"
 
@@ -395,12 +386,6 @@ msgstr "Matikan notifikasi surel"
 
 msgid "Turn on email notifications"
 msgstr "Aktifkan notifikasi surel"
-
-msgid "Enter an email address for the administrator"
-msgstr "Masukkan alamat surel untuk administrator"
-
-msgid "Enter a password for the administrator"
-msgstr "Masukkan kata sandi untuk administrator"
 
 msgid "Failed logins"
 msgstr "Login gagal"
@@ -446,31 +431,6 @@ msgid ""
 "has either changed or been removed."
 msgstr "Teks kustom tidak dapat ditampilkan lagi pada platform ini. Teks asli telah diganti atau dihapus."
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr ""
-
-msgid "The whistleblower can no longer access the report"
-msgstr "Informan publik tidak lagi dapat mengakses laporannya"
-
-msgid "Warning!"
-msgstr "Peringatan!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "Anda sedang menjalankan peramban yang tidak direkomendasikan atau rentan."
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "Anda sangat disarankan untuk mengunduh dan memasang Peramban Tor."
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "Peramban Tor memiliki sejumlah privasi dan tingkat keamanan yang tidak dimiliki peramban lain. "
-
-msgid "Download the Tor Browser"
-msgstr "Unduh Peramban Tor"
-
 msgid "Audit log"
 msgstr "Log pemeriksaan"
 
@@ -492,20 +452,11 @@ msgstr "Dari"
 msgid "Number of downloads"
 msgstr "Jumlah unduhan"
 
-msgid "Error with file:"
-msgstr "Berkas eror:"
-
 msgid "File size not accepted."
 msgstr "Ukuran berkas tidak dapat diterima "
 
-msgid "File type not accepted."
-msgstr "Jenis berkas tidak dapat diterima"
-
 msgid "Maximum file size is:"
 msgstr "Ukuran berkas maksimal adalah: "
-
-msgid "Accepted file types are:"
-msgstr "Jenis berkas yang diterima adalah: "
 
 msgid "Scheduled jobs"
 msgstr "pekerjaan terjadwal"
@@ -542,12 +493,6 @@ msgstr "Buka"
 
 msgid "Select"
 msgstr "Pilih"
-
-msgid "Selected by default"
-msgstr "terpilih oleh pengaturan awal"
-
-msgid "Unselected by default"
-msgstr "tidak terpilih oleh pengaturan awal"
 
 msgid "Surname"
 msgstr "nama keluarga"
@@ -620,9 +565,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Administrators authorized to change user passwords"
-msgstr ""
-
 msgid "Select the context of your report:"
 msgstr ""
 
@@ -688,9 +630,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Aktifkan fitur multi situs"
 
-msgid "Enable simplified login"
-msgstr "Mengaktifkan metode masuk yang mudah"
-
 msgid "Allow recipients to delete reports"
 msgstr "Izinkan penerima untuk menghapus laporan"
 
@@ -704,17 +643,11 @@ msgstr "Izinkan penerima memberikan izin kepada informan publik pada kiriman ter
 msgid "Enable search engines indexing"
 msgstr "Aktifkan pencatatan mesin pencari"
 
-msgid "Description"
-msgstr "Deskripsi"
-
 msgid "Enable custom privacy panel"
 msgstr "Aktifkan panel privasi kustom"
 
 msgid "Custom privacy panel"
 msgstr "Panel privasi kustom"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "Teks muncul ketika informan publik tidak menggunakan Tor"
 
 msgid "Disable the privacy panel"
 msgstr "Menonaktifkan panel privasi"
@@ -753,15 +686,8 @@ msgstr "Untuk alasan keamanan, Anda disarankan mengubah kata sandi secara berkal
 msgid "Set the value to 0 to disable this feature."
 msgstr "Atur ke angka 0 untuk menonaktifkan fitur ini "
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "Waktu yang tersedia sebelum akses berakhir"
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "Untuk alasan keamanan, akses informan publik hanya tersedia selama jangka waktu tertentu "
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "Ganti pengaturan ini jika Anda tahu langkah yang sedang dilakukan."
+msgid "Number of days till notifying users unread reports"
+msgstr ""
 
 msgid "Enable custodian user role"
 msgstr ""
@@ -769,7 +695,7 @@ msgstr ""
 msgid "Enable scoring system"
 msgstr "Aktifkan sistem pencetakan skor"
 
-msgid "Enable private labels"
+msgid "Enable private annotations"
 msgstr ""
 
 msgid "Logging level"
@@ -834,6 +760,9 @@ msgstr "Peran"
 msgid "Name"
 msgstr "Nama"
 
+msgid "Creation date"
+msgstr "Tanggal pembuatan"
+
 msgid "Last access"
 msgstr "Akses terakhir"
 
@@ -875,9 +804,6 @@ msgstr "Logo"
 
 msgid "Project name"
 msgstr "Judul Proyek"
-
-msgid "Header title"
-msgstr "Judul tajuk"
 
 msgid "Homepage title"
 msgstr "Judul laman utama"
@@ -941,6 +867,9 @@ msgstr "Menonaktifkan"
 
 msgid "Enabled"
 msgstr "aktifkan"
+
+msgid "Description"
+msgstr "Deskripsi"
 
 msgid "Questionnaire"
 msgstr "Kuesioner"
@@ -1028,9 +957,6 @@ msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Penerima"
-
-msgid "Whistleblower"
-msgstr "Informan publik"
 
 msgid "Each entry must be separated with a comma."
 msgstr "Setiap masukan harus dipisahkan dengan koma."
@@ -1141,6 +1067,9 @@ msgstr "Perbolehkan platform diakses tanpa menggunakan Tor"
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr " Peran yang diizinkan untuk menggunakan platform tanpa Tor"
+
+msgid "Whistleblower"
+msgstr "Informan publik"
 
 msgid "To"
 msgstr "Ke"
@@ -1316,26 +1245,26 @@ msgstr "Penanganan kasus"
 msgid "Network settings"
 msgstr "Pengaturan jaringan"
 
+msgid "Mode:"
+msgstr "Mode:"
+
 msgid "Root domain used for secondary sites"
 msgstr "Domain awal yang digunakan untuk situs kedua"
 
 msgid "Use the first site for administrative purposes only"
 msgstr ""
 
-msgid "Allow users to sign up"
-msgstr "Mengizinkan pengguna untuk mendaftar"
-
 msgid "Enable multi-site login"
 msgstr "Mengizinkan untuk masuk ke banyak situs"
+
+msgid "Allow users to sign up"
+msgstr "Mengizinkan pengguna untuk mendaftar"
 
 msgid "Enable terms of service"
 msgstr "Mengaktifkan persyaratan layanan"
 
 msgid "Sites"
 msgstr "Situs"
-
-msgid "Mode:"
-msgstr "Mode:"
 
 msgid "Active"
 msgstr "Aktif"
@@ -1406,11 +1335,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr ""
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr ""
-
 msgid "User has administrative access to the following features:"
 msgstr "Pengguna mempunyai akses administratif untuk beberapa fitur berikut:"
 
@@ -1458,9 +1382,6 @@ msgstr ""
 
 msgid "Confirm"
 msgstr "Konfirmasi"
-
-msgid "Add file"
-msgstr "Tambahkan berkas"
 
 msgid "Are you sure?"
 msgstr "Apakah Anda yakin?"
@@ -1554,9 +1475,6 @@ msgstr "Sumber hanya dapat diakses melalui jaringan Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Permintaan unggahan melebihi batas ukuran"
 
-msgid "Success!"
-msgstr "Berhasil!"
-
 msgid "Validation of email address change in progress."
 msgstr "Validasi perubahan alamat surel sedang berlangsung."
 
@@ -1578,9 +1496,12 @@ msgid ""
 msgstr "Sepertinya anda menulusuri situs ini tanpa tambahan privasi dan keamanan"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "Anda sangat disarankan untuk mengunjungi situs ini menggunakan aplikasi komputer bernama Peramban Tor, yang melindungi identitas Anda."
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "Unduh Peramban Tor"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Lalu, salin dan tempel alamat yang bersangkutan ke dalam Peramban Tor:"
@@ -1688,26 +1609,11 @@ msgstr "Tanggal unggahan"
 msgid "File size"
 msgstr "Ukuran berkas"
 
-msgid "download"
-msgstr "unduh"
-
-msgid "No files have been uploaded!"
-msgstr "Tidak ada berkas yang diunggah!"
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr ""
 
-msgid "Report"
-msgstr "Laporan"
-
-msgid "Access expiration"
-msgstr "Masa berakhir akses"
-
 msgid "Never"
 msgstr "Tidak pernah"
-
-msgid "Revoked"
-msgstr "Tercabut"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Mengizinkan informan publik untuk mengirim pesan"
@@ -1758,8 +1664,8 @@ msgstr "Daftar penerima "
 msgid "Status:"
 msgstr "Status:"
 
-msgid "Attached files for the whistleblower"
-msgstr "Lampiran berkas untuk informan publik "
+msgid "Files attached by recipients"
+msgstr "Berkas yang telah ditaut oleh penerima "
 
 msgid "Upload a file:"
 msgstr "Mengunggah berkas: "
@@ -1772,12 +1678,6 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
-
-msgid "Files attached by recipients"
-msgstr "Berkas yang telah ditaut oleh penerima "
-
-msgid "These files have been attached to your report by the recipients."
 msgstr ""
 
 msgid "The provided recovery key is invalid."
@@ -1823,6 +1723,9 @@ msgstr "Selamat!"
 msgid "You have completed the platform activation."
 msgstr "Anda telah melengkapi platform aktivasi."
 
+msgid "Success!"
+msgstr "Berhasil!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Platform untuk Informan Publik anda hampir selesai!"
 
@@ -1854,11 +1757,8 @@ msgstr "Selesai"
 msgid "Invalid phone number"
 msgstr "Nomor telepon salah"
 
-msgid "This field is mandatory."
-msgstr "Kolom ini wajib diisi."
-
-msgid "The answer is too short."
-msgstr "Jawaban terlalu singkat"
+msgid "The answer is too short"
+msgstr ""
 
 msgid "The specified input is not valid."
 msgstr ""
@@ -1914,9 +1814,6 @@ msgid ""
 "invalid:"
 msgstr "Pada langkah ini, jawaban-jawaban pada pertanyaan berikut tidak lengkap atau tidak benar:"
 
-msgid "Errors"
-msgstr ""
-
 msgid "You must select at least one recipient."
 msgstr "Anda harus pilih minimal satu penerima."
 
@@ -1934,10 +1831,17 @@ msgstr "Prosedur berurutan berikut akan memandu pembuatan platform informan publ
 msgid "Please choose a configuration profile:"
 msgstr "Mohon pilih setelan profil:"
 
-msgid "Please choose a different username."
+msgid "Make it possible for this admin to reset user passwords."
 msgstr ""
 
-msgid "The user will receive an activation link via email."
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
+msgid "Please choose a different username."
 msgstr ""
 
 msgid "I have read and agree to the terms of the license."
@@ -2148,15 +2052,6 @@ msgstr "Penerimaan surel ini menunjukkan bahwa peladen dapat mengautentikasi ke 
 msgid "Test email"
 msgstr "Surel percobaan"
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr ""
-
-msgid "The report can be accessed at:"
-msgstr ""
-
-msgid "New comment"
-msgstr "Komentar baru"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2195,14 +2090,6 @@ msgid "Context: {ContextName}"
 msgstr "Konteks: {ContextName} "
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr ""
-
-msgid "New attachment"
-msgstr "Lampiran baru"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr "Sertifikat HTTPS yang termuat pada platform akan segera, atau sudah kedaluwarsa."
@@ -2236,6 +2123,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr ""
 
+msgid "The report can be accessed at:"
+msgstr ""
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "Akses ke identitas informan publik telah diizinkan."
 
@@ -2265,12 +2155,6 @@ msgstr ""
 
 msgid "The whistleblower has provided their identity"
 msgstr "Informan publik telah memberikan identitasnya"
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr ""
-
-msgid "New message"
-msgstr "Pesan baru"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2348,6 +2232,18 @@ msgid ""
 msgstr ""
 
 msgid "New report"
+msgstr ""
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
 msgstr ""
 
 msgid "Role: {Role}"

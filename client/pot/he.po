@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: ION\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -69,12 +69,6 @@ msgstr "רישיון"
 
 msgid "Notification templates"
 msgstr "תבניות התראה"
-
-msgid "Missing data"
-msgstr "נתונים חסרים"
-
-msgid "no stats available for this hour."
-msgstr "אין סטטיסטיקה לשעה אחרונהף בדוק עמוד הפעילות"
 
 msgid "Delete"
 msgstr "מחק"
@@ -379,9 +373,6 @@ msgstr ""
 msgid "Show small context cards on submission interface"
 msgstr ""
 
-msgid "Type of context selector:"
-msgstr ""
-
 msgid "Type to search…"
 msgstr "הקלד כדי לחפש..."
 
@@ -390,12 +381,6 @@ msgstr "השקט התראות דוא״ל"
 
 msgid "Turn on email notifications"
 msgstr "הפעל התראות דוא״ל"
-
-msgid "Enter an email address for the administrator"
-msgstr "הכנס כתובת דוא״ל עבור המינהלן"
-
-msgid "Enter a password for the administrator"
-msgstr "הכנס סיסמה עבור המינהלן"
 
 msgid "Failed logins"
 msgstr "התחברויות כושלות"
@@ -441,31 +426,6 @@ msgid ""
 "has either changed or been removed."
 msgstr ""
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr "אלא אם חושף/ת השחיתות י/תבדוק הדוח עד אז, הגישה שלהם אליו תפוג"
-
-msgid "The whistleblower can no longer access the report"
-msgstr "חושף/ת השחיתויות כבר לא יכל/ה לגשת לדוח"
-
-msgid "Warning!"
-msgstr "אזהרה!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr ""
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "מומלץ מאד להוריד ולהתקין את דפדפן tor"
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "דפדפן Tor כולל פרטיות שונות ושיפורי אבטחה שאינם קיימים בדפדפנים אחרים."
-
-msgid "Download the Tor Browser"
-msgstr "הורד את דפדפן Tor"
-
 msgid "Audit log"
 msgstr ""
 
@@ -487,20 +447,11 @@ msgstr "מאת"
 msgid "Number of downloads"
 msgstr "מספר הורדות"
 
-msgid "Error with file:"
-msgstr "שגיאה עם קובץ:"
-
 msgid "File size not accepted."
 msgstr "גודל הקובץ לא מתקבל"
 
-msgid "File type not accepted."
-msgstr "סוג הקובץ לא מתקבל"
-
 msgid "Maximum file size is:"
 msgstr "גודל מרבי של קובץ:"
-
-msgid "Accepted file types are:"
-msgstr "סוגי קבצים מקובלים הם:"
 
 msgid "Scheduled jobs"
 msgstr "עבודות מתוזמנות"
@@ -537,12 +488,6 @@ msgstr "הרחב"
 
 msgid "Select"
 msgstr "בחר"
-
-msgid "Selected by default"
-msgstr "נבחר ע״י ברירת מחדל"
-
-msgid "Unselected by default"
-msgstr "לא נבחר ע״י ברירת מחדל"
 
 msgid "Surname"
 msgstr "שם משפחה"
@@ -615,9 +560,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Administrators authorized to change user passwords"
-msgstr ""
-
 msgid "Select the context of your report:"
 msgstr "בחר את ההקשר של הדוח שלך:"
 
@@ -683,9 +625,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr ""
 
-msgid "Enable simplified login"
-msgstr ""
-
 msgid "Allow recipients to delete reports"
 msgstr ""
 
@@ -699,17 +638,11 @@ msgstr ""
 msgid "Enable search engines indexing"
 msgstr "אפשר אינדקס מנועי חיפוש"
 
-msgid "Description"
-msgstr "תיאור"
-
 msgid "Enable custom privacy panel"
 msgstr "אפשר תג פרטיות מותאם אישית"
 
 msgid "Custom privacy panel"
 msgstr "לוח פרטיות מותאם אישית"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "הצג טקסט זה כאשר חושף שחיתות לא משתמש ב־Tor"
 
 msgid "Disable the privacy panel"
 msgstr "בטל תג הפרטיות"
@@ -748,15 +681,8 @@ msgstr "מטעמי אבטחה, שינוי סיסמה דרושים במרווחי
 msgid "Set the value to 0 to disable this feature."
 msgstr "קבע את הערך אל 0 והשבת מאפיין זה."
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "כמות הימים עד שגישת חושף שחיתות תפוג"
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "מטמעי אבטחה, גישת חושף השחיתויות כפופה אל תפוגה."
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "שנה/י את ההגדרה הזו רק אם את/ה יודע/ת מה את/ה עושה"
+msgid "Number of days till notifying users unread reports"
+msgstr ""
 
 msgid "Enable custodian user role"
 msgstr ""
@@ -764,8 +690,8 @@ msgstr ""
 msgid "Enable scoring system"
 msgstr "אפשר מערכת ניקוד"
 
-msgid "Enable private labels"
-msgstr "אפשר תוויות פרטיות"
+msgid "Enable private annotations"
+msgstr ""
 
 msgid "Logging level"
 msgstr ""
@@ -829,6 +755,9 @@ msgstr "תפקיד"
 msgid "Name"
 msgstr "שם"
 
+msgid "Creation date"
+msgstr "תאריך יצירה"
+
 msgid "Last access"
 msgstr "גישה אחרונה"
 
@@ -870,9 +799,6 @@ msgstr "סמליל"
 
 msgid "Project name"
 msgstr "שם מיזם"
-
-msgid "Header title"
-msgstr ""
 
 msgid "Homepage title"
 msgstr "כותרת עמוד הבית"
@@ -936,6 +862,9 @@ msgstr "מושבת"
 
 msgid "Enabled"
 msgstr "מאופשר"
+
+msgid "Description"
+msgstr "תיאור"
 
 msgid "Questionnaire"
 msgstr "שְׁאֵלוֹן"
@@ -1023,9 +952,6 @@ msgstr "מינהלן"
 
 msgid "Recipient"
 msgstr "מקבל"
-
-msgid "Whistleblower"
-msgstr "חושף שחיתות"
 
 msgid "Each entry must be separated with a comma."
 msgstr ""
@@ -1136,6 +1062,9 @@ msgstr ""
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr ""
+
+msgid "Whistleblower"
+msgstr "חושף שחיתות"
 
 msgid "To"
 msgstr "אל"
@@ -1311,26 +1240,26 @@ msgstr "ניהול תיקים"
 msgid "Network settings"
 msgstr "הגדרות רשת"
 
+msgid "Mode:"
+msgstr "מצב:"
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Use the first site for administrative purposes only"
 msgstr ""
 
-msgid "Allow users to sign up"
-msgstr "התר למשתמשים להירשם"
-
 msgid "Enable multi-site login"
 msgstr ""
+
+msgid "Allow users to sign up"
+msgstr "התר למשתמשים להירשם"
 
 msgid "Enable terms of service"
 msgstr "אפשר תנאיי שירות"
 
 msgid "Sites"
 msgstr "אתרים"
-
-msgid "Mode:"
-msgstr "מצב:"
 
 msgid "Active"
 msgstr "פעיל"
@@ -1401,11 +1330,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr ""
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr ""
-
 msgid "User has administrative access to the following features:"
 msgstr ""
 
@@ -1453,9 +1377,6 @@ msgstr ""
 
 msgid "Confirm"
 msgstr "אשר"
-
-msgid "Add file"
-msgstr "הוסף קובץ"
 
 msgid "Are you sure?"
 msgstr "האם אתה בטוח?"
@@ -1549,9 +1470,6 @@ msgstr "משאב ניתן לגשת רק בתוך רשת Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "בקשת ההעלאה עולה על מגבלות הגודל"
 
-msgid "Success!"
-msgstr "הצליח!"
-
 msgid "Validation of email address change in progress."
 msgstr ""
 
@@ -1573,9 +1491,12 @@ msgid ""
 msgstr "נראה שאתה גולש באתר זה ללא פרטיות ואבטחה נוספות!"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "מומלץ מאוד לבקר באתר זה באמצעות תוכנה שנקרא דפדפן Tor, ששומר על הזהות שלך."
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "הורד את דפדפן Tor"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "לאחר מכן, העתק והדבק כתובת הבאה לדפדפן Tor המותקן:"
@@ -1683,26 +1604,11 @@ msgstr "תאריך העלאה"
 msgid "File size"
 msgstr "גודל קובץ"
 
-msgid "download"
-msgstr "הורדה"
-
-msgid "No files have been uploaded!"
-msgstr "לא הועלו קבצים!"
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr ""
 
-msgid "Report"
-msgstr "דוח"
-
-msgid "Access expiration"
-msgstr "תפוגת גישה"
-
 msgid "Never"
 msgstr "לעולם לא"
-
-msgid "Revoked"
-msgstr "בוטל"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "התר לחושף השחיתות לשלוח הודעות"
@@ -1753,8 +1659,8 @@ msgstr "רשימת נמענים"
 msgid "Status:"
 msgstr "מצב"
 
-msgid "Attached files for the whistleblower"
-msgstr "קבצים מצורפים עבור חושף השחיתות"
+msgid "Files attached by recipients"
+msgstr ""
 
 msgid "Upload a file:"
 msgstr "העלה קובץ:"
@@ -1767,12 +1673,6 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
-
-msgid "Files attached by recipients"
-msgstr ""
-
-msgid "These files have been attached to your report by the recipients."
 msgstr ""
 
 msgid "The provided recovery key is invalid."
@@ -1818,6 +1718,9 @@ msgstr "מזל טוב!"
 msgid "You have completed the platform activation."
 msgstr ""
 
+msgid "Success!"
+msgstr "הצליח!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
@@ -1849,11 +1752,8 @@ msgstr "שלם"
 msgid "Invalid phone number"
 msgstr "מספר טלפון בלתי תקף"
 
-msgid "This field is mandatory."
-msgstr "שדה זה הוא חובה."
-
-msgid "The answer is too short."
-msgstr "התשובה קצרה מדי."
+msgid "The answer is too short"
+msgstr ""
 
 msgid "The specified input is not valid."
 msgstr "הקלט המצוין אינו תקף."
@@ -1909,9 +1809,6 @@ msgid ""
 "invalid:"
 msgstr ""
 
-msgid "Errors"
-msgstr "שגיאות"
-
 msgid "You must select at least one recipient."
 msgstr ""
 
@@ -1929,10 +1826,17 @@ msgstr ""
 msgid "Please choose a configuration profile:"
 msgstr ""
 
-msgid "Please choose a different username."
+msgid "Make it possible for this admin to reset user passwords."
 msgstr ""
 
-msgid "The user will receive an activation link via email."
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
+msgid "Please choose a different username."
 msgstr ""
 
 msgid "I have read and agree to the terms of the license."
@@ -2143,15 +2047,6 @@ msgstr ""
 msgid "Test email"
 msgstr "בחן דוא״ל"
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr ""
-
-msgid "The report can be accessed at:"
-msgstr ""
-
-msgid "New comment"
-msgstr "תגובה חדשה"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2190,14 +2085,6 @@ msgid "Context: {ContextName}"
 msgstr "הקשר: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr ""
-
-msgid "New attachment"
-msgstr "מצורף חדש"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr ""
@@ -2231,6 +2118,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr ""
 
+msgid "The report can be accessed at:"
+msgstr ""
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "גישה הזהה של המתריע מורשה"
 
@@ -2260,12 +2150,6 @@ msgstr ""
 
 msgid "The whistleblower has provided their identity"
 msgstr "חושף השחיתות סיפק את זהותו"
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr ""
-
-msgid "New message"
-msgstr "הודעה חדשה"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2344,6 +2228,18 @@ msgstr ""
 
 msgid "New report"
 msgstr "דוח חדש"
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr "תפקיד: {Role}"

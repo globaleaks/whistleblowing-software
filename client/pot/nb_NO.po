@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -57,12 +57,6 @@ msgstr "Lisens"
 
 msgid "Notification templates"
 msgstr "Maler for merknader"
-
-msgid "Missing data"
-msgstr "Mangler data"
-
-msgid "no stats available for this hour."
-msgstr "ingen statistikk for denne timen."
 
 msgid "Delete"
 msgstr "Slett"
@@ -367,9 +361,6 @@ msgstr "Tekst vist på toppen av grensesnittet for valg av bindeleddsinformasjon
 msgid "Show small context cards on submission interface"
 msgstr "Vis små bindeleddsinformasjonskort på innsendelses-grensesnittet"
 
-msgid "Type of context selector:"
-msgstr "Valg av type bindeleddsinformasjon:"
-
 msgid "Type to search…"
 msgstr "Skriv for å søke…"
 
@@ -378,12 +369,6 @@ msgstr "Skru av e-postmerknader"
 
 msgid "Turn on email notifications"
 msgstr "Skru av e-postmerknader"
-
-msgid "Enter an email address for the administrator"
-msgstr "Skriv inn en e-postadresse for administratoren"
-
-msgid "Enter a password for the administrator"
-msgstr "Skriv inn et passord for administratoren"
 
 msgid "Failed logins"
 msgstr "Feilede innloggingsforsøk"
@@ -429,31 +414,6 @@ msgid ""
 "has either changed or been removed."
 msgstr "Denne egendefinerte teksten blir ikke lenger vist på plattformen. Den orginale nøkkelen har enten blitt endret eller fjernet."
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr ""
-
-msgid "The whistleblower can no longer access the report"
-msgstr ""
-
-msgid "Warning!"
-msgstr "Advarsel!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "Du benytter en ustøttet og muligens sårbar nettleser."
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "Du anbefales sterkt å laste ned og installere Tor-nettleseren."
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "Tor-nettleseren inneholder forskjellige personvern og sikkerhetsforbedringer som ikke er å finne i andre nettlesere."
-
-msgid "Download the Tor Browser"
-msgstr "Last ned Tor-nettleseren"
-
 msgid "Audit log"
 msgstr ""
 
@@ -475,20 +435,11 @@ msgstr "Fra"
 msgid "Number of downloads"
 msgstr "Antall ganger nedlastet"
 
-msgid "Error with file:"
-msgstr "Feil med fil:"
-
 msgid "File size not accepted."
 msgstr "Filstørrelse ikke godtatt."
 
-msgid "File type not accepted."
-msgstr "Filtypen godtas ikke."
-
 msgid "Maximum file size is:"
 msgstr "Maksimal filstørrelse er:"
-
-msgid "Accepted file types are:"
-msgstr "Godtatte filtyper:"
 
 msgid "Scheduled jobs"
 msgstr "Planlagte jobber"
@@ -525,12 +476,6 @@ msgstr "Utvid"
 
 msgid "Select"
 msgstr "Velg"
-
-msgid "Selected by default"
-msgstr "Forvalgt"
-
-msgid "Unselected by default"
-msgstr "Ikke forvalgt"
 
 msgid "Surname"
 msgstr "Etternavn"
@@ -603,9 +548,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Administrators authorized to change user passwords"
-msgstr ""
-
 msgid "Select the context of your report:"
 msgstr ""
 
@@ -671,9 +613,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr ""
 
-msgid "Enable simplified login"
-msgstr ""
-
 msgid "Allow recipients to delete reports"
 msgstr ""
 
@@ -687,17 +626,11 @@ msgstr ""
 msgid "Enable search engines indexing"
 msgstr "Skru på søkemotor-indeksering"
 
-msgid "Description"
-msgstr "Beskrivelse"
-
 msgid "Enable custom privacy panel"
 msgstr "Skru på egentilpasset personvernspanel"
 
 msgid "Custom privacy panel"
 msgstr "Egentilpasset personvernspanel"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "Tekst som vises når fløyteblåseren ikke bruker Tor"
 
 msgid "Disable the privacy panel"
 msgstr "Skru av personvernspanelet"
@@ -736,15 +669,8 @@ msgstr ""
 msgid "Set the value to 0 to disable this feature."
 msgstr ""
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "Antall dager til fløyteblåser-tilgang utløper"
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "Av sikkerhetsgrunner er fløyteblåsertilgang noe som utløper."
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "Bare endre denne innstillingen hvis du vet hva du driver på med."
+msgid "Number of days till notifying users unread reports"
+msgstr ""
 
 msgid "Enable custodian user role"
 msgstr ""
@@ -752,7 +678,7 @@ msgstr ""
 msgid "Enable scoring system"
 msgstr ""
 
-msgid "Enable private labels"
+msgid "Enable private annotations"
 msgstr ""
 
 msgid "Logging level"
@@ -817,6 +743,9 @@ msgstr "Rolle"
 msgid "Name"
 msgstr "Navn"
 
+msgid "Creation date"
+msgstr "Opprettelsesdato"
+
 msgid "Last access"
 msgstr "Siste tilgang"
 
@@ -858,9 +787,6 @@ msgstr "Logo"
 
 msgid "Project name"
 msgstr "Prosjektets navn"
-
-msgid "Header title"
-msgstr ""
 
 msgid "Homepage title"
 msgstr "Hjemmesidens tittel"
@@ -924,6 +850,9 @@ msgstr "Avskrudd"
 
 msgid "Enabled"
 msgstr "Påskrudd"
+
+msgid "Description"
+msgstr "Beskrivelse"
 
 msgid "Questionnaire"
 msgstr "Spørreskjema"
@@ -1011,9 +940,6 @@ msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Mottaker"
-
-msgid "Whistleblower"
-msgstr "Fløyteblåser/varsler"
 
 msgid "Each entry must be separated with a comma."
 msgstr ""
@@ -1124,6 +1050,9 @@ msgstr "Tillat at plattformen nås uten Tor"
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr ""
+
+msgid "Whistleblower"
+msgstr "Fløyteblåser/varsler"
 
 msgid "To"
 msgstr "Til"
@@ -1299,26 +1228,26 @@ msgstr ""
 msgid "Network settings"
 msgstr "Nettverksinnstillinger"
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr "Rotdomene brukt for sekundære sider"
 
 msgid "Use the first site for administrative purposes only"
 msgstr ""
 
-msgid "Allow users to sign up"
-msgstr "Tillat brukere å registrere seg"
-
 msgid "Enable multi-site login"
 msgstr ""
+
+msgid "Allow users to sign up"
+msgstr "Tillat brukere å registrere seg"
 
 msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
 msgstr "Sider"
-
-msgid "Mode:"
-msgstr ""
 
 msgid "Active"
 msgstr "Aktiv"
@@ -1389,11 +1318,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr ""
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr ""
-
 msgid "User has administrative access to the following features:"
 msgstr ""
 
@@ -1441,9 +1365,6 @@ msgstr ""
 
 msgid "Confirm"
 msgstr "Bekreft tillegg"
-
-msgid "Add file"
-msgstr "Legg til fil"
 
 msgid "Are you sure?"
 msgstr "Er du sikker?"
@@ -1537,9 +1458,6 @@ msgstr "Ressurs kan nåes bare i Tor-nettverket"
 msgid "The upload request exceeds the size limit"
 msgstr "Opplastingsforespørselen overskrider størrelsesavgrensningen"
 
-msgid "Success!"
-msgstr "Suksess!"
-
 msgid "Validation of email address change in progress."
 msgstr "Bekreftelse av e-postendring underveis."
 
@@ -1561,9 +1479,12 @@ msgid ""
 msgstr "Det later til at du surfer på denne siden uten bruk av ekstra personvern og sikkerhet!"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "Det er sterkt tilrådelig å besøke denne siden ved bruk av det identitetsbeskyttende skrivebordsprogrammet \"Tor-nettleser\"."
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "Last ned Tor-nettleseren"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Deretter, kopier og lim inn følgende adresse i den nå installerte  Tor-nettleseren:"
@@ -1671,26 +1592,11 @@ msgstr "Opplastingsdato"
 msgid "File size"
 msgstr "Filstørrelse"
 
-msgid "download"
-msgstr "last ned"
-
-msgid "No files have been uploaded!"
-msgstr "Ingen fil har blitt lastet opp!"
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr ""
 
-msgid "Report"
-msgstr ""
-
-msgid "Access expiration"
-msgstr "Tilgangsutløp"
-
 msgid "Never"
 msgstr "Aldri"
-
-msgid "Revoked"
-msgstr "Tilbakekalt"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Tillat fløyteblåseren å sende meldinger"
@@ -1741,8 +1647,8 @@ msgstr "Mottaker-liste"
 msgid "Status:"
 msgstr ""
 
-msgid "Attached files for the whistleblower"
-msgstr "Vedlagte filer for fløyteblåseren"
+msgid "Files attached by recipients"
+msgstr "Filer vedlegt av mottakere"
 
 msgid "Upload a file:"
 msgstr "Last opp en fil:"
@@ -1755,12 +1661,6 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
-
-msgid "Files attached by recipients"
-msgstr "Filer vedlegt av mottakere"
-
-msgid "These files have been attached to your report by the recipients."
 msgstr ""
 
 msgid "The provided recovery key is invalid."
@@ -1806,6 +1706,9 @@ msgstr "Gratulerer!"
 msgid "You have completed the platform activation."
 msgstr "Du har fullført plattformsaktiveringen."
 
+msgid "Success!"
+msgstr "Suksess!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Din fløyteblåserplattform er nesten klar!"
 
@@ -1837,11 +1740,8 @@ msgstr "Ferdig"
 msgid "Invalid phone number"
 msgstr ""
 
-msgid "This field is mandatory."
-msgstr "Dette inndatafeltet er påkrevd."
-
-msgid "The answer is too short."
-msgstr "Svaret er for kort."
+msgid "The answer is too short"
+msgstr ""
 
 msgid "The specified input is not valid."
 msgstr ""
@@ -1897,9 +1797,6 @@ msgid ""
 "invalid:"
 msgstr "Disse spørsmålene har ugyldige eller manglende svar i dette steget."
 
-msgid "Errors"
-msgstr ""
-
 msgid "You must select at least one recipient."
 msgstr "Du må velge ihvertfall én mottaker."
 
@@ -1917,10 +1814,17 @@ msgstr "Denne stegvise prosedyren vil geleide deg gjennom opprettelse av din fl�
 msgid "Please choose a configuration profile:"
 msgstr "Velg en oppsettsprofil:"
 
-msgid "Please choose a different username."
+msgid "Make it possible for this admin to reset user passwords."
 msgstr ""
 
-msgid "The user will receive an activation link via email."
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
+msgid "Please choose a different username."
 msgstr ""
 
 msgid "I have read and agree to the terms of the license."
@@ -2131,15 +2035,6 @@ msgstr "Mottak av denne e-posten indikerer at tjeneren kunne identitetsbekrefte 
 msgid "Test email"
 msgstr "E-posttest"
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr ""
-
-msgid "The report can be accessed at:"
-msgstr ""
-
-msgid "New comment"
-msgstr "Ny kommentar"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2178,14 +2073,6 @@ msgid "Context: {ContextName}"
 msgstr "Bindeleddsinformasjon: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr ""
-
-msgid "New attachment"
-msgstr "Nytt vedlegg"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr "HTTPS-sertifikatet på plattformen er i ferd med å utløpe, eller har allerede gjort det."
@@ -2219,6 +2106,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr ""
 
+msgid "The report can be accessed at:"
+msgstr ""
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "Tilgang til fløyteblåserens sanne identitet godkjent"
 
@@ -2248,12 +2138,6 @@ msgstr ""
 
 msgid "The whistleblower has provided their identity"
 msgstr "Fløyteblåseren har bekjentgjort sin sanne identitet"
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr ""
-
-msgid "New message"
-msgstr "Ny melding"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2331,6 +2215,18 @@ msgid ""
 msgstr ""
 
 msgid "New report"
+msgstr ""
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
 msgstr ""
 
 msgid "Role: {Role}"

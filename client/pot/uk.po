@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: b33a4006134bb6ee62b30fc0fac5cec6\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -72,12 +72,6 @@ msgstr "Ліцензія"
 
 msgid "Notification templates"
 msgstr "Шаблони повідомлень"
-
-msgid "Missing data"
-msgstr "Відсутні дані"
-
-msgid "no stats available for this hour."
-msgstr "немає статистики для цієї години."
 
 msgid "Delete"
 msgstr "Видалити"
@@ -382,9 +376,6 @@ msgstr "Text shown on top of the interface for selecting contexts"
 msgid "Show small context cards on submission interface"
 msgstr "Показати тематичні картки на сторінці повідомлень"
 
-msgid "Type of context selector:"
-msgstr "Type of context selector:"
-
 msgid "Type to search…"
 msgstr "Почніть пошук тут..."
 
@@ -393,12 +384,6 @@ msgstr "Вимкнути повідомлення по електронній п
 
 msgid "Turn on email notifications"
 msgstr "Увімкнути повідомлення по електронній пошті"
-
-msgid "Enter an email address for the administrator"
-msgstr "Enter an email address for the administrator"
-
-msgid "Enter a password for the administrator"
-msgstr "Enter a password for the administrator"
 
 msgid "Failed logins"
 msgstr "Кількість невдалих спроб авторизації"
@@ -444,31 +429,6 @@ msgid ""
 "has either changed or been removed."
 msgstr "Текст було видалено"
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr "Доступ до повідомлення буде закритий, якщо інформатора не відкриє повідомлення до обраного часу"
-
-msgid "The whistleblower can no longer access the report"
-msgstr "Викривач більше не має доступу до повідомлення"
-
-msgid "Warning!"
-msgstr "Увага!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "Ви використовуєте уразливий браузер, який не підтримується нашою системою."
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "Наполегливо радимо завантажити та встановити браузер Tor."
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "Броузер Tor включає в себе різні поліпшення конфіденційності і безпеки, відсутні в інших браузерах."
-
-msgid "Download the Tor Browser"
-msgstr "Завантажте Tor броузер"
-
 msgid "Audit log"
 msgstr ""
 
@@ -490,20 +450,11 @@ msgstr "Від"
 msgid "Number of downloads"
 msgstr "Кількість завантажень"
 
-msgid "Error with file:"
-msgstr "Помилка з файлом:"
-
 msgid "File size not accepted."
 msgstr "Розмір файлу завеликий."
 
-msgid "File type not accepted."
-msgstr "Неприйнятний тип файлу."
-
 msgid "Maximum file size is:"
 msgstr "Максимально допустимий розмір файлу:"
-
-msgid "Accepted file types are:"
-msgstr "Прийнятні типи файлів:"
 
 msgid "Scheduled jobs"
 msgstr "Заплановані завдання"
@@ -540,12 +491,6 @@ msgstr ""
 
 msgid "Select"
 msgstr "Вибрати"
-
-msgid "Selected by default"
-msgstr "Обрані за замовчуванням"
-
-msgid "Unselected by default"
-msgstr "Пропущені за замовчуванням"
 
 msgid "Surname"
 msgstr "Прізвище"
@@ -618,9 +563,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Administrators authorized to change user passwords"
-msgstr ""
-
 msgid "Select the context of your report:"
 msgstr "Оберіть контекст Вашого повідомлення"
 
@@ -686,9 +628,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr ""
 
-msgid "Enable simplified login"
-msgstr ""
-
 msgid "Allow recipients to delete reports"
 msgstr "Дозволити одержувачам видаляти матеріали"
 
@@ -702,17 +641,11 @@ msgstr "Дозволити одержувачам обирати які типи
 msgid "Enable search engines indexing"
 msgstr "Включити індексацію пошуковими системами"
 
-msgid "Description"
-msgstr "Опис"
-
 msgid "Enable custom privacy panel"
 msgstr "Увімкнути значок конфіденційності"
 
 msgid "Custom privacy panel"
 msgstr "власні налаштування панелі приватності"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "Текст, який показується, коли інформатор не використовує Tor"
 
 msgid "Disable the privacy panel"
 msgstr "Відключити значок конфіденційності"
@@ -751,15 +684,8 @@ msgstr ""
 msgid "Set the value to 0 to disable this feature."
 msgstr ""
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "Кількість днів до закінчення терміну доступу інформатора"
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "Для додаткової безпеки доступ інформаторів має обмежений термін дії."
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "Tweak this setting only if you know what you are doing."
+msgid "Number of days till notifying users unread reports"
+msgstr ""
 
 msgid "Enable custodian user role"
 msgstr ""
@@ -767,7 +693,7 @@ msgstr ""
 msgid "Enable scoring system"
 msgstr ""
 
-msgid "Enable private labels"
+msgid "Enable private annotations"
 msgstr ""
 
 msgid "Logging level"
@@ -832,6 +758,9 @@ msgstr "Роль"
 msgid "Name"
 msgstr "Назва"
 
+msgid "Creation date"
+msgstr "Дата Створення"
+
 msgid "Last access"
 msgstr "Останній вхід"
 
@@ -873,9 +802,6 @@ msgstr "Логотип"
 
 msgid "Project name"
 msgstr "Назва ініціативи"
-
-msgid "Header title"
-msgstr ""
 
 msgid "Homepage title"
 msgstr "Назва домашньої сторінки"
@@ -939,6 +865,9 @@ msgstr "Вимкнено"
 
 msgid "Enabled"
 msgstr "Увімкнений"
+
+msgid "Description"
+msgstr "Опис"
 
 msgid "Questionnaire"
 msgstr "Анкета із переліком питань"
@@ -1026,9 +955,6 @@ msgstr "Адміністратор"
 
 msgid "Recipient"
 msgstr "Одержувач"
-
-msgid "Whistleblower"
-msgstr "Інформатор"
 
 msgid "Each entry must be separated with a comma."
 msgstr ""
@@ -1139,6 +1065,9 @@ msgstr ""
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr ""
+
+msgid "Whistleblower"
+msgstr "Інформатор"
 
 msgid "To"
 msgstr "До"
@@ -1314,25 +1243,25 @@ msgstr ""
 msgid "Network settings"
 msgstr ""
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Use the first site for administrative purposes only"
 msgstr ""
 
-msgid "Allow users to sign up"
+msgid "Enable multi-site login"
 msgstr ""
 
-msgid "Enable multi-site login"
+msgid "Allow users to sign up"
 msgstr ""
 
 msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
-msgstr ""
-
-msgid "Mode:"
 msgstr ""
 
 msgid "Active"
@@ -1404,11 +1333,6 @@ msgstr "Дозволити одержувачам відтерміновуват
 msgid "Allow the recipient to delete reports"
 msgstr "Дозволити одержувачам видаляти матеріали"
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr "Дозволити одержувачам обирати які типи повідомлень можуть надсилати інформатори "
-
 msgid "User has administrative access to the following features:"
 msgstr ""
 
@@ -1456,9 +1380,6 @@ msgstr ""
 
 msgid "Confirm"
 msgstr "Підтвердити відтермінування"
-
-msgid "Add file"
-msgstr "Додати файл"
 
 msgid "Are you sure?"
 msgstr "Ви впевнені?"
@@ -1552,9 +1473,6 @@ msgstr "Ресурс доступний лише через браузер Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Завантаження перевищує дозволений розмір"
 
-msgid "Success!"
-msgstr "Успіх!"
-
 msgid "Validation of email address change in progress."
 msgstr "Перевірка зміни адреси електронної пошти в процесі."
 
@@ -1576,9 +1494,12 @@ msgid ""
 msgstr "Ви переглядаєте цей сайт без додаткового захисту конфіденційності"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "Ми настійно рекомендуємо вам відвідувати цей сайт лише за допомогою браузера Tor, який захищає вашу анонімність."
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "Завантажте Tor броузер"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Потім скопіюйте і вставте наступну адресу у встановленій Tor Browser:"
@@ -1686,26 +1607,11 @@ msgstr "Дата завантаження"
 msgid "File size"
 msgstr "Розмір файлу"
 
-msgid "download"
-msgstr "завантаження"
-
-msgid "No files have been uploaded!"
-msgstr "Жодного файлу не було завантажено!"
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Дозволити викривачам надсилати додатки"
 
-msgid "Report"
-msgstr ""
-
-msgid "Access expiration"
-msgstr "Закінчення терміну доступу"
-
 msgid "Never"
 msgstr "Ніколи"
-
-msgid "Revoked"
-msgstr "Відкликано"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Дозволити викривачу надсилати повідомлення"
@@ -1756,8 +1662,8 @@ msgstr "Перелік одержувачів"
 msgid "Status:"
 msgstr "Статус"
 
-msgid "Attached files for the whistleblower"
-msgstr "Додані файли для інформатора"
+msgid "Files attached by recipients"
+msgstr "Файли прикріплені одержувачами"
 
 msgid "Upload a file:"
 msgstr "Завантажте файл:"
@@ -1771,12 +1677,6 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr ""
-
-msgid "Files attached by recipients"
-msgstr "Файли прикріплені одержувачами"
-
-msgid "These files have been attached to your report by the recipients."
-msgstr "Ці файли були додані до вашого подання одержувачами."
 
 msgid "The provided recovery key is invalid."
 msgstr ""
@@ -1821,6 +1721,9 @@ msgstr "Вітаємо!"
 msgid "You have completed the platform activation."
 msgstr ""
 
+msgid "Success!"
+msgstr "Успіх!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
@@ -1852,11 +1755,8 @@ msgstr "Завершити"
 msgid "Invalid phone number"
 msgstr ""
 
-msgid "This field is mandatory."
-msgstr "Це поле є обов'язковим"
-
-msgid "The answer is too short."
-msgstr "Відповідь занадто коротка."
+msgid "The answer is too short"
+msgstr ""
 
 msgid "The specified input is not valid."
 msgstr ""
@@ -1912,9 +1812,6 @@ msgid ""
 "invalid:"
 msgstr "На даному кроці відсутні або недійсні відповіді на наступні питання:"
 
-msgid "Errors"
-msgstr ""
-
 msgid "You must select at least one recipient."
 msgstr "Ви повинні вибрати щонайменше одного одержувача."
 
@@ -1932,10 +1829,17 @@ msgstr ""
 msgid "Please choose a configuration profile:"
 msgstr ""
 
-msgid "Please choose a different username."
+msgid "Make it possible for this admin to reset user passwords."
 msgstr ""
 
-msgid "The user will receive an activation link via email."
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
+msgid "Please choose a different username."
 msgstr ""
 
 msgid "I have read and agree to the terms of the license."
@@ -2146,15 +2050,6 @@ msgstr "Reception of this email indicates that the server was able to authentica
 msgid "Test email"
 msgstr "Test email"
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr "Один з інформаторів залиший новий коментар до існуючого свідчення."
-
-msgid "The report can be accessed at:"
-msgstr "Повідомлення можна отримати:"
-
-msgid "New comment"
-msgstr "Новий Коментар"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2193,14 +2088,6 @@ msgid "Context: {ContextName}"
 msgstr "Назва тематики: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr "Повідомляємо що інформатор, який надав свідчення {TipNum} , додав новий файл. "
-
-msgid "New attachment"
-msgstr "Новий додаток"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr ""
@@ -2234,6 +2121,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr "Повідомляємо, що куратор задовольнив Ваш запит на доступ до даних про інформатора, який надіслав повідомлення {TipNum}"
 
+msgid "The report can be accessed at:"
+msgstr "Повідомлення можна отримати:"
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "Запит на інформацію про особу викривача було задоволено"
 
@@ -2263,12 +2153,6 @@ msgstr "Повідомляємо, що викривач, який надав с�
 
 msgid "The whistleblower has provided their identity"
 msgstr "Викривач ідентифікував себе"
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr "Один з інформаторів залиший новий коментар до існуючого свідчення."
-
-msgid "New message"
-msgstr "Нове Повідомлення"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2346,6 +2230,18 @@ msgid ""
 msgstr "Інформатор сподівається, що саме Ви звернете увагу на надані матеріали. Викривачі дуже ризикують. Інформація, яку вони надають, заслуговує особливої уваги!"
 
 msgid "New report"
+msgstr ""
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
 msgstr ""
 
 msgid "Role: {Role}"

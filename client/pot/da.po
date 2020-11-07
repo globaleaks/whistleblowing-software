@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: Bo Elkjaer <bo_elkjaer@riseup.net>\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -61,12 +61,6 @@ msgstr "Licens"
 
 msgid "Notification templates"
 msgstr "Notifikationsskabeloner"
-
-msgid "Missing data"
-msgstr "Manglende data"
-
-msgid "no stats available for this hour."
-msgstr "ingen statistik tilgængelig for denne time."
 
 msgid "Delete"
 msgstr "Slet"
@@ -371,9 +365,6 @@ msgstr "Tekst der vises øverst på det interface hvor sammenhænge vælges"
 msgid "Show small context cards on submission interface"
 msgstr "Vis små indholdskort på indsendelses-interfacet"
 
-msgid "Type of context selector:"
-msgstr "Vælg indholdstype:"
-
 msgid "Type to search…"
 msgstr "Skriv for at søge..."
 
@@ -382,12 +373,6 @@ msgstr "Slå e-mail-notifikation fra"
 
 msgid "Turn on email notifications"
 msgstr "Slå e-mail-notifikation til"
-
-msgid "Enter an email address for the administrator"
-msgstr "Tilføj e-mail adresse til administratoren"
-
-msgid "Enter a password for the administrator"
-msgstr "Skriv administrator adgangskode"
 
 msgid "Failed logins"
 msgstr "Mislykkede loginforsøg"
@@ -433,31 +418,6 @@ msgid ""
 "has either changed or been removed."
 msgstr "Denne brugerdefinerede tekst bliver ikke længere vist på platformen. Den originale tekst er enten ændret eller fjernet"
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr "Hvis ikke whistlebloweren kontrollerer indsendelsen inden dette tidspunkt vil vedkommendes adgang til materialet udløbe."
-
-msgid "The whistleblower can no longer access the report"
-msgstr "Whistlebloweren har ikke længere adgang til det indberettede materiale."
-
-msgid "Warning!"
-msgstr "Advarsel!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "Du anvender en ikke-understøttet og potentielt sårbar browser."
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "Du anbefales kraftigt at downloade og installere Tor browseren."
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "Tor browseren indeholder forskellige privatlivs- og sikkerhedsudvidelser, der ikke findes i andre browsere."
-
-msgid "Download the Tor Browser"
-msgstr "Download Tor browseren"
-
 msgid "Audit log"
 msgstr "Revisionslog"
 
@@ -479,20 +439,11 @@ msgstr "Fra"
 msgid "Number of downloads"
 msgstr "Antal downloads"
 
-msgid "Error with file:"
-msgstr "Fejl i fil:"
-
 msgid "File size not accepted."
 msgstr "Filstørrelse kan ikke godkendes."
 
-msgid "File type not accepted."
-msgstr "Filtype kan ikke godkendes."
-
 msgid "Maximum file size is:"
 msgstr "Maksimal filstørrelse er:"
-
-msgid "Accepted file types are:"
-msgstr "Godkendte filtyper:"
 
 msgid "Scheduled jobs"
 msgstr "Planlagte kørsler"
@@ -529,12 +480,6 @@ msgstr "Udvid"
 
 msgid "Select"
 msgstr "Vælg"
-
-msgid "Selected by default"
-msgstr "Valgt som standard"
-
-msgid "Unselected by default"
-msgstr "Fravalgt som standard"
 
 msgid "Surname"
 msgstr "Efternavn"
@@ -607,9 +552,6 @@ msgstr "CVR-nummer"
 msgid "Tax code"
 msgstr "Skattekode"
 
-msgid "Administrators authorized to change user passwords"
-msgstr "Tillad administratorer at ændre brugeradgangskoder"
-
 msgid "Select the context of your report:"
 msgstr "Vælg hvilken sammehæng din indsendelse indgår i."
 
@@ -675,9 +617,6 @@ msgstr "Tillad administratorer at ændre brugeradgangskoder"
 msgid "Enable multisite feature"
 msgstr "Aktivér fler-side funktion"
 
-msgid "Enable simplified login"
-msgstr "Aktivér simplificeret login"
-
 msgid "Allow recipients to delete reports"
 msgstr "Tillad modtagere at slette indberetninger"
 
@@ -691,17 +630,11 @@ msgstr "Lad modtagere give whistleblowere tilladelser på specifikke indsendelse
 msgid "Enable search engines indexing"
 msgstr "Aktivér søgemaskiners indeksering"
 
-msgid "Description"
-msgstr "Beskrivelse"
-
 msgid "Enable custom privacy panel"
 msgstr "Aktivér brugertilpasset privatlivspanel"
 
 msgid "Custom privacy panel"
 msgstr "Brugertilpasset privatlivspanel"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "Tekst der vises når whistlebloweren ikke bruger Tor"
 
 msgid "Disable the privacy panel"
 msgstr "Deaktiver privatlivspanelet"
@@ -740,15 +673,8 @@ msgstr "Af sikkerhedsmæssige årsager kræves det, at adgangskoden skiftes med 
 msgid "Set the value to 0 to disable this feature."
 msgstr "Sæt værdien til 0 for at deaktivere denne funktionalitet."
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "Antal dage til whistleblowerens adgang udløber"
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "Af sikkerhedsmæssige årsager vil whistleblowerens adgang til materialet være tidsmæssigt begrænset."
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "Du skal kun justere denne indstilling hvis du ved, hvad du gør."
+msgid "Number of days till notifying users unread reports"
+msgstr ""
 
 msgid "Enable custodian user role"
 msgstr "Aktivér kontoførende brugerrolle"
@@ -756,8 +682,8 @@ msgstr "Aktivér kontoførende brugerrolle"
 msgid "Enable scoring system"
 msgstr "Aktivér score system"
 
-msgid "Enable private labels"
-msgstr "Aktivér private mærkater"
+msgid "Enable private annotations"
+msgstr ""
 
 msgid "Logging level"
 msgstr "Loggingniveau"
@@ -821,6 +747,9 @@ msgstr "Rolle"
 msgid "Name"
 msgstr "Navn"
 
+msgid "Creation date"
+msgstr "Oprettelsesdato"
+
 msgid "Last access"
 msgstr "Seneste login"
 
@@ -862,9 +791,6 @@ msgstr "Logo"
 
 msgid "Project name"
 msgstr "Projektnavn"
-
-msgid "Header title"
-msgstr "Etikettitel"
 
 msgid "Homepage title"
 msgstr "Titel på hjemmesiden"
@@ -928,6 +854,9 @@ msgstr "Deaktiveret"
 
 msgid "Enabled"
 msgstr "Aktiveret"
+
+msgid "Description"
+msgstr "Beskrivelse"
 
 msgid "Questionnaire"
 msgstr "Spørgeskema"
@@ -1015,9 +944,6 @@ msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Modtager"
-
-msgid "Whistleblower"
-msgstr "Whistleblower"
 
 msgid "Each entry must be separated with a comma."
 msgstr "Hver post skal adskilles med et komma."
@@ -1128,6 +1054,9 @@ msgstr "Tillad at platformen kan tilgås uden Tor"
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr "Roller med tilladelse til at tilgå platformen uden Tor"
+
+msgid "Whistleblower"
+msgstr "Whistleblower"
 
 msgid "To"
 msgstr "Til"
@@ -1303,26 +1232,26 @@ msgstr "Sagsadministration"
 msgid "Network settings"
 msgstr "Netværksindstillinger"
 
+msgid "Mode:"
+msgstr "Tilstand:"
+
 msgid "Root domain used for secondary sites"
 msgstr "Primært domænenavn der anvendes til underliggende sider"
 
 msgid "Use the first site for administrative purposes only"
 msgstr "Brug kun den første side til administrative formål"
 
-msgid "Allow users to sign up"
-msgstr "Tillad brugere at tilmelde sig"
-
 msgid "Enable multi-site login"
 msgstr "Akivér multi-sitelogin"
+
+msgid "Allow users to sign up"
+msgstr "Tillad brugere at tilmelde sig"
 
 msgid "Enable terms of service"
 msgstr "Aktivér servicebetingelserne"
 
 msgid "Sites"
 msgstr "Sider"
-
-msgid "Mode:"
-msgstr "Tilstand:"
 
 msgid "Active"
 msgstr "Aktiv"
@@ -1393,11 +1322,6 @@ msgstr "Tillad modtageren at udsætte udløbsdatoen på indberetningen"
 msgid "Allow the recipient to delete reports"
 msgstr "Tillad modtageren at slette indberetninger"
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr "Lad modtagere give whistleblowere tilladelser på specifikke indsendelser"
-
 msgid "User has administrative access to the following features:"
 msgstr "Bruger har administratoradgang til følgende funktionaliteter:"
 
@@ -1445,9 +1369,6 @@ msgstr "Tekst der vises efter at brugeren har valgt denne mulighed."
 
 msgid "Confirm"
 msgstr "Bekræft"
-
-msgid "Add file"
-msgstr "Tilføj fil"
 
 msgid "Are you sure?"
 msgstr "Er du sikker?"
@@ -1541,9 +1462,6 @@ msgstr "Denne ressource kan kun tilgås via Tor netværket"
 msgid "The upload request exceeds the size limit"
 msgstr "Upload overstiger tilladt størrelse"
 
-msgid "Success!"
-msgstr "Succes!"
-
 msgid "Validation of email address change in progress."
 msgstr "Godkendelse af skift af e-mail-adresse i gang."
 
@@ -1565,9 +1483,12 @@ msgid ""
 msgstr "Det ser ud som om du besøger dette websted uden at gøre brug af ekstra beskyttelse af privatliv og sikkerhed!"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "Det skal stærkt tilrådes at besøge dette site via Tor Browser, der beskytter din identitet."
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "Download Tor browseren"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Kopier og indsæt følgende adresse i din Tor browser: "
@@ -1675,26 +1596,11 @@ msgstr "Upload dato"
 msgid "File size"
 msgstr "Filstørrelse"
 
-msgid "download"
-msgstr "download"
-
-msgid "No files have been uploaded!"
-msgstr "Ingen filer er blevet uploadet!"
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Tillad whistlebloweren at tilføje vedhæftelser til indsendelsen"
 
-msgid "Report"
-msgstr "Indberetning"
-
-msgid "Access expiration"
-msgstr "Udløbsdato for adgang"
-
 msgid "Never"
 msgstr "Aldrig"
-
-msgid "Revoked"
-msgstr "Tilbagekaldt"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Tillad whistlebloweren at sende beskeder"
@@ -1745,8 +1651,8 @@ msgstr "Modtagerliste"
 msgid "Status:"
 msgstr "Status:"
 
-msgid "Attached files for the whistleblower"
-msgstr "Vedhæftede filer til whistlebloweren"
+msgid "Files attached by recipients"
+msgstr "Filer der er vedhæftet af modtagere"
 
 msgid "Upload a file:"
 msgstr "Upload en fil:"
@@ -1760,12 +1666,6 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Vi anbefaler, at du går til menuen \"Indstillinger\" for at finde din \"kontogendannelsesnøgle\", og at du gemmer denne et sikkert sted. Kontogendannelsesnøglen er nødvendig for at få adgang til portalen og dine data, i tilfælde af, at du glemmer din adgangskode. "
-
-msgid "Files attached by recipients"
-msgstr "Filer der er vedhæftet af modtagere"
-
-msgid "These files have been attached to your report by the recipients."
-msgstr "Disse filer er blevet vedhæftet af modtagerne til din indsendelse."
 
 msgid "The provided recovery key is invalid."
 msgstr "Den indtastede gendannelsesnøgle er forkert."
@@ -1810,6 +1710,9 @@ msgstr "Tillykke!"
 msgid "You have completed the platform activation."
 msgstr "Du har gennemført aktivering af platformen."
 
+msgid "Success!"
+msgstr "Succes!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Din whistleblowing platform er næsten færdig!"
 
@@ -1841,11 +1744,8 @@ msgstr "Afslut"
 msgid "Invalid phone number"
 msgstr "Forkert telefonnummer"
 
-msgid "This field is mandatory."
-msgstr "Dette felt er obligatorisk."
-
-msgid "The answer is too short."
-msgstr "Svaret er for kort."
+msgid "The answer is too short"
+msgstr ""
 
 msgid "The specified input is not valid."
 msgstr "Det indtastede er ikke gyldigt."
@@ -1901,9 +1801,6 @@ msgid ""
 "invalid:"
 msgstr "I dette trin mangler svarene på de følgende spørgsmål eller de er ugyldige:"
 
-msgid "Errors"
-msgstr "Fejl"
-
 msgid "You must select at least one recipient."
 msgstr "Du skal vælge mindst en modtager."
 
@@ -1921,11 +1818,18 @@ msgstr "De følgende trin-for-trin-procedurer guider dig igennem opsætningen af
 msgid "Please choose a configuration profile:"
 msgstr "Vælg venligst en konfigurations-profil:"
 
+msgid "Make it possible for this admin to reset user passwords."
+msgstr ""
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
 msgid "Please choose a different username."
 msgstr "Vælg venligst et andet brugernavn."
-
-msgid "The user will receive an activation link via email."
-msgstr "Brugeren vil modtage et aktiveringslink på e-mail."
 
 msgid "I have read and agree to the terms of the license."
 msgstr "Jeg har læst og accepterer licensbetingelserne."
@@ -2135,15 +2039,6 @@ msgstr "At du har modtaget denne e-mail viser, at serveren var i stand til at au
 msgid "Test email"
 msgstr "Test-e-mail"
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr "Dette er en e-mail for at notificere dig om en ny kommentar på en eksisterende indberetning."
-
-msgid "The report can be accessed at:"
-msgstr "Indberetningen kan tilgås på:"
-
-msgid "New comment"
-msgstr "Ny kommentar"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2182,14 +2077,6 @@ msgid "Context: {ContextName}"
 msgstr "Sammenhæng:  {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr "Dette er en e-mail for at underrette dig om at whistlebloweren bag indsendelsen {TipNum}  har vedhæftet nyt materiale."
-
-msgid "New attachment"
-msgstr "Ny tilføjelse"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr "Det HTTPS-certifikat, der er indlæst på platformen, er ved at udløbe eller er allerede udløbet."
@@ -2223,6 +2110,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr "Dette er en e-mail for at underrette dig om, at en tilsynsførende har autoriseret dig til at få adgang til whistleblowerens identitet i forbindelse med indsendelsen {TipNum}."
 
+msgid "The report can be accessed at:"
+msgstr "Indberetningen kan tilgås på:"
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "Adgang til whistleblowers identitet godkendes"
 
@@ -2252,12 +2142,6 @@ msgstr "Dette er en e-mail for at underrette dig om, at whistleblower for indsen
 
 msgid "The whistleblower has provided their identity"
 msgstr "Whistlebloweren har oplyst sin identitet"
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr "Dette er en e-mail for at notificere dig om en ny kommentar på en eksisterende indberetning."
-
-msgid "New message"
-msgstr "Ny meddelelse"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2336,6 +2220,18 @@ msgstr "Du skal være særligt opmærksom på oplysninger og materiale, der er i
 
 msgid "New report"
 msgstr "Ny indberetning"
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr "Rolle: {Role}"

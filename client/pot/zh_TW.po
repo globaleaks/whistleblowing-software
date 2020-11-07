@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: Chi-Hsun Tsai\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -61,12 +61,6 @@ msgstr "版權"
 
 msgid "Notification templates"
 msgstr "通知模版"
-
-msgid "Missing data"
-msgstr "遺失的資料"
-
-msgid "no stats available for this hour."
-msgstr "尚無這小時的統計資料"
 
 msgid "Delete"
 msgstr "刪除"
@@ -371,9 +365,6 @@ msgstr "介面上方會顯示所選擇內文文字"
 msgid "Show small context cards on submission interface"
 msgstr "在揭密提交介面下會顯示小型內文卡"
 
-msgid "Type of context selector:"
-msgstr "內文選擇器的類型"
-
 msgid "Type to search…"
 msgstr "輸入欲搜尋"
 
@@ -382,12 +373,6 @@ msgstr "對電子郵件通知消音"
 
 msgid "Turn on email notifications"
 msgstr "開啟電子郵件通知"
-
-msgid "Enter an email address for the administrator"
-msgstr "輸入管理者電子郵件"
-
-msgid "Enter a password for the administrator"
-msgstr "輸入管理者密碼"
 
 msgid "Failed logins"
 msgstr "登入失敗"
@@ -433,31 +418,6 @@ msgid ""
 "has either changed or been removed."
 msgstr "這個自定的內文不會再顯視在平台上。原本的文字可能已經變動或是被移除了。"
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr "除非揭密者本次有檢查報告，否則其取讀權限將會失效。"
-
-msgid "The whistleblower can no longer access the report"
-msgstr "揭密者無法再讀取此份報告"
-
-msgid "Warning!"
-msgstr "警告！"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "你正在使用一個未支援且有潛在弱點的瀏覧器"
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "強烈建議下載並安裝 Tor 瀏覧器"
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "Tor 瀏覧器具有其它瀏覧器未有的各式隱私與安全強化功能"
-
-msgid "Download the Tor Browser"
-msgstr "下載 Tor 瀏覧器"
-
 msgid "Audit log"
 msgstr "審核記錄"
 
@@ -479,20 +439,11 @@ msgstr "來自"
 msgid "Number of downloads"
 msgstr "下載次數"
 
-msgid "Error with file:"
-msgstr "檔案出錯:"
-
 msgid "File size not accepted."
 msgstr "檔案大小無法處理"
 
-msgid "File type not accepted."
-msgstr "檔案格式無法受理"
-
 msgid "Maximum file size is:"
 msgstr "單一檔量容量上限為："
-
-msgid "Accepted file types are:"
-msgstr "可接受的檔案格式為："
 
 msgid "Scheduled jobs"
 msgstr "工作排程"
@@ -529,12 +480,6 @@ msgstr " 拓展"
 
 msgid "Select"
 msgstr "選擇"
-
-msgid "Selected by default"
-msgstr "預設為已挑選"
-
-msgid "Unselected by default"
-msgstr "預設為未挑選"
 
 msgid "Surname"
 msgstr "姓氏"
@@ -607,9 +552,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Administrators authorized to change user passwords"
-msgstr ""
-
 msgid "Select the context of your report:"
 msgstr "選擇您報告合適的情況："
 
@@ -675,9 +617,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "啟用多個網站功能"
 
-msgid "Enable simplified login"
-msgstr "開啟簡易登入"
-
 msgid "Allow recipients to delete reports"
 msgstr "收件者可以刪除報告"
 
@@ -691,17 +630,11 @@ msgstr "收件者可以准許揭密者讀取某份報告的權限"
 msgid "Enable search engines indexing"
 msgstr "可讓搜尋引擎進行索引"
 
-msgid "Description"
-msgstr "描述"
-
 msgid "Enable custom privacy panel"
 msgstr "啟用自定的隱私面版"
 
 msgid "Custom privacy panel"
 msgstr "自定隱私面板"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "當吹哨者不是用 TOR 瀏覧器時所顯示的文字"
 
 msgid "Disable the privacy panel"
 msgstr "取消隱私面板"
@@ -740,15 +673,8 @@ msgstr "基於安全考量，密碼的變更需要有一段間隔時間。"
 msgid "Set the value to 0 to disable this feature."
 msgstr "將值設為 0  以取消此功能。"
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "吹哨者讀取使的到期剩餘天數"
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "因安全考量，吹哨者的存取權限已過期"
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "唯有知道自己在做什麼的情況下才進行此處設定的調整"
+msgid "Number of days till notifying users unread reports"
+msgstr ""
 
 msgid "Enable custodian user role"
 msgstr "啟動保管人的用戶角色"
@@ -756,8 +682,8 @@ msgstr "啟動保管人的用戶角色"
 msgid "Enable scoring system"
 msgstr "啟用評分系統"
 
-msgid "Enable private labels"
-msgstr "開啟私人標籤"
+msgid "Enable private annotations"
+msgstr ""
 
 msgid "Logging level"
 msgstr "登入層級"
@@ -821,6 +747,9 @@ msgstr "角色"
 msgid "Name"
 msgstr "名字"
 
+msgid "Creation date"
+msgstr "創建日期"
+
 msgid "Last access"
 msgstr "最近讀取"
 
@@ -862,9 +791,6 @@ msgstr "Logo"
 
 msgid "Project name"
 msgstr "專案名稱"
-
-msgid "Header title"
-msgstr "表頭標題"
 
 msgid "Homepage title"
 msgstr "網頁標題"
@@ -928,6 +854,9 @@ msgstr "關閉"
 
 msgid "Enabled"
 msgstr "啟用"
+
+msgid "Description"
+msgstr "描述"
 
 msgid "Questionnaire"
 msgstr "問卷"
@@ -1015,9 +944,6 @@ msgstr "管理者"
 
 msgid "Recipient"
 msgstr "收件者"
-
-msgid "Whistleblower"
-msgstr "吹哨揭密者"
 
 msgid "Each entry must be separated with a comma."
 msgstr "每一筆條目必須用逗號分隔。"
@@ -1128,6 +1054,9 @@ msgstr "讓平台可以不透過 Tor 來訪問"
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr "啟動角須透用 Tor 使用平台"
+
+msgid "Whistleblower"
+msgstr "吹哨揭密者"
 
 msgid "To"
 msgstr "給"
@@ -1303,26 +1232,26 @@ msgstr "案件管理"
 msgid "Network settings"
 msgstr "網路設定"
 
+msgid "Mode:"
+msgstr "模式："
+
 msgid "Root domain used for secondary sites"
 msgstr "二級網站使用的根域名"
 
 msgid "Use the first site for administrative purposes only"
 msgstr "僅為管理目的才使用第一個網站"
 
-msgid "Allow users to sign up"
-msgstr "可接受新用戶註冊"
-
 msgid "Enable multi-site login"
 msgstr "開啟多站台登入"
+
+msgid "Allow users to sign up"
+msgstr "可接受新用戶註冊"
 
 msgid "Enable terms of service"
 msgstr "開啟服務條款"
 
 msgid "Sites"
 msgstr "網站"
-
-msgid "Mode:"
-msgstr "模式："
 
 msgid "Active"
 msgstr "活躍中的"
@@ -1393,11 +1322,6 @@ msgstr "收件者可以延長報告期限"
 msgid "Allow the recipient to delete reports"
 msgstr "收件者可以刪除報告"
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr "收件者可授權揭密者對某份報告的讀取權限"
-
 msgid "User has administrative access to the following features:"
 msgstr "管理級的用戶可以有以下權限功能："
 
@@ -1445,9 +1369,6 @@ msgstr "用戶決定此選項後會出現的文字"
 
 msgid "Confirm"
 msgstr "確認"
-
-msgid "Add file"
-msgstr "新增檔案"
 
 msgid "Are you sure?"
 msgstr "你確定嗎？"
@@ -1541,9 +1462,6 @@ msgstr "資源僅能透過 TOR 網路讀取"
 msgid "The upload request exceeds the size limit"
 msgstr "上傳的請求超出檔案大小上限"
 
-msgid "Success!"
-msgstr "成功!"
-
 msgid "Validation of email address change in progress."
 msgstr "正在查驗電郵地址變更"
 
@@ -1565,9 +1483,12 @@ msgid ""
 msgstr "你瀏覧這個網站時沒有加強隱私與安全保護"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "強列建議當你瀏覧這個網站時使用 TOR 瀏覧器來保護你的身份"
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "下載 Tor 瀏覧器"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "然後在 TOR 瀏覧器上複制貼上以下的網址"
@@ -1675,26 +1596,11 @@ msgstr "上傳日期"
 msgid "File size"
 msgstr "檔案大小"
 
-msgid "download"
-msgstr "下載"
-
-msgid "No files have been uploaded!"
-msgstr "無檔案被上傳"
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "揭密者可對此報告附加資料檔案"
 
-msgid "Report"
-msgstr "報告"
-
-msgid "Access expiration"
-msgstr "存取權限到期"
-
 msgid "Never"
 msgstr "絕不要"
-
-msgid "Revoked"
-msgstr "撒銷"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "允許吹哨者傳送訊息"
@@ -1745,8 +1651,8 @@ msgstr "收件人清單"
 msgid "Status:"
 msgstr "狀態"
 
-msgid "Attached files for the whistleblower"
-msgstr "給吹哨者的附加檔案"
+msgid "Files attached by recipients"
+msgstr "收件者所附加的檔案"
 
 msgid "Upload a file:"
 msgstr "上傳檔案 :"
@@ -1760,12 +1666,6 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr ""
-
-msgid "Files attached by recipients"
-msgstr "收件者所附加的檔案"
-
-msgid "These files have been attached to your report by the recipients."
-msgstr "這些檔案已附加在給收件者的報告當中。"
 
 msgid "The provided recovery key is invalid."
 msgstr "所提供的恢復密鑰已失效。"
@@ -1810,6 +1710,9 @@ msgstr "恭喜！"
 msgid "You have completed the platform activation."
 msgstr "已完成平台的激活"
 
+msgid "Success!"
+msgstr "成功!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "吹哨揭密平台已接近完成！"
 
@@ -1841,11 +1744,8 @@ msgstr "完成"
 msgid "Invalid phone number"
 msgstr "無效的電話號碼"
 
-msgid "This field is mandatory."
-msgstr "此欄位為必填"
-
-msgid "The answer is too short."
-msgstr "這個答案太過簡短"
+msgid "The answer is too short"
+msgstr ""
 
 msgid "The specified input is not valid."
 msgstr "指定的輸入無效。"
@@ -1901,9 +1801,6 @@ msgid ""
 "invalid:"
 msgstr "在本步驟中，請回答下列問題是否為遺失或無效："
 
-msgid "Errors"
-msgstr "出錯"
-
 msgid "You must select at least one recipient."
 msgstr "你必須至少挑選一位收件者"
 
@@ -1921,11 +1818,18 @@ msgstr "下方的步驟指引將協助按步完成吹哨平台建置"
 msgid "Please choose a configuration profile:"
 msgstr "請選擇一個設定個人身份頁面"
 
+msgid "Make it possible for this admin to reset user passwords."
+msgstr ""
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
 msgid "Please choose a different username."
 msgstr "請選擇不同的用戶名稱。"
-
-msgid "The user will receive an activation link via email."
-msgstr "使用者將會收到帳號激活郵件。"
 
 msgid "I have read and agree to the terms of the license."
 msgstr ""
@@ -2135,15 +2039,6 @@ msgstr "這封電子郵件的接收顯示伺服器可以和 SMTP 郵件伺服器
 msgid "Test email"
 msgstr "測試郵件"
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr "此封郵件乃通知您，某份報告有新的評論。"
-
-msgid "The report can be accessed at:"
-msgstr "此報告可在此查看："
-
-msgid "New comment"
-msgstr "新評論"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2182,14 +2077,6 @@ msgid "Context: {ContextName}"
 msgstr "內文: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr "此封郵件提醒您報告 {TipNum} 的揭密者附加了新材料。"
-
-msgid "New attachment"
-msgstr "新附件"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr "HTTPS 憑證將要載入到平台中, 或是已經完成逾期"
@@ -2223,6 +2110,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr "此封郵件通知您，監管者已授權您可讀取報告 {TipNum} 揭密者的身份。"
 
+msgid "The report can be accessed at:"
+msgstr "此報告可在此查看："
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "讀取吹哨者的身份識別已被許可"
 
@@ -2252,12 +2142,6 @@ msgstr "此封郵件乃通知您， {TipNum} 報告的揭密者已提供其身�
 
 msgid "The whistleblower has provided their identity"
 msgstr "這位吹哨人已提供身份資訊"
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr "此封郵件乃通知您，某份報告有新訊息。"
-
-msgid "New message"
-msgstr "新訊息"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2336,6 +2220,18 @@ msgstr "請特別留意此處的資訊和材料，謹記揭密者為了公益往
 
 msgid "New report"
 msgstr "新報告"
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr "角色: {Role}"

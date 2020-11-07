@@ -5,9 +5,9 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
-# trendspotter <j.podhorecky@volny.cz>, 2019
-# trendspotter <j.podhorecky@volny.cz>, 2019
-# trendspotter <j.podhorecky@volny.cz>, 2018-2019
+# trendspotter, 2019
+# trendspotter, 2019
+# trendspotter, 2018-2019
 # Lenka Ježková <lenka.jezkova@oziveni.cz>, 2019-2020
 # Miroslav Kučera <mkucera66@seznam.cz>, 2013-2017
 # Mr Higgins, 2016-2018,2020
@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: Mr Higgins\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -65,12 +65,6 @@ msgstr "Licence"
 
 msgid "Notification templates"
 msgstr "Šablony notifikací"
-
-msgid "Missing data"
-msgstr "Chybějící data"
-
-msgid "no stats available for this hour."
-msgstr "pro tuto hodinu nejsou dostupné údaje."
 
 msgid "Delete"
 msgstr "Smazat"
@@ -375,9 +369,6 @@ msgstr "Text zobrazený na vrchu rozhraní pro výběr kontextů"
 msgid "Show small context cards on submission interface"
 msgstr "Zobrazit malé kontextové karty v oznamovatelském rozhraní"
 
-msgid "Type of context selector:"
-msgstr "Typ výběru kontextu:"
-
 msgid "Type to search…"
 msgstr "Pište pro vyhledávání..."
 
@@ -386,12 +377,6 @@ msgstr "Tiché emailové notifikace"
 
 msgid "Turn on email notifications"
 msgstr "Zapnout emailové notifikace"
-
-msgid "Enter an email address for the administrator"
-msgstr "Vložte emailovou adresu administrátora"
-
-msgid "Enter a password for the administrator"
-msgstr "Vložte heslo administrátora"
 
 msgid "Failed logins"
 msgstr "Chybná přihlášení"
@@ -437,31 +422,6 @@ msgid ""
 "has either changed or been removed."
 msgstr "Tento upravený text se nadále v rozhraní nezobrazuje. Původní text byl změněn nebo přesunut."
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr "Doba, kdy oznamovateli vyprší přístup k podání, pokud se nepřihlásí."
-
-msgid "The whistleblower can no longer access the report"
-msgstr "Oznamovatel nemá nadále přístup k podání"
-
-msgid "Warning!"
-msgstr "Varování!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "Používáte nepodporovaný a potenciálně zranitelný prohlížeč."
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "Velmi doporučujeme stáhnout, nainstalovat a používat Tor Browser."
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "Tor Browser zahrnuje různé úrovně soukromí a zabezpečení, které nejsou k dispozici v jiných prohlížečích"
-
-msgid "Download the Tor Browser"
-msgstr "Stáhnout prohlížeč Tor"
-
 msgid "Audit log"
 msgstr "Audit log"
 
@@ -483,20 +443,11 @@ msgstr "Od"
 msgid "Number of downloads"
 msgstr "Počet stažení"
 
-msgid "Error with file:"
-msgstr "Chyba v souboru:"
-
 msgid "File size not accepted."
 msgstr "Velikost souboru není akceptována."
 
-msgid "File type not accepted."
-msgstr "Typ souboru není akceptován."
-
 msgid "Maximum file size is:"
 msgstr "Maximální velikost souboru je:"
-
-msgid "Accepted file types are:"
-msgstr "Přijatelné typy souborů jsou:"
 
 msgid "Scheduled jobs"
 msgstr "Plánované úlohy"
@@ -533,12 +484,6 @@ msgstr "Rozbalit"
 
 msgid "Select"
 msgstr "Vyberte"
-
-msgid "Selected by default"
-msgstr "Zvoleno ve výchozím nastavení"
-
-msgid "Unselected by default"
-msgstr "Nezvoleno ve výchozím nastavení"
 
 msgid "Surname"
 msgstr "Příjmení"
@@ -611,9 +556,6 @@ msgstr "DIČ"
 msgid "Tax code"
 msgstr "DIČ"
 
-msgid "Administrators authorized to change user passwords"
-msgstr "Administrátoři oprávnění změnit uživatelské heslo"
-
 msgid "Select the context of your report:"
 msgstr "Vyberte obsah Vašeho podání"
 
@@ -679,9 +621,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Povolit funkci multisite "
 
-msgid "Enable simplified login"
-msgstr "Povolit zjednodušené přihlášení"
-
 msgid "Allow recipients to delete reports"
 msgstr "Povolit příjemcům smazat podání"
 
@@ -695,17 +634,11 @@ msgstr "Povolit příjemcům udělit oprávnění oznamovatelům ke konkrétním
 msgid "Enable search engines indexing"
 msgstr "Povolit vyhledávačům indexování."
 
-msgid "Description"
-msgstr "Popis"
-
 msgid "Enable custom privacy panel"
 msgstr "Povolit vlastní panel soukromí"
 
 msgid "Custom privacy panel"
 msgstr "Vlastní panel soukromí"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "Text znázorňující, že oznamovatel nevyužívá Tor"
 
 msgid "Disable the privacy panel"
 msgstr "Zakázat panel o ochraně osobních údajů."
@@ -744,15 +677,8 @@ msgstr "Z bezpečnostních důvodů jsou v pravidelných intervalech vyžadován
 msgid "Set the value to 0 to disable this feature."
 msgstr "Nastavte hodnotu na 0, chcete-li tuto funkci zakázat."
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "Počet dní do vypršení přístupu oznamovatele"
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "Přístup oznamovatele má z bezpečnostích důvodů časově omezenou platnost."
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "Toto nastavení neměnte, ledaže opravdu víte co děláte."
+msgid "Number of days till notifying users unread reports"
+msgstr ""
 
 msgid "Enable custodian user role"
 msgstr "Povolit roli depozitáře"
@@ -760,8 +686,8 @@ msgstr "Povolit roli depozitáře"
 msgid "Enable scoring system"
 msgstr "Aktivovat systém hodnocení"
 
-msgid "Enable private labels"
-msgstr "Povolit soukromé štítky"
+msgid "Enable private annotations"
+msgstr ""
 
 msgid "Logging level"
 msgstr "Přihlašovací úroveň"
@@ -825,6 +751,9 @@ msgstr "Role"
 msgid "Name"
 msgstr "Jméno"
 
+msgid "Creation date"
+msgstr "Datum vytvoření"
+
 msgid "Last access"
 msgstr "Poslední přístup"
 
@@ -866,9 +795,6 @@ msgstr "Logo"
 
 msgid "Project name"
 msgstr "Jméno iniciativy"
-
-msgid "Header title"
-msgstr "Název záhlaví"
 
 msgid "Homepage title"
 msgstr "Název domovské stránky"
@@ -932,6 +858,9 @@ msgstr "Vypnuto"
 
 msgid "Enabled"
 msgstr "Zapnuto"
+
+msgid "Description"
+msgstr "Popis"
 
 msgid "Questionnaire"
 msgstr "Dotazník"
@@ -1019,9 +948,6 @@ msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Příjemce"
-
-msgid "Whistleblower"
-msgstr "Oznamovatel"
 
 msgid "Each entry must be separated with a comma."
 msgstr "Každá položka musí být oddělena čárkou."
@@ -1132,6 +1058,9 @@ msgstr "Povolit dostupnost bez Tor."
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr "Role povolené používat platformu bez nástroje Tor"
+
+msgid "Whistleblower"
+msgstr "Oznamovatel"
 
 msgid "To"
 msgstr "Do"
@@ -1307,26 +1236,26 @@ msgstr "Správa podání"
 msgid "Network settings"
 msgstr "Nastavení sítě"
 
+msgid "Mode:"
+msgstr "Režim"
+
 msgid "Root domain used for secondary sites"
 msgstr "Kořenová doména pro sekundární stránky"
 
 msgid "Use the first site for administrative purposes only"
 msgstr "První stránku použijte pouze pro administrativní účely"
 
-msgid "Allow users to sign up"
-msgstr "Povolit uživatelům registraci"
-
 msgid "Enable multi-site login"
 msgstr "Povolit přihlášení na více stránek"
+
+msgid "Allow users to sign up"
+msgstr "Povolit uživatelům registraci"
 
 msgid "Enable terms of service"
 msgstr "Aktivovat smluvní podmínky"
 
 msgid "Sites"
 msgstr "Stránky"
-
-msgid "Mode:"
-msgstr "Režim"
 
 msgid "Active"
 msgstr "Aktivní"
@@ -1397,11 +1326,6 @@ msgstr "Povolit příjemci odložit datum expirace podání"
 msgid "Allow the recipient to delete reports"
 msgstr "Povolit příjemcům smazat podání"
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr "Povolit příjemcům přiřazovat oprávnění oznamovatelům ke konkrétním podáním"
-
 msgid "User has administrative access to the following features:"
 msgstr "Uživatel má přístup ke správě následujících funkcí:"
 
@@ -1449,9 +1373,6 @@ msgstr "Text bude zobrazen poté, co uživatel vybral jednu z možností."
 
 msgid "Confirm"
 msgstr "Potvrdit"
-
-msgid "Add file"
-msgstr "Přidat soubor"
 
 msgid "Are you sure?"
 msgstr "Jste si jistý?"
@@ -1545,9 +1466,6 @@ msgstr "Zdroj může být přístupný pouze uvnitř sítě Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Požadavek na upload přesahuje povolenou velikost."
 
-msgid "Success!"
-msgstr "Výborně!"
-
 msgid "Validation of email address change in progress."
 msgstr "Ověření změny e-mailové adresy probíhá."
 
@@ -1569,9 +1487,12 @@ msgid ""
 msgstr "Zdá se, že procházíte tuto stránku bez dodatečného zabezpečení soukromí!"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "Důrazně doporučujme k návštěvě těchto stránek použít desktopovou aplikaci s názvem Tor Browser. Jejím použitím významně přispějete k ochraně Vaší identity."
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "Stáhnout prohlížeč Tor"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Pak zkopírujte a vložte následující adresy do Tor prohlížeče:"
@@ -1679,26 +1600,11 @@ msgstr "Datum uploadu"
 msgid "File size"
 msgstr "Velikost souboru"
 
-msgid "download"
-msgstr "download"
-
-msgid "No files have been uploaded!"
-msgstr "Nebyl nahrán žádný soubor!"
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Povolit oznamovateli přidat přílohy k podáním"
 
-msgid "Report"
-msgstr "Podání"
-
-msgid "Access expiration"
-msgstr "Expirace přístupu"
-
 msgid "Never"
 msgstr "Nikdy"
-
-msgid "Revoked"
-msgstr "Zpět vzaté"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Povolit oznamovateli posílat zprávy"
@@ -1749,8 +1655,8 @@ msgstr "Seznam příjemců"
 msgid "Status:"
 msgstr "Stav"
 
-msgid "Attached files for the whistleblower"
-msgstr "Přiložené soubory pro oznamovatele."
+msgid "Files attached by recipients"
+msgstr "Přílohy od příjemců"
 
 msgid "Upload a file:"
 msgstr "Nahrání souboru:"
@@ -1764,12 +1670,6 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Doporučujeme jít do sekce „Předvolby“, abyste získali „Klíč pro obnovení účtu“ a bezpečně jej uložili. Tento klíč bude nezbytný pro obnovení přístupu k platformě a k vašim údajům v případě, že své heslo zapomenete."
-
-msgid "Files attached by recipients"
-msgstr "Přílohy od příjemců"
-
-msgid "These files have been attached to your report by the recipients."
-msgstr "Příjemci k Vašemu podání připojily tyto přílohy."
 
 msgid "The provided recovery key is invalid."
 msgstr "Zadaný obnovovací klíč je neplatný."
@@ -1814,6 +1714,9 @@ msgstr "Gratulujeme!"
 msgid "You have completed the platform activation."
 msgstr "Právě jste dokončili aktivaci platformy."
 
+msgid "Success!"
+msgstr "Výborně!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Vaše whistleblowingová platforma je téměř hotova!"
 
@@ -1845,11 +1748,8 @@ msgstr "Dokončit"
 msgid "Invalid phone number"
 msgstr "Neplatné telefonní číslo"
 
-msgid "This field is mandatory."
-msgstr "Toto pole je povinné."
-
-msgid "The answer is too short."
-msgstr "Odpověď je příliš krátká"
+msgid "The answer is too short"
+msgstr ""
 
 msgid "The specified input is not valid."
 msgstr "Zadaný vstup není platný."
@@ -1905,9 +1805,6 @@ msgid ""
 "invalid:"
 msgstr "V tomto kroku jsou odpovědi na následující otázky buď chybějící nebo neplatné:"
 
-msgid "Errors"
-msgstr "Chyby"
-
 msgid "You must select at least one recipient."
 msgstr "Musíte vybrat alespoň jednoho příjemce."
 
@@ -1925,11 +1822,18 @@ msgstr "Následující popis jednotlivých kroků vás provede vytvořením vaš
 msgid "Please choose a configuration profile:"
 msgstr "Prosím zvolte profil konfigurace:"
 
+msgid "Make it possible for this admin to reset user passwords."
+msgstr ""
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
 msgid "Please choose a different username."
 msgstr "Zvolte prosím jiné uživatelské jméno."
-
-msgid "The user will receive an activation link via email."
-msgstr "Uživatel obdrží e-mail s odkazem k aktivaci."
 
 msgid "I have read and agree to the terms of the license."
 msgstr ""
@@ -2139,15 +2043,6 @@ msgstr "Přijetí tohoto emailu značí, že server se byl schopen přihlásit n
 msgid "Test email"
 msgstr "Testovací email"
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr "Toto je e-mailové upozornění o novém komentáři u existujícího podání."
-
-msgid "The report can be accessed at:"
-msgstr "Podání je dostupné na adrese:"
-
-msgid "New comment"
-msgstr "Nový komentář"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2186,14 +2081,6 @@ msgid "Context: {ContextName}"
 msgstr "Kontext: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr "Toto je e-mailové upozornění, že oznamovatel připojil k podání {TipNum} nové informace."
-
-msgid "New attachment"
-msgstr "Nová příloha"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr "Certifikát HTTPS načtený na platformě brzy vyprší nebo již vypršel."
@@ -2227,6 +2114,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr "Toto je e-mailové upozornění, že správce Vám povolil přístup k identitě oznamovatele podání {TipNum}."
 
+msgid "The report can be accessed at:"
+msgstr "Podání je dostupné na adrese:"
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "Přístup k identitě oznamovatele schválen"
 
@@ -2256,12 +2146,6 @@ msgstr "Toto je e-mailové upozornění, že oznamovatel podání {TipNum} posky
 
 msgid "The whistleblower has provided their identity"
 msgstr "Oznamovatel poskytl svou identitu"
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr "Toto je e-mailové upozornění o novém komentáři u existujícího podání."
-
-msgid "New message"
-msgstr "Nová zpráva"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2340,6 +2224,18 @@ msgstr "Prosím, věnujte zvláštní pozornost obsaženým informacím a materi
 
 msgid "New report"
 msgstr "Nové podání"
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr "Role: {Role}"

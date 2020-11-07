@@ -3,6 +3,7 @@
 # eckeman <eckeman@zoho.com>, 2020
 # ester.a <ester@virtualroad.org>, 2014
 # ester.a <ester@virtualroad.org>, 2014-2015
+# Eva Simonsson, 2020
 # flipchan <fkalebo@gmail.com>, 2017
 # flipchan <fkalebo@gmail.com>, 2017
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017,2020
@@ -21,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: Robert Gravsjö <roppert@gmail.com>\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -71,12 +72,6 @@ msgstr "Licens"
 
 msgid "Notification templates"
 msgstr "Aviseringsmallar"
-
-msgid "Missing data"
-msgstr "Uppgift saknas"
-
-msgid "no stats available for this hour."
-msgstr "ingen statistik tillgänglig för denna timme."
 
 msgid "Delete"
 msgstr "Ta bort"
@@ -381,23 +376,14 @@ msgstr "Text som visas överst i gränssnittet för att välja sammanhang"
 msgid "Show small context cards on submission interface"
 msgstr "Visa små mottagarkort i uppgiftslämnarens gränssnitt"
 
-msgid "Type of context selector:"
-msgstr ""
-
 msgid "Type to search…"
 msgstr "Skriv för att söka..."
 
 msgid "Silence email notifications"
-msgstr ""
+msgstr "Stäng av e-postnotifikationer"
 
 msgid "Turn on email notifications"
-msgstr ""
-
-msgid "Enter an email address for the administrator"
-msgstr ""
-
-msgid "Enter a password for the administrator"
-msgstr "Ange ett lösenord för administratören"
+msgstr "Ta i bruk e-postnotifikationer"
 
 msgid "Failed logins"
 msgstr "Misslyckade inloggningar"
@@ -443,31 +429,6 @@ msgid ""
 "has either changed or been removed."
 msgstr ""
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr ""
-
-msgid "The whistleblower can no longer access the report"
-msgstr ""
-
-msgid "Warning!"
-msgstr "Varning!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr ""
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr ""
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "Tor Browser inkluderar olika säker- och integritets-förbättringar som saknas i andra webläsare."
-
-msgid "Download the Tor Browser"
-msgstr "Ladda ner Tor Browser"
-
 msgid "Audit log"
 msgstr ""
 
@@ -489,20 +450,11 @@ msgstr "Från"
 msgid "Number of downloads"
 msgstr "Antal nedladdningar"
 
-msgid "Error with file:"
-msgstr "Fel med fil:"
-
 msgid "File size not accepted."
 msgstr "Filstorlek accepterades inte."
 
-msgid "File type not accepted."
-msgstr "Filtyp accepterades inte."
-
 msgid "Maximum file size is:"
 msgstr "Maximal filstorlek är:"
-
-msgid "Accepted file types are:"
-msgstr "Accepterade filtyper är:"
 
 msgid "Scheduled jobs"
 msgstr "Schemalagda jobb"
@@ -539,12 +491,6 @@ msgstr ""
 
 msgid "Select"
 msgstr "Välj"
-
-msgid "Selected by default"
-msgstr ""
-
-msgid "Unselected by default"
-msgstr ""
 
 msgid "Surname"
 msgstr "Efternamn"
@@ -617,9 +563,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Administrators authorized to change user passwords"
-msgstr ""
-
 msgid "Select the context of your report:"
 msgstr ""
 
@@ -685,9 +628,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr ""
 
-msgid "Enable simplified login"
-msgstr "Aktivera förenklad inloggning"
-
 msgid "Allow recipients to delete reports"
 msgstr "Tillåt mottagare att radera tips"
 
@@ -701,17 +641,11 @@ msgstr "Tillåt mottagare att förlänga utgångsdatumet för tipset"
 msgid "Enable search engines indexing"
 msgstr "Aktivera sökmotorindexering"
 
-msgid "Description"
-msgstr "Beskrivning"
-
 msgid "Enable custom privacy panel"
 msgstr "Aktivera eget integritetsemblem"
 
 msgid "Custom privacy panel"
 msgstr "Eget integritetsemblem"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "Text som visas när uppgiftslämnaren inte använder Tor"
 
 msgid "Disable the privacy panel"
 msgstr "Inaktivera integritetsemblem"
@@ -750,14 +684,7 @@ msgstr ""
 msgid "Set the value to 0 to disable this feature."
 msgstr ""
 
-msgid "Amount of days till whistleblower access expires"
-msgstr ""
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr ""
-
-msgid "Tweak this setting only if you know what you are doing."
+msgid "Number of days till notifying users unread reports"
 msgstr ""
 
 msgid "Enable custodian user role"
@@ -766,7 +693,7 @@ msgstr ""
 msgid "Enable scoring system"
 msgstr ""
 
-msgid "Enable private labels"
+msgid "Enable private annotations"
 msgstr ""
 
 msgid "Logging level"
@@ -831,6 +758,9 @@ msgstr "Roll"
 msgid "Name"
 msgstr "Namn"
 
+msgid "Creation date"
+msgstr "Datum för skapande"
+
 msgid "Last access"
 msgstr "Senaste åtkomst"
 
@@ -872,9 +802,6 @@ msgstr "Logga"
 
 msgid "Project name"
 msgstr "Projectts namn"
-
-msgid "Header title"
-msgstr ""
 
 msgid "Homepage title"
 msgstr "Hemsidans rubrik"
@@ -938,6 +865,9 @@ msgstr "Inaktiverad"
 
 msgid "Enabled"
 msgstr "Aktiverad"
+
+msgid "Description"
+msgstr "Beskrivning"
 
 msgid "Questionnaire"
 msgstr "Formulär"
@@ -1025,9 +955,6 @@ msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Mottagare"
-
-msgid "Whistleblower"
-msgstr "Uppgiftslämnare"
 
 msgid "Each entry must be separated with a comma."
 msgstr ""
@@ -1138,6 +1065,9 @@ msgstr ""
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr ""
+
+msgid "Whistleblower"
+msgstr "Uppgiftslämnare"
 
 msgid "To"
 msgstr "Till"
@@ -1313,16 +1243,19 @@ msgstr ""
 msgid "Network settings"
 msgstr "Nätverksinställningar"
 
+msgid "Mode:"
+msgstr "Läge:"
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Use the first site for administrative purposes only"
 msgstr ""
 
-msgid "Allow users to sign up"
+msgid "Enable multi-site login"
 msgstr ""
 
-msgid "Enable multi-site login"
+msgid "Allow users to sign up"
 msgstr ""
 
 msgid "Enable terms of service"
@@ -1330,9 +1263,6 @@ msgstr ""
 
 msgid "Sites"
 msgstr ""
-
-msgid "Mode:"
-msgstr "Läge:"
 
 msgid "Active"
 msgstr "Aktiv"
@@ -1403,11 +1333,6 @@ msgstr "Tillåt mottagare att förlänga utgångsdatumet för tipset"
 msgid "Allow the recipient to delete reports"
 msgstr "Tillåt mottagaren att ta bort tips"
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr "Tillåt mottagare att förlänga utgångsdatumet för tipset"
-
 msgid "User has administrative access to the following features:"
 msgstr ""
 
@@ -1455,9 +1380,6 @@ msgstr ""
 
 msgid "Confirm"
 msgstr "Bekräfta förlängning"
-
-msgid "Add file"
-msgstr "Lägg till fil"
 
 msgid "Are you sure?"
 msgstr "Är du säker?"
@@ -1551,9 +1473,6 @@ msgstr "Resursen kan bara nås inom Tor-nätverket"
 msgid "The upload request exceeds the size limit"
 msgstr "Uppladdningen går över maxgränsen för antalet MB"
 
-msgid "Success!"
-msgstr "Det fungerade!"
-
 msgid "Validation of email address change in progress."
 msgstr ""
 
@@ -1575,9 +1494,12 @@ msgid ""
 msgstr "Det ser ut som att du besöker den här sajten utan extra integritet och säkerhet!"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "Vi rekommenderar dig starkt att besöka den här sajten med programmet Tor Browser som skyddar din identitet."
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "Ladda ner Tor Browser"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Kopiera och klistra sen in följande adress i Tor Browser:"
@@ -1685,26 +1607,11 @@ msgstr "Datum för uppladdning"
 msgid "File size"
 msgstr "Filstorlek"
 
-msgid "download"
-msgstr "ladda ned"
-
-msgid "No files have been uploaded!"
-msgstr "Ingen fil har laddats upp!"
-
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr ""
-
-msgid "Report"
-msgstr ""
-
-msgid "Access expiration"
 msgstr ""
 
 msgid "Never"
 msgstr "Aldrig"
-
-msgid "Revoked"
-msgstr "Upphävd"
 
 msgid "Allow the whistleblower to send messages"
 msgstr ""
@@ -1755,7 +1662,7 @@ msgstr "Lista på mottagare"
 msgid "Status:"
 msgstr "Status"
 
-msgid "Attached files for the whistleblower"
+msgid "Files attached by recipients"
 msgstr ""
 
 msgid "Upload a file:"
@@ -1769,12 +1676,6 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
-
-msgid "Files attached by recipients"
-msgstr ""
-
-msgid "These files have been attached to your report by the recipients."
 msgstr ""
 
 msgid "The provided recovery key is invalid."
@@ -1820,6 +1721,9 @@ msgstr "Grattis!"
 msgid "You have completed the platform activation."
 msgstr ""
 
+msgid "Success!"
+msgstr "Det fungerade!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
@@ -1851,11 +1755,8 @@ msgstr "Klar"
 msgid "Invalid phone number"
 msgstr "Ogiltigt telefonnummer"
 
-msgid "This field is mandatory."
+msgid "The answer is too short"
 msgstr ""
-
-msgid "The answer is too short."
-msgstr "Svaret är för kort."
 
 msgid "The specified input is not valid."
 msgstr ""
@@ -1911,9 +1812,6 @@ msgid ""
 "invalid:"
 msgstr ""
 
-msgid "Errors"
-msgstr "Fel"
-
 msgid "You must select at least one recipient."
 msgstr ""
 
@@ -1931,10 +1829,17 @@ msgstr ""
 msgid "Please choose a configuration profile:"
 msgstr ""
 
-msgid "Please choose a different username."
+msgid "Make it possible for this admin to reset user passwords."
 msgstr ""
 
-msgid "The user will receive an activation link via email."
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
+msgid "Please choose a different username."
 msgstr ""
 
 msgid "I have read and agree to the terms of the license."
@@ -2145,15 +2050,6 @@ msgstr ""
 msgid "Test email"
 msgstr ""
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr ""
-
-msgid "The report can be accessed at:"
-msgstr ""
-
-msgid "New comment"
-msgstr "Ny kommentar"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2192,14 +2088,6 @@ msgid "Context: {ContextName}"
 msgstr "Kontext: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr ""
-
-msgid "New attachment"
-msgstr "Ny bilaga"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr ""
@@ -2233,6 +2121,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr ""
 
+msgid "The report can be accessed at:"
+msgstr ""
+
 msgid "Access to whistleblower's identity authorized"
 msgstr ""
 
@@ -2262,12 +2153,6 @@ msgstr ""
 
 msgid "The whistleblower has provided their identity"
 msgstr ""
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr ""
-
-msgid "New message"
-msgstr "Nytt meddelande"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2346,6 +2231,18 @@ msgstr "Du uppmanas att ägna särskild uppmärksamhet åt den information och d
 
 msgid "New report"
 msgstr "Ny rapport"
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr "Roll: {Role}"

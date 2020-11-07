@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: bact' <arthit@gmail.com>\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -61,12 +61,6 @@ msgstr "สัญญาอนุญาต"
 
 msgid "Notification templates"
 msgstr "แม่แบบการแจ้งเตือน"
-
-msgid "Missing data"
-msgstr "ข้อมูลที่หายไป"
-
-msgid "no stats available for this hour."
-msgstr "ไม่มีสถิติที่ใช้ได้สำหรับชั่วโมงนี้"
 
 msgid "Delete"
 msgstr "ลบ"
@@ -371,9 +365,6 @@ msgstr "ข้อความแสดงที่ด้านบนของห
 msgid "Show small context cards on submission interface"
 msgstr "แสดงการ์ดบริบทเล็กๆ บนหน้าจอสำหรับส่งรายงาน"
 
-msgid "Type of context selector:"
-msgstr "ชนิดของตัวเลือกบริบท:"
-
 msgid "Type to search…"
 msgstr "พิมพ์เพื่อค้นหา..."
 
@@ -382,12 +373,6 @@ msgstr "ปิดการแจ้งเตือนทางอีเมล"
 
 msgid "Turn on email notifications"
 msgstr "เปิดการแจ้งเตือนทางอีเมล"
-
-msgid "Enter an email address for the administrator"
-msgstr "ใส่ที่อยู่อีเมลของผู้ดูแลระบบ"
-
-msgid "Enter a password for the administrator"
-msgstr "ใส่รหัสผ่านสำหรับผู้ดูแลระบบ"
 
 msgid "Failed logins"
 msgstr "การลงชื่อเข้าล้มเหลว"
@@ -433,31 +418,6 @@ msgid ""
 "has either changed or been removed."
 msgstr "ข้อความปรับแต่งเองจะไม่ถูกแสดงบนแพลตฟอร์มอีกต่อไป ข้อความต้นฉบับได้เปลี่ยนหรือถูกลบไปแล้ว"
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr "ถ้าผู้แจ้งเบาะแสไม่ได้กำลังตรวจดูรายงานอยู่ในตอนนี้ การเข้าถึงของพวกเขาจะหมดอายุ"
-
-msgid "The whistleblower can no longer access the report"
-msgstr "ผู้แจ้งเบาะแสจะไม่สามารถเข้าถึงรายงานได้อีกต่อไป"
-
-msgid "Warning!"
-msgstr "คำเตือน!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "คุณกำลังใช้เบราว์เซอร์ที่ไม่ได้รับการสนับสนุนและเป็นไปได้ว่าจะมีช่องโหว่ความปลอดภัย"
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "เราแนะนำอย่างยิ่งให้ดาวน์โหลดและติดตั้ง Tor Browser"
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "Tor Browser มีการรักษาความปลอดภัยและความเป็นส่วนตัวเพิ่มเติม ซึ่งไม่มีในเบราว์เซอร์อื่น"
-
-msgid "Download the Tor Browser"
-msgstr "ดาวน์โหลด Tor Browser"
-
 msgid "Audit log"
 msgstr "ปูมตรวจสอบบัญชี"
 
@@ -479,20 +439,11 @@ msgstr "จาก"
 msgid "Number of downloads"
 msgstr "จำนวนดาวน์โหลด"
 
-msgid "Error with file:"
-msgstr "เกิดข้อผิดพลาดกับแฟ้ม:"
-
 msgid "File size not accepted."
 msgstr "ไม่ยอมรับแฟ้มขนาดนี้"
 
-msgid "File type not accepted."
-msgstr "ไม่ยอมรับแฟ้มชนิดนี้"
-
 msgid "Maximum file size is:"
 msgstr "ขนาดแฟ้มสูงสุดคือ:"
-
-msgid "Accepted file types are:"
-msgstr "ชนิดแฟ้มที่ยอมรับคือ:"
 
 msgid "Scheduled jobs"
 msgstr "งานที่ถูกตั้งเวลาไว้"
@@ -529,12 +480,6 @@ msgstr "ขยาย"
 
 msgid "Select"
 msgstr "เลือก"
-
-msgid "Selected by default"
-msgstr "ถูกเลือกโดยปริยาย"
-
-msgid "Unselected by default"
-msgstr "ไม่เลือกโดยปริยาย"
 
 msgid "Surname"
 msgstr "นามสกุล"
@@ -607,9 +552,6 @@ msgstr "หมายเลข VAT"
 msgid "Tax code"
 msgstr "เลขประจำตัวผู้เสียภาษี"
 
-msgid "Administrators authorized to change user passwords"
-msgstr ""
-
 msgid "Select the context of your report:"
 msgstr "เลือกบริบทของรายงานของคุณ:"
 
@@ -675,9 +617,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "เปิดใช้งานการรองรับหลายเว็บไซต์"
 
-msgid "Enable simplified login"
-msgstr "เปิดใช้งานการลงชื่อเข้าใช้แบบเรียบง่าย"
-
 msgid "Allow recipients to delete reports"
 msgstr "อนุญาตให้ผู้รับลบรายงานได้"
 
@@ -691,17 +630,11 @@ msgstr "อนุญาตให้ผู้รับสามารถมอบ
 msgid "Enable search engines indexing"
 msgstr "เปิดใช้การสร้างดัชนีเครื่องมือค้นหา"
 
-msgid "Description"
-msgstr "คำอธิบาย"
-
 msgid "Enable custom privacy panel"
 msgstr "เปิดใช้งานแผงความเป็นส่วนตัวที่กำหนดเอง"
 
 msgid "Custom privacy panel"
 msgstr "แผงความเป็นส่วนตัวที่ปรับแต่งเอง"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "ข้อความแสดงเมื่อผู้แจ้งเบาะแสไม่ได้กำลังใช้ Tor"
 
 msgid "Disable the privacy panel"
 msgstr "ปิดการใช้งานแผงความเป็นส่วนตัว"
@@ -740,15 +673,8 @@ msgstr "ด้วยเหตุผลความปลอดภัย ระ�
 msgid "Set the value to 0 to disable this feature."
 msgstr "ตั้งค่าเป็น 0 เพื่อปิดการทำงานนี้"
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "จำนวนวันจนกว่าการเข้าถึงของผู้แจ้งเบาะแสจะหมดอายุ"
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "เพื่อเหตุผลด้านความปลอดภัย การเข้าถึงของผู้แจ้งเบาะแสจะขึ้นกับวันหมดอายุ"
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "ปรับแต่งการตั้งค่าเหล่านี้ก็ต่อเมื่อคุณรู้ว่าคุณกำลังทำอะไรอยู่"
+msgid "Number of days till notifying users unread reports"
+msgstr ""
 
 msgid "Enable custodian user role"
 msgstr "เปิดใช้บทบาทผู้พิทักษ์"
@@ -756,8 +682,8 @@ msgstr "เปิดใช้บทบาทผู้พิทักษ์"
 msgid "Enable scoring system"
 msgstr "เปิดใช้งานระบบให้คะแนน"
 
-msgid "Enable private labels"
-msgstr "เปิดใช้งานฉลากส่วนตัว"
+msgid "Enable private annotations"
+msgstr ""
 
 msgid "Logging level"
 msgstr "ระดับการบันทึกลงปูม"
@@ -821,6 +747,9 @@ msgstr "บทบาท"
 msgid "Name"
 msgstr "ชื่อ"
 
+msgid "Creation date"
+msgstr "วันที่สร้าง"
+
 msgid "Last access"
 msgstr "เข้าถึงล่าสุด"
 
@@ -862,9 +791,6 @@ msgstr "โลโก้"
 
 msgid "Project name"
 msgstr "ชื่อโครงการ"
-
-msgid "Header title"
-msgstr "หัวเรื่อง"
 
 msgid "Homepage title"
 msgstr "ชื่อหน้าหลัก"
@@ -928,6 +854,9 @@ msgstr "ถูกปิดใช้งาน"
 
 msgid "Enabled"
 msgstr "เปิดใช้งาน"
+
+msgid "Description"
+msgstr "คำอธิบาย"
 
 msgid "Questionnaire"
 msgstr "แบบสอบถาม"
@@ -1015,9 +944,6 @@ msgstr "ผู้ดูแลระบบ"
 
 msgid "Recipient"
 msgstr "ผู้รับ"
-
-msgid "Whistleblower"
-msgstr "ผู้แจ้งเบาะแส"
 
 msgid "Each entry must be separated with a comma."
 msgstr "ข้อมูลแต่ละชิ้นจะต้องถูกแบ่งจากกันด้วยเครื่องหมายจุลภาค ( , )"
@@ -1128,6 +1054,9 @@ msgstr "เปิดให้แพลตฟอร์มสามารถถู
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr "บทบาทที่อนุญาตให้เข้าใช้แพลตฟอร์มได้แม้ไม่ใช้ Tor"
+
+msgid "Whistleblower"
+msgstr "ผู้แจ้งเบาะแส"
 
 msgid "To"
 msgstr "ถึง"
@@ -1303,26 +1232,26 @@ msgstr "การจัดการเรื่อง"
 msgid "Network settings"
 msgstr "การตั้งค่าเครือข่าย"
 
+msgid "Mode:"
+msgstr "โหมด:"
+
 msgid "Root domain used for secondary sites"
 msgstr "รูตโดเมนถูกใช้สำหรับไซต์ชั้นสอง"
 
 msgid "Use the first site for administrative purposes only"
 msgstr "ใช้งานเว็บไซต์แรกเพื่อจุดประสงค์ในการจัดการดูแลเท่านั้น"
 
-msgid "Allow users to sign up"
-msgstr "อนุญาตให้ผู้ใช้สมัครเข้าระบบ"
-
 msgid "Enable multi-site login"
 msgstr "เปิดใช้งานการลงชื่อเข้าใช้แบบหลายเว็บไซต์"
+
+msgid "Allow users to sign up"
+msgstr "อนุญาตให้ผู้ใช้สมัครเข้าระบบ"
 
 msgid "Enable terms of service"
 msgstr "เปิดใช้ข้อตกลงในการให้บริการ"
 
 msgid "Sites"
 msgstr "ไซต์"
-
-msgid "Mode:"
-msgstr "โหมด:"
 
 msgid "Active"
 msgstr "ทำงานอยู่"
@@ -1393,11 +1322,6 @@ msgstr "อนุญาตให้ผู้รับเลื่อนวัน
 msgid "Allow the recipient to delete reports"
 msgstr "อนุญาตให้ผู้รับลบรายงานได้"
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr "อนุญาตให้ผู้รับสามารถมอบสิทธิ์ให้กับผู้แจ้งเบาะแสเพื่อเข้าถึงรายงานเป็นรายฉบับ"
-
 msgid "User has administrative access to the following features:"
 msgstr "ผู้ใช้มีสิทธิการเข้าถึงระดับผู้ดูแลระบบในความสามารถเหล่านี้:"
 
@@ -1445,9 +1369,6 @@ msgstr "ข้อความแสดงหลังจากผู้ใช้
 
 msgid "Confirm"
 msgstr "ยืนยัน"
-
-msgid "Add file"
-msgstr "เพิ่มแฟ้ม"
 
 msgid "Are you sure?"
 msgstr "คุณแน่ใจหรือไม่?"
@@ -1541,9 +1462,6 @@ msgstr "สามารถเข้าถึงทรัพยากรได้
 msgid "The upload request exceeds the size limit"
 msgstr "ขนาดการขออัปโหลดเกินขีดจำกัด"
 
-msgid "Success!"
-msgstr "สำเร็จ!"
-
 msgid "Validation of email address change in progress."
 msgstr "กำลังดำเนินการตรวจความถูกต้องของอีเมลของคุณ"
 
@@ -1565,9 +1483,12 @@ msgid ""
 msgstr "ดูเหมือนว่าคุณกำลังเรียกดูเว็บไซต์นี้โดยไม่มีมาตรการความเป็นส่วนตัวหรือความปลอดภัย!"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "เราแนะนำเป็นอย่างยิ่ง ให้คุณเข้าถึงเว็บไซต์นี้ด้วยแอปบนเดสก์ท็อปที่ชื่อ Tor Browser มันจะปกป้องตัวตนของคุณ"
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "ดาวน์โหลด Tor Browser"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "จากนั้น คัดลอกและวางที่อยู่นี้ลงใน Tor Browser:"
@@ -1675,26 +1596,11 @@ msgstr "วันที่อัปโหลด"
 msgid "File size"
 msgstr "ขนาดแฟ้ม"
 
-msgid "download"
-msgstr "ดาวน์โหลด"
-
-msgid "No files have been uploaded!"
-msgstr "ไม่มีแฟ้มที่ได้รับการอัปโหลด!"
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "อนุญาตให้ผู้แจ้งเบาะแสแนบแฟ้มในรายงาน"
 
-msgid "Report"
-msgstr "รายงาน"
-
-msgid "Access expiration"
-msgstr "การเข้าถึงหมดอายุ"
-
 msgid "Never"
 msgstr "ไม่เคยเลย"
-
-msgid "Revoked"
-msgstr "ถูกเพิกถอนแล้ว"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "อนุญาตให้ผู้แจ้งเบาะแสส่งข้อความ"
@@ -1745,8 +1651,8 @@ msgstr "รายการผู้รับ"
 msgid "Status:"
 msgstr "สถานะ:"
 
-msgid "Attached files for the whistleblower"
-msgstr "แฟ้มแนบสำหรับผู้แจ้งเบาะแส"
+msgid "Files attached by recipients"
+msgstr "แฟ้มที่แนบมาโดยผู้รับ"
 
 msgid "Upload a file:"
 msgstr "อัปโหลดแฟ้ม:"
@@ -1760,12 +1666,6 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr ""
-
-msgid "Files attached by recipients"
-msgstr "แฟ้มที่แนบมาโดยผู้รับ"
-
-msgid "These files have been attached to your report by the recipients."
-msgstr "แฟ้มเหล่านี้ถูกผู้รับแนบไปกับรายงานของคุณ"
 
 msgid "The provided recovery key is invalid."
 msgstr "กุญแจกู้คืนที่ให้มานั้นไม่ถูกต้อง"
@@ -1810,6 +1710,9 @@ msgstr "ยินดีด้วย!"
 msgid "You have completed the platform activation."
 msgstr "คุณได้ยืนยันเปิดใช้งานแพลตฟอร์มแล้ว"
 
+msgid "Success!"
+msgstr "สำเร็จ!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "แพลตฟอร์มแจ้งเบาะแสของคุณใกล้พร้อมแล้ว!"
 
@@ -1841,11 +1744,8 @@ msgstr "จบ"
 msgid "Invalid phone number"
 msgstr "หมายเลขโทรศัพท์ไม่ตรงรูปแบบ"
 
-msgid "This field is mandatory."
-msgstr "ช่องนี้จำเป็นต้องกรอก"
-
-msgid "The answer is too short."
-msgstr "คำตอบสั้นเกินไป"
+msgid "The answer is too short"
+msgstr ""
 
 msgid "The specified input is not valid."
 msgstr "ข้อมูลเข้าที่ระบุไม่ตรงกับรูปแบบที่ถูกต้อง"
@@ -1901,9 +1801,6 @@ msgid ""
 "invalid:"
 msgstr "ในขั้นตอนนี้ คำตอบต่อคำถามเหล่านี้หายไปหรือไม่ถูกต้องตามรูปแบบ:"
 
-msgid "Errors"
-msgstr "ข้อผิดพลาด"
-
 msgid "You must select at least one recipient."
 msgstr "คุณต้องเลือกผู้รับอย่างน้อยหนึ่งราย"
 
@@ -1921,11 +1818,18 @@ msgstr "กระบวนการทีละขั้นตอนดังต
 msgid "Please choose a configuration profile:"
 msgstr "กรุณาเลือกโปรไฟล์การปรับแต่ง:"
 
+msgid "Make it possible for this admin to reset user passwords."
+msgstr ""
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
 msgid "Please choose a different username."
 msgstr "กรุณาเลือกชื่อผู้ใช้อื่น:"
-
-msgid "The user will receive an activation link via email."
-msgstr "ผู้ใช้จะได้รับลิงก์ยืนยันเปิดใช้งานทางอีเมล"
 
 msgid "I have read and agree to the terms of the license."
 msgstr ""
@@ -2135,15 +2039,6 @@ msgstr "การได้รับอีเมลฉบับนี้ เป�
 msgid "Test email"
 msgstr "อีเมลทดสอบ"
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr "นี่คืออีเมลไปแจ้งให้คุณทราบความคิดเห็นใหม่ในการส่งที่มีอยู่"
-
-msgid "The report can be accessed at:"
-msgstr "รายงานนี้สามารถเข้าถึงได้ที่:"
-
-msgid "New comment"
-msgstr "ความคิดเห็นใหม่"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2182,14 +2077,6 @@ msgid "Context: {ContextName}"
 msgstr "บริบท: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr "อีเมลฉบับนี้ถูกส่งเพื่อแจ้งคุณว่า ผู้แจ้งเบาะแสของรายงาน {TipNum} ได้แนบเอกสารใหม่"
-
-msgid "New attachment"
-msgstr "แฟ้มแนบใหม่"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr "ใบรับรอง HTTPS ที่ได้ใส่เข้าในบนแพลตฟอร์มนั้นกำลังจะหมดอายุหรือหมดอายุแล้ว"
@@ -2223,6 +2110,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr "อีเมลฉบับนี้ถูกส่งเพื่อแจ้งคุณว่า ผู้พิทักษ์ได้มอบอำนาจให้คุณเข้าถึงตัวตนของผู้แจ้งเบาะแสของรายงาน {TipNum}"
 
+msgid "The report can be accessed at:"
+msgstr "รายงานนี้สามารถเข้าถึงได้ที่:"
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "การเข้าถึงตัวตนของผู้แจ้งเบาะแสได้รับการอนุญาตแล้ว"
 
@@ -2252,12 +2142,6 @@ msgstr "อีเมลฉบับนี้ถูกส่งเพื่อแ
 
 msgid "The whistleblower has provided their identity"
 msgstr "ผู้แจ้งเบาะแสได้ให้ข้อมูลระบุตัวตนของพวกเขาเอาไว้"
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr "นี่คืออีเมลไปแจ้งให้คุณทราบข้อความใหม่ในการส่งที่มีอยู่"
-
-msgid "New message"
-msgstr "ข้อความใหม่"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2336,6 +2220,18 @@ msgstr "คุณถูกร้องขอให้ให้ความสน
 
 msgid "New report"
 msgstr "รายงานใหม่"
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr "บทบาท: {Role}"

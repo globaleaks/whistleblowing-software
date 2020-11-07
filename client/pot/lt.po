@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: Marija Grinevičiūtė <marijagrineviciute@outlook.com>\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/otf/globaleaks/language/lt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -55,12 +55,6 @@ msgstr "Licencija"
 
 msgid "Notification templates"
 msgstr "Pranešimo šablonai"
-
-msgid "Missing data"
-msgstr "Trūksta duomenų"
-
-msgid "no stats available for this hour."
-msgstr "nėra šiai valandai prieinamo statistikos."
 
 msgid "Delete"
 msgstr "Ištrinti"
@@ -365,9 +359,6 @@ msgstr "Tekstas rodomas sąsajos viršuje pasirenkant kontekstus"
 msgid "Show small context cards on submission interface"
 msgstr "Rodyti mažas konteksto korteles pateikimo sąsajoje"
 
-msgid "Type of context selector:"
-msgstr "Konteksto tipo rinkiklis:"
-
 msgid "Type to search…"
 msgstr "Rašykite norėdami ieškoti..."
 
@@ -376,12 +367,6 @@ msgstr "Nutildyti el. pašto pranešimus"
 
 msgid "Turn on email notifications"
 msgstr "Įjungti el. pašto pranešimus"
-
-msgid "Enter an email address for the administrator"
-msgstr "Įveskite el. pašto adresą administratoriui"
-
-msgid "Enter a password for the administrator"
-msgstr "Įveskite slaptažodį administratoriui"
 
 msgid "Failed logins"
 msgstr "Nepavykę prisijungimai"
@@ -427,31 +412,6 @@ msgid ""
 "has either changed or been removed."
 msgstr "Šis tinkintas tekstas platformoje neberodomas. Originalus tekstas buvo arba pakeistas, arba pašalintas."
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr "Jei informatorius patikrins ataskaitą iki šio laiko, jo prieiga prie jos nebegalios."
-
-msgid "The whistleblower can no longer access the report"
-msgstr "Informatorius nebeturi prieigos prie ataskaitos"
-
-msgid "Warning!"
-msgstr "Įspėjimas!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "Naudojate nepalaikomą ir potencialiai pažeidžiamą naršyklę."
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "Primygtinai rekomenduojame atsisiųsti ir įdiegti Tor naršyklę."
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "Tor naršyklėje yra įvairių privatumo ir saugumo pagerinimų, kurių nėra kitose naršyklėse."
-
-msgid "Download the Tor Browser"
-msgstr "Atsisiųsti Tor naršyklę"
-
 msgid "Audit log"
 msgstr "Audituoti žurnalą"
 
@@ -473,20 +433,11 @@ msgstr "Nuo"
 msgid "Number of downloads"
 msgstr "Atsisiuntimų skaičius"
 
-msgid "Error with file:"
-msgstr "Failo klaida:"
-
 msgid "File size not accepted."
 msgstr "Nepriimtinas failo dydis."
 
-msgid "File type not accepted."
-msgstr "Nepriimtinas failo tipas."
-
 msgid "Maximum file size is:"
 msgstr "Didžiausias failo dydis yra:"
-
-msgid "Accepted file types are:"
-msgstr "Priimtini failo tipai yra:"
 
 msgid "Scheduled jobs"
 msgstr "Suplanuoti darbai"
@@ -523,12 +474,6 @@ msgstr "Išskleisti"
 
 msgid "Select"
 msgstr "Žymėti"
-
-msgid "Selected by default"
-msgstr "Pažymėta pagal numatytąją nuostatą"
-
-msgid "Unselected by default"
-msgstr "Panaikinti žymėjimą pagal numatytąją nuostatą"
 
 msgid "Surname"
 msgstr "Pavardė"
@@ -601,9 +546,6 @@ msgstr "PVM kodas"
 msgid "Tax code"
 msgstr "Mokesčių kodas"
 
-msgid "Administrators authorized to change user passwords"
-msgstr ""
-
 msgid "Select the context of your report:"
 msgstr "Pasirinkite ataskaitos kontekstą:"
 
@@ -669,9 +611,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Įgalinti daugiavietę funkciją"
 
-msgid "Enable simplified login"
-msgstr "Įgalinti supaprastintą prisijungimą"
-
 msgid "Allow recipients to delete reports"
 msgstr "Leisti gavėjams panaikinti ataskaitas"
 
@@ -685,17 +624,11 @@ msgstr "Leisti gavėjams suteikti leidimus informatoriams tam tikrose ataskaitos
 msgid "Enable search engines indexing"
 msgstr "Įgalinti paieškos variklių indeksavimą"
 
-msgid "Description"
-msgstr "Aprašas"
-
 msgid "Enable custom privacy panel"
 msgstr "Įgalinti tinkintą privatumo skydelį"
 
 msgid "Custom privacy panel"
 msgstr "Tinkintas privatumo skydelis"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "Tekstas rodomas, kai informatorius naudoja ne Tor"
 
 msgid "Disable the privacy panel"
 msgstr "Išjungti privatumo skydelį"
@@ -734,14 +667,7 @@ msgstr "Būtina reguliariai keisti slaptažodį dėl saugumo sumetimų."
 msgid "Set the value to 0 to disable this feature."
 msgstr "Nustatyti „0“ vertę, kad būtų išjungta ši funkcija."
 
-msgid "Amount of days till whistleblower access expires"
-msgstr ""
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr ""
-
-msgid "Tweak this setting only if you know what you are doing."
+msgid "Number of days till notifying users unread reports"
 msgstr ""
 
 msgid "Enable custodian user role"
@@ -750,8 +676,8 @@ msgstr ""
 msgid "Enable scoring system"
 msgstr ""
 
-msgid "Enable private labels"
-msgstr "Įgalinti privačias etiketes"
+msgid "Enable private annotations"
+msgstr ""
 
 msgid "Logging level"
 msgstr ""
@@ -815,6 +741,9 @@ msgstr "Vaidmuo"
 msgid "Name"
 msgstr "Vardas"
 
+msgid "Creation date"
+msgstr ""
+
 msgid "Last access"
 msgstr "Paskutinis prisijungimas"
 
@@ -856,9 +785,6 @@ msgstr "Logotipas"
 
 msgid "Project name"
 msgstr "Projekto pavadinimas"
-
-msgid "Header title"
-msgstr "Antraštės pavadinimas"
 
 msgid "Homepage title"
 msgstr "Pradžios puslapio pavadinimas"
@@ -922,6 +848,9 @@ msgstr "Išjungta"
 
 msgid "Enabled"
 msgstr "Įgalinta"
+
+msgid "Description"
+msgstr "Aprašas"
 
 msgid "Questionnaire"
 msgstr "Klausimynas"
@@ -1009,9 +938,6 @@ msgstr "Administratorius"
 
 msgid "Recipient"
 msgstr "Gavėjas"
-
-msgid "Whistleblower"
-msgstr "Informatorius"
 
 msgid "Each entry must be separated with a comma."
 msgstr "Kiekvieną įrašą būtina atskirti kableliu."
@@ -1122,6 +1048,9 @@ msgstr ""
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr ""
+
+msgid "Whistleblower"
+msgstr "Informatorius"
 
 msgid "To"
 msgstr "Kam"
@@ -1297,26 +1226,26 @@ msgstr "Atvejo valdymas"
 msgid "Network settings"
 msgstr "Tinklo nustatymai"
 
+msgid "Mode:"
+msgstr "Režimas"
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Use the first site for administrative purposes only"
 msgstr "Naudoti pirmąją svetainę tik administraciniais tikslais"
 
-msgid "Allow users to sign up"
-msgstr "Leisti naudotojams registruotis"
-
 msgid "Enable multi-site login"
 msgstr "Įgalinti daugiavietį prisijungimą"
+
+msgid "Allow users to sign up"
+msgstr "Leisti naudotojams registruotis"
 
 msgid "Enable terms of service"
 msgstr "Įgalinti paslaugų sąlygas"
 
 msgid "Sites"
 msgstr "Svetainės"
-
-msgid "Mode:"
-msgstr "Režimas"
 
 msgid "Active"
 msgstr "Aktyvi"
@@ -1387,11 +1316,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr ""
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr ""
-
 msgid "User has administrative access to the following features:"
 msgstr ""
 
@@ -1439,9 +1363,6 @@ msgstr ""
 
 msgid "Confirm"
 msgstr "Patvirtinti"
-
-msgid "Add file"
-msgstr "Pridėti failą"
 
 msgid "Are you sure?"
 msgstr ""
@@ -1535,9 +1456,6 @@ msgstr ""
 msgid "The upload request exceeds the size limit"
 msgstr ""
 
-msgid "Success!"
-msgstr "Pavyko!"
-
 msgid "Validation of email address change in progress."
 msgstr ""
 
@@ -1559,9 +1477,12 @@ msgid ""
 msgstr ""
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
 msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "Atsisiųsti Tor naršyklę"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr ""
@@ -1669,26 +1590,11 @@ msgstr "Įkėlimo data"
 msgid "File size"
 msgstr "Failo dydis"
 
-msgid "download"
-msgstr "atsisiųsti"
-
-msgid "No files have been uploaded!"
-msgstr "Neįkelti jokie failai!"
-
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr ""
-
-msgid "Report"
-msgstr "Ataskaita"
-
-msgid "Access expiration"
 msgstr ""
 
 msgid "Never"
 msgstr "Niekada"
-
-msgid "Revoked"
-msgstr "Panaikintas"
 
 msgid "Allow the whistleblower to send messages"
 msgstr ""
@@ -1739,7 +1645,7 @@ msgstr ""
 msgid "Status:"
 msgstr "Būsena:"
 
-msgid "Attached files for the whistleblower"
+msgid "Files attached by recipients"
 msgstr ""
 
 msgid "Upload a file:"
@@ -1753,12 +1659,6 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
-
-msgid "Files attached by recipients"
-msgstr ""
-
-msgid "These files have been attached to your report by the recipients."
 msgstr ""
 
 msgid "The provided recovery key is invalid."
@@ -1804,6 +1704,9 @@ msgstr "Sveikiname!"
 msgid "You have completed the platform activation."
 msgstr ""
 
+msgid "Success!"
+msgstr "Pavyko!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
@@ -1835,10 +1738,7 @@ msgstr ""
 msgid "Invalid phone number"
 msgstr ""
 
-msgid "This field is mandatory."
-msgstr ""
-
-msgid "The answer is too short."
+msgid "The answer is too short"
 msgstr ""
 
 msgid "The specified input is not valid."
@@ -1895,9 +1795,6 @@ msgid ""
 "invalid:"
 msgstr ""
 
-msgid "Errors"
-msgstr ""
-
 msgid "You must select at least one recipient."
 msgstr ""
 
@@ -1915,10 +1812,17 @@ msgstr ""
 msgid "Please choose a configuration profile:"
 msgstr ""
 
-msgid "Please choose a different username."
+msgid "Make it possible for this admin to reset user passwords."
 msgstr ""
 
-msgid "The user will receive an activation link via email."
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
+msgid "Please choose a different username."
 msgstr ""
 
 msgid "I have read and agree to the terms of the license."
@@ -2129,15 +2033,6 @@ msgstr ""
 msgid "Test email"
 msgstr ""
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr ""
-
-msgid "The report can be accessed at:"
-msgstr ""
-
-msgid "New comment"
-msgstr ""
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2176,14 +2071,6 @@ msgid "Context: {ContextName}"
 msgstr ""
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr ""
-
-msgid "New attachment"
-msgstr ""
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr ""
@@ -2217,6 +2104,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr ""
 
+msgid "The report can be accessed at:"
+msgstr ""
+
 msgid "Access to whistleblower's identity authorized"
 msgstr ""
 
@@ -2246,12 +2136,6 @@ msgstr ""
 
 msgid "The whistleblower has provided their identity"
 msgstr ""
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr ""
-
-msgid "New message"
-msgstr "Nauja žinutė"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2329,6 +2213,18 @@ msgid ""
 msgstr ""
 
 msgid "New report"
+msgstr ""
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
 msgstr ""
 
 msgid "Role: {Role}"

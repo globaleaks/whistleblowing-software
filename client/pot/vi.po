@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: Anh Phan <vietnamesel10n@gmail.com>\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -64,12 +64,6 @@ msgstr "Giấy phép"
 
 msgid "Notification templates"
 msgstr "Mẫu thông báo"
-
-msgid "Missing data"
-msgstr "Dữ liệu bị mất"
-
-msgid "no stats available for this hour."
-msgstr "không có số liệu thống kê có sẵn cho giờ này."
 
 msgid "Delete"
 msgstr "Xóa"
@@ -374,9 +368,6 @@ msgstr "Văn bản hiển thị trên đầu trang của giao diện để lựa
 msgid "Show small context cards on submission interface"
 msgstr "Hiện thẻ bối cảnh nhỏ trên giao diện nộp"
 
-msgid "Type of context selector:"
-msgstr "Loại chọn bối cảnh:"
-
 msgid "Type to search…"
 msgstr "Gõ để tìm kiếm..."
 
@@ -385,12 +376,6 @@ msgstr "Im lặng thông báo email"
 
 msgid "Turn on email notifications"
 msgstr "Bật thông báo email"
-
-msgid "Enter an email address for the administrator"
-msgstr "Nhập địa chỉ email cho quản trị viên"
-
-msgid "Enter a password for the administrator"
-msgstr "Nhập mật khẩu cho quản trị viên"
 
 msgid "Failed logins"
 msgstr "Đăng nhập không thành công"
@@ -436,31 +421,6 @@ msgid ""
 "has either changed or been removed."
 msgstr "Văn bản tùy chỉnh này không còn được hiển thị trên nền tảng. Văn bản gốc đã bị thay đổi hoặc bị xóa"
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr "Trừ khi người tố giác kiểm tra báo cáo vào thời điểm này, quyền truy cập của họ sẽ hết hạn"
-
-msgid "The whistleblower can no longer access the report"
-msgstr "Người tố giác không thể truy cập báo cáo"
-
-msgid "Warning!"
-msgstr "Cảnh báo!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "Bạn đang chạy một trình duyệt không được hỗ trợ và có khả năng dễ bị tấn công"
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "Chúng tôi khuyên bạn nên tải và cài đặt Tor Browser"
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "Tor Browser bao gồm nhiều cải tiến về quyền riêng tư và bảo mật không có trong các trình duyệt khác"
-
-msgid "Download the Tor Browser"
-msgstr "Tải về các trình duyệt Tor"
-
 msgid "Audit log"
 msgstr "Sổ ghi chép đánh giá"
 
@@ -482,20 +442,11 @@ msgstr "Từ"
 msgid "Number of downloads"
 msgstr "Số lượt tải xuống"
 
-msgid "Error with file:"
-msgstr "Bị lỗi với tập tin:"
-
 msgid "File size not accepted."
 msgstr "Kích cỡ tập tin không được chấp nhận"
 
-msgid "File type not accepted."
-msgstr "Loại tập tin không được chấp nhận"
-
 msgid "Maximum file size is:"
 msgstr "Kích thước lớn nhất của tập tin là:"
-
-msgid "Accepted file types are:"
-msgstr "Những tập tin được chấp nhận là:"
 
 msgid "Scheduled jobs"
 msgstr "Những công việc đã được lên lịch"
@@ -532,12 +483,6 @@ msgstr "Mở rộng"
 
 msgid "Select"
 msgstr "Chọn"
-
-msgid "Selected by default"
-msgstr "Được chọn mặc định"
-
-msgid "Unselected by default"
-msgstr "Được bỏ chọn mặc định"
 
 msgid "Surname"
 msgstr "Họ"
@@ -610,9 +555,6 @@ msgstr "Số VAT"
 msgid "Tax code"
 msgstr "Mã số thuế"
 
-msgid "Administrators authorized to change user passwords"
-msgstr ""
-
 msgid "Select the context of your report:"
 msgstr "Chọn ngữ cảnh cho báo cáo của bạn:"
 
@@ -678,9 +620,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Cho phép tính năng đa trang web"
 
-msgid "Enable simplified login"
-msgstr "Cho phép đơn giản hóa đăng nhập"
-
 msgid "Allow recipients to delete reports"
 msgstr "Cho phép người nhận để xóa bài nộp"
 
@@ -694,17 +633,11 @@ msgstr "Cho phép người nhận cấp quyền cho người tố giác trên c�
 msgid "Enable search engines indexing"
 msgstr "Bật công cụ tìm kiếm lập chỉ mục"
 
-msgid "Description"
-msgstr "Mô tả"
-
 msgid "Enable custom privacy panel"
 msgstr "Kích hoạt tính năng bảng điều khiển riêng tư tùy chỉnh"
 
 msgid "Custom privacy panel"
 msgstr "bảng điều khiển riêng tư tùy chỉnh"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "Văn bản hiển thị khi tố cáo là không sử dụng Tor"
 
 msgid "Disable the privacy panel"
 msgstr "Vô hiệu hóa bảng điều khiển riêng tư"
@@ -743,15 +676,8 @@ msgstr "Vì lý do bảo mật, yêu cầu bạn thay đổi mật khẩu địn
 msgid "Set the value to 0 to disable this feature."
 msgstr "Đặt giá trị thành 0 để tắt tính năng này"
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "Số ngày cho đến khi quyền truy cập tố giác hết hạn"
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "Vì lý do bảo mật, quyền truy cập tố giác có thể hết hạn"
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "Tinh chỉnh cài đặt này chỉ khi bạn biết là bạn đang làm gì"
+msgid "Number of days till notifying users unread reports"
+msgstr ""
 
 msgid "Enable custodian user role"
 msgstr "Cho phép người dùng sử dụng vai trò người bảo vệ "
@@ -759,8 +685,8 @@ msgstr "Cho phép người dùng sử dụng vai trò người bảo vệ "
 msgid "Enable scoring system"
 msgstr "Cho phép hệ thống tính điểm"
 
-msgid "Enable private labels"
-msgstr "Cho phép dán nhãn riêng"
+msgid "Enable private annotations"
+msgstr ""
 
 msgid "Logging level"
 msgstr "Mức đăng nhập"
@@ -824,6 +750,9 @@ msgstr "Vai trò"
 msgid "Name"
 msgstr "Tên"
 
+msgid "Creation date"
+msgstr "Ngày thành lập"
+
 msgid "Last access"
 msgstr "Lần truy cập cuối"
 
@@ -865,9 +794,6 @@ msgstr "Biểu tượng"
 
 msgid "Project name"
 msgstr "Tên dự án"
-
-msgid "Header title"
-msgstr "Tiêu đề trên cùng"
 
 msgid "Homepage title"
 msgstr "tiêu đề trang chủ"
@@ -931,6 +857,9 @@ msgstr "Tàn tật"
 
 msgid "Enabled"
 msgstr "Bật"
+
+msgid "Description"
+msgstr "Mô tả"
 
 msgid "Questionnaire"
 msgstr "Bảng câu hỏi"
@@ -1018,9 +947,6 @@ msgstr "quản trị viên"
 
 msgid "Recipient"
 msgstr "Người nhận"
-
-msgid "Whistleblower"
-msgstr "Người tố giác"
 
 msgid "Each entry must be separated with a comma."
 msgstr "Mỗi mục phải được cách nhau bằng dấu phẩy"
@@ -1131,6 +1057,9 @@ msgstr "Hãy để nền tảng có thể truy cập mà không cần Tor"
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr "Các vai trò có thể sử dụng nền tảng mà không cần Tor"
+
+msgid "Whistleblower"
+msgstr "Người tố giác"
 
 msgid "To"
 msgstr "Tới"
@@ -1306,26 +1235,26 @@ msgstr "Quản lý hồ sơ"
 msgid "Network settings"
 msgstr "Cài đặt mạng"
 
+msgid "Mode:"
+msgstr "Trạng thái:"
+
 msgid "Root domain used for secondary sites"
 msgstr "Tên miền gốc được sử dụng cho các trang web thứ cấp"
 
 msgid "Use the first site for administrative purposes only"
 msgstr "Chỉ sử dụng trang web đầu tiên cho mục đích quản trị"
 
-msgid "Allow users to sign up"
-msgstr "Cho phép người dùng đăng kí"
-
 msgid "Enable multi-site login"
 msgstr "Cho phép đăng nhập nhiều trang"
+
+msgid "Allow users to sign up"
+msgstr "Cho phép người dùng đăng kí"
 
 msgid "Enable terms of service"
 msgstr "Cho phép điều khoản dịch vụ"
 
 msgid "Sites"
 msgstr "Các trang web"
-
-msgid "Mode:"
-msgstr "Trạng thái:"
 
 msgid "Active"
 msgstr "Hoạt động"
@@ -1396,11 +1325,6 @@ msgstr "Cho phép người nhận hoãn hạn nộp hồ sơ"
 msgid "Allow the recipient to delete reports"
 msgstr "Cho phép người nhận xóa bài nộp"
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr "Cho phép người nhận cấp quyền cho người tố giác trên các báo cáo cụ thể"
-
 msgid "User has administrative access to the following features:"
 msgstr "Người dùng có quyền truy cập quản trị các tính năng sau"
 
@@ -1448,9 +1372,6 @@ msgstr "Văn bản hiển thị sau khi người dùng đã chọn các tùy ch�
 
 msgid "Confirm"
 msgstr "Xác nhận"
-
-msgid "Add file"
-msgstr "Thêm tập tin"
 
 msgid "Are you sure?"
 msgstr "Bạn có chắc không?"
@@ -1544,9 +1465,6 @@ msgstr "Tài nguyên chỉ có thể được truy cập thông qua mạng Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Các yêu cầu tải lên vượt quá giới hạn kích thước"
 
-msgid "Success!"
-msgstr "Thành công!"
-
 msgid "Validation of email address change in progress."
 msgstr "Xác nhận thay đổi địa chỉ email trong quá trình."
 
@@ -1568,9 +1486,12 @@ msgid ""
 msgstr "Có vẻ như bạn đang duyệt trang web này mà không có bất kỳ sự riêng tư và bảo mật nào!"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "Bạn nên truy cập trang web này bằng ứng dụng trên máy tính để bàn có tên Tor Browser, để bảo vệ danh tính của bạn."
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "Tải về các trình duyệt Tor"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Sau đó, sao chép và dán địa chỉ sau vào trình duyệt Tor:"
@@ -1678,26 +1599,11 @@ msgstr "Ngày đăng"
 msgid "File size"
 msgstr "Kích thước tập tin"
 
-msgid "download"
-msgstr "tải xuống"
-
-msgid "No files have been uploaded!"
-msgstr "Vẫn chưa có tập tin nào được tải lên!"
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Cho phép người tố giác thêm tệp đính kèm vào báo cáo"
 
-msgid "Report"
-msgstr "Báo cáo"
-
-msgid "Access expiration"
-msgstr "Hết hạn truy cập"
-
 msgid "Never"
 msgstr "Không bao giờ"
-
-msgid "Revoked"
-msgstr "Thu hồi"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Cho phép người tố giác gửi tin nhắn"
@@ -1748,8 +1654,8 @@ msgstr "Danh sách người nhận"
 msgid "Status:"
 msgstr "Tình trạng"
 
-msgid "Attached files for the whistleblower"
-msgstr "Tệp đính kèm cho người tố giác"
+msgid "Files attached by recipients"
+msgstr "Tập tin được đính kèm bởi người nhận"
 
 msgid "Upload a file:"
 msgstr "Tải lên tập tin:"
@@ -1763,12 +1669,6 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr ""
-
-msgid "Files attached by recipients"
-msgstr "Tập tin được đính kèm bởi người nhận"
-
-msgid "These files have been attached to your report by the recipients."
-msgstr "Những tập tin đã được đính kèm vào báo cáo của bạn bởi người nhận"
 
 msgid "The provided recovery key is invalid."
 msgstr "Khóa khôi phục được cung cấp không hợp lệ."
@@ -1813,6 +1713,9 @@ msgstr "Chúc mừng!"
 msgid "You have completed the platform activation."
 msgstr "Bạn đã hoàn thành việc kích hoạt nền tảng."
 
+msgid "Success!"
+msgstr "Thành công!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Nền tảng tố giác của bạn gần như đã sẵn sàng!"
 
@@ -1844,11 +1747,8 @@ msgstr "Hoàn tất"
 msgid "Invalid phone number"
 msgstr "Số điện thoại không hợp lệ"
 
-msgid "This field is mandatory."
-msgstr "Khoảng này là bắt buộc."
-
-msgid "The answer is too short."
-msgstr "Câu trả lời quá ngắn."
+msgid "The answer is too short"
+msgstr ""
 
 msgid "The specified input is not valid."
 msgstr "Đầu vào được chỉ định là không hợp lệ."
@@ -1904,9 +1804,6 @@ msgid ""
 "invalid:"
 msgstr "Trong bước này, câu trả lời cho các câu hỏi sau bị thiếu hoặc không hợp lệ:"
 
-msgid "Errors"
-msgstr "Lỗi"
-
 msgid "You must select at least one recipient."
 msgstr "Bạn phải lựa chọn ít nhất một người nhận"
 
@@ -1924,11 +1821,18 @@ msgstr "Quy trình từng bước sau đây sẽ hướng dẫn bạn cách tạ
 msgid "Please choose a configuration profile:"
 msgstr "Vui lòng chọn một cấu hình cấu hình:"
 
+msgid "Make it possible for this admin to reset user passwords."
+msgstr ""
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
 msgid "Please choose a different username."
 msgstr "Xin hãy chọn tên người dùng khác."
-
-msgid "The user will receive an activation link via email."
-msgstr "Người dùng sẽ nhận được một liên kết kích hoạt qua email."
 
 msgid "I have read and agree to the terms of the license."
 msgstr ""
@@ -2017,7 +1921,7 @@ msgid "Username: {Username}"
 msgstr "Tên người dùng: {Username}"
 
 msgid "Activation link: {Url}"
-msgstr "Liên kết kích hoạt: {URL}"
+msgstr "Liên kết kích hoạt: {Url}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
@@ -2138,15 +2042,6 @@ msgstr "Việc nhận được email này cho thấy rằng máy chủ có thể
 msgid "Test email"
 msgstr "Email thử nghiệm:"
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr "Đây là một email để thông báo cho bạn về một nhận xét mới về một báo cáo hiện có."
-
-msgid "The report can be accessed at:"
-msgstr "Yêu cầu có thể được truy cập:"
-
-msgid "New comment"
-msgstr "Bình luận mới"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2185,14 +2080,6 @@ msgid "Context: {ContextName}"
 msgstr "Bối cảnh: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr "Đây là một email thông báo cho bạn rằng các tố giác nộp {TipNum} đã gắn vật liệu mới."
-
-msgid "New attachment"
-msgstr "Tập tin đính kèm mới"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr "Chứng chỉ HTTPS được tải lên trên nền tảng sắp hoặc đã hết hạn"
@@ -2226,6 +2113,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr "Đây là một email thông báo cho bạn rằng người giám sát đã ủy quyền cho bạn truy cập vào danh tính người tố giác của báo cáo {TipNum}"
 
+msgid "The report can be accessed at:"
+msgstr "Yêu cầu có thể được truy cập:"
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "Truy cập vào danh tính người tố giác được ủy quyền"
 
@@ -2255,12 +2145,6 @@ msgstr "Đây là một email thông báo cho bạn rằng các tố giác viên
 
 msgid "The whistleblower has provided their identity"
 msgstr "Các tố giác viên đã cung cấp danh tính của họ"
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr "Đây là một email thông báo khi có bình luận mới một trình hiện có."
-
-msgid "New message"
-msgstr "Tin nhắn mới"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2339,6 +2223,18 @@ msgstr "Hãy đặc biệt chú ý đến thông tin và tài liệu có trong �
 
 msgid "New report"
 msgstr "Báo cáo mới"
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr "Vai trò: {Role}"

@@ -42,8 +42,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: Rima Sghaier\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -92,12 +92,6 @@ msgstr "الترخيص"
 
 msgid "Notification templates"
 msgstr "نماذج الإشعارات "
-
-msgid "Missing data"
-msgstr "معطيات ناقصة "
-
-msgid "no stats available for this hour."
-msgstr "لا احصائيات متوفرة في الوقت الحالي."
 
 msgid "Delete"
 msgstr "حذف"
@@ -402,9 +396,6 @@ msgstr "النص ظاهر أعلى واجهة اختيار السياقات"
 msgid "Show small context cards on submission interface"
 msgstr "عرض بطاقات سياق صغيرة على واجهة البلاغ"
 
-msgid "Type of context selector:"
-msgstr "نوع محدد السياق:"
-
 msgid "Type to search…"
 msgstr "اكتب للبحث…"
 
@@ -413,12 +404,6 @@ msgstr "اسكات الاشعارات بالبريد الالكتروني"
 
 msgid "Turn on email notifications"
 msgstr "تشغيل الاشعارات بالبريد الالكتروني"
-
-msgid "Enter an email address for the administrator"
-msgstr "ادخال عنوان البريد الإلكتروني للمشرف"
-
-msgid "Enter a password for the administrator"
-msgstr "ادخال كلمة المرور للمشرف"
 
 msgid "Failed logins"
 msgstr "محاولات الدخول الفاشلة"
@@ -464,31 +449,6 @@ msgid ""
 "has either changed or been removed."
 msgstr "هذا النصّ المخصّص لم يعد قابلاً للعرض على المنصّة. النصّ الأصليّ إما تغيّر أو تمّت إزالته."
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr "ما لم يتحقق المبلغ من البلاغ هذه المرة، ستنتهي صلوحية نفاذه اليه."
-
-msgid "The whistleblower can no longer access the report"
-msgstr "لم يعد يمكن للمبلغ النفاذ الى البلاغ"
-
-msgid "Warning!"
-msgstr "تحذير!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "أنت تقوم بتشغيل متصفح غير معتمد ويحتمل أن يكون معرضا للهجوم."
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "منصوح جدا تحميل وتثبيت متصفح تور."
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "يشمل متصفح Tor  تعزيزات للخصوصيّة و تعزيزات أمنيّة مختلفة غير متوفّرة في المتصفّحات الأخرى. "
-
-msgid "Download the Tor Browser"
-msgstr "تحميل متصفح Tor ."
-
 msgid "Audit log"
 msgstr "سجل التدقيق"
 
@@ -510,20 +470,11 @@ msgstr "من"
 msgid "Number of downloads"
 msgstr "عدد التحميلات"
 
-msgid "Error with file:"
-msgstr "خطأ في الملف:"
-
 msgid "File size not accepted."
 msgstr "حجم الملف غير مقبول."
 
-msgid "File type not accepted."
-msgstr "نوع الملف غير مقبول. "
-
 msgid "Maximum file size is:"
 msgstr "الحد الأقصى لحجم الملف هو:"
-
-msgid "Accepted file types are:"
-msgstr "أنواع الملفات المقبولة هي:"
 
 msgid "Scheduled jobs"
 msgstr "العمليات المجدولة"
@@ -560,12 +511,6 @@ msgstr "تمديد"
 
 msgid "Select"
 msgstr "تحديد"
-
-msgid "Selected by default"
-msgstr "مختار/ة افتراضيا"
-
-msgid "Unselected by default"
-msgstr "غير مختار/ة افتراضيا"
 
 msgid "Surname"
 msgstr "اللقب"
@@ -638,9 +583,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Administrators authorized to change user passwords"
-msgstr ""
-
 msgid "Select the context of your report:"
 msgstr "حدد سياق بلاغك:"
 
@@ -706,9 +648,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "تمكين خاصية تعدد المواقع"
 
-msgid "Enable simplified login"
-msgstr "تمكين تسجيل دخول مبسط"
-
 msgid "Allow recipients to delete reports"
 msgstr "السماح للمتلقين بحذف البلاغات"
 
@@ -722,17 +661,11 @@ msgstr "السماح للمتقبلين بمنح تراخيص للمبلغين �
 msgid "Enable search engines indexing"
 msgstr "تفعيل فهرسة محركات البحث"
 
-msgid "Description"
-msgstr "وصف"
-
 msgid "Enable custom privacy panel"
 msgstr "تمكين شريط الخصوصيّة المخصّص"
 
 msgid "Custom privacy panel"
 msgstr "مخصص لوحة الخصوصية"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "النص الظاهر حين لا يستخدم المبلغ متصفح تور"
 
 msgid "Disable the privacy panel"
 msgstr "تعطيل شارة الخصوصية"
@@ -771,15 +704,8 @@ msgstr "يستلزم تغيير كلمة السر على فترات منتظمة
 msgid "Set the value to 0 to disable this feature."
 msgstr "اضبط القيمة على 0 لإلغاء تفعيل هذه الخاصية."
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "عدد الأيام حتى تنتهي صلوحية نفاذ المبلغ."
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "لأسباب أمنية يخضع نفاذ المبلغ لانتهاء الصلاحية."
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr " عدّل هذه الإعدادات فقط إذا كنت تعرف ما تقوم به."
+msgid "Number of days till notifying users unread reports"
+msgstr ""
 
 msgid "Enable custodian user role"
 msgstr "تمكين دور المستخدم الوصي"
@@ -787,8 +713,8 @@ msgstr "تمكين دور المستخدم الوصي"
 msgid "Enable scoring system"
 msgstr "تمكين نظام تسجيل النقاط"
 
-msgid "Enable private labels"
-msgstr "تمكين التسميات الخاصة"
+msgid "Enable private annotations"
+msgstr ""
 
 msgid "Logging level"
 msgstr "مستوى التسجيل"
@@ -852,6 +778,9 @@ msgstr "دور"
 msgid "Name"
 msgstr "اسم"
 
+msgid "Creation date"
+msgstr "تاريخ الانشاء"
+
 msgid "Last access"
 msgstr "آخر دخول"
 
@@ -893,9 +822,6 @@ msgstr "الشعار "
 
 msgid "Project name"
 msgstr "اسم المشروع"
-
-msgid "Header title"
-msgstr "عنوان الواجهة"
 
 msgid "Homepage title"
 msgstr "عنوان الصفحة الرئيسية"
@@ -959,6 +885,9 @@ msgstr "غير مفعل"
 
 msgid "Enabled"
 msgstr "مفعل"
+
+msgid "Description"
+msgstr "وصف"
 
 msgid "Questionnaire"
 msgstr "استبيان"
@@ -1046,9 +975,6 @@ msgstr "مشرف"
 
 msgid "Recipient"
 msgstr "المتلقّي"
-
-msgid "Whistleblower"
-msgstr "مبلّغ"
 
 msgid "Each entry must be separated with a comma."
 msgstr "يجب أن يكون كل إدخال مفصولا بفاصلة إنجليزية"
@@ -1159,6 +1085,9 @@ msgstr "اسمح للمنصّة بأن تكون قابلة للوصول بدون
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr "الجهات التي يسمح لها باستخدام المنصة بدون Tor"
+
+msgid "Whistleblower"
+msgstr "مبلّغ"
 
 msgid "To"
 msgstr "إلى"
@@ -1334,26 +1263,26 @@ msgstr "إدارة حالة"
 msgid "Network settings"
 msgstr "اعدادات الشبكة"
 
+msgid "Mode:"
+msgstr "الوضع:"
+
 msgid "Root domain used for secondary sites"
 msgstr "النطاق الرئيسي المستخدم في المواقع الثانوية"
 
 msgid "Use the first site for administrative purposes only"
 msgstr "استخدم الموقع الأول من أجل الأغراض الإدارية فقط"
 
-msgid "Allow users to sign up"
-msgstr "السماح للمستخدمين بالاشتراك"
-
 msgid "Enable multi-site login"
 msgstr "تمكين تسجيل الدخول لمواقع متعددة"
+
+msgid "Allow users to sign up"
+msgstr "السماح للمستخدمين بالاشتراك"
 
 msgid "Enable terms of service"
 msgstr "تمكين شروط الخدمة"
 
 msgid "Sites"
 msgstr "المواقع"
-
-msgid "Mode:"
-msgstr "الوضع:"
 
 msgid "Active"
 msgstr "نشيط"
@@ -1424,11 +1353,6 @@ msgstr "السماح للمتلقّي بتأجيل تاريخ انتهاء صل�
 msgid "Allow the recipient to delete reports"
 msgstr "السماح للمتلقين بحذف البلاغات"
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr "السماح للمتقبلين بمنح تراخيص للمبلغين بشأن بلاغات معينة"
-
 msgid "User has administrative access to the following features:"
 msgstr "المستخدم عنده صلاحيات إدارية للدخول إلى الخصائص التالية:"
 
@@ -1476,9 +1400,6 @@ msgstr "النص الذى يظهر بعد أن ينتقى المستخدم ال�
 
 msgid "Confirm"
 msgstr "تأكيد "
-
-msgid "Add file"
-msgstr "اضف ملف"
 
 msgid "Are you sure?"
 msgstr "هل أنت متأكد؟"
@@ -1572,9 +1493,6 @@ msgstr "يمكن الوصول إلى المحتوى فقط ضمن شبكة Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "الملفات المراد رفعها تتخطى السعة المسموح بها."
 
-msgid "Success!"
-msgstr "نجاح!"
-
 msgid "Validation of email address change in progress."
 msgstr "جارى التحقق من التغيير في عنوان البريد الإلكتروني."
 
@@ -1596,9 +1514,12 @@ msgid ""
 msgstr "يبدو أنك تتصفّح هذا الموقع دون أيّ ضمانات خصوصيّة أو أمن اضافيّة!"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "ينصح بشدة زيارة هذا الموقع باستخدام التطبيق المكتبي Tor Browser الذي يحمي هويّتك."
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "تحميل متصفح Tor ."
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "ثمّ، انسخ والصق العنوان التالي في متصفّح Tor."
@@ -1706,26 +1627,11 @@ msgstr "تاريخ  الرّفع"
 msgid "File size"
 msgstr "حجم الملف"
 
-msgid "download"
-msgstr "تحميل"
-
-msgid "No files have been uploaded!"
-msgstr "لم يتم رفع أي ملف!"
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "السّماح للمبلغين باضافة مرفقات إلى البلاغ"
 
-msgid "Report"
-msgstr "بلاغ"
-
-msgid "Access expiration"
-msgstr "انتهاء صلاحية النفاذ"
-
 msgid "Never"
 msgstr "أبدا"
-
-msgid "Revoked"
-msgstr "ملغى"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "تمكين المبلغ من ارسال رسائل"
@@ -1776,8 +1682,8 @@ msgstr "قائمة المتلقّين"
 msgid "Status:"
 msgstr "الحالة:"
 
-msgid "Attached files for the whistleblower"
-msgstr "الملفات المرفقة للمبلغ"
+msgid "Files attached by recipients"
+msgstr "الملفات المرفقة من قبل المتلقّين"
 
 msgid "Upload a file:"
 msgstr "رفع ملف:"
@@ -1791,12 +1697,6 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr ""
-
-msgid "Files attached by recipients"
-msgstr "الملفات المرفقة من قبل المتلقّين"
-
-msgid "These files have been attached to your report by the recipients."
-msgstr "قد تم إرفاق هذه الملفات إلى بلاغك من قبل المتلقّين."
 
 msgid "The provided recovery key is invalid."
 msgstr "مفتاح الاسترداد الذي تم توفيره غير صالح\n."
@@ -1841,6 +1741,9 @@ msgstr "تهانينا!"
 msgid "You have completed the platform activation."
 msgstr "لقد أتممت تفعيل المنصة."
 
+msgid "Success!"
+msgstr "نجاح!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "منصة التبليغ الخاصة بك على وشك أن تكون جاهزة!"
 
@@ -1872,11 +1775,8 @@ msgstr "اكتمل"
 msgid "Invalid phone number"
 msgstr "رقم هاتف غير صالح"
 
-msgid "This field is mandatory."
-msgstr "هذا الحقل إلزامي."
-
-msgid "The answer is too short."
-msgstr "الاجابة قصيرة جدّا."
+msgid "The answer is too short"
+msgstr ""
 
 msgid "The specified input is not valid."
 msgstr "المدخلات المحددة غير صالحة."
@@ -1932,9 +1832,6 @@ msgid ""
 "invalid:"
 msgstr " بهذه الخطوة , الإجابات على هذه الأسئلة مفقودة أو غير صالحة:"
 
-msgid "Errors"
-msgstr "أخطاء"
-
 msgid "You must select at least one recipient."
 msgstr "يجب تحديد مستلم واحد على الأقل."
 
@@ -1952,11 +1849,18 @@ msgstr "سوف ترشدك هذه العملية التدريجية من إنشا
 msgid "Please choose a configuration profile:"
 msgstr "الرجاء إختيار حساب التهيئة :"
 
+msgid "Make it possible for this admin to reset user passwords."
+msgstr ""
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
 msgid "Please choose a different username."
 msgstr "من فضلك قم باختيار إسم مستخدم آخر."
-
-msgid "The user will receive an activation link via email."
-msgstr "سوف يستقبل المستخدم رابط التفعيل عبر البريد الإلكتروني."
 
 msgid "I have read and agree to the terms of the license."
 msgstr ""
@@ -2045,7 +1949,7 @@ msgid "Username: {Username}"
 msgstr "اسم المستخدم: {Username}"
 
 msgid "Activation link: {Url}"
-msgstr "رابط تفعيل  {عنوان}"
+msgstr "رابط تفعيل  {Url}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
@@ -2166,15 +2070,6 @@ msgstr "استقبال هذه الرسالة يشير إلى أن الخادم �
 msgid "Test email"
 msgstr "بريد الكتروني تجريبي"
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr "هذا هو بريد الكتروني لإعلامك عن تعليق جديد على بلاغ موجود."
-
-msgid "The report can be accessed at:"
-msgstr "يكمن النفاذ إلى التقرير:"
-
-msgid "New comment"
-msgstr "تعليق جديد"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2213,14 +2108,6 @@ msgid "Context: {ContextName}"
 msgstr "السياق: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr "هذا هو البريد الالكتروني لإعلامك بأن المبلغ {TipNum} قد قام بارفاق مواد جديدة."
-
-msgid "New attachment"
-msgstr "مرفق جديد"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr "شهادة HTTPS التي تم تحميلها على النظام الأساسي ستنتهي صلاحيتها أو انتهت صلاحيتها بالفعل."
@@ -2254,6 +2141,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr "هذا هو البريد الالكتروني لإعلامك أن أمين الحفظ قد أذن لك بالوصول إلى هوية مبلغ هذا البلاغ {TipNum}."
 
+msgid "The report can be accessed at:"
+msgstr "يكمن النفاذ إلى التقرير:"
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "الاذن بالحصول على هوية المبلغ"
 
@@ -2283,12 +2173,6 @@ msgstr "هذا هو بريد الكتروني لإعلامك بأن مبلغ ا�
 
 msgid "The whistleblower has provided their identity"
 msgstr "قدم المبلغ هويته"
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr "هذا هو بريد الكتروني لإعلامك عن تعليق جديد على بلاغ موجود."
-
-msgid "New message"
-msgstr "رسالة جديدة"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2367,6 +2251,18 @@ msgstr "يرجى أن تولوا اهتماما خاصا بالمعلومات و
 
 msgid "New report"
 msgstr "تقرير جديد"
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr "الدور: {Role}"

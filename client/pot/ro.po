@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: Cristina Lupu <cristina@cji.ro>\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -69,12 +69,6 @@ msgstr "Licență"
 
 msgid "Notification templates"
 msgstr "Template-uri pentru notificări"
-
-msgid "Missing data"
-msgstr "Date lipsă"
-
-msgid "no stats available for this hour."
-msgstr "Nu există statistici disponibile pentru această oră."
 
 msgid "Delete"
 msgstr "Şterge"
@@ -379,9 +373,6 @@ msgstr "Text afișat în partea de sus a interfeței pentru selectarea contextel
 msgid "Show small context cards on submission interface"
 msgstr "Afișați mici carduri cu contextul în interfața de înregistrare a sesizării"
 
-msgid "Type of context selector:"
-msgstr "Tipul selectorului de context:"
-
 msgid "Type to search…"
 msgstr "Tastează pentru a căuta..."
 
@@ -390,12 +381,6 @@ msgstr "Pune pe silențios notificările email-urilor"
 
 msgid "Turn on email notifications"
 msgstr "Activează notificarile pentru email-uri"
-
-msgid "Enter an email address for the administrator"
-msgstr "Introdu o adresă de email pentru administrator"
-
-msgid "Enter a password for the administrator"
-msgstr "Introdu o parolă pentru administrator"
 
 msgid "Failed logins"
 msgstr "Autentificări eşuate"
@@ -441,31 +426,6 @@ msgid ""
 "has either changed or been removed."
 msgstr "Acest text personalizat nu mai este afișat pe platformă. Textul original a fost modificat sau șters."
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr "În caz că avertizorul de integritate nu își verifică sesizarea până la aceasta dată, accesul acestuia la ea va expira."
-
-msgid "The whistleblower can no longer access the report"
-msgstr "Avertizorul de integritate nu mai poate accesa sesizarea."
-
-msgid "Warning!"
-msgstr "Atenție!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "Folosești un browser care nu este recomandat și care poate fi vulnerabil."
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "Îți este ferm recomandat să descarci și să instalezi browser-ul Tor."
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "Browser-ul Tor include diverse îmbunătățiri de confidențialitate și securitate care nu sunt prezente și în alte browsere."
-
-msgid "Download the Tor Browser"
-msgstr "Descarcă browser-ul Tor."
-
 msgid "Audit log"
 msgstr "Log de audit"
 
@@ -487,20 +447,11 @@ msgstr "De la"
 msgid "Number of downloads"
 msgstr "Număr descărcări"
 
-msgid "Error with file:"
-msgstr "Eroare cu fișierul:"
-
 msgid "File size not accepted."
 msgstr "Mărimea fișierului nu este acceptată."
 
-msgid "File type not accepted."
-msgstr "Tipul fișierului nu este acceptat."
-
 msgid "Maximum file size is:"
 msgstr "Dimensiunea maximă a fișierului este:"
-
-msgid "Accepted file types are:"
-msgstr "Tipurile de fișiere acceptate sunt:"
 
 msgid "Scheduled jobs"
 msgstr "Sarcini programate"
@@ -537,12 +488,6 @@ msgstr "Extinde"
 
 msgid "Select"
 msgstr "Selectează"
-
-msgid "Selected by default"
-msgstr "Selectat ca setare standard"
-
-msgid "Unselected by default"
-msgstr "Neselectat ca setare standard"
 
 msgid "Surname"
 msgstr "Nume de familie"
@@ -615,9 +560,6 @@ msgstr "TVA"
 msgid "Tax code"
 msgstr "Cod fiscal"
 
-msgid "Administrators authorized to change user passwords"
-msgstr ""
-
 msgid "Select the context of your report:"
 msgstr "Selectează contextul sesizării tale:"
 
@@ -683,9 +625,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Activează funcționalitatea multi-site"
 
-msgid "Enable simplified login"
-msgstr "Activează autentificarea simplificată"
-
 msgid "Allow recipients to delete reports"
 msgstr "Permite destinatarilor să șteargă sesizările"
 
@@ -699,17 +638,11 @@ msgstr "Permite destinatarilor să acorde permisiuni avertizorilor de integritat
 msgid "Enable search engines indexing"
 msgstr "Activează indexarea pentru motoarele de căutare"
 
-msgid "Description"
-msgstr "Descriere"
-
 msgid "Enable custom privacy panel"
 msgstr "Activează panoul pentru personalizarea setărilor privind confidențialitatea"
 
 msgid "Custom privacy panel"
 msgstr "Panou pentru personalizarea setărilor privind confidențialitatea"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "Text afișat când avertizorul nu utilizează Tor"
 
 msgid "Disable the privacy panel"
 msgstr "Dezactivează panoul cu setări de confidențialitate"
@@ -748,15 +681,8 @@ msgstr "Din motive de securitate, este solicitată schimbarea parolei la interva
 msgid "Set the value to 0 to disable this feature."
 msgstr "Selectează valoarea 0 pentru a dezactiva această opțiune."
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "Numărul de zile rămase până la data la care expiră accesul avertizorului."
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "Din motive de securitate, accesul avertizorului poate expira."
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "Modifică această setare doar dacă ști ce faci."
+msgid "Number of days till notifying users unread reports"
+msgstr ""
 
 msgid "Enable custodian user role"
 msgstr "Activează rolul de custode al utilizatorului"
@@ -764,8 +690,8 @@ msgstr "Activează rolul de custode al utilizatorului"
 msgid "Enable scoring system"
 msgstr "Activează sistemul de evaluare"
 
-msgid "Enable private labels"
-msgstr "Activează etichetele private"
+msgid "Enable private annotations"
+msgstr ""
 
 msgid "Logging level"
 msgstr "Nivel logare "
@@ -829,6 +755,9 @@ msgstr "Rol"
 msgid "Name"
 msgstr "Prenume"
 
+msgid "Creation date"
+msgstr "Data creării"
+
 msgid "Last access"
 msgstr "Ultima accesare"
 
@@ -870,9 +799,6 @@ msgstr "Logo"
 
 msgid "Project name"
 msgstr "Numele proiectului"
-
-msgid "Header title"
-msgstr "Titlu antet"
 
 msgid "Homepage title"
 msgstr "Titlul paginii de start"
@@ -936,6 +862,9 @@ msgstr "Dezactivat"
 
 msgid "Enabled"
 msgstr "Activat"
+
+msgid "Description"
+msgstr "Descriere"
 
 msgid "Questionnaire"
 msgstr "Chestionar"
@@ -1023,9 +952,6 @@ msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Destinatar"
-
-msgid "Whistleblower"
-msgstr "Avertizor de integritate"
 
 msgid "Each entry must be separated with a comma."
 msgstr "Fiecare intrare trebuie separată prin virgulă"
@@ -1136,6 +1062,9 @@ msgstr "Permite ca platforma să fie accesibilă fără Tor."
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr "Rolurile care pot folosi platforma fară browserul Tor"
+
+msgid "Whistleblower"
+msgstr "Avertizor de integritate"
 
 msgid "To"
 msgstr "Către"
@@ -1311,26 +1240,26 @@ msgstr "Managementul cazurilor"
 msgid "Network settings"
 msgstr "Setări de rețea"
 
+msgid "Mode:"
+msgstr "Mod:"
+
 msgid "Root domain used for secondary sites"
 msgstr "Domeniu pricipal utilizat pentru website-urile secundare"
 
 msgid "Use the first site for administrative purposes only"
 msgstr "Folosește primul website doar pentru scopuri administrative"
 
-msgid "Allow users to sign up"
-msgstr "Permite utilizatorilor să se înscrie"
-
 msgid "Enable multi-site login"
 msgstr "Activează autentificarea multi-site"
+
+msgid "Allow users to sign up"
+msgstr "Permite utilizatorilor să se înscrie"
 
 msgid "Enable terms of service"
 msgstr "Activează termenii de utilizare"
 
 msgid "Sites"
 msgstr "Website-uri"
-
-msgid "Mode:"
-msgstr "Mod:"
 
 msgid "Active"
 msgstr "Activ"
@@ -1401,11 +1330,6 @@ msgstr "Permite destinatarului să amâne data de expirare a sesizării"
 msgid "Allow the recipient to delete reports"
 msgstr "Permite destinatarilor să șteargă sesizările"
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr "Permite destinatarilor să acorde permisiuni avertizorilor de integritate pentru anumite sesizări"
-
 msgid "User has administrative access to the following features:"
 msgstr "Utilizatorul are acces de administrator pentru următoarele setări:"
 
@@ -1453,9 +1377,6 @@ msgstr "Acest text apare după ce utilizatorul a selectat varianta."
 
 msgid "Confirm"
 msgstr "Confirmă"
-
-msgid "Add file"
-msgstr "Adaugă fișier"
 
 msgid "Are you sure?"
 msgstr "Ești sigur(ă)?"
@@ -1549,9 +1470,6 @@ msgstr "Resursa poate fi accesată numai prin intermediul rețelei Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Atașamentul depășește dimensiunea maximă acceptată"
 
-msgid "Success!"
-msgstr "Succes!"
-
 msgid "Validation of email address change in progress."
 msgstr "Validarea schimbării emailului este în desfășurare."
 
@@ -1573,9 +1491,12 @@ msgid ""
 msgstr "Se pare că navighezi pe acest website fără nici o protecție a datelor personale și securitate suplimentară!"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "Îți este ferm recomandat să accesezi acest website utilizând aplicația pentru desktop denumită Tor Browser, care îți protejează identitatea."
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "Descarcă browser-ul Tor."
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Apoi, copiază și inserează următoarea adresă în browser-ul Tor:"
@@ -1683,26 +1604,11 @@ msgstr "Data încărcării"
 msgid "File size"
 msgstr "Mărime fișier"
 
-msgid "download"
-msgstr "descarcă"
-
-msgid "No files have been uploaded!"
-msgstr "Niciun fișier nu a fost încărcat!"
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Permite avertizorului să adauge atașamente sesizării"
 
-msgid "Report"
-msgstr "Sesizare"
-
-msgid "Access expiration"
-msgstr "Expirarea accesului"
-
 msgid "Never"
 msgstr "Niciodată"
-
-msgid "Revoked"
-msgstr "Revocat"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Permite avertizorilor să trimită mesaje"
@@ -1753,8 +1659,8 @@ msgstr "Listă destinatari"
 msgid "Status:"
 msgstr "Status:"
 
-msgid "Attached files for the whistleblower"
-msgstr "Fișiere atașate pentru avertizor"
+msgid "Files attached by recipients"
+msgstr "Fișiere atașate de către destinatari"
 
 msgid "Upload a file:"
 msgstr "Încarcă un fișier:"
@@ -1768,12 +1674,6 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr ""
-
-msgid "Files attached by recipients"
-msgstr "Fișiere atașate de către destinatari"
-
-msgid "These files have been attached to your report by the recipients."
-msgstr "Aceste fișiere au fost atașate sesizării tale de către destinatari."
 
 msgid "The provided recovery key is invalid."
 msgstr "Cheia de recuperare introdusă este invalidă."
@@ -1818,6 +1718,9 @@ msgstr "Felicitări!"
 msgid "You have completed the platform activation."
 msgstr "Ai finalizat procesul de activare a platformei."
 
+msgid "Success!"
+msgstr "Succes!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Platforma ta pentru avertizorii de integritate este aproape gata!"
 
@@ -1849,11 +1752,8 @@ msgstr "Creează cont"
 msgid "Invalid phone number"
 msgstr "Număr de telefon invalid"
 
-msgid "This field is mandatory."
-msgstr "Acest câmp este obligatoriu."
-
-msgid "The answer is too short."
-msgstr "Răspunsul este prea scurt."
+msgid "The answer is too short"
+msgstr ""
 
 msgid "The specified input is not valid."
 msgstr "Datele introduse specificate nu sunt valide."
@@ -1909,9 +1809,6 @@ msgid ""
 "invalid:"
 msgstr "În această etapă, răspunsurile pentru următoarele întrebări fie lipsesc, fie sunt invalide:"
 
-msgid "Errors"
-msgstr "Erori"
-
 msgid "You must select at least one recipient."
 msgstr "Trebuie sa alegi cel putin un destinatar."
 
@@ -1929,11 +1826,18 @@ msgstr "Aceste instrucțiuni te vor ghida pas cu pas în procesul de creare a pl
 msgid "Please choose a configuration profile:"
 msgstr "Te rugăm să alegi un profil pentru configurare:"
 
+msgid "Make it possible for this admin to reset user passwords."
+msgstr ""
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
 msgid "Please choose a different username."
 msgstr "Te rugăm să folosești un nume de utilizator diferit."
-
-msgid "The user will receive an activation link via email."
-msgstr "Utilizatorul va primi prin email un link pentru activare."
 
 msgid "I have read and agree to the terms of the license."
 msgstr ""
@@ -2143,15 +2047,6 @@ msgstr "Primirea acestui email indică faptul că serverul a putut să se autent
 msgid "Test email"
 msgstr "Email test"
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr "Acest email te notifică că ai primit un nou comentariu la o sesizare existentă."
-
-msgid "The report can be accessed at:"
-msgstr "Sesizarea poate fi accesată la:"
-
-msgid "New comment"
-msgstr "Comentariu nou"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2190,14 +2085,6 @@ msgid "Context: {ContextName}"
 msgstr "Context: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr "Acesta este un e-mail pentru a te anunța că avertizorul sesizării {TipNum} a atașat un nou material."
-
-msgid "New attachment"
-msgstr "Atașament nou"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr "Certificatul HTTPS încărcat pe platformă este pe cale să expire sau a expirat deja. "
@@ -2231,6 +2118,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr "Acesta este un email pentru a te anunța că un custode te-a autorizat să accesezi identitatea avertizorului sesizării {TipNum}."
 
+msgid "The report can be accessed at:"
+msgstr "Sesizarea poate fi accesată la:"
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "Accesul la identitatea avertizorului a fost autorizat."
 
@@ -2260,12 +2150,6 @@ msgstr "Acesta este un e-mail pentru a te anunța că avertizorul sesizării {Ti
 
 msgid "The whistleblower has provided their identity"
 msgstr "Avertizorul și-a dezvăluit identitatea."
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr "Acesta este un e-mail pentru a te anunța despre un nou mesaj la o sesizare existentă."
-
-msgid "New message"
-msgstr "Mesaj nou"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2344,6 +2228,18 @@ msgstr "Te rugăm să acorzi atenție specială informațiilor și materialelor 
 
 msgid "New report"
 msgstr "Sesizare nouă"
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr "Rol: {Role}"

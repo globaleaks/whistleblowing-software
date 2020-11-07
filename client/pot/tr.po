@@ -5,7 +5,7 @@
 # cerberus23 <hemlockii@riseup.net>, 2013
 # cerberus23 <hemlockii@riseup.net>, 2013
 # efe kerem sözeri <eksozeri@hotmail.com>, 2015
-# Emir Sarı <bitigchi@me.com>, 2015
+# Emir SARI, 2015
 # Erdoğan Şahin, 2016
 # Erdoğan Şahin, 2016-2017
 # Erdoğan Şahin, 2016
@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: On the Line Turkiye <onthelineturkiye@gmail.com>\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -77,12 +77,6 @@ msgstr "Lisans"
 
 msgid "Notification templates"
 msgstr "Bildirim şablonları"
-
-msgid "Missing data"
-msgstr "Kayıp veri"
-
-msgid "no stats available for this hour."
-msgstr "Bu saat için herhangi bir istatistik mevcut değil."
 
 msgid "Delete"
 msgstr "Sil"
@@ -387,9 +381,6 @@ msgstr "Arayüz de en üstünde yer alan metin içerik seçmek için dir"
 msgid "Show small context cards on submission interface"
 msgstr "Gönderen kısmında arayüz de küçük içerik kartlarını göster."
 
-msgid "Type of context selector:"
-msgstr "İçerik seçicinin türü:"
-
 msgid "Type to search…"
 msgstr "Aramak için yazın..."
 
@@ -398,12 +389,6 @@ msgstr "E-posta bilgilendirmelerini sessize al"
 
 msgid "Turn on email notifications"
 msgstr "E-posta bilgilendirmelerini aç"
-
-msgid "Enter an email address for the administrator"
-msgstr "Yönetici için bir e-posta adresi girin"
-
-msgid "Enter a password for the administrator"
-msgstr "Yönetici için bir şifre girin"
 
 msgid "Failed logins"
 msgstr "Başarısız girişler"
@@ -449,31 +434,6 @@ msgid ""
 "has either changed or been removed."
 msgstr "Bu özel metin artık platformda görüntülenmiyor. Orijinal metin değiştirildi veya kaldırıldı."
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr "İhbarcı, bu zamana kadar raporu kontrol etmediği sürece, erişim hakkı sona erecektir."
-
-msgid "The whistleblower can no longer access the report"
-msgstr "İhbarcı, artık rapora erişim sağlayamaz."
-
-msgid "Warning!"
-msgstr "Uyarı!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "Desteklenmeyen ve potansiyel olarak güvenlik açığı olan bir tarayıcı da çalışıyorsunuz."
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "Tor Browser indirip kurmanız önemle tavsiye edilir."
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "Tor Browser diğer web tarayıcılarında olmayan çeşitli gizlilik ve güvenlik iyileştirmeleri içerir."
-
-msgid "Download the Tor Browser"
-msgstr "Tor Browser İndir"
-
 msgid "Audit log"
 msgstr "Denetim kaydı"
 
@@ -495,20 +455,11 @@ msgstr "Kimden"
 msgid "Number of downloads"
 msgstr "İndirme sayısı"
 
-msgid "Error with file:"
-msgstr "Dosya ile hata:"
-
 msgid "File size not accepted."
 msgstr "Dosya boyutu kabul edilmedi."
 
-msgid "File type not accepted."
-msgstr "Dosya türü kabul edilmedi."
-
 msgid "Maximum file size is:"
 msgstr "Azami dosya boyutu:"
-
-msgid "Accepted file types are:"
-msgstr "Kabul edilen dosya türleri:"
 
 msgid "Scheduled jobs"
 msgstr "Planlanmış işler"
@@ -545,12 +496,6 @@ msgstr "genişletmek"
 
 msgid "Select"
 msgstr "Seç"
-
-msgid "Selected by default"
-msgstr "Varsayılan olarak seçildi"
-
-msgid "Unselected by default"
-msgstr "Varsayılan olarak seçilmemiş"
 
 msgid "Surname"
 msgstr "Soyad"
@@ -623,9 +568,6 @@ msgstr "VAT numarası"
 msgid "Tax code"
 msgstr "Vergi kodu"
 
-msgid "Administrators authorized to change user passwords"
-msgstr "Kullanıcı parolalarını değiştirme yetkisi olan yöneticiler"
-
 msgid "Select the context of your report:"
 msgstr "Raporunuzun içeriğini seçin:"
 
@@ -686,13 +628,10 @@ msgid "Enable administrators to change user passwords"
 msgstr "Yöneticilerin parola değiştirebilmesini etkinleştirin."
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
+msgstr "Yöneticilerin kullanıcıların parolasını değiştirme yetkisi var:"
 
 msgid "Enable multisite feature"
 msgstr "Çoklu site özelliğini etkinleştir"
-
-msgid "Enable simplified login"
-msgstr "Kolaylaştırılmış kullanıcı girişini etkinleştir"
 
 msgid "Allow recipients to delete reports"
 msgstr "Alıcıların raporları silmesine izin ver"
@@ -707,17 +646,11 @@ msgstr "Alıcıların belirli raporlara ihbarcı yetkileri vermesine izin ver"
 msgid "Enable search engines indexing"
 msgstr "Arama motoru dizinlemeyi etkinleştir"
 
-msgid "Description"
-msgstr "Açıklama"
-
 msgid "Enable custom privacy panel"
 msgstr "Özel gizlilik panelini etkinleştir"
 
 msgid "Custom privacy panel"
 msgstr "Özel gizlilik paneli"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "İhbarcı Tor kullanmadığında gösterilecek metin"
 
 msgid "Disable the privacy panel"
 msgstr "Gizlilik rozetini devre dışı bırak"
@@ -756,15 +689,8 @@ msgstr "Güvenlik nedeniyle, düzenli aralıklarla parola değişikliği gerekme
 msgid "Set the value to 0 to disable this feature."
 msgstr "Bu özelliği devre dışı bırakmak için değerini 0 olarak ayarlayın."
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "İfşacı erişiminin süresinin dolacağı gün sayısı"
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "Güvenlik nedeniyle ihbarcının erişimi süre aşımına tabidir."
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "Bu ayarı sadece ne yaptığınızı biliyorsanız değiştirin."
+msgid "Number of days till notifying users unread reports"
+msgstr ""
 
 msgid "Enable custodian user role"
 msgstr "Koruyucu kullanıcı rolünü etkinleştir"
@@ -772,8 +698,8 @@ msgstr "Koruyucu kullanıcı rolünü etkinleştir"
 msgid "Enable scoring system"
 msgstr "Skorlama sistemini etkinleştir"
 
-msgid "Enable private labels"
-msgstr "Özel etiketlerini etkinleştir"
+msgid "Enable private annotations"
+msgstr ""
 
 msgid "Logging level"
 msgstr "Günlük düzeyi"
@@ -837,6 +763,9 @@ msgstr "Rol"
 msgid "Name"
 msgstr "Ad"
 
+msgid "Creation date"
+msgstr "Oluşturulma tarihi"
+
 msgid "Last access"
 msgstr "Son erişim"
 
@@ -878,9 +807,6 @@ msgstr "Logo"
 
 msgid "Project name"
 msgstr "Proje adı"
-
-msgid "Header title"
-msgstr "Üstbilgi başlığı"
 
 msgid "Homepage title"
 msgstr "Anasayfa başlığı"
@@ -944,6 +870,9 @@ msgstr "Devre Dışı"
 
 msgid "Enabled"
 msgstr "Etkin"
+
+msgid "Description"
+msgstr "Açıklama"
 
 msgid "Questionnaire"
 msgstr "Anket"
@@ -1031,9 +960,6 @@ msgstr "Yönetici"
 
 msgid "Recipient"
 msgstr "Alıcı"
-
-msgid "Whistleblower"
-msgstr "İhbarcı"
 
 msgid "Each entry must be separated with a comma."
 msgstr "Her bir girdi virgül ile ayrılmalıdır."
@@ -1144,6 +1070,9 @@ msgstr "Platformu Tor olmadan erişilebilir kıl"
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr "Platformu Tor olmadan kullanabilen roller"
+
+msgid "Whistleblower"
+msgstr "İhbarcı"
 
 msgid "To"
 msgstr "Alıcı"
@@ -1319,26 +1248,26 @@ msgstr "Durum yönetimi"
 msgid "Network settings"
 msgstr "Ağ Ayarları"
 
+msgid "Mode:"
+msgstr "Kip:"
+
 msgid "Root domain used for secondary sites"
 msgstr "İkincil siteler tarafından kullanılan kök alan"
 
 msgid "Use the first site for administrative purposes only"
 msgstr "İlk siteyi sadece yönetsel amaçlar için kullan"
 
-msgid "Allow users to sign up"
-msgstr "Kullanıcıların kayıt olmasına izin ver"
-
 msgid "Enable multi-site login"
 msgstr "Çoklu site kullanıcı girişini etkinleştir"
+
+msgid "Allow users to sign up"
+msgstr "Kullanıcıların kayıt olmasına izin ver"
 
 msgid "Enable terms of service"
 msgstr "Hizmet kullanım şartlarını etkinleştir"
 
 msgid "Sites"
 msgstr "Siteler"
-
-msgid "Mode:"
-msgstr "Kip:"
 
 msgid "Active"
 msgstr "Etkin"
@@ -1409,11 +1338,6 @@ msgstr "Alıcıya raporun zaman aşımı tarihini erteleme izni ver"
 msgid "Allow the recipient to delete reports"
 msgstr "Alıcıya raporları silme izni ver"
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr "Alıcıya belirli raporlara ihbarcı yetkileri vermesine izin ver"
-
 msgid "User has administrative access to the following features:"
 msgstr "Kullanıcının aşağıdaki özelliklere yönetimsel erişimi var:"
 
@@ -1461,9 +1385,6 @@ msgstr "Kullanıcı seçeneği seçtikten sonra görüntülenen metin."
 
 msgid "Confirm"
 msgstr "Onayla"
-
-msgid "Add file"
-msgstr "Dosya ekle"
 
 msgid "Are you sure?"
 msgstr "Emin misiniz?"
@@ -1557,9 +1478,6 @@ msgstr "Kaynak sadece Tor ağı içerisinden erişilebilir"
 msgid "The upload request exceeds the size limit"
 msgstr "Yükleme talebi boyut sınırlarını aşıyor"
 
-msgid "Success!"
-msgstr "Başarılı!"
-
 msgid "Validation of email address change in progress."
 msgstr "E-posta adresi değişikliği doğrulaması devam ediyor. "
 
@@ -1581,9 +1499,12 @@ msgid ""
 msgstr "Siteyi başka hiç bir ekstra gizlilik ve güvenlik olmadan gezdiğiniz görünüyor."
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "Bu siteyi gezerken kimliğinizi gizleyen Tor Browser masaüstü uygulaması kullanmanızı şiddetle öneriyoruz."
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "Bu siteyi gezerken kimliğinizi gizleyen Tor Tarayıcı uygulamasını kullanmanızı şiddetle öneriyoruz."
+
+msgid "Download the Tor Browser"
+msgstr "Tor Browser İndir"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Sonra, şu adresi kopyalayıp Tor Browser'a yapıştırın:"
@@ -1691,26 +1612,11 @@ msgstr "Yükleme Tarihi"
 msgid "File size"
 msgstr "Dosya Boyutu"
 
-msgid "download"
-msgstr "karşıdan yükle"
-
-msgid "No files have been uploaded!"
-msgstr "Hiçbir dosya yüklenmedi!"
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "İhbarcının rapora eklentiler eklemesine izin ver"
 
-msgid "Report"
-msgstr "Rapor"
-
-msgid "Access expiration"
-msgstr "Erişim zaman aşımı"
-
 msgid "Never"
 msgstr "Asla"
-
-msgid "Revoked"
-msgstr "İptal edildi"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "İhbarcının mesaj göndermesine izin verin"
@@ -1761,8 +1667,8 @@ msgstr "Alıcı listesi"
 msgid "Status:"
 msgstr "Durum"
 
-msgid "Attached files for the whistleblower"
-msgstr "İhbarcı için eklenmiş dosyalar"
+msgid "Files attached by recipients"
+msgstr "Alıcılar tarafından eklenmiş dosyalar"
 
 msgid "Upload a file:"
 msgstr "Bir dosya yükle:"
@@ -1775,13 +1681,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
-
-msgid "Files attached by recipients"
-msgstr "Alıcılar tarafından eklenmiş dosyalar"
-
-msgid "These files have been attached to your report by the recipients."
-msgstr "Bu dosyalar raporunuza alıcılar tarafından eklenmiştir."
+msgstr "\"Hesap Kurtarma Anahtarını\" almak için \"Tercihler\" bölümüne erişmenizi ve anahtarınızı güvenli bir şekilde saklamanızı öneriyoruz. Bu anahtar parolanızı unutmanız durumunda platforma ve verinize erişiminizi kurtarmak için gerekli olacaktır."
 
 msgid "The provided recovery key is invalid."
 msgstr "Sağladığınız kurtarma anahtarı geçersizdir."
@@ -1826,6 +1726,9 @@ msgstr "Tebrikler!"
 msgid "You have completed the platform activation."
 msgstr "Platformu etkinleştirmeyi tamamladınız."
 
+msgid "Success!"
+msgstr "Başarılı!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "İhbar platformunuz neredeyse hazır!"
 
@@ -1857,11 +1760,8 @@ msgstr "Tamamla"
 msgid "Invalid phone number"
 msgstr "Geçersiz telefon numarası"
 
-msgid "This field is mandatory."
-msgstr "Bu alan zorunludur."
-
-msgid "The answer is too short."
-msgstr "Yanıt çok kısa."
+msgid "The answer is too short"
+msgstr "Yanıt çok kısa"
 
 msgid "The specified input is not valid."
 msgstr "Belirtilen girdi geçerli değil."
@@ -1917,9 +1817,6 @@ msgid ""
 "invalid:"
 msgstr "Bu adımda aşağıdaki soruların yanıtları eksik veya geçersiz:"
 
-msgid "Errors"
-msgstr "Hatalar"
-
 msgid "You must select at least one recipient."
 msgstr "En azından bir alıcı seçmelisiniz."
 
@@ -1937,14 +1834,21 @@ msgstr "Aşağıdaki adım adım yönerge ihbar platformunuzu oluştururken size
 msgid "Please choose a configuration profile:"
 msgstr "Lütfen bir yapılandırma profili seçin:"
 
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "Yöneticilerin kullanıcıların parolasını sıfırlamasına imkan ver."
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
 msgid "Please choose a different username."
 msgstr "Lütfen farklı bir kullanıcı adı seçin."
 
-msgid "The user will receive an activation link via email."
-msgstr "Kullanıcı, etkinleştirme bağlantısını e-posta ile alacaktır."
-
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "Lisansın koşullarını okudum ve kabul ediyorum."
 
 msgid "You have completed the platform wizard."
 msgstr "Platform sihirbazını tamamladınız."
@@ -2151,15 +2055,6 @@ msgstr "Bu e-postanın alımı, sunucunun SMTP posta sunucusuyla etkileşim kura
 msgid "Test email"
 msgstr "Test e-postası"
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr "Bu e-posta, mevcut bir rapor hakkındaki yeni bir yorumu size bildirmek içindir. "
-
-msgid "The report can be accessed at:"
-msgstr "Rapora şuradan erişebilirsiniz: "
-
-msgid "New comment"
-msgstr "Yeni yorum"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2198,14 +2093,6 @@ msgid "Context: {ContextName}"
 msgstr "Kategori: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr "Bu e-posta, {TipNum} sayılı rapora ihbarcının yeni malzeme eklediğini bildirmek içindir."
-
-msgid "New attachment"
-msgstr "Yeni ek"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr "Platformda yüklenen HTTPS sertifikasının süresi dolmuş veya dolmak üzeredir."
@@ -2239,6 +2126,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr "Bu e-posta, bir koruyucunun, {TipNum} raporunun ihbarcı kimliğine erişim yetkisi verdiğini size bildirmek içindir.  "
 
+msgid "The report can be accessed at:"
+msgstr "Rapora şuradan erişebilirsiniz: "
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "İhbarcının kimliğine erişime izin verildi"
 
@@ -2268,12 +2158,6 @@ msgstr "Bu e-posta size {TipNum} raporunun ihbarcısının kimliğini sağladı�
 
 msgid "The whistleblower has provided their identity"
 msgstr "İhbarcı kimliğini açıkladı"
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr "Bu e-posta, mevcut bir rapor hakkındaki yeni bir mesajı size bildirmek içindir. "
-
-msgid "New message"
-msgstr "Yeni mesaj"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2352,6 +2236,18 @@ msgstr "Burada bulunan bilgi ve malzemeye özel bir önem vermeniz bekleniyor. L
 
 msgid "New report"
 msgstr "Yeni rapor"
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr "Rol: {Role}"

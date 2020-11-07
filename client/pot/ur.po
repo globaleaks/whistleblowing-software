@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: Furhan Hussain <furhan@bytesforall.pk>\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -64,12 +64,6 @@ msgstr "اختیار دینا"
 
 msgid "Notification templates"
 msgstr "نوٹیفکیشن کے سانچوں"
-
-msgid "Missing data"
-msgstr " غائب مواد"
-
-msgid "no stats available for this hour."
-msgstr "اس وقت کے لئے دستیاب نہیں اعدادوشمار."
 
 msgid "Delete"
 msgstr "حذف"
@@ -374,9 +368,6 @@ msgstr "متن سیاق و سباق کے انتخاب کے سامنے دکھای
 msgid "Show small context cards on submission interface"
 msgstr "درخواست انٹرفیس پرچھوٹے سیاق وسباق دکھائیں"
 
-msgid "Type of context selector:"
-msgstr "سیاق و سباق کی قسم کا انتخاب"
-
 msgid "Type to search…"
 msgstr "تلاش کرنے ٹا ئپ کریں"
 
@@ -385,12 +376,6 @@ msgstr "خاموش ای میل کی اطلاعات"
 
 msgid "Turn on email notifications"
 msgstr "ای میل کی اطلا عات کو آن کریں"
-
-msgid "Enter an email address for the administrator"
-msgstr "ایڈمنسٹریٹرکے لیے ایک ای میل ایڈرس درج کریں"
-
-msgid "Enter a password for the administrator"
-msgstr "ایڈمنسٹریٹرکے لیے  ایک پاس ورڈ درج کریں"
 
 msgid "Failed logins"
 msgstr "ناکام لاگ اِن"
@@ -436,31 +421,6 @@ msgid ""
 "has either changed or been removed."
 msgstr "پلیٹ فارم پرحسب ضرورت اب متن ظاہر نہیں ہوتا-اصل متن یا تو بدل گیا ہے یااسے ہٹادیا گیا ہے"
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr ""
-
-msgid "The whistleblower can no longer access the report"
-msgstr ""
-
-msgid "Warning!"
-msgstr "خبردار!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr ""
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr ""
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "پرائیویسی اور سیکیورٹی میں خاطر خواہ اضافہ کرنے کے واسطے ٹور براؤزرمیں ایسے اقدامات شامل کیے گئے ہیں جو کسی دوسرے براؤزر میں موجود نہیں۔  "
-
-msgid "Download the Tor Browser"
-msgstr "ٹوربراؤزر ڈاؤن لوڈ کیجیے"
-
 msgid "Audit log"
 msgstr "ڈاؤن لوڈذ کی تعداد"
 
@@ -482,19 +442,10 @@ msgstr "کی طرف سے"
 msgid "Number of downloads"
 msgstr ""
 
-msgid "Error with file:"
-msgstr ""
-
 msgid "File size not accepted."
 msgstr ""
 
-msgid "File type not accepted."
-msgstr ""
-
 msgid "Maximum file size is:"
-msgstr ""
-
-msgid "Accepted file types are:"
 msgstr ""
 
 msgid "Scheduled jobs"
@@ -532,12 +483,6 @@ msgstr "کھولنا"
 
 msgid "Select"
 msgstr "منتخب کرنا"
-
-msgid "Selected by default"
-msgstr "بطور ڈی فالٹ منتخب کیاگیا"
-
-msgid "Unselected by default"
-msgstr "بطور ڈی فالٹ غیر منتخب کیاگیا"
 
 msgid "Surname"
 msgstr "خاندانی نام"
@@ -610,9 +555,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Administrators authorized to change user passwords"
-msgstr ""
-
 msgid "Select the context of your report:"
 msgstr "اپنی گزارش کا سیاق و سباق کا انتخاب کریں :"
 
@@ -678,9 +620,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr ""
 
-msgid "Enable simplified login"
-msgstr ""
-
 msgid "Allow recipients to delete reports"
 msgstr "وصول کنندگان کو اختیار دیجیے کہ تجاویز حذف کر سکیں"
 
@@ -694,17 +633,11 @@ msgstr "وصول کنندگان کو مخصوص گذارشات پر مخبر ک�
 msgid "Enable search engines indexing"
 msgstr "سرچ انجن اشاریہ سازی فعال کیجیے"
 
-msgid "Description"
-msgstr "وضاحت"
-
 msgid "Enable custom privacy panel"
 msgstr "روایتی پرائیویسی کے امیتازات فعال کریں"
 
 msgid "Custom privacy panel"
 msgstr "اپنی مرضی کی پرائیویسی کا پینل"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "متن دکھایا گیا جب مخبر Tor استعمال نہیں  کر رہا ہے"
 
 msgid "Disable the privacy panel"
 msgstr " پرائیویسی حصے کو غیر فعال کریں"
@@ -743,14 +676,7 @@ msgstr ""
 msgid "Set the value to 0 to disable this feature."
 msgstr ""
 
-msgid "Amount of days till whistleblower access expires"
-msgstr ""
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr ""
-
-msgid "Tweak this setting only if you know what you are doing."
+msgid "Number of days till notifying users unread reports"
 msgstr ""
 
 msgid "Enable custodian user role"
@@ -759,7 +685,7 @@ msgstr ""
 msgid "Enable scoring system"
 msgstr ""
 
-msgid "Enable private labels"
+msgid "Enable private annotations"
 msgstr ""
 
 msgid "Logging level"
@@ -824,6 +750,9 @@ msgstr "کردار"
 msgid "Name"
 msgstr "نام"
 
+msgid "Creation date"
+msgstr "تاریخِ تخلیق"
+
 msgid "Last access"
 msgstr "آخری رسائی"
 
@@ -865,9 +794,6 @@ msgstr ""
 
 msgid "Project name"
 msgstr "اقدام  کا نام"
-
-msgid "Header title"
-msgstr ""
 
 msgid "Homepage title"
 msgstr "پہلا صفحہ یا ہوم پیج ٹائٹل "
@@ -931,6 +857,9 @@ msgstr "غیر فعال"
 
 msgid "Enabled"
 msgstr "فعال"
+
+msgid "Description"
+msgstr "وضاحت"
 
 msgid "Questionnaire"
 msgstr "سوالنامہ"
@@ -1018,9 +947,6 @@ msgstr "ایڈمن"
 
 msgid "Recipient"
 msgstr "وصول کنندہ"
-
-msgid "Whistleblower"
-msgstr "مخبر"
 
 msgid "Each entry must be separated with a comma."
 msgstr ""
@@ -1131,6 +1057,9 @@ msgstr ""
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr ""
+
+msgid "Whistleblower"
+msgstr "مخبر"
 
 msgid "To"
 msgstr "کی طرف"
@@ -1306,25 +1235,25 @@ msgstr ""
 msgid "Network settings"
 msgstr ""
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Use the first site for administrative purposes only"
 msgstr ""
 
-msgid "Allow users to sign up"
+msgid "Enable multi-site login"
 msgstr ""
 
-msgid "Enable multi-site login"
+msgid "Allow users to sign up"
 msgstr ""
 
 msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
-msgstr ""
-
-msgid "Mode:"
 msgstr ""
 
 msgid "Active"
@@ -1396,11 +1325,6 @@ msgstr "وصول کنندہ جمع کرانے کا وقت ختم ہونے کی �
 msgid "Allow the recipient to delete reports"
 msgstr "وصول کنندگان کو اختیار دیجیے کہ تجاویز حذف کر سکیں"
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr "وصول کنندگان کو مخصوص گذارشات پر مخبر کو اجازت دینے کا مجاز بنائیں"
-
 msgid "User has administrative access to the following features:"
 msgstr ""
 
@@ -1448,9 +1372,6 @@ msgstr ""
 
 msgid "Confirm"
 msgstr "تصدیق کی توسیع"
-
-msgid "Add file"
-msgstr "فائل شامل کیجیے"
 
 msgid "Are you sure?"
 msgstr "کیا آپ کو یقین ہے؟"
@@ -1544,9 +1465,6 @@ msgstr " صرف ٹور نیٹ ورک کے اندررہتے ہوئے وسائل �
 msgid "The upload request exceeds the size limit"
 msgstr "اپ لوڈ کی درخواست سائز کی حد سے تجاوز کر گئی ہے"
 
-msgid "Success!"
-msgstr "کامیابی!"
-
 msgid "Validation of email address change in progress."
 msgstr ""
 
@@ -1568,9 +1486,12 @@ msgid ""
 msgstr "يوں معلوم ہوتا ہے کہ آپ بغير کسی تحفظ کے يہ ويب سائٹ ديکھ رہے ہيں ۔"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "آپ کو سختی سے ہدایت کی جاتی ہے کہ ڈیسک ٹاپ ایپ، جسےٹور براؤزر کہا جاتا ہے اور جو آپکی شناخت کا تحفظ کرتا ہے، کو استعمال میں لاتے ہوئے اس ویب سائٹ کا وزٹ کریں۔   "
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "ٹوربراؤزر ڈاؤن لوڈ کیجیے"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "اس کے بعد، ٹور براؤزر انسٹال کرنے کے لیے ذیل میں دیے گئے ایڈریس کو نقل  اور چسپاں  کریں۔"
@@ -1678,26 +1599,11 @@ msgstr "اپ لوڈ کی تاریخ"
 msgid "File size"
 msgstr "فائل کا سائز"
 
-msgid "download"
-msgstr "ڈاؤن لوڈ"
-
-msgid "No files have been uploaded!"
-msgstr "کوئی فائل اپ لوڈ نہیں کی گئی ہے!"
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "مخبر کو اٹیچمنٹ شامل کرنے کی اجازت دیں"
 
-msgid "Report"
-msgstr ""
-
-msgid "Access expiration"
-msgstr ""
-
 msgid "Never"
 msgstr "کبھی نہیں"
-
-msgid "Revoked"
-msgstr ""
 
 msgid "Allow the whistleblower to send messages"
 msgstr "مخبر کو پیغامات بھیجنے کی اجازت دیں"
@@ -1748,7 +1654,7 @@ msgstr "وصول کنندہ کی فہرست"
 msgid "Status:"
 msgstr ""
 
-msgid "Attached files for the whistleblower"
+msgid "Files attached by recipients"
 msgstr ""
 
 msgid "Upload a file:"
@@ -1762,12 +1668,6 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
-
-msgid "Files attached by recipients"
-msgstr ""
-
-msgid "These files have been attached to your report by the recipients."
 msgstr ""
 
 msgid "The provided recovery key is invalid."
@@ -1813,6 +1713,9 @@ msgstr "مبارک ہو!"
 msgid "You have completed the platform activation."
 msgstr ""
 
+msgid "Success!"
+msgstr "کامیابی!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
@@ -1844,10 +1747,7 @@ msgstr ""
 msgid "Invalid phone number"
 msgstr ""
 
-msgid "This field is mandatory."
-msgstr "يہ خانہ پر کرنا ضروری ہے ۔"
-
-msgid "The answer is too short."
+msgid "The answer is too short"
 msgstr ""
 
 msgid "The specified input is not valid."
@@ -1904,9 +1804,6 @@ msgid ""
 "invalid:"
 msgstr ""
 
-msgid "Errors"
-msgstr ""
-
 msgid "You must select at least one recipient."
 msgstr ""
 
@@ -1924,10 +1821,17 @@ msgstr ""
 msgid "Please choose a configuration profile:"
 msgstr ""
 
-msgid "Please choose a different username."
+msgid "Make it possible for this admin to reset user passwords."
 msgstr ""
 
-msgid "The user will receive an activation link via email."
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
+msgid "Please choose a different username."
 msgstr ""
 
 msgid "I have read and agree to the terms of the license."
@@ -2138,15 +2042,6 @@ msgstr ""
 msgid "Test email"
 msgstr "آزمائشی ای میل"
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr "یہ ایک موجودہ جمع کرانے پر ایک نیا تبصرہ سے مطلع کرنے کے لئے ایک ای میل ہے."
-
-msgid "The report can be accessed at:"
-msgstr "تجویز تک یہاں رسائی حاصل کر سکتے ہیں:"
-
-msgid "New comment"
-msgstr "نیا تبصرہ"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2185,14 +2080,6 @@ msgid "Context: {ContextName}"
 msgstr "سیاق و سباق: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr "اس جمع آوری {TipNum} فیصد کا مخبر نئے مواد کے ساتھ منسلک ہے کہ آپ کو مطلع کرنے کے لئے ایک ای میل ہے."
-
-msgid "New attachment"
-msgstr "نیا انسلاک"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr ""
@@ -2226,6 +2113,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr "اس سے آپ کو مطلع کرنے کے لئے ایک ای میل ہے کہ ایک متولی جمع کرانے {TipNum} کے لئے wistleblowing شناخت تک رسائی کے لئے آپ کو اختیار دیا ہے."
 
+msgid "The report can be accessed at:"
+msgstr "تجویز تک یہاں رسائی حاصل کر سکتے ہیں:"
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "مخبر کی شناخت تک رسائی کی اجازت"
 
@@ -2255,12 +2145,6 @@ msgstr "یہ کہ جمع کرانے {TipNum} کے لئے whistleblower کی اپ
 
 msgid "The whistleblower has provided their identity"
 msgstr "whistleblower کی اپنی شناخت فراہم کی ہے"
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr "یہ ایک موجودہ جمع کرانے پر ایک نیا تبصرہ سے مطلع کرنے کے لئے ایک ای میل ہے."
-
-msgid "New message"
-msgstr "نیا پیغام"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2338,6 +2222,18 @@ msgid ""
 msgstr "وہ پسند کریں گے کہ آپ اس میں موجود معلومات اور مواد پر خصوصی توجہ دیجئے .اس بات کو ذہن میں رکھیں کہ whistleblowers اکثر عوامی مفاد کے لئے اعلی ذاتی خطرات میں ڈالتے ہوئے خود کو ظاہر کرتے ہیں۔اس وجہ سے انکے اس مخبری کے ساتھ فراہم کردہ مواد کو اعلی اہمیت کا حامل سمجھا جانا چاہئے."
 
 msgid "New report"
+msgstr ""
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
 msgstr ""
 
 msgid "Role: {Role}"

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: Ruba Ali <rubaa.ali@gmail.com>\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -59,12 +59,6 @@ msgstr "ލައިސެންސް"
 
 msgid "Notification templates"
 msgstr "ނޮޓިފިކޭޝަންގެ ޓެންޕްލޭޓް"
-
-msgid "Missing data"
-msgstr "ޑާޓާ މަދު"
-
-msgid "no stats available for this hour."
-msgstr "ހިޔާރުކުރެއްވި ވަގުތަށް ތަފާސް ހިސާބެ ލިބޭކަށް ނެތް. "
 
 msgid "Delete"
 msgstr "ޑިލީޓް"
@@ -369,9 +363,6 @@ msgstr "ލިޔުމުގެ ބާވަތް ދެނެގަތުމަށް އިންޓަފޭ�
 msgid "Show small context cards on submission interface"
 msgstr "އިންޓަފޭސްގައި ބޭނުންކުރުމަށް ހުށައެޅޭ ބާވަތް ދައްކާލުމަށް ކުދި ކާޑު ބޭނުންކުރުން"
 
-msgid "Type of context selector:"
-msgstr "ލިޔުމުގެ ބާވަތް ހިޔާރުކުރުމަށް"
-
 msgid "Type to search…"
 msgstr "ހޯދާ"
 
@@ -380,12 +371,6 @@ msgstr "އީމެއިލް ނޯޓިފިކޭޝަން ސައިލެންސް ކުރު�
 
 msgid "Turn on email notifications"
 msgstr "އީމެއިލް ނޯޓިފިކޭޝަން އޮންކުރުމަށް"
-
-msgid "Enter an email address for the administrator"
-msgstr "އެޑްމިނިސްޓަރޭޓަރ އަށް އީމެއިލް އެޑްރެސް ޖައްސަވާ"
-
-msgid "Enter a password for the administrator"
-msgstr "އެޑްމިނިސްޓްރޭޓާއަށް ޕާސްވޯޑްއެއް ހިޔާރުކުރައްވާ"
 
 msgid "Failed logins"
 msgstr "ފޭލުވެފައިވާ ލޮގް އިން. "
@@ -431,31 +416,6 @@ msgid ""
 "has either changed or been removed."
 msgstr "މިލިޔުންކޮޅު މިހާރު ޕްލެޓްފޯމުން ފެންނާކަށް ނެތް. އަސްލު ލިޔުން މިހާރު ވަނީ ބަދަލުކުރެވިފައި ނުވަތަ ޕްލެޓްފޯމުން ނެގިފައި."
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr "މި ގަޑިއަށް ވިސިލްބްލޯވަރ ރިޕޯޓް ބަލާ ފާސްނުކޮއްފިނަމަ އެފަރާތުން ރިޕޯޓަށް އިތުރަށް އެކްސެސްވެމުގެ ޙުއްދައިގެ ތާރީޙް ހަމަވާނެ. "
-
-msgid "The whistleblower can no longer access the report"
-msgstr "ވިސިލްބްލޯވަރއަށް ރިޕޯޓަށް އިތުރަށް އެކްސެސްވެމުގެ ޙުއްދައިގެ ތާރީޙް ހަމަވެއްޖެ. "
-
-msgid "Warning!"
-msgstr "ސަމާލް!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "ބޭނުންކުރައްވާ ބްރައުޒަރ ސަޕޯޓްއެއް ނުކުރޭ، އަދި ރައްކާތެރިކަމުގެ ޔަގީންކަމެއް ނެތް. "
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "ޓޯރ ބްރައުޒަރ ޑައުންލޯޑްކުރުމަށްފަހު ބޭނުންކުރުން މުހިންމުކަން އިރުޝާދުކުރަން. "
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "ޓޯރ ބްރައުޒަރގައި އެހެން ބްރައުޒަރތަކުގައި ނުހިމެނޭ މުހިންމު ރައްކާތެރި ސިފަތަށް ހިމެނޭ"
-
-msgid "Download the Tor Browser"
-msgstr "ޓޯރ ބްރައުޒަރ ޑައުންލޯޑްކުރުމަށް"
-
 msgid "Audit log"
 msgstr "އޮޑިޓް ލޮގް"
 
@@ -477,20 +437,11 @@ msgstr "ފަރާތުން"
 msgid "Number of downloads"
 msgstr "ޑައުންލޯޑު ކޮއްފައިވާ އަދަދު"
 
-msgid "Error with file:"
-msgstr "ފައިލްގައި މައްސަލައެއް އުލޭ: "
-
 msgid "File size not accepted."
 msgstr "ފައިލްގެ ސައިޒު ރަނގަޅެއް ނޫން. "
 
-msgid "File type not accepted."
-msgstr "ފައިލްގެ ބާވަތް ރަނގަޅެއް ނޫން. "
-
 msgid "Maximum file size is:"
 msgstr "އެންމެ ބޮޑުވެގެން: "
-
-msgid "Accepted file types are:"
-msgstr "ބޭނުންކުރެވޭނެ ފައިލްގެ ބާވަތްތަކަކީ: "
 
 msgid "Scheduled jobs"
 msgstr "ތާވަލްކޮއްފައިވާ މަސައްކަތް"
@@ -527,12 +478,6 @@ msgstr "އިތުރަށް ބައްލަވަން"
 
 msgid "Select"
 msgstr "ހިޔާރުކުރަން"
-
-msgid "Selected by default"
-msgstr "އަބަދުވެސް ހިޔާރުކުރެވިފައި އިންނަ: "
-
-msgid "Unselected by default"
-msgstr "އަބަދުވެސް ހިޔާރުނުކޮށް އިންނަ: "
 
 msgid "Surname"
 msgstr "އާއިލީ ނަން"
@@ -605,9 +550,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Administrators authorized to change user passwords"
-msgstr ""
-
 msgid "Select the context of your report:"
 msgstr "ތިޔަ ފަރާތުގެ ރިޕޯޓްގެ ކޮއްޓެކްސްޓެ ހިޔާރުކުރައްވާ"
 
@@ -673,9 +615,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "މަލްޓިސައިޓް ފީޗާ އޮންކުރަން"
 
-msgid "Enable simplified login"
-msgstr "ސިންޕްލިފައިޑް ލޮގް އިން އޮން ކުރަން"
-
 msgid "Allow recipients to delete reports"
 msgstr "ލިބިލައްވާ ފަރާތްތަކަށް ރިޕޯޓު ފުހެލުމުގެ ޙުއްދަ ދިނުމަށް"
 
@@ -689,17 +628,11 @@ msgstr "ވިސިލްބްލޯވަރސްއައް ވަކި ރިޕޯޓްތަކެއް
 msgid "Enable search engines indexing"
 msgstr "ސަރޗް އިންޖިންތަކުގައި އިންޑެކްސް ކުރުމަށް"
 
-msgid "Description"
-msgstr "ތަފްސީލު"
-
 msgid "Enable custom privacy panel"
 msgstr "ކަސްޓަމް ޕްރައިވަސީ ޗެނަލް އޮން ކުރުމަށް"
 
 msgid "Custom privacy panel"
 msgstr "ކަސްޓަމް ޕްރައިވަސީ ޗެނަލް"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "ވިސިލްބްލޯވަރ ޓޯރ ބޭނުންނުކުރާއިރު ފެނިގެންދާނެ ލަފަޒުތައްް"
 
 msgid "Disable the privacy panel"
 msgstr "ކަސްޓަމް ޕްރައިވަސީ ޗެނަލް އޮފް ކުރުމަށް"
@@ -738,15 +671,8 @@ msgstr "އެކައުންޓްގެ ރައްކާތެރިކަމަށްޓަކާއި ޕ
 msgid "Set the value to 0 to disable this feature."
 msgstr "މި ފީޗާރޑިސްއޭބަލް ކުރުމަށް ވެލިއުގައި 0 ޖައްސަވާ"
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "ވިސިލްބްލޯވަރގެ އެކްސެސްގެ ޙުއްދަހަމަވާ ތާރީޙް ޖެހެން ބާކީއޮތް ދުވަސް"
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "ރައްކާތެރިކަމައްޓަކާއި ވިސިލްބްލޯވަރގެ އެކްސެސްލިބޭނީ ދުވަސްހަމަވާ ތާރީޙްއަކާއި އެއްކޮށް. "
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "ގެންނަން ބޭނުންވާ ބަދަލާއި އެބަދަލު ގެންނާނެ ގޮތް ނޭނގޭނަމަ މި އިންހަމައަށް ބަދަލުނުގެއުން ރަނގަޅެއް ނޫން. "
+msgid "Number of days till notifying users unread reports"
+msgstr ""
 
 msgid "Enable custodian user role"
 msgstr "ކަސްޓޯޑިއަން ޔޫސާގެ  ރޯލް އޮންކުރަން"
@@ -754,8 +680,8 @@ msgstr "ކަސްޓޯޑިއަން ޔޫސާގެ  ރޯލް އޮންކުރަން"
 msgid "Enable scoring system"
 msgstr "ސްކޯރިން ސިސްޓަމް އޮންކުރަން"
 
-msgid "Enable private labels"
-msgstr "ޕްރައިވެސީ ލޭބަލް އޮންކުރަން"
+msgid "Enable private annotations"
+msgstr ""
 
 msgid "Logging level"
 msgstr "ލޮގިންގް ލެވަލް"
@@ -819,6 +745,9 @@ msgstr "ރޯލް"
 msgid "Name"
 msgstr "ނަން"
 
+msgid "Creation date"
+msgstr ""
+
 msgid "Last access"
 msgstr "ހުށައެޅުމުގެ ކުރިން އެންމެ ފަހު އެކްސެސް"
 
@@ -860,9 +789,6 @@ msgstr "ލޯގޯ"
 
 msgid "Project name"
 msgstr "މަރުޙަލާގެ ނަން"
-
-msgid "Header title"
-msgstr "ހެޑަރގެ ލަގަބު"
 
 msgid "Homepage title"
 msgstr "ފުރަތަމަ ސަފްޙާގެ ނަން"
@@ -926,6 +852,9 @@ msgstr "ހުއްޓުވާލުން"
 
 msgid "Enabled"
 msgstr "ހިންގުވާލުން"
+
+msgid "Description"
+msgstr "ތަފްސީލު"
 
 msgid "Questionnaire"
 msgstr "ސުވާލުކަރުދާސް"
@@ -1013,9 +942,6 @@ msgstr "އެޑްމިން"
 
 msgid "Recipient"
 msgstr "ލިބޭފަރާތް"
-
-msgid "Whistleblower"
-msgstr "ވިސިލްބްލޯވަރ"
 
 msgid "Each entry must be separated with a comma."
 msgstr "ކޮންމެ ދެ އެންޓްރީއެއް ދެމެދުގައި ކޮމާއެއް އިންނަން ޖެހޭ"
@@ -1126,6 +1052,9 @@ msgstr "ޓީ.އޯ.އާރް އާއިނުލާ ޕްލެޓްފޯމަށް ވަނުމ�
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr "ޓީ.އޯ.އާރް އާއިނުލާ ޕްލެޓްފޯމްގެ ބޭނުންހިފުމަށް ހިޔާރުކުރެވޭ ރޯލު"
+
+msgid "Whistleblower"
+msgstr "ވިސިލްބްލޯވަރ"
 
 msgid "To"
 msgstr "ފޮނުވަންޖެހޭ ފަރާތް"
@@ -1301,26 +1230,26 @@ msgstr "މައްސަލަ ބެލެހެއްޓުން"
 msgid "Network settings"
 msgstr "ނެޓްވާރކްގެ އިންހަމަ"
 
+msgid "Mode:"
+msgstr "ބާވަތް"
+
 msgid "Root domain used for secondary sites"
 msgstr "ސެކަންޑަރީ ސައިޓްތަކުގައި ރޫޓް ޑޮމެއިން ބޭނުންކުރުން"
 
 msgid "Use the first site for administrative purposes only"
 msgstr "ފުރަތަމަ ސައިޓް ބޭނުންކުރައްވާނީ އިދާރީ ބޭނުންތަކަށް އެކަނި"
 
-msgid "Allow users to sign up"
-msgstr "އިތުރު މީހުން ސައިން އަޕް ކުރުމުގެ ހުއްދަ ދިނުމަށް"
-
 msgid "Enable multi-site login"
 msgstr "މަލްޓިސައިޓް ލޮގް އިން އޮންކުރަން"
+
+msgid "Allow users to sign up"
+msgstr "އިތުރު މީހުން ސައިން އަޕް ކުރުމުގެ ހުއްދަ ދިނުމަށް"
 
 msgid "Enable terms of service"
 msgstr "ޚިދުމަތުގެ އިޤްރާރު އޮން ކުރަން"
 
 msgid "Sites"
 msgstr "ސައިޓުތައް"
-
-msgid "Mode:"
-msgstr "ބާވަތް"
 
 msgid "Active"
 msgstr "އެކްޓިވް"
@@ -1391,11 +1320,6 @@ msgstr "ޚިދުމަތްލިބޭ ފަރާތަކަށް ރިޕޯޓްގެ މުއް�
 msgid "Allow the recipient to delete reports"
 msgstr "ލިބިލައްވާ ފަރާތަށް ރިޕޯޓު ފުހެލުމުގެ ޙުއްދަ ދިނުމަށް"
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr "ވިސިލްބްލޯވަރސްއައް ވަކި ރިޕޯޓްތަކެއްގެ އެކި ޙުއްދަ ދިނުމުގެ އިޒްނަ  ރިޕޯޓް ލިބިލައްވާ ފަރާތްތަކަށް ދިނުމަށް"
-
 msgid "User has administrative access to the following features:"
 msgstr "މި ފީޗަރ ތަކަށް ޔޫސަރ އަށް  ވަނީ އެޑްމިން ހުއްދަދީފައި"
 
@@ -1443,9 +1367,6 @@ msgstr "ބޭނުންކުރާ ފަރާތުން ވަކި ކަމެއް އިޚްތި
 
 msgid "Confirm"
 msgstr "ކޮންފަރމް ކުރެއްވުމަށް"
-
-msgid "Add file"
-msgstr "ފައިލެއް ހިމެނުމަށް"
 
 msgid "Are you sure?"
 msgstr "ޔަގީންކަން އެބައޮތްތޯ؟"
@@ -1539,9 +1460,6 @@ msgstr "ވަޞީލަތްތަކުގެ ބޭނުންކުރެވޭނީ ހަމައެކ
 msgid "The upload request exceeds the size limit"
 msgstr "އަޕްލޯޑް ކުރަން ބޭނުންވާ މީޑިއާގެ ސައިޒް ހުއްދަ ކުރެވިފައިވާ މިންވަރަށްވުރެ ބޮޑު"
 
-msgid "Success!"
-msgstr "ކާމިޔާބު!"
-
 msgid "Validation of email address change in progress."
 msgstr "އީމެއިލް އެޑްރެސް ބަދަލުކުރުމުގެ މަސައްކަތް ކުރިޔަށް ދަނީ. "
 
@@ -1563,9 +1481,12 @@ msgid ""
 msgstr "މި ސައިޜް ބޭނުންކުރައްވަމުން ތިޔަ ގެންދަވަނީ އިތުރު ޕްރައިވެސީއެއް އަދި ސެކިއުރިޓީއެއް ނެތި"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "ތިޔަ ފަރާތުގެ ރައްކާތެރިކަމަށްޓަކައި ޓޯރ ބްރައުޒަރ ބޭނުންކުރަން އިލްތިމާސްކުރަން"
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "ޓޯރ ބްރައުޒަރ ޑައުންލޯޑްކުރުމަށް"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "ޓޯރ ބްރައުޒަރ އަށް މި އެޑްރެސް ކޮޕީ ކުރައްވާ: "
@@ -1673,26 +1594,11 @@ msgstr "ފައިލް އަޕްލޯޑް ކުރެއްވި ތާރީޙް."
 msgid "File size"
 msgstr "ފައިލްގެ ސައިޒު"
 
-msgid "download"
-msgstr "ޑައުންލޯޑް"
-
-msgid "No files have been uploaded!"
-msgstr "އެއްވެސް ފައިލްއެއް އަޕްލޯޑް ވެފަކާއެއް ނެތް! "
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "ރިޕޯޓުގައި އާ ފައިލްތަށް ހިމެނުމުގެ ޙުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް. "
 
-msgid "Report"
-msgstr "ރިޕޯޓު"
-
-msgid "Access expiration"
-msgstr "ދެވަސްހަމަވާ މުއްދަތު ބެއްލެވުމަށް"
-
 msgid "Never"
 msgstr "ނުވާނެ"
-
-msgid "Revoked"
-msgstr "ނިންމުން އަނބުރާ ގެނައުން"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "މެސެޖު ފޮނުވުމުގެ ޙުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް. "
@@ -1743,8 +1649,8 @@ msgstr "ޚިދުމަތް ލިބޭ ފަރާތްތަކުގެ ލިސްޓް"
 msgid "Status:"
 msgstr "ސްޓޭޓަސް/ހާލަތު"
 
-msgid "Attached files for the whistleblower"
-msgstr "ވިސިލްބްލޯވަރއަށް ދޭންބޭނުންފުޅުވާ ފައިލްތައް ހިމެނުމަށް"
+msgid "Files attached by recipients"
+msgstr "ލިބިފައިވާ ފަރާތްކުން ހިމެނުއްވާފައިވާ ފައިލްތައް"
 
 msgid "Upload a file:"
 msgstr "ފައިލް އަޕްލޯޑް ކުރުމަށް: "
@@ -1758,12 +1664,6 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr ""
-
-msgid "Files attached by recipients"
-msgstr "ލިބިފައިވާ ފަރާތްކުން ހިމެނުއްވާފައިވާ ފައިލްތައް"
-
-msgid "These files have been attached to your report by the recipients."
-msgstr "ތިޔަ ފަރާތުގެ ރިޕޯޓް ފޮނުވާފައިވާ ފަރާތްތަކުން ރިޕާޓްގައި ހިމަނާފައިވާ ފައިލްތައް. "
 
 msgid "The provided recovery key is invalid."
 msgstr "ފޯރުކޮށްދެއްވި ރިކަވަރީ ކީ  ރަނގަޅެއްނޫން"
@@ -1808,6 +1708,9 @@ msgstr "މަރުޙަބާ!"
 msgid "You have completed the platform activation."
 msgstr "ޕްލެޓްފޯމު ފަށައިގަތުމަށް ވާންޖެހޭ ތައްޔާރީތައް ފުރިހަމަކުރެވިއްޖެ"
 
+msgid "Success!"
+msgstr "ކާމިޔާބު!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "ތިބާގެ ވިސިލްބްލޯވިންގ ޕްލެޓްފޯމު ގާތްގަޑަކަށް މިވަނީ ތައްުޔާރުވެފައި"
 
@@ -1839,11 +1742,8 @@ msgstr "ނިންމުމަށް"
 msgid "Invalid phone number"
 msgstr "ފޯނު ނަމްބަރު ރަނގަޅެއްނޫން"
 
-msgid "This field is mandatory."
-msgstr "މިއީ ފުރިހަމަކުރުން މަޖުބޫރު ބައެއް"
-
-msgid "The answer is too short."
-msgstr "ޖަވާބު މާ ކުރު"
+msgid "The answer is too short"
+msgstr ""
 
 msgid "The specified input is not valid."
 msgstr "އިންޕުޓް ރަނގަޅެއް ނޫން. "
@@ -1899,9 +1799,6 @@ msgid ""
 "invalid:"
 msgstr "މި ފިޔަވަޅުގައި ހިމެނޭ މި ސުވާލުތަކުގެ ޖަވާބުތައް ނުހިމެނޭ ނުވަތި ހިމެނިފައިވާގޮތް ރަނގަޅެއްނޫން"
 
-msgid "Errors"
-msgstr "ފާހަގަ ވެފައިވާ މައްސަލަތަށް"
-
 msgid "You must select at least one recipient."
 msgstr "ޚިދުމަތް ލިބޭ ފަރާތެއްގެ ގޮތުގައި މަދުވެގެން އެކަކު އިޚްތިޔާރުކުރަންޖެހޭނެ"
 
@@ -1919,11 +1816,18 @@ msgstr "ވިސްލް-ބްލޯ ކުރުމަށް ޚާއްޞަ ޕްލެޓްފޯމެ
 msgid "Please choose a configuration profile:"
 msgstr "ކޮންފިގަރޭޝަން ޕްރޮފައިލްއެއް ހިޔާރުކުރައްވާ: "
 
+msgid "Make it possible for this admin to reset user passwords."
+msgstr ""
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
 msgid "Please choose a different username."
 msgstr "އެހެން ޔޫސާ ނަމެއް ބޭނުންކުރައްވާ"
-
-msgid "The user will receive an activation link via email."
-msgstr "އީމެއިލްއިން އެކްޓިވޭޝަން ލިންކް އެއް ފަނުވައިފައިވާނެ. "
 
 msgid "I have read and agree to the terms of the license."
 msgstr ""
@@ -2133,15 +2037,6 @@ msgstr "މި އީމެއިލް އަކީ ސާވާރއަށް އެސް.އެމް.ޓީ
 msgid "Test email"
 msgstr "ޓެސްޓް އީމެއިލް"
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr "މި އީމެއިލްއަކީ ރިޕޯޓްއަކަށް އާ ކޮމެންޓެއް ފޮނުވައިފިކަން އަންގަން ފޮނުވައިފާވާ އީމެއިލްއެއް. "
-
-msgid "The report can be accessed at:"
-msgstr "ރިޕޯޓް ބެލުމަށް ވަދެވޭނީ :"
-
-msgid "New comment"
-msgstr "އާ ކޮމެންޓެއް ކުރަން"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2180,14 +2075,6 @@ msgid "Context: {ContextName}"
 msgstr "ކޮންޓެކްސްޓް: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr "މި އީމެއިލްއަކީ {TipNum} ރިޕޯޓްގެ ވިސިލްބްލޯވަރ އިތުރު ފައިލްތަށް ރިޕޯޓަށް ހިމަނައިފިކަން އަންގައިދޭން ފޮނުވާފައިވާ އީމެއިލްއެއް. "
-
-msgid "New attachment"
-msgstr "އާ ފައިލްއެއް ހިމެނުމަށް"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr "މި ޕްލެޓްފޯމްއަށް ލޯޑުކޮއްފައިވާ އެޗް.ޓީ.ޓީ.ޕީ.އެސް ސެޓިފިކޭޓްގެ ދުވަސްހަމަވާ ތާރީޙް ހަމަވަނީ/ހަމަވެއްޖެ. "
@@ -2221,6 +2108,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr "މި އީމެއިލްއަކީ {TipNum} ރިޕޯޓްގެ ވިސިލްބްލޯވަރގެ ފޮރުވިފައިވާ މައުލޫއްމާތު ކަސްޓޯޑިއަންގެ ފަރާތުން ހާމަކޮއްފިކަން އަންގައި ދިނުމަށް ފޮނުވާފައިވާ އީމެއިލްއެއް. "
 
+msgid "The report can be accessed at:"
+msgstr "ރިޕޯޓް ބެލުމަށް ވަދެވޭނީ :"
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "ވިސިލްބްލޯވަރގެ ފޮރުވިފައިވާ މައުލޫމާތު ލިބިއްޖެ. "
 
@@ -2250,12 +2140,6 @@ msgstr "މި އީމެއިލްއަކީ {TipNum} ރިޕޯޓްގެ ވިސިލްބް
 
 msgid "The whistleblower has provided their identity"
 msgstr "ވިސިލްބްލޯވަރގެ ފޮރުވިފައިވާ މައުލޫމާތު ހާމަކޮއްފި. "
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr "މި އީމެއިލްއަކީ ރިޕޯޓްއަކަށް އާ މެސެޖެއް ފޮނުވައިފިކަން އަންގަން ފޮނުވައިފާވާ އީމެއިލްއެއް. "
-
-msgid "New message"
-msgstr "އާ މެސެޖް"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2334,6 +2218,18 @@ msgstr "މީގައި ހިމެނޭ މައުލޫމާތާއި ތަކެއްޗަށް 
 
 msgid "New report"
 msgstr "އައު ރިޕޯޓް"
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr "ރޯލު: {Role}"

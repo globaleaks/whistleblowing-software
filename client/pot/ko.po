@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,12 +55,6 @@ msgstr "라이센스"
 
 msgid "Notification templates"
 msgstr "알림 템플릿"
-
-msgid "Missing data"
-msgstr "누락 된 데이터"
-
-msgid "no stats available for this hour."
-msgstr "이 시간에 사용할 수있는 통계가 없습니다."
 
 msgid "Delete"
 msgstr "지우다"
@@ -365,9 +359,6 @@ msgstr "텍스트 컨텍스트를 선택하기위한 인터페이스의 상단�
 msgid "Show small context cards on submission interface"
 msgstr "제출 인터페이스에 작은 상황에 맞는 카드를보기"
 
-msgid "Type of context selector:"
-msgstr "상황에 맞는 선택의 종류 :"
-
 msgid "Type to search…"
 msgstr ""
 
@@ -375,12 +366,6 @@ msgid "Silence email notifications"
 msgstr ""
 
 msgid "Turn on email notifications"
-msgstr ""
-
-msgid "Enter an email address for the administrator"
-msgstr ""
-
-msgid "Enter a password for the administrator"
 msgstr ""
 
 msgid "Failed logins"
@@ -427,31 +412,6 @@ msgid ""
 "has either changed or been removed."
 msgstr ""
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr ""
-
-msgid "The whistleblower can no longer access the report"
-msgstr ""
-
-msgid "Warning!"
-msgstr "경고!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr ""
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr ""
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "토르 브라우저는 다양한 개인 정보 보호 및 다른 브라우저에 존재하지 않는 보안 강화 기능이 포함되어 있습니다."
-
-msgid "Download the Tor Browser"
-msgstr "토르 브라우저 다운로드"
-
 msgid "Audit log"
 msgstr ""
 
@@ -473,19 +433,10 @@ msgstr "From"
 msgid "Number of downloads"
 msgstr ""
 
-msgid "Error with file:"
-msgstr ""
-
 msgid "File size not accepted."
 msgstr ""
 
-msgid "File type not accepted."
-msgstr ""
-
 msgid "Maximum file size is:"
-msgstr ""
-
-msgid "Accepted file types are:"
 msgstr ""
 
 msgid "Scheduled jobs"
@@ -522,12 +473,6 @@ msgid "Expand"
 msgstr ""
 
 msgid "Select"
-msgstr ""
-
-msgid "Selected by default"
-msgstr ""
-
-msgid "Unselected by default"
 msgstr ""
 
 msgid "Surname"
@@ -601,9 +546,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Administrators authorized to change user passwords"
-msgstr ""
-
 msgid "Select the context of your report:"
 msgstr "제출의 컨텍스트를 선택합니다 :"
 
@@ -669,9 +611,6 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr ""
 
-msgid "Enable simplified login"
-msgstr ""
-
 msgid "Allow recipients to delete reports"
 msgstr "받는 사람이 제출을 삭제할 수"
 
@@ -685,17 +624,11 @@ msgstr "받는 사람이 특정 제출에 대한 내부 고발자에 대한 사�
 msgid "Enable search engines indexing"
 msgstr "검색 엔진의 색인을 사용하도록 설정"
 
-msgid "Description"
-msgstr "기술"
-
 msgid "Enable custom privacy panel"
 msgstr "사용자의 개인 정보 보호 패널 사용"
 
 msgid "Custom privacy panel"
 msgstr "사용자의 개인 정보 보호 패널"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "텍스트 고발자가 토르를 사용하지 않을 때 표시"
 
 msgid "Disable the privacy panel"
 msgstr "개인 정보 보호 패널을 사용하지 않도록 설정"
@@ -734,14 +667,7 @@ msgstr ""
 msgid "Set the value to 0 to disable this feature."
 msgstr ""
 
-msgid "Amount of days till whistleblower access expires"
-msgstr ""
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr ""
-
-msgid "Tweak this setting only if you know what you are doing."
+msgid "Number of days till notifying users unread reports"
 msgstr ""
 
 msgid "Enable custodian user role"
@@ -750,7 +676,7 @@ msgstr ""
 msgid "Enable scoring system"
 msgstr ""
 
-msgid "Enable private labels"
+msgid "Enable private annotations"
 msgstr ""
 
 msgid "Logging level"
@@ -815,6 +741,9 @@ msgstr "역할"
 msgid "Name"
 msgstr "이름"
 
+msgid "Creation date"
+msgstr "작성 날짜"
+
 msgid "Last access"
 msgstr ""
 
@@ -856,9 +785,6 @@ msgstr "로고"
 
 msgid "Project name"
 msgstr "프로젝트 이름"
-
-msgid "Header title"
-msgstr ""
 
 msgid "Homepage title"
 msgstr "홈페이지 제목"
@@ -922,6 +848,9 @@ msgstr "장애인"
 
 msgid "Enabled"
 msgstr "사용"
+
+msgid "Description"
+msgstr "기술"
 
 msgid "Questionnaire"
 msgstr "질문 사항"
@@ -1009,9 +938,6 @@ msgstr "관리자"
 
 msgid "Recipient"
 msgstr "받는 사람"
-
-msgid "Whistleblower"
-msgstr ""
 
 msgid "Each entry must be separated with a comma."
 msgstr ""
@@ -1121,6 +1047,9 @@ msgid "Let the platform be reachable without Tor"
 msgstr ""
 
 msgid "Roles enabled to use the platform without Tor"
+msgstr ""
+
+msgid "Whistleblower"
 msgstr ""
 
 msgid "To"
@@ -1297,25 +1226,25 @@ msgstr ""
 msgid "Network settings"
 msgstr ""
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Use the first site for administrative purposes only"
 msgstr ""
 
-msgid "Allow users to sign up"
+msgid "Enable multi-site login"
 msgstr ""
 
-msgid "Enable multi-site login"
+msgid "Allow users to sign up"
 msgstr ""
 
 msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
-msgstr ""
-
-msgid "Mode:"
 msgstr ""
 
 msgid "Active"
@@ -1387,11 +1316,6 @@ msgstr "받는 사람이 제출 기한을 연기 할 수 있도록 허용"
 msgid "Allow the recipient to delete reports"
 msgstr "받는 사람이 제출을 삭제할 수"
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr ""
-
 msgid "User has administrative access to the following features:"
 msgstr ""
 
@@ -1439,9 +1363,6 @@ msgstr ""
 
 msgid "Confirm"
 msgstr "확인"
-
-msgid "Add file"
-msgstr "파일을 추가합니다"
 
 msgid "Are you sure?"
 msgstr "확실합니까?"
@@ -1535,9 +1456,6 @@ msgstr "자원 Tor 네트워크를 통해서만 액세스 할 수 있습니다"
 msgid "The upload request exceeds the size limit"
 msgstr "업로드 요구가 크기 제한을 초과"
 
-msgid "Success!"
-msgstr "성공!"
-
 msgid "Validation of email address change in progress."
 msgstr ""
 
@@ -1559,9 +1477,12 @@ msgid ""
 msgstr "당신이 여분의 개인 정보 보호 및 보안없이이 사이트를 탐색하는 것 같습니다!"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "당신은 강력하게 신원을 보호 토르 브라우저라는 데스크톱 응용 프로그램을 사용하여이 사이트를 방문하는 것이 좋습니다."
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "토르 브라우저 다운로드"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "그런 다음, 복사 토르 브라우저에 다음 주소를 붙여 넣기 :"
@@ -1669,26 +1590,11 @@ msgstr "업로드 날짜"
 msgid "File size"
 msgstr "파일 크기"
 
-msgid "download"
-msgstr "다운로드"
-
-msgid "No files have been uploaded!"
-msgstr "어떤 파일이 업로드되지 않았습니다!"
-
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr ""
-
-msgid "Report"
-msgstr ""
-
-msgid "Access expiration"
 msgstr ""
 
 msgid "Never"
 msgstr "만료없음"
-
-msgid "Revoked"
-msgstr "폐기된"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "고발자 메시지를 보낼 수 있도록 허용"
@@ -1739,7 +1645,7 @@ msgstr "받는 사람 목록"
 msgid "Status:"
 msgstr "상태"
 
-msgid "Attached files for the whistleblower"
+msgid "Files attached by recipients"
 msgstr ""
 
 msgid "Upload a file:"
@@ -1753,12 +1659,6 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
-
-msgid "Files attached by recipients"
-msgstr ""
-
-msgid "These files have been attached to your report by the recipients."
 msgstr ""
 
 msgid "The provided recovery key is invalid."
@@ -1804,6 +1704,9 @@ msgstr "치하!"
 msgid "You have completed the platform activation."
 msgstr ""
 
+msgid "Success!"
+msgstr "성공!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
@@ -1835,10 +1738,7 @@ msgstr "완료"
 msgid "Invalid phone number"
 msgstr ""
 
-msgid "This field is mandatory."
-msgstr "이 필드는 필수입니다"
-
-msgid "The answer is too short."
+msgid "The answer is too short"
 msgstr ""
 
 msgid "The specified input is not valid."
@@ -1895,9 +1795,6 @@ msgid ""
 "invalid:"
 msgstr ""
 
-msgid "Errors"
-msgstr ""
-
 msgid "You must select at least one recipient."
 msgstr ""
 
@@ -1915,10 +1812,17 @@ msgstr ""
 msgid "Please choose a configuration profile:"
 msgstr ""
 
-msgid "Please choose a different username."
+msgid "Make it possible for this admin to reset user passwords."
 msgstr ""
 
-msgid "The user will receive an activation link via email."
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
+msgid "Please choose a different username."
 msgstr ""
 
 msgid "I have read and agree to the terms of the license."
@@ -2129,15 +2033,6 @@ msgstr ""
 msgid "Test email"
 msgstr ""
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr ""
-
-msgid "The report can be accessed at:"
-msgstr ""
-
-msgid "New comment"
-msgstr "새로운 코멘트"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2176,14 +2071,6 @@ msgid "Context: {ContextName}"
 msgstr "컨텍스트 : {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr "이 제출 %의 {TipNum} 의 %의 내부 고발자가 새로운 자료를 첨부했음을 알리는 이메일입니다."
-
-msgid "New attachment"
-msgstr "새 첨부 파일"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr ""
@@ -2217,6 +2104,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr ""
 
+msgid "The report can be accessed at:"
+msgstr ""
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "내부 고발자의 신원에 대한 액세스 권한을"
 
@@ -2246,12 +2136,6 @@ msgstr ""
 
 msgid "The whistleblower has provided their identity"
 msgstr "고발자는 자신의 정체성을 제공하고있다"
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr "이는 기존의 제출에 새 메시지를 알려하는 이메일입니다."
-
-msgid "New message"
-msgstr "새로운 메시지"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2329,6 +2213,18 @@ msgid ""
 msgstr ""
 
 msgid "New report"
+msgstr ""
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
 msgstr ""
 
 msgid "Role: {Role}"

@@ -34,6 +34,7 @@ LANGUAGES_SUPPORTED = [
     {'code': 'el', 'name': 'Greek', 'native': '\u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac'},
     {'code': 'en', 'name': 'English', 'native': 'English'},
     {'code': 'es', 'name': 'Spanish', 'native': 'Espa\xf1ol'},
+    {'code': 'et', 'name': 'Estonian', 'native': 'Eesti'},
     {'code': 'fa', 'name': 'Persian', 'native': '\u0641\u0627\u0631\u0633\u06cc'},
     {'code': 'fi', 'name': 'Finnish', 'native': 'Suomi'},
     {'code': 'fr', 'name': 'French', 'native': 'Fran\xe7ais'},

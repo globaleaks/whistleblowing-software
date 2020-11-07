@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: Masayuki Hatta <mhatta@mhatta.org>\n"
+"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -59,12 +59,6 @@ msgstr "ライセンス"
 
 msgid "Notification templates"
 msgstr "通知のテンプレート"
-
-msgid "Missing data"
-msgstr "データがありません"
-
-msgid "no stats available for this hour."
-msgstr "現在の時間に利用可能な統計はありません。"
 
 msgid "Delete"
 msgstr "削除"
@@ -369,9 +363,6 @@ msgstr "コンテキストを選択するインターフェイスの先頭に表
 msgid "Show small context cards on submission interface"
 msgstr "提出インターフェースに小さなコンテキスト カードを表示"
 
-msgid "Type of context selector:"
-msgstr "コンテキストセレクターのタイプ:"
-
 msgid "Type to search…"
 msgstr "入力して検索…"
 
@@ -380,12 +371,6 @@ msgstr "メール通知をオフにする"
 
 msgid "Turn on email notifications"
 msgstr "メール通知をオンにする"
-
-msgid "Enter an email address for the administrator"
-msgstr "管理者のメールアドレスを入力してください"
-
-msgid "Enter a password for the administrator"
-msgstr "管理者のパスワードを入力してください"
 
 msgid "Failed logins"
 msgstr "失敗したログイン"
@@ -431,31 +416,6 @@ msgid ""
 "has either changed or been removed."
 msgstr "このカスタムのテキストはもうプラットフォーム上に表示されません。元のキーが変更されたか、削除されています。"
 
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr "この時点で報告を内部告発者が確認しない限り、アクセスが期限切れになります。"
-
-msgid "The whistleblower can no longer access the report"
-msgstr "内部告発者はもう報告にアクセスできません"
-
-msgid "Warning!"
-msgstr "警告!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "サポートされていない、潜在的に脆弱なブラウザを実行しています。"
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "Tor ブラウザーをダウンロードしてインストールすることを強くお勧めします。"
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "Tor Browserには、他のブラウザにはない様々なプライバシーやセキュリティの改良が加えられています。"
-
-msgid "Download the Tor Browser"
-msgstr "Tor Browser をダウンロード"
-
 msgid "Audit log"
 msgstr "監査ログ"
 
@@ -477,20 +437,11 @@ msgstr "送信者"
 msgid "Number of downloads"
 msgstr "ダウンロードの数"
 
-msgid "Error with file:"
-msgstr "ファイルでエラー:"
-
 msgid "File size not accepted."
 msgstr "受け付けられないファイルのサイズです。"
 
-msgid "File type not accepted."
-msgstr "受け付けられないファイルの種類です。"
-
 msgid "Maximum file size is:"
 msgstr "最大ファイルサイズは:"
-
-msgid "Accepted file types are:"
-msgstr "受け付けられるファイルの種類は:"
 
 msgid "Scheduled jobs"
 msgstr "スケジュールされたジョブ"
@@ -527,12 +478,6 @@ msgstr "展開する"
 
 msgid "Select"
 msgstr "選択"
-
-msgid "Selected by default"
-msgstr "デフォルトで選択"
-
-msgid "Unselected by default"
-msgstr "デフォルトで非選択"
 
 msgid "Surname"
 msgstr "敬称"
@@ -605,9 +550,6 @@ msgstr "法人番号/マイナンバー"
 msgid "Tax code"
 msgstr "納税番号"
 
-msgid "Administrators authorized to change user passwords"
-msgstr "ユーザーのパスワード変更を許可された管理者"
-
 msgid "Select the context of your report:"
 msgstr "報告のコンテキストを選択してください:"
 
@@ -668,13 +610,10 @@ msgid "Enable administrators to change user passwords"
 msgstr "管理者によるユーザーのパスワード変更を許可する"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
+msgstr "ユーザーのパスワード変更を許可された管理者:"
 
 msgid "Enable multisite feature"
 msgstr "マルチサイト機能を有効にする"
-
-msgid "Enable simplified login"
-msgstr "簡易ログインを有効にする"
 
 msgid "Allow recipients to delete reports"
 msgstr "受信者が報告を削除することを許可する"
@@ -689,17 +628,11 @@ msgstr "受信者が、指定した報告の内部告発者に権限を付与す
 msgid "Enable search engines indexing"
 msgstr "検索エンジンのインデックス化を有効にする"
 
-msgid "Description"
-msgstr "説明"
-
 msgid "Enable custom privacy panel"
 msgstr "カスタムのプライバシー・バッジを有効にする"
 
 msgid "Custom privacy panel"
 msgstr "プライバシー・バッジのカスタム"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "内部告発者がTorを使用していないときに表示するテキスト"
 
 msgid "Disable the privacy panel"
 msgstr "プライバシー・バッジを無効にする"
@@ -738,15 +671,8 @@ msgstr "セキュリティ上の理由から、定期的にパスワードを変
 msgid "Set the value to 0 to disable this feature."
 msgstr "この機能を無効にするには、値を0に設定します。"
 
-msgid "Amount of days till whistleblower access expires"
-msgstr "内部告発者のアクセス有効期限が切れるまでの日数"
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr "セキュリティ上の理由から、内部告発のアクセスは有効期限が設定されます。"
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr "何を行うかを理解している場合にのみ、この設定を調整してください。"
+msgid "Number of days till notifying users unread reports"
+msgstr ""
 
 msgid "Enable custodian user role"
 msgstr "管理人のユーザー役割を有効にする"
@@ -754,8 +680,8 @@ msgstr "管理人のユーザー役割を有効にする"
 msgid "Enable scoring system"
 msgstr "スコアリングシステムを有効にする"
 
-msgid "Enable private labels"
-msgstr "プライベートラベルを有効にする"
+msgid "Enable private annotations"
+msgstr ""
 
 msgid "Logging level"
 msgstr "ログ取得レベル"
@@ -819,6 +745,9 @@ msgstr "役割"
 msgid "Name"
 msgstr "名前"
 
+msgid "Creation date"
+msgstr "作成日"
+
 msgid "Last access"
 msgstr "最終アクセス"
 
@@ -860,9 +789,6 @@ msgstr "ロゴ"
 
 msgid "Project name"
 msgstr "プロジェクト名"
-
-msgid "Header title"
-msgstr "ヘッダタイトル"
 
 msgid "Homepage title"
 msgstr "ホームページのタイトル"
@@ -926,6 +852,9 @@ msgstr "無効"
 
 msgid "Enabled"
 msgstr "有効"
+
+msgid "Description"
+msgstr "説明"
 
 msgid "Questionnaire"
 msgstr "アンケート"
@@ -1013,9 +942,6 @@ msgstr "管理者"
 
 msgid "Recipient"
 msgstr "受信者"
-
-msgid "Whistleblower"
-msgstr "内部告発者"
 
 msgid "Each entry must be separated with a comma."
 msgstr "各入力はコンマで区切る必要があります。"
@@ -1126,6 +1052,9 @@ msgstr "Tor がなくてもプラットフォームが到達するようにす�
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr "Torを使用せずにプラットフォームを使用できる役割"
+
+msgid "Whistleblower"
+msgstr "内部告発者"
 
 msgid "To"
 msgstr "宛先"
@@ -1301,26 +1230,26 @@ msgstr "ケース管理"
 msgid "Network settings"
 msgstr "ネットワーク設定"
 
+msgid "Mode:"
+msgstr "モード:"
+
 msgid "Root domain used for secondary sites"
 msgstr "二番目のサイトで使用するルートドメイン"
 
 msgid "Use the first site for administrative purposes only"
 msgstr "管理目的に最初のサイトのみ使用する"
 
-msgid "Allow users to sign up"
-msgstr "ユーザーによるサインアップを許可"
-
 msgid "Enable multi-site login"
 msgstr "マルチサイトログインを有効にする"
+
+msgid "Allow users to sign up"
+msgstr "ユーザーによるサインアップを許可"
 
 msgid "Enable terms of service"
 msgstr "利用規約を有効にする"
 
 msgid "Sites"
 msgstr "サイト"
-
-msgid "Mode:"
-msgstr "モード:"
 
 msgid "Active"
 msgstr "アクティブ"
@@ -1391,11 +1320,6 @@ msgstr "受信者が報告の有効期限を延長することを許可する"
 msgid "Allow the recipient to delete reports"
 msgstr "受信者が報告を削除することを許可する"
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr "受信者が、指定した報告の内部告発者に権限を付与することを許可する"
-
 msgid "User has administrative access to the following features:"
 msgstr "ユーザーは、次の機能への管理アクセス権があります:"
 
@@ -1443,9 +1367,6 @@ msgstr "ユーザーがオプションを選択した後に表示されるテキ
 
 msgid "Confirm"
 msgstr "延期を確認"
-
-msgid "Add file"
-msgstr "ファイルを追加"
 
 msgid "Are you sure?"
 msgstr "よろしいですか?"
@@ -1539,9 +1460,6 @@ msgstr "リソースはTorネットワーク内でのみアクセスできます
 msgid "The upload request exceeds the size limit"
 msgstr "アップロードリクエストがサイズ制限を超過しました"
 
-msgid "Success!"
-msgstr "成功!"
-
 msgid "Validation of email address change in progress."
 msgstr "メールアドレス変更の検証を処理しています。"
 
@@ -1563,9 +1481,12 @@ msgid ""
 msgstr "何の追加的なプライバシーやセキュリティもなしに、このサイトを参照しているようです!"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "このサイトはTor Browser というデスクトップ アプリケーションを使用してご覧になることを強くお勧めします。Tor Browser はあなたの身元を保護します。"
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "Tor Browser をダウンロード"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "その上で、以下のアドレスをインストールされたTor Browserにコピー&ペーストしてください。"
@@ -1673,26 +1594,11 @@ msgstr "アップロード日"
 msgid "File size"
 msgstr "ファイルのサイズ"
 
-msgid "download"
-msgstr "ダウンロード"
-
-msgid "No files have been uploaded!"
-msgstr "アップロードされたファイルはありません!"
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "その内部告発者が、報告に添付ファイルを追加することを許可する"
 
-msgid "Report"
-msgstr "報告"
-
-msgid "Access expiration"
-msgstr "アクセスの有効期限"
-
 msgid "Never"
 msgstr "しない"
-
-msgid "Revoked"
-msgstr "失効しました"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "その内部告発者が、メッセージを送信することを許可"
@@ -1743,8 +1649,8 @@ msgstr "受信者のリスト"
 msgid "Status:"
 msgstr "状態"
 
-msgid "Attached files for the whistleblower"
-msgstr "内部告発者向けの添付ファイル"
+msgid "Files attached by recipients"
+msgstr "受信者が添付したファイル"
 
 msgid "Upload a file:"
 msgstr "ファイルをアップロード："
@@ -1758,12 +1664,6 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "「アカウント回復鍵」を取得して安全に保管するために、「設定」セクションにアクセスすることをお勧めします。 この鍵は、パスワードを忘れた場合にプラットフォームとデータへのアクセスを回復するために必要です。"
-
-msgid "Files attached by recipients"
-msgstr "受信者が添付したファイル"
-
-msgid "These files have been attached to your report by the recipients."
-msgstr "これらのファイルは、受信者によって報告に添付されています。"
 
 msgid "The provided recovery key is invalid."
 msgstr "指定された回復鍵は無効です。"
@@ -1808,6 +1708,9 @@ msgstr "おめでとうございます"
 msgid "You have completed the platform activation."
 msgstr "プラットフォームの有効化が完了しました。"
 
+msgid "Success!"
+msgstr "成功!"
+
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "内部告発プラットフォームがもう少しで準備できます!"
 
@@ -1839,11 +1742,8 @@ msgstr "完了"
 msgid "Invalid phone number"
 msgstr "電話番号が正しくありません"
 
-msgid "This field is mandatory."
-msgstr "このフィールドは必須です。"
-
-msgid "The answer is too short."
-msgstr "回答が短すぎます"
+msgid "The answer is too short"
+msgstr ""
 
 msgid "The specified input is not valid."
 msgstr "指定された入力は正しくありません."
@@ -1899,9 +1799,6 @@ msgid ""
 "invalid:"
 msgstr "このステップでは、以下の質問に対する回答が見つからないか、無効です:"
 
-msgid "Errors"
-msgstr "エラー"
-
 msgid "You must select at least one recipient."
 msgstr "少なくとも一人の受信者を選択する必要があります。"
 
@@ -1919,11 +1816,18 @@ msgstr "次のステップバイステップの手順で、内部告発プラッ
 msgid "Please choose a configuration profile:"
 msgstr "設定プロファイルを選択してください:"
 
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "この管理者がユーザーのパスワードをリセットできるようにします。"
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
 msgid "Please choose a different username."
 msgstr "別のユーザー名を選択してください。"
-
-msgid "The user will receive an activation link via email."
-msgstr "ユーザーは、メールでアクティベーションリンクを受け取ります。"
 
 msgid "I have read and agree to the terms of the license."
 msgstr "ライセンス規約を読み、同意します。"
@@ -2133,15 +2037,6 @@ msgstr "このメールを受信したのは、サーバーが認証して、SMT
 msgid "Test email"
 msgstr "テストメール"
 
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr "これは、既存の報告に新しいコメントがあったことを通知するメールです。"
-
-msgid "The report can be accessed at:"
-msgstr "報告は以下からアクセスできます:"
-
-msgid "New comment"
-msgstr "新しいコメント"
-
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
@@ -2180,14 +2075,6 @@ msgid "Context: {ContextName}"
 msgstr "コンテキスト: {ContextName}"
 
 msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr "これは、報告 {TipNum} の内部告発者が新しい資料を添付したことを通知するメールです。"
-
-msgid "New attachment"
-msgstr "新しい添付"
-
-msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
 msgstr "プラットフォームにロードされた HTTPS 証明書が期限切れになるか、すでに期限切れです。"
@@ -2221,6 +2108,9 @@ msgid ""
 " to the whistleblowing identity for the report {TipNum}."
 msgstr "これは、報告 {TipNum} の内部告発者の身元にあなたがアクセスすることを、管理人が承認したことを通知するメールです。"
 
+msgid "The report can be accessed at:"
+msgstr "報告は以下からアクセスできます:"
+
 msgid "Access to whistleblower's identity authorized"
 msgstr "内部告発者の身元へのアクセスを承認しました"
 
@@ -2250,12 +2140,6 @@ msgstr "これは、報告 {TipNum} の内部告発者が身元を提供した�
 
 msgid "The whistleblower has provided their identity"
 msgstr "内部告発者が身元を提供しました"
-
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr "これは、既存の報告に新しいメッセージがあったことを通知するメールです。"
-
-msgid "New message"
-msgstr "新しいメッセージ"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2334,6 +2218,18 @@ msgstr "あなたは、含まれる情報および資料に特に注意を払う
 
 msgid "New report"
 msgstr "新しい報告"
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
+msgstr ""
 
 msgid "Role: {Role}"
 msgstr "役割: {Role}"
