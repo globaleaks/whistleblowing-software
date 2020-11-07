@@ -127,8 +127,8 @@ a:hover.darklink {
 }
 
 .default-logo {
-  height: 2.4rem;
-  width: 2.4rem;
+  height: 3.2rem;
+  width: 3.2rem;
 }
 
 [dir="ltr"] #LogoBox {
@@ -186,7 +186,7 @@ a:hover.darklink {
 
 #MessagesConsoleBox {
   position: fixed;
-  width: 20%;
+  width: 30rem;
   min-width: 20rem;
   z-index: 10;
   top: 1rem;
@@ -218,7 +218,7 @@ a:hover.darklink {
   max-height: 20rem;
   overflow-y: scroll;
   background-color: #f5f7fa;
-  border: 1px solid #c8d1e0;
+  border: 1px solid #C8D1E0;
   padding: 1rem;
 }
 
@@ -228,7 +228,7 @@ a:hover.darklink {
 
 .imageUpload {
   position: relative;
-  border: 1px dashed #c8d1e0;
+  border: 1px dashed #C8D1E0;
   z-index: 0;
   text-align: center;
   height: 10.4rem;
@@ -259,7 +259,7 @@ a:hover.darklink {
 }
 
 .LoginErrorBox, .LoginErrorBoxHomepage {
-  margin: .2rem;
+  margin: 1rem;
 }
 
 .WhistleblowerSubmitBox, #WhistleblowerLoginBox {
@@ -306,7 +306,7 @@ a:hover.darklink {
   width: 10rem;
   text-align: center;
   line-height: 10rem;
-  border: 1px solid #c8d1e0;
+  border: 1px solid #C8D1E0;
 }
 
 .fileUploadIconSmall {
@@ -329,7 +329,7 @@ a:hover.darklink {
 }
 
 .modal-title {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
 }
 
 #TipList table {
@@ -412,7 +412,7 @@ input[type="file"] {
 
 .drag-drop {
   padding: 1rem;
-  border: 1px dashed #c8d1e0;
+  border: 1px dashed #C8D1E0;
 }
 
 .drag-drop:hover {
@@ -499,7 +499,7 @@ input[type="file"] {
   margin-bottom: 1rem;
   padding: 1rem;
   background-color: #FFF;
-  border: 1px solid #c8d1e0;
+  border: 1px solid #C8D1E0;
   border-radius: 5px;
 }
 
@@ -561,11 +561,11 @@ input[type="file"] {
 
 .stepIndex {
   display: inline-block;
-  color: #c8d1e0;
+  color: #C8D1E0;
   width: 1.8rem;
   height: 1.8rem;
   padding: 0.2rem 0;
-  border: 1px solid #c8d1e0;
+  border: 1px solid #C8D1E0;
   border-radius: 50%;
   font-size: .80rem;
   font-weight: bold;
@@ -629,7 +629,7 @@ input[type="file"] {
 
 .configItem {
   background-color: #F5F7FA;
-  border: 1px solid #c8d1e0;
+  border: 1px solid #C8D1E0;
   padding: 1rem;
   margin: 1rem auto;
 }
@@ -645,7 +645,7 @@ input[type="file"] {
 
 .field {
   position: relative;
-  border: 1px solid #c8d1e0;
+  border: 1px solid #C8D1E0;
   margin-bottom: 1rem;
 }
 
@@ -675,7 +675,7 @@ text.axis-workweek, text.axis-worktime {
   font-size: 0.8rem;
   color: #1D1F2A;
   background-color: #F5F7FA;
-  border: 1px solid #c8d1e0;
+  border: 1px solid #C8D1E0;
   max-height: 20rem;
   max-width: 80rem;
   overflow: auto;
@@ -706,7 +706,7 @@ text.axis-workweek, text.axis-worktime {
 
 .selectedTip,
 .table-striped > tbody > tr.selectedTip:nth-child(odd) > td {
-  background-color: #fffcf1;
+  background-color: #FFFCF1;
 }
 
 .tip-action-open {
