@@ -22,6 +22,7 @@ exports.config = {
   rootElement: "html",
 
   params: {
+    "takeScreenshots": false,
     "testFileDownload": false,
     "tmpDir": "/tmp/globaleaks-download",
     "testDir": __dirname
