@@ -107,7 +107,7 @@ a:hover.darklink {
   flex: 1 0 auto;
 }
 
-#HeaderBox, #ContentBox, #NoScript, #FooterBox, #DemoBadge, #PrivacyBadge {
+#HeaderBox, #ContentBox, #FooterBox, #DemoBadge, #PrivacyBadge, noscript {
   padding: 1rem;
 }
 
