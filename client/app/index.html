@@ -48,8 +48,8 @@
       <div id="MessagesConsoleBox" data-ng-include="'views/partials/messageconsole.html'"></div>
       <div id="ContentBox">
 	<div class="row">
-          <div data-ng-if="sidebar" id="Sidebar" class="col-md-2 flex-column" data-ng-include="sidebar"></div>
-          <div id="Content" data-ng-class="{'col-md-10': sidebar, 'col-md-12': !sidebar}" data-ng-view=""></div>
+          <nav data-ng-if="sidebar" id="Sidebar" class="col-md-2 flex-column" data-ng-include="sidebar"></nav>
+          <main id="Content" data-ng-class="{'col-md-10': sidebar, 'col-md-12': !sidebar}" data-ng-view=""></main>
         </div>
       </div>
     </div>
