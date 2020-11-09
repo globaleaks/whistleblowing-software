@@ -444,6 +444,10 @@ input[type="file"] {
   margin: 0;
 }
 
+[dir] .btn {
+  font-weight: bold;
+}
+
 #HomePageBox {
   text-align: center;
   margin: 0 auto;
