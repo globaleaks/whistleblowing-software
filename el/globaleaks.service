@@ -1,0 +1,12 @@
+[Unit]
+Description=Opensource whistleblowing platform.
+After=syslog.target network.target
+
+[Service]
+User=globaleaks
+Group=globaleaks
+EnvironmentFile=/usr/share/globaleaks/default
+ExecStart=/usr/bin/globaleaks --ip=${LISTENING_IP} --user=${USERNAME} --group=${GROUP} --working-path=${WORKING_DIR} -n
+Restart=on-failure
+RestartSec=2s
+
