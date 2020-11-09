@@ -9,9 +9,16 @@ addons:
   chrome: stable
 env:
   global:
-  - secure: EVObCafLubboW7PQ69OhLI9qSMWDUYuL8EvXCX2MsBzlgX1W6cc62IJbKV87EHOnu/2KgHXYNVYN4rmydVbOU+nMHwtryf8+utNcyuDp40kKoNjWhWue++AheXgAjUt1lON4/kiZ5gxEupQeEXDPvP/5LrUuDUEQRwJa6pbivD8=
-  - secure: KOpU31rbmwrjGovRX769F9H1/+KdtB5KJfMKIMRZPTeaH/zrlUDaTh9lBOkAFD1S/0nagsrXIUq9e9PJD3pEWze09VUK0mivCl96/ZXFt605UJXSKgWvZNJdRLexzwPhHd/MDzbMqTfrAlN6x9OSA5uIOaGzaQSZjkXjed8IkRk=
-  - secure: MWsPYunBeYxPHk5zngCHe6K67FQc6Da9EL17vd2dLEOqePD3VPI+wVdfUDzwkdc7pslM3/JNUroMtCiVkLi7TBNH37hZ5TN1/lG/5kyqobMkm8xLInrrUOhSgvL566nRBb5QMsIMO4+yg7tQHR0EwHHjAOaI0Yw/2F2WgEZN3TU=
+    - secure: EVObCafLubboW7PQ69OhLI9qSMWDUYuL8EvXCX2MsBzlgX1W6cc62IJbKV87EHOnu/2KgHXYNVYN4rmydVbOU+nMHwtryf8+utNcyuDp40kKoNjWhWue++AheXgAjUt1lON4/kiZ5gxEupQeEXDPvP/5LrUuDUEQRwJa6pbivD8=
+    - secure: KOpU31rbmwrjGovRX769F9H1/+KdtB5KJfMKIMRZPTeaH/zrlUDaTh9lBOkAFD1S/0nagsrXIUq9e9PJD3pEWze09VUK0mivCl96/ZXFt605UJXSKgWvZNJdRLexzwPhHd/MDzbMqTfrAlN6x9OSA5uIOaGzaQSZjkXjed8IkRk=
+    - secure: MWsPYunBeYxPHk5zngCHe6K67FQc6Da9EL17vd2dLEOqePD3VPI+wVdfUDzwkdc7pslM3/JNUroMtCiVkLi7TBNH37hZ5TN1/lG/5kyqobMkm8xLInrrUOhSgvL566nRBb5QMsIMO4+yg7tQHR0EwHHjAOaI0Yw/2F2WgEZN3TU=
+    - DOCKER_IMAGE=alectolytic/rpmbuilder
+    - COPR_REPOSITORY=Globaleaks
+    - COPR_TEST_REPOSITORY=Globaleaks-Test
+    - OS_ARCH=x86_64
+  matrix:
+    - OS_TYPE=centos OS_DIST=epel OS_VERSION=8
+    - OS_TYPE=centos OS_DIST=epel OS_VERSION=7
 #Tokens order: sauce_username, sauce_token, codacy_project_token
 matrix:
   fast_finish: true
@@ -33,9 +40,20 @@ matrix:
 before_install:
 - nvm install stable
 - nvm use stable
+services:
+- docker
 install: true
 script:
-- "$TRAVIS_BUILD_DIR/travis/script.sh"
+ - $TRAVIS_BUILD_DIR/travis/script.sh
+ - if [ "${OS_TYPE}" == "centos" ];then sed -i 's/MY_GIT_VERSION/'`git describe  --abbrev=0 | cut -c2-`'/g' el/globaleaks.spec ;fi
+ - if [ -z "${TRAVIS_TAG}" ]; then sed -i 's/MY_GIT_COMMIT/'`git log -1 --pretty=format:"%h"`'/g' el/globaleaks.spec;else sed -i 's/MY_GIT_COMMIT/0/g' el/globaleaks.spec ;fi
+ - sed -i 's/MY_FULL_GIT_COMMIT/'`git log -1 --pretty=format:"%H"`'/g' el/globaleaks.spec
+ - if [ "${OS_TYPE}" == "centos" ];then docker run -v ${PWD}/el:/sources -v ${PWD}:/output:Z -e "SRPM_ONLY=1" ${DOCKER_IMAGE}:${OS_TYPE}-${OS_VERSION};fi
 notifications:
   slack:
     secure: KhvVUD69Pq/0ZuQyug+NfH8LXLwFNlBQmhgAx6woYtnpGwq5KqMl4lpNeb1dKptUlJen+iAQRwO6nqAzWL92eO9qSCSLZDvKS0qDtMUAI9ax1cJ/G8K/Ee6vILU6id37VtwHFD4cJQPxZOZoDXoNcO6PRGVJDFt6JTGsOroexCI=
+after_success:
+  - pip install copr-cli simplejson
+  - openssl aes-256-cbc -K $encrypted_6c90a9533050_key -iv $encrypted_6c90a9533050_iv -in .copr.enc -out .copr -d
+  - if [ ! -z "${TRAVIS_TAG}" ]; then if [ "${OS_TYPE}" == "centos" ]; then copr-cli --config .copr build -r ${OS_DIST}-${OS_VERSION}-${OS_ARCH} ${COPR_REPOSITORY} *.src.rpm; fi ; fi
+  - if [ "${OS_TYPE}" == "centos" ]; then copr-cli --config .copr build -r ${OS_DIST}-${OS_VERSION}-${OS_ARCH} ${COPR_TEST_REPOSITORY} *.src.rpm;fi 
