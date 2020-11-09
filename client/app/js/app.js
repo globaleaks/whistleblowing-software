@@ -28,6 +28,7 @@ var GL = angular.module("GL", [
     $locationProvider.hashPrefix("");
 }]).
   config(["$showdownProvider", function($showdownProvider) {
+    $showdownProvider.setOption("sanitize", true);
     $showdownProvider.setOption("openLinksInNewWindow", true);
 }]).
   config(["$provide", function($provide) {
