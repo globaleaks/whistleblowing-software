@@ -5,5 +5,5 @@ Setup
   :name: setup
   :maxdepth: 4
 
-  InstallationGuide
-  PlatformWizard
+  InstallationGuide.rst
+  PlatformWizard.rst

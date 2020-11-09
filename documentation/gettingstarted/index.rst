@@ -5,6 +5,6 @@ Getting Started
   :name: gettingstarted
   :maxdepth: 4
 
-   Glossary
-   Features
-   Requirements
+   Glossary.rst
+   Features.rst
+   Requirements.rst
