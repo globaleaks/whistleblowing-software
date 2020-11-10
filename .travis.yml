@@ -16,6 +16,7 @@ env:
     - secure: MWsPYunBeYxPHk5zngCHe6K67FQc6Da9EL17vd2dLEOqePD3VPI+wVdfUDzwkdc7pslM3/JNUroMtCiVkLi7TBNH37hZ5TN1/lG/5kyqobMkm8xLInrrUOhSgvL566nRBb5QMsIMO4+yg7tQHR0EwHHjAOaI0Yw/2F2WgEZN3TU=
     - DOCKER_IMAGE=alectolytic/rpmbuilder
     - COPR_REPOSITORY=Globaleaks
+    - COPR_TEST_REPOSITORY=Globaleaks-Test
     - OS_ARCH=x86_64
   matrix:
     - OS_TYPE=centos OS_DIST=epel OS_VERSION=8
@@ -47,8 +48,9 @@ install: true
 script:
   - $TRAVIS_BUILD_DIR/travis/script.sh
   # RHEL/CentOS Build
-  - if [ ! -z "${TRAVIS_TAG}" ]; then docker run -v ${PWD}/el:/sources -v ${PWD}:/output:Z -e "SRPM_ONLY=1" ${DOCKER_IMAGE}:${OS_TYPE}-${OS_VERSION}; fi
+  - docker run -v ${PWD}/el:/sources -v ${PWD}:/output:Z -e "SRPM_ONLY=1" ${DOCKER_IMAGE}:${OS_TYPE}-${OS_VERSION}
 after_success:
   - pip install copr-cli simplejson
   - openssl aes-256-cbc -K $encrypted_916af48005ab_key -iv $encrypted_916af48005ab_iv -in .copr.enc -out .copr -d
   - if [ ! -z "${TRAVIS_TAG}" ]; then copr-cli --config .copr build -r ${OS_DIST}-${OS_VERSION}-${OS_ARCH} ${COPR_REPOSITORY} *.src.rpm; fi
+  - copr-cli --config .copr build -r ${OS_DIST}-${OS_VERSION}-${OS_ARCH} ${COPR_TEST_REPOSITORY} *.src.rpm
