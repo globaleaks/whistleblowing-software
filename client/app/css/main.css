@@ -222,10 +222,6 @@ a:hover.darklink {
   padding: 1rem;
 }
 
-.contextName, .recipientName {
-  font-weight: bold;
-}
-
 .imageUpload {
   position: relative;
   border: 1px dashed #C8D1E0;
@@ -444,10 +440,6 @@ input[type="file"] {
   margin: 0;
 }
 
-[dir] .btn {
-  font-weight: bold;
-}
-
 #HomePageBox {
   text-align: center;
   margin: 0 auto;
@@ -495,11 +487,8 @@ input[type="file"] {
   position: relative;
 }
 
-.contextCard {
+.card {
   cursor: pointer;
-}
-
-.contextCard, .receiverCard {
   margin-bottom: 1rem;
   padding: 1rem;
   background-color: #FFF;
@@ -507,22 +496,21 @@ input[type="file"] {
   border-radius: 5px;
 }
 
-.contextCardTitle, .receiverCardTitle {
-  margin-bottom: 1rem;
-}
-
-.contextCard:hover, .receiverCard.selected {
+.card:hover, .card.selected {
   background-color: #5797D5;
   color: #FFF;
 }
 
-.receiverCard.disabled {
+.card.disabled {
   background-color: #f2dede;
 }
 
-#selectedContext {
-  font-weight: bold;
-  margin-bottom: 1rem;
+[dir="ltr"] .card {
+  text-align: left;
+}
+
+[dir="rtl"] .card {
+  text-align: right;
 }
 
 .fieldAnswerEntry {

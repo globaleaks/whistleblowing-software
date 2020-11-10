@@ -35,7 +35,7 @@ GL.controller("SubmissionCtrl",
   };
 
   $scope.switch_selection = function (receiver) {
-    if (receiver.recipient_configuration !== "default") {
+    if (receiver.forcefully_selected) {
       return;
     }
 

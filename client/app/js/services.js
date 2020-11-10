@@ -253,6 +253,8 @@ factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope",
     self._submission = null;
     self.context = undefined;
     self.receivers = [];
+    self.mandatory_receivers = 0;
+    self.optional_receivers = 0;
     self.selected_receivers = {};
     self.done = false;
 
@@ -271,8 +273,13 @@ factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope",
         var r = $rootScope.receivers_by_id[receiver];
         self.receivers.push(r);
 
-        if ((r.recipient_configuration === "default" && self.context.select_all_receivers) ||
-            (r.recipient_configuration === "forcefully_selected")) {
+        if (r.forcefully_selected) {
+          self.mandatory_receivers += 1;
+        } else {
+          self.optional_receivers += 1;
+        }
+
+        if ((self.context.select_all_receivers) || r.forcefully_selected) {
           self.selected_receivers[r.id] = true;
         }
       });
@@ -749,7 +756,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       user.pgp_key_expiration = "";
       user.language = "en";
       user.notification = true;
-      user.recipient_configuration = "default";
+      user.forcefully_selected = false;
       user.can_edit_general_settings = false;
       user.can_delete_submission = false;
       user.can_postpone_expiration = false;

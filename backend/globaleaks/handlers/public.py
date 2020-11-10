@@ -514,7 +514,7 @@ def serialize_receiver(session, user, language, data=None):
         'name': user.public_name,
         'state': user.state,
         'encryption': user.crypto_pub_key != '',
-        'recipient_configuration': user.recipient_configuration,
+        'forcefully_selected': user.forcefully_selected,
         'can_delete_submission': user.can_delete_submission,
         'can_postpone_expiration': user.can_postpone_expiration,
         'picture': data['imgs'].get(user.id, '')

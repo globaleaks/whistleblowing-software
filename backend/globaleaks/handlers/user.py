@@ -123,7 +123,7 @@ def user_serialize_user(session, user, language):
         'encryption': user.crypto_pub_key != '',
         'escrow': user.crypto_escrow_prv_key != '',
         'two_factor_enable': user.two_factor_enable,
-        'recipient_configuration': user.recipient_configuration,
+        'forcefully_selected': user.forcefully_selected,
         'can_postpone_expiration': user.can_postpone_expiration,
         'can_delete_submission': user.can_delete_submission,
         'clicked_recovery_key': user.clicked_recovery_key,

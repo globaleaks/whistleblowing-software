@@ -1113,7 +1113,7 @@ class _User(Model):
     reset_password_token = Column(UnicodeText, unique=True, nullable=True)
     reset_password_date = Column(UnicodeText, default=datetime_null, nullable=False)
     notification = Column(Boolean, default=True, nullable=False)
-    recipient_configuration = Column(Enum(EnumRecipientConfiguration), default='default', nullable=False)
+    forcefully_selected = Column(Boolean, default=False, nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
     can_postpone_expiration = Column(Boolean, default=False, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
@@ -1134,7 +1134,7 @@ class _User(Model):
                     'language', 'mail_address',
                     'name', 'public_name',
                     'language', 'change_email_address',
-                    'salt', 'recipient_configuration',
+                    'salt',
                     'two_factor_secret']
 
     localized_keys = ['description']
@@ -1145,6 +1145,7 @@ class _User(Model):
                  'can_delete_submission',
                  'can_postpone_expiration',
                  'two_factor_enable',
+                 'forcefully_selected',
                  'readonly',
                  'clicked_recovery_key']
 
@@ -1155,8 +1156,7 @@ class _User(Model):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 UniqueConstraint('tid', 'username'),
                 CheckConstraint(self.role.in_(EnumUserRole.keys())),
-                CheckConstraint(self.state.in_(EnumUserState.keys())),
-                CheckConstraint(self.recipient_configuration.in_(EnumRecipientConfiguration.keys())))
+                CheckConstraint(self.state.in_(EnumUserState.keys())))
 
 
 class _UserImg(Model):

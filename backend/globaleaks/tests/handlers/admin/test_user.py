@@ -69,7 +69,7 @@ class TestReceiverInstance(TestAdminInstance):
             'name': 'Mario Rossi',
             'mail_address': 'receiver@theguardian.com',
             'language': 'en',
-            'recipient_configuration': 'forcefully_selected'
+            'forcefully_selected': True
         }
     }
 

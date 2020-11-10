@@ -154,7 +154,7 @@ AdminUserDesc = {
     'can_edit_general_settings': bool,
     'can_delete_submission': bool,
     'can_postpone_expiration': bool,
-    'recipient_configuration': str,
+    'forcefully_selected': bool,
     'send_account_activation_link': bool
 }
 

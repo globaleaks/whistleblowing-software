@@ -1,9 +1,6 @@
 {
   "version": 1,
   "node": {
-    "contexts_clarification": {
-      "en": "Select the context of your report:"
-    },
     "security_awareness_title": {
       "en": "Warning! You are not anonymous."
     },

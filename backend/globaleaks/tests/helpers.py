@@ -252,7 +252,7 @@ class MockDict:
             'pgp_key_remove': False,
             'can_edit_general_settings': False,
             'notification': True,
-            'recipient_configuration': 'default',
+            'forcefully_selected': True,
             'can_delete_submission': False,
             'can_postpone_expiration': False,
             'contexts': []

@@ -1,0 +1,27 @@
+<div class="card" data-ng-class="{'selected': submission.selected_receivers[receiver.id] || receiver.forcefully_selected}">
+  <div class="cardTitle mb-1">
+    <div class="row">
+      <div class="col-md-1">
+        <div data-ng-if="submission.selected_receivers[receiver.id]">
+          <div data-ng-if="!receiver.forcefully_selected">
+            <i class="fas fa-check-square" uib-tooltip="{{'Unselect this recipient.' | translate}}"></i>
+          </div>
+        </div>
+        <div data-ng-if="!submission.selected_receivers[receiver.id] && !receiver.forcefully_selected">
+          <i class="far fa-square" uib-tooltip="{{'Select this recipient.' | translate}}"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cardContent">
+    <div class="row">
+      <div class="col-md-4" data-ng-if="receiver.picture"><img class="receiverImg" alt="receiver picture" data-ng-src="{{Utils.imgDataUri(receiver.picture)}}" /></div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 recipientName">{{receiver.name}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 receiverDescription" data-ng-if="receiver.description">{{receiver.description}}</div>
+    </div>
+  </div>
+</div>

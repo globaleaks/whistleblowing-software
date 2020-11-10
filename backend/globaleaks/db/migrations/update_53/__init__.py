@@ -126,7 +126,7 @@ class User_v_52(Model):
     reset_password_token = Column(UnicodeText, unique=True, nullable=True)
     reset_password_date = Column(UnicodeText, default=datetime_null, nullable=False)
     notification = Column(Boolean, default=True, nullable=False)
-    recipient_configuration = Column(Enum(EnumRecipientConfiguration), default='default', nullable=False)
+    recipient_configuration = Column(Integer, default=0, nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
     can_postpone_expiration = Column(Boolean, default=False, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
@@ -185,6 +185,16 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
+    def migrate_User(self):
+        for old_obj in self.session_old.query(self.model_from['User']):
+            new_obj = self.model_to['User']()
+            for key in new_obj.__table__.columns._data.keys():
+                if key == 'forcefully_selected':
+                    new_obj.forcefully_selected = old_obj.recipient_configuration == 1
+                if hasattr(old_obj, key):
+                    setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
 
     def epilogue(self):
         m = self.model_to['Config']

@@ -18,11 +18,6 @@ class EnumUserState(_Enum):
     enabled = 1
 
 
-class EnumRecipientConfiguration(_Enum):
-    default = 0
-    forcefully_selected = 1
-
-
 class EnumContextStatus(_Enum):
     disabled = 0
     enabled = 1
