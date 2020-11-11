@@ -45,7 +45,6 @@ class Context_v_45(Model):
     tip_timetolive = Column(Integer, default=30, nullable=False)
     name = Column(JSON, default=dict, nullable=False)
     description = Column(JSON, default=dict, nullable=False)
-    recipients_clarification = Column(JSON, default=dict, nullable=False)
     status_page_message = Column(JSON, default=dict, nullable=False)
     show_receivers_in_alphabetical_order = Column(Boolean, default=True, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)

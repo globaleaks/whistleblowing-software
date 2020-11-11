@@ -24,7 +24,6 @@ class Context_v_51(Model):
     tip_timetolive = Column(Integer, default=90, nullable=False)
     name = Column(JSON, default=dict, nullable=False)
     description = Column(JSON, default=dict, nullable=False)
-    recipients_clarification = Column(JSON, default=dict, nullable=False)
     status_page_message = Column(JSON, default=dict, nullable=False)
     show_receivers_in_alphabetical_order = Column(Boolean, default=True, nullable=False)
     score_threshold_high = Column(Integer, default=0, nullable=False)

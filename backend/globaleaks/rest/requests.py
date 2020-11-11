@@ -402,7 +402,6 @@ AdminContextDesc = {
     'score_receipt_text_h': str,
     'score_threshold_receipt': int,
     'order': int,
-    'recipients_clarification': str,
     'status_page_message': str,
     'show_steps_navigation_interface': bool,
     'show_receivers_in_alphabetical_order': bool,

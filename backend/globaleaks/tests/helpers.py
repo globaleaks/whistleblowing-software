@@ -263,7 +263,6 @@ class MockDict:
             'name': 'Already localized name',
             'description': 'Already localized desc',
             'languages': "en",
-            'recipients_clarification': '',
             'order': 0,
             'receivers': [],
             'questionnaire_id': 'default',
