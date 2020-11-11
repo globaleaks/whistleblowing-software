@@ -3,7 +3,7 @@
     <div data-ng-controller="SubmissionFieldCtrl" id="{{fieldId}}" class="question">
       <div class="question-label">
         <label data-content="field.hint" uib-tooltip="{{field.hint}}">
-          <span data-ng-if="field.label" class="font-weight-bold">{{field.label}}</span>
+          <span data-ng-if="field.label" class="title">{{field.label}}</span>
           <span data-ng-if="field.hint">
             <i class="fas fa-question-circle"></i>
           </span>
@@ -11,7 +11,7 @@
         </label>
       </div>
       <div class="question-body">
-        <div data-ng-if="field.description" class="fieldDescription" data-markdown-to-html="field.description"></div>
+        <div data-ng-if="field.description" class="description" data-markdown-to-html="field.description"></div>
         <div class="form-group">
           <div data-ng-include="'views/whistleblower/form_field_inputs.html'"></div>
         </div>

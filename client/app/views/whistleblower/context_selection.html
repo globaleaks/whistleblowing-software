@@ -1,17 +1,17 @@
-<div class="contextClarification mb-2 row" data-ng-if="public.node.contexts_clarification">
+<div class="row mb-2" data-ng-if="public.node.contexts_clarification">
   <div class="col-md-12" data-translate>Select the context of your report:</div>
 </div>
 <div id="SubmissionStepContext" class="row">
   <div data-ng-repeat="context in selectable_contexts | orderBy:contextsOrderPredicate" id="context-{{$index}}" class="{{Utils.getCardSize(selectable_contexts.length)}}" data-ng-click="selectContext(context)">
-    <div class="card">
+    <div class="selectCard">
       <div class="row">
-        <div class="col-md-12 contextName">{{context.name}}</div>
+        <div class="col-md-12 title">{{context.name}}</div>
       </div>
       <div class="row" data-ng-if="context.picture">
         <div class="col-md-4"><img class="contextImg" alt="context picture" data-ng-src="{{Utils.imgDataUri(context.picture)}}" /></div>
       </div>
       <div class="row" data-ng-if="context.description">
-        <div class="col-md-12 contextListDescription">{{context.description}}</div>
+        <div class="col-md-12 description">{{context.description}}</div>
       </div>
     </div>
   </div>

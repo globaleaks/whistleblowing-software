@@ -22,21 +22,30 @@
 }
 
 html, body {
+  height: 100%;
+}
+
+body {
   background-color: #FFF;
   color: #1D1F2A;
   font-family: 'Metropolis', Helvetica, Arial, sans-serif;
   font-size: 16px;
-  height: 100%;
   min-height: 20rem;
 }
 
-a, a:hover, a:active, a:focus {
+a,
+a:hover,
+a:active,
+a:focus {
   color: #205282;
   outline: 0;
   text-decoration: none;
 }
 
-a:hover, a.darklink,  a:active.darklink, a:focus.darklink {
+a:hover,
+a.darklink,
+a:active.darklink,
+a:focus.darklink {
   color: #5797D5;
 }
 
@@ -52,12 +61,16 @@ a:hover.darklink {
   opacity: 1;
 }
 
-#Sidebar a.active, #Sidebar a:active.active, #Sidebar a:hover.active, #Sidebar a:focus.active {
+#Sidebar a.active,
+#Sidebar a:active.active,
+#Sidebar a:hover.active,
+#Sidebar a:focus.active {
   border-bottom: 1px solid #C8D1E0;
   width: max-content;
 }
 
-[dir] .form-control.is-valid, [dir] .was-validated .form-control:valid {
+[dir] .form-control.is-valid,
+[dir] .was-validated .form-control:valid {
   border-color: #C8D1E0;
 }
 
@@ -95,7 +108,8 @@ a:hover.darklink {
   overflow-x: hidden;
 }
 
-[dir] .nav-tabs .nav-item.show .nav-link, [dir] .nav-tabs .nav-link.active {
+[dir] .nav-tabs .nav-item.show .nav-link,
+[dir] .nav-tabs .nav-link.active {
   color: #103253;
 }
 
@@ -107,7 +121,12 @@ a:hover.darklink {
   flex: 1 0 auto;
 }
 
-#HeaderBox, #ContentBox, #FooterBox, #DemoBadge, #PrivacyBadge, noscript {
+#HeaderBox,
+#ContentBox,
+#FooterBox,
+#DemoBadge,
+#PrivacyBadge,
+noscript {
   padding: 1rem;
 }
 
@@ -162,14 +181,16 @@ a:hover.darklink {
   width: auto;
 }
 
-#LoginStatusBox, #LanguagePickerBox .form-control {
+#LoginStatusBox,
+#LanguagePickerBox .form-control {
   height: 2.2rem;
   line-height: 2.2rem;
   padding: 0 1rem;
   width: max-content;
 }
 
-#LoginStatusBox, #WhistleblowerLoginBox {
+#LoginStatusBox,
+#WhistleblowerLoginBox {
   color: #1D1F2A;
   background-color: #FFF;
   border-radius: 5px;
@@ -180,7 +201,10 @@ a:hover.darklink {
   text-align: center;
 }
 
-#FooterBox a, #FooterBox a:hover, #Footerbox a:active, #FooterBox a:focus {
+#FooterBox a,
+#FooterBox a:hover,
+#Footerbox a:active,
+#FooterBox a:focus {
   font-weight: bold;
 }
 
@@ -193,8 +217,8 @@ a:hover.darklink {
   padding: 0 5rem;
 }
 
-.Title {
-  font-size: 1.2rem;
+.title {
+  font-weight: bold;
 }
 
 .receipt {
@@ -239,7 +263,8 @@ a:hover.darklink {
   z-index: 10;
 }
 
-.imageThumbnail, .imageUploadThumbnail, .imageUploadThumbnail img {
+.imageThumbnail, .imageUploadThumbnail,
+.imageUploadThumbnail img {
   height: 10rem;
   width: 10rem;
 }
@@ -252,14 +277,7 @@ a:hover.darklink {
 
 .LoginErrorBox, .LoginErrorBoxHomepage {
   display: inline-block;
-}
-
-.LoginErrorBox, .LoginErrorBoxHomepage {
   margin: 1rem;
-}
-
-.WhistleblowerSubmitBox, #WhistleblowerLoginBox {
-  text-align: center;
 }
 
 #WhistleblowerLoginForm input {
@@ -463,31 +481,20 @@ input[type="file"] {
 #WhistleblowerSubmitBox,
 #WhistleblowerLoginBox {
   font-size: 1.2rem;
+  text-align: center;
 }
 
 #DonationPanel {
   margin-top: 2rem;
 }
 
-#contextClarification {
-  font-size: 1.2rem;
-}
-
-#contextClarification,
-.contextCardDescription,
-.receiverDescription,
-.stepDescription,
-.fieldDescription
+.description
 {
   color: #1D1F2A;
   white-space: pre-wrap;
 }
 
-.contextCards, .receiverCards {
-  position: relative;
-}
-
-.card {
+.selectCard {
   cursor: pointer;
   margin-bottom: 1rem;
   padding: 1rem;
@@ -496,20 +503,19 @@ input[type="file"] {
   border-radius: 5px;
 }
 
-.card:hover, .card.selected {
-  background-color: #5797D5;
-  color: #FFF;
+.selectCard:hover, .selectCard.selected {
+  background-color: #fffcf1;
 }
 
-.card.disabled {
+.selectCard.disabled {
   background-color: #f2dede;
 }
 
-[dir="ltr"] .card {
+[dir="ltr"] .selectCard {
   text-align: left;
 }
 
-[dir="rtl"] .card {
+[dir="rtl"] .selectCard {
   text-align: right;
 }
 

@@ -1,22 +1,22 @@
 <div id="SubmissionStepReceiver" class="receiverCards">
-  <div id="StepTitle" data-ng-if="!show_steps_navigation_bar" data-translate>Recipient selection</div>
+  <div id="title" data-ng-if="!show_steps_navigation_bar" data-translate>Recipient selection</div>
   <span data-ng-if="submission.optional_receivers">
-    <div class="stepDescription" data-translate>Select the recipients of your report:</div>
+    <div class="description" data-translate>Select the recipients of your report:</div>
     <div data-ng-if="submission.context.maximum_selectable_receivers !== 0 && !submission.context.select_all_receivers" id="MaxSelectableReceiverBox">
       <div><span data-translate>Recipients selected:</span> {{submission.countSelectedReceivers()}}/{{submission.context.maximum_selectable_receivers}}</div>
       <div class="text-danger" data-ng-if="submission.countSelectedReceivers() === submission.context.maximum_selectable_receivers" data-translate>You have reached the maximum number of selectable recipients.</div>
     </div>
     <div id="ReceiverSelectionBox" class="row">
       <div data-ng-repeat="receiver in submission.receivers | filter: {forcefully_selected: false} | orderBy:receiversOrderPredicate" id="receiver-{{$index}}" class="{{Utils.getCardSize(submission.receivers.length)}}" data-ng-click="switch_selection(receiver)">
-        <div id="WhistleblowerLoginBox" data-ng-include="'views/whistleblower/receiver_card.html'"></div>
+        <div data-ng-include="'views/whistleblower/receiver_card.html'"></div>
       </div>
     </div>
   </div>
   <span data-ng-if="submission.mandatory_receivers">
-    <div class="stepDescription" data-translate>The following recipients will receive your report and could not be deselected:</div>
+    <div class="description" data-translate>The following recipients will receive your report and could not be deselected:</div>
     <div id="ReceiverSelectionBox" class="row">
       <div data-ng-repeat="receiver in submission.receivers | filter: {forcefully_selected: true}" id="receiver-{{$index}}" class="{{Utils.getCardSize(submission.receivers.length)}}" data-ng-click="switch_selection(receiver)">
-        <div id="WhistleblowerLoginBox" data-ng-include="'views/whistleblower/receiver_card.html'"></div>
+        <div data-ng-include="'views/whistleblower/receiver_card.html'"></div>
       </div>
     </div>
   </span>

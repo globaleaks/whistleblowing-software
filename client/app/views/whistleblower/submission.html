@@ -1,7 +1,7 @@
 <div data-ng-if="selectable_contexts.length && !submission.context" data-ng-include="'views/whistleblower/context_selection.html'"></div>
 <div data-ng-if="submission.context">
   <div data-ng-if="selectable_contexts.length > 1 || context_id">
-    <div>{{submission.context.name}}</div>
+    <div class="title">{{submission.context.name}}</div>
     <div class="row">
       <div class="col-md-2" data-ng-if="submission.context.picture"><img class="contextImg" alt="context picture" data-ng-src="{{Utils.imgDataUri(submission.context.picture)}}" /></div>
     </div>
@@ -27,7 +27,7 @@
         </div>
         <div data-ng-show="navigation !== -1" data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'order'" data-ng-controller="SubmissionStepCtrl" data-ng-if="step.enabled">
           <div id="{{stepId}}" data-ng-form="{{stepId}}" class="SubmissionStep" data-ng-show="navigation === $index">
-            <div class="stepDescription" data-ng-if="step.description">{{step.description}}</div>
+            <div class="description" data-ng-if="step.description">{{step.description}}</div>
             <div data-ng-include="'views/whistleblower/form.html'"></div>
           </div>
         </div>

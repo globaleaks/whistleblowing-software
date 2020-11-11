@@ -2,7 +2,7 @@
   <div data-ng-show="step == 1" data-ng-form="wizardFormStep1" class="clearfix">
     <div class="row wizard-block">
       <div class="col-md-12">
-        <div class="Title" data-translate>Welcome!</div>
+        <div class="title" data-translate>Welcome!</div>
         <div data-translate>The following step-by-step procedure will guide you through creating your whistleblowing platform.</div>
       </div>
     </div>
@@ -40,7 +40,7 @@
   </div>
   <div data-ng-show="step == 3" data-ng-form="wizardFormStep3" data-ng-class="{'was-validated': validated3}" class="clearfix">
     <div class="row wizard-block">
-      <div class="Title" data-translate>Please choose a configuration profile:</div>
+      <div class="title" data-translate>Please choose a configuration profile:</div>
       <div class="col-md-6">
         <div data-ng-include="'views/wizard/profiles.html'"></div>
       </div>
@@ -58,7 +58,7 @@
   </div>
   <div data-ng-show="step == 4" data-ng-form="wizardFormStep4" data-ng-class="{'was-validated': validated4}" class="clearfix">
     <div class="row wizard-block">
-      <div class="col-md-12 Title" data-translate>Admin</div>
+      <div class="col-md-12 title" data-translate>Admin</div>
       <div class="col-md-6">
         <div class="row form-group">
           <label class="col-md-4">
@@ -137,7 +137,7 @@
   </div>
   <div data-ng-show="step == 5" data-ng-form="wizardFormStep5" data-ng-class="{'was-validated': validated5}" class="clearfix">
     <div class="row wizard-block">
-      <div class="col-md-12 Title" data-translate>Recipient</div>
+      <div class="col-md-12 title" data-translate>Recipient</div>
       <div class="col-md-6">
         <div data-ng-if="!wizard.skip_recipient_account_creation">
           <div class="row form-group">
@@ -222,7 +222,7 @@
     <div class="row wizard-block">
       <div class="col-md-12">
         <div class="form-group">
-          <div class="Title" data-translate>License</div>
+          <div class="title" data-translate>License</div>
           <div id='wizardLicense' class="tos-text" data-ng-include="'license.txt'"></div>
           <div class="form-check">
             <input name="tosAccept" class="tos-agreement-input form-check-input inputelem" type="checkbox" data-ng-model="tosAccept" required>
@@ -251,7 +251,7 @@
     <div class="row wizard-block">
       <div class="col-md-10">
         <div class="congratulations">
-          <div class="Title" data-translate>Congratulations!</div>
+          <div class="title" data-translate>Congratulations!</div>
           <div data-translate>You have completed the platform wizard.</div>
         </div>
       </div>
