@@ -30,7 +30,6 @@ Requires: python3-josepy
 Requires: python3-acme
 Requires: python3-pyotp
 Requires: python-txtorcon
-
 Requires: tor
 Requires: haveged
 
