@@ -427,9 +427,9 @@
       }
     },
     "@npmcli/run-script": {
-      "version": "1.7.4",
-      "resolved": "https://registry.npmjs.org/@npmcli/run-script/-/run-script-1.7.4.tgz",
-      "integrity": "sha512-GAeOB6P4/aYyvEbROVHXuSGPgy4wwQN/fGfXP993o9btyuCAOaz0T2cr5Y1y4nSeaBPfhk5W/E/AfFKDt6yG7w==",
+      "version": "1.7.5",
+      "resolved": "https://registry.npmjs.org/@npmcli/run-script/-/run-script-1.7.5.tgz",
+      "integrity": "sha512-G8taZCc0HExiLadB3Nv0/h1TWjQ9HhkqW/waaH9MNqMX26rPRyNORst1LlNXOO8QnxQF4tNdJfc/Z3TuEtiyww==",
       "dev": true,
       "requires": {
         "@npmcli/node-gyp": "^1.0.0",
@@ -2487,9 +2487,9 @@
       "dev": true
     },
     "eslint": {
-      "version": "7.12.1",
-      "resolved": "https://registry.npmjs.org/eslint/-/eslint-7.12.1.tgz",
-      "integrity": "sha512-HlMTEdr/LicJfN08LB3nM1rRYliDXOmfoO4vj39xN6BLpFzF00hbwBoqHk8UcJ2M/3nlARZWy/mslvGEuZFvsg==",
+      "version": "7.13.0",
+      "resolved": "https://registry.npmjs.org/eslint/-/eslint-7.13.0.tgz",
+      "integrity": "sha512-uCORMuOO8tUzJmsdRtrvcGq5qposf7Rw0LwkTJkoDbOycVQtQjmnhZSuLQnozLE4TmAzlMVV45eCHmQ1OpDKUQ==",
       "dev": true,
       "requires": {
         "@babel/code-frame": "^7.0.0",
@@ -5805,9 +5805,9 @@
       }
     },
     "npm-check-updates": {
-      "version": "9.2.4",
-      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-9.2.4.tgz",
-      "integrity": "sha512-YXEIqKXzxOhtPWg670+JAp/jPtjfTdaBJVGSlWL3eHbUDY4O80ELQNGO/qDy8oxh3pOrxSdII7vNglDf4FDw4w==",
+      "version": "10.0.0",
+      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-10.0.0.tgz",
+      "integrity": "sha512-jRGECcLwxp55LDNvv+emELNt1XtVJEwcEAsCzui32eHkeRTgjmJymK56th3mX5Gg6o1DSHlAcszRKdAPneZwHA==",
       "dev": true,
       "requires": {
         "chalk": "^4.1.0",
@@ -5821,7 +5821,7 @@
         "libnpmconfig": "^1.2.1",
         "lodash": "^4.17.20",
         "p-map": "^4.0.0",
-        "pacote": "^11.1.11",
+        "pacote": "^11.1.13",
         "parse-github-url": "^1.0.2",
         "progress": "^2.0.3",
         "prompts": "^2.4.0",
@@ -5831,7 +5831,7 @@
         "semver": "^7.3.2",
         "semver-utils": "^1.1.4",
         "spawn-please": "^0.4.1",
-        "update-notifier": "^5.0.0"
+        "update-notifier": "^5.0.1"
       },
       "dependencies": {
         "commander": {
@@ -6398,9 +6398,9 @@
       }
     },
     "pacote": {
-      "version": "11.1.12",
-      "resolved": "https://registry.npmjs.org/pacote/-/pacote-11.1.12.tgz",
-      "integrity": "sha512-suazooYMzefXr3glexAX4+q+qqH3wrzchtj+EivwiCCr/tsaHe9HtdHSx3R8YPjulAhojBZ2JkAVy13QwA8Jpg==",
+      "version": "11.1.13",
+      "resolved": "https://registry.npmjs.org/pacote/-/pacote-11.1.13.tgz",
+      "integrity": "sha512-oJ7Bg7p3izrIMhZPHCCHmMHQl+xb+pKBXL5ZYeM2oCZrw6sBRSx7f8l7F+95V2qA0BP3c1cNaaBmUNkbo6Hn9w==",
       "dev": true,
       "requires": {
         "@npmcli/git": "^2.0.1",
@@ -6414,7 +6414,7 @@
         "minipass": "^3.1.3",
         "mkdirp": "^1.0.3",
         "npm-package-arg": "^8.0.1",
-        "npm-packlist": "^2.1.0",
+        "npm-packlist": "^2.1.4",
         "npm-pick-manifest": "^6.0.0",
         "npm-registry-fetch": "^9.0.0",
         "promise-retry": "^1.1.1",
@@ -7178,9 +7178,9 @@
       "dev": true
     },
     "registry-auth-token": {
-      "version": "4.2.0",
-      "resolved": "https://registry.npmjs.org/registry-auth-token/-/registry-auth-token-4.2.0.tgz",
-      "integrity": "sha512-P+lWzPrsgfN+UEpDS3U8AQKg/UjZX6mQSJueZj3EK+vNESoqBSpBUD3gmu4sF9lOsjXWjF11dQKUqemf3veq1w==",
+      "version": "4.2.1",
+      "resolved": "https://registry.npmjs.org/registry-auth-token/-/registry-auth-token-4.2.1.tgz",
+      "integrity": "sha512-6gkSb4U6aWJB4SF2ZvLb76yCBjcvufXBqvvEx1HbmKPkutswjW1xNVRY0+daljIYRbogN7O0etYSlbiaEQyMyw==",
       "dev": true,
       "requires": {
         "rc": "^1.2.8"
