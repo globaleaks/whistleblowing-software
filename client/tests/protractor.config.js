@@ -14,7 +14,7 @@ exports.config = {
   directConnect: true,
 
   params: {
-    "takeScreenshots: true,
+    "takeScreenshots": true,
     "testFileDownload": true,
     "tmpDir": tmpDir,
     "testDir": __dirname
