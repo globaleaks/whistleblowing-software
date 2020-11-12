@@ -283,7 +283,6 @@ class MigrationScript(MigrationBase):
                 if key == 'public_name':
                     new_obj.public_name = platform_name if x else old_obj.name
                 elif key == 'recipient_configuration':
-                    print(old_obj.recipient_configuration)
                     if old_obj.recipient_configuration == 'default':
                         new_obj.recipient_configuration = 0
                     else:
