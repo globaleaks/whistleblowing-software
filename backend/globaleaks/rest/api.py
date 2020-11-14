@@ -531,7 +531,9 @@ class APIResourceWrapper(Resource):
         request.setHeader(b'Referrer-Policy', b'no-referrer')
 
         # to avoid Robots spidering, indexing, caching
-        if not State.tenant_cache[request.tid].allow_indexing:
+        if State.tenant_cache[request.tid].allow_indexing:
+            request.setHeader(b'X-Robots-Tag', b'noarchive')
+        else:
             request.setHeader(b'X-Robots-Tag', b'noindex')
 
         if request.client_using_tor is True:
