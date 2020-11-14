@@ -18,7 +18,7 @@ from globaleaks.utils.utility import get_distribution_codename
 if get_distribution_codename() != 'buster':
     print("WARNING: The current long term supported platform is Debian 10 (Buster)")
     print("WARNING: It is recommended to use only this platform to ensure stability and security")
-    print("WARNING: To upgrade your system consult: https://docs.globaleaks.org/en/latest/UpgradeGuide.html")
+    print("WARNING: To upgrade your system consult: https://docs.globaleaks.org/en/main/user/admin/UpgradeGuide.html")
 
 
 # this import seems unused but it is required in order to load the mocks
@@ -66,12 +66,8 @@ parser.add_option("-w", "--working-path", type="string",
     help="set the backend working directory",
     dest="working_path", default=None)
 
-parser.add_option("-k", "--kill", type="int",
-    help="signal to send to the current globaleaks process (if exists)",
-    dest="kill", default=0)
-
-parser.add_option("-D", "--disable-csp", action='store_true',
-    help="disable content security policy ]",
+parser.add_option("-d", "--disable-csp", action='store_true',
+    help="disable content security policy",
     dest="disable_csp", default=False)
 
 parser.add_option("-P", "--disable-swap", action='store_true',
@@ -89,7 +85,6 @@ parser.add_option("-o", "--orm-debug", action='store_true',
 parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software")
 
-
 # here the options are parsed, because sys.argv array is whack below
 (options, args) = parser.parse_args()
 
@@ -100,15 +95,6 @@ if options.version:
 
 Settings.load_cmdline_options(options)
 State.init_environment()
-
-if options.kill:
-    try:
-        with open(Settings.pidfile_path, "r") as fd:
-            target_pid = int(fd.read())
-        os.kill(target_pid, options.kill)
-        os.remove(Settings.pidfile_path)
-    except Exception as excep:
-        print("Unable kill PID found in %s: kill option ignored (%s)" % (Settings.pidfile_path, excep))
 
 State.init_environment()
 
@@ -121,22 +107,18 @@ args +=['--pidfile', Settings.pidfile_path]
 
 sys.argv[1:] = args
 
-def run_backend():
-    sys.excepthook = mail_exception_handler
-    config = ServerOptions()
-    try:
-        config.parseOptions()
-    except usage.error as ue:
-        print("%s: %s" % (sys.argv[0], ue))
-        sys.exit(1)
-    try:
-        # This blocks until the app exits
-        TwistedApplicationRunner(config).run()
-        print("Exiting GlobaLeaks")
-    except Exception as excep:
-        print("Unable to start GlobaLeaks: %s" % excep)
-        sys.exit(1)
+sys.excepthook = mail_exception_handler
 
-# "Now his watch begins"
-run_backend()
-# "Now his watch ends"
+config = ServerOptions()
+
+try:
+    config.parseOptions()
+except usage.error as ue:
+    print("%s: %s" % (sys.argv[0], ue))
+    sys.exit(1)
+
+try:
+    TwistedApplicationRunner(config).run()
+except Exception as excep:
+    print("Unable to start GlobaLeaks: %s" % excep)
+    sys.exit(1)
