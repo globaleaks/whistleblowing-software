@@ -304,7 +304,7 @@ class _ConfigL10N(Model):
 
     def set_v(self, value):
         if self.value != value:
-            if self.value is None:
+            if self.value is not None:
                 self.update_date = datetime_now()
 
             self.value = value
