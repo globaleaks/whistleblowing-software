@@ -158,15 +158,19 @@ Crawlers Policy
 ------------
 For security reasons the backend instructs crawlers to avoid any caching and indexing of the application and uses the ``Robots.txt`` file to enable crawling only of the home page; indexing of the home page is in fact considered best practice in order to be able to widespread the information about the existance of the platform and ease access to possible whistleblowers.
 
-The configuration implemented is the folloiwng
+The configuration implemented is the following:
 ::
   User-agent: *
   Allow: /$
   Disallow: *
 
+As well the platform instruct crawlers to not keep any cache by injecting the following HTTP header:
+::
+  X-Robots-Tag: noarchive
+
 For high sensitive projects where the platform is inteded to remain ``hidden`` and commuicated to possible whistleblowers directly the platform could be as well configured to disable indexing completely.
 
-The following is the ``HTTP Header`` injected in this case:
+The following is the HTTP header injected in this case:
 ::
   X-Robots-Tag: noindex
 
