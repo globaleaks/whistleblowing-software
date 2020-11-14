@@ -547,13 +547,15 @@ input[type="file"] {
 }
 
 #KeyCodeBox {
-  background-color: #F5F7FA;
-  margin: 1rem auto;
-  padding: 1rem;
-  width: 80%;
+  margin: 1rem;
   text-align: center;
+}
+
+#KeyCode {
+  background-color: #f5F7FA;
   font-family: monospace;
   font-weight: bold;
+  padding: 1rem;
   border-radius: 5px;
 }
 
