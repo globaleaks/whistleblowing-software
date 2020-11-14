@@ -319,7 +319,6 @@ class _Context(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     tid = Column(Integer, default=1, nullable=False)
     show_steps_navigation_interface = Column(Boolean, default=True, nullable=False)
-    show_small_receiver_cards = Column(Boolean, default=False, nullable=False)
     show_recipients_details = Column(Boolean, default=False, nullable=False)
     allow_recipients_selection = Column(Boolean, default=False, nullable=False)
     maximum_selectable_receivers = Column(Integer, default=0, nullable=False)
@@ -375,7 +374,6 @@ class _Context(Model):
 
     bool_keys = [
         'select_all_receivers',
-        'show_small_receiver_cards',
         'show_context',
         'show_recipients_details',
         'show_receivers_in_alphabetical_order',
@@ -528,11 +526,9 @@ class _FieldAnswer(Model):
     internaltip_id = Column(UnicodeText(36), nullable=True)
     fieldanswergroup_id = Column(UnicodeText(36), nullable=True)
     key = Column(UnicodeText, default='', nullable=False)
-    is_leaf = Column(Boolean, default=True, nullable=False)
     value = Column(UnicodeText, default='', nullable=False)
 
     unicode_keys = ['internaltip_id', 'key', 'value']
-    bool_keys = ['is_leaf']
 
     @declared_attr
     def __table_args__(self):
@@ -797,7 +793,6 @@ class _Questionnaire(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     tid = Column(Integer, default=1, nullable=False)
     name = Column(UnicodeText, default='', nullable=False)
-    enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
 
     unicode_keys = ['key', 'name']
     list_keys = ['steps']

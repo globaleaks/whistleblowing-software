@@ -37,8 +37,6 @@ class Questionnaire_v_37(models.Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     key = Column(UnicodeText, default='')
     name = Column(UnicodeText, default='')
-    show_steps_navigation_bar = Column(Boolean, default=False)
-    enable_whistleblower_identity = Column(Boolean, default=False)
 
 
 def replace_templates_variables(value):

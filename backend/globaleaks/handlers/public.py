@@ -316,7 +316,6 @@ def serialize_context(session, context, language, data=None):
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
         'show_recipients_details': context.show_recipients_details,
         'allow_recipients_selection': context.allow_recipients_selection,
-        'show_small_receiver_cards': context.show_small_receiver_cards,
         'enable_comments': context.enable_comments,
         'enable_messages': context.enable_messages,
         'enable_two_way_comments': context.enable_two_way_comments,

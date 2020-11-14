@@ -18,12 +18,13 @@ from globaleaks.db.migrations.update_38 import Field_v_37, Questionnaire_v_37
 from globaleaks.db.migrations.update_39 import \
     Anomalies_v_38, ArchivedSchema_v_38, Comment_v_38, Config_v_38, \
     ConfigL10N_v_38, Context_v_38, CustomTexts_v_38, EnabledLanguage_v_38, \
-    Field_v_38, FieldAnswer_v_38, FieldAnswerGroup_v_38, FieldAttr_v_38, \
+    Field_v_38, FieldAnswerGroup_v_38, FieldAttr_v_38, \
     FieldOption_v_38, File_v_38, IdentityAccessRequest_v_38, \
     InternalFile_v_38, InternalTip_v_38, Mail_v_38, Message_v_38, \
-    Questionnaire_v_38, Receiver_v_38, ReceiverContext_v_38, \
+    Receiver_v_38, ReceiverContext_v_38, \
     ReceiverFile_v_38, ReceiverTip_v_38, \
-    Step_v_38, User_v_38, WhistleblowerFile_v_38, WhistleblowerTip_v_38
+    Questionnaire_v_38, Step_v_38, \
+    User_v_38, WhistleblowerFile_v_38, WhistleblowerTip_v_38
 from globaleaks.db.migrations.update_41 import InternalFile_v_40, \
     InternalTip_v_40, ReceiverFile_v_40, ReceiverTip_v_40, \
     User_v_40, WhistleblowerFile_v_40
@@ -74,7 +75,7 @@ migration_mapping = OrderedDict([
     ('CustomTexts', [CustomTexts_v_38, 0, 0, 0, 0, models._CustomTexts, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('EnabledLanguage', [EnabledLanguage_v_38, 0, 0, 0, 0, models._EnabledLanguage, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Field', [Field_v_37, 0, 0, 0, Field_v_38, Field_v_44, 0, 0, 0, 0, 0, Field_v_45, Field_v_47, 0, Field_v_50, 0, 0, Field_v_51, models._Field, 0]),
-    ('FieldAnswer', [FieldAnswer_v_38, 0, 0, 0, 0, models._FieldAnswer, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('FieldAnswer', [models._FieldAnswer, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('FieldAnswerGroup', [FieldAnswerGroup_v_38, 0, 0, 0, 0, models._FieldAnswerGroup, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('FieldAttr', [FieldAttr_v_38, 0, 0, 0, 0, FieldAttr_v_51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._FieldAttr, 0]),
     ('FieldOption', [FieldOption_v_38, 0, 0, 0, 0, FieldOption_v_45, 0, 0, 0, 0, 0, 0, FieldOption_v_46, FieldOption_v_47, FieldOption_v_51, 0, 0, 0, models._FieldOption, 0]),
@@ -88,7 +89,7 @@ migration_mapping = OrderedDict([
     ('InternalTipData', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, InternalTipData_v_51, 0, 0, 0, 0, 0, 0, models._InternalTipData, 0]),
     ('Mail', [Mail_v_38, 0, 0, 0, 0, models._Mail, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Message', [Message_v_38, 0, 0, 0, 0, Message_v_51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Message, 0]),
-    ('Questionnaire', [Questionnaire_v_37, 0, 0, 0, Questionnaire_v_38, models._Questionnaire, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('Questionnaire', [Questionnaire_v_37, 0, 0, 0, Questionnaire_v_38, models._Questionnaire, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Receiver', [Receiver_v_38, 0, 0, 0, 0, Receiver_v_44, 0, 0, 0, 0, 0, Receiver_v_45, -1, -1, -1, -1, -1, -1, -1, -1]),
     ('ReceiverContext', [ReceiverContext_v_38, 0, 0, 0, 0, ReceiverContext_v_51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._ReceiverContext, 0]),
     ('ReceiverFile', [ReceiverFile_v_38, 0, 0, 0, 0, ReceiverFile_v_40, 0, ReceiverFile_v_44, 0, 0, 0, ReceiverFile_v_51, 0, 0, 0, 0, 0, 0, models._ReceiverFile, 0]),

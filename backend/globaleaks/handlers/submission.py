@@ -149,7 +149,6 @@ def db_save_plaintext_answers(session, tid, internaltip_id, entries, encryption,
         session.flush()
 
         if isinstance(value, list):
-            field_answer.is_leaf = False
             field_answer.value = ""
             n = 0
             for elem in value:
@@ -168,7 +167,6 @@ def db_save_plaintext_answers(session, tid, internaltip_id, entries, encryption,
 
                 n += 1
         else:
-            field_answer.is_leaf = True
             field_answer.value = value
 
         ret.append(field_answer)

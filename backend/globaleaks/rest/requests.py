@@ -531,7 +531,6 @@ ContextDesc = {
     'tip_timetolive': int,
     'show_recipients_details': bool,
     'allow_recipients_selection': bool,
-    'show_small_receiver_cards': bool,
     'maximum_selectable_receivers': int,
     'enable_comments': bool,
     'enable_messages': bool,
