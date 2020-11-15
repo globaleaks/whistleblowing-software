@@ -628,7 +628,7 @@ class AccountActivationKeyword(UserNodeKeyword):
     keyword_list = UserNodeKeyword.keyword_list + account_activation_keywords
 
     def UrlPath(self):
-        return '/#/activation' + '?token=' + self.data['reset_token']
+        return '/#/password/reset' + '?token=' + self.data['reset_token']
 
     def AccountRecoveryKeyInstructions(self):
         if not self.data['node']['encryption']:
