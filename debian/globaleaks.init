@@ -16,6 +16,7 @@
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 NAME=$(basename $(readlink -nf $0))
 
+DAEMON=/usr/bin/globaleaks
 SCRIPTNAME=$0
 WAITFORDAEMON=60
 
@@ -32,12 +33,7 @@ if test -e "/usr/share/globaleaks/default" ; then
     . "/usr/share/globaleaks/default"
 fi
 
-if [[ ! -f /var/globaleaks/globaleaks.db ]]; then
-    # FIRST SETUP
-    NETWORK_SANDBOXING=0
-elif [[ "$(gl-admin getvar reachable_via_web 2>1&)" != "True" ]]; then
-    NETWORK_SANDBOXING=1
-else
+if [[ ! -f /var/globaleaks/globaleaks.db || "$(gl-admin getvar reachable_via_web 2>1&)" != "False" ]]; then
     NETWORK_SANDBOXING=0
 fi
 
@@ -45,18 +41,6 @@ if test -e "/etc/default/globaleaks" ; then
     . "/etc/default/globaleaks"
 fi
 
-if [[ "$APPARMOR_SANDBOXING" -eq "1" ]]; then
-    if [[ "$(cat /sys/module/apparmor/parameters/enabled 2>/dev/null)" != 'Y' ]]; then
-        echo "WARNING: Missing Apparmor Sandboxing support"
-        APPARMOR_SANDBOXING=0
-    elif [[ "`apparmor_status | grep -c 'globaleaks'`" -eq "0" ]]; then
-        service apparmor restart
-        if [[ "`apparmor_status | grep -c 'globaleaks'`" -eq "0" ]]; then
-            echo "WARNING: Missing Apparmor Sandboxing support"
-            APPARMOR_SANDBOXING=0
-        fi
-    fi
-fi
 ##################################################################
 . /lib/init/vars.sh
 
@@ -64,12 +48,7 @@ fi
 
 test $DEBIAN_SCRIPT_DEBUG && set -v -x
 
-if [ "$EUID" -ne "0" ]; then
-    echo "Error: GlobaLeaks init script must be run as root" 1>&2
-    exit 1
-fi
-
-GLBACKEND_PIDFILE=/var/run/globaleaks/globaleaks.pid
+GLPID=/var/run/globaleaks/globaleaks.pid
 
 # Let's try to figure our some sane defaults:
 if [ -r /proc/sys/fs/file-max ]; then
@@ -82,41 +61,24 @@ if [ -r /proc/sys/fs/file-max ]; then
         MAX_FILEDESCRIPTORS=8192
     else
         MAX_FILEDESCRIPTORS=1024
-        cat << EOF
-
-Warning: Your system has very few filedescriptors available in total.
-
-Maybe you should try raising that by adding 'fs.file-max=100000' to your
-/etc/sysctl.conf file.  Feel free to pick any number that you deem appropriate.
-Then run 'sysctl -p'.  See /proc/sys/fs/file-max for the current value, and
-file-nr in the same directory for how many of those are used at the moment.
-
-EOF
-        fi
-else
-        MAX_FILEDESCRIPTORS=8192
-fi
-
-read_pid()
-{
-    if [ -e ${GLBACKEND_PIDFILE} ]; then
-        GLBACKEND_PID=`cat ${GLBACKEND_PIDFILE}`
-    else
-        GLBACKEND_PID=0
     fi
-}
+else
+    MAX_FILEDESCRIPTORS=8192
+fi
 
 wait_for_deaddaemon () {
     pid=$1
-
     sleep 1
-
-    if test -n "$pid"; then
-        if kill -0 $pid 2>/dev/null; then
+    if test -n "$pid"
+    then
+        if kill -0 $pid 2>/dev/null
+        then
             cnt=0
-            while kill -0 $pid 2>/dev/null; do
+            while kill -0 $pid 2>/dev/null
+            do
                 cnt=`expr $cnt + 1`
-                if [ $cnt -gt $WAITFORDAEMON ]; then
+                if [ $cnt -gt $WAITFORDAEMON ]
+                then
                     log_action_end_msg 1 "still running"
                     exit 1
                 fi
@@ -128,78 +90,82 @@ wait_for_deaddaemon () {
     log_action_end_msg 0
 }
 
-check_iptables()
-{
-    if ! which iptables >/dev/null 2>&1 ; then
-        echo "GlobaLeaks Network Sandboxing Failure: requires iptables"
-        return 1
-    fi
-
-    iptables -nvL -t nat >/dev/null 2>&1
-    if [ "$?" -ne "0" ]; then
-        echo "GlobaLeaks Network Sandboxing Failure: missing iptables nat support"
-        return 1
-    fi
-
-    iptables -nvL -t filter >/dev/null 2>&1
-    if [ "$?" -ne "0" ]; then
-        echo "GlobaLeaks Network Sandboxing Failure: missing iptables filter support"
-        return 1
-    fi
-
-    iptables -m owner -h >/dev/null 2>&1
-    if [ "$?" -ne "0" ]; then
-        echo "GlobaLeaks Network Sandboxing Failure: missing iptables owner support"
-        return 1
-    fi
-
-    return 0
-}
-
 network_sandboxing_start()
 {
-    if [[ "$NETWORK_SANDBOXING" -eq "1" ]]; then
-        log_action_begin_msg "Enabling GlobaLeaks Network Sandboxing"
+    # remove all rules with the comment: "globaleaks-network-sandboxing"
+    iptables-save | grep -v "globaleaks" | iptables-restore
+    ip6tables-save | grep -v "globaleaks" | ip6tables-restore
 
-        iptables -L | grep "globaleaks-network-sandboxing" >/dev/null 2>&1
-        if [ "$?" -eq "0" ]; then
-            log_action_end_msg 0 "already enabled."
+    log_action_begin_msg "Enabling Globaleaks Network Sandboxing"
+
+    if [[ "$NETWORK_SANDBOXING" -eq "1" ]]; then
+        if ! which iptables >/dev/null 2>&1 ; then
+            echo "GlobaLeaks Network Sandboxing Failure: requires iptables"
             return
         fi
 
-        # INBOUND LOCAL
-        declare -a PORTS=("8082" "8083")
-        for PORT in "${PORTS[@]}"; do
-            iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 127.0.0.1 --dport $PORT -s 127.0.0.1 -j ACCEPT
-            iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -j DROP
-            ip6tables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d ::1 --dport $PORT -s ::1 -j ACCEPT
-            ip6tables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d :: --dport $PORT -j DROP
-        done
+        iptables -nvL -t nat >/dev/null 2>&1
+        if [ "$?" -ne "0" ]; then
+            echo "GlobaLeaks Network Sandboxing Failure: missing iptables nat support"
+            log_action_end_msg 1
+            return
+        fi
 
-        # INBOUND REMOTE
+        iptables -nvL -t filter >/dev/null 2>&1
+        if [ "$?" -ne "0" ]; then
+            echo "GlobaLeaks Network Sandboxing Failure: missing iptables filter support"
+            log_action_end_msg 1
+            return
+        fi
+
+        iptables -m owner -h >/dev/null 2>&1
+        if [ "$?" -ne "0" ]; then
+            echo "GlobaLeaks Network Sandboxing Failure: missing iptables owner support"
+            log_action_end_msg 1
+            return
+        fi
+
+        # INBOUND
         declare -a PORTS=("80" "443")
         for PORT in "${PORTS[@]}"; do
-            iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -s 127.0.0.1 -j ACCEPT
-            iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -j DROP
-            ip6tables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d :: --dport $PORT -s ::1 -j ACCEPT
-            ip6tables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d :: --dport $PORT -j DROP
+            # IPv4
+            iptables -m comment --comment "globaleaks" -A INPUT -p tcp -d 127.0.0.1 --dport $PORT -s 127.0.0.1 -j ACCEPT
+            iptables -m comment --comment "globaleaks" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -j DROP
+
+            #IPv6
+            ip6tables -m comment --comment "globaleaks" -A INPUT -p tcp -d ::1 --dport $PORT -s ::1 -j ACCEPT
+            ip6tables -m comment --comment "globaleaks" -A INPUT -p tcp -d :: --dport $PORT -j DROP
         done
 
         # OUTBOUND
         # All outbound connections from GlobaLeaks goes through Tor except of allowed and enstablished connections.
-        iptables -m comment --comment "globaleaks-network-sandboxing" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -d 127.0.0.1 -j ACCEPT
-        iptables -m comment --comment "globaleaks-network-sandboxing" -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports 9050
-        iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 --dport 9050 -j ACCEPT
-        iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j LOG --log-prefix "GLOBALEAKS-OUTPUT:DROP: "
-        iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
-        ip6tables -m comment --comment "globaleaks-network-sandboxing" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -d ::1 -j ACCEPT
-        ip6tables -m comment --comment "globaleaks-network-sandboxing" -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports 9050
-        ip6tables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d ::1 --dport 9050 -j ACCEPT
-        ip6tables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j LOG --log-prefix "GLOBALEAKS-OUTPUT:DROP: "
-        ip6tables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
 
-        log_action_end_msg 0
+        #IPv4
+        iptables -m comment --comment "globaleaks" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -d 127.0.0.1 -j ACCEPT
+        iptables -m comment --comment "globaleaks" -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports 9050
+        iptables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 --dport 9050 -j ACCEPT
+        iptables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j LOG --log-prefix "GLOBALEAKS-OUTPUT:DROP: "
+        iptables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
+
+        #IPv6
+        ip6tables -m comment --comment "globaleaks" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -d ::1 -j ACCEPT
+        ip6tables -m comment --comment "globaleaks" -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports 9050
+        ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d ::1 --dport 9050 -j ACCEPT
+        ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j LOG --log-prefix "GLOBALEAKS-OUTPUT:DROP: "
+        ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
+    else
+        # INBOUND
+
+        #IPv4
+        iptables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT  --to-destination 127.0.0.1 --to-port 8082
+        iptables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-destination 127.0.0.1 --to-port 8443
+
+        #IPv6
+        ip6tables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-destination 127.0.0.1 --to-port 8082
+        ip6tables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-destination 127.0.0.1 --to-port 8443
     fi
+
+    log_action_end_msg 0
 }
 
 network_sandboxing_stop()
@@ -207,90 +173,10 @@ network_sandboxing_stop()
     log_action_begin_msg "Disabling GlobaLeaks Network Sandboxing"
 
     # remove all rules with the comment: "globaleaks-network-sandboxing"
-    iptables-save | grep -v "globaleaks-network-sandboxing" | iptables-restore
-    ip6tables-save | grep -v "globaleaks-network-sandboxing" | ip6tables-restore
+    iptables-save | grep -v "globaleaks" | iptables-restore
+    ip6tables-save | grep -v "globaleaks" | ip6tables-restore
 
     log_action_end_msg 0
-}
-
-do_start()
-{
-    log_daemon_msg "Starting GlobaLeaks daemon" "globaleaks"
-
-    if [ -n "$MAX_FILEDESCRIPTORS" ]; then
-        ulimit -n "$MAX_FILEDESCRIPTORS"
-    fi
-
-    GLBACKEND_DAEMON=`which globaleaks`
-    if [ ! ${GLBACKEND_DAEMON} ]; then
-        log_end_msg 1 "Globlaleaks is not installed"
-        exit 1
-    fi
-
-    GLBACKEND_ARGS="--ip=${LISTENING_IP}
-                    --user=${USERNAME}
-                    --group=${GROUP}
-                    --working-path=${WORKING_DIR}"
-
-    STARTCMD="${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
-
-    read_pid
-
-    if ! id -u ${USERNAME} >/dev/null 2>&1; then
-       log_end_msg 1 "unexistent user (${USERNAME})"
-       exit 1
-    fi
-
-    # Check to see if the GLBackend daemon is already running.
-    if [ "${GLBACKEND_PID}" -ne "0" ]; then
-        if kill -0 ${GLBACKEND_PID} >/dev/null 2<&-; then
-            log_end_msg 0 "GlobaLeaks already running at pid ${GLBACKEND_PID}"
-            exit 0
-        fi
-    fi
-
-    network_sandboxing_start
-
-    if [ "${APPARMOR_SANDBOXING}" -eq "1" ]; then
-        STARTCMD="aa-exec --profile=usr.bin.globaleaks -- $STARTCMD"
-    fi
-
-    # This is a little hack to avoid python doing os.chdir('.') and getting mad.
-    cd /tmp
-
-    gl-fix-permissions
-
-    if ${STARTCMD}; then
-        log_end_msg 0 "started."
-    else
-        log_end_msg 1 "problem when starting."
-    fi
-}
-
-do_stop()
-{
-    log_daemon_msg "Stopping GlobaLeaks daemon" "globaleaks"
-
-    read_pid
-
-    if [ "${GLBACKEND_PID}" -eq "0" ] || [ kill -0 ${GLBACKEND_PID} >/dev/null 2<&- ]; then
-        log_end_msg 0 "not running."
-    else
-        kill -15 ${GLBACKEND_PID} >/dev/null 2<&-
-        wait_for_deaddaemon ${GLBACKEND_PID}
-        log_end_msg 0 "stopped."
-    fi
-
-    network_sandboxing_stop
-}
-
-do_restart()
-{
-    do_stop
-
-    GLBACKEND_PID=0
-
-    do_start
 }
 
 #
@@ -298,42 +184,93 @@ do_restart()
 #
 case "$1" in
   start)
-	do_start
-    exit 0
-	;;
-  stop)
-	do_stop
-    exit 0
-    ;;
-  status)
-    if test ! -r $(dirname ${GLBACKEND_PIDFILE}); then
-        log_failure_msg "cannot read PID file ${GLBACKEND_PIDFILE}"
-        exit 4
+    log_daemon_msg "Starting GlobaLeaks daemon" "globaleaks"
+
+    if [ -n "$MAX_FILEDESCRIPTORS" ]; then
+        ulimit -n "$MAX_FILEDESCRIPTORS"
     fi
-    pid=`cat ${GLBACKEND_PIDFILE} 2>/dev/null` || true
-    if test ! -f ${GLBACKEND_PIDFILE} -o -z "$pid"; then
-        log_failure_msg "GlobaLeaks is not running"
-        exit 3
-    fi
-    if ps "$pid" >/dev/null 2>&1; then
-        log_success_msg "GlobaLeaks is running"
-        exit 0
+
+    ARGS="--ip=${LISTENING_IP}
+          --user=${USERNAME}
+          --working-path=${WORKING_DIR}"
+
+    network_sandboxing_start
+
+    gl-fix-permissions
+
+    log_action_begin_msg "Starting $DESC"
+
+    if start-stop-daemon --stop --quiet --pidfile $GLPID --name globaleaks; then
+        log_action_end_msg 0 "already running"
     else
-        log_failure_msg "GlobaLeaks is not running"
+        if [ "${APPARMOR_SANDBOXING}" -eq "1" ] &&
+           command -v aa-status > /dev/null &&
+           command -v aa-exec > /dev/null &&
+           [ -e /etc/apparmor.d/usr.bin/globaleaks ] && \
+           aa-status --enabled ; then
+            AA_EXEC_PATH=$(command -v aa-exec)
+            AA_EXEC="--startas $AA_EXEC_PATH"
+            AA_EXEC_ARGS="--profile=user.bin.globaleaks -- $DAEMON"
+        else
+            AA_EXEC=""
+            AA_EXEC_ARGS=""
+        fi
+        if start-stop-daemon --start --quiet \
+            --pidfile $GLPID \
+            $AA_EXEC \
+            --exec $DAEMON -- $AA_EXEC_ARGS $ARGS
+        then
+            log_action_end_msg 0
+        else
+            log_action_end_msg 1
+            exit 1
+        fi
+    fi
+    ;;
+  stop)
+    log_action_begin_msg "Stopping $DESC"
+    pid=`cat $GLPID 2>/dev/null` || true
+
+    if test ! -f $GLPID -o -z "$pid"; then
+        log_action_end_msg 0 "not running - there is no $GLPID"
+        exit 0
+    fi
+
+    if start-stop-daemon --stop --signal TERM --quiet --pidfile $GLPID --name globaleaks; then
+        wait_for_deaddaemon $pid
+    elif kill -0 $pid 2>/dev/null; then
+        log_action_end_msg 1 "Is $pid not $NAME?  Is $DAEMON a different binary now?"
+        exit 1
+    else
+        log_action_end_msg 1 "$DAEMON died: process $pid not running; or permission denied"
         exit 1
     fi
     ;;
-  restart|force-reload)
-	#
-	# If the "reload" option is implemented then remove the
-	# 'force-reload' alias
-	#
-	log_daemon_msg "Restarting $DESC" "$NAME"
-	do_restart
-    exit 0
-	;;
+  status)
+    if test ! -r $(dirname $GLPID); then
+        log_failure_msg "cannot read PID file $GLPID"
+        exit 4
+    fi
+    pid=`cat $GLPID 2>/dev/null` || true
+    if test ! -f $GLPID -o -z "$pid"; then
+        log_failure_msg "$NAME is not running"
+        exit 3
+    fi
+    if ps "$pid" >/dev/null 2>&1; then
+        log_success_msg "$NAME is running"
+        exit 0
+    else
+        log_failure_msg "$NAME is not running"
+        exit 1
+    fi
+    ;;
+  restart|reload|force-reload)
+    $0 stop
+    sleep 1
+    $0 start
+    ;;
   *)
-	log_action_msg "Usage: $SCRIPTNAME {start|stop|status|restart|force-reload}" >&2
-	exit 1
-	;;
+    log_action_msg "Usage: $0 {start|stop|restart|reload|force-reload|status}" >&2
+    exit 1
+    ;;
 esac

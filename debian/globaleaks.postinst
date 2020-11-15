@@ -9,20 +9,15 @@ if which lsb_release >/dev/null; then
   DISTRO_CODENAME="$(lsb_release -cs)"
 fi
 
-if [ "$DISTRO" = "LinuxMint" ]; then
-  DISTRO="Ubuntu"
-  DISTRO_CODENAME=`grep UBUNTU_CODENAME /etc/os-release | sed -e 's/UBUNTU_CODENAME=//'`
-fi
-
 # Create globaleaks user and add the user to required groups
 if ! id -u globaleaks >/dev/null 2>&1; then
   adduser --quiet \
           --system \
+	  --group \
           --disabled-login \
           --disabled-password \
           --home /var/globaleaks \
           --shell /bin/false \
-          --group \
           globaleaks
 fi
 
@@ -31,9 +26,6 @@ usermod -a -G debian-tor globaleaks
 if which pycompile >/dev/null 2>&1; then
   pycompile -p globaleaks
 fi
-
-# Create globaleaks service directories with proper permissios
-gl-fix-permissions
 
 # Remove old configuration of Tor used before txtorcon adoption
 if $(grep -q -i globaleaks /etc/tor/torrc >/dev/null 2>&1); then

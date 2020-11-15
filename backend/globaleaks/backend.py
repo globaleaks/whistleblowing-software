@@ -18,9 +18,8 @@ from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.log import log, openLogFile, logFormatter, LogObserver
-from globaleaks.utils.process import disable_swap, drop_privileges, set_proc_title
+from globaleaks.utils.process import drop_privileges, set_proc_title
 from globaleaks.utils.sock import listen_tcp_on_sock, listen_tls_on_sock, reserve_port_for_ip
-from globaleaks.utils.utility import fix_file_permissions
 
 
 def fail_startup(excep):
@@ -47,6 +46,8 @@ class Service(service.Service):
     _shutdown = False
 
     def __init__(self):
+        set_proc_title('globaleaks')
+
         self.state = State
         self.arw = APIResourceWrapper()
 
@@ -84,17 +85,6 @@ class Service(service.Service):
                 self.state.http_socks += [sock]
             elif port == 443:
                 self.state.https_socks += [sock]
-
-        if Settings.disable_swap:
-            disable_swap()
-
-        fix_file_permissions(Settings.working_path,
-                             Settings.uid,
-                             Settings.gid,
-                             0o700,
-                             0o600)
-
-        set_proc_title('globaleaks')
 
         drop_privileges(Settings.user, Settings.uid, Settings.gid)
 
@@ -184,8 +174,7 @@ class Service(service.Service):
         tenant_cache = self.state.tenant_cache[1]
 
         if self.state.settings.devel_mode:
-            for port in Settings.bind_local_ports:
-                print("- [HTTP]\t--> http://127.0.0.1:%d" % port)
+            print("- [HTTP]\t--> http://127.0.0.1:8082")
 
         elif self.state.tenant_cache[1].reachable_via_web:
             hostname = tenant_cache.hostname if tenant_cache.hostname else '0.0.0.0'

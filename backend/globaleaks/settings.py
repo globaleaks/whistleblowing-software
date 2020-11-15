@@ -65,13 +65,11 @@ class SettingsClass(object, metaclass=Singleton):
         self.jobs_operation_limit = 20
 
         self.user = getpass.getuser()
-        self.group = getpass.getuser()
 
         self.uid = os.getuid()
         self.gid = os.getgid()
 
         self.devel_mode = False
-        self.disable_swap = False
         self.disable_csp = False
 
         # Number of failed login enough to generate an alarm
@@ -142,7 +140,6 @@ class SettingsClass(object, metaclass=Singleton):
 
     def load_cmdline_options(self, options):
         self.nodaemon = options.nodaemon
-        self.disable_swap = options.disable_swap
         self.disable_csp = options.disable_csp
         self.bind_address = options.ip
         self.socks_host = options.socks_host
@@ -151,10 +148,7 @@ class SettingsClass(object, metaclass=Singleton):
         if options.user:
             self.user = options.user
             self.uid = pwd.getpwnam(options.user).pw_uid
-
-        if options.group:
-            self.group = options.group
-            self.gid = grp.getgrnam(options.group).gr_gid
+            self.gid = grp.getgrnam(options.user).gr_gid
 
         if options.devel_mode:
             self.set_devel_mode()

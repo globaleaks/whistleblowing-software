@@ -2,10 +2,6 @@
 # permits to configure the user privileges of the globaleaks process
 USERNAME=globaleaks
 
-# GROUP = [group_name]
-# permits to configure the group privileges of the globaleaks process
-GROUP=globaleaks
-
 # APPARMOR_SANDBOXING = [0/1]
 # permits to enable apparmor sandboxing
 APPARMOR_SANDBOXING=1

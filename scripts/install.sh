@@ -256,7 +256,7 @@ last_status "0"
 i=0
 while [ $i -lt 30 ]
 do
-  X=$(netstat -tln | grep ":8082")
+  X=$(netstat -tln | grep "127.0.0.1:8082")
   if [ $? -eq 0 ]; then
     #SUCCESS
     echo "Install script completed."

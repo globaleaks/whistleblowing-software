@@ -58,10 +58,6 @@ parser.add_option("-u", "--user", type="string",
     help="set the user to run as [default: current_user]",
     dest="user", default=None)
 
-parser.add_option("-g", "--group", type="string",
-    help="set the group to run as [default: current_user]",
-    dest="group", default=None)
-
 parser.add_option("-w", "--working-path", type="string",
     help="set the backend working directory",
     dest="working_path", default=None)
