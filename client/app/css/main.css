@@ -738,10 +738,3 @@ html[dir="ltr"] #KeyCodeBox {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }
-
-.preview {
-  display: block;
-  max-height: 10rem;
-  max-width: 20rem;
-  overflow: scroll;
-}
