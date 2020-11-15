@@ -279,7 +279,6 @@ def db_serialize_node(session, tid, language):
         root_tenant_l10n = ConfigL10NFactory(session, 1)
 
         if ret_dict['mode'] != 'default':
-            tenant_subdomain = session.query(models.Tenant.subdomain).filter(models.Tenant.id == tid).one()[0]
 
             ret_dict['footer'] = root_tenant_l10n.get_val('footer', language)
             ret_dict['whistleblowing_question'] = root_tenant_l10n.get_val('whistleblowing_question', language)
@@ -287,7 +286,7 @@ def db_serialize_node(session, tid, language):
             ret_dict['enable_disclaimer'] = root_tenant_node.get_val('enable_disclaimer')
             ret_dict['disclaimer_title'] = root_tenant_l10n.get_val('disclaimer_title', language)
             ret_dict['disclaimer_text'] = root_tenant_l10n.get_val('disclaimer_text', language)
-            ret_dict['onionservice'] = tenant_subdomain + '.' + root_tenant_node.get_val('onionservice')
+            ret_dict['onionservice'] = node_dict['subdomain'] + '.' + root_tenant_node.get_val('onionservice')
 
             records = session.query(models.File.id, models.File.data).filter(models.File.tid == 1, models.File.id.in_(['css', 'logo', 'script']))
             for x in records:

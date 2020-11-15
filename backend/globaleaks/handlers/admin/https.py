@@ -38,8 +38,9 @@ def load_tls_dict(session, tid):
     }
 
 
+
 def load_tls_dict_list(session):
-    return [load_tls_dict(session, tid[0]) for tid in session.query(models.Config.tid).filter(models.Config.var_name == 'active', models.Config.value == True)]
+    return [load_tls_dict(session, tid[0]) for tid in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True))]
 
 
 def db_create_acme_key(session, tid):
