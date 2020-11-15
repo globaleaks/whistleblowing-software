@@ -722,7 +722,7 @@ class RTipInstance(OperationHandler):
                   {'key': '^(enable_two_way_comments|enable_two_way_messages|enable_attachments|enable_notifications)$',
                    'value': bool}),
           'update_label': (RTipInstance.update_label, {'value': str}),
-          'update_important': (RTipInstance.update_label, {'value': bool}),
+          'update_important': (RTipInstance.update_important, {'value': bool}),
           'update_status': (RTipInstance.update_submission_status, {'status': str,
                                                                     'substatus': str})
         }
