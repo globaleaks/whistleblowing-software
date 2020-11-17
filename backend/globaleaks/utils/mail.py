@@ -113,7 +113,6 @@ def sendmail(tid, smtp_host, smtp_port, security, authentication, username, pass
             """
             log.err("SMTP connection failed (Exception: %s)",
                     failure.value.subFailure.value, tid=tid)
-            log.debug(failure)
             return False
 
         def success_cb(results):
