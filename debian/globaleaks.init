@@ -34,7 +34,7 @@ if test -e "/usr/share/globaleaks/default" ; then
 fi
 
 if [[ ! -f /var/globaleaks/globaleaks.db || "$(gl-admin getvar reachable_via_web 2>1&)" != "False" ]]; then
-    NETWORK_SANDBOXING=0
+    TOR_SANDBOXING=0
 fi
 
 if test -e "/etc/default/globaleaks" ; then
@@ -92,77 +92,71 @@ wait_for_deaddaemon () {
 
 network_sandboxing_start()
 {
+    log_action_begin_msg "Enabling Globaleaks Network Sandboxing"
+
+    if ! which iptables >/dev/null 2>&1 ; then
+        echo "GlobaLeaks Network Sandboxing Failure: requires iptables"
+        return
+    fi
+
     # remove all rules with the comment: "globaleaks-network-sandboxing"
     iptables-save | grep -v "globaleaks" | iptables-restore
     ip6tables-save | grep -v "globaleaks" | ip6tables-restore
 
-    log_action_begin_msg "Enabling Globaleaks Network Sandboxing"
+    iptables -nvL -t nat >/dev/null 2>&1
+    if [ "$?" -ne "0" ]; then
+        echo "GlobaLeaks Network Sandboxing Failure: missing iptables nat support"
+        log_action_end_msg 1
+        return
+    fi
 
+    iptables -nvL -t filter >/dev/null 2>&1
+    if [ "$?" -ne "0" ]; then
+        echo "GlobaLeaks Network Sandboxing Failure: missing iptables filter support"
+        log_action_end_msg 1
+        return
+    fi
+
+    # OUTBOUND
     if [[ "$NETWORK_SANDBOXING" -eq "1" ]]; then
-        if ! which iptables >/dev/null 2>&1 ; then
-            echo "GlobaLeaks Network Sandboxing Failure: requires iptables"
-            return
+        if [[ "$TOR_SANDBOXING" -eq "1" ]]; then
+            declare -a PORTS=("80" "443")
+            for PORT in "${PORTS[@]}"; do
+                iptables -m comment --comment "globaleaks" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -s 127.0.0.1 -j ACCEPT
+                iptables -m comment --comment "globaleaks" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -j DROP
+                ip6tables -m comment --comment "globaleaks" -A INPUT -p tcp -d :: --dport $PORT -s ::1 -j ACCEPT
+                ip6tables -m comment --comment "globaleaks" -A INPUT -p tcp -d :: --dport $PORT -j DROP
+            done
+
+            # All outbound connections from GlobaLeaks goes through Tor except of allowed and enstablished connections.
+            iptables -m comment --comment "globaleaks" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -d 127.0.0.1 -j ACCEPT
+            ip6tables -m comment --comment "globaleaks" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -d ::1 -j ACCEPT
+            iptables -m comment --comment "globaleaks" -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports 9050
+            iptables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 --dport 9050 -j ACCEPT
+            iptables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
+            ip6tables -m comment --comment "globaleaks" -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports 9050
+            ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d ::1 --dport 9050 -j ACCEPT
+            ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
+        else
+	    # Enable enstablished connections, new connections on used tcp and udp ports
+            iptables -m comment --comment "globaleaks" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -j ACCEPT
+            ip6tables -m comment --comment "globaleaks" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -j ACCEPT
+
+            declare -a PORTS=("25" "80", "53", "443", "465", "587" "9050")
+            for PORT in "${PORTS[@]}"; do
+                iptables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp --dport $PORT -j ACCEPT
+                ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp --dport $PORT -j ACCEPT
+            done
+
+            declare -a PORTS=("53")
+            for PORT in "${PORTS[@]}"; do
+                iptables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m udp --dport $PORT -j ACCEPT
+                ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m udp --dport $PORT -j ACCEPT
+            done
         fi
 
-        iptables -nvL -t nat >/dev/null 2>&1
-        if [ "$?" -ne "0" ]; then
-            echo "GlobaLeaks Network Sandboxing Failure: missing iptables nat support"
-            log_action_end_msg 1
-            return
-        fi
-
-        iptables -nvL -t filter >/dev/null 2>&1
-        if [ "$?" -ne "0" ]; then
-            echo "GlobaLeaks Network Sandboxing Failure: missing iptables filter support"
-            log_action_end_msg 1
-            return
-        fi
-
-        iptables -m owner -h >/dev/null 2>&1
-        if [ "$?" -ne "0" ]; then
-            echo "GlobaLeaks Network Sandboxing Failure: missing iptables owner support"
-            log_action_end_msg 1
-            return
-        fi
-
-        # INBOUND
-        declare -a PORTS=("80" "443")
-        for PORT in "${PORTS[@]}"; do
-            # IPv4
-            iptables -m comment --comment "globaleaks" -A INPUT -p tcp -d 127.0.0.1 --dport $PORT -s 127.0.0.1 -j ACCEPT
-            iptables -m comment --comment "globaleaks" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -j DROP
-
-            #IPv6
-            ip6tables -m comment --comment "globaleaks" -A INPUT -p tcp -d ::1 --dport $PORT -s ::1 -j ACCEPT
-            ip6tables -m comment --comment "globaleaks" -A INPUT -p tcp -d :: --dport $PORT -j DROP
-        done
-
-        # OUTBOUND
-        # All outbound connections from GlobaLeaks goes through Tor except of allowed and enstablished connections.
-
-        #IPv4
-        iptables -m comment --comment "globaleaks" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -d 127.0.0.1 -j ACCEPT
-        iptables -m comment --comment "globaleaks" -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports 9050
-        iptables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 --dport 9050 -j ACCEPT
-        iptables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j LOG --log-prefix "GLOBALEAKS-OUTPUT:DROP: "
         iptables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
-
-        #IPv6
-        ip6tables -m comment --comment "globaleaks" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -d ::1 -j ACCEPT
-        ip6tables -m comment --comment "globaleaks" -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports 9050
-        ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d ::1 --dport 9050 -j ACCEPT
-        ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j LOG --log-prefix "GLOBALEAKS-OUTPUT:DROP: "
         ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
-    else
-        # INBOUND
-
-        #IPv4
-        iptables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT  --to-destination 127.0.0.1 --to-port 8082
-        iptables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-destination 127.0.0.1 --to-port 8443
-
-        #IPv6
-        ip6tables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-destination 127.0.0.1 --to-port 8082
-        ip6tables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-destination 127.0.0.1 --to-port 8443
     fi
 
     log_action_end_msg 0
@@ -170,6 +164,11 @@ network_sandboxing_start()
 
 network_sandboxing_stop()
 {
+    if ! which iptables >/dev/null 2>&1 ; then
+        echo "GlobaLeaks Network Sandboxing Failure: requires iptables"
+        return
+    fi
+
     log_action_begin_msg "Disabling GlobaLeaks Network Sandboxing"
 
     # remove all rules with the comment: "globaleaks-network-sandboxing"
