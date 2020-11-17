@@ -1,5 +1,5 @@
-%global commit      ¤COMMIT¤
-%global version     ¤VERSION¤
+%global commit      MY_GIT_COMMIT
+%global version     MY_GIT_VERSION
 
 %define debug_package %{nil}
 %define _unpackaged_files_terminate_build 0
