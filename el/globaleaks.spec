@@ -59,6 +59,10 @@ cd ../
 sed -i "s|^WORKING_DIR.*|WORKING_DIR=/var/lib/globaleaks/|" backend/default
 sed -i "s|^APPARMOR_SANDBOXING.*|APPARMOR_SANDBOXING=0|" backend/default
 
+# TODO: Remove Debian update Stuff
+sed -i '/deb822/d' $RPM_BUILD_ROOT/usr/lib/python3.6/site-packages/globaleaks/jobs/update_check.py
+sed -i '/versions.sort(key=parse_version)/d' $RPM_BUILD_ROOT/usr/lib/python3.6/site-packages/globaleaks/jobs/update_check.py
+
 # Change ports to unprivileges ports
 sed -i 's|http://%s|http://%s:8080|g' $RPM_BUILD_ROOT/usr/lib/python3.6/site-packages/globaleaks/backend.py
 sed -i 's|https://%s|https://%s:4443|g' $RPM_BUILD_ROOT/usr/lib/python3.6/site-packages/globaleaks/backend.py
