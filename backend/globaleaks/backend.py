@@ -20,6 +20,7 @@ from globaleaks.state import State
 from globaleaks.utils.log import log, openLogFile, logFormatter, LogObserver
 from globaleaks.utils.process import drop_privileges, set_proc_title
 from globaleaks.utils.sock import listen_tcp_on_sock, listen_tls_on_sock, reserve_port_for_ip
+from globaleaks.utils.utility import fix_file_permissions
 
 
 def fail_startup(excep):
@@ -85,6 +86,12 @@ class Service(service.Service):
                 self.state.http_socks += [sock]
             elif port == 443:
                 self.state.https_socks += [sock]
+
+        fix_file_permissions(Settings.working_path,
+                             Settings.uid,
+                             Settings.gid,
+                             0o700,
+                             0o600)
 
         drop_privileges(Settings.user, Settings.uid, Settings.gid)
 

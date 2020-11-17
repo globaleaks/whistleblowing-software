@@ -35,7 +35,7 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     /var/globaleaks/ wr,
     /var/globaleaks/** lrwk,
 
-    /{,var/}run/globaleaks/globaleaks.pid rw,
+    /{,var/}run/globaleaks.pid rw,
     /{,var/}run/tor/control rw,
     /{,var/}run/tor/control.authcookie r,
 

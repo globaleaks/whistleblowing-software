@@ -35,6 +35,5 @@ setup(
     scripts=[
         'bin/globaleaks',
         'bin/gl-admin',
-        'bin/gl-fix-permissions'
     ]
 )

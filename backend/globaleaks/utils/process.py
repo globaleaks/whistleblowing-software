@@ -25,19 +25,3 @@ def drop_privileges(user, uid, gid):
 
     if os.getuid() != uid:
         os.setuid(uid)
-
-
-def SigQUIT(SIG, FRM):
-    """
-    Handler of process QUIT signal
-
-    :param SIG: the received signal
-    :param FRM: the pid of the
-    """
-    try:
-        if reactor.running:
-            reactor.stop()
-        else:
-            sys.exit(1)
-    except:
-        pass

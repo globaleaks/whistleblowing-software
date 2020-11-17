@@ -7,18 +7,3 @@ set -e
 if [ "$1" = "upgrade" ]; then
   service globaleaks stop || true
 fi
-
-if [ ! -z "$(ls -A /var/globaleaks 2>/dev/null)" ]; then
-  if ! id -u globaleaks >/dev/null 2>&1; then
-    adduser --quiet \
-            --system \
-            --disabled-login \
-            --disabled-password \
-            --home /var/globaleaks \
-            --shell /bin/false \
-            --group \
-            --firstuid=500 \
-            --lastuid=999 \
-            globaleaks
-  fi
-fi
