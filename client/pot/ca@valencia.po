@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -558,9 +558,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "Seleccione el context del seu enviament:"
-
 msgid "Warning! You are not anonymous."
 msgstr "Atenció! No esteu comunicant de manera anònima."
 
@@ -890,12 +887,6 @@ msgstr "Nombre màxim de destinataris que es poden seleccionar:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Mostra els destinataris en ordre alfabètic"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Mostra la informació dels destinataris a la pàgina d'estat del lliurament"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Text mostrat damunt de la interfície per a seleccionar els destinataris"
 
 msgid "Enable comments"
 msgstr "Habilita comentaris"
@@ -1313,12 +1304,6 @@ msgstr "Estableix l'encriptació oferint una clau pública PGP"
 msgid "Give this admin ability to change user passwords"
 msgstr "Dóna-li a aquest administrador la possibilitat de canviar les contrasenyes d’usuari"
 
-msgid "Configuration"
-msgstr "Configuració"
-
-msgid "Default"
-msgstr "Predeterminat"
-
 msgid "Forcefully selected"
 msgstr "Obligatòriament seleccionats"
 
@@ -1328,8 +1313,8 @@ msgstr "Permet al destinatari pospondre la data d'expiració de l'enviament"
 msgid "Allow the recipient to delete reports"
 msgstr "Permet que els destinataris esborren els lliuraments"
 
-msgid "User has administrative access to the following features:"
-msgstr "L'usuari té accés administratiu a les funcions següents:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "Data de sol·licitud"
@@ -1750,6 +1735,9 @@ msgstr "Complet"
 msgid "Invalid phone number"
 msgstr "Número de telèfon inàlid"
 
+msgid "Select the context of your report:"
+msgstr "Seleccione el context del seu enviament:"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1796,11 +1784,19 @@ msgstr "Mire el seu enviament"
 msgid "Recipient selection"
 msgstr "Seleccione el destinatari"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Destinataris seleccionats:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Heu arribat al número màxim de destinataris seleccionables."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

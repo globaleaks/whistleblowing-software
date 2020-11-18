@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -561,9 +561,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "Choisir le contexte de votre envoi :"
-
 msgid "Warning! You are not anonymous."
 msgstr "Avertissement ! Vous n’êtes pas anonyme."
 
@@ -893,12 +890,6 @@ msgstr "Nombre maximal de destinataires sélectionnables :"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Montrer les destinataires par ordre alphabétique"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Montrer les détails concernant les destinataires sur la page d’état de l’envoi"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Texte de sélection des destinataires, affiché en haut de l’interface"
 
 msgid "Enable comments"
 msgstr "Activer les commentaires"
@@ -1316,12 +1307,6 @@ msgstr "Configurer le chiffrement en fournissant une clé publique PGP"
 msgid "Give this admin ability to change user passwords"
 msgstr ""
 
-msgid "Configuration"
-msgstr "Configuration"
-
-msgid "Default"
-msgstr "Valeur par défaut"
-
 msgid "Forcefully selected"
 msgstr "Sélectionné de force"
 
@@ -1331,8 +1316,8 @@ msgstr "Autoriser les destinataires à repousser la date d’expiration des envo
 msgid "Allow the recipient to delete reports"
 msgstr "Permettre aux destinataires de supprimer des envois"
 
-msgid "User has administrative access to the following features:"
-msgstr "L’utilisateur a un accès d’administration aux fonctions suivantes :"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "Date de la demande"
@@ -1753,6 +1738,9 @@ msgstr "Terminé"
 msgid "Invalid phone number"
 msgstr "Le numéro de téléphone est invalide"
 
+msgid "Select the context of your report:"
+msgstr "Choisir le contexte de votre envoi :"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1799,10 +1787,18 @@ msgstr "Eto raha hijery ny fitorohana nalefanao"
 msgid "Recipient selection"
 msgstr "Sélection du destinataire"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Destinataires sélectionnés :"
 
 msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
 msgstr ""
 
 msgid ""

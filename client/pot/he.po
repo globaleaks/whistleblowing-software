@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -560,9 +560,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "בחר את ההקשר של הדוח שלך:"
-
 msgid "Warning! You are not anonymous."
 msgstr "אזהרה! אתה לא אלמוני."
 
@@ -892,12 +889,6 @@ msgstr "מספר מקסימאלי של מקבלים לבחירה:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "מקבלי הצג לפי סדר אלפביתי"
-
-msgid "Show recipient details on the status page of the report"
-msgstr ""
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "טקסט המופיע על גבי הממשק לבחירת מקבלים"
 
 msgid "Enable comments"
 msgstr "אפשר הערות"
@@ -1315,12 +1306,6 @@ msgstr "הגדרת הצפנה על ידי מתן מפתח ציבורי PGP"
 msgid "Give this admin ability to change user passwords"
 msgstr ""
 
-msgid "Configuration"
-msgstr "תצורה"
-
-msgid "Default"
-msgstr "ברירת מחדל"
-
 msgid "Forcefully selected"
 msgstr "נבחר בכוח"
 
@@ -1330,7 +1315,7 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr ""
 
-msgid "User has administrative access to the following features:"
+msgid "Give the user administrative access to the following features:"
 msgstr ""
 
 msgid "Request date"
@@ -1752,6 +1737,9 @@ msgstr "שלם"
 msgid "Invalid phone number"
 msgstr "מספר טלפון בלתי תקף"
 
+msgid "Select the context of your report:"
+msgstr "בחר את ההקשר של הדוח שלך:"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1798,10 +1786,18 @@ msgstr "הצג את הדוח שלך"
 msgid "Recipient selection"
 msgstr "בחירת מקבלים"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "מקבלים שנבחרו:"
 
 msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
 msgstr ""
 
 msgid ""

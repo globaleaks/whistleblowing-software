@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -550,9 +550,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr ""
-
 msgid "Warning! You are not anonymous."
 msgstr "Xəbərdarlıq! Siz anonim deyilsiniz."
 
@@ -882,12 +879,6 @@ msgstr "Seçilən qəbul edicilərin maksimum sayı:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Qəbul ediciləri əlifba sırası ilə göstərin"
-
-msgid "Show recipient details on the status page of the report"
-msgstr ""
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Qəbul ediciləri seçmək üçün ekran üzərində göstərilən mətn"
 
 msgid "Enable comments"
 msgstr "Şərhləri aktiv edin"
@@ -1305,12 +1296,6 @@ msgstr "Bir PGP ictimai açarı istifadə edərək şifrələmə yaradın"
 msgid "Give this admin ability to change user passwords"
 msgstr ""
 
-msgid "Configuration"
-msgstr "Konfiqurasiya"
-
-msgid "Default"
-msgstr "Önseçili"
-
 msgid "Forcefully selected"
 msgstr "Zorla seçilmiş"
 
@@ -1320,7 +1305,7 @@ msgstr "Qəbul ediciyə təqdimatın sona çatma tarixini təxirə salmasına ic
 msgid "Allow the recipient to delete reports"
 msgstr "Qəbul ediciyə təqdimatları silməsinə icazə verin"
 
-msgid "User has administrative access to the following features:"
+msgid "Give the user administrative access to the following features:"
 msgstr ""
 
 msgid "Request date"
@@ -1742,6 +1727,9 @@ msgstr "Tamamla"
 msgid "Invalid phone number"
 msgstr ""
 
+msgid "Select the context of your report:"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1788,10 +1776,18 @@ msgstr "Təqdimatını nəzərdən keçir"
 msgid "Recipient selection"
 msgstr "Alıcı seçimi"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Seçilmiş alıcılar:"
 
 msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
 msgstr ""
 
 msgid ""

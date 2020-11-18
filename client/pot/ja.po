@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-11-10 22:01+0000\n"
+"Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -533,7 +533,7 @@ msgstr "パスワードリセット"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "1名以上の受信者はまだ一度もログインを実行していません。 つまり、彼らはレポートを受け取らない可能性があるということです。"
+msgstr "1名以上の受信者はまだ一度もログインを実行していません。 つまり、彼らは報告を受け取らない可能性があるということです。"
 
 msgid "This user has not performed the first login yet."
 msgstr "このユーザーはまだ一度もログインを実行していません。"
@@ -549,9 +549,6 @@ msgstr "法人番号/マイナンバー"
 
 msgid "Tax code"
 msgstr "納税番号"
-
-msgid "Select the context of your report:"
-msgstr "報告のコンテキストを選択してください:"
 
 msgid "Warning! You are not anonymous."
 msgstr "警告! あなたは匿名ではありません。"
@@ -672,7 +669,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "この機能を無効にするには、値を0に設定します。"
 
 msgid "Number of days till notifying users unread reports"
-msgstr ""
+msgstr "未読の報告をユーザーに通知するまでの日数"
 
 msgid "Enable custodian user role"
 msgstr "管理人のユーザー役割を有効にする"
@@ -681,7 +678,7 @@ msgid "Enable scoring system"
 msgstr "スコアリングシステムを有効にする"
 
 msgid "Enable private annotations"
-msgstr ""
+msgstr "プライベートアノテーションを有効にする"
 
 msgid "Logging level"
 msgstr "ログ取得レベル"
@@ -882,12 +879,6 @@ msgstr "選択可能な受信者の最大数:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "受信者をアルファベット順に表示"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "報告の状況ページで受信者の詳細を表示する"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "受信者を選択するインターフェイスの先頭に表示されるテキスト"
 
 msgid "Enable comments"
 msgstr "コメントを有効にする"
@@ -1305,12 +1296,6 @@ msgstr "PGP公開鍵を提供して暗号化を設定"
 msgid "Give this admin ability to change user passwords"
 msgstr "この管理者がユーザーのパスワードを変更できるようにします"
 
-msgid "Configuration"
-msgstr "設定"
-
-msgid "Default"
-msgstr "デフォルト"
-
 msgid "Forcefully selected"
 msgstr "強制的に選択"
 
@@ -1320,8 +1305,8 @@ msgstr "受信者が報告の有効期限を延長することを許可する"
 msgid "Allow the recipient to delete reports"
 msgstr "受信者が報告を削除することを許可する"
 
-msgid "User has administrative access to the following features:"
-msgstr "ユーザーは、次の機能への管理アクセス権があります:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "リクエスト日"
@@ -1483,7 +1468,7 @@ msgstr "何の追加的なプライバシーやセキュリティもなしに、
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr ""
+msgstr "このサイトをTor ブラウザというアプリケーションを介してご覧になることを強くお勧めします。Torブラウザはあなたの身元を守ります。"
 
 msgid "Download the Tor Browser"
 msgstr "Tor Browser をダウンロード"
@@ -1742,8 +1727,11 @@ msgstr "完了"
 msgid "Invalid phone number"
 msgstr "電話番号が正しくありません"
 
+msgid "Select the context of your report:"
+msgstr "報告のコンテキストを選択してください:"
+
 msgid "The answer is too short"
-msgstr ""
+msgstr "回答が短すぎます"
 
 msgid "The specified input is not valid."
 msgstr "指定された入力は正しくありません."
@@ -1788,11 +1776,19 @@ msgstr "報告を表示"
 msgid "Recipient selection"
 msgstr "受信者の選択"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "選択された受信者:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "選択可能な受信者の最大数に達しました。"
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1824,7 +1820,7 @@ msgid ""
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "受信者がパスワードを紛失した状況でデータが失われるのを防ぎたい場合は、このオプションを選択することをお勧めします。 一方、受信者のみが提出物にアクセスできるようにシステムをセットアップしたい場合は、この機能を使用することはお勧めしません。"
 
 msgid "Please choose a different username."
 msgstr "別のユーザー名を選択してください。"
@@ -2220,16 +2216,16 @@ msgid "New report"
 msgstr "新しい報告"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "これは、既存の報告が更新されたことを通知するメールです。"
 
 msgid "Report updated"
-msgstr ""
+msgstr "報告が更新されました"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "このメールは、未読または更新された報告があることを通知するためのものです。"
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "未読または更新された報告に関するリマインダー"
 
 msgid "Role: {Role}"
 msgstr "役割: {Role}"

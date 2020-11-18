@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -560,9 +560,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "Wybierz kontekst swojego zgłoszenia:"
-
 msgid "Warning! You are not anonymous."
 msgstr "Uwaga! Nie jesteś anonimowy"
 
@@ -892,12 +889,6 @@ msgstr "Maksymalna liczna dostępnych odbiorców:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Pokaż odbiorców w porządku alfabetycznym"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Pokaż szczegóły odbiorców na stronie statusu zgłoszenia"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Tekst wyświetlany na górze strony z odbiorcami"
 
 msgid "Enable comments"
 msgstr "Włącz komentarze"
@@ -1315,12 +1306,6 @@ msgstr "Ustaw szyfrowanie poprzez wrzucenie klucza PGP"
 msgid "Give this admin ability to change user passwords"
 msgstr "Pozwól temu administratorowi zmieniać hasła użytkowników"
 
-msgid "Configuration"
-msgstr "Konfiguracja"
-
-msgid "Default"
-msgstr "Domyślny"
-
 msgid "Forcefully selected"
 msgstr "Wybrane w wymuszony sposób"
 
@@ -1330,8 +1315,8 @@ msgstr "Odbiorcy mogą zmieniać datę wygaśnięcia zgłoszenia"
 msgid "Allow the recipient to delete reports"
 msgstr "Odbiorcy mogą usuwać zgłoszenia"
 
-msgid "User has administrative access to the following features:"
-msgstr "Użytkownik ma dostęp administracyjny do poniższych funkcji:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "Data żądania"
@@ -1752,6 +1737,9 @@ msgstr "Zakończono"
 msgid "Invalid phone number"
 msgstr "Nieprawidłowy numer telefonu"
 
+msgid "Select the context of your report:"
+msgstr "Wybierz kontekst swojego zgłoszenia:"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1798,11 +1786,19 @@ msgstr "Zobacz swoje zgłoszenie"
 msgid "Recipient selection"
 msgstr "Wybór Odbiorcy"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Wybrani Odbiorcy:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Wybrałeś maksymalną liczbę wybieralnych odbiorców."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

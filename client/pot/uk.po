@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -563,9 +563,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "Оберіть контекст Вашого повідомлення"
-
 msgid "Warning! You are not anonymous."
 msgstr "УВАГА! Ви не анонімні."
 
@@ -895,12 +892,6 @@ msgstr "Максимальна кількість обраних одержув�
 
 msgid "Show recipients in alphabetical order"
 msgstr "Упорядкувати одержувачів за алфавітом"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Show recipient details on the status page of the submission"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Text shown on top of the interface for selecting recipients"
 
 msgid "Enable comments"
 msgstr "Увімкнути коментарі"
@@ -1318,12 +1309,6 @@ msgstr "Налаштуйте шифрування надвши відкрити�
 msgid "Give this admin ability to change user passwords"
 msgstr ""
 
-msgid "Configuration"
-msgstr "Налаштування"
-
-msgid "Default"
-msgstr "За замовчуванням"
-
 msgid "Forcefully selected"
 msgstr "Обрано за замовчуванням без права змін"
 
@@ -1333,7 +1318,7 @@ msgstr "Дозволити одержувачам відтерміновуват
 msgid "Allow the recipient to delete reports"
 msgstr "Дозволити одержувачам видаляти матеріали"
 
-msgid "User has administrative access to the following features:"
+msgid "Give the user administrative access to the following features:"
 msgstr ""
 
 msgid "Request date"
@@ -1755,6 +1740,9 @@ msgstr "Завершити"
 msgid "Invalid phone number"
 msgstr ""
 
+msgid "Select the context of your report:"
+msgstr "Оберіть контекст Вашого повідомлення"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1801,10 +1789,18 @@ msgstr "Переглянути ваше відравлення"
 msgid "Recipient selection"
 msgstr "Вибір одержувача"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Обрані одержувачі:"
 
 msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
 msgstr ""
 
 msgid ""

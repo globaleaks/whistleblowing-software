@@ -6,6 +6,7 @@
     {
       "label": {
         "en": "Fill out your report",
+        "am": "Fill out your report",
         "ar": "املأ تقريرك",
         "az": "Təqdimatınızı doldurun",
         "bg": "Преглед на сигнала",
@@ -39,7 +40,7 @@
         "pt_BR": "Preencha sua submissão",
         "pt_PT": "Preencha a sua submissão",
         "ro": "Completează sesizarea",
-        "ru": "Fill out your report",
+        "ru": "Заполните свой отчет",
         "sk": "Vyplňte Vaše podanie",
         "sl_SI": "Izpolnite vašo naznanitev",
         "sq": "Fill out your report",
@@ -61,6 +62,7 @@
         {
           "label": {
             "en": "Title",
+            "am": "ርእስ",
             "ar": "العنوان",
             "az": "Başlıq",
             "bg": "Заглавие",
@@ -112,6 +114,7 @@
           "preview": true,
           "description": {
             "en": "Describe your report in a few words.",
+            "am": "Describe your report in a few words.",
             "ar": "الرجاء كتابة نبذة عن البلاغ.",
             "az": "Təqdimatınızı bir neçə sözlə təsvir edin.",
             "bg": "Опишете подадения сигнал с няколко думи.",
@@ -145,7 +148,7 @@
             "pt_BR": "Descreva seu relatório em poucas palavras.",
             "pt_PT": "Descreva em algumas palavras a sua submissão.",
             "ro": "Descrie sesizarea în câteva cuvinte.",
-            "ru": "Describe your report in a few words.",
+            "ru": "Кратко опишите свой отчет.",
             "sk": "Opíšte svoje podanie niekoľkými slovami.",
             "sl_SI": "V nekaj besedah opišite vaš prispevek",
             "sq": "Përshkruajeni me pak fjalë parashtrimin tuaj",
@@ -197,6 +200,7 @@
         {
           "label": {
             "en": "Description",
+            "am": "ገለጻ",
             "ar": "وصف",
             "az": "Açıqlama",
             "bg": "Описание",
@@ -248,6 +252,7 @@
           "preview": false,
           "description": {
             "en": "Describe your report in detail.",
+            "am": "Describe your report in detail.",
             "ar": "الرجاء وصف البلاغ بالتفصيل.",
             "az": "Təqdimatınızı təfərrüatı ilə təsvir edin.",
             "bg": "Опишете подадения сигнал в детайли.",
@@ -281,7 +286,7 @@
             "pt_BR": "Descreva seu relatório em detalhes.",
             "pt_PT": "Descreva a sua submissão detalhadamente.",
             "ro": "Descrie sesizarea în detaliu.",
-            "ru": "Describe your report in detail.",
+            "ru": "Опишите свой отчет подробно.",
             "sk": "Opíšte svoje podanie podrobne.",
             "sl_SI": "Podrobno opišite vaš prispevek",
             "sq": ".Përshkruajeni me pak fjalë parashtrimin tuaj.",
@@ -325,6 +330,7 @@
         {
           "label": {
             "en": "Attachments",
+            "am": "አባሪዎች",
             "ar": "مرفقات",
             "az": "Qoşmalar",
             "bg": "Прикачени файлове",
@@ -376,6 +382,7 @@
           "preview": false,
           "description": {
             "en": "Attach files relevant to the report.",
+            "am": "Attach files relevant to the report.",
             "ar": "إرفاق ملفات ذات صلة بالبلاغ.",
             "az": "Təqdimat ilə əlaqəli faylları əlavə edin",
             "bg": "Прикачете файлове към сигнала.",
@@ -409,7 +416,7 @@
             "pt_BR": "Anexe arquivos relevantes ao relatório.",
             "pt_PT": "Anexe os ficheiros relevantes para a submissão.",
             "ro": "Atașează fișiere relevante pentru sesizare.",
-            "ru": "Attach files relevant to the report.",
+            "ru": "Приложите к отчету соответствующие файлы.",
             "sk": "Priložte súbory relevantné pre Vaše podanie.",
             "sl_SI": "Attach files relevant to the report.",
             "sq": "Shtoni skedarët e rëndësishëm për parashtrimin.",

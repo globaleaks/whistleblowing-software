@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -551,9 +551,6 @@ msgstr "PDV broj"
 msgid "Tax code"
 msgstr "Porezni kod"
 
-msgid "Select the context of your report:"
-msgstr "Odaberite kontekst svoje prijave:"
-
 msgid "Warning! You are not anonymous."
 msgstr "Upozorenje! Niste anonimni."
 
@@ -883,12 +880,6 @@ msgstr "Maksimalan broj primatelja koji se mogu odabrati:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Prikaži primatelje u abecednom slijedu"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Prikaži detalje primatelja na stranici statusa o prijavi"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Tekst prikazan na vrhu sučelja za odabir primatelja"
 
 msgid "Enable comments"
 msgstr "Omogući komentare"
@@ -1306,12 +1297,6 @@ msgstr "Postavite enkripciju pružanjem PGP javnog ključa"
 msgid "Give this admin ability to change user passwords"
 msgstr "Daj ovom administratoru mogućnost promjene korisničkih lozinki"
 
-msgid "Configuration"
-msgstr "Konfiguracija"
-
-msgid "Default"
-msgstr "Zadano"
-
 msgid "Forcefully selected"
 msgstr "Prisilno odabrani"
 
@@ -1321,8 +1306,8 @@ msgstr "Dopusti primatelju da odgodi datum isteka prijave"
 msgid "Allow the recipient to delete reports"
 msgstr "Dozvoli primateljima da brišu prijave"
 
-msgid "User has administrative access to the following features:"
-msgstr "Korisnik ima administrativni pristup sljedećim značajkama:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "Datum zahtjeva"
@@ -1743,6 +1728,9 @@ msgstr "Gotovo"
 msgid "Invalid phone number"
 msgstr "Neispravan telefonski broj"
 
+msgid "Select the context of your report:"
+msgstr "Odaberite kontekst svoje prijave:"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1789,11 +1777,19 @@ msgstr "Pregledajte svoju prijavu"
 msgid "Recipient selection"
 msgstr "Odabir primatelja"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Označeni primatelji:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Dosegnuli ste maksimalni broj primatelja koje se može odabrati."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

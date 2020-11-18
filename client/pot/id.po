@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -565,9 +565,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr ""
-
 msgid "Warning! You are not anonymous."
 msgstr "Peringatan! Identitas Anda diketahui."
 
@@ -897,12 +894,6 @@ msgstr "Jumlah tertinggi penerima yang dapat dipilih:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Tunjukkan penerima-penerima berdasarkan susunan abjad"
-
-msgid "Show recipient details on the status page of the report"
-msgstr ""
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Teks yang terlihat di bagian atas antarmuka untuk memilih penerima"
 
 msgid "Enable comments"
 msgstr "Aktifkan komentar"
@@ -1320,12 +1311,6 @@ msgstr "Memasang enkripsi dengan menyediakan kunci publik PGP"
 msgid "Give this admin ability to change user passwords"
 msgstr ""
 
-msgid "Configuration"
-msgstr "Konfigurasi"
-
-msgid "Default"
-msgstr "Bawaan"
-
 msgid "Forcefully selected"
 msgstr "Secara paksa dipilih"
 
@@ -1335,8 +1320,8 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr ""
 
-msgid "User has administrative access to the following features:"
-msgstr "Pengguna mempunyai akses administratif untuk beberapa fitur berikut:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "Permintaan tanggal"
@@ -1757,6 +1742,9 @@ msgstr "Selesai"
 msgid "Invalid phone number"
 msgstr "Nomor telepon salah"
 
+msgid "Select the context of your report:"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1803,10 +1791,18 @@ msgstr ""
 msgid "Recipient selection"
 msgstr "Seleksi penerima"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Penerima yang terpilih:"
 
 msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
 msgstr ""
 
 msgid ""

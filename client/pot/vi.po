@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -555,9 +555,6 @@ msgstr "Số VAT"
 msgid "Tax code"
 msgstr "Mã số thuế"
 
-msgid "Select the context of your report:"
-msgstr "Chọn ngữ cảnh cho báo cáo của bạn:"
-
 msgid "Warning! You are not anonymous."
 msgstr "Cảnh báo! Bạn đang không ẩn danh."
 
@@ -887,12 +884,6 @@ msgstr "Số lượng người nhận lựa chọn:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Hiện người nhận trong thứ tự chữ cái"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Hiển thị chi tiết người nhận trên trang trạng thái của trình"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Văn bản hiển thị trên đầu trang của giao diện để lựa chọn người nhận"
 
 msgid "Enable comments"
 msgstr "Cho phép nhận xét"
@@ -1310,12 +1301,6 @@ msgstr "Thiết lập mã hóa bằng cách cung cấp một khóa công khai PG
 msgid "Give this admin ability to change user passwords"
 msgstr "Cung cấp cho quản trị viên này khả năng thay đổi mật khẩu người dùng"
 
-msgid "Configuration"
-msgstr "Cấu hình"
-
-msgid "Default"
-msgstr "Mặc định"
-
 msgid "Forcefully selected"
 msgstr "Mạnh mẽ chọn"
 
@@ -1325,8 +1310,8 @@ msgstr "Cho phép người nhận hoãn hạn nộp hồ sơ"
 msgid "Allow the recipient to delete reports"
 msgstr "Cho phép người nhận xóa bài nộp"
 
-msgid "User has administrative access to the following features:"
-msgstr "Người dùng có quyền truy cập quản trị các tính năng sau"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "Ngày yêu cầu"
@@ -1747,6 +1732,9 @@ msgstr "Hoàn tất"
 msgid "Invalid phone number"
 msgstr "Số điện thoại không hợp lệ"
 
+msgid "Select the context of your report:"
+msgstr "Chọn ngữ cảnh cho báo cáo của bạn:"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1793,11 +1781,19 @@ msgstr "Xem trình của bạn"
 msgid "Recipient selection"
 msgstr "lựa chọn người nhận"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Người nhận được lựa chọn:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Bạn đã đạt đến số lượng tối đa người nhận có thể lựa chọn "
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

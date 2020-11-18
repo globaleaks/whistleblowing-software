@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -562,9 +562,6 @@ msgstr "VAT数字"
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "选择您报告合适的情况："
-
 msgid "Warning! You are not anonymous."
 msgstr "警告！你尚未匿名。"
 
@@ -894,12 +891,6 @@ msgstr "最多可选收件人的数目"
 
 msgid "Show recipients in alphabetical order"
 msgstr "以字母次序显示收件人"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "在报告的状况页显示收件人的详细情况"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "在选择收件人接口上方显示的文本"
 
 msgid "Enable comments"
 msgstr "启用评论"
@@ -1317,12 +1308,6 @@ msgstr "提供PGP公钥来设置加密"
 msgid "Give this admin ability to change user passwords"
 msgstr "授权管理者变更用户的密码"
 
-msgid "Configuration"
-msgstr "确认"
-
-msgid "Default"
-msgstr "默认"
-
 msgid "Forcefully selected"
 msgstr "强迫选择"
 
@@ -1332,8 +1317,8 @@ msgstr "收件人可以延长报告期限"
 msgid "Allow the recipient to delete reports"
 msgstr "收件人可以删除报告"
 
-msgid "User has administrative access to the following features:"
-msgstr "管理级的用户可以有以下权限功能："
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "请求日期"
@@ -1754,6 +1739,9 @@ msgstr "完成"
 msgid "Invalid phone number"
 msgstr "无效的电话号码"
 
+msgid "Select the context of your report:"
+msgstr "选择您报告合适的情况："
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1800,11 +1788,19 @@ msgstr "查看您的报告"
 msgid "Recipient selection"
 msgstr "选择收件人"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "已选择的收件人"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "您可选的收件人数已达上限。"
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

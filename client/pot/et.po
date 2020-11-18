@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Estonian (http://www.transifex.com/otf/globaleaks/language/et/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -545,9 +545,6 @@ msgstr "KMKR number"
 msgid "Tax code"
 msgstr "Maksukood"
 
-msgid "Select the context of your report:"
-msgstr "Valige oma teate kontekst:"
-
 msgid "Warning! You are not anonymous."
 msgstr "Hoiatus! Te ei ole anonüümne."
 
@@ -877,12 +874,6 @@ msgstr "Valitavate saajate arvu ülempiir:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Näita saajaid tähestiku järjekorras"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Näita saajate üksikasju teate staatuselehel"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Saajate valimise liidese alguses näidatav tekst"
 
 msgid "Enable comments"
 msgstr "Luba kommentaarid"
@@ -1300,12 +1291,6 @@ msgstr "Krüptimise seadistamine PGP avaliku võtmega"
 msgid "Give this admin ability to change user passwords"
 msgstr "Anna sellele administraatorile õigus muuta kasutajate paroole"
 
-msgid "Configuration"
-msgstr "Seadistus"
-
-msgid "Default"
-msgstr "Vaikimisi"
-
 msgid "Forcefully selected"
 msgstr "Valitud sundkorras"
 
@@ -1315,8 +1300,8 @@ msgstr "Luba saajal teate aegumiskuupäeva edasi lükata"
 msgid "Allow the recipient to delete reports"
 msgstr "Luba saajal teateid kustutada"
 
-msgid "User has administrative access to the following features:"
-msgstr "Kasutajal on administraatori õigused järgmiste funktsioonide suhtes:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "Taotluse kuupäev"
@@ -1737,6 +1722,9 @@ msgstr "Täielik"
 msgid "Invalid phone number"
 msgstr "Vigane telefoninumber"
 
+msgid "Select the context of your report:"
+msgstr "Valige oma teate kontekst:"
+
 msgid "The answer is too short"
 msgstr "Vastus on liiga lühike"
 
@@ -1783,11 +1771,19 @@ msgstr "Vaadake oma teadet"
 msgid "Recipient selection"
 msgstr "Saaja valimine"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Valitud saajad:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Valitavate saajate arvu ülempiir on täis."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

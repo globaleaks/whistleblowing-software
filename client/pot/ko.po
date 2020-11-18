@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -546,9 +546,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "제출의 컨텍스트를 선택합니다 :"
-
 msgid "Warning! You are not anonymous."
 msgstr "경고! 익명되지 않습니다."
 
@@ -878,12 +875,6 @@ msgstr "선택받는 사람의 최대 수 :"
 
 msgid "Show recipients in alphabetical order"
 msgstr "알파벳 순서로 표시받는 사람"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "제출의 상태 페이지에받는 사람의 정보를보기"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "텍스트는 수신자를 선택하기위한 인터페이스의 상단에 도시"
 
 msgid "Enable comments"
 msgstr "코멘트를 활성화"
@@ -1301,12 +1292,6 @@ msgstr "PGP 공개 키를 제공하여 암호화를 설정"
 msgid "Give this admin ability to change user passwords"
 msgstr ""
 
-msgid "Configuration"
-msgstr "구성"
-
-msgid "Default"
-msgstr "태만"
-
 msgid "Forcefully selected"
 msgstr "강제로 선택"
 
@@ -1316,7 +1301,7 @@ msgstr "받는 사람이 제출 기한을 연기 할 수 있도록 허용"
 msgid "Allow the recipient to delete reports"
 msgstr "받는 사람이 제출을 삭제할 수"
 
-msgid "User has administrative access to the following features:"
+msgid "Give the user administrative access to the following features:"
 msgstr ""
 
 msgid "Request date"
@@ -1738,6 +1723,9 @@ msgstr "완료"
 msgid "Invalid phone number"
 msgstr ""
 
+msgid "Select the context of your report:"
+msgstr "제출의 컨텍스트를 선택합니다 :"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1784,10 +1772,18 @@ msgstr "제출보기"
 msgid "Recipient selection"
 msgstr "받는 사람 선택"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "받는 사람 선택 :"
 
 msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
 msgstr ""
 
 msgid ""

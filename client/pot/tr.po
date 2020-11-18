@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-11-11 07:20+0000\n"
+"Last-Translator: T. E. Kalayci <tekrei@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -568,9 +568,6 @@ msgstr "VAT numarası"
 msgid "Tax code"
 msgstr "Vergi kodu"
 
-msgid "Select the context of your report:"
-msgstr "Raporunuzun içeriğini seçin:"
-
 msgid "Warning! You are not anonymous."
 msgstr "Dikkat! Anonim değilsiniz."
 
@@ -690,7 +687,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Bu özelliği devre dışı bırakmak için değerini 0 olarak ayarlayın."
 
 msgid "Number of days till notifying users unread reports"
-msgstr ""
+msgstr "Okunmamış bildirimler için kullanıcıların bilgilendirilmesine kadar geçecek gün sayısı"
 
 msgid "Enable custodian user role"
 msgstr "Koruyucu kullanıcı rolünü etkinleştir"
@@ -699,7 +696,7 @@ msgid "Enable scoring system"
 msgstr "Skorlama sistemini etkinleştir"
 
 msgid "Enable private annotations"
-msgstr ""
+msgstr "Özel notları etkinleştir"
 
 msgid "Logging level"
 msgstr "Günlük düzeyi"
@@ -900,12 +897,6 @@ msgstr "Seçilebilir azami alıcı sayısı:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Alıcıları alfabetik sıralı göster"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Rapor durum sayfasında alıcı ayrıntılarını görüntüle"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Alıcı seçim arayüzünün üzerinde görüntülenen metin"
 
 msgid "Enable comments"
 msgstr "Yorumları etkinleştir"
@@ -1323,12 +1314,6 @@ msgstr "Bir PGP açık anahtarı belirterek şifrelemeyi kurun"
 msgid "Give this admin ability to change user passwords"
 msgstr "Bu yöneticiye kullanıcı parolalarını değiştirme izni ver"
 
-msgid "Configuration"
-msgstr "Yapılandırma"
-
-msgid "Default"
-msgstr "Varsayılan"
-
 msgid "Forcefully selected"
 msgstr "Zorunlu seçilmiş"
 
@@ -1338,8 +1323,8 @@ msgstr "Alıcıya raporun zaman aşımı tarihini erteleme izni ver"
 msgid "Allow the recipient to delete reports"
 msgstr "Alıcıya raporları silme izni ver"
 
-msgid "User has administrative access to the following features:"
-msgstr "Kullanıcının aşağıdaki özelliklere yönetimsel erişimi var:"
+msgid "Give the user administrative access to the following features:"
+msgstr "Kullanıcıya aşağıdaki özellikler için yönetimsel erişim verin:"
 
 msgid "Request date"
 msgstr "Talep tarihi"
@@ -1760,6 +1745,9 @@ msgstr "Tamamla"
 msgid "Invalid phone number"
 msgstr "Geçersiz telefon numarası"
 
+msgid "Select the context of your report:"
+msgstr "Raporunuzun içeriğini seçin:"
+
 msgid "The answer is too short"
 msgstr "Yanıt çok kısa"
 
@@ -1806,11 +1794,19 @@ msgstr "Raporunuzu görüntüleyin"
 msgid "Recipient selection"
 msgstr "Alıcı seçimi"
 
+msgid "Select the recipients of your report:"
+msgstr "Bildiriminizin alıcılarını seçin:"
+
 msgid "Recipients selected:"
 msgstr "Seçilen alıcılar:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Seçilebilir azami alıcı sayısına ulaştınız."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "Aşağıdaki alıcılar bildiriminizi alacaktır, bu alıcıları sonradan çıkarmanız mümkün olmayacaktır:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1842,7 +1838,7 @@ msgid ""
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Bu seçeneği, alıcıların parolalarını kaybetmeleri durumunda veriyi kaybolmaktan korumak istemeniz durumunda kullanmanızı öneririz. Diğer taraftan, sadece alıcıların kendi gönderimlere erişmesine izin veren bir sistem kurmak istiyorsanız bu seçeneği önermiyoruz."
 
 msgid "Please choose a different username."
 msgstr "Lütfen farklı bir kullanıcı adı seçin."
@@ -2238,16 +2234,16 @@ msgid "New report"
 msgstr "Yeni rapor"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Bu e-postanın amacı mevcut bir bildirimin güncellendiğini size bildirmektir."
 
 msgid "Report updated"
-msgstr ""
+msgstr "Bildirim güncellendi"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Bu e-postanın amacı size okunmamış veya güncellenmiş bildirimlerin olduğunu hatırlatmaktır."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Okunmamış veya güncellenmiş bildirimler hakkında hatırlatma"
 
 msgid "Role: {Role}"
 msgstr "Rol: {Role}"

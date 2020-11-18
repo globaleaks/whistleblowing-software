@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -556,9 +556,6 @@ msgstr "DIČ"
 msgid "Tax code"
 msgstr "DIČ"
 
-msgid "Select the context of your report:"
-msgstr "Vyberte obsah Vašeho podání"
-
 msgid "Warning! You are not anonymous."
 msgstr "Varování! Nejste anonymní."
 
@@ -888,12 +885,6 @@ msgstr "Maximální počet zvolitelných příjemců"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Ukázat příjemce v abecedním pořadí"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Zobrazit detaily o příjemcích na stránce o stavu podání"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Text zobrazený na vrchu stránky s výběrem příjemců"
 
 msgid "Enable comments"
 msgstr "Povolit komentáře"
@@ -1311,12 +1302,6 @@ msgstr "Nastavte šifrování poskytnutím veřejné části PGP klíče."
 msgid "Give this admin ability to change user passwords"
 msgstr "Umožněte tomuto administrátorovi měnit uživatelská hesla "
 
-msgid "Configuration"
-msgstr "Konfigurace"
-
-msgid "Default"
-msgstr "Výchozí"
-
 msgid "Forcefully selected"
 msgstr "Nastaveno administrátorem"
 
@@ -1326,8 +1311,8 @@ msgstr "Povolit příjemci odložit datum expirace podání"
 msgid "Allow the recipient to delete reports"
 msgstr "Povolit příjemcům smazat podání"
 
-msgid "User has administrative access to the following features:"
-msgstr "Uživatel má přístup ke správě následujících funkcí:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "Datum požadavku"
@@ -1748,6 +1733,9 @@ msgstr "Dokončit"
 msgid "Invalid phone number"
 msgstr "Neplatné telefonní číslo"
 
+msgid "Select the context of your report:"
+msgstr "Vyberte obsah Vašeho podání"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1794,11 +1782,19 @@ msgstr "Zobrazit Vaše podání"
 msgid "Recipient selection"
 msgstr "Výběr příjemce"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Vybraní příjemci:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Dosáhli jste maximálního počtu volitelných příjemců."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -564,9 +564,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "Selecione o contexto da sua submissão:"
-
 msgid "Warning! You are not anonymous."
 msgstr "Aviso! Não está anónimo."
 
@@ -896,12 +893,6 @@ msgstr "Número máximo de destinatários selecionáveis:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Mostrar destinatários por ordem alfabética"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Mostrar os detalhes do destinatário na página de estado da submissão"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "O texto mostrado no topo da interface para os destinatários selecionados"
 
 msgid "Enable comments"
 msgstr "Permitir comentários"
@@ -1319,12 +1310,6 @@ msgstr "Configure a encriptação, indicando a chave pública PGP"
 msgid "Give this admin ability to change user passwords"
 msgstr ""
 
-msgid "Configuration"
-msgstr "Configuração"
-
-msgid "Default"
-msgstr "Predefinição"
-
 msgid "Forcefully selected"
 msgstr "Selecionado à força"
 
@@ -1334,8 +1319,8 @@ msgstr "Permitir o destinatário para adiar a data de validade "
 msgid "Allow the recipient to delete reports"
 msgstr "Permitir que os recetores apaguem as denúncias"
 
-msgid "User has administrative access to the following features:"
-msgstr " O utilizador tem acesso administrativo para as seguintes funcionalidades:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "Data do Pedido"
@@ -1756,6 +1741,9 @@ msgstr "Concluir"
 msgid "Invalid phone number"
 msgstr ""
 
+msgid "Select the context of your report:"
+msgstr "Selecione o contexto da sua submissão:"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1802,10 +1790,18 @@ msgstr "Ver a sua submissão"
 msgid "Recipient selection"
 msgstr "Seleção de destinatário"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Destinatários selecionados:"
 
 msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
 msgstr ""
 
 msgid ""

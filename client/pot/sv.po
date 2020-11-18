@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -563,9 +563,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr ""
-
 msgid "Warning! You are not anonymous."
 msgstr "Varning! Du är inte anonym."
 
@@ -895,12 +892,6 @@ msgstr ""
 
 msgid "Show recipients in alphabetical order"
 msgstr "Visa mottagare i alfabetiskordning"
-
-msgid "Show recipient details on the status page of the report"
-msgstr ""
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr ""
 
 msgid "Enable comments"
 msgstr "Aktivera kommentarer"
@@ -1318,12 +1309,6 @@ msgstr ""
 msgid "Give this admin ability to change user passwords"
 msgstr ""
 
-msgid "Configuration"
-msgstr "Konfiguration"
-
-msgid "Default"
-msgstr "Standard"
-
 msgid "Forcefully selected"
 msgstr "Kraftfull vald"
 
@@ -1333,7 +1318,7 @@ msgstr "Tillåt mottagare att förlänga utgångsdatumet för tipset"
 msgid "Allow the recipient to delete reports"
 msgstr "Tillåt mottagaren att ta bort tips"
 
-msgid "User has administrative access to the following features:"
+msgid "Give the user administrative access to the following features:"
 msgstr ""
 
 msgid "Request date"
@@ -1755,6 +1740,9 @@ msgstr "Klar"
 msgid "Invalid phone number"
 msgstr "Ogiltigt telefonnummer"
 
+msgid "Select the context of your report:"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1801,10 +1789,18 @@ msgstr ""
 msgid "Recipient selection"
 msgstr "Val av mottagare"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Valda mottagare:"
 
 msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
 msgstr ""
 
 msgid ""

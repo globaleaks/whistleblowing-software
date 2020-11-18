@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-12 07:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -566,9 +566,6 @@ msgstr "Partita IVA"
 msgid "Tax code"
 msgstr "Codice fiscale"
 
-msgid "Select the context of your report:"
-msgstr "Seleziona il contesto della tua segnalazione"
-
 msgid "Warning! You are not anonymous."
 msgstr "Attenzione! Non sei anonimo!"
 
@@ -688,7 +685,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Imposta un valore di 0 per disabilitare questa funzionalità."
 
 msgid "Number of days till notifying users unread reports"
-msgstr ""
+msgstr "Numero di giorni oltre il quale notificare agli utenti la presenza di segnalazioni non lette"
 
 msgid "Enable custodian user role"
 msgstr "Abilita il ruolo del custode"
@@ -697,7 +694,7 @@ msgid "Enable scoring system"
 msgstr "Abilita il sistema di punteggio"
 
 msgid "Enable private annotations"
-msgstr ""
+msgstr "Abilita annotazioni private"
 
 msgid "Logging level"
 msgstr "Livello di verbosità dei log"
@@ -898,12 +895,6 @@ msgstr "Numero massimo di riceventi selezionabili"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Mostra i riceventi in ordine alfabetico"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Mostra i dettagli dei destinatari sulla pagina di stato della segnalazione"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Testo mostrato in cima all'interfaccia di selezione dei riceventi"
 
 msgid "Enable comments"
 msgstr "Abilita i commenti"
@@ -1321,12 +1312,6 @@ msgstr "Attiva la crittografia caricando una chiave pubblica PGP"
 msgid "Give this admin ability to change user passwords"
 msgstr "Dai a questo amministratore il permesso di cambiare la password degli utenti"
 
-msgid "Configuration"
-msgstr "Configurazione"
-
-msgid "Default"
-msgstr "Predefinita"
-
 msgid "Forcefully selected"
 msgstr "Selezionato forzatamente"
 
@@ -1336,8 +1321,8 @@ msgstr "Permetti al ricevente di posticipare la data di scadenza"
 msgid "Allow the recipient to delete reports"
 msgstr "Permetti ai destinatari di cancellare le segnalazioni."
 
-msgid "User has administrative access to the following features:"
-msgstr "L'utente ha accesso amministrativo alle seguenti funzionalità:"
+msgid "Give the user administrative access to the following features:"
+msgstr "Dai all'utente accesso amministrativo alle seguenti funzionalità:"
 
 msgid "Request date"
 msgstr "Data della richiesta"
@@ -1758,6 +1743,9 @@ msgstr "Completa"
 msgid "Invalid phone number"
 msgstr "Numero di telefono non valido"
 
+msgid "Select the context of your report:"
+msgstr "Seleziona il contesto della tua segnalazione"
+
 msgid "The answer is too short"
 msgstr "La risposta è troppo corta"
 
@@ -1804,11 +1792,19 @@ msgstr "Vedi la tua segnalazione"
 msgid "Recipient selection"
 msgstr "Selezione del ricevente"
 
+msgid "Select the recipients of your report:"
+msgstr "Seleziona i destinatari della tua segnalazione:"
+
 msgid "Recipients selected:"
 msgstr "Riceventi selezionati"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Hai raggiunto il numero massimo di destinatari selezionabili."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "I seguenti destinatari riceveranno la segnalazione e non possono essere deselezionati:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -2236,16 +2232,16 @@ msgid "New report"
 msgstr "Nuova segnalazione"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Questa email ti notifica che un una segnalazione è stata aggiornata."
 
 msgid "Report updated"
-msgstr ""
+msgstr "Segnalazione aggiornata"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Questa email ti ricorda della presenza di segnalazioni non lette o aggiornate."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Promemoria circa segnalazioni non lette o aggiornate"
 
 msgid "Role: {Role}"
 msgstr "Ruolo: {Role}"

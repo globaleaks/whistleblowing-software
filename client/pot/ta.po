@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -548,9 +548,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "உங்கள் சமர்ப்பிப்பு சூழலில் தேர்வு:"
-
 msgid "Warning! You are not anonymous."
 msgstr "எச்சரிக்கை! நீங்கள் அநாமதேய இல்லை."
 
@@ -880,12 +877,6 @@ msgstr "தேர்ந்தெடுக்கும் பெற்றவர�
 
 msgid "Show recipients in alphabetical order"
 msgstr "அகரவரிசையில் பெற்றவர்கள் காட்டு"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "சமர்ப்பிக்கும் நிலையை பக்கம் பெறுநர் விவரங்களை காட்டு"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "உரை பயனாளிகள் தெரிவுசெய்யப்பட்ட இடைமுகம் மேல் காட்டப்படும்"
 
 msgid "Enable comments"
 msgstr "கருத்துகளை இயக்கு"
@@ -1303,12 +1294,6 @@ msgstr "ஒரு பிஜிபி பொது விசையை வழ�
 msgid "Give this admin ability to change user passwords"
 msgstr ""
 
-msgid "Configuration"
-msgstr "கட்டமைப்பு"
-
-msgid "Default"
-msgstr "இயல்புநிலை"
-
 msgid "Forcefully selected"
 msgstr "கட்டாயப்படுத்தி தேர்வு"
 
@@ -1318,8 +1303,8 @@ msgstr "பெறுநர் சமர்ப்பிப்பு காலா�
 msgid "Allow the recipient to delete reports"
 msgstr "பெற்றவர்கள் சமர்ப்பிப்புகளை நீக்க அனுமதிக்க"
 
-msgid "User has administrative access to the following features:"
-msgstr "பின்வரும் அம்சங்களுக்கு நிர்வாகி அணுகல் உள்ளது:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "கோரிக்கை தேதி"
@@ -1740,6 +1725,9 @@ msgstr "முழுமையான"
 msgid "Invalid phone number"
 msgstr "தவறான தொலைபேசி எண்"
 
+msgid "Select the context of your report:"
+msgstr "உங்கள் சமர்ப்பிப்பு சூழலில் தேர்வு:"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1786,10 +1774,18 @@ msgstr "உங்கள் சமர்ப்பிப்பு காண்க"
 msgid "Recipient selection"
 msgstr "பெறுநரின் தேர்வை"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "பெற்றவர்கள் தேர்வு:"
 
 msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
 msgstr ""
 
 msgid ""

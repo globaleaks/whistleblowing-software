@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -549,9 +549,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr ""
-
 msgid "Warning! You are not anonymous."
 msgstr "Aviso! Non es anónimo."
 
@@ -881,12 +878,6 @@ msgstr "Número máximo de destinatarios seleccionables:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Mostrar os destinatarios en orde alfabética"
-
-msgid "Show recipient details on the status page of the report"
-msgstr ""
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Texto que se mostra na parte superior da interface para seleccionar os destinatarios"
 
 msgid "Enable comments"
 msgstr "Activar comentarios"
@@ -1304,12 +1295,6 @@ msgstr "Configure o cifrado proporcionando unha clave pública PGP"
 msgid "Give this admin ability to change user passwords"
 msgstr ""
 
-msgid "Configuration"
-msgstr "Configuración"
-
-msgid "Default"
-msgstr "Predeterminado"
-
 msgid "Forcefully selected"
 msgstr "Seleccionado á forza"
 
@@ -1319,8 +1304,8 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr ""
 
-msgid "User has administrative access to the following features:"
-msgstr "O usuario ten acceso administrativo ás seguintes características:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "Data de solicitude"
@@ -1741,6 +1726,9 @@ msgstr "Completa"
 msgid "Invalid phone number"
 msgstr "Número de teléfono non válido"
 
+msgid "Select the context of your report:"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1787,10 +1775,18 @@ msgstr ""
 msgid "Recipient selection"
 msgstr "Selección de destinatarios"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Destinatarios seleccionados:"
 
 msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
 msgstr ""
 
 msgid ""

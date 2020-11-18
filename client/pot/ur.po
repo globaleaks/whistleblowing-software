@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -555,9 +555,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "اپنی گزارش کا سیاق و سباق کا انتخاب کریں :"
-
 msgid "Warning! You are not anonymous."
 msgstr "انتباہ! آپ گمنام نہیں ہیں."
 
@@ -887,12 +884,6 @@ msgstr "انتخاب وصول کنندگان کی زیادہ سے زیادہ ت�
 
 msgid "Show recipients in alphabetical order"
 msgstr "الفبائی ترتیب میں وصول کنندگان دکھائیں"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "جمع کرانے کی حیثیت کے صفحے پر وصول کنندہ کی تفصیلات دکھائیں"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "ہائے وصول کنندگان کے انتخاب کے لئے انٹرفیس کے سب سے اوپر پر دکھایا گیا"
 
 msgid "Enable comments"
 msgstr "تبصرے فعال کریں"
@@ -1310,12 +1301,6 @@ msgstr "ایک PGP عوامی کلید فراہم کی طرف سے خفیہ کا
 msgid "Give this admin ability to change user passwords"
 msgstr ""
 
-msgid "Configuration"
-msgstr "ترتیب"
-
-msgid "Default"
-msgstr "پہلے سے طے شدہ "
-
 msgid "Forcefully selected"
 msgstr "زبردستی منتخب شدہ"
 
@@ -1325,7 +1310,7 @@ msgstr "وصول کنندہ جمع کرانے کا وقت ختم ہونے کی �
 msgid "Allow the recipient to delete reports"
 msgstr "وصول کنندگان کو اختیار دیجیے کہ تجاویز حذف کر سکیں"
 
-msgid "User has administrative access to the following features:"
+msgid "Give the user administrative access to the following features:"
 msgstr ""
 
 msgid "Request date"
@@ -1747,6 +1732,9 @@ msgstr ""
 msgid "Invalid phone number"
 msgstr ""
 
+msgid "Select the context of your report:"
+msgstr "اپنی گزارش کا سیاق و سباق کا انتخاب کریں :"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1793,10 +1781,18 @@ msgstr "اپنی داخل کردہ گذارشات دیکھ لیں"
 msgid "Recipient selection"
 msgstr "وصول کنندہ کا انتخاب"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr " منتخب وصول کنندگان"
 
 msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
 msgstr ""
 
 msgid ""

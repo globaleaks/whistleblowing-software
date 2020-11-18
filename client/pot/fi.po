@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -554,9 +554,6 @@ msgstr "Arvonlisäveronumero"
 msgid "Tax code"
 msgstr "Veronumero"
 
-msgid "Select the context of your report:"
-msgstr "Valitse vihjeen aihe:"
-
 msgid "Warning! You are not anonymous."
 msgstr "Varoitus! Et ole anonyymi."
 
@@ -886,12 +883,6 @@ msgstr "Valittavien vastaanottajien maksimimäärä:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Näytä vastaanottajat aakkosjärjestyksessä"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Näytä vastaanottajan tiedot Vihjeen tila -sivulla"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Sivun yläosan teksti vastaanottajia valittaessa"
 
 msgid "Enable comments"
 msgstr "Ota käyttöön kommentit"
@@ -1309,12 +1300,6 @@ msgstr "Määritä salaus PGP-avaimella"
 msgid "Give this admin ability to change user passwords"
 msgstr "Salli tälle ylläpitäjälle mahdollisuus vaihtaa käyttäjien salasanat."
 
-msgid "Configuration"
-msgstr "Asetukset"
-
-msgid "Default"
-msgstr "Oletus"
-
 msgid "Forcefully selected"
 msgstr "Aina päällä (ei voi muuttaa)"
 
@@ -1324,8 +1309,8 @@ msgstr "Salli vastaanottajan siirtää vihjeen vanhentumispäivämäärää myö
 msgid "Allow the recipient to delete reports"
 msgstr "Salli vastaanottajien poistaa vihjeitä"
 
-msgid "User has administrative access to the following features:"
-msgstr "Käyttäjällä on ylläpito-oikeudet seuraaviin toimintoihin:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "Pyynnön päivämäärä"
@@ -1746,6 +1731,9 @@ msgstr "Valmis"
 msgid "Invalid phone number"
 msgstr "Puhelinnumero ei kelpaa"
 
+msgid "Select the context of your report:"
+msgstr "Valitse vihjeen aihe:"
+
 msgid "The answer is too short"
 msgstr "Vastaus on liian lyhyt"
 
@@ -1792,11 +1780,19 @@ msgstr "Tarkastele omaa vihjettä"
 msgid "Recipient selection"
 msgstr "Vastaanottajan valinta"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Valitsemasi vastaanottajat:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Maksimimäärä vastaanottojia saavutettu."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

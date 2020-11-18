@@ -42,7 +42,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -583,9 +583,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "حدد سياق بلاغك:"
-
 msgid "Warning! You are not anonymous."
 msgstr "تحذير! أنت لست مجهول الهوية."
 
@@ -915,12 +912,6 @@ msgstr "الحد الأقصى لعدد المتلقين الذي يمكن اخت
 
 msgid "Show recipients in alphabetical order"
 msgstr "إظهار المتلقين بترتيب ابجدي"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "عرض تفاصيل المتلقي على صفحة حالة البلاغ"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "النص الظّاهر في أعلى الواجهة لاختيار المتلقّين"
 
 msgid "Enable comments"
 msgstr "تفعيل التعليقات"
@@ -1338,12 +1329,6 @@ msgstr "إعداد التشفير عن طريق توفير مفتاح PGP عمو
 msgid "Give this admin ability to change user passwords"
 msgstr "إعطاء هذا المشرف القدرة على تغيير كلمات سر المستخدم"
 
-msgid "Configuration"
-msgstr "الاعدادات"
-
-msgid "Default"
-msgstr "الافتراضي"
-
 msgid "Forcefully selected"
 msgstr "مختارة بالقوّة"
 
@@ -1353,8 +1338,8 @@ msgstr "السماح للمتلقّي بتأجيل تاريخ انتهاء صل�
 msgid "Allow the recipient to delete reports"
 msgstr "السماح للمتلقين بحذف البلاغات"
 
-msgid "User has administrative access to the following features:"
-msgstr "المستخدم عنده صلاحيات إدارية للدخول إلى الخصائص التالية:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "تاريخ الطلب"
@@ -1775,6 +1760,9 @@ msgstr "اكتمل"
 msgid "Invalid phone number"
 msgstr "رقم هاتف غير صالح"
 
+msgid "Select the context of your report:"
+msgstr "حدد سياق بلاغك:"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1821,11 +1809,19 @@ msgstr "مشاهدة بلاغك"
 msgid "Recipient selection"
 msgstr "اختيار المتلقّي"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "المتلقّون المختارون :"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "لقد وصلت إلى الحد الأقصى من عدد المستلمين الذين يمكن تحديدهم."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

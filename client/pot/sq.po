@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -548,9 +548,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr ""
-
 msgid "Warning! You are not anonymous."
 msgstr "Warning! Ju nuk jeni anonim."
 
@@ -880,12 +877,6 @@ msgstr "Numri maksimal i marrësve të përzgjedhshëm:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Shfaqini marrësit të renditur alfabetikisht"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Trego detajet e marrësit në faqen e statusit të dorëzimit"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Tekst treguar në krye të ndërfaqes për zgjedhjen e marrësit"
 
 msgid "Enable comments"
 msgstr "Aktivizo komente"
@@ -1303,12 +1294,6 @@ msgstr "Ngritur encryption, duke siguruar një çelës publik PGP"
 msgid "Give this admin ability to change user passwords"
 msgstr ""
 
-msgid "Configuration"
-msgstr "Konfigurimi"
-
-msgid "Default"
-msgstr "Parazgjedhja"
-
 msgid "Forcefully selected"
 msgstr "zgjedhur me forcë"
 
@@ -1318,7 +1303,7 @@ msgstr "Lejo marrësi për të shtyrë datën e skadimit dorëzimit"
 msgid "Allow the recipient to delete reports"
 msgstr "Lejojnë përfituesit për të fshirë parashtresat"
 
-msgid "User has administrative access to the following features:"
+msgid "Give the user administrative access to the following features:"
 msgstr ""
 
 msgid "Request date"
@@ -1740,6 +1725,9 @@ msgstr "E plotësuar"
 msgid "Invalid phone number"
 msgstr ""
 
+msgid "Select the context of your report:"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1786,10 +1774,18 @@ msgstr "Shiheni parashtrimin tuja"
 msgid "Recipient selection"
 msgstr "Përzgjedhja e marrësit"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Marrësit e përzgjedhur:"
 
 msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
 msgstr ""
 
 msgid ""

@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -555,9 +555,6 @@ msgstr "IČ DPH"
 msgid "Tax code"
 msgstr "DIČ"
 
-msgid "Select the context of your report:"
-msgstr "Vyberte obsah správy:"
-
 msgid "Warning! You are not anonymous."
 msgstr "Varovanie! Nie ste anonymný."
 
@@ -887,12 +884,6 @@ msgstr "Maximálny počet voliteľných príjemcov"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Zobraziť príjemcov v abecednom poradí"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Zobraziť detaily o príjemcoch na stránke o stave podania"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Text zobrazený v hornej časti rozhrania s výberom príjemcov"
 
 msgid "Enable comments"
 msgstr "Povoliť komentáre"
@@ -1310,12 +1301,6 @@ msgstr "Nastavte šifrovanie pomocou verejného kľúča PGP."
 msgid "Give this admin ability to change user passwords"
 msgstr "Umožnite administrátorovi meniť používateľské heslá."
 
-msgid "Configuration"
-msgstr "Konfigurácia"
-
-msgid "Default"
-msgstr "Prednastavené"
-
 msgid "Forcefully selected"
 msgstr "Nastavené administrátorom"
 
@@ -1325,8 +1310,8 @@ msgstr "Umožniť príjemcovi odložiť dátum exspirácie podania"
 msgid "Allow the recipient to delete reports"
 msgstr "Povoliť príjemcom zmazať podania"
 
-msgid "User has administrative access to the following features:"
-msgstr "Používateľ má prístup k správe týchto funkcií:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "Dátum žiadosti"
@@ -1747,6 +1732,9 @@ msgstr "Dokončiť"
 msgid "Invalid phone number"
 msgstr "Neplatné telefónne číslo"
 
+msgid "Select the context of your report:"
+msgstr "Vyberte obsah správy:"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1793,11 +1781,19 @@ msgstr "Zobraziť podanie"
 msgid "Recipient selection"
 msgstr "Výber príjemcu"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Vybraní príjemcovia:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Dosiahli ste maximálneho počtu voliteľných príjemcov."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

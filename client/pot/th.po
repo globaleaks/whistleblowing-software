@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -552,9 +552,6 @@ msgstr "หมายเลข VAT"
 msgid "Tax code"
 msgstr "เลขประจำตัวผู้เสียภาษี"
 
-msgid "Select the context of your report:"
-msgstr "เลือกบริบทของรายงานของคุณ:"
-
 msgid "Warning! You are not anonymous."
 msgstr "คำเตือน! คุณไม่ได้เป็นนิรนามและจะถูกตามตัวได้"
 
@@ -884,12 +881,6 @@ msgstr "จำนวนสูงสุดของผู้รับที่เ
 
 msgid "Show recipients in alphabetical order"
 msgstr "แสดงผู้รับตามลำดับอักษร"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "แสดงรายละเอียดของผู้รับในหน้าสถานะของการส่ง"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "ข้อความแสดงที่ด้านบนของหน้าจอสำหรับเลือกผู้รับ"
 
 msgid "Enable comments"
 msgstr "เปิดใช้งานการแสดงความเห็น"
@@ -1307,12 +1298,6 @@ msgstr "ตั้งค่าให้เข้ารหัสลับ ด้�
 msgid "Give this admin ability to change user passwords"
 msgstr "ให้ผู้ดูแลรายนี้สามารถเปลี่ยนรหัสผ่านของผู้ใช้ได้"
 
-msgid "Configuration"
-msgstr "การปรับแต่งค่า"
-
-msgid "Default"
-msgstr "ค่าปริยาย"
-
 msgid "Forcefully selected"
 msgstr "บังคับเลือก"
 
@@ -1322,8 +1307,8 @@ msgstr "อนุญาตให้ผู้รับเลื่อนวัน
 msgid "Allow the recipient to delete reports"
 msgstr "อนุญาตให้ผู้รับลบรายงานได้"
 
-msgid "User has administrative access to the following features:"
-msgstr "ผู้ใช้มีสิทธิการเข้าถึงระดับผู้ดูแลระบบในความสามารถเหล่านี้:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "วันที่ร้องขอ"
@@ -1744,6 +1729,9 @@ msgstr "จบ"
 msgid "Invalid phone number"
 msgstr "หมายเลขโทรศัพท์ไม่ตรงรูปแบบ"
 
+msgid "Select the context of your report:"
+msgstr "เลือกบริบทของรายงานของคุณ:"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1790,11 +1778,19 @@ msgstr "ดูรายงานของคุณ"
 msgid "Recipient selection"
 msgstr "การเลือกผู้รับ"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "ผู้รับที่ถูกเลือก:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "คุณเลือกผู้รับจนเต็มจำนวนที่เลือกได้แล้ว"
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

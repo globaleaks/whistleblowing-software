@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-11-11 15:04+0000\n"
+"Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -580,9 +580,6 @@ msgstr "Numéro de TVA"
 msgid "Tax code"
 msgstr "Code fiscal"
 
-msgid "Select the context of your report:"
-msgstr "Sélectionnez le contexte de votre signalement :"
-
 msgid "Warning! You are not anonymous."
 msgstr "Avertissement. Vous n’êtes pas anonyme."
 
@@ -702,7 +699,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Définir la valeur à 0 pour désactiver cette fonction."
 
 msgid "Number of days till notifying users unread reports"
-msgstr ""
+msgstr "Nombre de jours avant de signaler les rapports non lus aux utilisateurs"
 
 msgid "Enable custodian user role"
 msgstr "Activer le rôle de gardien"
@@ -711,7 +708,7 @@ msgid "Enable scoring system"
 msgstr "Activer le système d’évaluation"
 
 msgid "Enable private annotations"
-msgstr ""
+msgstr "Activer les annotations privées"
 
 msgid "Logging level"
 msgstr "Niveau de journalisation"
@@ -912,12 +909,6 @@ msgstr "Nombre maximal de destinataires sélectionnables :"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Montrer les destinataires par ordre alphabétique"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Afficher les détails des destinataires sur la page d’état du signalement"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Texte de sélection des destinataires, affiché en haut de l’interface"
 
 msgid "Enable comments"
 msgstr "Activer les commentaires"
@@ -1335,12 +1326,6 @@ msgstr "Configurer le chiffrement en fournissant une clé publique PGP"
 msgid "Give this admin ability to change user passwords"
 msgstr "Permettre à cet administrateur de changer le mot de passe des utilisateurs"
 
-msgid "Configuration"
-msgstr "Configuration"
-
-msgid "Default"
-msgstr "Valeur par défaut"
-
 msgid "Forcefully selected"
 msgstr "Sélectionné de force"
 
@@ -1350,8 +1335,8 @@ msgstr "Permettre au destinataire de différer la date d’expiration du signale
 msgid "Allow the recipient to delete reports"
 msgstr "Permettre au destinataire de supprimer des signalements"
 
-msgid "User has administrative access to the following features:"
-msgstr "L’utilisateur a un accès d’administration aux fonctions suivantes :"
+msgid "Give the user administrative access to the following features:"
+msgstr "Donner à l’utilisateur un accès d’administration aux fonctions suivantes :"
 
 msgid "Request date"
 msgstr "Date de la demande"
@@ -1772,6 +1757,9 @@ msgstr "Terminé"
 msgid "Invalid phone number"
 msgstr "Le numéro de téléphone est invalide"
 
+msgid "Select the context of your report:"
+msgstr "Sélectionnez le contexte de votre signalement :"
+
 msgid "The answer is too short"
 msgstr "La réponse est trop courte"
 
@@ -1818,11 +1806,19 @@ msgstr "Visualisez votre signalement"
 msgid "Recipient selection"
 msgstr "Sélection du destinataire"
 
+msgid "Select the recipients of your report:"
+msgstr "Sélectionnez les destinataires de votre rapport :"
+
 msgid "Recipients selected:"
 msgstr "Destinataires sélectionnés :"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Vous avez atteint le nombre maximal de destinataires sélectionnables."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "Les destinataires suivants recevront votre rapport et n’ont pas pu être dessélectionnés :"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1854,7 +1850,7 @@ msgid ""
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Nous recommandons de sélectionner cette option si vous voulez protéger vos données contre la perte au cas où les destinataires perdraient leur mot de passe. Par contre, nous ne recommanderions pas d’utiliser cette fonction si vous voulez mettre en place un système où seuls les destinataires auraient accès à leurs envois."
 
 msgid "Please choose a different username."
 msgstr "Veuillez choisir un nom d’utilisateur différent."
@@ -2250,16 +2246,16 @@ msgid "New report"
 msgstr "Nouveau signalement"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Le but de ce courriel est de vous aviser qu’un rapport existant a été mis à jour."
 
 msgid "Report updated"
-msgstr ""
+msgstr "Un rapport a été mis à jour"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Le but de ce courriel est de vous rappeler la présence de rapports non lus ou mis à jour."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Rappel de rapports non lus ou mis à jour"
 
 msgid "Role: {Role}"
 msgstr "Rôle : {Role}"

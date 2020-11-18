@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -550,9 +550,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "ތިޔަ ފަރާތުގެ ރިޕޯޓްގެ ކޮއްޓެކްސްޓެ ހިޔާރުކުރައްވާ"
-
 msgid "Warning! You are not anonymous."
 msgstr "ސަމާލަ! ރައްކާތެރިކަން ރަނގަޅެއްނޫން. "
 
@@ -882,12 +879,6 @@ msgstr "އެންމެގިނަވެގެން އިޚްތިޔާރު ކުރެވޭނެ �
 
 msgid "Show recipients in alphabetical order"
 msgstr "ލިބިލައްވާ ފަރާތްތަށް އޭ.ބީ.ސީ އަކުރުގެ އޯޑަރަށް ބަހާލަން"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "ރިޕޯޓުގެ ސްޓޭޓަސް ސަފްޙާގެ ރިޕޯޓް ލިބޭ ފަރާތްތަކުގެ މައުލޫއްމާތު ފެންނަން ހުންނަގޮތް ހަދަން"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "ރައްދުވާ ފަރާތް ހޮވުމަށް އިންޓަފޭސް ސަފްޙާގެ އެންމެ މަތިން ފެންނަ މެސެޖް."
 
 msgid "Enable comments"
 msgstr "ކޮމެންޓްސް އޮންކުރަން"
@@ -1305,12 +1296,6 @@ msgstr "ޕީ.ޖީ.ޕީ ޕަބްލިކް ކީ ބޭނުންކޮއްގެން އެނ
 msgid "Give this admin ability to change user passwords"
 msgstr "ބޭނުންކުރާ ފަރާތްތަކުގެ ޕާސްވޯޑް ބަދަލުކުރުމުގެ ބާރު މި އެޑްމިންއަށް ދިނުމަށް  "
 
-msgid "Configuration"
-msgstr "ކޮންފިގަރޭޝަން"
-
-msgid "Default"
-msgstr "ޑީފޯލްޓް"
-
 msgid "Forcefully selected"
 msgstr "ބާރާއެކު ސިލެކްޝަން ހެދުން"
 
@@ -1320,8 +1305,8 @@ msgstr "ޚިދުމަތްލިބޭ ފަރާތަކަށް ރިޕޯޓްގެ މުއް�
 msgid "Allow the recipient to delete reports"
 msgstr "ލިބިލައްވާ ފަރާތަށް ރިޕޯޓު ފުހެލުމުގެ ޙުއްދަ ދިނުމަށް"
 
-msgid "User has administrative access to the following features:"
-msgstr "މި ފީޗަރ ތަކަށް ޔޫސަރ އަށް  ވަނީ އެޑްމިން ހުއްދަދީފައި"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "ތާރީޚު ހޯއްދެވުމަށް އެދިލެއްވުމަށް"
@@ -1742,6 +1727,9 @@ msgstr "ނިންމުމަށް"
 msgid "Invalid phone number"
 msgstr "ފޯނު ނަމްބަރު ރަނގަޅެއްނޫން"
 
+msgid "Select the context of your report:"
+msgstr "ތިޔަ ފަރާތުގެ ރިޕޯޓްގެ ކޮއްޓެކްސްޓެ ހިޔާރުކުރައްވާ"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1788,11 +1776,19 @@ msgstr "ތިޔަ ފަރާތުގެ ރިޕޯޓް ހުޅުވުމަށް"
 msgid "Recipient selection"
 msgstr "ޚިދުމަތްލިބޭ ފަރާތް ޚިޔާރުކުރައްވާ"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "ޚިދުމަތް ލިބޭ ފަރާތް ޚިޔާރުކުރެވިއްޖެ"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "އެންމެގިނަވެގެން އިޚްތިޔާރު ކުރެވޭނެ ޚިދުމަތަށް އެދޭމީހުންގެ ޢަދަދު ހަމަވެއްޖެ"
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

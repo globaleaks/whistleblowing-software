@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -560,9 +560,6 @@ msgstr "TVA"
 msgid "Tax code"
 msgstr "Cod fiscal"
 
-msgid "Select the context of your report:"
-msgstr "Selectează contextul sesizării tale:"
-
 msgid "Warning! You are not anonymous."
 msgstr "Atenție! Nu ești anonim."
 
@@ -892,12 +889,6 @@ msgstr "Numărul maxim de destinatari ce pot fi selectați:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Afișează destinatarii în ordine alfabetică"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Afișează detaliile destinatarului pe pagina care prezintă statusul sesizării"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Text afișat în partea de sus a interfeței pentru selectarea destinatarilor"
 
 msgid "Enable comments"
 msgstr "Activează comentariile"
@@ -1315,12 +1306,6 @@ msgstr "Configurează criptarea furnizând o cheie PGP publică"
 msgid "Give this admin ability to change user passwords"
 msgstr "Permite acestui administrator să schimbe parolele utilizatorilor "
 
-msgid "Configuration"
-msgstr "Configurare"
-
-msgid "Default"
-msgstr "Setare standard"
-
 msgid "Forcefully selected"
 msgstr "Selectat obligatoriu"
 
@@ -1330,8 +1315,8 @@ msgstr "Permite destinatarului să amâne data de expirare a sesizării"
 msgid "Allow the recipient to delete reports"
 msgstr "Permite destinatarilor să șteargă sesizările"
 
-msgid "User has administrative access to the following features:"
-msgstr "Utilizatorul are acces de administrator pentru următoarele setări:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "Data solicitării"
@@ -1752,6 +1737,9 @@ msgstr "Creează cont"
 msgid "Invalid phone number"
 msgstr "Număr de telefon invalid"
 
+msgid "Select the context of your report:"
+msgstr "Selectează contextul sesizării tale:"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1798,11 +1786,19 @@ msgstr "Vizualizează sesizarea"
 msgid "Recipient selection"
 msgstr "Selectează destinatarul"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Destinatari selectați:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Ai atins numărul maxim de destinatari ce pot fi selectați."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

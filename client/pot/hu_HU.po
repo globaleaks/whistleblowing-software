@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -563,9 +563,6 @@ msgstr "Adószám"
 msgid "Tax code"
 msgstr "Adókód"
 
-msgid "Select the context of your report:"
-msgstr "Válassza ki a beküldés környezetét:"
-
 msgid "Warning! You are not anonymous."
 msgstr "Figyelem! Ön nem anonim."
 
@@ -895,12 +892,6 @@ msgstr "Maximum kiválasztható címzettek száma:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "A címzettek megjelenítése betűrendben"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Üzenet, ami a beküldés állapota oldal tetején kerül megjelenítésre"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "A kontextusválasztó előtt megjelenő szöveg"
 
 msgid "Enable comments"
 msgstr "Megjegyzések engedélyezése"
@@ -1318,12 +1309,6 @@ msgstr "Titkosítás beállítása egy PGP publikus kulcsra"
 msgid "Give this admin ability to change user passwords"
 msgstr "Adjon az adminisztrátornak lehetőséget a felhasználók jelszavának megváltoztatására"
 
-msgid "Configuration"
-msgstr "Konfiguráció"
-
-msgid "Default"
-msgstr "Alapértelmezett"
-
 msgid "Forcefully selected"
 msgstr "Erőteljesen kiválasztva"
 
@@ -1333,8 +1318,8 @@ msgstr "A címzett számára engedélyezi a füles lejárati dátumának hosszab
 msgid "Allow the recipient to delete reports"
 msgstr "Engedélyezés a címzetteknek, hogy töröljék a tippeket"
 
-msgid "User has administrative access to the following features:"
-msgstr "A felhasználónak adminisztratív jogai vannak a következő funkciókra:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "Kérés dátuma"
@@ -1755,6 +1740,9 @@ msgstr "Kész"
 msgid "Invalid phone number"
 msgstr "Érvénytelen telefonszám"
 
+msgid "Select the context of your report:"
+msgstr "Válassza ki a beküldés környezetét:"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1801,11 +1789,19 @@ msgstr "Saját jelentés megtekintése"
 msgid "Recipient selection"
 msgstr "Címzett kiválasztása"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Kiválasztott címzettek:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Elérte a maximum kiválasztható címzett számot."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

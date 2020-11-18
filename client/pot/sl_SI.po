@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -549,9 +549,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "Izberite tematiko vašega prispevka:"
-
 msgid "Warning! You are not anonymous."
 msgstr "Opozorilo! Vaša identiteta ni skrita."
 
@@ -881,12 +878,6 @@ msgstr "Maksimalno število prejemnikov:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Pokaži prejemnike po abecednem redu"
-
-msgid "Show recipient details on the status page of the report"
-msgstr ""
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Besedilo na vrhu vmesnika izbire prejemnikov"
 
 msgid "Enable comments"
 msgstr "Omogoči komentarje"
@@ -1304,12 +1295,6 @@ msgstr "Nastavi šifriranje z zagotovitvijo tvojega javnega PGP ključa"
 msgid "Give this admin ability to change user passwords"
 msgstr ""
 
-msgid "Configuration"
-msgstr "Nastavitve"
-
-msgid "Default"
-msgstr "Privzeto"
-
 msgid "Forcefully selected"
 msgstr ""
 
@@ -1319,7 +1304,7 @@ msgstr "Dovoli prejemnikom prestavitev roka veljavnosti"
 msgid "Allow the recipient to delete reports"
 msgstr "Dovoli prejemniku, da zbriše naznanitve"
 
-msgid "User has administrative access to the following features:"
+msgid "Give the user administrative access to the following features:"
 msgstr ""
 
 msgid "Request date"
@@ -1741,6 +1726,9 @@ msgstr ""
 msgid "Invalid phone number"
 msgstr ""
 
+msgid "Select the context of your report:"
+msgstr "Izberite tematiko vašega prispevka:"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1787,10 +1775,18 @@ msgstr "Oglejte  si svojo naznanitev"
 msgid "Recipient selection"
 msgstr "Izbira prejemnika"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Izbrani prejemniki:"
 
 msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
 msgstr ""
 
 msgid ""

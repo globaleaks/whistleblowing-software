@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -552,9 +552,6 @@ msgstr "CVR-nummer"
 msgid "Tax code"
 msgstr "Skattekode"
 
-msgid "Select the context of your report:"
-msgstr "Vælg hvilken sammehæng din indsendelse indgår i."
-
 msgid "Warning! You are not anonymous."
 msgstr "Advarsel! Du er ikke anonym."
 
@@ -884,12 +881,6 @@ msgstr "Maksimalt antal modtagere der kan vælges:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Vis modtagere i alfabetisk rækkefølge"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Vis modtagerdetaljer på statussiden for indleveringen"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Tekst der vises øverst på det interface hvor modtagere vælges"
 
 msgid "Enable comments"
 msgstr "Aktivér kommentarer"
@@ -1307,12 +1298,6 @@ msgstr "Opsæt kryptering ved at indsende en offentlig PGP nøgle"
 msgid "Give this admin ability to change user passwords"
 msgstr "Giv denne administrator mulighed for at ændre brugeradgangskode"
 
-msgid "Configuration"
-msgstr "Konfiguration"
-
-msgid "Default"
-msgstr "Standard"
-
 msgid "Forcefully selected"
 msgstr "Tvunget valgt"
 
@@ -1322,8 +1307,8 @@ msgstr "Tillad modtageren at udsætte udløbsdatoen på indberetningen"
 msgid "Allow the recipient to delete reports"
 msgstr "Tillad modtageren at slette indberetninger"
 
-msgid "User has administrative access to the following features:"
-msgstr "Bruger har administratoradgang til følgende funktionaliteter:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "Anmod om dato"
@@ -1744,6 +1729,9 @@ msgstr "Afslut"
 msgid "Invalid phone number"
 msgstr "Forkert telefonnummer"
 
+msgid "Select the context of your report:"
+msgstr "Vælg hvilken sammehæng din indsendelse indgår i."
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1790,11 +1778,19 @@ msgstr "Se din indberetning"
 msgid "Recipient selection"
 msgstr "Vælg modtagere"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Valgte modtagere:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Du har nået det maksimale antal modtagere der kan vælges."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "

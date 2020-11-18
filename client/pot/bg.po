@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-06 22:31+0000\n"
+"PO-Revision-Date: 2020-11-10 22:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -554,9 +554,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "Изберете контекста на подадения сигнал:"
-
 msgid "Warning! You are not anonymous."
 msgstr "Внимание! Не сте в анонимност"
 
@@ -886,12 +883,6 @@ msgstr "Максимален брой избираеми получатели:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Показване на получателите по азбучен ред"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Показване информация за получателите на статус страницата на сигнала"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Текстът, който се показва най-горе на интерфейса за избор на получатели"
 
 msgid "Enable comments"
 msgstr "Активиране на коментари"
@@ -1309,12 +1300,6 @@ msgstr "Заложете криптиране като зададете PGP пу
 msgid "Give this admin ability to change user passwords"
 msgstr "Разрешете на администратора да променя паролите на потребителя"
 
-msgid "Configuration"
-msgstr "Настройки"
-
-msgid "Default"
-msgstr "По подразбиране"
-
 msgid "Forcefully selected"
 msgstr "Задължително избрани "
 
@@ -1324,8 +1309,8 @@ msgstr "Разрешаване на получателя да отложи да�
 msgid "Allow the recipient to delete reports"
 msgstr "Разрешr на получателите да изтриват подадени сигнали"
 
-msgid "User has administrative access to the following features:"
-msgstr "Потребителят има административен достъп до следните функции:"
+msgid "Give the user administrative access to the following features:"
+msgstr ""
 
 msgid "Request date"
 msgstr "Дата на заявката"
@@ -1746,6 +1731,9 @@ msgstr "Завършено"
 msgid "Invalid phone number"
 msgstr "Невалиден телефонен номер"
 
+msgid "Select the context of your report:"
+msgstr "Изберете контекста на подадения сигнал:"
+
 msgid "The answer is too short"
 msgstr ""
 
@@ -1792,11 +1780,19 @@ msgstr "Преглед на сигнала"
 msgid "Recipient selection"
 msgstr "Избор на получатели"
 
+msgid "Select the recipients of your report:"
+msgstr ""
+
 msgid "Recipients selected:"
 msgstr "Избрани получатели:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Достигнахте максималния брой на избрани реципиенти"
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
