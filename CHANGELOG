@@ -1,3 +1,57 @@
+Changes in version 4.1.0 - 2020-11-18
+    Revise the application UI following the official an new brand guidelines
+    - https://github.com/globaleaks/GlobaLeaks/blob/main/brand/globaleaks-brand-guidelines.pdf
+    Reduce colors of the application removing the usage of Green, preferring to use the Blue
+    color of the brand to communicate the values of the project along security and transparency.
+    Add compound favicon with resolution 16x16 32x32 48x48
+    Adopt Metropolis as application Font as defined by the brand guidelines
+    Optimize the application for better accessibility and responsiveness
+    Improve usability in relation to key escrow mechanism adding user hints about the
+    necessity of saving the key esrow.
+    Add receipt to the tip page to support users to annotate it (#2915)
+    Bump npm dependencies to latest version
+    Revise and improve network sandboxing enabling traffic to used ports
+    Implement restricted indexing policiy by means of X-Robots-Tag: noarchive when
+    indexing is enabled
+    Revise Cache-Control headers and update related security documentation
+    Implement automatic screenshot collection during tests and documentation update
+    Fix issue https://github.com/globaleaks/GlobaLeaks/issues/2911
+    Fix password reset malfunction in relation to users using 2FA
+    Revise email spooling setting interval to 10 seconds and retry to 7 days
+    Replace Feature-Policy Header with the renamed new standard Permission-Policy header
+    Complete documentation of securit features currently implemented
+    -  https://docs.globaleaks.org/en/main/security/index.html
+    Add preliminar documentation for more important user features:
+    -  https://docs.globaleaks.org/en/main/user/index.html
+    Revise project documentation added to Developers Italia via publiccode.yml
+    - https://developers.italia.it/it/software/globaleaks-globaleaks-f22648
+    Make is possible to use markdown when configuring a custom privacy badge
+    Remove possibility to filter ip access for whistleblowers; the feature was never actually
+    implemented and the interface shown was just added by mistake. We consider that
+    Whistleblowers access shall never be prevented and that any restriction on this
+    topic should be considered against the best practice.
+    Pospone notification of Letsencrypt failures after a week of the initial failure
+    Implement scheduler to notify users after 7 days of unread or updated reports
+    Implement automatic update to onion services version 3 and
+    plan OnionServices V2 deprecation in compatibility with Tor timeline (#2894)
+    Update default smtp configuration
+    Implement admin assisted password reset (applicable when escrow keys are enabled)
+    Revise CSS of the application removing redundant or unused classes
+    Bump database schema to version 53
+    Update ER schema of the application:
+    - https://github.com/globaleaks/GlobaLeaks/blob/main/documentation/data/er.pdf
+    Reimplemt periodic file cleaning postponing deletion of files to 1 day since deletion and
+    ensuring that files that are not linked to the database are properly deleted
+    Bump test code coverage from 81% to 84%
+    Remove possibility to include the application by means of an iframe making it possible to
+    load the application via proper CORS requests
+    Add subscriber table and subscribed document table for tracking GDPR and other contracts
+    for demo and professional uses in preparation to furter planned development
+    Replace GL-Language header making use of the standard Accept-Language header
+    Implement HTTP OPTIONS method
+    Add Estonian translation
+    Update translations
+
 Changes in version 4.0.58 - 2020-09-28
     Fix issue #2899
     Fix possibility to reset password for platforms that are admin-only
