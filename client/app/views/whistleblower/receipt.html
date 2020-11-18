@@ -1,5 +1,5 @@
 <div>
-  <div class="row">
+  <div class="row" data-ng-if="page === 'receiptpage'">
     <div class="col-md-12">
       <div id="ReceiptText">
         <div data-ng-if="!Authentication.context.score_receipt_text_custom">
@@ -13,7 +13,6 @@
       </div>
     </div>
   </div>
-  <br />
   <div class="row">
     <div data-ng-class="{'col-md-6': (public.node.enable_receipt_hint && !public.node.enable_ricochet_panel) || (!public.node.enable_receipt_hint && public.node.enable_ricochet_panel),
                          'col-md-12': !((public.node.enable_receipt_hint && !public.node.enable_ricochet_panel) || (!public.node.enable_receipt_hint && public.node.enable_ricochet_panel))}">
@@ -26,13 +25,13 @@
             <span id="KeyCode">{{formatted_receipt}}</span>
           </div>
           <div data-translate>Use the 16 digit receipt to log in. It will allow you to view any messages we sent you, and also to add extra info.</div>
-          <div class="mt-md-3 clearfix">
+          <div class="mt-md-3 clearfix" data-ng-if="page === 'receiptpage'">
             <button id="ReceiptButton" class="float-right btn btn-primary" data-ng-click="Authentication.login(0, 'whistleblower', receipt)" data-translate>View your report</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-6" data-ng-if="public.node.enable_receipt_hint" data-ng-include="'views/partials/keycodehint_panel.html'"></div>
-    <div class="col-md-6" data-ng-if="public.node.enable_ricochet_panel" data-ng-include="'views/partials/ricochet_panel.html'"></div>
+    <div class="col-md-6" data-ng-if="page === 'receiptpage' && public.node.enable_receipt_hint" data-ng-include="'views/partials/keycodehint_panel.html'"></div>
+    <div class="col-md-6" data-ng-if="page === 'receiptpage' && public.node.enable_ricochet_panel" data-ng-include="'views/partials/ricochet_panel.html'"></div>
   </div>
 </div>

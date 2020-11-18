@@ -109,8 +109,6 @@ factory("Authentication",
         });
       };
 
-      self.receipt = "";
-
       self.deleteSession = function() {
         if (self.session) {
           self.session = undefined;
@@ -332,10 +330,9 @@ factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope",
         }
       });
 
-      return self._submission.$update(function(result){
+      return self._submission.$update(function(result) {
         if (result) {
-          Authentication.submission = self._submission;
-          Authentication.context = self.context;
+          $rootScope.receipt = self._submission.receipt;
           $rootScope.setPage("receiptpage");
         }
       });
