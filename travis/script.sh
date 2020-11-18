@@ -57,7 +57,7 @@ if [ "$GLTEST" = "test" ]; then
   cd $TRAVIS_BUILD_DIR/client
   ./node_modules/nyc/bin/nyc.js  instrument --complete-copy app build --source-map=false
 
-  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z -D
+  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z -d
   sleep 3
 
   ./node_modules/protractor/bin/webdriver-manager update
