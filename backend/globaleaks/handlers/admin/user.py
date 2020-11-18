@@ -89,7 +89,7 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
             enc_key = GCE.derive_key(password.encode(), user.salt)
             crypto_escrow_prv_key = GCE.asymmetric_decrypt(user_session.cc, Base64Encoder.decode(user_session.ek))
 
-            if tid == 1:
+            if user_session.user_tid == 1:
                 user_cc = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(user.crypto_escrow_bkp1_key))
             else:
                 user_cc = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(user.crypto_escrow_bkp2_key))
