@@ -23,7 +23,7 @@ GlobaLeaks could be instead easily migrated to a new up-to-date Debian system wi
 - log on the new server and extract the backup in /var/globaleaks
 - follow the :doc:`Installation Guide </setup/InstallationGuide>`; GlobaLeaks while installing will recognize the presence of an existing data directory and will use it
 
-In case of errors
+In Case of Errors
 -----------------
 The above commands should allow you to perform regularly updates. On some conditions due to special updates it could be possible that those commands result in a failure. Consult this page for knowning specific FAQs on precise failures.
 

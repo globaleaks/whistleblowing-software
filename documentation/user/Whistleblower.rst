@@ -2,7 +2,7 @@
 For Whistleblowers
 ==================
 
-File a new report
+File a New Report
 -----------------
 A new report can be filed by accessing the homepage of the platform and clicking the ``Blow the Whistle`` button.
 
@@ -14,7 +14,7 @@ After filing a new report the systems provides to the user a 16-digit receipt.
 
 .. image:: ../images/whistleblower/receipt.png
 
-Access an existing report
+Access an Existing Report
 -------------------------
 An existing report can be accessed by entering the 16-digit receipt obtained at the end of the submission on the login interface present on the home page of the platform.
 
