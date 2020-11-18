@@ -473,7 +473,7 @@ class APIResourceWrapper(Resource):
         # include the HSTS header.
         # This choice is intended to avoid to leave traces in the HSTS
         # cache of the browwser.
-        if request.isSecure() and not cors:
+        if request.isSecure() and not request.cors:
             if State.tenant_cache[request.tid].https_preload:
                 request.setHeader(b'Strict-Transport-Security',
                                   b'max-age=31536000; includeSubDomains; preload')
