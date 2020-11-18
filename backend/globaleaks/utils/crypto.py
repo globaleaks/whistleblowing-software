@@ -60,15 +60,6 @@ def generateRandomKey():
     return sha256(nacl_random(32)).decode()
 
 
-def generateApiToken():
-    """
-    Generate an API token
-    :return: An API token to be used for authentication
-    """
-    token = generateRandomKey()
-    return token, sha256(token.encode()).decode()
-
-
 def generateRandomPassword(N):
     """
     Return a random password
