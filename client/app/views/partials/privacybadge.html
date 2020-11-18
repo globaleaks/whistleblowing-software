@@ -1,4 +1,4 @@
-<div data-ng-if="!connection.tor" data-ng-init="connection.privacy_badge_open = true">
+<div data-ng-if="!connection.tor">
   <div id="PrivacyBadge" class="clearfix">
     <div data-ng-if="!public.node.enable_custom_privacy_badge">
       <div id="PrivacyBadgeTextBox" class="float-left">
@@ -6,7 +6,7 @@
           <i class="fas fa-exclamation-circle"></i>
           <span data-translate>Warning</span>
         </span>
-        <div data-ng-show="connection.privacy_badge_open">
+        <div data-ng-show="privacy_badge_open">
           <div id="PrivacyBadgeText">
             <div data-translate>It appears that you are browsing this site without any extra privacy and security!</div>
             <div data-translate>You are strongly advised to visit this site using the app called Tor Browser, that protects your identity.</div>
@@ -20,10 +20,10 @@
     </div>
     <div data-ng-if="public.node.enable_custom_privacy_badge">
       <div id="PrivacyBoxTextBox" class="float-left">
-        <span id="PrivacyBadgeCustomText" data-ng-show="connection.privacy_badge_open" data-markdown-to-html="public.node.custom_privacy_badge_text"></span>
+        <span id="PrivacyBadgeCustomText" data-ng-show="privacy_badge_open" data-markdown-to-html="public.node.custom_privacy_badge_text"></span>
       </div>
     </div>
-    <div id="PrivacyBoxCloseButton" class="float-right" data-ng-click="connection.privacy_badge_open = !connection.privacy_badge_open">
+    <div id="PrivacyBoxCloseButton" class="float-right" data-ng-click="privacy_badge_open = !privacy_badge_open">
       <i data-ng-if="!connection.privacy_badge_open" class="fas fa-chevron-circle-down"></i>
       <i data-ng-if="connection.privacy_badge_open" class="fas fa-chevron-circle-up"></i>
     </div>

@@ -658,8 +658,10 @@ var GL = angular.module("GL", [
 
         $rootScope.connection = {
           "https": $location.protocol() === "https",
-          "tor": getResponseHeaders()["X-Check-Tor"] === "true" || $location.host().match(/\.onion$/)
+          "tor": getResponseHeaders()["X-Check-Tor"] === "true" || $location.host().match(/\.onion$/),
         };
+
+        $rootScope.privacy_badge_open = !$rootScope.connection.tor;
 
         Utils.route_check();
 
