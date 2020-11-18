@@ -48,7 +48,7 @@ fi
 
 test $DEBIAN_SCRIPT_DEBUG && set -v -x
 
-GLPID=/var/run/globaleaks/globaleaks.pid
+GLPID=/var/run/globaleaks.pid
 
 # Let's try to figure our some sane defaults:
 if [ -r /proc/sys/fs/file-max ]; then
@@ -142,7 +142,7 @@ network_sandboxing_start()
             iptables -m comment --comment "globaleaks" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -j ACCEPT
             ip6tables -m comment --comment "globaleaks" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -j ACCEPT
 
-            declare -a PORTS=("25" "80", "53", "443", "465", "587" "9050")
+            declare -a PORTS=("25" "80" "53" "443" "465" "587" "9050")
             for PORT in "${PORTS[@]}"; do
                 iptables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp --dport $PORT -j ACCEPT
                 ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp --dport $PORT -j ACCEPT
@@ -150,8 +150,8 @@ network_sandboxing_start()
 
             declare -a PORTS=("53")
             for PORT in "${PORTS[@]}"; do
-                iptables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m udp --dport $PORT -j ACCEPT
-                ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m udp --dport $PORT -j ACCEPT
+                iptables -m comment --comment "globaleaks" -t filter -A OUTPUT -p udp -m owner --uid-owner ${USERNAME} -m udp --dport $PORT -j ACCEPT
+                ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT -p udp -m owner --uid-owner ${USERNAME} -m udp --dport $PORT -j ACCEPT
             done
         fi
 
@@ -212,10 +212,13 @@ case "$1" in
             AA_EXEC=""
             AA_EXEC_ARGS=""
         fi
-        if start-stop-daemon --start --quiet \
+        if start-stop-daemon \
+            --start \
+            --quiet \
             --pidfile $GLPID \
             $AA_EXEC \
-            --exec $DAEMON -- $AA_EXEC_ARGS $ARGS
+            --exec $DAEMON \
+	    -- $AA_EXEC_ARGS $ARGS
         then
             log_action_end_msg 0
         else
@@ -233,7 +236,13 @@ case "$1" in
         exit 0
     fi
 
-    if start-stop-daemon --stop --signal TERM --quiet --pidfile $GLPID --name globaleaks; then
+    if start-stop-daemon
+        --stop \
+        --signal TERM \
+        --quiet \
+        --pidfile $GLPID \
+        --remove-pidfile \
+        --name globaleaks; then
         wait_for_deaddaemon $pid
     elif kill -0 $pid 2>/dev/null; then
         log_action_end_msg 1 "Is $pid not $NAME?  Is $DAEMON a different binary now?"
