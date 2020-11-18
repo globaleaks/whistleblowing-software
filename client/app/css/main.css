@@ -117,6 +117,10 @@ a:hover.darklink {
   border-top: 0;
 }
 
+[dir] .btn {
+  font-weight: bold;
+}
+
 #PageContent {
   flex: 1 0 auto;
 }
