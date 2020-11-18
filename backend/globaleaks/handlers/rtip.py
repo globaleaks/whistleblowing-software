@@ -739,6 +739,9 @@ class RTipInstance(OperationHandler):
     def postpone_expiration(self, _, tip_id, *args, **kwargs):
         return postpone_expiration(self.request.tid, self.current_user.user_id, tip_id)
 
+    def update_important(self, req_args, tip_id, *args, **kwargs):
+        return update_important(self.request.tid, self.current_user.user_id, tip_id, req_args['value'])
+
     def update_label(self, req_args, tip_id, *args, **kwargs):
         return update_label(self.request.tid, self.current_user.user_id, tip_id, req_args['value'])
 
