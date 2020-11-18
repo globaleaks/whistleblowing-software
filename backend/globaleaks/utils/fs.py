@@ -2,7 +2,7 @@
 import io
 import json
 import os
-import random
+import secrets
 
 from globaleaks.rest import errors
 from globaleaks.utils.log import log
@@ -29,31 +29,24 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
         count = 0
         length = len(pattern)
 
-        with open(absolutefpath, 'w+') as f:
+        with open(absolutefpath, 'wb+') as f:
             f.seek(0)
             while count < length:
                 f.write(pattern)
                 count += len(pattern)
 
-    randomgen = random.SystemRandom()
-
     try:
         # in the following loop, the file is open and closed on purpose, to trigger flush operations
-        all_zeros = "\0\0\0\0" * 1024               # 4kb of zeros
-        all_ones = "\xFF" * 4096
+        all_0 = b"\x00" * 4096  # 4kb of zeros
+        all_1 = b"\xFF" * 4096  # 4kb of ones
 
         for iteration in range(iterations_number):
-            OPTIMIZATION_RANDOM_BLOCK = randomgen.randint(4096, 4096 * 2)
-
-            random_pattern = ""
-            for _ in range(OPTIMIZATION_RANDOM_BLOCK):
-                random_pattern += str(randomgen.randrange(256))
-
+            random_pattern = secrets.token_bytes(4096)
             log.debug("Excecuting rewrite iteration (%d out of %d)",
                       iteration, iterations_number)
 
-            _overwrite(absolutefpath, all_zeros)
-            _overwrite(absolutefpath, all_ones)
+            _overwrite(absolutefpath, all_0)
+            _overwrite(absolutefpath, all_1)
             _overwrite(absolutefpath, random_pattern)
 
     except Exception as excep:
