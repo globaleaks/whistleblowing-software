@@ -7,7 +7,6 @@ import warnings
 from sqlalchemy import exc as sa_exc
 
 from globaleaks import models, DATABASE_VERSION
-from globaleaks.handlers.admin import tenant
 from globaleaks.handlers.admin.https import load_tls_dict_list
 from globaleaks.models import Base, Config
 from globaleaks.models.config_desc import ConfigFilters
@@ -60,6 +59,7 @@ def init_db(session):
     Transaction for initializing the application database
     :param session: An ORM session
     """
+    from globaleaks.handlers.admin import tenant
     tenant.db_create(session, {'mode': 'default', 'name': 'GLOBALEAKS', 'subdomain': ''})
 
 

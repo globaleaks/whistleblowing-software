@@ -3,6 +3,7 @@ import base64
 import os
 
 from globaleaks import models
+from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata, db_load_defaults
 from globaleaks.handlers.admin import file
 from globaleaks.handlers.base import BaseHandler
@@ -77,6 +78,8 @@ def db_create(session, desc):
             with open(os.path.join(Settings.client_path, file_desc[1]), 'rb') as f:
                 data = base64.b64encode(f.read()).decode()
                 file.db_add_file(session, t.id, file_desc[0], '', data)
+
+    db_refresh_memory_variables(session, [t.id])
 
     return t
 
