@@ -95,7 +95,7 @@ exports.waitForFile = function (filename, timeout) {
 };
 
 exports.takeScreenshot = async function(filename, locator) {
-  if (browser.params.takeScreenshots) {
+  if (!browser.params.takeScreenshots) {
     return;
   }
 
