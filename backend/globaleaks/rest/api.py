@@ -501,13 +501,13 @@ class APIResourceWrapper(Resource):
                                                           "block-all-mixed-content")
 
         # Disable features that could be used to deanonymize the user
-        request.setHeader(b'Feature-Policy', b"camera 'none';"
-                                             b"display-capture 'none';"
-                                             b"document-domain 'none';"
-                                             b"fullscreen 'none';"
-                                             b"geolocation 'none';"
-                                             b"microphone 'none';"
-                                             b"speaker 'none'")
+        request.setHeader(b'Permissions-Policy', b"camera=('none') "
+                                                 b"display-capture=('none') "
+                                                 b"document-domain=('none') "
+                                                 b"fullscreen=('none') "
+                                                 b"geolocation=('none') "
+                                                 b"microphone=('none') "
+                                                 b"speaker=('none')")
 
         # Prevent sites to includes the platform within an iframe
         request.setHeader(b'X-Frame-Options', b'deny')
