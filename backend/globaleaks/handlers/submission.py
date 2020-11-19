@@ -293,7 +293,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
                                                   models.User.crypto_pub_key != '')]
 
 
-    if not request['receivers']:
+    if not receivers:
         raise errors.InputValidationError("Unable to deliver the submission to at least one recipient")
 
     if 0 < context.maximum_selectable_receivers < len(request['receivers']):
@@ -444,7 +444,6 @@ class SubmissionInstance(BaseHandler):
         """
         Finalize the submission
         """
-
         connection_check(self.request.tid, self.request.client_ip, 'whistleblower', self.request.client_using_tor)
 
         if not self.state.accept_submissions or self.state.tenant_cache[self.request.tid]['disable_submissions']:
