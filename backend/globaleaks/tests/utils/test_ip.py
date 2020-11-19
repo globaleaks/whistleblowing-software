@@ -9,15 +9,13 @@ from globaleaks.utils import ip
 class TestIPUtils(unittest.TestCase):
     def test_parse_csv_ip_ranges_to_ip_networks(self):
         ip_str = "192.168.1.1,10.0.0.0/8,::1,2001:db8::/32"
-        ip_list = ip.parse_csv_ip_ranges_to_ip_networks(ip_str)
+        self.assertTrue(ip.check_ip("192.168.1.1", ip_str))
 
-        self.assertEqual(len(ip_list), 4)
+        ip_str = "192.168.1.2,10.0.0.0/8,::1,2001:db8::/32"
+        self.assertFalse(ip.check_ip("192.168.1.1", ip_str))
 
-        self.assertIn(ipaddress.ip_network(u"192.168.1.1/32"), ip_list)
-        self.assertIn(ipaddress.ip_network(u"10.0.0.0/8"), ip_list)
-        self.assertIn(ipaddress.ip_network(u"::1/128"), ip_list)
-        self.assertIn(ipaddress.ip_network(u"2001:db8::/32"), ip_list)
+        ip_str = "192.168.1.2,10.0.0.0/8,::1,2001:db8::/32"
+        self.assertTrue(ip.check_ip("10.0.0.1", ip_str))
 
-        # Now confirm we properly fail when garbage is appended
-        ip_str = ip_str + ",abcdef"
-        self.assertEqual(ip.parse_csv_ip_ranges_to_ip_networks(ip_str), [])
+        ip_str = "192.168.1.2,10.0.0.0/8,::1,2001:db8::/32"
+        self.assertTrue(ip.check_ip("2001:db8::2", ip_str))
