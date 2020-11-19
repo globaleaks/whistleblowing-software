@@ -497,10 +497,10 @@ class SoftwareUpdateKeyword(UserNodeKeyword):
         return '%s' % __version__
 
     def ChangeLogUrl(self):
-        return 'https://www.globaleaks.org/r/changelog'
+        return 'https://github.com/globaleaks/GlobaLeaks/blob/main/CHANGELOG'
 
     def UpdateGuideUrl(self):
-        return 'https://www.globaleaks.org/r/upgrade-guide'
+        return 'https://docs.globaleaks.org/en/main/user/admin/UpgradeGuide.html'
 
 
 class UserCredentials(Keyword):
