@@ -47,7 +47,7 @@ install: true
 script:
   - $TRAVIS_BUILD_DIR/travis/script.sh
   - if [ "${OS_TYPE}" == "centos" ];then sed -i 's/MY_GIT_VERSION/'`git describe  --abbrev=0 | cut -c2-`'/g' el/globaleaks.spec ;fi
-  - if [ ! -z "${TRAVIS_TAG}" ]; then sed -i 's/MY_GIT_COMMIT/'`git log -1 --pretty=format:"%h"`'/g' el/globaleaks.spec;else sed -i 's/MY_GIT_COMMIT/0/g' el/globaleaks.spec ;fi
+  - if [ -z "${TRAVIS_TAG}" ]; then sed -i 's/MY_GIT_COMMIT/'`git log -1 --pretty=format:"%h"`'/g' el/globaleaks.spec;else sed -i 's/MY_GIT_COMMIT/0/g' el/globaleaks.spec ;fi
   - if [ "${OS_TYPE}" == "centos" ];then docker run -v ${PWD}/el:/sources -v ${PWD}:/output:Z -e "SRPM_ONLY=1" ${DOCKER_IMAGE}:${OS_TYPE}-${OS_VERSION};fi
 notifications:
   slack:

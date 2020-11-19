@@ -13,7 +13,12 @@ Group: Converted/web
 ExclusiveArch: x86_64
 
 URL:            https://globaleaks.org
+%if %{commit} == 0
+Source0:        https://github.com/globaleaks/GlobaLeaks/archive/v%{version}.tar.gz
+%else
 Source0:        https://github.com/globaleaks/GlobaLeaks/archive/%{commit}.tar.gz
+%endif
+
 Source1:	globaleaks.service
 
 BuildRequires: nodejs
