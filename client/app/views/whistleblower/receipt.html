@@ -14,8 +14,7 @@
     </div>
   </div>
   <div class="row">
-    <div data-ng-class="{'col-md-6': (public.node.enable_receipt_hint && !public.node.enable_ricochet_panel) || (!public.node.enable_receipt_hint && public.node.enable_ricochet_panel),
-                         'col-md-12': !((public.node.enable_receipt_hint && !public.node.enable_ricochet_panel) || (!public.node.enable_receipt_hint && public.node.enable_ricochet_panel))}">
+    <div class="col-md-12">
       <div class="card card-secondary">
         <div class="card-header">
           <span data-translate>Remember your receipt for this report.</span>
@@ -31,7 +30,9 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6" data-ng-if="page === 'receiptpage' && public.node.enable_receipt_hint" data-ng-include="'views/partials/keycodehint_panel.html'"></div>
-    <div class="col-md-6" data-ng-if="page === 'receiptpage' && public.node.enable_ricochet_panel" data-ng-include="'views/partials/ricochet_panel.html'"></div>
+  </div>
+  <div class="row" data-ng-if="page === 'receiptpage'">
+    <div class="col-md-6" data-ng-if="public.node.enable_receipt_hint" data-ng-include="'views/partials/keycodehint_panel.html'"></div>
+    <div class="col-md-6" data-ng-if="public.node.enable_ricochet_panel" data-ng-include="'views/partials/ricochet_panel.html'"></div>
   </div>
 </div>
