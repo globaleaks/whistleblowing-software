@@ -860,7 +860,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
         $rootScope.setPage("signuppage");
       } else if (["/", "/submission"].indexOf(path !== -1) && $rootScope.public.node.adminonly && !$rootScope.Authentication.session) {
         $location.path("/admin");
-      } else if ($rootScope.Authentication.session) {
+      } else if ($rootScope.Authentication.session && $rootScope.Authentication.session.role !== "whistleblower") {
         if ($rootScope.Authentication.session.password_change_needed) {
           $location.path("/actions/forcedpasswordchange");
         } else if ($rootScope.public.node.two_factor && !$rootScope.Authentication.session.two_factor) {
