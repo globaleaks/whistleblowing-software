@@ -34,7 +34,7 @@
     "qrcode-generator": "1.4.4",
     "stacktrace-js": "2.0.2",
     "topojson": "3.0.2",
-    "ui-bootstrap4": "3.0.6",
+    "ui-bootstrap4": "3.0.7",
     "ui-select": "0.19.8"
   },
   "devDependencies": {

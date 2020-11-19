@@ -1,6 +1,6 @@
 {
   "name": "GlobaLeaks",
-  "version": "4.0.58",
+  "version": "4.1.0",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -8356,9 +8356,9 @@
       "dev": true
     },
     "ui-bootstrap4": {
-      "version": "3.0.6",
-      "resolved": "https://registry.npmjs.org/ui-bootstrap4/-/ui-bootstrap4-3.0.6.tgz",
-      "integrity": "sha512-Kh38WAu/S8EiyKRMaATkFjsbQplJHvP+g2lxitE5SbjQTDieua8T7d+mQNxbxTjfmJqGtVzsHQCHRmBVdKPeOg=="
+      "version": "3.0.7",
+      "resolved": "https://registry.npmjs.org/ui-bootstrap4/-/ui-bootstrap4-3.0.7.tgz",
+      "integrity": "sha512-rAvXVwczihiU4I2wVbalg60ON+u5iugVXu9ATcgqsxCNgo6ghLUYlGVP11NJ8SfS+5VJzpBSlYfVHOD/3T+klA=="
     },
     "ui-select": {
       "version": "0.19.8",
