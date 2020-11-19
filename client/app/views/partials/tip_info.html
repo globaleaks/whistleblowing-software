@@ -45,7 +45,7 @@
         <th class="TipInfoReadReceipt" data-ng-if="Authentication.session.role === 'receiver'">
           <i class="fas fa-eye"></i>
         </th>
-        <th class="TipInfoConnection">
+        <th class="TipInfoConnection" data-ng-if="Authentication.session.role === 'receiver'">
           <i class="fas fa-network-wired"></i>
           <span data-translate>Connection</span>
         </th>
@@ -75,7 +75,7 @@
           <i data-ng-if="tip.wb_last_access < tip.update_date" class="fas fa-times"
              uib-tooltip="{{'The whistleblower has not read the last update yet' | translate }}"></i>
         </td>
-        <td class="TipInfoConnection">
+        <td class="TipInfoConnection" data-ng-if="Authentication.session.role === 'receiver'">
             <span data-ng-if="tip.https"
                   uib-tooltip="{{'The connection has been secured with HTTPS ensuring confidentiality.' | translate}}">HTTPS</span>
           <span data-ng-if="!tip.https"
