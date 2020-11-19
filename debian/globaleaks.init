@@ -229,28 +229,18 @@ case "$1" in
     ;;
   stop)
     log_action_begin_msg "Stopping $DESC"
+
     pid=`cat $GLPID 2>/dev/null` || true
 
-    if test ! -f $GLPID -o -z "$pid"; then
-        log_action_end_msg 0 "not running - there is no $GLPID"
-        exit 0
+    if [ "$pid" -eq "0" ] || [ kill -0 pid >/dev/null 2<&- ]; then
+        log_end_msg 0 "not running."
+    else
+        kill -15 $pid >/dev/null 2<&-
+        wait_for_deaddaemon $pid
+        log_end_msg 0 "stopped."
     fi
 
-    if start-stop-daemon
-        --stop \
-        --signal TERM \
-        --quiet \
-        --pidfile $GLPID \
-        --remove-pidfile \
-        --name globaleaks; then
-        wait_for_deaddaemon $pid
-    elif kill -0 $pid 2>/dev/null; then
-        log_action_end_msg 1 "Is $pid not $NAME?  Is $DAEMON a different binary now?"
-        exit 1
-    else
-        log_action_end_msg 1 "$DAEMON died: process $pid not running; or permission denied"
-        exit 1
-    fi
+    network_sandboxing_stop
     ;;
   status)
     if test ! -r $(dirname $GLPID); then
