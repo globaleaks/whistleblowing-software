@@ -1,4 +1,5 @@
 %global commit      MY_GIT_COMMIT
+%global fullcommit  MY_FULL_GIT_COMMIT
 %global version     MY_GIT_VERSION
 
 %define debug_package %{nil}
@@ -38,7 +39,7 @@ Requires: tor
 Requires: haveged
 
 %prep
-%setup -n GlobaLeaks-%{commit}
+%setup -n GlobaLeaks-%{fullcommit}
 
 %build
 
