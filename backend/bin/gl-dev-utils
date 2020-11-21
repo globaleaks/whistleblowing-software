@@ -3,6 +3,7 @@
 # Useful commands that get reused during the normal course of development
 import argparse
 import json
+import sys
 
 from globaleaks.settings import Settings
 from globaleaks.utils import templating
@@ -13,7 +14,9 @@ def generate_templates_descriptor(args):
     out_dict = dict()
     for template_type, kw_class in templating.supported_template_types.items():
         postfix = ['_mail_template', '_mail_title']
-        if template_type == 'export_message':
+        if template_type in ['null', 'user_credentials']:
+            continue
+        elif template_type == 'export_message':
             postfix = ['_whistleblower', '_recipient']
         elif template_type == 'export_template':
             postfix = ['']
@@ -31,9 +34,14 @@ parser = argparse.ArgumentParser(prog="gl-admin",
 
 subp = parser.add_subparsers(title="commands")
 
-kw_p = subp.add_parser("generate_templates_descriptor", help="Gcnerate mail templates descriptors")
+kw_p = subp.add_parser("generate_templates_descriptor", help="Generate mail templates descriptors")
 kw_p.set_defaults(func=generate_templates_descriptor)
 
 if __name__ == '__main__':
     args = parser.parse_args()
-    args.func(args)
+    try:
+        func = args.func
+    except AttributeError:
+        parser.print_help()
+        sys.exit(1)
+    func(args)
