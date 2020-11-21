@@ -682,6 +682,8 @@ supported_template_types = {
     'password_reset_validation': PasswordResetValidationKeyword,
     'user_credentials': UserCredentials,
     'identity_access_request': IdentityAccessRequestKeyword,
+    'identity_access_authorized': TipKeyword,
+    'identity_access_denied': TipKeyword
 }
 
 

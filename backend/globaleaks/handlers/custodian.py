@@ -2,9 +2,14 @@
 #
 # Handlers dealing with custodian user functionalities
 from globaleaks import models
+from globaleaks.handlers.admin.context import admin_serialize_context
+from globaleaks.handlers.admin.node import db_admin_serialize_node
+from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import requests
+from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now
 
 
@@ -51,13 +56,53 @@ def get_identityaccessrequest(session, tid, identityaccessrequest_id):
     return serialize_identityaccessrequest(session, iar)
 
 
+def db_create_identity_access_reply_notifications(session, itip, iar):
+    """
+    Transaction for the creation of notifications related to identity access replies
+    :param session: An ORM session
+    :param itip: A itip ID of the tip involved in the request
+    :param iar: A identity access request model
+    """
+    from globaleaks.handlers.rtip import serialize_rtip
+
+    for user, rtip in session.query(models.User, models.ReceiverTip) \
+                             .filter(models.ReceiverTip.internaltip_id == itip.id,
+                                     models.User.id == models.ReceiverTip.receiver_id,
+                                     models.User.notification.is_(True)):
+        context = session.query(models.Context).filter(models.Context.id == itip.context_id).one()
+
+        data = {
+            'type': 'identity_access_authorized' if iar.reply == 'authorized' else 'identity_access_denied'
+        }
+
+        data['user'] = user_serialize_user(session, user, user.language)
+        data['tip'] = serialize_rtip(session, rtip, itip, user.language)
+        data['context'] = admin_serialize_context(session, context, user.language)
+        data['iar'] = serialize_identityaccessrequest(session, iar)
+        data['node'] = db_admin_serialize_node(session, user.tid, user.language)
+
+        if data['node']['mode'] == 'default':
+            data['notification'] = db_get_notification(session, user.tid, user.language)
+        else:
+            data['notification'] = db_get_notification(session, 1, user.language)
+
+        subject, body = Templating().get_mail_subject_and_body(data)
+
+        session.add(models.Mail({
+            'address': data['user']['mail_address'],
+            'subject': subject,
+            'body': body,
+            'tid': user.tid
+        }))
+
+
 @transact
 def update_identityaccessrequest(session, tid, user_id, identityaccessrequest_id, request):
-    iar, rtip = session.query(models.IdentityAccessRequest, models.ReceiverTip) \
-                       .filter(models.IdentityAccessRequest.id == identityaccessrequest_id,
-                               models.ReceiverTip.id == models.IdentityAccessRequest.receivertip_id,
-                               models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                               models.InternalTip.tid == tid).one()
+    iar, rtip, itip = session.query(models.IdentityAccessRequest, models.ReceiverTip, models.InternalTip) \
+                             .filter(models.IdentityAccessRequest.id == identityaccessrequest_id,
+                                     models.ReceiverTip.id == models.IdentityAccessRequest.receivertip_id,
+                                     models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                     models.InternalTip.tid == tid).one()
 
     if iar.reply == 'pending':
         iar.reply_date = datetime_now()
@@ -67,6 +112,8 @@ def update_identityaccessrequest(session, tid, user_id, identityaccessrequest_id
 
         if iar.reply == 'authorized':
             rtip.can_access_whistleblower_identity = True
+
+        db_create_identity_access_reply_notifications(session, itip, iar)
 
     return serialize_identityaccessrequest(session, iar)
 
