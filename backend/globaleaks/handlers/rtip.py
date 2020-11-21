@@ -541,7 +541,7 @@ def db_get_itip_comment_list(session, itip_id):
     return [serialize_comment(session, comment) for comment in session.query(models.Comment).filter(models.Comment.internaltip_id == itip_id)]
 
 
-def db_create_identityaccessrequest_notifications(session, tid, itip, rtip, iar):
+def db_create_identityaccessrequest_notifications(session, itip, rtip, iar):
     """
     Transaction for the creation of notifications related to identity access requests
     :param session: An ORM session
@@ -551,9 +551,9 @@ def db_create_identityaccessrequest_notifications(session, tid, itip, rtip, iar)
     :param iar: A identity access request model
     """
     for user in session.query(models.User).filter(models.User.role == 'custodian',
-                                                  models.User.tid == tid,
+                                                  models.User.tid == itip.tid,
                                                   models.User.notification.is_(True)):
-        context = session.query(models.Context).filter(models.Context.id == itip.context_id, models.Context.tid == tid).one()
+        context = session.query(models.Context).filter(models.Context.id == itip.context_id).one()
 
         data = {
             'type': 'identity_access_request'
@@ -563,10 +563,10 @@ def db_create_identityaccessrequest_notifications(session, tid, itip, rtip, iar)
         data['tip'] = serialize_rtip(session, rtip, itip, user.language)
         data['context'] = admin_serialize_context(session, context, user.language)
         data['iar'] = serialize_identityaccessrequest(session, iar)
-        data['node'] = db_admin_serialize_node(session, tid, user.language)
+        data['node'] = db_admin_serialize_node(session, itip.tid, user.language)
 
         if data['node']['mode'] == 'default':
-            data['notification'] = db_get_notification(session, tid, user.language)
+            data['notification'] = db_get_notification(session, itip.tid, user.language)
         else:
             data['notification'] = db_get_notification(session, 1, user.language)
 
@@ -576,7 +576,7 @@ def db_create_identityaccessrequest_notifications(session, tid, itip, rtip, iar)
             'address': data['user']['mail_address'],
             'subject': subject,
             'body': body,
-            'tid': tid
+            'tid': itip.tid
         }))
 
 
@@ -598,7 +598,7 @@ def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
     session.add(iar)
     session.flush()
 
-    db_create_identityaccessrequest_notifications(session, tid, itip, rtip, iar)
+    db_create_identityaccessrequest_notifications(session, itip, rtip, iar)
 
     return serialize_identityaccessrequest(session, iar)
 
