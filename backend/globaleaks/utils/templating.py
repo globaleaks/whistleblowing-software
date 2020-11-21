@@ -659,14 +659,6 @@ class IdentityAccessRequestKeyword(UserNodeKeyword):
         return '/#/custodian/requests/'
 
 
-class TwoFactorAuthKeyword(NodeKeyword):
-    keyword_list = NodeKeyword.keyword_list + two_factor_auth_keywords
-    data_keys = ['authcode']
-
-    def AuthCode(self):
-        return self.data['authcode']
-
-
 supported_template_types = {
     'null': Keyword,
     'tip': TipKeyword,
@@ -675,7 +667,6 @@ supported_template_types = {
     'unread_tips': UserNodeKeyword,
     'pgp_alert': PGPAlertKeyword,
     'admin_pgp_alert': AdminPGPAlertKeyword,
-    'receiver_notification_limit_reached': UserNodeKeyword,
     'export_template': TipKeyword,
     'export_message': ExportMessageKeyword,
     'admin_anomaly': AnomalyKeyword,
@@ -691,7 +682,6 @@ supported_template_types = {
     'password_reset_validation': PasswordResetValidationKeyword,
     'user_credentials': UserCredentials,
     'identity_access_request': IdentityAccessRequestKeyword,
-    '2fa': TwoFactorAuthKeyword
 }
 
 
