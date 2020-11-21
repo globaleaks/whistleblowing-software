@@ -351,7 +351,7 @@ factory("RTipMessageResource", ["GLResource", function(GLResource) {
   return new GLResource("api/rtip/:id/messages", {id: "@id"});
 }]).
 factory("RTipIdentityAccessRequestResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/rtip/:id/identityaccessrequests", {id: "@id"});
+  return new GLResource("api/rtip/:id/iars", {id: "@id"});
 }]).
 factory("RTipDownloadRFile", ["$http", "FileSaver", function($http, FileSaver) {
   return function(file) {
@@ -527,7 +527,7 @@ factory("ReceiverTips", ["GLResource", function(GLResource) {
   return new GLResource("api/rtips");
 }]).
 factory("IdentityAccessRequests", ["GLResource", function(GLResource) {
-  return new GLResource("api/custodian/identityaccessrequests");
+  return new GLResource("api/custodian/iars");
 }]).
 factory("ManifestResource", ["$resource", function($resource) {
   return new $resource("api/admin/manifest");

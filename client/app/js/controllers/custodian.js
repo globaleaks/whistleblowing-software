@@ -3,7 +3,7 @@ GL.controller("CustodianIdentityAccessRequestsCtrl", ["$scope", "$http", "$route
   $scope.iars = IdentityAccessRequests.query();
 
   $scope.authorize_identity_access_request = function (iar_id) {
-    return $http.put("api/custodian/identityaccessrequest/" + iar_id, {"reply": "authorized", "reply_motivation": ""}).
+    return $http.put("api/custodian/iars/" + iar_id, {"reply": "authorized", "reply_motivation": ""}).
       then(function(){
         $route.reload();
       });
@@ -30,7 +30,7 @@ controller("IdentityAccessReplyCtrl", ["$scope", "$http", "$route", "$uibModalIn
 
     $scope.confirm = function () {
       $uibModalInstance.close();
-      return $http.put("api/custodian/identityaccessrequest/" + $scope.iar, {"reply": "denied", "reply_motivation": $scope.reply_motivation}).
+      return $http.put("api/custodian/iars/" + $scope.iar, {"reply": "denied", "reply_motivation": $scope.reply_motivation}).
         then(function(){
           $route.reload();
         });

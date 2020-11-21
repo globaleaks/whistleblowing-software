@@ -91,7 +91,7 @@ api_spec = [
     (r'/api/rtip/' + uuid_regexp, rtip.RTipInstance),
     (r'/api/rtip/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
     (r'/api/rtip/' + uuid_regexp + r'/messages', rtip.ReceiverMsgCollection),
-    (r'/api/rtip/' + uuid_regexp + r'/identityaccessrequests', rtip.IdentityAccessRequestsCollection),
+    (r'/api/rtip/' + uuid_regexp + r'/iars', rtip.IdentityAccessRequestsCollection),
     (r'/api/rtip/' + uuid_regexp + r'/export', export.ExportHandler),
     (r'/api/rtip/' + uuid_regexp + r'/wbfile', rtip.WhistleblowerFileHandler),
     (r'/api/rtip/operations', receiver.TipsOperations),
@@ -107,8 +107,8 @@ api_spec = [
     (r'/api/wbtip/' + uuid_regexp + r'/provideidentityinformation', wbtip.WBTipIdentityHandler),
     (r'/api/wbtip/' + uuid_regexp + r'/update', wbtip.WBTipAdditionalQuestionnaire),
 
-    (r'/api/custodian/identityaccessrequests', custodian.IdentityAccessRequestsCollection),
-    (r'/api/custodian/identityaccessrequest/' + uuid_regexp, custodian.IdentityAccessRequestInstance),
+    (r'/api/custodian/iars', custodian.IdentityAccessRequestsCollection),
+    (r'/api/custodian/iars/' + uuid_regexp, custodian.IdentityAccessRequestInstance),
 
     # Email Validation Handler
     (r'/api/email/validation/(.+)', email_validation.EmailValidation),

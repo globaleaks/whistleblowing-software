@@ -656,7 +656,7 @@ class IdentityAccessRequestKeyword(UserNodeKeyword):
         return str(self.data['tip']['progressive'])
 
     def UrlPath(self):
-        return '/#/custodian/identityaccessrequests/'
+        return '/#/custodian/requests/'
 
 
 class TwoFactorAuthKeyword(NodeKeyword):

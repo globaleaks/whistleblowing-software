@@ -308,7 +308,7 @@ controller("IdentityAccessRequestCtrl",
   $scope.confirm = function () {
     $uibModalInstance.close();
 
-    return $http.post("api/rtip/" + tip.id + "/identityaccessrequests", {"request_motivation": $scope.request_motivation}).
+    return $http.post("api/rtip/" + tip.id + "/iars", {"request_motivation": $scope.request_motivation}).
         then(function(){
           $route.reload();
         });

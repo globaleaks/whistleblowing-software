@@ -376,9 +376,9 @@ var GL = angular.module("GL", [
           resources: fetchResources("acl", ["node"])
         }
       }).
-      when("/custodian/identityaccessrequests", {
+      when("/custodian/requests", {
         templateUrl: "views/custodian/identity_access_requests.html",
-        header_title: "Access requests",
+        header_title: "Requests",
         resolve: {
           access: requireAuth("custodian")
         }
