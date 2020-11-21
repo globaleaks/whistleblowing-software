@@ -14,7 +14,7 @@ from globaleaks.db import get_db_file
 from globaleaks.orm import make_db_uri, get_engine
 from globaleaks.rest.requests import AdminNotificationDesc, AdminNodeDesc
 from globaleaks.settings import Settings
-from globaleaks.utils.crypto import GCE, generateApiToken, generateRandomPassword
+from globaleaks.utils.crypto import GCE, generateRandomPassword
 
 
 def check_file(f):
