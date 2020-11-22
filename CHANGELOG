@@ -1,3 +1,10 @@
+Changes in version 4.1.1 - 2020-11-25
+    Fix creation of new users for platforms where english is not enabled
+    Fix gl-admin utility in relation to import error
+    Add notifications for custodians replies
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 4.1.0 - 2020-11-18
     Revise the application UI following the official an new brand guidelines
     - https://github.com/globaleaks/GlobaLeaks/blob/main/brand/globaleaks-brand-guidelines.pdf
