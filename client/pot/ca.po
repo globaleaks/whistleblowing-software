@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
+"Last-Translator: Joan Bitlloch <joanbit@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -236,9 +236,6 @@ msgstr "Adjunts"
 
 msgid "Change your password"
 msgstr "Canvia la contrasenya"
-
-msgid "Access requests"
-msgstr "Sol·licituds d’accés"
 
 msgid "User"
 msgstr "Usuari"
@@ -890,6 +887,9 @@ msgstr "Nombre màxim de destinataris permesos:"
 msgid "Show recipients in alphabetical order"
 msgstr "Mostra els destinataris en ordre alfabètic"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "Mostra la informació dels destinataris a la pàgina de l'estat de l'informe"
+
 msgid "Enable comments"
 msgstr "Habilita comentaris"
 
@@ -1327,8 +1327,8 @@ msgstr "Data de l’informe"
 msgid "Authorization"
 msgstr "Autorització"
 
-msgid "Identities"
-msgstr "Identitats"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "El vincle de validació és incorrecte o ha caducat."

@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 17:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -230,9 +230,6 @@ msgstr "Прикачени файлове"
 
 msgid "Change your password"
 msgstr "Променете паролата "
-
-msgid "Access requests"
-msgstr "Молби за достъп"
 
 msgid "User"
 msgstr "Потребител"
@@ -884,6 +881,9 @@ msgstr "Максимален брой избираеми получатели:"
 msgid "Show recipients in alphabetical order"
 msgstr "Показване на получателите по азбучен ред"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "Показване информация за получателите на статус страницата на сигнала"
+
 msgid "Enable comments"
 msgstr "Активиране на коментари"
 
@@ -1321,8 +1321,8 @@ msgstr "Дата на сигнала"
 msgid "Authorization"
 msgstr "Резрешение"
 
-msgid "Identities"
-msgstr "Самоличности"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Връзката за валидиране е грешна или е изтекла."
@@ -1910,7 +1910,7 @@ msgstr "Скъпи {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "Получавате този имейл, тъй като в сайта (име на сайта) е създаден ваш потребителски акаунт "
+msgstr "Получавате този имейл, тъй като в сайта е създаден ваш потребителски акаунт: {Site}"
 
 msgid "Username: {Username}"
 msgstr "Потребителско име: {Username}"
@@ -2008,7 +2008,7 @@ msgid "Registration data:"
 msgstr "Регистрационна информация:"
 
 msgid "Site: {Url}"
-msgstr "Интернет страница (URL)"
+msgstr "Интернет страница {Url}"
 
 msgid "Name: {Name}"
 msgstr "Име: {Name}"

@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:01+0000\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
 "Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -226,9 +226,6 @@ msgstr "添付"
 
 msgid "Change your password"
 msgstr "パスワードを変更してください"
-
-msgid "Access requests"
-msgstr "アクセスのリクエスト"
 
 msgid "User"
 msgstr "ユーザー"
@@ -880,6 +877,9 @@ msgstr "選択可能な受信者の最大数:"
 msgid "Show recipients in alphabetical order"
 msgstr "受信者をアルファベット順に表示"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "報告の状況ページで受信者の詳細を表示する"
+
 msgid "Enable comments"
 msgstr "コメントを有効にする"
 
@@ -1317,8 +1317,8 @@ msgstr "報告日"
 msgid "Authorization"
 msgstr "認証"
 
-msgid "Identities"
-msgstr "IDリスト"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "検証リンクが間違っているか、有効期限が切れています。"

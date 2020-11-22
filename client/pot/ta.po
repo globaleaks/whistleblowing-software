@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 17:38+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -224,9 +224,6 @@ msgstr "இணைப்புகள்"
 
 msgid "Change your password"
 msgstr "உங்கள் கடவுச்சொல்லை மாற்றுக"
-
-msgid "Access requests"
-msgstr ""
 
 msgid "User"
 msgstr "பயனர்"
@@ -878,6 +875,9 @@ msgstr "தேர்ந்தெடுக்கும் பெற்றவர�
 msgid "Show recipients in alphabetical order"
 msgstr "அகரவரிசையில் பெற்றவர்கள் காட்டு"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "சமர்ப்பிக்கும் நிலையை பக்கம் பெறுநர் விவரங்களை காட்டு"
+
 msgid "Enable comments"
 msgstr "கருத்துகளை இயக்கு"
 
@@ -1315,8 +1315,8 @@ msgstr ""
 msgid "Authorization"
 msgstr "அங்கீகார"
 
-msgid "Identities"
-msgstr "அடையாளங்களை"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "சரிபார்த்தல் இணைப்பு தவறானது அல்லது காலாவதியானது."
@@ -1904,7 +1904,7 @@ msgstr "அன்பே {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "உங்கள் கணக்கு கடவுச்சொல் மீட்டமைப்பு கோரியதால், இந்த மின்னஞ்சலைப் பெறுகிறீர்கள்."
+msgstr "உங்கள் கணக்கு கடவுச்சொல் மீட்டமைப்பு கோரியதால், இந்த மின்னஞ்சலைப் பெறுகிறீர்கள்: {Site}"
 
 msgid "Username: {Username}"
 msgstr "பயனர்பெயர்: {Username}"
@@ -2138,7 +2138,7 @@ msgstr "தகவல் தெரிவிப்பவர் தங்கள் 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "உங்கள் கணக்கு கடவுச்சொல் மீட்டமைப்பு கோரியதால், இந்த மின்னஞ்சலைப் பெறுகிறீர்கள்."
+msgstr "உங்கள் கணக்கு கடவுச்சொல் மீட்டமைப்பு கோரியதால், இந்த மின்னஞ்சலைப் பெறுகிறீர்கள்: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

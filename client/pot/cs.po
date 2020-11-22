@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 19:25+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -232,9 +232,6 @@ msgstr "Přílohy"
 
 msgid "Change your password"
 msgstr "Změnit heslo"
-
-msgid "Access requests"
-msgstr "Žádosti o přístup"
 
 msgid "User"
 msgstr "Uživatel"
@@ -886,6 +883,9 @@ msgstr "Maximální počet zvolitelných příjemců"
 msgid "Show recipients in alphabetical order"
 msgstr "Ukázat příjemce v abecedním pořadí"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "Zobrazit detaily o příjemcích na stránce o stavu podání"
+
 msgid "Enable comments"
 msgstr "Povolit komentáře"
 
@@ -1323,8 +1323,8 @@ msgstr "Datum podání"
 msgid "Authorization"
 msgstr "Autorizace"
 
-msgid "Identities"
-msgstr "Identity"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Odkaz k ověření je buď nesprávný nebo vypršel."
@@ -2013,16 +2013,16 @@ msgid "Site: {Url}"
 msgstr "Stránka: {Url}"
 
 msgid "Name: {Name}"
-msgstr "Jméno: {Jméno} "
+msgstr "Jméno: {Name} "
 
 msgid "Email: {Email}"
 msgstr "Email: {Email} "
 
 msgid "Language: {Language}"
-msgstr "Jazyk: {Jazyk} "
+msgstr "Jazyk: {Language} "
 
 msgid "Use case: {UseCase}"
-msgstr "Případy použití: {Případy použití}"
+msgstr "Případy použití: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "Nová whistleblowingová stránka registrována."

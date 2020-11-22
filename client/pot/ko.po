@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -222,9 +222,6 @@ msgstr "첨부 파일"
 
 msgid "Change your password"
 msgstr "비밀번호 변경"
-
-msgid "Access requests"
-msgstr ""
 
 msgid "User"
 msgstr "사용자"
@@ -876,6 +873,9 @@ msgstr "선택받는 사람의 최대 수 :"
 msgid "Show recipients in alphabetical order"
 msgstr "알파벳 순서로 표시받는 사람"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "제출의 상태 페이지에받는 사람의 정보를보기"
+
 msgid "Enable comments"
 msgstr "코멘트를 활성화"
 
@@ -1313,8 +1313,8 @@ msgstr ""
 msgid "Authorization"
 msgstr "권한 부여"
 
-msgid "Identities"
-msgstr "신원"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

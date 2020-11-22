@@ -40,7 +40,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: English (http://www.transifex.com/otf/globaleaks/language/en/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -257,9 +257,6 @@ msgstr "Attachments"
 
 msgid "Change your password"
 msgstr "Change your password"
-
-msgid "Access requests"
-msgstr "Access requests"
 
 msgid "User"
 msgstr "User"
@@ -911,6 +908,9 @@ msgstr "Maximum number of selectable recipients:"
 msgid "Show recipients in alphabetical order"
 msgstr "Show recipients in alphabetical order"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "Show recipient details on the status page of the report"
+
 msgid "Enable comments"
 msgstr "Enable comments"
 
@@ -1348,8 +1348,8 @@ msgstr "Report date"
 msgid "Authorization"
 msgstr "Authorization"
 
-msgid "Identities"
-msgstr "Identities"
+msgid "Requests"
+msgstr "Requests"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "The validation link is either incorrect or has expired."

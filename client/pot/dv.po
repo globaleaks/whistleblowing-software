@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 19:25+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -226,9 +226,6 @@ msgstr "ހިމެނިފައިވާ"
 
 msgid "Change your password"
 msgstr "ޕާސްވޯޑް ބަދަލުކުރަން"
-
-msgid "Access requests"
-msgstr "އެކްސެސް ހޯދުމަށް އެދިފައިވާ ފަރާތްތަށް"
 
 msgid "User"
 msgstr "ބޭނުންކުރާ ފަރާތް"
@@ -880,6 +877,9 @@ msgstr "އެންމެގިނަވެގެން އިޚްތިޔާރު ކުރެވޭނެ �
 msgid "Show recipients in alphabetical order"
 msgstr "ލިބިލައްވާ ފަރާތްތަށް އޭ.ބީ.ސީ އަކުރުގެ އޯޑަރަށް ބަހާލަން"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "ރިޕޯޓުގެ ސްޓޭޓަސް ސަފްޙާގެ ރިޕޯޓް ލިބޭ ފަރާތްތަކުގެ މައުލޫއްމާތު ފެންނަން ހުންނަގޮތް ހަދަން"
+
 msgid "Enable comments"
 msgstr "ކޮމެންޓްސް އޮންކުރަން"
 
@@ -1317,8 +1317,8 @@ msgstr "ރިޕޯޓުގެ ތާރީޚް"
 msgid "Authorization"
 msgstr "އޮތޮރައިޒޭޝަން"
 
-msgid "Identities"
-msgstr "އައިޑެންޓިޓީތައް"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "ތިޔަ ބޭނުންފުޅު ކުރެއްވި ވެލިޑޭޝަން ލިންކް ނުރަނގަޅު ނުވަތަ އެކްސްޕަޔަރ ވެފައި"
@@ -1906,7 +1906,7 @@ msgstr "{RecipientName} އަށް، "
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "މި އީމެއިލްއަކީ ތިޔަ ފަރާތުގެ އެކައުންޓް {ސައިޓް}ގައި ހަދާ ނިމިއްޖެކަން ޔަގީންކޮއްދެއްވުމަށް ފޮނުވާފައި އީމެއިލްއެއް. "
+msgstr "މި އީމެއިލްއަކީ ތިޔަ ފަރާތުގެ އެކައުންޓް {Site}ގައި ހަދާ ނިމިއްޖެކަން ޔަގީންކޮއްދެއްވުމަށް ފޮނުވާފައި އީމެއިލްއެއް. "
 
 msgid "Username: {Username}"
 msgstr "ބޭނުންކުރާމީހާގެ ނަން: {Username}"
@@ -2007,16 +2007,16 @@ msgid "Site: {Url}"
 msgstr "ސައިޓް: {Url}"
 
 msgid "Name: {Name}"
-msgstr "ނަން:{ ނަން}"
+msgstr "ނަން:{Name}"
 
 msgid "Email: {Email}"
-msgstr "އީމެއިލް: {އީމެއިލް}"
+msgstr "އީމެއިލް: {Email}"
 
 msgid "Language: {Language}"
-msgstr "ބަސް:{ބަސް}"
+msgstr "ބަސް:{Language}"
 
 msgid "Use case: {UseCase}"
-msgstr " ކޭސް ބޭނުންކުރުން { ކޭސް ބޭނުންކުރުން}"
+msgstr " ކޭސް ބޭނުންކުރުން {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "އައު ވިސިލްބްލޯވިންގ ސައިޓް ރެޖިސްޓަރކުރެވިފައި"
@@ -2036,7 +2036,7 @@ msgstr "ޓެސްޓް އީމެއިލް"
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr "މި އީމެއިލްއަކީ ތިޔަ ފަރާތުގެ އީމެއިލް އެޑްރެސް {އާ އީމެއިލް އެޑްރެސް}އަށް ބަދަލުކުރަމަށް އެދިފައިވާތީ ފޮނުވާފައިވާ އީމެއިލްއެއް. "
+msgstr "މި އީމެއިލްއަކީ ތިޔަ ފަރާތުގެ އީމެއިލް އެޑްރެސް {NewEmailAddress}އަށް ބަދަލުކުރަމަށް އެދިފައިވާތީ ފޮނުވާފައިވާ އީމެއިލްއެއް. "
 
 msgid "Click the following link to validate this change:"
 msgstr "ގެނައި ބަދަލު ބަލައިގަތުމަށް  ލިންކަށް ފިއްތަވާލައްވާ"

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -225,9 +225,6 @@ msgstr "Priloge"
 
 msgid "Change your password"
 msgstr "Spremenite svoje geslo"
-
-msgid "Access requests"
-msgstr ""
 
 msgid "User"
 msgstr "Uporabnik"
@@ -879,6 +876,9 @@ msgstr "Maksimalno število prejemnikov:"
 msgid "Show recipients in alphabetical order"
 msgstr "Pokaži prejemnike po abecednem redu"
 
+msgid "Show recipient details on the status page of the report"
+msgstr ""
+
 msgid "Enable comments"
 msgstr "Omogoči komentarje"
 
@@ -1316,7 +1316,7 @@ msgstr ""
 msgid "Authorization"
 msgstr "Avtorizacija"
 
-msgid "Identities"
+msgid "Requests"
 msgstr ""
 
 msgid "The validation link is either incorrect or has expired."

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -224,9 +224,6 @@ msgstr "Vedlegg"
 
 msgid "Change your password"
 msgstr "Endre passord"
-
-msgid "Access requests"
-msgstr ""
 
 msgid "User"
 msgstr "Bruker"
@@ -878,6 +875,9 @@ msgstr "Maksimalt antall mottakere som kan velges:"
 msgid "Show recipients in alphabetical order"
 msgstr "Vis mottakere i alfabetisk rekkefølge"
 
+msgid "Show recipient details on the status page of the report"
+msgstr ""
+
 msgid "Enable comments"
 msgstr "Skru på kommentarer"
 
@@ -1315,8 +1315,8 @@ msgstr ""
 msgid "Authorization"
 msgstr "Godkjenning"
 
-msgid "Identities"
-msgstr ""
+msgid "Requests"
+msgstr "Forespørsler"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

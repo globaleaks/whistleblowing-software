@@ -36,8 +36,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-11 04:41+0000\n"
-"Last-Translator: Zuhualime Akoochimoya\n"
+"PO-Revision-Date: 2020-11-21 17:36+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -253,9 +253,6 @@ msgstr "Adjuntos"
 
 msgid "Change your password"
 msgstr "Cambia tu contraseña"
-
-msgid "Access requests"
-msgstr "Solicitudes de acceso"
 
 msgid "User"
 msgstr "Usuario"
@@ -907,6 +904,9 @@ msgstr "Número máximo de destinatarios seleccionables:"
 msgid "Show recipients in alphabetical order"
 msgstr "Mostrar destinatarios por orden alfabético"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "Mostrar detalles del destinatario en la página de estado de la entrega"
+
 msgid "Enable comments"
 msgstr "Habilitar comentarios"
 
@@ -1344,8 +1344,8 @@ msgstr "Reportar fecha"
 msgid "Authorization"
 msgstr "Autorización"
 
-msgid "Identities"
-msgstr "Identidades"
+msgid "Requests"
+msgstr "Peticiones"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "El enlace de validación es incorrecto o ha expirado."
@@ -2167,7 +2167,7 @@ msgstr "El alertador ha proporcionado su identidad"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "Recibes este correo porque se ha solicitado un restablecimiento de la contraseña para la cuenta {nombre del usuario}"
+msgstr "Recibes este correo porque se ha solicitado un restablecimiento de la contraseña para la cuenta {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

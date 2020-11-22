@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 18:09+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -231,9 +231,6 @@ msgstr "Các tập tin đính kèm"
 
 msgid "Change your password"
 msgstr "Thay đổi mật khẩu của bạn"
-
-msgid "Access requests"
-msgstr "Yêu cầu truy cập"
 
 msgid "User"
 msgstr "Người dùng"
@@ -885,6 +882,9 @@ msgstr "Số lượng người nhận lựa chọn:"
 msgid "Show recipients in alphabetical order"
 msgstr "Hiện người nhận trong thứ tự chữ cái"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "Hiển thị chi tiết người nhận trên trang trạng thái của trình"
+
 msgid "Enable comments"
 msgstr "Cho phép nhận xét"
 
@@ -1322,8 +1322,8 @@ msgstr "Ngày báo cáo"
 msgid "Authorization"
 msgstr "Ủy quyền"
 
-msgid "Identities"
-msgstr "Danh tính"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Liên kết xác nhận không chính xác hoặc đã hết hạn"
@@ -2009,7 +2009,7 @@ msgid "Registration data:"
 msgstr "Dữ liệu đăng ký:"
 
 msgid "Site: {Url}"
-msgstr "Trang web: {URL}"
+msgstr "Trang web: {Url}"
 
 msgid "Name: {Name}"
 msgstr "Tên: {Name}"
@@ -2021,7 +2021,7 @@ msgid "Language: {Language}"
 msgstr "Ngôn ngữ: {Language}"
 
 msgid "Use case: {UseCase}"
-msgstr "Trường hợp sử dụng: {Usecase}"
+msgstr "Trường hợp sử dụng: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "Trang web tố giác mới đăng kí"

@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -239,9 +239,6 @@ msgstr "Bilagor"
 
 msgid "Change your password"
 msgstr "Ändra ditt lösenord"
-
-msgid "Access requests"
-msgstr "Åtkomstförfrågningar"
 
 msgid "User"
 msgstr "Användare"
@@ -893,6 +890,9 @@ msgstr ""
 msgid "Show recipients in alphabetical order"
 msgstr "Visa mottagare i alfabetiskordning"
 
+msgid "Show recipient details on the status page of the report"
+msgstr ""
+
 msgid "Enable comments"
 msgstr "Aktivera kommentarer"
 
@@ -1330,8 +1330,8 @@ msgstr ""
 msgid "Authorization"
 msgstr ""
 
-msgid "Identities"
-msgstr "Identitet"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

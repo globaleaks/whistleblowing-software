@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
+"Last-Translator: Vadym Gud <gudvadym@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -239,9 +239,6 @@ msgstr "Додатки"
 
 msgid "Change your password"
 msgstr "Змінити пароль"
-
-msgid "Access requests"
-msgstr ""
 
 msgid "User"
 msgstr "Користувач"
@@ -893,6 +890,9 @@ msgstr "Максимальна кількість обраних одержув�
 msgid "Show recipients in alphabetical order"
 msgstr "Упорядкувати одержувачів за алфавітом"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "Show recipient details on the status page of the submission"
+
 msgid "Enable comments"
 msgstr "Увімкнути коментарі"
 
@@ -1330,8 +1330,8 @@ msgstr ""
 msgid "Authorization"
 msgstr "Авторизація"
 
-msgid "Identities"
-msgstr "Сутності"
+msgid "Requests"
+msgstr "Запити"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

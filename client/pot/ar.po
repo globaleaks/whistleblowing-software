@@ -42,7 +42,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 19:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -259,9 +259,6 @@ msgstr "مرفقات"
 
 msgid "Change your password"
 msgstr "تغيير كلمة المرور"
-
-msgid "Access requests"
-msgstr "طلبات الدخول"
 
 msgid "User"
 msgstr "مستخدم"
@@ -913,6 +910,9 @@ msgstr "الحد الأقصى لعدد المتلقين الذي يمكن اخت
 msgid "Show recipients in alphabetical order"
 msgstr "إظهار المتلقين بترتيب ابجدي"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "عرض تفاصيل المتلقي على صفحة حالة البلاغ"
+
 msgid "Enable comments"
 msgstr "تفعيل التعليقات"
 
@@ -1350,8 +1350,8 @@ msgstr "تاريخ التقرير"
 msgid "Authorization"
 msgstr "تفويض"
 
-msgid "Identities"
-msgstr "الهويات"
+msgid "Requests"
+msgstr "الطلبات"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "إما أن رابط التحقق غير صحيح أو انتهت صلاحيته."
@@ -1939,7 +1939,7 @@ msgstr "عزيزي {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "انت تستقبل هذا البريد الإلكتروني لأنه تم إنشاء حساب مستخدم لك على النظام:  {موقع}"
+msgstr "انت تستقبل هذا البريد الإلكتروني لأنه تم إنشاء حساب مستخدم لك على النظام:  {Site}"
 
 msgid "Username: {Username}"
 msgstr "اسم المستخدم: {Username}"
@@ -1955,7 +1955,7 @@ msgstr "من فضلك قم بالضغط على رابط التفعيل من أج
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr "بعد التفعيل الناجح، سيكون بمقدورك الولوج إلى النظام من خلال الرابط التالي:  {عنوان الدخول}"
+msgstr "بعد التفعيل الناجح، سيكون بمقدورك الولوج إلى النظام من خلال الرابط التالي:  {LoginUrl}"
 
 msgid "Kind regards,"
 msgstr "أطيب التحيّات،"
@@ -2037,19 +2037,19 @@ msgid "Registration data:"
 msgstr "بيانات التسجيل:"
 
 msgid "Site: {Url}"
-msgstr "الموقع: {رابط}"
+msgstr "الموقع: {Url}"
 
 msgid "Name: {Name}"
-msgstr "الاسم: {الاسم}"
+msgstr "الاسم: {Name}"
 
 msgid "Email: {Email}"
-msgstr "البريد الإلكتروني: {البريد الإلكتروني}"
+msgstr "البريد الإلكتروني: {Email}"
 
 msgid "Language: {Language}"
-msgstr "اللغة: {اللغة}"
+msgstr "اللغة: {Language}"
 
 msgid "Use case: {UseCase}"
-msgstr "حالة الاستخدام: {حالة الاستخدام}"
+msgstr "حالة الاستخدام: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "موقع جديد لكشف الفساد تم تسجيله."
@@ -2069,7 +2069,7 @@ msgstr "بريد الكتروني تجريبي"
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr "هذا بريد إلكتروني للتنبيه على أن هناك طلب تم تقديمه من أجل تغيير عنوان البريد الإلكتروني الحالي إلى {البريد الإلكتروني الجديد}."
+msgstr "هذا بريد إلكتروني للتنبيه على أن هناك طلب تم تقديمه من أجل تغيير عنوان البريد الإلكتروني الحالي إلى {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
 msgstr "قم بالضغط على الرابط التالي من أجل المصادقة على هذا التغيير."
@@ -2173,7 +2173,7 @@ msgstr "قدم المبلغ هويته"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "أنت تتلقى هذا البريد الإلكتروني لأنه تم طلب إعادة تعيين كلمة السر الخاصة بهذا الحساب {إسم المستخدم}"
+msgstr "أنت تتلقى هذا البريد الإلكتروني لأنه تم طلب إعادة تعيين كلمة السر الخاصة بهذا الحساب {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "

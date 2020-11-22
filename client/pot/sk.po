@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 17:29+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -231,9 +231,6 @@ msgstr "Prílohy"
 
 msgid "Change your password"
 msgstr "Zmeniť heslo"
-
-msgid "Access requests"
-msgstr "Žiadosti o prístup"
 
 msgid "User"
 msgstr "Používateľ"
@@ -885,6 +882,9 @@ msgstr "Maximálny počet voliteľných príjemcov"
 msgid "Show recipients in alphabetical order"
 msgstr "Zobraziť príjemcov v abecednom poradí"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "Zobraziť detaily o príjemcoch na stránke o stave podania"
+
 msgid "Enable comments"
 msgstr "Povoliť komentáre"
 
@@ -1322,8 +1322,8 @@ msgstr "Dátum podania"
 msgid "Authorization"
 msgstr "Autorizácia"
 
-msgid "Identities"
-msgstr "Identity"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Odkaz na overenie je buď nesprávny, alebo vypršal."
@@ -2012,7 +2012,7 @@ msgid "Site: {Url}"
 msgstr "Stránka: {Url}"
 
 msgid "Name: {Name}"
-msgstr "Meno: {Meno} "
+msgstr "Meno: {Name}"
 
 msgid "Email: {Email}"
 msgstr "Email: {Email} "

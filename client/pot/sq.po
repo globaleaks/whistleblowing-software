@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -224,9 +224,6 @@ msgstr "attachments"
 
 msgid "Change your password"
 msgstr "Ndrysho fjalëkalimin tuaj"
-
-msgid "Access requests"
-msgstr ""
 
 msgid "User"
 msgstr "përdorues"
@@ -878,6 +875,9 @@ msgstr "Numri maksimal i marrësve të përzgjedhshëm:"
 msgid "Show recipients in alphabetical order"
 msgstr "Shfaqini marrësit të renditur alfabetikisht"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "Trego detajet e marrësit në faqen e statusit të dorëzimit"
+
 msgid "Enable comments"
 msgstr "Aktivizo komente"
 
@@ -1315,8 +1315,8 @@ msgstr ""
 msgid "Authorization"
 msgstr "autorizim"
 
-msgid "Identities"
-msgstr "Identitete"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

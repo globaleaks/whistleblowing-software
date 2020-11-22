@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
+"Last-Translator: Max Moiseev <max.moiseev@chamber.fi>\n"
 "Language-Team: Estonian (http://www.transifex.com/otf/globaleaks/language/et/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -221,9 +221,6 @@ msgstr "Manused"
 
 msgid "Change your password"
 msgstr "Vaheta parooli"
-
-msgid "Access requests"
-msgstr "Juurdepääsutaotlused"
 
 msgid "User"
 msgstr "Kasutaja"
@@ -875,6 +872,9 @@ msgstr "Valitavate saajate arvu ülempiir:"
 msgid "Show recipients in alphabetical order"
 msgstr "Näita saajaid tähestiku järjekorras"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "Näita saajate üksikasju teate staatuselehel"
+
 msgid "Enable comments"
 msgstr "Luba kommentaarid"
 
@@ -1312,8 +1312,8 @@ msgstr "Teate kuupäev"
 msgid "Authorization"
 msgstr "Autoriseerimine"
 
-msgid "Identities"
-msgstr "Isikuandmed"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Valideerimislink on vale või aegunud."

@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-12 13:39+0000\n"
-"Last-Translator: Max Moiseev <max.moiseev@chamber.fi>\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -247,9 +247,6 @@ msgstr "Приложения"
 
 msgid "Change your password"
 msgstr "Изменить пароль"
-
-msgid "Access requests"
-msgstr "Запросы доступа"
 
 msgid "User"
 msgstr "Пользователь"
@@ -901,6 +898,9 @@ msgstr "Максимальное число получателей:"
 msgid "Show recipients in alphabetical order"
 msgstr "Сортировать получателей в алфавитном порядке"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "Показать данные получателя на странице состояния подачи материалов"
+
 msgid "Enable comments"
 msgstr "Включить комментарии"
 
@@ -1338,8 +1338,8 @@ msgstr "Дата отчета"
 msgid "Authorization"
 msgstr "Авторизация"
 
-msgid "Identities"
-msgstr "Личности"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Ссылка для проверки неверна или истек срок ее действия."

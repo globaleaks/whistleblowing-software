@@ -13,6 +13,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # uskumru, 2013
+# Kaya Zeren <kayazeren@gmail.com>, 2020
 # msare <mervesareakin@gmail.com>, 2014
 # On the Line Turkiye <onthelineturkiye@gmail.com>, 2016
 # Ozgur Yasin <yasinaydin@korsanparti.org>, 2014
@@ -27,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-11 07:20+0000\n"
-"Last-Translator: T. E. Kalayci <tekrei@gmail.com>\n"
+"PO-Revision-Date: 2020-11-22 13:54+0000\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -244,9 +245,6 @@ msgstr "Ekler"
 
 msgid "Change your password"
 msgstr "Şifrenizi değiştirin"
-
-msgid "Access requests"
-msgstr "Erişim istekleri"
 
 msgid "User"
 msgstr "Kullanıcı"
@@ -898,6 +896,9 @@ msgstr "Seçilebilir azami alıcı sayısı:"
 msgid "Show recipients in alphabetical order"
 msgstr "Alıcıları alfabetik sıralı göster"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "Rapor durum sayfasında alıcı ayrıntılarını görüntüle"
+
 msgid "Enable comments"
 msgstr "Yorumları etkinleştir"
 
@@ -1335,8 +1336,8 @@ msgstr "Rapor tarihi"
 msgid "Authorization"
 msgstr "İzin"
 
-msgid "Identities"
-msgstr "Kimlikler"
+msgid "Requests"
+msgstr "İstekler"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Doğrulama bağlantısı hatalı veya süresi dolmuş."

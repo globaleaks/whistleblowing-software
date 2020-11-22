@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -239,9 +239,6 @@ msgstr "Mellékletek"
 
 msgid "Change your password"
 msgstr "Változtassa meg a jelszavát"
-
-msgid "Access requests"
-msgstr "Hozzáférés kérések"
 
 msgid "User"
 msgstr "Felhasználó"
@@ -893,6 +890,9 @@ msgstr "Maximum kiválasztható címzettek száma:"
 msgid "Show recipients in alphabetical order"
 msgstr "A címzettek megjelenítése betűrendben"
 
+msgid "Show recipient details on the status page of the report"
+msgstr ""
+
 msgid "Enable comments"
 msgstr "Megjegyzések engedélyezése"
 
@@ -1330,8 +1330,8 @@ msgstr "Jelentés dátum"
 msgid "Authorization"
 msgstr "Felhatalmazás"
 
-msgid "Identities"
-msgstr "Identitások"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "A validációs link vagy hibás vagy lejárt."

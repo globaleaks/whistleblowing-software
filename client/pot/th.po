@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -228,9 +228,6 @@ msgstr "แฟ้มแนบ"
 
 msgid "Change your password"
 msgstr "เปลี่ยนรหัสผ่านของคุณ"
-
-msgid "Access requests"
-msgstr "การขอการเข้าถึง"
 
 msgid "User"
 msgstr "ผู้ใช้"
@@ -882,6 +879,9 @@ msgstr "จำนวนสูงสุดของผู้รับที่เ
 msgid "Show recipients in alphabetical order"
 msgstr "แสดงผู้รับตามลำดับอักษร"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "แสดงรายละเอียดของผู้รับในหน้าสถานะของการส่ง"
+
 msgid "Enable comments"
 msgstr "เปิดใช้งานการแสดงความเห็น"
 
@@ -1319,8 +1319,8 @@ msgstr "วันที่รายงาน"
 msgid "Authorization"
 msgstr "การมอบอำนาจ"
 
-msgid "Identities"
-msgstr "อัตลักษณ์"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "ลิงก์ตรวจความถูกต้องไม่ถูกต้องหรือหมดอายุแล้ว"

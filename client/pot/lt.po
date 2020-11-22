@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
+"Last-Translator: Marija Grinevičiūtė <marijagrineviciute@outlook.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/otf/globaleaks/language/lt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -222,9 +222,6 @@ msgstr "Priedai"
 
 msgid "Change your password"
 msgstr "Pakeiskite slaptažodį"
-
-msgid "Access requests"
-msgstr "Prieigos užklausos"
 
 msgid "User"
 msgstr "Naudotojas"
@@ -876,6 +873,9 @@ msgstr "Didžiausias pasirinktinų gavėjų skaičius:"
 msgid "Show recipients in alphabetical order"
 msgstr "Rodyti gavėjus abėcėlės tvarka"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "Rodyti gavėjo informaciją ataskaitos statuso puslapyje"
+
 msgid "Enable comments"
 msgstr "Įgalinti komentarus"
 
@@ -1313,7 +1313,7 @@ msgstr ""
 msgid "Authorization"
 msgstr ""
 
-msgid "Identities"
+msgid "Requests"
 msgstr ""
 
 msgid "The validation link is either incorrect or has expired."

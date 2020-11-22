@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -236,9 +236,6 @@ msgstr "Atașamente"
 
 msgid "Change your password"
 msgstr "Schimbă parola"
-
-msgid "Access requests"
-msgstr "Cereri de acces"
 
 msgid "User"
 msgstr "Utilizator"
@@ -890,6 +887,9 @@ msgstr "Numărul maxim de destinatari ce pot fi selectați:"
 msgid "Show recipients in alphabetical order"
 msgstr "Afișează destinatarii în ordine alfabetică"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "Afișează detaliile destinatarului pe pagina care prezintă statusul sesizării"
+
 msgid "Enable comments"
 msgstr "Activează comentariile"
 
@@ -1327,8 +1327,8 @@ msgstr "Data sesizării"
 msgid "Authorization"
 msgstr "Autorizare"
 
-msgid "Identities"
-msgstr "Identități"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Linkul pentru validare este fie incorect, fie a expirat."

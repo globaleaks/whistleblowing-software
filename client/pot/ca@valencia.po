@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 17:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -234,9 +234,6 @@ msgstr "Adjunts"
 
 msgid "Change your password"
 msgstr "Canvia la contrasenya"
-
-msgid "Access requests"
-msgstr "Sol·licituds d’accés"
 
 msgid "User"
 msgstr "Usuari"
@@ -888,6 +885,9 @@ msgstr "Nombre màxim de destinataris que es poden seleccionar:"
 msgid "Show recipients in alphabetical order"
 msgstr "Mostra els destinataris en ordre alfabètic"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "Mostra la informació dels destinataris a la pàgina d'estat del lliurament"
+
 msgid "Enable comments"
 msgstr "Habilita comentaris"
 
@@ -1325,8 +1325,8 @@ msgstr "Data de l’informe"
 msgid "Authorization"
 msgstr "Autorització"
 
-msgid "Identities"
-msgstr "Identitats"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "L'enllaç de validació és incorrecte o ha expirat."
@@ -1914,7 +1914,7 @@ msgstr "Benvolgut/uda {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "Esteu rebent aquest correu electrònic perquè se us ha creat un compte d'usuari al vostre sistema: {Lloc}"
+msgstr "Esteu rebent aquest correu electrònic perquè se us ha creat un compte d'usuari al vostre sistema: {Site}"
 
 msgid "Username: {Username}"
 msgstr "Nom d'usuari: {Username}"
@@ -1930,7 +1930,7 @@ msgstr "Feu clic a l'enllaç d'activació per continuar amb l'activació del com
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr "Després d'activar-lo correctament, podreu accedir al sistema mitjançant el següent enllaç: {URL d’accés}"
+msgstr "Després d'activar-lo correctament, podreu accedir al sistema mitjançant el següent enllaç: {LoginUrl}"
 
 msgid "Kind regards,"
 msgstr "Reba una salutació cordial,"

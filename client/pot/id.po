@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 19:28+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -241,9 +241,6 @@ msgstr "Lampiran"
 
 msgid "Change your password"
 msgstr "Ubah kata sandi"
-
-msgid "Access requests"
-msgstr "Permintaan akses"
 
 msgid "User"
 msgstr "Pengguna"
@@ -895,6 +892,9 @@ msgstr "Jumlah tertinggi penerima yang dapat dipilih:"
 msgid "Show recipients in alphabetical order"
 msgstr "Tunjukkan penerima-penerima berdasarkan susunan abjad"
 
+msgid "Show recipient details on the status page of the report"
+msgstr ""
+
 msgid "Enable comments"
 msgstr "Aktifkan komentar"
 
@@ -1332,8 +1332,8 @@ msgstr ""
 msgid "Authorization"
 msgstr "Otorisasi"
 
-msgid "Identities"
-msgstr "Identitas"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Tautan validasi tidak benar atau sudah berakhir."
@@ -2022,16 +2022,16 @@ msgid "Site: {Url}"
 msgstr ""
 
 msgid "Name: {Name}"
-msgstr "Nama:"
+msgstr "Nama: {Name}"
 
 msgid "Email: {Email}"
-msgstr "Surel:"
+msgstr "Surel: {Email}"
 
 msgid "Language: {Language}"
-msgstr "Bahasa:"
+msgstr "Bahasa: {Language}"
 
 msgid "Use case: {UseCase}"
-msgstr "Gunakan kasus: "
+msgstr "Gunakan kasus: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "Situs pelaporan baru telah terdaftar"

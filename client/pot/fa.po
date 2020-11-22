@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -243,9 +243,6 @@ msgstr "ضمیمه‌ها"
 
 msgid "Change your password"
 msgstr "تغییر گذرواژه"
-
-msgid "Access requests"
-msgstr "درخواست‌های دسترسی"
 
 msgid "User"
 msgstr "کاربر"
@@ -897,6 +894,9 @@ msgstr "حداکثر تعداد دریافت کننده های قابل انتخ
 msgid "Show recipients in alphabetical order"
 msgstr "نشان دادن گیرندگان به صورت الفبایی"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "نمایش جزییات گیرنده روی صفحه وضعیت گزارش"
+
 msgid "Enable comments"
 msgstr "فعال کردن نظر"
 
@@ -1334,8 +1334,8 @@ msgstr "تاریخ گزارش"
 msgid "Authorization"
 msgstr "احراز هویت"
 
-msgid "Identities"
-msgstr "هویت‌ها"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "لینک تایید یا نادرست می باشد یا انقضا یافته است."

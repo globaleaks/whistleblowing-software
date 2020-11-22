@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -236,9 +236,6 @@ msgstr "צרופות"
 
 msgid "Change your password"
 msgstr "שנה את סיסמתך"
-
-msgid "Access requests"
-msgstr "בקשות גישה"
 
 msgid "User"
 msgstr "משתמש"
@@ -890,6 +887,9 @@ msgstr "מספר מקסימאלי של מקבלים לבחירה:"
 msgid "Show recipients in alphabetical order"
 msgstr "מקבלי הצג לפי סדר אלפביתי"
 
+msgid "Show recipient details on the status page of the report"
+msgstr ""
+
 msgid "Enable comments"
 msgstr "אפשר הערות"
 
@@ -1327,8 +1327,8 @@ msgstr "תאריך דוח"
 msgid "Authorization"
 msgstr "הרשאה"
 
-msgid "Identities"
-msgstr "זהויות"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

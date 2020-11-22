@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -226,9 +226,6 @@ msgstr "Qoşmalar"
 
 msgid "Change your password"
 msgstr "Şifrənizi dəyişin"
-
-msgid "Access requests"
-msgstr ""
 
 msgid "User"
 msgstr "İstifadəçi"
@@ -880,6 +877,9 @@ msgstr "Seçilən qəbul edicilərin maksimum sayı:"
 msgid "Show recipients in alphabetical order"
 msgstr "Qəbul ediciləri əlifba sırası ilə göstərin"
 
+msgid "Show recipient details on the status page of the report"
+msgstr ""
+
 msgid "Enable comments"
 msgstr "Şərhləri aktiv edin"
 
@@ -1317,8 +1317,8 @@ msgstr ""
 msgid "Authorization"
 msgstr "Səlahiyyətvermə"
 
-msgid "Identities"
-msgstr "Kimliklər"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

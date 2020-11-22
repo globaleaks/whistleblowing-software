@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-10 22:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
+"Last-Translator: ff98sha\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -238,9 +238,6 @@ msgstr "附件"
 
 msgid "Change your password"
 msgstr "更改您的密码"
-
-msgid "Access requests"
-msgstr "读取请求"
 
 msgid "User"
 msgstr "用户"
@@ -892,6 +889,9 @@ msgstr "最多可选收件人的数目"
 msgid "Show recipients in alphabetical order"
 msgstr "以字母次序显示收件人"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "在报告的状况页显示收件人的详细情况"
+
 msgid "Enable comments"
 msgstr "启用评论"
 
@@ -1329,8 +1329,8 @@ msgstr "报告日期"
 msgid "Authorization"
 msgstr "授权"
 
-msgid "Identities"
-msgstr "身份"
+msgid "Requests"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "验证链接不正确或是已经过期。"

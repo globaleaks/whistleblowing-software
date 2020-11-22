@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-11 15:04+0000\n"
-"Last-Translator: AO <ao@localizationlab.org>\n"
+"PO-Revision-Date: 2020-11-21 00:02+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -256,9 +256,6 @@ msgstr "Fichiers joints"
 
 msgid "Change your password"
 msgstr "Changez votre mot de passe"
-
-msgid "Access requests"
-msgstr "Demandes d’accès"
 
 msgid "User"
 msgstr "Utilisateur"
@@ -910,6 +907,9 @@ msgstr "Nombre maximal de destinataires sélectionnables :"
 msgid "Show recipients in alphabetical order"
 msgstr "Montrer les destinataires par ordre alphabétique"
 
+msgid "Show recipient details on the status page of the report"
+msgstr "Afficher les détails des destinataires sur la page d’état du signalement"
+
 msgid "Enable comments"
 msgstr "Activer les commentaires"
 
@@ -1347,8 +1347,8 @@ msgstr "Date du signalement"
 msgid "Authorization"
 msgstr "Autorisation"
 
-msgid "Identities"
-msgstr "Identités"
+msgid "Requests"
+msgstr "Requêtes"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Soit le lien de validation est incorrect soit il est expiré."
