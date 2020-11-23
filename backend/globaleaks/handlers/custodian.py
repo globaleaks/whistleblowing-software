@@ -56,7 +56,7 @@ def get_identityaccessrequest(session, tid, identityaccessrequest_id):
     return serialize_identityaccessrequest(session, iar)
 
 
-def db_create_identity_access_reply_notifications(session, itip, iar):
+def db_create_identity_access_reply_notifications(session, itip, rtip, iar):
     """
     Transaction for the creation of notifications related to identity access replies
     :param session: An ORM session
@@ -65,10 +65,9 @@ def db_create_identity_access_reply_notifications(session, itip, iar):
     """
     from globaleaks.handlers.rtip import serialize_rtip
 
-    for user, rtip in session.query(models.User, models.ReceiverTip) \
-                             .filter(models.ReceiverTip.internaltip_id == itip.id,
-                                     models.User.id == models.ReceiverTip.receiver_id,
-                                     models.User.notification.is_(True)):
+    for user in session.query(models.User) \
+                       .filter(models.User.id == rtip.receiver_id,
+                               models.User.notification.is_(True)):
         context = session.query(models.Context).filter(models.Context.id == itip.context_id).one()
 
         data = {
@@ -113,7 +112,7 @@ def update_identityaccessrequest(session, tid, user_id, identityaccessrequest_id
         if iar.reply == 'authorized':
             rtip.can_access_whistleblower_identity = True
 
-        db_create_identity_access_reply_notifications(session, itip, iar)
+        db_create_identity_access_reply_notifications(session, itip, rtip, iar)
 
     return serialize_identityaccessrequest(session, iar)
 
