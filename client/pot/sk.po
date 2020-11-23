@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-21 17:29+0000\n"
+"PO-Revision-Date: 2020-11-23 16:58+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -361,9 +361,6 @@ msgstr "Silné"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Text zobrazený na vrchu rozhrania pre výber kontextov"
-
-msgid "Show small context cards on submission interface"
-msgstr "Zobraziť malé kontextové karty v oznamovateľskom rozhraní"
 
 msgid "Type to search…"
 msgstr "Píšte pre vyhľadávanie..."

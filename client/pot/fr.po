@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-21 00:02+0000\n"
+"PO-Revision-Date: 2020-11-23 16:58+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -386,9 +386,6 @@ msgstr "Robuste"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Texte de sélection des contextes, affiché en haut de l’interface"
-
-msgid "Show small context cards on submission interface"
-msgstr "Sur l’interface d’envoi, afficher les contextes sous forme de petites cartes "
 
 msgid "Type to search…"
 msgstr "Tapez pour chercher…"

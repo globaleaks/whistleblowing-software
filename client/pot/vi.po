@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-21 18:09+0000\n"
+"PO-Revision-Date: 2020-11-23 16:58+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -361,9 +361,6 @@ msgstr "Mạnh"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Văn bản hiển thị trên đầu trang của giao diện để lựa chọn bối cảnh"
-
-msgid "Show small context cards on submission interface"
-msgstr "Hiện thẻ bối cảnh nhỏ trên giao diện nộp"
 
 msgid "Type to search…"
 msgstr "Gõ để tìm kiếm..."

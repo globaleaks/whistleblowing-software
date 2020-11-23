@@ -43,8 +43,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-21 00:02+0000\n"
-"Last-Translator: SylvainFPU <mignot@freepressunlimited.org>\n"
+"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -390,9 +390,6 @@ msgstr "Sterk"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Tekst die getoond wordt boven de interface om context te selecteren"
-
-msgid "Show small context cards on submission interface"
-msgstr "Toon kleine contextkaartjes op het inzending-interface"
 
 msgid "Type to search…"
 msgstr "Zoekbegrip ingeven..."

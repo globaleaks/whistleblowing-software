@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-21 00:02+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -354,9 +354,6 @@ msgstr "Sterkt"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Tekst vist på toppen av grensesnittet for valg av bindeleddsinformasjon"
-
-msgid "Show small context cards on submission interface"
-msgstr "Vis små bindeleddsinformasjonskort på innsendelses-grensesnittet"
 
 msgid "Type to search…"
 msgstr "Skriv for å søke…"

@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-21 00:02+0000\n"
-"Last-Translator: Vojtech Kotek <kotek.vojtech@gmail.com>\n"
+"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -355,9 +355,6 @@ msgstr "Jaka"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Tekst prikazan na vrhu interfacea za odabir konteksta"
-
-msgid "Show small context cards on submission interface"
-msgstr "Pokaži male kartice konteksta na interfaceu za prijavljivanjeu"
 
 msgid "Type to search…"
 msgstr "Ukucajte za pretragu"

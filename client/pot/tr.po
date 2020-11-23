@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-22 13:54+0000\n"
-"Last-Translator: Kaya Zeren <kayazeren@gmail.com>\n"
+"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -375,9 +375,6 @@ msgstr "Güçlü"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Arayüz de en üstünde yer alan metin içerik seçmek için dir"
-
-msgid "Show small context cards on submission interface"
-msgstr "Gönderen kısmında arayüz de küçük içerik kartlarını göster."
 
 msgid "Type to search…"
 msgstr "Aramak için yazın..."

@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-21 00:02+0000\n"
-"Last-Translator: Vadym Gud <gudvadym@gmail.com>\n"
+"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -369,9 +369,6 @@ msgstr "Надійний"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Text shown on top of the interface for selecting contexts"
-
-msgid "Show small context cards on submission interface"
-msgstr "Показати тематичні картки на сторінці повідомлень"
 
 msgid "Type to search…"
 msgstr "Почніть пошук тут..."

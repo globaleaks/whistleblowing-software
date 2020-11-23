@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-21 00:02+0000\n"
-"Last-Translator: Marija Grinevičiūtė <marijagrineviciute@outlook.com>\n"
+"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/otf/globaleaks/language/lt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -352,9 +352,6 @@ msgstr "Stiprus"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Tekstas rodomas sąsajos viršuje pasirenkant kontekstus"
-
-msgid "Show small context cards on submission interface"
-msgstr "Rodyti mažas konteksto korteles pateikimo sąsajoje"
 
 msgid "Type to search…"
 msgstr "Rašykite norėdami ieškoti..."

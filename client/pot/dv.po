@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-21 19:25+0000\n"
+"PO-Revision-Date: 2020-11-23 16:58+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -356,9 +356,6 @@ msgstr "ވަރަށް ރަނގަޅު"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "ލިޔުމުގެ ބާވަތް ދެނެގަތުމަށް އިންޓަފޭސްގެ މަތީގައި ބޭނުންކުރެވޭ ލިޔުންކޮޅު"
-
-msgid "Show small context cards on submission interface"
-msgstr "އިންޓަފޭސްގައި ބޭނުންކުރުމަށް ހުށައެޅޭ ބާވަތް ދައްކާލުމަށް ކުދި ކާޑު ބޭނުންކުރުން"
 
 msgid "Type to search…"
 msgstr "ހޯދާ"

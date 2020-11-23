@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-21 00:02+0000\n"
+"PO-Revision-Date: 2020-11-23 16:58+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -360,9 +360,6 @@ msgstr "Vahva"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Sivun yläosan teksti aihetta valittaessa"
-
-msgid "Show small context cards on submission interface"
-msgstr "Näytä aiheet pieninä kortteina vihjeenkirjoitusnäkymässä"
 
 msgid "Type to search…"
 msgstr "Etsi..."

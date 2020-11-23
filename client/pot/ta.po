@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-21 17:38+0000\n"
+"PO-Revision-Date: 2020-11-23 16:58+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -354,9 +354,6 @@ msgstr "வலுவான"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "உரை சூழல்களில் தேர்வு இடைமுகம் மேல் காட்டப்படும்"
-
-msgid "Show small context cards on submission interface"
-msgstr "சமர்ப்பிப்பு இடைமுகத்தில் சிறிய சூழலில் அட்டைகள் காட்டு"
 
 msgid "Type to search…"
 msgstr "தேடுவதற்குத் தட்டச்சு செய்க ..."

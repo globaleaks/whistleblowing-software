@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-21 00:02+0000\n"
-"Last-Translator: Max Moiseev <max.moiseev@chamber.fi>\n"
+"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Estonian (http://www.transifex.com/otf/globaleaks/language/et/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -351,9 +351,6 @@ msgstr "Tugev"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Kontekstide valimise liidese alguses näidatav tekst"
-
-msgid "Show small context cards on submission interface"
-msgstr "Näita esitamisliidesel väikesi kontekstikaarte"
 
 msgid "Type to search…"
 msgstr "Otsitav tekst…"

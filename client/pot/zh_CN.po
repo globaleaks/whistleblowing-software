@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-21 00:02+0000\n"
-"Last-Translator: ff98sha\n"
+"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -368,9 +368,6 @@ msgstr "强"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "接口上方会显示所选择内文文本"
-
-msgid "Show small context cards on submission interface"
-msgstr "在揭密提交接口下会显示小型内文卡"
 
 msgid "Type to search…"
 msgstr "输入欲搜索"
