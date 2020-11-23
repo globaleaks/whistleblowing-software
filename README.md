@@ -33,8 +33,8 @@ If you need technical support, have general questions, or have new ideas for Glo
 
 Join our [Slack](https://slack.globaleaks.org) to get in touch with the development team and the GlobaLeaks community:
 * #development to participate in development discussions
-* #support-eng for the community support channel in English
-* #support-ita for the community support channel in Italian
+* #communiry-support for the community support channel in English
+* #community-support-ita for the community support channel in Italian
 
 If you want to contribute to software development or report a bug, please open an issue on [GitHub](https://github.com/globaleaks/GlobaLeaks/issues/).
 
