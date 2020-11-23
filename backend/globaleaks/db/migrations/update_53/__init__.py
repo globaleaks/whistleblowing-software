@@ -199,8 +199,6 @@ class MigrationScript(MigrationBase):
     def epilogue(self):
         m = self.model_to['Config']
 
-        m = self.model_to['Config']
-
         self.session_new.query(m) \
                         .filter(m.var_name == 'private_labels') \
                         .update({'var_name': 'private_annotations'})
@@ -224,3 +222,9 @@ class MigrationScript(MigrationBase):
                             .filter(m.tid == c.tid,
                                     m.var_name == 'tor_onion_key') \
                             .update({'var_name': 'old_tor_onion_key'})
+
+        m = self.model_to['ConfigL10N']
+
+        self.session_new.query(m) \
+                        .filter(m.var_name == 'contexts_clarification') \
+                        .update({'value': '', 'update_date': datetime_null()})
