@@ -1,4 +1,8 @@
-Changes in version 4.1.1 - 2020-11-25
+Changes in version 4.1.2 - 2020-11-23
+    Revise notifications for custodian replies
+    Fix visualization of recipient selection cards
+
+Changes in version 4.1.1 - 2020-11-22
     Fix creation of new users for platforms where english is not enabled
     Fix gl-admin utility in relation to import error
     Add notifications for custodians replies
