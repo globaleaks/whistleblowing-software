@@ -200,7 +200,7 @@ class MigrationScript(MigrationBase):
         m = self.model_to['Config']
 
         self.session_new.query(m) \
-                        .filter(m.var_name == 'private_labels') \
+                        .filter(m.var_name == 'enable_private_labels') \
                         .update({'var_name': 'private_annotations'})
 
         self.session_new.query(m) \
