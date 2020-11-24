@@ -829,14 +829,15 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
 
       pt2 = $filter("translate")(pt2);
 
+      $rootScope.projectTitle = pt1;
+      $rootScope.pageTitle = pt2;
+
       if (pt1 && pt2) {
         $rootScope.pt = pt1 + " - " + pt2;
-      } else {
-        if (pt1) {
-          $rootScope.pt = pt1;
-        } else {
-          $rootScope.pt = pt2;
-        }
+      } else if (pt1) {
+        $rootScope.pt = pt1;
+      } else if (pt2) {
+        $rootScope.pt = pt2;
       }
     },
 
