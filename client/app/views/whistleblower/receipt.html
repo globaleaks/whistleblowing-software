@@ -1,38 +1,36 @@
-<div>
-  <div class="row" data-ng-if="page === 'receiptpage'">
-    <div class="col-md-12">
-      <div id="ReceiptText">
-        <div data-ng-if="!Authentication.context.score_receipt_text_custom">
-          <span data-translate>Thank you!</span> <span data-translate>Your report was successful.</span> <span data-translate>We will try to get back to you as soon as possible.</span>
+<div class="row" data-ng-if="page === 'receiptpage'">
+  <div class="col-md-12">
+    <div id="ReceiptText">
+      <div data-ng-if="!Authentication.context.score_receipt_text_custom">
+        <span data-translate>Thank you!</span> <span data-translate>Your report was successful.</span> <span data-translate>We will try to get back to you as soon as possible.</span>
+      </div>
+      <div data-ng-if="Authentication.context.score_receipt_text_custom">
+        <p data-ng-if="Authentication.submission.score === 1" class="preformatted">{{Authentication.context.score_receipt_text_l}}</p>
+        <p data-ng-if="Authentication.submission.score === 2" class="preformatted">{{Authentication.context.score_receipt_text_m}}</p>
+        <p data-ng-if="Authentication.submission.score === 3" class="preformatted">{{Authentication.context.score_receipt_text_h}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-secondary">
+      <div class="card-header">
+        <span data-translate>Remember your receipt for this report.</span>
+      </div>
+      <div class="card-body">
+        <div id="KeyCodeBox">
+          <span id="KeyCode">{{formatted_receipt}}</span>
         </div>
-        <div data-ng-if="Authentication.context.score_receipt_text_custom">
-          <p data-ng-if="Authentication.submission.score === 1" class="preformatted">{{Authentication.context.score_receipt_text_l}}</p>
-          <p data-ng-if="Authentication.submission.score === 2" class="preformatted">{{Authentication.context.score_receipt_text_m}}</p>
-          <p data-ng-if="Authentication.submission.score === 3" class="preformatted">{{Authentication.context.score_receipt_text_h}}</p>
+        <div data-translate>Use the 16 digit receipt to log in. It will allow you to view any messages we sent you, and also to add extra info.</div>
+        <div class="mt-md-3 clearfix" data-ng-if="page === 'receiptpage'">
+          <button id="ReceiptButton" class="float-right btn btn-primary" data-ng-click="Authentication.login(0, 'whistleblower', receipt)" data-translate>View your report</button>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card card-secondary">
-        <div class="card-header">
-          <span data-translate>Remember your receipt for this report.</span>
-        </div>
-        <div class="card-body">
-          <div id="KeyCodeBox">
-            <span id="KeyCode">{{formatted_receipt}}</span>
-          </div>
-          <div data-translate>Use the 16 digit receipt to log in. It will allow you to view any messages we sent you, and also to add extra info.</div>
-          <div class="mt-md-3 clearfix" data-ng-if="page === 'receiptpage'">
-            <button id="ReceiptButton" class="float-right btn btn-primary" data-ng-click="Authentication.login(0, 'whistleblower', receipt)" data-translate>View your report</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row" data-ng-if="page === 'receiptpage'">
-    <div class="col-md-6" data-ng-if="public.node.enable_receipt_hint" data-ng-include="'views/partials/keycodehint_panel.html'"></div>
-    <div class="col-md-6" data-ng-if="public.node.enable_ricochet_panel" data-ng-include="'views/partials/ricochet_panel.html'"></div>
-  </div>
+</div>
+<div class="row" data-ng-if="page === 'receiptpage'">
+  <div class="col-md-6" data-ng-if="public.node.enable_receipt_hint" data-ng-include="'views/partials/keycodehint_panel.html'"></div>
+  <div class="col-md-6" data-ng-if="public.node.enable_ricochet_panel" data-ng-include="'views/partials/ricochet_panel.html'"></div>
 </div>
