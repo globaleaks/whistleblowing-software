@@ -48,7 +48,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         response = yield handler.get()
 
         self.assertNotIn('version', response)
-        self.assertIn('header_title_submissionpage', response)
+        self.assertIn('header_title_homepage', response)
 
     @inlineCallbacks
     def test_confirm_fail_receiver_acl_cleared(self):

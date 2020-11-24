@@ -253,7 +253,6 @@ AdminNodeDesc = {
     'enable_custom_privacy_badge': bool,
     'custom_privacy_badge_text': str,
     'header_title_homepage': str,
-    'header_title_submissionpage': str,
     'contexts_clarification': str,
     'show_contexts_in_alphabetical_order': bool,
     'threshold_free_disk_megabytes_high': int,

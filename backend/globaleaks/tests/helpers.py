@@ -346,7 +346,6 @@ class MockDict:
             'enable_custom_privacy_badge': False,
             'custom_privacy_badge_text': '',
             'header_title_homepage': '',
-            'header_title_submissionpage': '',
             'contexts_clarification': '',
             'show_contexts_in_alphabetical_order': False,
             'threshold_free_disk_megabytes_high': 200,

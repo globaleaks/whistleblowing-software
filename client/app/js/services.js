@@ -818,11 +818,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
           pt2 = $rootScope.public.node.header_title_homepage;
 
       if ($location.path() === "/") {
-        if ($rootScope.page === "submissionpage") {
-          pt2 = $rootScope.public.node.header_title_submissionpage;
-        } else if ($rootScope.page === "receiptpage") {
-          pt2 = $rootScope.public.node.header_title_receiptpage;
-        } else if ($rootScope.page === "tippage") {
+        if ($rootScope.page === "tippage") {
           pt2 = "Report";
         } else if ($rootScope.page === "signuppage") {
           pt2 = "Create your whistleblowing platform";
