@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"PO-Revision-Date: 2020-11-24 21:41+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -543,17 +543,6 @@ msgstr "PDV broj"
 msgid "Tax code"
 msgstr "Porezni broj"
 
-msgid "Warning! You are not anonymous."
-msgstr "Upozorenje! Vi niste anonimni."
-
-msgid ""
-"Sending reports over HTTPS exposes the act of doing so, but not the "
-"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the report anonymous, which is strongly recommended.\\n\\nThis can be "
-"achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers."
-msgstr "Slanje prijave preko HTTPS-a ne sakriva prijavljivanje, ali ne vidi se sadržaj prijave.\\n\\nTakođer, skrivanje činjenice da podnosite nešto čini prijavu anonimnom, što je važno za vašu sigurnost i anonimnost.\\n\\nTo se može postići upotrebom Tor preglednika, koji omogućuje anonimnost koju ne možete ostvariti upotrebom drugih preglednika."
-
 msgid "Are you a whistleblower?"
 msgstr "Jeste li zviždač?"
 
@@ -791,9 +780,6 @@ msgstr "Pitanje koje se upućuje potencijalnim zviždačima"
 
 msgid "Whistleblowing button"
 msgstr "Dugme za zviždačevu prijavu"
-
-msgid "Title of the submission page"
-msgstr "Ime stranice podneska"
 
 msgid "Enable disclaimer"
 msgstr "Omogućite izjavu o odricanju od odgovornosti"

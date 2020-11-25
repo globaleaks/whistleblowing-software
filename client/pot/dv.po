@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"PO-Revision-Date: 2020-11-24 21:41+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -544,17 +544,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Warning! You are not anonymous."
-msgstr "ސަމާލަ! ރައްކާތެރިކަން ރަނގަޅެއްނޫން. "
-
-msgid ""
-"Sending reports over HTTPS exposes the act of doing so, but not the "
-"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the report anonymous, which is strongly recommended.\\n\\nThis can be "
-"achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers."
-msgstr "އެޗް.ޓީ.ޓީ.ޕީ.އެސްގެ ތެރެއިން ފޮނުވާ މައޫލޫމާތަކީ ސިއްރުން ފޮނުވޭ މައުލޫމާތެއް ނަމަވެސް އެ ރިޕޯޓު ފޮނުވާކަން ސިއްރެއް ނުކުރެވެއެވެ. އެހެންނަމަވެސް ފޮނުވާ ރިޕޯޓަކީ ސިއްރުން ފޮނުވޭ އެއްޗަކަށް ހެދުމަކީ އެންމެ އެދެވޭގޮތެވެ. މިކަން ކުރެވޭނެ މަގަކީ ސިއްރުން މަޢުލޫމާތު ބަދަލުކުރުމަށް މަގުފަހިކޮށްދޭ ޓީ.އޯ.އާރު ބްރައުޒަރ ބޭނުންކޮށްގެންނެވެ."
-
 msgid "Are you a whistleblower?"
 msgstr "ތިޔަ ފަރާތަކީ ވިސިލްބްލޯވަރއެއްތޯ؟ "
 
@@ -792,9 +781,6 @@ msgstr "ވިސިލްބްލޯވަރއެއްކަން ކަށަވަރުކުރަން 
 
 msgid "Whistleblowing button"
 msgstr "ވިސްލްބްލޯކުރުމަށް ފިއްތަވާ"
-
-msgid "Title of the submission page"
-msgstr "ސަބްމިޝަން ސަފްޙާގެ ލަގަބު"
 
 msgid "Enable disclaimer"
 msgstr "ވަކި ހާއްސަ މެސެޖެއް ދެއްވަން ހިޔާރުކުރެއްވުމަށް"

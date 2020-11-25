@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"PO-Revision-Date: 2020-11-24 21:41+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -548,17 +548,6 @@ msgstr "Arvonlisäveronumero"
 msgid "Tax code"
 msgstr "Veronumero"
 
-msgid "Warning! You are not anonymous."
-msgstr "Varoitus! Et ole anonyymi."
-
-msgid ""
-"Sending reports over HTTPS exposes the act of doing so, but not the "
-"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the report anonymous, which is strongly recommended.\\n\\nThis can be "
-"achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers."
-msgstr "Ilmoitusten lähettäminen HTTPS-yhteyskäytännöllä paljastaa ilmoituksen lähettämisen, mutta ei sen sisältöä.\\n\\nSen piilottaminen, että lähetät jotakin tekee ilmoituksen anonyymiksi, mitä suositellaan ponnekkaasti.\\n\\nTämä voidaan saada aikaan käyttämällä Tor-selainta, joka tarjoaa anonyymisyyden, jota ei löydy muista selaimista."
-
 msgid "Are you a whistleblower?"
 msgstr "Onko sinulla tietoa epäilyttävästä, laittomasta tai muuten hämärästä toiminnasta yrityksessäsi? Tuo asia julki ja lähetä meille vihje halutessasi täysin nimettömänä turvallisen verkkoyhteyden kautta."
 
@@ -796,9 +785,6 @@ msgstr "Vihjeenantajalle esitettävä kysymys palvelun etusivulla"
 
 msgid "Whistleblowing button"
 msgstr "Aloituspainikkeen teksti"
-
-msgid "Title of the submission page"
-msgstr "Vihjeen lähetys -sivun otsikko"
 
 msgid "Enable disclaimer"
 msgstr "Ota käyttöön vastuuvapauslauseke"

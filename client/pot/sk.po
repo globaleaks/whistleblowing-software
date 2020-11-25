@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"PO-Revision-Date: 2020-11-24 21:41+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -549,17 +549,6 @@ msgstr "IČ DPH"
 msgid "Tax code"
 msgstr "DIČ"
 
-msgid "Warning! You are not anonymous."
-msgstr "Varovanie! Nie ste anonymný."
-
-msgid ""
-"Sending reports over HTTPS exposes the act of doing so, but not the "
-"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the report anonymous, which is strongly recommended.\\n\\nThis can be "
-"achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers."
-msgstr "Odosielanie správ prostredníctvom protokolu HTTPS odhalí fakt, že ste správu odoslali, ale nie jej obsah. \\n\\nTým, že skryjete, že ste správu odoslali, ju robíte anonymnú. Tento spôsob sa dôrazne odporúča. \\n\\nToho dosiahnete použitím Tor Browseru, ktorý poskytuje anonymizáciu, ktorú iný prehliadač neponúka."
-
 msgid "Are you a whistleblower?"
 msgstr "Ste oznamovateľ?"
 
@@ -797,9 +786,6 @@ msgstr "Otázky pre získavanie možných oznamovateľov"
 
 msgid "Whistleblowing button"
 msgstr "Tlačidlo oznamovateľa"
-
-msgid "Title of the submission page"
-msgstr "Titulok stránky s odoslaním"
 
 msgid "Enable disclaimer"
 msgstr "Povoliť odmietnutie zodpovednosti"

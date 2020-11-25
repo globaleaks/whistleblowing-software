@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"PO-Revision-Date: 2020-11-24 21:41+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -554,17 +554,6 @@ msgstr "núm VAT"
 msgid "Tax code"
 msgstr "codi tributari"
 
-msgid "Warning! You are not anonymous."
-msgstr "Atenció! No ets anònim."
-
-msgid ""
-"Sending reports over HTTPS exposes the act of doing so, but not the "
-"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the report anonymous, which is strongly recommended.\\n\\nThis can be "
-"achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers."
-msgstr "Enviar un informe mitjançant HTTPS exposa el fet de l'enviament en si mateix, no el seu contingut.\\n\\nTambé cal amagar el fet que esteu entregant alguna cosa , aconseguint que l'enviament sigui anònim, cosa que és molt recomanable.\\n\\nAixò es pot aconseguir utilitzant el navegador \"Tor\", que ofereix un anonimat que no es troba en d'altres navegadors."
-
 msgid "Are you a whistleblower?"
 msgstr "Ets un informador?"
 
@@ -802,9 +791,6 @@ msgstr "Pregunta per sol·licitar possibles informadors"
 
 msgid "Whistleblowing button"
 msgstr "Botó de l'informador"
-
-msgid "Title of the submission page"
-msgstr "Títol de la pàgina d'enviament"
 
 msgid "Enable disclaimer"
 msgstr "Activar l'avís legal"

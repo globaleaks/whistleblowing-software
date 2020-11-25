@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"PO-Revision-Date: 2020-11-24 21:41+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -557,17 +557,6 @@ msgstr "Adószám"
 msgid "Tax code"
 msgstr "Adókód"
 
-msgid "Warning! You are not anonymous."
-msgstr "Figyelem! Ön nem anonim."
-
-msgid ""
-"Sending reports over HTTPS exposes the act of doing so, but not the "
-"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the report anonymous, which is strongly recommended.\\n\\nThis can be "
-"achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers."
-msgstr "Jelentések küldése HTTPS-en felfedi a szándékot, de nem a tartalmat.\\n\\nFontos azonban az, hogy azt is elrejtse, hogy küldene, és a jelentés anonimmá váljon.\\n\\nEz elérhető azzal, hogy Tor böngészőt használ, ami anonimizál a többi böngészővel ellentétben."
-
 msgid "Are you a whistleblower?"
 msgstr "Szivárogtatni szeretne? Közérdekű bejelentést szeretne tenni?"
 
@@ -805,9 +794,6 @@ msgstr "Kiszivárogtatás kérdés"
 
 msgid "Whistleblowing button"
 msgstr "Szivárogtatás gomb"
-
-msgid "Title of the submission page"
-msgstr "A beadvány oldal címe"
 
 msgid "Enable disclaimer"
 msgstr "Nyilatkozat engedélyezése"

@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"PO-Revision-Date: 2020-11-24 21:41+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -556,17 +556,6 @@ msgstr "VAT数字"
 msgid "Tax code"
 msgstr ""
 
-msgid "Warning! You are not anonymous."
-msgstr "警告！你尚未匿名。"
-
-msgid ""
-"Sending reports over HTTPS exposes the act of doing so, but not the "
-"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the report anonymous, which is strongly recommended.\\n\\nThis can be "
-"achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers."
-msgstr "透由 HTTPS 发送报告会曝露此行为，但不会泄露报告内容。\\n\\n此外，它也隐瞒匿名提交某些东西的情况，以匿名化报告。\\n\\n可以透过 Tor  浏览器达成其它浏览器无法满足的匿名功能。"
-
 msgid "Are you a whistleblower?"
 msgstr "你是吹哨揭密者吗?"
 
@@ -804,9 +793,6 @@ msgstr "收集给潜在告密人的问题"
 
 msgid "Whistleblowing button"
 msgstr "吹哨揭密者的按键"
-
-msgid "Title of the submission page"
-msgstr "提交页面的标题"
 
 msgid "Enable disclaimer"
 msgstr "开启免责声明编辑功能"

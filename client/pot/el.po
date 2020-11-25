@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"PO-Revision-Date: 2020-11-24 21:41+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -552,17 +552,6 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Warning! You are not anonymous."
-msgstr "Προσοχή! Δεν είστε ανώνυμος."
-
-msgid ""
-"Sending reports over HTTPS exposes the act of doing so, but not the "
-"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the report anonymous, which is strongly recommended.\\n\\nThis can be "
-"achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers."
-msgstr "Η αποστολή αναφορών μέσω HTTPS εκθέτει την πράξη σας, αλλά όχι το περιεχόμενο.\\n\\n Επίσης, κρύβοντας το γεγονός ότι υποβάλετε κάτι καθιστά την αναφορά ανώνυμη, κάτι το οποίο συνιστάται ανεπιφύλακτα.\\n\\nΑυτό μπορεί να επιτευχθεί με τη χρήση του Tor Browser, που παρέχει ανωνυμοποίηση η οποία δεν είναι εφικτή με άλλους περιηγητές."
-
 msgid "Are you a whistleblower?"
 msgstr "Έχετε κάτι να αναφέρετε;"
 
@@ -800,9 +789,6 @@ msgstr "Ερώτηση για την επιδίωξη πιθανών προσώ�
 
 msgid "Whistleblowing button"
 msgstr "Πλήκτρο πληροφοριοδότησης"
-
-msgid "Title of the submission page"
-msgstr "Τίτλος της σελίδας της καταχώρησης"
 
 msgid "Enable disclaimer"
 msgstr "Ενεργοποίηση αποποίησης ευθυνών"

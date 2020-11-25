@@ -43,7 +43,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"PO-Revision-Date: 2020-11-24 21:41+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -578,17 +578,6 @@ msgstr "BTW-nummer"
 msgid "Tax code"
 msgstr "BTW-code / Belastingwetgeving"
 
-msgid "Warning! You are not anonymous."
-msgstr "Waarschuwing! Uw anonimiteit is niet gewaarborgd."
-
-msgid ""
-"Sending reports over HTTPS exposes the act of doing so, but not the "
-"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the report anonymous, which is strongly recommended.\\n\\nThis can be "
-"achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers."
-msgstr "Het versturen van inzendingen via HTTPS legt het versturen bloot, maar de inhoud is niet zichtbaar. Daarnaast raden wij u ten sterkste aan dat u tevens maskeert dat u iets inzendt. Dit kunt u doen met behulp van de Tor browser die, anders dan andere browsers, uw anonimiteit waarborgt."
-
 msgid "Are you a whistleblower?"
 msgstr "Bent u een klokkenluider?"
 
@@ -826,9 +815,6 @@ msgstr "Vraag om potentiële klokkenluiders aan te spreken"
 
 msgid "Whistleblowing button"
 msgstr "Klokkenluid-knop"
-
-msgid "Title of the submission page"
-msgstr "Titel van de inzending-pagina"
 
 msgid "Enable disclaimer"
 msgstr "Disclaimer inschakelen"

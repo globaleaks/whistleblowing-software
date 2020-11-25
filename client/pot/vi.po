@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"PO-Revision-Date: 2020-11-24 21:41+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -549,17 +549,6 @@ msgstr "Số VAT"
 msgid "Tax code"
 msgstr "Mã số thuế"
 
-msgid "Warning! You are not anonymous."
-msgstr "Cảnh báo! Bạn đang không ẩn danh."
-
-msgid ""
-"Sending reports over HTTPS exposes the act of doing so, but not the "
-"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the report anonymous, which is strongly recommended.\\n\\nThis can be "
-"achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers."
-msgstr "Hành động gửi báo cáo qua HTTPS sẽ bị lộ, nhưng nội dung báo cáo thì không. \\n\\n Chúng tôi cũng khuyến cáo bạn nên giấu việc nộp báo cáo, như vậy báo cáo sẽ ở tình trạng ấn danh. \\n\\n Bạn có thể dùng Trình duyệt Tor, miễn là việc ẩn danh của bạn không bị lộ ở trình duyệt khác."
-
 msgid "Are you a whistleblower?"
 msgstr "Bạn có phải là người tố giác?"
 
@@ -797,9 +786,6 @@ msgstr "Câu hỏi để thu hút những người có thể tố giác "
 
 msgid "Whistleblowing button"
 msgstr "Nút tố giác"
-
-msgid "Title of the submission page"
-msgstr "Tiêu đề của trang nộp "
 
 msgid "Enable disclaimer"
 msgstr "Cho phép từ chối trách nhiệm"

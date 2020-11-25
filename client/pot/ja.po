@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-23 16:58+0000\n"
+"PO-Revision-Date: 2020-11-24 21:41+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -544,17 +544,6 @@ msgstr "法人番号/マイナンバー"
 msgid "Tax code"
 msgstr "納税番号"
 
-msgid "Warning! You are not anonymous."
-msgstr "警告! あなたは匿名ではありません。"
-
-msgid ""
-"Sending reports over HTTPS exposes the act of doing so, but not the "
-"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the report anonymous, which is strongly recommended.\\n\\nThis can be "
-"achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers."
-msgstr "HTTPS経由で報告を送信すると、内容ではありませんが、報告したという行為が暴露されます。\\n\\nあなたが匿名で何かを報告したという事実も隠すことを強くお勧めします。\\n\\nこれは、他のブラウザにはない匿名を提供するTorブラウザを使用することで達成できます。"
-
 msgid "Are you a whistleblower?"
 msgstr "あなたは内部告発者ですか?"
 
@@ -792,9 +781,6 @@ msgstr "内部告発の質問"
 
 msgid "Whistleblowing button"
 msgstr "内部告発ボタン"
-
-msgid "Title of the submission page"
-msgstr "提出ページのタイトル"
 
 msgid "Enable disclaimer"
 msgstr "免責事項を有効にする"
