@@ -214,7 +214,6 @@ class WBTipMessageCollection(BaseHandler):
 
 class WBTipWBFileHandler(WBFileHandler):
     check_roles = 'whistleblower'
-    upload_handler = False
 
     def user_can_access(self, session, tid, wbfile):
         wbtip_id = session.query(models.InternalTip.id) \
