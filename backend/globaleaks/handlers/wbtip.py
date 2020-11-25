@@ -228,6 +228,21 @@ class WBTipWBFileHandler(WBFileHandler):
         log.debug("Download of file %s by whistleblower %s",
                   wbfile.id, self.current_user.user_id)
 
+    @transact
+    def download_wbfile(self, session, tid, file_id):
+        wbfile, wbtip = db_get(session,
+                               (models.WhistleblowerFile, models.WhistleblowerTip),
+                               (models.WhistleblowerFile.id == file_id,
+                                models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                                models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id))
+
+        if not self.user_can_access(session, tid, wbfile):
+            raise errors.ResourceNotFound()
+
+        self.access_wbfile(session, wbfile)
+
+        return serializers.serialize_wbfile(session, wbfile), base64.b64decode(wbtip.crypto_tip_prv_key)
+
 
 class WBTipIdentityHandler(BaseHandler):
     """

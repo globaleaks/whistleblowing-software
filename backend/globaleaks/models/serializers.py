@@ -61,6 +61,7 @@ def serialize_wbfile(session, wbfile):
         'size': wbfile.size,
         'type': wbfile.content_type,
         'filename': wbfile.filename,
+        'description': wbfile.description,
         'downloads': wbfile.downloads,
         'author': receiver_id
     }

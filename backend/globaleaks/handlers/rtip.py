@@ -306,7 +306,9 @@ def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
 
     if itip.crypto_tip_pub_key:
         for k in ['name', 'description', 'type', 'size']:
-            uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, str(uploaded_file[k])))
+            if k == 'size':
+                uploaded_file[k] = str(uploaded_file[k])
+            uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, uploaded_file[k]))
 
     new_file = models.WhistleblowerFile()
 
@@ -823,18 +825,20 @@ class WBFileHandler(BaseHandler):
 
     @transact
     def download_wbfile(self, session, tid, file_id):
-        wbfile, wbtip = db_get(session,
-                               (models.WhistleblowerFile, models.WhistleblowerTip),
-                               (models.WhistleblowerFile.id == file_id,
-                                models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id))
+        wbfile, wbtip, rtip = db_get(session,
+                                     (models.WhistleblowerFile,
+                                      models.WhistleblowerTip,
+                                      models.ReceiverTip),
+                                     (models.WhistleblowerFile.id == file_id,
+                                      models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                                      models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id))
 
         if not self.user_can_access(session, tid, wbfile):
             raise errors.ResourceNotFound()
 
         self.access_wbfile(session, wbfile)
 
-        return serializers.serialize_wbfile(session, wbfile), base64.b64decode(wbtip.crypto_tip_prv_key)
+        return serializers.serialize_wbfile(session, wbfile), base64.b64decode(rtip.crypto_tip_prv_key)
 
     @inlineCallbacks
     def get(self, wbfile_id):
