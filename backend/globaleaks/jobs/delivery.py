@@ -60,7 +60,7 @@ def file_delivery(session):
                 }
 
             if user.pgp_key_public:
-                receiverfile.filename = "%s.pgp" % filecode
+                receiverfile.filename = "%s.pgp" % generateRandomKey()
                 receiverfile.status = 'encrypted'
             else:
                 receiverfiles_maps[ifile.id]['pgp_encrypted_for_everybody'] = False
