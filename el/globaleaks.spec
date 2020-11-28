@@ -159,7 +159,7 @@ censorship-resistant, distributed whistleblowing platform.
 /usr/bin/gl-fix-permissions
 /usr/bin/globaleaks
 /usr/lib/python3.6/site-packages/globaleaks/
-/usr/lib/python3.6/site-packages/globaleaks-4.0.58-py3.6.egg-info/
+/usr/lib/python3.6/site-packages/globaleaks-%{version}-py3.6.egg-info/
 /usr/share/globaleaks/
 /usr/lib/systemd/system/globaleaks.service
 %attr(0755, globaleaks, globaleaks) /var/lib/globaleaks
