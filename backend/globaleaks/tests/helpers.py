@@ -543,7 +543,7 @@ def forge_request(uri=b'https://www.globaleaks.org/',
 
 class TestGL(unittest.TestCase):
     initialize_test_database_using_archived_db = True
-    encryption_scenario = 'ENCRYPTED'
+    pgp_configuration = 'ALL'
 
     @inlineCallbacks
     def setUp(self):
@@ -599,19 +599,16 @@ class TestGL(unittest.TestCase):
         self.dummyReceiver_1 = self.get_dummy_receiver('receiver1')
         self.dummyReceiver_2 = self.get_dummy_receiver('receiver2')
 
-        if self.encryption_scenario == 'ENCRYPTED':
+        if self.pgp_configuration == 'ALL':
             self.dummyReceiver_1['pgp_key_public'] = PGPKEYS['VALID_PGP_KEY1_PUB']
             self.dummyReceiver_2['pgp_key_public'] = PGPKEYS['VALID_PGP_KEY2_PUB']
-        elif self.encryption_scenario == 'ENCRYPTED_WITH_ONE_KEY_MISSING':
+        elif self.pgp_configuration == 'ONE_VALID_ONE_WITHOUT':
             self.dummyReceiver_1['pgp_key_public'] = PGPKEYS['VALID_PGP_KEY1_PUB']
             self.dummyReceiver_2['pgp_key_public'] = ''
-        elif self.encryption_scenario == 'ENCRYPTED_WITH_ONE_KEY_EXPIRED':
+        elif self.pgp_configuration == 'ONE_VALID_ONE_EXPIRED':
             self.dummyReceiver_1['pgp_key_public'] = PGPKEYS['VALID_PGP_KEY1_PUB']
             self.dummyReceiver_2['pgp_key_public'] = PGPKEYS['EXPIRED_PGP_KEY_PUB']
-        if self.encryption_scenario == 'MIXED':
-            self.dummyReceiver_1['pgp_key_public'] = ''
-            self.dummyReceiver_2['pgp_key_public'] = PGPKEYS['VALID_PGP_KEY1_PUB']
-        elif self.encryption_scenario == 'PLAINTEXT':
+        elif self.pgp_configuration == 'NONE':
             self.dummyReceiver_1['pgp_key_public'] = ''
             self.dummyReceiver_2['pgp_key_public'] = ''
 

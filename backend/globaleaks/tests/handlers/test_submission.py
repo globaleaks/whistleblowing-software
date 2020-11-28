@@ -10,18 +10,18 @@ from globaleaks.rest import errors
 from globaleaks.tests import helpers
 
 
-class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
+class TestSubmissionScenario1(helpers.TestHandlerWithPopulatedDB):
     _handler = SubmissionInstance
 
     complex_field_population = True
 
-    encryption_scenario = 'ENCRYPTED'
+    pgp_configuration = 'NONE'
 
     files_created = 6
 
     counters_check = {
-        'encrypted': 6,
-        'reference': 0
+        'encrypted': 0,
+        'reference': 6
     }
 
     @inlineCallbacks
@@ -103,7 +103,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue('data' in wbtip_desc)
 
 
-class TestSubmissionTokenInteract(helpers.TestHandlerWithPopulatedDB):
+class TestSubmission(helpers.TestHandlerWithPopulatedDB):
     _handler = SubmissionInstance
 
     @inlineCallbacks
@@ -125,10 +125,8 @@ class TestSubmissionTokenInteract(helpers.TestHandlerWithPopulatedDB):
         yield self.assertRaises(Exception, handler.put, token.id)
 
 
-class TestSubmissionEncryptedScenarioOneKeyExpired(TestSubmissionEncryptedScenario):
-    encryption_scenario = 'ENCRYPTED_WITH_ONE_KEY_EXPIRED'
-
-    files_created = 6
+class TestSubmissionScenario2(TestSubmissionScenario1):
+    pgp_configuration = 'ONE_VALID_ONE_EXPIRED'
 
     counters_check = {
         'encrypted': 6,
@@ -136,10 +134,8 @@ class TestSubmissionEncryptedScenarioOneKeyExpired(TestSubmissionEncryptedScenar
     }
 
 
-class TestSubmissionEncryptedScenarioOneKeyMissing(TestSubmissionEncryptedScenario):
-    encryption_scenario = 'ENCRYPTED_WITH_ONE_KEY_MISSING'
-
-    files_created = 6
+class TestSubmissionScenario3(TestSubmissionScenario1):
+    pgp_configuration = 'ONE_VALID_ONE_WITHOUT'
 
     counters_check = {
         'encrypted': 3,
@@ -147,23 +143,10 @@ class TestSubmissionEncryptedScenarioOneKeyMissing(TestSubmissionEncryptedScenar
     }
 
 
-class TestSubmissionMixedScenario(TestSubmissionEncryptedScenario):
-    encryption_scenario = 'MIXED'
-
-    files_created = 6
+class TestSubmissionScenario4(TestSubmissionScenario1):
+    pgp_configuration = 'ALL'
 
     counters_check = {
-        'encrypted': 3,
-        'reference': 3
-    }
-
-
-class TestSubmissionPlaintextScenario(TestSubmissionEncryptedScenario):
-    encryption_scenario = 'PLAINTEXT'
-
-    files_created = 6
-
-    counters_check = {
-        'encrypted': 0,
-        'reference': 6
+        'encrypted': 6,
+        'reference': 0
     }

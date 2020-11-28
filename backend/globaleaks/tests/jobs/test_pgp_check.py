@@ -6,7 +6,7 @@ from twisted.internet.defer import inlineCallbacks
 
 
 class TestPGPCheckWithNoKeys(helpers.TestGLWithPopulatedDB):
-    encryption_scenario = 'PLAINTEXT'
+    pgp_configuration = 'ALL'
 
     @inlineCallbacks
     def test_pgp_checkule(self):
@@ -18,7 +18,7 @@ class TestPGPCheckWithNoKeys(helpers.TestGLWithPopulatedDB):
 
 
 class TestPGPCheckWithValidKeys(helpers.TestGLWithPopulatedDB):
-    encryption_scenario = 'ENCRYPTED'
+    pgp_configuration = 'ALL'
 
     @inlineCallbacks
     def test_pgp_checkule(self):
@@ -30,7 +30,7 @@ class TestPGPCheckWithValidKeys(helpers.TestGLWithPopulatedDB):
 
 
 class TestPGPCheckWithExpiredKey(helpers.TestGLWithPopulatedDB):
-    encryption_scenario = 'ENCRYPTED_WITH_ONE_KEY_EXPIRED'
+    pgp_configuration = 'ONE_VALID_ONE_EXPIRED'
 
     @inlineCallbacks
     def test_pgp_checkule(self):

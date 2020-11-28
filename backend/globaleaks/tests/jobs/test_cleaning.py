@@ -27,7 +27,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
 
     @transact
     def check1(self, session):
-        self.assertEqual(len(os.listdir(Settings.attachments_path)), self.population_of_submissions * self.population_of_attachments)
+        self.assertEqual(len(os.listdir(Settings.attachments_path)), self.population_of_submissions * self.population_of_attachments * self.population_of_recipients)
 
         self.db_test_model_count(session, models.InternalTip, self.population_of_submissions)
         self.db_test_model_count(session, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
@@ -39,7 +39,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
 
     @transact
     def check2(self, session):
-        self.assertEqual(len(os.listdir(Settings.attachments_path)), self.population_of_submissions * self.population_of_attachments)
+        self.assertEqual(len(os.listdir(Settings.attachments_path)), self.population_of_submissions * self.population_of_attachments * self.population_of_recipients)
 
         self.db_test_model_count(session, models.InternalTip, self.population_of_submissions)
         self.db_test_model_count(session, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
@@ -51,7 +51,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
 
     @transact
     def check3(self, session):
-        self.assertEqual(len(os.listdir(Settings.attachments_path)), self.population_of_submissions * self.population_of_attachments)
+        self.assertEqual(len(os.listdir(Settings.attachments_path)), self.population_of_submissions * self.population_of_attachments * self.population_of_recipients)
 
         self.db_test_model_count(session, models.InternalTip, self.population_of_submissions)
         self.db_test_model_count(session, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
