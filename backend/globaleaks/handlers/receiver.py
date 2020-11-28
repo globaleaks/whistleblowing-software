@@ -9,7 +9,7 @@ from sqlalchemy.sql.expression import distinct, func
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_postpone_expiration, db_delete_itips
-from globaleaks.handlers.submission import db_serialize_archived_preview_schema
+from globaleaks.handlers.submission import db_serialize_archived_questionnaire_schema
 from globaleaks.orm import db_get, transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
@@ -38,27 +38,26 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
     files_by_itip = {}
 
     # Fetch rtip, internaltip and associated questionnaire schema
-    for rtip, itip, aqs in session.query(models.ReceiverTip,
-                                         models.InternalTip,
-                                         models.ArchivedSchema) \
-                                  .filter(models.ReceiverTip.receiver_id == receiver_id,
-                                          models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                          models.InternalTipAnswers.internaltip_id == models.InternalTip.id,
-                                          models.ArchivedSchema.hash == models.InternalTipAnswers.questionnaire_hash,
-                                          models.InternalTip.tid == tid) \
-                                  .order_by(models.InternalTip.progressive.desc(), models.InternalTipAnswers.creation_date.asc()):
+    for rtip, itip, answers, aqs in session.query(models.ReceiverTip,
+                                                  models.InternalTip,
+                                                  models.InternalTipAnswers,
+                                                  models.ArchivedSchema) \
+                                           .filter(models.ReceiverTip.receiver_id == receiver_id,
+                                                   models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                                   models.InternalTipAnswers.internaltip_id == models.InternalTip.id,
+                                                   models.ArchivedSchema.hash == models.InternalTipAnswers.questionnaire_hash,
+                                                   models.InternalTip.tid == tid) \
+                                           .order_by(models.InternalTip.progressive.desc(), models.InternalTipAnswers.creation_date.asc()):
         if rtip.id in rtip_ids:
             continue
 
         rtip_ids.append(rtip.id)
         itip_ids.append(itip.id)
 
-        preview = itip.preview
-
         if itip.crypto_tip_pub_key:
             tip_key = GCE.asymmetric_decrypt(user_key, base64.b64decode(rtip.crypto_tip_prv_key))
 
-            preview = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(itip.preview.encode())).decode())
+            answers = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(answers.answers.encode())).decode())
 
         data = {
             'id': rtip.id,
@@ -73,8 +72,8 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
             'context_id': itip.context_id,
             'access_counter': rtip.access_counter,
             'https': itip.https,
-            'preview_schema': db_serialize_archived_preview_schema(aqs.preview, language),
-            'preview': preview,
+            'questionnaire': db_serialize_archived_questionnaire_schema(aqs.schema, language),
+            'answers': answers,
             'score': itip.total_score,
             'status': itip.status,
             'substatus': itip.substatus

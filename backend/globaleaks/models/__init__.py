@@ -216,7 +216,7 @@ class _ArchivedSchema(Model):
 
     hash = Column(UnicodeText(64), primary_key=True)
     schema = Column(JSON, default=dict, nullable=False)
-    preview = Column(JSON, default=dict, nullable=False)
+    preview = Column(JSON, default=dict, nullable=False) # TODO: Remove at next database bump (4.2.0)
 
     unicode_keys = ['hash']
 
@@ -704,7 +704,6 @@ class _InternalTip(Model):
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
     important = Column(Boolean, default=False, nullable=False)
     label = Column(UnicodeText, default='', nullable=False)
-    additional_questionnaire_id = Column(UnicodeText(36))
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
     wb_access_counter = Column(Integer, default=0, nullable=False)
     status = Column(UnicodeText(36), nullable=True)

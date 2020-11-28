@@ -116,15 +116,6 @@ def db_serialize_archived_questionnaire_schema(questionnaire_schema, language):
     return questionnaire
 
 
-def db_serialize_archived_preview_schema(preview_schema, language):
-    preview = copy.deepcopy(preview_schema)
-
-    for field in preview:
-        _db_serialize_archived_field_recursively(field, language)
-
-    return preview
-
-
 def db_save_plaintext_answers(session, tid, internaltip_id, entries, encryption, skip_encryption_fields=None):
     if skip_encryption_fields is None:
         skip_encryption_fields = {x[0]: True for x in session.query(models.Field.id).filter(models.Field.encrypt.is_(False))}
@@ -174,15 +165,6 @@ def db_save_plaintext_answers(session, tid, internaltip_id, entries, encryption,
     return ret
 
 
-def extract_answers_preview(questionnaire, answers):
-    preview = {}
-
-    preview.update({f['id']: copy.deepcopy(answers[f['id']])
-        for s in questionnaire for f in s['children'] if f['preview'] and f['id'] in answers})
-
-    return preview
-
-
 def db_archive_questionnaire_schema(session, questionnaire):
     hash = str(sha256(json.dumps(questionnaire, sort_keys=True)))
     if session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == hash).count():
@@ -191,7 +173,6 @@ def db_archive_questionnaire_schema(session, questionnaire):
     aqs = models.ArchivedSchema()
     aqs.hash = hash
     aqs.schema = questionnaire
-    aqs.preview = [f for s in questionnaire for f in s['children'] if f['preview']]
     session.add(aqs)
 
     return hash
@@ -229,7 +210,6 @@ def serialize_itip(session, internaltip, language):
         'expiration_date': internaltip.expiration_date,
         'progressive': internaltip.progressive,
         'context_id': internaltip.context_id,
-        'additional_questionnaire_id': internaltip.additional_questionnaire_id,
         'questionnaires': questionnaires,
         'receivers': db_get_itip_receiver_list(session, internaltip),
         'https': internaltip.https,
@@ -281,7 +261,6 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     answers = request['answers']
     steps = db_get_questionnaire(session, tid, questionnaire.id, None)['steps']
     questionnaire_hash = db_archive_questionnaire_schema(session, steps)
-    preview = extract_answers_preview(steps, answers)
 
     crypto_is_available = State.tenant_cache[tid].encryption
 
@@ -305,8 +284,6 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     itip.crypto_tip_pub_key = crypto_tip_pub_key
 
     itip.progressive = db_assign_submission_progressive(session, tid)
-
-    itip.additional_questionnaire_id = context.additional_questionnaire_id
 
     if context.tip_timetolive > 0:
         itip.expiration_date = get_expiration(context.tip_timetolive)
@@ -385,10 +362,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     db_save_plaintext_answers(session, tid, itip.id, answers, crypto_is_available)
 
     if crypto_is_available:
-        preview = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(preview, cls=JSONEncoder).encode())).decode()
         answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers, cls=JSONEncoder).encode())).decode()
-
-    itip.preview = preview
 
     db_set_internaltip_answers(session, itip.id, questionnaire_hash, answers)
 

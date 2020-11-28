@@ -153,15 +153,16 @@ def update_identity_information(session, tid, tip_id, identity_field_id, wbi, la
 
 @transact
 def store_additional_questionnaire_answers(session, tid, tip_id, answers, language):
-    itip = session.query(models.InternalTip) \
-                  .filter(models.InternalTip.id == tip_id,
-                          models.InternalTip.status != 'closed',
-                          models.InternalTip.tid == tid).one()
+    itip, context = session.query(models.InternalTip, models.Context) \
+                           .filter(models.InternalTip.id == tip_id,
+                                   models.InternalTip.status != 'closed',
+                                   models.InternalTip.tid == tid,
+                                   models.Context.id == models.InternalTip.context_id).one()
 
-    if not itip.additional_questionnaire_id:
+    if not context.additional_questionnaire_id:
         return
 
-    steps = db_get_questionnaire(session, tid, itip.additional_questionnaire_id, None)['steps']
+    steps = db_get_questionnaire(session, tid, context.additional_questionnaire_id, None)['steps']
     questionnaire_hash = db_archive_questionnaire_schema(session, steps)
 
     db_save_plaintext_answers(session, tid, itip.id, answers, itip.crypto_tip_pub_key != '')
@@ -170,8 +171,6 @@ def store_additional_questionnaire_answers(session, tid, tip_id, answers, langua
         answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers).encode())).decode()
 
     db_set_internaltip_answers(session, itip.id, questionnaire_hash, answers)
-
-    itip.additional_questionnaire_id = ''
 
 
 class WBTipInstance(BaseHandler):

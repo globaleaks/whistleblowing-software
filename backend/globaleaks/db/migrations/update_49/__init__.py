@@ -22,7 +22,6 @@ class InternalTip_v_48(Model):
     enable_two_way_messages = Column(Boolean, default=True, nullable=False)
     enable_attachments = Column(Boolean, default=True, nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
-    additional_questionnaire_id = Column(UnicodeText(36))
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
     wb_access_counter = Column(Integer, default=0, nullable=False)
     status = Column(UnicodeText(36), nullable=True)
