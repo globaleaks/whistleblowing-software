@@ -1,3 +1,7 @@
+Changes in version 4.1.6
+    Fix regression on migration 52 (#2936)
+    (bug introduced in version 4.1.0)
+
 Changes in version 4.1.5
     Fix bug on PGP encryption of files resulting on using always the same recipient key for every user
     (bug introduced in version 4.1.0)
