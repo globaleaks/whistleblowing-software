@@ -122,9 +122,6 @@ fi
 
 usermod -a -G toranon globaleaks
 
-# Create globaleaks service directories with proper permissios
-gl-fix-permissions
-
 # Remove old configuration of Tor used before txtorcon adoption
 if $(grep -q -i globaleaks /etc/tor/torrc >/dev/null 2>&1); then
   sed -i '/BEGIN GlobaLeaks/,/END GlobaLeaks/d' /etc/tor/torrc
@@ -156,7 +153,6 @@ censorship-resistant, distributed whistleblowing platform.
 %files
 %defattr(0644, globaleaks, globaleaks, 0755)
 /usr/bin/gl-admin
-/usr/bin/gl-fix-permissions
 /usr/bin/globaleaks
 /usr/lib/python3.6/site-packages/globaleaks/
 /usr/lib/python3.6/site-packages/globaleaks-%{version}-py3.6.egg-info/
