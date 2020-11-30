@@ -22,7 +22,9 @@ Source0:        https://github.com/globaleaks/GlobaLeaks/archive/%{commit}.tar.g
 
 Source1:	globaleaks.service
 
+%if 0%{?el8}
 BuildRequires: nodejs
+%endif
 BuildRequires: python36
 
 Requires: python3-twisted
@@ -45,6 +47,10 @@ Requires: haveged
 
 # Build Client
 cd client
+%if 0%{?el7}
+curl -sL https://rpm.nodesource.com/setup_10.x | bash -
+yum -y install nodejs
+%endif
 npm install -d
 ./node_modules/grunt/bin/grunt build
 cd ../
