@@ -259,13 +259,13 @@ do
   X=$(netstat -tln | grep "127.0.0.1:8082")
   if [ $? -eq 0 ]; then
     #SUCCESS
-    echo "Install script completed."
-    IPS=$(/sbin/ip -4 -o addr show | awk '{split($4,a,"/");print a[1]}')
-    echo "GlobaLeaks should be reachable at:"
-    for IP in $IPS;
-    do
-      echo "+ http://$IP"
-    done
+    echo "GlobaLeaks setup completed."
+    TOR=$(gl-admin getvar onionservice)
+    echo "To proceed with the configuration you could now access the platvorm wizard at:"
+    echo "+ http://$TOR (via the Tor Browser)"
+    echo "+ http://127.0.0.1:8082"
+    echo "+ http://0.0.0.0"
+    echo "We recommend you to to perform the wizard by using Tor address or on localhost via a VPN."
     exit 0
   fi
   i=$[$i+1]
