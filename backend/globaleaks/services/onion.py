@@ -21,17 +21,6 @@ from txtorcon.torconfig import EphemeralHiddenService
 __all__ = ['OnionService']
 
 
-def db_get_onion_service_info(session, tid):
-    node = ConfigFactory(session, tid)
-
-    hostname = node.get_val('onionservice')
-    key = node.get_val('tor_onion_key')
-
-    old_hostname = node.get_val('old_onionservice')
-    old_key = node.get_val('old_tor_onion_key')
-
-    return tid, hostname, key, old_hostname, old_key
-
 
 @transact
 def get_onion_service_info(session, tid):
@@ -43,6 +32,18 @@ def set_onion_service_info(session, tid, hostname, key):
     node = ConfigFactory(session, tid)
     node.set_val('onionservice', hostname)
     node.set_val('tor_onion_key', key)
+
+
+def db_get_onion_service_info(session, tid):
+    node = ConfigFactory(session, tid)
+
+    hostname = node.get_val('onionservice')
+    key = node.get_val('tor_onion_key')
+
+    old_hostname = node.get_val('old_onionservice')
+    old_key = node.get_val('old_tor_onion_key')
+
+    return tid, hostname, key, old_hostname, old_key
 
 
 @transact
@@ -76,7 +77,7 @@ class OnionService(Service):
 
         hostname_key_list = yield list_onion_service_info()
         for tid, hostname, key, old_hostname, old_key in hostname_key_list:
-            if hostname is '' or hostname not in self.hs_map:
+            if hostname and hostname not in self.hs_map:
                 yield self.add_onion_service(tid, hostname, key)
 
             if old_hostname and old_hostname not in self.hs_map:
@@ -87,30 +88,15 @@ class OnionService(Service):
             return
 
         hs_loc = ('80 localhost:8083')
-        if not hostname and not key:
-            log.err('Creating new onion service', tid=tid)
-            ephs = EphemeralHiddenService(hs_loc, 'NEW:ED25519-V3')
-        else:
-            log.info('Setting up existing onion service %s', hostname, tid=tid)
-            ephs = EphemeralHiddenService(hs_loc, key)
-            self.hs_map[hostname] = ephs
 
-        @inlineCallbacks
+        log.info('Setting up the onion service %s', hostname, tid=tid)
+
+        ephs = EphemeralHiddenService(hs_loc, key)
+
+        self.hs_map[hostname] = ephs
+
         def init_callback(ret):
             log.err('Initialization of onion-service %s completed.', ephs.hostname, tid=tid)
-            if not hostname and not key:
-                if tid in State.tenant_cache:
-                    self.hs_map[ephs.hostname] = ephs
-                    yield set_onion_service_info(tid, ephs.hostname, ephs.private_key)
-                else:
-                    yield ephs.remove_from_tor(self.tor_conn.protocol)
-
-                tid_list = list(set([1, tid]))
-
-                for x in tid_list:
-                    Cache().invalidate(x)
-
-                yield refresh_memory_variables(tid_list)
 
         return ephs.add_to_tor(self.tor_conn.protocol).addCallbacks(init_callback)  # pylint: disable=no-member
 

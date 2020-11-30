@@ -6,6 +6,9 @@ from globaleaks import __version__
 from globaleaks.models import Config, ConfigL10N, EnabledLanguage
 from globaleaks.models.properties import *
 from globaleaks.models.config_desc import ConfigDescriptor, ConfigFilters, ConfigL10NFilters
+from globaleaks.utils.onion import generate_onion_service_v3
+
+
 from globaleaks.utils.utility import datetime_null
 
 
@@ -132,6 +135,8 @@ def db_set_config_variable(session, tid, var, val):
 def initialize_config(session, tid, mode):
     variables = {}
 
+    key, hostname = generate_onion_service_v3()
+
     # Initialization valid for any tenant
     for name, desc in ConfigDescriptor.items():
         variables[name] = get_default(desc.default)
@@ -139,6 +144,9 @@ def initialize_config(session, tid, mode):
     if tid != 1:
         # Initialization valid for secondary tenants
         variables['mode'] = mode
+
+    variables['onionservice'] = hostname
+    variables['tor_onion_key'] = key
 
     if mode == 'whistleblowing.it':
         root_tenant_node = ConfigFactory(session, 1).serialize('node')
