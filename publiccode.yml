@@ -9,6 +9,11 @@ softwareType: standalone/web
 developmentStatus: stable
 platforms:
   - web
+  - windows
+  - mac
+  - linux
+  - ios
+  - android
 categories:
   - data-collection
   - it-security
@@ -23,7 +28,7 @@ maintenance:
 legal:
   license: AGPL-3.0
   mainCopyrightOwner: >-
-    Hermes Center for Transparency and Digital Humand Rights,
+    Hermes Center for Transparency and Digital Humand Rights
   authorsFile: 'https://github.com/globaleaks/GlobaLeaks/blob/main/AUTHORS'
   repoOwner: GlobaLeaks
 localisation:
