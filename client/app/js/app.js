@@ -712,6 +712,16 @@ var GL = angular.module("GL", [
 
     $rootScope.$on("$locationChangeStart", function() {
       var lang = $location.search().lang;
+
+      if ($location.path() === '/' &&
+          $rootScope.Authentication.session &&
+          $rootScope.Authentication.session.role != 'whistleblower') {
+        // Get suer to reset the user session when visiting the public interface
+	// This is intended as protection in relation to possible XSS and XSRF
+	// on components implementing markdown and direct html input.
+        $rootScope.Authentication.session = undefined;
+      }
+
       if(lang && lang !== GLTranslate.state.language) {
 	$window.location.href = $location.absUrl();
 	$window.location.reload();
