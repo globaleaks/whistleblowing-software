@@ -34,7 +34,7 @@ def db_create_user(session, tid, request, language):
     user = models.User(request)
 
     if not request['username']:
-        user.username = user.id
+        user.username = user.id = uuid4()
 
     user.salt = GCE.generate_salt()
 
