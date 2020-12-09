@@ -261,11 +261,6 @@ description:
 usedBy:
   - Autorità Nazionale Anticorruzione (ANAC)
   - AgID Agenzia per l'Italia Digitale
-  - Avvocatura dello Stato
-  - Comune di Milano
-  - Corte dei Conti
-  - Autorità per le Garanzie nelle Comunicazioni (AGCOM)
-  - Equitalia Giustizia S.p.A.
   - ACA Spa
   - ACER Ferrara
   - ACER Forlì Cesena
@@ -385,6 +380,8 @@ usedBy:
   - Azienda Trasporti Pubblici Nuoro
   - Azienda ULSS 08 Berica
   - Azienda ULSS 09 Scaligera
+  - Autorità per le Garanzie nelle Comunicazioni (AGCOM)
+  - Avvocatura dello Stato
   - Bari Multiservizi S.p.A.
   - Brescia Infrastrutture Srl
   - Brianzacque SRL
@@ -470,6 +467,7 @@ usedBy:
   - Comune di Bolzano Vicentino
   - Comune di Bonate Sotto
   - Comune di Bonnanaro
+  - Comune di Borgo Chiese
   - Comune di Borso del Grappa
   - Comune di Bosco Chiesanuova
   - Comune di Botticino
@@ -681,6 +679,7 @@ usedBy:
   - Comune di Meda
   - Comune di Melle
   - Comune di Mesagne
+  - Comune di Milano
   - Comune di Milazzo
   - Comune di Milzano
   - Comune di Misterbianco
@@ -832,6 +831,7 @@ usedBy:
   - Comune di Segrate
   - Comune di Segusino
   - Comune di Selargius
+  - Comune di Sella Giudicarie
   - Comune di Seniga
   - Comune di Sennori
   - Comune di Seregno
@@ -937,6 +937,7 @@ usedBy:
   - Consiglio Regionale Abruzzo
   - Consiglio Regionale delle Marche
   - Consorzio Acquedottistico Marsicano Spa
+  - Consorzio BIM del Chiese
   - Consorzio Chierese per i servizi
   - Consorzio dell’Adda
   - Consorzio di Bonifica del Nord Sardegna
@@ -948,6 +949,7 @@ usedBy:
   - Consorzio Servizi Ecologia ed Ambiente C.S.E.A.
   - Consorzio Universitario Piceno
   - Cordar Spa Biella Servizi
+  - Corte dei Conti
   - CSBNO
   - CTP – Compagnia Trasporti Pubblici di Napoli
   - DINTEC – Consorzio per l’innovazione tecnologica
@@ -958,6 +960,7 @@ usedBy:
   - Ente Parco Nazionale Arcipelago Toscano
   - Environment Park PA
   - ESU-ARDSU di Venezia
+  - Equitalia Giustizia S.p.A.
   - Eurolavoro AFOL Ovest Milano
   - Film Commission Torino Piemonte
   - Finaosta SPA – Finanziaria Regionale Valle d’Aosta
