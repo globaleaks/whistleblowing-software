@@ -19,6 +19,12 @@ from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.templating import Templating
 
 
+class TempKey(object):
+    def __init__(self, key):
+        self.key = key
+        self.expireCall = None
+
+
 @transact
 def check_hostname(session, tid, hostname):
     """
@@ -116,7 +122,8 @@ def generate_password_reset_token(session, tid, user_session, user_id):
             crypto_escrow_prv_key = GCE.asymmetric_decrypt(user_session.cc, Base64Encoder.decode(user_session.ek))
             user_cc = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(user.crypto_escrow_bkp1_key))
             enc_key = GCE.derive_key(user.reset_password_token.encode(), user.salt)
-            State.TempKeys[user_id] = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_cc))
+            key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_cc))
+            State.TempKeys[user_id] = TempKey(key)
 
 
 class AdminOperationHandler(OperationHandler):
