@@ -6,7 +6,7 @@
     {
       "label": {
         "en": "Fill out your report",
-        "am": "Fill out your report",
+        "am": "ሪፖርትዎን ይሙሉ፡፡",
         "ar": "املأ تقريرك",
         "az": "Təqdimatınızı doldurun",
         "bg": "Преглед на сигнала",
@@ -114,7 +114,7 @@
           "preview": true,
           "description": {
             "en": "Describe your report in a few words.",
-            "am": "Describe your report in a few words.",
+            "am": "ርፖርትዎን በጥቂት ቃላት ይግለጹ፡፡",
             "ar": "الرجاء كتابة نبذة عن البلاغ.",
             "az": "Təqdimatınızı bir neçə sözlə təsvir edin.",
             "bg": "Опишете подадения сигнал с няколко думи.",
@@ -252,7 +252,7 @@
           "preview": false,
           "description": {
             "en": "Describe your report in detail.",
-            "am": "Describe your report in detail.",
+            "am": "ሪፖርትዎን በዝርዝር ይግለጹ፡፡",
             "ar": "الرجاء وصف البلاغ بالتفصيل.",
             "az": "Təqdimatınızı təfərrüatı ilə təsvir edin.",
             "bg": "Опишете подадения сигнал в детайли.",
@@ -382,7 +382,7 @@
           "preview": false,
           "description": {
             "en": "Attach files relevant to the report.",
-            "am": "Attach files relevant to the report.",
+            "am": "ለሪፖርቱ ጠቃሚ የሆኑ ፋይሎችን አባሪ ያድርጉ፡፡",
             "ar": "إرفاق ملفات ذات صلة بالبلاغ.",
             "az": "Təqdimat ilə əlaqəli faylları əlavə edin",
             "bg": "Прикачете файлове към сигнала.",

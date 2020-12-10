@@ -34,6 +34,7 @@ legal:
 localisation:
   localisationReady: true
   availableLanguages:
+    - am
     - ar
     - az
     - bg

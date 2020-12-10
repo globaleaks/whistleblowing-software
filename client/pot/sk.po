@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-24 21:41+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"Last-Translator: Lenka Ježková <lenka.jezkova@oziveni.cz>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -600,6 +600,9 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Povoliť funkciu multisite"
 
+msgid "Enable simplified login"
+msgstr "Povoliť zjednodušené prihlásenie"
+
 msgid "Allow recipients to delete reports"
 msgstr "Povoliť príjemcom zmazať podania"
 
@@ -656,7 +659,7 @@ msgstr "Z bezpečnostných dôvodov sú v pravidelných intervaloch vyžadované
 msgid "Set the value to 0 to disable this feature."
 msgstr "Nastavte hodnotu na 0, ak chcete túto funkciu zakázať."
 
-msgid "Number of days till notifying users unread reports"
+msgid "Number of days till notifying unread reports to users"
 msgstr ""
 
 msgid "Enable custodian user role"

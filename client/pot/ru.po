@@ -30,7 +30,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-24 21:41+0000\n"
+"PO-Revision-Date: 2020-12-10 20:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -616,6 +616,9 @@ msgstr "Администраторам разрешено изменять па�
 msgid "Enable multisite feature"
 msgstr "Включить настройку мульти-сайтов"
 
+msgid "Enable simplified login"
+msgstr "Позволить упрощенный вход"
+
 msgid "Allow recipients to delete reports"
 msgstr "Разрешить получателям удалять сведения"
 
@@ -672,7 +675,7 @@ msgstr "По причинам безопасности необходимо ре
 msgid "Set the value to 0 to disable this feature."
 msgstr "Установите значение 0, чтобы отключить эту функцию."
 
-msgid "Number of days till notifying users unread reports"
+msgid "Number of days till notifying unread reports to users"
 msgstr "Number of days till notifying users unread reports"
 
 msgid "Enable custodian user role"
@@ -1322,7 +1325,7 @@ msgid "Authorization"
 msgstr "Авторизация"
 
 msgid "Requests"
-msgstr ""
+msgstr "Запросы"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Ссылка для проверки неверна или истек срок ее действия."

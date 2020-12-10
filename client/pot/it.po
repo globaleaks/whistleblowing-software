@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-24 21:41+0000\n"
+"PO-Revision-Date: 2020-12-10 20:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -611,11 +611,14 @@ msgstr "Amministratori autorizzati a cambiare le password degli utenti:"
 msgid "Enable multisite feature"
 msgstr "Abilita la funzionalità multisito"
 
+msgid "Enable simplified login"
+msgstr "Abilita login semplificato"
+
 msgid "Allow recipients to delete reports"
-msgstr "Permetti ai destinatari di cancellare le segnalazioni."
+msgstr "Permetti ai riceventi di cancellare le segnalazioni."
 
 msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Permetti ai destinatari di postporre la data di scadenza delle segnalazioni"
+msgstr "Permetti ai riceventi di postporre la data di scadenza delle segnalazioni"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific reports"
@@ -667,7 +670,7 @@ msgstr "Per questioni di sicurezza, viene richiesto che le password siano cambia
 msgid "Set the value to 0 to disable this feature."
 msgstr "Imposta un valore di 0 per disabilitare questa funzionalità."
 
-msgid "Number of days till notifying users unread reports"
+msgid "Number of days till notifying unread reports to users"
 msgstr "Numero di giorni oltre il quale notificare agli utenti la presenza di segnalazioni non lette"
 
 msgid "Enable custodian user role"
@@ -877,7 +880,7 @@ msgid "Show recipients in alphabetical order"
 msgstr "Mostra i riceventi in ordine alfabetico"
 
 msgid "Show recipient details on the status page of the report"
-msgstr "Mostra i dettagli dei destinatari sulla pagina di stato della segnalazione"
+msgstr "Mostra i dettagli dei riceventi sulla pagina di stato della segnalazione"
 
 msgid "Enable comments"
 msgstr "Abilita i commenti"
@@ -1302,7 +1305,7 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permetti al ricevente di posticipare la data di scadenza"
 
 msgid "Allow the recipient to delete reports"
-msgstr "Permetti ai destinatari di cancellare le segnalazioni."
+msgstr "Permetti a questo ricevente di cancellare le segnalazioni."
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Dai all'utente accesso amministrativo alle seguenti funzionalità:"
@@ -2120,7 +2123,7 @@ msgstr "Accesso all'identità del whistleblower negato"
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "Questa email è per informarti che un destinatario ha richiesto accesso all'identità del whistleblower per la segnalazione {TipNum}"
+msgstr "Questa email è per informarti che un ricevente ha richiesto accesso all'identità del whistleblower per la segnalazione {TipNum}"
 
 msgid "The request can be accessed at:"
 msgstr "La richiesta può  essere acceduta:"

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-24 21:41+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"Last-Translator: Bala Subramaniyan <balapandu222@hotmail.com>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -490,7 +490,7 @@ msgid "Print"
 msgstr "அச்சிடு"
 
 msgid "Previous"
-msgstr ""
+msgstr "முந்தைய"
 
 msgid "Next"
 msgstr "அடுத்த"
@@ -593,6 +593,9 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "பன்முனை அம்சத்தை இயக்கு"
 
+msgid "Enable simplified login"
+msgstr "எளிய உள்நுழைவை இயக்கவும்"
+
 msgid "Allow recipients to delete reports"
 msgstr "பெற்றவர்கள் சமர்ப்பிப்புகளை நீக்க அனுமதிக்க"
 
@@ -649,7 +652,7 @@ msgstr "பாதுகாப்பு காரணங்களுக்கா�
 msgid "Set the value to 0 to disable this feature."
 msgstr "இந்த அம்சத்தை முடக்க, மதிப்பு 0 ஆக அமைக்கவும்."
 
-msgid "Number of days till notifying users unread reports"
+msgid "Number of days till notifying unread reports to users"
 msgstr ""
 
 msgid "Enable custodian user role"
@@ -1149,7 +1152,7 @@ msgid "Audio"
 msgstr ""
 
 msgid "Video"
-msgstr ""
+msgstr "வீடியோ"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "பாதுகாப்பாளர் அங்கீகாரம் உட்பட்டு பதில் தன்மை"

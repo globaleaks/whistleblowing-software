@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-24 21:41+0000\n"
+"PO-Revision-Date: 2020-12-10 20:52+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -614,6 +614,9 @@ msgstr "Yöneticilerin kullanıcıların parolasını değiştirme yetkisi var:"
 msgid "Enable multisite feature"
 msgstr "Çoklu site özelliğini etkinleştir"
 
+msgid "Enable simplified login"
+msgstr "Kolaylaştırılmış kullanıcı girişini etkinleştir"
+
 msgid "Allow recipients to delete reports"
 msgstr "Alıcıların raporları silmesine izin ver"
 
@@ -670,7 +673,7 @@ msgstr "Güvenlik nedeniyle, düzenli aralıklarla parola değişikliği gerekme
 msgid "Set the value to 0 to disable this feature."
 msgstr "Bu özelliği devre dışı bırakmak için değerini 0 olarak ayarlayın."
 
-msgid "Number of days till notifying users unread reports"
+msgid "Number of days till notifying unread reports to users"
 msgstr "Okunmamış bildirimler için kullanıcıların bilgilendirilmesine kadar geçecek gün sayısı"
 
 msgid "Enable custodian user role"

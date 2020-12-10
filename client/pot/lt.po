@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-24 21:41+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"Last-Translator: Marija Grinevičiūtė <marijagrineviciute@outlook.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/otf/globaleaks/language/lt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -591,6 +591,9 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Įgalinti daugiavietę funkciją"
 
+msgid "Enable simplified login"
+msgstr "Įgalinti supaprastintą prisijungimą"
+
 msgid "Allow recipients to delete reports"
 msgstr "Leisti gavėjams panaikinti ataskaitas"
 
@@ -647,7 +650,7 @@ msgstr "Būtina reguliariai keisti slaptažodį dėl saugumo sumetimų."
 msgid "Set the value to 0 to disable this feature."
 msgstr "Nustatyti „0“ vertę, kad būtų išjungta ši funkcija."
 
-msgid "Number of days till notifying users unread reports"
+msgid "Number of days till notifying unread reports to users"
 msgstr ""
 
 msgid "Enable custodian user role"

@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-24 21:41+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"Last-Translator: Cadas Propopuli Azzam Baribin <cadas.propopuli@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -610,6 +610,9 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Aktifkan fitur multi situs"
 
+msgid "Enable simplified login"
+msgstr "Mengaktifkan metode masuk yang mudah"
+
 msgid "Allow recipients to delete reports"
 msgstr "Izinkan penerima untuk menghapus laporan"
 
@@ -666,7 +669,7 @@ msgstr "Untuk alasan keamanan, Anda disarankan mengubah kata sandi secara berkal
 msgid "Set the value to 0 to disable this feature."
 msgstr "Atur ke angka 0 untuk menonaktifkan fitur ini "
 
-msgid "Number of days till notifying users unread reports"
+msgid "Number of days till notifying unread reports to users"
 msgstr ""
 
 msgid "Enable custodian user role"

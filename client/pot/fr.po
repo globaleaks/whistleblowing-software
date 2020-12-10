@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-24 21:41+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -625,6 +625,9 @@ msgstr "Administrateurs autorisés à changer les mots de passe des utilisateurs
 msgid "Enable multisite feature"
 msgstr "Activer la fonction multisite"
 
+msgid "Enable simplified login"
+msgstr "Activer la connexion simplifiée"
+
 msgid "Allow recipients to delete reports"
 msgstr "Permettre aux destinataires de supprimer des signalements"
 
@@ -681,7 +684,7 @@ msgstr "Pour des raisons de sécurité, il est exigé que le mot de passe soit c
 msgid "Set the value to 0 to disable this feature."
 msgstr "Définir la valeur à 0 pour désactiver cette fonction."
 
-msgid "Number of days till notifying users unread reports"
+msgid "Number of days till notifying unread reports to users"
 msgstr "Nombre de jours avant de signaler les rapports non lus aux utilisateurs"
 
 msgid "Enable custodian user role"

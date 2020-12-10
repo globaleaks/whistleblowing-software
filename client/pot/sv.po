@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-24 21:41+0000\n"
+"PO-Revision-Date: 2020-12-10 20:52+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -608,6 +608,9 @@ msgstr "Administratörer som tillåts ändra användarlösenord:"
 msgid "Enable multisite feature"
 msgstr "Tillåt flerpartsfunktion"
 
+msgid "Enable simplified login"
+msgstr "Aktivera förenklad inloggning"
+
 msgid "Allow recipients to delete reports"
 msgstr "Tillåt mottagare att radera rapporter"
 
@@ -664,8 +667,8 @@ msgstr "Av säkerhetsskäl kräver vi byte av lösenord med jämna mellanrum."
 msgid "Set the value to 0 to disable this feature."
 msgstr "Ange värdet 0 för att inaktivera denna funktion."
 
-msgid "Number of days till notifying users unread reports"
-msgstr ""
+msgid "Number of days till notifying unread reports to users"
+msgstr "Antal dagar efter vilket användaren påminns om olästa rapporter"
 
 msgid "Enable custodian user role"
 msgstr "Aktivera användarrollen som systemförvaltare"
@@ -674,7 +677,7 @@ msgid "Enable scoring system"
 msgstr "Aktivera system med poängsättning"
 
 msgid "Enable private annotations"
-msgstr ""
+msgstr "Aktivera privata anteckningar"
 
 msgid "Logging level"
 msgstr "Loggningsnivå"
@@ -1296,13 +1299,13 @@ msgid "Forcefully selected"
 msgstr "Påtvingat val"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Tillåt mottagaren att förlänga utgångsdatumet för tipset"
+msgstr "Tillåt mottagaren att förlänga utgångsdatumet för rapporten"
 
 msgid "Allow the recipient to delete reports"
 msgstr "Tillåt mottagaren att ta bort tips"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "Ge användaren administratörsrättigheter för följande funktioner:"
 
 msgid "Request date"
 msgstr "Datum för begäran"
@@ -1314,7 +1317,7 @@ msgid "Authorization"
 msgstr "Godkännande"
 
 msgid "Requests"
-msgstr ""
+msgstr "Begäran"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Bekräftelselänken är antingen fel eller så har den upphört att gälla."
@@ -1476,7 +1479,7 @@ msgid "Enter a name for the copy"
 msgstr "Skriv in ett namn för denna kopia"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Har du redan lämnat ett tips? Ange din kod."
+msgstr "Har du redan lämnat en rapport? Ange din kod."
 
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Antingen är läskvittot ogiltigt eller så har rapporten upphört att gälla."
@@ -1773,7 +1776,7 @@ msgid "Recipient selection"
 msgstr "Val av mottagare"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "Välj mottagare till din rapport:"
 
 msgid "Recipients selected:"
 msgstr "Valda mottagare:"
@@ -1784,7 +1787,7 @@ msgstr "Du har valt så många mottagare som du får välja."
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "Följande mottagare mottar din rapport och kan ej väljas bort:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -2212,16 +2215,16 @@ msgid "New report"
 msgstr "Ny rapport"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Syftet med detta e-postmeddelande är att upplysa dig om att en rapport har uppdaterats."
 
 msgid "Report updated"
-msgstr ""
+msgstr "Rapport uppdaterad"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Syftet med detta e-postmeddelande är att påminna dig om olästa eller uppdaterade rapporter."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Påminnelse om olästa eller uppdaterade rapporter"
 
 msgid "Role: {Role}"
 msgstr "Roll: {Role}"

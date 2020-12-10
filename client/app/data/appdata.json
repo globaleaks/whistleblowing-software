@@ -2,7 +2,7 @@
   "version": 1,
   "templates": {
     "account_activation_mail_template": {
-      "am": "Dear {RecipientName},\n\nYou're receiving this email because a user account has been created for you on the system: {Site}\n\nUsername: {Username}\nActivation link: {Url}\n\nPlease click on the activation link to proceed with the account activation and to set your user password.\n\nAfter successful activation you will be able to access the system via the following link: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nለተጠቃሚ ሰነድ የሚከተለውን ጎብኝ\n{DocumentationUrl}\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\n ስርኣቱ፡- {Site} ላይ የተጠቃሚ መለያ ስለተፈጠረለዎት\n\nይሄ ኢሜል ተልኮለዎታል፡፡\n\nየተጠቃሚ ስም፡- {Username}\nማንቂያ አገናኛ፡- {Url}\n\nመለያውን ለማንቃት እባኮት የማንቂያ አገናኙን ጠቅ አድርጉ\n\nእና የተጠቃሚ ይለፍ ቃለዎትን አዘጋጁ\n\nከተሳካ ማንቃት በኋላ ሲስተሙ ውስጥ\n\nበሚከተለው አገናኝ {LoginUrl} መግባት ይችላሉ፡፡\n{AccountRecoveryKeyInstructions}\n\nለተጠቃሚ ሰነድ የሚከተለውን ጎብኝ\n{DocumentationUrl}\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nانت تستقبل هذا البريد الإلكتروني لأنه تم إنشاء حساب مستخدم لك على النظام:  {Site}\n\nاسم المستخدم: {Username}\nرابط تفعيل  {Url}\n\nمن فضلك قم بالضغط على رابط التفعيل من أجل إكمال باقي خطوات تنشيط الحساب وإعداد كلمة السر.\n\nبعد التفعيل الناجح، سيكون بمقدورك الولوج إلى النظام من خلال الرابط التالي:  {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nللاطلاع على وثائق المستخدم، قم بزيارة:\n{DocumentationUrl}\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nYou're receiving this email because a user account has been created for you on the system: {Site}\n\nUsername: {Username}\nActivation link: {Url}\n\nPlease click on the activation link to proceed with the account activation and to set your user password.\n\nAfter successful activation you will be able to access the system via the following link: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nПолучавате този имейл, тъй като в сайта е създаден ваш потребителски акаунт: {Site}\n\nПотребителско име: {Username}\nАктивиращ линк {Url}\n\nМоля натиснете върху активиращия линк, за да продължите с активацията на акаунта и създаването на потребителска парола\n\nСлед успешната активация, ще можете да влезете в системата чрез следния линк {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nЗа потребителска документация, посетете:\n{DocumentationUrl}\n\nПоздрави, \n{NodeName}",
@@ -52,7 +52,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\n由於您在本站創建新帳號，故系統自動發送此郵件: {Site}\n\n用戶名: {Username}\n激活連結: {Url}\n\n請點擊帳號激活連結以完成密碼設定。\n\n成功激活後，即可以透過以下網址登入系統: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\n使用者文檔請到：\n{DocumentationUrl}\n\nKind regards,\n{NodeName}"
     },
     "account_activation_mail_title": {
-      "am": "Account activation",
+      "am": "መለያ ማንቃት",
       "ar": "تفعيل الحساب",
       "az": "Account activation",
       "bg": "Активиране на акаунта",
@@ -102,7 +102,7 @@
       "zh_TW": "帳號激活"
     },
     "account_recovery_key_instructions": {
-      "am": "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.",
+      "am": "የመለያ መልሶ ማግኛ ቁልፋችሁን\" መልሳችሁ ለማግኘት እና በጥንቃቄ ለማስቀመጥ \n\nምርጫዎች\" የሚለውን ክፍል እንድትጠቀሙ እንመክራለን፡፡ ምናልባት የይለፍ ቃላችሁን ብትረሱ\n\nይሄ ቁልፍ የመሳርያ ሥርዓቱን እና ውሂባችሁን\n\n ለማግኘት ያስፈልጋችኋል፡፡",
       "ar": "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.",
       "az": "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.",
       "bg": "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.",
@@ -152,7 +152,7 @@
       "zh_TW": "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password."
     },
     "activation_mail_template": {
-      "am": "Dear {RecipientName},\n\nYour whistleblowing platform is now accessible at:\n{Url}\n\nTo log in, visit:\n{LoginUrl}\n\nUsers' credentials:\n{AdminCredentials}\n{RecipientCredentials}\n\nለተጠቃሚ ሰነድ የሚከተለውን ጎብኝ\n{DocumentationUrl}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nKind regards,\n\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nየመረጃ መስጫ የመሳርያ ስርአቱን አሁን እዚህ ማግኘት ይችላሉ፡-\n{Url}\n\nለመግባት፣ ጉብኙ፡-\n{LoginUrl}\n\nየተጠቃሚው ብቃት ማረጋገጫ\n{AdminCredentials}\n{RecipientCredentials}\n\nለተጠቃሚ ሰነድ የሚከተለውን ጎብኝ\n{DocumentationUrl}\n\nየመሳርያ ስርኣቱ በ---- በራሱ ይተጠፋል\n{ExpirationDate}\n\nከትህትና ጋር\n\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nيمكن الآن الوصول إلى منصة الإبلاغ على:\n{Url}\n\nلتسجيل الدخول، الرجاء زيارة:\n{LoginUrl}\n\nاعتمادات المستخدمين:\n{AdminCredentials}\n{RecipientCredentials}\n\nللاطلاع على وثائق المستخدم، قم بزيارة:\n{DocumentationUrl}\n\nسيتم حذف المنصة تلقائيا في:\n{ExpirationDate}\n\nأطيب التحيّات،\n\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nYour whistleblowing platform is now accessible at:\n{Url}\n\nTo log in, visit:\n{LoginUrl}\n\nUsers' credentials:\n{AdminCredentials}\n{RecipientCredentials}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nXoş arzularla,\n\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nВашата платформа за податели на сигнали е достъпна на:\n{Url}\n\nЗа вписване, моля, посетете:\n{LoginUrl}\n\nДанни за потребителя:\n{AdminCredentials}\n{RecipientCredentials}\n\nЗа потребителска документация, посетете:\n{DocumentationUrl}\n\nПлатформата ще бъде автоматично изтрита на:\n{ExpirationDate}\n\nПоздрави, \n\n{NodeName}",
@@ -202,7 +202,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\n吹哨揭密平台已啟用:\n{Url}\n\n欲登入請到:\n{LoginUrl}\n\n用戶的證書:\n{AdminCredentials}\n{RecipientCredentials}\n\n使用者文檔請到：\n{DocumentationUrl}\n\n平台會自動進行刪除:\n{ExpirationDate}\n\nKind regards,\n\n{NodeName}"
     },
     "activation_mail_title": {
-      "am": "Access instructions",
+      "am": "የመዳረሻ መመርያዎች",
       "ar": "تعليمات الدخول",
       "az": "Access instructions",
       "bg": "Инструкции за достъп",
@@ -252,7 +252,7 @@
       "zh_TW": "取用的指示"
     },
     "admin_anomaly_activities": {
-      "am": "The number of activities recently detected appears to be higher than usual.\n\nThis could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.\n\nExamine the issue to determine whether it is legitimate or not.\n\nThe activities with unusual stats are:\n{ActivityDump}",
+      "am": "በቅርብ የታዩ እንቅስቃሴዎች ቁጥር ከተለመደው ይበልጣል፡፡\n\nይህ የጥቃት ምልክት (ለምሳሌ የሆኑ ሰዎች አገልጋያችሁን በውሸት መረጃ ሲያጨናንቁት)\n\nወይም ፕሮጀክታችሁ ተመልካቹ ሲበዛ\n\nየተፈጠረ የአጠቃቀም ከፍታ ሊሆን ይችላል፡፡\n\nጉዳዩ ሕጋዊ መሆን አለመሆኑን መርምሩ፡፡\n\nያልተለመደ ስታቲስቲክስ ያሳዩት እንቅስቃሴዎች እነዚህ ናቸው\n{ActivityDump}",
       "ar": "عدد الأنشطة التي تم الكشف عنها مؤخرا يبدو أعلى من امعتاد.\n\nهذا يمكن أن يكون علامة على وجود هجوم (على سبيل المثال، شخص ما يرسل بكثافة معلومات وهمية الى المشغل الخاص بك) أو مجرد ارتفاع الاستخدام نظرا لزيادة رؤية مشروعك.\n\nالرجاء دراسة المسألة لتحديد ما إذا كانت مشروعة أم لا.\n\nالأنشطة ذات الاحصائيات غير عادية هي:\n{ActivityDump}",
       "az": "Son zamanlarda aşkarlanan fəaliyyətlərin sayı normaldan daha yüksəkdir.\n\nBu, hücum (məsələn, kimsə serverinizi saxta məlumatlarla doldurur) yaxud layihənizə baxış  səbəbiylə istifadənin kəskin artımının əlaməti ola bilər.\n\nExamine the issue to determine whether it is legitimate or not.\n\nQeyri-adi statistikası olan fəaliyyətlər:\n{ActivityDump}",
       "bg": "Броят на наскоро засечените активности изглежда по-голям от обикновено.\n\nТова може да е знак за атака (например, някой който залива сървъра с фалшива информация) или просто проектът е получил повече видимост.\n\nРазгледайте проблема, за да решите дали е основателен, или не.\n\nДейности с необикновена статистика са:\n{ActivityDump}",
@@ -302,7 +302,7 @@
       "zh_TW": "偵測到最近的活動數量似乎高於正常\n\n這可能是遭到攻擊的徵兆(例如某人試圖以偽造的資訊來淹沒你的網站)或是由於專案能見度大增致使用流量提高\n\n查驗此問題以決定其是否合理。\n\n非正常活動的統計為：\n{ActivityDump}"
     },
     "admin_anomaly_disk_high": {
-      "am": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nThe server cannot guarantee that a new report can be stored, so submissions have been disabled.",
+      "am": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nአገልጋዩ አዲስ ሪፖርት ሊቀመጥ እንደሚችል ዋስትና የለውም፣ ስለዚህ",
       "ar": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nلا يمكن للخادم ضمان أن البلاغ الجديد يمكن تخزينه، لذلك تم تعطيل التقديمات.",
       "az": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nThe server cannot guarantee that a new report can be stored, so submissions have been disabled.",
       "bg": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nСървърът не може да гарантира, че нови сигнали ще могат да бъдат запазени, затова подаването на сигнали е изключено.",
@@ -352,7 +352,7 @@
       "zh_TW": "{FreeMemory} of {TotalMemory} available diskspace used.\n\n`此伺服器無法保證新報告可被儲存，所提交的報告可能無效。"
     },
     "admin_anomaly_disk_low": {
-      "am": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nPlease consider asking your technical support to create more disk space on the server.",
+      "am": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nአገልጋዩ ላይ ተጨማሪ የዲስክ ቦታ ለመፍጠር ሙያዊ ድጋፍ\n\nለመጠየቅ አስቡ፡፡",
       "ar": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nيرجى طلب إضافة المزيد من المساحة للقرص المشغل من الدعم الفني.",
       "az": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nServerdəki disk həcminin artırılması üçün texniki yardıma müraciəti nəzərdən keçirin.",
       "bg": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nМоля, помислете дали да не помолите техническият отдел да добави допълнително дисково пространстрво на сървъра.",
@@ -402,7 +402,7 @@
       "zh_TW": "{FreeMemory} of {TotalMemory} available diskspace used.\n\n請考慮求助技術支援以在伺服器上建立更多硬碟空間"
     },
     "admin_anomaly_mail_template": {
-      "am": "Dear {RecipientName},\n\nGlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nFor more information, log in to the Administration interface and look at the \"System Stats\" and \"Anomalies\" sections.\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nየግሎባልሊክስ ቴክኖሎጂ የእርሰዎን ትኩረት የሚፈልግ ጉዳይ ቢኖር የሚያነቃዎት\n\nየአገልጋይ ሁኔታ ማመልከቻ ምንዝር አለው፡፡\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\n\"ለተጨማሪ መረጃ ወደ አስተዳደር በይነገጽ ግቡና \"\n\n\\\"ስርኣት ስታቲስትክስ\\\" and \\\"አፈንጋጮች\\\" የሚለውን ክፍል ተመልከቱ\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nوتشمل تكنولوجيا GlobaLeaks عنصر فحص لحالة السيرفر الذي سوف ينبهك في حالة حدوث أمر يتطلب انتباهكم.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nلمزيد من المعلومات، قم بتسجيل الدخول على واجهة الإدارة وإلقاء نظرة على قسمي \"إحصائيات النظام\" و \"العيوب\".\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nGlobaLeaks texnologiyasının serverin statusunu yoxlayan hissəsi diqqət tələb edən məsələ olanda sizi xəbərdarlıq edəcək.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nDaha ətraflı məlumat üçün İdarəetmə ekranına daxil olun və \"Sistem Statistikaları\" və ya \"Anomaliyalar\" bölmələrinə baxın. \n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nТехнологията на GlobaLeaks включва компонент, който проверява състоянието на сървъра, и който ще ви уведоми ако нещо изисква вниманието Ви.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nЗа повече информация се впишете в администраторския профил и разгледайте секциите \"Системна статистика\" и \"Аномалии\".\n\nПоздрави, \n{NodeName}",
@@ -452,7 +452,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\nGlobaLeaks 的技術包括了伺服器狀態檢查要件，它會在必時警告你提高注意\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\n取得更多資訊，請登入管理者介面來查看“系統統計”與“異常”部份\n\nKind regards,\n{NodeName}"
     },
     "admin_anomaly_mail_title": {
-      "am": "Anomaly detected in {NodeName}",
+      "am": "በ{NodeName} አፈንጋጭ ተገኝቷል",
       "ar": "تم الكشف على خلل في {NodeName}",
       "az": "{NodeName} -da aşkarlanan paradoksallıq",
       "bg": "Открити аномалии в {NodeName}",
@@ -502,7 +502,7 @@
       "zh_TW": "在 {NodeName} 偵測到異常狀況"
     },
     "admin_pgp_alert_mail_template": {
-      "am": "Dear {RecipientName},\n\nThis is an email to inform you that the PGP key of the following users is going to expire or has already expired:\n\n{PGPKeyInfoList}\n\nWithout a valid PGP key, the system will not be able to send them encrypted notifications.\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nይህ ኢሜል የሚከተሉት ተጠቃሚዎች የፒጂፒ ቁልፍ \n\nእንደተቃጠለ ወይም ሊቃጠል እንደሆነ መረጃ ይሰጦታል፡፡\n\n{PGPKeyInfoList}\n\nትክክለኛ የፒጂፒ ቁልፍ ከሌለ ስርኣቱ የተመሰጠረ ማሳወቂያ\n\nሊልክላቸው አይችልም\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nهذا بريد إلكتروني لنبلغكم أنّ مفتاح PGP الخاصّ بالمستخدمين التوالي سوف تنتهي أو انتهت بالفعل:\n\n{PGPKeyInfoList}\n\nبدون مفتاح PGP صالح، لن يكون النظام قادرا على إرسال اشعارات مشفرة.\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nBu e-mail, aşağıdaki istifadəçilər üçün PGP açarının müddətinin sona çatacağı və ya artıq başa çatdığını bildirmək üçün göndərilib.\n\n{PGPKeyInfoList}\n\nMümkün PGP açarı olmadan sistem şifrəli bildirişlər göndərə bilməyəcək. \n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nТози имейл Ви информира, че PGP ключовете на следните потребители ще изтекат или са вече изтекли:\n\n{PGPKeyInfoList}\n\nБез PGP ключ, системата няма да може да изпраща криптирани известия.\n\nПоздрави, \n{NodeName}",
@@ -552,7 +552,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\n這封電子郵件是通知你，以下用戶的 PGP 金鑰即將或是已經到期：\n\n{PGPKeyInfoList}\n\n無有效的 PGP 金鑰，系統將不能送出加密的通知\n\nKind regards,\n{NodeName}"
     },
     "admin_pgp_alert_mail_title": {
-      "am": "PGP key expiration alert",
+      "am": "የፒጂፒ ቁልፍ መቃጠያ ማስጠንቀቂያ",
       "ar": "تنبيه انتهاء صلاحية مفتاح PGP",
       "az": "PGP əsas həyəcan siqnalı",
       "bg": "Съобщение за изтичащи PGP ключове",
@@ -602,7 +602,7 @@
       "zh_TW": "PGP 金鑰到期警示"
     },
     "admin_signup_alert_mail_template": {
-      "am": "Dear {RecipientName},\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {Url}\nName: {Name}\nEmail: {Email}\nLanguage: {Language}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nKind regards,\n\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nአዲስ መረጃ መስጫ ድረገጽ ተመዝግቧል፡፡\n\nየተመዘገበበት ቀን፡-\nድረገጽ፡ {Url}\nስም፡- {Name}\nኢሜይል፡- {Email}\nቋንቋ፡- {Language}\nኬዝ ይጠቀሙ፡-{UseCase}\n\nየመሳርያ ስርኣቱ በ---- በራሱ ይተጠፋል\n{ExpirationDate}\n\nከትህትና ጋር\n\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nموقع جديد لكشف الفساد تم إنشائه.\n\nبيانات التسجيل:\nالموقع: {Url}\nالاسم: {Name}\nالبريد الإلكتروني: {Email}\nاللغة: {Language}\nحالة الاستخدام: {UseCase}\n\nسيتم حذف المنصة تلقائيا في:\n{ExpirationDate}\n\nأطيب التحيّات،\n\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {Url}\nName: {Name}\nEmail: {Email}\nLanguage: {Language}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nXoş arzularla,\n\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nНов сайт за подаване на сигнали е регистриран.\n\nРегистрационна информация:\nИнтернет страница {Url}\nИме: {Name}\nИмейл: {Email}\nЕзик: {Language}\nМотивация: {UseCase}\n\nПлатформата ще бъде автоматично изтрита на:\n{ExpirationDate}\n\nПоздрави, \n\n{NodeName}",
@@ -652,7 +652,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\n新建的吹哨網站已完成註冊\n\n註冊資料:\n網站: {Url}\n名稱: {Name}\nEmail: {Email}\n語言: {Language}\n使用案例: {UseCase}\n\n平台會自動進行刪除:\n{ExpirationDate}\n\nKind regards,\n\n{NodeName}"
     },
     "admin_signup_alert_mail_title": {
-      "am": "New whistleblowing site registered",
+      "am": "አዲስ መረጃ መስጫ ድረገጽ ተመዝግቧል፡፡",
       "ar": "موقع جديد لكشف الفساد تم تسجيله.",
       "az": "New whistleblowing site registered",
       "bg": "Новият сайт за подаване на сигнали е регистриран",
@@ -702,7 +702,7 @@
       "zh_TW": "有新的吹哨揭密網站加入"
     },
     "admin_test_mail_template": {
-      "am": "Dear {RecipientName},\n\nThis is a test email sent out from the platform's administrative interface.\n\nReception of this email indicates that the server was able to authenticate to and interact with the SMTP mail server.\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nይህ ከመሳርያ ስርኣቱ አስተዳደራዊ በይነገጽ የተላከ የፍተሸ ኢሜል ነው፡፡\n\nየዚህ ኢሜል መድረስ አገልጋዩ የኤስኤምቲፒ መልእክት አገልጋይን ትክክለኛነት ማረጋገጥና \n\nከአገልጋዩ ጋር መገናኘት እንደሚችል ያመለክታል፡፡\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nهذا بريد الإلكتروني على سبيل الاختبار يرسل من الواجهة الإدارية للمنصة.\n\nاستقبال هذه الرسالة يشير إلى أن الخادم كان قادرا على المصادقة والتفاعل مع خادم البريد SMTP.\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nBu, platformanın idarəetmə ekranından  göndərilən  yoxlama e-poçtudur. \n\nBu emailin alınması serverin SMTP poçt xidməti ilə əlaqə qurduğunu və təsdiqlədiyini göstərir. \n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nТова е тестови имейл изпратен от административният интерфейс на платформата.\n\nПолучаването на този имейл показва, че сървърът успява да се идентифицира и работи със SMTP имейл сървъра.\n\nПоздрави, \n{NodeName}",
@@ -752,7 +752,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\n這是由管理者介面所送出的測試電子郵件\n\n這封電子郵件的接收顯示伺服器可以和 SMTP 郵件伺服器之間進行授權和互動\n\nKind regards,\n{NodeName}"
     },
     "admin_test_mail_title": {
-      "am": "Test email",
+      "am": "የፍተሻ ኢሜል",
       "ar": "بريد الكتروني تجريبي",
       "az": "Yoxlanış e-poçtu",
       "bg": "Тестови имейл",
@@ -802,7 +802,7 @@
       "zh_TW": "測試郵件"
     },
     "email_validation_mail_template": {
-      "am": "Dear {RecipientName},\n\nThis is an email to notify you that a request has been made to change your email address to {NewEmailAddress}.\n\nClick the following link to validate this change:\n{Url}\n\nIf you didn't request this change, change your password and contact your system administrator.\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nThis is an email to notify you that a request has been made to change your email address to {NewEmailAddress}.\n\nይህንን ለውጥ ለማረጋገጥ የሚከተለውን አገናኝ ጠቅ አድርጉ\n{Url}\n\nይህንን ለውጥ ካልጠየቁ የይለፍ ቃለዎን ይቀይሩና\n\nየሥራአት አስተዳዳሪዎን ይገናኙ፡፡\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nهذا بريد إلكتروني للتنبيه على أن هناك طلب تم تقديمه من أجل تغيير عنوان البريد الإلكتروني الحالي إلى {NewEmailAddress}.\n\nقم بالضغط على الرابط التالي من أجل المصادقة على هذا التغيير.\n{Url}\n\nإذا لم تقم بطلب هذا التغيير، قم تغيير كلمة مرورك ثم قم بالاتصال بمسئول النظام.\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nThis is an email to notify you that a request has been made to change your email address to {NewEmailAddress}.\n\nClick the following link to validate this change:\n{Url}\n\nIf you didn't request this change, change your password and contact your system administrator.\n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nТози имейл Ви уведомянва, че е направена заявка за промяна на имейл адрес до {NewEmailAddress}.\n\nНатиснете този линк, за да направите промяната валидна\n{Url}\n\nАко не сте поискали тази промяна, променете паролата си и се свържете със системния администратор.\n\nПоздрави, \n{NodeName}",
@@ -852,7 +852,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\n本郵件通知你，有人請求將你的電郵地址變更為 {NewEmailAddress}.\n\n點擊以下連結以驗證此變動：\n{Url}\n\n如果你並未作此請求，請儘快更新密碼並連絡通知系統管理者。\n\nKind regards,\n{NodeName}"
     },
     "email_validation_mail_title": {
-      "am": "Email change request",
+      "am": "የኢሜል ለውጥ ጥያቄ",
       "ar": "طلب تغيير البريد الإلكتروني.",
       "az": "Email change request",
       "bg": "Заявка за промяна на имейла",
@@ -902,7 +902,7 @@
       "zh_TW": "電郵變更請求"
     },
     "export_message_recipient": {
-      "am": "From: {Author}\nDate: {EventTime}\n\n{Content}",
+      "am": "ከ፡- {Author}\nቀን፡- {EventTime}\n\n{Content}",
       "ar": "بواسطة:  {Author}\nالتاريخ: {EventTime}\n\n{Content}",
       "az": "From: {Author}\nTarix: {EventTime}\n\n{Content}",
       "bg": "От: {Author}\nДата: {EventTime}\n\n{Content}",
@@ -952,7 +952,7 @@
       "zh_TW": "來自: {Author}\n日期: {EventTime}\n\n{Content}"
     },
     "export_message_whistleblower": {
-      "am": "From: Whistleblower\nDate: {EventTime}\n\n{Content}",
+      "am": "ከ፡- መረጃሰጪ\nቀን፡- {EventTime}\n\n{Content}",
       "ar": "من: المبلغ\nالتاريخ: {EventTime}\n\n{Content}",
       "az": "dan: İnformasiya ötürən\nTarix: {EventTime}\n\n{Content}",
       "bg": "От: Подател на сигнал\nДата: {EventTime}\n\n{Content}",
@@ -1002,7 +1002,7 @@
       "zh_TW": "From: 吹哨揭密者\n日期: {EventTime}\n\n{Content}"
     },
     "export_template": {
-      "am": "ID: {TipNum}\nDate: {SubmissionDate}\nLabel: {TipLabel}\nStatus: {TipStatus}\nContext: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
+      "am": "ID: {TipNum}\n ቀን፡-{SubmissionDate}\nስያሜ፡-{TipLabel}\nሁኔታ፡-{TipStatus}\nአገባበ ነገር፡- {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "ar": "ID: {TipNum}\nالتاريخ: {SubmissionDate}\nالتسمية: {TipLabel}\nالحالة:  {TipStatus}\nالسياق: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "az": "ID: {TipNum}\nTarix: {SubmissionDate}\nYarlıq: {TipLabel}\nStatus: {TipStatus}\nMəzmun: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "bg": "ID: {TipNum}\nДата: {SubmissionDate}\nЕтикет: {TipLabel}\nСтатус: {TipStatus}\nКонтекст: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
@@ -1052,7 +1052,7 @@
       "zh_TW": "ID: {TipNum}\n日期: {SubmissionDate}\n標誌: {TipLabel}\n狀態: {TipStatus}\n內文: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}"
     },
     "https_certificate_expiration_mail_template": {
-      "am": "Dear {RecipientName},\n\nThe HTTPS certificate loaded on the platform is about to, or has already expired.\n\nExpiration date: {ExpirationDate}\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\nLog in to solve the issue.\n\n{Url}\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nየመሳርያ ስርኣቱ ላይ የተጫነው የኤችቲቲፒኤስ ምስክር መረቀት ተቃጥሏል\n\nወይም ሊቃጠል ነው፡፡\n\nየመቃጠያ ቀን፡- {ExpirationDate}\n\nየሚሠራ ሰርቲፊኬት ከሌለ የመሳርያ ስርኣቱን በተጠበቀ ሁኔታ ለመድረስ\n\nየሚቻለው በቶር ብቻ ነው፡፡\n\nችግሩን ለመፍታት ግቡ፡፡\n\n{Url}\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nشهادة HTTPS التي تم تحميلها على النظام الأساسي ستنتهي صلاحيتها أو انتهت صلاحيتها بالفعل.\n\nتاريخ إنتهاء الصلوحية : {ExpirationDate}\n\nبدون شهادة صالحة، يمكن الوصول إلى المنصة بطريقة آمنة فقط عبر متصفح تور.\n\nسجل الدخول لحل المشكلة.\n\n{Url}\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nPlatformaya yüklənmiş HTTPS seritifikat müddəti sona çatır və ya artıq başa çatıb.\n\nBitmə tarixi: {ExpirationDate}\n\nMümkün sertifikat olmadığı halda , platforma ancaq Tor vasitəsi ilə təhlükəsiz şəkildə əldə edilə bilər. \n\nMəsələni həll etmək üçün daxil olun.\n\n{Url}\n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nЗареденият на платформата HTTPS сертификат е изтекъл или скоро ще изтече.\n\nДата на изтичане: {ExpirationDate}\n\nБез валиден сертификат, платформата ще бъде достъпна по сигурен начин само през Тор.\n\nВпишете се, за да разрешите проблема.\n\n{Url}\n\nПоздрави, \n{NodeName}",
@@ -1102,7 +1102,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\nHTTPS 憑證將要載入到平台中, 或是已經完成逾期\n\n到期日: {ExpirationDate}\n\n無有效的憑證，這個平台只能透過 Tor 的安全方式來接取使用。\n\n登入來解決此門㫻\n\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "https_certificate_expiration_mail_title": {
-      "am": "Expiration alert for HTTPS certificate",
+      "am": "የኤችቲቲፒኤስ ሰርቲፊኬት መቃጠል ማስጠንቀቂያ",
       "ar": "ﺖﻨﺒﻴﻫ ﺎﻨﺘﻫﺍﺀ ﺹﻼﺤﻳﺓ ﺶﻫﺍﺩﺓ HTTPS",
       "az": "HTTPS sertifikatı üçün bitmə xəbərdarlığı",
       "bg": "Предупреждение за изтичащ HTTPS сертификат",
@@ -1152,7 +1152,7 @@
       "zh_TW": "HTTPS 證書啻"
     },
     "https_certificate_renewal_failure_mail_template": {
-      "am": "Dear {RecipientName},\n\nThe automatic HTTPS certificate renewal scheduled for today just failed.\n\nThe system will keep trying.\n\nExpiration date: {ExpirationDate}\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\n{Url}\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nለዛሬ የተቀጠረው የራስሰር ኤችቲቲፒኤስ ምስክር ወረቀት እድሳል ከሽፏል፡፡\n\nስርኣቱ መሞከር ይቀጥላል፡፡\n\nየመቃጠያ ቀን፡- {ExpirationDate}\n\nየሚሠራ ሰርቲፊኬት ከሌለ የመሳርያ ስርኣቱን በተጠበቀ ሁኔታ ለመድረስ\n\nየሚቻለው በቶር ብቻ ነው፡፡\n\n{Url}\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nعملية التجديد التلقائي المجدولة اليوم لشهادة HTTPS فشلت.\n\nالنظام سوف يستمر في المحاولة.\n\nتاريخ إنتهاء الصلوحية : {ExpirationDate}\n\nبدون شهادة صالحة، يمكن الوصول إلى المنصة بطريقة آمنة فقط عبر متصفح تور.\n\n{Url}\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nThe automatic HTTPS certificate renewal scheduled for today just failed.\n\nThe system will keep trying.\n\nBitmə tarixi: {ExpirationDate}\n\nMümkün sertifikat olmadığı halda , platforma ancaq Tor vasitəsi ilə təhlükəsiz şəkildə əldə edilə bilər. \n\n{Url}\n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nАвтоматичното подновяване на HTTPS сертификата, планирано за днес, току що пропадна\n\nСистемата ще продължи да опитва.\n\nДата на изтичане: {ExpirationDate}\n\nБез валиден сертификат, платформата ще бъде достъпна по сигурен начин само през Тор.\n\n{Url}\n\nПоздрави, \n{NodeName}",
@@ -1202,7 +1202,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\n今天 HTTPS 證書自動更新剛剛失敗了。\n\n系統會繼續嘗試\n\n到期日: {ExpirationDate}\n\n無有效的憑證，這個平台只能透過 Tor 的安全方式來接取使用。\n\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "https_certificate_renewal_failure_mail_title": {
-      "am": "Failed HTTPS certificate renewal",
+      "am": "የከሸፈ የኤችቲቲፒኤስ ምስክር ወረቀት እድሳት",
       "ar": "عملية تجديد فاشلة لشهادة HTTPS.",
       "az": "Failed HTTPS certificate renewal",
       "bg": "Неуспешно подновяване на HTTPS сертификат",
@@ -1252,7 +1252,7 @@
       "zh_TW": "HTTPS 證書更新失敗"
     },
     "identity_access_authorized_mail_template": {
-      "am": "Dear {RecipientName},\n\nThis is an email to notify you that a custodian has authorized you to access to the whistleblowing identity for the report {TipNum}.\n\nThe report can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nይህ ኢሜል ሞግዚት ለሪፖርት {TipNum} የመረጃ ሰጪውን ማንነት እንዲደርሱ መፍቀዱን ያሳውቃል\n\nሪፖርቱ እዚህ ላይ መደረስ ይችላል፡-\n{Url}\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nهذا هو البريد الالكتروني لإعلامك أن أمين الحفظ قد أذن لك بالوصول إلى هوية مبلغ هذا البلاغ {TipNum}.\n\nيكمن النفاذ إلى التقرير:\n{Url}\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nBu email sizə təqdimat üçün informasiya ötürənin kimliyinə girməyə icazə verdiyini bildirmək üçün \nmühafizəçi tərəfindən göndərilib {TipNum}.\n\nTəqdimat əldə edilə bilər:\n{Url}\n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nТози имейл Ви уведомява, че пазителят на данни Ви е разрешил достъпа до самоличността на подателя на сигнал {TipNum}.\n\nДостъп до заявката на:\n{Url}\n\nПоздрави, \n{NodeName}",
@@ -1302,7 +1302,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\n此封郵件通知您，監管者已授權您可讀取報告 {TipNum} 揭密者的身份。\n\n此報告可在此查看：\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "identity_access_authorized_mail_title": {
-      "am": "Access to whistleblower's identity authorized",
+      "am": "ለመረጃ ሰጪው ማንነት መድረሻ ተፈቅዷል",
       "ar": "الاذن بالحصول على هوية المبلغ",
       "az": "İnformasiya ötürənin kimliyinə girişə icazə verildi",
       "bg": "Достъпът до самоличността на подателя на сигнал е разрешен",
@@ -1352,7 +1352,7 @@
       "zh_TW": "讀取吹哨者的身份識別已被許可"
     },
     "identity_access_denied_mail_template": {
-      "am": "Dear {RecipientName},\n\nThis is an email to notify you that a custodian has denied you access to the whistleblowing identity for the report {TipNum}.\n\nThe report can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nይህ ኢሜል ሞግዚቱ ለሪፖርት {TipNum} የመረጃ ሰጪውን ማንነት እንዳይደርሱ መከልከሉን ያሳውቃል\n\nሪፖርቱ እዚህ ላይ መደረስ ይችላል፡-\n{Url}\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nهذا هو البريد الالكتروني لإعلامك أن أمين الحفظ قد أذن لك بالوصول إلى هوية مبلغ هذا البلاغ {TipNum}.\n\nيكمن النفاذ إلى التقرير:\n{Url}\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nThis is an email to notify you that a custodian has denied you access to the whistleblowing identity for the report {TipNum}.\n\nTəqdimat əldə edilə bilər:\n{Url}\n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nТози имейл Ви уведомява, че пазителят на данни Ви е разрешил достъпа до самоличността на подателя на сигнал {TipNum}.\n\nДостъп до заявката на:\n{Url}\n\nПоздрави, \n{NodeName}",
@@ -1402,7 +1402,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\n此郵件提醒您監管人否決了您讀取報告 {TipNum} 揭密者身分之請求。\n\n此報告可在此查看：\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "identity_access_denied_mail_title": {
-      "am": "Access to whistleblower's identity denied",
+      "am": "ለመረጃ ሰጪው ማንነት መድረሻ ተከልክሏል፡፡",
       "ar": "عدم الاذن بالحصول على هوية المبلغ",
       "az": "İnformasiya ötürənin kimliyinə giriş rədd edildi",
       "bg": "Достъпът до самоличността на подателя на сигнал е отказан",
@@ -1452,7 +1452,7 @@
       "zh_TW": "要求讀取吹哨者的身份識別遭拒"
     },
     "identity_access_request_mail_template": {
-      "am": "Dear {RecipientName},\n\nThis is an email to notify you that a recipient has requested access to the whistleblower's identity for the report {TipNum}\n\nThe request can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nይህ ኢሜል ለሪፖርት {TipNum} የመረጃ ሰጪውን ማንነት ለመድረስ ተቀባይ ጥያቄ ማቅረቡን ያሳውቆታል፡፡\n\nጥያቄውን እዚህ ላጥ መድረስ ይቻላል፡-\n{Url}\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nهذا هو بريد الكتروني لإعلامك أن أحد المتلقين قد طلب الاذن للوصول إلى هوية مبلغ هذا البلاغ {TipNum}.\n\nالطلب يمكن الوصول إلي على:\n{Url}\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nBu email təqdimat üçün qəbuledicinin informasiya ötürənin kimliyinə girişə icazə verilməsi tələbini bildirmək üçün göndərilib {TipNum}\n\nThe request can be accessed at:\n{Url}\n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nТози имейл Ви уведомява, че един от получателите изисква достъп до самоличността на подателя на сигнал {TipNum}\n\nДостъп до заявката на:\n{Url}\n\nПоздрави, \n{NodeName}",
@@ -1475,7 +1475,7 @@
       "hr_HR": "Dragi/a {RecipientName},\n\nOvo je email kojim Vas se obavještava da je primatelj zatražio pristup identitetu zviždača za prijavu {TipNum}\n\nZahtjevu se može pristupiti na:\n{Url}\n\nS poštovanjem,\n{NodeName}",
       "hu_HU": "Kedves {RecipientName},\n\nEz egy értesítő email arról, hogy egy címzett hozzáférést kér a bejelentő identitásához a {TipNum} jelentésben.\n\nAz igénylés a következő címen érhető el:\n{Url}\n\nSzívélyes üdvözlettel,\n{NodeName}",
       "id": "yang terhormat {RecipientName},\n\nThis is an email to notify you that a recipient has requested access to the whistleblower's identity for the report {TipNum}\n\nThe request can be accessed at:\n{Url}\n\nsalam,\n{NodeName}",
-      "it": "Gentile {RecipientName}\n\nQuesta email è per informarti che un destinatario ha richiesto accesso all'identità del whistleblower per la segnalazione {TipNum}\n\nLa richiesta può  essere acceduta:\n{Url}\n\nDistinti saluti,\n{NodeName}",
+      "it": "Gentile {RecipientName}\n\nQuesta email è per informarti che un ricevente ha richiesto accesso all'identità del whistleblower per la segnalazione {TipNum}\n\nLa richiesta può  essere acceduta:\n{Url}\n\nDistinti saluti,\n{NodeName}",
       "ja": "{RecipientName} 様\n\nこれは、受信者が報告 {TipNum} の内部告発者の身元にアクセスすることをリクエストしたことを通知するメールです\n\nリクエストは以下からアクセスできます:\n{Url}\n\n敬具\n{NodeName}",
       "ka": "ძვირფასო {RecipientName}\n\nეს არის ელ გაცნობებთ, რომ მიმღები მოითხოვა ხელმისაწვდომობის მამხილებელთა პირადობის წარდგენის {TipNum}\n\nThe request can be accessed at:\n{Url}\n\nკეთილი სურვილებით,\n{NodeName}",
       "ko": "친애 %의 {RecipientName} 를,\n\n이것은받는 사람이 제출 {TipNum} 의 제보자의 신원에 대한 액세스를 요청했음을 알리는 이메일입니다\n\n요청이 액세스 할 수 있습니다 :\n{Url}\n\n종류 안부,\n{NodeName}",
@@ -1502,7 +1502,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\n此郵件通知您，某位收件者請求可讀取報告 {TipNum} 揭密者的身份。\n\n此請求可在此讀取：\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "identity_access_request_mail_title": {
-      "am": "New request of access to a whistleblower's identity",
+      "am": "የመረጃሰጪውን ማንነት ለመድረስ አዲስ ጥያቄ",
       "ar": "طلب جديد للوصول إلى هوية المبلغ",
       "az": "İnformasiya ötürənin kimliyinə yeni giriş tələbi",
       "bg": "Нова заявка за достъп до самоличността на подателя на сигнал",
@@ -1552,7 +1552,7 @@
       "zh_TW": "讀取吹哨者身份識別的新要求"
     },
     "identity_provided_mail_template": {
-      "am": "Dear {RecipientName},\n\nThis is an email to notify you that the whistleblower for the report {TipNum} has provided their identity.\n\nThe report can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nይህ ኢሜል የሪፖርት {TipNum} መረጃ ሰጪው ማንነታቸውን መስጠታቸውን ያሳውቃል\n\nሪፖርቱ እዚህ ላይ መደረስ ይችላል፡-\n{Url}\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nهذا هو بريد الكتروني لإعلامك بأن مبلغ البلاغ {TipNum} قد وفر هويته.\n\nيكمن النفاذ إلى التقرير:\n{Url}\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nBu e-poçt, informasiya ötürənin təqdimat {TipNum} üçün öz kimliyi ilə məlumatları təmin etməsi ilə bağlı göndərilib.\n\nTəqdimat əldə edilə bilər:\n{Url}\n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nТози имейл Ви уведомява, че подателят на сигнал {TipNum} е предоставил данни за самоличността си.\n\nДостъп до заявката на:\n{Url}\n\nПоздрави, \n{NodeName}",
@@ -1602,7 +1602,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\n此封郵件乃通知您， {TipNum} 報告的揭密者已提供其身份識別資訊。\n\n此報告可在此查看：\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "identity_provided_mail_title": {
-      "am": "The whistleblower has provided their identity",
+      "am": "መረጃ ሰጪው ማንነታቸውን ሰጥተዋል",
       "ar": "قدم المبلغ هويته",
       "az": "İnformasiya ötürən öz kimliyini göstərib.",
       "bg": "Подателят на сигнал е предоставил данни за самоличността си.",
@@ -1652,7 +1652,7 @@
       "zh_TW": "這位吹哨人已提供身份資訊"
     },
     "password_reset_validation_mail_template": {
-      "am": "Dear {RecipientName},\n\nYou're receiving this email because a password reset has been requested for the account: {Username}\n\nIf you didn't make this request, you may safely ignore and delete this email.\n\nYou can confirm your request by clicking the following link:\n{Url}\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nይህ ኢሜል የደረሰዎት ለመለያ፡- {Username} የይለፍቃል የመቀየር ጥያቄ\n\nስለቀረበ ነው፡፡\n\nይህን ጥያቄ ካላቀረቡ ይህንን ኢሜል ያለምንም ችግር አል ብሎው ማጥፋት \n\nይችላሉ፡፡\n\nየሚከተለውን አገናኝ ጠቅ በማድረግ ጥያቄዎትን ማረገገጥ ይችላሉ\n{Url}\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nأنت تتلقى هذا البريد الإلكتروني لأنه تم طلب إعادة تعيين كلمة السر الخاصة بهذا الحساب {Username}\n\nإذا لم تقم بهذا الطلب، يمكنك بآمان تجاهل وحذف هذا البريد الإلكتروني.\n\nيمكنك تأكيد طلب بالضغط على الرابط التالي:\n{Url}\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nYou're receiving this email because a password reset has been requested for the account: {Username}\n\nIf you didn't make this request, you may safely ignore and delete this email.\n\nYou can confirm your request by clicking the following link:\n{Url}\n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nПолучавате този имейл, тъй като възстановяване на паролата е поискано за следния акаунт: {Username}\n\nАко не сте направили тази заявка, може спокойно да игнорирате и изтриете този имейл.\n\nПотвърдете искането си, натискайки следния линк\n{Url}\n\nПоздрави, \n{NodeName}",
@@ -1702,7 +1702,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\n應帳號: {Username} 之密碼請求，我們寄給您這封電子郵件。\n\n若您沒有提出請求，請忽略和刪除本郵件。\n\n點擊下方連結來確認請求：\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "password_reset_validation_mail_title": {
-      "am": "Password reset instructions",
+      "am": "የይለፍቃል መቀየር መመርያ",
       "ar": "تعليمات لإعادة تعيين كلمة السر",
       "az": "Password reset instructions",
       "bg": "Инструкции за промяна на паролата",
@@ -1752,7 +1752,7 @@
       "zh_TW": "密碼重設指示"
     },
     "pgp_alert_mail_template": {
-      "am": "Dear {RecipientName},\n\nThis is an email to inform you that your PGP key is expiring or has already expired.\n\nYou should extend its validity and update the key present on the platform, or upload a new key.\n\n{PGPKeyInfo}\n\nWithout a valid PGP key, the system won't be able to encrypt data provided to you.\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nይህ ኢሜል የፒጂፒ ቁልፉ ሊቃጠል እንደሆነ ወይም መቃጠሉን\n\nያሳውቃል\n\nትክክለኛነቱን አስቀጥሉ እና የመሳርያ ስርኣቱ ላይ ያለውን ቁልፍ አዘምኑ\n\nወይም አዲስ ቁለፍ ጫኑ፡፡\n\n{PGPKeyInfo}\n\nያለ ትክክለኛ ፒጂፒ ቁልፍ ስርኣቱ የተሰጣችሁን ውሂብ\n\nማዘመን አይችልም፡፡\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nهذا بريد إلكتروني لنحيطكم علما بأن صلوحية مفتاح PGP الخاص بك ستنتهي أو انتهت بالفعل.\n\nأنت مدعو لتمديد مدة صلاحية او تحديث المفتاح الموجود حاليا على المنصة او تحميل مفتاح جديد\n\n{PGPKeyInfo}\n\nبدون مفتاح PGP صالح، فإن النظام لن يكون قادرا على تشفير البيانات المقدمة إليك.\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nBu e-poçt, PGP açarın sona çatacağını və ya artıq başa çatdığını bildirmək üçün göndərilib. \n\nSiz, platformada mövcud açarın etibarlılığını uzatmalı və yeniləməli, və ya yenisini yükləməlisiniz. \n\n{PGPKeyInfo}\n\nEtibarlı PGP açarı olmadan sistem sizə verilən məlumatları şifrələməyəcək. \n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nТози имейл Ви уведомява, че PGP ключът Ви ще изтече или вече е изтекъл.\n\nБи трябвало да увеличите валидността му и да го обновите на платформата или да качите нов ключ.\n\n{PGPKeyInfo}\n\nБез валиден PGP ключ системата няма да може да криптира информацията, която ви се предоставя\n\nПоздрави, \n{NodeName}",
@@ -1802,7 +1802,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\n這封電子郵件是通知你，你的 PGP 金鑰即將或是已經到期\n\n你需要延長更新平台上現用金鑰的有效期限，或是上傳一個新的金鑰\n\n{PGPKeyInfo}\n\n無有效的 PGP 金鑰，系統將不能為你加密提交給你的資料\n\nKind regards,\n{NodeName}"
     },
     "pgp_alert_mail_title": {
-      "am": "PGP key expiration alert",
+      "am": "የፒጂፒ ቁልፍ መቃጠያ ማስጠንቀቂያ",
       "ar": "تنبيه انتهاء صلاحية مفتاح PGP",
       "az": "PGP əsas həyəcan siqnalı",
       "bg": "Съобщение за изтичащи PGP ключове",
@@ -1852,7 +1852,7 @@
       "zh_TW": "PGP 金鑰到期警示"
     },
     "signup_mail_template": {
-      "am": "Dear {RecipientName},\n\nYour whistleblowing platform is almost ready!\n\nClick the link to activate the platform:\n{ActivationUrl}\n\nKind regards,\n\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nየመረጃ መስጫ የመሳርያ ስርኣቶ ዝግጁ ሊሆን ጥቂት ቀርቶታል!\n\nየመሳርያ ስርኣቱን ለማንቃት አሀናኙን ጠቅ አድርጉ፡-\n{ActivationUrl}\n\nከትህትና ጋር\n\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nمنصة التبليغ الخاصة بك على وشك أن تكون جاهزة!\n\nإنقر الرابط لتفعيل المنصة.\n{ActivationUrl}\n\nأطيب التحيّات،\n\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nYour whistleblowing platform is almost ready!\n\nClick the link to activate the platform:\n{ActivationUrl}\n\nXoş arzularla,\n\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nВашата платформа за подаване на сигнали е почити готова!\n\nПоследвайте връзката, за да активирате платформата:\n{ActivationUrl}\n\nПоздрави, \n\n{NodeName}",
@@ -1902,7 +1902,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\n吹哨揭密平台已接近完成！\n\n點擊此連結以激活平台：\n{ActivationUrl}\n\nKind regards,\n\n{NodeName}"
     },
     "signup_mail_title": {
-      "am": "Activation",
+      "am": "ማገበር",
       "ar": "تفعيل",
       "az": "Activation",
       "bg": "Активация",
@@ -1952,7 +1952,7 @@
       "zh_TW": "激活"
     },
     "software_update_available_mail_template": {
-      "am": "Dear {RecipientName},\n\nA software update is available.\nIt is good security practice to keep the platform up to date.\n\nTo learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}\nFor instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nየሶፍትዌር ማዘመኛ አለ፡፡\nየመሳርያ ስርኣቱን ሁልጊዜ ማዘመን ጥሩ የጥበቃ ሥራ ነው፡፡\n\nበአዲሱ ስሪት ውስጥ ያሉ አዲስ ባህሪዎችን እና የሳንካ ትገናዎችን ለማወቅ ለውጥ መዝገብ፡- {ChangeLogUrl} ይመለክቱ፡፡\nየሰፍትዌር ማዘመኛዎች መረጃ ለማግኘት {UpdateGuideUrl} ላይ ያለውን አነድ ያጣቅሱ፡፡\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nالتحديث متوفّر:\nانّها ممارسة أمنية جيدة الحفاظ على المنصة محيّنة.\n\nلمتابعة الخاصيّات الجديدة واصلاح الخللات في الاصدار الجديد  انظر في سجلّ التغييرات في : {ChangeLogUrl}\nلتعليمات حول تحديثات البرنامج , الرجاء مراجعة التوثيق في : {UpdateGuideUrl}\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nProqram yenilənməsi mövcuddur\nPlatformanı son versiyada saxlamaq yaxşı təhlükəsizlik təcrübəsidir.\n\nYeni versiyada yeni xüsusiyyətləri və problem həllərini öyrənmək üçün dəyişiklik tarixinə müraciət edin: {ChangeLogUrl}\nProqam yeniləmələrinə dair təlimatlar üçün sənədlərə keç: {UpdateGuideUrl}\n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nИма ново обновление на софтуера.\nОт гледна точка на сигурността е добре платформата да бъде своевременно обновявана.\n\nЗа да научите повече за нови функции и коригирани бъгове в новата версия, проверете доклада за промени на: {ChangeLogUrl}\nЗа инструкции, свързани със софтуерни обновления, моля, вижте информацията на:\n{UpdateGuideUrl}\n\nПоздрави, \n{NodeName}",
@@ -2002,7 +2002,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\n有軟體更新可用\n為安全起見,請維持平台版本為更新狀態\n\n了解新版本的功能與修復的問題,請諮詢此處的變動記錄: {ChangeLogUrl}\n關於軟體更新的指示, 請參考此處的文件: {UpdateGuideUrl}\n\nKind regards,\n{NodeName}"
     },
     "software_update_available_mail_title": {
-      "am": "A software update is available.",
+      "am": "የሶፍትዌር ማዘመኛ አለ፡፡",
       "ar": "التحديث متوفّر:",
       "az": "Proqram yenilənməsi mövcuddur",
       "bg": "Има ново обновление на софтуера.",
@@ -2052,7 +2052,7 @@
       "zh_TW": "有軟體更新可用"
     },
     "tip_expiration_summary_mail_template": {
-      "am": "Dear {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nThe earliest expiration date is {EarliestExpirationDate}.\n\nPlease remember to check them before they are deleted.\n\n{Url}\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nቅርቡ መቃጠያ ቀን {EarliestExpirationDate} ነው፡፡\n\nከመሰረዛቸው በፊት መረጋገጦን አይርሱ፡፡\n\n{Url}\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nأقرب تاريخ لانتهاء الصلاحية {EarliestExpirationDate}.\n\nالرجاء تذكر الاطلاع عليها قبل أن يتم حذفها.\n\n{Url}\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nƏn son istifadə tarixi {EarliestExpirationDate}\n\nSilinmədən öncə onları yoxlamağı unutmayın\n\n{Url}\n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nНай-ранната дата на изтичане е {EarliestExpirationDate}.\n\nМоля, не забравяйте да ги проверявате преди да бъдат изтрити.\n\n{Url}\n\nПоздрави, \n{NodeName}",
@@ -2102,7 +2102,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\n最早的截止日期是 {EarliestExpirationDate}.\n\n請記得在刪除前再檢查一下。\n\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "tip_expiration_summary_mail_title": {
-      "am": "Some reports will expire soon",
+      "am": "አንዳንድ ሪፖርቶች በቅርብ ይቃጠላሉ",
       "ar": "ستنتهي صلاحية بعض البلاغات قريبا",
       "az": "Bəzi təqdimatlar tezliklə başa çatacaq",
       "bg": "Някои сигнали ще изтекат скоро",
@@ -2152,7 +2152,7 @@
       "zh_TW": "部份報告即將到期失效"
     },
     "tip_mail_template": {
-      "am": "Dear {RecipientName},\n\nThis is an email to notify you that a whistleblower has selected you as a valuable recipient of their report.\n\nYou are asked to pay special attention to the information and material contained therein. Please keep in mind that whistleblowers often expose themselves to high personal risks in the interest of the public. Therefore the material provided within this report should be considered to be of high importance.\n\nThe report can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nይህ ኢሜል መረጃ ሰጪው እርሶን ለዚህ ሪፖርት ጠቃሚ ተቀባይ\n\nእንደሆኑ መምረጡን ያሳውቃል፡፡\n\nየቀረበውን መረጃ በልዩ ትኩረት እንዲመለከቱ ይጠየቃሉ፡፡\n\nመረጃ ሰጪዎች ለሕዝብ ጥቅም ሲሉ ራሳቸውን ለከፋ\n\nየግል አደጋ እንደሚያጋልጡ ልብ በሉ፡፡ ስለዚህ በዚህ ሪፖርት ውስጥ የቀረበው\n\nመረጃ ከፍተኛ አስፈላጊነት እንዳለው ሊጤን ይገባል፡፡\n\nሪፖርቱ እዚህ ላይ መደረስ ይችላል፡-\n{Url}\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nهذه رسالة إلكترونية لإعلامكم بأن أحد المبلغين اختاركم لإستلام بلاغه.\n\nيرجى أن تولوا اهتماما خاصا بالمعلومات والمواد الواردة. و يرجى أن تضعوا في عين الاعتبار أن المبلغين غالبا ما يعرضون أنفسهم لمخاطر شخصية عالية من أجل المصلحة العامة. ولذلك ينبغي اعتبار المواد المقدمة في هذا البلاغ ذات أهمية عالية.\n\nيكمن النفاذ إلى التقرير:\n{Url}\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nBu e-poçt, informasiya ötürənin sizi təqdimatı üçün qiymətli qəbul edici olaraq seçdiyini bildirmək üçün göndərilib.\n\nBuradakı məlumat və materiallara xüsusi diqqət yetirməyiniz xahiş olunur. Nəzərdə saxlayın ki, informasiya ötürənlər ictimai maraqlara görə yüksək şəxsi risklərə məruz qalırlar. Buna görə də təqdim edilən təqdimat materialları böyük əhəmiyyətə malikdirlər.\n\nTəqdimat əldə edilə bilər:\n{Url}\n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nТози имейл Ви известява, че подател на сигнал Ви е избрал да получите информацията му\n\nМоля, отделете специално внимание на информацията и материала, съдържащ се тук. Моля, не забравяйте, че подателите на сигнали често излагат себе си на голям риск в името на общественото благо. Следователно материалът, който подават с този сигнал, трябва да бъде считан за изключително важен.\n\nДостъп до заявката на:\n{Url}\n\nПоздрави, \n{NodeName}",
@@ -2202,7 +2202,7 @@
       "zh_TW": "敬愛的 {RecipientName},\n\n此封郵件通知您，揭密者已挑選您作為其報告的收件對象。\n\n請特別留意此處的資訊和材料，謹記揭密者為了公益往往自身曝露在高度風險下。因此報告裏提交的材料應被好好重視。\n\n此報告可在此查看：\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "tip_mail_title": {
-      "am": "New report",
+      "am": "አዲስ ሪፖርት",
       "ar": "تقرير جديد",
       "az": "New report",
       "bg": "Нов сигнал",
@@ -2252,7 +2252,7 @@
       "zh_TW": "新報告"
     },
     "tip_update_mail_template": {
-      "am": "Dear {RecipientName},\n\nThis is an email to notify that an existing report has been updated.\n\nThe report can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nThis is an email to notify that an existing report has been updated.\n\nሪፖርቱ እዚህ ላይ መደረስ ይችላል፡-\n{Url}\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nThis is an email to notify that an existing report has been updated.\n\nيكمن النفاذ إلى التقرير:\n{Url}\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nThis is an email to notify that an existing report has been updated.\n\nTəqdimat əldə edilə bilər:\n{Url}\n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nThis is an email to notify that an existing report has been updated.\n\nДостъп до заявката на:\n{Url}\n\nПоздрави, \n{NodeName}",
@@ -2291,7 +2291,7 @@
       "sk": "Vážený/á {RecipientName},\n\nThis is an email to notify that an existing report has been updated.\n\nK tomuto podaniu máte prístup:\n{Url}\n\nS pozdravom,\n{NodeName}",
       "sl_SI": "Spoštovani {RecipientName},\n\nThis is an email to notify that an existing report has been updated.\n\nPosodobljene informacije so na voljo:\n{Url}\n\nS spoštovanjem,\n{NodeName}",
       "sq": "Dear {RecipientName},\n\nThis is an email to notify that an existing report has been updated.\n\nParashtrimi është i qasshëm:\n{Url}\n\nMe respekt, \n{NodeName}",
-      "sv": "Bästa {RecipientName},\n\nThis is an email to notify that an existing report has been updated.\n\nRapporten hittar du på adressen:\n{Url}\n\nMed vänliga hälsningar,\n{NodeName}",
+      "sv": "Bästa {RecipientName},\n\nSyftet med detta e-postmeddelande är att upplysa dig om att en rapport har uppdaterats.\n\nRapporten hittar du på adressen:\n{Url}\n\nMed vänliga hälsningar,\n{NodeName}",
       "ta": "அன்பே {RecipientName},\n\nThis is an email to notify that an existing report has been updated.\n\nசமர்ப்பிப்பு அணுகலாம்:\n{Url}\n\nKind regards,\n{NodeName}",
       "th": "เรียน {RecipientName}\n\nThis is an email to notify that an existing report has been updated.\n\nรายงานนี้สามารถเข้าถึงได้ที่:\n{Url}\n\nขอแสดงความนับถือ\n{NodeName}",
       "tr": "Sayın {RecipientName},\n\nBu e-postanın amacı mevcut bir bildirimin güncellendiğini size bildirmektir.\n\nRapora şuradan erişebilirsiniz: \n{Url}\n\nSaygılarımızla,\n{NodeName}",
@@ -2341,7 +2341,7 @@
       "sk": "Report updated",
       "sl_SI": "Report updated",
       "sq": "Report updated",
-      "sv": "Report updated",
+      "sv": "Rapport uppdaterad",
       "ta": "Report updated",
       "th": "Report updated",
       "tr": "Bildirim güncellendi",
@@ -2352,7 +2352,7 @@
       "zh_TW": "Report updated"
     },
     "unread_tips_mail_template": {
-      "am": "Dear {RecipientName},\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nKind regards,\n{NodeName}",
+      "am": "ውድ {RecipientName},\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nከትህትና ጋር\n{NodeName}",
       "ar": "عزيزي {RecipientName},\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nأطيب التحيّات،\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nXoş arzularla,\n{NodeName}",
       "bg": "Скъпи {RecipientName},\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nПоздрави, \n{NodeName}",
@@ -2391,7 +2391,7 @@
       "sk": "Vážený/á {RecipientName},\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nS pozdravom,\n{NodeName}",
       "sl_SI": "Spoštovani {RecipientName},\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nS spoštovanjem,\n{NodeName}",
       "sq": "Dear {RecipientName},\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nMe respekt, \n{NodeName}",
-      "sv": "Bästa {RecipientName},\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nMed vänliga hälsningar,\n{NodeName}",
+      "sv": "Bästa {RecipientName},\n\nSyftet med detta e-postmeddelande är att påminna dig om olästa eller uppdaterade rapporter.\n\n{Url}\n\nMed vänliga hälsningar,\n{NodeName}",
       "ta": "அன்பே {RecipientName},\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nKind regards,\n{NodeName}",
       "th": "เรียน {RecipientName}\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nขอแสดงความนับถือ\n{NodeName}",
       "tr": "Sayın {RecipientName},\n\nBu e-postanın amacı size okunmamış veya güncellenmiş bildirimlerin olduğunu hatırlatmaktır.\n\n{Url}\n\nSaygılarımızla,\n{NodeName}",
@@ -2441,7 +2441,7 @@
       "sk": "Reminder about unread or updated reports",
       "sl_SI": "Reminder about unread or updated reports",
       "sq": "Reminder about unread or updated reports",
-      "sv": "Reminder about unread or updated reports",
+      "sv": "Påminnelse om olästa eller uppdaterade rapporter",
       "ta": "Reminder about unread or updated reports",
       "th": "Reminder about unread or updated reports",
       "tr": "Okunmamış veya güncellenmiş bildirimler hakkında hatırlatma",
@@ -2452,7 +2452,7 @@
       "zh_TW": "Reminder about unread or updated reports"
     },
     "user_credentials": {
-      "am": "Role: {Role}\nUsername: {Username}\nPassword: {Password}",
+      "am": "ሚና፡-{Role}\nየተጠቃሚ ስም፡- {Username}\nየይለፍ ቃል፡-{Password}",
       "ar": "الدور: {Role}\nاسم المستخدم: {Username}\nكلمة السركلمة السر: {Password}",
       "az": "Role: {Role}\nUsername: {Username}\nPassword: {Password}",
       "bg": "Роля: {Role}\nПотребителско име: {Username}\nПарола: {Password}",

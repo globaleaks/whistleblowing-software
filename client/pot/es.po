@@ -36,8 +36,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-24 21:41+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"Last-Translator: Manuel D. Serrat <manuel.serrat@antifraucv.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -622,6 +622,9 @@ msgstr "Administradores autorizados a cambiar las contraseñas de usuario:"
 msgid "Enable multisite feature"
 msgstr "Activar las funcionalidades multi-sitio"
 
+msgid "Enable simplified login"
+msgstr "Activar el inicio de sesión simplificado"
+
 msgid "Allow recipients to delete reports"
 msgstr "Permitir a los receptores borrar reportes"
 
@@ -678,8 +681,8 @@ msgstr "Por razones de seguridad, se requiere intervalos regulares para los camb
 msgid "Set the value to 0 to disable this feature."
 msgstr "Fija el valor a 0 para desactivar esta funcionalidad."
 
-msgid "Number of days till notifying users unread reports"
-msgstr "Cantidad de días hasta notificar acerca de reportes de usuario no leídos."
+msgid "Number of days till notifying unread reports to users"
+msgstr "Cantidad de días hasta notificar a usuarios acerca de reportes no leídos."
 
 msgid "Enable custodian user role"
 msgstr "Habilitar el rol de usuario Custodio"

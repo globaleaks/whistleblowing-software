@@ -2,7 +2,7 @@
   "id": "whistleblower_identity",
   "label": {
     "en": "Do you want to provide your identification information?",
-    "am": "Do you want to provide your identification information?",
+    "am": "የመታወቂያ መረጃዎን መስጠት ይፈልጋሉ?",
     "ar": "هل ترغب في تقديم معلومات عن هويتك؟",
     "az": "Kimlik məlumatınızı vermək istəyirsiniz mi?",
     "bg": "Желаете ли да изпратите информация за самоличността си?",
@@ -83,7 +83,7 @@
       "id": "",
       "label": {
         "en": "First name",
-        "am": "First name",
+        "am": "የራሶት ስም",
         "ar": "الاسم",
         "az": "Ad",
         "bg": "Първо име",
@@ -182,7 +182,7 @@
       "id": "",
       "label": {
         "en": "Last name",
-        "am": "Last name",
+        "am": "የአባት ስም",
         "ar": "الكنية",
         "az": "Soyad",
         "bg": "Фамилия",
@@ -281,7 +281,7 @@
       "id": "",
       "label": {
         "en": "Gender",
-        "am": "Gender",
+        "am": "ጾታ",
         "ar": "الجنس",
         "az": "Cins",
         "bg": "Пол",
@@ -373,7 +373,7 @@
           "score_points": 0,
           "label": {
             "en": "Male",
-            "am": "Male",
+            "am": "ወንድ",
             "ar": "ذكر",
             "az": "Kişi",
             "bg": "Мъж",
@@ -430,7 +430,7 @@
           "score_points": 0,
           "label": {
             "en": "Female",
-            "am": "Female",
+            "am": "ሴት",
             "ar": "أنثى",
             "az": "Qadın",
             "bg": "Жена",
@@ -487,7 +487,7 @@
           "score_points": 0,
           "label": {
             "en": "Other gender identity",
-            "am": "Other gender identity",
+            "am": "ሌላ የጾታ መለያ",
             "ar": "جنس آخر",
             "az": "Other gender identity",
             "bg": "Друга полова принадлежност",
@@ -544,7 +544,7 @@
       "id": "",
       "label": {
         "en": "Date of birth",
-        "am": "Date of birth",
+        "am": "የትውልድ ቀን",
         "ar": "تاريخ الولادة",
         "az": "Doğum yeri",
         "bg": "Дата на раждане",
@@ -635,7 +635,7 @@
       "id": "",
       "label": {
         "en": "Place of birth",
-        "am": "Place of birth",
+        "am": "የትውልድ ቦታ",
         "ar": "مكان الولادة",
         "az": "Doğum yeri",
         "bg": "Място на раждане",
@@ -734,7 +734,7 @@
       "id": "",
       "label": {
         "en": "Social security number",
-        "am": "Social security number",
+        "am": "የሶሻል ሴኪዩሪቲ ቁጥር",
         "ar": "رقم الضمان الاجتماعي",
         "az": "Sosial sığorta nömrəsi",
         "bg": "Социалноосигурителен номер",
@@ -833,7 +833,7 @@
       "id": "",
       "label": {
         "en": "Residence",
-        "am": "Residence",
+        "am": "መኖርያ",
         "ar": "الاقامة",
         "az": "Ev",
         "bg": "Местожителство",
@@ -914,7 +914,7 @@
           "id": "",
           "label": {
             "en": "Address",
-            "am": "Address",
+            "am": "አድራሻ",
             "ar": "العنوان",
             "az": "Ünvan",
             "bg": "Адрес",
@@ -1013,7 +1013,7 @@
           "id": "",
           "label": {
             "en": "Zip code / Postal code",
-            "am": "Zip code / Postal code",
+            "am": "ዚፕ ኮድ/የፖስታ ኮድ",
             "ar": "الرمز البريدي",
             "az": "Poçt indeksi",
             "bg": "Пощенски код",
@@ -1211,7 +1211,7 @@
           "id": "",
           "label": {
             "en": "Province",
-            "am": "Province",
+            "am": "ወረዳ",
             "ar": "المحافظة أو الولاية",
             "az": "Bölgə",
             "bg": "Провинция",
@@ -1411,7 +1411,7 @@
       "id": "",
       "label": {
         "en": "Current job title",
-        "am": "Current job title",
+        "am": "የአሁን የስራ ስያሜ",
         "ar": "المنصب الحالي المشغول",
         "az": "Hazırkı işi",
         "bg": "Текуща длъжност",
@@ -1510,7 +1510,7 @@
       "id": "",
       "label": {
         "en": "Current job responsibility (role)",
-        "am": "Current job responsibility (role)",
+        "am": "የአሁን የስራ ሃላፊነት (ሚና)",
         "ar": "(المسؤولية في العمل) الدور",
         "az": "İş yerində vəzifələri (rolu)",
         "bg": "Настоящи професионални задължения",
@@ -1609,7 +1609,7 @@
       "id": "",
       "label": {
         "en": "Current organization unit and job location",
-        "am": "Current organization unit and job location",
+        "am": "የአሁን ድርጅታዊ ክፍል እና የስራ ቦታ",
         "ar": "وحدة المنظمة الحالية و مكان العمل",
         "az": "İş yeri və ünvanı",
         "bg": "Настоящ отдел в компанията и локация",
@@ -1708,7 +1708,7 @@
       "id": "",
       "label": {
         "en": "Job title at the time of the reported fact",
-        "am": "Job title at the time of the reported fact",
+        "am": "\"ሪፖርት የተደረገው እውነት በተከሰተበት ወቅት የነበረ የስራ ስያሜ\"",
         "ar": "اسم المنصب وقت الابلاغ عن الواقعة",
         "az": "Fakt haqda məlumat verən zaman vəzifənin adı",
         "bg": "Наименование на длъжността към момента на докладваното нарушение",
@@ -1807,7 +1807,7 @@
       "id": "",
       "label": {
         "en": "Job responsibility (role) at the time of the reported fact",
-        "am": "Job responsibility (role) at the time of the reported fact",
+        "am": "ሪፖርት የተደረገው እውነት በተከሰተበት ወቅት የነበረ የስራ ሃላፊነት (ሚና)",
         "ar": "المسؤولية في العمل (الدور) وقت الابلاغ عن الواقعة",
         "az": "Fakt haqda məlumat verən zaman vəzifənin məsuliyyəti (rolu)",
         "bg": "Професионални отговорности по времето на докладвания сигнал",
@@ -1906,7 +1906,7 @@
       "id": "",
       "label": {
         "en": "Organization unit and job location at the time of the reported fact",
-        "am": "Organization unit and job location at the time of the reported fact",
+        "am": "ሪፖርት የተደረገው እውነት በተከሰተበት ወቅት የነበረ ድርጅታዊ ክፍል እና የስራ ቦታ",
         "ar": "وحدة المنظمة و مكان العمل وقت الابلاغ عن الواقعة",
         "az": "Fakt haqda məlumat verən zaman təşkilatın forması və iş yeri",
         "bg": "Отдел в компанията и локация по времето на докладвания сигнал",

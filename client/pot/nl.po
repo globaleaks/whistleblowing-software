@@ -43,8 +43,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-24 21:41+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"Last-Translator: Rianne FPU <verbeek@freepressunlimited.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -629,6 +629,9 @@ msgstr "Beheerders die gemachtigd zijn om gebruikerswachtwoorden te wijzigen:"
 msgid "Enable multisite feature"
 msgstr "Functie voor meerdere-weblocaties inschakelen"
 
+msgid "Enable simplified login"
+msgstr "Vereenvoudigdelogin inschakelen"
+
 msgid "Allow recipients to delete reports"
 msgstr "Sta ontvangers toe tips te verwijderen"
 
@@ -685,8 +688,8 @@ msgstr "Wachtwoorden moeten geregeld worden veranderd om veiligheidsredenen."
 msgid "Set the value to 0 to disable this feature."
 msgstr "Stel de waarde in op 0 om deze functie uit te schakelen"
 
-msgid "Number of days till notifying users unread reports"
-msgstr "Aantal dagen totdat gebruikers van ongelezen inzendingen op de hoogte worden gebracht"
+msgid "Number of days till notifying unread reports to users"
+msgstr "Aantal dagen tot het melden van de ongelezen inzendingen aan gebruikers"
 
 msgid "Enable custodian user role"
 msgstr "Activeer de custodian gebruikersrol"

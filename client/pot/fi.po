@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-24 21:41+0000\n"
+"PO-Revision-Date: 2020-12-10 20:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -599,6 +599,9 @@ msgstr "Ylläpitäjillä on valtuutus vaihtaa käyttäjän salasanat:"
 msgid "Enable multisite feature"
 msgstr "Ota käyttöön samanaikainen kirjautuminen useaan järjestelmään"
 
+msgid "Enable simplified login"
+msgstr "Ota käyttöön helpotettu kirjautuminen"
+
 msgid "Allow recipients to delete reports"
 msgstr "Salli vastaanottajien poistaa vihjeitä"
 
@@ -655,7 +658,7 @@ msgstr "Turvallisuussyistä johtuen salasanat täytyy uusia säännöllisin väl
 msgid "Set the value to 0 to disable this feature."
 msgstr "Ota toiminnallisuus pois käytöstä asettamalla arvoksi luku nolla (0)."
 
-msgid "Number of days till notifying users unread reports"
+msgid "Number of days till notifying unread reports to users"
 msgstr "Aika (päivinä), jonka jälkeen käyttäjää muistutetaan uusista ilmoituksista"
 
 msgid "Enable custodian user role"
@@ -1305,7 +1308,7 @@ msgid "Authorization"
 msgstr "Käyttölupa"
 
 msgid "Requests"
-msgstr ""
+msgstr "Pyynnöt"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Vahvistuslinkki on joko virheellinen tai vanhentunut."

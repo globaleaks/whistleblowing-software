@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-24 21:41+0000\n"
+"PO-Revision-Date: 2020-12-10 20:48+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Estonian (http://www.transifex.com/otf/globaleaks/language/et/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -590,6 +590,9 @@ msgstr "Kasutajate paroolide muutmise õigust omavad administraatorid:"
 msgid "Enable multisite feature"
 msgstr "Luba mitme saidi funktsioon"
 
+msgid "Enable simplified login"
+msgstr ""
+
 msgid "Allow recipients to delete reports"
 msgstr "Luba saajatel teateid kustutada"
 
@@ -646,7 +649,7 @@ msgstr "Turvakaalutlustel nõutakse regulaarsete ajavahemike järel parooli vahe
 msgid "Set the value to 0 to disable this feature."
 msgstr "Selle funktsiooni väljalülitamiseks määrake väärtuseks 0."
 
-msgid "Number of days till notifying users unread reports"
+msgid "Number of days till notifying unread reports to users"
 msgstr ""
 
 msgid "Enable custodian user role"

@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-24 21:41+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"Last-Translator: Reza Ghasemi\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -612,6 +612,9 @@ msgstr "ادمین های مجاز به تغییر گذرواژه کاربر:"
 msgid "Enable multisite feature"
 msgstr "فعال سازی ویژگی چند سایت"
 
+msgid "Enable simplified login"
+msgstr "فعال سازی ورود ساده شده"
+
 msgid "Allow recipients to delete reports"
 msgstr "به دریافت کننده‌ها اجازه بدهید که گزارش ها را پاک کنند"
 
@@ -668,7 +671,7 @@ msgstr "به دلایل امنیتی‌، تغییر گذر واژه در باز
 msgid "Set the value to 0 to disable this feature."
 msgstr "برای غیرفعال کردن این ویژگی مقدار را بر روی 0 تنظیم کنید."
 
-msgid "Number of days till notifying users unread reports"
+msgid "Number of days till notifying unread reports to users"
 msgstr ""
 
 msgid "Enable custodian user role"

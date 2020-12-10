@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-24 21:41+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"Last-Translator: Manuel D. Serrat <manuel.serrat@antifraucv.es>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -603,6 +603,9 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Activar la característica multi-lloc"
 
+msgid "Enable simplified login"
+msgstr "Activar inici de sessió simplificat"
+
 msgid "Allow recipients to delete reports"
 msgstr "Permet que els destinataris esborren els lliuraments"
 
@@ -659,7 +662,7 @@ msgstr "Per raons de seguretat, es requerix canviar la contrasenya a intervals r
 msgid "Set the value to 0 to disable this feature."
 msgstr "Fixe el valor a 0 per a desactivar esta funcionalitat"
 
-msgid "Number of days till notifying users unread reports"
+msgid "Number of days till notifying unread reports to users"
 msgstr ""
 
 msgid "Enable custodian user role"

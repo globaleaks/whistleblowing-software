@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-11-24 21:41+0000\n"
+"PO-Revision-Date: 2020-12-10 20:50+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -595,6 +595,9 @@ msgstr "ユーザーのパスワード変更を許可された管理者:"
 msgid "Enable multisite feature"
 msgstr "マルチサイト機能を有効にする"
 
+msgid "Enable simplified login"
+msgstr "簡易ログインを有効にする"
+
 msgid "Allow recipients to delete reports"
 msgstr "受信者が報告を削除することを許可する"
 
@@ -651,7 +654,7 @@ msgstr "セキュリティ上の理由から、定期的にパスワードを変
 msgid "Set the value to 0 to disable this feature."
 msgstr "この機能を無効にするには、値を0に設定します。"
 
-msgid "Number of days till notifying users unread reports"
+msgid "Number of days till notifying unread reports to users"
 msgstr "未読の報告をユーザーに通知するまでの日数"
 
 msgid "Enable custodian user role"
