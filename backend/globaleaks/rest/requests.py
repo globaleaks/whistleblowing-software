@@ -238,6 +238,7 @@ AdminNodeDesc = {
     'do_not_expose_users_names': bool,
     'disable_submissions': bool,
     'multisite_login': bool,
+    'simplified_login': bool,
     'enable_custodian': bool,
     'enable_scoring_system': bool,
     'enable_signup': bool,
@@ -460,6 +461,7 @@ NodeDesc = {
     'disable_privacy_badge': bool,
     'enable_receipt_hint': bool,
     'multisite_login': bool,
+    'simplified_login': bool,
     'enable_custom_privacy_badge': bool,
     'custom_privacy_badge_text': str
 }
