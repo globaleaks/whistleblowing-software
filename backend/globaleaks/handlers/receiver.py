@@ -54,10 +54,11 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
         rtip_ids.append(rtip.id)
         itip_ids.append(itip.id)
 
+        answers = answers.answers
         if itip.crypto_tip_pub_key:
             tip_key = GCE.asymmetric_decrypt(user_key, base64.b64decode(rtip.crypto_tip_prv_key))
 
-            answers = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(answers.answers.encode())).decode())
+            answers = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(answers.encode())).decode())
 
         data = {
             'id': rtip.id,
