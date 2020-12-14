@@ -1,3 +1,10 @@
+Changes in version 4.1.8
+    Fix serialization of tip preview for platforms with encryption OFF
+    Move experimentaal docker scripts to dedicated repository:
+    https://github.com/globaleaks/globaleaks-docker-scripts
+    Bump travis testing environment to Focal
+    Bump npm dependencies to latest version
+
 Changes in version 4.1.7
     Deprecate code related to onion service v2 generation
     Add list of italian public agencies that use the software to
