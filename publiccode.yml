@@ -260,17 +260,18 @@ description:
       - documentation/images/recipient/reports.png
       - documentation/images/recipient/report.png
 usedBy:
-  - Autorità Nazionale Anticorruzione (ANAC)
-  - AgID Agenzia per l'Italia Digitale
   - ACA Spa
   - ACER Ferrara
   - ACER Forlì Cesena
   - ACER Rimini
+  - ACI
   - Acimmagine S.r.l
   - Acqualatina SPA
+  - Acquedotto Pugliese
   - Acque Veronesi SCARL
   - ADISU – Agenzia per il Diritto allo Studio dell’Umbria
   - ADISU Puglia
+  - ADSP Mar Tirreno Centro Settentrionale
   - AEB Spa
   - AEMME Linea Ambiente Srl
   - AEMME Linea Distribuzione Srl
@@ -279,18 +280,23 @@ usedBy:
   - Agenzia della Mobilità Piemontese
   - Agenzia di Controllo del Sistema Socio Sanitario Lombardo
   - Agenzia In Liguria – Agenzia Regionale di Promozione Turistica
+  - Agenzia per l'Italia Digitale (AgID)
   - AGRIS Sardegna – Agenzia regionale per la ricerca in agricoltura
   - AIFA Agenzia Italiana del Farmaco
   - AIR Mobilità Avellino
+  - ALES SpA
   - ALFA Liguria
   - Aliseo – Agenzia Ligure per gli studenti e l’orientamento
   - AMA Rozzano Spa
   - Ambito Territoriale Social N.3 AUSL BR/1
   - AMGA Legnano Spa
   - AMGAS Srl
-  - AMT SpA – Azienda Mobilità e Trasporti Verona
+  - AMOS
   - AMTAB – Azienda Mobilità e Trasporti Bari S.p.A.
+  - AMT SpA – Azienda Mobilità e Trasporti Verona
+  - ANSF - Agenzia Nazionale per la Sicurezza delle Ferrovie
   - Antica Scuola dei Battuti
+  - ANVUR
   - AOU Careggi
   - AOU Ordine Mauriziano Torino
   - AOU San Luigi Gonzaga di Orbassano
@@ -299,23 +305,31 @@ usedBy:
   - AREA Azienda Regionale per l’Edilizia Abitativa
   - Arechi Multiservice SPA
   - AReSS Puglia
+  - ARESS Puglia
   - AREUS Azienda Regionale Emergenza Urgenza Sardegna
+  - Arexpo
   - Arezzo Multiservizi Srl
   - ARNAS Civico di Cristina Benfratelli
   - ARNAS Garibaldi
   - ARPA Agenzia Regionale per la Protezione dell’Ambiente Friuli Venezia Giulia
   - ART-ER Attrattività Ricerca Territorio
-  - ASL Bari
-  - ASL Barletta – Andria – Trani
-  - ASL Biella
-  - ASL Napoli 3 Sud
-  - ASL Torino 3
-  - ASL Verbano Cusio Ossola
-  - ASL Vercelli
+  - ASIA Azienda Speciale per l'Igiene Ambientale
+  - ASIS Trento
+  - ASL 1 Abruzzo
   - ASL 1 Liguria – Imperiese
   - ASL 2 Liguria – Savonese
   - ASL 3 Liguria – Genovese
   - ASL 4 Liguria – Chiavarese
+  - ASL 4 Teramo
+  - ASL 4 Torino
+  - ASL Bari
+  - ASL Barletta – Andria – Trani
+  - ASL Biella
+  - A.S.L. Napoli 1 Centro
+  - ASL Napoli 3 Sud
+  - ASL Torino 3
+  - ASL Verbano Cusio Ossola
+  - ASL Vercelli
   - ASM Terni Spa
   - ASPAL – Agenzia Sarda per le politiche del lavoro
   - ASP Basso Lodigiano
@@ -328,6 +342,7 @@ usedBy:
   - ASST Valle Olona
   - Astea SPA
   - ATAP S.P.A.
+  - ATC Piemonte Centrale
   - ATER Belluno
   - ATER Gorizia
   - ATER Potenza
@@ -343,15 +358,21 @@ usedBy:
   - Autorità di Sistema Portuale del Mare di Sardegna
   - Autorità di Sistema Portuale del Mare di Sicilia Occidentale
   - Autorità di sistema portuale del Mar Ligure Orientale
+  - Autorità Nazionale Anticorruzione (ANAC)
+  - Autorità per le Garanzie nelle Comunicazioni (AGCOM)
+  - Autorità portuale del Levante / Mar Adriatico Meridionale
   - Autoservizi Irpini Spa
   - Autostazione di Bologna Srl
+  - Avvocatura dello Stato
+  - Avvocatura dello Stato
   - Azienda Farmaceutica Municipalizzata Follonica
   - Azienda Metropolitana Trasporti Catania Spa
   - Azienda Ospedaliera di Padova
+  - Azienda Ospedaliera di Perugia
   - Azienda Ospedaliera Ospedali Riuniti Marche Nord
   - Azienda Ospedaliera per l’Emergenza Cannizzaro
-  - Azienda Ospedaliera San Giovanni Moscati
   - Azienda Ospedaliera Policlinico Universitario “G. Martino”
+  - Azienda Ospedaliera San Giovanni Moscati
   - Azienda Ospedaliera Sant’Anna e San Sebastiano di Caserta
   - Azienda Ospedaliera S. Croce e Carle di Cuneo
   - Azienda Ospedaliera SS. Antonio e Biagio e Cesare Arrigo Alessandria
@@ -368,6 +389,7 @@ usedBy:
   - Azienda Sanitaria Provinciale di Ragusa
   - Azienda Sanitaria Provinciale di Siracusa
   - Azienda Sanitaria Universitaria Friuli Centrale
+  - Azienda Siciliana Trasporti
   - Azienda Sociale Castano
   - Azienda Sociale del Legnanese (So.Le)
   - Azienda Socio Sanitaria Territoriale (ASST) dei Sette Laghi Varese
@@ -381,34 +403,44 @@ usedBy:
   - Azienda Trasporti Pubblici Nuoro
   - Azienda ULSS 08 Berica
   - Azienda ULSS 09 Scaligera
-  - Autorità per le Garanzie nelle Comunicazioni (AGCOM)
-  - Avvocatura dello Stato
   - Bari Multiservizi S.p.A.
+  - BIM del Chiese
+  - BMTI - Borsa Merci Telematica Italiana
   - Brescia Infrastrutture Srl
   - Brianzacque SRL
   - Brindisi Multiservizi
   - CADF Spa
+  - Caltaqua S.p.A.
   - Camera Arbitrale di Milano
   - Camera di Commercio Avellino
   - Camera di Commercio Bari
   - Camera di Commercio Benevento
   - Camera di Commercio Caserta
+  - Camera di Commercio Catanzaro
   - Camera di Commercio Firenze
+  - Camera di Commercio Maremma e Tirreno
+  - Camera di Commercio Milano Lodi Monza Brianza
   - Camera di Commercio Pisa
+  - Camera di Commercio - Teramo
   - CAMVO SPA
+  - Casa ATC Servizi srl
+  - Casa di Cura Policlinico Abano Terme
   - Casinò Sanremo S.p.A.
   - Castiglione 2014 Azienda Speciale
   - Castiglione Olona Servizi
+  - CCIAA - L'Aquila
+  - CCIAA Roma
   - Cemambiente Spa
   - Centro Agro Alimentare di Napoli SCPA
   - Centro Formativo Provinciale Giuseppe Zanardelli
   - Centro Marche Acqua
   - Centro Studi delle Camere di Commercio Guglielmo Tagliacarne
   - CEP Spa
-  - CIRA Centro Italiano Ricerche Aerospaziali
-  - Città Metropolitana di Palermo
-  - Cisterna Ambiente Spa
   - C.I.A.S.S. – Consorzio Isola di Ariano servizi sociali
+  - CIRA Centro Italiano Ricerche Aerospaziali
+  - Cisterna Ambiente Spa
+  - Città Metropolitana di Catania
+  - Città Metropolitana di Palermo
   - Cogeser S.p.A.
   - Collegio Geometri e Geometri Laureati della Provincia di Lecco
   - Collegio Geometri e Geometri Laureati della Provincia di Milano
@@ -426,48 +458,68 @@ usedBy:
   - Comune di Agropoli
   - Comune di Airola
   - Comune di Alà dei Sardi
+  - Comune di Albiano
   - Comune di Albino
+  - Comune di Aldeno
   - Comune di Alessandria
   - Comune di Alghero
   - Comune di Alia
   - Comune di Alpago
   - Comune di Altamura
+  - Comune di Altavalle
+  - Comune di Altopiano della Vigolana
+  - Comune di Alvignano
+  - Comune di Amblar-Don
   - Comune di Ancona
+  - Comune di Andalo
   - Comune di Andria
   - Comune di Angera
+  - Comune di Anzio
   - Comune di Aprilia
   - Comune di Arcade
+  - Comune di Arco
   - Comune di Arcugnano
   - Comune di Arese
   - Comune di Arezzo
   - Comune di Arluno
   - Comune di Arona
   - Comune di Arre
+  - Comune di Ascoli Piceno
   - Comune di Asolo
   - Comune di Assisi
   - Comune di Asti
+  - Comune di Atina
   - Comune di Augusta
   - Comune di Austis
+  - Comune di Avezzano
+  - Comune di Avio
+  - Comune di BacoliComune di Bacoli
   - Comune di Bagnatica
   - Comune di Bagnolo in Piano
   - Comune di Bagolino
   - Comune di Barasso
+  - Comune di Barberino Tavarnelle
   - Comune di Baressa
-  - Comune di Bari Sardo
   - Comune di Bariano
+  - Comune di Bari Sardo
+  - Comune di Baselga di Piné
   - Comune di Battaglia Terme
   - Comune di Battipaglia
   - Comune di Bellino
   - Comune di Belmonte Mezzagno
   - Comune di Benevento
+  - Comune di Besenello
   - Comune di Bessude
   - Comune di Biassono
+  - Comune di Bieno
   - Comune di Bione
   - Comune di Bitti
+  - Comune di Bocenago
   - Comune di Bodio Lomnago
   - Comune di Bolzano Vicentino
   - Comune di Bonate Sotto
   - Comune di Bonnanaro
+  - Comune di Borgo Chiave
   - Comune di Borgo Chiese
   - Comune di Borso del Grappa
   - Comune di Bosco Chiesanuova
@@ -486,18 +538,23 @@ usedBy:
   - Comune di Busca
   - Comune di Bussolengo
   - Comune di Cadelbosco di Sopra
+  - Comune di Caderzone Terme
   - Comune di Calatabiano
   - Comune di Calcinato
   - Comune di Calcio
+  - Comune di Caldes
   - Comune di Caldogno
   - Comune di Calenzano
   - Comune di Calimera
+  - Comune di Calliano
   - Comune di Caltanissetta
   - Comune di Calto
   - Comune di Calusco d’Adda
   - Comune di Calvi dell’Umbria
   - Comune di Campobello di Licata
+  - Comune di Canal San Bovo
   - Comune di Canaro
+  - Comune di Canazei
   - Comune di Cantagallo
   - Comune di Capannori
   - Comune di Capraia e Limite
@@ -507,33 +564,43 @@ usedBy:
   - Comune di Carosino
   - Comune di Carpinone
   - Comune di Carrara
+  - Comune di Carrara
+  - Comune di Carsoli
+  - Comune di Carzano
   - Comune di Casalborgone
   - Comune di Casale Litta
   - Comune di Casale Marittimo
-  - Comune di Casale sul Sile
   - Comune di Casaleone
+  - Comune di Casale sul Sile
   - Comune di Casalgrande
   - Comune di Casatenovo
   - Comune di Casnate con Bernate
   - Comune di Casnigo
   - Comune di Casole d’Elsa
   - Comune di Casoli
+  - Comune di Castelcucco
   - Comune di Castel d’Azzano
   - Comune di Castel Frentano
-  - Comune di Castelcucco
   - Comune di Castelgomberto
+  - Comune di Castel Ivano
   - Comune di Castellana Grotte
   - Comune di Castellanza
   - Comune di Castellarano
+  - Comune di Castello Molina di Fiemme
   - Comune di Castelmassa
   - Comune di Castelnovo di Sotto
+  - Comune di Castelnuovo
   - Comune di Castelnuovo di Porto
   - Comune di Castelnuovo di Val di Cecina
   - Comune di Castiadas
   - Comune di Castiglion Fibocchi
   - Comune di Casto
   - Comune di Castropignano
+  - Comune di Cavalese
   - Comune di Cavasso Nuovo
+  - Comune di Cavedago
+  - Comune di Cavedine
+  - Comune di Cavizzana
   - Comune di Cellere
   - Comune di Cerea
   - Comune di Cerignola
@@ -546,27 +613,39 @@ usedBy:
   - Comune di Chiavari
   - Comune di Chioggia
   - Comune di Chiusi
+  - Comune di Chivasso
   - Comune di Ciampino
+  - Comune di Cigliano
+  - Comune di Cimone
   - Comune di Cinisello Balsamo
+  - Comune di Cinte Tesino
   - Comune di Ciserano
   - Comune di Cittadella
+  - Comune di Città di Castello
+  - Comune di Civezzano
   - Comune di Civitavecchia
+  - Comune di Cles
   - Comune di Clusone
   - Comune di Codrongianos
+  - Comune di Collebeato
   - Comune di Colle d’Anchise
+  - Comune di Colleferro
+  - Comune di Collesalvetti
   - Comune di Colle Umberto
   - Comune di Colle Val D’Elsa
-  - Comune di Collebeato
-  - Comune di Collesalvetti
   - Comune di Colognola ai Colli
   - Comune di Cologno Monzese
   - Comune di Comacchio
+  - Comune di Comano Terme
+  - Comune di Commezzadura
   - Comune di Conegliano
+  - Comune di Contà
   - Comune di Copparo
   - Comune di Corato
   - Comune di Corbetta
   - Comune di Corbola
   - Comune di Cornaredo
+  - Comune di Corsico
   - Comune di Corsico
   - Comune di Corte Franca
   - Comune di Cortina d’Ampezzo
@@ -578,9 +657,15 @@ usedBy:
   - Comune di Curno
   - Comune di Curti
   - Comune di Cusano Milanino
+  - Comune di Dambel
   - Comune di Daverio
   - Comune di Delianuova
+  - Comune di Denno
+  - Comune di Dimaro Folgarida
+  - Comune di Drena
+  - Comune di Dro
   - Comune di Este
+  - Comune di Fai della Paganella
   - Comune di Falconara Marittima
   - Comune di Farnese
   - Comune di Ferentillo
@@ -595,14 +680,16 @@ usedBy:
   - Comune di Forte dei Marmi
   - Comune di Fossalto
   - Comune di Francavilla Fontana
-  - Comune di Fratta Polesine
   - Comune di Frattamaggiore
+  - Comune di Fratta Polesine
+  - Comune di Frosinone
   - Comune di Fucecchio
   - Comune di Fumane
   - Comune di Gaggiano
   - Comune di Galatro
   - Comune di Gallio
   - Comune di Galtelli
+  - Comune di Garniga Terme
   - Comune di Gavardo
   - Comune di Gazoldo degli Ippoliti
   - Comune di Gazzada Schianno
@@ -613,17 +700,21 @@ usedBy:
   - Comune di Giacciano con Baruchella
   - Comune di Giavera del Montello
   - Comune di Girasole
+  - Comune di Giustino
   - Comune di Gonnosfanadiga
   - Comune di Gonnosno’
   - Comune di Gonnostramatza
+  - Comune di Gorizia
   - Comune di Gorla Minore
   - Comune di Gradoli
   - Comune di Grezzana
+  - Comune di Grigno
   - Comune di Grottaferrata
   - Comune di Guardistallo
   - Comune di Guarene
   - Comune di Idro
   - Comune di Iglesias
+  - Comune di Imer
   - Comune di Impruneta
   - Comune di Inzago
   - Comune di Ischitella
@@ -644,10 +735,13 @@ usedBy:
   - Comune di Lavenone
   - Comune di Legnago
   - Comune di Lentate sul Seveso
+  - Comune di Levico Terme
   - Comune di Liberi
+  - Comune di Lignano Sabbiadoro
   - Comune di Limana
   - Comune di Loculi
   - Comune di Lodi
+  - Comune di Lona Lases
   - Comune di Lonate Pozzolo
   - Comune di Loreto
   - Comune di Luras
@@ -656,7 +750,9 @@ usedBy:
   - Comune di Luvinate
   - Comune di Macchia d’Isernia
   - Comune di Macerata Campania
+  - Comune di Madruzzo
   - Comune di Magenta
+  - Comune di Malè
   - Comune di Manerba del Garda
   - Comune di Mansuè
   - Comune di Mapello
@@ -680,13 +776,20 @@ usedBy:
   - Comune di Meda
   - Comune di Melle
   - Comune di Mesagne
+  - Comune di Mezzana
+  - Comune di Mezzano
+  - Comune di Mezzocorona
+  - Comune di Mezzolombardo
   - Comune di Milano
   - Comune di Milazzo
   - Comune di Milzano
   - Comune di Misterbianco
+  - Comune di Moena
   - Comune di Mogoro
   - Comune di Molfetta
+  - Comune di Molveno
   - Comune di Mondovì
+  - Comune di Mondragone
   - Comune di Monfumo
   - Comune di Monte Argentario
   - Comune di Montebelluna
@@ -700,13 +803,20 @@ usedBy:
   - Comune di Monza
   - Comune di Morcone
   - Comune di Moretta
+  - Comune di Mori
   - Comune di Mornago
   - Comune di Motta Sant’Anastasia
   - Comune di Mozzanica
   - Comune di Muros
   - Comune di Muscoline
+  - Comune di Nago-Torbole
   - Comune di Nave
+  - comune di Nettuno
+  - Comune di Nichelino
   - Comune di Nogarole Rocca
+  - Comune di Nomi
+  - Comune di Novaledo
+  - Comune di Novella
   - Comune di Novi Ligure
   - Comune di Oderzo
   - Comune di Oggiona con Santo Stefano
@@ -722,24 +832,33 @@ usedBy:
   - Comune di Orio al Serio
   - Comune di Oristano
   - Comune di Ortona
+  - Comune di Ospedaletto
+  - Comune di Ossana
   - Comune di Ostiano
   - Comune di Ottana
   - Comune di Ottaviano
   - Comune di Ovodda
+  - Comune di Paceco
   - Comune di Padria
   - Comune di Padula
   - Comune di Pagazzano
   - Comune di Palagiano
   - Comune di Palau
   - Comune di Palazzolo sull’Oglio
+  - Comune di Palestrina
   - Comune di Palmi
+  - Comune di Panchià
   - Comune di Pantigliate
   - Comune di Partinico
   - Comune di Pasiano di Pordenone
   - Comune di Pauli Arbarei
   - Comune di Pavia
   - Comune di Pedavena
+  - Comune di Peio
+  - Comune di Pellizzano
+  - Comune di Pelugo
   - Comune di Perdasdefogu
+  - Comune di Pergine Valsugana
   - Comune di Pero
   - Comune di Perugia
   - Comune di Pesche
@@ -750,50 +869,66 @@ usedBy:
   - Comune di Pianezze
   - Comune di Piasco
   - Comune di Pietradefusi
+  - Comune di Pieve di Bono-Prezzo
+  - Comune di Pieve Tesino
   - Comune di Pimentel
   - Comune di Pinasca
+  - Comune di Pinzolo
   - Comune di Pisciotta
   - Comune di Pitigliano
   - Comune di Piubega
   - Comune di Ponsacco
-  - Comune di Ponte San Pietro
   - Comune di Ponteranica
-  - Comune di Ponti sul Mincio
+  - Comune di Ponte San Pietro
   - Comune di Pontirolo Nuovo
+  - Comune di Ponti sul Mincio
   - Comune di Ponzano Veneto
   - Comune di Porcari
   - Comune di Porcia
+  - Comune di Porte di Rendena
   - Comune di Porto Ceresio
   - Comune di Porto Viro
   - Comune di Povegliano
   - Comune di Povegliano Veronese
   - Comune di Prarostino
   - Comune di Prata di Pordenone
+  - Comune di Predaia
+  - Comune di Predazzo
   - Comune di Presenzano
   - Comune di Prevalle
+  - Comune di Primiero San Martino di Castrozza
   - Comune di Proceno
   - Comune di Provaglio Valsabbia
   - Comune di Quartucciu
+  - Comune di Rabbi
   - Comune di Randazzo
   - Comune di Resana
   - Comune di Rezzato
   - Comune di Rho
+  - Comune di Riva del Garda
   - Comune di Roccapalumba
   - Comune di Romano di Lombardia
   - Comune di Roncadelle
+  - Comune di Roncegno Terme
+  - Comune di Ronchi Valsugana
   - Comune di Ronco all’Adige
+  - Comune di Ronzo-Chienis
   - Comune di Rosignano Marittimo
   - Comune di Rosolina
+  - Comune di Rovereto
   - Comune di Roverè Veronese
   - Comune di Rovigo
   - Comune di Rozzano
   - Comune di Rubiera
   - Comune di Sadali
+  - Comune di Sagron Mils
   - Comune di Salara
   - Comune di Salizzole
   - Comune di Saluzzo
   - Comune di San Bellino
+  - Comune di San Casciano in Val di Pesa
   - Comune di San Dorligo della Valle
+  - Comune di Sandrigo
   - Comune di San Giorgio a Cremano
   - Comune di San Giorgio in Bosco
   - Comune di San Giorgio Ionico
@@ -803,24 +938,26 @@ usedBy:
   - Comune di San Giovanni Suergiu
   - Comune di San Giovanni Valdarno
   - Comune di San Gregorio nelle Alpi
+  - Comune di San Lorenzo Dorsino
   - Comune di San Martino al Tagliamento
   - Comune di San Martino dall’Argine
   - Comune di San Marzano di San Giuseppe
+  - Comune di San Michele all'Adige
   - Comune di San Pietro di Morubio
   - Comune di San Polo di Piave
+  - Comune di Sanremo
   - Comune di San Rufo
   - Comune di San Stino di Livenza
-  - Comune di San Vittore Olona
-  - Comune di Sandrigo
-  - Comune di Sanremo
-  - Comune di Sant’Arsenio
-  - Comune di Sant’Elena
   - Comune di Santa Fiora
   - Comune di Santa Giustina
   - Comune di Santa Lucia di Piave
   - Comune di Santa Margherita Ligure
+  - Comune di Sant’Arsenio
+  - Comune di Sant’Elena
   - Comune di Santo Stefano Ticino
+  - Comune di San Vittore Olona
   - Comune di Sanza
+  - Comune di Sanzeno
   - Comune di Sarconi
   - Comune di Sardara
   - Comune di Sarno
@@ -829,9 +966,11 @@ usedBy:
   - Comune di Sassano
   - Comune di Scandiano
   - Comune di Scorrano
+  - Comune di Segonzano
   - Comune di Segrate
   - Comune di Segusino
   - Comune di Selargius
+  - Comune di Sella Giudicarie
   - Comune di Sella Giudicarie
   - Comune di Seniga
   - Comune di Sennori
@@ -853,11 +992,17 @@ usedBy:
   - Comune di Sorgono
   - Comune di Sossano
   - Comune di Sovizzo
+  - Comune di Spiazzo
+  - Comune di S. Pietro Vernotico
   - Comune di Spoltore
+  - Comune di Spoltore
+  - Comune di Spormaggiore
   - Comune di Spresiano
   - Comune di Stanghella
+  - Comune di Stenico
   - Comune di Sternatia
   - Comune di Stezzano
+  - Comune di Strembo
   - Comune di Sulmona
   - Comune di Supersano
   - Comune di Susa
@@ -868,12 +1013,18 @@ usedBy:
   - Comune di Taurianova
   - Comune di Tavazzano con Villavesco
   - Comune di Teglio Veneto
+  - Comune di Telve
+  - Comune di Telve di Sopra
   - Comune di Tempio Pausania
   - Comune di Terlizzi
   - Comune di Ternate
   - Comune di Terracina
   - Comune di Tertenia
+  - Comune di Tesero
   - Comune di Tignale
+  - Comune di Tione di Trento
+  - Comune di Ton
+  - Comune di Torcegno
   - Comune di Torella dei Lombardi
   - Comune di Torino
   - Comune di Torralba
@@ -883,8 +1034,10 @@ usedBy:
   - Comune di Trani
   - Comune di Travedona Monate
   - Comune di Trecenta
+  - Comune di Trento
   - Comune di Treviglio
   - Comune di Trevignano
+  - Comune di Tre Ville
   - Comune di Treviso
   - Comune di Trezzano sul Naviglio
   - Comune di Tribano
@@ -895,8 +1048,11 @@ usedBy:
   - Comune di Uri
   - Comune di Urzulei
   - Comune di Vaiano
+  - Comune di Valdaone
   - Comune di Valdobbiadene
   - Comune di Valentano
+  - Comune di Vallarsa
+  - Comune di Vallelaghi
   - Comune di Vallio Terme
   - Comune di Valmadrera
   - Comune di Valmala
@@ -906,6 +1062,7 @@ usedBy:
   - Comune di Venasca
   - Comune di Verbania
   - Comune di Verdellino
+  - Comune di Vermiglio
   - Comune di Vernio
   - Comune di Verona
   - Comune di Verucchio
@@ -916,40 +1073,65 @@ usedBy:
   - Comune di Vicenza
   - Comune di Vignale Monferrato
   - Comune di Vigodarzere
+  - Comune di Villabate
   - Comune di Villacidro
   - Comune di Villafalletto
-  - Comune di Villabate
   - Comune di Villaputzu
   - Comune di Villasalto
   - Comune di Villasimius
+  - Comune di Ville D'Anaunia
   - Comune di Vimodrone
   - Comune di Vittorio Veneto
   - Comune di Vittuone
   - Comune di Vobarno
   - Comune di Voghera
+  - Comune di Volano
   - Comune di Volpago del Montello
   - Comune di Zenson di Piave
   - Comune di Zevio
+  - Comune di Ziano di Fiemme
+  - Comune General de Fascia
+  - Comune Ville di Fiemme
+  - Comunitą Alta Valsugana e Bersntol
+  - Comunità Alto Garda e Ledro
+  - Comunità della Val di Non
+  - Comunità della Vallagarina
+  - Comunità della Valle di Cembra
+  - Comunità della Valle di Sole
+  - Comunità delle Giudicarie
+  - Comunità di Primiero
   - Comunità Montana Alta Irpinia
   - Comunità Montana Alta Tuscia Laziale
   - Comunità Montana Alto Sangro Altopiano delle cinque miglia
   - Comunità Montana del Piambello
   - Comunità Montana Vallo di Diano
+  - Comunità Rotaliana - Königsberg
+  - Comunità Territoriale della Val di Fiemme
+  - Comunità Valle dei Laghi
+  - Comunità Valsugana e Tesino
+  - Consiglio della Provincia Autonoma di Trento
   - Consiglio Regionale Abruzzo
+  - Consiglio Regionale della Calabria
   - Consiglio Regionale delle Marche
   - Consorzio Acquedottistico Marsicano Spa
   - Consorzio BIM del Chiese
+  - Consorzio Bonifica Ticino Villoresi
+  - Consorzio Brescia Mercati
   - Consorzio Chierese per i servizi
+  - Consorzio Costa Smeralda
+  - Consorzio dei Comuni Trentini
   - Consorzio dell’Adda
-  - Consorzio di Bonifica del Nord Sardegna
-  - Consorzio di Bonifica dell’Oristanese
   - Consorzio di Bonifica della Sardegna Centrale
+  - Consorzio di Bonifica dell’Oristanese
+  - Consorzio di Bonifica del Nord Sardegna
   - Consorzio Industriale Provinciale Sassari
   - Consorzio Interuniversitario Nazionale per la Scienza e Tecnologia dei Materiali
   - Consorzio Italbiotec
   - Consorzio Servizi Ecologia ed Ambiente C.S.E.A.
   - Consorzio Universitario Piceno
+  - Consorzio Zona Industriale e Porto Fluviale di Padova
   - Cordar Spa Biella Servizi
+  - Corte dei Conti
   - Corte dei Conti
   - CSBNO
   - CTP – Compagnia Trasporti Pubblici di Napoli
@@ -960,44 +1142,51 @@ usedBy:
   - Ente Ospedaliero Ospedali Galliera
   - Ente Parco Nazionale Arcipelago Toscano
   - Environment Park PA
-  - ESU-ARDSU di Venezia
   - Equitalia Giustizia S.p.A.
+  - ESU-ARDSU di Venezia
+  - ETRA SpA
   - Eurolavoro AFOL Ovest Milano
+  - F.I.L. Formazione Innovazione Lavoro SRL
   - Film Commission Torino Piemonte
   - Finaosta SPA – Finanziaria Regionale Valle d’Aosta
+  - Fiumicino Tributi
   - Fondazione Bruno Kessler
   - Fondazione Clément Fillietroz – Osservatorio Astronomico della Valle d’Aosta
   - Fondazione Festival Pucciniano
   - Fondazione Montagna sicura – Montagne sûre
+  - Fondazione Scuola dei Beni e delle Attività Culturali
   - Fondazione Teatro Comunale e Auditorium Bolzano
-  - F.I.L. Formazione Innovazione Lavoro SRL
   - Formaper
+  - Forma.Temp
   - GAL Sole Grano Terra
   - GEAL Spa
   - GEASC Gestione Aziendale Servizi Comunali
   - GES Geo Energy Service Spa
   - Grotte di Castellana srl
+  - Gruppo SACE
   - Hermes Servizi Metropolitani
   - IACP (Istituto Autonomo Case Popolari) Caltanissetta
-  - IC Outsourcing
   - ICE Agenzia per la promozione all’estero e l’internazionalizzazione delle imprese
+  - IC Outsourcing
   - Igea Spa
   - Infrastrutture Venete Srl
   - Innovhub Stazioni Sperimentali per l’Industria
+  - Insiel
   - Insieme per il Sociale
+  - Institut Agricole Regional (IAR) Aosta
   - IPI Santa Maria della Pietà
   - IRCCS Centro Neurolesi Bonino Pulejo
   - IRCCS De Bellis Ente Ospedaliero Specializzato in Gastroenterologia
   - IRCCS GASLINI
   - IRFIS Finsicilla
   - IRSAP Istituto regionale sviluppo attività produttive
-  - Institut Agricole Regional (IAR) Aosta
   - ISIN – Ispettorato Nazionale per la Sicurezza Nucleare e la Radioprotezione
-  - Istituto Tumori Giovanni Paolo II – I.R.C.C.S di Bari
+  - ISNART
   - Istituti Raggruppati A.P.S.P. Pistoia
   - Istituto Autonomo delle Case Popolari della Provincia di Palermo
   - Istituto Bon Bozzolla
   - Istituto Trentino per l’Edilizia Abitativa SPA (ITEA SPA)
+  - Istituto Tumori Giovanni Paolo II – I.R.C.C.S di Bari
   - Istituto Zooprofilattico Sperimentale della Sardegna
   - Istituto Zooprofilattico Sperimentale delle Venezie
   - Istituto Zooprofilattico Sperimentale Sicilia
@@ -1008,10 +1197,10 @@ usedBy:
   - Massa Tributi e Riscossioni
   - Mefop Spa
   - Metro Srl
-  - Ministero politiche agricole alimentari e forestali (MIPAAF)
   - Ministero dela giustistia
-  - Monteriggioni AD 1213 srl
+  - Ministero politiche agricole alimentari e forestali (MIPAAF)
   - Mobilità Versilia – Mover Spa
+  - Monteriggioni AD 1213 srl
   - O.P.S. Organizzazione Progetti e Servizi Chieti SPA
   - Ordine degli Avvocati di Sondrio
   - Ordine degli Ingegneri Provincia di Fermo
@@ -1032,15 +1221,20 @@ usedBy:
   - Ordine Medici Chirurghi e Odontoiatri di Pavia
   - Ordine Professioni Infermieristiche Forlì e Cesena
   - Ordine Psicologi Marche
+  - Ospedale Maggiore Novara
   - Ospedale Policlinico San Martino
   - Parcam Srl
+  - Parco Nazionale Arcipelago di la Maddalena
   - Parco Nazionale d’Abruzzo Lazio e Molise
   - Parco Nazionale delle Cinque Terre
   - Parma Gestione Entrate SpA
   - Pavia Acque
+  - Pensplan Centrum S.p.A.
   - Pietrasanta Sviluppo SPA
   - Politecnico di Bari
+  - Politecnico di Torino
   - Porto Conte Ricerche
+  - Port Security Piombino
   - Provincia dell’Aquila
   - Provincia della Spezia
   - Provincia di Avellino
@@ -1050,19 +1244,22 @@ usedBy:
   - Provincia di Isernia
   - Provincia di Livorno
   - Provincia di Mantova
+  - Provincia di Massa Carrara
   - Provincia di Modena
   - Provincia di Nuoro
+  - Provincia di Pistoia
   - Provincia di Potenza
+  - Provincia di Reggio Emilia
   - Provincia di Rieti
   - Provincia di Rovigo
-  - Provincia di Pistoia
-  - Provincia di Reggio Emilia
   - Provincia di Taranto
   - Provincia di Trento
   - Provincia di Trento – Dipartimento Istruzione
   - Provincia di Varese
   - Provincia di Vicenza
+  - Regione Autonoma Trentino-Alto Adige / Südtirol
   - Regione Sardegna
+  - SACE s.p.a
   - Salerno Energia Distribuzione SPA
   - San Giovanni Servizi S.r.l.
   - Sanitaservice Policlinico Bari srl
@@ -1076,15 +1273,19 @@ usedBy:
   - Sidra SPA
   - Sistema Sosta e Mobilità S.p.A.
   - Società degli Interporti Siciliani Spa
+  - Società della Salute Amiata Senese e Val d'Orcia - Valdichiana Senese
   - Società Entrate Pisa Spa
   - Società Informatica Territoriale Belluno
   - Società Italiana Servizi Spa
   - SOGESID
   - Sotacarbo Società Tecnologie Avanzate Carbone SpA
   - SRM – Reti e Mobilità Srl
+  - Stazione Zoologica Anton Dohrn
+  - Strada dei Parchi S.p.A.
   - Sviluppo Toscana Spa
   - TE.AM. TERAMO AMBIENTE S.P.A.
   - Tecnopolis Parco Scientifico e Tecnologico
+  - Trentino Digitale S.p.A.
   - Ufficio d’Ambito di Pavia
   - ULSS 01 Dolomiti
   - ULSS 03 Serenissima
@@ -1092,11 +1293,12 @@ usedBy:
   - ULSS 05 Polesana
   - ULSS 07 Pedemontana
   - Unione Collinare Canavesana
-  - Unione dei Comuni del Pratomagno
+  - Unione Comuni della Romagna Forlivese
   - Unione Comuni del Sarrabus
   - Unione dei Comuni della Val di Bisenzio
   - Unione dei Comuni della Valle del Pardu e dei Tacchi Ogliastra Meridionale
   - Unione dei comuni della Valtenesi
+  - Unione dei Comuni del Pratomagno
   - Unione dei Comuni Destra Adige
   - Unione dei Comuni Terre e Fiumi
   - Unione delle Torri
@@ -1108,17 +1310,22 @@ usedBy:
   - Unione Terra di Mezzo
   - Unione Tresinaro Secchia
   - Uniontrasporti
+  - Università degli Studi della Campania "Luigi Vanvitelli"
+  - Università degli Studi del Sannio
   - Università degli Studi di Bergamo
   - Università degli Studi di Ferrara
   - Università degli Studi di Napoli L’Orientale
+  - Università degli Studi di Padova
   - Università degli Studi di Pavia
   - Università degli Studi di Perugia
   - Università degli Studi di Roma Tre
+  - Università degli Studi G. d'Annunzio
   - Università della Valle d’Aosta
   - USL Umbria n.2 Terni
   - Valisannio – Azienda Speciale della Camera di Commercio di Benevento
   - Valle Sabbia Solidale
   - Veneto Acque SPA
   - Veneto Film Commission
+  - Venezia Spiagge S.p.A.
   - Vi.abilità
   - Villaservice Spa
