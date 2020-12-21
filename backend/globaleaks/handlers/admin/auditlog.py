@@ -168,7 +168,7 @@ def get_tips(session, tid):
     for itip_id, count in session.query(models.InternalTip.id,
                                         func.count(distinct(models.InternalFile.id))) \
                                  .filter(models.InternalFile.internaltip_id == models.InternalTip.id,
-                                         models.InternalTip.id == tid) \
+                                         models.InternalTip.tid == tid) \
                                  .group_by(models.InternalTip.id):
         files_by_itip[itip_id] = count
 
