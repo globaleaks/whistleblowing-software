@@ -58,7 +58,8 @@ def db_create(session, desc):
 
     appdata = load_appdata()
 
-    db_load_defaults(session)
+    if t.id == 1:
+        db_load_defaults(session)
 
     models.config.initialize_config(session, t.id, desc['mode'])
 
