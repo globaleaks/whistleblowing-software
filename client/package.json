@@ -28,7 +28,7 @@
     "bootstrap": "4.5.3",
     "d3": "5.16.0",
     "fast-sha256": "1.3.0",
-    "fontsource-metropolis": "3.1.5",
+    "fontsource-metropolis": "4.0.0",
     "ng-csv": "0.3.6",
     "ng-showdown": "1.1.0",
     "qrcode-generator": "1.4.4",
@@ -38,7 +38,7 @@
     "ui-select": "0.19.8"
   },
   "devDependencies": {
-    "eslint": "7.15.0",
+    "eslint": "7.16.0",
     "gettext-parser": "4.0.4",
     "grunt": "1.3.0",
     "grunt-angular-templates": "1.2.0",
