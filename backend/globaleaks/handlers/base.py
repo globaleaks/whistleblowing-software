@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import base64
 import collections
 import json
 import mimetypes
@@ -8,7 +7,6 @@ import re
 
 from datetime import datetime
 
-from cryptography.hazmat.primitives import constant_time
 from twisted.internet import abstract
 from twisted.protocols.basic import FileSender
 
@@ -17,7 +15,6 @@ from globaleaks.rest import errors, requests
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
-from globaleaks.utils.crypto import sha256
 from globaleaks.utils.ip import check_ip
 from globaleaks.utils.log import log
 from globaleaks.utils.securetempfile import SecureTemporaryFile
@@ -255,7 +252,7 @@ class BaseHandler(object):
 
     def write_file_as_download(self, filename, fp):
         if isinstance(fp, str):
-          fp = self.open_file(fp)
+            fp = self.open_file(fp)
 
         self.request.setHeader(b'X-Download-Options', b'noopen')
         self.request.setHeader(b'Content-Type', b'application/octet-stream')

@@ -4,7 +4,6 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import __version__
 from globaleaks import models
 from globaleaks.handlers.admin import node, user
-from globaleaks.models.config_desc import ConfigL10NFilters
 from globaleaks.orm import transact, tw
 from globaleaks.rest.errors import InputValidationError, InvalidAuthentication
 from globaleaks.tests import helpers

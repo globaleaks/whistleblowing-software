@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from twisted.internet.defer import inlineCallbacks, succeed
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.jobs.delivery import Delivery

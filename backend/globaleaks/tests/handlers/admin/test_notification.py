@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers import admin
-from globaleaks.rest import requests
 from globaleaks.tests import helpers
 
 # special guest:

@@ -212,7 +212,7 @@ factory("TokenResource", ["GLResource", "glbcProofOfWork", function(GLResource, 
             token.answer = result;
             return token.$update().then(function(token) {
               return token;
-	    });
+            });
           });
         }
       }

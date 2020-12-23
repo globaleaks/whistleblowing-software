@@ -3,6 +3,8 @@
 # Handlers dealing with user preferences
 import pyotp
 
+from nacl.encoding import Base32Encoder, Base64Encoder
+
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
@@ -14,7 +16,7 @@ from globaleaks.orm import db_get, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.pgp import PGPContext
-from globaleaks.utils.crypto import Base32Encoder, Base64Encoder, GCE, generateRandomKey
+from globaleaks.utils.crypto import GCE, generateRandomKey
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 

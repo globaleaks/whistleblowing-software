@@ -4,8 +4,6 @@ from globaleaks.handlers.admin import user
 from globaleaks.handlers.admin.operation import AdminOperationHandler
 from globaleaks.orm import tw
 from globaleaks.jobs import delivery
-from globaleaks.rest import errors
-from globaleaks.state import State
 from globaleaks.tests import helpers
 
 from twisted.internet import defer

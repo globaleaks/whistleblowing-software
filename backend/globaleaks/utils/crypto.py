@@ -9,7 +9,7 @@ import struct
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import constant_time, hashes
 
-from nacl.encoding import Base32Encoder, Base64Encoder
+from nacl.encoding import Base64Encoder
 from nacl.hashlib import scrypt
 from nacl.pwhash import argon2id
 from nacl.public import SealedBox, PrivateKey, PublicKey

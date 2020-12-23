@@ -276,7 +276,7 @@ ConfigFilters['admin_node'] = list(set(ConfigFilters['node']) - set([
     'receipt_salt',
     'acme_accnt_key',
     'tor_onion_key',
-    'old_tor_onion_key'
+    'old_tor_onion_key',
     'https_key',
     'https_csr',
     'https_cert',

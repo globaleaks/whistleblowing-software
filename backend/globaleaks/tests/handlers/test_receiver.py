@@ -3,7 +3,6 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers import receiver
-from globaleaks.handlers.admin import user
 from globaleaks.orm import transact
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_never

@@ -4,7 +4,7 @@ import os
 
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
-from globaleaks.utils.crypto import Base64Encoder, GCE, generateRandomPassword
+from globaleaks.utils.crypto import Base64Encoder, GCE
 
 password = b'password'
 message = b'message'
@@ -39,12 +39,12 @@ class TestCryptoUtils(helpers.TestGL):
         self.assertEqual(dec, message)
 
     def test_check_password_argon2(self):
-       self.assertTrue(GCE.check_password('ARGON2', password, salt, hash_argon2))
-       self.assertFalse(GCE.check_password('ARGON2', password, salt, 'nohashnoparty'))
+        self.assertTrue(GCE.check_password('ARGON2', password, salt, hash_argon2))
+        self.assertFalse(GCE.check_password('ARGON2', password, salt, 'nohashnoparty'))
 
     def test_check_password_scrypt(self):
-       self.assertTrue(GCE.check_password('SCRYPT', password, salt, hash_scrypt))
-       self.assertFalse(GCE.check_password('SCRYPT', password, salt, 'nohashnoparty'))
+        self.assertTrue(GCE.check_password('SCRYPT', password, salt, hash_scrypt))
+        self.assertFalse(GCE.check_password('SCRYPT', password, salt, 'nohashnoparty'))
 
     def test_encrypt_and_decrypt_file(self):
         prv_key, pub_key = GCE.generate_keypair()

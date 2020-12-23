@@ -3,7 +3,6 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import token
 from globaleaks.jobs import anomalies
-from globaleaks.rest import errors
 from globaleaks.tests import helpers
 
 

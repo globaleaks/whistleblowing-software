@@ -125,7 +125,7 @@ def db_wizard(session, tid, hostname, request):
         receiver_user.password_change_date = date
 
         if encryption:
-             db_gen_user_keys(session, tid, receiver_user, receiver_desc['password'])
+            db_gen_user_keys(session, tid, receiver_user, receiver_desc['password'])
 
     context_desc = models.Context().dict(language)
     context_desc['name'] = 'Default'

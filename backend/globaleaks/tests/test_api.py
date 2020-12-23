@@ -21,7 +21,6 @@ class TestAPI(TestGL):
         yield refresh_memory_variables()
 
     def test_api_spec(self):
-        from globaleaks.rest import api
         for spec in api.api_spec:
             check_roles = getattr(spec[1], 'check_roles')
             self.assertIsNotNone(check_roles)

@@ -2,11 +2,8 @@
 from sqlalchemy.orm.exc import NoResultFound
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import models
 from globaleaks.handlers import rtip
 from globaleaks.jobs.delivery import Delivery
-from globaleaks.rest import errors
-from globaleaks.state import State
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null
 

@@ -6,7 +6,6 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers import admin, user
 from globaleaks.orm import tw
 from globaleaks.rest import errors
-from globaleaks.state import State
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_null
 

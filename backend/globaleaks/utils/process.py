@@ -1,10 +1,6 @@
 # -*- coding: utf-8
 import ctypes
 import os
-import sys
-
-from twisted.internet import reactor
-
 
 def set_proc_title(title):
     """

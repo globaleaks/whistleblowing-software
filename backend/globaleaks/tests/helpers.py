@@ -9,6 +9,8 @@ import shutil
 
 from datetime import timedelta
 
+from nacl.encoding import Base32Encoder, Base64Encoder
+
 from urllib.parse import urlsplit  # pylint: disable=import-error
 
 from twisted.internet.address import IPv4Address
@@ -16,9 +18,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue, Deferred
 from twisted.internet.task import Clock
 from twisted.python.failure import Failure
 from twisted.trial import unittest
-from twisted.web.server import Request
 from twisted.web.test.requesthelper import DummyRequest
-
 
 from . import TEST_DIR
 
@@ -41,8 +41,8 @@ from globaleaks.rest.api import JSONEncoder
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
-from globaleaks.utils import process, tempdict, token
-from globaleaks.utils.crypto import GCE, Base32Encoder, Base64Encoder
+from globaleaks.utils import tempdict, token
+from globaleaks.utils.crypto import GCE
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.utility import datetime_null, datetime_now, sum_dicts

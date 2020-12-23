@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from globaleaks.handlers import l10n
 from globaleaks.handlers.admin import l10n as admin_l10n
-from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 

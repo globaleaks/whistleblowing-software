@@ -1,6 +1,5 @@
 # -*- coding: utf-8
 # Implementation of the daily operations.
-import fnmatch
 import os
 from datetime import datetime, timedelta
 

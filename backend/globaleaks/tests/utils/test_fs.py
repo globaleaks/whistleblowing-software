@@ -1,5 +1,4 @@
 # -*- coding: utf-8
-import glob
 import os
 
 from globaleaks.rest import errors

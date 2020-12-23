@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*
-import ipaddress
-
 from twisted.trial import unittest
 
 from globaleaks.utils import ip

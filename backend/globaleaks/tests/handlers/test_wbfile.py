@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from globaleaks import models
 from globaleaks.handlers import wbtip, rtip
 from globaleaks.jobs.delivery import Delivery
 from globaleaks.tests import helpers

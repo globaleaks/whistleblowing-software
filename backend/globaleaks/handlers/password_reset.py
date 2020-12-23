@@ -2,6 +2,9 @@
 import pyotp
 
 from datetime import datetime, timedelta
+
+from nacl.encoding import Base32Encoder, Base64Encoder
+
 from sqlalchemy import or_
 
 from globaleaks import models
@@ -13,7 +16,7 @@ from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.sessions import Sessions
 from globaleaks.state import State
-from globaleaks.utils.crypto import generateRandomKey, Base32Encoder, Base64Encoder, GCE
+from globaleaks.utils.crypto import generateRandomKey, GCE
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 

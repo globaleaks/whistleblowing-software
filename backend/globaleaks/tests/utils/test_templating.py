@@ -41,11 +41,11 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
                 data['type'] = 'tip_update'
 
             if key == 'comment':
-              data['update'] = data['comments'][0]
+                data['update'] = data['comments'][0]
             elif key == 'message':
-              data['update'] = data['messages'][0]
+                data['update'] = data['messages'][0]
             elif key == 'file':
-              data['update'] = data['files'][0]
+                data['update'] = data['files'][0]
 
             template = ''.join(supported_template_types[data['type']].keyword_list)
             Templating().format_template(template, data)

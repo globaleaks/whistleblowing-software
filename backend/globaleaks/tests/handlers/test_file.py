@@ -3,7 +3,6 @@ from sqlalchemy.orm.exc import NoResultFound
 
 from globaleaks.handlers import file
 from globaleaks.handlers.admin import file as admin_file
-from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 

@@ -8,7 +8,7 @@ from globaleaks.handlers.user import db_get_user, \
 
 from globaleaks.models import fill_localized_keys
 from globaleaks.orm import db_del, transact, tw
-from globaleaks.rest import requests, errors
+from globaleaks.rest import requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE, Base64Encoder
 from globaleaks.utils.utility import datetime_now, uuid4

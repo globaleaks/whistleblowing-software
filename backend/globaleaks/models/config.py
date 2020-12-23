@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from sqlalchemy import not_
-import time
-
 from globaleaks import __version__
 from globaleaks.models import Config, ConfigL10N, EnabledLanguage
 from globaleaks.models.properties import *

@@ -7,7 +7,6 @@ from twisted.trial.unittest import TestCase
 
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
-from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils import tls
 

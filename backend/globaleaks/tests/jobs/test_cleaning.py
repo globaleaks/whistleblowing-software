@@ -7,7 +7,6 @@ from globaleaks import models
 from globaleaks.jobs import cleaning, delivery
 from globaleaks.orm import transact
 from globaleaks.settings import Settings
-from globaleaks.state import State
 from globaleaks.tests import helpers
 
 
