@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"PO-Revision-Date: 2020-12-17 11:32+0000\n"
 "Last-Translator: Lenka Ježková <lenka.jezkova@oziveni.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -596,7 +596,7 @@ msgid "Enable administrators to change user passwords"
 msgstr "Umožněte správcům měnit hesla uživatelů"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
+msgstr "Správci mají oprávnění ke změně uživatelských hesel:"
 
 msgid "Enable multisite feature"
 msgstr "Povolit funkci multisite "
@@ -661,7 +661,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Nastavte hodnotu na 0, chcete-li tuto funkci zakázat."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "Počet dní do oznámení nepřečtených zpráv uživatelům"
 
 msgid "Enable custodian user role"
 msgstr "Povolit roli depozitáře"
@@ -670,7 +670,7 @@ msgid "Enable scoring system"
 msgstr "Aktivovat systém hodnocení"
 
 msgid "Enable private annotations"
-msgstr ""
+msgstr "Povolit soukromé anotace"
 
 msgid "Logging level"
 msgstr "Přihlašovací úroveň"
@@ -1298,7 +1298,7 @@ msgid "Allow the recipient to delete reports"
 msgstr "Povolit příjemcům smazat podání"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "Poskytněte uživateli administrativní přístup k následujícím funkcím:"
 
 msgid "Request date"
 msgstr "Datum požadavku"
@@ -1310,7 +1310,7 @@ msgid "Authorization"
 msgstr "Autorizace"
 
 msgid "Requests"
-msgstr ""
+msgstr "Požadavky"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Odkaz k ověření je buď nesprávný nebo vypršel."
@@ -1460,7 +1460,7 @@ msgstr "Zdá se, že procházíte tuto stránku bez dodatečného zabezpečení 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr ""
+msgstr "Důrazně doporučujme k návštěvě těchto stránek použít desktopovou aplikaci s názvem Tor Browser, která chrání vaši identitu."
 
 msgid "Download the Tor Browser"
 msgstr "Stáhnout prohlížeč Tor"
@@ -1723,7 +1723,7 @@ msgid "Select the context of your report:"
 msgstr "Vyberte obsah Vašeho podání"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "Odpověď je příliš krátká."
 
 msgid "The specified input is not valid."
 msgstr "Zadaný vstup není platný."
@@ -1769,7 +1769,7 @@ msgid "Recipient selection"
 msgstr "Výběr příjemce"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "Vyberte příjemce zprávy:"
 
 msgid "Recipients selected:"
 msgstr "Vybraní příjemci:"
@@ -1780,7 +1780,7 @@ msgstr "Dosáhli jste maximálního počtu volitelných příjemců."
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "Následující příjemci obdrží vaše oznámení nebylo možné zrušit jejich výběr:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1805,20 +1805,20 @@ msgid "Please choose a configuration profile:"
 msgstr "Prosím zvolte profil konfigurace:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "Umožněte tomuto administrátorovi resetovat uživatelská hesla."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Doporučujeme vybrat tuto možnost, pokud chcete chránit data před ztrátou v situaci, kdy příjemci ztratí svá hesla. Ale nedoporučujeme použít tuto funkci, pokud chcete nastavit systém, kde mají přístup k podáním pouze příjemci."
 
 msgid "Please choose a different username."
 msgstr "Zvolte prosím jiné uživatelské jméno."
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "Přečetl/-a jsem si podmínky licence a souhlasím s nimi."
 
 msgid "You have completed the platform wizard."
 msgstr "Právě jste dokončili průvodce základním nastavením."
@@ -2208,16 +2208,16 @@ msgid "New report"
 msgstr "Nové podání"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Toto je e-mailové upozornění o aktualizaci u existujícího podání."
 
 msgid "Report updated"
-msgstr ""
+msgstr "Oznámení bylo aktualizováno"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Toto je e-mailové upozornění na přítomnost nepřečtených nebo aktualizovaných podání."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Připomínka o nepřečtených nebo aktualizovaných podání"
 
 msgid "Role: {Role}"
 msgstr "Role: {Role}"
