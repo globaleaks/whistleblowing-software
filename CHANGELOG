@@ -1,3 +1,7 @@
+Changes in version 4.1.9
+    Fix issue #2904
+    Update translations
+
 Changes in version 4.1.8
     Fix serialization of tip preview for platforms with encryption OFF
     Move experimentaal docker scripts to dedicated repository:
