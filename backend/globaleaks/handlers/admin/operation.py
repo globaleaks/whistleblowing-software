@@ -16,6 +16,7 @@ from globaleaks.rest import errors
 from globaleaks.services.onion import set_onion_service_info, get_onion_service_info
 from globaleaks.state import State
 from globaleaks.utils.crypto import Base64Encoder, GCE
+from globaleaks.utils.onion import generate_onion_service_v3
 from globaleaks.utils.templating import Templating
 
 
@@ -146,8 +147,9 @@ class AdminOperationHandler(OperationHandler):
 
     @inlineCallbacks
     def reset_onion_private_key(self, req_args, *args, **kargs):
-        yield set_onion_service_info(self.request.tid, '', '')
-        yield self.state.onion_service_job.add_onion_service(self.request.tid, '', '')
+        hostname, key = generate_onion_service_v3()
+        yield set_onion_service_info(self.request.tid, hostname, key)
+        yield self.state.onion_service_job.add_onion_service(self.request.tid, hostname, key)
         yield self.state.onion_service_job.remove_unwanted_onion_services()
 
         onion_details = yield get_onion_service_info(self.request.tid)
