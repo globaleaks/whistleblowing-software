@@ -56,4 +56,4 @@ To support the GlobaLeaks project you can help us with donations that will goes 
 ## License
 This software is released under the AGPLv3 license. See [LICENSE](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE) for more information on Additional Terms as per [7(b)](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE#L684) and [7(c)](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE#L713).
 
-Copyright (c) 2011-2020 - GlobaLeaks
+Copyright (c) 2011-2021 - GlobaLeaks
