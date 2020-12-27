@@ -28,8 +28,8 @@ GL.controller("AdminContextsCtrl",
     $scope.save_context(elem);
   };
 }]).
-controller("AdminContextEditorCtrl", ["$scope", "AdminContextResource",
-  function($scope, AdminContextResource) {
+controller("AdminContextEditorCtrl", ["$scope", "$http", "AdminContextResource",
+  function($scope, $http, AdminContextResource) {
   $scope.editing = false;
 
   $scope.toggleEditing = function () {
