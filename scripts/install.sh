@@ -41,7 +41,6 @@ function DO () {
 LOGFILE="./install.log"
 ASSUMEYES=0
 EXPERIMENTAL=0
-TEST=0
 
 GLOBALEAKS_PGP_KEY="
 -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -114,8 +113,6 @@ DISTRO_CODENAME="unknown"
 if which lsb_release >/dev/null; then
   DISTRO="$(lsb_release -is)"
   DISTRO_CODENAME="$(lsb_release -cs)"
-  REAL_DISTRO=$DISTRO
-  REAL_DISTRO_CODENAME=$DISTRO_CODENAME
 fi
 
 # Report last executed command and its status
@@ -149,7 +146,6 @@ for arg in "$@"; do
   case "$arg" in
     --assume-yes ) ASSUMEYES=1; shift;;
     --install-experimental-version-and-accept-the-consequences ) EXPERIMENTAL=1; shift;;
-    --test) TEST=1; shift;;
     -- ) shift; break;;
     * ) break;;
   esac

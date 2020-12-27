@@ -33,7 +33,6 @@ GL.factory("glbcUtil", function() {
   return {
     proofOfWork: function(data) {
       var deferred = $q.defer();
-      var result;
 
       var work = function(i) {
         var webCrypto = getWebCrypto();

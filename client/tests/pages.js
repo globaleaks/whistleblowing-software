@@ -31,7 +31,7 @@ exports.receiver = function() {
 exports.whistleblower = function() {
   this.performSubmission = async function(uploadFiles) {
     await browser.get("/#/");
-    await browser.gl.utils.takeScreenshot('whistleblower/home.png');
+    await browser.gl.utils.takeScreenshot("whistleblower/home.png");
     await element(by.id("WhistleblowingButton")).click();
     await browser.gl.utils.waitUntilPresent(by.id("SubmissionForm"));
     await element(by.id("step-0")).element(by.id("step-0-field-0-0-input-0")).sendKeys('title');
@@ -46,13 +46,13 @@ exports.whistleblower = function() {
 
     await browser.gl.utils.waitUntilClickable(by.id("SubmitButton"));
 
-    await browser.gl.utils.takeScreenshot('whistleblower/submission.png');
+    await browser.gl.utils.takeScreenshot("whistleblower/submission.png");
 
     await element(by.id("SubmitButton")).click();
 
     await browser.gl.utils.waitUntilPresent(by.id("KeyCode"));
 
-    await browser.gl.utils.takeScreenshot('whistleblower/receipt.png');
+    await browser.gl.utils.takeScreenshot("whistleblower/receipt.png");
 
     return await element(by.id("KeyCode")).getText();
   };

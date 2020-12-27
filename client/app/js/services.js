@@ -234,8 +234,8 @@ factory("DATA_COUNTRIES_ITALY_PROVINCES", ["$resource", function($resource) {
 factory("DATA_COUNTRIES_ITALY_CITIES", ["$resource", function($resource) {
   return $resource("data/countries/it/comuni.json");
 }]).
-factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope", "Authentication", "SubmissionResource", "TokenResource",
-    function($q, GLResource, $filter, $location, $rootScope, Authentication, SubmissionResource, TokenResource) {
+factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope", "SubmissionResource", "TokenResource",
+    function($q, GLResource, $filter, $location, $rootScope, SubmissionResource, TokenResource) {
 
   return function(fn) {
     /**
@@ -895,7 +895,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
     },
 
     update: function (model, cb, errcb) {
-      var success = {};
       model.$update(
         function() {
           if (typeof cb !== "undefined") { cb(); }

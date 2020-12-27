@@ -35,8 +35,8 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
   };
 }]).
 controller("ImageUploadCtrl", ["$http", "$scope", "$rootScope", "uploadUtils", "Utils", function($http, $scope, $rootScope, uploadUtils, Utils) {
-  $scope.Utils = Utils;bj = {};
-  $scope.i
+  $scope.Utils = Utils;
+  $scope.imageUploadObj = {};
 
   $scope.$on("flow::fileAdded", function (event, $flow, flowFile) {
     $scope.file_error_msgs = [];

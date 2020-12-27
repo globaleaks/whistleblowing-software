@@ -1,6 +1,4 @@
-var path = require("path");
-
-describe("globaLeaks process", function() {
+describe("globaleaks process", function() {
   var receipts = [];
   var comment = "comment";
   var comment_reply = "comment reply";
