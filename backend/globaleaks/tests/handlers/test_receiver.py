@@ -31,8 +31,8 @@ class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
             self.assertEqual(ret[idx]['message_count'], 2)
 
 
-class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
-    _handler = receiver.TipsOperations
+class TestOperations(helpers.TestHandlerWithPopulatedDB):
+    _handler = receiver.Operations
 
     @inlineCallbacks
     def setUp(self):

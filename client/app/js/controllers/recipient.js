@@ -105,7 +105,7 @@ controller("TipBulkOperationsCtrl", ["$scope", "$http", "$route", "$location", "
       return;
     }
 
-    return $http({method: "PUT", url: "api/rtip/operations", data:{
+    return $http({method: "PUT", url: "api/recipient/operations", data:{
       "operation": $scope.operation,
       "rtips": $scope.selected_tips
     }}).then(function(){

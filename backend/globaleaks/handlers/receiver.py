@@ -168,7 +168,7 @@ class TipsCollection(BaseHandler):
                                     self.request.language)
 
 
-class TipsOperations(BaseHandler):
+class Operations(BaseHandler):
     """
     Handler that enables to issue operations on submissions
     """

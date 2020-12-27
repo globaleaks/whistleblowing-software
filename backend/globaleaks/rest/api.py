@@ -86,17 +86,17 @@ api_spec = [
     (r'/api/submission/' + requests.token_regexp, submission.SubmissionInstance),
     (r'/api/submission/' + requests.token_regexp + r'/file', attachment.SubmissionAttachment),
 
-    # Receiver Tip Handlers
+    # Receiver Handlers
+    (r'/api/recipient/operations', receiver.Operations),
     (r'/api/rtips', receiver.TipsCollection),
-    (r'/api/rtip/' + uuid_regexp, rtip.RTipInstance),
-    (r'/api/rtip/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
-    (r'/api/rtip/' + uuid_regexp + r'/messages', rtip.ReceiverMsgCollection),
-    (r'/api/rtip/' + uuid_regexp + r'/iars', rtip.IdentityAccessRequestsCollection),
-    (r'/api/rtip/' + uuid_regexp + r'/export', export.ExportHandler),
-    (r'/api/rtip/' + uuid_regexp + r'/wbfile', rtip.WhistleblowerFileHandler),
-    (r'/api/rtip/operations', receiver.TipsOperations),
-    (r'/api/rtip/rfile/' + uuid_regexp, rtip.ReceiverFileDownload),
-    (r'/api/rtip/wbfile/' + uuid_regexp, rtip.RTipWBFileHandler),
+    (r'/api/rtips/' + uuid_regexp, rtip.RTipInstance),
+    (r'/api/rtips/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
+    (r'/api/rtips/' + uuid_regexp + r'/messages', rtip.ReceiverMsgCollection),
+    (r'/api/rtips/' + uuid_regexp + r'/iars', rtip.IdentityAccessRequestsCollection),
+    (r'/api/rtips/' + uuid_regexp + r'/export', export.ExportHandler),
+    (r'/api/rtips/' + uuid_regexp + r'/wbfile', rtip.WhistleblowerFileHandler),
+    (r'/api/rfile/' + uuid_regexp, rtip.ReceiverFileDownload),
+    (r'/api/wbfile/' + uuid_regexp, rtip.RTipWBFileHandler),
 
     # Whistleblower Tip Handlers
     (r'/api/wbtip', wbtip.WBTipInstance),
@@ -147,7 +147,7 @@ api_spec = [
     (r'/api/admin/config/tls', https.ConfigHandler),
     (r'/api/admin/config/tls/files/(csr)', https.CSRFileHandler),
     (r'/api/admin/config/tls/files/(cert|chain|key)', https.FileHandler),
-    (r'/api/admin/files$', admin_file.FileCollection),
+    (r'/api/admin/files', admin_file.FileCollection),
     (r'/api/admin/files/(.+)', admin_file.FileInstance),
     (r'/api/admin/tenants', admin_tenant.TenantCollection),
     (r'/api/admin/tenants/' + '([0-9]{1,20})', admin_tenant.TenantInstance),

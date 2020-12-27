@@ -342,22 +342,22 @@ factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope",
   };
 }]).
 factory("RTipResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/rtip/:id", {id: "@id"});
+  return new GLResource("api/rtips/:id", {id: "@id"});
 }]).
 factory("RTipCommentResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/rtip/:id/comments", {id: "@id"});
+  return new GLResource("api/rtips/:id/comments", {id: "@id"});
 }]).
 factory("RTipMessageResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/rtip/:id/messages", {id: "@id"});
+  return new GLResource("api/rtips/:id/messages", {id: "@id"});
 }]).
 factory("RTipIdentityAccessRequestResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/rtip/:id/iars", {id: "@id"});
+  return new GLResource("api/rtips/:id/iars", {id: "@id"});
 }]).
 factory("RTipDownloadRFile", ["$http", "FileSaver", function($http, FileSaver) {
   return function(file) {
     return $http({
       method: "GET",
-      url: "api/rtip/rfile/" + file.id,
+      url: "api/rfile/" + file.id,
       responseType: "blob",
     }).then(function (response) {
       FileSaver.saveAs(response.data, file.status === "encrypted" ? file.name + ".pgp" : file.name);
@@ -365,13 +365,13 @@ factory("RTipDownloadRFile", ["$http", "FileSaver", function($http, FileSaver) {
   };
 }]).
 factory("RTipWBFileResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/rtip/wbfile/:id", {id: "@id"});
+  return new GLResource("api/wbfile/:id", {id: "@id"});
 }]).
 factory("RTipDownloadWBFile", ["$http", "FileSaver", function($http, FileSaver) {
   return function(file) {
     return $http({
       method: "GET",
-      url: "api/rtip/wbfile/" + file.id,
+      url: "api/wbfile/" + file.id,
       responseType: "blob",
     }).then(function (response) {
       FileSaver.saveAs(response.data, file.name);
@@ -382,7 +382,7 @@ factory("RTipExport", ["$http", "$filter", "FileSaver", function($http, $filter,
   return function(tip) {
     $http({
       method: "GET",
-      url: "api/rtip/" + tip.id + "/export",
+      url: "api/rtips/" + tip.id + "/export",
       responseType: "blob",
     }).then(function (response) {
       var filename = "submission-" + tip.progressive + ".zip";
@@ -427,7 +427,7 @@ factory("RTip", ["$rootScope", "$http", "$filter", "RTipResource", "RTipMessageR
           "args": args
         };
 
-        return $http({method: "PUT", url: "api/rtip/" + tip.id, data: req});
+        return $http({method: "PUT", url: "api/rtips/" + tip.id, data: req});
       };
 
       tip.updateLabel = function(label) {
