@@ -231,7 +231,6 @@ def order_elements(session, tid, ids, *args, **kwargs):
 
 class ContextsCollection(OperationHandler):
     check_roles = 'admin'
-    cache_resource = True
     invalidate_cache = True
 
     def get(self):

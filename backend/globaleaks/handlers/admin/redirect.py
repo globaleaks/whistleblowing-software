@@ -53,7 +53,6 @@ def create(session, tid, request):
 
 class RedirectCollection(BaseHandler):
     check_roles = 'admin'
-    cache_resource = True
     invalidate_cache = True
 
     def get(self):

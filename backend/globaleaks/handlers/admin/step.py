@@ -94,7 +94,6 @@ def order_elements(session, handler, req_args, *args, **kwargs):
 
 class StepCollection(OperationHandler):
     check_roles = 'admin'
-    cache_resource = True
     invalidate_cache = True
 
     def post(self):
