@@ -116,16 +116,17 @@ def reset_templates(session, tid):
 @transact
 def generate_password_reset_token(session, tid, user_session, user_id):
     user = session.query(User).filter(User.tid == tid, User.id == user_id).one_or_none()
-    if user is not None:
-        db_generate_password_reset_token(session, user)
+    if user is None:
+        return
 
-        if user_session.ek and user.crypto_pub_key:
-            crypto_escrow_prv_key = GCE.asymmetric_decrypt(user_session.cc, Base64Encoder.decode(user_session.ek))
-            user_cc = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(user.crypto_escrow_bkp1_key))
-            enc_key = GCE.derive_key(user.reset_password_token.encode(), user.salt)
-            key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_cc))
-            State.TempKeys[user_id] = TempKey(key)
+    db_generate_password_reset_token(session, user)
 
+    if user_session.ek and user.crypto_pub_key:
+        crypto_escrow_prv_key = GCE.asymmetric_decrypt(user_session.cc, Base64Encoder.decode(user_session.ek))
+        user_cc = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(user.crypto_escrow_bkp1_key))
+        enc_key = GCE.derive_key(user.reset_password_token.encode(), user.salt)
+        key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_cc))
+        State.TempKeys[user_id] = TempKey(key)
 
 class AdminOperationHandler(OperationHandler):
     """
