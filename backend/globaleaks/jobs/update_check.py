@@ -23,25 +23,29 @@ def evaluate_update_notification(session, state, latest_version):
 
     stored_latest = priv_fact.get_val('latest_version')
 
-    if parse_version(stored_latest) < parse_version(latest_version):
-        Cache.invalidate()
+    # Check if the running version is lower than the latest version
+    if parse_version(stored_latest) >= parse_version(latest_version):
+        return
 
-        priv_fact.set_val('latest_version', latest_version)
+    Cache.invalidate()
 
-        if parse_version(__version__) != parse_version(stored_latest):
-            return
+    priv_fact.set_val('latest_version', latest_version)
 
-        for user_desc in db_get_users(session, 1, 'admin'):
-            lang = user_desc['language']
-            template_vars = {
-                'type': 'software_update_available',
-                'latest_version': latest_version,
-                'node': db_admin_serialize_node(session, 1, lang),
-                'notification': db_get_notification(session, 1, lang),
-                'user': user_desc,
-            }
+    # Check to reduce number of email notifications of new updates
+    if parse_version(__version__) != parse_version(stored_latest):
+        return
 
-            state.format_and_send_mail(session, 1, user_desc, template_vars)
+    for user_desc in db_get_users(session, 1, 'admin'):
+        lang = user_desc['language']
+        template_vars = {
+            'type': 'software_update_available',
+            'latest_version': latest_version,
+            'node': db_admin_serialize_node(session, 1, lang),
+            'notification': db_get_notification(session, 1, lang),
+            'user': user_desc,
+        }
+
+        state.format_and_send_mail(session, 1, user_desc, template_vars)
 
 
 class UpdateCheck(HourlyJob):
