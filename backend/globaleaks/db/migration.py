@@ -61,6 +61,7 @@ from globaleaks.models import config, Base
 from globaleaks.settings import Settings
 from globaleaks.utils.fs import overwrite_and_remove
 from globaleaks.utils.log import log
+from globaleaks.utils.utility import datetime_now
 
 
 migration_mapping = OrderedDict([
@@ -136,6 +137,10 @@ def perform_data_update(db_file):
     Update the database including up-to-date application data
     :param db_file: The database file path
     """
+    now = datetime_now()
+
+    appdata = load_appdata()
+
     session = get_session(make_db_uri(db_file), foreign_keys=False)
 
     enabled_languages = [lang.name for lang in session.query(models.EnabledLanguage)]
@@ -145,26 +150,23 @@ def perform_data_update(db_file):
     if removed_languages:
         removed_languages.sort()
         removed_languages = ', '.join(removed_languages)
-        raise Exception("FATAL: cannot complete the upgrade because the support for some of the enabled languages is currently incomplete (%s)\n"
-                        "Read about how to handle this condition at: https://github.com/globaleaks/GlobaLeaks/wiki/Upgrade-Guide#lang-drop" % removed_languages)
+        raise Exception("FATAL: cannot complete the upgrade because the support for some of the enabled languages is currently incomplete (%s)\n" % removed_languages)
 
     try:
-        cfg = config.ConfigFactory(session, 1)
+        if config.ConfigFactory(session, 1).get_val('version') != __version__:
+            session.query(models.Config).filter_by(var_name = 'version') \
+                   .update({'value': __version__, 'update_date': now})
 
-        stored_ver = cfg.get_val('version')
+            session.query(models.Config).filter_by(var_name = 'latest_version') \
+                   .update({'value': __version__, 'update_date': now})
 
-        if stored_ver != __version__:
-            # The below commands can change the current store based on the what is
-            # currently stored in the DB.
+            session.query(models.Config).filter_by(var_name = 'version_db') \
+                   .update({'value': DATABASE_VERSION, 'update_date': now})
+
             for tid in [t[0] for t in session.query(models.Tenant.id)]:
-                appdata = load_appdata()
                 config.update_defaults(session, tid, appdata)
 
             db_load_defaults(session)
-
-            cfg.set_val('version', __version__)
-            cfg.set_val('latest_version', __version__)
-            cfg.set_val('version_db', DATABASE_VERSION)
 
         session.commit()
     except:

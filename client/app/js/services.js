@@ -529,9 +529,6 @@ factory("ReceiverTips", ["GLResource", function(GLResource) {
 factory("IdentityAccessRequests", ["GLResource", function(GLResource) {
   return new GLResource("api/custodian/iars");
 }]).
-factory("ManifestResource", ["$resource", function($resource) {
-  return new $resource("api/admin/manifest");
-}]).
 factory("AdminContextResource", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/contexts/:id", {id: "@id"});
 }]).
@@ -565,30 +562,8 @@ factory("AdminSubmissionSubStatusResource", ["GLResource", function(GLResource) 
 factory("Sites", ["GLResource", function(GLResource) {
   return new GLResource("api/sites");
 }]).
-service("UpdateService", [function() {
-  return {
-    new_data: function(installed_version, latest_version) {
-      this.latest_version = latest_version;
-      if (this.latest_version !== installed_version) {
-        this.update_needed = true;
-      }
-    },
-    update_needed: false,
-    latest_version: null
-  };
-}]).
-factory("AdminNodeResource", ["GLResource", "UpdateService", function(GLResource, UpdateService) {
-  return new GLResource("api/admin/node", {}, {
-    get: {
-      method: "get",
-      interceptor: {
-        response: function(response) {
-          UpdateService.new_data(response.resource.version, response.resource.latest_version);
-          return response.resource;
-        }
-      }
-    }
-  });
+factory("AdminNodeResource", ["GLResource", function(GLResource) {
+  return new GLResource("api/admin/node");
 }]).
 factory("AdminNotificationResource", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/notification");

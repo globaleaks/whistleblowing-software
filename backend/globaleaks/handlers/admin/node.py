@@ -1,7 +1,7 @@
 # -*- coding: utf-8
 from twisted.internet.defer import inlineCallbacks, returnValue
 
-from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
+from globaleaks import __version__, models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
@@ -12,6 +12,7 @@ from globaleaks.orm import db_del, db_get, tw
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import Base64Encoder, GCE
+from globaleaks.utils.fs import read_file
 from globaleaks.utils.ip import parse_csv_ip_ranges_to_ip_networks
 from globaleaks.utils.log import log
 
@@ -60,27 +61,27 @@ def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
     :param config_node: The set of variables to be serialized
     :return: Return the serialized configuration for the specified tenant
     """
-    config = ConfigFactory(session, tid).serialize(config_node)
+    ret = ConfigFactory(session, tid).serialize(config_node)
 
     logo = session.query(models.File.data).filter(models.File.tid == tid, models.File.id == 'logo').one_or_none()
 
-    misc_dict = {
+    ret.update({
+        'changelog': read_file('/usr/share/globaleaks/CHANGELOG'),
+        'license': read_file('/usr/share/globaleaks/LICENSE'),
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': db_get_languages(session, tid),
         'root_tenant': tid == 1,
         'https_possible': tid == 1 or State.tenant_cache[1].reachable_via_web,
         'encryption_possible': tid == 1 or State.tenant_cache[1].encryption,
         'logo': logo if logo else ''
-    }
+    })
 
-    if tid != 1:
-        root_tenant_node = ConfigFactory(session, 1)
-        misc_dict['version'] = root_tenant_node.get_val('version')
-        misc_dict['latest_version'] = root_tenant_node.get_val('latest_version')
+    if 'version' in ret:
+        ret['update_available'] = ret['version'] != ret['latest_version']
 
-    l10n_dict = ConfigL10NFactory(session, tid).serialize('node', language)
+    ret.update(ConfigL10NFactory(session, tid).serialize('node', language))
 
-    return utils.sets.merge_dicts(config, misc_dict, l10n_dict)
+    return ret
 
 
 def db_update_node(session, tid, user_session, request, language):

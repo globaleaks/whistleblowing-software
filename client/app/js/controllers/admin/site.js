@@ -1,14 +1,12 @@
 GL.
 controller("AdminCtrl",
-    ["$scope", "$route", "$filter", "AdminNodeResource", "UpdateService", "CONSTANTS",
-    function($scope, $route, $filter, AdminNodeResource, UpdateService, CONSTANTS) {
+    ["$scope", "$route", "$filter", "AdminNodeResource", "CONSTANTS",
+    function($scope, $route, $filter, AdminNodeResource, CONSTANTS) {
   $scope.email_regexp = CONSTANTS.email_regexp;
   $scope.hostname_regexp = CONSTANTS.hostname_regexp;
   $scope.onionservice_regexp = CONSTANTS.onionservice_regexp;
   $scope.https_regexp = CONSTANTS.https_regexp;
   $scope.domain_list_regexp = CONSTANTS.domain_list_regexp;
-
-  $scope.update_service = UpdateService;
 
   $scope.updateNode = function() {
     $scope.Utils.update($scope.resources.node, function() { $scope.$emit("REFRESH"); });

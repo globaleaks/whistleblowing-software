@@ -38,7 +38,6 @@ from globaleaks.handlers.admin import field as admin_field
 from globaleaks.handlers.admin import file as admin_file
 from globaleaks.handlers.admin import https
 from globaleaks.handlers.admin import l10n as admin_l10n
-from globaleaks.handlers.admin import manifest as admin_manifest
 from globaleaks.handlers.admin import modelimgs as admin_modelimgs
 from globaleaks.handlers.admin import node as admin_node
 from globaleaks.handlers.admin import notification as admin_notification
@@ -151,7 +150,6 @@ api_spec = [
     (r'/api/admin/files/(.+)', admin_file.FileInstance),
     (r'/api/admin/tenants', admin_tenant.TenantCollection),
     (r'/api/admin/tenants/' + '([0-9]{1,20})', admin_tenant.TenantInstance),
-    (r'/api/admin/manifest', admin_manifest.ManifestHandler),
     (r'/api/admin/submission_statuses', admin_submission_statuses.SubmissionStatusCollection),
     (r'/api/admin/submission_statuses/' + r'(closed)' + r'/substatuses', admin_submission_statuses.SubmissionSubStatusCollection),
     (r'/api/admin/submission_statuses/' + uuid_regexp, admin_submission_statuses.SubmissionStatusInstance),

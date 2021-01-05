@@ -112,10 +112,9 @@ var GL = angular.module("GL", [
     }
 
     function fetchResources(role, lst) {
-      return ["$q", "$rootScope", "Access", "AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNotificationResource", "AdminRedirectResource", "AdminTenantResource", "FieldAttrs", "ActivitiesCollection", "AnomaliesCollection", "TipsCollection", "JobsAuditLog", "ManifestResource", "AdminSubmissionStatusResource", function($q, $rootScope, Access, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNotificationResource, AdminRedirectResource, AdminTenantResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipsCollection, JobsAuditLog, ManifestResource, AdminSubmissionStatusResource) {
+      return ["$q", "$rootScope", "Access", "AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNotificationResource", "AdminRedirectResource", "AdminTenantResource", "FieldAttrs", "ActivitiesCollection", "AnomaliesCollection", "TipsCollection", "JobsAuditLog", "AdminSubmissionStatusResource", function($q, $rootScope, Access, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNotificationResource, AdminRedirectResource, AdminTenantResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipsCollection, JobsAuditLog, AdminSubmissionStatusResource) {
         var resourcesPromises = {
           node: function() { return AdminNodeResource.get().$promise; },
-          manifest: function() { return ManifestResource.get().$promise; },
           contexts: function() { return AdminContextResource.query().$promise; },
           field_attrs: function() { return FieldAttrs.get().$promise; },
           fieldtemplates: function() { return AdminFieldTemplateResource.query().$promise; },
@@ -236,7 +235,7 @@ var GL = angular.module("GL", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
            access: requireAuth("admin"),
-           resources: fetchResources("acl", ["manifest", "node"])
+           resources: fetchResources("acl", ["node"])
         }
       }).
       when("/admin/preferences", {
