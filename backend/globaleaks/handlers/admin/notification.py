@@ -20,24 +20,15 @@ def db_get_notification(session, tid, language):
 
     ret.update(ConfigL10NFactory(session, tid).serialize('notification', language))
 
-    ret.update({
-        'smtp_password': '',
-        'templates': ConfigL10NFilters['notification']
-    }
+    ret['templates'] = ConfigL10NFilters['notification']
 
     return ret
 
 
 @transact
 def update_notification(session, tid, request, language):
-    config = ConfigFactory(session, tid)
-    if request['smtp_password'] == '':
-        del request['smtp_password']
-
-    config.update('notification', request)
-
-    config_l10n = ConfigL10NFactory(session, tid)
-    config_l10n.update('notification', request, language)
+    ConfigFactory(session, tid).update('notification', request)
+    ConfigL10NFactory(session, tid).update('notification', request, language)
 
     db_refresh_memory_variables(session, [tid])
 
