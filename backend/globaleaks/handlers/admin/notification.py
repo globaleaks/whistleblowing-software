@@ -5,7 +5,6 @@ from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.models.config_desc import ConfigL10NFilters
 from globaleaks.orm import transact, tw
 from globaleaks.rest import requests
-from globaleaks.utils.sets import merge_dicts
 
 
 def db_get_notification(session, tid, language):
@@ -17,16 +16,16 @@ def db_get_notification(session, tid, language):
     :param language: The language to be used in the serialization
     :return: the serialization of notification settings for the specified tenant
     """
-    config_dict = ConfigFactory(session, tid).serialize('admin_notification')
+    ret = ConfigFactory(session, tid).serialize('admin_notification')
 
-    conf_l10n_dict = ConfigL10NFactory(session, tid).serialize('notification', language)
+    ret.update(ConfigL10NFactory(session, tid).serialize('notification', language))
 
-    additional_dict = {
+    ret.update({
         'smtp_password': '',
         'templates': ConfigL10NFilters['notification']
     }
 
-    return merge_dicts(config_dict, conf_l10n_dict, additional_dict)
+    return ret
 
 
 @transact

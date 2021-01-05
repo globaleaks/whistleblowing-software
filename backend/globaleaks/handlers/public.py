@@ -12,7 +12,6 @@ from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.models.enums import EnumContextStatus
 from globaleaks.orm import db_get, db_query, transact
 from globaleaks.state import State
-from globaleaks.utils.sets import merge_dicts
 
 default_questionnaires = ['default']
 default_questions = ['whistleblower_identity']
@@ -254,10 +253,8 @@ def db_serialize_node(session, tid, language):
     :return: The serialization of the public node configuration
     """
     languages = db_get_languages(session, tid)
-    node_dict = ConfigFactory(session, tid).serialize('public_node')
-    l10n_dict = ConfigL10NFactory(session, tid,).serialize('node', language)
-
-    ret = merge_dicts(node_dict, l10n_dict)
+    ret = ConfigFactory(session, tid).serialize('public_node')
+    ret.update(ConfigL10NFactory(session, tid,).serialize('node', language))
 
     ret['root_tenant'] = tid == 1
     ret['languages_enabled'] = languages if ret['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES)

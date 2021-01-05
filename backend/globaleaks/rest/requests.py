@@ -11,8 +11,6 @@ import copy
 
 from globaleaks import models
 from globaleaks.models.config_desc import ConfigL10NFilters
-from globaleaks.utils.sets import merge_dicts
-
 
 key_regexp = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$'
 key_regexp_or_empty = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$|^$'
@@ -282,7 +280,7 @@ AdminNodeDesc = {
     'adminonly': bool
 }
 
-AdminNotificationDesc = merge_dicts({
+AdminNotificationDesc = {
     'smtp_server': str,
     'smtp_port': int,
     'smtp_security': str,  # 'TLS' or 'SSL' only
@@ -294,9 +292,9 @@ AdminNotificationDesc = merge_dicts({
     'disable_custodian_notification_emails': bool,
     'disable_receiver_notification_emails': bool,
     'tip_expiration_threshold': int
-  },
-  {k: str for k in ConfigL10NFilters['notification']}
-)
+}
+
+AdminNotificationDesc.update({k: str for k in ConfigL10NFilters['notification']})
 
 AdminFieldOptionDesc = {
     'id': uuid_regexp_or_empty,
