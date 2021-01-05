@@ -96,7 +96,7 @@ def user_serialize_user(session, user, language):
     # take only contexts for the current tenant
     contexts = [x[0] for x in session.query(models.ReceiverContext.context_id)
                                      .filter(models.ReceiverContext.receiver_id == user.id)]
-    ret_dict = {
+    ret = {
         'id': user.id,
         'creation_date': user.creation_date,
         'username': user.username,
@@ -134,12 +134,12 @@ def user_serialize_user(session, user, language):
     }
 
     if user.tid in State.tenant_cache:
-        ret_dict.update({
+        ret.update({
             'can_postpone_expiration': State.tenant_cache[user.tid].can_postpone_expiration or user.can_postpone_expiration,
             'can_delete_submission': State.tenant_cache[user.tid].can_delete_submission or user.can_delete_submission
         })
 
-    return get_localized_values(ret_dict, user, user.localized_keys, language)
+    return get_localized_values(ret, user, user.localized_keys, language)
 
 
 def db_get_user(session, tid, user_id):

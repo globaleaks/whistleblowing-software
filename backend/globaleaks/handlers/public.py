@@ -257,44 +257,44 @@ def db_serialize_node(session, tid, language):
     node_dict = ConfigFactory(session, tid).serialize('public_node')
     l10n_dict = ConfigL10NFactory(session, tid,).serialize('node', language)
 
-    ret_dict = merge_dicts(node_dict, l10n_dict)
+    ret = merge_dicts(node_dict, l10n_dict)
 
-    ret_dict['root_tenant'] = tid == 1
-    ret_dict['languages_enabled'] = languages if node_dict['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES)
-    ret_dict['languages_supported'] = LANGUAGES_SUPPORTED
+    ret['root_tenant'] = tid == 1
+    ret['languages_enabled'] = languages if ret['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES)
+    ret['languages_supported'] = LANGUAGES_SUPPORTED
 
     records = session.query(models.File.id, models.File.data).filter(models.File.tid == tid, models.File.id.in_(['css', 'logo', 'script']))
     for x in records:
-        ret_dict[x[0]] = True
+        ret[x[0]] = True
 
     if tid != 1:
         root_tenant_node = ConfigFactory(session, 1)
 
         for varname in ['version', 'version_db', 'latest_version']:
-            ret_dict[varname] = root_tenant_node.get_val(varname)
+            ret[varname] = root_tenant_node.get_val(varname)
 
         if language not in languages:
             language = root_tenant_node.get_val('default_language')
 
         root_tenant_l10n = ConfigL10NFactory(session, 1)
 
-        if ret_dict['mode'] != 'default':
-            ret_dict['onionservice'] = node_dict['subdomain'] + '.' + root_tenant_node.get_val('onionservice')
+        if ret['mode'] != 'default':
+            ret['onionservice'] = node_dict['subdomain'] + '.' + root_tenant_node.get_val('onionservice')
 
-        if ret_dict['mode'] not in ['default', 'demo']:
-            ret_dict['footer'] = root_tenant_l10n.get_val('footer', language)
-            ret_dict['whistleblowing_question'] = root_tenant_l10n.get_val('whistleblowing_question', language)
-            ret_dict['whistleblowing_button'] = root_tenant_l10n.get_val('whistleblowing_button', language)
-            ret_dict['enable_disclaimer'] = root_tenant_node.get_val('enable_disclaimer')
-            ret_dict['disclaimer_title'] = root_tenant_l10n.get_val('disclaimer_title', language)
-            ret_dict['disclaimer_text'] = root_tenant_l10n.get_val('disclaimer_text', language)
+        if ret['mode'] not in ['default', 'demo']:
+            ret['footer'] = root_tenant_l10n.get_val('footer', language)
+            ret['whistleblowing_question'] = root_tenant_l10n.get_val('whistleblowing_question', language)
+            ret['whistleblowing_button'] = root_tenant_l10n.get_val('whistleblowing_button', language)
+            ret['enable_disclaimer'] = root_tenant_node.get_val('enable_disclaimer')
+            ret['disclaimer_title'] = root_tenant_l10n.get_val('disclaimer_title', language)
+            ret['disclaimer_text'] = root_tenant_l10n.get_val('disclaimer_text', language)
 
             records = session.query(models.File.id, models.File.data).filter(models.File.tid == 1, models.File.id.in_(['css', 'logo', 'script']))
             for x in records:
-                if not ret_dict.get(x[0]):
-                    ret_dict[x[0]] = True
+                if not ret.get(x[0]):
+                    ret[x[0]] = True
 
-    return ret_dict
+    return ret
 
 
 def serialize_context(session, context, language, data=None):
@@ -306,7 +306,7 @@ def serialize_context(session, context, language, data=None):
     :param language: The language to be used during serialization
     :param data: The dictionary of prefetched resources
     """
-    ret_dict = {
+    ret = {
         'id': context.id,
         'status': context.status,
         'order': context.order,
@@ -337,7 +337,7 @@ def serialize_context(session, context, language, data=None):
         'picture': data['imgs'].get(context.id, '')
     }
 
-    return get_localized_values(ret_dict, context, context.localized_keys, language)
+    return get_localized_values(ret, context, context.localized_keys, language)
 
 
 def serialize_field_option(option, language):
@@ -348,7 +348,7 @@ def serialize_field_option(option, language):
     :param language: The language to be used during serialization
     :return: The serialized resource
     """
-    ret_dict = {
+    ret = {
         'id': option.id,
         'order': option.order,
         'block_submission': option.block_submission,
@@ -357,7 +357,7 @@ def serialize_field_option(option, language):
         'trigger_receiver': option.trigger_receiver
     }
 
-    return get_localized_values(ret_dict, option, option.localized_keys, language)
+    return get_localized_values(ret, option, option.localized_keys, language)
 
 
 def serialize_field_attr(attr, language):
@@ -368,7 +368,7 @@ def serialize_field_attr(attr, language):
     :param language: The language to be used during serialization
     :return: The serialized resource
     """
-    ret_dict = {
+    ret = {
         'id': attr.id,
         'name': attr.name,
         'type': attr.type,
@@ -376,9 +376,9 @@ def serialize_field_attr(attr, language):
     }
 
     if attr.type == 'localized':
-        get_localized_values(ret_dict, ret_dict, ['value'], language)
+        get_localized_values(ret, ret, ['value'], language)
 
-    return ret_dict
+    return ret
 
 
 def serialize_field(session, tid, field, language, data=None, serialize_templates=True):
@@ -413,7 +413,7 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
     children = [serialize_field(session, tid, f, language) for f in data['fields'].get(f_to_serialize.id, [])]
     children.sort(key=lambda f: (f['y'], f['x']))
 
-    ret_dict = {
+    ret = {
         'id': field.id,
         'instance': field.instance,
         'editable': field.id not in default_questions and field.tid == tid,
@@ -436,7 +436,7 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
         'children': children
     }
 
-    return get_localized_values(ret_dict, f_to_serialize, f_to_serialize.localized_keys, language)
+    return get_localized_values(ret, f_to_serialize, f_to_serialize.localized_keys, language)
 
 
 def serialize_step(session, tid, step, language, serialize_templates=True):
@@ -457,7 +457,7 @@ def serialize_step(session, tid, step, language, serialize_templates=True):
     children = [serialize_field(session, tid, f, language, data, serialize_templates=serialize_templates) for f in children]
     children.sort(key=lambda f: (f['y'], f['x']))
 
-    ret_dict = {
+    ret = {
         'id': step.id,
         'questionnaire_id': step.questionnaire_id,
         'order': step.order,
@@ -466,7 +466,7 @@ def serialize_step(session, tid, step, language, serialize_templates=True):
         'children': children
     }
 
-    return get_localized_values(ret_dict, step, step.localized_keys, language)
+    return get_localized_values(ret, step, step.localized_keys, language)
 
 
 def serialize_questionnaire(session, tid, questionnaire, language, serialize_templates=True):
@@ -484,14 +484,14 @@ def serialize_questionnaire(session, tid, questionnaire, language, serialize_tem
                                               models.Questionnaire.id == questionnaire.id) \
                                       .order_by(models.Step.order)
 
-    ret_dict = {
+    ret = {
         'id': questionnaire.id,
         'editable': questionnaire.id not in default_questionnaires and questionnaire.tid == tid,
         'name': questionnaire.name,
         'steps': [serialize_step(session, tid, s, language, serialize_templates=serialize_templates) for s in steps]
     }
 
-    return get_localized_values(ret_dict, questionnaire, questionnaire.localized_keys, language)
+    return get_localized_values(ret, questionnaire, questionnaire.localized_keys, language)
 
 
 def serialize_receiver(session, user, language, data=None):
@@ -507,7 +507,7 @@ def serialize_receiver(session, user, language, data=None):
     if data is None:
         data = db_prepare_receivers_serialization(session, [user])
 
-    ret_dict = {
+    ret = {
         'id': user.id,
         'username': user.username,
         'name': user.public_name,
@@ -519,7 +519,7 @@ def serialize_receiver(session, user, language, data=None):
         'picture': data['imgs'].get(user.id, '')
     }
 
-    return get_localized_values(ret_dict, user, user.localized_keys, language)
+    return get_localized_values(ret, user, user.localized_keys, language)
 
 
 def db_get_questionnaires(session, tid, language):

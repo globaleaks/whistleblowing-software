@@ -23,7 +23,7 @@ def admin_serialize_context(session, context, language):
 
     picture = db_get_model_img(session, 'contexts', context.id)
 
-    ret_dict = {
+    ret = {
         'id': context.id,
         'status': context.status,
         'languages': context.languages,
@@ -54,7 +54,7 @@ def admin_serialize_context(session, context, language):
         'picture': picture
     }
 
-    return get_localized_values(ret_dict, context, context.localized_keys, language)
+    return get_localized_values(ret, context, context.localized_keys, language)
 
 
 @transact
