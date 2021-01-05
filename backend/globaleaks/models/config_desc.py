@@ -52,8 +52,6 @@ ConfigDescriptor = {
     'https_chain': Unicode(),
     'https_preload': Bool(default=False),
 
-    'admin_api_token_digest': Unicode(),
-
     'smtp_server': Unicode(default='mail.globaleaks.org'),
     'smtp_port': Int(default=587),
     'smtp_username': Unicode(default='globaleaks'),
@@ -168,7 +166,6 @@ ConfigFilters = {
     'node': [
         'id',
         'name',
-        'admin_api_token_digest',
         'hostname',
         'onionservice',
         'rootdomain',
