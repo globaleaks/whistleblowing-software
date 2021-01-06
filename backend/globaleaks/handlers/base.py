@@ -240,10 +240,6 @@ class BaseHandler(object):
         if isinstance(fp, str):
             fp = self.open_file(fp)
 
-        if filename.endswith('.gz'):
-            self.request.setHeader(b'Content-encoding', b'gzip')
-            filename = filename[:-3]
-
         mime_type, _ = mimetypes.guess_type(filename)
         if mime_type:
             self.request.setHeader(b'Content-Type', mime_type)

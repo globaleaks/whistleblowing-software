@@ -401,21 +401,6 @@ module.exports = function(grunt) {
       }
     },
 
-    compress: {
-      main: {
-        options: {
-          mode: "gzip"
-        },
-        expand: true,
-        cwd: "build/",
-        src: ["index.html", "license.txt", "css/*", "js/*", "lib/js/locale/*"],
-        dest: "build/",
-        rename: function(dest, src) {
-          return dest + "/" + src + ".gz";
-        }
-      }
-    },
-
     confirm: {
       "pushTranslationsSource": {
         options: {
@@ -466,7 +451,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-angular-templates");
   grunt.loadNpmTasks("grunt-confirm");
   grunt.loadNpmTasks("grunt-contrib-clean");
-  grunt.loadNpmTasks("grunt-contrib-compress");
   grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks("grunt-contrib-cssmin");
@@ -1023,7 +1007,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask("build",
-    ["clean", "copy:sources", "copy:build", "ngtemplates", "postcss", "useminPrepare", "concat", "usemin", "string-replace", "copy:package", "cssmin", "terser", "compress"]);
+    ["clean", "copy:sources", "copy:build", "ngtemplates", "postcss", "useminPrepare", "concat", "usemin", "string-replace", "copy:package", "cssmin", "terser"]);
 
   grunt.registerTask("instrument-client", [
     "clean",

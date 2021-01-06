@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.rest.cache import Cache, gzipdata
+from globaleaks.rest.cache import Cache
 from globaleaks.tests import helpers
 
 
@@ -26,8 +26,5 @@ class TestCache(helpers.TestGL):
         self.assertTrue("it" in Cache.memory_cache_dict[1]['passante_di_professione'])
         self.assertTrue("en" in Cache.memory_cache_dict[1]['passante_di_professione'])
         self.assertIsNone(Cache.get(1, "passante_di_professione", "ca"))
-        self.assertEqual(Cache.get(1, "passante_di_professione", "it")[1], gzipdata('ititit'))
-        self.assertEqual(Cache.get(1, "passante_di_professione", "en")[1], gzipdata('enenen'))
-        self.assertEqual(Cache.get(2, "passante_di_professione", "ca")[1], gzipdata('cacaca'))
         Cache.invalidate()
         self.assertEqual(Cache.memory_cache_dict, {})

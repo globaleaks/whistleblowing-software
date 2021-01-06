@@ -7,7 +7,7 @@ import traceback
 from twisted.application import service
 from twisted.internet import reactor, defer
 from twisted.python.log import ILogObserver
-from twisted.web import server
+from twisted.web import resource, server
 
 from globaleaks.jobs import job, jobs_list
 from globaleaks.services import onion
@@ -50,15 +50,14 @@ class Service(service.Service):
         set_proc_title('globaleaks')
 
         self.state = State
-        self.arw = APIResourceWrapper()
+        self.arw = resource.EncodingResourceWrapper(APIResourceWrapper(), [server.GzipEncoderFactory()])
 
         if Settings.nodaemon:
             self.api_factory = Site(self.arw, logFormatter=logFormatter)
         else:
             self.api_factory = Site(self.arw, logPath=Settings.accesslogfile, logFormatter=logFormatter)
 
-        if not Settings.devel_mode:
-            self.api_factory.displayTracebacks = False
+        self.api_factory.displayTracebacks = False
 
     def startService(self):
         mask = 0

@@ -1,18 +1,5 @@
 # -*- coding: utf-8 -*-
-import gzip
 import io
-
-def gzipdata(data):
-    if isinstance(data, str):
-        data = data.encode()
-
-    fgz = io.BytesIO()
-    gzip_obj = gzip.GzipFile(mode='wb', fileobj=fgz)
-    gzip_obj.write(data)
-    gzip_obj.close()
-
-    return fgz.getvalue()
-
 
 class Cache(object):
     memory_cache_dict = {}
@@ -26,8 +13,6 @@ class Cache(object):
 
     @classmethod
     def set(cls, tid, resource, language, content_type, data):
-        data = gzipdata(data)
-
         if tid not in Cache.memory_cache_dict:
             cls.memory_cache_dict[tid] = {}
 

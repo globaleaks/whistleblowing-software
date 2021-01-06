@@ -25,9 +25,7 @@ class StaticFileHandler(BaseHandler):
 
         directory_traversal_check(self.root, abspath)
 
-        if os.path.exists(abspath + '.gz') and os.path.isfile(abspath + '.gz'):
-            return self.write_file(filename + '.gz', abspath + '.gz')
-        elif os.path.exists(abspath) and os.path.isfile(abspath):
+        if os.path.exists(abspath) and os.path.isfile(abspath):
             return self.write_file(filename, abspath)
 
         raise errors.ResourceNotFound()
