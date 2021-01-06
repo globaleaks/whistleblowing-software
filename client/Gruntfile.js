@@ -41,7 +41,7 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      all: ["tmp", "build"]
+      all: ["build", "tmp"]
     },
 
     copy: {
@@ -128,7 +128,7 @@ module.exports = function(grunt) {
         dest: "tmp",
         flow: {
           steps: {
-            js: ["concat"], // we avoid to minify intentionally! #1417 !
+            js: ["concat"],
             css: ["concat"]
           },
           post: {}
@@ -138,16 +138,11 @@ module.exports = function(grunt) {
 
     usemin: {
       html: [
-        "tmp/index.html",
-        "tmp/views/**/*.html"
+        "tmp/index.html"
       ],
       options: {
         dirs: ["tmp"]
       }
-    },
-
-    html: {
-      files: ["**/*.html"]
     },
 
     // Put all angular.js templates into a single file
