@@ -16,7 +16,7 @@ def db_get_notification(session, tid, language):
     :param language: The language to be used in the serialization
     :return: the serialization of notification settings for the specified tenant
     """
-    ret = ConfigFactory(session, tid).serialize('admin_notification')
+    ret = ConfigFactory(session, tid).serialize('notification')
 
     ret.update(ConfigL10NFactory(session, tid).serialize('notification', language))
 

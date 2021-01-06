@@ -30,7 +30,6 @@ class Bool(Item):
 
 
 ConfigDescriptor = {
-    'id': Unicode(default=uuid4),
     'receipt_salt': Unicode(default=GCE.generate_salt),
 
     'version': Unicode(default=str(__version__)),
@@ -269,7 +268,6 @@ ConfigFilters = {
 
 
 ConfigFilters['admin_node'] = list(set(ConfigFilters['node']) - set([
-    'id',
     'receipt_salt',
     'acme_accnt_key',
     'tor_onion_key',
@@ -281,13 +279,7 @@ ConfigFilters['admin_node'] = list(set(ConfigFilters['node']) - set([
 ]))
 
 
-ConfigFilters['admin_notification'] = list(set(ConfigFilters['notification']) - set([
-    'smtp_password'
-]))
-
-
 ConfigFilters['public_node'] = list(set(ConfigFilters['admin_node']) - set([
-    'id',
     'version',
     'version_db',
     'crypto_escrow_pub_key',
