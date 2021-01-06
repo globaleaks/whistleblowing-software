@@ -109,8 +109,7 @@ def reset_smtp_settings(session, tid):
 
 @transact
 def reset_templates(session, tid):
-    config_l10n = ConfigL10NFactory(session, tid)
-    config_l10n.reset('notification', load_appdata())
+    ConfigL10NFactory(session, tid).reset('notification', load_appdata())
 
 
 @transact
@@ -127,6 +126,7 @@ def generate_password_reset_token(session, tid, user_session, user_id):
         enc_key = GCE.derive_key(user.reset_password_token.encode(), user.salt)
         key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_cc))
         State.TempKeys[user_id] = TempKey(key)
+
 
 class AdminOperationHandler(OperationHandler):
     """
@@ -171,11 +171,11 @@ class AdminOperationHandler(OperationHandler):
     @inlineCallbacks
     def test_mail(self, req_args, *args, **kwargs):
         tid = self.request.tid
+        language = self.state.tenant_cache[tid].default_language
+
         user = yield get_user(tid,
                               self.current_user.user_id,
-                              self.state.tenant_cache[tid].default_language)
-
-        language = user['language']
+                              language)
 
         data = {
             'type': 'admin_test',
