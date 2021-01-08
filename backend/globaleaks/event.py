@@ -5,20 +5,20 @@ from globaleaks.utils.utility import datetime_now
 
 
 def successful_login_check(handler):
-    return handler.request.uri == b'/authentication' and \
+    return handler.request.uri == b'/api/authentication' and \
            handler.request.method == b'POST' and \
            handler.request.code == 201
 
 
 def failed_login_check(handler):
-    return handler.request.uri == b'/authentication' and \
+    return handler.request.uri == b'/api/authentication' and \
            handler.request.method == b'POST' and \
            handler.request.code == 401
 
 
 def completed_submission_check(handler):
-    return handler.request.uri.startswith(b'/submission') and \
-           len(handler.request.uri) == 76 and \
+    return handler.request.uri.startswith(b'/api/submission') and \
+           len(handler.request.uri) == 80 and \
            handler.request.method == b'PUT' and \
            handler.request.code == 202
 
