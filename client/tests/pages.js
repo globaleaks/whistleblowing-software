@@ -34,8 +34,8 @@ exports.whistleblower = function() {
     await browser.gl.utils.takeScreenshot("whistleblower/home.png");
     await element(by.id("WhistleblowingButton")).click();
     await browser.gl.utils.waitUntilPresent(by.id("SubmissionForm"));
-    await element(by.id("step-0")).element(by.id("step-0-field-0-0-input-0")).sendKeys('title');
-    await element(by.id("step-0")).element(by.id("step-0-field-1-0-input-0")).sendKeys('description');
+    await element(by.id("step-0")).element(by.id("step-0-field-0-0-input-0")).sendKeys("title");
+    await element(by.id("step-0")).element(by.id("step-0-field-1-0-input-0")).sendKeys("description");
 
     if (uploadFiles && browser.gl.utils.testFileUpload()) {
       var fileToUpload1 = browser.gl.utils.makeTestFilePath("antani.txt");

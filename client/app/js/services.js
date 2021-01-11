@@ -67,7 +67,7 @@ factory("Authentication",
           self.loginInProgress = false;
 
           if ("redirect" in response.data) {
-            $window.location.replace(response.data["redirect"]);
+            $window.location.replace(response.data.redirect);
           }
 
           self.set_session(response);
@@ -773,8 +773,8 @@ factory("Files", ["GLResource", function(GLResource) {
 factory("DefaultL10NResource", ["GLResource", function(GLResource) {
   return new GLResource("/data/l10n/:lang.json", {lang: "@lang"});
 }]).
-factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModal", "$window", "FileSaver", "Authentication",
-    function($rootScope, $http, $q, $location, $filter, $uibModal, $window, FileSaver, Authentication) {
+factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModal", "$window", "FileSaver",
+    function($rootScope, $http, $q, $location, $filter, $uibModal, $window, FileSaver) {
   return {
     array_to_map: function(array) {
       var ret = {};
@@ -1160,8 +1160,8 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
         var y = null;
 
         angular.forEach(fields, function(f) {
-          if(y !== f["y"]) {
-            y = f["y"];
+          if(y !== f.y) {
+            y = f.y;
             rows.push([]);
           }
 

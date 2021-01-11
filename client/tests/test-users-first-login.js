@@ -8,8 +8,8 @@ describe("Recipient first login", function() {
   });
 
   it("should be able to change password from the default one", async function() {
-    await element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars["user_password"]);
-    await element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars["user_password"]);
+    await element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.css("[data-ng-click=\"save()\"]")).click();
     await browser.gl.utils.waitForUrl("/recipient/home");
   });
@@ -47,8 +47,8 @@ describe("Recipient2 first login", function() {
   });
 
   it("should be able to change password from the default one", async function() {
-    await element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars["user_password"]);
-    await element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars["user_password"]);
+    await element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.css("[data-ng-click=\"save()\"]")).click();
     await browser.gl.utils.waitForUrl("/recipient/home");
   });
@@ -60,8 +60,8 @@ describe("Custodian first login", function() {
   });
 
   it("should be able to change password from the default one", async function() {
-    await element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars["user_password"]);
-    await element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars["user_password"]);
+    await element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.css("[data-ng-click=\"save()\"]")).click();
     await browser.gl.utils.waitForUrl("/custodian/home");
   });
@@ -73,8 +73,8 @@ describe("Admin2 first login", function() {
   });
 
   it("should be able to change password from the default one", async function() {
-    await element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars["user_password"]);
-    await element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars["user_password"]);
+    await element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.css("[data-ng-click=\"save()\"]")).click();
     await browser.gl.utils.waitForUrl("/admin/home");
   });

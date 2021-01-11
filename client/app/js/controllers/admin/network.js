@@ -175,8 +175,8 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
 
   $scope.submitCSR = function() {
     $scope.file_resources.content = $scope.csr_cfg;
-    $scope.file_resources["csr"].content = $scope.csr_cfg;
-    $scope.file_resources["csr"].$save().then(function() {
+    $scope.file_resources.csr.content = $scope.csr_cfg;
+    $scope.file_resources.csr.$save().then(function() {
       $scope.csr_state.open = false;
       return $scope.refreshConfig();
     });

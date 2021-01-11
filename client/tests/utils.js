@@ -106,7 +106,7 @@ exports.takeScreenshot = async function(filename, locator) {
   await browser.driver.manage().window().setSize(1280, 768);
 
   var height = await element(by.css("body")).getAttribute("scrollHeight");
-  await browser.driver.manage().window().setSize(1280, parseInt(height));
+  await browser.driver.manage().window().setSize(1280, parseInt(height, 10));
 
   await browser.waitForAngular();
 
@@ -127,7 +127,7 @@ exports.login_whistleblower = async function(receipt) {
 
 exports.login_admin = async function(username, password, url, firstlogin) {
   username = username === undefined ? "admin" : username;
-  password = password === undefined ? exports.vars["user_password"] : password;
+  password = password === undefined ? exports.vars.user_password : password;
   url = url === undefined ? "/#/login" : url;
 
   await browser.get(url);
@@ -147,7 +147,7 @@ exports.login_admin = async function(username, password, url, firstlogin) {
 
 exports.login_receiver = async function(username, password, url, firstlogin) {
   username = username === undefined ? "Recipient" : username;
-  password = password === undefined ? exports.vars["user_password"] : password;
+  password = password === undefined ? exports.vars.user_password : password;
   url = url === undefined ? "/#/login" : url;
 
   await browser.get(url);
@@ -167,7 +167,7 @@ exports.login_receiver = async function(username, password, url, firstlogin) {
 
 exports.login_custodian = async function(username, password, url, firstlogin) {
   username = username === undefined ? "Custodian" : username;
-  password = password === undefined ? exports.vars["user_password"] : password;
+  password = password === undefined ? exports.vars.user_password : password;
   url = url === undefined ? "/#/login" : url;
 
   await browser.get(url);

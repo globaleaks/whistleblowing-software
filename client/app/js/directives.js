@@ -153,7 +153,7 @@ directive("extendFlowValidSize", ["uploadUtils", function(uploadUtils) {
     restrict: "A",
     scope: true,
     link: function(scope, iElment, iAttrs) {
-      var validSize = parseInt(scope.$eval(iAttrs.extendFlowValidSize));
+      var validSize = parseInt(scope.$eval(iAttrs.extendFlowValidSize), 10);
       scope.$on("flow::fileAdded", function(event, _, flowFile) {
         if (flowFile.size > validSize) {
           if (typeof scope.file_error_msgs === "undefined") {

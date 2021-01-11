@@ -712,7 +712,7 @@ var GL = angular.module("GL", [
     $rootScope.$on("$locationChangeStart", function() {
       var lang = $location.search().lang;
 
-      if ($location.path() === '/' &&
+      if ($location.path() === "/" &&
           $rootScope.Authentication.session &&
           $rootScope.Authentication.session.role !== "whistleblower") {
         // Get suer to reset the user session when visiting the public interface

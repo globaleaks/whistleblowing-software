@@ -38,7 +38,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$route", "$lo
 
     return $http({method: "PUT",
                   url: "api/rtip/" + tip.id,
-                  data: {"operation": 'update_important',
+                  data: {"operation": "update_important",
                          "args": {"value": tip.important}}});
   };
 

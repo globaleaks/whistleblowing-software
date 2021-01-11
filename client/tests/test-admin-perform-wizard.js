@@ -2,11 +2,11 @@ describe("globaLeaks setup wizard", function() {
   it("should allow the user to setup the wizard", async function() {
     await browser.get("/#/wizard");
 
-    await browser.gl.utils.takeScreenshot('wizard/1.png');
+    await browser.gl.utils.takeScreenshot("wizard/1.png");
 
     await element.all(by.css(".ButtonNext")).get(0).click();
 
-    await browser.gl.utils.takeScreenshot('wizard/2.png');
+    await browser.gl.utils.takeScreenshot("wizard/2.png");
 
     await element(by.model("wizard.node_name")).sendKeys("GLOBALEAKS");
 
@@ -17,8 +17,8 @@ describe("globaLeaks setup wizard", function() {
     await element(by.model("wizard.admin_username")).sendKeys("admin");
     await element(by.model("wizard.admin_name")).sendKeys("Admin");
     await element(by.model("wizard.admin_mail_address")).sendKeys("globaleaks-admin@mailinator.com");
-    await element(by.model("wizard.admin_password")).sendKeys(browser.gl.utils.vars["user_password"]);
-    await element(by.model("admin_check_password")).sendKeys(browser.gl.utils.vars["user_password"]);
+    await element(by.model("wizard.admin_password")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("admin_check_password")).sendKeys(browser.gl.utils.vars.user_password);
 
     await element.all(by.css(".ButtonNext")).get(3).click();
 

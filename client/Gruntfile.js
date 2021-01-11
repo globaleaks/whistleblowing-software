@@ -463,7 +463,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-cssmin");
   grunt.loadNpmTasks("grunt-postcss");
   grunt.loadNpmTasks("grunt-string-replace");
-  grunt.loadNpmTasks('grunt-terser');
+  grunt.loadNpmTasks("grunt-terser");
   grunt.loadNpmTasks("grunt-usemin");
   grunt.loadNpmTasks("gruntify-eslint");
 

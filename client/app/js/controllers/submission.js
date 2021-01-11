@@ -498,7 +498,7 @@ controller("SubmissionFormFieldCtrl", ["$scope", "$http", function($scope, $http
         projection.scale(1).translate([0, 0]);
 
         var b = path.bounds($scope.field.attrs.topojson.geojson),
-            s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
+            s = 0.95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
             t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
 
         projection.scale(s).translate(t);
@@ -513,7 +513,7 @@ controller("SubmissionFormFieldCtrl", ["$scope", "$http", function($scope, $http
            .on("mouseover", function(d) {
              tooltip.transition()
                     .duration(200)
-                    .style("opacity", .9);
+                    .style("opacity", 0.9);
 
              tooltip.html(d.properties.name)
                     .style("left", (d3.event.pageX) + "px")
@@ -537,16 +537,16 @@ controller("SubmissionFormFieldCtrl", ["$scope", "$http", function($scope, $http
              $scope.$apply();
            })
            .on("click", function(d) {
-             if ($scope.answers[$scope.field.id][0]["value"] !== d.id) {
+             if ($scope.answers[$scope.field.id][0].value !== d.id) {
                if ($scope.clicked !== null) {
                  d3.select($scope.clicked).attr("r", 5.5).style("fill", "#F5F7FA");
                }
                $scope.clicked = this;
                d3.select(this).attr("r", 10).style("fill", "red");
-               $scope.answers[$scope.field.id][0]["value"] = d.id;
+               $scope.answers[$scope.field.id][0].value = d.id;
              } else {
                d3.select(this).attr("r", 5.5).style("fill", "#F5F7FA");
-               $scope.answers[$scope.field.id][0]["value"] = "";
+               $scope.answers[$scope.field.id][0].value = "";
              }
              $scope.$apply();
            });
@@ -633,7 +633,7 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
 
     $scope.$watch("daterange.end", function () {
       if ($scope.daterange.start && $scope.daterange.end) {
-        $scope.entries[0]["value"] = String(Number($scope.daterange.start)) + ":" + String(Number($scope.daterange.end));
+        $scope.entries[0].value = String(Number($scope.daterange.start)) + ":" + String(Number($scope.daterange.end));
       }
     });
 
