@@ -1,6 +1,6 @@
 # 
 # Translators:
-# Adrian Pappas <pappasadrian@gmail.com>, 2018-2019
+# Adrian Pappas <pappasadrian@gmail.com>, 2018-2019,2021
 # Alexandros Melidis <almel01@gmail.com>, 2019-2020
 # annapapa1980 <anpapath3@gmail.com>, 2015
 # annapapa1980 <anpapath3@gmail.com>, 2015
@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"PO-Revision-Date: 2021-01-05 11:34+0000\n"
 "Last-Translator: Adrian Pappas <pappasadrian@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -535,22 +535,22 @@ msgstr "Επαναφορά κωδικού."
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr ""
+msgstr "Ένας ή παραπάνω από τους παραλήπτες δεν έχουν πραγματοποιήσει ακόμα την πρώτη τους σύνδεση. Αυτό σημαίνει πως δεν θα λαμβάνουν τις αναφορές."
 
 msgid "This user has not performed the first login yet."
-msgstr ""
+msgstr "Αυτός ο χρήστης δεν έχει πραγματοποιήσει ακόμα την πρώτη του σύνδεση."
 
 msgid "seconds"
 msgstr "δευτερόλεπτα"
 
 msgid "This domain name is not available."
-msgstr ""
+msgstr "Το όνομα χώρου / domain name δεν είναι διαθέσιμο."
 
 msgid "VAT number"
-msgstr ""
+msgstr "ΑΦΜ"
 
 msgid "Tax code"
-msgstr ""
+msgstr "ΑΦΜ"
 
 msgid "Are you a whistleblower?"
 msgstr "Έχετε κάτι να αναφέρετε;"
@@ -598,7 +598,7 @@ msgid "Enable administrators to change user passwords"
 msgstr "Επιτρέψτε στους διαχειριστές να αλλάζουν τους κωδικούς χρηστών"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
+msgstr "Οι διαχειριστές που έχουν τη δυνατότητα να αλλάξουν τους κωδικούς πρόσβασης χρηστών:"
 
 msgid "Enable multisite feature"
 msgstr "Ενεργοποίηση της λειτουργίας πολλαπλών ιστοχώρων"
@@ -663,7 +663,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Ορίστε την τιμή σε 0 για να απενεργοποιηθεί αυτή η λειτουργία."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "Αριθμός ημερών μέχρι την ειδοποίηση των χρηστών για μη αναγνωσμένες αναφορές"
 
 msgid "Enable custodian user role"
 msgstr "Επιτρέψτε το ρόλο χρήστη του θεματοφύλακα"
@@ -672,7 +672,7 @@ msgid "Enable scoring system"
 msgstr "Επιτρέψτε το σύστημα βαθμολογίας"
 
 msgid "Enable private annotations"
-msgstr ""
+msgstr "Ενεργοποίηση ιδιωτικών σημειώσεων"
 
 msgid "Logging level"
 msgstr "Επίπεδο σύνδεσης"
@@ -920,7 +920,7 @@ msgid "Restrict access to specific IP addresses"
 msgstr "Περιορισμός πρόσβασης σε συγκεκριμένες διευθύνσεις IP"
 
 msgid "Allowed IP addresses"
-msgstr ""
+msgstr "Επιτρεπόμενες διευθύνσεις IP"
 
 msgid "Admin"
 msgstr "Διαχειριστής"
@@ -1300,7 +1300,7 @@ msgid "Allow the recipient to delete reports"
 msgstr "Επιτρέψτε στον παραλήπτη να διαγράφει αναφορές"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "Να δοθεί στον χρήστη πρόσβαση διαχειριστή στις ακόλουθες λειτουργίες:"
 
 msgid "Request date"
 msgstr "Ημερομηνία αίτησης"
@@ -1312,7 +1312,7 @@ msgid "Authorization"
 msgstr "Εξουσιοδότηση"
 
 msgid "Requests"
-msgstr ""
+msgstr "Αιτήματα"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Ο σύνδεσμος επικύρωσης είναι είτε λανθασμένος είτε έχει λήξει."
@@ -1446,7 +1446,7 @@ msgid "Please check your inbox for further instructions."
 msgstr "Παρακαλώ ελέγξτε τα εισερχόμενά σας για περαιτέρω πληροφορίες."
 
 msgid "Account recovery key"
-msgstr "Ανάκτηση κλειδιού λογαριασμού"
+msgstr "Κλειδί ανάκτησης λογαριασμού"
 
 msgid "Current password"
 msgstr "Τρέχων κωδικός πρόσβασης"
@@ -1462,7 +1462,7 @@ msgstr "Φαίνεται ότι περιηγείστε σε αυτό τον ισ
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr ""
+msgstr "Σας προτείνουμε ανεπιφύλακτα να επισκεφτείτε αυτή τη σελίδα χρησιμοποιώντας την εφαρμογή Tor Browser, η οποία προστατεύει την ταυτότητά σας. "
 
 msgid "Download the Tor Browser"
 msgstr "Κατεβάστε τον Περιηγητή Tor"
@@ -1642,7 +1642,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "Προτείνουμε να πάτε στην περιοχή \"Προτιμήσεις\" για να δείτε το \"Κλειδί ανάκτησης λογαριασμού\" και να το αποθηκεύσετε με ασφάλεια. Αυτό το κλειδί είναι απαραίτητο για την ανάκτηση της πρόσβασης στην πλατφόρμα και στα δεδομένα σας, σε περίπτωση που ξεχάσετε τον κωδικό σας."
 
 msgid "The provided recovery key is invalid."
 msgstr "Το παρεχόμενο κλειδί ανάκτησης είναι άκυρο"
@@ -1725,7 +1725,7 @@ msgid "Select the context of your report:"
 msgstr "Επιλέξτε τη θεματική ενότητα της αναφοράς σας:"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "Η απάντηση είναι πολυ μικρή"
 
 msgid "The specified input is not valid."
 msgstr "Τα καθορισμένα δεδομένα εισόδου δεν είναι έγκυρα."
@@ -1771,7 +1771,7 @@ msgid "Recipient selection"
 msgstr "Επιλογή παραλήπτη"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "Επιλέξτε τους παραλήπτες της αναφοράς σας:"
 
 msgid "Recipients selected:"
 msgstr "Επιλεγμένοι παραλήπτες:"
@@ -1782,7 +1782,7 @@ msgstr "Έχετε φτάσει τον ανώτατο αριθμό επιλέξ�
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "Οι ακόλουθοι παραλήπτες θα λάβουν την αναφορά σας και δεν μπορείτε να τους απο-επιλέξετε:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1807,20 +1807,20 @@ msgid "Please choose a configuration profile:"
 msgstr "Παρακαλώ επιλέξτε ένα προφίλ παραμετροποίησης:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "Να δοθεί η δυνατότητα σε αυτόν τον διαχειριστή να επαναφέρει τους κωδικούς χρηστών."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Προτείνουμε να επιλέξετε αυτή την επιλογή αν θέλετε να μη χαθούν δεδομένα σε περίπτωση που οι παραλήπτες χάσουν τους κωδικούς πρόσβασής τους. Από την άλλη, δεν προτείνουμε να χρησιμοποιήσετε αυτή την επιλογή αν θέλετε να στήσετε ένα σύστημα στο οποίο μόνο οι παραλήπτες έχουν πρόσβαση στις καταχωρήσεις."
 
 msgid "Please choose a different username."
 msgstr "Παρακαλώ επιλέξτε διαφορετικό όνομα χρήστη"
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "Διάβασα και συμφωνώ με τους όρους της άδειας."
 
 msgid "You have completed the platform wizard."
 msgstr "Έχετε ολοκληρώσει τον οδηγό της πλατφόρμας."
@@ -2210,16 +2210,16 @@ msgid "New report"
 msgstr "Νέα αναφορά"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Με αυτό το email σας ειδοποιούμε πως μια υπάρχουσα αναφορά ανανεώθηκε."
 
 msgid "Report updated"
-msgstr ""
+msgstr "Η αναφορά ανανεώθηκε"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Αυτό είναι ένα email υπενθύμισης για μη αναγνωσμένες ή ανανεωμένες αναφορές."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Υπενθύμιση για μη αναγνωσμένες ή ανανεωμένες αναφορές"
 
 msgid "Role: {Role}"
 msgstr "Ρόλος: {Role}"
