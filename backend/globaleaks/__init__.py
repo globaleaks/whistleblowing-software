@@ -61,7 +61,7 @@ LANGUAGES_SUPPORTED = [
     {'code': 'sl_SI', 'name': 'Slovenian', 'native': 'Sloven\u0161\u010dina'},
     {'code': 'sq', 'name': 'Albanian', 'native': 'Shqip'},
     {'code': 'sv', 'name': 'Swedish', 'native': 'Svenska'},
-    {'code': 'sw', 'name': 'Swahili', 'native': 'native': '\u0627\u0644\u0639\u0631\u0628\u064a\u0629'},
+    {'code': 'sw', 'name': 'Swahili', 'native': '\u0627\u0644\u0639\u0631\u0628\u064a\u0629'},
     {'code': 'ta', 'name': 'Tamil', 'native': '\u0ba4\u0bae\u0bbf\u0bb4\u0bcd'},
     {'code': 'th', 'name': 'Thai', 'native': '\u0e44\u0e17\u0e22'},
     {'code': 'tr', 'name': 'Turkish', 'native': 'T\xfcrk\xe7e'},

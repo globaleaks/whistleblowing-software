@@ -1,5 +1,7 @@
 # -*- coding: utf-8
 import operator
+import os
+
 from datetime import timedelta
 from sqlalchemy.sql.expression import distinct, func
 
@@ -250,3 +252,27 @@ class JobsTiming(BaseHandler):
             })
 
         return response
+
+
+class AccessLog(BaseHandler):
+    """
+    Handler that provide access to the access.log file
+    """
+    check_roles = 'admin'
+    root_tenant_only = True
+
+    def get(self):
+        path = os.path.abspath(os.path.join(self.state.settings.working_path, 'log/access.log'))
+        return self.write_file_as_download('access.log', path)
+
+
+class DebugLog(BaseHandler):
+    """
+    Handler that provide access to the access.log file
+    """
+    check_roles = 'admin'
+    root_tenant_only = True
+
+    def get(self):
+        path = os.path.abspath(os.path.join(self.state.settings.working_path, 'log/globaleaks.log'))
+        return self.write_file_as_download('globaleaks.log', path)

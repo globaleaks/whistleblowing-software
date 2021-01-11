@@ -773,8 +773,8 @@ factory("Files", ["GLResource", function(GLResource) {
 factory("DefaultL10NResource", ["GLResource", function(GLResource) {
   return new GLResource("/data/l10n/:lang.json", {lang: "@lang"});
 }]).
-factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModal", "$window", "Authentication",
-    function($rootScope, $http, $q, $location, $filter, $uibModal, $window, Authentication) {
+factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModal", "$window", "FileSaver", "Authentication",
+    function($rootScope, $http, $q, $location, $filter, $uibModal, $window, FileSaver, Authentication) {
   return {
     array_to_map: function(array) {
       var ret = {};
@@ -1078,6 +1078,16 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
 
     print: function() {
       $window.print();
+    },
+
+    download: function(filename, url) {
+      return $http({
+        method: "GET",
+        url: url,
+        responseType: "blob",
+      }).then(function (response) {
+        FileSaver.saveAs(response.data, filename);
+      });
     },
 
     applyConfig: function(cmd, value, refresh) {
