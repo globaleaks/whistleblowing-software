@@ -1,5 +1,7 @@
-Changes in version 4.1.10
+Changes in version 4.1.11
     Fix possibility of resetting onion address
+
+Changes in version 4.1.10
     Make it possible to download https encryption key for backup purposes
     Implement possibility to download access and debug log via the audit log
     Fix statistics tracking of logins and submissions
