@@ -1,3 +1,15 @@
+Changes in version 4.1.10
+    Fix possibility of resetting onion address
+    Make it possible to download https encryption key for backup purposes
+    Implement possibility to download access and debug log via the audit log
+    Fix statistics tracking of logins and submissions
+    Use cssmin and terser instead of using already minified libraries
+    Rework http gzip doing it in streaming to every resource served
+    Avoid caching of admin resources
+    Add Swahili language
+    Update translations
+    Bump npm dependencies to latest version
+
 Changes in version 4.1.9
     Fix issue #2904
     Update translations
