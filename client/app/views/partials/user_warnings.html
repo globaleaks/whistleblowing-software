@@ -1,4 +1,4 @@
-<div class="alert alert-warning" data-ng-if="!resources.node.update_available">
+<div class="alert alert-warning" data-ng-if="Authentication.session.role === 'admin' && resources.node.update_available">
   <i class="fa fa-exclamation-circle"></i>
   <span data-translate>An update is available:</span> <span><a href="https://github.com/globaleaks/GlobaLeaks/blob/main/CHANGELOG" target="_blank">{{resources.node.latest_version}} (<span data-translate>Changelog</span>)</a></span>
 </div>
