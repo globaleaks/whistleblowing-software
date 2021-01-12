@@ -148,7 +148,7 @@ class AdminOperationHandler(OperationHandler):
 
     @inlineCallbacks
     def reset_onion_private_key(self, req_args, *args, **kargs):
-        hostname, key = generate_onion_service_v3()
+        key, hostname = generate_onion_service_v3()
         yield set_onion_service_info(self.request.tid, hostname, key)
         yield self.state.onion_service_job.add_onion_service(self.request.tid, hostname, key)
         yield self.state.onion_service_job.remove_unwanted_onion_services()
