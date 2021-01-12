@@ -276,7 +276,7 @@ def db_serialize_node(session, tid, language):
         root_tenant_l10n = ConfigL10NFactory(session, 1)
 
         if ret['mode'] != 'default':
-            ret['onionservice'] = node_dict['subdomain'] + '.' + root_tenant_node.get_val('onionservice')
+            ret['onionservice'] = ret['subdomain'] + '.' + root_tenant_node.get_val('onionservice')
 
         if ret['mode'] not in ['default', 'demo']:
             ret['footer'] = root_tenant_l10n.get_val('footer', language)

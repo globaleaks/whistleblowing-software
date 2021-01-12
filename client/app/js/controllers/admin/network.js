@@ -90,9 +90,9 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
 
   $scope.file_resources = {
     key: new cfgFileResource({name: "key"}),
-    cert:     new cfgFileResource({name: "cert"}),
-    chain:    new cfgFileResource({name: "chain"}),
-    csr:      new cfgFileResource({name: "csr"}),
+    cert: new cfgFileResource({name: "cert"}),
+    chain: new cfgFileResource({name: "chain"}),
+    csr: new cfgFileResource({name: "csr"}),
   };
 
   $scope.csr_cfg = {
