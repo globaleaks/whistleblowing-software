@@ -135,6 +135,11 @@ class PrivKeyFileRes(FileResource):
         config.set_val('https_key', '')
 
     @staticmethod
+    @transact
+    def get_file(session, tid):
+        return ConfigFactory(session, tid).get_val('https_key')
+
+    @staticmethod
     def db_serialize(session, tid):
         config = ConfigFactory(session, tid)
 

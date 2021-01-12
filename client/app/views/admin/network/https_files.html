@@ -11,6 +11,10 @@
             <i class="fas fa-cog"></i>
           <span data-translate>Generate</span>
         </button>
+        <button id="downloadKey" class="btn btn-sm btn-primary" data-ng-click="downloadFile(file_resources.key)">
+          <i class="fas fa-file-export"></i>
+          <span data-translate>Download</span>
+        </button>
         <span data-ng-if="tls_config.files.key.set">
           <button id="deleteKey" class="btn btn-sm btn-danger" data-ng-click="deleteFile(file_resources.key)">
             <i class="fas fa-times"></i>
