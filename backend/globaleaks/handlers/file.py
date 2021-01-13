@@ -51,8 +51,7 @@ class FileHandler(BaseHandler):
             if not x and name == 'logo':
                 x = b'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
 
-            x = base64.b64decode(x)
-            returnValue(x)
+            returnValue(base64.b64decode(x))
         else:
             id = yield get_file_id(self.request.tid, name)
             path = os.path.abspath(os.path.join(self.state.settings.files_path, id))

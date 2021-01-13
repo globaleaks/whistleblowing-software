@@ -534,16 +534,16 @@ var GL = angular.module("GL", [
     $rootScope.errors = [];
 
     _flowFactoryProvider.defaults = {
-        chunkSize: 1000 * 1024,
-        forceChunkSize: true,
-        testChunks: false,
-        simultaneousUploads: 1,
-        generateUniqueIdentifier: function () {
-          return Math.random() * 1000000 + 1000000;
-        },
-        headers: function() {
-          return $rootScope.Authentication.get_headers();
-        }
+      chunkSize: 1000 * 1024,
+      forceChunkSize: true,
+      testChunks: false,
+      simultaneousUploads: 1,
+      generateUniqueIdentifier: function () {
+        return Math.random() * 1000000 + 1000000;
+      },
+      headers: function() {
+        return $rootScope.Authentication.get_headers();
+      }
     };
 
     $rootScope.setPage = function(page) {
