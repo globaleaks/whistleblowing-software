@@ -9,6 +9,7 @@ from sqlalchemy.sql.expression import func
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
+from globaleaks.db import compact_db
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.rtip import db_delete_itips
@@ -135,3 +136,5 @@ class Cleaning(DailyJob):
         self.perform_secure_deletion_of_attachments(valid_files)
 
         self.perform_secure_deletion_of_temporary_files()
+
+        compact_db()

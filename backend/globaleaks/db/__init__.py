@@ -49,8 +49,15 @@ def create_db():
     engine.execute('PRAGMA foreign_keys = ON')
     engine.execute('PRAGMA secure_delete = ON')
     engine.execute('PRAGMA auto_vacuum = FULL')
-
     Base.metadata.create_all(engine)
+
+
+def compact_db():
+    """
+    Execute VACUUM command to deallocate database space
+    """
+    engine = get_engine()
+    engine.execute('VACUUM')
 
 
 @transact_sync
