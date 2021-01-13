@@ -35,9 +35,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr data-ng-repeat="redirect in resources.redirects | orderBy:'path2'" data-ng-controller="AdminRedirectEditCtrl">
+        <tr data-ng-repeat="redirect in resources.redirects | orderBy:'path1'" data-ng-controller="AdminRedirectEditCtrl">
+          <td>{{redirect.path1}}</td>
           <td>{{redirect.path2}}</td>
-          <td>{{redirect.path3}}</td>
           <td>
             <button class="btn btn-sm btn-danger"
                     data-ng-click="delete_redirect(redirect)">
