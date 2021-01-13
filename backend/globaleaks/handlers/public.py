@@ -279,6 +279,7 @@ def db_serialize_node(session, tid, language):
             ret['onionservice'] = ret['subdomain'] + '.' + root_tenant_node.get_val('onionservice')
 
         if ret['mode'] not in ['default', 'demo']:
+            ret['disable_privacy_badge'] = root_tenant_node.get_val('disable_privacy_badge')
             ret['footer'] = root_tenant_l10n.get_val('footer', language)
             ret['whistleblowing_question'] = root_tenant_l10n.get_val('whistleblowing_question', language)
             ret['whistleblowing_button'] = root_tenant_l10n.get_val('whistleblowing_button', language)
