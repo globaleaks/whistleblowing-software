@@ -80,7 +80,8 @@ def signup(session, request, language):
 
     db_del(session, models.Tenant, models.Tenant.id.in_(subquery))
 
-    tenant = db_create_tenant(session, {'name': request['subdomain'],
+    tenant = db_create_tenant(session, {'active': False,
+                                        'name': request['subdomain'],
                                         'subdomain': request['subdomain'],
                                         'mode': config.get_val('mode')})
 
@@ -146,6 +147,8 @@ def signup_activation(session, token, hostname, language):
         return {}
 
     signup, tenant = ret[0], ret[1]
+
+    tenant.active = True
 
     signup.activation_token = None
 

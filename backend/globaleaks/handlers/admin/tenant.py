@@ -8,7 +8,7 @@ from globaleaks.db.appdata import load_appdata, db_load_defaults
 from globaleaks.handlers.admin import file
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import db_set_config_variable, ConfigFactory
-from globaleaks.orm import db_del, db_get, transact, tw
+from globaleaks.orm import db_del, db_get, transact
 from globaleaks.rest import requests
 from globaleaks.settings import Settings
 from globaleaks.utils.log import log
@@ -50,6 +50,8 @@ def db_initialize_tenant_submission_statuses(session, tid):
 
 def db_create(session, desc):
     t = models.Tenant()
+
+    t.active = desc['active']
 
     session.add(t)
 
@@ -106,14 +108,23 @@ def get(session, tid):
 
 @transact
 def update(session, tid, request):
-    tenant = db_get(session, models.Tenant, models.Tenant.id == tid)
+    t = db_get(session, models.Tenant, models.Tenant.id == tid)
 
-    tenant.active = request['active']
+    t.active = request['active']
 
     for var in ['mode', 'name', 'subdomain']:
         db_set_config_variable(session, tid, var, request[var])
 
-    return serialize_tenant(session, tenant)
+    db_refresh_memory_variables(session, [t.id])
+
+    return serialize_tenant(session, t)
+
+
+@transact
+def delete(session, tid):
+    db_del(session, models.Tenant, models.Tenant.id == tid)
+    db_refresh_memory_variables(session, [tid])
+
 
 
 class TenantCollection(BaseHandler):
@@ -132,9 +143,8 @@ class TenantCollection(BaseHandler):
         """
         Create a new tenant
         """
-        request = self.validate_message(self.request.content.read(), requests.AdminTenantDesc)
-
-        log.info('Creating new tenant', tid=self.request.tid)
+        request = self.validate_message(self.request.content.read(),
+                                        requests.AdminTenantDesc)
 
         return create(request)
 
@@ -145,28 +155,26 @@ class TenantInstance(BaseHandler):
     invalidate_cache = True
     refresh_connection_endpoints = True
 
-    def get(self, tenant_id):
-        tenant_id = int(tenant_id)
+    def get(self, tid):
+        tid = int(tid)
 
-        return get(tenant_id)
+        return get(tid)
 
-    def put(self, tenant_id):
+    def put(self, tid):
         """
         Update the specified tenant.
         """
-        tenant_id = int(tenant_id)
+        tid = int(tid)
 
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminTenantDesc)
 
-        return update(tenant_id, request)
+        return update(int(tid), request)
 
-    def delete(self, tenant_id):
+    def delete(self, tid):
         """
         Delete the specified tenant.
         """
-        tenant_id = int(tenant_id)
+        tid = int(tid)
 
-        log.info('Removing tenant with id: %d', tenant_id, tid=self.request.tid)
-
-        return tw(db_del, models.Tenant, models.Tenant.id == tenant_id)
+        return delete(tid)

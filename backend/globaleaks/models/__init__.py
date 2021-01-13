@@ -1064,7 +1064,7 @@ class _Tenant(Model):
 
     id = Column(Integer, primary_key=True, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    active = Column(Boolean, default=True, nullable=False)
+    active = Column(Boolean, default=False, nullable=False)
 
     bool_keys = ['active']
 
