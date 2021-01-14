@@ -1,6 +1,6 @@
-=====================
-Setup Dev Environment
-=====================
+=======================
+Development Environment
+=======================
 This guide will help you set up an environment in order to contribute to the development of GlobaLeaks
 
 Requirements
