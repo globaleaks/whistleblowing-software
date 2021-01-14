@@ -272,9 +272,9 @@
       "integrity": "sha512-zO6jNvz41oMOJj9+1N+vLT0ytitbCtuGABJQRzQDOPXyRMmlSXfJ7om5oYOztyUFrr4jDpE4QFPt+r2/RFceCg=="
     },
     "@fortawesome/fontawesome-free": {
-      "version": "5.15.1",
-      "resolved": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-5.15.1.tgz",
-      "integrity": "sha512-OEdH7SyC1suTdhBGW91/zBfR6qaIhThbcN8PUXtXilY4GYnSBbVqOntdHbC1vXwsDnX0Qix2m2+DSU1J51ybOQ=="
+      "version": "5.15.2",
+      "resolved": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-5.15.2.tgz",
+      "integrity": "sha512-7l/AX41m609L/EXI9EKH3Vs3v0iA8tKlIOGtw+kgcoanI7p+e4I4GYLqW3UXWiTnjSFymKSmTTPKYrivzbxxqA=="
     },
     "@istanbuljs/load-nyc-config": {
       "version": "1.1.0",
@@ -573,27 +573,27 @@
       "integrity": "sha512-OB6Goa+QN3byf5asQ7XRl7DKZejm/F/ZOqa9z1skqYVOWA2hoBxoCmt9E7+i7T/TbxZP5zYzKxNZVVJNu860Hg=="
     },
     "angular-translate": {
-      "version": "2.18.3",
-      "resolved": "https://registry.npmjs.org/angular-translate/-/angular-translate-2.18.3.tgz",
-      "integrity": "sha512-ziEi1nTaNIsdn3iKpcALaSFjM9CjwvoIWE/EKepajB/6qT5oB3K1IU5VcaH7Bd0scNRfaJpW+qUD6nsHWDEZ6A==",
+      "version": "2.18.4",
+      "resolved": "https://registry.npmjs.org/angular-translate/-/angular-translate-2.18.4.tgz",
+      "integrity": "sha512-KohNrkH6J9PK+VW0L/nsRTcg5Fw70Ajwwe3Jbfm54Pf9u9Fd+wuingoKv+h45mKf38eT+Ouu51FPua8VmZNoCw==",
       "requires": {
         "angular": "^1.8.0"
       }
     },
     "angular-translate-loader-static-files": {
-      "version": "2.18.3",
-      "resolved": "https://registry.npmjs.org/angular-translate-loader-static-files/-/angular-translate-loader-static-files-2.18.3.tgz",
-      "integrity": "sha512-B5hD7aWjFr2TZ6YTnmoTFSscI+eDOXSi3GksyTvtqs4cPZI2lgnO38/Pm1gfN1wpUQcs2Rm/V+z8n58TERZyBQ==",
+      "version": "2.18.4",
+      "resolved": "https://registry.npmjs.org/angular-translate-loader-static-files/-/angular-translate-loader-static-files-2.18.4.tgz",
+      "integrity": "sha512-/UFIuyDLyHUsWS523K1jIW96kOCdEPHUAEFnqcRf0PsXOpp9PR6NH7j5NEV4QImPhdjtvFwHDa2VpBgUDRJcxw==",
       "requires": {
-        "angular-translate": "~2.18.3"
+        "angular-translate": "~2.18.4"
       }
     },
     "angular-translate-loader-url": {
-      "version": "2.18.3",
-      "resolved": "https://registry.npmjs.org/angular-translate-loader-url/-/angular-translate-loader-url-2.18.3.tgz",
-      "integrity": "sha512-5nQZgW2zwPitZ9LUYjQwrYzH/9m3dBrZy11lMyF9SMkFMZPKzo56byIQVRfmKcJ3RpAI92liViecIW4nQgwb8A==",
+      "version": "2.18.4",
+      "resolved": "https://registry.npmjs.org/angular-translate-loader-url/-/angular-translate-loader-url-2.18.4.tgz",
+      "integrity": "sha512-WPlZ25GFQ7gBLsA4JkTIHB7HntqmeaED82Pn73f3d3YYSkVEiZMAyb7+r1v5TalGD9SFZJRp+bjYHS3MWH1qvg==",
       "requires": {
-        "angular-translate": "~2.18.3"
+        "angular-translate": "~2.18.4"
       }
     },
     "ansi-align": {
