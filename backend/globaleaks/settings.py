@@ -35,7 +35,6 @@ class SettingsClass(object, metaclass=Singleton):
         self.src_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         self.backend_script = os.path.abspath(os.path.join(self.src_path, 'globaleaks/backend.py'))
 
-        self.pid_path = '/var/run/'
         self.working_path = '/var/globaleaks'
 
         self.authentication_lifetime = 3600
@@ -99,7 +98,7 @@ class SettingsClass(object, metaclass=Singleton):
         self.enable_api_cache = True
 
     def eval_paths(self):
-        self.pidfile_path = os.path.join(self.pid_path, 'globaleaks.pid')
+        self.pidfile_path = os.path.join(self.working_path, 'globaleaks.pid')
         self.files_path = os.path.abspath(os.path.join(self.working_path, 'files'))
 
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
@@ -135,7 +134,6 @@ class SettingsClass(object, metaclass=Singleton):
         self.devel_mode = True
         self.key_bits = 1024
         self.acme_directory_url = 'https://acme-staging-v02.api.letsencrypt.org/directory'
-        self.pid_path = os.path.join(self.src_path, 'workingdir')
         self.working_path = os.path.join(self.src_path, 'workingdir')
 
     def load_cmdline_options(self, options):
