@@ -65,8 +65,6 @@ do
 done
 
 if [ $ERR -ne 0 ]; then
-  echo "Error: Found ${ERR} unmet requirements"
-  echo "Information on how to setup globaleaks development environment at: https://github.com/globaleaks/GlobaLeaks/wiki/setting-up-globaleaks-development-environment"
   exit 1
 fi
 
