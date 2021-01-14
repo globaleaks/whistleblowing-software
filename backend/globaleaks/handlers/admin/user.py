@@ -38,7 +38,7 @@ def db_create_user(session, tid, request, language):
 
     user.salt = GCE.generate_salt()
 
-    user.language = State.tenant_cache[tid].default_language
+    user.language = request['language']
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
