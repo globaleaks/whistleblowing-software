@@ -1,19 +1,21 @@
+=================
 Release Procedure
 =================
-# Release procedure
+This is the procedure followed to publish a new GlobaLeaks release.
 
-This is the procedure followed to release a new GlobaLeaks release
-
-Changelog and Tag the Release
------------------------------
 A release is represented by:
 
-* A version bump on files: backend/globaleaks/__init__.py, client/packages.json, client/npm-shrinkwrap.json
-* An updated changelog in: CHANGELOG and debian/changelog
-* A commit "Bump to verson $number"
-* A tag commit $version signed by a core developer with its own key
+* A version bump;
+* An updated CHANGELOG;
+* A commit titled "Bump to verson $number";
+* A tag commit $version signed by a core developer with its own key;
+* An updated package on deb.globaleaks.org;
+* A signed repository
 
-The tag commit is is issued via:
+Release Tagging
+===============
+The release is represented by a tag commit on Github performed via:
+
 .. code:: sh
 
   export DEBFULLNAME="GlobaLeaks software signing key"
@@ -24,9 +26,9 @@ The tag commit is is issued via:
   git tag -s v0.1 -m 'GlobaLeaks version 0.1'
   git push origin --tags
 
-Build the Release
------------------
-The release is built by means of the official official build script by issuing:
+Release Packaging
+=================
+The package is built by means of the official official build script by issuing:
 
 .. code:: sh
 
@@ -34,15 +36,18 @@ The release is built by means of the official official build script by issuing:
 
 This command builds a package for each supported distribution and version.
 
-Publishing of the Release
--------------------------
+Package Publishing
+==================
 The package is published on deb.globalekas.org by issuing:
 
 .. code:: sh
 
   dput globaleaks ../globaleaks_${version}_all.changes
 
-Signing of the Release
-----------------------
+Repository Signing
+==================
 The release is then signed by a core developer by using the official project key via:
+
+.. code:: sh
+
   gpg --detach-sign --digest-algo SHA512 -o Release.gpg Release

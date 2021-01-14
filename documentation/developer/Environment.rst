@@ -1,11 +1,11 @@
 =======================
 Development Environment
 =======================
-This guide will help you set up an environment in order to contribute to the development of GlobaLeaks
+This guide describe how to set up an environment in order to contribute to the development of GlobaLeaks.
 
 Requirements
 ============
-This guide assumes you run a Debian based system and that the following software is installed on your system:
+The guide assumes you run a Debian based system and that the following software is installed on your system:
 
 * debhelper
 * devscripts
@@ -24,7 +24,7 @@ This guide assumes you run a Debian based system and that the following software
 
 Setup
 =====
-The repositoty could be cloned with:
+The repository could be cloned with:
 
 .. code:: sh
 
@@ -72,16 +72,14 @@ Setup the backend and its dependencies:
   source glenv/bin/activate
   pip3 install -r requirements.txt
 
-
 Run
 ===
 To run globaleaks from sources within the development environment you should issue:
 
-..code:: sh
+.. code:: sh
 
   cd GlobaLeaks/backend
   source ./env/bin/activate
   ./bin/globaleaks -z -n
-
 
 GlobaLeaks will start and be reachable at the following address http://127.0.0.1:8082
