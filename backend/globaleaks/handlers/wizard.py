@@ -151,6 +151,9 @@ def db_wizard(session, tid, hostname, request):
         node.set_val('hostname', node.get_val('subdomain') + '.' + root_tenant_node.get_val('rootdomain'))
         node.set_val('tor', False)
 
+        admin_user.password_change_needed = True
+        receiver_user.password_change_needed = True
+
     if mode in ['whistleblowing.it', 'eat']:
         for varname in ['can_delete_submission',
                         'can_postpone_expiration',
