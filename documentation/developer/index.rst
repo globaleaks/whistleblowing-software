@@ -5,4 +5,5 @@ Developer Documentation
     Environment.rst
     SoftwareLibraries.rst
     ReleaseProcedure.rst
+    ContinousIntegration.rst
     CodeDocumentation.rst
