@@ -31,47 +31,52 @@ class TestSignup(helpers.TestHandler):
 class TestSignupActivation(helpers.TestHandler):
     _handler = signup.SignupActivation
 
+    @inlineCallbacks
+    def _signup(self, mode):
+        yield tw(db_set_config_variable, 1, 'enable_signup', True)
+        yield tw(db_set_config_variable, 1, 'mode', mode)
+
+        yield self.test_model_count(models.User, 0)
+
+        self._handler = signup.Signup
+        handler = self.request(self.dummySignup)
+        yield handler.post()
+
+        self._handler = signup.SignupActivation
+        handler = self.request(self.dummySignup)
+        token = yield get_signup_token()
+        yield handler.get(token)
+
     def test_get_with_signup_disabled(self):
         handler = self.request(self.dummySignup)
         return self.assertFailure(handler.get(u'valid_or_invalid'), errors.ForbiddenOperation)
 
     @inlineCallbacks
-    def test_get_with_valid_activation_token_mode_default(self):
-        yield tw(db_set_config_variable, 1, 'enable_signup', True)
-
-        yield self.test_model_count(models.User, 0)
-
-        self._handler = signup.Signup
-        handler = self.request(self.dummySignup)
-        yield handler.post()
-
-        self._handler = signup.SignupActivation
-        handler = self.request(self.dummySignup)
-        token = yield get_signup_token()
-        yield handler.get(token)
+    def test_valid_signup_in_default_mode(self):
+        yield self._signup('default')
 
         yield self.test_model_count(models.User, 2)
 
     @inlineCallbacks
-    def test_get_with_valid_activation_token_mode_whistleblowing_it(self):
-        yield tw(db_set_config_variable, 1, 'enable_signup', True)
+    def test_valid_signup_in_demo_mode(self):
+        yield self._signup('demo')
 
-        yield tw(db_set_config_variable, 1, 'mode', 'whistleblowing.it')
+        yield self.test_model_count(models.User, 2)
 
-        yield self.test_model_count(models.User, 0)
+    @inlineCallbacks
+    def test_valid_signup_in_wbpa_mode(self):
+        yield self._signup('whistleblowing.it')
 
-        self._handler = signup.Signup
-        handler = self.request(self.dummySignup)
-        yield handler.post()
-
-        self._handler = signup.SignupActivation
-        handler = self.request(self.dummySignup)
-        token = yield get_signup_token()
-        yield handler.get(token)
         yield self.test_model_count(models.User, 1)
 
     @inlineCallbacks
-    def test_get_with_invalid_activation_token(self):
+    def test_valid_signup_in_eat_mode(self):
+        yield self._signup('eat')
+
+        yield self.test_model_count(models.User, 1)
+
+    @inlineCallbacks
+    def test_invalid_signup_with_invalid_activation_token(self):
         yield tw(db_set_config_variable, 1, 'enable_signup', True)
 
         handler = self.request(self.dummySignup)
