@@ -10,7 +10,7 @@ A release is represented by:
 * A commit titled "Bump to verson $number";
 * A tag commit $version signed by a core developer with its own key;
 * An updated package on deb.globaleaks.org;
-* A signed repository
+* A signed repository.
 
 Release Tagging
 ===============
