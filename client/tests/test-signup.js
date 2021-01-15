@@ -2,8 +2,9 @@ describe("admin enable signup", function() {
   it("should enable signup", async function() {
     await browser.gl.utils.login_admin();
     await browser.setLocation("admin/sites");
+    await element(by.cssContainingText("a", "Options")).click();
     await element(by.model("resources.node.enable_signup")).click();
-    await element.all(by.cssContainingText("button", "Save")).get(0).click();
+    await element.all(by.cssContainingText("button", "Save")).last().click();
   });
 });
 
@@ -25,8 +26,8 @@ describe("admin disable signup", function() {
   it("should disable signup", async function() {
     await browser.gl.utils.login_admin();
     await browser.setLocation("admin/sites");
+    await element(by.cssContainingText("a", "Options")).click();
     await element(by.model("resources.node.enable_signup")).click();
-    await browser.sleep(3000);
-    await element.all(by.cssContainingText("button", "Save")).get(0).click();
+    await element.all(by.cssContainingText("button", "Save")).last().click();
   });
 });

@@ -2,11 +2,11 @@ angular.module("GL")
 .controller("TenantCtrl", ["$scope", function($scope) {
   $scope.tabs = [
     {
-      title:"Main configuration",
+      title:"Sites",
       template:"views/admin/sites/tab1.html"
     },
     {
-      title:"Sites",
+      title:"Options",
       template:"views/admin/sites/tab2.html"
     },
   ];
