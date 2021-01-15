@@ -1,10 +1,10 @@
 name: GlobaLeaks
-releaseDate: '2021-01-13'
+releaseDate: '2021-01-15'
 publiccodeYmlVersion: '0.2'
 url: 'https://github.com/globaleaks/GlobaLeaks'
 landingURL: 'https://www.globaleaks.org/'
 logo: brand/assets/globaleaks-icon-color.svg
-softwareVersion: 4.1.11
+softwareVersion: 4.1.12
 softwareType: standalone/web
 developmentStatus: stable
 platforms:
@@ -102,7 +102,7 @@ description:
       software is customizable up to own needs and protects the whistleblower's
       privacy and submissions. GlobaLeaks targets many use cases and therefore
       it has been designed as a framework. Designed with flexibility in mind,
-      GlobaLeaks is nowadays adopted worldwide by more than 2000 projects.
+      GlobaLeaks is nowadays adopted worldwide by more than 3000 projects.
       The vast range of adopters includes independent media, activists, public
       agencies, corporations and more.
       
@@ -189,7 +189,7 @@ description:
       personalizzabile in base alle proprie esigenze e protegge la privacy e le comunicazioni
       dei segnalanti. GlobaLeaks si rivolge a molti casi d'uso e quindi è stato progettato
       come un framework. Progettato pensando alla flessibilità, GlobaLeaks è oggi adottato
-      in tutto il mondo da oltre 2000 progetti. La nostra vasta gamma di utenti comprende
+      in tutto il mondo da oltre 3000 progetti. La nostra vasta gamma di utenti comprende
       media indipendenti, attivisti, agenzie pubbliche, società e altro.
     features:
       - "Sistema multiutente con ruoli utente personalizzabili (segnalante, ricevente, amministratore)"
