@@ -1,6 +1,10 @@
-<p align="center">
-  <img src="/brand/assets/globaleaks-logo-color.png" width="400">
-</p>
+<div align="center">
+ <a href="https://www.globaleaks.org"><img src="/brand/assets/globaleaks-logo-color.png" width="400"></a>
+</div>
+
+<div align="center">
+  <a href="https://twitter.com/intent/follow?screen_name=GlobaLeaks"><img src="https://img.shields.io/twitter/follow/GlobaLeaks?style=social&logo=twitter" alt="follow on Twitter"></a>
+</div>
 
 [GlobaLeaks](https://www.globaleaks.org/) is free, open souce software enabling anyone to easily set up and maintain a secure whistleblowing platform.
 
