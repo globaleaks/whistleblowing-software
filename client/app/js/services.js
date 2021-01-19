@@ -658,7 +658,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       field.multi_entry_hint = "";
       field.required = false;
       field.preview = false;
-      field.encrypt = true;
       field.attrs = {};
       field.options = [];
       field.x = 0;
@@ -688,7 +687,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       field.multi_entry_hint = "";
       field.required = false;
       field.preview = false;
-      field.encrypt = false;
       field.attrs = {};
       field.options = [];
       field.x = 0;
