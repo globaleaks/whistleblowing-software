@@ -873,21 +873,6 @@ class _Subscriber(Model):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
-class _SubscribedDocument(Model):
-    __tablename__ = 'subscriberdocument'
-
-    id = Column(Integer, primary_key=True)
-    sid = Column(Integer, nullable=False)
-    date = Column(DateTime, default=datetime_now, nullable=False)
-    type = Column(UnicodeText, unique=True, nullable=False)
-    client_ip_address = Column(UnicodeText, nullable=False)
-    client_user_agent = Column(UnicodeText, nullable=False)
-
-    @declared_attr
-    def __table_args__(self):
-        return (ForeignKeyConstraint(['sid'], ['subscriber.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
-
-
 class _Redirect(Model):
     """
     Class used to implement url redirects
@@ -1253,10 +1238,6 @@ class Redirect(_Redirect, Base):
 
 
 class Subscriber(_Subscriber, Base):
-    pass
-
-
-class SubscribedDocument(_SubscribedDocument, Base):
     pass
 
 
