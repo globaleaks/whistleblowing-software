@@ -1,6 +1,7 @@
 # -*- coding: utf-8
 #
 # Handlers dealing with user preferences
+import os
 import pyotp
 
 from nacl.encoding import Base32Encoder, Base64Encoder
@@ -8,7 +9,6 @@ from nacl.encoding import Base32Encoder, Base64Encoder
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
-from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.models import get_localized_values
@@ -91,7 +91,7 @@ def user_serialize_user(session, user, language):
     :param session: the session on which perform queries.
     :return: a serialization of the object
     """
-    picture = db_get_model_img(session, 'users', user.id)
+    picture = os.path.exists(os.path.join(State.settings.files_path, user.id))
 
     # take only contexts for the current tenant
     contexts = [x[0] for x in session.query(models.ReceiverContext.context_id)

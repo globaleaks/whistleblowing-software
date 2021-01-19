@@ -1,6 +1,5 @@
 # -*- coding: utf-8
 from globaleaks import models
-from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.models import fill_localized_keys, get_localized_values
@@ -21,7 +20,7 @@ def admin_serialize_context(session, context, language):
                                       .filter(models.ReceiverContext.context_id == context.id)
                                       .order_by(models.ReceiverContext.order)]
 
-    picture = db_get_model_img(session, 'contexts', context.id)
+    picture = ''
 
     ret = {
         'id': context.id,

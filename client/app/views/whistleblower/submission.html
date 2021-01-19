@@ -3,7 +3,7 @@
   <div data-ng-if="selectable_contexts.length > 1 || context_id">
     <div class="title">{{submission.context.name}}</div>
     <div class="row">
-      <div class="col-md-2" data-ng-if="submission.context.picture"><img class="contextImg" alt="context picture" data-ng-src="{{Utils.imgDataUri(submission.context.picture)}}" /></div>
+      <div class="col-md-2" data-ng-if="submission.context.picture"><img class="contextImg" alt="context picture" data-ng-src="/s/{{submission.context.id}}" /></div>
     </div>
   </div>
   <form id="SubmissionForm" name="vars.submissionForm" autocomplete="off" novalidate data-ng-class="{'was-validated': displayErrors()}">

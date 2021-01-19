@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from sqlalchemy.orm.exc import NoResultFound
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import file
 from globaleaks.handlers.admin import file as admin_file
+from globaleaks.rest.errors import ResourceNotFound
 from globaleaks.tests import helpers
-from twisted.internet.defer import inlineCallbacks
 
 
 class TestFileInstance(helpers.TestHandler):
@@ -13,7 +13,7 @@ class TestFileInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_post(self):
         handler = self.request()
-        yield self.assertFailure(handler.get(u'upload.raw'), NoResultFound)
+        yield self.assertFailure(handler.get(u'custom'), ResourceNotFound)
 
         self._handler = admin_file.FileInstance
         handler = self.request({}, role='admin')
@@ -21,6 +21,6 @@ class TestFileInstance(helpers.TestHandler):
 
         self._handler = file.FileHandler
         handler = self.request()
-        x = yield handler.get(u'upload.raw')
+        x = yield handler.get(u'uploadfile')
 
         self.assertIsNone(x)

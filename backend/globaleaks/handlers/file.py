@@ -3,14 +3,15 @@
 # Handlers exposing customization files
 import base64
 import os
+import re
 
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
-from globaleaks.handlers.admin.file import db_get_file
+from globaleaks.handlers.admin.file import get_file_id_by_name, special_files
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import db_get, transact, tw
-
+from globaleaks.rest.requests import uuid_regexp
 
 appfiles = {
     'favicon': 'image/x-icon',
@@ -19,20 +20,6 @@ appfiles = {
     'script': 'application/javascript'
 }
 
-
-@transact
-def get_file_id(session, tid, name):
-    """
-    Transaction returning a file ID given the file name
-
-    :param session: An ORM session
-    :param tid: A tenant on which performing the lookup
-    :param name: A file name
-    :return: A result model
-    """
-    return db_get(session, models.File.id, (models.File.tid == tid, models.File.name == name))[0]
-
-
 class FileHandler(BaseHandler):
     """
     Handler that provide public access to configuration files
@@ -40,19 +27,12 @@ class FileHandler(BaseHandler):
     check_roles = 'any'
 
     @inlineCallbacks
-    def get(self, name):
-        if name in appfiles:
-            x = yield tw(db_get_file, self.request.tid, name)
-            if not x and self.state.tenant_cache[self.request.tid]['mode'] != 'default':
-                x = yield tw(db_get_file, 1, name)
+    def get(self, id):
+        if id in appfiles:
+            self.request.setHeader(b'Content-Type', appfiles[id])
 
-            self.request.setHeader(b'Content-Type', appfiles[name])
+        if not re.match(uuid_regexp, id):
+            id = yield get_file_id_by_name(self.request.tid, id)
 
-            if not x and name == 'logo':
-                x = b'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
-
-            returnValue(base64.b64decode(x))
-        else:
-            id = yield get_file_id(self.request.tid, name)
-            path = os.path.abspath(os.path.join(self.state.settings.files_path, id))
-            yield self.write_file(name, path)
+        path = os.path.abspath(os.path.join(self.state.settings.files_path, id))
+        yield self.write_file(path, path)

@@ -99,13 +99,28 @@ class Cleaning(DailyJob):
         db_del(session, models.Tenant, models.Tenant.id.in_(subquery))
 
     @transact
+    def get_files_list(self, session):
+        return [x[0] for x in db_query(session, models.File.id)]
+
+    @transact
     def get_attachments_list(self, session):
         return [x[0] for x in db_query(session, models.InternalFile.filename)] + \
                [x[0] for x in db_query(session, models.ReceiverFile.filename)] + \
                [x[0] for x in db_query(session, models.WhistleblowerFile.filename)]
 
+    def perform_secure_deletion_of_files(self, valid_files):
+        # Delete the customization files not associated to the database
+        for f in os.listdir(self.state.settings.files_path):
+            if f in valid_files:
+                continue
+
+            path = os.path.join(self.state.settings.files_path, f)
+            timestamp = datetime.fromtimestamp(os.path.getmtime(path))
+            if is_expired(timestamp, days=1):
+                overwrite_and_remove(path)
+
     def perform_secure_deletion_of_attachments(self, valid_files):
-        # Delete the attachment files associated to deleted tips
+        # Delete the attachment files not associated to the database
         for f in os.listdir(self.state.settings.attachments_path):
             if f in valid_files:
                 continue
@@ -130,8 +145,10 @@ class Cleaning(DailyJob):
         for tid in self.state.tenant_state:
             yield tw(self.db_check_for_expiring_submissions, tid)
 
-        valid_files = yield self.get_attachments_list()
+        valid_files = yield self.get_files_list()
+        self.perform_secure_deletion_of_files(valid_files)
 
+        valid_files = yield self.get_attachments_list()
         self.perform_secure_deletion_of_attachments(valid_files)
 
         self.perform_secure_deletion_of_temporary_files()

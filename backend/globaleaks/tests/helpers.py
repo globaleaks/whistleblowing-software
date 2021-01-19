@@ -1012,7 +1012,7 @@ class TestHandler(TestGLWithPopulatedDB):
             handler.request.headers[b'x-session'] = session.id.encode()
 
         if handler.upload_handler:
-            handler.uploaded_file = self.get_dummy_file(u'upload.raw', attached_file)
+            handler.uploaded_file = self.get_dummy_file(u'uploadfile', attached_file)
 
         return handler
 

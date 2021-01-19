@@ -55,6 +55,7 @@ from globaleaks.db.migrations.update_52 import Context_v_51, \
 from globaleaks.db.migrations.update_53 import InternalTip_v_52, \
     ReceiverTip_v_52, Subscriber_v_52, \
     Tenant_v_52, User_v_52
+from globaleaks.db.migrations.update_54 import ContextImg_v_53, File_v_53, UserImg_v_53
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base

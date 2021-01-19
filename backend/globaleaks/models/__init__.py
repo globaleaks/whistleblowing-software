@@ -397,22 +397,6 @@ class _Context(Model):
                 CheckConstraint(self.status.in_(EnumContextStatus.keys())))
 
 
-class _ContextImg(Model):
-    """
-    Class used for storing context pictures
-    """
-    __tablename__ = 'contextimg'
-
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    data = Column(UnicodeText, nullable=False)
-
-    unicode_keys = ['data']
-
-    @declared_attr
-    def __table_args__(self):
-        return (ForeignKeyConstraint(['id'], ['context.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
-
-
 class _CustomTexts(Model):
     """
     Class used to implement custom texts
@@ -607,16 +591,16 @@ class _File(Model):
     """
     __tablename__ = 'file'
 
-    tid = Column(Integer, primary_key=True, default=1)
+    tid = Column(Integer, default=1)
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     name = Column(UnicodeText, default='', nullable=False)
-    data = Column(UnicodeText, nullable=False)
 
-    unicode_keys = ['data', 'name']
+    unicode_keys = ['name']
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+                UniqueConstraint('tid', 'name'))
 
 
 class _AuditLog(Model):
@@ -928,7 +912,6 @@ class _SubscribedDocument(Model):
     sid = Column(Integer, nullable=False)
     date = Column(DateTime, default=datetime_now, nullable=False)
     type = Column(UnicodeText, unique=True, nullable=False)
-    file = Column(UnicodeText, unique=True, nullable=False)
     client_ip_address = Column(UnicodeText, nullable=False)
     client_user_agent = Column(UnicodeText, nullable=False)
 
@@ -1150,22 +1133,6 @@ class _User(Model):
                 CheckConstraint(self.state.in_(EnumUserState.keys())))
 
 
-class _UserImg(Model):
-    """
-    Class used for storing user pictures
-    """
-    __tablename__ = 'userimg'
-
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    data = Column(UnicodeText, nullable=False)
-
-    unicode_keys = ['data']
-
-    @declared_attr
-    def __table_args__(self):
-        return (ForeignKeyConstraint(['id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
-
-
 class _WhistleblowerFile(Model):
     """
     This models stores metadata of files uploaded by recipients intended to be
@@ -1234,10 +1201,6 @@ class ConfigL10N(_ConfigL10N, Base):
 
 
 class Context(_Context, Base):
-    pass
-
-
-class ContextImg(_ContextImg, Base):
     pass
 
 
@@ -1362,10 +1325,6 @@ class Tenant(_Tenant, Base):
 
 
 class User(_User, Base):
-    pass
-
-
-class UserImg(_UserImg, Base):
     pass
 
 

@@ -532,7 +532,7 @@ ContextDesc = {
     'enable_two_way_messages': bool,
     'enable_attachments': bool,
     'show_receivers_in_alphabetical_order': bool,
-    'picture': str
+    'picture': bool
 }
 
 ContextCollectionDesc = [ContextDesc]

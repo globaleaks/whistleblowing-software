@@ -37,7 +37,6 @@ from globaleaks.handlers.admin import field as admin_field
 from globaleaks.handlers.admin import file as admin_file
 from globaleaks.handlers.admin import https
 from globaleaks.handlers.admin import l10n as admin_l10n
-from globaleaks.handlers.admin import modelimgs as admin_modelimgs
 from globaleaks.handlers.admin import node as admin_node
 from globaleaks.handlers.admin import notification as admin_notification
 from globaleaks.handlers.admin import operation as admin_operation
@@ -118,7 +117,6 @@ api_spec = [
     (r'/api/admin/users/' + uuid_regexp, admin_user.UserInstance),
     (r'/api/admin/contexts', admin_context.ContextsCollection),
     (r'/api/admin/contexts/' + uuid_regexp, admin_context.ContextInstance),
-    (r'/api/admin/(users|contexts)/' + uuid_regexp + r'/img', admin_modelimgs.ModelImgInstance),
     (r'/api/admin/questionnaires', admin_questionnaire.QuestionnairesCollection),
     (r'/api/admin/questionnaires/duplicate', admin_questionnaire.QuestionnareDuplication),
     (r'/api/admin/questionnaires/' + key_regexp, admin_questionnaire.QuestionnaireInstance),
@@ -139,7 +137,6 @@ api_spec = [
     (r'/api/admin/auditlog/stats/(\d+)', admin_auditlog.StatsCollection),
     (r'/api/admin/auditlog/tips', admin_auditlog.TipsCollection),
     (r'/api/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
-    (r'/api/admin/files/(logo|favicon|css|script)', admin_file.FileInstance),
     (r'/api/admin/config', admin_operation.AdminOperationHandler),
     (r'/api/admin/config/tls', https.ConfigHandler),
     (r'/api/admin/config/tls/files/(csr)', https.CSRFileHandler),
