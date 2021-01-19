@@ -116,55 +116,6 @@ def db_serialize_archived_questionnaire_schema(questionnaire_schema, language):
     return questionnaire
 
 
-def db_save_plaintext_answers(session, tid, internaltip_id, entries, encryption, skip_encryption_fields=None):
-    if skip_encryption_fields is None:
-        skip_encryption_fields = {x[0]: True for x in session.query(models.Field.id).filter(models.Field.encrypt.is_(False))}
-
-    if encryption and not skip_encryption_fields:
-        return
-
-    ret = []
-
-    for key, value in entries.items():
-        if encryption:
-            if key != 'value' and key not in skip_encryption_fields:
-                continue
-
-        field_answer = models.FieldAnswer({
-            'tid': tid,
-            'internaltip_id': internaltip_id,
-            'key': key
-        })
-
-        session.add(field_answer)
-        session.flush()
-
-        if isinstance(value, list):
-            field_answer.value = ""
-            n = 0
-            for elem in value:
-                group = models.FieldAnswerGroup({
-                    'fieldanswer_id': field_answer.id,
-                    'number': n,
-                    'tid': tid,
-                })
-
-                session.add(group)
-                session.flush()
-
-                group_elems = db_save_plaintext_answers(session, tid, internaltip_id, elem, encryption, skip_encryption_fields)
-                for group_elem in group_elems:
-                    group_elem.fieldanswergroup_id = group.id
-
-                n += 1
-        else:
-            field_answer.value = value
-
-        ret.append(field_answer)
-
-    return ret
-
-
 def db_archive_questionnaire_schema(session, questionnaire):
     hash = str(sha256(json.dumps(questionnaire, sort_keys=True)))
     if session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == hash).count():
@@ -375,8 +326,6 @@ def db_create_submission(session, tid, request, token, client_using_tor):
         answers[whistleblower_identity.id] = ''
 
         db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi)
-
-    db_save_plaintext_answers(session, tid, itip.id, answers, crypto_is_available)
 
     if crypto_is_available:
         answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers, cls=JSONEncoder).encode())).decode()
