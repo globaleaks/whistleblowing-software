@@ -502,38 +502,6 @@ class _FieldAttr(Model):
         self.value = value
 
 
-class _FieldAnswer(Model):
-    __tablename__ = 'fieldanswer'
-
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    internaltip_id = Column(UnicodeText(36), nullable=True)
-    fieldanswergroup_id = Column(UnicodeText(36), nullable=True)
-    key = Column(UnicodeText, default='', nullable=False)
-    value = Column(UnicodeText, default='', nullable=False)
-
-    unicode_keys = ['internaltip_id', 'key', 'value']
-
-    @declared_attr
-    def __table_args__(self):
-        return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['fieldanswergroup_id'], ['fieldanswergroup.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
-
-
-class _FieldAnswerGroup(Model):
-    __tablename__ = 'fieldanswergroup'
-
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    number = Column(Integer, default=0, nullable=False)
-    fieldanswer_id = Column(UnicodeText(36), nullable=False)
-
-    unicode_keys = ['fieldanswer_id']
-    int_keys = ['number']
-
-    @declared_attr
-    def __table_args__(self):
-        return (ForeignKeyConstraint(['fieldanswer_id'], ['fieldanswer.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
-
-
 class _FieldOption(Model):
     __tablename__ = 'fieldoption'
 
@@ -1217,14 +1185,6 @@ class Field(_Field, Base):
 
 
 class FieldAttr(_FieldAttr, Base):
-    pass
-
-
-class FieldAnswer(_FieldAnswer, Base):
-    pass
-
-
-class FieldAnswerGroup(_FieldAnswerGroup, Base):
     pass
 
 

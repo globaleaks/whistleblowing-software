@@ -206,9 +206,9 @@ class MigrationScript(MigrationBase):
             answers_by_group[answer.fieldanswergroup_id].append(answer)
 
         if all_answers_ids:
-            for group in session.query(models.FieldAnswerGroup) \
-                    .filter(models.FieldAnswerGroup.fieldanswer_id.in_(all_answers_ids)) \
-                    .order_by(models.FieldAnswerGroup.number):
+            for group in session.query(self.model_from['FieldAnswerGroup']) \
+                    .filter(self.model_from['FieldAnswerGroup'].fieldanswer_id.in_(all_answers_ids)) \
+                    .order_by(self.model_from['FieldAnswerGroup'].number):
 
                 if group.fieldanswer_id not in groups_by_answer:
                     groups_by_answer[group.fieldanswer_id] = []

@@ -136,6 +136,15 @@ class FieldOption_v_38(Model):
     trigger_field = Column(UnicodeText)
 
 
+class FieldAnswer_v_38(Model):
+    __tablename__ = 'fieldanswer'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    internaltip_id = Column(UnicodeText(36), nullable=True)
+    fieldanswergroup_id = Column(UnicodeText(36), nullable=True)
+    key = Column(UnicodeText, default='', nullable=False)
+    value = Column(UnicodeText, default='', nullable=False)
+
+
 class FieldAnswerGroup_v_38(Model):
     __tablename__ = 'fieldanswergroup'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
