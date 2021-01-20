@@ -397,12 +397,7 @@ module.exports = function(grunt) {
           replacements: [
             {
               pattern: "<link rel=\"stylesheet\" href=\"css/styles.css\">",
-              replacement: ""
-            },
-            {
-              pattern: "<!-- PRELOAD -->\n",
-              replacement: "<link rel=\"preload\" href=\"css/styles.css\" as=\"style\" />" +
-                           "<link rel=\"preload\" href=\"js/scripts.js\" as=\"script\" />\n"
+              replacement: "<link rel=\"stylesheet\" href=\"css/styles.min.css\">"
             }
           ]
         }

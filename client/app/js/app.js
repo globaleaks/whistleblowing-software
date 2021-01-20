@@ -518,12 +518,6 @@ var GL = angular.module("GL", [
       function($rootScope, $http, $route, $routeParams, $window, $location, $filter, $translate, $uibModal, $templateCache, Authentication, PublicResource, Utils, AdminUtils, fieldUtilities, GLTranslate, Access) {
     $rootScope.started = false;
 
-    var script = document.createElement("link");
-    script.setAttribute("rel", "stylesheet");
-    script.setAttribute("type", "text/css");
-    script.setAttribute("href", "css/styles.css");
-    document.getElementsByTagName("head")[0].appendChild(script);
-
     $rootScope.Authentication = Authentication;
     $rootScope.GLTranslate = GLTranslate;
     $rootScope.Utils = Utils;
