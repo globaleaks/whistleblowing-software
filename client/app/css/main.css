@@ -129,8 +129,7 @@ a:hover.darklink {
 #ContentBox,
 #FooterBox,
 #DemoBadge,
-#PrivacyBadge,
-noscript {
+#PrivacyBadge {
   padding: 1rem;
 }
 

@@ -26,11 +26,6 @@
   </head>
 
   <body class="container-fluid d-flex flex-column" data-ng-class="{'block-user-input': showLoadingPanel}" data-flow-prevent-drop>
-    <noscript>
-      <h1>Error! :(</h1>
-      <p>Your browser is not running JavaScript that is required to use the <a href="https://www.globaleaks.org/">GlobaLeaks.</a></p>
-      <p>It's common believe that JavaScript and security don't sound well together, for this reason we suggest to use the <a href="https://www.torproject.org/download/download-easy.html.en">Tor Browser</a>.</p>
-    </noscript>
 
     <a class="skip-link d-none" href="#ContentBox"></a>
 
@@ -44,7 +39,7 @@
       <div data-ng-include="'views/partials/header.html'"></div>
       <div id="MessagesConsoleBox" data-ng-include="'views/partials/messageconsole.html'"></div>
       <div id="ContentBox">
-	<div class="row">
+        <div class="row">
           <nav data-ng-if="sidebar" id="Sidebar" class="col-md-2 flex-column" data-ng-include="sidebar"></nav>
           <main id="Content" data-ng-class="{'col-md-10': sidebar, 'col-md-12': !sidebar}" data-ng-view=""></main>
         </div>
@@ -114,5 +109,7 @@
     <script src="js/controllers/actions/forcedtwofactor.js"></script>
     <script src="js/controllers/passwordreset.js"></script>
     <!-- endbuild -->
+
+    <noscript>Error: JavaScript is not enabled.</noscript>
   </body>
 </html>
