@@ -508,7 +508,7 @@ class APIResourceWrapper(Resource):
 
         # Avoid information leakage via referrer
         # This header instruct the browser to never inject the Referrer header in any
-        # of the requests perfoemred by xhr and via click on user links
+        # of the requests performed by xhr and via click on user links
         request.setHeader(b'Referrer-Policy', b'no-referrer')
 
         # to avoid Robots spidering, indexing, caching

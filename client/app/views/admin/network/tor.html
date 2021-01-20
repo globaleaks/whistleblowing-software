@@ -18,11 +18,6 @@
     <form name="adminNetForm">
       <div class="row">
         <div class="col-md-12">
-          <div class="form-group">
-            <label data-translate>Tor Browser download link</label>
-            <input class="form-control" name="tb_download_link" type="url" data-ng-model="resources.node.tb_download_link" data-ng-pattern="https_regexp" data-ng-class="{'is-invalid': adminNetForm.tb_download_link.$error.pattern}">
-          </div>
-
           <div class="form-group" data-ng-if="resources.node.root_tenant">
             <input data-ng-model="resources.node.anonymize_outgoing_connections" type="checkbox">
             <label data-translate>Anonymize outgoing connections</label>

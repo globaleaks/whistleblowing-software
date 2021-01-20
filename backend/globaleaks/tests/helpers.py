@@ -303,7 +303,6 @@ class MockDict:
             'hostname': 'www.globaleaks.org',
             'onionservice': '',
             'rootdomain': 'antani.gov',
-            'tb_download_link': 'https://www.torproject.org/download/download',
             'email': 'email@dummy.net',
             'languages_supported': [],  # ignored
             'languages_enabled': ['it', 'en'],

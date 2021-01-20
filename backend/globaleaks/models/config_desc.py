@@ -76,8 +76,6 @@ ConfigDescriptor = {
 
     'rootdomain': Unicode(default=''),
 
-    'tb_download_link': Unicode(default='https://www.torproject.org/download/download-easy.html'),
-
     'default_language': Unicode(default='en'),
     'default_questionnaire': Unicode(default='default'),
 
@@ -167,7 +165,6 @@ ConfigFilters = {
         'hostname',
         'onionservice',
         'rootdomain',
-        'tb_download_link',
         'timezone',
         'default_language',
         'default_questionnaire',
