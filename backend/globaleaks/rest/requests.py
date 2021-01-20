@@ -228,7 +228,6 @@ AdminNodeDesc = {
     'can_postpone_expiration': bool,
     'can_delete_submission': bool,
     'allow_indexing': bool,
-    'cors_origins': str,
     'disable_privacy_badge': bool,
     'enable_receipt_hint': bool,
     'enable_ricochet_panel': bool,

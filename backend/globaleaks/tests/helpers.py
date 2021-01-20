@@ -318,7 +318,6 @@ class MockDict:
             'can_postpone_expiration': False,
             'can_delete_submission': False,
             'allow_indexing': False,
-            'cors_origins': '',
             'disable_submissions': False,
             'disable_privacy_badge': False,
             'enable_receipt_hint': False,

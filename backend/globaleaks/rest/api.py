@@ -278,7 +278,6 @@ class APIResourceWrapper(Resource):
         request.write(response.encode())
 
     def preprocess(self, request):
-        request.cors = False
         request.headers = request.getAllHeaders()
         request.hostname = request.getRequestHostname()
         request.port = request.getHost().port
@@ -455,25 +454,7 @@ class APIResourceWrapper(Resource):
     def set_headers(self, request):
         request.setHeader(b'Server', b'GlobaLeaks')
 
-        # CORS is enabled on user specified origins in order to make it
-        # possible to embed the whistleblowing platform within federated
-        # sites and try to implement history-free navigation of the platform.
-        origin = request.headers.get(b'origin', b'').decode()
-        if origin and \
-          State.tenant_cache[request.tid].cors_origins and \
-          origin in State.tenant_cache[request.tid].cors_origins.split(','):
-            request.cors = True
-            request.setHeader(b'Access-Control-Allow-Origin', origin)
-            request.setHeader(b'Access-Control-Allow-Headers', b'*')
-            request.setHeader(b'Access-Control-Allow-Methods', b'*')
-
-        # Still with the aim of reducing forensic traces of the access
-        # to the  whistleblowing platform, when it is accessed via a CORS
-        # request from within a federated news site GlobaLeaks does not
-        # include the HSTS header.
-        # This choice is intended to avoid to leave traces in the HSTS
-        # cache of the browwser.
-        if request.isSecure() and not request.cors:
+        if request.isSecure():
             if State.tenant_cache[request.tid].https_preload:
                 request.setHeader(b'Strict-Transport-Security',
                                   b'max-age=31536000; includeSubDomains; preload')
