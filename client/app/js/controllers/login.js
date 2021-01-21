@@ -1,5 +1,5 @@
-GL.controller("LoginCtrl", ["$scope", "$location", "$filter", "Sites",
-function($scope, $location, $filter, Sites) {
+GL.controller("LoginCtrl", ["$scope", "$location", "$filter",
+function($scope, $location, $filter) {
   $scope.loginData = {
     loginUsername: "",
     loginPassword: "",
@@ -32,36 +32,29 @@ function($scope, $location, $filter, Sites) {
   }
 
   if ($scope.public.node.root_tenant) {
-    Sites.query(function(result) {
-      $scope.vars = {
-        "site": null
-      };
-
-      $scope.sites = result;
-    });
+    $scope.vars = {
+      "site": null
+    };
 
     $scope.selectSite = function(item) {
       $scope.vars.site = item;
     };
 
-
     $scope.refreshSelectableSites = function(search) {
-      if (!$scope.sites) {
-        $scope.selectableSites = [];
+      $scope.selectableSites = [];
+
+      if (!$scope.public.sites) {
         return;
-      }
+      };
 
       search = search.toLowerCase();
 
-      var ret = $scope.sites;
-      ret = ret.filter(function(item) {
-        var text = item.label+item.subdomain;
+      $scope.selectableSites = $scope.public.sites.filter(function(item) {
+        var text = item.name + item.subdomain;
         return text.toLowerCase().indexOf(search) !== -1 && item.id !== 1;
       });
 
-      $scope.selectableSites = $filter("orderBy")(ret, "label");
+      $scope.selectableSites = $filter("orderBy")($scope.selectableSites, "name");
     };
-
-    $scope.refreshSelectableSites();
   }
 }]);

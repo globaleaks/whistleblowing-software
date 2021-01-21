@@ -29,7 +29,6 @@ from globaleaks.handlers import custodian, \
                                 redirect, \
                                 robots, \
                                 signup, \
-                                site, \
                                 sitemap, \
                                 staticfile
 
@@ -69,9 +68,6 @@ api_spec = [
 
     # Public API
     (r'/api/public', public.PublicResource),
-
-    # Sites API
-    (r'/api/sites', site.SiteCollection),
 
     # User Preferences Handler
     (r'/api/preferences', user.UserInstance),

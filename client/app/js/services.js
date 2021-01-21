@@ -559,9 +559,6 @@ factory("AdminSubmissionStatusResource", ["GLResource", function(GLResource) {
 factory("AdminSubmissionSubStatusResource", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/submission_statuses/:submissionstatus_id/substatuses/:id", {id: "@id", submissionstatus_id: "@submissionstatus_id"});
 }]).
-factory("Sites", ["GLResource", function(GLResource) {
-  return new GLResource("api/sites");
-}]).
 factory("AdminNodeResource", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/node");
 }]).
