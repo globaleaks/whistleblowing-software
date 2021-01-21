@@ -38,5 +38,5 @@ def generate_onion_service_v3():
     onionAddressBytes = b''.join([public_bytes, checksum, bytes([0x03])])
     onionAddress = base64.b32encode(onionAddressBytes).lower().decode('utf-8')
 
-    return b'ED25519-V3:' + base64.b64encode(expandSK(private_bytes)), onionAddress + '.onion'
+    return onionAddress + '.onion', b'ED25519-V3:' + base64.b64encode(expandSK(private_bytes))
 

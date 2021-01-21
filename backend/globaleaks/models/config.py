@@ -133,8 +133,6 @@ def db_set_config_variable(session, tid, var, val):
 def initialize_config(session, tid, mode):
     variables = {}
 
-    key, hostname = generate_onion_service_v3()
-
     # Initialization valid for any tenant
     for name, desc in ConfigDescriptor.items():
         variables[name] = get_default(desc.default)
@@ -143,8 +141,8 @@ def initialize_config(session, tid, mode):
         # Initialization valid for secondary tenants
         variables['mode'] = mode
 
-    variables['onionservice'] = hostname
-    variables['tor_onion_key'] = key
+    if mode == 'default':
+        variables['onionservice'], variables['tor_onion_key'] = generate_onion_service_v3()
 
     if mode == 'whistleblowing.it':
         root_tenant_node = ConfigFactory(session, 1).serialize('node')
