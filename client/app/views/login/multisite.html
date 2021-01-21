@@ -5,10 +5,10 @@
       <div class="col-md-12">
         <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='selectSite($item)'>
           <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
-            <span data-ng-bind="$select.selected.label"></span>
+            <span data-ng-bind="$select.selected.name"></span>
           </ui-select-match>
           <ui-select-choices data-repeat="site in selectableSites" refresh="refreshSelectableSites($select.search)" resfresh-delay="0">
-            <span data-ng-bind-html="site.label | highlight: $select.search"></span>
+            <span data-ng-bind-html="site.name | highlight: $select.search"></span>
           </ui-select-choices>
         </ui-select>
       </div>
