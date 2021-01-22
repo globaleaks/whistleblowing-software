@@ -70,8 +70,7 @@ def login_whistleblower(session, tid, receipt):
         x = session.query(WhistleblowerTip, InternalTip) \
                    .filter(WhistleblowerTip.receipt_hash.in_(hashes),
                            WhistleblowerTip.tid == tid,
-                           InternalTip.id == WhistleblowerTip.id,
-                           InternalTip.tid == WhistleblowerTip.tid).one_or_none()
+                           InternalTip.id == WhistleblowerTip.id).one_or_none()
 
     if x is None:
         log.debug("Whistleblower login: Invalid receipt")
