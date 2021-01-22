@@ -607,7 +607,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       context.enable_two_way_messages = true;
       context.enable_attachments = true;
       context.enable_rc_to_wb_files = false;
-      context.status_page_message = "";
       context.questionnaire_id = "";
       context.additional_questionnaire_id = "";
       context.score_threshold_medium = 0;
@@ -676,7 +675,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     new_field_template: function (fieldgroup_id) {
       var field = new AdminFieldTemplateResource();
       field.id = "";
-      field.key = "";
       field.instance = "template";
       field.label = "";
       field.type = "inputbox";

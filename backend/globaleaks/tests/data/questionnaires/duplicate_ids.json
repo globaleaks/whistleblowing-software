@@ -22,9 +22,6 @@
             "en": "Would you rather?"
           },
           "multi_entry": false,
-          "multi_entry_hint": {
-            "en": ""
-          },
           "options": [
             {
               "id": "52657696-ff88-4d5c-a41c-d50956f33071",
@@ -109,9 +106,6 @@
             "en": "attach something"
           },
           "multi_entry": true,
-          "multi_entry_hint": {
-            "en": ""
-          },
           "options": [],
           "preview": false,
           "required": false,

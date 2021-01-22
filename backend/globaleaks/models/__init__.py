@@ -216,7 +216,6 @@ class _ArchivedSchema(Model):
 
     hash = Column(UnicodeText(64), primary_key=True)
     schema = Column(JSON, default=dict, nullable=False)
-    preview = Column(JSON, default=dict, nullable=False) # TODO: Remove at next database bump (4.2.0)
 
     unicode_keys = ['hash']
 
@@ -332,7 +331,6 @@ class _Context(Model):
     tip_timetolive = Column(Integer, default=90, nullable=False)
     name = Column(JSON, default=dict, nullable=False)
     description = Column(JSON, default=dict, nullable=False)
-    status_page_message = Column(JSON, default=dict, nullable=False)
     show_receivers_in_alphabetical_order = Column(Boolean, default=True, nullable=False)
     score_threshold_high = Column(Integer, default=0, nullable=False)
     score_threshold_medium = Column(Integer, default=0, nullable=False)
@@ -357,7 +355,6 @@ class _Context(Model):
     localized_keys = [
         'name',
         'description',
-        'status_page_message',
         'score_receipt_text_l',
         'score_receipt_text_m',
         'score_receipt_text_h'
@@ -643,7 +640,6 @@ class _InternalTip(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     update_date = Column(DateTime, default=datetime_now, nullable=False)
     context_id = Column(UnicodeText(36), nullable=False)
-    preview = Column(JSON, default=dict, nullable=False)
     progressive = Column(Integer, default=0, nullable=False)
     https = Column(Boolean, default=False, nullable=False)
     mobile = Column(Boolean, default=False, nullable=False)

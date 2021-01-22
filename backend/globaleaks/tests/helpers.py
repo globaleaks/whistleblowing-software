@@ -181,7 +181,6 @@ def get_dummy_field():
         'description': 'field description',
         'hint': 'field hint',
         'multi_entry': False,
-        'multi_entry_hint': '',
         'required': False,
         'attrs': {},
         'options': get_dummy_fieldoption_list(),
@@ -279,7 +278,6 @@ class MockDict:
             'enable_attachments': True,
             'enable_rc_to_wb_files': True,
             'show_receivers_in_alphabetical_order': False,
-            'status_page_message': ''
         }
 
         self.dummySubmission = {

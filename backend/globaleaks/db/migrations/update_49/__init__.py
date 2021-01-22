@@ -13,7 +13,6 @@ class InternalTip_v_48(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     update_date = Column(DateTime, default=datetime_now, nullable=False)
     context_id = Column(UnicodeText(36), nullable=False)
-    preview = Column(JSON, nullable=False)
     progressive = Column(Integer, default=0, nullable=False)
     https = Column(Boolean, default=False, nullable=False)
     total_score = Column(Integer, default=0, nullable=False)

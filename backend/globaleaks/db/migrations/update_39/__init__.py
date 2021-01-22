@@ -69,7 +69,6 @@ class Context_v_38(Model):
     tip_timetolive = Column(Integer, default=15)
     name = Column(JSON)
     description = Column(JSON)
-    status_page_message = Column(JSON)
     show_receivers_in_alphabetical_order = Column(Boolean, default=False)
     presentation_order = Column(Integer, default=0)
     questionnaire_id = Column(UnicodeText(36))
@@ -99,7 +98,6 @@ class Field_v_38(Model):
     required = Column(Boolean, default=False)
     preview = Column(Boolean, default=False)
     multi_entry = Column(Boolean, default=False)
-    multi_entry_hint = Column(JSON)
     triggered_by_score = Column(Integer, default=0)
     fieldgroup_id = Column(UnicodeText(36))
     step_id = Column(UnicodeText(36))
@@ -178,7 +176,6 @@ class InternalTip_v_38(Model):
     update_date = Column(DateTime, default=datetime_now)
     context_id = Column(UnicodeText(36))
     questionnaire_hash = Column(UnicodeText)
-    preview = Column(JSON)
     progressive = Column(Integer, default=0)
     tor2web = Column(Boolean, default=False)
     total_score = Column(Integer, default=0)
@@ -228,7 +225,6 @@ class Receiver_v_38(Model):
     can_delete_submission = Column(Boolean, default=False)
     can_postpone_expiration = Column(Boolean, default=False)
     tip_notification = Column(Boolean, default=True)
-    presentation_order = Column(Integer, default=0)
 
 
 class ReceiverContext_v_38(Model):
@@ -459,15 +455,10 @@ class MigrationScript(MigrationBase):
         self.session_new.add(self.model_to['Tenant']({'label': '', 'active': True}))
 
         for q in self.session_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].type == 'questionnaire'):
-            p = self.session_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].hash == q.hash,
-                                                                                 self.model_from['ArchivedSchema'].type == 'preview').one()
-
             new_obj = self.model_to['ArchivedSchema']()
             for key in new_obj.__table__.columns._data.keys():
                 if key == 'tid':
                     new_obj.tid = 1
-                elif key == 'preview':
-                    new_obj.preview = p.schema
                 else:
                     setattr(new_obj, key, getattr(q, key))
 

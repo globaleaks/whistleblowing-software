@@ -9,11 +9,6 @@
   </div>
 </div>
 <div data-ng-controller="ReceiptCtrl" data-ng-if="receipt" data-ng-include="'views/whistleblower/receipt.html'"></div>
-<div id= "StatusPageMessage" class="row" data-ng-if="tip.context.status_page_message">
-  <div class="col-md-12">
-    <div class="alert alert-warning">{{tip.context.status_page_message}}</div>
-  </div>
-</div>
 <div class="row" data-ng-if="tip.status !== 'closed' && tip.context.additional_questionnaire_id && tip.questionnaires.length === 1">
   <div class="col-md-12">
     <div data-ng-include="'views/partials/tip_additional_questionnaire_invite.html'"></div>
