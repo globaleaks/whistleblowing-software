@@ -5,12 +5,11 @@ import base64
 import os
 import re
 
-from twisted.internet.defer import inlineCallbacks, returnValue
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.admin.file import get_file_id_by_name, special_files
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.orm import db_get, transact, tw
 from globaleaks.rest.requests import uuid_regexp
 
 appfiles = {
