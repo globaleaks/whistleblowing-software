@@ -1,53 +1,13 @@
-# 
-# Translators:
-# Accounts-Payable - Alkemics, 2015
-# Antonio Trueba, 2016
-# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
-# bossnm11 <bossnm11@gmail.com>, 2014
-# Carles Antoli <carlesantoli@hotmail.com>, 2015
-# Carles Antoli <carlesantoli@hotmail.com>, 2015
-# Carles Antoli <carlesantoli@hotmail.com>, 2015
-# chans <kcsgoodboy@naver.com>, 2014
-# chans <kcsgoodboy@naver.com>, 2014
-# chans <kcsgoodboy@naver.com>, 2014
-# Chen-Do LU <clu@alkemics.com>, 2015
-# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
-# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Djurdja Jovanovic Padejski <Dpadejski@gmail.com>, 2015
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2014
-# François Breysse <fb@alkemics.com>, 2015
-# Gu Hong Min <placidmoon1@gmail.com>, 2015
-# jeon <bluerespect@nate.com>, 2014
-# John Toro <johntoro@gmail.com>, 2015
-# Jong-Dae Park <jdpark7@gmail.com>, 2013,2015
-# Gu Hong Min <placidmoon1@gmail.com>, 2015
-# Kunwoo Kim <crazyabtmath@naver.com>, 2015
-# Sihyeong Lee <super2451894@gmail.com>, 2014
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
-# Mustafa J. Kadhem <safi2266@gmail.com>, 2015
-# Paolo Valier, 2016
-# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
-# Rudolf Schnapka <schnapkar@golive-saar.de>, 2015
-# Mustafa J. Kadhem <safi2266@gmail.com>, 2015
-# Sam Ryoo <samryoo@gmail.com>, 2014
-# a9eb828b2ee54fcf461b952290dc7714_32c3f02 <c5f53f2352e5f1df5429a18a23b721aa_268690>, 2015
-# a9eb828b2ee54fcf461b952290dc7714_32c3f02 <c5f53f2352e5f1df5429a18a23b721aa_268690>, 2015
-# seungil <luck8778@gmail.com>, 2014
-# SEUNGWON <baeksw0620@gmail.com>, 2014
-# Sihyeong Lee <super2451894@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
-"Language-Team: English (http://www.transifex.com/otf/globaleaks/language/en/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: English "
+"(http://www.transifex.com/otf/globaleaks/language/en/)\n"
+"mime-version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"mime-version: 1.0\n"
 
 msgid "Log in"
 msgstr "Log in"
@@ -369,12 +329,6 @@ msgstr "Trigger question"
 
 msgid "Triggered by score:"
 msgstr "Triggered by score:"
-
-msgid "Message shown on top of the status page of the report"
-msgstr "Message shown on top of the status page of the report"
-
-msgid "Password strength:"
-msgstr "Password strength:"
 
 msgid "Weak"
 msgstr "Weak"
@@ -1159,12 +1113,6 @@ msgstr "Accept multiple file uploads"
 
 msgid "Accept multiple answers"
 msgstr "Accept multiple answers"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Hint shown on the button for adding an additional answer"
-
-msgid "Encrypt"
-msgstr "Encrypt"
 
 msgid "Template override"
 msgstr "Template override"
