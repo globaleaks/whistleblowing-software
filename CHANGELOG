@@ -1,3 +1,18 @@
+Changes in version 4.1.13
+    Add Covenant Contributor Code of Conduct
+    Update Tor download link
+    Archive testing code related to CORS embedding (#1270)
+    Fix regression on report's postpone and delete interfaces
+    Fix loading of minified version of CSS and JS
+    Generate onion service only when platform mode is 'default'
+    Fix issue on visualization of answers for conditional steps
+
+Changes in version 4.1.12
+    Compact database during cleaning schedule using sqlite VACCUM command
+    Revise application packaging moving PID file inside /var/globaleaks
+    Fix packaging adding explicit dependency on python3-cryptography
+    Bump npm dependencies to latest version
+
 Changes in version 4.1.11
     Fix possibility of resetting onion address
 
