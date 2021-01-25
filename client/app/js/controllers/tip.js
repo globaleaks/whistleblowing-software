@@ -252,11 +252,11 @@ controller("TipOperationsCtrl",
         "args": {}
       };
 
-      return $http({method: "PUT", url: "api/rtip/" + args.tip.id, data: req}).then(function () {
+      return $http({method: "PUT", url: "api/rtips/" + args.tip.id, data: req}).then(function () {
         $route.reload();
       });
     } else if ($scope.args.operation === "delete") {
-      return $http({method: "DELETE", url: "api/rtip/" + args.tip.id, data:{}}).
+      return $http({method: "DELETE", url: "api/rtips/" + args.tip.id, data:{}}).
         then(function() {
           $location.url("/recipient/reports");
           $route.reload();
@@ -304,7 +304,7 @@ controller("IdentityAccessRequestCtrl",
   $scope.confirm = function () {
     $uibModalInstance.close();
 
-    return $http.post("api/rtip/" + tip.id + "/iars", {"request_motivation": $scope.request_motivation}).
+    return $http.post("api/rtips/" + tip.id + "/iars", {"request_motivation": $scope.request_motivation}).
         then(function(){
           $route.reload();
         });
