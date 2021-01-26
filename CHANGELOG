@@ -1,3 +1,6 @@
+Changes in version 4.1.14
+    Fix generation of email notifications for labeled submissions
+
 Changes in version 4.1.13
     Add Covenant Contributor Code of Conduct
     Update Tor download link
