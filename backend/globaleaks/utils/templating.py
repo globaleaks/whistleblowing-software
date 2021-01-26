@@ -730,7 +730,7 @@ class Templating(object):
 
         if data['type'] in ['tip', 'tip_update']:
             if data['tip']['label']:
-                prefix += '{TipNum} ({TipLabel}) - '
+                prefix = '{TipNum} ({TipLabel}) - '
             else:
                 prefix = '{TipNum} - '
 
