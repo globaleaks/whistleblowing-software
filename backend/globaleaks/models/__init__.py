@@ -818,8 +818,7 @@ class _ReceiverTip(Model):
 class _Subscriber(Model):
     __tablename__ = 'subscriber'
 
-    id = Column(Integer, primary_key=True)
-    tid = Column(Integer, nullable=False)
+    tid = Column(Integer, primary_key=True, nullable=False)
     subdomain = Column(UnicodeText, unique=True, nullable=False)
     language = Column(UnicodeText(12), nullable=False)
     name = Column(UnicodeText, nullable=False)
