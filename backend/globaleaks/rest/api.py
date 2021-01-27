@@ -313,7 +313,7 @@ class APIResourceWrapper(Resource):
 
         request.client_ua = request.headers.get(b'user-agent', b'')
 
-        request.client_mobile = re.match(b'Mobi|Android', request.client_ua, re.IGNORECASE) is not None
+        request.client_mobile = re.search(b'Mobi|Android', request.client_ua, re.IGNORECASE) is not None
 
         request.language = self.detect_language(request)
         if b'multilang' in request.args:
