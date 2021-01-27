@@ -77,7 +77,7 @@ GL.controller("TipCtrl",
     };
 
     if ($scope.Authentication.session.role === "whistleblower") {
-      $scope.fileupload_url = "api/rfile";
+      $scope.fileupload_url = "api/wbtip/rfile";
 
       $scope.tip = new WBTip(function(tip) {
         $scope.tip = tip;
