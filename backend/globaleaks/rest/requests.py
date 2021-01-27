@@ -329,7 +329,6 @@ AdminFieldDesc = {
     'hint': str,
     'placeholder': str,
     'multi_entry': bool,
-    'multi_entry_hint': str,
     'x': int,
     'y': int,
     'width': int,

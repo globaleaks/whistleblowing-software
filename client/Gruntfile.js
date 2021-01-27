@@ -830,7 +830,7 @@ module.exports = function(grunt) {
 
     var translate_field = function(field) {
       var i;
-      translate_object(field, ["label", "description", "hint", "multi_entry_hint"]);
+      translate_object(field, ["label", "description", "hint"]);
 
       for (i in field["attrs"]) {
         translate_object(field["attrs"][i], ["value"]);

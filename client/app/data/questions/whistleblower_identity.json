@@ -72,9 +72,6 @@
   "required": false,
   "triggered_by_score": 0,
   "triggered_by_options": [],
-  "multi_entry_hint": {
-    "en": ""
-  },
   "template_id": "",
   "y": 0,
   "x": 0,
@@ -171,9 +168,6 @@
       "step_id": "",
       "required": true,
       "triggered_by_options": [],
-      "multi_entry_hint": {
-        "en": ""
-      },
       "template_id": "",
       "y": 0,
       "x": 0,
@@ -271,9 +265,6 @@
       "required": true,
       "triggered_by_score": 0,
       "triggered_by_options": [],
-      "multi_entry_hint": {
-        "en": ""
-      },
       "template_id": "",
       "y": 0,
       "x": 1,
@@ -363,9 +354,6 @@
       "required": true,
       "triggered_by_score": 0,
       "triggered_by_options": [],
-      "multi_entry_hint": {
-        "en": ""
-      },
       "template_id": "",
       "y": 2,
       "x": 0,
@@ -630,9 +618,6 @@
       "required": true,
       "triggered_by_score": 0,
       "triggered_by_options": [],
-      "multi_entry_hint": {
-        "en": ""
-      },
       "template_id": "",
       "y": 3,
       "x": 0,
@@ -730,9 +715,6 @@
       "required": true,
       "triggered_by_score": 0,
       "triggered_by_options": [],
-      "multi_entry_hint": {
-        "en": ""
-      },
       "template_id": "",
       "y": 3,
       "x": 1,
@@ -830,9 +812,6 @@
       "required": true,
       "triggered_by_score": 0,
       "triggered_by_options": [],
-      "multi_entry_hint": {
-        "en": ""
-      },
       "template_id": "",
       "y": 5,
       "x": 0,
@@ -913,9 +892,6 @@
       "required": false,
       "triggered_by_score": 0,
       "triggered_by_options": [],
-      "multi_entry_hint": {
-        "en": ""
-      },
       "template_id": "",
       "y": 6,
       "x": 0,
@@ -1012,9 +988,6 @@
           "required": true,
           "triggered_by_score": 0,
           "triggered_by_options": [],
-          "multi_entry_hint": {
-            "en": ""
-          },
           "template_id": "",
           "y": 0,
           "x": 0,
@@ -1112,9 +1085,6 @@
           "required": true,
           "triggered_by_score": 0,
           "triggered_by_options": [],
-          "multi_entry_hint": {
-            "en": ""
-          },
           "template_id": "",
           "y": 0,
           "x": 1,
@@ -1212,9 +1182,6 @@
           "required": true,
           "triggered_by_score": 0,
           "triggered_by_options": [],
-          "multi_entry_hint": {
-            "en": ""
-          },
           "template_id": "",
           "y": 2,
           "x": 0,
@@ -1312,9 +1279,6 @@
           "required": true,
           "triggered_by_score": 0,
           "triggered_by_options": [],
-          "multi_entry_hint": {
-            "en": ""
-          },
           "template_id": "",
           "y": 2,
           "x": 1,
@@ -1412,9 +1376,6 @@
           "required": true,
           "triggered_by_score": 0,
           "triggered_by_options": [],
-          "multi_entry_hint": {
-            "en": ""
-          },
           "template_id": "",
           "y": 2,
           "x": 2,
@@ -1514,9 +1475,6 @@
       "required": false,
       "triggered_by_score": 0,
       "triggered_by_options": [],
-      "multi_entry_hint": {
-        "en": ""
-      },
       "template_id": "",
       "y": 8,
       "x": 0,
@@ -1614,9 +1572,6 @@
       "required": false,
       "triggered_by_score": 0,
       "triggered_by_options": [],
-      "multi_entry_hint": {
-        "en": ""
-      },
       "template_id": "",
       "y": 8,
       "x": 1,
@@ -1714,9 +1669,6 @@
       "required": false,
       "triggered_by_score": 0,
       "triggered_by_options": [],
-      "multi_entry_hint": {
-        "en": ""
-      },
       "template_id": "",
       "y": 9,
       "x": 0,
@@ -1814,9 +1766,6 @@
       "required": false,
       "triggered_by_score": 0,
       "triggered_by_options": [],
-      "multi_entry_hint": {
-        "en": ""
-      },
       "template_id": "",
       "y": 10,
       "x": 0,
@@ -1914,9 +1863,6 @@
       "required": false,
       "triggered_by_score": 0,
       "triggered_by_options": [],
-      "multi_entry_hint": {
-        "en": ""
-      },
       "template_id": "",
       "y": 10,
       "x": 1,
@@ -2014,9 +1960,6 @@
       "required": false,
       "triggered_by_score": 0,
       "triggered_by_options": [],
-      "multi_entry_hint": {
-        "en": ""
-      },
       "template_id": "",
       "y": 11,
       "x": 0,
@@ -2114,9 +2057,6 @@
       "required": true,
       "triggered_by_score": 0,
       "triggered_by_options": [],
-      "multi_entry_hint": {
-        "en": ""
-      },
       "template_id": "",
       "y": 7,
       "x": 0,
@@ -2214,9 +2154,6 @@
       "required": true,
       "triggered_by_score": 0,
       "triggered_by_options": [],
-      "multi_entry_hint": {
-        "en": ""
-      },
       "template_id": "",
       "y": 7,
       "x": 0,

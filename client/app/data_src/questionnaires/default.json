@@ -28,9 +28,6 @@
             "en": ""
           },
           "multi_entry": false,
-          "multi_entry_hint": {
-            "en": ""
-          },
           "stats": false,
           "required": true,
           "attrs": {
@@ -72,9 +69,6 @@
             "en": ""
           },
           "multi_entry": false,
-          "multi_entry_hint": {
-            "en": ""
-          },
           "stats": false,
           "required": true,
           "attrs": {
@@ -108,9 +102,6 @@
             "en": ""
           },
           "multi_entry": true,
-          "multi_entry_hint": {
-            "en": ""
-          },
           "stats": false,
           "required": false,
           "attrs": {},
