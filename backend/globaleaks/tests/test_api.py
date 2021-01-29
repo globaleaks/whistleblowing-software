@@ -86,8 +86,8 @@ class TestAPI(TestGL):
                                         'font-src \'self\' data:;' \
                                         'media-src \'self\';' \
                                         'form-action \'self\';' \
-                                        'frame-ancestors \'none\';' \
-                                        'block-all-mixed-content'),
+                                        'block-all-mixed-content;' \
+                                        'frame-ancestors \'none\';'),
             ('Permissions-Policy', "camera=('none') " \
                                    "display-capture=('none') " \
                                    "document-domain=('none') " \

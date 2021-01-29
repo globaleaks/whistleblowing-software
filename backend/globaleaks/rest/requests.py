@@ -28,7 +28,6 @@ https_url_regexp = r'^https://([0-9a-z\-]+)\.(.*)$'
 https_url_regexp_or_empty = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
 tip_operation_regexp = r'^(postpone|set)$'
 short_text_regexp = r'^.{1,255}$'
-domain_list_regexp = r'^((([a-z0-9\.]+,)*[a-z0-9\.]+)|)$'
 languages_list_regexp = r'^([a-zA-Z-]+)?(,\s*[a-zA-Z-]+)*$'
 
 token_regexp = r'([a-z0-9]{64})'
@@ -224,6 +223,7 @@ AdminNodeDesc = {
     'https_whistleblower': bool,
     'https_receiver': bool,
     'https_preload': bool,
+    'frame_ancestors': str,
     'can_postpone_expiration': bool,
     'can_delete_submission': bool,
     'allow_indexing': bool,
@@ -447,6 +447,7 @@ NodeDesc = {
     'https_custodian': bool,
     'https_whistleblower': bool,
     'https_receiver': bool,
+    'frame_ancestors': str,
     'can_postpone_expiration': bool,
     'can_delete_submission': bool,
     'allow_indexing': bool,

@@ -87,6 +87,7 @@ ConfigDescriptor = {
     'https_custodian': Bool(default=True),
     'https_whistleblower': Bool(default=True),
     'https_receiver': Bool(default=True),
+    'frame_ancestors': Unicode(default=''),
 
     'can_postpone_expiration': Bool(default=True),
     'can_delete_submission': Bool(default=True),
@@ -173,6 +174,7 @@ ConfigFilters = {
         'https_custodian',
         'https_whistleblower',
         'https_receiver',
+        'frame_ancestors',
         'can_postpone_expiration',
         'can_delete_submission',
         'allow_indexing',

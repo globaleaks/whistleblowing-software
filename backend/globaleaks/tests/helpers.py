@@ -311,6 +311,7 @@ class MockDict:
             'https_whistleblower': True,
             'https_receiver': True,
             'https_preload': True,
+            'frame_ancestors': '',
             'can_postpone_expiration': False,
             'can_delete_submission': False,
             'allow_indexing': False,

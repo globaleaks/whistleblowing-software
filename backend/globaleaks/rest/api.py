@@ -463,16 +463,22 @@ class APIResourceWrapper(Resource):
         # - In order to evaluate code coverage with istanbuljs/nyc
         # - In order to be able to manually retest if it is correctly implemented
         if not State.settings.disable_csp:
-            request.setHeader(b'Content-Security-Policy', "default-src 'none';" \
-                                                          "script-src 'self';" \
-                                                          "connect-src 'self';" \
-                                                          "style-src 'self';" \
-                                                          "img-src 'self' data:;" \
-                                                          "font-src 'self' data:;" \
-                                                          "media-src 'self';" \
-                                                          "form-action 'self';" \
-                                                          "frame-ancestors 'none';" \
-                                                          "block-all-mixed-content")
+            csp = "default-src 'none';" \
+                  "script-src 'self';" \
+                  "connect-src 'self';" \
+                  "style-src 'self';" \
+                  "img-src 'self' data:;" \
+                  "font-src 'self' data:;" \
+                  "media-src 'self';" \
+                  "form-action 'self';" \
+                  "block-all-mixed-content;"
+
+            if State.tenant_cache[request.tid].frame_ancestors:
+                csp += "frame-ancestors " + State.tenant_cache[request.tid].frame_ancestors + ";"
+            else:
+                csp += "frame-ancestors 'none';"
+
+            request.setHeader(b'Content-Security-Policy', csp)
 
         # Disable features that could be used to deanonymize the user
         request.setHeader(b'Permissions-Policy', b"camera=('none') "
@@ -483,7 +489,7 @@ class APIResourceWrapper(Resource):
                                                  b"microphone=('none') "
                                                  b"speaker=('none')")
 
-        # Prevent sites to includes the platform within an iframe
+        # Prevent old browsers not supporting CSP frame-ancestors directive to includes the platform within an iframe
         request.setHeader(b'X-Frame-Options', b'deny')
 
         # Prevent the browsers to implement automatic mime type detection and execution.
