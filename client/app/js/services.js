@@ -875,18 +875,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       $location.path(path);
     },
 
-    randomFluff: function () {
-      return Math.random() * 1000000 + 1000000;
-    },
-
-    imgDataUri: function(data) {
-      if (data === "") {
-        data = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgDTD2qgAAAAASUVORK5CYII=";
-      }
-
-      return "data:image/png;base64," + data;
-    },
-
     isWhistleblowerPage: function() {
       return ["/", "/submission"].indexOf($location.path()) !== -1;
     },
@@ -1032,16 +1020,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       return deferred.promise;
     },
 
-    readFileAsJson: function (file) {
-      return this.readFileAsText(file).then(function(txt) {
-        try {
-          return JSON.parse(txt);
-        } catch (excep) {
-          return $q.reject(excep);
-        }
-      });
-    },
-
     displayErrorMsg: function(reason) {
       var error = {
         "message": "local-failure",
@@ -1069,10 +1047,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       }
 
       return text;
-    },
-
-    openUrl: function(url) {
-      $window.open(url, "_blank");
     },
 
     print: function() {
