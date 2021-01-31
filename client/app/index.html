@@ -25,15 +25,14 @@
     <!-- endbuild -->
   </head>
 
-  <body class="container-fluid d-flex flex-column" data-ng-class="{'block-user-input': showLoadingPanel}" data-flow-prevent-drop>
-
+  <body class="container-fluid d-flex flex-column" data-ng-class="{{Utils.getCSSFlags()}}" data-flow-prevent-drop>
     <a class="skip-link d-none" href="#ContentBox"></a>
 
     <div id="PageOverlay" class="ng-cloak" data-ng-hide="!showLoadingPanel">
       <div id="Loader"></div>
     </div>
 
-    <div id="PageContent" class="ng-cloak" data-ng-if="started" data-ng-class="{'whistleblower': Utils.isWhistleblowerPage()}">
+    <div id="PageContent" class="ng-cloak" data-ng-if="started">
       <div data-ng-if="!public.node.root_tenant && public.node.mode === 'demo'" data-ng-include="'views/partials/demo.html'"></div>
       <div data-ng-if="Utils.isWhistleblowerPage() && !public.node.disable_privacy_badge" data-ng-include="'views/partials/privacybadge.html'"></div>
       <div data-ng-include="'views/partials/header.html'"></div>
