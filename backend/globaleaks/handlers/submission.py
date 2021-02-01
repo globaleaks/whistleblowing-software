@@ -14,7 +14,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import sha256, Base64Encoder, GCE
 from globaleaks.utils.json import JSONEncoder
-from globaleaks.utils.utility import get_expiration
+from globaleaks.utils.utility import get_expiration, datetime_null
 
 
 def decrypt_tip(user_key, tip_prv_key, tip):
@@ -250,6 +250,10 @@ def db_create_receivertip(session, receiver, internaltip, can_access_whistleblow
 
 
 def db_create_submission(session, tid, request, token, client_using_tor):
+    encryption = db_get(session, models.Config, (models.Config.tid == tid, models.Config.var_name == 'encryption'))
+
+    crypto_is_available = encryption.value
+
     tenant = db_get(session, models.Tenant, models.Tenant.id == tid)
 
     context, questionnaire = db_get(session,
@@ -257,26 +261,39 @@ def db_create_submission(session, tid, request, token, client_using_tor):
                                     (models.Context.id == request['context_id'],
                                      models.Questionnaire.id == models.Context.questionnaire_id))
 
-    receivers = request['receivers']
     answers = request['answers']
     steps = db_get_questionnaire(session, tid, questionnaire.id, None)['steps']
     questionnaire_hash = db_archive_questionnaire_schema(session, steps)
 
-    crypto_is_available = State.tenant_cache[tid].encryption
-
     crypto_tip_pub_key = ''
-    if crypto_is_available:
-        crypto_tip_prv_key, crypto_tip_pub_key = GCE.generate_keypair()
-        receivers = [r[0] for r in session.query(models.User.id) \
-                                          .filter(models.User.id.in_(receivers),
-                                                  models.User.crypto_pub_key != '')]
 
+    receivers = []
+    for r in session.query(models.User).filter(models.User.id.in_(request['receivers'])):
+        if crypto_is_available:
+            if r.crypto_pub_key:
+                # This is the regular condition of systems setup on Globaleaks 4
+                # Since this version, encryption is enabled by default and
+                # users need to perform their first access before they
+                # could receive reports.
+                receivers.append(r)
+            elif encryption.update_date != datetime_null():
+                # This is the exceptional condition of systems setup when
+                # encryption was implemented via PGP.
+                # For continuity reason of those production systems
+                # encryption could not be enforced.
+                receivers.append(r)
+                crypto_is_available = False
+        else:
+                receivers.append(r)
 
     if not receivers:
         raise errors.InputValidationError("Unable to deliver the submission to at least one recipient")
 
     if 0 < context.maximum_selectable_receivers < len(request['receivers']):
         raise errors.InputValidationError("The number of recipients selected exceed the configured limit")
+
+    if crypto_is_available:
+        crypto_tip_prv_key, crypto_tip_pub_key = GCE.generate_keypair()
 
     itip = models.InternalTip()
     itip.tid = tid
@@ -387,13 +404,11 @@ def db_create_submission(session, tid, request, token, client_using_tor):
         new_file.submission = uploaded_file['submission']
         session.add(new_file)
 
-    for user in session.query(models.User).filter(models.User.id.in_(request['receivers'])):
-        _tip_key = b''
+    for user in receivers:
         if crypto_is_available:
-            if not user.crypto_pub_key:
-                continue
-
             _tip_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_tip_prv_key)
+        else:
+            _tip_key = b''
 
         db_create_receivertip(session, user, itip, can_access_whistleblower_identity, _tip_key)
 
