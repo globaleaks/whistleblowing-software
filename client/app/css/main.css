@@ -728,6 +728,15 @@ text.axis-workweek, text.axis-worktime {
   margin: 0 .4rem;
 }
 
+.was-validated .form-check-input:valid ~ .form-check-label,
+.form-check-input.is-valid ~ .form-check-label {
+  color: inherit;
+}
+
+.was-validated .form-control:valid, .form-control.is-valid {
+  background-image: none;
+}
+
 html[dir="rtl"] input[type=email],
 html[dir="ltr"] input[type=email],
 html[dir="rtl"] #creditCard,
