@@ -13,7 +13,7 @@
     </div>
     <div data-translate>Upload a file:</div>
     <div class="form" data-ng-controller="WBFileUploadCtrl"
-        flow-init="{target: 'api/rtip/' + tip_id + '/wbfile'}"
+        flow-init="{target: 'api/rtips/' + tip_id + '/wbfile'}"
         flow-files-submitted="beginUpload($files, $event, $flow)"
         flow-file-success="reload()"
         extend-flow-valid-size="public.node.maximum_filesize*1024*1024">
