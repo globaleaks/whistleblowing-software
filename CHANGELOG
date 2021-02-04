@@ -1,3 +1,7 @@
+Changes in version 4.1.16
+    Fix mail notifications on ubuntu bionic / python 3.8
+    Bump npm dependencies to latest version
+
 Changes in version 4.1.15
     Fix issue #2967
 
