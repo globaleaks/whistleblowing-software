@@ -1,8 +1,12 @@
 # -*- coding: utf-8
+import hmac
+import hashlib
+
 from io import BytesIO as StringIO
 
 from twisted.internet import address
 from twisted.logger import ILogObserver, Logger
+from twisted.mail._cred import CramMD5ClientAuthenticator
 from twisted.python import log
 from twisted.web.http import HTTPChannel, Request
 from twisted.web._http2 import H2Connection
@@ -25,9 +29,16 @@ def mock_Request_gotLength(self, length):
     self.content = StringIO()
 
 
+def mock_CramMD5ClientAuthenticator_challengeResponse(self, secret, chal):
+    response = hmac.HMAC(secret, chal, digestmod=hashlib.md5).hexdigest()
+    return self.user + b' ' + response.encode('ascii')
+
+
 Request.getClientIP = mock_Request_getClientIP
 Request.gotLength = mock_Request_gotLength
 Request.parseCookies = null_function
+
+CramMD5ClientAuthenticator.challengeResponse = mock_CramMD5ClientAuthenticator_challengeResponse
 
 
 @implementer(ILogObserver)
