@@ -398,6 +398,10 @@ module.exports = function(grunt) {
             {
               pattern: "<link rel=\"stylesheet\" href=\"css/styles.css\">",
               replacement: "<link rel=\"stylesheet\" href=\"css/styles.min.css\">"
+            },
+            {
+              pattern: "<script src=\"js/scripts.js\"></script>",
+              replacement: "<script src=\"js/scripts.min.js\"></script>"
             }
           ]
         }
