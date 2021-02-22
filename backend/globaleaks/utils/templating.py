@@ -553,7 +553,7 @@ class PlatformSignupKeyword(NodeKeyword):
         return self.Site() + '/#/login'
 
     def ExpirationDate(self):
-        date = self.data['signup']['registration_date'] + timedelta(days=30)
+        date = self.data['signup']['registration_date'] + timedelta(30)
         return datetime_to_pretty_str(date)
 
     def Name(self):

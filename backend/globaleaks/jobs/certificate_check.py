@@ -60,14 +60,14 @@ class CertificateCheck(DailyJob):
         expiration_date = letsencrypt.convert_asn1_date(cert.get_notAfter())
 
         # Acme renewal checks
-        if priv_fact.get_val('acme') and now > expiration_date - timedelta(days=self.acme_try_renewal):
+        if priv_fact.get_val('acme') and now > expiration_date - timedelta(self.acme_try_renewal):
             try:
                 db_acme_cert_request(session, tid)
             except Exception as exc:
                 log.err('Automatic HTTPS renewal failed: %s', exc, tid=tid)
 
                 # Send an email to the admin cause this requires user intervention
-                if now > expiration_date - timedelta(days=self.notify_expr_within) and \
+                if now > expiration_date - timedelta(self.notify_expr_within) and \
                    not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
                     self.certificate_mail_creation(session, 'https_certificate_renewal_failure', tid, expiration_date)
 
@@ -77,7 +77,7 @@ class CertificateCheck(DailyJob):
             self.state.snimap.load(tid, tls_config)
 
         # Regular certificates expiration checks
-        elif now > expiration_date - timedelta(days=self.notify_expr_within):
+        elif now > expiration_date - timedelta(self.notify_expr_within):
             log.info('The HTTPS Certificate is expiring on %s', expiration_date, tid=tid)
             if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
                 self.certificate_mail_creation(session, 'https_certificate_expiration', tid, expiration_date)
