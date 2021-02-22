@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 
 from twisted.internet import reactor, defer
 from twisted.internet.endpoints import TCP4ClientEndpoint
-from twisted.mail.smtp import ESMTPSenderFactory
+from twisted.mail.smtp import messageid, ESMTPSenderFactory
 from twisted.protocols import tls
 
 from globaleaks.utils.socks import SOCKS5ClientEndpoint
@@ -30,6 +30,7 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, mail_subject, mail
     :return: A mail headers
     """
     multipart = MIMEMultipart('alternative')
+    multipart['Message-Id'] = Header(messageid())
     multipart['Subject'] = Header(mail_subject.encode(), 'UTF-8').encode()
     multipart['Date'] = utils.formatdate()
     multipart['To'] = Header(dest_name.encode(), 'UTF-8').encode() + " <" + dest_mail + ">"
