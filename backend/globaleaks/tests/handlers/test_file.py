@@ -17,10 +17,10 @@ class TestFileInstance(helpers.TestHandler):
 
         self._handler = admin_file.FileInstance
         handler = self.request({}, role='admin')
-        yield handler.post('custom')
+        x = yield handler.post('custom')
 
         self._handler = file.FileHandler
         handler = self.request()
-        x = yield handler.get(u'uploadfile')
+        x = yield handler.get(x)
 
         self.assertIsNone(x)

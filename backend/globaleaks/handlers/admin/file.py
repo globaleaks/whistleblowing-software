@@ -104,9 +104,9 @@ class FileInstance(BaseHandler):
         if os.path.exists(path):
             return
 
-        d = yield self.write_upload_plaintext_to_disk(path)
+        yield self.write_upload_plaintext_to_disk(path)
         yield tw(db_add_file, self.request.tid, id, self.uploaded_file['name'], path)
-        returnValue(d)
+        returnValue(id)
 
     @inlineCallbacks
     def delete(self, id):
@@ -120,8 +120,7 @@ class FileInstance(BaseHandler):
         if id in special_files:
             id = yield get_file_id_by_name(self.request.tid, id)
 
-        result = yield tw(db_del, models.File, (models.File.tid == self.request.tid, models.File.id == id))
-        returnValue(result)
+        yield tw(db_del, models.File, (models.File.tid == self.request.tid, models.File.id == id))
 
 
 class FileCollection(BaseHandler):
