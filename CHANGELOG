@@ -1,5 +1,15 @@
+Changes in version 4.1.17
+    Fix issue #2970
+    Revise access log format to keep it standard
+    Fix auto-epiration of new sites if not activated within 1 day
+    Revise cleaning sched in relation to activation tokens expiration
+    Add message-id header to emails to mitigate spam
+    Make it possible for field templates to be defined by using field templates
+    Downgrade D3 version to preserve compatibility with IE 11
+    Update npm dependencies to latest versions
+
 Changes in version 4.1.16
-    Fix mail notifications on ubuntu bionic / python 3.8
+    Fix mail notifications on ubuntu focal / python 3.8
     Bump npm dependencies to latest version
 
 Changes in version 4.1.15
