@@ -45,7 +45,7 @@ function($scope, $location, $filter) {
 
       if (!$scope.public.sites) {
         return;
-      };
+      }
 
       search = search.toLowerCase();
 

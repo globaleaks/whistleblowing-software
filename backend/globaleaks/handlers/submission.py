@@ -361,6 +361,8 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
         db_create_receivertip(session, user, itip, can_access_whistleblower_identity, _tip_key)
 
+    State.log(tid=tid,  type='whistleblower_new_report')
+
     return {
         'receipt': receipt,
         'score': itip.total_score

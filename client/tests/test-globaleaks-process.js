@@ -31,7 +31,7 @@ describe("globaleaks process", function() {
 
     await browser.setLocation("/status/" + id);
 
-    expect(await element(by.xpath("//*[contains(text(),'title')]")).getText()).toEqual('title');
+    expect(await element(by.xpath("//*[contains(text(),'title')]")).getText()).toEqual("title");
 
     await element(by.model("tip.label")).sendKeys("Important");
     await element(by.id("assignLabelButton")).click();
@@ -99,7 +99,7 @@ describe("globaleaks process", function() {
   it("Recipient should be able to start a private discussion with the whistleblower", async function() {
     await browser.gl.utils.login_receiver();
 
-    await browser.gl.utils.takeScreenshot('recipient/home.png');
+    await browser.gl.utils.takeScreenshot("recipient/home.png");
 
     await browser.setLocation("/recipient/reports");
 
@@ -112,7 +112,7 @@ describe("globaleaks process", function() {
     var m = await element(by.id("message-0")).element(by.css(".preformatted")).getText();
     expect(m).toContain(message);
 
-    await browser.gl.utils.takeScreenshot('recipient/report.png');
+    await browser.gl.utils.takeScreenshot("recipient/report.png");
 
     await browser.gl.utils.logout("/login");
   });
@@ -130,7 +130,7 @@ describe("globaleaks process", function() {
     var message2 = await element(by.id("message-0")).element(by.css(".preformatted")).getText();
     expect(message2).toContain(message_reply);
 
-    await browser.gl.utils.takeScreenshot('whistleblower/report.png');
+    await browser.gl.utils.takeScreenshot("whistleblower/report.png");
   });
 
   it("Recipient should be able to export the submission", async function() {
@@ -172,7 +172,7 @@ describe("globaleaks process", function() {
   it("Recipient should be able to postpone all tips", async function() {
     await browser.gl.utils.login_receiver();
     await browser.setLocation("/recipient/reports");
-    await browser.gl.utils.takeScreenshot('recipient/reports.png');
+    await browser.gl.utils.takeScreenshot("recipient/reports.png");
 
     // Postpone the expiration of all tips
     await element(by.id("tip-action-select-all")).click();

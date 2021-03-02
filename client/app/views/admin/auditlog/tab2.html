@@ -1,49 +1,39 @@
-<table id="RecentEventList" class="table table-condensed table-striped" data-ng-init="sortKey = 'time'; sortReverse=true;">
+<table id="userList" class="table table-condensed table-striped">
   <thead>
     <tr>
-      <th data-ng-click="sortKey = 'event_id'; sortReverse = !sortReverse">
-        <span data-translate>Event ID</span>
-        <span data-ng-show="sortKey == 'event_id' && !sortReverse" class="fas fa-caret-down"></span>
-        <span data-ng-show="sortKey == 'event_id' && sortReverse" class="fas fa-caret-up"></span>
-      </th>
-      <th data-ng-click="sortKey = 'time'; sortReverse = !sortReverse">
-        <span data-translate>Time</span>
-        <span data-ng-show="sortKey == 'time' && !sortReverse" class="fas fa-caret-down"></span>
-        <span data-ng-show="sortKey == 'time' && sortReverse" class="fas fa-caret-up"></span>
-      </th>
-      <th data-ng-click="sortKey = 'event'; sortReverse = !sortReverse">
-        <span data-translate>Event</span>
-        <span data-ng-show="sortKey == 'event' && !sortReverse" class="fas fa-caret-down"></span>
-        <span data-ng-show="sortKey == 'event' && sortReverse" class="fas fa-caret-up"></span>
-      </th>
-      <th data-ng-click="sortKey = 'response_time'; sortReverse = !sortReverse">
-       <span data-translate>Response time</span>
-        <span data-ng-show="sortKey == 'response_time' && !sortReverse" class="fas fa-caret-down"></span>
-        <span data-ng-show="sortKey == 'response_time' && sortReverse" class="fas fa-caret-up"></span>
-      </th>
+      <th data-translate>ID</th>
+      <th data-translate>Username</th>
+      <th data-translate>Role</th>
+      <th data-translate>Name</th>
+      <th>2FA</th>
+      <th data-translate>Creation date</th>
+      <th data-translate>Last access</th>
     </tr>
   </thead>
   <tbody>
-    <tr data-ng-repeat="activity in auditLog.activities.elems | orderBy:sortKey:sortReverse  | limitTo:itemsPerPage:((auditLog.activities.currentPage - 1) * itemsPerPage)">
-      <td>{{activity.id}}</td>
-      <td>{{activity.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
-      <td>{{activity.event}}</td>
-      <td>{{activity.duration}}</td>
+    <tr data-ng-repeat="user in auditLog.users.elems | orderBy:'name' | limitTo:itemsPerPage:((auditLog.users.currentPage - 1) * itemsPerPage)">
+      <td>{{user.id}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.role}}</td>
+      <td>{{user.name}}</td>
+      <td><i class="fa" data-ng-class="{'fa-check': user.two_factor_enable, 'fa-times': !user.two_factor_enable}"></i></td>
+      <td>{{user.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
+      <td>{{user.last_login | date:'dd-MM-yyyy HH:mm'}}</td>
     </tr>
   </tbody>
 </table>
-<div class="text-center" data-ng-show="auditLog.activities.elems.length > itemsPerPage">
+<div class="text-center" data-ng-show="auditLog.users.elems.length > itemsPerPage | limitTo:itemsPerPage:((auditLog.users.currentPage - 1) * itemsPerPage)">
   <ul uib-pagination
-      total-items="auditLog.activities.elems.length"
+      total-items="auditLog.users.elems.length"
       first-text="<< {{'First' | translate}}"
       last-text="{{'Last' | translate}} >>"
       previous-text="< {{'Previous' | translate}}"
       next-text="{{'Next' | translate}} >"
       items-per-page="itemsPerPage"
-      data-ng-model="auditLog.activities.currentPage"
+      data-ng-model="auditLog.users.currentPage"
       max-size="10"
       class="pagination-sm"
       boundary-links="true"
       force-ellipses="true"></ul>
 </div>
-<button class="btn btn-sm btn-link" type="button" ng-csv="resources.activities" csv-label='true' filename="activities.csv"><i class="fa fa-download"></i> <span data-translate>Export</span></button>
+<button class="btn btn-sm btn-link" type="button" ng-csv="resources.users" csv-label='true' filename="users.csv"><i class="fa fa-download"></i> <span data-translate>Export</span></button>

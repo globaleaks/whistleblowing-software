@@ -7,11 +7,10 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.password_reset import db_generate_password_reset_token
-from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import db_get_user, disable_2fa, get_user
 from globaleaks.models import Config, InternalTip, User
 from globaleaks.models.config import db_set_config_variable, ConfigFactory, ConfigL10NFactory
-from globaleaks.orm import transact, tw
+from globaleaks.orm import db_del, transact, tw
 from globaleaks.rest import errors
 from globaleaks.services.onion import set_onion_service_info, get_onion_service_info
 from globaleaks.state import State
@@ -62,9 +61,7 @@ def reset_submissions(session, tid):
     """
     session.query(Config).filter(Config.tid == tid, Config.var_name == 'counter_submissions').update({'value': 0})
 
-    itip_ids = [x[0] for x in session.query(InternalTip.id).filter(InternalTip.tid == tid)]
-
-    db_delete_itips(session, itip_ids)
+    db_del(session, models.InternalTip, models.InternalTip.tid ==tid)
 
 
 @transact

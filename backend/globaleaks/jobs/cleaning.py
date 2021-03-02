@@ -12,7 +12,6 @@ from globaleaks import models
 from globaleaks.db import compact_db
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import DailyJob
 from globaleaks.orm import db_del, db_query, transact, tw
@@ -35,7 +34,7 @@ class Cleaning(DailyJob):
         """
         itips_ids = [id[0] for id in session.query(models.InternalTip.id).filter(models.InternalTip.expiration_date < datetime_now())]
         if itips_ids:
-            db_delete_itips(session, itips_ids)
+            db_del(session, models.InternalTip, models.InternalTip.id.in_(itips_ids))
 
     def db_check_for_expiring_submissions(self, session, tid):
         threshold = datetime_now() + timedelta(hours=self.state.tenant_cache[tid].notification.tip_expiration_threshold)

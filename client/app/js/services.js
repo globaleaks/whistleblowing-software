@@ -1,5 +1,3 @@
-/* global topojson*/
-
 GL.factory("GLResource", ["$resource", function($resource) {
   return function(url, params, actions) {
     var defaults = {
@@ -529,6 +527,9 @@ factory("ReceiverTips", ["GLResource", function(GLResource) {
 factory("IdentityAccessRequests", ["GLResource", function(GLResource) {
   return new GLResource("api/custodian/iars");
 }]).
+factory("AdminAuditLogResource", ["GLResource", function(GLResource) {
+  return new GLResource("api/admin/auditlog");
+}]).
 factory("AdminContextResource", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/contexts/:id", {id: "@id"});
 }]).
@@ -743,17 +744,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 factory("UserPreferences", ["GLResource", function(GLResource) {
   return new GLResource("api/preferences", {}, {"update": {method: "PUT"}});
 }]).
-factory("ActivitiesCollection", ["GLResource", function(GLResource) {
-  return new GLResource("api/admin/auditlog/activities");
-}]).
-factory("AnomaliesCollection", ["GLResource", function(GLResource) {
-  return new GLResource("api/admin/auditlog/anomalies");
-}]).
 factory("TipsCollection", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/auditlog/tips");
-}]).
-factory("StatsCollection", ["GLResource", function(GLResource) {
-  return new GLResource("api/admin/auditlog/stats/:week_delta", {week_delta: "@week_delta"}, {});
 }]).
 factory("JobsAuditLog", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/auditlog/jobs");
@@ -881,9 +873,9 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
 
     getCSSFlags: function() {
       return {
-        'public': this.isWhistleblowerPage(),
-        'embedded': $window.self !== $window.top,
-        'block-user-input': $rootScope.showLoadingPanel
+        "public": this.isWhistleblowerPage(),
+        "embedded": $window.self !== $window.top,
+        "block-user-input": $rootScope.showLoadingPanel
       };
     },
 

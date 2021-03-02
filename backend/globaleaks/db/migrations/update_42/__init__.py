@@ -68,21 +68,6 @@ class MigrationScript(MigrationBase):
                 new_wbtip.receipt_hash = old_obj.receipt_hash
                 self.session_new.add(new_wbtip)
 
-    def migrate_Stats(self):
-        for old_obj in self.session_old.query(self.model_from['Stats']):
-            if not old_obj.summary:
-                self.entries_count['Stats'] -= 1
-                continue
-
-            new_obj = self.model_to['Stats']()
-            for key in new_obj.__table__.columns._data.keys():
-                if key not in old_obj.__table__.columns:
-                    continue
-
-                setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)
-
     def epilogue(self):
         for tenant in self.session_old.query(self.model_from['Tenant']):
             for s in [{'label': {'en': 'New'}, 'system_usage': 'new'},

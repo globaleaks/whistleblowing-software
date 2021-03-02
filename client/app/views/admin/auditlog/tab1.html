@@ -1,35 +1,39 @@
-<div data-ng-controller="StatisticsCtrl">
-  <div>
-    <span data-translate>Stats of the week:</span>
-    <a data-ng-click="decrement_week()"><i class="fas fa-chevron-left"></i></a>
-    <span>{{week | weekNumber}} {{date | date: 'yyyy'}}</span>
-    <a data-ng-click="increment_week()"><i class="fas fa-chevron-right"></i></a>
-  </div>
-
-  <br /><br />
-
-  <div id="chart"></div>
-
-  <div id="StatsInfoTable" data-ng-if="blob">
-    <div class="col-md-6">
-      <div>
-        <label data-translate>Reports</label>
-        {{blob.summary.reports}}
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div>
-        <label data-translate>Failed logins</label>
-        {{blob.summary.failed_logins}}
-      </div>
-      <div>
-        <label data-translate>Successful logins</label>
-        {{blob.summary.successful_logins}}
-      </div>
-    </div>
-  </div>
+<table id="userList" class="table table-condensed table-striped">
+  <thead>
+    <tr>
+      <th data-translate>Date</th>
+      <th data-translate>Type</th>
+      <th data-translate>Severity</th>
+      <th data-translate>User</th>
+      <th data-translate>Object</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-ng-repeat="data in auditLog.auditlog.elems | orderBy:'date':true | limitTo:itemsPerPage:((auditLog.auditlog.currentPage - 1) * itemsPerPage)">
+      <td>{{data.date | date:'dd-MM-yyyy HH:mm'}}</td>
+      <td>{{data.type}}</td>
+      <td>{{data.severity}}</td>
+      <td>{{data.user_id}}</td>
+      <td>{{data.object_id}}</td>
+    </tr>
+  </tbody>
+</table>
+<div class="text-center" data-ng-show="auditLog.auditlog.elems.length > itemsPerPage | limitTo:itemsPerPage:((auditLog.auditlog.currentPage - 1) * itemsPerPage)">
+  <ul uib-pagination
+      total-items="auditLog.auditlog.elems.length"
+      first-text="<< {{'First' | translate}}"
+      last-text="{{'Last' | translate}} >>"
+      previous-text="< {{'Previous' | translate}}"
+      next-text="{{'Next' | translate}} >"
+      items-per-page="itemsPerPage"
+      data-ng-model="auditLog.auditlog.currentPage"
+      max-size="10"
+      class="pagination-sm"
+      boundary-links="true"
+      force-ellipses="true"></ul>
 </div>
-<div data-ng-if="resources.node.root_tenant">
+<button class="btn btn-sm btn-link" type="button" ng-csv="resources.auditlog" csv-label='true' filename="auditlog.csv"><i class="fa fa-download"></i> <span data-translate>Export</span></button>
+<span data-ng-if="resources.node.root_tenant">
   <a class="btn btn-sm btn-link" type="button" data-ng-click="Utils.download('globaleaks.log', '/api/admin/auditlog/debug')"><i class="fa fa-download"></i> <span>globaleaks.log</span></button>
   <a class="btn btn-sm btn-link" type="button" data-ng-click="Utils.download('access.log', '/api/admin/auditlog/access')"><i class="fa fa-download"></i> <span>access.log</span></button>
-</div>
+</span>

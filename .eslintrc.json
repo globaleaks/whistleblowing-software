@@ -16,7 +16,10 @@
         "importScripts": true,
         "onmessage": true,
         "saveAs": true,
-        "StackTrace": true
+        "sha256": true,
+        "StackTrace": true,
+        "topojson": true,
+        "Uint8Array": true
     },
     "parserOptions": {
         "ecmaVersion": 9

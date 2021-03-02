@@ -197,20 +197,6 @@ class Model(object):
         return ret
 
 
-class _Anomalies(Model):
-    __tablename__ = 'anomalies'
-
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    tid = Column(Integer, default=1, nullable=False)
-    date = Column(DateTime, nullable=False)
-    alarm = Column(Integer, nullable=False)
-    events = Column(JSON, default=dict, nullable=False)
-
-    @declared_attr
-    def __table_args__(self):
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
-
-
 class _ArchivedSchema(Model):
     __tablename__ = 'archivedschema'
 
@@ -569,19 +555,18 @@ class _File(Model):
 
 class _AuditLog(Model):
     """
-    This model contains audit's logs
+    This model contains audit logs
     """
     __tablename__ = 'auditlog'
 
     tid = Column(Integer, default=1)
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    event_date = Column(DateTime, default=datetime_now, nullable=False)
-    event_type = Column(UnicodeText(24), default='', nullable=False)
-    event_severity = Column(Integer, default=0, nullable=False)
-    event_data = Column(JSON, nullable=True)
+    date = Column(DateTime, default=datetime_now, nullable=False)
+    type = Column(UnicodeText(24), default='', nullable=False)
+    severity = Column(Integer, default=0, nullable=False)
     user_id = Column(UnicodeText(36), nullable=True)
     object_id = Column(UnicodeText(36), nullable=True)
-    object_value = Column(JSON, nullable=True)
+    data = Column(JSON, nullable=True)
 
 
 class _IdentityAccessRequest(Model):
@@ -904,19 +889,6 @@ class _Step(Model):
         return (ForeignKeyConstraint(['questionnaire_id'], ['questionnaire.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
-class _Stats(Model):
-    __tablename__ = 'stats'
-
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    tid = Column(Integer, default=1, nullable=False)
-    start = Column(DateTime, nullable=False)
-    summary = Column(JSON, default=dict, nullable=False)
-
-    @declared_attr
-    def __table_args__(self):
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
-
-
 class _SubmissionStatus(Model):
     """
     Contains the statuses a submission may be in
@@ -1123,10 +1095,6 @@ class _WhistleblowerTip(Model):
                 ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
 
-class Anomalies(_Anomalies, Base):
-    pass
-
-
 class ArchivedSchema(_ArchivedSchema, Base):
     pass
 
@@ -1244,10 +1212,6 @@ class SubmissionSubStatus(_SubmissionSubStatus, Base):
 
 
 class SubmissionStatusChange(_SubmissionStatusChange, Base):
-    pass
-
-
-class Stats(_Stats, Base):
     pass
 
 

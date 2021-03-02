@@ -8,9 +8,9 @@ from sqlalchemy.sql.expression import distinct, func
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.rtip import db_postpone_expiration, db_delete_itips
+from globaleaks.handlers.rtip import db_postpone_expiration
 from globaleaks.handlers.submission import db_serialize_archived_questionnaire_schema
-from globaleaks.orm import db_get, transact
+from globaleaks.orm import db_get, db_del, transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE
@@ -148,7 +148,12 @@ def perform_tips_operation(session, tid, receiver_id, operation, rtips_ids):
             db_postpone_expiration(session, itip)
 
     elif operation == 'delete' and can_delete_submission:
-        db_delete_itips(session, [itip.id for itip in itips])
+        itip_ids = [itip.id for itip in itips]
+
+        for itip_id in itip_ids:
+            State.log(tid=tid, type='delete_report', user_id=receiver_id, object_id=itip_id)
+
+        db_del(session, models.InternalTip, models.InternalTip.id.in_(itip_ids))
 
     else:
         raise errors.ForbiddenOperation

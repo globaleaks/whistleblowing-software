@@ -16,7 +16,7 @@ from globaleaks.db.migrations.update_35 import Context_v_34, InternalTip_v_34, \
     WhistleblowerTip_v_34
 from globaleaks.db.migrations.update_38 import Field_v_37, Questionnaire_v_37
 from globaleaks.db.migrations.update_39 import \
-    Anomalies_v_38, ArchivedSchema_v_38, Comment_v_38, Config_v_38, \
+    ArchivedSchema_v_38, Comment_v_38, Config_v_38, \
     ConfigL10N_v_38, Context_v_38, CustomTexts_v_38, EnabledLanguage_v_38, \
     Field_v_38, FieldAnswer_v_38, FieldAnswerGroup_v_38, FieldAttr_v_38, \
     FieldOption_v_38, File_v_38, IdentityAccessRequest_v_38, \
@@ -66,9 +66,8 @@ from globaleaks.utils.utility import datetime_now
 
 
 migration_mapping = OrderedDict([
-    ('Anomalies', [Anomalies_v_38, 0, 0, 0, 0, models._Anomalies, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('ArchivedSchema', [ArchivedSchema_v_38, 0, 0, 0, 0, models._ArchivedSchema, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('AuditLog', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._AuditLog, 0, 0]),
+    ('AuditLog', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._AuditLog]),
     ('Comment', [Comment_v_38, 0, 0, 0, 0, models._Comment, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Config', [Config_v_38, 0, 0, 0, 0, Config_v_45, 0, 0, 0, 0, 0, 0, models._Config, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('ConfigL10N', [ConfigL10N_v_38, 0, 0, 0, 0, ConfigL10N_v_45, 0, 0, 0, 0, 0, 0, models._ConfigL10N, 0, 0, 0, 0, 0, 0, 0, 0]),
@@ -100,7 +99,6 @@ migration_mapping = OrderedDict([
     ('SubmissionStatus', [-1, -1, -1, -1, -1, -1, -1, -1, SubmissionStatus_v_46, 0, 0, 0, 0, SubmissionStatus_v_49, 0, 0, SubmissionStatus_v_51, 0, models._SubmissionStatus, 0, 0]),
     ('SubmissionSubStatus', [-1, -1, -1, -1, -1, -1, -1, -1, SubmissionSubStatus_v_46, 0, 0, 0, 0, SubmissionSubStatus_v_49, 0, 0, SubmissionSubStatus_v_51, 0, models._SubmissionSubStatus, 0, 0]),
     ('SubmissionStatusChange', [-1, -1, -1, -1, -1, -1, -1, -1, models._SubmissionStatusChange, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('Stats', [-1, -1, -1, -1, -1, models._Stats, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Step', [Step_v_38, 0, 0, 0, 0, Step_v_44, 0, 0, 0, 0, 0, Step_v_51, 0, 0, 0, 0, 0, 0, models._Step, 0, 0]),
     ('Subscriber', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Subscriber_v_52, 0, 0, 0, 0, 0, 0, 0, 0, models._Subscriber, 0, 0]),
     ('Tenant', [-1, -1, -1, -1, -1, Tenant_v_52, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Tenant, 0]),
