@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -137,7 +137,7 @@ msgid "Select all"
 msgstr "Обрати все"
 
 msgid "Deselect all"
-msgstr "Зняти всі позначки"
+msgstr "Скасувати вибір усіх"
 
 msgid "Refresh"
 msgstr "Оновити"
@@ -352,12 +352,6 @@ msgstr "Trigger question"
 msgid "Triggered by score:"
 msgstr ""
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Повідомлення, яке відображається на верхній частині сторінки статусу повідомлення"
-
-msgid "Password strength:"
-msgstr "Надійність паролю:"
-
 msgid "Weak"
 msgstr "Слабкий"
 
@@ -378,21 +372,6 @@ msgstr "Вимкнути повідомлення по електронній п
 
 msgid "Turn on email notifications"
 msgstr "Увімкнути повідомлення по електронній пошті"
-
-msgid "Failed logins"
-msgstr "Кількість невдалих спроб авторизації"
-
-msgid "Successful logins"
-msgstr "Кількість вдалих спроб авторизації"
-
-msgid "Started submissions"
-msgstr "Початих зверненнь"
-
-msgid "Completed submissions"
-msgstr "Завершених звернень"
-
-msgid "Failed submissions"
-msgstr "Перелік невдалих повідомлень"
 
 msgid "Input validation"
 msgstr "Перевірка вхідних даних"
@@ -557,11 +536,8 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Are you a whistleblower?"
-msgstr "Ви інформатор?"
-
-msgid "Blow the whistle"
-msgstr "Надати свідчення"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Перш ніж продовжити, будь ласка, встановіть новий пароль."
@@ -679,6 +655,9 @@ msgstr ""
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
+
 msgid "Logging level"
 msgstr ""
 
@@ -714,20 +693,14 @@ msgstr ""
 msgid "percentage"
 msgstr ""
 
-msgid "Stats of the week:"
-msgstr "Статистика тижня:"
+msgid "Type"
+msgstr "Тип"
 
-msgid "Event ID"
-msgstr "код події"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "Час"
-
-msgid "Event"
-msgstr "Подія"
-
-msgid "Response time"
-msgstr "Час відповіді"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "ІД"
@@ -752,12 +725,6 @@ msgstr "З'єднання"
 
 msgid "Whistleblower's last access"
 msgstr ""
-
-msgid "Alarm level"
-msgstr "Поріг сигналу небезпеки"
-
-msgid "Events"
-msgstr "Події"
 
 msgid "Substatuses"
 msgstr ""
@@ -852,9 +819,6 @@ msgstr "Опис"
 msgid "Questionnaire"
 msgstr "Анкета із переліком питань"
 
-msgid "Additional questionnaire"
-msgstr ""
-
 msgid "Recipients"
 msgstr "Одержувачі"
 
@@ -897,6 +861,9 @@ msgstr "Дозволити викривачам додавати докумен�
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
+msgid "Additional questionnaire"
+msgstr ""
+
 msgid "Scoring system options"
 msgstr ""
 
@@ -917,9 +884,6 @@ msgstr ""
 
 msgid "Software version:"
 msgstr "Версія програмного забезпечення:"
-
-msgid "An update is available:"
-msgstr ""
 
 msgid "Restrict access to specific IP addresses"
 msgstr ""
@@ -1031,9 +995,6 @@ msgstr ""
 msgid "Tor Onion Service"
 msgstr ""
 
-msgid "Tor Browser download link"
-msgstr "Посилання для скачування в браузері Tor"
-
 msgid "Anonymize outgoing connections"
 msgstr ""
 
@@ -1088,9 +1049,6 @@ msgstr "Template"
 msgid "Question"
 msgstr ""
 
-msgid "Type"
-msgstr "Тип"
-
 msgid "Single-line text input"
 msgstr "Введення тексту одною строчкою"
 
@@ -1141,12 +1099,6 @@ msgstr "Дозволити завантаження декількох файл�
 
 msgid "Accept multiple answers"
 msgstr ""
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Підказка на кнопці для додаткової відповіді"
-
-msgid "Encrypt"
-msgstr "Зашифрувати"
 
 msgid "Template override"
 msgstr ""
@@ -1220,25 +1172,10 @@ msgstr ""
 msgid "Network settings"
 msgstr ""
 
-msgid "Mode:"
-msgstr ""
-
-msgid "Root domain used for secondary sites"
-msgstr ""
-
-msgid "Use the first site for administrative purposes only"
-msgstr ""
-
-msgid "Enable multi-site login"
-msgstr ""
-
-msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Enable terms of service"
-msgstr ""
-
 msgid "Sites"
+msgstr ""
+
+msgid "Mode:"
 msgstr ""
 
 msgid "Active"
@@ -1255,6 +1192,21 @@ msgstr ""
 
 msgid "Creation date:"
 msgstr "Дата створення:"
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Enable terms of service"
+msgstr ""
 
 msgid "Send an account activation link to the user."
 msgstr ""
@@ -1642,6 +1594,9 @@ msgstr "Завантажте файл:"
 msgid "Logout"
 msgstr "Вихід"
 
+msgid "An update is available:"
+msgstr ""
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1869,35 +1824,14 @@ msgstr "Рік народження"
 msgid "Place of birth"
 msgstr "Місце народження"
 
-msgid "Social security number"
-msgstr "ідентифікаційний код"
-
-msgid "Residence"
-msgstr "Країна проживання"
-
 msgid "Zip code / Postal code"
 msgstr "Поштовий код"
 
 msgid "Province"
 msgstr "Регіон"
 
-msgid "Current job title"
-msgstr "Займана позиція"
-
-msgid "Current job responsibility (role)"
-msgstr "Робочі обов'язки (роль)"
-
-msgid "Current organization unit and job location"
-msgstr "Місцерозташування офісу"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Посада на момент правопорушення про яке повідомляється"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Відповідальності (роль) на момент правопорушення про яке повідомляється"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Місцерозташування офісу на момент правопорушення про яке повідомляється"
+msgid "Country"
+msgstr "Країна"
 
 msgid "Dear {RecipientName},"
 msgstr "Шановний {RecipientName},"
@@ -2065,9 +1999,6 @@ msgstr "Позначка: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr ""
-
-msgid "Context: {ContextName}"
-msgstr "Назва тематики: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

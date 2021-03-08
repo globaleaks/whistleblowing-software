@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
-"Last-Translator: bact' <arthit@gmail.com>\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -341,12 +341,6 @@ msgstr "คำถามแตกประเด็น"
 msgid "Triggered by score:"
 msgstr "ถูกเรียกทำงานด้วยคะแนน:"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "ข้อความแสดงบนหัวของหน้าสถานะของรายงาน"
-
-msgid "Password strength:"
-msgstr "ความแข็งแรงของรหัสผ่าน:"
-
 msgid "Weak"
 msgstr "อ่อนแอ"
 
@@ -367,21 +361,6 @@ msgstr "ปิดการแจ้งเตือนทางอีเมล"
 
 msgid "Turn on email notifications"
 msgstr "เปิดการแจ้งเตือนทางอีเมล"
-
-msgid "Failed logins"
-msgstr "การลงชื่อเข้าล้มเหลว"
-
-msgid "Successful logins"
-msgstr "การลงชื่อเข้าสำเร็จ"
-
-msgid "Started submissions"
-msgstr "การส่งได้เริ่มต้น"
-
-msgid "Completed submissions"
-msgstr "การส่งเสร็จสมบูรณ์"
-
-msgid "Failed submissions"
-msgstr "การส่งที่ล้มเหลว"
 
 msgid "Input validation"
 msgstr "การตรวจรูปแบบข้อมูล"
@@ -546,11 +525,8 @@ msgstr "หมายเลข VAT"
 msgid "Tax code"
 msgstr "เลขประจำตัวผู้เสียภาษี"
 
-msgid "Are you a whistleblower?"
-msgstr "คุณเป็นผู้แจ้งเบาะแสหรือไม่?"
-
-msgid "Blow the whistle"
-msgstr "แจ้งเบาะแส"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "ก่อนจะไปต่อ กรุณาตั้งรหัสผ่านใหม่"
@@ -668,6 +644,9 @@ msgstr "เปิดใช้งานระบบให้คะแนน"
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "อนุญาตให้เว็บไซต์ดังต่อไปนี้ฝังแพลตฟอร์มเข้าไปใน iframe ได้"
+
 msgid "Logging level"
 msgstr "ระดับการบันทึกลงปูม"
 
@@ -703,20 +682,14 @@ msgstr "เมกะไบต์"
 msgid "percentage"
 msgstr "ร้อยละ"
 
-msgid "Stats of the week:"
-msgstr "สถิติของสัปดาห์:"
+msgid "Type"
+msgstr "ชนิด"
 
-msgid "Event ID"
-msgstr "รหัสเหตุการณ์"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "เวลา"
-
-msgid "Event"
-msgstr "เหตุการณ์"
-
-msgid "Response time"
-msgstr "เวลาตอบสนอง"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "รหัสประจำ"
@@ -741,12 +714,6 @@ msgstr "การเชื่อมต่อ"
 
 msgid "Whistleblower's last access"
 msgstr "ยินดีเข้ามาครั้งล่าสุด"
-
-msgid "Alarm level"
-msgstr "ระดับการเตือนภัย"
-
-msgid "Events"
-msgstr "เหตุการณ์"
 
 msgid "Substatuses"
 msgstr "สถานะย่อย"
@@ -841,9 +808,6 @@ msgstr "คำอธิบาย"
 msgid "Questionnaire"
 msgstr "แบบสอบถาม"
 
-msgid "Additional questionnaire"
-msgstr "แบบสอบถามเพิ่มเติม"
-
 msgid "Recipients"
 msgstr "ผู้รับ"
 
@@ -886,6 +850,9 @@ msgstr "อนุญาตให้ผู้แจ้งเบาะแสแน
 msgid "Let recipients upload files to whistleblowers"
 msgstr "อนุญาตให้ผู้รับอัปโหลดแฟ้มไปให้ผู้แจ้งเบาะแส"
 
+msgid "Additional questionnaire"
+msgstr "แบบสอบถามเพิ่มเติม"
+
 msgid "Scoring system options"
 msgstr "ตัวเลือกระบบให้คะแนน"
 
@@ -906,9 +873,6 @@ msgstr "กำหนดใบรับให้กับรายงานก็
 
 msgid "Software version:"
 msgstr "รุ่นซอฟต์แวร์:"
-
-msgid "An update is available:"
-msgstr "การปรับรุ่นพร้อมแล้ว:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "อนุญาตให้เข้าถึงได้เฉพาะจากที่อยู่ไอพีที่เจาะจง"
@@ -1020,9 +984,6 @@ msgstr "ต่ออายุอัตโนมัติ"
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
 
-msgid "Tor Browser download link"
-msgstr "ลิงก์ดาวน์โหลด Tor Browser"
-
 msgid "Anonymize outgoing connections"
 msgstr "ทำให้การเชื่อมต่อขาออกเป็นนิรนาม"
 
@@ -1077,9 +1038,6 @@ msgstr "แม่แบบ"
 msgid "Question"
 msgstr "คำถาม"
 
-msgid "Type"
-msgstr "ชนิด"
-
 msgid "Single-line text input"
 msgstr "ข้อมูลเข้าข้อความบรรทัดเดียว"
 
@@ -1130,12 +1088,6 @@ msgstr "ยอมรับการอัปโหลดหลายแฟ้ม
 
 msgid "Accept multiple answers"
 msgstr "ยอมรับคำตอบหลายคำตอบ"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "คำแนะนำที่แสดงบนปุ่มสำหรับการเพิ่มคำตอบเพิ่มเติม"
-
-msgid "Encrypt"
-msgstr "เข้ารหัสลับ"
 
 msgid "Template override"
 msgstr "ไม่ต้องสนใจแม่แบบ"
@@ -1209,26 +1161,11 @@ msgstr "การจัดการเรื่อง"
 msgid "Network settings"
 msgstr "การตั้งค่าเครือข่าย"
 
-msgid "Mode:"
-msgstr "โหมด:"
-
-msgid "Root domain used for secondary sites"
-msgstr "รูตโดเมนถูกใช้สำหรับไซต์ชั้นสอง"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "ใช้งานเว็บไซต์แรกเพื่อจุดประสงค์ในการจัดการดูแลเท่านั้น"
-
-msgid "Enable multi-site login"
-msgstr "เปิดใช้งานการลงชื่อเข้าใช้แบบหลายเว็บไซต์"
-
-msgid "Allow users to sign up"
-msgstr "อนุญาตให้ผู้ใช้สมัครเข้าระบบ"
-
-msgid "Enable terms of service"
-msgstr "เปิดใช้ข้อตกลงในการให้บริการ"
-
 msgid "Sites"
 msgstr "ไซต์"
+
+msgid "Mode:"
+msgstr "โหมด:"
 
 msgid "Active"
 msgstr "ทำงานอยู่"
@@ -1244,6 +1181,21 @@ msgstr "โดเมนย่อย"
 
 msgid "Creation date:"
 msgstr "วันที่สร้าง คือ"
+
+msgid "Root domain used for secondary sites"
+msgstr "รูตโดเมนถูกใช้สำหรับไซต์ชั้นสอง"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "ใช้งานเว็บไซต์แรกเพื่อจุดประสงค์ในการจัดการดูแลเท่านั้น"
+
+msgid "Enable multi-site login"
+msgstr "เปิดใช้งานการลงชื่อเข้าใช้แบบหลายเว็บไซต์"
+
+msgid "Allow users to sign up"
+msgstr "อนุญาตให้ผู้ใช้สมัครเข้าระบบ"
+
+msgid "Enable terms of service"
+msgstr "เปิดใช้ข้อตกลงในการให้บริการ"
 
 msgid "Send an account activation link to the user."
 msgstr "ส่งลิงก์ยืนยันเปิดใช้บัญชีไปให้ผู้ใช้"
@@ -1631,6 +1583,9 @@ msgstr "อัปโหลดแฟ้ม:"
 msgid "Logout"
 msgstr "ลงชื่อออก"
 
+msgid "An update is available:"
+msgstr "การปรับรุ่นพร้อมแล้ว:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1858,35 +1813,14 @@ msgstr "วันเกิด"
 msgid "Place of birth"
 msgstr "สถานที่เกิด"
 
-msgid "Social security number"
-msgstr "หมายเลขประกันสังคม"
-
-msgid "Residence"
-msgstr "ที่พำนัก"
-
 msgid "Zip code / Postal code"
 msgstr "รหัสไปรษณีย์"
 
 msgid "Province"
 msgstr "จังหวัด"
 
-msgid "Current job title"
-msgstr "ชื่อตำแหน่งงาน ในปัจจุบัน"
-
-msgid "Current job responsibility (role)"
-msgstr "ความรับผิดชอบของงาน (บทบาท) ในปัจจุบัน"
-
-msgid "Current organization unit and job location"
-msgstr "แผนกงานและสถานที่ปฏิบัติงาน ในปัจจุบัน"
-
-msgid "Job title at the time of the reported fact"
-msgstr "ชื่อตำแหน่งงาน ในเวลาที่เกิดข้อเท็จจริงตามรายงาน"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "ความรับผิดชอบของงาน (บทบาท) ในเวลาที่เกิดข้อเท็จจริงตามรายงาน"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "แผนกงานและสถานที่ปฏิบัติงาน ในเวลาที่เกิดข้อเท็จจริงตามรายงาน"
+msgid "Country"
+msgstr "ประเทศ"
 
 msgid "Dear {RecipientName},"
 msgstr "เรียน {RecipientName}"
@@ -2054,9 +1988,6 @@ msgstr "ฉลาก: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "สถานะ: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "บริบท: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

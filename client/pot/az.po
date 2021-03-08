@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -339,12 +339,6 @@ msgstr "Tətikləyici sual"
 msgid "Triggered by score:"
 msgstr ""
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Təqdimatın status səhifəsinin yuxarısında göstərilən mesaj"
-
-msgid "Password strength:"
-msgstr "Şifrənin gücü:"
-
 msgid "Weak"
 msgstr "Zəif"
 
@@ -365,21 +359,6 @@ msgstr "E-poçt bildirişlərini susdurun"
 
 msgid "Turn on email notifications"
 msgstr "E-poçt bildirişlərini aktivləşdirin"
-
-msgid "Failed logins"
-msgstr "Uğursuz daxil olmalar"
-
-msgid "Successful logins"
-msgstr "Uğurlu daxil olmalar"
-
-msgid "Started submissions"
-msgstr "Təqdimata başlanıldı"
-
-msgid "Completed submissions"
-msgstr "Təqdimat tamamlandı"
-
-msgid "Failed submissions"
-msgstr "Uğursuz təqdimat"
 
 msgid "Input validation"
 msgstr "Daxilolma yoxlanışı"
@@ -544,11 +523,8 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Are you a whistleblower?"
-msgstr "Siz informasiya ötürənsiniz?"
-
-msgid "Blow the whistle"
-msgstr "Məlumatı ötür"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr ""
@@ -666,6 +642,9 @@ msgstr ""
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
+
 msgid "Logging level"
 msgstr ""
 
@@ -701,20 +680,14 @@ msgstr ""
 msgid "percentage"
 msgstr ""
 
-msgid "Stats of the week:"
-msgstr "Həftənin statistikaları:"
+msgid "Type"
+msgstr "Tip"
 
-msgid "Event ID"
-msgstr "Hadisə kimliyi"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "Vaxt"
-
-msgid "Event"
-msgstr "Tədbir"
-
-msgid "Response time"
-msgstr "Cavab vermə vaxtı"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "İD"
@@ -739,12 +712,6 @@ msgstr "Bağlantı"
 
 msgid "Whistleblower's last access"
 msgstr ""
-
-msgid "Alarm level"
-msgstr "Siqnal səviyyəsi"
-
-msgid "Events"
-msgstr "Tədbirlər"
 
 msgid "Substatuses"
 msgstr ""
@@ -839,9 +806,6 @@ msgstr "Açıqlama"
 msgid "Questionnaire"
 msgstr "Sorğu"
 
-msgid "Additional questionnaire"
-msgstr ""
-
 msgid "Recipients"
 msgstr "Qəbul edicilər"
 
@@ -884,6 +848,9 @@ msgstr "İnformasiya ötürənlərin mövcud təqdimatlar üzərinə yeni əlav�
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Qəbul edicilərə, informasiya ötürənlər üçün fayllar yükləməsinə icazə verin"
 
+msgid "Additional questionnaire"
+msgstr ""
+
 msgid "Scoring system options"
 msgstr ""
 
@@ -904,9 +871,6 @@ msgstr ""
 
 msgid "Software version:"
 msgstr "Proqram versiyası:"
-
-msgid "An update is available:"
-msgstr "Yenilənmə mümkündür"
 
 msgid "Restrict access to specific IP addresses"
 msgstr ""
@@ -1018,9 +982,6 @@ msgstr "Avto yeniləmə"
 msgid "Tor Onion Service"
 msgstr "Tor Onion mərkəzi"
 
-msgid "Tor Browser download link"
-msgstr "Tor Brauzerinin yüklənmə linki "
-
 msgid "Anonymize outgoing connections"
 msgstr "Çıxış əlaqələrini anonimləşdir"
 
@@ -1075,9 +1036,6 @@ msgstr "Şablon"
 msgid "Question"
 msgstr ""
 
-msgid "Type"
-msgstr "Tip"
-
 msgid "Single-line text input"
 msgstr "Tək sətirli mətn girişi"
 
@@ -1128,12 +1086,6 @@ msgstr "Birdən çox fayl yükləməsini qəbul et"
 
 msgid "Accept multiple answers"
 msgstr ""
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Əlavə cavab üçün düymə üzərində göstərilən işarə"
-
-msgid "Encrypt"
-msgstr "Şifrələ"
 
 msgid "Template override"
 msgstr ""
@@ -1207,26 +1159,11 @@ msgstr ""
 msgid "Network settings"
 msgstr "Şəbəkə tənzimləmələri"
 
-msgid "Mode:"
-msgstr ""
-
-msgid "Root domain used for secondary sites"
-msgstr ""
-
-msgid "Use the first site for administrative purposes only"
-msgstr ""
-
-msgid "Enable multi-site login"
-msgstr ""
-
-msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Enable terms of service"
-msgstr ""
-
 msgid "Sites"
 msgstr "Saytlar"
+
+msgid "Mode:"
+msgstr ""
 
 msgid "Active"
 msgstr "Aktiv"
@@ -1242,6 +1179,21 @@ msgstr "Alt-domeyn"
 
 msgid "Creation date:"
 msgstr "Yaradılma tarixi:"
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Enable terms of service"
+msgstr ""
 
 msgid "Send an account activation link to the user."
 msgstr ""
@@ -1629,6 +1581,9 @@ msgstr "Yeni fayl yüklə:"
 msgid "Logout"
 msgstr "Çıxış"
 
+msgid "An update is available:"
+msgstr "Yenilənmə mümkündür"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1856,35 +1811,14 @@ msgstr "Doğum yeri"
 msgid "Place of birth"
 msgstr "Doğum yeri"
 
-msgid "Social security number"
-msgstr "Sosial sığorta nömrəsi"
-
-msgid "Residence"
-msgstr "Ev"
-
 msgid "Zip code / Postal code"
 msgstr "Poçt indeksi"
 
 msgid "Province"
 msgstr "Bölgə"
 
-msgid "Current job title"
-msgstr "Hazırkı işi"
-
-msgid "Current job responsibility (role)"
-msgstr "İş yerində vəzifələri (rolu)"
-
-msgid "Current organization unit and job location"
-msgstr "İş yeri və ünvanı"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Fakt haqda məlumat verən zaman vəzifənin adı"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Fakt haqda məlumat verən zaman vəzifənin məsuliyyəti (rolu)"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Fakt haqda məlumat verən zaman təşkilatın forması və iş yeri"
+msgid "Country"
+msgstr "Ölkə"
 
 msgid "Dear {RecipientName},"
 msgstr "Əziz {RecipientName}, "
@@ -2052,9 +1986,6 @@ msgstr "Yarlıq: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr ""
-
-msgid "Context: {ContextName}"
-msgstr "Məzmun: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
-"Last-Translator: Reza Ghasemi\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -356,12 +356,6 @@ msgstr "سوال رهاساز"
 msgid "Triggered by score:"
 msgstr "راه اندازی شده با امتیاز:"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "پیام در بالای صفحه وضعیت‌ِ گزارش دیده شود"
-
-msgid "Password strength:"
-msgstr "قدرت رمز عبور:"
-
 msgid "Weak"
 msgstr "ضعیف"
 
@@ -382,21 +376,6 @@ msgstr "نوتیفیکیشن های ایمیل بدون صدا"
 
 msgid "Turn on email notifications"
 msgstr "روشن کردن نوتیفیکیشن های ایمیل"
-
-msgid "Failed logins"
-msgstr "ورود نا موفق"
-
-msgid "Successful logins"
-msgstr "ورود موفق"
-
-msgid "Started submissions"
-msgstr "گزارش های آغاز شده"
-
-msgid "Completed submissions"
-msgstr "گزارش های کامل‌شده"
-
-msgid "Failed submissions"
-msgstr "گزارش های ناموفق"
 
 msgid "Input validation"
 msgstr "اعتبارسنجی ورودی"
@@ -561,11 +540,8 @@ msgstr "شماره VAT"
 msgid "Tax code"
 msgstr "شماره مالیات"
 
-msgid "Are you a whistleblower?"
-msgstr "آیا یک افشاگر می باشید؟"
-
-msgid "Blow the whistle"
-msgstr "در سوت بدمید"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "قبل از ادامه  لطفا یک گذرواژه جدید تنظیم کنید."
@@ -683,6 +659,9 @@ msgstr "فعال سازی سیستم امتیازدهی"
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "به وبسایت‌های زیر اجازه دهید تا پلتفرم را در iframe جاسازی کنند"
+
 msgid "Logging level"
 msgstr "سطح ثبت کردن وقایع"
 
@@ -718,20 +697,14 @@ msgstr "مگابایت"
 msgid "percentage"
 msgstr "درصد"
 
-msgid "Stats of the week:"
-msgstr "آمارهای هفته:"
+msgid "Type"
+msgstr "نوع"
 
-msgid "Event ID"
-msgstr "شناسه‌ی رخ‌داد"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "زمان"
-
-msgid "Event"
-msgstr "رویداد"
-
-msgid "Response time"
-msgstr "زمان پاسخ دهی"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "مشخصات "
@@ -756,12 +729,6 @@ msgstr "ارتباط"
 
 msgid "Whistleblower's last access"
 msgstr "آخرین دسترسی افشاگر"
-
-msgid "Alarm level"
-msgstr "سطح هشدار"
-
-msgid "Events"
-msgstr "رویداد ها"
 
 msgid "Substatuses"
 msgstr "زیروضعیت ها"
@@ -856,9 +823,6 @@ msgstr "توضیح"
 msgid "Questionnaire"
 msgstr "پرسش‌نامه"
 
-msgid "Additional questionnaire"
-msgstr "پرسش نامه اضافی"
-
 msgid "Recipients"
 msgstr "دریافت‌کننده‌ها"
 
@@ -901,6 +865,9 @@ msgstr "به افشاگران اجازه داده شود تا ضمیمه‌ها�
 msgid "Let recipients upload files to whistleblowers"
 msgstr "اجازه به گیرندگان به منظور آپلود کردن فایل ها برای افشاگران"
 
+msgid "Additional questionnaire"
+msgstr "پرسش نامه اضافی"
+
 msgid "Scoring system options"
 msgstr "گزینه های سیستم امتیاز دهی"
 
@@ -921,9 +888,6 @@ msgstr "تخصیص رسید فقط به گزارش دارای امتیاز:"
 
 msgid "Software version:"
 msgstr "نسخه نرم‌افزار:"
-
-msgid "An update is available:"
-msgstr "یک به روز رسانی موجود می باشد:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "محدود کردن دسترسی به IP های مشخص"
@@ -1035,9 +999,6 @@ msgstr "تمدید-خودکار"
 msgid "Tor Onion Service"
 msgstr "سرویس پیازی تور"
 
-msgid "Tor Browser download link"
-msgstr "لینک دانلود مرورگر تور"
-
 msgid "Anonymize outgoing connections"
 msgstr "گمنام کردن اتصال های خروجی"
 
@@ -1092,9 +1053,6 @@ msgstr "قالب"
 msgid "Question"
 msgstr "سوال"
 
-msgid "Type"
-msgstr "نوع"
-
 msgid "Single-line text input"
 msgstr "ورودی متن تک-خط"
 
@@ -1145,12 +1103,6 @@ msgstr "آپلود متعدد فایلها را قبول کن"
 
 msgid "Accept multiple answers"
 msgstr "پذیرش جواب های چندگانه"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "نمایش راهنما روی دکمه برای اضافه کردن یک پاسخ اضافی"
-
-msgid "Encrypt"
-msgstr "رمزگذاری"
 
 msgid "Template override"
 msgstr "لغو قالب"
@@ -1224,26 +1176,11 @@ msgstr "مدیریت مورد"
 msgid "Network settings"
 msgstr "تنظیمات شبکه"
 
-msgid "Mode:"
-msgstr "حالت:"
-
-msgid "Root domain used for secondary sites"
-msgstr "دامنه ریشه استفاده شده برای سایت های ثانویه"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "استفاده از سایت اول فقط برای اهداف مدیریتی"
-
-msgid "Enable multi-site login"
-msgstr "فعال سازی ورود چند سایت"
-
-msgid "Allow users to sign up"
-msgstr "اجازه به کاربران برای ثبت نام"
-
-msgid "Enable terms of service"
-msgstr "فعال سازی شرایط استفاده از خدمات"
-
 msgid "Sites"
 msgstr "سایت ها "
+
+msgid "Mode:"
+msgstr "حالت:"
 
 msgid "Active"
 msgstr "فعال"
@@ -1259,6 +1196,21 @@ msgstr "زیردامنه"
 
 msgid "Creation date:"
 msgstr "تاریخ ایجاد :"
+
+msgid "Root domain used for secondary sites"
+msgstr "دامنه ریشه استفاده شده برای سایت های ثانویه"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "استفاده از سایت اول فقط برای اهداف مدیریتی"
+
+msgid "Enable multi-site login"
+msgstr "فعال سازی ورود چند سایت"
+
+msgid "Allow users to sign up"
+msgstr "اجازه به کاربران برای ثبت نام"
+
+msgid "Enable terms of service"
+msgstr "فعال سازی شرایط استفاده از خدمات"
 
 msgid "Send an account activation link to the user."
 msgstr "ارسال لینک فعال‌سازی حساب به کاربر:"
@@ -1646,6 +1598,9 @@ msgstr "بارگذاری یک فایل:"
 msgid "Logout"
 msgstr "خروج"
 
+msgid "An update is available:"
+msgstr "یک به روز رسانی موجود می باشد:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1873,35 +1828,14 @@ msgstr "تاریخ تولد"
 msgid "Place of birth"
 msgstr "محل تولد"
 
-msgid "Social security number"
-msgstr "شماره امنیت اجتماعی"
-
-msgid "Residence"
-msgstr "محل اقامت"
-
 msgid "Zip code / Postal code"
 msgstr "کد پستی"
 
 msgid "Province"
 msgstr "استان"
 
-msgid "Current job title"
-msgstr "عنوان شغل کنونی"
-
-msgid "Current job responsibility (role)"
-msgstr "مسئولیت (نقش) شغلی کنونی "
-
-msgid "Current organization unit and job location"
-msgstr "واحد سازمانی کنونی و محل کار"
-
-msgid "Job title at the time of the reported fact"
-msgstr "عنوان شغلی زمانی‌که این گزارش را ارائه کردید"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "مسئولیت (نقش) شما زمانی‌که این گزارش را ارائه کردید"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "واحد سازمانی و محل کار وقتی این گزارش را ارائه کردید"
+msgid "Country"
+msgstr "کشور"
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} گرامی،"
@@ -2069,9 +2003,6 @@ msgstr "برچسب: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "وضعیت: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "زمینه: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

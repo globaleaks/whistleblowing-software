@@ -1,7 +1,7 @@
 # 
 # Translators:
 # Alexandre Girard <transifex@alexgirard.com>, 2013-2014
-# AO <ao@localizationlab.org>, 2018-2020
+# AO <ao@localizationlab.org>, 2018-2021
 # marco calamari <marcoc@marcoc.it>, 2013
 # Charles Peltier <charles@cl-info.fr>, 2015
 # AO <ao@localizationlab.org>, 2015-2018
@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"PO-Revision-Date: 2021-03-11 16:20+0000\n"
 "Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -369,12 +369,6 @@ msgstr "Déclencher une question"
 msgid "Triggered by score:"
 msgstr "Déclenché par un pointage : "
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Message affiché en haut de la page d’état du signalement"
-
-msgid "Password strength:"
-msgstr "Robustesse du mot de passe  :"
-
 msgid "Weak"
 msgstr "Faible"
 
@@ -395,21 +389,6 @@ msgstr "Désactiver les courriel de notification"
 
 msgid "Turn on email notifications"
 msgstr "Activer les courriel de notification"
-
-msgid "Failed logins"
-msgstr "Connexions échouées"
-
-msgid "Successful logins"
-msgstr "Connexions réussies"
-
-msgid "Started submissions"
-msgstr "Envois commencés"
-
-msgid "Completed submissions"
-msgstr "Envois réussis"
-
-msgid "Failed submissions"
-msgstr "Envois en échec"
 
 msgid "Input validation"
 msgstr "Validation de saisie"
@@ -574,11 +553,8 @@ msgstr "Numéro de TVA"
 msgid "Tax code"
 msgstr "Code fiscal"
 
-msgid "Are you a whistleblower?"
-msgstr "Êtes-vous un lanceur d’alerte ?"
-
-msgid "Blow the whistle"
-msgstr "Lancer une alerte"
+msgid "File a report"
+msgstr "Remplir un signalement"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Avant de poursuivre, veuillez définir un nouveau mot de passe."
@@ -696,6 +672,9 @@ msgstr "Activer le système d’évaluation"
 msgid "Enable private annotations"
 msgstr "Activer les annotations privées"
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Permettre aux sites Web suivants d’intégrer la plateforme à l’intérieur de cadres « iframes »"
+
 msgid "Logging level"
 msgstr "Niveau de journalisation"
 
@@ -731,20 +710,14 @@ msgstr "mégaoctets"
 msgid "percentage"
 msgstr "pourcentage"
 
-msgid "Stats of the week:"
-msgstr "Statistiques hebdomadaires :"
+msgid "Type"
+msgstr "Type"
 
-msgid "Event ID"
-msgstr "ID de l’événement"
+msgid "Severity"
+msgstr "Sévérité"
 
-msgid "Time"
-msgstr "Heure"
-
-msgid "Event"
-msgstr "Événement"
-
-msgid "Response time"
-msgstr "Temps de réponse"
+msgid "Object"
+msgstr "Objet"
 
 msgid "ID"
 msgstr "ID"
@@ -769,12 +742,6 @@ msgstr "Connexion"
 
 msgid "Whistleblower's last access"
 msgstr "Dernière connexion du lanceur d'alerte"
-
-msgid "Alarm level"
-msgstr "Niveau d’alarme"
-
-msgid "Events"
-msgstr "Événements"
 
 msgid "Substatuses"
 msgstr "Sous-états"
@@ -869,9 +836,6 @@ msgstr "Description"
 msgid "Questionnaire"
 msgstr "Questionnaire"
 
-msgid "Additional questionnaire"
-msgstr "Questionnaire supplémentaire"
-
 msgid "Recipients"
 msgstr "Destinataires"
 
@@ -914,6 +878,9 @@ msgstr "Permettre aux lanceurs d’alerte d’ajouter des fichiers joints aux si
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Permettre aux destinataires de téléverser des fichiers pour les lanceurs d’alerte"
 
+msgid "Additional questionnaire"
+msgstr "Questionnaire supplémentaire"
+
 msgid "Scoring system options"
 msgstr "Options du système d’évaluation"
 
@@ -934,9 +901,6 @@ msgstr "N’attribuer le reçu qu’aux signalements qui atteignent ce pointage�
 
 msgid "Software version:"
 msgstr "Version du logiciel :"
-
-msgid "An update is available:"
-msgstr "Une mise à jour est proposée :"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Réserver l’accès à des adresses IP précises"
@@ -1048,9 +1012,6 @@ msgstr "Renouvellement automatique"
 msgid "Tor Onion Service"
 msgstr "Service onion de Tor"
 
-msgid "Tor Browser download link"
-msgstr "Lien de téléchargement du Navigateur  Tor"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonymiser les connexions sortantes"
 
@@ -1105,9 +1066,6 @@ msgstr "Modèle"
 msgid "Question"
 msgstr "Question"
 
-msgid "Type"
-msgstr "Type"
-
 msgid "Single-line text input"
 msgstr "Saisie de texte d’une ligne"
 
@@ -1158,12 +1116,6 @@ msgstr "Accepter le téléversement de plusieurs fichiers"
 
 msgid "Accept multiple answers"
 msgstr "Accepter des réponses multiples"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Indication d’ajout de réponse supplémentaire, apparaissant sur le bouton"
-
-msgid "Encrypt"
-msgstr "Chiffrer "
 
 msgid "Template override"
 msgstr "Remplacement du modèle"
@@ -1237,26 +1189,11 @@ msgstr "Gestion des cas"
 msgid "Network settings"
 msgstr "Paramètres du réseau"
 
-msgid "Mode:"
-msgstr "Mode :"
-
-msgid "Root domain used for secondary sites"
-msgstr "Domaine racine utilisé pour les sites secondaires"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "N’utiliser le premier site qu’à des fins d’administration"
-
-msgid "Enable multi-site login"
-msgstr "Activer la connexion multisite"
-
-msgid "Allow users to sign up"
-msgstr "Permettre aux utilisateurs de s’inscrire"
-
-msgid "Enable terms of service"
-msgstr "Activer les conditions générales d’utilisation"
-
 msgid "Sites"
 msgstr "Sites"
+
+msgid "Mode:"
+msgstr "Mode :"
 
 msgid "Active"
 msgstr "Actif"
@@ -1272,6 +1209,21 @@ msgstr "Sous-domaine"
 
 msgid "Creation date:"
 msgstr "Date de création :"
+
+msgid "Root domain used for secondary sites"
+msgstr "Domaine racine utilisé pour les sites secondaires"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "N’utiliser le premier site qu’à des fins d’administration"
+
+msgid "Enable multi-site login"
+msgstr "Activer la connexion multisite"
+
+msgid "Allow users to sign up"
+msgstr "Permettre aux utilisateurs de s’inscrire"
+
+msgid "Enable terms of service"
+msgstr "Activer les conditions générales d’utilisation"
 
 msgid "Send an account activation link to the user."
 msgstr "Envoyer un lien d’activation du compte à l’utilisateur."
@@ -1659,6 +1611,9 @@ msgstr "Téléverser un fichier :"
 msgid "Logout"
 msgstr "Déconnexion"
 
+msgid "An update is available:"
+msgstr "Une mise à jour est proposée :"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1886,35 +1841,14 @@ msgstr "Date de naissance"
 msgid "Place of birth"
 msgstr "Lieu de naissance"
 
-msgid "Social security number"
-msgstr "Numéro d’assurance sociale"
-
-msgid "Residence"
-msgstr "Résidence"
-
 msgid "Zip code / Postal code"
 msgstr "Code postal"
 
 msgid "Province"
 msgstr "Province"
 
-msgid "Current job title"
-msgstr "Appellation d’emploi actuelle"
-
-msgid "Current job responsibility (role)"
-msgstr "Responsabilité professionnelle (rôle) actuelle"
-
-msgid "Current organization unit and job location"
-msgstr "Unité organisationnelle et lieu d’emploi actuels"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Appellation d’emploi à l’époque du fait signalé"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Responsabilité professionnelle (rôle) à l’époque du fait signalé"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Unité organisationnelle et lieu d’emploi à l’époque du fait signalé"
+msgid "Country"
+msgstr "Pays"
 
 msgid "Dear {RecipientName},"
 msgstr "Cher, chère {RecipientName},"
@@ -2082,9 +2016,6 @@ msgstr "Étiquette : {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "État : {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "Contexte : {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

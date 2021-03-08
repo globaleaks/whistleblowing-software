@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,7 +122,7 @@ msgid "Select all"
 msgstr "Velg alle"
 
 msgid "Deselect all"
-msgstr "Fravelg alle"
+msgstr "Fravelg alt"
 
 msgid "Refresh"
 msgstr "Gjenoppfrisk"
@@ -337,12 +337,6 @@ msgstr "Oppfølgingsspørsmål"
 msgid "Triggered by score:"
 msgstr ""
 
-msgid "Message shown on top of the status page of the report"
-msgstr ""
-
-msgid "Password strength:"
-msgstr "Passordstyrke:"
-
 msgid "Weak"
 msgstr "Svakt"
 
@@ -363,21 +357,6 @@ msgstr "Skru av e-postmerknader"
 
 msgid "Turn on email notifications"
 msgstr "Skru av e-postmerknader"
-
-msgid "Failed logins"
-msgstr "Feilede innloggingsforsøk"
-
-msgid "Successful logins"
-msgstr "Vellykkede innlogginger"
-
-msgid "Started submissions"
-msgstr "Påbegynte innsendelser"
-
-msgid "Completed submissions"
-msgstr "Fullførte innsendelser"
-
-msgid "Failed submissions"
-msgstr "Feilede innsendelser"
 
 msgid "Input validation"
 msgstr "Inndata-bekreftelse"
@@ -542,11 +521,8 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Are you a whistleblower?"
-msgstr "Er du en fløyteblåser/varsler?"
-
-msgid "Blow the whistle"
-msgstr "Blås i fløyta"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr ""
@@ -664,6 +640,9 @@ msgstr ""
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
+
 msgid "Logging level"
 msgstr ""
 
@@ -699,20 +678,14 @@ msgstr ""
 msgid "percentage"
 msgstr ""
 
-msgid "Stats of the week:"
-msgstr "Ukas statistikk:"
+msgid "Type"
+msgstr "Type"
 
-msgid "Event ID"
-msgstr "Hendelses-ID"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "Tid"
-
-msgid "Event"
-msgstr "Hendelse"
-
-msgid "Response time"
-msgstr "Svartid"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "ID"
@@ -737,12 +710,6 @@ msgstr "Tilkobling"
 
 msgid "Whistleblower's last access"
 msgstr ""
-
-msgid "Alarm level"
-msgstr "Alarm-nivå"
-
-msgid "Events"
-msgstr "Hendelser"
 
 msgid "Substatuses"
 msgstr ""
@@ -837,9 +804,6 @@ msgstr "Beskrivelse"
 msgid "Questionnaire"
 msgstr "Spørreskjema"
 
-msgid "Additional questionnaire"
-msgstr ""
-
 msgid "Recipients"
 msgstr "Mottakere"
 
@@ -882,6 +846,9 @@ msgstr ""
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Tillat mottakere å laste opp filer til fløyteblåsere"
 
+msgid "Additional questionnaire"
+msgstr ""
+
 msgid "Scoring system options"
 msgstr ""
 
@@ -902,9 +869,6 @@ msgstr ""
 
 msgid "Software version:"
 msgstr "Programvareversjon:"
-
-msgid "An update is available:"
-msgstr "Oppgradering tilgjengelig:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr ""
@@ -1016,9 +980,6 @@ msgstr "Automatisk fornyelse"
 msgid "Tor Onion Service"
 msgstr "Tor-løktjeneste"
 
-msgid "Tor Browser download link"
-msgstr "Nedlastingslenke for Tor-nettleser"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonymiser utgående tilkoblinger"
 
@@ -1073,9 +1034,6 @@ msgstr "Mal"
 msgid "Question"
 msgstr ""
 
-msgid "Type"
-msgstr "Type"
-
 msgid "Single-line text input"
 msgstr "Énlinjes tekstfelt for inndata"
 
@@ -1126,12 +1084,6 @@ msgstr "Tillat flerfoldige filopplastinger"
 
 msgid "Accept multiple answers"
 msgstr "Godta flere svar"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Hint vist på knappen for tillegg av et ekstra spørsmål"
-
-msgid "Encrypt"
-msgstr "Krypter"
 
 msgid "Template override"
 msgstr ""
@@ -1205,26 +1157,11 @@ msgstr ""
 msgid "Network settings"
 msgstr "Nettverksinnstillinger"
 
-msgid "Mode:"
-msgstr ""
-
-msgid "Root domain used for secondary sites"
-msgstr "Rotdomene brukt for sekundære sider"
-
-msgid "Use the first site for administrative purposes only"
-msgstr ""
-
-msgid "Enable multi-site login"
-msgstr ""
-
-msgid "Allow users to sign up"
-msgstr "Tillat brukere å registrere seg"
-
-msgid "Enable terms of service"
-msgstr ""
-
 msgid "Sites"
 msgstr "Sider"
+
+msgid "Mode:"
+msgstr ""
 
 msgid "Active"
 msgstr "Aktiv"
@@ -1240,6 +1177,21 @@ msgstr "Underdomene"
 
 msgid "Creation date:"
 msgstr "Opprettelsesdato:"
+
+msgid "Root domain used for secondary sites"
+msgstr "Rotdomene brukt for sekundære sider"
+
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr "Tillat brukere å registrere seg"
+
+msgid "Enable terms of service"
+msgstr ""
 
 msgid "Send an account activation link to the user."
 msgstr ""
@@ -1627,6 +1579,9 @@ msgstr "Last opp en fil:"
 msgid "Logout"
 msgstr "Logg ut"
 
+msgid "An update is available:"
+msgstr "Oppgradering tilgjengelig:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1854,35 +1809,14 @@ msgstr "Fødselsdato"
 msgid "Place of birth"
 msgstr "Fødested"
 
-msgid "Social security number"
-msgstr "Personnummer"
-
-msgid "Residence"
-msgstr "Hushold"
-
 msgid "Zip code / Postal code"
 msgstr "Postnummer"
 
 msgid "Province"
 msgstr "Kommune"
 
-msgid "Current job title"
-msgstr "Gjeldende jobbtittel"
-
-msgid "Current job responsibility (role)"
-msgstr "Gjeldende arbeidsansvar (rolle)"
-
-msgid "Current organization unit and job location"
-msgstr "Gjeldende organisatorisk enhet og arbeidsplassens stedvise plassering"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Jobbtittel i det faktaen ble rapportert"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Arbeidsansvar (rolle) i det faktaen ble rapportert"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Organisatorisk enhet og arbeidets stedvise plassering i det faktaen ble rapportert"
+msgid "Country"
+msgstr "Land"
 
 msgid "Dear {RecipientName},"
 msgstr "Kjære {RecipientName},"
@@ -2050,9 +1984,6 @@ msgstr "Merkelapp: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr ""
-
-msgid "Context: {ContextName}"
-msgstr "Bindeleddsinformasjon: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

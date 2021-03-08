@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -349,12 +349,6 @@ msgstr "שאלת מעורר"
 msgid "Triggered by score:"
 msgstr ""
 
-msgid "Message shown on top of the status page of the report"
-msgstr ""
-
-msgid "Password strength:"
-msgstr "חוזק סיסמה:"
-
 msgid "Weak"
 msgstr "חלש"
 
@@ -375,21 +369,6 @@ msgstr "השקט התראות דוא״ל"
 
 msgid "Turn on email notifications"
 msgstr "הפעל התראות דוא״ל"
-
-msgid "Failed logins"
-msgstr "התחברויות כושלות"
-
-msgid "Successful logins"
-msgstr "התחברויות מוצלחות"
-
-msgid "Started submissions"
-msgstr "הגשות מותחלות"
-
-msgid "Completed submissions"
-msgstr "הגשות מושלמות"
-
-msgid "Failed submissions"
-msgstr "הגשות נכשלות"
 
 msgid "Input validation"
 msgstr ""
@@ -554,11 +533,8 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Are you a whistleblower?"
-msgstr "האם אתה חושף שחיתות?"
-
-msgid "Blow the whistle"
-msgstr "חשוף מושחת"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "לפני שממשיכים, אנא קבע/י סיסמה חדשה"
@@ -676,6 +652,9 @@ msgstr "אפשר מערכת ניקוד"
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
+
 msgid "Logging level"
 msgstr ""
 
@@ -711,20 +690,14 @@ msgstr ""
 msgid "percentage"
 msgstr ""
 
-msgid "Stats of the week:"
-msgstr "סטטיסטיקות השבוע"
+msgid "Type"
+msgstr "סוג"
 
-msgid "Event ID"
-msgstr "מספר זיהוי אירוע"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "זמן"
-
-msgid "Event"
-msgstr "אירוע"
-
-msgid "Response time"
-msgstr "זמן תגובה"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "מזהה"
@@ -749,12 +722,6 @@ msgstr "חיבור"
 
 msgid "Whistleblower's last access"
 msgstr ""
-
-msgid "Alarm level"
-msgstr "רמה אזעקה"
-
-msgid "Events"
-msgstr "אירועים"
 
 msgid "Substatuses"
 msgstr "תת־מעמדים"
@@ -849,9 +816,6 @@ msgstr "תיאור"
 msgid "Questionnaire"
 msgstr "שְׁאֵלוֹן"
 
-msgid "Additional questionnaire"
-msgstr ""
-
 msgid "Recipients"
 msgstr "מקבלים"
 
@@ -894,6 +858,9 @@ msgstr ""
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
+msgid "Additional questionnaire"
+msgstr ""
+
 msgid "Scoring system options"
 msgstr "אפשרויות מערכת ניקוד"
 
@@ -914,9 +881,6 @@ msgstr ""
 
 msgid "Software version:"
 msgstr "גרסת תוכנה:"
-
-msgid "An update is available:"
-msgstr "עדכון זמין:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr ""
@@ -1028,9 +992,6 @@ msgstr "חידוש אוטומטי"
 msgid "Tor Onion Service"
 msgstr "שירות בצל של Tor"
 
-msgid "Tor Browser download link"
-msgstr "קישור הורדה של דפדפן Tor"
-
 msgid "Anonymize outgoing connections"
 msgstr ""
 
@@ -1085,9 +1046,6 @@ msgstr "תבנית"
 msgid "Question"
 msgstr "שאלה"
 
-msgid "Type"
-msgstr "סוג"
-
 msgid "Single-line text input"
 msgstr "קלט טקסט של שורה אחת"
 
@@ -1138,12 +1096,6 @@ msgstr "קבל העלאות של קבצים רבים"
 
 msgid "Accept multiple answers"
 msgstr "קבל תשובות רבות"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "רמז הנראה על הכפתור עבור הוספה של תשובה נוספת"
-
-msgid "Encrypt"
-msgstr "הצפן"
 
 msgid "Template override"
 msgstr ""
@@ -1217,26 +1169,11 @@ msgstr "ניהול תיקים"
 msgid "Network settings"
 msgstr "הגדרות רשת"
 
-msgid "Mode:"
-msgstr "מצב:"
-
-msgid "Root domain used for secondary sites"
-msgstr ""
-
-msgid "Use the first site for administrative purposes only"
-msgstr ""
-
-msgid "Enable multi-site login"
-msgstr ""
-
-msgid "Allow users to sign up"
-msgstr "התר למשתמשים להירשם"
-
-msgid "Enable terms of service"
-msgstr "אפשר תנאיי שירות"
-
 msgid "Sites"
 msgstr "אתרים"
+
+msgid "Mode:"
+msgstr "מצב:"
 
 msgid "Active"
 msgstr "פעיל"
@@ -1252,6 +1189,21 @@ msgstr "תת‏־תחום"
 
 msgid "Creation date:"
 msgstr "תאריך יצירה:"
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr "התר למשתמשים להירשם"
+
+msgid "Enable terms of service"
+msgstr "אפשר תנאיי שירות"
 
 msgid "Send an account activation link to the user."
 msgstr "שלח קישור שיפעול חשבון אל המשתמש."
@@ -1639,6 +1591,9 @@ msgstr "העלה קובץ:"
 msgid "Logout"
 msgstr "התנתק"
 
+msgid "An update is available:"
+msgstr "עדכון זמין:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1866,35 +1821,14 @@ msgstr "תאריך לידה"
 msgid "Place of birth"
 msgstr "מקום לידה"
 
-msgid "Social security number"
-msgstr "מספר ביטוח לאומי"
-
-msgid "Residence"
-msgstr "מגורים"
-
 msgid "Zip code / Postal code"
 msgstr "מיקוד"
 
 msgid "Province"
 msgstr "מחוז"
 
-msgid "Current job title"
-msgstr "תיאור המשרה הנוכחית"
-
-msgid "Current job responsibility (role)"
-msgstr "אחריות של משרה נוכחית (תפקיד)"
-
-msgid "Current organization unit and job location"
-msgstr "יחידה ארגונית נוכחית עבודת מיקום"
-
-msgid "Job title at the time of the reported fact"
-msgstr "הגדרת תפקיד בעת עובדת הדיווח"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "אחריות משרה (תפקיד) בזמן העובדה המְדֻוָּחַת"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "יחידת ארגון עבודת מיקום בעת עובדת הדיווח"
+msgid "Country"
+msgstr "מדינה"
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} היקר,"
@@ -2062,9 +1996,6 @@ msgstr "תווית: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "מעמד: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "הקשר: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
-"Last-Translator: Joan Bitlloch <joanbit@gmail.com>\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -349,12 +349,6 @@ msgstr "Pregunta detonant"
 msgid "Triggered by score:"
 msgstr "Es desencadena a partir d'una puntuació superior a:"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Missatge mostrat a sobre de la pàgina de l'estat de l'informe:"
-
-msgid "Password strength:"
-msgstr "Nivell de seguretat de la contrasenya"
-
 msgid "Weak"
 msgstr "Baix"
 
@@ -375,21 +369,6 @@ msgstr "Desactiva les notificacions per correu electrònic"
 
 msgid "Turn on email notifications"
 msgstr "Activa les notificacions per correu electrònic"
-
-msgid "Failed logins"
-msgstr "Inicis de sessió fallits"
-
-msgid "Successful logins"
-msgstr "Inicis de sessió amb èxit"
-
-msgid "Started submissions"
-msgstr "Enviaments iniciats"
-
-msgid "Completed submissions"
-msgstr "Enviaments completats"
-
-msgid "Failed submissions"
-msgstr "Enviament fallit"
 
 msgid "Input validation"
 msgstr "Validació de la informació d'entrada"
@@ -554,11 +533,8 @@ msgstr "núm VAT"
 msgid "Tax code"
 msgstr "codi tributari"
 
-msgid "Are you a whistleblower?"
-msgstr "Ets un informador?"
-
-msgid "Blow the whistle"
-msgstr "Inici de la comunicació"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Abans de continuar, estableixi una nova contrasenya."
@@ -676,6 +652,9 @@ msgstr "Activa el sistema de puntuació"
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Permet que altres webs incloguin la plataforma a l'interior d'Iframes"
+
 msgid "Logging level"
 msgstr "Nivell de registre"
 
@@ -711,20 +690,14 @@ msgstr "megabytes"
 msgid "percentage"
 msgstr "percentatge"
 
-msgid "Stats of the week:"
-msgstr "Estadístiques de la setmana"
+msgid "Type"
+msgstr "Tipus"
 
-msgid "Event ID"
-msgstr "Esdeveniment ID"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "Hora"
-
-msgid "Event"
-msgstr "Esdeveniment"
-
-msgid "Response time"
-msgstr "Temps de resposta"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "Id."
@@ -749,12 +722,6 @@ msgstr "Connexió"
 
 msgid "Whistleblower's last access"
 msgstr "Últim accés de l'Informant"
-
-msgid "Alarm level"
-msgstr "Alarma"
-
-msgid "Events"
-msgstr "Esdeveniments"
 
 msgid "Substatuses"
 msgstr "Sub-estat"
@@ -849,9 +816,6 @@ msgstr "Descripció"
 msgid "Questionnaire"
 msgstr "Qüestionari"
 
-msgid "Additional questionnaire"
-msgstr "Qüestionari addicional"
-
 msgid "Recipients"
 msgstr "Destinataris"
 
@@ -894,6 +858,9 @@ msgstr "Permet als informadors afegir arxius adjunts en un informe existent"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Permet als destinataris carregar arxius per als informadors"
 
+msgid "Additional questionnaire"
+msgstr "Qüestionari addicional"
+
 msgid "Scoring system options"
 msgstr "Opcions del sistema de puntuació"
 
@@ -914,9 +881,6 @@ msgstr "Assigna el codi de rebut només als informes que arriben a la puntuació
 
 msgid "Software version:"
 msgstr "Versió del programari:"
-
-msgid "An update is available:"
-msgstr "Hi ha una actualització disponible:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Restringeix l'accés a adreces IP específiques"
@@ -1028,9 +992,6 @@ msgstr "Renovació automàtica"
 msgid "Tor Onion Service"
 msgstr "Servei Tor Onion"
 
-msgid "Tor Browser download link"
-msgstr "enllaç de descàrrega del navegador TOR"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonimitzar les connexions de sortida"
 
@@ -1085,9 +1046,6 @@ msgstr "Plantilla"
 msgid "Question"
 msgstr "Pregunta"
 
-msgid "Type"
-msgstr "Tipus"
-
 msgid "Single-line text input"
 msgstr "Entrada de text d'una sola línia"
 
@@ -1138,12 +1096,6 @@ msgstr "Accepta pujades múltiples de fitxers"
 
 msgid "Accept multiple answers"
 msgstr "Accepta múltiples respostes"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Toc que es mostra al botó per afegir una resposta més"
-
-msgid "Encrypt"
-msgstr "Xifra"
 
 msgid "Template override"
 msgstr "Sobreescriu la plantilla"
@@ -1217,26 +1169,11 @@ msgstr "Gestió de casos"
 msgid "Network settings"
 msgstr "Configuració de xarxa"
 
-msgid "Mode:"
-msgstr "Mode:"
-
-msgid "Root domain used for secondary sites"
-msgstr "Domini arrel utilitzat per a llocs secundaris"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Utilitzeu el primer web només per a fins administratius"
-
-msgid "Enable multi-site login"
-msgstr "Permet l'inici de sessió simultani a diversos llocs"
-
-msgid "Allow users to sign up"
-msgstr "Permetre als usuaris registrar-se"
-
-msgid "Enable terms of service"
-msgstr "Activa els termes del servei"
-
 msgid "Sites"
 msgstr "Llocs web"
+
+msgid "Mode:"
+msgstr "Mode:"
 
 msgid "Active"
 msgstr "Activa"
@@ -1252,6 +1189,21 @@ msgstr "Subdomini"
 
 msgid "Creation date:"
 msgstr "Data de creació:"
+
+msgid "Root domain used for secondary sites"
+msgstr "Domini arrel utilitzat per a llocs secundaris"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Utilitzeu el primer web només per a fins administratius"
+
+msgid "Enable multi-site login"
+msgstr "Permet l'inici de sessió simultani a diversos llocs"
+
+msgid "Allow users to sign up"
+msgstr "Permetre als usuaris registrar-se"
+
+msgid "Enable terms of service"
+msgstr "Activa els termes del servei"
 
 msgid "Send an account activation link to the user."
 msgstr "Envia un enllaç d’activació del compte a l’usuari."
@@ -1639,6 +1591,9 @@ msgstr "Pujar un fitxer:"
 msgid "Logout"
 msgstr "Tanca sessió"
 
+msgid "An update is available:"
+msgstr "Hi ha una actualització disponible:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1866,35 +1821,14 @@ msgstr "Data de naixement"
 msgid "Place of birth"
 msgstr "Lloc de naixement"
 
-msgid "Social security number"
-msgstr "Número de SS"
-
-msgid "Residence"
-msgstr "Residència"
-
 msgid "Zip code / Postal code"
 msgstr "Codi postal"
 
 msgid "Province"
 msgstr "Província"
 
-msgid "Current job title"
-msgstr "Professió actual"
-
-msgid "Current job responsibility (role)"
-msgstr "Professió actual (càrrec)"
-
-msgid "Current organization unit and job location"
-msgstr "Departament i feina actual"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Càrrec laboral en el moment dels fets esmentats"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Responsabilitat laboral (rol) en el moment dels fets esmentats"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Unitat d'organització i localització de feina en el moment dels fets esmentats"
+msgid "Country"
+msgstr "País"
 
 msgid "Dear {RecipientName},"
 msgstr "Benvolgut/uda {RecipientName},"
@@ -2062,9 +1996,6 @@ msgstr "Etiqueta: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "Estat: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "Context: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

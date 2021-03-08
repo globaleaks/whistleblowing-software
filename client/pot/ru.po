@@ -30,7 +30,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:51+0000\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -360,12 +360,6 @@ msgstr "Инициировать вопрос"
 msgid "Triggered by score:"
 msgstr "Инициируется оценкой:"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Сообщение отображается в верхней части страницы подачи материалов"
-
-msgid "Password strength:"
-msgstr "Надежность пароля:"
-
 msgid "Weak"
 msgstr "Слабая"
 
@@ -386,21 +380,6 @@ msgstr "Заглушить уведомления по эл. почте"
 
 msgid "Turn on email notifications"
 msgstr "Включить уведомления по эл. почте"
-
-msgid "Failed logins"
-msgstr "Ошибки входа"
-
-msgid "Successful logins"
-msgstr "Успешные входы"
-
-msgid "Started submissions"
-msgstr "Начатые материалы"
-
-msgid "Completed submissions"
-msgstr "Завершённые передачи материалов"
-
-msgid "Failed submissions"
-msgstr "Неудавшиеся передачи материалов"
 
 msgid "Input validation"
 msgstr "Проверка ввода"
@@ -565,11 +544,8 @@ msgstr "Номер плательщика НДС"
 msgid "Tax code"
 msgstr "Код налога"
 
-msgid "Are you a whistleblower?"
-msgstr "Вы являетесь информатором?"
-
-msgid "Blow the whistle"
-msgstr "Подавайте материалы"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Прежде чем продолжить, пожалуйста, установите новый пароль."
@@ -687,6 +663,9 @@ msgstr "Включить скоринговую систему"
 msgid "Enable private annotations"
 msgstr "Включить частные аннотации"
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Разрешить следующим веб-сайтам встраивать платформу в iframes"
+
 msgid "Logging level"
 msgstr "Уровень записи логов"
 
@@ -722,20 +701,14 @@ msgstr "мегабайт"
 msgid "percentage"
 msgstr "процентов"
 
-msgid "Stats of the week:"
-msgstr "Статистика за неделю:"
+msgid "Type"
+msgstr "Тип"
 
-msgid "Event ID"
-msgstr "Идентификатор события"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "Время"
-
-msgid "Event"
-msgstr "Событие"
-
-msgid "Response time"
-msgstr "Время ответа"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "ID"
@@ -760,12 +733,6 @@ msgstr "Соединение"
 
 msgid "Whistleblower's last access"
 msgstr "Последний доступ информатора"
-
-msgid "Alarm level"
-msgstr "Уровень тревоги"
-
-msgid "Events"
-msgstr "События"
 
 msgid "Substatuses"
 msgstr "Субстатусы"
@@ -860,9 +827,6 @@ msgstr "Описание"
 msgid "Questionnaire"
 msgstr "Опросник"
 
-msgid "Additional questionnaire"
-msgstr "Дополнительный опросник"
-
 msgid "Recipients"
 msgstr "Получатели"
 
@@ -905,6 +869,9 @@ msgstr "Разрешить информаторам добавлять прил�
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Позволить получателям загружать файлы для информаторов"
 
+msgid "Additional questionnaire"
+msgstr "Дополнительный опросник"
+
 msgid "Scoring system options"
 msgstr "Опции скоринговой системы"
 
@@ -925,9 +892,6 @@ msgstr "Присвоить квитанцию о получении только
 
 msgid "Software version:"
 msgstr "Версия программного обеспечения:"
-
-msgid "An update is available:"
-msgstr "Доступно обновление:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Ограничение доступа к определенным IP-адресам"
@@ -1039,9 +1003,6 @@ msgstr "Aвтоматическое продление"
 msgid "Tor Onion Service"
 msgstr "Сервис Tor Onion"
 
-msgid "Tor Browser download link"
-msgstr "Скачать Tor Browser"
-
 msgid "Anonymize outgoing connections"
 msgstr "Анонимизировать исходящие соединения"
 
@@ -1096,9 +1057,6 @@ msgstr "Шаблон"
 msgid "Question"
 msgstr "Вопрос"
 
-msgid "Type"
-msgstr "Тип"
-
 msgid "Single-line text input"
 msgstr "Однострочный ввод текста"
 
@@ -1149,12 +1107,6 @@ msgstr "Разрешить загрузку нескольких файлов"
 
 msgid "Accept multiple answers"
 msgstr "Принимать несколько ответов"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Кнопка подсказки для добавления дополнительного ответа"
-
-msgid "Encrypt"
-msgstr "Зашифровать"
 
 msgid "Template override"
 msgstr "Переопределение шаблона"
@@ -1228,26 +1180,11 @@ msgstr "Управление кейсами"
 msgid "Network settings"
 msgstr "Настройки сети"
 
-msgid "Mode:"
-msgstr "Режим:"
-
-msgid "Root domain used for secondary sites"
-msgstr "Корневой домен, используемый для вторичных сайтов"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Использовать первый сайт только в административных целях"
-
-msgid "Enable multi-site login"
-msgstr "Включить многопользовательский вход"
-
-msgid "Allow users to sign up"
-msgstr "Разрешить пользователям регистрироваться"
-
-msgid "Enable terms of service"
-msgstr "Включить условия обслуживания"
-
 msgid "Sites"
 msgstr "Сайты"
+
+msgid "Mode:"
+msgstr "Режим:"
 
 msgid "Active"
 msgstr "Активно"
@@ -1263,6 +1200,21 @@ msgstr "Субдомен"
 
 msgid "Creation date:"
 msgstr "Дата создания:"
+
+msgid "Root domain used for secondary sites"
+msgstr "Корневой домен, используемый для вторичных сайтов"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Использовать первый сайт только в административных целях"
+
+msgid "Enable multi-site login"
+msgstr "Включить многопользовательский вход"
+
+msgid "Allow users to sign up"
+msgstr "Разрешить пользователям регистрироваться"
+
+msgid "Enable terms of service"
+msgstr "Включить условия обслуживания"
 
 msgid "Send an account activation link to the user."
 msgstr "Отправить пользователю ссылку для активации учетной записи."
@@ -1650,6 +1602,9 @@ msgstr "Загрузить файл на сервер:"
 msgid "Logout"
 msgstr "Выход"
 
+msgid "An update is available:"
+msgstr "Доступно обновление:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1877,35 +1832,14 @@ msgstr "Дата рождения"
 msgid "Place of birth"
 msgstr "Место рождения"
 
-msgid "Social security number"
-msgstr "Номер социального страхования"
-
-msgid "Residence"
-msgstr "Место жительства"
-
 msgid "Zip code / Postal code"
 msgstr "Почтовый индекс"
 
 msgid "Province"
 msgstr "Провинция"
 
-msgid "Current job title"
-msgstr "Текущая должность"
-
-msgid "Current job responsibility (role)"
-msgstr "Текущие служебные обязанности (роль)"
-
-msgid "Current organization unit and job location"
-msgstr "Текущая организационная единица и место работы"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Занимаемая должность во время событий, изложенных в материале"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Служебные обязанности (роль) во время событий, изложенных в материале"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Текущая организационная единица и место работы во время событий, изложенных в материале"
+msgid "Country"
+msgstr "Страна"
 
 msgid "Dear {RecipientName},"
 msgstr "Дорогой(ая) {RecipientName},"
@@ -2073,9 +2007,6 @@ msgstr "Пометка: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "Статус: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "Контекст: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

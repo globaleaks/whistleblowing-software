@@ -1,14 +1,8 @@
 {
   "version": 1,
   "node": {
-    "whistleblowing_question": {
-      "en": "Are you a whistleblower?"
-    },
     "whistleblowing_button": {
-      "en": "Blow the whistle"
-    },
-    "header_title_submissionpage": {
-      "en": "Blow the whistle"
+      "en": "File a report"
     }
   },
   "templates" : {}

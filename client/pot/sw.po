@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-01-10 23:17+0000\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swahili (http://www.transifex.com/otf/globaleaks/language/sw/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -335,12 +335,6 @@ msgstr "Chochea swali"
 msgid "Triggered by score:"
 msgstr "Iliyochochewa kwa alama:"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Ujumbe umeonyeshwa juu ya ukurasa wa ripoti"
-
-msgid "Password strength:"
-msgstr "Uimara wa neno la siri:"
-
 msgid "Weak"
 msgstr "Dhaifu"
 
@@ -361,21 +355,6 @@ msgstr "Nyamazisha taarifa za barua pepe"
 
 msgid "Turn on email notifications"
 msgstr "Washa taarifa za barua pepe"
-
-msgid "Failed logins"
-msgstr "Kuingia kwenye akaunti kumeshindwa"
-
-msgid "Successful logins"
-msgstr "Kuingia kwenye akaunti kumefanikiwa"
-
-msgid "Started submissions"
-msgstr "Mawasilisho yaliyoanza"
-
-msgid "Completed submissions"
-msgstr "Mawasilisho yaliyokamilika"
-
-msgid "Failed submissions"
-msgstr "Mawasilisho yaliyoshindwa"
 
 msgid "Input validation"
 msgstr "Uthibitishaji wa kuingiza data"
@@ -540,10 +519,7 @@ msgstr "namba ya VAT"
 msgid "Tax code"
 msgstr "Nambari ya ushuru"
 
-msgid "Are you a whistleblower?"
-msgstr ""
-
-msgid "Blow the whistle"
+msgid "File a report"
 msgstr ""
 
 msgid "Before proceeding, please set a new password."
@@ -662,6 +638,9 @@ msgstr "Wezesha mfumo wa upataji wa alama"
 msgid "Enable private annotations"
 msgstr "Wezesha lebo za kibinafsi"
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
+
 msgid "Logging level"
 msgstr "Kiwango cha kuingia"
 
@@ -697,20 +676,14 @@ msgstr "megabiti"
 msgid "percentage"
 msgstr "asilimia"
 
-msgid "Stats of the week:"
-msgstr "Takwimu za wiki:"
+msgid "Type"
+msgstr "Aina"
 
-msgid "Event ID"
-msgstr "Kitambulisho cha tukio"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "Muda"
-
-msgid "Event"
-msgstr "Tukio"
-
-msgid "Response time"
-msgstr "Muda wa kujibu"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "Kitambulisho"
@@ -735,12 +708,6 @@ msgstr "Mwunganisho"
 
 msgid "Whistleblower's last access"
 msgstr "Mara ya mwisho kwa mtoa taarifa za siri kuingia"
-
-msgid "Alarm level"
-msgstr "Kiwango cha kengele"
-
-msgid "Events"
-msgstr "Matukio"
 
 msgid "Substatuses"
 msgstr "Vitu vidogo"
@@ -835,9 +802,6 @@ msgstr ""
 msgid "Questionnaire"
 msgstr "Dodoso"
 
-msgid "Additional questionnaire"
-msgstr "Dodoso la nyongeza"
-
 msgid "Recipients"
 msgstr "Wapokeaji"
 
@@ -880,6 +844,9 @@ msgstr "Wacha watoa taarifa za siri waongeze viambatisho kwenye ripoti zilizopo"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Wacha wapokeaji wapakie faili kwa watoa taarifa za siri"
 
+msgid "Additional questionnaire"
+msgstr "Dodoso la nyongeza"
+
 msgid "Scoring system options"
 msgstr "Chaguo za mfumo wa kupata alama"
 
@@ -900,9 +867,6 @@ msgstr "Wape risiti tu ripoti zinazofikia alama:"
 
 msgid "Software version:"
 msgstr "Toleo la programu:"
-
-msgid "An update is available:"
-msgstr "Huisho linapatikana:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Zuia ufikiaji wa anwani maalum za IP"
@@ -1014,9 +978,6 @@ msgstr "Uhuishaji kiotomatiki"
 msgid "Tor Onion Service"
 msgstr "Huduma binafsi"
 
-msgid "Tor Browser download link"
-msgstr "Kiunganisho cha kupakua huduma binafsi"
-
 msgid "Anonymize outgoing connections"
 msgstr "Fanya kutokujulikana viunganisho vinavyotoka nnje"
 
@@ -1071,9 +1032,6 @@ msgstr "Kiolezo"
 msgid "Question"
 msgstr "Swali"
 
-msgid "Type"
-msgstr "Aina"
-
 msgid "Single-line text input"
 msgstr "Uingizaji wa maandishi ya mstari mmoja"
 
@@ -1124,12 +1082,6 @@ msgstr "Kubali upakiaji wa faili nyingi"
 
 msgid "Accept multiple answers"
 msgstr "Kubali majibu mengi"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Kidokezo kimeonyeshwa kwenye kitufe cha kuongeza jibu la ziada"
-
-msgid "Encrypt"
-msgstr "Kisimbaji fiche"
 
 msgid "Template override"
 msgstr "Batilisha kiolezo"
@@ -1203,26 +1155,11 @@ msgstr "Usimamizi wa kesi"
 msgid "Network settings"
 msgstr "Mipangilio ya mtandao"
 
-msgid "Mode:"
-msgstr ""
-
-msgid "Root domain used for secondary sites"
-msgstr "Kikoa cha mwanzo kinachotumiwa kwa tovuti zingine"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Tumia tovuti ya kwanza kwa madhumuni ya kiutawala tu"
-
-msgid "Enable multi-site login"
-msgstr "Wezesha kuingia kwa tovuti nyingi"
-
-msgid "Allow users to sign up"
-msgstr "Ruhusu watumiaji kujisajili"
-
-msgid "Enable terms of service"
-msgstr "Wezesha masharti ya huduma"
-
 msgid "Sites"
 msgstr "Tovuti"
+
+msgid "Mode:"
+msgstr ""
 
 msgid "Active"
 msgstr "Hai"
@@ -1238,6 +1175,21 @@ msgstr "Kikoa kidogo"
 
 msgid "Creation date:"
 msgstr "Tarehe ya kuundwa:"
+
+msgid "Root domain used for secondary sites"
+msgstr "Kikoa cha mwanzo kinachotumiwa kwa tovuti zingine"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Tumia tovuti ya kwanza kwa madhumuni ya kiutawala tu"
+
+msgid "Enable multi-site login"
+msgstr "Wezesha kuingia kwa tovuti nyingi"
+
+msgid "Allow users to sign up"
+msgstr "Ruhusu watumiaji kujisajili"
+
+msgid "Enable terms of service"
+msgstr "Wezesha masharti ya huduma"
 
 msgid "Send an account activation link to the user."
 msgstr "Tuma kiunga cha uanzishaji wa akaunti kwa mtumiaji."
@@ -1625,6 +1577,9 @@ msgstr "Pakia faili:"
 msgid "Logout"
 msgstr "Toka"
 
+msgid "An update is available:"
+msgstr "Huisho linapatikana:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1852,35 +1807,14 @@ msgstr "Tarehe ya kuzaliwa"
 msgid "Place of birth"
 msgstr "Sehemu ulipozaliwa"
 
-msgid "Social security number"
-msgstr "Nambari ya mfuko wa jamii"
-
-msgid "Residence"
-msgstr "Makazi"
-
 msgid "Zip code / Postal code"
 msgstr "Zip code / Postal code"
 
 msgid "Province"
 msgstr "Jimbo"
 
-msgid "Current job title"
-msgstr "Jina la kazi yako ya sasa"
-
-msgid "Current job responsibility (role)"
-msgstr "Majukumu ya kazi yako ya sasa (jukumu)"
-
-msgid "Current organization unit and job location"
-msgstr "Kitengo katika shirika na sehemu ya kazi"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Cheo cha kazi wakati kisa kinaripotiwa"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "majukumu ya kazi wakati kisa kinaripotiwa"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "kitengo katika shirika wakati kisa kinaripotiwa"
+msgid "Country"
+msgstr "Nchi"
 
 msgid "Dear {RecipientName},"
 msgstr "Kwako {RecipientName}"
@@ -2048,9 +1982,6 @@ msgstr "Lebo: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "Hadhi: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "Muktadha: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

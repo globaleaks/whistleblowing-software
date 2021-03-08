@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
-"Last-Translator: Ivo\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -343,12 +343,6 @@ msgstr "Автоматичен последващ въпрос"
 msgid "Triggered by score:"
 msgstr "Задействан от резултата"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Съобщение, показвано най-горе на страницата за статус на подадения сигнал"
-
-msgid "Password strength:"
-msgstr "Сила на паролата:"
-
 msgid "Weak"
 msgstr "Слаба"
 
@@ -369,21 +363,6 @@ msgstr "Заглушаване на имейл известия"
 
 msgid "Turn on email notifications"
 msgstr "Включване на имейл известия"
-
-msgid "Failed logins"
-msgstr "Неуспешни влизания"
-
-msgid "Successful logins"
-msgstr "Успешни влизания"
-
-msgid "Started submissions"
-msgstr "Стартирани подавания на сигнал"
-
-msgid "Completed submissions"
-msgstr "Приключени подавания на сигнал"
-
-msgid "Failed submissions"
-msgstr "Изпращането неуспешно."
 
 msgid "Input validation"
 msgstr "Проверка на достоверността на въведените данни"
@@ -548,11 +527,8 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Are you a whistleblower?"
-msgstr "Вие подател на сигнал ли сте"
-
-msgid "Blow the whistle"
-msgstr "Подаване на сигнал"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Преди да продължите, моля задайте нова парола."
@@ -670,6 +646,9 @@ msgstr "Активиране на система за оценяване"
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Разрешете на следните сайтове да прикачат платформата във вътрешния фрейм"
+
 msgid "Logging level"
 msgstr "Ниво на протокола"
 
@@ -705,20 +684,14 @@ msgstr "мегабайти"
 msgid "percentage"
 msgstr "проценти"
 
-msgid "Stats of the week:"
-msgstr "Статистика за седмицата:"
+msgid "Type"
+msgstr "Тип"
 
-msgid "Event ID"
-msgstr "ID на събитие"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "Време"
-
-msgid "Event"
-msgstr "Събитие"
-
-msgid "Response time"
-msgstr "Време за отговор"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "ID"
@@ -743,12 +716,6 @@ msgstr "Връзка"
 
 msgid "Whistleblower's last access"
 msgstr "Последно влизане на източника"
-
-msgid "Alarm level"
-msgstr "Ниво на тревогата"
-
-msgid "Events"
-msgstr "Събития"
 
 msgid "Substatuses"
 msgstr "Подстатуси"
@@ -843,9 +810,6 @@ msgstr "Описание"
 msgid "Questionnaire"
 msgstr "Въпросник"
 
-msgid "Additional questionnaire"
-msgstr "Допълнителен въпросник"
-
 msgid "Recipients"
 msgstr "Получатели"
 
@@ -888,6 +852,9 @@ msgstr "Разрешаване на подателя на сигнал да пр
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Разрешаване на получателите да качват файлове на подателите на сигнали"
 
+msgid "Additional questionnaire"
+msgstr "Допълнителен въпросник"
+
 msgid "Scoring system options"
 msgstr "Опции за отчитане на резултатите"
 
@@ -908,9 +875,6 @@ msgstr "Издаване на код само за сигнали, получи�
 
 msgid "Software version:"
 msgstr "Версия на софтуера:"
-
-msgid "An update is available:"
-msgstr "Има ново обновление:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Ограничаване на достъпа до определени IP адреси"
@@ -1022,9 +986,6 @@ msgstr "Автоматично подновяване"
 msgid "Tor Onion Service"
 msgstr "Tor onion услуга"
 
-msgid "Tor Browser download link"
-msgstr "Връзка за изтегляне на Tor браузъра"
-
 msgid "Anonymize outgoing connections"
 msgstr "Даване на анонимност на изходни връзки"
 
@@ -1079,9 +1040,6 @@ msgstr "Шаблон"
 msgid "Question"
 msgstr "Въпрос"
 
-msgid "Type"
-msgstr "Тип"
-
 msgid "Single-line text input"
 msgstr "Поле за текст на един ред"
 
@@ -1132,12 +1090,6 @@ msgstr "Приеми качването на много файлове"
 
 msgid "Accept multiple answers"
 msgstr "Примане на множество отговори"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Подсказка показана върху бутона за добавяне на допълнителен отговор"
-
-msgid "Encrypt"
-msgstr "Криптирай"
 
 msgid "Template override"
 msgstr "Презаписване на шаблона"
@@ -1211,26 +1163,11 @@ msgstr "Управление на случаите"
 msgid "Network settings"
 msgstr "Мрежови настройки"
 
-msgid "Mode:"
-msgstr "Режим:"
-
-msgid "Root domain used for secondary sites"
-msgstr "Домейн, използван за други сайтове"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Използвайте първия сайт само за администраторски цели"
-
-msgid "Enable multi-site login"
-msgstr "Активиране на мулти-сайтово вписване"
-
-msgid "Allow users to sign up"
-msgstr "Разрешава на потребителите да се регистрират"
-
-msgid "Enable terms of service"
-msgstr "Активиране на общи услови за ползване"
-
 msgid "Sites"
 msgstr "Страници"
+
+msgid "Mode:"
+msgstr "Режим:"
 
 msgid "Active"
 msgstr "Активен"
@@ -1246,6 +1183,21 @@ msgstr "Под-домейн"
 
 msgid "Creation date:"
 msgstr "Дата на създаване:"
+
+msgid "Root domain used for secondary sites"
+msgstr "Домейн, използван за други сайтове"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Използвайте първия сайт само за администраторски цели"
+
+msgid "Enable multi-site login"
+msgstr "Активиране на мулти-сайтово вписване"
+
+msgid "Allow users to sign up"
+msgstr "Разрешава на потребителите да се регистрират"
+
+msgid "Enable terms of service"
+msgstr "Активиране на общи услови за ползване"
 
 msgid "Send an account activation link to the user."
 msgstr "Изпрати на потребителя активиращ линк за акаунт"
@@ -1633,6 +1585,9 @@ msgstr "Качване на нов файл:"
 msgid "Logout"
 msgstr "Отписване"
 
+msgid "An update is available:"
+msgstr "Има ново обновление:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1860,35 +1815,14 @@ msgstr "Дата на раждане"
 msgid "Place of birth"
 msgstr "Място на раждане"
 
-msgid "Social security number"
-msgstr "Социалноосигурителен номер"
-
-msgid "Residence"
-msgstr "Местожителство"
-
 msgid "Zip code / Postal code"
 msgstr "Пощенски код"
 
 msgid "Province"
 msgstr "Провинция"
 
-msgid "Current job title"
-msgstr "Текуща длъжност"
-
-msgid "Current job responsibility (role)"
-msgstr "Настоящи професионални задължения"
-
-msgid "Current organization unit and job location"
-msgstr "Настоящ отдел в компанията и локация"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Наименование на длъжността към момента на докладваното нарушение"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Професионални отговорности по времето на докладвания сигнал"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Отдел в компанията и локация по времето на докладвания сигнал"
+msgid "Country"
+msgstr "Държава"
 
 msgid "Dear {RecipientName},"
 msgstr "Скъпи {RecipientName},"
@@ -2056,9 +1990,6 @@ msgstr "Етикет: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "Статус: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "Контекст: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

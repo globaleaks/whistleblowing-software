@@ -2,15 +2,15 @@
 # Translators:
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2020
 # Masayuki Hatta <mhatta@mhatta.org>, 2014
-# Naofumi <naofum@gmail.com>, 2015-2020
+# Naofumi <naofum@gmail.com>, 2015-2021
 # Naofumi <naofum@gmail.com>, 2015
 # Suguru Hirahara, 2013
 # 432cfded806ff6b7fe5774185a19126f_b5bc177, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:50+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
+"Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -339,12 +339,6 @@ msgstr "トリガーの質問"
 msgid "Triggered by score:"
 msgstr "スコアでトリガーされました:"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "報告の状況ページの上部に表示されるメッセージ"
-
-msgid "Password strength:"
-msgstr "パスワードの強さ:"
-
 msgid "Weak"
 msgstr "弱い"
 
@@ -365,21 +359,6 @@ msgstr "メール通知をオフにする"
 
 msgid "Turn on email notifications"
 msgstr "メール通知をオンにする"
-
-msgid "Failed logins"
-msgstr "失敗したログイン"
-
-msgid "Successful logins"
-msgstr "成功したログイン"
-
-msgid "Started submissions"
-msgstr "提出を開始"
-
-msgid "Completed submissions"
-msgstr "提出完了"
-
-msgid "Failed submissions"
-msgstr "提出に失敗しました"
 
 msgid "Input validation"
 msgstr "入力の検証"
@@ -544,11 +523,8 @@ msgstr "法人番号/マイナンバー"
 msgid "Tax code"
 msgstr "納税番号"
 
-msgid "Are you a whistleblower?"
-msgstr "あなたは内部告発者ですか?"
-
-msgid "Blow the whistle"
-msgstr "内部告発を行う"
+msgid "File a report"
+msgstr "報告を保存する"
 
 msgid "Before proceeding, please set a new password."
 msgstr "次に進む前に、新しいパスワードを設定してください。"
@@ -666,6 +642,9 @@ msgstr "スコアリングシステムを有効にする"
 msgid "Enable private annotations"
 msgstr "プライベートアノテーションを有効にする"
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "次のWebサイトがインラインフレーム内にプラットフォームを埋め込むことを許可する"
+
 msgid "Logging level"
 msgstr "ログ取得レベル"
 
@@ -701,20 +680,14 @@ msgstr "メガバイトで"
 msgid "percentage"
 msgstr "パーセントで"
 
-msgid "Stats of the week:"
-msgstr "週の統計:"
+msgid "Type"
+msgstr "タイプ"
 
-msgid "Event ID"
-msgstr "イベントID"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "時間"
-
-msgid "Event"
-msgstr "イベント"
-
-msgid "Response time"
-msgstr "レスポンス時間"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "ID"
@@ -739,12 +712,6 @@ msgstr "接続"
 
 msgid "Whistleblower's last access"
 msgstr "WBの最終アクセス"
-
-msgid "Alarm level"
-msgstr "警告レベル"
-
-msgid "Events"
-msgstr "イベント"
 
 msgid "Substatuses"
 msgstr "提出状況"
@@ -839,9 +806,6 @@ msgstr "説明"
 msgid "Questionnaire"
 msgstr "アンケート"
 
-msgid "Additional questionnaire"
-msgstr "追加のアンケート"
-
 msgid "Recipients"
 msgstr "受信者"
 
@@ -884,6 +848,9 @@ msgstr "内部告発者が、既存の報告に添付ファイルを追加する
 msgid "Let recipients upload files to whistleblowers"
 msgstr "受信者が、内部告発者向けのファイルをアップロードすることを許可します"
 
+msgid "Additional questionnaire"
+msgstr "追加のアンケート"
+
 msgid "Scoring system options"
 msgstr "スコアリングシステムのオプション"
 
@@ -904,9 +871,6 @@ msgstr "スコアに達した報告のみ受信者を割り当てます:"
 
 msgid "Software version:"
 msgstr "ソフトウェア バージョン:"
-
-msgid "An update is available:"
-msgstr "アップデートが利用できます。"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "特定のIPアドレスにアクセスを制限する"
@@ -1018,9 +982,6 @@ msgstr "自動更新"
 msgid "Tor Onion Service"
 msgstr "Tor Onion サービス"
 
-msgid "Tor Browser download link"
-msgstr "Tor ブラウザー ダウンロードのリンク"
-
 msgid "Anonymize outgoing connections"
 msgstr "発信の接続を匿名化"
 
@@ -1075,9 +1036,6 @@ msgstr "テンプレート"
 msgid "Question"
 msgstr "質問"
 
-msgid "Type"
-msgstr "タイプ"
-
 msgid "Single-line text input"
 msgstr "1 行のテキスト入力"
 
@@ -1128,12 +1086,6 @@ msgstr "複数ファイルのアップロードを受け付ける"
 
 msgid "Accept multiple answers"
 msgstr "複数の回答を受け付ける"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "追加の回答を追加するボタンにヒントを表示します"
-
-msgid "Encrypt"
-msgstr "暗号化"
 
 msgid "Template override"
 msgstr "テンプレートの上書き"
@@ -1207,26 +1159,11 @@ msgstr "ケース管理"
 msgid "Network settings"
 msgstr "ネットワーク設定"
 
-msgid "Mode:"
-msgstr "モード:"
-
-msgid "Root domain used for secondary sites"
-msgstr "二番目のサイトで使用するルートドメイン"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "管理目的に最初のサイトのみ使用する"
-
-msgid "Enable multi-site login"
-msgstr "マルチサイトログインを有効にする"
-
-msgid "Allow users to sign up"
-msgstr "ユーザーによるサインアップを許可"
-
-msgid "Enable terms of service"
-msgstr "利用規約を有効にする"
-
 msgid "Sites"
 msgstr "サイト"
+
+msgid "Mode:"
+msgstr "モード:"
 
 msgid "Active"
 msgstr "アクティブ"
@@ -1242,6 +1179,21 @@ msgstr "サブドメイン"
 
 msgid "Creation date:"
 msgstr "生成日:"
+
+msgid "Root domain used for secondary sites"
+msgstr "二番目のサイトで使用するルートドメイン"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "管理目的に最初のサイトのみ使用する"
+
+msgid "Enable multi-site login"
+msgstr "マルチサイトログインを有効にする"
+
+msgid "Allow users to sign up"
+msgstr "ユーザーによるサインアップを許可"
+
+msgid "Enable terms of service"
+msgstr "利用規約を有効にする"
 
 msgid "Send an account activation link to the user."
 msgstr "アカウントの有効化リンクをユーザーに送信します。"
@@ -1292,7 +1244,7 @@ msgid "Allow the recipient to delete reports"
 msgstr "受信者が報告を削除することを許可する"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "次の機能にユーザーの管理アクセス権を与えます:"
 
 msgid "Request date"
 msgstr "リクエスト日"
@@ -1304,7 +1256,7 @@ msgid "Authorization"
 msgstr "認証"
 
 msgid "Requests"
-msgstr ""
+msgstr "リクエスト"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "検証リンクが間違っているか、有効期限が切れています。"
@@ -1629,6 +1581,9 @@ msgstr "ファイルをアップロード："
 msgid "Logout"
 msgstr "ログアウト"
 
+msgid "An update is available:"
+msgstr "アップデートが利用できます。"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1763,7 +1718,7 @@ msgid "Recipient selection"
 msgstr "受信者の選択"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "報告の受信者を選択してください:"
 
 msgid "Recipients selected:"
 msgstr "選択された受信者:"
@@ -1774,7 +1729,7 @@ msgstr "選択可能な受信者の最大数に達しました。"
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "次の受信者があなたの報告を受け取ります。選択を解除することはできません:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1856,35 +1811,14 @@ msgstr "誕生日"
 msgid "Place of birth"
 msgstr "誕生地"
 
-msgid "Social security number"
-msgstr "社会保障番号"
-
-msgid "Residence"
-msgstr "住居"
-
 msgid "Zip code / Postal code"
 msgstr "郵便番号"
 
 msgid "Province"
 msgstr "地方"
 
-msgid "Current job title"
-msgstr "現在の肩書"
-
-msgid "Current job responsibility (role)"
-msgstr "現在の役職 (役割)"
-
-msgid "Current organization unit and job location"
-msgstr "現在の所属、職場"
-
-msgid "Job title at the time of the reported fact"
-msgstr "報告する事実の時点での肩書"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "報告する事実の時点での役職 (役割)"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "報告する事実の時点での所属、職場"
+msgid "Country"
+msgstr "国"
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} 様"
@@ -2052,9 +1986,6 @@ msgstr "ラベル: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "状況: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "コンテキスト: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
-"Last-Translator: Bala Subramaniyan <balapandu222@hotmail.com>\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -337,12 +337,6 @@ msgstr "தூண்டல் கேள்வி"
 msgid "Triggered by score:"
 msgstr ""
 
-msgid "Message shown on top of the status page of the report"
-msgstr "செய்தி சமர்ப்பிக்கும் நிலையை பக்கம் மேல் காண்பிக்கப்படும்"
-
-msgid "Password strength:"
-msgstr "கடவுச்சொல் வலிமை:"
-
 msgid "Weak"
 msgstr "பலவீனமான"
 
@@ -363,21 +357,6 @@ msgstr "மின்னஞ்சல் அறிவிப்புகளை ம�
 
 msgid "Turn on email notifications"
 msgstr "மின்னஞ்சல் அறிவிப்புகளை இயக்கவும்"
-
-msgid "Failed logins"
-msgstr "தோல்வியடைந்தது உள் அனுமதிகள்"
-
-msgid "Successful logins"
-msgstr "வெற்றிகரமான உள்"
-
-msgid "Started submissions"
-msgstr "தொடங்குதல் சமர்ப்பிப்புகளை"
-
-msgid "Completed submissions"
-msgstr "நிறைவு சமர்ப்பிப்புகளை"
-
-msgid "Failed submissions"
-msgstr "சமர்ப்பிப்புகளை தோல்வியுற்றது"
 
 msgid "Input validation"
 msgstr "உள்ளீட்டு சரிபார்ப்பு"
@@ -542,11 +521,8 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Are you a whistleblower?"
-msgstr "நீங்கள் ஒரு இரகசிய இருக்கிறீர்களா?"
-
-msgid "Blow the whistle"
-msgstr "விசில் ஊதி"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "தொடருவதற்கு முன், புதிய கடவுச்சொல்லை அமைக்கவும்."
@@ -664,6 +640,9 @@ msgstr "ஸ்கோரிங் அமைப்பை இயக்கு"
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "மற்ற வலைத்தளங்களில் ஃபிரேம்களை உள்ளே மேடையில் சேர்க்க அனுமதிக்க"
+
 msgid "Logging level"
 msgstr "பதிவு நிலை"
 
@@ -699,20 +678,14 @@ msgstr "மெகாபைட்"
 msgid "percentage"
 msgstr ""
 
-msgid "Stats of the week:"
-msgstr "வாரம் விபரம்:"
+msgid "Type"
+msgstr "வகை"
 
-msgid "Event ID"
-msgstr "நிகழ்வு ஐடி"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "நேரம்"
-
-msgid "Event"
-msgstr "நிகழ்வு"
-
-msgid "Response time"
-msgstr "பதில் நேரம்"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr ""
@@ -737,12 +710,6 @@ msgstr "இணைப்பு"
 
 msgid "Whistleblower's last access"
 msgstr ""
-
-msgid "Alarm level"
-msgstr "அலார நிலை"
-
-msgid "Events"
-msgstr "நிகழ்வுகள்"
 
 msgid "Substatuses"
 msgstr "துணை நிலைகள்"
@@ -837,9 +804,6 @@ msgstr "விபரம்"
 msgid "Questionnaire"
 msgstr "கேள்வித்தாள்"
 
-msgid "Additional questionnaire"
-msgstr "கூடுதல் கேள்வித்தாள்"
-
 msgid "Recipients"
 msgstr "பெற்றவர்கள்"
 
@@ -882,6 +846,9 @@ msgstr "விசில்ப்ளேவர்கள் ஏற்கனவே �
 msgid "Let recipients upload files to whistleblowers"
 msgstr "பெறுநர்கள் விசில்ப்ளேருக்கு கோப்புகளை பதிவேற்ற அனுமதிக்கவும்"
 
+msgid "Additional questionnaire"
+msgstr "கூடுதல் கேள்வித்தாள்"
+
 msgid "Scoring system options"
 msgstr ""
 
@@ -902,9 +869,6 @@ msgstr ""
 
 msgid "Software version:"
 msgstr "மென்பொருள் பதிப்பு:"
-
-msgid "An update is available:"
-msgstr "புதுப்பிப்பு இருக்கிறது:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "குறிப்பிட்ட ஐபி முகவரிகளுக்கு அணுகல் கட்டுப்படுத்தவும்"
@@ -1016,9 +980,6 @@ msgstr "ஆட்டோ புதுப்பித்தல்"
 msgid "Tor Onion Service"
 msgstr "Tor Onion சேவை"
 
-msgid "Tor Browser download link"
-msgstr "Tor உலாவி பதிவிறக்க இணைப்பு"
-
 msgid "Anonymize outgoing connections"
 msgstr "வெளியேறும் இணைப்புகளை அநாமதேயப்படுத்து"
 
@@ -1073,9 +1034,6 @@ msgstr "டெம்ப்ளேட்"
 msgid "Question"
 msgstr "கேள்வி"
 
-msgid "Type"
-msgstr "வகை"
-
 msgid "Single-line text input"
 msgstr "ஒற்றை வரி உரை உள்ளீடு"
 
@@ -1126,12 +1084,6 @@ msgstr "பல கோப்பு பதிவேற்றங்கள் ஏ
 
 msgid "Accept multiple answers"
 msgstr "பல பதில்களை ஏற்கவும்"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "ஒரு கூடுதல் பதில் சேர்க்கும் பொத்தான் குறிப்பு"
-
-msgid "Encrypt"
-msgstr ""
 
 msgid "Template override"
 msgstr "டெம்ப்ளேட் மேலெழுதும்"
@@ -1205,26 +1157,11 @@ msgstr "வழக்கு மேலாண்மை"
 msgid "Network settings"
 msgstr "நெட்வொர்க் அமைப்புகள்"
 
-msgid "Mode:"
-msgstr "முறை:"
-
-msgid "Root domain used for secondary sites"
-msgstr "இரண்டாம் தளங்களுக்கு ரூட் டொமைன் பயன்படுத்தப்படுகிறது"
-
-msgid "Use the first site for administrative purposes only"
-msgstr ""
-
-msgid "Enable multi-site login"
-msgstr "பல தள உள்நுழைவை இயக்கவும்"
-
-msgid "Allow users to sign up"
-msgstr "பயனர்களை டிஜிட்டல் கையெழுத்திட செய்ய அனுமதிக்கவும்"
-
-msgid "Enable terms of service"
-msgstr "சேவை விதிமுறைகளை இயக்கு"
-
 msgid "Sites"
 msgstr "தளங்கள்"
+
+msgid "Mode:"
+msgstr "முறை:"
 
 msgid "Active"
 msgstr "செயலில்"
@@ -1240,6 +1177,21 @@ msgstr ""
 
 msgid "Creation date:"
 msgstr ""
+
+msgid "Root domain used for secondary sites"
+msgstr "இரண்டாம் தளங்களுக்கு ரூட் டொமைன் பயன்படுத்தப்படுகிறது"
+
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr "பல தள உள்நுழைவை இயக்கவும்"
+
+msgid "Allow users to sign up"
+msgstr "பயனர்களை டிஜிட்டல் கையெழுத்திட செய்ய அனுமதிக்கவும்"
+
+msgid "Enable terms of service"
+msgstr "சேவை விதிமுறைகளை இயக்கு"
 
 msgid "Send an account activation link to the user."
 msgstr ""
@@ -1627,6 +1579,9 @@ msgstr "கோப்பு பதிவேற்று:"
 msgid "Logout"
 msgstr "வெளியேறு"
 
+msgid "An update is available:"
+msgstr "புதுப்பிப்பு இருக்கிறது:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1854,35 +1809,14 @@ msgstr "பிறந்த தேதி"
 msgid "Place of birth"
 msgstr "பிறந்த இடம்"
 
-msgid "Social security number"
-msgstr "சமூக பாதுகாப்பு எண்"
-
-msgid "Residence"
-msgstr "வதிவிடம்"
-
 msgid "Zip code / Postal code"
 msgstr "Zip குறியீடு / அஞ்சல் குறியீடு"
 
 msgid "Province"
 msgstr "மாகாணம்"
 
-msgid "Current job title"
-msgstr "தற்போதைய வேலையின் தலைப்பு"
-
-msgid "Current job responsibility (role)"
-msgstr "தற்போதைய வேலை பொறுப்பை (பங்கு)"
-
-msgid "Current organization unit and job location"
-msgstr "தற்போதைய அமைப்பு பிரிவின் மற்றும் வேலை இடம்"
-
-msgid "Job title at the time of the reported fact"
-msgstr "தகவல் உண்மையில் நேரத்தில் வேலை தலைப்பு"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "வேலை பொறுப்பை (பங்கு) அறிவித்தது நேரத்தில்"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "தகவல் உண்மையில் நேரத்தில் அமைப்பு அலகு மற்றும் வேலை இடம்"
+msgid "Country"
+msgstr "நாடு"
 
 msgid "Dear {RecipientName},"
 msgstr "அன்பே {RecipientName},"
@@ -2050,9 +1984,6 @@ msgstr "லேபிள்: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr ""
-
-msgid "Context: {ContextName}"
-msgstr "சூழல்: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

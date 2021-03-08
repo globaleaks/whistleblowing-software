@@ -1,13 +1,53 @@
+# 
+# Translators:
+# Accounts-Payable - Alkemics, 2015
+# Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# bossnm11 <bossnm11@gmail.com>, 2014
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# chans <kcsgoodboy@naver.com>, 2014
+# chans <kcsgoodboy@naver.com>, 2014
+# chans <kcsgoodboy@naver.com>, 2014
+# Chen-Do LU <clu@alkemics.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Djurdja Jovanovic Padejski <Dpadejski@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2014
+# François Breysse <fb@alkemics.com>, 2015
+# Gu Hong Min <placidmoon1@gmail.com>, 2015
+# jeon <bluerespect@nate.com>, 2014
+# John Toro <johntoro@gmail.com>, 2015
+# Jong-Dae Park <jdpark7@gmail.com>, 2013,2015
+# Gu Hong Min <placidmoon1@gmail.com>, 2015
+# Kunwoo Kim <crazyabtmath@naver.com>, 2015
+# Sihyeong Lee <super2451894@gmail.com>, 2014
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# Mustafa J. Kadhem <safi2266@gmail.com>, 2015
+# Paolo Valier, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Rudolf Schnapka <schnapkar@golive-saar.de>, 2015
+# Mustafa J. Kadhem <safi2266@gmail.com>, 2015
+# Sam Ryoo <samryoo@gmail.com>, 2014
+# a9eb828b2ee54fcf461b952290dc7714_32c3f02 <c5f53f2352e5f1df5429a18a23b721aa_268690>, 2015
+# a9eb828b2ee54fcf461b952290dc7714_32c3f02 <c5f53f2352e5f1df5429a18a23b721aa_268690>, 2015
+# seungil <luck8778@gmail.com>, 2014
+# SEUNGWON <baeksw0620@gmail.com>, 2014
+# Sihyeong Lee <super2451894@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"Language-Team: English "
-"(http://www.transifex.com/otf/globaleaks/language/en/)\n"
-"mime-version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"Language-Team: English (http://www.transifex.com/otf/globaleaks/language/en/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"mime-version: 1.0\n"
 
 msgid "Log in"
 msgstr "Log in"
@@ -351,21 +391,6 @@ msgstr "Silence email notifications"
 msgid "Turn on email notifications"
 msgstr "Turn on email notifications"
 
-msgid "Failed logins"
-msgstr "Failed logins"
-
-msgid "Successful logins"
-msgstr "Successful logins"
-
-msgid "Started submissions"
-msgstr "Started submissions"
-
-msgid "Completed submissions"
-msgstr "Completed submissions"
-
-msgid "Failed submissions"
-msgstr "Failed submissions"
-
 msgid "Input validation"
 msgstr "Input validation"
 
@@ -529,11 +554,8 @@ msgstr "VAT number"
 msgid "Tax code"
 msgstr "Tax code"
 
-msgid "Are you a whistleblower?"
-msgstr "Are you a whistleblower?"
-
-msgid "Blow the whistle"
-msgstr "Blow the whistle"
+msgid "File a report"
+msgstr "File a report"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Before proceeding, please set a new password."
@@ -651,6 +673,9 @@ msgstr "Enable scoring system"
 msgid "Enable private annotations"
 msgstr "Enable private annotations"
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Allow the following websites to embed the platform inside iframes"
+
 msgid "Logging level"
 msgstr "Logging level"
 
@@ -686,20 +711,14 @@ msgstr "megabytes"
 msgid "percentage"
 msgstr "percentage"
 
-msgid "Stats of the week:"
-msgstr "Stats of the week:"
+msgid "Type"
+msgstr "Type"
 
-msgid "Event ID"
-msgstr "Event ID"
+msgid "Severity"
+msgstr "Severity"
 
-msgid "Time"
-msgstr "Time"
-
-msgid "Event"
-msgstr "Event"
-
-msgid "Response time"
-msgstr "Response time"
+msgid "Object"
+msgstr "Object"
 
 msgid "ID"
 msgstr "ID"
@@ -724,12 +743,6 @@ msgstr "Connection"
 
 msgid "Whistleblower's last access"
 msgstr "Whistleblower's last access"
-
-msgid "Alarm level"
-msgstr "Alarm level"
-
-msgid "Events"
-msgstr "Events"
 
 msgid "Substatuses"
 msgstr "Substatuses"
@@ -824,9 +837,6 @@ msgstr "Description"
 msgid "Questionnaire"
 msgstr "Questionnaire"
 
-msgid "Additional questionnaire"
-msgstr "Additional questionnaire"
-
 msgid "Recipients"
 msgstr "Recipients"
 
@@ -869,6 +879,9 @@ msgstr "Let whistleblowers add attachments onto existing reports"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Let recipients upload files to whistleblowers"
 
+msgid "Additional questionnaire"
+msgstr "Additional questionnaire"
+
 msgid "Scoring system options"
 msgstr "Scoring system options"
 
@@ -889,9 +902,6 @@ msgstr "Assign the receipt only to reports reaching score:"
 
 msgid "Software version:"
 msgstr "Software version:"
-
-msgid "An update is available:"
-msgstr "An update is available:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Restrict access to specific IP addresses"
@@ -1003,9 +1013,6 @@ msgstr "Auto-renewal"
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
 
-msgid "Tor Browser download link"
-msgstr "Tor Browser download link"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonymize outgoing connections"
 
@@ -1059,9 +1066,6 @@ msgstr "Template"
 
 msgid "Question"
 msgstr "Question"
-
-msgid "Type"
-msgstr "Type"
 
 msgid "Single-line text input"
 msgstr "Single-line text input"
@@ -1186,26 +1190,11 @@ msgstr "Case management"
 msgid "Network settings"
 msgstr "Network settings"
 
-msgid "Mode:"
-msgstr "Mode:"
-
-msgid "Root domain used for secondary sites"
-msgstr "Root domain used for secondary sites"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Use the first site for administrative purposes only"
-
-msgid "Enable multi-site login"
-msgstr "Enable multi-site login"
-
-msgid "Allow users to sign up"
-msgstr "Allow users to sign up"
-
-msgid "Enable terms of service"
-msgstr "Enable terms of service"
-
 msgid "Sites"
 msgstr "Sites"
+
+msgid "Mode:"
+msgstr "Mode:"
 
 msgid "Active"
 msgstr "Active"
@@ -1221,6 +1210,21 @@ msgstr "Subdomain"
 
 msgid "Creation date:"
 msgstr "Creation date:"
+
+msgid "Root domain used for secondary sites"
+msgstr "Root domain used for secondary sites"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Use the first site for administrative purposes only"
+
+msgid "Enable multi-site login"
+msgstr "Enable multi-site login"
+
+msgid "Allow users to sign up"
+msgstr "Allow users to sign up"
+
+msgid "Enable terms of service"
+msgstr "Enable terms of service"
 
 msgid "Send an account activation link to the user."
 msgstr "Send an account activation link to the user."
@@ -1608,6 +1612,9 @@ msgstr "Upload a file:"
 msgid "Logout"
 msgstr "Logout"
 
+msgid "An update is available:"
+msgstr "An update is available:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1835,35 +1842,14 @@ msgstr "Date of birth"
 msgid "Place of birth"
 msgstr "Place of birth"
 
-msgid "Social security number"
-msgstr "Social security number"
-
-msgid "Residence"
-msgstr "Residence"
-
 msgid "Zip code / Postal code"
 msgstr "Zip code / Postal code"
 
 msgid "Province"
 msgstr "Province"
 
-msgid "Current job title"
-msgstr "Current job title"
-
-msgid "Current job responsibility (role)"
-msgstr "Current job responsibility (role)"
-
-msgid "Current organization unit and job location"
-msgstr "Current organization unit and job location"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Job title at the time of the reported fact"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Job responsibility (role) at the time of the reported fact"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Organization unit and job location at the time of the reported fact"
+msgid "Country"
+msgstr "Country"
 
 msgid "Dear {RecipientName},"
 msgstr "Dear {RecipientName},"
@@ -2031,9 +2017,6 @@ msgstr "Label: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "Status: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "Context: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

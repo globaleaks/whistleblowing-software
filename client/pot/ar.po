@@ -21,6 +21,7 @@
 # b665ec457f7dbc468840c2b55b7422d3_ad81431 <382f1c68613d5cfe601c75d66e8ff0dd_51600>, 2013
 # harmony, 2013
 # harmony, 2013
+# Hassen Aouali <fozbalnetwork@gmail.com>, 2021
 # b33a4006134bb6ee62b30fc0fac5cec6, 2014
 # b33a4006134bb6ee62b30fc0fac5cec6, 2014
 # b33a4006134bb6ee62b30fc0fac5cec6, 2014
@@ -42,8 +43,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
-"Last-Translator: Ahmed Essam\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -372,12 +373,6 @@ msgstr "سؤال التشغيل"
 msgid "Triggered by score:"
 msgstr "يُشغل بمجموع نقاط:"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "الرسالة ظاهرة أعلى صفحة حالة البلاغ"
-
-msgid "Password strength:"
-msgstr "قوة كلمة المرور:"
-
 msgid "Weak"
 msgstr "ضعيف"
 
@@ -398,21 +393,6 @@ msgstr "اسكات الاشعارات بالبريد الالكتروني"
 
 msgid "Turn on email notifications"
 msgstr "تشغيل الاشعارات بالبريد الالكتروني"
-
-msgid "Failed logins"
-msgstr "محاولات الدخول الفاشلة"
-
-msgid "Successful logins"
-msgstr "محاولات الدخول الناجحة"
-
-msgid "Started submissions"
-msgstr "البلاغات المبدوءة "
-
-msgid "Completed submissions"
-msgstr "البلاغات المكتملة"
-
-msgid "Failed submissions"
-msgstr "البلاغات الفاشلة"
 
 msgid "Input validation"
 msgstr "التحقق من صحة المدخلات"
@@ -569,19 +549,16 @@ msgid "seconds"
 msgstr "ثواني"
 
 msgid "This domain name is not available."
-msgstr ""
+msgstr "اسم النطاق غير متاح."
 
 msgid "VAT number"
-msgstr ""
+msgstr "رقم ضريبة القيمة المضافة(TVA)"
 
 msgid "Tax code"
 msgstr ""
 
-msgid "Are you a whistleblower?"
-msgstr "هل انت مبلّغ ؟"
-
-msgid "Blow the whistle"
-msgstr "ابلاغ"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "قبل المتابعة، يرجى تغيير كلمة المرور الخاصة بك."
@@ -623,7 +600,7 @@ msgid "Enable administrators to change user passwords"
 msgstr "تمكين المدراء من تغيير كلمات سر المستخدمين"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
+msgstr "المسؤولون المفوضون لتغيير كلمات مرور المستخدم:"
 
 msgid "Enable multisite feature"
 msgstr "تمكين خاصية تعدد المواقع"
@@ -663,7 +640,7 @@ msgid "Show contexts in alphabetical order"
 msgstr "اظهار السياقات في ترتيبٍ ابجديّ"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr "لا تكشف أسماء المستخدمين"
 
 msgid "Size limit for file attachments"
 msgstr "الحد الأقصى لحجم الملفات المرفقة"
@@ -688,7 +665,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "اضبط القيمة على 0 لإلغاء تفعيل هذه الخاصية."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "عدد الأيام حتى إبلاغ التقارير غير المقروءة للمستخدمين"
 
 msgid "Enable custodian user role"
 msgstr "تمكين دور المستخدم الوصي"
@@ -698,6 +675,9 @@ msgstr "تمكين نظام تسجيل النقاط"
 
 msgid "Enable private annotations"
 msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "السماح لهذه المواقع لتضمين المنصة داخل النوافذ المدمجة"
 
 msgid "Logging level"
 msgstr "مستوى التسجيل"
@@ -734,20 +714,14 @@ msgstr "بالميغابايت"
 msgid "percentage"
 msgstr "بالنسبة المئوية"
 
-msgid "Stats of the week:"
-msgstr "احصائيّات الأسبوع"
+msgid "Type"
+msgstr "نوع"
 
-msgid "Event ID"
-msgstr "معرف الحدث"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "الوقت"
-
-msgid "Event"
-msgstr "الحدث"
-
-msgid "Response time"
-msgstr "زمن الاستجابة"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "المُعرِّف"
@@ -772,12 +746,6 @@ msgstr "اتصال"
 
 msgid "Whistleblower's last access"
 msgstr "ﺁخر دخول لـ WB"
-
-msgid "Alarm level"
-msgstr "مستوى الإنذار"
-
-msgid "Events"
-msgstr "الأحداث"
 
 msgid "Substatuses"
 msgstr "الحالات الثانوية"
@@ -872,9 +840,6 @@ msgstr "وصف"
 msgid "Questionnaire"
 msgstr "استبيان"
 
-msgid "Additional questionnaire"
-msgstr "الاستبيان اﻹضافي"
-
 msgid "Recipients"
 msgstr "المتلقّون"
 
@@ -917,6 +882,9 @@ msgstr "تمكين المبلغين من اضافة مرفقات للبلاغا�
 msgid "Let recipients upload files to whistleblowers"
 msgstr "السماح للمتلقّين برفع ملفات للمبلغين."
 
+msgid "Additional questionnaire"
+msgstr "الاستبيان اﻹضافي"
+
 msgid "Scoring system options"
 msgstr "خيارات نظام تسجيل النقاط"
 
@@ -938,14 +906,11 @@ msgstr "تعيين الإستلام فقط للتقارير التى تحقق م
 msgid "Software version:"
 msgstr "نسخة البرنامج:"
 
-msgid "An update is available:"
-msgstr "هنالك تحديث متوفّر:"
-
 msgid "Restrict access to specific IP addresses"
 msgstr "احصر الدخول على عناوين IP محددة"
 
 msgid "Allowed IP addresses"
-msgstr ""
+msgstr "عناوين بروتوكول الانترنت المسموح بها"
 
 msgid "Admin"
 msgstr "مشرف"
@@ -1051,9 +1016,6 @@ msgstr "تجديد تلقائي"
 msgid "Tor Onion Service"
 msgstr "خدمة Tor onion"
 
-msgid "Tor Browser download link"
-msgstr "الرابط لتحميل متصفح تور"
-
 msgid "Anonymize outgoing connections"
 msgstr "إخفاء هوية الاتصالات الصادرة"
 
@@ -1108,9 +1070,6 @@ msgstr "قالب"
 msgid "Question"
 msgstr "السؤال"
 
-msgid "Type"
-msgstr "نوع"
-
 msgid "Single-line text input"
 msgstr "إدخال نص ذو سطر واحد"
 
@@ -1161,12 +1120,6 @@ msgstr "قبول رفع ملفات متعددة"
 
 msgid "Accept multiple answers"
 msgstr "قبول اجابات متعددة"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr " يظهر تلميح على الزر لإضافة إجابة إضافية"
-
-msgid "Encrypt"
-msgstr "تعمية"
 
 msgid "Template override"
 msgstr "تجاوز القالب"
@@ -1240,26 +1193,11 @@ msgstr "إدارة حالة"
 msgid "Network settings"
 msgstr "اعدادات الشبكة"
 
-msgid "Mode:"
-msgstr "الوضع:"
-
-msgid "Root domain used for secondary sites"
-msgstr "النطاق الرئيسي المستخدم في المواقع الثانوية"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "استخدم الموقع الأول من أجل الأغراض الإدارية فقط"
-
-msgid "Enable multi-site login"
-msgstr "تمكين تسجيل الدخول لمواقع متعددة"
-
-msgid "Allow users to sign up"
-msgstr "السماح للمستخدمين بالاشتراك"
-
-msgid "Enable terms of service"
-msgstr "تمكين شروط الخدمة"
-
 msgid "Sites"
 msgstr "المواقع"
+
+msgid "Mode:"
+msgstr "الوضع:"
 
 msgid "Active"
 msgstr "نشيط"
@@ -1275,6 +1213,21 @@ msgstr "النطاق الفرعي"
 
 msgid "Creation date:"
 msgstr "تاريخ الإنشاء:"
+
+msgid "Root domain used for secondary sites"
+msgstr "النطاق الرئيسي المستخدم في المواقع الثانوية"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "استخدم الموقع الأول من أجل الأغراض الإدارية فقط"
+
+msgid "Enable multi-site login"
+msgstr "تمكين تسجيل الدخول لمواقع متعددة"
+
+msgid "Allow users to sign up"
+msgstr "السماح للمستخدمين بالاشتراك"
+
+msgid "Enable terms of service"
+msgstr "تمكين شروط الخدمة"
 
 msgid "Send an account activation link to the user."
 msgstr "إرسال رابط تفعيل الحساب للمستخدم."
@@ -1325,7 +1278,7 @@ msgid "Allow the recipient to delete reports"
 msgstr "السماح للمتلقين بحذف البلاغات"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "امنح المستخدم حق الوصول المطلق إلى الميزات التالية:"
 
 msgid "Request date"
 msgstr "تاريخ الطلب"
@@ -1487,7 +1440,7 @@ msgstr "يبدو أنك تتصفّح هذا الموقع دون أيّ ضمان�
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr ""
+msgstr "يُنصح بشدة بزيارة هذا الموقع باستخدام متصفح الانترنت Tor Browser ، الذي يحمي هويتك."
 
 msgid "Download the Tor Browser"
 msgstr "تحميل متصفح Tor ."
@@ -1661,6 +1614,9 @@ msgstr "رفع ملف:"
 
 msgid "Logout"
 msgstr "تسجيل الخروج"
+
+msgid "An update is available:"
+msgstr "هنالك تحديث متوفّر:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1889,35 +1845,14 @@ msgstr "تاريخ الولادة"
 msgid "Place of birth"
 msgstr "مكان الولادة"
 
-msgid "Social security number"
-msgstr "رقم الضمان الاجتماعي"
-
-msgid "Residence"
-msgstr "الاقامة"
-
 msgid "Zip code / Postal code"
 msgstr "الرمز البريدي"
 
 msgid "Province"
 msgstr "المحافظة أو الولاية"
 
-msgid "Current job title"
-msgstr "المنصب الحالي المشغول"
-
-msgid "Current job responsibility (role)"
-msgstr "(المسؤولية في العمل) الدور"
-
-msgid "Current organization unit and job location"
-msgstr "وحدة المنظمة الحالية و مكان العمل"
-
-msgid "Job title at the time of the reported fact"
-msgstr "اسم المنصب وقت الابلاغ عن الواقعة"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "المسؤولية في العمل (الدور) وقت الابلاغ عن الواقعة"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "وحدة المنظمة و مكان العمل وقت الابلاغ عن الواقعة"
+msgid "Country"
+msgstr "الدولة"
 
 msgid "Dear {RecipientName},"
 msgstr "عزيزي {RecipientName},"
@@ -2085,9 +2020,6 @@ msgstr "التسمية: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "الحالة:  {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "السياق: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

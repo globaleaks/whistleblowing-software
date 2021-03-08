@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
-"Last-Translator: Marija Grinevičiūtė <marijagrineviciute@outlook.com>\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/otf/globaleaks/language/lt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -335,12 +335,6 @@ msgstr ""
 msgid "Triggered by score:"
 msgstr ""
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Žinutė rodoma ataskaitos būsenos puslapio viršuje"
-
-msgid "Password strength:"
-msgstr "Slaptažodžio stiprumas:"
-
 msgid "Weak"
 msgstr "Silpnas"
 
@@ -361,21 +355,6 @@ msgstr "Nutildyti el. pašto pranešimus"
 
 msgid "Turn on email notifications"
 msgstr "Įjungti el. pašto pranešimus"
-
-msgid "Failed logins"
-msgstr "Nepavykę prisijungimai"
-
-msgid "Successful logins"
-msgstr "Sėkmingi prisijungimai"
-
-msgid "Started submissions"
-msgstr "Pradėti pateikimai"
-
-msgid "Completed submissions"
-msgstr "Užbaigti pateikimai"
-
-msgid "Failed submissions"
-msgstr "Nepavykę pateikimai"
 
 msgid "Input validation"
 msgstr "Įvesties patvirtinimas"
@@ -540,11 +519,8 @@ msgstr "PVM kodas"
 msgid "Tax code"
 msgstr "Mokesčių kodas"
 
-msgid "Are you a whistleblower?"
-msgstr "Ar esate informatorius?"
-
-msgid "Blow the whistle"
-msgstr "Informuokite"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Prieš pradėdami sukurkite naują slaptažodį."
@@ -662,6 +638,9 @@ msgstr ""
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
+
 msgid "Logging level"
 msgstr ""
 
@@ -697,20 +676,14 @@ msgstr "megabaitai"
 msgid "percentage"
 msgstr "procentai"
 
-msgid "Stats of the week:"
-msgstr "Savaitės statistika:"
+msgid "Type"
+msgstr "Tipas"
 
-msgid "Event ID"
-msgstr "Įvykio ID"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "Laikas"
-
-msgid "Event"
-msgstr "Įvykis"
-
-msgid "Response time"
-msgstr "Atsakymo laikas"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "ID"
@@ -735,12 +708,6 @@ msgstr "Ryšys"
 
 msgid "Whistleblower's last access"
 msgstr "Paskutinis informatoriaus prisijungimas"
-
-msgid "Alarm level"
-msgstr "Pavojaus signalo lygis"
-
-msgid "Events"
-msgstr "Įvykiai"
 
 msgid "Substatuses"
 msgstr "Šalutiniai statusai"
@@ -835,9 +802,6 @@ msgstr "Aprašas"
 msgid "Questionnaire"
 msgstr "Klausimynas"
 
-msgid "Additional questionnaire"
-msgstr "Papildomas klausimynas"
-
 msgid "Recipients"
 msgstr "Gavėjai"
 
@@ -880,6 +844,9 @@ msgstr "Leisti informatoriams prisegti priedus prie esamų ataskaitų"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Leisti gavėjams išsiųsti failus, skirtus informatoriams"
 
+msgid "Additional questionnaire"
+msgstr "Papildomas klausimynas"
+
 msgid "Scoring system options"
 msgstr ""
 
@@ -900,9 +867,6 @@ msgstr ""
 
 msgid "Software version:"
 msgstr "Programinės įrangos versija:"
-
-msgid "An update is available:"
-msgstr "Prieinamas atnaujinimas:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Apriboti prieigą tam tikriems IP adresams"
@@ -1014,9 +978,6 @@ msgstr "Automatinis atnaujinimas"
 msgid "Tor Onion Service"
 msgstr "Tor Onion paslauga"
 
-msgid "Tor Browser download link"
-msgstr "Tor naršyklės atsisiuntimo nuoroda"
-
 msgid "Anonymize outgoing connections"
 msgstr ""
 
@@ -1071,9 +1032,6 @@ msgstr "Šablonas"
 msgid "Question"
 msgstr "Klausimas"
 
-msgid "Type"
-msgstr "Tipas"
-
 msgid "Single-line text input"
 msgstr "Vienos eilutės teksto įvestis"
 
@@ -1124,12 +1082,6 @@ msgstr ""
 
 msgid "Accept multiple answers"
 msgstr ""
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr ""
-
-msgid "Encrypt"
-msgstr "Šifruoti"
 
 msgid "Template override"
 msgstr ""
@@ -1203,26 +1155,11 @@ msgstr "Atvejo valdymas"
 msgid "Network settings"
 msgstr "Tinklo nustatymai"
 
-msgid "Mode:"
-msgstr "Režimas"
-
-msgid "Root domain used for secondary sites"
-msgstr ""
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Naudoti pirmąją svetainę tik administraciniais tikslais"
-
-msgid "Enable multi-site login"
-msgstr "Įgalinti daugiavietį prisijungimą"
-
-msgid "Allow users to sign up"
-msgstr "Leisti naudotojams registruotis"
-
-msgid "Enable terms of service"
-msgstr "Įgalinti paslaugų sąlygas"
-
 msgid "Sites"
 msgstr "Svetainės"
+
+msgid "Mode:"
+msgstr "Režimas"
 
 msgid "Active"
 msgstr "Aktyvi"
@@ -1238,6 +1175,21 @@ msgstr "Subdomenas"
 
 msgid "Creation date:"
 msgstr "Sukūrimo data:"
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Naudoti pirmąją svetainę tik administraciniais tikslais"
+
+msgid "Enable multi-site login"
+msgstr "Įgalinti daugiavietį prisijungimą"
+
+msgid "Allow users to sign up"
+msgstr "Leisti naudotojams registruotis"
+
+msgid "Enable terms of service"
+msgstr "Įgalinti paslaugų sąlygas"
 
 msgid "Send an account activation link to the user."
 msgstr "Siųsti paskyros aktyvacijos nuorodą naudotojui."
@@ -1625,6 +1577,9 @@ msgstr ""
 msgid "Logout"
 msgstr "Atsijungti"
 
+msgid "An update is available:"
+msgstr "Prieinamas atnaujinimas:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1852,35 +1807,14 @@ msgstr ""
 msgid "Place of birth"
 msgstr ""
 
-msgid "Social security number"
-msgstr ""
-
-msgid "Residence"
-msgstr ""
-
 msgid "Zip code / Postal code"
 msgstr ""
 
 msgid "Province"
 msgstr ""
 
-msgid "Current job title"
-msgstr ""
-
-msgid "Current job responsibility (role)"
-msgstr ""
-
-msgid "Current organization unit and job location"
-msgstr ""
-
-msgid "Job title at the time of the reported fact"
-msgstr ""
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr ""
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr ""
+msgid "Country"
+msgstr "Šalis"
 
 msgid "Dear {RecipientName},"
 msgstr ""
@@ -2047,9 +1981,6 @@ msgid "Label: {TipLabel}"
 msgstr ""
 
 msgid "Status: {TipStatus}"
-msgstr ""
-
-msgid "Context: {ContextName}"
 msgstr ""
 
 msgid ""

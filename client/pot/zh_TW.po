@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
-"Last-Translator: Chi-Hsun Tsai\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -341,12 +341,6 @@ msgstr "發起問題"
 msgid "Triggered by score:"
 msgstr "按評分開啟觸發"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "顯示在報告狀況頁面的最上層訊息"
-
-msgid "Password strength:"
-msgstr "密碼強度"
-
 msgid "Weak"
 msgstr "弱"
 
@@ -367,21 +361,6 @@ msgstr "對電子郵件通知消音"
 
 msgid "Turn on email notifications"
 msgstr "開啟電子郵件通知"
-
-msgid "Failed logins"
-msgstr "登入失敗"
-
-msgid "Successful logins"
-msgstr "登入成功"
-
-msgid "Started submissions"
-msgstr "開始提交"
-
-msgid "Completed submissions"
-msgstr "完成提交"
-
-msgid "Failed submissions"
-msgstr "提交傳送失敗"
 
 msgid "Input validation"
 msgstr "輸入有效"
@@ -546,11 +525,8 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Are you a whistleblower?"
-msgstr "你是吹哨揭密者嗎?"
-
-msgid "Blow the whistle"
-msgstr "吹哨揭弊"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "繼續之前，請設一個新密碼。"
@@ -668,6 +644,9 @@ msgstr "啟用評分系統"
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "允許下列網站的內嵌 iframes 功能"
+
 msgid "Logging level"
 msgstr "登入層級"
 
@@ -703,20 +682,14 @@ msgstr "MB"
 msgid "percentage"
 msgstr "百分比"
 
-msgid "Stats of the week:"
-msgstr "一週統計:"
+msgid "Type"
+msgstr "類型"
 
-msgid "Event ID"
-msgstr "事件ID"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "時間"
-
-msgid "Event"
-msgstr "事件"
-
-msgid "Response time"
-msgstr "回應時間"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "識別"
@@ -741,12 +714,6 @@ msgstr "連接"
 
 msgid "Whistleblower's last access"
 msgstr "吹哨者上回讀取"
-
-msgid "Alarm level"
-msgstr "警告層級"
-
-msgid "Events"
-msgstr "事件"
 
 msgid "Substatuses"
 msgstr "子狀態"
@@ -841,9 +808,6 @@ msgstr "描述"
 msgid "Questionnaire"
 msgstr "問卷"
 
-msgid "Additional questionnaire"
-msgstr "其它的問卷"
-
 msgid "Recipients"
 msgstr "收件人"
 
@@ -886,6 +850,9 @@ msgstr "讓揭密吹哨者可在已有的報告中新增附加檔案"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "可允許收件者上傳檔案給吹哨者"
 
+msgid "Additional questionnaire"
+msgstr "其它的問卷"
+
 msgid "Scoring system options"
 msgstr "評分系統選項"
 
@@ -906,9 +873,6 @@ msgstr "報告指定的收件人必須達到的評分："
 
 msgid "Software version:"
 msgstr "軟體版本:"
-
-msgid "An update is available:"
-msgstr "軟體有更新版"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "限特定 IP 地址之讀取"
@@ -1020,9 +984,6 @@ msgstr "自動更新"
 msgid "Tor Onion Service"
 msgstr "Tor 洋瞛服務 "
 
-msgid "Tor Browser download link"
-msgstr "Tor 瀏覧器下載連結"
-
 msgid "Anonymize outgoing connections"
 msgstr "匿名化對外連線 "
 
@@ -1077,9 +1038,6 @@ msgstr "模版"
 msgid "Question"
 msgstr "問題"
 
-msgid "Type"
-msgstr "類型"
-
 msgid "Single-line text input"
 msgstr "單行文字輸入"
 
@@ -1130,12 +1088,6 @@ msgstr "接受多檔案上傳"
 
 msgid "Accept multiple answers"
 msgstr "接受多個答案"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "按鍵上顯示其它答案的提示"
-
-msgid "Encrypt"
-msgstr "加密"
 
 msgid "Template override"
 msgstr "模板覆寫"
@@ -1209,26 +1161,11 @@ msgstr "案件管理"
 msgid "Network settings"
 msgstr "網路設定"
 
-msgid "Mode:"
-msgstr "模式："
-
-msgid "Root domain used for secondary sites"
-msgstr "二級網站使用的根域名"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "僅為管理目的才使用第一個網站"
-
-msgid "Enable multi-site login"
-msgstr "開啟多站台登入"
-
-msgid "Allow users to sign up"
-msgstr "可接受新用戶註冊"
-
-msgid "Enable terms of service"
-msgstr "開啟服務條款"
-
 msgid "Sites"
 msgstr "網站"
+
+msgid "Mode:"
+msgstr "模式："
 
 msgid "Active"
 msgstr "活躍中的"
@@ -1244,6 +1181,21 @@ msgstr "子網域"
 
 msgid "Creation date:"
 msgstr "建立日期:"
+
+msgid "Root domain used for secondary sites"
+msgstr "二級網站使用的根域名"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "僅為管理目的才使用第一個網站"
+
+msgid "Enable multi-site login"
+msgstr "開啟多站台登入"
+
+msgid "Allow users to sign up"
+msgstr "可接受新用戶註冊"
+
+msgid "Enable terms of service"
+msgstr "開啟服務條款"
 
 msgid "Send an account activation link to the user."
 msgstr "傳送激活連結給該位用戶。"
@@ -1631,6 +1583,9 @@ msgstr "上傳檔案 :"
 msgid "Logout"
 msgstr "登出"
 
+msgid "An update is available:"
+msgstr "軟體有更新版"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1858,35 +1813,14 @@ msgstr "出生日期"
 msgid "Place of birth"
 msgstr "出生地點"
 
-msgid "Social security number"
-msgstr "身份證號碼"
-
-msgid "Residence"
-msgstr "住處"
-
 msgid "Zip code / Postal code"
 msgstr "郵遞區號"
 
 msgid "Province"
 msgstr "州/省"
 
-msgid "Current job title"
-msgstr "目前工作職稱"
-
-msgid "Current job responsibility (role)"
-msgstr "目前工作的責任"
-
-msgid "Current organization unit and job location"
-msgstr "目前的組織單位與工作地點"
-
-msgid "Job title at the time of the reported fact"
-msgstr "報告實情時的工作職稱"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "報告實情時的工作職責"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "報告實情時的工作組織單位與工作地點"
+msgid "Country"
+msgstr "國家"
 
 msgid "Dear {RecipientName},"
 msgstr "敬愛的 {RecipientName},"
@@ -2054,9 +1988,6 @@ msgstr "標誌: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "狀態: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "內文: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

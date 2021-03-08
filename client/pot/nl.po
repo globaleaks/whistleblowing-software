@@ -7,6 +7,7 @@
 # Douwe <douwe@greenhost.nl>, 2013
 # Douwe <douwe@greenhost.nl>, 2013
 # dragnadh, 2016-2017
+# erinm, 2021
 # tyfjoh, 2014
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2020
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -43,8 +44,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
-"Last-Translator: Rianne FPU <verbeek@freepressunlimited.org>\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -373,12 +374,6 @@ msgstr "Trigger vraag"
 msgid "Triggered by score:"
 msgstr "Geïnitieerd door waardering:"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Bericht dat getoond wordt bovenaan de statuspagina van de inzending"
-
-msgid "Password strength:"
-msgstr "Wachtwoord sterkte:"
-
 msgid "Weak"
 msgstr "Zwak"
 
@@ -399,21 +394,6 @@ msgstr "E-mailmeldingen uitschakelen"
 
 msgid "Turn on email notifications"
 msgstr "E-mailmeldingen inschakelen"
-
-msgid "Failed logins"
-msgstr "Mislukte inlogpogingen"
-
-msgid "Successful logins"
-msgstr "Succesvolle inlogpogingen"
-
-msgid "Started submissions"
-msgstr "Gestarte inzendingen"
-
-msgid "Completed submissions"
-msgstr "Afgeronde inzendingen"
-
-msgid "Failed submissions"
-msgstr "Mislukte inzendingen"
 
 msgid "Input validation"
 msgstr "Invoervelden valideren"
@@ -578,11 +558,8 @@ msgstr "BTW-nummer"
 msgid "Tax code"
 msgstr "BTW-code / Belastingwetgeving"
 
-msgid "Are you a whistleblower?"
-msgstr "Bent u een klokkenluider?"
-
-msgid "Blow the whistle"
-msgstr "Luid de klok"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Voor je verdergaat, stel alsjeblieft een nieuw wachtwoord in."
@@ -700,6 +677,9 @@ msgstr "Waarderingssysteem inschakelen"
 msgid "Enable private annotations"
 msgstr "Schakel privé-annotaties in"
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Sta de volgende websites toe om het platform weer te geven door middel van iframes"
+
 msgid "Logging level"
 msgstr "Niveau van loggen"
 
@@ -735,20 +715,14 @@ msgstr "megabytes"
 msgid "percentage"
 msgstr "percentage"
 
-msgid "Stats of the week:"
-msgstr "Weekstatistieken:"
+msgid "Type"
+msgstr "Type"
 
-msgid "Event ID"
-msgstr "Gebeurtenis-ID"
+msgid "Severity"
+msgstr "Belang"
 
-msgid "Time"
-msgstr "Tijd"
-
-msgid "Event"
-msgstr "Gebeurtenis"
-
-msgid "Response time"
-msgstr "Responstijd"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "ID"
@@ -773,12 +747,6 @@ msgstr "Verbinding"
 
 msgid "Whistleblower's last access"
 msgstr "Laatste toegang van de klokkenluider"
-
-msgid "Alarm level"
-msgstr "Alarmniveau"
-
-msgid "Events"
-msgstr "Gebeurtenis"
 
 msgid "Substatuses"
 msgstr "Onderstatussen"
@@ -873,9 +841,6 @@ msgstr "Omschrijving"
 msgid "Questionnaire"
 msgstr "Vragenformulier"
 
-msgid "Additional questionnaire"
-msgstr "Toegevoegde vragenformulier"
-
 msgid "Recipients"
 msgstr "Ontvangers"
 
@@ -918,6 +883,9 @@ msgstr "Klokkenluiders toestaan bestanden toe te voegen aan bestaande tips"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Sta ontvanger toe om bestanden te versturen voor klokkenluiders"
 
+msgid "Additional questionnaire"
+msgstr "Toegevoegde vragenformulier"
+
 msgid "Scoring system options"
 msgstr "Beoordelingssysteem opties"
 
@@ -938,9 +906,6 @@ msgstr "Wijs de ontvangstbevestiging alleen toe aan indieningen welke een waarde
 
 msgid "Software version:"
 msgstr "Softwareversie:"
-
-msgid "An update is available:"
-msgstr "Een update is beschikbaar:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Beperk toegang voor specifieke IP-adressen"
@@ -1052,9 +1017,6 @@ msgstr "Auto-hernieuwing"
 msgid "Tor Onion Service"
 msgstr "Tor-onion-dienst"
 
-msgid "Tor Browser download link"
-msgstr "Tor Browser download link"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonimiseer uitgaande verbindingen"
 
@@ -1109,9 +1071,6 @@ msgstr "Sjabloon"
 msgid "Question"
 msgstr "Vraag"
 
-msgid "Type"
-msgstr "Type"
-
 msgid "Single-line text input"
 msgstr "Één regel tekst"
 
@@ -1162,12 +1121,6 @@ msgstr "Aanvaard uploads van meerdere bestanden"
 
 msgid "Accept multiple answers"
 msgstr "Aanvaard meerdere antwoorden"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Hint die getoond wordt op de knop om een extra vraag toe te voegen"
-
-msgid "Encrypt"
-msgstr "Versleutelen"
 
 msgid "Template override"
 msgstr "Sjabloon overschrijven"
@@ -1241,26 +1194,11 @@ msgstr "Casus management"
 msgid "Network settings"
 msgstr "Netwerkinstellingen"
 
-msgid "Mode:"
-msgstr "Modus:"
-
-msgid "Root domain used for secondary sites"
-msgstr "Hoofddomein welke wordt gebruikt voor secondaire weblocaties"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Gebruik de eerste weblocatie uitsluitend voor administratieve doeleinden"
-
-msgid "Enable multi-site login"
-msgstr "Meerdere-weblocatielogin inschakelen"
-
-msgid "Allow users to sign up"
-msgstr "Gebruikers toestaan zich in te schijven"
-
-msgid "Enable terms of service"
-msgstr "Gebruiksvoorwaarden inschakelen"
-
 msgid "Sites"
 msgstr "Weblocaties"
+
+msgid "Mode:"
+msgstr "Modus:"
 
 msgid "Active"
 msgstr "Actief"
@@ -1276,6 +1214,21 @@ msgstr "Subdomein"
 
 msgid "Creation date:"
 msgstr "Datum van aanmaak:"
+
+msgid "Root domain used for secondary sites"
+msgstr "Hoofddomein welke wordt gebruikt voor secondaire weblocaties"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Gebruik de eerste weblocatie uitsluitend voor administratieve doeleinden"
+
+msgid "Enable multi-site login"
+msgstr "Meerdere-weblocatielogin inschakelen"
+
+msgid "Allow users to sign up"
+msgstr "Gebruikers toestaan zich in te schijven"
+
+msgid "Enable terms of service"
+msgstr "Gebruiksvoorwaarden inschakelen"
 
 msgid "Send an account activation link to the user."
 msgstr "Verstuur een account activatielink naar de gebruiker."
@@ -1663,6 +1616,9 @@ msgstr "Upload een bestand:"
 msgid "Logout"
 msgstr "Log uit"
 
+msgid "An update is available:"
+msgstr "Een update is beschikbaar:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1714,7 +1670,7 @@ msgid "You have completed the platform activation."
 msgstr "Je hebt de activatie van het platform afgerond."
 
 msgid "Success!"
-msgstr " Succes!"
+msgstr "Succes!"
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Je klokkenluiders-platvorm is bijna klaar!"
@@ -1890,35 +1846,14 @@ msgstr "Geboortedatum"
 msgid "Place of birth"
 msgstr "Geboorteplaats"
 
-msgid "Social security number"
-msgstr "Burgerservicenummer (BSN)"
-
-msgid "Residence"
-msgstr "Adres 1"
-
 msgid "Zip code / Postal code"
 msgstr "Postcode"
 
 msgid "Province"
 msgstr "Provincie"
 
-msgid "Current job title"
-msgstr "Huidige functie"
-
-msgid "Current job responsibility (role)"
-msgstr "Functieomschrijving (rol)"
-
-msgid "Current organization unit and job location"
-msgstr "Huidige departement en locatie"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Functietitel ten tijde van de misstand"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Rol (verantwoordelijkheid) ten tijde van de misstand"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Departement en locatie ten tijde van de misstand"
+msgid "Country"
+msgstr "Land"
 
 msgid "Dear {RecipientName},"
 msgstr "Beste {RecipientName},"
@@ -2086,9 +2021,6 @@ msgstr "Label: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "Status: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "Context: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

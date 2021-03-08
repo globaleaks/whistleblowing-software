@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-17 11:32+0000\n"
-"Last-Translator: Lenka Ježková <lenka.jezkova@oziveni.cz>\n"
+"PO-Revision-Date: 2021-03-10 15:38+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -345,12 +345,6 @@ msgstr "Spouštěcí otázka"
 msgid "Triggered by score:"
 msgstr "Spuštěno skórem"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Zpráva zobrazená na vrchu stránky o stavu podání"
-
-msgid "Password strength:"
-msgstr "Síla hesla:"
-
 msgid "Weak"
 msgstr "Slabý"
 
@@ -371,21 +365,6 @@ msgstr "Tiché emailové notifikace"
 
 msgid "Turn on email notifications"
 msgstr "Zapnout emailové notifikace"
-
-msgid "Failed logins"
-msgstr "Chybná přihlášení"
-
-msgid "Successful logins"
-msgstr "Úspěšná přihlášení"
-
-msgid "Started submissions"
-msgstr "Započatá podání"
-
-msgid "Completed submissions"
-msgstr "Dokončená podání"
-
-msgid "Failed submissions"
-msgstr "Neúspěšná podání"
 
 msgid "Input validation"
 msgstr "Kontrola vstupu"
@@ -550,11 +529,8 @@ msgstr "DIČ"
 msgid "Tax code"
 msgstr "DIČ"
 
-msgid "Are you a whistleblower?"
-msgstr "Jste oznamovatel?"
-
-msgid "Blow the whistle"
-msgstr "Odeslat oznámení"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Než budete pokračovat, nastavte prosím nové heslo."
@@ -672,6 +648,9 @@ msgstr "Aktivovat systém hodnocení"
 msgid "Enable private annotations"
 msgstr "Povolit soukromé anotace"
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Povolte následujícím stránkám vložit platformu do prvků iframe"
+
 msgid "Logging level"
 msgstr "Přihlašovací úroveň"
 
@@ -707,20 +686,14 @@ msgstr "MB"
 msgid "percentage"
 msgstr "procenta"
 
-msgid "Stats of the week:"
-msgstr "Statistika týdne:"
+msgid "Type"
+msgstr "Typ"
 
-msgid "Event ID"
-msgstr "ID události"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "Čas"
-
-msgid "Event"
-msgstr "Událost"
-
-msgid "Response time"
-msgstr "Čas odpovědi"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "ID"
@@ -745,12 +718,6 @@ msgstr "Připojení"
 
 msgid "Whistleblower's last access"
 msgstr "Poslední přístup oznamovatele"
-
-msgid "Alarm level"
-msgstr "Úroveň varování"
-
-msgid "Events"
-msgstr "Události"
 
 msgid "Substatuses"
 msgstr "Podstav"
@@ -845,9 +812,6 @@ msgstr "Popis"
 msgid "Questionnaire"
 msgstr "Dotazník"
 
-msgid "Additional questionnaire"
-msgstr "Dodatečný dotazník"
-
 msgid "Recipients"
 msgstr "Příjemci"
 
@@ -890,6 +854,9 @@ msgstr "Povolit oznamovatelům přidat přílohy k existujícím podáním"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Povolit příjemcům nahrát soubory pro oznamovatele"
 
+msgid "Additional questionnaire"
+msgstr "Dodatečný dotazník"
+
 msgid "Scoring system options"
 msgstr "Možnosti bodování systému"
 
@@ -910,9 +877,6 @@ msgstr "Přiřadit potvrzení pouze příspěvkům, které dosáhly skóre:"
 
 msgid "Software version:"
 msgstr "Verze software:"
-
-msgid "An update is available:"
-msgstr "Je dostupná aktualizace:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Omezit přístup k určitým IP adresám"
@@ -1024,9 +988,6 @@ msgstr "Automatické obnovení"
 msgid "Tor Onion Service"
 msgstr "Služba Tor Onion"
 
-msgid "Tor Browser download link"
-msgstr "Tor browser odkaz ke stažení"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonymizace odchozích spojení"
 
@@ -1081,9 +1042,6 @@ msgstr "Šablona"
 msgid "Question"
 msgstr "Otázka"
 
-msgid "Type"
-msgstr "Typ"
-
 msgid "Single-line text input"
 msgstr "Jednořádkový vstup"
 
@@ -1134,12 +1092,6 @@ msgstr "Akceptován příjem více souborů"
 
 msgid "Accept multiple answers"
 msgstr "Povolit více odpovědí"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Nápověda objevující se na tlačítku pro přidání doplňující otázky"
-
-msgid "Encrypt"
-msgstr "Zašifrovat"
 
 msgid "Template override"
 msgstr "Přepsání šablony"
@@ -1213,26 +1165,11 @@ msgstr "Správa podání"
 msgid "Network settings"
 msgstr "Nastavení sítě"
 
-msgid "Mode:"
-msgstr "Režim"
-
-msgid "Root domain used for secondary sites"
-msgstr "Kořenová doména pro sekundární stránky"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "První stránku použijte pouze pro administrativní účely"
-
-msgid "Enable multi-site login"
-msgstr "Povolit přihlášení na více stránek"
-
-msgid "Allow users to sign up"
-msgstr "Povolit uživatelům registraci"
-
-msgid "Enable terms of service"
-msgstr "Aktivovat smluvní podmínky"
-
 msgid "Sites"
 msgstr "Stránky"
+
+msgid "Mode:"
+msgstr "Režim"
 
 msgid "Active"
 msgstr "Aktivní"
@@ -1248,6 +1185,21 @@ msgstr "Podstránky"
 
 msgid "Creation date:"
 msgstr "Datum vytvoření:"
+
+msgid "Root domain used for secondary sites"
+msgstr "Kořenová doména pro sekundární stránky"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "První stránku použijte pouze pro administrativní účely"
+
+msgid "Enable multi-site login"
+msgstr "Povolit přihlášení na více stránek"
+
+msgid "Allow users to sign up"
+msgstr "Povolit uživatelům registraci"
+
+msgid "Enable terms of service"
+msgstr "Aktivovat smluvní podmínky"
 
 msgid "Send an account activation link to the user."
 msgstr "Poslat uživateli odkaz k aktivaci účtu."
@@ -1635,6 +1587,9 @@ msgstr "Nahrání souboru:"
 msgid "Logout"
 msgstr "Odhlášení"
 
+msgid "An update is available:"
+msgstr "Je dostupná aktualizace:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1862,35 +1817,14 @@ msgstr "Datum narození"
 msgid "Place of birth"
 msgstr "Místo narození"
 
-msgid "Social security number"
-msgstr "Číslo OP"
-
-msgid "Residence"
-msgstr "Bydliště"
-
 msgid "Zip code / Postal code"
 msgstr "PSČ"
 
 msgid "Province"
 msgstr "Kraj"
 
-msgid "Current job title"
-msgstr "Aktuální pracovní pozice"
-
-msgid "Current job responsibility (role)"
-msgstr "Aktuální pracovní odpovědnost za"
-
-msgid "Current organization unit and job location"
-msgstr "Aktuální organizační jednotka a lokalita"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Název pracovní pozice v době oznamovaného jednání"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Pracovní odpovědnost (role) v době oznamovaného jednání"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Organizační jednotka a lokalita v době oznamovaného jednání"
+msgid "Country"
+msgstr "Země"
 
 msgid "Dear {RecipientName},"
 msgstr "Vážený/á {RecipientName},"
@@ -2058,9 +1992,6 @@ msgstr "Štítek: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "Stav: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "Kontext: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

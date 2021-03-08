@@ -309,58 +309,6 @@
     {
       "id":"",
       "label":{
-        "en":"Social security number"
-      },
-      "description":{
-        "en":""
-      },
-      "instance":"template",
-      "hint":{
-        "en":""
-      },
-      "placeholder":{
-        "en":""
-      },
-      "multi_entry":false,
-      "attrs":{
-        "max_len":{
-          "type":"int",
-          "value":"-1"
-        },
-        "min_len":{
-          "type":"int",
-          "value":"-1"
-        },
-        "input_validation":{
-          "type":"unicode",
-          "value":"none"
-        },
-        "regexp":{
-          "type":"unicode",
-          "value":""
-        }
-      },
-      "width":0,
-      "preview":false,
-      "type":"inputbox",
-      "fieldgroup_id":"",
-      "encrypt":true,
-      "step_id":"",
-      "required":true,
-      "triggered_by_score":0,
-      "triggered_by_options":[
-      ],
-      "template_id":"",
-      "y":4,
-      "x":0,
-      "options":[
-      ],
-      "children":[
-      ]
-    },
-    {
-      "id":"",
-      "label":{
         "en":"Address"
       },
       "description":{
