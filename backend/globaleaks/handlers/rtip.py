@@ -38,6 +38,9 @@ def db_update_submission_status(session, user_id, itip, status_id, substatus_id)
     :param status_id:  The new status ID
     :param substatus_id: A new substatus ID
     """
+    if status_id == 'new':
+        return
+
     itip.status = status_id
     itip.substatus = substatus_id or None
     submission_status_change = models.SubmissionStatusChange()
