@@ -10,8 +10,8 @@ There are shortcodes with dynamic links for the portal
 Email shortcodes?
 -------------------------------------------
 
-|``{RecipientName}`` = The name of the recipient 
-|``{Url}`` = URL of the exact whistleblowing (viewed by recipients) 
+``{RecipientName}`` = The name of the recipient |br|
+``{Url}`` = URL of the exact whistleblowing (viewed by recipients) |br|
 |``{LoginUrl}`` = Login page of the portal 
 |``{AdminCredentials}`` = Admin password (only useable when a new GlobaLeaks Platform is made)
 ``{RecipientCredentials}`` = Recipient password (only useable when a new GlobaLeaks Platform is made)
