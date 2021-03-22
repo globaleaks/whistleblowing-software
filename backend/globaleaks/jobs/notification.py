@@ -124,15 +124,18 @@ class MailGenerator(object):
 
             rtips_ids[rtip.id] = True
 
-            if isinstance(obj, models.ReceiverTip):
-                data = {'type': 'tip'}
-            else:
-                data = {'type': 'tip_update'}
+            try:
+                if isinstance(obj, models.ReceiverTip):
+                    data = {'type': 'tip'}
+                else:
+                    data = {'type': 'tip_update'}
 
-            data['user'] = user_serialize_user(session, user, user.language)
-            data['tip'] = serialize_rtip(session, rtip, itip, user.language)
+                data['user'] = user_serialize_user(session, user, user.language)
+                data['tip'] = serialize_rtip(session, rtip, itip, user.language)
 
-            self.process_mail_creation(session, tid, data)
+                self.process_mail_creation(session, tid, data)
+            except:
+                pass
 
         for user in session.query(models.User).filter(and_(models.User.reminder_date < now - timedelta(reminder_time),
                                                            or_(and_(models.User.id == models.ReceiverTip.receiver_id,
@@ -144,12 +147,18 @@ class MailGenerator(object):
                                                                     models.ReceiverTip.internaltip_id == models.InternalTip.id,
 
                                                                     models.InternalTip.update_date < now - timedelta(reminder_time)))).distinct():
-            tid = user.tid
-            data = {'type': 'unread_tips'}
-            data['user'] = self.serialize_obj(session, 'user', user, tid, user.language)
-            self.process_mail_creation(session, tid, data)
+            if rtips_ids.get(rtip.id, False) or tid in silent_tids:
+                continue
 
             user.reminder_date = now
+            tid = user.tid
+            data = {'type': 'unread_tips'}
+
+            try:
+                data['user'] = self.serialize_obj(session, 'user', user, tid, user.language)
+                self.process_mail_creation(session, tid, data)
+            except:
+                pass
 
 
 @transact
