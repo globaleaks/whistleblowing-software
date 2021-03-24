@@ -2,7 +2,6 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin import auditlog
-from globaleaks.jobs.anomalies import Anomalies
 from globaleaks.tests import helpers
 
 

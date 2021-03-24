@@ -775,7 +775,7 @@ class _ReceiverFile(Model):
 
 class _ReceiverTip(Model):
     """
-    This is the table keeping track of ALL the receivers activities and
+    This is the table keeping track of all the receivers activities and
     date in a Tip, Tip core data are stored in StoredTip. The data here
     provide accountability of Receiver accesses, operations, options.
     """
