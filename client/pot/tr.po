@@ -18,7 +18,7 @@
 # On the Line Turkiye <onthelineturkiye@gmail.com>, 2016
 # Ozgur Yasin <yasinaydin@korsanparti.org>, 2014
 # Sibel Taskin Simsek <sibelsimsek@sabanciuniv.edu>, 2015
-# T. E. Kalayci <tekrei@gmail.com>, 2020-2021
+# T. E. Kalayci <tekrei@member.fsf.org>, 2020-2021
 # Translinguini <translinguini@gmail.com>, 2013
 # Translinguini <translinguini@gmail.com>, 2013
 # Türker öz <man_lise@hotmail.com>, 2015
@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2021-03-10 15:38+0000\n"
-"Last-Translator: T. E. Kalayci <tekrei@gmail.com>\n"
+"Last-Translator: T. E. Kalayci <tekrei@member.fsf.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"

@@ -50,6 +50,7 @@ LANGUAGES_SUPPORTED = [
     {'code': 'ko', 'name': 'Korean', 'native': '\ud55c\uad6d\uc5b4'},
     {'code': 'lt', 'name': 'Korean', 'native': 'Llietuvių'},
     {'code': 'mg', 'name': 'Malagasy', 'native': 'Malagasy'},
+    {'code': 'mk', 'name': 'Macedonian', 'native': '\u043c\u0430\u043a\u0435\u0434\u043e\u043d\u0441\u043a\u0438'},
     {'code': 'nb_NO', 'name': 'Norwegian', 'native': 'Norsk bokm\xe5l'},
     {'code': 'nl', 'name': 'Dutch', 'native': 'Nederlands'},
     {'code': 'pl', 'name': 'Polish', 'native': 'Polski'},

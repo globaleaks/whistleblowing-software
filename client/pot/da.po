@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-10 15:38+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-03-15 16:19+0000\n"
+"Last-Translator: Noah Böhme <noah0907@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -118,7 +118,7 @@ msgid "YOUR NAME"
 msgstr "DIT NAVN"
 
 msgid "Label the report"
-msgstr "Navngiv indberetningen"
+msgstr "Navngiv denne indberetningen"
 
 msgid "Postpone the expiration date"
 msgstr "Udsæt udløbsdatoen"
@@ -273,7 +273,7 @@ msgid "Please write a motivation"
 msgstr "Skriv venligst en begrundelse"
 
 msgid "Reply to the request"
-msgstr "Svar på forespørgslen"
+msgstr "Svar forespørgslen"
 
 msgid "Authorized"
 msgstr "Godkendt"
@@ -318,7 +318,7 @@ msgid "Last update"
 msgstr "Seneste opdatering"
 
 msgid "Custodian notification templates"
-msgstr "Skabeloner til notifikation af kontoindehaver"
+msgstr " Kontoindehaver notificationsskabelon"
 
 msgid ""
 "This interface allows configuring email templates used to notify custodians."
@@ -376,7 +376,7 @@ msgid "None"
 msgstr "Ingen"
 
 msgid "Regular expression"
-msgstr "Regular expression"
+msgstr "Almindeligt udtryk"
 
 msgid "Activate"
 msgstr "Aktivér"
@@ -527,7 +527,7 @@ msgid "Tax code"
 msgstr "Skattekode"
 
 msgid "File a report"
-msgstr ""
+msgstr "Indsend en rapportering"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Før du fortsætter bedes du indstille en ny adgangskode."
@@ -687,10 +687,10 @@ msgid "Type"
 msgstr "Type"
 
 msgid "Severity"
-msgstr ""
+msgstr "Omfanget"
 
 msgid "Object"
-msgstr ""
+msgstr "Objekt"
 
 msgid "ID"
 msgstr "ID"
@@ -2145,7 +2145,7 @@ msgid "This email is to remind you the presence of unread or updated reports."
 msgstr "Denne e-mail minder dig om tilstedeværelsen af ​​ulæste eller opdaterede rapporter."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Påmindelse om ulæste og opdaterede rapporter"
 
 msgid "Role: {Role}"
 msgstr "Rolle: {Role}"
