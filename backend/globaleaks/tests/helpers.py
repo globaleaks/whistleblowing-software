@@ -912,6 +912,12 @@ class TestGLWithPopulatedDB(TestGL):
                                            'message')
 
     @inlineCallbacks
+    def perform_minimal_submission_actions(self):
+        token = self.perform_submission_start()
+        self.perform_submission_uploads(token)
+        yield self.perform_submission_actions(token)
+
+    @inlineCallbacks
     def perform_full_submission_actions(self):
         """Populates the DB with tips, comments, messages and files"""
         for x in range(self.population_of_submissions):
@@ -920,12 +926,6 @@ class TestGLWithPopulatedDB(TestGL):
             yield self.perform_submission_actions(token)
 
         yield self.perform_post_submission_actions()
-
-    @inlineCallbacks
-    def perform_minimal_submission(self):
-        token = self.perform_submission_start()
-        self.perform_submission_uploads(token)
-        yield self.perform_submission_actions(token)
 
     @transact
     def force_wbtip_expiration(self, session):

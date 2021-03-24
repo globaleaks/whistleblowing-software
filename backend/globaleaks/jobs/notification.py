@@ -201,6 +201,9 @@ class Notification(LoopingJob):
     interval = 10
     monitor_interval = 3 * 60
 
+    def generate_emails(self):
+        return MailGenerator(self.state).generate()
+
     @defer.inlineCallbacks
     def spool_emails(self):
         delay = 1
@@ -215,6 +218,5 @@ class Notification(LoopingJob):
 
     @defer.inlineCallbacks
     def operation(self):
-        yield MailGenerator(self.state).generate()
-
+        yield self.generate_emails()
         yield self.spool_emails()

@@ -258,7 +258,7 @@ class TestReceiverFileDownload(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get(self):
-        yield self.perform_minimal_submission()
+        yield self.perform_minimal_submission_actions()
         yield Delivery().run()
 
         rtip_descs = yield self.get_rtips()
