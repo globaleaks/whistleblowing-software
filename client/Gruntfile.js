@@ -397,11 +397,13 @@ module.exports = function(grunt) {
           replacements: [
             {
               pattern: "<link rel=\"stylesheet\" href=\"css/styles.css\">",
-              replacement: "<link rel=\"stylesheet\" href=\"css/styles.min.css\">"
+              replacement: ""
             },
             {
               pattern: "<script src=\"js/scripts.js\"></script>",
-              replacement: "<script src=\"js/scripts.min.js\"></script>"
+              replacement: function() {
+                return fs.readFileSync("tmp/loader.html");
+              }
             }
           ]
         }

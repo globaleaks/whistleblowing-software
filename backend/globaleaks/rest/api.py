@@ -462,7 +462,7 @@ class APIResourceWrapper(Resource):
         # - In order to be able to manually retest if it is correctly implemented
         if not State.settings.disable_csp:
             csp = "default-src 'none';" \
-                  "script-src 'self';" \
+                  "script-src 'self' 'sha256-deqnDNmuiUUIybUybVmSDSwpWO3hlCGA997lDHVOBcg=';" \
                   "connect-src 'self';" \
                   "style-src 'self';" \
                   "img-src 'self' data:;" \
