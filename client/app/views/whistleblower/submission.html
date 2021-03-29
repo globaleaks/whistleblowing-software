@@ -43,9 +43,7 @@
         <span data-translate>Next</span>
         <i class="fas fa-arrow-circle-right"></i>
       </button>
-      <button id="SubmitButton" class="btn btn-primary" data-ng-show="submission.context && !hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="!submission.token || submission.done || submission.blocked" type="submit">
-        <span data-translate>Submit</span>
-      </button>
+      <button id="SubmitButton" class="btn btn-primary" data-ng-show="submission.context && !hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="!submission.token || submission.done || submission.blocked || Utils.isUploading(uploads)" type="submit" data-translate>Submit</button>
     </div>
   </form>
 </div>
