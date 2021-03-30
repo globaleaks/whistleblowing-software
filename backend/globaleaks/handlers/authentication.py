@@ -17,8 +17,11 @@ from globaleaks.utils.log import log
 from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 
-def login_error(tid):
+def login_failure(tid, role, whistleblower=False):
     Settings.failed_login_attempts[tid] = Settings.failed_login_attempts.get(tid, 0) + 1
+
+    State.log(tid=tid, type='whistleblower_login_failure' if whistleblower else 'login_failure')
+
     raise errors.InvalidAuthentication
 
 
@@ -73,7 +76,7 @@ def login_whistleblower(session, tid, receipt):
                            InternalTip.id == WhistleblowerTip.id).one_or_none()
 
     if x is None:
-        login_error(tid)
+        login_failure(tid, 1)
 
     wbtip = x[0]
     itip = x[1]
@@ -107,7 +110,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
                                       User.tid == tid).one_or_none()
 
     if not user or not GCE.check_password(user.hash_alg, password, user.salt, user.password):
-        login_error(tid)
+        login_failure(tid, 0)
 
     connection_check(tid, client_ip, user.role, client_using_tor)
 
@@ -191,7 +194,7 @@ class TokenAuthHandler(BaseHandler):
 
         session = Sessions.get(request['authtoken'])
         if session is None or session.tid != self.request.tid:
-            login_error(self.request.tid)
+            login_failure(self.request.tid, 0)
 
         connection_check(self.request.tid, self.request.client_ip,
                          session.user_role, self.request.client_using_tor)
