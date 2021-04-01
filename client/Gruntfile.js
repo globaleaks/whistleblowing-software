@@ -198,9 +198,15 @@ module.exports = function(grunt) {
               }
             },
             {
-              pattern: /(0056b3|007bff|17a2b8|28a745|34ce57)/ig,
+              pattern: /(0056b3|17a2b8|28a745|34ce57)/ig,
               replacement: function () {
                 return "377ABC";
+              }
+            },
+            {
+              pattern: /007bff/ig,
+              replacement: function () {
+                return "2066A2";
               }
             },
             {
