@@ -1444,8 +1444,8 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
       }
     };
 }]).
-factory("GLTranslate", ["$translate", "$location","tmhDynamicLocale",
-    function($translate, $location, tmhDynamicLocale) {
+factory("GLTranslate", ["$translate", "$location", "$window", "tmhDynamicLocale",
+    function($translate, $location, $window, tmhDynamicLocale) {
 
   // facts are (un)defined in order of importance to the factory.
   var facts = {
@@ -1607,6 +1607,7 @@ factory("GLTranslate", ["$translate", "$location","tmhDynamicLocale",
     if (state.language) {
       updateTranslationServices(state.language);
       GL.language = state.language;
+      $window.document.getElementsByTagName("html")[0].setAttribute("lang", state.language);
     }
   }
 
