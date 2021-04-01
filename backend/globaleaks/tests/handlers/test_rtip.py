@@ -276,7 +276,7 @@ class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_minimal_submission()
+        yield self.perform_minimal_submission_actions()
 
     @inlineCallbacks
     def test_post(self):

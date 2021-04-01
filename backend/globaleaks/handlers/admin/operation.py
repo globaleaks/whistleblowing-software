@@ -61,7 +61,7 @@ def reset_submissions(session, tid):
     """
     session.query(Config).filter(Config.tid == tid, Config.var_name == 'counter_submissions').update({'value': 0})
 
-    db_del(session, models.InternalTip, models.InternalTip.tid ==tid)
+    db_del(session, InternalTip, InternalTip.tid ==tid)
 
 
 @transact

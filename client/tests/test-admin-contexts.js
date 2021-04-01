@@ -11,7 +11,7 @@ describe("admin configure, add, and delete contexts", function() {
       button = element(by.id("ReceiverContextAdder")).element(by.model("selected.value"));
       input = button.element(by.css(".ui-select-search"));
       await button.click();
-      await input.sendKeys("Recipient" + i.toString());
+      await input.sendKeys("Recipient").click();
       await element.all(by.css(".ui-select-choices-row-inner span")).first().click();
     }
 
