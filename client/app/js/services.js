@@ -1045,6 +1045,10 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       $window.print();
     },
 
+    scrollToTop: function(id) {
+      $window.document.getElementByTagName('body').scrollIntoView();
+    },
+
     download: function(filename, url) {
       return $http({
         method: "GET",
