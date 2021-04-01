@@ -797,6 +797,9 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       } else if (pt2) {
         $rootScope.pt = pt2;
       }
+
+      $window.document.title = $rootScope.pt;
+      $window.document.getElementsByName('description')[0].content = $rootScope.public.node.description;
     },
 
     route_check: function() {

@@ -69,6 +69,7 @@ ConfigDescriptor = {
     'enable_developers_exception_notification': Bool(default=True),
 
     'name': Unicode(default='GLOBALEAKS'),
+    'description': Unicode(default='Secure whistleblowing platform based on GlobaLeaks free and open-source software.'),
 
     'hostname': Unicode(default=''),
 
@@ -163,6 +164,7 @@ ConfigFilters = {
     'node': [
         'id',
         'name',
+        'description',
         'hostname',
         'onionservice',
         'rootdomain',
@@ -300,6 +302,7 @@ ConfigFilters['public_node'] = list(set(ConfigFilters['admin_node']) - set([
 ConfigFilters['general_settings'] = [
     'logo',
     'name',
+    'description',
     'header_title_homepage',
     'presentation',
     'whistleblowing_question',
