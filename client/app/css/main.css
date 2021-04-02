@@ -43,14 +43,8 @@ a:focus {
 }
 
 a:hover,
-a.darklink,
-a:active.darklink,
-a:focus.darklink {
+.onionaddress {
   color: #5797D5;
-}
-
-a:hover.darklink {
-  color: #79B0E6;
 }
 
 .visible-on-over {
