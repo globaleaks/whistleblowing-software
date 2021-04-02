@@ -123,11 +123,18 @@ def db_update_node(session, tid, user_session, request, language):
         user = db_get(session, models.User, models.User.id == user_session.user_id)
         user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_escrow_prv_key))
 
+        if tid == 1:
+            session.query(models.User).update({'password_change_needed': True}, synchronize_session=False)
+        else:
+            session.query(models.User).filter(models.User.tid == tid).update({'password_change_needed': True}, synchronize_session=False)
+
     if disable_escrow:
         if tid == 1:
             session.query(models.User).update({'crypto_escrow_bkp1_key': ''}, synchronize_session=False)
+        else:
+            session.query(models.User).update({'crypto_escrow_bkp2_key': ''}, synchronize_session=False)
 
-        session.query(models.User).filter(models.User.tid == tid).update({'crypto_escrow_prv_key': '', 'crypto_escrow_bkp2_key': ''}, synchronize_session=False)
+        session.query(models.User).filter(models.User.tid == tid).update({'crypto_escrow_prv_key': ''}, synchronize_session=False)
 
     config.set_val('crypto_escrow_pub_key', State.tenant_cache[tid].crypto_escrow_pub_key)
 
