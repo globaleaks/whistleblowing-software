@@ -25,13 +25,9 @@
                                      "en": "FGroupC"
                                    },
                                    "multi_entry": false,
-                                   "multi_entry_hint": {
-                                     "en": ""
-                                   },
                                    "options": [],
                                    "preview": false,
                                    "required": false,
-                                   "encrypt": true,
                                    "step_id": "",
                                    "template_id": "",
                                    "triggered_by_options": [],
@@ -56,13 +52,9 @@
                        "en": "FGroupB"
                      },
                      "multi_entry": false,
-                     "multi_entry_hint": {
-                       "en": ""
-                     },
                      "options": [],
                      "preview": false,
                      "required": false,
-                     "encrypt": true,
                      "template_id": "",
                      "triggered_by_options": [],
                      "triggered_by_score": 0,
@@ -87,13 +79,9 @@
             "en": "FGroupA"
           },
           "multi_entry": false,
-          "multi_entry_hint": {
-            "en": ""
-          },
           "options": [],
           "preview": false,
           "required": false,
-          "encrypt": true,
           "step_id": "8b2edda9-976e-486f-8dbd-deed917ca904",
           "template_id": "",
           "triggered_by_options": [],

@@ -1,6 +1,6 @@
 <form name="preferencesForm" id="PreferencesForm">
   <div data-ng-if="preferences.picture" class="imageThumbnail">
-    <img class="receiverImg" alt="user picture" data-ng-src="{{Utils.imgDataUri(preferences.picture)}}" /><br />
+    <img class="receiverImg" alt="user picture" data-ng-src="/s/{{preferences.id}}" /><br />
   </div>
   <div id="Username"><label><span data-translate>Username</span>:</label> {{preferences.username }}</div>
   <div id="Role"><label><span data-translate>Role</span>:</label> <span>{{Authentication.session.role_l10n()}}</span></div>

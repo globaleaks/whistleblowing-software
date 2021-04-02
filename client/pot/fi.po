@@ -1,6 +1,6 @@
 # 
 # Translators:
-# Akseli Pihlajamaa <akselijuhanipihlajamaa@gmail.com>, 2020
+# Akseli Pihlajamaa <akselijuhanipihlajamaa@gmail.com>, 2020-2021
 # Eva Simonsson, 2020
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020
 # Jaakko Korhonen <jaakko.korhonen@gmail.com>, 2018
@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:49+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"Last-Translator: Eva Simonsson\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -343,12 +343,6 @@ msgstr "Aseta jatkokysymys"
 msgid "Triggered by score:"
 msgstr "Käytetään pistemäärän mukaan:"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Viesti, joka näytetään ilmoituksen tilasivun yläreunassa"
-
-msgid "Password strength:"
-msgstr "Salasanan vahvuus:"
-
 msgid "Weak"
 msgstr "Heikko"
 
@@ -369,21 +363,6 @@ msgstr "Hiljennä sähköposti-ilmoitukset"
 
 msgid "Turn on email notifications"
 msgstr "Sähköposti-ilmoitukset päälle"
-
-msgid "Failed logins"
-msgstr "Epäonnistuneita kirjautumisia"
-
-msgid "Successful logins"
-msgstr "Onnistuneita kirjautumisia"
-
-msgid "Started submissions"
-msgstr "Aloitetut vihjeet"
-
-msgid "Completed submissions"
-msgstr "Valmiit vihjeet"
-
-msgid "Failed submissions"
-msgstr "Epäonnistuneet lähetykset"
 
 msgid "Input validation"
 msgstr "Tekstikentän tyyppi"
@@ -548,11 +527,8 @@ msgstr "Arvonlisäveronumero"
 msgid "Tax code"
 msgstr "Veronumero"
 
-msgid "Are you a whistleblower?"
-msgstr "Onko sinulla tietoa epäilyttävästä, laittomasta tai muuten hämärästä toiminnasta yrityksessäsi? Tuo asia julki ja lähetä meille vihje halutessasi täysin nimettömänä turvallisen verkkoyhteyden kautta."
-
-msgid "Blow the whistle"
-msgstr "Lähetä vihje"
+msgid "File a report"
+msgstr "Jätä ilmoitus"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Määritä uusi salasana ennen kuin jatkat."
@@ -670,6 +646,9 @@ msgstr "Ota käyttöön pisteytysjärjestelmä"
 msgid "Enable private annotations"
 msgstr "Salli yksityiset kommentit"
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Salli seuraavien sivustojen upottaa palvelu iframes-toteutuksena omille verkkosivuilleen"
+
 msgid "Logging level"
 msgstr "Kirjautumistaso"
 
@@ -705,20 +684,14 @@ msgstr "megatavua"
 msgid "percentage"
 msgstr "prosenttia"
 
-msgid "Stats of the week:"
-msgstr "Viikkotilasto:"
+msgid "Type"
+msgstr "Tyyppi"
 
-msgid "Event ID"
-msgstr "Tapahtumatunniste"
+msgid "Severity"
+msgstr "Vakavuus"
 
-msgid "Time"
-msgstr "Aika"
-
-msgid "Event"
-msgstr "Tapahtuma"
-
-msgid "Response time"
-msgstr "Vastausaika"
+msgid "Object"
+msgstr "Tapahtuman kohde"
 
 msgid "ID"
 msgstr "Tunniste"
@@ -743,12 +716,6 @@ msgstr "Yhteys"
 
 msgid "Whistleblower's last access"
 msgstr "Ilmiantajan viimeisin kirjautumisajankohta"
-
-msgid "Alarm level"
-msgstr "Hälytystaso"
-
-msgid "Events"
-msgstr "Tapahtumat"
 
 msgid "Substatuses"
 msgstr "Välitilat"
@@ -843,9 +810,6 @@ msgstr "Kuvaus"
 msgid "Questionnaire"
 msgstr "Vihjelomake"
 
-msgid "Additional questionnaire"
-msgstr "Täydentävä vihjelomake"
-
 msgid "Recipients"
 msgstr "Vastaanottajat"
 
@@ -888,6 +852,9 @@ msgstr "Salli vihjeen antajien lisätä liitetiedostoja olemassaoleviin vihjeisi
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Salli vastaanottajien lähettää tiedostoja vihjeiden lähettäjille"
 
+msgid "Additional questionnaire"
+msgstr "Täydentävä vihjelomake"
+
 msgid "Scoring system options"
 msgstr "Pisteytysjärjestelmän asetukset"
 
@@ -908,9 +875,6 @@ msgstr "Liitä kuittaus vain lähetettyihin vihjeisiin, jotka saavuttavat pistem
 
 msgid "Software version:"
 msgstr "Käytössä oleva ohjelmistoversio:"
-
-msgid "An update is available:"
-msgstr "Uusi ohjelmistoversio saatavilla:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Estä pääsy tietyistä IP-osoitteista"
@@ -1022,9 +986,6 @@ msgstr "Automaattinen uusiminen"
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
 
-msgid "Tor Browser download link"
-msgstr "Tor-selaimen latauslinkki"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonymisoi yhteydet ulospäin"
 
@@ -1079,9 +1040,6 @@ msgstr "Mallipohja"
 msgid "Question"
 msgstr "Kysymys"
 
-msgid "Type"
-msgstr "Tyyppi"
-
 msgid "Single-line text input"
 msgstr "Yksirivinen tekstikenttä"
 
@@ -1132,12 +1090,6 @@ msgstr "Hyväksy useiden tiedostojen siirto kerralla"
 
 msgid "Accept multiple answers"
 msgstr "Salli useita vastauksia"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Painikkeen yhteydessä näytettävä vinkki lisäkysymystä lisättäessä"
-
-msgid "Encrypt"
-msgstr "Salaa"
 
 msgid "Template override"
 msgstr "Mallipohjan korvaus"
@@ -1211,26 +1163,11 @@ msgstr "Asiainhallinta"
 msgid "Network settings"
 msgstr "Verkkoasetukset"
 
-msgid "Mode:"
-msgstr "Tila:"
-
-msgid "Root domain used for secondary sites"
-msgstr "Käytetään pääverkkotunnusta toissijaisille palveluille"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Käytä ensimmäistä sivustoa vain ylläpidollisiin tarkoituksiin"
-
-msgid "Enable multi-site login"
-msgstr "Salli samanaikainen kirjautuminen useaan järjestelmään"
-
-msgid "Allow users to sign up"
-msgstr "Salli käyttäjien rekisteröityä palveluun"
-
-msgid "Enable terms of service"
-msgstr "Ota käyttöön palvelun käyttöehdot"
-
 msgid "Sites"
 msgstr "Palvelut"
+
+msgid "Mode:"
+msgstr "Tila:"
 
 msgid "Active"
 msgstr "Aktiivinen"
@@ -1246,6 +1183,21 @@ msgstr "Alidomain"
 
 msgid "Creation date:"
 msgstr "Luontipäivämäärä:"
+
+msgid "Root domain used for secondary sites"
+msgstr "Käytetään pääverkkotunnusta toissijaisille palveluille"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Käytä ensimmäistä sivustoa vain ylläpidollisiin tarkoituksiin"
+
+msgid "Enable multi-site login"
+msgstr "Salli samanaikainen kirjautuminen useaan järjestelmään"
+
+msgid "Allow users to sign up"
+msgstr "Salli käyttäjien rekisteröityä palveluun"
+
+msgid "Enable terms of service"
+msgstr "Ota käyttöön palvelun käyttöehdot"
 
 msgid "Send an account activation link to the user."
 msgstr "Lähetä tilin aktivointilinkki käyttäjälle."
@@ -1633,6 +1585,9 @@ msgstr "Lähetä tiedosto:"
 msgid "Logout"
 msgstr "Kirjaudu ulos"
 
+msgid "An update is available:"
+msgstr "Uusi ohjelmistoversio saatavilla:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1860,35 +1815,14 @@ msgstr "Syntymäpäivä"
 msgid "Place of birth"
 msgstr "Syntymäpaikka"
 
-msgid "Social security number"
-msgstr "Henkilötunnus"
-
-msgid "Residence"
-msgstr "Asuinpaikka"
-
 msgid "Zip code / Postal code"
 msgstr "Postinumero"
 
 msgid "Province"
 msgstr "Provinssi"
 
-msgid "Current job title"
-msgstr "Nykyinen työnimike"
-
-msgid "Current job responsibility (role)"
-msgstr "Työrooli"
-
-msgid "Current organization unit and job location"
-msgstr "Organisaatio ja sijainti"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Työnimike ilmoitushetkellä"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Työtehtävä ilmoitushetkellä"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Organisaatioyksikkö ja työpaikan sijainti raportointihetkellä"
+msgid "Country"
+msgstr "Maa"
 
 msgid "Dear {RecipientName},"
 msgstr "Hyvä {RecipientName},"
@@ -2056,9 +1990,6 @@ msgstr "Otsikko: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "Vihjeen tila: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "Aihe: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

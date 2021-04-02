@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"PO-Revision-Date: 2021-03-28 16:19+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -335,12 +335,6 @@ msgstr "트리거 질문"
 msgid "Triggered by score:"
 msgstr ""
 
-msgid "Message shown on top of the status page of the report"
-msgstr "메시지 제출의 상태 페이지의 상단에 표시"
-
-msgid "Password strength:"
-msgstr "비밀번호 강도:"
-
 msgid "Weak"
 msgstr "약한"
 
@@ -360,21 +354,6 @@ msgid "Silence email notifications"
 msgstr ""
 
 msgid "Turn on email notifications"
-msgstr ""
-
-msgid "Failed logins"
-msgstr "로그인 실패"
-
-msgid "Successful logins"
-msgstr "성공적인 로그인"
-
-msgid "Started submissions"
-msgstr "시작 제출"
-
-msgid "Completed submissions"
-msgstr "완성 된 제출"
-
-msgid "Failed submissions"
 msgstr ""
 
 msgid "Input validation"
@@ -540,11 +519,8 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Are you a whistleblower?"
-msgstr "당신은 고발자입니까?"
-
-msgid "Blow the whistle"
-msgstr "휘파람을 불어"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr ""
@@ -662,6 +638,9 @@ msgstr ""
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "다른 웹 사이트가 iframe 내부의 플랫폼을 포함 할 수 있도록 허용"
+
 msgid "Logging level"
 msgstr ""
 
@@ -697,20 +676,14 @@ msgstr "메가 바이트"
 msgid "percentage"
 msgstr "백분율"
 
-msgid "Stats of the week:"
-msgstr "일주일의 통계 :"
+msgid "Type"
+msgstr "유형"
 
-msgid "Event ID"
-msgstr "이벤트 ID"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "시각"
-
-msgid "Event"
-msgstr "행사"
-
-msgid "Response time"
-msgstr "응답 시간"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr ""
@@ -735,12 +708,6 @@ msgstr "연결"
 
 msgid "Whistleblower's last access"
 msgstr ""
-
-msgid "Alarm level"
-msgstr "경보 수준"
-
-msgid "Events"
-msgstr "이벤트"
 
 msgid "Substatuses"
 msgstr ""
@@ -835,9 +802,6 @@ msgstr "기술"
 msgid "Questionnaire"
 msgstr "질문 사항"
 
-msgid "Additional questionnaire"
-msgstr ""
-
 msgid "Recipients"
 msgstr "받는 사람"
 
@@ -880,6 +844,9 @@ msgstr "제보자는 기존의 제출에 첨부 파일을 추가 할 수 있도�
 msgid "Let recipients upload files to whistleblowers"
 msgstr "질문이 가능 고발자를 요청합니다"
 
+msgid "Additional questionnaire"
+msgstr ""
+
 msgid "Scoring system options"
 msgstr ""
 
@@ -900,9 +867,6 @@ msgstr ""
 
 msgid "Software version:"
 msgstr "소프트웨어 버전 :"
-
-msgid "An update is available:"
-msgstr ""
 
 msgid "Restrict access to specific IP addresses"
 msgstr ""
@@ -1014,9 +978,6 @@ msgstr ""
 msgid "Tor Onion Service"
 msgstr ""
 
-msgid "Tor Browser download link"
-msgstr ""
-
 msgid "Anonymize outgoing connections"
 msgstr ""
 
@@ -1071,9 +1032,6 @@ msgstr "주형"
 msgid "Question"
 msgstr ""
 
-msgid "Type"
-msgstr "유형"
-
 msgid "Single-line text input"
 msgstr "한 줄의 텍스트 입력"
 
@@ -1124,12 +1082,6 @@ msgstr "여러 파일 업로드를 허용"
 
 msgid "Accept multiple answers"
 msgstr ""
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "추가 답변을 추가하는 버튼에 표시 힌트"
-
-msgid "Encrypt"
-msgstr "암호화"
 
 msgid "Template override"
 msgstr ""
@@ -1203,25 +1155,10 @@ msgstr ""
 msgid "Network settings"
 msgstr ""
 
-msgid "Mode:"
-msgstr ""
-
-msgid "Root domain used for secondary sites"
-msgstr ""
-
-msgid "Use the first site for administrative purposes only"
-msgstr ""
-
-msgid "Enable multi-site login"
-msgstr ""
-
-msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Enable terms of service"
-msgstr ""
-
 msgid "Sites"
+msgstr ""
+
+msgid "Mode:"
 msgstr ""
 
 msgid "Active"
@@ -1238,6 +1175,21 @@ msgstr ""
 
 msgid "Creation date:"
 msgstr "만든 날짜:"
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Enable terms of service"
+msgstr ""
 
 msgid "Send an account activation link to the user."
 msgstr ""
@@ -1625,6 +1577,9 @@ msgstr ""
 msgid "Logout"
 msgstr "로그 아웃"
 
+msgid "An update is available:"
+msgstr ""
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1852,35 +1807,14 @@ msgstr "생년월일"
 msgid "Place of birth"
 msgstr "출생지"
 
-msgid "Social security number"
-msgstr "사회 보장 번호"
-
-msgid "Residence"
-msgstr "거주"
-
 msgid "Zip code / Postal code"
 msgstr "우편 번호 / 우편 번호"
 
 msgid "Province"
 msgstr "지방"
 
-msgid "Current job title"
-msgstr "현재 작업 제목"
-
-msgid "Current job responsibility (role)"
-msgstr "현재 작업 책임 (역할)"
-
-msgid "Current organization unit and job location"
-msgstr "현재 조직 단위 및 작업 위치"
-
-msgid "Job title at the time of the reported fact"
-msgstr "보고 된 사실 당시의 직위"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "보고 된 사실 당시의 작업 책임 (역할)"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "보고 된 사실시 조직 단위 및 작업 위치"
+msgid "Country"
+msgstr "나라"
 
 msgid "Dear {RecipientName},"
 msgstr "친애 %의 {RecipientName} 를,"
@@ -2048,9 +1982,6 @@ msgstr "레이블 : {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr ""
-
-msgid "Context: {ContextName}"
-msgstr "컨텍스트 : {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

@@ -1,39 +1,47 @@
-<table id="userList" class="table table-condensed table-striped">
+<table id="ReportsTable" class="table table-condensed table-striped">
   <thead>
     <tr>
       <th data-translate>ID</th>
-      <th data-translate>Username</th>
-      <th data-translate>Role</th>
-      <th data-translate>Name</th>
-      <th>2FA</th>
-      <th data-translate>Creation date</th>
-      <th data-translate>Last access</th>
+      <th data-translate>Date</th>
+      <th data-translate>Last update</th>
+      <th data-translate>Expiration date</th>
+      <th data-translate>Context</th>
+      <th data-translate>Status</th>
+      <th data-translate>Connection</th>
+      <th data-translate>Comments</th>
+      <th data-translate>Messages</th>
+      <th data-translate>Files</th>
+      <th data-translate>Whistleblower's last access</th>
     </tr>
   </thead>
-  <tbody id="userListBody">
-    <tr data-ng-repeat="user in auditLog.users.elems">
-      <td>{{user.id}}</td>
-      <td>{{user.username}}</td>
-      <td>{{user.role}}</td>
-      <td>{{user.name}}</td>
-      <td><i class="fa" data-ng-class="{'fa-check': user.two_factor_enable, 'fa-times': !user.two_factor_enable}"></i></td>
-      <td>{{user.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
-      <td>{{user.last_login | date:'dd-MM-yyyy HH:mm'}}</td>
+  <tbody>
+    <tr data-ng-repeat="tip in auditLog.tips.elems | orderBy:'last_update':true | limitTo:itemsPerPage:((auditLog.tips.currentPage - 1) * itemsPerPage)">
+      <td>{{tip.id}}</td>
+      <td>{{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
+      <td>{{tip.last_update | date:'dd-MM-yyyy HH:mm'}}</td>
+      <td>{{tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</td>
+      <td>{{contexts_by_id[tip.context_id]['name']}}</td>
+      <td>{{Utils.getSubmissionStatusText(tip.status, tip.substatus, submission_statuses)}}</td>
+      <td>{{tip.tor ? 'Tor' : 'HTTPS'}}</td>
+      <td>{{tip.comments}}</td>
+      <td>{{tip.messages}}</td>
+      <td>{{tip.files}}</td>
+      <td>{{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}}</td>
     </tr>
   </tbody>
 </table>
-<div class="text-center" data-ng-show="auditLog.users.elems.length > itemsPerPage | limitTo:itemsPerPage:((auditLog.users.currentPage - 1) * itemsPerPage)">
+<div class="text-center" data-ng-show="auditLog.tips.elems.length > itemsPerPage">
   <ul uib-pagination
-      total-items="auditLog.users.elems.length"
+      total-items="auditLog.tips.elems.length"
       first-text="<< {{'First' | translate}}"
       last-text="{{'Last' | translate}} >>"
       previous-text="< {{'Previous' | translate}}"
       next-text="{{'Next' | translate}} >"
       items-per-page="itemsPerPage"
-      data-ng-model="auditLog.users.currentPage"
+      data-ng-model="auditLog.tips.currentPage"
       max-size="10"
       class="pagination-sm"
       boundary-links="true"
       force-ellipses="true"></ul>
 </div>
-<button class="btn btn-sm btn-link" type="button" ng-csv="resources.users" csv-label='true' filename="users.csv"><i class="fa fa-download"></i> <span data-translate>Export</span></button>
+<button class="btn btn-sm btn-link" type="button" ng-csv="resources.tips" csv-label='true' filename="reports.csv"><i class="fa fa-download"></i> <span data-translate>Export</span></button>

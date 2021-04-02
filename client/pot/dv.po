@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
-"Last-Translator: Ruba Ali <rubaa.ali@gmail.com>\n"
+"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -339,12 +339,6 @@ msgstr "އެހެން ސުވާލުގެ ޖަވާބަށް ބަލާފައި ޓްރި
 msgid "Triggered by score:"
 msgstr "ސްކޯއިން ޓްރިގަރވާ: "
 
-msgid "Message shown on top of the status page of the report"
-msgstr "ސްޓޭޓަސް ސަފްޙާގެ އެންމެ މަތިން ފެންނަ މެސެޖް. "
-
-msgid "Password strength:"
-msgstr "ޕާސްވޯޑްގެ ރައްކާތެރިކަން:"
-
 msgid "Weak"
 msgstr "ބަލިކަށި"
 
@@ -365,21 +359,6 @@ msgstr "އީމެއިލް ނޯޓިފިކޭޝަން ސައިލެންސް ކުރު�
 
 msgid "Turn on email notifications"
 msgstr "އީމެއިލް ނޯޓިފިކޭޝަން އޮންކުރުމަށް"
-
-msgid "Failed logins"
-msgstr "ފޭލުވެފައިވާ ލޮގް އިން. "
-
-msgid "Successful logins"
-msgstr "ލޮގް އިންވެފައިވާ ލިސްޓް"
-
-msgid "Started submissions"
-msgstr "ފަށާފައިވާ ރިޕޯރޓްތަށް"
-
-msgid "Completed submissions"
-msgstr "ނިމިފައިވާ ރިޕޯރޓްތަށް"
-
-msgid "Failed submissions"
-msgstr "ފެއިލްވެފައިވާ ރިޕޯރޓްތަށް"
 
 msgid "Input validation"
 msgstr "އިންޕުޓް ވެލިޑޭޝަން"
@@ -544,11 +523,8 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Are you a whistleblower?"
-msgstr "ތިޔަ ފަރާތަކީ ވިސިލްބްލޯވަރއެއްތޯ؟ "
-
-msgid "Blow the whistle"
-msgstr "ވިސިލްބްލޯކުރަން"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން އާ ޕާސްވޯޑްއެއް ހިޔާރުކުރައްވާ"
@@ -666,6 +642,9 @@ msgstr "ސްކޯރިން ސިސްޓަމް އޮންކުރަން"
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "ތިރީގައިވާ ވެބްސައިޓްތަކުން އައިފްރޭމްސް ތެރޭގައި ޕްލެޓްފޯމް އެމްބެޑްކުރުމުގެ ހުއްދަދޭން"
+
 msgid "Logging level"
 msgstr "ލޮގިންގް ލެވަލް"
 
@@ -701,20 +680,14 @@ msgstr "މެގަބައިޓް"
 msgid "percentage"
 msgstr "ޕަސެންޓު"
 
-msgid "Stats of the week:"
-msgstr "ހަފްތާގެ ފާހަގަ ކޮއްލެވޭ ތަފާސް ހިސާބު: "
+msgid "Type"
+msgstr "ބާވަތް"
 
-msgid "Event ID"
-msgstr "އިވެންޓް އައި.ޑީ"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "ގަޑި"
-
-msgid "Event"
-msgstr "އިވެންޓް"
-
-msgid "Response time"
-msgstr "ޖަވާބުލިބެން ނަގާ ވަގުތު"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "އައިޑީ"
@@ -739,12 +712,6 @@ msgstr "ކަނެކްޝަން"
 
 msgid "Whistleblower's last access"
 msgstr ""
-
-msgid "Alarm level"
-msgstr "އެލާރމް ލެވަލް"
-
-msgid "Events"
-msgstr "އިވެންޓް"
 
 msgid "Substatuses"
 msgstr "ސަބްސްޓޭޓަސަސް"
@@ -839,9 +806,6 @@ msgstr "ތަފްސީލު"
 msgid "Questionnaire"
 msgstr "ސުވާލުކަރުދާސް"
 
-msgid "Additional questionnaire"
-msgstr "އިތުރު ސުވާލުކަރުދާސް"
-
 msgid "Recipients"
 msgstr "ލިބޭފަރާތްތަށް"
 
@@ -884,6 +848,9 @@ msgstr "ކުރީގެ ރިޕޯޓްތަކުގައި އާ ފައިލްތަށް ހި
 msgid "Let recipients upload files to whistleblowers"
 msgstr "ވިސިލްބްލޯވަރއަށް ދޭންބޭނުންފުޅުވާ ފައިލްތައް ހިމެނުމުގެ ޙުއްދަ ރިޕޯޓް ލިވިލައްވާ ފަރާތްތަކަށް ދިނުމަށް. "
 
+msgid "Additional questionnaire"
+msgstr "އިތުރު ސުވާލުކަރުދާސް"
+
 msgid "Scoring system options"
 msgstr "ސްކޯރިން ސިސްޓަމްގެ އޮޕްޝަންތައް"
 
@@ -904,9 +871,6 @@ msgstr "މި ރަސީދު އެސައިން ކުރެވޭނީ ވަކި ސްކޯއ�
 
 msgid "Software version:"
 msgstr "ސޮޕްޓްވެއަރގެ ވާރޝަން"
-
-msgid "An update is available:"
-msgstr "އަދާހަމަކުރުމެއް ތައްޔާރުވެފައި"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "ވަކި އައިޕީ އެޑްރެސްތަަަކަކަށް އެކަނި ވަނުމަށް ހުއްދުކުރުން"
@@ -1018,9 +982,6 @@ msgstr "ގަވައިދުން އާކުރެވިގެންދިއުން"
 msgid "Tor Onion Service"
 msgstr "ޓީ.އޯ.އާރް އަނިއަންގެ ހިދުމަތް"
 
-msgid "Tor Browser download link"
-msgstr "ޓީ.އޯ.އާރް ބްރައުޒަރ ޑައުންލޯޑްކުރާ ލިންކު"
-
 msgid "Anonymize outgoing connections"
 msgstr "ބޭރަށްދާ ގުޅުންތަކުގެ ސިއްރު ހިފެހެއްޓުމަށް"
 
@@ -1075,9 +1036,6 @@ msgstr "ނަމޫނާ"
 msgid "Question"
 msgstr "ސުވާލު"
 
-msgid "Type"
-msgstr "ބާވަތް"
-
 msgid "Single-line text input"
 msgstr "އެއްފޮޅުވަތުން މެސެޖެއް ދިނުން"
 
@@ -1128,12 +1086,6 @@ msgstr "ގިނަ ފައިލްތަކެއް އަޕްލޯޑު ކުރަން ފުރު
 
 msgid "Accept multiple answers"
 msgstr "އެއް ޖަވާބަށްވުރެ ގިނަ ޖަވާބު ގަބޫލުކުރެވިދާނެ"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "އިތުރު ޖަވާބެއް ހުށައެޅުމަށް ބޭނުންކުރާ ފިތުގައި އެކުލެވޭ އެހީގެ މެސެޖް"
-
-msgid "Encrypt"
-msgstr "އެންކްރިޕްޓު ކުރުން"
 
 msgid "Template override"
 msgstr "ނަމޫނާއިން ބޭރަށްދިއުމަށް"
@@ -1207,26 +1159,11 @@ msgstr "މައްސަލަ ބެލެހެއްޓުން"
 msgid "Network settings"
 msgstr "ނެޓްވާރކްގެ އިންހަމަ"
 
-msgid "Mode:"
-msgstr "ބާވަތް"
-
-msgid "Root domain used for secondary sites"
-msgstr "ސެކަންޑަރީ ސައިޓްތަކުގައި ރޫޓް ޑޮމެއިން ބޭނުންކުރުން"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "ފުރަތަމަ ސައިޓް ބޭނުންކުރައްވާނީ އިދާރީ ބޭނުންތަކަށް އެކަނި"
-
-msgid "Enable multi-site login"
-msgstr "މަލްޓިސައިޓް ލޮގް އިން އޮންކުރަން"
-
-msgid "Allow users to sign up"
-msgstr "އިތުރު މީހުން ސައިން އަޕް ކުރުމުގެ ހުއްދަ ދިނުމަށް"
-
-msgid "Enable terms of service"
-msgstr "ޚިދުމަތުގެ އިޤްރާރު އޮން ކުރަން"
-
 msgid "Sites"
 msgstr "ސައިޓުތައް"
+
+msgid "Mode:"
+msgstr "ބާވަތް"
 
 msgid "Active"
 msgstr "އެކްޓިވް"
@@ -1242,6 +1179,21 @@ msgstr "ސަބްޑޮމެއިން"
 
 msgid "Creation date:"
 msgstr ""
+
+msgid "Root domain used for secondary sites"
+msgstr "ސެކަންޑަރީ ސައިޓްތަކުގައި ރޫޓް ޑޮމެއިން ބޭނުންކުރުން"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "ފުރަތަމަ ސައިޓް ބޭނުންކުރައްވާނީ އިދާރީ ބޭނުންތަކަށް އެކަނި"
+
+msgid "Enable multi-site login"
+msgstr "މަލްޓިސައިޓް ލޮގް އިން އޮންކުރަން"
+
+msgid "Allow users to sign up"
+msgstr "އިތުރު މީހުން ސައިން އަޕް ކުރުމުގެ ހުއްދަ ދިނުމަށް"
+
+msgid "Enable terms of service"
+msgstr "ޚިދުމަތުގެ އިޤްރާރު އޮން ކުރަން"
 
 msgid "Send an account activation link to the user."
 msgstr "ބޭނުންކުރާ ފަރާތަށް އެކްޓިވޭޝަން ލިންކް ފޮނުއްވުމަށް"
@@ -1629,6 +1581,9 @@ msgstr "ފައިލް އަޕްލޯޑް ކުރުމަށް: "
 msgid "Logout"
 msgstr "ލޮގްއައުޓް"
 
+msgid "An update is available:"
+msgstr "އަދާހަމަކުރުމެއް ތައްޔާރުވެފައި"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1856,35 +1811,14 @@ msgstr "އުފަންވީ ތާރީޚް"
 msgid "Place of birth"
 msgstr "އުފަންވީ ތަން"
 
-msgid "Social security number"
-msgstr "ސޯޝަލް ސެކިއުރިޓީ ނަމްބަރު"
-
-msgid "Residence"
-msgstr "ދިރިއުޅޭތަން"
-
 msgid "Zip code / Postal code"
 msgstr "ޒިޕްކޯޑް/ ޕޯސްޓަލް ކޯޑް"
 
 msgid "Province"
 msgstr "ޕްރޮވިންސް/ އަތޮޅު"
 
-msgid "Current job title"
-msgstr "މިހާރު އަދާކުރަމުން އަންނަ ވަޒީފާ"
-
-msgid "Current job responsibility (role)"
-msgstr "މިހާރުގެ ވަޒީފާގެ މަސްއޫލިއްޔަތު (އަދާކުރާ ދައުރު)"
-
-msgid "Current organization unit and job location"
-msgstr "މިހާރު ވަޒީފާ އަދާކުރާ އޮފީސް ހުންނަ ތަން އަދި ވަޒީފާ އަދާކުރާ ޑިޕާޓްމަންޓް"
-
-msgid "Job title at the time of the reported fact"
-msgstr "ރިޕޯރޓްކުރި އިރު ހުރި ވަޒީފާ އަދި ލަގަބު"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "ރިޕޯޓް ހުށަހަޅުއްވާ ވަގުތު އަދާކުރާ ވަޒީފާގެ މަސްއޫލިއްޔަތުތައް"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "ރިޕޯޓް ހުށަހަޅުއްވާ ވަގުތު ވަޒީފާ އަދާކުރާ އޮފީސް ހުންނަ ތަން އަދި ވަޒީފާ އަދާކުރާ ޑިޕާޓްމަންޓް"
+msgid "Country"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} އަށް، "
@@ -2052,9 +1986,6 @@ msgstr "ލޭބަލް {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "ސްޓޭޓަސް: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "ކޮންޓެކްސްޓް: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

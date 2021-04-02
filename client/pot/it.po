@@ -2,7 +2,7 @@
 # Translators:
 # Andrea Lusuardi <uovobw@gmail.com>, 2013
 # marco calamari <marcoc@marcoc.it>, 2013
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2021
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013-2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:49+0000\n"
+"PO-Revision-Date: 2021-03-28 16:28+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -355,12 +355,6 @@ msgstr "Attiva domanda"
 msgid "Triggered by score:"
 msgstr "Abilitata dal punteggio:"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Messaggio mostrato in testa alla pagina di stato della segnalazione"
-
-msgid "Password strength:"
-msgstr "Sicurezza password:"
-
 msgid "Weak"
 msgstr "Debole"
 
@@ -381,21 +375,6 @@ msgstr "Disabilita email di notifica"
 
 msgid "Turn on email notifications"
 msgstr "Abilita email di notifica"
-
-msgid "Failed logins"
-msgstr "Tentativi di accesso con fallimento"
-
-msgid "Successful logins"
-msgstr "Tentativi di accesso con successo"
-
-msgid "Started submissions"
-msgstr "Segnalazioni iniziate"
-
-msgid "Completed submissions"
-msgstr "Segnalazioni completate"
-
-msgid "Failed submissions"
-msgstr "Segnalazioni fallite"
 
 msgid "Input validation"
 msgstr "Validazione input"
@@ -560,10 +539,7 @@ msgstr "Partita IVA"
 msgid "Tax code"
 msgstr "Codice fiscale"
 
-msgid "Are you a whistleblower?"
-msgstr "Sei un whistleblower?"
-
-msgid "Blow the whistle"
+msgid "File a report"
 msgstr "Invia una segnalazione"
 
 msgid "Before proceeding, please set a new password."
@@ -682,6 +658,9 @@ msgstr "Abilita il sistema di punteggio"
 msgid "Enable private annotations"
 msgstr "Abilita annotazioni private"
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Permetti ai seguenti siti di includetr la piattaforma attraverso iframes"
+
 msgid "Logging level"
 msgstr "Livello di verbosità dei log"
 
@@ -717,20 +696,14 @@ msgstr "megabytes"
 msgid "percentage"
 msgstr "percentuale"
 
-msgid "Stats of the week:"
-msgstr "Statistiche della settimana:"
+msgid "Type"
+msgstr "Tipo"
 
-msgid "Event ID"
-msgstr "ID evento"
+msgid "Severity"
+msgstr "Gravità"
 
-msgid "Time"
-msgstr "Data"
-
-msgid "Event"
-msgstr "Evento"
-
-msgid "Response time"
-msgstr "Tempo di risposta"
+msgid "Object"
+msgstr "Oggetto"
 
 msgid "ID"
 msgstr "ID"
@@ -755,12 +728,6 @@ msgstr "Connessione"
 
 msgid "Whistleblower's last access"
 msgstr "Ultimo accesso del WB"
-
-msgid "Alarm level"
-msgstr "Livello di allarme"
-
-msgid "Events"
-msgstr "Eventi"
 
 msgid "Substatuses"
 msgstr "Sottostati"
@@ -855,9 +822,6 @@ msgstr "Descrizione"
 msgid "Questionnaire"
 msgstr "Questionario"
 
-msgid "Additional questionnaire"
-msgstr "Questionario aggiuntivo"
-
 msgid "Recipients"
 msgstr "Riceventi"
 
@@ -900,6 +864,9 @@ msgstr "Permetti ai whistleblower di aggiungere allegati alle segnalazioni esist
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Permetti ai riceventi di caricare file destinati al whistleblower"
 
+msgid "Additional questionnaire"
+msgstr "Questionario aggiuntivo"
+
 msgid "Scoring system options"
 msgstr "Opzioni del sistema di scoring"
 
@@ -920,9 +887,6 @@ msgstr "Assegna la ricevuta alle sole segnalazioni con punteggio:"
 
 msgid "Software version:"
 msgstr "Versione del software:"
-
-msgid "An update is available:"
-msgstr "È disponibile un aggiornamento:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Restringi l'accesso a specifici indirizzi IP"
@@ -1034,9 +998,6 @@ msgstr "Rinnovo automatico"
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
 
-msgid "Tor Browser download link"
-msgstr "Indirizzo per scaricare il Tor Browser"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonimizza connessioni uscenti"
 
@@ -1091,9 +1052,6 @@ msgstr "Modello"
 msgid "Question"
 msgstr "Domanda"
 
-msgid "Type"
-msgstr "Tipo"
-
 msgid "Single-line text input"
 msgstr "Campo di testo singola linea"
 
@@ -1144,12 +1102,6 @@ msgstr "Accetta multipli file upload"
 
 msgid "Accept multiple answers"
 msgstr "Accetta più di una risposta"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Suggerimento mostrato sul bottone per aggiungere una risposta"
-
-msgid "Encrypt"
-msgstr "Cripta"
 
 msgid "Template override"
 msgstr "Sostituisci template"
@@ -1223,26 +1175,11 @@ msgstr "Gestione dei casi"
 msgid "Network settings"
 msgstr "Impostazioni di rete"
 
-msgid "Mode:"
-msgstr "Modalità:"
-
-msgid "Root domain used for secondary sites"
-msgstr "Domini principale utilizzato dai siti secondari"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Usa il primo sito solo per finalità amministrative"
-
-msgid "Enable multi-site login"
-msgstr "Abilita login multi-sito"
-
-msgid "Allow users to sign up"
-msgstr "Permetti agli utenti di registrarsi"
-
-msgid "Enable terms of service"
-msgstr "Abilita i termini di servizio"
-
 msgid "Sites"
 msgstr "Siti"
+
+msgid "Mode:"
+msgstr "Modalità:"
 
 msgid "Active"
 msgstr "Attivo"
@@ -1258,6 +1195,21 @@ msgstr "Sottodominio"
 
 msgid "Creation date:"
 msgstr "Data di creazione:"
+
+msgid "Root domain used for secondary sites"
+msgstr "Domini principale utilizzato dai siti secondari"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Usa il primo sito solo per finalità amministrative"
+
+msgid "Enable multi-site login"
+msgstr "Abilita login multi-sito"
+
+msgid "Allow users to sign up"
+msgstr "Permetti agli utenti di registrarsi"
+
+msgid "Enable terms of service"
+msgstr "Abilita i termini di servizio"
 
 msgid "Send an account activation link to the user."
 msgstr "Invia un link di attivazione dell'account all'utente"
@@ -1470,7 +1422,7 @@ msgstr "Si rileva che tu stia navigando il sito senza alcuna protezione addizion
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr "E' caldamente consigliato di visitare questo sito utilizzando l'applicazione chiamata Tor Browser che protegge il tuo anonimato."
+msgstr "È caldamente consigliato di visitare questo sito utilizzando l'applicazione chiamata Tor Browser che tutela il tuo anonimato."
 
 msgid "Download the Tor Browser"
 msgstr "Scarica il Tor Browser"
@@ -1644,6 +1596,9 @@ msgstr "Carica un file:"
 
 msgid "Logout"
 msgstr "Esci"
+
+msgid "An update is available:"
+msgstr "È disponibile un aggiornamento:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1872,35 +1827,14 @@ msgstr "Data di nascita"
 msgid "Place of birth"
 msgstr "Luogo di nascita"
 
-msgid "Social security number"
-msgstr "Codice fiscale"
-
-msgid "Residence"
-msgstr "Residenza"
-
 msgid "Zip code / Postal code"
 msgstr "Codice postale"
 
 msgid "Province"
 msgstr "Regione"
 
-msgid "Current job title"
-msgstr "Attuale mansione lavorativa"
-
-msgid "Current job responsibility (role)"
-msgstr "Attuale responsabilità lavorativa (ruolo)"
-
-msgid "Current organization unit and job location"
-msgstr "Attuale unità organizzativa e sede di lavoro"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Mansione lavorativa all'epoca dei fatti segnalati"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Responsabilità lavorativa (ruolo) all'epoca dei fatti segnalati"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Unità organizzativa e sede di lavoro all'epoca dei fatti riportati"
+msgid "Country"
+msgstr "Paese"
 
 msgid "Dear {RecipientName},"
 msgstr "Gentile {RecipientName}"
@@ -2068,9 +2002,6 @@ msgstr "Etichetta: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "Stato: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "Contesto: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

@@ -5,7 +5,7 @@
 # axel_89, 2015
 # axel_89, 2015
 # Mihai, 2014
-# Cristina Lupu <cristina@cji.ro>, 2019-2020
+# Cristina Lupu <cristina@cji.ro>, 2019-2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2020
 # Inpresentia I., 2016
 # Inpresentia I., 2016
@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-29 15:41+0000\n"
-"Last-Translator: Mihaela Pop <mihaela.pop@cji.ro>\n"
+"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"Last-Translator: Cristina Lupu <cristina@cji.ro>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -349,12 +349,6 @@ msgstr "Întrebare condițională"
 msgid "Triggered by score:"
 msgstr "Condiționat de scor"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Mesajul afișat în partea de sus a paginii ce conține statusul sesizării"
-
-msgid "Password strength:"
-msgstr "Nivelul de siguranță al parolei:"
-
 msgid "Weak"
 msgstr "Scăzut"
 
@@ -375,21 +369,6 @@ msgstr "Pune pe silențios notificările email-urilor"
 
 msgid "Turn on email notifications"
 msgstr "Activează notificarile pentru email-uri"
-
-msgid "Failed logins"
-msgstr "Autentificări eşuate"
-
-msgid "Successful logins"
-msgstr "Autentificări reușite"
-
-msgid "Started submissions"
-msgstr "Sesizări începute"
-
-msgid "Completed submissions"
-msgstr "Sesizări finalizate"
-
-msgid "Failed submissions"
-msgstr "Sesizări eșuate"
 
 msgid "Input validation"
 msgstr "Validarea datelor introduse"
@@ -554,11 +533,8 @@ msgstr "TVA"
 msgid "Tax code"
 msgstr "Cod fiscal"
 
-msgid "Are you a whistleblower?"
-msgstr "Ești avertizor de integritate?"
-
-msgid "Blow the whistle"
-msgstr "Trimite o avertizare"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Înainte de a începe, te rugăm să îți setezi o nouă parolă."
@@ -665,7 +641,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Selectează valoarea 0 pentru a dezactiva această opțiune."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "Numărul de zile până când utilizatorii vor fi notificați cu privire la avertizările necitite"
 
 msgid "Enable custodian user role"
 msgstr "Activează rolul de custode al utilizatorului"
@@ -674,7 +650,10 @@ msgid "Enable scoring system"
 msgstr "Activează sistemul de evaluare"
 
 msgid "Enable private annotations"
-msgstr ""
+msgstr "Permite adnotările private"
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Permite următoarelor website-uri să insereze platforma în frame-urile lor"
 
 msgid "Logging level"
 msgstr "Nivel logare "
@@ -711,20 +690,14 @@ msgstr "megabytes"
 msgid "percentage"
 msgstr "procentaj"
 
-msgid "Stats of the week:"
-msgstr "Statisticile săptămânii:"
+msgid "Type"
+msgstr "Tip"
 
-msgid "Event ID"
-msgstr "ID-ul evenimentului"
+msgid "Severity"
+msgstr "Severitate"
 
-msgid "Time"
-msgstr "Timp"
-
-msgid "Event"
-msgstr "Eveniment"
-
-msgid "Response time"
-msgstr "Timp de răspuns"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "ID"
@@ -748,13 +721,7 @@ msgid "Connection"
 msgstr "Conexiune"
 
 msgid "Whistleblower's last access"
-msgstr "WB Ultima accesare"
-
-msgid "Alarm level"
-msgstr "Nivelul de alarmă"
-
-msgid "Events"
-msgstr "Evenimente"
+msgstr "Ultima accesare de către avertizorul de integritate"
 
 msgid "Substatuses"
 msgstr "Sub-statusuri"
@@ -849,9 +816,6 @@ msgstr "Descriere"
 msgid "Questionnaire"
 msgstr "Chestionar"
 
-msgid "Additional questionnaire"
-msgstr "Chestionar suplimentar"
-
 msgid "Recipients"
 msgstr "Destinatari"
 
@@ -894,6 +858,9 @@ msgstr "Permite avertizorilor să adauge fișiere la sesizări deja existente"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Permite destinatarilor să trimită fișiere către avertizori"
 
+msgid "Additional questionnaire"
+msgstr "Chestionar suplimentar"
+
 msgid "Scoring system options"
 msgstr "Opțiunile sistemului de evaluare"
 
@@ -915,14 +882,11 @@ msgstr "Alocă număr de înregistrare doar sesizărilor care ating scorul:"
 msgid "Software version:"
 msgstr "Versiune software:"
 
-msgid "An update is available:"
-msgstr "O nouă versiune este disponibilă"
-
 msgid "Restrict access to specific IP addresses"
 msgstr "Resticționează accesul anumitor adrese IP"
 
 msgid "Allowed IP addresses"
-msgstr ""
+msgstr "Adrese IP permise"
 
 msgid "Admin"
 msgstr "Admin"
@@ -1028,9 +992,6 @@ msgstr "Reînnoire automată"
 msgid "Tor Onion Service"
 msgstr "Serviciul Tor Onion"
 
-msgid "Tor Browser download link"
-msgstr "Link pentru descarcarea browserului Tor"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonimizează conexiunile de ieșire"
 
@@ -1085,9 +1046,6 @@ msgstr "Template"
 msgid "Question"
 msgstr "Întrebare"
 
-msgid "Type"
-msgstr "Tip"
-
 msgid "Single-line text input"
 msgstr "Input text cu o singură linie"
 
@@ -1138,12 +1096,6 @@ msgstr "Acceptă încărcări de fișiere multiple"
 
 msgid "Accept multiple answers"
 msgstr "Acceptă răspunsuri multiple"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Indiciu afișat pe butonul care adăugă un răspuns suplimentar"
-
-msgid "Encrypt"
-msgstr "Criptează"
 
 msgid "Template override"
 msgstr "Suprascriere template "
@@ -1217,26 +1169,11 @@ msgstr "Managementul cazurilor"
 msgid "Network settings"
 msgstr "Setări de rețea"
 
-msgid "Mode:"
-msgstr "Mod:"
-
-msgid "Root domain used for secondary sites"
-msgstr "Domeniu pricipal utilizat pentru website-urile secundare"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Folosește primul website doar pentru scopuri administrative"
-
-msgid "Enable multi-site login"
-msgstr "Activează autentificarea multi-site"
-
-msgid "Allow users to sign up"
-msgstr "Permite utilizatorilor să se înscrie"
-
-msgid "Enable terms of service"
-msgstr "Activează termenii de utilizare"
-
 msgid "Sites"
 msgstr "Website-uri"
+
+msgid "Mode:"
+msgstr "Mod:"
 
 msgid "Active"
 msgstr "Activ"
@@ -1252,6 +1189,21 @@ msgstr "Sub-domeniu"
 
 msgid "Creation date:"
 msgstr "Data creării:"
+
+msgid "Root domain used for secondary sites"
+msgstr "Domeniu pricipal utilizat pentru website-urile secundare"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Folosește primul website doar pentru scopuri administrative"
+
+msgid "Enable multi-site login"
+msgstr "Activează autentificarea multi-site"
+
+msgid "Allow users to sign up"
+msgstr "Permite utilizatorilor să se înscrie"
+
+msgid "Enable terms of service"
+msgstr "Activează termenii de utilizare"
 
 msgid "Send an account activation link to the user."
 msgstr "Trimite un link pentru activarea contului către utilizator."
@@ -1302,7 +1254,7 @@ msgid "Allow the recipient to delete reports"
 msgstr "Permite destinatarilor să șteargă sesizările"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "Permite acestui utilizator să aiba acces de administrator pentru următoarele instrumente:"
 
 msgid "Request date"
 msgstr "Data solicitării"
@@ -1314,7 +1266,7 @@ msgid "Authorization"
 msgstr "Autorizare"
 
 msgid "Requests"
-msgstr ""
+msgstr "Cereri"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Linkul pentru validare este fie incorect, fie a expirat."
@@ -1464,7 +1416,7 @@ msgstr "Se pare că navighezi pe acest website fără nici o protecție a datelo
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr ""
+msgstr "Vă recomandăm cu tărie să utilizați acest site folosind browserul TOR, care vă protejează identitatea."
 
 msgid "Download the Tor Browser"
 msgstr "Descarcă browser-ul Tor."
@@ -1639,12 +1591,15 @@ msgstr "Încarcă un fișier:"
 msgid "Logout"
 msgstr "Deconectare"
 
+msgid "An update is available:"
+msgstr "O nouă versiune este disponibilă"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "Vă recomandăm să accesați secțiunea \"Preferințe\" pentru a vă găsi \"Cheia de recuperere a contului\" și pentru a o salva în siguranță. Această cheie vă va fi necesară pentru a vă recupera accesul la platformă și la datele dumneavoastră în situația în care vă uitați parola. "
 
 msgid "The provided recovery key is invalid."
 msgstr "Cheia de recuperare introdusă este invalidă."
@@ -1727,7 +1682,7 @@ msgid "Select the context of your report:"
 msgstr "Selectează contextul sesizării tale:"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "Răspunsul este prea scurt"
 
 msgid "The specified input is not valid."
 msgstr "Datele introduse specificate nu sunt valide."
@@ -1736,10 +1691,10 @@ msgid "The specified input is not valid:"
 msgstr "Intrarea specificata nu este valabila:"
 
 msgid "please enter a valid email address."
-msgstr "Te rog introdu o adresa de email valida."
+msgstr "Te rog introdu o adresă de email validă."
 
 msgid "please enter numbers only."
-msgstr "Te rog introdu numai numere."
+msgstr "Te rog, introdu doar numere."
 
 msgid "Submissions disabled"
 msgstr "Sesizări dezactivate"
@@ -1773,7 +1728,7 @@ msgid "Recipient selection"
 msgstr "Selectează destinatarul"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "Selectează destinatarii avertizării tale:"
 
 msgid "Recipients selected:"
 msgstr "Destinatari selectați:"
@@ -1784,7 +1739,7 @@ msgstr "Ai atins numărul maxim de destinatari ce pot fi selectați."
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "Următorii destinatari vor primi avertizarea ta și nu pot fi deselectați:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1809,20 +1764,20 @@ msgid "Please choose a configuration profile:"
 msgstr "Te rugăm să alegi un profil pentru configurare:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "Permite acestui administrator să reseteze parolele utilizatorului."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Vă sfătuim să folosiți această opțiune dacă doriți să projejați datele pentru a nu fi pierdute în situația în care destinatarii își pierd parolele. Dar, nu vă sfătuim să folosiți această opțiune, dacă vreți să creați un sistem în care doar destinatarii au voie să acceseze avertizările. "
 
 msgid "Please choose a different username."
 msgstr "Te rugăm să folosești un nume de utilizator diferit."
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "Am citit și sunt de acord cu termenii de folosire a licenței."
 
 msgid "You have completed the platform wizard."
 msgstr "Ai finalizat cu succes."
@@ -1866,35 +1821,14 @@ msgstr "Data nașterii"
 msgid "Place of birth"
 msgstr "Locul nașterii"
 
-msgid "Social security number"
-msgstr "Cod numeric personal"
-
-msgid "Residence"
-msgstr "Rezidență"
-
 msgid "Zip code / Postal code"
 msgstr "Cod poștal "
 
 msgid "Province"
 msgstr "Județ"
 
-msgid "Current job title"
-msgstr "Poziție curentă în organizație"
-
-msgid "Current job responsibility (role)"
-msgstr "Responsabilități în cadrul poziției curente în organizație"
-
-msgid "Current organization unit and job location"
-msgstr "Departament și locul curent în care îți desfășori activitatea"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Poziția ta la momentul în care aveau loc faptele sesizate"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Responsabilitățile tale în organizație la momentul în care aveau loc faptele sesizate"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Departament și locul în care îți desfășurai activitatea la momentul în care aveau loc faptele sesizate"
+msgid "Country"
+msgstr "Ţara"
 
 msgid "Dear {RecipientName},"
 msgstr "Bună ziua, {RecipientName},"
@@ -2063,9 +1997,6 @@ msgstr "Etichetă: {TipLabel}"
 msgid "Status: {TipStatus}"
 msgstr "Status: {TipStatus}"
 
-msgid "Context: {ContextName}"
-msgstr "Context: {ContextName}"
-
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
@@ -2212,16 +2143,16 @@ msgid "New report"
 msgstr "Sesizare nouă"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Prin acest email te notificăm că o avertizare deja existentă a fost completată."
 
 msgid "Report updated"
-msgstr ""
+msgstr "Avertizarea a fost completată."
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Prin acest email îți reamintim că ai avertizări necitite sau care au primit informații suplimentare."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Reminder referitor la aplicații citite sau care au fost completate."
 
 msgid "Role: {Role}"
 msgstr "Rol: {Role}"

@@ -11,7 +11,7 @@
         <div class="col-md-12 title">{{context.name}}</div>
       </div>
       <div class="row" data-ng-if="context.picture">
-        <div class="col-md-4"><img class="contextImg" alt="context picture" data-ng-src="{{Utils.imgDataUri(context.picture)}}" /></div>
+        <div class="col-md-4"><img class="contextImg" alt="context picture" data-ng-if="context.picture" data-ng-src="/s/{{context.id}}" /></div>
       </div>
       <div class="row" data-ng-if="context.description">
         <div class="col-md-12 description">{{context.description}}</div>

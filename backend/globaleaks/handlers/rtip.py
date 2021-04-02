@@ -38,6 +38,9 @@ def db_update_submission_status(session, user_id, itip, status_id, substatus_id)
     :param status_id:  The new status ID
     :param substatus_id: A new substatus ID
     """
+    if status_id == 'new':
+        return
+
     itip.status = status_id
     itip.substatus = substatus_id or None
     submission_status_change = models.SubmissionStatusChange()
@@ -382,16 +385,6 @@ def get_rtip(session, tid, user_id, rtip_id, language):
     return db_get_rtip(session, tid, user_id, rtip_id, language)
 
 
-def db_delete_itips(session, itips_ids):
-    """
-    Transaction for deleting a list of submissions
-
-    :param session: An ORM session
-    :param itips_ids: A list of submissions ID
-    """
-    db_del(session, models.InternalTip, models.InternalTip.id.in_(itips_ids))
-
-
 def db_delete_itip(session, itip_id):
     """
     Transaction for deleting a submission
@@ -436,6 +429,8 @@ def delete_rtip(session, tid, user_id, rtip_id):
     if not (State.tenant_cache[tid].can_delete_submission or
             receiver.can_delete_submission):
         raise errors.ForbiddenOperation
+
+    State.log(tid=tid, type='delete_report', user_id=user_id, object_id=itip.id)
 
     db_delete_itip(session, itip.id)
 
@@ -714,6 +709,8 @@ class RTipInstance(OperationHandler):
 
         if State.tenant_cache[self.request.tid].encryption and crypto_tip_prv_key:
             tip = yield deferToThread(decrypt_tip, self.current_user.cc, crypto_tip_prv_key, tip)
+
+        self.state.log(type='access_report', user_id=self.current_user.user_id, object_id=tip['internaltip_id'])
 
         returnValue(tip)
 

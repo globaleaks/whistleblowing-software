@@ -8,11 +8,12 @@
 # Denis Smajlović <deni@deni.dk>, 2019-2020
 # Denis Smajlović <deni@deni.dk>, 2019
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018,2020
+# Noah Böhme <noah0907@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
-"Last-Translator: Denis Smajlović <deni@deni.dk>\n"
+"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"Last-Translator: Noah Böhme <noah0907@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -108,7 +109,7 @@ msgid "Details"
 msgstr "Detaljer"
 
 msgid "Platform wizard"
-msgstr "Platformsguide"
+msgstr "Platformsopsætning"
 
 msgid "CREDIT CARD"
 msgstr "KREDITKORT"
@@ -117,7 +118,7 @@ msgid "YOUR NAME"
 msgstr "DIT NAVN"
 
 msgid "Label the report"
-msgstr "Navngiv indberetningen"
+msgstr "Navngiv denne indberetningen"
 
 msgid "Postpone the expiration date"
 msgstr "Udsæt udløbsdatoen"
@@ -272,7 +273,7 @@ msgid "Please write a motivation"
 msgstr "Skriv venligst en begrundelse"
 
 msgid "Reply to the request"
-msgstr "Svar på forespørgslen"
+msgstr "Svar forespørgslen"
 
 msgid "Authorized"
 msgstr "Godkendt"
@@ -317,7 +318,7 @@ msgid "Last update"
 msgstr "Seneste opdatering"
 
 msgid "Custodian notification templates"
-msgstr "Skabeloner til notifikation af kontoindehaver"
+msgstr " Kontoindehaver notificationsskabelon"
 
 msgid ""
 "This interface allows configuring email templates used to notify custodians."
@@ -341,12 +342,6 @@ msgstr "Trigger spørgsmål"
 msgid "Triggered by score:"
 msgstr "Udløst af score:"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Besked der vises i toppen af det indsendte materiales statusside"
-
-msgid "Password strength:"
-msgstr "Adgangskode-styrke"
-
 msgid "Weak"
 msgstr "Svag"
 
@@ -368,21 +363,6 @@ msgstr "Slå e-mail-notifikation fra"
 msgid "Turn on email notifications"
 msgstr "Slå e-mail-notifikation til"
 
-msgid "Failed logins"
-msgstr "Mislykkede loginforsøg"
-
-msgid "Successful logins"
-msgstr "Godkendte loginforsøg"
-
-msgid "Started submissions"
-msgstr "Påbegyndte indsendelser"
-
-msgid "Completed submissions"
-msgstr "Afsluttede indsendelser"
-
-msgid "Failed submissions"
-msgstr "Mislykkede indsendelser"
-
 msgid "Input validation"
 msgstr "Validering af input"
 
@@ -396,7 +376,7 @@ msgid "None"
 msgstr "Ingen"
 
 msgid "Regular expression"
-msgstr "Regular expression"
+msgstr "Almindeligt udtryk"
 
 msgid "Activate"
 msgstr "Aktivér"
@@ -546,11 +526,8 @@ msgstr "CVR-nummer"
 msgid "Tax code"
 msgstr "Skattekode"
 
-msgid "Are you a whistleblower?"
-msgstr "Er du whistleblower?"
-
-msgid "Blow the whistle"
-msgstr "Blæs i fløjten"
+msgid "File a report"
+msgstr "Indsend en rapportering"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Før du fortsætter bedes du indstille en ny adgangskode."
@@ -657,7 +634,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Sæt værdien til 0 for at deaktivere denne funktionalitet."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr " \nAntal dage indtil notifikation om ulæste rapporter til bliver sendt til brugerne"
 
 msgid "Enable custodian user role"
 msgstr "Aktivér kontoførende brugerrolle"
@@ -666,7 +643,10 @@ msgid "Enable scoring system"
 msgstr "Aktivér score system"
 
 msgid "Enable private annotations"
-msgstr ""
+msgstr "Tillad private kommentarer"
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Tillad følgende hjemmesider at embedde platformen i iframes"
 
 msgid "Logging level"
 msgstr "Loggingniveau"
@@ -703,20 +683,14 @@ msgstr "megabyte"
 msgid "percentage"
 msgstr "procent"
 
-msgid "Stats of the week:"
-msgstr "Ugens statistik"
+msgid "Type"
+msgstr "Type"
 
-msgid "Event ID"
-msgstr "Event ID"
+msgid "Severity"
+msgstr "Omfanget"
 
-msgid "Time"
-msgstr "Tid"
-
-msgid "Event"
-msgstr "Event"
-
-msgid "Response time"
-msgstr "Svartid"
+msgid "Object"
+msgstr "Objekt"
 
 msgid "ID"
 msgstr "ID"
@@ -741,12 +715,6 @@ msgstr "Forbindelse"
 
 msgid "Whistleblower's last access"
 msgstr "Whistleblowerens seneste adgang"
-
-msgid "Alarm level"
-msgstr "Alarmniveau"
-
-msgid "Events"
-msgstr "Events"
 
 msgid "Substatuses"
 msgstr "Statusser"
@@ -841,9 +809,6 @@ msgstr "Beskrivelse"
 msgid "Questionnaire"
 msgstr "Spørgeskema"
 
-msgid "Additional questionnaire"
-msgstr "Ekstra spørgeskema"
-
 msgid "Recipients"
 msgstr "Modtagere"
 
@@ -886,6 +851,9 @@ msgstr "Tillad at whistleblowere kan tilføje vedhæftelser til eksisterende ind
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Tillad at modtagere kan uploade filer til whistleblowere"
 
+msgid "Additional questionnaire"
+msgstr "Ekstra spørgeskema"
+
 msgid "Scoring system options"
 msgstr "Valgmuligheder for score system"
 
@@ -906,9 +874,6 @@ msgstr "Tildel kun nøglekode til indberetninger der når scoren:"
 
 msgid "Software version:"
 msgstr "Software version:"
-
-msgid "An update is available:"
-msgstr "Der er tilgængelige opdateringer:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Begræns adgang til specifikke IP-numre"
@@ -1020,9 +985,6 @@ msgstr "Automatisk fornyelse"
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
 
-msgid "Tor Browser download link"
-msgstr "Tor Browser download link"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonymiser udgående forbindelser"
 
@@ -1077,9 +1039,6 @@ msgstr "Skabelon"
 msgid "Question"
 msgstr "Spørgsmål"
 
-msgid "Type"
-msgstr "Type"
-
 msgid "Single-line text input"
 msgstr "Enkelt-linje tekst-input"
 
@@ -1130,12 +1089,6 @@ msgstr "Tillad upload af flere filer"
 
 msgid "Accept multiple answers"
 msgstr "Tillad flere svar"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Tip der vises ved den knap der filføjer yderligere svar"
-
-msgid "Encrypt"
-msgstr "Krypter"
 
 msgid "Template override"
 msgstr "Tilsidesæt skabelon"
@@ -1209,26 +1162,11 @@ msgstr "Sagsadministration"
 msgid "Network settings"
 msgstr "Netværksindstillinger"
 
-msgid "Mode:"
-msgstr "Tilstand:"
-
-msgid "Root domain used for secondary sites"
-msgstr "Primært domænenavn der anvendes til underliggende sider"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Brug kun den første side til administrative formål"
-
-msgid "Enable multi-site login"
-msgstr "Akivér multi-sitelogin"
-
-msgid "Allow users to sign up"
-msgstr "Tillad brugere at tilmelde sig"
-
-msgid "Enable terms of service"
-msgstr "Aktivér servicebetingelserne"
-
 msgid "Sites"
 msgstr "Sider"
+
+msgid "Mode:"
+msgstr "Tilstand:"
 
 msgid "Active"
 msgstr "Aktiv"
@@ -1244,6 +1182,21 @@ msgstr "Subdomæne"
 
 msgid "Creation date:"
 msgstr "Oprettelsesdato:"
+
+msgid "Root domain used for secondary sites"
+msgstr "Primært domænenavn der anvendes til underliggende sider"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Brug kun den første side til administrative formål"
+
+msgid "Enable multi-site login"
+msgstr "Akivér multi-sitelogin"
+
+msgid "Allow users to sign up"
+msgstr "Tillad brugere at tilmelde sig"
+
+msgid "Enable terms of service"
+msgstr "Aktivér servicebetingelserne"
 
 msgid "Send an account activation link to the user."
 msgstr "Send et kontoaktiveringslink til brugeren."
@@ -1294,7 +1247,7 @@ msgid "Allow the recipient to delete reports"
 msgstr "Tillad modtageren at slette indberetninger"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "Giv brugere administrative adgang til følgende funktioner:"
 
 msgid "Request date"
 msgstr "Anmod om dato"
@@ -1306,7 +1259,7 @@ msgid "Authorization"
 msgstr "Autorisation"
 
 msgid "Requests"
-msgstr ""
+msgstr "Anmodninger"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Bekræftelseslinket er ugyldig eller udløbet."
@@ -1456,7 +1409,7 @@ msgstr "Det ser ud som om du besøger dette websted uden at gøre brug af ekstra
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr ""
+msgstr "Vi opfordre kraftigt til at bruge et program kaldet \"Tor Browser\" til denne side, for at beskytte din identitet"
 
 msgid "Download the Tor Browser"
 msgstr "Download Tor browseren"
@@ -1631,6 +1584,9 @@ msgstr "Upload en fil:"
 msgid "Logout"
 msgstr "Log ud"
 
+msgid "An update is available:"
+msgstr "Der er tilgængelige opdateringer:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1719,7 +1675,7 @@ msgid "Select the context of your report:"
 msgstr "Vælg hvilken sammehæng din indsendelse indgår i."
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "Dit svar er for kort"
 
 msgid "The specified input is not valid."
 msgstr "Det indtastede er ikke gyldigt."
@@ -1765,7 +1721,7 @@ msgid "Recipient selection"
 msgstr "Vælg modtagere"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "Vælg modtagere til denne rapportering"
 
 msgid "Recipients selected:"
 msgstr "Valgte modtagere:"
@@ -1776,7 +1732,7 @@ msgstr "Du har nået det maksimale antal modtagere der kan vælges."
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "De følgende modtagere modtager din rapport og kunne ikke fravælges:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1801,14 +1757,14 @@ msgid "Please choose a configuration profile:"
 msgstr "Vælg venligst en konfigurations-profil:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "Gør det muligt for administratorer at nulstille brugers adgangskode."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Vi anbefaler at vælge denne indstilling, hvis du vil beskytte data mod at gå tabt i en situation, hvor modtagere mister deres adgangskoder. På den anden side vil vi ikke anbefale at bruge denne funktion, hvis du vil konfigurere et system, hvor kun modtagere har adgang til indsendelser."
 
 msgid "Please choose a different username."
 msgstr "Vælg venligst et andet brugernavn."
@@ -1858,35 +1814,14 @@ msgstr "Fødselsdato"
 msgid "Place of birth"
 msgstr "Fødested"
 
-msgid "Social security number"
-msgstr "CPR-nummer"
-
-msgid "Residence"
-msgstr "Bopæl"
-
 msgid "Zip code / Postal code"
 msgstr "Postnummer"
 
 msgid "Province"
 msgstr "Provins"
 
-msgid "Current job title"
-msgstr "Nuværende jobtitel"
-
-msgid "Current job responsibility (role)"
-msgstr "Nuværende arbejdsopgave (rolle)"
-
-msgid "Current organization unit and job location"
-msgstr "Nuværende organisationsenhed og jobplacering"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Jobtitel på tidspunktet for de omstændigheder der rapporteres om"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Arbejdsopgave (rolle) på tidspunktet for de omstændigheder der rapporteres om"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Organisationsenhed og jobplacering på tidspunktet for de indrapporterede oplysninger"
+msgid "Country"
+msgstr "Land"
 
 msgid "Dear {RecipientName},"
 msgstr "Kære {RecipientName},"
@@ -2055,9 +1990,6 @@ msgstr "Mærket: {TipLabel}"
 msgid "Status: {TipStatus}"
 msgstr "Status: {TipStatus}"
 
-msgid "Context: {ContextName}"
-msgstr "Sammenhæng:  {ContextName}"
-
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
@@ -2204,16 +2136,16 @@ msgid "New report"
 msgstr "Ny indberetning"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Dette er en email der underretter dig om at en eksisterende rapportering er blevet opdateret."
 
 msgid "Report updated"
-msgstr ""
+msgstr "Rapportering blev opdateret."
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Denne e-mail minder dig om tilstedeværelsen af ​​ulæste eller opdaterede rapporter."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Påmindelse om ulæste og opdaterede rapporter"
 
 msgid "Role: {Role}"
 msgstr "Rolle: {Role}"

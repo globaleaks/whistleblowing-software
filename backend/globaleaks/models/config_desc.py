@@ -69,6 +69,7 @@ ConfigDescriptor = {
     'enable_developers_exception_notification': Bool(default=True),
 
     'name': Unicode(default='GLOBALEAKS'),
+    'description': Unicode(default='Secure whistleblowing platform based on GlobaLeaks free and open-source software.'),
 
     'hostname': Unicode(default=''),
 
@@ -87,6 +88,7 @@ ConfigDescriptor = {
     'https_custodian': Bool(default=True),
     'https_whistleblower': Bool(default=True),
     'https_receiver': Bool(default=True),
+    'frame_ancestors': Unicode(default=''),
 
     'can_postpone_expiration': Bool(default=True),
     'can_delete_submission': Bool(default=True),
@@ -162,6 +164,7 @@ ConfigFilters = {
     'node': [
         'id',
         'name',
+        'description',
         'hostname',
         'onionservice',
         'rootdomain',
@@ -173,6 +176,7 @@ ConfigFilters = {
         'https_custodian',
         'https_whistleblower',
         'https_receiver',
+        'frame_ancestors',
         'can_postpone_expiration',
         'can_delete_submission',
         'allow_indexing',
@@ -298,6 +302,7 @@ ConfigFilters['public_node'] = list(set(ConfigFilters['admin_node']) - set([
 ConfigFilters['general_settings'] = [
     'logo',
     'name',
+    'description',
     'header_title_homepage',
     'presentation',
     'whistleblowing_question',

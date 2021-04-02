@@ -6,6 +6,7 @@ import copy
 from sqlalchemy import or_
 
 from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
+from globaleaks.handlers.admin.file import special_files
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import get_localized_values
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
@@ -154,8 +155,8 @@ def db_prepare_contexts_serialization(session, contexts):
     contexts_ids = [c.id for c in contexts]
 
     if contexts_ids:
-        for o in session.query(models.ContextImg).filter(models.ContextImg.id.in_(contexts_ids)):
-            data['imgs'][o.id] = o.data
+        for o in session.query(models.File).filter(models.File.id.in_(contexts_ids)):
+            data['imgs'][o.id] = True
 
         for o in session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id.in_(contexts_ids)).order_by(models.ReceiverContext.order):
             if o.context_id not in data['receivers']:
@@ -179,8 +180,8 @@ def db_prepare_receivers_serialization(session, receivers):
     receivers_ids = [r.id for r in receivers]
 
     if receivers_ids:
-        for o in session.query(models.UserImg).filter(models.UserImg.id.in_(receivers_ids)):
-            data['imgs'][o.id] = o.data
+        for o in session.query(models.File).filter(models.File.id.in_(receivers_ids)):
+            data['imgs'][o.id] = True
 
     return data
 
@@ -260,9 +261,8 @@ def db_serialize_node(session, tid, language):
     ret['languages_enabled'] = languages if ret['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES)
     ret['languages_supported'] = LANGUAGES_SUPPORTED
 
-    records = session.query(models.File.id, models.File.data).filter(models.File.tid == tid, models.File.id.in_(['css', 'logo', 'script']))
-    for x in records:
-        ret[x[0]] = True
+    for x in special_files:
+        ret[x] = session.query(models.File.id).filter(models.File.tid == tid, models.File.name == x).one_or_none()
 
     if tid != 1:
         root_tenant_node = ConfigFactory(session, 1)
@@ -287,10 +287,9 @@ def db_serialize_node(session, tid, language):
             ret['disclaimer_title'] = root_tenant_l10n.get_val('disclaimer_title', language)
             ret['disclaimer_text'] = root_tenant_l10n.get_val('disclaimer_text', language)
 
-            records = session.query(models.File.id, models.File.data).filter(models.File.tid == 1, models.File.id.in_(['css', 'logo', 'script']))
-            for x in records:
-                if not ret.get(x[0]):
-                    ret[x[0]] = True
+            for x in special_files:
+                if not ret[x]:
+                    ret[x] = session.query(models.File.id).filter(models.File.tid == 1, models.File.name == x).one_or_none()
 
     return ret
 
@@ -332,7 +331,7 @@ def serialize_context(session, context, language, data=None):
         'questionnaire_id': context.questionnaire_id,
         'additional_questionnaire_id': context.additional_questionnaire_id,
         'receivers': data['receivers'].get(context.id, []),
-        'picture': data['imgs'].get(context.id, '')
+        'picture': data['imgs'].get(context.id, False)
     }
 
     return get_localized_values(ret, context, context.localized_keys, language)
@@ -423,7 +422,6 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
         'multi_entry': f_to_serialize.multi_entry,
         'required': field.required,
         'preview': field.preview,
-        'encrypt': field.encrypt,
         'attrs': attrs,
         'x': field.x,
         'y': field.y,
@@ -514,7 +512,7 @@ def serialize_receiver(session, user, language, data=None):
         'forcefully_selected': user.forcefully_selected,
         'can_delete_submission': user.can_delete_submission,
         'can_postpone_expiration': user.can_postpone_expiration,
-        'picture': data['imgs'].get(user.id, '')
+        'picture': data['imgs'].get(user.id, False)
     }
 
     return get_localized_values(ret, user, user.localized_keys, language)

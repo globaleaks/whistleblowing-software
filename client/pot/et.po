@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"Last-Translator: Max Moiseev <max.moiseev@chamber.fi>\n"
 "Language-Team: Estonian (http://www.transifex.com/otf/globaleaks/language/et/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -334,12 +334,6 @@ msgstr "Käivitusküsimus"
 msgid "Triggered by score:"
 msgstr "Käivitusskoor:"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Teate staatuselehe päises esitatav sõnum"
-
-msgid "Password strength:"
-msgstr "Parooli tugevus"
-
 msgid "Weak"
 msgstr "Nõrk"
 
@@ -360,21 +354,6 @@ msgstr "Vaigista meiliteavitused"
 
 msgid "Turn on email notifications"
 msgstr "Lülita meiliteavitused sisse"
-
-msgid "Failed logins"
-msgstr "Nurjunud sisselogimised"
-
-msgid "Successful logins"
-msgstr "Õnnestunud sisselogimised"
-
-msgid "Started submissions"
-msgstr "Alustatud edastused"
-
-msgid "Completed submissions"
-msgstr "Lõpetatud edastused"
-
-msgid "Failed submissions"
-msgstr "Nurjunud teabeesitused"
 
 msgid "Input validation"
 msgstr "Sisestuse kontroll"
@@ -539,11 +518,8 @@ msgstr "KMKR number"
 msgid "Tax code"
 msgstr "Maksukood"
 
-msgid "Are you a whistleblower?"
-msgstr "Kas olete vihjeandja?"
-
-msgid "Blow the whistle"
-msgstr "Vihjet andma"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Enne jätkamist seadistage uus parool."
@@ -661,6 +637,9 @@ msgstr "Luba punktisüsteem"
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
+
 msgid "Logging level"
 msgstr "Registreerimistase"
 
@@ -696,20 +675,14 @@ msgstr "megabaiti"
 msgid "percentage"
 msgstr "protsenti"
 
-msgid "Stats of the week:"
-msgstr "Nädala statistika:"
+msgid "Type"
+msgstr "Tüüp"
 
-msgid "Event ID"
-msgstr "Sündmuse ID"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "Aeg"
-
-msgid "Event"
-msgstr "Sündmus"
-
-msgid "Response time"
-msgstr "Reaktsiooniaeg"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "ID"
@@ -734,12 +707,6 @@ msgstr "Ühendus"
 
 msgid "Whistleblower's last access"
 msgstr "Vihjeandja viimane sisselogimine"
-
-msgid "Alarm level"
-msgstr "Häiretase"
-
-msgid "Events"
-msgstr "Sündmused"
 
 msgid "Substatuses"
 msgstr "Alamstaatused"
@@ -834,9 +801,6 @@ msgstr "Kirjeldus"
 msgid "Questionnaire"
 msgstr "Ankeet"
 
-msgid "Additional questionnaire"
-msgstr "Täiendav ankeet"
-
 msgid "Recipients"
 msgstr "Saajad"
 
@@ -879,6 +843,9 @@ msgstr "Luba vihjeandjatel olemasolevatele teadetele manuseid lisada"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Luba saajatel vihjeandjate jaoks faile üles laadida"
 
+msgid "Additional questionnaire"
+msgstr "Täiendav ankeet"
+
 msgid "Scoring system options"
 msgstr "Punktisüsteemi suvandid"
 
@@ -899,9 +866,6 @@ msgstr "Määra kättesaamiskood ainult teadetele, mille skoor on:"
 
 msgid "Software version:"
 msgstr "Tarkvara versioon:"
-
-msgid "An update is available:"
-msgstr "Värskendus on saadaval:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Anna juurdepääsuõigus ainult kindlatele IP-aadressidele"
@@ -1013,9 +977,6 @@ msgstr "Automaatne uuendamine"
 msgid "Tor Onion Service"
 msgstr "Teenus Tor Onion"
 
-msgid "Tor Browser download link"
-msgstr "Tor Browseri allalaadimislink"
-
 msgid "Anonymize outgoing connections"
 msgstr "Väljuvate ühenduste anonüümimine"
 
@@ -1070,9 +1031,6 @@ msgstr "Mall"
 msgid "Question"
 msgstr "Küsimus"
 
-msgid "Type"
-msgstr "Tüüp"
-
 msgid "Single-line text input"
 msgstr "Teksti sisestus ühel real"
 
@@ -1123,12 +1081,6 @@ msgstr "Luba üles laadida mitu faili"
 
 msgid "Accept multiple answers"
 msgstr "Luba mitu vastust"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Täiendava vastuse lisamise nupul kuvatav vihje"
-
-msgid "Encrypt"
-msgstr "Krüpti"
 
 msgid "Template override"
 msgstr "Malli ülekirjutamine"
@@ -1202,26 +1154,11 @@ msgstr "Juhtumihaldus"
 msgid "Network settings"
 msgstr "Võrguseaded"
 
-msgid "Mode:"
-msgstr "Režiim:"
-
-msgid "Root domain used for secondary sites"
-msgstr "Varusaitide puhul kasutatav juurdomeen"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Kasuta esimest saiti ainult administreerimiseks"
-
-msgid "Enable multi-site login"
-msgstr "Luba mitmest kohast sisselogimine"
-
-msgid "Allow users to sign up"
-msgstr "Luba kasutajate registreerumine"
-
-msgid "Enable terms of service"
-msgstr "Luba teenusetingimused"
-
 msgid "Sites"
 msgstr "Saidid"
+
+msgid "Mode:"
+msgstr "Režiim:"
 
 msgid "Active"
 msgstr "Aktiivne"
@@ -1237,6 +1174,21 @@ msgstr "Alamdomeen"
 
 msgid "Creation date:"
 msgstr "Loomise kuupäev:"
+
+msgid "Root domain used for secondary sites"
+msgstr "Varusaitide puhul kasutatav juurdomeen"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Kasuta esimest saiti ainult administreerimiseks"
+
+msgid "Enable multi-site login"
+msgstr "Luba mitmest kohast sisselogimine"
+
+msgid "Allow users to sign up"
+msgstr "Luba kasutajate registreerumine"
+
+msgid "Enable terms of service"
+msgstr "Luba teenusetingimused"
 
 msgid "Send an account activation link to the user."
 msgstr "Saada kasutajale konto aktiveerimise link."
@@ -1624,6 +1576,9 @@ msgstr "Faili üleslaadimine:"
 msgid "Logout"
 msgstr "Logi välja"
 
+msgid "An update is available:"
+msgstr "Värskendus on saadaval:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1851,35 +1806,14 @@ msgstr "Sünniaeg"
 msgid "Place of birth"
 msgstr "Sünnikoht"
 
-msgid "Social security number"
-msgstr "Isikukood"
-
-msgid "Residence"
-msgstr "Elukoht"
-
 msgid "Zip code / Postal code"
 msgstr "Sihtnumber/postiindeks"
 
 msgid "Province"
 msgstr "Provints"
 
-msgid "Current job title"
-msgstr "Praegune ametinimetus"
-
-msgid "Current job responsibility (role)"
-msgstr "Praegune ametikoht"
-
-msgid "Current organization unit and job location"
-msgstr "Praegune organisatsiooniüksus ja töö asukoht"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Ametinimetus teates käsitletud sündmuse ajal"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Ametikoht teates käsitletud sündmuse ajal"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Organisatsiooniüksus ja töö asukoht teates käsitletud sündmuse ajal"
+msgid "Country"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Austatud {RecipientName}!"
@@ -2047,9 +1981,6 @@ msgstr "Silt: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "Staatus: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "Kontekst: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

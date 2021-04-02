@@ -1,5 +1,3 @@
-/*global sha256*/
-
 GL.factory("glbcUtil", function() {
   return {
     /**

@@ -12,7 +12,6 @@ from globaleaks import models
 from globaleaks.db import compact_db
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import DailyJob
 from globaleaks.orm import db_del, db_query, transact, tw
@@ -35,7 +34,7 @@ class Cleaning(DailyJob):
         """
         itips_ids = [id[0] for id in session.query(models.InternalTip.id).filter(models.InternalTip.expiration_date < datetime_now())]
         if itips_ids:
-            db_delete_itips(session, itips_ids)
+            db_del(session, models.InternalTip, models.InternalTip.id.in_(itips_ids))
 
     def db_check_for_expiring_submissions(self, session, tid):
         threshold = datetime_now() + timedelta(hours=self.state.tenant_cache[tid].notification.tip_expiration_threshold)
@@ -81,12 +80,6 @@ class Cleaning(DailyJob):
         # delete emails older than two weeks
         db_del(session, models.Mail, models.Mail.creation_date < datetime_now() - timedelta(7))
 
-        # delete stats older than 1 year
-        db_del(session, models.Stats, models.Stats.start < datetime_now() - timedelta(365))
-
-        # delete anomalies older than 1 year
-        db_del(session, models.Anomalies, models.Anomalies.date < datetime_now() - timedelta(365))
-
         # delete archived questionnaire schemas not used by any existing submission
         subquery = session.query(models.InternalTipAnswers.questionnaire_hash).subquery()
         db_del(session, models.ArchivedSchema, not_(models.ArchivedSchema.hash.in_(subquery)))
@@ -99,13 +92,28 @@ class Cleaning(DailyJob):
         db_del(session, models.Tenant, models.Tenant.id.in_(subquery))
 
     @transact
+    def get_files_list(self, session):
+        return [x[0] for x in db_query(session, models.File.id)]
+
+    @transact
     def get_attachments_list(self, session):
         return [x[0] for x in db_query(session, models.InternalFile.filename)] + \
                [x[0] for x in db_query(session, models.ReceiverFile.filename)] + \
                [x[0] for x in db_query(session, models.WhistleblowerFile.filename)]
 
+    def perform_secure_deletion_of_files(self, valid_files):
+        # Delete the customization files not associated to the database
+        for f in os.listdir(self.state.settings.files_path):
+            if f in valid_files:
+                continue
+
+            path = os.path.join(self.state.settings.files_path, f)
+            timestamp = datetime.fromtimestamp(os.path.getmtime(path))
+            if is_expired(timestamp, days=1):
+                overwrite_and_remove(path)
+
     def perform_secure_deletion_of_attachments(self, valid_files):
-        # Delete the attachment files associated to deleted tips
+        # Delete the attachment files not associated to the database
         for f in os.listdir(self.state.settings.attachments_path):
             if f in valid_files:
                 continue
@@ -130,8 +138,10 @@ class Cleaning(DailyJob):
         for tid in self.state.tenant_state:
             yield tw(self.db_check_for_expiring_submissions, tid)
 
-        valid_files = yield self.get_attachments_list()
+        valid_files = yield self.get_files_list()
+        self.perform_secure_deletion_of_files(valid_files)
 
+        valid_files = yield self.get_attachments_list()
         self.perform_secure_deletion_of_attachments(valid_files)
 
         self.perform_secure_deletion_of_temporary_files()

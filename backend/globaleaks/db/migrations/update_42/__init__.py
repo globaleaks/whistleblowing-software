@@ -19,7 +19,6 @@ class InternalTip_v_41(Model):
     update_date = Column(DateTime, default=datetime_now, nullable=False)
     context_id = Column(UnicodeText(36), nullable=False)
     questionnaire_hash = Column(UnicodeText(64), nullable=False)
-    preview = Column(JSON, nullable=False)
     progressive = Column(Integer, default=0, nullable=False)
     https = Column(Boolean, default=False, nullable=False)
     total_score = Column(Integer, default=0, nullable=False)
@@ -55,9 +54,8 @@ class MigrationScript(MigrationBase):
         for old_obj in self.session_old.query(self.model_from['InternalTip']):
             new_obj = self.model_to['InternalTip']()
             for key in new_obj.__table__.columns._data.keys():
-                new_obj.status = 'antani!'
                 if key == 'status' or key == 'substatus':
-                    pass
+                    new_obj.status = 'new'
                 elif key in old_obj.__table__.columns._data.keys():
                     setattr(new_obj, key, getattr(old_obj, key))
 
@@ -69,21 +67,6 @@ class MigrationScript(MigrationBase):
                 new_wbtip.tid = old_obj.tid
                 new_wbtip.receipt_hash = old_obj.receipt_hash
                 self.session_new.add(new_wbtip)
-
-    def migrate_Stats(self):
-        for old_obj in self.session_old.query(self.model_from['Stats']):
-            if not old_obj.summary:
-                self.entries_count['Stats'] -= 1
-                continue
-
-            new_obj = self.model_to['Stats']()
-            for key in new_obj.__table__.columns._data.keys():
-                if key not in old_obj.__table__.columns:
-                    continue
-
-                setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)
 
     def epilogue(self):
         for tenant in self.session_old.query(self.model_from['Tenant']):

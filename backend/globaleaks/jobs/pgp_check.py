@@ -20,7 +20,7 @@ __all__ = ['PGPCheck']
 
 
 def db_get_expired_or_expiring_pgp_users(session, tids_list):
-    threshold = datetime_now() + timedelta(days=15)
+    threshold = datetime_now() + timedelta(15)
 
     return session.query(models.User).filter(models.User.pgp_key_public != '',
                                              models.User.pgp_key_expiration != datetime_null(),

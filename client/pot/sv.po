@@ -10,7 +10,7 @@
 # Henrik Mattsson-Mårn <h@reglage.net>, 2016-2017,2020
 # John Andersson <johnandersson86@hotmail.com>, 2015
 # Jonas Hedberg <jonas@hedberg2.se>, 2015
-# Jony <jonatan.nyberg.karl@gmail.com>, 2018
+# efef6ec5b435a041fce803c7f8af77d2_2341d43, 2018
 # Kristoffer Grundström <lovaren@gmail.com>, 2014
 # Kristoffer Grundström <lovaren@gmail.com>, 2014
 # Linus Malmgren <linus@malmgren.nu>, 2015
@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:52+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"Last-Translator: Max Moiseev <max.moiseev@chamber.fi>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -352,12 +352,6 @@ msgstr "Utlösande fråga"
 msgid "Triggered by score:"
 msgstr "Utlöses av poängtalet:"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Meddelande som visas överst på rapportstatussidan"
-
-msgid "Password strength:"
-msgstr "Lösenordsstyrka:"
-
 msgid "Weak"
 msgstr "Svagt"
 
@@ -378,21 +372,6 @@ msgstr "Stäng av e-postaviseringar"
 
 msgid "Turn on email notifications"
 msgstr "Koppla på e-postaviseringar"
-
-msgid "Failed logins"
-msgstr "Misslyckade inloggningar"
-
-msgid "Successful logins"
-msgstr "Lyckade inloggningar"
-
-msgid "Started submissions"
-msgstr "Påbörjade tips"
-
-msgid "Completed submissions"
-msgstr "Färdigställda tips"
-
-msgid "Failed submissions"
-msgstr "Fel i uppgiftslämningen"
 
 msgid "Input validation"
 msgstr "Inmatningsvalidering"
@@ -557,11 +536,8 @@ msgstr "Momsnummer"
 msgid "Tax code"
 msgstr "Skatteregistreringsnummer"
 
-msgid "Are you a whistleblower?"
-msgstr "Är du en visselblåsare?"
-
-msgid "Blow the whistle"
-msgstr "Blås i visselpipan"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Vänligen ställ in ett lösenord innan du går vidare."
@@ -679,6 +655,9 @@ msgstr "Aktivera system med poängsättning"
 msgid "Enable private annotations"
 msgstr "Aktivera privata anteckningar"
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
+
 msgid "Logging level"
 msgstr "Loggningsnivå"
 
@@ -714,20 +693,14 @@ msgstr "megabytes"
 msgid "percentage"
 msgstr "procent"
 
-msgid "Stats of the week:"
-msgstr "Veckostatistik:"
+msgid "Type"
+msgstr "Typ"
 
-msgid "Event ID"
-msgstr "HändelseID"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "Tid"
-
-msgid "Event"
-msgstr "Händelse"
-
-msgid "Response time"
-msgstr "Svarstid"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "ID"
@@ -752,12 +725,6 @@ msgstr "Förbindelse"
 
 msgid "Whistleblower's last access"
 msgstr "Tidpunkt för visselblåsarens senaste besök"
-
-msgid "Alarm level"
-msgstr "Larmnivå"
-
-msgid "Events"
-msgstr "Händelser"
 
 msgid "Substatuses"
 msgstr "Underordnade statusar"
@@ -852,9 +819,6 @@ msgstr "Beskrivning"
 msgid "Questionnaire"
 msgstr "Frågeformulär"
 
-msgid "Additional questionnaire"
-msgstr "Ytterligare frågeformulär"
-
 msgid "Recipients"
 msgstr "Mottagare"
 
@@ -897,6 +861,9 @@ msgstr "Låt visselblåsarna lägga till bilagor till befintliga rapporter"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Låt mottagarna ladda upp filer till visselblåsarna"
 
+msgid "Additional questionnaire"
+msgstr "Ytterligare frågeformulär"
+
 msgid "Scoring system options"
 msgstr "Alternativ för poängsättningssystem"
 
@@ -917,9 +884,6 @@ msgstr "Tilldela läskvitto endast till rapporter som uppnår poängtalet:"
 
 msgid "Software version:"
 msgstr "Mjukvaruversion:"
-
-msgid "An update is available:"
-msgstr "En uppdatering är tillgänglig:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Begränsa åtkomst till specifika IP-adresser"
@@ -1031,9 +995,6 @@ msgstr "Automatisk förnyelse"
 msgid "Tor Onion Service"
 msgstr "Webbläsaren Tors onion-tjänst"
 
-msgid "Tor Browser download link"
-msgstr "Länk för nedladdning av webbläsaren Tor"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonymisera utgående anslutningar"
 
@@ -1088,9 +1049,6 @@ msgstr "Mall"
 msgid "Question"
 msgstr "Fråga"
 
-msgid "Type"
-msgstr "Typ"
-
 msgid "Single-line text input"
 msgstr "Enkelrad textinmatning"
 
@@ -1141,12 +1099,6 @@ msgstr "Tillåt uppladning av flera filer"
 
 msgid "Accept multiple answers"
 msgstr "Tillåt flera olika svar"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Ledtråd visas på knappen för att lägga till ytterligare ett svar"
-
-msgid "Encrypt"
-msgstr "Kryptera"
 
 msgid "Template override"
 msgstr "Hoppa över mallen"
@@ -1220,26 +1172,11 @@ msgstr "Hantering av fallstudier"
 msgid "Network settings"
 msgstr "Nätverksinställningar"
 
-msgid "Mode:"
-msgstr "Läge:"
-
-msgid "Root domain used for secondary sites"
-msgstr "Rotzon som används för sekundära webbplatser"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Använd den primära webbplatsen enbart för administrativa ändamål"
-
-msgid "Enable multi-site login"
-msgstr "Aktivera inloggning på flera webbplatser samtidigt"
-
-msgid "Allow users to sign up"
-msgstr "Tillåt användarna att registrera sig"
-
-msgid "Enable terms of service"
-msgstr "Aktivera användarvillkor"
-
 msgid "Sites"
 msgstr "Webbplatser"
+
+msgid "Mode:"
+msgstr "Läge:"
 
 msgid "Active"
 msgstr "Aktiv"
@@ -1255,6 +1192,21 @@ msgstr "Subdomän"
 
 msgid "Creation date:"
 msgstr "Datum för skapande:"
+
+msgid "Root domain used for secondary sites"
+msgstr "Rotzon som används för sekundära webbplatser"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Använd den primära webbplatsen enbart för administrativa ändamål"
+
+msgid "Enable multi-site login"
+msgstr "Aktivera inloggning på flera webbplatser samtidigt"
+
+msgid "Allow users to sign up"
+msgstr "Tillåt användarna att registrera sig"
+
+msgid "Enable terms of service"
+msgstr "Aktivera användarvillkor"
 
 msgid "Send an account activation link to the user."
 msgstr "Skicka en länk för aktivering av kontot till användaren."
@@ -1642,6 +1594,9 @@ msgstr "Ladda upp en fil:"
 msgid "Logout"
 msgstr "Logga ut"
 
+msgid "An update is available:"
+msgstr "En uppdatering är tillgänglig:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1869,35 +1824,14 @@ msgstr "Födelsedatum"
 msgid "Place of birth"
 msgstr "Födelseort"
 
-msgid "Social security number"
-msgstr "Personnummer"
-
-msgid "Residence"
-msgstr "Bostadsort"
-
 msgid "Zip code / Postal code"
 msgstr "Postnummer"
 
 msgid "Province"
 msgstr "Landskap"
 
-msgid "Current job title"
-msgstr "Nuvarande yrke"
-
-msgid "Current job responsibility (role)"
-msgstr "Nuvarande arbetsuppgift (roll)"
-
-msgid "Current organization unit and job location"
-msgstr "Nuvarande organisationsenhet och arbetsplats"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Yrke vid tidpunkten då händelsen rapporteras"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Ansvarsområde på jobbet (roll) vid tidpunkten för det rapporterade faktumet"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Organisationsenhet och arbetsplats vid tidpunkten för det rapporterade faktumet"
+msgid "Country"
+msgstr "Land"
 
 msgid "Dear {RecipientName},"
 msgstr "Bästa {RecipientName},"
@@ -2065,9 +1999,6 @@ msgstr "Etikett: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "Status: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "Kontext: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

@@ -37,7 +37,6 @@ from globaleaks.handlers.admin import field as admin_field
 from globaleaks.handlers.admin import file as admin_file
 from globaleaks.handlers.admin import https
 from globaleaks.handlers.admin import l10n as admin_l10n
-from globaleaks.handlers.admin import modelimgs as admin_modelimgs
 from globaleaks.handlers.admin import node as admin_node
 from globaleaks.handlers.admin import notification as admin_notification
 from globaleaks.handlers.admin import operation as admin_operation
@@ -118,7 +117,6 @@ api_spec = [
     (r'/api/admin/users/' + uuid_regexp, admin_user.UserInstance),
     (r'/api/admin/contexts', admin_context.ContextsCollection),
     (r'/api/admin/contexts/' + uuid_regexp, admin_context.ContextInstance),
-    (r'/api/admin/(users|contexts)/' + uuid_regexp + r'/img', admin_modelimgs.ModelImgInstance),
     (r'/api/admin/questionnaires', admin_questionnaire.QuestionnairesCollection),
     (r'/api/admin/questionnaires/duplicate', admin_questionnaire.QuestionnareDuplication),
     (r'/api/admin/questionnaires/' + key_regexp, admin_questionnaire.QuestionnaireInstance),
@@ -131,15 +129,12 @@ api_spec = [
     (r'/api/admin/fieldtemplates/' + key_regexp, admin_field.FieldTemplateInstance),
     (r'/api/admin/redirects', admin_redirect.RedirectCollection),
     (r'/api/admin/redirects/' + uuid_regexp, admin_redirect.RedirectInstance),
+    (r'/api/admin/auditlog', admin_auditlog.AuditLog),
     (r'/api/admin/auditlog/access', admin_auditlog.AccessLog),
-    (r'/api/admin/auditlog/activities', admin_auditlog.RecentEventsCollection),
-    (r'/api/admin/auditlog/anomalies', admin_auditlog.AnomalyCollection),
     (r'/api/admin/auditlog/debug', admin_auditlog.DebugLog),
     (r'/api/admin/auditlog/jobs', admin_auditlog.JobsTiming),
-    (r'/api/admin/auditlog/stats/(\d+)', admin_auditlog.StatsCollection),
     (r'/api/admin/auditlog/tips', admin_auditlog.TipsCollection),
     (r'/api/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
-    (r'/api/admin/files/(logo|favicon|css|script)', admin_file.FileInstance),
     (r'/api/admin/config', admin_operation.AdminOperationHandler),
     (r'/api/admin/config/tls', https.ConfigHandler),
     (r'/api/admin/config/tls/files/(csr)', https.CSRFileHandler),
@@ -466,27 +461,31 @@ class APIResourceWrapper(Resource):
         # - In order to evaluate code coverage with istanbuljs/nyc
         # - In order to be able to manually retest if it is correctly implemented
         if not State.settings.disable_csp:
-            request.setHeader(b'Content-Security-Policy', "default-src 'none';" \
-                                                          "script-src 'self';" \
-                                                          "connect-src 'self';" \
-                                                          "style-src 'self';" \
-                                                          "img-src 'self' data:;" \
-                                                          "font-src 'self' data:;" \
-                                                          "media-src 'self';" \
-                                                          "form-action 'self';" \
-                                                          "frame-ancestors 'none';" \
-                                                          "block-all-mixed-content")
+            csp = "default-src 'none';" \
+                  "script-src 'self' 'sha256-deqnDNmuiUUIybUybVmSDSwpWO3hlCGA997lDHVOBcg=';" \
+                  "connect-src 'self';" \
+                  "style-src 'self';" \
+                  "img-src 'self' data:;" \
+                  "font-src 'self' data:;" \
+                  "media-src 'self';" \
+                  "form-action 'self';" \
+                  "block-all-mixed-content;"
+
+            if State.tenant_cache[request.tid].frame_ancestors:
+                csp += "frame-ancestors " + State.tenant_cache[request.tid].frame_ancestors + ";"
+            else:
+                csp += "frame-ancestors 'none';"
+
+            request.setHeader(b'Content-Security-Policy', csp)
 
         # Disable features that could be used to deanonymize the user
-        request.setHeader(b'Permissions-Policy', b"camera=('none') "
-                                                 b"display-capture=('none') "
-                                                 b"document-domain=('none') "
-                                                 b"fullscreen=('none') "
-                                                 b"geolocation=('none') "
-                                                 b"microphone=('none') "
-                                                 b"speaker=('none')")
+        request.setHeader(b'Permissions-Policy', b"camera=(),"
+                                                 b"document-domain=(),"
+                                                 b"fullscreen=(),"
+                                                 b"geolocation=(),"
+                                                 b"microphone=()")
 
-        # Prevent sites to includes the platform within an iframe
+        # Prevent old browsers not supporting CSP frame-ancestors directive to includes the platform within an iframe
         request.setHeader(b'X-Frame-Options', b'deny')
 
         # Prevent the browsers to implement automatic mime type detection and execution.

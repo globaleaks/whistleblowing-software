@@ -2,7 +2,6 @@
 import operator
 import os
 
-from datetime import timedelta
 from sqlalchemy.sql.expression import distinct, func
 
 from globaleaks import models
@@ -12,133 +11,21 @@ from globaleaks.state import State
 from globaleaks.utils.utility import datetime_now, iso_to_gregorian
 
 
-def weekmap_to_heatmap(week_map):
-    """
-    Convert a list of list with dict inside, in a flat list
-
-    :param week_map: A week map
-    :return: A flat list obtained from the week map
-    """
-    retlist = []
-    for _, weekday in enumerate(week_map):
-        for _, hourinfo in enumerate(weekday):
-            retlist.append(hourinfo)
-
-    return retlist
-
-
-@transact
-def get_stats(session, tid, week_delta):
-    """
-    Get the set of statistics collected for a specific week
-
-    :param session:
-    :param tid:
-    :param week_delta: commonly is 0, mean that you're taking this week. -1 is the previous week.
-    """
-    now = datetime_now()
-    week_delta = abs(int(week_delta))
-
-    target_week = datetime_now()
-    if week_delta > 0:
-        # delta week in the past
-        target_week -= timedelta(hours=week_delta * 24 * 7)
-
-    looked_week = target_week.isocalendar()[1]
-    looked_year = target_week.isocalendar()[0]
-
-    current_wday = now.weekday()
-    current_hour = now.hour
-    current_week = now.isocalendar()[1]
-
-    lower_bound = iso_to_gregorian(looked_year, looked_week, 1)
-    upper_bound = iso_to_gregorian(looked_year, looked_week + 1, 1)
-
-    hourlyentries = session.query(models.Stats).filter(models.Stats.tid == tid,
-                                                       models.Stats.start >= lower_bound,
-                                                       models.Stats.start <= upper_bound)
-
-    week_entries = 0
-    week_map = [[dict() for i in range(24)] for j in range(7)]
-
-    # Loop over the DB stats to fill the appropriate heatmap
-    for hourdata in hourlyentries:
-        # .weekday() return be 0..6
-        stats_day = int(hourdata.start.weekday())
-        stats_hour = int(hourdata.start.isoformat()[11:13])
-
-        week_map[stats_day][stats_hour] = {
-            'hour': stats_hour,
-            'day': stats_day,
-            'summary': hourdata.summary,
-            'valid': 0  # 0 means valid data
-        }
-
-        week_entries += 1
-
-    # if all the hourly element is available
-    if week_entries != (7 * 24):
-        for day in range(7):
-            for hour in range(24):
-                if week_map[day][hour]:
-                    continue
-
-                # valid is used as status variable.
-                # in the case the stats for the hour are missing it
-                # assumes the following values:
-                #  the hour is lacking from the results: -1
-                marker = -1
-                if current_week != looked_week:
-                    pass
-                elif day > current_wday or \
-                    (day == current_wday and hour > current_hour):
-                    pass
-                elif current_wday == day and hour == current_hour:
-                    pass
-
-                week_map[day][hour] = {
-                    'hour': hour,
-                    'day': day,
-                    'summary': {},
-                    'valid': marker
-                }
-
+def serialize_log(log):
     return {
-        'complete': week_entries == (7 * 24),
-        'week': target_week,
-        'heatmap': weekmap_to_heatmap(week_map)
+        'date': log.date,
+        'type': log.type,
+        'severity': log.severity,
+        'user_id': log.user_id,
+        'object_id': log.object_id,
+        'data': log.data
     }
 
-
 @transact
-def get_anomaly_history(session, tid, limit):
-    """
-    Transaction for fetching the anomalies registered for a specific tenant
+def get_audit_log(session, tid):
+    logs = session.query(models.AuditLog).filter(models.AuditLog.tid == tid)
 
-    :param session: An ORM session
-    :param tid: A tenant ID
-    :param limit: The limit of retrieved objects
-    :return: The list of detected anomalies
-    """
-    ret = []
-    for anomaly in session.query(models.Anomalies) \
-                          .filter(models.Anomalies.tid == tid) \
-                          .order_by(models.Anomalies.date.desc())[:limit]:
-        entry = dict({
-            'date': anomaly.date,
-            'alarm': anomaly.alarm,
-            'events': [],
-        })
-
-        for event_type, event_count in anomaly.events.items():
-            entry['events'].append({
-                'type': event_type,
-                'count': event_count,
-            })
-
-        ret.append(entry)
-
-    return ret
+    return [serialize_log(log) for log in logs]
 
 
 @transact
@@ -193,23 +80,6 @@ def get_tips(session, tid):
     return tips
 
 
-class AnomalyCollection(BaseHandler):
-    check_roles = 'admin'
-
-    def get(self):
-        return get_anomaly_history(self.request.tid, limit=100)
-
-
-class StatsCollection(BaseHandler):
-    """
-    This Handler returns the list of the stats for the requested range
-    """
-    check_roles = 'admin'
-
-    def get(self, week_delta):
-        return get_stats(self.request.tid, week_delta)
-
-
 class TipsCollection(BaseHandler):
     """
     This Handler returns the list of the tips
@@ -252,6 +122,17 @@ class JobsTiming(BaseHandler):
             })
 
         return response
+
+
+class AuditLog(BaseHandler):
+    """
+    Handler that provide access to the access.log file
+    """
+    check_roles = 'any'
+    #root_tenant_only = True
+
+    def get(self):
+        return get_audit_log(self.request.tid)
 
 
 class AccessLog(BaseHandler):

@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"Last-Translator: Suzanne Ferguson\n"
 "Language-Team: Amharic (http://www.transifex.com/otf/globaleaks/language/am/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -335,12 +335,6 @@ msgstr "ቀስቃሽ ጥያቄ"
 msgid "Triggered by score:"
 msgstr "በውጤት የተቀሰቀሰ"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "የሪፖርቱ የሁኔታ ገጽ አናት ላይ የሚታይ መልእክት"
-
-msgid "Password strength:"
-msgstr "የይለፍ ቃል ጥንካሬ"
-
 msgid "Weak"
 msgstr "ደካማ"
 
@@ -361,21 +355,6 @@ msgstr "የኢሜይል ማሳወቂያዎችን ያጥፋ"
 
 msgid "Turn on email notifications"
 msgstr "የኤሜል ማሳወቂያዎችን ያስነሱ"
-
-msgid "Failed logins"
-msgstr "መግባት ከሽፏል"
-
-msgid "Successful logins"
-msgstr "በስኬት ገብቷል"
-
-msgid "Started submissions"
-msgstr "ማረከብ ጀምሯል"
-
-msgid "Completed submissions"
-msgstr "ማስረከብ ተጠናቋል"
-
-msgid "Failed submissions"
-msgstr "ማስረከብ ከሽፏል"
 
 msgid "Input validation"
 msgstr "ግቤት ማረጋጫ"
@@ -540,11 +519,8 @@ msgstr "የቫት ቁጥር"
 msgid "Tax code"
 msgstr "የግብር ኮድ"
 
-msgid "Are you a whistleblower?"
-msgstr "መረጃ ሰጪ ነዎት?"
-
-msgid "Blow the whistle"
-msgstr "መረጃ ይስጡ"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "ከመቀጠልዎ በፊት አዲስ የይለፍ ቃል ያዘጋጁ"
@@ -662,6 +638,9 @@ msgstr "የውጤት ስርኣት ያንቁ"
 msgid "Enable private annotations"
 msgstr "የግል ስያሜዎችን ያቁ"
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
+
 msgid "Logging level"
 msgstr "የመግባት ደረጃ"
 
@@ -697,20 +676,14 @@ msgstr "ሜጋባይትስ"
 msgid "percentage"
 msgstr "ፐርሰንቴጅ"
 
-msgid "Stats of the week:"
-msgstr "የሳምንቱ ስታቲስቲክስ"
+msgid "Type"
+msgstr "አይነት"
 
-msgid "Event ID"
-msgstr "የክስተት መታወቂያ"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "ጊዜ"
-
-msgid "Event"
-msgstr "ክስተት"
-
-msgid "Response time"
-msgstr "የመልስ ጊዜ"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "መታወቂያ"
@@ -735,12 +708,6 @@ msgstr "ግንኙነት"
 
 msgid "Whistleblower's last access"
 msgstr "የመረጃ ሰጪው የመጨረሻ መዳረሻ"
-
-msgid "Alarm level"
-msgstr "የማስጠንቀቂያ ልክ"
-
-msgid "Events"
-msgstr "ክስተቶች"
 
 msgid "Substatuses"
 msgstr "ንዑስሁኔታዎች"
@@ -835,9 +802,6 @@ msgstr "ገለጻ "
 msgid "Questionnaire"
 msgstr "መጠይቅ"
 
-msgid "Additional questionnaire"
-msgstr "ተጨማሪ መጠይቅ"
-
 msgid "Recipients"
 msgstr "ተቀባዮች"
 
@@ -880,6 +844,9 @@ msgstr "መረጃ ሰጪዎች ያሉ ሪፖርቶች ላይ አባሪ አንዲ
 msgid "Let recipients upload files to whistleblowers"
 msgstr "ተቀባዮች ለመረጃ ሰጪዎች ፈይል እንዲጭኑ አስችል"
 
+msgid "Additional questionnaire"
+msgstr "ተጨማሪ መጠይቅ"
+
 msgid "Scoring system options"
 msgstr "የውጤት ስርኣት ምርጫዎች"
 
@@ -900,9 +867,6 @@ msgstr "ውጤት ለደረሱ ሪፖርቶች ብቻ ደረሰን መድቡ"
 
 msgid "Software version:"
 msgstr "የሶፍትዌር ስሪት"
-
-msgid "An update is available:"
-msgstr "ማዘመኛ አለ"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "መዳረሻን ለተወሰኑ አይፒ አድራሻዎች ይወስኑ"
@@ -1014,9 +978,6 @@ msgstr "ራስአድስ"
 msgid "Tor Onion Service"
 msgstr "ቶር ኦኒየን አገልግሎት"
 
-msgid "Tor Browser download link"
-msgstr "የቶር ማሰሻ መውረጃ ማገናኛ"
-
 msgid "Anonymize outgoing connections"
 msgstr "የሚወጡ ግንኙነቶችን ስም ሰውር"
 
@@ -1071,9 +1032,6 @@ msgstr "ቅንብር ደንብ"
 msgid "Question"
 msgstr "ጥያቄ"
 
-msgid "Type"
-msgstr "አይነት"
-
 msgid "Single-line text input"
 msgstr "ነጠላ መስመር ጽሑፍ ግቤት"
 
@@ -1124,12 +1082,6 @@ msgstr "የብዙ ፋይል ጭነት ተቀበል"
 
 msgid "Accept multiple answers"
 msgstr "ብዙ መልሶችን ተቀበል"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "ተጨማሪ መልስ ለመጨመር ፍንጭ ቁልፉ ላይ ይታያል"
-
-msgid "Encrypt"
-msgstr "አመስጥር"
 
 msgid "Template override"
 msgstr "ቅንብር ደንብ ጣስ"
@@ -1203,26 +1155,11 @@ msgstr "ጉዳይ አስተዳደር"
 msgid "Network settings"
 msgstr "አውታረ መረብ ቅንብር"
 
-msgid "Mode:"
-msgstr "ሁነታ፡"
-
-msgid "Root domain used for secondary sites"
-msgstr "ለሁለተኛ ድረገጾች የሚያገለግል ስርወ ጎራ"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "ለአስተዳደራዊ ጉዳዮች ብቻ የመጀመርያውን ድረገጽ ተጠቀሙ"
-
-msgid "Enable multi-site login"
-msgstr "ሕብረ ድረገጽ መግባት ያንቁ"
-
-msgid "Allow users to sign up"
-msgstr "ተጠቃሚዎች እንዲመዘገቡ ፍቀድ"
-
-msgid "Enable terms of service"
-msgstr "የአገልግሎት ደንቦችን አንቃ"
-
 msgid "Sites"
 msgstr "ድረገጾች"
+
+msgid "Mode:"
+msgstr "ሁነታ፡"
 
 msgid "Active"
 msgstr "ገባሪ"
@@ -1238,6 +1175,21 @@ msgstr "ንኡስጎራ"
 
 msgid "Creation date:"
 msgstr "የፍጥረት ቀን፡"
+
+msgid "Root domain used for secondary sites"
+msgstr "ለሁለተኛ ድረገጾች የሚያገለግል ስርወ ጎራ"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "ለአስተዳደራዊ ጉዳዮች ብቻ የመጀመርያውን ድረገጽ ተጠቀሙ"
+
+msgid "Enable multi-site login"
+msgstr "ሕብረ ድረገጽ መግባት ያንቁ"
+
+msgid "Allow users to sign up"
+msgstr "ተጠቃሚዎች እንዲመዘገቡ ፍቀድ"
+
+msgid "Enable terms of service"
+msgstr "የአገልግሎት ደንቦችን አንቃ"
 
 msgid "Send an account activation link to the user."
 msgstr "ለተጠቃሚዉ የመለያ ማንቂያ አገናኝ ላክ"
@@ -1625,6 +1577,9 @@ msgstr "ፋይል ጫኑ፡-"
 msgid "Logout"
 msgstr "ዘግተህ ውጣ "
 
+msgid "An update is available:"
+msgstr "ማዘመኛ አለ"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1852,35 +1807,14 @@ msgstr "የትውልድ ቀን"
 msgid "Place of birth"
 msgstr "የትውልድ ቦታ"
 
-msgid "Social security number"
-msgstr "የሶሻል ሴኪዩሪቲ ቁጥር"
-
-msgid "Residence"
-msgstr "መኖርያ"
-
 msgid "Zip code / Postal code"
 msgstr "ዚፕ ኮድ/የፖስታ ኮድ"
 
 msgid "Province"
 msgstr "ወረዳ"
 
-msgid "Current job title"
-msgstr "የአሁን የስራ ስያሜ"
-
-msgid "Current job responsibility (role)"
-msgstr "የአሁን የስራ ሃላፊነት (ሚና)"
-
-msgid "Current organization unit and job location"
-msgstr "የአሁን ድርጅታዊ ክፍል እና የስራ ቦታ"
-
-msgid "Job title at the time of the reported fact"
-msgstr "\"ሪፖርት የተደረገው እውነት በተከሰተበት ወቅት የነበረ የስራ ስያሜ\""
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "ሪፖርት የተደረገው እውነት በተከሰተበት ወቅት የነበረ የስራ ሃላፊነት (ሚና)"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "ሪፖርት የተደረገው እውነት በተከሰተበት ወቅት የነበረ ድርጅታዊ ክፍል እና የስራ ቦታ"
+msgid "Country"
+msgstr "ሀገር"
 
 msgid "Dear {RecipientName},"
 msgstr "ውድ {RecipientName},"
@@ -2048,9 +1982,6 @@ msgstr "ስያሜ፡-{TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "ሁኔታ፡-{TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "አገባበ ነገር፡- {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

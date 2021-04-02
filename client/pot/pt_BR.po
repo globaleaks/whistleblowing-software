@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"PO-Revision-Date: 2021-03-28 16:19+0000\n"
 "Last-Translator: C. E.\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -369,12 +369,6 @@ msgstr "Ativar questão"
 msgid "Triggered by score:"
 msgstr "Desencadeada pela pontuação:"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Mensagem exibida no início da página do status de envio"
-
-msgid "Password strength:"
-msgstr "Segurança da senha:"
-
 msgid "Weak"
 msgstr "Fraca"
 
@@ -395,21 +389,6 @@ msgstr "Desabilitar notificações de e-mails"
 
 msgid "Turn on email notifications"
 msgstr "Habilitar notificacao de e-mails"
-
-msgid "Failed logins"
-msgstr "Falha no acesso"
-
-msgid "Successful logins"
-msgstr "Acesso bem sucedido"
-
-msgid "Started submissions"
-msgstr "Submissões iniciadas"
-
-msgid "Completed submissions"
-msgstr "Submissões concluídas"
-
-msgid "Failed submissions"
-msgstr "Submissão falhou"
 
 msgid "Input validation"
 msgstr "Preencher validacao "
@@ -574,11 +553,8 @@ msgstr "Número do VAT"
 msgid "Tax code"
 msgstr "Código Fiscal"
 
-msgid "Are you a whistleblower?"
-msgstr "Você é um denunciante?"
-
-msgid "Blow the whistle"
-msgstr "Denuncie"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Antes de continuar, defina uma nova senha."
@@ -696,6 +672,9 @@ msgstr "Ativar sistema de pontuação"
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Permitir que os sites a seguir incorporem a plataforma dentro de iframes"
+
 msgid "Logging level"
 msgstr "Nível de registro"
 
@@ -731,20 +710,14 @@ msgstr "megabytes"
 msgid "percentage"
 msgstr "porcentagem"
 
-msgid "Stats of the week:"
-msgstr "Estatísticas da semana:"
+msgid "Type"
+msgstr "Tipo"
 
-msgid "Event ID"
-msgstr "ID do evento."
+msgid "Severity"
+msgstr "Severidade"
 
-msgid "Time"
-msgstr "Tempo"
-
-msgid "Event"
-msgstr "Evento"
-
-msgid "Response time"
-msgstr "Tempo de resposta"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "ID"
@@ -769,12 +742,6 @@ msgstr "Conexão"
 
 msgid "Whistleblower's last access"
 msgstr "WB Último Acesso"
-
-msgid "Alarm level"
-msgstr "Nível de alarme"
-
-msgid "Events"
-msgstr "Eventos"
 
 msgid "Substatuses"
 msgstr "Substatuses"
@@ -869,9 +836,6 @@ msgstr "Descrição"
 msgid "Questionnaire"
 msgstr "Questionário"
 
-msgid "Additional questionnaire"
-msgstr "Questionário Adicional"
-
 msgid "Recipients"
 msgstr "Destinatários"
 
@@ -914,6 +878,9 @@ msgstr "Permitir que os delatores adicionem anexos em submissões existentes"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Permitir que os destinatários façam upload de arquivos para os denunciantes"
 
+msgid "Additional questionnaire"
+msgstr "Questionário Adicional"
+
 msgid "Scoring system options"
 msgstr "Opções do sistema de pontuação"
 
@@ -934,9 +901,6 @@ msgstr "Atribuir o recibo somente aos envios que atingirem a pontuação:"
 
 msgid "Software version:"
 msgstr "Versão do software:"
-
-msgid "An update is available:"
-msgstr "Uma atualização está disponível:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Restringir o acesso a endereços de IP específicos"
@@ -1048,9 +1012,6 @@ msgstr "Renovação automática"
 msgid "Tor Onion Service"
 msgstr "Serviço Onion do Tor"
 
-msgid "Tor Browser download link"
-msgstr "Endereço para baixar o navegador Tor"
-
 msgid "Anonymize outgoing connections"
 msgstr "Conexões de saída anônimas"
 
@@ -1105,9 +1066,6 @@ msgstr "Modelo"
 msgid "Question"
 msgstr "Questão"
 
-msgid "Type"
-msgstr "Tipo"
-
 msgid "Single-line text input"
 msgstr "Entrada de texto de linha única"
 
@@ -1158,12 +1116,6 @@ msgstr "Aceitar envio de múltiplos arquivos"
 
 msgid "Accept multiple answers"
 msgstr "Aceite várias respostas"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Sugestão mostrada no botão para adicionar uma resposta adicional"
-
-msgid "Encrypt"
-msgstr "Encriptar"
 
 msgid "Template override"
 msgstr "Substituição de modelo"
@@ -1237,26 +1189,11 @@ msgstr "Gestão de caso"
 msgid "Network settings"
 msgstr "Configurações de rede"
 
-msgid "Mode:"
-msgstr "Modo:"
-
-msgid "Root domain used for secondary sites"
-msgstr "Domínio raiz usado para sites secundários"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Use o primeiro site somente para fins administrativos"
-
-msgid "Enable multi-site login"
-msgstr "Ativar o login em vários sites"
-
-msgid "Allow users to sign up"
-msgstr "Permitir que os usuários se inscrevam"
-
-msgid "Enable terms of service"
-msgstr "Ativar termos de serviço"
-
 msgid "Sites"
 msgstr "Sites"
+
+msgid "Mode:"
+msgstr "Modo:"
 
 msgid "Active"
 msgstr "Ativado"
@@ -1272,6 +1209,21 @@ msgstr "Subdomínio"
 
 msgid "Creation date:"
 msgstr "Data de criação:"
+
+msgid "Root domain used for secondary sites"
+msgstr "Domínio raiz usado para sites secundários"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Use o primeiro site somente para fins administrativos"
+
+msgid "Enable multi-site login"
+msgstr "Ativar o login em vários sites"
+
+msgid "Allow users to sign up"
+msgstr "Permitir que os usuários se inscrevam"
+
+msgid "Enable terms of service"
+msgstr "Ativar termos de serviço"
 
 msgid "Send an account activation link to the user."
 msgstr "Envie um link de ativação da conta para o usuário."
@@ -1659,6 +1611,9 @@ msgstr "Inserir um arquivo:"
 msgid "Logout"
 msgstr "Sair"
 
+msgid "An update is available:"
+msgstr "Uma atualização está disponível:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1886,35 +1841,14 @@ msgstr "Data de nascimento"
 msgid "Place of birth"
 msgstr "Local de nascimento"
 
-msgid "Social security number"
-msgstr "Número de CPF"
-
-msgid "Residence"
-msgstr "Residência"
-
 msgid "Zip code / Postal code"
 msgstr "CEP"
 
 msgid "Province"
 msgstr "Província"
 
-msgid "Current job title"
-msgstr "Cargo ocupado atualmente"
-
-msgid "Current job responsibility (role)"
-msgstr "Cargo ocupado atualmente (função) "
-
-msgid "Current organization unit and job location"
-msgstr "Unidade de setor atual e lugar de exercício desse cargo"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Cargo ocupado no momento dos fatos relatados"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Cargo (função) ocupado no momento dos fatos relatados "
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Unidade de setor e lugar de exercício do cargo no momento dos fatos relatados"
+msgid "Country"
+msgstr "País"
 
 msgid "Dear {RecipientName},"
 msgstr "Prezado/a {RecipientName},"
@@ -2082,9 +2016,6 @@ msgstr "Títulol: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "Status: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "Assunto: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

@@ -1,5 +1,4 @@
 # -*- coding: UTF-8
-import base64
 import os
 
 from globaleaks import models
@@ -71,16 +70,6 @@ def db_create(session, desc):
     models.config.add_new_lang(session, t.id, 'en', appdata)
 
     db_initialize_tenant_submission_statuses(session, t.id)
-
-    if desc['mode'] == 'default':
-        file_descs = [
-            ('favicon', 'data/favicon.ico')
-        ]
-
-        for file_desc in file_descs:
-            with open(os.path.join(Settings.client_path, file_desc[1]), 'rb') as f:
-                data = base64.b64encode(f.read()).decode()
-                file.db_add_file(session, t.id, file_desc[0], '', data)
 
     db_refresh_memory_variables(session, [t.id])
 

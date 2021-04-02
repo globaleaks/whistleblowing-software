@@ -12,7 +12,7 @@ describe("globaLeaks setup wizard", function() {
 
     await element.all(by.css(".ButtonNext")).get(1).click();
 
-    await browser.gl.utils.takeScreenshot('wizard/3.png');
+    await browser.gl.utils.takeScreenshot("wizard/3.png");
 
     await element(by.model("wizard.admin_username")).sendKeys("admin");
     await element(by.model("wizard.admin_name")).sendKeys("Admin");
@@ -22,7 +22,7 @@ describe("globaLeaks setup wizard", function() {
 
     await element.all(by.css(".ButtonNext")).get(3).click();
 
-    await browser.gl.utils.takeScreenshot('wizard/4.png');
+    await browser.gl.utils.takeScreenshot("wizard/4.png");
 
     await element.all(by.model("wizard.skip_recipient_account_creation")).click();
 
@@ -30,11 +30,11 @@ describe("globaLeaks setup wizard", function() {
 
     await element.all(by.css(".tos-agreement-input")).click();
 
-    await browser.gl.utils.takeScreenshot('wizard/5.png');
+    await browser.gl.utils.takeScreenshot("wizard/5.png");
 
     await element.all(by.css(".ButtonNext")).get(5).click();
 
-    await browser.gl.utils.takeScreenshot('wizard/6.png');
+    await browser.gl.utils.takeScreenshot("wizard/6.png");
 
     await element(by.cssContainingText("button", "Proceed")).click();
 

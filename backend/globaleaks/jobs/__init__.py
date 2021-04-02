@@ -3,10 +3,10 @@ from globaleaks.jobs import anomalies, \
                             cleaning, \
                             delivery, \
                             exit_nodes_refresh, \
+                            log, \
                             notification, \
                             pgp_check, \
                             session_management, \
-                            statistics, \
                             update_check
 
 jobs_list = [
@@ -15,9 +15,9 @@ jobs_list = [
     cleaning.Cleaning,
     delivery.Delivery,
     exit_nodes_refresh.ExitNodesRefresh,
+    log.AuditLogJob,
     notification.Notification,
     pgp_check.PGPCheck,
     session_management.SessionManagement,
-    statistics.Statistics,
     update_check.UpdateCheck,
 ]

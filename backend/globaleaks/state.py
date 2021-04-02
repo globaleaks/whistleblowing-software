@@ -10,6 +10,7 @@ from twisted.python.failure import Failure
 from twisted.python.threadpool import ThreadPool
 
 from globaleaks import __version__, orm
+from globaleaks.models import AuditLog
 from globaleaks.orm import tw
 from globaleaks.settings import Settings
 from globaleaks.transactions import db_schedule_email
@@ -73,6 +74,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
 
         self.set_orm_tp(ThreadPool(4, 16))
 
+        self.TempLogs = []
         self.TempKeys = TempDict(3600 * 72)
         self.TempUploadFiles = TempDict(3600)
 
@@ -94,6 +96,14 @@ class StateClass(ObjectDict, metaclass=Singleton):
             return get_tor_agent(self.settings.socks_host, self.settings.socks_port)
 
         return get_web_agent()
+
+    def log(self, **kwargs):
+        entry = AuditLog()
+
+        for key, value in kwargs.items():
+            setattr(entry, key, value)
+
+        self.TempLogs.append(entry)
 
     def create_directory(self, path):
         """

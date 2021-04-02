@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
-import base64
 import os
 
+from sqlalchemy.sql.expression import not_
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import can_edit_general_settings_or_raise
-from globaleaks.orm import db_del, transact, tw
+from globaleaks.orm import db_get, db_del, transact, tw
 from globaleaks.rest import errors
 from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.utility import uuid4
+
+
+special_files = ['css', 'favicon', 'logo', 'script']
 
 
 @transact
@@ -24,17 +27,16 @@ def get_files(session, tid):
     """
     ret = []
 
-    for sf in session.query(models.File).filter(models.File.name != "", models.File.tid == tid):
+    for sf in session.query(models.File).filter(models.File.tid == tid, not_(models.File.name.in_(special_files))):
         ret.append({
             'id': sf.id,
-            'name': sf.name,
-            'data': sf.data,
+            'name': sf.name
         })
 
     return ret
 
 
-def db_add_file(session, tid, file_id, name, data):
+def db_add_file(session, tid, file_id, name, path):
     """
     Transaction to register a file on a tenant
 
@@ -48,7 +50,6 @@ def db_add_file(session, tid, file_id, name, data):
     file_obj.tid = tid
     file_obj.id = file_id
     file_obj.name = name
-    file_obj.data = data
     session.merge(file_obj)
 
 
@@ -62,8 +63,21 @@ def db_get_file(session, tid, file_id):
     :return: The content of the file
     """
     file_obj = session.query(models.File).filter(models.File.tid == tid, models.File.id == file_id).one_or_none()
+    return file_obj.data if file_obj else ''
 
-    return file_obj.data if file_obj is not None else ''
+
+@transact
+def get_file_id_by_name(session, tid, name):
+    """
+    Transaction returning a file ID given the file name
+
+    :param session: An ORM session
+    :param tid: A tenant on which performing the lookup
+    :param name: A file name
+    :return: A result model
+    """
+    file_obj = session.query(models.File).filter(models.File.tid == tid, models.File.name == name).one_or_none()
+    return file_obj.id if file_obj else ''
 
 
 class FileInstance(BaseHandler):
@@ -81,20 +95,18 @@ class FileInstance(BaseHandler):
     def post(self, id):
         yield self.permission_check(id)
 
-        if id != 'custom':
-            sf = self.state.get_tmp_file_by_name(self.uploaded_file['filename'])
-            with sf.open('r') as encrypted_file:
-                data = encrypted_file.read()
+        if id in special_files:
+            self.uploaded_file['name'] = id
 
-            data = base64.b64encode(data).decode()
-            d = yield tw(db_add_file, self.request.tid, id, '', data)
-        else:
-            id = uuid4()
-            path = os.path.join(self.state.settings.files_path, id)
-            d = yield self.write_upload_plaintext_to_disk(path)
-            yield tw(db_add_file, self.request.tid, id, self.uploaded_file['name'], '')
+        id = uuid4()
+        path = os.path.join(self.state.settings.files_path, id)
 
-        returnValue(d)
+        if os.path.exists(path):
+            return
+
+        yield self.write_upload_plaintext_to_disk(path)
+        yield tw(db_add_file, self.request.tid, id, self.uploaded_file['name'], path)
+        returnValue(id)
 
     @inlineCallbacks
     def delete(self, id):
@@ -105,8 +117,10 @@ class FileInstance(BaseHandler):
         if os.path.exists(path):
             os.remove(path)
 
-        result = yield tw(db_del, models.File, (models.File.tid == self.request.tid, models.File.id == id))
-        returnValue(result)
+        if id in special_files:
+            id = yield get_file_id_by_name(self.request.tid, id)
+
+        yield tw(db_del, models.File, (models.File.tid == self.request.tid, models.File.id == id))
 
 
 class FileCollection(BaseHandler):

@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
-"Last-Translator: Vojtech Kotek <kotek.vojtech@gmail.com>\n"
+"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -338,12 +338,6 @@ msgstr "Trigger pitanje"
 msgid "Triggered by score:"
 msgstr ""
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Poruka prikazana na vrhu stranice statusa izvještaja"
-
-msgid "Password strength:"
-msgstr "Jačina lozinke:"
-
 msgid "Weak"
 msgstr "Slaba"
 
@@ -364,21 +358,6 @@ msgstr "Utišaj email obavijesti"
 
 msgid "Turn on email notifications"
 msgstr "Uključi email obavijesti"
-
-msgid "Failed logins"
-msgstr "Neuspješne prijave"
-
-msgid "Successful logins"
-msgstr "Uspješne prijave"
-
-msgid "Started submissions"
-msgstr "Započete prijave"
-
-msgid "Completed submissions"
-msgstr "Dovršene prijave"
-
-msgid "Failed submissions"
-msgstr "Neuspješne prijave"
 
 msgid "Input validation"
 msgstr "Validacija unosa"
@@ -543,11 +522,8 @@ msgstr "PDV broj"
 msgid "Tax code"
 msgstr "Porezni broj"
 
-msgid "Are you a whistleblower?"
-msgstr "Jeste li zviždač?"
-
-msgid "Blow the whistle"
-msgstr "Prijavite"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Prije nastavka, molimo vas da odaberete novu lozinku"
@@ -665,6 +641,9 @@ msgstr "Omogućite sistem bodovanja"
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Omogućite da slijedeći sajtovi ugrade ovu platformu u svoj iframe"
+
 msgid "Logging level"
 msgstr "Nivo logiranja"
 
@@ -700,20 +679,14 @@ msgstr "megabajti"
 msgid "percentage"
 msgstr "procenat"
 
-msgid "Stats of the week:"
-msgstr "Sedmična statistika:"
+msgid "Type"
+msgstr "Tip"
 
-msgid "Event ID"
-msgstr "ID događaja"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "Vrijeme"
-
-msgid "Event"
-msgstr "Događaj"
-
-msgid "Response time"
-msgstr "Vrijeme odgovora"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "ID"
@@ -738,12 +711,6 @@ msgstr "Povezivanje"
 
 msgid "Whistleblower's last access"
 msgstr "WB Zadnji pristup"
-
-msgid "Alarm level"
-msgstr "Nivo alarma"
-
-msgid "Events"
-msgstr "Događaji"
 
 msgid "Substatuses"
 msgstr "Substatusi"
@@ -838,9 +805,6 @@ msgstr "Opis"
 msgid "Questionnaire"
 msgstr "Upitnik"
 
-msgid "Additional questionnaire"
-msgstr "Dodatni upitnik"
-
 msgid "Recipients"
 msgstr "Primaoci"
 
@@ -883,6 +847,9 @@ msgstr "Dopustite zviždačima da dodaju priloge na postojeće prijave"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Dopustite primaocima da uploadaju datoteke zviždačima"
 
+msgid "Additional questionnaire"
+msgstr "Dodatni upitnik"
+
 msgid "Scoring system options"
 msgstr "Opcije sistema bodovanja"
 
@@ -903,9 +870,6 @@ msgstr "Izdajte kod samo prijavama koje su dosegle minimum bodova"
 
 msgid "Software version:"
 msgstr "Verzija softvera:"
-
-msgid "An update is available:"
-msgstr "Ažuriranje je dostupno"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Ograničite pristup određenim IP adresama"
@@ -1017,9 +981,6 @@ msgstr "Automatska obnova"
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
 
-msgid "Tor Browser download link"
-msgstr "Link za download Tor preglednika"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonimiziranje odlaznih konekcija"
 
@@ -1074,9 +1035,6 @@ msgstr "Predložak"
 msgid "Question"
 msgstr "Pitanje"
 
-msgid "Type"
-msgstr "Tip"
-
 msgid "Single-line text input"
 msgstr "Unos teksta u jednom retku"
 
@@ -1127,12 +1085,6 @@ msgstr "Prihvati više datoteka u prilogu"
 
 msgid "Accept multiple answers"
 msgstr "Prihvati više odgovora"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Natuknica prikazana na dugmetu za dodavanje dodatnog odgovora"
-
-msgid "Encrypt"
-msgstr "Izvrši enkripciju"
 
 msgid "Template override"
 msgstr "Izmjena na predlošku"
@@ -1206,26 +1158,11 @@ msgstr "Upravljanje slučajem"
 msgid "Network settings"
 msgstr "Postavke mreže"
 
-msgid "Mode:"
-msgstr "Način rada:"
-
-msgid "Root domain used for secondary sites"
-msgstr "Root domena koja se koristi za sekundarne sajtove"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Koristite prvi sajt samo u administrativne svrhe"
-
-msgid "Enable multi-site login"
-msgstr "Omogućite prijavu s više lokacija"
-
-msgid "Allow users to sign up"
-msgstr "Dozvolite korisnicima da se prijave"
-
-msgid "Enable terms of service"
-msgstr "Omogućite uslove korištenja"
-
 msgid "Sites"
 msgstr "Sajtovi"
+
+msgid "Mode:"
+msgstr "Način rada:"
 
 msgid "Active"
 msgstr "Aktivan"
@@ -1241,6 +1178,21 @@ msgstr "Poddomena"
 
 msgid "Creation date:"
 msgstr "Datum kreiranja:"
+
+msgid "Root domain used for secondary sites"
+msgstr "Root domena koja se koristi za sekundarne sajtove"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Koristite prvi sajt samo u administrativne svrhe"
+
+msgid "Enable multi-site login"
+msgstr "Omogućite prijavu s više lokacija"
+
+msgid "Allow users to sign up"
+msgstr "Dozvolite korisnicima da se prijave"
+
+msgid "Enable terms of service"
+msgstr "Omogućite uslove korištenja"
 
 msgid "Send an account activation link to the user."
 msgstr "Pošaljite korisniku link za aktivaciju računa."
@@ -1628,6 +1580,9 @@ msgstr "Uploadajte datoteku:"
 msgid "Logout"
 msgstr "Odjava"
 
+msgid "An update is available:"
+msgstr "Ažuriranje je dostupno"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1855,35 +1810,14 @@ msgstr "Datum rođenja"
 msgid "Place of birth"
 msgstr "Mjesto rođenja"
 
-msgid "Social security number"
-msgstr "JMBG broj"
-
-msgid "Residence"
-msgstr "Mjesto prebivališta"
-
 msgid "Zip code / Postal code"
 msgstr "Poštanski broj"
 
 msgid "Province"
 msgstr "Pokrajina"
 
-msgid "Current job title"
-msgstr "Naziv radnog mjesta"
-
-msgid "Current job responsibility (role)"
-msgstr "Odgovornosti (uloge) na poslu"
-
-msgid "Current organization unit and job location"
-msgstr "Organizaciona jedinica i lokacija posla"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Naziv posla u trenutku prijavljenih činjenica"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Odgovornosti (uloge) na poslu u trenutku prijavljenih činjenica"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Organizacione jedinice i lokacija posla u trenutku prijavljenih činjenica"
+msgid "Country"
+msgstr "zemlja"
 
 msgid "Dear {RecipientName},"
 msgstr "Dragi {RecipientName},"
@@ -2051,9 +1985,6 @@ msgstr "Oznaka: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "Status: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "Kontekst: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

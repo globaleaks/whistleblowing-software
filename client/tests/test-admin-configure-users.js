@@ -48,7 +48,7 @@ describe("admin add, configure, and delete users", function() {
   it("should configure users' passwords", async function() {
     for (var i = 1; i < 6; i++) {
       await browser.setLocation("admin/users");
-      await element.all(by.className('userList')).then(async function(elements) {
+      await element.all(by.className("userList")).then(async function(elements) {
 	var editUsrForm = elements[i];
         await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
         await editUsrForm.all(by.cssContainingText("span", "Set password")).first().click();

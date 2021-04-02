@@ -74,18 +74,6 @@ def generate_admin_alert_mail(session, tid, alert):
         db_schedule_email(session, tid, user_desc['mail_address'], subject, body)
 
 
-@transact
-def save_anomalies(session):
-    for tid in State.tenant_state:
-        for anomaly in State.tenant_state[tid].AnomaliesQ:
-            a = models.Anomalies()
-            a.tid = tid
-            a.alarm = anomaly[2]
-            a.date = anomaly[0]
-            a.events = anomaly[1]
-            session.add(a)
-
-
 class Alarm(object):
     def __init__(self, state):
         self.state = state
@@ -229,5 +217,3 @@ def check_anomalies():
 
     for tid in State.tenant_state:
         yield State.tenant_state[tid].Alarm.check_tenant_anomalies(tid)
-
-    yield save_anomalies()

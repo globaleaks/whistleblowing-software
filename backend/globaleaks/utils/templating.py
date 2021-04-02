@@ -28,10 +28,6 @@ node_keywords = [
     '{LoginUrl}',
 ]
 
-context_keywords = [
-    '{ContextName}'
-]
-
 user_keywords = [
     '{RecipientName}',
     '{Username}'
@@ -220,17 +216,9 @@ class UserNodeKeyword(NodeKeyword, UserKeyword):
     data_keys = NodeKeyword.data_keys + UserKeyword.data_keys
 
 
-class ContextKeyword(Keyword):
-    keyword_list = context_keywords
-    data_keys = ['context']
-
-    def ContextName(self):
-        return self.data['context']['name']
-
-
-class TipKeyword(UserNodeKeyword, ContextKeyword):
-    keyword_list = UserNodeKeyword.keyword_list + ContextKeyword.keyword_list + tip_keywords
-    data_keys = UserNodeKeyword.data_keys + ContextKeyword.data_keys + ['tip']
+class TipKeyword(UserNodeKeyword):
+    keyword_list = UserNodeKeyword.keyword_list + tip_keywords
+    data_keys = UserNodeKeyword.data_keys + ['tip']
 
     def dump_field_entry(self, output, field, entry, indent_n):
         field_type = field['type']
@@ -553,7 +541,7 @@ class PlatformSignupKeyword(NodeKeyword):
         return self.Site() + '/#/login'
 
     def ExpirationDate(self):
-        date = self.data['signup']['registration_date'] + timedelta(days=30)
+        date = self.data['signup']['registration_date'] + timedelta(30)
         return datetime_to_pretty_str(date)
 
     def Name(self):

@@ -13,12 +13,13 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # uskumru, 2013
-# Kaya Zeren <kayazeren@gmail.com>, 2020
+# Kaya Zeren <kayazeren@gmail.com>, 2020-2021
 # msare <mervesareakin@gmail.com>, 2014
 # On the Line Turkiye <onthelineturkiye@gmail.com>, 2016
 # Ozgur Yasin <yasinaydin@korsanparti.org>, 2014
 # Sibel Taskin Simsek <sibelsimsek@sabanciuniv.edu>, 2015
-# T. E. Kalayci <tekrei@gmail.com>, 2020
+# T. E. Kalayci <tekrei@member.fsf.org>, 2020-2021
+# T. E. Kalayci <tekrei@member.fsf.org>, 2021
 # Translinguini <translinguini@gmail.com>, 2013
 # Translinguini <translinguini@gmail.com>, 2013
 # Türker öz <man_lise@hotmail.com>, 2015
@@ -28,8 +29,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:52+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"Last-Translator: T. E. Kalayci <tekrei@member.fsf.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -358,12 +359,6 @@ msgstr "Tetikleyici soru"
 msgid "Triggered by score:"
 msgstr "Skorla tetikle:"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Alıcıların ayrıntılarını raporun durum sayfasında göster"
-
-msgid "Password strength:"
-msgstr "Parola kuvveti:"
-
 msgid "Weak"
 msgstr "Zayıf"
 
@@ -384,21 +379,6 @@ msgstr "E-posta bilgilendirmelerini sessize al"
 
 msgid "Turn on email notifications"
 msgstr "E-posta bilgilendirmelerini aç"
-
-msgid "Failed logins"
-msgstr "Başarısız girişler"
-
-msgid "Successful logins"
-msgstr "Başarılı girişler"
-
-msgid "Started submissions"
-msgstr "Başlamış gönderimler"
-
-msgid "Completed submissions"
-msgstr "Tamamlanmış gönderimler"
-
-msgid "Failed submissions"
-msgstr "Başarısız gönderimler"
 
 msgid "Input validation"
 msgstr "Giriş doğrulama"
@@ -563,11 +543,8 @@ msgstr "VAT numarası"
 msgid "Tax code"
 msgstr "Vergi kodu"
 
-msgid "Are you a whistleblower?"
-msgstr "İhbarcı mısınız?"
-
-msgid "Blow the whistle"
-msgstr "İhbar et"
+msgid "File a report"
+msgstr "Bir bildirimde bulunun"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Devam etmeden önce, lütfen yeni bir parola ayarlayın."
@@ -685,6 +662,9 @@ msgstr "Skorlama sistemini etkinleştir"
 msgid "Enable private annotations"
 msgstr "Özel notları etkinleştir"
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Aşağıdaki websitelerinin platformu iframe içinde eklemelerine izin ver"
+
 msgid "Logging level"
 msgstr "Günlük düzeyi"
 
@@ -720,20 +700,14 @@ msgstr "megabyte"
 msgid "percentage"
 msgstr "yüzde"
 
-msgid "Stats of the week:"
-msgstr "Haftanın istatistikleri:"
+msgid "Type"
+msgstr "Tür"
 
-msgid "Event ID"
-msgstr "Olay numarası"
+msgid "Severity"
+msgstr "Ciddiyet"
 
-msgid "Time"
-msgstr "Zaman"
-
-msgid "Event"
-msgstr "Olay"
-
-msgid "Response time"
-msgstr "Yanıt süresi"
+msgid "Object"
+msgstr "Nesne"
 
 msgid "ID"
 msgstr "ID"
@@ -758,12 +732,6 @@ msgstr "Bağlantı"
 
 msgid "Whistleblower's last access"
 msgstr "İhbarcının son erişimi"
-
-msgid "Alarm level"
-msgstr "Alarm seviyesi"
-
-msgid "Events"
-msgstr "Olaylar"
 
 msgid "Substatuses"
 msgstr "Altdurumlar"
@@ -858,9 +826,6 @@ msgstr "Açıklama"
 msgid "Questionnaire"
 msgstr "Anket"
 
-msgid "Additional questionnaire"
-msgstr "Ek anket"
-
 msgid "Recipients"
 msgstr "Alıcılar"
 
@@ -903,6 +868,9 @@ msgstr "İhbarcıların mevcut raporlara eklenti eklemelerine izin ver"
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Alıcıların ihbarcılar için dosya yüklemelerine izin ver"
 
+msgid "Additional questionnaire"
+msgstr "Ek anket"
+
 msgid "Scoring system options"
 msgstr "Skorlama sistem seçenekleri"
 
@@ -923,9 +891,6 @@ msgstr "Alındıyı sadece şu skora ulaşan raporlara tahsis et:"
 
 msgid "Software version:"
 msgstr "Yazılım versiyonu"
-
-msgid "An update is available:"
-msgstr "Bir güncelleme mevcut:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Erişimi belirli IP adresleriyle sınırla"
@@ -1037,9 +1002,6 @@ msgstr "Otomatik yenileme"
 msgid "Tor Onion Service"
 msgstr "Tor Onion Hizmeti"
 
-msgid "Tor Browser download link"
-msgstr "Tor Browser indirme bağlantısı"
-
 msgid "Anonymize outgoing connections"
 msgstr "Çıkış bağlantılarını anonimleştirme"
 
@@ -1094,9 +1056,6 @@ msgstr "Şablon"
 msgid "Question"
 msgstr "Soru"
 
-msgid "Type"
-msgstr "Tür"
-
 msgid "Single-line text input"
 msgstr "Tek satır yazı girişi"
 
@@ -1147,12 +1106,6 @@ msgstr "Birden fazla dosya kabul et"
 
 msgid "Accept multiple answers"
 msgstr "Birden fazla yanıt kabul et"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Ek cevap vermek için tuşun üzerinde görüntülenecek ipucu"
-
-msgid "Encrypt"
-msgstr "Şifreleme"
 
 msgid "Template override"
 msgstr "Şablon üzerine yazma"
@@ -1226,26 +1179,11 @@ msgstr "Durum yönetimi"
 msgid "Network settings"
 msgstr "Ağ Ayarları"
 
-msgid "Mode:"
-msgstr "Kip:"
-
-msgid "Root domain used for secondary sites"
-msgstr "İkincil siteler tarafından kullanılan kök alan"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "İlk siteyi sadece yönetsel amaçlar için kullan"
-
-msgid "Enable multi-site login"
-msgstr "Çoklu site kullanıcı girişini etkinleştir"
-
-msgid "Allow users to sign up"
-msgstr "Kullanıcıların kayıt olmasına izin ver"
-
-msgid "Enable terms of service"
-msgstr "Hizmet kullanım şartlarını etkinleştir"
-
 msgid "Sites"
 msgstr "Siteler"
+
+msgid "Mode:"
+msgstr "Kip:"
 
 msgid "Active"
 msgstr "Etkin"
@@ -1261,6 +1199,21 @@ msgstr "Alt alan"
 
 msgid "Creation date:"
 msgstr "Oluşturulma tarihi:"
+
+msgid "Root domain used for secondary sites"
+msgstr "İkincil siteler tarafından kullanılan kök alan"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "İlk siteyi sadece yönetsel amaçlar için kullan"
+
+msgid "Enable multi-site login"
+msgstr "Çoklu site kullanıcı girişini etkinleştir"
+
+msgid "Allow users to sign up"
+msgstr "Kullanıcıların kayıt olmasına izin ver"
+
+msgid "Enable terms of service"
+msgstr "Hizmet kullanım şartlarını etkinleştir"
 
 msgid "Send an account activation link to the user."
 msgstr "Kullanıcıya hesap etkinleştirme bağlantısı gönder"
@@ -1648,6 +1601,9 @@ msgstr "Bir dosya yükle:"
 msgid "Logout"
 msgstr "Çıkış yap"
 
+msgid "An update is available:"
+msgstr "Bir güncelleme mevcut:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1875,35 +1831,14 @@ msgstr "Doğum tarihi"
 msgid "Place of birth"
 msgstr "Doğum yeri"
 
-msgid "Social security number"
-msgstr "Kimlik numarası"
-
-msgid "Residence"
-msgstr "Oturum"
-
 msgid "Zip code / Postal code"
 msgstr "Posta kodu"
 
 msgid "Province"
 msgstr "İlçe"
 
-msgid "Current job title"
-msgstr "Şu andaki işi"
-
-msgid "Current job responsibility (role)"
-msgstr "Şu andaki sorumluluğu (rolü)"
-
-msgid "Current organization unit and job location"
-msgstr "Şu andaki kurumu ve işyeri"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Hakkında bilgi verilen olay sırasındaki iş unvanı"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Hakkında bilgi verilen olay sırasındaki sorumluluğu (rolü)"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Hakkında bilgi verilen olay sırasındaki kurumu ve iş yeri"
+msgid "Country"
+msgstr "Ülke"
 
 msgid "Dear {RecipientName},"
 msgstr "Sayın {RecipientName},"
@@ -2071,9 +2006,6 @@ msgstr "Etiket: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "Durum: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "Kategori: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

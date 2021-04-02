@@ -173,7 +173,7 @@ directive("imageUpload", function () {
     scope: {
       imageUploadModel: "=",
       imageUploadModelAttr: "@",
-      imageUploadUrl: "@",
+      imageUploadId: "@",
       imageSrcUrl: "@"
     },
     templateUrl: "views/partials/image_upload.html",

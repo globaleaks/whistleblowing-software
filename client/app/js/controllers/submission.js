@@ -1,6 +1,6 @@
 GL.controller("SubmissionCtrl",
-    ["$scope", "$filter", "$location", "$interval", "$anchorScroll", "tmhDynamicLocale", "Submission", "fieldUtilities",
-      function ($scope, $filter, $location, $interval, $anchorScroll, tmhDynamicLocale, Submission, fieldUtilities) {
+    ["$scope", "$filter", "$location", "$interval", "tmhDynamicLocale", "Submission", "fieldUtilities",
+      function ($scope, $filter, $location, $interval, tmhDynamicLocale, Submission, fieldUtilities) {
   $scope.vars = {};
 
   $scope.fieldUtilities = fieldUtilities;
@@ -48,7 +48,7 @@ GL.controller("SubmissionCtrl",
 
   $scope.goToStep = function(index) {
     $scope.navigation = index;
-    $anchorScroll("ContentBox");
+    $scope.Utils.scrollToTop();
   };
 
   $scope.firstStepIndex = function() {
@@ -104,7 +104,7 @@ GL.controller("SubmissionCtrl",
     $scope.validate[$scope.navigation] = true;
 
     if (!$scope.areReceiversSelected() || !$scope.checkForInvalidFields()) {
-      $anchorScroll("ContentBox");
+      $scope.Utils.scrollToTop();
       return false;
     }
 
@@ -121,7 +121,7 @@ GL.controller("SubmissionCtrl",
       for (var i = $scope.navigation + 1; i <= $scope.lastStepIndex(); i++) {
         if (fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.navigation = i;
-          $anchorScroll("ContentBox");
+          $scope.Utils.scrollToTop();
           return;
         }
       }
@@ -134,7 +134,7 @@ GL.controller("SubmissionCtrl",
       for (var i = $scope.navigation - 1; i >= $scope.firstStepIndex(); i--) {
         if (i === -1 || fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.navigation = i;
-          $anchorScroll("ContentBox");
+          $scope.Utils.scrollToTop();
           return;
         }
       }
@@ -266,8 +266,8 @@ GL.controller("SubmissionCtrl",
   });
 }]).
 controller("AdditionalQuestionnaireCtrl",
-    ["$http", "$route", "$scope", "$uibModalInstance", "$filter", "$location", "$interval", "$anchorScroll", "tmhDynamicLocale", "Submission", "glbcProofOfWork", "fieldUtilities",
-      function ($http, $route, $scope, $uibModalInstance, $filter, $location, $interval, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
+    ["$http", "$route", "$scope", "$uibModalInstance", "$filter", "$location", "$interval", "tmhDynamicLocale", "Submission", "glbcProofOfWork", "fieldUtilities",
+      function ($http, $route, $scope, $uibModalInstance, $filter, $location, $interval, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
   $scope.vars = {};
 
   $scope.fieldUtilities = fieldUtilities;
@@ -284,7 +284,7 @@ controller("AdditionalQuestionnaireCtrl",
 
   $scope.goToStep = function(index) {
     $scope.navigation = index;
-    $anchorScroll("ContentBox");
+    $scope.Utils.scrollToTop();
   };
 
   $scope.firstStepIndex = function() {
@@ -332,7 +332,7 @@ controller("AdditionalQuestionnaireCtrl",
     $scope.validate[$scope.navigation] = true;
 
     if ($scope.navigation > -1 && !$scope.checkForInvalidFields()) {
-      $anchorScroll("ContentBox");
+      $scope.Utils.scrollToTop();
       return false;
     }
 
@@ -349,7 +349,7 @@ controller("AdditionalQuestionnaireCtrl",
       for (var i = $scope.navigation + 1; i <= $scope.lastStepIndex(); i++) {
         if (fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.navigation = i;
-          $anchorScroll("ContentBox");
+          $scope.Utils.scrollToTop();
           return;
         }
       }
@@ -362,7 +362,7 @@ controller("AdditionalQuestionnaireCtrl",
       for (var i = $scope.navigation - 1; i >= $scope.firstStepIndex(); i--) {
         if (i === -1 || fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.navigation = i;
-          $anchorScroll("ContentBox");
+          $scope.Utils.scrollToTop();
           return;
         }
       }
@@ -388,7 +388,7 @@ controller("AdditionalQuestionnaireCtrl",
     $scope.validate[$scope.navigation] = true;
 
     if (!$scope.checkForInvalidFields()) {
-      $anchorScroll("ContentBox");
+      $scope.Utils.scrollToTop();
       return;
     }
 

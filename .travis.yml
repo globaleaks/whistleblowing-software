@@ -23,13 +23,13 @@ matrix:
   - env: GLTEST='end2end-1' BROWSER='firefox latest'
   - env: GLTEST='end2end-2' BROWSER='edge latest'
   - env: GLTEST='end2end-3' BROWSER='ie 11'
-  - env: GLTEST='end2end-4' BROWSER='android 10'
+  - env: GLTEST='end2end-4' BROWSER='android 11'
   allow_failures:
   - env: GLTEST='end2end-0' BROWSER='chrome latest'
   - env: GLTEST='end2end-1' BROWSER='firefox latest'
   - env: GLTEST='end2end-2' BROWSER='edge latest'
   - env: GLTEST='end2end-3' BROWSER='ie 11'
-  - env: GLTEST='end2end-4' BROWSER='android 10'
+  - env: GLTEST='end2end-4' BROWSER='android 11'
 before_install:
 - nvm install stable
 - nvm use stable

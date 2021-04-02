@@ -1,17 +1,13 @@
 <!doctype html>
-<html data-ng-app="GL" data-ng-csp data-ng-strict-di data-ng-keydown="keypress($event)" lang="{{GLTranslate.state.language}}">
+<html data-ng-app="GL" data-ng-csp data-ng-strict-di data-ng-keydown="keypress($event)" lang="en">
   <head>
-    <base href="" />
-    <title data-ng-bind="pt ? pt : 'GlobaLeaks'"></title>
     <meta charset="utf-8" />
+    <title>GlobaLeaks</title>
+    <meta name="description" content="Secure whistleblowing platform based on GlobaLeaks free and open-source software.">
     <meta name="viewport" content="width=device-width, user-scalable=yes" />
-
-    <meta http-equiv="X-UA-Compatible" content="IE=EDGE,11" />
-
     <link rel="shortcut icon" href="/s/favicon">
 
     <!-- build:css css/styles.css -->
-    <link rel="stylesheet" href="css/loader.css" />
     <link rel="stylesheet" href="lib/css/fontawesome.css" />
     <link rel="stylesheet" href="lib/css/regular.css" />
     <link rel="stylesheet" href="lib/css/solid.css" />
@@ -20,20 +16,20 @@
     <link rel="stylesheet" href="lib/css/select.css" />
     <link rel="stylesheet" href="lib/css/angular-csp.css" />
     <link rel="stylesheet" href="css/ui-select-bootstrap4-fix.css" />
+    <link rel="stylesheet" href="css/loader.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/print.css" />
     <!-- endbuild -->
   </head>
 
-  <body class="container-fluid d-flex flex-column" data-ng-class="{'block-user-input': showLoadingPanel}" data-flow-prevent-drop>
-
+  <body class="container-fluid d-flex flex-column" data-ng-class="{{Utils.getCSSFlags()}}" data-flow-prevent-drop>
     <a class="skip-link d-none" href="#ContentBox"></a>
 
-    <div id="PageOverlay" class="ng-cloak" data-ng-hide="!showLoadingPanel">
+    <div id="PageOverlay" data-ng-hide="!showLoadingPanel">
       <div id="Loader"></div>
     </div>
 
-    <div id="PageContent" class="ng-cloak" data-ng-if="started" data-ng-class="{'whistleblower': Utils.isWhistleblowerPage()}">
+    <div id="PageContent" class="ng-cloak" data-ng-if="started" data-ng-cloak>
       <div data-ng-if="!public.node.root_tenant && public.node.mode === 'demo'" data-ng-include="'views/partials/demo.html'"></div>
       <div data-ng-if="Utils.isWhistleblowerPage() && !public.node.disable_privacy_badge" data-ng-include="'views/partials/privacybadge.html'"></div>
       <div data-ng-include="'views/partials/header.html'"></div>
@@ -46,7 +42,7 @@
       </div>
     </div>
 
-    <footer id="FooterBox" class="ng-cloak" data-ng-if="started" data-ng-include="'views/partials/footer.html'"></footer>
+    <footer id="FooterBox" class="ng-cloak" data-ng-if="started" data-ng-include="'views/partials/footer.html'" data-ng-cloak></footer>
 
     <!-- build:js js/scripts.js -->
     <script src="lib/js/qrcode.js"></script>
@@ -110,6 +106,13 @@
     <script src="js/controllers/passwordreset.js"></script>
     <!-- endbuild -->
 
-    <noscript>Error: JavaScript is not enabled.</noscript>
+    <noscript>
+      <h1>Error! :(</h1>
+      <br /><br />
+      <p>
+        Your browser is not running JavaScript that is required to use this site.<br /><br />
+        It is a common belief that JavaScript and Security don't work well together and for this reason we advise to use the <a href=="https://www.torproject.org/">Tor Browser</a>, a browser designed for security and privacy."
+      </div>
+    </noscript>
   </body>
 </html>

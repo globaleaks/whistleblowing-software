@@ -43,14 +43,8 @@ a:focus {
 }
 
 a:hover,
-a.darklink,
-a:active.darklink,
-a:focus.darklink {
+.onionaddress {
   color: #5797D5;
-}
-
-a:hover.darklink {
-  color: #79B0E6;
 }
 
 .visible-on-over {
@@ -726,6 +720,15 @@ text.axis-workweek, text.axis-worktime {
 
 #SearchFilter {
   margin: 0 .4rem;
+}
+
+.was-validated .form-check-input:valid ~ .form-check-label,
+.form-check-input.is-valid ~ .form-check-label {
+  color: inherit;
+}
+
+.was-validated .form-control:valid, .form-control.is-valid {
+  background-image: none;
 }
 
 html[dir="rtl"] input[type=email],

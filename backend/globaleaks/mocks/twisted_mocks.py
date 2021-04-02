@@ -29,6 +29,15 @@ def mock_Request_gotLength(self, length):
     self.content = StringIO()
 
 
+_orig_request_write = Request.write
+def mock_Request_write(self, data):
+    # Backport Twisted #9410 from  19.7.0
+    if self._disconnected:
+        return
+
+    return _orig_request_write(self, data)
+
+
 def mock_CramMD5ClientAuthenticator_challengeResponse(self, secret, chal):
     response = hmac.HMAC(secret, chal, digestmod=hashlib.md5).hexdigest()
     return self.user + b' ' + response.encode('ascii')
@@ -37,6 +46,7 @@ def mock_CramMD5ClientAuthenticator_challengeResponse(self, secret, chal):
 Request.getClientIP = mock_Request_getClientIP
 Request.gotLength = mock_Request_gotLength
 Request.parseCookies = null_function
+Request.write = mock_Request_write
 
 CramMD5ClientAuthenticator.challengeResponse = mock_CramMD5ClientAuthenticator_challengeResponse
 

@@ -1,5 +1,3 @@
-/* global topojson*/
-
 GL.factory("GLResource", ["$resource", function($resource) {
   return function(url, params, actions) {
     var defaults = {
@@ -529,6 +527,9 @@ factory("ReceiverTips", ["GLResource", function(GLResource) {
 factory("IdentityAccessRequests", ["GLResource", function(GLResource) {
   return new GLResource("api/custodian/iars");
 }]).
+factory("AdminAuditLogResource", ["GLResource", function(GLResource) {
+  return new GLResource("api/admin/auditlog");
+}]).
 factory("AdminContextResource", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/contexts/:id", {id: "@id"});
 }]).
@@ -607,7 +608,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       context.enable_two_way_messages = true;
       context.enable_attachments = true;
       context.enable_rc_to_wb_files = false;
-      context.status_page_message = "";
       context.questionnaire_id = "";
       context.additional_questionnaire_id = "";
       context.score_threshold_medium = 0;
@@ -655,10 +655,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       field.hint = "";
       field.placeholder = "";
       field.multi_entry = false;
-      field.multi_entry_hint = "";
       field.required = false;
       field.preview = false;
-      field.encrypt = true;
       field.attrs = {};
       field.options = [];
       field.x = 0;
@@ -677,7 +675,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     new_field_template: function (fieldgroup_id) {
       var field = new AdminFieldTemplateResource();
       field.id = "";
-      field.key = "";
       field.instance = "template";
       field.label = "";
       field.type = "inputbox";
@@ -685,10 +682,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       field.placeholder = "";
       field.hint = "";
       field.multi_entry = false;
-      field.multi_entry_hint = "";
       field.required = false;
       field.preview = false;
-      field.encrypt = false;
       field.attrs = {};
       field.options = [];
       field.x = 0;
@@ -749,17 +744,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 factory("UserPreferences", ["GLResource", function(GLResource) {
   return new GLResource("api/preferences", {}, {"update": {method: "PUT"}});
 }]).
-factory("ActivitiesCollection", ["GLResource", function(GLResource) {
-  return new GLResource("api/admin/auditlog/activities");
-}]).
-factory("AnomaliesCollection", ["GLResource", function(GLResource) {
-  return new GLResource("api/admin/auditlog/anomalies");
-}]).
 factory("TipsCollection", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/auditlog/tips");
-}]).
-factory("StatsCollection", ["GLResource", function(GLResource) {
-  return new GLResource("api/admin/auditlog/stats/:week_delta", {week_delta: "@week_delta"}, {});
 }]).
 factory("JobsAuditLog", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/auditlog/jobs");
@@ -811,6 +797,9 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       } else if (pt2) {
         $rootScope.pt = pt2;
       }
+
+      $window.document.title = $rootScope.pt;
+      $window.document.getElementsByName('description')[0].content = $rootScope.public.node.description;
     },
 
     route_check: function() {
@@ -881,20 +870,16 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       $location.path(path);
     },
 
-    randomFluff: function () {
-      return Math.random() * 1000000 + 1000000;
-    },
-
-    imgDataUri: function(data) {
-      if (data === "") {
-        data = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgDTD2qgAAAAASUVORK5CYII=";
-      }
-
-      return "data:image/png;base64," + data;
-    },
-
     isWhistleblowerPage: function() {
       return ["/", "/submission"].indexOf($location.path()) !== -1;
+    },
+
+    getCSSFlags: function() {
+      return {
+        "public": this.isWhistleblowerPage(),
+        "embedded": $window.self !== $window.top,
+        "block-user-input": $rootScope.showLoadingPanel
+      };
     },
 
     showUserStatusBox: function() {
@@ -1030,16 +1015,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       return deferred.promise;
     },
 
-    readFileAsJson: function (file) {
-      return this.readFileAsText(file).then(function(txt) {
-        try {
-          return JSON.parse(txt);
-        } catch (excep) {
-          return $q.reject(excep);
-        }
-      });
-    },
-
     displayErrorMsg: function(reason) {
       var error = {
         "message": "local-failure",
@@ -1069,12 +1044,12 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       return text;
     },
 
-    openUrl: function(url) {
-      $window.open(url, "_blank");
-    },
-
     print: function() {
       $window.print();
+    },
+
+    scrollToTop: function(id) {
+      $window.document.getElementByTagName('body').scrollIntoView();
     },
 
     download: function(filename, url) {
@@ -1472,8 +1447,8 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
       }
     };
 }]).
-factory("GLTranslate", ["$translate", "$location","tmhDynamicLocale",
-    function($translate, $location, tmhDynamicLocale) {
+factory("GLTranslate", ["$translate", "$location", "$window", "tmhDynamicLocale",
+    function($translate, $location, $window, tmhDynamicLocale) {
 
   // facts are (un)defined in order of importance to the factory.
   var facts = {
@@ -1635,6 +1610,7 @@ factory("GLTranslate", ["$translate", "$location","tmhDynamicLocale",
     if (state.language) {
       updateTranslationServices(state.language);
       GL.language = state.language;
+      $window.document.getElementsByTagName("html")[0].setAttribute("lang", state.language);
     }
   }
 

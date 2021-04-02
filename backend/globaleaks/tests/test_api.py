@@ -79,22 +79,20 @@ class TestAPI(TestGL):
             ('Cache-control', 'no-store'),
             ('Content-Language', 'en'),
             ('Content-Security-Policy', 'default-src \'none\';' \
-                                        'script-src \'self\';' \
+                                        'script-src \'self\' \'sha256-deqnDNmuiUUIybUybVmSDSwpWO3hlCGA997lDHVOBcg=\';' \
                                         'connect-src \'self\';' \
                                         'style-src \'self\';' \
                                         'img-src \'self\' data:;' \
                                         'font-src \'self\' data:;' \
                                         'media-src \'self\';' \
                                         'form-action \'self\';' \
-                                        'frame-ancestors \'none\';' \
-                                        'block-all-mixed-content'),
-            ('Permissions-Policy', "camera=('none') " \
-                                   "display-capture=('none') " \
-                                   "document-domain=('none') " \
-                                   "fullscreen=('none') " \
-                                   "geolocation=('none') " \
-                                   "microphone=('none') " \
-                                   "speaker=('none')"),
+                                        'block-all-mixed-content;' \
+                                        'frame-ancestors \'none\';'),
+            ('Permissions-Policy', "camera=()," \
+                                   "document-domain=()," \
+                                   "fullscreen=()," \
+                                   "geolocation=()," \
+                                   "microphone=()"),
             ('Referrer-Policy', 'no-referrer'),
             ('Server', 'GlobaLeaks'),
             ('X-Content-Type-Options', 'nosniff'),

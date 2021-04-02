@@ -56,6 +56,6 @@ describe("admin disable submissions", function() {
 
     await browser.get("/#/");
 
-    expect(await browser.isElementPresent(element(by.cssContainingText("button", "Blow the whistle")))).toBe(true);
+    expect(await browser.isElementPresent(element(by.cssContainingText("button", "File a report")))).toBe(true);
   });
 });

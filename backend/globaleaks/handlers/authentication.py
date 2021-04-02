@@ -17,8 +17,11 @@ from globaleaks.utils.log import log
 from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 
-def login_error(tid):
+def login_failure(tid, role, whistleblower=False):
     Settings.failed_login_attempts[tid] = Settings.failed_login_attempts.get(tid, 0) + 1
+
+    State.log(tid=tid, type='whistleblower_login_failure' if whistleblower else 'login_failure')
+
     raise errors.InvalidAuthentication
 
 
@@ -73,8 +76,7 @@ def login_whistleblower(session, tid, receipt):
                            InternalTip.id == WhistleblowerTip.id).one_or_none()
 
     if x is None:
-        log.debug("Whistleblower login: Invalid receipt")
-        login_error(tid)
+        login_failure(tid, 1)
 
     wbtip = x[0]
     itip = x[1]
@@ -108,8 +110,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
                                       User.tid == tid).one_or_none()
 
     if not user or not GCE.check_password(user.hash_alg, password, user.salt, user.password):
-        log.debug("Login: Invalid credentials")
-        login_error(tid)
+        login_failure(tid, 0)
 
     connection_check(tid, client_ip, user.role, client_using_tor)
 
@@ -166,7 +167,7 @@ class AuthenticationHandler(BaseHandler):
                               self.request.client_using_tor,
                               self.request.client_ip)
 
-        log.debug("Login: Success (%s)" % session.user_role)
+        State.log(tid=tid, type='login', user_id=session.user_id)
 
         if tid != self.request.tid:
             returnValue({
@@ -193,14 +194,12 @@ class TokenAuthHandler(BaseHandler):
 
         session = Sessions.get(request['authtoken'])
         if session is None or session.tid != self.request.tid:
-            login_error(self.request.tid)
+            login_failure(self.request.tid, 0)
 
         connection_check(self.request.tid, self.request.client_ip,
                          session.user_role, self.request.client_using_tor)
 
         session = Sessions.regenerate(session.id)
-
-        log.debug("Login: Success (%s)" % session.user_role)
 
         returnValue(session.serialize())
 
@@ -225,7 +224,7 @@ class ReceiptAuthHandler(BaseHandler):
 
         session = yield login_whistleblower(self.request.tid, request['receipt'])
 
-        log.debug("Login: Success (%s)" % session.user_role)
+        State.log(tid=session.tid,  type='whistleblower_login')
 
         returnValue(session.serialize())
 
@@ -246,7 +245,13 @@ class SessionHandler(BaseHandler):
         """
         Logout
         """
+        if self.current_user.user_role == 'whistleblower':
+            State.log(tid=self.current_user.tid,  type='whistleblower_logout')
+        else:
+            State.log(tid=self.current_user.tid,  type='logout', user_id=self.current_user.user_id)
+
         del Sessions[self.current_user.id]
+
 
 
 class TenantAuthSwitchHandler(BaseHandler):

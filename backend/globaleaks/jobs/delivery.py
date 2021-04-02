@@ -27,7 +27,9 @@ def file_delivery(session):
 
     for ifile, itip in session.query(models.InternalFile, models.InternalTip) \
                               .filter(models.InternalFile.new.is_(True),
-                                      models.InternalTip.id == models.InternalFile.internaltip_id):
+                                      models.InternalTip.id == models.InternalFile.internaltip_id) \
+                              .order_by(models.InternalFile.creation_date) \
+                              .limit(20):
         ifile.new = False
         src = ifile.filename
         filecode = src.split('.')[0]
@@ -76,7 +78,9 @@ def file_delivery(session):
     for wbfile, itip in session.query(models.WhistleblowerFile, models.InternalTip)\
                                .filter(models.WhistleblowerFile.new.is_(True),
                                        models.ReceiverTip.id == models.WhistleblowerFile.receivertip_id,
-                                       models.InternalTip.id == models.ReceiverTip.internaltip_id):
+                                       models.InternalTip.id == models.ReceiverTip.internaltip_id) \
+                               .order_by(models.WhistleblowerFile.creation_date) \
+                               .limit(20):
         wbfile.new = False
         src = wbfile.filename
         filecode = src.split('.')[0]

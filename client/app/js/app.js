@@ -112,8 +112,9 @@ var GL = angular.module("GL", [
     }
 
     function fetchResources(role, lst) {
-      return ["$q", "$rootScope", "Access", "AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNotificationResource", "AdminRedirectResource", "AdminTenantResource", "FieldAttrs", "ActivitiesCollection", "AnomaliesCollection", "TipsCollection", "JobsAuditLog", "AdminSubmissionStatusResource", function($q, $rootScope, Access, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNotificationResource, AdminRedirectResource, AdminTenantResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipsCollection, JobsAuditLog, AdminSubmissionStatusResource) {
+      return ["$q", "$rootScope", "Access", "AdminAuditLogResource", "AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNotificationResource", "AdminRedirectResource", "AdminTenantResource", "FieldAttrs", "TipsCollection", "JobsAuditLog", "AdminSubmissionStatusResource", function($q, $rootScope, Access, AdminAuditLogResource, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNotificationResource, AdminRedirectResource, AdminTenantResource, FieldAttrs, TipsCollection, JobsAuditLog, AdminSubmissionStatusResource) {
         var resourcesPromises = {
+          auditlog: function() { return AdminAuditLogResource.query().$promise; },
           node: function() { return AdminNodeResource.get().$promise; },
           contexts: function() { return AdminContextResource.query().$promise; },
           field_attrs: function() { return FieldAttrs.get().$promise; },
@@ -122,8 +123,6 @@ var GL = angular.module("GL", [
           notification: function() { return AdminNotificationResource.get().$promise; },
           redirects: function() { return AdminRedirectResource.query().$promise; },
           tenants: function() { return AdminTenantResource.query().$promise; },
-          activities: function() { return ActivitiesCollection.query().$promise; },
-          anomalies: function() { return AnomaliesCollection.query().$promise; },
           tips: function() { return TipsCollection.query().$promise; },
           jobs: function() { return JobsAuditLog.query().$promise; },
           questionnaires: function() { return AdminQuestionnaireResource.query().$promise; },
@@ -325,7 +324,7 @@ var GL = angular.module("GL", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["node", "activities", "anomalies", "jobs", "tips", "users"])
+          resources: fetchResources("admin", ["auditlog", "node", "jobs", "tips", "users"])
         }
       }).
       when("/admin/sites", {

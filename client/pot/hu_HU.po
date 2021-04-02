@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
-"Last-Translator: zala krisztina <zalakri@gmail.com>\n"
+"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -352,12 +352,6 @@ msgstr "Trigger kérdés"
 msgid "Triggered by score:"
 msgstr "Trigger érték:"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Üzenet, ami a beküldés állapota oldal tetején kerül megjelenítésre"
-
-msgid "Password strength:"
-msgstr "Jelszó erősség:"
-
 msgid "Weak"
 msgstr "Gyenge"
 
@@ -378,21 +372,6 @@ msgstr "Email értesítések kikapcsolása"
 
 msgid "Turn on email notifications"
 msgstr "Email értesítések bekapcsolása"
-
-msgid "Failed logins"
-msgstr "Sikertelen belépések"
-
-msgid "Successful logins"
-msgstr "Sikeres belépések"
-
-msgid "Started submissions"
-msgstr "Elkezdett beadványok"
-
-msgid "Completed submissions"
-msgstr "Befejezett beadványok"
-
-msgid "Failed submissions"
-msgstr "Sikertelen beküldések"
 
 msgid "Input validation"
 msgstr "Bevitel ellenőrzések"
@@ -557,11 +536,8 @@ msgstr "Adószám"
 msgid "Tax code"
 msgstr "Adókód"
 
-msgid "Are you a whistleblower?"
-msgstr "Szivárogtatni szeretne? Közérdekű bejelentést szeretne tenni?"
-
-msgid "Blow the whistle"
-msgstr "közérdekű bejelentést teszek"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Továblépés előtt kérjük, állítson be új jelszót"
@@ -679,6 +655,9 @@ msgstr "Pontozási rendszer engedélyezése"
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "A következő weboldalak számára engedélyezett a platform iframe-ként embeddelése"
+
 msgid "Logging level"
 msgstr "Log szint"
 
@@ -714,20 +693,14 @@ msgstr "megabájt"
 msgid "percentage"
 msgstr "százalék"
 
-msgid "Stats of the week:"
-msgstr "A hét statisztikái"
+msgid "Type"
+msgstr "Típus"
 
-msgid "Event ID"
-msgstr "Esemény ID"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "Idő"
-
-msgid "Event"
-msgstr "Esemény"
-
-msgid "Response time"
-msgstr "Válaszidő"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "Azonosító"
@@ -752,12 +725,6 @@ msgstr "Kapcsolat"
 
 msgid "Whistleblower's last access"
 msgstr "A bejelentő utolsó belépési időpontja"
-
-msgid "Alarm level"
-msgstr "Riasztási szint"
-
-msgid "Events"
-msgstr "Események"
 
 msgid "Substatuses"
 msgstr "Alstátuszok"
@@ -852,9 +819,6 @@ msgstr "Leírás"
 msgid "Questionnaire"
 msgstr "Kérdőívek"
 
-msgid "Additional questionnaire"
-msgstr "További kérdőívek"
-
 msgid "Recipients"
 msgstr "Címzettek"
 
@@ -897,6 +861,9 @@ msgstr "Engedélyezi a bejelentőknek, hogy mellékleteket adjanak hozzá már l
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Tegye lehetővé, hogy a címzettek feltöltsenek fájlokat a bejelentő számára"
 
+msgid "Additional questionnaire"
+msgstr "További kérdőívek"
+
 msgid "Scoring system options"
 msgstr "Pontozási rendszer opciók"
 
@@ -917,9 +884,6 @@ msgstr "Csak olyan esetekben adjon visszaigazolást, ha eléri ezt a pontszámot
 
 msgid "Software version:"
 msgstr "Szoftver verzió:"
-
-msgid "An update is available:"
-msgstr "Frissítés elérhető:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Hozzáférés korlátozása bizonyos IP címekre"
@@ -1031,9 +995,6 @@ msgstr "Auto-megújítás"
 msgid "Tor Onion Service"
 msgstr "Tor Onion szolgáltatás"
 
-msgid "Tor Browser download link"
-msgstr "Tor böngésző letöltési link"
-
 msgid "Anonymize outgoing connections"
 msgstr "Kimenő kapcsolatok anonimizálása"
 
@@ -1088,9 +1049,6 @@ msgstr "Sablon"
 msgid "Question"
 msgstr "kérdés"
 
-msgid "Type"
-msgstr "Típus"
-
 msgid "Single-line text input"
 msgstr "Egysoros szövegbevitel"
 
@@ -1141,12 +1099,6 @@ msgstr "Több fájlos feltöltések fogadása"
 
 msgid "Accept multiple answers"
 msgstr "Több válasz fogadása"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Tipp mutatása a gombon egy további válasz hozzáadásáért"
-
-msgid "Encrypt"
-msgstr "Titkosítás"
 
 msgid "Template override"
 msgstr "Template felülírása"
@@ -1220,26 +1172,11 @@ msgstr "Esetkezelés"
 msgid "Network settings"
 msgstr "Hálózati beállítások"
 
-msgid "Mode:"
-msgstr "Mód:"
-
-msgid "Root domain used for secondary sites"
-msgstr "Gyökér domain használt a másodlagos oldalakhoz"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Az első oldalt kizárólag adminisztratív célokra használja."
-
-msgid "Enable multi-site login"
-msgstr "Multi-site login engedélyezése"
-
-msgid "Allow users to sign up"
-msgstr "Felhasználók feliratkozásának engedélyezése"
-
-msgid "Enable terms of service"
-msgstr "Felhasználási feltételek engedélyezése"
-
 msgid "Sites"
 msgstr "Weboldalak"
+
+msgid "Mode:"
+msgstr "Mód:"
 
 msgid "Active"
 msgstr "Aktív"
@@ -1255,6 +1192,21 @@ msgstr "Aldomain"
 
 msgid "Creation date:"
 msgstr "Létrehozás dátuma:"
+
+msgid "Root domain used for secondary sites"
+msgstr "Gyökér domain használt a másodlagos oldalakhoz"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Az első oldalt kizárólag adminisztratív célokra használja."
+
+msgid "Enable multi-site login"
+msgstr "Multi-site login engedélyezése"
+
+msgid "Allow users to sign up"
+msgstr "Felhasználók feliratkozásának engedélyezése"
+
+msgid "Enable terms of service"
+msgstr "Felhasználási feltételek engedélyezése"
 
 msgid "Send an account activation link to the user."
 msgstr "Felhasználói aktivációs link küldése"
@@ -1642,6 +1594,9 @@ msgstr "Fájl feltöltése:"
 msgid "Logout"
 msgstr "Kilépés"
 
+msgid "An update is available:"
+msgstr "Frissítés elérhető:"
+
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
@@ -1869,35 +1824,14 @@ msgstr "Születési idő"
 msgid "Place of birth"
 msgstr "Születési hely"
 
-msgid "Social security number"
-msgstr "Személyi azonosító jel"
-
-msgid "Residence"
-msgstr "Lakóhely"
-
 msgid "Zip code / Postal code"
 msgstr "Irányítószám"
 
 msgid "Province"
 msgstr "Tartomány"
 
-msgid "Current job title"
-msgstr "Jelenlegi munka megnevezése"
-
-msgid "Current job responsibility (role)"
-msgstr "Jelenlegi munka felelőssége (szerepe)"
-
-msgid "Current organization unit and job location"
-msgstr "Jelenlegi szervezeti egység és munka helye"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Munka megnevezése a bejelentett tény idejében"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Munka felelőssége (szerepe) a bejelentett tény idejében"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Szervezeti egység és munka helye a bejelentett tény idejében"
+msgid "Country"
+msgstr "Ország"
 
 msgid "Dear {RecipientName},"
 msgstr "Kedves {RecipientName},"
@@ -2065,9 +1999,6 @@ msgstr "Címke: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "Státusz: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "Kontextus: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

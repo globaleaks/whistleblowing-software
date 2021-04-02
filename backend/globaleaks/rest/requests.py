@@ -28,7 +28,6 @@ https_url_regexp = r'^https://([0-9a-z\-]+)\.(.*)$'
 https_url_regexp_or_empty = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
 tip_operation_regexp = r'^(postpone|set)$'
 short_text_regexp = r'^.{1,255}$'
-domain_list_regexp = r'^((([a-z0-9\.]+,)*[a-z0-9\.]+)|)$'
 languages_list_regexp = r'^([a-zA-Z-]+)?(,\s*[a-zA-Z-]+)*$'
 
 token_regexp = r'([a-z0-9]{64})'
@@ -224,6 +223,7 @@ AdminNodeDesc = {
     'https_whistleblower': bool,
     'https_receiver': bool,
     'https_preload': bool,
+    'frame_ancestors': str,
     'can_postpone_expiration': bool,
     'can_delete_submission': bool,
     'allow_indexing': bool,
@@ -329,13 +329,11 @@ AdminFieldDesc = {
     'hint': str,
     'placeholder': str,
     'multi_entry': bool,
-    'multi_entry_hint': str,
     'x': int,
     'y': int,
     'width': int,
     'required': bool,
     'preview': bool,
-    'encrypt': bool,
     'type': field_type_regexp,
     'attrs': dict,
     'options': [AdminFieldOptionDesc],
@@ -398,7 +396,6 @@ AdminContextDesc = {
     'score_receipt_text_h': str,
     'score_threshold_receipt': int,
     'order': int,
-    'status_page_message': str,
     'show_steps_navigation_interface': bool,
     'show_receivers_in_alphabetical_order': bool,
     'questionnaire_id': key_regexp_or_empty,
@@ -450,6 +447,7 @@ NodeDesc = {
     'https_custodian': bool,
     'https_whistleblower': bool,
     'https_receiver': bool,
+    'frame_ancestors': str,
     'can_postpone_expiration': bool,
     'can_delete_submission': bool,
     'allow_indexing': bool,
@@ -533,7 +531,7 @@ ContextDesc = {
     'enable_two_way_messages': bool,
     'enable_attachments': bool,
     'show_receivers_in_alphabetical_order': bool,
-    'picture': str
+    'picture': bool
 }
 
 ContextCollectionDesc = [ContextDesc]

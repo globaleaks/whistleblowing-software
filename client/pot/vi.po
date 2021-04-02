@@ -7,6 +7,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
+# Ngoc <ngoc@simplysecure.org>, 2021
 # Anh Phan <vietnamesel10n@gmail.com>, 2013
 # Anh Phan <vietnamesel10n@gmail.com>, 2013
 # Trang Bui <trangbui257@gmail.com>, 2020
@@ -14,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
-"Last-Translator: Trang Pham Thu <p.thutrang218@gmail.com>\n"
+"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"Last-Translator: Ngoc <ngoc@simplysecure.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -344,12 +345,6 @@ msgstr "câu hỏi kích hoạt"
 msgid "Triggered by score:"
 msgstr "Được kích hoạt bởi điểm số"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "Tin nhắn hiển thị trên đầu trang trạng thái của báo cáo"
-
-msgid "Password strength:"
-msgstr "Mật khẩu mạnh:"
-
 msgid "Weak"
 msgstr "Yếu"
 
@@ -370,21 +365,6 @@ msgstr "Im lặng thông báo email"
 
 msgid "Turn on email notifications"
 msgstr "Bật thông báo email"
-
-msgid "Failed logins"
-msgstr "Đăng nhập không thành công"
-
-msgid "Successful logins"
-msgstr "Đăng nhập thành công"
-
-msgid "Started submissions"
-msgstr "Bắt đầu gửi"
-
-msgid "Completed submissions"
-msgstr "Gửi hoàn thành"
-
-msgid "Failed submissions"
-msgstr "Gửi thất bại"
 
 msgid "Input validation"
 msgstr "Xác nhận thông tin nhập"
@@ -549,11 +529,8 @@ msgstr "Số VAT"
 msgid "Tax code"
 msgstr "Mã số thuế"
 
-msgid "Are you a whistleblower?"
-msgstr "Bạn có phải là người tố giác?"
-
-msgid "Blow the whistle"
-msgstr "Tố giác"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Trước khi tiếp tục, hãy cài mật khẩu mới"
@@ -595,7 +572,7 @@ msgid "Enable administrators to change user passwords"
 msgstr "Cho phép các quản trị viên thay đổi mật khẩu người dùng"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
+msgstr "Quản trị viên có quyền thay đổi mật mã người dùng"
 
 msgid "Enable multisite feature"
 msgstr "Cho phép tính năng đa trang web"
@@ -635,7 +612,7 @@ msgid "Show contexts in alphabetical order"
 msgstr "Hiện bối cảnh theo thứ tự ABC"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr "Không để lộ tên người dùng "
 
 msgid "Size limit for file attachments"
 msgstr "Kích thước giới hạn cho tập tin đính kèm"
@@ -670,6 +647,9 @@ msgstr "Cho phép hệ thống tính điểm"
 
 msgid "Enable private annotations"
 msgstr ""
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "Cho phép các trang web sau nhúng nền tảng vào trong iframes"
 
 msgid "Logging level"
 msgstr "Mức đăng nhập"
@@ -706,20 +686,14 @@ msgstr "megabytes"
 msgid "percentage"
 msgstr "phần trăm"
 
-msgid "Stats of the week:"
-msgstr "Thống kê của tuần:"
+msgid "Type"
+msgstr "Loại"
 
-msgid "Event ID"
-msgstr "tổ chức sự kiện ID"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "Thời gian"
-
-msgid "Event"
-msgstr "Biến cố"
-
-msgid "Response time"
-msgstr "Thời gian đáp ứng"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr "Số"
@@ -744,12 +718,6 @@ msgstr "liên quan"
 
 msgid "Whistleblower's last access"
 msgstr "Lần truy cập WB cuối cùng"
-
-msgid "Alarm level"
-msgstr "mức báo động"
-
-msgid "Events"
-msgstr "Sự kiện"
 
 msgid "Substatuses"
 msgstr "Trạng thái phụ"
@@ -844,9 +812,6 @@ msgstr "Mô tả"
 msgid "Questionnaire"
 msgstr "Bảng câu hỏi"
 
-msgid "Additional questionnaire"
-msgstr "Bảng câu hỏi bổ sung "
-
 msgid "Recipients"
 msgstr "Người nhận"
 
@@ -889,6 +854,9 @@ msgstr "Cho phép người tố giác thêm tệp đính kèm vào các báo cá
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Cho phép người nhận tải tệp tin lên cho người tố giác"
 
+msgid "Additional questionnaire"
+msgstr "Bảng câu hỏi bổ sung "
+
 msgid "Scoring system options"
 msgstr "Tùy chọn hệ thống chấm điểm"
 
@@ -909,9 +877,6 @@ msgstr "Chỉ định biên nhận cho các báo cáo đạt điểm:"
 
 msgid "Software version:"
 msgstr "Phiên bản phần mềm:"
-
-msgid "An update is available:"
-msgstr "Bản cập nhật đã có sẵn"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Hạn chế quyền truy cập vào các địa chỉ IP cụ thể"
@@ -1023,9 +988,6 @@ msgstr "Đổi mới tự động"
 msgid "Tor Onion Service"
 msgstr "Dịch vụ của Tor Onion"
 
-msgid "Tor Browser download link"
-msgstr "Liên kết tải Top Browser"
-
 msgid "Anonymize outgoing connections"
 msgstr "Ẩn danh các kết nối đi"
 
@@ -1080,9 +1042,6 @@ msgstr "Bản mẫu"
 msgid "Question"
 msgstr "Câu hỏi"
 
-msgid "Type"
-msgstr "Loại"
-
 msgid "Single-line text input"
 msgstr "Nhập văn bản một dòng"
 
@@ -1133,12 +1092,6 @@ msgstr "Chấp nhận nhiều tập tin tải lên"
 
 msgid "Accept multiple answers"
 msgstr "Chấp nhận nhiều câu trả lời"
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "Gợi ý được hiển thị trên nút để thêm một câu trả lời khác"
-
-msgid "Encrypt"
-msgstr "Mã hóa"
 
 msgid "Template override"
 msgstr "Ghi đè mẫu"
@@ -1212,26 +1165,11 @@ msgstr "Quản lý hồ sơ"
 msgid "Network settings"
 msgstr "Cài đặt mạng"
 
-msgid "Mode:"
-msgstr "Trạng thái:"
-
-msgid "Root domain used for secondary sites"
-msgstr "Tên miền gốc được sử dụng cho các trang web thứ cấp"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Chỉ sử dụng trang web đầu tiên cho mục đích quản trị"
-
-msgid "Enable multi-site login"
-msgstr "Cho phép đăng nhập nhiều trang"
-
-msgid "Allow users to sign up"
-msgstr "Cho phép người dùng đăng kí"
-
-msgid "Enable terms of service"
-msgstr "Cho phép điều khoản dịch vụ"
-
 msgid "Sites"
 msgstr "Các trang web"
+
+msgid "Mode:"
+msgstr "Trạng thái:"
 
 msgid "Active"
 msgstr "Hoạt động"
@@ -1247,6 +1185,21 @@ msgstr "Tên miền phụ"
 
 msgid "Creation date:"
 msgstr "Ngày thành lập"
+
+msgid "Root domain used for secondary sites"
+msgstr "Tên miền gốc được sử dụng cho các trang web thứ cấp"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Chỉ sử dụng trang web đầu tiên cho mục đích quản trị"
+
+msgid "Enable multi-site login"
+msgstr "Cho phép đăng nhập nhiều trang"
+
+msgid "Allow users to sign up"
+msgstr "Cho phép người dùng đăng kí"
+
+msgid "Enable terms of service"
+msgstr "Cho phép điều khoản dịch vụ"
 
 msgid "Send an account activation link to the user."
 msgstr "Gửi liên kết kích hoạt tài khoản người dùng"
@@ -1297,7 +1250,7 @@ msgid "Allow the recipient to delete reports"
 msgstr "Cho phép người nhận xóa bài nộp"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "Cho quản trị viên quyền truy cập đến những tính năng sau: "
 
 msgid "Request date"
 msgstr "Ngày yêu cầu"
@@ -1309,7 +1262,7 @@ msgid "Authorization"
 msgstr "Ủy quyền"
 
 msgid "Requests"
-msgstr ""
+msgstr "Yêu cầu"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Liên kết xác nhận không chính xác hoặc đã hết hạn"
@@ -1459,7 +1412,7 @@ msgstr "Có vẻ như bạn đang duyệt trang web này mà không có bất k�
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr ""
+msgstr "Để bảo vệ danh tính của mình, bạn nên truy cập trang web này qua trình duyệt Tor Browser. "
 
 msgid "Download the Tor Browser"
 msgstr "Tải về các trình duyệt Tor"
@@ -1538,7 +1491,7 @@ msgid "Investigative journalism"
 msgstr "Báo chí điều tra"
 
 msgid "Civic activism"
-msgstr "Hoạt động dân sự"
+msgstr "Hoạt động xã hội dân sự"
 
 msgid "Submit"
 msgstr "Đệ trình"
@@ -1614,7 +1567,7 @@ msgid ""
 msgstr "Bạn có chắc chắn rằng bạn muốn hoãn ngày hết hạn cho các báo cáo được chọn không?"
 
 msgid "Questionnaire answers"
-msgstr "Đáp án cho bảng hỏi"
+msgstr "Câu trả lời cho bảng hỏi"
 
 msgid "Step"
 msgstr "Bước đi"
@@ -1633,6 +1586,9 @@ msgstr "Tải lên tập tin:"
 
 msgid "Logout"
 msgstr "Đăng xuất"
+
+msgid "An update is available:"
+msgstr "Bản cập nhật đã có sẵn"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1722,7 +1678,7 @@ msgid "Select the context of your report:"
 msgstr "Chọn ngữ cảnh cho báo cáo của bạn:"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "Câu trả lời quá ngắn. "
 
 msgid "The specified input is not valid."
 msgstr "Đầu vào được chỉ định là không hợp lệ."
@@ -1861,35 +1817,14 @@ msgstr "Ngày sinh"
 msgid "Place of birth"
 msgstr "Nơi sinh"
 
-msgid "Social security number"
-msgstr "số an sinh xã hội"
-
-msgid "Residence"
-msgstr "Nơi cư trú"
-
 msgid "Zip code / Postal code"
 msgstr "Zip code / Mã bưu chính"
 
 msgid "Province"
 msgstr "Địa bàn tỉnh"
 
-msgid "Current job title"
-msgstr "Công việc hiện tại"
-
-msgid "Current job responsibility (role)"
-msgstr "Vai trò công việc hiện tại"
-
-msgid "Current organization unit and job location"
-msgstr "Tổ chức đang làm việc và địa điểm công việc"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Chức danh công việc tại thời điểm báo cáo"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Vị trí công việc tại thời điểm báo cáo"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Tổ chức đang làm việc và vị trí công việc tại thời điểm báo cáo"
+msgid "Country"
+msgstr "Quốc gia"
 
 msgid "Dear {RecipientName},"
 msgstr "Kính gửi {RecipientName}"
@@ -2057,9 +1992,6 @@ msgstr "Nhãn: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "Trạng thái: {TipStatus}"
-
-msgid "Context: {ContextName}"
-msgstr "Bối cảnh: {ContextName}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

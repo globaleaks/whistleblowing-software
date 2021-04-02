@@ -198,9 +198,15 @@ module.exports = function(grunt) {
               }
             },
             {
-              pattern: /(0056b3|007bff|17a2b8|28a745|34ce57)/ig,
+              pattern: /(0056b3|17a2b8|28a745|34ce57)/ig,
               replacement: function () {
                 return "377ABC";
+              }
+            },
+            {
+              pattern: /007bff/ig,
+              replacement: function () {
+                return "2066A2";
               }
             },
             {
@@ -397,11 +403,13 @@ module.exports = function(grunt) {
           replacements: [
             {
               pattern: "<link rel=\"stylesheet\" href=\"css/styles.css\">",
-              replacement: "<link rel=\"stylesheet\" href=\"css/styles.min.css\">"
+              replacement: ""
             },
             {
               pattern: "<script src=\"js/scripts.js\"></script>",
-              replacement: "<script src=\"js/scripts.min.js\"></script>"
+              replacement: function() {
+                return fs.readFileSync("tmp/loader.html");
+              }
             }
           ]
         }
@@ -830,7 +838,7 @@ module.exports = function(grunt) {
 
     var translate_field = function(field) {
       var i;
-      translate_object(field, ["label", "description", "hint", "multi_entry_hint"]);
+      translate_object(field, ["label", "description", "hint"]);
 
       for (i in field["attrs"]) {
         translate_object(field["attrs"][i], ["value"]);

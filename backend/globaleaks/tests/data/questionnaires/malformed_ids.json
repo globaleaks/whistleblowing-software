@@ -48,9 +48,6 @@
             "en": "alert('hello there!')"
           },
           "multi_entry": false,
-          "multi_entry_hint": {
-            "en": "alert('hello there!')"
-          },
           "options": [
             {
               "id": "dddddd01-8d44-ffff-dddd-fbd9eb5cb44b",
@@ -91,7 +88,6 @@
           ],
           "preview": true,
           "required": true,
-          "encrypt": true,
           "step_id": "ffffffff-ffff-ffff-ffff-ffffffffffff",
           "template_id": "",
           "triggered_by_options": [],
@@ -130,13 +126,9 @@
             "en": "attach something"
           },
           "multi_entry": true,
-          "multi_entry_hint": {
-            "en": ""
-          },
           "options": [],
           "preview": false,
           "required": false,
-          "encrypt": true,
           "step_id": "3aefbee3-cca3-4db2-b9f9-b22f64fc186e",
           "template_id": "",
           "triggered_by_options": [],

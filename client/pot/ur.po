@@ -8,13 +8,14 @@
 # iram hassan <iramhassan136@gmail.com>, 2020
 # Muhammad Ishaq <ishaq@kahaf.com>, 2014
 # Muhammad Ishfaq Khan <ishfaqkhanniazi@gmail.com>, 2014
+# Shaheer Munir Shah <shaheer@transparency.org.pk>, 2021
 # SG, 2014-2015
 # Umar Hayat, 2016
 # Umar Hayat, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-12-10 20:48+0000\n"
+"PO-Revision-Date: 2021-03-28 16:19+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +34,7 @@ msgid "Theme customization"
 msgstr "ٹیمپلیٹ کی تخصیص کاری"
 
 msgid "Languages"
-msgstr "Languages"
+msgstr "زبانیں"
 
 msgid "Text customization"
 msgstr "متن کی تخصیص"
@@ -344,12 +345,6 @@ msgstr "ٹریگر سوال"
 msgid "Triggered by score:"
 msgstr "سکور سے متحرک"
 
-msgid "Message shown on top of the status page of the report"
-msgstr "پیغام جمع کرانے کی حیثیت صفحے کے سب سے اوپر پر دکھایا گیا"
-
-msgid "Password strength:"
-msgstr "پاس ورڈ کی مظبوطی"
-
 msgid "Weak"
 msgstr "کمزور"
 
@@ -370,21 +365,6 @@ msgstr "خاموش ای میل کی اطلاعات"
 
 msgid "Turn on email notifications"
 msgstr "ای میل کی اطلا عات کو آن کریں"
-
-msgid "Failed logins"
-msgstr "ناکام لاگ اِن"
-
-msgid "Successful logins"
-msgstr "کامیاب لاگ اِن "
-
-msgid "Started submissions"
-msgstr "گذارشات داخل کرنے کی ابتدا"
-
-msgid "Completed submissions"
-msgstr "جمع کرنے کا عمل مکمل ہوا"
-
-msgid "Failed submissions"
-msgstr "حتمی گذارشات"
 
 msgid "Input validation"
 msgstr "ان پٹ کی توثیق"
@@ -549,11 +529,8 @@ msgstr ""
 msgid "Tax code"
 msgstr ""
 
-msgid "Are you a whistleblower?"
-msgstr "کیا آپ ایک whistleblower ہیں؟"
-
-msgid "Blow the whistle"
-msgstr "سیٹی بجائیے"
+msgid "File a report"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr ""
@@ -671,6 +648,9 @@ msgstr ""
 msgid "Enable private annotations"
 msgstr ""
 
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr ""
+
 msgid "Logging level"
 msgstr ""
 
@@ -706,20 +686,14 @@ msgstr "میگا بائٹ"
 msgid "percentage"
 msgstr "فیصد"
 
-msgid "Stats of the week:"
-msgstr " اس ہفتے کے اعدادوشمار"
+msgid "Type"
+msgstr "قسم"
 
-msgid "Event ID"
-msgstr "واقعہ کی شناخت"
+msgid "Severity"
+msgstr ""
 
-msgid "Time"
-msgstr "وقت"
-
-msgid "Event"
-msgstr "واقعہ"
-
-msgid "Response time"
-msgstr "ردِ عمل کا وقت"
+msgid "Object"
+msgstr ""
 
 msgid "ID"
 msgstr ""
@@ -744,12 +718,6 @@ msgstr "کنکشن"
 
 msgid "Whistleblower's last access"
 msgstr ""
-
-msgid "Alarm level"
-msgstr "الارم کی سطح"
-
-msgid "Events"
-msgstr "مواقع یا ایونٹس "
 
 msgid "Substatuses"
 msgstr ""
@@ -844,9 +812,6 @@ msgstr "وضاحت"
 msgid "Questionnaire"
 msgstr "سوالنامہ"
 
-msgid "Additional questionnaire"
-msgstr ""
-
 msgid "Recipients"
 msgstr "وصول کنندگان"
 
@@ -889,6 +854,9 @@ msgstr "مخبر کو موجودہ گذارشات پر منسلکات شامل �
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
+msgid "Additional questionnaire"
+msgstr ""
+
 msgid "Scoring system options"
 msgstr ""
 
@@ -909,9 +877,6 @@ msgstr ""
 
 msgid "Software version:"
 msgstr "سافٹ ویئر ورژن:"
-
-msgid "An update is available:"
-msgstr ""
 
 msgid "Restrict access to specific IP addresses"
 msgstr ""
@@ -1023,9 +988,6 @@ msgstr ""
 msgid "Tor Onion Service"
 msgstr ""
 
-msgid "Tor Browser download link"
-msgstr ""
-
 msgid "Anonymize outgoing connections"
 msgstr ""
 
@@ -1080,9 +1042,6 @@ msgstr "سانچے"
 msgid "Question"
 msgstr ""
 
-msgid "Type"
-msgstr "قسم"
-
 msgid "Single-line text input"
 msgstr "ایک لائن متن کی ان پٹ"
 
@@ -1132,12 +1091,6 @@ msgid "Accept multiple file uploads"
 msgstr "ایک سے زائد فائلز اپ لوڈ کیے جانا قبول ہے"
 
 msgid "Accept multiple answers"
-msgstr ""
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "ایک اضافی جواب کے شامل کرنے کے لئے بٹن پر دکھایا اشارہ"
-
-msgid "Encrypt"
 msgstr ""
 
 msgid "Template override"
@@ -1212,25 +1165,10 @@ msgstr ""
 msgid "Network settings"
 msgstr ""
 
-msgid "Mode:"
-msgstr ""
-
-msgid "Root domain used for secondary sites"
-msgstr ""
-
-msgid "Use the first site for administrative purposes only"
-msgstr ""
-
-msgid "Enable multi-site login"
-msgstr ""
-
-msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Enable terms of service"
-msgstr ""
-
 msgid "Sites"
+msgstr ""
+
+msgid "Mode:"
 msgstr ""
 
 msgid "Active"
@@ -1246,6 +1184,21 @@ msgid "Subdomain"
 msgstr ""
 
 msgid "Creation date:"
+msgstr ""
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Send an account activation link to the user."
@@ -1623,7 +1576,7 @@ msgid "Recipient list"
 msgstr "وصول کنندہ کی فہرست"
 
 msgid "Status:"
-msgstr ""
+msgstr "حالت:"
 
 msgid "Files attached by recipients"
 msgstr ""
@@ -1633,6 +1586,9 @@ msgstr ""
 
 msgid "Logout"
 msgstr "لاگ آئوٹ"
+
+msgid "An update is available:"
+msgstr ""
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1861,35 +1817,14 @@ msgstr "تاریخِ پیدائش"
 msgid "Place of birth"
 msgstr "جاہِ پیدائیش"
 
-msgid "Social security number"
-msgstr "سوشل سیکورٹی نمبر"
-
-msgid "Residence"
-msgstr "رہائش"
-
 msgid "Zip code / Postal code"
 msgstr "زپ کوڈ / پوسٹ کوڈ"
 
 msgid "Province"
 msgstr "صوبہ"
 
-msgid "Current job title"
-msgstr "موجودہ کام کا عنوان"
-
-msgid "Current job responsibility (role)"
-msgstr "موجودہ کام کی ذمہ داری (کردار)"
-
-msgid "Current organization unit and job location"
-msgstr "موجودہ تنظیمی یونٹ اور کام کے جگہ"
-
-msgid "Job title at the time of the reported fact"
-msgstr "رپورٹ کیا اس حقیقت کے وقت جاب عنوان"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "کام کی ذمہ داری (کردار) کی خبر کے مطابق یہ حقیقت کے وقت"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "رپورٹ کیا حقیقت یہ ہے کے وقت میں تنظیم یونٹ اور کام کے محل وقوع"
+msgid "Country"
+msgstr "ملک"
 
 msgid "Dear {RecipientName},"
 msgstr "محترم{RecipientName}،"
@@ -2058,9 +1993,6 @@ msgstr "لیبل: {TipLabel}"
 msgid "Status: {TipStatus}"
 msgstr ""
 
-msgid "Context: {ContextName}"
-msgstr "سیاق و سباق: {ContextName}"
-
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
@@ -2166,7 +2098,7 @@ msgid "Activation"
 msgstr ""
 
 msgid "A software update is available."
-msgstr ""
+msgstr "ایک سافٹ ویئر اپ ڈیٹ دستیاب ہے"
 
 msgid "It is good security practice to keep the platform up to date."
 msgstr ""
@@ -2179,7 +2111,7 @@ msgstr ""
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
 "{UpdateGuideUrl}"
-msgstr ""
+msgstr "سافٹ ویئر اپ ڈیٹ سے متعلق ہدایات کے لئے ، براہ کرم ذیل میں موجود دستاویزات کا مطالع کریں: {UpdateGuideUrl}"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr ""
@@ -2188,7 +2120,7 @@ msgid "Please remember to check them before they are deleted."
 msgstr ""
 
 msgid "Some reports will expire soon"
-msgstr ""
+msgstr "کچھ رپورٹیں جلد ہی ختم ہوجائیں گی"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
@@ -2204,7 +2136,7 @@ msgid ""
 msgstr "وہ پسند کریں گے کہ آپ اس میں موجود معلومات اور مواد پر خصوصی توجہ دیجئے .اس بات کو ذہن میں رکھیں کہ whistleblowers اکثر عوامی مفاد کے لئے اعلی ذاتی خطرات میں ڈالتے ہوئے خود کو ظاہر کرتے ہیں۔اس وجہ سے انکے اس مخبری کے ساتھ فراہم کردہ مواد کو اعلی اہمیت کا حامل سمجھا جانا چاہئے."
 
 msgid "New report"
-msgstr ""
+msgstr "نئی رپورٹ"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr ""

@@ -22,9 +22,6 @@
             "en": "Would you rather?"
           },
           "multi_entry": false,
-          "multi_entry_hint": {
-            "en": ""
-          },
           "options": [
             {
               "id": "52657696-ff88-4d5c-a41c-d50956f33071",
@@ -69,7 +66,6 @@
           ],
           "preview": true,
           "required": true,
-          "encrypt": true,
           "step_id": "8b2edda9-976e-486f-8dbd-deed917ca904",
           "template_id": "",
           "triggered_by_options": [],
@@ -110,13 +106,9 @@
             "en": "attach something"
           },
           "multi_entry": true,
-          "multi_entry_hint": {
-            "en": ""
-          },
           "options": [],
           "preview": false,
           "required": false,
-          "encrypt": true,
           "step_id": "3aefbee3-cca3-4db2-b9f9-b22f64fc186e",
           "template_id": "",
           "triggered_by_options": [],

@@ -42,7 +42,7 @@ from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils import tempdict, token
-from globaleaks.utils.crypto import GCE
+from globaleaks.utils.crypto import generateRandomKey, GCE
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.utility import datetime_null, datetime_now, sum_dicts
@@ -181,8 +181,6 @@ def get_dummy_field():
         'description': 'field description',
         'hint': 'field hint',
         'multi_entry': False,
-        'multi_entry_hint': '',
-        'encrypt': True,
         'required': False,
         'attrs': {},
         'options': get_dummy_fieldoption_list(),
@@ -280,7 +278,6 @@ class MockDict:
             'enable_attachments': True,
             'enable_rc_to_wb_files': True,
             'show_receivers_in_alphabetical_order': False,
-            'status_page_message': ''
         }
 
         self.dummySubmission = {
@@ -314,6 +311,7 @@ class MockDict:
             'https_whistleblower': True,
             'https_receiver': True,
             'https_preload': True,
+            'frame_ancestors': '',
             'can_postpone_expiration': False,
             'can_delete_submission': False,
             'allow_indexing': False,
@@ -418,9 +416,8 @@ class MockDict:
             'tos2': True
         }
 
-def get_dummy_file(filename=None, content=None):
-    if filename is None:
-        filename = ''.join(chr(x) for x in range(0x400, 0x40A))
+def get_dummy_file(content=None):
+    filename = generateRandomKey()
 
     content_type = 'application/octet'
 
@@ -709,8 +706,8 @@ class TestGL(unittest.TestCase):
             'answers': answers
         })
 
-    def get_dummy_file(self, filename='', content=None):
-        return get_dummy_file(filename, content)
+    def get_dummy_file(self, content=None):
+        return get_dummy_file(content)
 
     def get_dummy_redirect(self, x=''):
         return {
@@ -915,6 +912,12 @@ class TestGLWithPopulatedDB(TestGL):
                                            'message')
 
     @inlineCallbacks
+    def perform_minimal_submission_actions(self):
+        token = self.perform_submission_start()
+        self.perform_submission_uploads(token)
+        yield self.perform_submission_actions(token)
+
+    @inlineCallbacks
     def perform_full_submission_actions(self):
         """Populates the DB with tips, comments, messages and files"""
         for x in range(self.population_of_submissions):
@@ -923,12 +926,6 @@ class TestGLWithPopulatedDB(TestGL):
             yield self.perform_submission_actions(token)
 
         yield self.perform_post_submission_actions()
-
-    @inlineCallbacks
-    def perform_minimal_submission(self):
-        token = self.perform_submission_start()
-        self.perform_submission_uploads(token)
-        yield self.perform_submission_actions(token)
 
     @transact
     def force_wbtip_expiration(self, session):
@@ -1013,7 +1010,7 @@ class TestHandler(TestGLWithPopulatedDB):
             handler.request.headers[b'x-session'] = session.id.encode()
 
         if handler.upload_handler:
-            handler.uploaded_file = self.get_dummy_file(u'upload.raw', attached_file)
+            handler.uploaded_file = self.get_dummy_file(attached_file)
 
         return handler
 

@@ -68,15 +68,11 @@ describe("verify navigation of admin sections", function() {
     await browser.gl.utils.takeScreenshot("admin/anomaly_thresholds.png");
 
     await element.all(by.cssContainingText("a", "Audit log")).first().click();
-    await browser.gl.utils.takeScreenshot("admin/audit_log_stats.png");
-    await element.all(by.cssContainingText("a", "Activities")).first().click();
-    await browser.gl.utils.takeScreenshot("admin/audit_log_activities.png");
+    await browser.gl.utils.takeScreenshot("admin/audit_log.png");
     await element.all(by.cssContainingText("a", "Users")).get(1).click();
     await browser.gl.utils.takeScreenshot("admin/audit_log_users.png");
     await element.all(by.cssContainingText("a", "Reports")).first().click();
     await browser.gl.utils.takeScreenshot("admin/audit_log_reports.png");
-    await element.all(by.cssContainingText("a", "Anomalies")).first().click();
-    await browser.gl.utils.takeScreenshot("admin/audit_log_anomalies.png");
     await element.all(by.cssContainingText("a", "Scheduled jobs")).first().click();
     await browser.gl.utils.takeScreenshot("admin/audit_log_scheduled_jobs.png");
   });
