@@ -1,3 +1,19 @@
+Changes in version 4.2.0
+    Optimize database removing redundant previous overengineering
+    Prevent that the submission status could be reverted to new
+    Improve resiliency adding limits to the numer of emails and files
+    processed in a single job cycle
+    Improve resiliency on possible failures on mail schedule due to
+    single errors in mail generations
+    Make it possible to disable new submissions without preventing
+    whistleblowers access
+    Revise implementation of Permission-Policy header
+    Fix issues #2970, #2978, #2979, #2981
+    Backport Twisted #9410 from 19.7.0
+    Update npm dependencies to latest versions
+    Add Macedonian translation
+    Update Translations
+
 Changes in version 4.1.17
     Fix issue #2970
     Revise access log format to keep it standard
