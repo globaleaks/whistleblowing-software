@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: python-debian
+Version: 0.1.35
+Summary: Debian package related modules
+Home-page: https://salsa.debian.org/python-debian-team/python-debian
+Maintainer: Debian python-debian Maintainers
+Maintainer-email: pkg-python-debian-maint@lists.alioth.debian.org
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: chardet
+Requires-Dist: six
+
+UNKNOWN
+
+

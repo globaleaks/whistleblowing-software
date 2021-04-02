@@ -1,9 +1,10 @@
 # -*- coding: utf-8
-import os
 import re
-import sys
 
 class UserDetailsFilter:
+    """
+    Filters the text for any user sensitive information.
+    """
     def __init__(self, text):
         self._text = text
 

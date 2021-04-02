@@ -1,0 +1,138 @@
+ . strip OKs off the end of responses in TorControlProtocol -- should
+   simplify the rest, and testing. See FIXME in at least torinfo.py:89
+   or so
+
+ . look at get_info versus get_info_raw for entry_guards: parse
+   keywords needs to be more smarterer
+
+ . looks like ~41 hours to do full scan of 850321 combinations, at 3.5
+   seconds per combo and 20 outstanding requests (i.e. 20 in parallel at
+   3.5 seconds each).
+
+ . should handle the case when routers are added/delete in
+   exit-scanning thing. Maybe/probably add an IRouterListener that has
+   callbacks for new and removed routers?
+
+ . need test for authentication (and other) bootstrap errors -- does
+   the Deferred from build_tor_connection get the errbacks properly?
+
+ . If I want to depend on sphinx-contrib's programoutput then I can
+   add this to README to get live results from the tests/coverage
+   things:
+
+      .. command-output:: make test
+	  :ellipsis: 0,-5
+	  :shell:
+	  :nostderr:
+
+      .. command-output:: make coverage
+	  :ellipsis: 0,-5
+	  :shell:
+	  :nostderr:
+
+   This also needs a couple changes to doc, in Makefile:
+
+      test:
+	     cd .. && make test
+      coverage:
+	     cd .. && make coverage
+
+   and to conf.py, adding to extensions:
+
+      'sphinxcontrib.programoutput'
+
+ . if we're going with "attribute-style access for everything" then
+   also basically everything should be audited for
+   this:
+
+      . TorControlProtocol needs some things marked read-only?
+      . TorState.set_attacher
+
+ . put the nginx config for the hidden service somewhere in git; need
+   to remember to change the redirect for "-latest" if releasing a new
+   version...
+
+ . Looking briefly at "chutney" (tor test-network setup thing) it
+   seems to me an improvement on the templates would be: use
+   txtor.TorConfig in a mode that allows one to set objects by keys
+   (including hidden services, lists-of-strings, etc) and somewhere else
+   is code which can start Tor based on a TorConfig -- *after* it
+   connects, it does validation on the TorConfig by going through all
+   the now-valid Parser objects asking them to validate the
+   options. Then, instead of templates which "inherit" from each other
+   and have an environment to set up, you have Python types (following
+   Builder pattern) which represent the Tors you want to set up so you
+   have a Relay class that has a subclass Authority whith the bonus it
+   can override anything in Relay. They'd all implement a method in
+   something like ITorConfigBuilder that asks it to return a config
+   give a Node object (for example, FIXME: look up Builder again).
+   For example:
+
+      class ITorConfigBuilder(Interface):
+	  def build_config_for(self, node):
+	      """return a TorConfig object for the given Node instance"""
+
+      class Relay:
+	  implements(ITorConfigBuilder)
+	  def build_config_for(self, node):
+	      config = txtor.TorConfig()
+	      config.SocksPort = 0
+	      config.OrPort = node.or_port
+	      config.Address = node.ip
+	      config.DirPort = node.dir_port
+	      return config
+
+      class Authority(Relay):
+	  implements(ITorConfigBuilder)
+	  def build_config_for(self, node):
+	      config = super(self, Relay).build_config_for(node)
+	      config.AuthoritativeDirectory 1
+	      config.V3AuthoritativeDirectory 1
+	      config.ContactInfo = '%d@test.test' % node.number
+	      config.ExitPolicy = 'reject *:*'
+	      return config
+
+ . double-double check that i have a utest covering the case of
+   multi-line 650 in the midst of a multi-line response OR re-verify
+   that this can never happen -- the FSM is right now accumulating in
+   only one buffer I believe (after simplifying in commit
+   a62dfe0a1511eae717788732de54269920206015)
+
+ . should support CIRC_MINOR event, too (in TorState)
+
+ . $B56F17701DC248F8C42150942BDF7A7FAD6C6FC6~Thaolia is in one of my
+   circuits, but not showing up in ns/all (nor via ns/id/XX). talked
+   about it in #tor a little, but no conclusion. also tried starting
+   up a separate Tor and that one also failed to find the key. (And
+   possibly triggered my main Tor failing to COOKIE authenticate --
+   probably had the cookie file overwritten?)
+
+ - it seems that streams aren't getting set up right if there is
+   exactly one right now in tor? via telnet (url changed):
+
+getinfo stream-status
+250-stream-status=123 SUCCEEDED 496 www.example.com:6667
+250 OK
+
+   fixed, but is this the same for circuits? Probably but hard to have
+   precisely one circuit (still, should utest + fix)
+
+ . ICircuitListener and IStreamListener are pretty complicated
+   interfaces; might be better to make a simpler interface that is more
+   like "pull" Observer pattern with "stateChanged(newstate, **kwargs)"
+   or something and an interface on TorController to listen for newly
+   created streams and circuits. Could still provide the
+   complicated-interface via a multiplex that implemented
+   IStreamListener and fanned out to the complicated states.
+
+   This would ease live for clients merely wanting to know, e.g., when
+   there are new circuits (or streams). (Instead, or as a stopgap,
+   I've provided StreamListenerMixin and CircuitListenerMixin with
+   empty default methods).
+
+ . need to interrogate Tor for its bootstrap state when connection, as
+   per control-spec.txt
+   (e.g. post_boostrap callback shouldn't be issued until both the
+   TorController are up and running AND Tor is fully bootstrapped, if
+   we connected while it was still starting up). What to do if Tor
+   starts bootstrapping (again) while we're running?

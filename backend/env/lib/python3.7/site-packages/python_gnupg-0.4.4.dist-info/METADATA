@@ -1,0 +1,4 @@
+Metadata-Version: 1.1
+Name: python-gnupg
+Version: 0.4.4
+Summary: A wrapper for the Gnu Privacy Guard (GPG or GnuPG)

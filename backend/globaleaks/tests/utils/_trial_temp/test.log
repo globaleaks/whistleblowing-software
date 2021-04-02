@@ -1,0 +1,5 @@
+2021-04-02 12:45:53+0000 [-] Log opened.
+2021-04-02 12:45:53+0000 [-] --> backend.globaleaks.tests.utils.test_users_details_filter.TestLogUtilities.test_remove_session_id_details <--
+2021-04-02 12:45:53+0000 [-] --> backend.globaleaks.tests.utils.test_users_details_filter.TestLogUtilities.test_remove_user_email_information <--
+2021-04-02 12:45:53+0000 [-] --> backend.globaleaks.tests.utils.test_users_details_filter.TestLogUtilities.test_remove_uuid_details <--
+2021-04-02 12:45:53+0000 [-] --> backend.globaleaks.tests.utils.test_users_details_filter.TestLogUtilities.test_user_details_filter_removes_bgp_formatted_string <--

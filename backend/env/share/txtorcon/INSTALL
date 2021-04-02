@@ -1,0 +1,40 @@
+
+See README for more information.
+
+To just install this as quickly as possible, using a Debian or Ubuntu
+system, run the following as root:
+
+   apt-get install python-setuptools python-twisted python-ipaddress graphviz
+
+   python setup.py install
+
+It's recommended to use a virtualenv (see below), but on OSX (and
+assuming homebrew is installed):
+
+   brew install geoip
+   pip install -r requirements.txt
+   pip install -r dev-requirements.txt
+
+Or, instead of installing locally, simply:
+
+   export PYTHONPATH=.
+
+
+If you want to take slightly more time, but only install temporarily,
+use virtualenv:
+
+   apt-get install python-setuptools python-pip
+   python setup.py build
+   mkdir tmp
+   virtualenv --never-download --extra-search-dir=/usr/lib/python2.7/dist-packages/ tmp/txtorcon_env
+   cd tmp/txtorcon_env
+   source bin/activate
+   pip install Twisted ipaddress pygeoip     # this will download from internets:
+   export PYTHONPATH=../../build/lib.linux-x86_64-2.7/
+
+(Or you can type "make virtualenv" which creates tmp/txtorcon_env, up
+to the "activate" step above)
+
+Now, this should work (where "work" means "prints nothing"):
+
+   python -c "import txtorcon"

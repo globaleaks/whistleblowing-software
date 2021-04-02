@@ -1,0 +1,12 @@
+mock-4.0.3.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+mock-4.0.3.dist-info/LICENSE.txt,sha256=WDHuFJ04ULKN-P8C-3vQfOzagehcyENcIIJ9OSIgLTQ,1342
+mock-4.0.3.dist-info/METADATA,sha256=jPdRCHHBm0T5zP32qGNUuJkEoWcLkNC8z7S36eP72Ao,2826
+mock-4.0.3.dist-info/RECORD,,
+mock-4.0.3.dist-info/WHEEL,sha256=gm79cMopkncyn0iSnI0vQNiDJ8t9on0H4_iz-CrpXMk,92
+mock-4.0.3.dist-info/top_level.txt,sha256=YbGUYXa21gMdoMrELg81nnfkfBId5JGAm7K8bMU8hWQ,5
+mock/__init__.py,sha256=cfT6tNNtg_IwxDB615v02p6MTY8yKAoEAaBYPHY4e44,334
+mock/__pycache__/__init__.cpython-37.pyc,,
+mock/__pycache__/backports.cpython-37.pyc,,
+mock/__pycache__/mock.cpython-37.pyc,,
+mock/backports.py,sha256=zxu3FnFkPFT-vy9LTYcER-dhDYcQSwHtbGIYavET3q8,2808
+mock/mock.py,sha256=CTYTPvRRV_wd2_3B533tMMgMidKW2YvDl0b6TG0K-7c,99846
