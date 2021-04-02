@@ -216,7 +216,7 @@ var GL = angular.module("GL", [
         header_title: "Site settings",
         sidebar: "views/recipient/sidebar.html",
         resolve: {
-          resources: fetchResources("acl", ["node"]),
+          resources: fetchResources("receiver", ["node"]),
         }
       }).
       when("/recipient/reports", {
@@ -371,7 +371,7 @@ var GL = angular.module("GL", [
         sidebar: "views/custodian/sidebar.html",
         resolve: {
           access: requireAuth("custodian"),
-          resources: fetchResources("acl", ["node"])
+          resources: fetchResources("custodian", ["node"])
         }
       }).
       when("/custodian/requests", {

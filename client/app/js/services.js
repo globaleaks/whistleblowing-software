@@ -182,11 +182,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     },
 
     isAuthenticated: function (role) {
-      // acl is a special auth level meaning that access is conditional on
-      // backend flags and the only way to know for sure if a given op will
-      // work is to test
-
-      if (Authentication.session && (role === "*" || role === "acl" || Authentication.session.role === role)) {
+      if (Authentication.session && (role === "*" || Authentication.session.role === role)) {
         return $q.resolve(Access.OK);
       } else {
         return $q.reject(Access.FORBIDDEN);
@@ -799,7 +795,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       }
 
       $window.document.title = $rootScope.pt;
-      $window.document.getElementsByName('description')[0].content = $rootScope.public.node.description;
+      $window.document.getElementsByName("description")[0].content = $rootScope.public.node.description;
     },
 
     route_check: function() {
@@ -1048,8 +1044,8 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       $window.print();
     },
 
-    scrollToTop: function(id) {
-      $window.document.getElementByTagName('body').scrollIntoView();
+    scrollToTop: function() {
+      $window.document.getElementsByTagName("body")[0].scrollIntoView();
     },
 
     download: function(filename, url) {

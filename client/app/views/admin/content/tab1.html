@@ -45,7 +45,7 @@
 
     <div data-ng-if="public.node.mode === 'eat'" data-ng-include="'views/partials/ricochet_config.html'"></div>
 
-    <div class="form-group" data-ng-if="resources.node.mode === 'default' || resources.node.mode === 'demo'">
+    <div class="form-group" data-ng-if="public.node.mode === 'default' || public.node.mode === 'demo'">
       <label>
         <input data-ng-model="resources.node.enable_disclaimer" type="checkbox" />
         <span data-translate>Enable disclaimer</span>
