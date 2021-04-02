@@ -461,8 +461,9 @@ class APIResourceWrapper(Resource):
         # - In order to evaluate code coverage with istanbuljs/nyc
         # - In order to be able to manually retest if it is correctly implemented
         if not State.settings.disable_csp:
+            loaderhash = 'sha256-5lXnnOUlgo1YhIuN7PZfUCak9vgNB1YIi2UELuAqwO4='
             csp = "default-src 'none';" \
-                  "script-src 'self' 'sha256-deqnDNmuiUUIybUybVmSDSwpWO3hlCGA997lDHVOBcg=';" \
+                  "script-src 'self' '" + loaderhash + "';" \
                   "connect-src 'self';" \
                   "style-src 'self';" \
                   "img-src 'self' data:;" \
