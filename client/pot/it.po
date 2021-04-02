@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-11 11:58+0000\n"
+"PO-Revision-Date: 2021-03-28 16:28+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1422,7 +1422,7 @@ msgstr "Si rileva che tu stia navigando il sito senza alcuna protezione addizion
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr "È caldamente consigliato di visitare questo sito utilizzando l'applicazione chiamata Tor Browser che protegge il tuo anonimato."
+msgstr "È caldamente consigliato di visitare questo sito utilizzando l'applicazione chiamata Tor Browser che tutela il tuo anonimato."
 
 msgid "Download the Tor Browser"
 msgstr "Scarica il Tor Browser"
