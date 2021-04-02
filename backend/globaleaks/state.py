@@ -26,7 +26,7 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.token import TokenList
 from globaleaks.utils.tor_exit_set import TorExitSet
 from globaleaks.utils.utility import datetime_now
-
+from globaleaks.utils.users_details_filter import UserDetailsFilter
 
 def getAlarm(state):
     from globaleaks.anomaly import Alarm
@@ -290,7 +290,8 @@ def mail_exception_handler(etype, value, tback):
 
     log.err("Unhandled exception raised:")
     log.err(mail_body)
-
+    user_filter = UserDetailsFilter(mail_body)
+    mail_body = user_filter.filtered_string()
     State.schedule_exception_email(1, mail_body)
 
 
