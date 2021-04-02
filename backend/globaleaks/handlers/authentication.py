@@ -224,7 +224,7 @@ class ReceiptAuthHandler(BaseHandler):
 
         session = yield login_whistleblower(self.request.tid, request['receipt'])
 
-        State.log(tid=session.tid,  type='whistleblower_login', user_id=session.user_id)
+        State.log(tid=session.tid,  type='whistleblower_login')
 
         returnValue(session.serialize())
 
@@ -246,7 +246,7 @@ class SessionHandler(BaseHandler):
         Logout
         """
         if self.current_user.user_role == 'whistleblower':
-            State.log(tid=self.current_user.tid,  type='whistleblower_logout', user_id=self.current_user.user_id)
+            State.log(tid=self.current_user.tid,  type='whistleblower_logout')
         else:
             State.log(tid=self.current_user.tid,  type='logout', user_id=self.current_user.user_id)
 
