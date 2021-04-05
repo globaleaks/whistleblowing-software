@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <div data-ng-if="public.receivers.length >= 2">
+  <div data-ng-if="public.receivers.length !== 1">
     <div class="form-group">
       <label data-translate>Please select your account:</label>
       <select class="form-control" data-ng-model="loginData.loginUsername" data-ng-options="item.username as item.name for item in public.receivers | orderBy:'name'" required></select>
