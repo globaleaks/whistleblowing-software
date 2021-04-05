@@ -28,7 +28,7 @@
   </div>
   <div id="EmailAddress"><label><span data-translate>Email address</span>:</label>
     <div>
-      <span>{{preferences.mail_address }}</span>
+      <span data-ng-if="!editingEmailAddress">{{preferences.mail_address}}</span>
       <button class="btn btn-sm btn-secondary"
               data-ng-show="!editingEmailAddress"
               data-ng-click="toggleEmailAddressEditing(); $event.stopPropagation();">
@@ -36,18 +36,12 @@
       </button>
     </div>
   </div>
-  <div class="alert alert-warning" data-ng-if="preferences.change_email_address">
-    <div data-translate>Validation of email address change in progress.</div>
-    <div data-translate>Please check your inbox for further instructions.</div>
-  </div>
-  <div data-ng-if="editingEmailAddress" class="nested">
-    <label>Change in:</label>
+  <div data-ng-if="editingEmailAddress">
     <input class="form-control" name="mail_address" data-ng-model="preferences.mail_address" data-ng-pattern="email_regexp" type="email" data-ng-class="{'is-invalid': preferencesForm.$error.pattern}" />
   </div>
-  <div class="form-group" data-ng-show="editingEmail">
-    <label data-translate>Email address</label>
-    <input class="form-control" name="name" data-ng-model="preferences.mail_address" type="text" required />
-    <div class="text-danger" data-ng-show="editingEmail.name.$error.required" data-translate>This field is mandatory</div>
+  <div data-ng-if="!editingEmailAddress && preferences.change_email_address" class="alert alert-warning">
+    <div data-translate>Validation of email address change in progress.</div>
+    <div data-translate>Please check your inbox for further instructions.</div>
   </div>
   <div data-ng-if="preferences.description"><label data-translate>Description</label> {{preferences.description}}</div>
 

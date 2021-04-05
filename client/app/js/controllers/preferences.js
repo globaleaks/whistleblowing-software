@@ -16,7 +16,6 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$uibModal", "$http",
     $scope.email_regexp = CONSTANTS.email_regexp;
     $scope.editingName = false;
     $scope.editingPublicName = false;
-    $scope.editingEmail = false;
     $scope.showEncryptionKey = false;
     $scope.qrcode_string = "";
 
