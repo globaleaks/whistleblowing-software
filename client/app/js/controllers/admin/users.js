@@ -11,15 +11,6 @@ GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
         $scope.tenants_by_id = $scope.Utils.array_to_map($scope.resources.tenants);
       });
     }
-
-    $scope.$watch("resources.users", function() {
-      $scope.all_recipients_enabled = true;
-      for (var i=0; i<$scope.resources.users.length; i++) {
-        if ($scope.resources.users[i].role === "receiver" && !$scope.resources.users[i].encryption) {
-          $scope.all_recipients_enabled = false;
-        }
-      }
-    }, true);
 }]).controller("AdminUserEditorCtrl", ["$scope", "$http", "AdminUserResource",
   function($scope, $http, AdminUserResource) {
     $scope.deleteUser = function() {
