@@ -35,6 +35,8 @@ def set_user_password(tid, user, password, cc):
     user.password = password_hash
     user.password_change_date = datetime_now()
 
+    State.log(tid=tid, type='change_password', user_id=user.id, object_id=user.id)
+
     if not State.tenant_cache[tid].encryption and cc == '':
         return None
 

@@ -105,6 +105,8 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
         user.password = GCE.hash_password(password, user.salt)
         user.password_change_date = datetime_now()
 
+        State.log(tid=tid, type='change_password', user_id=user_session.user_id, object_id=user_id)
+
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
 
