@@ -52,7 +52,7 @@ def check_hostname(session, tid, hostname):
 
 
 @transact
-def reset_submissions(session, tid):
+def reset_submissions(session, tid, user_id):
     """
     Transaction to reset the submissions of the specified tenant
 
@@ -61,7 +61,9 @@ def reset_submissions(session, tid):
     """
     session.query(Config).filter(Config.tid == tid, Config.var_name == 'counter_submissions').update({'value': 0})
 
-    db_del(session, InternalTip, InternalTip.tid ==tid)
+    db_del(session, InternalTip, InternalTip.tid==tid)
+
+    State.log(tid=tid, type='reset_reports', user_id=user_id)
 
 
 @transact
@@ -156,7 +158,7 @@ class AdminOperationHandler(OperationHandler):
         })
 
     def reset_submissions(self, req_args, *args, **kwargs):
-        return reset_submissions(self.request.tid)
+        return reset_submissions(self.request.tid, self.request.current_user.user_id)
 
     @inlineCallbacks
     def set_hostname(self, req_args, *args, **kwargs):
