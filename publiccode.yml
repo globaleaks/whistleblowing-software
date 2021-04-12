@@ -1,10 +1,10 @@
 name: GlobaLeaks
-releaseDate: '2021-02-26'
+releaseDate: '2021-04-10'
 publiccodeYmlVersion: '0.2'
 url: 'https://github.com/globaleaks/GlobaLeaks'
 landingURL: 'https://www.globaleaks.org/'
 logo: brand/assets/globaleaks-icon-color.svg
-softwareVersion: 4.1.17
+softwareVersion: 4.2.0
 softwareType: standalone/web
 developmentStatus: stable
 platforms:
@@ -28,7 +28,7 @@ maintenance:
 legal:
   license: AGPL-3.0
   mainCopyrightOwner: >-
-    Hermes Center for Transparency and Digital Humand Rights
+    Hermes Center for Transparency and Digital Human Rights
   authorsFile: 'https://github.com/globaleaks/GlobaLeaks/blob/main/AUTHORS'
   repoOwner: GlobaLeaks
 localisation:
@@ -62,6 +62,7 @@ localisation:
     - ka
     - ko
     - mg
+    - mk
     - nb_NO
     - nl
     - pl
