@@ -822,15 +822,17 @@ class WBFileHandler(BaseHandler):
 
     @transact
     def download_wbfile(self, session, tid, file_id):
-        wbfile, wbtip, rtip = db_get(session,
-                                     (models.WhistleblowerFile,
-                                      models.WhistleblowerTip,
-                                      models.ReceiverTip),
-                                     (models.WhistleblowerFile.id == file_id,
-                                      models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                      models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id))
+        wbfile, wbtip, = db_get(session,
+                                (models.WhistleblowerFile,
+                                 models.WhistleblowerTip),
+                                (models.WhistleblowerFile.id == file_id,
+                                 models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                                 models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id))
 
-        if not self.user_can_access(session, tid, wbfile):
+        rtip = session.query(models.ReceiverTip) \
+                      .filter(models.ReceiverTip.receiver_id == self.current_user.user_id,
+                              models.ReceiverTip.internaltip_id == wbtip.id).one_or_none()
+        if not rtip:
             raise errors.ResourceNotFound()
 
         self.access_wbfile(session, wbfile)
