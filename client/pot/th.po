@@ -1,6 +1,6 @@
 # 
 # Translators:
-# bact' <arthit@gmail.com>, 2020
+# Arthit Suriyawongkul, 2020-2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2018,2020
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-04-10 13:51+0000\n"
+"Last-Translator: Arthit Suriyawongkul\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -526,7 +526,7 @@ msgid "Tax code"
 msgstr "เลขประจำตัวผู้เสียภาษี"
 
 msgid "File a report"
-msgstr ""
+msgstr "ยื่นรายงาน"
 
 msgid "Before proceeding, please set a new password."
 msgstr "ก่อนจะไปต่อ กรุณาตั้งรหัสผ่านใหม่"
@@ -686,7 +686,7 @@ msgid "Type"
 msgstr "ชนิด"
 
 msgid "Severity"
-msgstr ""
+msgstr "ความรุนแรง"
 
 msgid "Object"
 msgstr ""
@@ -1258,7 +1258,7 @@ msgid "Authorization"
 msgstr "การมอบอำนาจ"
 
 msgid "Requests"
-msgstr ""
+msgstr "คำขอ"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "ลิงก์ตรวจความถูกต้องไม่ถูกต้องหรือหมดอายุแล้ว"
@@ -1674,19 +1674,19 @@ msgid "Select the context of your report:"
 msgstr "เลือกบริบทของรายงานของคุณ:"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "คำตอบสั้นเกินไป"
 
 msgid "The specified input is not valid."
 msgstr "ข้อมูลเข้าที่ระบุไม่ตรงกับรูปแบบที่ถูกต้อง"
 
 msgid "The specified input is not valid:"
-msgstr ""
+msgstr "ค่าที่ใส่มาเหล่านี้มีรูปแบบไม่ถูกต้อง:"
 
 msgid "please enter a valid email address."
-msgstr ""
+msgstr "กรุณาใส่ที่อยู่อีเมลที่ถูกรูปแบบ"
 
 msgid "please enter numbers only."
-msgstr ""
+msgstr "กรุณาใส่ตัวเลขเท่านั้น"
 
 msgid "Submissions disabled"
 msgstr "การส่งถูกปิดใช้งาน"
@@ -1720,7 +1720,7 @@ msgid "Recipient selection"
 msgstr "การเลือกผู้รับ"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "เลือกผู้รับรายงานของคุณ:"
 
 msgid "Recipients selected:"
 msgstr "ผู้รับที่ถูกเลือก:"
@@ -1731,7 +1731,7 @@ msgstr "คุณเลือกผู้รับจนเต็มจำนว
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "ผู้รับดังต่อไปนี้จะได้รับรายงานของคุณและจะไม่สามารถเลิกเลือกได้:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
