@@ -93,7 +93,7 @@ def user_serialize_user(session, user, language):
     :param session: the session on which perform queries.
     :return: a serialization of the object
     """
-    picture = os.path.exists(os.path.join(State.settings.files_path, user.id))
+    picture = session.query(models.File).filter(models.File.name == user.id).one_or_none() is not None
 
     # take only contexts for the current tenant
     contexts = [x[0] for x in session.query(models.ReceiverContext.context_id)

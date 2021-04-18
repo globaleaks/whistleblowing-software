@@ -3,14 +3,13 @@
 # Handlers exposing customization files
 import base64
 import os
-import re
+import urllib
 
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.admin.file import get_file_id_by_name, special_files
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.rest.requests import uuid_regexp
 
 appfiles = {
     'favicon': 'image/x-icon',
@@ -26,12 +25,16 @@ class FileHandler(BaseHandler):
     check_roles = 'any'
 
     @inlineCallbacks
-    def get(self, id):
-        if id in appfiles:
-            self.request.setHeader(b'Content-Type', appfiles[id])
+    def get(self, name):
+        name = urllib.parse.unquote(name)
+        if name in appfiles:
+            self.request.setHeader(b'Content-Type', appfiles[name])
+        else:
+            self.request.setHeader(b'Content-Type', 'application/octet-stream')
 
-        if not re.match(uuid_regexp, id):
-            id = yield get_file_id_by_name(self.request.tid, id)
+        id = yield get_file_id_by_name(self.request.tid, name)
+        if not id:
+            id = yield get_file_id_by_name(1, name)
 
         path = os.path.abspath(os.path.join(self.state.settings.files_path, id))
         yield self.write_file(path, path)

@@ -155,8 +155,8 @@ def db_prepare_contexts_serialization(session, contexts):
     contexts_ids = [c.id for c in contexts]
 
     if contexts_ids:
-        for o in session.query(models.File).filter(models.File.id.in_(contexts_ids)):
-            data['imgs'][o.id] = True
+        for o in session.query(models.File).filter(models.File.name.in_(contexts_ids)):
+            data['imgs'][o.name] = True
 
         for o in session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id.in_(contexts_ids)).order_by(models.ReceiverContext.order):
             if o.context_id not in data['receivers']:
@@ -180,8 +180,8 @@ def db_prepare_receivers_serialization(session, receivers):
     receivers_ids = [r.id for r in receivers]
 
     if receivers_ids:
-        for o in session.query(models.File).filter(models.File.id.in_(receivers_ids)):
-            data['imgs'][o.id] = True
+        for o in session.query(models.File).filter(models.File.name.in_(receivers_ids)):
+            data['imgs'][o.name] = True
 
     return data
 

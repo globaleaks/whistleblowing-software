@@ -20,7 +20,7 @@ def admin_serialize_context(session, context, language):
                                       .filter(models.ReceiverContext.context_id == context.id)
                                       .order_by(models.ReceiverContext.order)]
 
-    picture = ''
+    picture = session.query(models.File).filter(models.File.name == context.id).one_or_none() is not None
 
     ret = {
         'id': context.id,

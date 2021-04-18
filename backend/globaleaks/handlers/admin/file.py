@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import re
 
 from sqlalchemy.sql.expression import not_
 from twisted.internet.defer import inlineCallbacks, returnValue
@@ -8,7 +9,7 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import can_edit_general_settings_or_raise
 from globaleaks.orm import db_get, db_del, transact, tw
-from globaleaks.rest import errors
+from globaleaks.rest import errors, requests
 from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.utility import uuid4
 
@@ -66,8 +67,7 @@ def db_get_file(session, tid, file_id):
     return file_obj.data if file_obj else ''
 
 
-@transact
-def get_file_id_by_name(session, tid, name):
+def db_get_file_id_by_name(session, tid, name):
     """
     Transaction returning a file ID given the file name
 
@@ -78,6 +78,25 @@ def get_file_id_by_name(session, tid, name):
     """
     file_obj = session.query(models.File).filter(models.File.tid == tid, models.File.name == name).one_or_none()
     return file_obj.id if file_obj else ''
+
+
+@transact
+def get_file_id_by_name(session, tid, name):
+    return db_get_file_id_by_name(session, tid, name)
+
+
+@transact
+def delete_file(session, tid, name):
+    id = yield get_file_id_by_name(self.request.tid, name)
+    if not id:
+        return
+
+    path = os.path.join(self.state.settings.files_path, id)
+    directory_traversal_check(self.state.settings.files_path, path)
+    if os.path.exists(path):
+        os.remove(path)
+
+    return db_del(session, models.File, (models.File.tid == self.request.tid, models.File.id == id))
 
 
 class FileInstance(BaseHandler):
@@ -95,10 +114,11 @@ class FileInstance(BaseHandler):
     def post(self, id):
         yield self.permission_check(id)
 
-        if id in special_files:
+        if id in special_files or re.match(requests.uuid_regexp, id):
             self.uploaded_file['name'] = id
 
         id = uuid4()
+
         path = os.path.join(self.state.settings.files_path, id)
 
         if os.path.exists(path):
@@ -112,16 +132,7 @@ class FileInstance(BaseHandler):
     def delete(self, id):
         yield self.permission_check(id)
 
-        path = os.path.join(self.state.settings.files_path, id)
-        directory_traversal_check(self.state.settings.files_path, path)
-        if os.path.exists(path):
-            os.remove(path)
-
-        if id in special_files:
-            id = yield get_file_id_by_name(self.request.tid, id)
-
-        yield tw(db_del, models.File, (models.File.tid == self.request.tid, models.File.id == id))
-
+        yield delete_file(self.request.tid, id)
 
 class FileCollection(BaseHandler):
     check_roles = 'user'
