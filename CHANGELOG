@@ -1,3 +1,7 @@
+Changes in version 4.2.1
+    Fix regression on removal on reset of anomaly counter
+    Revise files handlers for proper management of contexts and users images
+
 Changes in version 4.2.0
     Improve set of audit log events traking main events related to
     authentication, password reset, reports access and deletion (#2579)
