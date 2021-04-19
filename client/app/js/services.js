@@ -1451,21 +1451,11 @@ factory("GLTranslate", ["$translate", "$location", "$window", "tmhDynamicLocale"
     userChoice: null,
     urlParam: null,
     userPreference: null,
-    browserSniff: null,
     nodeDefault: null
   };
 
   // This is a value set by the public.node.
   var enabledLanguages = [];
-
-  // Country codes with multiple languages or an '_XX' extension
-  var problemLangs = {
-    "zh": ["CN", "TW"],
-    "pt": ["BR", "PT"],
-    "nb": "NO",
-    "hr": "HR",
-    "hu": "HU",
-  };
 
   var state = {
     language: null
@@ -1479,40 +1469,7 @@ factory("GLTranslate", ["$translate", "$location", "$window", "tmhDynamicLocale"
       facts.urlParam = queryLang;
     }
 
-    var s = normalizeLang(window.navigator.language);
-    if (validLang(s)) {
-      facts.browserSniff = s;
-    }
-
     determineLanguage();
-  }
-
-  // normalizeLang attempts to map input language strings to the transifex format.
-  function normalizeLang(s) {
-    if (typeof s !== "string") {
-      return "";
-    }
-
-    if (s.length !== 2 && s.length !== 5) {
-      // The string is not in a format we are expecting so just return it.
-      return s;
-    }
-
-    // The string is probably a valid ISO 639-1 language.
-    var iso_lang = s.slice(0,2).toLowerCase();
-
-    if (problemLangs.hasOwnProperty(iso_lang)) {
-
-      var t = problemLangs[iso_lang];
-      if (t instanceof Array) {
-        // We do not know which extension to use, so just use the most popular one.
-        return iso_lang + "_" + t[0];
-      }
-      return iso_lang + "_" + t;
-
-    } else {
-      return iso_lang;
-    }
   }
 
   function validLang(inp) {
@@ -1582,15 +1539,13 @@ factory("GLTranslate", ["$translate", "$location", "$window", "tmhDynamicLocale"
   // defined.
   // { object -> string }
   function bestLanguage(facts) {
-    var lang = null;
+    var lang = '*';
     if (isSelectable(facts.userChoice)) {
       lang = facts.userChoice;
     } else if (isSelectable(facts.urlParam)) {
       lang = facts.urlParam;
     } else if (isSelectable(facts.userPreference)) {
       lang = facts.userPreference;
-    } else if (isSelectable(facts.browserSniff)) {
-      lang = facts.browserSniff;
     } else if (isSelectable(facts.nodeDefault)) {
       lang = facts.nodeDefault;
     }
@@ -1602,10 +1557,9 @@ factory("GLTranslate", ["$translate", "$location", "$window", "tmhDynamicLocale"
   // factory. It finds the best language to use, changes the language
   // pointer, and notifies the dependent services of the change.
   function determineLanguage() {
-    state.language = bestLanguage(facts);
-    if (state.language) {
+    GL.language = state.language = bestLanguage(facts);
+    if (state.language !== '*') {
       updateTranslationServices(state.language);
-      GL.language = state.language;
       $window.document.getElementsByTagName("html")[0].setAttribute("lang", state.language);
     }
   }
