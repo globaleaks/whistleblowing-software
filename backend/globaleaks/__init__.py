@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-GlobaLeaks - The Open-Source Whistleblowing Software
+GlobaLeaks - Free and Open-Source Whistleblowing Software
 """
 import operator
 
 __author__ = 'GlobaLeaks'
 __email__ = 'info@globaleaks.org'
 __copyright__ = '2011-2021 - Hermes Center for Transparency and Digital Human Rights - GlobaLeaks'
-__version__ = '4.2.1'
+__version__ = '4.2.2'
 __license__ = 'AGPL-3.0'
 
 DATABASE_VERSION = 54

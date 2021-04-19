@@ -1,10 +1,10 @@
 name: GlobaLeaks
-releaseDate: '2021-04-18'
+releaseDate: '2021-04-19'
 publiccodeYmlVersion: '0.2'
 url: 'https://github.com/globaleaks/GlobaLeaks'
 landingURL: 'https://www.globaleaks.org/'
 logo: brand/assets/globaleaks-icon-color.svg
-softwareVersion: 4.2.1
+softwareVersion: 4.2.2
 softwareType: standalone/web
 developmentStatus: stable
 platforms:
