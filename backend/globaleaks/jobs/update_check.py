@@ -36,6 +36,9 @@ def evaluate_update_notification(session, state, latest_version):
         return
 
     for user_desc in db_get_users(session, 1, 'admin'):
+        if not user_desc['notification']:
+            continue
+
         lang = user_desc['language']
         template_vars = {
             'type': 'software_update_available',
@@ -64,6 +67,7 @@ class UpdateCheck(HourlyJob):
 
         latest_version = versions[-1]
 
-        yield evaluate_update_notification(self.state, latest_version)
+        if not self.state.tenant_cache[1].notification.disable_admin_notification_emails:
+            yield evaluate_update_notification(self.state, latest_version)
 
         log.debug('The newest version in the repository is: %s', latest_version)
