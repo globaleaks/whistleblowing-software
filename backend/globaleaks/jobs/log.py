@@ -17,7 +17,7 @@ def log(session):
 
 
 class AuditLogJob(LoopingJob):
-    interval = 20
+    interval = 30
 
     @inlineCallbacks
     def operation(self):
