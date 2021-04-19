@@ -10,6 +10,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import can_edit_general_settings_or_raise
 from globaleaks.orm import db_get, db_del, transact, tw
 from globaleaks.rest import errors, requests
+from globaleaks.state import State
 from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.utility import uuid4
 
@@ -87,16 +88,16 @@ def get_file_id_by_name(session, tid, name):
 
 @transact
 def delete_file(session, tid, name):
-    id = yield get_file_id_by_name(self.request.tid, name)
+    id = db_get_file_id_by_name(session, tid, name)
     if not id:
         return
 
-    path = os.path.join(self.state.settings.files_path, id)
-    directory_traversal_check(self.state.settings.files_path, path)
+    path = os.path.join(State.settings.files_path, id)
+    directory_traversal_check(State.settings.files_path, path)
     if os.path.exists(path):
         os.remove(path)
 
-    return db_del(session, models.File, (models.File.tid == self.request.tid, models.File.id == id))
+    return db_del(session, models.File, (models.File.tid == tid, models.File.id == id))
 
 
 class FileInstance(BaseHandler):
@@ -131,8 +132,8 @@ class FileInstance(BaseHandler):
     @inlineCallbacks
     def delete(self, id):
         yield self.permission_check(id)
-
         yield delete_file(self.request.tid, id)
+
 
 class FileCollection(BaseHandler):
     check_roles = 'user'
