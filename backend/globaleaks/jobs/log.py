@@ -26,4 +26,4 @@ class AuditLogJob(LoopingJob):
     @inlineCallbacks
     def stop(self):
         yield self.operation()
-        yield LoopinJob.stop(self)
+        yield LoopingJob.stop(self)
