@@ -29,7 +29,10 @@ def get_files(session, tid):
     """
     ret = []
 
-    for sf in session.query(models.File).filter(models.File.tid == tid, not_(models.File.name.in_(special_files))):
+    for sf in session.query(models.File).filter(models.File.tid == tid):
+        if sf.id in special_files or re.match(requests.uuid_regexp, sf.name):
+            continue
+
         ret.append({
             'id': sf.id,
             'name': sf.name
@@ -87,9 +90,9 @@ def get_file_id_by_name(session, tid, name):
 
 
 @transact
-def delete_file(session, tid, name):
-    id = db_get_file_id_by_name(session, tid, name)
-    if not id:
+def delete_file(session, tid, id):
+    file_obj = session.query(models.File).filter(models.File.tid == tid, models.File.id == id).one_or_none()
+    if not file_obj:
         return
 
     path = os.path.join(State.settings.files_path, id)
@@ -97,7 +100,7 @@ def delete_file(session, tid, name):
     if os.path.exists(path):
         os.remove(path)
 
-    return db_del(session, models.File, (models.File.tid == tid, models.File.id == id))
+    return session.delete(file_obj)
 
 
 class FileInstance(BaseHandler):
@@ -125,8 +128,10 @@ class FileInstance(BaseHandler):
         if os.path.exists(path):
             return
 
-        yield self.write_upload_plaintext_to_disk(path)
         yield tw(db_add_file, self.request.tid, id, self.uploaded_file['name'], path)
+
+        yield self.write_upload_plaintext_to_disk(path)
+
         returnValue(id)
 
     @inlineCallbacks
