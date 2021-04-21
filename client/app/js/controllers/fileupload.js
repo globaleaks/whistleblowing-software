@@ -54,7 +54,7 @@ controller("ImageUploadCtrl", ["$http", "$scope", "$rootScope", "uploadUtils", "
   $scope.deletePicture = function() {
     $http({
       method: "DELETE",
-      url: "/api/admin/files/" + $scope.imageUploadId,
+      url: "api/admin/files/" + $scope.imageUploadId,
     }).then(function() {
       if ($scope.imageUploadModel) {
         $scope.imageUploadModel[$scope.imageUploadModelAttr] = "";

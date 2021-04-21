@@ -1,7 +1,7 @@
 <div class="imageUpload"
      data-ng-controller="ImageUploadCtrl"
      flow-name="imageUploadObj.flow"
-     flow-init="{target: '/api/admin/files/' + imageUploadId}"
+     flow-init="{target: 'api/admin/files/' + imageUploadId}"
      flow-files-submitted="$flow.upload()"
      extend-flow-valid-types="['png']">
   <label class="changePictureButton text-primary"
@@ -13,7 +13,7 @@
          data-ng-if="!imageSrcId && (imageUploadModel[imageUploadModelAttr] || imageUploadObj.flow.files.length)"
          uib-tooltip="{{'Delete' | translate}}"><i class="fas fa-times"></i></label>
   <div class="imageUploadThumbnail">
-    <img data-ng-if="imageUploadModel[imageUploadModelAttr]" data-ng-src="/s/{{imageUploadId}}">
+    <img data-ng-if="imageUploadModel[imageUploadModelAttr]" data-ng-src="s/{{imageUploadId}}">
   </div>
   <div errors-upload></div>
 </div>

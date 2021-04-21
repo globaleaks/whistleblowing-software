@@ -57,21 +57,12 @@ def db_add_file(session, tid, file_id, name, path):
     file_obj.name = name
     session.merge(file_obj)
 
-
-def db_get_file(session, tid, file_id):
-    """
-    Transaction thecontent of the file identified by the specified id
-
-    :param session: An ORM session
-    :param tid: A tenant ID
-    :param file_id: A file ID
-    :return: The content of the file
-    """
-    file_obj = session.query(models.File).filter(models.File.tid == tid, models.File.id == file_id).one_or_none()
-    return file_obj.data if file_obj else ''
+def db_get_file_by_name(session, tid, name):
+    return session.query(models.File).filter(models.File.tid == tid, models.File.name == name).one_or_none()
 
 
-def db_get_file_id_by_name(session, tid, name):
+@transact
+def get_file_id_by_name(session, tid, name):
     """
     Transaction returning a file ID given the file name
 
@@ -80,22 +71,17 @@ def db_get_file_id_by_name(session, tid, name):
     :param name: A file name
     :return: A result model
     """
-    file_obj = session.query(models.File).filter(models.File.tid == tid, models.File.name == name).one_or_none()
+    file_obj = db_get_file_by_name(session, tid, name)
     return file_obj.id if file_obj else ''
 
 
 @transact
-def get_file_id_by_name(session, tid, name):
-    return db_get_file_id_by_name(session, tid, name)
-
-
-@transact
-def delete_file(session, tid, id):
-    file_obj = session.query(models.File).filter(models.File.tid == tid, models.File.id == id).one_or_none()
+def delete_file(session, tid, name):
+    file_obj = db_get_file_by_name(session, tid, name)
     if not file_obj:
         return
 
-    path = os.path.join(State.settings.files_path, id)
+    path = os.path.join(State.settings.files_path, file_obj.id)
     directory_traversal_check(State.settings.files_path, path)
     if os.path.exists(path):
         os.remove(path)
@@ -108,18 +94,18 @@ class FileInstance(BaseHandler):
     invalidate_cache = True
     upload_handler = True
 
-    def permission_check(self, id):
-        if self.current_user.user_role == 'admin' or id == 'logo':
+    def permission_check(self, name):
+        if self.current_user.user_role == 'admin' or name == 'logo':
             return can_edit_general_settings_or_raise(self)
 
         raise errors.InvalidAuthentication
 
     @inlineCallbacks
-    def post(self, id):
-        yield self.permission_check(id)
+    def post(self, name):
+        yield self.permission_check(name)
 
-        if id in special_files or re.match(requests.uuid_regexp, id):
-            self.uploaded_file['name'] = id
+        if name in special_files or re.match(requests.uuid_regexp, name):
+            self.uploaded_file['name'] = name
 
         id = uuid4()
 
@@ -135,9 +121,9 @@ class FileInstance(BaseHandler):
         returnValue(id)
 
     @inlineCallbacks
-    def delete(self, id):
-        yield self.permission_check(id)
-        yield delete_file(self.request.tid, id)
+    def delete(self, name):
+        yield self.permission_check(name)
+        yield delete_file(self.request.tid, name)
 
 
 class FileCollection(BaseHandler):
