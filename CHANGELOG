@@ -1,3 +1,15 @@
+Changes in version 4.2.3
+    Improve readability of home page revisiting font-sites and margins
+    Getting sure to filter white spaces when using ip addresses filters
+    Fix issue #2993
+
+Changes in version 4.2.2
+    Ignore browser language and prefer platform default
+    Set Log job timing to 30 seconds
+    Fix lint error affecting Log job shutdown
+    Make update notifications subject to admin notifications enablers
+    Fix issue #2991
+
 Changes in version 4.2.1
     Fix regression on removal on reset of anomaly counter
     Revise files handlers for proper management of contexts and users images
