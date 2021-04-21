@@ -524,6 +524,7 @@ class APIResourceWrapper(Resource):
         request.setHeader(b'Content-Language', language)
 
     def detect_language(self, request):
+        tid = request.tid if request.tid else 1
         locales = []
         for language in request.headers.get(b'accept-language', b'').decode().split(","):
             parts = language.strip().split(";")
@@ -535,11 +536,11 @@ class APIResourceWrapper(Resource):
             else:
                 score = 1.0
 
-            if parts[0] in State.tenant_cache[request.tid].languages_enabled:
+            if parts[0] in State.tenant_cache[tid].languages_enabled:
                 locales.append((parts[0], score))
 
         if locales:
             locales.sort(key=lambda pair: pair[1], reverse=True)
             return locales[0][0]
 
-        return State.tenant_cache[request.tid].default_language
+        return State.tenant_cache[tid].default_language
