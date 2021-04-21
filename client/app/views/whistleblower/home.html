@@ -1,19 +1,19 @@
 <div id="HomePageBox">
   <div id="Presentation" data-ng-show="public.node.presentation" data-markdown-to-html="public.node.presentation"></div>
   <div id="WhistleblowerBox" class="d-block mx-auto">
-    <div id="WhistleblowerSubmitBoxButtonDisabled" class="mb-2" data-ng-show="public.node.disable_submissions || (!public.node.https_whistleblower && !connection.tor)">
+    <div id="WhistleblowerSubmitBoxButtonDisabled" data-ng-show="public.node.disable_submissions || (!public.node.https_whistleblower && !connection.tor)">
       <button class="btn btn-danger disabled">
         <i class="fas fa-ban-circle"></i>
         <span data-translate>Submissions disabled</span>
       </button>
     </div>
-    <div class="mb-2" data-ng-show="!public.node.https_whistleblower && !connection.tor">
+    <div class="mt-4" data-ng-show="!public.node.https_whistleblower && !connection.tor">
       <p class="text-danger" data-translate>You are connecting to the server without anonymity and this server supports only anonymous submissions</p>
     </div>
-    <div id="WhistleblowerSubmitBox" class="mb-2" data-ng-show="!public.node.disable_submissions && (public.node.https_whistleblower || connection.tor)">
+    <div id="WhistleblowerSubmitBox" data-ng-show="!public.node.disable_submissions && (public.node.https_whistleblower || connection.tor)">
       <div id="WhistleblowingQuestion" data-ng-show="public.node.whistleblowing_question" data-markdown-to-html="public.node.whistleblowing_question"></div>
       <button id="WhistleblowingButton" data-ng-click="evaluateDisclaimerModalOpening() || setPage('submissionpage')" class="btn btn-primary">{{public.node.whistleblowing_button}}</button>
     </div>
-    <div id="WhistleblowerLoginBox" data-ng-show="(public.node.https_whistleblower || connection.tor)" data-ng-include="'views/partials/receipt.html'"></div>
+    <div id="WhistleblowerLoginBox" class="mt-4" data-ng-show="(public.node.https_whistleblower || connection.tor)" data-ng-include="'views/partials/receipt.html'"></div>
   </div>
 </div>
