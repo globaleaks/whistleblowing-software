@@ -721,12 +721,13 @@ text.axis-workweek, text.axis-worktime {
   margin: 0 .4rem;
 }
 
-.was-validated .form-check-input:valid ~ .form-check-label,
-.form-check-input.is-valid ~ .form-check-label {
+[dir] .form-control.is-valid,
+[dir] .form-control.is-valid:focus,
+[dir] .was-validated .form-control:valid,
+[dir] .was-validated .form-control:focus {
   color: inherit;
-}
-
-.was-validated .form-control:valid, .form-control.is-valid {
+  border-color: inherit;
+  box-shadow: inherit;
   background-image: none;
 }
 
