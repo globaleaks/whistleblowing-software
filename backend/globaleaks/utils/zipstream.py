@@ -301,12 +301,15 @@ class ZipStream(object):
 
     def __iter__(self):
         for f in self.files:
-            if 'fo' in f:
-                for data in self.zip_fo(f['fo'], f['name']):
-                    yield data
+            try:
+                if 'fo' in f:
+                    for data in self.zip_fo(f['fo'], f['name']):
+                        yield data
 
-            elif 'path' in f:
-                for data in self.zip_file(f['path'], f['name']):
-                    yield data
+                elif 'path' in f:
+                    for data in self.zip_file(f['path'], f['name']):
+                        yield data
+            except:
+                pass
 
         yield self.archive_footer()

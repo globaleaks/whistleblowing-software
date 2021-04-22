@@ -249,8 +249,7 @@ def db_receiver_get_rfile_list(session, rtip_id):
     :return: A list of serializations of the retrieved models
     """
     rfiles = session.query(models.ReceiverFile) \
-                    .filter(models.ReceiverFile.receivertip_id == rtip_id,
-                            models.ReceiverFile.status != 'unavailable')
+                    .filter(models.ReceiverFile.receivertip_id == rtip_id)
 
     return [receiver_serialize_rfile(session, rfile) for rfile in rfiles]
 
