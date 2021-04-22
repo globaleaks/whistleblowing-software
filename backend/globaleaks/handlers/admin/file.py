@@ -2,7 +2,7 @@
 import os
 import re
 
-from sqlalchemy.sql.expression import not_
+from sqlalchemy.sql.expression import not_, or_
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
@@ -57,8 +57,12 @@ def db_add_file(session, tid, file_id, name, path):
     file_obj.name = name
     session.merge(file_obj)
 
-def db_get_file_by_name(session, tid, name):
-    return session.query(models.File).filter(models.File.tid == tid, models.File.name == name).one_or_none()
+
+def db_get_file_by_id_or_name(session, tid, id_or_name):
+    return session.query(models.File) \
+                  .filter(models.File.tid == tid,
+                          or_(models.File.id == id_or_name,
+                              models.File.name == id_or_name)).one_or_none()
 
 
 @transact
@@ -71,13 +75,13 @@ def get_file_id_by_name(session, tid, name):
     :param name: A file name
     :return: A result model
     """
-    file_obj = db_get_file_by_name(session, tid, name)
+    file_obj = db_get_file_by_id_or_name(session, tid, name)
     return file_obj.id if file_obj else ''
 
 
 @transact
-def delete_file(session, tid, name):
-    file_obj = db_get_file_by_name(session, tid, name)
+def delete_file(session, tid, id_or_name):
+    file_obj = db_get_file_by_id_or_name(session, tid, id_or_name)
     if not file_obj:
         return
 
