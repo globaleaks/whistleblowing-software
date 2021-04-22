@@ -98,7 +98,6 @@ class MailGenerator(object):
         results2 = session.query(models.User, models.ReceiverTip, models.InternalTip, models.Comment) \
                                  .filter(models.User.id == models.ReceiverTip.receiver_id,
                                          models.ReceiverTip.internaltip_id == models.Comment.internaltip_id,
-                                         models.Comment.type == 'whistleblower',
                                          models.InternalTip.id == models.ReceiverTip.internaltip_id,
                                          models.Comment.new.is_(True)) \
                                  .order_by(models.Comment.creation_date)
@@ -122,7 +121,9 @@ class MailGenerator(object):
         for user, rtip, itip, obj in itertools.chain(results1, results2, results3, results4):
             tid = user.tid
 
-            if rtips_ids.get(rtip.id, False) or tid in silent_tids:
+            if (rtips_ids.get(rtip.id, False) or tid in silent_tids) or \
+               (isinstance(obj, models.Comment) and obj.type != 'whistleblower' and obj.author_id == user.id) or \
+               (isinstance(obj, models.Message) and obj.type == 'receiver'):
                 obj.new = False
                 continue
 
