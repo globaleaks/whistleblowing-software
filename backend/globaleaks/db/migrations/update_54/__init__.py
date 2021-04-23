@@ -44,14 +44,14 @@ class MigrationScript(MigrationBase):
                 new_obj.id = uuid4()
                 new_obj.name = old_obj.id
 
+                data = base64.b64decode(old_obj.data)
+
+                filepath = os.path.join(State.settings.files_path, new_obj.id)
+                with open(filepath, 'wb') as out_file:
+                    out_file.write(data)
+
             if not new_obj.name:
                 new_obj.name = new_obj.id
-
-            data = base64.b64decode(old_obj.data)
-
-            filepath = os.path.join(State.settings.files_path, new_obj.id)
-            with open(filepath, 'wb') as out_file:
-                out_file.write(data)
 
             self.session_new.add(new_obj)
 
