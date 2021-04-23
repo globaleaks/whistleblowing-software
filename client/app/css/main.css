@@ -39,6 +39,7 @@ a:active,
 a:focus {
   color: #205282;
   outline: 0;
+  font-weight: bold;
   text-decoration: none;
 }
 
