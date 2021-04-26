@@ -57,7 +57,6 @@ def file_delivery(session):
                 receiverfiles_maps[ifile.id] = {
                     'src': src,
                     'key': itip.crypto_tip_pub_key,
-                    'pgp_encrypted_for_everybody': True,
                     'rfiles': []
                 }
 
@@ -65,7 +64,6 @@ def file_delivery(session):
                 receiverfile.filename = "%s.pgp" % generateRandomKey()
                 receiverfile.status = 'encrypted'
             else:
-                receiverfiles_maps[ifile.id]['pgp_encrypted_for_everybody'] = False
                 receiverfile.filename = itip.filename
                 receiverfile.status = 'reference'
 
@@ -155,17 +153,13 @@ def process_receiverfiles(state, files_maps):
                                               rf['pgp_key_public'],
                                               rf['pgp_key_fingerprint'],
                                               rf['dst'])
-
+                elif not os.path.exists(rf['dst']):
+                    if m['key']:
+                        write_encrypted_file(m['key'], sf, rf['dst'])
+                    else:
+                        write_plaintext_file(sf, rf['dst'])
             except:
                 pass
-        try:
-            if not m['pgp_encrypted_for_everybody']:
-                if m['key']:
-                    write_encrypted_file(m['key'], sf, rf['dst'])
-                else:
-                    write_plaintext_file(sf, rf['dst'])
-        except:
-            pass
 
 
 def process_whistleblowerfiles(state, files_maps):
