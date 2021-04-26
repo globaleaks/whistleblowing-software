@@ -1,3 +1,10 @@
+Changes in version 4.2.5
+    Fix bug on file delivery in mixed PGP / non PGP configurations
+    Add Burmese translation
+    Add Chinese (Hong Kong) translation
+    Update translations
+    Bump npm dependencies to latest versions
+
 Changes in version 4.2.4
     Fix issue #2998 affecting migration 54i, impacting releases 4.2.0-3
     and causing corruption of files attached by administrators for
