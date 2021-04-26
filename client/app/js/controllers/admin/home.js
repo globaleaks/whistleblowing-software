@@ -41,4 +41,4 @@ controller("AdminCtrl",
 
     $scope.all_recipients_enabled = true;
   }, true);
-}])
+}]);

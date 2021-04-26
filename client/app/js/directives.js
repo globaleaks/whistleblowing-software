@@ -95,7 +95,7 @@ directive("subdomainvalidator", function() {
     link: function(scope, elem, attrs, ngModel) {
       ngModel.$parsers.unshift(function(viewValue) {
         viewValue = viewValue.toLowerCase();
-        viewValue = viewValue.replace(/[^a-z0-9\-]/g,"");
+        viewValue = viewValue.replace(/[^a-z0-9-]/g,"");
         angular.element(elem).val(viewValue);
         return viewValue;
       });

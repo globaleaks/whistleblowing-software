@@ -1539,7 +1539,7 @@ factory("GLTranslate", ["$translate", "$location", "$window", "tmhDynamicLocale"
   // defined.
   // { object -> string }
   function bestLanguage(facts) {
-    var lang = '*';
+    var lang = "*";
     if (isSelectable(facts.userChoice)) {
       lang = facts.userChoice;
     } else if (isSelectable(facts.urlParam)) {
@@ -1558,7 +1558,7 @@ factory("GLTranslate", ["$translate", "$location", "$window", "tmhDynamicLocale"
   // pointer, and notifies the dependent services of the change.
   function determineLanguage() {
     GL.language = state.language = bestLanguage(facts);
-    if (state.language !== '*') {
+    if (state.language !== "*") {
       updateTranslationServices(state.language);
       $window.document.getElementsByTagName("html")[0].setAttribute("lang", state.language);
     }
