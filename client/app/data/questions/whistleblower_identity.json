@@ -31,6 +31,7 @@
     "lt": "Do you want to provide your identification information?",
     "mg": "Voulez-vous fournir vos renseignements d’identification ?",
     "mk": "Дали сакате да ги обезбедите Вашите информации за идентитет?",
+    "my": "သင့်ရဲ့မှတ်ပုံတင်သတင်းအချက်အလက်ပေးချင်ပါသလား",
     "nb_NO": "Ønsker du å oppgi identifiserbar informasjon?",
     "nl": "Wil je je identificeren?",
     "pl": "Czy chcesz podać nam dane identyfikacyjne?",
@@ -50,6 +51,7 @@
     "ur": "کیا آپ اپنی شناخت کی معلومات فراہم کرنا چاہتے ہیں؟",
     "vi": "Bạn muốn cung cấp thông tin nhận dạng của bạn?",
     "zh_CN": "你要提供自己的身份信息吗？",
+    "zh_HK": "您想提供您的個人身份資料嗎？",
     "zh_TW": "你要提供自己的身份資訊嗎？"
   },
   "description": {
@@ -111,6 +113,7 @@
         "lt": "Vardas",
         "mg": "Prénom",
         "mk": "Име",
+        "my": "ရှေ့နာမည်စာလုံး",
         "nb_NO": "Fornavn",
         "nl": "Voornaam",
         "pl": "Imię",
@@ -130,6 +133,7 @@
         "ur": "پہلا نام",
         "vi": "Tên",
         "zh_CN": "名",
+        "zh_HK": "名",
         "zh_TW": "名"
       },
       "description": {
@@ -209,6 +213,7 @@
         "lt": "Pavardė",
         "mg": "Nom de famille",
         "mk": "Презиме",
+        "my": "နာမည်နောက်ဆုံးစာလုံး",
         "nb_NO": "Etternavn",
         "nl": "Achternaam",
         "pl": "Nazwisko",
@@ -228,6 +233,7 @@
         "ur": "آخری نام",
         "vi": "Họ",
         "zh_CN": "姓",
+        "zh_HK": "姓",
         "zh_TW": "姓"
       },
       "description": {
@@ -307,6 +313,7 @@
         "lt": "Gender",
         "mg": "Genre",
         "mk": "Пол",
+        "my": "လိင်",
         "nb_NO": "Kjønn",
         "nl": "Geslacht",
         "pl": "Płeć",
@@ -326,6 +333,7 @@
         "ur": "صنف",
         "vi": "Giới tính",
         "zh_CN": "姓别",
+        "zh_HK": "性別",
         "zh_TW": "姓別"
       },
       "description": {
@@ -398,6 +406,7 @@
             "lt": "Male",
             "mg": "Homme",
             "mk": "Машко",
+            "my": "အမျိုးသား",
             "nb_NO": "Hannkjønn",
             "nl": "Man",
             "pl": "Mężczyzna",
@@ -417,6 +426,7 @@
             "ur": "مرد",
             "vi": "Nam giới",
             "zh_CN": "男性",
+            "zh_HK": "男",
             "zh_TW": "男性"
           },
           "id": ""
@@ -457,6 +467,7 @@
             "lt": "Female",
             "mg": "Femme",
             "mk": "Женско",
+            "my": "အမျိုးသမီး",
             "nb_NO": "Hunnkjønn",
             "nl": "Vrouw",
             "pl": "Kobieta",
@@ -476,6 +487,7 @@
             "ur": "عورت",
             "vi": "Nữ giới",
             "zh_CN": "女",
+            "zh_HK": "女",
             "zh_TW": "女性"
           },
           "id": ""
@@ -516,6 +528,7 @@
             "lt": "Other gender identity",
             "mg": "Autre identité de genre",
             "mk": "Друг пол",
+            "my": "အခြားလိင်လက္ခဏာ",
             "nb_NO": "Annen kjønnsidentitet",
             "nl": "Andere gender identiteit",
             "pl": "Inna",
@@ -535,6 +548,7 @@
             "ur": "Other gender identity",
             "vi": "Các giới tính khác",
             "zh_CN": "其它性别认同",
+            "zh_HK": "其他性別",
             "zh_TW": "其它性別認同"
           },
           "id": ""
@@ -575,6 +589,7 @@
         "lt": "Date of birth",
         "mg": "Date de naissance",
         "mk": "Датум на раѓање",
+        "my": "မွေးနေ့",
         "nb_NO": "Fødselsdato",
         "nl": "Geboortedatum",
         "pl": "Data urodzenia",
@@ -594,6 +609,7 @@
         "ur": "تاریخِ پیدائش",
         "vi": "Ngày sinh",
         "zh_CN": "出生日期",
+        "zh_HK": "出生日期",
         "zh_TW": "出生日期"
       },
       "description": {
@@ -665,6 +681,7 @@
         "lt": "Place of birth",
         "mg": "Lieu de naissance",
         "mk": "Место на раѓање",
+        "my": "မွေးရပ်",
         "nb_NO": "Fødested",
         "nl": "Geboorteplaats",
         "pl": "Miejsce urodzenia",
@@ -684,6 +701,7 @@
         "ur": "جاہِ پیدائیش",
         "vi": "Nơi sinh",
         "zh_CN": "出生地",
+        "zh_HK": "出生地",
         "zh_TW": "出生地點"
       },
       "description": {
@@ -763,6 +781,7 @@
         "lt": "Adresas",
         "mg": "Adresse",
         "mk": "Адреса",
+        "my": "လိပ်စာ",
         "nb_NO": "Adresse",
         "nl": "Adres 2",
         "pl": "Adres",
@@ -782,6 +801,7 @@
         "ur": "پتہ",
         "vi": "Địa chỉ nhà",
         "zh_CN": "地址",
+        "zh_HK": "Address",
         "zh_TW": "地址"
       },
       "description": {
@@ -861,6 +881,7 @@
         "lt": "Zip code / Postal code",
         "mg": "Code postal",
         "mk": "Поштенски код",
+        "my": "စာတိုက်နံပါတ် / စာတိုက်ကုဒ်",
         "nb_NO": "Postnummer",
         "nl": "Postcode",
         "pl": "Kod pocztowy",
@@ -880,6 +901,7 @@
         "ur": "زپ کوڈ / پوسٹ کوڈ",
         "vi": "Zip code / Mã bưu chính",
         "zh_CN": "邮政编码",
+        "zh_HK": "郵遞區號",
         "zh_TW": "郵遞區號"
       },
       "description": {
@@ -959,6 +981,7 @@
         "lt": "Miestas",
         "mg": "Ville",
         "mk": "Град",
+        "my": "မြို့",
         "nb_NO": "Sted",
         "nl": "Plaats",
         "pl": "Miejscowość",
@@ -978,6 +1001,7 @@
         "ur": "شہر",
         "vi": "Thành phố",
         "zh_CN": "城市",
+        "zh_HK": "城市",
         "zh_TW": "城市"
       },
       "description": {
@@ -1057,6 +1081,7 @@
         "lt": "Province",
         "mg": "Province",
         "mk": "Регион",
+        "my": "ပြည်နယ်",
         "nb_NO": "Kommune",
         "nl": "Provincie",
         "pl": "Prowincja",
@@ -1076,6 +1101,7 @@
         "ur": "صوبہ",
         "vi": "Địa bàn tỉnh",
         "zh_CN": "省",
+        "zh_HK": "省份",
         "zh_TW": "州/省"
       },
       "description": {
@@ -1155,6 +1181,7 @@
         "lt": "Šalis",
         "mg": "Country",
         "mk": "Земја",
+        "my": "နိုင်ငံ",
         "nb_NO": "Land",
         "nl": "Land",
         "pl": "Państwo",
@@ -1174,6 +1201,7 @@
         "ur": "ملک",
         "vi": "Quốc gia",
         "zh_CN": "国家",
+        "zh_HK": "國家",
         "zh_TW": "國家"
       },
       "description": {
@@ -1253,6 +1281,7 @@
         "lt": "Telefono numeris",
         "mg": "Numéro de téléphone",
         "mk": "Телефонски број",
+        "my": "ဖုန်းနံပါတ်",
         "nb_NO": "Telefonnummer",
         "nl": "Telefoonnummer",
         "pl": "Telefon",
@@ -1272,6 +1301,7 @@
         "ur": "فون نمبر",
         "vi": "Số điện thoại",
         "zh_CN": "电话号码",
+        "zh_HK": "電話號碼",
         "zh_TW": "電話號碼"
       },
       "description": {
@@ -1351,6 +1381,7 @@
         "lt": "El. pašto adresas",
         "mg": "Adresse courriel",
         "mk": "Е-маил адреса",
+        "my": "အီးမေးလ်လိပ်စာ",
         "nb_NO": "E-postadresse",
         "nl": "Emailadres",
         "pl": "Adres email",
@@ -1370,6 +1401,7 @@
         "ur": "ای میل پتہ",
         "vi": "Địa chỉ email",
         "zh_CN": "电子信箱",
+        "zh_HK": "電郵地址",
         "zh_TW": "電子信箱"
       },
       "description": {

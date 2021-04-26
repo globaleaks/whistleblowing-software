@@ -51,6 +51,7 @@ LANGUAGES_SUPPORTED = [
     {'code': 'lt', 'name': 'Korean', 'native': 'Llietuvių'},
     {'code': 'mg', 'name': 'Malagasy', 'native': 'Malagasy'},
     {'code': 'mk', 'name': 'Macedonian', 'native': '\u043c\u0430\u043a\u0435\u0434\u043e\u043d\u0441\u043a\u0438'},
+    {'code': 'my', 'name': 'Burmese', 'native': '\u1019\u103C\u1014\u103A\u1019\u102C\u0027'},
     {'code': 'nb_NO', 'name': 'Norwegian', 'native': 'Norsk bokm\xe5l'},
     {'code': 'nl', 'name': 'Dutch', 'native': 'Nederlands'},
     {'code': 'pl', 'name': 'Polish', 'native': 'Polski'},
@@ -70,6 +71,7 @@ LANGUAGES_SUPPORTED = [
     {'code': 'ur', 'name': 'Urdu', 'native': '\u0627\u0631\u062f\u0648'},
     {'code': 'vi', 'name': 'Vietnamese', 'native': 'Ti\u1ebfng Vi\u1ec7t'},
     {'code': 'zh_CN', 'name': 'Chinese (China)', 'native': '\u4e2d\u6587 (\u7b80\u4f53, \u4e2d\u56fd)'},
+    {'code': 'zh_HK', 'name': 'Chinese (Hong Kong)', 'native': '\u4e2d\u6587(\u7e41\u9ad4\u5b57\u002c\u0020\u4e2d\u570b\u9999\u6e2f\u7279\u5225\u884c\u653F\u5340)'},
     {'code': 'zh_TW', 'name': 'Chinese (Taiwan)', 'native': '\u4e2d\u6587 (\u7e41\u9ad4, \u53f0\u7063)'}
 ]
 

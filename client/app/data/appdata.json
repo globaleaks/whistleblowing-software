@@ -24,7 +24,7 @@
       "he": "{RecipientName} היקר,\n\nYou're receiving this email because a user account has been created for you on the system: {Site}\n\nשם משתמש: {Username}\nActivation link: {Url}\n\nPlease click on the activation link to proceed with the account activation and to set your user password.\n\nAfter successful activation you will be able to access the system via the following link: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nבברכה,\n{NodeName}",
       "hr_HR": "Dragi/a {RecipientName},\n\nDobili ste ovaj email jer je za Vas kreiran korisnički račun na sustavu: {Site}\n\nKorisničko ime: {Username}\nAktivacijska poveznica: {Url}\n\nMolimo Vas da kliknete na aktivacijsku poveznicu kako biste nastavili sa aktivacijom računa i postavljanjem lozinke.\n\nNakon uspješne aktivacije bit ćete u mogućnosti pristupiti sustavu putem sljedeće poveznice: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nZa korisničku dokumentaciju posjetite:\n{DocumentationUrl}\n\nS poštovanjem,\n{NodeName}",
       "hu_HU": "Kedves {RecipientName},\n\nAzért kapta ezt az e-mailt, mert létrejött a felhasználói fiókja a rendszerben: {Site}\n\nFelhasználónév: {Username}\nAktiválási link: {Url}\n\nKattintson az linkre a fiók aktiválásához, és állítson be jelszót.\n\nSikeres aktiválás után a következő link segítségével férhet hozzá a rendszerhez: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nA felhasználói útmutatóért látogasson ide:\n{DocumentationUrl}\n\nSzívélyes üdvözlettel,\n{NodeName}",
-      "id": "yang terhormat {RecipientName},\n\nYou're receiving this email because a user account has been created for you on the system: {Site}\n\nNama pengguna: {Username}\nActivation link: {Url}\n\nPlease click on the activation link to proceed with the account activation and to set your user password.\n\nAfter successful activation you will be able to access the system via the following link: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nUntuk dokumentasi pengguna, kunjungi:\n{DocumentationUrl}\n\nsalam,\n{NodeName}",
+      "id": "yang terhormat {RecipientName},\n\nAnda menerima pesan ini karena sebuah akun telah dibuat untuk Anda di dalam sistem: {Site}\n\nNama pengguna: {Username}\nTautan aktivasi: {Url}\n\nPlease click on the activation link to proceed with the account activation and to set your user password.\n\nAfter successful activation you will be able to access the system via the following link: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nUntuk dokumentasi pengguna, kunjungi:\n{DocumentationUrl}\n\nsalam,\n{NodeName}",
       "it": "Gentile {RecipientName}\n\nRicevi questa email perchè un account utente è stato creato per te sul sistema: {Site}\n\nUsername: {Username}\nLink di attivazione: {Url}\n\nSi prega di cliccare sul link di attivazione per procedere all'attivazione dell'account e ad impostare la tua password personale.\n\nDopo il completamento della procedura di attivazione potrai accedere al sistema attraverso il link: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nPer la documentazione utente visita:\n{DocumentationUrl}\n\nDistinti saluti,\n{NodeName}",
       "ja": "{RecipientName} 様\n\nシステムでユーザーアカウントが作成されたため、このメールを受信しています: {Site}\n\nユーザー名: {Username}\nアクティベーションリンク: {Url}\n\nアクティベーションリンクをクリックして、アカウントのアクティベーションを続行し、ユーザーパスワードを設定してください。\n\nアクティベーションに成功すると、次のリンクからシステムにアクセスできるようになります: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nユーザードキュメントはこちら:\n{DocumentationUrl}\n\n敬具\n{NodeName}",
       "ka": "ძვირფასო {RecipientName}\n\nYou're receiving this email because a user account has been created for you on the system: {Site}\n\nUsername: {Username}\nActivation link: {Url}\n\nPlease click on the activation link to proceed with the account activation and to set your user password.\n\nAfter successful activation you will be able to access the system via the following link: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nკეთილი სურვილებით,\n{NodeName}",
@@ -32,6 +32,7 @@
       "lt": "Dear {RecipientName},\n\nYou're receiving this email because a user account has been created for you on the system: {Site}\n\nUsername: {Username}\nActivation link: {Url}\n\nPlease click on the activation link to proceed with the account activation and to set your user password.\n\nAfter successful activation you will be able to access the system via the following link: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nYou're receiving this email because a user account has been created for you on the system: {Site}\n\nNom d’utilisateur : {Username}\nActivation link: {Url}\n\nPlease click on the activation link to proceed with the account activation and to set your user password.\n\nAfter successful activation you will be able to access the system via the following link: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nPour consulter la documentation utilisateur, visitez :\n{DocumentationUrl}\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nЈа добивте оваа е-маил порака поради тоа што е креиран кориснички профил за Вас на системот: {Site}\n\nКорисничко име: {Username}\nЛинк за активација: {Url}\n\nВе молиме кликнете на линкот за активација за да продолжите со активација на Вашиот профил и поставете ја Вашата лозинка. \n\nПо успешна активација ќе може да пристапите кон системот преку следниот линк: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nЗа документацијата на корисникот, посетете: \n{DocumentationUrl}\n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\nစနစ်ပေါ်တွင် သင့်အတွက်အသုံးပြုသူအကောင့် တစ်ခုဖန်တီးပေးခဲ့ပြီးသောကြောင့် သင့်အား ဤအီးမေးလ်ဖြင့် အကြောင်းကြားခြင်း ဖြစ်ပါတယ် - {Site}\n\nအသုံးပြုသူအမည် - {Username}\nအသက်၀င်စေသောလင့် - {Url}\n\nအကောင့် activation ဆက်လက်လုပ်ဆောင်ရန်နှင့် သင်၏အသုံးပြုသူစကားဝှက်ကို သတ်မှတ်ရန် activation link ကိုနှိပ်ပါ။\n\nအောင်မြင်စွာ activation လုပ်ပြီးသည်နှင့်အောက်ပါ link မှတဆင့် system သို့သင်ဝင်ရောက်နိုင်လိမ့်မည် - {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nအသုံးပြုသူစာရွက်စာတမ်းများအတွက်, သွားရောက်ကြည့်ရှု - \n{DocumentationUrl}\n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nYou're receiving this email because a user account has been created for you on the system: {Site}\n\nUsername: {Username}\nActivation link: {Url}\n\nPlease click on the activation link to proceed with the account activation and to set your user password.\n\nAfter successful activation you will be able to access the system via the following link: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nJe ontvangt deze e-mail omdat er een gebruikersaccount voor je is gemaakt op het systeem: {Site}\n\nGebruikersnaam: {Username}\nActivatielink: {Url}\n\nKlik op de activatielink om verder te gaan met het activeren van je account en om een wachtwoord in te stellen.\n\nNa succesvolle activatie zal je toegang tot het systeem hebben via de volgende link: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nVoor de gebruikershandleiding, bezoek:\n{DocumentationUrl}\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\notrzymujesz tę wiadomość, ponieważ utworzono dla Ciebie konto użytkownika w systemie: {Site}\n\nNazwa użytkownika: {Username}\nOdnośnik aktywacyjny: {Url}\n\nAby kontynuować aktywację konta i ustawić hasło użytkownika, kliknij poniższy odnośnik.\n\nPo udanej aktywacji będziesz móc uzyskać dostęp do systemu przez poniższy odnośnik: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nDokumentacja użytkownika:\n{DocumentationUrl}\n\nZ poważaniem\n{NodeName}",
@@ -51,6 +52,7 @@
       "ur": "محترم{RecipientName}،\n\nYou're receiving this email because a user account has been created for you on the system: {Site}\n\nUsername: {Username}\nActivation link: {Url}\n\nPlease click on the activation link to proceed with the account activation and to set your user password.\n\nAfter successful activation you will be able to access the system via the following link: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nBạn đang nhận được email này vì tài khoản người dùng đã được tạo cho bạn trên hệ thống: {Site}\n\nTên người dùng: {Username}\nLiên kết kích hoạt: {Url}\n\nVui lòng nhấp vào liên kết kích hoạt để tiến hành kích hoạt tài khoản và đặt mật khẩu của bạn.\n\nSau khi kích hoạt thành công, bạn có thể truy cập hệ thống thông qua liên kết sau: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nĐối với tư liệu người dùng, hãy truy cập:\n{DocumentationUrl}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n由于您在本站创建新帐号，故系统自动发送此邮件: {Site}\n\n用户名: {Username}\n激活链接: {Url}\n\n请点击帐号激活链接以完成密码设置。\n\n成功激活后，即可以透过以下网址登录系统: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\n用户文档请到：\n{DocumentationUrl}\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\n您剛在 {Site} 上註冊爲使用者。\n\n用戶名稱：{Username}\n啓動鏈結：{Url} \n\n請按下啓動鏈結以繼續建立您的帳號並設定使用者密碼。\n\n成功啓動之後，您將可以使用以下鏈結登入：{LoginUrl}\n{AccountRecoveryKeyInstructions}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n由於您在本站創建新帳號，故系統自動發送此郵件: {Site}\n\n用戶名: {Username}\n激活連結: {Url}\n\n請點擊帳號激活連結以完成密碼設定。\n\n成功激活後，即可以透過以下網址登入系統: {LoginUrl}\n{AccountRecoveryKeyInstructions}\n\n使用者文檔請到：\n{DocumentationUrl}\n\nKind regards,\n{NodeName}"
     },
     "account_activation_mail_title": {
@@ -84,6 +86,7 @@
       "lt": "Account activation",
       "mg": "Account activation",
       "mk": "Активација на профил",
+      "my": "အကောင့်ဖွင့်ခြင်း",
       "nb_NO": "Account activation",
       "nl": "Account activatie",
       "pl": "Aktywacja konta",
@@ -103,6 +106,7 @@
       "ur": "Account activation",
       "vi": "Kích hoạt tài khoản",
       "zh_CN": "帐号激活",
+      "zh_HK": "帳號啓動",
       "zh_TW": "帳號激活"
     },
     "account_recovery_key_instructions": {
@@ -128,7 +132,7 @@
       "he": "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.",
       "hr_HR": "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.",
       "hu_HU": "Javasoljuk, hogy a \"Beállítások\" szekcióban töltse le a Fiók helyreállító kulcsát és tárolja biztonságosan. Ez a kulcs szükséges ahhoz, hogy helyreállítsa hozzáférését és visszaszerezze adatait abban az esetben, ha elfelejtené jelszavát.",
-      "id": "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.",
+      "id": "Kami merekomendasikan Anda mengakses \"Preferensi\" untuk menerima \"Kunci Pemulihan Akun\" dan simpan dengan aman. Kunci ini dibutuhkan untuk memulihkan Akses Anda ke platform dan data Anda jika Anda lupa sandi.",
       "it": "Consigliamo di accedere alla sezione \"Preferenze\" al fine di recuperare la tua \"Account Recovery Key\" e farne una copia di sicurezza. Questa chiave sarà necessaria per ripristinare il tuo accesso alla piattaforma e ai tuoi dati nel caso tu dimenticassi la tua password.",
       "ja": "「アカウント回復鍵」を取得して安全に保管するために、「設定」セクションにアクセスすることをお勧めします。 この鍵は、パスワードを忘れた場合にプラットフォームとデータへのアクセスを回復するために必要です。",
       "ka": "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.",
@@ -136,6 +140,7 @@
       "lt": "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.",
       "mg": "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.",
       "mk": "Препорачуваме да пристапите кон секцијата „Преференци“ за да може да го вратите Вашиот „клуч за враќање на профилот“ и да го сочувате безбедно. Овој клуч е неопходен за да го вратите пристапот кон платформата и Вашите податоци доколку ја заборавите лозинката.",
+      "my": "သင်၏ “အသုံးပြုသူ၏စကားဝှက်သော့ ပြန်ရအောင်လုပ်ခြင်း” ကို ပြန်လည်ရယူပြီး လုံခြုံစွာသိမ်းဆည်းရန် “Preferences” ကဏ္ဍ section ကိုဝင်ရောက်ကြည့်ရှုရန် ကျွန်ုပ်တို့အကြံပြုပါသည်။ အကယ်၍ သင်၏စကားဝှက်ကိုမေ့သွားပါက ထိုသော့သည် ပလက်ဖောင်းနှင့် သင်၏အချက်အလက်များကို ပြန်လည်ရယူနိုင်ရန် လိုအပ်သည်။",
       "nb_NO": "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.",
       "nl": "We raden u aan de sectie \"Voorkeuren\" te openen om uw \"Accountherstel-sleutel\" op te halen en deze veilig op te slaan. Deze sleutel is nodig om uw toegang tot het platform en uw gegevens te herstellen in het geval u uw wachtwoord vergeet.",
       "pl": "Zalecamy wejście w opcję \"Preferencje\" w celu wygenerowania Klucza Odzyskiwania Dostępu, który należy przechowywać w sposób bezpieczny. Klucz ten jest niezbędny do uzyskania dostępu do platformy i wszystkich danych w przypadku zagubienia hasła.",
@@ -155,6 +160,7 @@
       "ur": "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.",
       "vi": "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.",
       "zh_CN": "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.",
+      "zh_HK": "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.",
       "zh_TW": "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password."
     },
     "activation_mail_template": {
@@ -188,6 +194,7 @@
       "lt": "Dear {RecipientName},\n\nYour whistleblowing platform is now accessible at:\n{Url}\n\nTo log in, visit:\n{LoginUrl}\n\nUsers' credentials:\n{AdminCredentials}\n{RecipientCredentials}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nKind regards,\n\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nIl est maintenant possible d’accéder à votre plateforme de lancement d’alerte sur :\n{Url}\n\nPour vous connecter, visitez :\n{LoginUrl}\n\nRenseignements sur les utilisateurs :\n{AdminCredentials}\n{RecipientCredentials}\n\nPour consulter la documentation utilisateur, visitez :\n{DocumentationUrl}\n\nLa plateforme sera supprimée automatiquement le :\n{ExpirationDate}\n\nSalutations cordiales,\n\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nВашата платформа за укажувачи сега е достапна на:\n{Url}\n\nЗа да се најавите, посетете: \n{LoginUrl}\n\nИнгеренции на корисниците:\n{AdminCredentials}\n{RecipientCredentials}\n\nЗа документацијата на корисникот, посетете: \n{DocumentationUrl}\n\nПлатформата автоматски ќе биде избришана на:\n{ExpirationDate}\n\nСрдечни поздрави, \n\n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\nသင်၏ သတင်းပေးသော ပလက်ဖောင်းကို ယခုကြည့်ရှုနိုင်သည် - \n{Url}\n\nဝင်ရောက်ရန်၊ အလည်အပတ် - \n{LoginUrl}\n\nအသုံးပြုသူများ၏ အထောက်အထားများ -\n{AdminCredentials}\n{RecipientCredentials}\n\nအသုံးပြုသူစာရွက်စာတမ်းများအတွက်, သွားရောက်ကြည့်ရှု - \n{DocumentationUrl}\n\nပလက်ဖောင်းကို အလိုအလျောက်ဖျက်ပစ်လိမ့်မည် -\n{ExpirationDate}\n\nမေတ္တာဖြင့်\n\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nDin fløyteblåserplattform er nå tilgjengelig på:\n{Url}\n\nFor å logge inn, besøk:\n{LoginUrl}\n\nBrukeres identitetsdetaljer:\n{AdminCredentials}\n{RecipientCredentials}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nPlattformen vil bli slettet automatisk den:\n{ExpirationDate}\n\nVennlig hilsen,\n\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nJe klokkenluiders-platform is nu toegankelijk via:\n{Url}\n\nOm in te loggen, ga naar:\n{LoginUrl}\n\nGebruikersgegevens:\n{AdminCredentials}\n{RecipientCredentials}\n\nVoor de gebruikershandleiding, bezoek:\n{DocumentationUrl}\n\nHet platvorm wordt automatisch gewist op:\n{ExpirationDate}\n\nMet vriendelijke groet,\n\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nTeraz Twoja platforma sygnalistów jest dostępna pod adresem:\n{Url}\n\nAby się zalogować, odwiedź\n{LoginUrl}\n\nDane uwierzytelniające użytkowników:\n{AdminCredentials}\n{RecipientCredentials}\n\nDokumentacja użytkownika:\n{DocumentationUrl}\n\nPlatforma zostanie automatycznie usunięta:\n{ExpirationDate}\n\nZ poważaniem\n\n{NodeName}",
@@ -207,6 +214,7 @@
       "ur": "محترم{RecipientName}،\n\nYour whistleblowing platform is now accessible at:\n{Url}\n\nTo log in, visit:\n{LoginUrl}\n\nUsers' credentials:\n{AdminCredentials}\n{RecipientCredentials}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nبہت نوازش، مخلص\n\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nNền tảng tố giác hiện có thể truy cập tại:\n{Url}\n\nĐể đăng nhập, hãy truy cập:\n{LoginUrl}\n\nThông tin đăng nhập của người dùng:\n{AdminCredentials}\n{RecipientCredentials}\n\nĐối với tư liệu người dùng, hãy truy cập:\n{DocumentationUrl}\n\nNền tảng sẽ được xóa tự động vào:\n{ExpirationDate}\n\nTrân trọng,\n\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n吹哨揭密平台已启用:\n{Url}\n\n欲登录请到:\n{LoginUrl}\n\n用户的证书:\n{AdminCredentials}\n{RecipientCredentials}\n\n用户文档请到：\n{DocumentationUrl}\n\n平台会自动进行删除:\n{ExpirationDate}\n\n亲切的问候，\n\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\n您的舉報平台現已在線：\n{Url}\n\nTo log in, visit:\n{LoginUrl}\n\nUsers' credentials:\n{AdminCredentials}\n{RecipientCredentials}\n\nFor the user documentation, visit:\n{DocumentationUrl}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nKind regards,\n\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n吹哨揭密平台已啟用:\n{Url}\n\n欲登入請到:\n{LoginUrl}\n\n用戶的證書:\n{AdminCredentials}\n{RecipientCredentials}\n\n使用者文檔請到：\n{DocumentationUrl}\n\n平台會自動進行刪除:\n{ExpirationDate}\n\nKind regards,\n\n{NodeName}"
     },
     "activation_mail_title": {
@@ -240,6 +248,7 @@
       "lt": "Access instructions",
       "mg": "Instructions d’accès",
       "mk": "Упатства за пристап",
+      "my": "အသုံးပြုမှုလမ်းညွှန်ချက်",
       "nb_NO": "Tilgangsinstruksjoner",
       "nl": "Toegangsinstructies",
       "pl": "Instrukcje dostępu",
@@ -259,6 +268,7 @@
       "ur": "Access instructions",
       "vi": "Hướng dẫn truy cập",
       "zh_CN": "取用的指示",
+      "zh_HK": "Access instructions",
       "zh_TW": "取用的指示"
     },
     "admin_anomaly_activities": {
@@ -292,6 +302,7 @@
       "lt": "The number of activities recently detected appears to be higher than usual.\n\nThis could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.\n\nExamine the issue to determine whether it is legitimate or not.\n\nThe activities with unusual stats are:\n{ActivityDump}",
       "mg": "Le nombre d’activités détectées récemment semble supérieur à l’habitude.\n\nCela pourrait être le signe d’une attaque (par exemple quelqu’un inondant votre serveur de pseudo-informations) ou simplement d’un pic d’utilisation causé par la visibilité accrue de votre projet.\n\nExaminer le problème afin de déterminer s’il est valide ou non.\n\nVoici les activités présentant des statistiques inhabituelles :\n{ActivityDump}",
       "mk": "Бројот на активности од неодамна е зголемен од вообичаеното. \n\nОва може да биде знак на напад (на пример, некој го преплавува Вашиот сервер со лажни информации) или се обидува да го користи поради зголемена видливост на Вашиот проект. \n\nПроверете го проблемот да оцените дали е легитимен или не. \n\nАктивностите со необични статистики се: \n{ActivityDump}",
+      "my": "မကြခင်က ရှာဖွေတွေ့ရှိခဲ့သော လှုပ်ရှားမှုအရေအတွက်သည် ပုံမှန်ထက် ပိုမိုများပြားပုံရတယ်။\n\n၎င်းသည်သင်၏စီမံကိန်းအားပိုမိုမြင်သာသောကြောင့်တိုက်ခိုက်မှု၏လက္ခဏာတစ်ခု (ဥပမာ၊ တစ်စုံတစ်ယောက်ကသင်၏ဆာဗာကိုအတုအယောင်သတင်းအချက်အလက်ဖြင့်ရေလွှမ်းမိုးနေသူ) သို့မဟုတ်အသုံးပြုမှုတိုးလာခြင်းဖြစ်နိုင်သည်။\n\nတရားဝင်မှု ဟုတ်မဟုတ်ဆုံးဖြတ်ရန်ကိစ္စကို စစ်ဆေးပါ။\n\nပုံမှန်မဟုတ်သောစာရင်းဇယားများနှင့် လှုပ်ရှားမှုများမှာ -\n{ActivityDump}",
       "nb_NO": "Antallet nylige aktiviteter later til å være høyere enn normalt.\n\nDette kan indikere angrep (eksempelvis at noen oversvømmer tjeneren med ugyldig informasjon) eller bare en brå økning i aktivitetsnivået på grunn av naturlige årsaker(, som synligheten til ditt prosjekt).\n\nUndersøk problemet for å bestemme hvorvidt det er legitimt eller skadelig.\n\nHendelsesforløpet med uvanlige attributter er:\n{ActivityDump}",
       "nl": "Het aantal recente activiteiten blijkt hoger dan gebruikelijk te zijn.\n\nDit zou een een teken van een aanval kunnen zijn, bijvoorbeeld iemand die je server bestookt met onjuiste informatie, of een piek in het gebruik door verhoogde zichtbaarheid van uw project\n\nBekijk het probleem om vast te stellen of het legitiem is of niet.\n\nDe gebeurtenissen met ongebruikelijke statistieken zijn:\n{ActivityDump}",
       "pl": "Liczba wykrytych ostatnio usuniętych działań wydaje się być wyższa niż dotąd.\n\nMoże to być oznaka ataku (na przykład zalewania przez kogoś Twojego serwera fałszywymi informacjami) lub po prostu wzrost wykorzystania spowodowany zwiększoną widocznością Twojego projektu.\n\nZbadaj tę kwestię, by stwierdzić, czy wzrost jest spodziewany, czy niepokojący.\n\nOto działania z odbiegającymi od normy statystykami:\n{ActivityDump}",
@@ -311,6 +322,7 @@
       "ur": "سرگرمیوں حال ہی پتہ چلنے کی تعداد معمول سے زیادہ ہو جائے کرنے کے لئے ظاہر.\n\nیہ یا صرف ایک کے استعمال کی بڑھتی ہوئی وارداتوں کی وجہ سے اپنے منصوبے کی ایک بڑھتی ہوئی نمائش کرنے کے لئے ایک حملے (کسی بوگس معلومات کے ساتھ آپ کے سرور سیلاب مثال کے طور پر) کی ایک علامت ہو سکتی ہے.\n\nExamine the issue to determine whether it is legitimate or not.\n\nغیر معمولی اعدادوشمار کے ساتھ سرگرمیوں ہیں:\n{ActivityDump}",
       "vi": "Số lượng các hoạt động gần đây được phát hiện dường như là cao hơn bình thường.\n\nĐây có thể là dấu hiệu của một cuộc tấn công (ví dụ: ai đó làm ngập máy chủ của bạn với thông tin không có thật) hoặc chỉ là sự tăng đột biến về sử dụng do khả năng hiển thị dự án của bạn tăng lên.\n\nKiểm tra vấn đề để xác định xem nó có hợp pháp hay không.\n\nCác hoạt động với chỉ số bình thường là:\n{ActivityDump}",
       "zh_CN": "侦测到最近的活动数量似乎高于正常\n\n这可能是遭到攻击的征兆(例如某人试图以伪造的信息来淹没你的网站)或是由于专案能见度大增致使用流量提高\n\n查验此问题以决定其是否合理。\n\n不寻常的活动统计如下：\n{ActivityDump}",
+      "zh_HK": "The number of activities recently detected appears to be higher than usual.\n\nThis could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.\n\nExamine the issue to determine whether it is legitimate or not.\n\nThe activities with unusual stats are:\n{ActivityDump}",
       "zh_TW": "偵測到最近的活動數量似乎高於正常\n\n這可能是遭到攻擊的徵兆(例如某人試圖以偽造的資訊來淹沒你的網站)或是由於專案能見度大增致使用流量提高\n\n查驗此問題以決定其是否合理。\n\n非正常活動的統計為：\n{ActivityDump}"
     },
     "admin_anomaly_disk_high": {
@@ -344,6 +356,7 @@
       "lt": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nThe server cannot guarantee that a new report can be stored, so submissions have been disabled.",
       "mg": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nLe serveur ne peut pas garantir qu’un nouvel envoi sera enregistré, et par conséquent les envois ont été suspendus.",
       "mk": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nСерверот не може да гарантира дека нова пријава може да биде меморирана, поради тоа поднесоците се оневозможени.",
+      "my": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nအစီရင်ခံစာအသစ်ကို သိမ်းဆည်းထားနိုင်ကြောင်း ဆာဗာက အာမမခံပါ။ ထို့ကြောင့်တင်သွင်းမှုများကိုပိတ်ထားသည်။",
       "nb_NO": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nThe server cannot guarantee that a new report can be stored, so submissions have been disabled.",
       "nl": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nDe server kan niet garanderen dat een nieuwe inzending kan worden opgeslagen, daarom is de mogelijkheid inzendingen te versturen uitgeschakeld.",
       "pl": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nSerwer nie może zagwarantować przechowywania nowego raportu, więc wyłączono zgłoszenia.",
@@ -363,6 +376,7 @@
       "ur": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nتاکہ گذارشات کو غیر فعال کر دیا گیا ہے سرور، ایک نیا جمع کرانے ذخیرہ کیا جا سکتا ہے کہ اس بات کی ضمانت نہیں دے سکتے.",
       "vi": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nMáy chủ không thể đảm bảo rằng một báo cáo mới có thể được lưu trữ, vì vậy các bài nộp đã bị vô hiệu hóa.",
       "zh_CN": "{FreeMemory} of {TotalMemory} available diskspace used.\n\n`此服务器无法保证新报告可被保存，所提交的报告可能无效。",
+      "zh_HK": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nThe server cannot guarantee that a new report can be stored, so submissions have been disabled.",
       "zh_TW": "{FreeMemory} of {TotalMemory} available diskspace used.\n\n`此伺服器無法保證新報告可被儲存，所提交的報告可能無效。"
     },
     "admin_anomaly_disk_low": {
@@ -396,6 +410,7 @@
       "lt": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nPlease consider asking your technical support to create more disk space on the server.",
       "mg": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nVeuillez envisager de demander à votre soutien technique de créer de l’espace disque sur le serveur.",
       "mk": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nВе молиме да земете во предвид Вашата техничка поддршка да креира повеќе простор на дискот на серверот.",
+      "my": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nဆာဗာတွင် disk နေရာ ပိုမိုဖန်တီးရန်သင်၏ နည်းပညာအထောက်အပံ့ကို တောင်းခံပါ။",
       "nb_NO": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nOvervei å spørre din tekniske brukerstøtte om å frigjøre eller legge til mer diskplass på tjeneren.",
       "nl": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nU zou uw technische supportteam kunnen vragen om u meer ruimte op de server te geven.",
       "pl": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nRozważ poproszenie zespołu ds. wsparcia technicznego o powiększenie przestrzeni dyskowej na serwerze.",
@@ -415,6 +430,7 @@
       "ur": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nPlease consider asking your technical support to create more disk space on the server.",
       "vi": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nVui lòng xem xét yêu cầu hỗ trợ kỹ thuật của bạn để tạo thêm dung lượng đĩa trên máy chủ.",
       "zh_CN": "{FreeMemory} of {TotalMemory} available diskspace used.\n\n请考虑求助技术支持以在服务器上创建更多硬盘空间",
+      "zh_HK": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nPlease consider asking your technical support to create more disk space on the server.",
       "zh_TW": "{FreeMemory} of {TotalMemory} available diskspace used.\n\n請考慮求助技術支援以在伺服器上建立更多硬碟空間"
     },
     "admin_anomaly_mail_template": {
@@ -448,6 +464,7 @@
       "lt": "Dear {RecipientName},\n\nGlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nFor more information, log in to the Administration interface and look at the \"System Stats\" and \"Anomalies\" sections.\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nLa technologie GlobaLeaks inclut un composant de vérification de l’état du serveur qui vous alertera au cas où quelque chose exige votre attention.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nPour davantage d’informations, connectez-vous à l’interface d’administration et consultez les sections « Statistiques du système » et « Anomalies ».\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nGlobaLeaks технологијата вклучува и компонента на проверка на статус на сервер којашто ќе Ве извести доколку е потребно Вашето внимание.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nЗа повеќе информации, најавете се во административниот дел за комуникација и видете ги секциите „Системска статистика“ и „Аномалии“. \n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\nGlobaLeaks နည်းပညာတွင်ဆာဗာအခြေအနေစစ်ဆေးခြင်းအစိတ်အပိုင်းပါဝင်ပြီး ထိုအရာမှ သင်၏အာရုံစူးစိုက်မှု လိုအပ်သည်ကိစ္စတွင် သင်ကိုသတိပေးပါလိမ့်မယ်။\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nပိုမိုသိရှိလိုပါက၊ အုပ်ချုပ်ရေးမျက်နှာပြင်သို့၀င်၍ \"System Stats\" နှင့် \"Anomalies\" section ကိုကြည့်ပါ။\n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nGlobaleaks-teknologi innheholder en komponent som sjekker statusen til tjeneren, denne vil holde deg underrettet om noe skulle behøve din oppmerksomhet.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nYtterligere informasjon tilgjengelig ved innlogging på administrasjonspanelet under seksjonene \"Systemstatistikk\" og \"Unormalheter\".\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nDe GlobaLeaks-technologie bevat een serverstatus-controlerend component dat je alarmeert in het geval er iets je aandacht vereist.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nVoor meer informatie, log in op de Administratie-interface en controleer de delen “Systeemstatistieken” en “Anomalieën”.\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nTechnologia Global Leaks obejmuje komponent sprawdzania statusu serwera, który powiadomi Cię, jeśli coś będzie wymagało Twojej uwagi.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nAby otrzymać więcej informacji na ten temat, zaloguj się do interfejsu administracyjnego i przyjrzyj się sekcjom Statystyki systemu i Anomalie.\n\nZ poważaniem\n{NodeName}",
@@ -467,6 +484,7 @@
       "ur": "محترم{RecipientName}،\n\nGlobaLeaks ٹیکنالوجی ایک سرور کی حیثیت کی جانچ پڑتال جزو جس صورت میں کسی چیز آپ کی توجہ کی ضرورت ہوتی ہے اگر آپ کو آگاہ کرے گا بھی شامل ہے.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nFor more information, log in to the Administration interface and look at the \"System Stats\" and \"Anomalies\" sections.\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nCông nghệ GlobaLeaks bao gồm đơn vị kiểm tra trạng thái máy chủ sẽ cảnh báo bạn trong trường hợp có điều gì cần bạn chú ý.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nĐể biết thêm thông tin, đăng nhập vào giao diện Quản trị và xem phần \"Thống kê hệ thống\" và phần \"Bất thường\".\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\nGlobaLeaks 的技术包括了服务器状态检查要件，它会在必时警告你提高注意\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\n取得更多信息，请登录管理者接口来查看“系统统计”与“异常”部份\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\nGlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nFor more information, log in to the Administration interface and look at the \"System Stats\" and \"Anomalies\" sections.\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\nGlobaLeaks 的技術包括了伺服器狀態檢查要件，它會在必時警告你提高注意\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\n取得更多資訊，請登入管理者介面來查看“系統統計”與“異常”部份\n\nKind regards,\n{NodeName}"
     },
     "admin_anomaly_mail_title": {
@@ -500,6 +518,7 @@
       "lt": "Anomaly detected in {NodeName}",
       "mg": "Une anomalie a été détectée sur {NodeName}",
       "mk": "Детектирана е аномалија во {NodeName}",
+      "my": "{NodeName} တွင်တွေ့ရှိရသော Anomaly",
       "nb_NO": "Unormalhet oppdaget i {NodeName}",
       "nl": "Onregelmatigheid vastgesteld in {NodeName}",
       "pl": "Wykryto anomalię w {NodeName}",
@@ -519,6 +538,7 @@
       "ur": "اسنگتی {NodeName} میں پتہ چلا",
       "vi": "Bất thường được phát hiện trong {NodeName}",
       "zh_CN": "在 {NodeName} 侦测到异常状况",
+      "zh_HK": "Anomaly detected in {NodeName}",
       "zh_TW": "在 {NodeName} 偵測到異常狀況"
     },
     "admin_pgp_alert_mail_template": {
@@ -552,6 +572,7 @@
       "lt": "Dear {RecipientName},\n\nThis is an email to inform you that the PGP key of the following users is going to expire or has already expired:\n\n{PGPKeyInfoList}\n\nWithout a valid PGP key, the system will not be able to send them encrypted notifications.\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nLe but de ce courriel est de vous informer que la clé PGP des utilisateurs suivants va expirer ou a déjà expirée :\n\n{PGPKeyInfoList}\n\nSans clé PGP valide, le système ne pourra pas leur envoyer des notifications chiffrées.\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nОва е е-маил известување дека PGP клучот на следните корисници ќе истече или веќе е истечен: \n\n{PGPKeyInfoList}\n\nБез валиден PGP клуч, системот нема да биде во можност да им испраќа криптирани известувања. \n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\n၎င်းသည်အောက်ပါသုံးစွဲသူများ၏ PGP သော့သက်တမ်းကုန်တော့သွားမည် သို့မဟုတ် သက်တမ်းကုန်ပြီးဖြစ်ကြောင်း သင့်အားအသိပေးရန်အီးမေးလ်ဖြစ်သည် - \n\n{PGPKeyInfoList}\n\nတရားဝင် PGP သော့မရှိလျှင်၊ စနစ်သည်၎င်းတို့အား စာဝှက်ဖြင့်အသိပေးချက်များကို ပေးပို့နိုင်မည်မဟုတ်ပါ။\n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nDenne e-postens hensikt er å informere deg om at PGP-nøkkelen til følgende brukere allerede er eller kommer til å utløpe:\n\n{PGPKeyInfoList}\n\nUten en gyldig PGP-nøkkel, vil systemet ikke kunne sende dem krypterte merknader.\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nDit bericht is ter informatie dat de PGP sleutel van de volgende gebruikers binnenkort verloopt of al verlopen is:\n\n{PGPKeyInfoList}\n\nZonder een geldige PGP-sleutel, kan het systeem hen geen versleutelde notificaties sturen.\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nTo jest wiadomość mailowa z powiadomieniem, żę klucz PGP poniższych użytkowników wygaśnie niedługo lub już wygasł.\n\n{PGPKeyInfoList}\n\nBez ważnego klucza PGP system nie będzie w stanie wysyłać im zaszyfrowanych powiadomień.\n\nZ poważaniem\n{NodeName}",
@@ -571,6 +592,7 @@
       "ur": "محترم{RecipientName}،\n\nیہ ای میل آپ کو مطلع کرتی ہے کہ آپ کی 'پی جی پی کی' معیاد % بتاریخ % کو ختم ہورہی ہے۔\n\n{PGPKeyInfoList}\n\nایک موثر 'پی جی پی کی' کے بغیر یہ سسٹم آپ کو انکرپٹڈ نوٹیفکیشن بھیجنے کا اہل نہیں رہے گا۔\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nĐây là một email thông báo cho bạn rằng chìa khóa PGP của người sử dụng sau đây được sắp hết hoặc đã hết hạn:\n\n{PGPKeyInfoList}\n\nNếu không có một chìa khóa PGP hợp lệ, hệ thống sẽ không thể gửi các thông báo được mã hóa.\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n这封电子邮件是通知你，以下用户的 PGP 密钥即将或是已经到期：\n\n{PGPKeyInfoList}\n\n无有效的 PGP 密钥，系统将不能送出加密的通知\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\nThis is an email to inform you that the PGP key of the following users is going to expire or has already expired:\n\n{PGPKeyInfoList}\n\nWithout a valid PGP key, the system will not be able to send them encrypted notifications.\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n這封電子郵件是通知你，以下用戶的 PGP 金鑰即將或是已經到期：\n\n{PGPKeyInfoList}\n\n無有效的 PGP 金鑰，系統將不能送出加密的通知\n\nKind regards,\n{NodeName}"
     },
     "admin_pgp_alert_mail_title": {
@@ -604,6 +626,7 @@
       "lt": "PGP key expiration alert",
       "mg": "Alerte d’expiration de la clé PGP",
       "mk": "Потсетник за истекување на PGP клуч",
+      "my": "PGP key သက်တမ်းကုန်ဆုံးမှုသတိပေးချက်",
       "nb_NO": "Utløpsvarsel for PGP-nøkkel",
       "nl": "PGP-sleutelvervalwaarschuwing",
       "pl": "Alert o wygaśnięciu klucza PGP",
@@ -623,6 +646,7 @@
       "ur": "'پی جی پی کی' معیاد میں خاتمے کا انتباہ",
       "vi": "Cảnh báo hết hạn khoá PGP",
       "zh_CN": "PGP 密钥过期警告",
+      "zh_HK": "PGP key expiration alert",
       "zh_TW": "PGP 金鑰到期警示"
     },
     "admin_signup_alert_mail_template": {
@@ -648,7 +672,7 @@
       "he": "{RecipientName} היקר,\n\nA new whistleblowing site has been registered.\n\nנתוני הרשמה:\nאתר: {Url}\nשם: {Name}\nדוא״ל: {Email}\nשפה: {Language}\nהשתמש בתיק: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nבברכה,\n\n{NodeName}",
       "hr_HR": "Dragi/a {RecipientName},\n\nNova zviždačka stranica je registrirana.\n\nRegistracijski podaci:\nStranica: {Url}\nIme: {Name}\nEmail: {Email}\nJezik: {Language}\nSlučaj uporabe: {UseCase}\n\nPlatforma će biti automatski obrisana:\n{ExpirationDate}\n\nS poštovanjem,\n\n{NodeName}",
       "hu_HU": "Kedves {RecipientName},\n\nÚj közérdekű belentő oldal került regisztrálásra.\n\nRegisztrációs adatok:\nWeboldal: {Url}\nNév: {Name}\nE-mailcím: {Email}\nNyelv: {Language}\nEset: {UseCase}\n\nA platform automatikusan törlésre kerül ekkor:\n{ExpirationDate}\n\nSzívélyes üdvözlettel,\n\n{NodeName}",
-      "id": "yang terhormat {RecipientName},\n\nSebuah situs pelaporan baru telah terdaftar.\n\nData registrasi\nSite: {Url}\nNama: {Name}\nSurel: {Email}\nBahasa: {Language}\nGunakan kasus: {UseCase}\n\nplatform akan dihapus secara otomatis pada:\n{ExpirationDate}\n\nsalam,\n\n{NodeName}",
+      "id": "yang terhormat {RecipientName},\n\nSebuah situs pelaporan baru telah terdaftar.\n\nData registrasi\nSitus: {Url}\nNama: {Name}\nSurel: {Email}\nBahasa: {Language}\nGunakan kasus: {UseCase}\n\nplatform akan dihapus secara otomatis pada:\n{ExpirationDate}\n\nsalam,\n\n{NodeName}",
       "it": "Gentile {RecipientName}\n\nUn nuovo sito di whistleblowing è stato registrato.\n\nDati di registrazione\nSito: {Url}\nNome: {Name}\nEmail: {Email}\nLingua: {Language}\nCaso d'uso: {UseCase}\n\nLa piattaforma verrà automaticamente cancellata il:\n{ExpirationDate}\n\nDistinti saluti,\n\n{NodeName}",
       "ja": "{RecipientName} 様\n\n新しい告発サイトが登録されました。\n\n登録データ:\nサイト: {Url}\n名前: {Name}\nメール: {Email}\n言語: {Language}\nユースケース: {UseCase}\n\nプラットフォームは自動的に削除されます:\n{ExpirationDate}\n\n敬具\n\n{NodeName}",
       "ka": "ძვირფასო {RecipientName}\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {Url}\nName: {Name}\nEmail: {Email}\nLanguage: {Language}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nკეთილი სურვილებით,\n\n{NodeName}",
@@ -656,6 +680,7 @@
       "lt": "Dear {RecipientName},\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {Url}\nName: {Name}\nEmail: {Email}\nLanguage: {Language}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nKind regards,\n\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nUn nouveau site de lancement d’alerte a été enregistré.\n\nDonnées d’enregistrement :\nSite: {Url}\nNom : {Name}\nAdresse courriel : {Email}\nLangue : {Language}\nCas d’utilisation : {UseCase}\n\nLa plateforme sera supprimée automatiquement le :\n{ExpirationDate}\n\nSalutations cordiales,\n\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nРегистрирана е нова страница за укажувачи.\n\nДатум на регистрација:\nСтрана: {Url}\nИме: {Name}\nЕ-маил: {Email}\nЈазик: {Language}\nКористете случај: {UseCase}\n\nПлатформата автоматски ќе биде избришана на:\n{ExpirationDate}\n\nСрдечни поздрави, \n\n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\nသတင်းပေးဆိုဒ် အသစ်တစ်ခုကို မှတ်ပုံတင်လိုက်သည်။ \n\nစာရင်းသွင်းထားသည့်အချက်အလက်များ -\nဆိုဒ် - {Url}\nနာမည် - {Name}\nအီးမေးလ် - {Email}\nဘာသာစကား - {Language}\nအသုံးပြုမှုကိစ္စ - {UseCase}\n\nပလက်ဖောင်းကို အလိုအလျောက်ဖျက်ပစ်လိမ့်မည် -\n{ExpirationDate}\n\nမေတ္တာဖြင့်\n\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nEn ny fløyteblåserside har blitt registrert.\n\nRegistreringsdata:\nSite: {Url}\nNavn: {Name}\nE-post: {Email}\nSpråk: {Language}\nBruksmønster: {UseCase}\n\nPlattformen vil bli slettet automatisk den:\n{ExpirationDate}\n\nVennlig hilsen,\n\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nEr is een nieuwe klokkenluiders-weblocatie geregistreerd.\n\nRegistratie datum:\nWeblocatie: {Url}\nNaam: {Name}\nE-mail: {Email}\nTaal: {Language}\nGebruikssituatie: {UseCase}\n\nHet platvorm wordt automatisch gewist op:\n{ExpirationDate}\n\nMet vriendelijke groet,\n\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nZarejestrowano nowego sygnalistę\n\nDane rejestracyjne:\nStrona: {Url}\nNazwa: {Name}\nE-mail: {Email}\nJęzyk: {Language}\nPrzypadek zastosowania: {UseCase}\n\nPlatforma zostanie automatycznie usunięta:\n{ExpirationDate}\n\nZ poważaniem\n\n{NodeName}",
@@ -675,6 +700,7 @@
       "ur": "محترم{RecipientName}،\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {Url}\nName: {Name}\nEmail: {Email}\nLanguage: {Language}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nبہت نوازش، مخلص\n\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nMột trang web tố giác mới đã được đăng ký.\n\nDữ liệu đăng ký:\nTrang web: {Url}\nTên: {Name}\nEmail: {Email}\nNgôn ngữ: {Language}\nTrường hợp sử dụng: {UseCase}\n\nNền tảng sẽ được xóa tự động vào:\n{ExpirationDate}\n\nTrân trọng,\n\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n新建的吹哨网站已完成注册\n\n注册数据:\n网站: {Url}\n名称: {Name}\nEmail: {Email}\n语言: {Language}\n使用案例: {UseCase}\n\n平台会自动进行删除:\n{ExpirationDate}\n\n亲切的问候，\n\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {Url}\nName: {Name}\nEmail: {Email}\nLanguage: {Language}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nKind regards,\n\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n新建的吹哨網站已完成註冊\n\n註冊資料:\n網站: {Url}\n名稱: {Name}\nEmail: {Email}\n語言: {Language}\n使用案例: {UseCase}\n\n平台會自動進行刪除:\n{ExpirationDate}\n\nKind regards,\n\n{NodeName}"
     },
     "admin_signup_alert_mail_title": {
@@ -708,6 +734,7 @@
       "lt": "New whistleblowing site registered",
       "mg": "Un nouveau site de lancement d’alerte a été enregistré.",
       "mk": "Регистрирана е нова страница за укажувачи",
+      "my": "သတင်းပေးပို့သည့် နေရာအသစ် မှတ်ပုံတင်ထားသည်",
       "nb_NO": "Ny fløyteblåserside registrert",
       "nl": "Nieuwe klokkenluiders-weblocatie geregistreerd",
       "pl": "Zarejestrowano nową stronę sygnalistów",
@@ -727,6 +754,7 @@
       "ur": "New whistleblowing site registered",
       "vi": "Trang web tố giác mới đăng kí",
       "zh_CN": "有新的吹哨揭密网站加入",
+      "zh_HK": "New whistleblowing site registered",
       "zh_TW": "有新的吹哨揭密網站加入"
     },
     "admin_test_mail_template": {
@@ -760,6 +788,7 @@
       "lt": "Dear {RecipientName},\n\nThis is a test email sent out from the platform's administrative interface.\n\nReception of this email indicates that the server was able to authenticate to and interact with the SMTP mail server.\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nCeci est un courriel de test envoyé par l’interface d’administration de la plateforme.\n\nLa réception de ce courriel indique que le serveur a réussi à s’authentifier auprès du serveur de courriel SMTP et à interagir avec lui.\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nОва е пробен е-маил испратен од административниот дел за комуникација на платформата. \n\nПриемот на овој е-маил значи дека серверот го автентицираше и беше во можност да комуницира со серверот за пошта SMTP.\n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\n၎င်းသည်ပလက်ဖောင်း၏ အုပ်ချုပ်ရေးမျက်နှာပြင်မှပေးပို့သော စမ်းသပ်အီးမေးလ်ဖြစ်သည်။\n\nဒီအီးမေးလ်ကိုလက်ခံခြင်းသည်ဆာဗာသည် SMTP မေးလ်ဆာဗာနှင့်စစ်ဆေးပြီး အပြန်အလှန်ဆက်သွယ်နိုင်ကြောင်း ဖော်ပြသည်။\n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nDette er en e-posttest send fra plattformens administrative grensesnitt.\n\nMottak av denne e-posten indikerer at tjeneren kunne identitetsbekrefte seg ovenfor og kommunisere med SMTP-e-posttjeneren.\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nDit is een testmailtje verstuurd vanaf het beheerinterface.\n\nOntvangst van dit mailtje geeft aan dat de server de authenticatie kon uitvoeren en dat de interactie met de SMTP mailserver werkt.\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nTo jest wiadomość mailowa wysłana z interfejsu administracyjnego platformy.\n\nJeśli otrzymałeś tę wiadomość, oznacza to, że serwer zdołał uwierzytelnić serwer poczty SMTP i wejść z nim w interakcję.\n\nZ poważaniem\n{NodeName}",
@@ -779,6 +808,7 @@
       "ur": "محترم{RecipientName}،\n\nThis is a test email sent out from the platform's administrative interface.\n\nReception of this email indicates that the server was able to authenticate to and interact with the SMTP mail server.\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nĐây là một email thử nghiệm được gửi từ giao diện quản trị của nền tảng.\n\nViệc nhận được email này cho thấy rằng máy chủ có thể xác thực và tương tác với máy chủ thư SMTP.\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n这是由管理者接口所送出的测试电子邮件\n\n这封电子邮件的接收显示服务器可以和 SMTP 邮件服务器之间进行授权和交互\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\nThis is a test email sent out from the platform's administrative interface.\n\nReception of this email indicates that the server was able to authenticate to and interact with the SMTP mail server.\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n這是由管理者介面所送出的測試電子郵件\n\n這封電子郵件的接收顯示伺服器可以和 SMTP 郵件伺服器之間進行授權和互動\n\nKind regards,\n{NodeName}"
     },
     "admin_test_mail_title": {
@@ -812,6 +842,7 @@
       "lt": "Test email",
       "mg": "Courriel de test",
       "mk": "Тест е-маил",
+      "my": "အီးမေးလ်ကိုစမ်းသပ်ပါ",
       "nb_NO": "E-posttest",
       "nl": "Testmail",
       "pl": "Testowy e-mail",
@@ -831,6 +862,7 @@
       "ur": "آزمائشی ای میل",
       "vi": "Email thử nghiệm:",
       "zh_CN": "测试邮件",
+      "zh_HK": "Test email",
       "zh_TW": "測試郵件"
     },
     "email_validation_mail_template": {
@@ -864,6 +896,7 @@
       "lt": "Dear {RecipientName},\n\nThis is an email to notify you that a request has been made to change your email address to {NewEmailAddress}.\n\nClick the following link to validate this change:\n{Url}\n\nIf you didn't request this change, change your password and contact your system administrator.\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nLe but de ce courriel est de vous informer qu’une demande a été faite pour changer votre adresse courriel en {NewEmailAddress}.\n\nCliquez sur le lien suivant pour valider ce changement : \n{Url}\n\nSi vous n’êtes pas à l’origine de cette demande, changez votre mot de passe et contactez votre administrateur de système.\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nОва е е-маил известување дека е направено барање за промена на е-маил адресата во {NewEmailAddress}. \n\nКликнете на следниот линк за да ја валидирате оваа промена:\n{Url}\n\nДоколку не сте ја побарале оваа промена, променете ја Вашата лозинка и контактирајте го систем администраторот. \n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\n ဤအီးမေးလ်သည် သင်၏အီးမေးလ်လိပ်စာကို {NewEmailAddress} သို့ ပြောင်းရန် တောင်းဆိုမှုတစ်ခုပြုလုပ်ပြီးကြောင်း အသိပေးခြင်း ဖြစ်ပါတယ်။ \n\nဒီပြောင်းလဲမှုကို အတည်ပြုရန်အောက်ပါ link ကိုနှိပ်ပါ - \n{Url}\n\nဤပြောင်းလဲမှုကိုသင်မတောင်းဆိုပါက သင်၏စကားဝှက်ကိုပြောင်းလဲပြီး သင်၏ system administrator ကိုဆက်သွယ်ပါ။\n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nDette er en e-post til påminnelse om at en forespørsel har funnet sted om endring av din e-postadresse til {NewEmailAddress}.\n\nClick the following link to validate this change:\n{Url}\n\nHvis du ikke forespurte denne endringen, bytt passord og kontakt din systemadministrator.\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nDit is een e-mail om je te laten weten dat er een verzoek is ingediend om je e-mail adres te veranderen naar {NewEmailAddress}.\n\nKlik op de volgende link om deze verandering te valideren:\n{Url}\n\nAls jij deze verandering niet het aangevraagd, verander dan nu je wachtwoord en neem contact op met de systeemadministrator.\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nTo jest wiadomość mailowa z powiadomieniem, że wniesiono żądanie zmiany Twojego adresu mailowego na {NewEmailAddress}\n\nAby zatwierdzić tę zmianę, kliknij poniższy odnośnik:\n{Url}\n\nJeśli nie żądałeś tej zmiany, zmień hasło i skontaktuj się z administratorem systemu.\n\nZ poważaniem\n{NodeName}",
@@ -883,6 +916,7 @@
       "ur": "محترم{RecipientName}،\n\nThis is an email to notify you that a request has been made to change your email address to {NewEmailAddress}.\n\nClick the following link to validate this change:\n{Url}\n\nIf you didn't request this change, change your password and contact your system administrator.\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nĐây là một email để thông báo cho bạn rằng một yêu cầu đã được thực hiện việc thay đổi địa chỉ email của bạn thành {NewEmailAddress}\n\nNhấp vào liên kết sau để xác thực thay đổi này:\n{Url}\n\nNếu bạn không yêu cầu thay đổi này, hãy thay đổi mật khẩu và liên hệ với quản trị viên hệ thống của bạn.\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n本邮件通知你，有人请求将你的电邮地址变更为 {NewEmailAddress}.\n\n点击以下链接以验证此变动：\n{Url}\n\n如果你并未作此请求，请尽快更新密码并连络通知系统管理者。\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\nThis is an email to notify you that a request has been made to change your email address to {NewEmailAddress}.\n\nClick the following link to validate this change:\n{Url}\n\nIf you didn't request this change, change your password and contact your system administrator.\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n本郵件通知你，有人請求將你的電郵地址變更為 {NewEmailAddress}.\n\n點擊以下連結以驗證此變動：\n{Url}\n\n如果你並未作此請求，請儘快更新密碼並連絡通知系統管理者。\n\nKind regards,\n{NodeName}"
     },
     "email_validation_mail_title": {
@@ -916,6 +950,7 @@
       "lt": "Email change request",
       "mg": "Demande de changement d’adresse courriel",
       "mk": "Барање за промена на е-маил",
+      "my": "အီးမေးလ် ပြောင်းရန် တောင်းဆိုမှု",
       "nb_NO": "E-postendringsforespørsel",
       "nl": "E-mail veranderingsverzoek",
       "pl": "Zażądano zmiany adresu mailowego",
@@ -935,6 +970,7 @@
       "ur": "Email change request",
       "vi": "Yêu cầu thay đổi email",
       "zh_CN": "电邮变更请求",
+      "zh_HK": "Email change request",
       "zh_TW": "電郵變更請求"
     },
     "export_message_recipient": {
@@ -960,7 +996,7 @@
       "he": "מאת: {Author}\nתאריך: {EventTime}\n\n{Content}",
       "hr_HR": "Od: {Author}\nDatum: {EventTime}\n\n{Content}",
       "hu_HU": "Feladó: {Author}\nDátum: {EventTime}\n\n{Content}",
-      "id": "From: {Author}\nTanggal: {EventTime} \n\n{Content}",
+      "id": "Dari: {Author}\nTanggal: {EventTime} \n\n{Content}",
       "it": "Da: {Author}\nData: {EventTime}\n\n{Content}",
       "ja": "送信元: {Author}\n日付: {EventTime}\n\n{Content}",
       "ka": "From: {Author}\nთარიღი: {EventTime}\n\n{Content}",
@@ -968,6 +1004,7 @@
       "lt": "From: {Author}\nDate: {EventTime}\n\n{Content}",
       "mg": "From: {Author}\nDate : {EventTime}\n\n{Content}",
       "mk": "Од: {Author}\nДатум: {EventTime}\n\n{Content}",
+      "my": "မှ - {Author}\nနေ့စွဲ - {EventTime}\n\n{Content}",
       "nb_NO": "From: {Author}\nDato: {EventTime}\n\n{Content}",
       "nl": "Van: {Author}\nDatum: {EventTime}\n\n{Content}",
       "pl": "Autor: {Author}\nData: {EventTime}\n\n{Content}",
@@ -987,6 +1024,7 @@
       "ur": "From: {Author}\nتاریخ اشاعت: {EventTime}\n\n{Content}",
       "vi": "Từ: {Author}\nNgày: {EventTime}\n\n{Content}",
       "zh_CN": "来自: {Author}\n日期: {EventTime}\n\n{Content}",
+      "zh_HK": "From: {Author}\nDate: {EventTime}\n\n{Content}",
       "zh_TW": "來自: {Author}\n日期: {EventTime}\n\n{Content}"
     },
     "export_message_whistleblower": {
@@ -1020,6 +1058,7 @@
       "lt": "From: Whistleblower\nDate: {EventTime}\n\n{Content}",
       "mg": "De : lanceur d’alerte\nDate : {EventTime}\n\n{Content}",
       "mk": "Од: Укажувач\nДатум: {EventTime}\n\n{Content}",
+      "my": "မှ - သတင်းပေး\nနေ့စွဲ - {EventTime}\n\n{Content}",
       "nb_NO": "Fra: Fløyteblåser\nDato: {EventTime}\n\n{Content}",
       "nl": "Van: Klokkenluider\nDatum: {EventTime}\n\n{Content}",
       "pl": "Autor: Sygnalista\nData: {EventTime}\n\n{Content}",
@@ -1039,6 +1078,7 @@
       "ur": "منجانب: whistleblower کی\nتاریخ اشاعت: {EventTime}\n\n{Content}",
       "vi": "Từ: Whistleblower\nNgày: {EventTime}\n\n{Content}",
       "zh_CN": "From: 吹哨揭密者\n日期: {EventTime}\n\n{Content}",
+      "zh_HK": "From: Whistleblower\nDate: {EventTime}\n\n{Content}",
       "zh_TW": "From: 吹哨揭密者\n日期: {EventTime}\n\n{Content}"
     },
     "export_template": {
@@ -1072,6 +1112,7 @@
       "lt": "ID: {TipNum}\nDate: {SubmissionDate}\nLabel: {TipLabel}\nStatus: {TipStatus}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "mg": "ID: {TipNum}\nDate : {SubmissionDate}\nÉtiquette : {TipLabel}\nStatus: {TipStatus}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "mk": "ID: {TipNum}\nДатум: {SubmissionDate}\nОзнака: {TipLabel}\nСтатус: {TipStatus}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
+      "my": "ID: {TipNum}\nရက်စွဲ - {SubmissionDate}\nတံဆိပ် - {TipLabel}\nအခြေအနေ- {TipStatus}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "nb_NO": "ID: {TipNum}\nDato: {SubmissionDate}\nMerkelapp: {TipLabel}\nStatus: {TipStatus}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "nl": "ID: {TipNum}\nDatum: {SubmissionDate}\nLabel: {TipLabel}\nStatus: {TipStatus}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "pl": "ID: {TipNum}\nData: {SubmissionDate}\nEtykieta {TipLabel}\nStatus: {TipStatus}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
@@ -1091,6 +1132,7 @@
       "ur": "ID: {TipNum}\nتاریخ اشاعت: {SubmissionDate}\nلیبل: {TipLabel}\nStatus: {TipStatus}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "vi": "ID: {TipNum}\nNgày: {SubmissionDate}\nNhãn: {TipLabel}\nTrạng thái: {TipStatus}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "zh_CN": "ID: {TipNum}\n日期: {SubmissionDate}\n标志: {TipLabel}\n状态: {TipStatus}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
+      "zh_HK": "ID: {TipNum}\nDate: {SubmissionDate}\nLabel: {TipLabel}\nStatus: {TipStatus}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}",
       "zh_TW": "ID: {TipNum}\n日期: {SubmissionDate}\n標誌: {TipLabel}\n狀態: {TipStatus}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}"
     },
     "https_certificate_expiration_mail_template": {
@@ -1124,6 +1166,7 @@
       "lt": "Dear {RecipientName},\n\nThe HTTPS certificate loaded on the platform is about to, or has already expired.\n\nExpiration date: {ExpirationDate}\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\nLog in to solve the issue.\n\n{Url}\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nLe certificat HTTPS chargé sur la plateforme arrive à expiration ou est déjà expiré.\n\nDate d’expiration : {ExpirationDate}\n\nSans certificat valide, la plateforme ne sera accessible de façon sécurisée que par Tor.\n\nConnectez-vous pour résoudre la situation.\n\n{Url}\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nHTTPS сертификатот на платформата ќе истече или е веќе истечен. \n\nДатум на истекување: {ExpirationDate}\n\nБез валиден сертификат, платформата ќе биде безбедно достапна единствено преку Tor. \n\nНајавете се за да го решите проблемот.\n\n{Url}\n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\nပလက်ဖောင်းပေါ်တွင်တင်ထားသော HTTPS အသိအမှတ်ပြုလက်မှတ်သည် သက်တမ်းကုန်တော့မည် (သို့မဟုတ်) သက်တမ်းကုန်ဆုံးပြီး ဖြစ်သည်။\n\nသက်တမ်းကုန်ဆုံးရက် - {ExpirationDate}\n\nတရားဝင်အသိအမှတ်ပြုလက်မှတ်မရှိပဲ ပလက်ဖောင်းကို Tor မှ တစ်ဆင့်သာလုံခြုံစိတ်ချရသော နည်းလမ်းဖြင့် သာ ရောက်ရှိနိုင်လိမ့်ပါမည်။\n\nကိစ္စတစ်ခုကို ဖြေရှင်းဖို့ လော့ဂ်အင်၀င်ပါ။ \n\n{Url}\n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nHTTPS-sertifikatet på plattformen er i ferd med å utløpe, eller har allerede gjort det.\n\nUtløpsdato: {ExpirationDate}\n\nUten et gyldig sertifikat, vil plattformen bare være tilgjengelig på sikkert vis gjennom Tor.\n\nLogg inn for å løse problemet.\n\n{Url}\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nHet HTTPS certificaat welke op jouw platvorm is geladen is verlopen of zal binnenkort verlopen.\n\nVervaldatum: {ExpirationDate}\n\nZonder een geldig certificaat zal het platvorm alleen nog te benaderen zijn via TOR.\n\nLog in om de kwestie op te lossen.\n\n{Url}\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nWczytany na platformę certyfikat HTTPS niedługo wygaśnie lub już wygasł.\n\nData wygaśnięcia: {ExpirationDate}\n\nBez ważnego certyfikatu platforma będzie dostępna w bezpieczny sposób tylko przez przeglądarkę Tor.\n\nZaloguj się, aby rozwiązać problem.\n\n{Url}\n\nZ poważaniem\n{NodeName}",
@@ -1143,6 +1186,7 @@
       "ur": "محترم{RecipientName}،\n\nThe HTTPS certificate loaded on the platform is about to, or has already expired.\n\nختم ہونے کی تاریخ: {ExpirationDate}\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\nLog in to solve the issue.\n\n{Url}\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nChứng chỉ HTTPS được tải lên trên nền tảng sắp hoặc đã hết hạn\n\nNgày hết hạn: {ExpirationDate}\n\nNếu không có chứng chỉ hợp lệ, nền tảng sẽ chỉ có thể truy cập theo cách an toàn thông qua Tor\n\nĐăng nhập để giải quyết sự cố.\n\n{Url}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\nHTTPS 凭证将要加载到平台中, 或是已经完成逾期\n\n到期日: {ExpirationDate}\n\n无有效的凭证，这个平台只能透过 Tor 的安全方式来接取使用。\n\n登录来解决此问题\n\n{Url}\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\nThe HTTPS certificate loaded on the platform is about to, or has already expired.\n\nExpiration date: {ExpirationDate}\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\nLog in to solve the issue.\n\n{Url}\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\nHTTPS 憑證將要載入到平台中, 或是已經完成逾期\n\n到期日: {ExpirationDate}\n\n無有效的憑證，這個平台只能透過 Tor 的安全方式來接取使用。\n\n登入來解決此門㫻\n\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "https_certificate_expiration_mail_title": {
@@ -1176,6 +1220,7 @@
       "lt": "Expiration alert for HTTPS certificate",
       "mg": "Alerte d’expiration du certificat HTTPS",
       "mk": "Потсетник за истекување на HTTPS сертификатот",
+      "my": "HTTPS အသိအမှတ်ပြုလက်မှတ်အတွက် သက်တမ်းကုန်သွားကြောင်း သတိပေးချက်",
       "nb_NO": "Utløpsvarsel for HTTPS-sertifikat",
       "nl": "HTTPS-certificaat vervalswaarschuwing",
       "pl": "Alert o wygaśnięciu certyfikatu HTTPS.",
@@ -1195,6 +1240,7 @@
       "ur": "Expiration alert for HTTPS certificate",
       "vi": "Thông báo hết hạn cho chứng chỉ HTTPS",
       "zh_CN": "HTTPS 证书过期警告",
+      "zh_HK": "Expiration alert for HTTPS certificate",
       "zh_TW": "HTTPS 證書啻"
     },
     "https_certificate_renewal_failure_mail_template": {
@@ -1228,6 +1274,7 @@
       "lt": "Dear {RecipientName},\n\nThe automatic HTTPS certificate renewal scheduled for today just failed.\n\nThe system will keep trying.\n\nExpiration date: {ExpirationDate}\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\n{Url}\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nLe renouvellement automatique du certificat HTTPS planifié pour aujourd’hui a échoué.\n\nLe système continuera d’essayer.\n\nDate d’expiration : {ExpirationDate}\n\nSans certificat valide, la plateforme ne sera accessible de façon sécurisée que par Tor.\n\n{Url}\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nАвтоматското ажурирање на HTTPS сертификатот закажано за денес не успеа. \n\nСистемот ќе продолжи да се обидува.\n\nДатум на истекување: {ExpirationDate}\n\nБез валиден сертификат, платформата ќе биде безбедно достапна единствено преку Tor. \n\n{Url}\n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\nယနေ့အတွက် စီစဉ်ထားသောအလိုအလျှောက် HTTPS လက်မှတ်သက်တမ်းတိုးခြင်း မအောင်မြင်ပါ။\n\nဒီစနစ်က ဆက်ကြိုးစားနေဦးမှာပါ။\n\nသက်တမ်းကုန်ဆုံးရက် - {ExpirationDate}\n\nတရားဝင်အသိအမှတ်ပြုလက်မှတ်မရှိပဲ ပလက်ဖောင်းကို Tor မှ တစ်ဆင့်သာလုံခြုံစိတ်ချရသော နည်းလမ်းဖြင့် သာ ရောက်ရှိနိုင်လိမ့်ပါမည်။\n\n{Url}\n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nThe automatic HTTPS certificate renewal scheduled for today just failed.\n\nThe system will keep trying.\n\nUtløpsdato: {ExpirationDate}\n\nUten et gyldig sertifikat, vil plattformen bare være tilgjengelig på sikkert vis gjennom Tor.\n\n{Url}\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nDe automatische HTTPS-certificaat hernieuwing welke voor vandaag stond gepland, is zojuist mislukt.\n\nHet systeem zal het blijven proberen\n\nVervaldatum: {ExpirationDate}\n\nZonder een geldig certificaat zal het platvorm alleen nog te benaderen zijn via TOR.\n\n{Url}\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nAutomatyczne odnowienie certyfikatu HTTPS zaplanowane na dzisiaj nie powiodło się.\n\nSystem będzie próbował dalej.\n\nData wygaśnięcia: {ExpirationDate}\n\nBez ważnego certyfikatu platforma będzie dostępna w bezpieczny sposób tylko przez przeglądarkę Tor.\n\n{Url}\n\nZ poważaniem\n{NodeName}",
@@ -1247,6 +1294,7 @@
       "ur": "محترم{RecipientName}،\n\nThe automatic HTTPS certificate renewal scheduled for today just failed.\n\nThe system will keep trying.\n\nختم ہونے کی تاریخ: {ExpirationDate}\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\n{Url}\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nViệc gia hạn chứng chỉ HTTPS tự động được lên kế hoạch cho ngày hôm nay vừa thất bại.\n\nHệ thống sẽ tiếp tục cố gắng.\n\nNgày hết hạn: {ExpirationDate}\n\nNếu không có chứng chỉ hợp lệ, nền tảng sẽ chỉ có thể truy cập theo cách an toàn thông qua Tor\n\n{Url}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n今天 HTTPS 证书自动更新刚刚失败了。\n\n系统会继续尝试\n\n到期日: {ExpirationDate}\n\n无有效的凭证，这个平台只能透过 Tor 的安全方式来接取使用。\n\n{Url}\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\nThe automatic HTTPS certificate renewal scheduled for today just failed.\n\nThe system will keep trying.\n\nExpiration date: {ExpirationDate}\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\n{Url}\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n今天 HTTPS 證書自動更新剛剛失敗了。\n\n系統會繼續嘗試\n\n到期日: {ExpirationDate}\n\n無有效的憑證，這個平台只能透過 Tor 的安全方式來接取使用。\n\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "https_certificate_renewal_failure_mail_title": {
@@ -1280,6 +1328,7 @@
       "lt": "Failed HTTPS certificate renewal",
       "mg": "Échec de renouvellement du certificat HTTPS",
       "mk": "Оневозможено е обновување на HTTPS сертификатот",
+      "my": "HTTPS လက်မှတ်သက်တမ်းတိုးခြင်း ပျက်ကွက်ပါသည်",
       "nb_NO": "Failed HTTPS certificate renewal",
       "nl": "Hernieuwen van HTTPS certificaat mislukt",
       "pl": "Odnowienie certyfikatu HTTPS nie powiodło się",
@@ -1299,6 +1348,7 @@
       "ur": "Failed HTTPS certificate renewal",
       "vi": "Gia hạn chứng chỉ HTTPS không thành công",
       "zh_CN": "HTTPS 证书更新失败",
+      "zh_HK": "Failed HTTPS certificate renewal",
       "zh_TW": "HTTPS 證書更新失敗"
     },
     "identity_access_authorized_mail_template": {
@@ -1332,6 +1382,7 @@
       "lt": "Dear {RecipientName},\n\nThis is an email to notify you that a custodian has authorized you to access to the whistleblowing identity for the report {TipNum}.\n\nThe report can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nLe but de ce courriel est de vous signaler qu’un gardien vous a autorisé l’accès à l’identité du lanceur d’alerte pour l’envoi {TipNum}.\n\nL’envoi est accessible à :\n{Url}\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nОва е е-маил известување дека чуварот одобрил да добиете пристап до идентитетот на укажувачот за пријавата {TipNum}.\n\nКон пријавата може да се пристапи на:\n{Url}\n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\nဤသည်မှာ {TipNum} အတွက် သင့်အား အစီရင်ခံစာအတွက် သတင်းပေးများ၏ကိုယ်ပိုင်အမှတ်သင်္ကေတကို ၀င်ရောက်ကြည့်ရှုခွင့်ကို အုပ်ချုပ်သူမှ ခွင့်ပြုထားကြောင်း အသိပေးရန်အီးမေးလ်ဖြစ်သည်။\n\nအစီရင်ခံစာအား ဝင်ရောက်ကြည့်ရှုနိုင်သည် - \n{Url}\n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nThis is an email to notify you that a custodian has authorized you to access to the whistleblowing identity for the report {TipNum}.\n\nThe report can be accessed at:\n{Url}\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nDit is een e-mail om u te informeren dat een toezichthouder jou gemachtigd heeft om toegang te krijgen tot de klokkenluider's identiteit betreffende de inzending {TipNum}.\n\nHier krijg je toegang tot de inzending:\n{Url}\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nTo jest wiadomość mailowa z powiadomieniem, że kurator autoryzował Twój dostęp do tożsamości sygnalisty od raportu {TipNum}\n\nZgłoszenie jest dostępne w:\n{Url}\n\nZ poważaniem\n{NodeName}",
@@ -1351,6 +1402,7 @@
       "ur": "محترم{RecipientName}،\n\nاس سے آپ کو مطلع کرنے کے لئے ایک ای میل ہے کہ ایک متولی جمع کرانے {TipNum} کے لئے wistleblowing شناخت تک رسائی کے لئے آپ کو اختیار دیا ہے.\n\nتجویز تک یہاں رسائی حاصل کر سکتے ہیں:\n{Url}\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nĐây là một email thông báo cho bạn rằng người giám sát đã ủy quyền cho bạn truy cập vào danh tính người tố giác của báo cáo {TipNum}\n\nYêu cầu có thể được truy cập:\n{Url}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n此封邮件通知您，监管者已授权您可读取报告 {TipNum} 揭密者的身份。\n\n此报告可在此查看：\n{Url}\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\nThis is an email to notify you that a custodian has authorized you to access to the whistleblowing identity for the report {TipNum}.\n\nThe report can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n此封郵件通知您，監管者已授權您可讀取報告 {TipNum} 揭密者的身份。\n\n此報告可在此查看：\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "identity_access_authorized_mail_title": {
@@ -1384,6 +1436,7 @@
       "lt": "Access to whistleblower's identity authorized",
       "mg": "L’accès à l’identité du lanceur d’alerte est autorisé",
       "mk": "Авторизиран е пристап кон идентитетот на укажувачот",
+      "my": "သတင်းပေးသူများ၏ ကိုယ်ပိုင်အမှတ်သင်္ကေတကို ၀င်ရောက်ကြည့်ရှုခွင့် ရှိသည်",
       "nb_NO": "Tilgang til fløyteblåserens sanne identitet godkjent",
       "nl": "Toegang tot de identiteit van de klokkenluider is goedgekeurd",
       "pl": "Autoryzowano dostęp do tożsamości sygnalisty",
@@ -1403,6 +1456,7 @@
       "ur": "مخبر کی شناخت تک رسائی کی اجازت",
       "vi": "Truy cập vào danh tính người tố giác được ủy quyền",
       "zh_CN": "读取告密人的身份识别已被许可",
+      "zh_HK": "已批准讀取吹哨者的個人身份",
       "zh_TW": "讀取吹哨者的身份識別已被許可"
     },
     "identity_access_denied_mail_template": {
@@ -1436,6 +1490,7 @@
       "lt": "Dear {RecipientName},\n\nThis is an email to notify you that a custodian has denied you access to the whistleblowing identity for the report {TipNum}.\n\nThe report can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nThis is an email to notify you that a custodian has denied you access to the whistleblowing identity for the report {TipNum}.\n\nL’envoi est accessible à :\n{Url}\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nОва е е-маил известување дека чуварот одбил да добиете пристап до идентитетот на укажувачот за пријавата {TipNum}.\n\nКон пријавата може да се пристапи на:\n{Url}\n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\nဤအီးမေးလ်မှာ အုပ်ထိန်းသူမှ သင့်အားသတင်းပေး ဖော်ပြထားသော အစီရင်ခံစာအား၀င်ရောက်ကြည့်ရှုခွင့်မပေးကြောင်း သင့်အားအကြောင်းကြားခြင်း ဖြစ်ပါသည် {{TipNum} ။ \n\nအစီရင်ခံစာအား ဝင်ရောက်ကြည့်ရှုနိုင်သည် - \n{Url}\n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nThis is an email to notify you that a custodian has denied you access to the whistleblowing identity for the report {TipNum}.\n\nThe report can be accessed at:\n{Url}\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nDit is een e-mail om u te informeren dat een toezichthouder jou geen toegang verleent tot de klokkenluider's identiteit betreffende deze inzending {TipNum}.\n\nHier krijg je toegang tot de inzending:\n{Url}\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nTo jest wiadomość mailowa z powiadomieniem, że kurator odmówił Ci dostępu do tożsamości sygnalisty od raportu {TipNum}\n\nZgłoszenie jest dostępne w:\n{Url}\n\nZ poważaniem\n{NodeName}",
@@ -1455,6 +1510,7 @@
       "ur": "محترم{RecipientName}،\n\nThis is an email to notify you that a custodian has denied you access to the whistleblowing identity for the report {TipNum}.\n\nتجویز تک یہاں رسائی حاصل کر سکتے ہیں:\n{Url}\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nĐây là một email thông báo cho bạn rằng một người giám hộ đã ủy quyền cho bạn để truy cập vào các tính wistleblowing cho việc nộp {TipNum}.\n\nYêu cầu có thể được truy cập:\n{Url}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n此邮件提醒您保管人否决了您读取报告 {TipNum} 揭密者身分之请求。\n\n此报告可在此查看：\n{Url}\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\nThis is an email to notify you that a custodian has denied you access to the whistleblowing identity for the report {TipNum}.\n\nThe report can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n此郵件提醒您監管人否決了您讀取報告 {TipNum} 揭密者身分之請求。\n\n此報告可在此查看：\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "identity_access_denied_mail_title": {
@@ -1488,6 +1544,7 @@
       "lt": "Access to whistleblower's identity denied",
       "mg": "L’accès à l’identité du lanceur d’alerte est refusé",
       "mk": "Не е возможен пристап кон идентитетот на укажувачот",
+      "my": "သတင်းပေးရဲ့ ကိုယ်ပိုင်အမှတ်သင်္ကေတအား ၀င်ရောက်ကြည့်ရှုခွင့်ကို ငြင်းငယ်တယ်",
       "nb_NO": "Nektet tilgang til fløyteblåserens sanne identitet",
       "nl": "Toegang tot de identiteit van de klokkenluider is ontzegd",
       "pl": "Odmówiono dostępu do tożsamości sygnalisty",
@@ -1507,6 +1564,7 @@
       "ur": "مخبر کی شناخت تک رسائی کی تردید",
       "vi": "Truy cập vào danh tính người tố giác bị từ chối",
       "zh_CN": "要求读取告密人的身份识别遭拒",
+      "zh_HK": "Access to whistleblower's identity denied",
       "zh_TW": "要求讀取吹哨者的身份識別遭拒"
     },
     "identity_access_request_mail_template": {
@@ -1540,6 +1598,7 @@
       "lt": "Dear {RecipientName},\n\nThis is an email to notify you that a recipient has requested access to the whistleblower's identity for the report {TipNum}\n\nThe request can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nLe but de ce courriel est de vous signaler qu’un destinataire a demandé l’accès à l’identité du lanceur d’alerte pour l’envoi {TipNum}.\n\nLa demande est accessible à :\n{Url}\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nОва е е-маил известување дека примателот побара пристап до идентитетот на укажувачот за пријавата {TipNum} \n\nБарањето е достапно на:\n{Url}\n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\nဤသည်မှာ လက်ခံရရှိသူမှ အစီရင်ခံစာအတွက် သတင်းပေးရဲ့ ကိုယ်ပိုင်အမှတ်သင်္ကေတအား ၀င်ရောက်ကြည့်ရှုခွင့် တောင်းခံသည့် အီးမေးလ်ဖြစ်ပါတယ်။ {TipNum}\n\nတောင်းဆိုမှုကိုရယူနိုင်ပါသည် -\n{Url}\n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nThis is an email to notify you that a recipient has requested access to the whistleblower's identity for the report {TipNum}\n\nThe request can be accessed at:\n{Url}\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nDit is een e-mail om u te informeren dat een ontvanger toegang heeft gevraagd tot de identiteit van de klokkenluider van de inzending {TipNum}.\n\nHet verzoek kan worden benaderd via:\n{Url}\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nTo jest wiadomość mailowa z powiadomieniem, że odbiorca zażądał dostępu do tożsamości sygnalisty, który przekazał zgłoszenie {TipNum}\n\nDostęp do tego żądania można uzyskać tu:\n{Url}\n\nZ poważaniem\n{NodeName}",
@@ -1559,6 +1618,7 @@
       "ur": "محترم{RecipientName}،\n\nیہ ایک وصول کنندہ جمع کرانے {TipNum} کے لئے مخبر کی شناخت تک رسائی کی درخواست ہے کہ آپ کو مطلع کرنے کے لئے ایک ای میل ہے\n\nThe request can be accessed at:\n{Url}\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nĐây là một email thông báo cho bạn rằng một người nhận đã yêu cầu truy cập đến danh tính của người tố giác cho việc nộp {TipNum}\n\nYêu cầu có thể được truy cập tại:\n{Url}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n此邮件通知您，某位收件人请求可读取报告 {TipNum} 揭密者的身份。\n\n此请求可在此读取：\n{Url}\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\n謹以此電郵通知您，某接收者剛發出請求以讀取報告 {TipNum} 的吹哨者個人身份。\n\nThe request can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n此郵件通知您，某位收件者請求可讀取報告 {TipNum} 揭密者的身份。\n\n此請求可在此讀取：\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "identity_access_request_mail_title": {
@@ -1592,6 +1652,7 @@
       "lt": "New request of access to a whistleblower's identity",
       "mg": "Nouvelle demande d’accès à l’identité d’un lanceur d’alerte",
       "mk": "Ново барање за пристап до идентитетот на укажувачот",
+      "my": "သတင်းပေးသူတစ်ဦး၏ ကိုယ်ပိုင်လက္ခဏာကိုရယူရန် တောင်းဆိုမှုအသစ်",
       "nb_NO": "Ny tilgangsforespørsel til en fløyteblåsers sanne identitet",
       "nl": "Nieuwe aanvraag om de identiteit van een klokkenluider te mogen openen",
       "pl": "Nowe żądanie dostępu do tożsamości sygnalisty",
@@ -1611,6 +1672,7 @@
       "ur": "New request of access to a whistleblower's identity",
       "vi": "Yêu cầu mới về quyền truy cập vào danh tính của người tố giác",
       "zh_CN": "读取告密人身份识别的新要求",
+      "zh_HK": "New request of access to a whistleblower's identity",
       "zh_TW": "讀取吹哨者身份識別的新要求"
     },
     "identity_provided_mail_template": {
@@ -1644,6 +1706,7 @@
       "lt": "Dear {RecipientName},\n\nThis is an email to notify you that the whistleblower for the report {TipNum} has provided their identity.\n\nThe report can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nLe but de ce courriel est de vous signaler que le lanceur d’alerte de l’envoi {TipNum} a fourni son identité.\n\nL’envoi est accessible à :\n{Url}\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nОва е е-маил известување дека укажувачот за пријавата {TipNum} го прикажа својот идентитет. \n\nКон пријавата може да се пристапи на:\n{Url}\n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\nဤသည်မှာအစီရင်ခံစာ {TipNum} အတွက်သတင်းပေးသူသည် သူတို့မည်သူမည်ဝါဖြစ်ကြောင်း ဖော်ပြသည့်အီးမေးလ်ဖြစ်ပါတယ်။\n\nအစီရင်ခံစာအား ဝင်ရောက်ကြည့်ရှုနိုင်သည် - \n{Url}\n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nThis is an email to notify you that the whistleblower for the report {TipNum} has provided their identity.\n\nThe report can be accessed at:\n{Url}\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nDit is een e-mail om je te informeren dat de klokkenluider van de inzending {TipNum} zijn identiteit kenbaar heeft gemaakt.\n\nHier krijg je toegang tot de inzending:\n{Url}\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nTo jest wiadomość mailowa z powiadomieniem, że sygnalista od raportu {TipNum} podał swoją tożsamość.\n\nZgłoszenie jest dostępne w:\n{Url}\n\nZ poważaniem\n{NodeName}",
@@ -1663,6 +1726,7 @@
       "ur": "محترم{RecipientName}،\n\nیہ کہ جمع کرانے {TipNum} کے لئے whistleblower کی اپنی شناخت فراہم کی ہے آپ کو مطلع کرنے کے لئے ایک ای میل ہے.\n\nتجویز تک یہاں رسائی حاصل کر سکتے ہیں:\n{Url}\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nĐây là một email thông báo cho bạn rằng các tố giác viên cho báo cáo {TipNum} đã cung cấp danh tính của họ.\n\nYêu cầu có thể được truy cập:\n{Url}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n此封邮件乃通知您， {TipNum} 报告的揭密者已提供其身份识别信息。\n\n此报告可在此查看：\n{Url}\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\nThis is an email to notify you that the whistleblower for the report {TipNum} has provided their identity.\n\nThe report can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n此封郵件乃通知您， {TipNum} 報告的揭密者已提供其身份識別資訊。\n\n此報告可在此查看：\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "identity_provided_mail_title": {
@@ -1696,6 +1760,7 @@
       "lt": "The whistleblower has provided their identity",
       "mg": "Le lanceur d’alerte a fourni son identité",
       "mk": "Укажувачот го прикажа својот идентитет",
+      "my": "သတင်းပေးသည် သူတို့၏ကိုယ်ပိုင်အမှတ်သင်္ကေတများကို ထောက်ပံ့ပေးခဲ့သည်",
       "nb_NO": "Fløyteblåseren har bekjentgjort sin sanne identitet",
       "nl": "De klokkenluider heeft zich geïdentificeerd.",
       "pl": "Sygnalista podał swoją tożsamość",
@@ -1715,6 +1780,7 @@
       "ur": "whistleblower کی اپنی شناخت فراہم کی ہے",
       "vi": "Các tố giác viên đã cung cấp danh tính của họ",
       "zh_CN": "这位吹哨人已提供身份信息",
+      "zh_HK": "The whistleblower has provided their identity",
       "zh_TW": "這位吹哨人已提供身份資訊"
     },
     "password_reset_validation_mail_template": {
@@ -1748,6 +1814,7 @@
       "lt": "Dear {RecipientName},\n\nYou're receiving this email because a password reset has been requested for the account: {Username}\n\nIf you didn't make this request, you may safely ignore and delete this email.\n\nYou can confirm your request by clicking the following link:\n{Url}\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nYou're receiving this email because a password reset has been requested for the account: {Username}\n\nSi vous n’êtes pas à l’origine de cette demande, vous pouvez en toute sécurité ignorer et supprimer ce courriel.\n\nVous pouvez confirmer votre demande en cliquant sur le lien suivant :\n{Url}\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nЈа добивте оваа е-маил порака поради тоа што е побарана промена на лозинката за профилот: {Username} \n\nДоколку не сте го поднеле ова барање, можете да го игнорирате и да ја избришете оваа е-маил порака. \n\nМожете да го потврдите Вашето барање со кликање на следниот линк:\n{Url}\n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\nအကောင့်အတွက်စကားဝှက်ပြန်လည်သတ်မှတ်ရန် တောင်းခံသောကြောင့် ဤအီးမေးလ်ကို သင်လက်ခံရရှိသည် - {Username}\n\nသင် ဤတောင်းဆိုမှုကို မပြုလုပ်ပါက၊ သင်သည်ဤအီးမေးလ်ကို လုံခြုံစွာလျစ်လျူရှုပြီး ဖျက်ပစ်နိုင်သည်။\n\nအောက်ပါ link ကိုနှိပ်ခြင်းအားဖြင့် သင်၏တောင်းဆိုမှုကို အတည်ပြုနိုင်ပါတယ် - \n{Url}\n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nYou're receiving this email because a password reset has been requested for the account: {Username}\n\nIf you didn't make this request, you may safely ignore and delete this email.\n\nYou can confirm your request by clicking the following link:\n{Url}\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nJe ontvangt deze e-mail omdat een wachtwoord reset is aangevraagd voor dit account: {Username}\n\nAls jij dat verzoek niet hebt ingediend, kun je deze e-mail gerust negeren en wissen.\n\nJe kunt je verzoek bevestigen door op de volgende link te klikken:\n{Url}\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nOtrzymujesz tę wiadomość, ponieważ zażądano zrestowania hasła dla konta: {Username}\n\nJeśli nie wnosiłeś tego żądania, możesz bez obaw zignorować i usunąć tę wiadomość mailową.\n\nMożesz potwierdzić żądanie, klikając poniższy odnośnik:\n{Url}\n\nZ poważaniem\n{NodeName}",
@@ -1767,6 +1834,7 @@
       "ur": "محترم{RecipientName}،\n\nYou're receiving this email because a password reset has been requested for the account: {Username}\n\nIf you didn't make this request, you may safely ignore and delete this email.\n\nYou can confirm your request by clicking the following link:\n{Url}\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nBạn đang nhận được email này vì có yêu cầu đặt lại mật khẩu cho tài khoản: {Username}\n\nNếu bạn không thực hiện yêu cầu này, bạn có thể bỏ qua và xóa email này một cách an toàn.\n\nBạn có thể xác nhận yêu cầu của mình bằng cách nhấp vào liên kết sau:\n{Url}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n应帐号: {Username} 之密码请求，我们寄给您这封电子邮件。\n\n若您没有提出请求，请忽略和删除本邮件。\n\n点击下方链接来确认请求：\n{Url}\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\nYou're receiving this email because a password reset has been requested for the account: {Username}\n\nIf you didn't make this request, you may safely ignore and delete this email.\n\nYou can confirm your request by clicking the following link:\n{Url}\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n應帳號: {Username} 之密碼請求，我們寄給您這封電子郵件。\n\n若您沒有提出請求，請忽略和刪除本郵件。\n\n點擊下方連結來確認請求：\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "password_reset_validation_mail_title": {
@@ -1800,6 +1868,7 @@
       "lt": "Password reset instructions",
       "mg": "Instructions de réinitialisation du mot de passe",
       "mk": "Упатства за ресетирање на лозинката",
+      "my": "စကားဝှက်ကို ပြန်လည်သတ်မှတ်ရန် ညွှန်ကြားချက်များ",
       "nb_NO": "Password reset instructions",
       "nl": "Instructies om het wachtwoord opnieuw in te stellen",
       "pl": "Instrukcje resetowania hasła",
@@ -1819,6 +1888,7 @@
       "ur": "Password reset instructions",
       "vi": "Hướng dẫn cài đặt lại mật khẩu",
       "zh_CN": "密码重设指示",
+      "zh_HK": "密碼重設指示",
       "zh_TW": "密碼重設指示"
     },
     "pgp_alert_mail_template": {
@@ -1852,6 +1922,7 @@
       "lt": "Dear {RecipientName},\n\nThis is an email to inform you that your PGP key is expiring or has already expired.\n\nYou should extend its validity and update the key present on the platform, or upload a new key.\n\n{PGPKeyInfo}\n\nWithout a valid PGP key, the system won't be able to encrypt data provided to you.\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nLe but de ce courriel est de vous informer que votre clé PGP expire ou a déjà expiré.\n\nVous devriez prolonger sa validité et mettre à jour la clé présente sur la plateforme, ou téléverser une nouvelle clé.\n\n{PGPKeyInfo}\n\nSans une clé PGP valide, le système ne pourra pas chiffrer les données que vous fournissez.\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nОва е е-маил известување дека Вашиот PGP клуч истекува или дека веќе е истечен. \n\nМорате да ја продолжите неговата важност и да го ажурирате клучот на платформата, или да прикачите нов клуч. \n\n{PGPKeyInfo}\n\nБез валиден PGP клуч, системот нема да биде во можност да ги криптира податоците достапни за Вас. \n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\nဤအီးမေးလ်သည်သင်၏ PGP key သက်တမ်းကုန်သွားပြီ သို့မဟုတ် သက်တမ်းကုန်သွားပြီဖြစ်ကြောင်း သင့်အားအကြောင်းကြားရန် ဖြစ်သည်။\n\nသင် ၎င်း၏တရားဝင်မှုကို တိုးမြှင့်ပြီး ပလက်ဖောင်းရှိသော့ကို အသစ်ပြောင်းခြင်း သို့မဟုတ် အသစ်တစ်ခုကို တွင်သွင်းဖို့သင့်သည်။\n\n{PGPKeyInfo}\n\nတရား၀င်သော PGP စကားဝှက်သော့မရှိလျှင်၊ စနစ်သည် သင့်အားပေးထားသည့် အချက်အလက်များအတွက် ကုဒ်ဖြင့်ပြောင်းလဲပြီး ပြန်လည် မဖြည်ပေးနိုင်ပါ။\n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nDette er en e-post for å informere deg om din PGP-nøkkel allerede er, eller kommer til å utløpe:\n\nDu bør forlenge dens gyldighet og oppdatere nøkkelen som finnes på plattformen, eller laste opp en ny nøkkel.\n\n{PGPKeyInfo}\n\nUten en gyldig PGP-nøkkel vil ikke systemet kunne kryptere data ment for deg.\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nDit bericht is ter informatie dat je PGP sleutel binnenkort verloopt of al verlopen is.\n\nJe moet je geldigheid verlengen en de huidige sleutel bijwerken of een nieuwe sleutel uploaden.\n\n{PGPKeyInfo}\n\nZonder een geldige PGP-sleutel kan het systeem de toegezonden data niet versleutelen.\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nTo jest powiadomienie o tym, że twój klucz PGP niebawem wygasa lub już stracił ważność\n\nPowinieneś przedłużyć jego ważność i zaktualizować klucz znajdujący się na platformie lub wczytać nowy klucz.\n\n{PGPKeyInfo}\n\nBez ważnego klucza PGP system nie będzie w stanie szyfrować dostarczanych Ci danych.\n\nZ poważaniem\n{NodeName}",
@@ -1871,6 +1942,7 @@
       "ur": "محترم{RecipientName}،\n\nیہ ای میل آپ کو مطلع کرتی ہے کہ آپ کی 'پی جی پی کی' معیاد % بتاریخ % کو ختم ہورہی ہے۔\n\nتم اس کے درست کرے اور پلیٹ فارم پر چابی موجود اپ ڈیٹ، یا ایک نئی چابی اپ لوڈ.\n\n{PGPKeyInfo}\n\nایک درست PGP چابی کے بغیر، نظام آپ کو فراہم کردہ اعداد و شمار کے خفیہ کرنے کے لئے نہیں کر سکیں گے.\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nĐây là một email thông báo cho bạn rằng chìa khóa PGP của bạn hết hạn hoặc đã hết hạn.\n\nBạn nên mở rộng hiệu lực của nó và cập nhật các mặt chính trên nền tảng, hoặc tải lên một khoá mới.\n\n{PGPKeyInfo}\n\nNếu không có một chìa khóa PGP hợp lệ, hệ thống sẽ không có khả năng mã hóa dữ liệu cung cấp cho bạn.\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n这是一封电子邮件，通知您的 PGP 密钥即将或者已经过期。\n\n你需要延长更新平台上现用密钥的有效期限，或是上传一个新的密钥\n\n{PGPKeyInfo}\n\n无有效的 PGP 密钥，系统将不能为你加密提交给你的数据\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\nThis is an email to inform you that your PGP key is expiring or has already expired.\n\nYou should extend its validity and update the key present on the platform, or upload a new key.\n\n{PGPKeyInfo}\n\nWithout a valid PGP key, the system won't be able to encrypt data provided to you.\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n這封電子郵件是通知你，你的 PGP 金鑰即將或是已經到期\n\n你需要延長更新平台上現用金鑰的有效期限，或是上傳一個新的金鑰\n\n{PGPKeyInfo}\n\n無有效的 PGP 金鑰，系統將不能為你加密提交給你的資料\n\nKind regards,\n{NodeName}"
     },
     "pgp_alert_mail_title": {
@@ -1904,6 +1976,7 @@
       "lt": "PGP key expiration alert",
       "mg": "Alerte d’expiration de la clé PGP",
       "mk": "Потсетник за истекување на PGP клуч",
+      "my": "PGP key သက်တမ်းကုန်ဆုံးမှုသတိပေးချက်",
       "nb_NO": "Utløpsvarsel for PGP-nøkkel",
       "nl": "PGP-sleutelvervalwaarschuwing",
       "pl": "Alert o wygaśnięciu klucza PGP",
@@ -1923,6 +1996,7 @@
       "ur": "'پی جی پی کی' معیاد میں خاتمے کا انتباہ",
       "vi": "Cảnh báo hết hạn khoá PGP",
       "zh_CN": "PGP 密钥过期警告",
+      "zh_HK": "PGP key expiration alert",
       "zh_TW": "PGP 金鑰到期警示"
     },
     "signup_mail_template": {
@@ -1956,6 +2030,7 @@
       "lt": "Dear {RecipientName},\n\nYour whistleblowing platform is almost ready!\n\nClick the link to activate the platform:\n{ActivationUrl}\n\nKind regards,\n\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nVotre plateforme de lancement d’alerte est presque prête !\n\nCliquez sur le lien pour activer la plateforme :\n{ActivationUrl}\n\nSalutations cordiales,\n\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nВашата платформа за укажувачи е скоро готова!\n\nКликнете на линкот за да ја активирате платформата:\n{ActivationUrl}\n\nСрдечни поздрави, \n\n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\nသင့်၏ သတင်းပေးပလက်ဖောင်းသည် အဆင်သင့်နီးပါးဖြစ်ပြီ\n\nပလက်ဖောင်းကို သက်ဝင်စေဖို့ လင့်ခ်ကို နှိပ်ပါ။ \n{ActivationUrl}\n\nမေတ္တာဖြင့်\n\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nDin fløyteblåserplattform er nesten klar!\n\nKlikk på lenken for å aktivere plattformen:\n{ActivationUrl}\n\nVennlig hilsen,\n\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nJe klokkenluiders-platvorm is bijna klaar!\n\nKlik deze link om het platform te activeren:\n{ActivationUrl}\n\nMet vriendelijke groet,\n\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nTwoja platforma dla sygnalistów jest prawie gotowa!\n\nKliknij odnośnik, aby aktywować platformę:\n{ActivationUrl}\n\nZ poważaniem\n\n{NodeName}",
@@ -1975,6 +2050,7 @@
       "ur": "محترم{RecipientName}،\n\nYour whistleblowing platform is almost ready!\n\nClick the link to activate the platform:\n{ActivationUrl}\n\nبہت نوازش، مخلص\n\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nNền tảng tố giác của bạn gần như đã sẵn sàng!\n\nNhấp vào liên kết để kích hoạt nền tảng:\n{ActivationUrl}\n\nTrân trọng,\n\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n吹哨揭密平台已接近完成！\n\n点击此链接以激活平台：\n{ActivationUrl}\n\n亲切的问候，\n\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\n您的舉報平台就快完成了！\n\nClick the link to activate the platform:\n{ActivationUrl}\n\nKind regards,\n\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n吹哨揭密平台已接近完成！\n\n點擊此連結以激活平台：\n{ActivationUrl}\n\nKind regards,\n\n{NodeName}"
     },
     "signup_mail_title": {
@@ -2008,6 +2084,7 @@
       "lt": "Activation",
       "mg": "Activation",
       "mk": "Активација",
+      "my": "အသက်၀င်စေခြင်း",
       "nb_NO": "Aktivering",
       "nl": "Activatie",
       "pl": "Aktywacja",
@@ -2027,6 +2104,7 @@
       "ur": "Activation",
       "vi": "Kích hoạt",
       "zh_CN": "激活",
+      "zh_HK": "Activation",
       "zh_TW": "激活"
     },
     "software_update_available_mail_template": {
@@ -2060,6 +2138,7 @@
       "lt": "Dear {RecipientName},\n\nA software update is available.\nIt is good security practice to keep the platform up to date.\n\nTo learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}\nFor instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nUne mise à jour logicielle est proposée.\nGarder la plateforme à jour constitue une bonne pratique de sécurité.\n\nLes nouvelles fonctions et les correctifs de bogues de la nouvelle version se trouvent dans le journal des changements : {ChangeLogUrl}\nPour obtenir des instructions de mise à jour logicielle, veuillez consulter la documentation : {UpdateGuideUrl}\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nДостапно е ново софтверско ажурирање.\nВажна безбедносна практика е да ја одржувате платформата ажурирана. \n\nЗа да научите за повеќе поставки и коригирање на грешки во новата верзија консултирајте се со дневникот за промени на: {ChangeLogUrl} \nЗа упатства за софтверски ажурирања, Ве молиме проверете ја документацијата на: {UpdateGuideUrl}\n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\nနောက်ဆုံးမွမ်းမံထားသော ဆော့ဖ်ဝဲကို ရရှိနိုင်ပါသည်။\nပလက်ဖောင်းကို နောက်ဆုံးအဆင့်ထိ မွမ်းမံထားခြင်းသည် ကောင်းမွန်သောလုံခြုံရေး အလေ့အကျင့်တစ်ခု ဖြစ်သည်။\n\nဗားရှင်းအသစ်ရှိ အင်္ဂါရပ်အသစ်များနှင့် အမှားပြင်ဆင်မှုများအကြောင်း လေ့လာရန် အပြောင်းအလဲမှတ်တမ်းကိုကြည့်ပါ။ {ChangeLogUrl}\nဆော့ဖ်ဝဲအသစ်ပြောင်းခြင်းနှင့်ပတ်သက်သော ညွှန်ကြားချက်များအတွက် ကျေးဇူးပြု၍ {UpdateGuideUrl} ရှိ စာရွက်စာတမ်းများကိုကြည့်ပါ - \n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nEn programvareoppgradering er tilgjengelig.\nDet er god sikkerhetspraksis å holde plattformen oppdatert.\n\nFor å lære mer om nye funksjoner og feilrettinger i den nye versjonen, henvend dem til endringsloggen på: {ChangeLogUrl}\nFor instruks om programvareoppdateringer, henvend dem til dokumentasjonen på: {UpdateGuideUrl}\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nEr is een nieuwe versie van deze software beschikbaar\nHet is goed gebruik om het platform regelmatig bij te werken naar de laatste versie, om de veiligheid hoog te houden.\n\nOm te leren over nieuwe functies en foutoplossingen in de nieuwe versie, raadpleeg het verandersingslog op: {ChangeLogUrl}\nVoor instructies bij nieuwe software versies, kun je de documentatie naslaan op: {UpdateGuideUrl}\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nDostępna jest aktualizacja oprogramowania\nDobrą praktyką w obszarze bezpieczeństwa jest dbanie o aktualność platformy.\n\nAby dowiedzieć się więcej o nowych funkcjach i naprawach błędów w nowej wersji, zajrzyj do dziennika zmian pod adresem: {ChangeLogUrl}\nAby otrzymać instrukcje do atualizacji oprogramowania, zajrzyj do strony z dokumentacją: {UpdateGuideUrl}\n\nZ poważaniem\n{NodeName}",
@@ -2068,7 +2147,7 @@
       "ro": "Bună ziua, {RecipientName},\n\nO nouă versiune de soft este disponibilă.\nEste o practică bună de securitate să ai cea mai nouă versiune de soft a plaftormei.\n\nPentru a afla noutăți despre facilități sau probleme rezolvate în noua versiune, consultă istoricul de modificări: {ChangeLogUrl}\nPentru instrucțiuni privind cele mai noi versiuni de soft, te rugăm să consulți documentația de aici: {UpdateGuideUrl} \n\nToate cele bune,\n{NodeName}",
       "ru": "Дорогой(ая) {RecipientName},\n\nОбновление программного обеспечения доступно.\nОбновляйте программное обеспечение для поддержания хорошей системы безопасности.\n\nЧитайте о новых функциях и устранении ошибок в новой версии в журнале изменений: {ChangeLogUrl}\nПожалуйста, прочитайте инструкции по установке обновлений программного обеспечения в документации: {UpdateGuideUrl}\n\nС уважением,\n{NodeName}",
       "sk": "Vážený/á {RecipientName},\n\nJe k dispozícii aktualizácia softvéru.\nOdporúčaným bezpečnostným postupom je udržiavať platformu aktualizovanú na poslednú dostupnú verziu.\n\nAk chcete získať informácie o nových funkciách a opravách v novej verzii, skontrolujte zoznam zmien na adrese: {ChangeLogUrl}\nPokyny týkajúce sa aktualizácií softvéru nájdete v dokumentácii na: {UpdateGuideUrl}\n\nS pozdravom,\n{NodeName}",
-      "sl_SI": "Spoštovani {RecipientName},\n\nA software update is available.\nIt is good security practice to keep the platform up to date.\n\nTo learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}\nFor instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}\n\nS spoštovanjem,\n{NodeName}",
+      "sl_SI": "Spoštovani {RecipientName},\n\nA software update is available.\nDobra varnostna praksa, da platformo redno posodabljate. \n\nČe želite izvedeti več o novih funkcijah in popravkih napak v novi različici, si oglejte zapis sprememb na: {ChangeLogUrl}\nZa navodila o posodobitvah programske opreme glejte dokumentacijo na: {UpdateGuideUrl}\n\nS spoštovanjem,\n{NodeName}",
       "sq": "Dear {RecipientName},\n\nA software update is available.\nIt is good security practice to keep the platform up to date.\n\nTo learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}\nFor instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}\n\nMe respekt, \n{NodeName}",
       "sv": "Bästa {RecipientName},\n\nEn uppdatering av mjukvaran är tillgänglig.\nHåll plattformen uppdaterad – det är en bra säkerhetsrutin.\n\nFör att få veta mer om nya egenskaper och felkorrigeringar i den nya versionen, kan du gå in på ändringsloggen på adressen: {ChangeLogUrl}\nFör att hitta instruktioner om uppdateringar av mjukvaran, se användardokumentationen på adressen: {UpdateGuideUrl}\n\nMed vänliga hälsningar,\n{NodeName}",
       "sw": "Kwako {RecipientName}\n\nHuisho la programu linapatikana\nNi vizuri kwa usalama kuweka jukwaa kuwa la kisasa\n\nIli kujifunza juu ya vitu vipya na marekebish katika toleo jipya wasiliana na badilisha ingia kwa: {ChangeLogUrl}\nKwa maelekezo juu ya uhuishaji wa programu, tafadhali rejea nakala kwenye: {UpdateGuideUrl}\n\nWasalam,\n{NodeName}",
@@ -2079,6 +2158,7 @@
       "ur": "محترم{RecipientName}،\n\nایک سافٹ ویئر اپ ڈیٹ دستیاب ہے\nIt is good security practice to keep the platform up to date.\n\nTo learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}\nسافٹ ویئر اپ ڈیٹ سے متعلق ہدایات کے لئے ، براہ کرم ذیل میں موجود دستاویزات کا مطالع کریں: {UpdateGuideUrl}\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nCập nhật phần mềm.\nThực hành bảo mật tốt có nghĩa là giữ cho nền tảng luôn được cập nhật.\n\nĐể tìm hiểu về các tính năng mới và cách sửa lỗi trong phiên bản mới, hãy tham khảo nhật ký thay đổi tại: {ChangeLogUrl}\nĐể biết hướng dẫn về cập nhật phần mềm, vui lòng tham khảo tài liệu tại: {UpdateGuideUrl}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n有软件更新可用\n为安全起见,请维持平台版本为更新状态\n\n了解新版本的功能与修复的问题,请咨询此处的变动记录: {ChangeLogUrl}\n关于软件更新的指示, 请参考此处的文档: {UpdateGuideUrl}\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\n有可用的軟件更新。\nIt is good security practice to keep the platform up to date.\n\nTo learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}\n有關軟件更新說明，請參閱文檔：{UpdateGuideUrl}\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n有軟體更新可用\n為安全起見,請維持平台版本為更新狀態\n\n了解新版本的功能與修復的問題,請諮詢此處的變動記錄: {ChangeLogUrl}\n關於軟體更新的指示, 請參考此處的文件: {UpdateGuideUrl}\n\nKind regards,\n{NodeName}"
     },
     "software_update_available_mail_title": {
@@ -2112,6 +2192,7 @@
       "lt": "A software update is available.",
       "mg": "Une mise à jour logicielle est proposée.",
       "mk": "Достапно е ново софтверско ажурирање.",
+      "my": "နောက်ဆုံးမွမ်းမံထားသော ဆော့ဖ်ဝဲကို ရရှိနိုင်ပါသည်။",
       "nb_NO": "En programvareoppgradering er tilgjengelig.",
       "nl": "Er is een nieuwe versie van deze software beschikbaar",
       "pl": "Dostępna jest aktualizacja oprogramowania",
@@ -2131,6 +2212,7 @@
       "ur": "ایک سافٹ ویئر اپ ڈیٹ دستیاب ہے",
       "vi": "Cập nhật phần mềm.",
       "zh_CN": "有软件更新可用",
+      "zh_HK": "有可用的軟件更新。",
       "zh_TW": "有軟體更新可用"
     },
     "tip_expiration_summary_mail_template": {
@@ -2164,6 +2246,7 @@
       "lt": "Dear {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nThe earliest expiration date is {EarliestExpirationDate}.\n\nPlease remember to check them before they are deleted.\n\n{Url}\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nLa prochaine date d’expiration est {EarliestExpirationDate}.\n\nSouvenez-vous de les vérifier avant qu’elles ne soient supprimées\n\n{Url}\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nНајраниот датум за истекување е {EarliestExpirationDate}. \n\nВе молиме да ги проверите пред да бидат избришани. \n\n{Url}\n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nအစောဆုံး သက်တမ်းကုန်ဆုံးသည့်နေ့မှာ {EarliestExpirationDate} ဖြစ်သည်။\n\nအဲဒါတွေကို မဖျက်ခင်စစ်ဆေးရန်သတိပြုပါ။\n\n{Url}\n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nDen tidligste utløpsdatoen er {EarliestExpirationDate}.\n\nHusk å sjekke dem før de blir slettet.\n\n{Url}\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nDe vroegste vervaldatum is {EarliestExpirationDate}.\n\nAUB checken voordat deze worden verwijderd.\n\n{Url}\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nNajwcześniejsza data wygaśnięcia to {EarliestExpirationDate}.\n\nPamiętaj, aby je sprawdzić przed usunięciem.\n\n{Url}\n\nZ poważaniem\n{NodeName}",
@@ -2172,7 +2255,7 @@
       "ro": "Bună ziua, {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nCea mai apropiată dată de expirare este {EarliestExpirationDate}.\n\nNu uita să le verifici înainte de a fi șterse.\n\n{Url}\n\nToate cele bune,\n{NodeName}",
       "ru": "Дорогой(ая) {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nПервый срок действия {EarliestExpirationDate}.\n\nПожалуйста, не забудьте проверить их перед тем, как они будут удалены программой\n\n{Url}\n\nС уважением,\n{NodeName}",
       "sk": "Vážený/á {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nNajbližší deň vypršania platnosti je {EarliestExpirationDate}.\n\nNezabudnite na ich kontrolu skôr, než budú odstránené..\n\n{Url}\n\nS pozdravom,\n{NodeName}",
-      "sl_SI": "Spoštovani {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nThe earliest expiration date is {EarliestExpirationDate}.\n\nNe pozabite jih pregledati, preden bodo izbrisani.\n\n{Url}\n\nS spoštovanjem,\n{NodeName}",
+      "sl_SI": "Spoštovani {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nNajzgodnejši datum poteka je {EarliestExpirationDate}.\n\nNe pozabite jih pregledati, preden bodo izbrisani.\n\n{Url}\n\nS spoštovanjem,\n{NodeName}",
       "sq": "Dear {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nThe earliest expiration date is {EarliestExpirationDate}.\n\nPlease remember to check them before they are deleted.\n\n{Url}\n\nMe respekt, \n{NodeName}",
       "sv": "Bästa {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nTidigaste utgångsdatum är {EarliestExpirationDate}.\n\nKom ihåg att läsa igenom dem innan de raderas.\n\n{Url}\n\nMed vänliga hälsningar,\n{NodeName}",
       "sw": "Kwako {RecipientName}\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nTarehe ya mapema kabisa ya kumalizika ni {EarliestExpirationDate}.\n\nTafadhali kumbuka kuzikagua kabla hazijafutwa\n\n{Url}\n\nWasalam,\n{NodeName}",
@@ -2183,6 +2266,7 @@
       "ur": "محترم{RecipientName}،\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nThe earliest expiration date is {EarliestExpirationDate}.\n\nPlease remember to check them before they are deleted.\n\n{Url}\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nNgày hết hạn sớm nhất là {EarliestExpirationDate}.\n\nHãy nhớ kiểm tra chúng trước khi chúng bị xóa.\n\n{Url}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\n最早的截止日期是 {EarliestExpirationDate}.\n\n请记得在删除前再检查一下。\n\n{Url}\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\nThe earliest expiration date is {EarliestExpirationDate}.\n\nPlease remember to check them before they are deleted.\n\n{Url}\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n{ExpiringSubmissionCount} reports are expiring and will be soon deleted.\n\n最早的截止日期是 {EarliestExpirationDate}.\n\n請記得在刪除前再檢查一下。\n\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "tip_expiration_summary_mail_title": {
@@ -2216,6 +2300,7 @@
       "lt": "Some reports will expire soon",
       "mg": "Des envois arriverons bientôt à expiration",
       "mk": "Некои пријави наскоро ќе исчезнат",
+      "my": "အချို့အစီရင်ခံစာများသည် မကြာမီသက်တမ်းကုန်တော့မည်",
       "nb_NO": "Some reports will expire soon",
       "nl": "Sommige inzendingen zullen binnenkort vervallen",
       "pl": "Niektóre raporty wkrótce wygasną.",
@@ -2235,6 +2320,7 @@
       "ur": "کچھ رپورٹیں جلد ہی ختم ہوجائیں گی",
       "vi": "Một số báo cáo sẽ hết hạn sớm",
       "zh_CN": "部份报告即将到期失效",
+      "zh_HK": "Some reports will expire soon",
       "zh_TW": "部份報告即將到期失效"
     },
     "tip_mail_template": {
@@ -2268,6 +2354,7 @@
       "lt": "Dear {RecipientName},\n\nThis is an email to notify you that a whistleblower has selected you as a valuable recipient of their report.\n\nYou are asked to pay special attention to the information and material contained therein. Please keep in mind that whistleblowers often expose themselves to high personal risks in the interest of the public. Therefore the material provided within this report should be considered to be of high importance.\n\nThe report can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nLe but de ce courriel est de vous signaler qu’un lanceur d’alerte vous a sélectionné comme destinataire de choix de son envoi.\n\nIl vous est demandé de prêter une attention particulière aux informations et aux documents ci-inclus. Veuillez vous souvenir que les lanceurs d’alerte prennent souvent des risques dans l’intérêt du public. Par conséquent, les documents qui ont été fournis avec cet envoi doivent être traités avec l’importance qu’ils méritent.\n\nL’envoi est accessible à :\n{Url}\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nОва е е-маил известување дека укажувачот Ве селектирал како важен примател на нивната пријава. \n\nУкажано Ви е да обрнете посебно внимание на информациите и материјалот којшто е содржан тука. Ве молиме имајте предвид дека укажувачите често се изложуваат себеси на големи лични ризици во интерес на јавноста. Поради тоа, материјалите содржани во оваа пријава треба да се сметаат со големо значење. \n\nКон пријавата може да се пристапи на:\n{Url}\n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\nဤသည်ကသတင်းပေးသူတစ်ဦးက သင့်အား သူတို့၏အစီရင်ခံစာအတွက် အဖိုးတန်သောလက်ခံသူအဖြစ်သင့်ကို ရွေးချယ်ထားကြောင်း သင့်အားအသိပေးရန် အီးမေးလ်ဖြစ်သည်။\n\nထိုနေရာ ပါ၀င်သည့်သတင်းအချက်အလက်နှင့်ပစ္စည်းများကို အထူးဂရုပြုရန်သင့်အားတောင်းဆိုသည်။ သတင်းပေးများသည် အများပြည်သူအကျိုးစီးပွားအတွက် မြင့်မားသောပုဂ္ဂိုလ်ရေးအန္တရာယ်များကို မကြာခဏကြုံတွေ့ရလေ့ရှိကြောင်း သတိရပါ။ ထို့ကြောင့် ဤအစီရင်ခံစာအတွင်းပါ၀င်သော အကြောင်းအရာများသည် အလွန်အရေးကြီးကြောင်း ထည့်သွင်းစဉ်းစားသင့်သည်။\n\nအစီရင်ခံစာအား ဝင်ရောက်ကြည့်ရှုနိုင်သည် - \n{Url}\n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nThis is an email to notify you that a whistleblower has selected you as a valuable recipient of their report.\n\nYou are asked to pay special attention to the information and material contained therein. Please keep in mind that whistleblowers often expose themselves to high personal risks in the interest of the public. Therefore the material provided within this report should be considered to be of high importance.\n\nThe report can be accessed at:\n{Url}\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nDit is een e-mail om je te informeren dat een klokkenluider jou heeft geselecteerd als een gewaardeerde ontvanger van hun inzending.\n\nJe wordt verzocht om extra aandacht te besteden aan de informatie en materialen daarin. Houd er rekening mee dat klokkenluiders vaak voor het maatschappelijk belang zelf grote persoonlijke risico's nemen. Daarom moet het materiaal dat deze inzending bevat als van groot belang worden beschouwd.\n\nHier krijg je toegang tot de inzending:\n{Url}\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nTo jest wiadomość mailowa z powiadomieniem, że sygnalista wybrał Cię jako odbiorcę swojego zgłoszenia.\n\nPoproszono Cię o zwrócenie szczególnej uwagi na zawarte w tym zgłoszeniu informacje i materiały. Miej na uwadze, że sygnaliści często narażają się dla dobra publicznego na duże ryzyko osobiste. Z tego względu materiał w niniejszym zgłoszeniu należy uznać za bardzo istotny.\n\nZgłoszenie jest dostępne w:\n{Url}\n\nZ poważaniem\n{NodeName}",
@@ -2276,7 +2363,7 @@
       "ro": "Bună ziua, {RecipientName},\n\nAcesta este un email prin care te anunțăm că un avertizor te-a selectat ca destinatar de încredere al sesizării lui.\n\nTe rugăm să acorzi atenție specială informațiilor și materialelor prezentate aici. Te rugăm să nu uiți că avertizorii de integritate se expun adesea unor riscuri personale mari în interesul public. De aceea, materialele oferite prin intermediul acestei sesizări trebuie să fie considerate de importanță majoră. \n\nSesizarea poate fi accesată la:\n{Url}\n\nToate cele bune,\n{NodeName}",
       "ru": "Дорогой(ая) {RecipientName},\n\nЭтим сообщением мы уведомляем вас, что информатор выбрал вас в качестве важного получателя его отчета.\n\nВам необходимо обратить особое внимание на информацию и материалы, содержащиеся в нем. Имейте в виду, что информаторы зачастую подвергают себя серьезному риску в интересах общественности. Поэтому представленные в этом отчете материалы следует считать крайне важными.\n\nОтчет доступен на странице:\n{Url}\n\nС уважением,\n{NodeName}",
       "sk": "Vážený/á {RecipientName},\n\nToto je emailové upozornenie, že Vás oznamovateľ vybral ako príjemcu podania.\n\nProsím, venujte zvláštnu pozornosť obsiahnutým informáciám a materiálom. Majte na pamäti, že oznamovatelia sa často vystavujú osobným rizikám v záujme verejnosti. Informácie poskytnuté v rámci tohto podania by preto mali byť považované za veľmi dôležité.\n\nK tomuto podaniu máte prístup:\n{Url}\n\nS pozdravom,\n{NodeName}",
-      "sl_SI": "Spoštovani {RecipientName},\n\nThis is an email to notify you that a whistleblower has selected you as a valuable recipient of their report.\n\nProsimo vas, da z infromacijami in gradivom ravnate z vso potrebno skrbnostjo. Zavedajte se, da se žvižgači pogosto osebno izpostavijo velikim tveganjem v interesu javnosti. Zato obravnavajte gradiva, ki so del te prijave, kot zelo pomembna. \n\nPosodobljene informacije so na voljo:\n{Url}\n\nS spoštovanjem,\n{NodeName}",
+      "sl_SI": "Spoštovani {RecipientName},\n\ns tem sporočilom vas obveščamo, da vas je prijavitelj določil kot prejemnika prijave. \n\nProsimo vas, da z infromacijami in gradivom ravnate z vso potrebno skrbnostjo. Zavedajte se, da se žvižgači pogosto osebno izpostavijo velikim tveganjem v interesu javnosti. Zato obravnavajte gradiva, ki so del te prijave, kot zelo pomembna. \n\nPosodobljene informacije so na voljo:\n{Url}\n\nS spoštovanjem,\n{NodeName}",
       "sq": "Dear {RecipientName},\n\nKjo është një e-postë për t'ju njoftuar se një informator ju ka përzgjedhur si një marrës të vlefshëm, për parashtrimin e tij/saj të ri.\n\nAta do të dëshironin që ju të përkushtoheshit veçanërisht ndaj informacionit dhe materialit që përmbahet këtu. Ju lutemi mos harroni që, në të mirë të interesit publik, shpesh informatorët e ekspozojnë veten ndaj një rreziku të madh.Kësisoj, materiali që ata ofrojnë me këtë sugjerim konfidencial duhet të konsiderohet me rëndësi të madhe.\n\nParashtrimi është i qasshëm:\n{Url}\n\nMe respekt, \n{NodeName}",
       "sv": "Bästa {RecipientName},\n\nSyftet med detta e-postmeddelande är att upplysa dig om att en visselblåsare har valt ut dig som värdefull mottagare av deras rapport.\n\nDu ombeds att fästa särskild uppmärksamhet vid den information och det material som finns där. Kom ihåg att visselblåsare ofta utsätter sig för stora personliga risker i allmänhetens intresse. Det material som lämnas i denna rapport bör därför anses vara av stor betydelse.\n\nRapporten hittar du på adressen:\n{Url}\n\nMed vänliga hälsningar,\n{NodeName}",
       "sw": "Kwako {RecipientName}\n\nBarua pepe hii ni kukujulisha kuwa, mtoa taarifa ya siri amekuchagua kama\n\nmpokeaji muhimu wa ripoti yao.\n\nUnaombwa kuweka umakini kwenye taarifa na nyenzo \n\nzilizopo hapa. Tafadhali kumbuka kuwa watoa habari za siri mara nyingi hujiweka\n\nkatika mazingira hatarishi kwa manufaa ya umma. Kwahiyo\n\nnyenzo zilizotolewa ndani ya ripoti hii zinapaswa kuzingatiwa kuwa na\n\numuhimu sana.\n\nThe report can be accessed at:\n{Url}\n\nWasalam,\n{NodeName}",
@@ -2287,6 +2374,7 @@
       "ur": "محترم{RecipientName}،\n\n آپ کو مطلع کرنے کے لئے یہ ایک ای میل نوٹیفکیشن ہے کہ ایک مخبر یا وسل بلوئر  نے گزارش کے ایک بیش قیمت  وصول کنندہ کے طور پر آپ کو منتخب کیا ہے.\n\nوہ پسند کریں گے کہ آپ اس میں موجود معلومات اور مواد پر خصوصی توجہ دیجئے .اس بات کو ذہن میں رکھیں کہ whistleblowers اکثر عوامی مفاد کے لئے اعلی ذاتی خطرات میں ڈالتے ہوئے خود کو ظاہر کرتے ہیں۔اس وجہ سے انکے اس مخبری کے ساتھ فراہم کردہ مواد کو اعلی اہمیت کا حامل سمجھا جانا چاہئے.\n\nتجویز تک یہاں رسائی حاصل کر سکتے ہیں:\n{Url}\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nĐây là một email thông báo cho bạn rằng một tố giác viên đã chọn bạn là một người nhận có giá trị với báo cáo của họ.\n\nHãy đặc biệt chú ý đến thông tin và tài liệu có trong đó. Xin lưu ý rằng những người tố giác thường chấp nhận rủi ro cá nhân cao vì mục tiêu lợi ích của công chúng. Do đó, tài liệu được cung cấp trong báo cáo này nên được coi là rất quan trọng.\n\nYêu cầu có thể được truy cập:\n{Url}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\n此封邮件通知您，揭密者已挑选您作为其报告的收件对象。\n\n请特别留意此处的信息和材料，谨记揭密者为了公益往往自身曝露在高度风险下。因此报告里提交的材料应被好好重视。\n\n此报告可在此查看：\n{Url}\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\n謹以此電郵通知您，某吹哨者剛選定您作爲其報告的重要接收者對象。\n\nYou are asked to pay special attention to the information and material contained therein. Please keep in mind that whistleblowers often expose themselves to high personal risks in the interest of the public. Therefore the material provided within this report should be considered to be of high importance.\n\nThe report can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n此封郵件通知您，揭密者已挑選您作為其報告的收件對象。\n\n請特別留意此處的資訊和材料，謹記揭密者為了公益往往自身曝露在高度風險下。因此報告裏提交的材料應被好好重視。\n\n此報告可在此查看：\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "tip_mail_title": {
@@ -2320,6 +2408,7 @@
       "lt": "New report",
       "mg": "Nouvel envoi",
       "mk": "Нова пријава",
+      "my": "အစီရင်ခံစာအသစ်",
       "nb_NO": "New report",
       "nl": "Nieuwe inzending",
       "pl": "Nowy raport",
@@ -2339,6 +2428,7 @@
       "ur": "نئی رپورٹ",
       "vi": "Báo cáo mới",
       "zh_CN": "新报告",
+      "zh_HK": "New report",
       "zh_TW": "新報告"
     },
     "tip_update_mail_template": {
@@ -2372,6 +2462,7 @@
       "lt": "Dear {RecipientName},\n\nThis is an email to notify that an existing report has been updated.\n\nThe report can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nThis is an email to notify that an existing report has been updated.\n\nL’envoi est accessible à :\n{Url}\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nОва е е-маил за известување дека постоечка пријава е ажурирана \n\nКон пријавата може да се пристапи на:\n{Url}\n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\nဤသည် ရှိပြီးသားအစီရင်ခံစာကို ထပ်မံမွမ်းမံထားပြီးကြောင်း အသိပေးရန်အီးမေးလ်ဖြစ်သည်။\n\nအစီရင်ခံစာအား ဝင်ရောက်ကြည့်ရှုနိုင်သည် - \n{Url}\n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nThis is an email to notify that an existing report has been updated.\n\nThe report can be accessed at:\n{Url}\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nDit is een e-mail om te melden dat een bestaande inzending is bijgewerkt.\n\nHier krijg je toegang tot de inzending:\n{Url}\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nTo jest wiadomość mailowa z powiadomieniem o aktualizacji istniejącego raportu.\n\nZgłoszenie jest dostępne w:\n{Url}\n\nZ poważaniem\n{NodeName}",
@@ -2391,6 +2482,7 @@
       "ur": "محترم{RecipientName}،\n\nThis is an email to notify that an existing report has been updated.\n\nتجویز تک یہاں رسائی حاصل کر سکتے ہیں:\n{Url}\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nThis is an email to notify that an existing report has been updated.\n\nYêu cầu có thể được truy cập:\n{Url}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\nThis is an email to notify that an existing report has been updated.\n\n此报告可在此查看：\n{Url}\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\nThis is an email to notify that an existing report has been updated.\n\nThe report can be accessed at:\n{Url}\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\nThis is an email to notify that an existing report has been updated.\n\n此報告可在此查看：\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "tip_update_mail_title": {
@@ -2424,6 +2516,7 @@
       "lt": "Report updated",
       "mg": "Report updated",
       "mk": "Пријавата е ажурирана",
+      "my": "အစီရင်ခံစာအား ထပ်မံမွမ်းမံထားသည်။",
       "nb_NO": "Report updated",
       "nl": "Inzending bijgewerkt",
       "pl": "Raport został zaktualizowany",
@@ -2443,6 +2536,7 @@
       "ur": "Report updated",
       "vi": "Report updated",
       "zh_CN": "Report updated",
+      "zh_HK": "報告已更新",
       "zh_TW": "Report updated"
     },
     "unread_tips_mail_template": {
@@ -2476,6 +2570,7 @@
       "lt": "Dear {RecipientName},\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nKind regards,\n{NodeName}",
       "mg": "Cher, chère {RecipientName},\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nSalutations cordiales,\n{NodeName}",
       "mk": "Драг/а {RecipientName}, \n\nОва е е-маил за потсетување за непрочитани или ажурирани пријави.\n\n{Url}\n\nСрдечни поздрави, \n{NodeName}",
+      "my": "ချစ်ခင်ရပါသော {RecipientName}, \n\nယခုအီးမေးလ်သည် သင်မဖတ်ရသေးသော သို့မဟုတ် မွမ်းမံထားသော အစီရင်ခံစာများရှိကြောင်း သတိပေးရန်ဖြစ်သည်။\n\n{Url}\n\nမေတ္တာဖြင့်\n{NodeName}",
       "nb_NO": "Kjære {RecipientName},\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nVennlig hilsen,\n{NodeName}",
       "nl": "Beste {RecipientName},\n\nDeze e-mail is om u te herinneren aan de aanwezigheid van ongelezen of bijgewerkte inzendingen.\n\n{Url}\n\nMet vriendelijke groet,\n{NodeName}",
       "pl": "Szanowny(a) {RecipientName},\n\nTo jest wiadomość mailowa z przypomnieniem o oczekujących nieprzeczytanych lub zaktualizowanych raportach.\n\n{Url}\n\nZ poważaniem\n{NodeName}",
@@ -2495,6 +2590,7 @@
       "ur": "محترم{RecipientName}،\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "敬爱的 {RecipientName},\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\n亲切的问候，\n{NodeName}",
+      "zh_HK": "尊敬的 {RecipientName}，\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nKind regards,\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\nThis email is to remind you the presence of unread or updated reports.\n\n{Url}\n\nKind regards,\n{NodeName}"
     },
     "unread_tips_mail_title": {
@@ -2528,6 +2624,7 @@
       "lt": "Reminder about unread or updated reports",
       "mg": "Reminder about unread or updated reports",
       "mk": "Потсетник за непрочитани и ажурирани пријави",
+      "my": "မဖတ်ရသေးသော သို့မဟုတ် ထပ်မံမွမ်းမံထားသောအစီရင်ခံစာများအကြောင်း သတိပေးပါ",
       "nb_NO": "Reminder about unread or updated reports",
       "nl": "Herinnering over ongelezen of bijgewerkte inzendingen",
       "pl": "Przypomnienie o  nieprzeczytanych lub zaktualizowanych raportach",
@@ -2547,6 +2644,7 @@
       "ur": "Reminder about unread or updated reports",
       "vi": "Reminder about unread or updated reports",
       "zh_CN": "Reminder about unread or updated reports",
+      "zh_HK": "Reminder about unread or updated reports",
       "zh_TW": "Reminder about unread or updated reports"
     },
     "user_credentials": {
@@ -2580,6 +2678,7 @@
       "lt": "Role: {Role}\nUsername: {Username}\nSlaptažodis: {Password}",
       "mg": "Rôle : {Role}\nNom d’utilisateur : {Username}\nMot de passe : {Password}",
       "mk": "Улога: {Role}\nКорисничко име: {Username}\nЛозинка: {Password}",
+      "my": "အခန်းကဏ္ဍ - {Role}\nအသုံးပြုသူအမည် - {Username}\nစကား၀ှက် - {Password}",
       "nb_NO": "Role: {Role}\nUsername: {Username}\nPassword: {Password}",
       "nl": "Rol: {Role}\nGebruikersnaam: {Username}\nWachtwoord: {Password}",
       "pl": "Rola: {Role}\nNazwa użytkownika: {Username}\nHasło: {Password}",
@@ -2599,6 +2698,7 @@
       "ur": "Role: {Role}\nUsername: {Username}\nPassword: {Password}",
       "vi": "Vai trò: {Role}\nTên người dùng: {Username}\nMật khẩu: {Password}",
       "zh_CN": "角色: {Role}\n用户名: {Username}\n密码: {Password}",
+      "zh_HK": "身份：{Role}\n用戶名稱：{Username}\n密碼：{Password}",
       "zh_TW": "角色: {Role}\n用戶名: {Username}\n密碼: {Password}"
     }
   },
@@ -2626,7 +2726,7 @@
       "he": "File a report",
       "hr_HR": "File a report",
       "hu_HU": "File a report",
-      "id": "File a report",
+      "id": "Buat laporan",
       "it": "Invia una segnalazione",
       "ja": "報告を保存する",
       "ka": "File a report",
@@ -2634,9 +2734,10 @@
       "lt": "File a report",
       "mg": "File a report",
       "mk": "Поднеси пријава ",
+      "my": "အစီရင်ခံစာတင်ပါ",
       "nb_NO": "File a report",
       "nl": "File a report",
-      "pl": "File a report",
+      "pl": " \nZłożyć zgłoszenie",
       "pt_BR": "File a report",
       "pt_PT": "File a report",
       "ro": "File a report",
@@ -2653,6 +2754,7 @@
       "ur": "File a report",
       "vi": "File a report",
       "zh_CN": "File a report",
+      "zh_HK": "提交報告",
       "zh_TW": "File a report"
     }
   }

@@ -7,12 +7,13 @@
 # Cadas Propopuli Azzam Baribin <cadas.propopuli@gmail.com>, 2018
 # Caroline Dianty <Diantycaroline@gmail.com>, 2018
 # Clara Priscilia <clara.priscilia78@gmail.com>, 2018
+# Edo Imantaka <imantaka.edo@gmail.com>, 2021
 # Evanna Audrey <evanna.n.audrey@gmail.com>, 2021
 # Fransisca Susanti <susanti@jaring.id>, 2018
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018,2020-2021
 # Helen Zhang <helen13zhang@gmail.com>, 2018
 # Ibnu Daru Aji, 2015
-# ical, 2018-2020
+# ical, 2018-2021
 # Imron Fauzi <imronfauzi@gmail.com>, 2015
 # Marcel Oomens <mail@marceloomens.com>, 2018
 # Margaret Megan <megan_marg@yahoo.com>, 2017
@@ -25,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
-"Last-Translator: Evanna Audrey <evanna.n.audrey@gmail.com>\n"
+"PO-Revision-Date: 2021-04-26 16:34+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -335,7 +336,7 @@ msgstr "Format notifikasi otoritas"
 
 msgid ""
 "This interface allows configuring email templates used to notify custodians."
-msgstr "Antarmuka ini mengizinkan pengubahan format surel yang digunakan untuk memberitauhu otoritas"
+msgstr "Antarmuka ini mengizinkan pengubahan format surel yang digunakan untuk memberitahu otoritas"
 
 msgid "Disable notifications to administrators"
 msgstr "menonaktifkan notifikasi ke administrator"
@@ -481,7 +482,7 @@ msgid "Closed"
 msgstr "Tertutup"
 
 msgid "Placeholder"
-msgstr ""
+msgstr "Placeholder"
 
 msgid "Print"
 msgstr "Cetak"
@@ -540,7 +541,7 @@ msgid "Tax code"
 msgstr "Kode pajak"
 
 msgid "File a report"
-msgstr ""
+msgstr "Buat laporan"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Sebelum melanjutkan, mohon atur kata sandi baru."
@@ -659,7 +660,7 @@ msgid "Enable private annotations"
 msgstr "Aktifkan anotasi privat"
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgstr "Izinkan situs-situs ini untuk menanamkan platform di dalam iframes"
 
 msgid "Logging level"
 msgstr "Tingkat pencatatan"
@@ -703,7 +704,7 @@ msgid "Severity"
 msgstr "Keparahan"
 
 msgid "Object"
-msgstr ""
+msgstr "Obyek"
 
 msgid "ID"
 msgstr "ID"
@@ -1478,7 +1479,7 @@ msgid ""
 "and staying anonymous by not revealing your location or IP address. You "
 "won't notice any difference from an insecure chat, except that you will be "
 "using a unique address instead of a phone number/email/username."
-msgstr ""
+msgstr "Dengan menggunakan jaringan Tor dan membuat sebuah Layanan Onion, Ricochet adalah aplikasi bertukar pesan yang memungkinkan Anda bertukar pesan dengan melindungi privasi dan tetap anonim dengan tidak menyingkap lokasi atau alamat IP Anda. Anda tidak akan memperhatikan perbedaannya dengan percakapan yang tidak aman, kecuali penggunaan alamat yang unik sebagai ganti dari nomor telepon/surel/nama pengguna."
 
 msgid "The connection is not secure."
 msgstr "Koneksi tidak aman."
@@ -1534,7 +1535,7 @@ msgid "File size"
 msgstr "Ukuran berkas"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr ""
+msgstr "Izinkan informan publik untuk menambahkan tautan ke dalam laporan"
 
 msgid "Never"
 msgstr "Tidak pernah"
@@ -1543,11 +1544,11 @@ msgid "Allow the whistleblower to send messages"
 msgstr "Mengizinkan informan publik untuk mengirim pesan"
 
 msgid "Are you sure that you want to delete the report?"
-msgstr ""
+msgstr "Apa Anda yakin ingin menghapus laporan?"
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
-msgstr ""
+msgstr "Semua hal terkait laporan yang disimpan di dalam platform akan dihapus."
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
@@ -1555,7 +1556,7 @@ msgid ""
 msgstr "Mohon berhati-hati bahwa semua yang disimpan di dalam platform, contohnya berkas-berkas yang Anda simpan di komputer Anda, harus dihapus secara manual."
 
 msgid "Are you sure that you want to delete the selected reports?"
-msgstr ""
+msgstr "Apa Anda yakin ingin menghapus laporan yang dipilih?"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
@@ -1566,7 +1567,7 @@ msgid "Please write a motivation for the reply"
 msgstr "Mohon menulis sebuah motivasi untuk balasan."
 
 msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr ""
+msgstr "Apa Anda yakin ingin memperpanjang waktu kedaluwarsa laporan?"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Dengan mengkonfirmasi, anda akan menunda tanggal kedaluwarsa menjadi: "
@@ -1574,7 +1575,7 @@ msgstr "Dengan mengkonfirmasi, anda akan menunda tanggal kedaluwarsa menjadi: "
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
 "reports?"
-msgstr ""
+msgstr "Apa Anda yakin ingin memperpanjang waktu kedaluwarsa untuk semua laporan yang dipilih?"
 
 msgid "Questionnaire answers"
 msgstr "Jawaban kuesioner"
@@ -1605,10 +1606,10 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "Kami merekomendasikan Anda mengakses \"Preferensi\" untuk menerima \"Kunci Pemulihan Akun\" dan simpan dengan aman. Kunci ini dibutuhkan untuk memulihkan Akses Anda ke platform dan data Anda jika Anda lupa sandi."
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "Kunci pemulihan yang diberikan salah."
 
 msgid "The provided reset token is invalid or expired."
 msgstr "Token pengaturan ulang yang disediakan tidak sah atau kedaluwarsa "
@@ -1619,11 +1620,11 @@ msgid ""
 msgstr "Masukkan nama pengguna akun anda atau alamat surel untuk meminta pengaturan ulang kata sandi "
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "Masukkan alamat surel anda untuk meminta pengaturan ulang sandi."
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr ""
+msgstr "Masukkan kunci pemulihan enkripsi Anda untuk menyelesaikan prosedur pengaturan ulang sandi"
 
 msgid "Password reset requested."
 msgstr "Pengaturan ulang kata sandi telah diminta "
@@ -1657,11 +1658,11 @@ msgid "Your whistleblowing platform is almost ready!"
 msgstr "Platform untuk Informan Publik anda hampir selesai!"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "Periksa kotak masuk Anda untuk mengaktifkannya."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "Jika tidak diaktifkan dalam 24 jam platform ini akan dihapus secara otomatis."
 
 msgid "Sign up"
 msgstr "Daftar"
@@ -1673,7 +1674,7 @@ msgid "Confirmation"
 msgstr "Konfirmasi"
 
 msgid "Invalid confirmation"
-msgstr ""
+msgstr "Konfirmasi salah"
 
 msgid "Other"
 msgstr "Lainnya"
@@ -1685,13 +1686,13 @@ msgid "Invalid phone number"
 msgstr "Nomor telepon salah"
 
 msgid "Select the context of your report:"
-msgstr ""
+msgstr "Pilih konteks dari laporan Anda:"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "Jawaban terlalu singkat"
 
 msgid "The specified input is not valid."
-msgstr ""
+msgstr "Masukan yang ditentukan salah."
 
 msgid "The specified input is not valid:"
 msgstr "Masukan yang ditentukan tidak valid"
@@ -1717,10 +1718,10 @@ msgid "Your report was successful."
 msgstr "Laporan Anda telah berhasil."
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "Kami akan menghubungi Anda secepatnya."
 
 msgid "Remember your receipt for this report."
-msgstr ""
+msgstr "Ingat tanda terima Anda untuk laporan ini."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
@@ -1734,18 +1735,18 @@ msgid "Recipient selection"
 msgstr "Seleksi penerima"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "Pilih penerima dari laporan Anda:"
 
 msgid "Recipients selected:"
 msgstr "Penerima yang terpilih:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr ""
+msgstr "Anda telah mencapai batas maksimal penerima."
 
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "Penerima berikut akan menerima laporan Anda dan tidak dapat dibatalkan."
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1770,35 +1771,35 @@ msgid "Please choose a configuration profile:"
 msgstr "Mohon pilih setelan profil:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "Mungkinkan admin ini untuk mengatur ulang sandi pengguna."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Kami menyarankan memilih opsi ini jika Anda ingin melindungi data dari kehilangan dalam situasi saat penerima kehilangan sandinya. Di sisi lain, kami tidak menyarankan menggunakan fitur ini jika Anda ingin mengatur sebuat sistem di mana hanya penerima yang dapat mengakses kiriman."
 
 msgid "Please choose a different username."
-msgstr ""
+msgstr "Mohon pilih nama pengguna lain."
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "Saya telah membaca dan setuju dengan persyaratan lisensi."
 
 msgid "You have completed the platform wizard."
 msgstr "Anda telah melengkapi petunjuk platform."
 
 msgid "Fill out your report"
-msgstr ""
+msgstr "Isi laporan Anda"
 
 msgid "Describe your report in a few words."
-msgstr ""
+msgstr "Deskripsikan laporan Anda dalam beberapa kata."
 
 msgid "Describe your report in detail."
-msgstr ""
+msgstr "Deskripsikan laporan Anda secara detil."
 
 msgid "Attach files relevant to the report."
-msgstr ""
+msgstr "Lampirkan berkas yang relevan dengan laporan."
 
 msgid "Do you want to provide your identification information?"
 msgstr "Apakah Anda ingin memberikan informasi identifikasi Anda?"
@@ -1842,13 +1843,13 @@ msgstr "yang terhormat {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr ""
+msgstr "Anda menerima pesan ini karena sebuah akun telah dibuat untuk Anda di dalam sistem: {Site}"
 
 msgid "Username: {Username}"
 msgstr "Nama pengguna: {Username}"
 
 msgid "Activation link: {Url}"
-msgstr ""
+msgstr "Tautan aktivasi: {Url}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
@@ -1940,7 +1941,7 @@ msgid "Registration data:"
 msgstr "Data registrasi"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "Situs: {Url}"
 
 msgid "Name: {Name}"
 msgstr "Nama: {Name}"
@@ -1986,7 +1987,7 @@ msgid "Email change request"
 msgstr "Permintaan perubahan surel"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "Dari: {Author}"
 
 msgid "Date: {EventTime}"
 msgstr "Tanggal: {EventTime} "
@@ -2001,7 +2002,7 @@ msgid "Label: {TipLabel}"
 msgstr "Label: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
+msgstr "Status: {TipStatus}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

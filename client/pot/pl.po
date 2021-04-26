@@ -4,7 +4,7 @@
 # Metafrasi <biuro@setara.eu>, 2016,2020
 # Damian S., 2015
 # Damian S., 2015
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2021
 # Jakub Jakubiak <jakub.jakubiak@gmail.com>, 2014
 # Jakub Jakubiak <jakub.jakubiak@gmail.com>, 2014
 # Magdalenaem <magdalena.morawiecka1@gmail.com>, 2015
@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
-"Last-Translator: Michal Glowacki\n"
+"PO-Revision-Date: 2021-04-26 15:42+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -536,7 +536,7 @@ msgid "Tax code"
 msgstr "Kod podatkowy"
 
 msgid "File a report"
-msgstr ""
+msgstr " \nZłożyć zgłoszenie"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Przed przejściem dalej proszę ustawić nowe hasło."
