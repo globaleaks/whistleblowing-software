@@ -261,7 +261,7 @@ if [ -d /globaleaks/deb ]; then
   if [ ! -f /etc/apt/sources.list.d/globaleaks.local.list ]; then
     echo "deb file:///globaleaks/deb/ /" >> /etc/apt/sources.list.d/globaleaks.local.list
   fi
-  DO "sudo apt -o Acquire::AllowInsecureRepositories=true -o Acquire::AllowDowngradeToInsecureRepositories=true update"
+  DO "apt -o Acquire::AllowInsecureRepositories=true -o Acquire::AllowDowngradeToInsecureRepositories=true update"
   DO "apt-get -y --allow-unauthenticated install globaleaks"
   DO "/etc/init.d/globaleaks restart"
 else
