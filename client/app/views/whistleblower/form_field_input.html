@@ -24,10 +24,18 @@
         </div>
       </div>
       <div data-ng-switch-when="selectbox">
-        <select id="{{fieldEntry}}" name="{{'input-' +  entryIndex}}" class="custom-select inputelem" data-ng-model="entry['value']" data-ng-required="entry.required_status">
+        <select id="{{fieldEntry}}" name="{{'input-' +  entryIndex}}" class="custom-select inputelem" data-ng-model="entry['value']" data-ng-required="entry.required_status" data-ng-show="field.options.length < 10">
           <option class="d-none" value=""></option>
           <option data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'order'" id="{{fieldEntry}}-option-{{$index}}" value="{{option.id}}">{{option.label}}</option>
         </select>
+        <ui-select data-ng-model="entry['value']" data-theme="bootstrap" data-on-select="entry['value'] = $item.id; label = $item.label" data-ng-show="field.options.length >= 10">
+          <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
+            <span data-ng-bind="label"></span>
+          </ui-select-match>
+          <ui-select-choices data-repeat="option in field.options | filter:{'label': $select.search} | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'order'" refresh="" resfresh-delay="0">
+            <span data-ng-bind-html="option.label | highlight: $select.search"></span>
+          </ui-select-choices>
+        </ui-select>
       </div>
       <div data-ng-switch-when="multichoice">
         <div data-ng-repeat="option in field.options | orderBy:'order'" id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}">
