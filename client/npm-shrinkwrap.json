@@ -4667,9 +4667,9 @@
       }
     },
     "npm-check-updates": {
-      "version": "11.5.3",
-      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-11.5.3.tgz",
-      "integrity": "sha512-/HCLL3BdTp8X9H7M/LxKkkpPAaLvXeSt5HAW4BLqt+I6Hd68itVYqg4CGhivm/64sQ2CCfRjXxOpXAU2GwxwAA==",
+      "version": "11.5.5",
+      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-11.5.5.tgz",
+      "integrity": "sha512-Dl6m4fzbWK5QeQPrHLNQbVKJj4lB2UdjKeEAOz9qjc2holMM1XLuviSvvW0XD0vuCVNjbmQaHaUUIAwRKtof9g==",
       "dev": true,
       "requires": {
         "chalk": "^4.1.1",
