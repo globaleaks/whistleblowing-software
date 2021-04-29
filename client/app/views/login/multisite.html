@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-12">
         <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='selectSite($item)'>
-          <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
+          <ui-select-match data-ng-attr-placeholder="{{'Search' | translate}}">
             <span data-ng-bind="$select.selected.name"></span>
           </ui-select-match>
           <ui-select-choices data-repeat="site in selectableSites" refresh="refreshSelectableSites($select.search)" resfresh-delay="0">

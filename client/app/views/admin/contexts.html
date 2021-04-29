@@ -113,7 +113,7 @@
                   <div class="col-md-12" data-ng-if="showSelect">
                     <ui-select data-ng-model="selected.value" data-theme="bootstrap"
                                data-on-select='moveReceiver($item)'>
-                      <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
+                      <ui-select-match data-ng-attr-placeholder="{{'Search' | translate}}">
                         <span data-ng-bind="$select.selected.name"></span>
                       </ui-select-match>
                       <ui-select-choices data-repeat="receiver in resources.users | filter: {role: 'receiver', name: $select.search} | filter:receiverNotSelectedFilter">
