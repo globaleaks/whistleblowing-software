@@ -1,3 +1,11 @@
+Changes in version 4.2.6
+    Add Bengali translation
+    Add Lao translation
+    Add Malayan translation
+    Improve usability of drop down with >=10 choices
+    Update translations
+    Bump npm dependencies to latest versions
+
 Changes in version 4.2.5
     Fix bug on file delivery in mixed PGP / non PGP configurations
     Add Burmese translation
