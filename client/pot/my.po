@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-26 16:40+0000\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Burmese (http://www.transifex.com/otf/globaleaks/language/my/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,13 +15,13 @@ msgstr ""
 "mime-version: 1.0\n"
 
 msgid "Log in"
-msgstr "အကောင့်ဝင်ရောက်သည်"
+msgstr "အကောင့်ဝင်ရန်"
 
 msgid "Main configuration"
 msgstr "အဓိကဖွဲ့စည်းတည်ဆောက်ပုံ"
 
 msgid "Theme customization"
-msgstr "Theme ဖန်တီးပြုပြင်ခြင်း"
+msgstr "ဒီဇိုင်းပုံစံပြားဖန်တီးပြုပြင်ခြင်း"
 
 msgid "Languages"
 msgstr "ဘာသာစကားများ"
@@ -30,13 +30,13 @@ msgid "Text customization"
 msgstr "စာသားစိတ်ကြိုက်ဖန်တီးမှု"
 
 msgid "Advanced settings"
-msgstr "အဆင့်မြင့်ဆက်တင်"
+msgstr "အဆင့်မြင့်ထိန်းညှိမှုများ"
 
 msgid "Questionnaire configuration"
 msgstr "မေးခွန်းလွှာပုံစံဖွဲ့စည်းပုံ"
 
 msgid "Question templates"
-msgstr "မေးခွန်း template များ"
+msgstr "မေးခွန်းပုံစံပြားများ"
 
 msgid "Questionnaires"
 msgstr "မေးခွန်းလွှာများ"
@@ -48,13 +48,13 @@ msgid "Home"
 msgstr "ပင်မစာမျက်နှာ"
 
 msgid "Changelog"
-msgstr "ပြင်ဆင်သည့်မှတ်တမ်း"
+msgstr "အပြောင်းအလဲမှတ်တမ်း"
 
 msgid "License"
 msgstr "လိုင်စင်"
 
 msgid "Notification templates"
-msgstr "အသိပေးချက် template များ"
+msgstr "အသိပေးချက်ပုံစံပြားများ"
 
 msgid "Delete"
 msgstr "ဖျက်သည်"
@@ -63,16 +63,16 @@ msgid "Anomalies"
 msgstr "မူမှား"
 
 msgid "Preferences"
-msgstr "ဦးစားပေးချက်များ"
+msgstr "ရွေးချယ်စရာများ "
 
 msgid "Notification settings"
-msgstr "အသိပေးဆက်တင်"
+msgstr "အသိပေးချက်ထိန်းညှိမှုများ"
 
 msgid "file unavailable"
 msgstr "ဖိုင်မရနိုင်ပါ"
 
 msgid "Date"
-msgstr "ရက်စွဲ"
+msgstr "နေ့စွဲ"
 
 msgid "Expiration date"
 msgstr "သက်တမ်းကုန်ဆုံးရက်"
@@ -132,7 +132,7 @@ msgid "Private messages"
 msgstr "ကိုယ်ရေးကိုယ်တာ သီးသန့်သတင်းစကားများ"
 
 msgid "Preview"
-msgstr "ကြိုတင်ကြည့်"
+msgstr "နမူနာ"
 
 msgid "The whistleblower has already read the last update"
 msgstr "သတင်းပေးကနောက်ဆုံးရသတင်းကို ဖတ်ပြီးပါပြီ"
@@ -194,10 +194,10 @@ msgid "Maximum number of input characters"
 msgstr "အများဆုံးထည့်သွင်းနိုင်တဲ့အက္ခရာအရေအတွက်"
 
 msgid "Earliest selectable date"
-msgstr "အစောဆုံးရွေးချယ်နိုင်သောရက်စွဲ "
+msgstr "အစောဆုံးရွေးချယ်နိုင်သောနေ့စွဲ"
 
 msgid "Latest selectable date"
-msgstr "နောက်ဆုံးရွေးချယ်နိုင်သောရက်စွဲ"
+msgstr "နောက်ဆုံးရွေးချယ်နိုင်သောနေ့စွဲ"
 
 msgid "0 = auto"
 msgstr "0 = အလိုအလျောက်"
@@ -293,10 +293,10 @@ msgid "Authorize access to the whistleblower's identity"
 msgstr "သတင်းပေးရဲ့ ကိုယ်ပိုင်အမှတ်သင်္ကေတကို ဝင်ရောက်ကြည့်ခွင့်ပြုတယ်"
 
 msgid "Templates"
-msgstr "တင်းပလိတ်များ"
+msgstr "ပုံစံပြားများ"
 
 msgid "HTTPS settings"
-msgstr "HTTPS ချိတ်ဆက်မှုများ"
+msgstr "HTTPS ထိန်းညှိမှုများ"
 
 msgid "URL redirects"
 msgstr "URL ဦးတည်ရာပြောင်းမှုများ"
@@ -308,14 +308,14 @@ msgid "Available disk space"
 msgstr "ရရှိနိုင်သောဟာ့ဒစ်၏နေရာ"
 
 msgid "Last update"
-msgstr "နောက်ဆုံးမွမ်းမံခြင်း"
+msgstr "နောက်ဆုံးပြင်ဆင်ပြီးမှု"
 
 msgid "Custodian notification templates"
-msgstr "အုပ်ထိန်းသူထံအကြောင်းကြားသောတန်းပလိတ်"
+msgstr "အုပ်ထိန်းသူထံအကြောင်းကြားသောပုံစံပြား"
 
 msgid ""
 "This interface allows configuring email templates used to notify custodians."
-msgstr "ဒီနေရာတွင် အုပ်ထိန်းသူများအား အသိပေးသည့် အီးမေးလ်တန်းပလိတ်များအား ပြန်လည်ဖွဲ့စည်းခွင့်ပေးပါတယ်။ "
+msgstr "ဒီနေရာတွင် အုပ်ထိန်းသူများအား အသိပေးသည့် အီးမေးလ်ပုံစံပြားများအား ပြန်လည်ဖွဲ့စည်းခွင့်ပေးပါတယ်။ "
 
 msgid "Disable notifications to administrators"
 msgstr "အုပ်ချုပ်ရေးမှူးများအတွက်အကြောင်းကြားစာများကို ပိတ်ပါ"
@@ -347,9 +347,6 @@ msgstr "အားကောင်း"
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "အခင်းအကျင်းများရွေးချယ်ခြင်းအတွက် မျက်နှာပြင်ပေါ်ရှိစာသား"
 
-msgid "Type to search…"
-msgstr "ရှာဖွေရန်စာရိုက်ရိုက်ပါ"
-
 msgid "Silence email notifications"
 msgstr "အီးမေးလ်သတိပေးချက်များကို တိတ်ဆိတ်စွာ ထားပါ"
 
@@ -378,7 +375,7 @@ msgid "Disactivate"
 msgstr "ရပ်တန့်ပါ"
 
 msgid "Search"
-msgstr "ရှာရန်"
+msgstr "ရှာဖွေရန်"
 
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
@@ -505,7 +502,7 @@ msgid ""
 msgstr "လက်ခံသူတစ်ဦး သို့မဟုတ် အခြားမည်သူတစ်ဉီးမှ ပထမဆုံး login မလုပ်ရသေးပါ။ ဆိုလိုသည်မှာသူတို့သည် အစီရင်ခံစာများ လက်ခံရရှိလိမ့်မည် မဟုတ်ပါ။"
 
 msgid "This user has not performed the first login yet."
-msgstr "ဤအသုံးပြုသူသည် ပထမဉီးဆုံး login ပင် မလုပ်ရသေးပါ။"
+msgstr "ဤအသုံးပြုသူသည် ပထမဉီးဆုံးအကြိမ်အကောင့်၀င်ရန်ပင် မလုပ်ရသေးပါ။"
 
 msgid "seconds"
 msgstr "စက္ကန့်ပိုင်း"
@@ -568,7 +565,7 @@ msgid "Enable multisite feature"
 msgstr "ဆိုဒ်တစ်ခုထက်ပို၍ အလုပ်လုပ်နိုင်သော အလုပ်လုပ်နိုင်စွမ်းကို ဖွင့်ပေးပါ"
 
 msgid "Enable simplified login"
-msgstr "ရိုးရှင်းသော login ကိုဖွင့်ပါ"
+msgstr "ရိုးရှင်းသောအကောင့်၀င်ဖွင့်ပါ"
 
 msgid "Allow recipients to delete reports"
 msgstr "လက်ခံသူများအား အစီရင်ခံစာများကို ဖျက်ရန်ခွင့်ပြုပါ"
@@ -698,7 +695,7 @@ msgid "Name"
 msgstr "အမည်"
 
 msgid "Creation date"
-msgstr "ဖန်တီးသည့်ရက်စွဲ"
+msgstr "ဖန်တီးသည့်နေ့စွဲ"
 
 msgid "Last access"
 msgstr "နောက်ဆုံးဝင်ရောက်ခွင့်"
@@ -713,7 +710,7 @@ msgid "Substatuses"
 msgstr "ထပ်ခွဲအခြေအနေများ"
 
 msgid "Add"
-msgstr "ထည့်သွင်းရန်"
+msgstr "ထည့်ပေါင်း"
 
 msgid "Label"
 msgstr "အညွှန်း"
@@ -735,6 +732,9 @@ msgstr "လိုဂို"
 
 msgid "Project name"
 msgstr "စီမံကိန်းအမည်"
+
+msgid "Description"
+msgstr "ဖော်ပြချက်"
 
 msgid "Homepage title"
 msgstr "ပင်မစာမျက်နှာခေါင်းစဉ်"
@@ -795,9 +795,6 @@ msgstr "ပိတ်ထားသည်"
 
 msgid "Enabled"
 msgstr "ဖွင့်ထားသည်"
-
-msgid "Description"
-msgstr "ဖော်ပြချက်"
 
 msgid "Questionnaire"
 msgstr "မေးခွန်းလွှာ"
@@ -1024,10 +1021,10 @@ msgid "Reset SMTP configuration"
 msgstr "SMTP configuration ကို ပြန်လည်သတ်မှတ်ပါ"
 
 msgid "Reset notification templates to default"
-msgstr "အကြောင်းကြားရန်တင်းပလိတ်များကို ပြန်လည်သတ်မှတ်ပါ"
+msgstr "အကြောင်းကြားရန်ပုံစံပြားများကို ပြန်လည်သတ်မှတ်ပါ"
 
 msgid "Template"
-msgstr "တန်းပလိတ်"
+msgstr "ပုံစံပြား"
 
 msgid "Question"
 msgstr "မေးခွန်း"
@@ -1084,7 +1081,7 @@ msgid "Accept multiple answers"
 msgstr "အဖြေများကိုလက်ခံပါ"
 
 msgid "Template override"
-msgstr "တန်းပလိတ်ပယ်ဖျက်"
+msgstr "ပုံစံပြားပယ်ဖျက်"
 
 msgid "Phone number"
 msgstr "ဖုန်းနံပါတ်"
@@ -1123,7 +1120,7 @@ msgid "Sufficient"
 msgstr "လုံလောက်"
 
 msgid "Options"
-msgstr "ရွေးစရာများ"
+msgstr "ရွေးချယ်မှုများ"
 
 msgid "Addition"
 msgstr "အပေါင်း"
@@ -1138,7 +1135,7 @@ msgid "Add new question"
 msgstr "မေးခွန်းအသစ်ထည့်ပါ"
 
 msgid "Add question from template"
-msgstr "Template မှမေးခွန်းထည့်ပါ"
+msgstr "ပုံစံပြားမှမေးခွန်းထည့်ပါ"
 
 msgid "Duplicate"
 msgstr "ပွားသည်"
@@ -1147,13 +1144,13 @@ msgid "Steps"
 msgstr "အဆင့်များ"
 
 msgid "Site settings"
-msgstr "ဆိုဒ်ချိန်ညှိချက်များ"
+msgstr "ဆိုဒ်ထိန်းညှိမှုများ"
 
 msgid "Case management"
 msgstr "ကိစ္စရပ်စီမံခန့်ခွဲမှု"
 
 msgid "Network settings"
-msgstr "ကွန်ယက်ချိန်ညှိချက်များ"
+msgstr "ကွန်ယက်ထိန်းညှိမှုများ"
 
 msgid "Sites"
 msgstr "ဆိုဒ်များ"
@@ -1174,7 +1171,7 @@ msgid "Subdomain"
 msgstr "ဒိုမိန်းခွဲ"
 
 msgid "Creation date:"
-msgstr "ဖန်တီးသည့်ရက်စွဲ -"
+msgstr "ဖန်တီးသည့်နေ့စွဲ -"
 
 msgid "Root domain used for secondary sites"
 msgstr "ဒုတိယတန်းဆိုဒ်များအတွက် အသုံးပြုထားသော root domain"
@@ -1183,7 +1180,7 @@ msgid "Use the first site for administrative purposes only"
 msgstr "ပထမဆုံးဆိုဒ်ကို စီမံအုပ်ချုပ်မှုဆိုင်ရာ ရည်ရွယ်ချက်များအတွက်သာသုံးပါ"
 
 msgid "Enable multi-site login"
-msgstr "Multi- site ကို login ဖွင့်ပါ"
+msgstr "Multi- site ကိုအကောင့်၀င်ရန်ဖွင့်ပါ"
 
 msgid "Allow users to sign up"
 msgstr "အသုံးပြုသူများကိုမှတ်ပုံတင်ခွင့်ပြုသည်"
@@ -1243,10 +1240,10 @@ msgid "Give the user administrative access to the following features:"
 msgstr "အသုံးပြုသူအား အောက်ပါအင်္ဂါရပ်များကို စီမံခွင့်ပေးပါ - "
 
 msgid "Request date"
-msgstr "တောင်းဆိုသည့်ရက်စွဲ"
+msgstr "တောင်းဆိုသည့်နေ့စွဲ"
 
 msgid "Report date"
-msgstr "အစီရင်ခံရသည့်ရက်စွဲ"
+msgstr "အစီရင်ခံရသည့်နေ့စွဲ"
 
 msgid "Authorization"
 msgstr "ခွင့်ပြုချက်ပေးခြင်း"
@@ -1508,7 +1505,7 @@ msgid "Filename"
 msgstr "ဖိုင်နာမည်"
 
 msgid "Upload date"
-msgstr "တင်ယူသည့်ရက်စွဲ"
+msgstr "တင်ယူသည့်နေ့စွဲ"
 
 msgid "File size"
 msgstr "ဖိုင်အရွယ်အစား"
@@ -1575,10 +1572,10 @@ msgid "Upload a file:"
 msgstr "ဖိုင်တစ်ခုတင်ပါ"
 
 msgid "Logout"
-msgstr "ထွက်မယ်"
+msgstr "အကောင့်ထွက်ရန်"
 
 msgid "An update is available:"
-msgstr "နောက်ဆုံးမွမ်းမံမှုကိုရနိုင်သည်"
+msgstr "နောက်ဆုံးအခြေအနေကိုရနိုင်သည်"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1619,7 +1616,7 @@ msgid ""
 msgstr "ထုတ်ဖော်ပြောဆိုသူ၏ ကိုယ်ပိုင်အမှတ်သင်္ကေတကို ဝင်ရောက်ကြည့်ရှုခွင့်အတွက် အုပ်ထိန်းသူထံ တောင်းခံထားသည်။"
 
 msgid "Date of the request"
-msgstr "တောင်းဆိုမှုရက်စွဲ"
+msgstr "တောင်းဆိုသည့်နေ့စွဲ"
 
 msgid "Undeclared"
 msgstr "မကြေညာခဲ့ဘူး"
@@ -1650,7 +1647,7 @@ msgid "Domain"
 msgstr "ဒိုမိန်း"
 
 msgid "Confirmation"
-msgstr "အတည်ပြုချက်"
+msgstr "အတည်ပြုရန်"
 
 msgid "Invalid confirmation"
 msgstr "အတည်ပြုချက်မမှန်ကန်ပါ"
@@ -1955,7 +1952,7 @@ msgid ""
 msgstr " ဤအီးမေးလ်သည် သင်၏အီးမေးလ်လိပ်စာကို {NewEmailAddress} သို့ ပြောင်းရန် တောင်းဆိုမှုတစ်ခုပြုလုပ်ပြီးကြောင်း အသိပေးခြင်း ဖြစ်ပါတယ်။ "
 
 msgid "Click the following link to validate this change:"
-msgstr "ဒီပြောင်းလဲမှုကို အတည်ပြုရန်အောက်ပါ link ကိုနှိပ်ပါ - "
+msgstr "ဒီပြောင်းလဲမှုကို အတည်ပြုရန် အောက်ပါလင့်ကိုနှိပ်ပါ - "
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -1975,7 +1972,7 @@ msgid "From: Whistleblower"
 msgstr "မှ - သတင်းပေး"
 
 msgid "Date: {SubmissionDate}"
-msgstr "ရက်စွဲ - {SubmissionDate}"
+msgstr "နေ့စွဲ - {SubmissionDate}"
 
 msgid "Label: {TipLabel}"
 msgstr "တံဆိပ် - {TipLabel}"
@@ -2088,10 +2085,10 @@ msgid "Activation"
 msgstr "အသက်၀င်စေခြင်း"
 
 msgid "A software update is available."
-msgstr "နောက်ဆုံးမွမ်းမံထားသော ဆော့ဖ်ဝဲကို ရရှိနိုင်ပါသည်။"
+msgstr "ဆော့ဖ်ဝဲကိုအဆင့်မြှင့်နိုင်ပါသည်။"
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr "ပလက်ဖောင်းကို နောက်ဆုံးအဆင့်ထိ မွမ်းမံထားခြင်းသည် ကောင်းမွန်သောလုံခြုံရေး အလေ့အကျင့်တစ်ခု ဖြစ်သည်။"
+msgstr "ပလက်ဖောင်းကို နောက်ဆုံးအဆင့်ထိပြောင်းလဲထားခြင်းသည် ကောင်းမွန်သောလုံခြုံရေး အလေ့အကျင့်တစ်ခု ဖြစ်သည်။"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
@@ -2101,7 +2098,7 @@ msgstr "ဗားရှင်းအသစ်ရှိ အင်္ဂါရပ�
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
 "{UpdateGuideUrl}"
-msgstr "ဆော့ဖ်ဝဲအသစ်ပြောင်းခြင်းနှင့်ပတ်သက်သော ညွှန်ကြားချက်များအတွက် ကျေးဇူးပြု၍ {UpdateGuideUrl} ရှိ စာရွက်စာတမ်းများကိုကြည့်ပါ - "
+msgstr "ဆော့ဖ်၀ဲအဆင့်မြှင့်ခြင်းနှင့်ပတ်သက်သော ညွှန်ကြားချက်များအတွက် ကျေးဇူးပြု၍ {UpdateGuideUrl} ရှိ စာရွက်စာတမ်းများကိုကြည့်ပါ - "
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "အစောဆုံး သက်တမ်းကုန်ဆုံးသည့်နေ့မှာ {EarliestExpirationDate} ဖြစ်သည်။"

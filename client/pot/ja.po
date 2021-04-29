@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
-"Last-Translator: Naofumi <naofum@gmail.com>\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -350,9 +350,6 @@ msgstr "強い"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "コンテキストを選択するインターフェイスの先頭に表示されるテキスト"
-
-msgid "Type to search…"
-msgstr "入力して検索…"
 
 msgid "Silence email notifications"
 msgstr "メール通知をオフにする"
@@ -740,6 +737,9 @@ msgstr "ロゴ"
 msgid "Project name"
 msgstr "プロジェクト名"
 
+msgid "Description"
+msgstr "説明"
+
 msgid "Homepage title"
 msgstr "ホームページのタイトル"
 
@@ -799,9 +799,6 @@ msgstr "無効"
 
 msgid "Enabled"
 msgstr "有効"
-
-msgid "Description"
-msgstr "説明"
 
 msgid "Questionnaire"
 msgstr "アンケート"

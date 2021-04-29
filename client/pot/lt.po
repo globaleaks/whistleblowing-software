@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/otf/globaleaks/language/lt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -346,9 +346,6 @@ msgstr "Stiprus"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Tekstas rodomas sąsajos viršuje pasirenkant kontekstus"
-
-msgid "Type to search…"
-msgstr "Rašykite norėdami ieškoti..."
 
 msgid "Silence email notifications"
 msgstr "Nutildyti el. pašto pranešimus"
@@ -736,6 +733,9 @@ msgstr "Logotipas"
 msgid "Project name"
 msgstr "Projekto pavadinimas"
 
+msgid "Description"
+msgstr "Aprašas"
+
 msgid "Homepage title"
 msgstr "Pradžios puslapio pavadinimas"
 
@@ -795,9 +795,6 @@ msgstr "Išjungta"
 
 msgid "Enabled"
 msgstr "Įgalinta"
-
-msgid "Description"
-msgstr "Aprašas"
 
 msgid "Questionnaire"
 msgstr "Klausimynas"

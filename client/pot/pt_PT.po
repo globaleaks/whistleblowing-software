@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -364,9 +364,6 @@ msgstr "Forte"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Texto mostrado no topo da interface para os contextos selecionados"
-
-msgid "Type to search…"
-msgstr "Digite para pesquisar..."
 
 msgid "Silence email notifications"
 msgstr "Silenciar notificações de e-mail"
@@ -754,6 +751,9 @@ msgstr "Logótipo"
 msgid "Project name"
 msgstr "Nome do Projeto"
 
+msgid "Description"
+msgstr "Descrição"
+
 msgid "Homepage title"
 msgstr "Título da página principal"
 
@@ -813,9 +813,6 @@ msgstr "Desativada"
 
 msgid "Enabled"
 msgstr "Ativado"
-
-msgid "Description"
-msgstr "Descrição"
 
 msgid "Questionnaire"
 msgstr "Questionário"

@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
-"Last-Translator: Cristina Lupu <cristina@cji.ro>\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -360,9 +360,6 @@ msgstr "Ridicat"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Text afișat în partea de sus a interfeței pentru selectarea contextelor"
-
-msgid "Type to search…"
-msgstr "Tastează pentru a căuta..."
 
 msgid "Silence email notifications"
 msgstr "Pune pe silențios notificările email-urilor"
@@ -750,6 +747,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Numele proiectului"
 
+msgid "Description"
+msgstr "Descriere"
+
 msgid "Homepage title"
 msgstr "Titlul paginii de start"
 
@@ -809,9 +809,6 @@ msgstr "Dezactivat"
 
 msgid "Enabled"
 msgstr "Activat"
-
-msgid "Description"
-msgstr "Descriere"
 
 msgid "Questionnaire"
 msgstr "Chestionar"

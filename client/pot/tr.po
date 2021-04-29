@@ -29,8 +29,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
-"Last-Translator: T. E. Kalayci <tekrei@tutanota.com>\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -370,9 +370,6 @@ msgstr "Güçlü"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Arayüz de en üstünde yer alan metin içerik seçmek için dir"
-
-msgid "Type to search…"
-msgstr "Aramak için yazın..."
 
 msgid "Silence email notifications"
 msgstr "E-posta bilgilendirmelerini sessize al"
@@ -760,6 +757,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Proje adı"
 
+msgid "Description"
+msgstr "Açıklama"
+
 msgid "Homepage title"
 msgstr "Anasayfa başlığı"
 
@@ -819,9 +819,6 @@ msgstr "Devre Dışı"
 
 msgid "Enabled"
 msgstr "Etkin"
-
-msgid "Description"
-msgstr "Açıklama"
 
 msgid "Questionnaire"
 msgstr "Anket"

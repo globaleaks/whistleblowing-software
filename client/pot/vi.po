@@ -7,6 +7,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
+# John, 2021
 # Ngoc <ngoc@simplysecure.org>, 2021
 # Anh Phan <vietnamesel10n@gmail.com>, 2013
 # Anh Phan <vietnamesel10n@gmail.com>, 2013
@@ -15,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
-"Last-Translator: Ngoc <ngoc@simplysecure.org>\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -357,9 +358,6 @@ msgstr "Mạnh"
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Văn bản hiển thị trên đầu trang của giao diện để lựa chọn bối cảnh"
 
-msgid "Type to search…"
-msgstr "Gõ để tìm kiếm..."
-
 msgid "Silence email notifications"
 msgstr "Im lặng thông báo email"
 
@@ -530,7 +528,7 @@ msgid "Tax code"
 msgstr "Mã số thuế"
 
 msgid "File a report"
-msgstr ""
+msgstr "Nộp báo cáo"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Trước khi tiếp tục, hãy cài mật khẩu mới"
@@ -637,7 +635,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Đặt giá trị thành 0 để tắt tính năng này"
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "Số ngày còn lại trước khi thông báo người dùng rằng báo cáo chưa được đọc"
 
 msgid "Enable custodian user role"
 msgstr "Cho phép người dùng sử dụng vai trò người bảo vệ "
@@ -646,7 +644,7 @@ msgid "Enable scoring system"
 msgstr "Cho phép hệ thống tính điểm"
 
 msgid "Enable private annotations"
-msgstr ""
+msgstr "Bật chú thích riêng"
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "Cho phép các trang web sau nhúng nền tảng vào trong iframes"
@@ -690,10 +688,10 @@ msgid "Type"
 msgstr "Loại"
 
 msgid "Severity"
-msgstr ""
+msgstr "Độ nghiêm trọng"
 
 msgid "Object"
-msgstr ""
+msgstr "Đối tượng"
 
 msgid "ID"
 msgstr "Số"
@@ -745,6 +743,9 @@ msgstr "Biểu tượng"
 
 msgid "Project name"
 msgstr "Tên dự án"
+
+msgid "Description"
+msgstr "Mô tả"
 
 msgid "Homepage title"
 msgstr "tiêu đề trang chủ"
@@ -805,9 +806,6 @@ msgstr "Tàn tật"
 
 msgid "Enabled"
 msgstr "Bật"
-
-msgid "Description"
-msgstr "Mô tả"
 
 msgid "Questionnaire"
 msgstr "Bảng câu hỏi"
@@ -882,7 +880,7 @@ msgid "Restrict access to specific IP addresses"
 msgstr "Hạn chế quyền truy cập vào các địa chỉ IP cụ thể"
 
 msgid "Allowed IP addresses"
-msgstr ""
+msgstr "Các địa chỉ IP cho phép"
 
 msgid "Admin"
 msgstr "quản trị viên"
@@ -1595,7 +1593,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "Chúng tôi khuyến khích bạn truy cập phần \"Tuỳ chọn\" để lấy \"Chìa khoá Khôi phục Tài khoản\" của bạn và lưu giữ nó ở nơi an toàn. Chìa khoá này sẽ cần thiết để khôi phục truy cập của bạn vào nền tảng này và vào dữ liệu của bạn trong trường hợp bạn quên mật khẩu của mình."
 
 msgid "The provided recovery key is invalid."
 msgstr "Khóa khôi phục được cung cấp không hợp lệ."
@@ -1684,13 +1682,13 @@ msgid "The specified input is not valid."
 msgstr "Đầu vào được chỉ định là không hợp lệ."
 
 msgid "The specified input is not valid:"
-msgstr ""
+msgstr "Nhập liệu được chỉ định không hợp lệ:"
 
 msgid "please enter a valid email address."
-msgstr ""
+msgstr "xin hãy nhập một địa chỉ email hợp lệ."
 
 msgid "please enter numbers only."
-msgstr ""
+msgstr "xin chỉ nhập chữ số."
 
 msgid "Submissions disabled"
 msgstr "Đệ trình bị vô hiệu hóa"
@@ -1724,7 +1722,7 @@ msgid "Recipient selection"
 msgstr "lựa chọn người nhận"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "Chọn người nhận cho báo cáo của bạn:"
 
 msgid "Recipients selected:"
 msgstr "Người nhận được lựa chọn:"
@@ -1735,7 +1733,7 @@ msgstr "Bạn đã đạt đến số lượng tối đa người nhận có th�
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "Những người nhận sau sẽ nhận được báo cáo của bạn và không thể được bỏ chọn:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1760,20 +1758,20 @@ msgid "Please choose a configuration profile:"
 msgstr "Vui lòng chọn một cấu hình cấu hình:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "Cho phép người quản trị này cài lại mật khẩu người dùng."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Chúng tôi khuyến cáo bạn chọn lựa chọn này nếu bạn muốn bảo vệ dữ liệu khỏi bị mất trong trường hợp người nhận mất mật khẩu của họ. Trong trường hợp khác, chúng tôi không khuyến cáo dùng tính năng này nếu bạn muốn thiết lập một hệ thống mà chỉ người nhận mới có thể truy cập được các hồ sơ nộp vào."
 
 msgid "Please choose a different username."
 msgstr "Xin hãy chọn tên người dùng khác."
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "Tôi đã đọc và đồng ý với các điều khoản của giấy phép."
 
 msgid "You have completed the platform wizard."
 msgstr "Bạn đã hoàn thành trình hướng dẫn nền tảng."
@@ -2139,16 +2137,16 @@ msgid "New report"
 msgstr "Báo cáo mới"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Đây là email để thông báo rằng một báo cáo đang có sẵn vừa được cập nhật."
 
 msgid "Report updated"
-msgstr ""
+msgstr "Báo cáo đã được cập nhật"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Email này là để nhắc bạn về những báo cáo vừa được cập nhật hoặc chưa được đọc."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Lời nhắc về báo cáo vừa được cập nhật hoặc chưa được đọc"
 
 msgid "Role: {Role}"
 msgstr "Vai trò: {Role}"

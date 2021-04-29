@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -348,9 +348,6 @@ msgstr "வலுவான"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "உரை சூழல்களில் தேர்வு இடைமுகம் மேல் காட்டப்படும்"
-
-msgid "Type to search…"
-msgstr "தேடுவதற்குத் தட்டச்சு செய்க ..."
 
 msgid "Silence email notifications"
 msgstr "மின்னஞ்சல் அறிவிப்புகளை மௌனம்"
@@ -738,6 +735,9 @@ msgstr "சின்னம்"
 msgid "Project name"
 msgstr "திட்ட பெயர்"
 
+msgid "Description"
+msgstr "விபரம்"
+
 msgid "Homepage title"
 msgstr "முகப்பு தலைப்பு"
 
@@ -797,9 +797,6 @@ msgstr "முடக்கப்பட்டது"
 
 msgid "Enabled"
 msgstr "இயக்கப்பட்டது"
-
-msgid "Description"
-msgstr "விபரம்"
 
 msgid "Questionnaire"
 msgstr "கேள்வித்தாள்"

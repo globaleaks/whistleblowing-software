@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -352,9 +352,6 @@ msgstr "強"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "介面上方會顯示所選擇內文文字"
-
-msgid "Type to search…"
-msgstr "輸入欲搜尋"
 
 msgid "Silence email notifications"
 msgstr "對電子郵件通知消音"
@@ -742,6 +739,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "專案名稱"
 
+msgid "Description"
+msgstr "描述"
+
 msgid "Homepage title"
 msgstr "網頁標題"
 
@@ -801,9 +801,6 @@ msgstr "關閉"
 
 msgid "Enabled"
 msgstr "啟用"
-
-msgid "Description"
-msgstr "描述"
 
 msgid "Questionnaire"
 msgstr "問卷"

@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
-"Last-Translator: Noah Böhme <noah0907@gmail.com>\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -353,9 +353,6 @@ msgstr "Stærk"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Tekst der vises øverst på det interface hvor sammenhænge vælges"
-
-msgid "Type to search…"
-msgstr "Skriv for at søge..."
 
 msgid "Silence email notifications"
 msgstr "Slå e-mail-notifikation fra"
@@ -743,6 +740,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Projektnavn"
 
+msgid "Description"
+msgstr "Beskrivelse"
+
 msgid "Homepage title"
 msgstr "Titel på hjemmesiden"
 
@@ -802,9 +802,6 @@ msgstr "Deaktiveret"
 
 msgid "Enabled"
 msgstr "Aktiveret"
-
-msgid "Description"
-msgstr "Beskrivelse"
 
 msgid "Questionnaire"
 msgstr "Spørgeskema"

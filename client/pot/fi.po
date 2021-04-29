@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-23 09:27+0000\n"
-"Last-Translator: Max Moiseev <max.moiseev@chamber.fi>\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -354,9 +354,6 @@ msgstr "Vahva"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Sivun yläosan teksti aihetta valittaessa"
-
-msgid "Type to search…"
-msgstr "Etsi..."
 
 msgid "Silence email notifications"
 msgstr "Hiljennä sähköposti-ilmoitukset"
@@ -744,6 +741,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Palvelun nimi"
 
+msgid "Description"
+msgstr "Kuvaus"
+
 msgid "Homepage title"
 msgstr "Otsikkoteksti"
 
@@ -803,9 +803,6 @@ msgstr "Otettu pois käytöstä"
 
 msgid "Enabled"
 msgstr "Käytössä"
-
-msgid "Description"
-msgstr "Kuvaus"
 
 msgid "Questionnaire"
 msgstr "Vihjelomake"

@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
-"Last-Translator: Reza Ghasemi\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -367,9 +367,6 @@ msgstr "قوی"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "متن در مقابل محتوی انتخاب شده نمایش داده شود"
-
-msgid "Type to search…"
-msgstr "برای جستجو تای‍پ کنید..."
 
 msgid "Silence email notifications"
 msgstr "نوتیفیکیشن های ایمیل بدون صدا"
@@ -757,6 +754,9 @@ msgstr "آرم"
 msgid "Project name"
 msgstr "نام پروژه"
 
+msgid "Description"
+msgstr "توضیح"
+
 msgid "Homepage title"
 msgstr "اسم صفحه اصلی"
 
@@ -816,9 +816,6 @@ msgstr "غیر فعال شد"
 
 msgid "Enabled"
 msgstr "فعال شده"
-
-msgid "Description"
-msgstr "توضیح"
 
 msgid "Questionnaire"
 msgstr "پرسش‌نامه"

@@ -44,8 +44,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
-"Last-Translator: Rianne FPU <verbeek@freepressunlimited.org>\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -385,9 +385,6 @@ msgstr "Sterk"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Tekst die getoond wordt boven de interface om context te selecteren"
-
-msgid "Type to search…"
-msgstr "Zoekbegrip ingeven..."
 
 msgid "Silence email notifications"
 msgstr "E-mailmeldingen uitschakelen"
@@ -775,6 +772,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Naam van initiatief"
 
+msgid "Description"
+msgstr "Omschrijving"
+
 msgid "Homepage title"
 msgstr "Titel van hoofdpagina"
 
@@ -834,9 +834,6 @@ msgstr "Uitgeschakeld"
 
 msgid "Enabled"
 msgstr "Ingeschakeld"
-
-msgid "Description"
-msgstr "Omschrijving"
 
 msgid "Questionnaire"
 msgstr "Vragenformulier"

@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
-"Last-Translator: Adrian Pappas\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -358,9 +358,6 @@ msgstr "Ισχυρός"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Κείμενο που εμφανίζεται στην κορυφή της διεπαφής για την επιλογή θεματικών ενοτήτων"
-
-msgid "Type to search…"
-msgstr "Πληκτρολογήστε για αναζήτηση"
 
 msgid "Silence email notifications"
 msgstr "Σίγαση ειδοποιήσεων μέσω email"
@@ -748,6 +745,9 @@ msgstr "Λογότυπο"
 msgid "Project name"
 msgstr "Όνομα πρωτοβουλίας"
 
+msgid "Description"
+msgstr "Περιγραφή"
+
 msgid "Homepage title"
 msgstr "Τίτλος αρχικής σελίδας "
 
@@ -807,9 +807,6 @@ msgstr "Απενεργοποιημένο"
 
 msgid "Enabled"
 msgstr "Ενεργοποιημένο"
-
-msgid "Description"
-msgstr "Περιγραφή"
 
 msgid "Questionnaire"
 msgstr "Ερωτηματολόγιο"

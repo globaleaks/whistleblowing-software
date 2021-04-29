@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -363,9 +363,6 @@ msgstr "Erős"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "A kontextusválasztó előtt megjelenő szöveg"
-
-msgid "Type to search…"
-msgstr "Keresés"
 
 msgid "Silence email notifications"
 msgstr "Email értesítések kikapcsolása"
@@ -753,6 +750,9 @@ msgstr "Logó"
 msgid "Project name"
 msgstr "Projekt név"
 
+msgid "Description"
+msgstr "Leírás"
+
 msgid "Homepage title"
 msgstr "Honlap cím"
 
@@ -812,9 +812,6 @@ msgstr "Leiltva"
 
 msgid "Enabled"
 msgstr "Engedélyezve"
-
-msgid "Description"
-msgstr "Leírás"
 
 msgid "Questionnaire"
 msgstr "Kérdőívek"

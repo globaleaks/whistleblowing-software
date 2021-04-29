@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-22 10:31+0000\n"
-"Last-Translator: Vasja <vasja.cepic@transparency.si>\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -352,9 +352,6 @@ msgstr "Močno"
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Besedilo na vrhu vmesnika za izbiro konteksov"
 
-msgid "Type to search…"
-msgstr "Vpiši iskalno geslo ..."
-
 msgid "Silence email notifications"
 msgstr "Onemogoči obveščanje z elektronsko pošto"
 
@@ -424,7 +421,7 @@ msgid "Sites management"
 msgstr "Upravljanje s stranmi."
 
 msgid "Regenerate"
-msgstr ""
+msgstr "Poustvari"
 
 msgid "Display options alphabetically"
 msgstr "Prikaži možnosti po abecedi"
@@ -493,7 +490,7 @@ msgid "Send a test email to your email address."
 msgstr "Pošlji testno elektronsko sporočilo na svoj naslov."
 
 msgid "Block the submission"
-msgstr ""
+msgstr "Blokiraj oddano"
 
 msgid "Skip the recipient account creation."
 msgstr "Preskoči ustvarjanje prejemnikovega računa."
@@ -570,7 +567,7 @@ msgid "Administrators authorized to change user passwords:"
 msgstr "Administatorji, ki smejo spreminjati uporabniška gesla:"
 
 msgid "Enable multisite feature"
-msgstr ""
+msgstr "Omogoči večstransko funkcijo"
 
 msgid "Enable simplified login"
 msgstr "Omogoči poenostavljen vpis"
@@ -604,7 +601,7 @@ msgid "Default questionnaire"
 msgstr "Privzeti vprašalnik"
 
 msgid "Show contexts in alphabetical order"
-msgstr ""
+msgstr "Prikaz kontekstov v abecednem vrstnem redu"
 
 msgid "Do not expose users' names"
 msgstr "Ne razkrivaj imen uporabnikov"
@@ -616,10 +613,10 @@ msgid "in megabytes"
 msgstr "v megabajtih"
 
 msgid "Enable HSTS preload"
-msgstr ""
+msgstr "Omogoči prednalaganje HSTS"
 
 msgid "Require two factor authentication"
-msgstr ""
+msgstr "Zahtevaj dvostopenjsko preverjanje pristnosti"
 
 msgid "Password change interval"
 msgstr "Interval spremembe gesla"
@@ -632,19 +629,19 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Funkcijo onemogočite za nastavitvijo vrednosti na 0."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "Število dni do obveščanja upiorabnikov o neprebranih obvestilih"
 
 msgid "Enable custodian user role"
-msgstr ""
+msgstr "Omogoči skrbniško uporabniško vlogo"
 
 msgid "Enable scoring system"
-msgstr ""
+msgstr "Omogoči sistem točkovanja"
 
 msgid "Enable private annotations"
-msgstr ""
+msgstr "Omogoči zasebne opombe"
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgstr "Dovoli naslednji spletnim mestom, da vključi platformo v iframe"
 
 msgid "Logging level"
 msgstr ""
@@ -688,7 +685,7 @@ msgid "Severity"
 msgstr "Resnost"
 
 msgid "Object"
-msgstr ""
+msgstr "Predmet"
 
 msgid "ID"
 msgstr "ID oznaka"
@@ -715,7 +712,7 @@ msgid "Whistleblower's last access"
 msgstr "Prijaviteljev zadnji dostop"
 
 msgid "Substatuses"
-msgstr ""
+msgstr "Podstatusi"
 
 msgid "Add"
 msgstr "Dodaj"
@@ -740,6 +737,9 @@ msgstr "Logotip"
 
 msgid "Project name"
 msgstr "Ime pobude"
+
+msgid "Description"
+msgstr "Opis"
 
 msgid "Homepage title"
 msgstr "Naslov domače strani"
@@ -801,9 +801,6 @@ msgstr "Onemogočeno"
 msgid "Enabled"
 msgstr "Omogočeno"
 
-msgid "Description"
-msgstr "Opis"
-
 msgid "Questionnaire"
 msgstr "Vprašalniki"
 
@@ -853,7 +850,7 @@ msgid "Additional questionnaire"
 msgstr "Dodatni vprašalnik"
 
 msgid "Scoring system options"
-msgstr ""
+msgstr "Možnosti sistema točkovanja"
 
 msgid "Threshold"
 msgstr "Prag"
@@ -865,16 +862,16 @@ msgid "Medium"
 msgstr "Srednje"
 
 msgid "Customize the message shown in the receipt page"
-msgstr ""
+msgstr "Prilagodite sporočilo, prikazano na strani s potrdilom"
 
 msgid "Assign the receipt only to reports reaching score:"
-msgstr ""
+msgstr "Pošlji potrdilo samo za prijave, ki dosegajo rezultat:"
 
 msgid "Software version:"
 msgstr "Verzija programa:"
 
 msgid "Restrict access to specific IP addresses"
-msgstr ""
+msgstr " \nOmejite dostop določenim IP naslovom"
 
 msgid "Allowed IP addresses"
 msgstr "Dovoljeni IP naslovi"
@@ -901,7 +898,7 @@ msgid "Input should be similar to:"
 msgstr "Vnos naj bo podoben:"
 
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr ""
+msgstr "Za uporabo funkcije Let's Encrypt je potrebno soglasje z njihovimi pogoji storitve."
 
 msgid "Read the Terms of Service"
 msgstr "Preberite Pogoje storitve"
@@ -928,10 +925,10 @@ msgid "Generate"
 msgstr "Ustvari"
 
 msgid "Private Key"
-msgstr ""
+msgstr "Zasebni ključ"
 
 msgid "Certificate Signing Request"
-msgstr ""
+msgstr "Zahteva za podpis certifikata"
 
 msgid "Certificate"
 msgstr "Potrdilo"
@@ -943,7 +940,7 @@ msgid "Issuer:"
 msgstr "Izdajatelj:"
 
 msgid "Intermediate Certificates"
-msgstr ""
+msgstr "Vmesni certifikati"
 
 msgid "Enable"
 msgstr "Omogoči"
@@ -962,12 +959,12 @@ msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr ""
+msgstr "Z uporabo samodejne nastavitve HTTPS bo opravljen celoten postopek zahtevanja, omogočanja in obnavljanja certifikatov od organa Let's Encrypt za izdajo certifikatov.\n "
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a corresponding DNS record referencing that address."
-msgstr ""
+msgstr "Platforma mora biti dostopna na javnem IP naslovu, izbrano ime gostitelja mora imeti ustrezen zapis DNS, ki se sklicuje na ta naslov."
 
 msgid "Manual configuration"
 msgstr "Ročna nastavitev"
@@ -975,22 +972,22 @@ msgstr "Ročna nastavitev"
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr ""
+msgstr "Čarovnik za ročno konfiguracijo vas bo vodil skozi nastavitev HTTPS-ja od drugega organa za certifikate.\n "
 
 msgid "Auto-renewal"
-msgstr ""
+msgstr "Samodejna obnova"
 
 msgid "Tor Onion Service"
 msgstr "Storitve Tor Onion"
 
 msgid "Anonymize outgoing connections"
-msgstr ""
+msgstr "Anonimiziraj odhodne povezave"
 
 msgid "Let the platform be reachable without Tor"
 msgstr "Platforma naj bo dostopna brez brskalnika Tor"
 
 msgid "Roles enabled to use the platform without Tor"
-msgstr ""
+msgstr "Omogočene vloge za uporabo platforme brez brskalnika Tor"
 
 msgid "Whistleblower"
 msgstr "Žvižgač"

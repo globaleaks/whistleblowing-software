@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
-"Last-Translator: Suzanne Ferguson\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swahili (http://www.transifex.com/otf/globaleaks/language/sw/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -346,9 +346,6 @@ msgstr "Imara"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Maandishi yameonyeshwa juu ya kiolesura cha kuchagua muktadha"
-
-msgid "Type to search…"
-msgstr "Andika ili utafute…"
 
 msgid "Silence email notifications"
 msgstr "Nyamazisha taarifa za barua pepe"
@@ -736,6 +733,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Jina la Mradi"
 
+msgid "Description"
+msgstr ""
+
 msgid "Homepage title"
 msgstr "Kichwa cha habari cha ukurasa wa kwanza"
 
@@ -795,9 +795,6 @@ msgstr "Haijawezeshwa"
 
 msgid "Enabled"
 msgstr "Imewezeshwa"
-
-msgid "Description"
-msgstr ""
 
 msgid "Questionnaire"
 msgstr "Dodoso"

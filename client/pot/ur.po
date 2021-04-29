@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -356,9 +356,6 @@ msgstr "مظبوط"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "متن سیاق و سباق کے انتخاب کے سامنے دکھایا گیا"
-
-msgid "Type to search…"
-msgstr "تلاش کرنے ٹا ئپ کریں"
 
 msgid "Silence email notifications"
 msgstr "خاموش ای میل کی اطلاعات"
@@ -746,6 +743,9 @@ msgstr ""
 msgid "Project name"
 msgstr "اقدام  کا نام"
 
+msgid "Description"
+msgstr "وضاحت"
+
 msgid "Homepage title"
 msgstr "پہلا صفحہ یا ہوم پیج ٹائٹل "
 
@@ -805,9 +805,6 @@ msgstr "غیر فعال"
 
 msgid "Enabled"
 msgstr "فعال"
-
-msgid "Description"
-msgstr "وضاحت"
 
 msgid "Questionnaire"
 msgstr "سوالنامہ"

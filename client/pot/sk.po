@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
-"Last-Translator: Lenka Ježková <lenka.jezkova@oziveni.cz>\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -356,9 +356,6 @@ msgstr "Silné"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Text zobrazený na vrchu rozhrania pre výber kontextov"
-
-msgid "Type to search…"
-msgstr "Píšte pre vyhľadávanie..."
 
 msgid "Silence email notifications"
 msgstr "Tiché emailové notifikácie"
@@ -746,6 +743,9 @@ msgstr "Logo"
 msgid "Project name"
 msgstr "Názov projektu"
 
+msgid "Description"
+msgstr "Popis"
+
 msgid "Homepage title"
 msgstr "Názov domovskej stránky"
 
@@ -805,9 +805,6 @@ msgstr "Vypnuté"
 
 msgid "Enabled"
 msgstr "Zapnuté"
-
-msgid "Description"
-msgstr "Popis"
 
 msgid "Questionnaire"
 msgstr "Dotazník"

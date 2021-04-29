@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -346,9 +346,6 @@ msgstr "강한"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "텍스트 컨텍스트를 선택하기위한 인터페이스의 상단에 도시"
-
-msgid "Type to search…"
-msgstr ""
 
 msgid "Silence email notifications"
 msgstr ""
@@ -736,6 +733,9 @@ msgstr "로고"
 msgid "Project name"
 msgstr "프로젝트 이름"
 
+msgid "Description"
+msgstr "기술"
+
 msgid "Homepage title"
 msgstr "홈페이지 제목"
 
@@ -795,9 +795,6 @@ msgstr "장애인"
 
 msgid "Enabled"
 msgstr "사용"
-
-msgid "Description"
-msgstr "기술"
 
 msgid "Questionnaire"
 msgstr "질문 사항"

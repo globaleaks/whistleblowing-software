@@ -38,6 +38,7 @@ localisation:
     - ar
     - az
     - bg
+    - bn
     - bs
     - ca
     - cs
@@ -58,11 +59,13 @@ localisation:
     - id
     - it
     - ja
+    - lo
     - lt
     - ka
     - ko
     - mg
     - mk
+    - ms
     - my
     - nb_NO
     - nl

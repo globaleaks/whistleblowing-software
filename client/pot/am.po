@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-03-28 16:19+0000\n"
-"Last-Translator: Suzanne Ferguson\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Amharic (http://www.transifex.com/otf/globaleaks/language/am/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -346,9 +346,6 @@ msgstr "ጠንካራ"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "በይነገጹ አናት ላይ አገባበ ነገር ለመምረጥ የሚታይ ጽሑፍ"
-
-msgid "Type to search…"
-msgstr "የፍለጋ አይነት"
 
 msgid "Silence email notifications"
 msgstr "የኢሜይል ማሳወቂያዎችን ያጥፋ"
@@ -736,6 +733,9 @@ msgstr " ምልክት"
 msgid "Project name"
 msgstr "የፕሮጀክት ስም"
 
+msgid "Description"
+msgstr "ገለጻ "
+
 msgid "Homepage title"
 msgstr "የመነሻ ገጽ ርዕስ"
 
@@ -795,9 +795,6 @@ msgstr "የቦዘነ"
 
 msgid "Enabled"
 msgstr "ነቅቷል"
-
-msgid "Description"
-msgstr "ገለጻ "
 
 msgid "Questionnaire"
 msgstr "መጠይቅ"

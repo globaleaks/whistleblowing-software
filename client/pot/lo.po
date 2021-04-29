@@ -1,0 +1,2143 @@
+# 
+# Translators:
+# Cheer Zeng <cheerz6623@gmail.com>, 2021
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"Language-Team: Lao (http://www.transifex.com/otf/globaleaks/language/lo/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lo\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"mime-version: 1.0\n"
+
+msgid "Log in"
+msgstr "ເຂົ້າ​ສູ່ລະບົບ"
+
+msgid "Main configuration"
+msgstr "ການກຳນົດຄ່າຫຼັກ"
+
+msgid "Theme customization"
+msgstr "ການປັບສີ​ພື້ນ​ໜ້າ​ຈໍ"
+
+msgid "Languages"
+msgstr "ພາສາ"
+
+msgid "Text customization"
+msgstr "ການປັບຂະໜາດຂໍ້ຄວາມ"
+
+msgid "Advanced settings"
+msgstr "ການຕັ້ງຄ່າຂັ້ນສູງ"
+
+msgid "Questionnaire configuration"
+msgstr "ການກຳນົດຄ່າແບບສອບຖາມ"
+
+msgid "Question templates"
+msgstr "ແມ່ແບບຄຳຖາມ"
+
+msgid "Questionnaires"
+msgstr "ແບບສອບຖາມ"
+
+msgid "Add new questionnaire"
+msgstr "ເພີ່ມແບບສອບຖາມໃໝ່"
+
+msgid "Home"
+msgstr "ໜ້າ​ຫຼັກ"
+
+msgid "Changelog"
+msgstr "ບັນທຶກການປ່ຽນແປງ"
+
+msgid "License"
+msgstr "ການ​ອະ​ນຸ​ຍາດ"
+
+msgid "Notification templates"
+msgstr "ແມ່ແບບການແຈ້ງເຕືອນ"
+
+msgid "Delete"
+msgstr "ລຶບ"
+
+msgid "Anomalies"
+msgstr "ຄວາມຜິດປົກກະຕິ"
+
+msgid "Preferences"
+msgstr "ການກຳນົດຄ່າທີ່ມັກ"
+
+msgid "Notification settings"
+msgstr "ການຕັ້ງຄ່າການແຈ້ງເຕືອນ"
+
+msgid "file unavailable"
+msgstr "ບໍ່ມີໄຟລ໌"
+
+msgid "Date"
+msgstr "ວັນທີ"
+
+msgid "Expiration date"
+msgstr "ວັນ​ໝົດ​ອາ​ຍຸ"
+
+msgid "Last Access"
+msgstr "ການເຂົ້າຄັ້ງສຸດທ້າຍ"
+
+msgid "Files"
+msgstr "ໄຟລ໌ຕ່າງໆ"
+
+msgid "Comments"
+msgstr "ຄຳ​ຄິດ​ເຫັນ"
+
+msgid "Messages"
+msgstr "ຂໍ້ຄວາມ"
+
+msgid "Select this recipient."
+msgstr "ເລືອກຜູ້ຮັບນີ້."
+
+msgid "Unselect this recipient."
+msgstr "ຍົກເລີກການເລືອກຜູ້ຮັບນີ້."
+
+msgid "This recipient cannot be deselected."
+msgstr "ບໍ່ສາມາດຍົກເລີກການເລືອກຜູ້ຮັບນີ້ໄດ້."
+
+msgid "Details"
+msgstr "ລາຍລະອຽດຕ່າງໆ"
+
+msgid "Platform wizard"
+msgstr "ຕົວຊ່ວຍສ້າງລະບົບ"
+
+msgid "CREDIT CARD"
+msgstr "ບັດເຄຼດິດ"
+
+msgid "YOUR NAME"
+msgstr "ຊື່ຂອງທ່ານ"
+
+msgid "Label the report"
+msgstr "ຕິດສະຫຼາກໃສ່ລາຍງານ"
+
+msgid "Postpone the expiration date"
+msgstr "ເລື່ອນວັນໝົດອາຍຸ"
+
+msgid "Select all"
+msgstr "ເລືອກທັງໝົດ"
+
+msgid "Deselect all"
+msgstr "ຍົກເລີກການເລືອກທັງໝົດ"
+
+msgid "Refresh"
+msgstr "ຣີເຟຼສ໌"
+
+msgid "Context"
+msgstr "ເນື້ອຫາ"
+
+msgid "Private messages"
+msgstr "ຂໍ້ຄວາມສ່ວນຕົວ"
+
+msgid "Preview"
+msgstr "ການເບິ່ງກ່ອນ"
+
+msgid "The whistleblower has already read the last update"
+msgstr "ຜູ້ແຈ້ງເບາະແສໄດ້ອ່ານການອັບເດດຄັ້ງຫຼ້າສຸດແລ້ວ"
+
+msgid "The whistleblower has not read the last update yet"
+msgstr "ຜູ້ແຈ້ງເບາະແສຍັງບໍ່ໄດ້ອ່ານການອັບເດດຄັ້ງຫຼ້າສຸດແລ້ວ"
+
+msgid "Move up"
+msgstr "ຍັບຂຶ້ນ"
+
+msgid "Move down"
+msgstr "ຍັບລົງ"
+
+msgid "Move left"
+msgstr "ຍັບຊ້າຍ"
+
+msgid "Move right"
+msgstr "ຍັບຂວາ"
+
+msgid "Import"
+msgstr "ນໍາເຂົ້າ"
+
+msgid "Export"
+msgstr "ສົ່ງອອກ"
+
+msgid "Save all"
+msgstr "ບັນທຶກທັງໝົດ"
+
+msgid "Access control"
+msgstr "ການຄວບຄຸມການເຂົ້າເຖິງ"
+
+msgid "The connection has been secured with HTTPS ensuring confidentiality."
+msgstr "ການເຊື່ອມຕໍ່ໄດ້ຮັບການຮັກສາຄວາມປອດໄພດ້ວຍ HTTPS ເພື່ອຮັບປະກັນຄວາມລັບ."
+
+msgid ""
+"The connection has been secured with Tor ensuring confidentiality and "
+"anonymity."
+msgstr "ການເຊື່ອມຕໍ່ໄດ້ຮັບການຮັກສາຄວາມປອດໄພດ້ວຍ Tor ເພື່ອຮັບປະກັນຄວາມລັບ ແລະ ປິດບັງຕົວຕົນ."
+
+msgid "vertical"
+msgstr "ລວງຕັ້ງ"
+
+msgid "horizontal"
+msgstr "ລວງນອນ"
+
+msgid "Number"
+msgstr "ເບີໂທລະສັບ"
+
+msgid "Email"
+msgstr "ອີເມວ"
+
+msgid "Regular expression validator"
+msgstr "ຕົວກວດສອບຕົວຊ່ວຍໃນການຄົ້ນຫາ"
+
+msgid "Minimum number of input characters"
+msgstr "ຈຳນວນຕົວອັກສອນທີ່ປ້ອນຕ່ຳສຸດ"
+
+msgid "Maximum number of input characters"
+msgstr "ຈຳນວນຕົວອັກສອນທີ່ປ້ອນຫຼາຍສຸດ"
+
+msgid "Earliest selectable date"
+msgstr "ວັນທີທີ່ສາມາດເລືອກໄດ້ໄວທີ່ສຸດ"
+
+msgid "Latest selectable date"
+msgstr "ວັນທີທີ່ສາມາດເລືອກໄດ້ຫຼັງສຸດ"
+
+msgid "0 = auto"
+msgstr "0 = ອັດຕະໂນມັດ"
+
+msgid "True"
+msgstr "ຖືກ"
+
+msgid "False"
+msgstr "ຜິດ"
+
+msgid "Yes"
+msgstr "ແມ່ນ"
+
+msgid "No"
+msgstr "ບໍ່"
+
+msgid "Attachment"
+msgstr "ໄຟລ໌ຄັດຕິດ"
+
+msgid "Attachments"
+msgstr "ໄຟລ໌ຄັດຕິດຕ່າງໆ"
+
+msgid "Change your password"
+msgstr "ປ່ຽນລະຫັດຜ່ານຂອງທ່ານ"
+
+msgid "User"
+msgstr "ຜູ້ໃຊ້"
+
+msgid "Motivation"
+msgstr "ແຮງຈູງໃຈ"
+
+msgid "Status"
+msgstr "ສະຖານະ"
+
+msgid "Request motivation"
+msgstr "ແຮງຈູງໃຈໃນການຮ້ອງຂໍ"
+
+msgid "Reply motivation"
+msgstr "ແຮງຈູງໃຈໃນການຕອບກັບ"
+
+msgid "Request status"
+msgstr "ສະຖານະຄຳຮ້ອງຂໍ"
+
+msgid "Custodian"
+msgstr "ຜູ້ປົກປ້ອງຂໍ້ມູນ"
+
+msgid "Custodian of the identities"
+msgstr "ຜູ້ປົກປ້ອງຂໍ້ມູນລະບຸຕົວຕົນ"
+
+msgid "Identity"
+msgstr "ຂໍ້ມູນລະບຸຕົວຕົນ"
+
+msgid "Available"
+msgstr "ມີໃຫ້"
+
+msgid "Not available"
+msgstr "ບໍ່ມີໃຫ້"
+
+msgid "Access requested"
+msgstr "ໄດ້ຂໍການເຂົ້າເຖິງແລ້ວ"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "ຂໍການເຂົ້າເຖິງຂໍ້ມູນລະບຸຕົວຕົນຂອງຜູ້ແຈ້ງເບາະແສ"
+
+msgid "Please write a motivation"
+msgstr "ກະລຸນາຂຽນແຮງຈູງໃຈ"
+
+msgid "Reply to the request"
+msgstr "ຕອບຄຳຮ້ອງຂໍ"
+
+msgid "Authorized"
+msgstr "ໄດ້ຮັບອະນຸຍາດແລ້ວ"
+
+msgid "Denied"
+msgstr "ຖືກປະຕິເສດ"
+
+msgid "Waiting for authorization"
+msgstr "ກຳລັງລໍຖ້າການອະນຸຍາດ"
+
+msgid "New request"
+msgstr "ຄຳຮ້ອງຂໍໃໝ່"
+
+msgid "Authorize"
+msgstr "ອະນຸຍາດ"
+
+msgid "Deny"
+msgstr "ປະຕິເສດ"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "ປະຕິເສດການເຂົ້າເຖິງຂໍ້ມູນລະບຸຕົວຕົນຂອງຜູ້ແຈ້ງເບາະແສ"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "ອະນຸຍາດໃຫ້ເຂົ້າເຖິງຂໍ້ມູນລະບຸຕົວຕົນຂອງຜູ້ແຈ້ງເບາະແສ"
+
+msgid "Templates"
+msgstr "ແມ່ແບບຕ່າງໆ"
+
+msgid "HTTPS settings"
+msgstr "ການຕັ້ງຄ່າ HTTPS"
+
+msgid "URL redirects"
+msgstr "ການປ່ຽນເສັ້ນທາງ URL"
+
+msgid "Anomaly detection thresholds"
+msgstr "ຈຸດເລີ່ມຕົ້ນໃນການສືບຫາຄວາມຜິດປົກກະຕິ"
+
+msgid "Available disk space"
+msgstr "ພື້ນທີ່ຫວ່າງດິສຄ໌ທີ່ພ້ອມໃຊ້ງານ"
+
+msgid "Last update"
+msgstr "ການອັບເດດຄັ້ງຫຼ້າສູດ"
+
+msgid "Custodian notification templates"
+msgstr "ແມ່ແບບການແຈ້ງເຕືອນຜູ້ປົກປ້ອງຂໍ້ມູນ"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "ຈໍປະສານນີ້ອະນຸຍາດໃຫ້ກຳນົດຄ່າແມ່ແບບອີເມວທີ່ໃຊ້ເພື່ອແຈ້ງໃຫ້ຜູ້ປົກປ້ອງຂໍ້ມູນ."
+
+msgid "Disable notifications to administrators"
+msgstr "ປິດໃຊ້ງານການແຈ້ງເຕືອນແອັດມິນ"
+
+msgid "Disable notifications to custodians"
+msgstr "ປິດໃຊ້ງານການແຈ້ງເຕືອນຜູ້ປົກປ້ອງຂໍ້ມູນ"
+
+msgid "Disable notifications to recipients"
+msgstr "ປິດໃຊ້ງານການແຈ້ງເຕືອນຜູ້ຮັບ"
+
+msgid "Score"
+msgstr "ຄະແນນ"
+
+msgid "Trigger question"
+msgstr "ຄຳຖາມກະຕຸ້ນ"
+
+msgid "Triggered by score:"
+msgstr "ການຖືກກະຕຸ້ນດ້ວຍຄະແນນ:"
+
+msgid "Weak"
+msgstr "ອ່ອນ"
+
+msgid "Acceptable"
+msgstr "ພໍໃຊ້ໄດ້"
+
+msgid "Strong"
+msgstr "ແຂງ"
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr "ຂໍ້ຄວາມທີ່ສະແດງຢູ່ເທິງສຸດຂອງຈໍປະສານສຳລັບການເລືອກເນື້ອຫາ"
+
+msgid "Silence email notifications"
+msgstr "ປິດການແຈ້ງເຕືອນອີເມວ"
+
+msgid "Turn on email notifications"
+msgstr "ເປີດການແຈ້ງເຕືອນອີເມວ"
+
+msgid "Input validation"
+msgstr "ການກວດສອບຄວາມຖືກຕ້ອງຂອງຂໍ້ມູນທີ່ປ້ອນເຂົ້າ"
+
+msgid "Email address"
+msgstr "ທີ່ຢູ່ອີເມວ"
+
+msgid "Custom"
+msgstr "ການກຳນົດເອງ"
+
+msgid "None"
+msgstr "ບໍ່ມີ"
+
+msgid "Regular expression"
+msgstr "ຕົວຊ່ວຍໃນການຄົ້ນຫາ"
+
+msgid "Activate"
+msgstr "ເປີດໃຊ້ງານ"
+
+msgid "Disactivate"
+msgstr "ປິດໃຊ້ງານ"
+
+msgid "Search"
+msgstr "ຄົ້ນຫາ"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "ຂໍ້ຄວາມທີ່ກຳໜົດເອງນີ້ຈະບໍ່ຖືກສະແດງ\nຢູ່ໃນລະບົບອີກຕໍ່ໄປ. ຂໍ້ຄວາມຕົ້ນສະບັບ\nມີການປ່ຽນແປງ ຫຼື ຖືກລຶບອອກແລ້ວ."
+
+msgid "Audit log"
+msgstr "ບັນທຶກການກວດສອບ"
+
+msgid "Stats"
+msgstr "ສະຖິຕິ"
+
+msgid "Activities"
+msgstr "ການເຄື່ອນໄຫວຕ່າງໆ"
+
+msgid "Reports"
+msgstr "ລາຍງານຕ່າງໆ"
+
+msgid "Users"
+msgstr "ບັນດາຜູ້ໃຊ້"
+
+msgid "From"
+msgstr "ຈາກ"
+
+msgid "Number of downloads"
+msgstr "ຈຳນວນການດາວໂຫຼດ"
+
+msgid "File size not accepted."
+msgstr "ບໍ່ຍອມຮັບຂະໜາດຂອງໄຟລ໌."
+
+msgid "Maximum file size is:"
+msgstr "ຂະໜາດໄຟລ໌ໃຫຍ່ສຸດແມ່ນ:"
+
+msgid "Scheduled jobs"
+msgstr "ວຽກທີ່ວາງແຜນໄວ້"
+
+msgid "Sites management"
+msgstr "ການຈັດການເວັບໄຊ"
+
+msgid "Regenerate"
+msgstr "ສ້າງຄືນມາໃໝ່"
+
+msgid "Display options alphabetically"
+msgstr "ສະແດງຕົວເລືອກຕ່າງໆຕາມລຳດັບຕົວອັກສອນ"
+
+msgid "Enable email notifications for:"
+msgstr "ເປີດນຳໃຊ້ການແຈ້ງເຕືອນທາງອີເມວສຳລັບ:"
+
+msgid "Disable"
+msgstr "ປິດໃຊ້ງານ"
+
+msgid "Remove"
+msgstr "ລຶບອອກ"
+
+msgid "Use as default"
+msgstr "ໃຊ້ເປັນຄ່າເລີ່ມຕົ້ນ"
+
+msgid "Create your whistleblowing platform"
+msgstr "ສ້າງລະບົບການແຈ້ງເບາະແສຂອງທ່ານ"
+
+msgid "Collapse"
+msgstr "ຫຍໍ້​ລົງ"
+
+msgid "Expand"
+msgstr "ຂະຫຍາຍ"
+
+msgid "Select"
+msgstr "ເລືອກ"
+
+msgid "Surname"
+msgstr "ນາມສະກຸນ"
+
+msgid "New"
+msgstr "ໃໝ່"
+
+msgid "Opened"
+msgstr "ເປີດແລ້ວ"
+
+msgid "Closed"
+msgstr "ປິດແລ້ວ"
+
+msgid "Placeholder"
+msgstr "ຊ່ອງໄວ້ໃສ່ຂໍ້ຄວາມ"
+
+msgid "Print"
+msgstr "ປູິ່ນ"
+
+msgid "Previous"
+msgstr "ກ່ອນໜ້າ"
+
+msgid "Next"
+msgstr "ຕໍ່ໄປ"
+
+msgid "First"
+msgstr "ທຳອິດ"
+
+msgid "Last"
+msgstr "ສຸດທ້າຍ"
+
+msgid "Running"
+msgstr "ກຳລັງດຳເນີນການ"
+
+msgid "Not running"
+msgstr "ບໍ່ໄດ້ດຳເນີນການ"
+
+msgid "Send a test email to your email address."
+msgstr "ສົ່ງອີເມວທົດລອງໄປທີ່ອີເມວຂອງທ່ານ."
+
+msgid "Block the submission"
+msgstr "ບຼັອກການສົ່ງ"
+
+msgid "Skip the recipient account creation."
+msgstr "ຂ້າມການສ້າງບັນຊີຜູ້ຮັບ."
+
+msgid "Send activation link"
+msgstr "ສົ່ງລິ້ງການເປີດໃຊ້ງານ"
+
+msgid "Password reset"
+msgstr "ຕັ້ງລະຫັດຜ່ານຄືນໃໝ່"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "ມີຜູ້ຮັບໜຶ່ງ ຫຼື ຫຼາຍຄົນຍັງບໍ່ໄດ້\nລົງທະບຽນເຂົ້າສູ່ລະບົບເທື່ອທຳອິດເທື່ອ. ຊຶ່ງ\nໝາຍຄວາມວ່າພວກເຂົາຈະບໍ່ໄດ້ຮັບລາຍງານ."
+
+msgid "This user has not performed the first login yet."
+msgstr "ຜູ້ໃຊ້ນີ້ຍັງບໍ່ໄດ້ເຂົ້າສູ່ລະບົບເທື່ອທຳອິດເທື່ອ."
+
+msgid "seconds"
+msgstr "ວິນາທີ"
+
+msgid "This domain name is not available."
+msgstr "ຊື່ໂດເມນນີ້ບໍ່ສາມາດໃຊ້ໄດ້."
+
+msgid "VAT number"
+msgstr "ລະຫັດອາກອນມູນຄ່າເພີ່ມ"
+
+msgid "Tax code"
+msgstr "ລະຫັດອາກອນ"
+
+msgid "File a report"
+msgstr "ຍື່ນລາຍງານ"
+
+msgid "Before proceeding, please set a new password."
+msgstr "ກ່ອນດຳເນີນການ, ກະລຸນາຕັ້ງລະຫັດຜ່ານໃໝ່."
+
+msgid "New password"
+msgstr "ລະຫັດຜ່ານໃໝ່"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "ລະຫັດຜ່ານທີ່ເລືອກແມ່ນເດົາໄດ້ງ່າຍເກີນໄປ. ລະຫັດຜ່ານທີ່ໃຊ້ໄດ້ຄວນຍາວຢ່າງໜ້ອຍ 10 ຕົວອັກສອນ ແລະ ມີຫຼາຍຕົວອັກສອນລວມທັງຕົວອັກສອນຕົວນ້ອຍ, ຕົວອັກສອນໃຫຍ່, ຕົວເລກ ແລະ ຕົວອັກສອນພິເສດ."
+
+msgid "The new password must be different from the current one."
+msgstr "ລະຫັດຜ່ານໃໝ່ຕ້ອງແຕກຕ່າງຈາກລະຫັດປັດຈຸບັນ."
+
+msgid "Type your new password again"
+msgstr "ພິມລະຫັດຜ່ານໃໝ່ຂອງທ່ານອີກຄັ້ງ"
+
+msgid "The two passwords do not match"
+msgstr "ລະຫັດຜ່ານທັງສອງບໍ່ກົງກັນ"
+
+msgid "The new password must differ from the previous."
+msgstr "ລະຫັດຜ່ານໃໝ່ຕ້ອງແຕກຕ່າງຈາກລະຫັດຜ່ານກ່ອນໜ້ານີ້."
+
+msgid "Proceed"
+msgstr "ດໍາເນີນການຕໍ່ໄປ"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "ກ່ອນທີ່ຈະດຳເນີນການຕໍ່ໄປ, ກະລຸນາເປີດນຳໃຊ້ການຢືນຢັນແບບສອງຂັ້ນຕອນ."
+
+msgid "Disable submissions"
+msgstr "ປິດໃຊ້ງານການສົ່ງ"
+
+msgid "Enable encryption"
+msgstr "ເປີດນຳໃຊ້ການເຂົ້າລະຫັດລັບ"
+
+msgid "Enable administrators to change user passwords"
+msgstr "ອະນຸຍາດໃຫ້ແອັດມິນສາມາດປ່ຽນລະຫັດຜ່ານຂອງຜູ້ໃຊ້ໄດ້"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "ແອັດມິນໄດ້ຮັບອະນຸຍາດໃຫ້ປ່ຽນລະຫັດຜ່ານຂອງຜູ້ໃຊ້:"
+
+msgid "Enable multisite feature"
+msgstr "ເປີດນຳໃຊ້ຄຸນສົມບັດຫຼາຍເວັບໄຊ"
+
+msgid "Enable simplified login"
+msgstr "ເປີດນຳໃຊ້ການເຂົ້າສູ່ລະບົບແບບງ່າຍດາຍ"
+
+msgid "Allow recipients to delete reports"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ຮັບສາມາດລຶບລາຍງານໄດ້"
+
+msgid "Allow recipients to postpone expiration date of the report"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ຮັບສາມາດເລື່ອນວັນໝົດອາຍຸຂອງລາຍງານໄດ້"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific reports"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ຮັບສາມາດໃຫ້ອະນຸຍາດແກ່ຜູ້ແຈ້ງເບາະແສໃນລາຍງານສະເພາະໄດ້"
+
+msgid "Enable search engines indexing"
+msgstr "ເປີດນຳໃຊ້ການສ້າງດັດສະນີຂອງເຄື່ອງມືຄົ້ນຫາ"
+
+msgid "Enable custom privacy panel"
+msgstr "ເປີດນຳໃຊ້ແຜງຄວາມເປັນສ່ວນຕົວທີ່ກຳນົດເອງ"
+
+msgid "Custom privacy panel"
+msgstr "ແຜງຄວາມເປັນສ່ວນຕົວທີ່ກຳນົດເອງ"
+
+msgid "Disable the privacy panel"
+msgstr "ປິດໃຊ້ງານແຜງຄວາມເປັນສ່ວນຕົວ"
+
+msgid "Enable the receipt hint"
+msgstr "ເປີດນຳໃຊ້ການແນະນໍາກ່ຽວກັບໃບບິນ"
+
+msgid "Default questionnaire"
+msgstr "ແບບສອບຖາມທີ່ເປັນຄ່າເລີ່ມຕົ້ນ"
+
+msgid "Show contexts in alphabetical order"
+msgstr "ສະແດງເນື້ອຫາຕາມລຳດັບຕົວອັກສອນ"
+
+msgid "Do not expose users' names"
+msgstr "ຫ້າມເປີດເຜີຍຊື່ຂອງຜູ້ໃຊ້"
+
+msgid "Size limit for file attachments"
+msgstr "ຂະໜາດຈຳກັດສຳລັບໄຟລ໌ຄັດຕິດ"
+
+msgid "in megabytes"
+msgstr "ເປັນເມກາໄບທ໌"
+
+msgid "Enable HSTS preload"
+msgstr "ເປີດນຳໃຊ້ການໂຫຼດລ່ວງໜ້າຂອງ HSTS"
+
+msgid "Require two factor authentication"
+msgstr "ຕ້ອງການການຢືນຢັນແບບສອງຂັ້ນຕອນ"
+
+msgid "Password change interval"
+msgstr "ຊ່ວງໄລຍະໃນການປ່ຽນລະຫັດຜ່ານ"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "ດ້ວຍເຫດຜົນດ້ານຄວາມປອດໄພ, ຕ້ອງມີການປ່ຽນລະຫັດຜ່ານເປັນໄລຍະໆ."
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "ຕັ້ງຄ່າເປັນ 0 ເພື່ອປິດໃຊ້ງານຄຸນສົມບັດນີ້."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "ຈຳນວນມື້ຈົນກວ່າຈະແຈ້ງກ່ຽວກັບລາຍງານທີ່ບໍ່ທັນໄດ້ອ່ານໃຫ້ແກ່ຜູ້ໃຊ້"
+
+msgid "Enable custodian user role"
+msgstr "ເປີດນຳໃຊ້ການກຳນົດລັກສະນະການໃຊ້ງານຂອງຜູ້ໃຊ້ທີ່ເປັນຜູ້ປົກປ້ອງຂໍ້ມູນ"
+
+msgid "Enable scoring system"
+msgstr "ເປີດນຳໃຊ້ລະບົບການໃຫ້ຄະແນນ"
+
+msgid "Enable private annotations"
+msgstr "ເປີດນຳໃຊ້ຄຳບັນຍາຍສ່ວນຕົວ"
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "ອະນຸຍາດໃຫ້ເວັບໄຊຕໍ່ໄປນີ້ຝັງລະບົບໄວ້ໃນ iframe"
+
+msgid "Logging level"
+msgstr "ລະດັບການບັນທຶກ"
+
+msgid "Log accesses of internal users"
+msgstr "ບັນທຶກການເຂົ້າເຖິງຂອງບັນດາຜູ້ໃຊ້ພາຍໃນ"
+
+msgid "Notify administrators of software problems"
+msgstr "ແຈ້ງແອັດມິນກ່ຽວກັບບັນຫາຊອບແວ"
+
+msgid "Notify developers of software problems"
+msgstr "ແຈ້ງໃຫ້ນັກພັດທະນາກ່ຽວກັບບັນຫາຊອບແວ"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "ການເປີດໃຊ້ງານຄຸນສົມບັດນີ້, ທ່ານຈະປະກອບສ່ວນເຂົ້າໃນການພັດທະນາ ແລະ ຄວາມປອດໄພຂອງລະບົບ."
+
+msgid "Save"
+msgstr "ບັນທຶກ"
+
+msgid "Reset reports"
+msgstr "ຕັ້ງຄ່າການລາຍງານຄືນໃໝ່"
+
+msgid "Low"
+msgstr "ຕ່ຳ"
+
+msgid "High"
+msgstr "ສູງ"
+
+msgid "megabytes"
+msgstr "ເມກາໄບທ໌"
+
+msgid "percentage"
+msgstr "ເປີເຊັນ"
+
+msgid "Type"
+msgstr "ປະເພດ"
+
+msgid "Severity"
+msgstr "ຄວາມຮ້າຍແຮງ"
+
+msgid "Object"
+msgstr "ວັດຖຸປະສົງ"
+
+msgid "ID"
+msgstr "ໝາຍເລກ ID"
+
+msgid "Username"
+msgstr "ຊື່ຜູ້ໃຊ້"
+
+msgid "Role"
+msgstr "ບົດບາດ"
+
+msgid "Name"
+msgstr "ຊື່"
+
+msgid "Creation date"
+msgstr "ວັນທີສ້າງ"
+
+msgid "Last access"
+msgstr "ການເຂົ້າຄັ້ງສຸດທ້າຍ"
+
+msgid "Connection"
+msgstr "ການເຊື່ອມຕໍ່"
+
+msgid "Whistleblower's last access"
+msgstr "ການເຂົ້າຄັ້ງສຸດທ້າຍຂອງຜູ້ແຈ້ງເບາະແສ"
+
+msgid "Substatuses"
+msgstr "ສະຖານະຍ່ອຍ"
+
+msgid "Add"
+msgstr "ເພີ່ມ"
+
+msgid "Label"
+msgstr "ສະຫຼາກ"
+
+msgid "This field is mandatory"
+msgstr "ຊ່ອງນີ້ແມ່ນຕ້ອງມີ"
+
+msgid "Edit"
+msgstr "ແກ້ໄຂ"
+
+msgid "Cancel"
+msgstr "ຍົກເລີກ"
+
+msgid "Report statuses"
+msgstr "ລາຍງານສະຖານະ"
+
+msgid "Logo"
+msgstr "ໂລໂກ"
+
+msgid "Project name"
+msgstr "ຊື່ໂຄງການ"
+
+msgid "Description"
+msgstr "ການອະທິບາຍ"
+
+msgid "Homepage title"
+msgstr "ຫົວຂໍ້ໜ້າຫຼັກ"
+
+msgid "Presentation"
+msgstr "ການນຳສະເໜີ"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "ຄຳຖາມເພື່ອຊັກຊວນຜູ້ແຈ້ງເບາະແສທີ່ເປັນໄປໄດ້"
+
+msgid "Whistleblowing button"
+msgstr "ປຸ່ມຜູ້ແຈ້ງເບາະແສ"
+
+msgid "Enable disclaimer"
+msgstr "ເປີດນຳໃຊ້ການປະຕິເສດຄວາມຮັບຜິດຊອບ"
+
+msgid "Title"
+msgstr "ຫົວຂໍ້"
+
+msgid "Text"
+msgstr "ຂໍ້ຄວາມ"
+
+msgid "Footer"
+msgstr "ຂໍ້ຄວາມທ້າຍໜ້າ"
+
+msgid "Upload"
+msgstr "ອັບໂຫຼດ"
+
+msgid "Download"
+msgstr "ດາວໂຫຼດ"
+
+msgid "Language:"
+msgstr "ພາສາ:"
+
+msgid "Add custom text"
+msgstr "ເພີ່ມຂໍ້ຄວາມທີ່ຂຽນເອງ"
+
+msgid "Custom text"
+msgstr "ຂໍ້ຄວາມທີ່ກຳນົດເອງ"
+
+msgid "Original text"
+msgstr "ຂໍ້ຄວາມຕົ້ນສະບັບ"
+
+msgid "Original translation"
+msgstr "ຄຳແປຕົ້ນສະບັບ"
+
+msgid "Custom translation"
+msgstr "ຄຳແປທີ່ແປເອງ"
+
+msgid "Contexts"
+msgstr "ເນື້ອຫາຕ່າງໆ"
+
+msgid "Hidden"
+msgstr "ເຊື່ອງໄວ້"
+
+msgid "Disabled"
+msgstr "ປິດໃຊ້ງານແລ້ວ"
+
+msgid "Enabled"
+msgstr "ເປີດນຳໃຊ້ແລ້ວ"
+
+msgid "Questionnaire"
+msgstr "ແບບສອບຖາມ"
+
+msgid "Recipients"
+msgstr "ຜູ້ຮັບ"
+
+msgid "days"
+msgstr "ວັນ"
+
+msgid "Show the questionnaire navigation interface"
+msgstr "ສະແດງແບບຈໍປະສານນຳທາງແບບສອບຖາມ"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສສາມາດເລືອກເອົາຜູ້ຮັບຂອງຕົນ"
+
+msgid "Select all recipients by default"
+msgstr "ເລືອກຜູ້ຮັບທຸກຄົນໂດຍຄ່າເລີ່ມຕົ້ນ"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "ຈຳນວນຜູ້ຮັບສູງສຸດທີ່ສາມາດເລືອກໄດ້:"
+
+msgid "Show recipients in alphabetical order"
+msgstr "ສະແດງຈຳນວນຜູ້ຮັບຕາມລຳດັບຕົວອັກສອນ"
+
+msgid "Show recipient details on the status page of the report"
+msgstr "ສະແດງລາຍລະອຽດຕ່າງໆຂອງຜູ້ຮັບໃນໜ້າສະຖານະຂອງການລາຍງານ"
+
+msgid "Enable comments"
+msgstr "ເປີດນຳໃຊ້ຄຳຄິດເຫັນ"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສຂຽນຄຳຄິດເຫັນໄດ້"
+
+msgid "Enable private messages"
+msgstr "ເປີດນຳໃຊ້ຂໍ້ຄວາມສ່ວນຕົວ"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສສາມາດສົ່ງຂໍ້ຄວາມໄດ້"
+
+msgid "Let whistleblowers add attachments onto existing reports"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສເພີ່ມເອກະສານຄັດຕິດຕື່ມໃສ່ລາຍງານທີ່ມີຢູ່ແລ້ວ"
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ຮັບອັບໂຫຼດໄຟລ໌ໄປໃຫ້ຜູ້ແຈ້ງເບາະແສ"
+
+msgid "Additional questionnaire"
+msgstr "ແບບສອບຖາມເພີ່ມຕື່ມ"
+
+msgid "Scoring system options"
+msgstr "ຕົວເລືອກຂອງລະບົບການໃຫ້ຄະແນນ"
+
+msgid "Threshold"
+msgstr "ຈຸດເລີ່ມຕົ້ນ"
+
+msgid "Value"
+msgstr "ຄ່າ"
+
+msgid "Medium"
+msgstr "ຂະໜາດກາງ"
+
+msgid "Customize the message shown in the receipt page"
+msgstr "ປັບແຕ່ງຂໍ້ຄວາມທີ່ສະແດງຢູ່ໃນໜ້າໃບບິນ"
+
+msgid "Assign the receipt only to reports reaching score:"
+msgstr "ມອບໃບບິນໃຫ້ແກ່ລາຍງານທີ່ໄດ້ຄະແນນຮອດເທົ່ານັ້ນ:"
+
+msgid "Software version:"
+msgstr "ເວີຊັ່ນຂອງຊອບແວ:"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "ຈຳກັດການເຂົ້າເຖິງທີ່ຢູ່ IP ສະເພາະ"
+
+msgid "Allowed IP addresses"
+msgstr "ທີ່ຢູ່ IP ທີ່ໄດ້ຮັບການອະນຸຍາດ"
+
+msgid "Admin"
+msgstr "ແອັດມິນ"
+
+msgid "Recipient"
+msgstr "ຜູ້ຮັບ"
+
+msgid "Each entry must be separated with a comma."
+msgstr "ແຕ່ລະລາຍການຕ້ອງຂັ້ນດ້ວຍໝາຍຈຸດ."
+
+msgid "Example:"
+msgstr "ຕົວຢ່າງ:"
+
+msgid "Hostname"
+msgstr "ຊື່ໂຮສ໌"
+
+msgid "Invalid input format."
+msgstr "ຮູບແບບການປ້ອນຂໍ້ມູນໃຊ້ບໍ່ໄດ້."
+
+msgid "Input should be similar to:"
+msgstr "ການປ້ອນຂໍ້ມູນຄວນຈະຄ້າຍຄືກັນກັບ:"
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr "ການນຳໃຊ້ Let's Encrypt ຕ້ອງໄດ້ຕົກລົງເຫັນດີກັບຂໍ້ກຳນົດໃນການໃຫ້ບໍລິການຂອງພວກເຂົາ."
+
+msgid "Read the Terms of Service"
+msgstr "ອ່ານຂໍ້ກຳນົດໃນການໃຫ້ບໍລິການ"
+
+msgid "I agree to the Terms of Service."
+msgstr "ຂ້າພະເຈົ້າຕົກລົງເຫັນດີກັບຂໍ້ກຳນົດໃນການໃຫ້ບໍລິການ."
+
+msgid "Country code"
+msgstr "ລະຫັດປະເທດ"
+
+msgid "City"
+msgstr "ເມືອງ"
+
+msgid "Organization"
+msgstr "ອົງກອນ"
+
+msgid "Organizational unit"
+msgstr "ໜ່ວຍງານໃນອົງກອນ"
+
+msgid "Invalid email address"
+msgstr "ທີ່ຢູ່ອີເມວໃຊ້ບໍ່ໄດ້"
+
+msgid "Generate"
+msgstr "ສ້າງ"
+
+msgid "Private Key"
+msgstr "ລະຫັດສ່ວນຕົວ"
+
+msgid "Certificate Signing Request"
+msgstr "ຄຳຮ້ອງຂໍເຊັນໃບຢັ້ງຢືນ"
+
+msgid "Certificate"
+msgstr "ໃບຢັ້ງຢືນ"
+
+msgid "Valid until:"
+msgstr "ໃຊ້ໄດ້ຈົນເຖິງ:"
+
+msgid "Issuer:"
+msgstr "ຜູ້ອອກ:"
+
+msgid "Intermediate Certificates"
+msgstr "ໃບຢັ້ງຢືນລະດັບກາງ"
+
+msgid "Enable"
+msgstr "ເປີດນຳໃຊ້"
+
+msgid "Reset"
+msgstr "ຕັ້ງຄືນໃໝ່"
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "ລະບົບຮອງຮັບການກຳນົດຄ່າຂອງ HTTPS ຜ່ານຈໍປະສານນີ້."
+
+msgid "Automatic configuration"
+msgstr "ການກຳນົດຄ່າອັດຕະໂນມັດ"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "ການນຳໃຊ້ການກຳນົດຄ່າ HTTPS ແບບອັດຕະໂນມັດຈະຊ່ວຍຈັດການກັບຂັ້ນຕອນໃນການຮ້ອງຂໍທັງໝົດ, ການເປີດໃຊ້ງານ ແລະ ການຕໍ່ອາຍຸໃບຢັ້ງຢືນຈາກອົງການອອກໃບຢັ້ງຢືນ Let’s Encrypt."
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr "ຕ້ອງສາມາດເຂົ້າເຖິງລະບົບໄດ້ຜ່ານທີ່ຢູ່ IP ສາທາລະນະ ແລະ ຊື່ໂຮສ໌ທີ່ເລືອກຕ້ອງມີເອກະສານ DNS ທີ່ສອດຄ້ອງກັນທີ່ເປັນບ່ອນອີງຂອງທີ່ຢູ່ນັ້ນ."
+
+msgid "Manual configuration"
+msgstr "ການກຳນົດຄ່າດ້ວຍຕົນເອງ"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "ຕົວຊ່ວຍໃນການກຳນົດຄ່າດ້ວຍຕົນເອງຈະນຳພາທ່ານຜ່ານການຕັ້ງຄ່າ HTTPS ຈາກອົງການອອກໃບຢັ້ງຢືນທາງເລືອກ."
+
+msgid "Auto-renewal"
+msgstr "ການຕໍ່ອາຍຸອັດຕະໂນມັດ"
+
+msgid "Tor Onion Service"
+msgstr "ການບໍລິການ Tor Onion"
+
+msgid "Anonymize outgoing connections"
+msgstr "ການປິດບັງການເຊື່ອມຕໍ່ຂາອອກ"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "ອະນຸຍາດໃຫ້ສາມາດເຂົ້າເຖິງລະບົບໄດ້ໂດຍບໍ່ຕ້ອງໃຊ້ Tor"
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr "ຜູ້ທີ່ສາມາດນຳໃຊ້ລະບົບໂດຍບໍ່ຕ້ອງໃຊ້ Tor"
+
+msgid "Whistleblower"
+msgstr "ຜູ້ແຈ້ງເບາະແສ"
+
+msgid "To"
+msgstr "ເຖິງ"
+
+msgid "SMTP email address"
+msgstr "ທີ່ຢູ່ອີເມວ SMTP"
+
+msgid "SMTP server address"
+msgstr "ທີ່ຢູ່ເຊີບເວີ SMTP"
+
+msgid "SMTP server port"
+msgstr "ພອດທ໌ເຊີບເວີ SMTP"
+
+msgid "Security"
+msgstr "ຄວາມປອດໄພ"
+
+msgid "Warning"
+msgstr "ຄຳເຕືອນ"
+
+msgid "Require authentication"
+msgstr "ຕ້ອງມີການກວດສອບຄວາມຖືກຕ້ອງ"
+
+msgid "Password"
+msgstr "ລະຫັດຜ່ານ"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr "ຈຳນວນຊົ່ວໂມງກ່ອນທີ່ຈະສົ່ງການແຈ້ງເຕືອນການໝົດອາຍຸການລາຍງານ"
+
+msgid "Test the configuration"
+msgstr "ທົດສອບການກຳນົດຄ່າ"
+
+msgid "Reset SMTP configuration"
+msgstr "ຕັ້ງຄ່າການກຳນົດຄ່າ SMTP ຄືນໃໝ່"
+
+msgid "Reset notification templates to default"
+msgstr "ຕັ້ງຄ່າແມ່ແບບການແຈ້ງເຕືອນກັບຄືນສູ່ຄ່າເລີ່ມຕົ້ນ"
+
+msgid "Template"
+msgstr "ແມ່ແບບ"
+
+msgid "Question"
+msgstr "ຄຳຖາມ"
+
+msgid "Single-line text input"
+msgstr "ການປ້ອນຂໍ້ຄວາມແບບແຖວດຽວ"
+
+msgid "Multi-line text input"
+msgstr "ການປ້ອນຂໍ້ຄວາມແບບຫຼາຍແຖວ"
+
+msgid "Selection box"
+msgstr "ກ່ອງເລືອກ"
+
+msgid "Checkbox"
+msgstr "ກ່ອງໃສ່ເຄື່ອງໝາຍ"
+
+msgid "Terms of service"
+msgstr "ຂໍ້ກຳນົດໃນການບໍລິການ"
+
+msgid "Date range"
+msgstr "ຊ່ວງວັນທີ"
+
+msgid "Map"
+msgstr "ແຜນທີ່"
+
+msgid "Group of questions"
+msgstr "ກຸ່ມຂອງຄຳຖາມ"
+
+msgid "Row"
+msgstr "ແຖວ"
+
+msgid "Column"
+msgstr "ຖັນ"
+
+msgid "Width"
+msgstr "ຄວາມກ້ວາງ"
+
+msgid "Multiple choice input"
+msgstr "ການປ້ອນຂໍ້ມູນແບບມີຫຼາຍທາງເລືອກ"
+
+msgid "Question group"
+msgstr "ກຸ່ມຄຳຖາມ"
+
+msgid "Hint"
+msgstr "ຄຳແນະນຳ"
+
+msgid "Required"
+msgstr "ຕ້ອງການ"
+
+msgid "Accept multiple file uploads"
+msgstr "ຍອມຮັບການອັບໂຫຼດຫຼາຍໆໄຟລ໌"
+
+msgid "Accept multiple answers"
+msgstr "ຍອມຮັບຫຼາຍໆຄຳຕອບ"
+
+msgid "Template override"
+msgstr "ການທັບຊ້ອນແບບແມ່ແບບ"
+
+msgid "Phone number"
+msgstr "ໝາຍເລກໂທລະສັບ"
+
+msgid "Checkbox label"
+msgstr "ສະຫຼາກກ່ອງໃສ່ເຄື່ອງໝາຍ"
+
+msgid "Add multimedia content"
+msgstr "ເພີ່ມເນື້ອຫາມັລຕິມີເດຍ"
+
+msgid "Image"
+msgstr "ຮູບພາບ"
+
+msgid "Audio"
+msgstr "ສຽງ"
+
+msgid "Video"
+msgstr "ວິດີໂອ"
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr "ການເປີດເຜີຍຄຳຕອບຂອງຫົວຂໍ້ຕໍ່ການອະນຸຍາດຂອງຜູ້ປົກປ້ອງຂໍ້ມູນ"
+
+msgid "Text shown upon negative answer"
+msgstr "ຂໍ້ຄວາມທີ່ຈະສະແດງເມື່ອມີຄຳຕອບທາງລົບ"
+
+msgid "Prompt confirmation upon negative answer"
+msgstr "ການຢືນຢັນຄວາມພ້ອມຮັບເມື່ອມີຄຳຕອບທາງລົບ"
+
+msgid "Text shown upon confirmation"
+msgstr "ຂໍ້ຄວາມທີ່ຈະສະແດງເມື່ອມີການຢືນຢັນ"
+
+msgid "Trigger conditions"
+msgstr "ເງື່ອນໄຂໃນການກະຕຸ້ນ"
+
+msgid "Sufficient"
+msgstr "ພຽງພໍ"
+
+msgid "Options"
+msgstr "ຕົວເລືອກ"
+
+msgid "Addition"
+msgstr "ການເພີ່ມຕື່ມ"
+
+msgid "Multiplier"
+msgstr "ຕົວຄູນ"
+
+msgid "Questions"
+msgstr "ຄຳຖາມ"
+
+msgid "Add new question"
+msgstr "ເພີ່ມຄຳຖາມໃໝ່"
+
+msgid "Add question from template"
+msgstr "ເພີ່ມຄຳຖາມຈາກແມ່ແບບ"
+
+msgid "Duplicate"
+msgstr "ສ້າງສໍາເນົາ"
+
+msgid "Steps"
+msgstr "ຂັ້ນຕອນຕ່າງໆ"
+
+msgid "Site settings"
+msgstr "ການຕັ້ງຄ່າເວັບໄຊ"
+
+msgid "Case management"
+msgstr "ການຈັດການກໍລະນີ"
+
+msgid "Network settings"
+msgstr "ການຕັ້ງຄ່າເຄືອຂ່າຍ"
+
+msgid "Sites"
+msgstr "ເວັບໄຊ"
+
+msgid "Mode:"
+msgstr "ໂໝດ:"
+
+msgid "Active"
+msgstr "ໃຊ້ງງານຢູ່"
+
+msgid "Inactive"
+msgstr "ບໍ່ມີການໃຊ້ງງານ"
+
+msgid "Configure"
+msgstr "ກຳນົດຄ່າ"
+
+msgid "Subdomain"
+msgstr "ໂດເມນຍ່ອຍ"
+
+msgid "Creation date:"
+msgstr "ວັນທີສ້າງ:"
+
+msgid "Root domain used for secondary sites"
+msgstr "ຮາກໂດເມນທີ່ໃຊ້ສຳລັບເວັບໄຊສຳຮອງ"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "ໃຊ້ເວັບໄຊທຳອິດເພື່ອຈຸດປະສົງໃນການດູແລລະບົບເທົ່ານັ້ນ"
+
+msgid "Enable multi-site login"
+msgstr "ເປີດນຳໃຊ້ການລົງຊື່ເຂົ້າສູ່ຫຼາຍໆເວັບໄຊ"
+
+msgid "Allow users to sign up"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ໃຊ້ລົງທະບຽນ"
+
+msgid "Enable terms of service"
+msgstr "ເປີດນຳໃຊ້ຂໍ້ກຳນົດໃນການບໍລິການ"
+
+msgid "Send an account activation link to the user."
+msgstr "ສົ່ງລິ້ງເປີດໃຊ້ງານບັນຊີໄປໃຫ້ຜູ້ໃຊ້."
+
+msgid "Public name"
+msgstr "ຊື່ສາທາລະນະ"
+
+msgid "Send reset link"
+msgstr "ສົ່ງລິ້ງຕັ້ງລະຫັດຄືນໃໝ່"
+
+msgid "Set password"
+msgstr "ຕັ້ງລະຫັດຜ່ານ"
+
+msgid "Disable two factor authentication"
+msgstr "ປິດໃຊ້ງານການຢືນຢັນແບບສອງຂັ້ນຕອນ"
+
+msgid "Force password change"
+msgstr "ບັງຄັບໃຫ້ປ່ຽນລະຫັດຜ່ານ"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "ຜູ້ໃຊ້ຈະຖືກບັງຄັບໃຫ້ປ່ຽນລະຫັດຜ່ານໃນການເຂົ້າສູ່ລະບົບຄັ້ງຕໍ່ໄປ."
+
+msgid "Language"
+msgstr "ພາສາ"
+
+msgid "Enable email notifications"
+msgstr "ເປີດນຳໃຊ້ການແຈ້ງເຕືອນທາງອີເມວ"
+
+msgid "Details of the PGP key:"
+msgstr "ລາຍລະອຽດຂອງລະຫັດ PGP:"
+
+msgid "Fingerprint"
+msgstr "ລາຍ​ນີ້ວ​ມື"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "ຕັ້ງຄ່າການເຂົ້າລະຫັດລັບໂດຍການໃຫ້ລະຫັດ PGP ສາທາລະນະ"
+
+msgid "Give this admin ability to change user passwords"
+msgstr "ອະນຸຍາດໃຫ້ແອັດມິນຄົນນີ້ສາມາດປ່ຽນລະຫັດຜ່ານຂອງຜູ້ໃຊ້ໄດ້"
+
+msgid "Forcefully selected"
+msgstr "ຄັດເລືອກຢ່າງແຂງຂັນ"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ຮັບເລື່ອນວັນທີໝົດອາຍຸໃນການລາຍງານ"
+
+msgid "Allow the recipient to delete reports"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ຮັບລຶບລາຍງານ"
+
+msgid "Give the user administrative access to the following features:"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ໃຊ້ທີ່ເປັນແອັດມິນເຂົ້າເຖິງຄຸນສົມບັດຕ່າງໆຕໍ່ໄປນີ້:"
+
+msgid "Request date"
+msgstr "ວັນທີຮ້ອງຂໍ"
+
+msgid "Report date"
+msgstr "ວັນທີລາຍງານ"
+
+msgid "Authorization"
+msgstr "ການອະນຸຍາດ"
+
+msgid "Requests"
+msgstr "ຄຳຮ້ອງຂໍ"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "ລິ້ງຢືນຢັນບໍ່ຖືກຕ້ອງ ຫຼື ໝົດອາຍຸແລ້ວ."
+
+msgid "Your new email address has been validated."
+msgstr "ທີ່ຢູ່ອີເມວໃໝ່ຂອງທ່ານໄດ້ຮັບການຢືນຢັນແລ້ວ."
+
+msgid "Forgot password?"
+msgstr "ລືມລະຫັດຜ່ານບໍ?"
+
+msgid "Enter the two factor authentication code"
+msgstr "ປ້ອນລະຫັດການຢືນຢັນແບບສອງຂັ້ນຕອນ"
+
+msgid "Authentication failed"
+msgstr "ການຢືນຢັນຄວາມຖືກຕ້ອງບໍ່ສຳເລັດ"
+
+msgid "The code is either invalid or expired."
+msgstr "ລະຫັດໃຊ້ບໍ່ໄດ້ ຫຼື ໝົດອາຍຸແລ້ວ."
+
+msgid "Site:"
+msgstr "ເວັບໄຊ:"
+
+msgid "Please select your account:"
+msgstr "ກະລຸນາເລືອກບັນຊີຂອງທ່ານ:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "ຕອນນີ້ໃຫ້ພິມລະຫັດຜ່ານຂອງທ່ານ, ແລ້ວກົດໃສ່ 'ເຂົ້າສູ່ລະບົບ':"
+
+msgid "Text shown after the user has selected the option."
+msgstr "ຂໍ້ຄວາມທີ່ຈະສະແດງໃຫ້ເຫັນຫຼັງຈາກຜູ້ໃຊ້ໄດ້ເລືອກຕົວເລືອກແລ້ວ."
+
+msgid "Confirm"
+msgstr "ຢືນຢັນ"
+
+msgid "Are you sure?"
+msgstr "ທ່ານ​ແນ່​ໃຈ​ບໍ?"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr "ການດຳເນີນງານຈະຕັ້ງການກຳນົດຄ່າຄືນໃໝ່ ແລະ ບໍ່ສາມາດຍົກເລີກໄດ້."
+
+msgid "Assign score points"
+msgstr "ກຳນົດຈຸດໃຫ້ຄະແນນ"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "ກະລຸນາຊາບວ່າ ຂໍ້ມູນທີ່ກ່ຽວຂ້ອງທັງໝົດຈະຖືກລຶບຖິ້ມຢ່າງຖາວອນ."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "ນີ້ແມ່ນເປັນລະບົບສາທິດເທົ່ານັ້ນ, ກະລຸນາຢ່າໃຊ້ສຳລັບການສົ່ງຕົວຈິງ."
+
+msgid "Install an authenticator app on your phone"
+msgstr "ຕິດຕັ້ງແອັບຢືນຢັນຄວາມຖືກຕ້ອງໃນໂທລະສັບຂອງທ່ານ"
+
+msgid "Scan the QR code with the app"
+msgstr "ສະແກນລະຫັດ QR ດ້ວຍແອັບ."
+
+msgid "Enable two factor authentication"
+msgstr "ເປີດນຳໃຊ້ການຢືນຢັນແບບສອງຂັ້ນຕອນ"
+
+msgid "Close"
+msgstr "ປິດ"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "ກ່ອນຈະດຳເນີນການຕໍ່ ກະລຸນາອ່ານເອກະສານຢ່າງລະອຽດໄດ້ທີ່:"
+
+msgid "Your account recovery key is:"
+msgstr "ລະຫັດກູ້ຄືນບັນຊີຂອງທ່ານແມ່ນ:"
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "ສຳເນົາ ແລະ ຈັດເກັບໄວ້ໃນບ່ອນທີ່ມີຄວາມປອດໄພ. ມັນຈະມີຄວາມຈຳເປັນຖ້າທ່ານລືມລະຫັດຜ່ານຂອງທ່ານເພື່ອກູ້ຄືນການເຂົ້າເຖິງບັນຊີຂອງທ່ານໂດຍທີ່ຂໍ້ມູນຈະບໍ່ສູນຫາຍ."
+
+msgid "Welcome!"
+msgstr "ຍິນດີຕ້ອນຮັບ!"
+
+msgid "For the user documentation, visit:"
+msgstr "ສຳລັບເອກະສານສຳລັບຜູ້ໃຊ້, ໃຫ້ເຂົ້າເບິ່ງ:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "ຖ້າທ່ານຕ້ອງການການຊ່ວຍເຫຼືອດ້ານເຕັກນິກ, ມີຄຳຖາມທົ່ວໄປ ຫຼື ມີແນວຄວາມຄິດໃໝ່ໆສຳລັບຊອບແວ:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "ຖ້າທ່ານຕ້ອງການປະກອບສ່ວນເຂົ້າໃນການພັດທະນາຊອບແວ ຫຼື ລາຍງານຂໍ້ບົກພ່ອງ, ກະລຸນາຍົກບັນຫາຂຶ້ນມາໃນລະບົບການອອກໃບສັ່ງຂອງພວກເຮົາ:"
+
+msgid "Join our chat:"
+msgstr "ເຂົ້າຮ່ວມການສົນທະນາຂອງພວກເຮົາ:"
+
+msgid "Follow the project on:"
+msgstr "ຕິດຕາມໂຄງການທີ່:"
+
+msgid "Hint: How to hide your receipt"
+msgstr "ຄຳແນະນໍາ: ວິທີການເຊື່ອງໃບບິນຂອງທ່ານ"
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "ວິທີການທີ່ດີໃນການເຊື່ອງໃບບິນຂອງທ່ານແມ່ນການຂຽນມັນໄວ້ຄືກັບເລກບັດເຄຼດິດ, ເຊັ່ນວ່າລວມທັງວັນໝົດອາຍຸ."
+
+msgid "Error!"
+msgstr "ເກີດຂໍ້ຜິດພາດ!"
+
+msgid "Internal server error"
+msgstr "ເກີດຂໍ້ຜິດພາດຈາກເຊີບເວີໃນ"
+
+msgid "Error on input validation"
+msgstr "ເກີດຂໍ້ຜິດພາດໃນຢືນຢັນການປ້ອນຂໍ້ມູນ"
+
+msgid "Resource not found"
+msgstr "ບໍ່ພົບແຫຼ່ງຂໍ້ມູນ"
+
+msgid "Forbidden operation"
+msgstr "ການດຳເນີນງານທີ່ຖືກຫ້າມ"
+
+msgid "The specified old password is not valid"
+msgstr "ລະຫັດຜ່ານເກົ່າທີ່ລະບຸໃຊ້ບໍ່ໄດ້"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "ສາມາດເຂົ້າເຖິງແຫຼ່ງຂໍ້ມູນໄດ້ຜ່ານເຄືອຂ່າຍ Tor ເທົ່ານັ້ນ"
+
+msgid "The upload request exceeds the size limit"
+msgstr "ຄຳຮ້ອງຂໍການອັບໂຫຼດເກີນຂະໜາດທີ່ຈຳກັດ"
+
+msgid "Validation of email address change in progress."
+msgstr "ການກວດສອບຄວາມຖືກຕ້ອງຂອງການປ່ຽນແປງທີ່ຢູ່ອີເມວກຳລັງກຳເນີນການຢູ່."
+
+msgid "Please check your inbox for further instructions."
+msgstr "ກະລຸນາກວດເບິ່ງກ່ອງຂໍ້ຄວາມເຂົ້າຂອງທ່ານ ສຳລັບຄຳແນະນຳເພີ່ມຕື່ມ."
+
+msgid "Account recovery key"
+msgstr "ລະຫັດກູ້ຄືນບັນຊີ"
+
+msgid "Current password"
+msgstr "ລະ​ຫັດ​ຜ່ານໃນປັດ​ຈຸ​ບັນ"
+
+msgid "Old password confirmation required"
+msgstr "ຕ້ອງມີການຢືນຢັນລະຫັດຜ່ານເກົ່າ"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "ປາກົດວ່າທ່ານກຳລັງຮຽກເບິ່ງເວັບໄຊນີ້ໂດຍບໍ່ມີຄວາມເປັນສ່ວນຕົວ ແລະ ຄວາມປອດໄພພິເສດ!"
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "ຂໍແນະນຳໃຫ້ທ່ານໄປເຂົ້າຊົມເວັບໄຊນີ້ໂດຍໃຊ້ແອັບທີ່ເອີ້ນວ່າ Tor Browser, ທີ່ມີການປົກປ້ອງຂໍ້ມູນລະບຸຕົວຕົນຂອງທ່ານ."
+
+msgid "Download the Tor Browser"
+msgstr "ດາວໂຫຼດ Tor Browser"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "ຈາກນັ້ນ, ຄັດລອກ ແລະ ວາງທີ່ຢູ່ຕໍ່ໄປນີ້ເຂົ້າໃນ Tor Browser:"
+
+msgid "Enter a name for the copy"
+msgstr "ປ້ອນຊື່ສຳລັບການສຳເນົາ"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "ທ່ານໄດ້ຍື່ນລາຍງານແລ້ວບໍ? ປ້ອນໃບບິນຂອງທ່ານ."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "ໃບບິນແມ່ນໃຊ້ບໍ່ໄດ້ ຫຼື ການລາຍງານໄດ້ໝົດອາຍຸແລ້ວ."
+
+msgid "Select a file or drag it here."
+msgstr "ເລືອກໄຟລ໌ ຫຼື ລາກມາໃສ່ບ່ອນນີ້."
+
+msgid "Uploading files…"
+msgstr "ກຳລັງອັບໂຫຼດໄຟລ໌…"
+
+msgid "Upload completed successfully!"
+msgstr "ການອັບໂຫຼດສຳເລັດຮຽບຮ້ອຍແລ້ວ!"
+
+msgid "Error while uploading files; check below for details."
+msgstr "ເກີດຂໍ້ຜິດພາດໃນຂະນະທີ່ກຳລັງອັບໂຫຼດໄຟລ໌; ກວດເບິ່ງລາຍລະອຽດຢູ່ຂ້າງລຸ່ມນີ້."
+
+msgid "Estimated upload time:"
+msgstr "ເວລາອັບໂຫຼດໂດຍປະມານ:"
+
+msgid "Size:"
+msgstr "ຂະໜາດ:"
+
+msgid "Enable the Ricochet panel"
+msgstr "ເປີດນຳໃຊ້ແຜງຄວບຄຸມ Ricochet"
+
+msgid "Address"
+msgstr "ທີ່ຢູ່"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr "ສົນທະນາກັບພວກເຮົາແບບບໍ່ເປີດເຜີຍຊື່ ໂດຍນຳໃຊ້ແອັບພຼີເຄຊັນ Ricochet"
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr "ເພື່ອສົນທະນາກັບພວກເຮົາ ໃຫ້ໃຊ້ທີ່ຢູ່ Ricochet ຕໍ່ໄປນີ້:"
+
+msgid "Download Ricochet at:"
+msgstr "ດາວໂຫຼດ Ricochet ໄດ້ທີ່:"
+
+msgid ""
+"By using the Tor network and creating an Onion Service, Ricochet is an "
+"instant messaging app that allows you to chat while protecting your privacy "
+"and staying anonymous by not revealing your location or IP address. You "
+"won't notice any difference from an insecure chat, except that you will be "
+"using a unique address instead of a phone number/email/username."
+msgstr "ໂດຍການນຳໃຊ້ເຄືອຂ່າຍ Tor ແລະ ການສ້າງ Onion Service, Ricochet ແມ່ນແອັບສົ່ງຂໍ້ຄວາມແບບທັນທີທີ່ອະນຸຍາດໃຫ້ທ່ານສາມາດສົນທະນາໃນຂະນະທີ່ມີການປົກປ້ອງຄວາມເປັນສ່ວນຕົວຂອງທ່ານ ແລະ ບໍ່ເປີດເຜີຍຕົວຕົນ ໂດຍການບໍ່ເປີດເຜີຍທີ່ຕັ້ງ ຫຼື ທີ່ຢູ່ IP ຂອງທ່ານ. ທ່ານຈະສັງເກດບໍ່ເຫັນຄວາມແຕກຕ່າງຂອງການສົນທະນາທີ່ບໍ່ປອດໄພ, ເວັ້ນເສຍແຕ່ວ່າທ່ານຈະນຳໃຊ້ທີ່ຢູ່ທີ່ເປັນເອກະລັກແທນເບີໂທລະສັບ/ອີເມວ/ຊື່ຜູ້ໃຊ້."
+
+msgid "The connection is not secure."
+msgstr "ການເຊື່ອມຕໍ່ບໍ່ມີຄວາມປອດໄພ."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "ຍັງບໍ່ໄດ້ກຳນົດຄ່າຂອງລະບົບສຳລັບການເຊື່ອມຕໍ່ HTTPS ແລະ ເພາະສະນັ້ນຈຶ່ງຄວນໃຊ້ເພື່ອຈຸດປະສົງໃນການທົດສອບເທົ່ານັ້ນ."
+
+msgid "Use case"
+msgstr "ລັກສະນະການໃຊ້ງານຂອງລະບົບ"
+
+msgid "Anticorruption"
+msgstr "ການຕ້ານການສໍ້ລາດບັງຫຼວງ"
+
+msgid "Corporate compliance"
+msgstr "ການປະຕິບັດຕາມຂໍ້ກຳນົດຂອງບໍລິສັດ"
+
+msgid "Investigative journalism"
+msgstr "ວາລະສານເຊີງສືບສວນ"
+
+msgid "Civic activism"
+msgstr "ການເຄື່ອນໄຫວຂອງພົນລະເມືອງ"
+
+msgid "Submit"
+msgstr "ສົ່ງ"
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "ຜູ້ຮັບໄດ້ຮ້ອງຂໍໃຫ້ທ່ານຕື່ມແບບສອບຖາມເພີ່ມຕື່ມ."
+
+msgid "Fill the additional questionnaire"
+msgstr "ຕື່ມແບບສອບຖາມເພີ່ມຕື່ມ."
+
+msgid "Send"
+msgstr "ສົ່ງ"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສຂຽນຄຳຄິດເຫັນໄດ້"
+
+msgid "From:"
+msgstr "ຈາກ:"
+
+msgid "To:"
+msgstr "ເຖິງ:"
+
+msgid "Filename"
+msgstr "ຊື່ໄຟລ໌"
+
+msgid "Upload date"
+msgstr "ວັນທີອັບໂຫຼດ"
+
+msgid "File size"
+msgstr "ຂະໜາດໄຟລ໌"
+
+msgid "Allow the whistleblower to add attachments to the report"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສເພີ່ມເອກະສານຄັດຕິດຕື່ມໃສ່ລາຍງານ"
+
+msgid "Never"
+msgstr "ບໍ່ເລີຍ"
+
+msgid "Allow the whistleblower to send messages"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສສາມາດສົ່ງຂໍ້ຄວາມໄດ້"
+
+msgid "Are you sure that you want to delete the report?"
+msgstr "ທ່ານແນ່ໃຈບໍວ່າ ທ່ານຕ້ອງການລຶບລາຍງານ?"
+
+msgid ""
+"Everything related to the report stored on the platform will be deleted."
+msgstr "ທຸກສິ່ງທຸກຢ່າງທີ່ກ່ຽວຂ້ອງກັບລາຍງານທີ່ເກັບໄວ້ໃນລະບົບຈະຖືກລຶບອອກ."
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr "ກະລຸນາຊາບວ່າ ທຸກສິ່ງຖືກເກັບໄວ້ຢູ່ນອອກລະບົບ ເຊັ່ນ: ໄຟລ໌ທີ່ທ່ານໄດ້ບັນທຶກໄວ້ໃນຄອມພິວເຕີຂອງທ່ານ, ຕ້ອງໄດ້ລຶບອອກດ້ວຍຕົນເອງ."
+
+msgid "Are you sure that you want to delete the selected reports?"
+msgstr "ທ່ານແນ່ໃຈບໍວ່າ ທ່ານຕ້ອງການລຶບລາຍງານທີ່ທ່ານເລືອກ?"
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "ກະລຸນາກວດສອບໃຫ້ແນ່ໃຈວ່າຂໍ້ມູນທີ່ກ່ຽວຂ້ອງທັງໝົດຖືກລຶບອອກຢ່າງສົມບູນແລ້ວ ເພື່ອໃຫ້ຜູ້ຮັບຈະບໍ່ສາມາດເຂົ້າເບິ່ງໄດ້ອີກຕໍ່ໄປ."
+
+msgid "Please write a motivation for the reply"
+msgstr "ກະລຸນາຂຽນແຮງຈູງໃຈໃນການຕອບກັບ"
+
+msgid "Are you sure that you want to postpone the report expiration date?"
+msgstr "ທ່ານແນ່ໃຈບໍວ່າ ທ່ານຕ້ອງການເລື່ອນວັນໝົດອາຍຸຂອງລາຍງານ?"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "ການຢືນຢັນ, ໝາຍຄວາມວ່າທ່ານຈະເລື່ອນວັນໝົດອາຍຸໄປຍັງ:"
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"reports?"
+msgstr "ທ່ານແນ່ໃຈບໍວ່າ ທ່ານຕ້ອງການເລື່ອນວັນໝົດອາຍຸສຳລັບລາຍງານທີ່ເລືອກທັງໝົດ?"
+
+msgid "Questionnaire answers"
+msgstr "ຄຳຕອບແບບສອບຖາມ"
+
+msgid "Step"
+msgstr "ຂັ້ນຕອນ"
+
+msgid "Recipient list"
+msgstr "ບັນຊີລາຍຊື່ຜູ້ຮັບ"
+
+msgid "Status:"
+msgstr "ສະຖານະ:"
+
+msgid "Files attached by recipients"
+msgstr "ໄຟລ໌ທີ່ຜູ້ຮັບຄັດຕິດມາ"
+
+msgid "Upload a file:"
+msgstr "ອັບໂຫຼດໄຟລ໌:"
+
+msgid "Logout"
+msgstr "ອອກຈາກລະບົບ"
+
+msgid "An update is available:"
+msgstr "ມີການອັບເດດທີ່ພ້ອມແລ້ວ:"
+
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr "ພວກເຮົາຂໍແນະນຳໃຫ້ທ່ານເຂົ້າໄປທີ່ສ່ວນ “ການກຳນົດຄ່າທີ່ມັກ” ເພື່ອກູ້ເອົາ “ລະຫັດກູ້ຄືນບັນຊີຂອງທ່ານ” ແລະ ເກັບມ້ຽນໄວ້ໃຫ້ມີຄວາມປອດໄພ. ລະຫັດນີ້ຈະມີຄວາມຈຳເປັນໃນການກູ້ຄືນການເຂົ້າເຖິງລະບົບ ແລະ ເຂົ້າເຖິງຂໍ້ມູນຂອງທ່ານໃນກໍລະນີທີ່ທ່ານລືມລະຫັດຜ່ານຂອງທ່ານ."
+
+msgid "The provided recovery key is invalid."
+msgstr "ລະຫັດກູ້ຄືນທີ່ໃຫ້ມາແມ່ນໃຊ້ບໍ່ໄດ້."
+
+msgid "The provided reset token is invalid or expired."
+msgstr "ໂທເຄັນການຕັ້ງຄືນໃໝ່ແມ່ນໃຊ້ບໍ່ໄດ້ ຫຼື ໝົດອາຍຸແລ້ວ."
+
+msgid ""
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "ປ້ອນຊື່ຜູ້ໃຊ້ຂອງບັນຊີຂອງທ່ານ ຫຼື ທີ່ຢູ່ອີເມວຂອງທ່ານ ເພື່ອຮ້ອງຂໍການຕັ້ງລະຫັດຜ່ານຄືນໃໝ່."
+
+msgid "Enter your email address to request a password reset."
+msgstr "ປ້ອນທີ່ຢູ່ອີເມວຂອງທ່ານ ເພື່ອຮ້ອງຂໍການຕັ້ງລະຫັດຜ່ານຄືນໃໝ່."
+
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
+msgstr "ປ້ອນລະຫັດການກູ້ຄືນການເຂົ້າລະຫັດລັບຂອງທ່ານ ເພື່ອໃຫ້ເຮັດສຳເລັດຂັ້ນຕອນການຕັ້ງລະຫັດຜ່ານຄືນໃໝ່"
+
+msgid "Password reset requested."
+msgstr "ໄດ້ຮ້ອງຂໍການຕັ້ງລະຫັດຜ່ານຄືນໃໝ່ແລ້ວ."
+
+msgid "Show"
+msgstr "ສະແດງ"
+
+msgid "Hide"
+msgstr "ເຊື່ອງໄວ້"
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "ໄດ້ມີການຮ້ອງຂໍການເຂົ້າເຖິງຂໍ້ມູນລະບຸຕົວຕົນຂອງຜູ້ແຈ້ງເບາະແສໄປຍັງຜູ້ປົກປ້ອງຂໍ້ມູນແລ້ວ."
+
+msgid "Date of the request"
+msgstr "ວັນທີຮ້ອງຂໍ"
+
+msgid "Undeclared"
+msgstr "ບໍ່ປະກາດ"
+
+msgid "Congratulations!"
+msgstr "ຂໍສະແດງຄວາມຍິນດີດ້ວຍ!"
+
+msgid "You have completed the platform activation."
+msgstr "ທ່ານໄດ້ເປີດໃຊ້ງານລະບົບສຳເລັດແລ້ວ."
+
+msgid "Success!"
+msgstr "​ສໍາ​ເລັດ!"
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr "ລະບົບການແຈ້ງເບາະແສຂອງທ່ານເກືອບຈະພ້ອມໃຊ້ງານແລ້ວ!"
+
+msgid "Check your inbox to activate it."
+msgstr "ກວດເບິ່ງກ່ອງຂໍ້ຄວາມເຂົ້າຂອງທ່ານເພື່ອເປີດໃຊ້ງານມັນ."
+
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "ຖ້າບໍ່ເປີດໃຊ້ງານພາຍໃນ 24 ຊົ່ວໂມງ ລະບົບຈະຖືກລຶບຖິ້ມໂດຍອັດຕະໂນມັດ."
+
+msgid "Sign up"
+msgstr "ລົງທະບຽນ"
+
+msgid "Domain"
+msgstr "ໂດເມນ"
+
+msgid "Confirmation"
+msgstr "ການຢືນຢັນ"
+
+msgid "Invalid confirmation"
+msgstr "ການຢືນຢັນໃຊ້ບໍ່ໄດ້"
+
+msgid "Other"
+msgstr "ອື່ນໆ"
+
+msgid "Complete"
+msgstr "ສຳເລັດສົມບູນ"
+
+msgid "Invalid phone number"
+msgstr "ເບີໂທລະສັບໃຊ້ບໍ່ໄດ້"
+
+msgid "Select the context of your report:"
+msgstr "ເລືອກເນື້ອຫາຂອງລາຍງານຂອງທ່ານ:"
+
+msgid "The answer is too short"
+msgstr "ຄຳຕອບສັ້ນເກີນໄປ"
+
+msgid "The specified input is not valid."
+msgstr "ການປ້ອນຂໍ້ມູນທີ່ລະບຸແມ່ນໃຊ້ບໍ່ໄດ້."
+
+msgid "The specified input is not valid:"
+msgstr "ການປ້ອນຂໍ້ມູນທີ່ລະບຸແມ່ນໃຊ້ບໍ່ໄດ້."
+
+msgid "please enter a valid email address."
+msgstr "ກະລຸນາປ້ອນທີ່ຢູ່ອີເມວທີ່ໃຊ້ໄດ້."
+
+msgid "please enter numbers only."
+msgstr "ກະລຸນາປ້ອນຕົວເລກເທົ່ານັ້ນ."
+
+msgid "Submissions disabled"
+msgstr "ການສົ່ງຖືກປິດໃຊ້ງານແລ້ວ"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "ທ່ານກຳລັງເຊື່ອມຕໍ່ກັບເຊີບເວີໂດຍບໍ່ມີການລະບຸຕົວຕົນ ແລະ ເຊີບເວີນີ້ຮອງຮັບພຽງແຕ່ການສົ່ງທີ່ມີການລະບຸຕົວຕົນເທົ່ານັ້ນ"
+
+msgid "Thank you!"
+msgstr "ຂໍຂອບ​ໃຈ!"
+
+msgid "Your report was successful."
+msgstr "ການລາຍງານຂອງທ່ານສຳເລັດແລ້ວ."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "ພວກເຮົາຈະພະຍາຍາມຕິດຕໍ່ກັບໃຫ້ໄວເທົ່າທີ່ຈະໄວໄດ້."
+
+msgid "Remember your receipt for this report."
+msgstr "ບັນທຶກໃບບິນຂອງທ່ານສຳລັບລາຍງານນີ້."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "ໃຊ້ໃບບິນ 16 ຕົວເລກເພື່ອເຂົ້າສູ່ລະບົບ. ມັນຈະອະນຸຍາດໃຫ້ທ່ານສາມາດເບິ່ງທຸກຂໍ້ຄວາມທີ່ພວກເຮົາໄດ້ສົ່ງໃຫ້ທ່ານ ແລະ ຍັງສາມາດເພີ່ມຂໍ້ມູນເພີ່ມຕື່ມໄດ້ອີກດ້ວຍ."
+
+msgid "View your report"
+msgstr "ເບິ່ງລາຍງານຂອງທ່ານ"
+
+msgid "Recipient selection"
+msgstr "ການເລືອກຜູ້ຮັບ"
+
+msgid "Select the recipients of your report:"
+msgstr "ເລືອກຜູ້ຮັບລາຍງານຂອງທ່ານ:"
+
+msgid "Recipients selected:"
+msgstr "ຜູ້ຮັບທີ່ຖືກເລືອກ:"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr "ທ່ານໄດ້ເລືອກເຕັມຈຳນວນທີ່ສາມາດເລືອກໄດ້ສູງສຸດແລ້ວ."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "ຜູ້ຮັບຕໍ່ໄປນີ້ຈະໄດ້ຮັບລາຍງານຂອງທ່ານ ແລະ ບໍ່ສາມາດຍົກເລີກການເລືອກໄດ້:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "ໃນຂັ້ນຕອນນີ້ ຄຳຕອບຕໍ່ຄຳຖາມຕໍ່ໄປນີ້ແມ່ນຂາດຫາຍໄປ ຫຼື ໃຊ້ບໍ່ໄດ້:"
+
+msgid "You must select at least one recipient."
+msgstr "ທ່ານຕ້ອງເລືອກຜູ້ຮັບຢ່າງໜ້ອຍໜຶ່ງຄົນ."
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "ກຳລັງລໍຖ້າໃຫ້ອັບໂຫຼດໄຟລ໌ (ຕ່າງໆ) ໃຫ້ສຳເລັດ."
+
+msgid "The following steps have errors:"
+msgstr "ຂັ້ນຕອນຕໍ່ໄປນີ້ເກີດມີຂໍ້ຜິດພາດ:"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr "ຂັ້ນຕອນທີ່ເປັນແຕ່ລະຂັ້ນຕໍ່ໄປນີ້ຈະນຳພາທ່ານຕະຫຼອດການສ້າງລະບົບການແຈ້ງເບາະແສຂອງທ່ານ."
+
+msgid "Please choose a configuration profile:"
+msgstr "ກະລຸນາເລືອກໂປຼຟາຍການກຳນົດຄ່າ:"
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "ອະນຸຍາດໃຫ້ແອັດມິນຄົນນີ້ສາມາດຕັ້ງລະຫັດຜ່ານຂອງຜູ້ໃຊ້ຄືນໃໝ່ໄດ້."
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr "ພວກເຮົາຂໍແນະນຳໃຫ້ເລືອກຕົວເລືອກນີ້ ຖ້າທ່ານຢາກຈະປົກປ້ອງຂໍ້ມູນຈາກການສູນເສຍໃນກໍລະນີທີ່ຜູ້ຮັບລືມລະຫັດຜ່ານຂອງຕົນ. ໃນທາງກັບກັນ, ພວກເຮົາຈະບໍ່ຂໍແນະນຳໃຫ້ນຳໃຊ້ຄຸນສົມບັດນີ້ ຖ້າທ່ານຕ້ອງການຕັ້ງລະບົບທີ່ມີພຽງແຕ່ຜູ້ຮັບເທົ່ານັ້ນທີ່ສາມາດເຂົ້າເຖິງການສົ່ງໄດ້"
+
+msgid "Please choose a different username."
+msgstr "ກະລຸນາເລືອກຊື່ຜູ້ໃຊ້ອື່ນ."
+
+msgid "I have read and agree to the terms of the license."
+msgstr "ຂ້າພະເຈົ້າໄດ້ອ່ານ ແລະ ຕົກລົງເຫັນດີກັບຂໍ້ກຳນົດຂອງໃບອະນຸຍາດແລ້ວ."
+
+msgid "You have completed the platform wizard."
+msgstr "ທ່ານໄດ້ສ້າງຕົວຊ່ວຍສ້າງລະບົບສຳເລັດແລ້ວ."
+
+msgid "Fill out your report"
+msgstr "ຕື່ມຂໍ້ມູນໃສ່ລາຍງານຂອງທ່ານ"
+
+msgid "Describe your report in a few words."
+msgstr "ອະທິບາຍລາຍງານຂອງທ່ານແບບສັ້ນໆ."
+
+msgid "Describe your report in detail."
+msgstr "ອະທິບາຍລາຍງານຂອງທ່ານໃຫ້ລະອຽດ."
+
+msgid "Attach files relevant to the report."
+msgstr "ຄັດຕິດໄຟລ໌ເອະກະສານທີ່ກ່ຽວຂ້ອງກັບລາຍງານ."
+
+msgid "Do you want to provide your identification information?"
+msgstr "ທ່ານຕ້ອງການໃຫ້ຂໍ້ມູນປະຈຳຕົວຂອງທ່ານບໍ?"
+
+msgid "First name"
+msgstr "ຊື່"
+
+msgid "Last name"
+msgstr "ນາມສະກຸນ"
+
+msgid "Gender"
+msgstr "ເພດ"
+
+msgid "Male"
+msgstr "ຊາຍ"
+
+msgid "Female"
+msgstr "ຍິງ"
+
+msgid "Other gender identity"
+msgstr "ການລະບຸເພດອື່ນໆ"
+
+msgid "Date of birth"
+msgstr "ວັນເດືອນປີເກີດ"
+
+msgid "Place of birth"
+msgstr "ບ່ອນເກີດ"
+
+msgid "Zip code / Postal code"
+msgstr "ລະຫັດເຂດ/ລະຫັດໄປສະນີ"
+
+msgid "Province"
+msgstr "ແຂວງ"
+
+msgid "Country"
+msgstr "ປະເທດ"
+
+msgid "Dear {RecipientName},"
+msgstr "ຮຽນທ່ານ {RecipientName} ທີ່ຮັກແພງ,"
+
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr "ທ່ານໄດ້ຮັບອີເມວນີ້ ເພາະວ່າໄດ້ມີການສ້າງບັນຊີຜູ້ໃຊ້ໃຫ້ແກ່ທ່ານໃນລະບົບ: {Site}"
+
+msgid "Username: {Username}"
+msgstr "ຊື່ຜູ້ໃຊ້: {Username}"
+
+msgid "Activation link: {Url}"
+msgstr "ລິ້ງເປີດໃຊ້ງານ: {Url}"
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr "ກະລຸນາກົດທີ່ລິ້ງການເປີດໃຊ້ງານ ເພື່ອໄປຍັງການເປີດໃຊ້ງານບັນຊີ ແລະ ຕັ້ງລະຫັດຜ່ານຜູ້ໃຊ້ຂອງທ່ານ."
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr "ຫຼັງຈາກການການເປີດໃຊ້ງານສຳເລັດແລ້ວ ທ່ານຈະສາມາດເຂົ້າເຖິງລະບົບໄດ້ໂດຍຜ່ານລິ້ງຕໍ່ໄປນີ້: {LoginUrl}"
+
+msgid "Kind regards,"
+msgstr "ດ້ວຍ​ຄວາມ​ເຄົາ​ລົບນັບຖື,"
+
+msgid "Account activation"
+msgstr "ການເປີດໃຊ້ງານບັນຊີ"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "ໃນຕອນນີ້ແມ່ນສາມາດເຂົ້າເຖິງລະບົບການແຈ້ງເບາະແສຂອງທ່ານໄດ້ທີ່:"
+
+msgid "To log in, visit:"
+msgstr "ເພື່ອເຂົ້າສູ່ລະບົບ, ໃຫ້ເຂົ້າເບິ່ງ:"
+
+msgid "Users' credentials:"
+msgstr "ຂໍ້ມູນເຂົ້າສູ່ລະບົບຂອງຜູ້ໃຊ້:"
+
+msgid "The platform will be automatically deleted on:"
+msgstr "ລະບົບຈະຖືກລຶບຖິ້ມໂດຍອັດຕະໂນມັດໃນ:"
+
+msgid "Access instructions"
+msgstr "ຄຳແນະນຳໃນການເຂົ້າເຖິງ"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "ປາກົດວ່າຈຳນວນການເຄື່ອນໄຫວໃນມໍ່ໆມານີ້ທີ່ກວດພົບ ແມ່ນສູງກວ່າປົກກະຕິ."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "ນີ້ອາດຈະເປັນສັນຍານບົ່ງບອກເຖິງການໂຈມຕີ (ຕົວຢ່າງ: ມີຄົນກະຈາຍຂໍ້ມູນປອມໄປທົ່ວເຊີບເວີຂອງ) ຫຼື ພຽງແຕ່ມີການໃຊ້ງານເພີ່ມຂຶ້ນຍ້ອນການມອງເຫັນໂອກາດຂອງໂຄງການຂອງທ່ານເພີ່ມຂຶ້ນ."
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr "ກວດກາເບິ່ງບັນຫາດັ່ງກ່າວເພື່ອກຳນົດວ່າມັນຖືກຕ້ອງຕາມກົດໝາຍ ຫຼື ບໍ່."
+
+msgid "The activities with unusual stats are:"
+msgstr "ການເຄື່ອນໄຫວຕ່າງໆທີ່ມີສະຖິຕິຜິດປົກກະຕິໄດ້ແກ່:"
+
+msgid ""
+"The server cannot guarantee that a new report can be stored, so submissions "
+"have been disabled."
+msgstr "ເຊີບເວີບໍ່ສາມາດຮັບປະກັນໄດ້ວ່າ ຈະສາມາດຈັດເກັບລາຍງານໃໝ່ໄດ້, ສະນັ້ນການສົ່ງຈຶ່ງຖືກປິດໃຊ້ງານ."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr "ກະລຸນາພິຈາລະນາກ່ຽວກັບການຮ້ອງຂໍໃຫ້ທີມງານໃຫ້ການຊ່ວຍເຫຼືອທາງດ້ານເຕັກນິກຂອງທ່ານສ້າງພື້ນທີ່ຫວ່າງຂອງດິສຄ໌ໃຫ້ຫຼາຍຂຶ້ນໃນເຊີບເວີ."
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "ເຕັກໂນໂລຢີຂອງ GlobaLeaks ປະກອບມີສ່ວນປະກອບໃນການກວດກາສະຖານະຂອງເຊີບເວີ ຊຶ່ງຈະແຈ້ງເຕືອນທ່ານໃນກໍລະນີມີບາງສິ່ງທີ່ຕ້ອງການຄວາມເອົາໃຈໃສ່ຈາກທ່ານ."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr "ສຳລັບຂໍ້ມູນເພີ່ມຕື່ມ, ລົງຊື່ເຂົ້າສູ່ຈໍປະສານການດູແລລະບົບ ແລະ ເບິ່ງສ່ວນ \"ສະຖິຕິລະບົບ\" ແລະ \"ຄວາມຜິດປົກກະຕິ\"."
+
+msgid "Anomaly detected in {NodeName}"
+msgstr "ມີການກວດພົບຄວາມຜິດປົກກະຕິໃນ {NodeName}"
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "ນີ້ແມ່ນອີເມວເພື່ອແຈ້ງໃຫ້ທ່ານຊາບວ່າ ລະຫັດ PGP ຂອງຜູ້ໃຊ້ຕໍ່ໄປນີ້ຈະໝົດອາຍຸ ຫຼື ໄດ້ໝົດອາຍຸໄປແລ້ວ:"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "ຖ້າບໍ່ມີລະຫັດ PGP ທີ່ຍັງໃຊ້ງານໄດ້, ລະບົບຈະບໍ່ສາມາດສົ່ງການແຈ້ງເຕືອນທີ່ມີການເຂົ້າລະຫັດໃຫ້ພວກເຂົາໄດ້."
+
+msgid "PGP key expiration alert"
+msgstr "ການແຈ້ງເຕືອນວັນໝົດອາຍຸຂອງລະຫັດ PGP"
+
+msgid "A new whistleblowing site has been registered."
+msgstr "ເວັບໄຊການແຈ້ງເບາະແສໃໝ່ໄດ້ຮັບການລົງທະບຽນແລ້ວ."
+
+msgid "Registration data:"
+msgstr "ຂໍ້ມູນການລົງທະບຽນ:"
+
+msgid "Site: {Url}"
+msgstr "ເວັບໄຊ: {Url}"
+
+msgid "Name: {Name}"
+msgstr "ຊື່: {Name}"
+
+msgid "Email: {Email}"
+msgstr "ອີເມວ: {Email}"
+
+msgid "Language: {Language}"
+msgstr "ພາສາ: {Language}"
+
+msgid "Use case: {UseCase}"
+msgstr "ລັກສະນະການໃຊ້ງານຂອງລະບົບ: {UseCase}"
+
+msgid "New whistleblowing site registered"
+msgstr "ໄດ້ລົງທະບຽນເວັບໄຊການແຈ້ງເບາະແສໃໝ່ແລ້ວ"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr "ນີ້ແມ່ນອີເມວທົດລອງທີ່ສົ່ງອອກມາຈາກຈໍປະສານການດູແລລະບົບ."
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr "ການໄດ້ຮັບອີເມວນີ້ເປັນການບົ່ງບອກວ່າ ເຊີບເວີສາມາດກວດສອບຄວາມຖືກຕ້ອງ ແລະ ພົວພັນກັບເຊີບເວີອີເມວ SMTP ແລ້ວ."
+
+msgid "Test email"
+msgstr "ອີເມວທົດລອງ"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr "ນີ້ແມ່ນອີເມວເພື່ອແຈ້ງໃຫ້ທ່ານຊາບວ່າ ໄດ້ມີຄຳຮ້ອງຂໍເພື່ອປ່ຽນທີ່ຢູ່ອີເມວຂອງທ່ານໄປເປັນ {NewEmailAddress}."
+
+msgid "Click the following link to validate this change:"
+msgstr "ກົດທີ່ລິ້ງຕໍ່ໄປນີ້ເພື່ອຢືນຢັນການປ່ຽນແປງນີ້:"
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr "ຖ້າທ່ານບໍ່ໄດ້ຮ້ອງຂໍການປ່ຽນແປງນີ້, ໃຫ້ປ່ຽນລະຫັດຜ່ານຂອງທ່ານ ແລະ ຕິດຕໍ່ແອັດມິນຂອງທ່ານ."
+
+msgid "Email change request"
+msgstr "ຄຳຮ້ອງຂໍປ່ຽນອີເມວ"
+
+msgid "From: {Author}"
+msgstr "ຈາກ: {Author}"
+
+msgid "Date: {EventTime}"
+msgstr "ວັນທີ: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "ຈາກ: ຜູ້ແຈ້ງເບາະແສ"
+
+msgid "Date: {SubmissionDate}"
+msgstr "ວັນທີ: {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "ສະຫຼາກ: {TipLabel}"
+
+msgid "Status: {TipStatus}"
+msgstr "ສະຖານະ: {TipStatus}"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr "ໃບຢັ້ງຢືນ HTTPS ທີ່ໂຫຼດໄວ້ຢູ່ໃນລະບົບແມ່ນກຳລັງຈະໝົດ ຫຼື ໝົດອາຍຸແລ້ວ."
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "ວັນໝົດອາຍຸ: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr "ຖ້າບໍ່ມີໃບຢັ້ງຢືນທີ່ຍັງໃຊ້ໄດ້, ວິທີທີ່ຈະສາມາດເຂົ້າເຖິງລະບົບໃຫ້ມີຄວາມປອດໄພໄດ້ ມີພຽງຜ່ານ Tor ເທົ່ານັ້ນ."
+
+msgid "Log in to solve the issue."
+msgstr "ເຂົ້າສູ່ລະບົບເພື່ອແກ້ໄຂບັນຫາ."
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr "ການແຈ້ງເຕືອນວັນໝົດອາຍຸຂອງໃບຢັ້ງຢືນ HTTPS"
+
+msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr "ການຕໍ່ອາຍຸໃບຢັ້ງຢືນ HTTPS ອັດຕະໂນມັດ ທີ່ໄດ້ກຳນົດໃນມື້ນີ້ແມ່ນບໍ່ສຳເລັດ."
+
+msgid "The system will keep trying."
+msgstr "ລະບົບຈະພະຍາຍາມຕໍ່ໄປ."
+
+msgid "Failed HTTPS certificate renewal"
+msgstr "ການຕໍ່ອາຍຸໃບຢັ້ງຢືນ HTTPS ບໍ່ສຳເລັດ"
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the report {TipNum}."
+msgstr "ນີ້ແມ່ນອີເມວເພື່ອແຈ້ງໃຫ້ທ່ານຊາບວ່າ ຜູ້ປົກປ້ອງຂໍ້ມູນໄດ້ອະນຸຍາດໃຫ້ທ່ານເຂົ້າເຖິງຂໍ້ມູນລະບຸຕົວຕົນໃນການແຈ້ງເບາະແສຂອງລາຍງານ {TipNum} ແລ້ວ."
+
+msgid "The report can be accessed at:"
+msgstr "ສາມາດເຂົ້າເຖິງລາຍງານໄດ້ທີ່:"
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "ມີການອະນຸຍາດໃຫ້ເຂົ້າເຖິງຂໍ້ມູນລະບຸຕົວຕົນຂອງຜູ້ແຈ້ງເບາະແສແລ້ວ"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" whistleblowing identity for the report {TipNum}."
+msgstr "ນີ້ແມ່ນອີເມວເພື່ອແຈ້ງໃຫ້ທ່ານຊາບວ່າ ຜູ້ປົກປ້ອງຂໍ້ມູນໄດ້ປະຕິເສດບໍ່ໃຫ້ທ່ານເຂົ້າເຖິງຂໍ້ມູນລະບຸຕົວຕົນໃນການແຈ້ງເບາະແສຂອງລາຍງານ {TipNum}."
+
+msgid "Access to whistleblower's identity denied"
+msgstr "ມີການປະຕິເສດບໍ່ໃຫ້ເຂົ້າເຖິງຂໍ້ມູນລະບຸຕົວຕົນຂອງຜູ້ແຈ້ງເບາະແສ"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the report {TipNum}"
+msgstr "ນີ້ແມ່ນອີເມວເພື່ອແຈ້ງໃຫ້ທ່ານຊາບວ່າ ຜູ້ຮັບໄດ້ຮ້ອງຂໍການເຂົ້າເຖິງຂໍ້ມູນລະບຸຕົວຕົນໃນການແຈ້ງເບາະແສຂອງລາຍງານ {TipNum}."
+
+msgid "The request can be accessed at:"
+msgstr "ສາມາດເຂົ້າເຖິງຄຳຮ້ອງຂໍໄດ້ທີ່:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr "ຄຳຮ້ອງຂໍໃໝ່ເພື່ອເຂົ້າເຖິງຂໍ້ມູນລະບຸຕົວຕົນຂອງຜູ້ແຈ້ງເບາະແສ"
+
+msgid ""
+"This is an email to notify you that the whistleblower for the report "
+"{TipNum} has provided their identity."
+msgstr "ນີ້ແມ່ນອີເມວເພື່ອແຈ້ງໃຫ້ທ່ານຊາບວ່າ ຜູ້ແຈ້ງເບາະແສຂອງລາຍງານ {TipNum} ໄດ້ໃຫ້ຂໍ້ມູນລະບຸຕົວຕົນຂອງຕົນແລ້ວ."
+
+msgid "The whistleblower has provided their identity"
+msgstr "ຜູ້ແຈ້ງເບາະແສໄດ້ໃຫ້ຂໍ້ມູນລະບຸຕົວຕົນຂອງຕົນແລ້ວ."
+
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"the account: {Username}"
+msgstr "ທ່ານໄດ້ຮັບອີເມວນີ້ເພາະວ່າ ໄດ້ມີຄຳຮ້ອງຂໍໃຫ້ຕັ້ງລະຫັດຜ່ານຄືນໃໝ່ສຳລັບບັນຊີ: {Username}"
+
+msgid ""
+"If you didn't make this request, you may safely ignore and delete this "
+"email."
+msgstr "ຖ້າທ່ານບໍ່ໄດ້ສົ່ງຄຳຮ້ອງຂໍນີ້, ທ່ານອາດຈະບໍ່ຕ້ອງສົນໃຈ ແລະ ລຶບອີເມວນີ້ຖິ້ມໄດ້ຢ່າງປອດໄພ."
+
+msgid "You can confirm your request by clicking the following link:"
+msgstr "ທ່ານສາມາດຢືນຢັນຄຳຮ້ອງຂໍຂອງທ່ານໄດ້ໂດຍການກົດລິ້ງຕໍ່ໄປນີ້:"
+
+msgid "Password reset instructions"
+msgstr "ຄຳແນະນຳກ່ຽວກັບການຕັ້ງລະຫັດຜ່ານຄືນໃໝ່"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "ນີ້ແມ່ນອີເມວເພື່ອແຈ້ງໃຫ້ທ່ານຊາບວ່າ ລະຫັດ PGP ຂອງທ່ານກຳລັງຈະໝົດອາຍຸ ຫຼື ໝົດອາຍຸແລ້ວ."
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "ທ່ານຄວນຕໍ່ອາຍຸການນຳໃຊ້ຂອງມັນ ແລະ ອັບເດດລະຫັດທີ່ມີຢູ່ໃນລະບົບ ຫຼື ອັບໂຫຼດລະຫັດໃໝ່."
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "ຖ້າບໍ່ມີລະຫັດ PGP ທີ່ຍັງໃຊ້ງານໄດ້, ລະບົບຈະບໍ່ສາມາດເຂົ້າລະຫັດຂໍ້ມູນທີ່ສະໜອງໃຫ້ທ່ານ."
+
+msgid "Click the link to activate the platform:"
+msgstr "ກົດລິ້ງເພື່ອເປີດໃຊ້ງານລະບົບ:"
+
+msgid "Activation"
+msgstr "ການເປີດໃຊ້ງານ"
+
+msgid "A software update is available."
+msgstr "ມີຊອບແວພ້ອມໃຫ້ອັບເດດແລ້ວ."
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr "ມັນແມ່ນການປະຕິບັດດ້ານຄວາມປອດໄພທີ່ດີໃນການຮັກສາໃຫ້ລະບົບຂອງທ່ານມີການອັບເດດຢູ່ສະເໝີ."
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr "ເພື່ອຮຽນຮູ້ກ່ຽວກັບຄຸນສົມບັດໃໝ່ ແລະ ການແກ້ໄຂຂໍ້ບົກພ່ອງຕ່າງໆໃນເວີຊັ່ນໃໝ່ ໃຫ້ເບິ່ງບັນທຶກການປ່ຽນແປງໄດ້ທີ່: {ChangeLogUrl}"
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr "ສຳລັບຄຳແນະນຳກ່ຽວກັບການອັບເດດຊອບແວ, ກະລຸນາເບິ່ງເອກະສານໄດ້ທີ່: {UpdateGuideUrl}"
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr "ວັນໝົດອາຍຸທີ່ໄວທີ່ສຸດແມ່ນ {EarliestExpirationDate}."
+
+msgid "Please remember to check them before they are deleted."
+msgstr "ກະລຸນາຢ່າລືມກວດເບິ່ງພວກມັນ ກ່ອນທີ່ພວກມັນຈະຖືກລຶບຖິ້ມ."
+
+msgid "Some reports will expire soon"
+msgstr "ມີລາຍງານຈຳນວນໜຶ່ງຈະໝົດອາຍຸໃນໄວໆນີ້"
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their report."
+msgstr "ນີ້ແມ່ນອີເມວເພື່ອແຈ້ງໃຫ້ທ່ານຊາບວ່າ ຜູ້ແຈ້ງເບາະແສໄດ້ເລືອກທ່ານເປັນຜູ້ຮັບລາຍງານທີ່ຊົງຄຸນຄ່າຂອງລາຍງານຂອງພວກເຂົາ."
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this report should be considered to be of high "
+"importance."
+msgstr "ຂໍໃຫ້ທ່ານເອົາໃຈໃສ່ເປັນພິເສດຕໍ່ຂໍ້ມູນ ແລະ ເອກະສານຕ່າງໆທີ່ມີຢູ່ໃນນັ້ນ. ກະລຸນາຈື່ໄວ້ວ່າ ຜູ້ແຈ້ງເບາະແສມັກຈະນຳຕົນເອງໄປສູ່ຄວາມສ່ຽງສ່ວນຕົວສູງ ເພື່ອຜົນປະໂຫຍດຂອງສາທາລະນະ. ເພາະສະນັ້ນ ເອກະສານທີ່ໃຫ້ໄວ້ໃນລາຍງານນີ້ ກໍຄວນຖືວ່າມີຄວາມສຳຄັນສູງເຊັ່ນກັນ."
+
+msgid "New report"
+msgstr "ບົດລາຍງານໃໝ່"
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr "ນີ້ແມ່ນອີເມວເພື່ອແຈ້ງໃຫ້ຊາບວ່າ ໄດ້ມີການອັບເດດລາຍງານທີ່ມີຢູ່ແລ້ວ."
+
+msgid "Report updated"
+msgstr "ລາຍງານໄດ້ຮັບການອັບເດດແລ້ວ"
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr "ອີເມວນີ້ແມ່ນເພື່ອເຕືອນທ່ານຊາບວ່າຍັງມີລາຍງານທີ່ຍັງບໍ່ທັນໄດ້ອ່ານ ຫຼື ມີການອັບເດດ."
+
+msgid "Reminder about unread or updated reports"
+msgstr "ເຕືອນໃຫ້ຊາບວ່າຍັງມີລາຍງານທີ່ຍັງບໍ່ທັນໄດ້ອ່ານ ຫຼື ມີການອັບເດດ"
+
+msgid "Role: {Role}"
+msgstr "ບົດບາດ: {Role}"
+
+msgid "Password: {Password}"
+msgstr "ລະຫັດຜ່ານ: {Password}"
