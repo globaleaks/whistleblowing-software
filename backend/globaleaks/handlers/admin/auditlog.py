@@ -128,8 +128,8 @@ class AuditLog(BaseHandler):
     """
     Handler that provide access to the access.log file
     """
-    check_roles = 'any'
-    #root_tenant_only = True
+    check_roles = 'admin'
+    root_tenant_only = True
 
     def get(self):
         return get_audit_log(self.request.tid)
