@@ -48,6 +48,10 @@ a:hover,
   color: #5797D5;
 }
 
+.onionaddress {
+  font-weight: bold;
+}
+
 .visible-on-over {
   opacity: 0.2;
 }
