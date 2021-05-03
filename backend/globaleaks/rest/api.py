@@ -518,10 +518,7 @@ class APIResourceWrapper(Resource):
         else:
             request.setHeader(b'X-Check-Tor', b'False')
 
-        if request.language:
-            language = request.language
-
-        request.setHeader(b'Content-Language', language)
+        request.setHeader(b'Content-Language', request.language)
 
     def detect_language(self, request):
         tid = request.tid if request.tid else 1
