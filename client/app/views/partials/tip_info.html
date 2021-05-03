@@ -67,7 +67,7 @@
         <td class="TipInfoUpdateDate">{{tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
         <td class="TipInfoExpirationDate">
           <span data-ng-if="!Utils.isNever(tip.expiration_date)">{{tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
-          <span data-ng-if="Utils.isNever(tip.expiration_date)" data-translate>Never</span>
+          <span data-ng-if="Utils.isNever(tip.expiration_date)">-</span>
         </td>
         <td class="TipInfoLastAccess" data-ng-if="Authentication.session.role === 'receiver'">
           <i data-ng-if="tip.wb_last_access >= tip.update_date" class="fas fa-check"

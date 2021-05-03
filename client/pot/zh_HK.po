@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-04-30 17:52+0000\n"
+"Last-Translator: Adawcs\n"
 "Language-Team: Chinese (Hong Kong) (http://www.transifex.com/otf/globaleaks/language/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -74,7 +74,7 @@ msgid "Date"
 msgstr "建立日期"
 
 msgid "Expiration date"
-msgstr "距離報告截止日期"
+msgstr "距離報告到期日"
 
 msgid "Last Access"
 msgstr "最近一次讀取"
@@ -113,7 +113,7 @@ msgid "Label the report"
 msgstr "標籤此報告"
 
 msgid "Postpone the expiration date"
-msgstr "延遲截止日期"
+msgstr "延遲到期日"
 
 msgid "Select all"
 msgstr "全選"
@@ -570,7 +570,7 @@ msgid "Allow recipients to delete reports"
 msgstr "接收者可以刪除報告"
 
 msgid "Allow recipients to postpone expiration date of the report"
-msgstr "接收者可以延遲報告截止日期"
+msgstr "接收者可以延遲報告到期日"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific reports"
@@ -580,13 +580,13 @@ msgid "Enable search engines indexing"
 msgstr "准許搜尋引擎進行索引"
 
 msgid "Enable custom privacy panel"
-msgstr "自訂頁首私隱 banner"
+msgstr "自訂平台頁首的私隱通告"
 
 msgid "Custom privacy panel"
-msgstr "自訂私隱 banner 內文"
+msgstr "自訂私隱通告內文"
 
 msgid "Disable the privacy panel"
-msgstr "停用私隱 Banner"
+msgstr "隱藏私隱通告"
 
 msgid "Enable the receipt hint"
 msgstr "啟用收據提示"
@@ -1011,7 +1011,7 @@ msgid "Password"
 msgstr "密碼"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "在報告截止日期前多少個小時發送提醒通知"
+msgstr "在報告到期日前多少個小時發送提醒通知"
 
 msgid "Test the configuration"
 msgstr "測試此設置"
@@ -1230,7 +1230,7 @@ msgid "Forcefully selected"
 msgstr "強制選擇"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "允許此接收者延遲報告截止日期"
+msgstr "允許此接收者延遲報告到期日"
 
 msgid "Allow the recipient to delete reports"
 msgstr "允許此接收者刪除報告"
@@ -1344,42 +1344,42 @@ msgid "Follow the project on:"
 msgstr "Follow 我們："
 
 msgid "Hint: How to hide your receipt"
-msgstr ""
+msgstr "提示：隱藏收據方法"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr ""
+msgstr "您可以把收據號碼像信用卡資料一樣地寫下來。"
 
 msgid "Error!"
-msgstr ""
+msgstr "出現錯誤！"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "伺服器錯誤"
 
 msgid "Error on input validation"
-msgstr ""
+msgstr "輸入驗證錯誤"
 
 msgid "Resource not found"
-msgstr ""
+msgstr "找不到資源"
 
 msgid "Forbidden operation"
-msgstr ""
+msgstr "禁止的操作"
 
 msgid "The specified old password is not valid"
-msgstr ""
+msgstr "舊密碼無效"
 
 msgid "Resource can only be accessed via the Tor network"
-msgstr ""
+msgstr "資源僅能透過 Tor 網路讀取"
 
 msgid "The upload request exceeds the size limit"
-msgstr ""
+msgstr "上傳請求超出檔案大小上限"
 
 msgid "Validation of email address change in progress."
 msgstr "更改電郵地址驗證中。"
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
+msgstr "請檢查您的電子郵箱，以取得進一步指示。"
 
 msgid "Account recovery key"
 msgstr "帳號修復金鑰"
@@ -1388,12 +1388,12 @@ msgid "Current password"
 msgstr "現時密碼"
 
 msgid "Old password confirmation required"
-msgstr ""
+msgstr "請確認舊密碼"
 
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
-msgstr "您並沒有使用保護私隱安全的連接來瀏覽此網站。"
+msgstr "您並沒有使用私隱及安全的連接來瀏覽此網站。"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
@@ -1407,46 +1407,46 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "成功安裝並開啓 Tor 瀏覽器之後，請使用以下鏈結來到訪此平台："
 
 msgid "Enter a name for the copy"
-msgstr ""
+msgstr "為此複本命名"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr ""
+msgstr "想查看您之前提交的報告？在此輸入收據號碼："
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "收據號碼無效或報告截止日期已過。"
+msgstr "收據號碼無效或報告已經到期。"
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "選取檔案或將之拖曳到此處"
 
 msgid "Uploading files…"
-msgstr ""
+msgstr "檔案上載中……"
 
 msgid "Upload completed successfully!"
-msgstr ""
+msgstr "已成功上載檔案。"
 
 msgid "Error while uploading files; check below for details."
-msgstr ""
+msgstr "上載檔案時發生錯誤；請查看以下資訊了解詳情。"
 
 msgid "Estimated upload time:"
-msgstr ""
+msgstr "預計上載時間："
 
 msgid "Size:"
 msgstr "大小：   "
 
 msgid "Enable the Ricochet panel"
-msgstr ""
+msgstr "啟用 Ricochet 面板"
 
 msgid "Address"
 msgstr "地址"
 
 msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
+msgstr "用 Ricochet 匿名地與我們即時通訊"
 
 msgid "To chat with us use the following Ricochet address:"
-msgstr ""
+msgstr "請用此 Ricochet 網址來找我們："
 
 msgid "Download Ricochet at:"
-msgstr ""
+msgstr "下載 Ricochet："
 
 msgid ""
 "By using the Tor network and creating an Onion Service, Ricochet is an "
@@ -1542,15 +1542,15 @@ msgid "Please write a motivation for the reply"
 msgstr ""
 
 msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "確定延遲報告截止日期？"
+msgstr "確定延遲報告到期日？"
 
 msgid "By confirming, you will postpone the expiration date to:"
-msgstr "您將把截止日期延遲至："
+msgstr "您將把到期日延遲至："
 
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
 "reports?"
-msgstr "確定延遲所有選取報告的截止日期？"
+msgstr "確定延遲所有選取報告的到期日？"
 
 msgid "Questionnaire answers"
 msgstr "問卷答覆"
@@ -1615,29 +1615,29 @@ msgid ""
 msgstr "已向保管人請求吹哨者的個人身份。"
 
 msgid "Date of the request"
-msgstr ""
+msgstr "請求日期"
 
 msgid "Undeclared"
 msgstr ""
 
 msgid "Congratulations!"
-msgstr ""
+msgstr "恭喜您！"
 
 msgid "You have completed the platform activation."
-msgstr ""
+msgstr "您已完成平台啟動手續。"
 
 msgid "Success!"
-msgstr ""
+msgstr "成功！"
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "您的舉報平台就快完成了！"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "請檢查您的電子郵箱，以啟動此平台。"
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "如未能在 24 小時內完成啟動手續，平台將會被自動刪除。"
 
 msgid "Sign up"
 msgstr "註冊"
@@ -1664,7 +1664,7 @@ msgid "Select the context of your report:"
 msgstr "請選擇您的報告主題："
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "答案過短"
 
 msgid "The specified input is not valid."
 msgstr ""
@@ -1676,10 +1676,10 @@ msgid "please enter a valid email address."
 msgstr "請輸入有效的電郵地址。"
 
 msgid "please enter numbers only."
-msgstr ""
+msgstr "請只輸入數字。"
 
 msgid "Submissions disabled"
-msgstr "暫時停止接收報告"
+msgstr "已停止接收報告"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
@@ -1899,7 +1899,7 @@ msgstr "在 {NodeName} 偵測到異常狀況"
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "謹以此電郵通知您，以下使用者的 PGP 金鑰即將或者已經過期："
+msgstr "謹以此電郵通知您，以下使用者的 PGP 金鑰即將或者已經到期："
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
@@ -1907,7 +1907,7 @@ msgid ""
 msgstr "如無有效的 PGP 金鑰，系統會無法將發出的通知加密。"
 
 msgid "PGP key expiration alert"
-msgstr "PGP 金鑰過期提醒"
+msgstr "PGP 金鑰到期提醒"
 
 msgid "A new whistleblowing site has been registered."
 msgstr "新的舉報平台網站剛被註冊。"
@@ -1982,21 +1982,21 @@ msgstr "狀態：{TipStatus}"
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr "此平台的 HTTPS 憑證即將或者已經過期。"
+msgstr "此平台的 HTTPS 憑證即將或者已經到期。"
 
 msgid "Expiration date: {ExpirationDate}"
-msgstr "截止日期：{ExpirationDate}"
+msgstr "到期日：{ExpirationDate}"
 
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr "沒有有效憑證的話，只能透過 Tor 瀏覽器才可以安全地使用此平台。"
+msgstr "平台沒有有效憑證的話，只能透過 Tor 瀏覽器才可以安全地使用它。"
 
 msgid "Log in to solve the issue."
 msgstr "登入並解決此問題。"
 
 msgid "Expiration alert for HTTPS certificate"
-msgstr "HTTPS 憑證過期提醒"
+msgstr "HTTPS 憑證到期提醒"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
@@ -2065,7 +2065,7 @@ msgstr "密碼重設指示"
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr "謹以此電郵通知您，您的 PGP 金鑰即將或者已經過期。"
+msgstr "謹以此電郵通知您，您的 PGP 金鑰即將或者已經到期。"
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
@@ -2100,13 +2100,13 @@ msgid ""
 msgstr "有關軟件更新說明，請參閱文檔：{UpdateGuideUrl}"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
-msgstr "最早的截止日期是 {EarliestExpirationDate}。"
+msgstr "最早的到期日是 {EarliestExpirationDate}。"
 
 msgid "Please remember to check them before they are deleted."
 msgstr "請在報告自動刪除之前檢查一下。"
 
 msgid "Some reports will expire soon"
-msgstr "有些報告即將截止"
+msgstr "有些報告即將到期"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "

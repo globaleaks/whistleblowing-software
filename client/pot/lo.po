@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-04-30 14:06+0000\n"
+"Last-Translator: Cheer Zeng <cheerz6623@gmail.com>\n"
 "Language-Team: Lao (http://www.transifex.com/otf/globaleaks/language/lo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -74,10 +74,10 @@ msgid "Date"
 msgstr "ວັນທີ"
 
 msgid "Expiration date"
-msgstr "ວັນ​ໝົດ​ອາ​ຍຸ"
+msgstr "ວັນ​ທີໝົດ​ອາ​ຍຸ"
 
 msgid "Last Access"
-msgstr "ການເຂົ້າຄັ້ງສຸດທ້າຍ"
+msgstr "ການເຂົ້າເຖິງຫຼ້າສຸດ"
 
 msgid "Files"
 msgstr "ໄຟລ໌ຕ່າງໆ"
@@ -101,7 +101,7 @@ msgid "Details"
 msgstr "ລາຍລະອຽດຕ່າງໆ"
 
 msgid "Platform wizard"
-msgstr "ຕົວຊ່ວຍສ້າງລະບົບ"
+msgstr "ຕົວຊ່ວຍສ້າງແມ່ແບບ"
 
 msgid "CREDIT CARD"
 msgstr "ບັດເຄຼດິດ"
@@ -113,7 +113,7 @@ msgid "Label the report"
 msgstr "ຕິດສະຫຼາກໃສ່ລາຍງານ"
 
 msgid "Postpone the expiration date"
-msgstr "ເລື່ອນວັນໝົດອາຍຸ"
+msgstr "ເລື່ອນວັນທີໝົດອາຍຸ"
 
 msgid "Select all"
 msgstr "ເລືອກທັງໝົດ"
@@ -131,25 +131,25 @@ msgid "Private messages"
 msgstr "ຂໍ້ຄວາມສ່ວນຕົວ"
 
 msgid "Preview"
-msgstr "ການເບິ່ງກ່ອນ"
+msgstr "ການສະແດງຕົວຢ່າງ"
 
 msgid "The whistleblower has already read the last update"
 msgstr "ຜູ້ແຈ້ງເບາະແສໄດ້ອ່ານການອັບເດດຄັ້ງຫຼ້າສຸດແລ້ວ"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr "ຜູ້ແຈ້ງເບາະແສຍັງບໍ່ໄດ້ອ່ານການອັບເດດຄັ້ງຫຼ້າສຸດແລ້ວ"
+msgstr "ຜູ້ແຈ້ງເບາະແສຍັງບໍ່ໄດ້ອ່ານການອັບເດດຄັ້ງຫຼ້າສຸດເທື່ອ"
 
 msgid "Move up"
-msgstr "ຍັບຂຶ້ນ"
+msgstr "ຍ້າຍຂຶ້ນ"
 
 msgid "Move down"
-msgstr "ຍັບລົງ"
+msgstr "ຍ້າຍລົງ"
 
 msgid "Move left"
-msgstr "ຍັບຊ້າຍ"
+msgstr "ຍ້າຍໄປຊ້າຍ"
 
 msgid "Move right"
-msgstr "ຍັບຂວາ"
+msgstr "ຍ້າຍໄປຂວາ"
 
 msgid "Import"
 msgstr "ນໍາເຂົ້າ"

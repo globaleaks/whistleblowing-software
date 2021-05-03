@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-04-29 16:41+0000\n"
+"Last-Translator: Edo Imantaka <imantaka.edo@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -75,7 +75,7 @@ msgid "License"
 msgstr "Lisensi"
 
 msgid "Notification templates"
-msgstr "Format pemberitahuan"
+msgstr "Format notifikasi"
 
 msgid "Delete"
 msgstr "Hapus"
@@ -842,7 +842,7 @@ msgid "Show recipients in alphabetical order"
 msgstr "Tunjukkan penerima-penerima berdasarkan susunan abjad"
 
 msgid "Show recipient details on the status page of the report"
-msgstr "Tunjukkan detil penerima pada laman status laporan"
+msgstr "Tunjukkan detail penerima pada laman status laporan"
 
 msgid "Enable comments"
 msgstr "Aktifkan komentar"
@@ -1198,7 +1198,7 @@ msgid "Root domain used for secondary sites"
 msgstr "Domain awal yang digunakan untuk situs kedua"
 
 msgid "Use the first site for administrative purposes only"
-msgstr "Gunakan situs pertama untuk tujuan administratif"
+msgstr "Gunakan situs pertama hanya untuk tujuan administratif"
 
 msgid "Enable multi-site login"
 msgstr "Mengizinkan untuk masuk ke banyak situs"
@@ -1246,7 +1246,7 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "Memasang enkripsi dengan menyediakan kunci publik PGP"
 
 msgid "Give this admin ability to change user passwords"
-msgstr "Izinkan admin ini untuk mengubah sandi pengguna"
+msgstr "Izinkan admin ini untuk mengubah kata sandi pengguna"
 
 msgid "Forcefully selected"
 msgstr "Secara paksa dipilih"

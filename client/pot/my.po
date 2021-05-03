@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-04-30 10:16+0000\n"
+"Last-Translator: Tun Tun Aung <tuntunaung@codingclassroom.org>\n"
 "Language-Team: Burmese (http://www.transifex.com/otf/globaleaks/language/my/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -491,10 +491,10 @@ msgid "Skip the recipient account creation."
 msgstr "လက်ခံသူ အကောင့်ဖန်တီးခြင်းကို ကျော်လိုက်ပါ။"
 
 msgid "Send activation link"
-msgstr "activation link ကိုပို့ပါ"
+msgstr "အသက်သွင်းခြင်းလင့်ကိုပို့ပါ"
 
 msgid "Password reset"
-msgstr "စကားဝှက်ပြန်လည်သတ်မှတ်ပါ"
+msgstr "စကားဝှက်ကိုပြန်လည်သတ်မှတ်ပါ"
 
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
@@ -532,13 +532,13 @@ msgid ""
 msgstr "ရွေးချယ်ထားသောစကားဝှက်သည် အလွန်အားနည်းနေသည်။ တရားဝင်စကားဝှက်သည် အနည်းဆုံး စာလုံးရေ ၁၀ လုံးရှိသင့်ပြီး အနည်းဆုံးစာလုံးအသေး၊ စာလုံးအကြီး၊ နံပါတ်နှင့် အထူးအက္ခရာများပါဝင်သော အက္ခရာအမျိုးမျိုး ရှိသင့်သည်။"
 
 msgid "The new password must be different from the current one."
-msgstr "စကားဝှက်အသစ်သည် လက်ရှိသုံးနေသော စကားဝှက်နှင့် ကွဲပြားရမည်။"
+msgstr "စကားဝှက်အသစ်သည် လက်ရှိသုံးနေသော စကားဝှက်နှင့်ကွဲပြားရမည်။"
 
 msgid "Type your new password again"
-msgstr "သင်၏စကားဝှက်အသစ်ကို ထပ်ရိုက်ပါ။"
+msgstr "သင်၏စကားဝှက်အသစ်ကို ထပ်ရိုက်ပါ"
 
 msgid "The two passwords do not match"
-msgstr "စကားဝှက်နှစ်ခုသည် မတူညီပါ"
+msgstr "စကားဝှက်နှစ်ခုသည်မတူညီပါ"
 
 msgid "The new password must differ from the previous."
 msgstr "စကားဝှက်အသစ်သည် ယခင်အဟောင်းနှင့် မတူရပါ။ "
@@ -547,7 +547,7 @@ msgid "Proceed"
 msgstr "ဆက်လက်ဆောင်ရွက်ရန်"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr "ဆက်လက်မလုပ်ဆောင်မှီ နှစ်ဆင့်စစ်ဆေးခြင်းကို အတည်ပြုပါ။ "
+msgstr "ဆက်လက်မလုပ်ဆောင်မီ အဆင့်နှစ်ဆင့်ဖြင့်စစ်မှန်ကြောင်းသက်သေပြခြင်းကို အတည်ပြုပါ။ "
 
 msgid "Disable submissions"
 msgstr "တင်ပြချက်များကို ပိတ်လိုက်ပါ"
@@ -556,7 +556,7 @@ msgid "Enable encryption"
 msgstr "ကုဒ်ဖြင့်ပြောင်းလဲပြီး ဖွင့်လိုက်ပါ။"
 
 msgid "Enable administrators to change user passwords"
-msgstr "အသုံးပြုသူ၏စကားဝှက်များကို ပြောင်းလဲရန် အုပ်ချုပ်ရေးမှူးများကို ခွင့်ပြုပေးပါ။"
+msgstr "အသုံးပြုသူ၏စကားဝှက်များကို ပြောင်းလဲရန် အုပ်ချုပ်ရေးမှူးများကို ခွင့်ပြုပေးပါ"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "အုပ်ချုပ်သူများသည် အသုံးပြုသူ၏စကားဝှက်များကို ပြောင်းလဲပိုင်ခွင့်ရှိသည် - "
@@ -611,7 +611,7 @@ msgid "Enable HSTS preload"
 msgstr "Enable HSTS preload"
 
 msgid "Require two factor authentication"
-msgstr "နှစ်ဆင့် စစ်ဆေးခြင်းကို လိုအပ်သည်"
+msgstr "အဆင့်နှစ်ဆင့်ဖြင့်စစ်မှန်ကြောင်းသက်သေပြခြင်းကို လိုအပ်သည်"
 
 msgid "Password change interval"
 msgstr "စကားဝှက်ပြောင်းလဲမှု ကြားကာလ"
@@ -1177,7 +1177,7 @@ msgid "Root domain used for secondary sites"
 msgstr "ဒုတိယတန်းဆိုဒ်များအတွက် အသုံးပြုထားသော root domain"
 
 msgid "Use the first site for administrative purposes only"
-msgstr "ပထမဆုံးဆိုဒ်ကို စီမံအုပ်ချုပ်မှုဆိုင်ရာ ရည်ရွယ်ချက်များအတွက်သာသုံးပါ"
+msgstr "ပထမဆုံးဆိုဒ်ကို အုပ်ချုပ်မှုဆိုင်ရာ ရည်ရွယ်ချက်များအတွက်သာသုံးပါ"
 
 msgid "Enable multi-site login"
 msgstr "Multi- site ကိုအကောင့်၀င်ရန်ဖွင့်ပါ"
@@ -1189,7 +1189,7 @@ msgid "Enable terms of service"
 msgstr "ဝန်ဆောင်မှု၏စည်းကမ်းချက်များကိုဖွင့်ပါ"
 
 msgid "Send an account activation link to the user."
-msgstr "အသုံးပြုသူအတွက်အကောင့် activation link ကိုပို့ပါ။"
+msgstr "အသုံးပြုသူအတွက်အကောင့် အသက်သွင်းခြင်းလင့်ကိုပို့ပါ။"
 
 msgid "Public name"
 msgstr "အများဆိုင်နာမည်"
@@ -1201,13 +1201,13 @@ msgid "Set password"
 msgstr "စကားဝှက်သတ်မှတ်ပါ"
 
 msgid "Disable two factor authentication"
-msgstr "နှစ်ဆင့်စစ်ဆေးခြင်းကို ပိတ်ပါ"
+msgstr "အဆင့်နှစ်ဆင့်ဖြင့်စစ်မှန်ကြောင်းသက်သေပြခြင်းကို ပိတ်ပါ"
 
 msgid "Force password change"
 msgstr "အတင်းအကြပ်စကား၀ှက်ကို ပြောင်းပါ"
 
 msgid "The user will be forced to change its password on next login."
-msgstr "အသုံးပြုသူအား နောက်တစ်ချိန် login ပြုလုပ်လျှင် သူ၏ password ကိုပြောင်းလဲပစ်ရန် အတင်းအကျပ်ခိုင်းစေလိမ့်မည်။"
+msgstr "အသုံးပြုသူအား နောက်တစ်ချိန် login ပြုလုပ်လျှင် သူ၏ စကား၀ှက်ကိုပြောင်းလဲပစ်ရန် အတင်းအကျပ်ခိုင်းစေလိမ့်မည်။"
 
 msgid "Language"
 msgstr "ဘာသာစကား"
@@ -1225,7 +1225,7 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "PGP public key ကိုပေးပြီး ကုဒ်ဖြင့်ပြောင်းလဲခြင်းကို တည်ဆောက်ပါ"
 
 msgid "Give this admin ability to change user passwords"
-msgstr "အသုံးပြုသူ၏ စကားဝှက်များကို ပြောင်းလဲရန် ဤ admin ၏စွမ်းရည်ကို ပေးပါ"
+msgstr "အသုံးပြုသူ၏ စကားဝှက်များကို ပြောင်းလဲရန် အကောင့်အုပ်ချုပ်သူ၏ လုပ်နိုင်စွမ်းကို ပေးပါ"
 
 msgid "Forcefully selected"
 msgstr "အတင်းအဓမ္မရွေးချယ်ထားကြသည်"
@@ -1258,7 +1258,7 @@ msgid "Your new email address has been validated."
 msgstr "သင့်အီးမေးလ်လိပ်စာအသစ်အား အတည်ပြုပြီးဖြစ်သည်။ "
 
 msgid "Forgot password?"
-msgstr "စကားဝှက်ကိုမေ့နေပါသလား"
+msgstr "စကားဝှက်ကိုမေ့နေပါသလား။"
 
 msgid "Enter the two factor authentication code"
 msgstr "နှစ်ဆင့်ခံ စစ်ဆေးခြင်း ကုတ်ကို ဖြည့်ပါ။ "
@@ -1276,7 +1276,7 @@ msgid "Please select your account:"
 msgstr "ကျေးဇူးပြုပြီးသင့်အကောင့်ကိုရွေးချယ်ပါ - "
 
 msgid "Now type your password, then click 'Log in':"
-msgstr "သင်၏စကားဝှက်ကိုရိုက်ထည့်ပါ၊ ပြီးနောက် 'Log in' ကိုနှိပ်ပါ - "
+msgstr "သင်၏စကားဝှက်ကိုရိုက်ထည့်ပါ၊ ပြီးနောက် 'အကောင့်ဝင်ရန်' ကိုနှိပ်ပါ - "
 
 msgid "Text shown after the user has selected the option."
 msgstr "အသုံးပြုသူမှ ရွေးစရာကိုရွေးချယ်ပြီးနောက်ပိုင်း ဖော်ပြထားတဲ့စာသား။"
@@ -1285,7 +1285,7 @@ msgid "Confirm"
 msgstr "အတည်ပြုရန်"
 
 msgid "Are you sure?"
-msgstr "သေချာပါသလား"
+msgstr "သေချာပါသလား။"
 
 msgid "The operation will reset the configuration and cannot be undone."
 msgstr "The operation will reset the configuration and cannot be undone. "
@@ -1306,7 +1306,7 @@ msgid "Scan the QR code with the app"
 msgstr "အက်ပ်ဖြင့် QR ကုဒ်ကို စကင်ဖတ်ပါ"
 
 msgid "Enable two factor authentication"
-msgstr "နှစ်ဆင့်စစ်ဆေးခြင်းကို ခွင့်ပြုပါ"
+msgstr "အဆင့်နှစ်ဆင့်ဖြင့်စစ်မှန်ကြောင်းသက်သေပြခြင်းကို ခွင့်ပြုပါ"
 
 msgid "Close"
 msgstr "ပိတ်ရန်"
@@ -1386,10 +1386,10 @@ msgid "Account recovery key"
 msgstr "အကောင့်ပြန်လည်ဆယ်ယူရေးစကားဝှက်သော့"
 
 msgid "Current password"
-msgstr "ယခု စကားဝှက်"
+msgstr "လက်ရှိစကားဝှက်"
 
 msgid "Old password confirmation required"
-msgstr "စကားဝှက်အဟောင်းကိုအတည်ပြုရန်လိုအပ်သည်"
+msgstr "စကားဝှက်အဟောင်းကို အတည်ပြုရန်လိုအပ်သည်"
 
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
@@ -1411,7 +1411,7 @@ msgid "Enter a name for the copy"
 msgstr "မိတ္တူအတွက် အမည်တစ်ခုထည့်ပါ"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "သင်အစီရင်ခံစာ တင်ပြီးပြီလား သင့်လက်ခံဖြတ်ပိုင်းကို ရိုက်ထည့်ပါ။"
+msgstr "သင်အစီရင်ခံစာ တင်ပြီးပြီလား၊ သင့်လက်ခံဖြတ်ပိုင်းကို ရိုက်ထည့်ပါ။"
 
 msgid "The receipt is either invalid or the report has expired."
 msgstr "လက်ခံဖြတ်ပိုင်းသည် မမှန်ကန်ခြင်း သို့မဟုတ် သက်တမ်းကုန်ဆုံးသွားခြင်း ဖြစ်ပါသည်။ "
@@ -1447,7 +1447,7 @@ msgid "To chat with us use the following Ricochet address:"
 msgstr "ကျွန်ုပ်တို့နှင့်စကားပြောရန် အောက်ပါ Ricochet လိပ်စာကို သုံးပါ - "
 
 msgid "Download Ricochet at:"
-msgstr "Ricochet ကိုဒေါင်းလုပ်ဆွဲပါ - "
+msgstr "Ricochet ကို ကူးဆွဲပါ - "
 
 msgid ""
 "By using the Tor network and creating an Onion Service, Ricochet is an "
@@ -1520,7 +1520,7 @@ msgid "Allow the whistleblower to send messages"
 msgstr "သတင်းပေးသူအား မက်ဆေ့များပို့ခွင့်ပြုပါ"
 
 msgid "Are you sure that you want to delete the report?"
-msgstr "သင်အစီရင်ခံစာကို ဖျက်လိုတယ်ဆိုတာ သေချာပါသလား"
+msgstr "သင်အစီရင်ခံစာကို ဖျက်လိုတယ်ဆိုတာ သေချာပါသလား။"
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
@@ -1532,7 +1532,7 @@ msgid ""
 msgstr "ကျေးဇူးပြု၍ သတိပြုပါ၊ ပလက်ဖောင်းမှ သိမ်းဆည်းထားသည့်အရာအားလုံး၊ ဥပမာ - သင့်ကွန်ပျူတာပေါ်တွင်သင်သိမ်းဆည်းထားသောဖိုင်များကို ကိုယ်တိုင်ဖျက်ပစ်ရမည်။"
 
 msgid "Are you sure that you want to delete the selected reports?"
-msgstr "ရွေးချယ်ထားသည့် အစီရင်ခံစာများကို သင်ဖျက်ပစ်လိုကြောင်း သေချာပါသလား"
+msgstr "ရွေးချယ်ထားသည့် အစီရင်ခံစာများကို သင်ဖျက်ပစ်လိုကြောင်း သေချာပါသလား။"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
@@ -1543,7 +1543,7 @@ msgid "Please write a motivation for the reply"
 msgstr "ကျေးဇူးပြု၍ အကြောင်းပြန်မှုအတွက် လှုံ့ဆော်မှုတစ်ခုပေးပါ။ "
 
 msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "သင်အစီရင်ခံစာ သက်တမ်းကုန်ဆုံးမည့်နေ့ကို ရွှေ့ဆိုင်းလိုကြောင်း သေချာပါသလား"
+msgstr "သင်အစီရင်ခံစာ သက်တမ်းကုန်ဆုံးမည့်နေ့ကို ရွှေ့ဆိုင်းလိုကြောင်း သေချာပါသလား။"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "အတည်ပြုခြင်းအားဖြင့်၊ သက်တမ်းကုန်ဆုံးသည့် ရက်ကိုရွှေ့ဆိုင်း -"
@@ -1551,7 +1551,7 @@ msgstr "အတည်ပြုခြင်းအားဖြင့်၊ သက�
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
 "reports?"
-msgstr "ရွေးချယ်ထားသည့်အစီရင်ခံစာအားလုံးအတွက် သက်တမ်းကုန်ဆုံးမည့်နေ့ကို ရွှေ့ဆိုင်းလိုကြောင်း သေချာပါသလား"
+msgstr "ရွေးချယ်ထားသည့်အစီရင်ခံစာအားလုံးအတွက် သက်တမ်းကုန်ဆုံးမည့်နေ့ကို ရွှေ့ဆိုင်းလိုကြောင်း သေချာပါသလား။"
 
 msgid "Questionnaire answers"
 msgstr "မေးခွန်းလွှာအဖြေများ"
@@ -1600,7 +1600,7 @@ msgstr "စကားဝှက်ပြန်လည်သတ်မှတ်ရန
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr "စကားဝှက်ကို ပြန်လည်ဆယ်ယူရန် လုပ်ငန်းစဉ်အတွက် ကုဒ်ဖြင့်ပြောင်းပြီးပြန်လည်ဖော်ယူမည့် စကားဝှက်သော့ကို ထည့်ပါ။"
+msgstr "စကားဝှက်ကို ပြန်လည်ဆယ်ယူရန် လုပ်ငန်းစဉ်အတွက် ကုဒ်ဖြင့်ပြောင်းပြီးပြန်လည်ဖော်ယူမည့် စကားဝှက်သော့ကို ထည့်ပါ"
 
 msgid "Password reset requested."
 msgstr "စကားဝှက်ကို ပြန်လည်သတ်မှတ်ရန် တောင်းခံသည်။ "
@@ -1625,7 +1625,7 @@ msgid "Congratulations!"
 msgstr "ဂုဏ်ယူပါတယ်"
 
 msgid "You have completed the platform activation."
-msgstr "သင့်ပလက်ဖောင်း activation ပြီးစီးပါပြီ။"
+msgstr "သင့်ပလက်ဖောင်းအသက်သွင်းခြင်း ပြီးစီးပါပြီ။"
 
 msgid "Success!"
 msgstr "အောင်မြင်ပါသည်"
@@ -1778,7 +1778,7 @@ msgid "Attach files relevant to the report."
 msgstr "အစီရင်ခံစာနှင့်သက်ဆိုင်သည့် ဖိုင်များကို ပူးတွဲပါ။ "
 
 msgid "Do you want to provide your identification information?"
-msgstr "သင့်ရဲ့မှတ်ပုံတင်သတင်းအချက်အလက်ပေးချင်ပါသလား"
+msgstr "သင့်ရဲ့မှတ်ပုံတင်သတင်းအချက်အလက်ပေးချင်ပါသလား။"
 
 msgid "First name"
 msgstr "ရှေ့နာမည်စာလုံး"
@@ -1825,23 +1825,23 @@ msgid "Username: {Username}"
 msgstr "အသုံးပြုသူအမည် - {Username}"
 
 msgid "Activation link: {Url}"
-msgstr "အသက်၀င်စေသောလင့် - {Url}"
+msgstr "အသက်သွင်းခြင်းလင့် - {Url}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr "အကောင့် activation ဆက်လက်လုပ်ဆောင်ရန်နှင့် သင်၏အသုံးပြုသူစကားဝှက်ကို သတ်မှတ်ရန် activation link ကိုနှိပ်ပါ။"
+msgstr "အကောင့်အသက်သွင်းခြင်း ဆက်လက်လုပ်ဆောင်ရန်နှင့် သင်၏အသုံးပြုသူစကားဝှက်ကို သတ်မှတ်ရန် အသက်သွင်းခြင်းလင့်ကိုနှိပ်ပါ။"
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr "အောင်မြင်စွာ activation လုပ်ပြီးသည်နှင့်အောက်ပါ link မှတဆင့် system သို့သင်ဝင်ရောက်နိုင်လိမ့်မည် - {LoginUrl}"
+msgstr "အောင်မြင်စွာ အသက်သွင်းခြင်းလုပ်ပြီးသည်နှင့်အောက်ပါလင့်မှတဆင့် စနစ်ထဲသို့သင်ဝင်ရောက်နိုင်လိမ့်မည် - {LoginUrl}"
 
 msgid "Kind regards,"
 msgstr "မေတ္တာဖြင့်"
 
 msgid "Account activation"
-msgstr "အကောင့်ဖွင့်ခြင်း"
+msgstr "အကောင့်အသက်သွင်းခြင်း"
 
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "သင်၏ သတင်းပေးသော ပလက်ဖောင်းကို ယခုကြည့်ရှုနိုင်သည် - "
@@ -1957,7 +1957,7 @@ msgstr "ဒီပြောင်းလဲမှုကို အတည်ပြ�
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr "ဤပြောင်းလဲမှုကိုသင်မတောင်းဆိုပါက သင်၏စကားဝှက်ကိုပြောင်းလဲပြီး သင်၏ system administrator ကိုဆက်သွယ်ပါ။"
+msgstr "ဤပြောင်းလဲမှုကိုသင်မတောင်းဆိုပါက သင်၏စကားဝှက်ကိုပြောင်းလဲပြီး သင်၏ စနစ်ပိုင်းဆိုင်ရာအုပ်ချုပ်ရေးမှူးကို ဆက်သွယ်ပါ။"
 
 msgid "Email change request"
 msgstr "အီးမေးလ် ပြောင်းရန် တောင်းဆိုမှု"
@@ -2079,10 +2079,10 @@ msgid ""
 msgstr "တရား၀င်သော PGP စကားဝှက်သော့မရှိလျှင်၊ စနစ်သည် သင့်အားပေးထားသည့် အချက်အလက်များအတွက် ကုဒ်ဖြင့်ပြောင်းလဲပြီး ပြန်လည် မဖြည်ပေးနိုင်ပါ။"
 
 msgid "Click the link to activate the platform:"
-msgstr "ပလက်ဖောင်းကို သက်ဝင်စေဖို့ လင့်ခ်ကို နှိပ်ပါ။ "
+msgstr "ပလက်ဖောင်းကို သက်ဝင်စေဖို့ လင့်ကိုနှိပ်ပါ။ "
 
 msgid "Activation"
-msgstr "အသက်၀င်စေခြင်း"
+msgstr "အသက်သွင်းခြင်း"
 
 msgid "A software update is available."
 msgstr "ဆော့ဖ်ဝဲကိုအဆင့်မြှင့်နိုင်ပါသည်။"
