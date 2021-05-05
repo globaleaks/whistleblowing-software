@@ -193,7 +193,7 @@ class Service(service.Service):
 
 
 try:
-    application = service.Application('GLBackend')
+    application = service.Application('GlobaLeaks')
 
     if not Settings.nodaemon:
         logfile = openLogFile(Settings.logfile, Settings.log_file_size, Settings.num_log_files)
