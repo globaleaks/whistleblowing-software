@@ -181,12 +181,14 @@ class CertFileRes(FileResource):
     @staticmethod
     def db_serialize(session, tid):
         c = ConfigFactory(session, tid).get_val('https_cert')
-        if len(c) == 0:
+        if not c:
             return {
                 'name': 'cert',
                 'set': False
             }
 
+        log.err(c)
+        c = """{}""".format(c)
         x509 = crypto.load_certificate(crypto.FILETYPE_PEM, c)
         expr_date = letsencrypt.convert_asn1_date(x509.get_notAfter())
 
@@ -229,12 +231,13 @@ class ChainFileRes(FileResource):
     @staticmethod
     def db_serialize(session, tid):
         c = ConfigFactory(session, tid).get_val('https_chain')
-        if len(c) == 0:
+        if not c:
             return {
                 'name': 'chain',
                 'set': False
             }
 
+        c = tls.split_pem_chain(c)[0]
         x509 = crypto.load_certificate(crypto.FILETYPE_PEM, c)
         expr_date = letsencrypt.convert_asn1_date(x509.get_notAfter())
 

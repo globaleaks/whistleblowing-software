@@ -192,8 +192,9 @@ class TLSServerContextFactory(ssl.ContextFactory):
         self.ctx.use_certificate(x509)
 
         if intermediate:
-            x509 = load_certificate(FILETYPE_PEM, intermediate)
-            self.ctx.add_extra_chain_cert(x509)
+            for c in split_pem_chain(intermediate):
+                x509 = load_certificate(FILETYPE_PEM, c)
+                self.ctx.add_extra_chain_cert(x509)
 
         key = load_privatekey(FILETYPE_PEM, key)
         self.ctx.use_privatekey(key)
