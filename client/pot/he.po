@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -263,12 +263,6 @@ msgstr "אפוטרופוס של הזהויות"
 
 msgid "Identity"
 msgstr "זהות"
-
-msgid "Available"
-msgstr "זמין"
-
-msgid "Not available"
-msgstr "לא זמין"
 
 msgid "Access requested"
 msgstr "דרושה גישה"
@@ -1172,12 +1166,6 @@ msgstr "אתרים"
 msgid "Mode:"
 msgstr "מצב:"
 
-msgid "Active"
-msgstr "פעיל"
-
-msgid "Inactive"
-msgstr "בלתי פעיל"
-
 msgid "Configure"
 msgstr "תצר"
 
@@ -1527,9 +1515,6 @@ msgstr "גודל קובץ"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr ""
 
-msgid "Never"
-msgstr "לעולם לא"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "התר לחושף השחיתות לשלוח הודעות"
 
@@ -1631,9 +1616,6 @@ msgstr "גישה אל הזהות של המתריע התבקש האפוטרופו
 
 msgid "Date of the request"
 msgstr "תאריך הבקשה"
-
-msgid "Undeclared"
-msgstr ""
 
 msgid "Congratulations!"
 msgstr "מזל טוב!"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-30 13:43+0000\n"
+"PO-Revision-Date: 2021-05-04 12:54+0000\n"
 "Last-Translator: Cheer Zeng <cheerz6623@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/otf/globaleaks/language/ms/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +53,7 @@ msgid "License"
 msgstr "Lesen"
 
 msgid "Notification templates"
-msgstr "Templat notifikasi"
+msgstr "Templat pemberitahuan"
 
 msgid "Delete"
 msgstr "Padam"
@@ -128,7 +128,7 @@ msgid "Context"
 msgstr "Konteks"
 
 msgid "Private messages"
-msgstr "Mese peribadi"
+msgstr "Mesej peribadi"
 
 msgid "Preview"
 msgstr "Pratonton"
@@ -181,7 +181,7 @@ msgid "Number"
 msgstr "Nombor"
 
 msgid "Email"
-msgstr "e-mel"
+msgstr "E-mel"
 
 msgid "Regular expression validator"
 msgstr "Pengesah ungkapan biasa"
@@ -238,7 +238,7 @@ msgid "Reply motivation"
 msgstr "Balas motivasi"
 
 msgid "Request status"
-msgstr "Minta status"
+msgstr "Status permintaan"
 
 msgid "Custodian"
 msgstr "Penjaga"
@@ -248,12 +248,6 @@ msgstr "Penjaga identiti"
 
 msgid "Identity"
 msgstr "Identiti"
-
-msgid "Available"
-msgstr "Tersedia"
-
-msgid "Not available"
-msgstr "Tidak tersedia"
 
 msgid "Access requested"
 msgstr "Akses diminta"
@@ -274,7 +268,7 @@ msgid "Denied"
 msgstr "Ditolak"
 
 msgid "Waiting for authorization"
-msgstr "Menunggu keizinan"
+msgstr "Menunggu kebenaran"
 
 msgid "New request"
 msgstr "Permintaan baru"
@@ -344,7 +338,7 @@ msgid "Strong"
 msgstr "Kuat"
 
 msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Teks ditunjukkan pada atas antara muk untuk memilih konteks"
+msgstr "Teks ditunjukkan di atas antara muka untuk memilih konteks"
 
 msgid "Silence email notifications"
 msgstr "Pemberitahuan e-mel senyap"
@@ -385,7 +379,7 @@ msgid "Audit log"
 msgstr "Log audit"
 
 msgid "Stats"
-msgstr "Stat"
+msgstr "Statistik"
 
 msgid "Activities"
 msgstr "Aktiviti"
@@ -412,7 +406,7 @@ msgid "Scheduled jobs"
 msgstr "Kerja yang dijadualkan"
 
 msgid "Sites management"
-msgstr "Pengurusan tapak"
+msgstr "Pengurusan laman"
 
 msgid "Regenerate"
 msgstr "Jana semula"
@@ -436,7 +430,7 @@ msgid "Create your whistleblowing platform"
 msgstr "Cipta platform pemberi maklumat anda"
 
 msgid "Collapse"
-msgstr "Kuncupkan"
+msgstr "Runtuhkan"
 
 msgid "Expand"
 msgstr "Kembangkan"
@@ -537,7 +531,7 @@ msgid "Type your new password again"
 msgstr "Taipkan kata laluan baru anda semula."
 
 msgid "The two passwords do not match"
-msgstr "Dua kata laluan tidak sepadan"
+msgstr "Dua kata laluan ini tidak sepadan"
 
 msgid "The new password must differ from the previous."
 msgstr "Kata laluan perlulah berbeza daripada kata laluan sebelumnya."
@@ -574,7 +568,7 @@ msgstr "Benarkan penerima untuk menunda tarikh tamat tempoh laporan"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Benarkan penerima untuk menberikan kebenaran kepada pemberi maklumat mengenai laporan tertentu"
+msgstr "Benarkan penerima untuk memberikan kebenaran kepada pemberi maklumat mengenai laporan tertentu"
 
 msgid "Enable search engines indexing"
 msgstr "Dayakan pengindeksan enjin carian"
@@ -613,11 +607,11 @@ msgid "Require two factor authentication"
 msgstr "Memerlukan pengesahan dua faktor"
 
 msgid "Password change interval"
-msgstr "Selang masa perubahan kata lalaun"
+msgstr "Selang masa perubahan kata laluan"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr "Untuk tujuan keselamatan, perubahan kata laluan diperlukan di selang masa biasa."
+msgstr "Untuk tujuan keselamatan, perubahan kata laluan diperlukan pada selang masa tetap."
 
 msgid "Set the value to 0 to disable this feature."
 msgstr "Tetapkan nilai kepada 0 untuk menyahdayakan ciri ini."
@@ -805,7 +799,7 @@ msgid "days"
 msgstr "hari"
 
 msgid "Show the questionnaire navigation interface"
-msgstr "Tunjukkan antara muka navigasi soal selidik"
+msgstr "Tunjukkan navigasi antara muka soal selidik"
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "Benarkan pemberi maklumat memilih penerima mereka"
@@ -838,7 +832,7 @@ msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Benarkan pemberi maklumat menambah lampiran kepada laporan sedia ada"
 
 msgid "Let recipients upload files to whistleblowers"
-msgstr "Biarkan penerima memuat naik fail kepada pemberi maklumat"
+msgstr "Benarkan penerima memuat naik fail kepada pemberi maklumat"
 
 msgid "Additional questionnaire"
 msgstr "Soal selidik tambahan"
@@ -969,7 +963,7 @@ msgid ""
 msgstr "Wizard konfigurasi manual akan memandu anda melalui persediaan HTTPS daripada Certificate Authority alternatif."
 
 msgid "Auto-renewal"
-msgstr "Auto pembaharuan"
+msgstr "Pembaharuan automatik"
 
 msgid "Tor Onion Service"
 msgstr "Perkhidmatan Tor Onion"
@@ -978,7 +972,7 @@ msgid "Anonymize outgoing connections"
 msgstr "Tanpanamakan sambungan keluar"
 
 msgid "Let the platform be reachable without Tor"
-msgstr "Biarkan platform boleh dicapai tanpa Tor"
+msgstr "Benarkan platform boleh dicapai tanpa Tor"
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr "Peranan didayakan untuk mengguna platform tanpa Tor"
@@ -1080,7 +1074,7 @@ msgid "Accept multiple answers"
 msgstr "Terima pelbagai jawapan"
 
 msgid "Template override"
-msgstr "Pelangkauan templat"
+msgstr "Ganti templat"
 
 msgid "Phone number"
 msgstr "Nombor telefon"
@@ -1137,7 +1131,7 @@ msgid "Add question from template"
 msgstr "Tambah soalan daripada templat"
 
 msgid "Duplicate"
-msgstr "Penduakan"
+msgstr "Pendua"
 
 msgid "Steps"
 msgstr "Langkah-langkah"
@@ -1156,12 +1150,6 @@ msgstr "Laman"
 
 msgid "Mode:"
 msgstr "Mod:"
-
-msgid "Active"
-msgstr "Aktif"
-
-msgid "Inactive"
-msgstr "Tidak aktif"
 
 msgid "Configure"
 msgstr "Konfigurasikan"
@@ -1221,7 +1209,7 @@ msgid "Fingerprint"
 msgstr "Cap jari"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr "Tetapkan penyulitan dnegan menyediakan kunci awam PGP"
+msgstr "Tetapkan penyulitan dengan menyediakan kunci awam PGP"
 
 msgid "Give this admin ability to change user passwords"
 msgstr "Berikan kemampuan pentadbir ini untuk mengubah kata laluan pengguna"
@@ -1245,7 +1233,7 @@ msgid "Report date"
 msgstr "Tarikh laporan"
 
 msgid "Authorization"
-msgstr "Pengesahkuasaan"
+msgstr "Kebenaran"
 
 msgid "Requests"
 msgstr "Permintaan"
@@ -1269,7 +1257,7 @@ msgid "The code is either invalid or expired."
 msgstr "Kod tidak sah atau tamat tempoh."
 
 msgid "Site:"
-msgstr "Tapak:"
+msgstr "Laman:"
 
 msgid "Please select your account:"
 msgstr "Sila pilih akaun anda:"
@@ -1311,7 +1299,7 @@ msgid "Close"
 msgstr "Tutup"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr "Sebelum meneruskan, sila baca dengan teliti dokumentasi di:"
+msgstr "Sebelum meneruskan, sila baca dokumentasi dengan teliti di:"
 
 msgid "Your account recovery key is:"
 msgstr "Kunci pemulihan akaun anda ialah:"
@@ -1319,7 +1307,7 @@ msgstr "Kunci pemulihan akaun anda ialah:"
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr "Buat salinan dan simpannya di tempat yang selamat. Ia akan menjadi perlu jika anda kehilangan kata laluan anda untuk memulihkan akses kepada akaun anda tanpa kehilangan data."
+msgstr "Buat salinan dan simpannya di tempat yang selamat. Ia diperlukan jika anda kehilangan kata laluan anda untuk memulihkan akses kepada akaun anda tanpa kehilangan data."
 
 msgid "Welcome!"
 msgstr "Selamat datang!"
@@ -1341,15 +1329,15 @@ msgid "Join our chat:"
 msgstr "Sertai sembang kami:"
 
 msgid "Follow the project on:"
-msgstr "Ikut projek di:"
+msgstr "Ikuti projek di:"
 
 msgid "Hint: How to hide your receipt"
-msgstr "Isyarat: Cara menyembunyikan resit anda"
+msgstr "Bayangan: Cara menyembunyikan resit anda"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "Cara berguna untuk menyembunyikan resit anda untuk menulis nombor kad kredit, seperti dengan juga menyertakan tarikh tamat tempoh."
+msgstr "Cara berguna untuk menyembunyikan resit anda untuk menulis nombor kad kredit, cth. dengan juga menyertakan tarikh tamat tempoh."
 
 msgid "Error!"
 msgstr "Ralat!"
@@ -1364,10 +1352,10 @@ msgid "Resource not found"
 msgstr "Sumber tidak ditemui"
 
 msgid "Forbidden operation"
-msgstr "Operasi tidak dilarang"
+msgstr "Operasi dilarang"
 
 msgid "The specified old password is not valid"
-msgstr "Kata lama yang ditentukan tidak sah"
+msgstr "Kata laluan lama yang dinyatakan tidak sah"
 
 msgid "Resource can only be accessed via the Tor network"
 msgstr "Sumber hanya boleh diakses melalui rangkaian Tor"
@@ -1376,7 +1364,7 @@ msgid "The upload request exceeds the size limit"
 msgstr "Permintaan muat naik melebihi had saiz"
 
 msgid "Validation of email address change in progress."
-msgstr "Pengesahan perubahan alamat e-mel dalam perkembangan."
+msgstr "Pengesahan perubahan alamat e-mel sedang berjalan."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Sila periksa peti masuk anda untuk arahan selanjutnya."
@@ -1393,7 +1381,7 @@ msgstr "Pengesahan kata laluan lama diperlukan"
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
-msgstr "Ia kelihatan anda melayari laman ini tanpa sebarang privasi dan keselamatan tambahan!"
+msgstr "Nampaknya anda melayari laman ini tanpa sebarang privasi dan keselamatan tambahan!"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
@@ -1428,7 +1416,7 @@ msgid "Error while uploading files; check below for details."
 msgstr "Ralat semasa memuat naik fail; periksa di bawah untuk butiran."
 
 msgid "Estimated upload time:"
-msgstr "Masa muat naik anggaran:"
+msgstr "Anggaran masa muat naik:"
 
 msgid "Size:"
 msgstr "Saiz:"
@@ -1454,7 +1442,7 @@ msgid ""
 "and staying anonymous by not revealing your location or IP address. You "
 "won't notice any difference from an insecure chat, except that you will be "
 "using a unique address instead of a phone number/email/username."
-msgstr "Dengan menggunakan rangkaian Tor dan mencipta Perkhidmatan Orion, Ricochet ialah aplikasi permesejan segera yang membenarkan anda untuk bersembang sementara melindungi privasi anda dan kekal tanpa nama dengan tidak mendedahkan lokasi anda atau alamat IP. Anda tidak menyedari sebarang perbezaan daripada sembang tidak selamat, kecuali anda akan menggunakan alamat unik berbanding nombor telefon/e-mel/nama pengguna."
+msgstr "Dengan menggunakan rangkaian Tor dan mencipta Perkhidmatan Orion, Ricochet ialah aplikasi pemesejan segera yang membenarkan anda untuk bersembang sementara melindungi privasi anda dan kekal tanpa nama dengan tidak mendedahkan lokasi anda atau alamat IP. Anda tidak akan menyedari sebarang perbezaan daripada sembang tidak selamat, kecuali anda akan menggunakan alamat unik berbanding nombor telefon/e-mel/nama pengguna."
 
 msgid "The connection is not secure."
 msgstr "Sambungan tidak selamat."
@@ -1474,7 +1462,7 @@ msgid "Corporate compliance"
 msgstr "Pematuhan korporat"
 
 msgid "Investigative journalism"
-msgstr "Siasat kewartawanan"
+msgstr "Kewartawanan siasat"
 
 msgid "Civic activism"
 msgstr "Aktivitisme sivik"
@@ -1512,9 +1500,6 @@ msgstr "Saiz fail"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Benarkan pemberi maklumat menambah lampiran kepada laporan"
 
-msgid "Never"
-msgstr "Tidak"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Benarkan pemberi maklumat menghantar mesej"
 
@@ -1528,7 +1513,7 @@ msgstr "Semua yang berkaitan kepada laporan disimpan di platform akan dipadam."
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
 " saved on your computer, must be deleted manually."
-msgstr "Sila sedar bahawa semua yang disimpan di luar platform, contohnya fail yang anda simpan di komputer anda, perlu dipadam secara manual."
+msgstr "Sila ambil perhatian bahawa semua yang disimpan di luar platform, contohnya fail yang anda simpan di komputer anda, perlu dipadam secara manual."
 
 msgid "Are you sure that you want to delete the selected reports?"
 msgstr "Adakah anda pasti anda mahu memadam laporan yang dipilih?"
@@ -1536,7 +1521,7 @@ msgstr "Adakah anda pasti anda mahu memadam laporan yang dipilih?"
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
 "recipients won't be able to further access to it."
-msgstr "Sila pastikan bahawa semua data berkaitan dipadam dengan betul supaya penerima tidak dpaat mengakses selanjutnya kepadanya."
+msgstr "Sila pastikan bahawa semua data berkaitan dipadam dengan betul supaya penerima tidak dapat mengakses selanjutnya kepadanya."
 
 msgid "Please write a motivation for the reply"
 msgstr "Sila tuliskan motivasi untuk balas"
@@ -1581,25 +1566,25 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr "Kami mengesyorkan anda mengakses bahagian “Keutamaan” untuk mendapatkan “Kunci Pemulihan Akaun” dan menyimpannya dengan selamat. Kunci ini akan menjadi perlu untuk memulihkan akses anda kepada platform dan kepada data anda sekiranya anda lupa kata laluan anda."
+msgstr "Kami mengesyorkan anda mengakses bahagian “Keutamaan” untuk mendapatkan “Kunci Pemulihan Akaun” dan menyimpannya dengan selamat. Kunci ini diperlukan untuk memulihkan akses anda kepada platform dan kepada data anda sekiranya anda lupa kata laluan anda."
 
 msgid "The provided recovery key is invalid."
 msgstr "Kunci pemulihan yang diberikan tidak sah."
 
 msgid "The provided reset token is invalid or expired."
-msgstr "Token tetap semula yang diebrikan tidak sah atau tamat tempoh."
+msgstr "Token tetap semula yang diberikan tidak sah atau tamat tempoh."
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr "Masukkan nama pengguna akaun anda atau alamat e-mel anda untuk meinta penetapan semula kata laluan."
+msgstr "Masukkan nama pengguna akaun anda atau alamat e-mel anda untuk meminta penetapan semula kata laluan."
 
 msgid "Enter your email address to request a password reset."
 msgstr "Masukkan alamat e-mel anda untuk meminta penetapan semula kata laluan."
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr "Masukkan kunci pemulhan penyulitan anda untuk melengkapkan prosedur penetapan semula kata laluan"
+msgstr "Masukkan kunci pemulihan penyulitan anda untuk melengkapkan prosedur penetapan semula kata laluan"
 
 msgid "Password reset requested."
 msgstr "Penetapan kata laluan diminta."
@@ -1616,9 +1601,6 @@ msgstr "Akses kepada identiti pemberi maklumat telah diminta kepada penjaga."
 
 msgid "Date of the request"
 msgstr "Tarikh permintaan"
-
-msgid "Undeclared"
-msgstr "Tidak diisytiharkan"
 
 msgid "Congratulations!"
 msgstr "Tahniah!"
@@ -1667,10 +1649,10 @@ msgid "The answer is too short"
 msgstr "Jawapan terlalu pendek"
 
 msgid "The specified input is not valid."
-msgstr "Input tertentu tidak sah."
+msgstr "Input yang dinyatakan tidak sah."
 
 msgid "The specified input is not valid:"
-msgstr "Input tertentu tidak sah:"
+msgstr "Input yang dinyatakan tidak sah:"
 
 msgid "please enter a valid email address."
 msgstr "sila masukkan alamat e-mel sah."
@@ -1696,12 +1678,12 @@ msgid "We will try to get back to you as soon as possible."
 msgstr "Kami akan cuba kembali kepada anda secepat mungkin."
 
 msgid "Remember your receipt for this report."
-msgstr "Ingat resit anda untuk laporan ini,"
+msgstr "Ingat resit anda untuk laporan ini."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Gunakan resit 16 digit untuk log masuk. Ia akan membenrkan anda untuk melihat sebarang mesej yang kami hantar kepada anda, dan juga untuk menambah info tambahan."
+msgstr "Gunakan resit 16 digit untuk log masuk. Ia akan membenarkan anda untuk melihat sebarang mesej yang kami hantar kepada anda, dan juga untuk menambah info tambahan."
 
 msgid "View your report"
 msgstr "Lihat laporan anda"
@@ -1726,7 +1708,7 @@ msgstr "Penerima berikut akan menerima laporan anda tidak boleh dinyahpilih:"
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr "Dalam langkah ini, jawapan kepada soalan beriktu tiada atau tidak sah:"
+msgstr "Dalam langkah ini, jawapan kepada soalan berikut tiada atau tidak sah:"
 
 msgid "You must select at least one recipient."
 msgstr "Anda perlu memilih sekurang-kurangnya satu penerima."
@@ -1735,7 +1717,7 @@ msgid "Waiting for the file(s) to finish uploading."
 msgstr "Menunggu untuk fail selesai dimuat naik."
 
 msgid "The following steps have errors:"
-msgstr "Langkah beriktu mempunyai ralat:"
+msgstr "Langkah berikut mempunyai ralat:"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1765,7 +1747,7 @@ msgid "You have completed the platform wizard."
 msgstr "Anda telah melengkapkan wizard platform."
 
 msgid "Fill out your report"
-msgstr "isikan laporan anda"
+msgstr "Isikan laporan anda"
 
 msgid "Describe your report in a few words."
 msgstr "Terangkan laporan anda dalam beberapa perkataan."
@@ -1792,7 +1774,7 @@ msgid "Male"
 msgstr "Lelaki"
 
 msgid "Female"
-msgstr "Wanita"
+msgstr "Perempuan"
 
 msgid "Other gender identity"
 msgstr "Identiti jantina lain"
@@ -1871,12 +1853,12 @@ msgid "Examine the issue to determine whether it is legitimate or not."
 msgstr "Teliti isu untuk menentukan sama ada ia sah atau tidak."
 
 msgid "The activities with unusual stats are:"
-msgstr "Aktiviti dengan stat luar baisa adalah:"
+msgstr "Aktiviti dengan statistik luar biasa adalah:"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr "Pelayan tidak dapat menjamin bahawa laporan baru dapat disimpan, jadi penghantaran telah dilumpuhkan."
+msgstr "Pelayan tidak dapat menjamin bahawa laporan baru dapat disimpan, jadi penghantaran telah dinyahdayakan."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
@@ -1899,7 +1881,7 @@ msgstr "Anomali dikesan dalam {NodeName}"
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "e-mel ini untuk memaklumatkan anda bahawa kunci PGP pengguna berikut akan tamat tempoh atau telah tamat tempoh:"
+msgstr "E-mel ini untuk memaklumkan anda bahawa kunci PGP pengguna berikut akan tamat tempoh atau telah tamat tempoh:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
@@ -1935,7 +1917,7 @@ msgstr "Laman memberi maklumat baru berdaftar"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr "Ini -mel ujian dihantar daripada antara muka pentadbiran platform."
+msgstr "Ini adalah e-mel ujian yang dihantar dari antara muka pentadbiran platform."
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
@@ -1943,12 +1925,12 @@ msgid ""
 msgstr "Penerimaan e-mel ini menunjukkan bahawa pelayan mampu mengesahkan  dan berinteraksi dengan pelayan mel SMTP."
 
 msgid "Test email"
-msgstr "e-mel ujian"
+msgstr "E-mel ujian"
 
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr "e-mel ini untuk memberitahu anda bahawa permintaan telah dibuat untuk mengubah alamat e-mel anda kepada {NewEmailAddress}."
+msgstr "E-mel ini untuk memberitahu anda bahawa permintaan telah dibuat untuk mengubah alamat e-mel anda kepada {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
 msgstr "Klik pautan berikut untuk mengesahkan perubahan ini:"
@@ -2000,7 +1982,7 @@ msgstr "Isyarat tamat tempoh untuk sijil HTTPS"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr "Pembaharuan sijil HTTPS automatik dijadualkan hari ini telah gagal"
+msgstr "Pembaharuan sijil HTTPS automatik dijadualkan hari ini telah gagal."
 
 msgid "The system will keep trying."
 msgstr "Sistem akan terus mencuba."
@@ -2011,7 +1993,7 @@ msgstr "Pembaharuan sijil HTTPS gagal"
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "e-mel ini untuk memaklumkan anda bahawa penjaga telah membenarkan anda akses kepada identiti memberi maklumat untuk laporan {TipNum}."
+msgstr "E-mel ini untuk memberitahu anda bahawa penjaga telah membenarkan anda akses kepada identiti memberi maklumat untuk laporan {TipNum}."
 
 msgid "The report can be accessed at:"
 msgstr "Laporan boleh diakses di:"
@@ -2022,7 +2004,7 @@ msgstr "Akses kepada identiti pemberi maklumat dibenarkan"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "e-mel ini untuk memaklumkan anda bahawa penjaga telah menolak akses anda kepada identiti memberi maklumat untuk laporan {TipNum}."
+msgstr "E-mel ini untuk memberitahu anda bahawa penjaga telah menolak akses anda kepada identiti memberi maklumat untuk laporan {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Akses kepada identiti pemberi maklumat ditolak"
@@ -2030,7 +2012,7 @@ msgstr "Akses kepada identiti pemberi maklumat ditolak"
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "e-mel ini untuk memaklumkan anda bahawa penerima telah meminta akses kepada identiti memberi maklumat untuk laporan {TipNum}."
+msgstr "E-mel ini untuk memberitahu anda bahawa penerima telah meminta akses kepada identiti pemberi maklumat untuk laporan {TipNum}."
 
 msgid "The request can be accessed at:"
 msgstr "Permintaan boleh diakses di:"
@@ -2041,7 +2023,7 @@ msgstr "Permintaan baru akses kepada identiti pemberi maklumat"
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "e-mel ini untuk memaklumkan anda bawah pemberi maklum untuk laporan {TipNum} telah memberikan identiti mereka."
+msgstr "E-mel ini untuk memberitahu anda bahawa pemberi maklumat untuk laporan {TipNum} telah memberikan identiti mereka."
 
 msgid "The whistleblower has provided their identity"
 msgstr "Pemberi maklumat telah memberikan identiti mereka"
@@ -2065,17 +2047,17 @@ msgstr "Arahan penetapan semula kata laluan"
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr "e-mel ini untuk memaklumatkan anda bahawa kunci PGP anda akan tamat tempoh atau telah tamat tempoh."
+msgstr "E-mel ini untuk memberitahu anda bahawa kunci PGP anda akan tamat tempoh atau telah tamat tempoh."
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
 "or upload a new key."
-msgstr "Anda perlu melanjutkan kesahannya dan mengemas kini kunci yang ada di platform, atau muat naik kunci baru."
+msgstr "Anda perlu melanjutkan kesahihannya dan mengemas kini kunci yang ada di platform, atau muat naik kunci baru."
 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-msgstr "Tanpa kunci PGP yang sah, sistem tidak akan dapat menyulitkan data yang disedikan kepada anda."
+msgstr "Tanpa kunci PGP yang sah, sistem tidak akan dapat menyulitkan data yang disediakan kepada anda."
 
 msgid "Click the link to activate the platform:"
 msgstr "Klik pautan untuk mengaktifkan platform:"
@@ -2111,7 +2093,7 @@ msgstr "Sesetengah laporan akan tamat tempoh tidak lama lagi"
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "Ini e-mel untuk memberitahu anda bahawa pemberi maklumat telah memilih anda sebagai penerima bernilai laporan mereka."
+msgstr "E-mel ini untuk memberitahu anda bahawa pemberi maklumat telah memilih anda sebagai penerima bernilai laporan mereka."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2125,13 +2107,13 @@ msgid "New report"
 msgstr "Laporan baru"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr "Ini e-mel untuk memberitahu bahawa laporan sedia ada telah dikemas kini."
+msgstr "E-mel ini untuk memberitahu bahawa laporan sedia ada telah dikemas kini."
 
 msgid "Report updated"
 msgstr "Laporan dikemas kini"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "e-mel ini untuk mengingati anda dengan kehadiran laporan belum dibaca atau belum dikemas kini."
+msgstr "E-mel ini untuk mengingatkan anda tentang laporan belum dibaca atau belum dikemas kini."
 
 msgid "Reminder about unread or updated reports"
 msgstr "Peringatan mengenai laporan belum dibaca atau belum dikemas kini"

@@ -22,7 +22,7 @@
 # QinWeijie <qinweijie@live.com>, 2014
 # Raf Rasenberg <raf@webconexus.nl>, 2019
 # rike, 2014
-# rike, 2014
+# u <u@451f.org>, 2014
 # Sebastian <sebix+transifex@sebix.at>, 2014,2016-2017,2020
 # Sebastian <sebix+transifex@sebix.at>, 2014
 # Sebastian Vehlow <svehlow@oetker.de>, 2016
@@ -31,7 +31,7 @@
 # Synchunk, 2015
 # 5d82173c4528651ffb3192cfbc43353e_22888c7, 2015
 # Trans-fr, 2015
-# rike, 2014
+# u <u@451f.org>, 2014
 # Ute Rüger <ute@rueger-arts.de>, 2015
 # Ute Rüger <ute@rueger-arts.de>, 2015
 # Ute Rüger <ute@rueger-arts.de>, 2015-2016
@@ -47,7 +47,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -291,12 +291,6 @@ msgstr "Verwalter der Identitäten"
 
 msgid "Identity"
 msgstr "Identität"
-
-msgid "Available"
-msgstr "Verfügbar"
-
-msgid "Not available"
-msgstr "Nicht verfügbar"
 
 msgid "Access requested"
 msgstr "Zugriff angefordert"
@@ -1200,12 +1194,6 @@ msgstr "Seiten"
 msgid "Mode:"
 msgstr "Modus:"
 
-msgid "Active"
-msgstr "Aktiv"
-
-msgid "Inactive"
-msgstr "Inaktiv"
-
 msgid "Configure"
 msgstr "Konfigurieren"
 
@@ -1555,9 +1543,6 @@ msgstr "Dateigröße"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Dem Hinweisgeber das Hinzufügen von Anhängen zur Einreichung erlauben"
 
-msgid "Never"
-msgstr "Niemals"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Dem Hinweisgeber das Schreiben von Mitteilungen erlauben"
 
@@ -1659,9 +1644,6 @@ msgstr "Zugriff auf die Identität des Hinweisgebers wurde beim Verwalter angefo
 
 msgid "Date of the request"
 msgstr "Datum der Anfrage"
-
-msgid "Undeclared"
-msgstr "Nicht deklariert"
 
 msgid "Congratulations!"
 msgstr "Glückwunsch!"

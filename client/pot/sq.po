@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -252,12 +252,6 @@ msgstr "Kujdestari i identiteteve"
 
 msgid "Identity"
 msgstr "Identitet"
-
-msgid "Available"
-msgstr "Në dispozicion"
-
-msgid "Not available"
-msgstr "I padisponueshem"
 
 msgid "Access requested"
 msgstr "Qasja e kërkuar"
@@ -1161,12 +1155,6 @@ msgstr "Faqet"
 msgid "Mode:"
 msgstr "Formë:"
 
-msgid "Active"
-msgstr "Aktive"
-
-msgid "Inactive"
-msgstr "Jo aktive"
-
 msgid "Configure"
 msgstr "Formësoni"
 
@@ -1516,9 +1504,6 @@ msgstr "Përmasat e Skedarit"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Lejo whistleblower për të shtuar të bashkëngjitni skedarë dorëzimit"
 
-msgid "Never"
-msgstr "Kurrë"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Lejo whistleblower për të dërguar mesazhe"
 
@@ -1620,9 +1605,6 @@ msgstr "Qasja në identitetin e Whistleblower i është kërkuar të kujdestarit
 
 msgid "Date of the request"
 msgstr "Data e kërkesës"
-
-msgid "Undeclared"
-msgstr ""
 
 msgid "Congratulations!"
 msgstr "Urime!"

@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -254,12 +254,6 @@ msgstr "Skrbnik identiteta"
 
 msgid "Identity"
 msgstr "Identitet"
-
-msgid "Available"
-msgstr "Dostupno"
-
-msgid "Not available"
-msgstr "Nije dostupno"
 
 msgid "Access requested"
 msgstr "Pristup zahtjevan"
@@ -1163,12 +1157,6 @@ msgstr "Stranice"
 msgid "Mode:"
 msgstr "Način rada:"
 
-msgid "Active"
-msgstr "Aktivno"
-
-msgid "Inactive"
-msgstr "Neaktivno"
-
 msgid "Configure"
 msgstr "Konfiguriraj"
 
@@ -1518,9 +1506,6 @@ msgstr "Veličina datoteke"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Dopusti zviždaču da doda privitke prijavi"
 
-msgid "Never"
-msgstr "Nikad"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Dopusti zviždaču da šalje poruke"
 
@@ -1622,9 +1607,6 @@ msgstr "Od skrbnika se zahtjevao pristup identitetu zviždača."
 
 msgid "Date of the request"
 msgstr "Datum zahtjeva"
-
-msgid "Undeclared"
-msgstr "Neprijavljeno"
 
 msgid "Congratulations!"
 msgstr "Čestitamo!"

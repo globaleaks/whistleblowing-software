@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -283,12 +283,6 @@ msgstr "Custodiante das identidades"
 
 msgid "Identity"
 msgstr "Identidade"
-
-msgid "Available"
-msgstr "Disponível"
-
-msgid "Not available"
-msgstr "Indisponível"
 
 msgid "Access requested"
 msgstr "Acesso requerido"
@@ -1192,12 +1186,6 @@ msgstr "Sites"
 msgid "Mode:"
 msgstr "Modo:"
 
-msgid "Active"
-msgstr "Ativado"
-
-msgid "Inactive"
-msgstr "Inativo"
-
 msgid "Configure"
 msgstr "Configurar"
 
@@ -1547,9 +1535,6 @@ msgstr "Tamanho do arquivo"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Permitir o delator adicionar anexos a submissão"
 
-msgid "Never"
-msgstr "Jamais"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Permitir que o delator envie mensagens"
 
@@ -1651,9 +1636,6 @@ msgstr "Acesso à identidade de um delator foi solicitado ao curador."
 
 msgid "Date of the request"
 msgstr "Data do pedido"
-
-msgid "Undeclared"
-msgstr "Não declarado"
 
 msgid "Congratulations!"
 msgstr "Parabéns!"

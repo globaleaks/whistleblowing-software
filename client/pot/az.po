@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -253,12 +253,6 @@ msgstr "Kimliklərin mühafizəçisi"
 
 msgid "Identity"
 msgstr "Kimlik"
-
-msgid "Available"
-msgstr "Mövcuddur"
-
-msgid "Not available"
-msgstr "Mövcud deyil"
 
 msgid "Access requested"
 msgstr "Daxil olma tələbi"
@@ -1162,12 +1156,6 @@ msgstr "Saytlar"
 msgid "Mode:"
 msgstr ""
 
-msgid "Active"
-msgstr "Aktiv"
-
-msgid "Inactive"
-msgstr "Fəaliyyətsiz"
-
 msgid "Configure"
 msgstr "Quraşdır"
 
@@ -1517,9 +1505,6 @@ msgstr "Faylın ölçüsü"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "İnformasiya ötürənə təsdiqetməyə əlavələr etməsinə icazə verin"
 
-msgid "Never"
-msgstr "Heç vaxt"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "İnformasiya ötürənin mesaj göndərməsinə icazə verin"
 
@@ -1621,9 +1606,6 @@ msgstr "Mühafizəçidən informasiya ötürənin kimliyinə giriş tələb olun
 
 msgid "Date of the request"
 msgstr "Tələb olunan tarix"
-
-msgid "Undeclared"
-msgstr ""
 
 msgid "Congratulations!"
 msgstr "Təbriklər!"

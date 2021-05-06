@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -265,12 +265,6 @@ msgstr "保管人的身份识别"
 
 msgid "Identity"
 msgstr "身份"
-
-msgid "Available"
-msgstr "可用"
-
-msgid "Not available"
-msgstr "不可用"
 
 msgid "Access requested"
 msgstr "已请求访问"
@@ -1174,12 +1168,6 @@ msgstr "网站"
 msgid "Mode:"
 msgstr "模式："
 
-msgid "Active"
-msgstr "活跃中的"
-
-msgid "Inactive"
-msgstr "静止状态的"
-
 msgid "Configure"
 msgstr "设置"
 
@@ -1529,9 +1517,6 @@ msgstr "文件大小"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "揭密者可对此报告附加数据文件"
 
-msgid "Never"
-msgstr "绝不要"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "允许告密人发送消息"
 
@@ -1633,9 +1618,6 @@ msgstr "保管人要求取得告密人身份识别"
 
 msgid "Date of the request"
 msgstr "提出要求的日期"
-
-msgid "Undeclared"
-msgstr "未作宣告的"
 
 msgid "Congratulations!"
 msgstr "祝贺你！"

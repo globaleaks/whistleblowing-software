@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -257,12 +257,6 @@ msgstr "Пазител на самоличности"
 
 msgid "Identity"
 msgstr "Самоличност"
-
-msgid "Available"
-msgstr "На линия"
-
-msgid "Not available"
-msgstr "Не е на линия"
 
 msgid "Access requested"
 msgstr "Изискване на достъп"
@@ -1166,12 +1160,6 @@ msgstr "Страници"
 msgid "Mode:"
 msgstr "Режим:"
 
-msgid "Active"
-msgstr "Активен"
-
-msgid "Inactive"
-msgstr "Неактивен"
-
 msgid "Configure"
 msgstr "Конфигурирай"
 
@@ -1521,9 +1509,6 @@ msgstr "Размер на файла"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Разрешаване на подателя на сигнал да прикачва файлове към сигнала"
 
-msgid "Never"
-msgstr "Никога"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Разрешаване на подателя на сигнал да изпраща съобщения"
 
@@ -1625,9 +1610,6 @@ msgstr "Молба за достъп до самоличността на изт
 
 msgid "Date of the request"
 msgstr "Дата на заявката"
-
-msgid "Undeclared"
-msgstr "Недеклариран"
 
 msgid "Congratulations!"
 msgstr "Поздравления!"

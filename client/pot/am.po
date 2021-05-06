@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Amharic (http://www.transifex.com/otf/globaleaks/language/am/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -249,12 +249,6 @@ msgstr "የማንነቶች ሞግዚት"
 
 msgid "Identity"
 msgstr "ማንነት"
-
-msgid "Available"
-msgstr "አለ"
-
-msgid "Not available"
-msgstr "የለም"
 
 msgid "Access requested"
 msgstr "መድረሻ ተጠይቋል"
@@ -1158,12 +1152,6 @@ msgstr "ድረገጾች"
 msgid "Mode:"
 msgstr "ሁነታ፡"
 
-msgid "Active"
-msgstr "ገባሪ"
-
-msgid "Inactive"
-msgstr "ያልተመረጠ"
-
 msgid "Configure"
 msgstr "ውቀር"
 
@@ -1513,9 +1501,6 @@ msgstr "የፋይል መጠን"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "መረጃ ሰጪው ሪፖርቱ ላይ አባሪ እንዲጨምር ፍቀድ"
 
-msgid "Never"
-msgstr "መቼም"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "መረጃ ሰጪው መልእክት እንዲልክ ፍቀድ"
 
@@ -1617,9 +1602,6 @@ msgstr "የመረጃ ሰጪውን ማንነት ለማየት ሞግዚቱ ተጠ�
 
 msgid "Date of the request"
 msgstr "የጥያቄው ቀን"
-
-msgid "Undeclared"
-msgstr "አልተገለጸም"
 
 msgid "Congratulations!"
 msgstr "እንኳን ደስ አሎት!"

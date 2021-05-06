@@ -30,7 +30,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -274,12 +274,6 @@ msgstr "Хранитель личностей"
 
 msgid "Identity"
 msgstr "Личность"
-
-msgid "Available"
-msgstr "Доступно"
-
-msgid "Not available"
-msgstr "Недоступно"
 
 msgid "Access requested"
 msgstr "Доступ запрошен"
@@ -1183,12 +1177,6 @@ msgstr "Сайты"
 msgid "Mode:"
 msgstr "Режим:"
 
-msgid "Active"
-msgstr "Активно"
-
-msgid "Inactive"
-msgstr "Неактивный"
-
 msgid "Configure"
 msgstr "Настроить"
 
@@ -1538,9 +1526,6 @@ msgstr "Размер файла"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Разрешить информатору добавлять приложения к поданным документам"
 
-msgid "Never"
-msgstr "Никогда"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Разрешить информатору отправлять комментарии"
 
@@ -1642,9 +1627,6 @@ msgstr "К хранителю поступил запрос о доступе к
 
 msgid "Date of the request"
 msgstr "Дата запроса"
-
-msgid "Undeclared"
-msgstr "Не объявлен"
 
 msgid "Congratulations!"
 msgstr "Поздравляем!"

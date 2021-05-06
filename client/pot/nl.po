@@ -36,7 +36,7 @@
 # Rianne FPU <verbeek@freepressunlimited.org>, 2020
 # Robin van der Vliet <info@robinvandervliet.nl>, 2015
 # Midgard, 2015
-# SylvainFPU <mignot@freepressunlimited.org>, 2019-2020
+# SylvainFPU <mignot@freepressunlimited.org>, 2019-2021
 # tempuser1234 <c1160321@trbvm.com>, 2014
 # Teun Gautier <gautier@groene.nl>, 2013
 # tijs <tijs@tweakers.net>, 2020
@@ -44,8 +44,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-05-05 15:18+0000\n"
+"Last-Translator: SylvainFPU <mignot@freepressunlimited.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -147,7 +147,7 @@ msgid "CREDIT CARD"
 msgstr "KREDIETKAART"
 
 msgid "YOUR NAME"
-msgstr "JE NAAM"
+msgstr "U NAAM"
 
 msgid "Label the report"
 msgstr "Label de inzending"
@@ -288,12 +288,6 @@ msgstr "Vertrouwenspersoon"
 
 msgid "Identity"
 msgstr "Identiteit"
-
-msgid "Available"
-msgstr "Beschikbaar"
-
-msgid "Not available"
-msgstr "Niet beschikbaar"
 
 msgid "Access requested"
 msgstr "Toegang gevraagd"
@@ -556,7 +550,7 @@ msgid "Tax code"
 msgstr "BTW-code / Belastingwetgeving"
 
 msgid "File a report"
-msgstr ""
+msgstr "Dien een rapport in"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Voor je verdergaat, stel alsjeblieft een nieuw wachtwoord in."
@@ -719,7 +713,7 @@ msgid "Severity"
 msgstr "Belang"
 
 msgid "Object"
-msgstr ""
+msgstr "Voorwerp"
 
 msgid "ID"
 msgstr "ID"
@@ -938,7 +932,7 @@ msgid "Read the Terms of Service"
 msgstr "Lees de Algemene Voorwaarden"
 
 msgid "I agree to the Terms of Service."
-msgstr "Ik g akkoord met de Algemene Voorwaarden"
+msgstr "Ik ga akkoord met de Algemene Voorwaarden"
 
 msgid "Country code"
 msgstr "Landcode"
@@ -1197,12 +1191,6 @@ msgstr "Weblocaties"
 msgid "Mode:"
 msgstr "Modus:"
 
-msgid "Active"
-msgstr "Actief"
-
-msgid "Inactive"
-msgstr "Inactief"
-
 msgid "Configure"
 msgstr "Configureer"
 
@@ -1450,10 +1438,10 @@ msgid "Enter a name for the copy"
 msgstr "Voer een naam in voor de kopie"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Hebt u al een inzending ingediend? Voer uw ontvangstbewijs in."
+msgstr "Hebt u al een inzending ingediend? Voer uw 16 cijferige code in."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "De ontvangstbevestiging is of ongeldig ofwel verlopen."
+msgstr "De code is of ongeldig ofwel verlopen."
 
 msgid "Select a file or drag it here."
 msgstr "Selecteer een bestand of sleep het hierheen."
@@ -1551,9 +1539,6 @@ msgstr "Bestandsgrootte"
 
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "De klokkenluider toestaan bestanden toe te voegen aan een inzending"
-
-msgid "Never"
-msgstr "Nooit"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "De klokkenluider toestaan berichten te versturen"
@@ -1657,9 +1642,6 @@ msgstr "De toezichthouder heeft een aanvraag ingediend om toegang te krijgen tot
 msgid "Date of the request"
 msgstr "Datum aanvraag"
 
-msgid "Undeclared"
-msgstr "Niet aangegeven"
-
 msgid "Congratulations!"
 msgstr "Gefeliciteerd!"
 
@@ -1736,12 +1718,12 @@ msgid "We will try to get back to you as soon as possible."
 msgstr "We zullen ons best doen zo snel als mogelijk op je te reageren."
 
 msgid "Remember your receipt for this report."
-msgstr "Onthoud de code voor jouw inzending."
+msgstr "Onthoud de code voor uw inzending."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Gebruik de 16 cijferige code om in te loggen. Hiermee heb je de mogelijkheid berichten te bekijken die wij verstuurd hebben naar jou, en je kunt tevens extra informatie toevoegen"
+msgstr "Gebruik deze 16-cijferige code om in te loggen. Hiermee heeft u de mogelijkheid berichten te bekijken die ontvangers aan y verstuurd hebben, en u kun tevens extra informatie toevoegen"
 
 msgid "View your report"
 msgstr "Bekijk je inzending"

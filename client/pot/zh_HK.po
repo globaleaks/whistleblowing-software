@@ -1,11 +1,12 @@
 # 
 # Translators:
 # Adawcs, 2021
+# Cheer Zeng <cheerz6623@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-30 17:52+0000\n"
-"Last-Translator: Adawcs\n"
+"PO-Revision-Date: 2021-05-06 21:04+0000\n"
+"Last-Translator: Cheer Zeng <cheerz6623@gmail.com>\n"
 "Language-Team: Chinese (Hong Kong) (http://www.transifex.com/otf/globaleaks/language/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,7 +18,7 @@ msgid "Log in"
 msgstr "登入"
 
 msgid "Main configuration"
-msgstr "一般"
+msgstr "主要設定"
 
 msgid "Theme customization"
 msgstr "自訂外觀"
@@ -62,7 +63,7 @@ msgid "Anomalies"
 msgstr "異常狀況"
 
 msgid "Preferences"
-msgstr "帳號設定"
+msgstr "偏好設定"
 
 msgid "Notification settings"
 msgstr "通知設定"
@@ -74,10 +75,10 @@ msgid "Date"
 msgstr "建立日期"
 
 msgid "Expiration date"
-msgstr "距離報告到期日"
+msgstr "報告到期日"
 
 msgid "Last Access"
-msgstr "最近一次讀取"
+msgstr "最近一次存取"
 
 msgid "Files"
 msgstr "檔案"
@@ -89,13 +90,13 @@ msgid "Messages"
 msgstr "訊息"
 
 msgid "Select this recipient."
-msgstr "選擇此接收者"
+msgstr "選擇此接收者。"
 
 msgid "Unselect this recipient."
-msgstr "取消選擇此接收者"
+msgstr "取消選擇此接收者。"
 
 msgid "This recipient cannot be deselected."
-msgstr "不能取消選擇此接收者"
+msgstr "無法取消選擇此接收者。"
 
 msgid "Details"
 msgstr "詳情"
@@ -122,7 +123,7 @@ msgid "Deselect all"
 msgstr "取消全選"
 
 msgid "Refresh"
-msgstr "刷新"
+msgstr "重新整理"
 
 msgid "Context"
 msgstr "主題"
@@ -137,7 +138,7 @@ msgid "The whistleblower has already read the last update"
 msgstr "吹哨者已閱讀最新的消息"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr "吹哨者並未閱讀最新的消息"
+msgstr "吹哨者尚未閱讀最新的消息"
 
 msgid "Move up"
 msgstr "往上移"
@@ -161,15 +162,15 @@ msgid "Save all"
 msgstr "全部儲存"
 
 msgid "Access control"
-msgstr "存取管制"
+msgstr "存取控制"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "連接已使用 HTTPS 確保保密。"
+msgstr "本連接已使用 HTTPS 確保機密。"
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr "連接已使用 Tor 確保保密與匿名。"
+msgstr "本連接已使用 Tor 確保機密及匿名。"
 
 msgid "vertical"
 msgstr "垂直"
@@ -187,19 +188,19 @@ msgid "Regular expression validator"
 msgstr "正規表示式驗證"
 
 msgid "Minimum number of input characters"
-msgstr "最少字符數"
+msgstr "最少字元數"
 
 msgid "Maximum number of input characters"
-msgstr "最多字符數"
+msgstr "最多字元數"
 
 msgid "Earliest selectable date"
 msgstr "最早可選日期"
 
 msgid "Latest selectable date"
-msgstr "最後可選日期"
+msgstr "最遲可選日期"
 
 msgid "0 = auto"
-msgstr "0 = 自動"
+msgstr "0 = auto"
 
 msgid "True"
 msgstr "True"
@@ -226,16 +227,16 @@ msgid "User"
 msgstr "使用者"
 
 msgid "Motivation"
-msgstr ""
+msgstr "理由"
 
 msgid "Status"
 msgstr "狀態"
 
 msgid "Request motivation"
-msgstr ""
+msgstr "請求理由"
 
 msgid "Reply motivation"
-msgstr ""
+msgstr "回覆理由"
 
 msgid "Request status"
 msgstr "請求狀態"
@@ -249,12 +250,6 @@ msgstr "個人身份保管人"
 msgid "Identity"
 msgstr "個人身份"
 
-msgid "Available"
-msgstr ""
-
-msgid "Not available"
-msgstr ""
-
 msgid "Access requested"
 msgstr "已發送存取請求"
 
@@ -262,7 +257,7 @@ msgid "Request access to the whistleblower's identity"
 msgstr "請求讀取吹哨者的個人身份"
 
 msgid "Please write a motivation"
-msgstr ""
+msgstr "請說明理由"
 
 msgid "Reply to the request"
 msgstr "回覆請求"
@@ -329,16 +324,16 @@ msgid "Score"
 msgstr "分數"
 
 msgid "Trigger question"
-msgstr "引發問題"
+msgstr "觸發問題"
 
 msgid "Triggered by score:"
-msgstr "引發分數"
+msgstr "由分數觸發："
 
 msgid "Weak"
 msgstr "弱"
 
 msgid "Acceptable"
-msgstr "可"
+msgstr "中等"
 
 msgid "Strong"
 msgstr "強"
@@ -350,7 +345,7 @@ msgid "Silence email notifications"
 msgstr "停用電郵通知"
 
 msgid "Turn on email notifications"
-msgstr "使用電郵通知"
+msgstr "開啟電郵通知"
 
 msgid "Input validation"
 msgstr "輸入驗證"
@@ -368,10 +363,10 @@ msgid "Regular expression"
 msgstr "正規表示式"
 
 msgid "Activate"
-msgstr "啓動"
+msgstr "啟用"
 
 msgid "Disactivate"
-msgstr "停止"
+msgstr "停用"
 
 msgid "Search"
 msgstr "搜尋"
@@ -379,10 +374,10 @@ msgstr "搜尋"
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr "此自訂內文將不再顯示於平台上，因爲它的原定內文已被更改或刪除。"
+msgstr "此自訂內文將不再顯示於平台上，因爲它的原定內文已被更改或移除。"
 
 msgid "Audit log"
-msgstr "稽核日誌"
+msgstr "審計日誌"
 
 msgid "Stats"
 msgstr "數據"
@@ -397,7 +392,7 @@ msgid "Users"
 msgstr "使用者"
 
 msgid "From"
-msgstr ""
+msgstr "原有網址"
 
 msgid "Number of downloads"
 msgstr "下載次數"
@@ -412,16 +407,16 @@ msgid "Scheduled jobs"
 msgstr "工作排程"
 
 msgid "Sites management"
-msgstr ""
+msgstr "多網站管理"
 
 msgid "Regenerate"
-msgstr "重新制定"
+msgstr "重新生成"
 
 msgid "Display options alphabetically"
 msgstr "按字母順序顯示選項"
 
 msgid "Enable email notifications for:"
-msgstr ""
+msgstr "啟用以下電郵提醒："
 
 msgid "Disable"
 msgstr "停用"
@@ -451,10 +446,10 @@ msgid "New"
 msgstr "未讀"
 
 msgid "Opened"
-msgstr "已開啓"
+msgstr "已讀"
 
 msgid "Closed"
-msgstr "已結束"
+msgstr "已完成"
 
 msgid "Placeholder"
 msgstr "佔位符"
@@ -481,16 +476,16 @@ msgid "Not running"
 msgstr "沒有使用"
 
 msgid "Send a test email to your email address."
-msgstr "發送測試電郵至您的電郵地址。"
+msgstr "傳送測試電郵至您的電郵地址。"
 
 msgid "Block the submission"
-msgstr "拒絕提交"
+msgstr "限制提交"
 
 msgid "Skip the recipient account creation."
 msgstr "略過建立接收者帳號步驟。"
 
 msgid "Send activation link"
-msgstr "發送啓動鏈結"
+msgstr "傳送啟動連結"
 
 msgid "Password reset"
 msgstr "密碼重設"
@@ -498,7 +493,7 @@ msgstr "密碼重設"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "有接收者尚未進行首次登入，他們暫時不會收到報告。"
+msgstr "有接收者尚未進行首次登入，故他們暫時不會收到報告。"
 
 msgid "This user has not performed the first login yet."
 msgstr "此使用者尚未進行首次登入。"
@@ -507,13 +502,13 @@ msgid "seconds"
 msgstr "秒"
 
 msgid "This domain name is not available."
-msgstr "不能使用此域名。"
+msgstr "此域名不可用。"
 
 msgid "VAT number"
-msgstr "增值税税號"
+msgstr "增值税編號"
 
 msgid "Tax code"
-msgstr "稅碼"
+msgstr "稅務編號"
 
 msgid "File a report"
 msgstr "提交報告"
@@ -537,7 +532,7 @@ msgid "Type your new password again"
 msgstr "重新輸入您的新密碼"
 
 msgid "The two passwords do not match"
-msgstr "密碼不相符"
+msgstr "密碼不一致"
 
 msgid "The new password must differ from the previous."
 msgstr "新密碼必須與之前的舊密碼不同。"
@@ -546,10 +541,10 @@ msgid "Proceed"
 msgstr "繼續"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr "在繼續之前，請先啓用雙重認證。"
+msgstr "在繼續之前，請先啟用雙重認證。"
 
 msgid "Disable submissions"
-msgstr "暫停接收報告"
+msgstr "停止接收報告"
 
 msgid "Enable encryption"
 msgstr "使用加密"
@@ -558,10 +553,10 @@ msgid "Enable administrators to change user passwords"
 msgstr "允許管理員更改使用者的密碼"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr "可以更改使用者密碼的管理員："
+msgstr "有權更改使用者密碼的管理員："
 
 msgid "Enable multisite feature"
-msgstr "啟用多個網站功能"
+msgstr "啟用多網站功能"
 
 msgid "Enable simplified login"
 msgstr "開啟簡易登入"
@@ -577,7 +572,7 @@ msgid ""
 msgstr "接收者可以授予吹哨者對於特定報告的權限"
 
 msgid "Enable search engines indexing"
-msgstr "准許搜尋引擎進行索引"
+msgstr "允許搜尋引擎進行索引"
 
 msgid "Enable custom privacy panel"
 msgstr "自訂平台頁首的私隱通告"
@@ -607,10 +602,10 @@ msgid "in megabytes"
 msgstr "（MB）"
 
 msgid "Enable HSTS preload"
-msgstr "啓用 HSTS 預載"
+msgstr "啟用 HSTS 預載"
 
 msgid "Require two factor authentication"
-msgstr "啓用雙重認證"
+msgstr "啟用雙重認證"
 
 msgid "Password change interval"
 msgstr "強制更改密碼時距日數"
@@ -620,7 +615,7 @@ msgid ""
 msgstr "基於安全起見，使用者應定時更改密碼。"
 
 msgid "Set the value to 0 to disable this feature."
-msgstr "把值設為 0 以停用此功能。"
+msgstr "將值設為 0 以停用此功能。"
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "新報告有多少天未讀才通知使用者"
@@ -635,10 +630,10 @@ msgid "Enable private annotations"
 msgstr "啟用私人筆記"
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "允許下列網站使用 iframe 將此平台嵌入"
+msgstr "允許下列網站將此平台嵌入 iframe "
 
 msgid "Logging level"
-msgstr "記錄層級"
+msgstr "日誌級別"
 
 msgid "Log accesses of internal users"
 msgstr "記錄内部使用者的存取"
@@ -652,7 +647,7 @@ msgstr "向開發人員通報軟件問題"
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr "啓用此功能將有助於這平台的開發與安全維護工作。"
+msgstr "啟用此功能將有助於該平台的開發與安全維護工作。"
 
 msgid "Save"
 msgstr "儲存"
@@ -727,7 +722,7 @@ msgid "Report statuses"
 msgstr "報告狀態"
 
 msgid "Logo"
-msgstr "Logo"
+msgstr "標誌"
 
 msgid "Project name"
 msgstr "平台名稱"
@@ -745,7 +740,7 @@ msgid "Question to solicit possible whistleblowers"
 msgstr "給吹哨者的徵求"
 
 msgid "Whistleblowing button"
-msgstr "舉報按鈕文字"
+msgstr "舉報按鈕"
 
 msgid "Enable disclaimer"
 msgstr "免責聲明"
@@ -766,7 +761,7 @@ msgid "Download"
 msgstr "下載"
 
 msgid "Language:"
-msgstr "語言"
+msgstr "語言："
 
 msgid "Add custom text"
 msgstr "新增自訂內文"
@@ -790,10 +785,10 @@ msgid "Hidden"
 msgstr "已隱藏"
 
 msgid "Disabled"
-msgstr "停用中"
+msgstr "已停用"
 
 msgid "Enabled"
-msgstr "使用中"
+msgstr "已啟用"
 
 msgid "Questionnaire"
 msgstr "問卷"
@@ -832,10 +827,10 @@ msgid "Enable private messages"
 msgstr "啟用私人訊息"
 
 msgid "Allow whistleblowers to send messages"
-msgstr "允許吹哨者發送訊息"
+msgstr "允許吹哨者傳送訊息"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "吹哨者可以在現有報告新增附加檔案"
+msgstr "吹哨者可在現有報告內新增附件"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "接收者可以上傳檔案給吹哨者"
@@ -877,7 +872,7 @@ msgid "Recipient"
 msgstr "接收者"
 
 msgid "Each entry must be separated with a comma."
-msgstr "請用逗號分隔每 IP 地址。"
+msgstr "請用逗號分隔每個 IP 地址。"
 
 msgid "Example:"
 msgstr "例如："
@@ -889,7 +884,7 @@ msgid "Invalid input format."
 msgstr "輸入格式無效。"
 
 msgid "Input should be similar to:"
-msgstr "輸入應該如此："
+msgstr "輸入格式應為："
 
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
 msgstr "如欲使用 Let's Encrypt ，您必須同意其服務條款。"
@@ -953,12 +948,12 @@ msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr "透過 Let's Encrypt 憑證頒發機構，自動處理 HTTPS 憑證申請、啟動和續期的過程。"
+msgstr "透過 Let's Encrypt 憑證頒發機構，HTTPS 自動配置可處理憑證申請、啟動和續期的整個過程。"
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a corresponding DNS record referencing that address."
-msgstr "平台必須能經實體 IP 地址到達，而所選的主機名稱亦必須有引用該 IP 地址的 DNS 記錄。"
+msgstr "平台必須可透過公用 IP 地址訪問，而所選的主機名稱亦必須有該 IP 地址對應的 DNS 記錄。"
 
 msgid "Manual configuration"
 msgstr "手動配置"
@@ -966,7 +961,7 @@ msgstr "手動配置"
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr "手動配置精靈會引導您透過另外的憑證頒發機構設置 HTTPS 憑證。"
+msgstr "手動配置精靈會引導您，透過另外的憑證頒發機構設置 HTTPS 憑證。"
 
 msgid "Auto-renewal"
 msgstr "自動更新"
@@ -975,10 +970,10 @@ msgid "Tor Onion Service"
 msgstr "Tor 匿名服務"
 
 msgid "Anonymize outgoing connections"
-msgstr "把對外連接匿名化"
+msgstr "將對外連接匿名化"
 
 msgid "Let the platform be reachable without Tor"
-msgstr "到訪者可以透過 Tor 以外的瀏覽器到達平台"
+msgstr "訪客可以透過 Tor 以外的瀏覽器訪問平台"
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr "以下使用者身份可以透過 Tor 以外的瀏覽器登入此平台："
@@ -987,7 +982,7 @@ msgid "Whistleblower"
 msgstr "吹哨者"
 
 msgid "To"
-msgstr ""
+msgstr "重新導向至"
 
 msgid "SMTP email address"
 msgstr "SMTP 電郵地址"
@@ -1011,7 +1006,7 @@ msgid "Password"
 msgstr "密碼"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "在報告到期日前多少個小時發送提醒通知"
+msgstr "報告到期日前傳送提醒通知的時數"
 
 msgid "Test the configuration"
 msgstr "測試此設置"
@@ -1029,13 +1024,13 @@ msgid "Question"
 msgstr "問題"
 
 msgid "Single-line text input"
-msgstr "單行文字"
+msgstr "單行文字輸入"
 
 msgid "Multi-line text input"
-msgstr "多行文字"
+msgstr "多行文字輸入"
 
 msgid "Selection box"
-msgstr "單選按鈕"
+msgstr "選擇框"
 
 msgid "Checkbox"
 msgstr "複選框"
@@ -1074,13 +1069,13 @@ msgid "Required"
 msgstr "必填"
 
 msgid "Accept multiple file uploads"
-msgstr "接受多過一個檔案"
+msgstr "接受多個上傳檔案"
 
 msgid "Accept multiple answers"
 msgstr "接受多個答案"
 
 msgid "Template override"
-msgstr ""
+msgstr "以此範本取替"
 
 msgid "Phone number"
 msgstr "電話號碼"
@@ -1101,7 +1096,7 @@ msgid "Video"
 msgstr "影片"
 
 msgid "Subject answer visibility to custodian authorization"
-msgstr "把答案能見度限制於保管人的授權"
+msgstr "答案僅限授權保管人可見"
 
 msgid "Text shown upon negative answer"
 msgstr "收到否定答案時所顯示的文字"
@@ -1113,7 +1108,7 @@ msgid "Text shown upon confirmation"
 msgstr "收到確認後所顯示的文字"
 
 msgid "Trigger conditions"
-msgstr "引發條件"
+msgstr "觸發條件"
 
 msgid "Sufficient"
 msgstr "足夠"
@@ -1146,7 +1141,7 @@ msgid "Site settings"
 msgstr "網站設定"
 
 msgid "Case management"
-msgstr "報告管理"
+msgstr "個案管理"
 
 msgid "Network settings"
 msgstr "網絡設定"
@@ -1156,12 +1151,6 @@ msgstr "網站"
 
 msgid "Mode:"
 msgstr "狀態："
-
-msgid "Active"
-msgstr ""
-
-msgid "Inactive"
-msgstr ""
 
 msgid "Configure"
 msgstr "配置"
@@ -1173,13 +1162,13 @@ msgid "Creation date:"
 msgstr "建立日期："
 
 msgid "Root domain used for secondary sites"
-msgstr ""
+msgstr "次要網站使用的根網域"
 
 msgid "Use the first site for administrative purposes only"
-msgstr ""
+msgstr "主網站只用作管理用途"
 
 msgid "Enable multi-site login"
-msgstr ""
+msgstr "使用多網站登入"
 
 msgid "Allow users to sign up"
 msgstr "接受新用戶註冊"
@@ -1188,13 +1177,13 @@ msgid "Enable terms of service"
 msgstr "使用服務條款"
 
 msgid "Send an account activation link to the user."
-msgstr "發送帳號啓動鏈結給使用者。"
+msgstr "傳送帳號啟動連結給使用者。"
 
 msgid "Public name"
 msgstr "公開顯示的名稱"
 
 msgid "Send reset link"
-msgstr "發送重置鏈結"
+msgstr "傳送重置連結"
 
 msgid "Set password"
 msgstr "設置密碼"
@@ -1236,7 +1225,7 @@ msgid "Allow the recipient to delete reports"
 msgstr "允許此接收者刪除報告"
 
 msgid "Give the user administrative access to the following features:"
-msgstr "允許此使用者管理以下功能："
+msgstr "允許此使用者使用以下功能："
 
 msgid "Request date"
 msgstr "請求日期"
@@ -1251,7 +1240,7 @@ msgid "Requests"
 msgstr "請求"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr "驗證鏈結無效或過期。"
+msgstr "驗證連結無效或過期。"
 
 msgid "Your new email address has been validated."
 msgstr "您的新電郵地址已通過驗證。"
@@ -1269,7 +1258,7 @@ msgid "The code is either invalid or expired."
 msgstr "認證碼無效或過期。"
 
 msgid "Site:"
-msgstr ""
+msgstr "網站："
 
 msgid "Please select your account:"
 msgstr "請選擇您的帳號："
@@ -1302,16 +1291,16 @@ msgid "Install an authenticator app on your phone"
 msgstr "在您的電話上安裝雙重驗證應用程式"
 
 msgid "Scan the QR code with the app"
-msgstr "用這個應用程式掃描此 QR code"
+msgstr "使用該應用程式掃描此 QR code"
 
 msgid "Enable two factor authentication"
-msgstr "啓用雙重認證"
+msgstr "啟用雙重認證"
 
 msgid "Close"
 msgstr "關閉"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr "在繼續之前，請先細心閱讀此文檔："
+msgstr "在繼續之前，請先仔細閱讀此文檔："
 
 msgid "Your account recovery key is:"
 msgstr "您的帳號修復金鑰如下："
@@ -1319,13 +1308,13 @@ msgstr "您的帳號修復金鑰如下："
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr "請把它備份並存放於安全之處。一旦遺失密碼，則必須用它來修復帳號資料。"
+msgstr "請將它備份並存放於安全之處。一旦遺失密碼，則必須用它來修復帳號資料。"
 
 msgid "Welcome!"
-msgstr "您好"
+msgstr "您好！"
 
 msgid "For the user documentation, visit:"
-msgstr "使用者文檔："
+msgstr "查看使用者文檔，請瀏覽："
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -1335,13 +1324,13 @@ msgstr "如您需要技術支援、有普通問題、或者對此軟件有新的
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr "如您想幫助軟件開發、或想通報軟件問題，請到此建立一個新 issue："
+msgstr "如您想幫助軟件開發、或想通報軟件問題，請到此建立一個新問題："
 
 msgid "Join our chat:"
 msgstr "加入聊天群組："
 
 msgid "Follow the project on:"
-msgstr "Follow 我們："
+msgstr "追蹤我們："
 
 msgid "Hint: How to hide your receipt"
 msgstr "提示：隱藏收據方法"
@@ -1489,16 +1478,16 @@ msgid "Fill the additional questionnaire"
 msgstr "填寫附加問卷"
 
 msgid "Send"
-msgstr "發送"
+msgstr "傳送"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "允許此吹哨者撰寫註釋"
 
 msgid "From:"
-msgstr ""
+msgstr "寄件人："
 
 msgid "To:"
-msgstr ""
+msgstr "收件人："
 
 msgid "Filename"
 msgstr "檔案名稱"
@@ -1510,13 +1499,10 @@ msgid "File size"
 msgstr "檔案大小"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr "吹哨者可以在提交報告時附加檔案"
-
-msgid "Never"
-msgstr ""
+msgstr "吹哨者可在提交報告時新增附件"
 
 msgid "Allow the whistleblower to send messages"
-msgstr "允許此吹哨者發送訊息"
+msgstr "允許此吹哨者傳送訊息"
 
 msgid "Are you sure that you want to delete the report?"
 msgstr "確定刪除這份報告？"
@@ -1539,7 +1525,7 @@ msgid ""
 msgstr "爲使接收者不能再讀取相關資料，請務必正當刪除。"
 
 msgid "Please write a motivation for the reply"
-msgstr ""
+msgstr "請闡述答覆理由"
 
 msgid "Are you sure that you want to postpone the report expiration date?"
 msgstr "確定延遲報告到期日？"
@@ -1617,9 +1603,6 @@ msgstr "已向保管人請求吹哨者的個人身份。"
 msgid "Date of the request"
 msgstr "請求日期"
 
-msgid "Undeclared"
-msgstr ""
-
 msgid "Congratulations!"
 msgstr "恭喜您！"
 
@@ -1667,10 +1650,10 @@ msgid "The answer is too short"
 msgstr "答案過短"
 
 msgid "The specified input is not valid."
-msgstr ""
+msgstr "所指出的輸入無效。"
 
 msgid "The specified input is not valid:"
-msgstr ""
+msgstr "所指出的輸入無效："
 
 msgid "please enter a valid email address."
 msgstr "請輸入有效的電郵地址。"
@@ -1684,7 +1667,7 @@ msgstr "已停止接收報告"
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr ""
+msgstr "您並沒有以匿名的方式連接到此伺服器，而其只能接收匿名的報告。"
 
 msgid "Thank you!"
 msgstr "多謝您！"
@@ -1753,7 +1736,7 @@ msgid ""
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "如果您想在接收者忘記密碼的情況下，確保資料不會流失，則建議選擇此功能。另一方面，如果您想建造一個只有接收者此身份才能讀取報告的平台，則不建議選擇此功能。"
 
 msgid "Please choose a different username."
 msgstr "請選擇另一個用戶名稱。"
@@ -1818,29 +1801,29 @@ msgstr "尊敬的 {RecipientName}，"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "您剛在 {Site} 上註冊爲使用者。"
+msgstr "謹以此電郵通知，系統 {Site} 剛已爲您建立一個使用者帳號。"
 
 msgid "Username: {Username}"
 msgstr "用戶名：{Username}"
 
 msgid "Activation link: {Url}"
-msgstr "啓動鏈結：{Url} "
+msgstr "啟動連結：{Url} "
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr "請按下啓動鏈結以繼續建立您的帳號並設定使用者密碼。"
+msgstr "請按下啟動連結以繼續建立您的帳號並設定使用者密碼。"
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr "成功啓動之後，您將可以使用以下鏈結登入：{LoginUrl}"
+msgstr "成功啟動之後，您將可使用以下連結登入：{LoginUrl}"
 
 msgid "Kind regards,"
 msgstr "敬請　台安"
 
 msgid "Account activation"
-msgstr "帳號啓動"
+msgstr "帳號啟動"
 
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "您的舉報平台現已在線："
@@ -1849,13 +1832,13 @@ msgid "To log in, visit:"
 msgstr "到此登入："
 
 msgid "Users' credentials:"
-msgstr ""
+msgstr "使用者帳號資料："
 
 msgid "The platform will be automatically deleted on:"
-msgstr "平台將於此日自動刪除："
+msgstr "平台將於此日期自動刪除："
 
 msgid "Access instructions"
-msgstr ""
+msgstr "存取指示"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
@@ -1865,10 +1848,10 @@ msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr ""
+msgstr "這可能是平台遭到攻擊的徵狀（例如某人試圖以偽造資訊來充斥您的伺服器）或者只是出於網站能見度提升而導致的正常使用量增長。"
 
 msgid "Examine the issue to determine whether it is legitimate or not."
-msgstr ""
+msgstr "查驗此事故，以確定其性質。"
 
 msgid "The activities with unusual stats are:"
 msgstr "數據不尋常的活動如下："
@@ -1876,22 +1859,22 @@ msgstr "數據不尋常的活動如下："
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr ""
+msgstr "伺服器不能確認能夠儲存新的報告，所以已經停止接收。"
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr ""
+msgstr "請考慮要求您的技術人員在伺服器上創建更多的磁碟空間。"
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
 " alert you in case something requires your attention."
-msgstr ""
+msgstr "GlobaLeaks 軟件包含了伺服器狀態檢查程序，它會在必要時警告你提高注意。"
 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr ""
+msgstr "欲了解更多，請登入管理員介面並查看「系統數據」與「異常」兩部份。"
 
 msgid "Anomaly detected in {NodeName}"
 msgstr "在 {NodeName} 偵測到異常狀況"
@@ -1904,7 +1887,7 @@ msgstr "謹以此電郵通知您，以下使用者的 PGP 金鑰即將或者已�
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr "如無有效的 PGP 金鑰，系統會無法將發出的通知加密。"
+msgstr "如無有效的 PGP 金鑰，系統會無法加密傳送的通知。"
 
 msgid "PGP key expiration alert"
 msgstr "PGP 金鑰到期提醒"
@@ -1951,7 +1934,7 @@ msgid ""
 msgstr "謹以此電郵通知您，我們收到請求將您的電郵地址更改為 {NewEmailAddress}。"
 
 msgid "Click the following link to validate this change:"
-msgstr "請按以下鏈結以確認此變更："
+msgstr "如欲確認此變改，請按以下連結："
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -2049,7 +2032,7 @@ msgstr "吹哨者已提供個人身份"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "我們剛收到一個爲用戶 {Username} 重設密碼的請求。"
+msgstr "謹以此電郵通知，系統剛收到爲用戶 {Username} 重設密碼的請求。"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
@@ -2057,7 +2040,7 @@ msgid ""
 msgstr "若您並沒有提出此請求，您可以安全地忽略和刪除本電郵。"
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr "如欲確認請求，請按以下鏈結："
+msgstr "如欲確認請求，請按以下連結："
 
 msgid "Password reset instructions"
 msgstr "密碼重設指示"
@@ -2078,10 +2061,10 @@ msgid ""
 msgstr "如無有效的 PGP 金鑰，系統會無法將所提交的報告加密。"
 
 msgid "Click the link to activate the platform:"
-msgstr "按此鏈結以啓動平台："
+msgstr "按此連結以啟動平台："
 
 msgid "Activation"
-msgstr "啓動"
+msgstr "啟動"
 
 msgid "A software update is available."
 msgstr "有可用的軟件更新。"
@@ -2119,7 +2102,7 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr ""
+msgstr "敬請用心關注此報告內的所有資料。請謹記，吹哨者爲了公衆權益而提交此報告，而極可能因此將自身曝露於高度風險中。所以，報告內的資料應被好好重視。"
 
 msgid "New report"
 msgstr "新報告"

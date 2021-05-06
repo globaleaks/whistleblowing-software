@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Estonian (http://www.transifex.com/otf/globaleaks/language/et/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -248,12 +248,6 @@ msgstr "Isikuandmete hoidja"
 
 msgid "Identity"
 msgstr "Isikuandmed"
-
-msgid "Available"
-msgstr "Saadaval"
-
-msgid "Not available"
-msgstr "Pole saadaval"
 
 msgid "Access requested"
 msgstr "Taotleti juurdepääsu"
@@ -1157,12 +1151,6 @@ msgstr "Saidid"
 msgid "Mode:"
 msgstr "Režiim:"
 
-msgid "Active"
-msgstr "Aktiivne"
-
-msgid "Inactive"
-msgstr "Passiivne"
-
 msgid "Configure"
 msgstr "Seadista"
 
@@ -1512,9 +1500,6 @@ msgstr "Failimaht"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Luba vihjeandjal teatele manuseid lisada"
 
-msgid "Never"
-msgstr "Mitte kunagi"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Luba vihjeandjal sõnumeid saata"
 
@@ -1616,9 +1601,6 @@ msgstr "Hoidja jaoks on taotletud juurdepääsu vihjeandja isikuandmetele."
 
 msgid "Date of the request"
 msgstr "Taotluse kuupäev"
-
-msgid "Undeclared"
-msgstr "Avaldamata"
 
 msgid "Congratulations!"
 msgstr "Õnnitleme!"

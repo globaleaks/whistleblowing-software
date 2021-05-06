@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -253,12 +253,6 @@ msgstr "ކަސްޓޯޑިއަން އޮފް އައިޑެންޓިޓީސް"
 
 msgid "Identity"
 msgstr "އައިޑެންޓިޓީ"
-
-msgid "Available"
-msgstr "ލިބެން އެބަހުރި"
-
-msgid "Not available"
-msgstr "ލިބޭކަށް ނެތް"
 
 msgid "Access requested"
 msgstr "އެކްސެސް ހޯދުމަށް އެދެވިއްޖެ"
@@ -1162,12 +1156,6 @@ msgstr "ސައިޓުތައް"
 msgid "Mode:"
 msgstr "ބާވަތް"
 
-msgid "Active"
-msgstr "އެކްޓިވް"
-
-msgid "Inactive"
-msgstr "އިންއެކްޓިވް"
-
 msgid "Configure"
 msgstr "ކޮންފިގަރ ކުރެއްވުމަށް"
 
@@ -1517,9 +1505,6 @@ msgstr "ފައިލްގެ ސައިޒު"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "ރިޕޯޓުގައި އާ ފައިލްތަށް ހިމެނުމުގެ ޙުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް. "
 
-msgid "Never"
-msgstr "ނުވާނެ"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "މެސެޖު ފޮނުވުމުގެ ޙުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް. "
 
@@ -1621,9 +1606,6 @@ msgstr "ވިސިލްބްލޯވަރގެ ފޮރުވިފައިވާ މައުލޫމާ
 
 msgid "Date of the request"
 msgstr "ޚިދުމަތަށް އެދިލެއްވި ތާރީޚް"
-
-msgid "Undeclared"
-msgstr "ހަވާލުދާރެއްނެތި"
 
 msgid "Congratulations!"
 msgstr "މަރުޙަބާ!"

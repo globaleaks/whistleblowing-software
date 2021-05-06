@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -251,12 +251,6 @@ msgstr "Tillitsperson for identiteter"
 
 msgid "Identity"
 msgstr "Identitet"
-
-msgid "Available"
-msgstr "Tilgjengelig"
-
-msgid "Not available"
-msgstr "Opptatt"
 
 msgid "Access requested"
 msgstr "Tilgang forespurt"
@@ -1160,12 +1154,6 @@ msgstr "Sider"
 msgid "Mode:"
 msgstr ""
 
-msgid "Active"
-msgstr "Aktiv"
-
-msgid "Inactive"
-msgstr "Inaktiv"
-
 msgid "Configure"
 msgstr ""
 
@@ -1515,9 +1503,6 @@ msgstr "Filstørrelse"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr ""
 
-msgid "Never"
-msgstr "Aldri"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Tillat fløyteblåseren å sende meldinger"
 
@@ -1619,9 +1604,6 @@ msgstr "Tilgang til fløyteblåsers identitet har blitt forespurt av tillitspers
 
 msgid "Date of the request"
 msgstr "Dato for forespørsel"
-
-msgid "Undeclared"
-msgstr "Uklarert"
 
 msgid "Congratulations!"
 msgstr "Gratulerer!"

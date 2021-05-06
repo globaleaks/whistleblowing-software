@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -253,12 +253,6 @@ msgstr "身元の管理人"
 
 msgid "Identity"
 msgstr "身元"
-
-msgid "Available"
-msgstr "可能"
-
-msgid "Not available"
-msgstr "不可"
 
 msgid "Access requested"
 msgstr "アクセスをリクエストしました"
@@ -1162,12 +1156,6 @@ msgstr "サイト"
 msgid "Mode:"
 msgstr "モード:"
 
-msgid "Active"
-msgstr "アクティブ"
-
-msgid "Inactive"
-msgstr "非アクティブ"
-
 msgid "Configure"
 msgstr "設定"
 
@@ -1517,9 +1505,6 @@ msgstr "ファイルのサイズ"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "その内部告発者が、報告に添付ファイルを追加することを許可する"
 
-msgid "Never"
-msgstr "しない"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "その内部告発者が、メッセージを送信することを許可"
 
@@ -1621,9 +1606,6 @@ msgstr "内部告発者の身元へのアクセスを管理人にリクエスト
 
 msgid "Date of the request"
 msgstr "リクエスト日"
-
-msgid "Undeclared"
-msgstr "未定義"
 
 msgid "Congratulations!"
 msgstr "おめでとうございます"

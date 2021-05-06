@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -256,12 +256,6 @@ msgstr "Den ansvarlige for identiteterne"
 
 msgid "Identity"
 msgstr "Identitet"
-
-msgid "Available"
-msgstr "Tilgængelig"
-
-msgid "Not available"
-msgstr "Ikke tilgængelig"
 
 msgid "Access requested"
 msgstr "Adgang anmodet"
@@ -1165,12 +1159,6 @@ msgstr "Sider"
 msgid "Mode:"
 msgstr "Tilstand:"
 
-msgid "Active"
-msgstr "Aktiv"
-
-msgid "Inactive"
-msgstr "Inaktiv"
-
 msgid "Configure"
 msgstr "Konfigurer"
 
@@ -1520,9 +1508,6 @@ msgstr "Filstørrelse"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Tillad whistlebloweren at tilføje vedhæftelser til indsendelsen"
 
-msgid "Never"
-msgstr "Aldrig"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Tillad whistlebloweren at sende beskeder"
 
@@ -1624,9 +1609,6 @@ msgstr "Forespørgsel om whistleblowerens identitet er blevet videregivet til de
 
 msgid "Date of the request"
 msgstr "Dato for forespørgslen"
-
-msgid "Undeclared"
-msgstr "Uerklæret"
 
 msgid "Congratulations!"
 msgstr "Tillykke!"

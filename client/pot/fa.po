@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -270,12 +270,6 @@ msgstr "نگهبانی از هویت"
 
 msgid "Identity"
 msgstr "هویت"
-
-msgid "Available"
-msgstr "در دسترس"
-
-msgid "Not available"
-msgstr "غیرقابل دسترس"
 
 msgid "Access requested"
 msgstr "درخواست دسترسی"
@@ -1179,12 +1173,6 @@ msgstr "سایت ها "
 msgid "Mode:"
 msgstr "حالت:"
 
-msgid "Active"
-msgstr "فعال"
-
-msgid "Inactive"
-msgstr "غیرفعال"
-
 msgid "Configure"
 msgstr "پیکربندی"
 
@@ -1534,9 +1522,6 @@ msgstr "اندازه فایل"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "به افشاگر اجازه اضافه کردن ضمیمه به این گزارش داده شود"
 
-msgid "Never"
-msgstr "هرگز"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "به افشاگر اجازه ارسال پیام داده شود"
 
@@ -1638,9 +1623,6 @@ msgstr "دسترسی به هویت افشاگر از ‍داده بان درخو
 
 msgid "Date of the request"
 msgstr "تاریخ درخواست"
-
-msgid "Undeclared"
-msgstr "اعلام نشده"
 
 msgid "Congratulations!"
 msgstr "تبریک!"

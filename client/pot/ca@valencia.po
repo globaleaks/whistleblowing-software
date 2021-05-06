@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -261,12 +261,6 @@ msgstr "Guardià de les identitats"
 
 msgid "Identity"
 msgstr "Identitat"
-
-msgid "Available"
-msgstr "Disponible"
-
-msgid "Not available"
-msgstr "No disponible"
 
 msgid "Access requested"
 msgstr "Accés demanat"
@@ -1170,12 +1164,6 @@ msgstr "Pàgines"
 msgid "Mode:"
 msgstr "Mode:"
 
-msgid "Active"
-msgstr "Actiu"
-
-msgid "Inactive"
-msgstr "Inactiu"
-
 msgid "Configure"
 msgstr "Configurar"
 
@@ -1525,9 +1513,6 @@ msgstr "Tamany del fitxer"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Permet als informadors afegir arxius adjunts a l'enviament"
 
-msgid "Never"
-msgstr "Mai"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Permet als informadors enviar missatges"
 
@@ -1629,9 +1614,6 @@ msgstr "El responsable ha demanat l'accés a la identitat de l'informador."
 
 msgid "Date of the request"
 msgstr "Data de la petició"
-
-msgid "Undeclared"
-msgstr "Sense declarar"
 
 msgid "Congratulations!"
 msgstr "Enhorabona!"

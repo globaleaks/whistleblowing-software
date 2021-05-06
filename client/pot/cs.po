@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -259,12 +259,6 @@ msgstr "Správce identit"
 
 msgid "Identity"
 msgstr "Identita"
-
-msgid "Available"
-msgstr "Dostupný"
-
-msgid "Not available"
-msgstr "Nedostupný"
 
 msgid "Access requested"
 msgstr "Požádáno o přístup"
@@ -1168,12 +1162,6 @@ msgstr "Stránky"
 msgid "Mode:"
 msgstr "Režim"
 
-msgid "Active"
-msgstr "Aktivní"
-
-msgid "Inactive"
-msgstr "Neaktivní"
-
 msgid "Configure"
 msgstr "Nastavení"
 
@@ -1523,9 +1511,6 @@ msgstr "Velikost souboru"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Povolit oznamovateli přidat přílohy k podáním"
 
-msgid "Never"
-msgstr "Nikdy"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Povolit oznamovateli posílat zprávy"
 
@@ -1627,9 +1612,6 @@ msgstr "Správce byl požádán o přístup k identitě oznamovatele"
 
 msgid "Date of the request"
 msgstr "Datum požadavku"
-
-msgid "Undeclared"
-msgstr "Neurčité"
 
 msgid "Congratulations!"
 msgstr "Gratulujeme!"

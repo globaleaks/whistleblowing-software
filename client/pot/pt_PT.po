@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -267,12 +267,6 @@ msgstr "Conservador de identidades"
 
 msgid "Identity"
 msgstr "identidade"
-
-msgid "Available"
-msgstr "Disponível"
-
-msgid "Not available"
-msgstr "Indisponível"
 
 msgid "Access requested"
 msgstr "Acesso solicitado"
@@ -1176,12 +1170,6 @@ msgstr "Sites"
 msgid "Mode:"
 msgstr ""
 
-msgid "Active"
-msgstr "Ativo"
-
-msgid "Inactive"
-msgstr "Inativo"
-
 msgid "Configure"
 msgstr "Configurar"
 
@@ -1531,9 +1519,6 @@ msgstr "Tamanho do ficheiro"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Permitir que o informador adicione anexos à submissão"
 
-msgid "Never"
-msgstr "Nunca"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Permitir que o informador envie mensagens"
 
@@ -1635,9 +1620,6 @@ msgstr "Foi solicitado o acesso à identidade do informador pelo conservador."
 
 msgid "Date of the request"
 msgstr "Data do pedido"
-
-msgid "Undeclared"
-msgstr "Não declarada"
 
 msgid "Congratulations!"
 msgstr "Parabéns!"

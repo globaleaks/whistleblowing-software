@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -261,12 +261,6 @@ msgstr "Θεματοφύλακας των ταυτοτήτων"
 
 msgid "Identity"
 msgstr "Ταυτότητα"
-
-msgid "Available"
-msgstr "Διαθέσιμος"
-
-msgid "Not available"
-msgstr "Μη διαθέσιμος"
 
 msgid "Access requested"
 msgstr "Η πρόσβαση αιτήθηκε"
@@ -1170,12 +1164,6 @@ msgstr "Ιστοσελίδες"
 msgid "Mode:"
 msgstr "Κατάσταση:"
 
-msgid "Active"
-msgstr "Ενεργό"
-
-msgid "Inactive"
-msgstr "Μη ενεργό"
-
 msgid "Configure"
 msgstr "Διαμόρφωση "
 
@@ -1525,9 +1513,6 @@ msgstr "Μέγεθος αρχείου"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Αφήστε το πληροφοριοδότη για να προσθέσετε συνημμένα σε υποβολή"
 
-msgid "Never"
-msgstr "Ποτέ"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Να επιτρέπεται στο πρόσωπο που υποβάλλει την αναφορά να στέλνει μηνύματα"
 
@@ -1629,9 +1614,6 @@ msgstr "Η πρόσβαση στην ταυτότητα του προσώπου 
 
 msgid "Date of the request"
 msgstr "Ημερομηνία υποβολής της αίτησης"
-
-msgid "Undeclared"
-msgstr "Αδήλωτη"
 
 msgid "Congratulations!"
 msgstr "Συγχαρητήρια!"

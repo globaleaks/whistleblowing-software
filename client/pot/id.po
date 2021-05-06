@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 16:41+0000\n"
+"PO-Revision-Date: 2021-05-03 20:35+0000\n"
 "Last-Translator: Edo Imantaka <imantaka.edo@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -270,12 +270,6 @@ msgstr "Pihak berwenang dari identitas"
 
 msgid "Identity"
 msgstr "Identitas"
-
-msgid "Available"
-msgstr "Tersedia"
-
-msgid "Not available"
-msgstr "Tidak Tersedia"
 
 msgid "Access requested"
 msgstr "Akses yang diminta"
@@ -559,7 +553,7 @@ msgid "Type your new password again"
 msgstr "Ketik lagi kata sandi baru Anda."
 
 msgid "The two passwords do not match"
-msgstr "Kedua kata kunci tidak cocok."
+msgstr "Kedua kata sandi tidak cocok."
 
 msgid "The new password must differ from the previous."
 msgstr "Kata sandi baru harus berbeda dengan yang sebelumnya."
@@ -577,7 +571,7 @@ msgid "Enable encryption"
 msgstr "Aktifkan enkripsi"
 
 msgid "Enable administrators to change user passwords"
-msgstr "Izinkan administrator untuk mengubah sandi pengguna"
+msgstr "Izinkan administrator untuk mengubah kata sandi pengguna"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administrator mengizinkan untuk mengganti kata sandi pengguna:"
@@ -1179,12 +1173,6 @@ msgstr "Situs"
 msgid "Mode:"
 msgstr "Mode:"
 
-msgid "Active"
-msgstr "Aktif"
-
-msgid "Inactive"
-msgstr "Tidak aktif"
-
 msgid "Configure"
 msgstr "Konfigurasikan"
 
@@ -1219,7 +1207,7 @@ msgid "Send reset link"
 msgstr "Kirim tautan pengaturan ulang"
 
 msgid "Set password"
-msgstr "Setel kata sandi"
+msgstr "Atur kata sandi"
 
 msgid "Disable two factor authentication"
 msgstr "Nonaktifkan autentikasi dua faktor"
@@ -1279,7 +1267,7 @@ msgid "Your new email address has been validated."
 msgstr "Alamat surel baru Anda sudah divalidasi "
 
 msgid "Forgot password?"
-msgstr "Lupa sandi?"
+msgstr "Lupa kata sandi?"
 
 msgid "Enter the two factor authentication code"
 msgstr "Masukkan kode autentikasi dua faktor"
@@ -1407,7 +1395,7 @@ msgid "Account recovery key"
 msgstr "Kunci pemulihan akun"
 
 msgid "Current password"
-msgstr "Sandi saat ini"
+msgstr "Kata sandi saat ini"
 
 msgid "Old password confirmation required"
 msgstr "Diperlukan konfirmasi kata sandi sebelumnya"
@@ -1534,9 +1522,6 @@ msgstr "Ukuran berkas"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Izinkan informan publik untuk menambahkan lampiran ke dalam laporan"
 
-msgid "Never"
-msgstr "Tidak pernah"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Mengizinkan informan publik untuk mengirim pesan"
 
@@ -1603,7 +1588,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr "Kami merekomendasikan Anda mengakses \"Preferensi\" untuk menerima \"Kunci Pemulihan Akun\" dan simpan dengan aman. Kunci ini dibutuhkan untuk memulihkan Akses Anda ke platform dan data Anda jika Anda lupa sandi."
+msgstr "Kami merekomendasikan Anda mengakses \"Preferensi\" untuk menerima \"Kunci Pemulihan Akun\" dan simpan dengan aman. Kunci ini dibutuhkan untuk memulihkan akses Anda ke platform dan data Anda jika Anda lupa kata sandi."
 
 msgid "The provided recovery key is invalid."
 msgstr "Kunci pemulihan yang diberikan salah."
@@ -1638,9 +1623,6 @@ msgstr "Akses untuk identitas Informan Publik telah diminta oleh pihak otoritas"
 
 msgid "Date of the request"
 msgstr "Tanggal permintaan"
-
-msgid "Undeclared"
-msgstr "Tidak dideklarasikan"
 
 msgid "Congratulations!"
 msgstr "Selamat!"
@@ -1768,14 +1750,14 @@ msgid "Please choose a configuration profile:"
 msgstr "Mohon pilih setelan profil:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr "Mungkinkan admin ini untuk mengatur ulang sandi pengguna."
+msgstr "Mungkinkan admin ini untuk mengatur ulang kata sandi pengguna."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr "Kami menyarankan memilih opsi ini jika Anda ingin melindungi data dari kehilangan dalam situasi saat penerima kehilangan sandinya. Di sisi lain, kami tidak menyarankan menggunakan fitur ini jika Anda ingin mengatur sebuat sistem di mana hanya penerima yang dapat mengakses kiriman."
+msgstr "Kami menyarankan memilih opsi ini jika Anda ingin melindungi data dari kehilangan dalam situasi saat penerima kehilangan kata sandinya. Di sisi lain, kami tidak menyarankan menggunakan fitur ini jika Anda ingin mengatur sebuah sistem di mana hanya penerima yang dapat mengakses kiriman."
 
 msgid "Please choose a different username."
 msgstr "Mohon pilih nama pengguna lain."

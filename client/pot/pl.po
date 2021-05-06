@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -265,12 +265,6 @@ msgstr "Dozorca tożsamości"
 
 msgid "Identity"
 msgstr "Tożsamość"
-
-msgid "Available"
-msgstr "Dostępny"
-
-msgid "Not available"
-msgstr "Niedostępne"
 
 msgid "Access requested"
 msgstr "Zażądano dostępu"
@@ -1174,12 +1168,6 @@ msgstr "Strony"
 msgid "Mode:"
 msgstr "Tryb:"
 
-msgid "Active"
-msgstr "Aktywni"
-
-msgid "Inactive"
-msgstr "Nieaktywne"
-
 msgid "Configure"
 msgstr "Konfiguruj"
 
@@ -1529,9 +1517,6 @@ msgstr "Rozmiar Pliku"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Sygnaliści mogą dodawać załączniki"
 
-msgid "Never"
-msgstr "Nigdy"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Sygnalista może wysyłać wiadomości"
 
@@ -1633,9 +1618,6 @@ msgstr "Dozorca zażądał dostępu do tożsamości sygnalisty."
 
 msgid "Date of the request"
 msgstr "Data żądania"
-
-msgid "Undeclared"
-msgstr "Nie podano"
 
 msgid "Congratulations!"
 msgstr "Gratulacje!"

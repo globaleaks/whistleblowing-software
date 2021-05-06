@@ -20,11 +20,11 @@
 # Pierre <prjolivet@yahoo.fr>, 2015
 # Rima Sghaier, 2016
 # rike, 2014
-# rike, 2014
+# u <u@451f.org>, 2014
 # Towinet, 2013-2015
 # Trans-fr, 2015
 # AO <ao@localizationlab.org>, 2015-2016
-# rike, 2014
+# u <u@451f.org>, 2014
 # Yvette Agostini <mnemosyne@logioshermes.org>, 2015
 # Yvette Agostini <mnemosyne@logioshermes.org>, 2015
 # Xavier Lalu <xavier.lalu@carredinfo.fr>, 2013
@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -283,12 +283,6 @@ msgstr "Gardien des identités"
 
 msgid "Identity"
 msgstr "Identité"
-
-msgid "Available"
-msgstr "Disponible"
-
-msgid "Not available"
-msgstr "Non disponible"
 
 msgid "Access requested"
 msgstr "accès demandé"
@@ -1192,12 +1186,6 @@ msgstr "Sites"
 msgid "Mode:"
 msgstr "Mode :"
 
-msgid "Active"
-msgstr "Actif"
-
-msgid "Inactive"
-msgstr "Inactif"
-
 msgid "Configure"
 msgstr "Configurer"
 
@@ -1547,9 +1535,6 @@ msgstr "Taille du fichier"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Permettre au lanceur d’alerte d’ajouter des fichiers joints au signalement"
 
-msgid "Never"
-msgstr "Jamais"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Permettre au lanceur d’alerte d’envoyer des messages"
 
@@ -1651,9 +1636,6 @@ msgstr "L’accès à l’identité du lanceur d’alerte a été demandé au ga
 
 msgid "Date of the request"
 msgstr "Date de la demande"
-
-msgid "Undeclared"
-msgstr "Non déclarée"
 
 msgid "Congratulations!"
 msgstr "Félicitations !"

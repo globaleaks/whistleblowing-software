@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -251,12 +251,6 @@ msgstr "அடையாளங்களை பொறுப்பாளரா�
 
 msgid "Identity"
 msgstr "அடையாளம்"
-
-msgid "Available"
-msgstr "கிடைக்கும்"
-
-msgid "Not available"
-msgstr "கிடைக்கவில்லை"
 
 msgid "Access requested"
 msgstr "அணுகல் கோரப்பட்டது"
@@ -1160,12 +1154,6 @@ msgstr "தளங்கள்"
 msgid "Mode:"
 msgstr "முறை:"
 
-msgid "Active"
-msgstr "செயலில்"
-
-msgid "Inactive"
-msgstr "செயல்படா"
-
 msgid "Configure"
 msgstr "கட்டமைக்க"
 
@@ -1515,9 +1503,6 @@ msgstr "கோப்பின் அளவு"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "தகவல் தெரிவிப்பவர் சமர்ப்பிப்பு இணைப்புகளை சேர்க்க அனுமதி"
 
-msgid "Never"
-msgstr "ஒருபோதும்"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "தகவல் தெரிவிப்பவர் செய்திகளை அனுப்ப அனுமதிக்க"
 
@@ -1619,9 +1604,6 @@ msgstr "தகவல் தெரிவிப்பவர் அடையாள�
 
 msgid "Date of the request"
 msgstr "கோரிக்கையின் தேதி"
-
-msgid "Undeclared"
-msgstr "அறிவிக்கப்படாத"
 
 msgid "Congratulations!"
 msgstr "வாழ்த்துக்கள்!"

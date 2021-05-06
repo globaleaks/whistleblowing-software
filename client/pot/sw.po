@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swahili (http://www.transifex.com/otf/globaleaks/language/sw/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -249,12 +249,6 @@ msgstr "Mwangalizi wa vitambulisho"
 
 msgid "Identity"
 msgstr "Kitambulisho"
-
-msgid "Available"
-msgstr "Kinapatikana"
-
-msgid "Not available"
-msgstr "Hakipatikani"
 
 msgid "Access requested"
 msgstr "Ufikiaji umeombwa"
@@ -1158,12 +1152,6 @@ msgstr "Tovuti"
 msgid "Mode:"
 msgstr ""
 
-msgid "Active"
-msgstr "Hai"
-
-msgid "Inactive"
-msgstr "Sio hai"
-
 msgid "Configure"
 msgstr "Sanidi"
 
@@ -1513,9 +1501,6 @@ msgstr "Ukubwa wa faili"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Ruhusu mtoa taarifa ya siri kuongeza viambatanisho kwenye ripoti"
 
-msgid "Never"
-msgstr "Kamwe"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Ruhusu mtoa taarifa ya siri kutuma ujumbe"
 
@@ -1617,9 +1602,6 @@ msgstr "Ufikiaji wa kitambulisho cha mtoa taarifa za siri umeombwa kwa mwangalzi
 
 msgid "Date of the request"
 msgstr "Tarehe ya kuomba"
-
-msgid "Undeclared"
-msgstr "Haikutangazwa"
 
 msgid "Congratulations!"
 msgstr "Hongera!"

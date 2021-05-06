@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -257,12 +257,6 @@ msgstr "Käyttäjätietojen valvoja"
 
 msgid "Identity"
 msgstr "Identiteetti"
-
-msgid "Available"
-msgstr "Tavoitettavissa"
-
-msgid "Not available"
-msgstr "Ei tavoitettavissa"
 
 msgid "Access requested"
 msgstr "Käyttöoikeus pyydetty"
@@ -1166,12 +1160,6 @@ msgstr "Palvelut"
 msgid "Mode:"
 msgstr "Tila:"
 
-msgid "Active"
-msgstr "Aktiivinen"
-
-msgid "Inactive"
-msgstr "Ei toiminnassa"
-
 msgid "Configure"
 msgstr "Aseta"
 
@@ -1521,9 +1509,6 @@ msgstr "Tiedostokoko"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Salli vihjeenantajan liittää vihjeeseen tiedostoja."
 
-msgid "Never"
-msgstr "Ei koskaan"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Salli vihjeen antajan lähettää viestejä"
 
@@ -1625,9 +1610,6 @@ msgstr "Valvojalle on lähetetty pyyntö päästä vihjeen antajan henkilötieto
 
 msgid "Date of the request"
 msgstr "Pyynnön päivämäärä"
-
-msgid "Undeclared"
-msgstr "Ei ilmoitettu"
 
 msgid "Congratulations!"
 msgstr "Onneksi olkoon!"

@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -266,12 +266,6 @@ msgstr "Az identitások gondnoka"
 
 msgid "Identity"
 msgstr "Identitás"
-
-msgid "Available"
-msgstr "Elérhető"
-
-msgid "Not available"
-msgstr "Nem elérhető"
 
 msgid "Access requested"
 msgstr "Hozzáférés kérve"
@@ -1175,12 +1169,6 @@ msgstr "Weboldalak"
 msgid "Mode:"
 msgstr "Mód:"
 
-msgid "Active"
-msgstr "Aktív"
-
-msgid "Inactive"
-msgstr "Inaktív"
-
 msgid "Configure"
 msgstr "Beállítás"
 
@@ -1530,9 +1518,6 @@ msgstr "Fájlméret"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Engedélyezi a bejelentőknek, hogy mellékleteket adjanak hozzá a beadványhoz"
 
-msgid "Never"
-msgstr "Soha"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "A bejelentő küldhet üzeneteket"
 
@@ -1634,9 +1619,6 @@ msgstr "A bejelentő identitásához való hozzáférés kérelmezve a gondnokna
 
 msgid "Date of the request"
 msgstr "A kérés dátuma"
-
-msgid "Undeclared"
-msgstr "Nem megadott"
 
 msgid "Congratulations!"
 msgstr "Gratulálunk!"

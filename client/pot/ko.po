@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -249,12 +249,6 @@ msgstr "신원의 수탁"
 
 msgid "Identity"
 msgstr "정체"
-
-msgid "Available"
-msgstr "유효한"
-
-msgid "Not available"
-msgstr "사용 불가"
 
 msgid "Access requested"
 msgstr "액세스 요청"
@@ -1158,12 +1152,6 @@ msgstr ""
 msgid "Mode:"
 msgstr ""
 
-msgid "Active"
-msgstr "활성"
-
-msgid "Inactive"
-msgstr ""
-
 msgid "Configure"
 msgstr "구성"
 
@@ -1513,9 +1501,6 @@ msgstr "파일 크기"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr ""
 
-msgid "Never"
-msgstr "만료없음"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "고발자 메시지를 보낼 수 있도록 허용"
 
@@ -1617,9 +1602,6 @@ msgstr "고발자의 신원에 대한 액세스는 관리인에게 요청하고�
 
 msgid "Date of the request"
 msgstr "요청 일자"
-
-msgid "Undeclared"
-msgstr ""
 
 msgid "Congratulations!"
 msgstr "치하!"

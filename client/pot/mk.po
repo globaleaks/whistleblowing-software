@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Macedonian (http://www.transifex.com/otf/globaleaks/language/mk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -251,12 +251,6 @@ msgstr "Чувар на идентитетите "
 
 msgid "Identity"
 msgstr "Идентитет "
-
-msgid "Available"
-msgstr "Достапно "
-
-msgid "Not available"
-msgstr "Недостапно"
 
 msgid "Access requested"
 msgstr "Побаран пристап "
@@ -1160,12 +1154,6 @@ msgstr "Страни"
 msgid "Mode:"
 msgstr "Модул:"
 
-msgid "Active"
-msgstr "Активно "
-
-msgid "Inactive"
-msgstr "Неактивно"
-
 msgid "Configure"
 msgstr "Конфигурирај"
 
@@ -1515,9 +1503,6 @@ msgstr "Големина на датотеката "
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Овозможи на укажувачот да прикачува датотеки на пријавата "
 
-msgid "Never"
-msgstr "Никогаш"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Овозможи на укажувачот да испраќа пораки "
 
@@ -1619,9 +1604,6 @@ msgstr "Побарано е пристап до идентитетот на ук
 
 msgid "Date of the request"
 msgstr "Датум на барањето"
-
-msgid "Undeclared"
-msgstr "Непријавено "
 
 msgid "Congratulations!"
 msgstr "Честитки!"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/otf/globaleaks/language/lt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -249,12 +249,6 @@ msgstr "Tapatybių prižiūrėtojas"
 
 msgid "Identity"
 msgstr "Tapatybė"
-
-msgid "Available"
-msgstr "Prieinama"
-
-msgid "Not available"
-msgstr "Neprieinama"
 
 msgid "Access requested"
 msgstr "Užklausta prieigos"
@@ -1158,12 +1152,6 @@ msgstr "Svetainės"
 msgid "Mode:"
 msgstr "Režimas"
 
-msgid "Active"
-msgstr "Aktyvi"
-
-msgid "Inactive"
-msgstr "Neaktyvus"
-
 msgid "Configure"
 msgstr "Konfigūruoti"
 
@@ -1513,9 +1501,6 @@ msgstr "Failo dydis"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr ""
 
-msgid "Never"
-msgstr "Niekada"
-
 msgid "Allow the whistleblower to send messages"
 msgstr ""
 
@@ -1616,9 +1601,6 @@ msgid ""
 msgstr ""
 
 msgid "Date of the request"
-msgstr ""
-
-msgid "Undeclared"
 msgstr ""
 
 msgid "Congratulations!"

@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -266,12 +266,6 @@ msgstr "Systemförvaltare som hanterar identiteterna"
 
 msgid "Identity"
 msgstr "Identitet"
-
-msgid "Available"
-msgstr "Tillgänglig"
-
-msgid "Not available"
-msgstr "Ej tillgänglig"
 
 msgid "Access requested"
 msgstr "Åtkomst begärd"
@@ -1175,12 +1169,6 @@ msgstr "Webbplatser"
 msgid "Mode:"
 msgstr "Läge:"
 
-msgid "Active"
-msgstr "Aktiv"
-
-msgid "Inactive"
-msgstr "Inaktiv"
-
 msgid "Configure"
 msgstr "Konfigurera"
 
@@ -1530,9 +1518,6 @@ msgstr "Filstorlek"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Tillåt att visselblåsaren lägger till bilagor till rapporten"
 
-msgid "Never"
-msgstr "Aldrig"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Tillåt att visselblåsaren skickar meddelanden"
 
@@ -1634,9 +1619,6 @@ msgstr "Åtkomst till visselblåsarens identitet har begärts av systemförvalta
 
 msgid "Date of the request"
 msgstr "Datum för begäran"
-
-msgid "Undeclared"
-msgstr "Orapporterat"
 
 msgid "Congratulations!"
 msgstr "Grattis!"

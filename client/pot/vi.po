@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-04-29 14:50+0000\n"
+"PO-Revision-Date: 2021-05-03 09:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -260,12 +260,6 @@ msgstr "Người bảo vệ danh tính"
 
 msgid "Identity"
 msgstr "Danh tính"
-
-msgid "Available"
-msgstr "Có sẵn"
-
-msgid "Not available"
-msgstr "Không thể"
 
 msgid "Access requested"
 msgstr "Yêu cầu truy cập "
@@ -1169,12 +1163,6 @@ msgstr "Các trang web"
 msgid "Mode:"
 msgstr "Trạng thái:"
 
-msgid "Active"
-msgstr "Hoạt động"
-
-msgid "Inactive"
-msgstr "Không hoạt động"
-
 msgid "Configure"
 msgstr "Cấu hình"
 
@@ -1524,9 +1512,6 @@ msgstr "Kích thước tập tin"
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "Cho phép người tố giác thêm tệp đính kèm vào báo cáo"
 
-msgid "Never"
-msgstr "Không bao giờ"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Cho phép người tố giác gửi tin nhắn"
 
@@ -1628,9 +1613,6 @@ msgstr "Yêu cầu truy cập danh tính của người tố giác đã được
 
 msgid "Date of the request"
 msgstr "Ngày yêu cầu"
-
-msgid "Undeclared"
-msgstr "Không được khai báo"
 
 msgid "Congratulations!"
 msgstr "Chúc mừng!"
