@@ -187,13 +187,16 @@ class QuestionnairesCollection(BaseHandler):
         """
         Create a new questionnaire.
         """
-        validator = requests.AdminQuestionnaireDesc
-        if self.request.language is None:
+        if self.request.multilang:
+            language = None
             validator = requests.AdminQuestionnaireDescRaw
+        else:
+            language = self.request.language
+            validator = requests.AdminQuestionnaireDesc
 
         request = self.validate_message(self.request.content.read(), validator)
 
-        return create_questionnaire(self.request.tid, request, self.request.language)
+        return create_questionnaire(self.request.tid, request, language)
 
 
 class QuestionnaireInstance(BaseHandler):

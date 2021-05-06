@@ -272,6 +272,7 @@ class APIResourceWrapper(Resource):
         request.headers = request.getAllHeaders()
         request.hostname = request.getRequestHostname()
         request.port = request.getHost().port
+        request.multilang = False
 
         if (not State.tenant_cache[1].wizard_done or
             request.hostname == b'localhost' or
@@ -312,7 +313,7 @@ class APIResourceWrapper(Resource):
 
         request.language = self.detect_language(request)
         if b'multilang' in request.args:
-            request.language = None
+            request.multilang = True
 
     def render(self, request):
         """

@@ -387,11 +387,16 @@ class FieldTemplatesCollection(BaseHandler):
         """
         Create a field template.
         """
-        validator = requests.AdminFieldDesc if self.request.language is not None else requests.AdminFieldDescRaw
+        if self.request.multilang:
+            language = None
+            validator = request.AdminFieldDescRaw
+        else:
+            language = self.request.language
+            validator = requests.AdminFieldDesc
 
         request = self.validate_message(self.request.content.read(), validator)
 
-        return create_field(self.request.tid, request, self.request.language)
+        return create_field(self.request.tid, request, language)
 
 
 class FieldTemplateInstance(BaseHandler):
