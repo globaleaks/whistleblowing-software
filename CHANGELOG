@@ -1,3 +1,11 @@
+Changes in version 4.2.7
+    Fix functionality of import of questionnaires
+    Fix loading of intermediate chain composed by more than one certificate
+    Bump npm dependencies to latest versions
+    Add Kramer translation (ongoing translation added for revision purposes)
+    Add Uyghur translation (ongoing translation added for revision purposes)
+    Update translations
+
 Changes in version 4.2.6
     Add Bengali translation
     Add Lao translation
