@@ -463,7 +463,8 @@ class APIResourceWrapper(Resource):
         # - In order to be able to manually retest if it is correctly implemented
         if not State.settings.disable_csp:
             loaderhash = 'sha256-5lXnnOUlgo1YhIuN7PZfUCak9vgNB1YIi2UELuAqwO4='
-            csp = "default-src 'none';" \
+            csp = "base-uri 'none';" \
+                  "default-src 'none';" \
                   "script-src 'self' '" + loaderhash + "';" \
                   "connect-src 'self';" \
                   "style-src 'self';" \

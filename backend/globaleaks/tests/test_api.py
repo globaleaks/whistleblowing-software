@@ -78,7 +78,8 @@ class TestAPI(TestGL):
         server_headers = [
             ('Cache-control', 'no-store'),
             ('Content-Language', 'en'),
-            ('Content-Security-Policy', 'default-src \'none\';' \
+            ('Content-Security-Policy', 'base-uri \'none\';' \
+                                        'default-src \'none\';' \
                                         'script-src \'self\' \'sha256-5lXnnOUlgo1YhIuN7PZfUCak9vgNB1YIi2UELuAqwO4=\';' \
                                         'connect-src \'self\';' \
                                         'style-src \'self\';' \
