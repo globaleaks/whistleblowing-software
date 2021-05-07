@@ -502,6 +502,7 @@ var GL = angular.module("GL", [
   config(["tmhDynamicLocaleProvider", function(tmhDynamicLocaleProvider) {
     var map = {
       "ca@valencia": "ca-es-valencia",
+      "dv": "en",
       "sl-si": "sl"
     };
 
