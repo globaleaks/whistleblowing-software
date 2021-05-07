@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 #
 # Handlers dealing with platform authentication
-import pyotp
 from datetime import timedelta
 from random import SystemRandom
 from twisted.internet.defer import inlineCallbacks, returnValue
+
 from globaleaks.handlers.base import connection_check, BaseHandler
 from globaleaks.models import InternalTip, User, WhistleblowerTip
 from globaleaks.orm import transact
@@ -12,7 +12,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
-from globaleaks.utils.crypto import Base64Encoder, GCE
+from globaleaks.utils.crypto import totpVerify, Base64Encoder, GCE
 from globaleaks.utils.log import log
 from globaleaks.utils.utility import datetime_now, deferred_sleep
 
@@ -112,6 +112,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
     if not user or not GCE.check_password(user.hash_alg, password, user.salt, user.password):
         login_failure(tid, 0)
 
+
     connection_check(tid, client_ip, user.role, client_using_tor)
 
     crypto_prv_key = ''
@@ -130,9 +131,10 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
     if user.two_factor_enable:
         if authcode != '':
             # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
-            if not pyotp.TOTP(user.two_factor_secret).verify(authcode, valid_window=1):
+            try:
+                totpVerify(user.two_factor_secret, authcode)
+            except:
                 raise errors.InvalidTwoFactorAuthCode
-
         else:
             raise errors.TwoFactorAuthCodeRequired
 

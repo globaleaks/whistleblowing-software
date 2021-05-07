@@ -1,11 +1,10 @@
 # -*- coding: utf-8
 #
 # Handlers dealing with user preferences
+import base64
 import os
-import pyotp
 
 from nacl.encoding import Base32Encoder, Base64Encoder
-
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
@@ -16,7 +15,7 @@ from globaleaks.orm import db_get, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.pgp import PGPContext
-from globaleaks.utils.crypto import GCE, generateRandomKey
+from globaleaks.utils.crypto import GCE, generateRandomKey, totpVerify
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 
@@ -324,7 +323,7 @@ def enable_2fa_step1(session, tid, user_id):
     if user.two_factor_secret:
         return user.two_factor_secret
 
-    user.two_factor_secret = pyotp.random_base32()
+    user.two_factor_secret = base64.b32encode(os.urandom(20))
 
     return user.two_factor_secret
 
@@ -343,10 +342,12 @@ def enable_2fa_step2(session, tid, user_id, user_cc, token):
     user = db_get_user(session, tid, user_id)
 
     # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
-    if pyotp.TOTP(user.two_factor_secret).verify(token):
-        user.two_factor_enable = True
-    else:
+    try:
+        totpVerify(user.two_factor_secret, token)
+    except:
         raise errors.InvalidTwoFactorAuthCode
+
+    user.two_factor_enable = True
 
 
 @transact

@@ -5,9 +5,12 @@ import os
 import random
 import string
 import struct
+import time
 
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import constant_time, hashes
+from cryptography.hazmat.primitives.hashes import SHA1
+from cryptography.hazmat.primitives.twofactor.totp import TOTP
 
 from nacl.encoding import Base64Encoder
 from nacl.hashlib import scrypt
@@ -69,6 +72,11 @@ def generateRandomPassword(N):
 
 def generate2FA():
     return ''.join(random.SystemRandom().choice(string.digits) for _ in range(8))
+
+
+def totpVerify(secret, token):
+    totp = TOTP(base64.b32decode(secret), 6, SHA1(), 30, crypto_backend, enforce_key_length=False)
+    totp.verify(token.encode(), time.time())
 
 
 def _hash_scrypt(password, salt):

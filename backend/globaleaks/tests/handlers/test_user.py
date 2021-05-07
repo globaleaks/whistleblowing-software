@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*
-import pyotp
+import base64
+import os
+import time
+
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives.twofactor.totp import TOTP
+from cryptography.hazmat.primitives.hashes import SHA1
 
 from twisted.internet.defer import inlineCallbacks
 
@@ -173,7 +179,8 @@ class TestUser2FAEnrollment(helpers.TestHandlerWithPopulatedDB):
         self.assertFailure(handler.put(), errors.InvalidTwoFactorAuthCode)
 
         # Attempt enrolling for 2FA with a valid token
-        current_token = pyotp.TOTP(totp_secret).now()
+        totp = TOTP(base64.b32decode(totp_secret), 6, SHA1(), 30, default_backend())
+        current_token = totp.generate(time.time()).decode()
 
         data_request = {
             'operation': 'enable_2fa_step2',

@@ -32,7 +32,6 @@ Depends:
   python3-h2,
   python3-nacl (>= 1.2),
   python3-openssl,
-  python3-pyotp,
   python3-gnupg,
   python3-priority,
   python3-sqlalchemy,
