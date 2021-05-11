@@ -1,3 +1,6 @@
+Changes in version 4.2.8
+    Update translations for revision purposes
+
 Changes in version 4.2.7
     Fix functionality of import of questionnaires
     Fix loading of intermediate chain composed by more than one certificate
