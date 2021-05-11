@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-05 08:35+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2021-05-11 10:00+0000\n"
+"Last-Translator: Christine Ivy <christineivy19@gmail.com>\n"
 "Language-Team: Burmese (http://www.transifex.com/otf/globaleaks/language/my/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -46,7 +46,7 @@ msgid "Add new questionnaire"
 msgstr "မေးခွန်းလွှာအသစ် ထည့်ပါ"
 
 msgid "Home"
-msgstr "ပင်မ"
+msgstr "ပင်မ စာမျက်နှာ"
 
 msgid "Changelog"
 msgstr "အပြောင်းအလဲစာရင်း"
@@ -94,7 +94,7 @@ msgid "Select this recipient."
 msgstr "ဤလက်ခံသူကို ရွေးချယ်ပါ။"
 
 msgid "Unselect this recipient."
-msgstr "ဤလက်ခံသူကို ရွေးချယ်မှုဖြုတ်ပါ။"
+msgstr "ဤလက်ခံသူကို မရွေးပါ။"
 
 msgid "This recipient cannot be deselected."
 msgstr "ဤလက်ခံသူကို ရွေးချယ်မှုဖျက်၍ မရပါ။ "
@@ -121,7 +121,7 @@ msgid "Select all"
 msgstr "အားလုံးကို ရွေးချယ်ရန်"
 
 msgid "Deselect all"
-msgstr "အားလုံးကို ရွေးချယ်မှုဖျက်ရန်"
+msgstr "အားလုံးကို မရွေးချယ်ပါ"
 
 msgid "Refresh"
 msgstr "ရီဖရက်ရှ်လုပ်ရန်"
@@ -732,7 +732,7 @@ msgid "Description"
 msgstr "ဖော်ပြချက်"
 
 msgid "Homepage title"
-msgstr "ပင်မစာမျက်နှာခေါင်းစဉ်"
+msgstr "ပင်မစာမျက်နှာ ခေါင်းစဉ်"
 
 msgid "Presentation"
 msgstr "တင်ပြချက်"
@@ -867,7 +867,7 @@ msgid "Allowed IP addresses"
 msgstr "ခွင့်ပြုထားသော IP လိပ်စာများ"
 
 msgid "Admin"
-msgstr "အက်ဒ်မင်"
+msgstr "အုပ်ချုပ်ရေးမှူး"
 
 msgid "Recipient"
 msgstr "လက်ခံသူ"

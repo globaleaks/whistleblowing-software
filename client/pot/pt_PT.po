@@ -11,10 +11,10 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020
 # João Paulo Macedo Batalha <joao.batalha@transparencia.pt>, 2015
 # 425fe09b3064b9f906f637fff94056ae_a00ea56 <0fa3588fa89906bfcb3a354600956e0e_308047>, 2015-2016
-# Manuela Silva <manuelarodsilva@gmail.com>, 2020
-# Manuela Silva <manuelarodsilva@gmail.com>, 2014-2018
+# Manuela Silva <mmsrs@sky.com>, 2020
+# Manuela Silva <mmsrs@sky.com>, 2014-2018
 # Mónica Marques <coelho_monica75@hotmail.com>, 2017
-# Manuela Silva <manuelarodsilva@gmail.com>, 2019
+# Manuela Silva <mmsrs@sky.com>, 2019
 # Drew Melim <nokostya.translation@gmail.com>, 2014-2015
 # 25dcf36596cc573910517485ce7471d2_e63d9c6 <02fb85a8c2ff1359b9784c1b22793096_365094>, 2015
 # 25dcf36596cc573910517485ce7471d2_e63d9c6 <02fb85a8c2ff1359b9784c1b22793096_365094>, 2015

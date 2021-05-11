@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-06 09:59+0000\n"
+"PO-Revision-Date: 2021-05-10 04:00+0000\n"
 "Last-Translator: Ty Sok <sokty2@gmail.com>\n"
 "Language-Team: Khmer (http://www.transifex.com/otf/globaleaks/language/km/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1227,7 +1227,7 @@ msgid "Give the user administrative access to the following features:"
 msgstr ""
 
 msgid "Request date"
-msgstr ""
+msgstr "កាលបរិច្ឆេទស្នើសុំ"
 
 msgid "Report date"
 msgstr "កាលបរិច្ឆេទរបាយការណ៍"
@@ -1245,28 +1245,28 @@ msgid "Your new email address has been validated."
 msgstr "អាសយដ្ឋានអ៊ីម៉ែលរបស់អ្នក ត្រូវបានផ្ទៀងផ្ទាត់។"
 
 msgid "Forgot password?"
-msgstr ""
+msgstr "ភ្លេចពាក្យសម្ងាត់?"
 
 msgid "Enter the two factor authentication code"
-msgstr ""
+msgstr "វាយបញ្ចូលលេខកូដផ្ទៀងផ្ទាត់ពីរកត្តា"
 
 msgid "Authentication failed"
-msgstr ""
+msgstr "ការផ្ទៀងផ្ទាត់បរាជ័យ"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "លេខកូដនេះមិនត្រឹមត្រូវ ឬហួលពេល។"
 
 msgid "Site:"
-msgstr ""
+msgstr "គេហទំព័រ៖"
 
 msgid "Please select your account:"
-msgstr ""
+msgstr "សូមជ្រើសរើសគណនីរបស់អ្នក៖"
 
 msgid "Now type your password, then click 'Log in':"
-msgstr ""
+msgstr "ឥឡូវ វាយបញ្ចូលពាក្យសម្ងាត់របស់អ្នក បន្ទាប់មកចុច 'ចូលប្រើប្រាស់'៖"
 
 msgid "Text shown after the user has selected the option."
-msgstr ""
+msgstr "អក្សរបង្ហាញ បន្ទាប់ពីអ្នកប្រើប្រាស់បានជ្រើសរើសរួច។"
 
 msgid "Confirm"
 msgstr "យល់ព្រម"
@@ -1275,90 +1275,90 @@ msgid "Are you sure?"
 msgstr "តើ​អ្នក​ប្រាកដ​ឬ?"
 
 msgid "The operation will reset the configuration and cannot be undone."
-msgstr ""
+msgstr "ប្រតិបត្តិការនេះ នឹងត្រលប់ការកំណត់សារឡើងវិញ និងមិនអាចបកក្រោយបានទេ។"
 
 msgid "Assign score points"
-msgstr ""
+msgstr "កំណត់ពិន្ទុ"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
+msgstr "សូមចំណាំថា រាល់ទិន្នន័យដែលពាក់ព័ន្ធ នឹងត្រូវលុបចោលជារៀងរហូត។"
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
+msgstr "នេះជាវាទិកាសាកល្បង សូមកុំប្រើប្រាស់វាសម្រាប់ការបញ្ជូនពិតប្រាកដ។"
 
 msgid "Install an authenticator app on your phone"
-msgstr ""
+msgstr "ដំឡើងកម្មវិធី authenticator នៅលើទូរស័ព្ទរបស់អ្នក"
 
 msgid "Scan the QR code with the app"
-msgstr ""
+msgstr "ស្កេនកូដ QR ជាមួយកម្មវិធីនេះ"
 
 msgid "Enable two factor authentication"
-msgstr ""
+msgstr "បើក ការផ្ទៀងផ្ទាត់ពីរកត្តា"
 
 msgid "Close"
 msgstr "បិទ"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr ""
+msgstr "មុនពេលដំណើរការ សូមអានឯកសាររដោយយកចិត្តទុកដាក់នៅ៖ "
 
 msgid "Your account recovery key is:"
-msgstr ""
+msgstr "លេខកូដសង្គ្រោះគណនីរបស់អ្នកគឺ៖"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr ""
+msgstr "ចំលង និងរក្សាទុកនៅកន្លែងសុវត្ថិភាព។ វាមានសារៈសំខាន់ បើអ្នកបាត់បង់ពាក្យសម្ងាត់ ដើម្បីស្តារការចូលប្រើប្រាស់គណនីរបស់អ្នក ដោយមិនបាត់បង់ទិន្នន័យ។"
 
 msgid "Welcome!"
 msgstr "សូមស្វាគមន៍!"
 
 msgid "For the user documentation, visit:"
-msgstr ""
+msgstr "សម្រាប់ឯកសារអ្នកប្រើប្រាស់ ចូលទៅកាន់៖"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
 " the software:"
-msgstr ""
+msgstr "បើអ្នកត្រូវការជំនួយបច្ចេកទេស មានសំណួរទូទៅ ឬមានគំនិតថ្មីសម្រាប់កម្មវិធី៖"
 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr ""
+msgstr "បើអ្នកចង់ចូលរួមចំណែកក្នុងការអភិវឌ្ឍកម្មវិធី ឬរាយការណ៍អំពីកំហុស សូមបើកបញ្ហានៅក្នុងប្រព័ន្ធលក់សំបុត្ររបស់យើង៖ "
 
 msgid "Join our chat:"
-msgstr ""
+msgstr "ចូលរួមការជជែករបស់យើង៖"
 
 msgid "Follow the project on:"
-msgstr ""
+msgstr "តាមដានគម្រោងនៅលើ៖"
 
 msgid "Hint: How to hide your receipt"
-msgstr ""
+msgstr "ជំនួយ៖ របៀបលាក់បង្កាន់ដៃរបស់អ្នក"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr ""
+msgstr "វិធីមានប្រយោជន៍ដើម្បីលាក់បង្កាន់ដៃរបស់អ្នក គឺត្រូវកត់ទុកលេខកាតឥណទាន ឧទាហរណ៍ដោយរួមបញ្ចូលកាលបរិច្ឆេទផុតកំណត់ផងដែរ។"
 
 msgid "Error!"
 msgstr "បញ្ហា!"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "បញ្ហាម៉ាស៊ីនមេផ្នែកខាងក្នុង"
 
 msgid "Error on input validation"
-msgstr ""
+msgstr "បញ្ហាលើការបញ្ចូលសុពលភាព"
 
 msgid "Resource not found"
-msgstr ""
+msgstr "រកមិនឃើញធនធាន"
 
 msgid "Forbidden operation"
-msgstr ""
+msgstr "ប្រតិបត្តិការហាមឃាត់"
 
 msgid "The specified old password is not valid"
-msgstr ""
+msgstr "ពាក្យសម្ងាត់ចាស់ដែលបានបញ្ជាក់មិនត្រឹមត្រូវ"
 
 msgid "Resource can only be accessed via the Tor network"
-msgstr ""
+msgstr "ធនធានអាចចូលប្រើប្រាស់បានតាមរយៈបណ្តាញ Tor តែប៉ុណ្ណោះ"
 
 msgid "The upload request exceeds the size limit"
 msgstr ""

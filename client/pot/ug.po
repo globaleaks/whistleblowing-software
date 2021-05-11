@@ -1,13 +1,14 @@
 # 
 # Translators:
 # Memeteli Niyaz <muhemmedeli.niyaz@gmail.com>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 # Memeteli Niyaz <muhemmedeli.niyaz@gmail.com>, 2021
 # Tughluq Qutluq <tugkutluk@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-06 14:47+0000\n"
-"Last-Translator: Tughluq Qutluq <tugkutluk@gmail.com>\n"
+"PO-Revision-Date: 2021-05-11 13:22+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uyghur (http://www.transifex.com/otf/globaleaks/language/ug/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -34,16 +35,16 @@ msgid "Advanced settings"
 msgstr "ئالىي تەڭشەكلەر"
 
 msgid "Questionnaire configuration"
-msgstr "تەكشۈرۈشنامە سەپلىمە"
+msgstr "راي سىناش سەپلىمە"
 
 msgid "Question templates"
 msgstr "سۇئال قېلىپلىرى"
 
 msgid "Questionnaires"
-msgstr "تەكشۈرۈشنامەلەر"
+msgstr "راي سىناشلار"
 
 msgid "Add new questionnaire"
-msgstr "يېڭى تەكشۈرۈشنامە قوش"
+msgstr "يېڭى راي سىناش قوش"
 
 msgid "Home"
 msgstr "باش سەھىپە"
@@ -76,7 +77,7 @@ msgid "Date"
 msgstr "چېسلا"
 
 msgid "Expiration date"
-msgstr "توشىدىغان كۈنى"
+msgstr "سۈرەك چېسلا"
 
 msgid "Last Access"
 msgstr "ئاخىرقى زىيارەت"
@@ -115,7 +116,7 @@ msgid "Label the report"
 msgstr "دوكلاتقا بەلگە سال"
 
 msgid "Postpone the expiration date"
-msgstr "توشۇش ۋاقتىنى كېچىكتۈر"
+msgstr "سۈرەك چېسلاسىنى كېچىكتۈر"
 
 msgid "Select all"
 msgstr "ھەممىنى تاللا"
@@ -234,13 +235,13 @@ msgid "Status"
 msgstr "ئەھۋالى"
 
 msgid "Request motivation"
-msgstr "سوراش مەقسىتى"
+msgstr "تەلەپ مەقسىتى"
 
 msgid "Reply motivation"
 msgstr "جاۋاپ قايتۇرۇش مەقسىتى"
 
 msgid "Request status"
-msgstr "سوراش ئەھۋالى"
+msgstr "تەلەپ ھالەت"
 
 msgid "Custodian"
 msgstr "ساقلىغۇچى"
@@ -585,25 +586,25 @@ msgid "Disable the privacy panel"
 msgstr "ئىختىيارى شەخسىيەت تاختىسىنى چەكلە"
 
 msgid "Enable the receipt hint"
-msgstr ""
+msgstr "تالون ئىشارىتىنى قوزغات"
 
 msgid "Default questionnaire"
-msgstr ""
+msgstr "كۆڭۈلدىكى راي سىناش"
 
 msgid "Show contexts in alphabetical order"
-msgstr ""
+msgstr "مەزمۇنلارنى ئېلىپبە تەرتىپى بويىچە كۆرسەت"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr "ئىشلەتكۈچىلەرنىڭ ناملىرىنى ئاشكارىلىما"
 
 msgid "Size limit for file attachments"
-msgstr ""
+msgstr "ھۆججەت قوشۇمچىلىرى ئۈچۈن چوڭلۇق چېكى"
 
 msgid "in megabytes"
 msgstr "مېگابايتس بىلەن"
 
 msgid "Enable HSTS preload"
-msgstr ""
+msgstr "HSTS ئالدىن قاچىلاشنى قوزغات"
 
 msgid "Require two factor authentication"
 msgstr "ئىككى قەدەملىك توغرۇلاشنى تەلەپ قىل"
@@ -613,48 +614,48 @@ msgstr "پارول ئۆزگەرتىش ئارىلىقى"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr ""
+msgstr "بىخەتەرلىكنى كۆزدە تۇتۇپ، قەرەللىك پارول ئۆزگەرتىش تەلەپ قىلىنىدۇ."
 
 msgid "Set the value to 0 to disable this feature."
-msgstr ""
+msgstr "بۇ ئىقتىدارنى چەكلەش ئۈچۈن قىممىتىنى 0 قىلىپ بېكىتىڭ."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "ئوقۇلمىغان دوكلاتلارنى ئىشلەتكۈچىلەرگە ئۇقتۇرغىچە ئۆتىدىغان كۈن سانى"
 
 msgid "Enable custodian user role"
-msgstr ""
+msgstr "ساقلىغۇچى ئىشلەتكۈچى رولىنى قوزغات"
 
 msgid "Enable scoring system"
-msgstr ""
+msgstr "نومۇر قويۈش سىستېمىسىنى قوزغات"
 
 msgid "Enable private annotations"
-msgstr ""
+msgstr "شەخسىي ئىزاھاتلارنى قوزغات"
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr ""
+msgstr "تۆۋەندىكى تور بېكەتلىرىنىڭ iframe لىرى ئىچىگە بۇ سۇپىنى قىستۇرىشىغا رۇخسەت قىل "
 
 msgid "Logging level"
 msgstr "خاتىرىگە ئېلىش سەۋىيەسى"
 
 msgid "Log accesses of internal users"
-msgstr ""
+msgstr "ئىچكى ئىشلەتكۈچىلەرنىڭ خاتىرە زىيارەتلىرى"
 
 msgid "Notify administrators of software problems"
-msgstr ""
+msgstr " يۇمشاق دېتال مەسىلىلىرىنى باشقۇرغۇچىلارغا ئۇقتۇرۇش"
 
 msgid "Notify developers of software problems"
-msgstr ""
+msgstr " يۇمشاق دېتال مەسىلىلىرىنى ئاچقۇچىلارغا ئۇقتۇرۇش"
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr ""
+msgstr "بۇ ئىقتىدارنى قوزغىتىش ئارقىلىق، سۇپىنىڭ تەرەققىياتى ۋە بىخەتەرلىكى ئۈچۈن ھەسسە قوشالايسىز."
 
 msgid "Save"
 msgstr "ساقلا"
 
 msgid "Reset reports"
-msgstr ""
+msgstr "دوكلاتلارنى قايتا سەپلەش"
 
 msgid "Low"
 msgstr "تۆۋەن"
@@ -675,7 +676,7 @@ msgid "Severity"
 msgstr "مۇھىملىقى"
 
 msgid "Object"
-msgstr ""
+msgstr "ئوبيېكت"
 
 msgid "ID"
 msgstr "كىملىك"
@@ -690,7 +691,7 @@ msgid "Name"
 msgstr "نامى"
 
 msgid "Creation date"
-msgstr "قۇرۇلغان كۈنى"
+msgstr "قۇرۇلغان چېسلا"
 
 msgid "Last access"
 msgstr "ئاخىرقى زىيارەت"
@@ -699,19 +700,19 @@ msgid "Connection"
 msgstr "ئۇلانمىسى"
 
 msgid "Whistleblower's last access"
-msgstr ""
+msgstr "پاش قىلغۇچىنىڭ ئاخىرقى زىيارىتى"
 
 msgid "Substatuses"
-msgstr ""
+msgstr "قىسمى ھالەتلەر"
 
 msgid "Add"
 msgstr "قوش"
 
 msgid "Label"
-msgstr ""
+msgstr "بەلگە"
 
 msgid "This field is mandatory"
-msgstr ""
+msgstr "بۇ بۆلەك مەجبۇرىي"
 
 msgid "Edit"
 msgstr "تەھرىرلە"
@@ -720,7 +721,7 @@ msgid "Cancel"
 msgstr "ۋاز كەچ"
 
 msgid "Report statuses"
-msgstr ""
+msgstr "دوكلات ھالەتلىرى"
 
 msgid "Logo"
 msgstr "تۇغ"
@@ -735,16 +736,16 @@ msgid "Homepage title"
 msgstr "باش بەت تېمىسى"
 
 msgid "Presentation"
-msgstr ""
+msgstr "كۆرسەتمە"
 
 msgid "Question to solicit possible whistleblowers"
-msgstr ""
+msgstr "پاش قىلغۇچى بولۇش مۈمكىنچىلىگى بار كىشىلەردىن سورىلىدىغان سۇئاللار"
 
 msgid "Whistleblowing button"
-msgstr ""
+msgstr "پاش قىلىش كۇنۇپكىسى"
 
 msgid "Enable disclaimer"
-msgstr ""
+msgstr "مەسئۇلىيەتتىن ساقلىنىش باياناتىنى قوزغات"
 
 msgid "Title"
 msgstr "تېما"
@@ -753,7 +754,7 @@ msgid "Text"
 msgstr "تېكىست"
 
 msgid "Footer"
-msgstr ""
+msgstr "بەت ئاستى"
 
 msgid "Upload"
 msgstr "يۈكلەش"
@@ -765,10 +766,10 @@ msgid "Language:"
 msgstr "تىل:"
 
 msgid "Add custom text"
-msgstr ""
+msgstr "ئىختىيارى تېكىست قوش"
 
 msgid "Custom text"
-msgstr ""
+msgstr "ئىختىيارى تېكىست"
 
 msgid "Original text"
 msgstr "ئەسلى تېكىست"
@@ -780,7 +781,7 @@ msgid "Custom translation"
 msgstr "ئىختىيارى تەرجىمە"
 
 msgid "Contexts"
-msgstr ""
+msgstr "كونتېكىست"
 
 msgid "Hidden"
 msgstr "يوشۇرۇن"
@@ -792,22 +793,22 @@ msgid "Enabled"
 msgstr "قوزغىتىلغان"
 
 msgid "Questionnaire"
-msgstr ""
+msgstr "راي سىناش"
 
 msgid "Recipients"
-msgstr ""
+msgstr "تاپشۇرىۋالغۇچىلار"
 
 msgid "days"
 msgstr "كۈنلەر"
 
 msgid "Show the questionnaire navigation interface"
-msgstr ""
+msgstr "راي سىناش يېتەكلىمە ئارا يۈزىنى كۆرسەت"
 
 msgid "Allow whistleblowers to select their recipients"
-msgstr ""
+msgstr "پاش قىلغۇچىلارنىڭ ئۆز تاپشۇرىۋالغۇچىلىرىنى تاللىشىغا رۇخسەت قىل"
 
 msgid "Select all recipients by default"
-msgstr ""
+msgstr "كۆڭۈلدە بارلىق تاپشۇرىۋالغۇچىلار تاللانغان بولسۇن"
 
 msgid "Maximum number of selectable recipients:"
 msgstr "تاللانغان تاپشۇرىۋالغۇچىلار سانى ئەڭ كۆپ بولغاندا:"
@@ -816,7 +817,7 @@ msgid "Show recipients in alphabetical order"
 msgstr "تاپشۇرىۋالغۇچىلارنى ئېلىپبە تەرتىپى بويىچە كۆرسەت"
 
 msgid "Show recipient details on the status page of the report"
-msgstr ""
+msgstr "تاپشۇرىۋالغۇچىنىڭ تەپسىلى ئەھۋالىنى دوكلاتنىڭ ھالەت بېتىدە كۆرسەت"
 
 msgid "Enable comments"
 msgstr "باھالاشنى قوزغات"
@@ -831,37 +832,37 @@ msgid "Allow whistleblowers to send messages"
 msgstr "پاش قىلغۇچىلارنىڭ ئۇچۇر ئەۋەتىشىگە رۇخسەت قىل"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr ""
+msgstr "پاش قىلغۇچىلارنىڭ مەۋجۇت دوكلاتلارنىڭ ئۈستىگە قوشۇمچىلارنى قوشۇشىغا رۇخسەت قىل"
 
 msgid "Let recipients upload files to whistleblowers"
-msgstr ""
+msgstr "تاپشۇرىۋالغۇچىلار پاش قىلغۇچىلار ئۈچۈن ھۆججەت يۈكلىيەلىسۇن "
 
 msgid "Additional questionnaire"
-msgstr ""
+msgstr "قوشۇمچە راي سىناش"
 
 msgid "Scoring system options"
-msgstr ""
+msgstr "نومۇر قويۇش سىستېمىسىنىڭ تاللاشلىرى"
 
 msgid "Threshold"
-msgstr ""
+msgstr "بوسۇغا"
 
 msgid "Value"
-msgstr ""
+msgstr "قىممەت"
 
 msgid "Medium"
 msgstr "ئوتتۇرىھال"
 
 msgid "Customize the message shown in the receipt page"
-msgstr ""
+msgstr "تالون بېتىدە كۆرسىتىلىدىغان ئۇچۇرنى خاسلاشتۇر"
 
 msgid "Assign the receipt only to reports reaching score:"
-msgstr ""
+msgstr "پەقەت نومۇرى يەتكەن دوكلاتلارغىلا تالون تەقسىملە:"
 
 msgid "Software version:"
 msgstr "يۇمشاق دېتال نەشرى:"
 
 msgid "Restrict access to specific IP addresses"
-msgstr ""
+msgstr "زىيارەت قىلىشنى بەلگىلەنگەن IP ئادرېسلىرى بىلەنلا چەكلە"
 
 msgid "Allowed IP addresses"
 msgstr "رۇخسەت قىلىنغان IP ئادرېسلىرى"
@@ -873,7 +874,7 @@ msgid "Recipient"
 msgstr "تاپشۇرىۋالغۇچى"
 
 msgid "Each entry must be separated with a comma."
-msgstr ""
+msgstr "ھەر بىر كىرگۈزۈلگەنلەر پەش بىلەن ئايرىلسۇن."
 
 msgid "Example:"
 msgstr "مەسىلەن:"
@@ -888,7 +889,7 @@ msgid "Input should be similar to:"
 msgstr "بۇنىڭغا ئوخشاش كىرگۈزۈش كېرەكتى:"
 
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr ""
+msgstr "Let's Encrypt نى ئىشلىتىش ئۈچۈن ئۇلارنىڭ مۇلازىمەت شەرتلىرىگە قوشۇلىشىڭىز كېرەك."
 
 msgid "Read the Terms of Service"
 msgstr "مۇلازىمەت شەرتلىرىنى ئوقۇڭ"
@@ -918,10 +919,10 @@ msgid "Private Key"
 msgstr "شەخسىي ئاچقۇچ"
 
 msgid "Certificate Signing Request"
-msgstr ""
+msgstr "گۇۋاھنامە ئىمزالاش تەلىپى"
 
 msgid "Certificate"
-msgstr ""
+msgstr "گۇۋاھنامە"
 
 msgid "Valid until:"
 msgstr "ئاخىرقى ئىناۋەتلىك ۋاقتى:"
@@ -930,7 +931,7 @@ msgid "Issuer:"
 msgstr "تارقاتقۇچى:"
 
 msgid "Intermediate Certificates"
-msgstr ""
+msgstr "ئارىلىقتىكى گۇۋاھنامىلەر"
 
 msgid "Enable"
 msgstr "قوزغات"
@@ -940,7 +941,7 @@ msgstr "قايتا سەپلە"
 
 msgid ""
 "The platform supports the configuration of HTTPS through this interface."
-msgstr ""
+msgstr "بۇ سۇپا HTTPS سەپلىمىسىنى بۇ ئېغىز ئارقىلىق قوللايدۇ."
 
 msgid "Automatic configuration"
 msgstr "ئاپتۇماتىك سەپلىمە"
@@ -949,12 +950,12 @@ msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr ""
+msgstr "ئاپتۇماتىك HTTPS سەپلىمىسىنى ئىشلىتىش،  Let's Encrypt ئورگىنىدىن گۇۋاھنامە تەلەپ قىلىش، قوزغىتىش ۋە يېڭىلاش قاتارلىق پۈتۈن جەريانلارنى بىر تەرەپ قىلىدۇ."
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a corresponding DNS record referencing that address."
-msgstr ""
+msgstr "بۇ سۇپىغا ئاممىۋى IP ئادرېسى بىلەن باغلانغىلى بولىشى ۋە تاللىغان مۇلازىمېتېر نامىنىڭ بۇ ئادرېسىنى ئىشلەتكەن ماس DNS رېكورتى بولۇشى كېرەك."
 
 msgid "Manual configuration"
 msgstr "قولدا سەپلىمە"
@@ -962,22 +963,22 @@ msgstr "قولدا سەپلىمە"
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr ""
+msgstr "قول بىلەن سەپلەش سېھىرگەرى سىزنىڭ HTTPS سەپلىمىسنى باشقا بىر گۇۋاھنامە ئورگىنى ئارقىلىق سەپلىشىڭىزگە يېتەكچىلىك قىلىدۇ."
 
 msgid "Auto-renewal"
-msgstr ""
+msgstr "ئاپتۇماتىك يېڭىلاش"
 
 msgid "Tor Onion Service"
-msgstr ""
+msgstr "‏Tor Onion مۇلازىمىتى"
 
 msgid "Anonymize outgoing connections"
-msgstr ""
+msgstr "سىرتقا ئۇلانمىلارنى نامسىزلاشتۇر"
 
 msgid "Let the platform be reachable without Tor"
-msgstr ""
+msgstr "بۇ سوۇپىنى Tor ئىشلەتمەيمۇ ئۇلانغىلى بولىدىغان قىل"
 
 msgid "Roles enabled to use the platform without Tor"
-msgstr ""
+msgstr "بۇ سۇپىنى Tor ئىشلەتمەي ئشلىتەلەيدىغان روللار"
 
 msgid "Whistleblower"
 msgstr "پاش قىلغۇچى"
@@ -1001,22 +1002,22 @@ msgid "Warning"
 msgstr "ئاگاھلاندۇرۇش"
 
 msgid "Require authentication"
-msgstr ""
+msgstr "كىملىك توغرۇلاشنى تەلەپ قىلىدۇ"
 
 msgid "Password"
 msgstr "پارول"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr ""
+msgstr "دوكلاتنىڭ سۈرىكى توشقانلىق ئاگاھلاندۇرۇش ئەۋەتىشتىن بۇرۇنقى سائەت سانى"
 
 msgid "Test the configuration"
-msgstr ""
+msgstr "سەپلىملىلەرنى سىناش"
 
 msgid "Reset SMTP configuration"
 msgstr "‏SMTP سەپلىمىسىنى قايتا سەپلەش"
 
 msgid "Reset notification templates to default"
-msgstr ""
+msgstr "ئۇقتۇرۇش قېلىپلىرىنى كۆڭۈلدىكىكىگە قايتۇر"
 
 msgid "Template"
 msgstr "قېلىپ"
@@ -1031,16 +1032,16 @@ msgid "Multi-line text input"
 msgstr "كۆپ قۇرلۇق تېكىست كىرگۈزۈش"
 
 msgid "Selection box"
-msgstr ""
+msgstr "تاللاش رامكىسى"
 
 msgid "Checkbox"
-msgstr ""
+msgstr "تەستىق رامكىسى"
 
 msgid "Terms of service"
 msgstr "مۇلازىمەت شەرتلىرى"
 
 msgid "Date range"
-msgstr ""
+msgstr "چېسلا دائىرىسى"
 
 msgid "Map"
 msgstr "خەرىتە"
@@ -1058,31 +1059,31 @@ msgid "Width"
 msgstr "كەڭلىكى"
 
 msgid "Multiple choice input"
-msgstr ""
+msgstr "كۆپتىن تاللاپ كىرگۈزۈش"
 
 msgid "Question group"
-msgstr ""
+msgstr "سۇئال گۇرۇپپىسى"
 
 msgid "Hint"
-msgstr ""
+msgstr "ئىشارەت"
 
 msgid "Required"
-msgstr ""
+msgstr "لازىملىق"
 
 msgid "Accept multiple file uploads"
-msgstr ""
+msgstr "كۆپ ھۆججەت يۈكلەشنى قوبۇل قىل"
 
 msgid "Accept multiple answers"
-msgstr ""
+msgstr "كۆپ جاۋاپنى قوبۇل قىل"
 
 msgid "Template override"
-msgstr ""
+msgstr "قېلىىپنىڭ ئۈستىگە ياز"
 
 msgid "Phone number"
 msgstr "تېلېفون نومۇرى"
 
 msgid "Checkbox label"
-msgstr ""
+msgstr "تەستىق رامكا بەلگىسى"
 
 msgid "Add multimedia content"
 msgstr "كۆپ ۋاستىلىك مەزمۇن قوش"
@@ -1097,19 +1098,19 @@ msgid "Video"
 msgstr "سىن"
 
 msgid "Subject answer visibility to custodian authorization"
-msgstr ""
+msgstr "ساقلىغۇچى ھوقۇقىڭىز بويىچە كۆرەلەيدىغان تېما جاۋابى"
 
 msgid "Text shown upon negative answer"
-msgstr ""
+msgstr "سەلبىي جاۋابتا كۆرسىتىلىدىغان تېكىست"
 
 msgid "Prompt confirmation upon negative answer"
-msgstr ""
+msgstr "سەلبىي جاۋابقا جەزملەش كۆزنىگى كۆرسەت"
 
 msgid "Text shown upon confirmation"
-msgstr ""
+msgstr "جەزىملەشتە كۆرسىتىلىدىغان تېكىست"
 
 msgid "Trigger conditions"
-msgstr ""
+msgstr "قوزغىتىلىدىغان شەرتلەر"
 
 msgid "Sufficient"
 msgstr "يېتەرلىك"
@@ -1121,7 +1122,7 @@ msgid "Addition"
 msgstr "قوشۇمچە"
 
 msgid "Multiplier"
-msgstr ""
+msgstr "كۆپەيتمە"
 
 msgid "Questions"
 msgstr "سۇئاللار"
@@ -1142,7 +1143,7 @@ msgid "Site settings"
 msgstr "بېكەت تەڭشەكلىرى"
 
 msgid "Case management"
-msgstr ""
+msgstr "ئەھۋال باشقۇرۇش"
 
 msgid "Network settings"
 msgstr "تور تەڭشەكلىرى"
@@ -1151,7 +1152,7 @@ msgid "Sites"
 msgstr "بېكەتلەر"
 
 msgid "Mode:"
-msgstr ""
+msgstr "ھالىتى:"
 
 msgid "Configure"
 msgstr "سەپلە"
@@ -1160,13 +1161,13 @@ msgid "Subdomain"
 msgstr "قىسمى دائىرە"
 
 msgid "Creation date:"
-msgstr "قۇرۇلغان كۈنى:"
+msgstr "قۇرۇلغان چېسلا:"
 
 msgid "Root domain used for secondary sites"
-msgstr ""
+msgstr "ئىككىلەمچى تور بېكەتلەرگە ئىشلىتىلىدىغان يىلتىز دائىرە"
 
 msgid "Use the first site for administrative purposes only"
-msgstr ""
+msgstr "بىرىنچى بېكەتنى پەقەتلا باشقۇرۇش مەقسىتىدە ئىشلەت"
 
 msgid "Enable multi-site login"
 msgstr "كۆپ بېكەت تىزىمغا كىرىشىنى قوزغات"
@@ -1196,7 +1197,7 @@ msgid "Force password change"
 msgstr "پارول يېڭىلاشقا مەجبۇرلا"
 
 msgid "The user will be forced to change its password on next login."
-msgstr ""
+msgstr "ئىشلەتكۈچىلەر كېيىنكى قېتىم تىزىمغا كىرگەندە، پارولىنى ئۆزگەرتىشكە مەجبۇرلىنىدۇ."
 
 msgid "Language"
 msgstr "تىل"
@@ -1205,16 +1206,16 @@ msgid "Enable email notifications"
 msgstr "ئېلخەت ئۇقتۇرۇشنى قوزغات"
 
 msgid "Details of the PGP key:"
-msgstr ""
+msgstr "‏PGP ئاچقۇچىنىڭ تەپسىلاتى:"
 
 msgid "Fingerprint"
 msgstr "بارماق ئىزى"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr ""
+msgstr "بىر PGP ئاممىۋى ئاچقۇچ بىلەن شىفرىلەشنى تەڭشەڭ"
 
 msgid "Give this admin ability to change user passwords"
-msgstr ""
+msgstr "بۇ باشقۇرغۇچىغا ئىشلەتكۈچىلەرنىڭ پارولىنى ئۆزگەرتىش ئىقتىدارى بېرىڭ"
 
 msgid "Forcefully selected"
 msgstr "مەجبۇرىي تاللاندى"
@@ -1229,22 +1230,22 @@ msgid "Give the user administrative access to the following features:"
 msgstr "تۆۋەندىكى ئىقتىدارلار ئۈچۈن ئىشلەتكۈچىلەرگە باشقۇرغۇچى زىيارەت ھوقۇقى بەر:"
 
 msgid "Request date"
-msgstr ""
+msgstr "تەلەپ چېسلا"
 
 msgid "Report date"
-msgstr "دوكلات كۈنى"
+msgstr "دوكلات چېسلا"
 
 msgid "Authorization"
-msgstr ""
+msgstr "ھوقۇق"
 
 msgid "Requests"
-msgstr ""
+msgstr "تەلەپلەر"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr ""
+msgstr "دەلىللەش ئۇلانمىسى خاتا ياكى ۋاقتى ئۆتكەن."
 
 msgid "Your new email address has been validated."
-msgstr ""
+msgstr "سىزنىڭ يېڭى ئېلخەت ئادرېسىڭىز دەلىللەندى."
 
 msgid "Forgot password?"
 msgstr "پارولىڭىزنى ئۇنۇتتۇڭۇزمۇ؟"
@@ -1265,10 +1266,10 @@ msgid "Please select your account:"
 msgstr "ھېسابىڭىزنى تاللاڭ:"
 
 msgid "Now type your password, then click 'Log in':"
-msgstr ""
+msgstr "ھازىر يېڭى پارولىڭىزنى كىرگۈزۈڭ، ئاندىن «تىزىمغا كىر»نى چېكىڭ:"
 
 msgid "Text shown after the user has selected the option."
-msgstr ""
+msgstr "ئىشلەتكۈچى تاللانمىنى تاللىغاندىن كېيىن تېكىست كۆرسىتىلىدۇ."
 
 msgid "Confirm"
 msgstr "جەزىملە"
@@ -1280,19 +1281,19 @@ msgid "The operation will reset the configuration and cannot be undone."
 msgstr "بۇ مەشغۇلات سەپلىمىلەرنى قايتا سەپلەيدۇ ۋە بۇنىڭدىن ئارقىغا يانغىلى بولمايدۇ."
 
 msgid "Assign score points"
-msgstr ""
+msgstr "نومۇر نۇقتىلىرىنى بەلگىلەڭ"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
+msgstr "مۇناسىۋەتلىك بارلىق سانلىق مەلۇماتلارنڭ مەڭگۈلۈك ئۆچۈرۈرىلىدىغانلىقىغا دىققەت قىلىڭ."
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
+msgstr "بۇ بىر كۆرسەتمە سۇپا، بۇنى ھەقىقىي يوللانمىلار ئۈچۈن ئىشلەتمەڭ."
 
 msgid "Install an authenticator app on your phone"
-msgstr ""
+msgstr "تېلىفونىڭىزغا بىر دەلىللىگۈچى ئەپ قاچىلاڭ"
 
 msgid "Scan the QR code with the app"
-msgstr ""
+msgstr "QR كودىنى بۇ ئەپ بىلەن تارىتىڭ"
 
 msgid "Enable two factor authentication"
 msgstr "ئىككى قەدەملىك توغرۇلاشنى قوزغات"
@@ -1301,7 +1302,7 @@ msgid "Close"
 msgstr "تاقا"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr ""
+msgstr "داۋام قىلىشتىن بۇرۇن بۇ يەردىكى ھۆججەتنى ئەستايىدىل ئوقۇڭ:"
 
 msgid "Your account recovery key is:"
 msgstr "ھېساباتىڭىزنى ئەسلىگە كەلتۈرۈش ئاچقۇچى:"
@@ -1309,37 +1310,37 @@ msgstr "ھېساباتىڭىزنى ئەسلىگە كەلتۈرۈش ئاچقۇچ�
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr ""
+msgstr "بىر كۇپىيەسىنى ئېلىڭ ۋە ىخەتەر يەردە ساقلاڭ. ئەگەر پارولىڭىزنى ئۇنتۇپ قېلىپ، ھېسابىتىڭىزدىكى مەلۇماتلارنى يوقاتماستىن زىيارەت قىلماقچى بولغىنىڭىزدا لازىم بولغۇسى."
 
 msgid "Welcome!"
 msgstr "خوش كەپسىز!"
 
 msgid "For the user documentation, visit:"
-msgstr ""
+msgstr "ئىشلەتكۈچى ھۆججىتى ئۈچۈن بۇ يەرگە قاراڭ:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
 " the software:"
-msgstr ""
+msgstr "ئەگەر تېخنىكىلىق قوللاشقا ئېھتىياجلىق بولسىڭىز ، ئادەتتىكى سوئاللىرىڭىز بولسا ياكى يۇمشاق دېتالغا مۇناسىۋەتلىك يېڭى پىكىرلىرىڭىز بولسا:"
 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr ""
+msgstr "يۇمشاق دېتال ئېچىشقا تۆھپە قوشماقچى ياكى كەمتۈك مەلۇم قىلماقچى بولسىڭىز ، خاتالىق مەلۇم  قىلىش سىستېمىسىمىزدىن مەلۇمات ئېچىڭ:"
 
 msgid "Join our chat:"
 msgstr "سوھبىتىمىزگە قېتىلىڭ:"
 
 msgid "Follow the project on:"
-msgstr ""
+msgstr "تۈرىمىزگە بۇ يەردىن ئەگىشىڭ:"
 
 msgid "Hint: How to hide your receipt"
-msgstr ""
+msgstr "ئىشارەت: تالونىڭىزنى قانداق يوشۇرۇپ قويىسىز"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr ""
+msgstr "تالون يوشۇرۇشنىڭ بىر قوللىنىشچان ئۇسۇلى ئۇنى ئىناۋەتلىك كارتا نومۇرىغا ئوخشاش، سۈرەك چېسلاسى بىلەن قوشۇپ بىر يەرگە يېزىپ قويۇش."
 
 msgid "Error!"
 msgstr "خاتالىق!"
@@ -1348,7 +1349,7 @@ msgid "Internal server error"
 msgstr "ئىچكى مۇلازىمېتېر خاتاسى"
 
 msgid "Error on input validation"
-msgstr ""
+msgstr "كىرگۈزۈش دەلىللەش خاتاسى"
 
 msgid "Resource not found"
 msgstr "مەنبە تېپىلمىدى"
@@ -1357,56 +1358,56 @@ msgid "Forbidden operation"
 msgstr "چەكلەنگەن مەشغۇلات"
 
 msgid "The specified old password is not valid"
-msgstr ""
+msgstr "كۆرسەتكەن كونا پارولىڭىز ئىناۋەتسىز"
 
 msgid "Resource can only be accessed via the Tor network"
-msgstr ""
+msgstr "مەنبەنى پەقەت Tor تورى بىلەنلا زىيارەت قىلغىلى بولىدۇ "
 
 msgid "The upload request exceeds the size limit"
-msgstr ""
+msgstr "يۈكلىمە تەلىپى چوڭلۇق چېكىدىن ئېشىپ كەتتى"
 
 msgid "Validation of email address change in progress."
-msgstr ""
+msgstr "ئېلخەت ئادرېسى ئۆزگەرتىشنى دەلىللەش داۋام قىلىۋاتىدۇ."
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
+msgstr "تېخىمۇ كۆپ كۆرسەتمىلەر ئۈچۈن ئېلخەت قوبۇللاش ساندۇقىڭىزنى تەكشۈرۈڭ."
 
 msgid "Account recovery key"
-msgstr ""
+msgstr "ھېساپ ئەسلىگە كەلتۈرۈش ئاچقۇچى"
 
 msgid "Current password"
 msgstr "ھازىرقى پارول"
 
 msgid "Old password confirmation required"
-msgstr ""
+msgstr "كونا پارولنى جەزىملەش تەلەپ قىلىنىدۇ"
 
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
-msgstr ""
+msgstr "سىز بۇ بېكەتنى ھېچقانداق قوشۇمچە شەخسىيەت ۋە بىخەتەرلىك ئىشلەتمەي كېزىۋاتقاندەك قىلىسىز!"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr ""
+msgstr "سىزگە بۇ بېكەتنى Tor تور كۆرگۈچى ئىسملىك، شەخسىيىتىڭىزنى قوغدايدىغان ئەپنى ئىشلىتىپ زىيارەت قىلىشىڭىزنى كۈچلۈك تەۋسىيە قىلىمىز."
 
 msgid "Download the Tor Browser"
-msgstr ""
+msgstr "Tor كۆرگۈچنى چۈشۈرۈڭ"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr ""
+msgstr "ئارقىدىن، كەينىدىكى ئادرېسنى كۆچۈرۈپ، Tor تور كۆرگۈچكە چاپلاڭ:"
 
 msgid "Enter a name for the copy"
-msgstr ""
+msgstr "كۇپىيە ئۈچۈن بىر نام كىرگۈزۈڭ"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr ""
+msgstr "ئاللىبۇرۇن بىر دوكلات توشقۇزغانمىتىڭىز؟ تالونىڭىزنى كىرگۈزۈڭ:"
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr ""
+msgstr "تالونىڭز ئىناۋەتسىز ياكى دوكلاتىڭىزنىڭ سۈرىكى توشۈپ كەتكەن."
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "بىر ھۆججەت تاللاڭ ياكى بۇ يەرگە سۆرەپ تاشلاڭ."
 
 msgid "Uploading files…"
 msgstr "يۈكلىنىۋاتقان ھۆججەتلەر…"
@@ -1415,7 +1416,7 @@ msgid "Upload completed successfully!"
 msgstr "يۈكلەش مۇۋەپپىقىيەتلىك تاماملاندى!"
 
 msgid "Error while uploading files; check below for details."
-msgstr ""
+msgstr "ھۆججەتلەرنى يۈكلەۋاتقاندا خاتالىق چىقتى، تەپسىلاتىنى تۆۋەندىن تەكشۈرۈڭ."
 
 msgid "Estimated upload time:"
 msgstr "تەخمىنەن يۈكلەش ۋاقتى:"
@@ -1424,19 +1425,19 @@ msgid "Size:"
 msgstr "چوڭلۇقى:"
 
 msgid "Enable the Ricochet panel"
-msgstr ""
+msgstr " ‏Ricochet تاختىيىنى قوزغىتىڭ"
 
 msgid "Address"
 msgstr "ئادرېس"
 
 msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
+msgstr "Ricochet قوللىنىشچان دېتالىنى ئىشلىتىپ بىز بىلەن نامسىز سۆھبەتلىشىڭ"
 
 msgid "To chat with us use the following Ricochet address:"
-msgstr ""
+msgstr "بىز بىلەن سۆھبەتلىشىش ئۈچۈن تۆۋەندىكى Ricochet ئادرېسىنى ئىشلىتىڭ"
 
 msgid "Download Ricochet at:"
-msgstr ""
+msgstr "Ricoche نى بۇ يەردىن چۈشۈرۈڭ: "
 
 msgid ""
 "By using the Tor network and creating an Onion Service, Ricochet is an "
@@ -1444,7 +1445,7 @@ msgid ""
 "and staying anonymous by not revealing your location or IP address. You "
 "won't notice any difference from an insecure chat, except that you will be "
 "using a unique address instead of a phone number/email/username."
-msgstr ""
+msgstr "Ricochet بىر تېز ئۇچۇر يوللاش دېتالى بولۇپ، Tor تورىنى ئىشلىتىش ۋە Onion مۇلازىمىتىنى قۇرۇش ئارقىلىق، ئورنىڭىز ياكى IP ئادرېسىڭىزنى ئاشكارىلىماستىن، شەخسىيىتىڭىز ۋە نامسىزلىقىڭىزنى  ساقلىغان ھالدا سۆھبەتلىشىشىڭىزگە رۇخسەت قىلىدۇ. تېلېفون نومۇرى / ئېلېكترونلۇق خەت / ئىشلەتكۈچى نامىنىڭ ئورنىغا ئۆزگىچە ئادرېس ئىشلىتىدىغانلىقىڭىزنى ھېسابقا ئالمىغاندا ، بىخەتەر بولمىغان سۆھبەتتىن ھېچقانداق پەرق ھېس قىلمايسىز."
 
 msgid "The connection is not secure."
 msgstr "بۇ ئۇلانما بىخەتەر ئەمەس."
@@ -1452,37 +1453,37 @@ msgstr "بۇ ئۇلانما بىخەتەر ئەمەس."
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
-msgstr ""
+msgstr "بۇ سۇپىغا تېخىچە HTTPS باغلىنىشلىرى سەپلەنمەپتۇ ۋە شۇنداق بولغاچقا پەقەت سىناق مەقسىتىدىلا ئىشلىتىش كېرەك.  "
 
 msgid "Use case"
-msgstr ""
+msgstr "ئىشلىنىدىغان ئەھۋال"
 
 msgid "Anticorruption"
-msgstr ""
+msgstr "چىرىكلىككە قارشى"
 
 msgid "Corporate compliance"
-msgstr ""
+msgstr "شىركەت قانۇنىيلىقى"
 
 msgid "Investigative journalism"
-msgstr ""
+msgstr "تەكشۈرگۈچى ژورنالىستلىق"
 
 msgid "Civic activism"
-msgstr ""
+msgstr "پۇقرالار پائالىيەتچىلىگى"
 
 msgid "Submit"
 msgstr "يوللا"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr ""
+msgstr "تاپشۇرىۋالغۇچىلار سىزنىڭ بىر قوشۇمچە راي سىناشنى توشقۇزىشىڭىزنى تەلەپ قىلدى."
 
 msgid "Fill the additional questionnaire"
-msgstr ""
+msgstr "بۇ قوشۇمچە راي سىناشنى توشقۇز"
 
 msgid "Send"
 msgstr "ئەۋەت"
 
 msgid "Allow the whistleblower to write comments"
-msgstr ""
+msgstr "پاش قىلغۇچىنىڭ باھا يېزىشىگە رۇخسەت قىل"
 
 msgid "From:"
 msgstr "ئەۋەتكۈچى:"
@@ -1494,7 +1495,7 @@ msgid "Filename"
 msgstr "ھۆججەت نامى"
 
 msgid "Upload date"
-msgstr "يۈكلەنگەن كۈن"
+msgstr "يۈكلەنگەن چېسلا"
 
 msgid "File size"
 msgstr "ھۆججەت چوڭلۇقى"
@@ -1510,12 +1511,12 @@ msgstr "دوكلاتنى راستىنلا ئۆچۈرىۋەتمەكچىمۇسىز
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
-msgstr ""
+msgstr "سۇپىدا ساقلانغان دوكلاتقا مۇناسىۋەتلىك ھەرقانداق نەرسە ئۆچۈرۈلىدۇ."
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
 " saved on your computer, must be deleted manually."
-msgstr ""
+msgstr "شۇنىڭغا دىققەت قىلىڭكى، سۇپىدا ساقلانمىغان ھەرقانداق نەرسە، مەسىلەن كومپيۇتېرىڭىزدا ساقلانغان ھۆججەتلەر، چوقۇم قول بىلەن ئۆچۈرۈلىشى كېرەك."
 
 msgid "Are you sure that you want to delete the selected reports?"
 msgstr "بۇ تاللانغان دوكلاتلارنى راستىنلا ئۆچۈرىۋەتمەكچىمۇسىز؟"
@@ -1523,24 +1524,24 @@ msgstr "بۇ تاللانغان دوكلاتلارنى راستىنلا ئۆچۈ
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
 "recipients won't be able to further access to it."
-msgstr ""
+msgstr "مۇناسىۋەتلىك سانلىق مەلۇماتلارنىڭ توغرا ئۆچۈرۈلگەنلىكى ھەمدە تاپشۇرىۋالغۇچىلار ئەمدى زىيارەت قىلالمايدىغانلىقىنى جەزملەشتۈرۈڭ."
 
 msgid "Please write a motivation for the reply"
-msgstr ""
+msgstr "بۇ جاۋاپنى بېرىشتىكى مەقسىتىڭىزنى يېزىڭ"
 
 msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr ""
+msgstr "دوكلاتنىڭ سۈرەك چېسلاسىنى كېچىكتۈرمەكچى بولغىنىڭىزنى جەزملەشتۈرەمسىز؟"
 
 msgid "By confirming, you will postpone the expiration date to:"
-msgstr ""
+msgstr "جەزىملىسىڭىز، سۈرەك چېسلاسىنى بۇ كۈنگە كەينىگە سۈرگەن بولىسىز:"
 
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
 "reports?"
-msgstr ""
+msgstr "تاللانغان بارلىق دوكلاتلارنىڭ سۈرەك چېسلاسىنى كېچىكتۈرمەكچى بولغىنىڭىزنى جەزملەشتۈرەمسىز؟"
 
 msgid "Questionnaire answers"
-msgstr ""
+msgstr "راي سىناش جاۋابلىرى"
 
 msgid "Step"
 msgstr "قەدەم"
@@ -1549,138 +1550,138 @@ msgid "Recipient list"
 msgstr "تاپشۇرۇۋالغۇچى تىزىمى"
 
 msgid "Status:"
-msgstr ""
+msgstr "ھالەت:"
 
 msgid "Files attached by recipients"
-msgstr ""
+msgstr "ھۆججەتلەر تاپشۇرىۋالغۇچىلار تەرىپىدىن قوشۇپ قويۇلدى"
 
 msgid "Upload a file:"
-msgstr ""
+msgstr "بىر ھۆججەت يۈكلە:"
 
 msgid "Logout"
-msgstr ""
+msgstr "تىزىمدىن چىق"
 
 msgid "An update is available:"
-msgstr ""
+msgstr "بىر يېڭىلانما بار:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "«ھېساباتنى ئەسلىگە كەلتۈرۈش ئاچقۇچى» نى يىغىپ بىخەتەر ساقلاپ قويۇش ئۈچۈن، «مايىللىق» بۆلىكىنى زىيارەت قىلىشىڭىزنى تەۋسىيە قىلىمىز. بۇ ئاچقۇچ پارولنى ئۇنتۇپ قالغان ۋاقتىڭىزدا، سۇپا ۋە سانلىق مەلۇماتلىرىڭىزنى زىيارەت قىلىشنى ئەسلىگە كەلتۈرۈش ئۈچۈن لازىم بولىدۇ."
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "تەمىنلەنگەن ئەسلىگە كەلتۈرۈش ئاچقۇچى ئىناۋەتسىز."
 
 msgid "The provided reset token is invalid or expired."
-msgstr ""
+msgstr "تەمىنلەنگەن ئەسلىگە قايتۇرۇش بەلگىسى ئىناۋەتسىز ياكى سۈرىكى توشقان."
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr ""
+msgstr "ھېسابات نامىڭىز ياكى ئېلخەت ئادرېسىڭىزنى كىرگۈزۈپ، پاولىڭىزنى قايتا سەپلەشنى تەلەپ قىلىڭ."
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "ئېلخەت ئادرېسىڭىزنى كىرگۈزۈپ پارولىڭىزنى قايتا سەپلەشنى تەلەپ قىلىڭ."
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr ""
+msgstr "پارول ئەسلىگە قايتۇرۇش جەريانىنى تاماملاش ئۈچۈن شىفىرلىمە ئەسلىگە كەلتۈرۈش ئاچقۇچىنى كىرگۈزۈڭ"
 
 msgid "Password reset requested."
-msgstr ""
+msgstr "پارولىڭىزنى قايتا سەپلەش تەلەپ قىلىندى."
 
 msgid "Show"
-msgstr ""
+msgstr "كۆرسەت"
 
 msgid "Hide"
-msgstr ""
+msgstr "يوشۇر"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr ""
+msgstr "ساقلىغۇچى پاش قىلغۇچىنىڭ كىملىگىنى زىيارەت قىلىشنى تەلەپ قىلدى."
 
 msgid "Date of the request"
-msgstr ""
+msgstr "تەلەپ قىلغان چېسلا"
 
 msgid "Congratulations!"
-msgstr ""
+msgstr "تەبرىكلەيمىز!"
 
 msgid "You have completed the platform activation."
-msgstr ""
+msgstr "سىز بۇ سۇپا ئاكتىپلاشنى تاماملىدىڭىز."
 
 msgid "Success!"
-msgstr ""
+msgstr "مۇۋەپپىقىيەتلىك!"
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
+msgstr "سىزنىڭ پاش قىلىش سۇپىڭىز تەييار بولاي دەپ قالدى!"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "ئېلخەت ساندۇقىڭىزنى تەكشۈرۈپ ئۇنى ئاكتىپلاڭ."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "ئەگەر 24 سائەتكىچە ئاكتىپلىمىسڭىز، بۇ سۇپا ئاپتوماتىك ئۆچۈرۈلىدۇ."
 
 msgid "Sign up"
-msgstr ""
+msgstr "تىزىملىتىڭ"
 
 msgid "Domain"
-msgstr ""
+msgstr "دائىرە"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "جەزملەڭ"
 
 msgid "Invalid confirmation"
-msgstr ""
+msgstr "ئىناۋەتسىز جەزىملەش"
 
 msgid "Other"
-msgstr ""
+msgstr "باشقا"
 
 msgid "Complete"
-msgstr ""
+msgstr "تامام"
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "ئىناۋەتسىز تېلېفون نومۇرى"
 
 msgid "Select the context of your report:"
-msgstr ""
+msgstr "دوكلاتىڭىزنىڭ مەزمۇنىنى تاللاڭ:"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "جاۋاپ بەك قىسقا"
 
 msgid "The specified input is not valid."
-msgstr ""
+msgstr "كۆرسەتكەن كىرگۈزۈش ئىناۋەتسىز."
 
 msgid "The specified input is not valid:"
-msgstr ""
+msgstr "كۆرسەتكەن كىرگۈزۈش ئىناۋەتسىز:"
 
 msgid "please enter a valid email address."
-msgstr ""
+msgstr "ئىناەتلىك بىر ئېلخەت ئادرېسىنى كىرگۈزۈڭ."
 
 msgid "please enter numbers only."
-msgstr ""
+msgstr "پەقەتلا سان كىرگۈزۈڭ"
 
 msgid "Submissions disabled"
-msgstr ""
+msgstr "يوللاش توختىتىلدى"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr ""
+msgstr "سىز مۇلازىمېتېرغا نامسىزلاشماي ئۇلىنىۋاتىسىز، ھەمدە بۇ مۇلازىمېتېر پەقەت نامسىز يوللاشنىلا قوللايدۇ"
 
 msgid "Thank you!"
 msgstr "رەھمەت سىزگە!"
 
 msgid "Your report was successful."
-msgstr ""
+msgstr "دوكلاتىڭىز مۇۋەپپىقىيەتلىك بولدى."
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "بىز سىزگە ئەڭ قىسقا ۋاقىتتا جاۋاپ قايتۇرۇشقا تىرىشىمىز."
 
 msgid "Remember your receipt for this report."
-msgstr ""
+msgstr "بۇ دوكلاتنىڭ تالونىنى ئېسىڭىزدە تۇتۇڭ."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
@@ -1691,46 +1692,46 @@ msgid "View your report"
 msgstr "دوكلاتىڭىزنى كۆرۈڭ"
 
 msgid "Recipient selection"
-msgstr ""
+msgstr "تاپشۇرىۋالغۇچى تاللاش"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "دوكلاتىڭىزنى تاپشۇرىۋالغۇچىلارنى تاللاڭ"
 
 msgid "Recipients selected:"
-msgstr ""
+msgstr "تاللانغان تاپشۇرىۋالغۇچىلار:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr ""
+msgstr "تاللاشقا بولىدىغان تاپشۇرىۋالغۇچىلار سانىنىڭ چېكىگە يەتتىڭىز."
 
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "تۆۋەندىكى تاپشۇرىۋالغۇچىلار سىزنىڭ دوكلاتىڭىزنى تاشۇرىۋالىدۇ ۋە تاللاشتىن قالدۇرالمايسىز:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr ""
+msgstr "بۇ قەدەمدە تۆۋەندىكى سۇئاللارغا بېرىلگەن جاۋاپلار خاتا ياكى ئىناۋەتسىز."
 
 msgid "You must select at least one recipient."
-msgstr ""
+msgstr "ئاز دېگەندە بىر تاپشۇرىۋالغۇچى تاللىشىڭىز كېرەك."
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr ""
+msgstr "ھۆججەت(لەر)نىڭ يۈكلىنىپ بولىشىنى ساقلاۋاتىدۇ."
 
 msgid "The following steps have errors:"
-msgstr ""
+msgstr "تۆۋەندىكى قەدەملەردە خاتالىق بار:"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr ""
+msgstr "تۆۋەندىكى قەدەممۇ-قەدەم سىزنىڭ ئۆز پاش قىلىش سۇپىڭىزنى قۇرۇپ چىقىشىڭىزغا يېتەكچىلىك قىلىدۇ."
 
 msgid "Please choose a configuration profile:"
-msgstr ""
+msgstr "بىر سەپلىمە تەرجىمھالى تاللاڭ:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "بۇ باشقۇرغۇچىغا ئىشلەتكۇچىلەرنىڭ پارولىنى قايتا سەپلەش ئىمكانىيىتى بېرىڭ."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
@@ -1740,28 +1741,28 @@ msgid ""
 msgstr ""
 
 msgid "Please choose a different username."
-msgstr ""
+msgstr "پەرقلىق بىر ئىشلەتكۈچى نامى تاللاڭ."
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "مەن ئىجازەت شەرتلىرىنى ئوقۇدۇم ھەمدە قوشۇلىمەن."
 
 msgid "You have completed the platform wizard."
-msgstr ""
+msgstr "سۇپا سېھىرگىرىنى پۈتتتۈردىڭىز."
 
 msgid "Fill out your report"
 msgstr "دوكلاتىڭىزنى توشقۇزۇڭ"
 
 msgid "Describe your report in a few words."
-msgstr ""
+msgstr "ئىككى ئېغىز گەپ بىلەن دوكلاتىڭىزنى چۈشەندۈرۈڭ."
 
 msgid "Describe your report in detail."
-msgstr ""
+msgstr "دوكلاتىڭىزنى تەپسىلىي چۈشەندۈرۈڭ."
 
 msgid "Attach files relevant to the report."
-msgstr ""
+msgstr "دوكلاتقا مۇناسىۋەتلىك ھۆججەتلەرنى قوشۇڭ."
 
 msgid "Do you want to provide your identification information?"
-msgstr ""
+msgstr "كىملىك ئۇچۇرلىرىڭىزنى تەمىنلەشنى خالامسىز؟"
 
 msgid "First name"
 msgstr "ئىسمى"
@@ -1779,7 +1780,7 @@ msgid "Female"
 msgstr "ئايال"
 
 msgid "Other gender identity"
-msgstr ""
+msgstr "باشقا جىنسىيەت كىملىگى"
 
 msgid "Date of birth"
 msgstr "تۇغۇلغان كۈنى"
@@ -1788,27 +1789,27 @@ msgid "Place of birth"
 msgstr "تۇغۇلغان يېرى"
 
 msgid "Zip code / Postal code"
-msgstr ""
+msgstr "پوچتا نومۇرى"
 
 msgid "Province"
-msgstr ""
+msgstr "ئۆلكە"
 
 msgid "Country"
-msgstr ""
+msgstr "ناھىيە"
 
 msgid "Dear {RecipientName},"
-msgstr ""
+msgstr "‏قەدىرلىك {RecipientName}،"
 
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr ""
+msgstr "سىزگە بۇ: {Site} سىستېمىسىدا بىر ھېساب قۇرۇلغانلىقى ئۈچۈن، مەزكۇر ئېلخەتنى تاپشۇرىۋالدىڭىز"
 
 msgid "Username: {Username}"
-msgstr ""
+msgstr "ئىشلەتكۈچى نامى: {Username}"
 
 msgid "Activation link: {Url}"
-msgstr ""
+msgstr "ئاكتىپلاش ئۇلانمىسى: {Url}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
@@ -1821,25 +1822,25 @@ msgid ""
 msgstr ""
 
 msgid "Kind regards,"
-msgstr ""
+msgstr "ھۆرمەت بىلەن،"
 
 msgid "Account activation"
-msgstr ""
+msgstr "ھېساپ ئاكتىپلاش"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr ""
+msgstr "پاش قىلىش سۇپىڭىزنى ھازىر بۇ يەردىن زىيارەت قىلغىلى بولىدۇ:"
 
 msgid "To log in, visit:"
-msgstr ""
+msgstr "تىزىمغا كىرىش ئۈچۈن، كۆرۈڭ:"
 
 msgid "Users' credentials:"
-msgstr ""
+msgstr "ئىشلەتكۈچىلەرنىڭ كىملىكلىرى:"
 
 msgid "The platform will be automatically deleted on:"
-msgstr ""
+msgstr "سۇپا بۇ ۋاقىتتا ئاپتوماتىك ئۆچۈرۈلگۈسى:"
 
 msgid "Access instructions"
-msgstr ""
+msgstr "زىيارەت كۆرسەتمىلىرى"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
@@ -1855,17 +1856,17 @@ msgid "Examine the issue to determine whether it is legitimate or not."
 msgstr ""
 
 msgid "The activities with unusual stats are:"
-msgstr ""
+msgstr "بىنورمال پائالىيەتلەرنىڭ ئىستاتىستىكىسى بۇلار:"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr ""
+msgstr "مۇلازىمېتېر يېڭى دوكلاتنىڭ ساقلىنىشىغا كاپالەتلىك قىلالمىغاچقا، يوللاش توختۇتۇپ قويۇلدى."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr ""
+msgstr "مۇلازىمېتىردا تېخىمۇ كۆپ دىسكا بوشلۇقى قۇرۇش ئۈچۈن, تېخنىكىلىق قوللاش تەلەپ قىلىشنى ئويلىشىڭ."
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
@@ -1878,7 +1879,7 @@ msgid ""
 msgstr ""
 
 msgid "Anomaly detected in {NodeName}"
-msgstr ""
+msgstr "‏{NodeName} نىڭ ئىچىدە بىنورماللىق بايقالدى"
 
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
@@ -1888,38 +1889,38 @@ msgstr ""
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr ""
+msgstr "ئىناۋەتلىك بىر PGP ئاچقۇچى بولمىسا، مۇلازىمېتېر ئۇلارغا شىفرىلەنگەن ئۇقتۇرۇش ئەۋەتەلمەيدۇ."
 
 msgid "PGP key expiration alert"
-msgstr ""
+msgstr "PGP ئاچقۇچ سۈرەك ئاگاھلاندۇرىشى"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "بىر يېڭى پاش قىلىش سۇپىسى تىزىملىتىلدى."
 
 msgid "Registration data:"
-msgstr ""
+msgstr "تىزىملىتىش مەلۇماتلىرى:"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "بېكەت: {Url}"
 
 msgid "Name: {Name}"
-msgstr ""
+msgstr "نامى: {Name}"
 
 msgid "Email: {Email}"
-msgstr ""
+msgstr "ئېلخەت: {Email}"
 
 msgid "Language: {Language}"
-msgstr ""
+msgstr "تىلى: {Language}"
 
 msgid "Use case: {UseCase}"
-msgstr ""
+msgstr "ئىشلىنىدىغان ئەھۋال: {UseCase}"
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "يېڭى پاش قىلىش بېكىتى تىزىملاتتى"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr ""
+msgstr "بۇ سۇپىنىڭ باشقۇرۇش ئېغىزىدىن ئەۋەتىلگەن بىر سىناق ئېلخەتى. "
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
@@ -1935,33 +1936,33 @@ msgid ""
 msgstr ""
 
 msgid "Click the following link to validate this change:"
-msgstr ""
+msgstr "تۆۋەندىكى ئۇلانمىنى چېكىپ، بۇ ئۆزگەرتىشنى دەلىللەڭ:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr ""
+msgstr "بۇ ئۆزگەرتىشنى ئەگەر سىز تەلەپ قىلمىغان بولسىڭىز، پارولىڭىزنى ئۆزگەرتىڭ ۋە سىستېما باشقۇرغۇچى بىلەن ئالاقىلىشىڭ."
 
 msgid "Email change request"
-msgstr ""
+msgstr "ئېلخەت ئۆزگەرتىش ئىلتىماسى"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "ئەۋەتكۈچى: {Author}"
 
 msgid "Date: {EventTime}"
-msgstr ""
+msgstr "چىسلا: {EventTime}"
 
 msgid "From: Whistleblower"
-msgstr ""
+msgstr "ئەۋەتكۈچى: پاش قىلغۇچى"
 
 msgid "Date: {SubmissionDate}"
-msgstr ""
+msgstr "چىسلا: {SubmissionDate}"
 
 msgid "Label: {TipLabel}"
-msgstr ""
+msgstr "بەلگە: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
+msgstr "ھالەت: {TipStatus}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
@@ -1969,28 +1970,28 @@ msgid ""
 msgstr ""
 
 msgid "Expiration date: {ExpirationDate}"
-msgstr ""
+msgstr "سۈرەك چېسلا: {ExpirationDate}"
 
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr ""
+msgstr "ئىناۋەتلىك بىر گۇۋاھنامە بولمىسا، سۇپىنى پەقەت Tor ئارقىلىقلا  بىخەتەر زىيارەت قىلغىلى بولىدۇ."
 
 msgid "Log in to solve the issue."
-msgstr ""
+msgstr "مەسىلىنى ھەل قىلىش ئۈچۈن تىزىمغا كىرىڭ."
 
 msgid "Expiration alert for HTTPS certificate"
-msgstr ""
+msgstr "HTTPS گۇۋاھنامىسى ئۈچۈن سۈرىكى توشۇش ئاگاھلاندۇرىشى"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr ""
+msgstr "بۈگۈن پىلانلانغان ئاپتوماتىك HTTPS گۇۋاھنامىسىنى يېڭىلاش مەغلۇب بولدى."
 
 msgid "The system will keep trying."
-msgstr ""
+msgstr "سىستېما داۋاملىق قايتا سىنايدۇ."
 
 msgid "Failed HTTPS certificate renewal"
-msgstr ""
+msgstr "‏HTTPS گۇۋاھنامىسىنى يېڭىلاش مەغلۇپ بولدى."
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
@@ -1998,7 +1999,7 @@ msgid ""
 msgstr ""
 
 msgid "The report can be accessed at:"
-msgstr ""
+msgstr "دوكلاتنى بۇ يەردە كۆرەلەيسىز:"
 
 msgid "Access to whistleblower's identity authorized"
 msgstr ""
@@ -2041,10 +2042,10 @@ msgid ""
 msgstr ""
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr ""
+msgstr "تەلىپىڭىزنى كەينىدىكى ئۇلانمىنى چېكىش ئارقىلىق جەزملىيەلەيسىز:"
 
 msgid "Password reset instructions"
-msgstr ""
+msgstr "پارول قايتا سەپلەش كۆرسەتمىسى"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
@@ -2054,7 +2055,7 @@ msgstr ""
 msgid ""
 "You should extend its validity and update the key present on the platform, "
 "or upload a new key."
-msgstr ""
+msgstr "سۇپىدىكى مەۋجۇت ئاچقۇچنىڭ ئۈنۈملۈك ۋاقتىنى ئۇزارتىشىڭىز ۋە يېڭىلىشىڭىز، ياكى يېڭى بىر ئاچقۇچ يۈكلىشىڭىز كېرەك."
 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
@@ -2062,16 +2063,16 @@ msgid ""
 msgstr ""
 
 msgid "Click the link to activate the platform:"
-msgstr ""
+msgstr "ئۇلانمىنى چېكىپ سۇپىنى بۇ ئاكتىپلاڭ:"
 
 msgid "Activation"
-msgstr ""
+msgstr "ئاكتىپلاش"
 
 msgid "A software update is available."
 msgstr "بىر يۇمشاق دېتال يېڭىلانمىسى بار"
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr ""
+msgstr "سۇپىنى يېڭىلاپ تۈرۈش ياخشى بىخەتەرلىك ئەمىلىيىتى."
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
@@ -2081,16 +2082,16 @@ msgstr ""
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
 "{UpdateGuideUrl}"
-msgstr ""
+msgstr "يۇمشاق دېتالنى يېڭىلاش كۆرسەتمىسى ئۈچۈن، بۇ يەردىكى ھۆججەتلەردىن پايدىلىنىڭ:  {UpdateGuideUrl}"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr ""
 
 msgid "Please remember to check them before they are deleted."
-msgstr ""
+msgstr "ئۆچۈرۈلۈشتىن بۇرۇن ئۇلارنى تەكشۈرۈشنى ئۇنۇتماڭ."
 
 msgid "Some reports will expire soon"
-msgstr ""
+msgstr "بەزى دوكلاتلارنىڭ يېقىندا ۋاقتى توشىدۇ"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
@@ -2109,19 +2110,19 @@ msgid "New report"
 msgstr "يېڭى دوكلات"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "بۇ ئېلخەت سىزگە بىر يېڭىلىنىپ بولغان دوكلاتنىڭ مەۋجۇتلىقىنى ئۇقتۇرۇش ئۈچۈندۇر.  "
 
 msgid "Report updated"
-msgstr ""
+msgstr "دوكلات يېڭىلاندى"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "بۇ ئېلخەت سىزگە نۆۋەتتىكى ئوقۇلمىغان ياكى يېڭىلانغان دوكلاتلارنى خاتىرىلىتىش ئۈچۈندۇر."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "ئوقۇلمىغان ياكى يېڭىلانغان دوكلاتلارنى خاتىرىلاتقۇچى"
 
 msgid "Role: {Role}"
-msgstr ""
+msgstr "رولى: {Role}"
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "پارول: {Password}"
