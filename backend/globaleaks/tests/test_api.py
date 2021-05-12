@@ -80,9 +80,9 @@ class TestAPI(TestGL):
             ('Content-Language', 'en'),
             ('Content-Security-Policy', 'base-uri \'none\';' \
                                         'default-src \'none\';' \
-                                        'script-src \'self\' \'sha256-5lXnnOUlgo1YhIuN7PZfUCak9vgNB1YIi2UELuAqwO4=\';' \
                                         'connect-src \'self\';' \
-                                        'style-src \'self\';' \
+                                        'style-src \'self\' \'sha256-fwyo2zCGlh85NfN4rQUlpLM7MB5cry/1AEDA/G9mQJ8=\';' \
+                                        'script-src \'self\' \'sha256-IYBZitj/YWbzjFFnwLPjJJmMGdSj923kzu2tdCxLKdU=\';' \
                                         'img-src \'self\' data:;' \
                                         'font-src \'self\' data:;' \
                                         'media-src \'self\';' \
