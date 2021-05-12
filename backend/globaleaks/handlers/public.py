@@ -372,6 +372,11 @@ def serialize_field_attr(attr, language):
         'value': attr.value
     }
 
+    if ret['name'] == 'min_len' and ret['value'] == '-1':
+        ret['value'] = '0'
+    elif ret['name'] == 'max_len' and ret['value'] <= '-1':
+        ret['value'] = '4096'
+
     if attr.type == 'localized':
         get_localized_values(ret, ret, ['value'], language)
 
