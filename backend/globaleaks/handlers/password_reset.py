@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import pyotp
-
 from datetime import datetime, timedelta
 
 from nacl.encoding import Base32Encoder, Base64Encoder
@@ -16,7 +14,7 @@ from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.sessions import Sessions
 from globaleaks.state import State
-from globaleaks.utils.crypto import generateRandomKey, GCE
+from globaleaks.utils.crypto import generateRandomKey, totpVerify, GCE
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 
@@ -126,7 +124,9 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
 
     elif user.two_factor_enable:
         two_factor_secret = user.two_factor_secret
-        if not pyotp.TOTP(two_factor_secret).verify(auth_code, valid_window=1):
+        try:
+            totpVerify(two_factor_secret, auth_code)
+        except:
             return {'status': 'require_two_factor_authentication'}
 
     # Token is used, void it out
