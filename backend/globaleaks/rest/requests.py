@@ -50,7 +50,6 @@ field_type_regexp = (r'^('
                      'email|'
                      'date|'
                      'daterange|'
-                     'map|'
                      'fieldgroup)$')
 
 field_attr_type_regexp = (r'^('

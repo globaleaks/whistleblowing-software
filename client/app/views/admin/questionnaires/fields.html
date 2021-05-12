@@ -23,7 +23,6 @@
                 <span data-ng-switch-when="tos" data-translate>Terms of service</span>
                 <span data-ng-switch-when="date" data-translate>Date</span>
                 <span data-ng-switch-when="daterange" data-translate>Date range</span>
-                <span data-ng-switch-when="map" data-translate>Map</span>
                 <span data-ng-switch-when="fieldgroup" data-translate>Question group</span>
                 <span data-ng-switch-default="default">{{field.type}}</span>
               </span>
@@ -198,12 +197,6 @@
                   <label>URL</label>
                   <input data-ng-model="field.attrs.attachment_url.value" type="text" class="form-control" />
                 </div>
-              </div>
-            </div>
-            <div data-ng-if="field.type === 'map'">
-              <div class="form-group">
-                <label>TopoJSON URL</label>
-                <input name="topojson" class="form-control" data-ng-model="field.attrs.topojson.value" type="text">
               </div>
             </div>
             <div data-ng-if="field.type === 'fieldgroup'">

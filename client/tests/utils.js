@@ -12,7 +12,6 @@ exports.vars = {
     "Terms of service",
     "Date",
     "Date range",
-    "Map",
     "Group of questions"
   ]
 };

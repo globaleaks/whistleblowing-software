@@ -14,8 +14,6 @@
     </div>
   </span>
 
-  <span data-ng-switch-when="map">{{field.attrs.topojson.id_name_map[entry['value']]}}</span>
-
   <span data-ng-switch-when="date">{{entry['value'] | date:'dd-MM-yyyy'}}</span>
 
   <span data-ng-switch-when="daterange"><span data-translate>From:</span> {{entry['value'] | split:':':0 | date:'dd-MM-yyyy'}} <span data-translate>To:</span> {{entry['value'] | split:':':1 | date:'dd-MM-yyyy'}}</span>

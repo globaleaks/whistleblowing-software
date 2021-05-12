@@ -1,39 +1,36 @@
 {
-  "inputbox": {
+ "inputbox": {
     "min_len": {"type": "int", "value": "0"},
     "max_len": {"type": "int", "value": "100"},
     "input_validation": {"type": "unicode", "value": "none"},
     "regexp": {"type": "unicode", "value": ""}
  },
-  "textarea": {
+ "textarea": {
     "min_len": {"type": "int", "value": "0"},
     "max_len": {"type": "int", "value": "2000"}
  },
-  "checkbox": {
+ "checkbox": {
     "display_alphabetically": {"type": "bool", "value": false }
  },
-  "selectbox": {
+ "selectbox": {
     "display_alphabetically": {"type": "bool", "value": false }
  },
-  "tos": {
+ "tos": {
     "text": {"type": "localized", "value": ""},
     "checkbox_label": {"type": "localized", "value": ""},
     "attachment": {"type": "bool", "value": false},
     "attachment_text": {"type": "localized", "value": ""},
     "attachment_url": {"type": "localized", "value": ""}
  },
-  "date": {
+ "date": {
     "min_date": {"type": "unicode", "value": ""},
     "max_date": {"type": "unicode", "value": ""}
  },
-  "daterange": {
+ "daterange": {
     "min_date": {"type": "unicode", "value": ""},
     "max_date": {"type": "unicode", "value": ""}
  },
-  "map": {
-    "topojson": {"type": "unicode", "value": ""}
- },
-  "fieldgroup": {
+ "fieldgroup": {
     "multimedia": {"type": "bool", "value": false},
     "multimedia_type": {"type": "unicode", "value": ""},
     "multimedia_url": {"type": "unicode", "value": ""}
