@@ -54,7 +54,7 @@ LANGUAGES_SUPPORTED = [
     {'code': 'lt', 'name': 'Korean', 'native': 'Llietuvių'},
     {'code': 'mg', 'name': 'Malagasy', 'native': 'Malagasy'},
     {'code': 'mk', 'name': 'Macedonian', 'native': '\u043c\u0430\u043a\u0435\u0434\u043e\u043d\u0441\u043a\u0438'},
-    {'code': 'ms', 'name': 'Malay', 'native': 'Melayu'},
+    {'code': 'ms', 'name': 'Malay', 'native': 'Bahasa Melayu'},
     {'code': 'my', 'name': 'Burmese', 'native': '\u1019\u103C\u1014\u103A\u1019\u102C\u0027'},
     {'code': 'nb_NO', 'name': 'Norwegian', 'native': 'Norsk bokm\xe5l'},
     {'code': 'nl', 'name': 'Dutch', 'native': 'Nederlands'},
