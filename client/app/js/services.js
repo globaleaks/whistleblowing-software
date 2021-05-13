@@ -792,6 +792,8 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
         $rootScope.pt = pt1;
       } else if (pt2) {
         $rootScope.pt = pt2;
+      } else {
+        $rootScope.pt = "GlobaLeaks";
       }
 
       $window.document.title = $rootScope.pt;
